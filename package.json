@@ -8,6 +8,7 @@
 	"license": "GNU",
 	"private": true,
 	"scripts": {
+		"start": "/bin/sh -c 'cd packages/${1:-$0} && yarn start' --mode=development",
 		"format": "prettier --write \"**/*.{js,md,json}\"",
 		"test:format": "prettier --list-different \"**/*.{js,md,json}\"",
 		"test": "npm run test:format"
@@ -22,12 +23,16 @@
 		"@babel/preset-env": "^7.1.6",
 		"@babel/preset-react": "^7.0.0",
 		"babel-loader": "^8.0.4",
-		"babel-plugin-emotion": "^10.0.4"
+		"babel-plugin-emotion": "^10.0.4",
+		"webpack": "^4.27.1",
+		"webpack-cli": "^3.1.2",
+		"webpack-dev-server": "^3.1.10"
 	},
 	"dependencies": {
 		"@emotion/core": "^10.0.4",
 		"@emotion/styled": "^10.0.4",
 		"emotion-theming": "^10.0.4",
+		"html-webpack-plugin": "^3.2.0",
 		"prettier": "^1.15.3",
 		"react": "^16.6.3",
 		"react-dom": "^16.6.3",

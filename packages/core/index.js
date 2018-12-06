@@ -1,2 +1,1 @@
-export * from 'style';
-export * from 'ContainerQuery';
+export { styled, ThemeProvider } from './theme';
