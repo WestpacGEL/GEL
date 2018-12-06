@@ -1,0 +1,20 @@
+{
+  "WBC": {
+    "hero": "paleVioletRed",
+    "link": "tomato",
+    "background": "firebrick",
+    "borderRadius": "2em"
+  },
+  "BOM": {
+    "hero": "skyBlue",
+    "link": "lightSkyBlue",
+    "background": "deepSkyBlue",
+    "borderRadius": 4
+  },
+  "STG": {
+    "hero": "seaGreen",
+    "link": "springGreen",
+    "background": "forestGreen",
+    "borderRadius": 4
+  }
+}

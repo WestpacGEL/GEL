@@ -1,0 +1,35 @@
+{
+  "name": "GUI3",
+  "version": "0.0.1",
+  "description": "The design system and react components for Westpac GEL",
+  "main": "index.js",
+  "repository": "https://github.com/WestpacGEL/GUI3.git",
+  "author": "Westpac GEL Team <gel@westpac.com.au>",
+  "license": "GNU",
+  "private": true,
+  "scripts": {
+    "start:playroom": "playroom start",
+    "build:playroom": "playroom build"
+  },
+  "bolt": {
+    "workspaces": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-emotion": "^10.0.4",
+    "playroom": "^0.5.3"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.4",
+    "@emotion/styled": "^10.0.4",
+    "emotion-theming": "^10.0.4",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "resize-observer-polyfill": "^1.5.0"
+  }
+}

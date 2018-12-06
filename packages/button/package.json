@@ -1,0 +1,15 @@
+{
+  "name": "@westpac/button",
+  "version": "0.0.1",
+  "description": "Buttons for the westpac GEL design language",
+  "main": "index.js",
+  "repository": "https://github.com/WestpacGEL/button.git",
+  "author": "Westpac GEL Team <gel@westpac.com.au>",
+  "license": "GNU",
+  "dependencies": {
+    "@emotion/core": "^10.0.4",
+    "@emotion/styled": "^10.0.4",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  }
+}
