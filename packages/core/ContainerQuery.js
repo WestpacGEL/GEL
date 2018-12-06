@@ -3,46 +3,47 @@ import PropTypes from 'prop-types';
 import ResizeObserver from 'resize-observer-polyfill';
 
 export class ContainerQuery extends Component {
-  measureElement = createRef();
-  state = { width: 'auto' };
-  static propTypes = {
-    children: PropTypes.func,
-  };
+	measureElement = createRef();
+	state = { width: 'auto' };
+	static propTypes = {
+		children: PropTypes.func,
+	};
 
-  componentDidMount() {
-    const measure = this.measureElement.current;
+	componentDidMount() {
+		const measure = this.measureElement.current;
 
-    this.resizeObserver = new ResizeObserver(([entry]) => {
-      this.setWidth(entry.target.offsetWidth);
-    });
-    this.resizeObserver.observe(measure);
+		this.resizeObserver = new ResizeObserver(([entry]) => {
+			this.setWidth(entry.target.offsetWidth);
+		});
+		this.resizeObserver.observe(measure);
 
-    this.setWidth(measure.offsetWidth);
-  }
-  componentWillUnmount() {
-    if (this.resizeObserver && this.measureElement.current) {
-      this.resizeObserver.disconnect(this.measureElement.current);
-    }
-    this.resizeObserver = null;
-  }
+		this.setWidth(measure.offsetWidth);
+	}
 
-  setWidth = width => {
-    this.setState({ width });
-  };
+	componentWillUnmount() {
+		if (this.resizeObserver && this.measureElement.current) {
+			this.resizeObserver.disconnect(this.measureElement.current);
+		}
+		this.resizeObserver = null;
+	}
 
-  render() {
-    const { children, render } = this.props;
+	setWidth = width => {
+		this.setState({ width });
+	};
 
-    return render ? (
-      render({
-        ref: this.measureElement,
-        width: this.state.width,
-      })
-    ) : (
-      <Fragment>
-        <div ref={this.measureElement} />
-        {children(this.state)}
-      </Fragment>
-    );
-  }
+	render() {
+		const { children, render } = this.props;
+
+		return render ? (
+			render({
+				ref: this.measureElement,
+				width: this.state.width,
+			})
+		) : (
+			<Fragment>
+				<div ref={this.measureElement} />
+				{children(this.state)}
+			</Fragment>
+		);
+	}
 }

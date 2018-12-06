@@ -1,13 +1,14 @@
 {
-	"name": "@westpac/tabcordion",
+	"name": "@westpac/grid",
 	"version": "0.0.1",
-	"description": "Tabcordion component for the Westpac GEL",
+	"description": "Grid component for the Westpac GEL",
 	"main": "index.js",
 	"repository": "https://github.com/WestpacGEL/GUI3.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GNU",
 	"dependencies": {
 		"react": "^16.6.3",
-		"react-dom": "^16.6.3"
+		"react-dom": "^16.6.3",
+		"@westpac/core": "^0.0.1"
 	}
 }
