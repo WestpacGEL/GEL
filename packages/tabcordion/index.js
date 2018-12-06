@@ -45,7 +45,7 @@ export default class Tabcordion extends React.Component {
     this.setState({ activeTabIndex });
   };
 
-  getElementId = (element: 'group' | 'input' | 'listbox' | 'option') => {
+  getElementId = element => {
     return `${this.instancePrefix}-${element}`;
   };
 
