@@ -7,9 +7,9 @@ import { Button } from '../index.js';
 console.log('Button', Button);
 
 ReactDOM.render(
-  <ThemeProvider value="WBC">
-    <Button>Should be button</Button>
-  </ThemeProvider>,
+	<ThemeProvider value="WBC">
+		<Button>Should be button</Button>
+	</ThemeProvider>,
 
-  document.getElementById('root')
+	document.getElementById('root')
 );
