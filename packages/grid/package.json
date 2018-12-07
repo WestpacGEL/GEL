@@ -2,13 +2,13 @@
 	"name": "@westpac/grid",
 	"version": "0.0.1",
 	"description": "Grid component for the Westpac GEL",
-	"main": "index.js",
 	"repository": "https://github.com/WestpacGEL/GUI3.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GNU",
 	"scripts": {
-		"start": "cd ./docs && webpack-dev-server"
+		"start": "cd ./demo && webpack-dev-server"
 	},
+	"main": "dist/index.js",
 	"devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
