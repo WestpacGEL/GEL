@@ -7,7 +7,7 @@
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GNU",
 	"scripts": {
-		"start": "cd ./docs && webpack-dev-server"
+		"start": "cd ./examples && webpack-dev-server"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.0",
