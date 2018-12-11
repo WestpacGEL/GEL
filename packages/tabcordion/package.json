@@ -22,7 +22,7 @@
 		"webpack-dev-server": "^2.9.4"
 	},
 	"dependencies": {
-		"react": "^16.6.3",
-		"react-dom": "^16.6.3"
+		"react": "^16.7.0-alpha.1",
+		"react-dom": "^16.7.0-alpha.1"
 	}
 }
