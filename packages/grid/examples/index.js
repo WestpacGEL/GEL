@@ -5,6 +5,33 @@ import styled from '@emotion/styled';
 import { Content, Example, Page, createRange, stripIndent } from '../../../examples';
 import { Cell, Grid } from '../src';
 
+const PropTable = ({ component }) => (
+	<table css={{}}>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Type</th>
+				<th>Required</th>
+				<th>Default</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{Object.entries(component.propTypes).map(([key, val]) => (
+				<tr key={key}>
+					<td>
+						<code>{key}</code>
+					</td>
+					<td>type</td>
+					<td>required</td>
+					<td>{component.defaultProps[key] || '--'}</td>
+					<td>description</td>
+				</tr>
+			))}
+		</tbody>
+	</table>
+);
+
 const Box = styled.div({
 	alignItems: 'center',
 	backgroundColor: '#DEEBFF',
@@ -95,6 +122,7 @@ ReactDOM.render(
 	<Page title="Grid">
 		<TraditionalGrid />
 		<PositioningAndOffsets />
+		<PropTable component={Grid} />
 	</Page>,
 
 	document.getElementById('root')
