@@ -1,2 +1,2 @@
-export { styled, ThemeProvider } from './theme';
+export { styled, ThemeProvider } from './Theme';
 export { ContainerQuery } from './ContainerQuery';

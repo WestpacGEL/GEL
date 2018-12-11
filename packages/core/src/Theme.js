@@ -6,5 +6,11 @@ import emotionStyled from '@emotion/styled';
 export const styled = emotionStyled;
 
 export const ThemeProvider = ({ brand = 'WBC', theme = {}, ...props }) => (
-	<EmotionThemeProvider theme={{ ...brands[brand], ...theme }} {...props} />
+	<EmotionThemeProvider
+		theme={{
+			// ...brands[brand],
+			...theme
+		}}
+		{...props}
+	/>
 );

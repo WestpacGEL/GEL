@@ -1,16 +1,33 @@
-#!/usr/bin/env node
+import React from 'react';
+import ReactDom from 'react-dom';
 
-const path = require('path');
-const fs = require('fs');
+const examples = process.env.EXAMPLES;
+const packageName = process.env.PACKAGE_NAME;
 
-const exampleFolder = path.normalize(`${__dirname}/../../packages/${process.argv[2]}/examples/`);
+const Example = ({ filename }) => {
+	const Component = require(`../../packages/${packageName}/examples/${filename}`).default;
+	return (
+		<Component />
+	);
+};
 
-if (fs.existsSync(exampleFolder)) {
-	const files = fs
-		.readdirSync(exampleFolder)
-		.filter(file => !file.startsWith('.') && !file.startsWith('_'));
+const App = () => (
+	<div>
+		<h1>Examples</h1>
+		<ul>
+			{examples.map(eg => (
+				<li key={eg.absolutePath}>{eg.filename}</li>
+			))}
+		</ul>
 
-	console.log(files);
-} else {
-	console.error(`Package doesn't exist: ${exampleFolder}`);
-}
+		<div>
+			<Example {...examples[0]} />
+		</div>
+
+	</div>
+);
+
+ReactDom.render(
+	<App />,
+	document.getElementById('root'),
+);
