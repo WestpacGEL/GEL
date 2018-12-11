@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled'; // TODO should come from '@westpac/core'
 
@@ -13,6 +14,9 @@ const formatAreas = areas => areas.map(area => `"${area}"`).join(' ');
 // Component
 // ==============================
 
+/**
+ * A group of `Cell` components must be wrapped in a `Grid`.
+ */
 export const Grid = styled.div(
 	({
 		alignContent,
@@ -27,18 +31,18 @@ export const Grid = styled.div(
 		rowGap,
 		rows,
 	}) => ({
+		alignContent: alignContent,
+		columnGap: columnGap,
 		display: 'grid',
-		height: height,
 		gridAutoFlow: flow,
 		gridAutoRows: `minmax(${stringVal(minRowHeight)}, auto)`,
-		gridTemplateColumns: repeatNumeric(columns),
 		gridGap: gap,
-		columnGap: columnGap,
-		rowGap: rowGap,
 		gridTemplateAreas: areas ? formatAreas(areas) : null,
+		gridTemplateColumns: repeatNumeric(columns),
 		gridTemplateRows: rows ? repeatNumeric(rows) : null,
+		height: height,
 		justifyContent: justifyContent,
-		alignContent: alignContent,
+		rowGap: rowGap,
 	})
 );
 
@@ -46,9 +50,10 @@ export const Grid = styled.div(
 // Types
 // ==============================
 
-const UnitType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
-
 Grid.propTypes = {
+	/**
+	 * The `align-content` CSS property.
+	 */
 	alignContent: PropTypes.oneOf([
 		'baseline',
 		'center',
@@ -64,12 +69,34 @@ Grid.propTypes = {
 		'start',
 		'stretch',
 	]),
+	/**
+	 * The `grid-template-areas` CSS property. Pass an array of strings, e.g. `["a a", "b c"]`.
+	 */
 	areas: PropTypes.arrayOf(PropTypes.string),
-	columnGap: UnitType,
-	columns: UnitType,
+	/**
+	 * The `column-gap` CSS property.
+	 */
+	columnGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	/**
+	 * The `grid-template-columns` CSS property. When a number is passed it is a
+	 * shorthand to specify the number of columns.
+	 */
+	columns: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	/**
+	 * The `grid-auto-flow` CSS property.
+	 */
 	flow: PropTypes.oneOf(['column dense', 'column', 'dense', 'row dense', 'row']),
-	gap: UnitType,
-	height: UnitType,
+	/**
+	 * The `grid-gap` CSS property.
+	 */
+	gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	/**
+	 * The `height` CSS property
+	 */
+	height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	/**
+	 * The `justify-content` CSS property.
+	 */
 	justifyContent: PropTypes.oneOf([
 		'center',
 		'end',
@@ -84,10 +111,21 @@ Grid.propTypes = {
 		'start',
 		'stretch',
 	]),
-	minRowHeight: UnitType,
-	rowGap: UnitType,
-	rows: UnitType,
+	/**
+	 * Minimum height of each row.
+	 */
+	minRowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	/**
+	 * The `row-gap` CSS property.
+	 */
+	rowGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	/**
+	 * The `grid-template-rows` CSS property. When a number is passed it is a
+	 * shorthand to specify the number of rows.
+	 */
+	rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
+
 Grid.defaultProps = {
 	columns: 12,
 	gap: 8,

@@ -3,8 +3,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { Global, css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { coy } from 'react-syntax-highlighter/dist/styles/prism';
 
 import { slugify } from './utils';
 
@@ -72,7 +70,9 @@ export const Example = ({ children, snippet, title }) => {
 					</H2>
 				</header>
 			) : null}
+
 			<div css={{ padding: GUTTER }}>{children}</div>
+
 			{snippet ? <Snippet>{snippet}</Snippet> : null}
 		</ExampleWrapper>
 	);
@@ -97,6 +97,7 @@ const Container = styled.div({
 	paddingLeft: 20,
 	paddingRight: 20,
 });
+
 const H2 = styled.h2({
 	boxShadow: '0 1px 0 rgba(0, 0, 0, 0.1)',
 	color: '#7A869A',
@@ -106,6 +107,7 @@ const H2 = styled.h2({
 	paddingBottom: GUTTER,
 	textTransform: 'uppercase',
 });
+
 const Anchor = styled.a({
 	color: '#7A869A',
 	textDecoration: 'none',
@@ -114,7 +116,7 @@ const Anchor = styled.a({
 
 const ExampleWrapper = styled.article({
 	backgroundColor: 'white',
-	boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1)',
+	boxShadow: '0 1px 3px 1px rgba(0, 0, 0, 0.1)',
 	borderRadius: 4,
 	display: 'flex',
 	flexDirection: 'column',
@@ -127,7 +129,6 @@ const Snippet = props => (
 			backgroundColor: '#F4F5F7',
 			borderBottomLeftRadius: 4,
 			borderBottomRightRadius: 4,
-			boxShadow: '0 -1px 0 rgba(0, 0, 0, 0.1)',
 			margin: 0,
 			padding: GUTTER,
 		}}
