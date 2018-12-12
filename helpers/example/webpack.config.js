@@ -15,7 +15,7 @@ function labelFromSlug(slug) {
 }
 
 // TODO get package name from scripts arguments
-const PACKAGE_NAME = 'grid';
+const { PACKAGE_NAME } = process.env;
 
 function findExampleFiles(package) {
 	const exampleFolder = path.resolve(`${__dirname}/../../packages/${package}/examples`);

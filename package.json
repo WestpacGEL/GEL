@@ -10,8 +10,7 @@
 	"scripts": {
 		"start": "/bin/sh -c 'cd packages/${1:-$0} && yarn start'",
 		"new": "node ./helpers/cli.js",
-		"dev": "node ./helpers/example/index.js",
-		"debug": "webpack-dev-server --config helpers/example/webpack.config.js",
+		"dev": "/bin/sh -c 'PACKAGE_NAME=$0 webpack-dev-server --config helpers/example/webpack.config.js'",
 		"format": "prettier --write \"**/*.{js,md,json}\"",
 		"test:format": "prettier --list-different \"**/*.{js,md,json}\"",
 		"test": "npm run test:format"
