@@ -1,3 +1,4 @@
+const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
@@ -102,7 +103,7 @@ module.exports = () => ({
 		],
 	},
 
-	plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, './index.html') })],
+	plugins: [new HtmlWebpackPlugin(), new HtmlWebpackRootPlugin()],
 	devServer: {
 		historyApiFallback: true,
 	},
