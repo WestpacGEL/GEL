@@ -72,14 +72,14 @@ const App = ({ components, packageName }) => {
 
 					<SidebarNav>
 						{navItems.map(({ label, slug }) => (
-							<SidebarItem key={slug} to={slug}>
+							<SidebarItem key={slug} to={`/${slug}`}>
 								{label}
 							</SidebarItem>
 						))}
 					</SidebarNav>
 				</Sidebar>
 				<Switch>
-					<Route exact path="/" component={Home} />
+					<Route exact path="/" render={route => <Home {...route} packageName={packageName} />} />
 					{components.map(({ slug, ...props }) => (
 						<Route key={slug} path={`/${slug}`} render={route => <Page {...route} {...props} />} />
 					))}
@@ -135,31 +135,17 @@ class Page extends React.Component {
 	}
 }
 
-const Home = props => (
+const Home = ({ packageName }) => (
 	<Article>
 		<Container>
-			<h1>Examples</h1>
+			<h1>{packageName} Examples</h1>
 			<p>
-				Tootsie roll muffin halvah candy carrot cake gingerbread sweet cotton candy. Cake pie
-				caramels. Bear claw muffin cake cake macaroon tart.
+				Click one of the examples on the left to view it. To load the examples for another package
+				run:
 			</p>
-			<p>
-				Cookie gummies jujubes soufflé lollipop. Wafer gummies tiramisu brownie dessert croissant.
-				Macaroon bear claw dragée cotton candy jujubes croissant jelly.
-			</p>
-			<p>
-				Cupcake jujubes toffee cheesecake gingerbread. Sesame snaps dragée gummi bears. Cheesecake
-				apple pie dessert sweet pastry toffee gummi bears.
-			</p>
-			<p>
-				Tart cotton candy powder. Jujubes sugar plum jujubes cake bonbon gingerbread icing sweet.
-				Pie oat cake chocolate bar pudding liquorice ice cream.
-			</p>
-			<p>
-				Donut dessert jelly beans macaroon. Cake lemon drops lollipop candy lollipop. Candy
-				liquorice marzipan tiramisu liquorice tart sugar plum sugar plum. Powder cheesecake pudding
-				cake pastry chocolate fruitcake.
-			</p>
+			<pre>
+				<code>bolt debug {'{package_name}'}</code>
+			</pre>
 		</Container>
 	</Article>
 );
