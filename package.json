@@ -26,6 +26,8 @@
 		"@babel/preset-env": "^7.2.0",
 		"@babel/preset-react": "^7.0.0",
 		"babel-loader": "^8.0.4",
+		"react-router-dom": "^4.3.1",
+		"tmp": "^0.0.33",
 		"webpack": "^4.27.1",
 		"webpack-cli": "^3.1.2",
 		"webpack-dev-server": "^3.1.10"

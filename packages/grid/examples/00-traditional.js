@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { Cell, Grid } from '../src';
-import { Box } from './_utils';
+import { Box, createRange } from './_utils';
 
 const rows = counts =>
 	counts.map(number =>
