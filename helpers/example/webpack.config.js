@@ -85,8 +85,9 @@ module.exports = () => ({
 	mode: 'development',
 
 	output: {
-		path: path.resolve(__dirname, 'dist'),
 		filename: '[name]-[hash].js',
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/',
 	},
 
 	module: {
@@ -104,6 +105,7 @@ module.exports = () => ({
 
 	plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, './index.html') })],
 	devServer: {
+		historyApiFallback: true,
 		// hot: true,
 	},
 });
