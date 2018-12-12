@@ -93,4 +93,6 @@ bolt
 ## TODO
 
 - core -> theme
-- Maybe make tokens package
+- maybe make tokens package
+- move emotion into theme package (remove deps)
+- fix up other components to new folder structure
