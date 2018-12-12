@@ -4,10 +4,16 @@ The design system for Westpac GEL
 
 ## npm scripts
 
+To install all dependencies:
+
+```sh
+bolt
+```
+
 To run the examples of the specified component:
 
 ```sh
-bolt start [package-name]
+bolt dev [package-name]
 ```
 
 To create a specified empty component:
@@ -16,10 +22,10 @@ To create a specified empty component:
 bolt new [package-name]
 ```
 
-To install all dependencies:
+The `start` script is reserved for something we don't know yet:
 
 ```sh
-bolt
+bolt start [package-name]
 ```
 
 ## Monorepo
