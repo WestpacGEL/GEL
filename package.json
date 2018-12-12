@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"repository": "https://github.com/WestpacGEL/GUI3.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
-	"license": "GNU",
+	"license": "GPL-3.0+",
 	"private": true,
 	"scripts": {
 		"start": "/bin/sh -c 'cd packages/${1:-$0} && yarn start'",
