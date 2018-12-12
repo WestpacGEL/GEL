@@ -55,14 +55,14 @@ const rows = counts =>
 
 const TraditionalGrid = () => {
 	const codeSnippet = stripIndent`
-	  <Grid>
-	    <Cell width={1}>1/12</Cell>
-	    <Cell width={1}>2/12</Cell>
-	    ...
-	    <Cell width={2}>1/6</Cell>
-	    <Cell width={2}>2/6</Cell>
-	    ...
-	  </Grid>
+		<Grid>
+			<Cell width={1}>1/12</Cell>
+			<Cell width={1}>2/12</Cell>
+			...
+			<Cell width={2}>1/6</Cell>
+			<Cell width={2}>2/6</Cell>
+			...
+		</Grid>
 	`;
 
 	return (
@@ -78,11 +78,11 @@ const TraditionalGrid = () => {
 const PositioningAndOffsets = () => {
 	const codeSnippet = stripIndent`
 		<Grid columns={3}>
-		  <Cell>Top Left</Cell>
-		  <Cell left={3}>Top Right</Cell>
-		  <Cell left={2} top={2}>Middle</Cell>
-		  <Cell top={3}>Bottom Left</Cell>
-		  <Cell top={3} left={3}>Bottom Right</Cell>
+			<Cell>Top Left</Cell>
+			<Cell left={3}>Top Right</Cell>
+			<Cell left={2} top={2}>Middle</Cell>
+			<Cell top={3}>Bottom Left</Cell>
+			<Cell top={3} left={3}>Bottom Right</Cell>
 		</Grid>
 	`;
 

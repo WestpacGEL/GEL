@@ -6,7 +6,7 @@
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GNU",
 	"scripts": {
-		"start": "cd ./examples && webpack-dev-server"
+		"start": "echo \"Starting\""
 	},
 	"main": "dist/index.js",
 	"dependencies": {

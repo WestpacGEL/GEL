@@ -144,7 +144,7 @@ const Home = ({ packageName }) => (
 				run:
 			</p>
 			<pre>
-				<code>bolt debug {'{package_name}'}</code>
+				<code>bolt dev {'{package_name}'}</code>
 			</pre>
 		</Container>
 	</Article>

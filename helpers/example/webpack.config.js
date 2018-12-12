@@ -14,7 +14,6 @@ function labelFromSlug(slug) {
 		.join(' ');
 }
 
-// TODO get package name from scripts arguments
 const { PACKAGE_NAME } = process.env;
 
 function findExampleFiles(package) {
@@ -106,6 +105,5 @@ module.exports = () => ({
 	plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, './index.html') })],
 	devServer: {
 		historyApiFallback: true,
-		// hot: true,
 	},
 });

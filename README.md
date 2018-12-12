@@ -4,17 +4,23 @@ The design system for Westpac GEL
 
 ## npm scripts
 
-`bolt start [package-name]`
+To run the examples of the specified component:
 
-- will run the demo of the specified component
+```sh
+bolt start [package-name]
+```
 
-`bolt new [package-name]`
+To create a specified empty component:
 
-- will create the specified empty component
+```sh
+bolt new [package-name]
+```
 
-`bolt`
+To install all dependencies:
 
-- will install all dependencies
+```sh
+bolt
+```
 
 ## Monorepo
 
@@ -72,14 +78,7 @@ The design system for Westpac GEL
     └── test.cypress.js   # cypress file for end-to-end files
 ```
 
-TODO
+## TODO
 
-- Move to webpack latest/ Parcel
-- Remove demo/index.html
-- Rename demo -> examples
-- Move babel.rc and webpack config into root
-- Make bablerc -> js file
-- Make DemoLoader project
-- Parcel instead of webpack
 - core -> theme
 - Maybe make tokens package
