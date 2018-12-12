@@ -2,13 +2,13 @@
 	"name": "@westpac/tabcordion",
 	"version": "0.0.1",
 	"description": "Tabcordion component for the Westpac GEL",
-	"main": "index.js",
 	"repository": "https://github.com/WestpacGEL/GUI3.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
-	"license": "GNU",
+	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "cd ./examples && webpack-dev-server"
+		"start": "echo \"Starting\""
 	},
+	"main": "dist/index.js",
 	"dependencies": {
 		"react": "^16.7.0-alpha.1",
 		"react-dom": "^16.7.0-alpha.1"

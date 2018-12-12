@@ -2,13 +2,13 @@
 	"name": "@westpac/core",
 	"version": "0.0.1",
 	"description": "Core components for the westpac GEL design language",
-	"main": "index.js",
-	"repository": "https://github.com/WestpacGEL/core.git",
+	"repository": "https://github.com/WestpacGEL/GUI3.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
-	"license": "GNU",
+	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "cd ./examples && webpack-dev-server"
+		"start": "echo \"Starting\""
 	},
+	"main": "dist/index.js",
 	"dependencies": {
 		"@emotion/core": "^10.0.4",
 		"@emotion/styled": "^10.0.4",
