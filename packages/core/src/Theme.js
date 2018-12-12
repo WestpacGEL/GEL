@@ -9,7 +9,7 @@ export const ThemeProvider = ({ brand = 'WBC', theme = {}, ...props }) => (
 	<EmotionThemeProvider
 		theme={{
 			// ...brands[brand],
-			...theme
+			...theme,
 		}}
 		{...props}
 	/>

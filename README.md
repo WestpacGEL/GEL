@@ -5,14 +5,16 @@ The design system for Westpac GEL
 ## npm scripts
 
 `bolt start [package-name]`
+
 - will run the demo of the specified component
 
 `bolt new [package-name]`
+
 - will create the specified empty component
 
 `bolt`
-- will install all dependencies
 
+- will install all dependencies
 
 ## Monorepo
 
@@ -69,7 +71,6 @@ The design system for Westpac GEL
     ├── unit.spec.js      # jest test file for unit tests
     └── test.cypress.js   # cypress file for end-to-end files
 ```
-
 
 TODO
 
