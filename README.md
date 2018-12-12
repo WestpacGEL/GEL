@@ -28,10 +28,15 @@ The design system for Westpac GEL
 │   │   └── webpack.config.js # dynamic webpack config to run the `bolt dev` task
 │   └── cli.js                # helper file for cli like adding a new module
 │
-├── packages/                 # all ds components that will be published
+├── components/               # all ds components that will be published
 │   ├── component1/
 │   ├── component2/
 │   └── component3/
+│
+├── theme/
+│   ├── WBC/
+│   ├── STG/
+│   └── BOM/
 │
 ├── examples/                 # complex examples like templates
 │   ├── demo1/                # for testing multiple components
@@ -44,7 +49,7 @@ The design system for Westpac GEL
     └── page3.mdx
 ```
 
-## Packages
+## Component
 
 ```sh
 .
