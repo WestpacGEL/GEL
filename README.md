@@ -1,4 +1,4 @@
-# GUI3
+# GEL
 
 The design system for Westpac GEL
 
@@ -28,15 +28,26 @@ The design system for Westpac GEL
 │   │   └── webpack.config.js # dynamic webpack config to run the `bolt dev` task
 │   └── cli.js                # helper file for cli like adding a new module
 │
-├── packages/                 # all ds components that will be published
+├── components/               # all ds components that will be published
 │   ├── component1/
 │   ├── component2/
 │   └── component3/
 │
+├── theme/
+│   ├── WBC/
+│   │   ├── index.js          # only for exports
+│   │   ├── svg/              # and with like svgs
+│   │   ├── data/             # like design tokens
+│   │   └── fonts/            # or font files
+│   ├── STG/
+│   │   └── etc
+│   └── BOM/
+│       └── etc
+│
 ├── examples/                 # complex examples like templates
 │   ├── demo1/                # for testing multiple components
 │   ├── demo2/                # and building out templates
-│   └── demo3/                # will be sued to end-to-end test on
+│   └── demo3/                # will be used for integration test
 │
 └── docs/                     # everything related to the documentation site
     ├── page1.mdx
@@ -44,7 +55,7 @@ The design system for Westpac GEL
     └── page3.mdx
 ```
 
-## Packages
+## Component
 
 ```sh
 .
@@ -59,14 +70,9 @@ The design system for Westpac GEL
 │   ├── vanilla.js          # only for static site generation
 │   └── util.js             # for reused logic within the component [optional]
 │
-│ // TODO this may go into a package
-├── theme/                  # all other files here [optional]
-│   ├── WBC/                # each brand has it's own folder
-│   │   ├── index.js        # only for exports
-│   │   ├── svg/            # and with like svgs
-│   │   ├── data/           # like design tokens
-│   │   └── fonts/          # or font files
-│   └── STG/                # and other brands
+├── docs/                   # documentation for docz later
+│   ├── thing1.mdx          # documenting features etc
+│   └── thing2.mdx
 │
 ├── examples/               # the demo folder is for seeing the components in action
 │   ├── 00-example.js       # show-case props and variations
@@ -76,7 +82,7 @@ The design system for Westpac GEL
 │
 └── tests/                  # test includes all tests
     ├── unit/
-    │   ├── unit.spec.js    # jest test file for unit tests
+    │   └── unit.spec.js    # jest test file for unit tests
     └── integration/
         └── test.cypress.js # cypress test file for integration tests
 ```
