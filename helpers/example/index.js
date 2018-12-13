@@ -1,6 +1,6 @@
 /* @jsx jsx */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import { ThemeProvider } from 'emotion-theming';
@@ -14,6 +14,7 @@ import styled from '@emotion/styled';
 
 const BRANDS = {
 	BOM: { primaryLight: '#EAE6FF' },
+	BSA: { primaryLight: '#DEEBFF' },
 	STG: { primaryLight: '#E3FCEF' },
 	WBC: { primaryLight: '#FFEBE6' },
 };
@@ -26,6 +27,12 @@ const App = ({ components, packageName }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [theme, setTheme] = useState('WBC');
 
+	// update doc title
+	useEffect(() => {
+		document.title = `${packageName} Example - GEL`;
+	}, packageName);
+
+	// filter components for search
 	const navItems = inputValue.length
 		? components.filter(p => p.label.toLowerCase().includes(inputValue.toLowerCase()))
 		: components;
@@ -192,8 +199,10 @@ const Container = styled.div({
 	maxWidth: 800,
 	padding: 20,
 });
+
 const Sidebar = styled.div({
 	backgroundColor: '#F4F5F7',
+	borderRight: '1px solid rgba(0, 0, 0, 0.075)',
 	display: 'flex',
 	flexDirection: 'column',
 	width: 240,
@@ -207,7 +216,7 @@ const SidebarSearch = styled.input({
 	background: 0,
 	borderWidth: '1px 0px',
 	borderStyle: 'solid',
-	borderColor: 'rgba(0,0,0,0.1)',
+	borderColor: 'rgba(0, 0, 0, 0.075)',
 	boxSizing: 'border-box',
 	fontSize: 'inherit',
 	outline: 0,
@@ -253,19 +262,23 @@ const SidebarTitle = styled(NavLink)({
 	padding: 20,
 	textDecoration: 'none',
 });
+
 const SidebarSwitcher = styled.div({
 	display: 'flex',
+	fontSize: '0.85rem',
 });
 const SidebarSwitch = styled.label(({ isChecked }) => ({
 	alignItems: 'center',
 	borderTop: '1px solid',
 	borderTopColor: isChecked ? '#2684FF' : 'rgba(0, 0, 0, 0.1)',
+	boxSizing: 'border-box',
 	color: isChecked ? 'inherit' : '#2684FF',
 	cursor: 'pointer',
 	flex: 1,
 	fontWeight: 500,
 	justifyContent: 'center',
-	padding: 16,
+	paddingBottom: 12,
+	paddingTop: 12,
 	textAlign: 'center',
 
 	input: {
