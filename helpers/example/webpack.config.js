@@ -5,10 +5,10 @@ const path = require('path');
 const tmp = require('tmp');
 const fs = require('fs');
 
-function slugFromFilename(filename) {
-	return filename.slice(3, -3);
+const slugFromFilename = filename => {
+	return filename.slice(3, -3); //TODO check for number and dash
 }
-function labelFromSlug(slug) {
+const labelFromSlug = slug => {
 	return slug
 		.split('-')
 		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -17,7 +17,7 @@ function labelFromSlug(slug) {
 
 const { PACKAGE_NAME } = process.env;
 
-function findExampleFiles(package) {
+const findExampleFiles = package => {
 	const exampleFolder = path.resolve(`${__dirname}/../../packages/${package}/examples`);
 
 	if (fs.existsSync(exampleFolder)) {

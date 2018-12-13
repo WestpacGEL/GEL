@@ -1,4 +1,4 @@
-# GUI3
+# GEL
 
 The design system for Westpac GEL
 
@@ -41,7 +41,7 @@ The design system for Westpac GEL
 ├── examples/                 # complex examples like templates
 │   ├── demo1/                # for testing multiple components
 │   ├── demo2/                # and building out templates
-│   └── demo3/                # will be sued to end-to-end test on
+│   └── demo3/                # will be used for integration test
 │
 └── docs/                     # everything related to the documentation site
     ├── page1.mdx
