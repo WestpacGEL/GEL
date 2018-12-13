@@ -6,19 +6,23 @@ const tmp = require('tmp');
 const fs = require('fs');
 
 const slugFromFilename = filename => {
-	return filename.slice(3, -3); // TODO check for number and dash
-}
+	if (filename.match(/^[0-9][0-9]-/)) {
+		return filename.slice(3, -3);
+	} else {
+		return filename;
+	}
+};
 const labelFromSlug = slug => {
 	return slug
 		.split('-')
 		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
 		.join(' ');
-}
+};
 
 const { PACKAGE_NAME } = process.env;
 
 const findExampleFiles = package => {
-	const exampleFolder = path.resolve(`${__dirname}/../../packages/${package}/examples`);
+	const exampleFolder = path.resolve(`${__dirname}/../../components/${package}/examples`);
 
 	if (fs.existsSync(exampleFolder)) {
 		const files = fs
@@ -43,7 +47,7 @@ const findExampleFiles = package => {
 	} else {
 		console.error(`Package doesn't exist: ${exampleFolder}`);
 	}
-}
+};
 
 tmp.setGracefulCleanup();
 const tmpObj = tmp.fileSync();
@@ -82,7 +86,7 @@ process.on('exit', () => {
 
 module.exports = () => ({
 	entry: tmpObj.name,
-	context: path.normalize(`${ __dirname }/../../packages/${ PACKAGE_NAME }/`),
+	context: path.normalize(`${__dirname}/../../components/${PACKAGE_NAME}/`),
 	mode: 'development',
 
 	output: {

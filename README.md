@@ -33,8 +33,11 @@ The design system for Westpac GEL
 │   ├── component2/
 │   └── component3/
 │
-├── theme/
+├── brands/
 │   ├── WBC/
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── package.json
 │   │   ├── index.js          # only for exports
 │   │   ├── svg/              # and with like svgs
 │   │   ├── data/             # like design tokens
@@ -46,8 +49,9 @@ The design system for Westpac GEL
 │
 ├── examples/                 # complex examples like templates
 │   ├── demo1/                # for testing multiple components
-│   ├── demo2/                # and building out templates
-│   └── demo3/                # will be used for integration test
+│   │   └── tests/            # each have test folders
+│   ├── demo2/
+│   └── demo3/
 │
 └── docs/                     # everything related to the documentation site
     ├── page1.mdx
@@ -89,7 +93,4 @@ The design system for Westpac GEL
 
 ## TODO
 
-- core -> theme
-- maybe make tokens package
-- move emotion into theme package (remove deps)
 - fix up other components to new folder structure
