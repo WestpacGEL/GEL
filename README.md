@@ -35,8 +35,14 @@ The design system for Westpac GEL
 │
 ├── theme/
 │   ├── WBC/
+│   │   ├── index.js          # only for exports
+│   │   ├── svg/              # and with like svgs
+│   │   ├── data/             # like design tokens
+│   │   └── fonts/            # or font files
 │   ├── STG/
+│   │   └── etc
 │   └── BOM/
+│       └── etc
 │
 ├── examples/                 # complex examples like templates
 │   ├── demo1/                # for testing multiple components
@@ -65,13 +71,9 @@ The design system for Westpac GEL
 │   └── util.js             # for reused logic within the component [optional]
 │
 │ // TODO this may go into a package
-├── theme/                  # all other files here [optional]
-│   ├── WBC/                # each brand has it's own folder
-│   │   ├── index.js        # only for exports
-│   │   ├── svg/            # and with like svgs
-│   │   ├── data/           # like design tokens
-│   │   └── fonts/          # or font files
-│   └── STG/                # and other brands
+├── docs/                  # all other files here [optional]
+│   ├── thing1.mdx         # each brand has it's own folder
+│   └── thing2.mdx         # and other brands
 │
 ├── examples/               # the demo folder is for seeing the components in action
 │   ├── 00-example.js       # show-case props and variations
