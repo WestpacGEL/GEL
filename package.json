@@ -8,7 +8,9 @@
 	"license": "GPL-3.0+",
 	"private": true,
 	"scripts": {
-		"start": "/bin/sh -c 'cd components/${1:-$0} && yarn start'",
+		"start": "/bin/sh -c 'cd components/${1:-$0} && bolt start'",
+		"nuke": "rm -rf node_modules && bolt ws exec -- rm -rf node_modules",
+		"fresh": "bolt nuke && bolt install",
 		"new": "node ./helpers/cli.js",
 		"dev": "/bin/sh -c 'PACKAGE_NAME=$0 webpack-dev-server --config helpers/example/webpack.config.js'",
 		"format": "prettier --write \"**/*.{js,md,json}\"",
