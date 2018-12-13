@@ -70,7 +70,6 @@ The design system for Westpac GEL
 │   ├── vanilla.js          # only for static site generation
 │   └── util.js             # for reused logic within the component [optional]
 │
-│ // TODO this may go into a package
 ├── docs/                  # all other files here [optional]
 │   ├── thing1.mdx         # each brand has it's own folder
 │   └── thing2.mdx         # and other brands
