@@ -70,9 +70,9 @@ The design system for Westpac GEL
 │   ├── vanilla.js          # only for static site generation
 │   └── util.js             # for reused logic within the component [optional]
 │
-├── docs/                  # all other files here [optional]
-│   ├── thing1.mdx         # each brand has it's own folder
-│   └── thing2.mdx         # and other brands
+├── docs/                   # documentation for docz later
+│   ├── thing1.mdx          # documenting features etc
+│   └── thing2.mdx
 │
 ├── examples/               # the demo folder is for seeing the components in action
 │   ├── 00-example.js       # show-case props and variations
@@ -82,7 +82,7 @@ The design system for Westpac GEL
 │
 └── tests/                  # test includes all tests
     ├── unit/
-    │   ├── unit.spec.js    # jest test file for unit tests
+    │   └── unit.spec.js    # jest test file for unit tests
     └── integration/
         └── test.cypress.js # cypress test file for integration tests
 ```
