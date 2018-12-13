@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
-import { styled, ThemeProvider } from '@westpac/core';
+import { ThemeProvider } from 'emotion-theming';
 
 import { Global, css, jsx } from '@emotion/core';
+import styled from '@emotion/styled';
 
 // ==============================
 // Get the data
@@ -265,6 +266,7 @@ const SidebarSwitch = styled.label(({ isChecked }) => ({
 	fontWeight: 500,
 	justifyContent: 'center',
 	padding: 16,
+	textAlign: 'center',
 
 	input: {
 		height: 1,
