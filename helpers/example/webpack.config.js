@@ -6,7 +6,7 @@ const tmp = require('tmp');
 const fs = require('fs');
 
 const slugFromFilename = filename => {
-	return filename.slice(3, -3); //TODO check for number and dash
+	return filename.slice(3, -3); // TODO check for number and dash
 }
 const labelFromSlug = slug => {
 	return slug
@@ -82,6 +82,7 @@ process.on('exit', () => {
 
 module.exports = () => ({
 	entry: tmpObj.name,
+	context: path.normalize(`${ __dirname }/../../packages/${ PACKAGE_NAME }/`),
 	mode: 'development',
 
 	output: {

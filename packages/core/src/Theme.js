@@ -5,12 +5,17 @@ import emotionStyled from '@emotion/styled';
 
 export const styled = emotionStyled;
 
-export const ThemeProvider = ({ brand = 'WBC', theme = {}, ...props }) => (
+const brands = {};
+
+export const GEL = ({ brand, theme, ...props }) => (
 	<EmotionThemeProvider
-		theme={{
-			// ...brands[brand],
-			...theme,
-		}}
+		theme={theme(brands[brand])}
 		{...props}
 	/>
 );
+
+
+GEL.defaultProps = {
+	brand: 'WBC',
+	theme: () => {},
+};
