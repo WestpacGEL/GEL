@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled'; // TODO should come from '@westpac/core'
+import { styled } from '@westpac/core';
 
 export const Cell = styled.div(({ area, center, height, left, middle, top, width }) => ({
 	height: '100%',

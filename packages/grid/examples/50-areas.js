@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 
 import { Cell, Grid } from '../src';
 import { Box } from './_utils';

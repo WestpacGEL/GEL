@@ -1,14 +1,14 @@
-import styled from '@emotion/styled';
+import { styled } from '@westpac/core';
 
-export const Box = styled.div({
+export const Box = styled.div(({ theme }) => ({
 	alignItems: 'center',
-	backgroundColor: '#DEEBFF',
+	backgroundColor: theme.primaryLight,
 	borderRadius: 2,
 	display: 'flex',
 	height: '100%',
 	justifyContent: 'center',
 	minHeight: 44,
-});
+}));
 
 export function createRange(start, end, step = 1) {
 	if (end === undefined) {

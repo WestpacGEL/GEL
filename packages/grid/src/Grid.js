@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled'; // TODO should come from '@westpac/core'
+import { styled } from '@westpac/core';
 
 // ==============================
 // Utils
