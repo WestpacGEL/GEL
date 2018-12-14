@@ -18,6 +18,10 @@ const labelFromSlug = slug => {
 		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
 		.join(' ');
 };
+// const brandLabel = brand => {
+// 	const brands = fs.readdirSync(path.normalize(`${__dirname}/../../brands`), { encoding: 'utf8' });
+// 	return brands.includes(brand) ? brand : 'WBC';
+// };
 
 const { PACKAGE_NAME } = process.env;
 

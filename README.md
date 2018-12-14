@@ -1,17 +1,19 @@
-# GEL
+# GEL [![CircleCI](https://circleci.com/gh/WestpacGEL/GEL/tree/master.svg?style=svg)](https://circleci.com/gh/WestpacGEL/GEL/tree/master)
 
 The design system for Westpac GEL
 
 ## npm scripts
 
-| script                      | description                                 |
-| --------------------------- | ------------------------------------------- |
-| `bolt`                      | install all dependencies                    |
-| `bolt dev [package-name]`   | run the examples of the specified component |
-| `bolt new [package-name]`   | create a specified empty component          |
-| `bolt start [package-name]` | the script is reserved for something we ... |
-| `bolt test`                 | runs test                                   |
-| `bolt format`               | runs prettier to format all code            |
+| script                      | description                                    |
+| --------------------------- | ---------------------------------------------- |
+| `bolt`                      | install all dependencies                       |
+| `bolt nuke`                 | removes all `node_modules` for fresh start     |
+| `bolt fresh`                | removes all `node_modules` and reinstalls them |
+| `bolt dev [package-name]`   | run the examples of the specified component    |
+| `bolt new [package-name]`   | create a specified empty component             |
+| `bolt start [package-name]` | the script is reserved for something we ...    |
+| `bolt test`                 | runs test                                      |
+| `bolt format`               | runs prettier to format all code               |
 
 ## Monorepo
 
@@ -72,7 +74,7 @@ The design system for Westpac GEL
 │   ├── ComponentX.js       # only for the components, can be multiple files
 │   ├── styled.js           # only for styles [optional]
 │   ├── vanilla.js          # only for static site generation
-│   └── util.js             # for reused logic within the component [optional]
+│   └── _util.js            # for reused logic within the component [optional]
 │
 ├── docs/                   # documentation for docz later
 │   ├── thing1.mdx          # documenting features etc
@@ -91,11 +93,41 @@ The design system for Westpac GEL
         └── test.cypress.js # cypress test file for integration tests
 ```
 
+## Decisions
+
+- All scripts are run through the `bolt` command
+- The helper file will include all helpers for builds
+- We have two different example / doc concerns:
+  1. Examples: they are for building components locally and to explain code
+  1. Docs: this is a website that will be published for documenting APIs
+- Multi-brand will be achieved by added a brand package that will be dynamically imported inside `core`
+- Tokens and everything regarding branding will be contained in the brand packages in `brands/*`
+- To select a brand the consumer has to import the `@westpac/[brand]` package and pass it to core
+
+  ```jsx
+  import { brand } from '@westpac/wbc';
+  import { GEL } from '@westpac/core';
+
+  <GEL brand={brand}>Your app</GEL>;
+  ```
+
+### Naming convention
+
+| name            | purpose                                                                     |
+| --------------- | --------------------------------------------------------------------------- |
+| `index.js`      | Export only public API                                                      |
+| `styled.js`     | Only for styled components `[optional]`                                     |
+| `_util.js`      | For code shared between components (ignored in examples) `[optional]`       |
+| `ComponentX.js` | All component files are named after the exported component and pascal cased |
+| `00-*.js`       | All files inside the `examples/` folder are sorted by file name             |
+| `*.js`          | All jsx files are postfixed with `.js`                                      |
+| `*.spec.js`     | All (jest) unit tests are postfixed with `.spec.js`                         |
+
 ## TODO
 
 - [x] jest tests setup for each component
-- [ ] cypress test setup for each component
-- [ ] add circleCI
-- [ ] connect brand/wbc packages to core component dynamic import
-- [ ] write more docs around each decision me made
-- [ ] fix up other components to new folder structure
+- [/] cypress test setup for each component
+- [x] add circleCI
+- [x] write more docs around each decision me made
+- [x] connect brand/wbc packages to core component
+- [x] fix up other components to new folder structure
