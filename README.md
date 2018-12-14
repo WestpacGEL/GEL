@@ -93,9 +93,9 @@ The design system for Westpac GEL
 
 ## TODO
 
-- [ ] jest tests setup for each component
+- [x] jest tests setup for each component
 - [ ] cypress test setup for each component
 - [ ] add circleCI
 - [ ] connect brand/wbc packages to core component dynamic import
-- [ ] write more docs around each decision me made.
+- [ ] write more docs around each decision me made
 - [ ] fix up other components to new folder structure

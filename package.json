@@ -1,5 +1,5 @@
 {
-	"name": "GUI3",
+	"name": "GEL",
 	"version": "0.0.1",
 	"description": "The design system and react components for Westpac GEL",
 	"main": "index.js",
@@ -15,6 +15,8 @@
 		"dev": "/bin/sh -c 'PACKAGE_NAME=$0 webpack-dev-server --config helpers/example/webpack.config.js'",
 		"format": "prettier --write \"**/*.{js,md,json}\"",
 		"test:format": "prettier --list-different \"**/*.{js,md,json}\"",
+		"test:unit": "jest",
+		"test:unit-watch": "jest --watch --coverage",
 		"test": "npm run test:format"
 	},
 	"bolt": {
@@ -23,14 +25,28 @@
 			"brands/*"
 		]
 	},
+	"jest": {
+		"testRegex": "\\.spec.js$",
+		"collectCoverageFrom": [
+			"components/*/src/*.js"
+		],
+		"transformIgnorePatterns": [
+			"/node_modules/(?!@westpac/*).+\\.js$"
+		]
+	},
 	"devDependencies": {
 		"@babel/core": "^7.2.0",
 		"@babel/preset-env": "^7.2.0",
 		"@babel/preset-react": "^7.0.0",
+		"babel-core": "^7.0.0-bridge.0",
+		"babel-jest": "^23.6.0",
 		"babel-loader": "^8.0.4",
 		"html-webpack-plugin": "^3.2.0",
 		"html-webpack-root-plugin": "^0.10.0",
+		"jest": "^23.6.0",
+		"jest-cli": "^23.6.0",
 		"react-router-dom": "^4.3.1",
+		"regenerator-runtime": "^0.13.1",
 		"tmp": "^0.0.33",
 		"webpack": "^4.27.1",
 		"webpack-cli": "^3.1.2",

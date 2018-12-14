@@ -6,9 +6,9 @@ import { styled } from '@westpac/core';
 // Utils
 // ==============================
 
-const stringVal = v => (typeof v === 'number' ? `${v}px` : v);
-const repeatNumeric = v => (typeof v === 'number' ? `repeat(${v}, 1fr)` : v);
-const formatAreas = areas => areas.map(area => `"${area}"`).join(' ');
+export const stringVal = v => (typeof v === 'number' ? `${v}px` : v);
+export const repeatNumeric = v => (typeof v === 'number' ? `repeat(${v}, 1fr)` : v);
+export const formatAreas = areas => areas.map(area => `"${area}"`).join(' ');
 
 // ==============================
 // Component
