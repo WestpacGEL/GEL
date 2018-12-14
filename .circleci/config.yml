@@ -41,10 +41,10 @@ jobs:
 
 # OUR WORKFLOW
 # this is where we orchestrate our jobs
-workflows:
-  version: 2
-  testing:
-    jobs:
+# workflows:
+#   version: 2
+#   testing:
+#     jobs:
       # - deploy-staging:
       #     filters:
       #       branches:
