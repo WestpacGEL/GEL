@@ -10,14 +10,11 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
 
       - run: sudo apt-get install tree
-      - run: rm -rf node_modules
-      - run: tree -C
+      - run: tree -C -I "node_modules*"
       - run: sudo yarn global add bolt
       - run: bolt
-      - run: bolt test
       - save_cache:
           paths:
             - node_modules
