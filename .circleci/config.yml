@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.9.1
     working_directory: ~/repo
 
     steps:
@@ -18,81 +18,14 @@ jobs:
       - run: sudo yarn global add bolt
       - run: bolt
       - run: bolt test
-
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
       - run: bolt test
 
-
-
-
-
-# version: 2
-# jobs:
-#   build:
-#     - run: echo "Done!"
-
-#   test:
-#     docker:
-#       - image: circleci/node:stable
-
-#     steps:
-#       - checkout
-#       - run: sudo apt-get install tree
-#       - run: rm -rf node_modules
-#       - run: tree -C
-#       - run: yarn global add bolt
-#       - run: bolt
-#       - run: bolt test
-
-
-# #   # # DEPLOY-STAGING JOB
-# #   # deploy-staging:
-# #   #   docker:
-# #   #     - image: circleci/node:latest
-
-# #   #   steps:
-# #   #     - checkout
-# #   #     - run: rm -rf node_modules
-# #   #     - run: bolt
-# #   #     - run: bolt build
-# #   #     # - run: deploy to server
-
-# #   # # DEPLOY-PRODUCTION JOB
-# #   # deploy-production:
-# #   #   docker:
-# #   #     - image: circleci/node:latest
-
-# #   #   steps:
-# #   #     - checkout
-# #   #     - run: rm -rf node_modules
-# #   #     - run: bolt
-# #   #     - run: bolt build
-# #   #     # - run: deploy to server
-
-
-# # # OUR WORKFLOW
-# # # this is where we orchestrate our jobs
-# # # workflows:
-# # #   version: 2
-# # #   testing:
-# # #     jobs:
-# #       # - deploy-staging:
-# #       #     filters:
-# #       #       branches:
-# #       #         only: develop
-
-# #       # - deploy-prod:
-# #       #     filters:
-# #       #       branches:
-# #       #         only: master
-
-
-# workflows:
-#   version: 2
-#   build_and_test:
-#     jobs:
-#       - test
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
