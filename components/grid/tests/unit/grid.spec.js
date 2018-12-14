@@ -1,4 +1,4 @@
-import { stringVal, repeatNumeric, formatAreas } from '../src/Grid';
+import { stringVal, repeatNumeric, formatAreas } from '../../src/Grid';
 
 test('Testing stringVal for correct output', () => {
 	expect(stringVal(5)).toBe('5px');
