@@ -15,7 +15,7 @@ jobs:
       - run: sudo apt-get install tree
       - run: rm -rf node_modules
       - run: tree -C
-      - run: yarn global add bolt
+      - run: sudo yarn global add bolt
       - run: bolt
       - run: bolt test
 
