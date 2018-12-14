@@ -97,5 +97,5 @@ The design system for Westpac GEL
 - [/] cypress test setup for each component
 - [x] add circleCI
 - [ ] write more docs around each decision me made
-- [x] connect brand/wbc packages to core component dynamic import
+- [ ] connect brand/wbc packages to core component dynamic import
 - [ ] fix up other components to new folder structure
