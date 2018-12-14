@@ -1,4 +1,4 @@
-# GEL
+# GEL [![CircleCI](https://circleci.com/gh/WestpacGEL/GEL/tree/master.svg?style=svg)](https://circleci.com/gh/WestpacGEL/GEL/tree/master)
 
 The design system for Westpac GEL
 
@@ -94,8 +94,8 @@ The design system for Westpac GEL
 ## TODO
 
 - [x] jest tests setup for each component
-- [ ] cypress test setup for each component
-- [ ] add circleCI
-- [ ] connect brand/wbc packages to core component dynamic import
+- [/] cypress test setup for each component
+- [x] add circleCI
 - [ ] write more docs around each decision me made
+- [ ] connect brand/wbc packages to core component dynamic import
 - [ ] fix up other components to new folder structure
