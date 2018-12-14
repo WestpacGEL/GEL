@@ -1,5 +1,8 @@
 version: 2
 jobs:
+  build:
+    - run: echo "Done!"
+
   test:
     docker:
       - image: circleci/node:stable
