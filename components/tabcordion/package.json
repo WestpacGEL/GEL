@@ -11,6 +11,7 @@
 	"main": "src/index.js",
 	"dependencies": {
 		"react": "^16.7.0-alpha.1",
-		"react-dom": "^16.7.0-alpha.1"
+		"react-dom": "^16.7.0-alpha.1",
+		"@westpac/hooks": "^0.0.1"
 	}
 }

@@ -48,7 +48,7 @@ const App = ({ components, packageName }) => {
 								-moz-font-feature-settings: 'liga' on;
 								-moz-osx-font-smoothing: grayscale;
 								-webkit-font-smoothing: antialiased;
-								background-color: #fafbfc;
+								/* background-color: #fafbfc; */
 								color: #253858;
 								font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial,
 									sans-serif;

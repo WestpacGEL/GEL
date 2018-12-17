@@ -9,15 +9,21 @@ let instanceId = 0;
 
 export class Tabcordion extends React.Component {
 	state = {
-		activeTabIndex: this.props.initialIndex,
+		activeTabIndex: this.props.activeTabIndex,
 	};
 	instancePrefix = this.props.instanceId || 'gel-tabcordion-' + ++instanceId;
 
 	static propTypes = {
 		/* An array of TabPanes that can be navigated through */
-		children: PropTypes.arrayOf(PropTypes.instanceOf(Tab)),
+		children: PropTypes.arrayOf(
+			PropTypes.shape({
+				type: PropTypes.oneOf([Tab]),
+			})
+		).isRequired,
 		/* Define an id prefix for the select components e.g. {your-id}-value */
 		instanceId: PropTypes.string,
+		// Lock the mode. Does not respond to changing container widths
+		mode: PropTypes.oneOf(['accordion', 'tabs']),
 	};
 	static defaultProps = {
 		activeTabIndex: 0,
@@ -37,8 +43,7 @@ export class Tabcordion extends React.Component {
 		return (
 			<ContainerQuery>
 				{({ width }) => {
-					const mode = width < 768 ? 'accordion' : 'tabs';
-					console.log('mode', mode);
+					const mode = this.props.mode || (width < 768 ? 'accordion' : 'tabs');
 
 					return (
 						<Fragment>
