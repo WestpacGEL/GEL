@@ -1,7 +1,7 @@
 {
-	"name": "@westpac/grid",
+	"name": "@westpac/hooks",
 	"version": "0.0.1",
-	"description": "Grid component for the Westpac GEL",
+	"description": "Hooks for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GUI3.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
@@ -10,11 +10,7 @@
 	},
 	"main": "src/index.js",
 	"dependencies": {
-		"@emotion/core": "^10.0.4",
-		"@emotion/styled": "^10.0.4",
-		"emotion-theming": "^10.0.4",
 		"@westpac/core": "^0.0.1",
-		"@westpac/media-queries": "^0.0.1",
 		"react": "^16.7.0-alpha.1",
 		"react-dom": "^16.7.0-alpha.1"
 	}

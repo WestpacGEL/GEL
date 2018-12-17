@@ -1,0 +1,15 @@
+{
+	"name": "@westpac/media-queries",
+	"version": "0.0.1",
+	"description": "Media queries for the Westpac GEL",
+	"repository": "https://github.com/WestpacGEL/GUI3.git",
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"license": "GPL-3.0+",
+	"scripts": {
+		"start": "echo \"Starting\""
+	},
+	"main": "src/index.js",
+	"dependencies": {
+		"facepaint": "^1.2.1"
+	}
+}

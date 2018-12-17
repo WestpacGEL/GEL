@@ -1,12 +1,13 @@
 /* @jsx jsx */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import { ThemeProvider } from 'emotion-theming';
 
 import { Global, css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
+import { useContainerQuery } from '../../components/hooks';
 
 // ==============================
 // Get the data
@@ -165,20 +166,27 @@ class Page extends React.Component {
 	}
 }
 
-const Home = ({ packageName }) => (
-	<Article>
-		<Container>
-			<h1>{packageName} Examples</h1>
-			<p>
-				Click one of the examples on the left to view it. To load the examples for another package
-				run:
-			</p>
-			<pre>
-				<code>bolt dev {'{package_name}'}</code>
-			</pre>
-		</Container>
-	</Article>
-);
+const Home = ({ packageName }) => {
+	const ref = useRef();
+	const width = useContainerQuery(ref);
+
+	return (
+		<Article>
+			<Container>
+				<div ref={ref} />
+				<pre>{width}</pre>
+				<h1>{packageName} Examples</h1>
+				<p>
+					Click one of the examples on the left to view it. To load the examples for another package
+					run:
+				</p>
+				<pre>
+					<code>bolt dev {'{package_name}'}</code>
+				</pre>
+			</Container>
+		</Article>
+	);
+};
 
 // ==============================
 // Styled components
