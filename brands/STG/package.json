@@ -14,7 +14,6 @@
 		"@emotion/styled": "^10.0.4",
 		"emotion-theming": "^10.0.4",
 		"react": "^16.7.0-alpha.1",
-		"react-dom": "^16.7.0-alpha.1",
-		"resize-observer-polyfill": "^1.5.0"
+		"react-dom": "^16.7.0-alpha.1"
 	}
 }

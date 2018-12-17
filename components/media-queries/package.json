@@ -1,7 +1,7 @@
 {
-	"name": "@westpac/tabcordion",
+	"name": "@westpac/media-queries",
 	"version": "0.0.1",
-	"description": "Tabcordion component for the Westpac GEL",
+	"description": "Media queries for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GUI3.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
@@ -10,8 +10,6 @@
 	},
 	"main": "src/index.js",
 	"dependencies": {
-		"react": "^16.7.0-alpha.1",
-		"react-dom": "^16.7.0-alpha.1",
-		"@westpac/hooks": "^0.0.1"
+		"facepaint": "^1.2.1"
 	}
 }
