@@ -1,6 +1,6 @@
 /* @jsx jsx */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import { ThemeProvider } from 'emotion-theming';
@@ -165,22 +165,20 @@ class Page extends React.Component {
 	}
 }
 
-const Home = ({ packageName }) => {
-	return (
-		<Article>
-			<Container>
-				<h1>{packageName} Examples</h1>
-				<p>
-					Click one of the examples on the left to view it. To load the examples for another package
-					run:
-				</p>
-				<pre>
-					<code>bolt dev {'{package_name}'}</code>
-				</pre>
-			</Container>
-		</Article>
-	);
-};
+const Home = ({ packageName }) => (
+	<Article>
+		<Container>
+			<h1>{packageName} Examples</h1>
+			<p>
+				Click one of the examples on the left to view it. To load the examples for another package
+				run:
+			</p>
+			<pre>
+				<code>bolt dev {'{package_name}'}</code>
+			</pre>
+		</Container>
+	</Article>
+);
 
 // ==============================
 // Styled components
