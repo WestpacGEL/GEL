@@ -60,7 +60,6 @@ export class Tabcordion extends React.Component {
 								<Tab
 									{...this.state}
 									{...child.props}
-									key={child.props.label}
 									isSelected={activeTabIndex === idx}
 									index={idx}
 									prefix={this.prefix}

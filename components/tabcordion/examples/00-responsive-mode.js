@@ -7,7 +7,9 @@ import { data } from './_data';
 export default () => (
 	<Tabcordion>
 		{data.map(t => (
-			<Tab label={t.label}>{t.content}</Tab>
+			<Tab key={t.label} label={t.label}>
+				{t.content}
+			</Tab>
 		))}
 	</Tabcordion>
 );

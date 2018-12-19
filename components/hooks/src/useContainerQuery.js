@@ -2,10 +2,13 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 /**
- * Observes the width of `ref`, returns an integer
+ * Observes the height and width of `ref`
+ * @param { current: HTMLElement } ref
+ * @returns { height: number, width: number }
  */
 export function useContainerQuery(ref) {
-	const [width, setWidth] = useState('auto');
+	const [height, setHeight] = useState(0);
+	const [width, setWidth] = useState(0);
 
 	// bail early without ref
 	if (!ref) {
@@ -17,6 +20,7 @@ export function useContainerQuery(ref) {
 	useLayoutEffect(() => {
 		// prepare the resize handler
 		let resizeObserver = new ResizeObserver(([entry]) => {
+			setHeight(entry.target.offsetHeight);
 			setWidth(entry.target.offsetWidth);
 		});
 
@@ -29,6 +33,5 @@ export function useContainerQuery(ref) {
 		};
 	});
 
-	// returns an integer
-	return width;
+	return { height, width };
 }
