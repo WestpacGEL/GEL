@@ -1,1 +1,1 @@
-export { TOKENS } from './tokens/tokens.json';
+export { TOKENS } from './tokens/';
