@@ -64,3 +64,4 @@ typings/
 *.sublime-workspace
 .DS_Store
 bundle.js
+cypress/

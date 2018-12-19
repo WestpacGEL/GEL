@@ -4,6 +4,8 @@ The design system for Westpac GEL
 
 ## npm scripts
 
+### root level
+
 | script                      | description                                    |
 | --------------------------- | ---------------------------------------------- |
 | `bolt`                      | install all dependencies                       |
@@ -11,9 +13,17 @@ The design system for Westpac GEL
 | `bolt fresh`                | removes all `node_modules` and reinstalls them |
 | `bolt dev [package-name]`   | run the examples of the specified component    |
 | `bolt new [package-name]`   | create a specified empty component             |
-| `bolt start [package-name]` | the script is reserved for something we ...    |
+| `bolt start [package-name]` | start the example server of a component        |
 | `bolt test`                 | runs test                                      |
 | `bolt format`               | runs prettier to format all code               |
+
+### component level
+
+| script          | description                      |
+| --------------- | -------------------------------- |
+| `bolt start`    | start the example server         |
+| `bolt test`     | runs test headless               |
+| `bolt test:dev` | runs test by opening cypress app |
 
 ## Monorepo
 

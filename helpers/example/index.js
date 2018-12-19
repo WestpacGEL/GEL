@@ -7,7 +7,6 @@ import { ThemeProvider } from 'emotion-theming';
 
 import { Global, css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
-import { useContainerQuery } from '../../components/hooks';
 
 // ==============================
 // Get the data
@@ -83,7 +82,7 @@ const App = ({ components, packageName }) => {
 
 						<SidebarNav>
 							{navItems.map(({ label, slug }) => (
-								<SidebarItem key={slug} to={`/${slug}`}>
+								<SidebarItem key={slug} to={`/${slug}`} data-test-nav-link>
 									{label}
 								</SidebarItem>
 							))}
@@ -167,14 +166,9 @@ class Page extends React.Component {
 }
 
 const Home = ({ packageName }) => {
-	const ref = useRef();
-	const width = useContainerQuery(ref);
-
 	return (
 		<Article>
 			<Container>
-				<div ref={ref} />
-				<pre>{width}</pre>
 				<h1>{packageName} Examples</h1>
 				<p>
 					Click one of the examples on the left to view it. To load the examples for another package
@@ -258,7 +252,7 @@ const SidebarLink = styled(NavLink)(props => ({
 	},
 }));
 const SidebarItem = props => (
-	<li>
+	<li data-test-nav>
 		<SidebarLink {...props} />
 	</li>
 );
