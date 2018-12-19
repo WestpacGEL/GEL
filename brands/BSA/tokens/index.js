@@ -7,10 +7,10 @@ const COLORS = {
 	muted: '',
 	border: '',
 	background: '',
-	light:'',
+	light: '',
 };
 
-export const TOKENS {
+export const TOKENS = {
 	colors: {
 		primary: {
 			active: COLORS.primary,
@@ -22,8 +22,8 @@ export const TOKENS {
 		muted: COLORS.muted,
 		border: COLORS.border,
 		background: COLORS.background,
-		light: COLORS.light
+		light: COLORS.light,
 	},
 	type: {},
-	spacing: {}
+	spacing: {},
 };
