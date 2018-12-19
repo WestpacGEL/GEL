@@ -115,5 +115,6 @@ module.exports = () => ({
 	plugins: [new HtmlWebpackPlugin(), new HtmlWebpackRootPlugin()],
 	devServer: {
 		historyApiFallback: true,
+		port: 8080,
 	},
 });
