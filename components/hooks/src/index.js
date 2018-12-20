@@ -1,1 +1,1 @@
-export { useContainerQuery } from './src/useContainerQuery';
+export { useContainerQuery } from './useContainerQuery';
