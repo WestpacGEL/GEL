@@ -19,7 +19,7 @@ jobs:
           paths:
             - node_modules
           key: v3-dependencies-{{ checksum "yarn.lock" }}
-      - run: bolt test
+      - run: CYPRESS_CACHE_FOLDER=$CIRCLE_WORKING_DIRECTORY/node_modules/cypress/.cache/ bolt test
 
 workflows:
   version: 2
