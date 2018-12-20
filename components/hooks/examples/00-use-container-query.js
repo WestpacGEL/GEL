@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useContainerQuery } from '../src';
+import { useContainerQuery } from '../src/';
 
 export default () => {
 	const textareaRef = useRef();
