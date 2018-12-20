@@ -14,7 +14,7 @@ jobs:
       - run: sudo apt-get install tree
       - run: tree -C -I "node_modules*"
       - run: sudo yarn global add bolt
-      - run: bolt
+      - run: CYPRESS_CACHE_FOLDER=$CIRCLE_WORKING_DIRECTORY/node_modules/cypress/.cache/ bolt
       - save_cache:
           paths:
             - node_modules
