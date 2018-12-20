@@ -1,1 +1,1 @@
-export { BREAK_POINTS, mqAbove, mqBelow, mqBetween, mqValues } from './src/util';
+export { BREAK_POINTS, mqAbove, mqBelow, mqBetween, mqValues } from './util';
