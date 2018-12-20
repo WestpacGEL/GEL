@@ -9,7 +9,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v2-dependencies-{{ checksum "yarn.lock" }}
+          - v3-dependencies-{{ checksum "yarn.lock" }}
 
       - run: sudo apt-get install tree
       - run: tree -C -I "node_modules*"
@@ -18,7 +18,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v2-dependencies-{{ checksum "yarn.lock" }}
+          key: v3-dependencies-{{ checksum "yarn.lock" }}
       - run: bolt test
 
 workflows:
