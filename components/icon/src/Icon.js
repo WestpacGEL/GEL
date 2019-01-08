@@ -1,60 +1,49 @@
+/* @jsx jsx */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
 // ==============================
 // Utils
 // ==============================
 
 export const sizeMap = {
-	xsmall: 12, //0.5x
-	small: 18, //0.75x
-	medium: 24, //1x (default)
-	large: 36, //1.5x
-	xlarge: 48, //2x
+	xsmall: 12, // 0.5x
+	small: 18, //  0.75x
+	medium: 24, // 1x (default)
+	large: 36, //  1.5x
+	xlarge: 48, // 2x
 };
-export const getSizeValue = s => sizeMap[s];
+export const getSizeInt = s => sizeMap[s];
 
-const Wrapper = styled.div(({ size }) => ({
-	backgroundSize: 'contain',
-	display: 'inline-block',
-	lineHeight: '1',
-	verticalAlign: 'middle',
-	height: size,
-	width: size,
-
-	svg: {
-		width: ' 100%',
-		height: ' 100%',
-	},
-}));
+const Wrapper = ({ color, size, ...props }) => (
+	<div
+		css={{
+			display: 'inline-block',
+			flexShrink: 0,
+			height: size,
+			lineHeight: 1,
+			verticalAlign: 'middle',
+			width: size,
+		}}
+		{...props}
+	/>
+);
 
 // ==============================
 // Component
 // ==============================
 
-// TODO
-// create unique id for every SVG instance? seems like it would be easier to
-// just apply the label to a `aria-label` attribute on the SVG itself rather
-// than binding the title el to the svg with labelledby...
+export const Icon = ({ children, color, label, size }) => {
+	const sizeInt = getSizeInt(size);
 
-// what about descriptions?
-
-export const Icon = ({ children, label, size }) => {
-	const sizeValue = getSizeValue(size);
-
+	// TODO Investigate:
+	// I suspect that using the style attribute to apply the color property will
+	// improve CSS reuse.
 	return (
-		<Wrapper size={sizeValue}>
-			<svg
-				aria-labelledby={`icon-title-${label}`}
-				xmlns="http://www.w3.org/2000/svg"
-				width="24"
-				height="24"
-				viewBox="0 0 24 24"
-			>
-				<title id={`icon-title-${label}`} lang="en">
-					{label}
-				</title>
+		<Wrapper color={color} size={sizeInt} style={{ color }}>
+			<svg aria-label={label} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img">
 				{children}
 			</svg>
 		</Wrapper>
@@ -67,31 +56,30 @@ export const Icon = ({ children, label, size }) => {
 
 export const propTypes = {
 	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	color: PropTypes.string,
+	/**
 	 * String to use as the aria-label for the icon. Set to an empty string if you
 	 * are rendering the icon with visible text to prevent accessibility label
 	 * duplication.
+	 *
+	 * Defaults to the icon name e.g. `BusinessPersonIcon` --> "Business Person"
 	 */
 	label: PropTypes.string,
 	/**
 	 * Control the size of the icon.
+	 *
+	 * Defaults to "medium" --> 24px
 	 */
 	size: PropTypes.oneOf(Object.keys(sizeMap)),
-	/**
-	 * The primary color for the icon.
-	 */
-	primaryColor: PropTypes.string,
-	/**
-	 * For secondary colour for 2-color icons. Set to inherit to control this via
-	 * "fill" in CSS.
-	 */
-	secondaryColor: PropTypes.string,
 };
 
 export const defaultProps = {
 	size: 'medium',
-	primaryColor: 'currentColor',
 };
 
 Icon.propTypes = propTypes;
-
 Icon.defaultProps = defaultProps;

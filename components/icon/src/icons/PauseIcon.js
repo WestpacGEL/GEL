@@ -1,10 +1,10 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const PauseIcon = ({ primaryColor, secondaryColor, ...props }) => (
+export const PauseIcon = props => (
 	<Icon {...props}>
 		<path
-			fill={primaryColor}
+			fill="currentColor"
 			fillRule="evenodd"
 			d="M6,19 L10,19 L10,5 L6,5 L6,19 Z M14,5 L14,19 L18,19 L18,5 L14,5 Z"
 		/>

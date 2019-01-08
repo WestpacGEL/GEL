@@ -1,10 +1,10 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const AddIcon = ({ primaryColor, secondaryColor, ...props }) => (
+export const AddIcon = props => (
 	<Icon {...props}>
 		<polygon
-			fill={primaryColor}
+			fill="currentColor"
 			fillRule="evenodd"
 			points="11 11 4 11 4 13 11 13 11 20 13 20 13 13 20 13 20 11 13 11 13 4 11 4"
 		/>

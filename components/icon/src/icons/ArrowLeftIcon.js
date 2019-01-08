@@ -1,10 +1,10 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const ArrowLeftIcon = ({ primaryColor, secondaryColor, ...props }) => (
+export const ArrowLeftIcon = props => (
 	<Icon {...props}>
 		<polygon
-			fill={primaryColor}
+			fill="currentColor"
 			fillRule="evenodd"
 			points="9.824 12 16.412 18.588 15 20 7 12 15 4 16.412 5.412"
 		/>
