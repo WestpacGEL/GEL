@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Row = props => (
+export const Row = ({ style, ...props }) => (
 	<div
 		style={{
 			alignItems: 'end',
@@ -8,6 +8,7 @@ export const Row = props => (
 			display: 'grid',
 			gridAutoFlow: 'column',
 			gridGap: 8,
+			...style,
 		}}
 		{...props}
 	/>
