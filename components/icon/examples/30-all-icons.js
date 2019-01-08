@@ -5,6 +5,7 @@ import * as components from '../src';
 
 // can't believe this works...
 const icons = Object.keys(components);
+const lcase = s => s.toLowerCase();
 
 const Grid = styled.div({
 	display: 'grid',
@@ -20,6 +21,7 @@ const Cell = styled.div({
 	justifyContent: 'center',
 });
 const Name = styled.div({
+	color: '#6B778C',
 	fontSize: 12,
 	marginTop: 12,
 });
@@ -42,7 +44,7 @@ const Search = styled.input({
 export default () => {
 	const [inputValue, setInputValue] = useState('');
 	const filteredIcons = inputValue.length
-		? icons.filter(p => p.toLowerCase().includes(inputValue.toLowerCase()))
+		? icons.filter(p => lcase(p.slice(0, p.length - 4)).includes(lcase(inputValue)))
 		: icons;
 
 	return (
