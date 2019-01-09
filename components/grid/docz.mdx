@@ -1,0 +1,29 @@
+---
+name: Grid
+menu: Components
+route: /grid
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Cell, Grid } from './src';
+
+# Grid
+
+The grid component.
+
+<Playground>
+	<Grid>
+		<Cell width={[12, 6, 4, 3]}>First</Cell>
+		<Cell width={[12, 6, 4, 3]}>First</Cell>
+		<Cell width={[12, 6, 4, 3]}>First</Cell>
+		<Cell width={[12, 6, 4, 3]}>First</Cell>
+	</Grid>
+</Playground>
+
+## Grid Props
+
+<PropsTable of={Grid} />
+
+## Cell Props
+
+<PropsTable of={Cell} />
