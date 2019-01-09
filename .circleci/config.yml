@@ -19,6 +19,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run: bolt build
       - run: bolt test
 
 workflows:
