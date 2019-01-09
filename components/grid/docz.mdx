@@ -6,24 +6,125 @@ route: /grid
 
 import { Playground, PropsTable } from 'docz';
 import { Cell, Grid } from './src';
+import { Box } from './examples/_utils';
 
 # Grid
 
 The grid component.
 
+## Grid
+
 <Playground>
-	<Grid>
-		<Cell width={[12, 6, 4, 3]}>First</Cell>
-		<Cell width={[12, 6, 4, 3]}>First</Cell>
-		<Cell width={[12, 6, 4, 3]}>First</Cell>
-		<Cell width={[12, 6, 4, 3]}>First</Cell>
+	<Grid style={{ fontSize: 14 }}>
+		<Cell>
+			<Box>1/12</Box>
+		</Cell>
+		<Cell>
+			<Box>2/12</Box>
+		</Cell>
+		<Cell>
+			<Box>3/12</Box>
+		</Cell>
+		<Cell>
+			<Box>4/12</Box>
+		</Cell>
+		<Cell>
+			<Box>5/12</Box>
+		</Cell>
+		<Cell>
+			<Box>6/12</Box>
+		</Cell>
+		<Cell>
+			<Box>7/12</Box>
+		</Cell>
+		<Cell>
+			<Box>8/12</Box>
+		</Cell>
+		<Cell>
+			<Box>9/12</Box>
+		</Cell>
+		<Cell>
+			<Box>10/12</Box>
+		</Cell>
+		<Cell>
+			<Box>11/12</Box>
+		</Cell>
+		<Cell>
+			<Box>12/12</Box>
+		</Cell>
+		<Cell width={2}>
+			<Box>1/6</Box>
+		</Cell>
+		<Cell width={2}>
+			<Box>2/6</Box>
+		</Cell>
+		<Cell width={2}>
+			<Box>3/6</Box>
+		</Cell>
+		<Cell width={2}>
+			<Box>4/6</Box>
+		</Cell>
+		<Cell width={2}>
+			<Box>5/6</Box>
+		</Cell>
+		<Cell width={2}>
+			<Box>6/6</Box>
+		</Cell>
+		<Cell width={3}>
+			<Box>1/4</Box>
+		</Cell>
+		<Cell width={3}>
+			<Box>2/4</Box>
+		</Cell>
+		<Cell width={3}>
+			<Box>3/4</Box>
+		</Cell>
+		<Cell width={3}>
+			<Box>4/4</Box>
+		</Cell>
+		<Cell width={6}>
+			<Box>1/2</Box>
+		</Cell>
+		<Cell width={6}>
+			<Box>2/2</Box>
+		</Cell>
+		<Cell width={12}>
+			<Box>1/1</Box>
+		</Cell>
 	</Grid>
 </Playground>
 
-## Grid Props
-
 <PropsTable of={Grid} />
 
-## Cell Props
+## Cell
+
+<Playground>
+	<Grid style={{ fontSize: 14 }}>
+		<Cell width={[12, 6, 3, 4]}>
+			<Box>First</Box>
+		</Cell>
+		<Cell width={[12, 6, 3, 4]}>
+			<Box>Second</Box>
+		</Cell>
+		<Cell width={[12, 12, 3, 4]}>
+			<Box>Third</Box>
+		</Cell>
+		<Cell width={[12, 4, 3, 2]}>
+			<Box>Fourth</Box>
+		</Cell>
+		<Cell width={[12, 4, 3, 8]}>
+			<Box>Fifth</Box>
+		</Cell>
+		<Cell width={[12, 4, 3, 2]}>
+			<Box>Sixth</Box>
+		</Cell>
+		<Cell width={[12, 8, 3, 6]}>
+			<Box>Seventh</Box>
+		</Cell>
+		<Cell width={[12, 4, 3, 6]}>
+			<Box>Eighth</Box>
+		</Cell>
+	</Grid>
+</Playground>
 
 <PropsTable of={Cell} />

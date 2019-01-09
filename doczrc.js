@@ -9,5 +9,5 @@ export default {
 	// 	mode: 'dark',
 	// },
 	title: 'GEL Style Guide',
-	// wrapper: 'docs/wrapper',
+	// wrapper: 'docz/wrapper',
 };
