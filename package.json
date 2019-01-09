@@ -18,7 +18,7 @@
 		"test:format": "prettier --list-different \"**/*.{js,md,json}\"",
 		"test:unit": "jest",
 		"test:unit-watch": "jest --watch --coverage",
-		"test": "bolt test:format && bolt test:unit"
+		"test": "bolt test:format && bolt build && bolt test:unit"
 	},
 	"bolt": {
 		"workspaces": [
