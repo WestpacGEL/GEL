@@ -10,6 +10,7 @@
 	"scripts": {
 		"start": "/bin/sh -c 'cd components/${1:-$0} && bolt start'",
 		"nuke": "rm -rf node_modules && bolt ws exec -- rm -rf node_modules",
+		"build": "bolt ws exec -- rm -rf dist && bolt ws exec -- bolt build",
 		"fresh": "bolt nuke && bolt install",
 		"new": "node ./helpers/cli.js",
 		"dev": "/bin/sh -c 'PACKAGE_NAME=$0 webpack-dev-server --config helpers/example/webpack.config.js'",
@@ -35,6 +36,7 @@
 		]
 	},
 	"devDependencies": {
+		"@babel/cli": "^7.2.3",
 		"@babel/core": "^7.2.0",
 		"@babel/plugin-proposal-class-properties": "^7.2.1",
 		"@babel/preset-env": "^7.2.0",
