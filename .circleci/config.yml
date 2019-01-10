@@ -2,24 +2,40 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:carbon-browsers
+      - image: cypress/base:8
+        environment:
+          TERM: xterm
     working_directory: ~/repo
 
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v3-dependencies-{{ checksum "yarn.lock" }}
+          - v4-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - v4-dependencies-{{ .Branch }}
+          - v4-dependencies
 
-      - run: sudo apt-get install tree
-      - run: tree -C -I "node_modules*"
-      - run: sudo yarn global add bolt
-      - run: CYPRESS_CACHE_FOLDER=$CIRCLE_WORKING_DIRECTORY/node_modules/cypress/.cache/ bolt
+      - run:
+          name: Install tree
+          command: sudo apt-get install tree
+      - run:
+          name: Run tree for debugging cypress
+          command: tree -C -I "node_modules*"
+      - run:
+          name: Install bolt globally
+          command: sudo yarn global add bolt
+      - run:
+          name: Install dependencies
+          command: bolt
       - save_cache:
           paths:
             - node_modules
-          key: v3-dependencies-{{ checksum "yarn.lock" }}
-      - run: CYPRESS_CACHE_FOLDER=$CIRCLE_WORKING_DIRECTORY/node_modules/cypress/.cache/ bolt test
+            - ~/.npm
+            - ~/.cache
+          key: v4-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Run tests
+          command: bolt test
 
 workflows:
   version: 2
