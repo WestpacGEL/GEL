@@ -118,7 +118,11 @@ The design system for Westpac GEL
   import { brand } from '@westpac/wbc';
   import { GEL } from '@westpac/core';
 
-  <GEL brand={brand}>Your app</GEL>;
+  export const Thing = (
+  	<GEL brand={brand} theme={provided => ({ ...provided, colors: {} })}>
+  		Your app
+  	</GEL>
+  );
   ```
 
 ### Naming convention
@@ -141,3 +145,6 @@ The design system for Westpac GEL
 - [x] write more docs around each decision me made
 - [x] connect brand/wbc packages to core component
 - [x] fix up other components to new folder structure
+- [ ] move to `peerDependencies`
+- [ ] remove emotion from dependencies from all other components
+- [ ] move `@westpac/core` to `peerDependencies`

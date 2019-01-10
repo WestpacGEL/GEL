@@ -20,7 +20,8 @@
 		"test:format": "prettier --list-different \"**/*.{js,md,json}\"",
 		"test:unit": "jest",
 		"test:unit-watch": "jest --watch --coverage",
-		"test": "bolt test:format && bolt test:unit"
+		"test:integration": "node helpers/tester.js",
+		"test": "bolt test:format && bolt test:unit && bolt test:integration"
 	},
 	"bolt": {
 		"workspaces": [
@@ -46,6 +47,8 @@
 		"babel-core": "^7.0.0-bridge.0",
 		"babel-jest": "^23.6.0",
 		"babel-loader": "^8.0.4",
+		"bolt": "^0.22.5",
+		"cfonts": "^2.3.0",
 		"cypress": "^3.1.3",
 		"docz": "^0.13.7",
 		"docz-theme-default": "^0.13.7",
