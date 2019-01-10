@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
-import { ThemeProvider } from 'emotion-theming';
 
+import { GEL } from '../../components/core';
 import { Global, css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
@@ -15,8 +15,10 @@ import styled from '@emotion/styled';
 const BRANDS = {
 	BOM: { primaryLight: '#EAE6FF' },
 	BSA: { primaryLight: '#DEEBFF' },
+	BTFG: { primaryLight: '#E6FCFF' },
 	STG: { primaryLight: '#E3FCEF' },
 	WBC: { primaryLight: '#FFEBE6' },
+	WBG: { primaryLight: '#FFEBE6' },
 };
 
 // ==============================
@@ -25,7 +27,7 @@ const BRANDS = {
 
 const App = ({ components, packageName }) => {
 	const [inputValue, setInputValue] = useState('');
-	const [theme, setTheme] = useState('WBC');
+	const [brand, setBrand] = useState('WBC');
 
 	// update doc title
 	useEffect(() => {
@@ -39,7 +41,7 @@ const App = ({ components, packageName }) => {
 
 	return (
 		<Router>
-			<ThemeProvider theme={BRANDS[theme]}>
+			<GEL brand={brand}>
 				<Body>
 					<Global
 						styles={css`
@@ -89,18 +91,21 @@ const App = ({ components, packageName }) => {
 						</SidebarNav>
 
 						<SidebarSwitcher>
-							{Object.keys(BRANDS).map(brand => (
-								<SidebarSwitch key={brand} isChecked={theme === brand}>
-									<input
-										name="brand"
-										type="radio"
-										onChange={e => setTheme(brand)}
-										value={brand}
-										checked={theme === brand}
-									/>
-									{brand}
-								</SidebarSwitch>
-							))}
+							{Object.keys(BRANDS).map(b => {
+								const checked = brand === b;
+								return (
+									<SidebarSwitch key={b} isChecked={checked}>
+										<input
+											name="brand"
+											type="radio"
+											onChange={e => setBrand(b)}
+											value={b}
+											checked={checked}
+										/>
+										{b}
+									</SidebarSwitch>
+								);
+							})}
 						</SidebarSwitcher>
 					</Sidebar>
 					<Switch>
@@ -114,7 +119,7 @@ const App = ({ components, packageName }) => {
 						))}
 					</Switch>
 				</Body>
-			</ThemeProvider>
+			</GEL>
 		</Router>
 	);
 };

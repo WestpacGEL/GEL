@@ -2,8 +2,9 @@ import { styled } from '@westpac/core';
 
 export const Box = styled.div(({ theme }) => ({
 	alignItems: 'center',
-	backgroundColor: theme.primaryLight || '#F4F5F7',
+	backgroundColor: theme.colors.primary || '#1F252C',
 	borderRadius: 2,
+	color: 'white',
 	display: 'flex',
 	height: '100%',
 	justifyContent: 'center',

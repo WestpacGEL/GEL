@@ -16,9 +16,11 @@
 	},
 	"main": "dist/index.js",
 	"dependencies": {
+		"@westpac/core": "^0.0.1",
+		"@westpac/hooks": "^0.0.1",
+		"@westpac/icon": "^0.0.1",
 		"react": "16.7.0-alpha.2",
-		"react-dom": "16.7.0-alpha.2",
-		"@westpac/hooks": "^0.0.1"
+		"react-dom": "16.7.0-alpha.2"
 	},
 	"devDependencies": {
 		"cypress": "^3.1.3",
