@@ -17,13 +17,13 @@ jobs:
 
       - run:
           name: Install tree
-          command: sudo apt-get install tree
+          command: apt-get install tree
       - run:
           name: Run tree for debugging cypress
           command: tree -C -I "node_modules*"
       - run:
           name: Install bolt globally
-          command: sudo yarn global add bolt
+          command: yarn global add bolt
       - run:
           name: Install dependencies
           command: bolt
