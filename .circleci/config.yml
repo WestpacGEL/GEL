@@ -19,14 +19,28 @@ jobs:
           name: Install tree
           command: apt-get install tree
       - run:
-          name: Run tree for debugging cypress
-          command: tree -C -I "node_modules*"
-      - run:
           name: Install bolt globally
           command: yarn global add bolt
+
+      - run:
+          name: "DEBUG: Run tree"
+          command: tree -C -I "node_modules*"
+      - run:
+          name: "DEBUG: node version"
+          command: node -v
+      - run:
+          name: "DEBUG: npm version"
+          command: npm -v
+      - run:
+          name: "DEBUG: bolt version"
+          command: bolt -v
+      - run:
+          name: "DEBUG: yarn version"
+          command: yarn -v
       - run:
           name: Install dependencies
           command: bolt
+
       - save_cache:
           paths:
             - node_modules
