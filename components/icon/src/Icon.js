@@ -43,7 +43,13 @@ export const Icon = ({ children, color, label, size }) => {
 	// improve CSS reuse.
 	return (
 		<Wrapper color={color} size={sizeInt} style={{ color }}>
-			<svg aria-label={label} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" focusable="false">
+			<svg
+				aria-label={label}
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				role="img"
+				focusable="false"
+			>
 				{children}
 			</svg>
 		</Wrapper>
