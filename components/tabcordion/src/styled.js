@@ -43,9 +43,12 @@ export const TabItem = styled.button(({ isSelected }) => ({
 	},
 }));
 export const AccordionLabel = styled.button(({ isSelected }) => ({
+	alignItems: 'center',
 	border: 0,
 	boxShadow: '0 -1px 0 #ccc, 0 1px 0 #ccc',
 	cursor: 'pointer',
+	display: 'flex',
+	justifyContent: 'space-between',
 	padding: '8px 16px',
 	textAlign: 'left',
 	width: '100%',
