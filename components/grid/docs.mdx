@@ -10,9 +10,11 @@ import { Box } from './examples/_utils';
 
 # Grid
 
-The grid component.
+The grid component. Just start typing.
 
 ## Grid
+
+### Standard
 
 <Playground>
 	<Grid style={{ fontSize: 14 }}>
@@ -90,6 +92,32 @@ The grid component.
 		</Cell>
 		<Cell width={12}>
 			<Box>1/1</Box>
+		</Cell>
+	</Grid>
+</Playground>
+
+### Nested
+
+<Playground>
+	<Grid style={{ fontSize: 14 }}>
+		<Cell width={2}>
+			<Box>sidebar</Box>
+		</Cell>
+		<Cell width={8}>
+			<Grid style={{ fontSize: 14 }}>
+				<Cell width={2}>
+					<Box>sidebar</Box>
+				</Cell>
+				<Cell width={8}>
+					<Box>main</Box>
+				</Cell>
+				<Cell width={2}>
+					<Box>ad bar</Box>
+				</Cell>
+			</Grid>
+		</Cell>
+		<Cell width={2}>
+			<Box>ad bar</Box>
 		</Cell>
 	</Grid>
 </Playground>
