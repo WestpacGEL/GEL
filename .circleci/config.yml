@@ -33,7 +33,7 @@ jobs:
           command: npm -v
       - run:
           name: "DEBUG: bolt version"
-          command: bolt -v
+          command: bolt --version
       - run:
           name: "DEBUG: yarn version"
           command: yarn -v
