@@ -50,6 +50,6 @@ export const AccordionLabel = styled.button(({ isSelected }) => ({
 	textAlign: 'left',
 	width: '100%',
 }));
-export const Pane = styled.div({
+export const Panel = styled.div({
 	padding: '8px 16px',
 });

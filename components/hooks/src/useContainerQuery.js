@@ -20,8 +20,11 @@ export function useContainerQuery(ref) {
 	useLayoutEffect(() => {
 		// prepare the resize handler
 		let resizeObserver = new ResizeObserver(([entry]) => {
-			setHeight(entry.target.offsetHeight);
-			setWidth(entry.target.offsetWidth);
+			const newHeight = entry.target.offsetHeight;
+			if (height !== newHeight) setHeight(newHeight);
+
+			const newWidth = entry.target.offsetWidth;
+			if (width !== newWidth) setWidth(newWidth);
 		});
 
 		// bind the observer to the consumer DOM node

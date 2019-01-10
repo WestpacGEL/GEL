@@ -7,16 +7,17 @@
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=tabcordion webpack-dev-server --config ../../helpers/example/webpack.config.js",
+		"build": "babel --root-mode upward src -d dist",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "bolt test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "src/index.js",
+	"main": "dist/index.js",
 	"dependencies": {
-		"react": "^16.7.0-alpha.1",
-		"react-dom": "^16.7.0-alpha.1",
+		"react": "16.7.0-alpha.2",
+		"react-dom": "16.7.0-alpha.2",
 		"@westpac/hooks": "^0.0.1"
 	},
 	"devDependencies": {

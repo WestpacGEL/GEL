@@ -6,14 +6,15 @@
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "echo \"Starting\""
+		"start": "echo \"Starting\"",
+		"build": "echo \"TODO\""
 	},
-	"main": "src/index.js",
+	"main": "dist/index.js",
 	"dependencies": {
 		"@emotion/core": "^10.0.4",
 		"@emotion/styled": "^10.0.4",
 		"emotion-theming": "^10.0.4",
-		"react": "^16.7.0-alpha.1",
-		"react-dom": "^16.7.0-alpha.1"
+		"react": "16.7.0-alpha.2",
+		"react-dom": "16.7.0-alpha.2"
 	}
 }

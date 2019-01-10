@@ -1,19 +1,28 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { AccordionLabel, Pane } from './styled';
+import { AccordionLabel, Panel } from './styled';
 
-export const Tab = forwardRef(({ index, isSelected, mode, prefix, onClick, ...props }, ref) => {
+export const Tab = forwardRef(({ isSelected, mode, panelId, onClick, tabId, ...props }, ref) => {
 	return (
-		<div ref={ref}>
+		<>
 			{mode === 'accordion' ? (
-				<AccordionLabel onClick={onClick} id={`tab-${prefix}-${index}`} isSelected={isSelected}>
+				<AccordionLabel onClick={onClick} id={tabId} isSelected={isSelected}>
 					{props.label}
 				</AccordionLabel>
 			) : null}
-			<Pane hidden={!isSelected} aria-labelledby={`tab-${prefix}-${index}`} isSelected={isSelected}>
+			<Panel
+				hidden={!isSelected}
+				aria-labelledby={tabId}
+				id={panelId}
+				aria-selected={isSelected}
+				isSelected={isSelected}
+				role="tabpanel"
+				ref={ref}
+				tabIndex="0"
+			>
 				{props.children}
-			</Pane>
-		</div>
+			</Panel>
+		</>
 	);
 });

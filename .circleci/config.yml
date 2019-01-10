@@ -47,6 +47,10 @@ jobs:
             - ~/.npm
             - ~/.cache
           key: v4-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Run build
+          command: bolt build
       - run:
           name: Run tests
           command: bolt test
