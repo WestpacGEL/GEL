@@ -4,21 +4,28 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
-import { GEL } from '../../components/core';
 import { Global, css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
+
+import { GEL } from '../../components/core';
+import { TOKENS as BOM_TOKENS } from '../../brands/BOM';
+import { TOKENS as BSA_TOKENS } from '../../brands/BSA';
+import { TOKENS as BTFG_TOKENS } from '../../brands/BTFG';
+import { TOKENS as STG_TOKENS } from '../../brands/STG';
+import { TOKENS as WBC_TOKENS } from '../../brands/WBC';
+import { TOKENS as WBG_TOKENS } from '../../brands/WBG';
 
 // ==============================
 // Get the data
 // ==============================
 
 const BRANDS = {
-	BOM: { primaryLight: '#EAE6FF' },
-	BSA: { primaryLight: '#DEEBFF' },
-	BTFG: { primaryLight: '#E6FCFF' },
-	STG: { primaryLight: '#E3FCEF' },
-	WBC: { primaryLight: '#FFEBE6' },
-	WBG: { primaryLight: '#FFEBE6' },
+	BOM: BOM_TOKENS,
+	BSA: BSA_TOKENS,
+	BTFG: BTFG_TOKENS,
+	STG: STG_TOKENS,
+	WBC: WBC_TOKENS,
+	WBG: WBG_TOKENS,
 };
 
 // ==============================
@@ -39,9 +46,11 @@ const App = ({ components, packageName }) => {
 		? components.filter(p => p.label.toLowerCase().includes(inputValue.toLowerCase()))
 		: components;
 
+	const primaryColor = BRANDS[brand].colors.primary.default;
+
 	return (
 		<Router>
-			<GEL brand={brand}>
+			<GEL brand={BRANDS[brand]}>
 				<Body>
 					<Global
 						styles={css`
@@ -84,7 +93,12 @@ const App = ({ components, packageName }) => {
 
 						<SidebarNav>
 							{navItems.map(({ label, slug }) => (
-								<SidebarItem key={slug} to={`/${slug}`} data-test-nav-link>
+								<SidebarItem
+									primaryColor={primaryColor}
+									key={slug}
+									to={`/${slug}`}
+									data-test-nav-link
+								>
 									{label}
 								</SidebarItem>
 							))}
@@ -233,10 +247,10 @@ const SidebarSearch = styled.input({
 		background: 'rgba(0,0,0,0.04)',
 	},
 });
-const SidebarLink = styled(NavLink)(props => ({
+const SidebarLink = styled(NavLink)(({ primaryColor }) => ({
 	backgroundColor: '#F4F5F7',
 	borderLeft: '3px solid transparent',
-	color: '#2684FF',
+	color: primaryColor,
 	display: 'block',
 	fontWeight: 500,
 	outline: 0,
@@ -245,12 +259,12 @@ const SidebarLink = styled(NavLink)(props => ({
 
 	':hover, :focus': {
 		background: '#fafbfc',
-		borderLeftColor: '#2684FF',
+		borderLeftColor: primaryColor,
 	},
 
 	'&.active': {
 		// background: '#fafbfc',
-		borderLeftColor: '#2684FF',
+		borderLeftColor: primaryColor,
 		color: 'inherit',
 	},
 }));
@@ -275,9 +289,9 @@ const SidebarSwitcher = styled.div({
 const SidebarSwitch = styled.label(({ isChecked }) => ({
 	alignItems: 'center',
 	borderTop: '1px solid',
-	borderTopColor: isChecked ? '#2684FF' : 'rgba(0, 0, 0, 0.1)',
+	borderTopColor: isChecked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
 	boxSizing: 'border-box',
-	color: isChecked ? 'inherit' : '#2684FF',
+	color: isChecked ? 'inherit' : '#1F252C',
 	cursor: 'pointer',
 	flex: 1,
 	fontWeight: 500,

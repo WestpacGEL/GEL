@@ -1,15 +1,14 @@
 import { styled } from '@westpac/core';
 
-export const Box = styled.div(({ theme }) => ({
+export const Box = styled.div({
 	alignItems: 'center',
-	backgroundColor: theme.colors.primary || '#1F252C',
+	backgroundColor: '#F4F5F7',
 	borderRadius: 2,
-	color: 'white',
 	display: 'flex',
 	height: '100%',
 	justifyContent: 'center',
 	minHeight: 44,
-}));
+});
 
 export function createRange(start, end, step = 1) {
 	if (end === undefined) {

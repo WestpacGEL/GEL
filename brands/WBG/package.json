@@ -7,7 +7,7 @@
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "echo \"Starting\"",
-		"build": "echo \"TODO\""
+		"build": "babel --root-mode upward tokens -d dist"
 	},
 	"main": "dist/index.js",
 	"dependencies": {
