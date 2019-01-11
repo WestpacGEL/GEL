@@ -1,2 +1,4 @@
 brands/**/dist/
 components/**/dist/
+.docz/
+docs/
