@@ -11,5 +11,5 @@ export default {
 	// },
 	title: 'GEL Design System',
 	// theme: 'helpers/docz/theme.js',
-	// wrapper: 'helpers/docz/wrapper',
+	wrapper: 'helpers/docz/wrapper',
 };

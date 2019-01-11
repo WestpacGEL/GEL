@@ -10,7 +10,7 @@ const COLORS = {
 	text: '',
 };
 
-export const TOKENS = {
+export default {
 	colors: {
 		background: COLORS.background,
 		border: COLORS.border,

@@ -8,24 +8,24 @@ import { Global, css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import { GEL } from '../../components/core';
-import { TOKENS as BOM_TOKENS } from '../../brands/BOM';
-import { TOKENS as BSA_TOKENS } from '../../brands/BSA';
-import { TOKENS as BTFG_TOKENS } from '../../brands/BTFG';
-import { TOKENS as STG_TOKENS } from '../../brands/STG';
-import { TOKENS as WBC_TOKENS } from '../../brands/WBC';
-import { TOKENS as WBG_TOKENS } from '../../brands/WBG';
+import bomBrand from '../../brands/BOM';
+import bsaBrand from '../../brands/BSA';
+import btfgBrand from '../../brands/BTFG';
+import stgBrand from '../../brands/STG';
+import wbcBrand from '../../brands/WBC';
+import wbgBrand from '../../brands/WBG';
 
 // ==============================
 // Get the data
 // ==============================
 
 const BRANDS = {
-	BOM: BOM_TOKENS,
-	BSA: BSA_TOKENS,
-	BTFG: BTFG_TOKENS,
-	STG: STG_TOKENS,
-	WBC: WBC_TOKENS,
-	WBG: WBG_TOKENS,
+	BOM: bomBrand,
+	BSA: bsaBrand,
+	BTFG: btfgBrand,
+	STG: stgBrand,
+	WBC: wbcBrand,
+	WBG: wbgBrand,
 };
 
 // ==============================

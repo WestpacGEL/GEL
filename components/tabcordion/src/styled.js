@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled'; // TODO: comes from core
+import { styled } from '@westpac/core';
 
 const borderColor = '#ddd';
 

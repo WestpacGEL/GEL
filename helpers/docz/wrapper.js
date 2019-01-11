@@ -1,16 +1,7 @@
 import React from 'react';
+import { GEL } from '../components/core';
+import defaultBrand from '../brands/WBC';
+
 export default function({ children }) {
-	return (
-		<>
-			<style>
-				{`
-				.PropsTable tr > td:nth-child(3),
-				.PropsTable tr > th:nth-child(3) {
-					display:none;
-				}
-			`}
-			</style>
-			{children}
-		</>
-	);
+	return <GEL brand={defaultBrand}>{children}</GEL>;
 }

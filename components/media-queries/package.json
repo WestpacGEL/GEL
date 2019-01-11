@@ -16,7 +16,8 @@
 	},
 	"main": "dist/index.js",
 	"dependencies": {
-		"facepaint": "^1.2.1"
+		"facepaint": "^1.2.1",
+		"prop-types": "^15.6.2"
 	},
 	"devDependencies": {
 		"cypress": "^3.1.3",
