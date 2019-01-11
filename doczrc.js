@@ -5,6 +5,7 @@ export default {
 	files: '**/*.mdx',
 	src: './components',
 	dest: './docs',
+	base: '/GEL/',
 	// themeConfig: {
 	// 	mode: 'dark',
 	// },
