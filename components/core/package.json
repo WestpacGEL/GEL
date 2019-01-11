@@ -2,7 +2,7 @@
 	"name": "@westpac/core",
 	"version": "0.0.1",
 	"description": "Core components for the westpac GEL design language",
-	"repository": "https://github.com/WestpacGEL/GUI3.git",
+	"repository": "https://github.com/WestpacGEL/GEL.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {

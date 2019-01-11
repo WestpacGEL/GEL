@@ -11,6 +11,9 @@ The design system for Westpac GEL
 | `bolt`                      | install all dependencies                       |
 | `bolt nuke`                 | removes all `node_modules` for fresh start     |
 | `bolt fresh`                | removes all `node_modules` and reinstalls them |
+| `bolt build`                | build all dist folders                         |
+| `bolt docs:start`                 | build docs for all components                  |
+| `bolt docs:build`                 | build docs for all components to `` folder                  |
 | `bolt dev [package-name]`   | run the examples of the specified component    |
 | `bolt new [package-name]`   | create a specified empty component             |
 | `bolt start [package-name]` | start the example server of a component        |
@@ -139,12 +142,6 @@ The design system for Westpac GEL
 
 ## TODO
 
-- [x] jest tests setup for each component
-- [/] cypress test setup for each component
-- [x] add circleCI
-- [x] write more docs around each decision me made
-- [x] connect brand/wbc packages to core component
-- [x] fix up other components to new folder structure
 - [ ] move to `peerDependencies`
 - [ ] remove emotion from dependencies from all other components
 - [ ] move `@westpac/core` to `peerDependencies`
