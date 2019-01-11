@@ -6,7 +6,7 @@ import { styled } from '@westpac/core';
 import { AccordionLabel, Panel } from './styled';
 
 const IconWrapper = styled.div(({ theme }) => ({
-	color: theme.colors.gray,
+	color: theme.colors.muted,
 }));
 
 export const Tab = forwardRef(({ isSelected, mode, panelId, onClick, tabId, ...props }, ref) => {

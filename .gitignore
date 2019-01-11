@@ -1,4 +1,5 @@
 # Components
+brands/**/dist/
 components/**/dist/
 
 # Logs
