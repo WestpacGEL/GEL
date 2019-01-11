@@ -6,25 +6,26 @@ The design system for Westpac GEL
 
 ### root level
 
-| script                      | description                                    |
-| --------------------------- | ---------------------------------------------- |
-| `bolt`                      | install all dependencies                       |
-| `bolt nuke`                 | removes all `node_modules` for fresh start     |
-| `bolt fresh`                | removes all `node_modules` and reinstalls them |
-| `bolt build`                | build all dist folders                         |
-| `bolt docs:start`                 | build docs for all components                  |
-| `bolt docs:build`                 | build docs for all components to `` folder                  |
-| `bolt dev [package-name]`   | run the examples of the specified component    |
-| `bolt new [package-name]`   | create a specified empty component             |
-| `bolt start [package-name]` | start the example server of a component        |
-| `bolt test`                 | runs test                                      |
-| `bolt format`               | runs prettier to format all code               |
+| script                      | description                                       |
+| --------------------------- | ------------------------------------------------- |
+| `bolt`                      | install all dependencies                          |
+| `bolt nuke`                 | removes all `node_modules` for fresh start        |
+| `bolt fresh`                | removes all `node_modules` and reinstalls them    |
+| `bolt build`                | build all dist folders                            |
+| `bolt docs`                 | build docs for all components and open server     |
+| `bolt docs:build`           | build docs for all components to `./docs/` folder |
+| `bolt dev [package-name]`   | run the examples of the specified component       |
+| `bolt new [package-name]`   | create a specified empty component                |
+| `bolt start [package-name]` | start the example server of a component           |
+| `bolt test`                 | runs test                                         |
+| `bolt format`               | runs prettier to format all code                  |
 
 ### component level
 
 | script          | description                      |
 | --------------- | -------------------------------- |
 | `bolt start`    | start the example server         |
+| `bolt build`    | builds dist files                |
 | `bolt test`     | runs test headless               |
 | `bolt test:dev` | runs test by opening cypress app |
 
@@ -41,6 +42,9 @@ The design system for Westpac GEL
 │   ├── example/
 │   │   ├── index.js          # example wrapper for `bolt dev`
 │   │   └── webpack.config.js # dynamic webpack config to run the `bolt dev` task
+│   ├── docz/                 # Docz files to style the docs
+│   │   ├── theme.js
+│   │   └── wrapper.js
 │   └── cli.js                # helper file for cli like adding a new module
 │
 ├── components/               # all ds components that will be published
@@ -54,9 +58,8 @@ The design system for Westpac GEL
 │   │   ├── README.md
 │   │   ├── package.json
 │   │   ├── index.js          # only for exports
-│   │   ├── svg/              # and with like svgs
-│   │   ├── data/             # like design tokens
-│   │   └── fonts/            # or font files
+│   │   ├── fonts/            # design tokens files
+│   │   └── tokens/           # font files
 │   ├── STG/
 │   │   └── etc
 │   └── BOM/
@@ -68,10 +71,7 @@ The design system for Westpac GEL
 │   ├── demo2/
 │   └── demo3/
 │
-└── docs/                     # everything related to the documentation site
-    ├── page1.mdx
-    ├── page2.mdx
-    └── page3.mdx
+└── docs/                     # the built out files for the documentation
 ```
 
 ## Component

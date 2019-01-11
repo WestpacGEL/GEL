@@ -9,7 +9,7 @@
 	"private": true,
 	"scripts": {
 		"start": "/bin/sh -c 'cd components/${1:-$0} && bolt start'",
-		"docs:start": "docz dev",
+		"docs": "docz dev",
 		"docs:build": "docz build",
 		"nuke": "rm -rf node_modules && bolt ws exec -- rm -rf node_modules",
 		"build": "bolt ws exec -- rm -rf dist && bolt ws exec -- bolt build",

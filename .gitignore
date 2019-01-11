@@ -72,3 +72,4 @@ typings/
 .DS_Store
 bundle.js
 cypress/
+docs/**/*.map

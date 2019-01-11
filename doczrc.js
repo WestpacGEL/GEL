@@ -1,13 +1,14 @@
 export default {
 	// codeSandbox: false,
 	// debug: true,
-	description: 'The styleguide for component use within the GEL platform.',
+	description: 'The Design System for component use within the GEL platform.',
 	files: '**/*.mdx',
 	src: './components',
+	dest: './docs',
 	// themeConfig: {
 	// 	mode: 'dark',
 	// },
-	title: 'GEL Style Guide',
-	// theme: 'docz/theme.js',
-	// wrapper: 'docz/wrapper',
+	title: 'GEL Design System',
+	// theme: 'helpers/docz/theme.js',
+	// wrapper: 'helpers/docz/wrapper',
 };
