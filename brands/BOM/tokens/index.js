@@ -10,7 +10,10 @@ const COLORS = {
 	text: '',
 };
 
+const BREAK_POINTS = { xs: 576, sm: 768, md: 992, lg: 1200 };
+
 export default {
+	breakpoints: BREAK_POINTS,
 	colors: {
 		background: COLORS.background,
 		border: COLORS.border,
