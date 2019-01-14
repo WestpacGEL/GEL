@@ -70,6 +70,7 @@
 		"common-tags": "^1.8.0",
 		"emotion-theming": "^10.0.4",
 		"facepaint": "^1.2.1",
+		"invariant": "^2.2.4",
 		"prettier": "^1.15.3",
 		"prop-types": "^15.6.2",
 		"react": "16.7.0-alpha.2",
