@@ -1,23 +1,34 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
+import facepaint from 'facepaint';
 import { jsx } from '@westpac/core';
-import { mqValues } from '@westpac/media-queries';
 
+// allow string or array values for height/width
 const span = n => `span ${n}`;
-const getColEnd = c => (Array.isArray(c) ? c.map(span) : span(c));
+const getEndSpan = c => (Array.isArray(c) ? c.map(span) : span(c));
 
+// NOTE: breakpoints come from the brand
+const minWidth = width => `@media (min-width: ${width}px)`;
+const mapBreakpoints = ([key, value]) => minWidth(value);
+
+// TODO: investigate perf for facepaint. should happen at build time, with no
+// cost to the user -- need to confirm.
 export const Cell = ({ area, center, height, left, middle, top, width, ...props }) => (
 	<div
-		css={mqValues({
-			height: '100%',
-			minWidth: 0,
-			gridColumnEnd: getColEnd(width),
-			gridRowEnd: `span ${height}`,
-			gridColumnStart: left,
-			gridRowStart: top,
-			gridArea: area,
-		})}
+		css={theme => {
+			const mqValues = facepaint(Object.entries(theme.breakpoints).map(mapBreakpoints));
+
+			return mqValues({
+				gridArea: area,
+				gridColumnEnd: getEndSpan(width),
+				gridColumnStart: left,
+				gridRowEnd: getEndSpan(height),
+				gridRowStart: top,
+				height: '100%',
+				minWidth: 0,
+			});
+		}}
 		{...props}
 	/>
 );

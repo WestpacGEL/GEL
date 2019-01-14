@@ -6,14 +6,48 @@ route: /icon
 
 import { Playground, PropsTable } from 'docz';
 import { HouseIcon } from './src';
+import * as ALL_ICONS from './src';
+import { Cell, Grid, Name, Row } from './examples/_util';
 import { Icon } from './src/Icon';
 
 # Icon
 
-The icon component. Just write _next to_ the example.
+The icon component.
 
 <Playground>
 	<HouseIcon />
+</Playground>
+
+<Playground>
+	<Row>
+		<HouseIcon size="xsmall" />
+		<HouseIcon size="small" />
+		<HouseIcon size="medium" />
+		<HouseIcon size="large" />
+		<HouseIcon size="xlarge" />
+	</Row>
+</Playground>
+
+<Playground>
+	<Row>
+		<HouseIcon color="#DE350B" />
+		<HouseIcon color="#FF991F" />
+		<HouseIcon color="#00875A" />
+		<HouseIcon color="#00A3BF" />
+		<HouseIcon color="#0052CC" />
+		<HouseIcon color="#5243AA" />
+	</Row>
+</Playground>
+
+<Playground>
+	<Grid>
+		{Object.entries(ALL_ICONS).map(([name, Glyph]) => (
+			<Cell key={name}>
+				<Glyph />
+				<Name>{name}</Name>
+			</Cell>
+		))}
+	</Grid>
 </Playground>
 
 <PropsTable of={Icon} />

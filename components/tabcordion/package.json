@@ -21,6 +21,7 @@
 		"@westpac/icon": "^0.0.1"
 	},
 	"peerDependencies": {
+		"prop-types": "^15.6.2",
 		"react": "16.7.0-alpha.2"
 	},
 	"devDependencies": {

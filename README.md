@@ -115,17 +115,14 @@ The design system for Westpac GEL
   1. Docs: this is a website that will be published for documenting APIs
 - Multi-brand will be achieved by added a brand package that will be dynamically imported inside `core`
 - Tokens and everything regarding branding will be contained in the brand packages in `brands/*`
+- Brands will only have a default export containing the "tokens" object.
 - To select a brand the consumer has to import the `@westpac/[brand]` package and pass it to core
 
   ```jsx
-  import { brand } from '@westpac/wbc';
+  import WBC from '@westpac/wbc';
   import { GEL } from '@westpac/core';
 
-  export const Thing = (
-  	<GEL brand={brand} theme={provided => ({ ...provided, colors: {} })}>
-  		Your app
-  	</GEL>
-  );
+  export const Thing = <GEL brand={WBC}>Your app</GEL>;
   ```
 
 ### Naming convention

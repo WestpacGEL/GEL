@@ -18,7 +18,7 @@ export const Tabcordion = props => {
 
 	useEffect(() => {
 		if (!instancePrefix) {
-			setInstancePrefix('gel-tabcordion-' + ++instanceId);
+			setInstancePrefix(`gel-tabcordion-${++instanceId}`);
 		}
 	});
 
@@ -64,17 +64,17 @@ export const Tabcordion = props => {
 };
 
 Tabcordion.propTypes = {
-	/* Provide a label that describes the purpose of the set of tabs. */
+	/** Provide a label that describes the purpose of the set of tabs. */
 	ariaLabel: PropTypes.string,
-	/* An array of Tab components that can be navigated through */
+	/** An array of Tab components that can be navigated through */
 	children: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.oneOf([Tab]),
 		})
 	).isRequired,
-	/* Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc. */
+	/** Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc. */
 	instanceId: PropTypes.string,
-	// Lock the mode to either "accordion" or "tabs". The default is responsive.
+	/** Lock the mode to either "accordion" or "tabs". The default is responsive. */
 	mode: PropTypes.oneOf(['accordion', 'tabs']),
 };
 Tabcordion.defaultProps = {
