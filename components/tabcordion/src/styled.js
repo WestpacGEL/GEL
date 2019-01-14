@@ -7,6 +7,7 @@ const tabBorder = '#d3d4d5';
 export const TabRow = styled.div({
 	display: 'flex',
 	whiteSpace: 'nowrap',
+	position: 'relative',
 });
 
 export const TabItem = styled.button(({ appearance, isJustified, isSelected, theme }) => {
@@ -69,11 +70,11 @@ export const AccordionLabel = styled.button(({ appearance, isSelected, theme }) 
 	};
 	const styles = {
 		soft: {
-			'&:first-child': {
+			'&:first-of-type': {
 				borderTopLeftRadius: 3,
 				borderTopRightRadius: 3,
 			},
-			'&:last-child': {
+			'&:last-of-type': {
 				borderBottomLeftRadius: 3,
 				borderBottomRightRadius: 3,
 			},
@@ -90,4 +91,9 @@ export const AccordionLabel = styled.button(({ appearance, isSelected, theme }) 
 export const Panel = styled.div({
 	border: `1px solid ${tabBorder}`,
 	padding: '24px 3.22%',
+
+	'&:focus': {
+		outline: '2px dotted #000',
+		outlineOffset: '.5rem',
+	},
 });

@@ -63,9 +63,16 @@ export default () => {
 				</Checkbox>
 			</Row>
 
-			<Tabcordion mode={mode} appearance={appearance} justifyTabs={justify}>
+			<Tabcordion
+				appearance={appearance}
+				ariaLabel="Configurable Tablist"
+				justifyTabs={justify}
+				mode={mode}
+			>
 				{data.map(t => (
-					<Tab label={t.label}>{t.content}</Tab>
+					<Tab key={t.label} label={t.label}>
+						{t.content}
+					</Tab>
 				))}
 			</Tabcordion>
 		</>

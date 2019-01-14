@@ -1,6 +1,6 @@
 import React, { Children, Fragment, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useContainerQuery, useKeyEvent } from '@westpac/hooks';
+import { useContainerQuery } from '@westpac/hooks';
 
 import { TabItem, TabRow } from './styled';
 import { Tab } from './Tab';
@@ -9,18 +9,19 @@ let instanceId = 0;
 const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'PageDown', 'PageUp', 'End', 'Home'];
 
 export const Tabcordion = props => {
-	const containerRef = useRef();
-	const tablistRef = useRef();
-	const { width } = useContainerQuery(containerRef);
-	const mode = props.mode !== 'responsive' ? props.mode : width < 768 ? 'accordion' : 'tabs';
-	const setActive = idx => () => setActiveTabIndex(idx);
-
-	// unless explicitly provided
+	// TODO: unless explicitly provided, preset the intial index
 	// const initialIndex =
 	// 	props.initialTabIndex !== undefined ? props.initialTabIndex : mode === 'accordion' ? null : 0;
 
 	const [activeTabIndex, setActiveTabIndex] = useState(props.initialTabIndex);
 	const [instancePrefix, setInstancePrefix] = useState(props.instanceId);
+
+	const containerRef = useRef();
+	const panelRef = useRef();
+	const tablistRef = useRef();
+	const { width } = useContainerQuery(containerRef);
+	const mode = props.mode !== 'responsive' ? props.mode : width < 768 ? 'accordion' : 'tabs';
+	const setActive = idx => () => setActiveTabIndex(idx);
 
 	// create the prefix for internal IDs
 	useEffect(() => {
@@ -30,16 +31,22 @@ export const Tabcordion = props => {
 	});
 
 	// handle keys
-	const keyHandler = key => {
+	const keyHandler = event => {
 		// bail unless a tab belonging to this tablist is focused
 		if (!tablistRef.current || !tablistRef.current.contains(document.activeElement)) return;
+
+		// disable scrolling when keyboard user navigates using Page[Down|Up]
+		event.preventDefault();
 
 		// prepare helpers
 		let nextIndex;
 		let lastIndex = Children.count(props.children) - 1;
 
 		// update index based on key pressed
-		switch (key) {
+		switch (event.key) {
+			case 'Enter':
+				panelRef.current.focus(); // select the active panel
+				break;
 			case 'ArrowLeft':
 				nextIndex = activeTabIndex === 0 ? lastIndex : activeTabIndex - 1;
 				break;
@@ -55,16 +62,19 @@ export const Tabcordion = props => {
 				nextIndex = 0;
 				break;
 			default:
+				nextIndex = activeTabIndex;
 		}
 
-		setActiveTabIndex(nextIndex);
+		if (typeof nextIndex === 'number') setActiveTabIndex(nextIndex);
 	};
 
-	useKeyEvent(
-		keyHandler,
-		{ detectKeys: VALID_KEYS, preventDefault: true },
-		{ dependencies: props.children }
-	);
+	// bind key events
+	useEffect(() => {
+		window.document.addEventListener('keydown', keyHandler);
+		return () => {
+			window.document.removeEventListener('keydown', keyHandler);
+		};
+	});
 
 	const getId = (type, index) => `${instancePrefix}-${type}-${index + 1}`;
 
@@ -76,15 +86,16 @@ export const Tabcordion = props => {
 						const isSelected = activeTabIndex === idx;
 						return (
 							<TabItem
+								appearance={props.appearance}
 								aria-controls={getId('panel', idx)}
 								aria-selected={isSelected}
-								appearance={props.appearance}
 								id={getId('tab', idx)}
 								isJustified={props.justifyTabs}
 								isSelected={isSelected}
 								key={child.props.label}
 								onClick={setActive(idx)}
 								role="tab"
+								tabIndex={isSelected ? 0 : -1}
 							>
 								{child.props.label}
 							</TabItem>
@@ -93,19 +104,23 @@ export const Tabcordion = props => {
 				</TabRow>
 			) : null}
 
-			{Children.map(props.children, (child, idx) => (
-				<Tab
-					{...child.props}
-					activeTabIndex={activeTabIndex}
-					appearance={props.appearance}
-					tabId={getId('tab', idx)}
-					panelId={getId('panel', idx)}
-					isSelected={activeTabIndex === idx}
-					key={child.props.label}
-					mode={mode}
-					onClick={setActive(idx)}
-				/>
-			))}
+			{Children.map(props.children, (child, idx) => {
+				const isSelected = activeTabIndex === idx;
+				return (
+					<Tab
+						{...child.props}
+						activeTabIndex={activeTabIndex}
+						appearance={props.appearance}
+						isSelected={isSelected}
+						key={child.props.label}
+						mode={mode}
+						onClick={setActive(idx)}
+						panelId={getId('panel', idx)}
+						ref={isSelected ? panelRef : null}
+						tabId={getId('tab', idx)}
+					/>
+				);
+			})}
 		</div>
 	);
 };
