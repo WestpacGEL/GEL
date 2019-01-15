@@ -2,122 +2,57 @@ import React, { Fragment } from 'react';
 
 export const data = [
 	{
-		label: 'First',
+		label: 'Rabbit hole',
 		content: (
 			<Fragment>
-				<p>
-					Gummi bears cupcake toffee cupcake. Marzipan macaroon caramels dragée apple pie. Apple pie
-					cookie sesame snaps biscuit ice cream lemon drops.
-				</p>
-				<p>
-					Biscuit marzipan pastry biscuit. Brownie sesame snaps gummi bears tart danish cookie
-					sweet. Sesame snaps topping croissant gingerbread chocolate. Bonbon donut topping marzipan
-					apple pie tiramisu apple pie cake.
-				</p>
-				<p>
-					Cake halvah sweet roll. Danish lemon drops dragée soufflé. Chupa chups chocolate cake
-					sweet.
-				</p>
-				<p>
-					Brownie marshmallow cheesecake candy canes carrot cake. Chocolate soufflé brownie jelly
-					chocolate pastry. Jelly-o muffin dessert. Powder dessert ice cream macaroon.
-				</p>
-				<p>
-					Chupa chups sugar plum lollipop sweet. Halvah icing wafer dragée wafer. Sweet roll
-					chocolate bar lollipop chupa chups topping cheesecake halvah chocolate bar candy canes.
-					Candy canes wafer candy jelly beans lollipop tart.
-				</p>
+				‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing larger
+				and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t gone down
+				that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort of life! I
+				do wonder what can have happened to me! When I used to read fairy-tales, I fancied that kind
+				of thing never happened, and now here I am in the middle of one! There ought to be a book
+				written about me, that there ought! And when I grow up, I’ll write one.
 			</Fragment>
 		),
 	},
 	{
-		label: 'Second',
+		label: 'Flamingo',
 		content: (
 			<Fragment>
-				<p>
-					Croissant powder cheesecake dragée chocolate cupcake. Jelly beans candy canes fruitcake
-					donut chupa chups gummies tiramisu topping. Sweet roll jelly-o candy sesame snaps bear
-					claw marzipan cupcake apple pie brownie. Gummi bears tiramisu cake sugar plum.
-				</p>
-				<p>
-					Candy canes chocolate cake sweet roll. Marzipan tiramisu macaroon. Ice cream icing cake.
-					Pie croissant sugar plum dragée sugar plum candy canes liquorice lollipop powder.
-				</p>
-				<p>
-					Sweet roll sugar plum jelly beans gummies. Candy canes pastry tart wafer. Sweet roll cake
-					marshmallow jelly-o icing sesame snaps dessert.
-				</p>
-				<p>
-					Donut donut marzipan cheesecake icing cheesecake caramels cake. Cupcake sesame snaps
-					chocolate liquorice sweet roll gummies jelly. Jelly lollipop cheesecake. Bonbon tiramisu
-					icing sugar plum pudding icing.
-				</p>
-				<p>
-					Soufflé dessert cake gummies jelly beans cake tart toffee. Chocolate bar oat cake jelly
-					beans dragée topping marzipan carrot cake danish. Gingerbread sugar plum jelly-o candy
-					marzipan.
-				</p>
+				The chief difficulty Alice found at first was in managing her flamingo: she succeeded in
+				getting its body tucked away, comfortably enough, under her arm, with its legs hanging down,
+				but generally, just as she had got its neck nicely straightened out, and was going to give
+				the hedgehog a blow with its head, it would twist itself round and look up in her face, with
+				such a puzzled expression that she could not help bursting out laughing: and when she had
+				got its head down, and was going to begin again, it was very provoking to find that the
+				hedgehog had unrolled itself, and was in the act of crawling away: besides all this, there
+				was generally a ridge or furrow in the way wherever she wanted to send the hedgehog to, and,
+				as the doubled-up soldiers were always getting up and walking off to other parts of the
+				ground, Alice soon came to the conclusion that it was a very difficult game indeed.
 			</Fragment>
 		),
 	},
 	{
-		label: 'Third',
+		label: 'Caterpillar',
 		content: (
 			<Fragment>
-				<p>
-					Candy canes sugar plum dragée chocolate lemon drops pie wafer gummi bears. Sugar plum
-					soufflé marzipan cake wafer. Pie pastry liquorice.
-				</p>
-				<p>
-					Dragée halvah gingerbread cotton candy croissant. Jujubes halvah cake danish cupcake
-					marshmallow biscuit cupcake. Jujubes candy canes sugar plum chocolate bar topping. Dessert
-					sweet roll lollipop jelly beans halvah halvah lollipop wafer.
-				</p>
-				<p>
-					Biscuit fruitcake marzipan fruitcake muffin candy. Danish pastry dessert gingerbread
-					dragée tiramisu. Muffin apple pie gingerbread wafer liquorice. Apple pie chupa chups
-					carrot cake gingerbread jelly-o candy canes caramels.
-				</p>
-				<p>
-					Caramels gummi bears dragée. Jelly fruitcake cookie cheesecake jelly-o gummi bears.
-					Chocolate bar cake sweet icing dessert jelly-o. Lemon drops tiramisu caramels topping
-					candy jelly beans bonbon.
-				</p>
-				<p>
-					Chocolate cake cheesecake chupa chups candy canes gummi bears cake cake donut. Lollipop
-					donut croissant sweet roll. Candy canes tart biscuit powder cheesecake chocolate cake.
-					Halvah croissant lemon drops cupcake.
-				</p>
-			</Fragment>
-		),
-	},
-	{
-		label: 'Fourth',
-		content: (
-			<Fragment>
-				<p>
-					Lollipop jelly bear claw fruitcake danish. Tiramisu wafer muffin. Chocolate cake tart
-					cupcake.
-				</p>
-				<p>
-					Gummies gummies jelly-o muffin fruitcake sweet roll. Chocolate bar macaroon apple pie
-					carrot cake tiramisu. Oat cake jelly beans bear claw donut chupa chups fruitcake.
-				</p>
-				<p>
-					Dessert caramels bear claw bonbon pastry halvah icing tart. Gingerbread fruitcake donut
-					liquorice chupa chups bear claw donut. Topping marzipan biscuit cupcake liquorice chupa
-					chups wafer marshmallow brownie.
-				</p>
-				<p>
-					Sweet chocolate marshmallow cupcake. Pastry jelly-o cotton candy sugar plum jelly toffee
-					bear claw candy. Bear claw pastry powder croissant gummi bears soufflé sweet. Marzipan
-					sugar plum gummies gummi bears bear claw.
-				</p>
-				<p>
-					Bonbon caramels dessert pudding chocolate cake marzipan. Lemon drops lemon drops dragée
-					marshmallow wafer. Chocolate bar chocolate bar caramels liquorice candy canes soufflé
-					donut biscuit donut.
-				</p>
+				The Caterpillar and Alice looked at each other for some time in silence: at last the
+				Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice.
+				<br />
+				‘Who are you?’ said the Caterpillar.
+				<br />
+				This was not an encouraging opening for a conversation. Alice replied, rather shyly, ‘I — I
+				hardly know, sir, just at present — at least I know who I was when I got up this morning,
+				but I think I must have been changed several times since then.’
+				<br />
+				‘What do you mean by that?’ said the Caterpillar sternly. ‘Explain yourself!’
+				<br />
+				‘I can’t explain myself, I’m afraid, sir’ said Alice, ’because I’m not myself, you see.’
+				<br />
+				‘I don’t see,’ said the Caterpillar.
+				<br />
+				‘I’m afraid I can’t put it more clearly,’ Alice replied very politely, ‘for I can’t
+				understand it myself to begin with; and being so many different sizes in a day is very
+				confusing.’
 			</Fragment>
 		),
 	},

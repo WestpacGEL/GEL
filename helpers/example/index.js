@@ -247,27 +247,32 @@ const SidebarSearch = styled.input({
 		background: 'rgba(0,0,0,0.04)',
 	},
 });
-const SidebarLink = styled(NavLink)(({ primaryColor }) => ({
-	backgroundColor: '#F4F5F7',
-	borderLeft: '3px solid transparent',
-	color: primaryColor,
-	display: 'block',
-	fontWeight: 500,
-	outline: 0,
-	padding: '10px 20px',
-	textDecoration: 'none',
+const SidebarLink = ({ primaryColor, ...props }) => (
+	<NavLink
+		css={{
+			backgroundColor: '#F4F5F7',
+			borderLeft: '3px solid transparent',
+			color: primaryColor,
+			display: 'block',
+			fontWeight: 500,
+			outline: 0,
+			padding: '10px 20px',
+			textDecoration: 'none',
 
-	':hover, :focus': {
-		background: '#fafbfc',
-		borderLeftColor: primaryColor,
-	},
+			':hover, :focus': {
+				background: '#fafbfc',
+				borderLeftColor: primaryColor,
+			},
 
-	'&.active': {
-		// background: '#fafbfc',
-		borderLeftColor: primaryColor,
-		color: 'inherit',
-	},
-}));
+			'&.active': {
+				// background: '#fafbfc',
+				borderLeftColor: primaryColor,
+				color: 'inherit',
+			},
+		}}
+		{...props}
+	/>
+);
 const SidebarItem = props => (
 	<li data-test-nav>
 		<SidebarLink {...props} />
