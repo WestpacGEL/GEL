@@ -1,13 +1,19 @@
 const COLORS = {
-	background: '',
-	border: '',
-	heading: '',
-	hero: '',
-	light: '',
-	muted: '#5B6871',
-	neutral: '',
-	primary: '#7998AC',
-	text: '',
+	background: '#F9F9F9',
+	border: '#E0E0E0',
+	heading: '#2574A9',
+	hero: '#2574A9',
+	light: '#FCFCFC',
+	muted: '#666666',
+	neutral: '#637b98',
+	primary: '#9E005D',
+	text: '#333333',
+
+	// reserved
+	success: '#008000',
+	information: '#0074C4',
+	warning: '#C53B00',
+	danger: '#C40000',
 };
 
 const BREAK_POINTS = { xs: 576, sm: 768, md: 992, lg: 1200 };
@@ -15,19 +21,11 @@ const BREAK_POINTS = { xs: 576, sm: 768, md: 992, lg: 1200 };
 export default {
 	breakpoints: BREAK_POINTS,
 	colors: {
-		background: COLORS.background,
-		border: COLORS.border,
-		heading: COLORS.heading,
-		hero: COLORS.hero,
-		light: COLORS.light,
-		muted: COLORS.muted,
-		neutral: COLORS.neutral,
+		...COLORS,
 		primary: {
 			default: COLORS.primary,
-			active: COLORS.primary,
-			offset: 'white',
+			foreground: 'white',
 		},
-		text: COLORS.text,
 	},
 	type: {},
 	spacing: {},
