@@ -2,8 +2,6 @@
 
 import { jsx, styled } from '@westpac/core';
 
-export const tuples = [[12, 4, 2, 8], [12, 4, 8, 2], [12, 4, 2, 2]];
-
 export const Box = styled.div({
 	alignItems: 'center',
 	backgroundColor: 'rgba(197,59,0,0.15)',
