@@ -75,11 +75,17 @@ Columns can be offset to create empty space.
 <Playground>
 	<GridOverlay>
 		<Grid style={{ fontSize: 14 }}>
-			<Cell width={[12, 10]} left={[1, 2]}>
-				<Box>Offset Column</Box>
+			<Cell width={[12, 12, 10]} left={[1, 1, 2]}>
+				<Box>Offset A</Box>
 			</Cell>
-			<Cell width={[12, 5]} left={[1, 7]}>
-				<Box>Offset Column</Box>
+			<Cell width={[12, 12, 5]} left={[1, 1, 7]}>
+				<Box>Offset B</Box>
+			</Cell>
+			<Cell width={[12, 12, 5]} left={[1, 1, 2]} top={[3, 3, 2]}>
+				<Box>Offset C</Box>
+			</Cell>
+			<Cell width={[12, 12, 10]} left={[1, 1, 2]} top={[4, 4, 5]}>
+				<Box>Offset D</Box>
 			</Cell>
 		</Grid>
 	</GridOverlay>
