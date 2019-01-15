@@ -1,9 +1,6 @@
 import React from 'react';
 import { styled } from '@westpac/core';
 
-const tabBg = '#f8f8f8';
-const tabBorder = '#d3d4d5';
-
 export const TabRow = styled.div({
 	display: 'flex',
 	whiteSpace: 'nowrap',
@@ -28,10 +25,10 @@ export const TabItem = styled.button(({ appearance, isJustified, isSelected, the
 	};
 	const styles = {
 		soft: {
-			backgroundColor: isSelected ? '#fff' : tabBg,
+			backgroundColor: isSelected ? '#fff' : theme.colors.background,
 			borderTopLeftRadius: 3,
 			borderTopRightRadius: 3,
-			border: `1px solid ${tabBorder}`,
+			border: `1px solid ${theme.colors.border}`,
 			borderBottom: 0,
 			color: '#333',
 			cursor: 'pointer',
@@ -39,10 +36,10 @@ export const TabItem = styled.button(({ appearance, isJustified, isSelected, the
 			paddingBottom: isSelected ? 15 : null,
 		},
 		lego: {
-			backgroundColor: isSelected ? '#fff' : theme.colors.primary.default,
-			border: `1px solid ${isSelected ? tabBorder : 'transparent'}`,
+			backgroundColor: isSelected ? '#fff' : theme.colors.hero.default,
+			border: `1px solid ${isSelected ? theme.colors.border : 'transparent'}`,
 			borderBottom: 0,
-			color: isSelected ? theme.colors.text : theme.colors.primary.offset,
+			color: isSelected ? theme.colors.text : theme.colors.hero.foreground,
 			cursor: 'pointer',
 			marginBottom: isSelected ? -1 : 2,
 			paddingBottom: isSelected ? 17 : null,
@@ -55,11 +52,11 @@ export const TabItem = styled.button(({ appearance, isJustified, isSelected, the
 export const AccordionLabel = styled.button(({ appearance, isLast, isSelected, theme }) => {
 	const common = {
 		alignItems: 'center',
-		backgroundColor: tabBg,
+		backgroundColor: theme.colors.background,
 		border: 0,
-		borderTop: `1px solid ${tabBorder}`,
-		borderLeft: `1px solid ${tabBorder}`,
-		borderRight: `1px solid ${tabBorder}`,
+		borderTop: `1px solid ${theme.colors.border}`,
+		borderLeft: `1px solid ${theme.colors.border}`,
+		borderRight: `1px solid ${theme.colors.border}`,
 		cursor: 'pointer',
 		display: 'flex',
 		fontSize: 'inherit',
@@ -73,14 +70,14 @@ export const AccordionLabel = styled.button(({ appearance, isLast, isSelected, t
 	const lastStyles =
 		isLast && !isSelected
 			? {
-					borderBottom: `1px solid ${tabBorder}`,
+					borderBottom: `1px solid ${theme.colors.border}`,
 					borderBottomLeftRadius: 3,
 					borderBottomRightRadius: 3,
 			  }
 			: {};
 	const styles = {
 		soft: {
-			borderBottom: isSelected && `1px solid ${tabBorder}`,
+			borderBottom: isSelected && `1px solid ${theme.colors.border}`,
 			...lastStyles,
 
 			'&:first-of-type': {
@@ -89,12 +86,12 @@ export const AccordionLabel = styled.button(({ appearance, isLast, isSelected, t
 			},
 		},
 		lego: {
-			borderBottom: isSelected && `1px solid ${tabBorder}`,
+			borderBottom: isSelected && `1px solid ${theme.colors.border}`,
 			borderLeftWidth: 6,
-			borderLeftColor: isSelected ? tabBorder : theme.colors.primary.default,
+			borderLeftColor: isSelected ? theme.colors.border : theme.colors.hero.default,
 
 			'&:last-of-type': {
-				borderBottom: `1px solid ${tabBorder}`,
+				borderBottom: `1px solid ${theme.colors.border}`,
 			},
 		},
 	};
@@ -104,10 +101,10 @@ export const AccordionLabel = styled.button(({ appearance, isLast, isSelected, t
 
 export const Panel = styled.div(({ appearance, isLast, isSelected, mode, theme }) => {
 	const common = {
-		borderLeft: `1px solid ${tabBorder}`,
-		borderRight: `1px solid ${tabBorder}`,
-		borderBottom: mode === 'tabs' || isLast ? `1px solid ${tabBorder}` : null,
-		borderTop: mode === 'tabs' ? `1px solid ${tabBorder}` : null,
+		borderLeft: `1px solid ${theme.colors.border}`,
+		borderRight: `1px solid ${theme.colors.border}`,
+		borderBottom: mode === 'tabs' || isLast ? `1px solid ${theme.colors.border}` : null,
+		borderTop: mode === 'tabs' ? `1px solid ${theme.colors.border}` : null,
 		padding: '24px 3.22%',
 
 		'&:focus': {
@@ -121,7 +118,7 @@ export const Panel = styled.div(({ appearance, isLast, isSelected, mode, theme }
 			? {
 					lego: {
 						borderLeftWidth: 6,
-						borderLeftColor: tabBorder,
+						borderLeftColor: theme.colors.border,
 					},
 					soft: isLast
 						? {
