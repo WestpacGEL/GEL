@@ -10,11 +10,5 @@
 		"build": "babel --root-mode upward tokens -d dist"
 	},
 	"main": "dist/index.js",
-	"dependencies": {
-		"@emotion/core": "^10.0.4",
-		"@emotion/styled": "^10.0.4",
-		"emotion-theming": "^10.0.4",
-		"react": "16.7.0-alpha.2",
-		"react-dom": "16.7.0-alpha.2"
-	}
+	"dependencies": {}
 }

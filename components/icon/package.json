@@ -16,10 +16,10 @@
 	},
 	"main": "dist/index.js",
 	"dependencies": {
-		"@westpac/core": "^0.0.1"
+		"@westpac/core": "^0.0.1",
+		"prop-types": "^15.6.2"
 	},
 	"peerDependencies": {
-		"prop-types": "^15.6.2",
 		"react": "16.7.0-alpha.2"
 	},
 	"devDependencies": {
