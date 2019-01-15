@@ -10,7 +10,10 @@ const IconWrapper = styled.div(({ theme }) => ({
 }));
 
 export const Tab = forwardRef(
-	({ children, isSelected, label, mode, panelId, onClick, tabId, ...props }, ref) => {
+	(
+		{ appearance, children, isLast, isSelected, label, mode, panelId, onClick, tabId, ...props },
+		ref
+	) => {
 		const Icon = isSelected ? ExpandLessIcon : ExpandMoreIcon;
 		const iconLabel = isSelected ? 'Show Less' : 'Show More';
 
@@ -18,8 +21,10 @@ export const Tab = forwardRef(
 			<>
 				{mode === 'accordion' ? (
 					<AccordionLabel
+						appearance={appearance}
 						onClick={onClick}
 						id={tabId}
+						isLast={isLast}
 						isSelected={isSelected}
 						aria-controls={panelId}
 						aria-expanded={isSelected}
@@ -32,10 +37,13 @@ export const Tab = forwardRef(
 				) : null}
 				<Panel
 					hidden={!isSelected}
+					appearance={appearance}
 					aria-labelledby={tabId}
 					id={panelId}
 					aria-selected={isSelected}
+					isLast={isLast}
 					isSelected={isSelected}
+					mode={mode}
 					role="tabpanel"
 					ref={ref}
 					tabIndex="0"
