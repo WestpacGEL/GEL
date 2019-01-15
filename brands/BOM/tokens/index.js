@@ -25,6 +25,7 @@ export default {
 		primary: {
 			default: COLORS.primary,
 			active: COLORS.primary,
+			offset: 'white',
 		},
 		text: COLORS.text,
 	},
