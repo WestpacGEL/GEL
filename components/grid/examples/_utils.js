@@ -1,14 +1,48 @@
-import { styled } from '@westpac/core';
+/** @jsx jsx */
+
+import { jsx, styled } from '@westpac/core';
 
 export const Box = styled.div({
 	alignItems: 'center',
-	backgroundColor: '#F4F5F7',
-	borderRadius: 2,
+	backgroundColor: 'rgba(197,59,0,0.15)',
+	// borderRadius: 2,
+	color: '#c53b00',
 	display: 'flex',
 	height: '100%',
 	justifyContent: 'center',
-	minHeight: 44,
+	minHeight: 60,
 });
+export const GridOverlay = ({ children, columns = 12, gap = 8 }) => (
+	<div css={{ height: '100%', position: 'relative' }}>
+		<div
+			css={{
+				bottom: '-1.5em',
+				display: 'grid',
+				gridAutoFlow: 'row',
+				gridAutoRows: 'minmax(20px,auto)',
+				gridGap: gap,
+				gridTemplateColumns: `repeat(${columns},1fr)`,
+				height: 'auto',
+				left: 0,
+				opacity: 0.1,
+				pointerEvents: 'none',
+				position: 'absolute',
+				right: 0,
+				top: '-1.5em',
+
+				'@media (min-width: 420px)': {
+					bottom: '-2em',
+					top: '-2em',
+				},
+			}}
+		>
+			{new Array(columns).fill(1).map((c, i) => (
+				<div key={i} css={{ backgroundColor: 'rgba(0,116,196,0.3)', gridColumnEnd: 'span 1' }} />
+			))}
+		</div>
+		{children}
+	</div>
+);
 
 export function createRange(start, end, step = 1) {
 	if (end === undefined) {
