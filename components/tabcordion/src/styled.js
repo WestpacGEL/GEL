@@ -17,6 +17,7 @@ export const TabItem = styled.button(({ appearance, isJustified, isSelected, the
 		marginRight: 2,
 		outline: 0,
 		padding: '14px 18px',
+		textAlign: 'left',
 		textDecoration: 'none',
 		transition: 'background .3s ease',
 		width: '100%',
@@ -51,49 +52,85 @@ export const TabItem = styled.button(({ appearance, isJustified, isSelected, the
 	return Object.assign({}, common, styles[appearance]);
 });
 
-export const AccordionLabel = styled.button(({ appearance, isSelected, theme }) => {
+export const AccordionLabel = styled.button(({ appearance, isLast, isSelected, theme }) => {
 	const common = {
 		alignItems: 'center',
 		backgroundColor: tabBg,
 		border: 0,
+		borderTop: `1px solid ${tabBorder}`,
 		borderLeft: `1px solid ${tabBorder}`,
 		borderRight: `1px solid ${tabBorder}`,
-		boxShadow: '0 -1px 0 #ccc, 0 1px 0 #ccc',
 		cursor: 'pointer',
 		display: 'flex',
 		fontSize: 'inherit',
 		justifyContent: 'space-between',
 		outline: 0,
 		padding: '12px 18px',
+		position: 'relative',
 		textAlign: 'left',
 		width: '100%',
 	};
+	const lastStyles =
+		isLast && !isSelected
+			? {
+					borderBottom: `1px solid ${tabBorder}`,
+					borderBottomLeftRadius: 3,
+					borderBottomRightRadius: 3,
+			  }
+			: {};
 	const styles = {
 		soft: {
+			borderBottom: isSelected && `1px solid ${tabBorder}`,
+			...lastStyles,
+
 			'&:first-of-type': {
 				borderTopLeftRadius: 3,
 				borderTopRightRadius: 3,
 			},
-			'&:last-of-type': {
-				borderBottomLeftRadius: 3,
-				borderBottomRightRadius: 3,
-			},
 		},
 		lego: {
-			borderLeftWidth: 4,
+			borderBottom: isSelected && `1px solid ${tabBorder}`,
+			borderLeftWidth: 6,
 			borderLeftColor: isSelected ? tabBorder : theme.colors.primary.default,
+
+			'&:last-of-type': {
+				borderBottom: `1px solid ${tabBorder}`,
+			},
 		},
 	};
 
 	return Object.assign({}, common, styles[appearance]);
 });
 
-export const Panel = styled.div({
-	border: `1px solid ${tabBorder}`,
-	padding: '24px 3.22%',
+export const Panel = styled.div(({ appearance, isLast, isSelected, mode, theme }) => {
+	const common = {
+		borderLeft: `1px solid ${tabBorder}`,
+		borderRight: `1px solid ${tabBorder}`,
+		borderBottom: mode === 'tabs' || isLast ? `1px solid ${tabBorder}` : null,
+		borderTop: mode === 'tabs' ? `1px solid ${tabBorder}` : null,
+		padding: '24px 3.22%',
 
-	'&:focus': {
-		outline: '2px dotted #000',
-		outlineOffset: '.5rem',
-	},
+		'&:focus': {
+			outline: '2px dotted #000',
+			outlineOffset: '.5rem',
+		},
+	};
+
+	const styles =
+		mode === 'accordion'
+			? {
+					lego: {
+						borderLeftWidth: 6,
+						borderLeftColor: tabBorder,
+					},
+					soft: isLast
+						? {
+								borderBottomLeftRadius: 3,
+								borderBottomRightRadius: 3,
+						  }
+						: {},
+			  }
+			: {};
+
+	return Object.assign({}, common, styles[appearance]);
 });

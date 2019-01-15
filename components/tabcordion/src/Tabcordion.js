@@ -6,7 +6,7 @@ import { TabItem, TabRow } from './styled';
 import { Tab } from './Tab';
 
 let instanceId = 0;
-const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'PageDown', 'PageUp', 'End', 'Home'];
+const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'Enter', 'PageDown', 'PageUp', 'End', 'Home'];
 
 export const Tabcordion = props => {
 	// TODO: unless explicitly provided, preset the intial index
@@ -35,14 +35,18 @@ export const Tabcordion = props => {
 		// bail unless a tab belonging to this tablist is focused
 		if (!tablistRef.current || !tablistRef.current.contains(document.activeElement)) return;
 
-		// disable scrolling when keyboard user navigates using Page[Down|Up]
-		event.preventDefault();
+		// bail on unknown keys
+		if (VALID_KEYS.indexOf(event.key) === -1) return;
 
-		// prepare helpers
+		// prevent scrolling when user navigates using keys that would influence
+		// page scroll
+		if (['PageDown', 'End', 'PageUp', 'Home'].indexOf(event.key) > -1) {
+			event.preventDefault();
+		}
+
 		let nextIndex;
 		let lastIndex = Children.count(props.children) - 1;
 
-		// update index based on key pressed
 		switch (event.key) {
 			case 'Enter':
 				panelRef.current.focus(); // select the active panel
@@ -65,7 +69,10 @@ export const Tabcordion = props => {
 				nextIndex = activeTabIndex;
 		}
 
-		if (typeof nextIndex === 'number') setActiveTabIndex(nextIndex);
+		// only update to valid index
+		if (typeof nextIndex === 'number') {
+			setActiveTabIndex(nextIndex);
+		}
 	};
 
 	// bind key events
@@ -77,6 +84,7 @@ export const Tabcordion = props => {
 	});
 
 	const getId = (type, index) => `${instancePrefix}-${type}-${index + 1}`;
+	const tabCount = Children.count(props.children);
 
 	return (
 		<div ref={containerRef}>
@@ -91,6 +99,7 @@ export const Tabcordion = props => {
 								aria-selected={isSelected}
 								id={getId('tab', idx)}
 								isJustified={props.justifyTabs}
+								isLast={idx + 1 === tabCount}
 								isSelected={isSelected}
 								key={child.props.label}
 								onClick={setActive(idx)}
@@ -112,6 +121,7 @@ export const Tabcordion = props => {
 						activeTabIndex={activeTabIndex}
 						appearance={props.appearance}
 						isSelected={isSelected}
+						isLast={idx + 1 === tabCount}
 						key={child.props.label}
 						mode={mode}
 						onClick={setActive(idx)}

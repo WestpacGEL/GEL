@@ -7,119 +7,72 @@ route: /tabcordion
 import { Playground, PropsTable } from 'docz';
 import { Tab } from './src/Tab';
 import { Tabcordion } from './src/Tabcordion';
+import { data } from './examples/_data';
 
 # Tabcordion
 
-The tabcordion component.
+A tab set that changes to an accordion based on breakpoint. Tabcordions may be
+styled in default (soft) or lego styling.
+
+## Tabs
+
+Use tab elements to switch between different views or content, soft styling
+reduces emphasis. Avoid wrapping labels in tabs.
 
 <Playground>
-	<Tabcordion>
-		<Tab label="Rabbit hole">
-			‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing larger
-			and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t gone down
-			that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort of life! I do
-			wonder what can have happened to me! When I used to read fairy-tales, I fancied that kind of
-			thing never happened, and now here I am in the middle of one! There ought to be a book written
-			about me, that there ought! And when I grow up, I’ll write one.
-		</Tab>
-		<Tab label="Flamingo">
-			The chief difficulty Alice found at first was in managing her flamingo: she succeeded in
-			getting its body tucked away, comfortably enough, under her arm, with its legs hanging down,
-			but generally, just as she had got its neck nicely straightened out, and was going to give the
-			hedgehog a blow with its head, it would twist itself round and look up in her face, with such
-			a puzzled expression that she could not help bursting out laughing: and when she had got its
-			head down, and was going to begin again, it was very provoking to find that the hedgehog had
-			unrolled itself, and was in the act of crawling away: besides all this, there was generally a
-			ridge or furrow in the way wherever she wanted to send the hedgehog to, and, as the doubled-up
-			soldiers were always getting up and walking off to other parts of the ground, Alice soon came
-			to the conclusion that it was a very difficult game indeed.
-		</Tab>
-		<Tab label="Caterpillar">
-			The Caterpillar and Alice looked at each other for some time in silence: at last the
-			Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice.
-			‘Who are you?’ said the Caterpillar. This was not an encouraging opening for a conversation.
-			Alice replied, rather shyly, ‘I — I hardly know, sir, just at present — at least I know who I
-			was when I got up this morning, but I think I must have been changed several times since
-			then.’ ‘What do you mean by that?’ said the Caterpillar sternly. ‘Explain yourself!’ ‘I can’t
-			explain myself, I’m afraid, sir’ said Alice, ’because I’m not myself, you see.’ ‘I don’t see,’
-			said the Caterpillar. ‘I’m afraid I can’t put it more clearly,’ Alice replied very politely,
-			‘for I can’t understand it myself to begin with; and being so many different sizes in a day is
-			very confusing.’
-		</Tab>
-	</Tabcordion>
-</Playground>
-
-<Playground>
+	{/* try adding `justifyTabs={true}` to the Tabcordion component */}
 	<Tabcordion mode="tabs">
-		<Tab label="Rabbit hole">
-			‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing larger
-			and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t gone down
-			that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort of life! I do
-			wonder what can have happened to me! When I used to read fairy-tales, I fancied that kind of
-			thing never happened, and now here I am in the middle of one! There ought to be a book written
-			about me, that there ought! And when I grow up, I’ll write one.
-		</Tab>
-		<Tab label="Flamingo">
-			The chief difficulty Alice found at first was in managing her flamingo: she succeeded in
-			getting its body tucked away, comfortably enough, under her arm, with its legs hanging down,
-			but generally, just as she had got its neck nicely straightened out, and was going to give the
-			hedgehog a blow with its head, it would twist itself round and look up in her face, with such
-			a puzzled expression that she could not help bursting out laughing: and when she had got its
-			head down, and was going to begin again, it was very provoking to find that the hedgehog had
-			unrolled itself, and was in the act of crawling away: besides all this, there was generally a
-			ridge or furrow in the way wherever she wanted to send the hedgehog to, and, as the doubled-up
-			soldiers were always getting up and walking off to other parts of the ground, Alice soon came
-			to the conclusion that it was a very difficult game indeed.
-		</Tab>
-		<Tab label="Caterpillar">
-			The Caterpillar and Alice looked at each other for some time in silence: at last the
-			Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice.
-			‘Who are you?’ said the Caterpillar. This was not an encouraging opening for a conversation.
-			Alice replied, rather shyly, ‘I — I hardly know, sir, just at present — at least I know who I
-			was when I got up this morning, but I think I must have been changed several times since
-			then.’ ‘What do you mean by that?’ said the Caterpillar sternly. ‘Explain yourself!’ ‘I can’t
-			explain myself, I’m afraid, sir’ said Alice, ’because I’m not myself, you see.’ ‘I don’t see,’
-			said the Caterpillar. ‘I’m afraid I can’t put it more clearly,’ Alice replied very politely,
-			‘for I can’t understand it myself to begin with; and being so many different sizes in a day is
-			very confusing.’
-		</Tab>
+		{data.map(t => (
+			<Tab key={t.label} label={t.label}>
+				{t.content}
+			</Tab>
+		))}
 	</Tabcordion>
 </Playground>
+
+### Lego tabs
+
+A stronger styling option for tabs.
+
+<Playground>
+	{/* try deleting `appearance="lego"` */}
+	<Tabcordion mode="tabs" appearance="lego">
+		{data.map(t => (
+			<Tab key={t.label} label={t.label}>
+				{t.content}
+			</Tab>
+		))}
+	</Tabcordion>
+</Playground>
+
+## Accordion
+
+Use accordion elements to vertically stack related content. Each item can be
+expanded to reveal the content associated with that item. Only one item can be
+opened (active) at a time. Any item in the accordion can be the default opened
+item.
 
 <Playground>
 	<Tabcordion mode="accordion">
-		<Tab label="Rabbit hole">
-			‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing larger
-			and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t gone down
-			that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort of life! I do
-			wonder what can have happened to me! When I used to read fairy-tales, I fancied that kind of
-			thing never happened, and now here I am in the middle of one! There ought to be a book written
-			about me, that there ought! And when I grow up, I’ll write one.
-		</Tab>
-		<Tab label="Flamingo">
-			The chief difficulty Alice found at first was in managing her flamingo: she succeeded in
-			getting its body tucked away, comfortably enough, under her arm, with its legs hanging down,
-			but generally, just as she had got its neck nicely straightened out, and was going to give the
-			hedgehog a blow with its head, it would twist itself round and look up in her face, with such
-			a puzzled expression that she could not help bursting out laughing: and when she had got its
-			head down, and was going to begin again, it was very provoking to find that the hedgehog had
-			unrolled itself, and was in the act of crawling away: besides all this, there was generally a
-			ridge or furrow in the way wherever she wanted to send the hedgehog to, and, as the doubled-up
-			soldiers were always getting up and walking off to other parts of the ground, Alice soon came
-			to the conclusion that it was a very difficult game indeed.
-		</Tab>
-		<Tab label="Caterpillar">
-			The Caterpillar and Alice looked at each other for some time in silence: at last the
-			Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice.
-			‘Who are you?’ said the Caterpillar. This was not an encouraging opening for a conversation.
-			Alice replied, rather shyly, ‘I — I hardly know, sir, just at present — at least I know who I
-			was when I got up this morning, but I think I must have been changed several times since
-			then.’ ‘What do you mean by that?’ said the Caterpillar sternly. ‘Explain yourself!’ ‘I can’t
-			explain myself, I’m afraid, sir’ said Alice, ’because I’m not myself, you see.’ ‘I don’t see,’
-			said the Caterpillar. ‘I’m afraid I can’t put it more clearly,’ Alice replied very politely,
-			‘for I can’t understand it myself to begin with; and being so many different sizes in a day is
-			very confusing.’
-		</Tab>
+		{data.map(t => (
+			<Tab key={t.label} label={t.label}>
+				{t.content}
+			</Tab>
+		))}
+	</Tabcordion>
+</Playground>
+
+### Lego accordion
+
+A stronger styling option for accordions.
+
+<Playground>
+	<Tabcordion mode="accordion" appearance="lego">
+		{data.map(t => (
+			<Tab key={t.label} label={t.label}>
+				{t.content}
+			</Tab>
+		))}
 	</Tabcordion>
 </Playground>
 
