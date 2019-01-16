@@ -5,15 +5,14 @@ import PropTypes from 'prop-types';
 export const ThemeContext = createContext();
 
 export const useTheme = () => {
-	const themeObj = useContext(ThemeContext);
+	const themeObject = useContext(ThemeContext);
+	const errorMessage = `GEL components require that you wrap your application with the <GEL /> theme provider from @westpac/core.`;
 
-	if (!themeObj) {
-		throw new Error(
-			`It looks like you're trying to use a GEL component without wrapping your application with the theme provider.`
-		);
+	if (!themeObject) {
+		throw new Error(errorMessage);
 	}
 
-	return themeObj;
+	return themeObject;
 };
 
 export const GEL = ({ brand, ...props }) => <ThemeContext.Provider value={brand} {...props} />;
