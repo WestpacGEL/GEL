@@ -1,17 +1,23 @@
 /** @jsx jsx */
 
-import { jsx, styled } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
-export const Box = styled.div({
-	alignItems: 'center',
-	backgroundColor: 'rgba(197,59,0,0.15)',
-	borderRadius: 1,
-	color: '#c53b00',
-	display: 'flex',
-	height: '100%',
-	justifyContent: 'center',
-	minHeight: 60,
-});
+export const Box = props => (
+	<div
+		css={{
+			alignItems: 'center',
+			backgroundColor: 'rgba(197,59,0,0.15)',
+			borderRadius: 1,
+			color: '#c53b00',
+			display: 'flex',
+			height: '100%',
+			justifyContent: 'center',
+			minHeight: 60,
+		}}
+		{...props}
+	/>
+);
+
 export const GridOverlay = ({ children, columns = 12, gap = 8 }) => (
 	<div css={{ height: '100%', position: 'relative' }}>
 		<div

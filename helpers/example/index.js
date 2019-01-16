@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
 import { Global, css, jsx } from '@emotion/core';
-import styled from '@emotion/styled';
 
 import { GEL } from '../../components/core';
 import bomBrand from '../../brands/BOM';
@@ -203,50 +202,75 @@ const Home = ({ packageName }) => (
 // Styled components
 // ==============================
 
-const Body = styled.div({
-	alignItems: 'stretch',
-	display: 'flex',
-	height: '100vh',
-});
-const Article = styled.article({
-	flex: 1,
-	overflowY: 'auto',
-});
-const Container = styled.div({
-	marginLeft: 'auto',
-	marginRight: 'auto',
-	maxWidth: 800,
-	padding: 20,
-});
+const Body = props => (
+	<div
+		css={{
+			alignItems: 'stretch',
+			display: 'flex',
+			height: '100vh',
+		}}
+		{...props}
+	/>
+);
+const Article = props => (
+	<article
+		css={{
+			flex: 1,
+			overflowY: 'auto',
+		}}
+		{...props}
+	/>
+);
+const Container = props => (
+	<div
+		css={{
+			marginLeft: 'auto',
+			marginRight: 'auto',
+			maxWidth: 800,
+			padding: 20,
+		}}
+		{...props}
+	/>
+);
 
-const Sidebar = styled.div({
-	backgroundColor: '#F4F5F7',
-	borderRight: '1px solid rgba(0, 0, 0, 0.075)',
-	display: 'flex',
-	flexDirection: 'column',
-	width: 240,
-});
+const Sidebar = props => (
+	<div
+		css={{
+			backgroundColor: '#F4F5F7',
+			borderRight: '1px solid rgba(0, 0, 0, 0.075)',
+			display: 'flex',
+			flexDirection: 'column',
+			width: 240,
+		}}
+		{...props}
+	/>
+);
 const SidebarNav = props => (
 	<nav css={{ flex: 1 }}>
 		<ul css={{ listStyle: 'none', margin: 0, padding: 0 }} {...props} />
 	</nav>
 );
-const SidebarSearch = styled.input({
-	background: 0,
-	borderWidth: '1px 0px',
-	borderStyle: 'solid',
-	borderColor: 'rgba(0, 0, 0, 0.075)',
-	boxSizing: 'border-box',
-	fontSize: 'inherit',
-	outline: 0,
-	marginBottom: 10,
-	padding: '10px 20px',
-	width: '100%',
+const SidebarSearch = props => (
+	<input
+		css={{
+			background: 0,
+			borderWidth: '1px 0px',
+			borderStyle: 'solid',
+			borderColor: 'rgba(0, 0, 0, 0.075)',
+			boxSizing: 'border-box',
+			fontSize: 'inherit',
+			outline: 0,
+			marginBottom: 10,
+			padding: '10px 20px',
+			width: '100%',
 
-	':focus': {
-		background: 'rgba(0,0,0,0.04)',
-	},
-});
+			':focus': {
+				background: 'rgba(0,0,0,0.04)',
+			},
+		}}
+		{...props}
+	/>
+);
 const SidebarLink = ({ primaryColor, ...props }) => (
 	<NavLink
 		css={{
@@ -278,40 +302,55 @@ const SidebarItem = props => (
 		<SidebarLink {...props} />
 	</li>
 );
-const SidebarTitle = styled(NavLink)({
-	color: 'inherit',
-	display: 'block',
-	fontWeight: 500,
-	fontSize: '1.25em',
-	padding: 20,
-	textDecoration: 'none',
-});
+const SidebarTitle = props => (
+	<NavLink
+		css={{
+			color: 'inherit',
+			display: 'block',
+			fontWeight: 500,
+			fontSize: '1.25em',
+			padding: 20,
+			textDecoration: 'none',
+		}}
+		{...props}
+	/>
+);
 
-const SidebarSwitcher = styled.div({
-	display: 'flex',
-	fontSize: '0.85rem',
-});
-const SidebarSwitch = styled.label(({ isChecked }) => ({
-	alignItems: 'center',
-	borderTop: '1px solid',
-	borderTopColor: isChecked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
-	boxSizing: 'border-box',
-	color: isChecked ? 'inherit' : '#1F252C',
-	cursor: 'pointer',
-	flex: 1,
-	fontWeight: 500,
-	justifyContent: 'center',
-	paddingBottom: 12,
-	paddingTop: 12,
-	textAlign: 'center',
+const SidebarSwitcher = props => (
+	<div
+		css={{
+			display: 'flex',
+			fontSize: '0.85rem',
+		}}
+		{...props}
+	/>
+);
+const SidebarSwitch = ({ isChecked, ...props }) => (
+	<label
+		css={{
+			alignItems: 'center',
+			borderTop: '1px solid',
+			borderTopColor: isChecked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
+			boxSizing: 'border-box',
+			color: isChecked ? 'inherit' : '#1F252C',
+			cursor: 'pointer',
+			flex: 1,
+			fontWeight: 500,
+			justifyContent: 'center',
+			paddingBottom: 12,
+			paddingTop: 12,
+			textAlign: 'center',
 
-	input: {
-		height: 1,
-		position: 'absolute',
-		visibility: 'hidden',
-		width: 1,
-	},
-}));
+			input: {
+				height: 1,
+				position: 'absolute',
+				visibility: 'hidden',
+				width: 1,
+			},
+		}}
+		{...props}
+	/>
+);
 
 // ==============================
 // Render to node
