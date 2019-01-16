@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { styled } from '@westpac/core';
 
 import { Tab, Tabcordion } from '../src/index.js';
 import { data } from './_data';
+import { Row } from './_utils';
 
 const modes = ['responsive', 'accordion', 'tabs'];
 const appearances = ['soft', 'lego'];
@@ -17,12 +17,6 @@ const Radio = p => <Control {...p} />;
 Radio.defaultProps = { type: 'radio' };
 const Checkbox = p => <Control {...p} />;
 Checkbox.defaultProps = { type: 'checkbox' };
-
-const Row = styled.div({
-	alignItems: 'start',
-	display: 'flex',
-	marginBottom: '1em',
-});
 
 export default () => {
 	const [appearance, setAppearance] = useState(appearances[0]);
