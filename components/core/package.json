@@ -18,7 +18,6 @@
 	"dependencies": {
 		"@emotion/core": "^10.0.4",
 		"@emotion/styled": "^10.0.4",
-		"emotion-theming": "^10.0.4",
 		"prop-types": "^15.6.2"
 	},
 	"peerDependencies": {

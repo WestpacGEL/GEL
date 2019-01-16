@@ -5,7 +5,7 @@ import { jsx, styled } from '@westpac/core';
 export const Box = styled.div({
 	alignItems: 'center',
 	backgroundColor: 'rgba(197,59,0,0.15)',
-	// borderRadius: 2,
+	borderRadius: 1,
 	color: '#c53b00',
 	display: 'flex',
 	height: '100%',

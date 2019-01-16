@@ -68,7 +68,6 @@
 		"@emotion/core": "^10.0.4",
 		"@emotion/styled": "^10.0.4",
 		"common-tags": "^1.8.0",
-		"emotion-theming": "^10.0.4",
 		"facepaint": "^1.2.1",
 		"prettier": "^1.15.3",
 		"prop-types": "^15.6.2",
