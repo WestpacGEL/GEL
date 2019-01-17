@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
+import { Cell, Grid } from '../src';
 
 export const Box = props => (
 	<div
@@ -18,16 +19,13 @@ export const Box = props => (
 	/>
 );
 
-export const GridOverlay = ({ children, columns = 12, gap = 8 }) => (
+export const GridOverlay = ({ children, columns = 12, gap }) => (
 	<div css={{ height: '100%', position: 'relative' }}>
-		<div
+		<Grid
+			columns={columns}
+			gap={gap}
 			css={{
 				bottom: '-1.5em',
-				display: 'grid',
-				gridAutoFlow: 'row',
-				gridAutoRows: 'minmax(20px,auto)',
-				gridGap: gap,
-				gridTemplateColumns: `repeat(${columns},1fr)`,
 				height: 'auto',
 				left: 0,
 				opacity: 0.1,
@@ -43,9 +41,9 @@ export const GridOverlay = ({ children, columns = 12, gap = 8 }) => (
 			}}
 		>
 			{new Array(columns).fill(1).map((c, i) => (
-				<div key={i} css={{ backgroundColor: 'rgba(0,116,196,0.3)', gridColumnEnd: 'span 1' }} />
+				<Cell key={i} css={{ backgroundColor: 'rgba(0, 116, 196, 0.3)' }} />
 			))}
-		</div>
+		</Grid>
 		{children}
 	</div>
 );
