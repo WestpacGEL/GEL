@@ -45,6 +45,7 @@ The design system for Westpac GEL
 │   ├── docz/                 # Docz files to style the docs
 │   │   ├── theme.js
 │   │   └── wrapper.js
+│   ├── tester.js             # Helps cypress testing of each component
 │   └── cli.js                # helper file for cli like adding a new module
 │
 ├── components/               # all ds components that will be published
@@ -109,23 +110,40 @@ The design system for Westpac GEL
 ## Decisions
 
 - All scripts are run through the `bolt` command
-- The helper file will include all helpers for builds
+- The `helpers/` folder will include all helpers for builds/docs/testing
 - We have two different example / doc concerns:
   1. Examples: they are for building components locally and to explain code
-  1. Docs: this is a website that will be published for documenting APIs
-- Multi-brand will be achieved by added a brand package that will be dynamically imported inside `core`
-- Tokens and everything regarding branding will be contained in the brand packages in `brands/*`
-- Brands will only have a default export containing the "tokens" object.
-- To select a brand the consumer has to import the `@westpac/[brand]` package and pass it to core
+  1. Docs: this is a website that will be published for documenting APIs to devs (https://westpacgel.github.io/GEL/)
+- Multi-brand will be achieved by added a brand package that will be passed to the `<GEL/>` component
 
   ```jsx
-  import WBC from '@westpac/wbc';
   import { GEL } from '@westpac/core';
+  import brand from '@westpac/WBC';
 
-  export const Thing = <GEL brand={WBC}>Your app</GEL>;
+  export const App = <GEL brand={brand}>Your app</GEL>;
   ```
 
-### Naming convention
+- Tokens and everything regarding consistent branding will be contained in the brand packages in `brands/*`
+- Tokens will include at least the four categories: - `breakpoints` - `colors` - `spacing` - `typography`
+- Brands will only have a default export containing the "tokens" object.
+- All components (not brand packages) have at least one named export
+- Each component has local tokens that can be overwritten with the object passed into `<GEL/>`
+
+  ```jsx
+  import { GEL } from '@westpac/core';
+  import brand from '@westpac/WBC';
+
+  brand['@westpac/tabcordion'].heading.space = '2rem';
+  brand['@westpac/tabcordion'].components.TabRow = <TabRow />;
+
+  export const App = <GEL brand={brand}>Your app</GEL>;
+  ```
+
+- Each package can be addressed by its name as the key in the tokens
+- The `example/` folder is for documenting composition of several components together e.g. templates
+- All brand packages are upper case as a naming convention
+
+### Naming convention for files inside components
 
 | name            | purpose                                                                     |
 | --------------- | --------------------------------------------------------------------------- |
@@ -139,6 +157,7 @@ The design system for Westpac GEL
 
 ## TODO
 
-- [ ] move to `peerDependencies`
-- [ ] remove emotion from dependencies from all other components
-- [ ] move `@westpac/core` to `peerDependencies`
+- [ ] separate tabcordion into `tabs` and `accordion`
+- [ ] build out root examples
+- [ ] create local default tokens
+- [ ] add render props for visual internal components
