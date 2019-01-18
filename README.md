@@ -15,7 +15,7 @@ The design system for Westpac GEL
 | `bolt docs`                 | build docs for all components and open server     |
 | `bolt docs:build`           | build docs for all components to `./docs/` folder |
 | `bolt dev [package-name]`   | run the examples of the specified component       |
-| `bolt new [package-name]`   | create a specified empty component                |
+| `bolt new [package-name]`   | create a specified empty component (not done yet) |
 | `bolt start [package-name]` | start the example server of a component           |
 | `bolt test`                 | runs test                                         |
 | `bolt format`               | runs prettier to format all code                  |
@@ -145,11 +145,9 @@ The design system for Westpac GEL
 
 - Each package can be addressed by its name as the key in the tokens
 - The `example/` folder is for documenting composition of several components together e.g. templates
-- All brand packages are upper case as a naming convention
 - Fonts can't be shipped with npm so the tokens only define the path to the fonts
 - css-in-js emotion will be used with the `jsx` pragma and babel plugin
 - For css-in-js we use `jsx` by importing from `@westpac/core` and never depend on `emotion` directly other than inside core itself
--
 
 ### Naming convention for files inside components
 
@@ -165,7 +163,9 @@ The design system for Westpac GEL
 
 ## TODO
 
-- [ ] separate tabcordion into `tabs` and `accordion`
+- [ ] create a GEL brand
 - [ ] build out root examples
-- [ ] create local default tokens
+- [x] create local default tokens
 - [ ] add render props for visual internal components
+- [ ] add helper for making new component
+- [ ] make playground and docz multibrand
