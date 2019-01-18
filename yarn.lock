@@ -1795,9 +1795,10 @@ body-parser@1.18.3:
     raw-body "2.3.3"
     type-is "~1.6.16"
 
-bolt@^0.22.5:
+bolt@^0.22.6:
   version "0.22.6"
   resolved "https://registry.yarnpkg.com/bolt/-/bolt-0.22.6.tgz#3bdafdb98679828b6153ac175c946c2cf740b736"
+  integrity sha512-TzA6o5G1nSg5IdFKHiRVDKfXrv77usg9kAV/owLNbtDJWzdjBpWK2qwoB3g5HBGTPXEr1iPCVfBs/q1L1JhW3w==
   dependencies:
     array-includes "^3.0.3"
     babel-runtime "^6.25.0"

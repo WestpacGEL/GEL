@@ -120,11 +120,15 @@ The design system for Westpac GEL
   import { GEL } from '@westpac/core';
   import brand from '@westpac/WBC';
 
-  export const App = <GEL brand={brand}>Your app</GEL>;
+  export const App = () => <GEL brand={brand}>Your app</GEL>;
   ```
 
 - Tokens and everything regarding consistent branding will be contained in the brand packages in `brands/*`
-- Tokens will include at least the four categories: - `breakpoints` - `colors` - `spacing` - `typography`
+- Tokens will include at least the four categories:
+  - `breakpoints`
+  - `colors`
+  - `spacing`
+  - `typography`
 - Brands will only have a default export containing the "tokens" object.
 - All components (not brand packages) have at least one named export
 - Each component has local tokens that can be overwritten with the object passed into `<GEL/>`
@@ -136,13 +140,16 @@ The design system for Westpac GEL
   brand['@westpac/tabcordion'].heading.space = '2rem';
   brand['@westpac/tabcordion'].components.TabRow = <TabRow />;
 
-  export const App = <GEL brand={brand}>Your app</GEL>;
+  export const App = () => <GEL brand={brand}>Your app</GEL>;
   ```
 
 - Each package can be addressed by its name as the key in the tokens
 - The `example/` folder is for documenting composition of several components together e.g. templates
 - All brand packages are upper case as a naming convention
 - Fonts can't be shipped with npm so the tokens only define the path to the fonts
+- css-in-js emotion will be used with the `jsx` pragma and babel plugin
+- For css-in-js we use `jsx` by importing from `@westpac/core` and never depend on `emotion` directly other than inside core itself
+-
 
 ### Naming convention for files inside components
 
