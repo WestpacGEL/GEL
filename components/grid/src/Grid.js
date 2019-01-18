@@ -2,7 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
+import { paint } from './utils';
 
 // ==============================
 // Utils
@@ -32,25 +33,30 @@ export const Grid = ({
 	rowGap,
 	rows,
 	...props
-}) => (
-	<div
-		css={{
-			alignContent: alignContent,
-			columnGap: columnGap,
-			display: 'grid',
-			gridAutoFlow: flow,
-			gridAutoRows: `minmax(${stringVal(minRowHeight)}, auto)`,
-			gridGap: gap,
-			gridTemplateAreas: areas ? formatAreas(areas) : null,
-			gridTemplateColumns: repeatNumeric(columns),
-			gridTemplateRows: rows ? repeatNumeric(rows) : null,
-			height: height,
-			justifyContent: justifyContent,
-			rowGap: rowGap,
-		}}
-		{...props}
-	/>
-);
+}) => {
+	const theme = useTheme();
+	const arrayValues = paint(theme.breakpoints);
+
+	return (
+		<div
+			css={arrayValues({
+				alignContent: alignContent,
+				columnGap: columnGap,
+				display: 'grid',
+				gridAutoFlow: flow,
+				gridAutoRows: `minmax(${stringVal(minRowHeight)}, auto)`,
+				gridGap: gap,
+				gridTemplateAreas: areas ? formatAreas(areas) : null,
+				gridTemplateColumns: repeatNumeric(columns),
+				gridTemplateRows: rows ? repeatNumeric(rows) : null,
+				height: height,
+				justifyContent: justifyContent,
+				rowGap: rowGap,
+			})}
+			{...props}
+		/>
+	);
+};
 
 // ==============================
 // Types
@@ -95,7 +101,12 @@ Grid.propTypes = {
 	/**
 	 * The `grid-gap` CSS property.
 	 */
-	gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	gap: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.number),
+		PropTypes.arrayOf(PropTypes.string),
+	]),
 	/**
 	 * The `height` CSS property
 	 */
@@ -134,7 +145,7 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
 	columns: 12,
-	gap: 8,
+	gap: [12, 24],
 	flow: 'row',
 	height: 'auto',
 	minRowHeight: 20,
