@@ -149,7 +149,6 @@ The design system for Westpac GEL
 - Fonts can't be shipped with npm so the tokens only define the path to the fonts
 - css-in-js emotion will be used with the `jsx` pragma and babel plugin
 - For css-in-js we use `jsx` by importing from `@westpac/core` and never depend on `emotion` directly other than inside core itself
--
 
 ### Naming convention for files inside components
 
@@ -165,7 +164,6 @@ The design system for Westpac GEL
 
 ## TODO
 
-- [ ] separate tabcordion into `tabs` and `accordion`
 - [ ] build out root examples
-- [ ] create local default tokens
+- [x] create local default tokens
 - [ ] add render props for visual internal components
