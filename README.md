@@ -145,7 +145,6 @@ The design system for Westpac GEL
 
 - Each package can be addressed by its name as the key in the tokens
 - The `example/` folder is for documenting composition of several components together e.g. templates
-- All brand packages are upper case as a naming convention
 - Fonts can't be shipped with npm so the tokens only define the path to the fonts
 - css-in-js emotion will be used with the `jsx` pragma and babel plugin
 - For css-in-js we use `jsx` by importing from `@westpac/core` and never depend on `emotion` directly other than inside core itself
