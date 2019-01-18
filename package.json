@@ -10,7 +10,8 @@
 	"scripts": {
 		"start": "/bin/sh -c 'cd components/${1:-$0} && bolt start'",
 		"docs": "docz dev",
-		"docs:build": "docz build",
+		"docs:build": "docz build && bolt docs:redirects",
+		"docs:redirects": "cp helpers/public/* docs/",
 		"nuke": "rm -rf node_modules && bolt ws exec -- rm -rf node_modules",
 		"build": "bolt ws exec -- rm -rf dist && bolt ws exec -- bolt build",
 		"fresh": "bolt nuke && bolt install",
