@@ -13,9 +13,10 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Button = ({ type, appearance, size, tag: Tag, outline, block, children, ...props }) => {
+export const Button = ({ appearance, size, tag: Tag, outline, block, children, onClick, ...props }) => {
 	const theme = useTheme();
 	const common = {
+		textDecoration: 'none',
 		borderRadius: '3px',
 		fontWeight: 400,
 		lineHeight: 1.5,
@@ -96,6 +97,7 @@ export const Button = ({ type, appearance, size, tag: Tag, outline, block, child
 			type={(Tag === 'button' && props.onClick) ? 'button' : undefined}
 			css={{ ...common, ...styles.appearance[appearance], ...styles.size[size] }}
 			{...props}
+			onClick={onClick}
 		>
 			{children}
 		</Tag>
@@ -146,10 +148,14 @@ export const propTypes = {
 	 * The content for this button.
 	 */
 	 children: PropTypes.node,
+
+	/**
+	 * The onClick handler for this button.
+	 */
+	 onClick: PropTypes.func,
 };
 
 export const defaultProps = {
-	type: 'button',
 	appearance: 'primary',
 	size: 'medium',
 	tag: 'button',
