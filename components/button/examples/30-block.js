@@ -8,7 +8,7 @@ export default () => (
 			<Button appearance="primary" size="large" block>Block level button</Button>
 		</p>
 		<p>
-			<Button appearance="hero" size="large" block>Block level button</Button>
+			<Button appearance="hero" size="large" block soft>Block level button</Button>
 		</p>
 	</>
 );

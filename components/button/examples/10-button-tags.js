@@ -8,6 +8,8 @@ export default () => (
 		<Button type="submit">Button</Button>{' '}
 		<Button tag="input" type="button" value="Input" />{' '}
 		<Button tag="input" type="submit" value="Submit" />{' '}
-		<Button tag="input" type="reset" value="Reset" />
+		<Button href="#0">Link</Button>{' '}
+		<Button tag="input" type="reset" value="Reset" />{' '}
+		<Button href="#0" appearance="link">Link</Button>
 	</>
 );
