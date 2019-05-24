@@ -5,6 +5,9 @@ import { Badge } from '../src/index.js';
 export default () => (
 	<>
 		<p>
+			<Badge>Default</Badge>
+		</p>
+		<p>
 			<Badge appearance="primary">Primary</Badge>{' '}
 			<Badge appearance="hero">Hero</Badge>{' '}
 			<Badge appearance="neutral">Neutral</Badge>{' '}

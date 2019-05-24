@@ -15,6 +15,7 @@ import { jsx, useTheme } from '@westpac/core';
 
 export const Badge = ({ appearance, children }) => {
 	const theme = useTheme();
+
 	const common = {
 		display: 'inline-block',
 		minWidth: '10px',
@@ -28,6 +29,7 @@ export const Badge = ({ appearance, children }) => {
 		fontSize: '14px',
 		border: '1px solid transparent',
 	};
+
 	const styles = {
 		primary: {
 			color: '#fff',
