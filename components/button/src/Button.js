@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { css, jsx, useTheme } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -13,80 +13,66 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Button = ({ appearance, size, tag: Tag, outline, block, children, onClick, ...props }) => {
+export const Button = ({ appearance, size, soft, block, trim, children, tag: Tag, onClick, ...props }) => {
 	const theme = useTheme();
-	const common = {
-		textDecoration: 'none',
-		borderRadius: '3px',
-		fontWeight: 400,
-		lineHeight: 1.5,
-		whiteSpace: 'nowrap',
-		display: block ? 'block' : 'inline-block',
-		textAlign: 'center',
-		verticalAlign: 'middle',
-		touchAction: 'manipulation',
-		cursor: 'pointer',
-		border: '1px solid transparent',
-		userSelect: 'none',
-		appearance: 'none',
-		transition: 'background 0.2s ease, color 0.2s ease',
 
-		// Block mode...
-		width: block ? '100%' : null,
-		overflow: block ? 'hidden' : null,
-		textOverflow: block ? 'ellipses' : null,
-	};
-	const styles = {
-		appearance: {
-			primary: {
-				color: '#fff',
-				backgroundColor: theme.colors.primary.default,
-				borderColor: theme.colors.primary.default,
-			},
-			hero: {
-				color: '#fff',
-				backgroundColor: theme.colors.hero.default,
-				borderColor: theme.colors.hero.default,
-			},
-			neutral: {
-				color: '#fff',
-				backgroundColor: theme.colors.neutral,
-				borderColor: theme.colors.neutral,
-			},
-			faint: {
-				color: theme.colors.muted,
-				backgroundColor: '#fff',
-				borderColor: theme.colors.border,
-			},
-			link: {
-				color: theme.colors.primary.default,
-				backgroundColor: 'transparent',
-				borderColor: 'transparent',
+	const common = css(
+		{
+			textDecoration: 'none',
+			borderRadius: theme.button.radius,
+			fontWeight: 400,
+			lineHeight: 1.5,
+			whiteSpace: 'nowrap',
+			display: 'inline-block',
+			textAlign: 'center',
+			verticalAlign: 'middle',
+			touchAction: 'manipulation',
+			cursor: 'pointer',
+			border: '1px solid transparent',
+			userSelect: 'none',
+			appearance: 'none',
+			transition: 'background 0.2s ease, color 0.2s ease',
+
+			'&:hover': {
+				textDecoration: appearance === 'link' ? 'underline' : 'none'
+			}
+		}
+	);
+
+	const styles = css(
+		// Appearance
+		theme.button.appearance[appearance].default,
+		{
+			'&:hover': theme.button.appearance[appearance].hover,
+			'&:active': theme.button.appearance[appearance].active
+		},
+
+		// Size
+		theme.button.size[size],
+
+		// Overrides
+		soft && {
+			color: appearance === 'faint' ? theme.colors.muted : theme.colors.text,
+			backgroundColor: '#fff',
+
+			// Custom 'faint' hover styling
+			'&:hover': {
+				color: appearance !== 'faint' && '#fff',
+				backgroundColor: appearance === 'faint' && theme.colors.light,
 			}
 		},
-		size: {
-			small: {
-				padding: '3px 9px 4px',
-				fontSize: '14px',
-				height: '30px',
-			},
-			medium: {
-				padding: '5px 12px',
-				fontSize: '16px',
-				height: '36px',
-			},
-			large: {
-				padding: '8px 15px',
-				fontSize: '16px',
-				height: '42px',
-			},
-			xlarge: {
-				padding: '9px 18px 10px',
-				fontSize: '18px',
-				height: '48px',
-			},
+		block && {
+			display: 'block',
+			width: '100%',
+			overflow: 'block',
+			textOverflow: 'ellipses'
+		},
+		trim && {
+			paddingLeft: 0,
+			paddingRight: 0
 		}
-	};
+	);
+
 
 	if (props.href && Tag === 'button') {
     Tag = 'a';
@@ -95,7 +81,7 @@ export const Button = ({ appearance, size, tag: Tag, outline, block, children, o
 	return (
 		<Tag
 			type={(Tag === 'button' && props.onClick) ? 'button' : undefined}
-			css={{ ...common, ...styles.appearance[appearance], ...styles.size[size] }}
+			css={[common, styles]}
 			{...props}
 			onClick={onClick}
 		>
@@ -131,11 +117,11 @@ export const propTypes = {
 	 tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
-	 * Outline mode.
+	 * Soft mode. Removes background colour and adjusts text colour.
 	 *
 	 * Defaults to "false"
 	 */
-	 outline: PropTypes.bool,
+	 soft: PropTypes.bool,
 
 	/**
 	 * Block mode.
@@ -143,6 +129,13 @@ export const propTypes = {
 	 * Defaults to "false"
 	 */
 	 block: PropTypes.bool,
+
+	/**
+	 * Trim mode. Removes horizontal padding.
+	 *
+	 * Defaults to "false"
+	 */
+	 trim: PropTypes.bool,
 
 	/**
 	 * The content for this button.
@@ -159,8 +152,9 @@ export const defaultProps = {
 	appearance: 'primary',
 	size: 'medium',
 	tag: 'button',
-	outline: false,
-	block: false
+	soft: false,
+	block: false,
+	trim: false
 };
 
 Button.propTypes = propTypes;
