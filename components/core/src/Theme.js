@@ -1,5 +1,9 @@
+/* @jsx jsx */
+
 import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { Global, css, jsx } from '@emotion/core';
 
 // TODO: is there a useful "default" value we should add here?
 export const ThemeContext = createContext();
@@ -15,7 +19,22 @@ export const useTheme = () => {
 	return themeObject;
 };
 
-export const GEL = ({ brand, ...props }) => <ThemeContext.Provider value={brand} {...props} />;
+export const GEL = ({ brand, ...props }) => {
+	return (
+		<>
+			<Global
+				styles={css`
+					*,
+					*:before,
+					*:after {
+						box-sizing: border-box;
+					}
+				`}
+			/>
+			<ThemeContext.Provider value={brand} {...props} />
+		</>
+	);
+};
 
 GEL.propTypes = {
 	// TODO `object` --> `shape`
