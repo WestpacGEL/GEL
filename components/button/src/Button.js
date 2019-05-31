@@ -118,6 +118,12 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
   };
   const buttonIcon = Icon ? <Icon size={iconSize[size]} /> : null;
 
+	const buttonContent = [
+		iconPosition === 'left' && buttonIcon,
+		children,
+		iconPosition === 'right' && buttonIcon
+	];
+
 	return (
 		<Tag
 			type={(Tag === 'button' && props.onClick) ? 'button' : undefined}
@@ -125,9 +131,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 			{...props}
 			onClick={onClick}
 		>
-			{iconPosition === 'left' && buttonIcon}
-			{children}
-			{iconPosition === 'right' && buttonIcon}
+			{children && buttonContent}
 		</Tag>
 	);
 };
