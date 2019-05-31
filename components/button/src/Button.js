@@ -15,7 +15,7 @@ import { css, jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Button = ({ appearance, size, soft, block, trim, icon, iconPosition, iconTag: IconTag, children, tag: Tag, onClick, ...props }) => {
+export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPosition, children, tag: Tag, onClick, ...props }) => {
 	const theme = useTheme();
 
 	// Common styles
@@ -109,16 +109,6 @@ export const Button = ({ appearance, size, soft, block, trim, icon, iconPosition
     Tag = 'a';
   }
 
-  /*const ButtonIcon = ({icon, size: 'medium', props}) => {
-  	const I = icon;
-  	return I;
-  };*/
-
-  const ButtonIcon = ({icon, size, ...props}) => {
-  	console.log(size);
-  	return icon; //<HouseIcon /> :S
-  };
-
   // Map button size to icon size
   const iconSize = {
   	small: 'small', //18px
@@ -126,6 +116,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon, iconPosition
   	large: 'medium', //24px
   	xlarge: 'medium', //24px
   };
+  const buttonIcon = Icon && <Icon size={iconSize[size]} /> : null;
 
 	return (
 		<Tag
@@ -134,9 +125,9 @@ export const Button = ({ appearance, size, soft, block, trim, icon, iconPosition
 			{...props}
 			onClick={onClick}
 		>
-			{iconPosition === 'left' && <ButtonIcon icon={icon} size={iconSize[size]} />}
+			{iconPosition === 'left' && buttonIcon}
 			{children}
-			{iconPosition === 'right' && <ButtonIcon icon={icon} size={iconSize[size]} />}
+			{iconPosition === 'right' && buttonIcon}
 		</Tag>
 	);
 };
@@ -191,7 +182,7 @@ export const propTypes = {
 	/**
 	 * Button icon (left).
 	 */
-	 icon: PropTypes.node,
+	 icon: PropTypes.func,
 
 	/**
 	 * Button icon positioning.

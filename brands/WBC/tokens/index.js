@@ -113,7 +113,7 @@ export default {
 				height: '30px',
 			},
 			medium: {
-				padding: ['5px', '12px'], //'5px 12px',
+				padding: ['5px', '12px'],
 				fontSize: '16px',
 				height: '36px',
 			},
