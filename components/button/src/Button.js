@@ -116,7 +116,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
   	large: 'medium', //24px
   	xlarge: 'medium', //24px
   };
-  const buttonIcon = Icon && <Icon size={iconSize[size]} /> : null;
+  const buttonIcon = Icon ? <Icon size={iconSize[size]} /> : null;
 
 	return (
 		<Tag
