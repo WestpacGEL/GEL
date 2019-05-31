@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css, jsx, useTheme } from '@westpac/core';
 
+// import { HouseIcon, AlertIcon, ChatIcon, AccessibilityIcon } from '../../icon/src'; //until icon package is published
+
 // ==============================
 // Utils
 // ==============================
@@ -13,9 +15,10 @@ import { css, jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Button = ({ appearance, size, soft, block, trim, children, tag: Tag, onClick, ...props }) => {
+export const Button = ({ appearance, size, soft, block, trim, icon, iconPosition, iconTag: IconTag, children, tag: Tag, onClick, ...props }) => {
 	const theme = useTheme();
 
+	// Common styles
 	const common = css(
 		{
 			textDecoration: 'none',
@@ -35,22 +38,50 @@ export const Button = ({ appearance, size, soft, block, trim, children, tag: Tag
 
 			'&:hover': {
 				textDecoration: appearance === 'link' ? 'underline' : 'none'
-			}
+			},
+
+			'& .icon': {
+				marginLeft: iconPosition === 'right' && '0.3em',
+				marginRight: iconPosition === 'left' && '0.3em',
+			},
+		},
+	);
+
+	// Button appearance
+	const styleAppearance = css(
+		{
+			// Default
+			color: theme.button.appearance[appearance].default.color,
+			backgroundColor: theme.button.appearance[appearance].default.backgroundColor,
+			borderColor: theme.button.appearance[appearance].default.borderColor,
+
+			// Hover
+			'&:hover': {
+				color: theme.button.appearance[appearance].hover.color,
+				backgroundColor: theme.button.appearance[appearance].hover.backgroundColor,
+				borderColor: theme.button.appearance[appearance].hover.borderColor
+			},
+
+			// Active
+			'&:active': {
+				color: theme.button.appearance[appearance].active.color,
+				backgroundColor: theme.button.appearance[appearance].active.backgroundColor,
+				borderColor: theme.button.appearance[appearance].active.borderColor
+			},
 		}
 	);
 
-	const styles = css(
-		// Appearance
-		theme.button.appearance[appearance].default,
+	// Button size
+	const styleSize = css(
 		{
-			'&:hover': theme.button.appearance[appearance].hover,
-			'&:active': theme.button.appearance[appearance].active
-		},
+			padding: (theme.button.size[size].padding).join(' '),
+			fontSize: theme.button.size[size].fontSize,
+			height: theme.button.size[size].height,
+		}
+	);
 
-		// Size
-		theme.button.size[size],
-
-		// Overrides
+	// Styling overrides
+	const styleOverrides = css(
 		soft && {
 			color: appearance === 'faint' ? theme.colors.muted : theme.colors.text,
 			backgroundColor: '#fff',
@@ -78,14 +109,21 @@ export const Button = ({ appearance, size, soft, block, trim, children, tag: Tag
     Tag = 'a';
   }
 
+  const ButtonIcon = ({icon, size: 'medium', props}) => {
+  	// const IconTag = icon;
+  	return icon;
+  };
+
 	return (
 		<Tag
 			type={(Tag === 'button' && props.onClick) ? 'button' : undefined}
-			css={[common, styles]}
+			css={[common, styleAppearance, styleSize, styleOverrides]}
 			{...props}
 			onClick={onClick}
 		>
+			{icon && iconPosition === 'left' ? <ButtonIcon icon={icon} size='medium' /> : null}
 			{children}
+			{icon && iconPosition === 'right' ? <ButtonIcon icon={icon} size='medium' /> : null}
 		</Tag>
 	);
 };
@@ -138,6 +176,16 @@ export const propTypes = {
 	 trim: PropTypes.bool,
 
 	/**
+	 * Button icon (left).
+	 */
+	 icon: PropTypes.node,
+
+	/**
+	 * Button icon positioning.
+	 */
+	 iconPosition: PropTypes.string,
+
+	/**
 	 * The content for this button.
 	 */
 	 children: PropTypes.node,
@@ -154,7 +202,8 @@ export const defaultProps = {
 	tag: 'button',
 	soft: false,
 	block: false,
-	trim: false
+	trim: false,
+	iconPosition: 'right'
 };
 
 Button.propTypes = propTypes;

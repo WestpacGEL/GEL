@@ -108,22 +108,22 @@ export default {
 
 		size: {
 			small: {
-				padding: '3px 9px 4px',
+				padding: ['3px', '9px', '4px'],
 				fontSize: '14px',
 				height: '30px',
 			},
 			medium: {
-				padding: '5px 12px',
+				padding: ['5px', '12px'], //'5px 12px',
 				fontSize: '16px',
 				height: '36px',
 			},
 			large: {
-				padding: '8px 15px',
+				padding: ['8px', '15px'],
 				fontSize: '16px',
 				height: '42px',
 			},
 			xlarge: {
-				padding: '9px 18px 10px',
+				padding: ['9px', '18px', '10px'],
 				fontSize: '18px',
 				height: '48px',
 			}

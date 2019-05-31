@@ -17,7 +17,7 @@ export const sizeMap = {
 };
 export const getSizeInt = s => sizeMap[s];
 
-const Wrapper = ({ color, size, ...props }) => (
+const IconWrapper = ({ color, size, ...props }) => (
 	<span
 		css={{
 			display: 'inline-block',
@@ -42,7 +42,7 @@ export const Icon = ({ children, color, label, size }) => {
 	// I suspect that using the style attribute to apply the color property will
 	// improve CSS reuse.
 	return (
-		<Wrapper color={color} size={sizeInt} style={{ color }}>
+		<IconWrapper className="icon" color={color} size={sizeInt} style={{ color }}>
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ export const Icon = ({ children, color, label, size }) => {
 			>
 				{children}
 			</svg>
-		</Wrapper>
+		</IconWrapper>
 	);
 };
 
