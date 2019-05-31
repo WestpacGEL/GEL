@@ -109,9 +109,22 @@ export const Button = ({ appearance, size, soft, block, trim, icon, iconPosition
     Tag = 'a';
   }
 
-  const ButtonIcon = ({icon, size: 'medium', props}) => {
-  	// const IconTag = icon;
-  	return icon;
+  /*const ButtonIcon = ({icon, size: 'medium', props}) => {
+  	const I = icon;
+  	return I;
+  };*/
+
+  const ButtonIcon = ({icon, size, ...props}) => {
+  	console.log(size);
+  	return icon; //<HouseIcon /> :S
+  };
+
+  // Map button size to icon size
+  const iconSize = {
+  	small: 'small', //18px
+  	medium: 'small', //18px
+  	large: 'medium', //24px
+  	xlarge: 'medium', //24px
   };
 
 	return (
@@ -121,9 +134,9 @@ export const Button = ({ appearance, size, soft, block, trim, icon, iconPosition
 			{...props}
 			onClick={onClick}
 		>
-			{icon && iconPosition === 'left' ? <ButtonIcon icon={icon} size='medium' /> : null}
+			{iconPosition === 'left' && <ButtonIcon icon={icon} size={iconSize[size]} />}
 			{children}
-			{icon && iconPosition === 'right' ? <ButtonIcon icon={icon} size='medium' /> : null}
+			{iconPosition === 'right' && <ButtonIcon icon={icon} size={iconSize[size]} />}
 		</Tag>
 	);
 };
