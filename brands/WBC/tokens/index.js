@@ -50,10 +50,14 @@ export default {
 					borderColor: COLORS.primary,
 				},
 				active: {
-					backgroundColor: Color('white').mix(Color(COLORS.primary), 0.5).hex()
+					color: '#fff',
+					backgroundColor: Color('white').mix(Color(COLORS.primary), 0.5).hex(),
+					borderColor: COLORS.primary,
 				},
 				hover: {
-					backgroundColor: Color('white').mix(Color(COLORS.primary), 0.7).hex()
+					color: null,
+					backgroundColor: Color('white').mix(Color(COLORS.primary), 0.7).hex(),
+					borderColor: null,
 				},
 			},
 			hero: {
@@ -63,10 +67,14 @@ export default {
 					borderColor: COLORS.hero,
 				},
 				active: {
-					backgroundColor: Color('white').mix(Color(COLORS.hero), 0.5).hex()
+					color: '#fff',
+					backgroundColor: Color('white').mix(Color(COLORS.hero), 0.5).hex(),
+					borderColor: COLORS.hero,
 				},
 				hover: {
-					backgroundColor: Color('white').mix(Color(COLORS.hero), 0.7).hex()
+					color: null,
+					backgroundColor: Color('white').mix(Color(COLORS.hero), 0.7).hex(),
+					borderColor: null,
 				},
 			},
 			neutral: {
@@ -76,10 +84,14 @@ export default {
 					borderColor: COLORS.neutral,
 				},
 				active: {
-					backgroundColor: Color('white').mix(Color(COLORS.neutral), 0.5).hex()
+					color: '#fff',
+					backgroundColor: Color('white').mix(Color(COLORS.neutral), 0.5).hex(),
+					borderColor: COLORS.neutral,
 				},
 				hover: {
-					backgroundColor: Color('white').mix(Color(COLORS.neutral), 0.7).hex()
+					color: null,
+					backgroundColor: Color('white').mix(Color(COLORS.neutral), 0.7).hex(),
+					borderColor: null,
 				},
 			},
 			faint: {
@@ -89,10 +101,14 @@ export default {
 					borderColor: COLORS.border,
 				},
 				active: {
+					color: COLORS.muted,
 					backgroundColor: '#fff',
+					borderColor: COLORS.border,
 				},
 				hover: {
-					backgroundColor: '#fff'
+					color: null,
+					backgroundColor: '#fff',
+					borderColor: null,
 				},
 			},
 			link: {
@@ -101,8 +117,16 @@ export default {
 					backgroundColor: 'transparent',
 					borderColor: 'transparent',
 				},
-				active: {},
-				hover: {},
+				active: {
+					color: null,
+					backgroundColor: null,
+					borderColor: null,
+				},
+				hover: {
+					color: null,
+					backgroundColor: null,
+					borderColor: null,
+				},
 			},
 		},
 
