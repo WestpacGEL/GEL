@@ -24,10 +24,17 @@ export const GEL = ({ brand, ...props }) => {
 		<>
 			<Global
 				styles={css`
+					// Box-sizing reset
 					*,
 					*:before,
 					*:after {
 						box-sizing: border-box;
+					}
+
+					// Disable default :focus styling
+					// (we will provide our own via our special '.is-keyboarduser' wrapper class)
+					:focus {
+						outline: none;
 					}
 				`}
 			/>
