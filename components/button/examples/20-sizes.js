@@ -13,6 +13,8 @@ export default () => (
 			<Button appearance="link" size="small">Link</Button>
 		</p>
 
+		<hr />
+
 		<h3>Medium (default)</h3>
 		<p>
 			<Button appearance="primary">Primary</Button>{' '}
@@ -22,6 +24,8 @@ export default () => (
 			<Button appearance="link">Link</Button>
 		</p>
 
+		<hr />
+
 		<h3>Large</h3>
 		<p>
 			<Button appearance="primary" size="large">Primary</Button>{' '}
@@ -30,6 +34,8 @@ export default () => (
 			<Button appearance="faint" size="large">Faint</Button>{' '}
 			<Button appearance="link" size="large">Link</Button>
 		</p>
+
+		<hr />
 
 		<h3>Extra large</h3>
 		<p>
