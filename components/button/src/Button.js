@@ -22,27 +22,48 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 	const common = css(
 		{
 			textDecoration: 'none',
+			border: '1px solid transparent',
 			borderRadius: theme.button.radius,
 			fontWeight: 400,
 			lineHeight: 1.5,
-			whiteSpace: 'nowrap',
-			display: 'inline-block',
+			display: 'inline-flex',
+			flexDirection: iconPosition === 'left' ? 'row-reverse' : null,
 			textAlign: 'center',
-			verticalAlign: 'middle',
+			justifyContent: 'center', //horizontal
+			alignItems: 'center', //vertical
+			whiteSpace: 'nowrap',
+
 			touchAction: 'manipulation',
 			cursor: 'pointer',
-			border: '1px solid transparent',
 			userSelect: 'none',
 			appearance: 'none',
 			transition: 'background 0.2s ease, color 0.2s ease',
 
-			'&:hover': {
-				textDecoration: appearance === 'link' ? 'underline' : 'none'
+			// Hover state
+			'&:hover:not(.disabled):not(:disabled)': {
+				textDecoration: appearance === 'link' ? 'underline' : 'none',
 			},
 
-			'& .icon': {
-				marginLeft: iconPosition === 'right' && '0.3em',
-				marginRight: iconPosition === 'left' && '0.3em',
+			// Disabled state
+			'&.disabled, &:disabled': {
+				opacity: '0.5',
+				cursor: 'not-allowed',
+			},
+			// A hyperlink that’s disabled or inside a disabled fieldset
+			'a&.disabled, fieldset[disabled] a&': {
+				pointerEvents: 'none'
+			},
+
+			// Button text flex child (always `<span>` wrapped)
+			'.btn-text': {
+				overflow: 'hidden',
+				textOverflow: 'ellipsis',
+			},
+
+			// Style text/icon gap (if button text provided)
+			'.btn-icon': {
+				marginLeft: children && iconPosition === 'right' && '0.4em',
+				marginRight: children && iconPosition === 'left' && '0.4em',
 			},
 		},
 	);
@@ -55,18 +76,19 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 			backgroundColor: theme.button.appearance[appearance].default.backgroundColor,
 			borderColor: theme.button.appearance[appearance].default.borderColor,
 
-			// Hover
-			'&:hover': {
-				color: theme.button.appearance[appearance].hover.color,
-				backgroundColor: theme.button.appearance[appearance].hover.backgroundColor,
-				borderColor: theme.button.appearance[appearance].hover.borderColor
-			},
-
-			// Active
-			'&:active': {
-				color: theme.button.appearance[appearance].active.color,
-				backgroundColor: theme.button.appearance[appearance].active.backgroundColor,
-				borderColor: theme.button.appearance[appearance].active.borderColor
+			'&:not(.disabled):not(:disabled)': {
+				// Hover state
+				'&:hover': {
+					color: theme.button.appearance[appearance].hover.color,
+					backgroundColor: theme.button.appearance[appearance].hover.backgroundColor,
+					borderColor: theme.button.appearance[appearance].hover.borderColor,
+				},
+				// Active state
+				'&:active, &.active': {
+					color: theme.button.appearance[appearance].active.color,
+					backgroundColor: theme.button.appearance[appearance].active.backgroundColor,
+					borderColor: theme.button.appearance[appearance].active.borderColor,
+				},
 			},
 		}
 	);
@@ -74,7 +96,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 	// Button size
 	const styleSize = css(
 		{
-			padding: (theme.button.size[size].padding).join(' '),
+			padding: (theme.button.size[size].padding).join(' '), //provided as an array
 			fontSize: theme.button.size[size].fontSize,
 			height: theme.button.size[size].height,
 		}
@@ -86,21 +108,29 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 			color: appearance === 'faint' ? theme.colors.muted : theme.colors.text,
 			backgroundColor: '#fff',
 
-			// Custom 'faint' hover styling
-			'&:hover': {
-				color: appearance !== 'faint' && '#fff',
-				backgroundColor: appearance === 'faint' && theme.colors.light,
-			}
+			'&:not(.disabled):not(:disabled)': {
+				// Hover state
+				// (nb. custom 'faint' hover styling)
+				'&:hover': {
+					color: appearance !== 'faint' && '#fff',
+					backgroundColor: appearance === 'faint' && theme.colors.light,
+				},
+				// Active state (re-implement non-soft button’s active styling)
+				'&:active, &.active': {
+					color: theme.button.appearance[appearance].active.color,
+					backgroundColor: theme.button.appearance[appearance].active.backgroundColor,
+					borderColor: theme.button.appearance[appearance].active.borderColor,
+				},
+			},
 		},
 		block && {
-			display: 'block',
+			display: 'flex', //flex will provide 'block-level' appearance (we use flex so any icon children can be positioned appropriately)
 			width: '100%',
-			overflow: 'block',
-			textOverflow: 'ellipses'
+			justifyContent: Icon ? 'space-between' : null, //any icons should be positioned against the inner edge
 		},
 		trim && {
 			paddingLeft: 0,
-			paddingRight: 0
+			paddingRight: 0,
 		}
 	);
 
@@ -109,6 +139,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
     Tag = 'a';
   }
 
+
   // Map button size to icon size
   const iconSize = {
   	small: 'small', //18px
@@ -116,13 +147,16 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
   	large: 'medium', //24px
   	xlarge: 'medium', //24px
   };
-  const buttonIcon = Icon ? <Icon size={iconSize[size]} /> : null;
 
-	const buttonContent = [
-		iconPosition === 'left' && buttonIcon,
-		children,
-		iconPosition === 'right' && buttonIcon
-	];
+	// Compose a button text + icon fragment, if either of these items are provided
+	// (nb. `<input>` elements cannot have children; they would use a `value` prop)
+  const buttonContent = Tag !== 'input'
+  	? <>
+  			{children && <span className="btn-text">{children}</span>}
+  			{Icon && <Icon className="btn-icon" size={iconSize[size]} />}
+  		</>
+  	: null;
+
 
 	return (
 		<Tag
@@ -131,7 +165,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 			{...props}
 			onClick={onClick}
 		>
-			{children && buttonContent}
+			{buttonContent}
 		</Tag>
 	);
 };
