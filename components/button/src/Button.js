@@ -19,91 +19,87 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 	const theme = useTheme();
 
 	// Common styles
-	const common = css(
-		{
-			textDecoration: 'none',
-			border: '1px solid transparent',
-			borderRadius: theme.button.radius,
-			fontWeight: 400,
-			lineHeight: 1.5,
-			display: 'inline-flex',
-			flexDirection: iconPosition === 'left' ? 'row-reverse' : null,
-			textAlign: 'center',
-			justifyContent: 'center', //horizontal
-			alignItems: 'center', //vertical
-			whiteSpace: 'nowrap',
+	const common = {
+		textDecoration: 'none',
+		border: '1px solid transparent',
+		borderRadius: theme.button.radius,
+		fontWeight: 400,
+		lineHeight: 1.5,
+		display: 'inline-flex',
+		flexDirection: iconPosition === 'left' ? 'row-reverse' : null,
+		textAlign: 'center',
+		justifyContent: 'center', //horizontal
+		alignItems: 'center', //vertical
+		whiteSpace: 'nowrap',
 
-			touchAction: 'manipulation',
-			cursor: 'pointer',
-			userSelect: 'none',
-			appearance: 'none',
-			transition: 'background 0.2s ease, color 0.2s ease',
+		touchAction: 'manipulation',
+		cursor: 'pointer',
+		userSelect: 'none',
+		appearance: 'none',
+		transition: 'background 0.2s ease, color 0.2s ease',
 
-			// Hover state
-			'&:hover:not(.disabled):not(:disabled)': {
-				textDecoration: appearance === 'link' ? 'underline' : 'none',
-			},
-
-			// Disabled state
-			'&.disabled, &:disabled': {
-				opacity: '0.5',
-				cursor: 'not-allowed',
-			},
-			// A hyperlink that’s disabled or inside a disabled fieldset
-			'a&.disabled, fieldset[disabled] a&': {
-				pointerEvents: 'none'
-			},
-
-			// Button text flex child (always `<span>` wrapped)
-			'.btn-text': {
-				overflow: 'hidden',
-				textOverflow: 'ellipsis',
-			},
-
-			// Style text/icon gap (if button text provided)
-			'.btn-icon': {
-				marginLeft: children && iconPosition === 'right' && '0.4em',
-				marginRight: children && iconPosition === 'left' && '0.4em',
-			},
+		// Hover state
+		'&:hover:not(.disabled):not(:disabled)': {
+			textDecoration: appearance === 'link' ? 'underline' : 'none',
 		},
-	);
+
+		// Disabled state
+		'&.disabled, &:disabled': {
+			opacity: '0.5',
+			cursor: 'not-allowed',
+		},
+		// A hyperlink that’s disabled or inside a disabled fieldset
+		'a&.disabled, fieldset[disabled] a&': {
+			pointerEvents: 'none'
+		},
+
+		// Button text flex child (always `<span>` wrapped)
+		'.btn-text': {
+			overflow: 'hidden',
+			textOverflow: 'ellipsis',
+		},
+
+		// Style text/icon gap (if button text provided)
+		// TODO Investigate: use of Emotion's component selector? https://emotion.sh/docs/styled#targeting-another-emotion-component
+		'.btn-icon': {
+			marginLeft: children && iconPosition === 'right' && '0.4em',
+			marginRight: children && iconPosition === 'left' && '0.4em',
+		},
+	};
 
 	// Button appearance
-	const styleAppearance = css(
-		{
-			// Default
-			color: theme.button.appearance[appearance].default.color,
-			backgroundColor: theme.button.appearance[appearance].default.backgroundColor,
-			borderColor: theme.button.appearance[appearance].default.borderColor,
+	const styleAppearance = {
+		// Default
+		color: theme.button.appearance[appearance].default.color,
+		backgroundColor: theme.button.appearance[appearance].default.backgroundColor,
+		borderColor: theme.button.appearance[appearance].default.borderColor,
 
-			'&:not(.disabled):not(:disabled)': {
-				// Hover state
-				'&:hover': {
-					color: theme.button.appearance[appearance].hover.color,
-					backgroundColor: theme.button.appearance[appearance].hover.backgroundColor,
-					borderColor: theme.button.appearance[appearance].hover.borderColor,
-				},
-				// Active state
-				'&:active, &.active': {
-					color: theme.button.appearance[appearance].active.color,
-					backgroundColor: theme.button.appearance[appearance].active.backgroundColor,
-					borderColor: theme.button.appearance[appearance].active.borderColor,
-				},
+		'&:not(.disabled):not(:disabled)': {
+			// Hover state
+			'&:hover': {
+				color: theme.button.appearance[appearance].hover.color,
+				backgroundColor: theme.button.appearance[appearance].hover.backgroundColor,
+				borderColor: theme.button.appearance[appearance].hover.borderColor,
 			},
-		}
-	);
+			// Active state
+			'&:active, &.active': {
+				color: theme.button.appearance[appearance].active.color,
+				backgroundColor: theme.button.appearance[appearance].active.backgroundColor,
+				borderColor: theme.button.appearance[appearance].active.borderColor,
+			},
+		},
+	};
 
 	// Button size
-	const styleSize = css(
-		{
-			padding: (theme.button.size[size].padding).join(' '), //provided as an array
-			fontSize: theme.button.size[size].fontSize,
-			height: theme.button.size[size].height,
-		}
-	);
+	const styleSize = {
+		padding: (theme.button.size[size].padding).join(' '), //provided as an array
+		fontSize: theme.button.size[size].fontSize,
+		height: theme.button.size[size].height,
+	};
 
-	// Styling overrides
-	const styleOverrides = css(
+	// Button style overrides
+	const styleOverrides = [
+		// Soft option
 		soft && {
 			color: appearance === 'faint' ? theme.colors.muted : theme.colors.text,
 			backgroundColor: '#fff',
@@ -123,16 +119,20 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 				},
 			},
 		},
+
+		// Block option
 		block && {
 			display: 'flex', //flex will provide 'block-level' appearance (we use flex so any icon children can be positioned appropriately)
 			width: '100%',
 			justifyContent: Icon ? 'space-between' : null, //any icons should be positioned against the inner edge
 		},
+
+		// Trim option
 		trim && {
 			paddingLeft: 0,
 			paddingRight: 0,
-		}
-	);
+		},
+	];
 
 
 	if (props.href && Tag === 'button') {
