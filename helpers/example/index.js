@@ -79,6 +79,11 @@ const App = ({ components, packageName }) => {
 								display: inline-block;
 								padding: 1px 3px;
 							}
+							*,
+							*:after,
+							*:before {
+								box-sizing: border-box;
+							}
 						`}
 					/>
 					<Sidebar>
