@@ -2,9 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css, jsx, useTheme } from '@westpac/core';
-
-// import { HouseIcon, AlertIcon, ChatIcon, AccessibilityIcon } from '../../icon/src'; //until icon package is published
+import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -30,6 +28,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 		textAlign: 'center',
 		justifyContent: 'center', //horizontal
 		alignItems: 'center', //vertical
+		verticalAlign: 'middle',
 		whiteSpace: 'nowrap',
 
 		touchAction: 'manipulation',

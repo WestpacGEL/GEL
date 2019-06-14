@@ -4,7 +4,12 @@ import { Button } from '../src';
 
 export default () => (
 	<>
-		<h3>Default buttons</h3>
+		<h3>Default instance (no props)</h3>
+		<Button>Default (primary)</Button>
+
+		<hr />
+
+		<h3>Default appearance</h3>
 		<Button appearance="primary">Primary</Button>{' '}
 		<Button appearance="hero">Hero</Button>{' '}
 		<Button appearance="neutral">Neutral</Button>{' '}
@@ -13,7 +18,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Soft buttons</h3>
+		<h3>Soft appearance</h3>
 		<Button appearance="primary" soft>Primary</Button>{' '}
 		<Button appearance="hero" soft>Hero</Button>{' '}
 		<Button appearance="neutral" soft>Neutral</Button>{' '}
