@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Badge } from '../src/index.js';
+import { Badge } from '../src';
 
 export default () => (
 	<>

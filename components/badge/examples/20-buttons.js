@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Badge } from '../src/index.js';
+import { Badge } from '../src';
 // import Button from '@westpac/button';
-import { Button } from '../../button/src/index.js'; //until button package is published
+import { Button } from '../../button/src'; //until button package is published
 
 export default () => (
 	<>

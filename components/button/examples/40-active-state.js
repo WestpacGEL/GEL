@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '../src/index.js';
+import { Button } from '../src';
 
 export default () => (
 	<>

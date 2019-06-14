@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '../src/index.js';
+import { Button } from '../src';
 
 import { HouseIcon, AlertIcon, ChatIcon, AccessibilityIcon, ArrowLeftIcon, ArrowRightIcon, StarIcon } from '../../icon/src'; //until icon package is published
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Tab, Tabcordion } from '../src/index.js';
+import { Tab, Tabcordion } from '../src';
 import { data } from './_data';
 import { Row } from './_utils';
 
