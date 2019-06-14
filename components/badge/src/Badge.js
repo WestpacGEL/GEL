@@ -13,7 +13,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Badge = ({ appearance, children }) => {
+export const Badge = ({ appearance, children, ...props }) => {
 	const theme = useTheme();
 
 	const common = {
@@ -30,7 +30,7 @@ export const Badge = ({ appearance, children }) => {
 		border: '1px solid transparent',
 	};
 
-	const styles = {
+	const styleAppearance = {
 		primary: {
 			color: '#fff',
 			backgroundColor: theme.colors.primary.default,
@@ -73,7 +73,14 @@ export const Badge = ({ appearance, children }) => {
 		},
 	};
 
-	return <span css={{ ...common, ...styles[appearance] }}>{children}</span>;
+	return (
+		<span
+			css={{ ...common, ...styleAppearance[appearance] }}
+			{...props}
+		>
+			{children}
+		</span>
+	);
 };
 
 // ==============================

@@ -6,132 +6,145 @@ import { Button } from '../../button/src'; //until button package is published
 
 export default () => (
 	<>
-		<h3>Primary Buttons</h3>
+		<h3>Default button instance</h3>
 		<p>
-			<Button appearance="primary">Default <Badge>42</Badge></Button>
-		</p>
-		<p>
-			<Button appearance="primary">Primary <Badge appearance="primary">13</Badge></Button>{' '}
-			<Button appearance="primary">Hero <Badge appearance="hero">13</Badge></Button>{' '}
-			<Button appearance="primary">Neutral <Badge appearance="neutral">13</Badge></Button>{' '}
-			<Button appearance="primary">Faint <Badge appearance="faint">13</Badge></Button>
-		</p>
-		<p>
-			<Button appearance="primary">Success <Badge appearance="success">71</Badge></Button>{' '}
-			<Button appearance="primary">Info <Badge appearance="info">71</Badge></Button>{' '}
-			<Button appearance="primary">Warning <Badge appearance="warning">71</Badge></Button>{' '}
-			<Button appearance="primary">Danger <Badge appearance="danger">71</Badge></Button>
-		</p>
-		<p>
-			<Button appearance="primary" soft>Default <Badge>42</Badge></Button>
-		</p>
-		<p>
-			<Button appearance="primary" soft>Primary <Badge appearance="primary">13</Badge></Button>{' '}
-			<Button appearance="primary" soft>Hero <Badge appearance="hero">13</Badge></Button>{' '}
-			<Button appearance="primary" soft>Neutral <Badge appearance="neutral">13</Badge></Button>{' '}
-			<Button appearance="primary" soft>Faint <Badge appearance="faint">13</Badge></Button>
-		</p>
-		<p>
-			<Button appearance="primary" soft>Success <Badge appearance="success">71</Badge></Button>{' '}
-			<Button appearance="primary" soft>Info <Badge appearance="info">71</Badge></Button>{' '}
-			<Button appearance="primary" soft>Warning <Badge appearance="warning">71</Badge></Button>{' '}
-			<Button appearance="primary" soft>Danger <Badge appearance="danger">71</Badge></Button>
+			<Button>Default <Badge>Default</Badge></Button>
 		</p>
 
-		<h3>Hero Buttons</h3>
+		<hr />
+
+		<h3>Primary buttons</h3>
 		<p>
-			<Button appearance="hero">Default <Badge>42</Badge></Button>
+			<Button appearance="primary">Primary <Badge>Default</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="hero">Primary <Badge appearance="primary">13</Badge></Button>{' '}
-			<Button appearance="hero">Hero <Badge appearance="hero">13</Badge></Button>{' '}
-			<Button appearance="hero">Neutral <Badge appearance="neutral">13</Badge></Button>{' '}
-			<Button appearance="hero">Faint <Badge appearance="faint">13</Badge></Button>
+			<Button appearance="primary">Primary <Badge appearance="primary">Primary</Badge></Button>{' '}
+			<Button appearance="primary">Primary <Badge appearance="hero">Hero</Badge></Button>{' '}
+			<Button appearance="primary">Primary <Badge appearance="neutral">Neutral</Badge></Button>{' '}
+			<Button appearance="primary">Primary <Badge appearance="faint">Faint</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="hero">Success <Badge appearance="success">71</Badge></Button>{' '}
-			<Button appearance="hero">Info <Badge appearance="info">71</Badge></Button>{' '}
-			<Button appearance="hero">Warning <Badge appearance="warning">71</Badge></Button>{' '}
-			<Button appearance="hero">Danger <Badge appearance="danger">71</Badge></Button>
+			<Button appearance="primary">Primary <Badge appearance="success">Success</Badge></Button>{' '}
+			<Button appearance="primary">Primary <Badge appearance="info">Info</Badge></Button>{' '}
+			<Button appearance="primary">Primary <Badge appearance="warning">Warning</Badge></Button>{' '}
+			<Button appearance="primary">Primary <Badge appearance="danger">Danger</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="hero" soft>Default <Badge>42</Badge></Button>
+			<Button appearance="primary" soft>Primary soft <Badge>Default</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="hero" soft>Primary <Badge appearance="primary">13</Badge></Button>{' '}
-			<Button appearance="hero" soft>Hero <Badge appearance="hero">13</Badge></Button>{' '}
-			<Button appearance="hero" soft>Neutral <Badge appearance="neutral">13</Badge></Button>{' '}
-			<Button appearance="hero" soft>Faint <Badge appearance="faint">13</Badge></Button>
+			<Button appearance="primary" soft>Primary soft <Badge appearance="primary">Primary</Badge></Button>{' '}
+			<Button appearance="primary" soft>Primary soft <Badge appearance="hero">Hero</Badge></Button>{' '}
+			<Button appearance="primary" soft>Primary soft <Badge appearance="neutral">Neutral</Badge></Button>{' '}
+			<Button appearance="primary" soft>Primary soft <Badge appearance="faint">Faint</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="hero" soft>Success <Badge appearance="success">71</Badge></Button>{' '}
-			<Button appearance="hero" soft>Info <Badge appearance="info">71</Badge></Button>{' '}
-			<Button appearance="hero" soft>Warning <Badge appearance="warning">71</Badge></Button>{' '}
-			<Button appearance="hero" soft>Danger <Badge appearance="danger">71</Badge></Button>
+			<Button appearance="primary" soft>Primary soft <Badge appearance="success">Success</Badge></Button>{' '}
+			<Button appearance="primary" soft>Primary soft <Badge appearance="info">Info</Badge></Button>{' '}
+			<Button appearance="primary" soft>Primary soft <Badge appearance="warning">Warning</Badge></Button>{' '}
+			<Button appearance="primary" soft>Primary soft <Badge appearance="danger">Danger</Badge></Button>
 		</p>
 
-		<h3>Neutral Buttons</h3>
+		<hr />
+
+		<h3>Hero buttons</h3>
 		<p>
-			<Button appearance="neutral">Default <Badge>42</Badge></Button>
+			<Button appearance="hero">Hero <Badge>Default</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="neutral">Primary <Badge appearance="primary">13</Badge></Button>{' '}
-			<Button appearance="neutral">Hero <Badge appearance="hero">13</Badge></Button>{' '}
-			<Button appearance="neutral">Neutral <Badge appearance="neutral">13</Badge></Button>{' '}
-			<Button appearance="neutral">Faint <Badge appearance="faint">13</Badge></Button>{' '}
+			<Button appearance="hero">Hero <Badge appearance="primary">Primary</Badge></Button>{' '}
+			<Button appearance="hero">Hero <Badge appearance="hero">Hero</Badge></Button>{' '}
+			<Button appearance="hero">Hero <Badge appearance="neutral">Neutral</Badge></Button>{' '}
+			<Button appearance="hero">Hero <Badge appearance="faint">Faint</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="neutral">Success <Badge appearance="success">71</Badge></Button>{' '}
-			<Button appearance="neutral">Info <Badge appearance="info">71</Badge></Button>{' '}
-			<Button appearance="neutral">Warning <Badge appearance="warning">71</Badge></Button>{' '}
-			<Button appearance="neutral">Danger <Badge appearance="danger">71</Badge></Button>
+			<Button appearance="hero">Hero <Badge appearance="success">Success</Badge></Button>{' '}
+			<Button appearance="hero">Hero <Badge appearance="info">Info</Badge></Button>{' '}
+			<Button appearance="hero">Hero <Badge appearance="warning">Warning</Badge></Button>{' '}
+			<Button appearance="hero">Hero <Badge appearance="danger">Danger</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="neutral" soft>Default <Badge>42</Badge></Button>
+			<Button appearance="hero" soft>Hero soft <Badge>Default</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="neutral" soft>Primary <Badge appearance="primary">13</Badge></Button>{' '}
-			<Button appearance="neutral" soft>Hero <Badge appearance="hero">13</Badge></Button>{' '}
-			<Button appearance="neutral" soft>Neutral <Badge appearance="neutral">13</Badge></Button>{' '}
-			<Button appearance="neutral" soft>Faint <Badge appearance="faint">13</Badge></Button>
+			<Button appearance="hero" soft>Hero soft <Badge appearance="primary">Primary</Badge></Button>{' '}
+			<Button appearance="hero" soft>Hero soft <Badge appearance="hero">Hero</Badge></Button>{' '}
+			<Button appearance="hero" soft>Hero soft <Badge appearance="neutral">Neutral</Badge></Button>{' '}
+			<Button appearance="hero" soft>Hero soft <Badge appearance="faint">Faint</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="neutral" soft>Success <Badge appearance="success">71</Badge></Button>{' '}
-			<Button appearance="neutral" soft>Info <Badge appearance="info">71</Badge></Button>{' '}
-			<Button appearance="neutral" soft>Warning <Badge appearance="warning">71</Badge></Button>{' '}
-			<Button appearance="neutral" soft>Danger <Badge appearance="danger">71</Badge></Button>
+			<Button appearance="hero" soft>Hero soft <Badge appearance="success">Success</Badge></Button>{' '}
+			<Button appearance="hero" soft>Hero soft <Badge appearance="info">Info</Badge></Button>{' '}
+			<Button appearance="hero" soft>Hero soft <Badge appearance="warning">Warning</Badge></Button>{' '}
+			<Button appearance="hero" soft>Hero soft <Badge appearance="danger">Danger</Badge></Button>
 		</p>
+
+		<hr />
+
+		<h3>Neutral buttons</h3>
+		<p>
+			<Button appearance="neutral">Neutral <Badge>Default</Badge></Button>
+		</p>
+		<p>
+			<Button appearance="neutral">Neutral <Badge appearance="primary">Primary</Badge></Button>{' '}
+			<Button appearance="neutral">Neutral <Badge appearance="hero">Hero</Badge></Button>{' '}
+			<Button appearance="neutral">Neutral <Badge appearance="neutral">Neutral</Badge></Button>{' '}
+			<Button appearance="neutral">Neutral <Badge appearance="faint">Faint</Badge></Button>{' '}
+		</p>
+		<p>
+			<Button appearance="neutral">Neutral <Badge appearance="success">Success</Badge></Button>{' '}
+			<Button appearance="neutral">Neutral <Badge appearance="info">Info</Badge></Button>{' '}
+			<Button appearance="neutral">Neutral <Badge appearance="warning">Warning</Badge></Button>{' '}
+			<Button appearance="neutral">Neutral <Badge appearance="danger">Danger</Badge></Button>
+		</p>
+		<p>
+			<Button appearance="neutral" soft>Neutral soft <Badge>Default</Badge></Button>
+		</p>
+		<p>
+			<Button appearance="neutral" soft>Neutral soft <Badge appearance="primary">Primary</Badge></Button>{' '}
+			<Button appearance="neutral" soft>Neutral soft <Badge appearance="hero">Hero</Badge></Button>{' '}
+			<Button appearance="neutral" soft>Neutral soft <Badge appearance="neutral">Neutral</Badge></Button>{' '}
+			<Button appearance="neutral" soft>Neutral soft <Badge appearance="faint">Faint</Badge></Button>
+		</p>
+		<p>
+			<Button appearance="neutral" soft>Neutral soft <Badge appearance="success">Success</Badge></Button>{' '}
+			<Button appearance="neutral" soft>Neutral soft <Badge appearance="info">Info</Badge></Button>{' '}
+			<Button appearance="neutral" soft>Neutral soft <Badge appearance="warning">Warning</Badge></Button>{' '}
+			<Button appearance="neutral" soft>Neutral soft <Badge appearance="danger">Danger</Badge></Button>
+		</p>
+
+		<hr />
 
 		<h3>Faint buttons</h3>
 		<p>
-			<Button appearance="faint">Default <Badge>42</Badge></Button>
+			<Button appearance="faint">Faint <Badge>Default</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="faint">Primary <Badge appearance="primary">13</Badge></Button>{' '}
-			<Button appearance="faint">Hero <Badge appearance="hero">13</Badge></Button>{' '}
-			<Button appearance="faint">Neutral <Badge appearance="neutral">13</Badge></Button>{' '}
-			<Button appearance="faint">Faint <Badge appearance="faint">13</Badge></Button>
+			<Button appearance="faint">Faint <Badge appearance="primary">Primary</Badge></Button>{' '}
+			<Button appearance="faint">Faint <Badge appearance="hero">Hero</Badge></Button>{' '}
+			<Button appearance="faint">Faint <Badge appearance="neutral">Neutral</Badge></Button>{' '}
+			<Button appearance="faint">Faint <Badge appearance="faint">Faint</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="faint">Success <Badge appearance="success">71</Badge></Button>{' '}
-			<Button appearance="faint">Info <Badge appearance="info">71</Badge></Button>{' '}
-			<Button appearance="faint">Warning <Badge appearance="warning">71</Badge></Button>{' '}
-			<Button appearance="faint">Danger <Badge appearance="danger">71</Badge></Button>
+			<Button appearance="faint">Faint <Badge appearance="success">Success</Badge></Button>{' '}
+			<Button appearance="faint">Faint <Badge appearance="info">Info</Badge></Button>{' '}
+			<Button appearance="faint">Faint <Badge appearance="warning">Warning</Badge></Button>{' '}
+			<Button appearance="faint">Faint <Badge appearance="danger">Danger</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="faint" soft>Default <Badge>42</Badge></Button>
+			<Button appearance="faint" soft>Faint soft <Badge>Default</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="faint" soft>Primary <Badge appearance="primary">13</Badge></Button>{' '}
-			<Button appearance="faint" soft>Hero <Badge appearance="hero">13</Badge></Button>{' '}
-			<Button appearance="faint" soft>Neutral <Badge appearance="neutral">13</Badge></Button>{' '}
-			<Button appearance="faint" soft>Faint <Badge appearance="faint">13</Badge></Button>
+			<Button appearance="faint" soft>Faint soft <Badge appearance="primary">Primary</Badge></Button>{' '}
+			<Button appearance="faint" soft>Faint soft <Badge appearance="hero">Hero</Badge></Button>{' '}
+			<Button appearance="faint" soft>Faint soft <Badge appearance="neutral">Neutral</Badge></Button>{' '}
+			<Button appearance="faint" soft>Faint soft <Badge appearance="faint">Faint</Badge></Button>
 		</p>
 		<p>
-			<Button appearance="faint" soft>Success <Badge appearance="success">71</Badge></Button>{' '}
-			<Button appearance="faint" soft>Info <Badge appearance="info">71</Badge></Button>{' '}
-			<Button appearance="faint" soft>Warning <Badge appearance="warning">71</Badge></Button>{' '}
-			<Button appearance="faint" soft>Danger <Badge appearance="danger">71</Badge></Button>
+			<Button appearance="faint" soft>Faint soft <Badge appearance="success">Success</Badge></Button>{' '}
+			<Button appearance="faint" soft>Faint soft <Badge appearance="info">Info</Badge></Button>{' '}
+			<Button appearance="faint" soft>Faint soft <Badge appearance="warning">Warning</Badge></Button>{' '}
+			<Button appearance="faint" soft>Faint soft <Badge appearance="danger">Danger</Badge></Button>
 		</p>
 	</>
 );
