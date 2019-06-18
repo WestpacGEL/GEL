@@ -13,7 +13,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPosition, children, tag: Tag, onClick, ...props }) => {
+export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPosition, justify, children, tag: Tag, onClick, ...props }) => {
 	const theme = useTheme();
 
 	// Common styles
@@ -24,6 +24,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 		fontWeight: 400,
 		lineHeight: 1.5,
 		display: 'inline-flex',
+		flex: 1,
 		flexDirection: iconPosition === 'left' ? 'row-reverse' : null,
 		textAlign: 'center',
 		justifyContent: 'center', //horizontal
@@ -123,7 +124,11 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 		block && {
 			display: 'flex', //flex will provide 'block-level' appearance (we use flex so any icon children can be positioned appropriately)
 			width: '100%',
-			justifyContent: Icon ? 'space-between' : null, //any icons should be positioned against the inner edge
+		},
+
+		// Justify option
+		justify && {
+			justifyContent: 'space-between', //any content will be positioned against the inner edges
 		},
 
 		// Trim option
@@ -227,6 +232,11 @@ export const propTypes = {
 	 iconPosition: PropTypes.string,
 
 	/**
+	 * Button content alignment.
+	 */
+	 justify: PropTypes.string,
+
+	/**
 	 * The content for this button.
 	 */
 	 children: PropTypes.node,
@@ -244,7 +254,8 @@ export const defaultProps = {
 	soft: false,
 	block: false,
 	trim: false,
-	iconPosition: 'right'
+	iconPosition: 'right',
+	justify: false
 };
 
 Button.propTypes = propTypes;
