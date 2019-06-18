@@ -6,7 +6,7 @@ import { ButtonGroup, ButtonGroupButton } from '../src';
 export default () => (
 	<>
 		<h3>Small</h3>
-		<ButtonGroup size="small">
+		<ButtonGroup size="small" block>
 			<ButtonGroupButton>Left</ButtonGroupButton>
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>
@@ -15,7 +15,7 @@ export default () => (
 		<hr />
 
 		<h3>Medium</h3>
-		<ButtonGroup size="medium">
+		<ButtonGroup size="medium" block>
 			<ButtonGroupButton>Left</ButtonGroupButton>
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>
@@ -24,7 +24,7 @@ export default () => (
 		<hr />
 
 		<h3>Large</h3>
-		<ButtonGroup size="large">
+		<ButtonGroup size="large" block>
 			<ButtonGroupButton>Left</ButtonGroupButton>
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>
@@ -33,7 +33,7 @@ export default () => (
 		<hr />
 
 		<h3>Extra large</h3>
-		<ButtonGroup size="xlarge">
+		<ButtonGroup size="xlarge" block>
 			<ButtonGroupButton>Left</ButtonGroupButton>
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>

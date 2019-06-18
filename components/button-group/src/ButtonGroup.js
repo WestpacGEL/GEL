@@ -4,30 +4,68 @@ import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
+import { Button } from '../../button/src';
+
 
 // ==============================
 // Utils
 // ==============================
 
+export const ButtonGroupButton = ({ appearance, size, soft, children, ...props }) => (
+	<label
+		css={{
+			flex: 1,
+
+			'&:not(:last-child) > button': {
+			  borderTopRightRadius: 0,
+			  borderBottomRightRadius: 0,
+			  borderRight: 'none',
+			},
+			'&:not(:first-of-type) > button': {
+			  borderTopLeftRadius: 0,
+			  borderBottomLeftRadius: 0,
+			}
+		}}
+		{...props}
+	>
+		<input
+			css={{
+				position: 'absolute',
+				zIndex: -1,
+				opacity: 0
+			}}
+			type="radio"
+			name=""
+		/>
+		<Button
+			appearance={appearance}
+			size={size}
+			soft={soft}
+			block={true}
+			{...props}
+		>
+			{children}
+		</Button>
+	</label>
+);
 
 // ==============================
 // Component
 // ==============================
 
-export const ButtonGroup = ({ children, ...props }) => {
+export const ButtonGroup = ({ appearance, size, soft, block, children, ...props }) => {
 
 	// Common styles
 	const common = {
-		display: 'inline-flex',
+		display: block ? 'flex' : 'inline-flex',
 		alignItems: 'center', //vertical
 		verticalAlign: 'middle'
 	};
 
-	// Add props to children
-	const childrenWithProps = Children.map(children, child => {
-		// console.log(props, child.props, { ...props, ...child.props });
-		return cloneElement(child, { ...props, ...child.props });
-	});
+	// Pass selected props to children
+	const buttonGroupContent = Children.map(children, child => (
+		cloneElement(child, { appearance, size, soft, ...props, ...child.props })
+	));
 
 
 	return (
@@ -35,7 +73,7 @@ export const ButtonGroup = ({ children, ...props }) => {
 			css={{ ...common }}
 			{...props}
 		>
-			{childrenWithProps}
+			{buttonGroupContent}
 		</div>
 	);
 };
