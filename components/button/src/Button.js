@@ -234,7 +234,7 @@ export const propTypes = {
 	/**
 	 * Button content alignment.
 	 */
-	 justify: PropTypes.string,
+	 justify: PropTypes.bool,
 
 	/**
 	 * The content for this button.
