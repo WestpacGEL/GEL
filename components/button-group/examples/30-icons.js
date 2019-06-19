@@ -9,6 +9,12 @@ import { InfoIcon } from '../../icon/src';
 export default () => (
 	<>
 		<h3>Small</h3>
+		<ButtonGroup size="small">
+			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
+			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
+			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		</ButtonGroup><br />
+		<br />
 		<ButtonGroup size="small" block>
 			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
@@ -18,6 +24,12 @@ export default () => (
 		<hr />
 
 		<h3>Medium</h3>
+		<ButtonGroup size="medium">
+			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
+			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
+			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		</ButtonGroup><br />
+		<br />
 		<ButtonGroup size="medium" block>
 			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
@@ -27,6 +39,12 @@ export default () => (
 		<hr />
 
 		<h3>Large</h3>
+		<ButtonGroup size="large">
+			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
+			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
+			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		</ButtonGroup><br />
+		<br />
 		<ButtonGroup size="large" block>
 			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
@@ -36,6 +54,12 @@ export default () => (
 		<hr />
 
 		<h3>Extra large</h3>
+		<ButtonGroup size="xlarge">
+			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
+			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
+			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		</ButtonGroup><br />
+		<br />
 		<ButtonGroup size="xlarge" block>
 			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>

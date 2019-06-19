@@ -11,7 +11,7 @@ import { Button } from '../../button/src';
 // Utils
 // ==============================
 
-export const ButtonGroupButton = ({ appearance, size, soft, children, ...props }) => (
+export const ButtonGroupButton = ({ appearance, size, soft, icon, children, ...props }) => (
 	<label
 		css={{
 			flex: 1,
@@ -42,6 +42,7 @@ export const ButtonGroupButton = ({ appearance, size, soft, children, ...props }
 			size={size}
 			soft={soft}
 			block={true}
+			icon={icon}
 			{...props}
 		>
 			{children}
@@ -86,7 +87,7 @@ export const propTypes = {
 	/**
 	 * The button appearance.
 	 *
-	 * Defaults to "primary"
+	 * Defaults to "hero"
 	 */
 	 appearance: PropTypes.oneOf(['primary', 'hero', 'neutral', 'faint', 'link']),
 
