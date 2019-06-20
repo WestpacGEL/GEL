@@ -23,6 +23,10 @@ const COLORS = {
 
 const BREAK_POINTS = { xs: 576, sm: 768, md: 992, lg: 1200 };
 
+const CONTAINER_MAXWIDTH = 1320;
+const CONTAINER_PADDING = [12, 36, 48, 60];
+
+
 export default {
 	breakpoints: BREAK_POINTS,
 	colors: {
@@ -38,6 +42,13 @@ export default {
 	},
 	type: {},
 	spacing: {},
+
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING
+		}
+	},
 
 	button: {
 		radius: '3px',
