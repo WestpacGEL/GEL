@@ -222,24 +222,30 @@ export const propTypes = {
 	 trim: PropTypes.bool,
 
 	/**
-	 * Button icon (left).
+	 * Button icon.
 	 */
 	 icon: PropTypes.func,
 
 	/**
 	 * Button icon positioning.
+	 *
+	 * Defaults to "right"
 	 */
-	 iconPosition: PropTypes.string,
+	 iconPosition: PropTypes.oneOf(['left', 'right']),
 
 	/**
 	 * Button content alignment.
+	 *
+	 * Defaults to "false"
 	 */
 	 justify: PropTypes.bool,
 
 	/**
 	 * The content for this button.
+	 *
+	 * This prop is required.
 	 */
-	 children: PropTypes.node,
+	 children: PropTypes.node.isRequired,
 
 	/**
 	 * The onClick handler for this button.
