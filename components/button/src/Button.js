@@ -242,10 +242,8 @@ export const propTypes = {
 
 	/**
 	 * The content for this button.
-	 *
-	 * This prop is required.
 	 */
-	 children: PropTypes.node.isRequired,
+	 children: PropTypes.node,
 
 	/**
 	 * The onClick handler for this button.

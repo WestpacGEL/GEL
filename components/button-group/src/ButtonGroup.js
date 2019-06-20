@@ -53,8 +53,8 @@ export const ButtonGroupButton = ({ appearance, size, icon, iconPosition, name, 
 				tag="span"
 				appearance={appearance}
 				size={size}
-				soft={true}
-				block={true}
+				soft
+				block
 				icon={icon}
 				iconPosition={iconPosition}
 				{...props}
@@ -134,11 +134,15 @@ export const propTypes = {
 
 	/**
 	 * The button group input element’s name.
+	 *
+	 * This prop is required.
 	 */
 	 name: PropTypes.string.isRequired,
 
 	/**
 	 * The button content for this button group.
+	 *
+	 * This prop is required.
 	 */
 	 children: PropTypes.node.isRequired,
 };
