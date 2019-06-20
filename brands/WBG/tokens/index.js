@@ -149,5 +149,16 @@ export default {
 				height: '48px',
 			}
 		}
+	},
+
+	well: {
+		borderRadius: '3px',
+		backgroundColor: COLORS.light,
+		borderColor: COLORS.border,
+		padding: {
+			default: '12px',
+			responsive: [12, 24]
+		},
+		marginBottom: '18px'
 	}
 };
