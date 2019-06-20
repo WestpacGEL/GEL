@@ -48,7 +48,7 @@ export default {
 	},
 
 	button: {
-		radius: '3px',
+		borderRadius: '3px',
 
 		appearance: {
 			primary: {

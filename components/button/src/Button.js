@@ -20,7 +20,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 	const common = {
 		textDecoration: 'none',
 		border: '1px solid transparent',
-		borderRadius: theme.button.radius,
+		borderRadius: theme.button.borderRadius,
 		fontWeight: 400,
 		lineHeight: 1.5,
 		display: 'inline-flex',
