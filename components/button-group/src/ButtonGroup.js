@@ -2,7 +2,7 @@
 
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
 
 import { Button } from '../../button/src';
 
@@ -11,50 +11,65 @@ import { Button } from '../../button/src';
 // Utils
 // ==============================
 
-export const ButtonGroupButton = ({ appearance, size, soft, icon, children, ...props }) => (
-	<label
-		css={{
-			flex: 1,
+export const ButtonGroupButton = ({ appearance, size, icon, iconPosition, name, children, ...props }) => {
+	const theme = useTheme();
 
-			'&:not(:last-child) > button': {
-			  borderTopRightRadius: 0,
-			  borderBottomRightRadius: 0,
-			  borderRight: 'none',
-			},
-			'&:not(:first-of-type) > button': {
-			  borderTopLeftRadius: 0,
-			  borderBottomLeftRadius: 0,
-			}
-		}}
-		{...props}
-	>
-		<input
+	return (
+		<label
 			css={{
-				position: 'absolute',
-				zIndex: -1,
-				opacity: 0
+				flex: 1,
+
+				// Style internal borders
+				'&:not(:last-child) > .btn-group-btn': {
+				  borderTopRightRadius: 0,
+				  borderBottomRightRadius: 0,
+				  borderRight: 'none',
+				},
+				'&:not(:first-of-type) > .btn-group-btn': {
+				  borderTopLeftRadius: 0,
+				  borderBottomLeftRadius: 0,
+				}
 			}}
-			type="radio"
-			name=""
-		/>
-		<Button
-			appearance={appearance}
-			size={size}
-			soft={soft}
-			block={true}
-			icon={icon}
-			{...props}
 		>
-			{children}
-		</Button>
-	</label>
-);
+			<input
+				css={{
+					position: 'absolute',
+					zIndex: -1,
+					opacity: 0
+				}}
+				type="radio"
+				name={name}
+			/>
+			<Button
+				className="btn-group-btn"
+				css={{
+					// Active state styling
+					'input:checked + &': {
+						color: theme.button.appearance[appearance].default.color,
+						backgroundColor: theme.button.appearance[appearance].default.backgroundColor,
+						borderColor: theme.button.appearance[appearance].default.borderColor,
+					}
+				}}
+				tag="span"
+				appearance={appearance}
+				size={size}
+				soft={true}
+				block={true}
+				icon={icon}
+				iconPosition={iconPosition}
+				{...props}
+			>
+				{children}
+			</Button>
+		</label>
+	);
+};
 
 // ==============================
 // Component
 // ==============================
 
-export const ButtonGroup = ({ appearance, size, soft, block, children, ...props }) => {
+export const ButtonGroup = ({ appearance, size, block, icon, iconPosition, name, children, ...props }) => {
 
 	// Common styles
 	const common = {
@@ -63,9 +78,9 @@ export const ButtonGroup = ({ appearance, size, soft, block, children, ...props 
 		verticalAlign: 'middle'
 	};
 
-	// Pass selected props to children
-	const buttonGroupContent = Children.map(children, child => (
-		cloneElement(child, { appearance, size, soft, ...props, ...child.props })
+	// Pass these selected props on to children (that way button styling can be set by parent ButtonGroup)
+	const giftedChildren = Children.map(children, child => (
+		cloneElement(child, { appearance, size, block, icon, iconPosition, name, ...child.props })
 	));
 
 
@@ -74,7 +89,7 @@ export const ButtonGroup = ({ appearance, size, soft, block, children, ...props 
 			css={{ ...common }}
 			{...props}
 		>
-			{buttonGroupContent}
+			{giftedChildren}
 		</div>
 	);
 };
@@ -99,13 +114,6 @@ export const propTypes = {
 	 size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 
 	/**
-	 * Soft mode. Removes background colour and adjusts text colour.
-	 *
-	 * Defaults to "true"
-	 */
-	 soft: PropTypes.bool,
-
-	/**
 	 * Block mode.
 	 *
 	 * Defaults to "false"
@@ -113,15 +121,31 @@ export const propTypes = {
 	 block: PropTypes.bool,
 
 	/**
+	 * Button icon.
+	 */
+	 icon: PropTypes.func,
+
+	/**
+	 * Button icon positioning.
+	 *
+	 * Defaults to "right"
+	 */
+	 iconPosition: PropTypes.string,
+
+	/**
+	 * The button group input element’s name.
+	 */
+	 name: PropTypes.string.isRequired,
+
+	/**
 	 * The button content for this button group.
 	 */
-	 children: PropTypes.node,
+	 children: PropTypes.node.isRequired,
 };
 
 export const defaultProps = {
 	appearance: 'hero',
 	size: 'medium',
-	soft: true,
 	block: false,
 };
 

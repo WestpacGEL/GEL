@@ -5,8 +5,8 @@ import { ButtonGroup, ButtonGroupButton } from '../src';
 
 export default () => (
 	<>
-		<h3>Default instance (no props)</h3>
-		<ButtonGroup>
+		<h3>Default instance (no styling props)</h3>
+		<ButtonGroup name="example-default">
 			<ButtonGroupButton>Left</ButtonGroupButton>
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>
@@ -14,23 +14,8 @@ export default () => (
 
 		<hr />
 
-		<h3>Primary buttons</h3>
-		<ButtonGroup appearance="primary" size="small">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="primary" size="medium">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="primary" size="large">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="primary" size="xlarge">
+		<h3>Primary</h3>
+		<ButtonGroup appearance="primary" name="example-primary">
 			<ButtonGroupButton>Left</ButtonGroupButton>
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>
@@ -38,23 +23,8 @@ export default () => (
 
 		<hr />
 
-		<h3>Hero buttons</h3>
-		<ButtonGroup appearance="hero" size="small">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="hero" size="medium">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="hero" size="large">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="hero" size="xlarge">
+		<h3>Hero</h3>
+		<ButtonGroup appearance="hero" name="example-hero">
 			<ButtonGroupButton>Left</ButtonGroupButton>
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>
@@ -62,23 +32,8 @@ export default () => (
 
 		<hr />
 
-		<h3>Neutral buttons</h3>
-		<ButtonGroup appearance="neutral" size="small">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="neutral" size="medium">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="neutral" size="large">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="neutral" size="xlarge">
+		<h3>Neutral</h3>
+		<ButtonGroup appearance="neutral" name="example-neutral">
 			<ButtonGroupButton>Left</ButtonGroupButton>
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>
@@ -86,23 +41,8 @@ export default () => (
 
 		<hr />
 
-		<h3>Faint buttons</h3>
-		<ButtonGroup appearance="faint" size="small">
-			<ButtonGroupButton >Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="faint" size="medium">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="faint" size="large">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
-		</ButtonGroup>{' '}
-		<ButtonGroup appearance="faint" size="xlarge">
+		<h3>Faint</h3>
+		<ButtonGroup appearance="faint" name="example-faint">
 			<ButtonGroupButton>Left</ButtonGroupButton>
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>

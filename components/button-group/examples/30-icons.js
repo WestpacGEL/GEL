@@ -9,62 +9,61 @@ import { InfoIcon } from '../../icon/src';
 export default () => (
 	<>
 		<h3>Small</h3>
-		<ButtonGroup size="small">
-			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		<ButtonGroup size="small" icon={InfoIcon} name="example-small">
+			<ButtonGroupButton>Left</ButtonGroupButton>
+			<ButtonGroupButton>Middle</ButtonGroupButton>
+			<ButtonGroupButton>Right</ButtonGroupButton>
 		</ButtonGroup><br />
 		<br />
-		<ButtonGroup size="small" block>
-			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		<ButtonGroup size="small" block icon={InfoIcon} name="example-small-block">
+			<ButtonGroupButton>Left</ButtonGroupButton>
+			<ButtonGroupButton>Middle</ButtonGroupButton>
+			<ButtonGroupButton>Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
 		<h3>Medium</h3>
-		<ButtonGroup size="medium">
-			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		<ButtonGroup size="medium" icon={InfoIcon} name="example-medium">
+			<ButtonGroupButton>Left</ButtonGroupButton>
+			<ButtonGroupButton>Middle</ButtonGroupButton>
+			<ButtonGroupButton>Right</ButtonGroupButton>
 		</ButtonGroup><br />
 		<br />
-		<ButtonGroup size="medium" block>
-			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		<ButtonGroup size="medium" block icon={InfoIcon} name="example-medium-block">
+			<ButtonGroupButton>Left</ButtonGroupButton>
+			<ButtonGroupButton>Middle</ButtonGroupButton>
+			<ButtonGroupButton>Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
 		<h3>Large</h3>
-		<ButtonGroup size="large">
-			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		<ButtonGroup size="large" icon={InfoIcon} name="example-large">
+			<ButtonGroupButton>Left</ButtonGroupButton>
+			<ButtonGroupButton>Middle</ButtonGroupButton>
+			<ButtonGroupButton>Right</ButtonGroupButton>
 		</ButtonGroup><br />
 		<br />
-		<ButtonGroup size="large" block>
-			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		<ButtonGroup size="large" block icon={InfoIcon} name="example-large-block">
+			<ButtonGroupButton>Left</ButtonGroupButton>
+			<ButtonGroupButton>Middle</ButtonGroupButton>
+			<ButtonGroupButton>Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
 		<h3>Extra large</h3>
-		<ButtonGroup size="xlarge">
-			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		<ButtonGroup size="xlarge" icon={InfoIcon} name="example-xlarge">
+			<ButtonGroupButton>Left</ButtonGroupButton>
+			<ButtonGroupButton>Middle</ButtonGroupButton>
+			<ButtonGroupButton>Right</ButtonGroupButton>
 		</ButtonGroup><br />
 		<br />
-		<ButtonGroup size="xlarge" block>
-			<ButtonGroupButton icon={InfoIcon}>Left</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Middle</ButtonGroupButton>
-			<ButtonGroupButton icon={InfoIcon}>Right</ButtonGroupButton>
+		<ButtonGroup size="xlarge" block icon={InfoIcon} name="example-xlarge-block">
+			<ButtonGroupButton>Left</ButtonGroupButton>
+			<ButtonGroupButton>Middle</ButtonGroupButton>
+			<ButtonGroupButton>Right</ButtonGroupButton>
 		</ButtonGroup>
-
 	</>
 );
