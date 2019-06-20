@@ -97,6 +97,8 @@ export const propTypes = {
 
 	/**
 	 * The content for this badge.
+	 *
+	 * This prop is requried.
 	 */
 	 children: PropTypes.node.isRequired,
 };
