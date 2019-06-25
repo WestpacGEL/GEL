@@ -29,7 +29,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 		flex: 1,
 		flexDirection: iconPosition === 'left' ? 'row-reverse' : null,
 		textAlign: 'center',
-		justifyContent: 'center', //horizontal
+		justifyContent: justify ? 'space-between' : 'center', //horizontal
 		alignItems: 'center', //vertical
 		verticalAlign: 'middle',
 		whiteSpace: 'nowrap',
@@ -93,7 +93,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 	};
 
 	// Button size styling
-	const getStyleSize = (size) => ({
+	const getSizeStyling = (size) => ({
 		padding: theme.button.size[size].padding.join(' '), //provided as an array
 		fontSize: theme.button.size[size].fontSize,
 		height: theme.button.size[size].height,
@@ -104,15 +104,15 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 			let bp = mq[i];
 			return (
 				i === 0
-					? getStyleSize(s)
-					: { [bp]: getStyleSize(s) }
+					? getSizeStyling(s)
+					: { [bp]: getSizeStyling(s) }
 			);
 		})
 		// Size provided as string
-		: getStyleSize(size);
+		: getSizeStyling(size);
 
 	// Block styling
-	const getStyleBlock = (block) => {
+	const getBlockStyling = (block) => {
 		return block
 			// Block mode
 			? {
@@ -131,18 +131,16 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 			let bp = mq[i];
 			return (
 				i === 0
-					? getStyleBlock(b)
-					: { [bp]: getStyleBlock(b) }
+					? getBlockStyling(b)
+					: { [bp]: getBlockStyling(b) }
 			);
 		})
 		// Block provided as string
-		: getStyleBlock(block);
+		: getBlockStyling(block);
 
-
-	// Button style overrides
-	const styleOverrides = [
-		// Soft option
-		soft && {
+	// Button soft styling
+	const styleSoft = soft
+		? {
 			color: appearance === 'faint' ? theme.colors.muted : theme.colors.text,
 			backgroundColor: '#fff',
 
@@ -160,19 +158,17 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 					borderColor: theme.button.appearance[appearance].active.borderColor,
 				},
 			},
-		},
+		}
+		: {};
 
-		// Justify option
-		justify && {
-			justifyContent: 'space-between', //any content will be positioned against the inner edges
-		},
 
-		// Trim option
-		trim && {
+	// Button trim styling
+	const styleTrim = trim
+		? {
 			paddingLeft: 0,
 			paddingRight: 0,
-		},
-	];
+		}
+		: {};
 
 
 	if (props.href && Tag === 'button') {
@@ -197,11 +193,26 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
   		</>
   	: null;
 
+  console.log(styleBlock);
+
 
 	return (
 		<Tag
 			type={(Tag === 'button' && props.onClick) ? 'button' : undefined}
-			css={[styleCommon, styleAppearance, styleSize, styleBlock, styleOverrides]}
+			css={[
+				{
+					...styleCommon,
+					...styleAppearance,
+
+					// Overrides (must be spread last)
+					...styleSoft,
+					...styleTrim
+				},
+
+				// Responsive styles (potentially set via array value prop) can't be spread as they may be arrays
+				styleSize,
+				styleBlock
+			]}
 			{...props}
 			onClick={onClick}
 		>
