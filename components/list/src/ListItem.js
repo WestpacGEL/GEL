@@ -4,32 +4,22 @@ import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, css, useTheme } from '@westpac/core';
 import { List } from './List';
-import { ArrowRightIcon, TickIcon } from '../../icon/src';
 
 // ==============================
 // Utils
 // ==============================
-
 // ==============================
 // Component
 // ==============================
-// const common = {}
-// const styles = {}
-// css={{ ...common, ...styles[appearance] }}
-
-// should have appearance prop to change the icon type
-// separate icon prop to pass in the custom icon
-
-// questions
-//
 
 // need to handle key prop thing
-export const ListItem = ({ appearance, color, children, ...props }) => {
+export const ListItem = ({ appearance, color, children, icon: Icon, iconColor, ...props }) => {
 	const childrenWithProps = Children.map(children, child =>
 		child && child.type && child.type === List ? cloneElement(child, { appearance, color }) : child
 	);
 
 	const theme = useTheme();
+
 	const common = {
 		margin: '6px 0',
 		display: 'block',
@@ -56,18 +46,58 @@ export const ListItem = ({ appearance, color, children, ...props }) => {
 				backgroundColor: 'transparent',
 			},
 		},
-	};
+		link: {
+			'&::after': {
+				content: '""',
+				position: 'absolute',
+				left: '0',
+				top: '4px',
+				display: 'block',
+				width: '8px',
+				height: '8px',
+				border: `solid ${theme.colors[color].default || theme.colors[color]}`, //probably need to use a set color?
+				borderWidth: '1.5px 1.5px 0 0',
+				transform: 'rotate(45deg)',
+			},
+		},
+		tick: {
+			'&::after': {
+				content: '""',
+				position: 'absolute',
+				left: '0',
+				top: '4px',
+				display: 'block',
+				width: '14px',
+				height: '6px',
+				border: `solid ${theme.colors[color].default || theme.colors[color]}`, //probably need to use a set color?
+				borderWidth: '0 0 1.5px 1.5px',
+				borderTopColor: 'transparent',
+				transform: 'rotate(-54deg)',
+			},
+		},
+		unstyled: {
+			paddingLeft: 0,
 
-	const Icon = () =>
-		appearance === 'link' ? (
-			<ArrowRightIcon size="small" color={theme.colors.primary.default} />
-		) : appearance === 'tick' ? (
-			<TickIcon size="small" />
-		) : null;
+			li: {
+				paddingLeft: '19px',
+			},
+		},
+		icon: {
+			paddingLeft: 0,
+
+			li: {
+				paddingLeft: '19px',
+			},
+		},
+	};
 
 	return (
 		<li css={{ ...common, ...styles[appearance] }}>
-			<Icon />
+			{appearance === 'icon' && (
+				<span css={{ paddingRight: '5px' }}>
+					<Icon size="small" color={iconColor || theme.colors.primary.default} />
+				</span>
+			)}
 			{childrenWithProps}
 		</li>
 	);
@@ -82,6 +112,5 @@ export const ListItem = ({ appearance, color, children, ...props }) => {
 // ==============================
 /* 
 Naming convention
-appeareance??
 
 */
