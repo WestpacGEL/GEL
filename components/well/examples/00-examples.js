@@ -5,7 +5,7 @@ import { Well } from '../src';
 export default () => (
 	<>
 		<h3>Default</h3>
-		<Well>Look, I'm in a well</Well>
+		<Well>Look, I'm in a well.</Well>
 
 		<hr />
 
