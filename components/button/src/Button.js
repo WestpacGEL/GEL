@@ -99,29 +99,27 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 		height: theme.button.size[size].height,
 	});
 	const styleSize = Array.isArray(size)
-		? [
-			// XS
-			getStyleSize(size[0]),
-
-			// SM+
-			size.map((s, i) => {
-				if (i>0) {
-					let bp = mq[i];
-					return {
-						[bp]: getStyleSize(s)
-					};
-				}
-			})
-		]
+		// Size provided as an array
+		size.map((size, i) => {
+			let bp = mq[i];
+			return (
+				i === 0
+					? getStyleSize(size)
+					: { [bp]: getStyleSize(size) }
+			);
+		})
+		// Size provided as string
 		: getStyleSize(size);
 
 	// Block styling
 	const getStyleBlock = (block) => {
 		return block
+			// Block mode
 			? {
 				display: 'flex', //flex will provide 'block-level' appearance (we use flex so any icon children can be positioned appropriately)
 				width: '100%',
 			}
+			// Inline mode
 			: {
 				display: 'inline-flex',
 				width: 'auto' //reset
@@ -134,9 +132,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 			return (
 				i === 0
 					? getStyleBlock(block)
-					: {
-						[bp]: getStyleBlock(block)
-					}
+					: { [bp]: getStyleBlock(block) }
 			);
 		})
 		// Block provided as string
