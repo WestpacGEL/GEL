@@ -97,6 +97,10 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 		padding: theme.button.size[size].padding.join(' '), //provided as an array
 		fontSize: theme.button.size[size].fontSize,
 		height: theme.button.size[size].height,
+
+		// Overrides
+		paddingLeft: trim ? 0 : null,
+		paddingRight: trim ? 0 : null,
 	});
 	const styleSize = Array.isArray(size)
 		// Size provided as an array
@@ -162,15 +166,6 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 		: {};
 
 
-	// Button trim styling
-	const styleTrim = trim
-		? {
-			paddingLeft: 0,
-			paddingRight: 0,
-		}
-		: {};
-
-
 	if (props.href && Tag === 'button') {
     Tag = 'a';
   }
@@ -193,8 +188,6 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
   		</>
   	: null;
 
-  console.log(styleBlock);
-
 
 	return (
 		<Tag
@@ -205,10 +198,8 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 					...styleAppearance,
 
 					// Overrides (must be spread last)
-					...styleSoft,
-					...styleTrim
+					...styleSoft
 				},
-
 				// Responsive styles (potentially set via array value prop) can't be spread as they may be arrays
 				styleSize,
 				styleBlock
