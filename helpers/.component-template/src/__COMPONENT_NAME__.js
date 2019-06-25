@@ -8,7 +8,11 @@ import { jsx, useTheme } from '@westpac/core';
  * __COMPONENT_TITLE__: __COMPONENT_DESCRIPTION__
  */
 export const __COMPONENT_NAME__ = ({ ...props }) => {
-	return <div css={{}} {...props} />;
+	return (
+		<div css={{}} {...props}>
+			__COMPONENT_NAME__
+		</div>
+	);
 };
 
 // ==============================
