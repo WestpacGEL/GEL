@@ -100,12 +100,12 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 	});
 	const styleSize = Array.isArray(size)
 		// Size provided as an array
-		size.map((size, i) => {
+		? size.map((s, i) => {
 			let bp = mq[i];
 			return (
 				i === 0
-					? getStyleSize(size)
-					: { [bp]: getStyleSize(size) }
+					? getStyleSize(s)
+					: { [bp]: getStyleSize(s) }
 			);
 		})
 		// Size provided as string
@@ -127,12 +127,12 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 	};
 	const styleBlock = Array.isArray(block)
 		// Block provided as an array
-		? block.map((block, i) => {
+		? block.map((b, i) => {
 			let bp = mq[i];
 			return (
 				i === 0
-					? getStyleBlock(block)
-					: { [bp]: getStyleBlock(block) }
+					? getStyleBlock(b)
+					: { [bp]: getStyleBlock(b) }
 			);
 		})
 		// Block provided as string
