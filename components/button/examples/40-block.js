@@ -2,6 +2,11 @@ import React from 'react';
 
 import { Button } from '../src';
 
+const blocks = [
+	[true, false, true, false],
+	[true, false],
+];
+
 export default () => (
 	<>
 		<h3>Default buttons</h3>
@@ -33,5 +38,14 @@ export default () => (
 		<p>
 			<Button appearance="faint" size="small" soft block>Faint small soft block button</Button>
 		</p>
+
+		<hr />
+
+		<h3>Responsive block</h3>
+		{blocks.map((b, i) => (
+			<p key={i}>
+				<Button appearance="primary" size="xlarge" block={b}>{b.join(', ')}</Button>
+			</p>
+		))}
 	</>
 );

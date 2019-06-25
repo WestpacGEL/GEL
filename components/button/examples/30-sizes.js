@@ -2,6 +2,11 @@ import React from 'react';
 
 import { Button } from '../src';
 
+const sizes = [
+	['small', 'medium', 'large', 'xlarge'],
+	['large', 'medium']
+];
+
 export default () => (
 	<>
 		<h3>Small</h3>
@@ -45,5 +50,14 @@ export default () => (
 			<Button appearance="faint" size="xlarge">Faint</Button>{' '}
 			<Button appearance="link" size="xlarge">Link</Button>
 		</p>
+
+		<hr />
+
+		<h3>Responsive sizing</h3>
+		{sizes.map((s, i) => (
+			<p key={i}>
+				<Button appearance="primary" size={s}>{s.join(', ')}</Button>
+			</p>
+		))}
 	</>
 );
