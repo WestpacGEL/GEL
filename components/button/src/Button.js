@@ -71,16 +71,37 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 
 	// Button appearance styling
 	const styleAppearance = {
-		// Default
-		color: theme.button.appearance[appearance].default.color,
-		backgroundColor: theme.button.appearance[appearance].default.backgroundColor,
+		color: soft
+			// Soft option
+			? appearance === 'faint'
+				? theme.colors.muted
+				: theme.colors.text
+			// Default
+			: theme.button.appearance[appearance].default.color,
+		backgroundColor: soft
+			// Soft
+			? '#fff'
+			// Default
+			: theme.button.appearance[appearance].default.backgroundColor,
 		borderColor: theme.button.appearance[appearance].default.borderColor,
 
 		'&:not(.disabled):not(:disabled)': {
 			// Hover state
 			'&:hover': {
-				color: theme.button.appearance[appearance].hover.color,
-				backgroundColor: theme.button.appearance[appearance].hover.backgroundColor,
+				color: soft
+					// Soft
+					? appearance !== 'faint'
+						? '#fff'
+						: theme.button.appearance[appearance].hover.color
+					// Default
+					: theme.button.appearance[appearance].hover.color,
+				backgroundColor: soft
+					// Soft
+					? appearance === 'faint'
+						? theme.colors.light
+						: theme.button.appearance[appearance].hover.backgroundColor
+					// Default
+					: theme.button.appearance[appearance].hover.backgroundColor,
 				borderColor: theme.button.appearance[appearance].hover.borderColor,
 			},
 			// Active state
@@ -112,8 +133,8 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 					: { [bp]: getSizeStyling(s) }
 			);
 		})
-		// Size provided as string
-		: getSizeStyling(size);
+		// Size prop provided a string, returned as single index array
+		: [ getSizeStyling(size) ];
 
 	// Block styling
 	const getBlockStyling = (block) => {
@@ -139,31 +160,8 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 					: { [bp]: getBlockStyling(b) }
 			);
 		})
-		// Block provided as string
-		: getBlockStyling(block);
-
-	// Button soft styling
-	const styleSoft = soft
-		? {
-			color: appearance === 'faint' ? theme.colors.muted : theme.colors.text,
-			backgroundColor: '#fff',
-
-			'&:not(.disabled):not(:disabled)': {
-				// Hover state
-				// (nb. custom 'faint' hover styling)
-				'&:hover': {
-					color: appearance !== 'faint' && '#fff',
-					backgroundColor: appearance === 'faint' && theme.colors.light,
-				},
-				// Active state (re-implement non-soft button’s active styling)
-				'&:active, &.active': {
-					color: theme.button.appearance[appearance].active.color,
-					backgroundColor: theme.button.appearance[appearance].active.backgroundColor,
-					borderColor: theme.button.appearance[appearance].active.borderColor,
-				},
-			},
-		}
-		: {};
+		// Block prop provided a string, returned as single index array
+		: [ getBlockStyling(block) ];
 
 
 	if (props.href && Tag === 'button') {
@@ -195,12 +193,9 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 			css={[
 				{
 					...styleCommon,
-					...styleAppearance,
-
-					// Overrides (must be spread last)
-					...styleSoft
+					...styleAppearance
 				},
-				// Responsive styles (potentially set via array value prop) can't be spread as they may be arrays
+				// Responsive styles (arrays), potentially set via array value prop
 				styleSize,
 				styleBlock
 			]}
