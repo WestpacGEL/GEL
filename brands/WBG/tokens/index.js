@@ -20,6 +20,9 @@ const COLORS = {
 
 const BREAK_POINTS = { xs: 576, sm: 768, md: 992, lg: 1200 };
 
+const CONTAINER_MAXWIDTH = 1320;
+const CONTAINER_PADDING = [12, 36, 48, 60];
+
 export default {
 	breakpoints: BREAK_POINTS,
 	colors: {
@@ -35,6 +38,13 @@ export default {
 	},
 	type: {},
 	spacing: {},
+
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING
+		}
+	},
 
 	button: {
 		borderRadius: '3px',
@@ -147,6 +157,32 @@ export default {
 				padding: ['9px', '18px', '10px'],
 				fontSize: '18px',
 				height: '48px',
+			}
+		}
+	},
+
+	table: {
+		th: {
+			borderColor: COLORS.hero,
+			color: COLORS.text,
+		},
+		tr: {
+			hover: {
+				backgroundColor: COLORS.background,
+			}
+		},
+		appearance: {
+			striped: {
+				backgroundColor: COLORS.light,
+			},
+			highlight: {
+				borderColor: COLORS.primary,
+			},
+			bordered: {
+				borderColor: COLORS.border
+			},
+			responsive: {
+				borderColor: COLORS.border
 			}
 		}
 	},

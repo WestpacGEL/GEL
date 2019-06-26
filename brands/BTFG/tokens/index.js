@@ -162,6 +162,32 @@ export default {
 		}
 	},
 
+	table: {
+		th: {
+			borderColor: COLORS.hero,
+			color: COLORS.text,
+		},
+		tr: {
+			hover: {
+				backgroundColor: COLORS.background,
+			}
+		},
+		appearance: {
+			striped: {
+				backgroundColor: COLORS.light,
+			},
+			highlight: {
+				borderColor: COLORS.primary,
+			},
+			bordered: {
+				borderColor: COLORS.border
+			},
+			responsive: {
+				borderColor: COLORS.border
+			}
+		}
+	},
+
 	well: {
 		borderRadius: '3px',
 		backgroundColor: COLORS.light,
