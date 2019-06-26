@@ -195,7 +195,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 					...styleCommon,
 					...styleAppearance
 				},
-				// Responsive styles (arrays), potentially set via array value prop
+				// Responsive styles (as arrays), cannot be spread
 				styleSize,
 				styleBlock
 			]}
