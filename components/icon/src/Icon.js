@@ -35,14 +35,14 @@ const Wrapper = ({ color, size, ...props }) => (
 // Component
 // ==============================
 
-export const Icon = ({ children, color, label, size }) => {
+export const Icon = ({ children, color, label, size, ...props }) => {
 	const sizeInt = getSizeInt(size);
 
 	// TODO Investigate:
 	// I suspect that using the style attribute to apply the color property will
 	// improve CSS reuse.
 	return (
-		<Wrapper color={color} size={sizeInt} style={{ color }}>
+		<Wrapper color={color} size={sizeInt} style={{ color }} {...props}>
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"
