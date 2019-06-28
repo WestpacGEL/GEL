@@ -119,5 +119,3 @@ export const Alert = ({ type, ...props }) => {
 Alert.defaultProps = {
 	type: 'AlertText',
 };
-
-// test
