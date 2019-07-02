@@ -1,0 +1,3 @@
+# @westpac/**COMPONENT_KEY**
+
+**COMPONENT_DESCRIPTION**
