@@ -18,11 +18,17 @@ const styleAppearance = appearance => {
 	const theme = useTheme();
 	return css({
 		color: theme.colors[appearance],
+		display: 'flex',
+		alignItems: 'center',
 
 		'& > .icon': {
 			marginRight: '6px',
 			marginTop: '1px',
 			float: 'left',
+		},
+
+		'& > .icon-alert': {
+			marginRight: '4px',
 		},
 
 		a: {
@@ -37,6 +43,7 @@ const styleBox = appearance => {
 		backgroundColor: Color('white')
 			.mix(Color(theme.colors[appearance]), 0.1)
 			.hex(),
+		display: 'block',
 		position: 'relative',
 		marginBottom: '21px',
 		zIndex: '1',
@@ -88,7 +95,7 @@ const AlertBox = ({ appearance, icon: Icon, children }) => {
 					css={[styleAppearance(appearance), styleBox(appearance), styleOverrides]}
 					className={appearance === 'system' ? 'system' : ''}
 				>
-					{Icon && <Icon size="small" className="icon" />}
+					{Icon && <Icon size="small" className="icon icon-alert" />}
 					<div className="alert-body">{children}</div>
 					{Icon && (
 						<button onClick={() => setOpen(false)}>
@@ -104,7 +111,7 @@ const AlertBox = ({ appearance, icon: Icon, children }) => {
 const AlertText = ({ appearance, icon: Icon, iconSize, children, as: As }) => {
 	return (
 		<As css={styleAppearance(appearance)}>
-			{Icon && <Icon size={iconSize} />} {children}
+			{Icon && <Icon size={iconSize} className="icon-alert" />} {children}
 		</As>
 	);
 };
