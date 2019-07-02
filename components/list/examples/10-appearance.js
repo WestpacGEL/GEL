@@ -38,5 +38,20 @@ export default () => (
 			</ListItem>
 			<ListItem>Unstyled list</ListItem>
 		</List>
+		<hr />
+		<h3>Large</h3>
+		<List size="large">
+			{listGenerator('Large list', 3)}
+			<ListItem>
+				Large list
+				<List>
+					{listGenerator('Large list', 3)}
+					<ListItem>
+						Large list<List>{listGenerator('Large list', 3)}</List>
+					</ListItem>
+				</List>
+			</ListItem>
+			<ListItem>Large list</ListItem>
+		</List>
 	</>
 );
