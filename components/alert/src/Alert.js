@@ -101,11 +101,11 @@ const AlertBox = ({ appearance, icon: Icon, children }) => {
 	);
 };
 
-const AlertText = ({ appearance, icon: Icon, iconSize, children }) => {
+const AlertText = ({ appearance, icon: Icon, iconSize, children, as: As }) => {
 	return (
-		<p css={styleAppearance(appearance)}>
+		<As css={styleAppearance(appearance)}>
 			{Icon && <Icon size={iconSize} />} {children}
-		</p>
+		</As>
 	);
 };
 
@@ -118,4 +118,5 @@ export const Alert = ({ type, ...props }) => {
 // ==============================
 Alert.defaultProps = {
 	type: 'AlertText',
+	as: 'div',
 };
