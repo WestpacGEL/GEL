@@ -23,7 +23,6 @@ export default () => (
 			</ListItem>
 			<ListItem>Styled bullet list - primary</ListItem>
 		</List>
-		{/* Replace the HRsssss */}
 		<hr />
 		<List color="hero">
 			{exampleList}
