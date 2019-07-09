@@ -33,4 +33,48 @@ export default {
 	},
 	type: {},
 	spacing: {},
+
+	panel: {
+		backgroundColor: '#fff',
+		borderWidth: 1,
+		borderRadius: 3,
+		appearance: {
+			hero: {
+				borderColor: COLORS.hero,
+			},
+			faint: {
+				borderColor: COLORS.border
+			},
+		},
+		header: {
+			padding: {
+				default: '10px 12px',
+				responsive: ['10px 12px', '10px 24px'],
+			},
+			appearance: {
+				hero: {
+					color: '#fff',
+					backgroundColor: COLORS.hero,
+				},
+				faint: {
+					color: COLORS.text,
+					backgroundColor: COLORS.background
+				},
+			},
+		},
+		body: {
+			padding: {
+				default: '12px',
+				responsive: ['12', '24'],
+			}
+		},
+		footer: {
+			padding: {
+				default: '10px 12px',
+				responsive: ['10px 12px', '10px 24px'],
+			},
+			backgroundColor: COLORS.light,
+			borderColor: COLORS.border,
+		}
+	},
 };
