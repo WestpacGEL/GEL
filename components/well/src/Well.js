@@ -9,7 +9,6 @@ import { paint } from './utils';
 // Utils
 // ==============================
 
-
 // ==============================
 // Component
 // ==============================
@@ -30,17 +29,10 @@ export const Well = ({ responsive, ...props }) => {
 		'& &': {
 			backgroundColor: '#fff',
 			margin: '12px 0',
-		}
+		},
 	};
 
-	return (
-		<div
-			css={arrayValues(
-				common
-			)}
-			{...props}
-		/>
-	);
+	return <div css={arrayValues(common)} {...props} />;
 };
 
 // ==============================
@@ -57,7 +49,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
-	responsive: false
+	responsive: false,
 };
 
 Well.propTypes = propTypes;

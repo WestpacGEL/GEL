@@ -8,12 +8,24 @@ export default () => (
 			<caption>Interest paid monthly</caption>
 			<thead>
 				<tr>
-					<th scope="col" className="col-sm-2">Term</th>
-					<th scope="col" className="col-sm-2">$5,000 - $10,000</th>
-					<th scope="col" className="col-sm-2">$10,000 - $20,000</th>
-					<th scope="col" className="col-sm-2">$20,000 - $50,000</th>
-					<th scope="col" className="col-sm-2">$50,000 - $100,000</th>
-					<th scope="col" className="col-sm-2">$100,000 - $250,000</th>
+					<th scope="col" className="col-sm-2">
+						Term
+					</th>
+					<th scope="col" className="col-sm-2">
+						$5,000 - $10,000
+					</th>
+					<th scope="col" className="col-sm-2">
+						$10,000 - $20,000
+					</th>
+					<th scope="col" className="col-sm-2">
+						$20,000 - $50,000
+					</th>
+					<th scope="col" className="col-sm-2">
+						$50,000 - $100,000
+					</th>
+					<th scope="col" className="col-sm-2">
+						$100,000 - $250,000
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -67,7 +79,8 @@ export default () => (
 				</tr>
 				<tr>
 					<th scope="row">7-8 months</th>
-					<td>2.55%</td><td>2.55%</td>
+					<td>2.55%</td>
+					<td>2.55%</td>
 					<td>2.55%</td>
 					<td>2.55%</td>
 					<td>2.55%</td>
@@ -83,9 +96,7 @@ export default () => (
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colSpan="6">
-						Footer goes here and should colSpan all columns
-					</td>
+					<td colSpan="6">Footer goes here and should colSpan all columns</td>
 				</tr>
 			</tfoot>
 		</Table>

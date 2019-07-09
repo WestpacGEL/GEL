@@ -8,7 +8,6 @@ import { jsx, useTheme } from '@westpac/core';
 // Utils
 // ==============================
 
-
 // ==============================
 // Component
 // ==============================
@@ -22,12 +21,7 @@ export const __COMPONENT_NAME__ = ({ ...props }) => {
 	// Common styles
 	const common = {};
 
-	return (
-		<div
-			css={[common]}
-			{...props}
-		/>
-	);
+	return <div css={[common]} {...props} />;
 };
 
 // ==============================

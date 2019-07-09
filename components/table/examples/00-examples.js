@@ -49,9 +49,7 @@ export default () => (
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colSpan="3">
-						Footer goes here and should colSpan all columns
-					</td>
+					<td colSpan="3">Footer goes here and should colSpan all columns</td>
 				</tr>
 			</tfoot>
 		</Table>

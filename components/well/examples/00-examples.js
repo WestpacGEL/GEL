@@ -12,10 +12,7 @@ export default () => (
 		<h3>Nested</h3>
 		<Well>
 			I am outside
-
-			<Well>
-				I am inside
-			</Well>
+			<Well>I am inside</Well>
 		</Well>
 
 		<hr />

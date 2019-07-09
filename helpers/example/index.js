@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-do
 import { Global, css, jsx } from '@emotion/core';
 import { Container } from '../../components/grid';
 
-
 import { GEL } from '../../components/core';
 import bomBrand from '../../brands/BOM';
 import bsaBrand from '../../brands/BSA';

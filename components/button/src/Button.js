@@ -9,12 +9,24 @@ import { mediaqueries } from './utils';
 // Utils
 // ==============================
 
-
 // ==============================
 // Component
 // ==============================
 
-export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPosition, justify, children, tag: Tag, onClick, ...props }) => {
+export const Button = ({
+	appearance,
+	size,
+	soft,
+	block,
+	trim,
+	icon: Icon,
+	iconPosition,
+	justify,
+	children,
+	tag: Tag,
+	onClick,
+	...props
+}) => {
 	const theme = useTheme();
 	const mq = mediaqueries(theme.breakpoints);
 
@@ -52,7 +64,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 		},
 		// A hyperlink that’s disabled or inside a disabled fieldset
 		'a&.disabled, fieldset[disabled] a&': {
-			pointerEvents: 'none'
+			pointerEvents: 'none',
 		},
 
 		// Button text flex child (always `<span>` wrapped)
@@ -72,36 +84,36 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 	// Button appearance styling
 	const styleAppearance = {
 		color: soft
-			// Soft option
-			? appearance === 'faint'
+			? // Soft option
+			  appearance === 'faint'
 				? theme.colors.muted
 				: theme.colors.text
-			// Default
-			: theme.button.appearance[appearance].default.color,
+			: // Default
+			  theme.button.appearance[appearance].default.color,
 		backgroundColor: soft
-			// Soft
-			? '#fff'
-			// Default
-			: theme.button.appearance[appearance].default.backgroundColor,
+			? // Soft
+			  '#fff'
+			: // Default
+			  theme.button.appearance[appearance].default.backgroundColor,
 		borderColor: theme.button.appearance[appearance].default.borderColor,
 
 		'&:not(.disabled):not(:disabled)': {
 			// Hover state
 			'&:hover': {
 				color: soft
-					// Soft
-					? appearance !== 'faint'
+					? // Soft
+					  appearance !== 'faint'
 						? '#fff'
 						: theme.button.appearance[appearance].hover.color
-					// Default
-					: theme.button.appearance[appearance].hover.color,
+					: // Default
+					  theme.button.appearance[appearance].hover.color,
 				backgroundColor: soft
-					// Soft
-					? appearance === 'faint'
+					? // Soft
+					  appearance === 'faint'
 						? theme.colors.light
 						: theme.button.appearance[appearance].hover.backgroundColor
-					// Default
-					: theme.button.appearance[appearance].hover.backgroundColor,
+					: // Default
+					  theme.button.appearance[appearance].hover.backgroundColor,
 				borderColor: theme.button.appearance[appearance].hover.borderColor,
 			},
 			// Active state
@@ -114,7 +126,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 	};
 
 	// Button size styling
-	const getSizeStyling = (size) => ({
+	const getSizeStyling = size => ({
 		padding: theme.button.size[size].padding.join(' '), //provided as an array
 		fontSize: theme.button.size[size].fontSize,
 		height: theme.button.size[size].height,
@@ -124,80 +136,70 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 		paddingRight: trim ? 0 : null,
 	});
 	const styleSize = Array.isArray(size)
-		// Size provided as an array
-		? size.map((s, i) => {
-			let bp = mq[i];
-			return (
-				i === 0
-					? getSizeStyling(s)
-					: { [bp]: getSizeStyling(s) }
-			);
-		})
-		// Size prop provided a string, returned as single index array
-		: [ getSizeStyling(size) ];
+		? // Size provided as an array
+		  size.map((s, i) => {
+				let bp = mq[i];
+				return i === 0 ? getSizeStyling(s) : { [bp]: getSizeStyling(s) };
+		  })
+		: // Size prop provided a string, returned as single index array
+		  [getSizeStyling(size)];
 
 	// Block styling
-	const getBlockStyling = (block) => {
+	const getBlockStyling = block => {
 		return block
-			// Block mode
-			? {
-				display: 'flex', //flex will provide 'block-level' appearance (we use flex so any icon children can be positioned appropriately)
-				width: '100%',
-			}
-			// Inline mode
-			: {
-				display: 'inline-flex',
-				width: 'auto' //reset
-			}
+			? // Block mode
+			  {
+					display: 'flex', //flex will provide 'block-level' appearance (we use flex so any icon children can be positioned appropriately)
+					width: '100%',
+			  }
+			: // Inline mode
+			  {
+					display: 'inline-flex',
+					width: 'auto', //reset
+			  };
 	};
 	const styleBlock = Array.isArray(block)
-		// Block provided as an array
-		? block.map((b, i) => {
-			let bp = mq[i];
-			return (
-				i === 0
-					? getBlockStyling(b)
-					: { [bp]: getBlockStyling(b) }
-			);
-		})
-		// Block prop provided a string, returned as single index array
-		: [ getBlockStyling(block) ];
-
+		? // Block provided as an array
+		  block.map((b, i) => {
+				let bp = mq[i];
+				return i === 0 ? getBlockStyling(b) : { [bp]: getBlockStyling(b) };
+		  })
+		: // Block prop provided a string, returned as single index array
+		  [getBlockStyling(block)];
 
 	if (props.href && Tag === 'button') {
-    Tag = 'a';
-  }
+		Tag = 'a';
+	}
 
-
-  // Map button size to icon size
-  const iconSize = {
-  	small: 'small', //18px
-  	medium: 'small', //18px
-  	large: 'medium', //24px
-  	xlarge: 'medium', //24px
-  };
+	// Map button size to icon size
+	const iconSize = {
+		small: 'small', //18px
+		medium: 'small', //18px
+		large: 'medium', //24px
+		xlarge: 'medium', //24px
+	};
 
 	// Compose a button text + icon fragment, if either of these items are provided
 	// (nb. `<input>` elements cannot have children; they would use a `value` prop)
-  const buttonContent = Tag !== 'input'
-  	? <>
-  			{children && <span className="btn-text">{children}</span>}
-  			{Icon && <Icon className="btn-icon" size={iconSize[size]} />}
-  		</>
-  	: null;
-
+	const buttonContent =
+		Tag !== 'input' ? (
+			<>
+				{children && <span className="btn-text">{children}</span>}
+				{Icon && <Icon className="btn-icon" size={iconSize[size]} />}
+			</>
+		) : null;
 
 	return (
 		<Tag
-			type={(Tag === 'button' && props.onClick) ? 'button' : undefined}
+			type={Tag === 'button' && props.onClick ? 'button' : undefined}
 			css={[
 				{
 					...styleCommon,
-					...styleAppearance
+					...styleAppearance,
 				},
 				// Responsive styles (as arrays), cannot be spread
 				styleSize,
-				styleBlock
+				styleBlock,
 			]}
 			{...props}
 			onClick={onClick}
@@ -214,7 +216,7 @@ export const Button = ({ appearance, size, soft, block, trim, icon: Icon, iconPo
 const options = {
 	appearance: ['primary', 'hero', 'neutral', 'faint', 'link'],
 	size: ['small', 'medium', 'large', 'xlarge'],
-	iconPosition: ['left', 'right']
+	iconPosition: ['left', 'right'],
 };
 
 export const propTypes = {
@@ -223,71 +225,74 @@ export const propTypes = {
 	 *
 	 * Defaults to "primary"
 	 */
-	 appearance: PropTypes.oneOf(options.appearance),
+	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
 	 * The button size.
 	 *
 	 * Defaults to "medium"
 	 */
-	 size: PropTypes.oneOfType([PropTypes.oneOf(options.size), PropTypes.arrayOf(PropTypes.oneOf(options.size))]),
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(options.size),
+		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
+	]),
 
 	/**
 	 * The button tag.
 	 *
 	 * Defaults to "button"
 	 */
-	 tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
 	 * Soft mode. Removes background colour and adjusts text colour.
 	 *
 	 * Defaults to "false"
 	 */
-	 soft: PropTypes.bool,
+	soft: PropTypes.bool,
 
 	/**
 	 * Block mode.
 	 *
 	 * Defaults to "false"
 	 */
-	 block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
 	 * Trim mode. Removes horizontal padding.
 	 *
 	 * Defaults to "false"
 	 */
-	 trim: PropTypes.bool,
+	trim: PropTypes.bool,
 
 	/**
 	 * Button icon.
 	 */
-	 icon: PropTypes.func,
+	icon: PropTypes.func,
 
 	/**
 	 * Button icon positioning.
 	 *
 	 * Defaults to "right"
 	 */
-	 iconPosition: PropTypes.oneOf(options.iconPosition),
+	iconPosition: PropTypes.oneOf(options.iconPosition),
 
 	/**
 	 * Button content alignment.
 	 *
 	 * Defaults to "false"
 	 */
-	 justify: PropTypes.bool,
+	justify: PropTypes.bool,
 
 	/**
 	 * The content for this button.
 	 */
-	 children: PropTypes.node,
+	children: PropTypes.node,
 
 	/**
 	 * The onClick handler for this button.
 	 */
-	 onClick: PropTypes.func,
+	onClick: PropTypes.func,
 };
 
 export const defaultProps = {
@@ -298,7 +303,7 @@ export const defaultProps = {
 	block: false,
 	trim: false,
 	iconPosition: 'right',
-	justify: false
+	justify: false,
 };
 
 Button.propTypes = propTypes;

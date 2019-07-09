@@ -28,15 +28,15 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 				marginBottom: 0,
 				border: bordered ? 'none' : null,
 
-				'caption': {
+				caption: {
 					padding: '12px',
 				},
 				'tbody, tfoot': {
 					'tr:last-child': {
 						'th, td': {
 							borderBottom: bordered ? 'none' : null,
-						}
-					}
+						},
+					},
 				},
 				'th, td': {
 					whiteSpace: 'nowrap',
@@ -47,16 +47,12 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 					'&:last-child': {
 						borderRight: bordered ? 'none' : null,
 					},
-				}
-			}
-		}
+				},
+			},
+		},
 	};
 
-	return responsive
-		? <div css={{ ...styleCommon }}>
-				{children}
-			</div>
-		: children;
+	return responsive ? <div css={{ ...styleCommon }}>{children}</div> : children;
 };
 
 // ==============================
@@ -74,7 +70,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 		backgroundColor: '#fff',
 		borderCollapse: 'collapse',
 
-		'caption': {
+		caption: {
 			fontWeight: '300',
 			fontSize: '18px',
 			textAlign: 'left',
@@ -106,8 +102,8 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 			'> th.table-highlight, > td.table-highlight': {
 				'+ th.table-highlight, + td.table-highlight': {
 					borderLeft: 'none',
-				}
-			}
+				},
+			},
 		},
 
 		// All cells
@@ -122,17 +118,17 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 		// All child cells in the thead
 		'thead > tr': {
 			'th, td': {
-				borderTop: !bordered && 'none' ,
+				borderTop: !bordered && 'none',
 			},
 		},
 		// All child cells in the tfoot
 		'tfoot > tr': {
 			'th, td': {
-				borderBottom: !bordered && 'none' ,
+				borderBottom: !bordered && 'none',
 			},
 		},
 		// All `th` cells
-		'th': {
+		th: {
 			textAlign: 'left',
 			verticalAlign: 'bottom',
 			borderBottom: `solid ${theme.table.th.borderColor}`,
@@ -141,7 +137,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 			color: theme.table.th.color,
 		},
 
-		'tfoot': {
+		tfoot: {
 			color: theme.colors.muted,
 		},
 		// Adjacent `tbody` elements
@@ -150,18 +146,9 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 		},
 	};
 
-
-
 	return (
-		<TableWrapper
-			bordered={bordered}
-			responsive={responsive}
-			{...props}
-		>
-			<table
-				css={{ ...styleCommon }}
-				{...props}
-			/>
+		<TableWrapper bordered={bordered} responsive={responsive} {...props}>
+			<table css={{ ...styleCommon }} {...props} />
 		</TableWrapper>
 	);
 };
@@ -196,7 +183,7 @@ export const propTypes = {
 export const defaultProps = {
 	striped: false,
 	bordered: false,
-	responsive: false
+	responsive: false,
 };
 
 Table.propTypes = propTypes;

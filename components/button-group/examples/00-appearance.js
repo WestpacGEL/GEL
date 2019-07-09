@@ -47,6 +47,5 @@ export default () => (
 			<ButtonGroupButton>Middle</ButtonGroupButton>
 			<ButtonGroupButton>Right</ButtonGroupButton>
 		</ButtonGroup>
-
 	</>
 );

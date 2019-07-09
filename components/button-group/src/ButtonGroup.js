@@ -6,12 +6,19 @@ import { jsx, useTheme } from '@westpac/core';
 
 import { Button } from '../../button/src';
 
-
 // ==============================
 // Utils
 // ==============================
 
-export const ButtonGroupButton = ({ appearance, size, icon, iconPosition, name, children, ...props }) => {
+export const ButtonGroupButton = ({
+	appearance,
+	size,
+	icon,
+	iconPosition,
+	name,
+	children,
+	...props
+}) => {
 	const theme = useTheme();
 
 	return (
@@ -21,21 +28,21 @@ export const ButtonGroupButton = ({ appearance, size, icon, iconPosition, name, 
 
 				// Style internal borders
 				'&:not(:last-child) > .btn-group-btn': {
-				  borderTopRightRadius: 0,
-				  borderBottomRightRadius: 0,
-				  borderRight: 'none',
+					borderTopRightRadius: 0,
+					borderBottomRightRadius: 0,
+					borderRight: 'none',
 				},
 				'&:not(:first-of-type) > .btn-group-btn': {
-				  borderTopLeftRadius: 0,
-				  borderBottomLeftRadius: 0,
-				}
+					borderTopLeftRadius: 0,
+					borderBottomLeftRadius: 0,
+				},
 			}}
 		>
 			<input
 				css={{
 					position: 'absolute',
 					zIndex: -1,
-					opacity: 0
+					opacity: 0,
 				}}
 				type="radio"
 				name={name}
@@ -48,7 +55,7 @@ export const ButtonGroupButton = ({ appearance, size, icon, iconPosition, name, 
 						color: theme.button.appearance[appearance].default.color,
 						backgroundColor: theme.button.appearance[appearance].default.backgroundColor,
 						borderColor: theme.button.appearance[appearance].default.borderColor,
-					}
+					},
 				}}
 				tag="span"
 				appearance={appearance}
@@ -69,26 +76,30 @@ export const ButtonGroupButton = ({ appearance, size, icon, iconPosition, name, 
 // Component
 // ==============================
 
-export const ButtonGroup = ({ appearance, size, block, icon, iconPosition, name, children, ...props }) => {
-
+export const ButtonGroup = ({
+	appearance,
+	size,
+	block,
+	icon,
+	iconPosition,
+	name,
+	children,
+	...props
+}) => {
 	// Common styles
 	const common = {
 		display: block ? 'flex' : 'inline-flex',
 		alignItems: 'center', //vertical
-		verticalAlign: 'middle'
+		verticalAlign: 'middle',
 	};
 
 	// Pass these selected props on to children (that way button styling can be set by parent ButtonGroup)
-	const giftedChildren = Children.map(children, child => (
+	const giftedChildren = Children.map(children, child =>
 		cloneElement(child, { appearance, size, block, icon, iconPosition, name, ...child.props })
-	));
-
+	);
 
 	return (
-		<div
-			css={{ ...common }}
-			{...props}
-		>
+		<div css={{ ...common }} {...props}>
 			{giftedChildren}
 		</div>
 	);
@@ -104,47 +115,47 @@ export const propTypes = {
 	 *
 	 * Defaults to "hero"
 	 */
-	 appearance: PropTypes.oneOf(['primary', 'hero', 'neutral', 'faint', 'link']),
+	appearance: PropTypes.oneOf(['primary', 'hero', 'neutral', 'faint', 'link']),
 
 	/**
 	 * The button group size.
 	 *
 	 * Defaults to "medium"
 	 */
-	 size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 
 	/**
 	 * Block mode.
 	 *
 	 * Defaults to "false"
 	 */
-	 block: PropTypes.bool,
+	block: PropTypes.bool,
 
 	/**
 	 * Button icon.
 	 */
-	 icon: PropTypes.func,
+	icon: PropTypes.func,
 
 	/**
 	 * Button icon positioning.
 	 *
 	 * Defaults to "right"
 	 */
-	 iconPosition: PropTypes.string,
+	iconPosition: PropTypes.string,
 
 	/**
 	 * The button group input element’s name.
 	 *
 	 * This prop is required.
 	 */
-	 name: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
 
 	/**
 	 * The button content for this button group.
 	 *
 	 * This prop is required.
 	 */
-	 children: PropTypes.node.isRequired,
+	children: PropTypes.node.isRequired,
 };
 
 export const defaultProps = {

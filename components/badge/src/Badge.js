@@ -8,7 +8,6 @@ import { jsx, useTheme } from '@westpac/core';
 // Utils
 // ==============================
 
-
 // ==============================
 // Component
 // ==============================
@@ -74,10 +73,7 @@ export const Badge = ({ appearance, children, ...props }) => {
 	};
 
 	return (
-		<span
-			css={{ ...common, ...styleAppearance[appearance] }}
-			{...props}
-		>
+		<span css={{ ...common, ...styleAppearance[appearance] }} {...props}>
 			{children}
 		</span>
 	);
@@ -93,14 +89,23 @@ export const propTypes = {
 	 *
 	 * Defaults to "neutral"
 	 */
-	 appearance: PropTypes.oneOf(['primary', 'hero', 'neutral', 'faint', 'success', 'info', 'warning', 'danger']),
+	appearance: PropTypes.oneOf([
+		'primary',
+		'hero',
+		'neutral',
+		'faint',
+		'success',
+		'info',
+		'warning',
+		'danger',
+	]),
 
 	/**
 	 * The content for this badge.
 	 *
 	 * This prop is requried.
 	 */
-	 children: PropTypes.node.isRequired,
+	children: PropTypes.node.isRequired,
 };
 
 export const defaultProps = {

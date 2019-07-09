@@ -26,7 +26,6 @@ const BREAK_POINTS = { xs: 576, sm: 768, md: 992, lg: 1200 };
 const CONTAINER_MAXWIDTH = 1320;
 const CONTAINER_PADDING = [12, 36, 48, 60];
 
-
 export default {
 	breakpoints: BREAK_POINTS,
 	colors: {
@@ -46,8 +45,8 @@ export default {
 	grid: {
 		container: {
 			maxWidth: CONTAINER_MAXWIDTH,
-			padding: CONTAINER_PADDING
-		}
+			padding: CONTAINER_PADDING,
+		},
 	},
 
 	button: {
@@ -62,12 +61,16 @@ export default {
 				},
 				active: {
 					color: '#fff',
-					backgroundColor: Color('white').mix(Color(COLORS.primary), 0.5).hex(),
+					backgroundColor: Color('white')
+						.mix(Color(COLORS.primary), 0.5)
+						.hex(),
 					borderColor: COLORS.primary,
 				},
 				hover: {
 					color: null,
-					backgroundColor: Color('white').mix(Color(COLORS.primary), 0.7).hex(),
+					backgroundColor: Color('white')
+						.mix(Color(COLORS.primary), 0.7)
+						.hex(),
 					borderColor: null,
 				},
 			},
@@ -79,12 +82,16 @@ export default {
 				},
 				active: {
 					color: '#fff',
-					backgroundColor: Color('white').mix(Color(COLORS.hero), 0.5).hex(),
+					backgroundColor: Color('white')
+						.mix(Color(COLORS.hero), 0.5)
+						.hex(),
 					borderColor: COLORS.hero,
 				},
 				hover: {
 					color: null,
-					backgroundColor: Color('white').mix(Color(COLORS.hero), 0.7).hex(),
+					backgroundColor: Color('white')
+						.mix(Color(COLORS.hero), 0.7)
+						.hex(),
 					borderColor: null,
 				},
 			},
@@ -96,12 +103,16 @@ export default {
 				},
 				active: {
 					color: '#fff',
-					backgroundColor: Color('white').mix(Color(COLORS.neutral), 0.5).hex(),
+					backgroundColor: Color('white')
+						.mix(Color(COLORS.neutral), 0.5)
+						.hex(),
 					borderColor: COLORS.neutral,
 				},
 				hover: {
 					color: null,
-					backgroundColor: Color('white').mix(Color(COLORS.neutral), 0.7).hex(),
+					backgroundColor: Color('white')
+						.mix(Color(COLORS.neutral), 0.7)
+						.hex(),
 					borderColor: null,
 				},
 			},
@@ -161,8 +172,8 @@ export default {
 				padding: ['9px', '18px', '10px'],
 				fontSize: '18px',
 				height: '48px',
-			}
-		}
+			},
+		},
 	},
 
 	table: {
@@ -173,7 +184,7 @@ export default {
 		tr: {
 			hover: {
 				backgroundColor: COLORS.background,
-			}
+			},
 		},
 		appearance: {
 			striped: {
@@ -183,12 +194,12 @@ export default {
 				borderColor: COLORS.primary,
 			},
 			bordered: {
-				borderColor: COLORS.border
+				borderColor: COLORS.border,
 			},
 			responsive: {
-				borderColor: COLORS.border
-			}
-		}
+				borderColor: COLORS.border,
+			},
+		},
 	},
 
 	well: {
@@ -197,8 +208,8 @@ export default {
 		borderColor: COLORS.border,
 		padding: {
 			default: '12px',
-			responsive: [12, 24]
+			responsive: [12, 24],
 		},
-		marginBottom: '18px'
-	}
+		marginBottom: '18px',
+	},
 };
