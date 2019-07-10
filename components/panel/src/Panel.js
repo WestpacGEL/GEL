@@ -86,6 +86,23 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 		backgroundColor: theme.panel.backgroundColor,
 		border: `${theme.panel.borderWidth} solid ${theme.panel.appearance[appearance].borderColor}`,
 		borderRadius: theme.panel.borderRadius,
+
+		// Child table styling
+		'.table-wrapper': {
+			border: 'none',
+			marginBottom: 0,
+		},
+		'.table': {
+			overflow: 'hidden', //clip overflow for rounded corners
+			marginBottom: 0,
+			borderBottomRightRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
+			borderBottomLeftRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
+		},
+		'.table caption': {
+			padding: `${theme.panel.body.padding.default} ${theme.panel.body.padding.default} 0 ${
+				theme.panel.body.padding.default
+			}`,
+		},
 	};
 
 	// Pass these selected props on to children
