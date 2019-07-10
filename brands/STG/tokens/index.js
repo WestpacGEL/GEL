@@ -53,7 +53,7 @@ export default {
 			},
 			appearance: {
 				hero: {
-					color: '#fff',
+					color: COLORS.text,
 					backgroundColor: COLORS.hero,
 					borderColor: COLORS.hero,
 				},
