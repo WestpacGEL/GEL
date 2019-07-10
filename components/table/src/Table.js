@@ -52,7 +52,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 		},
 	};
 
-	return responsive ? <div css={{ ...styleCommon }}>{children}</div> : children;
+	return responsive ? <div className="table-wrapper" css={{ ...styleCommon }}>{children}</div> : children;
 };
 
 // ==============================
@@ -148,7 +148,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 
 	return (
 		<TableWrapper bordered={bordered} responsive={responsive} {...props}>
-			<table css={{ ...styleCommon }} {...props} />
+			<table className="table" css={{ ...styleCommon }} {...props} />
 		</TableWrapper>
 	);
 };
