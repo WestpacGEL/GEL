@@ -36,14 +36,14 @@ export default {
 
 	panel: {
 		backgroundColor: '#fff',
-		borderWidth: 1,
-		borderRadius: 3,
+		borderWidth: '1px',
+		borderRadius: '3px',
 		appearance: {
 			hero: {
 				borderColor: COLORS.hero,
 			},
 			faint: {
-				borderColor: COLORS.border
+				borderColor: COLORS.border,
 			},
 		},
 		header: {
@@ -55,18 +55,20 @@ export default {
 				hero: {
 					color: '#fff',
 					backgroundColor: COLORS.hero,
+					borderColor: COLORS.hero,
 				},
 				faint: {
 					color: COLORS.text,
-					backgroundColor: COLORS.background
+					backgroundColor: COLORS.background,
+					borderColor: COLORS.border,
 				},
 			},
 		},
 		body: {
 			padding: {
 				default: '12px',
-				responsive: ['12', '24'],
-			}
+				responsive: ['12px', '24px'],
+			},
 		},
 		footer: {
 			padding: {
@@ -75,6 +77,6 @@ export default {
 			},
 			backgroundColor: COLORS.light,
 			borderColor: COLORS.border,
-		}
+		},
 	},
 };

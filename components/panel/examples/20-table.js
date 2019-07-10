@@ -7,12 +7,11 @@ export default () => (
 	<>
 		<h3>Panel with body and table</h3>
 		<Panel responsive>
-			<PanelHeader>
-				Panel title
-			</PanelHeader>
+			<PanelHeader>Panel title</PanelHeader>
 			<PanelBody>
-				Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam.
-				Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+				Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia
+				bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
+				venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
 			</PanelBody>
 			{/*<Table striped>
 				<caption>
@@ -47,18 +46,14 @@ export default () => (
 					</tr>
 				</tbody>
 			</Table>*/}
-			<PanelFooter>
-				Panel footer
-			</PanelFooter>
+			<PanelFooter>Panel footer</PanelFooter>
 		</Panel>
 
 		<hr />
 
 		<h3>Panel only with table</h3>
 		<Panel responsive>
-			<PanelHeader>
-				Panel title
-			</PanelHeader>
+			<PanelHeader>Panel title</PanelHeader>
 			{/*<Table striped>
 				<tbody>
 					<tr>
@@ -84,8 +79,7 @@ export default () => (
 						<td>Someone else</td>
 						<td>[not disclosed]</td>
 						<td>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta repudiandae, dolores, quam sapiente esse maxime dolor provident impedit
-							similique facilis reprehenderit. Provident voluptatem eum, ipsum illum quisquam quam beatae iste.
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta repudiandae, dolores, quam sapiente esse maxime dolor provident impedit similique facilis reprehenderit. Provident voluptatem eum, ipsum illum quisquam quam beatae iste.
 						</td>
 					</tr>
 				</tbody>

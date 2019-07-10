@@ -16,44 +16,57 @@ export const PanelHeader = ({ appearance, responsive, ...props }) => {
 	return (
 		<div
 			css={arrayValues({
-				padding: responsive ? theme.panel.header.padding.responsive : theme.panel.header.padding.default,
+				padding: responsive
+					? theme.panel.header.padding.responsive
+					: theme.panel.header.padding.default,
 				backgroundColor: theme.panel.header.appearance[appearance].backgroundColor,
+				borderBottom: `${theme.panel.borderWidth} solid ${
+					theme.panel.header.appearance[appearance].borderColor
+				}`,
 				color: theme.panel.header.appearance[appearance].color,
-				borderTopRightRadius: (theme.panel.borderRadius - theme.panel.borderWidth),
-				borderTopLeftRadius: (theme.panel.borderRadius - theme.panel.borderWidth),
+				borderTopRightRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
+				borderTopLeftRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
 				fontSize: '16px', //TODO rems
+
+				'@media print': {
+					borderBottom: '1px solid #000',
+				},
 			})}
 			{...props}
 		/>
 	);
 };
 
-export const PanelBody = ({ responsive, ...props }) => {
+export const PanelBody = ({ appearance, responsive, ...props }) => {
 	const theme = useTheme();
 	const arrayValues = paint(theme.breakpoints);
 
 	return (
 		<div
 			css={arrayValues({
-				padding: responsive ? theme.panel.body.padding.responsive : theme.panel.body.padding.default
-		  })}
-		  {...props}
+				padding: responsive
+					? theme.panel.body.padding.responsive
+					: theme.panel.body.padding.default,
+			})}
+			{...props}
 		/>
 	);
 };
 
-export const PanelFooter = ({ responsive, ...props }) => {
+export const PanelFooter = ({ appearance, responsive, ...props }) => {
 	const theme = useTheme();
 	const arrayValues = paint(theme.breakpoints);
 
 	return (
 		<div
 			css={arrayValues({
-				padding: responsive ? theme.panel.footer.padding.responsive : theme.panel.footer.padding.default,
+				padding: responsive
+					? theme.panel.footer.padding.responsive
+					: theme.panel.footer.padding.default,
 				backgroundColor: theme.panel.footer.backgroundColor,
-				borderTop: `${theme.panel.borderWidth}px solid ${theme.panel.footer.borderColor}`,
-				borderBottomRightRadius: (theme.panel.borderRadius - theme.panel.borderWidth),
-				borderBottomLeftRadius: (theme.panel.borderRadius - theme.panel.borderWidth),
+				borderTop: `${theme.panel.borderWidth} solid ${theme.panel.footer.borderColor}`,
+				borderBottomRightRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
+				borderBottomLeftRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
 			})}
 			{...props}
 		/>
@@ -71,7 +84,7 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 	const common = {
 		marginBottom: '21px',
 		backgroundColor: theme.panel.backgroundColor,
-		border: `${theme.panel.borderWidth}px solid ${theme.panel.appearance[appearance].borderColor}`,
+		border: `${theme.panel.borderWidth} solid ${theme.panel.appearance[appearance].borderColor}`,
 		borderRadius: theme.panel.borderRadius,
 	};
 
@@ -81,10 +94,7 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 	);
 
 	return (
-		<div
-			css={{ ...common }}
-			{...props}
-		>
+		<div css={{ ...common }} {...props}>
 			{giftedChildren}
 		</div>
 	);
@@ -102,7 +112,7 @@ export const propTypes = {
 	/**
 	 * The panel appearance.
 	 *
-	 * Defaults to "primary"
+	 * Defaults to "hero"
 	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
