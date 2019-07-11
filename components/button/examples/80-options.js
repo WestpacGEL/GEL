@@ -6,7 +6,7 @@ export default () => (
 	<>
 		<h3>Trim (no horizontal padding)</h3>
 		<p>
-			<Button appearance="link" size="large" trim>
+			<Button appearance="link" trim>
 				Trimmed link button
 			</Button>
 		</p>

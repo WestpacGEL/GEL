@@ -83,7 +83,7 @@ export const Badge = ({ appearance, children, ...props }) => {
 // Types
 // ==============================
 
-export const propTypes = {
+Badge.propTypes = {
 	/**
 	 * The badge appearance.
 	 *
@@ -108,9 +108,6 @@ export const propTypes = {
 	children: PropTypes.node.isRequired,
 };
 
-export const defaultProps = {
+Badge.defaultProps = {
 	appearance: 'neutral',
 };
-
-Badge.propTypes = propTypes;
-Badge.defaultProps = defaultProps;

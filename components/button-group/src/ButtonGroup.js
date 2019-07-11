@@ -10,68 +10,6 @@ import { Button } from '../../button/src';
 // Utils
 // ==============================
 
-export const ButtonGroupButton = ({
-	appearance,
-	size,
-	icon,
-	iconPosition,
-	name,
-	children,
-	...props
-}) => {
-	const theme = useTheme();
-
-	return (
-		<label
-			css={{
-				flex: 1,
-
-				// Style internal borders
-				'&:not(:last-child) > .btn-group-btn': {
-					borderTopRightRadius: 0,
-					borderBottomRightRadius: 0,
-					borderRight: 'none',
-				},
-				'&:not(:first-of-type) > .btn-group-btn': {
-					borderTopLeftRadius: 0,
-					borderBottomLeftRadius: 0,
-				},
-			}}
-		>
-			<input
-				css={{
-					position: 'absolute',
-					zIndex: -1,
-					opacity: 0,
-				}}
-				type="radio"
-				name={name}
-			/>
-			<Button
-				className="btn-group-btn"
-				css={{
-					// Active state styling
-					'input:checked + &': {
-						color: theme.button.appearance[appearance].default.color,
-						backgroundColor: theme.button.appearance[appearance].default.backgroundColor,
-						borderColor: theme.button.appearance[appearance].default.borderColor,
-					},
-				}}
-				tag="span"
-				appearance={appearance}
-				size={size}
-				soft
-				block
-				icon={icon}
-				iconPosition={iconPosition}
-				{...props}
-			>
-				{children}
-			</Button>
-		</label>
-	);
-};
-
 // ==============================
 // Component
 // ==============================
@@ -109,7 +47,7 @@ export const ButtonGroup = ({
 // Types
 // ==============================
 
-export const propTypes = {
+ButtonGroup.propTypes = {
 	/**
 	 * The button appearance.
 	 *
@@ -158,11 +96,8 @@ export const propTypes = {
 	children: PropTypes.node.isRequired,
 };
 
-export const defaultProps = {
+ButtonGroup.defaultProps = {
 	appearance: 'hero',
 	size: 'medium',
 	block: false,
 };
-
-ButtonGroup.propTypes = propTypes;
-ButtonGroup.defaultProps = defaultProps;

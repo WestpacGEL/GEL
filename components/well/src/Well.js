@@ -39,7 +39,7 @@ export const Well = ({ responsive, ...props }) => {
 // Types
 // ==============================
 
-export const propTypes = {
+Well.propTypes = {
 	/**
 	 * Responsive mode.
 	 *
@@ -48,9 +48,6 @@ export const propTypes = {
 	responsive: PropTypes.bool,
 };
 
-export const defaultProps = {
+Well.defaultProps = {
 	responsive: false,
 };
-
-Well.propTypes = propTypes;
-Well.defaultProps = defaultProps;

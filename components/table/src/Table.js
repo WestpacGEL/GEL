@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { mediaqueries } from './utils';
 
 // ==============================
 // Utils
@@ -52,7 +51,13 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 		},
 	};
 
-	return responsive ? <div className="table-wrapper" css={{ ...styleCommon }}>{children}</div> : children;
+	return responsive ? (
+		<div className="table-wrapper" css={{ ...styleCommon }}>
+			{children}
+		</div>
+	) : (
+		children
+	);
 };
 
 // ==============================
@@ -157,7 +162,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 // Types
 // ==============================
 
-export const propTypes = {
+Table.propTypes = {
 	/**
 	 * Striped mode.
 	 *
@@ -180,11 +185,8 @@ export const propTypes = {
 	responsive: PropTypes.bool,
 };
 
-export const defaultProps = {
+Table.defaultProps = {
 	striped: false,
 	bordered: false,
 	responsive: false,
 };
-
-Table.propTypes = propTypes;
-Table.defaultProps = defaultProps;

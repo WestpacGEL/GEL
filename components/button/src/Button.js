@@ -66,19 +66,6 @@ export const Button = ({
 		'a&.disabled, fieldset[disabled] a&': {
 			pointerEvents: 'none',
 		},
-
-		// Button text flex child (always `<span>` wrapped)
-		'.btn-text': {
-			overflow: 'hidden',
-			textOverflow: 'ellipsis',
-		},
-
-		// Style text/icon gap (if button text provided)
-		// TODO Investigate: use of Emotion's component selector? https://emotion.sh/docs/styled#targeting-another-emotion-component
-		'.btn-icon': {
-			marginLeft: children && iconPosition === 'right' && '0.4em',
-			marginRight: children && iconPosition === 'left' && '0.4em',
-		},
 	};
 
 	// Button appearance styling
@@ -126,20 +113,23 @@ export const Button = ({
 	};
 
 	// Button size styling
-	const getSizeStyling = size => ({
-		padding: theme.button.size[size].padding.join(' '), //provided as an array
-		fontSize: theme.button.size[size].fontSize,
-		height: theme.button.size[size].height,
+	const getSizeStyling = size => {
+		const padding = theme.button.size[size].padding;
+		if (trim) {
+			// console.log('lskdnfs');
+			padding[1] = 0;
+		}
 
-		// Overrides
-		paddingLeft: trim ? 0 : null,
-		paddingRight: trim ? 0 : null,
-	});
+		return {
+			padding: padding.join(' '), //provided as an array
+			fontSize: theme.button.size[size].fontSize,
+			height: theme.button.size[size].height,
+		};
+	};
 	const styleSize = Array.isArray(size)
 		? // Size provided as an array
 		  size.map((s, i) => {
-				let bp = mq[i];
-				return i === 0 ? getSizeStyling(s) : { [bp]: getSizeStyling(s) };
+				return i === 0 ? getSizeStyling(s) : { [mq[i]]: getSizeStyling(s) };
 		  })
 		: // Size prop provided a string, returned as single index array
 		  [getSizeStyling(size)];
@@ -161,13 +151,12 @@ export const Button = ({
 	const styleBlock = Array.isArray(block)
 		? // Block provided as an array
 		  block.map((b, i) => {
-				let bp = mq[i];
-				return i === 0 ? getBlockStyling(b) : { [bp]: getBlockStyling(b) };
+				return i === 0 ? getBlockStyling(b) : { [mq[i]]: getBlockStyling(b) };
 		  })
 		: // Block prop provided a string, returned as single index array
 		  [getBlockStyling(block)];
 
-	if (props.href && Tag === 'button') {
+	if (props.href) {
 		Tag = 'a';
 	}
 
@@ -181,13 +170,20 @@ export const Button = ({
 
 	// Compose a button text + icon fragment, if either of these items are provided
 	// (nb. `<input>` elements cannot have children; they would use a `value` prop)
-	const buttonContent =
-		Tag !== 'input' ? (
-			<>
-				{children && <span className="btn-text">{children}</span>}
-				{Icon && <Icon className="btn-icon" size={iconSize[size]} />}
-			</>
-		) : null;
+	const buttonContent = () => {
+		const styleIcon = {
+			marginLeft: children && iconPosition === 'right' && '0.4em',
+			marginRight: children && iconPosition === 'left' && '0.4em',
+		};
+		return (
+			Tag !== 'input' ?
+				<>
+					{children && <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>}
+					{Icon && <Icon css={styleIcon} size={iconSize[size]} />}
+				</>
+			: null
+		);
+	};
 
 	return (
 		<Tag
@@ -204,7 +200,7 @@ export const Button = ({
 			{...props}
 			onClick={onClick}
 		>
-			{buttonContent}
+			{buttonContent()}
 		</Tag>
 	);
 };
@@ -219,7 +215,8 @@ const options = {
 	iconPosition: ['left', 'right'],
 };
 
-export const propTypes = {
+
+Button.propTypes = {
 	/**
 	 * The button appearance.
 	 *
@@ -295,7 +292,7 @@ export const propTypes = {
 	onClick: PropTypes.func,
 };
 
-export const defaultProps = {
+Button.defaultProps = {
 	appearance: 'primary',
 	size: 'medium',
 	tag: 'button',
@@ -305,6 +302,3 @@ export const defaultProps = {
 	iconPosition: 'right',
 	justify: false,
 };
-
-Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;

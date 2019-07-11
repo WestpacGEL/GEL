@@ -1,1 +1,2 @@
-export { ButtonGroup, ButtonGroupButton } from './ButtonGroup';
+export { ButtonGroup, } from './ButtonGroup';
+export { ButtonGroupButton } from './ButtonGroupButton';
