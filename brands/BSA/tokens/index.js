@@ -1,6 +1,10 @@
+import Color from 'color';
+
 const COLORS = {
 	background: '#F0F1F1',
 	border: '#D3D4D5',
+	borderDark: '#909396',
+	focus: '#C26F9D',
 	heading: '#002F6C',
 	hero: '#002F6C',
 	light: '#F8F8F8',
@@ -18,6 +22,9 @@ const COLORS = {
 
 const BREAK_POINTS = { xs: 576, sm: 768, md: 992, lg: 1200 };
 
+const CONTAINER_MAXWIDTH = 1320;
+const CONTAINER_PADDING = [12, 36, 48, 60];
+
 export default {
 	breakpoints: BREAK_POINTS,
 	colors: {
@@ -33,4 +40,11 @@ export default {
 	},
 	type: {},
 	spacing: {},
+
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING,
+		},
+	},
 };
