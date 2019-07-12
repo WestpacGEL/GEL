@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { mediaqueries } from './utils';
+import { mediaQueries } from './utils';
 
 // ==============================
 // Utils
@@ -55,7 +55,7 @@ export const Button = ({
 	...props
 }) => {
 	const theme = useTheme();
-	const mq = mediaqueries(theme.breakpoints);
+	const mq = mediaQueries(theme.breakpoints);
 	const button = theme.button;
 
 	// Common styling
