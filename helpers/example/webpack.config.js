@@ -19,7 +19,7 @@ const labelFromSlug = slug => {
 		.join(' ');*/
 	return slug
 		.toLowerCase()
-		.replace('-', ' ')
+		.replace(/-/g, ' ')
 		.replace(slug[0], slug[0].toUpperCase());
 };
 // const brandLabel = brand => {
