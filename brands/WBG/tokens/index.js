@@ -297,6 +297,7 @@ export default {
 
 	well: {
 		borderRadius: '3px',
+		borderWidth: '1px',
 		backgroundColor: COLORS.light,
 		borderColor: COLORS.border,
 		padding: {

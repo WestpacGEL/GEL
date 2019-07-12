@@ -16,14 +16,15 @@ import { paint } from './utils';
 export const Well = ({ responsive, ...props }) => {
 	const theme = useTheme();
 	const arrayValues = paint(theme.breakpoints);
+	const well = theme.well;
 
 	// Common styles
 	const common = {
-		padding: responsive ? theme.well.padding.responsive : theme.well.padding.default,
-		marginBottom: theme.well.marginBottom,
-		backgroundColor: theme.well.backgroundColor,
-		border: `1px solid ${theme.well.borderColor}`,
-		borderRadius: theme.well.borderRadius,
+		padding: responsive ? well.padding.responsive : well.padding.default,
+		marginBottom: well.marginBottom,
+		backgroundColor: well.backgroundColor,
+		border: `${well.borderWidth} solid ${well.borderColor}`,
+		borderRadius: well.borderRadius,
 
 		// Nested Well styling
 		'& &': {
