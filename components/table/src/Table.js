@@ -12,16 +12,16 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 	const table = theme.table;
 
 	const maxWidth = width => `@media (max-width: ${width}px)`;
-	const xs = maxWidth(theme.breakpoints.xs);
+	const xsOnly = maxWidth(theme.breakpoints.xs);
 
 	const styleCommon = {
-		[xs]: {
+		[xsOnly]: {
 			width: '100%',
 			marginBottom: '18px',
 			overflowY: 'hidden',
 			overflowX: 'auto',
 			// -ms-overflow-style: '-ms-autohiding-scrollbar',
-			border: `${table.borderWidth} solid ${table.appearance.responsive.borderColor}`,
+			border: `${table.responsive.borderWidth} solid ${table.responsive.borderColor}`,
 			// -webkit-overflow-scrolling: 'touch',
 
 			'> table': {
@@ -29,7 +29,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 				border: bordered ? 'none' : null,
 
 				caption: {
-					padding: table.caption.padding,
+					padding: table.responsive.caption.padding,
 				},
 				'tbody, tfoot': {
 					'tr:last-child': {
@@ -73,15 +73,15 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 	const styleCommon = {
 		width: '100%',
 		maxWidth: '100%',
-		marginBottom: '21px',
-		backgroundColor: '#fff',
+		marginBottom: table.marginBottom,
+		backgroundColor: table.backgroundColor,
 		borderCollapse: 'collapse',
 
 		caption: {
-			fontWeight: '300',
-			fontSize: '18px',
+			fontWeight: table.caption.fontWeight,
+			fontSize: table.caption.fontSize,
 			textAlign: 'left',
-			marginBottom: '12px',
+			marginBottom: table.caption.marginBottom,
 		},
 
 		// All child rows in the tbody
@@ -94,15 +94,15 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 			},
 			// Odd row
 			'&:nth-of-type(even)': {
-				backgroundColor: striped && table.appearance.striped.backgroundColor,
+				backgroundColor: striped && table.striped.backgroundColor,
 			},
 			// Highlighted row or cell
 			'&.table-highlight, > th.table-highlight, > td.table-highlight': {
-				borderLeft: `6px solid ${table.appearance.highlight.borderColor}`,
+				borderLeft: `6px solid ${table.highlight.borderColor}`,
 			},
 			// Highlighted row's cell or highlighted cell
 			'&.table-highlight > th, &.table-highlight > td, > th.table-highlight, > td.table-highlight': {
-				borderBottom: `1px solid ${table.appearance.highlight.borderColor}`,
+				borderBottom: `1px solid ${table.highlight.borderColor}`,
 			},
 
 			// Adjacent highlighted cells
@@ -139,7 +139,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 			textAlign: 'left',
 			verticalAlign: 'bottom',
 			borderBottom: `solid ${table.th.borderColor}`,
-			borderBottomWidth: bordered ? table.appearance.bordered.th.borderBottomWidth : table.th.borderBottomWidth,
+			borderBottomWidth: bordered ? table.bordered.th.borderBottomWidth : table.th.borderBottomWidth,
 			fontWeight: table.th.fontWeight,
 			color: table.th.color,
 		},

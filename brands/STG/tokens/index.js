@@ -271,7 +271,13 @@ export default {
 
 	table: {
 		borderWidth: '1px',
+		marginBottom: '21px',
+		backgroundColor: '#fff',
+
 		caption: {
+			fontWeight: '300',
+			fontSize: '18px',
+			marginBottom: '12px',
 			padding: '12px',
 		},
 		tr: {
@@ -290,22 +296,24 @@ export default {
 			borderWidth: '1px',
 			borderColor: COLORS.border,
 		},
-		appearance: {
-			striped: {
-				backgroundColor: COLORS.light,
+		striped: {
+			backgroundColor: COLORS.light,
+		},
+		highlight: {
+			borderColor: COLORS.primary,
+		},
+		bordered: {
+			th: {
+				borderBottomWidth: '2px',
 			},
-			highlight: {
-				borderColor: COLORS.primary,
-			},
-			bordered: {
-				th: {
-					borderBottomWidth: '2px',
-				},
-				borderColor: COLORS.border,
-			},
-			responsive: {
-				borderColor: COLORS.border,
-			},
+			borderColor: COLORS.border,
+		},
+		responsive: {
+			borderWidth: '1px',
+			borderColor: COLORS.border,
+			caption: {
+				padding: '12px',
+			}
 		},
 	},
 
