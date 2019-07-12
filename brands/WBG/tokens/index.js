@@ -1,13 +1,15 @@
 const COLORS = {
-	background: '#F4F3F0',
-	border: '#D7D2CB',
-	heading: '#621A4B',
-	hero: '#621A4B',
-	light: '#F9F9F8',
-	muted: '#575F65',
-	neutral: '#2D373E',
+	background: '#F3F5F6',
+	border: '#CFD8DC',
+	borderDark: '#91979A',
+	focus: '#E45C78',
+	heading: '#000000',
+	hero: '#495761',
+	light: '#F9FAFB',
+	muted: '#5B6871',
+	neutral: '#263238',
 	primary: '#D5002B',
-	text: '#2D373E',
+	text: '#000000',
 
 	// reserved
 	success: '#008000',
