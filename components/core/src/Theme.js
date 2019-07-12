@@ -30,6 +30,8 @@ GEL.propTypes = {
 			colors: PropTypes.shape({
 				background: PropTypes.string,
 				border: PropTypes.string,
+				borderDark: PropTypes.string,
+				focus: PropTypes.string,
 				heading: PropTypes.string,
 				light: PropTypes.string,
 				muted: PropTypes.string,
