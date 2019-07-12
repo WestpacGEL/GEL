@@ -1,17 +1,17 @@
 import Color from 'color';
 
 const COLORS = {
-	background: '#F0F1F2',
-	border: '#D2D5D8',
+	background: '#F1F1F2',
+	border: '#D4D4D8',
 	borderDark: '#939299',
 	focus: '#867BCD',
-	heading: '#1F252C',
-	hero: '#1F252C',
-	light: '#F7F8F9',
-	muted: '#69727E',
-	neutral: '#69727E',
-	primary: '#B45C38',
-	text: '#1F252C',
+	heading: '#534891',
+	hero: '#534891',
+	light: '#FBFBFD',
+	muted: '#6E6C7A',
+	neutral: '#595762',
+	primary: '#D73B00',
+	text: '#20024E',
 
 	// reserved
 	success: '#008000',
