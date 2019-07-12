@@ -45,6 +45,9 @@ export default {
 		borderWidth: '1px',
 		fontSize: '12px',
 		padding: '1px 6px',
+		fontWeight: 400,
+		lineHeight: 1,
+
 		appearance: {
 			primary: {
 				default: {

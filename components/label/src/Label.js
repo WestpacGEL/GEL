@@ -14,18 +14,19 @@ import { jsx, useTheme } from '@westpac/core';
 
 export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 	const theme = useTheme();
+	const label = theme.label;
 
 	const common = {
+		border: `${label.borderWidth} solid`,
+		borderRadius: label.borderRadius,
 		display: 'inline',
-		padding: theme.label.padding,
-		fontSize: theme.label.fontSize,
-		fontWeight: 400,
-		lineHeight: 1,
+		fontSize: label.fontSize,
+		fontWeight: label.fontWeight,
+		lineHeight: label.lineHeight,
+		padding: label.padding,
 		textAlign: 'center',
-		whiteSpace: 'nowrap',
 		verticalAlign: 'baseline',
-		borderRadius: theme.label.borderRadius,
-		border: `${theme.label.borderWidth} solid`,
+		whiteSpace: 'nowrap',
 
 		'&:empty': {
 			display: 'none',
@@ -42,14 +43,14 @@ export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 	};
 
 	const styleAppearance = {
-		color: theme.label.appearance[appearance].default.color,
-		backgroundColor: theme.label.appearance[appearance].default.backgroundColor,
-		borderColor: theme.label.appearance[appearance].default.borderColor,
+		color: label.appearance[appearance].default.color,
+		backgroundColor: label.appearance[appearance].default.backgroundColor,
+		borderColor: label.appearance[appearance].default.borderColor,
 
 		'a&:hover, a&:focus': {
 			cursor: 'pointer',
-			backgroundColor: theme.label.appearance[appearance].hover.backgroundColor,
-			borderColor: theme.label.appearance[appearance].hover.borderColor,
+			backgroundColor: label.appearance[appearance].hover.backgroundColor,
+			borderColor: label.appearance[appearance].hover.borderColor,
 		},
 	};
 
