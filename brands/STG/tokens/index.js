@@ -29,13 +29,21 @@ export default {
 	breakpoints: BREAK_POINTS,
 	colors: {
 		...COLORS,
-		hero: {
-			default: COLORS.hero,
-			foreground: COLORS.text,
-		},
 		primary: {
 			default: COLORS.primary,
 			foreground: 'white',
+		},
+		hero: {
+			default: COLORS.hero,
+			foreground: COLORS.text, //unique mapping for this brand
+		},
+		neutral: {
+			default: COLORS.neutral,
+			foreground: 'white',
+		},
+		faint: {
+			default: COLORS.light,
+			foreground: COLORS.muted,
 		},
 	},
 	type: {},
