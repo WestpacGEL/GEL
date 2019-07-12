@@ -12,7 +12,7 @@ export default () => (
 		{sizes.map((s, i) => (
 			<p key={i}>
 				<Button appearance="primary" size={s}>
-					{s.join(', ')}
+					[{s.join(', ')}]
 				</Button>
 			</p>
 		))}
@@ -23,7 +23,7 @@ export default () => (
 		{blocks.map((b, i) => (
 			<p key={i}>
 				<Button appearance="primary" size="xlarge" block={b}>
-					{b.join(', ')}
+					[{b.join(', ')}]
 				</Button>
 			</p>
 		))}
