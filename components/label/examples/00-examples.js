@@ -4,7 +4,9 @@ import { Label } from '../src';
 
 export default () => (
 	<>
-		<h3>Label with a <code>&lt;span&gt;</code> tag</h3>
+		<h3>
+			Label with a <code>&lt;span&gt;</code> tag
+		</h3>
 		<p>
 			<Label>Default</Label>
 		</p>
@@ -20,7 +22,9 @@ export default () => (
 
 		<hr />
 
-		<h3>Label with an <code>&lt;a&gt;</code> tag</h3>
+		<h3>
+			Label with an <code>&lt;a&gt;</code> tag
+		</h3>
 		<p>
 			<Label href="#0">Default</Label>
 		</p>
