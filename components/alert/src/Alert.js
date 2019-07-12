@@ -1,11 +1,11 @@
 /* @jsx jsx */
 
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { css, jsx, useTheme } from '@westpac/core';
 import Color from 'color';
 
 import { CloseIcon } from '../../icon/src'; //until icon package is published
+import { CSSTransition } from 'react-transition-group';
 
 // ==============================
 // Utils
@@ -55,6 +55,7 @@ const styleBox = appearance => {
 			.mix(Color(theme.colors[appearance]), 0.5)
 			.hex()}`,
 		opacity: '1',
+		transition: 'opacity 0.3s ease-in-out',
 
 		button: {
 			color: theme.colors[appearance],
@@ -74,6 +75,10 @@ const styleBox = appearance => {
 			position: 'relative',
 			flex: 1,
 		},
+
+		'&.anim-exit-active': {
+			opacity: 0,
+		},
 	});
 };
 
@@ -87,22 +92,34 @@ const styleOverrides = css({
 
 const AlertBox = ({ appearance, icon: Icon, children }) => {
 	const [open, setOpen] = useState(true);
+	const [animAlert, setAnim] = useState(true);
 
 	return (
 		<>
 			{open && (
-				<div
-					css={[styleAppearance(appearance), styleBox(appearance), styleOverrides]}
-					className={appearance === 'system' ? 'system' : ''}
+				<CSSTransition
+					in={animAlert}
+					classNames="anim"
+					timeout={400}
+					onExited={() => setOpen(false)}
 				>
-					{Icon && <Icon size="small" className="icon icon-alert" />}
-					<div className="alert-body">{children}</div>
-					{Icon && (
-						<button onClick={() => setOpen(false)}>
-							<CloseIcon size="small" />
-						</button>
-					)}
-				</div>
+					<div
+						css={[styleAppearance(appearance), styleBox(appearance), styleOverrides]}
+						className={appearance === 'system' ? 'system' : ''}
+					>
+						{Icon && <Icon size="small" className="icon icon-alert" />}
+						<div className="alert-body">{children}</div>
+						{Icon && (
+							<button
+								onClick={() => {
+									setAnim(false);
+								}}
+							>
+								<CloseIcon size="small" />
+							</button>
+						)}
+					</div>
+				</CSSTransition>
 			)}
 		</>
 	);
