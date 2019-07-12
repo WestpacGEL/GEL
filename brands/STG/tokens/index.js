@@ -45,6 +45,22 @@ export default {
 			default: COLORS.light,
 			foreground: COLORS.muted,
 		},
+		success: {
+			default: COLORS.success,
+			foreground: 'white',
+		},
+		information: {
+			default: COLORS.information,
+			foreground: 'white',
+		},
+		warning: {
+			default: COLORS.warning,
+			foreground: 'white',
+		},
+		danger: {
+			default: COLORS.danger,
+			foreground: 'white',
+		},
 	},
 	type: {},
 	spacing: {},
