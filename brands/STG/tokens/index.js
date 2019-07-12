@@ -29,6 +29,14 @@ export default {
 	breakpoints: BREAK_POINTS,
 	colors: {
 		...COLORS,
+		hero: {
+			default: COLORS.hero,
+			foreground: COLORS.text,
+		},
+		primary: {
+			default: COLORS.primary,
+			foreground: 'white',
+		},
 	},
 	type: {},
 	spacing: {},
