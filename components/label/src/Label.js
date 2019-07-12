@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
+import Color from 'color';
+
 // ==============================
 // Utils
 // ==============================
@@ -47,10 +49,29 @@ export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 		backgroundColor: label.appearance[appearance].default.backgroundColor,
 		borderColor: label.appearance[appearance].default.borderColor,
 
+		// Or if we don't use verbose tokens...
+		// color: theme.colors[appearance].foreground,
+		// backgroundColor: theme.colors[appearance].default,
+		// borderColor: appearance === 'faint' ? theme.colors.border : theme.colors[appearance].default,
+
 		'a&:hover, a&:focus': {
 			cursor: 'pointer',
 			backgroundColor: label.appearance[appearance].hover.backgroundColor,
 			borderColor: label.appearance[appearance].hover.borderColor,
+
+			// Or if we don't use verbose tokens...
+			/*backgroundColor:
+				appearance === 'faint'
+					? '#fff'
+					: Color('white')
+							.mix(Color(theme.colors[appearance].default), 0.5)
+							.hex(),
+			borderColor:
+				appearance === 'faint'
+					? null
+					: Color('white')
+							.mix(Color(theme.colors[appearance].default), 0.5)
+							.hex(),*/
 		},
 	};
 
