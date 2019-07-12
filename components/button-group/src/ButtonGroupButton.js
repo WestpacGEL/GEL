@@ -24,6 +24,7 @@ export const ButtonGroupButton = ({
 	...props
 }) => {
 	const theme = useTheme();
+	const button = theme.button;
 
 	return (
 		<label
@@ -54,11 +55,11 @@ export const ButtonGroupButton = ({
 			<Button
 				className="btn-group-btn"
 				css={{
-					// Active state styling
+					// Checked state styling (look like a standard button)
 					'input:checked + &': {
-						color: theme.button.appearance[appearance].default.color,
-						backgroundColor: theme.button.appearance[appearance].default.backgroundColor,
-						borderColor: theme.button.appearance[appearance].default.borderColor,
+						color: button.appearance[appearance].standard.default.color,
+						backgroundColor: button.appearance[appearance].standard.default.backgroundColor,
+						borderColor: button.appearance[appearance].standard.default.borderColor,
 					},
 				}}
 				tag="span"

@@ -47,20 +47,25 @@ export const ButtonGroup = ({
 // Types
 // ==============================
 
+const options = {
+	appearance: ['primary', 'hero', 'neutral', 'faint', 'link'],
+	size: ['small', 'medium', 'large', 'xlarge'],
+};
+
 ButtonGroup.propTypes = {
 	/**
 	 * The button appearance.
 	 *
 	 * Defaults to "hero"
 	 */
-	appearance: PropTypes.oneOf(['primary', 'hero', 'neutral', 'faint', 'link']),
+	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
 	 * The button group size.
 	 *
 	 * Defaults to "medium"
 	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+	size: PropTypes.oneOf(options.size),
 
 	/**
 	 * Block mode.
