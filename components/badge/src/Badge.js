@@ -14,19 +14,20 @@ import { jsx, useTheme } from '@westpac/core';
 
 export const Badge = ({ appearance, children, ...props }) => {
 	const theme = useTheme();
+	const badge = theme.badge;
 
 	const common = {
+		border: `${badge.borderWidth} solid transparent`,
+		borderRadius: badge.borderRadius,
 		display: 'inline-block',
-		minWidth: '10px',
-		padding: '4px 7px',
-		lineHeight: 1,
+		fontSize: badge.fontSize,
+		fontWeight: badge.fontWeight,
+		lineHeight: badge.lineHeight,
+		minWidth: badge.minWidth,
+		padding: badge.padding,
+		textAlign: 'center',
 		verticalAlign: 'baseline',
 		whiteSpace: 'nowrap',
-		textAlign: 'center',
-		borderRadius: '12px',
-		fontWeight: 700,
-		fontSize: '14px',
-		border: '1px solid transparent',
 	};
 
 	const styleAppearance = {
