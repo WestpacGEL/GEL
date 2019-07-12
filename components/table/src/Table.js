@@ -9,6 +9,7 @@ import { jsx, useTheme } from '@westpac/core';
 // ==============================
 const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 	const theme = useTheme();
+	const table = theme.table;
 
 	const maxWidth = width => `@media (max-width: ${width}px)`;
 	const xs = maxWidth(theme.breakpoints.xs);
@@ -20,7 +21,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 			overflowY: 'hidden',
 			overflowX: 'auto',
 			// -ms-overflow-style: '-ms-autohiding-scrollbar',
-			border: `1px solid ${theme.table.appearance.responsive.borderColor}`,
+			border: `${table.borderWidth} solid ${table.appearance.responsive.borderColor}`,
 			// -webkit-overflow-scrolling: 'touch',
 
 			'> table': {
@@ -28,7 +29,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 				border: bordered ? 'none' : null,
 
 				caption: {
-					padding: '12px',
+					padding: table.caption.padding,
 				},
 				'tbody, tfoot': {
 					'tr:last-child': {
@@ -66,6 +67,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 
 export const Table = ({ striped, bordered, responsive, ...props }) => {
 	const theme = useTheme();
+	const table = theme.table;
 
 	// Common styles
 	const styleCommon = {
@@ -88,19 +90,19 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 
 			// Hovered row
 			'&:hover': {
-				backgroundColor: !striped && theme.table.tr.hover.backgroundColor,
+				backgroundColor: !striped && table.tr.hover.backgroundColor,
 			},
 			// Odd row
 			'&:nth-of-type(even)': {
-				backgroundColor: striped && theme.table.appearance.striped.backgroundColor,
+				backgroundColor: striped && table.appearance.striped.backgroundColor,
 			},
 			// Highlighted row or cell
 			'&.table-highlight, > th.table-highlight, > td.table-highlight': {
-				borderLeft: `6px solid ${theme.table.appearance.highlight.borderColor}`,
+				borderLeft: `6px solid ${table.appearance.highlight.borderColor}`,
 			},
 			// Highlighted row's cell or highlighted cell
 			'&.table-highlight > th, &.table-highlight > td, > th.table-highlight, > td.table-highlight': {
-				borderBottom: `1px solid ${theme.table.appearance.highlight.borderColor}`,
+				borderBottom: `1px solid ${table.appearance.highlight.borderColor}`,
 			},
 
 			// Adjacent highlighted cells
@@ -113,13 +115,12 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 
 		// All cells
 		'th, td': {
-			padding: '12px',
+			padding: table.td.padding,
 			verticalAlign: 'top',
-			border: `1px solid ${theme.colors.border}`,
+			border: `${table.td.borderWidth} solid ${table.td.borderColor}`,
 			borderLeft: !bordered && 'none',
 			borderRight: !bordered && 'none',
 		},
-
 		// All child cells in the thead
 		'thead > tr': {
 			'th, td': {
@@ -132,14 +133,15 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 				borderBottom: !bordered && 'none',
 			},
 		},
+
 		// All `th` cells
 		th: {
 			textAlign: 'left',
 			verticalAlign: 'bottom',
-			borderBottom: `solid ${theme.table.th.borderColor}`,
-			borderBottomWidth: bordered ? '2px' : '3px',
-			fontWeight: 500,
-			color: theme.table.th.color,
+			borderBottom: `solid ${table.th.borderColor}`,
+			borderBottomWidth: bordered ? table.appearance.bordered.th.borderBottomWidth : table.th.borderBottomWidth,
+			fontWeight: table.th.fontWeight,
+			color: table.th.color,
 		},
 
 		tfoot: {
@@ -147,7 +149,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 		},
 		// Adjacent `tbody` elements
 		'tbody + tbody': {
-			borderTop: `2px solid ${theme.table.th.borderColor}`,
+			borderTop: `2px solid ${table.th.borderColor}`,
 		},
 	};
 

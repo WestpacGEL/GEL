@@ -270,14 +270,25 @@ export default {
 	},
 
 	table: {
-		th: {
-			borderColor: COLORS.hero,
-			color: COLORS.text,
+		borderWidth: '1px',
+		caption: {
+			padding: '12px',
 		},
 		tr: {
 			hover: {
 				backgroundColor: COLORS.background,
 			},
+		},
+		th: {
+			fontWeight: 500,
+			borderBottomWidth: '3px',
+			borderColor: COLORS.hero,
+			color: COLORS.text,
+		},
+		td: {
+			padding: '12px',
+			borderWidth: '1px',
+			borderColor: COLORS.border,
 		},
 		appearance: {
 			striped: {
@@ -287,6 +298,9 @@ export default {
 				borderColor: COLORS.primary,
 			},
 			bordered: {
+				th: {
+					borderBottomWidth: '2px',
+				},
 				borderColor: COLORS.border,
 			},
 			responsive: {
