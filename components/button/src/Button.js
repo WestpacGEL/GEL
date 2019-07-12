@@ -9,6 +9,33 @@ import { mediaqueries } from './utils';
 // Utils
 // ==============================
 
+const getSizeStyling = (size, trim, button) => {
+	const padding = button.size[size].padding;
+	if (trim) {
+		padding[1] = 0;
+	}
+
+	return {
+		padding: padding.join(' '), //provided as an array
+		fontSize: button.size[size].fontSize,
+		height: button.size[size].height,
+	};
+};
+
+const getBlockStyling = block => {
+	return block
+		? // Block mode
+		  {
+				display: 'flex', //flex will provide 'block-level' appearance (we use flex so any icon children can be positioned appropriately)
+				width: '100%',
+		  }
+		: // Inline mode
+		  {
+				display: 'inline-flex',
+				width: 'auto', //reset
+		  };
+};
+
 // ==============================
 // Component
 // ==============================
@@ -29,125 +56,67 @@ export const Button = ({
 }) => {
 	const theme = useTheme();
 	const mq = mediaqueries(theme.breakpoints);
+	const button = theme.button;
 
 	// Common styling
 	const styleCommon = {
-		textDecoration: 'none',
-		border: '1px solid transparent',
-		borderRadius: theme.button.borderRadius,
-		fontWeight: 400,
-		lineHeight: 1.5,
-		// display: 'inline-flex', //moved - see getStyleDisplay styling (in styleOverrides)
+		alignItems: 'center', //vertical
+		appearance: 'none',
+		border: `${button.borderWidth} solid transparent`,
+		borderRadius: button.borderRadius,
+		cursor: 'pointer',
 		flex: 1,
 		flexDirection: iconPosition === 'left' ? 'row-reverse' : null,
-		textAlign: 'center',
+		fontWeight: button.fontWeight,
 		justifyContent: justify ? 'space-between' : 'center', //horizontal
-		alignItems: 'center', //vertical
+		lineHeight: button.lineHeight,
+		textAlign: 'center',
+		textDecoration: 'none',
+		touchAction: 'manipulation',
+		transition: 'background 0.2s ease, color 0.2s ease',
+		userSelect: 'none',
 		verticalAlign: 'middle',
 		whiteSpace: 'nowrap',
 
-		touchAction: 'manipulation',
-		cursor: 'pointer',
-		userSelect: 'none',
-		appearance: 'none',
-		transition: 'background 0.2s ease, color 0.2s ease',
-
-		// Hover state
-		'&:hover:not(.disabled):not(:disabled)': {
+		// Hover state (but excluded if disabled or inside a disabled fieldset)
+		':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
 			textDecoration: appearance === 'link' ? 'underline' : 'none',
 		},
 
-		// Disabled state
-		'&.disabled, &:disabled': {
+		// Disabled via `disabled` attribute or inside a disabled fieldset
+		':disabled, fieldset:disabled &': {
 			opacity: '0.5',
-			cursor: 'not-allowed',
-		},
-		// A hyperlink that’s disabled or inside a disabled fieldset
-		'a&.disabled, fieldset[disabled] a&': {
 			pointerEvents: 'none',
 		},
 	};
 
 	// Button appearance styling
 	const styleAppearance = {
-		color: soft
-			? // Soft option
-			  appearance === 'faint'
-				? theme.colors.muted
-				: theme.colors.text
-			: // Default
-			  theme.button.appearance[appearance].default.color,
-		backgroundColor: soft
-			? // Soft
-			  '#fff'
-			: // Default
-			  theme.button.appearance[appearance].default.backgroundColor,
-		borderColor: theme.button.appearance[appearance].default.borderColor,
+		...button.appearance[appearance].standard.default,
+		...(soft && appearance !== 'link' && button.appearance[appearance].soft.default),
 
-		'&:not(.disabled):not(:disabled)': {
-			// Hover state
-			'&:hover': {
-				color: soft
-					? // Soft
-					  appearance !== 'faint'
-						? '#fff'
-						: theme.button.appearance[appearance].hover.color
-					: // Default
-					  theme.button.appearance[appearance].hover.color,
-				backgroundColor: soft
-					? // Soft
-					  appearance === 'faint'
-						? theme.colors.light
-						: theme.button.appearance[appearance].hover.backgroundColor
-					: // Default
-					  theme.button.appearance[appearance].hover.backgroundColor,
-				borderColor: theme.button.appearance[appearance].hover.borderColor,
-			},
-			// Active state
-			'&:active, &.active': {
-				color: theme.button.appearance[appearance].active.color,
-				backgroundColor: theme.button.appearance[appearance].active.backgroundColor,
-				borderColor: theme.button.appearance[appearance].active.borderColor,
-			},
+		':hover': {
+			...button.appearance[appearance].standard.hover,
+			...(soft && appearance !== 'link' && button.appearance[appearance].soft.hover),
+		},
+		':active, &.active': {
+			...button.appearance[appearance].standard.active,
+			...(soft && appearance !== 'link' && button.appearance[appearance].soft.active),
 		},
 	};
 
 	// Button size styling
-	const getSizeStyling = size => {
-		const padding = theme.button.size[size].padding;
-		if (trim) {
-			// console.log('lskdnfs');
-			padding[1] = 0;
-		}
-
-		return {
-			padding: padding.join(' '), //provided as an array
-			fontSize: theme.button.size[size].fontSize,
-			height: theme.button.size[size].height,
-		};
-	};
 	const styleSize = Array.isArray(size)
 		? // Size provided as an array
 		  size.map((s, i) => {
-				return i === 0 ? getSizeStyling(s) : { [mq[i]]: getSizeStyling(s) };
+				return i === 0
+					? getSizeStyling(s, trim, button)
+					: { [mq[i]]: getSizeStyling(s, trim, button) };
 		  })
 		: // Size prop provided a string, returned as single index array
-		  [getSizeStyling(size)];
+		  [getSizeStyling(size, trim, button)];
 
 	// Block styling
-	const getBlockStyling = block => {
-		return block
-			? // Block mode
-			  {
-					display: 'flex', //flex will provide 'block-level' appearance (we use flex so any icon children can be positioned appropriately)
-					width: '100%',
-			  }
-			: // Inline mode
-			  {
-					display: 'inline-flex',
-					width: 'auto', //reset
-			  };
-	};
 	const styleBlock = Array.isArray(block)
 		? // Block provided as an array
 		  block.map((b, i) => {
@@ -160,29 +129,33 @@ export const Button = ({
 		Tag = 'a';
 	}
 
-	// Map button size to icon size
-	const iconSize = {
-		small: 'small', //18px
-		medium: 'small', //18px
-		large: 'medium', //24px
-		xlarge: 'medium', //24px
-	};
-
 	// Compose a button text + icon fragment, if either of these items are provided
 	// (nb. `<input>` elements cannot have children; they would use a `value` prop)
 	const buttonContent = () => {
+		// Icon gap styling
 		const styleIcon = {
 			marginLeft: children && iconPosition === 'right' && '0.4em',
 			marginRight: children && iconPosition === 'left' && '0.4em',
 		};
-		return (
-			Tag !== 'input' ?
-				<>
-					{children && <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>}
-					{Icon && <Icon css={styleIcon} size={iconSize[size]} />}
-				</>
-			: null
-		);
+		// Map button size to icon size
+		const iconSize = {
+			small: 'small', //18px
+			medium: 'small', //18px
+			large: 'medium', //24px
+			xlarge: 'medium', //24px
+		};
+		// Text truncation styling (used in block mode)
+		const styleChildren = {
+			overflow: 'hidden',
+			textOverflow: 'ellipsis',
+		};
+
+		return Tag !== 'input' ? (
+			<>
+				{children && <span css={styleChildren}>{children}</span>}
+				{Icon && <Icon css={styleIcon} size={iconSize[size]} />}
+			</>
+		) : null;
 	};
 
 	return (
@@ -214,7 +187,6 @@ const options = {
 	size: ['small', 'medium', 'large', 'xlarge'],
 	iconPosition: ['left', 'right'],
 };
-
 
 Button.propTypes = {
 	/**
