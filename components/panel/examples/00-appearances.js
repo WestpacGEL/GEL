@@ -4,7 +4,7 @@ import { Panel, PanelHeader, PanelBody, PanelFooter } from '../src';
 
 export default () => (
 	<>
-		<h3>Default (hero) appearance</h3>
+		<h3>Standard (hero) appearance</h3>
 		<Panel>
 			<PanelHeader>Panel title</PanelHeader>
 			<PanelBody>

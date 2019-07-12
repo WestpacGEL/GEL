@@ -9,70 +9,6 @@ import { paint } from './utils';
 // Utils
 // ==============================
 
-export const PanelHeader = ({ appearance, responsive, ...props }) => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
-
-	return (
-		<div
-			css={arrayValues({
-				padding: responsive
-					? theme.panel.header.padding.responsive
-					: theme.panel.header.padding.default,
-				backgroundColor: theme.panel.header.appearance[appearance].backgroundColor,
-				borderBottom: `${theme.panel.borderWidth} solid ${
-					theme.panel.header.appearance[appearance].borderColor
-				}`,
-				color: theme.panel.header.appearance[appearance].color,
-				borderTopRightRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
-				borderTopLeftRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
-				fontSize: '16px', //TODO rems
-
-				'@media print': {
-					borderBottom: '1px solid #000',
-				},
-			})}
-			{...props}
-		/>
-	);
-};
-
-export const PanelBody = ({ appearance, responsive, ...props }) => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
-
-	return (
-		<div
-			css={arrayValues({
-				padding: responsive
-					? theme.panel.body.padding.responsive
-					: theme.panel.body.padding.default,
-			})}
-			{...props}
-		/>
-	);
-};
-
-export const PanelFooter = ({ appearance, responsive, ...props }) => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
-
-	return (
-		<div
-			css={arrayValues({
-				padding: responsive
-					? theme.panel.footer.padding.responsive
-					: theme.panel.footer.padding.default,
-				backgroundColor: theme.panel.footer.backgroundColor,
-				borderTop: `${theme.panel.borderWidth} solid ${theme.panel.footer.borderColor}`,
-				borderBottomRightRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
-				borderBottomLeftRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
-			})}
-			{...props}
-		/>
-	);
-};
-
 // ==============================
 // Component
 // ==============================
@@ -125,7 +61,7 @@ const options = {
 	appearance: ['hero', 'faint'],
 };
 
-export const propTypes = {
+Panel.propTypes = {
 	/**
 	 * The panel appearance.
 	 *
@@ -146,10 +82,7 @@ export const propTypes = {
 	children: PropTypes.node,
 };
 
-export const defaultProps = {
+Panel.defaultProps = {
 	appearance: 'hero',
 	responsive: false,
 };
-
-Panel.propTypes = propTypes;
-Panel.defaultProps = defaultProps;
