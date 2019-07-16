@@ -29,12 +29,36 @@ export default {
 	breakpoints: BREAK_POINTS,
 	colors: {
 		...COLORS,
+		primary: {
+			default: COLORS.primary,
+			foreground: 'white',
+		},
 		hero: {
 			default: COLORS.hero,
 			foreground: COLORS.text,
 		},
-		primary: {
-			default: COLORS.primary,
+		neutral: {
+			default: COLORS.neutral,
+			foreground: 'white',
+		},
+		faint: {
+			default: COLORS.light,
+			foreground: COLORS.muted,
+		},
+		success: {
+			default: COLORS.success,
+			foreground: 'white',
+		},
+		information: {
+			default: COLORS.information,
+			foreground: 'white',
+		},
+		warning: {
+			default: COLORS.warning,
+			foreground: 'white',
+		},
+		danger: {
+			default: COLORS.danger,
 			foreground: 'white',
 		},
 	},
