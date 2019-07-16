@@ -18,9 +18,7 @@ export const PanelBody = ({ appearance, responsive, ...props }) => {
 	return (
 		<div
 			css={mq({
-				padding: responsive
-					? panel.body.padding.responsive
-					: panel.body.padding.default,
+				padding: responsive ? panel.body.padding.responsive : panel.body.padding.default,
 			})}
 			{...props}
 		/>

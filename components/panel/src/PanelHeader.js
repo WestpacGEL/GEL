@@ -18,9 +18,7 @@ export const PanelHeader = ({ appearance, responsive, ...props }) => {
 	return (
 		<div
 			css={mq({
-				padding: responsive
-					? panel.header.padding.responsive
-					: panel.header.padding.default,
+				padding: responsive ? panel.header.padding.responsive : panel.header.padding.default,
 				backgroundColor: panel.header.appearance[appearance].backgroundColor,
 				borderBottom: `${panel.borderWidth} solid ${
 					panel.header.appearance[appearance].borderColor

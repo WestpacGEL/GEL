@@ -18,9 +18,7 @@ export const PanelFooter = ({ appearance, responsive, ...props }) => {
 	return (
 		<div
 			css={mq({
-				padding: responsive
-					? panel.footer.padding.responsive
-					: panel.footer.padding.default,
+				padding: responsive ? panel.footer.padding.responsive : panel.footer.padding.default,
 				backgroundColor: panel.footer.backgroundColor,
 				borderTop: `${panel.borderWidth} solid ${panel.footer.borderColor}`,
 				borderBottomRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
