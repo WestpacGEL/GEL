@@ -13,8 +13,7 @@ import { jsx, useTheme } from '@westpac/core';
 // ==============================
 
 export const Badge = ({ appearance, children, ...props }) => {
-	const theme = useTheme();
-	const badge = theme.badge;
+	const { colors, badge } = useTheme();
 
 	const common = {
 		border: `${badge.borderWidth} solid transparent`,
@@ -33,43 +32,43 @@ export const Badge = ({ appearance, children, ...props }) => {
 	const styleAppearance = {
 		primary: {
 			color: '#fff',
-			backgroundColor: theme.colors.primary.default,
-			borderColor: theme.colors.primary.default,
+			backgroundColor: colors.primary.default,
+			borderColor: colors.primary.default,
 		},
 		hero: {
 			color: '#fff',
-			backgroundColor: theme.colors.hero.default,
-			borderColor: theme.colors.hero.default,
+			backgroundColor: colors.hero.default,
+			borderColor: colors.hero.default,
 		},
 		neutral: {
 			color: '#fff',
-			backgroundColor: theme.colors.neutral,
-			borderColor: theme.colors.neutral,
+			backgroundColor: colors.neutral,
+			borderColor: colors.neutral,
 		},
 		faint: {
-			color: theme.colors.muted,
+			color: colors.muted,
 			backgroundColor: '#fff',
-			borderColor: theme.colors.border,
+			borderColor: colors.border,
 		},
 		success: {
 			color: '#fff',
-			backgroundColor: theme.colors.success,
-			borderColor: theme.colors.success,
+			backgroundColor: colors.success,
+			borderColor: colors.success,
 		},
 		info: {
 			color: '#fff',
-			backgroundColor: theme.colors.information,
-			borderColor: theme.colors.information,
+			backgroundColor: colors.information,
+			borderColor: colors.information,
 		},
 		danger: {
 			color: '#fff',
-			backgroundColor: theme.colors.danger,
-			borderColor: theme.colors.danger,
+			backgroundColor: colors.danger,
+			borderColor: colors.danger,
 		},
 		warning: {
 			color: '#fff',
-			backgroundColor: theme.colors.warning,
-			borderColor: theme.colors.warning,
+			backgroundColor: colors.warning,
+			borderColor: colors.warning,
 		},
 	};
 
