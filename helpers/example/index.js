@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
 import { Global, css, jsx } from '@emotion/core';
+import { Container } from '../../components/grid';
 
 import { GEL } from '../../components/core';
 import bomBrand from '../../brands/BOM';
@@ -221,7 +222,7 @@ const Article = props => (
 		{...props}
 	/>
 );
-const Container = props => (
+/*const Container = props => (
 	<div
 		css={{
 			marginLeft: 'auto',
@@ -231,7 +232,7 @@ const Container = props => (
 		}}
 		{...props}
 	/>
-);
+);*/
 
 const Sidebar = props => (
 	<div
