@@ -13,10 +13,14 @@ const slugFromFilename = filename => {
 	}
 };
 const labelFromSlug = slug => {
-	return slug
+	/*return slug
 		.split('-')
 		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(' ');
+		.join(' ');*/
+	return slug
+		.toLowerCase()
+		.replace(/-/g, ' ')
+		.replace(slug[0], slug[0].toUpperCase());
 };
 // const brandLabel = brand => {
 // 	const brands = fs.readdirSync(path.normalize(`${__dirname}/../../brands`), { encoding: 'utf8' });
