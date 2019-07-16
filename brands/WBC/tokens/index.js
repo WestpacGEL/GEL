@@ -20,7 +20,7 @@ const COLORS = {
 	danger: '#C40000',
 };
 
-const BREAK_POINTS = { xs: 576, sm: 768, md: 992, lg: 1200 };
+const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = 1320;
 const CONTAINER_PADDING = [12, 36, 48, 60];
