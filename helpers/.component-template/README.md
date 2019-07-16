@@ -1,7 +1,3 @@
-Note: Remove below prettier-ignore line
+# @westpac/_COMPONENT_KEY_
 
-<!-- prettier-ignore -->
-# @westpac/__COMPONENT_KEY__
-
-<!-- prettier-ignore -->
-__COMPONENT_DESCRIPTION__
+_COMPONENT_DESCRIPTION_

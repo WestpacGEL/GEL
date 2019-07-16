@@ -55,18 +55,18 @@ const updateReferences = (dir, component) => {
 		} else {
 			const { key, name, title, description } = component;
 			let renamedPath = fullPath;
-			if (/__COMPONENT_KEY__/.test(file)) {
-				renamedPath = path.join(dir, file.replace('__COMPONENT_KEY__', key));
+			if (/_COMPONENT_KEY_/.test(file)) {
+				renamedPath = path.join(dir, file.replace('_COMPONENT_KEY_', key));
 				fs.renameSync(fullPath, renamedPath);
-			} else if (/__COMPONENT_NAME__/.test(file)) {
-				renamedPath = path.join(dir, file.replace('__COMPONENT_NAME__', name));
+			} else if (/_COMPONENT_NAME_/.test(file)) {
+				renamedPath = path.join(dir, file.replace('_COMPONENT_NAME_', name));
 				fs.renameSync(fullPath, renamedPath);
 			}
 
-			shell(`sed -i  '' 's/__COMPONENT_KEY__/${key}/g' ${renamedPath}`);
-			shell(`sed -i  '' 's/__COMPONENT_NAME__/${name}/g' ${renamedPath}`);
-			shell(`sed -i  '' 's/__COMPONENT_TITLE__/${title}/g' ${renamedPath}`);
-			shell(`sed -i  '' 's/__COMPONENT_DESCRIPTION__/${description}/g' ${renamedPath}`);
+			shell(`sed -i  '' 's/_COMPONENT_KEY_/${key}/g' ${renamedPath}`);
+			shell(`sed -i  '' 's/_COMPONENT_NAME_/${name}/g' ${renamedPath}`);
+			shell(`sed -i  '' 's/_COMPONENT_TITLE_/${title}/g' ${renamedPath}`);
+			shell(`sed -i  '' 's/_COMPONENT_DESCRIPTION_/${description}/g' ${renamedPath}`);
 		}
 	});
 };
