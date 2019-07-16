@@ -70,6 +70,17 @@ export default {
 		},
 	},
 
+	badge: {
+		minWidth: '10px',
+		minWidth: '10px',
+		padding: '4px 7px',
+		lineHeight: 1,
+		fontWeight: 700,
+		fontSize: '14px',
+		borderRadius: '12px',
+		borderWidth: '1px',
+	},
+
 	panel: {
 		backgroundColor: '#fff',
 		borderWidth: '1px',
