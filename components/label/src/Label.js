@@ -4,8 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
-// import Color from 'color';
-
 // ==============================
 // Utils
 // ==============================
@@ -16,7 +14,6 @@ import { jsx, useTheme } from '@westpac/core';
 
 export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 	const { label } = useTheme();
-	// const { colors, label } = useTheme();
 
 	const common = {
 		border: `${label.borderWidth} solid`,
@@ -49,29 +46,10 @@ export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 		backgroundColor: label.appearance[appearance].default.backgroundColor,
 		borderColor: label.appearance[appearance].default.borderColor,
 
-		// Or if we don't use verbose tokens...
-		// color: colors[appearance].foreground,
-		// backgroundColor: colors[appearance].default,
-		// borderColor: appearance === 'faint' ? colors.border : colors[appearance].default,
-
 		'a&:hover, a&:focus': {
 			cursor: 'pointer',
 			backgroundColor: label.appearance[appearance].hover.backgroundColor,
 			borderColor: label.appearance[appearance].hover.borderColor,
-
-			// Or if we don't use verbose tokens...
-			/*backgroundColor:
-				appearance === 'faint'
-					? '#fff'
-					: Color('white')
-							.mix(Color(colors[appearance].default), 0.5)
-							.hex(),
-			borderColor:
-				appearance === 'faint'
-					? null
-					: Color('white')
-							.mix(Color(colors[appearance].default), 0.5)
-							.hex(),*/
 		},
 	};
 
@@ -103,7 +81,7 @@ const options = {
 	],
 };
 
-export const propTypes = {
+Label.propTypes = {
 	/**
 	 * The label appearance.
 	 *
@@ -126,10 +104,7 @@ export const propTypes = {
 	children: PropTypes.node.isRequired,
 };
 
-export const defaultProps = {
+Label.defaultProps = {
 	appearance: 'primary',
 	tag: 'span',
 };
-
-Label.propTypes = propTypes;
-Label.defaultProps = defaultProps;
