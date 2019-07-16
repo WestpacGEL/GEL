@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
-import Color from 'color';
+// import Color from 'color';
 
 // ==============================
 // Utils
@@ -15,8 +15,8 @@ import Color from 'color';
 // ==============================
 
 export const Label = ({ appearance, tag: Tag, children, ...props }) => {
-	const theme = useTheme();
-	const label = theme.label;
+	const { label } = useTheme();
+	// const { colors, label } = useTheme();
 
 	const common = {
 		border: `${label.borderWidth} solid`,
@@ -50,9 +50,9 @@ export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 		borderColor: label.appearance[appearance].default.borderColor,
 
 		// Or if we don't use verbose tokens...
-		// color: theme.colors[appearance].foreground,
-		// backgroundColor: theme.colors[appearance].default,
-		// borderColor: appearance === 'faint' ? theme.colors.border : theme.colors[appearance].default,
+		// color: colors[appearance].foreground,
+		// backgroundColor: colors[appearance].default,
+		// borderColor: appearance === 'faint' ? colors.border : colors[appearance].default,
 
 		'a&:hover, a&:focus': {
 			cursor: 'pointer',
@@ -64,13 +64,13 @@ export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 				appearance === 'faint'
 					? '#fff'
 					: Color('white')
-							.mix(Color(theme.colors[appearance].default), 0.5)
+							.mix(Color(colors[appearance].default), 0.5)
 							.hex(),
 			borderColor:
 				appearance === 'faint'
 					? null
 					: Color('white')
-							.mix(Color(theme.colors[appearance].default), 0.5)
+							.mix(Color(colors[appearance].default), 0.5)
 							.hex(),*/
 		},
 	};
