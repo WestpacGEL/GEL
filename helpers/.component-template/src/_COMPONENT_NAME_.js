@@ -4,6 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
+// ==============================
+// Utils
+// ==============================
+
+// ==============================
+// Component
+// ==============================
+
 /**
  * _COMPONENT_TITLE_: _COMPONENT_DESCRIPTION_
  */
