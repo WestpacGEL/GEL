@@ -1,3 +1,3 @@
-# @westpac/icon
+# @westpac/alert
 
-The icon component.
+The alert component.
