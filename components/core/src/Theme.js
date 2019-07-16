@@ -48,7 +48,6 @@ GEL.propTypes = {
 	brand: PropTypes.oneOfType([
 		PropTypes.shape({
 			breakpoints: PropTypes.shape({
-				xs: PropTypes.number,
 				sm: PropTypes.number,
 				md: PropTypes.number,
 				lg: PropTypes.number,
@@ -56,6 +55,8 @@ GEL.propTypes = {
 			colors: PropTypes.shape({
 				background: PropTypes.string,
 				border: PropTypes.string,
+				borderDark: PropTypes.string,
+				focus: PropTypes.string,
 				heading: PropTypes.string,
 				light: PropTypes.string,
 				muted: PropTypes.string,
@@ -69,11 +70,35 @@ GEL.propTypes = {
 				danger: PropTypes.string,
 
 				// nested
+				primary: PropTypes.shape({
+					default: PropTypes.string,
+					foreground: PropTypes.string,
+				}),
 				hero: PropTypes.shape({
 					default: PropTypes.string,
 					foreground: PropTypes.string,
 				}),
-				primary: PropTypes.shape({
+				neutral: PropTypes.shape({
+					default: PropTypes.string,
+					foreground: PropTypes.string,
+				}),
+				faint: PropTypes.shape({
+					default: PropTypes.string,
+					foreground: PropTypes.string,
+				}),
+				success: PropTypes.shape({
+					default: PropTypes.string,
+					foreground: PropTypes.string,
+				}),
+				information: PropTypes.shape({
+					default: PropTypes.string,
+					foreground: PropTypes.string,
+				}),
+				warning: PropTypes.shape({
+					default: PropTypes.string,
+					foreground: PropTypes.string,
+				}),
+				danger: PropTypes.shape({
 					default: PropTypes.string,
 					foreground: PropTypes.string,
 				}),
