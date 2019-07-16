@@ -174,4 +174,16 @@ export default {
 			},
 		},
 	},
+
+	well: {
+		borderRadius: '3px',
+		borderWidth: '1px',
+		backgroundColor: COLORS.light,
+		borderColor: COLORS.border,
+		padding: {
+			default: '12px',
+			responsive: [12, 24],
+		},
+		marginBottom: '18px',
+	},
 };
