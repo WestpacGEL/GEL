@@ -1,12 +1,19 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { paint } from './utils';
+import { jsx, useTheme, paint } from '@westpac/core';
+
+// ==============================
+// Utils
+// ==============================
 
 // allow string or array values for height/width
 const span = n => `span ${n}`;
 const getEndSpan = c => (Array.isArray(c) ? c.map(span) : span(c));
+
+// ==============================
+// Component
+// ==============================
 
 export const Cell = ({ area, center, height, left, middle, top, width, ...props }) => {
 	const theme = useTheme();
@@ -27,6 +34,10 @@ export const Cell = ({ area, center, height, left, middle, top, width, ...props 
 		/>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Cell.propTypes = {
 	/**

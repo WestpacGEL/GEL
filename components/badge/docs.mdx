@@ -1,0 +1,31 @@
+---
+name: Badge
+menu: Components
+route: /badge
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Badge } from './src';
+
+# Badge
+
+Badges are styled elements generally used to highlight a number. They come in nine different styles and can be used alone, inside links or buttons.
+
+<Playground>
+	<Badge>Default</Badge>
+
+    <Badge appearance="primary">Primary</Badge>
+    <Badge appearance="hero">Hero</Badge>
+    <Badge appearance="neutral">Neutral</Badge>
+    <Badge appearance="faint">Faint</Badge>
+
+    <Badge appearance="faint">Faint</Badge>
+    <Badge appearance="info">Info</Badge>
+    <Badge appearance="warning">Warning</Badge>
+    <Badge appearance="danger">Danger</Badge>
+
+</Playground>
+
+## Props
+
+<PropsTable of={Badge} />
