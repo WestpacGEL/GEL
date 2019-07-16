@@ -34,8 +34,7 @@
 		"test:unit": "jest",
 		"test:unit-watch": "jest --watch --coverage",
 		"test:integration": "node helpers/tester.js",
-		"test": "bolt test:format && bolt test:unit && bolt test:integration",
-		"create-component": "node ./helpers/create-component-cli.js"
+		"test": "bolt test:format && bolt test:unit && bolt test:integration"
 	},
 	"bolt": {
 		"workspaces": [

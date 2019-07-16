@@ -5,12 +5,12 @@ route: /__COMPONENT_KEY__
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { Component } from './src';
+import { __COMPONENT_NAME__ } from './src/__COMPONENT_NAME__';
 
-# **COMPONENT_TITLE**
+# __COMPONENT_NAME__
 
 Write your docs here
 
-<Playground>{/* example code */}</Playground>
+<Playground><__COMPONENT_NAME__ /></Playground>
 
-<PropsTable of={Component} />
+<PropsTable of={__COMPONENT_NAME__} />
