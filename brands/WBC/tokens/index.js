@@ -1,3 +1,5 @@
+import Color from 'color';
+
 const COLORS = {
 	background: '#F4F3F0',
 	border: '#D7D2CB',
