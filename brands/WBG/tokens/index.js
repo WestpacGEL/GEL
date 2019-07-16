@@ -304,6 +304,52 @@ export default {
 		},
 	},
 
+	panel: {
+		backgroundColor: '#fff',
+		borderWidth: '1px',
+		borderRadius: '3px',
+		appearance: {
+			hero: {
+				borderColor: COLORS.hero,
+			},
+			faint: {
+				borderColor: COLORS.border,
+			},
+		},
+		header: {
+			padding: {
+				default: '10px 12px',
+				responsive: ['10px 12px', '10px 24px'],
+			},
+			appearance: {
+				hero: {
+					color: '#fff',
+					backgroundColor: COLORS.hero,
+					borderColor: COLORS.hero,
+				},
+				faint: {
+					color: COLORS.text,
+					backgroundColor: COLORS.background,
+					borderColor: COLORS.border,
+				},
+			},
+		},
+		body: {
+			padding: {
+				default: '12px',
+				responsive: ['12px', '24px'],
+			},
+		},
+		footer: {
+			padding: {
+				default: '10px 12px',
+				responsive: ['10px 12px', '10px 24px'],
+			},
+			backgroundColor: COLORS.light,
+			borderColor: COLORS.border,
+		},
+	},
+
 	table: {
 		borderWidth: '1px',
 		marginBottom: '21px',
