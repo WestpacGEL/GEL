@@ -8,11 +8,10 @@ import { jsx, useTheme } from '@westpac/core';
 // Utils
 // ==============================
 const TableWrapper = ({ bordered, responsive, children, ...props }) => {
-	const theme = useTheme();
-	const table = theme.table;
+	const { table, breakpoints } = useTheme();
 
 	const maxWidth = width => `@media (max-width: ${width}px)`;
-	const xsOnly = maxWidth(theme.breakpoints.xs);
+	const xsOnly = maxWidth(breakpoints.xs);
 
 	const styleCommon = {
 		[xsOnly]: {
@@ -66,8 +65,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 // ==============================
 
 export const Table = ({ striped, bordered, responsive, ...props }) => {
-	const theme = useTheme();
-	const table = theme.table;
+	const { table, colors } = useTheme();
 
 	// Common styles
 	const styleCommon = {
@@ -147,7 +145,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 		},
 
 		tfoot: {
-			color: theme.colors.muted,
+			color: colors.muted,
 		},
 		// Adjacent `tbody` elements
 		'tbody + tbody': {

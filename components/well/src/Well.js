@@ -2,8 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { paint } from './utils';
+import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -14,9 +13,8 @@ import { paint } from './utils';
 // ==============================
 
 export const Well = ({ responsive, ...props }) => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
-	const well = theme.well;
+	const { breakpoints, well } = useTheme();
+	const arrayValues = paint(breakpoints);
 
 	// Common styles
 	const common = {
