@@ -117,27 +117,49 @@ export default {
 	},
 
 	table: {
-		th: {
-			borderColor: COLORS.hero,
-			color: COLORS.text,
+		borderWidth: '1px',
+		marginBottom: '21px',
+		backgroundColor: '#fff',
+
+		caption: {
+			fontWeight: '300',
+			fontSize: '18px',
+			marginBottom: '12px',
+			padding: '12px',
 		},
 		tr: {
 			hover: {
 				backgroundColor: COLORS.background,
 			},
 		},
-		appearance: {
-			striped: {
-				backgroundColor: COLORS.light,
+		th: {
+			fontWeight: 500,
+			borderBottomWidth: '3px',
+			borderColor: COLORS.hero,
+			color: COLORS.text,
+		},
+		td: {
+			padding: '12px',
+			borderWidth: '1px',
+			borderColor: COLORS.border,
+		},
+		striped: {
+			backgroundColor: COLORS.light,
+		},
+		highlight: {
+			borderColor: COLORS.primary,
+		},
+		bordered: {
+			th: {
+				borderBottomWidth: '2px',
 			},
-			highlight: {
-				borderColor: COLORS.primary,
-			},
-			bordered: {
-				borderColor: COLORS.border,
-			},
-			responsive: {
-				borderColor: COLORS.border,
+			borderColor: COLORS.border,
+		},
+		responsive: {
+			borderWidth: '1px',
+			borderColor: COLORS.border,
+			caption: {
+				padding: '12px',
 			},
 		},
 	},
