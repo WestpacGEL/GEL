@@ -54,9 +54,8 @@ export const Button = ({
 	onClick,
 	...props
 }) => {
-	const theme = useTheme();
-	const mq = mediaQueries(theme.breakpoints);
-	const button = theme.button;
+	const { button, breakpoints } = useTheme();
+	const mq = mediaQueries(breakpoints);
 
 	// Common styling
 	const styleCommon = {
