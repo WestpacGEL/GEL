@@ -8,32 +8,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Utils
 // ==============================
 
-const getSizeStyling = (size, trim, button) => {
-	const padding = button.size[size].padding;
-	if (trim) {
-		padding[1] = 0;
-	}
-
-	return {
-		padding: padding.join(' '), //provided as an array
-		fontSize: button.size[size].fontSize,
-		height: button.size[size].height,
-	};
-};
-
-const getBlockStyling = block => {
-	return block
-		? // Block mode
-		  {
-				display: 'flex', //flex will provide 'block-level' appearance (we use flex so any icon children can be positioned appropriately)
-				width: '100%',
-		  }
-		: // Inline mode
-		  {
-				display: 'inline-flex',
-				width: 'auto', //reset
-		  };
-};
+const asArray = val => (Array.isArray(val) ? val : [val]);
 
 // ==============================
 // Component
@@ -54,7 +29,7 @@ export const Button = ({
 	...props
 }) => {
 	const { breakpoints, button } = useTheme();
-	const mq = mediaQueries(breakpoints);
+	const mq = paint(breakpoints);
 
 	// Common styling
 	const styleCommon = {
@@ -103,25 +78,31 @@ export const Button = ({
 		},
 	};
 
-	// Button size styling
-	const styleSize = Array.isArray(size)
-		? // Size provided as an array
-		  size.map((s, i) => {
-				return i === 0
-					? getSizeStyling(s, trim, button)
-					: { [mq[i]]: getSizeStyling(s, trim, button) };
-		  })
-		: // Size prop provided a string, returned as single index array
-		  [getSizeStyling(size, trim, button)];
+	// Reponsive styling (button size and block)
+	const styleResponsive = () => {
+		const sizeArr = asArray(size);
+		const blockArr = asArray(block);
 
-	// Block styling
-	const styleBlock = Array.isArray(block)
-		? // Block provided as an array
-		  block.map((b, i) => {
-				return i === 0 ? getBlockStyling(b) : { [mq[i]]: getBlockStyling(b) };
-		  })
-		: // Block prop provided a string, returned as single index array
-		  [getBlockStyling(block)];
+		const padding = [],
+			fontSize = [],
+			height = [];
+
+		sizeArr.forEach(s => {
+			const pad = button.size[s].padding;
+			if (trim) pad[1] = 0;
+			padding.push(pad.join(' '));
+			fontSize.push(button.size[s].fontSize);
+			height.push(button.size[s].height);
+		});
+
+		return {
+			padding,
+			fontSize,
+			height,
+			display: blockArr.map(b => (b ? 'flex' : 'inline-flex')),
+			width: blockArr.map(b => (b ? '100%' : 'auto')),
+		};
+	};
 
 	if (props.href) {
 		Tag = 'a';
@@ -159,15 +140,11 @@ export const Button = ({
 	return (
 		<Tag
 			type={Tag === 'button' && props.onClick ? 'button' : undefined}
-			css={[
-				{
-					...styleCommon,
-					...styleAppearance,
-				},
-				// Responsive styles (as arrays), cannot be spread
-				styleSize,
-				styleBlock,
-			]}
+			css={mq({
+				...styleCommon,
+				...styleAppearance,
+				...styleResponsive(),
+			})}
 			{...props}
 			onClick={onClick}
 		>
