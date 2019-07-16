@@ -27,12 +27,16 @@ export default {
 	breakpoints: BREAK_POINTS,
 	colors: {
 		...COLORS,
+		primary: {
+			default: COLORS.primary,
+			foreground: 'white',
+		},
 		hero: {
 			default: COLORS.hero,
 			foreground: COLORS.text,
 		},
-		primary: {
-			default: COLORS.primary,
+		neutral: {
+			default: COLORS.neutral,
 			foreground: 'white',
 		},
 		faint: {
