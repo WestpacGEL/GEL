@@ -81,6 +81,227 @@ export default {
 		borderWidth: '1px',
 	},
 
+	button: {
+		borderRadius: '3px',
+		borderWidth: '1px',
+		fontWeight: 400,
+		lineHeight: 1.5,
+
+		appearance: {
+			primary: {
+				standard: {
+					default: {
+						color: '#fff',
+						backgroundColor: COLORS.primary,
+						borderColor: COLORS.primary,
+					},
+					hover: {
+						color: null,
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.primary), 0.7)
+							.hex(),
+						borderColor: null,
+					},
+					active: {
+						color: '#fff',
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.primary), 0.5)
+							.hex(),
+						borderColor: null,
+					},
+				},
+				soft: {
+					default: {
+						color: COLORS.text,
+						backgroundColor: '#fff',
+						borderColor: COLORS.primary,
+					},
+					hover: {
+						color: '#fff',
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.primary), 0.7)
+							.hex(),
+						borderColor: null,
+					},
+					active: {
+						color: '#fff',
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.primary), 0.5)
+							.hex(),
+						borderColor: null,
+					},
+				},
+			},
+			hero: {
+				standard: {
+					default: {
+						color: '#fff',
+						backgroundColor: COLORS.hero,
+						borderColor: COLORS.hero,
+					},
+					hover: {
+						color: null,
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.hero), 0.7)
+							.hex(),
+						borderColor: null,
+					},
+					active: {
+						color: '#fff',
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.hero), 0.5)
+							.hex(),
+						borderColor: null,
+					},
+				},
+				soft: {
+					default: {
+						color: COLORS.text,
+						backgroundColor: '#fff',
+						borderColor: COLORS.hero,
+					},
+					hover: {
+						color: '#fff',
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.hero), 0.7)
+							.hex(),
+						borderColor: null,
+					},
+					active: {
+						color: '#fff',
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.hero), 0.5)
+							.hex(),
+						borderColor: null,
+					},
+				},
+			},
+			neutral: {
+				standard: {
+					default: {
+						color: '#fff',
+						backgroundColor: COLORS.neutral,
+						borderColor: COLORS.neutral,
+					},
+					hover: {
+						color: null,
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.neutral), 0.7)
+							.hex(),
+						borderColor: null,
+					},
+					active: {
+						color: '#fff',
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.neutral), 0.5)
+							.hex(),
+						borderColor: null,
+					},
+				},
+				soft: {
+					default: {
+						color: COLORS.text,
+						backgroundColor: '#fff',
+						borderColor: COLORS.neutral,
+					},
+					hover: {
+						color: '#fff',
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.neutral), 0.7)
+							.hex(),
+						borderColor: null,
+					},
+					active: {
+						color: '#fff',
+						backgroundColor: Color('white')
+							.mix(Color(COLORS.neutral), 0.5)
+							.hex(),
+						borderColor: null,
+					},
+				},
+			},
+			faint: {
+				standard: {
+					default: {
+						color: COLORS.muted,
+						backgroundColor: COLORS.light,
+						borderColor: COLORS.border,
+					},
+					hover: {
+						color: null,
+						backgroundColor: '#fff',
+						borderColor: null,
+					},
+					active: {
+						color: COLORS.muted,
+						backgroundColor: '#fff',
+						borderColor: null,
+					},
+				},
+				soft: {
+					default: {
+						color: COLORS.muted,
+						backgroundColor: '#fff',
+						borderColor: COLORS.border,
+					},
+					hover: {
+						color: null,
+						backgroundColor: COLORS.light,
+						borderColor: null,
+					},
+					active: {
+						color: null,
+						backgroundColor: COLORS.light,
+						borderColor: null,
+					},
+				},
+			},
+			link: {
+				standard: {
+					default: {
+						color: COLORS.primary,
+						backgroundColor: 'transparent',
+						borderColor: 'transparent',
+					},
+					hover: {
+						color: null,
+						backgroundColor: null,
+						borderColor: null,
+					},
+					active: {
+						color: null,
+						backgroundColor: null,
+						borderColor: null,
+					},
+				},
+				soft: {},
+			},
+		},
+
+		size: {
+			small: {
+				padding: ['3px', '9px', '4px'],
+				fontSize: '14px',
+				height: '30px',
+			},
+			medium: {
+				padding: ['5px', '12px'],
+				fontSize: '16px',
+				height: '36px',
+			},
+			large: {
+				padding: ['8px', '15px'],
+				fontSize: '16px',
+				height: '42px',
+			},
+			xlarge: {
+				padding: ['9px', '18px', '10px'],
+				fontSize: '18px',
+				height: '48px',
+			},
+		},
+	},
+
 	panel: {
 		backgroundColor: '#fff',
 		borderWidth: '1px',
