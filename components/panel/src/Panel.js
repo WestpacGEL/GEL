@@ -3,7 +3,6 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { paint } from './utils';
 
 // ==============================
 // Utils
@@ -14,14 +13,14 @@ import { paint } from './utils';
 // ==============================
 
 export const Panel = ({ appearance, responsive, children, ...props }) => {
-	const theme = useTheme();
+	const { panel } = useTheme();
 
 	// Common styles
 	const common = {
 		marginBottom: '21px',
-		backgroundColor: theme.panel.backgroundColor,
-		border: `${theme.panel.borderWidth} solid ${theme.panel.appearance[appearance].borderColor}`,
-		borderRadius: theme.panel.borderRadius,
+		backgroundColor: panel.backgroundColor,
+		border: `${panel.borderWidth} solid ${panel.appearance[appearance].borderColor}`,
+		borderRadius: panel.borderRadius,
 
 		// Child table styling
 		'.table-wrapper': {
@@ -31,12 +30,12 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 		'.table': {
 			overflow: 'hidden', //clip overflow for rounded corners
 			marginBottom: 0,
-			borderBottomRightRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
-			borderBottomLeftRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
+			borderBottomRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
+			borderBottomLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 		},
 		'.table caption': {
-			padding: `${theme.panel.body.padding.default} ${theme.panel.body.padding.default} 0 ${
-				theme.panel.body.padding.default
+			padding: `${panel.body.padding.default} ${panel.body.padding.default} 0 ${
+				panel.body.padding.default
 			}`,
 		},
 	};

@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme } from '@westpac/core';
-import { paint } from './utils';
+import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -13,22 +12,22 @@ import { paint } from './utils';
 // ==============================
 
 export const PanelHeader = ({ appearance, responsive, ...props }) => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
+	const { breakpoints, panel } = useTheme();
+	const mq = paint(breakpoints);
 
 	return (
 		<div
-			css={arrayValues({
+			css={mq({
 				padding: responsive
-					? theme.panel.header.padding.responsive
-					: theme.panel.header.padding.default,
-				backgroundColor: theme.panel.header.appearance[appearance].backgroundColor,
-				borderBottom: `${theme.panel.borderWidth} solid ${
-					theme.panel.header.appearance[appearance].borderColor
+					? panel.header.padding.responsive
+					: panel.header.padding.default,
+				backgroundColor: panel.header.appearance[appearance].backgroundColor,
+				borderBottom: `${panel.borderWidth} solid ${
+					panel.header.appearance[appearance].borderColor
 				}`,
-				color: theme.panel.header.appearance[appearance].color,
-				borderTopRightRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
-				borderTopLeftRadius: `calc(${theme.panel.borderRadius} - ${theme.panel.borderWidth})`,
+				color: panel.header.appearance[appearance].color,
+				borderTopRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
+				borderTopLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 				fontSize: '16px', //TODO rems
 
 				'@media print': {

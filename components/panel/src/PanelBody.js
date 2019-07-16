@@ -1,9 +1,7 @@
 /** @jsx jsx */
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { paint } from './utils';
+import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -14,15 +12,15 @@ import { paint } from './utils';
 // ==============================
 
 export const PanelBody = ({ appearance, responsive, ...props }) => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
+	const { breakpoints, panel } = useTheme();
+	const mq = paint(breakpoints);
 
 	return (
 		<div
-			css={arrayValues({
+			css={mq({
 				padding: responsive
-					? theme.panel.body.padding.responsive
-					: theme.panel.body.padding.default,
+					? panel.body.padding.responsive
+					: panel.body.padding.default,
 			})}
 			{...props}
 		/>
