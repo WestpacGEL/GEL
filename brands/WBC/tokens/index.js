@@ -324,7 +324,7 @@ export default {
 			borderColor: COLORS.border,
 			caption: {
 				padding: '12px',
-			}
+			},
 		},
 	},
 

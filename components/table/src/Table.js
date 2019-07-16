@@ -139,7 +139,9 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 			textAlign: 'left',
 			verticalAlign: 'bottom',
 			borderBottom: `solid ${table.th.borderColor}`,
-			borderBottomWidth: bordered ? table.bordered.th.borderBottomWidth : table.th.borderBottomWidth,
+			borderBottomWidth: bordered
+				? table.bordered.th.borderBottomWidth
+				: table.th.borderBottomWidth,
 			fontWeight: table.th.fontWeight,
 			color: table.th.color,
 		},
