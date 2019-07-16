@@ -14,7 +14,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 
 export const Well = ({ responsive, ...props }) => {
 	const { breakpoints, well } = useTheme();
-	const arrayValues = paint(breakpoints);
+	const mq = paint(breakpoints);
 
 	// Common styles
 	const common = {
@@ -31,7 +31,7 @@ export const Well = ({ responsive, ...props }) => {
 		},
 	};
 
-	return <div css={arrayValues(common)} {...props} />;
+	return <div css={mq(common)} {...props} />;
 };
 
 // ==============================
