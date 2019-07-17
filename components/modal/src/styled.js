@@ -1,14 +1,12 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme } from '@westpac/core';
-
-//until core is published with updates
-import { paint } from '../../core/src';
+import { jsx, useTheme, paint } from '@westpac/core';
 
 export const ModalBackdrop = props => {
 	const styles = {
 		position: 'fixed',
+		zIndex: '1001',
 		backgroundColor: 'rgba(0,0,0,0.5)',
 		top: 0,
 		right: 0,
@@ -17,7 +15,6 @@ export const ModalBackdrop = props => {
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'flex-start',
-		padding: '0 12px',
 		transition: 'all 0.3s ease',
 
 		'&.modal-backdrop-enter': {
@@ -40,17 +37,21 @@ export const ModalBackdrop = props => {
 };
 
 export const StyledModal = ({ size, ...props }) => {
-	const { breakpoints } = useTheme();
+	const { modal, breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
 	const styles = {
 		overflow: 'auto',
 		maxHeight: '85%',
-		backgroundColor: '#fff',
-		borderRadius: 3,
+		backgroundColor: modal.backgroundColor,
+		borderRadius: modal.borderRadius,
 		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
 		transition: 'all 0.3s ease',
-		width: ['auto', ...(size === 'small' ? [300] : [600]), ...(size === 'large' ? [900] : [])],
+		width: [
+			'auto',
+			...(size === 'small' ? [modal.width.small] : [modal.width.medium]),
+			...(size === 'large' ? [modal.width.large] : []),
+		],
 
 		'&.modal-appear': {
 			opacity: 0,
@@ -62,4 +63,18 @@ export const StyledModal = ({ size, ...props }) => {
 	};
 
 	return <div css={mq(styles)} {...props} />;
+};
+
+export const Title = props => {
+	const { modal } = useTheme();
+	return (
+		<span
+			css={{
+				fontSize: modal.title.fontSize,
+				fontWeight: modal.title.justifyContent,
+				color: modal.title.color,
+			}}
+			{...props}
+		/>
+	);
 };

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from '../src';
 
-// TO DO: Replace buttons with GEL buttons once they are fixed and published to npm
+// TO DO: Replace with proper button import once published to npm
+import { Button } from '../../button/src';
 
 export default () => {
 	const [open, setOpen] = useState(false);
@@ -11,7 +12,7 @@ export default () => {
 
 	return (
 		<>
-			<button onClick={openModal}>Open</button>
+			<Button onClick={openModal}>Open</Button>
 			<Modal isOpen={open} onClose={closeModal}>
 				<ModalHeader>Modal Title</ModalHeader>
 				<ModalBody>
@@ -23,7 +24,9 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</ModalBody>
 				<ModalFooter>
-					<button onClick={closeModal}>Close</button>
+					<Button appearance="faint" onClick={closeModal}>
+						Close
+					</Button>
 				</ModalFooter>
 			</Modal>
 		</>

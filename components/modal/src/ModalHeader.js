@@ -4,31 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 import { CloseIcon } from '@westpac/icon';
-
-// ==============================
-// Utils
-// ==============================
-const Title = props => {
-	const theme = useTheme();
-	return (
-		<span
-			css={{
-				fontSize: 18,
-				fontWeight: 700,
-				color: `${theme.colors.text}`,
-			}}
-			{...props}
-		/>
-	);
-};
+import { Title } from './styled';
 
 // ==============================
 // Component
 // ==============================
 export const ModalHeader = ({ id, onClose, children, ...props }) => {
-	const theme = useTheme();
+	const { modal, colors } = useTheme();
 
-	// the positioning of the close icon isnt the same as current gel :(
 	return (
 		<div
 			css={{
@@ -36,8 +19,8 @@ export const ModalHeader = ({ id, onClose, children, ...props }) => {
 				justifyContent: 'space-between',
 				alignItems: 'center',
 				overflow: 'hidden',
-				borderBottom: `1px solid ${theme.colors.hero.default}`,
-				padding: '16px 24px 12px',
+				borderBottom: `${modal.header.borderWidth} solid ${modal.header.borderColor}`,
+				padding: modal.header.padding,
 			}}
 			{...props}
 		>
@@ -46,8 +29,20 @@ export const ModalHeader = ({ id, onClose, children, ...props }) => {
 				css={{ border: 'none', padding: 0, '&:hover svg': { opacity: 0.5 } }}
 				onClick={onClose}
 			>
-				<CloseIcon size="small" color={theme.colors.text} />
+				<CloseIcon size="small" color={colors.text} />
 			</button>
 		</div>
 	);
+};
+
+ModalHeader.propTypes = {
+	/** id of the title for accessibility */
+	id: PropTypes.string,
+	/** onClose function for the close button */
+	onClose: PropTypes.func,
+};
+
+ModalHeader.defaultProps = {
+	id: null,
+	onClose: null,
 };

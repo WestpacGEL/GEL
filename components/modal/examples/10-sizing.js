@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
 import { Modal, ModalHeader, ModalBody, ModalFooter } from '../src';
 
-// TO DO: Replace buttons with GEL buttons once they are fixed and published to npm
+// TO DO: Replace with proper button import once published to npm
+import { Button } from '../../button/src';
 
 export default () => {
 	const [open, setOpen] = useState(false);
@@ -19,7 +19,9 @@ export default () => {
 
 	return (
 		<>
-			<button onClick={openModal}>Open default modal</button>
+			<p>
+				<Button onClick={openModal}>Open default modal</Button>
+			</p>
 			<Modal isOpen={open} onClose={closeModal}>
 				<ModalHeader>Modal Title</ModalHeader>
 				<ModalBody>
@@ -31,11 +33,15 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</ModalBody>
 				<ModalFooter>
-					<button onClick={closeModal}>Close</button>
+					<Button appearance="faint" onClick={closeModal}>
+						Close
+					</Button>
 				</ModalFooter>
 			</Modal>
 
-			<button onClick={openSmallModal}>Open small modal</button>
+			<p>
+				<Button onClick={openSmallModal}>Open small modal</Button>
+			</p>
 			<Modal isOpen={openSmall} onClose={closeSmallModal} size="small">
 				<ModalHeader>Modal Title</ModalHeader>
 				<ModalBody>
@@ -47,11 +53,15 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</ModalBody>
 				<ModalFooter>
-					<button onClick={closeSmallModal}>Close</button>
+					<Button appearance="faint" onClick={closeSmallModal}>
+						Close
+					</Button>
 				</ModalFooter>
 			</Modal>
 
-			<button onClick={openLargeModal}>Open large modal</button>
+			<p>
+				<Button onClick={openLargeModal}>Open large modal</Button>
+			</p>
 			<Modal isOpen={openLarge} onClose={closeLargeModal} size="large">
 				<ModalHeader>Modal Title</ModalHeader>
 				<ModalBody>
@@ -63,7 +73,9 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</ModalBody>
 				<ModalFooter>
-					<button onClick={closeLargeModal}>Close</button>
+					<Button appearance="faint" onClick={closeLargeModal}>
+						Close
+					</Button>
 				</ModalFooter>
 			</Modal>
 		</>

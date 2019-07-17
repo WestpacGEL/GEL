@@ -545,4 +545,33 @@ export default {
 		},
 		marginBottom: '18px',
 	},
+
+	modal: {
+		backgroundColor: '#fff',
+		borderRadius: 3,
+		width: {
+			small: 300,
+			medium: 600,
+			large: 900,
+		},
+		header: {
+			borderWidth: '1px',
+			borderColor: COLORS.hero,
+			padding: '16px 24px 12px',
+		},
+		title: {
+			fontSize: 18,
+			fontWeight: 700,
+			color: COLORS.text,
+		},
+		body: {
+			padding: '18px 24px',
+		},
+		footer: {
+			backgroundColor: COLORS.background,
+			borderWidth: '1px',
+			borderColor: COLORS.border,
+			padding: '12px 18px',
+		},
+	},
 };

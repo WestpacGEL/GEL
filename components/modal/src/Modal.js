@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement, useState, useEffect, useRef } from 'react';
+import React, { Children, cloneElement, useState, useEffect } from 'react';
 import { jsx, useTheme } from '@westpac/core';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';

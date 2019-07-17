@@ -4,10 +4,14 @@ menu: Components
 route: /modal
 ---
 
-import { useState } from "react";
-import { Playground, PropsTable } from "docz";
-import { Modal } from "./src/Modal";
-import { ModalHeader, ModalBody, ModalFooter } from "./src";
+import { useState } from 'react';
+import { Playground, PropsTable } from 'docz';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from './src';
+import { ModalProps } from './src/utils';
+
+<!-- TO DO: Replace with proper button import once published to npm -->
+
+import { Button } from '../button/src';
 
 # Modal
 
@@ -23,7 +27,7 @@ Set the initial width of your modal depending on the amount of content you are s
 
             return (
                 <>
-                    <button onClick={openModal}>Open</button>
+                    <Button onClick={openModal}>Open</Button>
                     <Modal isOpen={open} onClose={closeModal}>
                         <ModalHeader>Modal Title</ModalHeader>
                         <ModalBody>
@@ -35,7 +39,7 @@ Set the initial width of your modal depending on the amount of content you are s
                             ought to be a book written about me, that there ought!’
                         </ModalBody>
                         <ModalFooter>
-                            <button onClick={closeModal}>Close</button>
+                            <Button appearance="faint" onClick={closeModal}>Close</Button>
                         </ModalFooter>
                     </Modal>
                 </>
@@ -47,4 +51,4 @@ Set the initial width of your modal depending on the amount of content you are s
 
 ## Props
 
-<PropsTable of={Modal} />
+<PropsTable of={ModalProps} />
