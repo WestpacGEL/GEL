@@ -85,14 +85,14 @@ export const Switch = ({ children, name, srOnly, ...props }) => {
 		backgroundColor: '#621a4b',
 
 		'&::after': {
-			transform: 'translateX(100%)',
+			left: '100%',
+			transform: 'translateX(-100%)',
 			boxShadow: '-3px 0 6px 0 rgba(0,0,0,0.3)',
 			content: '""',
 			height: 32,
 			width: 32,
 			display: 'block',
 			position: 'absolute',
-			left: 0,
 			top: 0,
 			borderRadius: '50%',
 			backgroundColor: '#fff',
