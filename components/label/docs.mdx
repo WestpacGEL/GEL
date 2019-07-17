@@ -1,0 +1,31 @@
+---
+name: Label
+menu: Components
+route: /label
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Label } from './src';
+
+# Label
+
+Labels are styled elements to highlight words or links.
+
+<Playground>
+	<Label>Default</Label>
+
+    <Label appearance="primary">Primary</Label>
+    <Label appearance="hero">Hero</Label>
+    <Label appearance="neutral">Neutral</Label>
+    <Label appearance="faint">Faint</Label>
+
+    <Label appearance="faint">Faint</Label>
+    <Label appearance="information">Information</Label>
+    <Label appearance="warning">Warning</Label>
+    <Label appearance="danger">Danger</Label>
+
+</Playground>
+
+## Props
+
+<PropsTable of={Label} />
