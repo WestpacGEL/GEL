@@ -90,11 +90,14 @@ const main = async () => {
 		space: false,
 	});
 
-	let name, description;
+	let name = process.argv.slice(2)[0],
+		description;
 
-	do {
-		name = await qName().catch(e => console.log(chalk.red(e)));
-	} while (!name);
+	if (!name) {
+		do {
+			name = await qName().catch(e => console.log(chalk.red(e)));
+		} while (!name);
+	}
 
 	do {
 		description = await qDescription().catch(e => console.log(chalk.red(e)));

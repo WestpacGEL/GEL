@@ -15,7 +15,7 @@ The design system for Westpac GEL
 | `bolt docs`                 | build docs for all components and open server     |
 | `bolt docs:build`           | build docs for all components to `./docs/` folder |
 | `bolt dev [package-name]`   | run the examples of the specified component       |
-| `bolt new [package-name]`   | create a specified empty component (not done yet) |
+| `bolt new [package-name]`   | create a specified empty component                |
 | `bolt start [package-name]` | start the example server of a component           |
 | `bolt test`                 | runs test                                         |
 | `bolt format`               | runs prettier to format all code                  |
