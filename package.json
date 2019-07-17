@@ -85,11 +85,15 @@
 		"color": "^3.1.1",
 		"common-tags": "^1.8.0",
 		"facepaint": "^1.2.1",
+		"focus-trap-react": "^6.0.0",
 		"prettier": "^1.15.3",
 		"prop-types": "^15.6.2",
 		"react": "16.7.0-alpha.2",
 		"react-dom": "16.7.0-alpha.2",
-		"resize-observer-polyfill": "^1.5.0"
+		"react-focus-lock": "^2.0.3",
+		"react-transition-group": "^4.2.1",
+		"resize-observer-polyfill": "^1.5.0",
+		"shortid": "^2.2.14"
 	},
 	"resolutions": {
 		"ansi-styles": "^3.2.0"
