@@ -1,16 +1,18 @@
 ---
-name: __COMPONENT_TITLE__
+name: _COMPONENT_NAME_
 menu: Components
-route: /__COMPONENT_KEY__
+route: /_COMPONENT_KEY_
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { Component } from './src';
+import { _COMPONENT_NAME_ } from './src/_COMPONENT_NAME_';
 
-# **COMPONENT_TITLE**
+# _COMPONENT_NAME_
 
 Write your docs here
 
-<Playground>{/* example code */}</Playground>
+<Playground>
+	<_COMPONENT_NAME_ />
+</Playground>
 
-<PropsTable of={Component} />
+<PropsTable of={_COMPONENT_NAME_} />
