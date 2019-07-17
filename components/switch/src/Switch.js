@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
@@ -17,6 +17,8 @@ import { jsx, useTheme } from '@westpac/core';
 // ==============================
 
 export const Switch = ({ children, name, srOnly, ...props }) => {
+	const [on, setOn] = useState(false);
+
 	const common = {
 		position: 'relative',
 		display: 'inline-table',
@@ -78,12 +80,37 @@ export const Switch = ({ children, name, srOnly, ...props }) => {
 		},
 	};
 
+	const toggleOnCss = {
+		borderColor: '#621a4b',
+		backgroundColor: '#621a4b',
+
+		'&::after': {
+			transform: 'translateX(100%)',
+			boxShadow: '-3px 0 6px 0 rgba(0,0,0,0.3)',
+			content: '""',
+			height: 32,
+			width: 32,
+			display: 'block',
+			position: 'absolute',
+			left: 0,
+			top: 0,
+			borderRadius: '50%',
+			backgroundColor: '#fff',
+			transition: 'all .3s ease',
+		},
+	};
+
 	return (
-		<label css={{ ...common }}>
+		<label
+			css={{ ...common }}
+			onClick={() => {
+				setOn(true);
+			}}
+		>
 			<input type="checkbox" name={name} id={name} />
 			{srOnly ? <span css={{ ...srOnlyCss }}>text</span> : <span>{children}</span>}
 
-			<span css={{ ...toggleCss }} />
+			{on ? <span css={{ ...toggleCss, ...toggleOnCss }} /> : <span css={{ ...toggleCss }} />}
 		</label>
 	);
 };
