@@ -16,12 +16,11 @@ import { jsx, useTheme } from '@westpac/core';
  * __COMPONENT_TITLE__: __COMPONENT_DESCRIPTION__
  */
 export const __COMPONENT_NAME__ = ({ ...props }) => {
-	const theme = useTheme();
-
-	// Common styles
-	const common = {};
-
-	return <div css={[common]} {...props} />;
+	return (
+		<div css={{}} {...props}>
+			__COMPONENT_NAME__
+		</div>
+	);
 };
 
 // ==============================
