@@ -17,8 +17,6 @@ import { jsx, useTheme } from '@westpac/core';
 // ==============================
 
 export const Switch = ({ children, name, srOnly, text, ...props }) => {
-	const [on, setOn] = useState(false);
-
 	const common = {
 		position: 'relative',
 		display: 'flex',
@@ -120,19 +118,27 @@ export const Switch = ({ children, name, srOnly, text, ...props }) => {
 		right: 0,
 	};
 
+	const [on, setOn] = useState(false);
+	const toggle = () => setOn(!on);
+
+	console.log(on);
+
 	const textParam = text.map((t, i) => (
-		<span css={{ ...textParamCss }} key={i}>
-			{t}
-		</span>
+		<>
+			{i === 0 ? (
+				<span key={i} css={{ ...textParamCss, ...textParamOnCss }}>
+					{t}
+				</span>
+			) : (
+				<span key={i} css={{ ...textParamCss, ...textParamOffCss }}>
+					{t}
+				</span>
+			)}
+		</>
 	));
 
 	return (
-		<label
-			css={{ ...common }}
-			onClick={() => {
-				setOn(true);
-			}}
-		>
+		<label css={{ ...common }} onClick={toggle}>
 			<input type="checkbox" name={name} id={name} />
 			{srOnly ? (
 				<span css={{ ...srOnlyCss }}>{children}</span>
