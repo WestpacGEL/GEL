@@ -16,9 +16,13 @@
 	},
 	"main": "dist/index.js",
 	"dependencies": {
-		"facepaint": "^1.2.1",
 		"@westpac/core": "^0.0.1",
-		"prop-types": "^15.6.2"
+		"@westpac/icon": "^0.0.1",
+		"facepaint": "^1.2.1",
+		"prop-types": "^15.6.2",
+		"react-focus-lock": "^2.0.3",
+		"react-transition-group": "^4.2.1",
+		"shortid": "^2.2.14"
 	},
 	"peerDependencies": {
 		"react": "16.7.0-alpha.2"
