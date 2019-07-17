@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { useState } from 'react';
+import React, { useState, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
@@ -16,19 +16,18 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Switch = ({ children, name, srOnly, ...props }) => {
+export const Switch = ({ children, name, srOnly, text, ...props }) => {
 	const [on, setOn] = useState(false);
 
 	const common = {
 		position: 'relative',
-		display: 'inline-table',
-		verticalAlign: 'top',
+		display: 'flex',
+		alignItems: 'center',
 		marginRight: 18,
 		height: 36,
 		paddingRight: 80,
 		borderRadius: 36,
 		height: 36,
-		width: 80,
 		marginBottom: 6,
 
 		'&:hover': {
@@ -48,6 +47,10 @@ export const Switch = ({ children, name, srOnly, ...props }) => {
 		width: 1,
 		overflow: 'hidden',
 		clip: 'rect(1px 1px 1px 1px)',
+	};
+
+	const textCss = {
+		paddingRight: 6,
 	};
 
 	const toggleCss = {
@@ -100,6 +103,29 @@ export const Switch = ({ children, name, srOnly, ...props }) => {
 		},
 	};
 
+	const textParamCss = {
+		position: 'absolute',
+		textAlign: 'center',
+		lineHeight: 2,
+		fontSize: 16,
+		width: 44,
+		width: 'calc(100% - 32px)',
+	};
+
+	const textParamOnCss = {
+		left: 0,
+	};
+
+	const textParamOffCss = {
+		right: 0,
+	};
+
+	const textParam = text.map((t, i) => (
+		<span css={{ ...textParamCss }} key={i}>
+			{t}
+		</span>
+	));
+
 	return (
 		<label
 			css={{ ...common }}
@@ -108,9 +134,17 @@ export const Switch = ({ children, name, srOnly, ...props }) => {
 			}}
 		>
 			<input type="checkbox" name={name} id={name} />
-			{srOnly ? <span css={{ ...srOnlyCss }}>text</span> : <span>{children}</span>}
+			{srOnly ? (
+				<span css={{ ...srOnlyCss }}>{children}</span>
+			) : (
+				<span css={{ ...textCss }}>{children}</span>
+			)}
 
-			{on ? <span css={{ ...toggleCss, ...toggleOnCss }} /> : <span css={{ ...toggleCss }} />}
+			{on ? (
+				<span css={{ ...toggleCss, ...toggleOnCss }} />
+			) : (
+				<span css={{ ...toggleCss }}>{textParam}</span>
+			)}
 		</label>
 	);
 };
@@ -126,4 +160,6 @@ Switch.propTypes = {
 	someProperty: PropTypes.string,
 };
 
-Switch.defaultProps = {};
+Switch.defaultProps = {
+	text: ['On', 'Off'],
+};
