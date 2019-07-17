@@ -12,21 +12,12 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Form = ({ inline, ...props }) => <form {...props} />;
+export const Form = ({ ...props }) => <form {...props} />;
 
 // ==============================
 // Types
 // ==============================
 
-Form.propTypes = {
-	/**
-	 * Form inline layout mode.
-	 *
-	 * Defaults to "false"
-	 */
-	inline: PropTypes.bool,
-};
+Form.propTypes = {};
 
-Form.defaultProps = {
-	inline: false,
-};
+Form.defaultProps = {};
