@@ -3,6 +3,9 @@
 import React from 'react';
 import { jsx, useTheme } from '@westpac/core';
 
+//until core is published with updates
+import { paint } from '../../core/src';
+
 export const ModalBackdrop = props => {
 	const styles = {
 		position: 'fixed',
@@ -38,6 +41,8 @@ export const ModalBackdrop = props => {
 
 export const StyledModal = ({ size, ...props }) => {
 	const { breakpoints } = useTheme();
+	const mq = paint(breakpoints);
+
 	const styles = {
 		overflow: 'auto',
 		maxHeight: '85%',
@@ -45,15 +50,7 @@ export const StyledModal = ({ size, ...props }) => {
 		borderRadius: 3,
 		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
 		transition: 'all 0.3s ease',
-
-		// can i refactor this to use facepaint?
-		[`@media(min-width: ${breakpoints.sm}px)`]: {
-			width: size === 'small' ? 300 : 600,
-		},
-
-		[`@media(min-width: ${breakpoints.md}px)`]: {
-			width: size === 'large' && 900,
-		},
+		width: ['auto', ...(size === 'small' ? [300] : [600]), ...(size === 'large' ? [900] : [])],
 
 		'&.modal-appear': {
 			opacity: 0,
@@ -64,5 +61,5 @@ export const StyledModal = ({ size, ...props }) => {
 		},
 	};
 
-	return <div css={styles} {...props} />;
+	return <div css={mq(styles)} {...props} />;
 };

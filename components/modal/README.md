@@ -1,3 +1,3 @@
-# @westpac/**COMPONENT_KEY**
+# @westpac/modal
 
-**COMPONENT_DESCRIPTION**
+Westpac GEL modal component

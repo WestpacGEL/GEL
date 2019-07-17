@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from '../src';
 
+// TO DO: Replace buttons with GEL buttons once they are fixed and published to npm
+
 export default () => {
 	const [open, setOpen] = useState(false);
 
