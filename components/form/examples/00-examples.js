@@ -38,7 +38,7 @@ export default () => (
 
 		<h2>Form groups</h2>
 
-		<h3>Default</h3>
+		<h3>Default spacing</h3>
 		<FormGroup>
 			[This is a default FormGroup]
 		</FormGroup>
@@ -46,16 +46,16 @@ export default () => (
 			[This is another large FormGroup]
 		</FormGroup>
 
-		<h3>Large</h3>
-		<FormGroup size="large">
+		<h3>Large spacing</h3>
+		<FormGroup spacing="large">
 			[This is a large FormGroup]
 		</FormGroup>
-		<FormGroup size="large">
+		<FormGroup spacing="large">
 			[This is another large FormGroup]
 		</FormGroup>
 
 		<h3>Primary (fork)</h3>
-		<FormGroup size="large" primary>
+		<FormGroup spacing="large" primary>
 			[This is a large primary FormGroup]
 		</FormGroup>
 
@@ -70,10 +70,10 @@ export default () => (
 
 		<h2>Form label</h2>
 
-		<h3>Default</h3>
+		<h3>Default spacing</h3>
 		<FormLabel>This is a default label</FormLabel>
 
-		<h3>Spacing</h3>
+		<h3>Large spacing</h3>
 		<FormLabel spacing="large">This is a large spaced label</FormLabel>
 
 		<h3>Small (sublabel)</h3>

@@ -12,7 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormGroup = ({ size, primary, inline, ...props }) => {
+export const FormGroup = ({ spacing, primary, inline, ...props }) => {
 	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
@@ -25,7 +25,7 @@ export const FormGroup = ({ size, primary, inline, ...props }) => {
 
 	// Size styling
 	const styleSize = {
-		marginBottom: size === 'large'
+		marginBottom: spacing === 'large'
 			? ['24px', '30px']
 			: ['18px', (inline ? 0 : null)], //TODO token
 	};
@@ -40,16 +40,16 @@ export const FormGroup = ({ size, primary, inline, ...props }) => {
 // ==============================
 
 const options = {
-	size: ['medium', 'large'],
+	spacing: ['medium', 'large'],
 };
 
 FormGroup.propTypes = {
 	/**
-	 * The form group size.
+	 * The form group spacing.
 	 *
 	 * Defaults to "medium"
 	 */
-	size: PropTypes.oneOf(options.size),
+	spacing: PropTypes.oneOf(options.spacing),
 
 	/**
 	 * Primary (fork) mode.
