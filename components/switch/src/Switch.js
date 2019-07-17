@@ -16,7 +16,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Switch = ({ ...props }) => {
+export const Switch = ({ children, name, srOnly, ...props }) => {
 	const common = {
 		position: 'relative',
 		display: 'inline-table',
@@ -29,42 +29,41 @@ export const Switch = ({ ...props }) => {
 		width: 80,
 		marginBottom: 6,
 
+		'&:hover': {
+			cursor: 'pointer',
+		},
+
 		input: {
 			position: 'absolute',
 			zIndex: -1,
 			opacity: 0,
 		},
+	};
 
-		'.switch-sronly': {
-			position: 'absolute',
-			height: 1,
-			width: 1,
-			overflow: 'hidden',
-			clip: 'rect(1px 1px 1px 1px)',
-		},
+	const srOnlyCss = {
+		position: 'absolute',
+		height: 1,
+		width: 1,
+		overflow: 'hidden',
+		clip: 'rect(1px 1px 1px 1px)',
+	};
 
-		'.switch-toggle': {
-			borderRadius: 36,
-			height: 36,
-			width: 80,
-			display: 'block',
-			position: 'absolute',
-			right: 0,
-			top: 0,
-			zIndex: 1,
-			border: '2px solid #d7d2cb',
-			backgroundColor: '#fff',
-			overflow: 'hidden',
-			lineHeight: 1.5,
-			transition: 'border .3s ease,background .3s ease',
-		},
+	const toggleCss = {
+		borderRadius: 36,
+		height: 36,
+		width: 80,
+		display: 'block',
+		position: 'absolute',
+		right: 0,
+		top: 0,
+		zIndex: 1,
+		border: '2px solid #d7d2cb',
+		backgroundColor: '#fff',
+		overflow: 'hidden',
+		lineHeight: 1.5,
+		transition: 'border .3s ease,background .3s ease',
 
-		'&::before': {
-			content: '""',
-			display: 'table',
-		},
-
-		'.switch-toggle::after': {
+		'&::after': {
 			content: '""',
 			height: 32,
 			width: 32,
@@ -80,14 +79,11 @@ export const Switch = ({ ...props }) => {
 	};
 
 	return (
-		// <div css={{}} {...props}>
-		// 	Switch
-		// </div>
-
 		<label css={{ ...common }}>
-			<input type="checkbox" name="ex1" id="ex1" />
-			<span className="switch-sronly">text</span>
-			<span className="switch-toggle" />
+			<input type="checkbox" name={name} id={name} />
+			{srOnly ? <span css={{ ...srOnlyCss }}>text</span> : <span>{children}</span>}
+
+			<span css={{ ...toggleCss }} />
 		</label>
 	);
 };
