@@ -6,6 +6,7 @@ import {
 	FormSection,
 	FormGroup,
 	FormFieldset,
+	FormHint,
 	FormLabel,
 	FormErrorMessage
 } from '../src';
@@ -78,6 +79,11 @@ export default () => (
 
 		<h3>Small (sublabel)</h3>
 		<FormLabel size="small">This is a small label</FormLabel>
+
+		<hr />
+
+		<h2>Form hint</h2>
+		<FormHint>This is a hint</FormHint>
 
 		<hr />
 
