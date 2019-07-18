@@ -1,8 +1,8 @@
 export { Form } from './Form';
-export { FormSection } from './FormSection';
-export { FormGroup } from './FormGroup';
 export { FormChitChat } from './FormChitChat';
+export { FormErrorMessage } from './FormErrorMessage';
 export { FormFieldset } from './FormFieldset';
+export { FormGroup } from './FormGroup';
 export { FormHint } from './FormHint';
 export { FormLabel } from './FormLabel';
-export { FormErrorMessage } from './FormErrorMessage';
+export { FormSection } from './FormSection';

@@ -3,19 +3,37 @@ import React from 'react';
 import {
 	Form,
 	FormChitChat,
-	FormSection,
-	FormGroup,
+	FormErrorMessage,
 	FormFieldset,
+	FormGroup,
 	FormHint,
 	FormLabel,
-	FormErrorMessage
+	FormSection
 } from '../src';
 
 export default () => (
 	<>
 		<h2>Form</h2>
+
+		<h3>Default</h3>
 		<Form action="." noValidate>
-			[This is a form]
+			<FormGroup>
+				[This is a default FormGroup inside a Form]
+			</FormGroup>
+		</Form>
+
+		<h3>Large spacing</h3>
+		<Form action="." spacing="large" noValidate>
+			<FormGroup>
+				[This is a default FormGroup inside a large spaced Form]
+			</FormGroup>
+		</Form>
+
+		<h3>Inline</h3>
+		<Form action="." inline noValidate>
+			<FormGroup>
+				[This is a default FormGroup inside an inline Form]
+			</FormGroup>
 		</Form>
 
 		<hr />
