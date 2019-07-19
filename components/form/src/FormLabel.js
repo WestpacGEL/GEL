@@ -13,6 +13,7 @@ import { jsx } from '@westpac/core';
 // ==============================
 
 export const FormLabel = ({ htmlFor, size, spacing, tag: Tag, inline, ...props }) => {
+
 	// Common styling
 	const styleCommon = {
 		display: 'inline-block',

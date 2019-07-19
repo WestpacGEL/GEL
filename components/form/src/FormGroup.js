@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
@@ -12,7 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormGroup = ({ spacing, primary, inline, ...props }) => {
+export const FormGroup = ({ spacing, primary, inline, children, ...props }) => {
 	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
@@ -30,8 +30,18 @@ export const FormGroup = ({ spacing, primary, inline, ...props }) => {
 			: ['18px', (inline ? 0 : null)], //TODO token
 	};
 
+	// Pass these selected props on to children (that way our children’s styling can be set by the parent)
+	// TODO allow any children props to take precedence if provided
+	const giftedChildren = Children.map(children, child => {
+		return React.isValidElement(child)
+			? cloneElement(child, { spacing })
+			: child
+	});
+
 	return (
-		<div css={mq({ ...styleCommon, ...styleSize })} {...props} />
+		<div css={mq({ ...styleCommon, ...styleSize })} {...props}>
+			{giftedChildren}
+		</div>
 	);
 };
 

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
@@ -12,7 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormSection = ({ inline, ...props }) => {
+export const FormSection = ({ inline, spacing, children, ...props }) => {
 	const { colors, breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
@@ -35,8 +35,18 @@ export const FormSection = ({ inline, ...props }) => {
 		},
 	};
 
+	// Pass these selected props on to children (that way our children’s styling can be set by the parent)
+	// TODO allow any children props to take precedence if provided
+	const giftedChildren = Children.map(children, child => {
+		return React.isValidElement(child)
+			? cloneElement(child, { spacing, inline })
+			: child
+	});
+
 	return (
-		<div css={mq({ ...styleCommon })} {...props} />
+		<div css={mq({ ...styleCommon })} {...props}>
+			{giftedChildren}
+		</div>
 	);
 };
 
