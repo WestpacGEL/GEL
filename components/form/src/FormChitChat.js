@@ -12,7 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormChitChat = ({ tag: Tag, ...props }) => {
+export const FormChitChat = ({ inline, tag: Tag, ...props }) => {
 	const { colors, breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 

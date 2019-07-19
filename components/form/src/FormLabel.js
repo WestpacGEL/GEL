@@ -12,7 +12,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormLabel = ({ size, spacing, ...props }) => {
+export const FormLabel = ({ htmlFor, size, spacing, tag: Tag, inline, ...props }) => {
 	// Common styling
 	const styleCommon = {
 		display: 'inline-block',
@@ -28,7 +28,11 @@ export const FormLabel = ({ size, spacing, ...props }) => {
 	};
 
 	return (
-		<label css={styleCommon} {...props} />
+		<Tag
+			css={styleCommon}
+			htmlFor={htmlFor}
+			{...props}
+		/>
 	);
 };
 
@@ -39,9 +43,23 @@ export const FormLabel = ({ size, spacing, ...props }) => {
 const options = {
 	size: ['small', 'medium'],
 	spacing: ['medium', 'large'],
+	tag: ['label', 'legend'],
 };
 
 FormLabel.propTypes = {
+	/**
+	 * The label for attribute.
+	 *
+	 * This prop is required, if the tag is `label`.
+	 */
+	htmlFor: (props, propName, componentName, location, propFullName) => {
+		if (props.tag === 'label' && props[propName] == undefined) {
+			return new Error(
+				`The prop \`${propName}\` is marked as required in \`${componentName}\`, but its value is \`undefined\`.`
+			);
+		}
+	},
+
 	/**
 	 * The label text size (ie. 'label' or 'sublabel').
 	 *
@@ -55,9 +73,17 @@ FormLabel.propTypes = {
 	 * Defaults to "medium"
 	 */
 	spacing: PropTypes.oneOf(options.spacing),
+
+	/**
+	 * The component tag.
+	 *
+	 * Defaults to "label"
+	 */
+	tag: PropTypes.oneOf(options.tag),
 };
 
 FormLabel.defaultProps = {
 	size: 'medium',
 	spacing: 'medium',
+	tag: 'label'
 };

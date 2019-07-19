@@ -12,7 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormSection = ({ ...props }) => {
+export const FormSection = ({ inline, ...props }) => {
 	const { colors, breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
@@ -33,7 +33,6 @@ export const FormSection = ({ ...props }) => {
 		'& + &': {
 			borderTop: `1px solid ${colors.border}`, //TODO token
 		},
-
 	};
 
 	return (

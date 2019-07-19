@@ -12,7 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormGroup = ({ spacing, primary, inline, children, ...props }) => {
+export const FormGroup = ({ spacing, primary, inline, ...props }) => {
 	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
@@ -29,8 +29,6 @@ export const FormGroup = ({ spacing, primary, inline, children, ...props }) => {
 			? ['24px', '30px']
 			: ['18px', (inline ? 0 : null)], //TODO token
 	};
-
-	console.log(`FormGroup spacing: ${spacing}`);
 
 	return (
 		<div css={mq({ ...styleCommon, ...styleSize })} {...props} />

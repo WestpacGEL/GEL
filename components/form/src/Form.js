@@ -12,11 +12,12 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const Form = ({ spacing, children, ...props }) => {
-	// Pass these selected props on to children (that way our children’s styling can be set by the parent Form), but allow any children props to take precedence if provided
+export const Form = ({ spacing, inline, children, ...props }) => {
+	// Pass these selected props on to children (that way our children’s styling can be set by the parent)
+	// TODO allow any children props to take precedence if provided
 	const giftedChildren = Children.map(children, child => {
 		return React.isValidElement(child)
-			? cloneElement(child, { spacing })
+			? cloneElement(child, { spacing, inline })
 			: child
 	});
 
@@ -42,8 +43,16 @@ Form.propTypes = {
 	 * Defaults to "medium"
 	 */
 	spacing: PropTypes.oneOf(options.spacing),
+
+	/**
+	 * Inline mode.
+	 *
+	 * Defaults to "false"
+	 */
+	inline: PropTypes.bool,
 };
 
 Form.defaultProps = {
-	spacing: 'medium'
+	spacing: 'medium',
+	inline: false,
 };

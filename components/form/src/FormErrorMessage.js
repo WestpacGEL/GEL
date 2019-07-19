@@ -12,7 +12,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormErrorMessage = ({ tag: Tag, ...props }) => {
+export const FormErrorMessage = ({ tag: Tag, inline, ...props }) => {
 	const { colors } = useTheme();
 
 	// Common styling

@@ -12,7 +12,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormHint = ({ spacing, tag: Tag, ...props }) => {
+export const FormHint = ({ spacing, tag: Tag, inline, ...props }) => {
 	const { colors } = useTheme();
 
 	// Common styling
@@ -22,6 +22,7 @@ export const FormHint = ({ spacing, tag: Tag, ...props }) => {
 		marginTop: '12px',
 		marginBottom: spacing === 'large' ? '18px' : '12px',
 
+		// TODO
 		// Hint text after a label
 		/*.input-label ~ & {
 			marginTop: -(@input-label-margin-bottom - @form-hint-gap), //pull up

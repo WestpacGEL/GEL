@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
+import { FormLabel } from './';
+
 // ==============================
 // Utils
 // ==============================
@@ -12,7 +14,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormFieldset = ({ legend, children, ...props }) => {
+export const FormFieldset = ({ legend, inline, children, ...props }) => {
 	// Common styling
 	const styleCommon = {
 		border: 'none',
@@ -20,11 +22,9 @@ export const FormFieldset = ({ legend, children, ...props }) => {
 		padding: 0,
 	};
 
-	const styleLegend = {}; //TODO - should legend be composed, or via prop?
-
 	return (
 		<fieldset css={styleCommon} {...props}>
-			<legend css={styleLegend}>{legend}</legend>
+			<FormLabel tag="legend" size="small">{legend}</FormLabel>
 			{children}
 		</fieldset>
 	);
