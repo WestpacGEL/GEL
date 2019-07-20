@@ -12,30 +12,26 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormGroup = ({ spacing, primary, inline, children, ...props }) => {
+export const FormGroup = ({ primary, spacing, inline, children, ...props }) => {
 	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
 	// Common styling
 	const styleCommon = {
-		display: ['block', (inline ? 'inline-block' : null)],
-		verticalAlign: [null, (inline ? 'middle' : null)],
+		display: ['block', inline ? 'inline-block' : null],
+		verticalAlign: [null, inline ? 'middle' : null],
 		textAlign: primary ? 'center' : null,
 	};
 
 	// Size styling
 	const styleSize = {
-		marginBottom: spacing === 'large'
-			? ['24px', '30px']
-			: ['18px', (inline ? 0 : null)], //TODO token
+		marginBottom: spacing === 'large' ? ['24px', '30px'] : ['18px', inline ? 0 : null], //TODO token
 	};
 
-	// Pass these selected props on to children (that way our children’s styling can be set by the parent)
+	// Pass the selected styling props on to children
 	// TODO allow any children props to take precedence if provided
 	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child)
-			? cloneElement(child, { spacing })
-			: child
+		return React.isValidElement(child) ? cloneElement(child, { spacing, inline }) : child;
 	});
 
 	return (
@@ -55,13 +51,6 @@ const options = {
 
 FormGroup.propTypes = {
 	/**
-	 * The form group spacing.
-	 *
-	 * Defaults to "medium"
-	 */
-	spacing: PropTypes.oneOf(options.spacing),
-
-	/**
 	 * Primary (fork) mode.
 	 *
 	 * Defaults to "false"
@@ -69,7 +58,18 @@ FormGroup.propTypes = {
 	primary: PropTypes.bool,
 
 	/**
+	 * The component vertical spacing.
+	 *
+	 * This prop is passed to child elements.
+	 *
+	 * Defaults to "medium"
+	 */
+	spacing: PropTypes.oneOf(options.spacing),
+
+	/**
 	 * Inline layout mode.
+	 *
+	 * This prop is passed to child elements.
 	 *
 	 * Defaults to "false"
 	 */
@@ -77,7 +77,7 @@ FormGroup.propTypes = {
 };
 
 FormGroup.defaultProps = {
-	spacing: 'medium',
 	primary: false,
+	spacing: 'medium',
 	inline: false,
 };

@@ -26,9 +26,7 @@ export const FormChitChat = ({ inline, tag: Tag, ...props }) => {
 		margin: [0, '0 0 30px'], //TODO token
 	};
 
-	return (
-		<Tag css={mq({ ...styleCommon })} {...props} />
-	);
+	return <Tag css={mq({ ...styleCommon })} {...props} />;
 };
 
 // ==============================
@@ -45,5 +43,5 @@ FormChitChat.propTypes = {
 };
 
 FormChitChat.defaultProps = {
-	tag: 'p'
+	tag: 'p',
 };

@@ -22,9 +22,7 @@ export const FormInputsItem = ({ horizontal, inline, ...props }) => {
 		},
 	};
 
-	return (
-		<div css={styleCommon} {...props} />
-	);
+	return <div css={styleCommon} {...props} />;
 };
 
 // ==============================
@@ -38,12 +36,10 @@ export const FormInputs = ({ horizontal, inline, children, ...props }) => {
 		flexWrap: horizontal ? 'wrap' : null,
 	};
 
-	// Pass these selected props on to children (that way our children’s styling can be set by the parent)
+	// Pass the selected styling props on to children
 	// TODO allow any children props to take precedence if provided
 	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child)
-			? cloneElement(child, { horizontal })
-			: child
+		return React.isValidElement(child) ? cloneElement(child, { horizontal }) : child;
 	});
 
 	return (
@@ -60,6 +56,8 @@ export const FormInputs = ({ horizontal, inline, children, ...props }) => {
 FormInputs.propTypes = {
 	/**
 	 * Horizontal mode.
+	 *
+	 * This prop is passed to child elements.
 	 *
 	 * Defaults to "false"
 	 */

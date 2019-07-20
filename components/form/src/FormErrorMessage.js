@@ -28,12 +28,10 @@ export const FormErrorMessage = ({ tag: Tag, inline, ...props }) => {
 		},
 		li: {
 			marginBottom: '6px', //TODO token
-		}
+		},
 	};
 
-	return (
-		<Tag css={styleCommon} {...props} />
-	);
+	return <Tag css={styleCommon} {...props} />;
 };
 
 // ==============================

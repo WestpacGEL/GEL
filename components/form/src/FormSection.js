@@ -35,12 +35,10 @@ export const FormSection = ({ inline, spacing, children, ...props }) => {
 		},
 	};
 
-	// Pass these selected props on to children (that way our children’s styling can be set by the parent)
+	// Pass the selected styling props on to children
 	// TODO allow any children props to take precedence if provided
 	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child)
-			? cloneElement(child, { spacing, inline })
-			: child
+		return React.isValidElement(child) ? cloneElement(child, { spacing, inline }) : child;
 	});
 
 	return (

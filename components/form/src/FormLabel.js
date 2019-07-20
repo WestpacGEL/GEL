@@ -13,28 +13,15 @@ import { jsx } from '@westpac/core';
 // ==============================
 
 export const FormLabel = ({ htmlFor, size, spacing, tag: Tag, inline, ...props }) => {
-
 	// Common styling
 	const styleCommon = {
 		display: 'inline-block',
-		fontSize: size === 'small'
-			? '14px'
-			: '16px', //TODO token
-		marginBottom: size === 'small'
-			? '6px'
-			: spacing === 'large'
-				? '18px'
-				: '12px', //TODO token
-		fontWeight: 500,  //TODO token //Medium
+		fontSize: size === 'small' ? '14px' : '16px', //TODO token
+		marginBottom: size === 'small' ? '6px' : spacing === 'large' ? '18px' : '12px', //TODO token
+		fontWeight: 500, //TODO token //Medium
 	};
 
-	return (
-		<Tag
-			css={styleCommon}
-			htmlFor={htmlFor}
-			{...props}
-		/>
-	);
+	return <Tag css={styleCommon} htmlFor={htmlFor} {...props} />;
 };
 
 // ==============================
@@ -69,7 +56,7 @@ FormLabel.propTypes = {
 	size: PropTypes.oneOf(options.size),
 
 	/**
-	 * The label spacing amount.
+	 * The component vertical spacing.
 	 *
 	 * Defaults to "medium"
 	 */
@@ -86,5 +73,5 @@ FormLabel.propTypes = {
 FormLabel.defaultProps = {
 	size: 'medium',
 	spacing: 'medium',
-	tag: 'label'
+	tag: 'label',
 };

@@ -34,9 +34,7 @@ export const FormHint = ({ spacing, tag: Tag, inline, ...props }) => {
 		}*/
 	};
 
-	return (
-		<Tag css={styleCommon} {...props} />
-	);
+	return <Tag css={styleCommon} {...props} />;
 };
 
 // ==============================
@@ -49,7 +47,7 @@ const options = {
 
 FormHint.propTypes = {
 	/**
-	 * The form group spacing.
+	 * The component vertical spacing.
 	 *
 	 * Defaults to "medium"
 	 */

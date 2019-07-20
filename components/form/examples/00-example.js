@@ -10,7 +10,7 @@ import {
 	FormHint,
 	FormInputs,
 	FormLabel,
-	FormSection
+	FormSection,
 } from '../src';
 
 export default () => (
@@ -19,7 +19,8 @@ export default () => (
 		<Form action="." noValidate>
 			<FormSection>
 				<FormChitChat>
-					Hello, I’m the friendly conversational text component. I live at the top of the form pod if required.
+					Hello, I’m the friendly conversational text component. I live at the top of the form pod
+					if required.
 				</FormChitChat>
 
 				<FormGroup>
@@ -60,7 +61,8 @@ export default () => (
 		<Form action="." spacing="large" noValidate>
 			<FormSection>
 				<FormChitChat>
-					Hello, I’m the friendly conversational text component. I live at the top of the form pod if required.
+					Hello, I’m the friendly conversational text component. I live at the top of the form pod
+					if required.
 				</FormChitChat>
 
 				<FormGroup>

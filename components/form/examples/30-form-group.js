@@ -51,5 +51,12 @@ export default () => (
 		<FormGroup spacing="large" primary>
 			<Box>FormGroup content</Box>
 		</FormGroup>
+
+		<hr />
+
+		<h2>Inline mode</h2>
+		<FormGroup inline>
+			<Box>FormGroup content</Box>
+		</FormGroup>
 	</>
 );

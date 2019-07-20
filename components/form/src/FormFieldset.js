@@ -24,7 +24,9 @@ export const FormFieldset = ({ legend, inline, children, ...props }) => {
 
 	return (
 		<fieldset css={styleCommon} {...props}>
-			<FormLabel tag="legend" size="small">{legend}</FormLabel>
+			<FormLabel tag="legend" size="small">
+				{legend}
+			</FormLabel>
 			{children}
 		</fieldset>
 	);
