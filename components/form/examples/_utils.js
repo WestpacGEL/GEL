@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const Box = props => (
+export const Box = ({ spacing, inline, ...props }) => (
 	<div
 		css={{
 			alignItems: 'center',
