@@ -39,7 +39,7 @@ export const FormInput = ({ size, invalid, tag: Tag, spacing, inline, children, 
 
 		// Disabled and read-only inputs
 		':disabled, &[readonly]': {
-			backgroundColor: color.light,
+			backgroundColor: colors.light,
 			color: colors.muted,
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
