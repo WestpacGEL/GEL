@@ -12,7 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormSection = ({ inline, spacing, children, ...props }) => {
+export const FormSection = ({ spacing, inline, padded, children, ...props }) => {
 	const { colors, breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
@@ -20,7 +20,10 @@ export const FormSection = ({ inline, spacing, children, ...props }) => {
 	const styleCommon = {
 		position: 'relative', //for `.form-section-actions` positioning
 		paddingTop: ['30px', '36px'], //TODO token
-		paddingBottom: '6px',  //TODO token //6px assuming there will be a `.form-group` margin-bottom (30px)
+		paddingBottom: '6px', //TODO token //6px assuming there will be a `.form-group` margin-bottom (30px)
+
+		paddingLeft: padded ? [null, '54px', '46px', '50px'] : null,
+		paddingRight: padded ? [null, '54px', '46px', '50px'] : null,
 
 		':first-of-type': {
 			paddingTop: 0,
@@ -52,6 +55,39 @@ export const FormSection = ({ inline, spacing, children, ...props }) => {
 // Types
 // ==============================
 
-FormSection.propTypes = {};
+const options = {
+	spacing: ['medium', 'large'],
+};
 
-FormSection.defaultProps = {};
+FormSection.propTypes = {
+	/**
+	 * The component vertical spacing.
+	 *
+	 * This prop is passed to child elements.
+	 *
+	 * Defaults to "medium"
+	 */
+	spacing: PropTypes.oneOf(options.spacing),
+
+	/**
+	 * Inline layout mode.
+	 *
+	 * This prop is passed to child elements.
+	 *
+	 * Defaults to "false"
+	 */
+	inline: PropTypes.bool,
+
+	/**
+	 * Padded section mode.
+	 *
+	 * Defaults to "true"
+	 */
+	padded: PropTypes.bool,
+};
+
+FormSection.defaultProps = {
+	spacing: 'medium',
+	inline: false,
+	padded: true,
+};
