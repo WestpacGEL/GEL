@@ -19,19 +19,8 @@ export const FormHint = ({ spacing, tag: Tag, inline, ...props }) => {
 	const styleCommon = {
 		color: colors.muted, //TODO token
 		fontSize: '14px', //TODO token
-		marginTop: '12px',
+		marginTop: spacing === 'large' ? '-12px' : '-6px', //to get a 6px gap after the FormLabel
 		marginBottom: spacing === 'large' ? '18px' : '12px',
-
-		// TODO
-		// Hint text after a label
-		/*.input-label ~ & {
-			marginTop: -(@input-label-margin-bottom - @form-hint-gap), //pull up
-			marginBottom: @input-label-margin-bottom,
-		}
-		.input-label-large ~ & {
-			marginTop: -(@input-label-large-margin-bottom - @form-hint-gap), //pull up
-			marginBottom: @input-label-large-margin-bottom,
-		}*/
 	};
 
 	return <Tag css={styleCommon} {...props} />;
