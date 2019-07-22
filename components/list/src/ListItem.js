@@ -6,98 +6,135 @@ import { jsx, css, useTheme } from '@westpac/core';
 import { List } from './List';
 
 // ==============================
+// Utils
+// ==============================
+const getListIcon = ({ appearance, color, icon: Icon }) => {
+	const { list } = useTheme();
+
+	const style = {
+		position: 'absolute',
+		left: 0,
+		top: 2,
+	};
+
+	switch (appearance) {
+		case 'bullet':
+			return (
+				<svg
+					aria-labelledby="title-bullet-list"
+					version="1.1"
+					xmlns="http://www.w3.org/2000/svg"
+					width="16px"
+					height="16px"
+					viewBox="0 0 16 16"
+					css={style}
+				>
+					<circle
+						r="4"
+						cx="8"
+						cy="8"
+						stroke={`${list[appearance][color].color}`}
+						strokeWidth="1"
+						fill={`${list[appearance][color].color}`}
+					/>
+				</svg>
+			);
+
+		case 'link':
+			return (
+				<svg
+					aria-labelledby="title-link"
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					css={style}
+				>
+					<polygon
+						fill={`${list[appearance].color}`}
+						fillRule="evenodd"
+						points="14.588 12 8 18.588 9.412 20 17.412 12 9.412 4 8 5.412"
+					/>
+				</svg>
+			);
+
+		case 'tick':
+			return (
+				<svg
+					aria-labelledby="title-tick-list"
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					css={style}
+				>
+					<polygon
+						fill={`${list[appearance].color}`}
+						points="8.6 15.6 4.4 11.4 3 12.8 8.6 18.4 20.6 6.4 19.2 5"
+					/>
+				</svg>
+			);
+		case 'unstyled':
+			return;
+		case 'icon':
+			return <Icon size="small" css={style} color={list[appearance].color} />;
+	}
+};
+
+// ==============================
 // Component
 // ==============================
-
 export const ListItem = ({ appearance, color, icon, size, children, ...props }) => {
 	const childrenWithProps = Children.map(children, child =>
 		child && child.type && child.type === List
-			? cloneElement(child, { appearance, color, icon, size, props })
+			? cloneElement(child, {
+					appearance,
+					color,
+					icon,
+					size,
+					props,
+			  })
 			: child
 	);
-
-	const { colors } = useTheme();
 
 	const common = {
 		margin: size === 'large' ? '12px 0' : '6px 0',
 		display: 'block',
-		paddingLeft: '19px',
 		position: 'relative',
 	};
 
 	const styles = {
 		bullet: {
-			'&::after': {
-				content: '""',
-				position: 'absolute',
-				left: '4px',
-				top: '6px',
-				display: 'block',
-				width: '8px',
-				height: '8px',
-				borderRadius: '50%',
-				border: `1px solid ${colors[color].default || colors[color]}`,
-				backgroundColor: colors[color].default || colors[color],
-			},
+			paddingLeft: 19,
 
-			'ul > li::after': {
-				backgroundColor: 'transparent',
+			'& & circle': {
+				fill: 'transparent',
 			},
 		},
 		link: {
-			'&::after': {
-				content: '""',
-				position: 'absolute',
-				left: '0',
-				top: '4px',
-				display: 'block',
-				width: '8px',
-				height: '8px',
-				border: `solid ${colors[color].default || colors[color]}`, //probably need to use a set color?
-				borderWidth: '1.5px 1.5px 0 0',
-				transform: 'rotate(45deg)',
-			},
+			paddingLeft: 19,
 		},
 		tick: {
-			'&::after': {
-				content: '""',
-				position: 'absolute',
-				left: '0',
-				top: '4px',
-				display: 'block',
-				width: '14px',
-				height: '6px',
-				border: `solid ${colors[color].default || colors[color]}`, //probably need to use a set color?
-				borderWidth: '0 0 1.5px 1.5px',
-				borderTopColor: 'transparent',
-				transform: 'rotate(-54deg)',
-			},
+			paddingLeft: 19,
 		},
 		unstyled: {
 			paddingLeft: 0,
 
 			li: {
-				paddingLeft: '19px',
+				paddingLeft: 19,
 			},
 		},
 		icon: {
-			paddingLeft: 0,
-
-			li: {
-				paddingLeft: '19px',
-			},
+			paddingLeft: 23,
+		},
+		ordered: {
+			display: 'list-item',
 		},
 	};
 
-	const Icon = icon;
-
 	return (
 		<li css={{ ...common, ...styles[appearance] }} {...props}>
-			{appearance === 'icon' && (
-				<span css={{ paddingRight: '5px' }}>
-					<Icon size="small" color={colors.primary.default} />
-				</span>
-			)}
+			{getListIcon({ appearance, color, icon })}
 			{childrenWithProps}
 		</li>
 	);
@@ -108,11 +145,13 @@ export const ListItem = ({ appearance, color, icon, size, children, ...props }) 
 // ==============================
 ListItem.propTypes = {
 	/** The appearance of the list item */
-	appearance: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon']),
+	appearance: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
 	/** The color of the bullet */
 	color: PropTypes.oneOf(['primary', 'hero', 'neutral']),
 	/** The size of space between list elements */
 	size: PropTypes.oneOf(['regular', 'large']),
 	/** The icon for list item */
 	icon: PropTypes.func,
+	/** Any renderable content */
+	children: PropTypes.node,
 };
