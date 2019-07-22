@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Component } from '../src';
+import { _COMPONENT_NAME_ } from '../src';
 import { Box } from './_utils';
 
 export default () => (
-	<Component>
-		<Box />
-	</Component>
+	<Box>
+		<_COMPONENT_NAME_ />
+	</Box>
 );

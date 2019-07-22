@@ -1,0 +1,43 @@
+{
+	"name": "@westpac/button-group",
+	"version": "0.0.1",
+	"description": "Button Group component for the Westpac GEL",
+	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"contributors": [
+		{
+			"name": "Dominik Wilkowski",
+			"email": "Hi@Dominik-Wilkowski.com",
+			"url": "https://dominik-wilkowski.com"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		}
+	],
+	"license": "GPL-3.0+",
+	"scripts": {
+		"start": "PACKAGE_NAME=button-group webpack-dev-server --config ../../helpers/example/webpack.config.js",
+		"build": "babel --root-mode upward src -d dist",
+		"test": "start-server-and-test start http://localhost:8080 test:all",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
+		"test:all": "bolt test:integration",
+		"test:integration": "cypress run",
+		"test:test-dev": "cypress open"
+	},
+	"main": "dist/index.js",
+	"dependencies": {
+		"@westpac/core": "^0.0.1",
+		"@westpac/hooks": "^0.0.1",
+		"prop-types": "^15.6.2",
+		"@westpac/button": "^0.0.1"
+	},
+	"peerDependencies": {
+		"react": "16.7.0-alpha.2"
+	},
+	"devDependencies": {
+		"cypress": "^3.1.3",
+		"start-server-and-test": "^1.7.11"
+	}
+}
