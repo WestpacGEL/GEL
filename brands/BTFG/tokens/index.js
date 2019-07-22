@@ -18,6 +18,7 @@ const COLORS = {
 	information: '#0074C4',
 	warning: '#C53B00',
 	danger: '#C40000',
+	system: 'yellow',
 };
 
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
@@ -544,5 +545,67 @@ export default {
 			responsive: [12, 24],
 		},
 		marginBottom: '18px',
+	},
+
+	alert: {
+		padding: '18px',
+		marginBottom: '21px',
+
+		appearance: {
+			success: {
+				color: COLORS.success,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.success), 0.1)
+					.hex(),
+				borderTop: `1px solid ${Color('white')
+					.mix(Color(COLORS.success), 0.5)
+					.hex()}`,
+				borderBottom: `1px solid ${Color('white')
+					.mix(Color(COLORS.success), 0.5)
+					.hex()}`,
+			},
+			information: {
+				color: COLORS.information,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.information), 0.1)
+					.hex(),
+				borderTop: `1px solid ${Color('white')
+					.mix(Color(COLORS.information), 0.5)
+					.hex()}`,
+				borderBottom: `1px solid ${Color('white')
+					.mix(Color(COLORS.information), 0.5)
+					.hex()}`,
+			},
+			warning: {
+				color: COLORS.warning,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.warning), 0.1)
+					.hex(),
+				borderTop: `1px solid ${Color('white')
+					.mix(Color(COLORS.warning), 0.5)
+					.hex()}`,
+				borderBottom: `1px solid ${Color('white')
+					.mix(Color(COLORS.warning), 0.5)
+					.hex()}`,
+			},
+			danger: {
+				color: COLORS.danger,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.danger), 0.1)
+					.hex(),
+				borderTop: `1px solid ${Color('white')
+					.mix(Color(COLORS.danger), 0.5)
+					.hex()}`,
+				borderBottom: `1px solid ${Color('white')
+					.mix(Color(COLORS.danger), 0.5)
+					.hex()}`,
+			},
+			system: {
+				color: 'black',
+				backgroundColor: COLORS.system,
+				borderTop: `1px solid ${COLORS.system}`,
+				borderBottom: `1px solid ${COLORS.system}`,
+			},
+		},
 	},
 };
