@@ -97,12 +97,28 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 // ==============================
 
 Alert.propTypes = {
+	/**
+	 * The alert appearance.
+	 *
+	 * Defaults to "information"
+	 */
 	appearance: PropTypes.oneOf(['success', 'information', 'warning', 'danger', 'system']),
 
+	/**
+	 * Closing option.
+	 *
+	 * Defaults to "false"
+	 */
 	closable: PropTypes.bool,
 
+	/**
+	 * Alert icon.
+	 */
 	icon: PropTypes.func,
 
+	/**
+	 * The content for this alert.
+	 */
 	children: PropTypes.node,
 };
 
