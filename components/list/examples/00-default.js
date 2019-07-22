@@ -1,9 +1,6 @@
 import React from 'react';
 import { List, ListItem } from '../src';
 import { listGenerator } from './_utils';
-//re-do this to take in a name and num times?
-const exampleListContent = ['Styled bullet list - primary', 'Styled bullet list - primary'];
-const exampleList = exampleListContent.map(item => <ListItem>{item}</ListItem>);
 
 export default () => (
 	<>
@@ -25,21 +22,21 @@ export default () => (
 		</List>
 		<hr />
 		<List color="hero">
-			{exampleList}
+			{listGenerator('Styled bullet list - hero', 3)}
 			<ListItem>
-				Styled bullet list - primary
-				<List>{exampleList}</List>
+				Styled bullet list - hero
+				<List>{listGenerator('Styled bullet list - hero', 3)}</List>
 			</ListItem>
-			<ListItem>Styled bullet list - primary</ListItem>
+			<ListItem>Styled bullet list - hero</ListItem>
 		</List>
 		<hr />
 		<List color="neutral">
-			{exampleList}
+			{listGenerator('Styled bullet list - neutral', 3)}
 			<ListItem>
-				Styled bullet list - primary
-				<List>{exampleList}</List>
+				Styled bullet list - neutral
+				<List>{listGenerator('Styled bullet list - neutral', 3)}</List>
 			</ListItem>
-			<ListItem>Styled bullet list - primary</ListItem>
+			<ListItem>Styled bullet list - neutral</ListItem>
 		</List>
 	</>
 );
