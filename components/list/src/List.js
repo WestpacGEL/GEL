@@ -18,7 +18,7 @@ export const List = ({ children, ...props }) => {
 	const { appearance } = props;
 	const ListType = appearance === 'ordered' ? 'ol' : 'ul';
 	return (
-		<ListType css={{ margin: 0, padding: appearance === 'ordered' ? '0 0 0 20px' : 0 }} {...props}>
+		<ListType css={{ margin: 0, padding: appearance === 'ordered' ? '0 0 0 20px' : 0 }}>
 			{childrenWithProps}
 		</ListType>
 	);
