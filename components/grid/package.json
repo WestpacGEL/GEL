@@ -28,9 +28,7 @@
 	},
 	"main": "dist/index.js",
 	"dependencies": {
-		"@emotion/weak-memoize": "^0.2.2",
 		"@westpac/core": "^0.0.1",
-		"facepaint": "^1.2.1",
 		"prop-types": "^15.6.2"
 	},
 	"peerDependencies": {
