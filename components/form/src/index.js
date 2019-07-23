@@ -4,8 +4,6 @@ export { FormErrorMessage } from './FormErrorMessage';
 export { FormFieldset } from './FormFieldset';
 export { FormGroup } from './FormGroup';
 export { FormHint } from './FormHint';
-export { FormInput } from './FormInput';
 export { FormInputs } from './FormInputs';
-export { FormInputsItem } from './FormInputs';
 export { FormLabel } from './FormLabel';
 export { FormSection } from './FormSection';

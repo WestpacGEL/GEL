@@ -13,6 +13,8 @@ import {
 	FormSection,
 } from '../src';
 
+import { FormInput } from '../../form-input/src';
+
 export default () => (
 	<>
 		<h2>Default spacing</h2>
@@ -24,33 +26,47 @@ export default () => (
 				</FormChitChat>
 
 				<FormGroup>
-					<FormLabel htmlFor="example-1">This is a label</FormLabel>
+					<FormLabel htmlFor="example-default-1">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
 					<FormErrorMessage>This is an error message</FormErrorMessage>
-					<Box>Form input here</Box>
+					<FormInput name="example-default-1" />
 				</FormGroup>
 
 				<FormGroup>
-					<FormLabel htmlFor="example-2">This is a label</FormLabel>
+					<FormLabel htmlFor="example-default-2">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
 					<FormErrorMessage>This is an error message</FormErrorMessage>
-					<Box>Form input here</Box>
+					<FormInput name="example-default-2" />
 				</FormGroup>
 			</FormSection>
 
 			<FormSection>
 				<FormGroup>
-					<FormLabel htmlFor="example-3">This is a label</FormLabel>
+					<FormLabel htmlFor="example-default-3">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
 					<FormErrorMessage>This is an error message</FormErrorMessage>
-					<Box>Form input here</Box>
+					<FormInput name="example-default-3" />
 				</FormGroup>
 
 				<FormGroup>
-					<FormLabel htmlFor="example-">This is a label</FormLabel>
+					<FormLabel htmlFor="example-default-4">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
 					<FormErrorMessage>This is an error message</FormErrorMessage>
-					<Box>Form input here</Box>
+					<FormInput name="example-default-4" />
+				</FormGroup>
+
+				<FormGroup>
+					<FormFieldset legend="This is a legend">
+						<FormHint>This is a hint</FormHint>
+						<FormErrorMessage tag="ul">
+							<li>This is an error message</li>
+							<li>This is another error message</li>
+						</FormErrorMessage>
+						<FormInputs>
+							<FormInput name="example-default-5-line1" />
+							<FormInput name="example-default-5-line2" />
+						</FormInputs>
+					</FormFieldset>
 				</FormGroup>
 			</FormSection>
 		</Form>
@@ -66,33 +82,47 @@ export default () => (
 				</FormChitChat>
 
 				<FormGroup>
-					<FormLabel htmlFor="example-1">This is a label</FormLabel>
+					<FormLabel htmlFor="example-large-1">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
 					<FormErrorMessage>This is an error message</FormErrorMessage>
-					<Box>Form input here</Box>
+					<FormInput name="example-large-1" />
 				</FormGroup>
 
 				<FormGroup>
-					<FormLabel htmlFor="example-2">This is a label</FormLabel>
+					<FormLabel htmlFor="example-large-2">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
 					<FormErrorMessage>This is an error message</FormErrorMessage>
-					<Box>Form input here</Box>
+					<FormInput name="example-large-2" />
 				</FormGroup>
 			</FormSection>
 
 			<FormSection>
 				<FormGroup>
-					<FormLabel htmlFor="example-3">This is a label</FormLabel>
+					<FormLabel htmlFor="example-large-3">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
 					<FormErrorMessage>This is an error message</FormErrorMessage>
-					<Box>Form input here</Box>
+					<FormInput name="example-large-3" />
 				</FormGroup>
 
 				<FormGroup>
-					<FormLabel htmlFor="example-">This is a label</FormLabel>
+					<FormLabel htmlFor="example-large-4">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
 					<FormErrorMessage>This is an error message</FormErrorMessage>
-					<Box>Form input here</Box>
+					<FormInput name="example-large-4" />
+				</FormGroup>
+
+				<FormGroup>
+					<FormFieldset legend="This is a legend">
+						<FormHint>This is a hint</FormHint>
+						<FormErrorMessage tag="ul">
+							<li>This is an error message</li>
+							<li>This is another error message</li>
+						</FormErrorMessage>
+						<FormInputs>
+							<FormInput name="example-large-5-line1" />
+							<FormInput name="example-large-5-line2" />
+						</FormInputs>
+					</FormFieldset>
 				</FormGroup>
 			</FormSection>
 		</Form>

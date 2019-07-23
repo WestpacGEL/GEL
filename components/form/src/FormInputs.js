@@ -8,9 +8,18 @@ import { jsx } from '@westpac/core';
 // Utils
 // ==============================
 
-export const FormInputsItem = ({ horizontal, inline, ...props }) => {
+// ==============================
+// Component
+// ==============================
+
+export const FormInputs = ({ horizontal, spacing, inline, children, ...props }) => {
 	// Common styling
 	const styleCommon = {
+		display: horizontal ? 'flex' : null,
+		flexWrap: horizontal ? 'wrap' : null,
+	};
+
+	const styleItem = {
 		marginRight: horizontal ? '18px' : null,
 		display: horizontal ? 'flex' : null,
 		flexDirection: horizontal ? 'column' : null,
@@ -22,29 +31,11 @@ export const FormInputsItem = ({ horizontal, inline, ...props }) => {
 		},
 	};
 
-	return <div css={styleCommon} {...props} />;
-};
-
-// ==============================
-// Component
-// ==============================
-
-export const FormInputs = ({ horizontal, inline, children, ...props }) => {
-	// Common styling
-	const styleCommon = {
-		display: horizontal ? 'flex' : null,
-		flexWrap: horizontal ? 'wrap' : null,
-	};
-
-	// Pass the selected styling props on to children
-	// TODO allow any children props to take precedence if provided
-	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child) ? cloneElement(child, { horizontal }) : child;
-	});
-
 	return (
 		<div css={styleCommon} {...props}>
-			{giftedChildren}
+			{Children.map(children, child => (
+				<div css={styleItem}>{child}</div>
+			))}
 		</div>
 	);
 };

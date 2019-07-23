@@ -12,7 +12,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormHint = ({ spacing, tag: Tag, inline, ...props }) => {
+export const FormHint = ({ spacing, inline, tag: Tag, ...props }) => {
 	const { colors } = useTheme();
 
 	// Common styling

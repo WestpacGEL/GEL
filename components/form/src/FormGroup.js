@@ -12,7 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormGroup = ({ primary, spacing, inline, children, ...props }) => {
+export const FormGroup = ({ primary, spacing, inline, size, children, ...props }) => {
 	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
@@ -31,7 +31,7 @@ export const FormGroup = ({ primary, spacing, inline, children, ...props }) => {
 	// Pass the selected styling props on to children
 	// TODO allow any children props to take precedence if provided
 	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child) ? cloneElement(child, { spacing, inline }) : child;
+		return React.isValidElement(child) ? cloneElement(child, { spacing, size, inline }) : child;
 	});
 
 	return (
@@ -47,6 +47,7 @@ export const FormGroup = ({ primary, spacing, inline, children, ...props }) => {
 
 const options = {
 	spacing: ['medium', 'large'],
+	size: ['small', 'medium', 'large', 'xlarge'],
 };
 
 FormGroup.propTypes = {
@@ -65,6 +66,13 @@ FormGroup.propTypes = {
 	 * Defaults to "medium"
 	 */
 	spacing: PropTypes.oneOf(options.spacing),
+
+	/**
+	 * Sets child component size.
+	 *
+	 * This prop is passed to child elements.
+	 */
+	size: PropTypes.string,
 
 	/**
 	 * Inline layout mode.
