@@ -30,12 +30,6 @@ export const GEL = ({ brand, ...props }) => {
 					*:after {
 						box-sizing: border-box;
 					}
-
-					// Disable default :focus styling
-					// (we will provide our own via our special '.is-keyboarduser' wrapper class)
-					:focus {
-						outline: none;
-					}
 				`}
 			/>
 			<ThemeContext.Provider value={brand} {...props} />
