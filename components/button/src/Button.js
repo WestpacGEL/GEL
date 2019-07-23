@@ -23,8 +23,9 @@ export const Button = ({
 	icon: Icon,
 	iconPosition,
 	justify,
-	children,
 	tag: Tag,
+	inline,
+	children,
 	onClick,
 	...props
 }) => {
