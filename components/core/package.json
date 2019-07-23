@@ -29,7 +29,10 @@
 	"main": "dist/index.js",
 	"dependencies": {
 		"@emotion/core": "^10.0.4",
-		"prop-types": "^15.6.2"
+		"@emotion/weak-memoize": "^0.2.2",
+		"prop-types": "^15.6.2",
+		"color": "^3.1.1",
+		"facepaint": "^1.2.1"
 	},
 	"peerDependencies": {
 		"react": "16.7.0-alpha.2"
