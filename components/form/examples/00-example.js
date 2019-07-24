@@ -24,7 +24,9 @@ export default () => (
 					Hello, I’m the friendly conversational text component. I live at the top of the form pod
 					if required.
 				</FormChitChat>
+			</FormSection>
 
+			<FormSection>
 				<FormGroup>
 					<FormLabel htmlFor="example-default-1">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
@@ -80,7 +82,9 @@ export default () => (
 					Hello, I’m the friendly conversational text component. I live at the top of the form pod
 					if required.
 				</FormChitChat>
+			</FormSection>
 
+			<FormSection>
 				<FormGroup>
 					<FormLabel htmlFor="example-large-1">This is a label</FormLabel>
 					<FormHint>This is a hint</FormHint>
