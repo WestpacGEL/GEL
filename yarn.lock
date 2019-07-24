@@ -783,9 +783,14 @@
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.11.1.tgz#8529b7412a6eb4b48bdf6e720cc1b8e6e1e17628"
 
-"@emotion/weak-memoize@0.2.2", "@emotion/weak-memoize@^0.2.2":
+"@emotion/weak-memoize@0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.2.tgz#63985d3d8b02530e0869962f4da09142ee8e200e"
+
+"@emotion/weak-memoize@^0.2.2":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.3.tgz#dfa0c92efe44a1d1a7974fb49ffeb40ef2da5a27"
+  integrity sha512-zVgvPwGK7c1aVdUVc9Qv7SqepOGRDrqCw7KZPSZziWGxSlbII3gmvGLPzLX4d0n0BMbamBacUrN22zOMyFFEkQ==
 
 "@hutson/parse-repository-url@^3.0.0":
   version "3.0.0"

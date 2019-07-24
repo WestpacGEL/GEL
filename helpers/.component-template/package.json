@@ -1,12 +1,12 @@
 {
-	"name": "@westpac/__COMPONENT_KEY__",
+	"name": "@westpac/_COMPONENT_KEY_",
 	"version": "0.0.1",
-	"description": "__COMPONENT_DESCRIPTION__",
+	"description": "_COMPONENT_DESCRIPTION_",
 	"repository": "https://github.com/WestpacGEL/GEL.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=__COMPONENT_KEY__ webpack-dev-server --config ../../helpers/example/webpack.config.js",
+		"start": "PACKAGE_NAME=_COMPONENT_KEY_ webpack-dev-server --config ../../helpers/example/webpack.config.js",
 		"build": "babel --root-mode upward src -d dist",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
@@ -16,7 +16,6 @@
 	},
 	"main": "dist/index.js",
 	"dependencies": {
-		"facepaint": "^1.2.1",
 		"@westpac/core": "^0.0.1",
 		"prop-types": "^15.6.2"
 	},
