@@ -65,13 +65,6 @@ export default {
 	type: {},
 	spacing: {},
 
-	grid: {
-		container: {
-			maxWidth: CONTAINER_MAXWIDTH,
-			padding: CONTAINER_PADDING,
-		},
-	},
-
 	badge: {
 		minWidth: '10px',
 		minWidth: '10px',
@@ -255,7 +248,6 @@ export default {
 				soft: {},
 			},
 		},
-
 		size: {
 			small: {
 				padding: ['3px', '9px', '4px'],
@@ -277,6 +269,13 @@ export default {
 				fontSize: '18px',
 				height: '48px',
 			},
+		},
+	},
+
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING,
 		},
 	},
 
