@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import { FormInput } from '../src';
 import { Button } from '../../button/src';
-import { FormGroup} from '../../form/src';
+import { FormGroup } from '../../form/src';
 
 const options = ['Select', '1', '2', '3'];
 const sizes = ['small', 'medium', 'large', 'xlarge'];
@@ -12,7 +12,9 @@ export default () => (
 	<>
 		<h2>Default instance (no styling props)</h2>
 		<FormInput tag="select">
-			{options.map((v, i) => <option key={i}>{v}</option>)}
+			{options.map((v, i) => (
+				<option key={i}>{v}</option>
+			))}
 		</FormInput>
 
 		<hr />
@@ -21,9 +23,11 @@ export default () => (
 		{sizes.map((s, i, arr) => (
 			<Fragment key={i}>
 				<FormInput tag="select" size={s}>
-					{options.map((v, i) => <option key={i}>{v}</option>)}
+					{options.map((v, i) => (
+						<option key={i}>{v}</option>
+					))}
 				</FormInput>
-				{i < arr.length-1 && <br />}
+				{i < arr.length - 1 && <br />}
 			</Fragment>
 		))}
 
@@ -31,14 +35,18 @@ export default () => (
 
 		<h2>Invalid</h2>
 		<FormInput tag="select" invalid>
-			{options.map((v, i) => <option key={i}>{v}</option>)}
+			{options.map((v, i) => (
+				<option key={i}>{v}</option>
+			))}
 		</FormInput>
 
 		<hr />
 
 		<h2>Disabled</h2>
 		<FormInput tag="select" disabled>
-			{options.map((v, i) => <option key={i}>{v}</option>)}
+			{options.map((v, i) => (
+				<option key={i}>{v}</option>
+			))}
 		</FormInput>
 
 		<hr />
@@ -46,11 +54,15 @@ export default () => (
 		<h2>Inline</h2>
 		<FormGroup inline>
 			<FormInput tag="select">
-				{options.map((v, i) => <option key={i}>{v}</option>)}
+				{options.map((v, i) => (
+					<option key={i}>{v}</option>
+				))}
 			</FormInput>{' '}
 			<FormInput tag="select">
-				{options.map((v, i) => <option key={i}>{v}</option>)}
-			</FormInput>{ ' '}
+				{options.map((v, i) => (
+					<option key={i}>{v}</option>
+				))}
+			</FormInput>{' '}
 			<Button type="submit">Submit</Button>
 		</FormGroup>
 
@@ -62,7 +74,7 @@ export default () => (
 				<FormInput tag="select" width={w}>
 					<option>{'W'.repeat(w)}</option>
 				</FormInput>
-				{i < arr.length-1 && <br />}
+				{i < arr.length - 1 && <br />}
 			</Fragment>
 		))}
 	</>

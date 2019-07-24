@@ -74,8 +74,6 @@ export const FormInput = ({
 		height: formInput.size[size].height,
 	};
 
-
-
 	// Input fixed width styling
 	const styleFixedWidth = () => {
 		const factor = formInput.fontXFactor; //'W' compared to 'x' character (relative to font)

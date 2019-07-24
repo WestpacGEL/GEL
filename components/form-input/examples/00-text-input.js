@@ -18,7 +18,7 @@ export default () => (
 		{sizes.map((s, i, arr) => (
 			<Fragment key={i}>
 				<FormInput size={s} placeholder={s.replace(s[0], s[0].toUpperCase())} />
-				{i < arr.length-1 && <br />}
+				{i < arr.length - 1 && <br />}
 			</Fragment>
 		))}
 
@@ -52,7 +52,7 @@ export default () => (
 		{widths.map((w, i, arr) => (
 			<Fragment key={i}>
 				<FormInput width={w} placeholder={w} />
-				{i < arr.length-1 && <br />}
+				{i < arr.length - 1 && <br />}
 			</Fragment>
 		))}
 	</>

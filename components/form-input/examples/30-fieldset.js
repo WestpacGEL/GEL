@@ -12,7 +12,9 @@ export default () => (
 			<FormInput />
 			<br />
 			<FormInput tag="select">
-				{options.map((v, i) => <option key={i}>{v}</option>)}
+				{options.map((v, i) => (
+					<option key={i}>{v}</option>
+				))}
 			</FormInput>
 			<br />
 			<FormInput tag="textarea" />
@@ -26,7 +28,9 @@ export default () => (
 			<FormInput />
 			<br />
 			<FormInput tag="select">
-				{options.map((v, i) => <option key={i}>{v}</option>)}
+				{options.map((v, i) => (
+					<option key={i}>{v}</option>
+				))}
 			</FormInput>
 			<br />
 			<FormInput tag="textarea" />
