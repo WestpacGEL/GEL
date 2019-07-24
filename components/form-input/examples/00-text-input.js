@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { FormInput } from '../src';
 import { FormGroup } from '../../form/src';
 import { Button } from '../../button/src';
+
+const sizes = ['small', 'medium', 'large', 'xlarge'];
+const widths = [2, 3, 4, 5, 10, 20, 30];
 
 export default () => (
 	<>
@@ -12,13 +15,12 @@ export default () => (
 		<hr />
 
 		<h2>Size</h2>
-		<FormInput size="small" placeholder="Small" />
-		<br />
-		<FormInput size="medium" placeholder="Medium" />
-		<br />
-		<FormInput size="large" placeholder="Large" />
-		<br />
-		<FormInput size="xlarge" placeholder="Xlarge" />
+		{sizes.map((s, i, arr) => (
+			<Fragment key={i}>
+				<FormInput size={s} placeholder={s.replace(s[0], s[0].toUpperCase())} />
+				{i < arr.length-1 && <br />}
+			</Fragment>
+		))}
 
 		<hr />
 
@@ -47,18 +49,11 @@ export default () => (
 		<hr />
 
 		<h2>Fixed width</h2>
-		<FormInput width={2} placeholder="2" />
-		<br />
-		<FormInput width={3} placeholder="3" />
-		<br />
-		<FormInput width={4} placeholder="width 4" />
-		<br />
-		<FormInput width={5} placeholder="width 5" />
-		<br />
-		<FormInput width={10} placeholder="width 10" />
-		<br />
-		<FormInput width={20} placeholder="width 20" />
-		<br />
-		<FormInput width={30} placeholder="width 30" />
+		{widths.map((w, i, arr) => (
+			<Fragment key={i}>
+				<FormInput width={w} placeholder={w} />
+				{i < arr.length-1 && <br />}
+			</Fragment>
+		))}
 	</>
 );

@@ -1,56 +1,69 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { FormInput } from '../src';
+import { Button } from '../../button/src';
+import { FormGroup} from '../../form/src';
+
+const options = ['Select', '1', '2', '3'];
+const sizes = ['small', 'medium', 'large', 'xlarge'];
+const widths = [2, 3, 4, 5, 10, 20, 30];
 
 export default () => (
 	<>
 		<h2>Default instance (no styling props)</h2>
 		<FormInput tag="select">
-			<option>Select</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
+			{options.map((v, i) => <option key={i}>{v}</option>)}
 		</FormInput>
 
 		<hr />
 
 		<h2>Size</h2>
-		<FormInput tag="select" size="small">
-			<option>Select</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-		</FormInput>
-		<br />
-		<FormInput tag="select" size="medium">
-			<option>Select</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-		</FormInput>
-		<br />
-		<FormInput tag="select" size="large">
-			<option>Select</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-		</FormInput>
-		<br />
-		<FormInput tag="select" size="xlarge">
-			<option>Select</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
+		{sizes.map((s, i, arr) => (
+			<Fragment key={i}>
+				<FormInput tag="select" size={s}>
+					{options.map((v, i) => <option key={i}>{v}</option>)}
+				</FormInput>
+				{i < arr.length-1 && <br />}
+			</Fragment>
+		))}
+
+		<hr />
+
+		<h2>Invalid</h2>
+		<FormInput tag="select" invalid>
+			{options.map((v, i) => <option key={i}>{v}</option>)}
 		</FormInput>
 
 		<hr />
 
 		<h2>Disabled</h2>
 		<FormInput tag="select" disabled>
-			<option>Select</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
+			{options.map((v, i) => <option key={i}>{v}</option>)}
 		</FormInput>
+
+		<hr />
+
+		<h2>Inline</h2>
+		<FormGroup inline>
+			<FormInput tag="select">
+				{options.map((v, i) => <option key={i}>{v}</option>)}
+			</FormInput>{' '}
+			<FormInput tag="select">
+				{options.map((v, i) => <option key={i}>{v}</option>)}
+			</FormInput>{ ' '}
+			<Button type="submit">Submit</Button>
+		</FormGroup>
+
+		<hr />
+
+		<h2>Fixed width</h2>
+		{widths.map((w, i, arr) => (
+			<Fragment key={i}>
+				<FormInput tag="select" width={w}>
+					<option>{'W'.repeat(w)}</option>
+				</FormInput>
+				{i < arr.length-1 && <br />}
+			</Fragment>
+		))}
 	</>
 );

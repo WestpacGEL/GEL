@@ -74,11 +74,14 @@ export const FormInput = ({
 		height: formInput.size[size].height,
 	};
 
+
+
 	// Input fixed width styling
-	const styleWidth = () => {
+	const styleFixedWidth = () => {
 		const factor = formInput.fontXFactor; //'W' compared to 'x' character (relative to font)
-		const extras =
-			parseInt(formInput.size[size].padding[1], 10) * 2 + parseInt(formInput.borderWidth, 10) * 2;
+		const paddings = parseInt(formInput.size[size].padding[1], 10) * 2;
+		const borders = parseInt(formInput.borderWidth, 10) * 2;
+		const extras = paddings + borders;
 
 		return width
 			? {
@@ -92,10 +95,13 @@ export const FormInput = ({
 		const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${
 			colors.muted
 		}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
+		const caretWidth = 14;
+		const gap = 8;
+		const paddingRight = parseInt(formInput.size[size].padding[1], 10) + caretWidth + gap;
 
 		return Tag === 'select'
 			? {
-					paddingRight: `${parseInt(formInput.size[size].padding[1], 10) + 22}px`, //22px = 14px (svg width) + 8px (gap)
+					paddingRight: `${paddingRight}px`,
 					backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
 					backgroundRepeat: 'no-repeat',
 					backgroundPosition: `right ${formInput.size[size].padding[1]} center`,
@@ -126,7 +132,7 @@ export const FormInput = ({
 			css={{
 				...styleCommon,
 				...styleSize,
-				...styleWidth(),
+				...styleFixedWidth(),
 				...styleSelect(),
 				...styleTextarea,
 			}}
