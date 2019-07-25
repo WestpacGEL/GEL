@@ -72,7 +72,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 	const styleBody = {
 		position: 'relative',
 		flex: 1,
-		top: ['auto', 2],
+		top: [null, Icon ? 2 : null],
 	};
 
 	return (
