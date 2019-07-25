@@ -33,7 +33,7 @@ const IconWrapper = ({ color, size, ...props }) => {
 
 	// Reponsive styling (icon size)
 	const styleResponsive = () => {
-		const sizeArr = asArray(size).map((s) => getSizeInt(s));
+		const sizeArr = asArray(size).map(s => getSizeInt(s));
 
 		return {
 			height: sizeArr,
