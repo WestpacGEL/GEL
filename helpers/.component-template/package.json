@@ -16,7 +16,6 @@
 	},
 	"main": "dist/index.js",
 	"dependencies": {
-		"facepaint": "^1.2.1",
 		"@westpac/core": "^0.0.1",
 		"prop-types": "^15.6.2"
 	},
