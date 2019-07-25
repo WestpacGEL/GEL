@@ -17,7 +17,6 @@ export const sizeMap = {
 	large: 36, //  1.5x
 	xlarge: 48, // 2x
 };
-export const getSizeInt = s => sizeMap[s];
 
 const IconWrapper = ({ color, size, ...props }) => {
 	const { breakpoints } = useTheme();
@@ -33,7 +32,7 @@ const IconWrapper = ({ color, size, ...props }) => {
 
 	// Reponsive styling (icon size)
 	const styleResponsive = () => {
-		const sizeArr = asArray(size).map((s) => getSizeInt(s));
+		const sizeArr = asArray(size).map((s) => sizeMap[s]);
 
 		return {
 			height: sizeArr,
