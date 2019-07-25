@@ -78,7 +78,7 @@ const Brand = ({ children, ...props }) => {
 		//
 
 		label: {
-		  display: 'inline-block',
+			display: 'inline-block',
 		},
 
 		'input, button, select, optgroup, textarea': {
@@ -89,9 +89,9 @@ const Brand = ({ children, ...props }) => {
 		},
 
 		textarea: {
-		  overflow: 'auto', // Remove the default vertical scrollbar in IE.
-		  // Textareas should really only resize vertically so they don't break their (horizontal) containers.
-		  resize: 'vertical',
+			overflow: 'auto', // Remove the default vertical scrollbar in IE.
+			// Textareas should really only resize vertically so they don't break their (horizontal) containers.
+			resize: 'vertical',
 		},
 
 		fieldset: {
@@ -110,16 +110,16 @@ const Brand = ({ children, ...props }) => {
 		// 1. Correct the text wrapping in Edge and IE.
 		// 2. Correct the color inheritance from `fieldset` elements in IE.
 		legend: {
-		  display: 'block',
-		  width: '100%',
-		  maxWidth: '100%', // 1
-		  padding: 0,
-		  marginBottom: '.5rem',
-		  // @include font-size(1.5rem),
-		  fontSize: 'inherit',
-		  lineHeight: 'inherit',
-		  color: 'inherit', // 2
-		  whiteSpace: 'normal', // 1
+			display: 'block',
+			width: '100%',
+			maxWidth: '100%', // 1
+			padding: 0,
+			marginBottom: '.5rem',
+			// @include font-size(1.5rem),
+			fontSize: 'inherit',
+			lineHeight: 'inherit',
+			color: 'inherit', // 2
+			whiteSpace: 'normal', // 1
 		},
 
 		//
@@ -127,13 +127,13 @@ const Brand = ({ children, ...props }) => {
 		//
 
 		template: {
-		  display: 'none', // Add the correct display in IE
+			display: 'none', // Add the correct display in IE
 		},
 
 		// Always hide an element with the `hidden` HTML attribute (from PureCSS).
 		// Needed for proper display in IE 10-.
 		'[hidden]': {
-		  display: 'none !important',
+			display: 'none !important',
 		},
 	};
 
