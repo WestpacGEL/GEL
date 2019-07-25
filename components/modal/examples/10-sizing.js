@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from '../src';
 
 // TO DO: Replace with proper button import once published to npm
@@ -15,6 +15,8 @@ export default () => {
 				return { ...state, small: { open: action.payload.open } };
 			case 'large':
 				return { ...state, large: { open: action.payload.open } };
+			default:
+				throw new Error();
 		}
 	};
 
