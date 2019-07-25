@@ -55,10 +55,10 @@ const App = ({ components, packageName }) => {
 					<Global
 						styles={css`
 							body {
-								-moz-font-feature-settings: 'liga' on;
+								/*-moz-font-feature-settings: 'liga' on;
 								-moz-osx-font-smoothing: grayscale;
 								-webkit-font-smoothing: antialiased;
-								/* background-color: #fafbfc; */
+								//background-color: #fafbfc;
 								color: #253858;
 								font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial,
 									sans-serif;
@@ -67,7 +67,7 @@ const App = ({ components, packageName }) => {
 								letter-spacing: 0;
 								line-height: 1.3;
 								margin: 0;
-								text-rendering: optimizeLegibility;
+								text-rendering: optimizeLegibility;*/
 							}
 							code {
 								font-family: Monaco, monospace;

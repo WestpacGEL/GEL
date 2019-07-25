@@ -62,7 +62,63 @@ export default {
 			foreground: 'white',
 		},
 	},
-	type: {},
+	body: {
+		backgroundColor: 'white',
+	},
+	type: {
+		fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+		color: COLORS.text,
+		fontSize: '0.875em',
+		fontWeight: 400,
+		lineHeight: 1.428571429,
+		headings: {
+			color: COLORS.heading,
+		},
+		p: {
+			margin: '0.8571428572em 0',
+		},
+		dl: {},
+		dt: {
+			fontWeight: 700,
+		},
+		dd: {
+			margin: 0,
+		},
+		abbr: {
+			cursor: 'help',
+			borderBottom: `1px dotted ${COLORS.text}`,
+			textDecoration: 'none',
+		},
+		address: {
+			fontStyle: 'normal',
+		},
+		blockquote: {
+			fontSize: '16px',
+			fontWeight: 300,
+		},
+		mark: {
+			backgroundColor: tint(COLORS.primary, 0.2),
+		},
+		selection: {
+			backgroundColor: tint(COLORS.primary, 0.2),
+		},
+		link: {
+			default: {
+				color: COLORS.primary,
+				textDecoration: 'underline',
+			},
+			hover: {
+				textDecoration: 'underline',
+			},
+			focus: {
+				outline: `2px solid ${COLORS.focus}`,
+				outlineOffset: '3px',
+			},
+		},
+		brand: {
+			fontFamily: '',
+		},
+	},
 	spacing: {},
 
 	badge: {
