@@ -1,4 +1,4 @@
-import Color from 'color';
+import { tint } from './utils';
 
 const COLORS = {
 	background: '#F1F1EF',
@@ -18,6 +18,7 @@ const COLORS = {
 	information: '#0074C4',
 	warning: '#C53B00',
 	danger: '#C40000',
+	system: 'yellow',
 };
 
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
@@ -65,149 +66,6 @@ export default {
 	type: {},
 	spacing: {},
 
-	grid: {
-		container: {
-			maxWidth: CONTAINER_MAXWIDTH,
-			padding: CONTAINER_PADDING,
-		},
-	},
-
-	label: {
-		borderRadius: '2px',
-		borderWidth: '1px',
-		fontSize: '12px',
-		padding: '1px 6px',
-		fontWeight: 400,
-		lineHeight: 1,
-
-		appearance: {
-			primary: {
-				default: {
-					color: '#fff',
-					backgroundColor: COLORS.primary,
-					borderColor: COLORS.primary,
-				},
-				hover: {
-					color: null,
-					backgroundColor: Color('white')
-						.mix(Color(COLORS.primary), 0.5)
-						.hex(),
-					borderColor: Color('white')
-						.mix(Color(COLORS.primary), 0.5)
-						.hex(),
-				},
-			},
-			hero: {
-				default: {
-					color: COLORS.text,
-					backgroundColor: COLORS.hero,
-					borderColor: COLORS.hero,
-				},
-				hover: {
-					color: null,
-					backgroundColor: Color('white')
-						.mix(Color(COLORS.hero), 0.5)
-						.hex(),
-					borderColor: Color('white')
-						.mix(Color(COLORS.hero), 0.5)
-						.hex(),
-				},
-			},
-			neutral: {
-				default: {
-					color: '#fff',
-					backgroundColor: COLORS.neutral,
-					borderColor: COLORS.neutral,
-				},
-				hover: {
-					color: null,
-					backgroundColor: Color('white')
-						.mix(Color(COLORS.neutral), 0.5)
-						.hex(),
-					borderColor: Color('white')
-						.mix(Color(COLORS.neutral), 0.5)
-						.hex(),
-				},
-			},
-			faint: {
-				default: {
-					color: COLORS.muted,
-					backgroundColor: COLORS.light,
-					borderColor: COLORS.border,
-				},
-				hover: {
-					color: null,
-					backgroundColor: '#fff',
-					borderColor: null,
-				},
-			},
-			success: {
-				default: {
-					color: '#fff',
-					backgroundColor: COLORS.success,
-					borderColor: COLORS.success,
-				},
-				hover: {
-					color: null,
-					backgroundColor: Color('white')
-						.mix(Color(COLORS.success), 0.5)
-						.hex(),
-					borderColor: Color('white')
-						.mix(Color(COLORS.success), 0.5)
-						.hex(),
-				},
-			},
-			information: {
-				default: {
-					color: '#fff',
-					backgroundColor: COLORS.information,
-					borderColor: COLORS.information,
-				},
-				hover: {
-					color: null,
-					backgroundColor: Color('white')
-						.mix(Color(COLORS.information), 0.5)
-						.hex(),
-					borderColor: Color('white')
-						.mix(Color(COLORS.information), 0.5)
-						.hex(),
-				},
-			},
-			warning: {
-				default: {
-					color: '#fff',
-					backgroundColor: COLORS.warning,
-					borderColor: COLORS.warning,
-				},
-				hover: {
-					color: null,
-					backgroundColor: Color('white')
-						.mix(Color(COLORS.warning), 0.5)
-						.hex(),
-					borderColor: Color('white')
-						.mix(Color(COLORS.warning), 0.5)
-						.hex(),
-				},
-			},
-			danger: {
-				default: {
-					color: '#fff',
-					backgroundColor: COLORS.danger,
-					borderColor: COLORS.danger,
-				},
-				hover: {
-					color: null,
-					backgroundColor: Color('white')
-						.mix(Color(COLORS.danger), 0.5)
-						.hex(),
-					borderColor: Color('white')
-						.mix(Color(COLORS.danger), 0.5)
-						.hex(),
-				},
-			},
-		},
-	},
-
 	badge: {
 		minWidth: '10px',
 		minWidth: '10px',
@@ -235,16 +93,12 @@ export default {
 					},
 					hover: {
 						color: null,
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.primary), 0.7)
-							.hex(),
+						backgroundColor: tint(COLORS.primary, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: '#fff',
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.primary), 0.5)
-							.hex(),
+						backgroundColor: tint(COLORS.primary, 0.5),
 						borderColor: null,
 					},
 				},
@@ -256,16 +110,12 @@ export default {
 					},
 					hover: {
 						color: '#fff',
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.primary), 0.7)
-							.hex(),
+						backgroundColor: tint(COLORS.primary, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: '#fff',
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.primary), 0.5)
-							.hex(),
+						backgroundColor: tint(COLORS.primary, 0.5),
 						borderColor: null,
 					},
 				},
@@ -279,16 +129,12 @@ export default {
 					},
 					hover: {
 						color: COLORS.text, //mapping unique to this brand
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.hero), 0.7)
-							.hex(),
+						backgroundColor: tint(COLORS.hero, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: COLORS.text, //mapping unique to this brand
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.hero), 0.5)
-							.hex(),
+						backgroundColor: tint(COLORS.hero, 0.5),
 						borderColor: null,
 					},
 				},
@@ -300,16 +146,12 @@ export default {
 					},
 					hover: {
 						color: null, //mapping unique to this brand
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.hero), 0.7)
-							.hex(),
+						backgroundColor: tint(COLORS.hero, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: null, //mapping unique to this brand
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.hero), 0.5)
-							.hex(),
+						backgroundColor: tint(COLORS.hero, 0.5),
 						borderColor: null,
 					},
 				},
@@ -323,16 +165,12 @@ export default {
 					},
 					hover: {
 						color: null,
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.neutral), 0.7)
-							.hex(),
+						backgroundColor: tint(COLORS.neutral, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: '#fff',
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.neutral), 0.5)
-							.hex(),
+						backgroundColor: tint(COLORS.neutral, 0.5),
 						borderColor: null,
 					},
 				},
@@ -344,16 +182,12 @@ export default {
 					},
 					hover: {
 						color: '#fff',
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.neutral), 0.7)
-							.hex(),
+						backgroundColor: tint(COLORS.neutral, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: '#fff',
-						backgroundColor: Color('white')
-							.mix(Color(COLORS.neutral), 0.5)
-							.hex(),
+						backgroundColor: tint(COLORS.neutral, 0.5),
 						borderColor: null,
 					},
 				},
@@ -415,7 +249,6 @@ export default {
 				soft: {},
 			},
 		},
-
 		size: {
 			small: {
 				padding: ['3px', '9px', '4px'],
@@ -436,6 +269,121 @@ export default {
 				padding: ['9px', '18px', '10px'],
 				fontSize: '18px',
 				height: '48px',
+			},
+		},
+	},
+
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING,
+		},
+	},
+
+	label: {
+		borderRadius: '2px',
+		borderWidth: '1px',
+		fontSize: '12px',
+		padding: '1px 6px',
+		fontWeight: 400,
+		lineHeight: 1,
+
+		appearance: {
+			primary: {
+				default: {
+					color: '#fff',
+					backgroundColor: COLORS.primary,
+					borderColor: COLORS.primary,
+				},
+				hover: {
+					color: null,
+					backgroundColor: tint(COLORS.primary, 0.5),
+					borderColor: tint(COLORS.primary, 0.5),
+				},
+			},
+			hero: {
+				default: {
+					color: COLORS.text,
+					backgroundColor: COLORS.hero,
+					borderColor: COLORS.hero,
+				},
+				hover: {
+					color: null,
+					backgroundColor: tint(COLORS.hero, 0.5),
+					borderColor: tint(COLORS.hero, 0.5),
+				},
+			},
+			neutral: {
+				default: {
+					color: '#fff',
+					backgroundColor: COLORS.neutral,
+					borderColor: COLORS.neutral,
+				},
+				hover: {
+					color: null,
+					backgroundColor: tint(COLORS.neutral, 0.5),
+					borderColor: tint(COLORS.neutral, 0.5),
+				},
+			},
+			faint: {
+				default: {
+					color: COLORS.muted,
+					backgroundColor: COLORS.light,
+					borderColor: COLORS.border,
+				},
+				hover: {
+					color: null,
+					backgroundColor: '#fff',
+					borderColor: null,
+				},
+			},
+			success: {
+				default: {
+					color: '#fff',
+					backgroundColor: COLORS.success,
+					borderColor: COLORS.success,
+				},
+				hover: {
+					color: null,
+					backgroundColor: tint(COLORS.success, 0.5),
+					borderColor: tint(COLORS.success, 0.5),
+				},
+			},
+			information: {
+				default: {
+					color: '#fff',
+					backgroundColor: COLORS.information,
+					borderColor: COLORS.information,
+				},
+				hover: {
+					color: null,
+					backgroundColor: tint(COLORS.information, 0.5),
+					borderColor: tint(COLORS.information, 0.5),
+				},
+			},
+			warning: {
+				default: {
+					color: '#fff',
+					backgroundColor: COLORS.warning,
+					borderColor: COLORS.warning,
+				},
+				hover: {
+					color: null,
+					backgroundColor: tint(COLORS.warning, 0.5),
+					borderColor: tint(COLORS.warning, 0.5),
+				},
+			},
+			danger: {
+				default: {
+					color: '#fff',
+					backgroundColor: COLORS.danger,
+					borderColor: COLORS.danger,
+				},
+				hover: {
+					color: null,
+					backgroundColor: tint(COLORS.danger, 0.5),
+					borderColor: tint(COLORS.danger, 0.5),
+				},
 			},
 		},
 	},
@@ -544,5 +492,39 @@ export default {
 			responsive: [12, 24],
 		},
 		marginBottom: '18px',
+	},
+
+	alert: {
+		padding: '18px',
+		marginBottom: '21px',
+		borderWidth: '1px',
+
+		appearance: {
+			success: {
+				color: COLORS.success,
+				backgroundColor: tint(COLORS.success, 0.1),
+				borderColor: tint(COLORS.success, 0.5),
+			},
+			information: {
+				color: COLORS.information,
+				backgroundColor: tint(COLORS.information, 0.1),
+				borderColor: tint(COLORS.information, 0.5),
+			},
+			warning: {
+				color: COLORS.warning,
+				backgroundColor: tint(COLORS.warning, 0.1),
+				borderColor: tint(COLORS.warning, 0.5),
+			},
+			danger: {
+				color: COLORS.danger,
+				backgroundColor: tint(COLORS.danger, 0.1),
+				borderColor: tint(COLORS.danger, 0.5),
+			},
+			system: {
+				color: 'black',
+				backgroundColor: COLORS.system,
+				borderColor: COLORS.system,
+			},
+		},
 	},
 };

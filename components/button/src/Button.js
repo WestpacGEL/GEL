@@ -38,7 +38,6 @@ export const Button = ({
 		border: `${button.borderWidth} solid transparent`,
 		borderRadius: button.borderRadius,
 		cursor: 'pointer',
-		flex: 1,
 		flexDirection: iconPosition === 'left' ? 'row-reverse' : null,
 		fontWeight: button.fontWeight,
 		justifyContent: justify ? 'space-between' : 'center', //horizontal
