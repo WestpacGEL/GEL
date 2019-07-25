@@ -37,7 +37,11 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 	};
 
 	const styleAppearance = {
-		...alert.appearance[appearance],
+		color: alert.appearance[appearance].color,
+		backgroundColor: alert.appearance[appearance].backgroundColor,
+		borderTop: `${alert.borderWidth} solid`,
+		borderBottom: `${alert.borderWidth} solid`,
+		borderColor: alert.appearance[appearance].borderColor,
 	};
 
 	const styleClose = {

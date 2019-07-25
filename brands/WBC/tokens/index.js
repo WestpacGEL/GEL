@@ -498,37 +498,33 @@ export default {
 	alert: {
 		padding: '18px',
 		marginBottom: '21px',
+		borderWidth: '1px',
 
 		appearance: {
 			success: {
 				color: COLORS.success,
 				backgroundColor: tint(COLORS.success, 0.1),
-				borderTop: `1px solid ${tint(COLORS.success, 0.5)}`,
-				borderBottom: `1px solid ${tint(COLORS.success, 0.5)}`,
+				borderColor: tint(COLORS.success, 0.5),
 			},
 			information: {
 				color: COLORS.information,
 				backgroundColor: tint(COLORS.information, 0.1),
-				borderTop: `${tint(COLORS.information, 0.5)}`,
-				borderBottom: `1px solid ${tint(COLORS.information, 0.5)}`,
+				borderColor: tint(COLORS.information, 0.5),
 			},
 			warning: {
 				color: COLORS.warning,
 				backgroundColor: tint(COLORS.warning, 0.1),
-				borderTop: `1px solid ${tint(COLORS.warning, 0.5)}`,
-				borderBottom: `1px solid ${tint(COLORS.warning, 0.5)}`,
+				borderColor: tint(COLORS.warning, 0.5),
 			},
 			danger: {
 				color: COLORS.danger,
 				backgroundColor: tint(COLORS.danger, 0.1),
-				borderTop: `1px solid ${tint(COLORS.danger, 0.5)}`,
-				borderBottom: `1px solid ${tint(COLORS.danger, 0.5)}`,
+				borderColor: tint(COLORS.danger, 0.5),
 			},
 			system: {
 				color: 'black',
 				backgroundColor: COLORS.system,
-				borderTop: `1px solid ${COLORS.system}`,
-				borderBottom: `1px solid ${COLORS.system}`,
+				borderColor: COLORS.system,
 			},
 		},
 	},
