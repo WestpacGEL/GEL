@@ -1,28 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from '../src';
 
 // TO DO: Replace with proper button import once published to npm
 import { Button } from '../../button/src';
 
 export default () => {
-	const [open, setOpen] = useState(false);
-	const openModal = () => setOpen(true);
-	const closeModal = () => setOpen(false);
+	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };
 
-	const [openSmall, setOpenSmall] = useState(false);
-	const openSmallModal = () => setOpenSmall(true);
-	const closeSmallModal = () => setOpenSmall(false);
+	const modalReducer = (state, action) => {
+		switch (action.type) {
+			case 'default':
+				return { ...state, default: { open: action.payload.open } };
+			case 'small':
+				return { ...state, small: { open: action.payload.open } };
+			case 'large':
+				return { ...state, large: { open: action.payload.open } };
+		}
+	};
 
-	const [openLarge, setOpenLarge] = useState(false);
-	const openLargeModal = () => setOpenLarge(true);
-	const closeLargeModal = () => setOpenLarge(false);
+	const [state, dispatch] = useReducer(modalReducer, initialState);
+
+	const updateModal = (type, open) => dispatch({ type, payload: { open } });
 
 	return (
 		<>
 			<p>
-				<Button onClick={openModal}>Open default modal</Button>
+				<Button onClick={() => updateModal('default', true)}>Open default modal</Button>
 			</p>
-			<Modal isOpen={open} onClose={closeModal}>
+			<Modal isOpen={state.default.open} onClose={() => updateModal('default', false)}>
 				<ModalHeader>Modal Title</ModalHeader>
 				<ModalBody>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
@@ -33,16 +38,16 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</ModalBody>
 				<ModalFooter>
-					<Button appearance="faint" onClick={closeModal}>
+					<Button appearance="faint" onClick={() => updateModal('default', false)}>
 						Close
 					</Button>
 				</ModalFooter>
 			</Modal>
 
 			<p>
-				<Button onClick={openSmallModal}>Open small modal</Button>
+				<Button onClick={() => updateModal('small', true)}>Open small modal</Button>
 			</p>
-			<Modal isOpen={openSmall} onClose={closeSmallModal} size="small">
+			<Modal isOpen={state.small.open} onClose={() => updateModal('small', false)} size="small">
 				<ModalHeader>Modal Title</ModalHeader>
 				<ModalBody>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
@@ -53,16 +58,16 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</ModalBody>
 				<ModalFooter>
-					<Button appearance="faint" onClick={closeSmallModal}>
+					<Button appearance="faint" onClick={() => updateModal('small', false)}>
 						Close
 					</Button>
 				</ModalFooter>
 			</Modal>
 
 			<p>
-				<Button onClick={openLargeModal}>Open large modal</Button>
+				<Button onClick={() => updateModal('large', true)}>Open large modal</Button>
 			</p>
-			<Modal isOpen={openLarge} onClose={closeLargeModal} size="large">
+			<Modal isOpen={state.large.open} onClose={() => updateModal('large', false)} size="large">
 				<ModalHeader>Modal Title</ModalHeader>
 				<ModalBody>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
@@ -73,7 +78,7 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</ModalBody>
 				<ModalFooter>
-					<Button appearance="faint" onClick={closeLargeModal}>
+					<Button appearance="faint" onClick={() => updateModal('large', false)}>
 						Close
 					</Button>
 				</ModalFooter>
