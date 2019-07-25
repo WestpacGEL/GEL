@@ -17,11 +17,12 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 	const [open, setOpen] = useState(true);
 	const { breakpoints, alert } = useTheme();
 	const mq = paint(breakpoints);
+	const getPaddingSM = () =>
+		closable ? `${alert.padding} 30px ${alert.padding} ${alert.padding}` : alert.padding;
 
 	const styleCommon = {
 		marginBottom: alert.marginBottom,
-		padding: alert.padding,
-		paddingRight: [18, 30],
+		padding: getPaddingSM(),
 		position: 'relative',
 		display: ['block', 'flex'],
 		zIndex: 1,
