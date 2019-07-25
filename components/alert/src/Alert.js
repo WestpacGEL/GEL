@@ -45,7 +45,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 	};
 
 	const styleClose = {
-		color: alert.appearance[appearance].color,
+		color: 'inherit',
 		position: ['relative', 'absolute'],
 		zIndex: 1,
 		float: ['right', 'none'],
