@@ -502,51 +502,27 @@ export default {
 		appearance: {
 			success: {
 				color: COLORS.success,
-				backgroundColor: Color('white')
-					.mix(Color(COLORS.success), 0.1)
-					.hex(),
-				borderTop: `1px solid ${Color('white')
-					.mix(Color(COLORS.success), 0.5)
-					.hex()}`,
-				borderBottom: `1px solid ${Color('white')
-					.mix(Color(COLORS.success), 0.5)
-					.hex()}`,
+				backgroundColor: tint(COLORS.success, 0.1),
+				borderTop: `1px solid ${tint(COLORS.success, 0.5)}`,
+				borderBottom: `1px solid ${tint(COLORS.success, 0.5)}`,
 			},
 			information: {
 				color: COLORS.information,
-				backgroundColor: Color('white')
-					.mix(Color(COLORS.information), 0.1)
-					.hex(),
-				borderTop: `1px solid ${Color('white')
-					.mix(Color(COLORS.information), 0.5)
-					.hex()}`,
-				borderBottom: `1px solid ${Color('white')
-					.mix(Color(COLORS.information), 0.5)
-					.hex()}`,
+				backgroundColor: tint(COLORS.information, 0.1),
+				borderTop: `${tint(COLORS.information, 0.5)}`,
+				borderBottom: `1px solid ${tint(COLORS.information, 0.5)}`,
 			},
 			warning: {
 				color: COLORS.warning,
-				backgroundColor: Color('white')
-					.mix(Color(COLORS.warning), 0.1)
-					.hex(),
-				borderTop: `1px solid ${Color('white')
-					.mix(Color(COLORS.warning), 0.5)
-					.hex()}`,
-				borderBottom: `1px solid ${Color('white')
-					.mix(Color(COLORS.warning), 0.5)
-					.hex()}`,
+				backgroundColor: tint(COLORS.warning, 0.1),
+				borderTop: `1px solid ${tint(COLORS.warning, 0.5)}`,
+				borderBottom: `1px solid ${tint(COLORS.warning, 0.5)}`,
 			},
 			danger: {
 				color: COLORS.danger,
-				backgroundColor: Color('white')
-					.mix(Color(COLORS.danger), 0.1)
-					.hex(),
-				borderTop: `1px solid ${Color('white')
-					.mix(Color(COLORS.danger), 0.5)
-					.hex()}`,
-				borderBottom: `1px solid ${Color('white')
-					.mix(Color(COLORS.danger), 0.5)
-					.hex()}`,
+				backgroundColor: tint(COLORS.danger, 0.1),
+				borderTop: `1px solid ${tint(COLORS.danger, 0.5)}`,
+				borderBottom: `1px solid ${tint(COLORS.danger, 0.5)}`,
 			},
 			system: {
 				color: 'black',
