@@ -27,7 +27,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 		zIndex: 1,
 		transition: 'opacity 0.3s ease-in-out',
 
-		a: {
+		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
 			color: 'inherit',
 		},
 
