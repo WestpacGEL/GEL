@@ -22,9 +22,9 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 
 	const styleCommon = {
 		marginBottom: alert.marginBottom,
-		padding: getPaddingSM(),
+		padding: [alert.padding, getPaddingSM()],
 		position: 'relative',
-		display: ['block', 'flex'],
+		display: ['null', 'flex'],
 		zIndex: 1,
 		transition: 'opacity 0.3s ease-in-out',
 
@@ -82,13 +82,12 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 							setOpen(false);
 						}}
 						icon={CloseIcon}
-						size="small"
 						appearance="link"
-						css={styleClose}
+						css={mq(styleClose)}
 					/>
 				)}
-				{Icon && <Icon css={mq({ ...styleIcon })} size={['small', 'medium']} />}
-				<div css={mq({ ...styleBody })}>{children}</div>
+				{Icon && <Icon css={mq(styleIcon)} size={['small', 'medium']} />}
+				<div css={mq(styleBody)}>{children}</div>
 			</div>
 		</CSSTransition>
 	);
