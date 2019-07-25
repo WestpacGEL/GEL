@@ -69,7 +69,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 		height: [18, 24],
 	};
 
-	const styleBox = {
+	const styleBody = {
 		position: 'relative',
 		flex: 1,
 		top: ['auto', 2],
@@ -89,8 +89,8 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 						css={styleClose}
 					/>
 				)}
-				{Icon && <Icon className="icon icon-alert" css={mq({ ...styleIcon })} />}
-				<div css={mq({ ...styleBox })}>{children}</div>
+				{Icon && <Icon css={mq({ ...styleIcon })} />}
+				<div css={mq({ ...styleBody })}>{children}</div>
 			</div>
 		</CSSTransition>
 	);
