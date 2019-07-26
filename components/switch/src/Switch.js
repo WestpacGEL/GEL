@@ -16,17 +16,16 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Switch = ({ name, srOnly, values, checked, disabled, children }) => {
-	const { switchControl } = useTheme();
+export const Switch = ({ name, srOnly, values, checked, disabled, size, children }) => {
+	const { colors, breakpoints, switchControl } = useTheme();
 	const common = {
 		position: 'relative',
 		display: 'flex',
 		alignItems: 'center',
 		marginRight: '18px',
-		height: '36px',
-		paddingRight: '80px',
-		borderRadius: '36px',
-		height: '36px',
+		height: switchControl.size[size].height,
+		paddingRight: switchControl.size[size].offset,
+		borderRadius: switchControl.size[size].borderRadius,
 		marginBottom: '6px',
 
 		'&:hover': {
@@ -53,13 +52,13 @@ export const Switch = ({ name, srOnly, values, checked, disabled, children }) =>
 	};
 
 	const toggleCss = {
-		borderRadius: 36,
-		height: 36,
-		width: 80,
+		borderRadius: switchControl.size[size].borderRadius,
+		height: switchControl.size[size].height,
+		width: switchControl.size[size].width,
 		display: 'block',
 		position: 'absolute',
-		right: 0,
-		top: 0,
+		right: '0px',
+		top: '0px',
 		zIndex: 1,
 		overflow: 'hidden',
 		lineHeight: 1.5,
@@ -70,12 +69,12 @@ export const Switch = ({ name, srOnly, values, checked, disabled, children }) =>
 
 		'&::after': {
 			content: '""',
-			height: 32,
-			width: 32,
+			height: switchControl.size[size].insideHeight,
+			width: switchControl.size[size].insideWidth,
 			display: 'block',
 			position: 'absolute',
-			left: 0,
-			top: 0,
+			left: '0px',
+			top: '0px',
 			borderRadius: '50%',
 			boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 			transition: 'all .3s ease',
@@ -89,19 +88,19 @@ export const Switch = ({ name, srOnly, values, checked, disabled, children }) =>
 	};
 
 	const toggleOnCss = {
-		borderColor: '#621a4b',
-		backgroundColor: '#621a4b',
+		borderColor: colors.hero.default,
+		backgroundColor: colors.hero.default,
 
 		'&::after': {
 			left: '100%',
 			transform: 'translateX(-100%)',
 			boxShadow: '-3px 0 6px 0 rgba(0,0,0,0.3)',
 			content: '""',
-			height: 32,
-			width: 32,
+			height: switchControl.size[size].insideHeight,
+			width: switchControl.size[size].insideWidth,
 			display: 'block',
 			position: 'absolute',
-			top: 0,
+			top: '0px',
 			borderRadius: '50%',
 			backgroundColor: switchControl.appearance.backgroundColor,
 			transition: 'all .3s ease',
@@ -111,19 +110,19 @@ export const Switch = ({ name, srOnly, values, checked, disabled, children }) =>
 	const valuesParamCss = {
 		position: 'absolute',
 		textAlign: 'center',
-		lineHeight: 2,
-		fontSize: switchControl.fontSize,
-		width: 44,
-		width: 'calc(100% - 32px)',
+		lineHeight: switchControl.size[size].lineHeight,
+		fontSize: switchControl.size[size].fontSize,
+		width: switchControl.size[size].insideWidth,
+		width: `calc(100% - ${switchControl.size[size].insideWidth})`,
 	};
 
 	const valuesParamOnCss = {
-		left: 0,
-		color: '#fff',
+		left: '0px',
+		color: colors.hero.foreground,
 	};
 
 	const valuesParamOffCss = {
-		right: 0,
+		right: '0px',
 	};
 
 	const [on, setOn] = checked ? useState(true) : useState(false);
@@ -184,4 +183,5 @@ Switch.propTypes = {
 Switch.defaultProps = {
 	checked: false,
 	disabled: false,
+	size: 'medium',
 };
