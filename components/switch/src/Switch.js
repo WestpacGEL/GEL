@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { useState, Children, cloneElement } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
@@ -16,17 +16,18 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Switch = ({ children, name, srOnly, text, ...props }) => {
+export const Switch = ({ name, srOnly, text, children }) => {
+	const { switchControl } = useTheme();
 	const common = {
 		position: 'relative',
 		display: 'flex',
 		alignItems: 'center',
-		marginRight: 18,
-		height: 36,
-		paddingRight: 80,
-		borderRadius: 36,
-		height: 36,
-		marginBottom: 6,
+		marginRight: '18px',
+		height: '36px',
+		paddingRight: '80px',
+		borderRadius: '36px',
+		height: '36px',
+		marginBottom: '6px',
 
 		'&:hover': {
 			cursor: 'pointer',
@@ -60,11 +61,12 @@ export const Switch = ({ children, name, srOnly, text, ...props }) => {
 		right: 0,
 		top: 0,
 		zIndex: 1,
-		border: '2px solid #d7d2cb',
-		backgroundColor: '#fff',
 		overflow: 'hidden',
 		lineHeight: 1.5,
 		transition: 'border .3s ease,background .3s ease',
+		border: `${switchControl.borderWidth} solid`,
+		borderColor: switchControl.appearance.borderColor,
+		backgroundColor: switchControl.appearance.backgroundColor,
 
 		'&::after': {
 			content: '""',
@@ -75,9 +77,9 @@ export const Switch = ({ children, name, srOnly, text, ...props }) => {
 			left: 0,
 			top: 0,
 			borderRadius: '50%',
-			backgroundColor: '#fff',
 			boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 			transition: 'all .3s ease',
+			backgroundColor: switchControl.appearance.backgroundColor,
 		},
 	};
 
@@ -96,7 +98,7 @@ export const Switch = ({ children, name, srOnly, text, ...props }) => {
 			position: 'absolute',
 			top: 0,
 			borderRadius: '50%',
-			backgroundColor: '#fff',
+			backgroundColor: switchControl.appearance.backgroundColor,
 			transition: 'all .3s ease',
 		},
 	};
@@ -105,7 +107,7 @@ export const Switch = ({ children, name, srOnly, text, ...props }) => {
 		position: 'absolute',
 		textAlign: 'center',
 		lineHeight: 2,
-		fontSize: 16,
+		fontSize: switchControl.fontSize,
 		width: 44,
 		width: 'calc(100% - 32px)',
 	};
@@ -120,8 +122,6 @@ export const Switch = ({ children, name, srOnly, text, ...props }) => {
 
 	const [on, setOn] = useState(false);
 	const toggle = () => setOn(!on);
-
-	console.log(on);
 
 	const textParam = text.map((t, i) => (
 		<>
@@ -138,18 +138,14 @@ export const Switch = ({ children, name, srOnly, text, ...props }) => {
 	));
 
 	return (
-		<label css={{ ...common }} onClick={toggle}>
+		<label css={common} onClick={toggle}>
 			<input type="checkbox" name={name} id={name} />
-			{srOnly ? (
-				<span css={{ ...srOnlyCss }}>{children}</span>
-			) : (
-				<span css={{ ...textCss }}>{children}</span>
-			)}
+			{srOnly ? <span css={srOnlyCss}>{children}</span> : <span css={textCss}>{children}</span>}
 
 			{on ? (
 				<span css={{ ...toggleCss, ...toggleOnCss }} />
 			) : (
-				<span css={{ ...toggleCss }}>{textParam}</span>
+				<span css={toggleCss}>{textParam}</span>
 			)}
 		</label>
 	);
@@ -163,7 +159,6 @@ Switch.propTypes = {
 	/**
 	 * Describe `someProperty` here
 	 */
-	someProperty: PropTypes.string,
 };
 
 Switch.defaultProps = {

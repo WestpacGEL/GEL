@@ -527,4 +527,13 @@ export default {
 			},
 		},
 	},
+
+	switchControl: {
+		borderWidth: '2px',
+
+		appearance: {
+			borderColor: COLORS.border,
+			backgroundColor: '#fff',
+		},
+	},
 };
