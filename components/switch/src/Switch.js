@@ -16,7 +16,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Switch = ({ name, srOnly, values, checked, children }) => {
+export const Switch = ({ name, srOnly, values, checked, disabled, children }) => {
 	const { switchControl } = useTheme();
 	const common = {
 		position: 'relative',
@@ -80,6 +80,11 @@ export const Switch = ({ name, srOnly, values, checked, children }) => {
 			boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 			transition: 'all .3s ease',
 			backgroundColor: switchControl.appearance.backgroundColor,
+		},
+
+		'input:disabled~&': {
+			cursor: 'not-allowed',
+			opacity: '.5',
 		},
 	};
 
@@ -151,7 +156,7 @@ export const Switch = ({ name, srOnly, values, checked, children }) => {
 
 	return (
 		<label css={common} onChange={toggle}>
-			<input type="checkbox" name={name} id={name} />
+			<input type="checkbox" name={name} id={name} disabled={disabled} />
 			{srOnly ? <span css={srOnlyCss}>{children}</span> : <span css={valuesCss}>{children}</span>}
 
 			{on ? (
@@ -173,8 +178,10 @@ Switch.propTypes = {
 	 */
 	values: PropTypes.array,
 	checked: PropTypes.bool,
+	disabled: PropTypes.bool,
 };
 
 Switch.defaultProps = {
 	checked: false,
+	disabled: false,
 };

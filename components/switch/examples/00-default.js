@@ -26,7 +26,18 @@ export default () => (
 			</Switch>
 		</Box>
 		<Box>
+			<Switch name="ex4" values={['Yes', 'No']} checked>
+				Enable notifications
+			</Switch>
 			<Switch name="ex6" values checked>
+				Turn notifications
+			</Switch>
+		</Box>
+		<Box>
+			<Switch name="ex4" values={['Yes', 'No']} disabled>
+				Enable notifications
+			</Switch>
+			<Switch name="ex6" values disabled>
 				Turn notifications
 			</Switch>
 		</Box>
