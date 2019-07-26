@@ -43,18 +43,15 @@ export const FormInput = ({
 		borderRadius: formInput.borderRadius,
 		transition: 'border 0.2s ease',
 		verticalAlign: Tag === 'textarea' ? 'top' : inline ? 'middle' : null,
-		minHeight: Tag === 'textarea' ? '60px' : null,
 
 		'&::placeholder': {
-			fontWeight: 300,
-			// color: tint(COLORS.Text, 0.5),
+			...formInput.placeholder,
 			opacity: 1, // Override Firefox's unusual default opacity
 		},
 
 		// Disabled and read-only inputs
 		':disabled, &[readonly]': {
-			backgroundColor: colors.light,
-			color: colors.muted,
+			...formInput.disabled,
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
 		},
@@ -62,7 +59,6 @@ export const FormInput = ({
 		// Disable number input spinners/steppers
 		'&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
 			margin: 0,
-			// -webkit-appearance: 'none',
 			appearance: 'none',
 		},
 	};

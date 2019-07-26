@@ -428,6 +428,14 @@ export default {
 				height: '48px',
 			},
 		},
+		disabled: {
+			backgroundColor: COLORS.light,
+			color: COLORS.muted,
+		},
+		placeholder: {
+			fontWeight: 300,
+			color: tint(COLORS.Text, 0.5),
+		},
 		textarea: {
 			size: {
 				small: {
