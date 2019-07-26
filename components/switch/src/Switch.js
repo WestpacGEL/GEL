@@ -16,7 +16,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Switch = ({ name, srOnly, text, children }) => {
+export const Switch = ({ name, srOnly, values, checked, children }) => {
 	const { switchControl } = useTheme();
 	const common = {
 		position: 'relative',
@@ -48,7 +48,7 @@ export const Switch = ({ name, srOnly, text, children }) => {
 		clip: 'rect(1px 1px 1px 1px)',
 	};
 
-	const textCss = {
+	const valuesCss = {
 		paddingRight: 6,
 	};
 
@@ -103,7 +103,7 @@ export const Switch = ({ name, srOnly, text, children }) => {
 		},
 	};
 
-	const textParamCss = {
+	const valuesParamCss = {
 		position: 'absolute',
 		textAlign: 'center',
 		lineHeight: 2,
@@ -112,41 +112,52 @@ export const Switch = ({ name, srOnly, text, children }) => {
 		width: 'calc(100% - 32px)',
 	};
 
-	const textParamOnCss = {
+	const valuesParamOnCss = {
 		left: 0,
 		color: '#fff',
 	};
 
-	const textParamOffCss = {
+	const valuesParamOffCss = {
 		right: 0,
 	};
 
-	const [on, setOn] = useState(false);
+	const [on, setOn] = checked ? useState(true) : useState(false);
 	const toggle = () => setOn(!on);
 
-	const textParam = text.map((t, i) => (
-		<>
-			{i === 0 ? (
-				<span key={i} css={{ ...textParamCss, ...textParamOnCss }}>
-					{t}
-				</span>
-			) : (
-				<span key={i} css={{ ...textParamCss, ...textParamOffCss }}>
-					{t}
-				</span>
-			)}
-		</>
-	));
+	const valuesParam = values ? (
+		Array.isArray(values) ? (
+			values.map((value, i) => (
+				<>
+					{i === 0 ? (
+						<span css={{ ...valuesParamCss, ...valuesParamOnCss }} key={i}>
+							{value}
+						</span>
+					) : (
+						<span css={{ ...valuesParamCss, ...valuesParamOffCss }} key={i}>
+							{value}
+						</span>
+					)}
+				</>
+			))
+		) : (
+			<>
+				<span css={{ ...valuesParamCss, ...valuesParamOnCss }}>On</span>
+				<span css={{ ...valuesParamCss, ...valuesParamOffCss }}>Off</span>
+			</>
+		)
+	) : (
+		''
+	);
 
 	return (
 		<label css={common} onChange={toggle}>
 			<input type="checkbox" name={name} id={name} />
-			{srOnly ? <span css={srOnlyCss}>{children}</span> : <span css={textCss}>{children}</span>}
+			{srOnly ? <span css={srOnlyCss}>{children}</span> : <span css={valuesCss}>{children}</span>}
 
 			{on ? (
-				<span css={{ ...toggleCss, ...toggleOnCss }}>{textParam}</span>
+				<span css={{ ...toggleCss, ...toggleOnCss }}>{valuesParam}</span>
 			) : (
-				<span css={toggleCss}>{textParam}</span>
+				<span css={toggleCss}>{valuesParam}</span>
 			)}
 		</label>
 	);
@@ -160,8 +171,10 @@ Switch.propTypes = {
 	/**
 	 * Describe `someProperty` here
 	 */
+	values: PropTypes.array,
+	checked: PropTypes.bool,
 };
 
 Switch.defaultProps = {
-	text: ['On', 'Off'],
+	checked: false,
 };

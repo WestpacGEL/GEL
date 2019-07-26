@@ -9,17 +9,26 @@ export default () => (
 			<Switch srOnly name="ex1">
 				Enable notifications
 			</Switch>
-			<Switch srOnly name="ex2">
+			<Switch srOnly name="ex2" values>
 				Enable notifications
 			</Switch>
-			<Switch srOnly name="ex3" text={['Yes', 'No']}>
+			<Switch srOnly name="ex3" values={['Yes', 'No']}>
 				Enable notifications
 			</Switch>
 		</Box>
 
 		<Box>
-			<Switch name="ex4">Enable notifications</Switch>
-			<Switch name="ex5">Turn notifications</Switch>
+			<Switch name="ex4" values={['Yes', 'No']}>
+				Enable notifications
+			</Switch>
+			<Switch name="ex5" values>
+				Turn notifications
+			</Switch>
+		</Box>
+		<Box>
+			<Switch name="ex6" values checked>
+				Turn notifications
+			</Switch>
 		</Box>
 	</>
 );
