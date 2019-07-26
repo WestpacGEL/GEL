@@ -24,10 +24,10 @@ export default () => (
 
 		<h3>Checked by default</h3>
 		<Box>
-			<Switch name="ex4" checked>
+			<Switch name="ex6" checked>
 				Enable notifications
 			</Switch>
-			<Switch name="ex5" values checked>
+			<Switch name="ex7" values checked>
 				Turn notifications
 			</Switch>
 		</Box>
@@ -35,10 +35,10 @@ export default () => (
 
 		<h3>Disabled switches</h3>
 		<Box>
-			<Switch name="ex4" disabled>
+			<Switch name="ex8" disabled>
 				Enable notifications
 			</Switch>
-			<Switch name="ex6" values disabled>
+			<Switch name="ex9" values disabled>
 				Turn notifications
 			</Switch>
 		</Box>
