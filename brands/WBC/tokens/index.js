@@ -530,7 +530,6 @@ export default {
 
 	switchControl: {
 		borderWidth: '2px',
-		fontSize: 16,
 
 		appearance: {
 			borderColor: COLORS.border,
