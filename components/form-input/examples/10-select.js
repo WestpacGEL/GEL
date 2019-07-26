@@ -52,6 +52,7 @@ export default () => (
 		<hr />
 
 		<h2>Inline</h2>
+		<em>Note: requires the form package’s FormGroup component (WIP)</em>
 		{/*<FormGroup inline>
 			<FormInput tag="select">
 				{options.map((v, i) => (
