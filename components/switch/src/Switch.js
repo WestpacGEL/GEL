@@ -114,6 +114,7 @@ export const Switch = ({ name, srOnly, text, children }) => {
 
 	const textParamOnCss = {
 		left: 0,
+		color: '#fff',
 	};
 
 	const textParamOffCss = {
@@ -138,12 +139,12 @@ export const Switch = ({ name, srOnly, text, children }) => {
 	));
 
 	return (
-		<label css={common} onClick={toggle}>
+		<label css={common} onChange={toggle}>
 			<input type="checkbox" name={name} id={name} />
 			{srOnly ? <span css={srOnlyCss}>{children}</span> : <span css={textCss}>{children}</span>}
 
 			{on ? (
-				<span css={{ ...toggleCss, ...toggleOnCss }} />
+				<span css={{ ...toggleCss, ...toggleOnCss }}>{textParam}</span>
 			) : (
 				<span css={toggleCss}>{textParam}</span>
 			)}
