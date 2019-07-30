@@ -5,7 +5,7 @@ import { listGenerator } from './_utils';
 export default () => (
 	<>
 		<h3>Link List</h3>
-		<List appearance="link">
+		<List type="link">
 			{listGenerator('Styled link list', 3)}
 			<ListItem>
 				Styled link list
@@ -15,7 +15,7 @@ export default () => (
 		</List>
 		<hr />
 		<h3>Tick List</h3>
-		<List appearance="tick">
+		<List type="tick">
 			{listGenerator('Styled tick list', 3)}
 			<ListItem>
 				Styled tick list
@@ -25,7 +25,7 @@ export default () => (
 		</List>
 		<hr />
 		<h3>Unstyled</h3>
-		<List appearance="unstyled">
+		<List type="unstyled">
 			{listGenerator('Unstyled list', 3)}
 			<ListItem>
 				Unstyled list

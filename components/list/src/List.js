@@ -10,15 +10,15 @@ import { ListItem } from './ListItem';
 // ==============================
 export const List = ({ children, ...props }) => {
 	const childrenWithProps = Children.map(children, child =>
-		child.props.appearance === 'icon' && child.props.icon
+		child.props.type === 'icon' && child.props.icon
 			? cloneElement(child, { ...props, icon: child.props.icon })
 			: cloneElement(child, props)
 	);
 
-	const { appearance } = props;
-	const ListType = appearance === 'ordered' ? 'ol' : 'ul';
+	const { type } = props;
+	const ListType = type === 'ordered' ? 'ol' : 'ul';
 	return (
-		<ListType css={{ margin: 0, padding: appearance === 'ordered' ? '0 0 0 20px' : 0 }}>
+		<ListType css={{ margin: 0, padding: type === 'ordered' ? '0 0 0 20px' : 0 }}>
 			{childrenWithProps}
 		</ListType>
 	);
@@ -28,20 +28,20 @@ export const List = ({ children, ...props }) => {
 // Types
 // ==============================
 List.propTypes = {
-	/** The appearance of the list */
-	appearance: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
-	/** The color of the bullet */
-	color: PropTypes.oneOf(['primary', 'hero', 'neutral']),
+	/** The appearance of the bullet list */
+	appearance: PropTypes.oneOf(['primary', 'hero', 'neutral']),
+	/** The type of the bullet */
+	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
 	/** The size of space between list elements */
-	size: PropTypes.oneOf(['regular', 'large']),
+	spacing: PropTypes.oneOf(['medium', 'large']),
 	/** The icon for list */
 	icon: PropTypes.func,
-	/**  Children of List should be ListItem*/
-	children: PropTypes.oneOfType([PropTypes.arrayOf(ListItem), ListItem]),
+	/**  Any renderable child */
+	children: PropTypes.node,
 };
 
 List.defaultProps = {
-	appearance: 'bullet',
-	color: 'primary',
-	size: 'regular',
+	appearance: 'primary',
+	type: 'bullet',
+	spacing: 'medium',
 };

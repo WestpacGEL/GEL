@@ -440,6 +440,31 @@ export default {
 		},
 	},
 
+	list: {
+		bullet: {
+			appearance: {
+				primary: {
+					color: COLORS.primary,
+				},
+				hero: {
+					color: COLORS.hero,
+				},
+				neutral: {
+					color: COLORS.neutral,
+				},
+			},
+		},
+		link: {
+			color: COLORS.primary,
+		},
+		tick: {
+			color: COLORS.primary,
+		},
+		icon: {
+			color: COLORS.primary,
+		},
+	},
+
 	panel: {
 		backgroundColor: '#fff',
 		borderWidth: '1px',
@@ -544,27 +569,5 @@ export default {
 			responsive: [12, 24],
 		},
 		marginBottom: '18px',
-	},
-	list: {
-		bullet: {
-			primary: {
-				color: COLORS.primary,
-			},
-			hero: {
-				color: COLORS.hero,
-			},
-			neutral: {
-				color: COLORS.neutral,
-			},
-		},
-		link: {
-			color: COLORS.primary,
-		},
-		tick: {
-			color: COLORS.primary,
-		},
-		icon: {
-			color: COLORS.primary,
-		},
 	},
 };

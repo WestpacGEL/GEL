@@ -1,3 +1,3 @@
-# @westpac/icon
+# @westpac/list
 
-The icon component.
+The list component.

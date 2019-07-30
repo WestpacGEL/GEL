@@ -3,119 +3,88 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, css, useTheme } from '@westpac/core';
+import svgToTinyDataURI from 'mini-svg-data-uri';
 import { List } from './List';
-
-// ==============================
-// Utils
-// ==============================
-const getListIcon = ({ appearance, color, icon: Icon }) => {
-	const { list } = useTheme();
-
-	const style = {
-		position: 'absolute',
-		left: 0,
-		top: 2,
-	};
-
-	switch (appearance) {
-		case 'bullet':
-			return (
-				<svg
-					aria-labelledby="title-bullet-list"
-					version="1.1"
-					xmlns="http://www.w3.org/2000/svg"
-					width="16px"
-					height="16px"
-					viewBox="0 0 16 16"
-					css={style}
-				>
-					<circle
-						r="4"
-						cx="8"
-						cy="8"
-						stroke={`${list[appearance][color].color}`}
-						strokeWidth="1"
-						fill={`${list[appearance][color].color}`}
-					/>
-				</svg>
-			);
-
-		case 'link':
-			return (
-				<svg
-					aria-labelledby="title-link"
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 24 24"
-					css={style}
-				>
-					<polygon
-						fill={`${list[appearance].color}`}
-						fillRule="evenodd"
-						points="14.588 12 8 18.588 9.412 20 17.412 12 9.412 4 8 5.412"
-					/>
-				</svg>
-			);
-
-		case 'tick':
-			return (
-				<svg
-					aria-labelledby="title-tick-list"
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 24 24"
-					css={style}
-				>
-					<polygon
-						fill={`${list[appearance].color}`}
-						points="8.6 15.6 4.4 11.4 3 12.8 8.6 18.4 20.6 6.4 19.2 5"
-					/>
-				</svg>
-			);
-		case 'unstyled':
-			return;
-		case 'icon':
-			return <Icon size="small" css={style} color={list[appearance].color} />;
-	}
-};
 
 // ==============================
 // Component
 // ==============================
-export const ListItem = ({ appearance, color, icon, size, children, ...props }) => {
+export const ListItem = ({ appearance, type, icon, spacing, children, ...props }) => {
 	const childrenWithProps = Children.map(children, child =>
 		child && child.type && child.type === List
 			? cloneElement(child, {
 					appearance,
-					color,
+					type,
 					icon,
-					size,
+					spacing,
 					props,
 			  })
 			: child
 	);
 
+	const { list } = useTheme();
+
 	const common = {
-		margin: size === 'large' ? '12px 0' : '6px 0',
-		display: 'block',
+		margin: spacing === 'large' ? '12px 0' : '6px 0',
+		listStyle: type !== 'ordered' ? 'none' : null,
+		paddingLeft: 19,
 		position: 'relative',
 	};
 
+	const linkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><polygon fill="${
+		list.link.color
+	}" fillRule="evenodd" points="14.588 12 8 18.588 9.412 20 17.412 12 9.412 4 8 5.412"/></svg>`;
+
+	const tickSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><polygon fill="${type !==
+		'unstyled' &&
+		list.tick.color}" points="8.6 15.6 4.4 11.4 3 12.8 8.6 18.4 20.6 6.4 19.2 5"/></svg>`;
+
 	const styles = {
 		bullet: {
-			paddingLeft: 19,
+			'&::before': {
+				content: '""',
+				position: 'absolute',
+				left: 4,
+				top: 6,
+				display: 'block',
+				width: 8,
+				height: 8,
+				borderRadius: '50%',
+				border: `1px solid ${list.bullet.appearance[appearance].color}`,
+				backgroundColor: list.bullet.appearance[appearance].color,
+			},
 
-			'& & circle': {
-				fill: 'transparent',
+			'ul > li::before': {
+				backgroundColor: 'transparent',
 			},
 		},
 		link: {
-			paddingLeft: 19,
+			'&::before': {
+				content: "''",
+				position: 'absolute',
+				left: 0,
+				top: 2,
+				display: 'block',
+				width: 16,
+				height: 16,
+				backgroundImage: `url("${svgToTinyDataURI(linkSVG)}")`,
+				backgroundRepeat: 'no-repeat',
+				backgroundSize: 'contain',
+			},
 		},
 		tick: {
-			paddingLeft: 19,
+			'&::before': {
+				content: "''",
+				position: 'absolute',
+				left: 0,
+				top: 2,
+				display: 'block',
+				width: 16,
+				height: 16,
+				backgroundImage: `url("${svgToTinyDataURI(tickSVG)}")`,
+				backgroundRepeat: 'no-repeat',
+				backgroundSize: 'contain',
+			},
 		},
 		unstyled: {
 			paddingLeft: 0,
@@ -125,16 +94,27 @@ export const ListItem = ({ appearance, color, icon, size, children, ...props }) 
 			},
 		},
 		icon: {
-			paddingLeft: 23,
+			paddingLeft: 0,
+
+			li: {
+				paddingLeft: 19,
+			},
 		},
 		ordered: {
-			display: 'list-item',
+			paddingLeft: 0,
 		},
 	};
 
+	let Icon;
+	if (icon) Icon = icon;
+
 	return (
-		<li css={{ ...common, ...styles[appearance] }} {...props}>
-			{getListIcon({ appearance, color, icon })}
+		<li css={{ ...common, ...styles[type] }}>
+			{type === 'icon' && icon && (
+				<span css={{ paddingRight: '5px' }}>
+					<Icon size="small" color={list.icon.color} />
+				</span>
+			)}
 			{childrenWithProps}
 		</li>
 	);
@@ -144,12 +124,12 @@ export const ListItem = ({ appearance, color, icon, size, children, ...props }) 
 // Types
 // ==============================
 ListItem.propTypes = {
-	/** The appearance of the list item */
-	appearance: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
-	/** The color of the bullet */
-	color: PropTypes.oneOf(['primary', 'hero', 'neutral']),
+	/** The appearance of the bullet list */
+	appearance: PropTypes.oneOf(['primary', 'hero', 'neutral']),
+	/** The type of the bullet */
+	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
 	/** The size of space between list elements */
-	size: PropTypes.oneOf(['regular', 'large']),
+	spacing: PropTypes.oneOf(['medium', 'large']),
 	/** The icon for list item */
 	icon: PropTypes.func,
 	/** Any renderable content */

@@ -7,7 +7,7 @@ export default () => {
 	return (
 		<>
 			<h3>Icon</h3>
-			<List appearance="icon" icon={AndroidIcon}>
+			<List type="icon" icon={AndroidIcon}>
 				{listGenerator('Styled icon list', 3)}
 				<ListItem>
 					Style icon list
@@ -15,9 +15,9 @@ export default () => {
 				</ListItem>
 			</List>
 			<hr />
-			<List appearance="icon" icon={AndroidIcon}>
+			<List type="icon" icon={AndroidIcon}>
 				{listGenerator('Styled icon list', 3)}
-				<ListItem appearance="icon" icon={GithubIcon}>
+				<ListItem type="icon" icon={GithubIcon}>
 					Styled icon list
 					<List>{listGenerator('Styled icon list', 3)}</List>
 				</ListItem>
