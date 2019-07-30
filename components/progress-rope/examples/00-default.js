@@ -1,0 +1,65 @@
+import React, { useReducer } from 'react';
+
+import { ProgressRope, ProgressRopeItem } from '../src';
+import { Grid, Cell } from '../../grid/src';
+import { Button } from '../../button/src';
+
+/* 
+- Use reducer
+	- input form with go to step number
+	case: GOTO: action
+	dispatch({type: "GOTO", index})
+- examples
+	- do one using a tags
+	- another one using buttons?
+	- one using react router Link
+*/
+export default () => {
+	const initialState = { index: 0 };
+
+	// need to safe guard this to be > 0 && < steps.length
+	const progressReducer = (state, action) => {
+		switch (action.type) {
+			case 'next':
+				return { index: state.index + 1 };
+			case 'prev':
+				return { index: state.index - 1 };
+			case 'goto':
+				return { index: action.index };
+			default:
+				throw new Error();
+		}
+	};
+
+	const [state, dispatch] = useReducer(progressReducer, initialState);
+	const steps = ['Step 4', 'Step 5', 'Step 6'];
+	return (
+		<Grid>
+			<Cell width={4}>
+				<ProgressRope current={state.index}>
+					<ProgressRopeItem>
+						<a href="#">Step 1 </a>
+					</ProgressRopeItem>
+					<ProgressRopeItem>
+						<a href="#">Step 2</a>
+					</ProgressRopeItem>
+					<ProgressRopeItem>
+						<a href="#">Step 3</a>
+					</ProgressRopeItem>
+					{steps.map((step, i) => (
+						<ProgressRopeItem key={i}>
+							<a href="#">{step}</a>
+						</ProgressRopeItem>
+					))}
+				</ProgressRope>
+			</Cell>
+			<Cell width={4}>
+				<Button onClick={() => dispatch({ type: 'prev' })}>prev</Button>{' '}
+				<Button onClick={() => dispatch({ type: 'next' })}>next</Button>
+			</Cell>
+			<Cell width={4}>
+				<h3>current: {state.index}</h3>
+			</Cell>
+		</Grid>
+	);
+};

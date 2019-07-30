@@ -1,7 +1,7 @@
 {
-	"name": "@westpac/progressRopes",
+	"name": "@westpac/progressRope",
 	"version": "0.0.1",
-	"description": "Progress ropes component",
+	"description": "Progress rope component",
 	"repository": "https://github.com/WestpacGEL/GEL.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
@@ -13,7 +13,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=progressRopes webpack-dev-server --config ../../helpers/example/webpack.config.js",
+		"start": "PACKAGE_NAME=progressRope webpack-dev-server --config ../../helpers/example/webpack.config.js",
 		"build": "babel --root-mode upward src -d dist",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
