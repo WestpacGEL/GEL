@@ -125,33 +125,10 @@ export const Switch = ({ name, srOnly, values, checked, disabled, size, children
 		right: '0px',
 	};
 
-	const [on, setOn] = checked ? useState(true) : useState(false);
-	const toggle = () => setOn(!on);
+	const [on, setOn] = useState(checked);
+	const valArr = Array.isArray(values) ? values : ['On', 'Off'];
 
-	const valuesParam = values ? (
-		Array.isArray(values) ? (
-			values.map((value, i) => (
-				<>
-					{i === 0 ? (
-						<span css={{ ...valuesParamCss, ...valuesParamOnCss }} key={i}>
-							{value}
-						</span>
-					) : (
-						<span css={{ ...valuesParamCss, ...valuesParamOffCss }} key={i}>
-							{value}
-						</span>
-					)}
-				</>
-			))
-		) : (
-			<>
-				<span css={{ ...valuesParamCss, ...valuesParamOnCss }}>On</span>
-				<span css={{ ...valuesParamCss, ...valuesParamOffCss }}>Off</span>
-			</>
-		)
-	) : (
-		''
-	);
+	const toggle = () => setOn(!on);
 
 	return (
 		<label css={common} onChange={toggle}>
@@ -159,9 +136,13 @@ export const Switch = ({ name, srOnly, values, checked, disabled, size, children
 			{srOnly ? <span css={srOnlyCss}>{children}</span> : <span css={valuesCss}>{children}</span>}
 
 			{on ? (
-				<span css={{ ...toggleCss, ...toggleOnCss }}>{valuesParam}</span>
+				<span css={{ ...toggleCss, ...toggleOnCss }}>
+					{values && <span css={{ ...valuesParamCss, ...valuesParamOnCss }}>{valArr[0]}</span>}
+				</span>
 			) : (
-				<span css={toggleCss}>{valuesParam}</span>
+				<span css={toggleCss}>
+					{values && <span css={{ ...valuesParamCss, ...valuesParamOffCss }}>{valArr[1]}</span>}
+				</span>
 			)}
 		</label>
 	);
