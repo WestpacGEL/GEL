@@ -41,10 +41,17 @@ const Brand = ({ children, ...props }) => {
 			boxSizing: 'border-box', // 1
 		},
 
-		fontFamily: 'sans-serif', // 2
-		lineHeight: 1.15, // 3
-		WebkitTextSizeAdjust: '100%', // 4
-		WebkitTapHighlightColor: 'transparent', // 5
+		html: {
+			fontFamily: 'sans-serif', // 2
+			lineHeight: 1.15, // 3
+			WebkitTextSizeAdjust: '100%', // 4
+			WebkitTapHighlightColor: 'transparent', // 5
+		},
+
+		// Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers)
+		'article, aside, figcaption, figure, footer, header, hgroup, main, nav, section': {
+			display: 'block',
+		},
 
 		// Body
 		//
@@ -55,7 +62,7 @@ const Brand = ({ children, ...props }) => {
 
 		body: {
 			margin: 0, // 1
-			backgroundColor: body.backgroundColor, // 2
+			backgroundColor: '#fff', // 2
 			textAlign: 'left', // 3
 			fontSize: '1rem', // Refer to document
 		},
@@ -63,6 +70,20 @@ const Brand = ({ children, ...props }) => {
 		// Globally reset all focus styling (applied as needed)
 		':focus': {
 			outline: 'none',
+		},
+
+		//
+		// Typography
+		//
+
+		/**
+		 * Correct the font size and margin on `h1` elements within `section` and
+		 * `article` contexts in Chrome, Firefox, and Safari.
+		 */
+
+		h1: {
+			fontSize: '2em',
+			margin: '0.67em 0',
 		},
 
 		//
@@ -139,12 +160,16 @@ const Brand = ({ children, ...props }) => {
 
 	// Typography styling
 	const styleType = {
-		fontSize: type.fontSize, //0.875em (14px)
+		// Document
+		html: {
+			fontSize: type.fontSize, //10px
+		},
 
 		// Global type styling
 		body: {
 			fontFamily: type.fontFamily,
 			fontWeight: type.fontWeight,
+			fontSize: type.body.fontSize, //1.4rem (14px)
 			lineHeight: type.lineHeight, //1.428571429
 			color: type.color,
 			fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE

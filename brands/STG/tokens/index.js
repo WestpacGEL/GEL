@@ -62,15 +62,15 @@ export default {
 			foreground: 'white',
 		},
 	},
-	body: {
-		backgroundColor: 'white',
-	},
 	type: {
 		fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 		color: COLORS.text,
-		fontSize: '0.875em',
+		fontSize: 10,
 		fontWeight: 400,
 		lineHeight: 1.428571429,
+		body: {
+			fontSize: '1.4rem',
+		},
 		headings: {
 			color: COLORS.heading,
 		},
