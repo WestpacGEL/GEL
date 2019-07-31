@@ -14,7 +14,7 @@ export const ModalFooter = props => {
 				textAlign: 'right',
 				padding: modal.footer.padding,
 				'button + button ': {
-					marginLeft: 2,
+					marginLeft: 6,
 				},
 			}}
 			{...props}

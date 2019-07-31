@@ -31,6 +31,7 @@ export const ModalHeader = ({ id, onClose, children, ...props }) => {
 					padding: '5px 12px',
 					cursor: 'pointer',
 					touchAction: 'manipulation',
+					alignSelf: 'flex-start',
 					'&:hover svg': { opacity: 0.5 },
 				}}
 				onClick={onClose}

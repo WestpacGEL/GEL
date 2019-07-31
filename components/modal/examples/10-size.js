@@ -48,7 +48,9 @@ export default () => {
 				<Button onClick={() => updateModal('small', true)}>Open small modal</Button>
 			</p>
 			<Modal isOpen={state.small.open} onClose={() => updateModal('small', false)} size="small">
-				<ModalHeader>Modal Title Modal Title Modal Title</ModalHeader>
+				<ModalHeader>
+					Modal Title Modal Title Modal Title Modal Title Modal Title Modal Title
+				</ModalHeader>
 				<ModalBody>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
