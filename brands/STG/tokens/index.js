@@ -66,7 +66,8 @@ export default {
 	type: {
 		fontSize: 10,
 		body: {
-			fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+			fontFamily:
+				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 			fontSize: '1.4rem',
 			color: COLORS.text,
 			fontWeight: 400,

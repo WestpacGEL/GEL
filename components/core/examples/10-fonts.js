@@ -12,17 +12,37 @@ export default () => (
 		<h6 className="body-font">Heading Six</h6>
 
 		<p className="body-font">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, sed. Soluta neque numquam cupiditate voluptates! Ullam earum veritatis praesentium distinctio aperiam corporis provident id, modi. Fuga perferendis quam, doloribus. Dolore!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, sed. Soluta neque
+			numquam cupiditate voluptates! Ullam earum veritatis praesentium distinctio aperiam corporis
+			provident id, modi. Fuga perferendis quam, doloribus. Dolore!
 		</p>
-		<p className="body-font" style={{fontWeight: 100}}>Thin: 100</p>
-		<p className="body-font" style={{fontWeight: 200}}>Extra light: 200</p>
-		<p className="body-font" style={{fontWeight: 300}}>Light: 300</p>
-		<p className="body-font" style={{fontWeight: 400}}>Regular: 400</p>
-		<p className="body-font" style={{fontWeight: 500}}>Medium: 500</p>
-		<p className="body-font" style={{fontWeight: 600}}>SemiBold: 600</p>
-		<p className="body-font" style={{fontWeight: 700}}>Bold: 700</p>
-		<p className="body-font" style={{fontWeight: 800}}>Black: 800</p>
-		<p className="body-font" style={{fontWeight: 900}}>Super: 900</p>
+		<p className="body-font" style={{ fontWeight: 100 }}>
+			Thin: 100
+		</p>
+		<p className="body-font" style={{ fontWeight: 200 }}>
+			Extra light: 200
+		</p>
+		<p className="body-font" style={{ fontWeight: 300 }}>
+			Light: 300
+		</p>
+		<p className="body-font" style={{ fontWeight: 400 }}>
+			Regular: 400
+		</p>
+		<p className="body-font" style={{ fontWeight: 500 }}>
+			Medium: 500
+		</p>
+		<p className="body-font" style={{ fontWeight: 600 }}>
+			SemiBold: 600
+		</p>
+		<p className="body-font" style={{ fontWeight: 700 }}>
+			Bold: 700
+		</p>
+		<p className="body-font" style={{ fontWeight: 800 }}>
+			Black: 800
+		</p>
+		<p className="body-font" style={{ fontWeight: 900 }}>
+			Super: 900
+		</p>
 
 		<hr />
 
@@ -35,14 +55,22 @@ export default () => (
 		<h5 className="brand-font">Heading Five</h5>
 		<h6 className="brand-font">Heading Six</h6>
 
-		<p className="brand-font" style={{fontWeight: 'bold'}}>
-			This is bold for some brands. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, sed. Soluta neque numquam cupiditate voluptates! Ullam earum veritatis praesentium distinctio aperiam corporis provident id, modi. Fuga perferendis quam, doloribus. Dolore!
+		<p className="brand-font" style={{ fontWeight: 'bold' }}>
+			This is bold for some brands. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+			Dignissimos, sed. Soluta neque numquam cupiditate voluptates! Ullam earum veritatis
+			praesentium distinctio aperiam corporis provident id, modi. Fuga perferendis quam, doloribus.
+			Dolore!
 		</p>
 		<p className="brand-font">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, sed. Soluta neque numquam cupiditate voluptates! Ullam earum veritatis praesentium distinctio aperiam corporis provident id, modi. Fuga perferendis quam, doloribus. Dolore!
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, sed. Soluta neque
+			numquam cupiditate voluptates! Ullam earum veritatis praesentium distinctio aperiam corporis
+			provident id, modi. Fuga perferendis quam, doloribus. Dolore!
 		</p>
-		<p className="brand-font" style={{fontWeight: 300}}>
-			This is light for some brands. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, sed. Soluta neque numquam cupiditate voluptates! Ullam earum veritatis praesentium distinctio aperiam corporis provident id, modi. Fuga perferendis quam, doloribus. Dolore!
+		<p className="brand-font" style={{ fontWeight: 300 }}>
+			This is light for some brands. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+			Dignissimos, sed. Soluta neque numquam cupiditate voluptates! Ullam earum veritatis
+			praesentium distinctio aperiam corporis provident id, modi. Fuga perferendis quam, doloribus.
+			Dolore!
 		</p>
 	</>
 );

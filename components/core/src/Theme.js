@@ -245,9 +245,63 @@ const Brand = ({ children, ...props }) => {
 		},
 	};
 
+	// Text extension styling
+	const styleTextExtensions = {
+		// Lead text
+		'.lead': {
+			marginBottom: 21,
+			fontSize: [16, 18],
+			fontWeight: 300,
+			lineHeight: 1.4,
+		},
+
+		// Text alignments
+		'.text-left': {
+			textAlign: 'left',
+		},
+		'.text-right': {
+			textAlign: 'right',
+		},
+		'.text-center': {
+			textAlign: 'center',
+		},
+		'.text-justify': {
+			textAlign: 'justify',
+		},
+		'.text-nowrap': {
+			whiteSpace: 'nowrap',
+		},
+
+		// Text colors
+		'.text-primary': {
+			color: colors.primary.default,
+		},
+		'.text-hero': {
+			color: colors.hero.default,
+		},
+		'.text-neutral': {
+			color: colors.neutral.default,
+		},
+		'.text-muted': {
+			color: colors.muted,
+		},
+		'.text-success': {
+			color: colors.success.default,
+		},
+		'.text-information': {
+			color: colors.information.default,
+		},
+		'.text-warning': {
+			color: colors.warning.default,
+		},
+		'.text-danger': {
+			color: colors.danger.default,
+		},
+	};
+
 	return (
 		<>
-			<Global styles={merge(styleReset, styleType)} />
+			<Global styles={merge(styleReset, styleType, styleTextExtensions)} />
 			{children}
 		</>
 	);
