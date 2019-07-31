@@ -26,7 +26,13 @@ export const ModalHeader = ({ id, onClose, children, ...props }) => {
 		>
 			<Title id={id}>{children}</Title>
 			<button
-				css={{ border: 'none', padding: 0, '&:hover svg': { opacity: 0.5 } }}
+				css={{
+					border: 'none',
+					padding: '5px 12px',
+					cursor: 'pointer',
+					touchAction: 'manipulation',
+					'&:hover svg': { opacity: 0.5 },
+				}}
 				onClick={onClose}
 			>
 				<CloseIcon size="small" color={colors.text} />
