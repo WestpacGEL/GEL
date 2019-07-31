@@ -20,9 +20,7 @@ export default () => (
 		<h3>Medium spacing</h3>
 		<Form spacing="medium">
 			<FormGroup>
-				<FormLabel htmlFor="example-spacing-medium">
-					This is a medium spaced label
-				</FormLabel>
+				<FormLabel htmlFor="example-spacing-medium">This is a medium spaced label</FormLabel>
 				<Box>Form input here</Box>
 			</FormGroup>
 		</Form>
@@ -30,9 +28,7 @@ export default () => (
 		<h3>Large spacing</h3>
 		<Form spacing="large">
 			<FormGroup>
-				<FormLabel htmlFor="example-spacing-large">
-					This is a large spaced label
-				</FormLabel>
+				<FormLabel htmlFor="example-spacing-large">This is a large spaced label</FormLabel>
 				<Box>Form input here</Box>
 			</FormGroup>
 		</Form>

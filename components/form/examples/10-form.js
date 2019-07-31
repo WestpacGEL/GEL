@@ -72,7 +72,6 @@ export default () => (
 			</FormGroup>
 		</Form>
 
-
 		<hr />
 
 		<h2>Inline mode</h2>

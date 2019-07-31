@@ -8,9 +8,7 @@ export default () => (
 		<h2>Medium spacing</h2>
 		<Form spacing="medium">
 			<FormGroup>
-				<FormLabel htmlFor="example-hint">
-					This is a label
-				</FormLabel>
+				<FormLabel htmlFor="example-hint">This is a label</FormLabel>
 				<FormHint>This is a hint</FormHint>
 				<Box>Form input here</Box>
 			</FormGroup>

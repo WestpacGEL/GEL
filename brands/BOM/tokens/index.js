@@ -427,7 +427,7 @@ export default {
 					marginTop: -12,
 					marginBottom: 18,
 				},
-			}
+			},
 		},
 		inputs: {
 			item: {

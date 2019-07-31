@@ -48,7 +48,6 @@ export const FormGroup = ({ primary, size, spacing, inline, children, ...props }
 // Types
 // ==============================
 
-
 FormGroup.propTypes = {
 	/**
 	 * Primary (fork) mode.

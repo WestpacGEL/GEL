@@ -11,11 +11,15 @@ export default () => (
 			<FormGroup>
 				<FormInputs>
 					<FormInputsItem>
-						<FormLabel htmlFor="example-1" sublabel>This is a sub-label</FormLabel>
+						<FormLabel htmlFor="example-1" sublabel>
+							This is a sub-label
+						</FormLabel>
 						<FormInput />
 					</FormInputsItem>
 					<FormInputsItem>
-						<FormLabel htmlFor="example-2" sublabel>This is a sub-label</FormLabel>
+						<FormLabel htmlFor="example-2" sublabel>
+							This is a sub-label
+						</FormLabel>
 						<FormInput />
 					</FormInputsItem>
 				</FormInputs>
@@ -29,11 +33,15 @@ export default () => (
 			<FormGroup>
 				<FormInputs horizontal>
 					<FormInputsItem>
-						<FormLabel htmlFor="example-3" sublabel>This is a sub-label</FormLabel>
+						<FormLabel htmlFor="example-3" sublabel>
+							This is a sub-label
+						</FormLabel>
 						<FormInput />
 					</FormInputsItem>
 					<FormInputsItem>
-						<FormLabel htmlFor="example-4" sublabel>This is a sub-label</FormLabel>
+						<FormLabel htmlFor="example-4" sublabel>
+							This is a sub-label
+						</FormLabel>
 						<FormInput />
 					</FormInputsItem>
 				</FormInputs>

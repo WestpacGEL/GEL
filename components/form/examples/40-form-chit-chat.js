@@ -8,8 +8,8 @@ export default () => (
 		<Form>
 			<FormSection>
 				<FormChitChat>
-					Hello, I’m the friendly conversational text component. I live at the top of the form pod if
-					required.
+					Hello, I’m the friendly conversational text component. I live at the top of the form pod
+					if required.
 				</FormChitChat>
 			</FormSection>
 		</Form>
