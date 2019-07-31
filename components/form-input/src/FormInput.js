@@ -146,7 +146,6 @@ const options = {
 	size: ['small', 'medium', 'large', 'xlarge'],
 	width: [2, 3, 4, 5, 10, 20, 30],
 	tag: ['input', 'select', 'textarea'],
-	spacing: ['medium', 'large'],
 };
 
 FormInput.propTypes = {
@@ -175,18 +174,10 @@ FormInput.propTypes = {
 	 * Defaults to "input"
 	 */
 	tag: PropTypes.oneOf(options.tag),
-
-	/**
-	 * The component vertical spacing.
-	 *
-	 * Defaults to "medium"
-	 */
-	spacing: PropTypes.oneOf(options.spacing),
 };
 
 FormInput.defaultProps = {
 	size: 'medium',
 	invalid: false,
 	tag: 'input',
-	spacing: 'medium',
 };
