@@ -273,14 +273,12 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 			outline: 0,
 			padding: '10px 20px',
 			fontSize: '1.6rem',
-
-			'&, :hover, :focus': {
-				textDecoration: 'none',
-			},
+			textDecoration: 'none',
 
 			':hover, :focus': {
 				background: '#fafbfc',
 				borderLeftColor: primaryColor,
+				textDecoration: 'inherit',
 			},
 
 			'&.active': {
@@ -305,9 +303,10 @@ const SidebarTitle = props => (
 			fontWeight: 500,
 			fontSize: '2rem',
 			padding: 20,
+			textDecoration: 'none',
 
-			'&, :hover, :focus': {
-				textDecoration: 'none',
+			':hover, :focus': {
+				textDecoration: 'inherit',
 			},
 		}}
 		{...props}
