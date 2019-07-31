@@ -12,31 +12,29 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormChitChat = ({ tag: Tag, size, spacing, inline, ...props }) => {
+export const FormSectionImg = ({ spacing, inline, ...props }) => {
 	const { breakpoints, form } = useTheme();
 	const mq = paint(breakpoints);
 
 	// Common styling
 	const styleCommon = {
-		...form.chitchat,
+		display: 'block',
+		margin: form.sectionImg.marginBottom.map(v => `0 auto ${v}px`),
+		maxWidth: '100%',
 	};
 
-	return <Tag css={mq({ ...styleCommon })} {...props} />;
+	return <img css={mq({ ...styleCommon })} {...props} />;
 };
 
 // ==============================
 // Types
 // ==============================
 
-FormChitChat.propTypes = {
+FormSectionImg.propTypes = {
 	/**
-	 * The component tag.
-	 *
-	 * Defaults to "p"
+	 * The component src.
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	src: PropTypes.string.isRequired,
 };
 
-FormChitChat.defaultProps = {
-	tag: 'p',
-};
+FormSectionImg.defaultProps = {};

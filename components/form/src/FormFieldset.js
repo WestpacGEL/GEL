@@ -14,7 +14,7 @@ import { FormLabel } from './';
 // Component
 // ==============================
 
-export const FormFieldset = ({ legend, spacing, inline, children, ...props }) => {
+export const FormFieldset = ({ legend, size, spacing, inline, children, ...props }) => {
 	// Common styling
 	const styleCommon = {
 		border: 'none',
@@ -33,7 +33,7 @@ export const FormFieldset = ({ legend, spacing, inline, children, ...props }) =>
 	// Pass the selected styling props on to children
 	// TODO allow any children props to take precedence if provided
 	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child) ? cloneElement(child, { spacing, inline }) : child;
+		return React.isValidElement(child) ? cloneElement(child, { size, spacing, inline }) : child;
 	});
 
 	return (

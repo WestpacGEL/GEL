@@ -12,15 +12,14 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormHint = ({ spacing, inline, tag: Tag, ...props }) => {
-	const { colors } = useTheme();
+export const FormHint = ({ tag: Tag, size, spacing, inline, ...props }) => {
+	const { colors, form } = useTheme();
 
 	// Common styling
 	const styleCommon = {
-		color: colors.muted, //TODO token
-		fontSize: '14px', //TODO token
-		marginTop: spacing === 'large' ? '-12px' : '-6px', //to get a 6px gap after the FormLabel
-		marginBottom: spacing === 'large' ? '18px' : '12px',
+		color: form.hint.color,
+		fontSize: form.hint.fontSize,
+		...form.hint.spacing[spacing],
 	};
 
 	return <Tag css={styleCommon} {...props} />;
@@ -30,18 +29,7 @@ export const FormHint = ({ spacing, inline, tag: Tag, ...props }) => {
 // Types
 // ==============================
 
-const options = {
-	spacing: ['medium', 'large'],
-};
-
 FormHint.propTypes = {
-	/**
-	 * The component vertical spacing.
-	 *
-	 * Defaults to "medium"
-	 */
-	spacing: PropTypes.oneOf(options.spacing),
-
 	/**
 	 * The component tag.
 	 *
@@ -51,6 +39,5 @@ FormHint.propTypes = {
 };
 
 FormHint.defaultProps = {
-	spacing: 'medium',
 	tag: 'p',
 };

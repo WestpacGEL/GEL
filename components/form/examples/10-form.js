@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from './_utils';
 
 import { Form, FormGroup } from '../src';
+import { FormInput } from '../../form-input/src';
 
 export default () => (
 	<>
@@ -38,6 +39,39 @@ export default () => (
 				<Box>FormGroup content</Box>
 			</FormGroup>
 		</Form>
+
+		<hr />
+
+		<h2>Size</h2>
+
+		<h3>Small size</h3>
+		<Form action="." size="small" noValidate>
+			<FormGroup>
+				<FormInput />
+			</FormGroup>
+		</Form>
+
+		<h3>Medium size</h3>
+		<Form action="." size="medium" noValidate>
+			<FormGroup>
+				<FormInput />
+			</FormGroup>
+		</Form>
+
+		<h3>Large size</h3>
+		<Form action="." size="large" noValidate>
+			<FormGroup>
+				<FormInput />
+			</FormGroup>
+		</Form>
+
+		<h3>XLarge size</h3>
+		<Form action="." size="xlarge" noValidate>
+			<FormGroup>
+				<FormInput />
+			</FormGroup>
+		</Form>
+
 
 		<hr />
 

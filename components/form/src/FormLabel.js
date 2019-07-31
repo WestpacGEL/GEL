@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -12,13 +12,15 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormLabel = ({ htmlFor, size, spacing, tag: Tag, inline, ...props }) => {
+export const FormLabel = ({ sublabel, tag: Tag, htmlFor, size, spacing, inline, ...props }) => {
+	const { form } = useTheme();
+
 	// Common styling
 	const styleCommon = {
 		display: 'inline-block',
-		fontSize: size === 'small' ? '14px' : '16px', //TODO token
-		marginBottom: size === 'small' ? '6px' : spacing === 'large' ? '18px' : '12px', //TODO token
-		fontWeight: 500, //TODO token //Medium
+		fontWeight: form.label.fontWeight,
+		...form.label.spacing[spacing],
+		...(sublabel && form.label.sublabel), //overrides spacing (sublabel overrides marginBottom)
 	};
 
 	return <Tag css={styleCommon} htmlFor={htmlFor} {...props} />;
@@ -28,13 +30,21 @@ export const FormLabel = ({ htmlFor, size, spacing, tag: Tag, inline, ...props }
 // Types
 // ==============================
 
-const options = {
-	size: ['small', 'medium'],
-	spacing: ['medium', 'large'],
-	tag: ['label', 'legend'],
-};
-
 FormLabel.propTypes = {
+	/**
+	 * Sublabel mode (smaller label size).
+	 *
+	 * Defaults to "false"
+	 */
+	sublabel: PropTypes.bool,
+
+	/**
+	 * The component tag.
+	 *
+	 * Defaults to "label"
+	 */
+	tag: PropTypes.oneOf(['label', 'legend']),
+
 	/**
 	 * The label for attribute.
 	 *
@@ -47,31 +57,9 @@ FormLabel.propTypes = {
 			);
 		}
 	},
-
-	/**
-	 * The label text size (ie. 'label' or 'sublabel').
-	 *
-	 * Defaults to "medium"
-	 */
-	size: PropTypes.oneOf(options.size),
-
-	/**
-	 * The component vertical spacing.
-	 *
-	 * Defaults to "medium"
-	 */
-	spacing: PropTypes.oneOf(options.spacing),
-
-	/**
-	 * The component tag.
-	 *
-	 * Defaults to "label"
-	 */
-	tag: PropTypes.oneOf(options.tag),
 };
 
 FormLabel.defaultProps = {
-	size: 'medium',
-	spacing: 'medium',
+	sublabel: false,
 	tag: 'label',
 };

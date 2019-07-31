@@ -1,22 +1,43 @@
 import React from 'react';
 import { Box } from './_utils';
 
-import { FormInputs } from '../src';
+import { Form, FormGroup, FormInputs, FormInputsItem, FormLabel } from '../src';
+import { FormInput } from '../../form-input/src';
 
 export default () => (
 	<>
 		<h2>Default instance (no styling props)</h2>
-		<FormInputs>
-			<Box>Form input here</Box>
-			<Box>Form input here</Box>
-		</FormInputs>
+		<Form>
+			<FormGroup>
+				<FormInputs>
+					<FormInputsItem>
+						<FormLabel htmlFor="example-1" sublabel>This is a sub-label</FormLabel>
+						<FormInput />
+					</FormInputsItem>
+					<FormInputsItem>
+						<FormLabel htmlFor="example-2" sublabel>This is a sub-label</FormLabel>
+						<FormInput />
+					</FormInputsItem>
+				</FormInputs>
+			</FormGroup>
+		</Form>
 
 		<hr />
 
 		<h2>Horizontal mode</h2>
-		<FormInputs horizontal>
-			<Box>Form input here</Box>
-			<Box>Form input here</Box>
-		</FormInputs>
+		<Form>
+			<FormGroup>
+				<FormInputs horizontal>
+					<FormInputsItem>
+						<FormLabel htmlFor="example-3" sublabel>This is a sub-label</FormLabel>
+						<FormInput />
+					</FormInputsItem>
+					<FormInputsItem>
+						<FormLabel htmlFor="example-4" sublabel>This is a sub-label</FormLabel>
+						<FormInput />
+					</FormInputsItem>
+				</FormInputs>
+			</FormGroup>
+		</Form>
 	</>
 );

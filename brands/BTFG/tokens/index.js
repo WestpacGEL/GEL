@@ -388,7 +388,81 @@ export default {
 		},
 	},
 
-	form: {},
+	form: {
+		chitchat: {
+			fontSize: 18,
+			color: COLORS.heading,
+			lineHeight: 1.4,
+			fontWeight: 'bold',
+			textAlign: 'center',
+			margin: [0, '0 0 30px'],
+		},
+		errorMessage: {
+			fontSize: 14,
+			margin: '0 0 12px',
+			color: COLORS.danger,
+			li: {
+				marginBottom: '6px',
+			},
+		},
+		group: {
+			spacing: {
+				medium: {
+					marginBottom: 18,
+				},
+				large: {
+					marginBottom: [24, 30],
+				},
+			},
+		},
+		hint: {
+			color: COLORS.muted,
+			fontSize: 14,
+			spacing: {
+				medium: {
+					marginTop: -6,
+					marginBottom: 12,
+				},
+				large: {
+					marginTop: -12,
+					marginBottom: 18,
+				},
+			}
+		},
+		inputs: {
+			item: {
+				default: {
+					marginTop: 18,
+				},
+				horizontal: {
+					marginRight: 18,
+				},
+			},
+		},
+		label: {
+			fontWeight: 500,
+			fontSize: 16,
+			sublabel: {
+				fontSize: 14,
+				marginBottom: 6,
+			},
+			spacing: {
+				medium: {
+					marginBottom: 12,
+				},
+				large: {
+					marginBottom: 18,
+				},
+			},
+		},
+		section: {
+			paddingTop: [30, 36],
+			paddingBottom: 6,
+		},
+		sectionImg: {
+			marginBottom: [18, 42],
+		},
+	},
 
 	formInput: {
 		lineHeight: 1.5,

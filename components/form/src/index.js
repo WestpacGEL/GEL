@@ -5,5 +5,7 @@ export { FormFieldset } from './FormFieldset';
 export { FormGroup } from './FormGroup';
 export { FormHint } from './FormHint';
 export { FormInputs } from './FormInputs';
+export { FormInputsItem } from './FormInputsItem';
 export { FormLabel } from './FormLabel';
 export { FormSection } from './FormSection';
+export { FormSectionImg } from './FormSectionImg';

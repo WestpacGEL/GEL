@@ -12,22 +12,17 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormErrorMessage = ({ tag: Tag, spacing, inline, ...props }) => {
-	const { colors } = useTheme();
+export const FormErrorMessage = ({ tag: Tag, size, spacing, inline, ...props }) => {
+	const { form } = useTheme();
 
 	// Common styling
 	const styleCommon = {
-		fontSize: '14px', //TODO token
-		margin: '0 0 12px', //TODO token
-		color: colors.danger.default, //TODO token
+		...form.errorMessage,
 
 		// Multiple error messages styled in a list
 		'ul&, ol&': {
 			listStyle: 'none',
 			paddingLeft: 0,
-		},
-		li: {
-			marginBottom: '6px', //TODO token
 		},
 	};
 
