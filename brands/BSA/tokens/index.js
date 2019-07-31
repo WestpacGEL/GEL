@@ -64,13 +64,16 @@ export default {
 		},
 	},
 	type: {
-		fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-		color: COLORS.text,
 		fontSize: 10,
-		fontWeight: 400,
-		lineHeight: 1.428571429,
 		body: {
+			fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 			fontSize: '1.4rem',
+			color: COLORS.text,
+			fontWeight: 400,
+			lineHeight: 1.428571429,
+		},
+		brand: {
+			fontFamily: 'aller',
 		},
 		headings: {
 			color: COLORS.heading,
@@ -115,9 +118,6 @@ export default {
 				outline: `2px solid ${COLORS.focus}`,
 				outlineOffset: '3px',
 			},
-		},
-		brand: {
-			fontFamily: '',
 		},
 	},
 	spacing: {},

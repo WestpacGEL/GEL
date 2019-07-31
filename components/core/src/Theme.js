@@ -167,12 +167,20 @@ const Brand = ({ children, ...props }) => {
 
 		// Global type styling
 		body: {
-			fontFamily: type.fontFamily,
-			fontWeight: type.fontWeight,
+			fontFamily: type.body.fontFamily,
+			fontWeight: type.body.fontWeight,
 			fontSize: type.body.fontSize, //1.4rem (14px)
-			lineHeight: type.lineHeight, //1.428571429
-			color: type.color,
+			lineHeight: type.body.lineHeight, //1.428571429
+			color: type.body.color,
 			fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
+		},
+
+		// Class access to our font families
+		'.body-font': {
+			fontFamily: type.body.fontFamily,
+		},
+		'.brand-font': {
+			fontFamily: type.brand.fontFamily,
 		},
 
 		// Headings
