@@ -218,21 +218,12 @@ const Article = props => (
 		css={{
 			flex: 1,
 			overflowY: 'auto',
+			paddingTop: '1rem',
+			paddingBottom: '4rem',
 		}}
 		{...props}
 	/>
 );
-/*const Container = props => (
-	<div
-		css={{
-			marginLeft: 'auto',
-			marginRight: 'auto',
-			maxWidth: 800,
-			padding: 20,
-		}}
-		{...props}
-	/>
-);*/
 
 const Sidebar = props => (
 	<div
@@ -247,8 +238,8 @@ const Sidebar = props => (
 	/>
 );
 const SidebarNav = props => (
-	<nav css={{ flex: 1 }}>
-		<ul css={{ listStyle: 'none', margin: 0, padding: 0 }} {...props} />
+	<nav css={{ flex: 1, overflowY: 'auto' }}>
+		<ul css={{ listStyle: 'none', margin: '1rem 0', padding: 0 }} {...props} />
 	</nav>
 );
 const SidebarSearch = props => (
@@ -261,7 +252,6 @@ const SidebarSearch = props => (
 			boxSizing: 'border-box',
 			fontSize: 'inherit',
 			outline: 0,
-			marginBottom: 10,
 			padding: '10px 20px',
 			width: '100%',
 
@@ -282,7 +272,11 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 			fontWeight: 500,
 			outline: 0,
 			padding: '10px 20px',
-			textDecoration: 'none',
+			fontSize: '1.6rem',
+
+			'&, :hover, :focus': {
+				textDecoration: 'none',
+			},
 
 			':hover, :focus': {
 				background: '#fafbfc',
@@ -309,9 +303,12 @@ const SidebarTitle = props => (
 			color: 'inherit',
 			display: 'block',
 			fontWeight: 500,
-			fontSize: '1.25em',
+			fontSize: '2rem',
 			padding: 20,
-			textDecoration: 'none',
+
+			'&, :hover, :focus': {
+				textDecoration: 'none',
+			},
 		}}
 		{...props}
 	/>
@@ -321,7 +318,7 @@ const SidebarSwitcher = props => (
 	<div
 		css={{
 			display: 'flex',
-			fontSize: '0.85rem',
+			fontSize: '1.3rem',
 		}}
 		{...props}
 	/>
