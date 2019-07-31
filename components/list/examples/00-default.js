@@ -5,7 +5,7 @@ import { listGenerator } from './_utils';
 export default () => (
 	<>
 		<h3>Bullet List</h3>
-		<List>
+		<List appearance="primary">
 			{listGenerator('Styled bullet list - primary', 3)}
 			<ListItem>
 				Styled bullet list - primary

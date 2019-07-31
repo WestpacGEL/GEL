@@ -14,7 +14,7 @@ import { AndroidIcon } from '../icon/src';
 
 <Playground>
 	<List>
-		<ListItem>Styled bullet list - primary</ListItem>
+		<ListItem appearance="primary">Styled bullet list - primary</ListItem>
 		<ListItem>Styled bullet list - primary</ListItem>
 		<ListItem>
 			Styled bullet list - primary
@@ -27,7 +27,7 @@ import { AndroidIcon } from '../icon/src';
 		<ListItem>Styled bullet list - primary</ListItem>
 	</List>
 	<br />
-	<List color="hero">
+	<List>
 		<ListItem>Styled bullet list - hero</ListItem>
 		<ListItem>Styled bullet list - hero</ListItem>
 		<ListItem>
@@ -41,7 +41,7 @@ import { AndroidIcon } from '../icon/src';
 		<ListItem>Styled bullet list - hero</ListItem>
 	</List>
 	<br />
-	<List color="neutral">
+	<List appearance="neutral">
 		<ListItem>Styled bullet list - neutral</ListItem>
 		<ListItem>Styled bullet list - neutral</ListItem>
 		<ListItem>
@@ -61,7 +61,7 @@ import { AndroidIcon } from '../icon/src';
 Use this style when the list items are clickable.
 
 <Playground>
-	<List appearance="link">
+	<List type="link">
 		<ListItem>Styled link list</ListItem>
 		<ListItem>Styled link list</ListItem>
 		<ListItem>Styled link list</ListItem>
@@ -71,7 +71,7 @@ Use this style when the list items are clickable.
 ## Tick list
 
 <Playground>
-	<List appearance="tick">
+	<List type="tick">
 		<ListItem>Styled tick list</ListItem>
 		<ListItem>Styled tick list</ListItem>
 		<ListItem>Styled tick list</ListItem>
@@ -83,7 +83,7 @@ Use this style when the list items are clickable.
 You can use any GUI icon in a list if the provided options are not sufficient.
 
 <Playground>
-	<List appearance="icon" icon={AndroidIcon}>
+	<List type="icon" icon={AndroidIcon}>
 		<ListItem>Styled icon list</ListItem>
 		<ListItem>Styled icon list</ListItem>
 		<ListItem>Styled icon list</ListItem>
@@ -95,7 +95,7 @@ You can use any GUI icon in a list if the provided options are not sufficient.
 A list without any bullets, ticks or icons.
 
 <Playground>
-	<List appearance="unstyled">
+	<List type="unstyled">
 		<ListItem>Unstyled list</ListItem>
 		<ListItem>Unstyled list</ListItem>
 		<ListItem>Unstyled list</ListItem>
@@ -107,7 +107,7 @@ A list without any bullets, ticks or icons.
 Use a larger list when you have interactive elements. This increases the affordance on touch devices.
 
 <Playground>
-	<List size="large">
+	<List spacing="large">
 		<ListItem>Large size list</ListItem>
 		<ListItem>Large size list</ListItem>
 		<ListItem>Large size list</ListItem>
@@ -115,5 +115,7 @@ Use a larger list when you have interactive elements. This increases the afforda
 </Playground>
 
 ## Props
+
+All styling props will be automatically passed to children components
 
 <PropsTable of={List} />

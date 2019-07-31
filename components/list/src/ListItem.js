@@ -1,6 +1,6 @@
 /* @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, css, useTheme } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
@@ -11,7 +11,7 @@ import { List } from './List';
 // ==============================
 export const ListItem = ({ appearance, type, icon, spacing, children, ...props }) => {
 	const childrenWithProps = Children.map(children, child =>
-		child && child.type && child.type === List
+		isValidElement(child) && child.type === List
 			? cloneElement(child, {
 					appearance,
 					type,
@@ -31,13 +31,14 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 		position: 'relative',
 	};
 
-	const linkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><polygon fill="${
-		list.link.color
-	}" fillRule="evenodd" points="14.588 12 8 18.588 9.412 20 17.412 12 9.412 4 8 5.412"/></svg>`;
+	const linkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><polygon fill="${type !==
+		'unstyled' &&
+		list.type.link
+			.color}" fillRule="evenodd" points="14.588 12 8 18.588 9.412 20 17.412 12 9.412 4 8 5.412"/></svg>`;
 
 	const tickSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><polygon fill="${type !==
 		'unstyled' &&
-		list.tick.color}" points="8.6 15.6 4.4 11.4 3 12.8 8.6 18.4 20.6 6.4 19.2 5"/></svg>`;
+		list.type.tick.color}" points="8.6 15.6 4.4 11.4 3 12.8 8.6 18.4 20.6 6.4 19.2 5"/></svg>`;
 
 	const styles = {
 		bullet: {
@@ -50,8 +51,8 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 				width: 8,
 				height: 8,
 				borderRadius: '50%',
-				border: `1px solid ${list.bullet.appearance[appearance].color}`,
-				backgroundColor: list.bullet.appearance[appearance].color,
+				border: `1px solid ${list.type.bullet.appearance[appearance].color}`,
+				backgroundColor: list.type.bullet.appearance[appearance].color,
 			},
 
 			'ul > li::before': {
@@ -112,7 +113,7 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 		<li css={{ ...common, ...styles[type] }}>
 			{type === 'icon' && icon && (
 				<span css={{ paddingRight: '5px' }}>
-					<Icon size="small" color={list.icon.color} />
+					<Icon size="small" color={list.type.icon.color} />
 				</span>
 			)}
 			{childrenWithProps}

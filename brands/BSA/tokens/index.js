@@ -441,27 +441,29 @@ export default {
 	},
 
 	list: {
-		bullet: {
-			appearance: {
-				primary: {
-					color: COLORS.primary,
-				},
-				hero: {
-					color: COLORS.hero,
-				},
-				neutral: {
-					color: COLORS.neutral,
+		type: {
+			bullet: {
+				appearance: {
+					primary: {
+						color: COLORS.primary,
+					},
+					hero: {
+						color: COLORS.hero,
+					},
+					neutral: {
+						color: COLORS.neutral,
+					},
 				},
 			},
-		},
-		link: {
-			color: COLORS.primary,
-		},
-		tick: {
-			color: COLORS.primary,
-		},
-		icon: {
-			color: COLORS.primary,
+			link: {
+				color: COLORS.primary,
+			},
+			tick: {
+				color: COLORS.primary,
+			},
+			icon: {
+				color: COLORS.muted,
+			},
 		},
 	},
 

@@ -1,6 +1,6 @@
 /* @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, css } from '@westpac/core';
 import { ListItem } from './ListItem';
@@ -10,7 +10,7 @@ import { ListItem } from './ListItem';
 // ==============================
 export const List = ({ children, ...props }) => {
 	const childrenWithProps = Children.map(children, child =>
-		child.props.type === 'icon' && child.props.icon
+		isValidElement(child) && child.props.type === 'icon' && child.props.icon
 			? cloneElement(child, { ...props, icon: child.props.icon })
 			: cloneElement(child, props)
 	);
@@ -41,7 +41,7 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-	appearance: 'primary',
+	appearance: 'hero',
 	type: 'bullet',
 	spacing: 'medium',
 };
