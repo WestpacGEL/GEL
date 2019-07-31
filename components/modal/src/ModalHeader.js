@@ -17,7 +17,7 @@ export const ModalHeader = ({ id, onClose, children, ...props }) => {
 			css={{
 				display: 'flex',
 				justifyContent: 'space-between',
-				alignItems: 'center',
+				alignItems: 'flex-start',
 				overflow: 'hidden',
 				borderBottom: `${modal.header.borderWidth} solid ${modal.header.borderColor}`,
 				padding: modal.header.padding,
@@ -31,7 +31,9 @@ export const ModalHeader = ({ id, onClose, children, ...props }) => {
 					padding: '5px 12px',
 					cursor: 'pointer',
 					touchAction: 'manipulation',
-					alignSelf: 'flex-start',
+					marginTop: -10,
+					marginRight: -22,
+
 					'&:hover svg': { opacity: 0.5 },
 				}}
 				onClick={onClose}

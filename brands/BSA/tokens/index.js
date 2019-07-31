@@ -405,7 +405,7 @@ export default {
 		header: {
 			borderWidth: '1px',
 			borderColor: COLORS.hero,
-			padding: '16px 12px 12px 12px',
+			padding: '16px 24px 12px',
 		},
 		title: {
 			fontSize: 18,
