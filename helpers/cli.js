@@ -90,35 +90,40 @@ const main = async () => {
 		space: false,
 	});
 
-	let name = process.argv.slice(2)[0],
+	let packageName = process.argv.slice(2)[0],
 		description;
 
-	if (!name) {
+	if (!packageName) {
 		do {
-			name = await qName().catch(e => console.log(chalk.red(e)));
-		} while (!name);
+			packageName = await qName().catch(e => console.log(chalk.red(e)));
+		} while (!packageName);
 	}
 
 	do {
 		description = await qDescription().catch(e => console.log(chalk.red(e)));
 	} while (!description);
 
-	const folderName = name.toLowerCase();
+	const folderName = packageName.toLowerCase();
 
-	name = name
+	const compomentTitle = packageName
+		.split('-')
+		.map(part => part[0].toUpperCase() + part.slice(1))
+		.join(' ');
+
+	const componentName = packageName
 		.split('-')
 		.map(part => part[0].toUpperCase() + part.slice(1))
 		.join('');
 
-	const confirm = await qConfirm(name, description);
+	const confirm = await qConfirm(packageName, description);
 	rl.close();
 
 	if (confirm === 'y') {
 		const component = {
 			folderName: folderName,
-			key: name.charAt(0).toLowerCase() + name.slice(1),
-			title: name.charAt(0).toLowerCase() + name.slice(1),
-			name: name.charAt(0).toUpperCase() + name.slice(1),
+			key: packageName,
+			title: compomentTitle,
+			name: componentName,
 			description: description,
 		};
 
