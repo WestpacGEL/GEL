@@ -262,7 +262,6 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 
 			':hover, :focus': {
 				background: '#fafbfc',
-				borderLeftColor: primaryColor,
 				textDecoration: 'inherit',
 			},
 
