@@ -105,15 +105,12 @@ const main = async () => {
 
 	const folderName = packageName.toLowerCase();
 
-	const compomentTitle = packageName
+	const componentTitle = packageName
 		.split('-')
 		.map(part => part[0].toUpperCase() + part.slice(1))
 		.join(' ');
 
-	const componentName = packageName
-		.split('-')
-		.map(part => part[0].toUpperCase() + part.slice(1))
-		.join('');
+	const componentName = componentTitle.replace(' ', '');
 
 	const confirm = await qConfirm(packageName, description);
 	rl.close();
@@ -122,7 +119,7 @@ const main = async () => {
 		const component = {
 			folderName: folderName,
 			key: packageName,
-			title: compomentTitle,
+			title: componentTitle,
 			name: componentName,
 			description: description,
 		};
