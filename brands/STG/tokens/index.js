@@ -346,6 +346,43 @@ export default {
 		},
 	},
 
+	formPod: {
+		icon: {
+			borderWidth: '1px',
+			borderColor: COLORS.border,
+			backgroundColor: '#fff',
+			width: '6.6rem',
+			gap: '1.2rem',
+			padding: '1.4rem',
+			marginBottom: ['1.2rem', '-0.6rem'],
+		},
+		preheading: {
+			color: COLORS.muted,
+			margin: '0 0 6px',
+			textTransform: 'uppercase',
+			fontSize: '1.1rem',
+			fontWeight: 'bold',
+		},
+		heading: {
+			fontWeight: 300, //light
+			fontSize: ['2.4rem', '3rem'],
+			margin: 0,
+		},
+		panel: {
+			backgroundColor: '#fff',
+			borderTop: `1px solid ${COLORS.hero}`,
+			borderBottom: `1px solid ${COLORS.border}`,
+		},
+		panelInner: {
+			default: {
+				padding: ['3rem 1.2rem', '6rem 13%', '6rem 6%', '6rem 13%'],
+			},
+			expanded: {
+				padding: ['3rem 1.2rem', '4.8rem 3.6rem'],
+			},
+		},
+	},
+
 	grid: {
 		container: {
 			maxWidth: CONTAINER_MAXWIDTH,
@@ -552,6 +589,13 @@ export default {
 			caption: {
 				padding: '12px',
 			},
+		},
+	},
+
+	template: {
+		backgroundColor: '#fff',
+		wrapper: {
+			backgroundColor: COLORS.background,
 		},
 	},
 
