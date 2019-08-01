@@ -25,7 +25,7 @@ export const useTheme = () => {
 // ==============================
 
 const Brand = ({ children, ...props }) => {
-	const { colors, body, type } = useTheme();
+	const { colors, font, type } = useTheme();
 
 	// Global reset styling
 	const styleReset = {
@@ -245,6 +245,9 @@ const Brand = ({ children, ...props }) => {
 		},
 	};
 
+	// Font @fontface styling
+	const styleFont = font;
+
 	// Text extension styling
 	const styleTextExtensions = {
 		// Lead text
@@ -301,7 +304,7 @@ const Brand = ({ children, ...props }) => {
 
 	return (
 		<>
-			<Global styles={merge(styleReset, styleType, styleTextExtensions)} />
+			<Global styles={merge(styleReset, styleType, styleFont, styleTextExtensions)} />
 			{children}
 		</>
 	);

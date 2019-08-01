@@ -21,6 +21,21 @@ const COLORS = {
 	system: 'yellow',
 };
 
+const FONT = (folder = '../font') => ({
+	// Chronicle Display Semibold (mapped to 'normal')
+	'@font-face': {
+		fontFamily: 'chronicle-disp-semibold',
+		src: `url("${folder}/7FF5B4E46E46717F5.eot")`,
+		src: `url("${folder}/7FF5B4E46E46717F5.eot?#iefix") format("embedded-opentype"),
+			url("${folder}/7FF5B4E46E46717F5.woff2") format("woff2"),
+			url("${folder}/7FF5B4E46E46717F5.woff") format("woff"),
+			url("${folder}/7FF5B4E46E46717F5.ttf") format("truetype"),
+			url("${folder}/7FF5B4E46E46717F5.svg#ChronicleDisplay-Semi") format("svg")`,
+		fontWeight: 'normal',
+		fontStyle: 'normal',
+	},
+});
+
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = 1320;
@@ -63,6 +78,7 @@ export default {
 			foreground: 'white',
 		},
 	},
+	font: FONT(),
 	type: {
 		fontSize: 10,
 		body: {

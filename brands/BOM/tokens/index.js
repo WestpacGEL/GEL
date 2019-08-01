@@ -21,6 +21,41 @@ const COLORS = {
 	system: 'yellow',
 };
 
+const FONT = (folder = '../font') => ({
+	// LL Brown Regular (mapped to 'normal')
+	'@font-face': {
+		fontFamily: 'brown',
+		src: `url("${folder}/lineto-brown-pro-regular.eot")`,
+		src: `url("${folder}/lineto-brown-pro-regular.eot?#iefix") format("embedded-opentype"),
+	  	url("${folder}/lineto-brown-pro-regular.woff2") format("woff2"),
+	  	url("${folder}/lineto-brown-pro-regular.woff") format("woff")`,
+		fontWeight: 'normal',
+		fontStyle: 'normal',
+	},
+
+	// LL Brown Bold (mapped to 'bold')
+	'@font-face': {
+		fontFamily: 'brown',
+		src: `url("${folder}/lineto-brown-pro-bold.eot")`,
+		src: `url("${folder}/lineto-brown-pro-bold.eot?#iefix") format("embedded-opentype"),
+	  	url("${folder}/lineto-brown-pro-bold.woff2") format("woff2"),
+	  	url("${folder}/lineto-brown-pro-bold.woff") format("woff")`,
+		fontWeight: 'bold',
+		fontStyle: 'normal',
+	},
+
+	// LL Brown Light (mapped to '300')
+	'@font-face': {
+		fontFamily: 'brown',
+		src: `url("${folder}/lineto-brown-pro-light.eot")`,
+		src: `url("${folder}/lineto-brown-pro-light.eot?#iefix") format("embedded-opentype"),
+	  	url("${folder}/lineto-brown-pro-light.woff2") format("woff2"),
+	  	url("${folder}/lineto-brown-pro-light.woff") format("woff")`,
+		fontWeight: 300,
+		fontStyle: 'normal',
+	},
+});
+
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = 1320;
@@ -63,6 +98,7 @@ export default {
 			foreground: 'white',
 		},
 	},
+	font: FONT(),
 	type: {
 		fontSize: 10,
 		body: {

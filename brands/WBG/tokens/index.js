@@ -21,6 +21,8 @@ const COLORS = {
 	system: 'yellow',
 };
 
+const FONT = (folder = '../font') => ({});
+
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = 1320;
@@ -63,6 +65,7 @@ export default {
 			foreground: 'white',
 		},
 	},
+	font: FONT(),
 	type: {
 		fontSize: 10,
 		body: {

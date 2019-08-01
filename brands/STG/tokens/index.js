@@ -21,6 +21,21 @@ const COLORS = {
 	system: 'yellow',
 };
 
+const FONT = (folder = '../font') => ({
+	// Dragonbold Bold (mapped to 'normal')
+	'@font-face': {
+		fontFamily: 'dragonbold',
+		src: `url("${folder}/dragonbold-bold-webfont.eot")`,
+		src: `url("${folder}/dragonbold-bold-webfont.eot?#iefix") format("embedded-opentype"),
+			url("${folder}/dragonbold-bold-webfont.woff2") format("woff2"),
+			url("${folder}/dragonbold-bold-webfont.woff") format("woff"),
+			url("${folder}/dragonbold-bold-webfont.ttf") format("truetype"),
+			url("${folder}/dragonbold-bold-webfont.svg#dragon_boldbold") format("svg")`,
+		fontWeight: 'normal',
+		fontStyle: 'normal',
+	},
+});
+
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = 1320;
@@ -63,6 +78,7 @@ export default {
 			foreground: 'white',
 		},
 	},
+	font: FONT(),
 	type: {
 		fontSize: 10,
 		body: {

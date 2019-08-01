@@ -21,6 +21,34 @@ const COLORS = {
 	system: 'yellow',
 };
 
+const FONT = (folder = '../font') => ({
+	// Aller Bold (mapped to 'normal')
+	'@font-face': {
+		fontFamily: 'aller',
+		src: `url("${folder}/Aller_Bd.eot")`,
+		src: `url("${folder}/Aller_Bd.eot?#iefix") format("embedded-opentype"),
+			url("${folder}/Aller_Bd.woff2") format("woff2"),
+			url("${folder}/Aller_Bd.woff") format("woff"),
+			url("${folder}/Aller_Bd.ttf") format("truetype"),
+			url("${folder}/Aller_Bd.svg#Aller-Bold") format("svg")`,
+		fontWeight: 'normal',
+		fontStyle: 'normal',
+	},
+
+	// Aller Light (mapped to '300')
+	'@font-face': {
+		fontFamily: 'aller',
+		src: `url("${folder}/Aller_Lt.eot")`,
+		src: `url("${folder}/Aller_Lt.eot?#iefix") format("embedded-opentype"),
+			url("${folder}/Aller_Lt.woff2") format("woff2"),
+			url("${folder}/Aller_Lt.woff") format("woff"),
+			url("${folder}/Aller_Lt.ttf") format("truetype"),
+			url("${folder}/Aller_Lt.svg#Aller-Light") format("svg")`,
+		fontWeight: 300,
+		fontStyle: 'normal',
+	},
+});
+
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = 1320;
@@ -63,6 +91,7 @@ export default {
 			foreground: 'white',
 		},
 	},
+	font: FONT(),
 	type: {
 		fontSize: 10,
 		body: {
