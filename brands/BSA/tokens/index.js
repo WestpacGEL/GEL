@@ -394,6 +394,14 @@ export default {
 				padding: ['3rem 1.2rem', '4.8rem 3.6rem'],
 			},
 		},
+		footer: {
+			height: '5.4rem', //Nb. there's no min-height with flex in IE
+			backgroundColor: COLORS.light,
+			padding: '1.2rem',
+		},
+		actions: {
+			marginTop: '3rem',
+		},
 	},
 
 	grid: {

@@ -11,8 +11,10 @@ import {
 	FormPodIndicator,
 	FormPodActions,
 } from '../src';
-import { HeadsetIcon, LiveChatIcon, RefreshIcon } from '../../icon/src'; //until icon package is published
-import { Button } from '../../button/src'; //until icon package is published
+import { Alert } from '../../alert/src';
+// import { List } from '../../list/src'; TODO: implement list
+import { AlertIcon, HeadsetIcon, LiveChatIcon, RefreshIcon } from '../../icon/src';
+import { Button } from '../../button/src';
 
 export default () => {
 	const { colors, template } = useTheme();
@@ -21,18 +23,10 @@ export default () => {
 	const contactItems = [
 		{
 			icon: HeadsetIcon,
-			// iconColor: colors.muted,
 			text: '1300 888 888',
 			url: 'tel:1300888888',
 			onClick: () => {},
 		},
-		// {
-		// 	icon: LiveChatIcon,
-		// 	iconColor: colors.muted,
-		// 	text: 'LiveChat',
-		// 	url: '#0',
-		// 	onClick: () => {},
-		// },
 	];
 
 	return (
@@ -46,7 +40,26 @@ export default () => {
 				}}
 			/>
 			<FormPod preheading="Preheading" heading="Heading">
-				<FormPodPanel>
+				<FormPodPanel noBorderTop>
+					<Alert appearance="danger" icon={AlertIcon}>
+						{/* Nb. Tabindex="-1" for programmatically set focus */}
+						<h3 style={{ marginTop: 0, display: 'inline-block' }} tabIndex="-1">
+							Please fix the 4 errors listed below
+						</h3>
+
+						{/* TODO: Use List component*/}
+						<ul>
+							<li>
+								<a href="#title">Select a title</a>
+							</li>
+							<li>
+								<a href="#given-name">Enter your given name</a>
+							</li>
+							<li>
+								<a href="#family-name">Enter your family name</a>
+							</li>
+						</ul>
+					</Alert>
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
 					<FormPodPanelFooter
 						left={<FormPodContactList items={contactItems} />}

@@ -6,34 +6,14 @@ import {
 	FormPod,
 	FormPodPanel,
 	FormPodPanelBody,
-	FormPodPanelFooter,
-	FormPodContactList,
-	FormPodIndicator,
 	FormPodActions,
+	FormPodActionsText,
 } from '../src';
 import { HeadsetIcon, LiveChatIcon, RefreshIcon } from '../../icon/src'; //until icon package is published
 import { Button } from '../../button/src'; //until icon package is published
 
 export default () => {
 	const { colors, template } = useTheme();
-
-	// Contact detail data
-	const contactItems = [
-		{
-			icon: HeadsetIcon,
-			// iconColor: colors.muted,
-			text: '1300 888 888',
-			url: 'tel:1300888888',
-			onClick: () => {},
-		},
-		// {
-		// 	icon: LiveChatIcon,
-		// 	iconColor: colors.muted,
-		// 	text: 'LiveChat',
-		// 	url: '#0',
-		// 	onClick: () => {},
-		// },
-	];
 
 	return (
 		<>
@@ -48,27 +28,20 @@ export default () => {
 			<FormPod preheading="Preheading" heading="Heading">
 				<FormPodPanel>
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
-					<FormPodPanelFooter
-						left={<FormPodContactList items={contactItems} />}
-						right={<FormPodIndicator icon={RefreshIcon} text="Saving" />}
-					/>
 				</FormPodPanel>
 				<FormPodActions
+					reverse
 					primary={
 						<>
 							<Button appearance="primary" soft size="large" block={[true, false]}>
-								Back
+								Find a branch
 							</Button>
-							<Button appearance="primary" size="large" block={[true, false]}>
-								Next
+							<Button appearance="primary" soft size="large" block={[true, false]}>
+								Internet banking
 							</Button>
 						</>
 					}
-					secondary={
-						<Button appearance="faint" soft size="large" block={[true, false]}>
-							Cancel
-						</Button>
-					}
+					secondary={<FormPodActionsText>[TEXT CAN GO HERE]</FormPodActionsText>}
 				/>
 			</FormPod>
 		</>

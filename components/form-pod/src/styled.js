@@ -8,20 +8,20 @@ export const FormPodHeader = ({ align, ...props }) => {
 	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
-	const common = {
+	const style = {
 		position: 'relative',
 		marginBottom: [24, 24, 30],
 		textAlign: align,
 	};
 
-	return <div css={mq(common)} {...props} />;
+	return <div css={mq(style)} {...props} />;
 };
 
 export const FormPodIcon = ({ icon: Icon, ...props }) => {
 	const { breakpoints, formPod } = useTheme();
 	const mq = paint(breakpoints);
 
-	const common = {
+	const style = {
 		position: [null, 'absolute'],
 		right: [null, 0],
 		bottom: [null, 0],
@@ -36,40 +36,56 @@ export const FormPodIcon = ({ icon: Icon, ...props }) => {
 		marginBottom: formPod.icon.marginBottom,
 	};
 
-	return <Icon css={mq(common)} size="large" {...props} />;
+	return <Icon css={mq(style)} size="large" {...props} />;
 };
 
 export const FormPodPreheading = ({ tag: Tag, ...props }) => {
 	const { breakpoints, formPod } = useTheme();
 	const mq = paint(breakpoints);
 
-	const common = {
+	const style = {
 		display: [null, null, 'none'],
 		...formPod.preheading,
 	};
 
-	return <Tag css={mq(common)} {...props} />;
+	return <Tag css={mq(style)} {...props} />;
 };
 
 export const FormPodHeading = ({ tag: Tag, ...props }) => {
 	const { formPod } = useTheme();
 
-	const common = {
+	const style = {
 		...formPod.heading,
 	};
 
-	return <Tag css={common} {...props} />;
+	return <Tag css={style} {...props} />;
 };
 
-export const FormPodPanelInner = ({ expanded, ...props }) => {
-	const { breakpoints, formPod } = useTheme();
+export const FormPodActionsPrimary = props => {
+	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
-	const common = {
-		...formPod.panelInner[expanded ? 'expanded' : 'default'],
+	const style = {
+		display: ['flex', 'block'],
+		flex: '0 0 auto',
+		justifyContent: 'space-between',
+		marginLeft: [null, 'auto'], //flex auto-position right
 	};
 
-	return <div css={mq(common)} {...props} />;
+	return <div css={mq(style)} {...props} />;
+};
+
+export const FormPodActionsSecondary = props => {
+	const { breakpoints } = useTheme();
+	const mq = paint(breakpoints);
+
+	const style = {
+		flex: 1,
+		marginTop: ['1.2rem', 0],
+		marginRight: [null, '2.4rem'],
+	};
+
+	return <div css={mq(style)} {...props} />;
 };
 
 // ==============================

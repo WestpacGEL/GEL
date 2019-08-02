@@ -1,10 +1,8 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
-
-import { FormPodPanelInner } from './styled';
+import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -14,20 +12,17 @@ import { FormPodPanelInner } from './styled';
 // Component
 // ==============================
 
-export const FormPodPanel = ({ expanded, children, ...props }) => {
-	const { breakpoints, formPod } = useTheme();
-	const mq = paint(breakpoints);
+export const FormPodPanel = ({ noBorderTop, ...props }) => {
+	const { formPod } = useTheme();
 
 	// Common styling
-	const styleCommon = {
+	const style = {
 		...formPod.panel,
+
+		...(noBorderTop ? { borderTop: null } : null),
 	};
 
-	return (
-		<div css={mq(styleCommon)} {...props}>
-			<FormPodPanelInner expanded={expanded}>{children}</FormPodPanelInner>
-		</div>
-	);
+	return <div css={style} {...props} />;
 };
 
 // ==============================
@@ -36,12 +31,14 @@ export const FormPodPanel = ({ expanded, children, ...props }) => {
 
 FormPodPanel.propTypes = {
 	/**
-	 * Expanded mode (less horizontal panel padding).
+	 * Remove top border.
+	 *
+	 * Required when the 'Error summary' alert is shown.
 	 *
 	 * Defaults to "false"
 	 */
-	expanded: PropTypes.bool,
+	noBorderTop: PropTypes.bool,
 };
 FormPodPanel.defaultProps = {
-	expanded: false,
+	noBorderTop: false,
 };

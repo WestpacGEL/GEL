@@ -62,6 +62,11 @@ FormPod.propTypes = {
 	 * Heading text.
 	 */
 	heading: PropTypes.string,
+
+	/**
+	 * Component children.
+	 */
+	children: PropTypes.node,
 };
 
 FormPod.defaultProps = {};
