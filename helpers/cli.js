@@ -73,7 +73,7 @@ const updateReferences = (dir, component) => {
 
 const createComponent = component => {
 	const src = `./helpers/.component-template`;
-	const dest = `./components/${component.key}`;
+	const dest = `./components/${component.folderName}`;
 
 	console.log(chalk.gray('[1/3] Copying template files...\n'));
 	shell(`mkdir -p ${dest}`);
@@ -90,27 +90,37 @@ const main = async () => {
 		space: false,
 	});
 
-	let name = process.argv.slice(2)[0],
+	let packageName = process.argv.slice(2)[0],
 		description;
 
-	if (!name) {
+	if (!packageName) {
 		do {
-			name = await qName().catch(e => console.log(chalk.red(e)));
-		} while (!name);
+			packageName = await qName().catch(e => console.log(chalk.red(e)));
+		} while (!packageName);
 	}
 
 	do {
 		description = await qDescription().catch(e => console.log(chalk.red(e)));
 	} while (!description);
 
-	const confirm = await qConfirm(name, description);
+	const folderName = packageName.toLowerCase();
+
+	const componentTitle = packageName
+		.split('-')
+		.map(part => part[0].toUpperCase() + part.slice(1))
+		.join(' ');
+
+	const componentName = componentTitle.replace(' ', '');
+
+	const confirm = await qConfirm(packageName, description);
 	rl.close();
 
 	if (confirm === 'y') {
 		const component = {
-			key: name.charAt(0).toLowerCase() + name.slice(1),
-			title: name.charAt(0).toLowerCase() + name.slice(1),
-			name: name.charAt(0).toUpperCase() + name.slice(1),
+			folderName: folderName,
+			key: packageName,
+			title: componentTitle,
+			name: componentName,
 			description: description,
 		};
 
