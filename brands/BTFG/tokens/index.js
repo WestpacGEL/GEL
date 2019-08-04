@@ -18,6 +18,7 @@ const COLORS = {
 	information: '#0074C4',
 	warning: '#C53B00',
 	danger: '#C40000',
+	system: 'yellow',
 };
 
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
@@ -64,13 +65,6 @@ export default {
 	},
 	type: {},
 	spacing: {},
-
-	grid: {
-		container: {
-			maxWidth: CONTAINER_MAXWIDTH,
-			padding: CONTAINER_PADDING,
-		},
-	},
 
 	badge: {
 		minWidth: '10px',
@@ -255,7 +249,6 @@ export default {
 				soft: {},
 			},
 		},
-
 		size: {
 			small: {
 				padding: ['3px', '9px', '4px'],
@@ -277,6 +270,13 @@ export default {
 				fontSize: '18px',
 				height: '48px',
 			},
+		},
+	},
+
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING,
 		},
 	},
 
@@ -527,5 +527,39 @@ export default {
 			responsive: [12, 24],
 		},
 		marginBottom: '18px',
+	},
+
+	alert: {
+		padding: '18px',
+		marginBottom: '21px',
+		borderWidth: '1px',
+
+		appearance: {
+			success: {
+				color: COLORS.success,
+				backgroundColor: tint(COLORS.success, 0.05),
+				borderColor: tint(COLORS.success, 0.5),
+			},
+			information: {
+				color: COLORS.information,
+				backgroundColor: tint(COLORS.information, 0.05),
+				borderColor: tint(COLORS.information, 0.5),
+			},
+			warning: {
+				color: COLORS.warning,
+				backgroundColor: tint(COLORS.warning, 0.05),
+				borderColor: tint(COLORS.warning, 0.5),
+			},
+			danger: {
+				color: COLORS.danger,
+				backgroundColor: tint(COLORS.danger, 0.05),
+				borderColor: tint(COLORS.danger, 0.5),
+			},
+			system: {
+				color: 'black',
+				backgroundColor: COLORS.system,
+				borderColor: COLORS.system,
+			},
+		},
 	},
 };
