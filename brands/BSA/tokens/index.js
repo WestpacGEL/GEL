@@ -63,7 +63,14 @@ export default {
 			foreground: 'white',
 		},
 	},
-	type: {},
+	type: {
+		link: {
+			focus: {
+				outline: `2px solid ${COLORS.focus}`,
+				outlineOffset: '3px',
+			},
+		},
+	},
 	spacing: {},
 
 	badge: {

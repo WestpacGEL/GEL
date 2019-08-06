@@ -24,7 +24,7 @@ export const FormInput = ({
 	children,
 	...props
 }) => {
-	const { colors, formInput } = useTheme();
+	const { colors, formInput, type } = useTheme();
 
 	// Common styling
 	const styleCommon = {
@@ -47,6 +47,11 @@ export const FormInput = ({
 		'&::placeholder': {
 			...formInput.placeholder,
 			opacity: 1, // Override Firefox's unusual default opacity
+		},
+
+		// Focus styling (for all, not just keyboard users)
+		':focus': {
+			...type.link.focus,
 		},
 
 		// Disabled and read-only inputs
