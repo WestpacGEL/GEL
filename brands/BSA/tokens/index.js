@@ -359,6 +359,70 @@ export default {
 		},
 	},
 
+	formInput: {
+		lineHeight: 1.5,
+		fontWeight: 400,
+		color: COLORS.text,
+		backgroundColor: '#fff',
+		borderWidth: '1px',
+		borderRadius: '3px',
+		fontXFactor: 1.81,
+		appearance: {
+			default: {
+				borderColor: COLORS.borderDark,
+			},
+			invalid: {
+				borderColor: COLORS.danger,
+			},
+		},
+		size: {
+			small: {
+				padding: ['3px', '9px', '4px'],
+				fontSize: '14px',
+				height: '30px',
+			},
+			medium: {
+				padding: ['5px', '12px'],
+				fontSize: '16px',
+				height: '36px',
+			},
+			large: {
+				padding: ['8px', '15px'],
+				fontSize: '16px',
+				height: '42px',
+			},
+			xlarge: {
+				padding: ['9px', '18px', '10px'],
+				fontSize: '18px',
+				height: '48px',
+			},
+		},
+		disabled: {
+			backgroundColor: COLORS.light,
+			color: COLORS.muted,
+		},
+		placeholder: {
+			fontWeight: 300,
+			color: tint(COLORS.Text, 0.5),
+		},
+		textarea: {
+			size: {
+				small: {
+					minHeight: '54px',
+				},
+				medium: {
+					minHeight: '60px',
+				},
+				large: {
+					minHeight: '66px',
+				},
+				xlarge: {
+					minHeight: '72px',
+				},
+			},
+		},
+	},
+
 	grid: {
 		container: {
 			maxWidth: CONTAINER_MAXWIDTH,
