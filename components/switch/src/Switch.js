@@ -31,6 +31,7 @@ export const Switch = ({
 	const common = {
 		position: 'relative',
 		display: 'inline-flex',
+		flexWrap: 'wrap',
 		verticalAlign: 'top',
 		marginRight: '18px',
 		marginBottom: '6px',
@@ -59,7 +60,7 @@ export const Switch = ({
 
 	const valuesCss = {
 		padding: flipped ? '0 0 0 6px' : '0 6px 0 0',
-		width: block ? '100%' : null,
+		width: block ? `calc(100% - ${switchControl.size[size].width})` : null,
 	};
 
 	const toggleCss = {
