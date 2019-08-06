@@ -1,13 +1,29 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Global, jsx } from '@emotion/core';
 import { useTheme } from './Theme';
 
 import merge from 'lodash.merge';
 
 export const Core = ({ children, ...props }) => {
+	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
 	const { colors, font, type } = useTheme();
+
+	// Handle keys
+	const keyHandler = event => {
+		if (event.key === 'Tab') {
+			setIsKeyboardUser(true);
+		}
+	};
+
+	// Bind key events
+	useEffect(() => {
+		window.document.addEventListener('keydown', keyHandler);
+		return () => {
+			window.document.removeEventListener('keydown', keyHandler);
+		};
+	});
 
 	// Global reset styling
 	const styleReset = {
@@ -222,7 +238,7 @@ export const Core = ({ children, ...props }) => {
 		// TODO
 		'a, h1, h2, h3, h4, h5, h6': {
 			':focus': {
-				...type.link.focus,
+				...(isKeyboardUser && type.link.focus),
 			},
 		},
 	};
