@@ -6,14 +6,12 @@ import { Box } from './_utils';
 export default () => (
 	<>
 		<h3>Flipped switches</h3>
-		<Box>
-			<Switch name="ex1" flipped>
-				Enable notifications
-			</Switch>
-			<Switch name="ex2" values flipped>
-				Turn notifications
-			</Switch>
-		</Box>
+		<Switch name="ex1" flipped>
+			Enable notifications
+		</Switch>
+		<Switch name="ex2" values flipped>
+			Turn notifications
+		</Switch>
 		<hr />
 
 		<h3>Block switches</h3>
