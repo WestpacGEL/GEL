@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
