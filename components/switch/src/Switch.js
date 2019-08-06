@@ -16,17 +16,27 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Switch = ({ name, srOnly, values, checked, disabled, size, children }) => {
+export const Switch = ({
+	name,
+	srOnly,
+	values,
+	checked,
+	disabled,
+	size,
+	block,
+	flipped,
+	children,
+}) => {
 	const { colors, breakpoints, switchControl } = useTheme();
 	const common = {
 		position: 'relative',
-		display: 'flex',
-		alignItems: 'center',
+		display: 'inline-flex',
+		verticalAlign: 'top',
 		marginRight: '18px',
-		height: switchControl.size[size].height,
-		paddingRight: switchControl.size[size].offset,
-		borderRadius: switchControl.size[size].borderRadius,
 		marginBottom: '6px',
+		alignItems: 'center',
+		width: block ? '100%' : null,
+		flexDirection: flipped ? 'row-reverse' : null,
 
 		'&:hover': {
 			cursor: 'pointer',
@@ -48,24 +58,23 @@ export const Switch = ({ name, srOnly, values, checked, disabled, size, children
 	};
 
 	const valuesCss = {
-		paddingRight: 6,
+		padding: flipped ? '0 0 0 6px' : '0 6px 0 0',
+		width: block ? '100%' : null,
 	};
 
 	const toggleCss = {
 		borderRadius: switchControl.size[size].borderRadius,
 		height: switchControl.size[size].height,
 		width: switchControl.size[size].width,
-		display: 'block',
-		position: 'absolute',
-		right: '0px',
-		top: '0px',
+		position: 'relative',
 		zIndex: 1,
-		overflow: 'hidden',
-		lineHeight: 1.5,
-		transition: 'border .3s ease,background .3s ease',
 		border: `${switchControl.borderWidth} solid`,
 		borderColor: switchControl.appearance.borderColor,
 		backgroundColor: switchControl.appearance.backgroundColor,
+		overflow: 'hidden',
+		lineHeight: 1.5,
+		transition: 'border .3s ease, background .3s ease',
+		userSelect: 'none',
 
 		'&::after': {
 			content: '""',
@@ -133,6 +142,7 @@ export const Switch = ({ name, srOnly, values, checked, disabled, size, children
 	return (
 		<label css={common} onChange={toggle}>
 			<input type="checkbox" name={name} id={name} disabled={disabled} />
+
 			{srOnly ? <span css={srOnlyCss}>{children}</span> : <span css={valuesCss}>{children}</span>}
 
 			{on ? (

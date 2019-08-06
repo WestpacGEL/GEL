@@ -17,28 +17,27 @@ export default () => (
 		<hr />
 
 		<h3>Block switches</h3>
-		<Box>
-			<Switch name="ex3" block>
-				Turn notifications
-			</Switch>
-			<Switch name="ex4" values block>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur corporis sint, facere
-				sequi provident eius similique ab velit, beatae aut architecto porro quidem neque
-				necessitatibus, quis nulla itaque labore harum, in nesciunt! Molestiae, voluptatum,
-				voluptas. Quo pariatur, voluptate ducimus nemo?
-			</Switch>
-		</Box>
+		<Switch name="ex3" block>
+			Turn notifications
+		</Switch>
+		<Switch name="ex4" values block>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur corporis sint, facere
+			sequi provident eius similique ab velit, beatae aut architecto porro quidem neque
+			necessitatibus, quis nulla itaque labore harum, in nesciunt! Molestiae, voluptatum, voluptas.
+			Quo pariatur, voluptate ducimus nemo?
+		</Switch>
 		<hr />
 
 		<h3>Flipped block switches</h3>
-		<Box>
-			<Switch name="ex4" flipped block>
-				Enable notifications
-			</Switch>
-			<Switch name="ex5" values flipped block>
-				Turn notifications
-			</Switch>
-		</Box>
+		<Switch name="ex4" flipped block>
+			Enable notifications
+		</Switch>
+		<Switch name="ex5" values flipped block>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur corporis sint, facere
+			sequi provident eius similique ab velit, beatae aut architecto porro quidem neque
+			necessitatibus, quis nulla itaque labore harum, in nesciunt! Molestiae, voluptatum, voluptas.
+			Quo pariatur, voluptate ducimus nemo?
+		</Switch>
 		<hr />
 	</>
 );
