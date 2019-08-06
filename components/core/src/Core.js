@@ -65,9 +65,13 @@ export const Core = ({ children, ...props }) => {
 			fontSize: '1rem', // Refer to document
 		},
 
-		// Globally reset all focus styling (applied as needed)
-		':focus': {
-			outline: 'none',
+		// Suppress the focus outline on elements that cannot be accessed via keyboard.
+		// This prevents an unwanted focus outline from appearing around elements that
+		// might still respond to pointer events.
+		//
+		// Credit: https://github.com/suitcss/base
+		'[tabindex="-1"]:focus': {
+			outline: '0 !important',
 		},
 
 		//
@@ -173,6 +177,11 @@ export const Core = ({ children, ...props }) => {
 			fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
 		},
 
+		// Globally reset all focus styling, only apply if keyboard user
+		':focus': {
+			...(isKeyboardUser ? type.link.focus : { outline: 0 }),
+		},
+
 		// Class access to our font families
 		'.body-font': {
 			fontFamily: type.body.fontFamily,
@@ -229,16 +238,8 @@ export const Core = ({ children, ...props }) => {
 		a: {
 			...type.link.default,
 
-			':hover, :focus': {
+			':hover': {
 				...type.link.hover,
-			},
-		},
-
-		// Focus (outline) styling
-		// TODO
-		'a, h1, h2, h3, h4, h5, h6': {
-			':focus': {
-				...(isKeyboardUser && type.link.focus),
 			},
 		},
 	};

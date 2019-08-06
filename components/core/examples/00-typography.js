@@ -3,17 +3,12 @@ import React from 'react';
 export default () => (
 	<>
 		<h2>Headings</h2>
-		<p>
-			Nb. The following headings have (tabIndex="0") tab order specified so you can check keyboard
-			(tab) navigation
-		</p>
-
-		<h1 tabIndex="0">This is a h1 heading</h1>
-		<h2 tabIndex="0">This is a h2 heading</h2>
-		<h3 tabIndex="0">This is a h3 heading</h3>
-		<h4 tabIndex="0">This is a h4 heading</h4>
-		<h5 tabIndex="0">This is a h5 heading</h5>
-		<h6 tabIndex="0">This is a h6 heading</h6>
+		<h1>This is a h1 heading</h1>
+		<h2>This is a h2 heading</h2>
+		<h3>This is a h3 heading</h3>
+		<h4>This is a h4 heading</h4>
+		<h5>This is a h5 heading</h5>
+		<h6>This is a h6 heading</h6>
 
 		<hr />
 
