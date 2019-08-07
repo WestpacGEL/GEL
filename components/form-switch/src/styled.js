@@ -28,17 +28,17 @@ export const FormSwitchText = ({ block, flip, srOnlyText, ...props }) => {
 };
 
 export const FormSwitchToggle = ({ size, toggleText, ...props }) => {
-	const { colors, breakpoints, formSwitch } = useTheme();
+	const { breakpoints, formSwitch } = useTheme();
 	const mq = paint(breakpoints);
 
 	const styleResponsive = () => {
 		const sizeArr = asArray(size);
 
 		return {
-			borderRadius: sizeArr.map(s => formSwitch.size[s].borderRadius),
-			width: sizeArr.map(s => formSwitch.size[s].width),
-			height: sizeArr.map(s => formSwitch.size[s].height),
-			fontSize: sizeArr.map(s => formSwitch.size[s].fontSize),
+			borderRadius: sizeArr.map(s => s && formSwitch.size[s].borderRadius),
+			width: sizeArr.map(s => s && formSwitch.size[s].width),
+			height: sizeArr.map(s => s && formSwitch.size[s].height),
+			fontSize: sizeArr.map(s => s && formSwitch.size[s].fontSize),
 		};
 	};
 
@@ -74,7 +74,7 @@ export const FormSwitchToggle = ({ size, toggleText, ...props }) => {
 			transition: 'all .3s ease',
 			backgroundColor: formSwitch.backgroundColor,
 			...(val => ({ width: val, height: val }))(
-				styleResponsive().height.map(h => h - formSwitch.borderWidth * 2)
+				styleResponsive().height.map(h => h && h - formSwitch.borderWidth * 2)
 			),
 
 			// Checked state
@@ -96,8 +96,10 @@ export const FormSwitchToggle = ({ size, toggleText, ...props }) => {
 		right: 0,
 		textAlign: 'center',
 		fontSize: styleResponsive().fontSize,
-		lineHeight: styleResponsive().height.map(h => `${h - formSwitch.borderWidth * 2}px`),
-		width: styleResponsive().height.map(h => `calc(100% - ${h - formSwitch.borderWidth * 2}px)`),
+		lineHeight: styleResponsive().height.map(h => h && `${h - formSwitch.borderWidth * 2}px`),
+		width: styleResponsive().height.map(
+			h => h && `calc(100% - ${h - formSwitch.borderWidth * 2}px)`
+		),
 		...formSwitch.toggleText.default,
 	};
 

@@ -15,10 +15,10 @@ export default () => (
 		<hr />
 
 		<h3>This breakpoint only</h3>
-		<FormSwitch name="ex3" id="ex3" size={['medium', 'medium', 'xlarge', 'medium']} block>
+		<FormSwitch name="ex3" id="ex3" size={['medium', null, 'xlarge', 'medium']} block>
 			Extra large for LG breakpoint only
 		</FormSwitch>
-		<FormSwitch name="ex4" id="ex4" size={['medium', 'medium', 'small', 'medium']} block>
+		<FormSwitch name="ex4" id="ex4" size={['medium', null, 'small', 'medium']} block>
 			Small for LG breakpoint only
 		</FormSwitch>
 		<FormSwitch name="ex5" id="ex5" size={['xlarge', 'small']} block>
