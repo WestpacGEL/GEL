@@ -3,7 +3,8 @@
 import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Global, css, jsx } from '@emotion/core';
+import { jsx } from '@emotion/core';
+import { Core } from './Core';
 
 // TODO: is there a useful "default" value we should add here?
 export const ThemeContext = createContext();
@@ -19,21 +20,19 @@ export const useTheme = () => {
 	return themeObject;
 };
 
-export const GEL = ({ brand, ...props }) => {
+// ==============================
+// Utils
+// ==============================
+
+// ==============================
+// Component
+// ==============================
+
+export const GEL = ({ brand, children, ...props }) => {
 	return (
-		<>
-			<Global
-				styles={css`
-					// Box-sizing reset
-					*,
-					*:before,
-					*:after {
-						box-sizing: border-box;
-					}
-				`}
-			/>
-			<ThemeContext.Provider value={brand} {...props} />
-		</>
+		<ThemeContext.Provider value={brand} {...props}>
+			<Core>{children}</Core>
+		</ThemeContext.Provider>
 	);
 };
 

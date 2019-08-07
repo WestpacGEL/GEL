@@ -21,6 +21,21 @@ const COLORS = {
 	system: 'yellow',
 };
 
+const FONT = (folder = '../font') => ({
+	// Chronicle Display Semibold (mapped to 'normal')
+	'@font-face': {
+		fontFamily: 'chronicle-disp-semibold',
+		src: `url("${folder}/7FF5B4E46E46717F5.eot")`,
+		src: `url("${folder}/7FF5B4E46E46717F5.eot?#iefix") format("embedded-opentype"),
+			url("${folder}/7FF5B4E46E46717F5.woff2") format("woff2"),
+			url("${folder}/7FF5B4E46E46717F5.woff") format("woff"),
+			url("${folder}/7FF5B4E46E46717F5.ttf") format("truetype"),
+			url("${folder}/7FF5B4E46E46717F5.svg#ChronicleDisplay-Semi") format("svg")`,
+		fontWeight: 'normal',
+		fontStyle: 'normal',
+	},
+});
+
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = 1320;
@@ -63,8 +78,59 @@ export default {
 			foreground: 'white',
 		},
 	},
+	font: FONT(),
 	typography: {
+		fontSize: 10,
+		body: {
+			fontFamily:
+				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+			fontSize: '1.4rem',
+			color: COLORS.text,
+			fontWeight: 400,
+			lineHeight: 1.428571429,
+		},
+		brand: {
+			fontFamily: 'chronicle-disp-semibold, "Times New Roman", Times, serif',
+		},
+		headings: {
+			color: COLORS.heading,
+		},
+		p: {
+			margin: '0.8571428572em 0',
+		},
+		dl: {},
+		dt: {
+			fontWeight: 700,
+		},
+		dd: {
+			margin: 0,
+		},
+		abbr: {
+			cursor: 'help',
+			borderBottom: `1px dotted ${COLORS.text}`,
+			textDecoration: 'none',
+		},
+		address: {
+			fontStyle: 'normal',
+		},
+		blockquote: {
+			fontSize: '16px',
+			fontWeight: 300,
+		},
+		mark: {
+			backgroundColor: tint(COLORS.primary, 0.2),
+		},
+		selection: {
+			backgroundColor: tint(COLORS.primary, 0.2),
+		},
 		link: {
+			default: {
+				color: COLORS.primary,
+				textDecoration: 'underline',
+			},
+			hover: {
+				textDecoration: 'underline',
+			},
 			focus: {
 				outline: `2px solid ${COLORS.focus}`,
 				outlineOffset: '3px',
@@ -360,6 +426,70 @@ export default {
 					paddingTop: 5,
 					paddingBottom: 5,
 					gap: 10,
+				},
+			},
+		},
+	},
+
+	formInput: {
+		lineHeight: 1.5,
+		fontWeight: 400,
+		color: COLORS.text,
+		backgroundColor: '#fff',
+		borderWidth: '1px',
+		borderRadius: '3px',
+		fontXFactor: 1.81,
+		appearance: {
+			default: {
+				borderColor: COLORS.borderDark,
+			},
+			invalid: {
+				borderColor: COLORS.danger,
+			},
+		},
+		size: {
+			small: {
+				padding: ['3px', '9px', '4px'],
+				fontSize: '14px',
+				height: '30px',
+			},
+			medium: {
+				padding: ['5px', '12px'],
+				fontSize: '16px',
+				height: '36px',
+			},
+			large: {
+				padding: ['8px', '15px'],
+				fontSize: '16px',
+				height: '42px',
+			},
+			xlarge: {
+				padding: ['9px', '18px', '10px'],
+				fontSize: '18px',
+				height: '48px',
+			},
+		},
+		disabled: {
+			backgroundColor: COLORS.light,
+			color: COLORS.muted,
+		},
+		placeholder: {
+			fontWeight: 300,
+			color: tint(COLORS.Text, 0.5),
+		},
+		textarea: {
+			size: {
+				small: {
+					minHeight: '54px',
+				},
+				medium: {
+					minHeight: '60px',
+				},
+				large: {
+					minHeight: '66px',
+				},
+				xlarge: {
+					minHeight: '72px',
 				},
 			},
 		},
