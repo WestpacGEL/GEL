@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useTheme, paint } from '@westpac/core';
 
 /**
  * switch: Switch component for the Westpac GEL
@@ -11,6 +11,8 @@ import { jsx, useTheme } from '@westpac/core';
 // ==============================
 // Utils
 // ==============================
+
+const asArray = val => (Array.isArray(val) ? val : [val]);
 
 // ==============================
 // Component
@@ -28,6 +30,8 @@ export const Switch = ({
 	children,
 }) => {
 	const { colors, breakpoints, switchControl } = useTheme();
+	const mq = paint(breakpoints);
+
 	const common = {
 		position: 'relative',
 		display: 'inline-flex',
@@ -39,7 +43,7 @@ export const Switch = ({
 		width: block ? '100%' : null,
 		flexDirection: flipped ? 'row-reverse' : null,
 
-		'&:hover': {
+		':hover': {
 			cursor: 'pointer',
 		},
 
@@ -58,15 +62,103 @@ export const Switch = ({
 		clip: 'rect(1px 1px 1px 1px)',
 	};
 
+	const borderRadiusResponsive = () => {
+		const sizeArr = asArray(size);
+		const borderRadius = [];
+
+		sizeArr.forEach(s => {
+			borderRadius.push(switchControl.size[s].borderRadius);
+		});
+
+		return borderRadius;
+	};
+
+	const widthResponsive = () => {
+		const sizeArr = asArray(size);
+		const width = [];
+
+		sizeArr.forEach(s => {
+			width.push(switchControl.size[s].width);
+		});
+
+		return width;
+	};
+
+	const heightResponsive = () => {
+		const sizeArr = asArray(size);
+		const height = [];
+
+		sizeArr.forEach(s => {
+			height.push(switchControl.size[s].height);
+		});
+
+		return height;
+	};
+
+	const insideWidthResponsive = () => {
+		const sizeArr = asArray(size);
+		const insideWidth = [];
+
+		sizeArr.forEach(s => {
+			insideWidth.push(switchControl.size[s].insideWidth);
+		});
+
+		return insideWidth;
+	};
+
+	const insideHeightResponsive = () => {
+		const sizeArr = asArray(size);
+		const insideHeight = [];
+
+		sizeArr.forEach(s => {
+			insideHeight.push(switchControl.size[s].insideHeight);
+		});
+
+		return insideHeight;
+	};
+
+	const lineHeightResponsive = () => {
+		const sizeArr = asArray(size);
+		const lineHeight = [];
+
+		sizeArr.forEach(s => {
+			lineHeight.push(switchControl.size[s].lineHeight);
+		});
+
+		return lineHeight;
+	};
+
+	const fontSizeResponsive = () => {
+		const sizeArr = asArray(size);
+		const fontSize = [];
+
+		sizeArr.forEach(s => {
+			fontSize.push(switchControl.size[s].fontSize);
+		});
+
+		return fontSize;
+	};
+
 	const valuesCss = {
 		padding: flipped ? '0 0 0 6px' : '0 6px 0 0',
-		width: block ? `calc(100% - ${switchControl.size[size].width})` : null,
+		width: block
+			? (() => {
+					const sizeArr = asArray(size);
+					const width = [];
+
+					sizeArr.forEach(s => {
+						width.push(`calc(100% - ${switchControl.size[s].width})`);
+					});
+
+					return width;
+			  })()
+			: null,
 	};
 
 	const toggleCss = {
-		borderRadius: switchControl.size[size].borderRadius,
-		height: switchControl.size[size].height,
-		width: switchControl.size[size].width,
+		borderRadius: borderRadiusResponsive(),
+		height: heightResponsive(),
+		width: widthResponsive(),
 		position: 'relative',
 		zIndex: 1,
 		border: `${switchControl.borderWidth} solid`,
@@ -77,10 +169,10 @@ export const Switch = ({
 		transition: 'border .3s ease, background .3s ease',
 		userSelect: 'none',
 
-		'&::after': {
+		'::after': {
 			content: '""',
-			height: switchControl.size[size].insideHeight,
-			width: switchControl.size[size].insideWidth,
+			height: insideHeightResponsive(),
+			width: insideWidthResponsive(),
 			display: 'block',
 			position: 'absolute',
 			left: '0px',
@@ -106,8 +198,8 @@ export const Switch = ({
 			transform: 'translateX(-100%)',
 			boxShadow: '-3px 0 6px 0 rgba(0,0,0,0.3)',
 			content: '""',
-			height: switchControl.size[size].insideHeight,
-			width: switchControl.size[size].insideWidth,
+			height: insideHeightResponsive(),
+			width: insideWidthResponsive(),
 			display: 'block',
 			position: 'absolute',
 			top: '0px',
@@ -120,10 +212,18 @@ export const Switch = ({
 	const valuesParamCss = {
 		position: 'absolute',
 		textAlign: 'center',
-		lineHeight: switchControl.size[size].lineHeight,
-		fontSize: switchControl.size[size].fontSize,
-		width: switchControl.size[size].insideWidth,
-		width: `calc(100% - ${switchControl.size[size].insideWidth})`,
+		lineHeight: lineHeightResponsive(),
+		fontSize: fontSizeResponsive(),
+		width: (() => {
+			const sizeArr = asArray(size);
+			const insideWidth = [];
+
+			sizeArr.forEach(s => {
+				insideWidth.push(`calc(100% - ${switchControl.size[s].insideWidth})`);
+			});
+
+			return insideWidth;
+		})(),
 	};
 
 	const valuesParamOnCss = {
@@ -141,18 +241,22 @@ export const Switch = ({
 	const toggle = () => setOn(!on);
 
 	return (
-		<label css={common} onChange={toggle}>
+		<label css={mq(common)} onChange={toggle}>
 			<input type="checkbox" name={name} id={name} disabled={disabled} />
 
-			{srOnly ? <span css={srOnlyCss}>{children}</span> : <span css={valuesCss}>{children}</span>}
+			{srOnly ? (
+				<span css={srOnlyCss}>{children}</span>
+			) : (
+				<span css={mq(valuesCss)}>{children}</span>
+			)}
 
 			{on ? (
-				<span css={{ ...toggleCss, ...toggleOnCss }}>
-					{values && <span css={{ ...valuesParamCss, ...valuesParamOnCss }}>{valArr[0]}</span>}
+				<span css={mq({ ...toggleCss, ...toggleOnCss })}>
+					{values && <span css={mq({ ...valuesParamCss, ...valuesParamOnCss })}>{valArr[0]}</span>}
 				</span>
 			) : (
-				<span css={toggleCss}>
-					{values && <span css={{ ...valuesParamCss, ...valuesParamOffCss }}>{valArr[1]}</span>}
+				<span css={mq(toggleCss)}>
+					{values && <span css={mq({ ...valuesParamCss, ...valuesParamOffCss })}>{valArr[1]}</span>}
 				</span>
 			)}
 		</label>
@@ -163,6 +267,10 @@ export const Switch = ({
 // Types
 // ==============================
 
+const options = {
+	size: ['small', 'medium', 'large', 'xlarge'],
+};
+
 Switch.propTypes = {
 	/**
 	 * Describe `someProperty` here
@@ -170,6 +278,16 @@ Switch.propTypes = {
 	values: PropTypes.array,
 	checked: PropTypes.bool,
 	disabled: PropTypes.bool,
+
+	/**
+	 * The switch size.
+	 *
+	 * Defaults to "medium"
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(options.size),
+		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
+	]),
 };
 
 Switch.defaultProps = {
