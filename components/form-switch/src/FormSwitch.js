@@ -18,7 +18,7 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // Component
 // ==============================
 
-export const Switch = ({
+export const FormSwitch = ({
 	name,
 	srOnly,
 	values,
@@ -271,7 +271,7 @@ const options = {
 	size: ['small', 'medium', 'large', 'xlarge'],
 };
 
-Switch.propTypes = {
+FormSwitch.propTypes = {
 	/**
 	 * Describe `someProperty` here
 	 */
@@ -290,7 +290,7 @@ Switch.propTypes = {
 	]),
 };
 
-Switch.defaultProps = {
+FormSwitch.defaultProps = {
 	checked: false,
 	disabled: false,
 	size: 'medium',
