@@ -347,10 +347,6 @@ export default {
 	},
 
 	formCheck: {
-		default: {},
-		disabled: {
-			color: COLORS.muted,
-		},
 		control: {
 			borderWidth: 1,
 			default: {
@@ -361,20 +357,21 @@ export default {
 				borderColor: COLORS.border,
 				backgroundColor: COLORS.light,
 			},
-		},
-		check: {
-			backgroundColor: COLORS.hero,
-		},
-		type: {
-			checkbox: {
-				control: {
+			check: {
+				checkbox: {
+					backgroundColor: COLORS.hero,
 					borderRadius: 3,
 				},
-			},
-			radio: {
-				control: {
+				radio: {
+					backgroundColor: COLORS.hero,
 					borderRadius: '50%',
 				},
+			},
+		},
+		label: {
+			default: {},
+			disabled: {
+				color: COLORS.muted,
 			},
 		},
 		size: {
@@ -392,6 +389,7 @@ export default {
 					radio: {
 						width: 12,
 						height: 12,
+						tweak: 0,
 					},
 				},
 				item: {
@@ -417,6 +415,7 @@ export default {
 					radio: {
 						width: 16,
 						height: 16,
+						tweak: 0,
 					},
 				},
 				item: {
