@@ -99,7 +99,7 @@ export default {
 		},
 	},
 	font: FONT(),
-	type: {
+	typography: {
 		fontSize: 10,
 		body: {
 			fontFamily:
