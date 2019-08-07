@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -28,7 +28,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 		zIndex: 1,
 		transition: 'opacity 0.3s ease-in-out',
 
-		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
+		'a, h1, h2, h3, h4, h5, h6, ol, ul, div, span': {
 			color: 'inherit',
 		},
 
