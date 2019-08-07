@@ -7,6 +7,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 /**
  * switch: Switch component for the Westpac GEL
  */
+import { SrOnly } from './SrOnly'; //TODO: move to Core
 
 // ==============================
 // Utils
