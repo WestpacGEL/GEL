@@ -273,13 +273,6 @@ const options = {
 
 Switch.propTypes = {
 	/**
-	 * Describe `someProperty` here
-	 */
-	values: PropTypes.array,
-	checked: PropTypes.bool,
-	disabled: PropTypes.bool,
-
-	/**
 	 * The switch size.
 	 *
 	 * Defaults to "medium"
@@ -288,6 +281,35 @@ Switch.propTypes = {
 		PropTypes.oneOf(options.size),
 		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
 	]),
+
+	/**
+	 * Switch state.
+	 *
+	 * Defaults to "false"
+	 */
+	checked: PropTypes.bool,
+
+	/**
+	 * Disabled mode.
+	 *
+	 * Defaults to "false"
+	 */
+	disabled: PropTypes.bool,
+
+	/**
+	 * The text values in this switch.
+	 */
+	values: PropTypes.array,
+
+	/**
+	 * The label for this switch.
+	 */
+	children: PropTypes.node,
+
+	/**
+	 * The onChange handler for this switch.
+	 */
+	onChange: PropTypes.func,
 };
 
 Switch.defaultProps = {
