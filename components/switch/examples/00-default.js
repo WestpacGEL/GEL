@@ -7,7 +7,9 @@ export default () => (
 	<>
 		<h3>Switches without visible text label (Screenreader only text)</h3>
 
-		<Switch srOnly name="ex1" />
+		<Switch srOnly name="ex1">
+			Enable notifications
+		</Switch>
 		<Switch srOnly name="ex2" values />
 		<Switch srOnly name="ex3" values={['Yes', 'No']} />
 
