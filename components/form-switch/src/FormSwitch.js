@@ -4,9 +4,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
-/**
- * switch: Switch component for the Westpac GEL
- */
 import { SrOnly } from './SrOnly'; //TODO: move to Core
 
 // ==============================
@@ -21,19 +18,24 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 
 export const FormSwitch = ({
 	name,
-	srOnly,
-	values,
-	checked,
-	disabled,
+	id,
+	toggleText,
 	size,
 	block,
-	flipped,
+	flip,
+	srOnly,
+	checked,
 	children,
+	...props
 }) => {
 	const { colors, breakpoints, formSwitch } = useTheme();
 	const mq = paint(breakpoints);
 
-	const common = {
+	const [on, setOn] = useState(checked);
+	const toggle = () => setOn(!on);
+
+	// Common styling
+	const styleCommon = {
 		position: 'relative',
 		display: 'inline-flex',
 		flexWrap: 'wrap',
@@ -42,124 +44,36 @@ export const FormSwitch = ({
 		marginBottom: '6px',
 		alignItems: 'center',
 		width: block ? '100%' : null,
-		flexDirection: flipped ? 'row-reverse' : null,
+		flexDirection: flip ? 'row-reverse' : null,
 
 		':hover': {
 			cursor: 'pointer',
 		},
-
-		input: {
-			position: 'absolute',
-			zIndex: -1,
-			opacity: 0,
-		},
 	};
 
-	const srOnlyCss = {
-		position: 'absolute',
-		height: 1,
-		width: 1,
-		overflow: 'hidden',
-		clip: 'rect(1px 1px 1px 1px)',
-	};
-
-	const borderRadiusResponsive = () => {
+	const styleResponsive = () => {
 		const sizeArr = asArray(size);
-		const borderRadius = [];
 
-		sizeArr.forEach(s => {
-			borderRadius.push(formSwitch.size[s].borderRadius);
-		});
-
-		return borderRadius;
+		return {
+			borderRadius: sizeArr.map(s => formSwitch.size[s].borderRadius),
+			width: sizeArr.map(s => formSwitch.size[s].width),
+			height: sizeArr.map(s => formSwitch.size[s].height),
+			insideWidth: sizeArr.map(s => formSwitch.size[s].insideWidth),
+			insideHeight: sizeArr.map(s => formSwitch.size[s].insideHeight),
+			lineHeight: sizeArr.map(s => formSwitch.size[s].lineHeight),
+			fontSize: sizeArr.map(s => formSwitch.size[s].fontSize),
+		};
 	};
 
-	const widthResponsive = () => {
-		const sizeArr = asArray(size);
-		const width = [];
-
-		sizeArr.forEach(s => {
-			width.push(formSwitch.size[s].width);
-		});
-
-		return width;
+	const styleToggleText = {
+		padding: flip ? '0 0 0 6px' : '0 6px 0 0',
+		...(block && { width: asArray(size).map(s => `calc(100% - ${formSwitch.size[s].width})`) }),
 	};
 
-	const heightResponsive = () => {
-		const sizeArr = asArray(size);
-		const height = [];
-
-		sizeArr.forEach(s => {
-			height.push(formSwitch.size[s].height);
-		});
-
-		return height;
-	};
-
-	const insideWidthResponsive = () => {
-		const sizeArr = asArray(size);
-		const insideWidth = [];
-
-		sizeArr.forEach(s => {
-			insideWidth.push(formSwitch.size[s].insideWidth);
-		});
-
-		return insideWidth;
-	};
-
-	const insideHeightResponsive = () => {
-		const sizeArr = asArray(size);
-		const insideHeight = [];
-
-		sizeArr.forEach(s => {
-			insideHeight.push(formSwitch.size[s].insideHeight);
-		});
-
-		return insideHeight;
-	};
-
-	const lineHeightResponsive = () => {
-		const sizeArr = asArray(size);
-		const lineHeight = [];
-
-		sizeArr.forEach(s => {
-			lineHeight.push(formSwitch.size[s].lineHeight);
-		});
-
-		return lineHeight;
-	};
-
-	const fontSizeResponsive = () => {
-		const sizeArr = asArray(size);
-		const fontSize = [];
-
-		sizeArr.forEach(s => {
-			fontSize.push(formSwitch.size[s].fontSize);
-		});
-
-		return fontSize;
-	};
-
-	const valuesCss = {
-		padding: flipped ? '0 0 0 6px' : '0 6px 0 0',
-		width: block
-			? (() => {
-					const sizeArr = asArray(size);
-					const width = [];
-
-					sizeArr.forEach(s => {
-						width.push(`calc(100% - ${formSwitch.size[s].width})`);
-					});
-
-					return width;
-			  })()
-			: null,
-	};
-
-	const toggleCss = {
-		borderRadius: borderRadiusResponsive(),
-		height: heightResponsive(),
-		width: widthResponsive(),
+	const styleToggle = {
+		borderRadius: styleResponsive().borderRadius,
+		width: styleResponsive().width,
+		height: styleResponsive().height,
 		position: 'relative',
 		zIndex: 1,
 		border: `${formSwitch.borderWidth} solid`,
@@ -172,8 +86,8 @@ export const FormSwitch = ({
 
 		'::after': {
 			content: '""',
-			height: insideHeightResponsive(),
-			width: insideWidthResponsive(),
+			width: styleResponsive().insideWidth,
+			height: styleResponsive().insideHeight,
 			display: 'block',
 			position: 'absolute',
 			left: '0px',
@@ -184,26 +98,26 @@ export const FormSwitch = ({
 			backgroundColor: formSwitch.appearance.backgroundColor,
 		},
 
-		'input:disabled~&': {
+		'input:disabled ~ &': {
 			cursor: 'not-allowed',
-			opacity: '.5',
+			opacity: 0.5,
 		},
 	};
 
-	const toggleOnCss = {
+	const styleToggleOn = {
 		borderColor: colors.hero.default,
 		backgroundColor: colors.hero.default,
 
-		'&::after': {
+		'::after': {
 			left: '100%',
 			transform: 'translateX(-100%)',
 			boxShadow: '-3px 0 6px 0 rgba(0,0,0,0.3)',
 			content: '""',
-			height: insideHeightResponsive(),
-			width: insideWidthResponsive(),
+			width: styleResponsive().insideWidth,
+			height: styleResponsive().insideHeight,
 			display: 'block',
 			position: 'absolute',
-			top: '0px',
+			top: 0,
 			borderRadius: '50%',
 			backgroundColor: formSwitch.appearance.backgroundColor,
 			transition: 'all .3s ease',
@@ -213,8 +127,8 @@ export const FormSwitch = ({
 	const valuesParamCss = {
 		position: 'absolute',
 		textAlign: 'center',
-		lineHeight: lineHeightResponsive(),
-		fontSize: fontSizeResponsive(),
+		lineHeight: styleResponsive().lineHeight,
+		fontSize: styleResponsive().fontSize,
 		width: (() => {
 			const sizeArr = asArray(size);
 			const insideWidth = [];
@@ -228,38 +142,38 @@ export const FormSwitch = ({
 	};
 
 	const valuesParamOnCss = {
-		left: '0px',
+		left: 0,
 		color: colors.hero.foreground,
 	};
 
 	const valuesParamOffCss = {
-		right: '0px',
+		right: 0,
 	};
 
-	const [on, setOn] = useState(checked);
-	const valArr = Array.isArray(values) ? values : ['On', 'Off'];
-
-	const toggle = () => setOn(!on);
-
 	return (
-		<label css={mq(common)} onChange={toggle}>
-			<input type="checkbox" name={name} id={name} disabled={disabled} />
+		<label css={mq(styleCommon)} onChange={toggle}>
+			<input
+				type="checkbox"
+				css={{
+					position: 'absolute',
+					zIndex: -1,
+					opacity: 0,
+				}}
+				name={name}
+				id={id}
+				checked={checked}
+				{...props}
+			/>
 
-			{srOnly ? (
-				<span css={srOnlyCss}>{children}</span>
-			) : (
-				<span css={mq(valuesCss)}>{children}</span>
-			)}
+			{srOnly ? <SrOnly>{children}</SrOnly> : <span css={mq(styleToggleText)}>{children}</span>}
 
-			{on ? (
-				<span css={mq({ ...toggleCss, ...toggleOnCss })}>
-					{values && <span css={mq({ ...valuesParamCss, ...valuesParamOnCss })}>{valArr[0]}</span>}
-				</span>
-			) : (
-				<span css={mq(toggleCss)}>
-					{values && <span css={mq({ ...valuesParamCss, ...valuesParamOffCss })}>{valArr[1]}</span>}
-				</span>
-			)}
+			<span css={mq({ ...styleToggle, ...(on && styleToggleOn) })}>
+				{toggleText && (
+					<span css={mq({ ...valuesParamCss, ...(on ? valuesParamOnCss : valuesParamOffCss) })}>
+						{toggleText[on ? 0 : 1]}
+					</span>
+				)}
+			</span>
 		</label>
 	);
 };
@@ -274,14 +188,26 @@ const options = {
 
 FormSwitch.propTypes = {
 	/**
-	 * Describe `someProperty` here
+	 * The form switch input element’s name.
+	 *
+	 * This prop is required.
 	 */
-	values: PropTypes.array,
-	checked: PropTypes.bool,
-	disabled: PropTypes.bool,
+	name: PropTypes.string.isRequired,
 
 	/**
-	 * The switch size.
+	 * The form switch input element’s id.
+	 *
+	 * This prop is required.
+	 */
+	id: PropTypes.string.isRequired,
+
+	/**
+	 * The form switch on/off text.
+	 */
+	toggleText: PropTypes.array,
+
+	/**
+	 * The form switch size.
 	 *
 	 * Defaults to "medium"
 	 */
@@ -289,10 +215,14 @@ FormSwitch.propTypes = {
 		PropTypes.oneOf(options.size),
 		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
 	]),
+
+	/**
+	 * Form check label text.
+	 */
+	children: PropTypes.string,
 };
 
 FormSwitch.defaultProps = {
-	checked: false,
-	disabled: false,
 	size: 'medium',
+	toggleText: ['On', 'Off'],
 };
