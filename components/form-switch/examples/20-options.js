@@ -26,10 +26,10 @@ export default () => (
 		<hr />
 
 		<h3>Flipped block switches</h3>
-		<FormSwitch name="ex4" id="ex4" flip block>
+		<FormSwitch name="ex5" id="ex5" flip block>
 			Enable notifications
 		</FormSwitch>
-		<FormSwitch name="ex5" id="ex5" flip block>
+		<FormSwitch name="ex6" id="ex6" flip block>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur corporis sint, facere
 			sequi provident eius similique ab velit, beatae aut architecto porro quidem neque
 			necessitatibus, quis nulla itaque labore harum, in nesciunt! Molestiae, voluptatum, voluptas.

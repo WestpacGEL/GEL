@@ -5,11 +5,15 @@ import { FormSwitch } from '../src';
 export default () => (
 	<>
 		<h3>Switches without visible text label (Screenreader only text)</h3>
-		<FormSwitch name="ex1" id="ex1" toggleText={[]} srOnly>
+		<FormSwitch name="ex1" id="ex1" toggleText={[]} srOnlyText>
 			Screen reader only text
 		</FormSwitch>
-		<FormSwitch name="ex2" id="ex2" srOnly />
-		<FormSwitch name="ex3" id="ex3" toggleText={['Yes', 'No']} srOnly />
+		<FormSwitch name="ex2" id="ex2" srOnlyText>
+			Screen reader only text
+		</FormSwitch>
+		<FormSwitch name="ex3" id="ex3" toggleText={['Yes', 'No']} srOnlyText>
+			Screen reader only text
+		</FormSwitch>
 
 		<hr />
 
@@ -24,10 +28,10 @@ export default () => (
 		<hr />
 
 		<h3>Checked by default</h3>
-		<FormSwitch name="ex6" id="ex6" defaultChecked>
+		<FormSwitch name="ex6" id="ex6" checked>
 			Enable notifications
 		</FormSwitch>
-		<FormSwitch name="ex7" id="ex7" defaultChecked>
+		<FormSwitch name="ex7" id="ex7" checked>
 			Turn notifications
 		</FormSwitch>
 
