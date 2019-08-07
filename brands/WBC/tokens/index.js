@@ -63,7 +63,14 @@ export default {
 			foreground: 'white',
 		},
 	},
-	type: {},
+	typography: {
+		link: {
+			focus: {
+				outline: `2px solid ${COLORS.focus}`,
+				outlineOffset: '3px',
+			},
+		},
+	},
 	spacing: {},
 
 	badge: {
@@ -269,6 +276,91 @@ export default {
 				padding: ['9px', '18px', '10px'],
 				fontSize: '18px',
 				height: '48px',
+			},
+		},
+	},
+
+	formCheck: {
+		default: {},
+		disabled: {
+			color: COLORS.muted,
+		},
+		control: {
+			borderWidth: 1,
+			default: {
+				borderColor: COLORS.hero,
+				backgroundColor: 'transparent',
+			},
+			disabled: {
+				borderColor: COLORS.border,
+				backgroundColor: COLORS.light,
+			},
+		},
+		check: {
+			backgroundColor: COLORS.hero,
+		},
+		type: {
+			checkbox: {
+				control: {
+					borderRadius: 3,
+				},
+			},
+			radio: {
+				control: {
+					borderRadius: '50%',
+				},
+			},
+		},
+		size: {
+			medium: {
+				control: {
+					width: 24,
+				},
+				check: {
+					checkbox: {
+						width: 14,
+						height: 8,
+						stroke: 3,
+						tweak: -2,
+					},
+					radio: {
+						width: 12,
+						height: 12,
+					},
+				},
+				item: {
+					marginBottom: 6,
+				},
+				label: {
+					paddingTop: 2,
+					paddingBottom: 2,
+					gap: 6,
+				},
+			},
+			large: {
+				control: {
+					width: 30,
+				},
+				check: {
+					checkbox: {
+						width: 18,
+						height: 10,
+						stroke: 4,
+						tweak: -2,
+					},
+					radio: {
+						width: 16,
+						height: 16,
+					},
+				},
+				item: {
+					marginBottom: 12,
+				},
+				label: {
+					paddingTop: 5,
+					paddingBottom: 5,
+					gap: 10,
+				},
 			},
 		},
 	},
