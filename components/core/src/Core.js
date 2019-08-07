@@ -8,7 +8,7 @@ import merge from 'lodash.merge';
 
 export const Core = ({ children, ...props }) => {
 	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
-	const { colors, font, type } = useTheme();
+	const { colors, font, typography } = useTheme();
 
 	// Handle keys
 	const keyHandler = event => {
@@ -161,85 +161,85 @@ export const Core = ({ children, ...props }) => {
 	};
 
 	// Typography styling
-	const styleType = {
+	const styleTypography = {
 		// Document
 		html: {
-			fontSize: type.fontSize, //10px
+			fontSize: typography.fontSize, //10px
 		},
 
 		// Global type styling
 		body: {
-			fontFamily: type.body.fontFamily,
-			fontWeight: type.body.fontWeight,
-			fontSize: type.body.fontSize, //1.4rem (14px)
-			lineHeight: type.body.lineHeight, //1.428571429
-			color: type.body.color,
+			fontFamily: typography.body.fontFamily,
+			fontWeight: typography.body.fontWeight,
+			fontSize: typography.body.fontSize, //1.4rem (14px)
+			lineHeight: typography.body.lineHeight, //1.428571429
+			color: typography.body.color,
 			fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
 		},
 
 		// Globally reset all focus styling, only apply if keyboard user
 		':focus': {
-			...(isKeyboardUser ? type.link.focus : { outline: 0 }),
+			...(isKeyboardUser ? typography.link.focus : { outline: 0 }),
 		},
 
 		// Class access to our font families
 		'.body-font': {
-			fontFamily: type.body.fontFamily,
+			fontFamily: typography.body.fontFamily,
 		},
 		'.brand-font': {
-			fontFamily: type.brand.fontFamily,
+			fontFamily: typography.brand.fontFamily,
 		},
 
 		// Headings
 		'h1, h2, h3, h4, h5, h6': {
-			...type.headings,
+			...typography.headings,
 		},
 
 		// Paragraphs
 		p: {
-			...type.p,
+			...typography.p,
 		},
 
 		// Definition lists
 		dl: {
-			...type.dl,
+			...typography.dl,
 		},
 		dt: {
-			...type.dt,
+			...typography.dt,
 		},
 		dd: {
-			...type.dd,
+			...typography.dd,
 		},
 
 		// Abbreviation
 		'abbr[title]': {
-			...type.abbr,
+			...typography.abbr,
 		},
 
 		address: {
-			...type.address,
+			...typography.address,
 		},
 
 		blockquote: {
-			...type.blockquote,
+			...typography.blockquote,
 		},
 
 		// Mark
 		mark: {
-			...type.mark,
+			...typography.mark,
 		},
 
 		// Text selection
 		'::selection': {
-			...type.selection,
+			...typography.selection,
 		},
 
 		// Links
 		a: {
-			...type.link.default,
+			...typography.link.default,
 
 			':hover': {
-				...type.link.hover,
+				...typography.link.hover,
 			},
 		},
 	};
@@ -303,7 +303,7 @@ export const Core = ({ children, ...props }) => {
 
 	return (
 		<>
-			<Global styles={merge(styleReset, styleType, styleFont, styleTextExtensions)} />
+			<Global styles={merge(styleReset, styleTypography, styleFont, styleTextExtensions)} />
 			{children}
 		</>
 	);
