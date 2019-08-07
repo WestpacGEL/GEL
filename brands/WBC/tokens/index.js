@@ -528,7 +528,7 @@ export default {
 		},
 	},
 
-	switchControl: {
+	formSwitch: {
 		borderWidth: '2px',
 
 		appearance: {

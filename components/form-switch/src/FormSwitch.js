@@ -29,7 +29,7 @@ export const FormSwitch = ({
 	flipped,
 	children,
 }) => {
-	const { colors, breakpoints, switchControl } = useTheme();
+	const { colors, breakpoints, formSwitch } = useTheme();
 	const mq = paint(breakpoints);
 
 	const common = {
@@ -67,7 +67,7 @@ export const FormSwitch = ({
 		const borderRadius = [];
 
 		sizeArr.forEach(s => {
-			borderRadius.push(switchControl.size[s].borderRadius);
+			borderRadius.push(formSwitch.size[s].borderRadius);
 		});
 
 		return borderRadius;
@@ -78,7 +78,7 @@ export const FormSwitch = ({
 		const width = [];
 
 		sizeArr.forEach(s => {
-			width.push(switchControl.size[s].width);
+			width.push(formSwitch.size[s].width);
 		});
 
 		return width;
@@ -89,7 +89,7 @@ export const FormSwitch = ({
 		const height = [];
 
 		sizeArr.forEach(s => {
-			height.push(switchControl.size[s].height);
+			height.push(formSwitch.size[s].height);
 		});
 
 		return height;
@@ -100,7 +100,7 @@ export const FormSwitch = ({
 		const insideWidth = [];
 
 		sizeArr.forEach(s => {
-			insideWidth.push(switchControl.size[s].insideWidth);
+			insideWidth.push(formSwitch.size[s].insideWidth);
 		});
 
 		return insideWidth;
@@ -111,7 +111,7 @@ export const FormSwitch = ({
 		const insideHeight = [];
 
 		sizeArr.forEach(s => {
-			insideHeight.push(switchControl.size[s].insideHeight);
+			insideHeight.push(formSwitch.size[s].insideHeight);
 		});
 
 		return insideHeight;
@@ -122,7 +122,7 @@ export const FormSwitch = ({
 		const lineHeight = [];
 
 		sizeArr.forEach(s => {
-			lineHeight.push(switchControl.size[s].lineHeight);
+			lineHeight.push(formSwitch.size[s].lineHeight);
 		});
 
 		return lineHeight;
@@ -133,7 +133,7 @@ export const FormSwitch = ({
 		const fontSize = [];
 
 		sizeArr.forEach(s => {
-			fontSize.push(switchControl.size[s].fontSize);
+			fontSize.push(formSwitch.size[s].fontSize);
 		});
 
 		return fontSize;
@@ -147,7 +147,7 @@ export const FormSwitch = ({
 					const width = [];
 
 					sizeArr.forEach(s => {
-						width.push(`calc(100% - ${switchControl.size[s].width})`);
+						width.push(`calc(100% - ${formSwitch.size[s].width})`);
 					});
 
 					return width;
@@ -161,9 +161,9 @@ export const FormSwitch = ({
 		width: widthResponsive(),
 		position: 'relative',
 		zIndex: 1,
-		border: `${switchControl.borderWidth} solid`,
-		borderColor: switchControl.appearance.borderColor,
-		backgroundColor: switchControl.appearance.backgroundColor,
+		border: `${formSwitch.borderWidth} solid`,
+		borderColor: formSwitch.appearance.borderColor,
+		backgroundColor: formSwitch.appearance.backgroundColor,
 		overflow: 'hidden',
 		lineHeight: 1.5,
 		transition: 'border .3s ease, background .3s ease',
@@ -180,7 +180,7 @@ export const FormSwitch = ({
 			borderRadius: '50%',
 			boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 			transition: 'all .3s ease',
-			backgroundColor: switchControl.appearance.backgroundColor,
+			backgroundColor: formSwitch.appearance.backgroundColor,
 		},
 
 		'input:disabled~&': {
@@ -204,7 +204,7 @@ export const FormSwitch = ({
 			position: 'absolute',
 			top: '0px',
 			borderRadius: '50%',
-			backgroundColor: switchControl.appearance.backgroundColor,
+			backgroundColor: formSwitch.appearance.backgroundColor,
 			transition: 'all .3s ease',
 		},
 	};
@@ -219,7 +219,7 @@ export const FormSwitch = ({
 			const insideWidth = [];
 
 			sizeArr.forEach(s => {
-				insideWidth.push(`calc(100% - ${switchControl.size[s].insideWidth})`);
+				insideWidth.push(`calc(100% - ${formSwitch.size[s].insideWidth})`);
 			});
 
 			return insideWidth;
