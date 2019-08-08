@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { useState } from 'react';
 import { jsx } from '@westpac/core';
