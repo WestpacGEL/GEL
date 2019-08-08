@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { jsx, useTheme, paint } from '@westpac/core';
 
-import { SrOnly } from './SrOnly'; //TODO: move to Core
+import { SrOnly } from '../../accessibility-helpers/src';
 
 // ==============================
 // Utils
