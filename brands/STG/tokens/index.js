@@ -527,4 +527,56 @@ export default {
 			},
 		},
 	},
+
+	formSwitch: {
+		borderWidth: 2,
+		borderColor: COLORS.border,
+		backgroundColor: '#fff',
+		marginRight: 18,
+		marginBottom: 6,
+
+		text: {
+			gap: 6,
+		},
+		toggle: {
+			checked: {
+				borderColor: COLORS.hero,
+				backgroundColor: COLORS.hero,
+			},
+		},
+		toggleText: {
+			default: {
+				color: COLORS.text,
+			},
+			checked: {
+				color: COLORS.text, //mapping unique to this brand
+			},
+		},
+		size: {
+			small: {
+				width: 70,
+				height: 30,
+				borderRadius: 30,
+				fontSize: 14,
+			},
+			medium: {
+				width: 80,
+				height: 36,
+				borderRadius: 36,
+				fontSize: 16,
+			},
+			large: {
+				width: 89,
+				height: 42,
+				borderRadius: 42,
+				fontSize: 16,
+			},
+			xlarge: {
+				width: 96,
+				height: 48,
+				borderRadius: 48,
+				fontSize: 18,
+			},
+		},
+	},
 };
