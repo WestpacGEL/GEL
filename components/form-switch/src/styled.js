@@ -126,8 +126,12 @@ export const FormSwitchToggle = ({ size, toggleText, ...props }) => {
 		<span css={mq(styleToggle)} {...props}>
 			{toggleText && (
 				<>
-					<span css={mq({ ...styleToggleText, ...styleToggleTextOff })}>{toggleText[1]}</span>
-					<span css={mq({ ...styleToggleText, ...styleToggleTextOn })}>{toggleText[0]}</span>
+					<span css={mq({ ...styleToggleText, ...styleToggleTextOff })} aria-hidden="true">
+						{toggleText[1]}
+					</span>
+					<span css={mq({ ...styleToggleText, ...styleToggleTextOn })} aria-hidden="true">
+						{toggleText[0]}
+					</span>
 				</>
 			)}
 		</span>
