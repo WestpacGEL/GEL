@@ -16,17 +16,11 @@ export const FormPodActionsText = props => {
 	const { breakpoints, formPod } = useTheme();
 	const mq = paint(breakpoints);
 
-	const common = {
-		fontSize: '1.6rem',
-		textAlign: ['center', 'left'],
-		marginBottom: ['2.4rem', 0],
-	};
-
-	return <div css={mq(common)} {...props} />;
+	return <div css={mq({ ...formPod.actionsText })} {...props} />;
 };
 
 // ==============================
-// Types™
+// Types
 // ==============================
 
 FormPodActionsText.propTypes = {};

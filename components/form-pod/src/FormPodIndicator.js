@@ -24,12 +24,14 @@ export const FormPodIndicator = ({ icon: Icon, text, ...props }) => {
 };
 
 // ==============================
-// Types™
+// Types
 // ==============================
 
 FormPodIndicator.propTypes = {
 	/**
 	 * Indicator icon.
+	 *
+	 * This prop is required.
 	 */
 	icon: PropTypes.func.isRequired,
 
@@ -38,7 +40,7 @@ FormPodIndicator.propTypes = {
 	 *
 	 * Defaults to "Saving"
 	 */
-	text: PropTypes.string.isRequired,
+	text: PropTypes.string,
 };
 
 FormPodIndicator.defaultProps = {

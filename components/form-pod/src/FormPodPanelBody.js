@@ -24,7 +24,7 @@ export const FormPodPanelBody = ({ expanded, ...props }) => {
 };
 
 // ==============================
-// Types™
+// Types
 // ==============================
 
 FormPodPanelBody.propTypes = {

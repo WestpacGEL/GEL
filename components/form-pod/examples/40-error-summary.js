@@ -12,7 +12,7 @@ import {
 	FormPodActions,
 } from '../src';
 import { Alert } from '../../alert/src';
-// import { List } from '../../list/src'; TODO: implement list
+// import { List } from '../../list/src'; //TODO: implement list
 import { AlertIcon, HeadsetIcon, LiveChatIcon, RefreshIcon } from '../../icon/src';
 import { Button } from '../../button/src';
 
@@ -39,11 +39,12 @@ export default () => {
 					},
 				}}
 			/>
+
 			<FormPod preheading="Preheading" heading="Heading">
 				<FormPodPanel noBorderTop>
 					<Alert appearance="danger" icon={AlertIcon}>
 						{/* Nb. Tabindex="-1" for programmatically set focus */}
-						<h3 style={{ marginTop: 0, display: 'inline-block' }} tabIndex="-1">
+						<h3 style={{ marginTop: 0 }} tabIndex="-1">
 							Please fix the 4 errors listed below
 						</h3>
 
@@ -63,7 +64,7 @@ export default () => {
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
 					<FormPodPanelFooter
 						left={<FormPodContactList items={contactItems} />}
-						right={<FormPodIndicator icon={RefreshIcon} text="Saving" />}
+						right={<FormPodIndicator icon={RefreshIcon} />}
 					/>
 				</FormPodPanel>
 				<FormPodActions

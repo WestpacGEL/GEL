@@ -15,10 +15,8 @@ import { jsx, useTheme } from '@westpac/core';
 export const FormPodPanel = ({ noBorderTop, ...props }) => {
 	const { formPod } = useTheme();
 
-	// Common styling
 	const style = {
 		...formPod.panel,
-
 		...(noBorderTop ? { borderTop: null } : null),
 	};
 
@@ -26,14 +24,14 @@ export const FormPodPanel = ({ noBorderTop, ...props }) => {
 };
 
 // ==============================
-// Types™
+// Types
 // ==============================
 
 FormPodPanel.propTypes = {
 	/**
 	 * Remove top border.
 	 *
-	 * Required when the 'Error summary' alert is shown.
+	 * Enable when the 'Error summary' alert is shown.
 	 *
 	 * Defaults to "false"
 	 */

@@ -21,12 +21,11 @@ export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
 	const style = {
 		display: [null, 'flex'],
 		flexDirection: !reverse ? [null, 'row-reverse'] : null,
+		...formPod.actions,
 
 		'button + button': {
 			marginLeft: ['1.2rem', '0.8rem'], //gap
 		},
-
-		...formPod.actions,
 	};
 
 	const slots = [
@@ -42,7 +41,7 @@ export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
 };
 
 // ==============================
-// Types™
+// Types
 // ==============================
 
 FormPodActions.propTypes = {

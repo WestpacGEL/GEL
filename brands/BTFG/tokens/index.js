@@ -335,13 +335,16 @@ export default {
 
 	formPod: {
 		icon: {
-			borderWidth: '1px',
+			borderWidth: 1,
 			borderColor: COLORS.border,
 			backgroundColor: '#fff',
 			width: '6.6rem',
 			gap: '1.2rem',
 			padding: '1.4rem',
 			marginBottom: ['1.2rem', '-0.6rem'],
+		},
+		header: {
+			marginBottom: [24, 24, 30],
 		},
 		preheading: {
 			color: COLORS.muted,
@@ -375,6 +378,11 @@ export default {
 		},
 		actions: {
 			marginTop: '3rem',
+		},
+		actionsText: {
+			fontSize: '1.6rem',
+			textAlign: ['center', 'left'],
+			marginBottom: ['2.4rem', 0],
 		},
 	},
 

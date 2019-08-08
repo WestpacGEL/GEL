@@ -31,7 +31,7 @@ export const FormPodPanelFooter = ({ left, right, ...props }) => {
 };
 
 // ==============================
-// Types™
+// Types
 // ==============================
 
 FormPodPanelFooter.propTypes = {

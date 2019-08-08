@@ -4,12 +4,12 @@ import { Global, useTheme } from '@westpac/core';
 
 import {
 	FormPod,
+	FormPodActions,
+	FormPodContactList,
+	FormPodIndicator,
 	FormPodPanel,
 	FormPodPanelBody,
 	FormPodPanelFooter,
-	FormPodContactList,
-	FormPodIndicator,
-	FormPodActions,
 } from '../src';
 import { HeadsetIcon, LiveChatIcon, RefreshIcon } from '../../icon/src'; //until icon package is published
 import { Button } from '../../button/src'; //until icon package is published
@@ -45,12 +45,13 @@ export default () => {
 					},
 				}}
 			/>
+
 			<FormPod preheading="Preheading" heading="Heading">
 				<FormPodPanel>
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
 					<FormPodPanelFooter
 						left={<FormPodContactList items={contactItems} />}
-						right={<FormPodIndicator icon={RefreshIcon} text="Saving" />}
+						right={<FormPodIndicator icon={RefreshIcon} />}
 					/>
 				</FormPodPanel>
 				<FormPodActions
