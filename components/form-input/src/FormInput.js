@@ -24,7 +24,7 @@ export const FormInput = ({
 	children,
 	...props
 }) => {
-	const { colors, formInput, type } = useTheme();
+	const { colors, formInput, typography } = useTheme();
 
 	// Common styling
 	const styleCommon = {
@@ -35,7 +35,7 @@ export const FormInput = ({
 		fontWeight: formInput.fontWeight,
 		color: formInput.color,
 		backgroundColor: formInput.backgroundColor,
-		border: `${formInput.borderWidth} solid`,
+		border: `${formInput.borderWidth}px solid`,
 		borderColor:
 			invalid || props.ariaInvalid
 				? formInput.appearance.invalid.borderColor
@@ -45,20 +45,20 @@ export const FormInput = ({
 		verticalAlign: Tag === 'textarea' ? 'top' : inline ? 'middle' : null,
 
 		'&::placeholder': {
-			...formInput.placeholder,
 			opacity: 1, // Override Firefox's unusual default opacity
+			...formInput.placeholder,
 		},
 
 		// Focus styling (for all, not just keyboard users)
 		':focus': {
-			...type.link.focus,
+			...typography.link.focus,
 		},
 
 		// Disabled and read-only inputs
 		':disabled, &[readonly]': {
-			...formInput.disabled,
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
+			...formInput.disabled,
 		},
 
 		// Disable number input spinners/steppers
@@ -91,12 +91,12 @@ export const FormInput = ({
 
 	// Select element styling
 	const styleSelect = () => {
-		const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${
+		const caretWidth = 14;
+		const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="${caretWidth}" height="8" viewBox="0 0 14 8"><path fill="${
 			colors.muted
 		}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
-		const caretWidth = 14;
-		const gap = 8;
-		const paddingRight = parseInt(formInput.size[size].padding[1], 10) + caretWidth + gap;
+		const caretGap = formInput.select.caretGap;
+		const paddingRight = parseInt(formInput.size[size].padding[1], 10) + caretWidth + caretGap;
 
 		return Tag === 'select'
 			? {
@@ -138,7 +138,7 @@ export const FormInput = ({
 			type={Tag === 'input' ? 'text' : undefined}
 			{...props}
 		>
-			{Tag !== 'input' ? children : null}
+			{Tag === 'select' ? children : null}
 		</Tag>
 	);
 };
@@ -167,7 +167,7 @@ FormInput.propTypes = {
 	width: PropTypes.oneOf(options.width),
 
 	/**
-	 * Input input is invalid.
+	 * Invalid input mode.
 	 *
 	 * Defaults to "false"
 	 */
@@ -179,6 +179,13 @@ FormInput.propTypes = {
 	 * Defaults to "input"
 	 */
 	tag: PropTypes.oneOf(options.tag),
+
+	/**
+	 * The component children.
+	 *
+	 * Only select inputs render children.
+	 */
+	children: PropTypes.node,
 };
 
 FormInput.defaultProps = {
