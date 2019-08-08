@@ -658,22 +658,22 @@ export default {
 		appearance: {
 			success: {
 				color: COLORS.success,
-				backgroundColor: tint(COLORS.success, 0.1),
+				backgroundColor: tint(COLORS.success, 0.05),
 				borderColor: tint(COLORS.success, 0.5),
 			},
 			information: {
 				color: COLORS.information,
-				backgroundColor: tint(COLORS.information, 0.1),
+				backgroundColor: tint(COLORS.information, 0.05),
 				borderColor: tint(COLORS.information, 0.5),
 			},
 			warning: {
 				color: COLORS.warning,
-				backgroundColor: tint(COLORS.warning, 0.1),
+				backgroundColor: tint(COLORS.warning, 0.05),
 				borderColor: tint(COLORS.warning, 0.5),
 			},
 			danger: {
 				color: COLORS.danger,
-				backgroundColor: tint(COLORS.danger, 0.1),
+				backgroundColor: tint(COLORS.danger, 0.05),
 				borderColor: tint(COLORS.danger, 0.5),
 			},
 			system: {

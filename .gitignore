@@ -70,6 +70,8 @@ typings/
 # Miscellaneous
 *.sublime-project
 *.sublime-workspace
+*.code-workspace
+jsconfig.json
 .DS_Store
 bundle.js
 cypress/
