@@ -251,10 +251,7 @@ export const Core = ({ children, ...props }) => {
 	const styleTextExtensions = {
 		// Lead text
 		'.lead': {
-			marginBottom: 21,
-			fontSize: [16, 18],
-			fontWeight: 300,
-			lineHeight: 1.4,
+			...typography.lead,
 		},
 
 		// Text alignments

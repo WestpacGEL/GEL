@@ -101,7 +101,7 @@ export default {
 			fontStyle: 'normal',
 		},
 		blockquote: {
-			fontSize: '16px',
+			fontSize: 16,
 			fontWeight: 300,
 		},
 		mark: {
@@ -109,6 +109,12 @@ export default {
 		},
 		selection: {
 			backgroundColor: tint(COLORS.primary, 0.2),
+		},
+		lead: {
+			marginBottom: 21,
+			fontSize: [16, 18],
+			fontWeight: 300,
+			lineHeight: 1.4,
 		},
 		link: {
 			default: {
@@ -120,7 +126,7 @@ export default {
 			},
 			focus: {
 				outline: `2px solid ${COLORS.focus}`,
-				outlineOffset: '3px',
+				outlineOffset: 3,
 			},
 		},
 	},
