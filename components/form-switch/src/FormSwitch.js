@@ -22,22 +22,22 @@ export const FormSwitch = ({
 	block,
 	flip,
 	srOnlyText,
-	checked,
+	defaultChecked,
 	disabled,
 	children,
 	...props
 }) => {
 	const { formSwitch } = useTheme();
 
-	const [isChecked, setIsChecked] = useState(checked);
-	const toggle = () => setIsChecked(!isChecked);
+	const [checked, setChecked] = useState(defaultChecked);
+	const toggle = () => setChecked(!checked);
 
 	// Common styling
 	const common = {
 		position: 'relative',
 		display: block ? 'flex' : 'inline-flex',
 		flexWrap: 'wrap',
-		verticalAlign: 'top',
+		verticalAlign: 'middle',
 		marginRight: block ? null : formSwitch.marginRight,
 		marginBottom: formSwitch.marginBottom,
 		alignItems: 'center',
@@ -60,11 +60,11 @@ export const FormSwitch = ({
 				}}
 				name={name}
 				id={id}
-				defaultChecked={checked}
+				defaultChecked={defaultChecked}
 				disabled={disabled}
 			/>
 			{children && (
-				<FormSwitchText block={block} flip={flip} srOnlyText={srOnlyText}>
+				<FormSwitchText block={block} flip={flip} size={size} srOnlyText={srOnlyText}>
 					{children}
 				</FormSwitchText>
 			)}
@@ -87,7 +87,7 @@ FormSwitch.propTypes = {
 	 *
 	 * This prop is required.
 	 */
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 
 	/**
 	 * The form switch input element’s id.
@@ -99,7 +99,7 @@ FormSwitch.propTypes = {
 	/**
 	 * The form switch on/off text.
 	 */
-	toggleText: PropTypes.array,
+	toggleText: PropTypes.arrayOf(PropTypes.string),
 
 	/**
 	 * The form switch size.
@@ -137,7 +137,7 @@ FormSwitch.propTypes = {
 	 *
 	 * Defaults to "false".
 	 */
-	checked: PropTypes.bool,
+	defaultChecked: PropTypes.bool,
 
 	/**
 	 * The form switch is disaled.
@@ -160,6 +160,6 @@ FormSwitch.defaultProps = {
 	block: false,
 	flip: false,
 	srOnlyText: false,
-	checked: false,
+	defaultChecked: false,
 	disabled: false,
 };

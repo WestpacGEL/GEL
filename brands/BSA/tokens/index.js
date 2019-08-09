@@ -551,6 +551,9 @@ export default {
 			checked: {
 				color: '#fff',
 			},
+			disabled: {
+				color: COLORS.muted,
+			},
 		},
 		size: {
 			small: {

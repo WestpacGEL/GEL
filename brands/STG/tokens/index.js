@@ -551,6 +551,9 @@ export default {
 			checked: {
 				color: COLORS.text, //mapping unique to this brand
 			},
+			disabled: {
+				color: COLORS.muted,
+			},
 		},
 		size: {
 			small: {

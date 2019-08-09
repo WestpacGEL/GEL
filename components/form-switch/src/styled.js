@@ -15,13 +15,21 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // Component
 // ==============================
 
-export const FormSwitchText = ({ block, flip, srOnlyText, ...props }) => {
+export const FormSwitchText = ({ size, block, flip, srOnlyText, ...props }) => {
 	const { breakpoints, formSwitch } = useTheme();
 	const mq = paint(breakpoints);
 
 	const styleText = {
 		flex: block ? 1 : null,
+		display: 'flex',
+		alignItems: 'center',
+		minHeight: asArray(size).map(s => s && formSwitch.size[s].height),
 		...(gap => (flip ? { paddingLeft: gap } : { paddingRight: gap }))(formSwitch.text.gap),
+
+		'input:disabled ~ &': {
+			cursor: 'default',
+			...formSwitch.toggleText.disabled,
+		},
 	};
 
 	return srOnlyText ? <SrOnly {...props} /> : <span css={mq(styleText)} {...props} />;
@@ -85,7 +93,7 @@ export const FormSwitchToggle = ({ size, toggleText, ...props }) => {
 		},
 
 		'input:disabled ~ &': {
-			cursor: 'not-allowed',
+			cursor: 'default',
 			opacity: 0.5,
 		},
 	};
