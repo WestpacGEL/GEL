@@ -5,13 +5,18 @@ route: /accessibility-helpers
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { SrOnly } from './src/AccessibilityHelpers';
+import { SrOnly } from './src/SrOnly';
 
 # Accessibility helpers
 
-Components used to provide features for digital accessibility compliance. SrOnly visibility hides an element to all devices except screen readers.
+Components used to provide features for digital accessibility compliance.
+
+
+## Screen reader only text
+`<SrOnly />` visibly hides an element to all devices except screen readers.
 
 <Playground>
+	<p>The text below this message is visibily hidden...</p>
 	<SrOnly>This is screen reader only text</SrOnly>
 </Playground>
 
