@@ -3,12 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import { Global, jsx } from '@emotion/core';
 import { useTheme } from './Theme';
+import { paint } from './utils';
 
 import merge from 'lodash.merge';
 
-export const Core = ({ children, ...props }) => {
+export const Core = ({ children }) => {
 	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
-	const { colors, font, typography } = useTheme();
+	const { colors, breakpoints, font, typography } = useTheme();
+	const mq = paint(breakpoints);
 
 	// Handle keys
 	const keyHandler = event => {
@@ -300,7 +302,7 @@ export const Core = ({ children, ...props }) => {
 
 	return (
 		<>
-			<Global styles={merge(styleReset, styleTypography, styleFont, styleTextExtensions)} />
+			<Global styles={mq(merge(styleReset, styleTypography, styleFont, styleTextExtensions))} />
 			{children}
 		</>
 	);

@@ -116,7 +116,7 @@ export default {
 			color: COLORS.heading,
 		},
 		p: {
-			margin: '0.8571428572em 0',
+			margin: '0.8571428572rem 0',
 		},
 		dl: {},
 		dt: {
@@ -134,7 +134,7 @@ export default {
 			fontStyle: 'normal',
 		},
 		blockquote: {
-			fontSize: 16,
+			fontSize: '1.6rem',
 			fontWeight: 300,
 		},
 		mark: {
@@ -144,8 +144,8 @@ export default {
 			backgroundColor: tint(COLORS.primary, 0.2),
 		},
 		lead: {
-			marginBottom: 21,
-			fontSize: [16, 18],
+			marginBottom: '2.1rem',
+			fontSize: ['1.6rem', '1.8rem'],
 			fontWeight: 300,
 			lineHeight: 1.4,
 		},
