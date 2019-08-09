@@ -83,26 +83,26 @@ const options = {
 
 FormSwitch.propTypes = {
 	/**
-	 * The form switch input element’s name.
-	 *
-	 * This prop is required.
+	 * Input element name attribute.
 	 */
 	name: PropTypes.string,
 
 	/**
-	 * The form switch input element’s id.
+	 * Input element id attribute.
 	 *
 	 * This prop is required.
 	 */
 	id: PropTypes.string.isRequired,
 
 	/**
-	 * The form switch on/off text.
+	 * On/off text.
+	 *
+	 * This prop takes an array where the first index is the "on" text and second index is the "off" text e.g. "['Yes', 'No']"
 	 */
 	toggleText: PropTypes.arrayOf(PropTypes.string),
 
 	/**
-	 * The form switch size.
+	 * Form switch size.
 	 *
 	 * Defaults to "medium"
 	 */
@@ -119,35 +119,35 @@ FormSwitch.propTypes = {
 	block: PropTypes.bool,
 
 	/**
-	 * Flipped mode.
+	 * Reverse the horizontal orientation, renders the toggle on the left of the label text.
 	 *
 	 * Defaults to "false".
 	 */
 	flip: PropTypes.bool,
 
 	/**
-	 * Screen reader only text mode.
+	 * Enable ‘screen reader only’ label text mode.
 	 *
 	 * Defaults to "false".
 	 */
 	srOnlyText: PropTypes.bool,
 
 	/**
-	 * Enable the form switch by default.
+	 * Switch on by default.
 	 *
 	 * Defaults to "false".
 	 */
 	defaultChecked: PropTypes.bool,
 
 	/**
-	 * The form switch is disaled.
+	 * Disable the form switch.
 	 *
 	 * Defaults to "false".
 	 */
 	disabled: PropTypes.bool,
 
 	/**
-	 * Form check label text.
+	 * Label text.
 	 *
 	 * This prop is required, but can be visually hidden by enabling "srOnlyText" mode.
 	 */

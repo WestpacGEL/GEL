@@ -5,7 +5,7 @@ import { FormSwitch } from '../src';
 export default () => (
 	<>
 		<h3>Flipped switches</h3>
-		<FormSwitch name="ex1" id="ex1" flip>
+		<FormSwitch name="ex1" id="ex1" toggleText={['Yes', 'No']} flip>
 			Enable notifications
 		</FormSwitch>
 		<FormSwitch name="ex2" id="ex2" flip>
@@ -14,8 +14,8 @@ export default () => (
 		<hr />
 
 		<h3>Block switches</h3>
-		<FormSwitch name="ex3" id="ex3" block>
-			Turn notifications
+		<FormSwitch name="ex3" id="ex3" toggleText={['Yes', 'No']} block>
+			Enable notifications
 		</FormSwitch>
 		<FormSwitch name="ex4" id="ex4" block>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur corporis sint, facere
@@ -26,7 +26,7 @@ export default () => (
 		<hr />
 
 		<h3>Flipped block switches</h3>
-		<FormSwitch name="ex5" id="ex5" flip block>
+		<FormSwitch name="ex5" id="ex5" toggleText={['Yes', 'No']} flip block>
 			Enable notifications
 		</FormSwitch>
 		<FormSwitch name="ex6" id="ex6" flip block>

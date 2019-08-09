@@ -8,7 +8,7 @@ export default () => (
 		<FormSwitch name="ex1" id="ex1" size={['medium', 'xlarge']} block>
 			Extra large for MD breakpoint and wider
 		</FormSwitch>
-		<FormSwitch name="ex2" id="ex2" size={['small', 'small', 'xlarge']} block>
+		<FormSwitch name="ex2" id="ex2" size={['small', null, 'xlarge']} block>
 			Small but Extra large for LG breakpoint
 		</FormSwitch>
 

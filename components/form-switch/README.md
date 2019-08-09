@@ -1,3 +1,3 @@
-# @westpac/**COMPONENT_KEY**
+# @westpac/form-switch
 
-**COMPONENT_DESCRIPTION**
+The form switch component.
