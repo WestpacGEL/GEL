@@ -344,8 +344,8 @@ export default {
 		fontWeight: 400,
 		color: COLORS.text,
 		backgroundColor: '#fff',
-		borderWidth: '1px',
-		borderRadius: '3px',
+		borderWidth: 1,
+		borderRadius: 3,
 		fontXFactor: 1.81,
 		appearance: {
 			default: {
@@ -358,23 +358,23 @@ export default {
 		size: {
 			small: {
 				padding: ['3px', '9px', '4px'],
-				fontSize: '14px',
-				height: '30px',
+				fontSize: 14,
+				height: 30,
 			},
 			medium: {
 				padding: ['5px', '12px'],
-				fontSize: '16px',
-				height: '36px',
+				fontSize: 16,
+				height: 36,
 			},
 			large: {
 				padding: ['8px', '15px'],
-				fontSize: '16px',
-				height: '42px',
+				fontSize: 16,
+				height: 42,
 			},
 			xlarge: {
 				padding: ['9px', '18px', '10px'],
-				fontSize: '18px',
-				height: '48px',
+				fontSize: 18,
+				height: 48,
 			},
 		},
 		disabled: {
@@ -385,19 +385,22 @@ export default {
 			fontWeight: 300,
 			color: tint(COLORS.Text, 0.5),
 		},
+		select: {
+			caretGap: 8,
+		},
 		textarea: {
 			size: {
 				small: {
-					minHeight: '54px',
+					minHeight: 54,
 				},
 				medium: {
-					minHeight: '60px',
+					minHeight: 60,
 				},
 				large: {
-					minHeight: '66px',
+					minHeight: 66,
 				},
 				xlarge: {
-					minHeight: '72px',
+					minHeight: 72,
 				},
 			},
 		},
