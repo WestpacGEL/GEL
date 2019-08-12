@@ -98,12 +98,13 @@ export const FormCheckItem = ({
 			right: flip ? 0 : null,
 			width: controlWidth,
 			height: controlHeight,
-			border: `${formCheck.control.borderWidth}px solid ${formCheck.control.default.borderColor}`,
+			border: `${formCheck.control.borderWidth} solid ${formCheck.control.default.borderColor}`,
 			background: formCheck.control.default.backgroundColor,
 			borderRadius: formCheck.control.check[type].borderRadius,
 
+			// Focus state
 			'input:focus + &': {
-				...(isKeyboardUser && typography.link.focus),
+				...(isKeyboardUser && typography.link.focus), //TODO: needs access to `isKeyboardUser` state
 			},
 
 			// Disabled state
@@ -125,8 +126,7 @@ export const FormCheckItem = ({
 
 			width: type === 'radio' ? 0 : checkWidth,
 			height: type === 'radio' ? 0 : checkHeight,
-			borderWidth:
-				type === 'radio' ? checkWidth / 2 : `0 0 ${checkboxStroke}px ${checkboxStroke}px`,
+			borderWidth: type === 'radio' ? checkWidth / 2 : `0 0 ${checkboxStroke} ${checkboxStroke}`,
 			borderRadius: type === 'radio' ? '50%' : null,
 			background: type === 'radio' ? formCheck.control.check.radio.backgroundColor : null,
 			transform: type === 'radio' ? null : 'rotate(-54deg)',

@@ -361,7 +361,7 @@ export default {
 
 	formCheck: {
 		control: {
-			borderWidth: 1,
+			borderWidth: '1px',
 			default: {
 				borderColor: COLORS.hero,
 				backgroundColor: 'transparent',
@@ -396,7 +396,7 @@ export default {
 					checkbox: {
 						width: 14,
 						height: 8,
-						stroke: 3,
+						stroke: '3px',
 						tweak: -2,
 					},
 					radio: {
@@ -422,7 +422,7 @@ export default {
 					checkbox: {
 						width: 18,
 						height: 10,
-						stroke: 4,
+						stroke: '4px',
 						tweak: -2,
 					},
 					radio: {
