@@ -24,3 +24,23 @@ export { SlackSymbol } from './symbols/SlackSymbol';
 export { TwitterSymbol } from './symbols/TwitterSymbol';
 export { YammerSymbol } from './symbols/YammerSymbol';
 export { YouTubeSymbol } from './symbols/YouTubeSymbol';
+
+export { BOMLogo } from './logos/BOMLogo';
+export { BOMShieldLogo } from './logos/BOMShieldLogo';
+export { BSALogo } from './logos/BSALogo';
+export { BSAStackedLogo } from './logos/BSAStackedLogo';
+export { BTFGLogo } from './logos/BTFGLogo';
+export { BTFGStackedLogo } from './logos/BTFGStackedLogo';
+export { STGDragonLogo } from './logos/STGDragonLogo';
+export { STGLogo } from './logos/STGLogo';
+export { WBCLiveLogo } from './logos/WBCLiveLogo';
+export { WBCLogo } from './logos/WBCLogo';
+export { WBGLogo } from './logos/WBGLogo';
+export { RedAvatarCircleLogo } from './logos/RedAvatarCircleLogo';
+export { RedAvatarCircleReversedLogo } from './logos/RedAvatarCircleReversedLogo';
+export { RedAvatarLogo } from './logos/RedAvatarLogo';
+
+export { MultibrandLargeLogo } from './logos/MultibrandLargeLogo';
+export { MultibrandSmallLogo } from './logos/MultibrandSmallLogo';
+export { MultibrandSmallCenterLogo } from './logos/MultibrandSmallCenterLogo';
+export { MultibrandSmallRightLogo } from './logos/MultibrandSmallRightLogo';

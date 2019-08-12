@@ -1,14 +1,20 @@
 import React from 'react';
 
-import { MastercardAcceptedSymbol, BPayLandSymbol, AppleStoreSymbol } from '../src';
+import {
+	MastercardAcceptedSymbol,
+	BPayLandSymbol,
+	AppleStoreSymbol,
+	WBCLogo,
+	STGLogo,
+} from '../src';
 import { Cell, Grid, Name } from './_util';
 
-const examples = [MastercardAcceptedSymbol, BPayLandSymbol, AppleStoreSymbol];
+const symbols = [MastercardAcceptedSymbol, BPayLandSymbol, AppleStoreSymbol, WBCLogo, STGLogo];
 
 export default () => (
 	<>
 		<Grid>
-			{examples.map(Symbol => {
+			{symbols.map(Symbol => {
 				return (
 					<Cell key={Symbol.name}>
 						<Symbol />

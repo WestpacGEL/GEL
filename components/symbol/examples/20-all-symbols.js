@@ -6,8 +6,7 @@ import { jsx } from '@westpac/core';
 import * as components from '../src';
 import { Cell, Grid, Name } from './_util';
 
-// can't believe this works...
-const symbols = Object.keys(components);
+const symbols = Object.keys(components).filter(s => s.includes('Symbol'));
 
 export default () => {
 	return (
