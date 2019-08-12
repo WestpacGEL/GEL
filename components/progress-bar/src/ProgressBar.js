@@ -54,12 +54,12 @@ export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) 
 			<div
 				css={{ ...styleBar, ...{ width: `${valuenow}%` } }}
 				role="progressbar"
-				aria-valuemin={valuemin}
-				aria-valuemax={valuemax}
+				aria-valuemin="0"
+				aria-valuemax="100"
 				aria-valuenow={valuenow}
 				aria-live="polite"
 			>
-				{!skinny && <span css={{ margin: '0 12px' }}>45%</span>}
+				{!skinny && <span css={{ margin: '0 12px' }}>{valuenow}%</span>}
 			</div>
 		</div>
 	);
