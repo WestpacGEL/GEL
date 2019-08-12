@@ -71,9 +71,17 @@ export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) 
 
 ProgressBar.propTypes = {
 	/**
-	 * Describe `someProperty` here
+	 * The progress bar value in percentage.
 	 */
-	someProperty: PropTypes.string,
+	valuenow: PropTypes.number,
+	/**
+	 * Skinny mode. The progress bar looks very thin.
+	 *
+	 * Defaults to "false"
+	 */
+	skinny: PropTypes.bool,
 };
 
-ProgressBar.defaultProps = {};
+ProgressBar.defaultProps = {
+	skinny: false,
+};
