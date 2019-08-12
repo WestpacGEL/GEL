@@ -100,7 +100,7 @@ export default {
 	},
 	font: FONT(),
 	typography: {
-		fontSize: 10,
+		fontSize: '62.5%',
 		body: {
 			fontFamily:
 				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
@@ -116,7 +116,7 @@ export default {
 			color: COLORS.heading,
 		},
 		p: {
-			margin: '0.8571428572rem 0',
+			margin: '1.2rem 0',
 		},
 		dl: {},
 		dt: {
