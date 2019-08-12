@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
+import { SrOnly } from '../../accessibility-helpers/src';
+
 // ==============================
 // Utils
 // ==============================
@@ -60,6 +62,7 @@ export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) 
 				aria-live="polite"
 			>
 				{!skinny && <span css={{ margin: '0 12px' }}>{valuenow}%</span>}
+				<SrOnly>Complete</SrOnly>
 			</div>
 		</div>
 	);
