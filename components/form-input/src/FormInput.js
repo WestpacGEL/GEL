@@ -77,7 +77,9 @@ export const FormInput = ({
 	const styleSize = {
 		padding: formInput.size[size].padding.join(' '),
 		fontSize: formInput.size[size].fontSize,
-		height: formInput.size[size].height,
+		height: `calc(${formInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
+			formInput.size[size].padding
+		)} + ${formInput.borderWidth * 2}px)`,
 	};
 
 	// Input fixed width styling
