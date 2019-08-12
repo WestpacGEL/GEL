@@ -434,6 +434,17 @@ export default {
 		},
 	},
 
+	progressBar: {
+		borderWidth: '1px',
+		borderColor: COLORS.border,
+		marginBottom: '21px',
+		fontSize: '14px',
+		fontWeight: 700,
+		lineHeight: '20px',
+		color: 'white',
+		backgroundColor: COLORS.hero,
+	},
+
 	table: {
 		borderWidth: '1px',
 		marginBottom: '21px',

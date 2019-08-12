@@ -16,14 +16,17 @@ import { jsx, useTheme } from '@westpac/core';
  * Progress Bar: A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.
  */
 export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) => {
+	const { progressBar } = useTheme();
+
 	// Common styling
 	const common = {
 		height: skinny ? 10 : 24,
-		marginBottom: 21,
+		marginBottom: progressBar.marginBottom,
 		overflow: 'hidden',
-		backgroundColor: '#fff',
+		backgroundColor: 'white',
 		borderRadius: 1000,
-		border: '1px solid #d7d2cb',
+		border: `${progressBar.borderWidth} solid`,
+		borderColor: progressBar.borderColor,
 		position: 'relative',
 	};
 
@@ -32,21 +35,18 @@ export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) 
 		float: 'left',
 		width: 0,
 		height: '100%',
-		fontSize: 14,
-		fontWeight: 700,
-		lineHeight: '20px',
-		color: '#fff',
+		fontSize: progressBar.fontSize,
+		fontWeight: progressBar.fontWeight,
+		lineHeight: progressBar.lineHeight,
+		color: progressBar.color,
 		textAlign: 'right',
-		backgroundColor: '#621a4b',
+		backgroundColor: progressBar.backgroundColor,
 		borderRadius: 999,
-		border: '1px solid #fff',
+		border: `${progressBar.borderWidth} solid`,
+		borderColor: 'white',
 		zIndex: 2,
 		overflow: 'hidden',
 		transition: 'width .6s ease',
-	};
-
-	const styleText = {
-		margin: '0 12px',
 	};
 
 	return (
@@ -59,7 +59,7 @@ export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) 
 				aria-valuenow={valuenow}
 				aria-live="polite"
 			>
-				{!skinny && <span css={styleText}>45%</span>}
+				{!skinny && <span css={{ margin: '0 12px' }}>45%</span>}
 			</div>
 		</div>
 	);
