@@ -59,6 +59,15 @@ export const ProgressBar = ({ valueNow, skinny, ...props }) => {
 		zIndex: 2,
 		overflow: 'hidden',
 		transition: 'width .6s ease',
+
+		'@media print': {
+			backgroundColor: 'black !important',
+
+			span: {
+				color: 'white !important',
+				backgroundColor: 'black !important',
+			},
+		},
 	};
 
 	return (
