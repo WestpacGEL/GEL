@@ -435,7 +435,7 @@ export default {
 	},
 
 	progressBar: {
-		borderWidth: '1px',
+		borderWidth: 1,
 		borderColor: COLORS.border,
 		marginBottom: '21px',
 		fontSize: '14px',
@@ -443,6 +443,14 @@ export default {
 		lineHeight: '20px',
 		color: 'white',
 		backgroundColor: COLORS.hero,
+		size: {
+			default: {
+				height: 24,
+			},
+			skinny: {
+				height: 10,
+			},
+		},
 	},
 
 	table: {

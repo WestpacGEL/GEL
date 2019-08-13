@@ -17,19 +17,29 @@ import { SrOnly } from '../../accessibility-helpers/src';
 /**
  * Progress Bar: A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.
  */
-export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) => {
+export const ProgressBar = ({ valueNow, skinny, ...props }) => {
 	const { progressBar } = useTheme();
 
 	// Common styling
 	const common = {
-		height: skinny ? 10 : 24,
+		height: skinny ? progressBar.size.skinny.height : progressBar.size.default.height,
 		marginBottom: progressBar.marginBottom,
 		overflow: 'hidden',
 		backgroundColor: 'white',
-		borderRadius: 1000,
-		border: `${progressBar.borderWidth} solid`,
+		borderRadius: skinny ? progressBar.size.skinny.height : progressBar.size.default.height,
+		border: `${progressBar.borderWidth}px solid`,
 		borderColor: progressBar.borderColor,
 		position: 'relative',
+
+		'::after': {
+			content: '"0%"',
+			position: 'absolute',
+			left: '10px',
+			color: '#575f65',
+			fontSize: '14px',
+			fontWeight: 700,
+			zIndex: 1,
+		},
 	};
 
 	const styleBar = {
@@ -43,8 +53,8 @@ export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) 
 		color: progressBar.color,
 		textAlign: 'right',
 		backgroundColor: progressBar.backgroundColor,
-		borderRadius: 999,
-		border: `${progressBar.borderWidth} solid`,
+		borderRadius: skinny ? progressBar.size.skinny.height : progressBar.size.default.height,
+		border: `${progressBar.borderWidth}px solid`,
 		borderColor: 'white',
 		zIndex: 2,
 		overflow: 'hidden',
@@ -54,14 +64,15 @@ export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) 
 	return (
 		<div css={common} {...props}>
 			<div
-				css={{ ...styleBar, ...{ width: `${valuenow}%` } }}
+				css={styleBar}
+				style={{ width: `${valueNow}%` }}
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
-				aria-valuenow={valuenow}
+				aria-valuenow={valueNow}
 				aria-live="polite"
 			>
-				{!skinny && <span css={{ margin: '0 12px' }}>{valuenow}%</span>}
+				{!skinny && <span css={{ margin: '0 12px' }}>{valueNow}%</span>}
 				<SrOnly>Complete</SrOnly>
 			</div>
 		</div>
@@ -74,11 +85,11 @@ export const ProgressBar = ({ valuemin, valuemax, valuenow, skinny, ...props }) 
 
 ProgressBar.propTypes = {
 	/**
-	 * The progress bar value in percentage.
+	 * The progress bar value as a percentage.
 	 */
-	valuenow: PropTypes.number,
+	valueNow: PropTypes.number,
 	/**
-	 * Skinny mode. The progress bar looks very thin.
+	 * Skinny mode.
 	 *
 	 * Defaults to "false"
 	 */
