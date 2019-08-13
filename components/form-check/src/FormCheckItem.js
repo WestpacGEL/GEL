@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useTheme, useIsKeyboardUser } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -12,18 +12,9 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormCheckItem = ({
-	type,
-	size,
-	inline,
-	flip,
-	name,
-	id,
-	isKeyboardUser,
-	children,
-	...props
-}) => {
+export const FormCheckItem = ({ type, size, inline, flip, name, id, children, ...props }) => {
 	const { formCheck, typography } = useTheme();
+	const isKeyboardUser = useIsKeyboardUser();
 
 	const controlWidth = formCheck.size[size].control.width;
 	const controlHeight = formCheck.size[size].control.width;

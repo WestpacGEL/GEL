@@ -12,21 +12,12 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormCheck = ({
-	type,
-	name,
-	size,
-	inline,
-	flip,
-	isKeyboardUser,
-	children,
-	...props
-}) => {
+export const FormCheck = ({ type, name, size, inline, flip, children, ...props }) => {
 	const styleCommon = {};
 
 	// Pass the selected props on to children
 	const giftedChildren = Children.map(children, child =>
-		cloneElement(child, { type, name, size, inline, flip, isKeyboardUser })
+		cloneElement(child, { type, name, size, inline, flip })
 	);
 
 	return (
