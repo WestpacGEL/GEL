@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useIsKeyboardUser, paint } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -29,7 +29,10 @@ export const Button = ({
 	...props
 }) => {
 	const { breakpoints, button } = useTheme();
+	const isKeyboardUser = useIsKeyboardUser();
 	const mq = paint(breakpoints);
+
+	console.log(`button: ${isKeyboardUser}`);
 
 	// Common styling
 	const styleCommon = {

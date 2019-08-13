@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { jsx } from '@emotion/core';
@@ -8,6 +8,8 @@ import { Core } from './Core';
 
 // TODO: is there a useful "default" value we should add here?
 export const ThemeContext = createContext();
+
+export const UserModeContext = createContext();
 
 export const useTheme = () => {
 	const themeObject = useContext(ThemeContext);
@@ -20,6 +22,10 @@ export const useTheme = () => {
 	return themeObject;
 };
 
+export const useIsKeyboardUser = () => {
+	return useContext(UserModeContext);
+};
+
 // ==============================
 // Utils
 // ==============================
@@ -29,10 +35,34 @@ export const useTheme = () => {
 // ==============================
 
 export const GEL = ({ brand, children, ...props }) => {
+	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
+
+	// Handle keys
+	const keyHandler = event => {
+		console.log('keyHander called');
+
+		if (event.key === 'Tab') {
+			setIsKeyboardUser(true);
+		}
+	};
+
+	// Bind key events
+	useEffect(
+		() => {
+			window.document.addEventListener('keydown', keyHandler, { once: true });
+			return () => {
+				window.document.removeEventListener('keydown', keyHandler);
+			};
+		},
+		[isKeyboardUser]
+	);
+
 	return (
-		<ThemeContext.Provider value={brand} {...props}>
-			<Core>{children}</Core>
-		</ThemeContext.Provider>
+		<UserModeContext.Provider value={isKeyboardUser} {...props}>
+			<ThemeContext.Provider value={brand} {...props}>
+				<Core>{children}</Core>
+			</ThemeContext.Provider>
+		</UserModeContext.Provider>
 	);
 };
 
