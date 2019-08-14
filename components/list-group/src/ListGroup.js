@@ -36,9 +36,9 @@ export const ListGroup = ({ children }) => {
 
 ListGroup.propTypes = {
 	/**
-	 * Describe `someProperty` here
+	 * The content for this list group.
 	 */
-	someProperty: PropTypes.string,
+	children: PropTypes.node,
 };
 
 ListGroup.defaultProps = {};
