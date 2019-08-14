@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
+import { FormContext } from './Form';
 
 // ==============================
 // Utils
@@ -12,17 +13,17 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormHint = ({ tag: Tag, size, spacing, inline, ...props }) => {
-	const { colors, form } = useTheme();
+export const FormHint = ({ tag: Tag, ...props }) => {
+	const { form } = useTheme();
+	const { spacing } = useContext(FormContext);
 
-	// Common styling
-	const styleCommon = {
+	const common = {
 		color: form.hint.color,
 		fontSize: form.hint.fontSize,
 		...form.hint.spacing[spacing],
 	};
 
-	return <Tag css={styleCommon} {...props} />;
+	return <Tag css={common} {...props} />;
 };
 
 // ==============================

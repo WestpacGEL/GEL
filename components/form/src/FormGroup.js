@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
+import { FormContext } from './Form';
 
 // ==============================
 // Utils
@@ -14,34 +15,25 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // Component
 // ==============================
 
-export const FormGroup = ({ primary, size, spacing, inline, children, ...props }) => {
+export const FormGroup = ({ primary, ...props }) => {
 	const { breakpoints, form } = useTheme();
+	const { spacing, inline } = useContext(FormContext);
 	const mq = paint(breakpoints);
 
-	// Common styling
-	const styleCommon = {
+	const common = {
 		display: inline ? [null, 'inline-block'] : null,
 		verticalAlign: inline ? [null, 'middle'] : null,
 		marginBottom: inline
-			? [
-					form.group.spacing[spacing].marginBottom[0] || form.group.spacing[spacing].marginBottom,
-					null,
-			  ]
+			? [(mb => mb[0] || mb)(form.group.spacing[spacing].marginBottom), 0]
 			: form.group.spacing[spacing].marginBottom,
 		textAlign: primary ? 'center' : null,
+
+		'& + &': {
+			...(inline && form.group.inline),
+		},
 	};
 
-	// Pass the selected styling props on to children
-	// TODO allow any children props to take precedence if provided
-	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child) ? cloneElement(child, { size, spacing, inline }) : child;
-	});
-
-	return (
-		<div css={mq(styleCommon)} {...props}>
-			{giftedChildren}
-		</div>
-	);
+	return <div css={mq(common)} {...props} />;
 };
 
 // ==============================

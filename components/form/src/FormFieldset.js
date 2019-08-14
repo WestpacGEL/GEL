@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
-
-import { FormLabel } from './';
+import { FormLabel } from './FormLabel';
+import { FormContext } from './Form';
 
 // ==============================
 // Utils
@@ -14,9 +14,10 @@ import { FormLabel } from './';
 // Component
 // ==============================
 
-export const FormFieldset = ({ legend, size, spacing, inline, children, ...props }) => {
-	// Common styling
-	const styleCommon = {
+export const FormFieldset = ({ legend, children, ...props }) => {
+	const { spacing } = useContext(FormContext);
+
+	const common = {
 		border: 'none',
 		margin: 0,
 		padding: 0,
@@ -30,18 +31,12 @@ export const FormFieldset = ({ legend, size, spacing, inline, children, ...props
 		},
 	};
 
-	// Pass the selected styling props on to children
-	// TODO allow any children props to take precedence if provided
-	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child) ? cloneElement(child, { size, spacing, inline }) : child;
-	});
-
 	return (
-		<fieldset css={styleCommon} {...props}>
-			<FormLabel tag="legend" spacing={spacing} inline>
+		<fieldset css={common} {...props}>
+			<FormLabel tag="legend" spacing={spacing}>
 				{legend}
 			</FormLabel>
-			{giftedChildren}
+			{children}
 		</fieldset>
 	);
 };

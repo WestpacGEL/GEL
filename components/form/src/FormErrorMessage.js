@@ -12,21 +12,23 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormErrorMessage = ({ tag: Tag, size, spacing, inline, ...props }) => {
+export const FormErrorMessage = ({ tag: Tag, ...props }) => {
 	const { form } = useTheme();
 
-	// Common styling
-	const styleCommon = {
-		...form.errorMessage,
+	return (
+		<Tag
+			css={{
+				...form.errorMessage,
 
-		// Multiple error messages styled in a list
-		'ul&, ol&': {
-			listStyle: 'none',
-			paddingLeft: 0,
-		},
-	};
-
-	return <Tag css={styleCommon} {...props} />;
+				// Multiple error messages styled in a list
+				'ul&, ol&': {
+					listStyle: 'none',
+					paddingLeft: 0,
+				},
+			}}
+			{...props}
+		/>
+	);
 };
 
 // ==============================

@@ -1,8 +1,10 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
+
+export const FormContext = createContext({ size: null, spacing: null, inline: null });
 
 // ==============================
 // Utils
@@ -13,13 +15,11 @@ import { jsx } from '@westpac/core';
 // ==============================
 
 export const Form = ({ size, spacing, inline, children, ...props }) => {
-	// Pass the selected styling props on to children
-	// TODO allow any children props to take precedence if provided
-	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child) ? cloneElement(child, { size, spacing, inline }) : child;
-	});
-
-	return <form {...props}>{giftedChildren}</form>;
+	return (
+		<FormContext.Provider value={{ size, spacing, inline }}>
+			<form {...props}>{children}</form>
+		</FormContext.Provider>
+	);
 };
 
 // ==============================

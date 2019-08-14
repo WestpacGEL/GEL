@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
@@ -12,25 +12,15 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormInputs = ({ horizontal, size, spacing, inline, children, ...props }) => {
-	// Common styling
-	const styleCommon = {
-		display: horizontal ? 'flex' : null,
-		flexWrap: horizontal ? 'wrap' : null,
-	};
-
-	// Pass the selected styling props on to children
-	// TODO allow any children props to take precedence if provided
-	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child)
-			? cloneElement(child, { horizontal, size, spacing, inline })
-			: child;
-	});
-
+export const FormInputs = ({ horizontal, ...props }) => {
 	return (
-		<div css={styleCommon} {...props}>
-			{giftedChildren}
-		</div>
+		<div
+			css={{
+				display: horizontal ? 'flex' : null,
+				flexWrap: horizontal ? 'wrap' : null,
+			}}
+			{...props}
+		/>
 	);
 };
 

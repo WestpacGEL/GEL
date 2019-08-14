@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
+import { FormContext } from './Form';
 
 // ==============================
 // Utils
@@ -12,18 +13,22 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormLabel = ({ sublabel, tag: Tag, htmlFor, size, spacing, inline, ...props }) => {
+export const FormLabel = ({ sublabel, tag: Tag, htmlFor, ...props }) => {
 	const { form } = useTheme();
+	const { spacing } = useContext(FormContext);
 
-	// Common styling
-	const styleCommon = {
-		display: 'inline-block',
-		fontWeight: form.label.fontWeight,
-		...form.label.spacing[spacing],
-		...(sublabel && form.label.sublabel), //overrides spacing (sublabel overrides marginBottom)
-	};
-
-	return <Tag css={styleCommon} htmlFor={htmlFor} {...props} />;
+	return (
+		<Tag
+			css={{
+				display: 'inline-block',
+				fontWeight: form.label.fontWeight,
+				...form.label.spacing[spacing],
+				...(sublabel && form.label.sublabel), //overrides spacing (sublabel overrides marginBottom)
+			}}
+			htmlFor={htmlFor}
+			{...props}
+		/>
+	);
 };
 
 // ==============================

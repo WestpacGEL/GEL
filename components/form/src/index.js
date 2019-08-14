@@ -9,3 +9,4 @@ export { FormInputsItem } from './FormInputsItem';
 export { FormLabel } from './FormLabel';
 export { FormSection } from './FormSection';
 export { FormSectionImg } from './FormSectionImg';
+export { FormContext } from './Form';

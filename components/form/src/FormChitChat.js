@@ -12,16 +12,11 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormChitChat = ({ tag: Tag, size, spacing, inline, ...props }) => {
+export const FormChitChat = ({ tag: Tag, ...props }) => {
 	const { breakpoints, form } = useTheme();
 	const mq = paint(breakpoints);
 
-	// Common styling
-	const styleCommon = {
-		...form.chitchat,
-	};
-
-	return <Tag css={mq({ ...styleCommon })} {...props} />;
+	return <Tag css={mq({ ...form.chitchat })} {...props} />;
 };
 
 // ==============================

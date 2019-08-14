@@ -12,7 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormSectionImg = ({ spacing, inline, ...props }) => {
+export const FormSectionImg = props => {
 	const { breakpoints, form } = useTheme();
 	const mq = paint(breakpoints);
 
