@@ -12,7 +12,16 @@ import { Breadcrumb } from './src/Breadcrumb';
 Write your docs here
 
 <Playground>
-	<Breadcrumb />
+	<Breadcrumb arrItem={[['Home', '/'], ['Personal', '/personal-banking/']]} />
+
+    	<Breadcrumb
+    		arrItem={[
+    			['Home', '/'],
+    			['Personal', '/personal-banking/'],
+    			['Credit cards', '/personal-banking/credit-cards/'],
+    		]}
+    	/>
+
 </Playground>
 
 <PropsTable of={Breadcrumb} />
