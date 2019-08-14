@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 import { SrOnly } from '../../accessibility-helpers/src';
@@ -59,9 +60,10 @@ export const Breadcrumb = ({ arrItem, ...props }) => {
 						</li>
 					) : (
 						<li key={`breadcrumb-${index}`} css={styleItem}>
-							<a href={item[1]} css={styleLink}>
+							<Link to={item[1]} css={styleLink}>
 								{item[0]}
-							</a>
+							</Link>
+
 							<ArrowRightIcon
 								size="small"
 								color={breadcrumb.separator.color}
