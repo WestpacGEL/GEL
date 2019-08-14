@@ -16,14 +16,15 @@ import { jsx, useTheme } from '@westpac/core';
  * List Group: List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content. Ideal for settings pages or preferences.
  */
 export const ListGroup = ({ children }) => {
+	const { listGroup } = useTheme();
 	const common = {
 		listStyle: 'none',
-		margin: 0,
-		padding: 0,
+		margin: listGroup.margin,
+		padding: listGroup.padding,
 		display: 'inline-block',
-		border: '1px solid #d7d2cb',
+		border: `${listGroup.borderWidth} solid ${listGroup.borderColor}`,
 		borderBottom: '0 none',
-		borderRadius: '3px',
+		borderRadius: listGroup.borderRadius,
 	};
 
 	return <ul css={common}>{children}</ul>;
