@@ -1,31 +1,16 @@
 /** @jsx jsx */
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Global, jsx } from '@emotion/core';
-import { useTheme } from './Theme';
+import { useTheme, UserModeContext } from './Theme';
 import { paint } from './utils';
 
 import merge from 'lodash.merge';
 
 export const Core = ({ children }) => {
-	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
 	const { colors, breakpoints, font, typography } = useTheme();
+	const isKeyboardUser = useContext(UserModeContext);
 	const mq = paint(breakpoints);
-
-	// Handle keys
-	const keyHandler = event => {
-		if (event.key === 'Tab') {
-			setIsKeyboardUser(true);
-		}
-	};
-
-	// Bind key events
-	useEffect(() => {
-		window.document.addEventListener('keydown', keyHandler);
-		return () => {
-			window.document.removeEventListener('keydown', keyHandler);
-		};
-	});
 
 	// Global reset styling
 	const styleReset = {
