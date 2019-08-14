@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
+import { FormContext } from '../../form/src';
 
 import svgToTinyDataURI from 'mini-svg-data-uri';
 
@@ -27,11 +28,14 @@ export const FormInput = ({
 	...props
 }) => {
 	const { colors, formInput, typography } = useTheme();
+	const formContext = useContext(FormContext);
+
+	const formInputInline = formContext.inline || inline;
 
 	// Common styling
 	const styleCommon = {
-		display: inline ? 'inline-block' : 'block',
-		width: inline ? 'auto' : '100%',
+		display: formInputInline ? 'inline-block' : 'block',
+		width: formInputInline ? 'auto' : '100%',
 		appearance: 'none',
 		lineHeight: formInput.lineHeight,
 		fontWeight: formInput.fontWeight,
@@ -44,7 +48,7 @@ export const FormInput = ({
 				: formInput.appearance.default.borderColor,
 		borderRadius: formInput.borderRadius,
 		transition: 'border 0.2s ease',
-		verticalAlign: Tag === 'textarea' ? 'top' : inline ? 'middle' : null,
+		verticalAlign: Tag === 'textarea' ? 'top' : formInputInline ? 'middle' : null,
 		padding: formInput.size[size].padding.join(' '),
 		fontSize: formInput.size[size].fontSize,
 		height: `calc(${formInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
@@ -54,11 +58,6 @@ export const FormInput = ({
 		'&::placeholder': {
 			opacity: 1, // Override Firefox's unusual default opacity
 			...formInput.placeholder,
-		},
-
-		// Focus styling (for all, not just keyboard users)
-		':focus': {
-			...typography.link.focus,
 		},
 
 		// Focus styling (for all, not just keyboard users)
