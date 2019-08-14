@@ -10,6 +10,8 @@ import svgToTinyDataURI from 'mini-svg-data-uri';
 // Utils
 // ==============================
 
+const round = f => Math.round(f * 100) / 100; //2DP
+
 // ==============================
 // Component
 // ==============================
@@ -35,7 +37,7 @@ export const FormInput = ({
 		fontWeight: formInput.fontWeight,
 		color: formInput.color,
 		backgroundColor: formInput.backgroundColor,
-		border: `${formInput.borderWidth}px solid`,
+		border: `${formInput.borderWidth} solid`,
 		borderColor:
 			invalid || props.ariaInvalid
 				? formInput.appearance.invalid.borderColor
@@ -43,6 +45,11 @@ export const FormInput = ({
 		borderRadius: formInput.borderRadius,
 		transition: 'border 0.2s ease',
 		verticalAlign: Tag === 'textarea' ? 'top' : inline ? 'middle' : null,
+		padding: formInput.size[size].padding.join(' '),
+		fontSize: formInput.size[size].fontSize,
+		height: `calc(${formInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
+			formInput.size[size].padding
+		)} + ${(bw => `${bw} + ${bw}`)(formInput.borderWidth)})`,
 
 		'&::placeholder': {
 			opacity: 1, // Override Firefox's unusual default opacity
@@ -73,74 +80,62 @@ export const FormInput = ({
 		},
 	};
 
-	// Input size styling
-	const styleSize = {
-		padding: formInput.size[size].padding.join(' '),
-		fontSize: formInput.size[size].fontSize,
-		height: `calc(${formInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
-			formInput.size[size].padding
-		)} + ${formInput.borderWidth * 2}px)`,
+	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${
+		colors.muted
+	}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
+	const caretGap = formInput.select.caretGap;
+	const caretWidth = '14px';
+
+	const styleAppearance = {
+		select: {
+			paddingRight: `calc(${formInput.size[size].padding[1]} + ${caretWidth} + ${caretGap})`,
+			backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
+			backgroundRepeat: 'no-repeat',
+			backgroundPosition: `right ${formInput.size[size].padding[1]} center`,
+
+			// Remove the caret on `<select>`s in IE10+.
+			'&::-ms-expand': {
+				display: 'none',
+			},
+
+			'@media print': {
+				backgroundColor: 'transparent',
+
+				':disabled': {
+					backgroundColor: '#fff',
+				},
+			},
+		},
+		textarea: {
+			...formInput.textarea.size[size],
+		},
 	};
 
 	// Input fixed width styling
 	const styleFixedWidth = () => {
 		const factor = formInput.fontXFactor; //'W' compared to 'x' character (relative to font)
-		const paddings = parseInt(formInput.size[size].padding[1], 10) * 2;
-		const borders = parseInt(formInput.borderWidth, 10) * 2;
-		const extras = paddings + borders;
+		let extras = `${(p => `${p} + ${p}`)(formInput.size[size].padding[1])} + ${(b => `${b} + ${b}`)(
+			formInput.borderWidth
+		)}`;
+
+		// Add width for caret if necessary
+		if (Tag === 'select') {
+			extras = `${extras} + ${caretWidth} + ${caretGap}`;
+		}
 
 		return width
 			? {
-					maxWidth: `calc(${extras}px + ${(width * factor).toFixed(1)}ex)`,
+					maxWidth: `calc(${extras} + ${round(width * factor)}ex)`,
 			  }
 			: null;
-	};
-
-	// Select element styling
-	const styleSelect = () => {
-		const caretWidth = 14;
-		const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="${caretWidth}" height="8" viewBox="0 0 14 8"><path fill="${
-			colors.muted
-		}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
-		const caretGap = formInput.select.caretGap;
-		const paddingRight = parseInt(formInput.size[size].padding[1], 10) + caretWidth + caretGap;
-
-		return Tag === 'select'
-			? {
-					paddingRight: `${paddingRight}px`,
-					backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
-					backgroundRepeat: 'no-repeat',
-					backgroundPosition: `right ${formInput.size[size].padding[1]} center`,
-
-					// Remove the caret on `<select>`s in IE10+.
-					'&::-ms-expand': {
-						display: 'none',
-					},
-
-					'@media print': {
-						backgroundColor: 'transparent',
-
-						':disabled': {
-							backgroundColor: '#fff',
-						},
-					},
-			  }
-			: null;
-	};
-
-	// Textarea element styling
-	const styleTextarea = {
-		...(Tag === 'textarea' && formInput.textarea.size[size]),
 	};
 
 	return (
 		<Tag
 			css={{
 				...styleCommon,
-				...styleSize,
+				...styleAppearance[Tag],
 				...styleFixedWidth(),
-				...styleSelect(),
-				...styleTextarea,
 			}}
 			type={Tag === 'input' ? 'text' : undefined}
 			{...props}
