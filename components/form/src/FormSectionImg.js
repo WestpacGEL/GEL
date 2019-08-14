@@ -16,14 +16,16 @@ export const FormSectionImg = ({ spacing, inline, ...props }) => {
 	const { breakpoints, form } = useTheme();
 	const mq = paint(breakpoints);
 
-	// Common styling
-	const styleCommon = {
-		display: 'block',
-		margin: form.sectionImg.marginBottom.map(v => `0 auto ${v}px`),
-		maxWidth: '100%',
-	};
-
-	return <img css={mq({ ...styleCommon })} {...props} />;
+	return (
+		<img
+			css={mq({
+				display: 'block',
+				margin: form.sectionImg.marginBottom.map(mb => `0 auto ${mb}`),
+				maxWidth: '100%',
+			})}
+			{...props}
+		/>
+	);
 };
 
 // ==============================

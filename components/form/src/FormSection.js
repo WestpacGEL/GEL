@@ -21,9 +21,8 @@ export const FormSection = ({ size, spacing, inline, noPadding, children, ...pro
 		position: 'relative', //for `.form-section-actions` positioning
 		paddingTop: form.section.paddingTop,
 		paddingBottom: form.section.paddingBottom, //6px assuming there will be a `.form-group` margin-bottom (30px)
-
-		paddingLeft: noPadding ? null : [null, '54px', '46px', '50px'],
-		paddingRight: noPadding ? null : [null, '54px', '46px', '50px'],
+		paddingLeft: noPadding ? null : form.section.paddingLeft,
+		paddingRight: noPadding ? null : form.section.paddingRight,
 
 		// TODO apply programatically? (rather than via CSS pseudo-class)
 		':first-of-type': {
@@ -35,7 +34,7 @@ export const FormSection = ({ size, spacing, inline, noPadding, children, ...pro
 
 		// Subequent sections
 		'& + &': {
-			borderTop: `1px solid ${colors.border}`, //TODO token
+			borderTop: form.section.borderTop,
 		},
 	};
 

@@ -390,77 +390,83 @@ export default {
 
 	form: {
 		chitchat: {
-			fontSize: 18,
+			fontSize: '1.8rem',
 			color: COLORS.heading,
 			lineHeight: 1.4,
 			fontWeight: 'bold',
 			textAlign: 'center',
-			margin: [0, '0 0 30px'],
+			margin: [0, '0 0 3rem'],
 		},
 		errorMessage: {
-			fontSize: 14,
-			margin: '0 0 12px',
+			fontSize: '1.4rem',
+			margin: '0 0 1.2rem',
 			color: COLORS.danger,
 			li: {
-				marginBottom: '6px',
+				marginBottom: '0.6rem',
 			},
 		},
 		group: {
 			spacing: {
 				medium: {
-					marginBottom: 18,
+					marginBottom: '1.8rem',
 				},
 				large: {
-					marginBottom: [24, 30],
+					marginBottom: ['2.4rem', '3rem'],
 				},
+			},
+			inline: {
+				marginLeft: [null, '0.6rem'],
 			},
 		},
 		hint: {
 			color: COLORS.muted,
-			fontSize: 14,
+			fontSize: '1.4rem',
 			spacing: {
 				medium: {
-					marginTop: -6,
-					marginBottom: 12,
+					marginTop: '-0.6rem',
+					marginBottom: '1.2rem',
 				},
 				large: {
-					marginTop: -12,
-					marginBottom: 18,
+					marginTop: '-1.2rem',
+					marginBottom: '1.8rem',
 				},
 			},
 		},
 		inputs: {
 			item: {
 				default: {
-					marginTop: 18,
+					marginTop: '1.8rem',
 				},
 				horizontal: {
-					marginRight: 18,
+					marginRight: '1.8rem',
 				},
 			},
 		},
 		label: {
 			fontWeight: 500,
-			fontSize: 16,
+			fontSize: '1.6rem',
 			sublabel: {
-				fontSize: 14,
-				marginBottom: 6,
+				fontSize: '1.4rem',
+				marginBottom: '0.6rem',
 			},
 			spacing: {
 				medium: {
-					marginBottom: 12,
+					marginBottom: '1.2rem',
 				},
 				large: {
-					marginBottom: 18,
+					marginBottom: '1.8rem',
 				},
 			},
 		},
 		section: {
-			paddingTop: [30, 36],
-			paddingBottom: 6,
+			borderTop: `1px solid ${COLORS.border}`,
+			paddingTop: ['3rem', '3.6rem'],
+			paddingBottom: '0.6rem',
+			paddingLeft: [null, '5.4rem', '4.6rem', '5rem'],
+			paddingRight: [null, '5.4rem', '4.6rem', '5rem'],
 		},
 		sectionImg: {
-			marginBottom: [18, 42],
+			marginBottom: ['1.8rem', '4.2rem'],
 		},
 	},
 
