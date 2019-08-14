@@ -21,6 +21,21 @@ const COLORS = {
 	system: 'yellow',
 };
 
+const FONT = (folder = '../font') => ({
+	// Dragonbold Bold (mapped to 'normal')
+	'@font-face': {
+		fontFamily: 'dragonbold',
+		src: `url("${folder}/dragonbold-bold-webfont.eot")`,
+		src: `url("${folder}/dragonbold-bold-webfont.eot?#iefix") format("embedded-opentype"),
+			url("${folder}/dragonbold-bold-webfont.woff2") format("woff2"),
+			url("${folder}/dragonbold-bold-webfont.woff") format("woff"),
+			url("${folder}/dragonbold-bold-webfont.ttf") format("truetype"),
+			url("${folder}/dragonbold-bold-webfont.svg#dragon_boldbold") format("svg")`,
+		fontWeight: 'normal',
+		fontStyle: 'normal',
+	},
+});
+
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = 1320;
@@ -63,7 +78,71 @@ export default {
 			foreground: 'white',
 		},
 	},
-	type: {},
+	font: FONT(),
+	typography: {
+		fontSize: '62.5%',
+		body: {
+			fontFamily:
+				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+			fontSize: '1.4rem',
+			color: COLORS.text,
+			fontWeight: 400,
+			lineHeight: 1.428571429,
+		},
+		brand: {
+			fontFamily: 'dragonbold',
+		},
+		headings: {
+			color: COLORS.heading,
+		},
+		p: {
+			margin: '1.2rem 0',
+		},
+		dl: {},
+		dt: {
+			fontWeight: 700,
+		},
+		dd: {
+			margin: 0,
+		},
+		abbr: {
+			cursor: 'help',
+			borderBottom: `1px dotted ${COLORS.text}`,
+			textDecoration: 'none',
+		},
+		address: {
+			fontStyle: 'normal',
+		},
+		blockquote: {
+			fontSize: '1.6rem',
+			fontWeight: 300,
+		},
+		mark: {
+			backgroundColor: tint(COLORS.primary, 0.2),
+		},
+		selection: {
+			backgroundColor: tint(COLORS.primary, 0.2),
+		},
+		lead: {
+			marginBottom: '2.1rem',
+			fontSize: ['1.6rem', '1.8rem'],
+			fontWeight: 300,
+			lineHeight: 1.4,
+		},
+		link: {
+			default: {
+				color: COLORS.primary,
+				textDecoration: 'underline',
+			},
+			hover: {
+				textDecoration: 'underline',
+			},
+			focus: {
+				outline: `2px solid ${COLORS.focus}`,
+				outlineOffset: 3,
+			},
+		},
+	},
 	spacing: {},
 
 	badge: {
@@ -269,6 +348,73 @@ export default {
 				padding: ['9px', '18px', '10px'],
 				fontSize: '18px',
 				height: '48px',
+			},
+		},
+	},
+
+	formInput: {
+		lineHeight: 1.5,
+		fontWeight: 400,
+		color: COLORS.text,
+		backgroundColor: '#fff',
+		borderWidth: 1,
+		borderRadius: 3,
+		fontXFactor: 1.81,
+		appearance: {
+			default: {
+				borderColor: COLORS.borderDark,
+			},
+			invalid: {
+				borderColor: COLORS.danger,
+			},
+		},
+		size: {
+			small: {
+				padding: ['3px', '9px', '4px'],
+				fontSize: 14,
+				height: 30,
+			},
+			medium: {
+				padding: ['5px', '12px'],
+				fontSize: 16,
+				height: 36,
+			},
+			large: {
+				padding: ['8px', '15px'],
+				fontSize: 16,
+				height: 42,
+			},
+			xlarge: {
+				padding: ['9px', '18px', '10px'],
+				fontSize: 18,
+				height: 48,
+			},
+		},
+		disabled: {
+			backgroundColor: COLORS.light,
+			color: COLORS.muted,
+		},
+		placeholder: {
+			fontWeight: 300,
+			color: tint(COLORS.Text, 0.5),
+		},
+		select: {
+			caretGap: 8,
+		},
+		textarea: {
+			size: {
+				small: {
+					minHeight: 54,
+				},
+				medium: {
+					minHeight: 60,
+				},
+				large: {
+					minHeight: 66,
+				},
+				xlarge: {
+					minHeight: 72,
+				},
 			},
 		},
 	},
@@ -655,22 +801,22 @@ export default {
 		appearance: {
 			success: {
 				color: COLORS.success,
-				backgroundColor: tint(COLORS.success, 0.1),
+				backgroundColor: tint(COLORS.success, 0.05),
 				borderColor: tint(COLORS.success, 0.5),
 			},
 			information: {
 				color: COLORS.information,
-				backgroundColor: tint(COLORS.information, 0.1),
+				backgroundColor: tint(COLORS.information, 0.05),
 				borderColor: tint(COLORS.information, 0.5),
 			},
 			warning: {
 				color: COLORS.warning,
-				backgroundColor: tint(COLORS.warning, 0.1),
+				backgroundColor: tint(COLORS.warning, 0.05),
 				borderColor: tint(COLORS.warning, 0.5),
 			},
 			danger: {
 				color: COLORS.danger,
-				backgroundColor: tint(COLORS.danger, 0.1),
+				backgroundColor: tint(COLORS.danger, 0.05),
 				borderColor: tint(COLORS.danger, 0.5),
 			},
 			system: {

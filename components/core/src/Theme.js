@@ -1,12 +1,15 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Global, css, jsx } from '@emotion/core';
+import { jsx } from '@emotion/core';
+import { Core } from './Core';
 
 // TODO: is there a useful "default" value we should add here?
 export const ThemeContext = createContext();
+
+export const UserModeContext = createContext();
 
 export const useTheme = () => {
 	const themeObject = useContext(ThemeContext);
@@ -19,21 +22,47 @@ export const useTheme = () => {
 	return themeObject;
 };
 
-export const GEL = ({ brand, ...props }) => {
+export const useIsKeyboardUser = () => {
+	return useContext(UserModeContext);
+};
+
+// ==============================
+// Utils
+// ==============================
+
+// ==============================
+// Component
+// ==============================
+
+export const GEL = ({ brand, children, ...props }) => {
+	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
+
+	// Handle keys
+	const keyHandler = event => {
+		console.log('keyHander called');
+
+		if (event.key === 'Tab') {
+			setIsKeyboardUser(true);
+		}
+	};
+
+	// Bind key events
+	useEffect(
+		() => {
+			window.document.addEventListener('keydown', keyHandler, { once: true });
+			return () => {
+				window.document.removeEventListener('keydown', keyHandler);
+			};
+		},
+		[isKeyboardUser]
+	);
+
 	return (
-		<>
-			<Global
-				styles={css`
-					// Box-sizing reset
-					*,
-					*:before,
-					*:after {
-						box-sizing: border-box;
-					}
-				`}
-			/>
-			<ThemeContext.Provider value={brand} {...props} />
-		</>
+		<UserModeContext.Provider value={isKeyboardUser} {...props}>
+			<ThemeContext.Provider value={brand} {...props}>
+				<Core>{children}</Core>
+			</ThemeContext.Provider>
+		</UserModeContext.Provider>
 	);
 };
 
