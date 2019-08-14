@@ -77,6 +77,20 @@ export default {
 		borderWidth: '1px',
 	},
 
+	breadcrumb: {
+		padding: '6px 18px',
+		marginBottom: '21px',
+		fontSize: '13px',
+		link: {
+			color: COLORS.neutral,
+		},
+		separator: {
+			marginLeft: '3px',
+			marginRight: '3px',
+			color: COLORS.primary,
+		},
+	},
+
 	button: {
 		borderRadius: '3px',
 		borderWidth: '1px',

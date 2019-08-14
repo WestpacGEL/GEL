@@ -21,10 +21,10 @@ export const Breadcrumb = ({ arrItem, ...props }) => {
 	const { breadcrumb } = useTheme();
 
 	const common = {
-		padding: '6px 18px',
-		marginBottom: '21px',
+		padding: breadcrumb.padding,
+		marginBottom: breadcrumb.marginBottom,
+		fontSize: breadcrumb.fontSize,
 		listStyle: 'none',
-		fontSize: '13px',
 	};
 
 	const styleItem = {
@@ -33,17 +33,12 @@ export const Breadcrumb = ({ arrItem, ...props }) => {
 	};
 
 	const styleLink = {
-		color: '#2d373e',
+		color: breadcrumb.link.color,
 		textDecoration: 'none',
 
 		'&:focus, &:hover': {
 			textDecoration: 'underline',
 		},
-	};
-
-	const styleSeparator = {
-		marginLeft: 3,
-		marginRight: 3,
 	};
 
 	return (
@@ -69,7 +64,10 @@ export const Breadcrumb = ({ arrItem, ...props }) => {
 							<ArrowRightIcon
 								size="small"
 								color={breadcrumb.separator.color}
-								css={styleSeparator}
+								css={{
+									marginLeft: breadcrumb.separator.marginLeft,
+									marginRight: breadcrumb.separator.marginRight,
+								}}
 							/>
 						</li>
 					)
