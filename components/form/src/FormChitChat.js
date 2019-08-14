@@ -30,6 +30,13 @@ FormChitChat.propTypes = {
 	 * Defaults to "p"
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * Component text.
+	 *
+	 * This prop is required.
+	 */
+	children: PropTypes.string.isRequired,
 };
 
 FormChitChat.defaultProps = {

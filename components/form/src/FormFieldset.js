@@ -54,7 +54,7 @@ FormFieldset.propTypes = {
 	legend: PropTypes.string.isRequired,
 
 	/**
-	 * The content for this fieldset.
+	 * Component children.
 	 */
 	children: PropTypes.node,
 };

@@ -42,6 +42,11 @@ FormErrorMessage.propTypes = {
 	 * Defaults to "p"
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * Component children.
+	 */
+	children: PropTypes.node,
 };
 
 FormErrorMessage.defaultProps = {

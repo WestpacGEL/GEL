@@ -39,7 +39,7 @@ FormInputs.propTypes = {
 	horizontal: PropTypes.bool,
 
 	/**
-	 * The content for this fieldset.
+	 * Component children.
 	 */
 	children: PropTypes.node,
 };

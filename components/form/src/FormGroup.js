@@ -47,6 +47,11 @@ FormGroup.propTypes = {
 	 * Defaults to "false"
 	 */
 	primary: PropTypes.bool,
+
+	/**
+	 * Component children.
+	 */
+	children: PropTypes.node,
 };
 
 FormGroup.defaultProps = {

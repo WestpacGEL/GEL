@@ -29,7 +29,7 @@ export default () => (
 
 		<h2>Spacing</h2>
 
-		<h3>Medium spacing</h3>
+		<h3>Medium</h3>
 		<Form spacing="medium">
 			<FormSection>
 				<FormGroup>
@@ -49,7 +49,7 @@ export default () => (
 			</FormSection>
 		</Form>
 
-		<h3>Large spacing</h3>
+		<h3>Large</h3>
 		<Form spacing="large">
 			<FormSection>
 				<FormGroup>

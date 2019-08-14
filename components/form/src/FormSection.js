@@ -51,6 +51,11 @@ FormSection.propTypes = {
 	 * Defaults to "false"
 	 */
 	noPadding: PropTypes.bool,
+
+	/**
+	 * Component children.
+	 */
+	children: PropTypes.node,
 };
 
 FormSection.defaultProps = {

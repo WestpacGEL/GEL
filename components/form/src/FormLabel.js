@@ -62,6 +62,13 @@ FormLabel.propTypes = {
 			);
 		}
 	},
+
+	/**
+	 * Component text.
+	 *
+	 * This prop is required.
+	 */
+	children: PropTypes.string.isRequired,
 };
 
 FormLabel.defaultProps = {

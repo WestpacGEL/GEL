@@ -36,7 +36,7 @@ export const FormInputsItem = ({ horizontal, ...props }) => {
 
 FormInputsItem.propTypes = {
 	/**
-	 * The content for this fieldset.
+	 * Component children.
 	 */
 	children: PropTypes.node,
 };

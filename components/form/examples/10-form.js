@@ -3,6 +3,7 @@ import { Box } from './_utils';
 
 import { Form, FormGroup } from '../src';
 import { FormInput } from '../../form-input/src';
+import { Button } from '../../button/src';
 
 export default () => (
 	<>
@@ -20,7 +21,7 @@ export default () => (
 
 		<h2>Spacing</h2>
 
-		<h3>Medium spacing</h3>
+		<h3>Medium</h3>
 		<Form action="." spacing="medium" noValidate>
 			<FormGroup>
 				<Box>FormGroup content</Box>
@@ -30,7 +31,7 @@ export default () => (
 			</FormGroup>
 		</Form>
 
-		<h3>Large spacing</h3>
+		<h3>Large</h3>
 		<Form action="." spacing="large" noValidate>
 			<FormGroup>
 				<Box>FormGroup content</Box>
@@ -44,28 +45,28 @@ export default () => (
 
 		<h2>Size</h2>
 
-		<h3>Small size</h3>
+		<h3>Small</h3>
 		<Form action="." size="small" noValidate>
 			<FormGroup>
 				<FormInput />
 			</FormGroup>
 		</Form>
 
-		<h3>Medium size</h3>
+		<h3>Medium</h3>
 		<Form action="." size="medium" noValidate>
 			<FormGroup>
 				<FormInput />
 			</FormGroup>
 		</Form>
 
-		<h3>Large size</h3>
+		<h3>Large</h3>
 		<Form action="." size="large" noValidate>
 			<FormGroup>
 				<FormInput />
 			</FormGroup>
 		</Form>
 
-		<h3>XLarge size</h3>
+		<h3>XLarge</h3>
 		<Form action="." size="xlarge" noValidate>
 			<FormGroup>
 				<FormInput />
@@ -74,13 +75,13 @@ export default () => (
 
 		<hr />
 
-		<h2>Inline mode</h2>
+		<h2>Inline mode (SM+)</h2>
 		<Form action="." inline noValidate>
 			<FormGroup>
-				<Box>FormGroup content</Box>
+				<FormInput />
 			</FormGroup>
 			<FormGroup>
-				<Box>FormGroup content</Box>
+				<Button>Go</Button>
 			</FormGroup>
 		</Form>
 	</>

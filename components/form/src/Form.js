@@ -26,24 +26,43 @@ export const Form = ({ size, spacing, inline, children, ...props }) => {
 // Types
 // ==============================
 
+const options = {
+	size: ['small', 'medium', 'large', 'xlarge'],
+	spacing: ['medium', 'large'],
+};
+
 Form.propTypes = {
 	/**
-	 * The component vertical spacing.
+	 * Size of children.
 	 *
-	 * This prop is passed to child elements.
+	 * This prop is available to children via `FormContext`.
 	 *
 	 * Defaults to "medium"
 	 */
-	spacing: PropTypes.oneOf(['medium', 'large']),
+	size: PropTypes.oneOf(options.size),
 
 	/**
-	 * Inline mode.
+	 * Vertical spacing of children.
 	 *
-	 * This prop is passed to child elements.
+	 * This prop is available to children via `FormContext`.
+	 *
+	 * Defaults to "medium"
+	 */
+	spacing: PropTypes.oneOf(options.spacing),
+
+	/**
+	 * Inline children mode.
+	 *
+	 * This prop is available to children via `FormContext`.
 	 *
 	 * Defaults to "false"
 	 */
 	inline: PropTypes.bool,
+
+	/**
+	 * Form children.
+	 */
+	children: PropTypes.node,
 };
 
 Form.defaultProps = {
