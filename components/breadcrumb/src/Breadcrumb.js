@@ -30,10 +30,11 @@ export const Breadcrumb = ({ arrItem, ...props }) => {
 	const styleItem = {
 		display: 'inline-block',
 		position: 'relative',
+		color: breadcrumb.color,
 	};
 
 	const styleLink = {
-		color: breadcrumb.link.color,
+		color: breadcrumb.color,
 		textDecoration: 'none',
 
 		'&:focus, &:hover': {

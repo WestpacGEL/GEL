@@ -81,9 +81,7 @@ export default {
 		padding: '6px 18px',
 		marginBottom: '21px',
 		fontSize: '13px',
-		link: {
-			color: COLORS.neutral,
-		},
+		color: COLORS.text,
 		separator: {
 			marginLeft: '3px',
 			marginRight: '3px',
