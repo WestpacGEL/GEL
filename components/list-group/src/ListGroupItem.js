@@ -24,6 +24,10 @@ export const ListGroupItem = ({ children }) => {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+
+		'@media print': {
+			borderColor: '#000',
+		},
 	};
 
 	return <li css={common}>{children}</li>;

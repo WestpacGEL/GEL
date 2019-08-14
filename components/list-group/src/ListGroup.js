@@ -25,6 +25,10 @@ export const ListGroup = ({ children }) => {
 		border: `${listGroup.borderWidth} solid ${listGroup.borderColor}`,
 		borderBottom: '0 none',
 		borderRadius: listGroup.borderRadius,
+
+		'@media print': {
+			borderColor: '#000',
+		},
 	};
 
 	return <ul css={common}>{children}</ul>;
