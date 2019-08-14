@@ -86,9 +86,9 @@ export const Breadcrumb = ({ arrItem, ...props }) => {
 
 Breadcrumb.propTypes = {
 	/**
-	 * Describe `someProperty` here
+	 * The breadcrumbs list with the name and corresponding link
 	 */
-	someProperty: PropTypes.string,
+	arrItem: PropTypes.arrayOf(PropTypes.array).isRequired,
 };
 
 Breadcrumb.defaultProps = {};
