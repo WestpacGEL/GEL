@@ -344,8 +344,8 @@ export default {
 		fontWeight: 400,
 		color: COLORS.text,
 		backgroundColor: '#fff',
-		borderWidth: 1,
-		borderRadius: 3,
+		borderWidth: '1px',
+		borderRadius: '3px',
 		fontXFactor: 1.81,
 		appearance: {
 			default: {
@@ -382,21 +382,21 @@ export default {
 			color: tint(COLORS.Text, 0.5),
 		},
 		select: {
-			caretGap: 8,
+			caretGap: '0.8rem',
 		},
 		textarea: {
 			size: {
 				small: {
-					minHeight: 54,
+					minHeight: '5.4rem',
 				},
 				medium: {
-					minHeight: 60,
+					minHeight: '6rem',
 				},
 				large: {
-					minHeight: 66,
+					minHeight: '6.6rem',
 				},
 				xlarge: {
-					minHeight: 72,
+					minHeight: '7.2rem',
 				},
 			},
 		},
