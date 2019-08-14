@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 
 import { FormInput } from '../src';
-// import { FormGroup } from '../../form/src';
 import { Button } from '../../button/src';
 
 const sizes = ['small', 'medium', 'large', 'xlarge'];
@@ -42,13 +41,10 @@ export default () => (
 		<hr />
 
 		<h2>Inline</h2>
-		<em>Note: requires the form package’s FormGroup component (WIP)</em>
-		{/*<FormGroup inline>
-			<FormInput /> <FormInput /> <Button type="submit">Submit</Button>
-		</FormGroup>*/}
+		<FormInput inline /> <FormInput inline /> <Button type="submit">Submit</Button>
 
 		<hr />
-
+		
 		<h2>Fixed width</h2>
 		{widths.map((w, i, arr) => (
 			<Fragment key={i}>
