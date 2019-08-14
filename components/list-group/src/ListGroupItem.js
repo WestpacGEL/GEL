@@ -37,7 +37,7 @@ ListGroupItem.propTypes = {
 	/**
 	 * The content for this list group item.
 	 */
-	children: PropTypes.node,
+	children: PropTypes.node.isRequired,
 };
 
 ListGroupItem.defaultProps = {};

@@ -38,7 +38,7 @@ ListGroup.propTypes = {
 	/**
 	 * The content for this list group.
 	 */
-	children: PropTypes.node,
+	children: PropTypes.node.isRequired,
 };
 
 ListGroup.defaultProps = {};
