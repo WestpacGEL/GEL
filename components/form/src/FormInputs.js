@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
@@ -12,7 +12,12 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormInputs = ({ horizontal, ...props }) => {
+export const FormInputs = ({ horizontal, children, ...props }) => {
+	// Pass the selected prop on to children (that way FormInputsItem styling can be set by parent FormInputs)
+	const giftedChildren = Children.map(children, child => {
+		return React.isValidElement(child) ? cloneElement(child, { horizontal }) : child;
+	});
+
 	return (
 		<div
 			css={{
@@ -20,7 +25,9 @@ export const FormInputs = ({ horizontal, ...props }) => {
 				flexWrap: horizontal ? 'wrap' : null,
 			}}
 			{...props}
-		/>
+		>
+			{giftedChildren}
+		</div>
 	);
 };
 

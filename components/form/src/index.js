@@ -1,4 +1,5 @@
 export { Form } from './Form';
+export { FormContext } from './Form.context';
 export { FormChitChat } from './FormChitChat';
 export { FormErrorMessage } from './FormErrorMessage';
 export { FormFieldset } from './FormFieldset';
@@ -9,4 +10,3 @@ export { FormInputsItem } from './FormInputsItem';
 export { FormLabel } from './FormLabel';
 export { FormSection } from './FormSection';
 export { FormSectionImg } from './FormSectionImg';
-export { FormContext } from './Form';

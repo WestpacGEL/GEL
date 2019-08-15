@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
-import { FormContext } from './Form';
+import { FormContext } from './Form.context';
 
 // ==============================
 // Utils

@@ -66,6 +66,7 @@ export default () => (
 		<hr />
 
 		<h2>Inline mode</h2>
+		<p>Note: The following example FormGroups should NOT be affected by spacing in SM+.</p>
 
 		<h3>Default spacing</h3>
 		<Form inline>

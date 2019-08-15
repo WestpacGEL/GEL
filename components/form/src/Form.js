@@ -3,8 +3,7 @@
 import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
-
-export const FormContext = createContext({ size: null, spacing: null, inline: null });
+import { FormProvider } from './Form.context';
 
 // ==============================
 // Utils
@@ -16,9 +15,9 @@ export const FormContext = createContext({ size: null, spacing: null, inline: nu
 
 export const Form = ({ size, spacing, inline, children, ...props }) => {
 	return (
-		<FormContext.Provider value={{ size, spacing, inline }}>
+		<FormProvider value={{ size, spacing, inline }}>
 			<form {...props}>{children}</form>
-		</FormContext.Provider>
+		</FormProvider>
 	);
 };
 
@@ -51,7 +50,7 @@ Form.propTypes = {
 	spacing: PropTypes.oneOf(options.spacing),
 
 	/**
-	 * Inline children mode.
+	 * Inline children mode (SM+).
 	 *
 	 * This prop is available to children via `FormContext`.
 	 *

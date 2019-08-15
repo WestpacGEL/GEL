@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 import { FormLabel } from './FormLabel';
-import { FormContext } from './Form';
+import { FormContext } from './Form.context';
 
 // ==============================
 // Utils

@@ -36,6 +36,7 @@ export default () => (
 		<hr />
 
 		<h2>Sublabel</h2>
+		<p>Note: The following example Sublabels should NOT be affected by spacing.</p>
 
 		<h3>Sublabel with medium spacing</h3>
 		<Form spacing="medium">

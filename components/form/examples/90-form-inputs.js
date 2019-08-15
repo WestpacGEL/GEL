@@ -29,6 +29,8 @@ export default () => (
 		<hr />
 
 		<h2>Horizontal mode</h2>
+		<p>Note: Will wrap when available space is limited, but a vertical gap is not provided.</p>
+
 		<Form>
 			<FormGroup>
 				<FormInputs horizontal>
