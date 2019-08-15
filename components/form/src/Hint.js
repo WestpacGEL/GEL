@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
+import { FormContext } from './Form.context';
 
 // ==============================
 // Utils
@@ -12,18 +13,24 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormChitChat = ({ tag: Tag, ...props }) => {
-	const { breakpoints, form } = useTheme();
-	const mq = paint(breakpoints);
+export const Hint = ({ tag: Tag, ...props }) => {
+	const { form } = useTheme();
+	const { spacing } = useContext(FormContext);
 
-	return <Tag css={mq({ ...form.chitchat })} {...props} />;
+	const common = {
+		color: form.hint.color,
+		fontSize: form.hint.fontSize,
+		...form.hint.spacing[spacing],
+	};
+
+	return <Tag css={common} {...props} />;
 };
 
 // ==============================
 // Types
 // ==============================
 
-FormChitChat.propTypes = {
+Hint.propTypes = {
 	/**
 	 * The component tag.
 	 *
@@ -39,6 +46,6 @@ FormChitChat.propTypes = {
 	children: PropTypes.string.isRequired,
 };
 
-FormChitChat.defaultProps = {
+Hint.defaultProps = {
 	tag: 'p',
 };

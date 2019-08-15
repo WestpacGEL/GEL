@@ -13,10 +13,10 @@ import { FormProvider } from './Form.context';
 // Component
 // ==============================
 
-export const Form = ({ size, spacing, inline, children, ...props }) => {
+export const Form = ({ size, spacing, inline, tag: Tag, children, ...props }) => {
 	return (
 		<FormProvider value={{ size, spacing, inline }}>
-			<form {...props}>{children}</form>
+			<Tag {...props}>{children}</Tag>
 		</FormProvider>
 	);
 };
@@ -59,6 +59,13 @@ Form.propTypes = {
 	inline: PropTypes.bool,
 
 	/**
+	 * Form wrapper tag.
+	 *
+	 * Defaults to "form"
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
 	 * Form children.
 	 */
 	children: PropTypes.node,
@@ -67,4 +74,5 @@ Form.propTypes = {
 Form.defaultProps = {
 	spacing: 'medium',
 	inline: false,
+	tag: 'form',
 };

@@ -12,18 +12,18 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormInputsItem = ({ horizontal, ...props }) => {
+export const InputClusterItem = ({ horizontal, ...props }) => {
 	const { form } = useTheme();
 
 	const common = {
-		marginRight: horizontal ? form.inputs.item.horizontal.marginRight : null,
+		marginRight: horizontal ? form.cluster.item.horizontal.marginRight : null,
 		display: horizontal ? 'flex' : null,
 		flexDirection: horizontal ? 'column' : null,
 		justifyContent: horizontal ? 'flex-end' : null,
 
 		// Subequent items
 		'& + &': {
-			marginTop: !horizontal ? form.inputs.item.default.marginTop : null,
+			marginTop: !horizontal ? form.cluster.item.default.marginTop : null,
 		},
 	};
 
@@ -34,11 +34,11 @@ export const FormInputsItem = ({ horizontal, ...props }) => {
 // Types
 // ==============================
 
-FormInputsItem.propTypes = {
+InputClusterItem.propTypes = {
 	/**
 	 * Component children.
 	 */
 	children: PropTypes.node,
 };
 
-FormInputsItem.defaultProps = {};
+InputClusterItem.defaultProps = {};

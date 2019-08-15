@@ -14,7 +14,7 @@ import { FormContext } from './Form.context';
 // Component
 // ==============================
 
-export const FormFieldset = ({ legend, children, ...props }) => {
+export const Fieldset = ({ legend, children, ...props }) => {
 	const { spacing } = useContext(FormContext);
 
 	const common = {
@@ -45,7 +45,7 @@ export const FormFieldset = ({ legend, children, ...props }) => {
 // Types
 // ==============================
 
-FormFieldset.propTypes = {
+Fieldset.propTypes = {
 	/**
 	 * Fieldset legend text.
 	 *
@@ -59,4 +59,4 @@ FormFieldset.propTypes = {
 	children: PropTypes.node,
 };
 
-FormFieldset.defaultProps = {};
+Fieldset.defaultProps = {};

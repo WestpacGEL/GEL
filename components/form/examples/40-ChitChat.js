@@ -1,16 +1,16 @@
 import React from 'react';
 import { Box } from './_utils';
 
-import { Form, FormSection, FormChitChat } from '../src';
+import { Form, FormSection, ChitChat } from '../src';
 
 export default () => (
 	<>
 		<Form>
 			<FormSection>
-				<FormChitChat>
+				<ChitChat>
 					Hello, I’m the friendly conversational text component. I live at the top of the form pod
 					if required.
-				</FormChitChat>
+				</ChitChat>
 			</FormSection>
 		</Form>
 	</>

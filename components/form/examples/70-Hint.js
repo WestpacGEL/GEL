@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from './_utils';
 
-import { Form, FormGroup, FormLabel, FormHint } from '../src';
+import { Form, FormGroup, FormLabel, Hint } from '../src';
 
 export default () => (
 	<>
@@ -9,7 +9,7 @@ export default () => (
 		<Form spacing="medium">
 			<FormGroup>
 				<FormLabel htmlFor="example-hint">This is a label</FormLabel>
-				<FormHint>This is a hint</FormHint>
+				<Hint>This is a hint</Hint>
 				<Box>Form input here</Box>
 			</FormGroup>
 		</Form>
@@ -20,7 +20,7 @@ export default () => (
 		<Form spacing="large">
 			<FormGroup>
 				<FormLabel htmlFor="example-hint">This is a large spaced label</FormLabel>
-				<FormHint>This is a hint</FormHint>
+				<Hint>This is a hint</Hint>
 				<Box>Form input here</Box>
 			</FormGroup>
 		</Form>

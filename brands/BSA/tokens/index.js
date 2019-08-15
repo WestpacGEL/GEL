@@ -587,7 +587,7 @@ export default {
 				},
 			},
 		},
-		inputs: {
+		cluster: {
 			item: {
 				default: {
 					marginTop: '1.8rem',

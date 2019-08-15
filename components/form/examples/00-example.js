@@ -3,13 +3,13 @@ import { Box } from './_utils';
 
 import {
 	Form,
-	FormChitChat,
-	FormErrorMessage,
-	FormFieldset,
+	ChitChat,
+	ErrorMessage,
+	Fieldset,
 	FormGroup,
-	FormHint,
-	FormInputs,
-	FormInputsItem,
+	Hint,
+	InputCluster,
+	InputClusterItem,
 	FormLabel,
 	FormSection,
 } from '../src';
@@ -21,24 +21,24 @@ export default () => (
 		<h2>Default size and spacing</h2>
 		<Form action="." noValidate>
 			<FormSection>
-				<FormChitChat>
+				<ChitChat>
 					Hello, I’m the friendly conversational text component. I live at the top of the form pod
 					if required.
-				</FormChitChat>
+				</ChitChat>
 			</FormSection>
 
 			<FormSection>
 				<FormGroup>
 					<FormLabel htmlFor="example-default-1">This is a label</FormLabel>
-					<FormHint>This is a hint</FormHint>
-					<FormErrorMessage>This is an error message</FormErrorMessage>
+					<Hint>This is a hint</Hint>
+					<ErrorMessage>This is an error message</ErrorMessage>
 					<FormInput name="example-default-1" />
 				</FormGroup>
 
 				<FormGroup>
 					<FormLabel htmlFor="example-default-2">This is a label</FormLabel>
-					<FormHint>This is a hint</FormHint>
-					<FormErrorMessage>This is an error message</FormErrorMessage>
+					<Hint>This is a hint</Hint>
+					<ErrorMessage>This is an error message</ErrorMessage>
 					<FormInput name="example-default-2" />
 				</FormGroup>
 			</FormSection>
@@ -46,27 +46,27 @@ export default () => (
 			<FormSection>
 				<FormGroup>
 					<FormLabel htmlFor="example-default-3">This is a label</FormLabel>
-					<FormHint>This is a hint</FormHint>
-					<FormErrorMessage>This is an error message</FormErrorMessage>
+					<Hint>This is a hint</Hint>
+					<ErrorMessage>This is an error message</ErrorMessage>
 					<FormInput name="example-default-3" />
 				</FormGroup>
 
 				<FormGroup>
-					<FormFieldset legend="This is a legend">
-						<FormHint>This is a hint</FormHint>
-						<FormErrorMessage tag="ul">
+					<Fieldset legend="This is a legend">
+						<Hint>This is a hint</Hint>
+						<ErrorMessage tag="ul">
 							<li>This is an error message</li>
 							<li>This is another error message</li>
-						</FormErrorMessage>
-						<FormInputs>
-							<FormInputsItem>
+						</ErrorMessage>
+						<InputCluster>
+							<InputClusterItem>
 								<FormInput name="example-default-4-line1" />
-							</FormInputsItem>
-							<FormInputsItem>
+							</InputClusterItem>
+							<InputClusterItem>
 								<FormInput name="example-default-4-line2" />
-							</FormInputsItem>
-						</FormInputs>
-					</FormFieldset>
+							</InputClusterItem>
+						</InputCluster>
+					</Fieldset>
 				</FormGroup>
 			</FormSection>
 		</Form>
@@ -76,24 +76,24 @@ export default () => (
 		<h2>Large size with large spacing</h2>
 		<Form action="." size="large" spacing="large" noValidate>
 			<FormSection>
-				<FormChitChat>
+				<ChitChat>
 					Hello, I’m the friendly conversational text component. I live at the top of the form pod
 					if required.
-				</FormChitChat>
+				</ChitChat>
 			</FormSection>
 
 			<FormSection>
 				<FormGroup>
 					<FormLabel htmlFor="example-large-1">This is a label</FormLabel>
-					<FormHint>This is a hint</FormHint>
-					<FormErrorMessage>This is an error message</FormErrorMessage>
+					<Hint>This is a hint</Hint>
+					<ErrorMessage>This is an error message</ErrorMessage>
 					<FormInput name="example-large-1" />
 				</FormGroup>
 
 				<FormGroup>
 					<FormLabel htmlFor="example-large-2">This is a label</FormLabel>
-					<FormHint>This is a hint</FormHint>
-					<FormErrorMessage>This is an error message</FormErrorMessage>
+					<Hint>This is a hint</Hint>
+					<ErrorMessage>This is an error message</ErrorMessage>
 					<FormInput name="example-large-2" />
 				</FormGroup>
 			</FormSection>
@@ -101,27 +101,27 @@ export default () => (
 			<FormSection>
 				<FormGroup>
 					<FormLabel htmlFor="example-large-3">This is a label</FormLabel>
-					<FormHint>This is a hint</FormHint>
-					<FormErrorMessage>This is an error message</FormErrorMessage>
+					<Hint>This is a hint</Hint>
+					<ErrorMessage>This is an error message</ErrorMessage>
 					<FormInput name="example-large-3" />
 				</FormGroup>
 
 				<FormGroup>
-					<FormFieldset legend="This is a legend">
-						<FormHint>This is a hint</FormHint>
-						<FormErrorMessage tag="ul">
+					<Fieldset legend="This is a legend">
+						<Hint>This is a hint</Hint>
+						<ErrorMessage tag="ul">
 							<li>This is an error message</li>
 							<li>This is another error message</li>
-						</FormErrorMessage>
-						<FormInputs>
-							<FormInputsItem>
+						</ErrorMessage>
+						<InputCluster>
+							<InputClusterItem>
 								<FormInput name="example-large-4-line1" />
-							</FormInputsItem>
-							<FormInputsItem>
+							</InputClusterItem>
+							<InputClusterItem>
 								<FormInput name="example-large-4-line2" />
-							</FormInputsItem>
-						</FormInputs>
-					</FormFieldset>
+							</InputClusterItem>
+						</InputCluster>
+					</Fieldset>
 				</FormGroup>
 			</FormSection>
 		</Form>

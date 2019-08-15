@@ -1,16 +1,16 @@
 import React from 'react';
 import { Box } from './_utils';
 
-import { Form, FormGroup, FormFieldset } from '../src';
+import { Form, FormGroup, Fieldset } from '../src';
 
 export default () => (
 	<>
 		<h2>Default instance (no styling props)</h2>
 		<Form>
 			<FormGroup>
-				<FormFieldset legend="This is a legend">
-					<Box>FormFieldset content</Box>
-				</FormFieldset>
+				<Fieldset legend="This is a legend">
+					<Box>Fieldset content</Box>
+				</Fieldset>
 			</FormGroup>
 		</Form>
 
@@ -21,18 +21,18 @@ export default () => (
 		<h3>Medium spacing</h3>
 		<Form spacing="medium">
 			<FormGroup>
-				<FormFieldset legend="This is a legend">
-					<Box>FormFieldset content</Box>
-				</FormFieldset>
+				<Fieldset legend="This is a legend">
+					<Box>Fieldset content</Box>
+				</Fieldset>
 			</FormGroup>
 		</Form>
 
 		<h3>Large spacing</h3>
 		<Form spacing="large">
 			<FormGroup>
-				<FormFieldset legend="This is a legend">
-					<Box>FormFieldset content</Box>
-				</FormFieldset>
+				<Fieldset legend="This is a legend">
+					<Box>Fieldset content</Box>
+				</Fieldset>
 			</FormGroup>
 		</Form>
 	</>

@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { FormContext } from './Form.context';
 
 // ==============================
 // Utils
@@ -13,24 +12,30 @@ import { FormContext } from './Form.context';
 // Component
 // ==============================
 
-export const FormHint = ({ tag: Tag, ...props }) => {
+export const ErrorMessage = ({ tag: Tag, ...props }) => {
 	const { form } = useTheme();
-	const { spacing } = useContext(FormContext);
 
-	const common = {
-		color: form.hint.color,
-		fontSize: form.hint.fontSize,
-		...form.hint.spacing[spacing],
-	};
+	return (
+		<Tag
+			css={{
+				...form.errorMessage,
 
-	return <Tag css={common} {...props} />;
+				// Multiple error messages styled in a list
+				'ul&, ol&': {
+					listStyle: 'none',
+					paddingLeft: 0,
+				},
+			}}
+			{...props}
+		/>
+	);
 };
 
 // ==============================
 // Types
 // ==============================
 
-FormHint.propTypes = {
+ErrorMessage.propTypes = {
 	/**
 	 * The component tag.
 	 *
@@ -39,13 +44,11 @@ FormHint.propTypes = {
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
-	 * Component text.
-	 *
-	 * This prop is required.
+	 * Component children.
 	 */
-	children: PropTypes.string.isRequired,
+	children: PropTypes.node,
 };
 
-FormHint.defaultProps = {
+ErrorMessage.defaultProps = {
 	tag: 'p',
 };

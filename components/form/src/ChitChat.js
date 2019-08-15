@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -12,30 +12,18 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormErrorMessage = ({ tag: Tag, ...props }) => {
-	const { form } = useTheme();
+export const ChitChat = ({ tag: Tag, ...props }) => {
+	const { breakpoints, form } = useTheme();
+	const mq = paint(breakpoints);
 
-	return (
-		<Tag
-			css={{
-				...form.errorMessage,
-
-				// Multiple error messages styled in a list
-				'ul&, ol&': {
-					listStyle: 'none',
-					paddingLeft: 0,
-				},
-			}}
-			{...props}
-		/>
-	);
+	return <Tag css={mq({ ...form.chitchat })} {...props} />;
 };
 
 // ==============================
 // Types
 // ==============================
 
-FormErrorMessage.propTypes = {
+ChitChat.propTypes = {
 	/**
 	 * The component tag.
 	 *
@@ -44,11 +32,13 @@ FormErrorMessage.propTypes = {
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
-	 * Component children.
+	 * Component text.
+	 *
+	 * This prop is required.
 	 */
-	children: PropTypes.node,
+	children: PropTypes.string.isRequired,
 };
 
-FormErrorMessage.defaultProps = {
+ChitChat.defaultProps = {
 	tag: 'p',
 };

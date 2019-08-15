@@ -13,7 +13,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // ==============================
 
 export const FormSection = ({ noPadding, ...props }) => {
-	const { colors, breakpoints, form } = useTheme();
+	const { breakpoints, form } = useTheme();
 	const mq = paint(breakpoints);
 
 	const common = {

@@ -12,8 +12,8 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormInputs = ({ horizontal, children, ...props }) => {
-	// Pass the selected prop on to children (that way FormInputsItem styling can be set by parent FormInputs)
+export const InputCluster = ({ horizontal, children, ...props }) => {
+	// Pass the selected prop on to children (that way InputClusterItem styling can be set by parent InputCluster)
 	const giftedChildren = Children.map(children, child => {
 		return React.isValidElement(child) ? cloneElement(child, { horizontal }) : child;
 	});
@@ -35,7 +35,7 @@ export const FormInputs = ({ horizontal, children, ...props }) => {
 // Types
 // ==============================
 
-FormInputs.propTypes = {
+InputCluster.propTypes = {
 	/**
 	 * Horizontal mode.
 	 *
@@ -51,6 +51,6 @@ FormInputs.propTypes = {
 	children: PropTypes.node,
 };
 
-FormInputs.defaultProps = {
+InputCluster.defaultProps = {
 	horizontal: false,
 };

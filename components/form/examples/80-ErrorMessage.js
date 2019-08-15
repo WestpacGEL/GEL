@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box } from './_utils';
 
-import { Form, FormGroup, FormErrorMessage } from '../src';
+import { Form, FormGroup, ErrorMessage } from '../src';
 
 export default () => (
 	<>
 		<h2>Single error message</h2>
 		<Form>
 			<FormGroup>
-				<FormErrorMessage>This is an error message</FormErrorMessage>
+				<ErrorMessage>This is an error message</ErrorMessage>
 				<Box>Form input here</Box>
 			</FormGroup>
 		</Form>
@@ -18,10 +18,10 @@ export default () => (
 		<h2>Multiple error messages (list)</h2>
 		<Form>
 			<FormGroup>
-				<FormErrorMessage tag="ul">
+				<ErrorMessage tag="ul">
 					<li>This is an error message</li>
 					<li>This is another error message</li>
-				</FormErrorMessage>
+				</ErrorMessage>
 				<Box>Form input here</Box>
 			</FormGroup>
 		</Form>
