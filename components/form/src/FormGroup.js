@@ -24,7 +24,7 @@ export const FormGroup = ({ primary, ...props }) => {
 		display: inline ? [null, 'inline-block'] : null,
 		verticalAlign: inline ? [null, 'middle'] : null,
 		marginBottom: inline
-			? [(mb => mb[0] || mb)(form.group.spacing[spacing].marginBottom), 0]
+			? [(mb => (Array.isArray(mb) ? mb[0] : mb))(form.group.spacing[spacing].marginBottom), 0]
 			: form.group.spacing[spacing].marginBottom,
 		textAlign: primary ? 'center' : null,
 
