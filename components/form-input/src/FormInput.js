@@ -2,7 +2,7 @@
 
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useTheme, paint } from '@westpac/core';
 import { FormContext } from '../../form/src';
 
 import svgToTinyDataURI from 'mini-svg-data-uri';
@@ -17,25 +17,18 @@ const round = f => Math.round(f * 100) / 100; //2DP
 // Component
 // ==============================
 
-export const FormInput = ({
-	size,
-	width,
-	invalid,
-	tag: Tag,
-	spacing,
-	inline,
-	children,
-	...props
-}) => {
-	const { colors, formInput, typography } = useTheme();
+export const FormInput = ({ size, width, invalid, tag: Tag, children, ...props }) => {
+	const { colors, breakpoints, formInput, typography } = useTheme();
 	const formContext = useContext(FormContext);
+	const mq = paint(breakpoints);
 
-	const formInputInline = formContext.inline || inline;
+	const inline = formContext.inline;
+	const formInputSize = formContext.size || size;
 
 	// Common styling
 	const styleCommon = {
-		display: formInputInline ? 'inline-block' : 'block',
-		width: formInputInline ? 'auto' : '100%',
+		display: inline ? ['block', 'inline-block'] : 'block',
+		width: inline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
 		lineHeight: formInput.lineHeight,
 		fontWeight: formInput.fontWeight,
@@ -48,11 +41,11 @@ export const FormInput = ({
 				: formInput.appearance.default.borderColor,
 		borderRadius: formInput.borderRadius,
 		transition: 'border 0.2s ease',
-		verticalAlign: Tag === 'textarea' ? 'top' : formInputInline ? 'middle' : null,
-		padding: formInput.size[size].padding.join(' '),
-		fontSize: formInput.size[size].fontSize,
+		verticalAlign: inline ? 'middle' : null,
+		padding: formInput.size[formInputSize].padding.join(' '),
+		fontSize: formInput.size[formInputSize].fontSize,
 		height: `calc(${formInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
-			formInput.size[size].padding
+			formInput.size[formInputSize].padding
 		)} + ${(bw => `${bw} + ${bw}`)(formInput.borderWidth)})`,
 
 		'&::placeholder': {
@@ -87,10 +80,12 @@ export const FormInput = ({
 
 	const styleAppearance = {
 		select: {
-			paddingRight: `calc(${formInput.size[size].padding[1]} + ${caretWidth} + ${caretGap})`,
+			paddingRight: `calc(${
+				formInput.size[formInputSize].padding[1]
+			} + ${caretWidth} + ${caretGap})`,
 			backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
 			backgroundRepeat: 'no-repeat',
-			backgroundPosition: `right ${formInput.size[size].padding[1]} center`,
+			backgroundPosition: `right ${formInput.size[formInputSize].padding[1]} center`,
 
 			// Remove the caret on `<select>`s in IE10+.
 			'&::-ms-expand': {
@@ -106,18 +101,18 @@ export const FormInput = ({
 			},
 		},
 		textarea: {
-			...formInput.textarea.size[size],
+			verticalAlign: inline ? 'top' : null,
+			...formInput.textarea.size[formInputSize],
 		},
 	};
 
 	// Input fixed width styling
 	const styleFixedWidth = () => {
 		const factor = formInput.fontXFactor; //'W' compared to 'x' character (relative to font)
-		let extras = `${(p => `${p} + ${p}`)(formInput.size[size].padding[1])} + ${(b => `${b} + ${b}`)(
-			formInput.borderWidth
-		)}`;
+		let extras = `${(p => `${p} + ${p}`)(formInput.size[formInputSize].padding[1])} + ${(b =>
+			`${b} + ${b}`)(formInput.borderWidth)}`;
 
-		// Add width for caret if necessary
+		// Add width for caret if a select
 		if (Tag === 'select') {
 			extras = `${extras} + ${caretWidth} + ${caretGap}`;
 		}
@@ -131,11 +126,11 @@ export const FormInput = ({
 
 	return (
 		<Tag
-			css={{
+			css={mq({
 				...styleCommon,
 				...styleAppearance[Tag],
 				...styleFixedWidth(),
-			}}
+			})}
 			type={Tag === 'input' ? 'text' : undefined}
 			{...props}
 		>

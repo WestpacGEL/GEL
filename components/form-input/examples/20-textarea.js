@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { FormInput } from '../src';
+import { Form } from '../../form/src';
 
 const sizes = ['small', 'medium', 'large', 'xlarge'];
 const widths = [2, 3, 4, 5, 10, 20, 30];
@@ -35,6 +36,18 @@ export default () => (
 			disabled
 			defaultValue="This textarea is disabled and contains a value"
 		/>
+
+		<hr />
+
+		<h2>Readonly</h2>
+		<FormInput tag="textarea" readOnly value="This value is readonly" />
+
+		<hr />
+
+		<h2>Inline</h2>
+		<Form inline noValidate>
+			<FormInput tag="textarea" /> <FormInput tag="textarea" />
+		</Form>
 
 		<hr />
 

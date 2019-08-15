@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
 import { FormInput } from '../src';
+import { Form } from '../../form/src';
 import { Button } from '../../button/src';
 import { FormGroup } from '../../form/src';
-// import { FormGroup } from '../../form/src';
 
 const options = ['Select', '1', '2', '3'];
 const sizes = ['small', 'medium', 'large', 'xlarge'];
@@ -53,8 +53,7 @@ export default () => (
 		<hr />
 
 		<h2>Inline</h2>
-		<em>Note: requires the form package’s FormGroup component (WIP)</em>
-		{/*<FormGroup inline>
+		<Form inline noValidate>
 			<FormInput tag="select">
 				{options.map((v, i) => (
 					<option key={i}>{v}</option>
@@ -66,7 +65,7 @@ export default () => (
 				))}
 			</FormInput>{' '}
 			<Button type="submit">Submit</Button>
-		</FormGroup>*/}
+		</Form>
 
 		<hr />
 

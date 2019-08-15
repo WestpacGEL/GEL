@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { FormInput } from '../src';
+import { Form } from '../../form/src';
 import { Button } from '../../button/src';
 
 const sizes = ['small', 'medium', 'large', 'xlarge'];
@@ -31,7 +32,9 @@ export default () => (
 		<FormInput readOnly value="This value is readonly" />
 		<hr />
 		<h2>Inline</h2>
-		<FormInput inline /> <FormInput inline /> <Button type="submit">Submit</Button>
+		<Form inline noValidate>
+			<FormInput /> <FormInput /> <Button type="submit">Submit</Button>
+		</Form>
 		<hr />
 		<h2>Fixed width</h2>
 		{widths.map((w, i, arr) => (
