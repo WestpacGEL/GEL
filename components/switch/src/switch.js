@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
-import { FormSwitchText, FormSwitchToggle } from './styled';
+import { SwitchText, SwitchToggle } from './styled';
 
 // ==============================
 // Utils
@@ -14,7 +14,7 @@ import { FormSwitchText, FormSwitchToggle } from './styled';
 // Component
 // ==============================
 
-export const FormSwitch = ({
+export const Switch = ({
 	name,
 	id,
 	toggleText,
@@ -27,10 +27,10 @@ export const FormSwitch = ({
 	children,
 	...props
 }) => {
-	const { formSwitch } = useTheme();
+	const { switch: formSwitch } = useTheme();
 
-	const [checked, setChecked] = useState(defaultChecked);
-	const toggle = () => setChecked(!checked);
+	const [isChecked, setIsChecked] = useState(defaultChecked);
+	const toggle = () => setIsChecked(!isChecked);
 
 	// Common styling
 	const common = {
@@ -64,11 +64,11 @@ export const FormSwitch = ({
 				disabled={disabled}
 			/>
 			{children && (
-				<FormSwitchText block={block} flip={flip} size={size} srOnlyText={srOnlyText}>
+				<SwitchText block={block} flip={flip} size={size} srOnlyText={srOnlyText}>
 					{children}
-				</FormSwitchText>
+				</SwitchText>
 			)}
-			<FormSwitchToggle toggleText={toggleText} size={size} />
+			<SwitchToggle toggleText={toggleText} size={size} />
 		</label>
 	);
 };
@@ -81,7 +81,7 @@ const options = {
 	size: ['small', 'medium', 'large', 'xlarge'],
 };
 
-FormSwitch.propTypes = {
+Switch.propTypes = {
 	/**
 	 * Input element name attribute.
 	 */
@@ -154,7 +154,7 @@ FormSwitch.propTypes = {
 	children: PropTypes.string.isRequired,
 };
 
-FormSwitch.defaultProps = {
+Switch.defaultProps = {
 	size: 'medium',
 	toggleText: ['On', 'Off'],
 	block: false,

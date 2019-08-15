@@ -1,1 +1,0 @@
-export { FormSwitch } from './FormSwitch';

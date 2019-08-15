@@ -15,8 +15,8 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // Component
 // ==============================
 
-export const FormSwitchText = ({ size, block, flip, srOnlyText, ...props }) => {
-	const { breakpoints, formSwitch } = useTheme();
+export const SwitchText = ({ size, block, flip, srOnlyText, ...props }) => {
+	const { breakpoints, switch: formSwitch } = useTheme();
 	const mq = paint(breakpoints);
 
 	const styleText = {
@@ -35,8 +35,8 @@ export const FormSwitchText = ({ size, block, flip, srOnlyText, ...props }) => {
 	return srOnlyText ? <SrOnly {...props} /> : <span css={mq(styleText)} {...props} />;
 };
 
-export const FormSwitchToggle = ({ size, toggleText, ...props }) => {
-	const { breakpoints, formSwitch } = useTheme();
+export const SwitchToggle = ({ size, toggleText, ...props }) => {
+	const { breakpoints, switch: formSwitch } = useTheme();
 	const mq = paint(breakpoints);
 
 	const styleResponsive = () => {

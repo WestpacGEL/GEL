@@ -528,7 +528,7 @@ export default {
 		},
 	},
 
-	formSwitch: {
+	switch: {
 		borderWidth: 2,
 		borderColor: COLORS.border,
 		backgroundColor: '#fff',

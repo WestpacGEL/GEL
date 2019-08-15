@@ -1,20 +1,20 @@
 ---
-name: FormSwitch
+name: Switch
 menu: Components
-route: /form-switch
+route: /switch
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { FormSwitch } from './src/FormSwitch';
+import { Switch } from './src/Switch';
 
-# FormSwitch
+# Switch
 
 These are very simple toggle switches ideal for use in settings or preference screens. The switch can be blank or contain simple toggle text labels (no/yes, off/on etc).
 
 <Playground>
-	<FormSwitch name="ex-default" id="ex-default">
+	<Switch name="ex-default" id="ex-default">
 		Turn notifications
-	</FormSwitch>
+	</Switch>
 </Playground>
 
 ## Label text
@@ -22,17 +22,17 @@ These are very simple toggle switches ideal for use in settings or preference sc
 Form switches require label text in order to meet accessibility requirements. You can visually hide this text by providing a `srOnlyText` prop if necessary.
 
 <Playground>
-	<FormSwitch name="ex-text" id="ex-text" toggleText={['Yes', 'No']}>
+	<Switch name="ex-text" id="ex-text" toggleText={['Yes', 'No']}>
 		Enable notifications
-	</FormSwitch>
-	<FormSwitch
+	</Switch>
+	<Switch
 		name="ex-text-sronlytext"
 		id="ex-text-sronlytext"
 		toggleText={['Yes', 'No']}
 		srOnlyText
 	>
 		Enable notifications
-	</FormSwitch>
+	</Switch>
 </Playground>
 
 ## Sizes
@@ -40,26 +40,26 @@ Form switches require label text in order to meet accessibility requirements. Yo
 Form switches come in four sizes.
 
 <Playground>
-	<FormSwitch name="ex-small" id="ex-small" size="small">
+	<Switch name="ex-small" id="ex-small" size="small">
 		Small
-	</FormSwitch>
-	<FormSwitch name="ex-medium" id="ex-medium" size="medium">
+	</Switch>
+	<Switch name="ex-medium" id="ex-medium" size="medium">
 		Medium
-	</FormSwitch>
-	<FormSwitch name="ex-large" id="ex-large" size="large">
+	</Switch>
+	<Switch name="ex-large" id="ex-large" size="large">
 		Large
-	</FormSwitch>
-	<FormSwitch name="ex-xlarge" id="ex-xlarge" size="xlarge">
+	</Switch>
+	<Switch name="ex-xlarge" id="ex-xlarge" size="xlarge">
 		Extra large
-	</FormSwitch>
+	</Switch>
 </Playground>
 
 Form switches can be sized responsively by passing an array of size values for each breakpoint.
 
 <Playground>
-	<FormSwitch name="ex-responsive" id="ex-responsive" size={['small', 'medium', 'large', 'xlarge']}>
+	<Switch name="ex-responsive" id="ex-responsive" size={['small', 'medium', 'large', 'xlarge']}>
 		Responsive form switch
-	</FormSwitch>
+	</Switch>
 </Playground>
 
 ## Flip
@@ -67,9 +67,9 @@ Form switches can be sized responsively by passing an array of size values for e
 Flip mode renders the toggle on the left of the label text.
 
 <Playground>
-	<FormSwitch name="ex-flip" id="ex-flip" flip>
+	<Switch name="ex-flip" id="ex-flip" flip>
 		Flip mode
-	</FormSwitch>
+	</Switch>
 </Playground>
 
 ## Block
@@ -77,25 +77,25 @@ Flip mode renders the toggle on the left of the label text.
 Block mode extends the width so it spans the full width of its parent.
 
 <Playground>
-	<FormSwitch name="ex-block" id="ex-block" block>
+	<Switch name="ex-block" id="ex-block" block>
 		Block mode
-	</FormSwitch>
+	</Switch>
 </Playground>
 
 ## Checked
 
 <Playground>
-	<FormSwitch name="ex-checked" id="ex-checked" defaultChecked>
+	<Switch name="ex-checked" id="ex-checked" defaultChecked>
 		Checked by default
-	</FormSwitch>
+	</Switch>
 </Playground>
 
 ## Disabled
 
 <Playground>
-	<FormSwitch name="ex-disabled" id="ex-disabled" disabled>
+	<Switch name="ex-disabled" id="ex-disabled" disabled>
 		Disabled by default
-	</FormSwitch>
+	</Switch>
 </Playground>
 
-<PropsTable of={FormSwitch} />
+<PropsTable of={Switch} />
