@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from './_utils';
 
 import { Form, FormGroup } from '../src';
-import { FormInput } from '../../form-input/src';
+import { TextInput } from '../../text-input/src';
 import { Button } from '../../button/src';
 
 export default () => (
@@ -48,28 +48,28 @@ export default () => (
 		<h3>Small</h3>
 		<Form action="." size="small" noValidate>
 			<FormGroup>
-				<FormInput />
+				<TextInput />
 			</FormGroup>
 		</Form>
 
 		<h3>Medium</h3>
 		<Form action="." size="medium" noValidate>
 			<FormGroup>
-				<FormInput />
+				<TextInput />
 			</FormGroup>
 		</Form>
 
 		<h3>Large</h3>
 		<Form action="." size="large" noValidate>
 			<FormGroup>
-				<FormInput />
+				<TextInput />
 			</FormGroup>
 		</Form>
 
 		<h3>XLarge</h3>
 		<Form action="." size="xlarge" noValidate>
 			<FormGroup>
-				<FormInput />
+				<TextInput />
 			</FormGroup>
 		</Form>
 
@@ -78,7 +78,7 @@ export default () => (
 		<h2>Inline mode (SM+)</h2>
 		<Form action="." inline noValidate>
 			<FormGroup>
-				<FormInput />
+				<TextInput />
 			</FormGroup>
 			<FormGroup>
 				<Button>Go</Button>

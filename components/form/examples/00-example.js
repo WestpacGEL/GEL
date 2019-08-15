@@ -14,7 +14,7 @@ import {
 	FormSection,
 } from '../src';
 
-import { FormInput } from '../../form-input/src';
+import { TextInput } from '../../text-input/src';
 
 export default () => (
 	<>
@@ -32,14 +32,14 @@ export default () => (
 					<FormLabel htmlFor="example-default-1">This is a label</FormLabel>
 					<Hint>This is a hint</Hint>
 					<ErrorMessage>This is an error message</ErrorMessage>
-					<FormInput name="example-default-1" />
+					<TextInput name="example-default-1" />
 				</FormGroup>
 
 				<FormGroup>
 					<FormLabel htmlFor="example-default-2">This is a label</FormLabel>
 					<Hint>This is a hint</Hint>
 					<ErrorMessage>This is an error message</ErrorMessage>
-					<FormInput name="example-default-2" />
+					<TextInput name="example-default-2" />
 				</FormGroup>
 			</FormSection>
 
@@ -48,7 +48,7 @@ export default () => (
 					<FormLabel htmlFor="example-default-3">This is a label</FormLabel>
 					<Hint>This is a hint</Hint>
 					<ErrorMessage>This is an error message</ErrorMessage>
-					<FormInput name="example-default-3" />
+					<TextInput name="example-default-3" />
 				</FormGroup>
 
 				<FormGroup>
@@ -60,10 +60,10 @@ export default () => (
 						</ErrorMessage>
 						<InputCluster>
 							<InputClusterItem>
-								<FormInput name="example-default-4-line1" />
+								<TextInput name="example-default-4-line1" />
 							</InputClusterItem>
 							<InputClusterItem>
-								<FormInput name="example-default-4-line2" />
+								<TextInput name="example-default-4-line2" />
 							</InputClusterItem>
 						</InputCluster>
 					</Fieldset>
@@ -87,14 +87,14 @@ export default () => (
 					<FormLabel htmlFor="example-large-1">This is a label</FormLabel>
 					<Hint>This is a hint</Hint>
 					<ErrorMessage>This is an error message</ErrorMessage>
-					<FormInput name="example-large-1" />
+					<TextInput name="example-large-1" />
 				</FormGroup>
 
 				<FormGroup>
 					<FormLabel htmlFor="example-large-2">This is a label</FormLabel>
 					<Hint>This is a hint</Hint>
 					<ErrorMessage>This is an error message</ErrorMessage>
-					<FormInput name="example-large-2" />
+					<TextInput name="example-large-2" />
 				</FormGroup>
 			</FormSection>
 
@@ -103,7 +103,7 @@ export default () => (
 					<FormLabel htmlFor="example-large-3">This is a label</FormLabel>
 					<Hint>This is a hint</Hint>
 					<ErrorMessage>This is an error message</ErrorMessage>
-					<FormInput name="example-large-3" />
+					<TextInput name="example-large-3" />
 				</FormGroup>
 
 				<FormGroup>
@@ -115,10 +115,10 @@ export default () => (
 						</ErrorMessage>
 						<InputCluster>
 							<InputClusterItem>
-								<FormInput name="example-large-4-line1" />
+								<TextInput name="example-large-4-line1" />
 							</InputClusterItem>
 							<InputClusterItem>
-								<FormInput name="example-large-4-line2" />
+								<TextInput name="example-large-4-line2" />
 							</InputClusterItem>
 						</InputCluster>
 					</Fieldset>

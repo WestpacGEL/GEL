@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from './_utils';
 
 import { Form, FormGroup, InputCluster, InputClusterItem, FormLabel } from '../src';
-import { FormInput } from '../../form-input/src';
+import { TextInput } from '../../text-input/src';
 
 export default () => (
 	<>
@@ -14,13 +14,13 @@ export default () => (
 						<FormLabel htmlFor="example-1" sublabel>
 							This is a sub-label
 						</FormLabel>
-						<FormInput />
+						<TextInput />
 					</InputClusterItem>
 					<InputClusterItem>
 						<FormLabel htmlFor="example-2" sublabel>
 							This is a sub-label
 						</FormLabel>
-						<FormInput />
+						<TextInput />
 					</InputClusterItem>
 				</InputCluster>
 			</FormGroup>
@@ -38,13 +38,13 @@ export default () => (
 						<FormLabel htmlFor="example-3" sublabel>
 							This is a sub-label
 						</FormLabel>
-						<FormInput />
+						<TextInput />
 					</InputClusterItem>
 					<InputClusterItem>
 						<FormLabel htmlFor="example-4" sublabel>
 							This is a sub-label
 						</FormLabel>
-						<FormInput />
+						<TextInput />
 					</InputClusterItem>
 				</InputCluster>
 			</FormGroup>

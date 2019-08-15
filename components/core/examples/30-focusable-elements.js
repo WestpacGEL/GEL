@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button } from '../../button/src';
-import { FormInput } from '../../form-input/src';
+import { TextInput } from '../../text-input/src';
 
 export default () => (
 	<>
@@ -20,13 +20,13 @@ export default () => (
 
 		<h2>Inputs</h2>
 		<p>Note: All users should see our focus outline styling; not just keyboard users.</p>
-		<FormInput />
+		<TextInput />
 		<br />
-		<FormInput tag="select">
+		<TextInput tag="select">
 			<option>Select</option>
-		</FormInput>
+		</TextInput>
 		<br />
-		<FormInput tag="textarea" />
+		<TextInput tag="textarea" />
 
 		<hr />
 

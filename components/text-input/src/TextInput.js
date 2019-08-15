@@ -17,7 +17,7 @@ const round = f => Math.round(f * 100) / 100; //2DP
 // Component
 // ==============================
 
-export const FormInput = ({ size, width, invalid, tag: Tag, children, ...props }) => {
+export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }) => {
 	const { colors, breakpoints, formInput, typography } = useTheme();
 	const formContext = useContext(FormContext);
 	const mq = paint(breakpoints);
@@ -149,7 +149,7 @@ const options = {
 	tag: ['input', 'select', 'textarea'],
 };
 
-FormInput.propTypes = {
+TextInput.propTypes = {
 	/**
 	 * The component size.
 	 *
@@ -184,7 +184,7 @@ FormInput.propTypes = {
 	children: PropTypes.node,
 };
 
-FormInput.defaultProps = {
+TextInput.defaultProps = {
 	size: 'medium',
 	invalid: false,
 	tag: 'input',
