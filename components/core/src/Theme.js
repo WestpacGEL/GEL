@@ -9,7 +9,7 @@ import { Core } from './Core';
 // TODO: is there a useful "default" value we should add here?
 export const ThemeContext = createContext();
 
-export const UserModeContext = createContext();
+export const UserModeContext = createContext(false);
 
 export const useTheme = () => {
 	const themeObject = useContext(ThemeContext);
@@ -23,39 +23,33 @@ export const useTheme = () => {
 };
 
 export const useIsKeyboardUser = () => {
-	return useContext(UserModeContext);
-};
+	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
 
-// ==============================
-// Utils
-// ==============================
+	// Handle keys
+	const keyHandler = event => {
+		if (event.key === 'Tab' && !isKeyboardUser) {
+			setIsKeyboardUser(true);
+			document.removeEventListener('keydown', keyHandler);
+		}
+	};
+
+	// Bind key events
+	useEffect(() => {
+		window.document.addEventListener('keydown', keyHandler);
+		return () => {
+			window.document.removeEventListener('keydown', keyHandler);
+		};
+	}, []);
+
+	return isKeyboardUser;
+};
 
 // ==============================
 // Component
 // ==============================
 
 export const GEL = ({ brand, children, ...props }) => {
-	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
-
-	// Handle keys
-	const keyHandler = event => {
-		console.log('keyHander called');
-
-		if (event.key === 'Tab') {
-			setIsKeyboardUser(true);
-		}
-	};
-
-	// Bind key events
-	useEffect(
-		() => {
-			window.document.addEventListener('keydown', keyHandler, { once: true });
-			return () => {
-				window.document.removeEventListener('keydown', keyHandler);
-			};
-		},
-		[isKeyboardUser]
-	);
+	const isKeyboardUser = useIsKeyboardUser();
 
 	return (
 		<UserModeContext.Provider value={isKeyboardUser} {...props}>

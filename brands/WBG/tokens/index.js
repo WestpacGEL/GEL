@@ -344,8 +344,8 @@ export default {
 		fontWeight: 400,
 		color: COLORS.text,
 		backgroundColor: '#fff',
-		borderWidth: 1,
-		borderRadius: 3,
+		borderWidth: '1px',
+		borderRadius: '3px',
 		fontXFactor: 1.81,
 		appearance: {
 			default: {
@@ -357,24 +357,20 @@ export default {
 		},
 		size: {
 			small: {
-				padding: ['3px', '9px', '4px'],
-				fontSize: 14,
-				height: 30,
+				padding: ['0.3rem', '0.9rem', '0.4rem'],
+				fontSize: '1.4rem',
 			},
 			medium: {
-				padding: ['5px', '12px'],
-				fontSize: 16,
-				height: 36,
+				padding: ['0.5rem', '1.2rem'],
+				fontSize: '1.6rem',
 			},
 			large: {
-				padding: ['8px', '15px'],
-				fontSize: 16,
-				height: 42,
+				padding: ['0.8rem', '1.5rem'],
+				fontSize: '1.6rem',
 			},
 			xlarge: {
-				padding: ['9px', '18px', '10px'],
-				fontSize: 18,
-				height: 48,
+				padding: ['0.9rem', '1.8rem', '1rem'],
+				fontSize: '1.8rem',
 			},
 		},
 		disabled: {
@@ -386,21 +382,21 @@ export default {
 			color: tint(COLORS.Text, 0.5),
 		},
 		select: {
-			caretGap: 8,
+			caretGap: '0.8rem',
 		},
 		textarea: {
 			size: {
 				small: {
-					minHeight: 54,
+					minHeight: '5.4rem',
 				},
 				medium: {
-					minHeight: 60,
+					minHeight: '6rem',
 				},
 				large: {
-					minHeight: 66,
+					minHeight: '6.6rem',
 				},
 				xlarge: {
-					minHeight: 72,
+					minHeight: '7.2rem',
 				},
 			},
 		},

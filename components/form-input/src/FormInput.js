@@ -28,7 +28,9 @@ export const FormInput = ({
 	...props
 }) => {
 	const { colors, formInput, typography } = useTheme();
-	const formInputInline = FormContext.inline || inline;
+	const formContext = useContext(FormContext);
+
+	const formInputInline = formContext.inline || inline;
 
 	// Common styling
 	const styleCommon = {
