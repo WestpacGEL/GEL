@@ -123,7 +123,7 @@ export const Button = ({
 		return Tag !== 'input' ? (
 			<>
 				{children && <span css={styleChildren}>{children}</span>}
-				{Icon && <Icon css={styleIcon} size={iconSize[size]} />}
+				{Icon && <Icon css={styleIcon} size={iconSize[size]} color="inherit" />}
 			</>
 		) : null;
 	};
