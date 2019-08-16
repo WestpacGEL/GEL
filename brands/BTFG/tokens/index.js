@@ -454,6 +454,33 @@ export default {
 		},
 	},
 
+	list: {
+		type: {
+			bullet: {
+				appearance: {
+					primary: {
+						color: COLORS.primary,
+					},
+					hero: {
+						color: COLORS.hero,
+					},
+					neutral: {
+						color: COLORS.neutral,
+					},
+				},
+			},
+			link: {
+				color: COLORS.primary,
+			},
+			tick: {
+				color: COLORS.primary,
+			},
+			icon: {
+				color: COLORS.muted,
+			},
+		},
+	},
+
 	panel: {
 		backgroundColor: '#fff',
 		borderWidth: '1px',
