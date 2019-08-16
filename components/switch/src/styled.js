@@ -23,7 +23,7 @@ export const SwitchText = ({ size, block, flip, srOnlyText, ...props }) => {
 		flex: block ? 1 : null,
 		display: 'flex',
 		alignItems: 'center',
-		minHeight: asArray(size).map(s => s && formSwitch.size[s].height),
+		minHeight: asArray(size).map(s => s !== null && formSwitch.size[s].height),
 		...(gap => (flip ? { paddingLeft: gap } : { paddingRight: gap }))(formSwitch.text.gap),
 
 		'input:disabled ~ &': {
@@ -43,10 +43,10 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 		const sizeArr = asArray(size);
 
 		return {
-			borderRadius: sizeArr.map(s => s && formSwitch.size[s].borderRadius),
-			width: sizeArr.map(s => s && formSwitch.size[s].width),
-			height: sizeArr.map(s => s && formSwitch.size[s].height),
-			fontSize: sizeArr.map(s => s && formSwitch.size[s].fontSize),
+			borderRadius: sizeArr.map(s => s !== null && formSwitch.size[s].borderRadius),
+			width: sizeArr.map(s => s !== null && formSwitch.size[s].width),
+			height: sizeArr.map(s => s !== null && formSwitch.size[s].height),
+			fontSize: sizeArr.map(s => s !== null && formSwitch.size[s].fontSize),
 		};
 	};
 
@@ -82,7 +82,7 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 			transition: 'all .3s ease',
 			backgroundColor: formSwitch.backgroundColor,
 			...(val => ({ width: val, height: val }))(
-				styleResponsive().height.map(h => h && h - formSwitch.borderWidth * 2)
+				styleResponsive().height.map(h => h - formSwitch.borderWidth * 2)
 			),
 
 			// Checked state
@@ -104,7 +104,7 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 		right: 0,
 		textAlign: 'center',
 		fontSize: styleResponsive().fontSize,
-		lineHeight: styleResponsive().height.map(h => h && `${h - formSwitch.borderWidth * 2}px`),
+		lineHeight: styleResponsive().height.map(h => `${h - formSwitch.borderWidth * 2}px`),
 		width: styleResponsive().height.map(
 			h => h && `calc(100% - ${h - formSwitch.borderWidth * 2}px)`
 		),
