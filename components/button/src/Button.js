@@ -82,24 +82,16 @@ export const Button = ({
 		const sizeArr = asArray(size);
 		const blockArr = asArray(block);
 
-		const padding = [],
-			fontSize = [],
-			height = [];
-
-		sizeArr.forEach(s => {
-			const pad = button.size[s].padding;
-			if (trim) pad[1] = 0;
-			padding.push(pad.join(' '));
-			fontSize.push(button.size[s].fontSize);
-			height.push(button.size[s].height);
-		});
-
 		return {
-			padding,
-			fontSize,
-			height,
-			display: blockArr.map(b => (b ? 'flex' : 'inline-flex')),
-			width: blockArr.map(b => (b ? '100%' : 'auto')),
+			padding: sizeArr.map(s => {
+				const pad = button.size[s].padding;
+				if (trim) pad[1] = 0;
+				return s && pad.join(' ');
+			}),
+			fontSize: sizeArr.map(s => s && button.size[s].fontSize),
+			height: sizeArr.map(s => s && button.size[s].height),
+			display: blockArr.map(b => b && (b ? 'flex' : 'inline-flex')),
+			width: blockArr.map(b => b && (b ? '100%' : 'auto')),
 		};
 	};
 
