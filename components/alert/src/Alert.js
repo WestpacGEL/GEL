@@ -50,10 +50,10 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 		position: ['relative', 'absolute'],
 		zIndex: 1,
 		float: ['right', 'none'],
-		top: 3,
+		top: '0.3rem',
 		right: 0,
-		marginTop: [-18, 0],
-		marginRight: [-18, 0],
+		marginTop: ['-1.8rem', 0],
+		marginRight: ['-1.8rem', 0],
 		opacity: 1,
 
 		':hover': {
@@ -63,14 +63,14 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 
 	const styleIcon = {
 		float: ['left', 'none'],
-		marginRight: [6, 12],
+		marginRight: ['0.6rem', '1.2rem'],
 		flex: 'none',
 	};
 
 	const styleBody = {
 		position: 'relative',
 		flex: 1,
-		top: [null, Icon ? 2 : null],
+		top: [null, Icon ? '0.2rem' : null],
 	};
 
 	return (
