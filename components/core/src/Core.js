@@ -8,7 +8,7 @@ import { paint } from './utils';
 import merge from 'lodash.merge';
 
 export const Core = ({ children }) => {
-	const { colors, breakpoints, font, typography } = useTheme();
+	const { colors, breakpoints, font: styleFont, typography } = useTheme();
 	const isKeyboardUser = useContext(UserModeContext);
 	const mq = paint(breakpoints);
 
@@ -230,9 +230,6 @@ export const Core = ({ children }) => {
 			},
 		},
 	};
-
-	// Font @fontface styling
-	const styleFont = font;
 
 	// Text extension styling
 	const styleTextExtensions = {
