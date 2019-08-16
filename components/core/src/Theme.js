@@ -27,7 +27,7 @@ export const useIsKeyboardUser = () => {
 
 	// Handle keys
 	const keyHandler = event => {
-		if (event.key === 'Tab' && !isKeyboardUser) {
+		if (event.key === 'Tab') {
 			setIsKeyboardUser(true);
 			document.removeEventListener('keydown', keyHandler);
 		}
