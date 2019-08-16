@@ -16,7 +16,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 	const styleCommon = {
 		[xsOnly]: {
 			width: '100%',
-			marginBottom: '18px',
+			marginBottom: '1.8rem',
 			overflowY: 'hidden',
 			overflowX: 'auto',
 			// -ms-overflow-style: '-ms-autohiding-scrollbar',
