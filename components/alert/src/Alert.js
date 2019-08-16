@@ -18,7 +18,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 	const { breakpoints, alert } = useTheme();
 	const mq = paint(breakpoints);
 	const getPaddingSM = () =>
-		closable ? `${alert.padding} 30px ${alert.padding} ${alert.padding}` : alert.padding;
+		closable ? `${alert.padding} 3rem ${alert.padding} ${alert.padding}` : alert.padding;
 
 	const styleCommon = {
 		marginBottom: alert.marginBottom,
