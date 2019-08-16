@@ -163,78 +163,40 @@ const options = {
 };
 
 Button.propTypes = {
-	/**
-	 * The button appearance.
-	 *
-	 * Defaults to "primary"
-	 */
+	/** Button appearance */
 	appearance: PropTypes.oneOf(options.appearance),
 
-	/**
-	 * The button size.
-	 *
-	 * Defaults to "medium"
-	 */
+	/** Button size */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(options.size),
 		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
 	]),
 
-	/**
-	 * The button tag.
-	 *
-	 * Defaults to "button"
-	 */
+	/** Button tag */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
-	/**
-	 * Soft mode. Removes background colour and adjusts text colour.
-	 *
-	 * Defaults to "false"
-	 */
+	/** Soft mode. Removes background colour and adjusts text colour */
 	soft: PropTypes.bool,
 
-	/**
-	 * Block mode.
-	 *
-	 * Defaults to "false"
-	 */
+	/** Block mode. */
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
-	/**
-	 * Trim mode. Removes horizontal padding.
-	 *
-	 * Defaults to "false"
-	 */
+	/** Trim mode. Removes horizontal padding. */
 	trim: PropTypes.bool,
 
-	/**
-	 * Button icon.
-	 */
+	/** Button icon */
 	icon: PropTypes.func,
 
-	/**
-	 * Button icon positioning.
-	 *
-	 * Defaults to "right"
-	 */
+	/** Button icon positioning */
 	iconPosition: PropTypes.oneOf(options.iconPosition),
 
-	/**
-	 * Button content alignment.
-	 *
-	 * Defaults to "false"
-	 */
+	/** Button content alignment */
 	justify: PropTypes.bool,
 
-	/**
-	 * The content for this button.
-	 */
+	/** Button text */
 	children: PropTypes.node,
 
-	/**
-	 * The onClick handler for this button.
-	 */
+	/** onClick handler for this button */
 	onClick: PropTypes.func,
 };
 
