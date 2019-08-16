@@ -144,8 +144,8 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
 	columns: 12,
-	gap: [12, 24],
+	gap: ['1.2rem', '2.4rem'],
 	flow: 'row',
 	height: 'auto',
-	minRowHeight: 20,
+	minRowHeight: '2rem',
 };
