@@ -91,20 +91,18 @@ export const propTypes = {
 	 * String to use as the aria-label for the symbol. Set to an empty string if you
 	 * are rendering the symbol with visible text to prevent accessibility label
 	 * duplication.
-	 *
-	 * Defaults to the symbol name e.g. `HouseSymbol` --> "House"
 	 */
 	label: PropTypes.string,
 
 	/**
-	 * Set a symbol width.
+	 * Set a symbol width in pixels.
 	 *
 	 * Symbol will scale to fit (height will be set automatically). Note: If both "width" and "height" props are provided "height" will be ignored.
 	 */
 	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
 
 	/**
-	 * Set a symbol height.
+	 * Set a symbol height in pixels.
 	 *
 	 * Symbol will scale to fit (width will be set automatically). Note: If both "width" and "height" props are provided "height" will be ignored.
 	 */

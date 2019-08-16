@@ -5,7 +5,7 @@ route: /symbol
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { HouseSymbol } from './src';
+import { MastercardAcceptedSymbol } from './src';
 import * as ALL_SYMBOLS from './src';
 import { Cell, Grid, Name, Row } from './examples/_util';
 import { Symbol } from './src/Symbol';
@@ -15,7 +15,14 @@ import { Symbol } from './src/Symbol';
 These symbols are commonly used in Westpac user interfaces. They are implemented as scalable vector graphics (SVGs). Using SVGs ensures the highest quality rendering on all devices, allows us to style the symbols using code and also complies with AA accessibility requirements.
 
 <Playground>
-	<HouseSymbol />
+	<MastercardAcceptedSymbol />
+</Playground>
+
+## Sizing
+Pass a `width` or `height` prop to set a max size in px. The width value will take presidence over height if both props are provided.
+
+<Playground>
+	<MastercardAcceptedSymbol width={200} />
 </Playground>
 
 ## All Symbols
