@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
+import { inherits } from 'util';
 
 // ==============================
 // Utils
@@ -23,9 +24,9 @@ export const Button = ({
 	icon: Icon,
 	iconPosition,
 	justify,
-	children,
 	tag: Tag,
 	onClick,
+	children,
 	...props
 }) => {
 	const { breakpoints, button } = useTheme();
