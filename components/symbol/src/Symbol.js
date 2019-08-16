@@ -31,8 +31,8 @@ const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props })
 		const resizeByWidth = !!width;
 
 		return {
-			width: resizeByWidth ? widthArr : heightArr.map(h => round(h * ratio)),
-			height: resizeByWidth ? widthArr.map(w => round(w / ratio)) : heightArr,
+			width: resizeByWidth ? widthArr : heightArr.map(h => h !== null && round(h * ratio)),
+			height: resizeByWidth ? widthArr.map(w => w !== null && round(w / ratio)) : heightArr,
 		};
 	};
 
