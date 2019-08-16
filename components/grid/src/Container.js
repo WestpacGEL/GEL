@@ -12,8 +12,8 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // ==============================
 
 export const Container = props => {
-	const { grid } = useTheme();
-	const mq = paint(theme.breakpoints);
+	const { breakpoints, grid } = useTheme();
+	const mq = paint(breakpoints);
 
 	return (
 		<div

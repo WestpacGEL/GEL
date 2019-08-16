@@ -16,8 +16,8 @@ const getEndSpan = c => (Array.isArray(c) ? c.map(span) : span(c));
 // ==============================
 
 export const Cell = ({ area, center, height, left, middle, top, width, ...props }) => {
-	const theme = useTheme();
-	const mq = paint(theme.breakpoints);
+	const { breakpoints } = useTheme();
+	const mq = paint(breakpoints);
 
 	return (
 		<div
