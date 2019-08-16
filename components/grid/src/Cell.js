@@ -17,11 +17,11 @@ const getEndSpan = c => (Array.isArray(c) ? c.map(span) : span(c));
 
 export const Cell = ({ area, center, height, left, middle, top, width, ...props }) => {
 	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
+	const mq = paint(theme.breakpoints);
 
 	return (
 		<div
-			css={arrayValues({
+			css={mq({
 				gridArea: area,
 				gridColumnEnd: !area && getEndSpan(width),
 				gridColumnStart: left,
