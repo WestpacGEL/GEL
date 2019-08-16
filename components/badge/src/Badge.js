@@ -55,7 +55,7 @@ export const Badge = ({ appearance, children, ...props }) => {
 			backgroundColor: colors.success,
 			borderColor: colors.success,
 		},
-		info: {
+		information: {
 			color: '#fff',
 			backgroundColor: colors.information,
 			borderColor: colors.information,
@@ -95,7 +95,7 @@ Badge.propTypes = {
 		'neutral',
 		'faint',
 		'success',
-		'info',
+		'information',
 		'warning',
 		'danger',
 	]),

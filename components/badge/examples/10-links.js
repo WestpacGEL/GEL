@@ -38,7 +38,7 @@ export default () => (
 		</p>
 		<p>
 			<a href="#0">
-				Info <Badge appearance="info">71</Badge>
+				Information <Badge appearance="information">71</Badge>
 			</a>
 		</p>
 		<p>
