@@ -30,50 +30,13 @@ export const Badge = ({ appearance, children, ...props }) => {
 	};
 
 	const styleAppearance = {
-		primary: {
-			color: '#fff',
-			backgroundColor: colors.primary.default,
-			borderColor: colors.primary.default,
-		},
-		hero: {
-			color: '#fff',
-			backgroundColor: colors.hero.default,
-			borderColor: colors.hero.default,
-		},
-		neutral: {
-			color: '#fff',
-			backgroundColor: colors.neutral,
-			borderColor: colors.neutral,
-		},
-		faint: {
-			color: colors.muted,
-			backgroundColor: '#fff',
-			borderColor: colors.border,
-		},
-		success: {
-			color: '#fff',
-			backgroundColor: colors.success,
-			borderColor: colors.success,
-		},
-		information: {
-			color: '#fff',
-			backgroundColor: colors.information,
-			borderColor: colors.information,
-		},
-		danger: {
-			color: '#fff',
-			backgroundColor: colors.danger,
-			borderColor: colors.danger,
-		},
-		warning: {
-			color: '#fff',
-			backgroundColor: colors.warning,
-			borderColor: colors.warning,
-		},
+		color: colors[appearance].foreground,
+		backgroundColor: colors[appearance].default,
+		borderColor: appearance === 'faint' ? colors.border : colors[appearance].default,
 	};
 
 	return (
-		<span css={{ ...common, ...styleAppearance[appearance] }} {...props}>
+		<span css={{ ...common, ...styleAppearance }} {...props}>
 			{children}
 		</span>
 	);
