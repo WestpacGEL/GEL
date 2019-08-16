@@ -58,8 +58,8 @@ const FONT = (folder = '../font') => ({
 
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
-const CONTAINER_MAXWIDTH = 1320;
-const CONTAINER_PADDING = [12, 36, 48, 60];
+const CONTAINER_MAXWIDTH = '132rem';
+const CONTAINER_PADDING = ['1.2rem', '3.6rem', '4.8rem', '6rem'];
 
 export default {
 	breakpoints: BREAK_POINTS,
@@ -172,12 +172,12 @@ export default {
 		lineHeight: 1,
 		fontWeight: 700,
 		fontSize: '1.4rem',
-		borderRadius: '12px',
+		borderRadius: '1.2rem',
 		borderWidth: '1px',
 	},
 
 	button: {
-		borderRadius: '3px',
+		borderRadius: '0.3rem',
 		borderWidth: '1px',
 		fontWeight: 400,
 		lineHeight: 1.5,
@@ -379,7 +379,7 @@ export default {
 	},
 
 	label: {
-		borderRadius: '2px',
+		borderRadius: '0.2rem',
 		borderWidth: '1px',
 		fontSize: '1.2rem',
 		padding: '0.1rem 0.6rem',
@@ -515,7 +515,7 @@ export default {
 	panel: {
 		backgroundColor: '#fff',
 		borderWidth: '1px',
-		borderRadius: '3px',
+		borderRadius: '0.3rem',
 		appearance: {
 			hero: {
 				borderColor: COLORS.hero,
@@ -606,7 +606,7 @@ export default {
 	},
 
 	well: {
-		borderRadius: '3px',
+		borderRadius: '0.3rem',
 		borderWidth: '1px',
 		backgroundColor: COLORS.light,
 		borderColor: COLORS.border,
