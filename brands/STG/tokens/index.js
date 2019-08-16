@@ -529,7 +529,7 @@ export default {
 	},
 
 	switch: {
-		borderWidth: 2,
+		borderWidth: '2px',
 		borderColor: COLORS.border,
 		backgroundColor: '#fff',
 		marginRight: 18,
@@ -547,6 +547,7 @@ export default {
 		toggleText: {
 			default: {
 				color: COLORS.text,
+				padding: '0 4px',
 			},
 			checked: {
 				color: COLORS.text, //mapping unique to this brand
@@ -557,28 +558,28 @@ export default {
 		},
 		size: {
 			small: {
-				width: 70,
-				height: 30,
-				borderRadius: 30,
-				fontSize: 14,
+				width: '70px',
+				height: '30px',
+				borderRadius: '30px',
+				fontSize: '14px',
 			},
 			medium: {
-				width: 80,
-				height: 36,
-				borderRadius: 36,
-				fontSize: 16,
+				width: '80px',
+				height: '36px',
+				borderRadius: '36px',
+				fontSize: '16px',
 			},
 			large: {
-				width: 89,
-				height: 42,
-				borderRadius: 42,
-				fontSize: 16,
+				width: '89px',
+				height: '42px',
+				borderRadius: '42px',
+				fontSize: '16px',
 			},
 			xlarge: {
-				width: 96,
-				height: 48,
-				borderRadius: 48,
-				fontSize: 18,
+				width: '96px',
+				height: '48px',
+				borderRadius: '48px',
+				fontSize: '18px',
 			},
 		},
 	},

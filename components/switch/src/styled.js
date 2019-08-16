@@ -24,7 +24,7 @@ export const SwitchText = ({ size, block, flip, srOnlyText, ...props }) => {
 		display: 'flex',
 		alignItems: 'center',
 		minHeight: asArray(size).map(s => s !== null && formSwitch.size[s].height),
-		...(gap => (flip ? { paddingLeft: gap } : { paddingRight: gap }))(formSwitch.text.gap),
+		...(flip ? { paddingLeft: formSwitch.text.gap } : { paddingRight: formSwitch.text.gap }),
 
 		'input:disabled ~ &': {
 			cursor: 'default',
@@ -57,8 +57,7 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 		height: styleResponsive().height,
 		position: 'relative',
 		zIndex: 1,
-		border: `${formSwitch.borderWidth}px solid`,
-		borderColor: formSwitch.borderColor,
+		border: `${formSwitch.borderWidth} solid ${formSwitch.borderColor}`,
 		backgroundColor: formSwitch.backgroundColor,
 		overflow: 'hidden',
 		lineHeight: 1.5,
@@ -82,7 +81,9 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 			transition: 'all .3s ease',
 			backgroundColor: formSwitch.backgroundColor,
 			...(val => ({ width: val, height: val }))(
-				styleResponsive().height.map(h => h - formSwitch.borderWidth * 2)
+				styleResponsive().height.map(
+					h => `calc(${h} - ${formSwitch.borderWidth} - ${formSwitch.borderWidth})`
+				)
 			),
 
 			// Checked state
@@ -104,9 +105,11 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 		right: 0,
 		textAlign: 'center',
 		fontSize: styleResponsive().fontSize,
-		lineHeight: styleResponsive().height.map(h => `${h - formSwitch.borderWidth * 2}px`),
+		lineHeight: styleResponsive().height.map(
+			h => `calc(${h} - (${formSwitch.borderWidth} + ${formSwitch.borderWidth}))`
+		),
 		width: styleResponsive().height.map(
-			h => h && `calc(100% - ${h - formSwitch.borderWidth * 2}px)`
+			h => `calc(100% - (${h} - ${formSwitch.borderWidth} - ${formSwitch.borderWidth}))`
 		),
 		...formSwitch.toggleText.default,
 	};

@@ -7,10 +7,6 @@ import { jsx, useTheme, paint } from '@westpac/core';
 import { SwitchText, SwitchToggle } from './styled';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
@@ -50,7 +46,7 @@ export const Switch = ({
 	};
 
 	return (
-		<label htmlFor={id} css={common} onChange={toggle} {...props}>
+		<label htmlFor={id} css={common} {...props}>
 			<input
 				type="checkbox"
 				css={{
@@ -60,6 +56,7 @@ export const Switch = ({
 				}}
 				name={name}
 				id={id}
+				onChange={toggle}
 				defaultChecked={defaultChecked}
 				disabled={disabled}
 			/>
@@ -83,14 +80,12 @@ const options = {
 
 Switch.propTypes = {
 	/**
-	 * Input element name attribute.
+	 * Input element name attribute
 	 */
 	name: PropTypes.string,
 
 	/**
-	 * Input element id attribute.
-	 *
-	 * This prop is required.
+	 * Input element id attribute
 	 */
 	id: PropTypes.string.isRequired,
 
@@ -102,9 +97,7 @@ Switch.propTypes = {
 	toggleText: PropTypes.arrayOf(PropTypes.string),
 
 	/**
-	 * Form switch size.
-	 *
-	 * Defaults to "medium"
+	 * Form switch size
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(options.size),
@@ -112,37 +105,27 @@ Switch.propTypes = {
 	]),
 
 	/**
-	 * Block mode.
-	 *
-	 * Defaults to "false".
+	 * Block mode
 	 */
 	block: PropTypes.bool,
 
 	/**
-	 * Reverse the horizontal orientation, renders the toggle on the left of the label text.
-	 *
-	 * Defaults to "false".
+	 * Reverse the horizontal orientation. Renders the toggle on the left of the label text.
 	 */
 	flip: PropTypes.bool,
 
 	/**
 	 * Enable ‘screen reader only’ label text mode.
-	 *
-	 * Defaults to "false".
 	 */
 	srOnlyText: PropTypes.bool,
 
 	/**
-	 * Switch on by default.
-	 *
-	 * Defaults to "false".
+	 * Switch on by default
 	 */
 	defaultChecked: PropTypes.bool,
 
 	/**
-	 * Disable the form switch.
-	 *
-	 * Defaults to "false".
+	 * Disable the form switch
 	 */
 	disabled: PropTypes.bool,
 

@@ -25,20 +25,20 @@ export default () => (
 		<hr />
 
 		<h3>Large</h3>
-		<Switch name="ex4" id="ex4" size="large" toggleText={['Yes', 'No']}>
+		<Switch name="ex5" id="ex5" size="large" toggleText={['Yes', 'No']}>
 			Enable notifications
 		</Switch>
-		<Switch name="ex5" id="ex5" size="large">
+		<Switch name="ex6" id="ex6" size="large">
 			Turn notifications
 		</Switch>
 
 		<hr />
 
 		<h3>Extra large</h3>
-		<Switch name="ex6" id="ex6" size="xlarge" toggleText={['Yes', 'No']}>
+		<Switch name="ex7" id="ex7" size="xlarge" toggleText={['Yes', 'No']}>
 			Enable notifications
 		</Switch>
-		<Switch name="ex7" id="ex7" size="xlarge">
+		<Switch name="ex8" id="ex8" size="xlarge">
 			Turn notifications
 		</Switch>
 	</>
