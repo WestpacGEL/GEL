@@ -47,11 +47,7 @@ export const Badge = ({ appearance, children, ...props }) => {
 // ==============================
 
 Badge.propTypes = {
-	/**
-	 * The badge appearance.
-	 *
-	 * Defaults to "neutral"
-	 */
+	/** Badge appearance */
 	appearance: PropTypes.oneOf([
 		'primary',
 		'hero',
@@ -63,11 +59,7 @@ Badge.propTypes = {
 		'danger',
 	]),
 
-	/**
-	 * The content for this badge.
-	 *
-	 * This prop is requried.
-	 */
+	/** Badge text */
 	children: PropTypes.node.isRequired,
 };
 
