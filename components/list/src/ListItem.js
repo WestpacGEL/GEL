@@ -25,9 +25,9 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 	const { list } = useTheme();
 
 	const common = {
-		margin: spacing === 'large' ? '12px 0' : '6px 0',
+		margin: spacing === 'large' ? '1.2prem 0' : '0.6rem 0',
 		listStyle: type !== 'ordered' ? 'none' : null,
-		paddingLeft: 19,
+		paddingLeft: '1.9rem',
 		position: 'relative',
 	};
 
@@ -45,11 +45,11 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 			'&::before': {
 				content: '""',
 				position: 'absolute',
-				left: 4,
-				top: 6,
+				left: '0.4rem',
+				top: '0.6rem',
 				display: 'block',
-				width: 8,
-				height: 8,
+				width: '0.8rem',
+				height: '0.8rem',
 				borderRadius: '50%',
 				border: `1px solid ${list.type.bullet.appearance[appearance].color}`,
 				backgroundColor: list.type.bullet.appearance[appearance].color,
@@ -64,10 +64,10 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 				content: "''",
 				position: 'absolute',
 				left: 0,
-				top: 2,
+				top: '0.2rem',
 				display: 'block',
-				width: 16,
-				height: 16,
+				width: '1.6rem',
+				height: '1.6rem',
 				backgroundImage: `url("${svgToTinyDataURI(linkSVG)}")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'contain',
@@ -78,10 +78,10 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 				content: "''",
 				position: 'absolute',
 				left: 0,
-				top: 2,
+				top: '0.2rem',
 				display: 'block',
-				width: 16,
-				height: 16,
+				width: '1.6rem',
+				height: '1.6rem',
 				backgroundImage: `url("${svgToTinyDataURI(tickSVG)}")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'contain',
@@ -91,14 +91,14 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 			paddingLeft: 0,
 
 			li: {
-				paddingLeft: 19,
+				paddingLeft: '1.9rem',
 			},
 		},
 		icon: {
 			paddingLeft: 0,
 
 			li: {
-				paddingLeft: 19,
+				paddingLeft: '1.9rem',
 			},
 		},
 		ordered: {
@@ -112,7 +112,7 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 	return (
 		<li css={{ ...common, ...styles[type] }}>
 			{type === 'icon' && icon && (
-				<span css={{ paddingRight: '5px' }}>
+				<span css={{ paddingRight: '0.5rem' }}>
 					<Icon size="small" color={list.type.icon.color} />
 				</span>
 			)}
