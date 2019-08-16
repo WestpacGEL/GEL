@@ -18,39 +18,39 @@ const round = f => Math.round(f * 100) / 100; //2DP
 // ==============================
 
 export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }) => {
-	const { colors, breakpoints, formInput, typography } = useTheme();
+	const { colors, breakpoints, textInput, typography } = useTheme();
 	const formContext = useContext(FormContext);
 	const mq = paint(breakpoints);
 
 	const inline = formContext.inline;
-	const formInputSize = formContext.size || size;
+	const textInputSize = formContext.size || size;
 
 	// Common styling
 	const styleCommon = {
 		display: inline ? ['block', 'inline-block'] : 'block',
 		width: inline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
-		lineHeight: formInput.lineHeight,
-		fontWeight: formInput.fontWeight,
-		color: formInput.color,
-		backgroundColor: formInput.backgroundColor,
-		border: `${formInput.borderWidth} solid`,
+		lineHeight: textInput.lineHeight,
+		fontWeight: textInput.fontWeight,
+		color: textInput.color,
+		backgroundColor: textInput.backgroundColor,
+		border: `${textInput.borderWidth} solid`,
 		borderColor:
 			invalid || props.ariaInvalid
-				? formInput.appearance.invalid.borderColor
-				: formInput.appearance.default.borderColor,
-		borderRadius: formInput.borderRadius,
+				? textInput.appearance.invalid.borderColor
+				: textInput.appearance.default.borderColor,
+		borderRadius: textInput.borderRadius,
 		transition: 'border 0.2s ease',
 		verticalAlign: inline ? 'middle' : null,
-		padding: formInput.size[formInputSize].padding.join(' '),
-		fontSize: formInput.size[formInputSize].fontSize,
-		height: `calc(${formInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
-			formInput.size[formInputSize].padding
-		)} + ${(bw => `${bw} + ${bw}`)(formInput.borderWidth)})`,
+		padding: textInput.size[textInputSize].padding.join(' '),
+		fontSize: textInput.size[textInputSize].fontSize,
+		height: `calc(${textInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
+			textInput.size[textInputSize].padding
+		)} + ${(bw => `${bw} + ${bw}`)(textInput.borderWidth)})`,
 
 		'&::placeholder': {
 			opacity: 1, // Override Firefox's unusual default opacity
-			...formInput.placeholder,
+			...textInput.placeholder,
 		},
 
 		// Focus styling (for all, not just keyboard users)
@@ -62,7 +62,7 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 		':disabled, &[readonly]': {
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
-			...formInput.disabled,
+			...textInput.disabled,
 		},
 
 		// Disable number input spinners/steppers
@@ -75,17 +75,17 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${
 		colors.muted
 	}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
-	const caretGap = formInput.select.caretGap;
+	const caretGap = textInput.select.caretGap;
 	const caretWidth = '14px';
 
 	const styleAppearance = {
 		select: {
 			paddingRight: `calc(${
-				formInput.size[formInputSize].padding[1]
+				textInput.size[textInputSize].padding[1]
 			} + ${caretWidth} + ${caretGap})`,
 			backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
 			backgroundRepeat: 'no-repeat',
-			backgroundPosition: `right ${formInput.size[formInputSize].padding[1]} center`,
+			backgroundPosition: `right ${textInput.size[textInputSize].padding[1]} center`,
 
 			// Remove the caret on `<select>`s in IE10+.
 			'&::-ms-expand': {
@@ -102,15 +102,15 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 		},
 		textarea: {
 			verticalAlign: inline ? 'top' : null,
-			...formInput.textarea.size[formInputSize],
+			...textInput.textarea.size[textInputSize],
 		},
 	};
 
 	// Input fixed width styling
 	const styleFixedWidth = () => {
-		const factor = formInput.fontXFactor; //'W' compared to 'x' character (relative to font)
-		let extras = `${(p => `${p} + ${p}`)(formInput.size[formInputSize].padding[1])} + ${(b =>
-			`${b} + ${b}`)(formInput.borderWidth)}`;
+		const factor = textInput.fontXFactor; //'W' compared to 'x' character (relative to font)
+		let extras = `${(p => `${p} + ${p}`)(textInput.size[textInputSize].padding[1])} + ${(b =>
+			`${b} + ${b}`)(textInput.borderWidth)}`;
 
 		// Add width for caret if a select
 		if (Tag === 'select') {

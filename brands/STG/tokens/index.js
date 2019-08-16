@@ -352,76 +352,6 @@ export default {
 		},
 	},
 
-	formInput: {
-		lineHeight: 1.5,
-		fontWeight: 400,
-		color: COLORS.text,
-		backgroundColor: '#fff',
-		borderWidth: '1px',
-		borderRadius: '3px',
-		fontXFactor: 1.81,
-		appearance: {
-			default: {
-				borderColor: COLORS.borderDark,
-			},
-			invalid: {
-				borderColor: COLORS.danger,
-			},
-		},
-		size: {
-			small: {
-				padding: ['0.3rem', '0.9rem', '0.4rem'],
-				fontSize: '1.4rem',
-			},
-			medium: {
-				padding: ['0.5rem', '1.2rem'],
-				fontSize: '1.6rem',
-			},
-			large: {
-				padding: ['0.8rem', '1.5rem'],
-				fontSize: '1.6rem',
-			},
-			xlarge: {
-				padding: ['0.9rem', '1.8rem', '1rem'],
-				fontSize: '1.8rem',
-			},
-		},
-		disabled: {
-			backgroundColor: COLORS.light,
-			color: COLORS.muted,
-		},
-		placeholder: {
-			fontWeight: 300,
-			color: tint(COLORS.Text, 0.5),
-		},
-		select: {
-			caretGap: '0.8rem',
-		},
-		textarea: {
-			size: {
-				small: {
-					minHeight: '5.4rem',
-				},
-				medium: {
-					minHeight: '6rem',
-				},
-				large: {
-					minHeight: '6.6rem',
-				},
-				xlarge: {
-					minHeight: '7.2rem',
-				},
-			},
-		},
-	},
-
-	grid: {
-		container: {
-			maxWidth: CONTAINER_MAXWIDTH,
-			padding: CONTAINER_PADDING,
-		},
-	},
-
 	label: {
 		borderRadius: '2px',
 		borderWidth: '1px',
@@ -612,69 +542,6 @@ export default {
 		},
 	},
 
-	formInput: {
-		lineHeight: 1.5,
-		fontWeight: 400,
-		color: COLORS.text,
-		backgroundColor: '#fff',
-		borderWidth: '1px',
-		borderRadius: '3px',
-		fontXFactor: 1.81,
-		appearance: {
-			default: {
-				borderColor: COLORS.borderDark,
-			},
-			invalid: {
-				borderColor: COLORS.danger,
-			},
-		},
-		size: {
-			small: {
-				padding: ['0.3rem', '0.9rem', '0.4rem'],
-				fontSize: '1.4rem',
-			},
-			medium: {
-				padding: ['0.5rem', '1.2rem'],
-				fontSize: '1.6rem',
-			},
-			large: {
-				padding: ['0.8rem', '1.5rem'],
-				fontSize: '1.6rem',
-			},
-			xlarge: {
-				padding: ['0.9rem', '1.8rem', '1rem'],
-				fontSize: '1.8rem',
-			},
-		},
-		disabled: {
-			backgroundColor: COLORS.light,
-			color: COLORS.muted,
-		},
-		placeholder: {
-			fontWeight: 300,
-			color: tint(COLORS.Text, 0.5),
-		},
-		select: {
-			caretGap: '0.8rem',
-		},
-		textarea: {
-			size: {
-				small: {
-					minHeight: '5.4rem',
-				},
-				medium: {
-					minHeight: '6rem',
-				},
-				large: {
-					minHeight: '6.6rem',
-				},
-				xlarge: {
-					minHeight: '7.2rem',
-				},
-			},
-		},
-	},
-
 	grid: {
 		container: {
 			maxWidth: CONTAINER_MAXWIDTH,
@@ -772,6 +639,69 @@ export default {
 			borderColor: COLORS.border,
 			caption: {
 				padding: '12px',
+			},
+		},
+	},
+
+	textInput: {
+		lineHeight: 1.5,
+		fontWeight: 400,
+		color: COLORS.text,
+		backgroundColor: '#fff',
+		borderWidth: '1px',
+		borderRadius: '3px',
+		fontXFactor: 1.81,
+		appearance: {
+			default: {
+				borderColor: COLORS.borderDark,
+			},
+			invalid: {
+				borderColor: COLORS.danger,
+			},
+		},
+		size: {
+			small: {
+				padding: ['0.3rem', '0.9rem', '0.4rem'],
+				fontSize: '1.4rem',
+			},
+			medium: {
+				padding: ['0.5rem', '1.2rem'],
+				fontSize: '1.6rem',
+			},
+			large: {
+				padding: ['0.8rem', '1.5rem'],
+				fontSize: '1.6rem',
+			},
+			xlarge: {
+				padding: ['0.9rem', '1.8rem', '1rem'],
+				fontSize: '1.8rem',
+			},
+		},
+		disabled: {
+			backgroundColor: COLORS.light,
+			color: COLORS.muted,
+		},
+		placeholder: {
+			fontWeight: 300,
+			color: tint(COLORS.Text, 0.5),
+		},
+		select: {
+			caretGap: '0.8rem',
+		},
+		textarea: {
+			size: {
+				small: {
+					minHeight: '5.4rem',
+				},
+				medium: {
+					minHeight: '6rem',
+				},
+				large: {
+					minHeight: '6.6rem',
+				},
+				xlarge: {
+					minHeight: '7.2rem',
+				},
 			},
 		},
 	},
