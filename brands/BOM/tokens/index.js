@@ -56,7 +56,7 @@ const FONT = (folder = '../font') => ({
 	},
 });
 
-const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
+const BREAK_POINTS = { sm: '768px', md: '992px', lg: '1200px' };
 
 const CONTAINER_MAXWIDTH = '132rem';
 const CONTAINER_PADDING = ['1.2rem', '3.6rem', '4.8rem', '6rem'];

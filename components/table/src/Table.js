@@ -10,7 +10,7 @@ import { jsx, useTheme } from '@westpac/core';
 const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 	const { table, breakpoints } = useTheme();
 
-	const maxWidth = width => `@media (max-width: ${width}px)`;
+	const maxWidth = width => `@media (max-width: ${width})`;
 	const xsOnly = maxWidth(breakpoints.xs);
 
 	const styleCommon = {
