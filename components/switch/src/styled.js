@@ -23,7 +23,7 @@ export const SwitchText = ({ size, block, flip, srOnlyText, ...props }) => {
 		flex: block ? 1 : null,
 		display: 'flex',
 		alignItems: 'center',
-		minHeight: asArray(size).map(s => s !== null && formSwitch.size[s].height),
+		minHeight: asArray(size).map(s => (s !== null ? formSwitch.size[s].height : null)),
 		...(flip ? { paddingLeft: formSwitch.text.gap } : { paddingRight: formSwitch.text.gap }),
 
 		'input:disabled ~ &': {
@@ -43,10 +43,10 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 		const sizeArr = asArray(size);
 
 		return {
-			borderRadius: sizeArr.map(s => s !== null && formSwitch.size[s].borderRadius),
-			width: sizeArr.map(s => s !== null && formSwitch.size[s].width),
-			height: sizeArr.map(s => s !== null && formSwitch.size[s].height),
-			fontSize: sizeArr.map(s => s !== null && formSwitch.size[s].fontSize),
+			borderRadius: sizeArr.map(s => (s !== null ? formSwitch.size[s].borderRadius : null)),
+			width: sizeArr.map(s => (s !== null ? formSwitch.size[s].width : null)),
+			height: sizeArr.map(s => (s !== null ? formSwitch.size[s].height : null)),
+			fontSize: sizeArr.map(s => (s !== null ? formSwitch.size[s].fontSize : null)),
 		};
 	};
 
@@ -105,11 +105,13 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 		right: 0,
 		textAlign: 'center',
 		fontSize: styleResponsive().fontSize,
-		lineHeight: styleResponsive().height.map(
-			h => `calc(${h} - (${formSwitch.borderWidth} + ${formSwitch.borderWidth}))`
+		lineHeight: styleResponsive().height.map(h =>
+			h !== null ? `calc(${h} - (${formSwitch.borderWidth} + ${formSwitch.borderWidth}))` : null
 		),
-		width: styleResponsive().height.map(
-			h => `calc(100% - (${h} - ${formSwitch.borderWidth} - ${formSwitch.borderWidth}))`
+		width: styleResponsive().height.map(h =>
+			h !== null
+				? `calc(100% - (${h} - ${formSwitch.borderWidth} - ${formSwitch.borderWidth}))`
+				: null
 		),
 		...formSwitch.toggleText.default,
 	};
