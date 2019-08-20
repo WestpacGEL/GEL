@@ -1,7 +1,10 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from '../src';
 import { ButtonGroup, ButtonGroupButton } from '../../button-group/src';
-import { styleExample } from './_utils';
+
+const styleExample = {
+	paddingLeft: 12,
+};
 
 export default () => (
 	<ListGroup>
