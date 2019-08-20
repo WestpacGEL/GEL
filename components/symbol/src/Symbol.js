@@ -9,7 +9,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // ==============================
 
 const asArray = val => (Array.isArray(val) ? val : [val]);
-const round = f => Math.round(f * 100) / 100; //2DP
+const round = f => Math.round(f * 10) / 10; //1DP
 
 const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props }) => {
 	const { breakpoints } = useTheme();
@@ -26,13 +26,11 @@ const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props })
 	const styleResponsive = () => {
 		const widthArr = asArray(width || viewBoxWidth);
 		const heightArr = asArray(height || viewBoxHeight);
-
 		const ratio = viewBoxWidth / viewBoxHeight;
-		const resizeByWidth = !!width;
 
 		return {
-			width: resizeByWidth ? widthArr : heightArr.map(h => (h !== null ? round(h * ratio) : null)),
-			height: resizeByWidth ? widthArr.map(w => (w !== null ? round(w / ratio) : null)) : heightArr,
+			width: width ? widthArr : heightArr.map(h => (h !== null ? round(h * ratio) : null)),
+			height: width ? widthArr.map(w => (w !== null ? round(w / ratio) : null)) : heightArr,
 		};
 	};
 
