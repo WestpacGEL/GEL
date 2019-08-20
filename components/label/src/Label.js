@@ -82,25 +82,13 @@ const options = {
 };
 
 Label.propTypes = {
-	/**
-	 * The label appearance.
-	 *
-	 * Defaults to "primary"
-	 */
+	/** Label appearance */
 	appearance: PropTypes.oneOf(options.appearance),
 
-	/**
-	 * The label tag.
-	 *
-	 * Defaults to "span"
-	 */
+	/** Label tag */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
-	/**
-	 * The content for this label.
-	 *
-	 * This prop is requried.
-	 */
+	/** Label text */
 	children: PropTypes.node.isRequired,
 };
 

@@ -12,19 +12,17 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // ==============================
 
 export const Container = props => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
-	// const padding = [12, 36, 48, 60]; // TODO: sholud come from `theme`
-	// const maxWidth = 1320; // TODO: move to "local token"
+	const { breakpoints, grid } = useTheme();
+	const mq = paint(breakpoints);
 
 	return (
 		<div
-			css={arrayValues({
+			css={mq({
 				marginLeft: 'auto',
 				marginRight: 'auto',
-				maxWidth: theme.grid.container.maxWidth, //maxWidth,
-				paddingLeft: theme.grid.container.padding, //padding
-				paddingRight: theme.grid.container.padding, //padding
+				maxWidth: grid.container.maxWidth,
+				paddingLeft: grid.container.padding,
+				paddingRight: grid.container.padding,
 			})}
 			{...props}
 		/>
