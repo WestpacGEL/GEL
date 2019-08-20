@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
@@ -18,15 +18,30 @@ export const Switch = ({
 	block,
 	flip,
 	srOnlyText,
-	defaultChecked,
+	checked,
 	disabled,
 	children,
+	onChange,
 	...props
 }) => {
 	const { switch: formSwitch } = useTheme();
 
-	const [isChecked, setIsChecked] = useState(defaultChecked);
-	const toggle = () => setIsChecked(!isChecked);
+	const [isChecked, setIsChecked] = useState(checked);
+
+	useEffect(
+		() => {
+			setIsChecked(checked);
+		},
+		[checked]
+	);
+
+	const toggle = () => {
+		if (onChange) {
+			onChange();
+		} else {
+			setIsChecked(!isChecked);
+		}
+	};
 
 	// Common styling
 	const common = {
@@ -56,9 +71,9 @@ export const Switch = ({
 				}}
 				name={name}
 				id={id}
-				onChange={toggle}
-				defaultChecked={defaultChecked}
+				checked={isChecked}
 				disabled={disabled}
+				onChange={toggle}
 			/>
 			{children && (
 				<SwitchText block={block} flip={flip} size={size} srOnlyText={srOnlyText}>
@@ -120,12 +135,12 @@ Switch.propTypes = {
 	srOnlyText: PropTypes.bool,
 
 	/**
-	 * Switch on by default
+	 * Switch on
 	 */
-	defaultChecked: PropTypes.bool,
+	checked: PropTypes.bool,
 
 	/**
-	 * Disable the form switch
+	 * Disable the switch
 	 */
 	disabled: PropTypes.bool,
 
@@ -135,6 +150,11 @@ Switch.propTypes = {
 	 * This prop is required, but can be visually hidden by enabling "srOnlyText" mode.
 	 */
 	children: PropTypes.string.isRequired,
+
+	/**
+	 * The onChange handler for this switch
+	 */
+	onChange: PropTypes.func,
 };
 
 Switch.defaultProps = {
@@ -143,6 +163,6 @@ Switch.defaultProps = {
 	block: false,
 	flip: false,
 	srOnlyText: false,
-	defaultChecked: false,
+	checked: false,
 	disabled: false,
 };

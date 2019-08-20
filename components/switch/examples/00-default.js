@@ -28,10 +28,10 @@ export default () => (
 		<hr />
 
 		<h3>Checked by default</h3>
-		<Switch name="ex6" id="ex6" toggleText={['Yes', 'No']} defaultChecked>
+		<Switch name="ex6" id="ex6" toggleText={['Yes', 'No']} checked>
 			Enable notifications
 		</Switch>
-		<Switch name="ex7" id="ex7" defaultChecked>
+		<Switch name="ex7" id="ex7" checked>
 			Turn notifications
 		</Switch>
 
