@@ -541,6 +541,17 @@ export default {
 		},
 	},
 
+	listGroup: {
+		margin: 0,
+		padding: 0,
+		borderWidth: '1px',
+		borderColor: COLORS.border,
+		borderRadius: '3px',
+		listGroupItem: {
+			padding: '12px',
+		},
+	},
+
 	panel: {
 		backgroundColor: '#fff',
 		borderWidth: '1px',
