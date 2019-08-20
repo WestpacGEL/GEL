@@ -3,8 +3,12 @@ import React from 'react';
 import { Button } from '../src';
 
 // Examples
-const sizes = [['small', 'medium', 'large', 'xlarge'], ['large', 'medium']];
-const blocks = [[true, false, true, false], [true, false]];
+const sizes = [
+	['small', 'medium', 'large', 'xlarge'],
+	['large', 'medium'],
+	['small', null, 'large'],
+];
+const blocks = [[true, false, true, false], [true, false], [true, null, false]];
 
 export default () => (
 	<>
@@ -12,7 +16,7 @@ export default () => (
 		{sizes.map((s, i) => (
 			<p key={i}>
 				<Button appearance="primary" size={s}>
-					[{s.join(', ')}]
+					[{s.map(v => String(v)).join(', ')}]
 				</Button>
 			</p>
 		))}
@@ -23,7 +27,7 @@ export default () => (
 		{blocks.map((b, i) => (
 			<p key={i}>
 				<Button appearance="primary" size="xlarge" block={b}>
-					[{b.join(', ')}]
+					[{b.map(v => String(v)).join(', ')}]
 				</Button>
 			</p>
 		))}

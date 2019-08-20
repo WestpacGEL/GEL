@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
-import { inherits } from 'util';
 
 // ==============================
 // Utils
@@ -85,14 +84,15 @@ export const Button = ({
 
 		return {
 			padding: sizeArr.map(s => {
+				if (!s) return null;
 				const pad = button.size[s].padding;
 				if (trim) pad[1] = 0;
-				return s !== null && pad.join(' ');
+				return pad.join(' ');
 			}),
-			fontSize: sizeArr.map(s => s !== null && button.size[s].fontSize),
-			height: sizeArr.map(s => s !== null && button.size[s].height),
+			fontSize: sizeArr.map(s => s && button.size[s].fontSize),
+			height: sizeArr.map(s => s && button.size[s].height),
 			display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
-			width: blockArr.map(b => b && (b !== null ? '100%' : 'auto')),
+			width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 		};
 	};
 
