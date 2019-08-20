@@ -28,7 +28,6 @@ const IconWrapper = ({ size, ...props }) => {
 		flexShrink: 0,
 		lineHeight: 1,
 		verticalAlign: 'middle',
-		color: colors.muted, //default
 	};
 
 	// Reponsive styling (icon size)
@@ -57,11 +56,13 @@ const IconWrapper = ({ size, ...props }) => {
 // ==============================
 
 export const Icon = ({ children, color, label, size, ...props }) => {
+	const { colors } = useTheme();
+
 	// TODO Investigate:
 	// I suspect that using the style attribute to apply the color property will
 	// improve CSS reuse.
 	return (
-		<IconWrapper size={size} style={{ color }} {...props}>
+		<IconWrapper size={size} style={{ color: color ? color : colors.muted }} {...props}>
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"
