@@ -13,7 +13,7 @@ export const ModalFooter = props => {
 				borderTop: `${modal.footer.borderWidth} solid ${modal.footer.borderColor}`,
 				textAlign: 'right',
 				padding: modal.footer.padding,
-				'button + button ': {
+				'button + button': {
 					marginLeft: 6,
 				},
 			}}

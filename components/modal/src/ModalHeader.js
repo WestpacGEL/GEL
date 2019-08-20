@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 import { CloseIcon } from '@westpac/icon';
+import { Button } from '@westpac/button';
 import { Title } from './styled';
 
 // ==============================
@@ -25,33 +26,28 @@ export const ModalHeader = ({ id, onClose, children, ...props }) => {
 			{...props}
 		>
 			<Title id={id}>{children}</Title>
-			<button
+			<Button
+				appearance="link"
 				css={{
-					border: 'none',
-					padding: '5px 12px',
-					cursor: 'pointer',
-					touchAction: 'manipulation',
 					marginTop: -10,
 					marginRight: -22,
-
+					color: colors.text,
 					'&:hover svg': { opacity: 0.5 },
 				}}
+				icon={CloseIcon}
 				onClick={onClose}
-			>
-				<CloseIcon size="small" color={colors.text} />
-			</button>
+			/>
 		</div>
 	);
 };
 
 ModalHeader.propTypes = {
 	/** id of the title for accessibility */
-	id: PropTypes.string,
+	id: PropTypes.string.isRequired,
 	/** onClose function for the close button */
 	onClose: PropTypes.func,
 };
 
 ModalHeader.defaultProps = {
-	id: null,
 	onClose: null,
 };
