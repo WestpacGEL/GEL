@@ -33,12 +33,12 @@ export const Grid = ({
 	rows,
 	...props
 }) => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
+	const { breakpoints } = useTheme();
+	const mq = paint(breakpoints);
 
 	return (
 		<div
-			css={arrayValues({
+			css={mq({
 				alignContent: alignContent,
 				columnGap: columnGap,
 				display: 'grid',
