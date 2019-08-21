@@ -607,18 +607,18 @@ export default {
 	progressBar: {
 		borderWidth: '1px',
 		borderColor: COLORS.border,
-		marginBottom: '21px',
-		fontSize: '14px',
+		marginBottom: '2.1rem',
+		fontSize: '1.4rem',
 		fontWeight: 700,
-		lineHeight: '20px',
+		lineHeight: '2rem',
 		color: 'white',
 		backgroundColor: COLORS.hero,
 		size: {
 			default: {
-				height: 24,
+				height: '2.4rem',
 			},
 			skinny: {
-				height: 10,
+				height: '1rem',
 			},
 		},
 	},
