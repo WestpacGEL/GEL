@@ -29,6 +29,7 @@ const CONTAINER_MAXWIDTH = 1320;
 const CONTAINER_PADDING = [12, 36, 48, 60];
 
 export default {
+	brand: 'WBG',
 	breakpoints: BREAK_POINTS,
 	colors: {
 		...COLORS,
