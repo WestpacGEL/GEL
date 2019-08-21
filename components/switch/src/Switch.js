@@ -26,6 +26,7 @@ export const Switch = ({
 }) => {
 	const { switch: formSwitch } = useTheme();
 	const [isChecked, setIsChecked] = useState(checked);
+	const [switchId] = useState(`switch-${shortid.generate()}`);
 
 	useEffect(
 		() => {
@@ -41,8 +42,6 @@ export const Switch = ({
 			setIsChecked(!isChecked);
 		}
 	};
-
-	const switchId = `switch-${shortid.generate()}`;
 
 	// Common styling
 	const common = {
