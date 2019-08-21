@@ -25,7 +25,7 @@ export const ListItem = ({ appearance, type, icon, spacing, children, ...props }
 	const { list } = useTheme();
 
 	const common = {
-		margin: spacing === 'large' ? '1.2prem 0' : '0.6rem 0',
+		margin: spacing === 'large' ? '1.2rem 0' : '0.6rem 0',
 		listStyle: type !== 'ordered' ? 'none' : null,
 		paddingLeft: '1.9rem',
 		position: 'relative',
