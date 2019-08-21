@@ -532,11 +532,10 @@ export default {
 		borderWidth: '2px',
 		borderColor: COLORS.border,
 		backgroundColor: '#fff',
-		marginRight: 18,
-		marginBottom: 6,
-
+		marginRight: '1.8rem',
+		marginBottom: '0.6rem',
 		text: {
-			gap: 6,
+			gap: '0.6rem',
 		},
 		toggle: {
 			checked: {
@@ -547,7 +546,7 @@ export default {
 		toggleText: {
 			default: {
 				color: COLORS.text,
-				padding: '0 4px',
+				padding: '0 0.4rem',
 			},
 			checked: {
 				color: '#fff',
@@ -558,28 +557,28 @@ export default {
 		},
 		size: {
 			small: {
-				width: '70px',
-				height: '30px',
-				borderRadius: '30px',
-				fontSize: '14px',
+				width: '7rem',
+				height: '3rem',
+				borderRadius: '3rem',
+				fontSize: '1.4rem',
 			},
 			medium: {
-				width: '80px',
-				height: '36px',
-				borderRadius: '36px',
-				fontSize: '16px',
+				width: '8rem',
+				height: '3.6rem',
+				borderRadius: '3.6rem',
+				fontSize: '1.6rem',
 			},
 			large: {
-				width: '89px',
-				height: '42px',
-				borderRadius: '42px',
-				fontSize: '16px',
+				width: '8.9rem',
+				height: '4.2rem',
+				borderRadius: '4.2rem',
+				fontSize: '1.6rem',
 			},
 			xlarge: {
-				width: '96px',
-				height: '48px',
-				borderRadius: '48px',
-				fontSize: '18px',
+				width: '9.6rem',
+				height: '4.8rem',
+				borderRadius: '4.8rem',
+				fontSize: '1.8rem',
 			},
 		},
 	},
