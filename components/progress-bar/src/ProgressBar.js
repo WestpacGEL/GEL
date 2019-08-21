@@ -27,8 +27,7 @@ export const ProgressBar = ({ valueNow, skinny, ...props }) => {
 		overflow: 'hidden',
 		backgroundColor: 'white',
 		borderRadius: progressBar.size[size].height,
-		border: `${progressBar.borderWidth} solid`,
-		borderColor: progressBar.borderColor,
+		border: `${progressBar.borderWidth} solid ${progressBar.borderColor}`,
 		position: 'relative',
 
 		'::after': {
@@ -55,9 +54,8 @@ export const ProgressBar = ({ valueNow, skinny, ...props }) => {
 		color: progressBar.color,
 		textAlign: 'right',
 		backgroundColor: progressBar.backgroundColor,
-		borderRadius: skinny ? progressBar.size.skinny.height : progressBar.size.default.height,
-		border: `${progressBar.borderWidth} solid`,
-		borderColor: 'white',
+		borderRadius: progressBar.size[size].height,
+		border: `${progressBar.borderWidth} solid white`,
 		zIndex: 2,
 		overflow: 'hidden',
 		transition: 'width .6s ease',
