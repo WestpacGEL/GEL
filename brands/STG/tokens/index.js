@@ -42,6 +42,7 @@ const CONTAINER_MAXWIDTH = 1320;
 const CONTAINER_PADDING = [12, 36, 48, 60];
 
 export default {
+	brand: 'STG',
 	breakpoints: BREAK_POINTS,
 	colors: {
 		...COLORS,
@@ -467,6 +468,41 @@ export default {
 		},
 	},
 
+	modal: {
+		backgroundColor: '#fff',
+		borderRadius: 3,
+		size: {
+			small: {
+				width: 300,
+			},
+			medium: {
+				width: 600,
+			},
+			large: {
+				width: 900,
+			},
+		},
+		header: {
+			borderWidth: '1px',
+			borderColor: COLORS.hero,
+			padding: '16px 24px 12px',
+		},
+		title: {
+			fontSize: 18,
+			fontWeight: 700,
+			color: COLORS.text,
+		},
+		body: {
+			padding: '18px 24px',
+		},
+		footer: {
+			backgroundColor: COLORS.background,
+			borderWidth: '1px',
+			borderColor: COLORS.border,
+			padding: '12px 18px',
+		},
+	},
+
 	list: {
 		type: {
 			bullet: {
@@ -491,6 +527,17 @@ export default {
 			icon: {
 				color: COLORS.muted,
 			},
+		},
+	},
+
+	listGroup: {
+		margin: 0,
+		padding: 0,
+		borderWidth: '1px',
+		borderColor: COLORS.border,
+		borderRadius: '3px',
+		listGroupItem: {
+			padding: '12px',
 		},
 	},
 
