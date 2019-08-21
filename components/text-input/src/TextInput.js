@@ -151,35 +151,29 @@ const options = {
 
 TextInput.propTypes = {
 	/**
-	 * The component size.
-	 *
-	 * Defaults to "medium"
+	 * Component size
 	 */
 	size: PropTypes.oneOf(options.size),
 
 	/**
-	 * The component width.
+	 * Component width
 	 */
 	width: PropTypes.oneOf(options.width),
 
 	/**
-	 * Invalid input mode.
-	 *
-	 * Defaults to "false"
+	 * Invalid input mode
 	 */
 	invalid: PropTypes.bool,
 
 	/**
-	 * The component tag.
-	 *
-	 * Defaults to "input"
+	 * Component tag
 	 */
 	tag: PropTypes.oneOf(options.tag),
 
 	/**
-	 * The component children.
+	 * Component children.
 	 *
-	 * Only select inputs render children.
+	 * Note: Only select type inputs render children.
 	 */
 	children: PropTypes.node,
 };

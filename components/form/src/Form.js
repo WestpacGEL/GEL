@@ -6,10 +6,6 @@ import { jsx } from '@westpac/core';
 import { FormProvider } from './Form.context';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
@@ -35,8 +31,6 @@ Form.propTypes = {
 	 * Size of children.
 	 *
 	 * This prop is available to children via `FormContext`.
-	 *
-	 * Defaults to "medium"
 	 */
 	size: PropTypes.oneOf(options.size),
 
@@ -44,8 +38,6 @@ Form.propTypes = {
 	 * Vertical spacing of children.
 	 *
 	 * This prop is available to children via `FormContext`.
-	 *
-	 * Defaults to "medium"
 	 */
 	spacing: PropTypes.oneOf(options.spacing),
 
@@ -53,20 +45,16 @@ Form.propTypes = {
 	 * Inline children mode (SM+).
 	 *
 	 * This prop is available to children via `FormContext`.
-	 *
-	 * Defaults to "false"
 	 */
 	inline: PropTypes.bool,
 
 	/**
-	 * Form wrapper tag.
-	 *
-	 * Defaults to "form"
+	 * Form wrapper tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
-	 * Form children.
+	 * Form children
 	 */
 	children: PropTypes.node,
 };

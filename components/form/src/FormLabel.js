@@ -6,24 +6,22 @@ import { jsx, useTheme } from '@westpac/core';
 import { FormContext } from './Form.context';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const FormLabel = ({ sublabel, tag: Tag, htmlFor, ...props }) => {
-	const { form } = useTheme();
+	const {
+		form: { label },
+	} = useTheme();
 	const { spacing } = useContext(FormContext);
 
 	return (
 		<Tag
 			css={{
 				display: 'inline-block',
-				fontWeight: form.label.fontWeight,
-				...form.label.spacing[spacing],
-				...(sublabel && form.label.sublabel), //overrides spacing (sublabel overrides marginBottom)
+				fontWeight: label.fontWeight,
+				...label.spacing[spacing],
+				...(sublabel && label.sublabel), //overrides spacing (sublabel overrides marginBottom)
 			}}
 			htmlFor={htmlFor}
 			{...props}
@@ -37,16 +35,12 @@ export const FormLabel = ({ sublabel, tag: Tag, htmlFor, ...props }) => {
 
 FormLabel.propTypes = {
 	/**
-	 * Sublabel mode (smaller label size).
-	 *
-	 * Defaults to "false"
+	 * Sublabel mode (smaller label size)
 	 */
 	sublabel: PropTypes.bool,
 
 	/**
-	 * The component tag.
-	 *
-	 * Defaults to "label"
+	 * The component tag
 	 */
 	tag: PropTypes.oneOf(['label', 'legend']),
 
@@ -64,9 +58,7 @@ FormLabel.propTypes = {
 	},
 
 	/**
-	 * Component text.
-	 *
-	 * This prop is required.
+	 * Component text
 	 */
 	children: PropTypes.string.isRequired,
 };

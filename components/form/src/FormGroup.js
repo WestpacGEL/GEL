@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 import { FormContext } from './Form.context';
 
-// ==============================
-// Utils
-// ==============================
-
 const asArray = val => (Array.isArray(val) ? val : [val]);
 
 // ==============================
@@ -16,7 +12,10 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // ==============================
 
 export const FormGroup = ({ primary, ...props }) => {
-	const { breakpoints, form } = useTheme();
+	const {
+		breakpoints,
+		form: { group },
+	} = useTheme();
 	const { spacing, inline } = useContext(FormContext);
 	const mq = paint(breakpoints);
 
@@ -24,12 +23,12 @@ export const FormGroup = ({ primary, ...props }) => {
 		display: inline ? [null, 'inline-block'] : null,
 		verticalAlign: inline ? [null, 'middle'] : null,
 		marginBottom: inline
-			? [(mb => (Array.isArray(mb) ? mb[0] : mb))(form.group.spacing[spacing].marginBottom), 0]
-			: form.group.spacing[spacing].marginBottom,
+			? [(mb => (Array.isArray(mb) ? mb[0] : mb))(group.spacing[spacing].marginBottom), 0]
+			: group.spacing[spacing].marginBottom,
 		textAlign: primary ? 'center' : null,
 
 		'& + &': {
-			...(inline && form.group.inline),
+			...(inline && group.inline),
 		},
 	};
 
@@ -42,14 +41,12 @@ export const FormGroup = ({ primary, ...props }) => {
 
 FormGroup.propTypes = {
 	/**
-	 * Primary (fork) mode.
-	 *
-	 * Defaults to "false"
+	 * Primary (fork) mode
 	 */
 	primary: PropTypes.bool,
 
 	/**
-	 * Component children.
+	 * Component children
 	 */
 	children: PropTypes.node,
 };

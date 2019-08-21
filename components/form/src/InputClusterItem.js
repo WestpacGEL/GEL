@@ -5,25 +5,23 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const InputClusterItem = ({ horizontal, ...props }) => {
-	const { form } = useTheme();
+	const {
+		form: { cluster },
+	} = useTheme();
 
 	const common = {
-		marginRight: horizontal ? form.cluster.item.horizontal.marginRight : null,
+		marginRight: horizontal ? cluster.item.horizontal.marginRight : null,
 		display: horizontal ? 'flex' : null,
 		flexDirection: horizontal ? 'column' : null,
 		justifyContent: horizontal ? 'flex-end' : null,
 
 		// Subequent items
 		'& + &': {
-			marginTop: !horizontal ? form.cluster.item.default.marginTop : null,
+			marginTop: !horizontal ? cluster.item.default.marginTop : null,
 		},
 	};
 
@@ -36,7 +34,7 @@ export const InputClusterItem = ({ horizontal, ...props }) => {
 
 InputClusterItem.propTypes = {
 	/**
-	 * Component children.
+	 * Component children
 	 */
 	children: PropTypes.node,
 };

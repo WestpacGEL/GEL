@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
@@ -40,13 +36,11 @@ InputCluster.propTypes = {
 	 * Horizontal mode.
 	 *
 	 * This prop is passed to child elements.
-	 *
-	 * Defaults to "false"
 	 */
 	horizontal: PropTypes.bool,
 
 	/**
-	 * Component children.
+	 * Component children
 	 */
 	children: PropTypes.node,
 };

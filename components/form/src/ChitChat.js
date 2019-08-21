@@ -5,18 +5,17 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const ChitChat = ({ tag: Tag, ...props }) => {
-	const { breakpoints, form } = useTheme();
+	const {
+		breakpoints,
+		form: { chitchat },
+	} = useTheme();
 	const mq = paint(breakpoints);
 
-	return <Tag css={mq({ ...form.chitchat })} {...props} />;
+	return <Tag css={mq({ ...chitchat })} {...props} />;
 };
 
 // ==============================
@@ -25,9 +24,7 @@ export const ChitChat = ({ tag: Tag, ...props }) => {
 
 ChitChat.propTypes = {
 	/**
-	 * The component tag.
-	 *
-	 * Defaults to "p"
+	 * Component tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 

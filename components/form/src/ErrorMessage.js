@@ -5,20 +5,18 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const ErrorMessage = ({ tag: Tag, ...props }) => {
-	const { form } = useTheme();
+	const {
+		form: { errorMessage },
+	} = useTheme();
 
 	return (
 		<Tag
 			css={{
-				...form.errorMessage,
+				...errorMessage,
 
 				// Multiple error messages styled in a list
 				'ul&, ol&': {
@@ -37,14 +35,12 @@ export const ErrorMessage = ({ tag: Tag, ...props }) => {
 
 ErrorMessage.propTypes = {
 	/**
-	 * The component tag.
-	 *
-	 * Defaults to "p"
+	 * Component tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
-	 * Component children.
+	 * Component children
 	 */
 	children: PropTypes.node,
 };

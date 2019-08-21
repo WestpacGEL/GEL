@@ -5,23 +5,22 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const FormSection = ({ noPadding, ...props }) => {
-	const { breakpoints, form } = useTheme();
+	const {
+		breakpoints,
+		form: { section },
+	} = useTheme();
 	const mq = paint(breakpoints);
 
 	const common = {
 		position: 'relative', //for `.form-section-actions` positioning
-		paddingTop: form.section.paddingTop,
-		paddingBottom: form.section.paddingBottom, //6px assuming there will be a `.form-group` margin-bottom (30px)
-		paddingLeft: noPadding ? null : form.section.paddingLeft,
-		paddingRight: noPadding ? null : form.section.paddingRight,
+		paddingTop: section.paddingTop,
+		paddingBottom: section.paddingBottom, //6px assuming there will be a `.form-group` margin-bottom (30px)
+		paddingLeft: noPadding ? null : section.paddingLeft,
+		paddingRight: noPadding ? null : section.paddingRight,
 
 		// TODO apply programatically? (rather than via CSS pseudo-class)
 		':first-of-type': {
@@ -33,7 +32,7 @@ export const FormSection = ({ noPadding, ...props }) => {
 
 		// Subequent sections
 		'& + &': {
-			borderTop: form.section.borderTop,
+			borderTop: section.borderTop,
 		},
 	};
 
@@ -46,14 +45,12 @@ export const FormSection = ({ noPadding, ...props }) => {
 
 FormSection.propTypes = {
 	/**
-	 * Remove section padding.
-	 *
-	 * Defaults to "false"
+	 * Remove section padding
 	 */
 	noPadding: PropTypes.bool,
 
 	/**
-	 * Component children.
+	 * Component children
 	 */
 	children: PropTypes.node,
 };

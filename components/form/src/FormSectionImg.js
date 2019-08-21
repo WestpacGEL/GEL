@@ -5,22 +5,21 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const FormSectionImg = props => {
-	const { breakpoints, form } = useTheme();
+	const {
+		breakpoints,
+		form: { sectionImg },
+	} = useTheme();
 	const mq = paint(breakpoints);
 
 	return (
 		<img
 			css={mq({
 				display: 'block',
-				margin: form.sectionImg.marginBottom.map(mb => `0 auto ${mb}`),
+				margin: sectionImg.marginBottom.map(mb => `0 auto ${mb}`),
 				maxWidth: '100%',
 			})}
 			{...props}
@@ -34,7 +33,7 @@ export const FormSectionImg = props => {
 
 FormSectionImg.propTypes = {
 	/**
-	 * The component src.
+	 * Component img src
 	 */
 	src: PropTypes.string.isRequired,
 };

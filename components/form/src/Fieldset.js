@@ -7,32 +7,14 @@ import { FormLabel } from './FormLabel';
 import { FormContext } from './Form.context';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const Fieldset = ({ legend, children, ...props }) => {
 	const { spacing } = useContext(FormContext);
 
-	const common = {
-		border: 'none',
-		margin: 0,
-		padding: 0,
-
-		// TODO candidate for a global reset in Core? (as with GUI2.0)
-		legend: {
-			color: 'inherit',
-			maxWidth: '100%',
-			padding: 0,
-			whiteSpace: 'normal',
-		},
-	};
-
 	return (
-		<fieldset css={common} {...props}>
+		<fieldset {...props}>
 			<FormLabel tag="legend" spacing={spacing}>
 				{legend}
 			</FormLabel>
@@ -47,14 +29,12 @@ export const Fieldset = ({ legend, children, ...props }) => {
 
 Fieldset.propTypes = {
 	/**
-	 * Fieldset legend text.
-	 *
-	 * This prop is required.
+	 * Fieldset legend text
 	 */
 	legend: PropTypes.string.isRequired,
 
 	/**
-	 * Component children.
+	 * Component children
 	 */
 	children: PropTypes.node,
 };
