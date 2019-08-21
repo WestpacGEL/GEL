@@ -1,20 +1,47 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import shortid from 'shortid';
 import { jsx, useTheme, useIsKeyboardUser } from '@westpac/core';
-
-// ==============================
-// Utils
-// ==============================
 
 // ==============================
 // Component
 // ==============================
 
-export const FormCheckItem = ({ type, size, inline, flip, name, id, children, ...props }) => {
+export const FormCheckItem = ({
+	type,
+	name,
+	value,
+	size,
+	inline,
+	flip,
+	checked,
+	children,
+	onChange,
+	...props
+}) => {
 	const { formCheck, typography } = useTheme();
-	const isKeyboardUser = useIsKeyboardUser();
+	const isKeyboardUser = false; //useIsKeyboardUser();
+
+	const [isChecked, setIsChecked] = useState(checked);
+
+	useEffect(
+		() => {
+			setIsChecked(checked);
+		},
+		[checked]
+	);
+
+	const toggle = () => {
+		if (onChange) {
+			onChange();
+		} else {
+			setIsChecked(!isChecked);
+		}
+	};
+
+	const formCheckId = `formCheck-${shortid.generate()}`;
 
 	const controlWidth = formCheck.size[size].control.width;
 	const controlHeight = formCheck.size[size].control.width;
@@ -29,11 +56,9 @@ export const FormCheckItem = ({ type, size, inline, flip, name, id, children, ..
 		position: 'relative',
 		display: inline ? 'inline-block' : 'block',
 		verticalAlign: inline ? 'top' : null,
-		marginRight: inline ? 18 : null,
-		minHeight: controlHeight,
+		marginRight: inline ? formCheck.size[size].item.marginRight : null,
 		marginBottom: formCheck.size[size].item.marginBottom,
-
-		// Padding left/right
+		minHeight: controlHeight,
 		...(val => (flip ? { paddingRight: val } : { paddingLeft: val }))(controlWidth),
 	};
 
@@ -42,10 +67,7 @@ export const FormCheckItem = ({ type, size, inline, flip, name, id, children, ..
 		position: 'absolute',
 		zIndex: 1,
 		top: 0,
-
-		// Left/right
-		...(val => (flip ? { right: val } : { left: val }))(0),
-
+		...(flip ? { right: 0 } : { left: 0 }),
 		width: controlWidth,
 		height: controlHeight,
 		cursor: 'pointer',
@@ -62,13 +84,11 @@ export const FormCheckItem = ({ type, size, inline, flip, name, id, children, ..
 		display: 'inline-block',
 		paddingTop: formCheck.size[size].label.paddingTop,
 		paddingBottom: formCheck.size[size].label.paddingBottom,
-		marginBottom: 0,
-		cursor: 'pointer',
-
-		// Padding left/right
 		...(val => (flip ? { paddingRight: val } : { paddingLeft: val }))(
 			formCheck.size[size].label.gap
 		),
+		marginBottom: 0,
+		cursor: 'pointer',
 
 		// remove 300ms pause on mobile
 		touchAction: 'manipulation',
@@ -85,8 +105,7 @@ export const FormCheckItem = ({ type, size, inline, flip, name, id, children, ..
 			boxSizing: 'border-box',
 			position: 'absolute',
 			top: 0,
-			left: flip ? null : 0,
-			right: flip ? 0 : null,
+			...(flip ? { right: 0 } : { left: 0 }),
 			width: controlWidth,
 			height: controlHeight,
 			border: `${formCheck.control.borderWidth} solid ${formCheck.control.default.borderColor}`,
@@ -110,14 +129,14 @@ export const FormCheckItem = ({ type, size, inline, flip, name, id, children, ..
 			position: 'absolute',
 			border: `solid ${formCheck.control.default.borderColor}`,
 			opacity: 0, //hide
-			top: (controlHeight - checkHeight) / 2 + checkTweak,
-
-			// Left/right
-			...(val => (flip ? { right: val } : { left: val }))((controlWidth - checkWidth) / 2),
-
+			top: `calc(((${controlHeight} - ${checkHeight}) / 2) + ${checkTweak})`,
+			...(val => (flip ? { right: `calc(${val})` } : { left: `calc(${val})` }))(
+				`(${controlWidth} - ${checkWidth}) / 2`
+			),
 			width: type === 'radio' ? 0 : checkWidth,
 			height: type === 'radio' ? 0 : checkHeight,
-			borderWidth: type === 'radio' ? checkWidth / 2 : `0 0 ${checkboxStroke} ${checkboxStroke}`,
+			borderWidth:
+				type === 'radio' ? `calc(${checkWidth} / 2)` : `0 0 ${checkboxStroke} ${checkboxStroke}`,
 			borderRadius: type === 'radio' ? '50%' : null,
 			background: type === 'radio' ? formCheck.control.check.radio.backgroundColor : null,
 			transform: type === 'radio' ? null : 'rotate(-54deg)',
@@ -133,9 +152,17 @@ export const FormCheckItem = ({ type, size, inline, flip, name, id, children, ..
 	};
 
 	return (
-		<div css={styleCommon}>
-			<input css={styleInput} type={type} name={name} id={id} {...props} />
-			<label htmlFor={id} css={styleLabel}>
+		<div css={styleCommon} {...props}>
+			<input
+				type={type}
+				css={styleInput}
+				name={name}
+				id={formCheckId}
+				value={value}
+				checked={isChecked}
+				onChange={toggle}
+			/>
+			<label htmlFor={formCheckId} css={styleLabel}>
 				{children}
 			</label>
 		</div>
@@ -148,23 +175,21 @@ export const FormCheckItem = ({ type, size, inline, flip, name, id, children, ..
 
 FormCheckItem.propTypes = {
 	/**
-	 * The form check input element’s id.
-	 *
-	 * This prop is required.
+	 * Form check value
 	 */
-	id: PropTypes.string.isRequired,
+	value: PropTypes.string,
 
 	/**
-	 * Keyboard user mode.
+	 * Check the form check
 	 */
-	isKeyboardUser: PropTypes.bool,
+	checked: PropTypes.bool,
 
 	/**
-	 * Form check label text.
-	 *
-	 * This prop is required.
+	 * Form check label text
 	 */
 	children: PropTypes.string.isRequired,
 };
 
-FormCheckItem.defaultProps = {};
+FormCheckItem.defaultProps = {
+	checked: false,
+};

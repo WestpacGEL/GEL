@@ -364,54 +364,56 @@ export default {
 		size: {
 			medium: {
 				control: {
-					width: 24,
+					width: '2.4rem',
 				},
 				check: {
 					checkbox: {
-						width: 14,
-						height: 8,
+						width: '1.4rem',
+						height: '0.8rem',
 						stroke: '3px',
-						tweak: -2,
+						tweak: '-0.2rem',
 					},
 					radio: {
-						width: 12,
-						height: 12,
-						tweak: 0,
+						width: '1.2rem',
+						height: '1.2rem',
+						tweak: '0rem',
 					},
 				},
 				item: {
-					marginBottom: 6,
+					marginRight: '1.8rem',
+					marginBottom: '0.6rem',
 				},
 				label: {
-					paddingTop: 2,
-					paddingBottom: 2,
-					gap: 6,
+					paddingTop: '0.2rem',
+					paddingBottom: '0.2rem',
+					gap: '0.6rem',
 				},
 			},
 			large: {
 				control: {
-					width: 30,
+					width: '3rem',
 				},
 				check: {
 					checkbox: {
-						width: 18,
-						height: 10,
+						width: '1.8rem',
+						height: '1rem',
 						stroke: '4px',
-						tweak: -2,
+						tweak: '-0.2rem',
 					},
 					radio: {
-						width: 16,
-						height: 16,
-						tweak: 0,
+						width: '1.6rem',
+						height: '1.6rem',
+						tweak: '0rem',
 					},
 				},
 				item: {
-					marginBottom: 12,
+					marginRight: '1.8rem',
+					marginBottom: '1.2rem',
 				},
 				label: {
-					paddingTop: 5,
-					paddingBottom: 5,
-					gap: 10,
+					paddingTop: '0.5rem',
+					paddingBottom: '0.5rem',
+					gap: '1rem',
 				},
 			},
 		},
