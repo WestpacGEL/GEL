@@ -5,7 +5,7 @@ import { Box } from './_utils';
 
 export default () => (
 	<Grid
-		columns={'100px 1fr 100px'}
+		columns={'10rem 1fr 10rem'}
 		areas={['header header header', 'menu content ads', 'footer footer footer']}
 	>
 		<Cell area="header">

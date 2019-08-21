@@ -10,13 +10,13 @@ import { jsx, useTheme } from '@westpac/core';
 const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 	const { table, breakpoints } = useTheme();
 
-	const maxWidth = width => `@media (max-width: ${width}px)`;
+	const maxWidth = width => `@media (max-width: ${width})`;
 	const xsOnly = maxWidth(breakpoints.xs);
 
 	const styleCommon = {
 		[xsOnly]: {
 			width: '100%',
-			marginBottom: '18px',
+			marginBottom: '1.8rem',
 			overflowY: 'hidden',
 			overflowX: 'auto',
 			// -ms-overflow-style: '-ms-autohiding-scrollbar',

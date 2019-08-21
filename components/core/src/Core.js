@@ -1,29 +1,16 @@
 /** @jsx jsx */
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Global, jsx } from '@emotion/core';
-import { useTheme } from './Theme';
+import { useTheme, UserModeContext } from './Theme';
+import { paint } from './utils';
 
 import merge from 'lodash.merge';
 
-export const Core = ({ children, ...props }) => {
-	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
-	const { colors, font, typography } = useTheme();
-
-	// Handle keys
-	const keyHandler = event => {
-		if (event.key === 'Tab') {
-			setIsKeyboardUser(true);
-		}
-	};
-
-	// Bind key events
-	useEffect(() => {
-		window.document.addEventListener('keydown', keyHandler);
-		return () => {
-			window.document.removeEventListener('keydown', keyHandler);
-		};
-	});
+export const Core = ({ children }) => {
+	const { colors, breakpoints, font: styleFont, typography } = useTheme();
+	const isKeyboardUser = useContext(UserModeContext);
+	const mq = paint(breakpoints);
 
 	// Global reset styling
 	const styleReset = {
@@ -244,17 +231,11 @@ export const Core = ({ children, ...props }) => {
 		},
 	};
 
-	// Font @fontface styling
-	const styleFont = font;
-
 	// Text extension styling
 	const styleTextExtensions = {
 		// Lead text
 		'.lead': {
-			marginBottom: 21,
-			fontSize: [16, 18],
-			fontWeight: 300,
-			lineHeight: 1.4,
+			...typography.lead,
 		},
 
 		// Text alignments
@@ -303,7 +284,7 @@ export const Core = ({ children, ...props }) => {
 
 	return (
 		<>
-			<Global styles={merge(styleReset, styleTypography, styleFont, styleTextExtensions)} />
+			<Global styles={mq(merge(styleReset, styleTypography, styleFont, styleTextExtensions))} />
 			{children}
 		</>
 	);
