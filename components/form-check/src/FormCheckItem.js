@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import { jsx, useTheme, useIsKeyboardUser } from '@westpac/core';
+import { jsx, useTheme, UserModeContext } from '@westpac/core';
 
 // ==============================
 // Component
@@ -22,7 +22,7 @@ export const FormCheckItem = ({
 	...props
 }) => {
 	const { formCheck, typography } = useTheme();
-	const isKeyboardUser = false; //useIsKeyboardUser();
+	const isKeyboardUser = useContext(UserModeContext);
 
 	const [isChecked, setIsChecked] = useState(checked);
 
