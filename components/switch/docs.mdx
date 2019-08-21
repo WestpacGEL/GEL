@@ -1,0 +1,113 @@
+---
+name: Switch
+menu: Components
+route: /switch
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Switch } from './src/Switch';
+
+# Switch
+
+These are very simple toggle switches ideal for use in settings or preference screens. The switch can be blank or contain simple toggle text labels (no/yes, off/on etc).
+
+<Playground>
+	<Switch name="ex-default">Turn notifications</Switch>
+</Playground>
+
+## Label text
+
+Form switches require label text in order to meet accessibility requirements. You can visually hide this text by providing a `srOnlyText` prop if necessary.
+
+<Playground>
+	<Switch name="ex-text" toggleText={['Yes', 'No']}>
+		Enable notifications
+	</Switch>
+	<Switch name="ex-text-sronlytext" toggleText={['Yes', 'No']} srOnlyText>
+		Enable notifications
+	</Switch>
+</Playground>
+
+## Sizes
+
+Form switches come in four sizes.
+
+<Playground>
+	<Switch name="ex-small" size="small">
+		Small
+	</Switch>
+	<Switch name="ex-medium" size="medium">
+		Medium
+	</Switch>
+	<Switch name="ex-large" size="large">
+		Large
+	</Switch>
+	<Switch name="ex-xlarge" size="xlarge">
+		Extra large
+	</Switch>
+</Playground>
+
+Form switches can be sized responsively by passing an array of size values for each breakpoint.
+
+<Playground>
+	<Switch name="ex-responsive" size={['small', 'medium', 'large', 'xlarge']}>
+		Responsive form switch
+	</Switch>
+</Playground>
+
+## Flip
+
+Flip mode renders the toggle on the left of the label text.
+
+<Playground>
+	<Switch name="ex-flip-1" flip>
+		Flip mode
+	</Switch>
+	<Switch name="ex-flip-2" flip>
+		Flip mode
+	</Switch>
+</Playground>
+
+## Block
+
+Block mode extends the width so it spans the full width of its parent.
+
+<Playground>
+	<Switch name="ex-block-1" block>
+		Block mode
+	</Switch>
+	<Switch name="ex-block-2" block>
+		Block mode
+	</Switch>
+</Playground>
+
+## Flip & block
+
+You can set flip and block together.
+
+<Playground>
+	<Switch name="ex-flip-block-1" flip block>
+		Flip &amp; block mode
+	</Switch>
+	<Switch name="ex-flip-block-2" flip block>
+		Flip &amp; block mode
+	</Switch>
+</Playground>
+
+## Checked
+
+<Playground>
+	<Switch name="ex-checked" checked>
+		Checked by default
+	</Switch>
+</Playground>
+
+## Disabled
+
+<Playground>
+	<Switch name="ex-disabled" disabled>
+		Disabled
+	</Switch>
+</Playground>
+
+<PropsTable of={Switch} />
