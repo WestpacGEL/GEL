@@ -28,7 +28,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 		zIndex: 1,
 		transition: 'opacity 0.3s ease-in-out',
 
-		'a, h1, h2, h3, h4, h5, h6, ol, ul, div, span': {
+		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
 			color: 'inherit',
 		},
 
@@ -86,7 +86,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 						css={mq(styleClose)}
 					/>
 				)}
-				{Icon && <Icon css={mq(styleIcon)} size={['small', 'medium']} />}
+				{Icon && <Icon css={mq(styleIcon)} size={['small', 'medium']} color="inherit" />}
 				<div css={mq(styleBody)}>{children}</div>
 			</div>
 		</CSSTransition>

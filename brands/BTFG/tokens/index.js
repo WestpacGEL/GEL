@@ -29,6 +29,7 @@ const CONTAINER_MAXWIDTH = '132rem';
 const CONTAINER_PADDING = ['1.2rem', '3.6rem', '4.8rem', '6rem'];
 
 export default {
+	brand: 'BTFG',
 	breakpoints: BREAK_POINTS,
 	colors: {
 		...COLORS,
