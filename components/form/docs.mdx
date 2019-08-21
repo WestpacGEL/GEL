@@ -5,14 +5,111 @@ route: /form
 ---
 
 import { Playground, PropsTable } from 'docz';
+import { ChitChat } from './src/ChitChat';
+import { ErrorMessage } from './src/ErrorMessage';
+import { Fieldset } from './src/Fieldset';
 import { Form } from './src/Form';
+import { FormContext } from './src/Form.context';
+import { FormGroup } from './src/FormGroup';
+import { FormLabel } from './src/FormLabel';
+import { FormSection } from './src/FormSection';
+import { FormSectionImg } from './src/FormSectionImg';
+import { Hint } from './src/Hint';
+import { InputCluster } from './src/InputCluster';
+import { InputClusterItem } from './src/InputClusterItem';
+import { TextInput } from '../text-input/src';
 
 # Form
 
 Form provides general form styling including form structure, layout and grouped input styling.
 
 <Playground>
-	<Form>This is a Form</Form>
+	<Form>
+		<FormSection>
+			<ChitChat>
+				Hello, I’m the friendly conversational text component. I live at the top of the form pod
+				if required.
+			</ChitChat>
+		</FormSection>
+
+    	<FormSection>
+    		<FormGroup>
+    			<FormLabel htmlFor="example-textinput-1">This is a label</FormLabel>
+    			<Hint>This is a hint</Hint>
+    			<ErrorMessage>This is an error message</ErrorMessage>
+    			<TextInput name="example-textinput-1" />
+    		</FormGroup>
+
+    		<FormGroup>
+    			<FormLabel htmlFor="example-textinput-2">This is a label</FormLabel>
+    			<Hint>This is a hint</Hint>
+    			<ErrorMessage>This is an error message</ErrorMessage>
+    			<TextInput name="example-textinput-2" />
+    		</FormGroup>
+    	</FormSection>
+
+    	<FormSection>
+    		<FormGroup>
+    			<FormLabel htmlFor="example-default-3">This is a label</FormLabel>
+    			<Hint>This is a hint</Hint>
+    			<ErrorMessage>This is an error message</ErrorMessage>
+    			<TextInput name="example-default-3" />
+    		</FormGroup>
+
+    		<FormGroup>
+    			<Fieldset legend="This is a legend">
+    				<Hint>This is a hint</Hint>
+    				<ErrorMessage tag="ul">
+    					<li>This is an error message</li>
+    					<li>This is another error message</li>
+    				</ErrorMessage>
+    				<InputCluster>
+    					<InputClusterItem>
+    						<TextInput name="example-default-4-line1" />
+    					</InputClusterItem>
+    					<InputClusterItem>
+    						<TextInput name="example-default-4-line2" />
+    					</InputClusterItem>
+    				</InputCluster>
+    			</Fieldset>
+    		</FormGroup>
+    	</FormSection>
+    </Form>
+
 </Playground>
 
+## Form
+
 <PropsTable of={Form} />
+
+## FormSection
+
+<PropsTable of={FormSection} />
+
+## FormGroup
+
+<PropsTable of={FormGroup} />
+
+## ChitChat
+
+<PropsTable of={ChitChat} />
+
+## Fieldset
+
+<PropsTable of={Fieldset} />
+
+## FormLabel
+
+<PropsTable of={FormLabel} />
+
+## Hint
+
+<PropsTable of={Hint} />
+
+## ErrorMessage
+
+<PropsTable of={ErrorMessage} />
+
+## InputCluster
+
+<PropsTable of={InputCluster} />
