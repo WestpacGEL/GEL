@@ -23,12 +23,13 @@ const COLORS = {
 
 const FONT = (folder = '../font') => ({});
 
-const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
+const BREAK_POINTS = { sm: '768px', md: '992px', lg: '1200px' };
 
-const CONTAINER_MAXWIDTH = 1320;
-const CONTAINER_PADDING = [12, 36, 48, 60];
+const CONTAINER_MAXWIDTH = '132rem';
+const CONTAINER_PADDING = ['1.2rem', '3.6rem', '4.8rem', '6rem'];
 
 export default {
+	brand: 'WBG',
 	breakpoints: BREAK_POINTS,
 	colors: {
 		...COLORS,
@@ -133,22 +134,21 @@ export default {
 	spacing: {},
 
 	badge: {
-		minWidth: '10px',
-		minWidth: '10px',
-		padding: '4px 7px',
+		minWidth: '1rem',
+		minWidth: '1rem',
+		padding: '0.4rem 0.7rem',
 		lineHeight: 1,
 		fontWeight: 700,
-		fontSize: '14px',
-		borderRadius: '12px',
+		fontSize: '1.4rem',
+		borderRadius: '1.2rem',
 		borderWidth: '1px',
 	},
 
 	button: {
-		borderRadius: '3px',
+		borderRadius: '0.3rem',
 		borderWidth: '1px',
 		fontWeight: 400,
 		lineHeight: 1.5,
-
 		appearance: {
 			primary: {
 				standard: {
@@ -317,24 +317,24 @@ export default {
 		},
 		size: {
 			small: {
-				padding: ['3px', '9px', '4px'],
-				fontSize: '14px',
-				height: '30px',
+				padding: ['0.3rem', '0.9rem', '0.4rem'],
+				fontSize: '1.4rem',
+				height: '3rem',
 			},
 			medium: {
-				padding: ['5px', '12px'],
-				fontSize: '16px',
-				height: '36px',
+				padding: ['0.5rem', '1.2rem'],
+				fontSize: '1.6rem',
+				height: '3.6rem',
 			},
 			large: {
-				padding: ['8px', '15px'],
-				fontSize: '16px',
-				height: '42px',
+				padding: ['0.8rem', '1.5rem'],
+				fontSize: '1.6rem',
+				height: '4.2rem',
 			},
 			xlarge: {
-				padding: ['9px', '18px', '10px'],
-				fontSize: '18px',
-				height: '48px',
+				padding: ['0.9rem', '1.8rem', '1rem'],
+				fontSize: '1.8rem',
+				height: '4.8rem',
 			},
 		},
 	},
@@ -347,13 +347,12 @@ export default {
 	},
 
 	label: {
-		borderRadius: '2px',
+		borderRadius: '0.2rem',
 		borderWidth: '1px',
-		fontSize: '12px',
-		padding: '1px 6px',
+		fontSize: '1.2rem',
+		padding: '0.1rem 0.6rem',
 		fontWeight: 400,
 		lineHeight: 1,
-
 		appearance: {
 			primary: {
 				default: {
@@ -530,7 +529,7 @@ export default {
 	panel: {
 		backgroundColor: '#fff',
 		borderWidth: '1px',
-		borderRadius: '3px',
+		borderRadius: '0.3rem',
 		appearance: {
 			hero: {
 				borderColor: COLORS.hero,
@@ -541,8 +540,8 @@ export default {
 		},
 		header: {
 			padding: {
-				default: '10px 12px',
-				responsive: ['10px 12px', '10px 24px'],
+				default: '1rem 1.2rem',
+				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
 			},
 			appearance: {
 				hero: {
@@ -559,14 +558,14 @@ export default {
 		},
 		body: {
 			padding: {
-				default: '12px',
-				responsive: ['12px', '24px'],
+				default: '1.2rem',
+				responsive: ['1.2rem', '2.4rem'],
 			},
 		},
 		footer: {
 			padding: {
-				default: '10px 12px',
-				responsive: ['10px 12px', '10px 24px'],
+				default: '1rem 1.2rem',
+				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
 			},
 			backgroundColor: COLORS.light,
 			borderColor: COLORS.border,
@@ -594,14 +593,13 @@ export default {
 
 	table: {
 		borderWidth: '1px',
-		marginBottom: '21px',
+		marginBottom: '2.1rem',
 		backgroundColor: '#fff',
-
 		caption: {
-			fontWeight: '300',
-			fontSize: '18px',
-			marginBottom: '12px',
-			padding: '12px',
+			fontWeight: 300,
+			fontSize: '1.8rem',
+			marginBottom: '1.2rem',
+			padding: '1.2rem',
 		},
 		tr: {
 			hover: {
@@ -615,7 +613,7 @@ export default {
 			color: COLORS.text,
 		},
 		td: {
-			padding: '12px',
+			padding: '1.2rem',
 			borderWidth: '1px',
 			borderColor: COLORS.border,
 		},
@@ -635,28 +633,27 @@ export default {
 			borderWidth: '1px',
 			borderColor: COLORS.border,
 			caption: {
-				padding: '12px',
+				padding: '1.2rem',
 			},
 		},
 	},
 
 	well: {
-		borderRadius: '3px',
+		borderRadius: '0.3rem',
 		borderWidth: '1px',
 		backgroundColor: COLORS.light,
 		borderColor: COLORS.border,
 		padding: {
-			default: '12px',
-			responsive: [12, 24],
+			default: '1.2rem',
+			responsive: ['1.2rem', '2.4rem'],
 		},
-		marginBottom: '18px',
+		marginBottom: '1.8rem',
 	},
 
 	alert: {
-		padding: '18px',
-		marginBottom: '21px',
+		padding: '1.8rem',
+		marginBottom: '2.1rem',
 		borderWidth: '1px',
-
 		appearance: {
 			success: {
 				color: COLORS.success,

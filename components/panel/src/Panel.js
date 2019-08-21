@@ -17,7 +17,7 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 
 	// Common styles
 	const common = {
-		marginBottom: '21px',
+		marginBottom: '2.1rem',
 		backgroundColor: panel.backgroundColor,
 		border: `${panel.borderWidth} solid ${panel.appearance[appearance].borderColor}`,
 		borderRadius: panel.borderRadius,
