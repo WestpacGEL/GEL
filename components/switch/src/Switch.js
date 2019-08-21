@@ -25,7 +25,6 @@ export const Switch = ({
 	...props
 }) => {
 	const { switch: formSwitch } = useTheme();
-
 	const [isChecked, setIsChecked] = useState(checked);
 
 	useEffect(
