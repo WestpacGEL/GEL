@@ -7,10 +7,6 @@ import { jsx, useTheme } from '@westpac/core';
 import { SrOnly } from '../../accessibility-helpers/src';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
@@ -20,9 +16,13 @@ import { SrOnly } from '../../accessibility-helpers/src';
 export const ProgressBar = ({ valueNow, skinny, ...props }) => {
 	const { progressBar } = useTheme();
 
+	const valueNowRound = Math.round(valueNow);
+
+	const size = skinny ? 'skinny' : 'default';
+
 	// Common styling
 	const common = {
-		height: skinny ? progressBar.size.skinny.height : progressBar.size.default.height,
+		height: progressBar.size[size].height,
 		marginBottom: progressBar.marginBottom,
 		overflow: 'hidden',
 		backgroundColor: 'white',
@@ -74,14 +74,14 @@ export const ProgressBar = ({ valueNow, skinny, ...props }) => {
 		<div css={common} {...props}>
 			<div
 				css={styleBar}
-				style={{ width: `${valueNow}%` }}
+				style={{ width: `${valueNowRound}%` }}
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
 				aria-valuenow={valueNow}
 				aria-live="polite"
 			>
-				{!skinny && <span css={{ margin: '0 12px' }}>{valueNow}%</span>}
+				{!skinny && <span css={{ margin: '0 12px' }}>{valueNowRound}%</span>}
 				<SrOnly>Complete</SrOnly>
 			</div>
 		</div>
@@ -94,13 +94,11 @@ export const ProgressBar = ({ valueNow, skinny, ...props }) => {
 
 ProgressBar.propTypes = {
 	/**
-	 * The progress bar value as a percentage.
+	 * The progress bar value as a percentage. Decimal numbers are rounded.
 	 */
 	valueNow: PropTypes.number,
 	/**
 	 * Skinny mode.
-	 *
-	 * Defaults to "false"
 	 */
 	skinny: PropTypes.bool,
 };
