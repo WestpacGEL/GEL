@@ -39,7 +39,7 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 	const { breakpoints, switch: formSwitch } = useTheme();
 	const mq = paint(breakpoints);
 
-	const styleResponsive = () => {
+	const styleResponsive = (() => {
 		const sizeArr = asArray(size);
 
 		return {
@@ -48,13 +48,13 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 			height: sizeArr.map(s => (s !== null ? formSwitch.size[s].height : null)),
 			fontSize: sizeArr.map(s => (s !== null ? formSwitch.size[s].fontSize : null)),
 		};
-	};
+	})();
 
 	// On/off toggle switch styling
 	const styleToggle = {
-		borderRadius: styleResponsive().borderRadius,
-		width: styleResponsive().width,
-		height: styleResponsive().height,
+		borderRadius: styleResponsive.borderRadius,
+		width: styleResponsive.width,
+		height: styleResponsive.height,
 		position: 'relative',
 		zIndex: 1,
 		border: `${formSwitch.borderWidth} solid ${formSwitch.borderColor}`,
@@ -81,7 +81,7 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 			transition: 'all .3s ease',
 			backgroundColor: formSwitch.backgroundColor,
 			...(val => ({ width: val, height: val }))(
-				styleResponsive().height.map(
+				styleResponsive.height.map(
 					h => `calc(${h} - ${formSwitch.borderWidth} - ${formSwitch.borderWidth})`
 				)
 			),
@@ -104,11 +104,11 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 		position: 'absolute',
 		right: 0,
 		textAlign: 'center',
-		fontSize: styleResponsive().fontSize,
-		lineHeight: styleResponsive().height.map(h =>
+		fontSize: styleResponsive.fontSize,
+		lineHeight: styleResponsive.height.map(h =>
 			h !== null ? `calc(${h} - (${formSwitch.borderWidth} + ${formSwitch.borderWidth}))` : null
 		),
-		width: styleResponsive().height.map(h =>
+		width: styleResponsive.height.map(h =>
 			h !== null
 				? `calc(100% - (${h} - ${formSwitch.borderWidth} - ${formSwitch.borderWidth}))`
 				: null
