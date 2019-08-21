@@ -54,21 +54,6 @@ const App = ({ components, packageName }) => {
 				<Body>
 					<Global
 						styles={css`
-							body {
-								-moz-font-feature-settings: 'liga' on;
-								-moz-osx-font-smoothing: grayscale;
-								-webkit-font-smoothing: antialiased;
-								/* background-color: #fafbfc; */
-								color: #253858;
-								font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial,
-									sans-serif;
-								font-style: normal;
-								font-weight: 400;
-								letter-spacing: 0;
-								line-height: 1.3;
-								margin: 0;
-								text-rendering: optimizeLegibility;
-							}
 							code {
 								font-family: Monaco, monospace;
 								font-size: 0.85em;
@@ -76,9 +61,9 @@ const App = ({ components, packageName }) => {
 							p > code {
 								background-color: #ffebe6;
 								color: #bf2600;
-								border-radius: 3px;
+								border-radius: '0.3rem';
 								display: inline-block;
-								padding: 1px 3px;
+								padding: '0.1rem 0.3rem';
 							}
 						`}
 					/>
@@ -218,21 +203,12 @@ const Article = props => (
 		css={{
 			flex: 1,
 			overflowY: 'auto',
+			paddingTop: '1rem',
+			paddingBottom: '4rem',
 		}}
 		{...props}
 	/>
 );
-/*const Container = props => (
-	<div
-		css={{
-			marginLeft: 'auto',
-			marginRight: 'auto',
-			maxWidth: 800,
-			padding: 20,
-		}}
-		{...props}
-	/>
-);*/
 
 const Sidebar = props => (
 	<div
@@ -247,26 +223,25 @@ const Sidebar = props => (
 	/>
 );
 const SidebarNav = props => (
-	<nav css={{ flex: 1 }}>
-		<ul css={{ listStyle: 'none', margin: 0, padding: 0 }} {...props} />
+	<nav css={{ flex: 1, overflowY: 'auto' }}>
+		<ul css={{ listStyle: 'none', margin: '1rem 0', padding: 0 }} {...props} />
 	</nav>
 );
 const SidebarSearch = props => (
 	<input
 		css={{
 			background: 0,
-			borderWidth: '1px 0px',
+			borderWidth: '1px 0',
 			borderStyle: 'solid',
 			borderColor: 'rgba(0, 0, 0, 0.075)',
 			boxSizing: 'border-box',
 			fontSize: 'inherit',
-			outline: 0,
-			marginBottom: 10,
-			padding: '10px 20px',
+			padding: '1rem 2rem',
 			width: '100%',
 
 			':focus': {
 				background: 'rgba(0,0,0,0.04)',
+				outlineOffset: -3,
 			},
 		}}
 		{...props}
@@ -280,17 +255,20 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 			color: primaryColor,
 			display: 'block',
 			fontWeight: 500,
-			outline: 0,
-			padding: '10px 20px',
+			padding: '1rem 2rem',
+			fontSize: '1.6rem',
 			textDecoration: 'none',
 
 			':hover, :focus': {
 				background: '#fafbfc',
-				borderLeftColor: primaryColor,
+				textDecoration: 'inherit',
+			},
+
+			':focus': {
+				outlineOffset: -3,
 			},
 
 			'&.active': {
-				// background: '#fafbfc',
 				borderLeftColor: primaryColor,
 				color: 'inherit',
 			},
@@ -309,9 +287,17 @@ const SidebarTitle = props => (
 			color: 'inherit',
 			display: 'block',
 			fontWeight: 500,
-			fontSize: '1.25em',
-			padding: 20,
+			fontSize: '2rem',
+			padding: '2rem',
 			textDecoration: 'none',
+
+			':hover, :focus': {
+				textDecoration: 'inherit',
+			},
+
+			':focus': {
+				outlineOffset: -3,
+			},
 		}}
 		{...props}
 	/>
@@ -321,7 +307,7 @@ const SidebarSwitcher = props => (
 	<div
 		css={{
 			display: 'flex',
-			fontSize: '0.85rem',
+			fontSize: '1.3rem',
 		}}
 		{...props}
 	/>
@@ -338,8 +324,8 @@ const SidebarSwitch = ({ isChecked, ...props }) => (
 			flex: 1,
 			fontWeight: 500,
 			justifyContent: 'center',
-			paddingBottom: 12,
-			paddingTop: 12,
+			paddingBottom: '1.2rem',
+			paddingTop: '1.2rem',
 			textAlign: 'center',
 
 			input: {
