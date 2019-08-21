@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
+import shortid from 'shortid';
 
 import { SwitchText, SwitchToggle } from './styled';
 
@@ -12,7 +13,6 @@ import { SwitchText, SwitchToggle } from './styled';
 
 export const Switch = ({
 	name,
-	id,
 	toggleText,
 	size,
 	block,
@@ -43,6 +43,8 @@ export const Switch = ({
 		}
 	};
 
+	const switchId = `switch-${shortid.generate()}`;
+
 	// Common styling
 	const common = {
 		position: 'relative',
@@ -61,7 +63,7 @@ export const Switch = ({
 	};
 
 	return (
-		<label htmlFor={id} css={common} {...props}>
+		<label htmlFor={switchId} css={common} {...props}>
 			<input
 				type="checkbox"
 				css={{
@@ -70,7 +72,7 @@ export const Switch = ({
 					opacity: 0,
 				}}
 				name={name}
-				id={id}
+				id={switchId}
 				checked={isChecked}
 				disabled={disabled}
 				onChange={toggle}
@@ -98,11 +100,6 @@ Switch.propTypes = {
 	 * Input element name attribute
 	 */
 	name: PropTypes.string,
-
-	/**
-	 * Input element id attribute
-	 */
-	id: PropTypes.string.isRequired,
 
 	/**
 	 * On/off text.
