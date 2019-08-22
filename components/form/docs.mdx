@@ -282,6 +282,31 @@ These patterns also require use of the Fieldset component to meet WCAG 2.1 AA ac
 	</FormGroup>
 </Playground>
 
+### SrOnly
+
+Always provide a FormLabel component for every associated input to meet WCAG 2.1 AA accessibility compliance. You can visually hide FormLabel components by providing the `srOnly` (‘screen reader only’) prop if required.
+
+<Playground>
+	<FormGroup>
+		<Fieldset legend="This is a legend">
+			<InputCluster>
+				<InputClusterItem>
+					<FormLabel htmlFor="example-formlabel-sronly-1" srOnly>
+						This is a ‘screen reader only’ label
+					</FormLabel>
+					<TextInput name="example-formlabel-sronly-1" id="example-formlabel-sronly-1" />
+				</InputClusterItem>
+				<InputClusterItem>
+					<FormLabel htmlFor="example-formlabel-sronly-2" srOnly>
+						This is another ‘screen reader only’ label
+					</FormLabel>
+					<TextInput name="example-formlabel-sronly-2" id="example-formlabel-sronly-2" />
+				</InputClusterItem>
+			</InputCluster>
+		</Fieldset>
+	</FormGroup>
+</Playground>
+
 <PropsTable of={FormLabel} />
 
 ## Hint

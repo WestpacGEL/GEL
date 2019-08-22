@@ -4,16 +4,21 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 import { FormContext } from './Form.context';
+// import { SrOnly } from '../accessibility-helpers/src';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormLabel = ({ sublabel, tag: Tag, htmlFor, ...props }) => {
+export const FormLabel = ({ sublabel, tag: Tag, htmlFor, srOnly, ...props }) => {
 	const {
 		form: { label },
 	} = useTheme();
 	const { spacing } = useContext(FormContext);
+
+	/* if (srOnly) {
+		Tag = SrOnly;
+	} */
 
 	return (
 		<Tag
@@ -56,6 +61,11 @@ FormLabel.propTypes = {
 			);
 		}
 	},
+
+	/**
+	 * ‘Screen reader only’ mode
+	 */
+	srOnly: PropTypes.bool,
 
 	/**
 	 * Label text
