@@ -54,49 +54,37 @@ const options = {
 
 ButtonGroup.propTypes = {
 	/**
-	 * The button appearance.
-	 *
-	 * Defaults to "hero"
+	 * Button group button appearance
 	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
-	 * The button group size.
-	 *
-	 * Defaults to "medium"
+	 * Button group button size
 	 */
 	size: PropTypes.oneOf(options.size),
 
 	/**
-	 * Block mode.
-	 *
-	 * Defaults to "false"
+	 * Block mode
 	 */
 	block: PropTypes.bool,
 
 	/**
-	 * Button icon.
+	 * Button group button icon
 	 */
 	icon: PropTypes.func,
 
 	/**
-	 * Button icon positioning.
-	 *
-	 * Defaults to "right"
+	 * Button group button icon positioning
 	 */
 	iconPosition: PropTypes.string,
 
 	/**
-	 * The button group input element’s name.
-	 *
-	 * This prop is required.
+	 * Button group button input element’s name
 	 */
 	name: PropTypes.string.isRequired,
 
 	/**
-	 * The button content for this button group.
-	 *
-	 * This prop is required.
+	 * Button group children
 	 */
 	children: PropTypes.node.isRequired,
 };
