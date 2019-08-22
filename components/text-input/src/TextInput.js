@@ -173,7 +173,7 @@ TextInput.propTypes = {
 	/**
 	 * Component children.
 	 *
-	 * Note: Only select type inputs render children.
+	 * Note: Only `select` type inputs render children.
 	 */
 	children: PropTypes.node,
 };
