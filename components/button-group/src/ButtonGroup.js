@@ -39,7 +39,7 @@ export const ButtonGroup = ({ appearance, size, block, name, children, ...props 
 // ==============================
 
 const options = {
-	appearance: ['primary', 'hero', 'neutral', 'faint', 'link'],
+	appearance: ['primary', 'hero', 'neutral', 'faint'],
 	size: ['small', 'medium', 'large', 'xlarge'],
 };
 
