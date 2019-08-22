@@ -20,6 +20,7 @@ export const ButtonGroupButton = ({
 	icon,
 	iconPosition,
 	name,
+	id,
 	children,
 	...props
 }) => {
@@ -42,6 +43,7 @@ export const ButtonGroupButton = ({
 					borderBottomLeftRadius: 0,
 				},
 			}}
+			{...props}
 		>
 			<input
 				css={{
@@ -51,6 +53,7 @@ export const ButtonGroupButton = ({
 				}}
 				type="radio"
 				name={name}
+				id={id}
 			/>
 			<Button
 				className="btn-group-btn"
@@ -69,10 +72,27 @@ export const ButtonGroupButton = ({
 				block
 				icon={icon}
 				iconPosition={iconPosition}
-				{...props}
 			>
 				{children}
 			</Button>
 		</label>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
+
+ButtonGroupButton.propTypes = {
+	/**
+	 * Button group button input element’s id
+	 */
+	id: PropTypes.string,
+
+	/**
+	 * Button group button text
+	 */
+	children: PropTypes.node,
+};
+
+ButtonGroupButton.defaultProps = {};
