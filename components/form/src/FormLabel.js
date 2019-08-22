@@ -35,19 +35,19 @@ export const FormLabel = ({ sublabel, tag: Tag, htmlFor, ...props }) => {
 
 FormLabel.propTypes = {
 	/**
-	 * Sublabel mode (smaller label size)
+	 * Sub-label mode (smaller label text size)
 	 */
 	sublabel: PropTypes.bool,
 
 	/**
-	 * The component tag
+	 * Component tag
 	 */
 	tag: PropTypes.oneOf(['label', 'legend']),
 
 	/**
-	 * The label for attribute.
+	 * Label `for` attribute.
 	 *
-	 * This prop is required, if the tag is `label`.
+	 * This prop is required and must match the input’s `id` value, unless the `tag` prop is configured.
 	 */
 	htmlFor: (props, propName, componentName, location, propFullName) => {
 		if (props.tag === 'label' && props[propName] == undefined) {
@@ -58,7 +58,7 @@ FormLabel.propTypes = {
 	},
 
 	/**
-	 * Component text
+	 * Label text
 	 */
 	children: PropTypes.string.isRequired,
 };

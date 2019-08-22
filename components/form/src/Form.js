@@ -28,28 +28,28 @@ const options = {
 
 Form.propTypes = {
 	/**
-	 * Size of children.
+	 * Size of children components.
 	 *
-	 * This prop is available to children via `FormContext`.
+	 * This prop is available to children components via `FormContext`.
 	 */
 	size: PropTypes.oneOf(options.size),
 
 	/**
-	 * Vertical spacing of children.
+	 * Vertical spacing of children components.
 	 *
-	 * This prop is available to children via `FormContext`.
+	 * This prop is available to children components via `FormContext`.
 	 */
 	spacing: PropTypes.oneOf(options.spacing),
 
 	/**
 	 * Inline children mode (SM+).
 	 *
-	 * This prop is available to children via `FormContext`.
+	 * This prop is available to children components via `FormContext`.
 	 */
 	inline: PropTypes.bool,
 
 	/**
-	 * Form wrapper tag
+	 * Component tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 

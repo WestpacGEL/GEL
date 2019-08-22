@@ -29,9 +29,7 @@ ChitChat.propTypes = {
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
-	 * Component text.
-	 *
-	 * This prop is required.
+	 * Component text
 	 */
 	children: PropTypes.string.isRequired,
 };

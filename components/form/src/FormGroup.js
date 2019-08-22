@@ -41,7 +41,9 @@ export const FormGroup = ({ primary, ...props }) => {
 
 FormGroup.propTypes = {
 	/**
-	 * Primary (fork) mode
+	 * Primary mode.
+	 *
+	 * Used exclusively to render the ‘Fork’ pattern.
 	 */
 	primary: PropTypes.bool,
 
