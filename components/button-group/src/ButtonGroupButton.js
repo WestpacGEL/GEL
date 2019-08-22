@@ -24,27 +24,10 @@ export const ButtonGroupButton = ({
 	children,
 	...props
 }) => {
-	const theme = useTheme();
-	const button = theme.button;
+	const { button } = useTheme();
 
 	return (
-		<label
-			css={{
-				flex: 1,
-
-				// Style internal borders
-				'&:not(:last-child) > .btn-group-btn': {
-					borderTopRightRadius: 0,
-					borderBottomRightRadius: 0,
-					borderRight: 'none',
-				},
-				'&:not(:first-of-type) > .btn-group-btn': {
-					borderTopLeftRadius: 0,
-					borderBottomLeftRadius: 0,
-				},
-			}}
-			{...props}
-		>
+		<label css={{ flex: 1 }} {...props}>
 			<input
 				css={{
 					position: 'absolute',
@@ -56,8 +39,18 @@ export const ButtonGroupButton = ({
 				id={id}
 			/>
 			<Button
-				className="btn-group-btn"
 				css={{
+					// Style internal borders
+					'label:not(:last-child) > &': {
+						borderTopRightRadius: 0,
+						borderBottomRightRadius: 0,
+						borderRight: 'none',
+					},
+					'label:not(:first-of-type) > &': {
+						borderTopLeftRadius: 0,
+						borderBottomLeftRadius: 0,
+					},
+
 					// Checked state styling (look like a standard button)
 					'input:checked + &': {
 						color: button.appearance[appearance].standard.default.color,

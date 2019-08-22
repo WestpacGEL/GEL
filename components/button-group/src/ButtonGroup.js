@@ -14,30 +14,21 @@ import { Button } from '../../button/src';
 // Component
 // ==============================
 
-export const ButtonGroup = ({
-	appearance,
-	size,
-	block,
-	icon,
-	iconPosition,
-	name,
-	children,
-	...props
-}) => {
-	// Common styles
-	const common = {
-		display: block ? 'flex' : 'inline-flex',
-		alignItems: 'center', //vertical
-		verticalAlign: 'middle',
-	};
-
-	// Pass these selected props on to children (that way button styling can be set by parent ButtonGroup)
+export const ButtonGroup = ({ appearance, size, block, name, children, ...props }) => {
+	// Pass the selected props on to children (that way button styling can be set by parent ButtonGroup)
 	const giftedChildren = Children.map(children, child =>
-		cloneElement(child, { appearance, size, icon, iconPosition, name, ...child.props })
+		cloneElement(child, { appearance, size, name })
 	);
 
 	return (
-		<div css={{ ...common }} {...props}>
+		<div
+			css={{
+				display: block ? 'flex' : 'inline-flex',
+				alignItems: 'center', //vertical
+				verticalAlign: 'middle',
+			}}
+			{...props}
+		>
 			{giftedChildren}
 		</div>
 	);
@@ -67,16 +58,6 @@ ButtonGroup.propTypes = {
 	 * Block mode
 	 */
 	block: PropTypes.bool,
-
-	/**
-	 * Button group button icon
-	 */
-	icon: PropTypes.func,
-
-	/**
-	 * Button group button icon positioning
-	 */
-	iconPosition: PropTypes.string,
 
 	/**
 	 * Button group button input element’s name
