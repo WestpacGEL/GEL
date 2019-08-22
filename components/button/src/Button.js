@@ -20,8 +20,8 @@ export const Button = ({
 	soft,
 	block,
 	trim,
-	icon: Icon,
-	iconPosition,
+	iconAfter: IconAfter,
+	iconBefore: IconBefore,
 	justify,
 	tag: Tag,
 	onClick,
@@ -38,7 +38,6 @@ export const Button = ({
 		border: `${button.borderWidth} solid transparent`,
 		borderRadius: button.borderRadius,
 		cursor: 'pointer',
-		flexDirection: iconPosition === 'left' ? 'row-reverse' : null,
 		fontWeight: button.fontWeight,
 		justifyContent: justify ? 'space-between' : 'center', //horizontal
 		lineHeight: button.lineHeight,
@@ -105,8 +104,8 @@ export const Button = ({
 	const buttonContent = () => {
 		// Icon gap styling
 		const styleIcon = {
-			marginLeft: children && iconPosition === 'right' && '0.4em',
-			marginRight: children && iconPosition === 'left' && '0.4em',
+			marginLeft: children && IconAfter && '0.4em',
+			marginRight: children && IconBefore && '0.4em',
 		};
 		// Map button size to icon size
 		const iconSize = {
@@ -123,8 +122,9 @@ export const Button = ({
 
 		return Tag !== 'input' ? (
 			<>
+				{IconBefore && <IconBefore css={styleIcon} size={iconSize[size]} color="inherit" />}
 				{children && <span css={styleChildren}>{children}</span>}
-				{Icon && <Icon css={styleIcon} size={iconSize[size]} color="inherit" />}
+				{IconAfter && <IconAfter css={styleIcon} size={iconSize[size]} color="inherit" />}
 			</>
 		) : null;
 	};
@@ -137,8 +137,8 @@ export const Button = ({
 				...styleAppearance,
 				...styleResponsive(),
 			})}
-			{...props}
 			onClick={onClick}
+			{...props}
 		>
 			{buttonContent()}
 		</Tag>
@@ -152,44 +152,71 @@ export const Button = ({
 const options = {
 	appearance: ['primary', 'hero', 'neutral', 'faint', 'link'],
 	size: ['small', 'medium', 'large', 'xlarge'],
-	iconPosition: ['left', 'right'],
 };
 
 Button.propTypes = {
-	/** Button appearance */
+	/**
+	 * Button appearance
+	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
-	/** Button size */
+	/**
+	 * Button size
+	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(options.size),
 		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
 	]),
 
-	/** Button tag */
+	/**
+	 * Button tag
+	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
-	/** Soft mode. Removes background colour and adjusts text colour */
+	/**
+	 * Soft mode.
+	 *
+	 * Removes background colour and adjusts text colour.
+	 */
 	soft: PropTypes.bool,
 
-	/** Block mode. */
+	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
-	/** Trim mode. Removes horizontal padding. */
+	/**
+	 * Trim mode.
+	 *
+	 * Removes horizontal padding.
+	 */
 	trim: PropTypes.bool,
 
-	/** Button icon */
-	icon: PropTypes.func,
+	/**
+	 * Places an icon within the button, after the button’s text
+	 */
+	iconAfter: PropTypes.func,
 
-	/** Button icon positioning */
-	iconPosition: PropTypes.oneOf(options.iconPosition),
+	/**
+	 * Places an icon within the button, before the button’s text
+	 */
+	iconBefore: PropTypes.func,
 
-	/** Button content alignment */
+	/**
+	 * Justify align button children
+	 */
 	justify: PropTypes.bool,
 
-	/** Button text */
+	/**
+	 * Button text
+	 */
 	children: PropTypes.node,
 
-	/** onClick handler for this button */
+	/**
+	 * Handler to be called on click
+	 */
 	onClick: PropTypes.func,
 };
 
@@ -200,6 +227,5 @@ Button.defaultProps = {
 	soft: false,
 	block: false,
 	trim: false,
-	iconPosition: 'right',
 	justify: false,
 };

@@ -17,10 +17,10 @@ import { Button } from '../../button/src';
 export const ButtonGroupButton = ({
 	appearance,
 	size,
-	icon,
-	iconPosition,
 	name,
 	id,
+	iconAfter: IconAfter,
+	iconBefore: IconBefore,
 	children,
 	...props
 }) => {
@@ -68,10 +68,10 @@ export const ButtonGroupButton = ({
 				tag="span"
 				appearance={appearance}
 				size={size}
+				iconAfter={IconAfter}
+				iconBefore={IconBefore}
 				soft
 				block
-				icon={icon}
-				iconPosition={iconPosition}
 			>
 				{children}
 			</Button>
@@ -88,6 +88,16 @@ ButtonGroupButton.propTypes = {
 	 * Button group button input element’s id
 	 */
 	id: PropTypes.string,
+
+	/**
+	 * Places an icon within the button, after the button’s text
+	 */
+	iconAfter: PropTypes.func,
+
+	/**
+	 * Places an icon within the button, before the button’s text
+	 */
+	iconBefore: PropTypes.func,
 
 	/**
 	 * Button group button text
