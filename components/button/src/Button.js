@@ -102,11 +102,6 @@ export const Button = ({
 	// Compose a button text + icon fragment, if either of these items are provided
 	// (nb. `<input>` elements cannot have children; they would use a `value` prop)
 	const buttonContent = () => {
-		// Icon gap styling
-		const styleIcon = {
-			marginLeft: children && IconAfter && '0.4em',
-			marginRight: children && IconBefore && '0.4em',
-		};
 		// Map button size to icon size
 		const iconSize = {
 			small: 'small', //18px
@@ -114,6 +109,7 @@ export const Button = ({
 			large: 'medium', //24px
 			xlarge: 'medium', //24px
 		};
+
 		// Text truncation styling (used in block mode)
 		const styleChildren = {
 			overflow: 'hidden',
@@ -122,9 +118,21 @@ export const Button = ({
 
 		return Tag !== 'input' ? (
 			<>
-				{IconBefore && <IconBefore css={styleIcon} size={iconSize[size]} color="inherit" />}
+				{IconBefore && (
+					<IconBefore
+						css={{ marginRight: children ? '0.4em' : null }}
+						size={iconSize[size]}
+						color="inherit"
+					/>
+				)}
 				{children && <span css={styleChildren}>{children}</span>}
-				{IconAfter && <IconAfter css={styleIcon} size={iconSize[size]} color="inherit" />}
+				{IconAfter && (
+					<IconAfter
+						css={{ marginLeft: children ? '0.4em' : null }}
+						size={iconSize[size]}
+						color="inherit"
+					/>
+				)}
 			</>
 		) : null;
 	};
