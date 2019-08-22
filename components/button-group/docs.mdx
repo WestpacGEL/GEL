@@ -6,17 +6,99 @@ route: /button-group
 
 import { Playground, PropsTable } from 'docz';
 import { ButtonGroup } from './src/ButtonGroup';
+import { ButtonGroupButton } from './src/ButtonGroupButton';
+import { InfoIcon } from '../icon/src';
 
 # Button Group
 
+Group a series of buttons together on a single line to form a ButtonGroup toggle. These function much like a radio input set.
+
+ButtonGroup components inherit Button appearance, sizing and icon options, and can render in block mode similar to block buttons.
+
 <Playground>
-	<ButtonGroup>
-		<Button>Left</Button>
-		<Button>Middle</Button>
-		<Button>Right</Button>
+	<ButtonGroup name="example-buttongroup">
+		<ButtonGroupButton>Left</ButtonGroupButton>
+		<ButtonGroupButton>Middle</ButtonGroupButton>
+		<ButtonGroupButton>Right</ButtonGroupButton>
 	</ButtonGroup>
 </Playground>
 
-## Props
+### Appearance
+
+<Playground>
+	<ButtonGroup appearance="primary" name="example-buttongroup-primary">
+		<ButtonGroupButton>Yes</ButtonGroupButton>
+		<ButtonGroupButton>No</ButtonGroupButton>
+	</ButtonGroup>{' '}
+	<ButtonGroup appearance="hero" name="example-buttongroup-hero">
+		<ButtonGroupButton>Yes</ButtonGroupButton>
+		<ButtonGroupButton>No</ButtonGroupButton>
+	</ButtonGroup>{' '}
+	<ButtonGroup appearance="neutral" name="example-buttongroup-neutral">
+		<ButtonGroupButton>Yes</ButtonGroupButton>
+		<ButtonGroupButton>No</ButtonGroupButton>
+	</ButtonGroup>{' '}
+	<ButtonGroup appearance="faint" name="example-buttongroup-faint">
+		<ButtonGroupButton>Yes</ButtonGroupButton>
+		<ButtonGroupButton>No</ButtonGroupButton>
+	</ButtonGroup>
+</Playground>
+
+### Size
+
+<Playground>
+	<ButtonGroup size="small" name="example-buttongroup-small">
+		<ButtonGroupButton>Yes</ButtonGroupButton>
+		<ButtonGroupButton>No</ButtonGroupButton>
+	</ButtonGroup>{' '}
+	<ButtonGroup size="medium" name="example-buttongroup-medium">
+		<ButtonGroupButton>Yes</ButtonGroupButton>
+		<ButtonGroupButton>No</ButtonGroupButton>
+	</ButtonGroup>{' '}
+	<ButtonGroup size="large" name="example-buttongroup-large">
+		<ButtonGroupButton>Yes</ButtonGroupButton>
+		<ButtonGroupButton>No</ButtonGroupButton>
+	</ButtonGroup>{' '}
+	<ButtonGroup size="xlarge" name="example-buttongroup-xlarge">
+		<ButtonGroupButton>Yes</ButtonGroupButton>
+		<ButtonGroupButton>No</ButtonGroupButton>
+	</ButtonGroup>
+</Playground>
+
+### Block
+
+<Playground>
+	<ButtonGroup name="example-buttongroup-block" block>
+		<ButtonGroupButton>Left</ButtonGroupButton>
+		<ButtonGroupButton>Middle</ButtonGroupButton>
+		<ButtonGroupButton>Right</ButtonGroupButton>
+	</ButtonGroup>
+</Playground>
+
+### Icon after
+
+<Playground>
+	<ButtonGroup name="example-buttongroup-block">
+		<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
+		<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
+		<ButtonGroupButton iconAfter={InfoIcon}>Right</ButtonGroupButton>
+	</ButtonGroup>
+</Playground>
+
+### Icon before
+
+<Playground>
+	<ButtonGroup name="example-buttongroup-block">
+		<ButtonGroupButton iconBefore={InfoIcon}>Left</ButtonGroupButton>
+		<ButtonGroupButton iconBefore={InfoIcon}>Middle</ButtonGroupButton>
+		<ButtonGroupButton iconBefore={InfoIcon}>Right</ButtonGroupButton>
+	</ButtonGroup>
+</Playground>
+
+## ButtonGroup Props
 
 <PropsTable of={ButtonGroup} />
+
+## ButtonGroupButton Props
+
+<PropsTable of={ButtonGroupButton} />
