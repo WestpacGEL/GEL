@@ -33,7 +33,7 @@ export const ButtonGroup = ({
 
 	// Pass these selected props on to children (that way button styling can be set by parent ButtonGroup)
 	const giftedChildren = Children.map(children, child =>
-		cloneElement(child, { appearance, size, block, icon, iconPosition, name, ...child.props })
+		cloneElement(child, { appearance, size, icon, iconPosition, name, ...child.props })
 	);
 
 	return (
