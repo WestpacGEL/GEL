@@ -1,8 +1,11 @@
 /** @jsx jsx */
 
 import React, { createContext } from 'react';
+import { defaultProps } from './Form';
 
-export const FormContext = createContext({ size: null, spacing: null, inline: null });
+const { size, spacing, inline } = defaultProps;
+
+export const FormContext = createContext({ size, spacing, inline });
 
 export const FormProvider = FormContext.Provider;
 export const FormConsumer = FormContext.Consumer;
