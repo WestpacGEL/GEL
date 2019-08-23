@@ -17,17 +17,14 @@ export const FormSection = ({ noPadding, ...props }) => {
 
 	const common = {
 		position: 'relative', //for `.form-section-actions` positioning
-		paddingTop: section.paddingTop,
-		paddingBottom: section.paddingBottom, //6px assuming there will be a `.form-group` margin-bottom (30px)
 		paddingLeft: noPadding ? null : section.paddingLeft,
 		paddingRight: noPadding ? null : section.paddingRight,
 
-		// TODO apply programatically? (rather than via CSS pseudo-class)
-		':first-of-type': {
-			paddingTop: 0,
+		':not(:first-of-type)': {
+			paddingTop: section.paddingTop,
 		},
-		':last-child': {
-			paddingBottom: 0,
+		':not(:last-child)': {
+			paddingBottom: section.paddingBottom, //0.6rem assuming there will be a `FormGroup` margin-bottom (3rem)
 		},
 
 		// Subequent sections
