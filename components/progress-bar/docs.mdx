@@ -1,0 +1,21 @@
+---
+name: ProgressBar
+menu: Components
+route: /progress-bar
+---
+
+import { Playground, PropsTable } from 'docz';
+import { ProgressBar } from './src/ProgressBar';
+
+# ProgressBar
+
+A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.
+
+<Playground>
+	<ProgressBar valuenow="45" />
+	<ProgressBar valuenow="74" skinny />
+</Playground>
+
+## Props
+
+<PropsTable of={ProgressBar} />

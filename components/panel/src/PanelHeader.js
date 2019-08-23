@@ -26,7 +26,7 @@ export const PanelHeader = ({ appearance, responsive, ...props }) => {
 				color: panel.header.appearance[appearance].color,
 				borderTopRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 				borderTopLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
-				fontSize: '16px', //TODO rems
+				fontSize: '1.6rem',
 
 				'@media print': {
 					borderBottom: '1px solid #000',

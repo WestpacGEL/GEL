@@ -27,7 +27,7 @@ export const useIsKeyboardUser = () => {
 
 	// Handle keys
 	const keyHandler = event => {
-		if (event.key === 'Tab' && !isKeyboardUser) {
+		if (event.key === 'Tab') {
 			setIsKeyboardUser(true);
 			document.removeEventListener('keydown', keyHandler);
 		}
@@ -65,9 +65,9 @@ GEL.propTypes = {
 	brand: PropTypes.oneOfType([
 		PropTypes.shape({
 			breakpoints: PropTypes.shape({
-				sm: PropTypes.number,
-				md: PropTypes.number,
-				lg: PropTypes.number,
+				sm: PropTypes.string,
+				md: PropTypes.string,
+				lg: PropTypes.string,
 			}),
 			colors: PropTypes.shape({
 				background: PropTypes.string,

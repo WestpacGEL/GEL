@@ -27,6 +27,7 @@ export const Button = ({
 	inline,
 	children,
 	onClick,
+	children,
 	...props
 }) => {
 	const { breakpoints, button } = useTheme();
@@ -83,24 +84,17 @@ export const Button = ({
 		const sizeArr = asArray(size);
 		const blockArr = asArray(block);
 
-		const padding = [],
-			fontSize = [],
-			height = [];
-
-		sizeArr.forEach(s => {
-			const pad = button.size[s].padding;
-			if (trim) pad[1] = 0;
-			padding.push(pad.join(' '));
-			fontSize.push(button.size[s].fontSize);
-			height.push(button.size[s].height);
-		});
-
 		return {
-			padding,
-			fontSize,
-			height,
-			display: blockArr.map(b => (b ? 'flex' : 'inline-flex')),
-			width: blockArr.map(b => (b ? '100%' : 'auto')),
+			padding: sizeArr.map(s => {
+				if (!s) return null;
+				const pad = button.size[s].padding;
+				if (trim) pad[1] = 0;
+				return pad.join(' ');
+			}),
+			fontSize: sizeArr.map(s => s && button.size[s].fontSize),
+			height: sizeArr.map(s => s && button.size[s].height),
+			display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
+			width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 		};
 	};
 
@@ -132,7 +126,7 @@ export const Button = ({
 		return Tag !== 'input' ? (
 			<>
 				{children && <span css={styleChildren}>{children}</span>}
-				{Icon && <Icon css={styleIcon} size={iconSize[size]} />}
+				{Icon && <Icon css={styleIcon} size={iconSize[size]} color="inherit" />}
 			</>
 		) : null;
 	};
@@ -164,78 +158,40 @@ const options = {
 };
 
 Button.propTypes = {
-	/**
-	 * The button appearance.
-	 *
-	 * Defaults to "primary"
-	 */
+	/** Button appearance */
 	appearance: PropTypes.oneOf(options.appearance),
 
-	/**
-	 * The button size.
-	 *
-	 * Defaults to "medium"
-	 */
+	/** Button size */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(options.size),
 		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
 	]),
 
-	/**
-	 * The button tag.
-	 *
-	 * Defaults to "button"
-	 */
+	/** Button tag */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
-	/**
-	 * Soft mode. Removes background colour and adjusts text colour.
-	 *
-	 * Defaults to "false"
-	 */
+	/** Soft mode. Removes background colour and adjusts text colour */
 	soft: PropTypes.bool,
 
-	/**
-	 * Block mode.
-	 *
-	 * Defaults to "false"
-	 */
+	/** Block mode. */
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
-	/**
-	 * Trim mode. Removes horizontal padding.
-	 *
-	 * Defaults to "false"
-	 */
+	/** Trim mode. Removes horizontal padding. */
 	trim: PropTypes.bool,
 
-	/**
-	 * Button icon.
-	 */
+	/** Button icon */
 	icon: PropTypes.func,
 
-	/**
-	 * Button icon positioning.
-	 *
-	 * Defaults to "right"
-	 */
+	/** Button icon positioning */
 	iconPosition: PropTypes.oneOf(options.iconPosition),
 
-	/**
-	 * Button content alignment.
-	 *
-	 * Defaults to "false"
-	 */
+	/** Button content alignment */
 	justify: PropTypes.bool,
 
-	/**
-	 * The content for this button.
-	 */
+	/** Button text */
 	children: PropTypes.node,
 
-	/**
-	 * The onClick handler for this button.
-	 */
+	/** onClick handler for this button */
 	onClick: PropTypes.func,
 };
 

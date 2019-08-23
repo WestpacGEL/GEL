@@ -27,7 +27,7 @@ export const Well = ({ responsive, ...props }) => {
 		// Nested Well styling
 		'& &': {
 			backgroundColor: '#fff',
-			margin: '12px 0',
+			margin: '1.2rem 0',
 		},
 	};
 
