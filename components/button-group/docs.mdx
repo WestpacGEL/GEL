@@ -23,7 +23,7 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 	</ButtonGroup>
 </Playground>
 
-### Appearance
+## Appearance
 
 <Playground>
 	<ButtonGroup appearance="primary" name="example-buttongroup-primary">
@@ -44,7 +44,7 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 	</ButtonGroup>
 </Playground>
 
-### Size
+## Size
 
 <Playground>
 	<ButtonGroup size="small" name="example-buttongroup-small">
@@ -65,7 +65,7 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 	</ButtonGroup>
 </Playground>
 
-### Block
+## Block
 
 <Playground>
 	<ButtonGroup name="example-buttongroup-block" block>
@@ -75,7 +75,7 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 	</ButtonGroup>
 </Playground>
 
-### Icon after
+## Icon after
 
 <Playground>
 	<ButtonGroup name="example-buttongroup-block">
@@ -85,7 +85,7 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 	</ButtonGroup>
 </Playground>
 
-### Icon before
+## Icon before
 
 <Playground>
 	<ButtonGroup name="example-buttongroup-block">
@@ -95,13 +95,19 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 	</ButtonGroup>
 </Playground>
 
-### Icon with no text
+## srOnlyText
 
 <Playground>
 	<ButtonGroup name="example-buttongroup-block">
-		<ButtonGroupButton iconAfter={InfoIcon} />
-		<ButtonGroupButton iconAfter={InfoIcon} />
-		<ButtonGroupButton iconAfter={InfoIcon} />
+		<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
+			Screen reader only
+		</ButtonGroupButton>
+		<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
+			Screen reader only
+		</ButtonGroupButton>
+		<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
+			Screen reader only
+		</ButtonGroupButton>
 	</ButtonGroup>
 </Playground>
 

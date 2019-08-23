@@ -7,10 +7,6 @@ import { jsx, useTheme } from '@westpac/core';
 import { Button } from '../../button/src';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
@@ -21,6 +17,7 @@ export const ButtonGroupButton = ({
 	id,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
+	srOnlyText,
 	children,
 	...props
 }) => {
@@ -63,6 +60,7 @@ export const ButtonGroupButton = ({
 				size={size}
 				iconAfter={IconAfter}
 				iconBefore={IconBefore}
+				srOnlyText={srOnlyText}
 				soft
 				block
 			>
