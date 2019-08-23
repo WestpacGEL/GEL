@@ -88,10 +88,8 @@ export const Button = ({
 			return {
 				padding: sizeArr.map(s => {
 					if (!s) return null;
-					let p = button.size[s].padding;
-					if (trim) {
-						p[1] = 0;
-					}
+					const p = [...button.size[s].padding];
+					if (trim) p[1] = '0';
 
 					return p.join(' ');
 				}),
