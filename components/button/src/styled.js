@@ -24,11 +24,11 @@ const iconSizeMap = {
 // ==============================
 
 export const ButtonTextWrapper = ({ block, srOnlyText, children }) => {
-	if (block) {
+	if (srOnlyText) {
+		return <SrOnly>{children}</SrOnly>;
+	} else if (block) {
 		// Wrap with styled span to provide text truncation (only available in block mode)
 		return <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>;
-	} else if (srOnlyText) {
-		return <SrOnly>{children}</SrOnly>;
 	} else {
 		return children;
 	}
