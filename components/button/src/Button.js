@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
+import { ButtonContent } from './styled';
+
 // ==============================
 // Utils
 // ==============================
@@ -20,9 +22,10 @@ export const Button = ({
 	soft,
 	block,
 	trim,
-	iconAfter: IconAfter,
-	iconBefore: IconBefore,
+	iconAfter,
+	iconBefore,
 	justify,
+	srOnlyText,
 	tag: Tag,
 	onClick,
 	children,
@@ -31,124 +34,102 @@ export const Button = ({
 	const { breakpoints, button } = useTheme();
 	const mq = paint(breakpoints);
 
-	// Common styling
-	const styleCommon = {
-		alignItems: 'center', //vertical
-		appearance: 'none',
-		border: `${button.borderWidth} solid transparent`,
-		borderRadius: button.borderRadius,
-		cursor: 'pointer',
-		fontWeight: button.fontWeight,
-		justifyContent: justify ? 'space-between' : 'center', //horizontal
-		lineHeight: button.lineHeight,
-		textAlign: 'center',
-		textDecoration: 'none',
-		touchAction: 'manipulation',
-		transition: 'background 0.2s ease, color 0.2s ease',
-		userSelect: 'none',
-		verticalAlign: 'middle',
-		whiteSpace: 'nowrap',
+	const style = {
+		// Common styling
+		common: {
+			alignItems: 'center', //vertical
+			appearance: 'none',
+			border: `${button.borderWidth} solid transparent`,
+			borderRadius: button.borderRadius,
+			cursor: 'pointer',
+			fontWeight: button.fontWeight,
+			justifyContent: justify ? 'space-between' : 'center', //horizontal
+			lineHeight: button.lineHeight,
+			textAlign: 'center',
+			textDecoration: 'none',
+			touchAction: 'manipulation',
+			transition: 'background 0.2s ease, color 0.2s ease',
+			userSelect: 'none',
+			verticalAlign: 'middle',
+			whiteSpace: 'nowrap',
 
-		// Hover state (but excluded if disabled or inside a disabled fieldset)
-		':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
-			textDecoration: appearance === 'link' ? 'underline' : 'none',
+			// Hover state (but excluded if disabled or inside a disabled fieldset)
+			':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
+				textDecoration: appearance === 'link' ? 'underline' : 'none',
+			},
+
+			// Disabled via `disabled` attribute or inside a disabled fieldset
+			':disabled, fieldset:disabled &': {
+				opacity: '0.5',
+				pointerEvents: 'none',
+			},
 		},
 
-		// Disabled via `disabled` attribute or inside a disabled fieldset
-		':disabled, fieldset:disabled &': {
-			opacity: '0.5',
-			pointerEvents: 'none',
+		// Button appearance styling
+		appearance: {
+			...button.appearance[appearance].standard.default,
+			...(soft && appearance !== 'link' && button.appearance[appearance].soft.default),
+
+			':hover': {
+				...button.appearance[appearance].standard.hover,
+				...(soft && appearance !== 'link' && button.appearance[appearance].soft.hover),
+			},
+			':active, &.active': {
+				...button.appearance[appearance].standard.active,
+				...(soft && appearance !== 'link' && button.appearance[appearance].soft.active),
+			},
 		},
-	};
 
-	// Button appearance styling
-	const styleAppearance = {
-		...button.appearance[appearance].standard.default,
-		...(soft && appearance !== 'link' && button.appearance[appearance].soft.default),
+		// Reponsive styling (button size and block)
+		responsive: (() => {
+			const sizeArr = asArray(size);
+			const blockArr = asArray(block);
 
-		':hover': {
-			...button.appearance[appearance].standard.hover,
-			...(soft && appearance !== 'link' && button.appearance[appearance].soft.hover),
-		},
-		':active, &.active': {
-			...button.appearance[appearance].standard.active,
-			...(soft && appearance !== 'link' && button.appearance[appearance].soft.active),
-		},
-	};
+			return {
+				padding: sizeArr.map(s => {
+					if (!s) return null;
+					let p = button.size[s].padding;
+					if (trim) {
+						p[1] = 0;
+					}
 
-	// Reponsive styling (button size and block)
-	const styleResponsive = () => {
-		const sizeArr = asArray(size);
-		const blockArr = asArray(block);
-
-		return {
-			padding: sizeArr.map(s => {
-				if (!s) return null;
-				const pad = button.size[s].padding;
-				if (trim) pad[1] = 0;
-				return pad.join(' ');
-			}),
-			fontSize: sizeArr.map(s => s && button.size[s].fontSize),
-			height: sizeArr.map(s => s && button.size[s].height),
-			display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
-			width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
-		};
+					return p.join(' ');
+				}),
+				fontSize: sizeArr.map(s => s && button.size[s].fontSize),
+				height: sizeArr.map(s => s && button.size[s].height),
+				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
+				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
+			};
+		})(),
 	};
 
 	if (props.href) {
 		Tag = 'a';
 	}
 
-	// Compose a button text + icon fragment, if either of these items are provided
-	// (nb. `<input>` elements cannot have children; they would use a `value` prop)
-	const buttonContent = () => {
-		// Map button size to icon size
-		const iconSize = {
-			small: 'small', //18px
-			medium: 'small', //18px
-			large: 'medium', //24px
-			xlarge: 'medium', //24px
-		};
-
-		// Text truncation styling (used in block mode)
-		const styleChildren = {
-			overflow: 'hidden',
-			textOverflow: 'ellipsis',
-		};
-
-		return Tag !== 'input' ? (
-			<>
-				{IconBefore && (
-					<IconBefore
-						css={{ marginRight: children ? '0.4em' : null }}
-						size={iconSize[size]}
-						color="inherit"
-					/>
-				)}
-				{children && <span css={styleChildren}>{children}</span>}
-				{IconAfter && (
-					<IconAfter
-						css={{ marginLeft: children ? '0.4em' : null }}
-						size={iconSize[size]}
-						color="inherit"
-					/>
-				)}
-			</>
-		) : null;
-	};
-
 	return (
 		<Tag
 			type={Tag === 'button' && props.onClick ? 'button' : undefined}
 			css={mq({
-				...styleCommon,
-				...styleAppearance,
-				...styleResponsive(),
+				...style.common,
+				...style.appearance,
+				...style.responsive,
 			})}
 			onClick={onClick}
 			{...props}
 		>
-			{buttonContent()}
+			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
+			{Tag !== 'input' ? (
+				<ButtonContent
+					size={size}
+					block={block}
+					iconAfter={iconAfter}
+					iconBefore={iconBefore}
+					srOnlyText={srOnlyText}
+				>
+					{children}
+				</ButtonContent>
+			) : null}
 		</Tag>
 	);
 };
@@ -162,7 +143,7 @@ const options = {
 	size: ['small', 'medium', 'large', 'xlarge'],
 };
 
-Button.propTypes = {
+export const propTypes = {
 	/**
 	 * Button appearance
 	 */
@@ -218,17 +199,22 @@ Button.propTypes = {
 	justify: PropTypes.bool,
 
 	/**
-	 * Button text
+	 * Enable ‘screen reader only’ text mode
 	 */
-	children: PropTypes.node,
+	srOnlyText: PropTypes.bool,
 
 	/**
 	 * Handler to be called on click
 	 */
 	onClick: PropTypes.func,
+
+	/**
+	 * Button text
+	 */
+	children: PropTypes.node,
 };
 
-Button.defaultProps = {
+export const defaultProps = {
 	appearance: 'primary',
 	size: 'medium',
 	tag: 'button',
@@ -237,3 +223,6 @@ Button.defaultProps = {
 	trim: false,
 	justify: false,
 };
+
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
