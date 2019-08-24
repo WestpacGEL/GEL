@@ -19,7 +19,7 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 
 		// Child table styling
 		'.table-responsive': {
-			border: 'none',
+			border: 0,
 			marginBottom: 0,
 		},
 		table: {
