@@ -25,7 +25,6 @@ export const Button = ({
 	justify,
 	tag: Tag,
 	inline,
-	children,
 	onClick,
 	children,
 	...props
