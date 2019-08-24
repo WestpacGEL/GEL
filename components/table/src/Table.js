@@ -26,7 +26,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 
 			'> table': {
 				marginBottom: 0,
-				border: bordered ? 'none' : null,
+				border: bordered && 0,
 
 				caption: {
 					padding: table.responsive.caption.padding,
@@ -34,7 +34,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 				'tbody, tfoot': {
 					'tr:last-child': {
 						'th, td': {
-							borderBottom: bordered ? 'none' : null,
+							borderBottom: bordered && 0,
 						},
 					},
 				},
@@ -42,10 +42,10 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 					whiteSpace: 'nowrap',
 
 					'&:first-of-type': {
-						borderLeft: bordered ? 'none' : null,
+						borderLeft: bordered && 0,
 					},
 					'&:last-child': {
-						borderRight: bordered ? 'none' : null,
+						borderRight: bordered && 0,
 					},
 				},
 			},
@@ -116,19 +116,19 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 			padding: table.td.padding,
 			verticalAlign: 'top',
 			border: `${table.td.borderWidth} solid ${table.td.borderColor}`,
-			borderLeft: !bordered && 'none',
-			borderRight: !bordered && 'none',
+			borderLeft: !bordered && 0,
+			borderRight: !bordered && 0,
 		},
 		// All child cells in the thead
 		'thead > tr': {
 			'th, td': {
-				borderTop: !bordered && 'none',
+				borderTop: !bordered && 0,
 			},
 		},
 		// All child cells in the tfoot
 		'tfoot > tr': {
 			'th, td': {
-				borderBottom: !bordered && 'none',
+				borderBottom: !bordered && 0,
 			},
 		},
 
