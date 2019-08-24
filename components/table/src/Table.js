@@ -41,10 +41,10 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 				'th, td': {
 					whiteSpace: 'nowrap',
 
-					'&:first-of-type': {
+					':first-of-type': {
 						borderLeft: bordered && 0,
 					},
-					'&:last-child': {
+					':last-child': {
 						borderRight: bordered && 0,
 					},
 				},
@@ -127,7 +127,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 		},
 		// All child cells in the tfoot
 		'tfoot > tr': {
-			'th, td': {
+			'> th, > td': {
 				borderBottom: !bordered && 0,
 			},
 		},
@@ -135,6 +135,9 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 		// All `th` cells
 		th: {
 			textAlign: 'left',
+		},
+		// `th` cells in the `thead`
+		'thead > tr > th': {
 			verticalAlign: 'bottom',
 			borderBottom: `solid ${table.th.borderColor}`,
 			borderBottomWidth: bordered
