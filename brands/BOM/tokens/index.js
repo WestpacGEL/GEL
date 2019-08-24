@@ -655,7 +655,8 @@ export default {
 			backgroundColor: COLORS.light,
 		},
 		highlight: {
-			borderColor: COLORS.primary,
+			borderLeft: `6px solid ${COLORS.primary}`,
+			borderBottom: `1px solid ${COLORS.primary}`,
 		},
 		bordered: {
 			th: {

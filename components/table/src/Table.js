@@ -7,13 +7,14 @@ import { jsx, useTheme } from '@westpac/core';
 // ==============================
 // Utils
 // ==============================
+
 const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 	const { table, breakpoints } = useTheme();
 
-	const maxWidth = width => `@media (max-width: ${width})`;
-	const xsOnly = maxWidth(breakpoints.xs);
+	const maxWidth = width => `@media (max-width: ${width}px)`;
+	const xsOnly = maxWidth(breakpoints.sm - 1);
 
-	const styleCommon = {
+	const common = {
 		[xsOnly]: {
 			width: '100%',
 			marginBottom: '1.8rem',
@@ -52,7 +53,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 	};
 
 	return responsive ? (
-		<div className="table-wrapper" css={{ ...styleCommon }}>
+		<div className="table-responsive" css={common}>
 			{children}
 		</div>
 	) : (
@@ -67,8 +68,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 export const Table = ({ striped, bordered, responsive, ...props }) => {
 	const { table, colors } = useTheme();
 
-	// Common styles
-	const styleCommon = {
+	const common = {
 		width: '100%',
 		maxWidth: '100%',
 		marginBottom: table.marginBottom,
@@ -87,26 +87,26 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 			transition: !striped && 'background 0.2s ease',
 
 			// Hovered row
-			'&:hover': {
+			':hover': {
 				backgroundColor: !striped && table.tr.hover.backgroundColor,
 			},
 			// Odd row
-			'&:nth-of-type(even)': {
+			':nth-of-type(even)': {
 				backgroundColor: striped && table.striped.backgroundColor,
 			},
 			// Highlighted row or cell
 			'&.table-highlight, > th.table-highlight, > td.table-highlight': {
-				borderLeft: `6px solid ${table.highlight.borderColor}`,
+				borderLeft: table.highlight.borderLeft,
 			},
 			// Highlighted row's cell or highlighted cell
 			'&.table-highlight > th, &.table-highlight > td, > th.table-highlight, > td.table-highlight': {
-				borderBottom: `1px solid ${table.highlight.borderColor}`,
+				borderBottom: table.highlight.borderBottom,
 			},
 
 			// Adjacent highlighted cells
 			'> th.table-highlight, > td.table-highlight': {
 				'+ th.table-highlight, + td.table-highlight': {
-					borderLeft: 'none',
+					borderLeft: 0,
 				},
 			},
 		},
@@ -155,7 +155,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 
 	return (
 		<TableWrapper bordered={bordered} responsive={responsive} {...props}>
-			<table className="table" css={{ ...styleCommon }} {...props} />
+			<table css={common} {...props} />
 		</TableWrapper>
 	);
 };
@@ -164,31 +164,31 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 // Types
 // ==============================
 
-Table.propTypes = {
+const propTypes = {
 	/**
-	 * Striped mode.
-	 *
-	 * Defaults to "false"
+	 * Striped mode
 	 */
 	striped: PropTypes.bool,
 
 	/**
-	 * Bordered mode.
-	 *
-	 * Defaults to "false"
+	 * Bordered mode
 	 */
 	bordered: PropTypes.bool,
 
 	/**
-	 * Responsive mode.
-	 *
-	 * Defaults to "false"
+	 * Responsive mode
 	 */
 	responsive: PropTypes.bool,
 };
 
-Table.defaultProps = {
+const defaultProps = {
 	striped: false,
 	bordered: false,
 	responsive: false,
 };
+
+Table.propTypes = propTypes;
+Table.defaultProps = defaultProps;
+
+TableWrapper.propTypes = propTypes;
+TableWrapper.defaultProps = defaultProps;
