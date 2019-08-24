@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -24,7 +24,6 @@ export const Button = ({
 	iconPosition,
 	justify,
 	tag: Tag,
-	inline,
 	onClick,
 	children,
 	...props
