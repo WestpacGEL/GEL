@@ -5,17 +5,12 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const Panel = ({ appearance, responsive, children, ...props }) => {
 	const { panel } = useTheme();
 
-	// Common styles
 	const common = {
 		marginBottom: '2.1rem',
 		backgroundColor: panel.backgroundColor,
@@ -40,13 +35,13 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 		},
 	};
 
-	// Pass these selected props on to children
+	// Pass the selected props on to children
 	const giftedChildren = Children.map(children, child =>
-		cloneElement(child, { appearance, responsive, ...child.props })
+		cloneElement(child, { appearance, responsive })
 	);
 
 	return (
-		<div css={{ ...common }} {...props}>
+		<div css={common} {...props}>
 			{giftedChildren}
 		</div>
 	);
@@ -60,28 +55,29 @@ const options = {
 	appearance: ['hero', 'faint'],
 };
 
-Panel.propTypes = {
+export const propTypes = {
 	/**
-	 * The panel appearance.
-	 *
-	 * Defaults to "hero"
+	 * Panel appearance
 	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
 	 * Responsive mode.
 	 *
-	 * Defaults to "false"
+	 * This option extends padding in larger breakpoints (SM+).
 	 */
 	responsive: PropTypes.bool,
 
 	/**
-	 * The content for this panel.
+	 * Panel content
 	 */
 	children: PropTypes.node,
 };
 
-Panel.defaultProps = {
+export const defaultProps = {
 	appearance: 'hero',
 	responsive: false,
 };
+
+Panel.propTypes = propTypes;
+Panel.defaultProps = defaultProps;

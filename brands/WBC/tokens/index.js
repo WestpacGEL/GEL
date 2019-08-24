@@ -552,6 +552,7 @@ export default {
 			},
 		},
 		header: {
+			fontSize: '1.6rem',
 			padding: {
 				default: '1rem 1.2rem',
 				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
