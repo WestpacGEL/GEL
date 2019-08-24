@@ -18,17 +18,17 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 		borderRadius: panel.borderRadius,
 
 		// Child table styling
-		'.table-wrapper': {
+		'.table-responsive': {
 			border: 'none',
 			marginBottom: 0,
 		},
-		'.table': {
+		table: {
 			overflow: 'hidden', //clip overflow for rounded corners
 			marginBottom: 0,
 			borderBottomRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 			borderBottomLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 		},
-		'.table caption': {
+		'table caption': {
 			padding: `${panel.body.padding.default} ${panel.body.padding.default} 0 ${
 				panel.body.padding.default
 			}`,
