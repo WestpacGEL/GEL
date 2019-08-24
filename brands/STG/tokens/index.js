@@ -541,6 +541,7 @@ export default {
 
 	panel: {
 		backgroundColor: '#fff',
+		marginBottom: '2.1rem',
 		borderWidth: '1px',
 		borderRadius: '0.3rem',
 		appearance: {

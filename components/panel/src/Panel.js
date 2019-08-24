@@ -12,7 +12,7 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 	const { panel } = useTheme();
 
 	const common = {
-		marginBottom: '2.1rem',
+		marginBottom: panel.marginBottom,
 		backgroundColor: panel.backgroundColor,
 		border: `${panel.borderWidth} solid ${panel.appearance[appearance].borderColor}`,
 		borderRadius: panel.borderRadius,
