@@ -23,7 +23,7 @@ const COLORS = {
 
 const FONT = (folder = '../font') => ({});
 
-const BREAK_POINTS = { sm: '768px', md: '992px', lg: '1200px' };
+const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = '132rem';
 const CONTAINER_PADDING = ['1.2rem', '3.6rem', '4.8rem', '6rem'];
@@ -539,6 +539,7 @@ export default {
 
 	panel: {
 		backgroundColor: '#fff',
+		marginBottom: '2.1rem',
 		borderWidth: '1px',
 		borderRadius: '0.3rem',
 		appearance: {
@@ -550,6 +551,7 @@ export default {
 			},
 		},
 		header: {
+			fontSize: '1.6rem',
 			padding: {
 				default: '1rem 1.2rem',
 				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
@@ -632,7 +634,8 @@ export default {
 			backgroundColor: COLORS.light,
 		},
 		highlight: {
-			borderColor: COLORS.primary,
+			borderLeft: `6px solid ${COLORS.primary}`,
+			borderBottom: `1px solid ${COLORS.primary}`,
 		},
 		bordered: {
 			th: {
