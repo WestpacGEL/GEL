@@ -27,20 +27,26 @@ export default () => {
 		<Grid>
 			<Cell width={4}>
 				<ProgressRope current={state.index}>
-					<ProgressRopeItem>
-						<a href="#">Step 1 </a>
-					</ProgressRopeItem>
-					<ProgressRopeItem>
-						<a href="#">Step 2</a>
-					</ProgressRopeItem>
-					<ProgressRopeItem>
-						<a href="#">Step 3</a>
-					</ProgressRopeItem>
-					{steps.map((step, i) => (
-						<ProgressRopeItem key={i}>
-							<a href="#">{step}</a>
+					<ProgressRopeGroup label={'Group 1'}>
+						<ProgressRopeItem>
+							<a href="#">Step 1 </a>
 						</ProgressRopeItem>
-					))}
+					</ProgressRopeGroup>
+					<ProgressRopeGroup label={'Group 2'}>
+						<ProgressRopeItem>
+							<a href="#">Step 2</a>
+						</ProgressRopeItem>
+						<ProgressRopeItem>
+							<a href="#">Step 3</a>
+						</ProgressRopeItem>
+					</ProgressRopeGroup>
+					<ProgressRopeGroup label={'Group 3'}>
+						{steps.map((step, i) => (
+							<ProgressRopeItem key={i}>
+								<a href="#">{step}</a>
+							</ProgressRopeItem>
+						))}
+					</ProgressRopeGroup>
 				</ProgressRope>
 			</Cell>
 			<Cell width={4}>
