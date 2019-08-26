@@ -25,6 +25,7 @@ export const FormLabel = ({ sublabel, tag: Tag, htmlFor, srOnly, ...props }) => 
 			css={{
 				display: 'inline-block',
 				fontWeight: label.fontWeight,
+				fontSize: label.fontSize,
 				...label.spacing[spacing],
 				...(sublabel && label.sublabel), //overrides spacing (sublabel overrides marginBottom)
 			}}
