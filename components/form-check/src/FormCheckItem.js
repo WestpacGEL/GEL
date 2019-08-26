@@ -17,6 +17,7 @@ export const FormCheckItem = ({
 	inline,
 	flip,
 	checked,
+	disabled,
 	children,
 	onChange,
 	...props
@@ -156,6 +157,7 @@ export const FormCheckItem = ({
 				id={formCheckId}
 				value={value}
 				checked={isChecked}
+				disabled={disabled}
 				onChange={toggle}
 			/>
 			<label htmlFor={formCheckId} css={style.label}>
@@ -181,6 +183,11 @@ FormCheckItem.propTypes = {
 	checked: PropTypes.bool,
 
 	/**
+	 * Disable the form check
+	 */
+	disabled: PropTypes.bool,
+
+	/**
 	 * Form check label text
 	 */
 	children: PropTypes.string.isRequired,
@@ -188,4 +195,5 @@ FormCheckItem.propTypes = {
 
 FormCheckItem.defaultProps = {
 	checked: false,
+	disabled: false,
 };
