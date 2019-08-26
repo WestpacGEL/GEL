@@ -18,14 +18,44 @@ const COLORS = {
 	information: '#0074C4',
 	warning: '#C53B00',
 	danger: '#C40000',
+	system: 'yellow',
 };
+
+const FONT = (folder = '../font') => ({
+	// Aller Bold (mapped to 'normal')
+	'@font-face': {
+		fontFamily: 'aller',
+		src: `url("${folder}/Aller_Bd.eot")`,
+		src: `url("${folder}/Aller_Bd.eot?#iefix") format("embedded-opentype"),
+			url("${folder}/Aller_Bd.woff2") format("woff2"),
+			url("${folder}/Aller_Bd.woff") format("woff"),
+			url("${folder}/Aller_Bd.ttf") format("truetype"),
+			url("${folder}/Aller_Bd.svg#Aller-Bold") format("svg")`,
+		fontWeight: 'normal',
+		fontStyle: 'normal',
+	},
+
+	// Aller Light (mapped to '300')
+	'@font-face': {
+		fontFamily: 'aller',
+		src: `url("${folder}/Aller_Lt.eot")`,
+		src: `url("${folder}/Aller_Lt.eot?#iefix") format("embedded-opentype"),
+			url("${folder}/Aller_Lt.woff2") format("woff2"),
+			url("${folder}/Aller_Lt.woff") format("woff"),
+			url("${folder}/Aller_Lt.ttf") format("truetype"),
+			url("${folder}/Aller_Lt.svg#Aller-Light") format("svg")`,
+		fontWeight: 300,
+		fontStyle: 'normal',
+	},
+});
 
 const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
-const CONTAINER_MAXWIDTH = 1320;
-const CONTAINER_PADDING = [12, 36, 48, 60];
+const CONTAINER_MAXWIDTH = '132rem';
+const CONTAINER_PADDING = ['1.2rem', '3.6rem', '4.8rem', '6rem'];
 
 export default {
+	brand: 'BSA',
 	breakpoints: BREAK_POINTS,
 	colors: {
 		...COLORS,
@@ -62,33 +92,89 @@ export default {
 			foreground: 'white',
 		},
 	},
-	type: {},
-	spacing: {},
-
-	grid: {
-		container: {
-			maxWidth: CONTAINER_MAXWIDTH,
-			padding: CONTAINER_PADDING,
+	font: FONT(),
+	typography: {
+		fontSize: '62.5%',
+		body: {
+			fontFamily:
+				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+			fontSize: '1.4rem',
+			color: COLORS.text,
+			fontWeight: 400,
+			lineHeight: 1.428571429,
+		},
+		brand: {
+			fontFamily: 'aller',
+		},
+		headings: {
+			color: COLORS.heading,
+		},
+		p: {
+			margin: '1.2rem 0',
+		},
+		dl: {},
+		dt: {
+			fontWeight: 700,
+		},
+		dd: {
+			margin: 0,
+		},
+		abbr: {
+			cursor: 'help',
+			borderBottom: `1px dotted ${COLORS.text}`,
+			textDecoration: 'none',
+		},
+		address: {
+			fontStyle: 'normal',
+		},
+		blockquote: {
+			fontSize: '1.6rem',
+			fontWeight: 300,
+		},
+		mark: {
+			backgroundColor: tint(COLORS.primary, 0.2),
+		},
+		selection: {
+			backgroundColor: tint(COLORS.primary, 0.2),
+		},
+		lead: {
+			marginBottom: '2.1rem',
+			fontSize: ['1.6rem', '1.8rem'],
+			fontWeight: 300,
+			lineHeight: 1.4,
+		},
+		link: {
+			default: {
+				color: COLORS.primary,
+				textDecoration: 'underline',
+			},
+			hover: {
+				textDecoration: 'underline',
+			},
+			focus: {
+				outline: `2px solid ${COLORS.focus}`,
+				outlineOffset: 3,
+			},
 		},
 	},
+	spacing: {},
 
 	badge: {
-		minWidth: '10px',
-		minWidth: '10px',
-		padding: '4px 7px',
+		minWidth: '1rem',
+		minWidth: '1rem',
+		padding: '0.4rem 0.7rem',
 		lineHeight: 1,
 		fontWeight: 700,
-		fontSize: '14px',
-		borderRadius: '12px',
+		fontSize: '1.4rem',
+		borderRadius: '1.2rem',
 		borderWidth: '1px',
 	},
 
 	button: {
-		borderRadius: '3px',
+		borderRadius: '0.3rem',
 		borderWidth: '1px',
 		fontWeight: 400,
 		lineHeight: 1.5,
-
 		appearance: {
 			primary: {
 				standard: {
@@ -255,39 +341,44 @@ export default {
 				soft: {},
 			},
 		},
-
 		size: {
 			small: {
-				padding: ['3px', '9px', '4px'],
-				fontSize: '14px',
-				height: '30px',
+				padding: ['0.3rem', '0.9rem', '0.4rem'],
+				fontSize: '1.4rem',
+				height: '3rem',
 			},
 			medium: {
-				padding: ['5px', '12px'],
-				fontSize: '16px',
-				height: '36px',
+				padding: ['0.5rem', '1.2rem'],
+				fontSize: '1.6rem',
+				height: '3.6rem',
 			},
 			large: {
-				padding: ['8px', '15px'],
-				fontSize: '16px',
-				height: '42px',
+				padding: ['0.8rem', '1.5rem'],
+				fontSize: '1.6rem',
+				height: '4.2rem',
 			},
 			xlarge: {
-				padding: ['9px', '18px', '10px'],
-				fontSize: '18px',
-				height: '48px',
+				padding: ['0.9rem', '1.8rem', '1rem'],
+				fontSize: '1.8rem',
+				height: '4.8rem',
 			},
 		},
 	},
 
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING,
+		},
+	},
+
 	label: {
-		borderRadius: '2px',
+		borderRadius: '0.2rem',
 		borderWidth: '1px',
-		fontSize: '12px',
-		padding: '1px 6px',
+		fontSize: '1.2rem',
+		padding: '0.1rem 0.6rem',
 		fontWeight: 400,
 		lineHeight: 1,
-
 		appearance: {
 			primary: {
 				default: {
@@ -388,10 +479,83 @@ export default {
 		},
 	},
 
+	modal: {
+		backgroundColor: '#fff',
+		borderRadius: 3,
+		size: {
+			small: {
+				width: 300,
+			},
+			medium: {
+				width: 600,
+			},
+			large: {
+				width: 900,
+			},
+		},
+		header: {
+			borderWidth: '1px',
+			borderColor: COLORS.hero,
+			padding: '16px 24px 12px',
+		},
+		title: {
+			fontSize: 18,
+			fontWeight: 700,
+			color: COLORS.text,
+		},
+		body: {
+			padding: '18px 24px',
+		},
+		footer: {
+			backgroundColor: COLORS.background,
+			borderWidth: '1px',
+			borderColor: COLORS.border,
+			padding: '12px 18px',
+		},
+	},
+	list: {
+		type: {
+			bullet: {
+				appearance: {
+					primary: {
+						color: COLORS.primary,
+					},
+					hero: {
+						color: COLORS.hero,
+					},
+					neutral: {
+						color: COLORS.neutral,
+					},
+				},
+			},
+			link: {
+				color: COLORS.primary,
+			},
+			tick: {
+				color: COLORS.primary,
+			},
+			icon: {
+				color: COLORS.muted,
+			},
+		},
+	},
+
+	listGroup: {
+		margin: 0,
+		padding: 0,
+		borderWidth: '1px',
+		borderColor: COLORS.border,
+		borderRadius: '3px',
+		listGroupItem: {
+			padding: '12px',
+		},
+	},
+
 	panel: {
 		backgroundColor: '#fff',
+		marginBottom: '2.1rem',
 		borderWidth: '1px',
-		borderRadius: '3px',
+		borderRadius: '0.3rem',
 		appearance: {
 			hero: {
 				borderColor: COLORS.hero,
@@ -401,9 +565,10 @@ export default {
 			},
 		},
 		header: {
+			fontSize: '1.6rem',
 			padding: {
-				default: '10px 12px',
-				responsive: ['10px 12px', '10px 24px'],
+				default: '1rem 1.2rem',
+				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
 			},
 			appearance: {
 				hero: {
@@ -420,30 +585,48 @@ export default {
 		},
 		body: {
 			padding: {
-				default: '12px',
-				responsive: ['12px', '24px'],
+				default: '1.2rem',
+				responsive: ['1.2rem', '2.4rem'],
 			},
 		},
 		footer: {
 			padding: {
-				default: '10px 12px',
-				responsive: ['10px 12px', '10px 24px'],
+				default: '1rem 1.2rem',
+				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
 			},
 			backgroundColor: COLORS.light,
 			borderColor: COLORS.border,
 		},
 	},
 
+	progressBar: {
+		borderWidth: '1px',
+		borderColor: COLORS.border,
+		marginBottom: '2.1rem',
+		fontSize: '1.4rem',
+		fontWeight: 700,
+		lineHeight: '2rem',
+		color: 'white',
+		backgroundColor: COLORS.hero,
+		size: {
+			default: {
+				height: '2.4rem',
+			},
+			skinny: {
+				height: '1rem',
+			},
+		},
+	},
+
 	table: {
 		borderWidth: '1px',
-		marginBottom: '21px',
+		marginBottom: '2.1rem',
 		backgroundColor: '#fff',
-
 		caption: {
-			fontWeight: '300',
-			fontSize: '18px',
-			marginBottom: '12px',
-			padding: '12px',
+			fontWeight: 300,
+			fontSize: '1.8rem',
+			marginBottom: '1.2rem',
+			padding: '1.2rem',
 		},
 		tr: {
 			hover: {
@@ -457,7 +640,7 @@ export default {
 			color: COLORS.text,
 		},
 		td: {
-			padding: '12px',
+			padding: '1.2rem',
 			borderWidth: '1px',
 			borderColor: COLORS.border,
 		},
@@ -465,7 +648,8 @@ export default {
 			backgroundColor: COLORS.light,
 		},
 		highlight: {
-			borderColor: COLORS.primary,
+			borderLeft: `6px solid ${COLORS.primary}`,
+			borderBottom: `1px solid ${COLORS.primary}`,
 		},
 		bordered: {
 			th: {
@@ -477,20 +661,108 @@ export default {
 			borderWidth: '1px',
 			borderColor: COLORS.border,
 			caption: {
-				padding: '12px',
+				padding: '1.2rem',
 			},
 		},
 	},
 
 	well: {
-		borderRadius: '3px',
+		borderRadius: '0.3rem',
 		borderWidth: '1px',
 		backgroundColor: COLORS.light,
 		borderColor: COLORS.border,
 		padding: {
-			default: '12px',
-			responsive: [12, 24],
+			default: '1.2rem',
+			responsive: ['1.2rem', '2.4rem'],
 		},
-		marginBottom: '18px',
+		marginBottom: '1.8rem',
+	},
+
+	alert: {
+		padding: '1.8rem',
+		marginBottom: '2.1rem',
+		borderWidth: '1px',
+		appearance: {
+			success: {
+				color: COLORS.success,
+				backgroundColor: tint(COLORS.success, 0.05),
+				borderColor: tint(COLORS.success, 0.5),
+			},
+			information: {
+				color: COLORS.information,
+				backgroundColor: tint(COLORS.information, 0.05),
+				borderColor: tint(COLORS.information, 0.5),
+			},
+			warning: {
+				color: COLORS.warning,
+				backgroundColor: tint(COLORS.warning, 0.05),
+				borderColor: tint(COLORS.warning, 0.5),
+			},
+			danger: {
+				color: COLORS.danger,
+				backgroundColor: tint(COLORS.danger, 0.05),
+				borderColor: tint(COLORS.danger, 0.5),
+			},
+			system: {
+				color: 'black',
+				backgroundColor: COLORS.system,
+				borderColor: COLORS.system,
+			},
+		},
+	},
+
+	switch: {
+		borderWidth: '2px',
+		borderColor: COLORS.border,
+		backgroundColor: '#fff',
+		marginRight: '1.8rem',
+		marginBottom: '0.6rem',
+		text: {
+			gap: '0.6rem',
+		},
+		toggle: {
+			checked: {
+				borderColor: COLORS.hero,
+				backgroundColor: COLORS.hero,
+			},
+		},
+		toggleText: {
+			default: {
+				color: COLORS.text,
+				padding: '0 0.4rem',
+			},
+			checked: {
+				color: '#fff',
+			},
+			disabled: {
+				color: COLORS.muted,
+			},
+		},
+		size: {
+			small: {
+				width: '7rem',
+				height: '3rem',
+				borderRadius: '3rem',
+				fontSize: '1.4rem',
+			},
+			medium: {
+				width: '8rem',
+				height: '3.6rem',
+				borderRadius: '3.6rem',
+				fontSize: '1.6rem',
+			},
+			large: {
+				width: '8.9rem',
+				height: '4.2rem',
+				borderRadius: '4.2rem',
+				fontSize: '1.6rem',
+			},
+			xlarge: {
+				width: '9.6rem',
+				height: '4.8rem',
+				borderRadius: '4.8rem',
+				fontSize: '1.8rem',
+			},
+		},
 	},
 };

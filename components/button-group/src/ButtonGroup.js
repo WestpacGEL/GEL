@@ -1,43 +1,28 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
-import { Button } from '../../button/src';
-
-// ==============================
-// Utils
-// ==============================
-
 // ==============================
 // Component
 // ==============================
 
-export const ButtonGroup = ({
-	appearance,
-	size,
-	block,
-	icon,
-	iconPosition,
-	name,
-	children,
-	...props
-}) => {
-	// Common styles
-	const common = {
-		display: block ? 'flex' : 'inline-flex',
-		alignItems: 'center', //vertical
-		verticalAlign: 'middle',
-	};
-
-	// Pass these selected props on to children (that way button styling can be set by parent ButtonGroup)
+export const ButtonGroup = ({ appearance, size, block, name, children, ...props }) => {
+	// Pass the selected props on to children (that way button styling can be set by parent ButtonGroup)
 	const giftedChildren = Children.map(children, child =>
-		cloneElement(child, { appearance, size, block, icon, iconPosition, name, ...child.props })
+		cloneElement(child, { appearance, size, name })
 	);
 
 	return (
-		<div css={{ ...common }} {...props}>
+		<div
+			css={{
+				display: block ? 'flex' : 'inline-flex',
+				alignItems: 'center', //vertical
+				verticalAlign: 'middle',
+			}}
+			{...props}
+		>
 			{giftedChildren}
 		</div>
 	);
@@ -48,55 +33,33 @@ export const ButtonGroup = ({
 // ==============================
 
 const options = {
-	appearance: ['primary', 'hero', 'neutral', 'faint', 'link'],
+	appearance: ['primary', 'hero', 'neutral', 'faint'],
 	size: ['small', 'medium', 'large', 'xlarge'],
 };
 
 ButtonGroup.propTypes = {
 	/**
-	 * The button appearance.
-	 *
-	 * Defaults to "hero"
+	 * Button group button appearance
 	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
-	 * The button group size.
-	 *
-	 * Defaults to "medium"
+	 * Button group button size
 	 */
 	size: PropTypes.oneOf(options.size),
 
 	/**
-	 * Block mode.
-	 *
-	 * Defaults to "false"
+	 * Block mode
 	 */
 	block: PropTypes.bool,
 
 	/**
-	 * Button icon.
-	 */
-	icon: PropTypes.func,
-
-	/**
-	 * Button icon positioning.
-	 *
-	 * Defaults to "right"
-	 */
-	iconPosition: PropTypes.string,
-
-	/**
-	 * The button group input element’s name.
-	 *
-	 * This prop is required.
+	 * Button group button input element’s name
 	 */
 	name: PropTypes.string.isRequired,
 
 	/**
-	 * The button content for this button group.
-	 *
-	 * This prop is required.
+	 * Button group children
 	 */
 	children: PropTypes.node.isRequired,
 };

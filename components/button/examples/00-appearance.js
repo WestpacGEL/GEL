@@ -5,7 +5,7 @@ import { Button } from '../src';
 export default () => (
 	<>
 		<h3>Default instance (no styling props)</h3>
-		<Button>Default (Primary standard)</Button>
+		<Button>Default</Button>
 		<hr />
 		<h3>Standard appearance</h3>
 		<Button appearance="primary">Primary standard</Button>{' '}

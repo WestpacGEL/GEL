@@ -1,12 +1,14 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
 // Utils
 // ==============================
+
+const asArray = val => (Array.isArray(val) ? val : [val]);
 
 export const sizeMap = {
 	xsmall: 12, // 0.5x
@@ -15,34 +17,54 @@ export const sizeMap = {
 	large: 36, //  1.5x
 	xlarge: 48, // 2x
 };
-export const getSizeInt = s => sizeMap[s];
 
-const IconWrapper = ({ color, size, ...props }) => (
-	<span
-		css={{
+const IconWrapper = ({ size, ...props }) => {
+	const { colors, breakpoints } = useTheme();
+	const mq = paint(breakpoints);
+
+	const style = {
+		// Common styling
+		common: {
 			display: 'inline-block',
 			flexShrink: 0,
-			height: size,
 			lineHeight: 1,
 			verticalAlign: 'middle',
-			width: size,
-		}}
-		{...props}
-	/>
-);
+		},
+
+		// Reponsive styling (icon size)
+		responsive: (() => {
+			const sizeArr = asArray(size).map(s => s && sizeMap[s]);
+
+			return {
+				height: sizeArr,
+				width: sizeArr,
+			};
+		})(),
+	};
+
+	return (
+		<span
+			css={mq({
+				...style.common,
+				...style.responsive,
+			})}
+			{...props}
+		/>
+	);
+};
 
 // ==============================
 // Component
 // ==============================
 
 export const Icon = ({ children, color, label, size, ...props }) => {
-	const sizeInt = getSizeInt(size);
+	const { colors } = useTheme();
 
 	// TODO Investigate:
 	// I suspect that using the style attribute to apply the color property will
 	// improve CSS reuse.
 	return (
-		<IconWrapper color={color} size={sizeInt} style={{ color }} {...props}>
+		<IconWrapper size={size} style={{ color: color ? color : colors.muted }} {...props}>
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"
@@ -67,6 +89,7 @@ export const propTypes = {
 	 * Defaults to the current text color.
 	 */
 	color: PropTypes.string,
+
 	/**
 	 * String to use as the aria-label for the icon. Set to an empty string if you
 	 * are rendering the icon with visible text to prevent accessibility label
@@ -75,12 +98,16 @@ export const propTypes = {
 	 * Defaults to the icon name e.g. `BusinessPersonIcon` --> "Business Person"
 	 */
 	label: PropTypes.string,
+
 	/**
 	 * Control the size of the icon.
 	 *
 	 * Defaults to "medium" --> 24px
 	 */
-	size: PropTypes.oneOf(Object.keys(sizeMap)),
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(Object.keys(sizeMap)),
+		PropTypes.arrayOf(PropTypes.oneOf(Object.keys(sizeMap))),
+	]),
 };
 
 export const defaultProps = {
