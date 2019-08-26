@@ -2,10 +2,7 @@
 
 import React from 'react';
 import { jsx, useTheme, paint } from '@westpac/core';
-
-// ==============================
-// Utils
-// ==============================
+import { propTypes, defaultProps } from './Panel';
 
 // ==============================
 // Component
@@ -23,4 +20,12 @@ export const PanelBody = ({ appearance, responsive, ...props }) => {
 			{...props}
 		/>
 	);
+};
+
+PanelBody.propTypes = {
+	...propTypes,
+};
+
+PanelBody.defaultProps = {
+	...defaultProps,
 };
