@@ -5,7 +5,9 @@ import { Form, FormGroup, FormLabel, Hint } from '../src';
 
 export default () => (
 	<>
-		<h2>Medium spacing</h2>
+		<h2>Spacing</h2>
+
+		<h3>Medium</h3>
 		<Form spacing="medium">
 			<FormGroup>
 				<FormLabel htmlFor="example-hint">This is a label</FormLabel>
@@ -14,9 +16,7 @@ export default () => (
 			</FormGroup>
 		</Form>
 
-		<hr />
-
-		<h2>Large spacing</h2>
+		<h3>Large</h3>
 		<Form spacing="large">
 			<FormGroup>
 				<FormLabel htmlFor="example-hint">This is a large spaced label</FormLabel>

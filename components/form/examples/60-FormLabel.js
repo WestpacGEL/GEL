@@ -17,7 +17,7 @@ export default () => (
 
 		<h2>Spacing</h2>
 
-		<h3>Medium spacing</h3>
+		<h3>Medium</h3>
 		<Form spacing="medium">
 			<FormGroup>
 				<FormLabel htmlFor="example-spacing-medium">This is a medium spaced label</FormLabel>
@@ -25,7 +25,7 @@ export default () => (
 			</FormGroup>
 		</Form>
 
-		<h3>Large spacing</h3>
+		<h3>Large</h3>
 		<Form spacing="large">
 			<FormGroup>
 				<FormLabel htmlFor="example-spacing-large">This is a large spaced label</FormLabel>
@@ -55,6 +55,19 @@ export default () => (
 			<FormGroup>
 				<FormLabel htmlFor="example-sublabel-spacing-large" sublabel>
 					This is a sub-label
+				</FormLabel>
+				<Box>Form input here</Box>
+			</FormGroup>
+		</Form>
+
+		<hr />
+
+		<h2>SrOnly</h2>
+
+		<Form>
+			<FormGroup>
+				<FormLabel htmlFor="example-sronly" srOnly>
+					This is screen reader only label text
 				</FormLabel>
 				<Box>Form input here</Box>
 			</FormGroup>

@@ -18,7 +18,7 @@ export default () => (
 
 		<h2>Spacing</h2>
 
-		<h3>Medium spacing</h3>
+		<h3>Medium</h3>
 		<Form spacing="medium">
 			<FormGroup>
 				<Fieldset legend="This is a legend">
@@ -27,7 +27,7 @@ export default () => (
 			</FormGroup>
 		</Form>
 
-		<h3>Large spacing</h3>
+		<h3>Large</h3>
 		<Form spacing="large">
 			<FormGroup>
 				<Fieldset legend="This is a legend">
