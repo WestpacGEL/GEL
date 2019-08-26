@@ -23,7 +23,7 @@ export const Breadcrumb = ({ children, ...props }) => {
 	};
 
 	const childrenWithProps = Children.map(children, (child, index) =>
-		index === children.length - 1
+		index === Children.count(children) - 1
 			? cloneElement(child, { ...props, last: 'true' })
 			: cloneElement(child, props)
 	);
