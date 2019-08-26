@@ -3,12 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { SrOnly } from '../../accessibility-helpers/src';
 import { ArrowRightIcon } from '../../icon/src';
-
-// ==============================
-// Utils
-// ==============================
+import { SrOnly } from '../../accessibility-helpers/src';
 
 // ==============================
 // Component
@@ -17,10 +13,10 @@ import { ArrowRightIcon } from '../../icon/src';
 /**
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Crumb = ({ children, ...props }) => {
+export const Crumb = ({ children, last, ...props }) => {
 	const { breadcrumb } = useTheme();
 
-	const styleItem = {
+	const common = {
 		display: 'inline-block',
 		position: 'relative',
 		color: breadcrumb.color,
@@ -35,19 +31,20 @@ export const Crumb = ({ children, ...props }) => {
 		},
 	};
 
-	console.log(children);
-
 	return (
-		<li css={styleItem} {...props}>
+		<li css={common} {...props}>
+			{last && <SrOnly>Current page:</SrOnly>}
 			{children}
-			<ArrowRightIcon
-				size="small"
-				color={breadcrumb.separator.color}
-				css={{
-					marginLeft: breadcrumb.separator.marginLeft,
-					marginRight: breadcrumb.separator.marginRight,
-				}}
-			/>
+			{!last && (
+				<ArrowRightIcon
+					size="small"
+					color={breadcrumb.separator.color}
+					css={{
+						marginLeft: breadcrumb.separator.marginLeft,
+						marginRight: breadcrumb.separator.marginRight,
+					}}
+				/>
+			)}
 		</li>
 	);
 };
@@ -56,6 +53,7 @@ export const Crumb = ({ children, ...props }) => {
 // Types
 // ==============================
 
-Crumb.propTypes = {};
-
-Crumb.defaultProps = {};
+Crumb.propTypes = {
+	/**  Any renderable child */
+	children: PropTypes.node,
+};

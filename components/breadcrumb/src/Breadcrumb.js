@@ -1,15 +1,9 @@
 /** @jsx jsx */
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 import { SrOnly } from '../../accessibility-helpers/src';
-import { ArrowRightIcon } from '../../icon/src';
-
-// ==============================
-// Utils
-// ==============================
 
 // ==============================
 // Component
@@ -28,11 +22,16 @@ export const Breadcrumb = ({ children, ...props }) => {
 		listStyle: 'none',
 	};
 
+	const childrenWithProps = Children.map(children, (child, index) =>
+		index === children.length - 1
+			? cloneElement(child, { ...props, last: 'true' })
+			: cloneElement(child, props)
+	);
+
 	return (
 		<div {...props}>
 			<SrOnly>Page navigation:</SrOnly>
-
-			<ol css={common}>{children}</ol>
+			<ol css={common}>{childrenWithProps}</ol>
 		</div>
 	);
 };
@@ -42,10 +41,6 @@ export const Breadcrumb = ({ children, ...props }) => {
 // ==============================
 
 Breadcrumb.propTypes = {
-	/**
-	 * The breadcrumbs list with the name and corresponding link
-	 * We are expecting an array of strings, within an array.
-	 */
+	/**  Any renderable child */
+	children: PropTypes.node,
 };
-
-Breadcrumb.defaultProps = {};
