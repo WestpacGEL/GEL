@@ -20,12 +20,12 @@ export const FormGroup = ({ primary, ...props }) => {
 	const mq = paint(breakpoints);
 
 	const common = {
-		display: inline ? [null, 'inline-block'] : null,
-		verticalAlign: inline ? [null, 'middle'] : null,
+		display: inline && [null, 'inline-block'],
+		verticalAlign: inline && [null, 'middle'],
 		marginBottom: inline
 			? [(mb => (Array.isArray(mb) ? mb[0] : mb))(group.spacing[spacing].marginBottom), 0]
 			: group.spacing[spacing].marginBottom,
-		textAlign: primary ? 'center' : null,
+		textAlign: primary && 'center',
 
 		'& + &': {
 			...(inline && group.inline),

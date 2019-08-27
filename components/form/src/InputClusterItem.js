@@ -14,14 +14,14 @@ export const InputClusterItem = ({ horizontal, ...props }) => {
 	} = useTheme();
 
 	const common = {
-		marginRight: horizontal ? cluster.item.horizontal.marginRight : null,
-		display: horizontal ? 'flex' : null,
-		flexDirection: horizontal ? 'column' : null,
-		justifyContent: horizontal ? 'flex-end' : null,
+		marginRight: horizontal && cluster.item.horizontal.marginRight,
+		display: horizontal && 'flex',
+		flexDirection: horizontal && 'column',
+		justifyContent: horizontal && 'flex-end',
 
 		// Subequent items
 		'& + &': {
-			marginTop: !horizontal ? cluster.item.default.marginTop : null,
+			marginTop: !horizontal && cluster.item.default.marginTop,
 		},
 	};
 

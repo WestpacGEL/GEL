@@ -17,8 +17,8 @@ export const InputCluster = ({ horizontal, children, ...props }) => {
 	return (
 		<div
 			css={{
-				display: horizontal ? 'flex' : null,
-				flexWrap: horizontal ? 'wrap' : null,
+				display: horizontal && 'flex',
+				flexWrap: horizontal && 'wrap',
 			}}
 			{...props}
 		>

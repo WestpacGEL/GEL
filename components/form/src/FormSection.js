@@ -17,8 +17,8 @@ export const FormSection = ({ noPadding, ...props }) => {
 
 	const common = {
 		position: 'relative', //for `.form-section-actions` positioning
-		paddingLeft: noPadding ? null : section.paddingLeft,
-		paddingRight: noPadding ? null : section.paddingRight,
+		paddingLeft: !noPadding && section.paddingLeft,
+		paddingRight: !noPadding && section.paddingRight,
 
 		':not(:first-of-type)': {
 			paddingTop: section.paddingTop,
