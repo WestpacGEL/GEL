@@ -36,7 +36,7 @@ const FONT = (folder = '../font') => ({
 	},
 });
 
-const BREAK_POINTS = { sm: '768px', md: '992px', lg: '1200px' };
+const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = '132rem';
 const CONTAINER_PADDING = ['1.2rem', '3.6rem', '4.8rem', '6rem'];
@@ -627,6 +627,7 @@ export default {
 
 	panel: {
 		backgroundColor: '#fff',
+		marginBottom: '2.1rem',
 		borderWidth: '1px',
 		borderRadius: '0.3rem',
 		appearance: {
@@ -638,6 +639,7 @@ export default {
 			},
 		},
 		header: {
+			fontSize: '1.6rem',
 			padding: {
 				default: '1rem 1.2rem',
 				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
@@ -671,6 +673,25 @@ export default {
 		},
 	},
 
+	progressBar: {
+		borderWidth: '1px',
+		borderColor: COLORS.border,
+		marginBottom: '2.1rem',
+		fontSize: '1.4rem',
+		fontWeight: 700,
+		lineHeight: '2rem',
+		color: 'white',
+		backgroundColor: COLORS.hero,
+		size: {
+			default: {
+				height: '2.4rem',
+			},
+			skinny: {
+				height: '1rem',
+			},
+		},
+	},
+
 	table: {
 		borderWidth: '1px',
 		marginBottom: '2.1rem',
@@ -701,7 +722,8 @@ export default {
 			backgroundColor: COLORS.light,
 		},
 		highlight: {
-			borderColor: COLORS.primary,
+			borderLeft: `6px solid ${COLORS.primary}`,
+			borderBottom: `1px solid ${COLORS.primary}`,
 		},
 		bordered: {
 			th: {
@@ -759,6 +781,61 @@ export default {
 				color: 'black',
 				backgroundColor: COLORS.system,
 				borderColor: COLORS.system,
+			},
+		},
+	},
+
+	switch: {
+		borderWidth: '2px',
+		borderColor: COLORS.border,
+		backgroundColor: '#fff',
+		marginRight: '1.8rem',
+		marginBottom: '0.6rem',
+		text: {
+			gap: '0.6rem',
+		},
+		toggle: {
+			checked: {
+				borderColor: COLORS.hero,
+				backgroundColor: COLORS.hero,
+			},
+		},
+		toggleText: {
+			default: {
+				color: COLORS.text,
+				padding: '0 0.4rem',
+			},
+			checked: {
+				color: '#fff',
+			},
+			disabled: {
+				color: COLORS.muted,
+			},
+		},
+		size: {
+			small: {
+				width: '7rem',
+				height: '3rem',
+				borderRadius: '3rem',
+				fontSize: '1.4rem',
+			},
+			medium: {
+				width: '8rem',
+				height: '3.6rem',
+				borderRadius: '3.6rem',
+				fontSize: '1.6rem',
+			},
+			large: {
+				width: '8.9rem',
+				height: '4.2rem',
+				borderRadius: '4.2rem',
+				fontSize: '1.6rem',
+			},
+			xlarge: {
+				width: '9.6rem',
+				height: '4.8rem',
+				borderRadius: '4.8rem',
+				fontSize: '1.8rem',
 			},
 		},
 	},

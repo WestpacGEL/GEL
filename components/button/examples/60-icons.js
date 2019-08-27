@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Button } from '../src';
-
 import {
 	HouseIcon,
 	AlertIcon,
@@ -14,114 +13,86 @@ import {
 
 export default () => (
 	<>
-		<h3>Icon on the right (default)</h3>
+		<h3>Icon after (default)</h3>
 		<p>
-			<Button appearance="primary" size="small" icon={HouseIcon}>
+			<Button appearance="primary" size="small" iconAfter={HouseIcon}>
 				Small
 			</Button>{' '}
-			<Button appearance="primary" size="medium" icon={AlertIcon}>
+			<Button appearance="primary" size="medium" iconAfter={AlertIcon}>
 				Medium
 			</Button>{' '}
-			<Button appearance="primary" size="large" icon={ChatIcon}>
+			<Button appearance="primary" size="large" iconAfter={ChatIcon}>
 				Large
 			</Button>{' '}
-			<Button appearance="primary" size="xlarge" icon={AccessibilityIcon}>
+			<Button appearance="primary" size="xlarge" iconAfter={AccessibilityIcon}>
 				Extra large
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="xlarge" icon={ArrowRightIcon} block>
+			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} block>
 				Extra large block
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="small" icon={ArrowRightIcon} block justify>
+			<Button appearance="primary" size="small" iconAfter={ArrowRightIcon} block justify>
 				Small block justify
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="medium" icon={ArrowRightIcon} block justify>
+			<Button appearance="primary" size="medium" iconAfter={ArrowRightIcon} block justify>
 				Medium block justify
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="large" icon={ArrowRightIcon} block justify>
+			<Button appearance="primary" size="large" iconAfter={ArrowRightIcon} block justify>
 				Large block justify
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="xlarge" icon={ArrowRightIcon} block justify>
+			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} block justify>
 				Extra large block justify
 			</Button>
 		</p>
 
 		<hr />
 
-		<h3>Icon on the left</h3>
+		<h3>Icon before</h3>
 		<p>
-			<Button appearance="primary" size="small" icon={HouseIcon} iconPosition="left">
+			<Button appearance="primary" size="small" iconBefore={HouseIcon}>
 				Small
 			</Button>{' '}
-			<Button appearance="primary" size="medium" icon={AlertIcon} iconPosition="left">
+			<Button appearance="primary" size="medium" iconBefore={AlertIcon}>
 				Medium
 			</Button>{' '}
-			<Button appearance="primary" size="large" icon={ChatIcon} iconPosition="left">
+			<Button appearance="primary" size="large" iconBefore={ChatIcon}>
 				Large
 			</Button>{' '}
-			<Button appearance="primary" size="xlarge" icon={AccessibilityIcon} iconPosition="left">
+			<Button appearance="primary" size="xlarge" iconBefore={AccessibilityIcon}>
 				Extra large
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="xlarge" icon={ArrowLeftIcon} iconPosition="left" block>
+			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} block>
 				Extra large block
 			</Button>
 		</p>
 		<p>
-			<Button
-				appearance="primary"
-				size="small"
-				icon={ArrowLeftIcon}
-				iconPosition="left"
-				block
-				justify
-			>
+			<Button appearance="primary" size="small" iconBefore={ArrowLeftIcon} block justify>
 				Small block justify
 			</Button>
 		</p>
 		<p>
-			<Button
-				appearance="primary"
-				size="medium"
-				icon={ArrowLeftIcon}
-				iconPosition="left"
-				block
-				justify
-			>
+			<Button appearance="primary" size="medium" iconBefore={ArrowLeftIcon} block justify>
 				Medium block justify
 			</Button>
 		</p>
 		<p>
-			<Button
-				appearance="primary"
-				size="large"
-				icon={ArrowLeftIcon}
-				iconPosition="left"
-				block
-				justify
-			>
+			<Button appearance="primary" size="large" iconBefore={ArrowLeftIcon} block justify>
 				Large block justify
 			</Button>
 		</p>
 		<p>
-			<Button
-				appearance="primary"
-				size="xlarge"
-				icon={ArrowLeftIcon}
-				iconPosition="left"
-				block
-				justify
-			>
+			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} block justify>
 				Extra large block justify
 			</Button>
 		</p>
@@ -130,13 +101,13 @@ export default () => (
 
 		<h3>Icon only (no text)</h3>
 		<p>
-			<Button appearance="primary" size="small" icon={StarIcon} />{' '}
-			<Button appearance="primary" size="medium" icon={StarIcon} />{' '}
-			<Button appearance="primary" size="large" icon={StarIcon} />{' '}
-			<Button appearance="primary" size="xlarge" icon={StarIcon} />
+			<Button appearance="primary" size="small" iconBefore={StarIcon} />{' '}
+			<Button appearance="primary" size="medium" iconBefore={StarIcon} />{' '}
+			<Button appearance="primary" size="large" iconBefore={StarIcon} />{' '}
+			<Button appearance="primary" size="xlarge" iconBefore={StarIcon} />
 		</p>
 		<p>
-			<Button appearance="primary" size="xlarge" icon={StarIcon} iconPosition="left" block />
+			<Button appearance="primary" size="xlarge" iconBefore={StarIcon} block />
 		</p>
 	</>
 );
