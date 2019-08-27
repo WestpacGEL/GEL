@@ -101,7 +101,7 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 			},
 		},
 		textarea: {
-			verticalAlign: inline ? 'top' : null,
+			verticalAlign: inline && 'top',
 			...textInput.textarea.size[textInputSize],
 		},
 	};
@@ -117,11 +117,11 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 			extras = `${extras} + ${caretWidth} + ${caretGap}`;
 		}
 
-		return width
-			? {
-					maxWidth: `calc(${extras} + ${round(width * factor)}ex)`,
-			  }
-			: null;
+		return (
+			width && {
+				maxWidth: `calc(${extras} + ${round(width * factor)}ex)`,
+			}
+		);
 	};
 
 	return (
@@ -156,7 +156,9 @@ TextInput.propTypes = {
 	size: PropTypes.oneOf(options.size),
 
 	/**
-	 * Component width
+	 * Component width (in chars).
+	 *
+	 * This prop sets a fixed width, measured in characters.
 	 */
 	width: PropTypes.oneOf(options.width),
 
