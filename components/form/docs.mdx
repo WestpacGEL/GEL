@@ -45,14 +45,14 @@ The `@westpac/form` package provides general form styling and layout components 
     		<FormGroup>
     			<FormLabel htmlFor="example-textinput">This is a label</FormLabel>
     			<Hint>This is a hint</Hint>
-    			<ErrorMessage>This is an error message</ErrorMessage>
+    			<ErrorMessage message="This is an error message" />
     			<TextInput name="example-textinput" id="example-textinput" />
     		</FormGroup>
 
     		<FormGroup>
     			<FormLabel htmlFor="example-select">This is a label</FormLabel>
     			<Hint>This is a hint</Hint>
-    			<ErrorMessage>This is an error message</ErrorMessage>
+    			<ErrorMessage message="This is an error message" />
     			<TextInput tag="select" name="example-select" id="example-select">
     					<option>Select</option>
     					<option>Option 1</option>
@@ -66,17 +66,14 @@ The `@westpac/form` package provides general form styling and layout components 
     		<FormGroup>
     			<FormLabel htmlFor="example-textarea">This is a label</FormLabel>
     			<Hint>This is a hint</Hint>
-    			<ErrorMessage>This is an error message</ErrorMessage>
+    			<ErrorMessage message="This is an error message" />
     			<TextInput tag="textarea" name="example-textarea" id="example-textarea" />
     		</FormGroup>
 
     		<FormGroup>
     			<Fieldset legend="This is a legend">
     				<Hint>This is a hint</Hint>
-    				<ErrorMessage tag="ul">
-    					<li>This is an error message</li>
-    					<li>This is another error message</li>
-    				</ErrorMessage>
+    				<ErrorMessage message={['This is an error message', 'This is another error message']} />
     				<InputCluster>
     					<InputClusterItem>
     						<FormLabel htmlFor="example-fieldset-line1" sublabel>This is a sub-label</FormLabel>
@@ -137,9 +134,14 @@ Always use the FormGroup component to wrap the components that make up each form
 <Playground>
 	<FormGroup>
 		<FormLabel htmlFor="example-formgroup">This is a label</FormLabel>
-		<Hint>This is a hint</Hint>
-		<ErrorMessage>This is an error message</ErrorMessage>
-		<TextInput name="example-formgroup" id="example-formgroup" />
+		<Hint id="example-formgroup-hint">This is a hint</Hint>
+		<ErrorMessage message="This is an error message" id="example-formgroup-error" />
+		<TextInput
+			name="example-formgroup"
+			id="example-formgroup"
+			aria-describedby="example-formgroup-hint example-formgroup-error"
+			invalid
+		/>
 	</FormGroup>
 </Playground>
 
@@ -316,17 +318,15 @@ Hint text is additional text provided to aid the user in understanding the expec
 <Alert appearance="information" icon={AlertIcon}>
 	<strong>Heads up!</strong> The Hint component requires explicit association with its input or
 	Fieldset component to meet WCAG 2.1 AA accessibility compliance. Ensure the input or Fieldset
-	component has an `aria-described` prop with its value matching the associated Hint component’s
+	component has an `aria-describedby` prop with its value matching the associated Hint component’s
 	`id` prop value.
 </Alert>
 
 <Playground>
 	<FormGroup>
-		<FormLabel htmlFor="example-hint-input" aria-describedby="example-hint">
-			This is a label
-		</FormLabel>
+		<FormLabel htmlFor="example-hint-input">This is a label</FormLabel>
 		<Hint id="example-hint">This is a hint</Hint>
-		<TextInput name="example-hint-input" id="example-hint-input" />
+		<TextInput name="example-hint-input" id="example-hint-input" aria-describedby="example-hint" />
 	</FormGroup>
 	<FormGroup>
 		<Fieldset legend="This is a legend" aria-describedby="example-fieldset-hint">
@@ -354,9 +354,30 @@ Inline error messages are always positioned above input elements. This best-prac
 <Alert appearance="information" icon={AlertIcon}>
 	<strong>Heads up!</strong> The ErrorMessage component requires explicit association with its input
 	or Fieldset component to meet WCAG 2.1 AA accessibility compliance. Ensure the input or Fieldset
-	component has an `aria-described` prop with its value matching the associated ErrorMessage
+	component has an `aria-describedby` prop with its value matching the associated ErrorMessage
 	component’s `id` prop value.
 </Alert>
+
+Use the `message` prop to pass error message text.
+
+<Playground>
+	<FormGroup>
+		<ErrorMessage message="This is an error message" id="example-single-error" />
+		<TextInput mame="example-single" aria-describedby="example-single-error" invalid />
+	</FormGroup>
+</Playground>
+
+Multiple messages can be rendered by passing an array of errors.
+
+<Playground>
+	<FormGroup>
+		<ErrorMessage
+			message={['This is an error message', 'This is another error message']}
+			id="example-multiple-error"
+		/>
+		<TextInput mame="example-multiple" aria-describedby="example-multiple-error" invalid />
+	</FormGroup>
+</Playground>
 
 <PropsTable of={ErrorMessage} />
 

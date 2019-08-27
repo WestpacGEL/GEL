@@ -492,6 +492,9 @@ export default {
 			fontSize: '1.4rem',
 			margin: '0 0 1.2rem',
 			color: COLORS.danger,
+			icon: {
+				marginRight: '0.25em',
+			},
 			li: {
 				marginBottom: '0.6rem',
 			},
