@@ -372,6 +372,92 @@ export default {
 		},
 	},
 
+	formCheck: {
+		control: {
+			borderWidth: '1px',
+			default: {
+				borderColor: COLORS.hero,
+				backgroundColor: 'transparent',
+			},
+			disabled: {
+				borderColor: COLORS.border,
+				backgroundColor: COLORS.light,
+			},
+			check: {
+				checkbox: {
+					backgroundColor: COLORS.hero,
+					borderRadius: 3,
+				},
+				radio: {
+					backgroundColor: COLORS.hero,
+					borderRadius: '50%',
+				},
+			},
+		},
+		label: {
+			default: {},
+			disabled: {
+				color: COLORS.muted,
+			},
+		},
+		size: {
+			medium: {
+				control: {
+					width: '2.4rem',
+				},
+				check: {
+					checkbox: {
+						width: '1.4rem',
+						height: '0.8rem',
+						stroke: '3px',
+						tweak: '-0.2rem',
+					},
+					radio: {
+						width: '1.2rem',
+						height: '1.2rem',
+						tweak: '0rem',
+					},
+				},
+				item: {
+					marginRight: '1.8rem',
+					marginBottom: '0.6rem',
+				},
+				label: {
+					paddingTop: '0.2rem',
+					paddingBottom: '0.2rem',
+					gap: '0.6rem',
+				},
+			},
+			large: {
+				control: {
+					width: '3rem',
+				},
+				check: {
+					checkbox: {
+						width: '1.8rem',
+						height: '1rem',
+						stroke: '4px',
+						tweak: '-0.2rem',
+					},
+					radio: {
+						width: '1.6rem',
+						height: '1.6rem',
+						tweak: '0rem',
+					},
+				},
+				item: {
+					marginRight: '1.8rem',
+					marginBottom: '1.2rem',
+				},
+				label: {
+					paddingTop: '0.5rem',
+					paddingBottom: '0.5rem',
+					gap: '1rem',
+				},
+			},
+		},
+	},
+
 	grid: {
 		container: {
 			maxWidth: CONTAINER_MAXWIDTH,
