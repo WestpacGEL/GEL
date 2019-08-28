@@ -15,11 +15,11 @@ export const FormCheckItem = ({
 	value,
 	size,
 	inline,
-	flip,
+	flipped,
 	checked,
 	disabled,
-	children,
 	onChange,
+	children,
 	...props
 }) => {
 	const { formCheck, typography } = useTheme();
@@ -59,7 +59,7 @@ export const FormCheckItem = ({
 			marginRight: inline && formCheck.size[size].item.marginRight,
 			marginBottom: formCheck.size[size].item.marginBottom,
 			minHeight: controlHeight,
-			[flip ? 'paddingRight' : 'paddingLeft']: controlWidth,
+			[flipped ? 'paddingRight' : 'paddingLeft']: controlWidth,
 		},
 
 		// Input control styling
@@ -67,7 +67,7 @@ export const FormCheckItem = ({
 			position: 'absolute',
 			zIndex: 1,
 			top: 0,
-			[flip ? 'right' : 'left']: 0,
+			[flipped ? 'right' : 'left']: 0,
 			width: controlWidth,
 			height: controlHeight,
 			cursor: 'pointer',
@@ -84,7 +84,7 @@ export const FormCheckItem = ({
 			display: 'inline-block',
 			paddingTop: formCheck.size[size].label.paddingTop,
 			paddingBottom: formCheck.size[size].label.paddingBottom,
-			[flip ? 'paddingRight' : 'paddingLeft']: formCheck.size[size].label.gap,
+			[flipped ? 'paddingRight' : 'paddingLeft']: formCheck.size[size].label.gap,
 			marginBottom: 0,
 			cursor: 'pointer',
 
@@ -103,7 +103,7 @@ export const FormCheckItem = ({
 				boxSizing: 'border-box',
 				position: 'absolute',
 				top: 0,
-				[flip ? 'right' : 'left']: 0,
+				[flipped ? 'right' : 'left']: 0,
 				width: controlWidth,
 				height: controlHeight,
 				border: `${formCheck.control.borderWidth} solid ${formCheck.control.default.borderColor}`,
@@ -128,7 +128,7 @@ export const FormCheckItem = ({
 				border: `solid ${formCheck.control.default.borderColor}`,
 				opacity: 0, //hide
 				top: `calc(((${controlHeight} - ${checkHeight}) / 2) + ${checkTweak})`,
-				[flip ? 'right' : 'left']: `calc((${controlWidth} - ${checkWidth}) / 2)`,
+				[flipped ? 'right' : 'left']: `calc((${controlWidth} - ${checkWidth}) / 2)`,
 				width: type === 'radio' ? 0 : checkWidth,
 				height: type === 'radio' ? 0 : checkHeight,
 				borderWidth:
@@ -173,22 +173,27 @@ export const FormCheckItem = ({
 
 FormCheckItem.propTypes = {
 	/**
-	 * Form check value
+	 * Form check item value
 	 */
 	value: PropTypes.string,
 
 	/**
-	 * Check the form check
+	 * Check the Form check item
 	 */
 	checked: PropTypes.bool,
 
 	/**
-	 * Disable the form check
+	 * Disable the Form check item
 	 */
 	disabled: PropTypes.bool,
 
 	/**
-	 * Form check label text
+	 * Handler to be called on change
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * Form check item label text
 	 */
 	children: PropTypes.string.isRequired,
 };
