@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import React, { useState } from 'react';
-import { jsx, useTheme, paint } from '@westpac/core';
+import React, { useContext } from 'react';
+import { jsx, useTheme, paint, UserModeContext } from '@westpac/core';
 
 import { SrOnly } from '../../accessibility-helpers/src';
 
@@ -36,7 +36,8 @@ export const SwitchText = ({ size, block, flipped, srOnlyText, ...props }) => {
 };
 
 export const SwitchToggle = ({ size, toggleText, ...props }) => {
-	const { breakpoints, switch: formSwitch } = useTheme();
+	const { breakpoints, typography, switch: formSwitch } = useTheme();
+	const isKeyboardUser = useContext(UserModeContext);
 	const mq = paint(breakpoints);
 
 	const style = {
@@ -66,9 +67,20 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 			transition: 'border .3s ease, background .3s ease',
 			userSelect: 'none',
 
+			// Focus state
+			'input:focus ~ &': {
+				...(isKeyboardUser && typography.link.focus),
+			},
+
 			// Checked state
 			'input:checked ~ &': {
 				...formSwitch.toggle.checked,
+			},
+
+			// Disabled state
+			'input:disabled ~ &': {
+				cursor: 'default',
+				opacity: 0.5,
 			},
 
 			// Knob
@@ -93,11 +105,6 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 					left: '100%',
 					transform: 'translateX(-100%)',
 				},
-			},
-
-			'input:disabled ~ &': {
-				cursor: 'default',
-				opacity: 0.5,
 			},
 		}),
 

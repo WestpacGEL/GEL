@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
 import shortid from 'shortid';
 
 import { SwitchText, SwitchToggle } from './styled';
