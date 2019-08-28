@@ -50,8 +50,8 @@ export const FormCheckItem = ({
 
 	const checkboxStroke = formCheck.size[size].check['checkbox'].stroke;
 
-	// Common styling
 	const style = {
+		// Common styling
 		common: {
 			position: 'relative',
 			display: inline ? 'inline-block' : 'block',
