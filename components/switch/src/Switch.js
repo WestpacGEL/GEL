@@ -16,7 +16,7 @@ export const Switch = ({
 	toggleText,
 	size,
 	block,
-	flip,
+	flipped,
 	srOnlyText,
 	checked,
 	disabled,
@@ -49,11 +49,11 @@ export const Switch = ({
 		display: block ? 'flex' : 'inline-flex',
 		flexWrap: 'wrap',
 		verticalAlign: 'middle',
-		marginRight: block ? null : formSwitch.marginRight,
+		marginRight: !block && formSwitch.marginRight,
 		marginBottom: formSwitch.marginBottom,
 		alignItems: 'center',
-		width: block ? '100%' : null,
-		flexDirection: flip ? 'row-reverse' : null,
+		width: block && '100%',
+		flexDirection: flipped && 'row-reverse',
 
 		':hover': {
 			cursor: 'pointer',
@@ -76,7 +76,7 @@ export const Switch = ({
 				onChange={toggle}
 			/>
 			{children && (
-				<SwitchText block={block} flip={flip} size={size} srOnlyText={srOnlyText}>
+				<SwitchText block={block} flipped={flipped} size={size} srOnlyText={srOnlyText}>
 					{children}
 				</SwitchText>
 			)}
@@ -122,7 +122,7 @@ Switch.propTypes = {
 	/**
 	 * Reverse the horizontal orientation. Renders the toggle on the left of the label text.
 	 */
-	flip: PropTypes.bool,
+	flipped: PropTypes.bool,
 
 	/**
 	 * Enable ‘screen reader only’ label text mode.
@@ -156,7 +156,7 @@ Switch.defaultProps = {
 	size: 'medium',
 	toggleText: ['On', 'Off'],
 	block: false,
-	flip: false,
+	flipped: false,
 	srOnlyText: false,
 	checked: false,
 	disabled: false,

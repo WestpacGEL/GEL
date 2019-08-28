@@ -4,39 +4,39 @@ import { Switch } from '../src';
 
 export default () => (
 	<>
-		<h3>Small</h3>
-		<Switch name="ex1" size="small" toggleText={['Yes', 'No']}>
+		<h2>Small</h2>
+		<Switch name="example-small-1" size="small" toggleText={['Yes', 'No']}>
 			Enable notifications
 		</Switch>
-		<Switch name="ex2" size="small">
+		<Switch name="example-small-2" size="small">
 			Turn notifications
 		</Switch>
 
 		<hr />
 
-		<h3>Medium (default)</h3>
-		<Switch name="ex3" toggleText={['Yes', 'No']}>
+		<h2>Medium</h2>
+		<Switch name="example-medium-1" toggleText={['Yes', 'No']}>
 			Enable notifications
 		</Switch>
-		<Switch name="ex4">Turn notifications</Switch>
+		<Switch name="example-medium-2">Turn notifications</Switch>
 
 		<hr />
 
-		<h3>Large</h3>
-		<Switch name="ex5" size="large" toggleText={['Yes', 'No']}>
+		<h2>Large</h2>
+		<Switch name="example-large-1" size="large" toggleText={['Yes', 'No']}>
 			Enable notifications
 		</Switch>
-		<Switch name="ex6" size="large">
+		<Switch name="example-large-2" size="large">
 			Turn notifications
 		</Switch>
 
 		<hr />
 
-		<h3>Extra large</h3>
-		<Switch name="ex7" size="xlarge" toggleText={['Yes', 'No']}>
+		<h2>Extra large</h2>
+		<Switch name="example-xlarge-1" size="xlarge" toggleText={['Yes', 'No']}>
 			Enable notifications
 		</Switch>
-		<Switch name="ex8" size="xlarge">
+		<Switch name="example-xlarge-2" size="xlarge">
 			Turn notifications
 		</Switch>
 	</>
