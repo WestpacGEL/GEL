@@ -65,9 +65,9 @@ GEL.propTypes = {
 	brand: PropTypes.oneOfType([
 		PropTypes.shape({
 			breakpoints: PropTypes.shape({
-				sm: PropTypes.string,
-				md: PropTypes.string,
-				lg: PropTypes.string,
+				sm: PropTypes.number,
+				md: PropTypes.number,
+				lg: PropTypes.number,
 			}),
 			colors: PropTypes.shape({
 				background: PropTypes.string,

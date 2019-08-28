@@ -4,7 +4,7 @@ import { Panel, PanelHeader, PanelBody, PanelFooter } from '../src';
 
 export default () => (
 	<>
-		<h3>Standard (hero) appearance</h3>
+		<h3>Standard</h3>
 		<Panel>
 			<PanelHeader>Panel title</PanelHeader>
 			<PanelBody>
@@ -25,7 +25,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Faint appearance</h3>
+		<h3>Faint</h3>
 		<Panel appearance="faint">
 			<PanelHeader>Panel title</PanelHeader>
 			<PanelBody>

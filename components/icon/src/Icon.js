@@ -22,29 +22,31 @@ const IconWrapper = ({ size, ...props }) => {
 	const { colors, breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
-	// Common styling
-	const styleCommon = {
-		display: 'inline-block',
-		flexShrink: 0,
-		lineHeight: 1,
-		verticalAlign: 'middle',
-	};
+	const style = {
+		// Common styling
+		common: {
+			display: 'inline-block',
+			flexShrink: 0,
+			lineHeight: 1,
+			verticalAlign: 'middle',
+		},
 
-	// Reponsive styling (icon size)
-	const styleResponsive = () => {
-		const sizeArr = asArray(size).map(s => s && sizeMap[s]);
+		// Reponsive styling (icon size)
+		responsive: (() => {
+			const sizeArr = asArray(size).map(s => s && sizeMap[s]);
 
-		return {
-			height: sizeArr,
-			width: sizeArr,
-		};
+			return {
+				height: sizeArr,
+				width: sizeArr,
+			};
+		})(),
 	};
 
 	return (
 		<span
 			css={mq({
-				...styleCommon,
-				...styleResponsive(),
+				...style.common,
+				...style.responsive,
 			})}
 			{...props}
 		/>
