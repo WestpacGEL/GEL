@@ -36,7 +36,7 @@ const FONT = (folder = '../font') => ({
 	},
 });
 
-const BREAK_POINTS = { sm: '768px', md: '992px', lg: '1200px' };
+const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 const CONTAINER_MAXWIDTH = '132rem';
 const CONTAINER_PADDING = ['1.2rem', '3.6rem', '4.8rem', '6rem'];
@@ -52,7 +52,7 @@ export default {
 		},
 		hero: {
 			default: COLORS.hero,
-			foreground: COLORS.text, //mapping unique to this brand
+			foreground: COLORS.text, //unique mapping for this brand
 		},
 		neutral: {
 			default: COLORS.neutral,
@@ -352,6 +352,99 @@ export default {
 		},
 	},
 
+	formCheck: {
+		control: {
+			borderWidth: '1px',
+			default: {
+				borderColor: COLORS.hero,
+				backgroundColor: 'transparent',
+			},
+			disabled: {
+				borderColor: COLORS.border,
+				backgroundColor: COLORS.light,
+			},
+			check: {
+				checkbox: {
+					backgroundColor: COLORS.hero,
+					borderRadius: 3,
+				},
+				radio: {
+					backgroundColor: COLORS.hero,
+					borderRadius: '50%',
+				},
+			},
+		},
+		label: {
+			default: {},
+			disabled: {
+				color: COLORS.muted,
+			},
+		},
+		size: {
+			medium: {
+				control: {
+					width: '2.4rem',
+				},
+				check: {
+					checkbox: {
+						width: '1.4rem',
+						height: '0.8rem',
+						stroke: '3px',
+						tweak: '-0.2rem',
+					},
+					radio: {
+						width: '1.2rem',
+						height: '1.2rem',
+						tweak: '0rem',
+					},
+				},
+				item: {
+					marginRight: '1.8rem',
+					marginBottom: '0.6rem',
+				},
+				label: {
+					paddingTop: '0.2rem',
+					paddingBottom: '0.2rem',
+					gap: '0.6rem',
+				},
+			},
+			large: {
+				control: {
+					width: '3rem',
+				},
+				check: {
+					checkbox: {
+						width: '1.8rem',
+						height: '1rem',
+						stroke: '4px',
+						tweak: '-0.2rem',
+					},
+					radio: {
+						width: '1.6rem',
+						height: '1.6rem',
+						tweak: '0rem',
+					},
+				},
+				item: {
+					marginRight: '1.8rem',
+					marginBottom: '1.2rem',
+				},
+				label: {
+					paddingTop: '0.5rem',
+					paddingBottom: '0.5rem',
+					gap: '1rem',
+				},
+			},
+		},
+	},
+
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING,
+		},
+	},
+
 	label: {
 		borderRadius: '0.2rem',
 		borderWidth: '1px',
@@ -626,6 +719,7 @@ export default {
 
 	panel: {
 		backgroundColor: '#fff',
+		marginBottom: '2.1rem',
 		borderWidth: '1px',
 		borderRadius: '0.3rem',
 		appearance: {
@@ -637,6 +731,7 @@ export default {
 			},
 		},
 		header: {
+			fontSize: '1.6rem',
 			padding: {
 				default: '1rem 1.2rem',
 				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
@@ -719,7 +814,8 @@ export default {
 			backgroundColor: COLORS.light,
 		},
 		highlight: {
-			borderColor: COLORS.primary,
+			borderLeft: `6px solid ${COLORS.primary}`,
+			borderBottom: `1px solid ${COLORS.primary}`,
 		},
 		bordered: {
 			th: {
