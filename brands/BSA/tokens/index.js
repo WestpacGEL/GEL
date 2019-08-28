@@ -795,6 +795,9 @@ export default {
 				borderColor: COLORS.system,
 			},
 		},
+		heading: {
+			marginBottom: '1.2rem',
+		},
 	},
 
 	switch: {
