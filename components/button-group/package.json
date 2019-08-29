@@ -28,9 +28,10 @@
 	},
 	"main": "dist/index.js",
 	"dependencies": {
-		"@westpac/core": "^0.0.1",
 		"@westpac/button": "^0.0.1",
-		"prop-types": "^15.6.2"
+		"@westpac/core": "^0.0.1",
+		"prop-types": "^15.6.2",
+		"shortid": "^2.2.14"
 	},
 	"peerDependencies": {
 		"react": "16.7.0-alpha.2"

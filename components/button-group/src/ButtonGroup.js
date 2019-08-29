@@ -9,7 +9,7 @@ import { jsx, useTheme } from '@westpac/core';
 // ==============================
 
 export const ButtonGroup = ({ appearance, size, block, name, children, ...props }) => {
-	// Pass the selected props on to children (that way button styling can be set by parent ButtonGroup)
+	// Pass the selected props on to children
 	const giftedChildren = Children.map(children, child =>
 		cloneElement(child, { appearance, size, name })
 	);
@@ -39,22 +39,30 @@ const options = {
 
 ButtonGroup.propTypes = {
 	/**
-	 * Button group button appearance
+	 * Button group button appearance.
+	 *
+	 * This prop is passed to children.
 	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
-	 * Button group button size
+	 * Button group button size.
+	 *
+	 * This prop is passed to children.
 	 */
 	size: PropTypes.oneOf(options.size),
 
 	/**
-	 * Block mode
+	 * Block mode.
+	 *
+	 * Fit button group width to its parent width.
 	 */
 	block: PropTypes.bool,
 
 	/**
-	 * Button group button input element’s name
+	 * Button group button input element’s name.
+	 *
+	 * This prop is passed to children.
 	 */
 	name: PropTypes.string.isRequired,
 

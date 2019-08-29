@@ -5,9 +5,9 @@ route: /button-group
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { ButtonGroup } from './src/ButtonGroup';
-import { ButtonGroupButton } from './src/ButtonGroupButton';
-import { InfoIcon } from '../icon/src';
+import { ButtonGroup, ButtonGroupButton } from './src';
+
+import { InfoIcon } from '@westpac/icon';
 
 # Button Group
 
@@ -17,9 +17,9 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 
 <Playground>
 	<ButtonGroup name="example-buttongroup">
-		<ButtonGroupButton>Left</ButtonGroupButton>
-		<ButtonGroupButton>Middle</ButtonGroupButton>
-		<ButtonGroupButton>Right</ButtonGroupButton>
+		<ButtonGroupButton value="left">Left</ButtonGroupButton>
+		<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+		<ButtonGroupButton value="right">Right</ButtonGroupButton>
 	</ButtonGroup>
 </Playground>
 
@@ -69,26 +69,23 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 
 <Playground>
 	<ButtonGroup name="example-buttongroup-block" block>
-		<ButtonGroupButton>Left</ButtonGroupButton>
-		<ButtonGroupButton>Middle</ButtonGroupButton>
-		<ButtonGroupButton>Right</ButtonGroupButton>
+		<ButtonGroupButton value="left">Left</ButtonGroupButton>
+		<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+		<ButtonGroupButton value="right">Right</ButtonGroupButton>
 	</ButtonGroup>
 </Playground>
 
-## Icon after
+## Icons
 
 <Playground>
-	<ButtonGroup name="example-buttongroup-block">
+	<ButtonGroup name="example-buttongroup-iconafter">
 		<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
 		<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
 		<ButtonGroupButton iconAfter={InfoIcon}>Right</ButtonGroupButton>
 	</ButtonGroup>
-</Playground>
-
-## Icon before
-
-<Playground>
-	<ButtonGroup name="example-buttongroup-block">
+	<br />
+	<br />
+	<ButtonGroup name="example-buttongroup-iconbefore">
 		<ButtonGroupButton iconBefore={InfoIcon}>Left</ButtonGroupButton>
 		<ButtonGroupButton iconBefore={InfoIcon}>Middle</ButtonGroupButton>
 		<ButtonGroupButton iconBefore={InfoIcon}>Right</ButtonGroupButton>
@@ -97,8 +94,10 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 
 ## srOnlyText
 
+You can visually hide button text by providing a `srOnlyText` prop.
+
 <Playground>
-	<ButtonGroup name="example-buttongroup-block">
+	<ButtonGroup name="example-buttongroup-sronlytext">
 		<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
 			Screen reader only
 		</ButtonGroupButton>
