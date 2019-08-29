@@ -3,10 +3,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
-
-import { Button } from '../../button/src';
-import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '../../icon/src';
-
+import { Button } from '@westpac/button';
+import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import { CSSTransition } from 'react-transition-group';
 
 // ==============================
@@ -17,8 +15,6 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 	const [open, setOpen] = useState(true);
 	const { breakpoints, alert } = useTheme();
 	const mq = paint(breakpoints);
-	const getPaddingSM = () =>
-		closable ? `${alert.padding} 3rem ${alert.padding} ${alert.padding}` : alert.padding;
 
 	const iconMap = {
 		success: TickIcon,
@@ -36,7 +32,10 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 	const style = {
 		common: {
 			marginBottom: alert.marginBottom,
-			padding: [alert.padding, getPaddingSM()],
+			padding: [
+				alert.padding,
+				closable ? `${alert.padding} 3rem ${alert.padding} ${alert.padding}` : alert.padding,
+			],
 			position: 'relative',
 			display: [null, 'flex'],
 			zIndex: 1,
@@ -122,7 +121,7 @@ Alert.propTypes = {
 	/**
 	 * Alert icon.
 	 *
-	 * Note: Icon is rendered based on appearance, but can be overriden via this prop. Pass a `null` value to remove completely.
+	 * The icon is automatically rendered based on appearance, but can be overriden via this prop. Pass a `null` value to remove completely.
 	 */
 	icon: PropTypes.func,
 
