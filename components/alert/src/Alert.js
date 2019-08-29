@@ -121,7 +121,7 @@ Alert.propTypes = {
 	/**
 	 * Alert icon.
 	 *
-	 * The icon is automatically rendered based on appearance, but can be overriden via this prop. Pass a `null` value to remove completely.
+	 * The alert icon is automatically rendered based on appearance, but can be overriden via this prop. Pass a `null` value to remove completely.
 	 */
 	icon: PropTypes.func,
 
