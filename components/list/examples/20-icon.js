@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, ListItem } from '../src';
 import { listGenerator } from './_utils';
-import { AndroidIcon, GithubIcon } from '../../icon/src';
+import { AndroidIcon, GithubIcon } from '@westpac/icon';
 
 export default () => {
 	return (
