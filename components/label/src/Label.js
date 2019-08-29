@@ -5,51 +5,51 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 	const { label } = useTheme();
 
-	const common = {
-		border: `${label.borderWidth} solid`,
-		borderRadius: label.borderRadius,
-		display: 'inline',
-		fontSize: label.fontSize,
-		fontWeight: label.fontWeight,
-		lineHeight: label.lineHeight,
-		padding: label.padding,
-		textAlign: 'center',
-		verticalAlign: 'baseline',
-		whiteSpace: 'nowrap',
+	const style = {
+		// Common styling
+		common: {
+			border: `${label.borderWidth} solid`,
+			borderRadius: label.borderRadius,
+			display: 'inline',
+			fontSize: label.fontSize,
+			fontWeight: label.fontWeight,
+			lineHeight: label.lineHeight,
+			padding: label.padding,
+			textAlign: 'center',
+			verticalAlign: 'baseline',
+			whiteSpace: 'nowrap',
 
-		'&:empty': {
-			display: 'none',
+			'&:empty': {
+				display: 'none',
+			},
+			'a&': {
+				textDecoration: 'none',
+			},
+
+			'@media print': {
+				color: '#000',
+				backgroundColor: '#fff',
+				border: '1px solid #000',
+			},
 		},
-		'a&': {
-			textDecoration: 'none',
-		},
 
-		'@media print': {
-			color: '#000',
-			backgroundColor: '#fff',
-			border: '1px solid #000',
-		},
-	};
+		// Label appearance styling
+		appearance: {
+			color: label.appearance[appearance].default.color,
+			backgroundColor: label.appearance[appearance].default.backgroundColor,
+			borderColor: label.appearance[appearance].default.borderColor,
 
-	const styleAppearance = {
-		color: label.appearance[appearance].default.color,
-		backgroundColor: label.appearance[appearance].default.backgroundColor,
-		borderColor: label.appearance[appearance].default.borderColor,
-
-		'a&:hover, a&:focus': {
-			cursor: 'pointer',
-			backgroundColor: label.appearance[appearance].hover.backgroundColor,
-			borderColor: label.appearance[appearance].hover.borderColor,
+			'a&:hover, a&:focus': {
+				cursor: 'pointer',
+				backgroundColor: label.appearance[appearance].hover.backgroundColor,
+				borderColor: label.appearance[appearance].hover.borderColor,
+			},
 		},
 	};
 
@@ -58,7 +58,7 @@ export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 	}
 
 	return (
-		<Tag css={{ ...common, ...styleAppearance }} {...props}>
+		<Tag css={{ ...style.common, ...style.appearance }} {...props}>
 			{children}
 		</Tag>
 	);
