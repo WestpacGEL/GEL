@@ -2,7 +2,7 @@
 
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
 // ==============================
 // Component
