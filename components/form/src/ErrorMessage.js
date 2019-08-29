@@ -3,8 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
+import shortid from 'shortid';
 
-import { AlertIcon } from '../../icon/src';
+import { AlertIcon } from '@westpac/icon';
 
 // ==============================
 // Utility
@@ -51,8 +52,8 @@ export const ErrorMessage = ({ message, icon, tag: Tag, ...props }) => {
 	return (
 		<Tag css={common} {...props}>
 			{isMessages ? (
-				message.map((msg, i) => (
-					<li css={{ ...errorMessage.li }} key={i}>
+				message.map(msg => (
+					<li css={{ ...errorMessage.li }} key={shortid.generate()}>
 						<ErrorMessageContent icon={icon}>{msg}</ErrorMessageContent>
 					</li>
 				))
