@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { jsx, useTheme, paint, UserModeContext } from '@westpac/core';
 
-import { SrOnly } from '../../accessibility-helpers/src';
+import { SrOnly } from '@westpac/accessibility-helpers';
 
 // ==============================
 // Utils
