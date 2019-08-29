@@ -12,7 +12,7 @@ const blocks = [[true, false, true, false], [true, false], [true, null, false]];
 
 export default () => (
 	<>
-		<h3>Responsive sizing</h3>
+		<h2>Responsive sizing</h2>
 		{sizes.map((s, i) => (
 			<p key={i}>
 				<Button appearance="primary" size={s}>
@@ -23,7 +23,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Responsive block</h3>
+		<h2>Responsive block</h2>
 		{blocks.map((b, i) => (
 			<p key={i}>
 				<Button appearance="primary" size="xlarge" block={b}>

@@ -13,7 +13,7 @@ import {
 
 export default () => (
 	<>
-		<h3>Icon after (default)</h3>
+		<h2>Icon after</h2>
 		<p>
 			<Button appearance="primary" size="small" iconAfter={HouseIcon}>
 				Small
@@ -56,7 +56,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Icon before</h3>
+		<h2>Icon before</h2>
 		<p>
 			<Button appearance="primary" size="small" iconBefore={HouseIcon}>
 				Small
@@ -99,7 +99,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Icon only (no text)</h3>
+		<h2>Icon only (no text)</h2>
 		<p>
 			<Button appearance="primary" size="small" iconBefore={StarIcon} />{' '}
 			<Button appearance="primary" size="medium" iconBefore={StarIcon} />{' '}

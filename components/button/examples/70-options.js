@@ -5,14 +5,16 @@ import { HouseIcon } from '../../icon/src'; //until icon package is published
 
 export default () => (
 	<>
-		<h3>Trim (no horizontal padding)</h3>
+		<h2>Trim</h2>
 		<p>
 			<Button appearance="link" trim>
 				Trimmed link button
 			</Button>
 		</p>
 
-		<h3>srOnlyText (screen reader only text)</h3>
+		<hr />
+
+		<h2>srOnlyText (screen reader only text)</h2>
 		<p>
 			<Button iconAfter={HouseIcon} srOnlyText>
 				Screen reader only text
