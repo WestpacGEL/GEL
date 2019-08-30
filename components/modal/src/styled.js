@@ -41,8 +41,8 @@ export const StyledModal = ({ size, ...props }) => {
 
 	const styles = {
 		overflow: 'auto',
-		maxHeight: '85%',
-		margin: '0 12px',
+		maxHeight: modal.maxHeight,
+		margin: modal.margin,
 		backgroundColor: modal.backgroundColor,
 		borderRadius: modal.borderRadius,
 		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',

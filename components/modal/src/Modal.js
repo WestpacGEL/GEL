@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import React, { Children, cloneElement, useState, useEffect } from 'react';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
@@ -34,7 +34,7 @@ export const Modal = ({ isOpen, onClose, size, children, ...props }) => {
 
 	const modalId = shortid.generate();
 	const titleId = `modal-header-title-${modalId}`;
-	const bodyId = `modal-body-${modalId};`;
+	const bodyId = `modal-body-${modalId}`;
 
 	const childrenWithProps = Children.map(children, child => {
 		if (child && child.type) {
