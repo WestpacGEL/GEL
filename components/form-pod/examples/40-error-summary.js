@@ -11,8 +11,8 @@ import {
 	FormPodIndicator,
 	FormPodActions,
 } from '../src';
-import { Alert } from '@westpac/alert';
-// import { List } from '@westpac/list'; //TODO: implement list
+import { Alert, AlertHeading } from '@westpac/alert';
+import { List, ListItem } from '@westpac/list';
 import { HeadsetIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 
@@ -44,22 +44,21 @@ export default () => {
 				<FormPodPanel noBorderTop>
 					<Alert appearance="danger">
 						{/* Nb. Tabindex="-1" for programmatically set focus */}
-						<h3 style={{ marginTop: 0 }} tabIndex="-1">
+						<AlertHeading tag="h3" tabIndex="-1">
 							Please fix the 4 errors listed below
-						</h3>
+						</AlertHeading>
 
-						{/* TODO: Use List component*/}
-						<ul>
-							<li>
+						<List type="unstyled">
+							<ListItem>
 								<a href="#title">Select a title</a>
-							</li>
-							<li>
+							</ListItem>
+							<ListItem>
 								<a href="#given-name">Enter your given name</a>
-							</li>
-							<li>
+							</ListItem>
+							<ListItem>
 								<a href="#family-name">Enter your family name</a>
-							</li>
-						</ul>
+							</ListItem>
+						</List>
 					</Alert>
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
 					<FormPodPanelFooter

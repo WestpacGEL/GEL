@@ -1,1 +1,2 @@
-export { Alert } from './Alert.js';
+export { Alert } from './Alert';
+export { AlertHeading } from './AlertHeading';

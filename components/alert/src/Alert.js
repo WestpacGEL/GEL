@@ -1,12 +1,10 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
-
-import { Button } from '../../button/src';
-import { CloseIcon } from '../../icon/src';
-
+import { Button } from '@westpac/button';
+import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import { CSSTransition } from 'react-transition-group';
 
 // ==============================
@@ -17,77 +15,89 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 	const [open, setOpen] = useState(true);
 	const { breakpoints, alert } = useTheme();
 	const mq = paint(breakpoints);
-	const getPaddingSM = () =>
-		closable ? `${alert.padding} 3rem ${alert.padding} ${alert.padding}` : alert.padding;
 
-	const styleCommon = {
-		marginBottom: alert.marginBottom,
-		padding: [alert.padding, getPaddingSM()],
-		position: 'relative',
-		display: ['null', 'flex'],
-		zIndex: 1,
-		transition: 'opacity 0.3s ease-in-out',
+	const iconMap = {
+		success: TickIcon,
+		information: InfoIcon,
+		warning: AlertIcon,
+		danger: AlertIcon,
+		system: AlertIcon,
+	};
 
-		'a, h1, h2, h3, h4, h5, h6, ol, ul, div, span': {
+	// Set default icon
+	if (Icon === undefined) {
+		Icon = iconMap[appearance];
+	}
+
+	const style = {
+		common: {
+			marginBottom: alert.marginBottom,
+			padding: [
+				alert.padding,
+				closable ? `${alert.padding} 3rem ${alert.padding} ${alert.padding}` : alert.padding,
+			],
+			position: 'relative',
+			display: [null, 'flex'],
+			zIndex: 1,
+			transition: 'opacity 0.3s ease-in-out',
+
+			'a, h1, h2, h3, h4, h5, h6, ol, ul': {
+				color: 'inherit',
+			},
+
+			'&.anim-exit-active': {
+				opacity: 0,
+			},
+		},
+		appearance: {
+			color: alert.appearance[appearance].color,
+			backgroundColor: alert.appearance[appearance].backgroundColor,
+			borderTop: `${alert.borderWidth} solid`,
+			borderBottom: `${alert.borderWidth} solid`,
+			borderColor: alert.appearance[appearance].borderColor,
+		},
+		close: {
 			color: 'inherit',
+			position: ['relative', 'absolute'],
+			zIndex: 1,
+			float: ['right', 'none'],
+			top: '0.3rem',
+			right: 0,
+			marginTop: ['-1.8rem', 0],
+			marginRight: ['-1.8rem', 0],
+			opacity: 1,
+
+			':hover': {
+				opacity: 0.5,
+			},
 		},
-
-		'&.anim-exit-active': {
-			opacity: 0,
+		icon: {
+			float: ['left', 'none'],
+			marginRight: ['0.6rem', '1.2rem'],
+			flex: 'none',
 		},
-	};
-
-	const styleAppearance = {
-		color: alert.appearance[appearance].color,
-		backgroundColor: alert.appearance[appearance].backgroundColor,
-		borderTop: `${alert.borderWidth} solid`,
-		borderBottom: `${alert.borderWidth} solid`,
-		borderColor: alert.appearance[appearance].borderColor,
-	};
-
-	const styleClose = {
-		color: 'inherit',
-		position: ['relative', 'absolute'],
-		zIndex: 1,
-		float: ['right', 'none'],
-		top: '0.3rem',
-		right: 0,
-		marginTop: ['-1.8rem', 0],
-		marginRight: ['-1.8rem', 0],
-		opacity: 1,
-
-		':hover': {
-			opacity: 0.5,
+		body: {
+			position: 'relative',
+			flex: 1,
+			top: [null, Icon && '0.2rem'],
 		},
-	};
-
-	const styleIcon = {
-		float: ['left', 'none'],
-		marginRight: ['0.6rem', '1.2rem'],
-		flex: 'none',
-	};
-
-	const styleBody = {
-		position: 'relative',
-		flex: 1,
-		top: [null, Icon ? '0.2rem' : null],
 	};
 
 	return (
 		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
-			<div css={mq({ ...styleCommon, ...styleAppearance })}>
+			<div css={mq({ ...style.common, ...style.appearance })}>
 				{closable && (
 					<Button
 						onClick={() => {
 							setOpen(false);
 						}}
-						icon={CloseIcon}
+						iconAfter={CloseIcon}
 						appearance="link"
-						css={mq(styleClose)}
+						css={mq(style.close)}
 					/>
 				)}
-				{Icon && <Icon css={mq(styleIcon)} size={['small', 'medium']} color="inherit" />}
-				<div css={mq(styleBody)}>{children}</div>
+				{Icon && <Icon css={mq(style.icon)} size={['small', 'medium']} color="inherit" />}
+				<div css={mq(style.body)}>{children}</div>
 			</div>
 		</CSSTransition>
 	);
@@ -99,26 +109,24 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 
 Alert.propTypes = {
 	/**
-	 * The alert appearance.
-	 *
-	 * Defaults to "information"
+	 * Alert appearance
 	 */
 	appearance: PropTypes.oneOf(['success', 'information', 'warning', 'danger', 'system']),
 
 	/**
-	 * Closing option.
-	 *
-	 * Defaults to "false"
+	 * Enable closable mode
 	 */
 	closable: PropTypes.bool,
 
 	/**
 	 * Alert icon.
+	 *
+	 * The alert icon is automatically rendered based on appearance, but can be overriden via this prop. Pass a `null` value to remove completely.
 	 */
 	icon: PropTypes.func,
 
 	/**
-	 * The content for this alert.
+	 * Alert children
 	 */
 	children: PropTypes.node,
 };
