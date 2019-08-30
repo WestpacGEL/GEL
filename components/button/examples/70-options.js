@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button } from '../src';
-import { HouseIcon } from '../../icon/src'; //until icon package is published
+import { HouseIcon } from '@westpac/icon';
 
 export default () => (
 	<>

@@ -9,7 +9,7 @@ import {
 	ArrowLeftIcon,
 	ArrowRightIcon,
 	StarIcon,
-} from '../../icon/src'; //until icon package is published
+} from '@westpac/icon';
 
 export default () => (
 	<>
