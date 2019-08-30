@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';

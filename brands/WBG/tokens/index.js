@@ -539,6 +539,98 @@ export default {
 		},
 	},
 
+	form: {
+		chitchat: {
+			fontSize: '1.8rem',
+			color: COLORS.heading,
+			lineHeight: 1.4,
+			fontWeight: 'bold',
+			textAlign: 'center',
+			margin: [0, '0 0 3rem'],
+		},
+		errorMessage: {
+			fontSize: '1.4rem',
+			margin: '0 0 1.2rem',
+			color: COLORS.danger,
+			icon: {
+				marginRight: '0.25em',
+			},
+			li: {
+				marginBottom: '0.6rem',
+			},
+		},
+		group: {
+			spacing: {
+				medium: {
+					marginBottom: '1.8rem',
+				},
+				large: {
+					marginBottom: ['2.4rem', '3rem'],
+				},
+			},
+			inline: {
+				marginLeft: [null, '0.6rem'],
+			},
+		},
+		hint: {
+			color: COLORS.muted,
+			fontSize: '1.4rem',
+			spacing: {
+				medium: {
+					marginTop: '-0.6rem',
+					marginBottom: '1.2rem',
+				},
+				large: {
+					marginTop: '-1.2rem',
+					marginBottom: '1.8rem',
+				},
+			},
+		},
+		cluster: {
+			item: {
+				default: {
+					marginTop: '1.8rem',
+				},
+				horizontal: {
+					marginRight: '1.8rem',
+				},
+			},
+		},
+		label: {
+			fontWeight: 500,
+			fontSize: '1.6rem',
+			sublabel: {
+				fontSize: '1.4rem',
+				marginBottom: '0.6rem',
+			},
+			spacing: {
+				medium: {
+					marginBottom: '1.2rem',
+				},
+				large: {
+					marginBottom: '1.8rem',
+				},
+			},
+		},
+		section: {
+			borderTop: `1px solid ${COLORS.border}`,
+			paddingTop: ['3rem', '3.6rem'],
+			paddingBottom: '0.6rem',
+			paddingLeft: [null, '5.4rem', '4.6rem', '5rem'],
+			paddingRight: [null, '5.4rem', '4.6rem', '5rem'],
+		},
+		sectionImg: {
+			marginBottom: ['1.8rem', '4.2rem'],
+		},
+	},
+
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING,
+		},
+	},
+
 	modal: {
 		backgroundColor: '#fff',
 		borderRadius: '3px',
@@ -717,6 +809,69 @@ export default {
 			borderColor: COLORS.border,
 			caption: {
 				padding: '1.2rem',
+			},
+		},
+	},
+
+	textInput: {
+		lineHeight: 1.5,
+		fontWeight: 400,
+		color: COLORS.text,
+		backgroundColor: '#fff',
+		borderWidth: '1px',
+		borderRadius: '3px',
+		fontXFactor: 1.81,
+		appearance: {
+			default: {
+				borderColor: COLORS.borderDark,
+			},
+			invalid: {
+				borderColor: COLORS.danger,
+			},
+		},
+		size: {
+			small: {
+				padding: ['0.3rem', '0.9rem', '0.4rem'],
+				fontSize: '1.4rem',
+			},
+			medium: {
+				padding: ['0.5rem', '1.2rem'],
+				fontSize: '1.6rem',
+			},
+			large: {
+				padding: ['0.8rem', '1.5rem'],
+				fontSize: '1.6rem',
+			},
+			xlarge: {
+				padding: ['0.9rem', '1.8rem', '1rem'],
+				fontSize: '1.8rem',
+			},
+		},
+		disabled: {
+			backgroundColor: COLORS.light,
+			color: COLORS.muted,
+		},
+		placeholder: {
+			fontWeight: 300,
+			color: tint(COLORS.Text, 0.5),
+		},
+		select: {
+			caretGap: '0.8rem',
+		},
+		textarea: {
+			size: {
+				small: {
+					minHeight: '5.4rem',
+				},
+				medium: {
+					minHeight: '6rem',
+				},
+				large: {
+					minHeight: '6.6rem',
+				},
+				xlarge: {
+					minHeight: '7.2rem',
+				},
 			},
 		},
 	},
