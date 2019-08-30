@@ -11,13 +11,13 @@ import {
 	FormPodIndicator,
 	FormPodActions,
 } from '../src';
-import { Alert } from '../../alert/src';
-// import { List } from '../../list/src'; //TODO: implement list
-import { AlertIcon, HeadsetIcon, LiveChatIcon, RefreshIcon } from '../../icon/src';
-import { Button } from '../../button/src';
+import { Alert } from '@westpac/alert';
+// import { List } from '@westpac/list'; //TODO: implement list
+import { HeadsetIcon } from '@westpac/icon';
+import { Button } from '@westpac/button';
 
 export default () => {
-	const { colors, template } = useTheme();
+	const { template } = useTheme();
 
 	// Contact detail data
 	const contactItems = [
@@ -42,7 +42,7 @@ export default () => {
 
 			<FormPod preheading="Preheading" heading="Heading">
 				<FormPodPanel noBorderTop>
-					<Alert appearance="danger" icon={AlertIcon}>
+					<Alert appearance="danger">
 						{/* Nb. Tabindex="-1" for programmatically set focus */}
 						<h3 style={{ marginTop: 0 }} tabIndex="-1">
 							Please fix the 4 errors listed below
@@ -64,7 +64,7 @@ export default () => {
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
 					<FormPodPanelFooter
 						left={<FormPodContactList items={contactItems} />}
-						right={<FormPodIndicator icon={RefreshIcon} />}
+						right={<FormPodIndicator />}
 					/>
 				</FormPodPanel>
 				<FormPodActions

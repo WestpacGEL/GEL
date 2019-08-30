@@ -2,13 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
 import { FormPodContactListItem } from './styled';
-
-// ==============================
-// Utils
-// ==============================
 
 // ==============================
 // Component
@@ -40,7 +36,7 @@ export const FormPodContactList = ({ items, ...props }) => {
 
 FormPodContactList.propTypes = {
 	/**
-	 * An array of contact detail data (objects).
+	 * Array of contact detail data (objects)
 	 */
 	items: PropTypes.arrayOf(
 		PropTypes.shape({

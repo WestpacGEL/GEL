@@ -3,10 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-
-// ==============================
-// Utils
-// ==============================
+import { RefreshIcon } from '@westpac/icon';
 
 // ==============================
 // Component
@@ -29,20 +26,17 @@ export const FormPodIndicator = ({ icon: Icon, text, ...props }) => {
 
 FormPodIndicator.propTypes = {
 	/**
-	 * Indicator icon.
-	 *
-	 * This prop is required.
+	 * Indicator icon
 	 */
-	icon: PropTypes.func.isRequired,
+	icon: PropTypes.func,
 
 	/**
-	 * Indicator text.
-	 *
-	 * Defaults to "Saving"
+	 * Indicator text
 	 */
 	text: PropTypes.string,
 };
 
 FormPodIndicator.defaultProps = {
+	icon: RefreshIcon,
 	text: 'Saving',
 };

@@ -9,11 +9,10 @@ import {
 	FormPodActions,
 	FormPodActionsText,
 } from '../src';
-import { HeadsetIcon, LiveChatIcon, RefreshIcon } from '../../icon/src'; //until icon package is published
-import { Button } from '../../button/src'; //until icon package is published
+import { Button } from '@westpac/button';
 
 export default () => {
-	const { colors, template } = useTheme();
+	const { template } = useTheme();
 
 	return (
 		<>

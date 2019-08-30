@@ -3,7 +3,7 @@ import React from 'react';
 import { Global, useTheme } from '@westpac/core';
 
 import { FormPod, FormPodPanel, FormPodPanelBody } from '../src';
-import { TickIcon } from '../../icon/src'; //until icon package is published
+import { TickIcon } from '@westpac/icon';
 
 export default () => {
 	const { template } = useTheme();

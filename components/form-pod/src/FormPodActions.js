@@ -18,9 +18,9 @@ export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
 	const { breakpoints, formPod } = useTheme();
 	const mq = paint(breakpoints);
 
-	const style = {
+	const common = {
 		display: [null, 'flex'],
-		flexDirection: !reverse ? [null, 'row-reverse'] : null,
+		flexDirection: !reverse && [null, 'row-reverse'],
 		...formPod.actions,
 
 		'button + button': {
@@ -34,7 +34,7 @@ export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
 	];
 
 	return (
-		<div css={mq(style)} {...props}>
+		<div css={mq(common)} {...props}>
 			{reverse ? slots.reverse() : slots}
 		</div>
 	);
@@ -46,12 +46,12 @@ export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
 
 FormPodActions.propTypes = {
 	/**
-	 * Primary 'slot'.
+	 * Primary 'slot'
 	 */
 	primary: PropTypes.node,
 
 	/**
-	 * Secondary 'slot'.
+	 * Secondary 'slot'
 	 */
 	secondary: PropTypes.node,
 

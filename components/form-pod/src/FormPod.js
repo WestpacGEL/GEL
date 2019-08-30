@@ -3,12 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
-
 import { FormPodHeader, FormPodHeaderIcon, FormPodPreheading, FormPodHeading } from './styled';
-
-// ==============================
-// Utils
-// ==============================
 
 // ==============================
 // Component
@@ -48,22 +43,22 @@ export const FormPod = ({ icon, preheading, heading, children, ...props }) => {
 
 FormPod.propTypes = {
 	/**
-	 * Header icon.
-	 */
-	icon: PropTypes.func,
-
-	/**
-	 * Pre-heading text.
+	 * Pre-heading text
 	 */
 	preheading: PropTypes.string,
 
 	/**
-	 * Heading text.
+	 * Heading text
 	 */
 	heading: PropTypes.string,
 
 	/**
-	 * Component children.
+	 * Header icon
+	 */
+	icon: PropTypes.func,
+
+	/**
+	 * Component children
 	 */
 	children: PropTypes.node,
 };
