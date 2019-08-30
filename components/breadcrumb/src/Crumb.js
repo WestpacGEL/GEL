@@ -37,6 +37,7 @@ export const Crumb = ({ children, last, ...props }) => {
 			{children}
 			{!last && (
 				<ArrowRightIcon
+					aria-hidden="true"
 					size="small"
 					color={breadcrumb.separator.color}
 					css={{
