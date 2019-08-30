@@ -170,6 +170,18 @@ export default {
 		borderWidth: '1px',
 	},
 
+	breadcrumb: {
+		padding: '0.6rem 1.8rem',
+		marginBottom: '2.1rem',
+		fontSize: '1.3rem',
+		color: COLORS.text,
+		separator: {
+			marginLeft: '0.3rem',
+			marginRight: '0.3rem',
+			color: COLORS.primary,
+		},
+	},
+
 	button: {
 		borderRadius: '0.3rem',
 		borderWidth: '1px',
