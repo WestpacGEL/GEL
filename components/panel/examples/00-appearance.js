@@ -4,8 +4,22 @@ import { Panel, PanelHeader, PanelBody, PanelFooter } from '../src';
 
 export default () => (
 	<>
-		<h3>Standard</h3>
+		<h2>Default instance (no styling props)</h2>
 		<Panel>
+			<PanelHeader>Panel title</PanelHeader>
+			<PanelBody>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
+				aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
+				eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit amet,
+				consectetur adipisicing elit.
+			</PanelBody>
+			<PanelFooter>Panel footer</PanelFooter>
+		</Panel>
+
+		<hr />
+
+		<h2>Hero</h2>
+		<Panel appearance="hero">
 			<PanelHeader>Panel title</PanelHeader>
 			<PanelBody>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
@@ -25,7 +39,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Faint</h3>
+		<h2>Faint</h2>
 		<Panel appearance="faint">
 			<PanelHeader>Panel title</PanelHeader>
 			<PanelBody>

@@ -8,14 +8,14 @@ import { propTypes, defaultProps } from './Panel';
 // Component
 // ==============================
 
-export const PanelFooter = ({ appearance, responsive, ...props }) => {
+export const PanelFooter = ({ appearance, ...props }) => {
 	const { breakpoints, panel } = useTheme();
 	const mq = paint(breakpoints);
 
 	return (
 		<div
 			css={mq({
-				padding: responsive ? panel.footer.padding.responsive : panel.footer.padding.default,
+				padding: panel.footer.padding,
 				backgroundColor: panel.footer.backgroundColor,
 				borderTop: `${panel.borderWidth} solid ${panel.footer.borderColor}`,
 				borderBottomRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,

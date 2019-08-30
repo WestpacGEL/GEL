@@ -640,10 +640,7 @@ export default {
 		},
 		header: {
 			fontSize: '1.6rem',
-			padding: {
-				default: '1rem 1.2rem',
-				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
-			},
+			padding: ['1rem 1.2rem', '1rem 2.4rem'],
 			appearance: {
 				hero: {
 					color: COLORS.text,
@@ -658,16 +655,10 @@ export default {
 			},
 		},
 		body: {
-			padding: {
-				default: '1.2rem',
-				responsive: ['1.2rem', '2.4rem'],
-			},
+			padding: ['1.2rem', '2.4rem'],
 		},
 		footer: {
-			padding: {
-				default: '1rem 1.2rem',
-				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
-			},
+			padding: ['1rem 1.2rem', '1rem 2.4rem'],
 			backgroundColor: COLORS.light,
 			borderColor: COLORS.border,
 		},
