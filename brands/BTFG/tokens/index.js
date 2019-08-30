@@ -724,10 +724,7 @@ export default {
 		borderWidth: '1px',
 		backgroundColor: COLORS.light,
 		borderColor: COLORS.border,
-		padding: {
-			default: '1.2rem',
-			responsive: ['1.2rem', '2.4rem'],
-		},
+		padding: ['1.2rem', '2.4rem'],
 		marginBottom: '1.8rem',
 	},
 
