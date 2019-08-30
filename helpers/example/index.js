@@ -236,12 +236,7 @@ const SidebarSearch = props => (
 			borderColor: 'rgba(0, 0, 0, 0.075)',
 			boxSizing: 'border-box',
 			fontSize: 'inherit',
-<<<<<<< HEAD
-			outline: 0,
-			padding: '10px 20px',
-=======
 			padding: '1rem 2rem',
->>>>>>> gel-develop
 			width: '100%',
 
 			':focus': {
@@ -260,25 +255,17 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 			color: primaryColor,
 			display: 'block',
 			fontWeight: 500,
-<<<<<<< HEAD
-			outline: 0,
-			padding: '10px 20px',
-=======
 			padding: '1rem 2rem',
->>>>>>> gel-develop
 			fontSize: '1.6rem',
 			textDecoration: 'none',
 
 			':hover, :focus': {
 				background: '#fafbfc',
 				textDecoration: 'inherit',
-<<<<<<< HEAD
-=======
 			},
 
 			':focus': {
 				outlineOffset: -3,
->>>>>>> gel-develop
 			},
 
 			'&.active': {
@@ -301,23 +288,16 @@ const SidebarTitle = props => (
 			display: 'block',
 			fontWeight: 500,
 			fontSize: '2rem',
-<<<<<<< HEAD
-			padding: 20,
-=======
 			padding: '2rem',
->>>>>>> gel-develop
 			textDecoration: 'none',
 
 			':hover, :focus': {
 				textDecoration: 'inherit',
 			},
-<<<<<<< HEAD
-=======
 
 			':focus': {
 				outlineOffset: -3,
 			},
->>>>>>> gel-develop
 		}}
 		{...props}
 	/>

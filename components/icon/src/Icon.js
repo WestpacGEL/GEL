@@ -22,25 +22,6 @@ const IconWrapper = ({ size, ...props }) => {
 	const { colors, breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
-<<<<<<< HEAD
-	// Common styling
-	const styleCommon = {
-		display: 'inline-block',
-		flexShrink: 0,
-		lineHeight: 1,
-		verticalAlign: 'middle',
-		color: colors.muted, //default
-	};
-
-	// Reponsive styling (icon size)
-	const styleResponsive = () => {
-		const sizeArr = asArray(size).map(s => sizeMap[s]);
-
-		return {
-			height: sizeArr,
-			width: sizeArr,
-		};
-=======
 	const style = {
 		// Common styling
 		common: {
@@ -59,7 +40,6 @@ const IconWrapper = ({ size, ...props }) => {
 				width: sizeArr,
 			};
 		})(),
->>>>>>> gel-develop
 	};
 
 	return (
