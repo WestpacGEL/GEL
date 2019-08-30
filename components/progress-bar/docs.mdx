@@ -5,15 +5,24 @@ route: /progress-bar
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { ProgressBar } from './src/ProgressBar';
+import { ProgressBar } from './src';
 
 # ProgressBar
 
 A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.
 
+Set the progress value via the `value` prop.
+
 <Playground>
-	<ProgressBar valuenow="45" />
-	<ProgressBar valuenow="74" skinny />
+	<ProgressBar value={45} />
+</Playground>
+
+## Skinny
+
+Use the `skinny` prop to render a thin ProgressBar.
+
+<Playground>
+	<ProgressBar value={74} skinny />
 </Playground>
 
 ## Props

@@ -656,6 +656,7 @@ export default {
 	progressBar: {
 		borderWidth: '1px',
 		borderColor: COLORS.border,
+		padding: '1px',
 		marginBottom: '2.1rem',
 		fontSize: '1.4rem',
 		fontWeight: 700,

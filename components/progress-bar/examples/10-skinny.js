@@ -5,7 +5,7 @@ import { ProgressBar } from '../src';
 export default () => {
 	return (
 		<>
-			<ProgressBar value={45} />
+			<ProgressBar value={74} skinny />
 		</>
 	);
 };
