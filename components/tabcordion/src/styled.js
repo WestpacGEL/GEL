@@ -16,13 +16,13 @@ export const TabRow = forwardRef((props, ref) => (
 ));
 
 export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props }) => {
-	const theme = useTheme();
+	const { colors } = useTheme();
 	const common = {
 		flex: isJustified ? 1 : 0,
-		fontSize: 'inherit',
-		marginRight: 2,
+		fontSize: '1.6rem',
+		marginRight: '0.2rem',
 		outline: 0,
-		padding: '14px 18px',
+		padding: '1.4rem 1.8rem',
 		textAlign: 'left',
 		textDecoration: 'none',
 		transition: 'background .3s ease',
@@ -34,24 +34,24 @@ export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props 
 	};
 	const styles = {
 		soft: {
-			backgroundColor: isSelected ? '#fff' : theme.colors.background,
+			backgroundColor: isSelected ? '#fff' : colors.background,
 			borderTopLeftRadius: 3,
 			borderTopRightRadius: 3,
-			border: `1px solid ${theme.colors.border}`,
+			border: `1px solid ${colors.border}`,
 			borderBottom: 0,
 			color: '#333',
 			cursor: 'pointer',
-			marginBottom: isSelected ? -1 : null,
-			paddingBottom: isSelected ? 15 : null,
+			marginBottom: isSelected ? '-0.1rem' : null,
+			paddingBottom: isSelected ? '1.5rem' : null,
 		},
 		lego: {
-			backgroundColor: isSelected ? '#fff' : theme.colors.hero.default,
-			border: `1px solid ${isSelected ? theme.colors.border : 'transparent'}`,
+			backgroundColor: isSelected ? '#fff' : colors.hero.default,
+			border: `1px solid ${isSelected ? colors.border : 'transparent'}`,
 			borderBottom: 0,
-			color: isSelected ? theme.colors.text : theme.colors.hero.foreground,
+			color: isSelected ? colors.text : colors.hero.foreground,
 			cursor: 'pointer',
-			marginBottom: isSelected ? -1 : 2,
-			paddingBottom: isSelected ? 17 : null,
+			marginBottom: isSelected ? '-0.1rem' : '0.2rem',
+			paddingBottom: isSelected ? '1.7rem' : null,
 		},
 	};
 
@@ -59,20 +59,20 @@ export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props 
 };
 
 export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => {
-	const theme = useTheme();
+	const { colors } = useTheme();
 	const common = {
 		alignItems: 'center',
-		backgroundColor: theme.colors.background,
+		backgroundColor: colors.background,
 		border: 0,
-		borderTop: `1px solid ${theme.colors.border}`,
-		borderLeft: `1px solid ${theme.colors.border}`,
-		borderRight: `1px solid ${theme.colors.border}`,
+		borderTop: `1px solid ${colors.border}`,
+		borderLeft: `1px solid ${colors.border}`,
+		borderRight: `1px solid ${colors.border}`,
 		cursor: 'pointer',
 		display: 'flex',
-		fontSize: 'inherit',
+		fontSize: '1.6rem',
 		justifyContent: 'space-between',
 		outline: 0,
-		padding: '12px 18px',
+		padding: '1.2rem 1.8rem',
 		position: 'relative',
 		textAlign: 'left',
 		width: '100%',
@@ -80,14 +80,14 @@ export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => 
 	const lastStyles =
 		isLast && !isSelected
 			? {
-					borderBottom: `1px solid ${theme.colors.border}`,
+					borderBottom: `1px solid ${colors.border}`,
 					borderBottomLeftRadius: 3,
 					borderBottomRightRadius: 3,
 			  }
 			: {};
 	const styles = {
 		soft: {
-			borderBottom: isSelected && `1px solid ${theme.colors.border}`,
+			borderBottom: isSelected && `1px solid ${colors.border}`,
 			...lastStyles,
 
 			'&:first-of-type': {
@@ -96,12 +96,12 @@ export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => 
 			},
 		},
 		lego: {
-			borderBottom: isSelected && `1px solid ${theme.colors.border}`,
+			borderBottom: isSelected && `1px solid ${colors.border}`,
 			borderLeftWidth: 6,
-			borderLeftColor: isSelected ? theme.colors.border : theme.colors.hero.default,
+			borderLeftColor: isSelected ? colors.border : colors.hero.default,
 
 			'&:last-of-type': {
-				borderBottom: `1px solid ${theme.colors.border}`,
+				borderBottom: `1px solid ${colors.border}`,
 			},
 		},
 	};
@@ -110,17 +110,16 @@ export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => 
 };
 
 export const Panel = forwardRef(({ appearance, isLast, isSelected, mode, ...props }, ref) => {
-	const theme = useTheme();
+	const { colors, typography } = useTheme();
 	const common = {
-		borderLeft: `1px solid ${theme.colors.border}`,
-		borderRight: `1px solid ${theme.colors.border}`,
-		borderBottom: mode === 'tabs' || isLast ? `1px solid ${theme.colors.border}` : null,
-		borderTop: mode === 'tabs' ? `1px solid ${theme.colors.border}` : null,
-		padding: '24px 3.22%',
+		borderLeft: `1px solid ${colors.border}`,
+		borderRight: `1px solid ${colors.border}`,
+		borderBottom: mode === 'tabs' || isLast ? `1px solid ${colors.border}` : null,
+		borderTop: mode === 'tabs' ? `1px solid ${colors.border}` : null,
+		padding: '2.4rem 3.22%',
 
 		'&:focus': {
-			outline: '2px dotted #000',
-			outlineOffset: '.5rem',
+			...typography.link.focus,
 		},
 	};
 	const styles =
@@ -128,7 +127,7 @@ export const Panel = forwardRef(({ appearance, isLast, isSelected, mode, ...prop
 			? {
 					lego: {
 						borderLeftWidth: 6,
-						borderLeftColor: theme.colors.border,
+						borderLeftColor: colors.border,
 					},
 					soft: isLast
 						? {

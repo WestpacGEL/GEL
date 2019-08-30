@@ -5,48 +5,43 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
 export const Panel = ({ appearance, responsive, children, ...props }) => {
 	const { panel } = useTheme();
 
-	// Common styles
 	const common = {
-		marginBottom: '21px',
+		marginBottom: panel.marginBottom,
 		backgroundColor: panel.backgroundColor,
 		border: `${panel.borderWidth} solid ${panel.appearance[appearance].borderColor}`,
 		borderRadius: panel.borderRadius,
 
 		// Child table styling
-		'.table-wrapper': {
-			border: 'none',
+		'.table-responsive': {
+			border: 0,
 			marginBottom: 0,
 		},
-		'.table': {
+		table: {
 			overflow: 'hidden', //clip overflow for rounded corners
 			marginBottom: 0,
 			borderBottomRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 			borderBottomLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 		},
-		'.table caption': {
+		'table caption': {
 			padding: `${panel.body.padding.default} ${panel.body.padding.default} 0 ${
 				panel.body.padding.default
 			}`,
 		},
 	};
 
-	// Pass these selected props on to children
+	// Pass the selected props on to children
 	const giftedChildren = Children.map(children, child =>
-		cloneElement(child, { appearance, responsive, ...child.props })
+		cloneElement(child, { appearance, responsive })
 	);
 
 	return (
-		<div css={{ ...common }} {...props}>
+		<div css={common} {...props}>
 			{giftedChildren}
 		</div>
 	);
@@ -60,28 +55,29 @@ const options = {
 	appearance: ['hero', 'faint'],
 };
 
-Panel.propTypes = {
+export const propTypes = {
 	/**
-	 * The panel appearance.
-	 *
-	 * Defaults to "hero"
+	 * Panel appearance
 	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
 	 * Responsive mode.
 	 *
-	 * Defaults to "false"
+	 * This option extends padding in larger breakpoints (SM+).
 	 */
 	responsive: PropTypes.bool,
 
 	/**
-	 * The content for this panel.
+	 * Panel content
 	 */
 	children: PropTypes.node,
 };
 
-Panel.defaultProps = {
+export const defaultProps = {
 	appearance: 'hero',
 	responsive: false,
 };
+
+Panel.propTypes = propTypes;
+Panel.defaultProps = defaultProps;

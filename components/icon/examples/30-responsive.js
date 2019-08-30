@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { Fragment, useState } from 'react';
 import { jsx } from '@westpac/core';
@@ -19,7 +19,11 @@ import {
 } from '../src';
 import { Row } from './_util';
 
-const sizes = [['small', 'medium', 'large', 'xlarge'], ['large', 'medium']];
+const sizes = [
+	['small', 'medium', 'large', 'xlarge'],
+	['large', 'medium'],
+	['small', null, 'large'],
+];
 const icons = [
 	AddIcon,
 	CalendarIcon,
@@ -41,7 +45,7 @@ export default () => {
 			<h2>Size</h2>
 			{sizes.map((s, i) => (
 				<Fragment key={i}>
-					<h3>[{s.join(', ')}]</h3>
+					<h3>[{s.map(v => String(v)).join(', ')}]</h3>
 					<Row style={{ gridGap: (i + 1) * 4, marginBottom: '2em' }}>
 						{icons.map((I, x) => (
 							<I key={x} size={s} />

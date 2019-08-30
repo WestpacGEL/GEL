@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -22,6 +22,7 @@ const IconWrapper = ({ size, ...props }) => {
 	const { colors, breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
+<<<<<<< HEAD
 	// Common styling
 	const styleCommon = {
 		display: 'inline-block',
@@ -39,13 +40,33 @@ const IconWrapper = ({ size, ...props }) => {
 			height: sizeArr,
 			width: sizeArr,
 		};
+=======
+	const style = {
+		// Common styling
+		common: {
+			display: 'inline-block',
+			flexShrink: 0,
+			lineHeight: 1,
+			verticalAlign: 'middle',
+		},
+
+		// Reponsive styling (icon size)
+		responsive: (() => {
+			const sizeArr = asArray(size).map(s => s && sizeMap[s]);
+
+			return {
+				height: sizeArr,
+				width: sizeArr,
+			};
+		})(),
+>>>>>>> gel-develop
 	};
 
 	return (
 		<span
 			css={mq({
-				...styleCommon,
-				...styleResponsive(),
+				...style.common,
+				...style.responsive,
 			})}
 			{...props}
 		/>
@@ -57,11 +78,17 @@ const IconWrapper = ({ size, ...props }) => {
 // ==============================
 
 export const Icon = ({ children, color, label, size, ...props }) => {
+	const { colors } = useTheme();
+
 	// TODO Investigate:
 	// I suspect that using the style attribute to apply the color property will
 	// improve CSS reuse.
 	return (
+<<<<<<< HEAD
 		<IconWrapper size={size} style={{ color }} {...props}>
+=======
+		<IconWrapper size={size} style={{ color: color ? color : colors.muted }} {...props}>
+>>>>>>> gel-develop
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
@@ -61,9 +61,9 @@ const App = ({ components, packageName }) => {
 							p > code {
 								background-color: #ffebe6;
 								color: #bf2600;
-								border-radius: 3px;
+								border-radius: '0.3rem';
 								display: inline-block;
-								padding: 1px 3px;
+								padding: '0.1rem 0.3rem';
 							}
 						`}
 					/>
@@ -231,17 +231,22 @@ const SidebarSearch = props => (
 	<input
 		css={{
 			background: 0,
-			borderWidth: '1px 0px',
+			borderWidth: '1px 0',
 			borderStyle: 'solid',
 			borderColor: 'rgba(0, 0, 0, 0.075)',
 			boxSizing: 'border-box',
 			fontSize: 'inherit',
+<<<<<<< HEAD
 			outline: 0,
 			padding: '10px 20px',
+=======
+			padding: '1rem 2rem',
+>>>>>>> gel-develop
 			width: '100%',
 
 			':focus': {
 				background: 'rgba(0,0,0,0.04)',
+				outlineOffset: -3,
 			},
 		}}
 		{...props}
@@ -255,14 +260,25 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 			color: primaryColor,
 			display: 'block',
 			fontWeight: 500,
+<<<<<<< HEAD
 			outline: 0,
 			padding: '10px 20px',
+=======
+			padding: '1rem 2rem',
+>>>>>>> gel-develop
 			fontSize: '1.6rem',
 			textDecoration: 'none',
 
 			':hover, :focus': {
 				background: '#fafbfc',
 				textDecoration: 'inherit',
+<<<<<<< HEAD
+=======
+			},
+
+			':focus': {
+				outlineOffset: -3,
+>>>>>>> gel-develop
 			},
 
 			'&.active': {
@@ -285,12 +301,23 @@ const SidebarTitle = props => (
 			display: 'block',
 			fontWeight: 500,
 			fontSize: '2rem',
+<<<<<<< HEAD
 			padding: 20,
+=======
+			padding: '2rem',
+>>>>>>> gel-develop
 			textDecoration: 'none',
 
 			':hover, :focus': {
 				textDecoration: 'inherit',
 			},
+<<<<<<< HEAD
+=======
+
+			':focus': {
+				outlineOffset: -3,
+			},
+>>>>>>> gel-develop
 		}}
 		{...props}
 	/>
@@ -317,8 +344,8 @@ const SidebarSwitch = ({ isChecked, ...props }) => (
 			flex: 1,
 			fontWeight: 500,
 			justifyContent: 'center',
-			paddingBottom: 12,
-			paddingTop: 12,
+			paddingBottom: '1.2rem',
+			paddingTop: '1.2rem',
 			textAlign: 'center',
 
 			input: {

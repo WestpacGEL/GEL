@@ -1,13 +1,20 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+<<<<<<< HEAD
 import { Global, css, jsx } from '@emotion/core';
 import merge from 'lodash.merge';
+=======
+import { jsx } from '@emotion/core';
+import { Core } from './Core';
+>>>>>>> gel-develop
 
 // TODO: is there a useful "default" value we should add here?
 export const ThemeContext = createContext();
+
+export const UserModeContext = createContext(false);
 
 export const useTheme = () => {
 	const themeObject = useContext(ThemeContext);
@@ -20,6 +27,7 @@ export const useTheme = () => {
 	return themeObject;
 };
 
+<<<<<<< HEAD
 // ==============================
 // Utils
 // ==============================
@@ -307,6 +315,43 @@ const Brand = ({ children, ...props }) => {
 			<Global styles={merge(styleReset, styleType, styleFont, styleTextExtensions)} />
 			{children}
 		</>
+=======
+export const useIsKeyboardUser = () => {
+	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
+
+	// Handle keys
+	const keyHandler = event => {
+		if (event.key === 'Tab') {
+			setIsKeyboardUser(true);
+			document.removeEventListener('keydown', keyHandler);
+		}
+	};
+
+	// Bind key events
+	useEffect(() => {
+		window.document.addEventListener('keydown', keyHandler);
+		return () => {
+			window.document.removeEventListener('keydown', keyHandler);
+		};
+	}, []);
+
+	return isKeyboardUser;
+};
+
+// ==============================
+// Component
+// ==============================
+
+export const GEL = ({ brand, children, ...props }) => {
+	const isKeyboardUser = useIsKeyboardUser();
+
+	return (
+		<UserModeContext.Provider value={isKeyboardUser} {...props}>
+			<ThemeContext.Provider value={brand} {...props}>
+				<Core>{children}</Core>
+			</ThemeContext.Provider>
+		</UserModeContext.Provider>
+>>>>>>> gel-develop
 	);
 };
 

@@ -2,10 +2,7 @@
 
 import React from 'react';
 import { jsx, useTheme, paint } from '@westpac/core';
-
-// ==============================
-// Utils
-// ==============================
+import { propTypes, defaultProps } from './Panel';
 
 // ==============================
 // Component
@@ -27,4 +24,12 @@ export const PanelFooter = ({ appearance, responsive, ...props }) => {
 			{...props}
 		/>
 	);
+};
+
+PanelFooter.propTypes = {
+	...propTypes,
+};
+
+PanelFooter.defaultProps = {
+	...defaultProps,
 };

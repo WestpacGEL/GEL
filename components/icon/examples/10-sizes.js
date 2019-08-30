@@ -1,4 +1,4 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { useState } from 'react';
 import { jsx } from '@westpac/core';
@@ -45,7 +45,7 @@ const Button = ({ children, isActive, ...props }) => (
 			cursor: 'pointer',
 			display: 'inline-block',
 			fontSize: 12,
-			padding: '4px 8px',
+			padding: '0.4rem 0.8rem',
 		}}
 		{...props}
 	>

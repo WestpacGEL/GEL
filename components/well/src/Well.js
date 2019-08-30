@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
@@ -16,7 +12,6 @@ export const Well = ({ responsive, ...props }) => {
 	const { breakpoints, well } = useTheme();
 	const mq = paint(breakpoints);
 
-	// Common styles
 	const common = {
 		padding: responsive ? well.padding.responsive : well.padding.default,
 		marginBottom: well.marginBottom,
@@ -27,7 +22,7 @@ export const Well = ({ responsive, ...props }) => {
 		// Nested Well styling
 		'& &': {
 			backgroundColor: '#fff',
-			margin: '12px 0',
+			margin: '1.2rem 0',
 		},
 	};
 
@@ -40,9 +35,7 @@ export const Well = ({ responsive, ...props }) => {
 
 Well.propTypes = {
 	/**
-	 * Responsive mode.
-	 *
-	 * Defaults to "false"
+	 * Responsive mode
 	 */
 	responsive: PropTypes.bool,
 };
