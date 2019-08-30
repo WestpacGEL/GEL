@@ -84,11 +84,7 @@ export const Icon = ({ children, color, label, size, ...props }) => {
 	// I suspect that using the style attribute to apply the color property will
 	// improve CSS reuse.
 	return (
-<<<<<<< HEAD
-		<IconWrapper size={size} style={{ color }} {...props}>
-=======
 		<IconWrapper size={size} style={{ color: color ? color : colors.muted }} {...props}>
->>>>>>> gel-develop
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"
