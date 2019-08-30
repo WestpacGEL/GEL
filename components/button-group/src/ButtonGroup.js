@@ -10,7 +10,7 @@ import { jsx } from '@westpac/core';
 
 export const ButtonGroup = ({ appearance, size, block, name, children, ...props }) => {
 	// Pass the selected props on to children
-	const giftedChildren = Children.map(children, child =>
+	const childrenWithProps = Children.map(children, child =>
 		cloneElement(child, { appearance, size, name })
 	);
 
@@ -23,7 +23,7 @@ export const ButtonGroup = ({ appearance, size, block, name, children, ...props 
 			}}
 			{...props}
 		>
-			{giftedChildren}
+			{childrenWithProps}
 		</div>
 	);
 };

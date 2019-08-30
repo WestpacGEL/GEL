@@ -10,11 +10,11 @@ import { jsx } from '@westpac/core';
 
 export const FormCheck = ({ type, name, size, inline, flipped, children, ...props }) => {
 	// Pass the selected props on to children
-	const giftedChildren = Children.map(children, child =>
+	const childrenWithProps = Children.map(children, child =>
 		cloneElement(child, { type, name, size, inline, flipped })
 	);
 
-	return <div {...props}>{giftedChildren}</div>;
+	return <div {...props}>{childrenWithProps}</div>;
 };
 
 // ==============================
