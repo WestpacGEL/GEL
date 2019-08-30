@@ -60,18 +60,6 @@ export const GEL = ({ brand, children, ...props }) => {
 	);
 };
 
-// ==============================
-// Component
-// ==============================
-
-export const GEL = ({ brand, children, ...props }) => {
-	return (
-		<ThemeContext.Provider value={brand} {...props}>
-			<Brand>{children}</Brand>
-		</ThemeContext.Provider>
-	);
-};
-
 GEL.propTypes = {
 	// TODO `object` --> `shape`
 	brand: PropTypes.oneOfType([
