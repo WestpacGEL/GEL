@@ -178,13 +178,13 @@ export default {
 	},
 
 	breadcrumb: {
-		padding: '6px 18px',
-		marginBottom: '21px',
-		fontSize: '13px',
+		padding: '0.6rem 1.8rem',
+		marginBottom: '2.1rem',
+		fontSize: '1.3rem',
 		color: COLORS.text,
 		separator: {
-			marginLeft: '3px',
-			marginRight: '3px',
+			marginLeft: '0.3rem',
+			marginRight: '0.3rem',
 			color: COLORS.primary,
 		},
 	},
