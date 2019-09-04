@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { TextInput } from '../src';
 
+// Example options
 const options = ['Select', '1', '2', '3'];
 
 export default () => (

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Button } from '@westpac/button';
 import { TextInput } from '@westpac/text-input';
 

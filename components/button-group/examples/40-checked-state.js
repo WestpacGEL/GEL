@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ButtonGroup, ButtonGroupButton } from '../src';
 
 export default () => (

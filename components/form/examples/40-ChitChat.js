@@ -1,6 +1,4 @@
 import React from 'react';
-import { Box } from './_utils';
-
 import { Form, FormSection, ChitChat } from '../src';
 
 export default () => (

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { SrOnly } from '../src';
 
 export default () => (

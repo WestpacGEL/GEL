@@ -3,9 +3,6 @@
 import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { PanelHeader } from './PanelHeader';
-import { PanelBody } from './PanelBody';
-import { PanelFooter } from './PanelFooter';
 
 // ==============================
 // Component

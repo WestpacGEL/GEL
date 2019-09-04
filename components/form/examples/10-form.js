@@ -1,9 +1,8 @@
 import React from 'react';
-import { Box } from './_utils';
-
 import { Form, FormGroup } from '../src';
-import { TextInput } from '../../text-input/src';
-import { Button } from '../../button/src';
+import { Box } from './_utils';
+import { TextInput } from '@westpac/text-input';
+import { Button } from '@westpac/button';
 
 export default () => (
 	<>

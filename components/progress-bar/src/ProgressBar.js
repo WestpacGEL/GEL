@@ -32,6 +32,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 			position: 'relative',
 
 			'::after': {
+				display: skinny && 'none',
 				content: '"0%"',
 				position: 'absolute',
 				left: '1rem',

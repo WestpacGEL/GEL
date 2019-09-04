@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Panel, PanelHeader, PanelBody, PanelFooter } from '../src';
 
 export default () => (

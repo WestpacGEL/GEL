@@ -1,9 +1,7 @@
 import React, { Fragment } from 'react';
-
 import { TextInput } from '../src';
-import { Form } from '../../form/src';
-import { Button } from '../../button/src';
-import { FormGroup } from '../../form/src';
+import { Form } from '@westpac/form';
+import { Button } from '@westpac/button';
 
 const options = ['Select', '1', '2', '3'];
 const sizes = ['small', 'medium', 'large', 'xlarge'];

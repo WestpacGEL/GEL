@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
-
 import { TextInput } from '../src';
-import { Form } from '../../form/src';
-import { Button } from '../../button/src';
+import { Form } from '@westpac/form';
+import { Button } from '@westpac/button';
 
 const sizes = ['small', 'medium', 'large', 'xlarge'];
 const widths = [2, 3, 4, 5, 10, 20, 30];

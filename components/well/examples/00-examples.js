@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Well } from '../src';
 
 export default () => (
