@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Panel, PanelHeader, PanelBody, PanelFooter } from '../src';
 import { Table } from '@westpac/table';
 

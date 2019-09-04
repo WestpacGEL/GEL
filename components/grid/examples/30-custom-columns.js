@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Cell, Grid } from '../src';
 import { Box } from './_utils';
 

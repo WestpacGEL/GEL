@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { FavouriteIcon } from '../src';
 import { Row } from './_util';
 

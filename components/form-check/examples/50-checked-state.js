@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { FormCheck, FormCheckItem } from '../src';
 
 export default () => (

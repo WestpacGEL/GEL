@@ -1,9 +1,7 @@
 import React from 'react';
-import { Box } from './_utils';
-
 import { FormGroup, ErrorMessage } from '../src';
-import { TextInput } from '../../text-input/src';
-import { CarIcon } from '../../icon/src';
+import { TextInput } from '@westpac/text-input';
+import { CarIcon } from '@westpac/icon';
 
 export default () => (
 	<>

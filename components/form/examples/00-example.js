@@ -1,6 +1,4 @@
 import React from 'react';
-import { Box } from './_utils';
-
 import {
 	Form,
 	ChitChat,
@@ -13,8 +11,7 @@ import {
 	FormLabel,
 	FormSection,
 } from '../src';
-
-import { TextInput } from '../../text-input/src';
+import { TextInput } from '@westpac/text-input';
 
 export default () => (
 	<>

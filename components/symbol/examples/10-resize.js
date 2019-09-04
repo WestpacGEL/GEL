@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { MastercardAcceptedSymbol } from '../src';
 
 export default () => (

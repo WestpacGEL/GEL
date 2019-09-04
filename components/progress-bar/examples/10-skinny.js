@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ProgressBar } from '../src';
 
 export default () => {

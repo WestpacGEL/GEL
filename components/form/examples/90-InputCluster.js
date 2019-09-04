@@ -1,8 +1,6 @@
 import React from 'react';
-import { Box } from './_utils';
-
 import { Form, FormGroup, InputCluster, InputClusterItem, FormLabel } from '../src';
-import { TextInput } from '../../text-input/src';
+import { TextInput } from '@westpac/text-input';
 
 export default () => (
 	<>

@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
-import { FormContext } from '../../form/src';
+import { FormContext } from '@westpac/form';
 
 import svgToTinyDataURI from 'mini-svg-data-uri';
 

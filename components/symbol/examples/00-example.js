@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
 	MastercardAcceptedSymbol,
 	BPayLandSymbol,
@@ -9,6 +8,7 @@ import {
 } from '../src';
 import { Cell, Grid, Name } from './_util';
 
+// Examples
 const symbols = [MastercardAcceptedSymbol, BPayLandSymbol, AppleStoreSymbol, WBCLogo, STGLogo];
 
 export default () => (
