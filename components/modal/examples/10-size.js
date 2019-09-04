@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
-import { Button } from '@westpac/button';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from '../src';
+import { Button } from '@westpac/button';
 
 export default () => {
 	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };

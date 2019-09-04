@@ -13,13 +13,14 @@ import { jsx, useTheme } from '@westpac/core';
  */
 export const ListGroup = ({ children }) => {
 	const { listGroup } = useTheme();
+
 	const common = {
 		listStyle: 'none',
 		margin: listGroup.margin,
 		padding: listGroup.padding,
 		display: 'inline-block',
 		border: `${listGroup.borderWidth} solid ${listGroup.borderColor}`,
-		borderBottom: '0 none',
+		borderBottom: 0,
 		borderRadius: listGroup.borderRadius,
 
 		'@media print': {
@@ -36,7 +37,7 @@ export const ListGroup = ({ children }) => {
 
 ListGroup.propTypes = {
 	/**
-	 * The content for this list group.
+	 * The content for this list group
 	 */
 	children: PropTypes.node.isRequired,
 };

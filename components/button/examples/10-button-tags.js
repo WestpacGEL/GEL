@@ -4,9 +4,9 @@ import { Button } from '../src';
 
 export default () => (
 	<>
-		<h3>
+		<h2>
 			Button with an <code>&lt;a&gt;</code> tag
-		</h3>
+		</h2>
 		<p>
 			<Button href="#0">Link</Button>{' '}
 			<Button href="#0" appearance="link">
@@ -16,9 +16,9 @@ export default () => (
 
 		<hr />
 
-		<h3>
+		<h2>
 			Button with a <code>&lt;button&gt;</code> tag
-		</h3>
+		</h2>
 		<p>
 			<Button type="button">Button</Button> <Button type="reset">Reset</Button>{' '}
 			<Button type="submit">Submit</Button>
@@ -26,9 +26,9 @@ export default () => (
 
 		<hr />
 
-		<h3>
+		<h2>
 			Button with an <code>&lt;input&gt;</code> tag
-		</h3>
+		</h2>
 		<p>
 			<Button tag="input" type="button" value="Button" />{' '}
 			<Button tag="input" type="reset" value="Reset" />{' '}

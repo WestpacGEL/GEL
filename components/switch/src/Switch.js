@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
 import shortid from 'shortid';
-
 import { SwitchText, SwitchToggle } from './styled';
 
 // ==============================
@@ -13,15 +12,16 @@ import { SwitchText, SwitchToggle } from './styled';
 
 export const Switch = ({
 	name,
+	value,
 	toggleText,
 	size,
 	block,
-	flip,
+	flipped,
 	srOnlyText,
 	checked,
 	disabled,
-	children,
 	onChange,
+	children,
 	...props
 }) => {
 	const { switch: formSwitch } = useTheme();
@@ -49,11 +49,11 @@ export const Switch = ({
 		display: block ? 'flex' : 'inline-flex',
 		flexWrap: 'wrap',
 		verticalAlign: 'middle',
-		marginRight: block ? null : formSwitch.marginRight,
+		marginRight: !block && formSwitch.marginRight,
 		marginBottom: formSwitch.marginBottom,
 		alignItems: 'center',
-		width: block ? '100%' : null,
-		flexDirection: flip ? 'row-reverse' : null,
+		width: block && '100%',
+		flexDirection: flipped && 'row-reverse',
 
 		':hover': {
 			cursor: 'pointer',
@@ -71,12 +71,13 @@ export const Switch = ({
 				}}
 				name={name}
 				id={switchId}
+				value={value}
 				checked={isChecked}
 				disabled={disabled}
 				onChange={toggle}
 			/>
 			{children && (
-				<SwitchText block={block} flip={flip} size={size} srOnlyText={srOnlyText}>
+				<SwitchText block={block} flipped={flipped} size={size} srOnlyText={srOnlyText}>
 					{children}
 				</SwitchText>
 			)}
@@ -95,9 +96,14 @@ const options = {
 
 Switch.propTypes = {
 	/**
-	 * Input element name attribute
+	 * Switch input element name
 	 */
 	name: PropTypes.string,
+
+	/**
+	 * Switch input element value
+	 */
+	value: PropTypes.string,
 
 	/**
 	 * On/off text.
@@ -107,7 +113,7 @@ Switch.propTypes = {
 	toggleText: PropTypes.arrayOf(PropTypes.string),
 
 	/**
-	 * Form switch size
+	 * Switch size
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(options.size),
@@ -122,7 +128,7 @@ Switch.propTypes = {
 	/**
 	 * Reverse the horizontal orientation. Renders the toggle on the left of the label text.
 	 */
-	flip: PropTypes.bool,
+	flipped: PropTypes.bool,
 
 	/**
 	 * Enable ‘screen reader only’ label text mode.
@@ -140,23 +146,23 @@ Switch.propTypes = {
 	disabled: PropTypes.bool,
 
 	/**
+	 * The onChange handler for this switch
+	 */
+	onChange: PropTypes.func,
+
+	/**
 	 * Label text.
 	 *
 	 * This prop is required, but can be visually hidden by enabling "srOnlyText" mode.
 	 */
 	children: PropTypes.string.isRequired,
-
-	/**
-	 * The onChange handler for this switch
-	 */
-	onChange: PropTypes.func,
 };
 
 Switch.defaultProps = {
 	size: 'medium',
 	toggleText: ['On', 'Off'],
 	block: false,
-	flip: false,
+	flipped: false,
 	srOnlyText: false,
 	checked: false,
 	disabled: false,

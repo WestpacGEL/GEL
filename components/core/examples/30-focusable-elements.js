@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Button } from '../../button/src';
-import { TextInput } from '../../text-input/src';
+import { Button } from '@westpac/button';
+import { TextInput } from '@westpac/text-input';
 
 export default () => (
 	<>

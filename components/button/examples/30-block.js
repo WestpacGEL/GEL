@@ -4,7 +4,7 @@ import { Button } from '../src';
 
 export default () => (
 	<>
-		<h3>Default buttons</h3>
+		<h2>Default</h2>
 		<p>
 			<Button appearance="primary" size="xlarge" block>
 				Primary extra large block button
@@ -28,7 +28,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Soft buttons</h3>
+		<h2>Soft</h2>
 		<p>
 			<Button appearance="primary" size="xlarge" soft block>
 				Primary extra large soft block button

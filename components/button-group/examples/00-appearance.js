@@ -1,51 +1,50 @@
 import React from 'react';
 
 import { ButtonGroup, ButtonGroupButton } from '../src';
-// import ButtonGroup from '@westpac/button-group';
 
 export default () => (
 	<>
-		<h3>Default instance (no styling props)</h3>
+		<h2>Default instance (no styling props)</h2>
 		<ButtonGroup name="example-default">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
+			<ButtonGroupButton value="left">Left</ButtonGroupButton>
+			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+			<ButtonGroupButton value="right">Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
-		<h3>Primary</h3>
+		<h2>Primary</h2>
 		<ButtonGroup appearance="primary" name="example-primary">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
+			<ButtonGroupButton value="left">Left</ButtonGroupButton>
+			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+			<ButtonGroupButton value="right">Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
-		<h3>Hero</h3>
+		<h2>Hero</h2>
 		<ButtonGroup appearance="hero" name="example-hero">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
+			<ButtonGroupButton value="left">Left</ButtonGroupButton>
+			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+			<ButtonGroupButton value="right">Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
-		<h3>Neutral</h3>
+		<h2>Neutral</h2>
 		<ButtonGroup appearance="neutral" name="example-neutral">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
+			<ButtonGroupButton value="left">Left</ButtonGroupButton>
+			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+			<ButtonGroupButton value="right">Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
-		<h3>Faint</h3>
+		<h2>Faint</h2>
 		<ButtonGroup appearance="faint" name="example-faint">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
+			<ButtonGroupButton value="left">Left</ButtonGroupButton>
+			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+			<ButtonGroupButton value="right">Right</ButtonGroupButton>
 		</ButtonGroup>
 	</>
 );

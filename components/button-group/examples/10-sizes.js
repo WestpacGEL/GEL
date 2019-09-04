@@ -1,42 +1,41 @@
 import React from 'react';
 
 import { ButtonGroup, ButtonGroupButton } from '../src';
-// import ButtonGroup from '@westpac/button-group';
 
 export default () => (
 	<>
-		<h3>Small</h3>
+		<h2>Small</h2>
 		<ButtonGroup size="small" name="example-small">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
+			<ButtonGroupButton value="left">Left</ButtonGroupButton>
+			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+			<ButtonGroupButton value="right">Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
-		<h3>Medium</h3>
+		<h2>Medium</h2>
 		<ButtonGroup size="medium" name="example-medium">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
+			<ButtonGroupButton value="left">Left</ButtonGroupButton>
+			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+			<ButtonGroupButton value="right">Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
-		<h3>Large</h3>
+		<h2>Large</h2>
 		<ButtonGroup size="large" name="example-large">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
+			<ButtonGroupButton value="left">Left</ButtonGroupButton>
+			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+			<ButtonGroupButton value="right">Right</ButtonGroupButton>
 		</ButtonGroup>
 
 		<hr />
 
-		<h3>Extra large</h3>
+		<h2>Extra large</h2>
 		<ButtonGroup size="xlarge" name="example-xlarge">
-			<ButtonGroupButton>Left</ButtonGroupButton>
-			<ButtonGroupButton>Middle</ButtonGroupButton>
-			<ButtonGroupButton>Right</ButtonGroupButton>
+			<ButtonGroupButton value="left">Left</ButtonGroupButton>
+			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
+			<ButtonGroupButton value="right">Right</ButtonGroupButton>
 		</ButtonGroup>
 	</>
 );
