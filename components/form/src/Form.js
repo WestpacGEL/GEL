@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { createContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 import { FormProvider } from './Form.context';
