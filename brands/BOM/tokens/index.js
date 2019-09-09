@@ -676,6 +676,39 @@ export default {
 		},
 	},
 
+	inputGroup: {
+		addon: {
+			fontWeight: '400',
+			lineHeight: '1.5',
+			backgroundColor: COLORS.light,
+			borderRadius: '3px',
+			border: '1px solid',
+			borderColor: COLORS.borderDark,
+			size: {
+				small: {
+					fontSize: '1.4rem',
+					padding: '0.3rem 0.9rem 0.4rem',
+					height: '3rem',
+				},
+				medium: {
+					fontSize: '1.6rem',
+					padding: '0.5rem 1.2rem',
+					height: '3.6rem',
+				},
+				large: {
+					fontSize: '1.6rem',
+					padding: '0.8rem 1.5rem',
+					height: '4.2rem',
+				},
+				xlarge: {
+					fontSize: '1.8rem',
+					padding: '0.9rem 1.8rem 1rem',
+					height: '4.8rem',
+				},
+			},
+		},
+	},
+
 	modal: {
 		backgroundColor: '#fff',
 		borderRadius: '3px',
