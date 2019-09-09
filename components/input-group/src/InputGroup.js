@@ -66,10 +66,32 @@ export const InputGroup = ({ size, appearance, children, ...props }) => {
 // Types
 // ==============================
 
+const options = {
+	appearance: ['primary', 'hero', 'neutral', 'faint', 'link'],
+	size: ['small', 'medium', 'large', 'xlarge'],
+	tag: ['select'],
+};
+
 InputGroup.propTypes = {
 	/**
-	 * Describe `someProperty` here
+	 * InputGroup size
 	 */
+	size: PropTypes.oneOf(options.size),
+
+	/**
+	 * Button appearance
+	 */
+	appearance: PropTypes.oneOf(options.appearance),
+
+	/**
+	 * Button tag
+	 */
+	tag: PropTypes.oneOf(options.tag),
+
+	/**
+	 * InputGroup children
+	 */
+	children: PropTypes.node.isRequired,
 };
 
 InputGroup.defaultProps = {

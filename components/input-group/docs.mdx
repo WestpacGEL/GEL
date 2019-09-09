@@ -5,14 +5,88 @@ route: /input-group
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { InputGroup } from './src/InputGroup';
+import { InputGroup, InputGroupAddon } from './src';
+import { Button } from '../button/src';
+import { TextInput } from '../text-input/src';
 
 # InputGroup
 
-Write your docs here
+Styled input fields with attached addons. Addons can be text (\$, %, .00 etc) or form controls (buttons or select inputs).
+
+Input addon elements can be positioned at either end of input fields and you may use multiple addons if necessary.
+
+## Addon
 
 <Playground>
-	<InputGroup />
+	<InputGroup>
+		<InputGroupAddon>AUS $</InputGroupAddon>
+		<TextInput />
+	</InputGroup>
+	<br />
+	<InputGroup>
+		<TextInput />
+		<InputGroupAddon>AUS $</InputGroupAddon>
+	</InputGroup>
+</Playground>
+
+## Button
+
+<Playground>
+	<InputGroup appearance="hero">
+		<TextInput />
+		<Button>Go</Button>
+	</InputGroup>
+</Playground>
+
+## select
+
+<Playground>
+	<InputGroup>
+		<TextInput tag="select">
+			<option>Select</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</TextInput>
+		<TextInput />
+	</InputGroup>
+	<br />
+	<InputGroup>
+		<TextInput />
+		<TextInput tag="select">
+			<option>Select</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</TextInput>
+	</InputGroup>
+</Playground>
+
+## Combination
+
+<Playground>
+	<InputGroup>
+		<InputGroupAddon>AUS $</InputGroupAddon>
+		<TextInput />
+		<InputGroupAddon>.00</InputGroupAddon>
+	</InputGroup>
+	<br />
+	<InputGroup appearance="hero">
+		<InputGroupAddon>AUS $</InputGroupAddon>
+		<TextInput />
+		<Button>Go</Button>
+	</InputGroup>
+	<br />
+	<InputGroup>
+		<InputGroupAddon>AUS $</InputGroupAddon>
+		<TextInput />
+		<TextInput tag="select">
+			<option>Select</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</TextInput>
+	</InputGroup>
 </Playground>
 
 <PropsTable of={InputGroup} />
