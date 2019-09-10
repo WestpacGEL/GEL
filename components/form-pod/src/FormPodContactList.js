@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
-
 import { FormPodContactListItem } from './styled';
 
 // ==============================

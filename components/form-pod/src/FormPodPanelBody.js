@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 

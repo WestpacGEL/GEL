@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { forwardRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 
@@ -11,13 +11,16 @@ export const FormPodHeader = ({ align, ...props }) => {
 	const { breakpoints, formPod } = useTheme();
 	const mq = paint(breakpoints);
 
-	const style = {
-		position: 'relative',
-		textAlign: align,
-		...formPod.header,
-	};
-
-	return <div css={mq(style)} {...props} />;
+	return (
+		<div
+			css={mq({
+				position: 'relative',
+				textAlign: align,
+				...formPod.header,
+			})}
+			{...props}
+		/>
+	);
 };
 
 /**
@@ -52,12 +55,15 @@ export const FormPodPreheading = ({ tag: Tag, ...props }) => {
 	const { breakpoints, formPod } = useTheme();
 	const mq = paint(breakpoints);
 
-	const style = {
-		display: [null, null, 'none'],
-		...formPod.preheading,
-	};
-
-	return <Tag css={mq(style)} {...props} />;
+	return (
+		<Tag
+			css={mq({
+				display: [null, null, 'none'],
+				...formPod.preheading,
+			})}
+			{...props}
+		/>
+	);
 };
 
 /**
@@ -76,14 +82,17 @@ export const FormPodActionsPrimary = props => {
 	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
-	const style = {
-		display: ['flex', 'block'],
-		flex: '0 0 auto',
-		justifyContent: 'space-between',
-		marginLeft: [null, 'auto'], //flex auto-position right
-	};
-
-	return <div css={mq(style)} {...props} />;
+	return (
+		<div
+			css={mq({
+				display: ['flex', 'block'],
+				flex: '0 0 auto',
+				justifyContent: 'space-between',
+				marginLeft: [null, 'auto'], //flex auto-position right
+			})}
+			{...props}
+		/>
+	);
 };
 
 /**
@@ -93,13 +102,16 @@ export const FormPodActionsSecondary = props => {
 	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
-	const style = {
-		flex: 1,
-		marginTop: ['1.2rem', 0],
-		marginRight: [null, '2.4rem'],
-	};
-
-	return <div css={mq(style)} {...props} />;
+	return (
+		<div
+			css={mq({
+				flex: 1,
+				marginTop: ['1.2rem', 0],
+				marginRight: [null, '2.4rem'],
+			})}
+			{...props}
+		/>
+	);
 };
 
 /**
@@ -114,26 +126,28 @@ export const FormPodContactListItem = ({ item, ...props }) => {
 	// Set default icon color
 	const iconColor = item.iconColor === undefined ? colors.primary.default : item.color;
 
-	const styleLink = {
-		display: 'inline-block',
-		color: 'inherit',
-		textDecoration: 'none',
-		verticalAlign: 'middle',
-	};
-	const styleIcon = {
-		// marginRight: [null, '1.2rem'], //TODO: multiple contact items?
-		marginRight: '1.2rem',
-	};
-	const styleText = {
-		// display: ['none', 'inline'], //TODO: multiple contact items?
-		verticalAlign: 'middle',
+	const style = {
+		link: {
+			display: 'inline-block',
+			color: 'inherit',
+			textDecoration: 'none',
+			verticalAlign: 'middle',
+		},
+		icon: {
+			// marginRight: [null, '1.2rem'], //TODO: multiple contact items?
+			marginRight: '1.2rem',
+		},
+		text: {
+			// display: ['none', 'inline'], //TODO: multiple contact items?
+			verticalAlign: 'middle',
+		},
 	};
 
 	return (
 		<li css={{ display: 'inline-block' }} {...props}>
-			<a href={item.url} css={styleLink} onClick={item.onClick}>
-				<Icon size="medium" css={mq(styleIcon)} color={iconColor} />
-				<span css={mq(styleText)}>{item.text}</span>
+			<a href={item.url} css={style.link} onClick={item.onClick}>
+				{Icon && <Icon size="medium" css={mq(style.icon)} color={iconColor} />}
+				<span css={mq(style.text)}>{item.text}</span>
 			</a>
 		</li>
 	);
@@ -165,7 +179,7 @@ FormPodHeader.defaultProps = {
  */
 FormPodHeaderIcon.propTypes = {
 	/**
-	 * Header icon.
+	 * Header icon
 	 */
 	icon: PropTypes.func,
 };
@@ -176,9 +190,7 @@ FormPodHeaderIcon.defaultProps = {};
  */
 FormPodPreheading.propTypes = {
 	/**
-	 * The pre-heading tag.
-	 *
-	 * Defaults to "p"
+	 * The pre-heading tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
@@ -191,9 +203,7 @@ FormPodPreheading.defaultProps = {
  */
 FormPodHeading.propTypes = {
 	/**
-	 * The heading tag.
-	 *
-	 * Defaults to "h1"
+	 * The heading tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
@@ -206,7 +216,7 @@ FormPodHeading.defaultProps = {
  */
 FormPodContactListItem.propTypes = {
 	/**
-	 * The contact list item data.
+	 * The contact list item data
 	 */
 	item: PropTypes.shape({
 		icon: PropTypes.func.isRequired,

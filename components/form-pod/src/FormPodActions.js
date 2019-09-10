@@ -3,12 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
-
 import { FormPodActionsPrimary, FormPodActionsSecondary } from './styled';
-
-// ==============================
-// Utils
-// ==============================
 
 // ==============================
 // Component
@@ -58,7 +53,7 @@ FormPodActions.propTypes = {
 	/**
 	 * Reverse layout mode.
 	 *
-	 * Will swap primary and secondary order in the DOM (refer to XS)
+	 * Will swap primary and secondary order in the DOM (refer to XS breakpoint)
 	 */
 	reverse: PropTypes.bool,
 };

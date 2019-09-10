@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
@@ -32,8 +28,6 @@ FormPodPanel.propTypes = {
 	 * Remove top border.
 	 *
 	 * Enable when the 'Error summary' alert is shown.
-	 *
-	 * Defaults to "false"
 	 */
 	noBorderTop: PropTypes.bool,
 };
