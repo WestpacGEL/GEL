@@ -6,7 +6,7 @@ export default () => (
 		<h2>Screen reader only text </h2>
 		<p>
 			Note: The examples below the following headings are visibility hidden. Best you inspect what
-			is being rendered in DevTools.
+			is being rendered using your browser’s DevTools.
 		</p>
 
 		<h3>Default instance (no styling props)</h3>
