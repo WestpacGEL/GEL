@@ -60,16 +60,16 @@ export default () => {
 				<FormPodActions
 					primary={
 						<>
-							<Button appearance="primary" soft size="large" block={[true, false]}>
+							<Button appearance="primary" isSoft size="large" isBlock={[true, false]}>
 								Back
 							</Button>
-							<Button appearance="primary" size="large" block={[true, false]}>
+							<Button appearance="primary" size="large" isBlock={[true, false]}>
 								Next
 							</Button>
 						</>
 					}
 					secondary={
-						<Button appearance="faint" soft size="large" block={[true, false]}>
+						<Button appearance="faint" isSoft size="large" isBlock={[true, false]}>
 							Cancel
 						</Button>
 					}
