@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box } from './_utils';
-
 import { Form, FormGroup, FormLabel, Hint } from '../src';
+import { Box } from './_utils';
 
 export default () => (
 	<>

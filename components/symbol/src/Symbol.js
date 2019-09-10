@@ -15,30 +15,33 @@ const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props })
 	const { breakpoints } = useTheme();
 	const mq = paint(breakpoints);
 
-	const styleCommon = {
-		display: 'inline-block',
-		flexShrink: 0,
-		lineHeight: 1,
-		verticalAlign: 'middle',
-	};
+	const style = {
+		// Common styling
+		common: {
+			display: 'inline-block',
+			flexShrink: 0,
+			lineHeight: 1,
+			verticalAlign: 'middle',
+		},
 
-	// Reponsive styling (symbol size)
-	const styleResponsive = () => {
-		const widthArr = asArray(width || viewBoxWidth);
-		const heightArr = asArray(height || viewBoxHeight);
-		const ratio = viewBoxWidth / viewBoxHeight;
+		// Reponsive styling (symbol size)
+		responsive: (() => {
+			const widthArr = asArray(width || viewBoxWidth);
+			const heightArr = asArray(height || viewBoxHeight);
+			const ratio = viewBoxWidth / viewBoxHeight;
 
-		return {
-			width: width ? widthArr : heightArr.map(h => (h !== null ? round(h * ratio) : null)),
-			height: width ? widthArr.map(w => (w !== null ? round(w / ratio) : null)) : heightArr,
-		};
+			return {
+				width: width ? widthArr : heightArr.map(h => (h !== null ? round(h * ratio) : null)),
+				height: width ? widthArr.map(w => (w !== null ? round(w / ratio) : null)) : heightArr,
+			};
+		})(),
 	};
 
 	return (
 		<span
 			css={mq({
-				...styleCommon,
-				...styleResponsive(),
+				...style.common,
+				...style.responsive,
 			})}
 			{...props}
 		/>

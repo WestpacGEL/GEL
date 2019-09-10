@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { FormCheck, FormCheckItem } from '../src';
-// import { Form } from '../../form/src';
 
 export default () => (
 	<>

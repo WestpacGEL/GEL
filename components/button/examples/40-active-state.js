@@ -1,18 +1,17 @@
 import React from 'react';
-
 import { Button } from '../src';
 
 export default () => (
 	<>
 		<p>
-			Active styling is provided with a pseudo-class. The following examples have been
-			programatically forced via use of an <code>active</code> class.
+			Active state styling is provided with a <code>:active</code> pseudo-class. The following
+			examples have been programatically forced via use of an <code>active</code> class.
 		</p>
 
-		<h3>
+		<h2>
 			Active buttons with a <code>&lt;button&gt;</code> tag
-		</h3>
-		<h4>Standard appearance</h4>
+		</h2>
+		<h3>Standard</h3>
 		<p>
 			<Button appearance="primary">Primary default</Button>{' '}
 			<Button appearance="hero">Hero default</Button>{' '}
@@ -33,7 +32,7 @@ export default () => (
 				Faint active
 			</Button>
 		</p>
-		<h4>Soft appearance</h4>
+		<h3>Soft</h3>
 		<p>
 			<Button appearance="primary" soft>
 				Primary soft default
@@ -65,10 +64,10 @@ export default () => (
 
 		<hr />
 
-		<h3>
+		<h2>
 			Active buttons with an <code>&lt;a&gt;</code> tag
-		</h3>
-		<h4>Standard appearance</h4>
+		</h2>
+		<h3>Standard</h3>
 		<p>
 			<Button href="#0" appearance="primary">
 				Primary default
@@ -97,7 +96,7 @@ export default () => (
 				Faint active
 			</Button>
 		</p>
-		<h4>Soft appearance</h4>
+		<h3>Soft</h3>
 		<p>
 			<Button href="#0" appearance="primary" soft>
 				Primary soft default

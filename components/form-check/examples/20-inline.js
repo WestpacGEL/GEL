@@ -1,10 +1,11 @@
 import React from 'react';
-
 import { FormCheck, FormCheckItem } from '../src';
 
 export default () => (
 	<>
-		<h2>Medium</h2>
+		<h2>Inline via component</h2>
+
+		<h3>Medium</h3>
 		<FormCheck type="checkbox" name="example-checkbox-medium-inline" size="medium" inline>
 			<FormCheckItem value="1">Option 1</FormCheckItem>
 			<FormCheckItem value="2">Option 2</FormCheckItem>
@@ -27,9 +28,7 @@ export default () => (
 			</FormCheckItem>
 		</FormCheck>
 
-		<hr />
-
-		<h2>Large</h2>
+		<h3>Large</h3>
 		<FormCheck type="checkbox" name="example-checkbox-large-inline" size="large" inline>
 			<FormCheckItem value="1">Option 1</FormCheckItem>
 			<FormCheckItem value="2">Option 2</FormCheckItem>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from '@westpac/button';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from '../src';
+import { Button } from '@westpac/button';
 
 export default () => {
 	const [open, setOpen] = useState(false);

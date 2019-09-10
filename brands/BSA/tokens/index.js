@@ -170,6 +170,18 @@ export default {
 		borderWidth: '1px',
 	},
 
+	breadcrumb: {
+		padding: '0.6rem 1.8rem',
+		marginBottom: '2.1rem',
+		fontSize: '1.3rem',
+		color: COLORS.text,
+		separator: {
+			marginLeft: '0.3rem',
+			marginRight: '0.3rem',
+			color: COLORS.primary,
+		},
+	},
+
 	button: {
 		borderRadius: '0.3rem',
 		borderWidth: '1px',
@@ -705,36 +717,38 @@ export default {
 
 	modal: {
 		backgroundColor: '#fff',
-		borderRadius: 3,
+		borderRadius: '3px',
+		maxHeight: '85%',
+		margin: '0 1.2rem',
 		size: {
 			small: {
-				width: 300,
+				width: '30rem',
 			},
 			medium: {
-				width: 600,
+				width: '60rem',
 			},
 			large: {
-				width: 900,
+				width: '90rem',
 			},
 		},
 		header: {
 			borderWidth: '1px',
 			borderColor: COLORS.hero,
-			padding: '16px 24px 12px',
+			padding: '1.6rem 2.4rem 1.2rem',
 		},
 		title: {
-			fontSize: 18,
+			fontSize: '1.8rem',
 			fontWeight: 700,
 			color: COLORS.text,
 		},
 		body: {
-			padding: '18px 24px',
+			padding: '1.8rem 2.4rem',
 		},
 		footer: {
 			backgroundColor: COLORS.background,
 			borderWidth: '1px',
 			borderColor: COLORS.border,
-			padding: '12px 18px',
+			padding: '1.2rem 1.8rem',
 		},
 	},
 
@@ -791,10 +805,7 @@ export default {
 		},
 		header: {
 			fontSize: '1.6rem',
-			padding: {
-				default: '1rem 1.2rem',
-				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
-			},
+			padding: ['1rem 1.2rem', '1rem 2.4rem'],
 			appearance: {
 				hero: {
 					color: '#fff',
@@ -809,16 +820,10 @@ export default {
 			},
 		},
 		body: {
-			padding: {
-				default: '1.2rem',
-				responsive: ['1.2rem', '2.4rem'],
-			},
+			padding: ['1.2rem', '2.4rem'],
 		},
 		footer: {
-			padding: {
-				default: '1rem 1.2rem',
-				responsive: ['1rem 1.2rem', '1rem 2.4rem'],
-			},
+			padding: ['1rem 1.2rem', '1rem 2.4rem'],
 			backgroundColor: COLORS.light,
 			borderColor: COLORS.border,
 		},
@@ -827,6 +832,7 @@ export default {
 	progressBar: {
 		borderWidth: '1px',
 		borderColor: COLORS.border,
+		padding: '1px',
 		marginBottom: '2.1rem',
 		fontSize: '1.4rem',
 		fontWeight: 700,
@@ -966,10 +972,7 @@ export default {
 		borderWidth: '1px',
 		backgroundColor: COLORS.light,
 		borderColor: COLORS.border,
-		padding: {
-			default: '1.2rem',
-			responsive: ['1.2rem', '2.4rem'],
-		},
+		padding: ['1.2rem', '2.4rem'],
 		marginBottom: '1.8rem',
 	},
 
@@ -1003,6 +1006,9 @@ export default {
 				backgroundColor: COLORS.system,
 				borderColor: COLORS.system,
 			},
+		},
+		heading: {
+			marginBottom: '1.2rem',
 		},
 	},
 

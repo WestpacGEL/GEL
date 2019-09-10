@@ -5,14 +5,95 @@ route: /text-input
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { TextInput } from './src/TextInput';
+import { TextInput } from './src';
+import { Form } from '@westpac/form';
+import { Button } from '@westpac/button';
 
 # TextInput
 
 TextInput provides styling for text inputs, textareas and select input elements and includes support for all HTML5 input types such as text, password, email and number etc.
 
+Generally form TextInput components don’t exist on their own, they require additional elements such as labels, hint text, error messaging etc. Styling of these additional form elements and form layout is provided by the `@westpac/form` package.
+
+## Types
+
+The TextInput component renders text input, select and textarea elements. Use the `tag` prop to change the input type.
+
 <Playground>
 	<TextInput />
+	<br />
+	<TextInput tag="select">
+		<option>Select</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+	</TextInput>
+	<br />
+	<TextInput tag="textarea" />
 </Playground>
+
+## Sizes
+
+Input fields are available in four sizes; in addition to the default (Medium) size, there are two larger sizes (Extra large and Large) and one smaller size (Small). These sizes align with other form element sizes. We generally use Large for mobile apps.
+
+<Playground>
+	<TextInput size="small" placeholder="Small" />
+	<br />
+	<TextInput size="medium" placeholder="Medium" />
+	<br />
+	<TextInput size="large" placeholder="Large" />
+	<br />
+	<TextInput size="xlarge" placeholder="Extra large" />
+</Playground>
+
+## Invalid
+
+<Playground>
+	<TextInput invalid />
+</Playground>
+
+## Disabled
+
+<Playground>
+	<TextInput disabled />
+</Playground>
+
+## Readonly
+
+<Playground>
+	<TextInput readOnly value="This value is readonly" />
+</Playground>
+
+## Inline
+
+TextInput components are block-level by default. You can render inline inputs by passing an `inline` prop to the wrapping Form component.
+
+<Playground>
+	<Form inline>
+		<TextInput /> <TextInput /> <Button type="submit">Submit</Button>
+	</Form>
+</Playground>
+
+## Fixed width
+
+Use fixed width sizing classes to set a maximum width based on character length. These classes are particularly useful for content that has a specific, known length such as postcodes, telephone numbers and dates etc.
+
+<Playground>
+	<TextInput width={2} placeholder={2} />
+	<br />
+	<TextInput width={3} placeholder={3} />
+	<br />
+	<TextInput width={4} placeholder={4} />
+	<br />
+	<TextInput width={5} placeholder={5} />
+	<br />
+	<TextInput width={10} placeholder={10} />
+	<br />
+	<TextInput width={20} placeholder={20} />
+	<br />
+	<TextInput width={30} placeholder={30} />
+</Playground>
+
+## Props
 
 <PropsTable of={TextInput} />

@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
-
 import { ButtonContent } from './styled';
 
 // ==============================

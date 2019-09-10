@@ -1,19 +1,18 @@
 import React from 'react';
-
 import { Button } from '../src';
 
 export default () => (
 	<>
-		<h3>Default instance (no styling props)</h3>
+		<h2>Default instance (no styling props)</h2>
 		<Button>Default</Button>
 		<hr />
-		<h3>Standard appearance</h3>
+		<h2>Standard</h2>
 		<Button appearance="primary">Primary standard</Button>{' '}
 		<Button appearance="hero">Hero standard</Button>{' '}
 		<Button appearance="neutral">Neutral standard</Button>{' '}
 		<Button appearance="faint">Faint standard</Button> <Button appearance="link">Link</Button>
 		<hr />
-		<h3>Soft appearance</h3>
+		<h2>Soft</h2>
 		<Button appearance="primary" soft>
 			Primary soft
 		</Button>{' '}

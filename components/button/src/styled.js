@@ -3,9 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
-
 import { propTypes, defaultProps } from './Button';
-import { SrOnly } from '../../accessibility-helpers/src';
+import { SrOnly } from '@westpac/accessibility-helpers';
 
 // ==============================
 // Utils
@@ -47,7 +46,7 @@ export const ButtonContent = ({
 		<>
 			{IconBefore && (
 				<IconBefore
-					css={{ marginRight: children && !srOnlyText ? '0.4em' : null }}
+					css={{ marginRight: children && !srOnlyText && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
 				/>
@@ -59,7 +58,7 @@ export const ButtonContent = ({
 			)}
 			{IconAfter && (
 				<IconAfter
-					css={{ marginLeft: children && !srOnlyText ? '0.4em' : null }}
+					css={{ marginLeft: children && !srOnlyText && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
 				/>

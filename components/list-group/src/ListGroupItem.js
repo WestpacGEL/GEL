@@ -13,6 +13,7 @@ import { jsx, useTheme } from '@westpac/core';
  */
 export const ListGroupItem = ({ children }) => {
 	const { listGroup } = useTheme();
+
 	const common = {
 		margin: listGroup.margin,
 		borderBottom: `${listGroup.borderWidth} solid ${listGroup.borderColor}`,
@@ -35,7 +36,7 @@ export const ListGroupItem = ({ children }) => {
 
 ListGroupItem.propTypes = {
 	/**
-	 * The content for this list group item.
+	 * The content for this list group item
 	 */
 	children: PropTypes.node.isRequired,
 };

@@ -8,13 +8,13 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormCheck = ({ type, name, size, inline, flip, children, ...props }) => {
+export const FormCheck = ({ type, name, size, inline, flipped, children, ...props }) => {
 	// Pass the selected props on to children
-	const giftedChildren = Children.map(children, child =>
-		cloneElement(child, { type, name, size, inline, flip })
+	const childrenWithProps = Children.map(children, child =>
+		cloneElement(child, { type, name, size, inline, flipped })
 	);
 
-	return <div {...props}>{giftedChildren}</div>;
+	return <div {...props}>{childrenWithProps}</div>;
 };
 
 // ==============================
@@ -53,7 +53,7 @@ FormCheck.propTypes = {
 	 *
 	 * This prop is passed to children.
 	 */
-	flip: PropTypes.bool,
+	flipped: PropTypes.bool,
 
 	/**
 	 * Form check item(s)
@@ -64,5 +64,5 @@ FormCheck.propTypes = {
 FormCheck.defaultProps = {
 	type: 'checkbox',
 	size: 'medium',
-	flip: false,
+	flipped: false,
 };

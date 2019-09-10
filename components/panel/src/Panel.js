@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 
@@ -8,7 +8,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Panel = ({ appearance, responsive, children, ...props }) => {
+export const Panel = ({ appearance, children, ...props }) => {
 	const { panel } = useTheme();
 
 	const common = {
@@ -29,20 +29,18 @@ export const Panel = ({ appearance, responsive, children, ...props }) => {
 			borderBottomLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 		},
 		'table caption': {
-			padding: `${panel.body.padding.default} ${panel.body.padding.default} 0 ${
-				panel.body.padding.default
-			}`,
+			padding: panel.body.padding.map(p => `${p} ${p} 0 ${p}`),
 		},
 	};
 
 	// Pass the selected props on to children
-	const giftedChildren = Children.map(children, child =>
-		cloneElement(child, { appearance, responsive })
-	);
+	const childrenWithProps = Children.map(children, child => {
+		return isValidElement(child) ? cloneElement(child, { appearance }) : child;
+	});
 
 	return (
 		<div css={common} {...props}>
-			{giftedChildren}
+			{childrenWithProps}
 		</div>
 	);
 };
@@ -62,13 +60,6 @@ export const propTypes = {
 	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
-	 * Responsive mode.
-	 *
-	 * This option extends padding in larger breakpoints (SM+).
-	 */
-	responsive: PropTypes.bool,
-
-	/**
 	 * Panel content
 	 */
 	children: PropTypes.node,
@@ -76,7 +67,6 @@ export const propTypes = {
 
 export const defaultProps = {
 	appearance: 'hero',
-	responsive: false,
 };
 
 Panel.propTypes = propTypes;

@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { Button } from '../src';
 
 export default () => (
 	<>
-		<h3>Disabled buttons</h3>
 		<p>
 			<Button appearance="primary" disabled>
 				Primary

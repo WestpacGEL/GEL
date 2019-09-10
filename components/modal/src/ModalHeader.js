@@ -29,12 +29,14 @@ export const ModalHeader = ({ id, onClose, children, ...props }) => {
 			<Button
 				appearance="link"
 				css={{
-					marginTop: -10,
-					marginRight: -22,
+					marginTop: '-1rem',
+					marginRight: '-2.2rem',
 					color: colors.text,
-					'&:hover svg': { opacity: 0.5 },
+					':hover svg': {
+						opacity: 0.5,
+					},
 				}}
-				icon={CloseIcon}
+				iconAfter={CloseIcon}
 				onClick={onClose}
 			/>
 		</div>
