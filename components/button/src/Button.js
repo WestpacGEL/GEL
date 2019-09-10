@@ -42,7 +42,7 @@ export const Button = ({
 			borderRadius: button.borderRadius,
 			cursor: 'pointer',
 			fontWeight: button.fontWeight,
-			justifyContent: justify ? 'space-between' : 'center', //horizontal
+			justifyContent: isJustify ? 'space-between' : 'center', //horizontal
 			lineHeight: button.lineHeight,
 			textAlign: 'center',
 			textDecoration: 'none',
@@ -119,10 +119,10 @@ export const Button = ({
 			{Tag !== 'input' ? (
 				<ButtonContent
 					size={size}
-					block={block}
+					isBlock={isBlock}
 					iconAfter={iconAfter}
 					iconBefore={iconBefore}
-					srOnlyText={srOnlyText}
+					isSrOnlyText={isSrOnlyText}
 				>
 					{children}
 				</ButtonContent>
@@ -164,21 +164,21 @@ export const propTypes = {
 	 *
 	 * Removes background colour and adjusts text colour.
 	 */
-	soft: PropTypes.bool,
+	isSoft: PropTypes.bool,
 
 	/**
 	 * Block mode.
 	 *
 	 * Fit button width to its parent width.
 	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	isBlock: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
 	 * Trim mode.
 	 *
 	 * Removes horizontal padding.
 	 */
-	trim: PropTypes.bool,
+	isTrim: PropTypes.bool,
 
 	/**
 	 * Places an icon within the button, after the button’s text
@@ -193,12 +193,12 @@ export const propTypes = {
 	/**
 	 * Justify align button children
 	 */
-	justify: PropTypes.bool,
+	isJustify: PropTypes.bool,
 
 	/**
 	 * Enable ‘screen reader only’ text mode
 	 */
-	srOnlyText: PropTypes.bool,
+	isSrOnlyText: PropTypes.bool,
 
 	/**
 	 * Handler to be called on click
@@ -215,10 +215,10 @@ export const defaultProps = {
 	appearance: 'primary',
 	size: 'medium',
 	tag: 'button',
-	soft: false,
-	block: false,
-	trim: false,
-	justify: false,
+	isSoft: false,
+	isBlock: false,
+	isTrim: false,
+	isJustify: false,
 };
 
 Button.propTypes = propTypes;

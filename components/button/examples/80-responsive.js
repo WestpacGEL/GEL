@@ -25,7 +25,7 @@ export default () => (
 		<h2>Responsive block</h2>
 		{blocks.map((b, i) => (
 			<p key={i}>
-				<Button appearance="primary" size="xlarge" block={b}>
+				<Button appearance="primary" size="xlarge" isBlock={b}>
 					[{b.map(v => String(v)).join(', ')}]
 				</Button>
 			</p>
