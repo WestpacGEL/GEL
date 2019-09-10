@@ -41,19 +41,23 @@ export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
 
 FormPodActions.propTypes = {
 	/**
-	 * Primary 'slot'
+	 * Primary 'slot'.
+	 *
+	 * The primary slot is on the right hand side for MD+ breakpoints.
 	 */
 	primary: PropTypes.node,
 
 	/**
-	 * Secondary 'slot'
+	 * Secondary 'slot'.
+	 *
+	 * The secondary slot is on the left hand side for MD+ breakpoints.
 	 */
 	secondary: PropTypes.node,
 
 	/**
 	 * Reverse layout mode.
 	 *
-	 * Will swap primary and secondary order in the DOM (refer to XS breakpoint)
+	 * Will swap primary and secondary slot order in the DOM (refer to XS breakpoint).
 	 */
 	reverse: PropTypes.bool,
 };

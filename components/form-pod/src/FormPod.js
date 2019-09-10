@@ -43,7 +43,9 @@ export const FormPod = ({ icon, preheading, heading, children, ...props }) => {
 
 FormPod.propTypes = {
 	/**
-	 * Pre-heading text
+	 * Pre-heading text.
+	 *
+	 * This text is visible in XS and SM breakpoints only.
 	 */
 	preheading: PropTypes.string,
 

@@ -12,11 +12,14 @@ export const FormPodPanelBody = ({ expanded, ...props }) => {
 	const { breakpoints, formPod } = useTheme();
 	const mq = paint(breakpoints);
 
-	const style = {
-		...formPod.panelInner[expanded ? 'expanded' : 'default'],
-	};
-
-	return <div css={mq(style)} {...props} />;
+	return (
+		<div
+			css={mq({
+				...formPod.panelInner[expanded ? 'expanded' : 'default'],
+			})}
+			{...props}
+		/>
+	);
 };
 
 // ==============================
@@ -25,9 +28,7 @@ export const FormPodPanelBody = ({ expanded, ...props }) => {
 
 FormPodPanelBody.propTypes = {
 	/**
-	 * Expanded mode (less horizontal padding).
-	 *
-	 * Defaults to "false"
+	 * Expanded body mode (less horizontal padding)
 	 */
 	expanded: PropTypes.bool,
 };
