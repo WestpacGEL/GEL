@@ -12,12 +12,12 @@ import { SrOnly } from '@westpac/accessibility-helpers';
 /**
  * Progress Bar: A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.
  */
-export const ProgressBar = ({ value, skinny, ...props }) => {
+export const ProgressBar = ({ value, isSkinny, ...props }) => {
 	const { progressBar } = useTheme();
 
 	const valueRound = Math.round(value);
 
-	const size = skinny ? 'skinny' : 'default';
+	const size = isSkinny ? 'skinny' : 'default';
 
 	const style = {
 		// Common styling
@@ -32,7 +32,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 			position: 'relative',
 
 			'::after': {
-				display: skinny && 'none',
+				display: isSkinny && 'none',
 				content: '"0%"',
 				position: 'absolute',
 				left: '1rem',
@@ -87,7 +87,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 				aria-valuenow={value}
 				aria-live="polite"
 			>
-				{!skinny && (
+				{!isSkinny && (
 					<span css={{ display: 'inline-block', margin: '0 1.2rem' }}>{valueRound}%</span>
 				)}
 				<SrOnly>Complete</SrOnly>
@@ -109,10 +109,10 @@ ProgressBar.propTypes = {
 	/**
 	 * Enable skinny mode
 	 */
-	skinny: PropTypes.bool,
+	isSkinny: PropTypes.bool,
 };
 
 ProgressBar.defaultProps = {
 	value: 0,
-	skinny: false,
+	isSkinny: false,
 };

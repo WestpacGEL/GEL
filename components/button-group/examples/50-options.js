@@ -4,15 +4,15 @@ import { InfoIcon } from '@westpac/icon';
 
 export default () => (
 	<>
-		<h2>srOnlyText (screen reader only text)</h2>
+		<h2>‘Screen reader only’ text mode</h2>
 		<ButtonGroup name="example-buttongroup-srOnlyText">
-			<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
+			<ButtonGroupButton iconAfter={InfoIcon} isSrOnlyText>
 				Screen reader only
 			</ButtonGroupButton>
-			<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
+			<ButtonGroupButton iconAfter={InfoIcon} isSrOnlyText>
 				Screen reader only
 			</ButtonGroupButton>
-			<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
+			<ButtonGroupButton iconAfter={InfoIcon} isSrOnlyText>
 				Screen reader only
 			</ButtonGroupButton>
 		</ButtonGroup>

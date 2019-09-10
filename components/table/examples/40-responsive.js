@@ -4,7 +4,7 @@ import { Table } from '../src';
 export default () => (
 	<>
 		<h2>Standard</h2>
-		<Table responsive>
+		<Table isResponsive>
 			<caption>
 				Table caption this table width is: <em>(100%)</em>
 			</caption>
@@ -57,7 +57,7 @@ export default () => (
 		<hr />
 
 		<h2>Striped</h2>
-		<Table striped responsive>
+		<Table isStriped isResponsive>
 			<caption>
 				Table caption this table width is: <em>(100%)</em>
 			</caption>
@@ -110,7 +110,7 @@ export default () => (
 		<hr />
 
 		<h2>Bordered</h2>
-		<Table bordered responsive>
+		<Table isBordered isResponsive>
 			<caption>
 				Table caption this table width is: <em>(100%)</em>
 			</caption>

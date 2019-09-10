@@ -11,7 +11,7 @@ import { CSSTransition } from 'react-transition-group';
 // Component
 // ==============================
 
-export const Alert = ({ appearance, closable, icon: Icon, children }) => {
+export const Alert = ({ appearance, isClosable, icon: Icon, children }) => {
 	const [open, setOpen] = useState(true);
 	const { breakpoints, alert } = useTheme();
 	const mq = paint(breakpoints);
@@ -34,7 +34,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 			marginBottom: alert.marginBottom,
 			padding: [
 				alert.padding,
-				closable ? `${alert.padding} 3rem ${alert.padding} ${alert.padding}` : alert.padding,
+				isClosable ? `${alert.padding} 3rem ${alert.padding} ${alert.padding}` : alert.padding,
 			],
 			position: 'relative',
 			display: [null, 'flex'],
@@ -86,7 +86,7 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 	return (
 		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
 			<div css={mq({ ...style.common, ...style.appearance })}>
-				{closable && (
+				{isClosable && (
 					<Button
 						onClick={() => {
 							setOpen(false);
@@ -116,7 +116,7 @@ Alert.propTypes = {
 	/**
 	 * Enable closable mode
 	 */
-	closable: PropTypes.bool,
+	isClosable: PropTypes.bool,
 
 	/**
 	 * Alert icon.
@@ -133,5 +133,5 @@ Alert.propTypes = {
 
 Alert.defaultProps = {
 	appearance: 'information',
-	closable: false,
+	isClosable: false,
 };

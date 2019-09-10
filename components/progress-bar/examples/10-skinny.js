@@ -4,7 +4,7 @@ import { ProgressBar } from '../src';
 export default () => {
 	return (
 		<>
-			<ProgressBar value={74} skinny />
+			<ProgressBar value={74} isSkinny />
 		</>
 	);
 };

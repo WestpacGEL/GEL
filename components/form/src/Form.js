@@ -9,9 +9,9 @@ import { FormProvider } from './Form.context';
 // Component
 // ==============================
 
-export const Form = ({ size, spacing, inline, tag: Tag, children, ...props }) => {
+export const Form = ({ size, spacing, isInline, tag: Tag, children, ...props }) => {
 	return (
-		<FormProvider value={{ size, spacing, inline }}>
+		<FormProvider value={{ size, spacing, isInline }}>
 			<Tag {...props}>{children}</Tag>
 		</FormProvider>
 	);
@@ -46,7 +46,7 @@ Form.propTypes = {
 	 *
 	 * This prop is available to children components via `FormContext`.
 	 */
-	inline: PropTypes.bool,
+	isInline: PropTypes.bool,
 
 	/**
 	 * Component tag
@@ -60,9 +60,9 @@ Form.propTypes = {
 };
 
 export const defaultProps = {
-	size: null,
+	size: 'medium',
 	spacing: 'medium',
-	inline: false,
+	isInline: false,
 	tag: 'form',
 };
 Form.defaultProps = defaultProps;
