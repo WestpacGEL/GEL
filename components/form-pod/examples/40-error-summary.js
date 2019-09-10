@@ -43,7 +43,7 @@ export default () => {
 			/>
 
 			<FormPod preheading="Preheading" heading="Heading">
-				<FormPodPanel noBorderTop>
+				<FormPodPanel isNoBorderTop>
 					<Alert appearance="danger">
 						{/* Nb. Tabindex="-1" for programmatically set focus */}
 						<AlertHeading tag="h3" tabIndex="-1">
@@ -71,16 +71,16 @@ export default () => {
 				<FormPodActions
 					primary={
 						<>
-							<Button appearance="primary" soft size="large" block={[true, false]}>
+							<Button appearance="primary" isSoft size="large" isBlock={[true, false]}>
 								Back
 							</Button>
-							<Button appearance="primary" size="large" block={[true, false]}>
+							<Button appearance="primary" size="large" isBlock={[true, false]}>
 								Next
 							</Button>
 						</>
 					}
 					secondary={
-						<Button appearance="faint" soft size="large" block={[true, false]}>
+						<Button appearance="faint" isSoft size="large" isBlock={[true, false]}>
 							Cancel
 						</Button>
 					}

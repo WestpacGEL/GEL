@@ -21,7 +21,7 @@ export const FormPodContactList = ({ items, ...props }) => {
 	};
 
 	return (
-		<ul css={style}>
+		<ul css={style} {...props}>
 			{(items || []).map((item, i) => (
 				<FormPodContactListItem key={i} item={item} />
 			))}

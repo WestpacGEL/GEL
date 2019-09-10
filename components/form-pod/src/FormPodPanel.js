@@ -8,12 +8,12 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormPodPanel = ({ noBorderTop, ...props }) => {
+export const FormPodPanel = ({ isNoBorderTop, ...props }) => {
 	const { formPod } = useTheme();
 
 	const style = {
 		...formPod.panel,
-		...(noBorderTop ? { borderTop: null } : null),
+		...(isNoBorderTop ? { borderTop: null } : null),
 	};
 
 	return <div css={style} {...props} />;
@@ -29,8 +29,8 @@ FormPodPanel.propTypes = {
 	 *
 	 * Enable when the 'Error summary' alert is shown.
 	 */
-	noBorderTop: PropTypes.bool,
+	isNoBorderTop: PropTypes.bool,
 };
 FormPodPanel.defaultProps = {
-	noBorderTop: false,
+	isNoBorderTop: false,
 };

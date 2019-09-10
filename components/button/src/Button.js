@@ -18,13 +18,13 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 export const Button = ({
 	appearance,
 	size,
-	soft,
-	block,
-	trim,
+	isSoft,
+	isBlock,
+	isTrim,
 	iconAfter,
 	iconBefore,
-	justify,
-	srOnlyText,
+	isJustify,
+	isSrOnlyText,
 	tag: Tag,
 	onClick,
 	children,
@@ -67,28 +67,28 @@ export const Button = ({
 		// Button appearance styling
 		appearance: {
 			...button.appearance[appearance].standard.default,
-			...(soft && appearance !== 'link' && button.appearance[appearance].soft.default),
+			...(isSoft && appearance !== 'link' && button.appearance[appearance].soft.default),
 
 			':hover': {
 				...button.appearance[appearance].standard.hover,
-				...(soft && appearance !== 'link' && button.appearance[appearance].soft.hover),
+				...(isSoft && appearance !== 'link' && button.appearance[appearance].soft.hover),
 			},
 			':active, &.active': {
 				...button.appearance[appearance].standard.active,
-				...(soft && appearance !== 'link' && button.appearance[appearance].soft.active),
+				...(isSoft && appearance !== 'link' && button.appearance[appearance].soft.active),
 			},
 		},
 
 		// Reponsive styling (button size and block)
 		responsive: (() => {
 			const sizeArr = asArray(size);
-			const blockArr = asArray(block);
+			const blockArr = asArray(isBlock);
 
 			return {
 				padding: sizeArr.map(s => {
 					if (!s) return null;
 					const p = [...button.size[s].padding];
-					if (trim) p[1] = '0';
+					if (isTrim) p[1] = '0';
 
 					return p.join(' ');
 				}),

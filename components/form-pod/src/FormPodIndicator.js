@@ -13,7 +13,7 @@ export const FormPodIndicator = ({ icon: Icon, text, ...props }) => {
 	const { colors } = useTheme();
 
 	return (
-		<div css={{ color: colors.muted }}>
+		<div css={{ color: colors.muted }} {...props}>
 			{text && <span css={{ verticalAlign: 'middle' }}>{text}</span>}
 			{Icon && <Icon size="medium" css={{ marginLeft: '1.2rem' }} />}
 		</div>

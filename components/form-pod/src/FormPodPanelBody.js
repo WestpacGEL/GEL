@@ -8,14 +8,14 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormPodPanelBody = ({ expanded, ...props }) => {
+export const FormPodPanelBody = ({ isExpanded, ...props }) => {
 	const { breakpoints, formPod } = useTheme();
 	const mq = paint(breakpoints);
 
 	return (
 		<div
 			css={mq({
-				...formPod.panelInner[expanded ? 'expanded' : 'default'],
+				...formPod.panelInner[isExpanded ? 'expanded' : 'default'],
 			})}
 			{...props}
 		/>
@@ -30,8 +30,8 @@ FormPodPanelBody.propTypes = {
 	/**
 	 * Expanded body mode (less horizontal padding)
 	 */
-	expanded: PropTypes.bool,
+	isExpanded: PropTypes.bool,
 };
 FormPodPanelBody.defaultProps = {
-	expanded: false,
+	isExpanded: false,
 };

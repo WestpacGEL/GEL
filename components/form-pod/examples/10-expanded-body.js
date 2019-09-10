@@ -21,7 +21,7 @@ export default () => {
 			/>
 			<FormPod preheading="Preheading" heading="Heading">
 				<FormPodPanel>
-					<FormPodPanelBody expanded>[PANEL CONTENT]</FormPodPanelBody>
+					<FormPodPanelBody isExpanded>[PANEL CONTENT]</FormPodPanelBody>
 				</FormPodPanel>
 			</FormPod>
 		</>

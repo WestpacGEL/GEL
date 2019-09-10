@@ -32,18 +32,18 @@ export default () => {
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
 				</FormPodPanel>
 				<FormPodActions
+					isReverse
 					primary={
 						<>
-							<Button appearance="primary" soft size="large" block={[true, false]}>
+							<Button appearance="primary" isSoft size="large" isBlock={[true, false]}>
 								Find a branch
 							</Button>
-							<Button appearance="primary" soft size="large" block={[true, false]}>
+							<Button appearance="primary" isSoft size="large" isBlock={[true, false]}>
 								Internet banking
 							</Button>
 						</>
 					}
 					secondary={<FormPodActionsText>[TEXT CAN GO HERE]</FormPodActionsText>}
-					reverse
 				/>
 			</FormPod>
 		</>

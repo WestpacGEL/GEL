@@ -9,13 +9,13 @@ import { FormPodActionsPrimary, FormPodActionsSecondary } from './styled';
 // Component
 // ==============================
 
-export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
+export const FormPodActions = ({ primary, secondary, isReverse, ...props }) => {
 	const { breakpoints, formPod } = useTheme();
 	const mq = paint(breakpoints);
 
 	const common = {
 		display: [null, 'flex'],
-		flexDirection: !reverse && [null, 'row-reverse'],
+		flexDirection: !isReverse && [null, 'row-reverse'],
 		...formPod.actions,
 
 		'button + button': {
@@ -30,7 +30,7 @@ export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
 
 	return (
 		<div css={mq(common)} {...props}>
-			{reverse ? slots.reverse() : slots}
+			{isReverse ? slots.reverse() : slots}
 		</div>
 	);
 };
@@ -59,9 +59,9 @@ FormPodActions.propTypes = {
 	 *
 	 * Will swap primary and secondary slot order in the DOM (refer to XS breakpoint).
 	 */
-	reverse: PropTypes.bool,
+	isReverse: PropTypes.bool,
 };
 
 FormPodActions.defaultProps = {
-	reverse: false,
+	isReverse: false,
 };
