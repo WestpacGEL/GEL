@@ -3,7 +3,7 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { SrOnly } from '../../accessibility-helpers/src';
+import { SrOnly } from '@westpac/accessibility-helpers';
 
 // ==============================
 // Component
