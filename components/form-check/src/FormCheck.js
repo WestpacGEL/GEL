@@ -8,10 +8,10 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormCheck = ({ type, name, size, inline, isFlipped, children, ...props }) => {
+export const FormCheck = ({ type, name, size, isInline, isFlipped, children, ...props }) => {
 	// Pass the selected props on to children
 	const childrenWithProps = Children.map(children, child =>
-		cloneElement(child, { type, name, size, inline, isFlipped })
+		cloneElement(child, { type, name, size, isInline, isFlipped })
 	);
 
 	return <div {...props}>{childrenWithProps}</div>;
