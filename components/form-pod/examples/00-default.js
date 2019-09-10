@@ -15,7 +15,10 @@ import { HeadsetIcon, LiveChatIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 
 export default () => {
-	const { colors, template } = useTheme();
+	const {
+		colors,
+		template: { wrapper },
+	} = useTheme();
 
 	// Contact detail data
 	const contactItems = [
@@ -41,7 +44,7 @@ export default () => {
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
 					body: {
-						backgroundColor: template.wrapper.backgroundColor,
+						backgroundColor: wrapper.backgroundColor,
 					},
 				}}
 			/>

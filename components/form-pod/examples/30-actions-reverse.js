@@ -12,7 +12,9 @@ import {
 import { Button } from '@westpac/button';
 
 export default () => {
-	const { template } = useTheme();
+	const {
+		template: { wrapper },
+	} = useTheme();
 
 	return (
 		<>
@@ -20,7 +22,7 @@ export default () => {
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
 					body: {
-						backgroundColor: template.wrapper.backgroundColor,
+						backgroundColor: wrapper.backgroundColor,
 					},
 				}}
 			/>
@@ -30,7 +32,6 @@ export default () => {
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
 				</FormPodPanel>
 				<FormPodActions
-					reverse
 					primary={
 						<>
 							<Button appearance="primary" soft size="large" block={[true, false]}>
@@ -42,6 +43,7 @@ export default () => {
 						</>
 					}
 					secondary={<FormPodActionsText>[TEXT CAN GO HERE]</FormPodActionsText>}
+					reverse
 				/>
 			</FormPod>
 		</>

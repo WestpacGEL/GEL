@@ -17,7 +17,9 @@ import { HeadsetIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 
 export default () => {
-	const { template } = useTheme();
+	const {
+		template: { wrapper },
+	} = useTheme();
 
 	// Contact detail data
 	const contactItems = [
@@ -35,7 +37,7 @@ export default () => {
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
 					body: {
-						backgroundColor: template.wrapper.backgroundColor,
+						backgroundColor: wrapper.backgroundColor,
 					},
 				}}
 			/>
