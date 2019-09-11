@@ -30,9 +30,9 @@ export const Switch = ({
 
 	useEffect(
 		() => {
-			setChecked(isChecked);
+			setChecked(checked);
 		},
-		[isChecked]
+		[checked]
 	);
 
 	const toggle = () => {
