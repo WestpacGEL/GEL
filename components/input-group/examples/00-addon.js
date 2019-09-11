@@ -1,7 +1,6 @@
 import React from 'react';
 import { InputGroup, InputGroupAddon } from '../src';
-import { Button } from '../../button/src';
-import { TextInput } from '../../text-input/src';
+import { TextInput } from '@westpac/text-input';
 
 export default () => (
 	<>
