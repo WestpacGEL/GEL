@@ -678,8 +678,8 @@ export default {
 
 	inputGroup: {
 		addon: {
-			fontWeight: '400',
-			lineHeight: '1.5',
+			fontWeight: 400,
+			lineHeight: 1.5,
 			backgroundColor: COLORS.light,
 			borderRadius: '3px',
 			border: '1px solid',

@@ -39,8 +39,8 @@ export const InputGroupAddon = ({ size, children, ...props }) => {
 // ==============================
 
 InputGroupAddon.propTypes = {
-	/**  Any renderable child */
-	children: PropTypes.node,
+	/**  Component text */
+	children: PropTypes.string.isRequired,
 };
 
 InputGroupAddon.defaultProps = {};

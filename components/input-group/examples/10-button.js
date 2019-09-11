@@ -7,33 +7,33 @@ export default () => (
 	<>
 		<h2>Small size</h2>
 		<p>
-			<InputGroup size="small" appearance="hero">
+			<InputGroup size="small">
 				<TextInput />
-				<Button>Go</Button>
+				<Button appearance="hero">Go</Button>
 			</InputGroup>
 		</p>
 
 		<h2>Medium size</h2>
 		<p>
-			<InputGroup appearance="hero">
+			<InputGroup>
 				<TextInput />
-				<Button>Go</Button>
+				<Button appearance="hero">Go</Button>
 			</InputGroup>
 		</p>
 
 		<h2>Large size</h2>
 		<p>
-			<InputGroup size="large" appearance="hero">
+			<InputGroup size="large">
 				<TextInput />
-				<Button>Go</Button>
+				<Button appearance="hero">Go</Button>
 			</InputGroup>
 		</p>
 
 		<h2>Extra-large size</h2>
 		<p>
-			<InputGroup size="xlarge" appearance="hero">
+			<InputGroup size="xlarge">
 				<TextInput />
-				<Button>Go</Button>
+				<Button appearance="hero">Go</Button>
 			</InputGroup>
 		</p>
 	</>

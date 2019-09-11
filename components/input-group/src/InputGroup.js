@@ -11,10 +11,8 @@ import { jsx } from '@westpac/core';
 /**
  * Input Group: Styled input fields with attached addons. Addons can be text ($, %, .00 etc) or form controls (buttons or select inputs).
  */
-export const InputGroup = ({ size, appearance, children, ...props }) => {
-	const childrenWithProps = Children.map(children, child =>
-		cloneElement(child, { size, appearance })
-	);
+export const InputGroup = ({ size, children, ...props }) => {
+	const childrenWithProps = Children.map(children, child => cloneElement(child, { size }));
 
 	const style = {
 		display: 'flex',
@@ -32,13 +30,13 @@ export const InputGroup = ({ size, appearance, children, ...props }) => {
 		},
 
 		'input:not(:first-child), span:not(:first-child), button:not(:first-child), select:not(:first-child)': {
-			borderTopLeftRadius: '0',
-			borderBottomLeftRadius: '0',
+			borderTopLeftRadius: 0,
+			borderBottomLeftRadius: 0,
 		},
 
 		'input:not(:last-child), span:not(:last-child), button:not(:last-child), select:not(:last-child)': {
-			borderTopRightRadius: '0',
-			borderBottomRightRadius: '0',
+			borderTopRightRadius: 0,
+			borderBottomRightRadius: 0,
 		},
 
 		'input + span': {
@@ -47,11 +45,11 @@ export const InputGroup = ({ size, appearance, children, ...props }) => {
 		},
 
 		'span:first-child, button:first-child': {
-			borderRight: 'none',
+			borderRight: 0,
 		},
 
 		'span:last-child, button:last-child': {
-			borderLeft: 'none',
+			borderLeft: 0,
 		},
 	};
 
@@ -67,9 +65,7 @@ export const InputGroup = ({ size, appearance, children, ...props }) => {
 // ==============================
 
 const options = {
-	appearance: ['primary', 'hero', 'neutral', 'faint', 'link'],
 	size: ['small', 'medium', 'large', 'xlarge'],
-	tag: ['select'],
 };
 
 InputGroup.propTypes = {
@@ -77,16 +73,6 @@ InputGroup.propTypes = {
 	 * InputGroup size
 	 */
 	size: PropTypes.oneOf(options.size),
-
-	/**
-	 * Button appearance
-	 */
-	appearance: PropTypes.oneOf(options.appearance),
-
-	/**
-	 * Button tag
-	 */
-	tag: PropTypes.oneOf(options.tag),
 
 	/**
 	 * InputGroup children
