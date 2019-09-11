@@ -38,6 +38,11 @@ SrOnly.propTypes = {
 	 * Component tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * Component content
+	 */
+	children: PropTypes.node.isRequired,
 };
 
 SrOnly.defaultProps = {
