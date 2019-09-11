@@ -8,7 +8,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Utils
 // ==============================
 
-const TableWrapper = ({ bordered, responsive, children, ...props }) => {
+const TableWrapper = ({ isBordered, isResponsive, children, ...props }) => {
 	const { table, breakpoints } = useTheme();
 
 	const maxWidth = width => `@media (max-width: ${width}px)`;
@@ -26,7 +26,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 
 			'> table': {
 				marginBottom: 0,
-				border: bordered && 0,
+				border: isBordered && 0,
 
 				caption: {
 					padding: table.responsive.caption.padding,
@@ -34,7 +34,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 				'tbody, tfoot': {
 					'tr:last-child': {
 						'th, td': {
-							borderBottom: bordered && 0,
+							borderBottom: isBordered && 0,
 						},
 					},
 				},
@@ -42,17 +42,17 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 					whiteSpace: 'nowrap',
 
 					':first-of-type': {
-						borderLeft: bordered && 0,
+						borderLeft: isBordered && 0,
 					},
 					':last-child': {
-						borderRight: bordered && 0,
+						borderRight: isBordered && 0,
 					},
 				},
 			},
 		},
 	};
 
-	return responsive ? (
+	return isResponsive ? (
 		<div className="table-responsive" css={common}>
 			{children}
 		</div>
@@ -65,7 +65,7 @@ const TableWrapper = ({ bordered, responsive, children, ...props }) => {
 // Component
 // ==============================
 
-export const Table = ({ striped, bordered, responsive, ...props }) => {
+export const Table = ({ isStriped, isBordered, isResponsive, ...props }) => {
 	const { table, colors } = useTheme();
 
 	const common = {
@@ -84,15 +84,15 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 
 		// All child rows in the tbody
 		'tbody > tr': {
-			transition: !striped && 'background 0.2s ease',
+			transition: !isStriped && 'background 0.2s ease',
 
 			// Hovered row
 			':hover': {
-				backgroundColor: !striped && table.tr.hover.backgroundColor,
+				backgroundColor: !isStriped && table.tr.hover.backgroundColor,
 			},
 			// Odd row
 			':nth-of-type(even)': {
-				backgroundColor: striped && table.striped.backgroundColor,
+				backgroundColor: isStriped && table.striped.backgroundColor,
 			},
 			// Highlighted row or cell
 			'&.table-highlight, > th.table-highlight, > td.table-highlight': {
@@ -116,19 +116,19 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 			padding: table.td.padding,
 			verticalAlign: 'top',
 			border: `${table.td.borderWidth} solid ${table.td.borderColor}`,
-			borderLeft: !bordered && 0,
-			borderRight: !bordered && 0,
+			borderLeft: !isBordered && 0,
+			borderRight: !isBordered && 0,
 		},
 		// All child cells in the thead
 		'thead > tr': {
 			'th, td': {
-				borderTop: !bordered && 0,
+				borderTop: !isBordered && 0,
 			},
 		},
 		// All child cells in the tfoot
 		'tfoot > tr': {
 			'> th, > td': {
-				borderBottom: !bordered && 0,
+				borderBottom: !isBordered && 0,
 			},
 		},
 
@@ -140,7 +140,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 		'thead > tr > th': {
 			verticalAlign: 'bottom',
 			borderBottom: `solid ${table.th.borderColor}`,
-			borderBottomWidth: bordered
+			borderBottomWidth: isBordered
 				? table.bordered.th.borderBottomWidth
 				: table.th.borderBottomWidth,
 			fontWeight: table.th.fontWeight,
@@ -157,7 +157,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 	};
 
 	return (
-		<TableWrapper bordered={bordered} responsive={responsive} {...props}>
+		<TableWrapper isBordered={isBordered} isResponsive={isResponsive} {...props}>
 			<table css={common} {...props} />
 		</TableWrapper>
 	);
@@ -171,23 +171,23 @@ const propTypes = {
 	/**
 	 * Striped mode
 	 */
-	striped: PropTypes.bool,
+	isStriped: PropTypes.bool,
 
 	/**
 	 * Bordered mode
 	 */
-	bordered: PropTypes.bool,
+	isBordered: PropTypes.bool,
 
 	/**
 	 * Responsive mode
 	 */
-	responsive: PropTypes.bool,
+	isResponsive: PropTypes.bool,
 };
 
 const defaultProps = {
-	striped: false,
-	bordered: false,
-	responsive: false,
+	isStriped: false,
+	isBordered: false,
+	isResponsive: false,
 };
 
 Table.propTypes = propTypes;

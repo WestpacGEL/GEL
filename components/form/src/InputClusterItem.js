@@ -8,20 +8,20 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const InputClusterItem = ({ horizontal, ...props }) => {
+export const InputClusterItem = ({ isHorizontal, ...props }) => {
 	const {
 		form: { cluster },
 	} = useTheme();
 
 	const common = {
-		marginRight: horizontal && cluster.item.horizontal.marginRight,
-		display: horizontal && 'flex',
-		flexDirection: horizontal && 'column',
-		justifyContent: horizontal && 'flex-end',
+		marginRight: isHorizontal && cluster.item.horizontal.marginRight,
+		display: isHorizontal && 'flex',
+		flexDirection: isHorizontal && 'column',
+		justifyContent: isHorizontal && 'flex-end',
 
 		// Subequent items
 		'& + &': {
-			marginTop: !horizontal && cluster.item.default.marginTop,
+			marginTop: !isHorizontal && cluster.item.default.marginTop,
 		},
 	};
 

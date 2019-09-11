@@ -56,7 +56,12 @@ export default () => (
 		</FormCheck>
 
 		<h3>Inline</h3>
-		<FormCheck type="checkbox" name="example-checkbox-medium-inline-disabled" size="medium" inline>
+		<FormCheck
+			type="checkbox"
+			name="example-checkbox-medium-inline-disabled"
+			size="medium"
+			isInline
+		>
 			<FormCheckItem value="1" disabled>
 				Option 1
 			</FormCheckItem>
@@ -71,7 +76,7 @@ export default () => (
 			</FormCheckItem>
 		</FormCheck>
 		<br />
-		<FormCheck type="radio" name="example-checkbox-large-inline-disabled" size="large" inline>
+		<FormCheck type="radio" name="example-checkbox-large-inline-disabled" size="large" isInline>
 			<FormCheckItem value="1" disabled>
 				Option 1
 			</FormCheckItem>
@@ -138,7 +143,7 @@ export default () => (
 				type="checkbox"
 				name="example-checkbox-medium-inline-disabled-fieldset"
 				size="medium"
-				inline
+				isInline
 			>
 				<FormCheckItem value="1">Option 1</FormCheckItem>
 				<FormCheckItem value="2">Option 2</FormCheckItem>
@@ -154,7 +159,7 @@ export default () => (
 				type="radio"
 				name="example-checkbox-large-inline-disabled-fieldset"
 				size="large"
-				inline
+				isInline
 			>
 				<FormCheckItem value="1">Option 1</FormCheckItem>
 				<FormCheckItem value="2">Option 2</FormCheckItem>
