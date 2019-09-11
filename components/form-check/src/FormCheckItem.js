@@ -29,7 +29,7 @@ export const FormCheckItem = ({
 
 	useEffect(
 		() => {
-			setChecked(isChecked);
+			setChecked(checked);
 		},
 		[checked]
 	);
@@ -180,7 +180,7 @@ FormCheckItem.propTypes = {
 	/**
 	 * Check the Form check item
 	 */
-	checked: PropTypes.bool,
+	isChecked: PropTypes.bool,
 
 	/**
 	 * Disable the Form check item
@@ -199,6 +199,6 @@ FormCheckItem.propTypes = {
 };
 
 FormCheckItem.defaultProps = {
-	checked: false,
+	isChecked: false,
 	disabled: false,
 };
