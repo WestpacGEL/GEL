@@ -21,7 +21,7 @@ export const InputGroup = ({ size, children, ...props }) => {
 			width: 'auto',
 		},
 
-		'select:not(:first-child)': {
+		'select:not(:first-of-type)': {
 			marginLeft: '-1px',
 		},
 
@@ -29,7 +29,7 @@ export const InputGroup = ({ size, children, ...props }) => {
 			marginRight: '-1px',
 		},
 
-		'input:not(:first-child), span:not(:first-child), button:not(:first-child), select:not(:first-child)': {
+		'input:not(:first-of-type), span:not(:first-of-type), button:not(:first-of-type), select:not(:first-of-type)': {
 			borderTopLeftRadius: 0,
 			borderBottomLeftRadius: 0,
 		},
@@ -44,7 +44,7 @@ export const InputGroup = ({ size, children, ...props }) => {
 			borderBottomRightRadius: '3px',
 		},
 
-		'span:first-child, button:first-child': {
+		'span:first-of-type, button:first-of-type': {
 			borderRight: 0,
 		},
 
