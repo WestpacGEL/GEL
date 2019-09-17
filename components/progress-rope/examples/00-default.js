@@ -32,19 +32,19 @@ export default () => {
 	};
 
 	const [state, dispatch] = useReducer(progressReducer, initialState);
-	const steps = ['Step 4', 'Step 5', 'Step 6'];
+	const steps = ['Step 3', 'Step 4', 'Step 5'];
 	return (
 		<Grid>
 			<Cell width={4}>
 				<ProgressRope current={state.index}>
 					<ProgressRopeItem>
-						<a href="#">Step 1 </a>
+						<a href="#">Step 0 </a>
+					</ProgressRopeItem>
+					<ProgressRopeItem>
+						<a href="#">Step 1</a>
 					</ProgressRopeItem>
 					<ProgressRopeItem>
 						<a href="#">Step 2</a>
-					</ProgressRopeItem>
-					<ProgressRopeItem>
-						<a href="#">Step 3</a>
 					</ProgressRopeItem>
 					{steps.map((step, i) => (
 						<ProgressRopeItem key={i}>
