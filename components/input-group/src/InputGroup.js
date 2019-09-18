@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { Children, cloneElement, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
+import { FormContext } from '@westpac/form';
 
 // ==============================
 // Component
@@ -12,7 +13,17 @@ import { jsx } from '@westpac/core';
  * Input Group: Styled input fields with attached addons. Addons can be text ($, %, .00 etc) or form controls (buttons or select inputs).
  */
 export const InputGroup = ({ size, children, ...props }) => {
-	const childrenWithProps = Children.map(children, child => cloneElement(child, { size }));
+	const formContext = useContext(FormContext);
+
+	console.log('context', formContext);
+
+	const inputGroupSize = formContext.size || size;
+
+	console.log('inputGroupSize', inputGroupSize);
+
+	const childrenWithProps = Children.map(children, child =>
+		cloneElement(child, { size: inputGroupSize })
+	);
 
 	const style = {
 		display: 'flex',
@@ -21,7 +32,7 @@ export const InputGroup = ({ size, children, ...props }) => {
 			width: 'auto',
 		},
 
-		'select:not(:first-of-type)': {
+		'select:not(:first-child)': {
 			marginLeft: '-1px',
 		},
 
@@ -29,7 +40,7 @@ export const InputGroup = ({ size, children, ...props }) => {
 			marginRight: '-1px',
 		},
 
-		'input:not(:first-of-type), span:not(:first-of-type), button:not(:first-of-type), select:not(:first-of-type)': {
+		'input:not(:first-child), span:not(:first-child), button:not(:first-child), select:not(:first-child)': {
 			borderTopLeftRadius: 0,
 			borderBottomLeftRadius: 0,
 		},
@@ -44,7 +55,7 @@ export const InputGroup = ({ size, children, ...props }) => {
 			borderBottomRightRadius: '3px',
 		},
 
-		'span:first-of-type, button:first-of-type': {
+		'span:first-child, button:first-child': {
 			borderRight: 0,
 		},
 

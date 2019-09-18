@@ -17,6 +17,7 @@
 	"main": "dist/index.js",
 	"dependencies": {
 		"@westpac/core": "^0.0.1",
+		"@westpac/form": "^0.0.1",
 		"prop-types": "^15.6.2"
 	},
 	"peerDependencies": {
