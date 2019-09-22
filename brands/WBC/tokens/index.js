@@ -174,6 +174,9 @@ export default {
 		borderWidth: '1px',
 		fontWeight: 400,
 		lineHeight: 1.5,
+		wrappedButton: {
+			marginLeft: '0.5rem',
+		},
 		appearance: {
 			primary: {
 				standard: {
