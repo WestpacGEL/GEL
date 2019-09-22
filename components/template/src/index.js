@@ -6,3 +6,7 @@ export { HeaderLogo } from './HeaderLogo';
 export { HeaderContact } from './HeaderContact';
 export { HeaderContactText } from './HeaderContactText';
 export { Hide } from './Hide';
+export { Footer } from './Footer';
+export { FooterIcon } from './FooterIcon';
+export { FooterText } from './FooterText';
+export { FooterLogo } from './FooterLogo';

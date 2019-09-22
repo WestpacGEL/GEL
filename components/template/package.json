@@ -25,6 +25,7 @@
 	},
 	"devDependencies": {
 		"@westpac/button": "^0.0.1",
+		"@westpac/grid": "^0.0.1",
 		"@westpac/icon": "^0.0.1",
 		"@westpac/symbol": "^0.0.1",
 		"cypress": "^3.1.3",

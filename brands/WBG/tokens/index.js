@@ -849,6 +849,15 @@ export default {
 				border: `1px solid ${COLORS.border}`,
 			},
 		},
+		footer: {
+			paddingLeft: ['1.2rem', '2.4rem'],
+			paddingRight: ['1.2rem', '2.4rem'],
+			divider: {
+				height: '1px',
+				backgroundColor: COLORS.hero,
+			},
+			fancy: {},
+		},
 		wrapper: {
 			backgroundColor: COLORS.background,
 		},
