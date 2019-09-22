@@ -858,6 +858,32 @@ export default {
 		},
 	},
 
+	template: {
+		header: {
+			borderBottomWidth: '1px',
+			borderBottomColor: COLORS.border,
+			height: ['5.4rem', '6.5rem'],
+			right: {
+				marginRight: ['1.2rem', '2.4rem'],
+			},
+			logo: {
+				paddingLeft: ['1.2rem', '2.4rem'],
+				paddingRight: ['1.2rem', '2.4rem'],
+			},
+			button: {
+				marginTop: ['0.6rem', '0.6rem'],
+				marginBottom: ['0.6rem', '0.6rem'],
+				paddingLeft: ['0.9rem', '1.8rem'],
+				paddingRight: ['0.9rem', '1.8rem'],
+				minWidth: ['4.2rem', '6rem'],
+				border: `1px solid ${COLORS.border}`,
+			},
+		},
+		wrapper: {
+			backgroundColor: COLORS.background,
+		},
+	},
+
 	textInput: {
 		lineHeight: 1.5,
 		fontWeight: 400,
