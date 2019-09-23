@@ -21,7 +21,5 @@
 		"prepublish": "node index.js",
 		"build": "node index.js"
 	},
-	"main": "dist/index.js",
-	"dependencies": {},
-	"devDependencies": {}
+	"main": "dist/index.js"
 }

@@ -15,14 +15,20 @@ function build(BRAND) {
 	Object.keys(COLORS).map(color => (tints[color] = { ...tint(COLORS[color]) }));
 
 	// TYPE
-	const brandfonts = { '@font-face': [] };
+	const brandfonts = {};
 	TYPE.brandfonts.map(font => {
-		brandfonts['@font-face'].push({
-			fontFamily: font.name,
-			src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
-			weight: font.weight,
-			style: font.style,
-		});
+		if (font.name) {
+			if (!brandfonts['@font-face']) brandfonts['@font-face'] = [];
+
+			brandfonts['@font-face'].push({
+				fontFamily: font.name,
+				src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
+				weight: font.weight,
+				style: font.style,
+			});
+		} else if (font.fontFamily) {
+			brandfonts['fontFamily'] = font.fontFamily;
+		}
 	});
 
 	console.log();
@@ -46,11 +52,10 @@ function build(BRAND) {
 
 	try {
 		fs.mkdirSync('dist/');
-	}
-	catch( error ) {
-		if( error.code !== 'EEXIST' ) {
-			console.error( error );
-			process.exit( 1 );
+	} catch (error) {
+		if (error.code !== 'EEXIST') {
+			console.error(error);
+			process.exit(1);
 		}
 	}
 
@@ -65,7 +70,7 @@ function build(BRAND) {
 		console.log();
 	} catch (error) {
 		console.error(error);
-		process.exit( 1 );
+		process.exit(1);
 	}
 }
 

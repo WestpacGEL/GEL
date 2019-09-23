@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/bsa",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "BSA brand component for the Westpac GEL design language",
 	"repository": "https://github.com/WestpacGEL/GEL.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -18,10 +18,8 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "echo \"Starting\"",
-		"build": "babel --root-mode upward tokens -d dist"
+		"prepublish": "node index.js",
+		"build": "node index.js"
 	},
-	"main": "dist/index.js",
-	"dependencies": {},
-	"peerDependencies": {}
+	"main": "dist/index.js"
 }
