@@ -1,1 +1,1 @@
-export { TOKENS } from './tokens/';
+require('./transformers/web')();
