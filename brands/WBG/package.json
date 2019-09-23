@@ -18,7 +18,8 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"prepublish": "node index.js"
+		"prepublish": "node index.js",
+		"build": "node index.js",
 	},
 	"main": "dist/index.js",
 	"dependencies": {},
