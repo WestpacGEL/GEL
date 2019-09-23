@@ -45,6 +45,16 @@ function build(BRAND) {
 	};
 
 	try {
+		fs.mkdirSync('dist/');
+	}
+	catch( error ) {
+		if( error.code !== 'EEXIST' ) {
+			console.error( error );
+			process.exit( 1 );
+		}
+	}
+
+	try {
 		fs.writeFileSync('dist/index.js', JSON.stringify(content), { encoding: 'utf8' });
 
 		cfonts.say('File written successfully', {
@@ -55,6 +65,7 @@ function build(BRAND) {
 		console.log();
 	} catch (error) {
 		console.error(error);
+		process.exit( 1 );
 	}
 }
 
