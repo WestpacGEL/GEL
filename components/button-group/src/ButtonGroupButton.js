@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { useButtonGroupContext } from './ButtonGroup';
 import { Button } from '@westpac/button';
 import shortid from 'shortid';
+
+import { useButtonGroupContext } from './ButtonGroup';
 
 // ==============================
 // Component
