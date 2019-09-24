@@ -23,7 +23,9 @@ function build(BRAND) {
 			brandfonts[''].push({
 				'@font-face': {
 					fontFamily: font.name,
-					src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
+					src: `url("${font.files.woff2}") format("woff2"), url("${
+						font.files.woff
+					}") format("woff")`,
 					weight: font.weight,
 					style: font.style,
 				},
@@ -62,7 +64,9 @@ function build(BRAND) {
 	}
 
 	try {
-		fs.writeFileSync('dist/index.js', `module.exports = ${JSON.stringify(content)}`, { encoding: 'utf8' });
+		fs.writeFileSync('dist/index.js', `module.exports = ${JSON.stringify(content)}`, {
+			encoding: 'utf8',
+		});
 
 		cfonts.say('File written successfully', {
 			font: 'console',
