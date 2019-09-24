@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { createContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
@@ -8,7 +8,15 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const ButtonGroupContext = createContext();
+const ButtonGroupContext = createContext();
+
+export const useButtonGroupContext = () => {
+	const context = useContext(ButtonGroupContext);
+	if (!context) {
+		throw new Error('<ButtonGroupButton> should be wrapped in a <ButtonGroup>.');
+	}
+	return context;
+};
 
 export const ButtonGroup = ({ appearance, size, isBlock, name, children, ...props }) => {
 	return (

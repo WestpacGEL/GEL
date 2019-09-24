@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { ButtonGroupContext } from './ButtonGroup';
+import { useButtonGroupContext } from './ButtonGroup';
 import { Button } from '@westpac/button';
 import shortid from 'shortid';
 
@@ -21,7 +21,7 @@ export const ButtonGroupButton = ({
 	children,
 	...props
 }) => {
-	const { appearance, size, name } = useContext(ButtonGroupContext);
+	const { appearance, size, name } = useButtonGroupContext();
 
 	const { button } = useTheme();
 	const [checked, setChecked] = useState(isChecked);
