@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
@@ -8,23 +8,22 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const ButtonGroup = ({ appearance, size, isBlock, name, children, ...props }) => {
-	// Pass the selected props on to children
-	const childrenWithProps = Children.map(children, child =>
-		cloneElement(child, { appearance, size, name })
-	);
+export const ButtonGroupContext = createContext();
 
+export const ButtonGroup = ({ appearance, size, isBlock, name, children, ...props }) => {
 	return (
-		<div
-			css={{
-				display: isBlock ? 'flex' : 'inline-flex',
-				alignItems: 'center', //vertical
-				verticalAlign: 'middle',
-			}}
-			{...props}
-		>
-			{childrenWithProps}
-		</div>
+		<ButtonGroupContext.Provider value={{ appearance, size, name }}>
+			<div
+				css={{
+					display: isBlock ? 'flex' : 'inline-flex',
+					alignItems: 'center', //vertical
+					verticalAlign: 'middle',
+				}}
+				{...props}
+			>
+				{children}
+			</div>
+		</ButtonGroupContext.Provider>
 	);
 };
 
