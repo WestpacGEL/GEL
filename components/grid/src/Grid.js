@@ -33,7 +33,9 @@ export const Grid = ({
 	rows,
 	...props
 }) => {
-	const { breakpoints } = useTheme();
+	const {
+		LAYOUT: { breakpoints },
+	} = useTheme();
 	const mq = paint(breakpoints);
 
 	return (

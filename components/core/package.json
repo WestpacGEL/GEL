@@ -30,7 +30,7 @@
 	"dependencies": {
 		"@emotion/core": "^10.0.4",
 		"@emotion/weak-memoize": "^0.2.2",
-		"color": "^3.1.1",
+		"color": "^3.1.2",
 		"facepaint": "^1.2.1",
 		"lodash.merge": "^4.6.2",
 		"prop-types": "^15.6.2"

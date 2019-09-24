@@ -2,7 +2,7 @@ module.exports = {
 	TYPE: {
 		brandfonts: [
 			{
-				fontFamily: '"Times New Roman", "Times", serif',
+				fontFamily: 'Georgia, "Times New Roman", Times, serif',
 			},
 		],
 	},

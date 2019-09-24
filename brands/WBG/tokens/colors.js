@@ -21,4 +21,4 @@ const COLORS = {
 
 module.exports = {
 	COLORS,
-}
+};
