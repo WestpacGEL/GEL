@@ -14,7 +14,7 @@
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=modal webpack-dev-server --config ../../helpers/example/webpack.config.js",
-		"build": "babel --root-mode upward src -d dist",
+		"build": "rm -rf dist && babel --root-mode upward src -d dist",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "bolt test:integration",

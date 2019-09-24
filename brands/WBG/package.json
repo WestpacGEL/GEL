@@ -18,7 +18,8 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"prepublish": "node index.js"
+		"prepublish": "node index.js",
+		"build": "rm -rf dist && babel --root-mode upward tokens -d dist"
 	},
 	"main": "dist/index.js",
 	"dependencies": {},

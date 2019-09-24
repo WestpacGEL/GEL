@@ -19,7 +19,7 @@
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "echo \"Starting\"",
-		"build": "babel --root-mode upward tokens -d dist"
+		"build": "rm -rf dist && babel --root-mode upward tokens -d dist"
 	},
 	"main": "dist/index.js",
 	"dependencies": {},
