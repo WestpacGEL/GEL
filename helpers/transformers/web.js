@@ -18,13 +18,15 @@ function build(BRAND) {
 	const brandfonts = {};
 	TYPE.brandfonts.map(font => {
 		if (font.name) {
-			if (!brandfonts['@font-face']) brandfonts['@font-face'] = [];
+			if (!brandfonts['']) brandfonts[''] = [];
 
-			brandfonts['@font-face'].push({
-				fontFamily: font.name,
-				src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
-				weight: font.weight,
-				style: font.style,
+			brandfonts[''].push({
+				'@font-face': {
+					fontFamily: font.name,
+					src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
+					weight: font.weight,
+					style: font.style,
+				},
 			});
 		} else if (font.fontFamily) {
 			brandfonts['fontFamily'] = font.fontFamily;
@@ -60,7 +62,7 @@ function build(BRAND) {
 	}
 
 	try {
-		fs.writeFileSync('dist/index.js', JSON.stringify(content), { encoding: 'utf8' });
+		fs.writeFileSync('dist/index.js', `module.exports = ${JSON.stringify(content)}`, { encoding: 'utf8' });
 
 		cfonts.say('File written successfully', {
 			font: 'console',
