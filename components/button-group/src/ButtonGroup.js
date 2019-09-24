@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
 // ==============================
-// Component
+// Context and consumer hook
 // ==============================
 
 const ButtonGroupContext = createContext();
@@ -17,6 +17,10 @@ export const useButtonGroupContext = () => {
 	}
 	return context;
 };
+
+// ==============================
+// Component
+// ==============================
 
 export const ButtonGroup = ({ appearance, size, isBlock, name, children, ...props }) => {
 	return (
