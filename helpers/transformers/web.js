@@ -2,6 +2,43 @@ const { makeTints } = require('./utils');
 const cfonts = require('cfonts');
 const fs = require('fs');
 
+/**
+ * Convert a font token object to a styled object for emotion to use
+ *
+ * @param  {array} fonts - An array of token objects for a font
+ *
+ * @return {object}      - The styled object for emotion
+ */
+function convertFonts(fonts) {
+	const output = {};
+
+	fonts.map(font => {
+		if (font.name) {
+			if (!output['']) output[''] = [];
+
+			output[''].push({
+				'@font-face': {
+					fontFamily: font.name,
+					src: `url("${font.files.woff2}") format("woff2"), url("${
+						font.files.woff
+					}") format("woff")`,
+					weight: font.weight,
+					style: font.style,
+				},
+			});
+		} else if (font.fontFamily) {
+			output['fontFamily'] = font.fontFamily;
+		}
+	});
+
+	return output;
+}
+
+/**
+ * Transform the tokens into a web specific object that can be used in emotion
+ *
+ * @param  {string} BRAND - The brand string to find the right brand folder
+ */
 function build(BRAND) {
 	const cwd = `../../brands/${BRAND}`;
 
@@ -15,25 +52,10 @@ function build(BRAND) {
 	Object.keys(COLORS).map(color => (tints = { ...tints, ...makeTints(COLORS[color], color) }));
 
 	// TYPE
-	const brandfonts = {};
-	TYPE.brandfonts.map(font => {
-		if (font.name) {
-			if (!brandfonts['']) brandfonts[''] = [];
-
-			brandfonts[''].push({
-				'@font-face': {
-					fontFamily: font.name,
-					src: `url("${font.files.woff2}") format("woff2"), url("${
-						font.files.woff
-					}") format("woff")`,
-					weight: font.weight,
-					style: font.style,
-				},
-			});
-		} else if (font.fontFamily) {
-			brandfonts['fontFamily'] = font.fontFamily;
-		}
-	});
+	const fonts = {
+		bodyfont: convertFonts(TYPE.bodyfonts),
+		brandfont: convertFonts(TYPE.brandfonts),
+	};
 
 	console.log();
 	cfonts.say(`${BRAND} TOKENS`, {
@@ -49,9 +71,7 @@ function build(BRAND) {
 			...COLORS,
 		},
 		LAYOUT,
-		TYPE: {
-			brandfonts,
-		},
+		TYPE: { ...fonts },
 	};
 
 	try {
