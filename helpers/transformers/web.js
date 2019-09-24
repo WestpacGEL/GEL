@@ -1,4 +1,4 @@
-const { tint } = require('./utils');
+const { makeTints } = require('./utils');
 const cfonts = require('cfonts');
 const fs = require('fs');
 
@@ -11,8 +11,8 @@ function build(BRAND) {
 	const { TYPE } = require(`${cwd}/tokens/type`);
 
 	// COLORS
-	const tints = {};
-	Object.keys(COLORS).map(color => (tints[color] = { ...tint(COLORS[color]) }));
+	let tints = {};
+	Object.keys(COLORS).map(color => (tints = { ...tints, ...makeTints(COLORS[color], color) }));
 
 	// TYPE
 	const brandfonts = {};
