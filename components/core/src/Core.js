@@ -152,16 +152,11 @@ export const Core = ({ children }) => {
 
 	// Typography styling
 	const styleTypography = {
-		// Document
-		html: {
-			fontSize: '62.5%', //10px
-		},
-
 		// Global type styling
 		body: {
 			fontFamily: bodyFont,
 			fontWeight: 400,
-			fontSize: '1.4rem', // (14px)
+			fontSize: '0.875rem', // (14px)
 			lineHeight: 1.428571429,
 			color: COLORS.text,
 			fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
@@ -191,7 +186,7 @@ export const Core = ({ children }) => {
 
 		// Paragraphs
 		p: {
-			margin: '1.2rem 0',
+			margin: '0.75rem 0', //12px 0
 		},
 
 		// Definition lists
