@@ -91,15 +91,15 @@ const App = ({ components, packageName }) => {
 
 						<SidebarSwitcher>
 							{Object.keys(BRANDS).map(b => {
-								const checked = brand === b;
+								const isChecked = brand === b;
 								return (
-									<SidebarSwitch key={b} isChecked={checked}>
+									<SidebarSwitch key={b} checked={isChecked}>
 										<input
 											name="brand"
 											type="radio"
 											onChange={e => setBrand(b)}
 											value={b}
-											checked={checked}
+											checked={isChecked}
 										/>
 										{b}
 									</SidebarSwitch>
@@ -312,14 +312,14 @@ const SidebarSwitcher = props => (
 		{...props}
 	/>
 );
-const SidebarSwitch = ({ isChecked, ...props }) => (
+const SidebarSwitch = ({ checked, ...props }) => (
 	<label
 		css={{
 			alignItems: 'center',
 			borderTop: '1px solid',
-			borderTopColor: isChecked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
+			borderTopColor: checked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
 			boxSizing: 'border-box',
-			color: isChecked ? 'inherit' : '#1F252C',
+			color: checked ? 'inherit' : '#1F252C',
 			cursor: 'pointer',
 			flex: 1,
 			fontWeight: 500,
