@@ -13,7 +13,7 @@ const ButtonGroupContext = createContext();
 export const useButtonGroupContext = () => {
 	const context = useContext(ButtonGroupContext);
 	if (!context) {
-		throw new Error('<ButtonGroupButton> should be wrapped in a <ButtonGroup>.');
+		throw new Error('<Button> should be wrapped in a <ButtonGroup>.');
 	}
 	return context;
 };
@@ -22,12 +22,12 @@ export const useButtonGroupContext = () => {
 // Component
 // ==============================
 
-export const ButtonGroup = ({ appearance, size, isBlock, name, children, ...props }) => {
+export const ButtonGroup = ({ appearance, size, block, name, children, ...props }) => {
 	return (
 		<ButtonGroupContext.Provider value={{ appearance, size, name }}>
 			<div
 				css={{
-					display: isBlock ? 'flex' : 'inline-flex',
+					display: block ? 'flex' : 'inline-flex',
 					alignItems: 'center', //vertical
 					verticalAlign: 'middle',
 				}}
@@ -52,14 +52,14 @@ ButtonGroup.propTypes = {
 	/**
 	 * Button group button appearance.
 	 *
-	 * This prop is passed to children.
+	 * This prop is available to children via `ButtonGroupContext`.
 	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
 	 * Button group button size.
 	 *
-	 * This prop is passed to children.
+	 * This prop is available to children via `ButtonGroupContext`.
 	 */
 	size: PropTypes.oneOf(options.size),
 
@@ -68,12 +68,12 @@ ButtonGroup.propTypes = {
 	 *
 	 * Fit button group width to its parent width.
 	 */
-	isBlock: PropTypes.bool,
+	block: PropTypes.bool,
 
 	/**
 	 * Button group button input element’s name.
 	 *
-	 * This prop is passed to children.
+	 * This prop is available to children via `ButtonGroupContext`.
 	 */
 	name: PropTypes.string.isRequired,
 
@@ -86,5 +86,5 @@ ButtonGroup.propTypes = {
 ButtonGroup.defaultProps = {
 	appearance: 'hero',
 	size: 'medium',
-	isBlock: false,
+	block: false,
 };

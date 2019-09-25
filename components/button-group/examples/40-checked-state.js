@@ -1,14 +1,14 @@
 import React from 'react';
-import { ButtonGroup, ButtonGroupButton } from '../src';
+import { ButtonGroup, Button } from '../src';
 
 export default () => (
 	<>
 		<ButtonGroup name="example-checked">
-			<ButtonGroupButton value="left">Left</ButtonGroupButton>
-			<ButtonGroupButton value="middle" isChecked>
+			<Button value="left">Left</Button>
+			<Button value="middle" checked>
 				Middle
-			</ButtonGroupButton>
-			<ButtonGroupButton value="right">Right</ButtonGroupButton>
+			</Button>
+			<Button value="right">Right</Button>
 		</ButtonGroup>
 	</>
 );

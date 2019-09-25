@@ -19,7 +19,10 @@ export const sizeMap = {
 };
 
 const IconWrapper = ({ size, ...props }) => {
-	const { colors, breakpoints } = useTheme();
+	const {
+		COLORS,
+		LAYOUT: { breakpoints },
+	} = useTheme();
 	const mq = paint(breakpoints);
 
 	const style = {

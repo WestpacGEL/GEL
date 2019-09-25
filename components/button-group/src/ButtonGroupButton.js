@@ -2,10 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import shortid from 'shortid';
-
 import { useButtonGroupContext } from './ButtonGroup';
 
 // ==============================
@@ -16,30 +15,28 @@ export const ButtonGroupButton = ({
 	value,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
-	isSrOnlyText,
-	isChecked,
+	srOnlyText,
+	checked,
 	onChange,
 	children,
 	...props
 }) => {
 	const { appearance, size, name } = useButtonGroupContext();
-
-	const { button } = useTheme();
-	const [checked, setChecked] = useState(isChecked);
+	const [isChecked, setChecked] = useState(checked);
 	const [buttonId] = useState(`button-${shortid.generate()}`);
 
 	useEffect(
 		() => {
-			setChecked(checked);
+			setChecked(isChecked);
 		},
-		[checked]
+		[isChecked]
 	);
 
 	const toggle = () => {
 		if (onChange) {
 			onChange();
 		} else {
-			setChecked(!checked);
+			setChecked(!isChecked);
 		}
 	};
 
@@ -55,7 +52,7 @@ export const ButtonGroupButton = ({
 				name={name}
 				id={buttonId}
 				value={value}
-				checked={checked}
+				checked={isChecked}
 				onChange={toggle}
 			/>
 			<Button
@@ -73,9 +70,9 @@ export const ButtonGroupButton = ({
 
 					// Checked state styling (look like a standard button)
 					'input:checked + &': {
-						color: button.appearance[appearance].standard.default.color,
-						backgroundColor: button.appearance[appearance].standard.default.backgroundColor,
-						borderColor: button.appearance[appearance].standard.default.borderColor,
+						// color: button.appearance[appearance].standard.default.color,
+						// backgroundColor: button.appearance[appearance].standard.default.backgroundColor,
+						// borderColor: button.appearance[appearance].standard.default.borderColor,
 					},
 				}}
 				tag="span"
@@ -83,9 +80,9 @@ export const ButtonGroupButton = ({
 				size={size}
 				iconAfter={IconAfter}
 				iconBefore={IconBefore}
-				isSrOnlyText={isSrOnlyText}
-				isSoft
-				isBlock
+				srOnlyText={srOnlyText}
+				soft={!isChecked}
+				block
 			>
 				{children}
 			</Button>
@@ -116,7 +113,7 @@ ButtonGroupButton.propTypes = {
 	/**
 	 * Check the button
 	 */
-	isChecked: PropTypes.bool,
+	checked: PropTypes.bool,
 
 	/**
 	 * The onChange handler for this button
@@ -130,5 +127,5 @@ ButtonGroupButton.propTypes = {
 };
 
 ButtonGroupButton.defaultProps = {
-	isChecked: false,
+	checked: false,
 };
