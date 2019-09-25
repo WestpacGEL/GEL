@@ -53,8 +53,8 @@ function build(BRAND) {
 
 	// TYPE
 	const fonts = {
-		bodyfont: convertFonts(TYPE.bodyfonts),
-		brandfont: convertFonts(TYPE.brandfonts),
+		bodyFont: convertFonts(TYPE.bodyFonts),
+		brandFont: convertFonts(TYPE.brandFonts),
 	};
 
 	console.log();

@@ -1,14 +1,14 @@
 module.exports = {
 	TYPE: {
-		bodyfonts: [
+		bodyFonts: [
 			{
 				fontFamily:
 					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 			},
 		],
-		brandfonts: [
+		brandFonts: [
 			{
-				name: 'name',
+				name: 'aller',
 				files: {
 					woff2: '../font/Aller_Bd.woff2',
 					woff: '../font/Aller_Bd.woff',
@@ -17,7 +17,7 @@ module.exports = {
 				style: 'normal',
 			},
 			{
-				name: 'name',
+				name: 'aller',
 				files: {
 					woff2: '../font/Aller_Lt.woff2',
 					woff: '../font/Aller_Lt.woff',

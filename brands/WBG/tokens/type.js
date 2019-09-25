@@ -1,12 +1,12 @@
 module.exports = {
 	TYPE: {
-		bodyfonts: [
+		bodyFonts: [
 			{
 				fontFamily:
 					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 			},
 		],
-		brandfonts: [
+		brandFonts: [
 			{
 				fontFamily: '"Times New Roman", "Times", serif',
 			},
