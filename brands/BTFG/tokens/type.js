@@ -8,7 +8,7 @@ module.exports = {
 		],
 		brandFonts: [
 			{
-				fontFamily: '"Times New Roman", "Times", serif',
+				fontFamily: 'Georgia, "Times New Roman", Times, serif',
 			},
 		],
 	},

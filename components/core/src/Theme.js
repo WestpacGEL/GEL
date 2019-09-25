@@ -9,8 +9,6 @@ import { Core } from './Core';
 // TODO: is there a useful "default" value we should add here?
 export const ThemeContext = createContext();
 
-export const UserModeContext = createContext(false);
-
 export const useTheme = () => {
 	const themeObject = useContext(ThemeContext);
 	const errorMessage = `GEL components require that you wrap your application with the <GEL /> theme provider from @westpac/core.`;
@@ -22,41 +20,32 @@ export const useTheme = () => {
 	return themeObject;
 };
 
-export const useIsKeyboardUser = () => {
-	const [isKeyboardUser, setIsKeyboardUser] = useState(false);
+// ==============================
+// Component
+// ==============================
 
-	// Handle keys
+export const GEL = ({ brand, children, ...props }) => {
 	const keyHandler = event => {
 		if (event.key === 'Tab') {
-			setIsKeyboardUser(true);
+			document.getElementsByTagName('body')[0].classList.remove('isMouseMode');
 			document.removeEventListener('keydown', keyHandler);
 		}
 	};
 
 	// Bind key events
 	useEffect(() => {
+		document.getElementsByTagName('body')[0].classList.add('isMouseMode');
 		window.document.addEventListener('keydown', keyHandler);
+
 		return () => {
 			window.document.removeEventListener('keydown', keyHandler);
 		};
 	}, []);
 
-	return isKeyboardUser;
-};
-
-// ==============================
-// Component
-// ==============================
-
-export const GEL = ({ brand, children, ...props }) => {
-	const isKeyboardUser = useIsKeyboardUser();
-
 	return (
-		<UserModeContext.Provider value={isKeyboardUser} {...props}>
-			<ThemeContext.Provider value={brand} {...props}>
-				<Core>{children}</Core>
-			</ThemeContext.Provider>
-		</UserModeContext.Provider>
+		<ThemeContext.Provider value={brand} {...props}>
+			<Core>{children}</Core>
+		</ThemeContext.Provider>
 	);
 };
 
