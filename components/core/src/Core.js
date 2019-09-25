@@ -10,7 +10,11 @@ export const Core = ({ children }) => {
 	const {
 		COLORS,
 		LAYOUT: { breakpoints },
+<<<<<<< HEAD
 		font: styleFont,
+=======
+		TYPE: { bodyFont, brandFont },
+>>>>>>> gel-develop
 	} = useTheme();
 
 	const mq = paint(breakpoints);
@@ -159,8 +163,12 @@ export const Core = ({ children }) => {
 
 		// Global type styling
 		body: {
+<<<<<<< HEAD
 			fontFamily:
 				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+=======
+			fontFamily: bodyFont,
+>>>>>>> gel-develop
 			fontWeight: 400,
 			fontSize: '1.4rem', // (14px)
 			lineHeight: 1.428571429,
@@ -175,12 +183,23 @@ export const Core = ({ children }) => {
 
 		// Class access to our font families
 		'.body-font': {
+<<<<<<< HEAD
 			fontFamily:
 				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+=======
+			fontFamily: bodyFont,
+>>>>>>> gel-develop
 		},
+
 		'.brand-font': {
 			fontFamily:
+<<<<<<< HEAD
 				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+=======
+				'fontFamily' in brandFont
+					? brandFont['fontFamily']
+					: brandFont[''][0]['@font-face'].fontFamily,
+>>>>>>> gel-develop
 		},
 
 		// Headings
@@ -219,12 +238,20 @@ export const Core = ({ children }) => {
 
 		// Mark
 		mark: {
+<<<<<<< HEAD
 			backgroundColor: COLORS.tints.primary['20'],
+=======
+			backgroundColor: COLORS.tints.primary20,
+>>>>>>> gel-develop
 		},
 
 		// Text selection
 		'::selection': {
+<<<<<<< HEAD
 			backgroundColor: COLORS.tints.primary['20'],
+=======
+			backgroundColor: COLORS.tints.primary20,
+>>>>>>> gel-develop
 		},
 
 		// Links
@@ -294,7 +321,7 @@ export const Core = ({ children }) => {
 
 	return (
 		<>
-			<Global styles={mq(merge(styleReset, styleTypography, styleFont, styleTextExtensions))} />
+			<Global styles={mq(merge(styleReset, styleTypography, styleTextExtensions))} />
 			{children}
 		</>
 	);

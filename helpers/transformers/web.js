@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { tint } = require('./utils');
 const cfonts = require('cfonts');
 const fs = require('fs');
@@ -21,6 +22,27 @@ function build(BRAND) {
 			if (!brandfonts['']) brandfonts[''] = [];
 
 			brandfonts[''].push({
+=======
+const { makeTints } = require('./utils');
+const cfonts = require('cfonts');
+const fs = require('fs');
+
+/**
+ * Convert a font token object to a styled object for emotion to use
+ *
+ * @param  {array} fonts - An array of token objects for a font
+ *
+ * @return {object}      - The styled object for emotion
+ */
+function convertFonts(fonts) {
+	const output = {};
+
+	fonts.map(font => {
+		if (font.name) {
+			if (!output['']) output[''] = [];
+
+			output[''].push({
+>>>>>>> gel-develop
 				'@font-face': {
 					fontFamily: font.name,
 					src: `url("${font.files.woff2}") format("woff2"), url("${
@@ -31,10 +53,43 @@ function build(BRAND) {
 				},
 			});
 		} else if (font.fontFamily) {
+<<<<<<< HEAD
 			brandfonts['fontFamily'] = font.fontFamily;
 		}
 	});
 
+=======
+			output['fontFamily'] = font.fontFamily;
+		}
+	});
+
+	return output;
+}
+
+/**
+ * Transform the tokens into a web specific object that can be used in emotion
+ *
+ * @param  {string} BRAND - The brand string to find the right brand folder
+ */
+function build(BRAND) {
+	const cwd = `../../brands/${BRAND}`;
+
+	const { COLORS } = require(`${cwd}/tokens/colors`);
+	const { SPACING } = require(`${cwd}/tokens/spacing`);
+	const { LAYOUT } = require(`${cwd}/tokens/layout`);
+	const { TYPE } = require(`${cwd}/tokens/type`);
+
+	// COLORS
+	let tints = {};
+	Object.keys(COLORS).map(color => (tints = { ...tints, ...makeTints(COLORS[color], color) }));
+
+	// TYPE
+	const fonts = {
+		bodyFont: convertFonts(TYPE.bodyFonts),
+		brandFont: convertFonts(TYPE.brandFonts),
+	};
+
+>>>>>>> gel-develop
 	console.log();
 	cfonts.say(`${BRAND} TOKENS`, {
 		font: 'chrome',
@@ -49,9 +104,13 @@ function build(BRAND) {
 			...COLORS,
 		},
 		LAYOUT,
+<<<<<<< HEAD
 		TYPE: {
 			brandfonts,
 		},
+=======
+		TYPE: { ...fonts },
+>>>>>>> gel-develop
 	};
 
 	try {
