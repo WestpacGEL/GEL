@@ -255,8 +255,8 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 			color: primaryColor,
 			display: 'block',
 			fontWeight: 500,
-			padding: '1rem 2rem',
-			fontSize: '1.6rem',
+			padding: '0.625rem 1.25rem',
+			fontSize: '1rem',
 			textDecoration: 'none',
 
 			':hover, :focus': {
@@ -287,8 +287,8 @@ const SidebarTitle = props => (
 			color: 'inherit',
 			display: 'block',
 			fontWeight: 500,
-			fontSize: '2rem',
-			padding: '2rem',
+			fontSize: '1.25rem',
+			padding: '1.25rem',
 			textDecoration: 'none',
 
 			':hover, :focus': {
@@ -307,7 +307,7 @@ const SidebarSwitcher = props => (
 	<div
 		css={{
 			display: 'flex',
-			fontSize: '1.3rem',
+			fontSize: '0.8125rem',
 		}}
 		{...props}
 	/>
@@ -324,8 +324,8 @@ const SidebarSwitch = ({ isChecked, ...props }) => (
 			flex: 1,
 			fontWeight: 500,
 			justifyContent: 'center',
-			paddingBottom: '1.2rem',
-			paddingTop: '1.2rem',
+			paddingBottom: '0.75rem',
+			paddingTop: '0.75rem',
 			textAlign: 'center',
 
 			input: {
