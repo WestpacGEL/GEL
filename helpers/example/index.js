@@ -46,7 +46,7 @@ const App = ({ components, packageName }) => {
 		? components.filter(p => p.label.toLowerCase().includes(inputValue.toLowerCase()))
 		: components;
 
-	const primaryColor = BRANDS[brand].colors.primary.default;
+	const primaryColor = BRANDS[brand].COLORS.primary;
 
 	return (
 		<Router>

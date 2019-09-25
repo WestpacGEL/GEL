@@ -12,7 +12,9 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // ==============================
 
 export const Container = props => {
-	const { breakpoints, grid } = useTheme();
+	const {
+		LAYOUT: { breakpoints },
+	} = useTheme();
 	const mq = paint(breakpoints);
 
 	return (
@@ -20,9 +22,9 @@ export const Container = props => {
 			css={mq({
 				marginLeft: 'auto',
 				marginRight: 'auto',
-				maxWidth: grid.container.maxWidth,
-				paddingLeft: grid.container.padding,
-				paddingRight: grid.container.padding,
+				maxWidth: '132rem',
+				paddingLeft: ['1.2rem', '3.6rem', '4.8rem', '6rem'],
+				paddingRight: ['1.2rem', '3.6rem', '4.8rem', '6rem'],
 			})}
 			{...props}
 		/>
