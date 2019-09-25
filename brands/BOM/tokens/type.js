@@ -1,10 +1,5 @@
 module.exports = {
 	TYPE: {
-<<<<<<< HEAD
-		brandfonts: [
-			{
-				name: 'name',
-=======
 		bodyFonts: [
 			{
 				fontFamily:
@@ -14,7 +9,6 @@ module.exports = {
 		brandFonts: [
 			{
 				name: 'brown',
->>>>>>> gel-develop
 				files: {
 					woff2: '../font/lineto-brown-pro-regular.woff2',
 					woff: '../font/lineto-brown-pro-regular.woff',
@@ -23,11 +17,7 @@ module.exports = {
 				style: 'normal',
 			},
 			{
-<<<<<<< HEAD
-				name: 'name',
-=======
 				name: 'brown',
->>>>>>> gel-develop
 				files: {
 					woff2: '../font/lineto-brown-pro-bold.woff2',
 					woff: '../font/lineto-brown-pro-bold.woff',
@@ -36,11 +26,7 @@ module.exports = {
 				style: 'normal',
 			},
 			{
-<<<<<<< HEAD
-				name: 'name',
-=======
 				name: 'brown',
->>>>>>> gel-develop
 				files: {
 					woff2: '../font/lineto-brown-pro-light.woff2',
 					woff: '../font/lineto-brown-pro-light.woff',

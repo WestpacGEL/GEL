@@ -1,28 +1,3 @@
-<<<<<<< HEAD
-const { tint } = require('./utils');
-const cfonts = require('cfonts');
-const fs = require('fs');
-
-function build(BRAND) {
-	const cwd = `../../brands/${BRAND}`;
-
-	const { COLORS } = require(`${cwd}/tokens/colors`);
-	const { SPACING } = require(`${cwd}/tokens/spacing`);
-	const { LAYOUT } = require(`${cwd}/tokens/layout`);
-	const { TYPE } = require(`${cwd}/tokens/type`);
-
-	// COLORS
-	const tints = {};
-	Object.keys(COLORS).map(color => (tints[color] = { ...tint(COLORS[color]) }));
-
-	// TYPE
-	const brandfonts = {};
-	TYPE.brandfonts.map(font => {
-		if (font.name) {
-			if (!brandfonts['']) brandfonts[''] = [];
-
-			brandfonts[''].push({
-=======
 const { makeTints } = require('./utils');
 const cfonts = require('cfonts');
 const fs = require('fs');
@@ -42,7 +17,6 @@ function convertFonts(fonts) {
 			if (!output['']) output[''] = [];
 
 			output[''].push({
->>>>>>> gel-develop
 				'@font-face': {
 					fontFamily: font.name,
 					src: `url("${font.files.woff2}") format("woff2"), url("${
@@ -53,12 +27,6 @@ function convertFonts(fonts) {
 				},
 			});
 		} else if (font.fontFamily) {
-<<<<<<< HEAD
-			brandfonts['fontFamily'] = font.fontFamily;
-		}
-	});
-
-=======
 			output['fontFamily'] = font.fontFamily;
 		}
 	});
@@ -89,7 +57,6 @@ function build(BRAND) {
 		brandFont: convertFonts(TYPE.brandFonts),
 	};
 
->>>>>>> gel-develop
 	console.log();
 	cfonts.say(`${BRAND} TOKENS`, {
 		font: 'chrome',
@@ -104,13 +71,7 @@ function build(BRAND) {
 			...COLORS,
 		},
 		LAYOUT,
-<<<<<<< HEAD
-		TYPE: {
-			brandfonts,
-		},
-=======
 		TYPE: { ...fonts },
->>>>>>> gel-develop
 	};
 
 	try {

@@ -1,8 +1,5 @@
 module.exports = {
 	TYPE: {
-<<<<<<< HEAD
-		brandfonts: [
-=======
 		bodyFonts: [
 			{
 				fontFamily:
@@ -10,7 +7,6 @@ module.exports = {
 			},
 		],
 		brandFonts: [
->>>>>>> gel-develop
 			{
 				fontFamily: 'Georgia, "Times New Roman", Times, serif',
 			},

@@ -5,8 +5,6 @@ const getWorkspaces = require('get-workspaces').default;
 (async () => {
 	const workspaces = await getWorkspaces();
 
-	console.log({ workspaces });
-
 	workspaces.map(workspace => {
 		CFonts.say(`${workspace.name.split('/')[1]}`, {
 			colors: ['redBright', 'magenta', 'whiteBright'],

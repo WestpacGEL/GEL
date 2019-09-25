@@ -1,10 +1,5 @@
 module.exports = {
 	TYPE: {
-<<<<<<< HEAD
-		brandfonts: [
-			{
-				name: 'name',
-=======
 		bodyFonts: [
 			{
 				fontFamily:
@@ -14,7 +9,6 @@ module.exports = {
 		brandFonts: [
 			{
 				name: 'aller',
->>>>>>> gel-develop
 				files: {
 					woff2: '../font/Aller_Bd.woff2',
 					woff: '../font/Aller_Bd.woff',
@@ -23,11 +17,7 @@ module.exports = {
 				style: 'normal',
 			},
 			{
-<<<<<<< HEAD
-				name: 'name',
-=======
 				name: 'aller',
->>>>>>> gel-develop
 				files: {
 					woff2: '../font/Aller_Lt.woff2',
 					woff: '../font/Aller_Lt.woff',

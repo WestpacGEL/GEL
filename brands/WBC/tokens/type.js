@@ -1,10 +1,5 @@
 module.exports = {
 	TYPE: {
-<<<<<<< HEAD
-		brandfonts: [
-			{
-				name: 'name',
-=======
 		bodyFonts: [
 			{
 				fontFamily:
@@ -14,7 +9,6 @@ module.exports = {
 		brandFonts: [
 			{
 				name: 'chronicle-disp-semibold',
->>>>>>> gel-develop
 				files: {
 					woff2: '../font/7FF5B4E46E46717F5.woff2',
 					woff: '../font/7FF5B4E46E46717F5.woff',

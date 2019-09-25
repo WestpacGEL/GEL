@@ -28,8 +28,6 @@ const BRANDS = {
 	WBG: wbgBrand,
 };
 
-console.log({ BRANDS });
-
 // ==============================
 // Compose the pieces
 // ==============================
