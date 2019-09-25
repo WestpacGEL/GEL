@@ -17,7 +17,7 @@ The design system for Westpac GEL
 | `bolt dev [package-name]`   | run the examples of the specified component       |
 | `bolt new [package-name]`   | create a specified empty component                |
 | `bolt start [package-name]` | start the example server of a component           |
-| `bolt test`                 | runs test                                         |
+| `yarn test`                 | runs test                                         |
 | `bolt format`               | runs prettier to format all code                  |
 
 ### component level
@@ -26,8 +26,8 @@ The design system for Westpac GEL
 | --------------- | -------------------------------- |
 | `bolt start`    | start the example server         |
 | `bolt build`    | builds dist files                |
-| `bolt test`     | runs test headless               |
-| `bolt test:dev` | runs test by opening cypress app |
+| `yarn test`     | runs test headless               |
+| `yarn test:dev` | runs test by opening cypress app |
 
 ## Monorepo
 

@@ -11,35 +11,28 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v4-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          - v4-dependencies-{{ .Branch }}
-          - v4-dependencies
+            - v4-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v4-dependencies-{{ .Branch }}
+            - v4-dependencies
 
       - run:
           name: Install tree
           command: apt-get install tree
       - run:
-          name: Install bolt globally
-          command: yarn global add bolt
-
-      - run:
-          name: "DEBUG: Run tree"
+          name: 'DEBUG: Run tree'
           command: tree -C -I "node_modules*"
       - run:
-          name: "DEBUG: node version"
+          name: 'DEBUG: node version'
           command: node -v
       - run:
-          name: "DEBUG: npm version"
+          name: 'DEBUG: npm version'
           command: npm -v
       - run:
-          name: "DEBUG: bolt version"
-          command: bolt --version
-      - run:
-          name: "DEBUG: yarn version"
+          name: 'DEBUG: yarn version'
           command: yarn -v
       - run:
           name: Install dependencies
-          command: bolt
+          command: yarn
 
       - save_cache:
           paths:
@@ -50,10 +43,10 @@ jobs:
 
       - run:
           name: Run build
-          command: bolt build
+          command: yarn build
       - run:
           name: Run tests
-          command: bolt test
+          command: yarn test
 
 workflows:
   version: 2

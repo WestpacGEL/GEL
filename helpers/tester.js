@@ -1,9 +1,11 @@
 const Spawn = require('child_process');
 const CFonts = require('cfonts');
-const Bolt = require('bolt');
+const getWorkspaces = require('get-workspaces').default;
 
 (async () => {
-	const workspaces = await Bolt.getWorkspaces();
+	const workspaces = await getWorkspaces();
+
+	console.log({ workspaces });
 
 	workspaces.map(workspace => {
 		CFonts.say(`${workspace.name.split('/')[1]}`, {
