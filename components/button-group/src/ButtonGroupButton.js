@@ -43,7 +43,7 @@ export const ButtonGroupButton = ({
 					'label:not(:last-child) > &': {
 						borderTopRightRadius: 0,
 						borderBottomRightRadius: 0,
-						borderRight: 'none',
+						borderRight: 0,
 					},
 					'label:not(:first-of-type) > &': {
 						borderTopLeftRadius: 0,
@@ -56,7 +56,7 @@ export const ButtonGroupButton = ({
 				iconAfter={IconAfter}
 				iconBefore={IconBefore}
 				srOnlyText={srOnlyText}
-				soft={value !== checked.value}
+				soft={!value || value !== checked.value}
 				block
 			>
 				{children}
