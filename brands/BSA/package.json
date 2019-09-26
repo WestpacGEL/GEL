@@ -18,7 +18,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "echo \"Starting\"",
+		"prepublish": "yarn build",
 		"build": "rm -rf dist && node index.js"
 	},
 	"main": "dist/index.js",
