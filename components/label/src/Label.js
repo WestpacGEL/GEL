@@ -8,48 +8,46 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Label = ({ appearance, tag: Tag, children, ...props }) => {
-	const { label } = useTheme();
+export const Label = ({ appearance, tag: Tag, ...props }) => {
+	const { COLORS } = useTheme();
 
-	const style = {
-		// Common styling
-		common: {
-			border: `${label.borderWidth} solid`,
-			borderRadius: label.borderRadius,
-			display: 'inline',
-			fontSize: label.fontSize,
-			fontWeight: label.fontWeight,
-			lineHeight: label.lineHeight,
-			padding: label.padding,
-			textAlign: 'center',
-			verticalAlign: 'baseline',
-			whiteSpace: 'nowrap',
+	// Common styling
+	const styleCommon = {
+		border: '1px solid',
+		borderRadius: '0.125rem',
+		display: 'inline',
+		fontSize: '0.75rem',
+		fontWeight: 400,
+		lineHeight: 1,
+		padding: '0.0625rem 0.375rem',
+		textAlign: 'center',
+		verticalAlign: 'baseline',
+		whiteSpace: 'nowrap',
 
-			'&:empty': {
-				display: 'none',
-			},
-			'a&': {
-				textDecoration: 'none',
-			},
-
-			'@media print': {
-				color: '#000',
-				backgroundColor: '#fff',
-				border: '1px solid #000',
-			},
+		':empty': {
+			display: 'none',
+		},
+		'a&': {
+			textDecoration: 'none',
 		},
 
-		// Label appearance styling
-		appearance: {
-			color: label.appearance[appearance].default.color,
-			backgroundColor: label.appearance[appearance].default.backgroundColor,
-			borderColor: label.appearance[appearance].default.borderColor,
+		'@media print': {
+			color: '#000',
+			backgroundColor: '#fff',
+			border: '1px solid #000',
+		},
+	};
 
-			'a&:hover, a&:focus': {
-				cursor: 'pointer',
-				backgroundColor: label.appearance[appearance].hover.backgroundColor,
-				borderColor: label.appearance[appearance].hover.borderColor,
-			},
+	// Label appearance styling
+	const styleAppearance = {
+		color: appearance === 'faint' ? COLORS.muted : '#fff',
+		backgroundColor: appearance === 'faint' ? COLORS.light : COLORS[appearance],
+		borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
+
+		'a&:hover, a&:focus': {
+			cursor: 'pointer',
+			backgroundColor: appearance === 'faint' ? '#fff' : COLORS.tints[`${appearance}50`],
+			borderColor: appearance !== 'faint' && COLORS.tints[`${appearance}50`],
 		},
 	};
 
@@ -57,11 +55,7 @@ export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 		Tag = 'a';
 	}
 
-	return (
-		<Tag css={{ ...style.common, ...style.appearance }} {...props}>
-			{children}
-		</Tag>
-	);
+	return <Tag css={{ ...styleCommon, ...styleAppearance }} {...props} />;
 };
 
 // ==============================
@@ -69,16 +63,7 @@ export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 // ==============================
 
 const options = {
-	appearance: [
-		'primary',
-		'hero',
-		'neutral',
-		'faint',
-		'success',
-		'information',
-		'warning',
-		'danger',
-	],
+	appearance: ['primary', 'hero', 'neutral', 'faint', 'success', 'info', 'warning', 'danger'],
 };
 
 Label.propTypes = {
