@@ -3,7 +3,7 @@
 import React from 'react';
 import { jsx, useTheme, paint } from '@westpac/core';
 
-export const ModalBackdrop = props => {
+export const Backdrop = props => {
 	const styles = {
 		position: 'fixed',
 		zIndex: '1001',
@@ -14,6 +14,7 @@ export const ModalBackdrop = props => {
 		left: 0,
 		display: 'flex',
 		justifyContent: 'center',
+		alignItems: 'baseline',
 		transition: 'all 0.3s ease',
 
 		'&.modal-backdrop-enter': {
@@ -36,21 +37,23 @@ export const ModalBackdrop = props => {
 };
 
 export const StyledModal = ({ size, ...props }) => {
-	const { modal, breakpoints } = useTheme();
+	const {
+		LAYOUT: { breakpoints },
+	} = useTheme();
 	const mq = paint(breakpoints);
 
 	const styles = {
 		overflow: 'auto',
-		maxHeight: modal.maxHeight,
-		margin: modal.margin,
-		backgroundColor: modal.backgroundColor,
-		borderRadius: modal.borderRadius,
+		maxHeight: '85%',
+		margin: '0 0.75rem',
+		backgroundColor: '#fff',
+		borderRadius: 3,
 		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
 		transition: 'all 0.3s ease',
 		width: [
 			'auto',
-			...(size === 'small' ? [modal.size.small.width] : [modal.size.medium.width]),
-			...(size === 'large' ? [modal.size.large.width] : []),
+			...(size === 'small' ? ['18.75rem'] : ['37.5rem']),
+			...(size === 'large' ? ['56.25rem'] : []),
 		],
 
 		'&.modal-appear': {
@@ -58,7 +61,7 @@ export const StyledModal = ({ size, ...props }) => {
 		},
 
 		'&.modal-appear-done': {
-			transform: 'translate(0px,30px)',
+			transform: 'translate(0rem,1.875rem)',
 		},
 	};
 
@@ -66,13 +69,13 @@ export const StyledModal = ({ size, ...props }) => {
 };
 
 export const Title = props => {
-	const { modal } = useTheme();
+	const { COLORS } = useTheme();
 	return (
 		<span
 			css={{
-				fontSize: modal.title.fontSize,
-				fontWeight: modal.title.justifyContent,
-				color: modal.title.color,
+				fontSize: 18,
+				fontWeight: 700,
+				color: COLORS.text,
 			}}
 			{...props}
 		/>
