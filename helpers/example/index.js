@@ -236,7 +236,7 @@ const SidebarSearch = props => (
 			borderColor: 'rgba(0, 0, 0, 0.075)',
 			boxSizing: 'border-box',
 			fontSize: 'inherit',
-			padding: '1rem 2rem',
+			padding: '0.625rem 1.25rem',
 			width: '100%',
 
 			':focus': {
@@ -255,7 +255,7 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 			color: primaryColor,
 			display: 'block',
 			fontWeight: 500,
-			padding: '0.625rem 1.25rem',
+			padding: '0.625rem 1.0625rem',
 			fontSize: '1rem',
 			textDecoration: 'none',
 
