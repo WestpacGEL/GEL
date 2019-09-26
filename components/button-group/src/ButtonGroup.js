@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
@@ -23,8 +23,14 @@ export const useButtonGroupContext = () => {
 // ==============================
 
 export const ButtonGroup = ({ appearance, size, block, name, children, ...props }) => {
+	const [checked, setChecked] = useState({});
+
+	const handleChange = event => {
+		setChecked({ value: event.target.value });
+	};
+
 	return (
-		<ButtonGroupContext.Provider value={{ appearance, size, name }}>
+		<ButtonGroupContext.Provider value={{ appearance, size, name, checked, handleChange }}>
 			<div
 				css={{
 					display: block ? 'flex' : 'inline-flex',

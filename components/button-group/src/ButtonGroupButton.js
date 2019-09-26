@@ -16,29 +16,27 @@ export const ButtonGroupButton = ({
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
 	srOnlyText,
-	checked,
-	onChange,
 	children,
 	...props
 }) => {
-	const { appearance, size, name } = useButtonGroupContext();
-	const [isChecked, setChecked] = useState(checked);
+	const { appearance, size, name, checked, handleChange } = useButtonGroupContext();
+	// const [isChecked, setChecked] = useState(checked);
 	const [buttonId] = useState(`button-${shortid.generate()}`);
 
-	useEffect(
-		() => {
-			setChecked(isChecked);
-		},
-		[isChecked]
-	);
+	// useEffect(
+	// 	() => {
+	// 		setChecked(isChecked);
+	// 	},
+	// 	[isChecked]
+	// );
 
-	const toggle = () => {
-		if (onChange) {
-			onChange();
-		} else {
-			setChecked(!isChecked);
-		}
-	};
+	// const toggle = () => {
+	// 	if (onChange) {
+	// 		onChange();
+	// 	} else {
+	// 		setChecked(!isChecked);
+	// 	}
+	// };
 
 	return (
 		<label htmlFor={buttonId} css={{ flex: 1 }} {...props}>
@@ -52,8 +50,8 @@ export const ButtonGroupButton = ({
 				name={name}
 				id={buttonId}
 				value={value}
-				checked={isChecked}
-				onChange={toggle}
+				checked={value === checked.value}
+				onChange={handleChange}
 			/>
 			<Button
 				css={{
@@ -81,7 +79,7 @@ export const ButtonGroupButton = ({
 				iconAfter={IconAfter}
 				iconBefore={IconBefore}
 				srOnlyText={srOnlyText}
-				soft={!isChecked}
+				soft={value !== checked.value}
 				block
 			>
 				{children}
