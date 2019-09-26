@@ -36,14 +36,5 @@ export default () => (
 			<Button value="middle">Middle</Button>
 			<Button value="right">Right</Button>
 		</ButtonGroup>
-
-		<hr />
-
-		<h2>Faint</h2>
-		<ButtonGroup appearance="faint" name="example-faint">
-			<Button value="left">Left</Button>
-			<Button value="middle">Middle</Button>
-			<Button value="right">Right</Button>
-		</ButtonGroup>
 	</>
 );
