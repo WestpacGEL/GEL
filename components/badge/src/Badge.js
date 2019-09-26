@@ -8,38 +8,38 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const Badge = ({ appearance, children, ...props }) => {
-	const { colors, badge } = useTheme();
+export const Badge = ({ appearance, ...props }) => {
+	const { COLORS } = useTheme();
 
-	const style = {
-		// Common styling
-		common: {
-			border: `${badge.borderWidth} solid transparent`,
-			borderRadius: badge.borderRadius,
-			display: 'inline-block',
-			fontSize: badge.fontSize,
-			fontWeight: badge.fontWeight,
-			lineHeight: badge.lineHeight,
-			minWidth: badge.minWidth,
-			padding: badge.padding,
-			textAlign: 'center',
-			verticalAlign: 'baseline',
-			whiteSpace: 'nowrap',
-		},
+	// Common styling
+	const styleCommon = {
+		border: `1px solid transparent`,
+		borderRadius: '0.75rem',
+		display: 'inline-block',
+		fontSize: '0.875rem',
+		fontWeight: 700,
+		lineHeight: 1,
+		minWidth: '0.625rem',
+		padding: '0.25rem 0.4375rem',
+		textAlign: 'center',
+		verticalAlign: 'baseline',
+		whiteSpace: 'nowrap',
 
-		// Appearance styling
-		appearance: {
-			color: colors[appearance].foreground,
-			backgroundColor: colors[appearance].default,
-			borderColor: appearance === 'faint' ? colors.border : colors[appearance].default,
+		'@media print': {
+			color: '#000',
+			backgroundColor: '#fff',
+			border: '1px solid #000',
 		},
 	};
 
-	return (
-		<span css={{ ...style.common, ...style.appearance }} {...props}>
-			{children}
-		</span>
-	);
+	// Appearance styling
+	const styleAppearance = {
+		color: appearance === 'faint' ? COLORS.muted : '#fff',
+		backgroundColor: COLORS[appearance],
+		borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
+	};
+
+	return <span css={{ ...styleCommon, ...styleAppearance }} {...props} />;
 };
 
 // ==============================
@@ -54,7 +54,7 @@ Badge.propTypes = {
 		'neutral',
 		'faint',
 		'success',
-		'information',
+		'info',
 		'warning',
 		'danger',
 	]),

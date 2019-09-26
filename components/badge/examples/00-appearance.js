@@ -11,8 +11,7 @@ export default () => (
 			<Badge appearance="neutral">Neutral</Badge> <Badge appearance="faint">Faint</Badge>
 		</p>
 		<p>
-			<Badge appearance="success">Success</Badge>{' '}
-			<Badge appearance="information">Information</Badge>{' '}
+			<Badge appearance="success">Success</Badge> <Badge appearance="info">Info</Badge>{' '}
 			<Badge appearance="warning">Warning</Badge> <Badge appearance="danger">Danger</Badge>
 		</p>
 	</>
