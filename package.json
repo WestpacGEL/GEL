@@ -101,8 +101,7 @@
 	},
 	"preconstruct": {
 		"packages": [
-			"components/*",
-			"brands/*"
+			"components/*"
 		]
 	}
 }

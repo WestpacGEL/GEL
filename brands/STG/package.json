@@ -1,33 +1,33 @@
 {
-  "name": "@westpac/stg",
-  "version": "1.0.0",
-  "description": "STG brand component for the Westpac GEL design language",
-  "repository": "https://github.com/WestpacGEL/GEL.git",
-  "author": "Westpac GEL Team <gel@westpac.com.au>",
-  "contributors": [
-    {
-      "name": "Dominik Wilkowski",
-      "email": "Hi@Dominik-Wilkowski.com",
-      "url": "https://dominik-wilkowski.com"
-    },
-    {
-      "name": "Joss Mackison",
-      "email": "joss@thinkmill.com.au",
-      "url": "http://jossmackison.me"
-    }
-  ],
-  "license": "GPL-3.0+",
-  "scripts": {
-    "prepublish": "yarn build",
-    "build": "rm -rf dist && node index.js"
-  },
-  "main": "dist/stg.cjs.js",
-  "module": "dist/stg.esm.js",
-  "dependencies": {},
-  "peerDependencies": {
-    "color": "^3.1.1"
-  },
-  "devDependencies": {
-    "color": "^3.1.2"
-  }
+	"name": "@westpac/stg",
+	"version": "1.0.0",
+	"description": "STG brand component for the Westpac GEL design language",
+	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"contributors": [
+		{
+			"name": "Dominik Wilkowski",
+			"email": "Hi@Dominik-Wilkowski.com",
+			"url": "https://dominik-wilkowski.com"
+		},
+		{
+			"name": "Joss Mackison",
+			"email": "joss@thinkmill.com.au",
+			"url": "http://jossmackison.me"
+		}
+	],
+	"license": "GPL-3.0+",
+	"scripts": {
+		"prepublish": "yarn build",
+		"build": "rm -rf dist && node index.js"
+	},
+	"main": "dist/stg.cjs.js",
+	"module": "dist/stg.esm.js",
+	"dependencies": {},
+	"peerDependencies": {
+		"color": "^3.1.1"
+	},
+	"devDependencies": {
+		"color": "^3.1.2"
+	}
 }
