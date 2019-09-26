@@ -27,12 +27,9 @@ export const FormCheckItem = ({
 	const [checked, setChecked] = useState(isChecked);
 	const [formCheckId] = useState(`formCheck-${shortid.generate()}`);
 
-	useEffect(
-		() => {
-			setChecked(checked);
-		},
-		[checked]
-	);
+	useEffect(() => {
+		setChecked(checked);
+	}, [checked]);
 
 	const toggle = () => {
 		if (onChange) {
