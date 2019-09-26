@@ -21,6 +21,5 @@
 		"prepublish": "node index.js",
 		"build": "rm -rf dist && node index.js"
 	},
-	"main": "dist/wbg.cjs.js",
-	"module": "dist/wbg.esm.js"
+	"main": "dist/index.js"
 }

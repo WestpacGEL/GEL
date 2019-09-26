@@ -21,8 +21,7 @@
 		"prepublish": "yarn build",
 		"build": "rm -rf dist && node index.js"
 	},
-	"main": "dist/btfg.cjs.js",
-	"module": "dist/btfg.esm.js",
+	"main": "dist/index.js",
 	"dependencies": {},
 	"peerDependencies": {
 		"color": "^3.1.1"
