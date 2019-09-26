@@ -2,28 +2,43 @@
 
 import React from 'react';
 import { jsx, useTheme, paint } from '@westpac/core';
-import { propTypes, defaultProps } from './Panel';
+import { usePanelContext } from './Panel';
 
 // ==============================
 // Component
 // ==============================
 
-export const PanelHeader = ({ appearance, ...props }) => {
-	const { breakpoints, panel } = useTheme();
+export const PanelHeader = props => {
+	const {
+		COLORS,
+		LAYOUT: { breakpoints },
+	} = useTheme();
 	const mq = paint(breakpoints);
+	const { appearance } = usePanelContext();
+
+	const appearanceMap = {
+		hero: {
+			color: '#fff',
+			backgroundColor: COLORS.hero,
+			borderColor: COLORS.hero,
+		},
+		faint: {
+			color: COLORS.text,
+			backgroundColor: COLORS.background,
+			borderColor: COLORS.border,
+		},
+	};
 
 	return (
 		<div
 			css={mq({
-				padding: panel.header.padding,
-				backgroundColor: panel.header.appearance[appearance].backgroundColor,
-				borderBottom: `${panel.borderWidth} solid ${
-					panel.header.appearance[appearance].borderColor
-				}`,
-				color: panel.header.appearance[appearance].color,
-				borderTopRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
-				borderTopLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
-				fontSize: panel.header.fontSize,
+				padding: ['0.625rem 0.75rem', '0.625rem 1.5rem'],
+				backgroundColor: appearanceMap[appearance].backgroundColor,
+				borderBottom: `1px solid ${appearanceMap[appearance].borderColor}`,
+				color: appearanceMap[appearance].color,
+				borderTopRightRadius: `calc(0.1875rem - 1px)`,
+				borderTopLeftRadius: `calc(0.1875rem - 1px)`,
+				fontSize: '1rem',
 
 				'@media print': {
 					borderBottom: '1px solid #000',
@@ -32,12 +47,4 @@ export const PanelHeader = ({ appearance, ...props }) => {
 			{...props}
 		/>
 	);
-};
-
-PanelHeader.propTypes = {
-	...propTypes,
-};
-
-PanelHeader.defaultProps = {
-	...defaultProps,
 };
