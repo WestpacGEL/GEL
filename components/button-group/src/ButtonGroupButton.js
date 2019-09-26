@@ -20,23 +20,7 @@ export const ButtonGroupButton = ({
 	...props
 }) => {
 	const { appearance, size, name, checked, handleChange } = useButtonGroupContext();
-	// const [isChecked, setChecked] = useState(checked);
 	const [buttonId] = useState(`button-${shortid.generate()}`);
-
-	// useEffect(
-	// 	() => {
-	// 		setChecked(isChecked);
-	// 	},
-	// 	[isChecked]
-	// );
-
-	// const toggle = () => {
-	// 	if (onChange) {
-	// 		onChange();
-	// 	} else {
-	// 		setChecked(!isChecked);
-	// 	}
-	// };
 
 	return (
 		<label htmlFor={buttonId} css={{ flex: 1 }} {...props}>
@@ -64,13 +48,6 @@ export const ButtonGroupButton = ({
 					'label:not(:first-of-type) > &': {
 						borderTopLeftRadius: 0,
 						borderBottomLeftRadius: 0,
-					},
-
-					// Checked state styling (look like a standard button)
-					'input:checked + &': {
-						// color: button.appearance[appearance].standard.default.color,
-						// backgroundColor: button.appearance[appearance].standard.default.backgroundColor,
-						// borderColor: button.appearance[appearance].standard.default.borderColor,
 					},
 				}}
 				tag="span"
