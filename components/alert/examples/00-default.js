@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, AlertHeading } from '../src';
+import { Alert, Heading } from '../src';
 
 export default () => (
 	<>
@@ -13,7 +13,7 @@ export default () => (
 		<h2>Text styling</h2>
 
 		<h3>Inline bold text</h3>
-		<Alert appearance="information">
+		<Alert appearance="info">
 			<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo dolor provident quasi nisi
 			officia tempore fuga autem, animi iste molestiae, qui omnis doloribus aliquid ipsam rem fugiat
@@ -26,8 +26,8 @@ export default () => (
 		</Alert>
 
 		<h3>Alert heading</h3>
-		<Alert appearance="information">
-			<AlertHeading>This is an AlertHeading heading</AlertHeading>
+		<Alert appearance="info">
+			<Heading>This is a Heading</Heading>
 			This alert needs your attention, but it’s not super important. Lorem ipsum dolor sit amet,
 			consectetur adipisicing elit. Quo dolor provident quasi nisi officia tempore fuga autem, animi
 			iste molestiae, qui omnis doloribus aliquid ipsam rem fugiat veniam voluptatem accusamus!
@@ -40,8 +40,8 @@ export default () => (
 		</Alert>
 
 		<h3>Paragraphs</h3>
-		<Alert appearance="information">
-			<AlertHeading>This is an AlertHeading heading</AlertHeading>
+		<Alert appearance="info">
+			<Heading>This is a Heading</Heading>
 			<p>
 				This alert needs your attention, but it’s not super important. Lorem ipsum dolor sit amet,
 				consectetur adipisicing elit. Quo dolor provident quasi nisi officia tempore fuga autem,
