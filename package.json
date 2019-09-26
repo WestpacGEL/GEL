@@ -1,5 +1,5 @@
 {
-	"name": "GEL",
+	"name": "gel",
 	"version": "0.0.1",
 	"description": "The design system and react components for Westpac GEL",
 	"main": "index.js",
@@ -24,7 +24,7 @@
 		"docs": "docz dev",
 		"docs:build": "docz build && yarn docs:redirects",
 		"docs:redirects": "cp helpers/public/* docs/",
-		"nuke": "rm -rf node_modules && yarn ws exec -- rm -rf node_modules",
+		"nuke": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} +",
 		"build": "yarn workspaces run build",
 		"fresh": "yarn nuke && yarn install",
 		"new": "node ./helpers/cli.js",
@@ -35,7 +35,6 @@
 		"test:unit-watch": "jest --watch --coverage",
 		"test:integration": "node helpers/tester.js",
 		"test": "yarn test:format && yarn test:unit && yarn test:integration",
-		"create-component": "node ./helpers/create-component-cli.js",
 		"postinstall": "manypkg check"
 	},
 	"workspaces": [
