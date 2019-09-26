@@ -96,7 +96,7 @@ ButtonGroupButton.propTypes = {
 	/**
 	 * Button group button input element’s value
 	 */
-	value: PropTypes.string,
+	value: PropTypes.string.isRequired,
 
 	/**
 	 * Places an icon within the button, after the button’s text
