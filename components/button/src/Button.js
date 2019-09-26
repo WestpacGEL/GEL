@@ -118,6 +118,7 @@ export const Button = ({
 				borderColor: COLORS.hero,
 
 				':hover': {
+					color: '#fff',
 					backgroundColor: COLORS.tints.hero70,
 				},
 				':active, &.active': {
