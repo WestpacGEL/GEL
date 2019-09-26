@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { Global, jsx } from '@emotion/core';
 import merge from 'lodash.merge';
-import { useTheme, UserModeContext } from './Theme';
+import { useTheme } from './Theme';
 import { paint } from './utils';
 
 export const Core = ({ children }) => {
@@ -152,16 +152,11 @@ export const Core = ({ children }) => {
 
 	// Typography styling
 	const styleTypography = {
-		// Document
-		html: {
-			fontSize: '62.5%', //10px
-		},
-
 		// Global type styling
 		body: {
 			fontFamily: bodyFont,
 			fontWeight: 400,
-			fontSize: '1.4rem', // (14px)
+			fontSize: '0.875rem', // (14px)
 			lineHeight: 1.428571429,
 			color: COLORS.text,
 			fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
@@ -191,7 +186,7 @@ export const Core = ({ children }) => {
 
 		// Paragraphs
 		p: {
-			margin: '1.2rem 0',
+			margin: '0.75rem 0', //12px 0
 		},
 
 		// Definition lists
@@ -214,7 +209,7 @@ export const Core = ({ children }) => {
 		},
 
 		blockquote: {
-			fontSize: '1.6rem',
+			fontSize: '1rem',
 			fontWeight: 300,
 		},
 
@@ -243,8 +238,8 @@ export const Core = ({ children }) => {
 	const styleTextExtensions = {
 		// Lead text
 		'.lead': {
-			marginBottom: '2.1rem',
-			fontSize: ['1.6rem', '1.8rem'],
+			marginBottom: '1.3125rem',
+			fontSize: ['1rem', '1.125rem'],
 			fontWeight: 300,
 			lineHeight: 1.4,
 		},
