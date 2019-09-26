@@ -19,7 +19,9 @@ function convertFonts(fonts) {
 			output[''].push({
 				'@font-face': {
 					fontFamily: font.name,
-					src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
+					src: `url("${font.files.woff2}") format("woff2"), url("${
+						font.files.woff
+					}") format("woff")`,
 					weight: font.weight,
 					style: font.style,
 				},
@@ -36,8 +38,9 @@ function convertFonts(fonts) {
  * Transform the tokens into a web specific object that can be used in emotion
  *
  * @param  {string} BRAND - The brand string to find the right brand folder
+ * @param  {string} dest - The destination path where the file should be written
  */
-function build(BRAND) {
+function build(BRAND, dest = '.') {
 	const cwd = `../../brands/${BRAND}`;
 
 	const { COLORS } = require(`${cwd}/tokens/colors`);
@@ -73,7 +76,7 @@ function build(BRAND) {
 	};
 
 	try {
-		fs.mkdirSync('dist/');
+		fs.mkdirSync(`${dest}/dist/`);
 	} catch (error) {
 		if (error.code !== 'EEXIST') {
 			console.error(error);
@@ -82,7 +85,7 @@ function build(BRAND) {
 	}
 
 	try {
-		fs.writeFileSync('dist/index.js', `module.exports = ${JSON.stringify(content)}`, {
+		fs.writeFileSync(`${dest}/dist/index.js`, `module.exports = ${JSON.stringify(content)}`, {
 			encoding: 'utf8',
 		});
 
