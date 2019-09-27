@@ -13,73 +13,80 @@ import { SrOnly } from '@westpac/accessibility-helpers';
  * Progress Bar: A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.
  */
 export const ProgressBar = ({ value, isSkinny, ...props }) => {
-	const { progressBar } = useTheme();
+	const { COLORS } = useTheme();
 
 	const valueRound = Math.round(value);
 
 	const size = isSkinny ? 'skinny' : 'default';
 
-	const style = {
-		// Common styling
-		common: {
-			height: progressBar.size[size].height,
-			marginBottom: progressBar.marginBottom,
-			overflow: 'hidden',
-			backgroundColor: 'white',
-			borderRadius: progressBar.size[size].height,
-			border: `${progressBar.borderWidth} solid ${progressBar.borderColor}`,
-			padding: progressBar.padding,
-			position: 'relative',
-
-			'::after': {
-				display: isSkinny && 'none',
-				content: '"0%"',
-				position: 'absolute',
-				left: '1rem',
-				top: 0,
-				height: '100%',
-				color: '#575f65',
-				fontSize: '1.4rem',
-				fontWeight: 700,
-				zIndex: 1,
-			},
+	const styleSize = {
+		default: {
+			height: '1.5rem',
 		},
+		skinny: {
+			height: '0.625rem',
+		},
+	};
 
-		// Bar styling
-		bar: {
-			display: 'flex',
-			justifyContent: 'flex-end',
-			alignItems: 'center',
-			position: 'relative',
-			float: 'left',
-			width: 0,
+	const styleSizeMap = {};
+
+	const styleCommon = {
+		height: styleSize[size].height,
+		marginBottom: '1.3125rem',
+		overflow: 'hidden',
+		backgroundColor: '#fff',
+		borderRadius: styleSize[size].height,
+		border: `1px solid ${COLORS.border}`,
+		padding: '0.0625rem',
+		position: 'relative',
+
+		'::after': {
+			display: isSkinny && 'none',
+			content: '"0%"',
+			position: 'absolute',
+			left: '0.625rem',
+			top: 0,
 			height: '100%',
-			fontSize: progressBar.fontSize,
-			fontWeight: progressBar.fontWeight,
-			lineHeight: progressBar.lineHeight,
-			color: progressBar.color,
-			textAlign: 'right',
-			backgroundColor: progressBar.backgroundColor,
-			borderRadius: progressBar.size[size].height,
-			zIndex: 2,
-			overflow: 'hidden',
-			transition: 'width .6s ease',
+			color: '#575f65',
+			fontSize: '0.875rem',
+			fontWeight: 700,
+			zIndex: 1,
+		},
+	};
 
-			'@media print': {
-				backgroundColor: 'black !important',
+	const styleBar = {
+		display: 'flex',
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+		position: 'relative',
+		float: 'left',
+		width: 0,
+		height: '100%',
+		fontSize: '0.875rem',
+		fontWeight: 700,
+		lineHeight: '1.25rem',
+		color: '#fff',
+		textAlign: 'right',
+		backgroundColor: COLORS.hero,
+		borderRadius: styleSize[size].height,
+		zIndex: 2,
+		overflow: 'hidden',
+		transition: 'width .6s ease',
 
-				span: {
-					color: 'white !important',
-					backgroundColor: 'black !important',
-				},
+		'@media print': {
+			backgroundColor: '#000 !important',
+
+			span: {
+				color: '#fff !important',
+				backgroundColor: '#000 !important',
 			},
 		},
 	};
 
 	return (
-		<div css={style.common} {...props}>
+		<div css={styleCommon} {...props}>
 			<div
-				css={style.bar}
+				css={styleBar}
 				style={{ width: `${valueRound}%` }}
 				role="progressbar"
 				aria-valuemin="0"
@@ -88,7 +95,7 @@ export const ProgressBar = ({ value, isSkinny, ...props }) => {
 				aria-live="polite"
 			>
 				{!isSkinny && (
-					<span css={{ display: 'inline-block', margin: '0 1.2rem' }}>{valueRound}%</span>
+					<span css={{ display: 'inline-block', margin: '0 0.75rem' }}>{valueRound}%</span>
 				)}
 				<SrOnly>Complete</SrOnly>
 			</div>
