@@ -6,42 +6,34 @@ import { jsx, useTheme } from '@westpac/core';
 import { SrOnly } from '@westpac/accessibility-helpers';
 
 // ==============================
+// Utils
+// ==============================
+
+const round = value => Math.round(value);
+
+// ==============================
 // Component
 // ==============================
 
 /**
  * Progress Bar: A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.
  */
-export const ProgressBar = ({ value, isSkinny, ...props }) => {
+export const ProgressBar = ({ value, skinny, ...props }) => {
 	const { COLORS } = useTheme();
 
-	const valueRound = Math.round(value);
-
-	const size = isSkinny ? 'skinny' : 'default';
-
-	const styleSize = {
-		default: {
-			height: '1.5rem',
-		},
-		skinny: {
-			height: '0.625rem',
-		},
-	};
-
-	const styleSizeMap = {};
-
+	// Common styling
 	const styleCommon = {
-		height: styleSize[size].height,
+		height: skinny ? '0.625rem' : '1.5rem',
 		marginBottom: '1.3125rem',
 		overflow: 'hidden',
 		backgroundColor: '#fff',
-		borderRadius: styleSize[size].height,
+		borderRadius: skinny ? '0.625rem' : '1.5rem',
 		border: `1px solid ${COLORS.border}`,
 		padding: '0.0625rem',
 		position: 'relative',
 
 		'::after': {
-			display: isSkinny && 'none',
+			display: skinny && 'none',
 			content: '"0%"',
 			position: 'absolute',
 			left: '0.625rem',
@@ -54,48 +46,46 @@ export const ProgressBar = ({ value, isSkinny, ...props }) => {
 		},
 	};
 
-	const styleBar = {
-		display: 'flex',
-		justifyContent: 'flex-end',
-		alignItems: 'center',
-		position: 'relative',
-		float: 'left',
-		width: 0,
-		height: '100%',
-		fontSize: '0.875rem',
-		fontWeight: 700,
-		lineHeight: '1.25rem',
-		color: '#fff',
-		textAlign: 'right',
-		backgroundColor: COLORS.hero,
-		borderRadius: styleSize[size].height,
-		zIndex: 2,
-		overflow: 'hidden',
-		transition: 'width .6s ease',
-
-		'@media print': {
-			backgroundColor: '#000 !important',
-
-			span: {
-				color: '#fff !important',
-				backgroundColor: '#000 !important',
-			},
-		},
-	};
-
 	return (
 		<div css={styleCommon} {...props}>
 			<div
-				css={styleBar}
-				style={{ width: `${valueRound}%` }}
+				css={{
+					display: 'flex',
+					justifyContent: 'flex-end',
+					alignItems: 'center',
+					position: 'relative',
+					float: 'left',
+					width: 0,
+					height: '100%',
+					fontSize: '0.875rem',
+					fontWeight: 700,
+					lineHeight: '1.25rem',
+					color: '#fff',
+					textAlign: 'right',
+					backgroundColor: COLORS.hero,
+					borderRadius: skinny ? '0.625rem' : '1.5rem',
+					zIndex: 2,
+					overflow: 'hidden',
+					transition: 'width .6s ease',
+
+					'@media print': {
+						backgroundColor: '#000 !important',
+
+						span: {
+							color: '#fff !important',
+							backgroundColor: '#000 !important',
+						},
+					},
+				}}
+				style={{ width: `${round(value)}%` }}
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
 				aria-valuenow={value}
 				aria-live="polite"
 			>
-				{!isSkinny && (
-					<span css={{ display: 'inline-block', margin: '0 0.75rem' }}>{valueRound}%</span>
+				{!skinny && (
+					<span css={{ display: 'inline-block', margin: '0 0.75rem' }}>{round(value)}%</span>
 				)}
 				<SrOnly>Complete</SrOnly>
 			</div>
@@ -116,10 +106,10 @@ ProgressBar.propTypes = {
 	/**
 	 * Enable skinny mode
 	 */
-	isSkinny: PropTypes.bool,
+	skinny: PropTypes.bool,
 };
 
 ProgressBar.defaultProps = {
 	value: 0,
-	isSkinny: false,
+	skinny: false,
 };
