@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { ArrowRightIcon } from '../../icon/src';
-import { SrOnly } from '../../accessibility-helpers/src';
+import { ArrowRightIcon } from '@westpac/icon';
+import { SrOnly } from '@westpac/accessibility-helpers';
 
 // ==============================
 // Component
@@ -13,7 +13,7 @@ import { SrOnly } from '../../accessibility-helpers/src';
 /**
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Crumb = ({ children, last, ...props }) => {
+export const BreadcrumbCrumb = ({ children, last, ...props }) => {
 	const { COLORS } = useTheme();
 
 	return (
@@ -27,7 +27,7 @@ export const Crumb = ({ children, last, ...props }) => {
 					color: COLORS.text,
 					textDecoration: 'none',
 
-					'&:focus, &:hover': {
+					':focus, :hover': {
 						textDecoration: 'underline',
 					},
 				},
@@ -36,17 +36,17 @@ export const Crumb = ({ children, last, ...props }) => {
 		>
 			{last && <SrOnly>Current page:</SrOnly>}
 			{children}
-			{!last && '>'
-			// <ArrowRightIcon
-			// 	aria-hidden="true"
-			// 	size="small"
-			// 	color={COLORS.primary}
-			// 	css={{
-			// 		marginLeft: '0.1875rem',
-			// 		marginRight: '0.1875rem',
-			// 	}}
-			// />
-			}
+			{!last && (
+				<ArrowRightIcon
+					aria-hidden="true"
+					size="small"
+					color={COLORS.primary}
+					css={{
+						marginLeft: '0.1875rem',
+						marginRight: '0.1875rem',
+					}}
+				/>
+			)}
 		</li>
 	);
 };
@@ -55,7 +55,12 @@ export const Crumb = ({ children, last, ...props }) => {
 // Types
 // ==============================
 
-Crumb.propTypes = {
+BreadcrumbCrumb.propTypes = {
+	/**  Enable last prop.
+	 *   The system adds a 'last' prop to the last Crumb
+	 */
+	last: PropTypes.bool,
+
 	/**  Any renderable child */
 	children: PropTypes.node,
 };

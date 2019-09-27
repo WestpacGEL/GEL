@@ -14,7 +14,7 @@ import { SrOnly } from '@westpac/accessibility-helpers';
  */
 export const Breadcrumb = ({ children, ...props }) => {
 	const childrenWithProps = Children.map(children, (child, index) =>
-		index === Children.count(children) - 1 ? cloneElement(child, { last: 'true' }) : child
+		index === Children.count(children) - 1 ? cloneElement(child, { last: true }) : child
 	);
 
 	return (
