@@ -10,12 +10,24 @@ import { jsx, useTheme, paint } from '@westpac/core';
 
 export const ChitChat = ({ tag: Tag, ...props }) => {
 	const {
-		breakpoints,
-		form: { chitchat },
+		COLORS,
+		LAYOUT: { breakpoints },
 	} = useTheme();
 	const mq = paint(breakpoints);
 
-	return <Tag css={mq({ ...chitchat })} {...props} />;
+	return (
+		<Tag
+			css={mq({
+				fontSize: '1.125rem',
+				color: COLORS.heading,
+				lineHeight: 1.4,
+				fontWeight: 'bold',
+				textAlign: 'center',
+				margin: [0, '0 0 1.875rem'],
+			})}
+			{...props}
+		/>
+	);
 };
 
 // ==============================

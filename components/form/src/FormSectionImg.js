@@ -10,8 +10,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 
 export const FormSectionImg = props => {
 	const {
-		breakpoints,
-		form: { sectionImg },
+		LAYOUT: { breakpoints },
 	} = useTheme();
 	const mq = paint(breakpoints);
 
@@ -19,7 +18,7 @@ export const FormSectionImg = props => {
 		<img
 			css={mq({
 				display: 'block',
-				margin: sectionImg.marginBottom.map(mb => `0 auto ${mb}`),
+				margin: ['0 auto 1.125rem', '0 auto 2.625rem'],
 				maxWidth: '100%',
 			})}
 			{...props}

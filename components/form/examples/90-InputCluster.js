@@ -9,13 +9,13 @@ export default () => (
 			<FormGroup>
 				<InputCluster>
 					<InputClusterItem>
-						<FormLabel htmlFor="example-1" isSublabel>
+						<FormLabel htmlFor="example-1" sublabel>
 							This is a sub-label
 						</FormLabel>
 						<TextInput />
 					</InputClusterItem>
 					<InputClusterItem>
-						<FormLabel htmlFor="example-2" isSublabel>
+						<FormLabel htmlFor="example-2" sublabel>
 							This is a sub-label
 						</FormLabel>
 						<TextInput />
@@ -31,15 +31,15 @@ export default () => (
 
 		<Form>
 			<FormGroup>
-				<InputCluster isHorizontal>
+				<InputCluster horizontal>
 					<InputClusterItem>
-						<FormLabel htmlFor="example-3" isSublabel>
+						<FormLabel htmlFor="example-3" sublabel>
 							This is a sub-label
 						</FormLabel>
 						<TextInput />
 					</InputClusterItem>
 					<InputClusterItem>
-						<FormLabel htmlFor="example-4" isSublabel>
+						<FormLabel htmlFor="example-4" sublabel>
 							This is a sub-label
 						</FormLabel>
 						<TextInput />

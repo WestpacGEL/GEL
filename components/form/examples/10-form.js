@@ -75,13 +75,11 @@ export default () => (
 		<hr />
 
 		<h2>Inline mode (SM+)</h2>
-		<Form action="." isInline noValidate>
+		<Form action="." inline noValidate>
 			<FormGroup>
 				<TextInput />
 			</FormGroup>
-			<FormGroup>
-				<Button>Go</Button>
-			</FormGroup>
+			<FormGroup>{/* <Button>Go</Button> */}</FormGroup>
 		</Form>
 	</>
 );
