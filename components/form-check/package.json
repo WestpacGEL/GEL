@@ -16,6 +16,7 @@
 	"main": "dist/form-check.cjs.js",
 	"module": "dist/form-check.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",
 		"prop-types": "^15.6.2",
 		"shortid": "^2.2.14"
