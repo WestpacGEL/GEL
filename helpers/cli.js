@@ -127,7 +127,7 @@ const main = async () => {
 		console.log(chalk.gray(`\nCreating ${component.key} component...\n`));
 		createComponent(component);
 		console.log(chalk.gray('[3/3] Installing dependencies...\n'));
-		shell(`yarn`);
+		shell(`yarn`, { stdio: 'inherit' });
 		console.log(chalk.green(`Successfully created at ./components/${component.key}`));
 	}
 };

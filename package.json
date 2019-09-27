@@ -35,7 +35,9 @@
 		"test:unit-watch": "jest --watch --coverage",
 		"test:integration": "node helpers/tester.js",
 		"test": "yarn test:format && yarn test:unit && yarn test:integration",
-		"postinstall": "manypkg check && preconstruct dev"
+		"postinstall": "manypkg check && preconstruct dev",
+		"publish-packages": "yarn build && yarn changeset publish",
+		"version-packages": "yarn changeset version"
 	},
 	"workspaces": [
 		"components/*",

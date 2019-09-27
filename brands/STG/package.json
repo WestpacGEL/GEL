@@ -17,16 +17,10 @@
 		}
 	],
 	"license": "GPL-3.0+",
-	"scripts": {
-		"prepublish": "yarn build",
-		"build": "rm -rf dist && node index.js"
-	},
+	"scripts": {},
 	"main": "dist/index.js",
 	"dependencies": {},
 	"peerDependencies": {
 		"color": "^3.1.1"
-	},
-	"devDependencies": {
-		"color": "^3.1.2"
 	}
 }

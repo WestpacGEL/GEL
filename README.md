@@ -8,24 +8,24 @@ The design system for Westpac GEL
 
 | script                      | description                                       |
 | --------------------------- | ------------------------------------------------- |
-| `bolt`                      | install all dependencies                          |
-| `bolt nuke`                 | removes all `node_modules` for fresh start        |
-| `bolt fresh`                | removes all `node_modules` and reinstalls them    |
-| `bolt build`                | build all dist folders                            |
-| `bolt docs`                 | build docs for all components and open server     |
-| `bolt docs:build`           | build docs for all components to `./docs/` folder |
-| `bolt dev [package-name]`   | run the examples of the specified component       |
-| `bolt new [package-name]`   | create a specified empty component                |
-| `bolt start [package-name]` | start the example server of a component           |
+| `yarn`                      | install all dependencies                          |
+| `yarn nuke`                 | removes all `node_modules` for fresh start        |
+| `yarn fresh`                | removes all `node_modules` and reinstalls them    |
+| `yarn build`                | build all dist folders                            |
+| `yarn docs`                 | build docs for all components and open server     |
+| `yarn docs:build`           | build docs for all components to `./docs/` folder |
+| `yarn dev [package-name]`   | run the examples of the specified component       |
+| `yarn new [package-name]`   | create a specified empty component                |
+| `yarn start [package-name]` | start the example server of a component           |
 | `yarn test`                 | runs test                                         |
-| `bolt format`               | runs prettier to format all code                  |
+| `yarn format`               | runs prettier to format all code                  |
 
 ### component level
 
 | script          | description                      |
 | --------------- | -------------------------------- |
-| `bolt start`    | start the example server         |
-| `bolt build`    | builds dist files                |
+| `yarn start`    | start the example server         |
+| `yarn build`    | builds dist files                |
 | `yarn test`     | runs test headless               |
 | `yarn test:dev` | runs test by opening cypress app |
 
@@ -40,8 +40,8 @@ The design system for Westpac GEL
 │
 ├── helper/
 │   ├── example/
-│   │   ├── index.js          # example wrapper for `bolt dev`
-│   │   └── webpack.config.js # dynamic webpack config to run the `bolt dev` task
+│   │   ├── index.js          # example wrapper for `yarn dev`
+│   │   └── webpack.config.js # dynamic webpack config to run the `yarn dev` task
 │   ├── docz/                 # Docz files to style the docs
 │   │   ├── theme.js
 │   │   └── wrapper.js
@@ -97,7 +97,7 @@ The design system for Westpac GEL
 ├── examples/               # the demo folder is for seeing the components in action
 │   ├── 00-example.js       # show-case props and variations
 │   ├── 10-example.js       # all files not starting with a dot or an underscore
-│   ├── 20-example.js       # will be processes with `bolt dev`
+│   ├── 20-example.js       # will be processes with `yarn dev`
 │   └── _util.js            # for reused logic within the examples [optional]
 │
 └── tests/                  # test includes all tests
@@ -109,7 +109,7 @@ The design system for Westpac GEL
 
 ## Decisions
 
-- All scripts are run through the `bolt` command
+- All scripts are run through the `yarn` command
 - The `helpers/` folder will include all helpers for builds/docs/testing
 - We have two different example / doc concerns:
   1. Examples: they are for building components locally and to explain code

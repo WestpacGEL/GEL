@@ -28,6 +28,7 @@
 	"main": "dist/grid.cjs.js",
 	"module": "dist/grid.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",
 		"prop-types": "^15.6.2"
 	},

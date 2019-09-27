@@ -1,6 +1,8 @@
-const { makeTints } = require('./utils');
+const path = require('path');
 const cfonts = require('cfonts');
 const fs = require('fs');
+
+const { makeTints } = require('./utils');
 
 /**
  * Convert a font token object to a styled object for emotion to use
@@ -19,7 +21,9 @@ function convertFonts(fonts) {
 			output[''].push({
 				'@font-face': {
 					fontFamily: font.name,
-					src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
+					src: `url("${font.files.woff2}") format("woff2"), url("${
+						font.files.woff
+					}") format("woff")`,
 					weight: font.weight,
 					style: font.style,
 				},
@@ -38,8 +42,8 @@ function convertFonts(fonts) {
  * @param  {string} BRAND - The brand string to find the right brand folder
  * @param  {string} dest - The destination path where the file should be written
  */
-function build(BRAND, dest = '.') {
-	const cwd = `../../brands/${BRAND}`;
+function build(BRAND) {
+	const cwd = path.resolve(__dirname, `../../brands/${BRAND}`);
 
 	const { COLORS } = require(`${cwd}/tokens/colors`);
 	const { SPACING } = require(`${cwd}/tokens/spacing`);
@@ -74,7 +78,7 @@ function build(BRAND, dest = '.') {
 	};
 
 	try {
-		fs.mkdirSync(`${dest}/dist/`);
+		fs.mkdirSync(path.join(cwd, 'dist'));
 	} catch (error) {
 		if (error.code !== 'EEXIST') {
 			console.error(error);
@@ -83,9 +87,13 @@ function build(BRAND, dest = '.') {
 	}
 
 	try {
-		fs.writeFileSync(`${dest}/dist/index.js`, `module.exports = ${JSON.stringify(content)}`, {
-			encoding: 'utf8',
-		});
+		fs.writeFileSync(
+			path.join(cwd, 'dist/index.js'),
+			`module.exports = ${JSON.stringify(content)}`,
+			{
+				encoding: 'utf8',
+			}
+		);
 
 		cfonts.say('File written successfully', {
 			font: 'console',
