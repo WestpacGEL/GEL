@@ -51,7 +51,7 @@ export default () => (
 		<hr />
 
 		<h2>Inline</h2>
-		<Form inline noValidate>
+		<Form inline>
 			<TextInput tag="select">
 				{options.map((v, i) => (
 					<option key={i}>{v}</option>

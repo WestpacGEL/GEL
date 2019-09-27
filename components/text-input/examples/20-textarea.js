@@ -44,7 +44,7 @@ export default () => (
 		<hr />
 
 		<h2>Inline</h2>
-		<Form inline noValidate>
+		<Form inline>
 			<TextInput tag="textarea" /> <TextInput tag="textarea" />
 		</Form>
 
