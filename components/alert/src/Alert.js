@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import { CSSTransition } from 'react-transition-group';
@@ -12,12 +12,8 @@ import { CSSTransition } from 'react-transition-group';
 // ==============================
 
 export const Alert = ({ appearance, closable, icon: Icon, children }) => {
-	const {
-		COLORS,
-		LAYOUT: { breakpoints },
-	} = useTheme();
-	const mq = paint(breakpoints);
-
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 	const [open, setOpen] = useState(true);
 
 	const iconMap = {
