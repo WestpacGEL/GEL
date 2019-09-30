@@ -28,6 +28,7 @@
 	"main": "dist/button.cjs.js",
 	"module": "dist/button.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/accessibility-helpers": "^0.0.1",
 		"@westpac/core": "^0.0.1",
 		"prop-types": "^15.6.2"

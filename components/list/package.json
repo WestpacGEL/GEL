@@ -28,6 +28,7 @@
 	"main": "dist/list.cjs.js",
 	"module": "dist/list.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",
 		"mini-svg-data-uri": "^1.1.3",
 		"prop-types": "^15.6.2"

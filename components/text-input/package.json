@@ -16,6 +16,7 @@
 	"main": "dist/text-input.cjs.js",
 	"module": "dist/text-input.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",
 		"@westpac/form": "^0.0.1",
 		"mini-svg-data-uri": "^1.1.3",

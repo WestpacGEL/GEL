@@ -28,6 +28,7 @@
 	"main": "dist/core.cjs.js",
 	"module": "dist/core.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@emotion/core": "^10.0.4",
 		"@emotion/weak-memoize": "^0.2.2",
 		"color": "^3.1.2",

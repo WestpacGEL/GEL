@@ -16,6 +16,7 @@
 	"main": "dist/form.cjs.js",
 	"module": "dist/form.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/accessibility-helpers": "^0.0.1",
 		"@westpac/core": "^0.0.1",
 		"@westpac/icon": "^0.0.1",

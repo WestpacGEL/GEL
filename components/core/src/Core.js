@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { Global, jsx } from '@emotion/core';
 import merge from 'lodash.merge';
-import { useTheme, UserModeContext } from './Theme';
+import { useTheme } from './Theme';
 import { paint } from './utils';
 
 export const Core = ({ children }) => {

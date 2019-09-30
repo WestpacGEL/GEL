@@ -28,6 +28,7 @@
 	"main": "dist/panel.cjs.js",
 	"module": "dist/panel.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",
 		"prop-types": "^15.6.2"
 	},
