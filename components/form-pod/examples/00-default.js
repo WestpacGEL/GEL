@@ -15,23 +15,20 @@ import { HeadsetIcon, LiveChatIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 
 export default () => {
-	const {
-		colors,
-		template: { wrapper },
-	} = useTheme();
+	const { COLORS } = useTheme();
 
 	// Contact detail data
 	const contactItems = [
 		{
 			icon: HeadsetIcon,
-			// iconColor: colors.muted,
+			// iconColor: COLORS.muted,
 			text: '1300 888 888',
 			url: 'tel:1300888888',
 			onClick: () => {},
 		},
 		// {
 		// 	icon: LiveChatIcon,
-		// 	iconColor: colors.muted,
+		// 	iconColor: COLORS.muted,
 		// 	text: 'LiveChat',
 		// 	url: '#0',
 		// 	onClick: () => {},
@@ -44,7 +41,7 @@ export default () => {
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
 					body: {
-						backgroundColor: wrapper.backgroundColor,
+						backgroundColor: COLORS.background,
 					},
 				}}
 			/>
@@ -60,16 +57,16 @@ export default () => {
 				<FormPodActions
 					primary={
 						<>
-							<Button appearance="primary" isSoft size="large" isBlock={[true, false]}>
+							<Button appearance="primary" soft size="large" block={[true, false]}>
 								Back
 							</Button>
-							<Button appearance="primary" size="large" isBlock={[true, false]}>
+							<Button appearance="primary" size="large" block={[true, false]}>
 								Next
 							</Button>
 						</>
 					}
 					secondary={
-						<Button appearance="faint" isSoft size="large" isBlock={[true, false]}>
+						<Button appearance="faint" soft size="large" block={[true, false]}>
 							Cancel
 						</Button>
 					}

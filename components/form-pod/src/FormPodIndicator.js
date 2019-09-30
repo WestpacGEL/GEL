@@ -10,12 +10,12 @@ import { RefreshIcon } from '@westpac/icon';
 // ==============================
 
 export const FormPodIndicator = ({ icon: Icon, text, ...props }) => {
-	const { colors } = useTheme();
+	const { COLORS } = useTheme();
 
 	return (
-		<div css={{ color: colors.muted }} {...props}>
+		<div css={{ color: COLORS.muted }} {...props}>
 			{text && <span css={{ verticalAlign: 'middle' }}>{text}</span>}
-			{Icon && <Icon size="medium" css={{ marginLeft: '1.2rem' }} />}
+			{Icon && <Icon size="medium" css={{ marginLeft: '0.75rem' }} />}
 		</div>
 	);
 };

@@ -2,24 +2,26 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const FormPodPanelFooter = ({ left, right, ...props }) => {
-	const { formPod } = useTheme();
-
-	// Common styling
-	const style = {
-		display: 'flex',
-		alignItems: 'center',
-		...formPod.footer,
-	};
+	const { COLORS } = useTheme();
 
 	return (
-		<div css={style} {...props}>
+		<div
+			css={{
+				display: 'flex',
+				alignItems: 'center',
+				height: '3.375rem', //Nb. there's no min-height with flex in IE
+				backgroundColor: COLORS.light,
+				padding: '0.75rem',
+			}}
+			{...props}
+		>
 			{left && <div>{left}</div>}
 			{right && <div css={{ marginLeft: 'auto' }}>{right}</div>}
 		</div>

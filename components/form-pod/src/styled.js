@@ -2,21 +2,21 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 /**
  * FormPodHeader
  */
 export const FormPodHeader = ({ align, ...props }) => {
-	const { breakpoints, formPod } = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
 	return (
 		<div
 			css={mq({
 				position: 'relative',
 				textAlign: align,
-				...formPod.header,
+				marginBottom: ['1.5rem', null, '1.875rem'],
 			})}
 			{...props}
 		/>
@@ -27,39 +27,47 @@ export const FormPodHeader = ({ align, ...props }) => {
  * FormPodHeaderIcon
  */
 export const FormPodHeaderIcon = ({ icon: Icon, ...props }) => {
-	const { breakpoints, formPod } = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
-	const style = {
-		position: [null, 'absolute'],
-		right: [null, 0],
-		bottom: [null, 0],
-		display: 'inline-block',
-		border: `${formPod.icon.borderWidth}px solid ${formPod.icon.borderColor}`,
-		backgroundColor: formPod.icon.backgroundColor,
-		borderRadius: '50%',
-		width: formPod.icon.width, //6.6rem
-		height: formPod.icon.width, //6.6rem
-		padding: formPod.icon.padding, //1.4rem, assuming a 3.6rem icon
-		textAlign: 'center',
-		marginBottom: formPod.icon.marginBottom,
-	};
-
-	return <Icon css={mq(style)} size="large" {...props} />;
+	return (
+		<Icon
+			css={mq({
+				position: [null, 'absolute'],
+				right: [null, 0],
+				bottom: [null, 0],
+				display: 'inline-block',
+				border: `1px solid ${COLORS.border}`,
+				backgroundColor: '#fff',
+				borderRadius: '50%',
+				width: '4.125rem', //66px
+				height: '4.125rem', //66px
+				padding: '0.875rem', //14px, assuming a 36px icon
+				textAlign: 'center',
+				marginBottom: ['0.75rem', '-0.375rem'],
+			})}
+			size="large"
+			{...props}
+		/>
+	);
 };
 
 /**
  * FormPodPreheading
  */
 export const FormPodPreheading = ({ tag: Tag, ...props }) => {
-	const { breakpoints, formPod } = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
 	return (
 		<Tag
 			css={mq({
 				display: [null, null, 'none'],
-				...formPod.preheading,
+				color: COLORS.muted,
+				margin: '0 0 0.375rem',
+				textTransform: 'uppercase',
+				fontSize: '0.6875rem',
+				fontWeight: 'bold',
 			})}
 			{...props}
 		/>
@@ -69,18 +77,22 @@ export const FormPodPreheading = ({ tag: Tag, ...props }) => {
 /**
  * FormPodHeading
  */
-export const FormPodHeading = ({ tag: Tag, ...props }) => {
-	const { formPod } = useTheme();
-
-	return <Tag css={{ ...formPod.heading }} {...props} />;
-};
+export const FormPodHeading = ({ tag: Tag, ...props }) => (
+	<Tag
+		css={{
+			fontWeight: 300, //light
+			fontSize: ['1.5rem', '1.875rem'],
+			margin: 0,
+		}}
+		{...props}
+	/>
+);
 
 /**
  * FormPodActionsPrimary
  */
 export const FormPodActionsPrimary = props => {
-	const { breakpoints } = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	return (
 		<div
@@ -99,15 +111,14 @@ export const FormPodActionsPrimary = props => {
  * FormPodActionsSecondary
  */
 export const FormPodActionsSecondary = props => {
-	const { breakpoints } = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	return (
 		<div
 			css={mq({
 				flex: 1,
-				marginTop: ['1.2rem', 0],
-				marginRight: [null, '2.4rem'],
+				marginTop: ['0.75rem', 0],
+				marginRight: [null, '1.5rem'],
 			})}
 			{...props}
 		/>
@@ -118,36 +129,44 @@ export const FormPodActionsSecondary = props => {
  * FormPodContactListItem
  */
 export const FormPodContactListItem = ({ item, ...props }) => {
-	const { breakpoints, colors } = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
 	const Icon = item.icon;
 
 	// Set default icon color
-	const iconColor = item.iconColor === undefined ? colors.primary.default : item.color;
-
-	const style = {
-		link: {
-			display: 'inline-block',
-			color: 'inherit',
-			textDecoration: 'none',
-			verticalAlign: 'middle',
-		},
-		icon: {
-			// marginRight: [null, '1.2rem'], //TODO: multiple contact items?
-			marginRight: '1.2rem',
-		},
-		text: {
-			// display: ['none', 'inline'], //TODO: multiple contact items?
-			verticalAlign: 'middle',
-		},
-	};
+	const iconColor = item.iconColor === undefined ? COLORS.primary : item.color;
 
 	return (
 		<li css={{ display: 'inline-block' }} {...props}>
-			<a href={item.url} css={style.link} onClick={item.onClick}>
-				{Icon && <Icon size="medium" css={mq(style.icon)} color={iconColor} />}
-				<span css={mq(style.text)}>{item.text}</span>
+			<a
+				href={item.url}
+				css={{
+					display: 'inline-block',
+					color: 'inherit',
+					textDecoration: 'none',
+					verticalAlign: 'middle',
+				}}
+				onClick={item.onClick}
+			>
+				{Icon && (
+					<Icon
+						size="medium"
+						css={mq({
+							// marginRight: [null, '0.75rem'], //TODO: multiple contact items?
+							marginRight: '0.75rem',
+						})}
+						color={iconColor}
+					/>
+				)}
+				<span
+					css={mq({
+						// display: ['none', 'inline'], //TODO: multiple contact items?
+						verticalAlign: 'middle',
+					})}
+				>
+					{item.text}
+				</span>
 			</a>
 		</li>
 	);

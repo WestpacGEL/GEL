@@ -9,25 +9,24 @@ import { FormPodContactListItem } from './styled';
 // Component
 // ==============================
 
-export const FormPodContactList = ({ items, ...props }) => {
-	const style = {
-		listStyle: 'none',
-		paddingLeft: 0,
-		margin: 0,
+export const FormPodContactList = ({ items, ...props }) => (
+	<ul
+		css={{
+			listStyle: 'none',
+			paddingLeft: 0,
+			margin: 0,
 
-		'li + li': {
-			marginLeft: '1.8rem',
-		},
-	};
-
-	return (
-		<ul css={style} {...props}>
-			{(items || []).map((item, i) => (
-				<FormPodContactListItem key={i} item={item} />
-			))}
-		</ul>
-	);
-};
+			'li + li': {
+				marginLeft: '1.125rem',
+			},
+		}}
+		{...props}
+	>
+		{(items || []).map((item, i) => (
+			<FormPodContactListItem key={i} item={item} />
+		))}
+	</ul>
+);
 
 // ==============================
 // Types

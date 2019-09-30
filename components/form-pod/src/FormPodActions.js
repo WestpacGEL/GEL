@@ -2,26 +2,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 import { FormPodActionsPrimary, FormPodActionsSecondary } from './styled';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormPodActions = ({ primary, secondary, isReverse, ...props }) => {
-	const { breakpoints, formPod } = useTheme();
-	const mq = paint(breakpoints);
-
-	const common = {
-		display: [null, 'flex'],
-		flexDirection: !isReverse && [null, 'row-reverse'],
-		...formPod.actions,
-
-		'button + button': {
-			marginLeft: ['1.2rem', '0.8rem'], //gap
-		},
-	};
+export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
+	const mq = useMediaQuery();
 
 	const slots = [
 		<FormPodActionsPrimary key="primary">{primary}</FormPodActionsPrimary>,
@@ -29,8 +18,19 @@ export const FormPodActions = ({ primary, secondary, isReverse, ...props }) => {
 	];
 
 	return (
-		<div css={mq(common)} {...props}>
-			{isReverse ? slots.reverse() : slots}
+		<div
+			css={mq({
+				display: [null, 'flex'],
+				flexDirection: !reverse && [null, 'row-reverse'],
+				marginTop: '1.875rem',
+
+				'button + button': {
+					marginLeft: ['0.75rem', '0.5rem'], //gap
+				},
+			})}
+			{...props}
+		>
+			{reverse ? slots.reverse() : slots}
 		</div>
 	);
 };
@@ -59,9 +59,9 @@ FormPodActions.propTypes = {
 	 *
 	 * Will swap primary and secondary slot order in the DOM (refer to XS breakpoint).
 	 */
-	isReverse: PropTypes.bool,
+	reverse: PropTypes.bool,
 };
 
 FormPodActions.defaultProps = {
-	isReverse: false,
+	reverse: false,
 };

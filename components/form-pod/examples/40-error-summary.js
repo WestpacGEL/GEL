@@ -14,12 +14,10 @@ import {
 import { Alert, AlertHeading } from '@westpac/alert';
 import { List, ListItem } from '@westpac/list';
 import { HeadsetIcon } from '@westpac/icon';
-import { Button } from '@westpac/button';
+// import { button } from '@westpac/button';
 
 export default () => {
-	const {
-		template: { wrapper },
-	} = useTheme();
+	const { COLORS } = useTheme();
 
 	// Contact detail data
 	const contactItems = [
@@ -37,7 +35,7 @@ export default () => {
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
 					body: {
-						backgroundColor: wrapper.backgroundColor,
+						backgroundColor: COLORS.background,
 					},
 				}}
 			/>
@@ -71,18 +69,18 @@ export default () => {
 				<FormPodActions
 					primary={
 						<>
-							<Button appearance="primary" isSoft size="large" isBlock={[true, false]}>
+							<button appearance="primary" soft size="large" block={[true, false]}>
 								Back
-							</Button>
-							<Button appearance="primary" size="large" isBlock={[true, false]}>
+							</button>
+							<button appearance="primary" size="large" block={[true, false]}>
 								Next
-							</Button>
+							</button>
 						</>
 					}
 					secondary={
-						<Button appearance="faint" isSoft size="large" isBlock={[true, false]}>
+						<button appearance="faint" soft size="large" block={[true, false]}>
 							Cancel
-						</Button>
+						</button>
 					}
 				/>
 			</FormPod>

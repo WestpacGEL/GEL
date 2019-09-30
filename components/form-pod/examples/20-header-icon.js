@@ -6,9 +6,7 @@ import { FormPod, FormPodPanel, FormPodPanelBody } from '../src';
 import { TickIcon } from '@westpac/icon';
 
 export default () => {
-	const {
-		template: { wrapper },
-	} = useTheme();
+	const { COLORS } = useTheme();
 
 	return (
 		<>
@@ -16,7 +14,7 @@ export default () => {
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
 					body: {
-						backgroundColor: wrapper.backgroundColor,
+						backgroundColor: COLORS.background,
 					},
 				}}
 			/>

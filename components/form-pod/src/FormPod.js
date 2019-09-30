@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 import { FormPodHeader, FormPodHeaderIcon, FormPodPreheading, FormPodHeading } from './styled';
 
 // ==============================
@@ -10,13 +10,12 @@ import { FormPodHeader, FormPodHeaderIcon, FormPodPreheading, FormPodHeading } f
 // ==============================
 
 export const FormPod = ({ icon, preheading, heading, children, ...props }) => {
-	const { breakpoints, formPod } = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	// Styling to provide the icon gap
 	const styleHeaderTextWithIcon = {
-		marginRight: [null, formPod.icon.width],
-		paddingRight: [null, formPod.icon.gap],
+		marginRight: [null, '4.125rem'],
+		paddingRight: [null, '0.75rem'],
 	};
 
 	return (

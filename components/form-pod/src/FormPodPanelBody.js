@@ -2,20 +2,21 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormPodPanelBody = ({ isExpanded, ...props }) => {
-	const { breakpoints, formPod } = useTheme();
-	const mq = paint(breakpoints);
+export const FormPodPanelBody = ({ expanded, ...props }) => {
+	const mq = useMediaQuery();
 
 	return (
 		<div
 			css={mq({
-				...formPod.panelInner[isExpanded ? 'expanded' : 'default'],
+				padding: expanded
+					? ['1.875rem 0.75rem', '3rem 2.25rem']
+					: ['1.875rem 0.75rem', '3.75rem 13%', '3.75rem 6%', '3.75rem 13%'],
 			})}
 			{...props}
 		/>
@@ -30,8 +31,8 @@ FormPodPanelBody.propTypes = {
 	/**
 	 * Expanded body mode (less horizontal padding)
 	 */
-	isExpanded: PropTypes.bool,
+	expanded: PropTypes.bool,
 };
 FormPodPanelBody.defaultProps = {
-	isExpanded: false,
+	expanded: false,
 };

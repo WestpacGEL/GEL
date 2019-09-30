@@ -5,9 +5,7 @@ import { Global, useTheme } from '@westpac/core';
 import { FormPod, FormPodPanel, FormPodPanelBody } from '../src';
 
 export default () => {
-	const {
-		template: { wrapper },
-	} = useTheme();
+	const { COLORS } = useTheme();
 
 	return (
 		<>
@@ -15,13 +13,13 @@ export default () => {
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
 					body: {
-						backgroundColor: wrapper.backgroundColor,
+						backgroundColor: COLORS.background,
 					},
 				}}
 			/>
 			<FormPod preheading="Preheading" heading="Heading">
 				<FormPodPanel>
-					<FormPodPanelBody isExpanded>[PANEL CONTENT]</FormPodPanelBody>
+					<FormPodPanelBody expanded>[PANEL CONTENT]</FormPodPanelBody>
 				</FormPodPanel>
 			</FormPod>
 		</>
