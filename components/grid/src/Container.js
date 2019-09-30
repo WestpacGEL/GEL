@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -12,10 +12,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // ==============================
 
 export const Container = props => {
-	const {
-		LAYOUT: { breakpoints },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	return (
 		<div
