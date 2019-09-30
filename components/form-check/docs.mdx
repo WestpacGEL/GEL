@@ -12,7 +12,7 @@ import { Alert, AlertHeading } from '@westpac/alert';
 
 Checkbox and radio inputs are provided by the FormCheck component.
 
-FormCheck items are block-level by default; inline layout is available via the `isInline` prop. FormCheck toggles can sit on the left (default) of the label text, but can be configured to render on the right via the `isFlipped` prop.
+FormCheck items are block-level by default; inline layout is available via the `inline` prop. FormCheck toggles can sit on the left (default) of the label text, but can be configured to render on the right via the `flipped` prop.
 
 <Alert appearance="information">
 	<AlertHeading>Accessibility requirement</AlertHeading>
@@ -80,14 +80,14 @@ Use the `size` prop to set size.
 
 ## Inline
 
-Use the `isInline` prop to render inline FormCheck items.
+Use the `inline` prop to render inline FormCheck items.
 
 <Playground>
-	<FormCheck type="checkbox" name="example-checkbox-inline" isInline>
+	<FormCheck type="checkbox" name="example-checkbox-inline" inline>
 		<FormCheckItem value="1">Inline checkbox 1</FormCheckItem>
 		<FormCheckItem value="2">Inline checkbox 2</FormCheckItem>
 	</FormCheck>
-	<FormCheck type="radio" name="example-radio-inline" isInline>
+	<FormCheck type="radio" name="example-radio-inline" inline>
 		<FormCheckItem value="1">Inline radio 1</FormCheckItem>
 		<FormCheckItem value="2">Inline radio 2</FormCheckItem>
 	</FormCheck>
@@ -95,14 +95,14 @@ Use the `isInline` prop to render inline FormCheck items.
 
 ## Flipped
 
-Use the `isFlipped` prop to change the orientation and render the control on the right.
+Use the `flipped` prop to change the orientation and render the control on the right.
 
 <Playground>
-	<FormCheck type="checkbox" name="example-checkbox-flipped" isFlipped>
+	<FormCheck type="checkbox" name="example-checkbox-flipped" flipped>
 		<FormCheckItem value="1">Flipped checkbox 1</FormCheckItem>
 		<FormCheckItem value="2">Flipped checkbox 2</FormCheckItem>
 	</FormCheck>
-	<FormCheck type="radio" name="example-radio-flipped" isFlipped>
+	<FormCheck type="radio" name="example-radio-flipped" flipped>
 		<FormCheckItem value="1">Flipped radio 1</FormCheckItem>
 		<FormCheckItem value="2">Flipped radio 2</FormCheckItem>
 	</FormCheck>
@@ -110,14 +110,14 @@ Use the `isFlipped` prop to change the orientation and render the control on the
 
 ## Flipped & inline
 
-The `isFlipped` and `isInline` props can be used together.
+The `flipped` and `inline` props can be used together.
 
 <Playground>
-	<FormCheck type="checkbox" name="example-checkbox-flipped-inline" isFlipped isInline>
+	<FormCheck type="checkbox" name="example-checkbox-flipped-inline" flipped inline>
 		<FormCheckItem value="1">Flipped inline checkbox 1</FormCheckItem>
 		<FormCheckItem value="2">Flipped inline checkbox 2</FormCheckItem>
 	</FormCheck>
-	<FormCheck type="radio" name="example-radio-flipped-inline" isFlipped isInline>
+	<FormCheck type="radio" name="example-radio-flipped-inline" flipped inline>
 		<FormCheckItem value="1">Flipped inline radio 1</FormCheckItem>
 		<FormCheckItem value="2">Flipped inline radio 2</FormCheckItem>
 	</FormCheck>
@@ -125,20 +125,20 @@ The `isFlipped` and `isInline` props can be used together.
 
 ## Checked
 
-Check FormCheck items by passing a `isChecked` prop.
+Check FormCheck items by passing a `checked` prop.
 
 <Playground>
 	<FormCheck type="checkbox" name="example-checkbox-checked">
-		<FormCheckItem value="1" isChecked>
+		<FormCheckItem value="1" checked>
 			Checked checkbox 1
 		</FormCheckItem>
-		<FormCheckItem value="2" isChecked>
+		<FormCheckItem value="2" checked>
 			Checked checkbox 2
 		</FormCheckItem>
 	</FormCheck>
 	<FormCheck type="radio" name="example-radio-checked">
 		<FormCheckItem value="1">Default radio 1</FormCheckItem>
-		<FormCheckItem value="2" isChecked>
+		<FormCheckItem value="2" checked>
 			Checked radio 2
 		</FormCheckItem>
 	</FormCheck>

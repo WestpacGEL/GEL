@@ -1,2 +1,2 @@
 export { FormCheck } from './FormCheck';
-export { FormCheckItem } from './FormCheckItem';
+export { FormCheckItem as Item } from './FormCheckItem';
