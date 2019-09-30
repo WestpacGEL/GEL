@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -19,11 +19,7 @@ export const sizeMap = {
 };
 
 const IconWrapper = ({ size, ...props }) => {
-	const {
-		COLORS,
-		LAYOUT: { breakpoints },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	// Common styling
 	const styleCommon = {
