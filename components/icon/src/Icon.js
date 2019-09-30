@@ -25,31 +25,26 @@ const IconWrapper = ({ size, ...props }) => {
 	} = useTheme();
 	const mq = paint(breakpoints);
 
-	const style = {
-		// Common styling
-		common: {
-			display: 'inline-block',
-			flexShrink: 0,
-			lineHeight: 1,
-			verticalAlign: 'middle',
-		},
+	// Common styling
+	const styleCommon = {
+		display: 'inline-block',
+		flexShrink: 0,
+		lineHeight: 1,
+		verticalAlign: 'middle',
+	};
 
-		// Reponsive styling (icon size)
-		responsive: (() => {
-			const sizeArr = asArray(size).map(s => s && sizeMap[s]);
-
-			return {
-				height: sizeArr,
-				width: sizeArr,
-			};
-		})(),
+	// Size styling (responsive)
+	const sizeArr = asArray(size);
+	const styleSize = {
+		height: sizeArr.map(s => s && sizeMap[s]),
+		width: sizeArr.map(s => s && sizeMap[s]),
 	};
 
 	return (
 		<span
 			css={mq({
-				...style.common,
-				...style.responsive,
+				...styleCommon,
+				...styleSize,
 			})}
 			{...props}
 		/>
@@ -61,13 +56,13 @@ const IconWrapper = ({ size, ...props }) => {
 // ==============================
 
 export const Icon = ({ children, color, label, size, ...props }) => {
-	const { colors } = useTheme();
+	const { COLORS } = useTheme();
 
 	// TODO Investigate:
 	// I suspect that using the style attribute to apply the color property will
 	// improve CSS reuse.
 	return (
-		<IconWrapper size={size} style={{ color: color ? color : colors.muted }} {...props}>
+		<IconWrapper size={size} style={{ color: color ? color : COLORS.muted }} {...props}>
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"
