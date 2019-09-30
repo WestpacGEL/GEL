@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 import { ButtonContent } from './styled';
 
 // ==============================
@@ -30,11 +30,8 @@ export const Button = ({
 	children,
 	...props
 }) => {
-	const {
-		COLORS,
-		LAYOUT: { breakpoints },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
 	if (soft && appearance === 'link') soft = false;
