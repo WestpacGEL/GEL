@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -33,10 +33,7 @@ export const Grid = ({
 	rows,
 	...props
 }) => {
-	const {
-		LAYOUT: { breakpoints },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	return (
 		<div
