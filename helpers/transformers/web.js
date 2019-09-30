@@ -21,9 +21,7 @@ function convertFonts(fonts) {
 			output[''].push({
 				'@font-face': {
 					fontFamily: font.name,
-					src: `url("${font.files.woff2}") format("woff2"), url("${
-						font.files.woff
-					}") format("woff")`,
+					src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
 					weight: font.weight,
 					style: font.style,
 				},
