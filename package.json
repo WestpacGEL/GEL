@@ -1,8 +1,4 @@
 {
-	"name": "gel",
-	"version": "0.0.1",
-	"description": "The design system and react components for Westpac GEL",
-	"main": "index.js",
 	"repository": "https://github.com/WestpacGEL/GEL.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
