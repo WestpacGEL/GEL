@@ -2,18 +2,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const FormSection = ({ noPadding, ...props }) => {
-	const {
-		COLORS,
-		LAYOUT: { breakpoints },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
 	return (
 		<div

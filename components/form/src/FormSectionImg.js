@@ -2,17 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const FormSectionImg = props => {
-	const {
-		LAYOUT: { breakpoints },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	return (
 		<img

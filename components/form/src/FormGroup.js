@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 import { useFormContext } from './Form';
 
 // ==============================
@@ -10,10 +10,7 @@ import { useFormContext } from './Form';
 // ==============================
 
 export const FormGroup = ({ primary, ...props }) => {
-	const {
-		LAYOUT: { breakpoints },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	// Consume FormContext
 	const formContext = useFormContext();
