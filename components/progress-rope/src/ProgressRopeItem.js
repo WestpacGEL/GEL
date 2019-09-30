@@ -3,10 +3,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
+import { useProgressRopeContext } from './ProgressRope';
 
-export const ProgressRopeItem = ({ status, nested, children, ...props }) => {
+export const ProgressRopeItem = ({ index, parentId, children, ...props }) => {
+	// I dont think this works for group
+	const { grouped, activeGroup, activeStep } = useProgressRopeContext();
+	// probably dont need grouped, can check if parentid is set
+
+	// is there a nicer way to do this?
+	let status = 'incomplete';
+
+	if (
+		(grouped && parentId === activeGroup && activeStep === index) ||
+		(!grouped && activeStep === index)
+	) {
+		status = 'active';
+	} else if (
+		(grouped && parentId === activeGroup && activeStep > index) ||
+		(!grouped && activeStep > index)
+	) {
+		status = 'complete';
+	}
+
 	const common = {
-		padding: `8px 56px 14px ${nested ? '48px' : '30px'}`,
+		padding: `8px 56px 14px ${grouped ? '48px' : '30px'}`,
 		position: 'relative',
 
 		/* 
@@ -40,11 +60,11 @@ export const ProgressRopeItem = ({ status, nested, children, ...props }) => {
 			borderRadius: '50%',
 			position: 'absolute',
 			top: 10,
-			width: nested ? 6 : 14,
-			height: nested ? 6 : 14,
-			right: nested ? 34 : 30,
+			width: grouped ? 6 : 14,
+			height: grouped ? 6 : 14,
+			right: grouped ? 34 : 30,
 			border: `2px solid ${status === 'active' || status === 'complete' ? '#d5002b' : '#d7d2cb'}`,
-			backgroundColor: nested
+			backgroundColor: grouped
 				? status === 'active' || status === 'complete'
 					? '#d5002b'
 					: '#d7d2cb'
