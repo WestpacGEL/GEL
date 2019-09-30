@@ -10,13 +10,13 @@ import { SrOnly } from '@westpac/accessibility-helpers';
 // Component
 // ==============================
 
-export const FormLabel = ({ sublabel, tag: Tag, htmlFor, srOnly, ...props }) => {
+export const FormLabel = ({ isSublabel, tag: Tag, htmlFor, isSrOnly, ...props }) => {
 	const {
 		form: { label },
 	} = useTheme();
 	const { spacing } = useContext(FormContext);
 
-	if (srOnly) {
+	if (isSrOnly) {
 		Tag = SrOnly;
 	}
 
@@ -27,7 +27,7 @@ export const FormLabel = ({ sublabel, tag: Tag, htmlFor, srOnly, ...props }) => 
 				fontWeight: label.fontWeight,
 				fontSize: label.fontSize,
 				...label.spacing[spacing],
-				...(sublabel && label.sublabel), //overrides spacing (sublabel overrides marginBottom)
+				...(isSublabel && label.sublabel), //overrides spacing (sublabel overrides marginBottom)
 			}}
 			htmlFor={htmlFor}
 			{...props}
@@ -43,7 +43,7 @@ FormLabel.propTypes = {
 	/**
 	 * Sub-label mode (smaller label text size)
 	 */
-	sublabel: PropTypes.bool,
+	isSublabel: PropTypes.bool,
 
 	/**
 	 * Component tag
@@ -55,7 +55,7 @@ FormLabel.propTypes = {
 	 *
 	 * This prop is required and must match the input’s `id` value, unless the `tag` prop is configured.
 	 */
-	htmlFor: (props, propName, componentName, location, propFullName) => {
+	htmlFor: (props, propName, componentName) => {
 		if (props.tag === 'label' && props[propName] == undefined) {
 			return new Error(
 				`The prop \`${propName}\` is marked as required in \`${componentName}\`, but its value is \`undefined\`.`
@@ -66,7 +66,7 @@ FormLabel.propTypes = {
 	/**
 	 * Enable ‘screen reader only’ mode
 	 */
-	srOnly: PropTypes.bool,
+	isSrOnly: PropTypes.bool,
 
 	/**
 	 * Label text
@@ -75,6 +75,6 @@ FormLabel.propTypes = {
 };
 
 FormLabel.defaultProps = {
-	sublabel: false,
+	isSublabel: false,
 	tag: 'label',
 };

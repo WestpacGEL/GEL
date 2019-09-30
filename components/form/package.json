@@ -27,6 +27,7 @@
 	},
 	"devDependencies": {
 		"@westpac/alert": "^0.0.1",
+		"@westpac/button": "^0.0.1",
 		"@westpac/button-group": "^0.0.1",
 		"@westpac/text-input": "^0.0.1",
 		"cypress": "^3.1.3",

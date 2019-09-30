@@ -15,22 +15,22 @@ export const Switch = ({
 	value,
 	toggleText,
 	size,
-	block,
-	flipped,
-	srOnlyText,
-	checked,
+	isBlock,
+	isFlipped,
+	isSrOnlyText,
+	isChecked,
 	disabled,
 	onChange,
 	children,
 	...props
 }) => {
 	const { switch: formSwitch } = useTheme();
-	const [isChecked, setIsChecked] = useState(checked);
+	const [checked, setChecked] = useState(isChecked);
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 
 	useEffect(
 		() => {
-			setIsChecked(checked);
+			setChecked(checked);
 		},
 		[checked]
 	);
@@ -39,21 +39,21 @@ export const Switch = ({
 		if (onChange) {
 			onChange();
 		} else {
-			setIsChecked(!isChecked);
+			setChecked(!checked);
 		}
 	};
 
 	// Common styling
 	const common = {
 		position: 'relative',
-		display: block ? 'flex' : 'inline-flex',
+		display: isBlock ? 'flex' : 'inline-flex',
 		flexWrap: 'wrap',
 		verticalAlign: 'middle',
-		marginRight: !block && formSwitch.marginRight,
+		marginRight: !isBlock && formSwitch.marginRight,
 		marginBottom: formSwitch.marginBottom,
 		alignItems: 'center',
-		width: block && '100%',
-		flexDirection: flipped && 'row-reverse',
+		width: isBlock && '100%',
+		flexDirection: isFlipped && 'row-reverse',
 
 		':hover': {
 			cursor: 'pointer',
@@ -72,12 +72,12 @@ export const Switch = ({
 				name={name}
 				id={switchId}
 				value={value}
-				checked={isChecked}
+				checked={checked}
 				disabled={disabled}
 				onChange={toggle}
 			/>
 			{children && (
-				<SwitchText block={block} flipped={flipped} size={size} srOnlyText={srOnlyText}>
+				<SwitchText isBlock={isBlock} isFlipped={isFlipped} size={size} isSrOnlyText={isSrOnlyText}>
 					{children}
 				</SwitchText>
 			)}
@@ -123,22 +123,22 @@ Switch.propTypes = {
 	/**
 	 * Block mode
 	 */
-	block: PropTypes.bool,
+	isBlock: PropTypes.bool,
 
 	/**
 	 * Reverse the horizontal orientation. Renders the toggle on the left of the label text.
 	 */
-	flipped: PropTypes.bool,
+	isFlipped: PropTypes.bool,
 
 	/**
 	 * Enable ‘screen reader only’ label text mode.
 	 */
-	srOnlyText: PropTypes.bool,
+	isSrOnlyText: PropTypes.bool,
 
 	/**
 	 * Switch on
 	 */
-	checked: PropTypes.bool,
+	isChecked: PropTypes.bool,
 
 	/**
 	 * Disable the switch
@@ -161,9 +161,9 @@ Switch.propTypes = {
 Switch.defaultProps = {
 	size: 'medium',
 	toggleText: ['On', 'Off'],
-	block: false,
-	flipped: false,
-	srOnlyText: false,
-	checked: false,
+	isBlock: false,
+	isFlipped: false,
+	isSrOnlyText: false,
+	isChecked: false,
 	disabled: false,
 };

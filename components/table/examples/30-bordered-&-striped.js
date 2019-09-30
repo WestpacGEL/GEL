@@ -3,7 +3,7 @@ import { Table } from '../src';
 
 export default () => (
 	<>
-		<Table bordered striped>
+		<Table isBordered isStriped>
 			<caption>Interest paid monthly</caption>
 			<thead>
 				<tr>

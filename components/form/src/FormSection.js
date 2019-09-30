@@ -8,7 +8,7 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormSection = ({ noPadding, ...props }) => {
+export const FormSection = ({ isNoPadding, ...props }) => {
 	const {
 		breakpoints,
 		form: { section },
@@ -17,8 +17,8 @@ export const FormSection = ({ noPadding, ...props }) => {
 
 	const common = {
 		position: 'relative', //for `.form-section-actions` positioning
-		paddingLeft: !noPadding && section.paddingLeft,
-		paddingRight: !noPadding && section.paddingRight,
+		paddingLeft: !isNoPadding && section.paddingLeft,
+		paddingRight: !isNoPadding && section.paddingRight,
 
 		':not(:first-of-type)': {
 			paddingTop: section.paddingTop,
@@ -44,7 +44,7 @@ FormSection.propTypes = {
 	/**
 	 * Remove section padding
 	 */
-	noPadding: PropTypes.bool,
+	isNoPadding: PropTypes.bool,
 
 	/**
 	 * Component children
@@ -53,5 +53,5 @@ FormSection.propTypes = {
 };
 
 FormSection.defaultProps = {
-	noPadding: false,
+	isNoPadding: false,
 };

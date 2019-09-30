@@ -8,7 +8,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-export const ButtonGroup = ({ appearance, size, block, name, children, ...props }) => {
+export const ButtonGroup = ({ appearance, size, isBlock, name, children, ...props }) => {
 	// Pass the selected props on to children
 	const childrenWithProps = Children.map(children, child =>
 		cloneElement(child, { appearance, size, name })
@@ -17,7 +17,7 @@ export const ButtonGroup = ({ appearance, size, block, name, children, ...props 
 	return (
 		<div
 			css={{
-				display: block ? 'flex' : 'inline-flex',
+				display: isBlock ? 'flex' : 'inline-flex',
 				alignItems: 'center', //vertical
 				verticalAlign: 'middle',
 			}}
@@ -57,7 +57,7 @@ ButtonGroup.propTypes = {
 	 *
 	 * Fit button group width to its parent width.
 	 */
-	block: PropTypes.bool,
+	isBlock: PropTypes.bool,
 
 	/**
 	 * Button group button input element’s name.
@@ -75,5 +75,5 @@ ButtonGroup.propTypes = {
 ButtonGroup.defaultProps = {
 	appearance: 'hero',
 	size: 'medium',
-	block: false,
+	isBlock: false,
 };

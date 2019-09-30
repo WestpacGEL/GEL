@@ -2,8 +2,7 @@
 
 import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, css } from '@westpac/core';
-import { ListItem } from './ListItem';
+import { jsx } from '@westpac/core';
 
 // ==============================
 // Component

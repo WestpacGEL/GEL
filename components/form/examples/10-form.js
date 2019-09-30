@@ -75,7 +75,7 @@ export default () => (
 		<hr />
 
 		<h2>Inline mode (SM+)</h2>
-		<Form action="." inline noValidate>
+		<Form action="." isInline noValidate>
 			<FormGroup>
 				<TextInput />
 			</FormGroup>
