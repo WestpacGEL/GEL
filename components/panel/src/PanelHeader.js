@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 import { usePanelContext } from './Panel';
 
 // ==============================
@@ -9,11 +9,8 @@ import { usePanelContext } from './Panel';
 // ==============================
 
 export const PanelHeader = props => {
-	const {
-		COLORS,
-		LAYOUT: { breakpoints },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 	const { appearance } = usePanelContext();
 
 	const appearanceMap = {
