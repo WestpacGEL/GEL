@@ -23,7 +23,7 @@
 		"@westpac/accessibility-helpers": "^0.0.1"
 	},
 	"peerDependencies": {
-		"react": "16.7.0-alpha.2"
+		"react": "^16.10.1"
 	},
 	"devDependencies": {
 		"cypress": "^3.1.3",
