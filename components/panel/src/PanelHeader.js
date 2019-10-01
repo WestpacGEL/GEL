@@ -36,7 +36,6 @@ export const PanelHeader = props => {
 				borderTopRightRadius: `calc(0.1875rem - 1px)`,
 				borderTopLeftRadius: `calc(0.1875rem - 1px)`,
 				fontSize: '1rem',
-
 				'@media print': {
 					borderBottom: '1px solid #000',
 				},
