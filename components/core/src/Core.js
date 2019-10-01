@@ -2,15 +2,17 @@
 
 import React, { useContext } from 'react';
 import { Global, jsx } from '@emotion/core';
-import { useTheme, UserModeContext } from './Theme';
-import { paint } from './utils';
-
 import merge from 'lodash.merge';
+import { useTheme } from './Theme';
+import { useMediaQuery } from './utils';
 
 export const Core = ({ children }) => {
-	const { colors, breakpoints, font: styleFont, typography } = useTheme();
-	const isKeyboardUser = useContext(UserModeContext);
-	const mq = paint(breakpoints);
+	const {
+		COLORS,
+		TYPE: { bodyFont, brandFont },
+	} = useTheme();
+
+	const mq = useMediaQuery();
 
 	// Global reset styling
 	const styleReset = {
@@ -149,84 +151,84 @@ export const Core = ({ children }) => {
 
 	// Typography styling
 	const styleTypography = {
-		// Document
-		html: {
-			fontSize: typography.fontSize, //10px
-		},
-
 		// Global type styling
 		body: {
-			fontFamily: typography.body.fontFamily,
-			fontWeight: typography.body.fontWeight,
-			fontSize: typography.body.fontSize, //1.4rem (14px)
-			lineHeight: typography.body.lineHeight, //1.428571429
-			color: typography.body.color,
+			fontFamily: bodyFont,
+			fontWeight: 400,
+			fontSize: '0.875rem', // (14px)
+			lineHeight: 1.428571429,
+			color: COLORS.text,
 			fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
 		},
 
 		// Globally reset all focus styling, only apply if keyboard user
-		':focus': {
-			...(isKeyboardUser ? typography.link.focus : { outline: 0 }),
+		'.isMouseMode :focus': {
+			outline: 0,
 		},
 
 		// Class access to our font families
 		'.body-font': {
-			fontFamily: typography.body.fontFamily,
+			fontFamily: bodyFont,
 		},
+
 		'.brand-font': {
-			fontFamily: typography.brand.fontFamily,
+			fontFamily:
+				'fontFamily' in brandFont
+					? brandFont['fontFamily']
+					: brandFont[''][0]['@font-face'].fontFamily,
 		},
 
 		// Headings
 		'h1, h2, h3, h4, h5, h6': {
-			...typography.headings,
+			color: COLORS.heading,
 		},
 
 		// Paragraphs
 		p: {
-			...typography.p,
+			margin: '0.75rem 0', //12px 0
 		},
 
 		// Definition lists
-		dl: {
-			...typography.dl,
-		},
 		dt: {
-			...typography.dt,
+			fontWeight: 700,
 		},
 		dd: {
-			...typography.dd,
+			margin: 0,
 		},
 
 		// Abbreviation
 		'abbr[title]': {
-			...typography.abbr,
+			cursor: 'help',
+			borderBottom: `1px dotted ${COLORS.text}`,
+			textDecoration: 'none',
 		},
 
 		address: {
-			...typography.address,
+			fontStyle: 'normal',
 		},
 
 		blockquote: {
-			...typography.blockquote,
+			fontSize: '1rem',
+			fontWeight: 300,
 		},
 
 		// Mark
 		mark: {
-			...typography.mark,
+			backgroundColor: COLORS.tints.primary20,
 		},
 
 		// Text selection
 		'::selection': {
-			...typography.selection,
+			backgroundColor: COLORS.tints.primary20,
 		},
 
 		// Links
 		a: {
-			...typography.link.default,
+			color: COLORS.primary,
+			textDecoration: 'underline',
 
 			':hover': {
-				...typography.link.hover,
+				textDecoration: 'underline',
 			},
 		},
 	};
@@ -235,7 +237,10 @@ export const Core = ({ children }) => {
 	const styleTextExtensions = {
 		// Lead text
 		'.lead': {
-			...typography.lead,
+			marginBottom: '1.3125rem',
+			fontSize: ['1rem', '1.125rem'],
+			fontWeight: 300,
+			lineHeight: 1.4,
 		},
 
 		// Text alignments
@@ -255,36 +260,36 @@ export const Core = ({ children }) => {
 			whiteSpace: 'nowrap',
 		},
 
-		// Text colors
+		// Text COLORS
 		'.text-primary': {
-			color: colors.primary.default,
+			color: COLORS.primary,
 		},
 		'.text-hero': {
-			color: colors.hero.default,
+			color: COLORS.hero,
 		},
 		'.text-neutral': {
-			color: colors.neutral.default,
+			color: COLORS.neutral,
 		},
 		'.text-muted': {
-			color: colors.muted,
+			color: COLORS.muted,
 		},
 		'.text-success': {
-			color: colors.success.default,
+			color: COLORS.success,
 		},
 		'.text-information': {
-			color: colors.information.default,
+			color: COLORS.info,
 		},
 		'.text-warning': {
-			color: colors.warning.default,
+			color: COLORS.warning,
 		},
 		'.text-danger': {
-			color: colors.danger.default,
+			color: COLORS.danger,
 		},
 	};
 
 	return (
 		<>
-			<Global styles={mq(merge(styleReset, styleTypography, styleFont, styleTextExtensions))} />
+			<Global styles={mq(merge(styleReset, styleTypography, styleTextExtensions))} />
 			{children}
 		</>
 	);

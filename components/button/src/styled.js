@@ -1,11 +1,9 @@
 /** @jsx jsx */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
-
 import { propTypes, defaultProps } from './Button';
-import { SrOnly } from '../../accessibility-helpers/src';
+import { SrOnly } from '@westpac/accessibility-helpers';
 
 // ==============================
 // Utils
@@ -23,10 +21,10 @@ const iconSizeMap = {
 // Component
 // ==============================
 
-export const ButtonTextWrapper = ({ block, srOnlyText, children }) => {
-	if (srOnlyText) {
+export const ButtonTextWrapper = ({ isBlock, isSrOnlyText, children }) => {
+	if (isSrOnlyText) {
 		return <SrOnly>{children}</SrOnly>;
-	} else if (block) {
+	} else if (isBlock) {
 		// Wrap with styled span to provide text truncation (only available in block mode)
 		return <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>;
 	} else {
@@ -36,10 +34,10 @@ export const ButtonTextWrapper = ({ block, srOnlyText, children }) => {
 
 export const ButtonContent = ({
 	size,
-	block,
+	isBlock,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
-	srOnlyText,
+	isSrOnlyText,
 	children,
 }) => {
 	// Compose a button text + icon fragment, if these are provided
@@ -47,19 +45,19 @@ export const ButtonContent = ({
 		<>
 			{IconBefore && (
 				<IconBefore
-					css={{ marginRight: children && !srOnlyText ? '0.4em' : null }}
+					css={{ marginRight: children && !isSrOnlyText && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
 				/>
 			)}
 			{children && (
-				<ButtonTextWrapper block={block} srOnlyText={srOnlyText}>
+				<ButtonTextWrapper isBlock={isBlock} isSrOnlyText={isSrOnlyText}>
 					{children}
 				</ButtonTextWrapper>
 			)}
 			{IconAfter && (
 				<IconAfter
-					css={{ marginLeft: children && !srOnlyText ? '0.4em' : null }}
+					css={{ marginLeft: children && !isSrOnlyText && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
 				/>

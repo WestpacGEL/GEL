@@ -1,13 +1,10 @@
 import React from 'react';
-
 import { ButtonGroup, ButtonGroupButton } from '../src';
-// import ButtonGroup from '@westpac/button-group';
-
-import { InfoIcon } from '../../icon/src';
+import { InfoIcon } from '@westpac/icon';
 
 export default () => (
 	<>
-		<h3>Small</h3>
+		<h2>Small</h2>
 		<ButtonGroup size="small" name="example-small">
 			<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
@@ -15,7 +12,7 @@ export default () => (
 		</ButtonGroup>
 		<br />
 		<br />
-		<ButtonGroup size="small" name="example-small-block" block>
+		<ButtonGroup size="small" name="example-small-block" isBlock>
 			<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Right</ButtonGroupButton>
@@ -23,7 +20,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Medium</h3>
+		<h2>Medium</h2>
 		<ButtonGroup size="medium" name="example-medium">
 			<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
@@ -31,7 +28,7 @@ export default () => (
 		</ButtonGroup>
 		<br />
 		<br />
-		<ButtonGroup size="medium" name="example-medium-block" block>
+		<ButtonGroup size="medium" name="example-medium-block" isBlock>
 			<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Right</ButtonGroupButton>
@@ -39,7 +36,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Large</h3>
+		<h2>Large</h2>
 		<ButtonGroup size="large" name="example-large">
 			<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
@@ -47,7 +44,7 @@ export default () => (
 		</ButtonGroup>
 		<br />
 		<br />
-		<ButtonGroup size="large" name="example-large-block" block>
+		<ButtonGroup size="large" name="example-large-block" isBlock>
 			<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Right</ButtonGroupButton>
@@ -55,7 +52,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Extra large</h3>
+		<h2>Extra large</h2>
 		<ButtonGroup size="xlarge" name="example-xlarge">
 			<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
@@ -63,7 +60,7 @@ export default () => (
 		</ButtonGroup>
 		<br />
 		<br />
-		<ButtonGroup size="xlarge" name="example-xlarge-block" block>
+		<ButtonGroup size="xlarge" name="example-xlarge-block" isBlock>
 			<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
 			<ButtonGroupButton iconAfter={InfoIcon}>Right</ButtonGroupButton>

@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { Button } from '../src';
 
 export default () => (
 	<>
-		<h3>Disabled buttons</h3>
 		<p>
 			<Button appearance="primary" disabled>
 				Primary
@@ -23,16 +21,16 @@ export default () => (
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" soft disabled>
+			<Button appearance="primary" isSoft disabled>
 				Primary soft
 			</Button>{' '}
-			<Button appearance="hero" soft disabled>
+			<Button appearance="hero" isSoft disabled>
 				Hero soft
 			</Button>{' '}
-			<Button appearance="neutral" soft disabled>
+			<Button appearance="neutral" isSoft disabled>
 				Neutral soft
 			</Button>{' '}
-			<Button appearance="faint" soft disabled>
+			<Button appearance="faint" isSoft disabled>
 				Faint soft
 			</Button>
 		</p>

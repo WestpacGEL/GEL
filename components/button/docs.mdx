@@ -6,8 +6,7 @@ route: /button
 
 import { Playground, PropsTable } from 'docz';
 import { Button } from './src';
-
-import { InfoIcon, HouseIcon } from '../icon/src';
+import { InfoIcon, HouseIcon } from '@westpac/icon';
 
 # Button
 
@@ -50,16 +49,16 @@ Use the `tag` prop to configure the Button component to render as a `<button>`, 
 Soft buttons render with less visual emphasis, often used when grouping buttons with differing importance.
 
 <Playground>
-	<Button appearance="primary" soft>
+	<Button appearance="primary" isSoft>
 		Primary soft
 	</Button>{' '}
-	<Button appearance="hero" soft>
+	<Button appearance="hero" isSoft>
 		Hero soft
 	</Button>{' '}
-	<Button appearance="neutral" soft>
+	<Button appearance="neutral" isSoft>
 		Neutral soft
 	</Button>{' '}
-	<Button appearance="faint" soft>
+	<Button appearance="faint" isSoft>
 		Faint soft
 	</Button>
 </Playground>
@@ -77,18 +76,18 @@ Pass the `size` prop an array of size values to set size responsively for each b
 
 ## Block
 
-Buttons widths are auto-sized (inline) by default — they’re as wide as their contents. Block buttons fit to the width of their parent element.
+Button widths are auto-sized (inline) by default — they’re as wide as their contents. Block buttons fit to the width of their parent element.
 
 Long button text content will trucate.
 
-Pass the `block` prop an array of boolean values to set this responsively for each breakpoint.
+Pass the `isBlock` prop an array of boolean values to set this responsively for each breakpoint.
 
 <Playground>
 	<p>
-		<Button block>Block</Button>
+		<Button isBlock>Block</Button>
 	</p>
 	<p>
-		<Button block>
+		<Button isBlock>
 			We don’t recommended using long button text, but it will truncate if neccesary
 		</Button>
 	</p>
@@ -117,19 +116,19 @@ Disable Button components by passing a `disabled` prop.
 		</Button>
 	</p>
 	<p>
-		<Button appearance="primary" soft disabled>
+		<Button appearance="primary" isSoft disabled>
 			Primary soft
 		</Button>{' '}
-		<Button appearance="hero" soft disabled>
+		<Button appearance="hero" isSoft disabled>
 			Hero soft
 		</Button>{' '}
-		<Button appearance="neutral" soft disabled>
+		<Button appearance="neutral" isSoft disabled>
 			Neutral soft
 		</Button>{' '}
-		<Button appearance="faint" soft disabled>
+		<Button appearance="faint" isSoft disabled>
 			Faint soft
 		</Button>{' '}
-		<Button appearance="link" soft disabled>
+		<Button appearance="link" isSoft disabled>
 			Link soft
 		</Button>
 	</p>
@@ -149,22 +148,22 @@ Use the `justify` option to align the button’s contents with internal edges in
 		<Button iconBefore={InfoIcon}>Icon before</Button>
 	</p>
 	<p>
-		<Button iconAfter={InfoIcon} block>
+		<Button iconAfter={InfoIcon} isBlock>
 			Icon after + block
 		</Button>
 	</p>
 	<p>
-		<Button iconBefore={InfoIcon} block>
+		<Button iconBefore={InfoIcon} isBlock>
 			Icon before + block
 		</Button>
 	</p>
 	<p>
-		<Button iconAfter={InfoIcon} justify block>
+		<Button iconAfter={InfoIcon} justify isBlock>
 			Icon after + block + justify
 		</Button>
 	</p>
 	<p>
-		<Button iconBefore={InfoIcon} justify block>
+		<Button iconBefore={InfoIcon} justify isBlock>
 			Icon before + block + justify
 		</Button>
 	</p>
@@ -175,7 +174,7 @@ Use the `justify` option to align the button’s contents with internal edges in
 Use the `trim` option to strip horizontal padding.
 
 <Playground>
-	<Button appearance="link" trim>
+	<Button appearance="link" isTrim>
 		Trimmed
 	</Button>
 </Playground>
@@ -185,7 +184,7 @@ Use the `trim` option to strip horizontal padding.
 Use the `srOnlyText` ‘screen reader only’ text option to visually hide button text content. This option may be required if your button has only visible icon content.
 
 <Playground>
-	<Button iconAfter={HouseIcon} srOnlyText>
+	<Button iconAfter={HouseIcon} isSrOnlyText>
 		Screen reader only text
 	</Button>
 </Playground>

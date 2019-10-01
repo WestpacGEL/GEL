@@ -1,10 +1,9 @@
 import React from 'react';
-
 import { Table } from '../src';
 
 export default () => (
 	<>
-		<Table striped>
+		<Table isStriped>
 			<caption>
 				Table caption this table width is: <em>(100%)</em>
 			</caption>

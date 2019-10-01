@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Tab, Tabcordion } from '../src';
 import { data } from './_data';
 

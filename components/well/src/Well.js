@@ -8,12 +8,12 @@ import { jsx, useTheme, paint } from '@westpac/core';
 // Component
 // ==============================
 
-export const Well = ({ responsive, ...props }) => {
+export const Well = props => {
 	const { breakpoints, well } = useTheme();
 	const mq = paint(breakpoints);
 
 	const common = {
-		padding: responsive ? well.padding.responsive : well.padding.default,
+		padding: well.padding,
 		marginBottom: well.marginBottom,
 		backgroundColor: well.backgroundColor,
 		border: `${well.borderWidth} solid ${well.borderColor}`,
@@ -35,11 +35,9 @@ export const Well = ({ responsive, ...props }) => {
 
 Well.propTypes = {
 	/**
-	 * Responsive mode
+	 * Well content
 	 */
-	responsive: PropTypes.bool,
+	children: PropTypes.node,
 };
 
-Well.defaultProps = {
-	responsive: false,
-};
+Well.defaultProps = {};

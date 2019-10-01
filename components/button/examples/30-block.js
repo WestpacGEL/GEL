@@ -1,51 +1,50 @@
 import React from 'react';
-
 import { Button } from '../src';
 
 export default () => (
 	<>
-		<h3>Default buttons</h3>
+		<h2>Default</h2>
 		<p>
-			<Button appearance="primary" size="xlarge" block>
+			<Button appearance="primary" size="xlarge" isBlock>
 				Primary extra large block button
 			</Button>
 		</p>
 		<p>
-			<Button appearance="hero" size="large" block>
+			<Button appearance="hero" size="large" isBlock>
 				Hero large block button
 			</Button>
 		</p>
 		<p>
-			<Button appearance="neutral" size="medium" block>
+			<Button appearance="neutral" size="medium" isBlock>
 				Neutral medium block button
 			</Button>
 		</p>
 		<p>
-			<Button appearance="faint" size="small" block>
+			<Button appearance="faint" size="small" isBlock>
 				Faint small block button
 			</Button>
 		</p>
 
 		<hr />
 
-		<h3>Soft buttons</h3>
+		<h2>Soft</h2>
 		<p>
-			<Button appearance="primary" size="xlarge" soft block>
+			<Button appearance="primary" size="xlarge" isSoft isBlock>
 				Primary extra large soft block button
 			</Button>
 		</p>
 		<p>
-			<Button appearance="hero" size="large" soft block>
+			<Button appearance="hero" size="large" isSoft isBlock>
 				Hero large soft block button
 			</Button>
 		</p>
 		<p>
-			<Button appearance="neutral" size="medium" soft block>
+			<Button appearance="neutral" size="medium" isSoft isBlock>
 				Neutral medium soft block button
 			</Button>
 		</p>
 		<p>
-			<Button appearance="faint" size="small" soft block>
+			<Button appearance="faint" size="small" isSoft isBlock>
 				Faint small soft block button
 			</Button>
 		</p>

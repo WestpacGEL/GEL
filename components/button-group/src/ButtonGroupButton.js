@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-
-import { Button } from '../../button/src';
+import { Button } from '@westpac/button';
+import shortid from 'shortid';
 
 // ==============================
 // Component
@@ -14,26 +14,45 @@ export const ButtonGroupButton = ({
 	appearance,
 	size,
 	name,
-	id,
+	value,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
-	srOnlyText,
+	isSrOnlyText,
+	isChecked,
+	onChange,
 	children,
 	...props
 }) => {
 	const { button } = useTheme();
+	const [checked, setChecked] = useState(isChecked);
+	const [buttonId] = useState(`button-${shortid.generate()}`);
+
+	useEffect(() => {
+		setChecked(checked);
+	}, [checked]);
+
+	const toggle = () => {
+		if (onChange) {
+			onChange();
+		} else {
+			setChecked(!checked);
+		}
+	};
 
 	return (
-		<label css={{ flex: 1 }} {...props}>
+		<label htmlFor={buttonId} css={{ flex: 1 }} {...props}>
 			<input
+				type="radio"
 				css={{
 					position: 'absolute',
 					zIndex: -1,
 					opacity: 0,
 				}}
-				type="radio"
 				name={name}
-				id={id}
+				id={buttonId}
+				value={value}
+				checked={checked}
+				onChange={toggle}
 			/>
 			<Button
 				css={{
@@ -60,9 +79,9 @@ export const ButtonGroupButton = ({
 				size={size}
 				iconAfter={IconAfter}
 				iconBefore={IconBefore}
-				srOnlyText={srOnlyText}
-				soft
-				block
+				isSrOnlyText={isSrOnlyText}
+				isSoft
+				isBlock
 			>
 				{children}
 			</Button>
@@ -76,9 +95,9 @@ export const ButtonGroupButton = ({
 
 ButtonGroupButton.propTypes = {
 	/**
-	 * Button group button input element’s id
+	 * Button group button input element’s value
 	 */
-	id: PropTypes.string,
+	value: PropTypes.string,
 
 	/**
 	 * Places an icon within the button, after the button’s text
@@ -91,9 +110,21 @@ ButtonGroupButton.propTypes = {
 	iconBefore: PropTypes.func,
 
 	/**
+	 * Check the button
+	 */
+	isChecked: PropTypes.bool,
+
+	/**
+	 * The onChange handler for this button
+	 */
+	onChange: PropTypes.func,
+
+	/**
 	 * Button group button text
 	 */
 	children: PropTypes.node,
 };
 
-ButtonGroupButton.defaultProps = {};
+ButtonGroupButton.defaultProps = {
+	isChecked: false,
+};

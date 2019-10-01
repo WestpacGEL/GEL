@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
 import shortid from 'shortid';
-
 import { SwitchText, SwitchToggle } from './styled';
 
 // ==============================
@@ -13,47 +12,45 @@ import { SwitchText, SwitchToggle } from './styled';
 
 export const Switch = ({
 	name,
+	value,
 	toggleText,
 	size,
-	block,
-	flip,
-	srOnlyText,
-	checked,
+	isBlock,
+	isFlipped,
+	isSrOnlyText,
+	isChecked,
 	disabled,
-	children,
 	onChange,
+	children,
 	...props
 }) => {
 	const { switch: formSwitch } = useTheme();
-	const [isChecked, setIsChecked] = useState(checked);
+	const [checked, setChecked] = useState(isChecked);
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 
-	useEffect(
-		() => {
-			setIsChecked(checked);
-		},
-		[checked]
-	);
+	useEffect(() => {
+		setChecked(checked);
+	}, [checked]);
 
 	const toggle = () => {
 		if (onChange) {
 			onChange();
 		} else {
-			setIsChecked(!isChecked);
+			setChecked(!checked);
 		}
 	};
 
 	// Common styling
 	const common = {
 		position: 'relative',
-		display: block ? 'flex' : 'inline-flex',
+		display: isBlock ? 'flex' : 'inline-flex',
 		flexWrap: 'wrap',
 		verticalAlign: 'middle',
-		marginRight: block ? null : formSwitch.marginRight,
+		marginRight: !isBlock && formSwitch.marginRight,
 		marginBottom: formSwitch.marginBottom,
 		alignItems: 'center',
-		width: block ? '100%' : null,
-		flexDirection: flip ? 'row-reverse' : null,
+		width: isBlock && '100%',
+		flexDirection: isFlipped && 'row-reverse',
 
 		':hover': {
 			cursor: 'pointer',
@@ -71,12 +68,13 @@ export const Switch = ({
 				}}
 				name={name}
 				id={switchId}
-				checked={isChecked}
+				value={value}
+				checked={checked}
 				disabled={disabled}
 				onChange={toggle}
 			/>
 			{children && (
-				<SwitchText block={block} flip={flip} size={size} srOnlyText={srOnlyText}>
+				<SwitchText isBlock={isBlock} isFlipped={isFlipped} size={size} isSrOnlyText={isSrOnlyText}>
 					{children}
 				</SwitchText>
 			)}
@@ -95,9 +93,14 @@ const options = {
 
 Switch.propTypes = {
 	/**
-	 * Input element name attribute
+	 * Switch input element name
 	 */
 	name: PropTypes.string,
+
+	/**
+	 * Switch input element value
+	 */
+	value: PropTypes.string,
 
 	/**
 	 * On/off text.
@@ -107,7 +110,7 @@ Switch.propTypes = {
 	toggleText: PropTypes.arrayOf(PropTypes.string),
 
 	/**
-	 * Form switch size
+	 * Switch size
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(options.size),
@@ -117,22 +120,22 @@ Switch.propTypes = {
 	/**
 	 * Block mode
 	 */
-	block: PropTypes.bool,
+	isBlock: PropTypes.bool,
 
 	/**
 	 * Reverse the horizontal orientation. Renders the toggle on the left of the label text.
 	 */
-	flip: PropTypes.bool,
+	isFlipped: PropTypes.bool,
 
 	/**
 	 * Enable ‘screen reader only’ label text mode.
 	 */
-	srOnlyText: PropTypes.bool,
+	isSrOnlyText: PropTypes.bool,
 
 	/**
 	 * Switch on
 	 */
-	checked: PropTypes.bool,
+	isChecked: PropTypes.bool,
 
 	/**
 	 * Disable the switch
@@ -140,24 +143,24 @@ Switch.propTypes = {
 	disabled: PropTypes.bool,
 
 	/**
+	 * The onChange handler for this switch
+	 */
+	onChange: PropTypes.func,
+
+	/**
 	 * Label text.
 	 *
 	 * This prop is required, but can be visually hidden by enabling "srOnlyText" mode.
 	 */
 	children: PropTypes.string.isRequired,
-
-	/**
-	 * The onChange handler for this switch
-	 */
-	onChange: PropTypes.func,
 };
 
 Switch.defaultProps = {
 	size: 'medium',
 	toggleText: ['On', 'Off'],
-	block: false,
-	flip: false,
-	srOnlyText: false,
-	checked: false,
+	isBlock: false,
+	isFlipped: false,
+	isSrOnlyText: false,
+	isChecked: false,
 	disabled: false,
 };

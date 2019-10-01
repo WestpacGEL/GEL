@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx, useTheme, paint } from '@westpac/core';
 import { propTypes, defaultProps } from './Panel';
 
@@ -9,18 +8,16 @@ import { propTypes, defaultProps } from './Panel';
 // Component
 // ==============================
 
-export const PanelHeader = ({ appearance, responsive, ...props }) => {
+export const PanelHeader = ({ appearance, ...props }) => {
 	const { breakpoints, panel } = useTheme();
 	const mq = paint(breakpoints);
 
 	return (
 		<div
 			css={mq({
-				padding: responsive ? panel.header.padding.responsive : panel.header.padding.default,
+				padding: panel.header.padding,
 				backgroundColor: panel.header.appearance[appearance].backgroundColor,
-				borderBottom: `${panel.borderWidth} solid ${
-					panel.header.appearance[appearance].borderColor
-				}`,
+				borderBottom: `${panel.borderWidth} solid ${panel.header.appearance[appearance].borderColor}`,
 				color: panel.header.appearance[appearance].color,
 				borderTopRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 				borderTopLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,

@@ -2,28 +2,28 @@
 
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
-export const ButtonGroup = ({ appearance, size, block, name, children, ...props }) => {
-	// Pass the selected props on to children (that way button styling can be set by parent ButtonGroup)
-	const giftedChildren = Children.map(children, child =>
+export const ButtonGroup = ({ appearance, size, isBlock, name, children, ...props }) => {
+	// Pass the selected props on to children
+	const childrenWithProps = Children.map(children, child =>
 		cloneElement(child, { appearance, size, name })
 	);
 
 	return (
 		<div
 			css={{
-				display: block ? 'flex' : 'inline-flex',
+				display: isBlock ? 'flex' : 'inline-flex',
 				alignItems: 'center', //vertical
 				verticalAlign: 'middle',
 			}}
 			{...props}
 		>
-			{giftedChildren}
+			{childrenWithProps}
 		</div>
 	);
 };
@@ -39,22 +39,30 @@ const options = {
 
 ButtonGroup.propTypes = {
 	/**
-	 * Button group button appearance
+	 * Button group button appearance.
+	 *
+	 * This prop is passed to children.
 	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
-	 * Button group button size
+	 * Button group button size.
+	 *
+	 * This prop is passed to children.
 	 */
 	size: PropTypes.oneOf(options.size),
 
 	/**
-	 * Block mode
+	 * Block mode.
+	 *
+	 * Fit button group width to its parent width.
 	 */
-	block: PropTypes.bool,
+	isBlock: PropTypes.bool,
 
 	/**
-	 * Button group button input element’s name
+	 * Button group button input element’s name.
+	 *
+	 * This prop is passed to children.
 	 */
 	name: PropTypes.string.isRequired,
 
@@ -67,5 +75,5 @@ ButtonGroup.propTypes = {
 ButtonGroup.defaultProps = {
 	appearance: 'hero',
 	size: 'medium',
-	block: false,
+	isBlock: false,
 };

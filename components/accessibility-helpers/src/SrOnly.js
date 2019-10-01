@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
@@ -39,11 +35,14 @@ export const SrOnly = ({ tag: Tag, ...props }) => (
 
 SrOnly.propTypes = {
 	/**
-	 * The component tag.
-	 *
-	 * Defaults to "span"
+	 * Component tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * Component content
+	 */
+	children: PropTypes.node.isRequired,
 };
 
 SrOnly.defaultProps = {

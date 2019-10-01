@@ -5,15 +5,17 @@ route: /alert
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { Alert } from './src';
-import { InfoIcon } from '../icon/src/icons/InfoIcon';
+import { Alert, AlertHeading } from './src';
+import { HelpIcon } from '@westpac/icon';
 
 # Alert
 
 User feedback and messaging is essential in UI design. Using a cross-brand palette of reserved, contextual colours provides a flexible, consistent message system for common user interactions.
 
+## Appearance
+
 <Playground>
-	<Alert appearance="success" icon={InfoIcon} closable>
+	<Alert appearance="success">
 		<strong>Well done!</strong> You successfully read this important alert message. Lorem ipsum
 		dolor sit amet, consectetur adipisicing elit. Quo dolor provident quasi nisi officia tempore
 		fuga autem, animi iste molestiae, qui omnis doloribus aliquid ipsam rem fugiat veniam voluptatem
@@ -23,24 +25,46 @@ User feedback and messaging is essential in UI design. Using a cross-brand palet
 		elit. Fuga, magnam illum harum consequatur, quo sunt impedit quam minus eaque saepe voluptas
 		corrupti voluptatum, sapiente dolor sequi tempore maxime? Neque, obcaecati. <a href="#">Link</a>
 	</Alert>
-	<Alert icon={InfoIcon} closable>
+	<Alert>
 		<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
 		<a href="#">Link</a>
 	</Alert>
-	<Alert appearance="warning" icon={InfoIcon} closable>
+	<Alert appearance="warning">
 		<strong>Warning!</strong> Better check yourself, you’re not looking too good.{' '}
 		<a href="#">Link</a>
 	</Alert>
-	<Alert appearance="danger" icon={InfoIcon} closable>
+	<Alert appearance="danger">
 		<strong>Oh snap!</strong> Change a few things up and try submitting again. <a href="#">Link</a>
 	</Alert>
-	<Alert appearance="system" icon={InfoIcon} closable>
+	<Alert appearance="system">
 		<strong>System Error 8942:</strong> The server is no responding. Please try again later. Sorry
 		for the inconvenience. <a href="#">Link</a>
 	</Alert>
-	<Alert appearance="success">
-		<strong>Well done!</strong> You successfully read this important alert message, but you can't
-		close it. <a href="#">Link</a>
+</Playground>
+
+## Icon
+
+The alert icon is automatically rendered based on appearance, but can be overriden via the `icon` prop. Pass a `null` value to remove completely.
+
+<Playground>
+	<Alert appearance="information" icon={HelpIcon}>
+		<strong>Heads up!</strong> This alert needs your attention, but it’s not super important. Oh wow
+		look, I have a custom icon. <a href="#">Link</a>
+	</Alert>
+	<Alert appearance="information" icon={null}>
+		<strong>Heads up!</strong> This alert needs your attention, but it’s not super important. Oh wow
+		look, I have no icon. <a href="#">Link</a>
+	</Alert>
+</Playground>
+
+## Closable
+
+Use the `isClosable` prop to render a functional close button.
+
+<Playground>
+	<Alert appearance="success" isClosable>
+		<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I can
+		be closed. <a href="#">Link</a>
 	</Alert>
 </Playground>
 

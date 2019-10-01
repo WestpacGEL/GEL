@@ -1,12 +1,10 @@
 import React from 'react';
-
 import { Badge } from '../src';
-// import Button from '@westpac/button';
-import { Button } from '../../button/src'; //until button package is published
+import { Button } from '@westpac/button';
 
 export default () => (
 	<>
-		<h3>Default button instance</h3>
+		<h2>Default button instance (no styling props)</h2>
 		<p>
 			<Button>
 				Default <Badge>Default</Badge>
@@ -15,7 +13,9 @@ export default () => (
 
 		<hr />
 
-		<h3>Primary buttons</h3>
+		<h2>Button appearances</h2>
+
+		<h3>Primary</h3>
 		<p>
 			<Button appearance="primary">
 				Primary <Badge>Default</Badge>
@@ -83,9 +83,7 @@ export default () => (
 			</Button>
 		</p>
 
-		<hr />
-
-		<h3>Hero buttons</h3>
+		<h3>Hero</h3>
 		<p>
 			<Button appearance="hero">
 				Hero <Badge>Default</Badge>
@@ -153,9 +151,7 @@ export default () => (
 			</Button>
 		</p>
 
-		<hr />
-
-		<h3>Neutral buttons</h3>
+		<h3>Neutral</h3>
 		<p>
 			<Button appearance="neutral">
 				Neutral <Badge>Default</Badge>
@@ -223,9 +219,7 @@ export default () => (
 			</Button>
 		</p>
 
-		<hr />
-
-		<h3>Faint buttons</h3>
+		<h3>Faint</h3>
 		<p>
 			<Button appearance="faint">
 				Faint <Badge>Default</Badge>

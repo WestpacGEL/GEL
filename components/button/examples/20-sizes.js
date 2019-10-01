@@ -1,10 +1,9 @@
 import React from 'react';
-
 import { Button } from '../src';
 
 export default () => (
 	<>
-		<h3>Small</h3>
+		<h2>Small</h2>
 		<p>
 			<Button appearance="primary" size="small">
 				Primary
@@ -25,7 +24,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Medium (default)</h3>
+		<h2>Medium</h2>
 		<p>
 			<Button appearance="primary">Primary</Button> <Button appearance="hero">Hero</Button>{' '}
 			<Button appearance="neutral">Neutral</Button> <Button appearance="faint">Faint</Button>{' '}
@@ -34,7 +33,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Large</h3>
+		<h2>Large</h2>
 		<p>
 			<Button appearance="primary" size="large">
 				Primary
@@ -55,7 +54,7 @@ export default () => (
 
 		<hr />
 
-		<h3>Extra large</h3>
+		<h2>Extra large</h2>
 		<p>
 			<Button appearance="primary" size="xlarge">
 				Primary

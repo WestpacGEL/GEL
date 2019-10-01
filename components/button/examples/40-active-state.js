@@ -1,18 +1,17 @@
 import React from 'react';
-
 import { Button } from '../src';
 
 export default () => (
 	<>
 		<p>
-			Active styling is provided with a pseudo-class. The following examples have been
-			programatically forced via use of an <code>active</code> class.
+			Active state styling is provided with a <code>:active</code> pseudo-class. The following
+			examples have been programatically forced via use of an <code>active</code> class.
 		</p>
 
-		<h3>
+		<h2>
 			Active buttons with a <code>&lt;button&gt;</code> tag
-		</h3>
-		<h4>Standard appearance</h4>
+		</h2>
+		<h3>Standard</h3>
 		<p>
 			<Button appearance="primary">Primary default</Button>{' '}
 			<Button appearance="hero">Hero default</Button>{' '}
@@ -33,42 +32,42 @@ export default () => (
 				Faint active
 			</Button>
 		</p>
-		<h4>Soft appearance</h4>
+		<h3>Soft</h3>
 		<p>
-			<Button appearance="primary" soft>
+			<Button appearance="primary" isSoft>
 				Primary soft default
 			</Button>{' '}
-			<Button appearance="hero" soft>
+			<Button appearance="hero" isSoft>
 				Hero soft default
 			</Button>{' '}
-			<Button appearance="neutral" soft>
+			<Button appearance="neutral" isSoft>
 				Neutral soft default
 			</Button>{' '}
-			<Button appearance="faint" soft>
+			<Button appearance="faint" isSoft>
 				Faint soft default
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" className="active" soft>
+			<Button appearance="primary" className="active" isSoft>
 				Primary soft active
 			</Button>{' '}
-			<Button appearance="hero" className="active" soft>
+			<Button appearance="hero" className="active" isSoft>
 				Hero soft active
 			</Button>{' '}
-			<Button appearance="neutral" className="active" soft>
+			<Button appearance="neutral" className="active" isSoft>
 				Neutral soft active
 			</Button>{' '}
-			<Button appearance="faint" className="active" soft>
+			<Button appearance="faint" className="active" isSoft>
 				Faint soft active
 			</Button>
 		</p>
 
 		<hr />
 
-		<h3>
+		<h2>
 			Active buttons with an <code>&lt;a&gt;</code> tag
-		</h3>
-		<h4>Standard appearance</h4>
+		</h2>
+		<h3>Standard</h3>
 		<p>
 			<Button href="#0" appearance="primary">
 				Primary default
@@ -97,32 +96,32 @@ export default () => (
 				Faint active
 			</Button>
 		</p>
-		<h4>Soft appearance</h4>
+		<h3>Soft</h3>
 		<p>
-			<Button href="#0" appearance="primary" soft>
+			<Button href="#0" appearance="primary" isSoft>
 				Primary soft default
 			</Button>{' '}
-			<Button href="#0" appearance="hero" soft>
+			<Button href="#0" appearance="hero" isSoft>
 				Hero soft default
 			</Button>{' '}
-			<Button href="#0" appearance="neutral" soft>
+			<Button href="#0" appearance="neutral" isSoft>
 				Neutral soft default
 			</Button>{' '}
-			<Button href="#0" appearance="faint" soft>
+			<Button href="#0" appearance="faint" isSoft>
 				Faint soft default
 			</Button>
 		</p>
 		<p>
-			<Button href="#0" appearance="primary" className="active" soft>
+			<Button href="#0" appearance="primary" className="active" isSoft>
 				Primary soft active
 			</Button>{' '}
-			<Button href="#0" appearance="hero" className="active" soft>
+			<Button href="#0" appearance="hero" className="active" isSoft>
 				Hero soft active
 			</Button>{' '}
-			<Button href="#0" appearance="neutral" className="active" soft>
+			<Button href="#0" appearance="neutral" className="active" isSoft>
 				Neutral soft active
 			</Button>{' '}
-			<Button href="#0" appearance="faint" className="active" soft>
+			<Button href="#0" appearance="faint" className="active" isSoft>
 				Faint soft active
 			</Button>
 		</p>
