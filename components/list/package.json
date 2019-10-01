@@ -19,18 +19,19 @@
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=icon webpack-dev-server --config ../../helpers/example/webpack.config.js",
-		"build": "babel --root-mode upward src -d dist",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
-		"test:all": "bolt test:integration",
+		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/index.js",
+	"main": "dist/list.cjs.js",
+	"module": "dist/list.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",
-		"prop-types": "^15.6.2",
-		"mini-svg-data-uri": "^1.1.3"
+		"mini-svg-data-uri": "^1.1.3",
+		"prop-types": "^15.6.2"
 	},
 	"peerDependencies": {
 		"react": "16.7.0-alpha.2"
@@ -38,6 +39,7 @@
 	"devDependencies": {
 		"@westpac/icon": "^0.0.1",
 		"cypress": "^3.1.3",
+		"react": "16.7.0-alpha.2",
 		"start-server-and-test": "^1.7.11"
 	}
 }
