@@ -1,1 +1,0 @@
-require('./transformers/web')();

@@ -28,12 +28,9 @@ export const ButtonGroupButton = ({
 	const [checked, setChecked] = useState(isChecked);
 	const [buttonId] = useState(`button-${shortid.generate()}`);
 
-	useEffect(
-		() => {
-			setChecked(checked);
-		},
-		[checked]
-	);
+	useEffect(() => {
+		setChecked(checked);
+	}, [checked]);
 
 	const toggle = () => {
 		if (onChange) {

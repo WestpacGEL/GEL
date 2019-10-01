@@ -1,24 +1,15 @@
 module.exports = {
 	TYPE: {
-		brandfonts: [
+		bodyFonts: [
 			{
-				name: 'name',
-				files: {
-					woff2: '../font/dragonbold-webfont.woff2',
-					woff: '../font/dragonbold-webfont.woff',
-				},
-				weight: 400,
-				style: 'normal',
+				fontFamily:
+					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 			},
+		],
+		brandFonts: [
 			{
-				name: 'name',
-				files: {
-					woff2: '../font/dragonbold-bold-webfont.woff2',
-					woff: '../font/dragonbold-bold-webfont.woff',
-				},
-				weight: 700,
-				style: 'normal',
+				fontFamily: '"Times New Roman", "Times", serif',
 			},
 		],
 	},
-}
+};
