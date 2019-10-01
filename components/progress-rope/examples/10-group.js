@@ -47,6 +47,9 @@ export default () => {
 							</ProgressRopeItem>
 						))}
 					</ProgressRopeGroup>
+					<ProgressRopeItem review>
+						<a href="#">Review and Submit</a>
+					</ProgressRopeItem>
 				</ProgressRope>
 			</Cell>
 			<Cell width={4}>

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 import { useProgressRopeContext } from './ProgressRope';
 
-export const ProgressRopeItem = ({ index, parentId, children, ...props }) => {
+export const ProgressRopeItem = ({ index, parentId, review, children, ...props }) => {
 	// I dont think this works for group
 	const { grouped, activeGroup, activeStep } = useProgressRopeContext();
 	// probably dont need grouped, can check if parentid is set
@@ -13,6 +13,7 @@ export const ProgressRopeItem = ({ index, parentId, children, ...props }) => {
 	// is there a nicer way to do this?
 	let status = 'incomplete';
 
+	// really need to make this better...since this is ugly af
 	if (
 		(grouped && parentId === activeGroup && activeStep === index) ||
 		(!grouped && activeStep === index)
@@ -23,10 +24,12 @@ export const ProgressRopeItem = ({ index, parentId, children, ...props }) => {
 		(!grouped && activeStep > index)
 	) {
 		status = 'complete';
+	} else if (grouped && activeGroup > parentId) {
+		status = 'complete';
 	}
 
 	const common = {
-		padding: `8px 56px 14px ${grouped ? '48px' : '30px'}`,
+		padding: `8px 56px 14px ${grouped && !review ? '48px' : '30px'}`,
 		position: 'relative',
 
 		/* 
@@ -41,7 +44,7 @@ export const ProgressRopeItem = ({ index, parentId, children, ...props }) => {
 
 		// the line
 		'::before': {
-			content: "''",
+			content: review ? ' none' : "''",
 			display: 'block',
 			position: 'absolute',
 			borderLeft: `2px solid ${status === 'complete' ? '#d5002b' : '#d7d2cb'}`,
@@ -60,14 +63,18 @@ export const ProgressRopeItem = ({ index, parentId, children, ...props }) => {
 			borderRadius: '50%',
 			position: 'absolute',
 			top: 10,
-			width: grouped ? 6 : 14,
-			height: grouped ? 6 : 14,
-			right: grouped ? 34 : 30,
-			border: `2px solid ${status === 'active' || status === 'complete' ? '#d5002b' : '#d7d2cb'}`,
+			width: grouped && !review ? 6 : 14,
+			height: grouped && !review ? 6 : 14,
+			right: grouped && !review ? 34 : 30,
+			border: review
+				? 'none'
+				: `2px solid ${status === 'active' || status === 'complete' ? '#d5002b' : '#d7d2cb'}`,
 			backgroundColor: grouped
 				? status === 'active' || status === 'complete'
 					? '#d5002b'
 					: '#d7d2cb'
+				: review
+				? '#d7d2cb'
 				: '#fff',
 		},
 	};
@@ -92,4 +99,8 @@ export const ProgressRopeItem = ({ index, parentId, children, ...props }) => {
 			{children}
 		</li>
 	);
+};
+
+ProgressRopeItem.defaultProps = {
+	review: false,
 };
