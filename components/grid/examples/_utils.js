@@ -1,23 +1,27 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
 import { Cell, Grid } from '../src';
 
-export const Box = props => (
-	<div
-		css={{
-			alignItems: 'center',
-			backgroundColor: 'rgba(197,59,0,0.15)',
-			borderRadius: 1,
-			color: '#c53b00',
-			display: 'flex',
-			height: '100%',
-			justifyContent: 'center',
-			minHeight: 60,
-		}}
-		{...props}
-	/>
-);
+export const Box = props => {
+	const { COLORS } = useTheme();
+	console.log({ COLORS });
+	return (
+		<div
+			css={{
+				alignItems: 'center',
+				backgroundColor: COLORS.tints.hero10,
+				borderRadius: 1,
+				color: COLORS.hero,
+				display: 'flex',
+				height: '100%',
+				justifyContent: 'center',
+				minHeight: 60,
+			}}
+			{...props}
+		/>
+	);
+};
 
 export const GridOverlay = ({ children, columns = 12, gap }) => (
 	<div css={{ height: '100%', position: 'relative' }}>
