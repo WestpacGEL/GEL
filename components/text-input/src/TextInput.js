@@ -72,9 +72,7 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 		},
 	};
 
-	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${
-		colors.muted
-	}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
+	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${colors.muted}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
 	const caretGap = textInput.select.caretGap;
 	const caretWidth = '14px';
 

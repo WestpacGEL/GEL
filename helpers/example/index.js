@@ -37,12 +37,9 @@ const App = ({ components, packageName }) => {
 	const [brand, setBrand] = useState('WBC');
 
 	// update doc title
-	useEffect(
-		() => {
-			document.title = `${packageName} Example - GEL`;
-		},
-		[packageName]
-	);
+	useEffect(() => {
+		document.title = `${packageName} Example - GEL`;
+	}, [packageName]);
 
 	// filter components for search
 	const navItems = inputValue.length

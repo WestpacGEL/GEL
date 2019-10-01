@@ -17,9 +17,7 @@ export const PanelHeader = ({ appearance, ...props }) => {
 			css={mq({
 				padding: panel.header.padding,
 				backgroundColor: panel.header.appearance[appearance].backgroundColor,
-				borderBottom: `${panel.borderWidth} solid ${
-					panel.header.appearance[appearance].borderColor
-				}`,
+				borderBottom: `${panel.borderWidth} solid ${panel.header.appearance[appearance].borderColor}`,
 				color: panel.header.appearance[appearance].color,
 				borderTopRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
 				borderTopLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,

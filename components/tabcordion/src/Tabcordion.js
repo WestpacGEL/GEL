@@ -24,14 +24,11 @@ export const Tabcordion = props => {
 	const setActive = idx => () => setActiveTabIndex(idx);
 
 	// create the prefix for internal IDs
-	useEffect(
-		() => {
-			if (!instancePrefix) {
-				setInstancePrefix(`gel-tabcordion-${++instanceId}`);
-			}
-		},
-		[instancePrefix]
-	);
+	useEffect(() => {
+		if (!instancePrefix) {
+			setInstancePrefix(`gel-tabcordion-${++instanceId}`);
+		}
+	}, [instancePrefix]);
 
 	// handle keys
 	const keyHandler = event => {
