@@ -14,25 +14,27 @@
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=modal webpack-dev-server --config ../../helpers/example/webpack.config.js",
-		"build": "babel --root-mode upward src -d dist",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
-		"test:all": "bolt test:integration",
+		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/index.js",
+	"main": "dist/modal.cjs.js",
+	"module": "dist/modal.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/button": "^0.0.1",
 		"@westpac/core": "^0.0.1",
 		"@westpac/icon": "^0.0.1",
 		"prop-types": "^15.6.2",
 		"react-focus-lock": "^2.0.3",
-		"react-transition-group": "^4.2.1",
+		"react-transition-group": "^4.3.0",
 		"shortid": "^2.2.14"
 	},
 	"peerDependencies": {
-		"react": "^16.10.1"
+		"react": "^16.10.1",
+		"react-dom": "^16.10.1"
 	},
 	"devDependencies": {
 		"cypress": "^3.1.3",

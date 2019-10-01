@@ -178,7 +178,7 @@ const Home = ({ packageName }) => (
 				run:
 			</p>
 			<pre>
-				<code>bolt dev {'{package_name}'}</code>
+				<code>yarn dev {'{package_name}'}</code>
 			</pre>
 		</Container>
 	</Article>
