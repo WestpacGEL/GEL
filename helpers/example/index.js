@@ -39,7 +39,7 @@ const App = ({ components, packageName }) => {
 	// update doc title
 	useEffect(() => {
 		document.title = `${packageName} Example - GEL`;
-	}, packageName);
+	}, [packageName]);
 
 	// filter components for search
 	const navItems = inputValue.length
