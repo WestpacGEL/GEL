@@ -2,6 +2,26 @@
 
 The design system for Westpac GEL
 
+## Install and start running locally
+
+Install dependencies
+
+```sh
+yarn
+```
+
+and then run the build:
+
+```sh
+yarn build
+```
+
+to then be able to run a component via:
+
+```sh
+yarn start button
+```
+
 ## npm scripts
 
 ### root level
