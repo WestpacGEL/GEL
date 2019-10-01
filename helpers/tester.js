@@ -1,18 +1,19 @@
 const Spawn = require('child_process');
-const CFonts = require('cfonts');
+const cfonts = require('cfonts');
 const getWorkspaces = require('get-workspaces').default;
 
 (async () => {
 	const workspaces = await getWorkspaces();
 
 	workspaces.map(workspace => {
-		CFonts.say(`${workspace.name.split('/')[1]}`, {
+		cfonts.say(`${workspace.name.split('/')[1]}`, {
 			colors: ['redBright', 'magenta', 'whiteBright'],
+			font: 'chrome',
 		});
 
 		const command = Spawn.spawnSync('npm', ['test'], {
 			cwd: workspace.dir,
-			// stdio: [process.stdin, process.stdout, process.stderr],
+			stdio: process.env.DEBUG ? [process.stdin, process.stdout, process.stderr] : [],
 			encoding: 'utf-8',
 		});
 
