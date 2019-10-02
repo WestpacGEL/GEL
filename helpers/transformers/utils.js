@@ -11,6 +11,20 @@ const makeTints = (color, name) => {
 	return tints;
 };
 
+const createUnits = (majorStep, minorStep, amount) => {
+	const major = Array.from({ length: amount + 1 }, (_, i) => i * majorStep);
+	const minor = Array.from({ length: amount * 2 }).reduce(
+		(acc, _, i) => {
+			if (i % 2) acc.push(i * minorStep);
+			return acc;
+		},
+		[0]
+	);
+
+	return { major, minor };
+};
+
 module.exports = {
 	makeTints,
+	createUnits,
 };
