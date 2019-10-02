@@ -9,8 +9,9 @@ import React, {
 	useContext,
 } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { ProgressRopeGroup } from './ProgressRopeGroup';
+import { ProgressRopeItem } from './ProgressRopeItem';
 
 // ==============================
 // Context and Consumer Hook
@@ -31,26 +32,24 @@ export const useProgressRopeContext = () => {
 // Component
 // ==============================
 export const ProgressRope = ({ current, children, ...props }) => {
-	// probably a better way to do this than set it to 0, pass as props?
-
 	// might refactor these names
 	const [progress, setProgress] = useState({
 		grouped: false,
 		openGroup: 0,
 		activeGroup: 0,
 		activeStep: current,
+		status: 'incomplete',
 	});
 
 	const handleClick = index => {
-		setProgress({ ...progress, openGroup: index });
+		setProgress({ ...progress, openGroup: index !== progress.openGroup ? index : null });
 	};
 
-	// also need to optimise for none group? maybe its a non issue since it wont enter the ifs, just loop through numChildren
 	useEffect(
 		() => {
 			let childCount = 0;
 
-			const updatedProgress = { activeStep: current };
+			const updatedProgress = { ...progress, activeStep: current };
 
 			Children.forEach(children, (child, i) => {
 				if (child.type === ProgressRopeGroup) {
@@ -68,18 +67,23 @@ export const ProgressRope = ({ current, children, ...props }) => {
 							});
 						}
 					}
+				} else if (progress.grouped && child.type === ProgressRopeItem && current === childCount) {
+					Object.assign(updatedProgress, { openGroup: null, activeGroup: i, activeStep: 'review' });
 				}
 			});
+
+			if (progress.grouped && current > childCount) {
+				Object.assign(updatedProgress, { status: 'complete' });
+			}
 
 			setProgress(updatedProgress);
 		},
 		[current]
 	);
 
-	// need to figure out a better way to add the index to children if there is?
 	return (
 		<ProgressRopeContext.Provider value={{ ...progress, handleClick }}>
-			<ol css={{ position: 'relative', listStyle: 'none', paddingLeft: 0, margin: 0 }}>
+			<ol css={{ position: 'relative', listStyle: 'none', paddingLeft: 0, margin: 0 }} {...props}>
 				{Children.map(children, (child, i) => cloneElement(child, { index: i }))}
 			</ol>
 		</ProgressRopeContext.Provider>
@@ -91,9 +95,9 @@ export const ProgressRope = ({ current, children, ...props }) => {
 // ==============================
 
 ProgressRope.propTypes = {
-	status: PropTypes.string,
-	/* I feel like I should use a different variable name */
 	current: PropTypes.number,
 };
 
-ProgressRope.defaultProps = {};
+ProgressRope.defaultProps = {
+	current: 0,
+};

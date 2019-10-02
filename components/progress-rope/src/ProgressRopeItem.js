@@ -6,30 +6,37 @@ import { jsx, useTheme } from '@westpac/core';
 import { useProgressRopeContext } from './ProgressRope';
 
 export const ProgressRopeItem = ({ index, parentId, review, children, ...props }) => {
-	// I dont think this works for group
-	const { grouped, activeGroup, activeStep } = useProgressRopeContext();
-	// probably dont need grouped, can check if parentid is set
+	const { grouped, activeGroup, activeStep, status } = useProgressRopeContext();
+	const { COLORS } = useTheme();
 
-	// is there a nicer way to do this?
-	let status = 'incomplete';
+	let itemStatus = 'incomplete';
 
-	// really need to make this better...since this is ugly af
 	if (
-		(grouped && parentId === activeGroup && activeStep === index) ||
+		(grouped && ((parentId === activeGroup && index === activeStep) || activeStep == 'review')) ||
 		(!grouped && activeStep === index)
 	) {
-		status = 'active';
+		itemStatus = 'active';
 	} else if (
-		(grouped && parentId === activeGroup && activeStep > index) ||
-		(!grouped && activeStep > index)
+		(grouped && ((parentId === activeGroup && activeStep > index) || activeGroup > parentId)) ||
+		(!grouped && activeStep > index) ||
+		status === 'complete'
 	) {
-		status = 'complete';
-	} else if (grouped && activeGroup > parentId) {
-		status = 'complete';
+		itemStatus = 'complete';
 	}
 
+	//
+	/* 
+	TODO
+	- move inline
+	*/
+
+	const linkColor = {
+		incomplete: COLORS.tints.muted90,
+		active: COLORS.primary,
+		complete: COLORS.neutral,
+	};
 	const common = {
-		padding: `8px 56px 14px ${grouped && !review ? '48px' : '30px'}`,
+		padding: `0.5rem 3.5rem 0.875rem ${grouped && !review ? '3rem' : '1.875rem'}`,
 		position: 'relative',
 
 		/* 
@@ -38,21 +45,21 @@ export const ProgressRopeItem = ({ index, parentId, review, children, ...props }
 		*/
 
 		a: {
-			color: '#686f74',
+			color: linkColor[itemStatus],
 			textDecoration: 'none',
 		},
 
 		// the line
 		'::before': {
-			content: review ? ' none' : "''",
+			content: review ? 'none' : "''",
 			display: 'block',
 			position: 'absolute',
-			borderLeft: `2px solid ${status === 'complete' ? '#d5002b' : '#d7d2cb'}`,
+			borderLeft: `2px solid ${itemStatus === 'complete' ? COLORS.primary : COLORS.border}`,
 			top: 0,
-			right: 36,
+			right: '2.25rem',
 			bottom: 0,
 			height: 'auto',
-			transform: 'translateY(40%)',
+			transform: 'translateY(0.625rem)',
 		},
 
 		// the circle
@@ -62,45 +69,33 @@ export const ProgressRopeItem = ({ index, parentId, review, children, ...props }
 			display: 'block',
 			borderRadius: '50%',
 			position: 'absolute',
-			top: 10,
-			width: grouped && !review ? 6 : 14,
-			height: grouped && !review ? 6 : 14,
-			right: grouped && !review ? 34 : 30,
+			top: '0.625rem',
+			width: grouped && !review ? '0.375rem' : '0.875rem',
+			height: grouped && !review ? '0.375rem' : '0.875rem',
+			right: grouped && !review ? '2.125rem' : '1.875rem',
 			border: review
 				? 'none'
-				: `2px solid ${status === 'active' || status === 'complete' ? '#d5002b' : '#d7d2cb'}`,
-			backgroundColor: grouped
-				? status === 'active' || status === 'complete'
-					? '#d5002b'
-					: '#d7d2cb'
-				: review
-				? '#d7d2cb'
-				: '#fff',
+				: `2px solid ${itemStatus === 'incomplete' ? COLORS.border : COLORS.primary}`,
+			backgroundColor:
+				grouped || review ? (itemStatus === 'incomplete' ? COLORS.border : COLORS.primary) : '#fff',
 		},
-	};
 
-	const styles = {
-		complete: {
-			a: {
-				color: '#2d373e',
-				textDecoration: 'none',
-			},
-		},
-		active: {
-			a: {
-				color: '#d5002b',
-				textDecoration: 'none',
-			},
+		':last-child': {
+			...(grouped && !review && { paddingBottom: '2.75rem' }),
 		},
 	};
 
 	return (
-		<li css={{ ...common, ...styles[status] }} {...props}>
+		<li css={{ ...common }} {...props}>
 			{children}
 		</li>
 	);
 };
 
+// ==============================
+// Types
+// ==============================
+// do I need to set a default prop on
 ProgressRopeItem.defaultProps = {
 	review: false,
 };

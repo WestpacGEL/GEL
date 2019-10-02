@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 
 import { ProgressRope, ProgressRopeItem } from '../src';
 import { Grid, Cell } from '../../grid/src';
-import { Button } from '../../button/src';
+// import { Button } from '../../button/src';
 
 /* 
 - Use reducer
@@ -57,8 +57,8 @@ export default () => {
 				</ProgressRope>
 			</Cell>
 			<Cell width={4}>
-				<Button onClick={() => dispatch({ type: 'prev' })}>prev</Button>{' '}
-				<Button onClick={() => dispatch({ type: 'next' })}>next</Button>
+				<button onClick={() => dispatch({ type: 'prev' })}>prev</button>{' '}
+				<button onClick={() => dispatch({ type: 'next' })}>next</button>
 			</Cell>
 			<Cell width={4}>
 				<h3>current: {state.index}</h3>
