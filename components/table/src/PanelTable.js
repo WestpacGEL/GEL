@@ -6,7 +6,7 @@ import { Table } from '../';
 export const PanelTable = props => (
 	<Panel>
 		<Table
-			extraStyles={
+			wrappingStyles={
 				props.responsive && {
 					marginBottom: '0 !important',
 					border: '0 !important',

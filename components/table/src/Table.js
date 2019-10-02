@@ -8,11 +8,13 @@ import { jsx, useTheme } from '@westpac/core';
 // Utils
 // ==============================
 
-const TableWrapper = ({ bordered, responsive, extraStyles, ...props }) => {
+const TableWrapper = ({ bordered, responsive, wrappingStyles, ...props }) => {
 	const {
 		COLORS,
 		LAYOUT: { breakpoints },
 	} = useTheme();
+
+	console.log({ wrappingStyles });
 
 	const maxWidth = width => `@media (max-width: ${width}px)`;
 	const xsOnly = maxWidth(breakpoints.sm - 1);
@@ -20,7 +22,7 @@ const TableWrapper = ({ bordered, responsive, extraStyles, ...props }) => {
 	return responsive ? (
 		<div
 			css={[
-				extraStyles,
+				wrappingStyles,
 				{
 					[xsOnly]: {
 						width: '100%',
@@ -70,11 +72,11 @@ const TableWrapper = ({ bordered, responsive, extraStyles, ...props }) => {
 // Component
 // ==============================
 
-export const Table = ({ striped, bordered, responsive, extraStyles, ...props }) => {
+export const Table = ({ striped, bordered, responsive, wrappingStyles, ...props }) => {
 	const { COLORS } = useTheme();
 
 	return (
-		<TableWrapper bordered={bordered} responsive={responsive} extraStyles={extraStyles}>
+		<TableWrapper bordered={bordered} responsive={responsive} wrappingStyles={wrappingStyles}>
 			<table
 				css={{
 					width: '100%',
