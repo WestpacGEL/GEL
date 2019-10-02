@@ -89,7 +89,18 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 				aria-live="polite"
 			>
 				{!skinny && (
-					<span css={{ display: 'inline-block', margin: '0 0.75rem' }}>{roundedValue}%</span>
+					<span
+						css={{
+							display: 'inline-block',
+							margin: '0 0.75rem',
+							'@media print': {
+								backgroundColor: '#000 !important',
+								color: '#fff !important',
+							},
+						}}
+					>
+						{roundedValue}%
+					</span>
 				)}
 				<SrOnly>Complete</SrOnly>
 			</div>
