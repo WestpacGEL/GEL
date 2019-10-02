@@ -5,7 +5,7 @@ import { Cell, Grid } from '../src';
 
 export const Box = props => {
 	const { COLORS } = useTheme();
-	console.log({ COLORS });
+
 	return (
 		<div
 			css={{
