@@ -12,7 +12,7 @@ export default () => (
 				bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
 				venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
 			</Body>
-			<Table striped responsive>
+			<Table striped responsive withinPanel>
 				<caption>
 					Table caption this table width is: <em>(100%)</em>
 				</caption>
@@ -56,7 +56,7 @@ export default () => (
 		<h2>Responsive panel with table only</h2>
 		<Panel>
 			<Header>Panel title</Header>
-			<Table striped responsive>
+			<Table striped responsive withinPanel>
 				<caption>
 					Table caption this table width is: <em>(100%)</em>
 				</caption>

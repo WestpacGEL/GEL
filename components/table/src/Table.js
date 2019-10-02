@@ -8,7 +8,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Utils
 // ==============================
 
-const TableWrapper = ({ bordered, responsive, ...props }) => {
+const TableWrapper = ({ bordered, responsive, withinPanel, ...props }) => {
 	const {
 		COLORS,
 		LAYOUT: { breakpoints },
@@ -19,44 +19,46 @@ const TableWrapper = ({ bordered, responsive, ...props }) => {
 
 	return responsive ? (
 		<div
-			className="table-responsive"
-			css={{
-				[xsOnly]: {
-					width: '100%',
-					marginBottom: '1.125rem',
-					overflowY: 'hidden',
-					overflowX: 'auto',
-					// -ms-overflow-style: '-ms-autohiding-scrollbar',
-					border: `1px solid ${COLORS.border}`,
-					// -webkit-overflow-scrolling: 'touch',
+			css={[
+				withinPanel && { border: 0, marginBottom: 0 },
+				{
+					[xsOnly]: {
+						width: '100%',
+						marginBottom: '1.125rem',
+						overflowY: 'hidden',
+						overflowX: 'auto',
+						// -ms-overflow-style: '-ms-autohiding-scrollbar',
+						border: `1px solid ${COLORS.border}`,
+						// -webkit-overflow-scrolling: 'touch',
 
-					'> table': {
-						marginBottom: 0,
-						border: bordered && 0,
+						'> table': {
+							marginBottom: 0,
+							border: bordered && 0,
 
-						caption: {
-							padding: '0.75rem',
-						},
-						'tbody, tfoot': {
-							'tr:last-child': {
-								'th, td': {
-									borderBottom: bordered && 0,
+							caption: {
+								padding: '0.75rem',
+							},
+							'tbody, tfoot': {
+								'tr:last-child': {
+									'th, td': {
+										borderBottom: bordered && 0,
+									},
 								},
 							},
-						},
-						'th, td': {
-							whiteSpace: 'nowrap',
+							'th, td': {
+								whiteSpace: 'nowrap',
 
-							':first-of-type': {
-								borderLeft: bordered && 0,
-							},
-							':last-child': {
-								borderRight: bordered && 0,
+								':first-of-type': {
+									borderLeft: bordered && 0,
+								},
+								':last-child': {
+									borderRight: bordered && 0,
+								},
 							},
 						},
 					},
 				},
-			}}
+			]}
 			{...props}
 		/>
 	) : (
@@ -68,11 +70,11 @@ const TableWrapper = ({ bordered, responsive, ...props }) => {
 // Component
 // ==============================
 
-export const Table = ({ striped, bordered, responsive, ...props }) => {
+export const Table = ({ striped, bordered, withinPanel, responsive, ...props }) => {
 	const { COLORS } = useTheme();
 
 	return (
-		<TableWrapper bordered={bordered} responsive={responsive}>
+		<TableWrapper bordered={bordered} responsive={responsive} withinPanel={withinPanel}>
 			<table
 				css={{
 					width: '100%',
@@ -183,10 +185,16 @@ Table.propTypes = {
 	 * Responsive mode
 	 */
 	responsive: PropTypes.bool,
+
+	/**
+	 * Is the table within a Panel?
+	 */
+	withinPanel: PropTypes.bool,
 };
 
 Table.defaultProps = {
 	striped: false,
 	bordered: false,
 	responsive: false,
+	withinPanel: false,
 };
