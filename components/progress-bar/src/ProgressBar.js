@@ -16,38 +16,42 @@ const round = value => Math.round(value);
 // ==============================
 
 /**
- * Progress Bar: A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.
+ * Progress Bar: A visual indication of progress.
+ * Use when loading content or to indicate how far along
+ * the user is in a journey.
  */
 export const ProgressBar = ({ value, skinny, ...props }) => {
 	const { COLORS } = useTheme();
 
-	// Common styling
-	const styleCommon = {
-		height: skinny ? '0.625rem' : '1.5rem',
-		marginBottom: '1.3125rem',
-		overflow: 'hidden',
-		backgroundColor: '#fff',
-		borderRadius: skinny ? '0.625rem' : '1.5rem',
-		border: `1px solid ${COLORS.border}`,
-		padding: '0.0625rem',
-		position: 'relative',
-
-		'::after': {
-			display: skinny && 'none',
-			content: '"0%"',
-			position: 'absolute',
-			left: '0.625rem',
-			top: 0,
-			height: '100%',
-			color: '#575f65',
-			fontSize: '0.875rem',
-			fontWeight: 700,
-			zIndex: 1,
-		},
-	};
+	const roundedValue = round(value);
 
 	return (
-		<div css={styleCommon} {...props}>
+		<div
+			css={{
+				height: skinny ? '0.625rem' : '1.5rem',
+				marginBottom: '1.3125rem',
+				overflow: 'hidden',
+				backgroundColor: '#fff',
+				borderRadius: skinny ? '0.625rem' : '1.5rem',
+				border: `1px solid ${COLORS.border}`,
+				padding: '0.0625rem',
+				position: 'relative',
+
+				'::after': {
+					display: skinny && 'none',
+					content: '"0%"',
+					position: 'absolute',
+					left: '0.625rem',
+					top: 0,
+					height: '100%',
+					color: '#575f65',
+					fontSize: '0.875rem',
+					fontWeight: 700,
+					zIndex: 1,
+				},
+			}}
+			{...props}
+		>
 			<div
 				css={{
 					display: 'flex',
@@ -77,7 +81,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 						},
 					},
 				}}
-				style={{ width: `${round(value)}%` }}
+				style={{ width: `${roundedValue}%` }}
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
@@ -85,7 +89,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 				aria-live="polite"
 			>
 				{!skinny && (
-					<span css={{ display: 'inline-block', margin: '0 0.75rem' }}>{round(value)}%</span>
+					<span css={{ display: 'inline-block', margin: '0 0.75rem' }}>{roundedValue}%</span>
 				)}
 				<SrOnly>Complete</SrOnly>
 			</div>
