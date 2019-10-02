@@ -8,7 +8,7 @@ import { jsx, useTheme } from '@westpac/core';
 // Utils
 // ==============================
 
-const TableWrapper = ({ bordered, responsive, withinPanel, ...props }) => {
+const TableWrapper = ({ bordered, responsive, extraStyles, ...props }) => {
 	const {
 		COLORS,
 		LAYOUT: { breakpoints },
@@ -20,15 +20,15 @@ const TableWrapper = ({ bordered, responsive, withinPanel, ...props }) => {
 	return responsive ? (
 		<div
 			css={[
-				withinPanel && { border: 0, marginBottom: 0 },
+				extraStyles,
 				{
 					[xsOnly]: {
 						width: '100%',
-						marginBottom: withinPanel ? 0 : '1.125rem',
+						marginBottom: '1.125rem',
 						overflowY: 'hidden',
 						overflowX: 'auto',
 						// -ms-overflow-style: '-ms-autohiding-scrollbar',
-						border: withinPanel ? 0 : `1px solid ${COLORS.border}`,
+						border: `1px solid ${COLORS.border}`,
 						// -webkit-overflow-scrolling: 'touch',
 
 						'> table': {
@@ -70,11 +70,11 @@ const TableWrapper = ({ bordered, responsive, withinPanel, ...props }) => {
 // Component
 // ==============================
 
-export const Table = ({ striped, bordered, withinPanel, responsive, ...props }) => {
+export const Table = ({ striped, bordered, responsive, extraStyles, ...props }) => {
 	const { COLORS } = useTheme();
 
 	return (
-		<TableWrapper bordered={bordered} responsive={responsive} withinPanel={withinPanel}>
+		<TableWrapper bordered={bordered} responsive={responsive} extraStyles={extraStyles}>
 			<table
 				css={{
 					width: '100%',
@@ -185,16 +185,10 @@ Table.propTypes = {
 	 * Responsive mode
 	 */
 	responsive: PropTypes.bool,
-
-	/**
-	 * Is the table within a Panel?
-	 */
-	withinPanel: PropTypes.bool,
 };
 
 Table.defaultProps = {
 	striped: false,
 	bordered: false,
 	responsive: false,
-	withinPanel: false,
 };
