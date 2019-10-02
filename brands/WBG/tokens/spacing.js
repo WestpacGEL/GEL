@@ -1,5 +1,10 @@
-const SPACING = Array.from({ length: 150 }, (_, i) => i * 6);
+const { createUnits } = require('../../../helpers/transformers/utils');
+
+const { major, minor } = createUnits(6, 3, 20);
 
 module.exports = {
-	SPACING,
+	SPACING: {
+		major,
+		minor,
+	},
 };
