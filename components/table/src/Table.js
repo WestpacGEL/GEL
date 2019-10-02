@@ -14,8 +14,6 @@ const TableWrapper = ({ bordered, responsive, wrappingStyles, ...props }) => {
 		LAYOUT: { breakpoints },
 	} = useTheme();
 
-	console.log({ wrappingStyles });
-
 	const maxWidth = width => `@media (max-width: ${width}px)`;
 	const xsOnly = maxWidth(breakpoints.sm - 1);
 

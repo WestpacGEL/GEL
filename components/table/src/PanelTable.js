@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Panel } from '@westpac/panel';
-import { Table } from '../';
+import { Table } from './';
 
 export const PanelTable = props => (
-	<Panel>
-		<Table
-			wrappingStyles={
-				props.responsive && {
-					marginBottom: '0 !important',
-					border: '0 !important',
-				}
+	<Table
+		wrappingStyles={
+			props.responsive && {
+				marginBottom: '0 !important',
+				border: '0 !important',
 			}
-			{...props}
-		/>
-	</Panel>
+		}
+		{...props}
+	/>
 );
 
 // ==============================
 // Types
 // ==============================
 
-Table.propTypes = {
+PanelTable.propTypes = {
 	/**
 	 * Striped mode
 	 */
@@ -38,7 +35,7 @@ Table.propTypes = {
 	responsive: PropTypes.bool,
 };
 
-Table.defaultProps = {
+PanelTable.defaultProps = {
 	striped: false,
 	bordered: false,
 	responsive: false,
