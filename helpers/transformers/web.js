@@ -66,7 +66,10 @@ function build(BRAND) {
 	});
 
 	const content = {
-		SPACING: SPACING.map(space => `${space / 16}rem`),
+		SPACING: {
+			minor: SPACING.minor.map(space => `${space / 16}${ space > 0 ? 'rem' : ''}`),
+			...SPACING.major.map(space => `${space / 16}${ space > 0 ? 'rem' : ''}`),
+		},
 		COLORS: {
 			tints,
 			...COLORS,
