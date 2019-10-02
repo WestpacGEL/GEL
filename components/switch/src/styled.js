@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import React, { useContext } from 'react';
-import { jsx, useTheme, paint, UserModeContext } from '@westpac/core';
+import { jsx, useTheme, paint } from '@westpac/core';
 
 import { SrOnly } from '@westpac/accessibility-helpers';
 
@@ -37,7 +37,6 @@ export const SwitchText = ({ size, isBlock, isFlipped, isSrOnlyText, ...props })
 
 export const SwitchToggle = ({ size, toggleText, ...props }) => {
 	const { breakpoints, typography, switch: formSwitch } = useTheme();
-	const isKeyboardUser = useContext(UserModeContext);
 	const mq = paint(breakpoints);
 
 	const style = {
@@ -67,10 +66,11 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 			transition: 'border .3s ease, background .3s ease',
 			userSelect: 'none',
 
-			// Focus state
-			'input:focus ~ &': {
-				...(isKeyboardUser && typography.link.focus),
-			},
+			// // Focus state
+			// TODO: Rely on body class rather than context
+			// 'input:focus ~ &': {
+			// 	...(isKeyboardUser && typography.link.focus),
+			// },
 
 			// Checked state
 			'input:checked ~ &': {
