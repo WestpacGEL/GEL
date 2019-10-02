@@ -24,11 +24,11 @@ const TableWrapper = ({ bordered, responsive, withinPanel, ...props }) => {
 				{
 					[xsOnly]: {
 						width: '100%',
-						marginBottom: '1.125rem',
+						marginBottom: withinPanel ? 0 : '1.125rem',
 						overflowY: 'hidden',
 						overflowX: 'auto',
 						// -ms-overflow-style: '-ms-autohiding-scrollbar',
-						border: `1px solid ${COLORS.border}`,
+						border: withinPanel ? 0 : `1px solid ${COLORS.border}`,
 						// -webkit-overflow-scrolling: 'touch',
 
 						'> table': {
