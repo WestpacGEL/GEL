@@ -8,7 +8,7 @@ import { jsx, useMediaQuery } from '@westpac/core';
 // ==============================
 
 export const PanelBody = props => {
-	const mq = useMediaQuery(breakpoints);
+	const mq = useMediaQuery();
 
 	return <div css={mq({ padding: ['0.75rem', '1.5rem'] })} {...props} />;
 };
