@@ -22,11 +22,19 @@ export const useButtonGroupContext = () => {
 // Component
 // ==============================
 
-export const ButtonGroup = ({ appearance, size, block, name, children, ...props }) => {
-	const [checked, setChecked] = useState({});
+export const ButtonGroup = ({
+	appearance,
+	size,
+	block,
+	name,
+	defaultChecked,
+	children,
+	...props
+}) => {
+	const [checked, setChecked] = useState(defaultChecked);
 
 	const handleChange = event => {
-		setChecked({ value: event.target.value });
+		setChecked(event.target.value);
 	};
 
 	return (
@@ -84,6 +92,11 @@ ButtonGroup.propTypes = {
 	name: PropTypes.string.isRequired,
 
 	/**
+	 * An optional initial value for the "checked" property
+	 */
+	defaultChecked: PropTypes.string,
+
+	/**
 	 * Button group children
 	 */
 	children: PropTypes.node.isRequired,
@@ -93,4 +106,5 @@ ButtonGroup.defaultProps = {
 	appearance: 'hero',
 	size: 'medium',
 	block: false,
+	defaultChecked: '',
 };

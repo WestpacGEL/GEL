@@ -22,6 +22,8 @@ export const ButtonGroupButton = ({
 	const { appearance, size, name, checked, handleChange } = useButtonGroupContext();
 	const [buttonId] = useState(`button-${shortid.generate()}`);
 
+	console.log({ value, checked });
+
 	return (
 		<label htmlFor={buttonId} css={{ flex: 1 }} {...props}>
 			<input
@@ -34,7 +36,7 @@ export const ButtonGroupButton = ({
 				name={name}
 				id={buttonId}
 				value={value}
-				checked={value === checked.value}
+				checked={value === checked}
 				onChange={handleChange}
 			/>
 			<Button
@@ -56,7 +58,7 @@ export const ButtonGroupButton = ({
 				iconAfter={IconAfter}
 				iconBefore={IconBefore}
 				srOnlyText={srOnlyText}
-				soft={!value || value !== checked.value}
+				soft={!value || value !== checked}
 				block
 			>
 				{children}
