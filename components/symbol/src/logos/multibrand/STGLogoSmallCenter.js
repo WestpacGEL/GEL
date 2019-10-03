@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../../Symbol';
 
-export const STGMultibrandSmallCenterLogo = props => (
+export const STGLogoSmallCenter = props => (
 	<Symbol {...props}>
 		<g fill="none" fillRule="evenodd">
 			<path
@@ -32,10 +32,10 @@ export const STGMultibrandSmallCenterLogo = props => (
 	</Symbol>
 );
 
-STGMultibrandSmallCenterLogo.defaultProps = {
+STGLogoSmallCenter.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 122,
 	viewBoxHeight: 44,
 	label: 'St.George',
 };
-STGMultibrandSmallCenterLogo.propTypes = propTypes;
+STGLogoSmallCenter.propTypes = propTypes;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../../Symbol';
 
-export const BSAMultibrandSmallLogo = props => (
+export const BSALogoSmall = props => (
 	<Symbol {...props}>
 		<g fill="none" fillRule="evenodd">
 			<path
@@ -20,10 +20,10 @@ export const BSAMultibrandSmallLogo = props => (
 	</Symbol>
 );
 
-BSAMultibrandSmallLogo.defaultProps = {
+BSALogoSmall.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 122,
 	viewBoxHeight: 44,
 	label: 'Bank SA',
 };
-BSAMultibrandSmallLogo.propTypes = propTypes;
+BSALogoSmall.propTypes = propTypes;

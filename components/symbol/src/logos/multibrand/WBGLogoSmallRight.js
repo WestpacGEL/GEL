@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../../Symbol';
 
-export const WBGMultibrandSmallRightLogo = props => (
+export const WBGLogoSmallRight = props => (
 	<Symbol {...props}>
 		<g fill="none" fillRule="evenodd" transform="translate(5 13)">
 			<path
@@ -16,10 +16,10 @@ export const WBGMultibrandSmallRightLogo = props => (
 	</Symbol>
 );
 
-WBGMultibrandSmallRightLogo.defaultProps = {
+WBGLogoSmallRight.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 122,
 	viewBoxHeight: 44,
 	label: 'Westpac Group',
 };
-WBGMultibrandSmallRightLogo.propTypes = propTypes;
+WBGLogoSmallRight.propTypes = propTypes;

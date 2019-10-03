@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../../Symbol';
 
-export const BTFGMultibrandLargeLogo = props => (
+export const BTFGLogoLarge = props => (
 	<Symbol {...props}>
 		<g fill="none">
 			<polygon
@@ -33,10 +33,10 @@ export const BTFGMultibrandLargeLogo = props => (
 	</Symbol>
 );
 
-BTFGMultibrandLargeLogo.defaultProps = {
+BTFGLogoLarge.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 180,
 	viewBoxHeight: 65,
 	label: 'BT',
 };
-BTFGMultibrandLargeLogo.propTypes = propTypes;
+BTFGLogoLarge.propTypes = propTypes;
