@@ -39,7 +39,7 @@ const App = ({ components, packageName }) => {
 	// update doc title
 	useEffect(() => {
 		document.title = `${packageName} Example - GEL`;
-	}, packageName);
+	}, [packageName]);
 
 	// filter components for search
 	const navItems = inputValue.length
@@ -178,7 +178,7 @@ const Home = ({ packageName }) => (
 				run:
 			</p>
 			<pre>
-				<code>bolt dev {'{package_name}'}</code>
+				<code>yarn dev {'{package_name}'}</code>
 			</pre>
 		</Container>
 	</Article>
