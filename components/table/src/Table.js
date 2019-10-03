@@ -8,7 +8,11 @@ import { jsx, useTheme } from '@westpac/core';
 // Utils
 // ==============================
 
+<<<<<<< HEAD
 const TableWrapper = ({ bordered, responsive, wrappingStyles, ...props }) => {
+=======
+const TableWrapper = ({ bordered, responsive, ...props }) => {
+>>>>>>> gel-develop
 	const {
 		COLORS,
 		LAYOUT: { breakpoints },
@@ -19,6 +23,7 @@ const TableWrapper = ({ bordered, responsive, wrappingStyles, ...props }) => {
 
 	return responsive ? (
 		<div
+<<<<<<< HEAD
 			css={[
 				wrappingStyles,
 				{
@@ -54,11 +59,50 @@ const TableWrapper = ({ bordered, responsive, wrappingStyles, ...props }) => {
 								':last-child': {
 									borderRight: bordered && 0,
 								},
+=======
+			className="table-responsive"
+			css={{
+				[xsOnly]: {
+					width: '100%',
+					marginBottom: '1.125rem',
+					overflowY: 'hidden',
+					overflowX: 'auto',
+					// -ms-overflow-style: '-ms-autohiding-scrollbar',
+					border: `1px solid ${COLORS.border}`,
+					// -webkit-overflow-scrolling: 'touch',
+
+					'> table': {
+						marginBottom: 0,
+						border: bordered && 0,
+
+						caption: {
+							padding: '0.75rem',
+						},
+						'tbody, tfoot': {
+							'tr:last-child': {
+								'th, td': {
+									borderBottom: bordered && 0,
+								},
+							},
+						},
+						'th, td': {
+							whiteSpace: 'nowrap',
+
+							':first-of-type': {
+								borderLeft: bordered && 0,
+							},
+							':last-child': {
+								borderRight: bordered && 0,
+>>>>>>> gel-develop
 							},
 						},
 					},
 				},
+<<<<<<< HEAD
 			]}
+=======
+			}}
+>>>>>>> gel-develop
 			{...props}
 		/>
 	) : (
@@ -70,11 +114,19 @@ const TableWrapper = ({ bordered, responsive, wrappingStyles, ...props }) => {
 // Component
 // ==============================
 
+<<<<<<< HEAD
 export const Table = ({ striped, bordered, responsive, wrappingStyles, ...props }) => {
 	const { COLORS } = useTheme();
 
 	return (
 		<TableWrapper bordered={bordered} responsive={responsive} wrappingStyles={wrappingStyles}>
+=======
+export const Table = ({ striped, bordered, responsive, ...props }) => {
+	const { COLORS } = useTheme();
+
+	return (
+		<TableWrapper bordered={bordered} responsive={responsive}>
+>>>>>>> gel-develop
 			<table
 				css={{
 					width: '100%',
