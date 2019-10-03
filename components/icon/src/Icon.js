@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -19,8 +19,8 @@ export const sizeMap = {
 };
 
 const IconWrapper = ({ size, ...props }) => {
-	const { colors, breakpoints } = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
 	const style = {
 		// Common styling
@@ -58,13 +58,13 @@ const IconWrapper = ({ size, ...props }) => {
 // ==============================
 
 export const Icon = ({ children, color, label, size, ...props }) => {
-	const { colors } = useTheme();
+	const { COLORS } = useTheme();
 
 	// TODO Investigate:
 	// I suspect that using the style attribute to apply the color property will
 	// improve CSS reuse.
 	return (
-		<IconWrapper size={size} style={{ color: color ? color : colors.muted }} {...props}>
+		<IconWrapper size={size} style={{ color: color ? color : COLORS.muted }} {...props}>
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"
