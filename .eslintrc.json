@@ -1,0 +1,11 @@
+{
+	"extends": "react-app",
+	"plugins": ["prettier", "import"],
+	"rules": {
+		"jsx-a11y/anchor-is-valid": "off",
+		"jsx-a11y/accessible-emoji": "off",
+		"prettier/prettier": "error",
+		"import/no-unresolved": "error",
+		"import/no-extraneous-dependencies": "error"
+	}
+}

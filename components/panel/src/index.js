@@ -1,4 +1,4 @@
 export { Panel } from './Panel';
-export { PanelHeader } from './PanelHeader';
-export { PanelBody } from './PanelBody';
-export { PanelFooter } from './PanelFooter';
+export { PanelHeader as Header } from './PanelHeader';
+export { PanelBody as Body } from './PanelBody';
+export { PanelFooter as Footer } from './PanelFooter';
