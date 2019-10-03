@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../../Symbol';
 
-export const WBCMultibrandLargeLogo = props => (
+export const WBCLogoLarge = props => (
 	<Symbol {...props}>
 		<path
 			fill="#D5002B"
@@ -11,10 +11,10 @@ export const WBCMultibrandLargeLogo = props => (
 	</Symbol>
 );
 
-WBCMultibrandLargeLogo.defaultProps = {
+WBCLogoLarge.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 180,
 	viewBoxHeight: 65,
 	label: 'Westpac',
 };
-WBCMultibrandLargeLogo.propTypes = propTypes;
+WBCLogoLarge.propTypes = propTypes;

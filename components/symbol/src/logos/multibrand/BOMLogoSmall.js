@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../../Symbol';
 
-export const BOMMultibrandSmallLogo = props => (
+export const BOMLogoSmall = props => (
 	<Symbol {...props}>
 		<g fill="none" fillRule="evenodd">
 			<polygon fill="#685AC0" points="0 16.001 6.5 9.501 0 3.001" />
@@ -28,10 +28,10 @@ export const BOMMultibrandSmallLogo = props => (
 	</Symbol>
 );
 
-BOMMultibrandSmallLogo.defaultProps = {
+BOMLogoSmall.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 122,
 	viewBoxHeight: 44,
 	label: 'Bank of Melbourne',
 };
-BOMMultibrandSmallLogo.propTypes = propTypes;
+BOMLogoSmall.propTypes = propTypes;

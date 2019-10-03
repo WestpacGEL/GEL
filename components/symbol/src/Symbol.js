@@ -14,33 +14,29 @@ const round = f => Math.round(f * 10) / 10; //1DP
 const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props }) => {
 	const mq = useMediaQuery();
 
-	const style = {
-		// Common styling
-		common: {
-			display: 'inline-block',
-			flexShrink: 0,
-			lineHeight: 1,
-			verticalAlign: 'middle',
-		},
+	const ratio = viewBoxWidth / viewBoxHeight;
 
-		// Reponsive styling (symbol size)
-		responsive: (() => {
-			const widthArr = asArray(width || viewBoxWidth);
-			const heightArr = asArray(height || viewBoxHeight);
-			const ratio = viewBoxWidth / viewBoxHeight;
+	// Common styling
+	const styleCommon = {
+		display: 'inline-block',
+		flexShrink: 0,
+		lineHeight: 1,
+		verticalAlign: 'middle',
+	};
 
-			return {
-				width: width ? widthArr : heightArr.map(h => (h !== null ? round(h * ratio) : null)),
-				height: width ? widthArr.map(w => (w !== null ? round(w / ratio) : null)) : heightArr,
-			};
-		})(),
+	// Size styling (responsive)
+	const widthArr = asArray(width || viewBoxWidth);
+	const heightArr = asArray(height || viewBoxHeight);
+	const styleSize = {
+		width: width ? widthArr : heightArr.map(h => (h !== null ? round(h * ratio) : null)),
+		height: width ? widthArr.map(w => (w !== null ? round(w / ratio) : null)) : heightArr,
 	};
 
 	return (
 		<span
 			css={mq({
-				...style.common,
-				...style.responsive,
+				...styleCommon,
+				...styleSize,
 			})}
 			{...props}
 		/>

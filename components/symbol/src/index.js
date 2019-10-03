@@ -40,7 +40,7 @@ export { RedAvatarCircleLogo } from './logos/RedAvatarCircleLogo';
 export { RedAvatarCircleReversedLogo } from './logos/RedAvatarCircleReversedLogo';
 export { RedAvatarLogo } from './logos/RedAvatarLogo';
 
-export { MultibrandLargeLogo } from './logos/MultibrandLargeLogo';
-export { MultibrandSmallLogo } from './logos/MultibrandSmallLogo';
-export { MultibrandSmallCenterLogo } from './logos/MultibrandSmallCenterLogo';
-export { MultibrandSmallRightLogo } from './logos/MultibrandSmallRightLogo';
+export { LogoLarge } from './logos/LogoLarge';
+export { LogoSmall } from './logos/LogoSmall';
+export { LogoSmallCenter } from './logos/LogoSmallCenter';
+export { LogoSmallRight } from './logos/LogoSmallRight';
