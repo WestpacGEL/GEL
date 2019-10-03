@@ -21,11 +21,3 @@ export const FormPodActionsText = props => {
 		/>
 	);
 };
-
-// ==============================
-// Types
-// ==============================
-
-FormPodActionsText.propTypes = {};
-
-FormPodActionsText.defaultProps = {};

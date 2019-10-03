@@ -8,7 +8,6 @@ import { jsx, useTheme, useMediaQuery } from '@westpac/core';
  * FormPodHeader
  */
 export const FormPodHeader = ({ align, ...props }) => {
-	const { COLORS } = useTheme();
 	const mq = useMediaQuery();
 
 	return (

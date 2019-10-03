@@ -12,7 +12,7 @@ import { FormPodActionsPrimary, FormPodActionsSecondary } from './styled';
 export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
 	const mq = useMediaQuery();
 
-	const slots = [
+	const children = [
 		<FormPodActionsPrimary key="primary">{primary}</FormPodActionsPrimary>,
 		<FormPodActionsSecondary key="secondary">{secondary}</FormPodActionsSecondary>,
 	];
@@ -30,7 +30,7 @@ export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
 			})}
 			{...props}
 		>
-			{reverse ? slots.reverse() : slots}
+			{reverse ? children.reverse() : children}
 		</div>
 	);
 };
