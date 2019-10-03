@@ -15,6 +15,8 @@ export const ButtonGroupButton = ({
 	value,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
+	first,
+	last,
 	srOnlyText,
 	children,
 	...props
@@ -42,15 +44,15 @@ export const ButtonGroupButton = ({
 			<Button
 				css={{
 					// Style internal borders
-					'label:not(:last-child) > &': {
+					...(!last && {
 						borderTopRightRadius: 0,
 						borderBottomRightRadius: 0,
 						borderRight: 0,
-					},
-					'label:not(:first-of-type) > &': {
+					}),
+					...(!first && {
 						borderTopLeftRadius: 0,
 						borderBottomLeftRadius: 0,
-					},
+					}),
 				}}
 				tag="span"
 				appearance={appearance}
@@ -88,6 +90,16 @@ ButtonGroupButton.propTypes = {
 	iconBefore: PropTypes.func,
 
 	/**
+	 * First child
+	 */
+	first: PropTypes.bool,
+
+	/**
+	 * Last child
+	 */
+	last: PropTypes.bool,
+
+	/**
 	 * Check the button
 	 */
 	checked: PropTypes.bool,
@@ -104,5 +116,7 @@ ButtonGroupButton.propTypes = {
 };
 
 ButtonGroupButton.defaultProps = {
+	first: false,
+	last: false,
 	checked: false,
 };
