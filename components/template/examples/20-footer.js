@@ -2,7 +2,7 @@ import React from 'react';
 import { Global, useTheme } from '@westpac/core';
 import { Footer, FooterIcon, FooterText, FooterLogo } from '../src';
 import { Cell, Grid } from '@westpac/grid';
-import { MultibrandSmallRightLogo } from '@westpac/symbol';
+import { LogoSmallRight } from '@westpac/symbol';
 import { PadlockIcon } from '@westpac/icon';
 
 export default () => {
@@ -36,7 +36,7 @@ export default () => {
 						</FooterText>
 					</Cell>
 					<Cell width={[null, 3]}>
-						<FooterLogo symbol={MultibrandSmallRightLogo} />
+						<FooterLogo symbol={LogoSmallRight} />
 					</Cell>
 				</Grid>
 			</Footer>

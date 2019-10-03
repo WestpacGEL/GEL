@@ -10,11 +10,7 @@ import {
 	FooterLogo,
 } from '../src';
 import { Container, Grid, Cell } from '@westpac/grid';
-import {
-	MultibrandSmallLogo,
-	MultibrandSmallRightLogo,
-	MultibrandLargeLogo,
-} from '@westpac/symbol';
+import { LogoSmall, LogoSmallRight, LogoLarge } from '@westpac/symbol';
 import { PadlockIcon } from '@westpac/icon';
 
 export default () => (
@@ -22,7 +18,7 @@ export default () => (
 		<Header fixed={[true, false]}>
 			<HeaderLogo
 				href="#0"
-				logo={[<MultibrandSmallLogo label="" />, <MultibrandLargeLogo label="" />]}
+				logo={[<LogoSmall label="" />, <LogoLarge label="" />]}
 				srOnlyText="Go to home"
 			/>
 		</Header>
@@ -43,7 +39,7 @@ export default () => (
 					</FooterText>
 				</Cell>
 				<Cell width={[null, 3]}>
-					<FooterLogo symbol={MultibrandSmallRightLogo} />
+					<FooterLogo symbol={LogoSmallRight} />
 				</Cell>
 			</Grid>
 		</Footer>

@@ -9,11 +9,7 @@ import {
 	HeaderContactText,
 	Hide,
 } from '../src';
-import {
-	MultibrandSmallLogo,
-	MultibrandSmallCenterLogo,
-	MultibrandLargeLogo,
-} from '@westpac/symbol';
+import { LogoSmall, LogoSmallCenter, LogoLarge } from '@westpac/symbol';
 import {
 	HamburgerMenuIcon,
 	ArrowLeftIcon,
@@ -45,7 +41,7 @@ export default () => {
 			<Header fixed={[true, false]}>
 				<HeaderLogo
 					href="#0"
-					logo={[<MultibrandSmallLogo label="" />, <MultibrandLargeLogo label="" />]}
+					logo={[<LogoSmall label="" />, <LogoLarge label="" />]}
 					srOnlyText="Go to home"
 				/>
 			</Header>
@@ -56,7 +52,7 @@ export default () => {
 
 				<HeaderLogo
 					href="#0"
-					logo={[<MultibrandSmallLogo label="" />, <MultibrandLargeLogo label="" />]}
+					logo={[<LogoSmall label="" />, <LogoLarge label="" />]}
 					srOnlyText="Go to home"
 				/>
 
@@ -78,7 +74,7 @@ export default () => {
 
 				<HeaderLogo
 					href="#0"
-					logo={[<MultibrandSmallCenterLogo label="" />, <MultibrandLargeLogo label="" />]}
+					logo={[<LogoSmallCenter label="" />, <LogoLarge label="" />]}
 					center={[true, false]}
 					srOnlyText="Go to home"
 				/>
@@ -99,7 +95,7 @@ export default () => {
 
 				<HeaderLogo
 					href="#0"
-					logo={[<MultibrandSmallLogo label="" />, <MultibrandLargeLogo label="" />]}
+					logo={[<LogoSmall label="" />, <LogoLarge label="" />]}
 					srOnlyText="Go to home"
 				/>
 
@@ -115,7 +111,7 @@ export default () => {
 
 				<HeaderLogo
 					href="#0"
-					logo={[<MultibrandSmallLogo label="" />, <MultibrandLargeLogo label="" />]}
+					logo={[<LogoSmall label="" />, <LogoLarge label="" />]}
 					srOnlyText="Go to home"
 				/>
 
@@ -133,7 +129,7 @@ export default () => {
 
 				<HeaderLogo
 					href="#0"
-					logo={[<MultibrandSmallLogo label="" />, <MultibrandLargeLogo label="" />]}
+					logo={[<LogoSmall label="" />, <LogoLarge label="" />]}
 					srOnlyText="Go to home"
 				/>
 
