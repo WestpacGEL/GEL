@@ -44,7 +44,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 					left: '0.625rem',
 					top: 0,
 					height: '100%',
-					color: '#575f65',
+					color: COLORS.muted,
 					fontSize: '0.875rem',
 					fontWeight: 700,
 					zIndex: 1,
@@ -74,11 +74,6 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 
 					'@media print': {
 						backgroundColor: '#000 !important',
-
-						span: {
-							color: '#fff !important',
-							backgroundColor: '#000 !important',
-						},
 					},
 				}}
 				style={{ width: `${roundedValue}%` }}
