@@ -13,6 +13,8 @@ export const Template = props => {
 	return (
 		<div
 			css={{
+				display: 'flex',
+				flexDirection: 'column',
 				position: 'relative',
 				minHeight: '100vh', //fill to (at least) the viewport height (`vh` to incl. IE11 support)
 				width: '100%', //fill to viewport width

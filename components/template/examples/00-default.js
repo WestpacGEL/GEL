@@ -9,7 +9,7 @@ import {
 	FooterText,
 	FooterLogo,
 } from '../src';
-import { Cell, Grid } from '@westpac/grid';
+import { Container, Grid, Cell } from '@westpac/grid';
 import {
 	MultibrandSmallLogo,
 	MultibrandSmallRightLogo,
@@ -26,7 +26,9 @@ export default () => (
 				srOnlyText="Go to home"
 			/>
 		</Header>
-		<Main>Main</Main>
+		<Main>
+			<Container>Main</Container>
+		</Main>
 		<Footer fancy>
 			<Grid>
 				<Cell width={[null, 9]}>
