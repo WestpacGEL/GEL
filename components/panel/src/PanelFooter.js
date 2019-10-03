@@ -1,35 +1,26 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme, paint } from '@westpac/core';
-import { propTypes, defaultProps } from './Panel';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
-export const PanelFooter = ({ appearance, ...props }) => {
-	const { breakpoints, panel } = useTheme();
-	const mq = paint(breakpoints);
+export const PanelFooter = props => {
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
 	return (
 		<div
 			css={mq({
-				padding: panel.footer.padding,
-				backgroundColor: panel.footer.backgroundColor,
-				borderTop: `${panel.borderWidth} solid ${panel.footer.borderColor}`,
-				borderBottomRightRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
-				borderBottomLeftRadius: `calc(${panel.borderRadius} - ${panel.borderWidth})`,
+				padding: ['0.625rem 0.75rem', '0.625rem 1.5rem'],
+				backgroundColor: COLORS.light,
+				borderTop: `1px solid ${COLORS.border}`,
+				borderBottomRightRadius: `calc(0.1875rem - 1px)`,
+				borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
 			})}
 			{...props}
 		/>
 	);
-};
-
-PanelFooter.propTypes = {
-	...propTypes,
-};
-
-PanelFooter.defaultProps = {
-	...defaultProps,
 };

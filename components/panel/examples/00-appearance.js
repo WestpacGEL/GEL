@@ -1,26 +1,26 @@
 import React from 'react';
-import { Panel, PanelHeader, PanelBody, PanelFooter } from '../src';
+import { Panel, Header, Body, Footer } from '../src';
 
 export default () => (
 	<>
 		<h2>Default instance (no styling props)</h2>
 		<Panel>
-			<PanelHeader>Panel title</PanelHeader>
-			<PanelBody>
+			<Header>Panel title</Header>
+			<Body>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 				aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 				eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit amet,
 				consectetur adipisicing elit.
-			</PanelBody>
-			<PanelFooter>Panel footer</PanelFooter>
+			</Body>
+			<Footer>Panel footer</Footer>
 		</Panel>
 
 		<hr />
 
 		<h2>Hero</h2>
 		<Panel appearance="hero">
-			<PanelHeader>Panel title</PanelHeader>
-			<PanelBody>
+			<Header>Panel title</Header>
+			<Body>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 				aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 				eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit amet,
@@ -32,16 +32,16 @@ export default () => (
 				sit amet, consectetur adipisicing elit. Hic debitis quae eum eveniet ducimus vero odit,
 				officia consequatur vel repellat recusandae labore sed tempora reprehenderit minus incidunt
 				deserunt voluptate ad.
-			</PanelBody>
-			<PanelFooter>Panel footer</PanelFooter>
+			</Body>
+			<Footer>Panel footer</Footer>
 		</Panel>
 
 		<hr />
 
 		<h2>Faint</h2>
 		<Panel appearance="faint">
-			<PanelHeader>Panel title</PanelHeader>
-			<PanelBody>
+			<Header>Panel title</Header>
+			<Body>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 				aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 				eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit amet,
@@ -53,8 +53,8 @@ export default () => (
 				sit amet, consectetur adipisicing elit. Hic debitis quae eum eveniet ducimus vero odit,
 				officia consequatur vel repellat recusandae labore sed tempora reprehenderit minus incidunt
 				deserunt voluptate ad.
-			</PanelBody>
-			<PanelFooter>Panel footer</PanelFooter>
+			</Body>
+			<Footer>Panel footer</Footer>
 		</Panel>
 	</>
 );

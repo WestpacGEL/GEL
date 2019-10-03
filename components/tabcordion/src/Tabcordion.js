@@ -1,4 +1,4 @@
-import React, { Children, Fragment, useEffect, useRef, useState } from 'react';
+import React, { Children, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useContainerQuery } from '@westpac/hooks';
 
@@ -28,7 +28,7 @@ export const Tabcordion = props => {
 		if (!instancePrefix) {
 			setInstancePrefix(`gel-tabcordion-${++instanceId}`);
 		}
-	});
+	}, [instancePrefix]);
 
 	// handle keys
 	const keyHandler = event => {

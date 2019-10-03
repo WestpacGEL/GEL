@@ -17,12 +17,9 @@ import { ModalBody } from './ModalBody';
 export const Modal = ({ isOpen, onClose, size, children, ...props }) => {
 	const [open, setOpen] = useState(isOpen);
 
-	useEffect(
-		() => {
-			setOpen(isOpen);
-		},
-		[isOpen]
-	);
+	useEffect(() => {
+		setOpen(isOpen);
+	}, [isOpen]);
 
 	const handleClose = () => {
 		if (onClose) {
