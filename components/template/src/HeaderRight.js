@@ -1,9 +1,17 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement, isValidElement } from 'react';
+import React, { Children, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useMediaQuery } from '@westpac/core';
 import { HeaderButton } from './HeaderButton';
+
+// ==============================
+// Context and consumer hook
+// ==============================
+
+const HeaderRightContext = createContext({ right: false });
+
+export const useHeaderRightContext = () => useContext(HeaderRightContext);
 
 // ==============================
 // Component
@@ -12,36 +20,26 @@ import { HeaderButton } from './HeaderButton';
 export const HeaderRight = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 
-	// Enable right padding by default
-	let isPadding = true;
+	let isRightPadding = true; //RHS padding by default
 
-	// Pass the selected props on to children
-	const numChildren = Children.count(children);
-	const childrenWithProps = Children.map(children, (child, idx) => {
-		let isLast = idx === numChildren - 1;
-
-		// HeaderButton child
-		if (isValidElement(child) && child.type && child.type === HeaderButton) {
-			// Disable right padding if a HeaderButton last child
-			if (isLast) isPadding = false;
-
-			return cloneElement(child, { right: true });
-		}
-		return child;
-	});
+	// Disable right padding if there's a HeaderButton last child
+	const lastChild = Children.toArray(children)[Children.count(children) - 1];
+	if (lastChild.type === HeaderButton) isRightPadding = false;
 
 	return (
-		<div
-			css={mq({
-				display: 'flex',
-				alignItems: 'center',
-				marginLeft: 'auto', //flex auto align right
-				marginRight: isPadding && ['0.75rem', '1.5rem'],
-			})}
-			{...props}
-		>
-			{childrenWithProps}
-		</div>
+		<HeaderRightContext.Provider value={{ isRight: true }}>
+			<div
+				css={mq({
+					display: 'flex',
+					alignItems: 'center',
+					marginLeft: 'auto', //flex auto align right
+					marginRight: isRightPadding && ['0.75rem', '1.5rem'],
+				})}
+				{...props}
+			>
+				{children}
+			</div>
+		</HeaderRightContext.Provider>
 	);
 };
 

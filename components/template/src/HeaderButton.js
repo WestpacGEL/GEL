@@ -3,15 +3,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { useHeaderRightContext } from './HeaderRight';
 import { SrOnly } from '@westpac/accessibility-helpers';
 
 // ==============================
 // Component
 // ==============================
 
-export const HeaderButton = ({ srOnlyText, icon: Icon, tag: Tag, right, children, ...props }) => {
+export const HeaderButton = ({ srOnlyText, icon: Icon, tag: Tag, children, ...props }) => {
 	const { COLORS } = useTheme();
 	const mq = useMediaQuery();
+	const { isRight } = useHeaderRightContext();
 
 	return (
 		<Tag
@@ -26,7 +28,7 @@ export const HeaderButton = ({ srOnlyText, icon: Icon, tag: Tag, right, children
 				paddingLeft: ['0.5625rem', '1.125rem'],
 				paddingRight: ['0.5625rem', '1.125rem'],
 				minWidth: ['2.625rem', '0.375rem'],
-				[right ? 'borderLeft' : 'borderRight']: `1px solid ${COLORS.border}`,
+				[isRight ? 'borderLeft' : 'borderRight']: `1px solid ${COLORS.border}`,
 			})}
 			{...props}
 		>
