@@ -28,12 +28,9 @@ export const Switch = ({
 	const [checked, setChecked] = useState(isChecked);
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 
-	useEffect(
-		() => {
-			setChecked(checked);
-		},
-		[checked]
-	);
+	useEffect(() => {
+		setChecked(checked);
+	}, [checked]);
 
 	const toggle = () => {
 		if (onChange) {

@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { ArrowRightIcon } from '../../icon/src';
-import { SrOnly } from '../../accessibility-helpers/src';
+import { ArrowRightIcon } from '@westpac/icon';
+import { SrOnly } from '@westpac/accessibility-helpers';
 
 // ==============================
 // Component
