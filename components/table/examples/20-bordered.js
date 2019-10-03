@@ -3,7 +3,7 @@ import { Table } from '../src';
 
 export default () => (
 	<>
-		<Table isBordered>
+		<Table bordered>
 			<caption>
 				Table caption this table width is: <em>(100%)</em>
 			</caption>

@@ -3,7 +3,7 @@ import { Table } from '../src';
 
 export default () => (
 	<>
-		<Table isStriped>
+		<Table striped>
 			<caption>
 				Table caption this table width is: <em>(100%)</em>
 			</caption>
