@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 import { SrSkipLink } from '@westpac/accessibility-helpers';
@@ -12,32 +12,10 @@ import { SrSkipLink } from '@westpac/accessibility-helpers';
 const asArray = val => (Array.isArray(val) ? val : [val]);
 
 // ==============================
-// Context and consumer hook
-// ==============================
-
-const HeaderContext = createContext();
-
-export const useHeaderContext = () => {
-	const context = useContext(HeaderContext);
-	if (!context) {
-		throw new Error('Header children should be wrapped in a <Header>.');
-	}
-	return context;
-};
-
-// ==============================
 // Component
 // ==============================
 
-export const Header = ({
-	logoCenter,
-	fixed,
-	srSkipLinkText,
-	srSkipLinkHref,
-	tag: Tag,
-	children,
-	...props
-}) => {
+export const Header = ({ fixed, srSkipLinkText, srSkipLinkHref, tag: Tag, children, ...props }) => {
 	const { COLORS } = useTheme();
 	const mq = useMediaQuery();
 
@@ -81,12 +59,10 @@ export const Header = ({
 	};
 
 	return (
-		<HeaderContext.Provider value={{ logoCenter }}>
-			<Tag css={{ display: 'flex' }} {...props}>
-				{srSkipLinkText && <SrSkipLink href={srSkipLinkHref}>{srSkipLinkText}</SrSkipLink>}
-				<div css={mq({ ...styleCommon, ...styleFixed })}>{children}</div>
-			</Tag>
-		</HeaderContext.Provider>
+		<Tag css={{ display: 'flex' }} {...props}>
+			{srSkipLinkText && <SrSkipLink href={srSkipLinkHref}>{srSkipLinkText}</SrSkipLink>}
+			<div css={mq({ ...styleCommon, ...styleFixed })}>{children}</div>
+		</Tag>
 	);
 };
 
@@ -95,11 +71,6 @@ export const Header = ({
 // ==============================
 
 Header.propTypes = {
-	/**
-	 * Center logo mode
-	 */
-	logoCenter: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
-
 	/**
 	 * Fixed positioning mode.
 	 *
@@ -129,7 +100,6 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-	logoCenter: false,
 	fixed: false,
 	srSkipLinkText: 'Skip to main content',
 	srSkipLinkHref: '#content',

@@ -73,12 +73,13 @@ export default () => {
 			</Header>
 
 			<h3>Header with left header buttons and centred logo (in XS)</h3>
-			<Header logoCenter={[true, false]}>
+			<Header>
 				<HeaderButton href="#0" icon={ArrowLeftIcon} srOnlyText="Back to previous step" />
 
 				<HeaderLogo
 					href="#0"
 					logo={[<MultibrandSmallCenterLogo label="" />, <MultibrandLargeLogo label="" />]}
+					center={[true, false]}
 					srOnlyText="Go to home"
 				/>
 

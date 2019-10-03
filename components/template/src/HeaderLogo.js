@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useMediaQuery } from '@westpac/core';
-import { useHeaderContext } from './Header';
 import { SrOnly } from '@westpac/accessibility-helpers';
 import { Hide } from './Hide';
 
@@ -17,9 +16,8 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // Component
 // ==============================
 
-export const HeaderLogo = ({ logo, srOnlyText, tag: Tag, ...props }) => {
+export const HeaderLogo = ({ logo, center, srOnlyText, tag: Tag, ...props }) => {
 	const mq = useMediaQuery();
-	const { logoCenter } = useHeaderContext();
 
 	// Common styling
 	const styleCommon = {
@@ -31,9 +29,9 @@ export const HeaderLogo = ({ logo, srOnlyText, tag: Tag, ...props }) => {
 
 	// Logo position styling
 	const stylePosition = (() => {
-		if (!logoCenter) return;
+		if (!center) return;
 
-		const logoCenterArr = asArray(logoCenter);
+		const logoCenterArr = asArray(center);
 
 		return {
 			position: logoCenterArr.map(lc => lc !== null && (lc ? 'absolute' : 'static')),
@@ -44,12 +42,10 @@ export const HeaderLogo = ({ logo, srOnlyText, tag: Tag, ...props }) => {
 		};
 	})();
 
-	const logoArr = asArray(logo);
-
 	return (
 		<Tag css={mq({ ...styleCommon, ...stylePosition })} {...props}>
 			{srOnlyText && <SrOnly>{srOnlyText}</SrOnly>}
-			{logoArr.map((l, idx) => (
+			{asArray(logo).map((l, idx) => (
 				<Hide show={Array.from({ length: asArray(logo).length }, (v, i) => i === idx)} key={idx}>
 					{l}
 				</Hide>
@@ -77,9 +73,14 @@ HeaderLogo.propTypes = {
 	},
 
 	/**
-	 * Logo component
+	 * Logo component(s)
 	 */
 	logo: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
+
+	/**
+	 * Center logo mode
+	 */
+	center: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
 	 * ‘Screen reader only’ text
@@ -93,6 +94,7 @@ HeaderLogo.propTypes = {
 };
 
 HeaderLogo.defaultProps = {
+	center: false,
 	srOnlyText: 'Go to home',
 	tag: 'a',
 };
