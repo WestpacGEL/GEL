@@ -10,7 +10,7 @@ import { useFormCheckContext } from './FormCheck';
 // Component
 // ==============================
 
-export const FormCheckItem = ({ value, checked, disabled, onChange, children, ...props }) => {
+export const FormCheckOption = ({ value, checked, disabled, onChange, children, ...props }) => {
 	const { COLORS } = useTheme();
 	const { type, name, size, inline, flipped } = useFormCheckContext();
 
@@ -50,7 +50,7 @@ export const FormCheckItem = ({ value, checked, disabled, onChange, children, ..
 					tweak: '0rem',
 				},
 			},
-			item: {
+			option: {
 				marginRight: '1.125rem',
 				marginBottom: '0.375rem',
 			},
@@ -103,8 +103,8 @@ export const FormCheckItem = ({ value, checked, disabled, onChange, children, ..
 				position: 'relative',
 				display: inline ? 'inline-block' : 'block',
 				verticalAlign: inline && 'top',
-				marginRight: inline && sizeMap[size].item.marginRight,
-				marginBottom: sizeMap[size].item.marginBottom,
+				marginRight: inline && sizeMap[size].option.marginRight,
+				marginBottom: sizeMap[size].option.marginBottom,
 				minHeight: controlHeight,
 				[flipped ? 'paddingRight' : 'paddingLeft']: controlWidth,
 			}}
@@ -212,19 +212,19 @@ export const FormCheckItem = ({ value, checked, disabled, onChange, children, ..
 // Types
 // ==============================
 
-FormCheckItem.propTypes = {
+FormCheckOption.propTypes = {
 	/**
-	 * Form check item value
+	 * Form check option value
 	 */
 	value: PropTypes.string,
 
 	/**
-	 * Check the Form check item
+	 * Check the Form check option
 	 */
 	checked: PropTypes.bool,
 
 	/**
-	 * Disable the Form check item
+	 * Disable the Form check option
 	 */
 	disabled: PropTypes.bool,
 
@@ -234,12 +234,12 @@ FormCheckItem.propTypes = {
 	onChange: PropTypes.func,
 
 	/**
-	 * Form check item label text
+	 * Form check option label text
 	 */
 	children: PropTypes.string.isRequired,
 };
 
-FormCheckItem.defaultProps = {
+FormCheckOption.defaultProps = {
 	checked: false,
 	disabled: false,
 };

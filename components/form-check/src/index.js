@@ -1,2 +1,2 @@
 export { FormCheck } from './FormCheck';
-export { FormCheckItem as Item } from './FormCheckItem';
+export { FormCheckOption as Option } from './FormCheckOption';

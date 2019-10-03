@@ -1,50 +1,50 @@
 import React from 'react';
-import { FormCheck, Item } from '../src';
+import { FormCheck, Option } from '../src';
 
 export default () => (
 	<>
 		<h2>Medium</h2>
 		<FormCheck type="checkbox" name="example-checkbox-large-flip" size="medium" flipped>
-			<Item value="1">Option 1</Item>
-			<Item value="r">
+			<Option value="1">Option 1</Option>
+			<Option value="r">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 		<br />
 		<FormCheck type="radio" name="example-checkbox-large-flip" size="medium" flipped>
-			<Item value="1">Option 1</Item>
-			<Item value="r">
+			<Option value="1">Option 1</Option>
+			<Option value="r">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 
 		<hr />
 
 		<h2>Large</h2>
 		<FormCheck type="checkbox" name="example-checkbox-large-flip" size="large" flipped>
-			<Item value="1">Option 1</Item>
-			<Item value="2">
+			<Option value="1">Option 1</Option>
+			<Option value="2">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 		<br />
 		<FormCheck type="radio" name="example-checkbox-large-flip" size="large" flipped>
-			<Item value="1">Option 1</Item>
-			<Item value="2">
+			<Option value="1">Option 1</Option>
+			<Option value="2">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 
 		<hr />
@@ -57,25 +57,25 @@ export default () => (
 			inline
 			flipped
 		>
-			<Item value="1">Option 1</Item>
-			<Item value="2">Option 2</Item>
-			<Item value="3">
+			<Option value="1">Option 1</Option>
+			<Option value="2">Option 2</Option>
+			<Option value="3">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 		<br />
 		<FormCheck type="radio" name="example-checkbox-large-inline-flip" size="large" inline flipped>
-			<Item value="1">Option 1</Item>
-			<Item value="2">Option 2</Item>
-			<Item value="3">
+			<Option value="1">Option 1</Option>
+			<Option value="2">Option 2</Option>
+			<Option value="3">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 	</>
 );

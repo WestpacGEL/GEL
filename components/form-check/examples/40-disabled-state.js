@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormCheck, Item } from '../src';
+import { FormCheck, Option } from '../src';
 
 export default () => (
 	<>
@@ -7,83 +7,83 @@ export default () => (
 
 		<h3>Medium</h3>
 		<FormCheck type="checkbox" name="example-checkbox-medium-disabled" size="medium">
-			<Item value="1" disabled>
+			<Option value="1" disabled>
 				Option 1
-			</Item>
-			<Item value="2" disabled>
+			</Option>
+			<Option value="2" disabled>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 		<br />
 		<FormCheck type="radio" name="example-radio-medium-disabled" size="medium">
-			<Item value="1" disabled>
+			<Option value="1" disabled>
 				Option 1
-			</Item>
-			<Item value="2" disabled>
+			</Option>
+			<Option value="2" disabled>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 
 		<h3>Large</h3>
 		<FormCheck type="checkbox" name="example-checkbox-large-disabled" size="large">
-			<Item value="1" disabled>
+			<Option value="1" disabled>
 				Option 1
-			</Item>
-			<Item value="2" disabled>
+			</Option>
+			<Option value="2" disabled>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 		<br />
 		<FormCheck type="radio" name="example-radio-large-disabled" size="large">
-			<Item value="1" disabled>
+			<Option value="1" disabled>
 				Option 1
-			</Item>
-			<Item value="2" disabled>
+			</Option>
+			<Option value="2" disabled>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 
 		<h3>Inline</h3>
 		<FormCheck type="checkbox" name="example-checkbox-medium-inline-disabled" size="medium" inline>
-			<Item value="1" disabled>
+			<Option value="1" disabled>
 				Option 1
-			</Item>
-			<Item value="2" disabled>
+			</Option>
+			<Option value="2" disabled>
 				Option 2
-			</Item>
-			<Item value="3" disabled>
+			</Option>
+			<Option value="3" disabled>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 		<br />
 		<FormCheck type="radio" name="example-checkbox-large-inline-disabled" size="large" inline>
-			<Item value="1" disabled>
+			<Option value="1" disabled>
 				Option 1
-			</Item>
-			<Item value="2" disabled>
+			</Option>
+			<Option value="2" disabled>
 				Option 2
-			</Item>
-			<Item value="3" disabled>
+			</Option>
+			<Option value="3" disabled>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 				magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 				provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 				aspernatur eveniet libero.
-			</Item>
+			</Option>
 		</FormCheck>
 
 		<hr />
@@ -93,44 +93,44 @@ export default () => (
 		<fieldset disabled>
 			<h3>Medium</h3>
 			<FormCheck type="checkbox" name="example-checkbox-medium-disabled-fieldset" size="medium">
-				<Item value="1">Option 1</Item>
-				<Item value="2">
+				<Option value="1">Option 1</Option>
+				<Option value="2">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 					magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
-				</Item>
+				</Option>
 			</FormCheck>
 			<br />
 			<FormCheck type="radio" name="example-radio-medium-disabled-fieldset" size="medium">
-				<Item value="1">Option 1</Item>
-				<Item value="2">
+				<Option value="1">Option 1</Option>
+				<Option value="2">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 					magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
-				</Item>
+				</Option>
 			</FormCheck>
 
 			<h3>Large</h3>
 			<FormCheck type="checkbox" name="example-checkbox-large-disabled-fieldset" size="large">
-				<Item value="1">Option 1</Item>
-				<Item value="2">
+				<Option value="1">Option 1</Option>
+				<Option value="2">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 					magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
-				</Item>
+				</Option>
 			</FormCheck>
 			<br />
 			<FormCheck type="radio" name="example-radio-large-disabled-fieldset" size="large">
-				<Item value="1">Option 1</Item>
-				<Item value="2">
+				<Option value="1">Option 1</Option>
+				<Option value="2">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 					magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
-				</Item>
+				</Option>
 			</FormCheck>
 
 			<h3>Inline</h3>
@@ -140,14 +140,14 @@ export default () => (
 				size="medium"
 				inline
 			>
-				<Item value="1">Option 1</Item>
-				<Item value="2">Option 2</Item>
-				<Item value="3">
+				<Option value="1">Option 1</Option>
+				<Option value="2">Option 2</Option>
+				<Option value="3">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 					magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
-				</Item>
+				</Option>
 			</FormCheck>
 			<br />
 			<FormCheck
@@ -156,14 +156,14 @@ export default () => (
 				size="large"
 				inline
 			>
-				<Item value="1">Option 1</Item>
-				<Item value="2">Option 2</Item>
-				<Item value="3">
+				<Option value="1">Option 1</Option>
+				<Option value="2">Option 2</Option>
+				<Option value="3">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
 					magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
-				</Item>
+				</Option>
 			</FormCheck>
 		</fieldset>
 	</>
