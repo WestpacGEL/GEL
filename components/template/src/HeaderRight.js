@@ -9,7 +9,7 @@ import { HeaderButton } from './HeaderButton';
 // Context and consumer hook
 // ==============================
 
-const HeaderRightContext = createContext({ right: false });
+const HeaderRightContext = createContext({ isRight: false });
 
 export const useHeaderRightContext = () => useContext(HeaderRightContext);
 
