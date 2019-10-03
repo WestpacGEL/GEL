@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 import { ButtonContent } from './styled';
 
 // ==============================
@@ -18,86 +18,210 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 export const Button = ({
 	appearance,
 	size,
-	isSoft,
-	isBlock,
-	isTrim,
+	soft,
+	block,
+	trim,
 	iconAfter,
 	iconBefore,
-	isJustify,
-	isSrOnlyText,
+	justify,
+	srOnlyText,
 	tag: Tag,
 	onClick,
 	children,
 	...props
 }) => {
-	const { breakpoints, button } = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
-	const style = {
-		// Common styling
-		common: {
-			alignItems: 'center', //vertical
-			appearance: 'none',
-			border: `${button.borderWidth} solid transparent`,
-			borderRadius: button.borderRadius,
-			cursor: 'pointer',
-			fontWeight: button.fontWeight,
-			justifyContent: isJustify ? 'space-between' : 'center', //horizontal
-			lineHeight: button.lineHeight,
-			textAlign: 'center',
-			textDecoration: 'none',
-			touchAction: 'manipulation',
-			transition: 'background 0.2s ease, color 0.2s ease',
-			userSelect: 'none',
-			verticalAlign: 'middle',
-			whiteSpace: 'nowrap',
+	// We don't support soft links, so don't want them to cause styling issues
+	if (soft && appearance === 'link') soft = false;
 
-			// Hover state (but excluded if disabled or inside a disabled fieldset)
-			':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
-				textDecoration: appearance === 'link' ? 'underline' : 'none',
-			},
+	// Common styling
+	const styleCommon = {
+		alignItems: 'center', //vertical
+		appearance: 'none',
+		border: '1px solid transparent',
+		borderRadius: '0.1875rem',
+		cursor: 'pointer',
+		fontWeight: 400,
+		justifyContent: justify ? 'space-between' : 'center', //horizontal
+		lineHeight: 1.5,
+		textAlign: 'center',
+		textDecoration: 'none',
+		touchAction: 'manipulation',
+		transition: 'background 0.2s ease, color 0.2s ease',
+		userSelect: 'none',
+		verticalAlign: 'middle',
+		whiteSpace: 'nowrap',
 
-			// Disabled via `disabled` attribute or inside a disabled fieldset
-			':disabled, fieldset:disabled &': {
-				opacity: '0.5',
-				pointerEvents: 'none',
-			},
+		// Hover state (but excluded if disabled or inside a disabled fieldset)
+		':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
+			textDecoration: appearance === 'link' ? 'underline' : 'none',
 		},
 
-		// Button appearance styling
-		appearance: {
-			...button.appearance[appearance].standard.default,
-			...(isSoft && appearance !== 'link' && button.appearance[appearance].soft.default),
+		// Disabled via `disabled` attribute or inside a disabled fieldset
+		':disabled, fieldset:disabled &': {
+			opacity: '0.5',
+			pointerEvents: 'none',
+		},
+	};
 
-			':hover': {
-				...button.appearance[appearance].standard.hover,
-				...(isSoft && appearance !== 'link' && button.appearance[appearance].soft.hover),
+	// Appearance styling
+	const styleAppearance = {
+		primary: {
+			standard: {
+				color: '#fff',
+				backgroundColor: COLORS.primary,
+				borderColor: COLORS.primary,
+
+				':hover': {
+					backgroundColor: COLORS.tints.primary70,
+				},
+				':active, &.active': {
+					backgroundColor: COLORS.tints.primary50,
+				},
 			},
-			':active, &.active': {
-				...button.appearance[appearance].standard.active,
-				...(isSoft && appearance !== 'link' && button.appearance[appearance].soft.active),
+			soft: {
+				color: COLORS.text,
+				backgroundColor: '#fff',
+				borderColor: COLORS.primary,
+
+				':hover': {
+					color: '#fff',
+					backgroundColor: COLORS.tints.primary70,
+				},
+				':active, &.active': {
+					color: '#fff',
+					backgroundColor: COLORS.tints.primary50,
+				},
 			},
 		},
+		hero: {
+			standard: {
+				color: '#fff',
+				backgroundColor: COLORS.hero,
+				borderColor: COLORS.hero,
 
-		// Reponsive styling (button size and block)
-		responsive: (() => {
-			const sizeArr = asArray(size);
-			const blockArr = asArray(isBlock);
+				':hover': {
+					backgroundColor: COLORS.tints.hero70,
+				},
+				':active, &.active': {
+					backgroundColor: COLORS.tints.hero50,
+				},
+			},
+			soft: {
+				color: COLORS.text,
+				backgroundColor: '#fff',
+				borderColor: COLORS.hero,
 
-			return {
-				padding: sizeArr.map(s => {
-					if (!s) return null;
-					const p = [...button.size[s].padding];
-					if (isTrim) p[1] = '0';
+				':hover': {
+					color: '#fff',
+					backgroundColor: COLORS.tints.hero70,
+				},
+				':active, &.active': {
+					color: '#fff',
+					backgroundColor: COLORS.tints.hero50,
+				},
+			},
+		},
+		neutral: {
+			standard: {
+				color: '#fff',
+				backgroundColor: COLORS.neutral,
+				borderColor: COLORS.neutral,
 
-					return p.join(' ');
-				}),
-				fontSize: sizeArr.map(s => s && button.size[s].fontSize),
-				height: sizeArr.map(s => s && button.size[s].height),
-				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
-				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
-			};
-		})(),
+				':hover': {
+					backgroundColor: COLORS.tints.neutral70,
+				},
+				':active, &.active': {
+					backgroundColor: COLORS.tints.neutral50,
+				},
+			},
+			soft: {
+				color: COLORS.text,
+				backgroundColor: '#fff',
+				borderColor: COLORS.neutral,
+
+				':hover': {
+					color: '#fff',
+					backgroundColor: COLORS.tints.neutral70,
+				},
+				':active, &.active': {
+					color: '#fff',
+					backgroundColor: COLORS.tints.neutral50,
+				},
+			},
+		},
+		faint: {
+			standard: {
+				color: COLORS.muted,
+				backgroundColor: COLORS.light,
+				borderColor: COLORS.border,
+
+				':hover, :active, &.active': {
+					backgroundColor: '#fff',
+				},
+			},
+			soft: {
+				color: COLORS.muted,
+				backgroundColor: '#fff',
+				borderColor: COLORS.border,
+
+				':hover, :active, &.active': {
+					backgroundColor: COLORS.light,
+				},
+			},
+		},
+		link: {
+			standard: {
+				color: COLORS.primary,
+				backgroundColor: 'transparent',
+				borderColor: 'transparent',
+			},
+		},
+	};
+
+	// Size styling (responsive)
+	const sizeArr = asArray(size);
+	const sizeMap = {
+		small: {
+			padding: ['0.1875rem', '0.5625rem', '0.25rem'],
+			fontSize: '0.875rem',
+			height: '1.875rem',
+		},
+		medium: {
+			padding: ['0.3125rem', '0.75rem'],
+			fontSize: '1rem',
+			height: '2.25rem',
+		},
+		large: {
+			padding: ['0.5rem', '0.9375rem'],
+			fontSize: '1rem',
+			height: '2.625rem',
+		},
+		xlarge: {
+			padding: ['0.5625rem', '1.125rem', '0.625rem'],
+			fontSize: '1.125rem',
+			height: '3rem',
+		},
+	};
+	const styleSize = {
+		padding: sizeArr.map(s => {
+			if (!s) return null;
+			const p = [...sizeMap[s].padding];
+			if (trim) p[1] = '0';
+
+			return p.join(' ');
+		}),
+		fontSize: sizeArr.map(s => s && sizeMap[s].fontSize),
+		height: sizeArr.map(s => s && sizeMap[s].height),
+	};
+
+	// Block styling (responsive)
+	const blockArr = asArray(block);
+	const styleBlock = {
+		display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
+		width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 	};
 
 	if (props.href) {
@@ -108,9 +232,10 @@ export const Button = ({
 		<Tag
 			type={Tag === 'button' && props.onClick ? 'button' : undefined}
 			css={mq({
-				...style.common,
-				...style.appearance,
-				...style.responsive,
+				...styleCommon,
+				...styleAppearance[appearance][soft ? 'soft' : 'standard'],
+				...styleSize,
+				...styleBlock,
 			})}
 			onClick={onClick}
 			{...props}
@@ -119,10 +244,10 @@ export const Button = ({
 			{Tag !== 'input' ? (
 				<ButtonContent
 					size={size}
-					isBlock={isBlock}
+					block={block}
 					iconAfter={iconAfter}
 					iconBefore={iconBefore}
-					isSrOnlyText={isSrOnlyText}
+					srOnlyText={srOnlyText}
 				>
 					{children}
 				</ButtonContent>
@@ -164,21 +289,21 @@ export const propTypes = {
 	 *
 	 * Removes background colour and adjusts text colour.
 	 */
-	isSoft: PropTypes.bool,
+	soft: PropTypes.bool,
 
 	/**
 	 * Block mode.
 	 *
 	 * Fit button width to its parent width.
 	 */
-	isBlock: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
 	 * Trim mode.
 	 *
 	 * Removes horizontal padding.
 	 */
-	isTrim: PropTypes.bool,
+	trim: PropTypes.bool,
 
 	/**
 	 * Places an icon within the button, after the button’s text
@@ -193,12 +318,12 @@ export const propTypes = {
 	/**
 	 * Justify align button children
 	 */
-	isJustify: PropTypes.bool,
+	justify: PropTypes.bool,
 
 	/**
 	 * Enable ‘screen reader only’ text mode
 	 */
-	isSrOnlyText: PropTypes.bool,
+	srOnlyText: PropTypes.bool,
 
 	/**
 	 * Handler to be called on click
@@ -215,10 +340,10 @@ export const defaultProps = {
 	appearance: 'primary',
 	size: 'medium',
 	tag: 'button',
-	isSoft: false,
-	isBlock: false,
-	isTrim: false,
-	isJustify: false,
+	soft: false,
+	block: false,
+	trim: false,
+	justify: false,
 };
 
 Button.propTypes = propTypes;
