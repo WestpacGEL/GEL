@@ -15,6 +15,7 @@ export const Footer = ({ fancy, tag: Tag, children, ...props }) => {
 	return (
 		<Tag
 			css={mq({
+				flex: 'none', //no flex grow or shrink
 				position: 'relative',
 				overflow: 'hidden',
 				backgroundColor: '#fff',

@@ -55,6 +55,7 @@ export const Header = ({
 
 		// Bottom border
 		'::before': {
+			flex: 'none', //no flex grow or shrink
 			content: '""',
 			display: 'block',
 			position: 'absolute',

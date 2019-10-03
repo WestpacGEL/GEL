@@ -6,5 +6,7 @@ module.exports = {
 			lg: 992,
 			xl: 1200,
 		},
+		wrapperMax: 1922,
+		containerMax: 1320,
 	},
 };
