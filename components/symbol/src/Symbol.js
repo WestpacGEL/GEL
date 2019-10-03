@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -12,8 +12,7 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 const round = f => Math.round(f * 10) / 10; //1DP
 
 const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props }) => {
-	const { breakpoints } = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	const style = {
 		// Common styling

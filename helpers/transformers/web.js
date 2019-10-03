@@ -76,6 +76,7 @@ function build(BRAND) {
 		},
 		LAYOUT,
 		TYPE: { ...fonts },
+		BRAND,
 	};
 
 	try {

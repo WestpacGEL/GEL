@@ -12,8 +12,8 @@ import { WBGMultibrandSmallCenterLogo as WBG } from './multibrand/WBGMultibrandS
 const BRANDS = { BOM, BSA, BTFG, STG, WBC, WBG };
 
 export const MultibrandSmallCenterLogo = props => {
-	const { brand } = useTheme();
-	const Logo = BRANDS[brand];
+	const { BRAND } = useTheme();
+	const Logo = BRANDS[BRAND];
 
 	return <Logo {...props} />;
 };

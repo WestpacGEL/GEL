@@ -2,25 +2,26 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const FooterIcon = ({ icon: Icon, ...props }) => {
-	const {
-		breakpoints,
-		template: { footer },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
-	const style = {
-		float: 'left',
-		marginRight: footer.icon.marginRight,
-	};
-
-	return <Icon css={mq(style)} color={footer.icon.color} {...props} />;
+	return (
+		<Icon
+			css={mq({
+				float: 'left',
+				marginRight: ['0.375rem', '0.75rem'],
+			})}
+			color={COLORS.tints.muted60}
+			{...props}
+		/>
+	);
 };
 
 // ==============================

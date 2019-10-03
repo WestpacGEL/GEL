@@ -26,9 +26,7 @@ import {
 import { Button, ButtonWrap } from '@westpac/button';
 
 export default () => {
-	const {
-		template: { wrapper },
-	} = useTheme();
+	const { COLORS } = useTheme();
 
 	return (
 		<>
@@ -36,7 +34,7 @@ export default () => {
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
 					body: {
-						backgroundColor: wrapper.backgroundColor,
+						backgroundColor: COLORS.background,
 					},
 				}}
 			/>
@@ -44,7 +42,7 @@ export default () => {
 			<h2>Standard</h2>
 
 			<h3>Simple header (fixed in XS)</h3>
-			<Header isFixed={[true, false]}>
+			<Header fixed={[true, false]}>
 				<HeaderLogo
 					href="#0"
 					logo={[<MultibrandSmallLogo label="" />, <MultibrandLargeLogo label="" />]}
@@ -67,7 +65,7 @@ export default () => {
 						<Button appearance="link" size={['small', 'medium']}>
 							Help
 						</Button>
-						<Button appearance="faint" isSoft size={['small', 'medium']}>
+						<Button appearance="faint" soft size={['small', 'medium']}>
 							Sign out
 						</Button>
 					</ButtonWrap>
@@ -75,7 +73,7 @@ export default () => {
 			</Header>
 
 			<h3>Header with left header buttons and centred logo (in XS)</h3>
-			<Header isLogoCenter={[true, false]}>
+			<Header logoCenter={[true, false]}>
 				<HeaderButton href="#0" icon={ArrowLeftIcon} srOnlyText="Back to previous step" />
 
 				<HeaderLogo
@@ -86,7 +84,7 @@ export default () => {
 
 				<HeaderRight>
 					<ButtonWrap>
-						<Button appearance="faint" isSoft size={['small', 'medium']}>
+						<Button appearance="faint" soft size={['small', 'medium']}>
 							Save &amp; exit
 						</Button>
 					</ButtonWrap>
@@ -123,7 +121,7 @@ export default () => {
 				<HeaderRight>
 					<HeaderContact href="tel:1300130961" icon={TelephoneIcon}>
 						<HeaderContactText>Call us on</HeaderContactText>
-						<HeaderContactText isAccent>1300 130 961</HeaderContactText>
+						<HeaderContactText accent>1300 130 961</HeaderContactText>
 					</HeaderContact>
 				</HeaderRight>
 			</Header>
@@ -140,7 +138,7 @@ export default () => {
 
 				<HeaderRight>
 					<HeaderContact href="#0" icon={LiveChatIcon}>
-						<HeaderContactText isAccent>LiveChat</HeaderContactText>
+						<HeaderContactText accent>LiveChat</HeaderContactText>
 						<HeaderContactText>Online now</HeaderContactText>
 					</HeaderContact>
 				</HeaderRight>

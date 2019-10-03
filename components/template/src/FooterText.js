@@ -1,39 +1,30 @@
 /** @jsx jsx */
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const FooterText = props => {
-	const {
-		breakpoints,
-		template: { footer },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
-	const style = {
-		overflow: [null, 'hidden'], //icon wrapping (SM+)
-		...footer.text,
+	return (
+		<div
+			css={mq({
+				overflow: [null, 'hidden'], //icon wrapping (SM+)
+				color: COLORS.muted,
 
-		'p:first-of-type': {
-			marginTop: 0,
-		},
-		'p:last-child': {
-			marginBottom: 0,
-		},
-	};
-
-	return <div css={mq(style)} {...props} />;
+				'p:first-of-type': {
+					marginTop: 0,
+				},
+				'p:last-child': {
+					marginBottom: 0,
+				},
+			})}
+			{...props}
+		/>
+	);
 };
-
-// ==============================
-// Types
-// ==============================
-
-FooterText.propTypes = {};
-
-FooterText.defaultProps = {};

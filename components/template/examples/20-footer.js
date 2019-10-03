@@ -6,9 +6,7 @@ import { MultibrandSmallRightLogo } from '@westpac/symbol';
 import { PadlockIcon } from '@westpac/icon';
 
 export default () => {
-	const {
-		template: { wrapper },
-	} = useTheme();
+	const { COLORS } = useTheme();
 
 	return (
 		<>
@@ -16,7 +14,7 @@ export default () => {
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
 					body: {
-						backgroundColor: wrapper.backgroundColor,
+						backgroundColor: COLORS.background,
 					},
 				}}
 			/>
@@ -24,7 +22,7 @@ export default () => {
 			<h2>Standard</h2>
 
 			<h3>Simple footer</h3>
-			<Footer isFancy>
+			<Footer fancy>
 				<Grid>
 					<Cell width={[null, 9]}>
 						<FooterIcon icon={PadlockIcon} />

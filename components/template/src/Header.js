@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement, isValidElement } from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
-import { HeaderLogo } from './HeaderLogo';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 import { SrSkipLink } from '@westpac/accessibility-helpers';
 
 // ==============================
@@ -13,81 +12,80 @@ import { SrSkipLink } from '@westpac/accessibility-helpers';
 const asArray = val => (Array.isArray(val) ? val : [val]);
 
 // ==============================
+// Context and consumer hook
+// ==============================
+
+const HeaderContext = createContext();
+
+export const useHeaderContext = () => {
+	const context = useContext(HeaderContext);
+	if (!context) {
+		throw new Error('Header children should be wrapped in a <Header>.');
+	}
+	return context;
+};
+
+// ==============================
 // Component
 // ==============================
 
 export const Header = ({
-	isLogoCenter,
-	isFixed,
+	logoCenter,
+	fixed,
 	srSkipLinkText,
 	srSkipLinkHref,
 	tag: Tag,
 	children,
 	...props
 }) => {
-	const {
-		breakpoints,
-		template: { header },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
-	const style = {
-		// Common styling
-		common: {
-			display: 'flex',
-			position: 'relative',
-			flex: 1,
-			backgroundColor: '#fff',
-			textAlign: 'left',
-			marginLeft: 'auto',
-			marginRight: 'auto',
-			marginBottom: header.borderBottomWidth,
-			height: header.height,
+	// Common styling
+	const styleCommon = {
+		display: 'flex',
+		position: 'relative',
+		flex: 1,
+		backgroundColor: '#fff',
+		textAlign: 'left',
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		marginBottom: 1,
+		height: ['3.375rem', '4.0625rem'],
 
-			// Bottom border
-			'::before': {
-				content: '""',
-				display: 'block',
-				position: 'absolute',
-				zIndex: 1,
-				left: 0,
-				right: 0,
-				top: '100%',
-				overflow: 'hidden',
-				borderTop: `${header.borderBottomWidth} solid ${header.borderBottomColor}`,
-				transition: 'opacity .2s',
-				willChange: 'opacity',
-			},
+		// Bottom border
+		'::before': {
+			content: '""',
+			display: 'block',
+			position: 'absolute',
+			zIndex: 1,
+			left: 0,
+			right: 0,
+			top: '100%',
+			overflow: 'hidden',
+			borderTop: `1px solid ${COLORS.border}`,
+			transition: 'opacity .2s',
+			willChange: 'opacity',
 		},
-
-		// Fixed position styling
-		fixed: (() => {
-			const fixedArr = asArray(isFixed);
-
-			return {
-				position: fixedArr.map(f => f !== null && (f ? 'fixed' : 'relative')),
-				top: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
-				left: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
-				right: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
-				zIndex: fixedArr.map(f => f !== null && (f ? 1030 : 'auto')),
-			};
-		})(),
 	};
 
-	// Pass the selected props on to children
-	const childrenWithProps = Children.map(children, child => {
-		// HeaderLogo child
-		if (isValidElement(child) && child.type && child.type === HeaderLogo) {
-			return cloneElement(child, { isLogoCenter });
-		}
-		return child;
-	});
+	// Fixed position styling
+	const fixedArr = asArray(fixed);
+	const styleFixed = {
+		position: fixedArr.map(f => f !== null && (f ? 'fixed' : 'relative')),
+		top: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
+		left: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
+		right: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
+		zIndex: fixedArr.map(f => f !== null && (f ? 1030 : 'auto')),
+	};
 
 	return (
-		<Tag css={{ display: 'flex' }} {...props}>
-			{srSkipLinkText && <SrSkipLink href={srSkipLinkHref}>{srSkipLinkText}</SrSkipLink>}
-			<div css={mq({ ...style.common, ...style.fixed })}>{childrenWithProps}</div>
-		</Tag>
+		<HeaderContext.Provider value={{ logoCenter }}>
+			<Tag css={{ display: 'flex' }} {...props}>
+				{srSkipLinkText && <SrSkipLink href={srSkipLinkHref}>{srSkipLinkText}</SrSkipLink>}
+				<div css={mq({ ...styleCommon, ...styleFixed })}>{children}</div>
+			</Tag>
+		</HeaderContext.Provider>
 	);
 };
 
@@ -99,14 +97,14 @@ Header.propTypes = {
 	/**
 	 * Center logo mode
 	 */
-	isLogoCenter: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	logoCenter: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
 	 * Fixed positioning mode.
 	 *
 	 * When enabled the header will remain fixed to the top of the viewport during scrolling.
 	 */
-	isFixed: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	fixed: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
 	 * Screen reader skip link text
@@ -130,8 +128,8 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-	isLogoCenter: false,
-	isFixed: false,
+	logoCenter: false,
+	fixed: false,
 	srSkipLinkText: 'Skip to main content',
 	srSkipLinkHref: '#content',
 	tag: 'header',

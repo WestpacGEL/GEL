@@ -2,7 +2,7 @@
 
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -23,11 +23,10 @@ const cloneElement = (element, props) =>
 // Component
 // ==============================
 
-export const Hide = ({ isShow, displayCSS, children, ...props }) => {
-	const { breakpoints } = useTheme();
-	const mq = paint(breakpoints);
+export const Hide = ({ show, displayCSS, children, ...props }) => {
+	const mq = useMediaQuery();
 
-	const showArr = asArray(isShow);
+	const showArr = asArray(show);
 
 	// Pass the selected props on to children
 	const childrenWithProps = Children.map(children, child =>
@@ -50,7 +49,7 @@ Hide.propTypes = {
 	 *
 	 * For responsive control, pass an array of boolean values to use at each breakpoint.
 	 */
-	isShow: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	show: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
 	 * The CSS `display` property value to use when making the child element visible.
@@ -64,6 +63,6 @@ Hide.propTypes = {
 };
 
 Hide.defaultProps = {
-	isShow: false,
+	show: false,
 	displayCSS: 'inline-block',
 };

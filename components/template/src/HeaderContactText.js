@@ -8,18 +8,21 @@ import { jsx, useTheme } from '@westpac/core';
 // Component
 // ==============================
 
-export const HeaderContactText = ({ isAccent, tag: Tag, ...props }) => {
-	const { colors } = useTheme();
+export const HeaderContactText = ({ accent, tag: Tag, ...props }) => {
+	const { COLORS } = useTheme();
 
-	const style = {
-		color: isAccent && colors.primary.default,
+	return (
+		<Tag
+			css={{
+				color: accent && COLORS.primary,
 
-		'a:hover &, a:focus &': {
-			textDecoration: isAccent && 'underline',
-		},
-	};
-
-	return <Tag css={style} {...props} />;
+				'a:hover &, a:focus &': {
+					textDecoration: accent && 'underline',
+				},
+			}}
+			{...props}
+		/>
+	);
 };
 
 // ==============================
@@ -32,7 +35,7 @@ HeaderContactText.propTypes = {
 	 *
 	 * When enabled the text children will be styled as a link.
 	 */
-	isAccent: PropTypes.bool,
+	accent: PropTypes.bool,
 
 	/**
 	 * Component tag
@@ -40,6 +43,6 @@ HeaderContactText.propTypes = {
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 HeaderContactText.defaultProps = {
-	isAccent: false,
+	accent: false,
 	tag: 'div',
 };

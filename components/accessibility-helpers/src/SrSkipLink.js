@@ -2,17 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const SrSkipLink = ({ ...props }) => {
-	const {
-		typography: { link },
-	} = useTheme();
-
 	const common = {
 		position: 'absolute',
 		width: 1,
@@ -41,7 +37,7 @@ export const SrSkipLink = ({ ...props }) => {
 		},
 
 		':focus': {
-			outlineOffset: -link.focus.outlineOffset, //override to be inside
+			outlineOffset: -3, //override to be inside
 		},
 	};
 

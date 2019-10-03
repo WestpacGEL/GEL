@@ -2,40 +2,41 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const HeaderContact = ({ icon: Icon, tag: Tag, children, ...props }) => {
-	const { colors, breakpoints } = useTheme();
-	const mq = paint(breakpoints);
-
-	const style = {
-		common: {
-			display: 'flex',
-			flexWrap: 'nowrap',
-			alignItems: 'center',
-			justifyContent: 'center',
-			color: colors.text, //reset
-
-			'&, :hover, :focus': {
-				textDecoration: 'none', //reset underlining
-			},
-		},
-
-		details: {
-			paddingLeft: '0.8rem', //gap
-			fontSize: '1.4rem',
-			lineHeight: 1.3, //slightly tighter than default
-		},
-	};
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
 	return (
-		<Tag css={mq(style.common)} {...props}>
+		<Tag
+			css={mq({
+				display: 'flex',
+				flexWrap: 'nowrap',
+				alignItems: 'center',
+				justifyContent: 'center',
+				color: COLORS.text, //reset
+
+				'&, :hover, :focus': {
+					textDecoration: 'none', //reset underlining
+				},
+			})}
+			{...props}
+		>
 			{Icon && <Icon size="medium" />}
-			<div css={mq(style.details)}>{children}</div>
+			<div
+				css={mq({
+					paddingLeft: '0.5rem', //gap
+					fontSize: '0.875rem',
+					lineHeight: 1.3, //slightly tighter than default
+				})}
+			>
+				{children}
+			</div>
 		</Tag>
 	);
 };

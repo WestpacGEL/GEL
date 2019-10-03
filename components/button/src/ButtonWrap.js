@@ -2,7 +2,7 @@
 
 import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button } from './Button';
 
 // ==============================
@@ -10,12 +10,6 @@ import { Button } from './Button';
 // ==============================
 
 export const ButtonWrap = ({ children, ...props }) => {
-	const { button } = useTheme();
-
-	const style = {
-		marginLeft: button.wrappedButton.marginLeft,
-	};
-
 	const childrenWithProps = Children.map(children, (child, i) => {
 		// Apply additional styling on any adjacent (non-block) Button children
 		if (
@@ -25,7 +19,12 @@ export const ButtonWrap = ({ children, ...props }) => {
 			!child.props.isBlock &&
 			i > 0
 		) {
-			return cloneElement(child, { style: { ...style, ...child.props.style } });
+			return cloneElement(child, {
+				style: {
+					marginLeft: '0.3125rem',
+					...child.props.style,
+				},
+			});
 		}
 		return child;
 	});

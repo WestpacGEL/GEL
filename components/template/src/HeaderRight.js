@@ -2,7 +2,7 @@
 
 import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 import { HeaderButton } from './HeaderButton';
 
 // ==============================
@@ -10,11 +10,7 @@ import { HeaderButton } from './HeaderButton';
 // ==============================
 
 export const HeaderRight = ({ children, ...props }) => {
-	const {
-		breakpoints,
-		template: { header },
-	} = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	// Enable right padding by default
 	let isPadding = true;
@@ -29,20 +25,21 @@ export const HeaderRight = ({ children, ...props }) => {
 			// Disable right padding if a HeaderButton last child
 			if (isLast) isPadding = false;
 
-			return cloneElement(child, { isRight: true });
+			return cloneElement(child, { right: true });
 		}
 		return child;
 	});
 
-	const style = {
-		display: 'flex',
-		alignItems: 'center',
-		marginLeft: 'auto', //flex auto align right
-		marginRight: isPadding && header.right.marginRight,
-	};
-
 	return (
-		<div css={mq(style)} {...props}>
+		<div
+			css={mq({
+				display: 'flex',
+				alignItems: 'center',
+				marginLeft: 'auto', //flex auto align right
+				marginRight: isPadding && ['0.75rem', '1.5rem'],
+			})}
+			{...props}
+		>
 			{childrenWithProps}
 		</div>
 	);
