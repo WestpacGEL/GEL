@@ -16,7 +16,7 @@ import { TextInput } from '@westpac/text-input';
 export default () => (
 	<>
 		<h2>Default size and spacing</h2>
-		<Form action="." noValidate>
+		<Form>
 			<FormSection>
 				<ChitChat>
 					Hello, I’m the friendly conversational text component. I live at the top of the form pod
@@ -68,7 +68,7 @@ export default () => (
 		<hr />
 
 		<h2>Large size with large spacing</h2>
-		<Form action="." size="large" spacing="large" noValidate>
+		<Form size="large" spacing="large">
 			<FormSection>
 				<ChitChat>
 					Hello, I’m the friendly conversational text component. I live at the top of the form pod
