@@ -1,40 +1,34 @@
 import React from 'react';
-import { InputGroup, InputGroupAddon } from '../src';
-import { Button } from '@westpac/button';
-import { TextInput } from '@westpac/text-input';
+import { InputGroup, TextInput, Button } from '../src';
 
 export default () => (
 	<>
-		<h2>Small size</h2>
-		<p>
-			<InputGroup size="small">
-				<TextInput />
-				<Button appearance="hero">Go</Button>
-			</InputGroup>
-		</p>
+		<h2>Small</h2>
 
-		<h2>Medium size</h2>
-		<p>
-			<InputGroup>
-				<TextInput />
-				<Button appearance="hero">Go</Button>
-			</InputGroup>
-		</p>
+		<InputGroup size="small">
+			<TextInput />
+			<Button>Go</Button>
+		</InputGroup>
 
-		<h2>Large size</h2>
-		<p>
-			<InputGroup size="large">
-				<TextInput />
-				<Button appearance="hero">Go</Button>
-			</InputGroup>
-		</p>
+		<h2>Medium</h2>
 
-		<h2>Extra-large size</h2>
-		<p>
-			<InputGroup size="xlarge">
-				<TextInput />
-				<Button appearance="hero">Go</Button>
-			</InputGroup>
-		</p>
+		<InputGroup>
+			<TextInput />
+			<Button>Go</Button>
+		</InputGroup>
+
+		<h2>Large</h2>
+
+		<InputGroup size="large">
+			<TextInput />
+			<Button>Go</Button>
+		</InputGroup>
+
+		<h2>Extra large</h2>
+
+		<InputGroup size="xlarge">
+			<TextInput />
+			<Button>Go</Button>
+		</InputGroup>
 	</>
 );
