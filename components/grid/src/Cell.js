@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -16,8 +16,7 @@ const getEndSpan = c => (Array.isArray(c) ? c.map(span) : span(c));
 // ==============================
 
 export const Cell = ({ area, center, height, left, middle, top, width, ...props }) => {
-	const { breakpoints } = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	return (
 		<div

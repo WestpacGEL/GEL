@@ -6,16 +6,16 @@ export default () => (
 	<>
 		<h2>Trim</h2>
 		<p>
-			<Button appearance="link" trim>
+			<Button appearance="link" isTrim>
 				Trimmed link button
 			</Button>
 		</p>
 
 		<hr />
 
-		<h2>srOnlyText (screen reader only text)</h2>
+		<h2>‘Screen reader only’ text mode</h2>
 		<p>
-			<Button iconAfter={HouseIcon} srOnlyText>
+			<Button iconAfter={HouseIcon} isSrOnlyText>
 				Screen reader only text
 			</Button>
 		</p>

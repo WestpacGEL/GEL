@@ -7,7 +7,7 @@ export default () => (
 			<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I
 			can be closed. <a href="#">Link</a>
 		</Alert>
-		<Alert appearance="information" closable>
+		<Alert appearance="info" closable>
 			<strong>Heads up!</strong> This alert needs your attention, but it’s not super important. Hey
 			neato, I can be closed. <a href="#">Link</a>
 		</Alert>

@@ -21,16 +21,16 @@ export default () => (
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" soft disabled>
+			<Button appearance="primary" isSoft disabled>
 				Primary soft
 			</Button>{' '}
-			<Button appearance="hero" soft disabled>
+			<Button appearance="hero" isSoft disabled>
 				Hero soft
 			</Button>{' '}
-			<Button appearance="neutral" soft disabled>
+			<Button appearance="neutral" isSoft disabled>
 				Neutral soft
 			</Button>{' '}
-			<Button appearance="faint" soft disabled>
+			<Button appearance="faint" isSoft disabled>
 				Faint soft
 			</Button>
 		</p>

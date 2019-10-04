@@ -22,13 +22,13 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 	const formContext = useContext(FormContext);
 	const mq = paint(breakpoints);
 
-	const inline = formContext.inline;
+	const isInline = formContext.isInline;
 	const textInputSize = formContext.size || size;
 
 	// Common styling
 	const styleCommon = {
-		display: inline ? ['block', 'inline-block'] : 'block',
-		width: inline ? ['100%', 'auto'] : '100%',
+		display: isInline ? ['block', 'inline-block'] : 'block',
+		width: isInline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
 		lineHeight: textInput.lineHeight,
 		fontWeight: textInput.fontWeight,
@@ -41,7 +41,7 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 				: textInput.appearance.default.borderColor,
 		borderRadius: textInput.borderRadius,
 		transition: 'border 0.2s ease',
-		verticalAlign: inline ? 'middle' : null,
+		verticalAlign: isInline ? 'middle' : null,
 		padding: textInput.size[textInputSize].padding.join(' '),
 		fontSize: textInput.size[textInputSize].fontSize,
 		height: `calc(${textInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
@@ -72,9 +72,7 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 		},
 	};
 
-	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${
-		colors.muted
-	}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
+	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${colors.muted}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
 	const caretGap = textInput.select.caretGap;
 	const caretWidth = '14px';
 
@@ -101,7 +99,7 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 			},
 		},
 		textarea: {
-			verticalAlign: inline && 'top',
+			verticalAlign: isInline && 'top',
 			...textInput.textarea.size[textInputSize],
 		},
 	};

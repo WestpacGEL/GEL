@@ -68,7 +68,7 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 ## Block
 
 <Playground>
-	<ButtonGroup name="example-buttongroup-block" block>
+	<ButtonGroup name="example-buttongroup-block" isBlock>
 		<ButtonGroupButton value="left">Left</ButtonGroupButton>
 		<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
 		<ButtonGroupButton value="right">Right</ButtonGroupButton>
@@ -94,17 +94,17 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 
 ## srOnlyText
 
-You can visually hide button text by providing a `srOnlyText` prop.
+You can visually hide button text by providing a `isSrOnlyText` prop.
 
 <Playground>
 	<ButtonGroup name="example-buttongroup-sronlytext">
-		<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
+		<ButtonGroupButton iconAfter={InfoIcon} isSrOnlyText>
 			Screen reader only
 		</ButtonGroupButton>
-		<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
+		<ButtonGroupButton iconAfter={InfoIcon} isSrOnlyText>
 			Screen reader only
 		</ButtonGroupButton>
-		<ButtonGroupButton iconAfter={InfoIcon} srOnlyText>
+		<ButtonGroupButton iconAfter={InfoIcon} isSrOnlyText>
 			Screen reader only
 		</ButtonGroupButton>
 	</ButtonGroup>

@@ -1,4 +1,5 @@
 brands/**/dist/
 components/**/dist/
+components/**/cypress/
 .docz/
 docs/

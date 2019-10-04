@@ -17,13 +17,13 @@ These are very simple toggle switches ideal for use in settings or preference sc
 
 ## Label text
 
-Form switches require label text in order to meet accessibility compliance requirements. Label text is set via children. You can visually hide this text by providing a `srOnlyText` prop if necessary.
+Form switches require label text in order to meet accessibility compliance requirements. Label text is set via children. You can visually hide this text by providing a `isSrOnlyText` prop if necessary.
 
 <Playground>
 	<Switch name="example-text" toggleText={['Yes', 'No']}>
 		Enable notifications
 	</Switch>
-	<Switch name="example-text-sronlytext" toggleText={['Yes', 'No']} srOnlyText>
+	<Switch name="example-text-sronlytext" toggleText={['Yes', 'No']} isSrOnlyText>
 		Enable notifications
 	</Switch>
 </Playground>
@@ -73,10 +73,10 @@ Form switches can be sized responsively by passing an array of size values for e
 Flipped mode renders the toggle on the left of the label text.
 
 <Playground>
-	<Switch name="example-flipped-1" flipped>
+	<Switch name="example-flipped-1" isFlipped>
 		Flipped mode
 	</Switch>
-	<Switch name="example-flipped-2" flipped>
+	<Switch name="example-flipped-2" isFlipped>
 		Flipped mode
 	</Switch>
 </Playground>
@@ -86,33 +86,33 @@ Flipped mode renders the toggle on the left of the label text.
 Block mode extends the width so it spans the full width of its parent.
 
 <Playground>
-	<Switch name="example-block-1" block>
+	<Switch name="example-block-1" isBlock>
 		Block mode
 	</Switch>
-	<Switch name="example-block-2" block>
+	<Switch name="example-block-2" isBlock>
 		Block mode
 	</Switch>
 </Playground>
 
 ## Flipped & block
 
-You can set `flipped` and `block` together.
+You can set `isFlipped` and `isBlock` together.
 
 <Playground>
-	<Switch name="example-flipped-block-1" flipped block>
+	<Switch name="example-flipped-block-1" isFlipped isBlock>
 		Flip & block mode
 	</Switch>
-	<Switch name="example-flipped-block-2" flipped block>
+	<Switch name="example-flipped-block-2" isFlipped isBlock>
 		Flip & block mode
 	</Switch>
 </Playground>
 
 ## Checked
 
-Enable the Switch component by passing a `checked` prop.
+Enable the Switch component by passing a `isChecked` prop.
 
 <Playground>
-	<Switch name="example-checked" checked>
+	<Switch name="example-checked" isChecked>
 		Checked by default
 	</Switch>
 </Playground>

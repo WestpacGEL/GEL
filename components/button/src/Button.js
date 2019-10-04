@@ -18,13 +18,13 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 export const Button = ({
 	appearance,
 	size,
-	soft,
-	block,
-	trim,
+	isSoft,
+	isBlock,
+	isTrim,
 	iconAfter,
 	iconBefore,
-	justify,
-	srOnlyText,
+	isJustify,
+	isSrOnlyText,
 	tag: Tag,
 	onClick,
 	children,
@@ -42,7 +42,7 @@ export const Button = ({
 			borderRadius: button.borderRadius,
 			cursor: 'pointer',
 			fontWeight: button.fontWeight,
-			justifyContent: justify ? 'space-between' : 'center', //horizontal
+			justifyContent: isJustify ? 'space-between' : 'center', //horizontal
 			lineHeight: button.lineHeight,
 			textAlign: 'center',
 			textDecoration: 'none',
@@ -67,28 +67,28 @@ export const Button = ({
 		// Button appearance styling
 		appearance: {
 			...button.appearance[appearance].standard.default,
-			...(soft && appearance !== 'link' && button.appearance[appearance].soft.default),
+			...(isSoft && appearance !== 'link' && button.appearance[appearance].soft.default),
 
 			':hover': {
 				...button.appearance[appearance].standard.hover,
-				...(soft && appearance !== 'link' && button.appearance[appearance].soft.hover),
+				...(isSoft && appearance !== 'link' && button.appearance[appearance].soft.hover),
 			},
 			':active, &.active': {
 				...button.appearance[appearance].standard.active,
-				...(soft && appearance !== 'link' && button.appearance[appearance].soft.active),
+				...(isSoft && appearance !== 'link' && button.appearance[appearance].soft.active),
 			},
 		},
 
 		// Reponsive styling (button size and block)
 		responsive: (() => {
 			const sizeArr = asArray(size);
-			const blockArr = asArray(block);
+			const blockArr = asArray(isBlock);
 
 			return {
 				padding: sizeArr.map(s => {
 					if (!s) return null;
 					const p = [...button.size[s].padding];
-					if (trim) p[1] = '0';
+					if (isTrim) p[1] = '0';
 
 					return p.join(' ');
 				}),
@@ -119,10 +119,10 @@ export const Button = ({
 			{Tag !== 'input' ? (
 				<ButtonContent
 					size={size}
-					block={block}
+					isBlock={isBlock}
 					iconAfter={iconAfter}
 					iconBefore={iconBefore}
-					srOnlyText={srOnlyText}
+					isSrOnlyText={isSrOnlyText}
 				>
 					{children}
 				</ButtonContent>
@@ -164,21 +164,21 @@ export const propTypes = {
 	 *
 	 * Removes background colour and adjusts text colour.
 	 */
-	soft: PropTypes.bool,
+	isSoft: PropTypes.bool,
 
 	/**
 	 * Block mode.
 	 *
 	 * Fit button width to its parent width.
 	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	isBlock: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
 	 * Trim mode.
 	 *
 	 * Removes horizontal padding.
 	 */
-	trim: PropTypes.bool,
+	isTrim: PropTypes.bool,
 
 	/**
 	 * Places an icon within the button, after the button’s text
@@ -193,12 +193,12 @@ export const propTypes = {
 	/**
 	 * Justify align button children
 	 */
-	justify: PropTypes.bool,
+	isJustify: PropTypes.bool,
 
 	/**
 	 * Enable ‘screen reader only’ text mode
 	 */
-	srOnlyText: PropTypes.bool,
+	isSrOnlyText: PropTypes.bool,
 
 	/**
 	 * Handler to be called on click
@@ -215,10 +215,10 @@ export const defaultProps = {
 	appearance: 'primary',
 	size: 'medium',
 	tag: 'button',
-	soft: false,
-	block: false,
-	trim: false,
-	justify: false,
+	isSoft: false,
+	isBlock: false,
+	isTrim: false,
+	isJustify: false,
 };
 
 Button.propTypes = propTypes;

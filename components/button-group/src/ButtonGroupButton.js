@@ -17,28 +17,25 @@ export const ButtonGroupButton = ({
 	value,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
-	srOnlyText,
-	checked,
+	isSrOnlyText,
+	isChecked,
 	onChange,
 	children,
 	...props
 }) => {
 	const { button } = useTheme();
-	const [isChecked, setIsChecked] = useState(checked);
+	const [checked, setChecked] = useState(isChecked);
 	const [buttonId] = useState(`button-${shortid.generate()}`);
 
-	useEffect(
-		() => {
-			setIsChecked(checked);
-		},
-		[checked]
-	);
+	useEffect(() => {
+		setChecked(checked);
+	}, [checked]);
 
 	const toggle = () => {
 		if (onChange) {
 			onChange();
 		} else {
-			setIsChecked(!isChecked);
+			setChecked(!checked);
 		}
 	};
 
@@ -54,7 +51,7 @@ export const ButtonGroupButton = ({
 				name={name}
 				id={buttonId}
 				value={value}
-				checked={isChecked}
+				checked={checked}
 				onChange={toggle}
 			/>
 			<Button
@@ -82,9 +79,9 @@ export const ButtonGroupButton = ({
 				size={size}
 				iconAfter={IconAfter}
 				iconBefore={IconBefore}
-				srOnlyText={srOnlyText}
-				soft
-				block
+				isSrOnlyText={isSrOnlyText}
+				isSoft
+				isBlock
 			>
 				{children}
 			</Button>
@@ -115,7 +112,7 @@ ButtonGroupButton.propTypes = {
 	/**
 	 * Check the button
 	 */
-	checked: PropTypes.bool,
+	isChecked: PropTypes.bool,
 
 	/**
 	 * The onChange handler for this button
@@ -129,5 +126,5 @@ ButtonGroupButton.propTypes = {
 };
 
 ButtonGroupButton.defaultProps = {
-	checked: false,
+	isChecked: false,
 };

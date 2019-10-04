@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import { jsx, useTheme, UserModeContext } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
 // Component
@@ -14,31 +14,27 @@ export const FormCheckItem = ({
 	name,
 	value,
 	size,
-	inline,
-	flipped,
-	checked,
+	isInline,
+	isFlipped,
+	isChecked,
 	disabled,
 	onChange,
 	children,
 	...props
 }) => {
 	const { formCheck, typography } = useTheme();
-	const isKeyboardUser = useContext(UserModeContext);
-	const [isChecked, setIsChecked] = useState(checked);
+	const [checked, setChecked] = useState(isChecked);
 	const [formCheckId] = useState(`formCheck-${shortid.generate()}`);
 
-	useEffect(
-		() => {
-			setIsChecked(checked);
-		},
-		[checked]
-	);
+	useEffect(() => {
+		setChecked(checked);
+	}, [checked]);
 
 	const toggle = () => {
 		if (onChange) {
 			onChange();
 		} else {
-			setIsChecked(!isChecked);
+			setChecked(!checked);
 		}
 	};
 
@@ -54,12 +50,12 @@ export const FormCheckItem = ({
 		// Common styling
 		common: {
 			position: 'relative',
-			display: inline ? 'inline-block' : 'block',
-			verticalAlign: inline && 'top',
-			marginRight: inline && formCheck.size[size].item.marginRight,
+			display: isInline ? 'inline-block' : 'block',
+			verticalAlign: isInline && 'top',
+			marginRight: isInline && formCheck.size[size].item.marginRight,
 			marginBottom: formCheck.size[size].item.marginBottom,
 			minHeight: controlHeight,
-			[flipped ? 'paddingRight' : 'paddingLeft']: controlWidth,
+			[isFlipped ? 'paddingRight' : 'paddingLeft']: controlWidth,
 		},
 
 		// Input control styling
@@ -67,7 +63,7 @@ export const FormCheckItem = ({
 			position: 'absolute',
 			zIndex: 1,
 			top: 0,
-			[flipped ? 'right' : 'left']: 0,
+			[isFlipped ? 'right' : 'left']: 0,
 			width: controlWidth,
 			height: controlHeight,
 			cursor: 'pointer',
@@ -84,7 +80,7 @@ export const FormCheckItem = ({
 			display: 'inline-block',
 			paddingTop: formCheck.size[size].label.paddingTop,
 			paddingBottom: formCheck.size[size].label.paddingBottom,
-			[flipped ? 'paddingRight' : 'paddingLeft']: formCheck.size[size].label.gap,
+			[isFlipped ? 'paddingRight' : 'paddingLeft']: formCheck.size[size].label.gap,
 			marginBottom: 0,
 			cursor: 'pointer',
 
@@ -103,7 +99,7 @@ export const FormCheckItem = ({
 				boxSizing: 'border-box',
 				position: 'absolute',
 				top: 0,
-				[flipped ? 'right' : 'left']: 0,
+				[isFlipped ? 'right' : 'left']: 0,
 				width: controlWidth,
 				height: controlHeight,
 				border: `${formCheck.control.borderWidth} solid ${formCheck.control.default.borderColor}`,
@@ -111,9 +107,10 @@ export const FormCheckItem = ({
 				borderRadius: formCheck.control.check[type].borderRadius,
 
 				// Focus state
-				'input:focus + &': {
-					...(isKeyboardUser && typography.link.focus),
-				},
+				// TODO: this probably needs to be handled via the body class
+				// 'input:focus + &': {
+				// 	...(isKeyboardUser && typography.link.focus),
+				// },
 
 				// Disabled state
 				'input:disabled + &, fieldset:disabled &': {
@@ -128,7 +125,7 @@ export const FormCheckItem = ({
 				border: `solid ${formCheck.control.default.borderColor}`,
 				opacity: 0, //hide
 				top: `calc(((${controlHeight} - ${checkHeight}) / 2) + ${checkTweak})`,
-				[flipped ? 'right' : 'left']: `calc((${controlWidth} - ${checkWidth}) / 2)`,
+				[isFlipped ? 'right' : 'left']: `calc((${controlWidth} - ${checkWidth}) / 2)`,
 				width: type === 'radio' ? 0 : checkWidth,
 				height: type === 'radio' ? 0 : checkHeight,
 				borderWidth:
@@ -156,7 +153,7 @@ export const FormCheckItem = ({
 				name={name}
 				id={formCheckId}
 				value={value}
-				checked={isChecked}
+				checked={checked}
 				disabled={disabled}
 				onChange={toggle}
 			/>
@@ -180,7 +177,7 @@ FormCheckItem.propTypes = {
 	/**
 	 * Check the Form check item
 	 */
-	checked: PropTypes.bool,
+	isChecked: PropTypes.bool,
 
 	/**
 	 * Disable the Form check item
@@ -199,6 +196,6 @@ FormCheckItem.propTypes = {
 };
 
 FormCheckItem.defaultProps = {
-	checked: false,
+	isChecked: false,
 	disabled: false,
 };

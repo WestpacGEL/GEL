@@ -5,7 +5,7 @@ export default () => (
 	<>
 		<ButtonGroup name="example-checked">
 			<ButtonGroupButton value="left">Left</ButtonGroupButton>
-			<ButtonGroupButton value="middle" checked>
+			<ButtonGroupButton value="middle" isChecked>
 				Middle
 			</ButtonGroupButton>
 			<ButtonGroupButton value="right">Right</ButtonGroupButton>
