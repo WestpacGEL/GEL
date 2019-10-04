@@ -5,9 +5,7 @@ route: /input-group
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { InputGroup, InputGroupAddon } from './src';
-import { Button } from '@westpac/button';
-import { TextInput } from '@westpac/text-input';
+import { InputGroup, Addon, TextInput, Button } from './src';
 
 # InputGroup
 
@@ -19,20 +17,20 @@ Input addon elements can be positioned at either end of input fields and you may
 
 <Playground>
 	<InputGroup>
-		<InputGroupAddon>AUS $</InputGroupAddon>
+		<Addon>AUS $</Addon>
 		<TextInput />
 	</InputGroup>
 	<br />
 	<InputGroup>
 		<TextInput />
-		<InputGroupAddon>AUS $</InputGroupAddon>
+		<Addon>AUS $</Addon>
 	</InputGroup>
 </Playground>
 
 ## Button
 
 <Playground>
-	<InputGroup appearance="hero">
+	<InputGroup>
 		<TextInput />
 		<Button>Go</Button>
 	</InputGroup>
@@ -66,19 +64,19 @@ Input addon elements can be positioned at either end of input fields and you may
 
 <Playground>
 	<InputGroup>
-		<InputGroupAddon>AUS $</InputGroupAddon>
+		<Addon>AUS $</Addon>
 		<TextInput />
-		<InputGroupAddon>.00</InputGroupAddon>
+		<Addon>.00</Addon>
 	</InputGroup>
 	<br />
-	<InputGroup appearance="hero">
-		<InputGroupAddon>AUS $</InputGroupAddon>
+	<InputGroup>
+		<Addon>AUS $</Addon>
 		<TextInput />
 		<Button>Go</Button>
 	</InputGroup>
 	<br />
 	<InputGroup>
-		<InputGroupAddon>AUS $</InputGroupAddon>
+		<Addon>AUS $</Addon>
 		<TextInput />
 		<TextInput tag="select">
 			<option>Select</option>
