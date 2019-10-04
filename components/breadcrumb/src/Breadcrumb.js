@@ -15,7 +15,7 @@ import { SrOnly } from '@westpac/accessibility-helpers';
 export const Breadcrumb = ({ children, ...props }) => {
 	const childrenWithProps = Children.map(children, (child, index) => {
 		// Make sure we don't break the expected implementation contract of using `cloneElement`.
-		if (child.type.name !== 'BreadcrumbCrumb') {
+		if (!child.type.isCrumb) {
 			throw new Error('<Breadcrumb /> only accepts <Crumb /> as direct children.');
 		}
 		return index === Children.count(children) - 1 ? cloneElement(child, { last: true }) : child;

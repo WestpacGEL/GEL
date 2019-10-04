@@ -51,6 +51,8 @@ export const BreadcrumbCrumb = ({ children, last, ...props }) => {
 	);
 };
 
+BreadcrumbCrumb.isCrumb = true;
+
 // ==============================
 // Types
 // ==============================
