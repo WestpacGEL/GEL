@@ -37,13 +37,15 @@ export const ButtonGroup = ({
 		setChecked(event.target.value);
 	};
 
-	const numChildren = Children.count(children);
 	const childrenWithProps = Children.map(children, (child, index) => {
-		if (index === 0) {
-			return cloneElement(child, { first: true })
+		if (!child.type.isButton) {
+			throw new Error('<ButtonGroup /> only accepts <Button /> as direct children.');
 		}
-		if (index === numChildren - 1) {
-			return cloneElement(child, { last: true })
+		if (index === 0) {
+			return cloneElement(child, { first: true });
+		}
+		if (index === Children.count(children) - 1) {
+			return cloneElement(child, { last: true });
 		}
 
 		return child;

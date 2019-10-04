@@ -43,7 +43,7 @@ export const ButtonGroupButton = ({
 			/>
 			<Button
 				css={{
-					// Style internal borders
+					// Override styling of internal borders
 					...(!last && {
 						borderTopRightRadius: 0,
 						borderBottomRightRadius: 0,
@@ -68,6 +68,8 @@ export const ButtonGroupButton = ({
 		</label>
 	);
 };
+
+ButtonGroupButton.isButton = true;
 
 // ==============================
 // Types
