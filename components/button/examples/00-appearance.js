@@ -13,17 +13,20 @@ export default () => (
 		<Button appearance="faint">Faint standard</Button> <Button appearance="link">Link</Button>
 		<hr />
 		<h2>Soft</h2>
-		<Button appearance="primary" isSoft>
+		<Button appearance="primary" soft>
 			Primary soft
 		</Button>{' '}
-		<Button appearance="hero" isSoft>
+		<Button appearance="hero" soft>
 			Hero soft
 		</Button>{' '}
-		<Button appearance="neutral" isSoft>
+		<Button appearance="neutral" soft>
 			Neutral soft
 		</Button>{' '}
-		<Button appearance="faint" isSoft>
+		<Button appearance="faint" soft>
 			Faint soft
+		</Button>{' '}
+		<Button appearance="link" soft>
+			Link soft
 		</Button>
 	</>
 );
