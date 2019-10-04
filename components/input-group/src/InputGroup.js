@@ -1,9 +1,17 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement, useContext } from 'react';
+import React, { Children, cloneElement, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
-import { FormContext } from '@westpac/form';
+import { useFormContext } from '@westpac/form';
+
+// ==============================
+// Context and consumer hook
+// ==============================
+
+const InputGroupContext = createContext();
+
+export const useInputGroupContext = () => useContext(InputGroupContext);
 
 // ==============================
 // Component
@@ -13,61 +21,28 @@ import { FormContext } from '@westpac/form';
  * Input Group: Styled input fields with attached addons. Addons can be text ($, %, .00 etc) or form controls (buttons or select inputs).
  */
 export const InputGroup = ({ size, children, ...props }) => {
-	const formContext = useContext(FormContext);
+	// Consume FormContext
+	const formContext = useFormContext();
+	const inputGroupSize = size || (formContext && formContext.size) || 'medium';
 
-	console.log('context', formContext);
+	const numChildren = Children.count(children);
+	const childrenWithProps = Children.map(children, (child, index) => {
+		if (index === 0) {
+			return cloneElement(child, { first: true });
+		}
+		if (index === numChildren - 1) {
+			return cloneElement(child, { last: true });
+		}
 
-	const inputGroupSize = formContext.size || size;
-
-	console.log('inputGroupSize', inputGroupSize);
-
-	const childrenWithProps = Children.map(children, child =>
-		cloneElement(child, { size: inputGroupSize })
-	);
-
-	const style = {
-		display: 'flex',
-
-		select: {
-			width: 'auto',
-		},
-
-		'select:not(:first-child)': {
-			marginLeft: '-1px',
-		},
-
-		'select:not(:last-child)': {
-			marginRight: '-1px',
-		},
-
-		'input:not(:first-child), span:not(:first-child), button:not(:first-child), select:not(:first-child)': {
-			borderTopLeftRadius: 0,
-			borderBottomLeftRadius: 0,
-		},
-
-		'input:not(:last-child), span:not(:last-child), button:not(:last-child), select:not(:last-child)': {
-			borderTopRightRadius: 0,
-			borderBottomRightRadius: 0,
-		},
-
-		'input + span': {
-			borderTopRightRadius: '3px',
-			borderBottomRightRadius: '3px',
-		},
-
-		'span:first-child, button:first-child': {
-			borderRight: 0,
-		},
-
-		'span:last-child, button:last-child': {
-			borderLeft: 0,
-		},
-	};
+		return child;
+	});
 
 	return (
-		<div css={style} {...props}>
-			{childrenWithProps}
-		</div>
+		<InputGroupContext.Provider value={{ size: inputGroupSize }}>
+			<div css={{ display: 'flex' }} {...props}>
+				{childrenWithProps}
+			</div>
+		</InputGroupContext.Provider>
 	);
 };
 
@@ -91,6 +66,4 @@ InputGroup.propTypes = {
 	children: PropTypes.node.isRequired,
 };
 
-InputGroup.defaultProps = {
-	size: 'medium',
-};
+InputGroup.defaultProps = {};
