@@ -77,7 +77,7 @@ ButtonGroupButton.isButton = true;
 
 ButtonGroupButton.propTypes = {
 	/**
-	 * Button group button input element’s value
+	 * Button input element’s value
 	 */
 	value: PropTypes.string.isRequired,
 
@@ -92,19 +92,14 @@ ButtonGroupButton.propTypes = {
 	iconBefore: PropTypes.func,
 
 	/**
-	 * First child
+	 * Enable first child mode
 	 */
 	first: PropTypes.bool,
 
 	/**
-	 * Last child
+	 * Enable last child mode
 	 */
 	last: PropTypes.bool,
-
-	/**
-	 * Check the button
-	 */
-	checked: PropTypes.bool,
 
 	/**
 	 * The onChange handler for this button
@@ -112,7 +107,7 @@ ButtonGroupButton.propTypes = {
 	onChange: PropTypes.func,
 
 	/**
-	 * Button group button text
+	 * Button text
 	 */
 	children: PropTypes.node,
 };
@@ -120,5 +115,4 @@ ButtonGroupButton.propTypes = {
 ButtonGroupButton.defaultProps = {
 	first: false,
 	last: false,
-	checked: false,
 };
