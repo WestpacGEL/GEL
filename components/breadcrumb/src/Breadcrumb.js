@@ -13,9 +13,13 @@ import { SrOnly } from '@westpac/accessibility-helpers';
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
 export const Breadcrumb = ({ children, ...props }) => {
-	const childrenWithProps = Children.map(children, (child, index) =>
-		index === Children.count(children) - 1 ? cloneElement(child, { last: true }) : child
-	);
+	const childrenWithProps = Children.map(children, (child, index) => {
+		// Make sure we don't break the expected implementation contract of using `cloneElement`.
+		if (child.type.name !== 'BreadcrumbCrumb') {
+			throw new Error('<Breadcrumb /> only accepts <Crumb /> as direct children.');
+		}
+		return index === Children.count(children) - 1 ? cloneElement(child, { last: true }) : child;
+	});
 
 	return (
 		<div {...props}>
