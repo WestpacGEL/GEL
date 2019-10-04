@@ -15,6 +15,8 @@ export const ButtonGroupButton = ({
 	value,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
+	first,
+	last,
 	srOnlyText,
 	children,
 	...props
@@ -41,16 +43,16 @@ export const ButtonGroupButton = ({
 			/>
 			<Button
 				css={{
-					// Style internal borders
-					'label:not(:last-child) > &': {
+					// Override styling of internal borders
+					...(!last && {
 						borderTopRightRadius: 0,
 						borderBottomRightRadius: 0,
 						borderRight: 0,
-					},
-					'label:not(:first-of-type) > &': {
+					}),
+					...(!first && {
 						borderTopLeftRadius: 0,
 						borderBottomLeftRadius: 0,
-					},
+					}),
 				}}
 				tag="span"
 				appearance={appearance}
@@ -67,13 +69,15 @@ export const ButtonGroupButton = ({
 	);
 };
 
+ButtonGroupButton.isButton = true;
+
 // ==============================
 // Types
 // ==============================
 
 ButtonGroupButton.propTypes = {
 	/**
-	 * Button group button input element’s value
+	 * Button input element’s value
 	 */
 	value: PropTypes.string.isRequired,
 
@@ -88,9 +92,14 @@ ButtonGroupButton.propTypes = {
 	iconBefore: PropTypes.func,
 
 	/**
-	 * Check the button
+	 * Enable first child mode
 	 */
-	checked: PropTypes.bool,
+	first: PropTypes.bool,
+
+	/**
+	 * Enable last child mode
+	 */
+	last: PropTypes.bool,
 
 	/**
 	 * The onChange handler for this button
@@ -98,11 +107,12 @@ ButtonGroupButton.propTypes = {
 	onChange: PropTypes.func,
 
 	/**
-	 * Button group button text
+	 * Button text
 	 */
 	children: PropTypes.node,
 };
 
 ButtonGroupButton.defaultProps = {
-	checked: false,
+	first: false,
+	last: false,
 };
