@@ -16,11 +16,18 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // ==============================
 
 export const Header = ({ fixed, srSkipLinkText, srSkipLinkHref, tag: Tag, children, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS, LAYOUT } = useTheme();
 	const mq = useMediaQuery();
 
+	const height = ['3.375rem', '4.0625rem'];
+
+	const styleWrapper = {
+		display: 'flex',
+		height, //wrapper (and inner) get height to stop scroll jump when `fixed`
+	};
+
 	// Common styling
-	const styleCommon = {
+	const styleHeader = {
 		display: 'flex',
 		position: 'relative',
 		flex: 1,
@@ -29,7 +36,9 @@ export const Header = ({ fixed, srSkipLinkText, srSkipLinkHref, tag: Tag, childr
 		marginLeft: 'auto',
 		marginRight: 'auto',
 		marginBottom: 1,
-		height: ['3.375rem', '4.0625rem'],
+		height,
+		maxWidth: `${LAYOUT.wrapperMax - 2}px`, //wraperMax - borders
+		width: '100%', //required if `fixed` (IE11)
 
 		// Bottom border
 		'::before': {
@@ -59,9 +68,9 @@ export const Header = ({ fixed, srSkipLinkText, srSkipLinkHref, tag: Tag, childr
 	};
 
 	return (
-		<Tag css={{ display: 'flex' }} {...props}>
+		<Tag css={mq(styleWrapper)} {...props}>
 			{srSkipLinkText && <SrSkipLink href={srSkipLinkHref}>{srSkipLinkText}</SrSkipLink>}
-			<div css={mq({ ...styleCommon, ...styleFixed })}>{children}</div>
+			<div css={mq({ ...styleHeader, ...styleFixed })}>{children}</div>
 		</Tag>
 	);
 };
