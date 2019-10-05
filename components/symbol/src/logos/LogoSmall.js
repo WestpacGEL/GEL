@@ -1,26 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme } from '@westpac/core';
-import { propTypes, defaultProps } from '../Symbol';
+import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-import { BOMLogoSmall as BOM } from './multibrand/BOMLogoSmall';
-import { BSALogoSmall as BSA } from './multibrand/BSALogoSmall';
-import { BTFGLogoSmall as BTFG } from './multibrand/BTFGLogoSmall';
-import { STGLogoSmall as STG } from './multibrand/STGLogoSmall';
-import { WBCLogoSmall as WBC } from './multibrand/WBCLogoSmall';
-import { WBGLogoSmall as WBG } from './multibrand/WBGLogoSmall';
+export const LogoSmall = ({ align, ...props }) => {
+	const { SYMBOLS } = useTheme();
 
-const BRANDS = { BOM, BSA, BTFG, STG, WBC, WBG };
-
-export const LogoSmall = props => {
-	const { BRAND } = useTheme();
-	const Logo = BRANDS[BRAND];
-
-	return <Logo {...props} />;
+	return (
+		<Symbol {...props}>
+			<g dangerouslySetInnerHTML={{ __html: SYMBOLS.logos.small[align] }} />
+		</Symbol>
+	);
 };
 
 LogoSmall.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 122,
 	viewBoxHeight: 44,
+	align: 'left',
 };
-LogoSmall.propTypes = propTypes;
+LogoSmall.propTypes = {
+	...propTypes,
+	align: PropTypes.oneOf(['left', 'right', 'center']),
+};

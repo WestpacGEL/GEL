@@ -47,6 +47,7 @@ function build(BRAND) {
 	const { SPACING } = require(`${cwd}/tokens/spacing`);
 	const { LAYOUT } = require(`${cwd}/tokens/layout`);
 	const { TYPE } = require(`${cwd}/tokens/type`);
+	const { SYMBOLS } = require(`${cwd}/tokens/symbols`);
 
 	// COLORS
 	let tints = {};
@@ -76,7 +77,7 @@ function build(BRAND) {
 		},
 		LAYOUT,
 		TYPE: { ...fonts },
-		BRAND,
+		SYMBOLS,
 	};
 
 	try {
