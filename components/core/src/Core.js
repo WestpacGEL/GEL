@@ -4,16 +4,15 @@ import React, { useContext } from 'react';
 import { Global, jsx } from '@emotion/core';
 import merge from 'lodash.merge';
 import { useTheme } from './Theme';
-import { paint } from './utils';
+import { useMediaQuery } from './utils';
 
 export const Core = ({ children }) => {
 	const {
 		COLORS,
-		LAYOUT: { breakpoints },
 		TYPE: { bodyFont, brandFont },
 	} = useTheme();
 
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
 	// Global reset styling
 	const styleReset = {
