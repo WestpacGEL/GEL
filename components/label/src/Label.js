@@ -40,7 +40,7 @@ export const Label = ({ appearance, tag: Tag, ...props }) => {
 
 	// Label appearance styling
 	const styleAppearance = {
-		color: appearance === 'faint' ? COLORS.muted : '#fff',
+		color: appearance === 'faint' ? COLORS.muted : '#fff', //TODO: STG uses `COLORS.text`
 		backgroundColor: appearance === 'faint' ? COLORS.light : COLORS[appearance],
 		borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
 

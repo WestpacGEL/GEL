@@ -34,7 +34,7 @@ export const Badge = ({ appearance, ...props }) => {
 
 	// Appearance styling
 	const styleAppearance = {
-		color: appearance === 'faint' ? COLORS.muted : '#fff',
+		color: appearance === 'faint' ? COLORS.muted : '#fff', //TODO: STG uses `COLORS.text`
 		backgroundColor: COLORS[appearance],
 		borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
 	};
