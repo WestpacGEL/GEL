@@ -98,7 +98,7 @@ export const Button = ({
 		},
 		hero: {
 			standard: {
-				color: '#fff',
+				color: '#fff', //TODO: STG uses `COLORS.text`
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
 
@@ -115,11 +115,11 @@ export const Button = ({
 				borderColor: COLORS.hero,
 
 				':hover': {
-					color: '#fff',
+					color: '#fff', //TODO: STG uses `COLORS.text` (i.e. `color: null`)
 					backgroundColor: COLORS.tints.hero70,
 				},
 				':active, &.active': {
-					color: '#fff',
+					color: '#fff', //TODO: STG uses `COLORS.text` (i.e. `color: null`)
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},
