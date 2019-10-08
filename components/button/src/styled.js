@@ -21,10 +21,10 @@ const iconSizeMap = {
 // Component
 // ==============================
 
-export const ButtonTextWrapper = ({ isBlock, isSrOnlyText, children }) => {
-	if (isSrOnlyText) {
+export const ButtonTextWrapper = ({ block, srOnlyText, children }) => {
+	if (srOnlyText) {
 		return <SrOnly>{children}</SrOnly>;
-	} else if (isBlock) {
+	} else if (block) {
 		// Wrap with styled span to provide text truncation (only available in block mode)
 		return <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>;
 	} else {
@@ -34,10 +34,10 @@ export const ButtonTextWrapper = ({ isBlock, isSrOnlyText, children }) => {
 
 export const ButtonContent = ({
 	size,
-	isBlock,
+	block,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
-	isSrOnlyText,
+	srOnlyText,
 	children,
 }) => {
 	// Compose a button text + icon fragment, if these are provided
@@ -45,19 +45,19 @@ export const ButtonContent = ({
 		<>
 			{IconBefore && (
 				<IconBefore
-					css={{ marginRight: children && !isSrOnlyText && '0.4em' }}
+					css={{ marginRight: children && !srOnlyText && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
 				/>
 			)}
 			{children && (
-				<ButtonTextWrapper isBlock={isBlock} isSrOnlyText={isSrOnlyText}>
+				<ButtonTextWrapper block={block} srOnlyText={srOnlyText}>
 					{children}
 				</ButtonTextWrapper>
 			)}
 			{IconAfter && (
 				<IconAfter
-					css={{ marginLeft: children && !isSrOnlyText && '0.4em' }}
+					css={{ marginLeft: children && !srOnlyText && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
 				/>
