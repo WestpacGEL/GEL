@@ -11,7 +11,7 @@ export default () => {
 	return (
 		<>
 			<button onClick={openModal}>Open</button>
-			<Modal isOpen={open} onClose={closeModal}>
+			<Modal open={open} onClose={closeModal}>
 				<Header>Modal Title</Header>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing

@@ -1,4 +1,4 @@
 export { Modal } from './Modal';
-export { Header } from './Header';
-export { Body } from './Body';
-export { Footer } from './Footer';
+export { ModalHeader as Header } from './ModalHeader';
+export { ModalBody as Body } from './ModalBody';
+export { ModalFooter as Footer } from './ModalFooter';

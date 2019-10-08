@@ -27,7 +27,7 @@ export default () => {
 			<p>
 				<button onClick={() => updateModal('default', true)}>Open default modal</button>
 			</p>
-			<Modal isOpen={state.default.open} onClose={() => updateModal('default', false)}>
+			<Modal open={state.default.open} onClose={() => updateModal('default', false)}>
 				<Header>Modal Title</Header>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
@@ -47,7 +47,7 @@ export default () => {
 			<p>
 				<button onClick={() => updateModal('small', true)}>Open small modal</button>
 			</p>
-			<Modal isOpen={state.small.open} onClose={() => updateModal('small', false)} size="small">
+			<Modal open={state.small.open} onClose={() => updateModal('small', false)} size="small">
 				<Header>Modal Title Modal Title Modal Title Modal Title Modal Title Modal Title</Header>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
@@ -78,7 +78,7 @@ export default () => {
 			<p>
 				<button onClick={() => updateModal('large', true)}>Open large modal</button>
 			</p>
-			<Modal isOpen={state.large.open} onClose={() => updateModal('large', false)} size="large">
+			<Modal open={state.large.open} onClose={() => updateModal('large', false)} size="large">
 				<Header>Modal Title</Header>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing

@@ -1,13 +1,6 @@
 /** @jsx jsx */
 
-import React, {
-	Children,
-	cloneElement,
-	createContext,
-	useContext,
-	useState,
-	useEffect,
-} from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { jsx } from '@westpac/core';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -25,7 +18,7 @@ export const useModalContext = () => {
 	const context = useContext(ModalContext);
 
 	if (!context) {
-		throw new Error('Modal inner components should be wrapped in a <Modal>.');
+		throw new Error('Modal sub-components should be wrapped in a <Modal>.');
 	}
 
 	return context;
@@ -34,12 +27,15 @@ export const useModalContext = () => {
 // ==============================
 // Component
 // ==============================
-export const Modal = ({ isOpen, onClose, size, children, ...props }) => {
+export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 	const [open, setOpen] = useState(isOpen);
 
-	useEffect(() => {
-		setOpen(isOpen);
-	}, [isOpen]);
+	useEffect(
+		() => {
+			setOpen(isOpen);
+		},
+		[isOpen]
+	);
 
 	const handleClose = () => {
 		if (onClose) {
@@ -104,7 +100,7 @@ export const Modal = ({ isOpen, onClose, size, children, ...props }) => {
 
 Modal.propTypes = {
 	/** State of whether the modal is open */
-	isOpen: PropTypes.bool,
+	open: PropTypes.bool,
 	/** Callback function for handling modal state */
 	onClose: PropTypes.func,
 	/** Size of the modal */
@@ -112,6 +108,6 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-	isOpen: false,
+	open: false,
 	size: 'medium',
 };

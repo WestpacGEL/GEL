@@ -3,7 +3,7 @@
 import React from 'react';
 import { jsx, useTheme } from '@westpac/core';
 
-export const Footer = props => {
+export const ModalFooter = props => {
 	const { COLORS } = useTheme();
 
 	return (

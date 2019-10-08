@@ -10,7 +10,7 @@ import { Title } from './styled';
 // ==============================
 // Component
 // ==============================
-export const Header = ({ children, ...props }) => {
+export const ModalHeader = ({ children, ...props }) => {
 	const { COLORS } = useTheme();
 	const { titleId, handleClose } = useModalContext();
 
