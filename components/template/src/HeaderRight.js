@@ -17,13 +17,13 @@ export const useHeaderRightContext = () => useContext(HeaderRightContext);
 // Component
 // ==============================
 
-export const HeaderRight = ({ children, ...props }) => {
+export const HeaderRight = props => {
 	const mq = useMediaQuery();
 
 	let isRightPadding = true; //RHS padding by default
 
 	// Disable right padding if there's a HeaderButton last child
-	const lastChild = Children.toArray(children)[Children.count(children) - 1];
+	const lastChild = Children.toArray(props.children)[Children.count(props.children) - 1];
 	if (lastChild.type === HeaderButton) isRightPadding = false;
 
 	return (
@@ -36,9 +36,7 @@ export const HeaderRight = ({ children, ...props }) => {
 					marginRight: isRightPadding && ['0.75rem', '1.5rem'],
 				})}
 				{...props}
-			>
-				{children}
-			</div>
+			/>
 		</HeaderRightContext.Provider>
 	);
 };

@@ -24,7 +24,7 @@ export default () => {
 			<h3>Simple footer</h3>
 			<Footer>
 				<Grid>
-					<Cell width={[null, 9]}>
+					<Cell width={[12, 9]}>
 						<FooterIcon icon={PadlockIcon} />
 						<FooterText>
 							<p>
@@ -35,7 +35,7 @@ export default () => {
 							</p>
 						</FooterText>
 					</Cell>
-					<Cell width={[null, 3]}>
+					<Cell width={[12, 3]}>
 						<FooterLogo symbol={LogoSmallRight} />
 					</Cell>
 				</Grid>
@@ -44,7 +44,7 @@ export default () => {
 			<h3>Fancy footer (WBC only)</h3>
 			<Footer fancy>
 				<Grid>
-					<Cell width={[null, 9]}>
+					<Cell width={[12, 9]}>
 						<FooterIcon icon={PadlockIcon} />
 						<FooterText>
 							<p>
@@ -55,7 +55,7 @@ export default () => {
 							</p>
 						</FooterText>
 					</Cell>
-					<Cell width={[null, 3]}>
+					<Cell width={[12, 3]}>
 						<FooterLogo symbol={LogoSmallRight} />
 					</Cell>
 				</Grid>
