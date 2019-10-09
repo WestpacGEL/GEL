@@ -30,8 +30,8 @@ export const Pagination = ({ children, ...props }) => {
 		<ul
 			css={{
 				display: 'flex',
-				paddingLeft: '0',
-				margin: '21px 0',
+				paddingLeft: 0,
+				margin: '1.3125rem 0',
 				borderRadius: '3px',
 				listStyle: 'none',
 			}}
