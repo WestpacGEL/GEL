@@ -102,10 +102,21 @@ export const PaginationItem = ({ children, first, middle, last, active, disabled
 // ==============================
 
 PaginationItem.propTypes = {
-	/**
-	 * Describe `someProperty` here
-	 */
-	someProperty: PropTypes.string,
-};
+	/**  Enable first prop.
+	 *   The system adds a 'first' prop to the first Item
+	 *	 */
+	first: PropTypes.bool,
 
-PaginationItem.defaultProps = {};
+	/**  Enable middle prop.
+	 *   The system adds a 'middle' prop to the middle Item(s)
+	 */
+	middle: PropTypes.bool,
+
+	/**  Enable last prop.
+	 *   The system adds a 'last' prop to the last Item
+	 */
+	last: PropTypes.bool,
+
+	/**  Any renderable child */
+	children: PropTypes.node,
+};

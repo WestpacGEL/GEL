@@ -47,10 +47,6 @@ export const Pagination = ({ children, ...props }) => {
 // ==============================
 
 Pagination.propTypes = {
-	/**
-	 * Describe `someProperty` here
-	 */
-	someProperty: PropTypes.string,
+	/**  Any renderable child */
+	children: PropTypes.node,
 };
-
-Pagination.defaultProps = {};
