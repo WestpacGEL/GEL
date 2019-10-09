@@ -56,16 +56,15 @@ export const PaginationItem = ({ children, first, middle, last, active, disabled
 
 	return (
 		<>
-			{first && !disabled && (
-				<li css={{ a: { ...styleLink, ...styleFirst } }} {...props}>
-					<SrOnly>Step </SrOnly>
-					{children}
-					<SrOnly> one page</SrOnly>
-				</li>
-			)}
-
-			{first && disabled && (
-				<li css={{ a: { ...styleLink, ...styleFirst, ...styleDisabled } }} {...props}>
+			{first && (
+				<li
+					css={
+						disabled
+							? { a: { ...styleLink, ...styleFirst, ...styleDisabled } }
+							: { a: { ...styleLink, ...styleFirst } }
+					}
+					{...props}
+				>
 					<SrOnly>Step </SrOnly>
 					{children}
 					<SrOnly> one page</SrOnly>
@@ -80,16 +79,15 @@ export const PaginationItem = ({ children, first, middle, last, active, disabled
 				</li>
 			)}
 
-			{last && !disabled && (
-				<li css={{ a: { ...styleLink, ...styleLast } }} {...props}>
-					<SrOnly>Step to the </SrOnly>
-					{children}
-					<SrOnly> page</SrOnly>
-				</li>
-			)}
-
-			{last && disabled && (
-				<li css={{ a: { ...styleLink, ...styleLast, ...styleDisabled } }} {...props}>
+			{last && (
+				<li
+					css={
+						disabled
+							? { a: { ...styleLink, ...styleLast, ...styleDisabled } }
+							: { a: { ...styleLink, ...styleLast } }
+					}
+					{...props}
+				>
 					<SrOnly>Step to the </SrOnly>
 					{children}
 					<SrOnly> page</SrOnly>
