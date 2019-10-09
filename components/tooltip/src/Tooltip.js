@@ -8,56 +8,13 @@ import shortid from 'shortid';
 // ==============================
 // Component
 // ==============================
-// should I take in a position prop to change the positioning of the bubble
-
+// Need to ask about inline styling
 export const Tooltip = ({ text, children, ...props }) => {
 	const [visible, setVisible] = useState(false);
 
 	const handleMouseEnter = () => setVisible(true);
 
 	const handleMouseLeave = () => setVisible(false);
-
-	const wrapStyle = {
-		position: 'relative',
-		cursor: 'help',
-	};
-
-	const tipStyle = {
-		visibility: 'visible',
-		// visibility: visible ? 'visible' : 'hidden',
-		position: 'absolute',
-		left: '50%',
-		bottom: '110%',
-		transform: 'translate(-50%)',
-		margin: '0 0 6px 0',
-		borderRadius: 3,
-		padding: '0.4375rem',
-		width: '18.75rem',
-		color: '#fff',
-		backgroundColor: '#000',
-		fontSize: '0.75rem',
-		textAlign: 'center',
-		lineHeight: 1.2,
-		whiteSpace: 'normal',
-		pointerEvents: 'none',
-		transition: 'opacity 0.2 ease, visibility 0.2 ease',
-		transitionDelay: '100ms',
-		zIndex: 100,
-
-		'::after': {
-			content: "''",
-			marginLeft: '-5px',
-			width: 0,
-			borderTop: '5px solid #000',
-			borderRight: '5px solid transparent',
-			borderLeft: '5px solid transparent',
-			fontSize: 0,
-			lineHeight: 0,
-			position: 'absolute',
-			bottom: '-5px',
-			left: '50%',
-		},
-	};
 
 	const tooltipId = `tooltipBubble-${shortid.generate()}`;
 
@@ -67,11 +24,48 @@ export const Tooltip = ({ text, children, ...props }) => {
 			onMouseLeave={handleMouseLeave}
 			aria-describedby={tooltipId}
 			tabIndex={0}
-			css={wrapStyle}
+			css={{ display: 'inline-block', position: 'relative', cursor: 'help' }}
 			{...props}
 		>
 			{children}
-			<span id={tooltipId} css={tipStyle}>
+			<span
+				id={tooltipId}
+				css={{
+					visibility: visible ? 'visible' : 'hidden',
+					position: 'absolute',
+					left: '50%',
+					bottom: '110%',
+					transform: 'translate(-50%)',
+					margin: '0 0 6px 0',
+					borderRadius: 3,
+					padding: '0.4375rem',
+					width: '18.75rem',
+					color: '#fff',
+					backgroundColor: '#000',
+					fontSize: '0.75rem',
+					textAlign: 'center',
+					lineHeight: 1.2,
+					whiteSpace: 'normal',
+					pointerEvents: 'none',
+					transition: 'opacity 0.2 ease, visibility 0.2 ease',
+					transitionDelay: '100ms',
+					zIndex: 100,
+
+					'::after': {
+						content: "''",
+						marginLeft: '-0.3125rem',
+						width: 0,
+						borderTop: '5px solid #000',
+						borderRight: '5px solid transparent',
+						borderLeft: '5px solid transparent',
+						fontSize: 0,
+						lineHeight: 0,
+						position: 'absolute',
+						bottom: '-0.3125rem',
+						left: '50%',
+					},
+				}}
+			>
 				{text}
 			</span>
 		</span>
@@ -81,7 +75,7 @@ export const Tooltip = ({ text, children, ...props }) => {
 // ==============================
 // Types
 // ==============================
-
-Tooltip.propTypes = {};
-
-Tooltip.defaultProps = {};
+Tooltip.propTypes = {
+	/** Tooltip text */
+	text: PropTypes.string.isRequired,
+};
