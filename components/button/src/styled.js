@@ -22,9 +22,10 @@ const iconSizeMap = {
 // ==============================
 
 export const ButtonTextWrapper = ({ block, srOnlyText, children }) => {
-	if (srOnlyText) {
-		return <SrOnly>{children}</SrOnly>;
-	} else if (block) {
+	{
+		srOnlyText && <SrOnly>{srOnlyText}</SrOnly>;
+	}
+	if (block) {
 		// Wrap with styled span to provide text truncation (only available in block mode)
 		return <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>;
 	} else {
@@ -37,6 +38,7 @@ export const ButtonContent = ({
 	block,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
+	iconColor,
 	srOnlyText,
 	children,
 }) => {
@@ -47,7 +49,7 @@ export const ButtonContent = ({
 				<IconBefore
 					css={{ marginRight: children && !srOnlyText && '0.4em' }}
 					size={iconSizeMap[size]}
-					color="inherit"
+					color={iconColor}
 				/>
 			)}
 			{children && (
@@ -59,7 +61,7 @@ export const ButtonContent = ({
 				<IconAfter
 					css={{ marginLeft: children && !srOnlyText && '0.4em' }}
 					size={iconSizeMap[size]}
-					color="inherit"
+					color={iconColor}
 				/>
 			)}
 		</>

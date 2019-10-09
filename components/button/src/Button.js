@@ -23,6 +23,7 @@ export const Button = ({
 	trim,
 	iconAfter,
 	iconBefore,
+	iconColor,
 	justify,
 	srOnlyText,
 	tag: Tag,
@@ -247,6 +248,7 @@ export const Button = ({
 					block={block}
 					iconAfter={iconAfter}
 					iconBefore={iconBefore}
+					iconColor={iconColor}
 					srOnlyText={srOnlyText}
 				>
 					{children}
@@ -321,9 +323,9 @@ export const propTypes = {
 	justify: PropTypes.bool,
 
 	/**
-	 * Enable ‘screen reader only’ text mode
+	 * ‘Screen reader only’ text
 	 */
-	srOnlyText: PropTypes.bool,
+	srOnlyText: PropTypes.string,
 
 	/**
 	 * Handler to be called on click
@@ -343,6 +345,7 @@ export const defaultProps = {
 	soft: false,
 	block: false,
 	trim: false,
+	iconColor: 'inherit',
 	justify: false,
 };
 
