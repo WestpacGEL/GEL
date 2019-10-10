@@ -2,19 +2,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
-export const AlertHeading = ({ tag: Tag, ...props }) => {
-	const {
-		alert: { heading },
-	} = useTheme();
-
-	return <Tag css={{ marginTop: 0, ...heading }} {...props} />;
-};
+export const AlertHeading = ({ tag: Tag, ...props }) => (
+	<Tag css={{ marginTop: 0, marginBottom: '0.75rem' }} {...props} />
+);
 
 // ==============================
 // Types

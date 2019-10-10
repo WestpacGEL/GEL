@@ -49,16 +49,16 @@ Use the `tag` prop to configure the Button component to render as a `<button>`, 
 Soft buttons render with less visual emphasis, often used when grouping buttons with differing importance.
 
 <Playground>
-	<Button appearance="primary" isSoft>
+	<Button appearance="primary" soft>
 		Primary soft
 	</Button>{' '}
-	<Button appearance="hero" isSoft>
+	<Button appearance="hero" soft>
 		Hero soft
 	</Button>{' '}
-	<Button appearance="neutral" isSoft>
+	<Button appearance="neutral" soft>
 		Neutral soft
 	</Button>{' '}
-	<Button appearance="faint" isSoft>
+	<Button appearance="faint" soft>
 		Faint soft
 	</Button>
 </Playground>
@@ -80,14 +80,14 @@ Button widths are auto-sized (inline) by default — they’re as wide as their 
 
 Long button text content will trucate.
 
-Pass the `isBlock` prop an array of boolean values to set this responsively for each breakpoint.
+Pass the `block` prop an array of boolean values to set this responsively for each breakpoint.
 
 <Playground>
 	<p>
-		<Button isBlock>Block</Button>
+		<Button block>Block</Button>
 	</p>
 	<p>
-		<Button isBlock>
+		<Button block>
 			We don’t recommended using long button text, but it will truncate if neccesary
 		</Button>
 	</p>
@@ -116,19 +116,19 @@ Disable Button components by passing a `disabled` prop.
 		</Button>
 	</p>
 	<p>
-		<Button appearance="primary" isSoft disabled>
+		<Button appearance="primary" soft disabled>
 			Primary soft
 		</Button>{' '}
-		<Button appearance="hero" isSoft disabled>
+		<Button appearance="hero" soft disabled>
 			Hero soft
 		</Button>{' '}
-		<Button appearance="neutral" isSoft disabled>
+		<Button appearance="neutral" soft disabled>
 			Neutral soft
 		</Button>{' '}
-		<Button appearance="faint" isSoft disabled>
+		<Button appearance="faint" soft disabled>
 			Faint soft
 		</Button>{' '}
-		<Button appearance="link" isSoft disabled>
+		<Button appearance="link" soft disabled>
 			Link soft
 		</Button>
 	</p>
@@ -148,22 +148,22 @@ Use the `justify` option to align the button’s contents with internal edges in
 		<Button iconBefore={InfoIcon}>Icon before</Button>
 	</p>
 	<p>
-		<Button iconAfter={InfoIcon} isBlock>
+		<Button iconAfter={InfoIcon} block>
 			Icon after + block
 		</Button>
 	</p>
 	<p>
-		<Button iconBefore={InfoIcon} isBlock>
+		<Button iconBefore={InfoIcon} block>
 			Icon before + block
 		</Button>
 	</p>
 	<p>
-		<Button iconAfter={InfoIcon} justify isBlock>
+		<Button iconAfter={InfoIcon} justify block>
 			Icon after + block + justify
 		</Button>
 	</p>
 	<p>
-		<Button iconBefore={InfoIcon} justify isBlock>
+		<Button iconBefore={InfoIcon} justify block>
 			Icon before + block + justify
 		</Button>
 	</p>
@@ -174,7 +174,7 @@ Use the `justify` option to align the button’s contents with internal edges in
 Use the `trim` option to strip horizontal padding.
 
 <Playground>
-	<Button appearance="link" isTrim>
+	<Button appearance="link" trim>
 		Trimmed
 	</Button>
 </Playground>
@@ -184,7 +184,7 @@ Use the `trim` option to strip horizontal padding.
 Use the `srOnlyText` ‘screen reader only’ text option to visually hide button text content. This option may be required if your button has only visible icon content.
 
 <Playground>
-	<Button iconAfter={HouseIcon} isSrOnlyText>
+	<Button iconAfter={HouseIcon} srOnlyText>
 		Screen reader only text
 	</Button>
 </Playground>

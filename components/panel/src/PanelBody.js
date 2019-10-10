@@ -1,24 +1,14 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme, paint } from '@westpac/core';
-import { propTypes, defaultProps } from './Panel';
+import { jsx, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
-export const PanelBody = ({ appearance, ...props }) => {
-	const { breakpoints, panel } = useTheme();
-	const mq = paint(breakpoints);
+export const PanelBody = props => {
+	const mq = useMediaQuery();
 
-	return <div css={mq({ padding: panel.body.padding })} {...props} />;
-};
-
-PanelBody.propTypes = {
-	...propTypes,
-};
-
-PanelBody.defaultProps = {
-	...defaultProps,
+	return <div css={mq({ padding: ['0.75rem', '1.5rem'] })} {...props} />;
 };
