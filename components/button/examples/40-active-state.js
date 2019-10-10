@@ -34,30 +34,30 @@ export default () => (
 		</p>
 		<h3>Soft</h3>
 		<p>
-			<Button appearance="primary" isSoft>
+			<Button appearance="primary" soft>
 				Primary soft default
 			</Button>{' '}
-			<Button appearance="hero" isSoft>
+			<Button appearance="hero" soft>
 				Hero soft default
 			</Button>{' '}
-			<Button appearance="neutral" isSoft>
+			<Button appearance="neutral" soft>
 				Neutral soft default
 			</Button>{' '}
-			<Button appearance="faint" isSoft>
+			<Button appearance="faint" soft>
 				Faint soft default
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" className="active" isSoft>
+			<Button appearance="primary" className="active" soft>
 				Primary soft active
 			</Button>{' '}
-			<Button appearance="hero" className="active" isSoft>
+			<Button appearance="hero" className="active" soft>
 				Hero soft active
 			</Button>{' '}
-			<Button appearance="neutral" className="active" isSoft>
+			<Button appearance="neutral" className="active" soft>
 				Neutral soft active
 			</Button>{' '}
-			<Button appearance="faint" className="active" isSoft>
+			<Button appearance="faint" className="active" soft>
 				Faint soft active
 			</Button>
 		</p>
@@ -98,30 +98,30 @@ export default () => (
 		</p>
 		<h3>Soft</h3>
 		<p>
-			<Button href="#0" appearance="primary" isSoft>
+			<Button href="#0" appearance="primary" soft>
 				Primary soft default
 			</Button>{' '}
-			<Button href="#0" appearance="hero" isSoft>
+			<Button href="#0" appearance="hero" soft>
 				Hero soft default
 			</Button>{' '}
-			<Button href="#0" appearance="neutral" isSoft>
+			<Button href="#0" appearance="neutral" soft>
 				Neutral soft default
 			</Button>{' '}
-			<Button href="#0" appearance="faint" isSoft>
+			<Button href="#0" appearance="faint" soft>
 				Faint soft default
 			</Button>
 		</p>
 		<p>
-			<Button href="#0" appearance="primary" className="active" isSoft>
+			<Button href="#0" appearance="primary" className="active" soft>
 				Primary soft active
 			</Button>{' '}
-			<Button href="#0" appearance="hero" className="active" isSoft>
+			<Button href="#0" appearance="hero" className="active" soft>
 				Hero soft active
 			</Button>{' '}
-			<Button href="#0" appearance="neutral" className="active" isSoft>
+			<Button href="#0" appearance="neutral" className="active" soft>
 				Neutral soft active
 			</Button>{' '}
-			<Button href="#0" appearance="faint" className="active" isSoft>
+			<Button href="#0" appearance="faint" className="active" soft>
 				Faint soft active
 			</Button>
 		</p>
