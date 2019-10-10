@@ -11,10 +11,10 @@ import {
 	FormPodIndicator,
 	FormPodActions,
 } from '../src';
-import { Alert, AlertHeading } from '@westpac/alert';
+import { Alert, Heading } from '@westpac/alert';
 import { List, ListItem } from '@westpac/list';
 import { HeadsetIcon } from '@westpac/icon';
-// import { button } from '@westpac/button';
+import { Button } from '@westpac/Button';
 
 export default () => {
 	const { COLORS } = useTheme();
@@ -44,9 +44,9 @@ export default () => {
 				<FormPodPanel isNoBorderTop>
 					<Alert appearance="danger">
 						{/* Nb. Tabindex="-1" for programmatically set focus */}
-						<AlertHeading tag="h3" tabIndex="-1">
+						<Heading tag="h3" tabIndex="-1">
 							Please fix the 4 errors listed below
-						</AlertHeading>
+						</Heading>
 
 						<List type="unstyled">
 							<ListItem>
@@ -69,18 +69,18 @@ export default () => {
 				<FormPodActions
 					primary={
 						<>
-							<button appearance="primary" soft size="large" block={[true, false]}>
+							<Button appearance="primary" soft size="large" block={[true, false]}>
 								Back
-							</button>
-							<button appearance="primary" size="large" block={[true, false]}>
+							</Button>
+							<Button appearance="primary" size="large" block={[true, false]}>
 								Next
-							</button>
+							</Button>
 						</>
 					}
 					secondary={
-						<button appearance="faint" soft size="large" block={[true, false]}>
+						<Button appearance="faint" soft size="large" block={[true, false]}>
 							Cancel
-						</button>
+						</Button>
 					}
 				/>
 			</FormPod>
