@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { Global, useTheme } from '@westpac/core';
-
 import {
 	FormPod,
 	FormPodPanel,
@@ -14,7 +12,7 @@ import {
 import { Alert, Heading } from '@westpac/alert';
 import { List, ListItem } from '@westpac/list';
 import { HeadsetIcon } from '@westpac/icon';
-import { Button } from '@westpac/Button';
+import { Button } from '@westpac/button';
 
 export default () => {
 	const { COLORS } = useTheme();
