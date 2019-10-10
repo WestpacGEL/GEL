@@ -11,35 +11,33 @@ import { jsx, useTheme } from '@westpac/core';
 export const Badge = ({ appearance, ...props }) => {
 	const { COLORS } = useTheme();
 
-	// Common styling
-	const styleCommon = {
-		border: `1px solid transparent`,
-		borderRadius: '0.75rem',
-		display: 'inline-block',
-		fontSize: '0.875rem',
-		fontWeight: 700,
-		lineHeight: 1,
-		minWidth: '0.625rem',
-		padding: '0.25rem 0.4375rem',
-		textAlign: 'center',
-		verticalAlign: 'baseline',
-		whiteSpace: 'nowrap',
+	return (
+		<span
+			css={{
+				border: `1px solid transparent`,
+				borderRadius: '0.75rem',
+				display: 'inline-block',
+				fontSize: '0.875rem',
+				fontWeight: 700,
+				lineHeight: 1,
+				minWidth: '0.625rem',
+				padding: '0.25rem 0.4375rem',
+				textAlign: 'center',
+				verticalAlign: 'baseline',
+				whiteSpace: 'nowrap',
+				color: appearance === 'faint' ? COLORS.muted : '#fff', //TODO: STG uses `COLORS.text`
+				backgroundColor: COLORS[appearance],
+				borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
 
-		'@media print': {
-			color: '#000',
-			backgroundColor: '#fff',
-			border: '1px solid #000',
-		},
-	};
-
-	// Appearance styling
-	const styleAppearance = {
-		color: appearance === 'faint' ? COLORS.muted : '#fff', //TODO: STG uses `COLORS.text`
-		backgroundColor: COLORS[appearance],
-		borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
-	};
-
-	return <span css={{ ...styleCommon, ...styleAppearance }} {...props} />;
+				'@media print': {
+					color: '#000',
+					backgroundColor: '#fff',
+					border: '1px solid #000',
+				},
+			}}
+			{...props}
+		/>
+	);
 };
 
 // ==============================
