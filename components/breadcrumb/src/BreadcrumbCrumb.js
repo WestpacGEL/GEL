@@ -13,36 +13,37 @@ import { SrOnly } from '@westpac/accessibility-helpers';
 /**
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Crumb = ({ children, last, ...props }) => {
-	const { breadcrumb } = useTheme();
-
-	const common = {
-		display: 'inline-block',
-		position: 'relative',
-		color: breadcrumb.color,
-
-		a: {
-			color: breadcrumb.color,
-			textDecoration: 'none',
-
-			'&:focus, &:hover': {
-				textDecoration: 'underline',
-			},
-		},
-	};
+export const BreadcrumbCrumb = ({ children, last, ...props }) => {
+	const { COLORS } = useTheme();
 
 	return (
-		<li css={common} {...props}>
+		<li
+			css={{
+				display: 'inline-block',
+				position: 'relative',
+				color: COLORS.text,
+
+				a: {
+					color: COLORS.text,
+					textDecoration: 'none',
+
+					':focus, :hover': {
+						textDecoration: 'underline',
+					},
+				},
+			}}
+			{...props}
+		>
 			{last && <SrOnly>Current page:</SrOnly>}
 			{children}
 			{!last && (
 				<ArrowRightIcon
 					aria-hidden="true"
 					size="small"
-					color={breadcrumb.separator.color}
+					color={COLORS.primary}
 					css={{
-						marginLeft: breadcrumb.separator.marginLeft,
-						marginRight: breadcrumb.separator.marginRight,
+						marginLeft: '0.1875rem',
+						marginRight: '0.1875rem',
 					}}
 				/>
 			)}
@@ -50,11 +51,22 @@ export const Crumb = ({ children, last, ...props }) => {
 	);
 };
 
+BreadcrumbCrumb.isCrumb = true;
+
 // ==============================
 // Types
 // ==============================
 
-Crumb.propTypes = {
+BreadcrumbCrumb.propTypes = {
+	/**  Enable last prop.
+	 *   The system adds a 'last' prop to the last Crumb
+	 */
+	last: PropTypes.bool,
+
 	/**  Any renderable child */
 	children: PropTypes.node,
+};
+
+BreadcrumbCrumb.defaultProps = {
+	last: false,
 };
