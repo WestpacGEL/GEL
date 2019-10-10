@@ -66,3 +66,7 @@ BreadcrumbCrumb.propTypes = {
 	/**  Any renderable child */
 	children: PropTypes.node,
 };
+
+BreadcrumbCrumb.defaultProps = {
+	last: false,
+};
