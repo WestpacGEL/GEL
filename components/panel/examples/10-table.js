@@ -1,18 +1,18 @@
 import React from 'react';
-import { Panel, PanelHeader, PanelBody, PanelFooter } from '../src';
-import { Table } from '@westpac/table';
+import { Panel, Header, Body } from '../src';
+import { PanelTable } from '@westpac/table';
 
 export default () => (
 	<>
 		<h2>Panel with body and table</h2>
 		<Panel>
-			<PanelHeader>Panel title</PanelHeader>
-			<PanelBody>
+			<Header>Panel title</Header>
+			<Body>
 				Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia
 				bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
 				venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
-			</PanelBody>
-			<Table striped responsive>
+			</Body>
+			<PanelTable striped responsive>
 				<caption>
 					Table caption this table width is: <em>(100%)</em>
 				</caption>
@@ -48,15 +48,15 @@ export default () => (
 						</td>
 					</tr>
 				</tbody>
-			</Table>
+			</PanelTable>
 		</Panel>
 
 		<hr />
 
 		<h2>Responsive panel with table only</h2>
 		<Panel>
-			<PanelHeader>Panel title</PanelHeader>
-			<Table striped responsive>
+			<Header>Panel title</Header>
+			<PanelTable striped responsive>
 				<caption>
 					Table caption this table width is: <em>(100%)</em>
 				</caption>
@@ -94,7 +94,7 @@ export default () => (
 						</td>
 					</tr>
 				</tbody>
-			</Table>
+			</PanelTable>
 		</Panel>
 	</>
 );

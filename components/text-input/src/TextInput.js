@@ -108,9 +108,7 @@ export const TextInput = ({ size, width, inline, invalid, tag: Tag, children, ..
 	};
 
 	// Appearance styling
-	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${
-		COLORS.muted
-	}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
+	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
 	const caretGap = '0.5rem';
 	const caretWidth = '14px';
 	const styleAppearance = {

@@ -5,7 +5,7 @@ import { HelpIcon } from '@westpac/icon';
 export default () => (
 	<>
 		<h2>Custom icon</h2>
-		<Alert appearance="information" icon={HelpIcon}>
+		<Alert appearance="info" icon={HelpIcon}>
 			<strong>Heads up!</strong> This alert needs your attention, but it’s not super important. Oh
 			wow look, I have a custom icon. <a href="#">Link</a>
 		</Alert>
@@ -13,7 +13,7 @@ export default () => (
 		<hr />
 
 		<h2>No icon</h2>
-		<Alert appearance="information" icon={null}>
+		<Alert appearance="info" icon={null}>
 			<strong>Heads up!</strong> This alert needs your attention, but it’s not super important. Oh
 			wow look, I have no icon. <a href="#">Link</a>
 		</Alert>
