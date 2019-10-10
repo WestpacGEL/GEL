@@ -1,2 +1,2 @@
 export { Alert } from './Alert';
-export { AlertHeading } from './AlertHeading';
+export { AlertHeading as Heading } from './AlertHeading';

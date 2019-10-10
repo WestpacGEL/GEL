@@ -19,7 +19,7 @@ export const RowWrap = props => (
 		css={{
 			marginTop: '1em',
 
-			'&:first-of-type': {
+			':first-of-type': {
 				marginTop: 0,
 			},
 		}}
@@ -30,7 +30,7 @@ export const RowLabel = props => (
 	<h4
 		css={{
 			color: '#6B778C',
-			fontSize: '0.85rem',
+			fontSize: '0.625rem',
 			fontWeight: 500,
 			marginBottom: '0.5em',
 			marginTop: 0,
@@ -79,8 +79,8 @@ export const Name = props => (
 	<div
 		css={{
 			color: '#6B778C',
-			fontSize: 12,
-			marginTop: 12,
+			fontSize: '0.75rem',
+			marginTop: '1em',
 		}}
 		{...props}
 	/>
