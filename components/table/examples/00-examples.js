@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from '../src';
+import { Panel } from '@westpac/panel';
 
 export default () => (
 	<>

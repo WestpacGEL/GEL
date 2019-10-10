@@ -28,27 +28,27 @@ export default () => (
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} isBlock>
+			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} block>
 				Extra large block
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="small" iconAfter={ArrowRightIcon} isBlock isJustify>
+			<Button appearance="primary" size="small" iconAfter={ArrowRightIcon} block justify>
 				Small block justify
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="medium" iconAfter={ArrowRightIcon} isBlock isJustify>
+			<Button appearance="primary" size="medium" iconAfter={ArrowRightIcon} block justify>
 				Medium block justify
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="large" iconAfter={ArrowRightIcon} isBlock isJustify>
+			<Button appearance="primary" size="large" iconAfter={ArrowRightIcon} block justify>
 				Large block justify
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} isBlock isJustify>
+			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} block justify>
 				Extra large block justify
 			</Button>
 		</p>
@@ -71,27 +71,27 @@ export default () => (
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} isBlock>
+			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} block>
 				Extra large block
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="small" iconBefore={ArrowLeftIcon} isBlock isJustify>
+			<Button appearance="primary" size="small" iconBefore={ArrowLeftIcon} block justify>
 				Small block justify
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="medium" iconBefore={ArrowLeftIcon} isBlock isJustify>
+			<Button appearance="primary" size="medium" iconBefore={ArrowLeftIcon} block justify>
 				Medium block justify
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="large" iconBefore={ArrowLeftIcon} isBlock isJustify>
+			<Button appearance="primary" size="large" iconBefore={ArrowLeftIcon} block justify>
 				Large block justify
 			</Button>
 		</p>
 		<p>
-			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} isBlock isJustify>
+			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} block justify>
 				Extra large block justify
 			</Button>
 		</p>
@@ -106,7 +106,7 @@ export default () => (
 			<Button appearance="primary" size="xlarge" iconBefore={StarIcon} />
 		</p>
 		<p>
-			<Button appearance="primary" size="xlarge" iconBefore={StarIcon} isBlock />
+			<Button appearance="primary" size="xlarge" iconBefore={StarIcon} block />
 		</p>
 	</>
 );

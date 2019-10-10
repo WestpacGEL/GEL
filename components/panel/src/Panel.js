@@ -39,12 +39,6 @@ export const Panel = ({ appearance, ...props }) => {
 		backgroundColor: '#fff',
 		border: `1px solid ${appearanceMap[appearance].borderColor}`,
 		borderRadius: '0.1875rem',
-
-		// Child table styling
-		'.table-responsive': {
-			border: 0,
-			marginBottom: 0,
-		},
 		table: {
 			overflow: 'hidden', //clip overflow for rounded corners
 			marginBottom: 0,
