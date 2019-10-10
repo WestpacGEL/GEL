@@ -17,12 +17,9 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 	const [isChecked, setChecked] = useState(checked);
 	const [formCheckId] = useState(`formCheck-${shortid.generate()}`);
 
-	useEffect(
-		() => {
-			setChecked(isChecked);
-		},
-		[isChecked]
-	);
+	useEffect(() => {
+		setChecked(isChecked);
+	}, [isChecked]);
 
 	const toggle = () => {
 		if (onChange) {
@@ -77,7 +74,7 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 					tweak: '0rem',
 				},
 			},
-			item: {
+			option: {
 				marginRight: '1.125rem',
 				marginBottom: '0.75rem',
 			},
