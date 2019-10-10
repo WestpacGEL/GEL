@@ -32,8 +32,7 @@ export const Hint = ({ tag: Tag, ...props }) => {
 			css={{
 				color: COLORS.muted,
 				fontSize: '0.875rem',
-				marginTop: spacingMap[spacing].marginTop,
-				marginBottom: spacingMap[spacing].marinBottom,
+				...spacingMap[spacing],
 			}}
 			{...props}
 		/>
