@@ -2,42 +2,29 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import shortid from 'shortid';
+import { useButtonGroupContext } from './ButtonGroup';
 
 // ==============================
 // Component
 // ==============================
 
 export const ButtonGroupButton = ({
-	appearance,
-	size,
-	name,
 	value,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
-	isSrOnlyText,
-	isChecked,
-	onChange,
+	first,
+	last,
+	srOnlyText,
 	children,
 	...props
 }) => {
-	const { button } = useTheme();
-	const [checked, setChecked] = useState(isChecked);
+	const { appearance, size, name, checked, handleChange } = useButtonGroupContext();
 	const [buttonId] = useState(`button-${shortid.generate()}`);
 
-	useEffect(() => {
-		setChecked(checked);
-	}, [checked]);
-
-	const toggle = () => {
-		if (onChange) {
-			onChange();
-		} else {
-			setChecked(!checked);
-		}
-	};
+	console.log({ value, checked });
 
 	return (
 		<label htmlFor={buttonId} css={{ flex: 1 }} {...props}>
@@ -51,37 +38,30 @@ export const ButtonGroupButton = ({
 				name={name}
 				id={buttonId}
 				value={value}
-				checked={checked}
-				onChange={toggle}
+				checked={value === checked}
+				onChange={handleChange}
 			/>
 			<Button
 				css={{
-					// Style internal borders
-					'label:not(:last-child) > &': {
+					// Override styling of internal borders
+					...(!last && {
 						borderTopRightRadius: 0,
 						borderBottomRightRadius: 0,
-						borderRight: 'none',
-					},
-					'label:not(:first-of-type) > &': {
+						borderRight: 0,
+					}),
+					...(!first && {
 						borderTopLeftRadius: 0,
 						borderBottomLeftRadius: 0,
-					},
-
-					// Checked state styling (look like a standard button)
-					'input:checked + &': {
-						color: button.appearance[appearance].standard.default.color,
-						backgroundColor: button.appearance[appearance].standard.default.backgroundColor,
-						borderColor: button.appearance[appearance].standard.default.borderColor,
-					},
+					}),
 				}}
 				tag="span"
 				appearance={appearance}
 				size={size}
 				iconAfter={IconAfter}
 				iconBefore={IconBefore}
-				isSrOnlyText={isSrOnlyText}
-				isSoft
-				isBlock
+				srOnlyText={srOnlyText}
+				soft={!value || value !== checked}
+				block
 			>
 				{children}
 			</Button>
@@ -89,15 +69,17 @@ export const ButtonGroupButton = ({
 	);
 };
 
+ButtonGroupButton.isButton = true;
+
 // ==============================
 // Types
 // ==============================
 
 ButtonGroupButton.propTypes = {
 	/**
-	 * Button group button input element’s value
+	 * Button input element’s value
 	 */
-	value: PropTypes.string,
+	value: PropTypes.string.isRequired,
 
 	/**
 	 * Places an icon within the button, after the button’s text
@@ -110,9 +92,14 @@ ButtonGroupButton.propTypes = {
 	iconBefore: PropTypes.func,
 
 	/**
-	 * Check the button
+	 * Enable first child mode
 	 */
-	isChecked: PropTypes.bool,
+	first: PropTypes.bool,
+
+	/**
+	 * Enable last child mode
+	 */
+	last: PropTypes.bool,
 
 	/**
 	 * The onChange handler for this button
@@ -120,11 +107,12 @@ ButtonGroupButton.propTypes = {
 	onChange: PropTypes.func,
 
 	/**
-	 * Button group button text
+	 * Button text
 	 */
 	children: PropTypes.node,
 };
 
 ButtonGroupButton.defaultProps = {
-	isChecked: false,
+	first: false,
+	last: false,
 };
