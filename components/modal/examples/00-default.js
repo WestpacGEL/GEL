@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Header, Body, Footer } from '../src';
-// import { Button } from '@westpac/button';
+import { Button } from '@westpac/button';
 
 export default () => {
 	const [open, setOpen] = useState(false);
@@ -10,7 +10,7 @@ export default () => {
 
 	return (
 		<>
-			<button onClick={openModal}>Open</button>
+			<Button onClick={openModal}>Open</Button>
 			<Modal open={open} onClose={closeModal}>
 				<Header>Modal Title</Header>
 				<Body>
@@ -22,9 +22,9 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<button appearance="faint" onClick={closeModal}>
+					<Button appearance="faint" onClick={closeModal}>
 						Close
-					</button>
+					</Button>
 				</Footer>
 			</Modal>
 		</>

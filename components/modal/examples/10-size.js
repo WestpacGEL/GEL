@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import { Modal, Header, Body, Footer } from '../src';
-// import { Button } from '@westpac/button';
+import { Button } from '@westpac/button';
 
 export default () => {
 	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };
@@ -25,7 +25,7 @@ export default () => {
 	return (
 		<>
 			<p>
-				<button onClick={() => updateModal('default', true)}>Open default modal</button>
+				<Button onClick={() => updateModal('default', true)}>Open default modal</Button>
 			</p>
 			<Modal open={state.default.open} onClose={() => updateModal('default', false)}>
 				<Header>Modal Title</Header>
@@ -38,14 +38,14 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<button appearance="faint" onClick={() => updateModal('default', false)}>
+					<Button appearance="faint" onClick={() => updateModal('default', false)}>
 						Close
-					</button>
+					</Button>
 				</Footer>
 			</Modal>
 
 			<p>
-				<button onClick={() => updateModal('small', true)}>Open small modal</button>
+				<Button onClick={() => updateModal('small', true)}>Open small modal</Button>
 			</p>
 			<Modal open={state.small.open} onClose={() => updateModal('small', false)} size="small">
 				<Header>Modal Title Modal Title Modal Title Modal Title Modal Title Modal Title</Header>
@@ -69,14 +69,14 @@ export default () => {
 					of one! There ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<button appearance="faint" onClick={() => updateModal('small', false)}>
+					<Button appearance="faint" onClick={() => updateModal('small', false)}>
 						Close
-					</button>
+					</Button>
 				</Footer>
 			</Modal>
 
 			<p>
-				<button onClick={() => updateModal('large', true)}>Open large modal</button>
+				<Button onClick={() => updateModal('large', true)}>Open large modal</Button>
 			</p>
 			<Modal open={state.large.open} onClose={() => updateModal('large', false)} size="large">
 				<Header>Modal Title</Header>
@@ -89,9 +89,9 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<button appearance="faint" onClick={() => updateModal('large', false)}>
+					<Button appearance="faint" onClick={() => updateModal('large', false)}>
 						Close
-					</button>
+					</Button>
 				</Footer>
 			</Modal>
 		</>

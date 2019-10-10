@@ -3,7 +3,7 @@
 import React from 'react';
 import { jsx, useTheme } from '@westpac/core';
 import { CloseIcon } from '@westpac/icon';
-// import { Button } from '@westpac/button';
+import { Button } from '@westpac/button';
 import { useModalContext } from './Modal';
 import { Title } from './styled';
 
@@ -27,20 +27,19 @@ export const ModalHeader = ({ children, ...props }) => {
 			{...props}
 		>
 			<Title id={titleId}>{children}</Title>
-			{/* waiting until button component is fixed */}
-			{/* <Button
+			<Button
 				appearance="link"
 				css={{
-					marginTop: '-1rem',
-					marginRight: '-2.2rem',
+					marginTop: '-0.625rem',
+					marginRight: '-1.375rem',
 					color: COLORS.text,
 					':hover svg': {
 						opacity: 0.5,
 					},
 				}}
 				iconAfter={CloseIcon}
-				onClick={onClose}
-			/> */}
+				onClick={handleClose}
+			/>
 		</div>
 	);
 };
