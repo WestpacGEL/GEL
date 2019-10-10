@@ -2,11 +2,7 @@
 
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-
-// ==============================
-// Utils
-// ==============================
+import { jsx } from '@westpac/core';
 
 // ==============================
 // Component
@@ -17,13 +13,17 @@ import { jsx, useTheme } from '@westpac/core';
  */
 export const Pagination = ({ children, ...props }) => {
 	const childrenWithProps = Children.map(children, (child, index) => {
+		if (!child.type.isItem) {
+			throw new Error('<Pagination /> only accepts <Item /> as direct children.');
+		}
 		if (index === 0) {
 			return cloneElement(child, { first: true });
-		} else if (index === Children.count(children) - 1) {
-			return cloneElement(child, { last: true });
-		} else {
-			return cloneElement(child, { middle: true });
 		}
+		if (index === Children.count(children) - 1) {
+			return cloneElement(child, { last: true });
+		}
+
+		return child;
 	});
 
 	return (
