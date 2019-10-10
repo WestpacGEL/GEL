@@ -140,7 +140,7 @@ export const TextInput = ({ size, width, inline, invalid, tag: Tag, children, ..
 	// Input fixed width styling
 	const factor = 1.81; //'W' compared to 'x' character (relative to font)
 	let extras = `${(p => `${p} + ${p}`)(sizeMap[textInputSize].padding[1])} + ${(b => `${b} + ${b}`)(
-		borderWidth
+		`${borderWidth}px`
 	)}`;
 	if (Tag === 'select') {
 		extras = `${extras} + ${caretWidth} + ${caretGap}`; // Add width for caret if a select
