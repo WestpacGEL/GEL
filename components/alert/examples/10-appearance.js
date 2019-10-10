@@ -19,7 +19,7 @@ export default () => (
 		<hr />
 
 		<h2>Information</h2>
-		<Alert appearance="information">
+		<Alert appearance="info">
 			<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
 			<a href="#">Link</a>
 		</Alert>

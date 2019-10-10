@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import { jsx, useTheme, UserModeContext } from '@westpac/core';
+import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
 // Component
@@ -23,16 +23,12 @@ export const FormCheckItem = ({
 	...props
 }) => {
 	const { formCheck, typography } = useTheme();
-	const isKeyboardUser = useContext(UserModeContext);
 	const [checked, setChecked] = useState(isChecked);
 	const [formCheckId] = useState(`formCheck-${shortid.generate()}`);
 
-	useEffect(
-		() => {
-			setChecked(checked);
-		},
-		[checked]
-	);
+	useEffect(() => {
+		setChecked(checked);
+	}, [checked]);
 
 	const toggle = () => {
 		if (onChange) {
@@ -111,9 +107,10 @@ export const FormCheckItem = ({
 				borderRadius: formCheck.control.check[type].borderRadius,
 
 				// Focus state
-				'input:focus + &': {
-					...(isKeyboardUser && typography.link.focus),
-				},
+				// TODO: this probably needs to be handled via the body class
+				// 'input:focus + &': {
+				// 	...(isKeyboardUser && typography.link.focus),
+				// },
 
 				// Disabled state
 				'input:disabled + &, fieldset:disabled &': {

@@ -1,2 +1,2 @@
 export { ListGroup } from './ListGroup';
-export { ListGroupItem } from './ListGroupItem';
+export { ListGroupItem as Item } from './ListGroupItem';

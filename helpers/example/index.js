@@ -39,7 +39,7 @@ const App = ({ components, packageName }) => {
 	// update doc title
 	useEffect(() => {
 		document.title = `${packageName} Example - GEL`;
-	}, packageName);
+	}, [packageName]);
 
 	// filter components for search
 	const navItems = inputValue.length
@@ -178,7 +178,7 @@ const Home = ({ packageName }) => (
 				run:
 			</p>
 			<pre>
-				<code>bolt dev {'{package_name}'}</code>
+				<code>yarn dev {'{package_name}'}</code>
 			</pre>
 		</Container>
 	</Article>
@@ -236,7 +236,7 @@ const SidebarSearch = props => (
 			borderColor: 'rgba(0, 0, 0, 0.075)',
 			boxSizing: 'border-box',
 			fontSize: 'inherit',
-			padding: '1rem 2rem',
+			padding: '0.625rem 1.25rem',
 			width: '100%',
 
 			':focus': {
@@ -255,7 +255,7 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 			color: primaryColor,
 			display: 'block',
 			fontWeight: 500,
-			padding: '0.625rem 1.25rem',
+			padding: '0.625rem 1.0625rem',
 			fontSize: '1rem',
 			textDecoration: 'none',
 
