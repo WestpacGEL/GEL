@@ -19,34 +19,28 @@ export const sizeMap = {
 };
 
 const IconWrapper = ({ size, ...props }) => {
-	const { COLORS } = useTheme();
 	const mq = useMediaQuery();
 
-	const style = {
-		// Common styling
-		common: {
-			display: 'inline-block',
-			flexShrink: 0,
-			lineHeight: 1,
-			verticalAlign: 'middle',
-		},
+	// Common styling
+	const styleCommon = {
+		display: 'inline-block',
+		flexShrink: 0,
+		lineHeight: 1,
+		verticalAlign: 'middle',
+	};
 
-		// Reponsive styling (icon size)
-		responsive: (() => {
-			const sizeArr = asArray(size).map(s => s && sizeMap[s]);
-
-			return {
-				height: sizeArr,
-				width: sizeArr,
-			};
-		})(),
+	// Size styling (responsive)
+	const sizeArr = asArray(size);
+	const styleSize = {
+		height: sizeArr.map(s => s && sizeMap[s]),
+		width: sizeArr.map(s => s && sizeMap[s]),
 	};
 
 	return (
 		<span
 			css={mq({
-				...style.common,
-				...style.responsive,
+				...styleCommon,
+				...styleSize,
 			})}
 			{...props}
 		/>
