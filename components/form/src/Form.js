@@ -1,19 +1,26 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
-import { FormProvider } from './Form.context';
+
+// ==============================
+// Context and consumer hook
+// ==============================
+
+const FormContext = createContext();
+
+export const useFormContext = () => useContext(FormContext);
 
 // ==============================
 // Component
 // ==============================
 
-export const Form = ({ size, spacing, isInline, tag: Tag, children, ...props }) => {
+export const Form = ({ size, spacing, inline, tag: Tag, ...props }) => {
 	return (
-		<FormProvider value={{ size, spacing, isInline }}>
-			<Tag {...props}>{children}</Tag>
-		</FormProvider>
+		<FormContext.Provider value={{ size, spacing, inline }}>
+			<Tag {...props} />
+		</FormContext.Provider>
 	);
 };
 
@@ -46,7 +53,7 @@ Form.propTypes = {
 	 *
 	 * This prop is available to children components via `FormContext`.
 	 */
-	isInline: PropTypes.bool,
+	inline: PropTypes.bool,
 
 	/**
 	 * Component tag
@@ -62,7 +69,7 @@ Form.propTypes = {
 export const defaultProps = {
 	size: 'medium',
 	spacing: 'medium',
-	isInline: false,
+	inline: false,
 	tag: 'form',
 };
 Form.defaultProps = defaultProps;
