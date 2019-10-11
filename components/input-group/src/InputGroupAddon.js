@@ -16,42 +16,43 @@ export const InputGroupAddon = ({ size, children, ...props }) => {
 
 	const sizeMap = {
 		small: {
-			fontSize: '1.4rem',
-			padding: '0.3rem 0.9rem 0.4rem',
-			height: '3rem',
+			fontSize: '0.875rem',
+			padding: '0.1875rem 0.5625rem 0.25rem',
+			height: '1.875rem',
 		},
 		medium: {
-			fontSize: '1.6rem',
-			padding: '0.5rem 1.2rem',
-			height: '3.6rem',
+			fontSize: '1rem',
+			padding: '0.3125rem 0.75rem',
+			height: '2.25rem',
 		},
 		large: {
-			fontSize: '1.6rem',
-			padding: '0.8rem 1.5rem',
-			height: '4.2rem',
+			fontSize: '1rem',
+			padding: '0.5rem 0.9375rem',
+			height: '2.625rem',
 		},
 		xlarge: {
-			fontSize: '1.8rem',
-			padding: '0.9rem 1.8rem 1rem',
-			height: '4.8rem',
+			fontSize: '1.125rem',
+			padding: '0.5625rem 1.125rem 0.0625rem',
+			height: '3rem',
 		},
-	};
-
-	const style = {
-		fontSize: sizeMap[size].fontSize,
-		lineHeight: 1.5,
-		padding: sizeMap[size].padding,
-		height: sizeMap[size].height,
-		backgroundColor: COLORS.light,
-		border: `1px solid ${COLORS.borderDark}`,
-		borderRadius: '3px',
-		borderTopRightRadius: 0,
-		borderBottomRightRadius: 0,
-		whiteSpace: 'nowrap',
 	};
 
 	return (
-		<span css={style} {...props}>
+		<span
+			css={{
+				fontSize: sizeMap[size].fontSize,
+				lineHeight: 1.5,
+				padding: sizeMap[size].padding,
+				height: sizeMap[size].height,
+				backgroundColor: COLORS.light,
+				border: `1px solid ${COLORS.borderDark}`,
+				borderRadius: '3px',
+				borderTopRightRadius: 0,
+				borderBottomRightRadius: 0,
+				whiteSpace: 'nowrap',
+			}}
+			{...props}
+		>
 			{children}
 		</span>
 	);

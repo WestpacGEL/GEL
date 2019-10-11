@@ -2,6 +2,9 @@ import React from 'react';
 import { InputGroup, Addon } from '../src';
 import { TextInput } from '@westpac/text-input';
 import { Form } from '@westpac/form';
+import { Button } from '@westpac/button';
+
+const options = ['Select', '1', '2', '3'];
 
 export default () => (
 	<>
@@ -26,6 +29,7 @@ export default () => (
 			<InputGroup>
 				<Addon>AUS $</Addon>
 				<TextInput />
+				<Button>Go</Button>
 			</InputGroup>
 		</Form>
 
@@ -34,6 +38,11 @@ export default () => (
 			<InputGroup>
 				<Addon>AUS $</Addon>
 				<TextInput />
+				<TextInput tag="select">
+					{options.map((v, i) => (
+						<option key={i}>{v}</option>
+					))}
+				</TextInput>
 			</InputGroup>
 		</Form>
 	</>
