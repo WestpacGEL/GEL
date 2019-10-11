@@ -3,16 +3,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
+import { useInputGroupContext } from './InputGroup';
 
 // ==============================
 // Component
 // ==============================
 
 /**
- * Input Group: Styled input fields with attached addons. Addons can be text ($, %, .00 etc) or form controls (buttons or select inputs).
+ * Input Group: Styled input fields with attached addons. Addons can be text ($,
+ * %,
+ * .00 etc) or form controls (buttons or select inputs).
  */
-export const InputGroupAddon = ({ size, children, ...props }) => {
+export const InputGroupAddon = ({ first, last, ...props }) => {
 	const { COLORS } = useTheme();
+	const { size } = useInputGroupContext();
 
 	const sizeMap = {
 		small: {
@@ -32,7 +36,7 @@ export const InputGroupAddon = ({ size, children, ...props }) => {
 		},
 		xlarge: {
 			fontSize: '1.125rem',
-			padding: '0.5625rem 1.125rem 0.0625rem',
+			padding: '0.5625rem 1.125rem 0.625rem',
 			height: '3rem',
 		},
 	};
@@ -46,15 +50,28 @@ export const InputGroupAddon = ({ size, children, ...props }) => {
 				height: sizeMap[size].height,
 				backgroundColor: COLORS.light,
 				border: `1px solid ${COLORS.borderDark}`,
-				borderRadius: '3px',
+				borderRadius: '0.1875rem',
 				borderTopRightRadius: 0,
 				borderBottomRightRadius: 0,
 				whiteSpace: 'nowrap',
+
+				borderRight: first && 0,
+				...(last && {
+					borderTopRightRadius: '3px',
+					borderBottomRightRadius: '3px',
+					borderLeft: 0,
+				}),
+				...(!first && {
+					borderTopLeftRadius: 0,
+					borderBottomLeftRadius: 0,
+				}),
+				...(!last && {
+					borderTopRightRadius: 0,
+					borderBottomRightRadius: 0,
+				}),
 			}}
 			{...props}
-		>
-			{children}
-		</span>
+		/>
 	);
 };
 
