@@ -7,7 +7,7 @@ import {
 	FormGroup,
 	Hint,
 	InputCluster,
-	InputClusterItem,
+	Item,
 	FormLabel,
 	FormSection,
 } from '../src';
@@ -53,12 +53,12 @@ export default () => (
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message={['This is an error message', 'This is another error message']} />
 						<InputCluster>
-							<InputClusterItem>
+							<Item>
 								<TextInput name="example-default-4-line1" />
-							</InputClusterItem>
-							<InputClusterItem>
+							</Item>
+							<Item>
 								<TextInput name="example-default-4-line2" />
-							</InputClusterItem>
+							</Item>
 						</InputCluster>
 					</Fieldset>
 				</FormGroup>
@@ -105,12 +105,12 @@ export default () => (
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message={['This is an error message', 'This is another error message']} />
 						<InputCluster>
-							<InputClusterItem>
+							<Item>
 								<TextInput name="example-large-4-line1" />
-							</InputClusterItem>
-							<InputClusterItem>
+							</Item>
+							<Item>
 								<TextInput name="example-large-4-line2" />
-							</InputClusterItem>
+							</Item>
 						</InputCluster>
 					</Fieldset>
 				</FormGroup>

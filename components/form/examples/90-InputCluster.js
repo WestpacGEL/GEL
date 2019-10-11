@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, InputCluster, InputClusterItem, FormLabel } from '../src';
+import { Form, FormGroup, InputCluster, Item, FormLabel } from '../src';
 import { TextInput } from '@westpac/text-input';
 
 export default () => (
@@ -8,18 +8,18 @@ export default () => (
 		<Form>
 			<FormGroup>
 				<InputCluster>
-					<InputClusterItem>
+					<Item>
 						<FormLabel htmlFor="example-1" sublabel>
 							This is a sub-label
 						</FormLabel>
 						<TextInput />
-					</InputClusterItem>
-					<InputClusterItem>
+					</Item>
+					<Item>
 						<FormLabel htmlFor="example-2" sublabel>
 							This is a sub-label
 						</FormLabel>
 						<TextInput />
-					</InputClusterItem>
+					</Item>
 				</InputCluster>
 			</FormGroup>
 		</Form>
@@ -32,18 +32,18 @@ export default () => (
 		<Form>
 			<FormGroup>
 				<InputCluster horizontal>
-					<InputClusterItem>
+					<Item>
 						<FormLabel htmlFor="example-3" sublabel>
 							This is a sub-label
 						</FormLabel>
 						<TextInput />
-					</InputClusterItem>
-					<InputClusterItem>
+					</Item>
+					<Item>
 						<FormLabel htmlFor="example-4" sublabel>
 							This is a sub-label
 						</FormLabel>
 						<TextInput />
-					</InputClusterItem>
+					</Item>
 				</InputCluster>
 			</FormGroup>
 		</Form>
