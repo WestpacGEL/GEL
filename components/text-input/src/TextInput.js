@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
-import { FormContext } from '@westpac/form';
+import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { useFormContext } from '@westpac/form';
 
 import svgToTinyDataURI from 'mini-svg-data-uri';
 
@@ -17,52 +17,87 @@ const round = f => Math.round(f * 100) / 100; //2DP
 // Component
 // ==============================
 
-export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }) => {
-	const { colors, breakpoints, textInput, typography } = useTheme();
-	const formContext = useContext(FormContext);
-	const mq = paint(breakpoints);
+export const TextInput = ({ size, width, inline, invalid, tag: Tag, children, ...props }) => {
+	const { COLORS } = useTheme();
+	const mq = useMediaQuery();
 
-	const isInline = formContext.isInline;
-	const textInputSize = formContext.size || size;
+	// Consume FormContext
+	const formContext = useFormContext();
+	const textInputInline = inline || (formContext && formContext.inline) || false;
+	const textInputSize = size || (formContext && formContext.size) || 'medium';
+
+	const sizeMap = {
+		small: {
+			padding: ['0.1875rem', '0.5625rem', '0.25rem'],
+			fontSize: '0.875rem',
+			textarea: {
+				minHeight: '3.375rem',
+			},
+		},
+		medium: {
+			padding: ['0.3125rem', '0.75rem'],
+			fontSize: '1rem',
+			textarea: {
+				minHeight: '3.75rem',
+			},
+		},
+		large: {
+			padding: ['0.5rem', '0.9375rem'],
+			fontSize: '1rem',
+			textarea: {
+				minHeight: '4.125rem',
+			},
+		},
+		xlarge: {
+			padding: ['0.5625rem', '1.125rem', '0.625rem'],
+			fontSize: '1.125rem',
+			textarea: {
+				minHeight: '4.5rem',
+			},
+		},
+	};
 
 	// Common styling
+	const borderWidth = 1; //px
+	const lineHeight = 1.5;
 	const styleCommon = {
-		display: isInline ? ['block', 'inline-block'] : 'block',
-		width: isInline ? ['100%', 'auto'] : '100%',
+		display: textInputInline ? ['block', 'inline-block'] : 'block',
+		width: textInputInline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
-		lineHeight: textInput.lineHeight,
-		fontWeight: textInput.fontWeight,
-		color: textInput.color,
-		backgroundColor: textInput.backgroundColor,
-		border: `${textInput.borderWidth} solid`,
-		borderColor:
-			invalid || props.ariaInvalid
-				? textInput.appearance.invalid.borderColor
-				: textInput.appearance.default.borderColor,
-		borderRadius: textInput.borderRadius,
+		lineHeight: lineHeight,
+		fontWeight: 400,
+		color: COLORS.text,
+		backgroundColor: '#fff',
+		border: `${borderWidth}px solid ${
+			invalid || props.ariaInvalid ? COLORS.danger : COLORS.borderDark
+		}`,
+		borderRadius: '0.1875rem',
 		transition: 'border 0.2s ease',
-		verticalAlign: isInline ? 'middle' : null,
-		padding: textInput.size[textInputSize].padding.join(' '),
-		fontSize: textInput.size[textInputSize].fontSize,
-		height: `calc(${textInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
-			textInput.size[textInputSize].padding
-		)} + ${(bw => `${bw} + ${bw}`)(textInput.borderWidth)})`,
+		verticalAlign: textInputInline && 'middle',
+		padding: sizeMap[textInputSize].padding.join(' '),
+		fontSize: sizeMap[textInputSize].fontSize,
+		height: `calc(${lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
+			sizeMap[textInputSize].padding
+		)} + ${2 * borderWidth}px)`,
 
 		'&::placeholder': {
 			opacity: 1, // Override Firefox's unusual default opacity
-			...textInput.placeholder,
+			fontWeight: 300,
+			color: COLORS.tints.text50,
 		},
 
 		// Focus styling (for all, not just keyboard users)
 		':focus': {
-			...typography.link.focus,
+			outline: `2px solid ${COLORS.focus}`,
+			outlineOffset: 3,
 		},
 
 		// Disabled and read-only inputs
 		':disabled, &[readonly]': {
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
-			...textInput.disabled,
+			backgroundColor: COLORS.light,
+			color: COLORS.muted,
 		},
 
 		// Disable number input spinners/steppers
@@ -72,18 +107,16 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 		},
 	};
 
-	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${colors.muted}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
-	const caretGap = textInput.select.caretGap;
+	// Appearance styling
+	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
+	const caretGap = '0.5rem';
 	const caretWidth = '14px';
-
 	const styleAppearance = {
 		select: {
-			paddingRight: `calc(${
-				textInput.size[textInputSize].padding[1]
-			} + ${caretWidth} + ${caretGap})`,
+			paddingRight: `calc(${sizeMap[textInputSize].padding[1]} + ${caretWidth} + ${caretGap})`,
 			backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
 			backgroundRepeat: 'no-repeat',
-			backgroundPosition: `right ${textInput.size[textInputSize].padding[1]} center`,
+			backgroundPosition: `right ${sizeMap[textInputSize].padding[1]} center`,
 
 			// Remove the caret on `<select>`s in IE10+.
 			'&::-ms-expand': {
@@ -99,27 +132,21 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 			},
 		},
 		textarea: {
-			verticalAlign: isInline && 'top',
-			...textInput.textarea.size[textInputSize],
+			verticalAlign: inline && 'top',
+			minHeight: sizeMap[textInputSize].textarea.minHeight,
 		},
 	};
 
 	// Input fixed width styling
-	const styleFixedWidth = () => {
-		const factor = textInput.fontXFactor; //'W' compared to 'x' character (relative to font)
-		let extras = `${(p => `${p} + ${p}`)(textInput.size[textInputSize].padding[1])} + ${(b =>
-			`${b} + ${b}`)(textInput.borderWidth)}`;
-
-		// Add width for caret if a select
-		if (Tag === 'select') {
-			extras = `${extras} + ${caretWidth} + ${caretGap}`;
-		}
-
-		return (
-			width && {
-				maxWidth: `calc(${extras} + ${round(width * factor)}ex)`,
-			}
-		);
+	const factor = 1.81; //'W' compared to 'x' character (relative to font)
+	let extras = `${(p => `${p} + ${p}`)(sizeMap[textInputSize].padding[1])} + ${(b => `${b} + ${b}`)(
+		`${borderWidth}px`
+	)}`;
+	if (Tag === 'select') {
+		extras = `${extras} + ${caretWidth} + ${caretGap}`; // Add width for caret if a select
+	}
+	const styleFixedWidth = {
+		maxWidth: width && `calc(${extras} + ${round(width * factor)}ex)`,
 	};
 
 	return (
@@ -127,7 +154,7 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 			css={mq({
 				...styleCommon,
 				...styleAppearance[Tag],
-				...styleFixedWidth(),
+				...styleFixedWidth,
 			})}
 			type={Tag === 'input' ? 'text' : undefined}
 			{...props}
@@ -161,6 +188,11 @@ TextInput.propTypes = {
 	width: PropTypes.oneOf(options.width),
 
 	/**
+	 * Inline mode
+	 */
+	inline: PropTypes.bool,
+
+	/**
 	 * Invalid input mode
 	 */
 	invalid: PropTypes.bool,
@@ -179,7 +211,6 @@ TextInput.propTypes = {
 };
 
 TextInput.defaultProps = {
-	size: 'medium',
 	invalid: false,
 	tag: 'input',
 };
