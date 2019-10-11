@@ -1,21 +1,32 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
+
+// ==============================
+// Context and consumer hook
+// ==============================
+
+const FormCheckContext = createContext();
+
+export const useFormCheckContext = () => {
+	const context = useContext(FormCheckContext);
+	if (!context) {
+		throw new Error('Form check sub-components should be wrapped in a <FormCheck>.');
+	}
+	return context;
+};
 
 // ==============================
 // Component
 // ==============================
 
-export const FormCheck = ({ type, name, size, isInline, isFlipped, children, ...props }) => {
-	// Pass the selected props on to children
-	const childrenWithProps = Children.map(children, child =>
-		cloneElement(child, { type, name, size, isInline, isFlipped })
-	);
-
-	return <div {...props}>{childrenWithProps}</div>;
-};
+export const FormCheck = ({ type, name, size, inline, flipped, ...props }) => (
+	<FormCheckContext.Provider value={{ type, name, size, inline, flipped }}>
+		<div {...props} />
+	</FormCheckContext.Provider>
+);
 
 // ==============================
 // Types
@@ -53,7 +64,7 @@ FormCheck.propTypes = {
 	 *
 	 * This prop is passed to children.
 	 */
-	isFlipped: PropTypes.bool,
+	flipped: PropTypes.bool,
 
 	/**
 	 * Form check item(s)
@@ -64,5 +75,5 @@ FormCheck.propTypes = {
 FormCheck.defaultProps = {
 	type: 'checkbox',
 	size: 'medium',
-	isFlipped: false,
+	flipped: false,
 };

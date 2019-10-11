@@ -14,8 +14,7 @@ export default () => (
 			<Label appearance="neutral">Neutral</Label> <Label appearance="faint">Faint</Label>
 		</p>
 		<p>
-			<Label appearance="success">Success</Label>{' '}
-			<Label appearance="information">Information</Label>{' '}
+			<Label appearance="success">Success</Label> <Label appearance="info">Info</Label>{' '}
 			<Label appearance="warning">Warning</Label> <Label appearance="danger">Danger</Label>
 		</p>
 
@@ -45,8 +44,8 @@ export default () => (
 			<Label href="#0" appearance="success">
 				Success
 			</Label>{' '}
-			<Label href="#0" appearance="information">
-				Information
+			<Label href="#0" appearance="info">
+				Info
 			</Label>{' '}
 			<Label href="#0" appearance="warning">
 				Warning

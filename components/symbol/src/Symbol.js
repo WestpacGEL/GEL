@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -12,36 +12,26 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 const round = f => Math.round(f * 10) / 10; //1DP
 
 const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props }) => {
-	const { breakpoints } = useTheme();
-	const mq = paint(breakpoints);
+	const mq = useMediaQuery();
 
-	const style = {
-		// Common styling
-		common: {
-			display: 'inline-block',
-			flexShrink: 0,
-			lineHeight: 1,
-			verticalAlign: 'middle',
-		},
+	const ratio = viewBoxWidth / viewBoxHeight;
 
-		// Reponsive styling (symbol size)
-		responsive: (() => {
-			const widthArr = asArray(width || viewBoxWidth);
-			const heightArr = asArray(height || viewBoxHeight);
-			const ratio = viewBoxWidth / viewBoxHeight;
-
-			return {
-				width: width ? widthArr : heightArr.map(h => (h !== null ? round(h * ratio) : null)),
-				height: width ? widthArr.map(w => (w !== null ? round(w / ratio) : null)) : heightArr,
-			};
-		})(),
+	// Size styling (responsive)
+	const widthArr = asArray(width || viewBoxWidth);
+	const heightArr = asArray(height || viewBoxHeight);
+	const styleSize = {
+		width: width ? widthArr : heightArr.map(h => (h !== null ? round(h * ratio) : null)),
+		height: width ? widthArr.map(w => (w !== null ? round(w / ratio) : null)) : heightArr,
 	};
 
 	return (
 		<span
 			css={mq({
-				...style.common,
-				...style.responsive,
+				display: 'inline-block',
+				flexShrink: 0,
+				lineHeight: 1,
+				verticalAlign: 'middle',
+				...styleSize,
 			})}
 			{...props}
 		/>
