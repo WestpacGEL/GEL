@@ -14,7 +14,7 @@ export const useListContext = () => useContext(ListContext);
 // ==============================
 // Component
 // ==============================
-export const List = ({ appearance, type, spacing, icon, children, ...props }) => {
+export const List = ({ appearance, type, spacing, icon, ...props }) => {
 	const context = useListContext();
 
 	const listStyle = {
@@ -31,9 +31,7 @@ export const List = ({ appearance, type, spacing, icon, children, ...props }) =>
 			<ListType
 				css={{ margin: 0, padding: listStyle.type === 'ordered' ? '0 0 0 1.25rem' : 0 }}
 				{...props}
-			>
-				{children}
-			</ListType>
+			/>
 		</ListContext.Provider>
 	);
 };
