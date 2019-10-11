@@ -44,20 +44,20 @@ export default () => (
 
 		<h3>Medium spacing</h3>
 		<Form spacing="medium">
-			<FormGroup isPrimary>
+			<FormGroup primary>
 				<Box>FormGroup primary content</Box>
 			</FormGroup>
-			<FormGroup isPrimary>
+			<FormGroup primary>
 				<Box>FormGroup primary content</Box>
 			</FormGroup>
 		</Form>
 
 		<h3>Large spacing</h3>
 		<Form spacing="large">
-			<FormGroup isPrimary>
+			<FormGroup primary>
 				<Box>FormGroup primary content</Box>
 			</FormGroup>
-			<FormGroup isPrimary>
+			<FormGroup primary>
 				<Box>FormGroup primary content</Box>
 			</FormGroup>
 		</Form>
@@ -68,7 +68,7 @@ export default () => (
 		<p>Note: The following example FormGroups should NOT be affected by spacing in SM+.</p>
 
 		<h3>Default spacing</h3>
-		<Form isInline>
+		<Form inline>
 			<FormGroup>
 				<Box>FormGroup content</Box>
 			</FormGroup>
@@ -78,7 +78,7 @@ export default () => (
 		</Form>
 
 		<h3>Medium spacing</h3>
-		<Form spacing="medium" isInline>
+		<Form spacing="medium" inline>
 			<FormGroup>
 				<Box>FormGroup content</Box>
 			</FormGroup>
@@ -88,7 +88,7 @@ export default () => (
 		</Form>
 
 		<h3>Large spacing</h3>
-		<Form spacing="large" isInline>
+		<Form spacing="large" inline>
 			<FormGroup>
 				<Box>FormGroup content</Box>
 			</FormGroup>
