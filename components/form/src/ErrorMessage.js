@@ -34,15 +34,16 @@ export const ErrorMessage = ({ message, icon, tag: Tag, ...props }) => {
 		Tag = 'ul';
 	}
 
-	const common = {
-		fontSize: '0.875rem',
-		margin: '0 0 0.75rem',
-		color: COLORS.danger,
-		...(isMessages && { listStyle: 'none', paddingLeft: 0 }),
-	};
-
 	return (
-		<Tag css={common} {...props}>
+		<Tag
+			css={{
+				fontSize: '0.875rem',
+				margin: '0 0 0.75rem',
+				color: COLORS.danger,
+				...(isMessages && { listStyle: 'none', paddingLeft: 0 }),
+			}}
+			{...props}
+		>
 			{isMessages ? (
 				message.map(msg => (
 					<li css={{ marginBottom: '0.375rem' }} key={shortid.generate()}>
