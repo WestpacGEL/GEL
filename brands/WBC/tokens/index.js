@@ -174,9 +174,6 @@ export default {
 		borderWidth: '1px',
 		fontWeight: 400,
 		lineHeight: 1.5,
-		wrappedButton: {
-			marginLeft: '0.5rem',
-		},
 		appearance: {
 			primary: {
 				standard: {
@@ -453,13 +450,6 @@ export default {
 		},
 	},
 
-	grid: {
-		container: {
-			maxWidth: CONTAINER_MAXWIDTH,
-			padding: CONTAINER_PADDING,
-		},
-	},
-
 	label: {
 		borderRadius: '0.2rem',
 		borderWidth: '1px',
@@ -649,6 +639,59 @@ export default {
 		},
 		sectionImg: {
 			marginBottom: ['1.8rem', '4.2rem'],
+		},
+	},
+
+	formPod: {
+		icon: {
+			borderWidth: 1,
+			borderColor: COLORS.border,
+			backgroundColor: '#fff',
+			width: '6.6rem',
+			gap: '1.2rem',
+			padding: '1.4rem',
+			marginBottom: ['1.2rem', '-0.6rem'],
+		},
+		header: {
+			marginBottom: [24, 24, 30],
+		},
+		preheading: {
+			color: COLORS.muted,
+			margin: '0 0 6px',
+			textTransform: 'uppercase',
+			fontSize: '1.1rem',
+			fontWeight: 'bold',
+		},
+		heading: {
+			fontWeight: 300, //light
+			fontSize: ['2.4rem', '3rem'],
+			margin: 0,
+		},
+		panel: {
+			backgroundColor: '#fff',
+			borderTop: `1px solid ${COLORS.hero}`,
+			borderBottom: `1px solid ${COLORS.border}`,
+		},
+		panelInner: {
+			default: {
+				padding: ['3rem 1.2rem', '6rem 13%', '6rem 6%', '6rem 13%'],
+			},
+			expanded: {
+				padding: ['3rem 1.2rem', '4.8rem 3.6rem'],
+			},
+		},
+		footer: {
+			height: '5.4rem', //Nb. there's no min-height with flex in IE
+			backgroundColor: COLORS.light,
+			padding: '1.2rem',
+		},
+		actions: {
+			marginTop: '3rem',
+		},
+		actionsText: {
+			fontSize: '1.6rem',
+			textAlign: ['center', 'left'],
+			marginBottom: ['2.4rem', 0],
 		},
 	},
 
@@ -842,51 +885,7 @@ export default {
 	},
 
 	template: {
-		header: {
-			borderBottomWidth: '1px',
-			borderBottomColor: COLORS.border,
-			height: ['5.4rem', '6.5rem'],
-			right: {
-				marginRight: ['1.2rem', '2.4rem'],
-			},
-			logo: {
-				paddingLeft: ['1.2rem', '2.4rem'],
-				paddingRight: ['1.2rem', '2.4rem'],
-			},
-			button: {
-				marginTop: ['0.6rem', '0.6rem'],
-				marginBottom: ['0.6rem', '0.6rem'],
-				paddingLeft: ['0.9rem', '1.8rem'],
-				paddingRight: ['0.9rem', '1.8rem'],
-				minWidth: ['4.2rem', '6rem'],
-				border: `1px solid ${COLORS.border}`,
-			},
-		},
-		footer: {
-			paddingLeft: ['1.2rem', '2.4rem'],
-			paddingRight: ['1.2rem', '2.4rem'],
-			divider: {
-				height: '1px',
-				backgroundColor: COLORS.primary,
-			},
-			inner: {
-				padding: ['1.8rem 1.2rem', '1.8rem 2.4rem 2.4rem'],
-			},
-			icon: {
-				marginRight: ['0.6rem', '1.2rem'],
-				color: tint(COLORS.muted, 0.6),
-			},
-			text: {
-				color: COLORS.muted,
-			},
-			fancy: {
-				height: '12px',
-				backgroundImage:
-					"url('data:image/svg+xml;charset%3DUS-ASCII,%3Csvg%20width%3D%221128%22%20height%3D%2212%22%20viewBox%3D%220%200%201128%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EGraphic%2FEnergy-stripe%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.9%22%3E%3Cpath%20fill%3D%22%23DD3A46%22%20d%3D%22M1042%2012h86V0h-86%22%2F%3E%3Cpath%20fill%3D%22%23D5002B%22%20d%3D%22M891%2012h67V0h-67%22%2F%3E%3Cpath%20fill%3D%22%23B6000B%22%20d%3D%22M675%2012h159V0H675%22%2F%3E%3Cpath%20fill%3D%22%23D5002B%22%20d%3D%22M568%2012h105V0H568%22%2F%3E%3Cpath%20fill%3D%22%23B6000B%22%20d%3D%22M375.82%2012H503V0H375.82%22%2F%3E%3Cpath%20fill%3D%22%23DD3A46%22%20d%3D%22M264.136%2012H286V0h-21.864%22%2F%3E%3Cpath%20fill%3D%22%23D5002B%22%20d%3D%22M0%2012h70.91V0H0%22%2F%3E%3Cpath%20fill%3D%22%23B6000B%22%20d%3D%22M50.356%200l3.392%2012h216.76l-3.8-12%22%2F%3E%3Cpath%20fill%3D%22%23D5002B%22%20d%3D%22M282.478%200l-3.798%2012H378V0%22%2F%3E%3Cpath%20fill%3D%22%23C30019%22%20d%3D%22M498.832%200l-3.393%2012H571V0%22%2F%3E%3Cpath%20fill%3D%22%23DD3A46%22%20d%3D%22M665.88%200l3.798%2012h8.173l3.8-12%22%2F%3E%3Cpath%20fill%3D%22%23C30019%22%20d%3D%22M827.246%200l3.393%2012h63.972l3.39-12M955%200v12h93.68l-3.392-12%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')",
-				backgroundRepeat: 'repeat-x',
-				backgroundPosition: 'center top',
-			},
-		},
+		backgroundColor: '#fff',
 		wrapper: {
 			backgroundColor: COLORS.background,
 		},

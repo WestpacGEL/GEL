@@ -194,9 +194,6 @@ export default {
 		borderWidth: '1px',
 		fontWeight: 400,
 		lineHeight: 1.5,
-		wrappedButton: {
-			marginLeft: '0.5rem',
-		},
 		appearance: {
 			primary: {
 				standard: {
@@ -473,13 +470,6 @@ export default {
 		},
 	},
 
-	grid: {
-		container: {
-			maxWidth: CONTAINER_MAXWIDTH,
-			padding: CONTAINER_PADDING,
-		},
-	},
-
 	label: {
 		borderRadius: '0.2rem',
 		borderWidth: '1px',
@@ -669,6 +659,59 @@ export default {
 		},
 		sectionImg: {
 			marginBottom: ['1.8rem', '4.2rem'],
+		},
+	},
+
+	formPod: {
+		icon: {
+			borderWidth: 1,
+			borderColor: COLORS.border,
+			backgroundColor: '#fff',
+			width: '6.6rem',
+			gap: '1.2rem',
+			padding: '1.4rem',
+			marginBottom: ['1.2rem', '-0.6rem'],
+		},
+		header: {
+			marginBottom: [24, 24, 30],
+		},
+		preheading: {
+			color: COLORS.muted,
+			margin: '0 0 6px',
+			textTransform: 'uppercase',
+			fontSize: '1.1rem',
+			fontWeight: 'bold',
+		},
+		heading: {
+			fontWeight: 300, //light
+			fontSize: ['2.4rem', '3rem'],
+			margin: 0,
+		},
+		panel: {
+			backgroundColor: '#fff',
+			borderTop: `1px solid ${COLORS.hero}`,
+			borderBottom: `1px solid ${COLORS.border}`,
+		},
+		panelInner: {
+			default: {
+				padding: ['3rem 1.2rem', '6rem 13%', '6rem 6%', '6rem 13%'],
+			},
+			expanded: {
+				padding: ['3rem 1.2rem', '4.8rem 3.6rem'],
+			},
+		},
+		footer: {
+			height: '5.4rem', //Nb. there's no min-height with flex in IE
+			backgroundColor: COLORS.light,
+			padding: '1.2rem',
+		},
+		actions: {
+			marginTop: '3rem',
+		},
+		actionsText: {
+			fontSize: '1.6rem',
+			textAlign: ['center', 'left'],
+			marginBottom: ['2.4rem', 0],
 		},
 	},
 
@@ -862,35 +905,7 @@ export default {
 	},
 
 	template: {
-		header: {
-			borderBottomWidth: '1px',
-			borderBottomColor: COLORS.border,
-			height: ['5.4rem', '6.5rem'],
-			right: {
-				marginRight: ['1.2rem', '2.4rem'],
-			},
-			logo: {
-				paddingLeft: ['1.2rem', '2.4rem'],
-				paddingRight: ['1.2rem', '2.4rem'],
-			},
-			button: {
-				marginTop: ['0.6rem', '0.6rem'],
-				marginBottom: ['0.6rem', '0.6rem'],
-				paddingLeft: ['0.9rem', '1.8rem'],
-				paddingRight: ['0.9rem', '1.8rem'],
-				minWidth: ['4.2rem', '6rem'],
-				border: `1px solid ${COLORS.border}`,
-			},
-		},
-		footer: {
-			paddingLeft: ['1.2rem', '2.4rem'],
-			paddingRight: ['1.2rem', '2.4rem'],
-			divider: {
-				height: '1px',
-				backgroundColor: COLORS.hero,
-			},
-			fancy: {},
-		},
+		backgroundColor: '#fff',
 		wrapper: {
 			backgroundColor: COLORS.background,
 		},

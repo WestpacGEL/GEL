@@ -1,6 +1,6 @@
 import React from 'react';
 import { Panel, Header, Body } from '../src';
-import { Table } from '@westpac/table';
+import { PanelTable } from '@westpac/table';
 
 export default () => (
 	<>
@@ -12,7 +12,7 @@ export default () => (
 				bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
 				venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
 			</Body>
-			<Table striped responsive>
+			<PanelTable striped responsive>
 				<caption>
 					Table caption this table width is: <em>(100%)</em>
 				</caption>
@@ -48,7 +48,7 @@ export default () => (
 						</td>
 					</tr>
 				</tbody>
-			</Table>
+			</PanelTable>
 		</Panel>
 
 		<hr />
@@ -56,7 +56,7 @@ export default () => (
 		<h2>Responsive panel with table only</h2>
 		<Panel>
 			<Header>Panel title</Header>
-			<Table striped responsive>
+			<PanelTable striped responsive>
 				<caption>
 					Table caption this table width is: <em>(100%)</em>
 				</caption>
@@ -94,7 +94,7 @@ export default () => (
 						</td>
 					</tr>
 				</tbody>
-			</Table>
+			</PanelTable>
 		</Panel>
 	</>
 );

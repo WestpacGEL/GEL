@@ -16,14 +16,6 @@ const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props })
 
 	const ratio = viewBoxWidth / viewBoxHeight;
 
-	// Common styling
-	const styleCommon = {
-		display: 'inline-block',
-		flexShrink: 0,
-		lineHeight: 1,
-		verticalAlign: 'middle',
-	};
-
 	// Size styling (responsive)
 	const widthArr = asArray(width || viewBoxWidth);
 	const heightArr = asArray(height || viewBoxHeight);
@@ -35,7 +27,10 @@ const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props })
 	return (
 		<span
 			css={mq({
-				...styleCommon,
+				display: 'inline-block',
+				flexShrink: 0,
+				lineHeight: 1,
+				verticalAlign: 'middle',
 				...styleSize,
 			})}
 			{...props}

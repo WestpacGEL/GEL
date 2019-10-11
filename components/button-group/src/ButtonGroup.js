@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { Children, cloneElement, createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
@@ -37,6 +37,20 @@ export const ButtonGroup = ({
 		setChecked(event.target.value);
 	};
 
+	const childrenWithProps = Children.map(children, (child, index) => {
+		if (!child.type.isButton) {
+			throw new Error('<ButtonGroup /> only accepts <Button /> as direct children.');
+		}
+		if (index === 0) {
+			return cloneElement(child, { first: true });
+		}
+		if (index === Children.count(children) - 1) {
+			return cloneElement(child, { last: true });
+		}
+
+		return child;
+	});
+
 	return (
 		<ButtonGroupContext.Provider value={{ appearance, size, name, checked, handleChange }}>
 			<div
@@ -47,7 +61,7 @@ export const ButtonGroup = ({
 				}}
 				{...props}
 			>
-				{children}
+				{childrenWithProps}
 			</div>
 		</ButtonGroupContext.Provider>
 	);

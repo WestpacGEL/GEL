@@ -23,7 +23,6 @@ export const Button = ({
 	trim,
 	iconAfter,
 	iconBefore,
-	iconColor,
 	justify,
 	srOnlyText,
 	tag: Tag,
@@ -99,7 +98,7 @@ export const Button = ({
 		},
 		hero: {
 			standard: {
-				color: '#fff',
+				color: '#fff', //TODO: STG uses `COLORS.text`
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
 
@@ -116,11 +115,11 @@ export const Button = ({
 				borderColor: COLORS.hero,
 
 				':hover': {
-					color: '#fff',
+					color: '#fff', //TODO: STG uses `COLORS.text` (i.e. `color: null`)
 					backgroundColor: COLORS.tints.hero70,
 				},
 				':active, &.active': {
-					color: '#fff',
+					color: '#fff', //TODO: STG uses `COLORS.text` (i.e. `color: null`)
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},
@@ -248,7 +247,6 @@ export const Button = ({
 					block={block}
 					iconAfter={iconAfter}
 					iconBefore={iconBefore}
-					iconColor={iconColor}
 					srOnlyText={srOnlyText}
 				>
 					{children}
@@ -323,9 +321,9 @@ export const propTypes = {
 	justify: PropTypes.bool,
 
 	/**
-	 * ‘Screen reader only’ text
+	 * Enable ‘screen reader only’ text mode
 	 */
-	srOnlyText: PropTypes.string,
+	srOnlyText: PropTypes.bool,
 
 	/**
 	 * Handler to be called on click
@@ -345,7 +343,6 @@ export const defaultProps = {
 	soft: false,
 	block: false,
 	trim: false,
-	iconColor: 'inherit',
 	justify: false,
 };
 
