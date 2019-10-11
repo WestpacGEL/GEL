@@ -17,7 +17,7 @@ import {
 	FormSectionImg,
 	Hint,
 	InputCluster,
-	InputClusterItem,
+	Item,
 } from './src';
 
 import { TextInput } from '@westpac/text-input';
@@ -77,14 +77,14 @@ The `@westpac/form` package provides general form styling and layout components 
     				<Hint>This is a hint</Hint>
     				<ErrorMessage message={['This is an error message', 'This is another error message']} />
     				<InputCluster>
-    					<InputClusterItem>
+    					<Item>
     						<FormLabel htmlFor="example-fieldset-line1" sublabel>This is a sub-label</FormLabel>
     						<TextInput name="example-fieldset-line1" id="example-fieldset-line1" />
-    					</InputClusterItem>
-    					<InputClusterItem>
+    					</Item>
+    					<Item>
     						<FormLabel htmlFor="example-fieldset-line2" sublabel>This is a sub-label</FormLabel>
     						<TextInput name="example-fieldset-line2" id="example-fieldset-line2" />
-    					</InputClusterItem>
+    					</Item>
     				</InputCluster>
     			</Fieldset>
     		</FormGroup>
@@ -190,7 +190,7 @@ Fieldset takes mandatory legend text via its `legend` prop.
 		<Fieldset legend="Date of birth" aria-describedby="example-fieldset-hint">
 			<Hint id="example-fieldset-hint">For example 31 3 1980</Hint>
 			<InputCluster horizontal>
-				<InputClusterItem>
+				<Item>
 					<FormLabel htmlFor="example-fieldset-input-1" sublabel>
 						Day
 					</FormLabel>
@@ -204,8 +204,8 @@ Fieldset takes mandatory legend text via its `legend` prop.
 						id="example-fieldset-input-1"
 						width={2}
 					/>
-				</InputClusterItem>
-				<InputClusterItem>
+				</Item>
+				<Item>
 					<FormLabel htmlFor="example-fieldset-input-2" sublabel>
 						Month
 					</FormLabel>
@@ -219,8 +219,8 @@ Fieldset takes mandatory legend text via its `legend` prop.
 						id="example-fieldset-input-2"
 						width={2}
 					/>
-				</InputClusterItem>
-				<InputClusterItem>
+				</Item>
+				<Item>
 					<FormLabel htmlFor="example-fieldset-input-3" sublabel>
 						Year
 					</FormLabel>
@@ -234,7 +234,7 @@ Fieldset takes mandatory legend text via its `legend` prop.
 						id="example-fieldset-input-3"
 						width={4}
 					/>
-				</InputClusterItem>
+				</Item>
 			</InputCluster>
 		</Fieldset>
 	</FormGroup>
@@ -269,18 +269,18 @@ These patterns also require use of the Fieldset component to meet WCAG 2.1 AA ac
 	<FormGroup>
 		<Fieldset legend="This is a legend">
 			<InputCluster>
-				<InputClusterItem>
+				<Item>
 					<FormLabel htmlFor="example-formlabel-sublabel-1" sublabel>
 						This is a sub-label
 					</FormLabel>
 					<TextInput name="example-formlabel-sublabel-1" id="example-formlabel-sublabel-1" />
-				</InputClusterItem>
-				<InputClusterItem>
+				</Item>
+				<Item>
 					<FormLabel htmlFor="example-formlabel-sublabel-2" sublabel>
 						This is another sub-label
 					</FormLabel>
 					<TextInput name="example-formlabel-sublabel-2" id="example-formlabel-sublabel-2" />
-				</InputClusterItem>
+				</Item>
 			</InputCluster>
 		</Fieldset>
 	</FormGroup>
@@ -294,18 +294,18 @@ Always provide a FormLabel component for every associated input to meet WCAG 2.1
 	<FormGroup>
 		<Fieldset legend="This is a legend">
 			<InputCluster>
-				<InputClusterItem>
+				<Item>
 					<FormLabel htmlFor="example-formlabel-sronly-1" srOnly>
 						This is a ‘screen reader only’ label
 					</FormLabel>
 					<TextInput name="example-formlabel-sronly-1" id="example-formlabel-sronly-1" />
-				</InputClusterItem>
-				<InputClusterItem>
+				</Item>
+				<Item>
 					<FormLabel htmlFor="example-formlabel-sronly-2" srOnly>
 						This is another ‘screen reader only’ label
 					</FormLabel>
 					<TextInput name="example-formlabel-sronly-2" id="example-formlabel-sronly-2" />
-				</InputClusterItem>
+				</Item>
 			</InputCluster>
 		</Fieldset>
 	</FormGroup>
@@ -334,12 +334,12 @@ Hint text is additional text provided to aid the user in understanding the expec
 		<Fieldset legend="This is a legend" aria-describedby="example-fieldset-hint">
 			<Hint id="example-fieldset-hint">This is a hint</Hint>
 			<InputCluster>
-				<InputClusterItem>
+				<Item>
 					<TextInput name="example-fieldset-hint-input-1" id="example-fieldset-hint-input-1" />
-				</InputClusterItem>
-				<InputClusterItem>
+				</Item>
+				<Item>
 					<TextInput name="example-fieldset-hint-input-2" id="example-fieldset-hint-input-2" />
-				</InputClusterItem>
+				</Item>
 			</InputCluster>
 		</Fieldset>
 	</FormGroup>
@@ -391,12 +391,12 @@ The default (vertical) mode is used to render the multi-line ‘Street’ patter
 
 <Playground>
 	<InputCluster>
-		<InputClusterItem>
+		<Item>
 			<TextInput name="example-inputcluster-input-1" id="example-inputcluster-input-1" />
-		</InputClusterItem>
-		<InputClusterItem>
+		</Item>
+		<Item>
 			<TextInput name="example-inputcluster-input-2" id="example-inputcluster-input-2" />
-		</InputClusterItem>
+		</Item>
 	</InputCluster>
 </Playground>
 
@@ -406,18 +406,18 @@ The `horizontal` mode changes the layout to inline. This mode is used to render 
 
 <Playground>
 	<InputCluster horizontal>
-		<InputClusterItem>
+		<Item>
 			<TextInput
 				name="example-inputcluster-horizontal-input-1"
 				id="example-inputcluster-horizontal-input-1"
 			/>
-		</InputClusterItem>
-		<InputClusterItem>
+		</Item>
+		<Item>
 			<TextInput
 				name="example-inputcluster-horizontal-input-2"
 				id="example-inputcluster-horizontal-input-2"
 			/>
-		</InputClusterItem>
+		</Item>
 	</InputCluster>
 </Playground>
 
