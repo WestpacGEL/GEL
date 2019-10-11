@@ -1,25 +1,40 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement, isValidElement } from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 
 // ==============================
+// Context and Consumer Hook
+// ==============================
+const ListContext = createContext();
+
+export const useListContext = () => useContext(ListContext);
+
+// ==============================
 // Component
 // ==============================
-export const List = ({ children, ...props }) => {
-	const childrenWithProps = Children.map(children, child =>
-		isValidElement(child) && child.props.type === 'icon' && child.props.icon
-			? cloneElement(child, { ...props, icon: child.props.icon })
-			: cloneElement(child, props)
-	);
+export const List = ({ appearance, type, spacing, icon, children, ...props }) => {
+	const context = useListContext();
 
-	const { type } = props;
-	const ListType = type === 'ordered' ? 'ol' : 'ul';
+	const listStyle = {
+		appearance: appearance || (context && context.appearance) || 'hero',
+		type: type || (context && context.type) || 'bullet',
+		spacing: spacing || (context && context.spacing) || 'medium',
+		icon: icon || (context && context.icon),
+	};
+
+	const ListType = listStyle.type === 'ordered' ? 'ol' : 'ul';
+
 	return (
-		<ListType css={{ margin: 0, padding: type === 'ordered' ? '0 0 0 2rem' : 0 }}>
-			{childrenWithProps}
-		</ListType>
+		<ListContext.Provider value={listStyle}>
+			<ListType
+				css={{ margin: 0, padding: listStyle.type === 'ordered' ? '0 0 0 1.25rem' : 0 }}
+				{...props}
+			>
+				{children}
+			</ListType>
+		</ListContext.Provider>
 	);
 };
 
@@ -37,10 +52,4 @@ List.propTypes = {
 	icon: PropTypes.func,
 	/**  Any renderable child */
 	children: PropTypes.node,
-};
-
-List.defaultProps = {
-	appearance: 'hero',
-	type: 'bullet',
-	spacing: 'medium',
 };
