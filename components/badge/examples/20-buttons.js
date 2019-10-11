@@ -40,7 +40,7 @@ export default () => (
 				Primary <Badge appearance="success">Success</Badge>
 			</Button>{' '}
 			<Button appearance="primary">
-				Primary <Badge appearance="information">Information</Badge>
+				Primary <Badge appearance="info">Info</Badge>
 			</Button>{' '}
 			<Button appearance="primary">
 				Primary <Badge appearance="warning">Warning</Badge>
@@ -73,7 +73,7 @@ export default () => (
 				Primary soft <Badge appearance="success">Success</Badge>
 			</Button>{' '}
 			<Button appearance="primary" soft>
-				Primary soft <Badge appearance="information">Information</Badge>
+				Primary soft <Badge appearance="info">Info</Badge>
 			</Button>{' '}
 			<Button appearance="primary" soft>
 				Primary soft <Badge appearance="warning">Warning</Badge>
@@ -108,7 +108,7 @@ export default () => (
 				Hero <Badge appearance="success">Success</Badge>
 			</Button>{' '}
 			<Button appearance="hero">
-				Hero <Badge appearance="information">Information</Badge>
+				Hero <Badge appearance="info">Info</Badge>
 			</Button>{' '}
 			<Button appearance="hero">
 				Hero <Badge appearance="warning">Warning</Badge>
@@ -141,7 +141,7 @@ export default () => (
 				Hero soft <Badge appearance="success">Success</Badge>
 			</Button>{' '}
 			<Button appearance="hero" soft>
-				Hero soft <Badge appearance="information">Information</Badge>
+				Hero soft <Badge appearance="info">Info</Badge>
 			</Button>{' '}
 			<Button appearance="hero" soft>
 				Hero soft <Badge appearance="warning">Warning</Badge>
@@ -176,7 +176,7 @@ export default () => (
 				Neutral <Badge appearance="success">Success</Badge>
 			</Button>{' '}
 			<Button appearance="neutral">
-				Neutral <Badge appearance="information">Information</Badge>
+				Neutral <Badge appearance="info">Info</Badge>
 			</Button>{' '}
 			<Button appearance="neutral">
 				Neutral <Badge appearance="warning">Warning</Badge>
@@ -209,7 +209,7 @@ export default () => (
 				Neutral soft <Badge appearance="success">Success</Badge>
 			</Button>{' '}
 			<Button appearance="neutral" soft>
-				Neutral soft <Badge appearance="information">Information</Badge>
+				Neutral soft <Badge appearance="info">Info</Badge>
 			</Button>{' '}
 			<Button appearance="neutral" soft>
 				Neutral soft <Badge appearance="warning">Warning</Badge>
@@ -244,7 +244,7 @@ export default () => (
 				Faint <Badge appearance="success">Success</Badge>
 			</Button>{' '}
 			<Button appearance="faint">
-				Faint <Badge appearance="information">Information</Badge>
+				Faint <Badge appearance="info">Info</Badge>
 			</Button>{' '}
 			<Button appearance="faint">
 				Faint <Badge appearance="warning">Warning</Badge>
@@ -277,7 +277,7 @@ export default () => (
 				Faint soft <Badge appearance="success">Success</Badge>
 			</Button>{' '}
 			<Button appearance="faint" soft>
-				Faint soft <Badge appearance="information">Information</Badge>
+				Faint soft <Badge appearance="info">Info</Badge>
 			</Button>{' '}
 			<Button appearance="faint" soft>
 				Faint soft <Badge appearance="warning">Warning</Badge>

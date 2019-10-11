@@ -11,7 +11,7 @@ export const ModalProps = () => <div />;
 
 ModalProps.propTypes = {
 	/** State of whether the modal is open */
-	isOpen: PropTypes.bool,
+	open: PropTypes.bool,
 	/** Callback function for handling modal state */
 	onClose: PropTypes.func,
 	/** Size of the modal */
@@ -19,6 +19,6 @@ ModalProps.propTypes = {
 };
 
 ModalProps.defaultProps = {
-	isOpen: false,
+	open: false,
 	size: 'medium',
 };

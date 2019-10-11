@@ -1,27 +1,42 @@
 /** @jsx jsx */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { FormContext } from './Form.context';
+import { useFormContext } from './Form';
 
 // ==============================
 // Component
 // ==============================
 
 export const Hint = ({ tag: Tag, ...props }) => {
-	const {
-		form: { hint },
-	} = useTheme();
-	const { spacing } = useContext(FormContext);
+	const { COLORS } = useTheme();
 
-	const common = {
-		color: hint.color,
-		fontSize: hint.fontSize,
-		...hint.spacing[spacing],
+	// Consume FormContext
+	const formContext = useFormContext();
+	const spacing = (formContext && formContext.spacing) || 'medium';
+
+	const spacingMap = {
+		medium: {
+			marginTop: '-0.375rem',
+			marginBottom: '0.75rem',
+		},
+		large: {
+			marginTop: '-0.75rem',
+			marginBottom: '1.125rem',
+		},
 	};
 
-	return <Tag css={common} {...props} />;
+	return (
+		<Tag
+			css={{
+				color: COLORS.muted,
+				fontSize: '0.875rem',
+				...spacingMap[spacing],
+			}}
+			{...props}
+		/>
+	);
 };
 
 // ==============================

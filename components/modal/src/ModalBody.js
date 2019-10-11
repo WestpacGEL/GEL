@@ -1,9 +1,10 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
+import { useModalContext } from './Modal';
 
 export const ModalBody = props => {
-	const { modal } = useTheme();
-	return <div css={{ padding: modal.body.padding }} {...props} />;
+	const { bodyId } = useModalContext();
+	return <div id={bodyId} css={{ padding: '1.125rem 1.5rem' }} {...props} />;
 };
