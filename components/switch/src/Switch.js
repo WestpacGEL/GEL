@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import shortid from 'shortid';
 import { SwitchText, SwitchToggle } from './styled';
 
@@ -24,7 +24,6 @@ export const Switch = ({
 	children,
 	...props
 }) => {
-	const { switch: formSwitch } = useTheme();
 	const [checked, setChecked] = useState(isChecked);
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 
@@ -46,8 +45,8 @@ export const Switch = ({
 		display: isBlock ? 'flex' : 'inline-flex',
 		flexWrap: 'wrap',
 		verticalAlign: 'middle',
-		marginRight: !isBlock && formSwitch.marginRight,
-		marginBottom: formSwitch.marginBottom,
+		marginRight: !isBlock && '1.125rem',
+		marginBottom: '0.375rem',
 		alignItems: 'center',
 		width: isBlock && '100%',
 		flexDirection: isFlipped && 'row-reverse',

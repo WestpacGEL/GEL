@@ -16,7 +16,7 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // ==============================
 
 export const SwitchText = ({ size, isBlock, isFlipped, isSrOnlyText, ...props }) => {
-	const { breakpoints, switch: formSwitch } = useTheme();
+	const { breakpoints, COLORS } = useTheme();
 	const mq = paint(breakpoints);
 
 	const common = {
@@ -24,11 +24,11 @@ export const SwitchText = ({ size, isBlock, isFlipped, isSrOnlyText, ...props })
 		display: 'flex',
 		alignItems: 'center',
 		minHeight: asArray(size).map(s => (s !== null ? formSwitch.size[s].height : null)),
-		...(isFlipped ? { paddingLeft: formSwitch.text.gap } : { paddingRight: formSwitch.text.gap }),
+		...(isFlipped ? { paddingLeft: '0.375rem' } : { paddingRight: '0.375rem' }),
 
 		'input:disabled ~ &': {
 			cursor: 'default',
-			...formSwitch.toggleText.disabled,
+			color: COLORS.muted,
 		},
 	};
 
@@ -36,8 +36,35 @@ export const SwitchText = ({ size, isBlock, isFlipped, isSrOnlyText, ...props })
 };
 
 export const SwitchToggle = ({ size, toggleText, ...props }) => {
-	const { breakpoints, typography, switch: formSwitch } = useTheme();
+	const { breakpoints, typography, COLORS } = useTheme();
 	const mq = paint(breakpoints);
+
+	const sizeMap = {
+		small: {
+			width: '7rem',
+			height: '3rem',
+			borderRadius: '3rem',
+			fontSize: '1.4rem',
+		},
+		medium: {
+			width: '8rem',
+			height: '3.6rem',
+			borderRadius: '3.6rem',
+			fontSize: '1.6rem',
+		},
+		large: {
+			width: '8.9rem',
+			height: '4.2rem',
+			borderRadius: '4.2rem',
+			fontSize: '1.6rem',
+		},
+		xlarge: {
+			width: '9.6rem',
+			height: '4.8rem',
+			borderRadius: '4.8rem',
+			fontSize: '1.8rem',
+		},
+	};
 
 	const style = {
 		// Responsive size styling
@@ -59,8 +86,8 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 			height: style.responsive.height,
 			position: 'relative',
 			zIndex: 1,
-			border: `${formSwitch.borderWidth} solid ${formSwitch.borderColor}`,
-			backgroundColor: formSwitch.backgroundColor,
+			border: `2px solid ${COLORS.border}`,
+			backgroundColor: '#fff',
 			overflow: 'hidden',
 			lineHeight: 1.5,
 			transition: 'border .3s ease, background .3s ease',
@@ -74,7 +101,8 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 
 			// Checked state
 			'input:checked ~ &': {
-				...formSwitch.toggle.checked,
+				borderColor: COLORS.hero,
+				backgroundColor: COLORS.hero,
 			},
 
 			// Disabled state
@@ -93,11 +121,9 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 				borderRadius: '50%',
 				boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 				transition: 'all .3s ease',
-				backgroundColor: formSwitch.backgroundColor,
+				backgroundColor: '#fff',
 				...(val => ({ width: val, height: val }))(
-					style.responsive.height.map(
-						h => `calc(${h} - ${formSwitch.borderWidth} - ${formSwitch.borderWidth})`
-					)
+					style.responsive.height.map(h => `calc(${h} - 2px - 2px)`)
 				),
 
 				// Checked state
@@ -115,14 +141,13 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 			textAlign: 'center',
 			fontSize: style.responsive.fontSize,
 			lineHeight: style.responsive.height.map(h =>
-				h !== null ? `calc(${h} - (${formSwitch.borderWidth} + ${formSwitch.borderWidth}))` : null
+				h !== null ? `calc(${h} - (2px + 2px))` : null
 			),
 			width: style.responsive.height.map(h =>
-				h !== null
-					? `calc(100% - (${h} - ${formSwitch.borderWidth} - ${formSwitch.borderWidth}))`
-					: null
+				h !== null ? `calc(100% - (${h} - 2px - 2px))` : null
 			),
-			...formSwitch.toggleText.default,
+			color: COLORS.text,
+			padding: '0 0.4rem',
 		}),
 
 		// Off text styling
@@ -139,7 +164,7 @@ export const SwitchToggle = ({ size, toggleText, ...props }) => {
 		toggleTextOn: {
 			opacity: 0, //hide (default)
 			left: 0,
-			...formSwitch.toggleText.checked,
+			color: '#fff',
 
 			// Checked state
 			'input:checked ~ span &': {
