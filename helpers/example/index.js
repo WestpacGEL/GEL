@@ -32,7 +32,7 @@ const BRANDS = {
 // Compose the pieces
 // ==============================
 
-const App = ({ components, packageName }) => {
+const App = ({ components, packageName, pkg }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [brand, setBrand] = useState('WBC');
 
@@ -108,7 +108,7 @@ const App = ({ components, packageName }) => {
 						</SidebarSwitcher>
 					</Sidebar>
 					<Switch>
-						<Route exact path="/" render={route => <Home {...route} packageName={packageName} />} />
+						<Route exact path="/" render={route => <Home {...route} packageName={packageName} pkg={pkg} />} />
 						{components.map(({ slug, ...props }) => (
 							<Route
 								key={slug}
@@ -169,7 +169,7 @@ class Page extends React.Component {
 	}
 }
 
-const Home = ({ packageName }) => (
+const Home = ({ packageName, pkg }) => (
 	<Article>
 		<Container>
 			<h1>{packageName} Examples</h1>
@@ -177,8 +177,12 @@ const Home = ({ packageName }) => (
 				Click one of the examples on the left to view it. To load the examples for another package
 				run:
 			</p>
-			<pre>
-				<code>yarn dev {'{package_name}'}</code>
+			<pre css={{
+				background: '#f9f9f9',
+				padding: '1rem',
+				border: '1px solid #ccc',
+			}}>
+				<code>yarn dev {pkg}</code>
 			</pre>
 		</Container>
 	</Article>
@@ -198,6 +202,7 @@ const Body = props => (
 		{...props}
 	/>
 );
+
 const Article = props => (
 	<article
 		css={{
@@ -222,11 +227,13 @@ const Sidebar = props => (
 		{...props}
 	/>
 );
+
 const SidebarNav = props => (
 	<nav css={{ flex: 1, overflowY: 'auto' }}>
 		<ul css={{ listStyle: 'none', margin: '1rem 0', padding: 0 }} {...props} />
 	</nav>
 );
+
 const SidebarSearch = props => (
 	<input
 		css={{
@@ -247,6 +254,7 @@ const SidebarSearch = props => (
 		{...props}
 	/>
 );
+
 const SidebarLink = ({ primaryColor, ...props }) => (
 	<NavLink
 		css={{
@@ -276,11 +284,13 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 		{...props}
 	/>
 );
+
 const SidebarItem = props => (
 	<li data-test-nav>
 		<SidebarLink {...props} />
 	</li>
 );
+
 const SidebarTitle = props => (
 	<NavLink
 		css={{
@@ -312,6 +322,7 @@ const SidebarSwitcher = props => (
 		{...props}
 	/>
 );
+
 const SidebarSwitch = ({ checked, ...props }) => (
 	<label
 		css={{
@@ -343,7 +354,7 @@ const SidebarSwitch = ({ checked, ...props }) => (
 // Render to node
 // ==============================
 
-export default (pkg, components) => {
+export default (packageName, pkg, components) => {
 	const rootElement = document.getElementById('root');
-	ReactDOM.render(<App packageName={pkg} components={components} />, rootElement);
+	ReactDOM.render(<App packageName={packageName} pkg={pkg} components={components} />, rootElement);
 };
