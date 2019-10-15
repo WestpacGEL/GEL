@@ -8,15 +8,12 @@ import shortid from 'shortid';
 // ==============================
 // Component
 // ==============================
-// Need to ask about inline styling
 export const Tooltip = ({ text, children, ...props }) => {
 	const [visible, setVisible] = useState(false);
+	const [tooltipId] = useState(`tooltipBubble-${shortid.generate()}`);
 
 	const handleMouseEnter = () => setVisible(true);
-
 	const handleMouseLeave = () => setVisible(false);
-
-	const tooltipId = `tooltipBubble-${shortid.generate()}`;
 
 	return (
 		<span
@@ -24,7 +21,7 @@ export const Tooltip = ({ text, children, ...props }) => {
 			onMouseLeave={handleMouseLeave}
 			aria-describedby={tooltipId}
 			tabIndex={0}
-			css={{ display: 'inline-block', position: 'relative', cursor: 'help' }}
+			css={{ display: 'inline-block', position: 'relative', cursor: 'help', borderBottom: 'none' }}
 			{...props}
 		>
 			{children}
