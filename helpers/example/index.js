@@ -108,7 +108,11 @@ const App = ({ components, packageName, pkg }) => {
 						</SidebarSwitcher>
 					</Sidebar>
 					<Switch>
-						<Route exact path="/" render={route => <Home {...route} packageName={packageName} pkg={pkg} />} />
+						<Route
+							exact
+							path="/"
+							render={route => <Home {...route} packageName={packageName} pkg={pkg} />}
+						/>
 						{components.map(({ slug, ...props }) => (
 							<Route
 								key={slug}
@@ -177,11 +181,13 @@ const Home = ({ packageName, pkg }) => (
 				Click one of the examples on the left to view it. To load the examples for another package
 				run:
 			</p>
-			<pre css={{
-				background: '#f9f9f9',
-				padding: '1rem',
-				border: '1px solid #ccc',
-			}}>
+			<pre
+				css={{
+					background: '#f9f9f9',
+					padding: '1rem',
+					border: '1px solid #ccc',
+				}}
+			>
 				<code>yarn dev {pkg}</code>
 			</pre>
 		</Container>
