@@ -5,19 +5,17 @@ import { HouseIcon } from '@westpac/icon';
 export default () => (
 	<>
 		<h2>Trim</h2>
-		<p>
-			<Button appearance="link" trim>
-				Trimmed link button
-			</Button>
-		</p>
+
+		<Button appearance="link" trim>
+			Trimmed link button
+		</Button>
 
 		<hr />
 
 		<h2>‘Screen reader only’ text mode</h2>
-		<p>
-			<Button iconAfter={HouseIcon} srOnlyText>
-				Screen reader only text
-			</Button>
-		</p>
+
+		<Button iconAfter={HouseIcon} srOnlyText>
+			Screen reader only text
+		</Button>
 	</>
 );
