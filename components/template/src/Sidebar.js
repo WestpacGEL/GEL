@@ -4,6 +4,7 @@ import React, { useState, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 import { SrSkipLink } from '@westpac/accessibility-helpers';
+import { useTemplateContext } from './Template';
 
 // ==============================
 // Context and consumer hook

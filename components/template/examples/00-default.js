@@ -1,13 +1,15 @@
 import React from 'react';
 import {
-	Template,
+	Footer,
+	FooterIcon,
+	FooterLogo,
+	FooterText,
 	Header,
 	HeaderLogo,
 	Main,
-	Footer,
-	FooterIcon,
-	FooterText,
-	FooterLogo,
+	Sidebar,
+	SidebarContent,
+	Template,
 } from '../src';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { LogoSmall, LogoSmallRight, LogoLarge } from '@westpac/symbol';
@@ -22,6 +24,9 @@ export default () => (
 				srOnlyText="Go to home"
 			/>
 		</Header>
+		<Sidebar>
+			<SidebarContent>SidebarContent</SidebarContent>
+		</Sidebar>
 		<Main>
 			<Container>Main</Container>
 		</Main>

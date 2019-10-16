@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme, useMediaQuery } from '@westpac/core';
 import { SrSkipLink } from '@westpac/accessibility-helpers';
+import { useTemplateContext } from './Template';
 
 // ==============================
 // Utils
@@ -18,44 +19,11 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 export const Header = ({ fixed, srSkipLinkText, srSkipLinkHref, tag: Tag, children, ...props }) => {
 	const { COLORS, LAYOUT } = useTheme();
 	const mq = useMediaQuery();
+	const templateContext = useTemplateContext();
 
-	const height = ['3.375rem', '4.0625rem'];
+	const sidebarPosition = (templateContext && templateContext.sidebarPosition) || 'right';
 
-	const styleWrapper = {
-		display: 'flex',
-		height, //wrapper (and inner) get height to stop scroll jump when `fixed`
-	};
-
-	// Common styling
-	const styleHeader = {
-		display: 'flex',
-		position: 'relative',
-		flex: 1,
-		backgroundColor: '#fff',
-		textAlign: 'left',
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		marginBottom: 1,
-		height,
-		maxWidth: `${LAYOUT.wrapperMax - 2}px`, //wraperMax - borders
-		width: '100%', //required if `fixed` (IE11)
-
-		// Bottom border
-		'::before': {
-			flex: 'none', //no flex grow or shrink
-			content: '""',
-			display: 'block',
-			position: 'absolute',
-			zIndex: 1,
-			left: 0,
-			right: 0,
-			top: '100%',
-			overflow: 'hidden',
-			borderTop: `1px solid ${COLORS.border}`,
-			transition: 'opacity .2s',
-			willChange: 'opacity',
-		},
-	};
+	const headerHeight = ['3.375rem', '4.0625rem'];
 
 	// Fixed position styling
 	const fixedArr = asArray(fixed);
@@ -68,9 +36,51 @@ export const Header = ({ fixed, srSkipLinkText, srSkipLinkHref, tag: Tag, childr
 	};
 
 	return (
-		<Tag css={mq(styleWrapper)} {...props}>
+		<Tag
+			css={mq({
+				display: 'flex',
+				height: headerHeight, //wrapper (and inner) get height to stop scroll jump when `fixed`
+				marginLeft: sidebarPosition === 'left' && '18.75rem',
+				marginRight: sidebarPosition === 'right' && '18.75rem',
+			})}
+			{...props}
+		>
 			{srSkipLinkText && <SrSkipLink href={srSkipLinkHref}>{srSkipLinkText}</SrSkipLink>}
-			<div css={mq({ ...styleHeader, ...styleFixed })}>{children}</div>
+			<div
+				css={mq({
+					display: 'flex',
+					position: 'relative',
+					flex: 1,
+					backgroundColor: '#fff',
+					textAlign: 'left',
+					marginLeft: 'auto',
+					marginRight: 'auto',
+					marginBottom: 1,
+					height: headerHeight,
+					maxWidth: `${LAYOUT.wrapperMax - 2}px`, //wraperMax - borders
+					width: '100%', //required if `fixed` (IE11)
+
+					// Bottom border
+					'::before': {
+						flex: 'none', //no flex grow or shrink
+						content: '""',
+						display: 'block',
+						position: 'absolute',
+						zIndex: 1,
+						left: 0,
+						right: 0,
+						top: '100%',
+						overflow: 'hidden',
+						borderTop: `1px solid ${COLORS.border}`,
+						transition: 'opacity .2s',
+						willChange: 'opacity',
+					},
+
+					...styleFixed,
+				})}
+			>
+				{children}
+			</div>
 		</Tag>
 	);
 };
