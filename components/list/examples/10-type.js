@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem } from '../src';
+import { List, Item } from '../src';
 import { listGenerator } from './_utils';
 
 export default () => (
@@ -7,51 +7,51 @@ export default () => (
 		<h3>Link List</h3>
 		<List type="link">
 			{listGenerator('Styled link list', 3)}
-			<ListItem>
+			<Item>
 				Styled link list
 				<List>{listGenerator('Styled link list', 3)}</List>
-			</ListItem>
-			<ListItem>Styled link list</ListItem>
+			</Item>
+			<Item>Styled link list</Item>
 		</List>
 		<hr />
 		<h3>Tick List</h3>
 		<List type="tick">
 			{listGenerator('Styled tick list', 3)}
-			<ListItem>
+			<Item>
 				Styled tick list
 				<List>{listGenerator('Styled tick list', 3)}</List>
-			</ListItem>
-			<ListItem>Styled tick list</ListItem>
+			</Item>
+			<Item>Styled tick list</Item>
 		</List>
 		<hr />
 		<h3>Unstyled</h3>
 		<List type="unstyled">
 			{listGenerator('Unstyled list', 3)}
-			<ListItem>
+			<Item>
 				Unstyled list
 				<List>
 					{listGenerator('Unstyled list', 3)}
-					<ListItem>
+					<Item>
 						Unstyled list<List>{listGenerator('Unstyled list', 3)}</List>
-					</ListItem>
+					</Item>
 				</List>
-			</ListItem>
-			<ListItem>Unstyled list</ListItem>
+			</Item>
+			<Item>Unstyled list</Item>
 		</List>
 		<hr />
 		<h3>Large</h3>
 		<List size="large">
 			{listGenerator('Large list', 3)}
-			<ListItem>
+			<Item>
 				Large list
 				<List>
 					{listGenerator('Large list', 3)}
-					<ListItem>
+					<Item>
 						Large list<List>{listGenerator('Large list', 3)}</List>
-					</ListItem>
+					</Item>
 				</List>
-			</ListItem>
-			<ListItem>Large list</ListItem>
+			</Item>
+			<Item>Large list</Item>
 		</List>
 	</>
 );

@@ -7,7 +7,7 @@ import {
 	FormGroup,
 	Hint,
 	InputCluster,
-	InputClusterItem,
+	Item,
 	FormLabel,
 	FormSection,
 } from '../src';
@@ -16,7 +16,7 @@ import { TextInput } from '@westpac/text-input';
 export default () => (
 	<>
 		<h2>Default size and spacing</h2>
-		<Form action="." noValidate>
+		<Form>
 			<FormSection>
 				<ChitChat>
 					Hello, I’m the friendly conversational text component. I live at the top of the form pod
@@ -53,12 +53,12 @@ export default () => (
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message={['This is an error message', 'This is another error message']} />
 						<InputCluster>
-							<InputClusterItem>
+							<Item>
 								<TextInput name="example-default-4-line1" />
-							</InputClusterItem>
-							<InputClusterItem>
+							</Item>
+							<Item>
 								<TextInput name="example-default-4-line2" />
-							</InputClusterItem>
+							</Item>
 						</InputCluster>
 					</Fieldset>
 				</FormGroup>
@@ -68,7 +68,7 @@ export default () => (
 		<hr />
 
 		<h2>Large size with large spacing</h2>
-		<Form action="." size="large" spacing="large" noValidate>
+		<Form size="large" spacing="large">
 			<FormSection>
 				<ChitChat>
 					Hello, I’m the friendly conversational text component. I live at the top of the form pod
@@ -105,12 +105,12 @@ export default () => (
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message={['This is an error message', 'This is another error message']} />
 						<InputCluster>
-							<InputClusterItem>
+							<Item>
 								<TextInput name="example-large-4-line1" />
-							</InputClusterItem>
-							<InputClusterItem>
+							</Item>
+							<Item>
 								<TextInput name="example-large-4-line2" />
-							</InputClusterItem>
+							</Item>
 						</InputCluster>
 					</Fieldset>
 				</FormGroup>

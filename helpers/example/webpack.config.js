@@ -81,7 +81,7 @@ fs.writeSync(
 			.join(',\n')}
 	];
 
-	app("${labelFromSlug(PACKAGE_NAME)}", components);
+	app("${labelFromSlug(PACKAGE_NAME)}", "${PACKAGE_NAME}", components);
 `
 );
 

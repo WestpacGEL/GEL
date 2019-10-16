@@ -7,7 +7,7 @@ import { Button } from '@westpac/button';
 export default () => (
 	<>
 		<h2>Default instance (no styling props)</h2>
-		<Form action="." noValidate>
+		<Form>
 			<FormGroup>
 				<Box>FormGroup content</Box>
 			</FormGroup>
@@ -21,7 +21,7 @@ export default () => (
 		<h2>Spacing</h2>
 
 		<h3>Medium</h3>
-		<Form action="." spacing="medium" noValidate>
+		<Form spacing="medium">
 			<FormGroup>
 				<Box>FormGroup content</Box>
 			</FormGroup>
@@ -31,7 +31,7 @@ export default () => (
 		</Form>
 
 		<h3>Large</h3>
-		<Form action="." spacing="large" noValidate>
+		<Form spacing="large">
 			<FormGroup>
 				<Box>FormGroup content</Box>
 			</FormGroup>
@@ -45,28 +45,28 @@ export default () => (
 		<h2>Size</h2>
 
 		<h3>Small</h3>
-		<Form action="." size="small" noValidate>
+		<Form size="small">
 			<FormGroup>
 				<TextInput />
 			</FormGroup>
 		</Form>
 
 		<h3>Medium</h3>
-		<Form action="." size="medium" noValidate>
+		<Form size="medium">
 			<FormGroup>
 				<TextInput />
 			</FormGroup>
 		</Form>
 
 		<h3>Large</h3>
-		<Form action="." size="large" noValidate>
+		<Form size="large">
 			<FormGroup>
 				<TextInput />
 			</FormGroup>
 		</Form>
 
 		<h3>XLarge</h3>
-		<Form action="." size="xlarge" noValidate>
+		<Form size="xlarge">
 			<FormGroup>
 				<TextInput />
 			</FormGroup>
@@ -75,13 +75,11 @@ export default () => (
 		<hr />
 
 		<h2>Inline mode (SM+)</h2>
-		<Form action="." isInline noValidate>
+		<Form inline>
 			<FormGroup>
 				<TextInput />
 			</FormGroup>
-			<FormGroup>
-				<Button>Go</Button>
-			</FormGroup>
+			<FormGroup>{/* <Button>Go</Button> */}</FormGroup>
 		</Form>
 	</>
 );
