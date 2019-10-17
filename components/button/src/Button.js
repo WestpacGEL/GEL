@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { ButtonContent } from './styled';
 
 // ==============================
@@ -30,7 +30,7 @@ export const Button = ({
 	children,
 	...props
 }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues

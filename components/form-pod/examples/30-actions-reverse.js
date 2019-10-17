@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Global, useTheme } from '@westpac/core';
+import { Global, useBrand } from '@westpac/core';
 
 import {
 	FormPod,
@@ -12,7 +12,7 @@ import {
 import { Button } from '@westpac/button';
 
 export default () => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	return (
 		<>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import shortid from 'shortid';
 
 import { AlertIcon } from '@westpac/icon';
@@ -25,7 +25,7 @@ export const ErrorMessageContent = ({ icon: Icon, children }) => (
 // ==============================
 
 export const ErrorMessage = ({ message, icon, tag: Tag, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	// Check for an array of messages
 	const isMessages = Array.isArray(message);

@@ -2,14 +2,14 @@
 
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const FormPodPanel = ({ noBorderTop, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	return (
 		<div

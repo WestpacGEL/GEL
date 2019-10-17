@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { RefreshIcon } from '@westpac/icon';
 
 // ==============================
@@ -10,7 +10,7 @@ import { RefreshIcon } from '@westpac/icon';
 // ==============================
 
 export const FormPodIndicator = ({ icon: Icon, text, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	return (
 		<div css={{ color: COLORS.muted }} {...props}>

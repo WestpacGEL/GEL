@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import React, { useContext } from 'react';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useBrand, paint } from '@westpac/core';
 
 import { VisuallyHidden } from '@westpac/a11y';
 
@@ -16,7 +16,7 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // ==============================
 
 export const SwitchText = ({ size, isBlock, isFlipped, isSrOnlyText, ...props }) => {
-	const { breakpoints, switch: formSwitch } = useTheme();
+	const { breakpoints, switch: formSwitch } = useBrand();
 	const mq = paint(breakpoints);
 
 	const common = {
@@ -36,7 +36,7 @@ export const SwitchText = ({ size, isBlock, isFlipped, isSrOnlyText, ...props })
 };
 
 export const SwitchToggle = ({ size, toggleText, ...props }) => {
-	const { breakpoints, typography, switch: formSwitch } = useTheme();
+	const { breakpoints, typography, switch: formSwitch } = useBrand();
 	const mq = paint(breakpoints);
 
 	const style = {

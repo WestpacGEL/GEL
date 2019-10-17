@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -52,7 +52,7 @@ const IconWrapper = ({ size, ...props }) => {
 // ==============================
 
 export const Icon = ({ children, color, label, size, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	// TODO Investigate:
 	// I suspect that using the style attribute to apply the color property will

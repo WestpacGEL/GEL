@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 /**
  * FormPodHeader
@@ -26,7 +26,7 @@ export const FormPodHeader = ({ align, ...props }) => {
  * FormPodHeaderIcon
  */
 export const FormPodHeaderIcon = ({ icon: Icon, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -55,7 +55,7 @@ export const FormPodHeaderIcon = ({ icon: Icon, ...props }) => {
  * FormPodPreheading
  */
 export const FormPodPreheading = ({ tag: Tag, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -128,7 +128,7 @@ export const FormPodActionsSecondary = props => {
  * FormPodContactListItem
  */
 export const FormPodContactListItem = ({ item, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	const Icon = item.icon;

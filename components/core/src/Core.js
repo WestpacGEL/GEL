@@ -1,16 +1,17 @@
 /** @jsx jsx */
 
-import React, { useContext } from 'react';
 import { Global, jsx } from '@emotion/core';
+import { Fragment } from 'react';
 import merge from 'lodash.merge';
-import { useTheme } from './Theme';
+
 import { useMediaQuery } from './utils';
+import { useBrand } from './Brand';
 
 export const Core = ({ children }) => {
 	const {
 		COLORS,
 		TYPE: { bodyFont, brandFont },
-	} = useTheme();
+	} = useBrand();
 
 	const mq = useMediaQuery();
 
@@ -161,11 +162,6 @@ export const Core = ({ children }) => {
 			fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
 		},
 
-		// Globally reset all focus styling, only apply if keyboard user
-		'.isMouseMode :focus': {
-			outline: 0,
-		},
-
 		// Class access to our font families
 		'.body-font': {
 			fontFamily: bodyFont,
@@ -288,9 +284,9 @@ export const Core = ({ children }) => {
 	};
 
 	return (
-		<>
+		<Fragment>
 			<Global styles={mq(merge(styleReset, styleTypography, styleTextExtensions))} />
 			{children}
-		</>
+		</Fragment>
 	);
 };

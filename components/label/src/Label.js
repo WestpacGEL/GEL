@@ -2,14 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const Label = ({ appearance, tag: Tag, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	if (props.href && Tag === 'span') {
 		Tag = 'a';

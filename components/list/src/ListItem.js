@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { useListContext } from './List';
 
@@ -10,7 +10,7 @@ import { useListContext } from './List';
 // Component
 // ==============================
 export const ListItem = ({ icon, children, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const { appearance, type, spacing, icon: contextIcon } = useListContext();
 
 	const linkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><polygon fill="${COLORS.primary}" fillRule="evenodd" points="14.588 12 8 18.588 9.412 20 17.412 12 9.412 4 8 5.412"/></svg>`;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Global, useTheme } from '@westpac/core';
+import { Global, useBrand } from '@westpac/core';
 import {
 	FormPod,
 	FormPodPanel,
@@ -15,7 +15,7 @@ import { HeadsetIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 
 export default () => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	// Contact detail data
 	const contactItems = [

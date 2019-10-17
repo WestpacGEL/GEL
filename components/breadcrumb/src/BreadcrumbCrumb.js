@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
 import { VisuallyHidden } from '@westpac/a11y';
 
@@ -14,7 +14,7 @@ import { VisuallyHidden } from '@westpac/a11y';
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
 export const BreadcrumbCrumb = ({ children, last, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	return (
 		<li

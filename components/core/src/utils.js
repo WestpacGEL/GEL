@@ -1,6 +1,6 @@
 import facepaint from 'facepaint';
 import weakMemo from '@emotion/weak-memoize';
-import { useTheme } from './Theme';
+import { useBrand } from './Brand';
 
 const minWidth = width => `@media (min-width: ${width}px)`;
 const mapBreakpoints = ([key, value]) => minWidth(value);
@@ -9,7 +9,7 @@ const mapBreakpoints = ([key, value]) => minWidth(value);
 const paint = weakMemo(breakpoints => facepaint(Object.entries(breakpoints).map(mapBreakpoints)));
 
 export const useMediaQuery = () => {
-	const { LAYOUT } = useTheme();
+	const { LAYOUT } = useBrand();
 
 	return paint(LAYOUT.breakpoints);
 };

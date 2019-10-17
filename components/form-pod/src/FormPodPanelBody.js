@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component

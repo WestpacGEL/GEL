@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 // ==============================
 // Context and consumer hook
@@ -23,7 +23,7 @@ export const usePanelContext = () => {
 // ==============================
 
 export const Panel = ({ appearance, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	const appearanceMap = {
 		hero: {

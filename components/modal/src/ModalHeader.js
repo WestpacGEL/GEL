@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { CloseIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 import { useModalContext } from './Modal';
@@ -11,7 +11,7 @@ import { Title } from './styled';
 // Component
 // ==============================
 export const ModalHeader = ({ children, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const { titleId, handleClose } = useModalContext();
 
 	return (

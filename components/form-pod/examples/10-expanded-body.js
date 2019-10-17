@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Global, useTheme } from '@westpac/core';
+import { Global, useBrand } from '@westpac/core';
 
 import { FormPod, FormPodPanel, FormPodPanelBody } from '../src';
 
 export default () => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	return (
 		<>

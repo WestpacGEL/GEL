@@ -1,9 +1,9 @@
 import React from 'react';
-import { useTheme } from '@westpac/core';
+import { useBrand } from '@westpac/core';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const LogoLarge = props => {
-	const { SYMBOLS } = useTheme();
+	const { SYMBOLS } = useBrand();
 
 	return (
 		<Symbol {...props}>

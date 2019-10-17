@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { useInputGroupContext } from './InputGroup';
 
 // ==============================
@@ -15,7 +15,7 @@ import { useInputGroupContext } from './InputGroup';
  * .00 etc) or form controls (buttons or select inputs).
  */
 export const InputGroupAddon = ({ first, last, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const { size } = useInputGroupContext();
 
 	const sizeMap = {

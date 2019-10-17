@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme } from '@westpac/core';
+import { useBrand } from '@westpac/core';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const LogoSmall = ({ align, ...props }) => {
-	const { SYMBOLS } = useTheme();
+	const { SYMBOLS } = useBrand();
 
 	return (
 		<Symbol {...props}>

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { usePanelContext } from './Panel';
 
 // ==============================
@@ -9,7 +9,7 @@ import { usePanelContext } from './Panel';
 // ==============================
 
 export const PanelHeader = props => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const { appearance } = usePanelContext();
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { useFormContext } from '@westpac/form';
 
 import svgToTinyDataURI from 'mini-svg-data-uri';
@@ -18,7 +18,7 @@ const round = f => Math.round(f * 100) / 100; //2DP
 // ==============================
 
 export const TextInput = ({ size, width, inline, invalid, tag: Tag, children, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	// Consume FormContext

@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 export const ModalFooter = props => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	return (
 		<div

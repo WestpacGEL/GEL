@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Cell, Grid } from '../src';
 
 export const Box = props => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	return (
 		<div

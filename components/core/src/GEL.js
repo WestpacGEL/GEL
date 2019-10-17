@@ -1,51 +1,20 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-
 import { jsx } from '@emotion/core';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+
+import { BrandContext } from './Brand';
+import { useFocus } from './useFocus';
 import { Core } from './Core';
 
-// TODO: is there a useful "default" value we should add here?
-export const ThemeContext = createContext();
-
-export const useTheme = () => {
-	const themeObject = useContext(ThemeContext);
-	const errorMessage = `GEL components require that you wrap your application with the <GEL /> theme provider from @westpac/core.`;
-
-	if (!themeObject) {
-		throw new Error(errorMessage);
-	}
-
-	return themeObject;
-};
-
-// ==============================
-// Component
-// ==============================
-
 export const GEL = ({ brand, children, ...props }) => {
-	const keyHandler = event => {
-		if (event.key === 'Tab') {
-			document.getElementsByTagName('body')[0].classList.remove('isMouseMode');
-			document.removeEventListener('keydown', keyHandler);
-		}
-	};
-
-	// Bind key events
-	useEffect(() => {
-		document.getElementsByTagName('body')[0].classList.add('isMouseMode');
-		window.document.addEventListener('keydown', keyHandler);
-
-		return () => {
-			window.document.removeEventListener('keydown', keyHandler);
-		};
-	}, []);
+	useFocus();
 
 	return (
-		<ThemeContext.Provider value={brand} {...props}>
+		<BrandContext.Provider value={brand} {...props}>
 			<Core>{children}</Core>
-		</ThemeContext.Provider>
+		</BrandContext.Provider>
 	);
 };
 

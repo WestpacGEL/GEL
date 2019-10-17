@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { useFormContext } from './Form';
 
 // ==============================
@@ -10,7 +10,7 @@ import { useFormContext } from './Form';
 // ==============================
 
 export const Hint = ({ tag: Tag, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	// Consume FormContext
 	const formContext = useFormContext();

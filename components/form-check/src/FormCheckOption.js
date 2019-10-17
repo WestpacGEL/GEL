@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { useFormCheckContext } from './FormCheck';
 
 // ==============================
@@ -11,7 +11,7 @@ import { useFormCheckContext } from './FormCheck';
 // ==============================
 
 export const FormCheckOption = ({ value, checked, disabled, onChange, children, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const { type, name, size, inline, flipped } = useFormCheckContext();
 
 	const [isChecked, setChecked] = useState(checked);
