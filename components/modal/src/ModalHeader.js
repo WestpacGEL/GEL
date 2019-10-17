@@ -1,17 +1,18 @@
 /** @jsx jsx */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 import { CloseIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
+import { useModalContext } from './Modal';
 import { Title } from './styled';
 
 // ==============================
 // Component
 // ==============================
-export const ModalHeader = ({ id, onClose, children, ...props }) => {
-	const { modal, colors } = useTheme();
+export const ModalHeader = ({ children, ...props }) => {
+	const { COLORS } = useTheme();
+	const { titleId, handleClose } = useModalContext();
 
 	return (
 		<div
@@ -20,36 +21,25 @@ export const ModalHeader = ({ id, onClose, children, ...props }) => {
 				justifyContent: 'space-between',
 				alignItems: 'flex-start',
 				overflow: 'hidden',
-				borderBottom: `${modal.header.borderWidth} solid ${modal.header.borderColor}`,
-				padding: modal.header.padding,
+				borderBottom: `1px solid ${COLORS.border}`,
+				padding: '1rem 1.5rem 0.75rem',
 			}}
 			{...props}
 		>
-			<Title id={id}>{children}</Title>
+			<Title id={titleId}>{children}</Title>
 			<Button
 				appearance="link"
 				css={{
-					marginTop: '-1rem',
-					marginRight: '-2.2rem',
-					color: colors.text,
+					marginTop: '-0.625rem',
+					marginRight: '-1.375rem',
+					color: COLORS.text,
 					':hover svg': {
 						opacity: 0.5,
 					},
 				}}
 				iconAfter={CloseIcon}
-				onClick={onClose}
+				onClick={handleClose}
 			/>
 		</div>
 	);
-};
-
-ModalHeader.propTypes = {
-	/** id of the title for accessibility */
-	id: PropTypes.string.isRequired,
-	/** onClose function for the close button */
-	onClose: PropTypes.func,
-};
-
-ModalHeader.defaultProps = {
-	onClose: null,
 };
