@@ -1,80 +1,79 @@
 /** @jsx jsx */
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { Button } from '@westpac/button';
+import { jsx } from '@westpac/core';
+import { PopoverPanel } from './PopoverPanel';
 
 // ==============================
 // Component
 // ==============================
-/* 
-- can the popover be attached to anything or is it just a button?
-- what can be in a popover?
-	- is it just text?
-- do i create a custom button just to add forward ref?
-- should I be using portal for this?
-*/
-export const Popover = ({ title, content, ...props }) => {
-	const [open, setOpen] = useState(false);
-	const ref = useRef();
+export const Popover = ({ open: isOpen, children, ...props }) => {
+	const [open, setOpen] = useState(open);
+	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
+	const triggerRef = useRef();
 	const popoverRef = useRef();
 
-	const popoverStyle = {
-		boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
-		border: `1px solid #575f65`,
-		borderRadius: 3,
-		width: '17.625rem',
-		backgroundColor: '#fff',
-		pointerEvents: 'all',
-		textAlign: 'left',
+	useEffect(() => {
+		setOpen(isOpen);
+	}, [isOpen]);
+
+	useEffect(() => {
+		if (open) {
+			const trigger = triggerRef.current.getBoundingClientRect();
+			const popover = popoverRef.current.getBoundingClientRect();
+			const remSize = parseInt(
+				window.getComputedStyle(document.getElementsByTagName('html')[0]).fontSize
+			);
+			const left = (trigger.left - popover.width / 2 + trigger.width / 2) / remSize;
+
+			if (popover.height > trigger.top) {
+				const top = (trigger.top + trigger.height + remSize) / remSize;
+				setPosition({ placement: 'bottom', top, left });
+			} else {
+				const top = (trigger.top - popover.height - remSize) / remSize;
+				setPosition({ placement: 'top', top, left });
+			}
+		}
+	}, [open]);
+
+	const handleOutsideClick = e => {
+		if (open && !popoverRef.current.contains(e.target)) {
+			setOpen(false);
+		}
 	};
 
-	const titleStyle = {
-		margin: 0,
-		padding: '0.625rem 0.75rem',
-		backgroundColor: '#575f65',
-		color: '#fff',
-		fontSize: '1rem',
-		// fontWeight: 400,
-	};
-
-	const bodyStyle = {
-		margin: 0,
-		padding: '0.625rem 0.75rem',
-		color: '#2d373e',
-	};
+	useEffect(() => {
+		document.addEventListener('click', handleOutsideClick);
+		return () => {
+			document.removeEventListener('click', handleOutsideClick);
+		};
+	});
 
 	const handleClick = () => {
-		console.log(ref.current.getBoundingClientRect());
-		console.log(popoverRef.current.getBoundingClientRect());
 		setOpen(!open);
 	};
 
 	return (
-		<div css={{ display: 'inline-block', position: 'relative' }}>
-			{open && (
-				<div ref={popoverRef} css={popoverStyle} {...props}>
-					<p css={titleStyle}>{title}</p>
-					<p css={bodyStyle}>{content}</p>
-				</div>
-			)}
-			<button ref={ref} onClick={handleClick}>
-				Test
-			</button>
-		</div>
+		<>
+			<PopoverPanel open={open} position={position} ref={popoverRef} {...props} />
+			<div css={{ display: 'inline-block' }} ref={triggerRef} onClick={handleClick}>
+				{children}
+			</div>
+		</>
 	);
 };
 
 // ==============================
 // Types
 // ==============================
-
 Popover.propTypes = {
-	/**
-	 * Describe `someProperty` here
-	 */
-	someProperty: PropTypes.string,
+	/** State of whether the popover is open */
+	open: PropTypes.bool,
+	/** Trigger element to open the popover */
+	chidlren: PropTypes.node,
 };
 
-Popover.defaultProps = {};
+Popover.defaultProps = {
+	open: false,
+};
