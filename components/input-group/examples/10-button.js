@@ -1,7 +1,5 @@
 import React from 'react';
-import { InputGroup } from '../src';
-import { Button } from '@westpac/button';
-import { TextInput } from '@westpac/text-input';
+import { InputGroup, TextInput, Button } from '../src';
 
 export default () => (
 	<>
@@ -9,7 +7,7 @@ export default () => (
 		<p>
 			<InputGroup size="small">
 				<TextInput />
-				<Button appearance="hero">Go</Button>
+				<Button>Go</Button>
 			</InputGroup>
 		</p>
 
@@ -17,7 +15,7 @@ export default () => (
 		<p>
 			<InputGroup>
 				<TextInput />
-				<Button appearance="hero">Go</Button>
+				<Button>Go</Button>
 			</InputGroup>
 		</p>
 
@@ -25,7 +23,7 @@ export default () => (
 		<p>
 			<InputGroup size="large">
 				<TextInput />
-				<Button appearance="hero">Go</Button>
+				<Button>Go</Button>
 			</InputGroup>
 		</p>
 
@@ -33,7 +31,7 @@ export default () => (
 		<p>
 			<InputGroup size="xlarge">
 				<TextInput />
-				<Button appearance="hero">Go</Button>
+				<Button>Go</Button>
 			</InputGroup>
 		</p>
 	</>

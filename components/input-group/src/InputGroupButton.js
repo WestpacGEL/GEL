@@ -27,8 +27,14 @@ export const InputGroupButton = ({ first, last, ...props }) => {
 				}),
 			}}
 			size={size}
-			appearance="hero"
 			{...props}
 		/>
 	);
+};
+
+InputGroupButton.defaultProps = {
+	/**
+	 * Button appearance
+	 */
+	appearance: 'hero',
 };

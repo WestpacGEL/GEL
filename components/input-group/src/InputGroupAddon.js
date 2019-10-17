@@ -57,8 +57,8 @@ export const InputGroupAddon = ({ first, last, ...props }) => {
 
 				borderRight: first && 0,
 				...(last && {
-					borderTopRightRadius: '3px',
-					borderBottomRightRadius: '3px',
+					borderTopRightRadius: '0.1875rem',
+					borderBottomRightRadius: '0.1875rem',
 					borderLeft: 0,
 				}),
 				...(!first && {
