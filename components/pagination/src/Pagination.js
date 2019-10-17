@@ -32,7 +32,7 @@ export const Pagination = ({ children, ...props }) => {
 				display: 'flex',
 				paddingLeft: 0,
 				margin: '1.3125rem 0',
-				borderRadius: '3px',
+				borderRadius: '0.1875rem',
 				listStyle: 'none',
 			}}
 			{...props}

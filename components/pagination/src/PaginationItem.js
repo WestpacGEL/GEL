@@ -30,12 +30,12 @@ export const PaginationItem = ({ first, last, active, disabled, children, ...pro
 
 						...(first && {
 							marginLeft: 0,
-							borderTopLeftRadius: '3px',
-							borderBottomLeftRadius: '3px',
+							borderTopLeftRadius: '0.1875rem',
+							borderBottomLeftRadius: '0.1875rem',
 						}),
 						...(last && {
-							borderTopRightRadius: '3px',
-							borderBottomRightRadius: '3px',
+							borderTopRightRadius: '0.1875rem',
+							borderBottomRightRadius: '0.1875rem',
 						}),
 						...(disabled && {
 							color: COLORS.muted,
