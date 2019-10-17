@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { VisuallyHidden } from '@westpac/a11y';
 
 import { useFormContext } from './Form';
 
@@ -17,7 +17,7 @@ export const FormLabel = ({ sublabel, tag: Tag, htmlFor, srOnly, ...props }) => 
 	const spacing = (formContext && formContext.spacing) || 'medium';
 
 	if (srOnly) {
-		Tag = SrOnly;
+		Tag = VisuallyHidden;
 	}
 
 	const mapSpacing = {

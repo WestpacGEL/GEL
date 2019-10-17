@@ -27,14 +27,5 @@ export default () => (
 			<Button value="middle">Middle</Button>
 			<Button value="right">Right</Button>
 		</ButtonGroup>
-
-		<hr />
-
-		<h2>Neutral</h2>
-		<ButtonGroup appearance="neutral" name="example-neutral">
-			<Button value="left">Left</Button>
-			<Button value="middle">Middle</Button>
-			<Button value="right">Right</Button>
-		</ButtonGroup>
 	</>
 );

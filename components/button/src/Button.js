@@ -124,34 +124,6 @@ export const Button = ({
 				},
 			},
 		},
-		neutral: {
-			standard: {
-				color: '#fff',
-				backgroundColor: COLORS.neutral,
-				borderColor: COLORS.neutral,
-
-				':hover': {
-					backgroundColor: COLORS.tints.neutral70,
-				},
-				':active, &.active': {
-					backgroundColor: COLORS.tints.neutral50,
-				},
-			},
-			soft: {
-				color: COLORS.text,
-				backgroundColor: '#fff',
-				borderColor: COLORS.neutral,
-
-				':hover': {
-					color: '#fff',
-					backgroundColor: COLORS.tints.neutral70,
-				},
-				':active, &.active': {
-					color: '#fff',
-					backgroundColor: COLORS.tints.neutral50,
-				},
-			},
-		},
 		faint: {
 			standard: {
 				color: COLORS.muted,
@@ -261,7 +233,7 @@ export const Button = ({
 // ==============================
 
 const options = {
-	appearance: ['primary', 'hero', 'neutral', 'faint', 'link'],
+	appearance: ['primary', 'hero', 'faint', 'link'],
 	size: ['small', 'medium', 'large', 'xlarge'],
 };
 

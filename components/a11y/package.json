@@ -1,20 +1,20 @@
 {
-	"name": "@westpac/accessibility-helpers",
+	"name": "@westpac/a11y",
 	"version": "0.0.1",
-	"description": "Accessibility helper components",
+	"description": "Accessibility components",
 	"repository": "https://github.com/WestpacGEL/GEL.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=accessibility-helpers webpack-dev-server --config ../../helpers/example/webpack.config.js",
+		"start": "PACKAGE_NAME=a11y webpack-dev-server --config ../../helpers/example/webpack.config.js",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/accessibility-helpers.cjs.js",
-	"module": "dist/accessibility-helpers.esm.js",
+	"main": "dist/a11y.cjs.js",
+	"module": "dist/a11y.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",

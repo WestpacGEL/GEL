@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { VisuallyHidden } from '@westpac/a11y';
 
 // ==============================
 // Component
@@ -30,12 +30,12 @@ export const PaginationItem = ({ first, last, active, disabled, children, ...pro
 
 						...(first && {
 							marginLeft: 0,
-							borderTopLeftRadius: '3px',
-							borderBottomLeftRadius: '3px',
+							borderTopLeftRadius: '0.1875rem',
+							borderBottomLeftRadius: '0.1875rem',
 						}),
 						...(last && {
-							borderTopRightRadius: '3px',
-							borderBottomRightRadius: '3px',
+							borderTopRightRadius: '0.1875rem',
+							borderBottomRightRadius: '0.1875rem',
 						}),
 						...(disabled && {
 							color: COLORS.muted,
@@ -56,7 +56,7 @@ export const PaginationItem = ({ first, last, active, disabled, children, ...pro
 				}}
 				{...props}
 			>
-				{!first && !last && <SrOnly>Go to page</SrOnly>}
+				{!first && !last && <VisuallyHidden>Go to page</VisuallyHidden>}
 				{children}
 			</li>
 		</>

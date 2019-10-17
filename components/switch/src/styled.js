@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { jsx, useTheme, paint } from '@westpac/core';
 
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { VisuallyHidden } from '@westpac/a11y';
 
 // ==============================
 // Utils
@@ -32,7 +32,7 @@ export const SwitchText = ({ size, isBlock, isFlipped, isSrOnlyText, ...props })
 		},
 	};
 
-	return isSrOnlyText ? <SrOnly {...props} /> : <span css={mq(common)} {...props} />;
+	return isSrOnlyText ? <VisuallyHidden {...props} /> : <span css={mq(common)} {...props} />;
 };
 
 export const SwitchToggle = ({ size, toggleText, ...props }) => {

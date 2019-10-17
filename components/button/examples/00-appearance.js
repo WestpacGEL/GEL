@@ -9,7 +9,6 @@ export default () => (
 		<h2>Standard</h2>
 		<Button appearance="primary">Primary standard</Button>{' '}
 		<Button appearance="hero">Hero standard</Button>{' '}
-		<Button appearance="neutral">Neutral standard</Button>{' '}
 		<Button appearance="faint">Faint standard</Button> <Button appearance="link">Link</Button>
 		<hr />
 		<h2>Soft</h2>
@@ -19,14 +18,8 @@ export default () => (
 		<Button appearance="hero" soft>
 			Hero soft
 		</Button>{' '}
-		<Button appearance="neutral" soft>
-			Neutral soft
-		</Button>{' '}
 		<Button appearance="faint" soft>
 			Faint soft
-		</Button>{' '}
-		<Button appearance="link" soft>
-			Link soft
 		</Button>
 	</>
 );

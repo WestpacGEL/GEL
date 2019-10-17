@@ -177,10 +177,7 @@ const Home = ({ packageName, pkg }) => (
 	<Article>
 		<Container>
 			<h1>{packageName} Examples</h1>
-			<p>
-				Click one of the examples on the left to view it. To load the examples for another package
-				run:
-			</p>
+			<p>Click one of the examples on the left to view it.</p>
 			<pre
 				css={{
 					background: '#f9f9f9',
@@ -188,8 +185,9 @@ const Home = ({ packageName, pkg }) => (
 					border: '1px solid #ccc',
 				}}
 			>
-				<code>yarn dev {pkg}</code>
+				<code>yarn start {pkg}</code>
 			</pre>
+			<p>To load the examples for another package run the above code with another package name</p>
 		</Container>
 	</Article>
 );
