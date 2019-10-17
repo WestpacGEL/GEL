@@ -7,7 +7,7 @@ export default () => (
 		<p>
 			<InputGroup size="small">
 				<TextInput />
-				<Button appearance="hero">Go</Button>
+				<Button>Go</Button>
 			</InputGroup>
 		</p>
 
@@ -15,7 +15,7 @@ export default () => (
 		<p>
 			<InputGroup>
 				<TextInput />
-				<Button appearance="hero">Go</Button>
+				<Button>Go</Button>
 			</InputGroup>
 		</p>
 
@@ -23,7 +23,7 @@ export default () => (
 		<p>
 			<InputGroup size="large">
 				<TextInput />
-				<Button appearance="hero">Go</Button>
+				<Button>Go</Button>
 			</InputGroup>
 		</p>
 
@@ -31,7 +31,7 @@ export default () => (
 		<p>
 			<InputGroup size="xlarge">
 				<TextInput />
-				<Button appearance="hero">Go</Button>
+				<Button>Go</Button>
 			</InputGroup>
 		</p>
 	</>
