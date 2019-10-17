@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
+import PropTypes from 'prop-types';
 
 // ==============================
 // Component
@@ -13,7 +12,7 @@ import { jsx } from '@westpac/core';
 // See: https://a11yproject.com/posts/how-to-hide-content/
 // See: https://hugogiraudel.com/2016/10/13/css-hide-and-seek/
 
-export const SrOnly = ({ tag: Tag, ...props }) => (
+export const VisuallyHidden = ({ tag: Tag, ...props }) => (
 	<Tag
 		css={{
 			position: 'absolute',
@@ -33,11 +32,11 @@ export const SrOnly = ({ tag: Tag, ...props }) => (
 // Types
 // ==============================
 
-SrOnly.propTypes = {
+VisuallyHidden.propTypes = {
 	/**
 	 * Component tag
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
 
 	/**
 	 * Component content
@@ -45,6 +44,6 @@ SrOnly.propTypes = {
 	children: PropTypes.node.isRequired,
 };
 
-SrOnly.defaultProps = {
+VisuallyHidden.defaultProps = {
 	tag: 'span',
 };

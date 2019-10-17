@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
+import PropTypes from 'prop-types';
 
 // ==============================
 // Component
 // ==============================
 
-export const SrSkipLink = props => (
+export const SkipLink = props => (
 	<a
 		css={{
 			position: 'absolute',
@@ -38,7 +37,7 @@ export const SrSkipLink = props => (
 			},
 
 			':focus': {
-				outlineOffset: -2, //override to be inside
+				outlineOffset: -2, // override to be inside
 			},
 		}}
 		{...props}
@@ -49,7 +48,7 @@ export const SrSkipLink = props => (
 // Types
 // ==============================
 
-SrSkipLink.propTypes = {
+SkipLink.propTypes = {
 	/**
 	 * `href` attribute
 	 */
@@ -61,4 +60,4 @@ SrSkipLink.propTypes = {
 	children: PropTypes.node.isRequired,
 };
 
-SrSkipLink.defaultProps = {};
+SkipLink.defaultProps = {};

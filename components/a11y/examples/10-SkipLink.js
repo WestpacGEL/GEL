@@ -1,14 +1,14 @@
 /** @jsx jsx */
 
-import React, { Fragment } from 'react';
+import { SkipLink } from '@westpac/a11y';
 import { jsx } from '@westpac/core';
-import { SrSkipLink } from '../src';
+import { Fragment } from 'react';
 
 export default () => (
 	<Fragment>
 		<h2>Screen reader skip link</h2>
 		<p>Note: The example link below is visibility hidden until focussed.</p>
-		<SrSkipLink href="#content">This is screen reader only text (visible when foccused)</SrSkipLink>
+		<SkipLink href="#content">This is screen reader only text (visible when foccused)</SkipLink>
 		<p>
 			<a href="?">Links in this section</a> are skipped over
 		</p>
@@ -28,7 +28,7 @@ export default () => (
 			}}
 		>
 			<p>
-				This is example content, linked to by the SrSkipLink component above. Sit sint irure do eu.
+				This is example content, linked to by the SkipLink component above. Sit sint irure do eu.
 				Non aliquip voluptate et nisi est voluptate in aliquip. Tempor ea est et velit anim
 				incididunt qui ipsum anim id. Irure exercitation adipisicing velit minim ea aute esse elit
 				amet minim in minim cillum. <a href="?">Cupidatat aliqua</a> eiusmod ipsum occaecat proident

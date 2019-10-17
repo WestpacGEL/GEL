@@ -3,7 +3,7 @@
 import React from 'react';
 import { jsx } from '@westpac/core';
 import { propTypes, defaultProps } from './Button';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { VisuallyHidden } from '@westpac/a11y';
 
 // ==============================
 // Utils
@@ -23,7 +23,7 @@ const iconSizeMap = {
 
 export const ButtonTextWrapper = ({ block, srOnlyText, children }) => {
 	if (srOnlyText) {
-		return <SrOnly>{children}</SrOnly>;
+		return <VisuallyHidden>{children}</VisuallyHidden>;
 	} else if (block) {
 		// Wrap with styled span to provide text truncation (only available in block mode)
 		return <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>;

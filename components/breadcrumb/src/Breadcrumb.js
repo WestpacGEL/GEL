@@ -3,7 +3,7 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { VisuallyHidden } from '@westpac/a11y';
 
 // ==============================
 // Component
@@ -23,7 +23,7 @@ export const Breadcrumb = ({ children, ...props }) => {
 
 	return (
 		<div {...props}>
-			<SrOnly>Page navigation:</SrOnly>
+			<VisuallyHidden>Page navigation:</VisuallyHidden>
 			<ol
 				css={{
 					padding: '0.375rem 1.125rem',

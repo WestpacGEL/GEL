@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { VisuallyHidden } from '@westpac/a11y';
 
 // ==============================
 // Component
@@ -34,7 +34,7 @@ export const BreadcrumbCrumb = ({ children, last, ...props }) => {
 			}}
 			{...props}
 		>
-			{last && <SrOnly>Current page:</SrOnly>}
+			{last && <VisuallyHidden>Current page:</VisuallyHidden>}
 			{children}
 			{!last && (
 				<ArrowRightIcon

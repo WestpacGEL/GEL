@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { VisuallyHidden } from '@westpac/a11y';
 
 // ==============================
 // Utils
@@ -97,7 +97,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 						{roundedValue}%
 					</span>
 				)}
-				<SrOnly>Complete</SrOnly>
+				<VisuallyHidden>Complete</VisuallyHidden>
 			</div>
 		</div>
 	);

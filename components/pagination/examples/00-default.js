@@ -1,14 +1,14 @@
 import React from 'react';
 import { Pagination, Item } from '../src';
-import { SrOnly } from '@westpac/accessibility-helpers/dist/accessibility-helpers.esm';
+import { VisuallyHidden } from '@westpac/a11y';
 
 export default () => (
 	<>
 		<Pagination>
 			<Item disabled>
-				<SrOnly>Step</SrOnly>
+				<VisuallyHidden>Step</VisuallyHidden>
 				<span>Back</span>
-				<SrOnly>one page</SrOnly>
+				<VisuallyHidden>one page</VisuallyHidden>
 			</Item>
 			<Item active>
 				<a href="/">1</a>
@@ -20,17 +20,17 @@ export default () => (
 				<a href="/">3</a>
 			</Item>
 			<Item>
-				<SrOnly>Step to the</SrOnly>
+				<VisuallyHidden>Step to the</VisuallyHidden>
 				<a href="/">Next</a>
-				<SrOnly>page</SrOnly>
+				<VisuallyHidden>page</VisuallyHidden>
 			</Item>
 		</Pagination>
 
 		<Pagination>
 			<Item>
-				<SrOnly>Step</SrOnly>
+				<VisuallyHidden>Step</VisuallyHidden>
 				<a href="/">Back</a>
-				<SrOnly>one page</SrOnly>
+				<VisuallyHidden>one page</VisuallyHidden>
 			</Item>
 			<Item>
 				<a href="/">1</a>
@@ -42,17 +42,17 @@ export default () => (
 				<a href="/">3</a>
 			</Item>
 			<Item>
-				<SrOnly>Step to the</SrOnly>
+				<VisuallyHidden>Step to the</VisuallyHidden>
 				<a href="/">Next</a>
-				<SrOnly>page</SrOnly>
+				<VisuallyHidden>page</VisuallyHidden>
 			</Item>
 		</Pagination>
 
 		<Pagination>
 			<Item>
-				<SrOnly>Step</SrOnly>
+				<VisuallyHidden>Step</VisuallyHidden>
 				<a href="/">Back</a>
-				<SrOnly>one page</SrOnly>
+				<VisuallyHidden>one page</VisuallyHidden>
 			</Item>
 			<Item>
 				<a href="/">1</a>
@@ -64,9 +64,9 @@ export default () => (
 				<a href="/">3</a>
 			</Item>
 			<Item disabled>
-				<SrOnly>Step to the</SrOnly>
+				<VisuallyHidden>Step to the</VisuallyHidden>
 				<span>Next</span>
-				<SrOnly>page</SrOnly>
+				<VisuallyHidden>page</VisuallyHidden>
 			</Item>
 		</Pagination>
 	</>
