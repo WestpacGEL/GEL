@@ -127,7 +127,7 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 				name={name}
 				id={formCheckId}
 				value={value}
-				checked={checked}
+				checked={isChecked}
 				disabled={disabled}
 				onChange={toggle}
 			/>
@@ -162,7 +162,10 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 						borderRadius: type === 'radio' ? '50%' : 3,
 
 						// Focus state
-						// 'input:focus + &': {}, //TODO
+						'body:not(.isMouseMode) input:focus + &': {
+							outline: `2px solid ${COLORS.focus}`,
+							outlineOffset: 3,
+						},
 
 						// Disabled state
 						'input:disabled + &, fieldset:disabled &': {
