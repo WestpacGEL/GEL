@@ -71,7 +71,7 @@ Popover.propTypes = {
 	/** State of whether the popover is open */
 	open: PropTypes.bool,
 	/** Trigger element to open the popover */
-	chidlren: PropTypes.node,
+	children: PropTypes.node,
 };
 
 Popover.defaultProps = {
