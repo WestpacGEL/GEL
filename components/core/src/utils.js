@@ -1,6 +1,6 @@
-import facepaint from 'facepaint';
 import weakMemo from '@emotion/weak-memoize';
 import { useBrand } from './Brand';
+import facepaint from 'facepaint';
 
 const minWidth = width => `@media (min-width: ${width}px)`;
 const mapBreakpoints = ([key, value]) => minWidth(value);

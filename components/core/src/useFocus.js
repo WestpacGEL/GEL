@@ -1,7 +1,12 @@
 export const useFocus = () => {
+	// Let's make sure we only add the script once
 	const hasScript = document.querySelectorAll('script[id="GELFocus"]').length > 0;
 
 	if (!hasScript) {
+		// Insert a script that:
+		// - adds the "isMouseMode" class to the body
+		// - listens for the tab key
+		// - when tab key is pressed removes the "isMouseMode" class and removes the listener
 		const scriptEl = document.createElement('script');
 		scriptEl.setAttribute('id', 'GELFocus');
 		scriptEl.text = `
@@ -18,6 +23,7 @@ export const useFocus = () => {
 		`;
 		document.body.insertBefore(scriptEl, document.body.firstChild);
 
+		// Insert CSS style to hide all focus only when the "isMouseMode" is present
 		const styleEl = document.createElement('style');
 		styleEl.setAttribute('type', 'text/css');
 		styleEl.innerHTML = `
@@ -25,7 +31,6 @@ export const useFocus = () => {
 				outline: 0 !important;
 			}
 		`;
-
 		document.head.appendChild(styleEl);
 	}
 };
