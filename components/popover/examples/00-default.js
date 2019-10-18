@@ -8,7 +8,7 @@ export default () => (
 		<Popover title="Popover Title" content={content}>
 			<Button>Click Me</Button>
 		</Popover>
-		<div style={{ height: '500px' }} />
+		<div style={{ height: '1000px' }} />
 		<Popover title="Popover Title" content={content}>
 			<Button>Click Me</Button>
 		</Popover>

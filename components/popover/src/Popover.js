@@ -43,16 +43,30 @@ export const Popover = ({ open: isOpen, children, ...props }) => {
 		}
 	};
 
+	// not sure if this is correct
 	useEffect(() => {
-		document.addEventListener('click', handleOutsideClick);
+		if (open) {
+			document.addEventListener('click', handleOutsideClick);
+		}
 		return () => {
 			document.removeEventListener('click', handleOutsideClick);
 		};
-	});
+	}, [open]);
 
 	const handleClick = () => {
 		setOpen(!open);
 	};
+
+	const keyHandler = event => {
+		if (event.keyCode === 27) setOpen(false);
+	};
+
+	useEffect(() => {
+		window.document.addEventListener('keydown', keyHandler);
+		return () => {
+			window.document.removeEventListener('keydown', keyHandler);
+		};
+	});
 
 	return (
 		<>
