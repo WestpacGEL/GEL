@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
 import React, { useContext } from 'react';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useBrand, paint } from '@westpac/core';
 
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { VisuallyHidden } from '@westpac/a11y';
 
 // ==============================
 // Utils
@@ -16,7 +16,7 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // ==============================
 
 export const SwitchText = ({ size, isBlock, isFlipped, isSrOnlyText, ...props }) => {
-	const { breakpoints, switch: formSwitch } = useTheme();
+	const { breakpoints, switch: formSwitch } = useBrand();
 	const mq = paint(breakpoints);
 
 	const common = {
@@ -32,11 +32,11 @@ export const SwitchText = ({ size, isBlock, isFlipped, isSrOnlyText, ...props })
 		},
 	};
 
-	return isSrOnlyText ? <SrOnly {...props} /> : <span css={mq(common)} {...props} />;
+	return isSrOnlyText ? <VisuallyHidden {...props} /> : <span css={mq(common)} {...props} />;
 };
 
 export const SwitchToggle = ({ size, toggleText, ...props }) => {
-	const { breakpoints, typography, switch: formSwitch } = useTheme();
+	const { breakpoints, typography, switch: formSwitch } = useBrand();
 	const mq = paint(breakpoints);
 
 	const style = {

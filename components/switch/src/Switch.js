@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import shortid from 'shortid';
 import { SwitchText, SwitchToggle } from './styled';
 
@@ -24,7 +24,7 @@ export const Switch = ({
 	children,
 	...props
 }) => {
-	const { switch: formSwitch } = useTheme();
+	const { switch: formSwitch } = useBrand();
 	const [checked, setChecked] = useState(isChecked);
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 

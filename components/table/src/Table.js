@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -12,7 +12,7 @@ const TableWrapper = ({ bordered, responsive, wrappingStyles, ...props }) => {
 	const {
 		COLORS,
 		LAYOUT: { breakpoints },
-	} = useTheme();
+	} = useBrand();
 
 	const maxWidth = width => `@media (max-width: ${width}px)`;
 	const xsOnly = maxWidth(breakpoints.sm - 1);
@@ -69,7 +69,7 @@ const TableWrapper = ({ bordered, responsive, wrappingStyles, ...props }) => {
 // ==============================
 
 export const Table = ({ striped, bordered, responsive, wrappingStyles, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	return (
 		<TableWrapper bordered={bordered} responsive={responsive} wrappingStyles={wrappingStyles}>

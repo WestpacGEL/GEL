@@ -31,7 +31,7 @@ export default () => (
 		<TextInput readOnly value="This value is readonly" />
 		<hr />
 		<h2>Inline</h2>
-		<Form isInline noValidate>
+		<Form inline>
 			<TextInput /> <TextInput /> <Button type="submit">Submit</Button>
 		</Form>
 		<hr />

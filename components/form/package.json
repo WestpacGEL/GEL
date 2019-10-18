@@ -4,6 +4,18 @@
 	"description": "Form component and associated components for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"contributors": [
+		{
+			"name": "Dominik Wilkowski",
+			"email": "Hi@Dominik-Wilkowski.com",
+			"url": "https://dominik-wilkowski.com"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		}
+	],
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=form webpack-dev-server --config ../../helpers/example/webpack.config.js",
@@ -17,7 +29,7 @@
 	"module": "dist/form.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.6.2",
-		"@westpac/accessibility-helpers": "^0.0.1",
+		"@westpac/a11y": "^0.0.1",
 		"@westpac/core": "^0.0.1",
 		"@westpac/icon": "^0.0.1",
 		"prop-types": "^15.6.2",

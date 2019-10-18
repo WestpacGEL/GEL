@@ -17,7 +17,7 @@ import {
 	FormSectionImg,
 	Hint,
 	InputCluster,
-	InputClusterItem,
+	Item,
 } from './src';
 
 import { TextInput } from '@westpac/text-input';
@@ -77,14 +77,14 @@ The `@westpac/form` package provides general form styling and layout components 
     				<Hint>This is a hint</Hint>
     				<ErrorMessage message={['This is an error message', 'This is another error message']} />
     				<InputCluster>
-    					<InputClusterItem>
-    						<FormLabel htmlFor="example-fieldset-line1" isSublabel>This is a sub-label</FormLabel>
+    					<Item>
+    						<FormLabel htmlFor="example-fieldset-line1" sublabel>This is a sub-label</FormLabel>
     						<TextInput name="example-fieldset-line1" id="example-fieldset-line1" />
-    					</InputClusterItem>
-    					<InputClusterItem>
-    						<FormLabel htmlFor="example-fieldset-line2" isSublabel>This is a sub-label</FormLabel>
+    					</Item>
+    					<Item>
+    						<FormLabel htmlFor="example-fieldset-line2" sublabel>This is a sub-label</FormLabel>
     						<TextInput name="example-fieldset-line2" id="example-fieldset-line2" />
-    					</InputClusterItem>
+    					</Item>
     				</InputCluster>
     			</Fieldset>
     		</FormGroup>
@@ -149,10 +149,10 @@ Always use the FormGroup component to wrap the components that make up each form
 
 ### Primary
 
-Use the `isPrimary` prop to centre the contents of a FormGroup. This option is used exclusively to render the ‘Fork’ pattern — a primary FormGroup wrapping a ButtonGroup component.
+Use the `primary` prop to centre the contents of a FormGroup. This option is used exclusively to render the ‘Fork’ pattern — a primary FormGroup wrapping a ButtonGroup component.
 
 <Playground>
-	<FormGroup isPrimary>
+	<FormGroup primary>
 		<Fieldset legend="Do you have a different mailing address?">
 			<ButtonGroup name="example-formgroup-primary">
 				<ButtonGroupButton id="example-formgroup-primary-1">Yes</ButtonGroupButton>
@@ -189,9 +189,9 @@ Fieldset takes mandatory legend text via its `legend` prop.
 	<FormGroup>
 		<Fieldset legend="Date of birth" aria-describedby="example-fieldset-hint">
 			<Hint id="example-fieldset-hint">For example 31 3 1980</Hint>
-			<InputCluster isHorizontal>
-				<InputClusterItem>
-					<FormLabel htmlFor="example-fieldset-input-1" isSublabel>
+			<InputCluster horizontal>
+				<Item>
+					<FormLabel htmlFor="example-fieldset-input-1" sublabel>
 						Day
 					</FormLabel>
 					<TextInput
@@ -204,9 +204,9 @@ Fieldset takes mandatory legend text via its `legend` prop.
 						id="example-fieldset-input-1"
 						width={2}
 					/>
-				</InputClusterItem>
-				<InputClusterItem>
-					<FormLabel htmlFor="example-fieldset-input-2" isSublabel>
+				</Item>
+				<Item>
+					<FormLabel htmlFor="example-fieldset-input-2" sublabel>
 						Month
 					</FormLabel>
 					<TextInput
@@ -219,9 +219,9 @@ Fieldset takes mandatory legend text via its `legend` prop.
 						id="example-fieldset-input-2"
 						width={2}
 					/>
-				</InputClusterItem>
-				<InputClusterItem>
-					<FormLabel htmlFor="example-fieldset-input-3" isSublabel>
+				</Item>
+				<Item>
+					<FormLabel htmlFor="example-fieldset-input-3" sublabel>
 						Year
 					</FormLabel>
 					<TextInput
@@ -234,7 +234,7 @@ Fieldset takes mandatory legend text via its `legend` prop.
 						id="example-fieldset-input-3"
 						width={4}
 					/>
-				</InputClusterItem>
+				</Item>
 			</InputCluster>
 		</Fieldset>
 	</FormGroup>
@@ -269,18 +269,18 @@ These patterns also require use of the Fieldset component to meet WCAG 2.1 AA ac
 	<FormGroup>
 		<Fieldset legend="This is a legend">
 			<InputCluster>
-				<InputClusterItem>
-					<FormLabel htmlFor="example-formlabel-sublabel-1" isSublabel>
+				<Item>
+					<FormLabel htmlFor="example-formlabel-sublabel-1" sublabel>
 						This is a sub-label
 					</FormLabel>
 					<TextInput name="example-formlabel-sublabel-1" id="example-formlabel-sublabel-1" />
-				</InputClusterItem>
-				<InputClusterItem>
-					<FormLabel htmlFor="example-formlabel-sublabel-2" isSublabel>
+				</Item>
+				<Item>
+					<FormLabel htmlFor="example-formlabel-sublabel-2" sublabel>
 						This is another sub-label
 					</FormLabel>
 					<TextInput name="example-formlabel-sublabel-2" id="example-formlabel-sublabel-2" />
-				</InputClusterItem>
+				</Item>
 			</InputCluster>
 		</Fieldset>
 	</FormGroup>
@@ -294,18 +294,18 @@ Always provide a FormLabel component for every associated input to meet WCAG 2.1
 	<FormGroup>
 		<Fieldset legend="This is a legend">
 			<InputCluster>
-				<InputClusterItem>
-					<FormLabel htmlFor="example-formlabel-sronly-1" isSrOnly>
+				<Item>
+					<FormLabel htmlFor="example-formlabel-sronly-1" srOnly>
 						This is a ‘screen reader only’ label
 					</FormLabel>
 					<TextInput name="example-formlabel-sronly-1" id="example-formlabel-sronly-1" />
-				</InputClusterItem>
-				<InputClusterItem>
-					<FormLabel htmlFor="example-formlabel-sronly-2" isSrOnly>
+				</Item>
+				<Item>
+					<FormLabel htmlFor="example-formlabel-sronly-2" srOnly>
 						This is another ‘screen reader only’ label
 					</FormLabel>
 					<TextInput name="example-formlabel-sronly-2" id="example-formlabel-sronly-2" />
-				</InputClusterItem>
+				</Item>
 			</InputCluster>
 		</Fieldset>
 	</FormGroup>
@@ -334,12 +334,12 @@ Hint text is additional text provided to aid the user in understanding the expec
 		<Fieldset legend="This is a legend" aria-describedby="example-fieldset-hint">
 			<Hint id="example-fieldset-hint">This is a hint</Hint>
 			<InputCluster>
-				<InputClusterItem>
+				<Item>
 					<TextInput name="example-fieldset-hint-input-1" id="example-fieldset-hint-input-1" />
-				</InputClusterItem>
-				<InputClusterItem>
+				</Item>
+				<Item>
 					<TextInput name="example-fieldset-hint-input-2" id="example-fieldset-hint-input-2" />
-				</InputClusterItem>
+				</Item>
 			</InputCluster>
 		</Fieldset>
 	</FormGroup>
@@ -365,7 +365,7 @@ Use the `message` prop to pass error message text.
 <Playground>
 	<FormGroup>
 		<ErrorMessage message="This is an error message" id="example-single-error" />
-		<TextInput mame="example-single" aria-describedby="example-single-error" invalid />
+		<TextInput name="example-single" aria-describedby="example-single-error" invalid />
 	</FormGroup>
 </Playground>
 
@@ -377,7 +377,7 @@ Multiple messages can be rendered by passing an array of errors.
 			message={['This is an error message', 'This is another error message']}
 			id="example-multiple-error"
 		/>
-		<TextInput mame="example-multiple" aria-describedby="example-multiple-error" invalid />
+		<TextInput name="example-multiple" aria-describedby="example-multiple-error" invalid />
 	</FormGroup>
 </Playground>
 
@@ -391,33 +391,33 @@ The default (vertical) mode is used to render the multi-line ‘Street’ patter
 
 <Playground>
 	<InputCluster>
-		<InputClusterItem>
+		<Item>
 			<TextInput name="example-inputcluster-input-1" id="example-inputcluster-input-1" />
-		</InputClusterItem>
-		<InputClusterItem>
+		</Item>
+		<Item>
 			<TextInput name="example-inputcluster-input-2" id="example-inputcluster-input-2" />
-		</InputClusterItem>
+		</Item>
 	</InputCluster>
 </Playground>
 
 ### Horizontal
 
-The `isHorizontal` mode changes the layout to inline. This mode is used to render the ‘Date of birth’ and ‘Expiry date’ patterns.
+The `horizontal` mode changes the layout to inline. This mode is used to render the ‘Date of birth’ and ‘Expiry date’ patterns.
 
 <Playground>
-	<InputCluster isHorizontal>
-		<InputClusterItem>
+	<InputCluster horizontal>
+		<Item>
 			<TextInput
 				name="example-inputcluster-horizontal-input-1"
 				id="example-inputcluster-horizontal-input-1"
 			/>
-		</InputClusterItem>
-		<InputClusterItem>
+		</Item>
+		<Item>
 			<TextInput
 				name="example-inputcluster-horizontal-input-2"
 				id="example-inputcluster-horizontal-input-2"
 			/>
-		</InputClusterItem>
+		</Item>
 	</InputCluster>
 </Playground>
 

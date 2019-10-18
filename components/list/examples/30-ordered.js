@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem } from '../src';
+import { List, Item } from '../src';
 import { listGenerator } from './_utils';
 
 export default () => (
@@ -7,15 +7,15 @@ export default () => (
 		<h3>Ordered</h3>
 		<List type="ordered">
 			{listGenerator('Ordered', 3)}
-			<ListItem>
+			<Item>
 				Ordered list
 				<List>{listGenerator('Ordered', 3)}</List>
-			</ListItem>
+			</Item>
 			{listGenerator('Ordered', 3)}
-			<ListItem>
+			<Item>
 				Ordered list
 				<List type="bullet">{listGenerator('Ordered', 3)}</List>
-			</ListItem>
+			</Item>
 			{listGenerator('Ordered', 3)}
 		</List>
 	</>

@@ -8,7 +8,7 @@ export default () => (
 		<h2>Default instance (no styling props)</h2>
 		<FormGroup>
 			<ErrorMessage id="example-default-error" />
-			<TextInput mame="example-default" aria-describedby="example-default-error" invalid />
+			<TextInput name="example-default" aria-describedby="example-default-error" invalid />
 		</FormGroup>
 
 		<hr />
@@ -16,7 +16,7 @@ export default () => (
 		<h2>Single error message</h2>
 		<FormGroup>
 			<ErrorMessage message="This is an error message" id="example-single-error" />
-			<TextInput mame="example-single" aria-describedby="example-single-error" invalid />
+			<TextInput name="example-single" aria-describedby="example-single-error" invalid />
 		</FormGroup>
 
 		<hr />
@@ -27,7 +27,7 @@ export default () => (
 				message={['This is an error message', 'This is another error message']}
 				id="example-multiple-error"
 			/>
-			<TextInput mame="example-multiple" aria-describedby="example-multiple-error" invalid />
+			<TextInput name="example-multiple" aria-describedby="example-multiple-error" invalid />
 		</FormGroup>
 
 		<hr />
@@ -39,7 +39,7 @@ export default () => (
 				icon={CarIcon}
 				id="example-custom-icon-error"
 			/>
-			<TextInput mame="example-custom-icon" aria-describedby="example-custom-icon-error" invalid />
+			<TextInput name="example-custom-icon" aria-describedby="example-custom-icon-error" invalid />
 		</FormGroup>
 	</>
 );

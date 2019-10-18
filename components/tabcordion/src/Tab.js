@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
-import { useTheme } from '@westpac/core';
+import { useBrand } from '@westpac/core';
 
 import { AccordionLabel, Panel } from './styled';
 
@@ -10,7 +10,7 @@ export const Tab = forwardRef(
 		{ appearance, children, isLast, isSelected, label, mode, panelId, onClick, tabId, ...props },
 		ref
 	) => {
-		const theme = useTheme();
+		const theme = useBrand();
 		const Icon = isSelected ? ExpandLessIcon : ExpandMoreIcon;
 		const iconLabel = isSelected ? 'Show Less' : 'Show More';
 

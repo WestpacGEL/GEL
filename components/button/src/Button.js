@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { ButtonContent } from './styled';
 
 // ==============================
@@ -30,7 +30,7 @@ export const Button = ({
 	children,
 	...props
 }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
@@ -121,34 +121,6 @@ export const Button = ({
 				':active, &.active': {
 					color: '#fff', //TODO: STG uses `COLORS.text` (i.e. `color: null`)
 					backgroundColor: COLORS.tints.hero50,
-				},
-			},
-		},
-		neutral: {
-			standard: {
-				color: '#fff',
-				backgroundColor: COLORS.neutral,
-				borderColor: COLORS.neutral,
-
-				':hover': {
-					backgroundColor: COLORS.tints.neutral70,
-				},
-				':active, &.active': {
-					backgroundColor: COLORS.tints.neutral50,
-				},
-			},
-			soft: {
-				color: COLORS.text,
-				backgroundColor: '#fff',
-				borderColor: COLORS.neutral,
-
-				':hover': {
-					color: '#fff',
-					backgroundColor: COLORS.tints.neutral70,
-				},
-				':active, &.active': {
-					color: '#fff',
-					backgroundColor: COLORS.tints.neutral50,
 				},
 			},
 		},
@@ -261,7 +233,7 @@ export const Button = ({
 // ==============================
 
 const options = {
-	appearance: ['primary', 'hero', 'neutral', 'faint', 'link'],
+	appearance: ['primary', 'hero', 'faint', 'link'],
 	size: ['small', 'medium', 'large', 'xlarge'],
 };
 

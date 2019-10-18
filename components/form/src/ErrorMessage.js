@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import shortid from 'shortid';
 
 import { AlertIcon } from '@westpac/icon';
@@ -11,29 +11,21 @@ import { AlertIcon } from '@westpac/icon';
 // Utility
 // ==============================
 
-export const ErrorMessageContent = ({ icon: Icon, children }) => {
-	const {
-		form: { errorMessage },
-	} = useTheme();
-
-	return (
-		<>
-			{Icon && (
-				<Icon css={{ verticalAlign: 'top', ...errorMessage.icon }} size="small" color="inherit" />
-			)}
-			{children}
-		</>
-	);
-};
+export const ErrorMessageContent = ({ icon: Icon, children }) => (
+	<>
+		{Icon && (
+			<Icon css={{ verticalAlign: 'top', marginRight: '0.25em' }} size="small" color="inherit" />
+		)}
+		{children}
+	</>
+);
 
 // ==============================
 // Component
 // ==============================
 
 export const ErrorMessage = ({ message, icon, tag: Tag, ...props }) => {
-	const {
-		form: { errorMessage },
-	} = useTheme();
+	const { COLORS } = useBrand();
 
 	// Check for an array of messages
 	const isMessages = Array.isArray(message);
@@ -42,18 +34,19 @@ export const ErrorMessage = ({ message, icon, tag: Tag, ...props }) => {
 		Tag = 'ul';
 	}
 
-	const common = {
-		fontSize: errorMessage.fontSize,
-		margin: errorMessage.margin,
-		color: errorMessage.color,
-		...(isMessages && { listStyle: 'none', paddingLeft: 0 }),
-	};
-
 	return (
-		<Tag css={common} {...props}>
+		<Tag
+			css={{
+				fontSize: '0.875rem',
+				margin: '0 0 0.75rem',
+				color: COLORS.danger,
+				...(isMessages && { listStyle: 'none', paddingLeft: 0 }),
+			}}
+			{...props}
+		>
 			{isMessages ? (
 				message.map(msg => (
-					<li css={{ ...errorMessage.li }} key={shortid.generate()}>
+					<li css={{ marginBottom: '0.375rem' }} key={shortid.generate()}>
 						<ErrorMessageContent icon={icon}>{msg}</ErrorMessageContent>
 					</li>
 				))
