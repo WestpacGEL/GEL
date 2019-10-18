@@ -2,7 +2,6 @@ import React from 'react';
 import { Global, useTheme } from '@westpac/core';
 import { Footer, FooterIcon, FooterText, FooterLogo } from '../src';
 import { Cell, Grid } from '@westpac/grid';
-import { LogoSmallRight } from '@westpac/symbol';
 import { PadlockIcon } from '@westpac/icon';
 
 export default () => {
@@ -19,8 +18,6 @@ export default () => {
 				}}
 			/>
 
-			<h2>Standard</h2>
-
 			<h3>Simple footer</h3>
 			<Footer>
 				<Grid>
@@ -36,7 +33,7 @@ export default () => {
 						</FooterText>
 					</Cell>
 					<Cell width={[12, 3]}>
-						<FooterLogo symbol={LogoSmallRight} />
+						<FooterLogo />
 					</Cell>
 				</Grid>
 			</Footer>
@@ -56,7 +53,7 @@ export default () => {
 						</FooterText>
 					</Cell>
 					<Cell width={[12, 3]}>
-						<FooterLogo symbol={LogoSmallRight} />
+						<FooterLogo />
 					</Cell>
 				</Grid>
 			</Footer>

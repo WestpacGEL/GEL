@@ -16,17 +16,17 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // Component
 // ==============================
 
-export const Header = ({ fixed, srSkipLinkText, srSkipLinkHref, tag: Tag, children, ...props }) => {
+export const Header = ({ srSkipLinkText, srSkipLinkHref, tag: Tag, children, ...props }) => {
 	const { COLORS, LAYOUT } = useTheme();
 	const mq = useMediaQuery();
 	const templateContext = useTemplateContext();
-
-	const sidebarPosition = (templateContext && templateContext.sidebarPosition) || 'right';
+	const headerFixed = (templateContext && templateContext.headerFixed) || false;
+	const sidebarPosition = (templateContext && templateContext.sidebarPosition) || false;
 
 	const headerHeight = ['3.375rem', '4.0625rem'];
 
 	// Fixed position styling
-	const fixedArr = asArray(fixed);
+	const fixedArr = asArray(headerFixed);
 	const styleFixed = {
 		position: fixedArr.map(f => f !== null && (f ? 'fixed' : 'relative')),
 		top: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
@@ -91,13 +91,6 @@ export const Header = ({ fixed, srSkipLinkText, srSkipLinkHref, tag: Tag, childr
 
 Header.propTypes = {
 	/**
-	 * Fixed positioning mode.
-	 *
-	 * When enabled the header will remain fixed to the top of the viewport during scrolling.
-	 */
-	fixed: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
-
-	/**
 	 * Screen reader skip link text
 	 */
 	srSkipLinkText: PropTypes.string,
@@ -119,7 +112,6 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-	fixed: false,
 	srSkipLinkText: 'Skip to main content',
 	srSkipLinkHref: '#content',
 	tag: 'header',

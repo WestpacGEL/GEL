@@ -12,12 +12,12 @@ import {
 	Template,
 } from '../src';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { LogoSmall, LogoSmallRight, LogoLarge } from '@westpac/symbol';
+import { LogoSmall, LogoLarge } from '@westpac/symbol';
 import { PadlockIcon } from '@westpac/icon';
 
 export default () => (
-	<Template>
-		<Header fixed={[true, false]}>
+	<Template headerFixed={[true, false]}>
+		<Header>
 			<HeaderLogo
 				href="#0"
 				logo={[<LogoSmall label="" />, <LogoLarge label="" />]}
@@ -44,7 +44,7 @@ export default () => (
 					</FooterText>
 				</Cell>
 				<Cell width={[null, 3]}>
-					<FooterLogo symbol={LogoSmallRight} />
+					<FooterLogo />
 				</Cell>
 			</Grid>
 		</Footer>

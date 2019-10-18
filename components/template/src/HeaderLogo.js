@@ -19,14 +19,6 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 export const HeaderLogo = ({ logo, center, srOnlyText, tag: Tag, ...props }) => {
 	const mq = useMediaQuery();
 
-	// Common styling
-	const styleCommon = {
-		display: 'inline-flex',
-		alignItems: 'center',
-		paddingLeft: ['0.75rem', '1.5rem'],
-		paddingRight: ['0.75rem', '1.5rem'],
-	};
-
 	// Logo position styling
 	const stylePosition = (() => {
 		if (!center) return;
@@ -43,7 +35,16 @@ export const HeaderLogo = ({ logo, center, srOnlyText, tag: Tag, ...props }) => 
 	})();
 
 	return (
-		<Tag css={mq({ ...styleCommon, ...stylePosition })} {...props}>
+		<Tag
+			css={mq({
+				display: 'inline-flex',
+				alignItems: 'center',
+				paddingLeft: ['0.75rem', '1.5rem'],
+				paddingRight: ['0.75rem', '1.5rem'],
+				...stylePosition,
+			})}
+			{...props}
+		>
 			{srOnlyText && <SrOnly>{srOnlyText}</SrOnly>}
 			{asArray(logo).map((l, idx) => (
 				<Hide show={Array.from({ length: asArray(logo).length }, (v, i) => i === idx)} key={idx}>

@@ -2,16 +2,15 @@ import React from 'react';
 import { Global, useTheme } from '@westpac/core';
 import {
 	Header,
-	HeaderRight,
 	HeaderButton,
-	HeaderLogo,
 	HeaderContact,
 	HeaderContactText,
-	Hide,
+	HeaderLogo,
+	HeaderRight,
+	Template,
 } from '../src';
-import { LogoSmall, LogoSmallCenter, LogoLarge } from '@westpac/symbol';
+import { LogoSmall, LogoLarge } from '@westpac/symbol';
 import {
-	HamburgerMenuIcon,
 	ArrowLeftIcon,
 	ArrowRightIcon,
 	HouseIcon,
@@ -35,10 +34,8 @@ export default () => {
 				}}
 			/>
 
-			<h2>Standard</h2>
-
-			<h3>Simple header (fixed in XS)</h3>
-			<Header fixed={[true, false]}>
+			<h3>Simple header</h3>
+			<Header>
 				<HeaderLogo
 					href="#0"
 					logo={[<LogoSmall label="" />, <LogoLarge label="" />]}
@@ -74,7 +71,7 @@ export default () => {
 
 				<HeaderLogo
 					href="#0"
-					logo={[<LogoSmallCenter label="" />, <LogoLarge label="" />]}
+					logo={[<LogoSmall align="center" label="" />, <LogoLarge label="" />]}
 					center={[true, false]}
 					srOnlyText="Go to home"
 				/>

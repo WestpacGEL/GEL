@@ -14,7 +14,7 @@ export const Footer = ({ fancy, tag: Tag, children, ...props }) => {
 	const mq = useMediaQuery();
 	const templateContext = useTemplateContext();
 
-	const sidebarPosition = (templateContext && templateContext.sidebarPosition) || 'right';
+	const sidebarPosition = (templateContext && templateContext.sidebarPosition) || false;
 
 	return (
 		<Tag

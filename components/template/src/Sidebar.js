@@ -25,7 +25,6 @@ export const useSidebarContext = () => {
 // ==============================
 
 export const Sidebar = ({
-	position,
 	srSkipLinkText,
 	srSkipLinkHref,
 	tag: Tag,
@@ -35,6 +34,9 @@ export const Sidebar = ({
 }) => {
 	const { COLORS, LAYOUT } = useTheme();
 	const mq = useMediaQuery();
+	const templateContext = useTemplateContext();
+	const sidebarPosition = (templateContext && templateContext.sidebarPosition) || 'right';
+
 	const [open, setOpen] = useState(false);
 
 	const handleClick = event => {
@@ -43,6 +45,9 @@ export const Sidebar = ({
 
 	const maxWidth = width => `@media (max-width: ${width}px)`;
 	const minWidth = width => `@media (min-width: ${width}px)`;
+
+	const sidebarWidth = '18.75rem';
+	const headerHeight = ['3.375rem', '4.0625rem'];
 
 	return (
 		<SidebarContext.Provider value={{ open, handleClick }}>
@@ -61,20 +66,51 @@ export const Sidebar = ({
 					[minWidth(LAYOUT.breakpoints.md)]: {
 						position: 'fixed',
 						zIndex: 1035, //on top of header (to cover its shadow)
-						width: '18.75rem',
+						width: sidebarWidth,
 						top: 0,
 						bottom: 0,
 						left: 'auto', //no left setting, kinda provides us with a relative left position
 						backfaceVisibility: 'hidden',
+						marginTop: headerHeight,
 
-						...(position === 'left' && {
+						...(sidebarPosition === 'left' && {
 							borderRight: `1px solid ${COLORS.border}`,
 						}),
-						...(position === 'right' && {
+						...(sidebarPosition === 'right' && {
 							borderLeft: `1px solid ${COLORS.border}`,
 							right: 0,
 						}),
 					},
+
+					// LG+
+					[minWidth(LAYOUT.breakpoints.lg)]: {
+						marginTop: headerHeight,
+					},
+
+					// WrapperMax+
+					[minWidth(LAYOUT.wrapperMax)]: {
+						...(sidebarPosition === 'right' && {
+							right: 'auto', //reset
+							msTransform: 'translateX(`${LAYOUT.wrapperMax - 2}px`) translateX(-sidebarWidth)', //IE 11
+							transform: 'translateX(calc(`${LAYOUT.wrapperMax - 2}px - ${sidebarWidth}`))',
+						}),
+					},
+
+					// Adjust the sidebar position if using a fixed header (Nb. sidebar off-canvas for XS & SM)
+					// MD+
+					/* @media (min-width: @screen-md) {
+						.header-fixed ~ &, //fixed for all breakpoints
+						.header-fixed-sm ~ &, //SM+
+						.header-fixed-md ~ & { //MD+
+							margin-top: @header-BasicHeightSM + @header-BorderWidth;
+						}
+
+					// LG+
+					@media (min-width: @screen-lg) {
+						.header-fixed-lg ~ & { //LG+
+							margin-top: @header-BasicHeightSM + @header-BorderWidth;
+						}
+					} */
 				})}
 				{...props}
 			>
@@ -90,11 +126,6 @@ export const Sidebar = ({
 // ==============================
 
 Sidebar.propTypes = {
-	/**
-	 * Sidebar position
-	 */
-	position: PropTypes.oneOf(['left', 'right']),
-
 	/**
 	 * Screen reader skip link text
 	 */
@@ -122,7 +153,6 @@ Sidebar.propTypes = {
 };
 
 Sidebar.defaultProps = {
-	position: 'right',
 	srSkipLinkText: 'Skip to main content',
 	srSkipLinkHref: '#content',
 	open: false,
