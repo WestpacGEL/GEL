@@ -16,7 +16,7 @@ import { LogoSmall, LogoLarge } from '@westpac/symbol';
 import { PadlockIcon } from '@westpac/icon';
 
 export default () => (
-	<Template headerFixed={[true, false]}>
+	<Template>
 		<Header>
 			<HeaderLogo
 				href="#0"

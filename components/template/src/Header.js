@@ -20,20 +20,10 @@ export const Header = ({ srSkipLinkText, srSkipLinkHref, tag: Tag, children, ...
 	const { COLORS, LAYOUT } = useTheme();
 	const mq = useMediaQuery();
 	const templateContext = useTemplateContext();
-	const headerFixed = (templateContext && templateContext.headerFixed) || false;
 	const sidebarPosition = (templateContext && templateContext.sidebarPosition) || false;
+	const isTemplate = !!templateContext;
 
 	const headerHeight = ['3.375rem', '4.0625rem'];
-
-	// Fixed position styling
-	const fixedArr = asArray(headerFixed);
-	const styleFixed = {
-		position: fixedArr.map(f => f !== null && (f ? 'fixed' : 'relative')),
-		top: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
-		left: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
-		right: fixedArr.map(f => f !== null && (f ? 0 : 'auto')),
-		zIndex: fixedArr.map(f => f !== null && (f ? 1030 : 'auto')),
-	};
 
 	return (
 		<Tag
@@ -60,6 +50,14 @@ export const Header = ({ srSkipLinkText, srSkipLinkHref, tag: Tag, children, ...
 					maxWidth: `${LAYOUT.wrapperMax - 2}px`, //wraperMax - borders
 					width: '100%', //required if `fixed` (IE11)
 
+					...(isTemplate && {
+						position: 'fixed',
+						top: 0,
+						left: 0,
+						right: 0,
+						zIndex: 1030,
+					}),
+
 					// Bottom border
 					'::before': {
 						flex: 'none', //no flex grow or shrink
@@ -75,8 +73,6 @@ export const Header = ({ srSkipLinkText, srSkipLinkHref, tag: Tag, children, ...
 						transition: 'opacity .2s',
 						willChange: 'opacity',
 					},
-
-					...styleFixed,
 				})}
 			>
 				{children}

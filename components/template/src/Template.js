@@ -16,14 +16,14 @@ export const useTemplateContext = () => useContext(TemplateContext);
 // Component
 // ==============================
 
-export const Template = ({ headerFixed, sidebarPosition, ...props }) => {
+export const Template = ({ sidebarPosition, ...props }) => {
 	const { LAYOUT, COLORS } = useTheme();
 	const mq = useMediaQuery();
 
 	const minWidth = width => `@media (min-width: ${width}px)`;
 
 	return (
-		<TemplateContext.Provider value={{ headerFixed, sidebarPosition }}>
+		<TemplateContext.Provider value={{ sidebarPosition }}>
 			<Global
 				styles={{
 					body: { backgroundColor: COLORS.background },
@@ -62,19 +62,11 @@ export const Template = ({ headerFixed, sidebarPosition, ...props }) => {
  */
 Template.propTypes = {
 	/**
-	 * Fixed header positioning mode.
-	 *
-	 * When enabled the header will remain fixed to the top of the viewport during scrolling.
-	 */
-	headerFixed: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
-
-	/**
 	 * Sidebar position
 	 */
 	sidebarPosition: PropTypes.oneOf(['left', 'right', false]),
 };
 
 Template.defaultProps = {
-	headerFixed: false,
 	sidebarPosition: false,
 };

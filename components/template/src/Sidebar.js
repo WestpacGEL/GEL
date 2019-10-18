@@ -36,6 +36,7 @@ export const Sidebar = ({
 	const mq = useMediaQuery();
 	const templateContext = useTemplateContext();
 	const sidebarPosition = (templateContext && templateContext.sidebarPosition) || 'right';
+	const isTemplate = !!templateContext;
 
 	const [open, setOpen] = useState(false);
 
@@ -47,7 +48,7 @@ export const Sidebar = ({
 	const minWidth = width => `@media (min-width: ${width}px)`;
 
 	const sidebarWidth = '18.75rem';
-	const headerHeight = ['3.375rem', '4.0625rem'];
+	const headerHeightSM = '4.0625rem';
 
 	return (
 		<SidebarContext.Provider value={{ open, handleClick }}>
@@ -71,7 +72,7 @@ export const Sidebar = ({
 						bottom: 0,
 						left: 'auto', //no left setting, kinda provides us with a relative left position
 						backfaceVisibility: 'hidden',
-						marginTop: headerHeight,
+						marginTop: isTemplate && `calc(${headerHeightSM} + 1px)`,
 
 						...(sidebarPosition === 'left' && {
 							borderRight: `1px solid ${COLORS.border}`,
@@ -82,35 +83,14 @@ export const Sidebar = ({
 						}),
 					},
 
-					// LG+
-					[minWidth(LAYOUT.breakpoints.lg)]: {
-						marginTop: headerHeight,
-					},
-
 					// WrapperMax+
 					[minWidth(LAYOUT.wrapperMax)]: {
 						...(sidebarPosition === 'right' && {
 							right: 'auto', //reset
-							msTransform: 'translateX(`${LAYOUT.wrapperMax - 2}px`) translateX(-sidebarWidth)', //IE 11
-							transform: 'translateX(calc(`${LAYOUT.wrapperMax - 2}px - ${sidebarWidth}`))',
+							msTransform: `translateX(${LAYOUT.wrapperMax - 2}px) translateX(-sidebarWidth)`, //IE 11
+							transform: `translateX(calc(${LAYOUT.wrapperMax - 2}px - ${sidebarWidth}))`,
 						}),
 					},
-
-					// Adjust the sidebar position if using a fixed header (Nb. sidebar off-canvas for XS & SM)
-					// MD+
-					/* @media (min-width: @screen-md) {
-						.header-fixed ~ &, //fixed for all breakpoints
-						.header-fixed-sm ~ &, //SM+
-						.header-fixed-md ~ & { //MD+
-							margin-top: @header-BasicHeightSM + @header-BorderWidth;
-						}
-
-					// LG+
-					@media (min-width: @screen-lg) {
-						.header-fixed-lg ~ & { //LG+
-							margin-top: @header-BasicHeightSM + @header-BorderWidth;
-						}
-					} */
 				})}
 				{...props}
 			>
