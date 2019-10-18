@@ -2,10 +2,10 @@
 
 import React, { forwardRef } from 'react';
 import ReactDOM from 'react-dom';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 export const PopoverPanel = forwardRef(({ open, position, title, content, ...props }, ref) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	return (
 		open &&
