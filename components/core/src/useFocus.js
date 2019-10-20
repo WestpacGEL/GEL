@@ -10,16 +10,15 @@ export const useFocus = () => {
 		const scriptEl = document.createElement('script');
 		scriptEl.setAttribute('id', 'GELFocus');
 		scriptEl.text = `
-			function GELkeyHandler( event ) {
-				console.log('hit!');
+			function GELKeyHandler( event ) {
 				if( event.key === 'Tab' ) {
 					document.getElementsByTagName('body')[ 0 ].classList.remove('isMouseMode');
-					document.removeEventListener('keydown', GELkeyHandler);
+					document.removeEventListener('keydown', GELKeyHandler);
 				}
 			};
 
 			document.getElementsByTagName('body')[ 0 ].classList.add('isMouseMode');
-			window.document.addEventListener('keydown', GELkeyHandler);
+			window.document.addEventListener('keydown', GELKeyHandler);
 		`;
 		document.body.insertBefore(scriptEl, document.body.firstChild);
 
@@ -27,7 +26,7 @@ export const useFocus = () => {
 		const styleEl = document.createElement('style');
 		styleEl.setAttribute('type', 'text/css');
 		styleEl.innerHTML = `
-			html body.isMouseMode *:focus {
+			.isMouseMode *:focus {
 				outline: 0 !important;
 			}
 		`;
