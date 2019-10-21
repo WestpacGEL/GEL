@@ -16,13 +16,16 @@ import { jsx } from '@westpac/core';
 /**
  * Switch: Switch component for the Westpac GEL
  */
-export const SwitchText = ({ srOnlyText, children }) => {
+export const SwitchText = ({ srOnlyText, flipped, block, children }) => {
 	return (
 		<span
 			css={{
+				flex: block && 1,
+				display: 'flex',
+				alignItems: 'center',
 				whiteSpace: 'normal',
 				position: 'relative',
-				paddingRight: '0.375rem',
+				...(flipped ? { paddingLeft: '0.375rem' } : { paddingRight: '0.375rem' }),
 			}}
 		>
 			{srOnlyText ? <VisuallyHidden>children</VisuallyHidden> : children}

@@ -19,7 +19,15 @@ import { useSwitchContext, sizeMap } from './Switch';
 /**
  * Switch: Switch component for the Westpac GEL
  */
-export const SwitchLabel = ({ toggleText, checked, srOnlyText, children, ...props }) => {
+export const SwitchLabel = ({
+	toggleText,
+	checked,
+	srOnlyText,
+	flipped,
+	block,
+	children,
+	...props
+}) => {
 	const [isChecked, setChecked] = useState(checked);
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 	const { size } = useSwitchContext();
@@ -28,6 +36,8 @@ export const SwitchLabel = ({ toggleText, checked, srOnlyText, children, ...prop
 		setChecked(!isChecked);
 	};
 
+	console.log(block);
+
 	useEffect(() => {
 		setChecked(checked);
 	}, [checked]);
@@ -35,14 +45,16 @@ export const SwitchLabel = ({ toggleText, checked, srOnlyText, children, ...prop
 	return (
 		<label
 			css={{
-				display: 'inline-flex',
+				display: block ? 'flex' : 'inline-flex',
+				width: block && '100%',
 				flexWrap: 'wrap',
 				alignItems: 'center',
 				position: 'relative',
-				marginRight: '1.125rem',
-				height: sizeMap[size].height,
+				marginRight: !block && '1.125rem',
+				height: !block && sizeMap[size].height,
 				paddingRight: sizeMap[size].width,
 				marginBottom: '0.375rem',
+				flexDirection: flipped && 'row-reverse',
 			}}
 			htmlFor={switchId}
 			checked={checked}
@@ -59,8 +71,10 @@ export const SwitchLabel = ({ toggleText, checked, srOnlyText, children, ...prop
 				id={switchId}
 				onChange={toggle}
 			/>
+			<SwitchText srOnlyText={srOnlyText} flipped={flipped} block="block">
+				{children}
+			</SwitchText>
 			<SwitchToggle toggleText={toggleText} checked={isChecked} />
-			<SwitchText srOnlyText={srOnlyText}>{children}</SwitchText>
 		</label>
 	);
 };

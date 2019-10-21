@@ -27,7 +27,7 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 				height: sizeMap[size].height,
 				width: sizeMap[size].width,
 				display: 'block',
-				position: 'absolute',
+				position: 'relative',
 				right: 0,
 				top: 0,
 				zIndex: 1,

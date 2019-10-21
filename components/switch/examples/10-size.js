@@ -3,24 +3,32 @@ import { Switch } from '../src';
 
 export default () => (
 	<>
-		<h3>Small</h3>
-		<Switch name="ex1" size="small" toggleText={['Off', 'On']}>
-			Enable notifications?
-		</Switch>
-		<hr />
-		<h3>Medium (default)</h3>
-		<Switch name="ex2" size="medium" toggleText={['Off', 'On']}>
-			Enable notifications?
-		</Switch>
-		<hr />
-		<h3>Large</h3>
-		<Switch name="ex3" size="large" toggleText={['Off', 'On']}>
-			Enable notifications?
-		</Switch>
-		<hr />
-		<h3>Extra-large</h3>
-		<Switch name="ex4" size="xlarge" toggleText={['Off', 'On']}>
-			Enable notifications?
-		</Switch>
+		<>
+			<h2>Small</h2>
+			<Switch name="example-small" size="small">
+				Turn notifications
+			</Switch>
+
+			<hr />
+
+			<h2>Medium</h2>
+			<Switch name="example-medium" size="medium">
+				Turn notifications
+			</Switch>
+
+			<hr />
+
+			<h2>Large</h2>
+			<Switch name="example-large" size="large">
+				Turn notifications
+			</Switch>
+
+			<hr />
+
+			<h2>Extra large</h2>
+			<Switch name="example-xlarge" size="xlarge">
+				Turn notifications
+			</Switch>
+		</>
 	</>
 );
