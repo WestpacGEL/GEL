@@ -4,16 +4,17 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
-import { Global, css, jsx } from '@emotion/core';
-import { Container } from '../../components/grid';
+import { Global, css, jsx } from '@westpac/core';
+import { Container } from '@westpac/grid';
 
-import { GEL } from '../../components/core';
-import bomBrand from '../../brands/BOM';
-import bsaBrand from '../../brands/BSA';
-import btfgBrand from '../../brands/BTFG';
-import stgBrand from '../../brands/STG';
-import wbcBrand from '../../brands/WBC';
-import wbgBrand from '../../brands/WBG';
+import { GEL } from '@westpac/core';
+
+import bomBrand from '@westpac/bom';
+import bsaBrand from '@westpac/bsa';
+import btfgBrand from '@westpac/btfg';
+import stgBrand from '@westpac/stg';
+import wbcBrand from '@westpac/wbc';
+import wbgBrand from '@westpac/wbg';
 
 // ==============================
 // Get the data

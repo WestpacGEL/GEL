@@ -42,7 +42,6 @@ function build(BRAND) {
 	const { SPACING } = require(`${cwd}/tokens/spacing`);
 	const { LAYOUT } = require(`${cwd}/tokens/layout`);
 	const { TYPE } = require(`${cwd}/tokens/type`);
-	const { SYMBOLS } = require(`${cwd}/tokens/symbols`);
 
 	// COLORS
 	let tints = {};
@@ -50,9 +49,8 @@ function build(BRAND) {
 
 	// TYPE
 	const fonts = {
-		bodyFont: TYPE.bodyFonts,
-		brandFont: TYPE.brandFonts,
-		weights: TYPE.weights,
+		bodyFont: TYPE.bodyFont,
+		brandFont: TYPE.brandFont,
 		files: convertFonts(TYPE.files),
 	};
 
@@ -63,7 +61,7 @@ function build(BRAND) {
 		space: false,
 	});
 
-	const content = {
+	return {
 		SPACING: {
 			minor: SPACING.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
 			...SPACING.major.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
@@ -74,37 +72,36 @@ function build(BRAND) {
 		},
 		LAYOUT,
 		TYPE: { ...fonts },
-		SYMBOLS,
 	};
 
-	try {
-		fs.mkdirSync(path.join(cwd, 'dist'));
-	} catch (error) {
-		if (error.code !== 'EEXIST') {
-			console.error(error);
-			process.exit(1);
-		}
-	}
+	// try {
+	// 	fs.mkdirSync(path.join(cwd, 'dist'));
+	// } catch (error) {
+	// 	if (error.code !== 'EEXIST') {
+	// 		console.error(error);
+	// 		process.exit(1);
+	// 	}
+	// }
 
-	try {
-		fs.writeFileSync(
-			path.join(cwd, 'dist/index.js'),
-			`module.exports = ${JSON.stringify(content)}`,
-			{
-				encoding: 'utf8',
-			}
-		);
+	// try {
+	// 	fs.writeFileSync(
+	// 		path.join(cwd, 'dist/index.js'),
+	// 		`module.exports = ${JSON.stringify(content)}`,
+	// 		{
+	// 			encoding: 'utf8',
+	// 		}
+	// 	);
 
-		cfonts.say('File written successfully', {
-			font: 'console',
-			colors: ['green'],
-			space: false,
-		});
-		console.log();
-	} catch (error) {
-		console.error(error);
-		process.exit(1);
-	}
+	// 	cfonts.say('File written successfully', {
+	// 		font: 'console',
+	// 		colors: ['green'],
+	// 		space: false,
+	// 	});
+	// 	console.log();
+	// } catch (error) {
+	// 	console.error(error);
+	// 	process.exit(1);
+	// }
 }
 
 module.exports = build;
