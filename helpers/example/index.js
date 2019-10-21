@@ -117,7 +117,7 @@ const App = ({ components, packageName, pkg }) => {
 							<Route
 								key={slug}
 								path={`/${slug}`}
-								render={route => <Page {...route} {...props} />}
+								render={route => <Page {...route} {...props} brand={BRANDS[brand]} />}
 							/>
 						))}
 					</Switch>
@@ -133,7 +133,7 @@ class Page extends React.Component {
 		this.setState({ error, info });
 	}
 	render() {
-		const { Module, filename, label } = this.props;
+		const { Module, filename, label, ...rest } = this.props;
 		const { error, info } = this.state;
 
 		if (error) {
@@ -166,7 +166,7 @@ class Page extends React.Component {
 			<Article>
 				<Container>
 					<h1>{label}</h1>
-					<Module.default />
+					<Module.default {...rest} />
 				</Container>
 			</Article>
 		);
