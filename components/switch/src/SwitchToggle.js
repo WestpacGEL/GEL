@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { useSwitchContext } from './Switch';
 
 // ==============================
@@ -17,7 +17,7 @@ import { useSwitchContext } from './Switch';
  * Switch: Switch component for the Westpac GEL
  */
 export const SwitchToggle = ({ toggleText, checked, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const { size } = useSwitchContext();
 
 	console.log(size);

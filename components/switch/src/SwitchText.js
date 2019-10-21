@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { VisuallyHidden } from '@westpac/a11y';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
 // ==============================
 // Utils
