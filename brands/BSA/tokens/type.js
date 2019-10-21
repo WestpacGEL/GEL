@@ -1,21 +1,6 @@
 module.exports = {
 	TYPE: {
-		bodyFonts: [
-			{
-				fontFamily:
-					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-			},
-		],
-		brandFonts: [
-			{
-				name: 'aller',
-				files: {
-					woff2: '../font/Aller_Bd.woff2',
-					woff: '../font/Aller_Bd.woff',
-				},
-				weight: 'normal',
-				style: 'normal',
-			},
+		files: [
 			{
 				name: 'aller',
 				files: {
@@ -25,6 +10,23 @@ module.exports = {
 				weight: 300,
 				style: 'normal',
 			},
+			{
+				name: 'aller',
+				files: {
+					woff2: '../font/Aller_Bd.woff2',
+					woff: '../font/Aller_Bd.woff',
+				},
+				weight: 400,
+				style: 'normal',
+			},
 		],
+		weights: [300, 400],
+		bodyFont: {
+			fontFamily:
+				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+		},
+		brandFont: {
+			fontFamily: '"aller"',
+		},
 	},
 };

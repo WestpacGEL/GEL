@@ -7,28 +7,23 @@ const { makeTints } = require('./utils');
 /**
  * Convert a font token object to a styled object for emotion to use
  *
- * @param  {array} fonts - An array of token objects for a font
+ * @param  {array} fonts - An array or font objects for a font
  *
  * @return {object}      - The styled object for emotion
  */
 function convertFonts(fonts) {
 	const output = {};
+	output[''] = [];
 
 	fonts.map(font => {
-		if (font.name) {
-			if (!output['']) output[''] = [];
-
-			output[''].push({
-				'@font-face': {
-					fontFamily: font.name,
-					src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
-					weight: font.weight,
-					style: font.style,
-				},
-			});
-		} else if (font.fontFamily) {
-			output['fontFamily'] = font.fontFamily;
-		}
+		output[''].push({
+			'@font-face': {
+				fontFamily: font.name,
+				src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
+				weight: font.weight,
+				style: font.style,
+			},
+		});
 	});
 
 	return output;
@@ -55,8 +50,10 @@ function build(BRAND) {
 
 	// TYPE
 	const fonts = {
-		bodyFont: convertFonts(TYPE.bodyFonts),
-		brandFont: convertFonts(TYPE.brandFonts),
+		bodyFont: TYPE.bodyFonts,
+		brandFont: TYPE.brandFonts,
+		weights: TYPE.weights,
+		files: convertFonts(TYPE.files),
 	};
 
 	console.log();
