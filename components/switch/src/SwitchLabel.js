@@ -6,7 +6,7 @@ import shortid from 'shortid';
 import { jsx } from '@westpac/core';
 import { SwitchText } from './SwitchText';
 import { SwitchToggle } from './SwitchToggle';
-import { useSwitchContext } from './Switch';
+import { useSwitchContext, sizeMap } from './Switch';
 
 // ==============================
 // Context and consumer hook
@@ -24,25 +24,6 @@ export const SwitchLabel = ({ toggleText, checked, srOnlyText, children, ...prop
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 	const { size } = useSwitchContext();
 
-	const sizeMap = {
-		small: {
-			width: '4.375rem',
-			height: '1.875rem',
-		},
-		medium: {
-			width: '5rem',
-			height: '2.25rem',
-		},
-		large: {
-			width: '5.5625rem',
-			height: '2.625rem',
-		},
-		xlarge: {
-			width: '6rem',
-			height: '3rem',
-		},
-	};
-
 	const toggle = () => {
 		setChecked(!isChecked);
 	};
@@ -58,10 +39,10 @@ export const SwitchLabel = ({ toggleText, checked, srOnlyText, children, ...prop
 				flexWrap: 'wrap',
 				alignItems: 'center',
 				position: 'relative',
-				marginRight: '18px',
+				marginRight: '1.125rem',
 				height: sizeMap[size].height,
 				paddingRight: sizeMap[size].width,
-				marginBottom: '6px',
+				marginBottom: '0.375rem',
 			}}
 			htmlFor={switchId}
 			checked={checked}

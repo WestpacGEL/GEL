@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand } from '@westpac/core';
-import { useSwitchContext } from './Switch';
+import { useSwitchContext, sizeMap } from './Switch';
 
 // ==============================
 // Context and consumer hook
@@ -20,35 +20,6 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 	const { COLORS } = useBrand();
 	const { size } = useSwitchContext();
 
-	console.log(size);
-
-	const sizeMap = {
-		small: {
-			width: '4.375rem',
-			height: '1.875rem',
-			borderRadius: '1.875rem',
-			fontSize: '0.875rem',
-		},
-		medium: {
-			width: '5rem',
-			height: '2.25rem',
-			borderRadius: '2.25rem',
-			fontSize: '1rem',
-		},
-		large: {
-			width: '5.5625rem',
-			height: '2.625rem',
-			borderRadius: '2.625rem',
-			fontSize: '1rem',
-		},
-		xlarge: {
-			width: '6rem',
-			height: '3rem',
-			borderRadius: '3rem',
-			fontSize: '1.125rem',
-		},
-	};
-
 	return (
 		<span
 			css={{
@@ -57,13 +28,13 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 				width: sizeMap[size].width,
 				display: 'block',
 				position: 'absolute',
-				right: '0',
-				top: '0',
-				zIndex: '1',
+				right: 0,
+				top: 0,
+				zIndex: 1,
 				border: checked ? `2px solid ${COLORS.hero}` : `2px solid ${COLORS.border}`,
 				backgroundColor: checked ? COLORS.hero : '#fff',
 				overflow: 'hidden',
-				lineHeight: '1.5',
+				lineHeight: 1.5,
 				transition: 'border .3s ease,background .3s ease',
 
 				'::after': {
@@ -72,9 +43,9 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 					content: '""',
 					display: 'block',
 					position: 'absolute',
-					left: checked ? '100%' : '0',
+					left: checked ? '100%' : 0,
 					transform: checked ? 'translateX(-100%)' : null,
-					top: '0',
+					top: 0,
 					borderRadius: '50%',
 					backgroundColor: '#fff',
 					boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
@@ -90,12 +61,12 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 							fontSize: sizeMap[size].fontSize,
 							width: `calc(100% - (${sizeMap[size].height} - 0.25rem))`,
 							right: 0,
-							color: '#2d373e',
+							color: COLORS.neutral,
 							position: 'absolute',
 							textAlign: 'center',
 							transition: 'opacity .3s ease',
-							paddingLeft: '4px',
-							paddingRight: '4px',
+							paddingLeft: '0.25rem',
+							paddingRight: '0.25rem',
 						}}
 						value={toggleText[0]}
 					>
@@ -112,8 +83,8 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 							position: 'absolute',
 							textAlign: 'center',
 							transition: 'opacity .3s ease',
-							paddingLeft: '4px',
-							paddingRight: '4px',
+							paddingLeft: '0.25rem',
+							paddingRight: '0.25rem',
 						}}
 						value={toggleText[1]}
 					>

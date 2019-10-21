@@ -22,7 +22,7 @@ export const SwitchText = ({ srOnlyText, children }) => {
 			css={{
 				whiteSpace: 'normal',
 				position: 'relative',
-				paddingRight: '6px',
+				paddingRight: '0.375rem',
 			}}
 		>
 			{srOnlyText ? <VisuallyHidden>children</VisuallyHidden> : children}
