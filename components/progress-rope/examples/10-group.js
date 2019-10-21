@@ -1,9 +1,10 @@
 import React, { useReducer } from 'react';
 
-import { ProgressRope, ProgressRopeGroup, ProgressRopeItem } from '../src';
+import { ProgressRope, Group, Item } from '../src';
 import { Grid, Cell } from '../../grid/src';
 // import { Button } from '../../button/src';
 
+// NEED TO CLEAN THIS UP
 export default () => {
 	const initialState = { index: 0 };
 
@@ -17,39 +18,57 @@ export default () => {
 			case 'goto':
 				return { index: action.index };
 			default:
-				throw new Error();
+				return initialState;
 		}
 	};
 
 	const [state, dispatch] = useReducer(progressReducer, initialState);
-	const steps = ['Step 3', 'Step 4', 'Step 5'];
+
+	const Link = ({ index, ...props }) => (
+		<a
+			href="#"
+			onClick={e => {
+				e.preventDefault();
+				dispatch({ type: 'goto', index });
+			}}
+			{...props}
+		/>
+	);
+
 	return (
 		<Grid>
 			<Cell width={4}>
 				<ProgressRope current={state.index}>
-					<ProgressRopeGroup label={'Group 1'}>
-						<ProgressRopeItem>
-							<a href="#">Step 0 </a>
-						</ProgressRopeItem>
-					</ProgressRopeGroup>
-					<ProgressRopeGroup label={'Group 2'}>
-						<ProgressRopeItem>
-							<a href="#">Step 1</a>
-						</ProgressRopeItem>
-						<ProgressRopeItem>
-							<a href="#">Step 2</a>
-						</ProgressRopeItem>
-					</ProgressRopeGroup>
-					<ProgressRopeGroup label={'Group 3'}>
-						{steps.map((step, i) => (
-							<ProgressRopeItem key={i}>
-								<a href="#">{step}</a>
-							</ProgressRopeItem>
-						))}
-					</ProgressRopeGroup>
-					<ProgressRopeItem review>
+					<Group label={'Group 1'}>
+						<Item>
+							<Link index={0}>Step 0</Link>
+						</Item>
+						<Item>
+							<Link index={1}>Step 1</Link>
+						</Item>
+					</Group>
+					<Group label={'Group 2'}>
+						<Item>
+							<Link index={2}>Step 2</Link>
+						</Item>
+						<Item>
+							<Link index={3}>Step 3</Link>
+						</Item>
+					</Group>
+					<Group label={'Group 3'}>
+						<Item>
+							<Link index={4}>Step 4</Link>
+						</Item>
+						<Item>
+							<Link index={5}>Step 5</Link>
+						</Item>
+						<Item>
+							<Link index={6}>Step 6</Link>
+						</Item>
+					</Group>
+					<Item review>
 						<a href="#">Review and Submit</a>
-					</ProgressRopeItem>
+					</Item>
 				</ProgressRope>
 			</Cell>
 			<Cell width={4}>

@@ -3,12 +3,13 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
+import { useSpring, animated } from 'react-spring';
 import { useProgressRopeContext } from './ProgressRope';
 
 export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
-	const { openGroup, activeGroup, handleClick } = useProgressRopeContext();
+	const { openGroup, lastGroup, handleClick } = useProgressRopeContext();
 	const { COLORS } = useTheme();
-
+	const anim = useSpring({ height: openGroup === index ? 'auto' : 0 });
 	/* 
 	TODO
 	- add the animations
@@ -26,7 +27,7 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 		background: 'none',
 		touchAction: 'manipulation',
 		cursor: 'pointer',
-		color: activeGroup >= index ? COLORS.neutral : COLORS.tints.muted70,
+		color: lastGroup >= index ? COLORS.neutral : COLORS.tints.muted70,
 		width: '100%',
 
 		// the line
@@ -34,7 +35,7 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 			content: "''",
 			display: 'block',
 			position: 'absolute',
-			borderLeft: `2px solid ${activeGroup >= index ? COLORS.primary : COLORS.border}`,
+			borderLeft: `2px solid ${lastGroup >= index ? COLORS.primary : COLORS.border}`,
 			top: 0,
 			right: '2.25rem',
 			bottom: 0,
@@ -53,7 +54,7 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 			width: '0.875rem',
 			height: '0.875rem',
 			right: '1.875rem',
-			border: `2px solid ${activeGroup >= index ? COLORS.primary : COLORS.border}`,
+			border: `2px solid ${lastGroup >= index ? COLORS.primary : COLORS.border}`,
 			backgroundColor: '#fff',
 		},
 	};
@@ -65,14 +66,15 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 		margin: 0,
 	};
 
+	console.log('group ', index);
 	return (
 		<li {...props}>
 			<button css={labelStyle} onClick={() => handleClick(index)}>
 				{label}
 			</button>
-			<ol css={listStyle} hidden={openGroup === null || index !== openGroup}>
+			<animated.ol style={anim} css={listStyle} hidden={openGroup === null || index !== openGroup}>
 				{Children.map(children, (child, i) => cloneElement(child, { index: i, parentId: index }))}
-			</ol>
+			</animated.ol>
 		</li>
 	);
 };

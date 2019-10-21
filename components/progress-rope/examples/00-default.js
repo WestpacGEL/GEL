@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 
-import { ProgressRope, ProgressRopeItem } from '../src';
+import { ProgressRope, Item } from '../src';
 import { Grid, Cell } from '../../grid/src';
 // import { Button } from '../../button/src';
 
@@ -37,23 +37,23 @@ export default () => {
 		<Grid>
 			<Cell width={4}>
 				<ProgressRope current={state.index}>
-					<ProgressRopeItem>
+					<Item>
 						<a href="#">Step 0 </a>
-					</ProgressRopeItem>
-					<ProgressRopeItem>
+					</Item>
+					<Item>
 						<a href="#">Step 1</a>
-					</ProgressRopeItem>
-					<ProgressRopeItem>
+					</Item>
+					<Item>
 						<a href="#">Step 2</a>
-					</ProgressRopeItem>
+					</Item>
 					{steps.map((step, i) => (
-						<ProgressRopeItem key={i}>
+						<Item key={i}>
 							<a href="#">{step}</a>
-						</ProgressRopeItem>
+						</Item>
 					))}
-					<ProgressRopeItem review>
+					<Item review>
 						<a href="#">Review and Submit</a>
-					</ProgressRopeItem>
+					</Item>
 				</ProgressRope>
 			</Cell>
 			<Cell width={4}>
