@@ -189,12 +189,3 @@ yarn start button
 | `look` | When talking about the look of a component like `success` or `hero` |
 | `href` | When something points at a thing via a link                         |
 | `icon` | For passing in an icon                                              |
-
-## TODO
-
-- [ ] create a GEL brand
-- [ ] build out root examples
-- [x] create local default tokens
-- [ ] add render props for visual internal components
-- [ ] add helper for making new component
-- [ ] make playground and docz multibrand

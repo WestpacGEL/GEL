@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Alert, Heading } from '@westpac/alert';
 
 function Example({ brand }) {
