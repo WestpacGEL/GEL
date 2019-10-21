@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { SwitchText } from './SwitchText';
 import { SwitchToggle } from './SwitchToggle';
 import { useSwitchContext, sizeMap } from './Switch';
@@ -25,18 +25,18 @@ export const SwitchLabel = ({
 	srOnlyText,
 	flipped,
 	block,
+	disabled,
 	children,
 	...props
 }) => {
 	const [isChecked, setChecked] = useState(checked);
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 	const { size } = useSwitchContext();
+	const { COLORS } = useBrand();
 
 	const toggle = () => {
 		setChecked(!isChecked);
 	};
-
-	console.log(block);
 
 	useEffect(() => {
 		setChecked(checked);
@@ -55,6 +55,11 @@ export const SwitchLabel = ({
 				paddingRight: sizeMap[size].width,
 				marginBottom: '0.375rem',
 				flexDirection: flipped && 'row-reverse',
+
+				'input:disabled ~ &': {
+					cursor: 'default',
+					color: COLORS.muted,
+				},
 			}}
 			htmlFor={switchId}
 			checked={checked}
@@ -70,6 +75,7 @@ export const SwitchLabel = ({
 				name={name}
 				id={switchId}
 				onChange={toggle}
+				disabled={disabled}
 			/>
 			<SwitchText srOnlyText={srOnlyText} flipped={flipped} block="block">
 				{children}

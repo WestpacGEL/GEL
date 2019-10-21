@@ -51,6 +51,12 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 					boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 					transition: 'all .3s ease',
 				},
+
+				// Disabled state
+				'input:disabled ~ &': {
+					cursor: 'default',
+					opacity: 0.5,
+				},
 			}}
 		>
 			{toggleText && (
