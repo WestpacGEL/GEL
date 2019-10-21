@@ -1,6 +1,8 @@
+/** @jsx jsx */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
@@ -17,34 +19,42 @@ export const formatAreas = areas => areas.map(area => `"${area}"`).join(' ');
 /**
  * A group of `Cell` components must be wrapped in a `Grid`.
  */
-export const Grid = styled.div(
-	({
-		alignContent,
-		areas,
-		columnGap,
-		columns,
-		flow,
-		gap,
-		height,
-		justifyContent,
-		minRowHeight,
-		rowGap,
-		rows,
-	}) => ({
-		alignContent: alignContent,
-		columnGap: columnGap,
-		display: 'grid',
-		gridAutoFlow: flow,
-		gridAutoRows: `minmax(${stringVal(minRowHeight)}, auto)`,
-		gridGap: gap,
-		gridTemplateAreas: areas ? formatAreas(areas) : null,
-		gridTemplateColumns: repeatNumeric(columns),
-		gridTemplateRows: rows ? repeatNumeric(rows) : null,
-		height: height,
-		justifyContent: justifyContent,
-		rowGap: rowGap,
-	})
-);
+export const Grid = ({
+	alignContent,
+	areas,
+	columnGap,
+	columns,
+	flow,
+	gap,
+	height,
+	justifyContent,
+	minRowHeight,
+	rowGap,
+	rows,
+	...props
+}) => {
+	const mq = useMediaQuery();
+
+	return (
+		<div
+			css={mq({
+				alignContent: alignContent,
+				columnGap: columnGap,
+				display: 'grid',
+				gridAutoFlow: flow,
+				gridAutoRows: `minmax(${stringVal(minRowHeight)}, auto)`,
+				gridGap: gap,
+				gridTemplateAreas: areas ? formatAreas(areas) : null,
+				gridTemplateColumns: repeatNumeric(columns),
+				gridTemplateRows: rows ? repeatNumeric(rows) : null,
+				height: height,
+				justifyContent: justifyContent,
+				rowGap: rowGap,
+			})}
+			{...props}
+		/>
+	);
+};
 
 // ==============================
 // Types
@@ -89,7 +99,12 @@ Grid.propTypes = {
 	/**
 	 * The `grid-gap` CSS property.
 	 */
-	gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	gap: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.number),
+		PropTypes.arrayOf(PropTypes.string),
+	]),
 	/**
 	 * The `height` CSS property
 	 */
@@ -128,8 +143,8 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
 	columns: 12,
-	gap: 8,
+	gap: ['1.2rem', '2.4rem'],
 	flow: 'row',
 	height: 'auto',
-	minRowHeight: 20,
+	minRowHeight: '2rem',
 };

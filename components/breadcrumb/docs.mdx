@@ -1,0 +1,36 @@
+---
+name: Breadcrumb
+menu: Components
+route: /breadcrumb
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Breadcrumb, Crumb } from './src';
+
+# Breadcrumbs
+
+Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
+
+<Playground>
+
+    <Breadcrumb>
+        <Crumb>
+            <a href="/">Home</a>
+        </Crumb>
+        <Crumb>
+            <a href="/personal-banking/">Personal</a>
+        </Crumb>
+        <Crumb>Credit cards</Crumb>
+    </Breadcrumb>
+
+</Playground>
+
+## Props
+
+### Breadcrumb
+
+<PropsTable of={Breadcrumb} />
+
+### Crumb
+
+<PropsTable of={Crumb} />

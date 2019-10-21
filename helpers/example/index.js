@@ -1,63 +1,60 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
-import { ThemeProvider } from 'emotion-theming';
 
-import { Global, css, jsx } from '@emotion/core';
-import styled from '@emotion/styled';
+import { Global, css, jsx } from '@westpac/core';
+import { Container } from '@westpac/grid';
+
+import { GEL } from '@westpac/core';
+
+import bomBrand from '@westpac/bom';
+import bsaBrand from '@westpac/bsa';
+import btfgBrand from '@westpac/btfg';
+import stgBrand from '@westpac/stg';
+import wbcBrand from '@westpac/wbc';
+import wbgBrand from '@westpac/wbg';
 
 // ==============================
 // Get the data
 // ==============================
 
 const BRANDS = {
-	BOM: { primaryLight: '#EAE6FF' },
-	BSA: { primaryLight: '#DEEBFF' },
-	STG: { primaryLight: '#E3FCEF' },
-	WBC: { primaryLight: '#FFEBE6' },
+	BOM: bomBrand,
+	BSA: bsaBrand,
+	BTFG: btfgBrand,
+	STG: stgBrand,
+	WBC: wbcBrand,
+	WBG: wbgBrand,
 };
 
 // ==============================
 // Compose the pieces
 // ==============================
 
-const App = ({ components, packageName }) => {
-	const [inputValue, setInputValue] = useState('');
-	const [theme, setTheme] = useState('WBC');
+const App = ({ components, packageName, pkg }) => {
+	const [searchValue, setSearchValue] = useState('');
+	const [brand, setBrand] = useState('WBC');
 
 	// update doc title
 	useEffect(() => {
 		document.title = `${packageName} Example - GEL`;
-	}, packageName);
+	}, [packageName]);
 
 	// filter components for search
-	const navItems = inputValue.length
-		? components.filter(p => p.label.toLowerCase().includes(inputValue.toLowerCase()))
+	const navItems = searchValue.length
+		? components.filter(p => p.label.toLowerCase().includes(searchValue.toLowerCase()))
 		: components;
+
+	const primaryColor = BRANDS[brand].COLORS.primary;
 
 	return (
 		<Router>
-			<ThemeProvider theme={BRANDS[theme]}>
+			<GEL brand={BRANDS[brand]}>
 				<Body>
 					<Global
 						styles={css`
-							body {
-								-moz-font-feature-settings: 'liga' on;
-								-moz-osx-font-smoothing: grayscale;
-								-webkit-font-smoothing: antialiased;
-								background-color: #fafbfc;
-								color: #253858;
-								font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial,
-									sans-serif;
-								font-style: normal;
-								font-weight: 400;
-								letter-spacing: 0;
-								line-height: 1.3;
-								margin: 0;
-								text-rendering: optimizeLegibility;
-							}
 							code {
 								font-family: Monaco, monospace;
 								font-size: 0.85em;
@@ -65,56 +62,68 @@ const App = ({ components, packageName }) => {
 							p > code {
 								background-color: #ffebe6;
 								color: #bf2600;
-								border-radius: 3px;
+								border-radius: '0.3rem';
 								display: inline-block;
-								padding: 1px 3px;
+								padding: '0.1rem 0.3rem';
 							}
 						`}
 					/>
 					<Sidebar>
 						<SidebarTitle to="/">{packageName}</SidebarTitle>
 						<SidebarSearch
-							onChange={e => setInputValue(e.target.value)}
+							onChange={e => setSearchValue(e.target.value)}
 							placeholder="Search..."
 							type="search"
-							value={inputValue}
+							value={searchValue}
 						/>
 
 						<SidebarNav>
 							{navItems.map(({ label, slug }) => (
-								<SidebarItem key={slug} to={`/${slug}`}>
+								<SidebarItem
+									primaryColor={primaryColor}
+									key={slug}
+									to={`/${slug}`}
+									data-test-nav-link
+								>
 									{label}
 								</SidebarItem>
 							))}
 						</SidebarNav>
 
 						<SidebarSwitcher>
-							{Object.keys(BRANDS).map(brand => (
-								<SidebarSwitch key={brand} isChecked={theme === brand}>
-									<input
-										name="brand"
-										type="radio"
-										onChange={e => setTheme(brand)}
-										value={brand}
-										checked={theme === brand}
-									/>
-									{brand}
-								</SidebarSwitch>
-							))}
+							{Object.keys(BRANDS).map(b => {
+								const isChecked = brand === b;
+								return (
+									<SidebarSwitch key={b} checked={isChecked}>
+										<input
+											name="brand"
+											type="radio"
+											onChange={e => setBrand(b)}
+											value={b}
+											checked={isChecked}
+										/>
+										{b}
+									</SidebarSwitch>
+								);
+							})}
 						</SidebarSwitcher>
 					</Sidebar>
 					<Switch>
-						<Route exact path="/" render={route => <Home {...route} packageName={packageName} />} />
+						<Route
+							exact
+							path="/"
+							render={route => <Home {...route} packageName={packageName} pkg={pkg} />}
+						/>
 						{components.map(({ slug, ...props }) => (
 							<Route
 								key={slug}
 								path={`/${slug}`}
-								render={route => <Page {...route} {...props} />}
+								render={route => <Page {...route} {...props} brand={BRANDS[brand]} />}
 							/>
 						))}
 					</Switch>
 				</Body>
-			</ThemeProvider>
+			</GEL>
 		</Router>
 	);
 };
@@ -125,7 +134,7 @@ class Page extends React.Component {
 		this.setState({ error, info });
 	}
 	render() {
-		const { Module, filename, label } = this.props;
+		const { Module, filename, label, ...rest } = this.props;
 		const { error, info } = this.state;
 
 		if (error) {
@@ -158,24 +167,28 @@ class Page extends React.Component {
 			<Article>
 				<Container>
 					<h1>{label}</h1>
-					<Module.default />
+					<Module.default {...rest} />
 				</Container>
 			</Article>
 		);
 	}
 }
 
-const Home = ({ packageName }) => (
+const Home = ({ packageName, pkg }) => (
 	<Article>
 		<Container>
 			<h1>{packageName} Examples</h1>
-			<p>
-				Click one of the examples on the left to view it. To load the examples for another package
-				run:
-			</p>
-			<pre>
-				<code>bolt dev {'{package_name}'}</code>
+			<p>Click one of the examples on the left to view it.</p>
+			<pre
+				css={{
+					background: '#f9f9f9',
+					padding: '1rem',
+					border: '1px solid #ccc',
+				}}
+			>
+				<code>yarn start {pkg}</code>
 			</pre>
+			<p>To load the examples for another package run the above code with another package name</p>
 		</Container>
 	</Article>
 );
@@ -184,116 +197,169 @@ const Home = ({ packageName }) => (
 // Styled components
 // ==============================
 
-const Body = styled.div({
-	alignItems: 'stretch',
-	display: 'flex',
-	height: '100vh',
-});
-const Article = styled.article({
-	flex: 1,
-	overflowY: 'auto',
-});
-const Container = styled.div({
-	marginLeft: 'auto',
-	marginRight: 'auto',
-	maxWidth: 800,
-	padding: 20,
-});
+const Body = props => (
+	<div
+		css={{
+			alignItems: 'stretch',
+			display: 'flex',
+			height: '100vh',
+		}}
+		{...props}
+	/>
+);
 
-const Sidebar = styled.div({
-	backgroundColor: '#F4F5F7',
-	borderRight: '1px solid rgba(0, 0, 0, 0.075)',
-	display: 'flex',
-	flexDirection: 'column',
-	width: 240,
-});
+const Article = props => (
+	<article
+		css={{
+			flex: 1,
+			overflowY: 'auto',
+			paddingTop: '1rem',
+			paddingBottom: '4rem',
+		}}
+		{...props}
+	/>
+);
+
+const Sidebar = props => (
+	<div
+		css={{
+			backgroundColor: '#F4F5F7',
+			borderRight: '1px solid rgba(0, 0, 0, 0.075)',
+			display: 'flex',
+			flexDirection: 'column',
+			width: 240,
+		}}
+		{...props}
+	/>
+);
+
 const SidebarNav = props => (
-	<nav css={{ flex: 1 }}>
-		<ul css={{ listStyle: 'none', margin: 0, padding: 0 }} {...props} />
+	<nav css={{ flex: 1, overflowY: 'auto' }}>
+		<ul css={{ listStyle: 'none', margin: '1rem 0', padding: 0 }} {...props} />
 	</nav>
 );
-const SidebarSearch = styled.input({
-	background: 0,
-	borderWidth: '1px 0px',
-	borderStyle: 'solid',
-	borderColor: 'rgba(0, 0, 0, 0.075)',
-	boxSizing: 'border-box',
-	fontSize: 'inherit',
-	outline: 0,
-	marginBottom: 10,
-	padding: '10px 20px',
-	width: '100%',
 
-	':focus': {
-		background: 'rgba(0,0,0,0.04)',
-	},
-});
-const SidebarLink = styled(NavLink)(props => ({
-	backgroundColor: '#F4F5F7',
-	borderLeft: '3px solid transparent',
-	color: '#2684FF',
-	display: 'block',
-	fontWeight: 500,
-	outline: 0,
-	padding: '10px 20px',
-	textDecoration: 'none',
+const SidebarSearch = props => (
+	<input
+		css={{
+			background: 0,
+			borderWidth: '1px 0',
+			borderStyle: 'solid',
+			borderColor: 'rgba(0, 0, 0, 0.075)',
+			boxSizing: 'border-box',
+			fontSize: 'inherit',
+			padding: '0.625rem 1.25rem',
+			width: '100%',
 
-	':hover, :focus': {
-		background: '#fafbfc',
-		borderLeftColor: '#2684FF',
-	},
+			':focus': {
+				background: 'rgba(0,0,0,0.04)',
+				outlineOffset: -3,
+			},
+		}}
+		{...props}
+	/>
+);
 
-	'&.active': {
-		// background: '#fafbfc',
-		borderLeftColor: '#2684FF',
-		color: 'inherit',
-	},
-}));
+const SidebarLink = ({ primaryColor, ...props }) => (
+	<NavLink
+		css={{
+			backgroundColor: '#F4F5F7',
+			borderLeft: '3px solid transparent',
+			color: primaryColor,
+			display: 'block',
+			fontWeight: 500,
+			padding: '0.625rem 1.0625rem',
+			fontSize: '1rem',
+			textDecoration: 'none',
+
+			':hover, :focus': {
+				background: '#fafbfc',
+				textDecoration: 'inherit',
+			},
+
+			':focus': {
+				outlineOffset: -3,
+			},
+
+			'&.active': {
+				borderLeftColor: primaryColor,
+				color: 'inherit',
+			},
+		}}
+		{...props}
+	/>
+);
+
 const SidebarItem = props => (
-	<li>
+	<li data-test-nav>
 		<SidebarLink {...props} />
 	</li>
 );
-const SidebarTitle = styled(NavLink)({
-	color: 'inherit',
-	display: 'block',
-	fontWeight: 500,
-	fontSize: '1.25em',
-	padding: 20,
-	textDecoration: 'none',
-});
 
-const SidebarSwitcher = styled.div({
-	display: 'flex',
-	fontSize: '0.85rem',
-});
-const SidebarSwitch = styled.label(({ isChecked }) => ({
-	alignItems: 'center',
-	borderTop: '1px solid',
-	borderTopColor: isChecked ? '#2684FF' : 'rgba(0, 0, 0, 0.1)',
-	boxSizing: 'border-box',
-	color: isChecked ? 'inherit' : '#2684FF',
-	cursor: 'pointer',
-	flex: 1,
-	fontWeight: 500,
-	justifyContent: 'center',
-	paddingBottom: 12,
-	paddingTop: 12,
-	textAlign: 'center',
+const SidebarTitle = props => (
+	<NavLink
+		css={{
+			color: 'inherit',
+			display: 'block',
+			fontWeight: 500,
+			fontSize: '1.25rem',
+			padding: '1.25rem',
+			textDecoration: 'none',
 
-	input: {
-		height: 1,
-		position: 'absolute',
-		visibility: 'hidden',
-		width: 1,
-	},
-}));
+			':hover, :focus': {
+				textDecoration: 'inherit',
+			},
+
+			':focus': {
+				outlineOffset: -3,
+			},
+		}}
+		{...props}
+	/>
+);
+
+const SidebarSwitcher = props => (
+	<div
+		css={{
+			display: 'flex',
+			fontSize: '0.8125rem',
+		}}
+		{...props}
+	/>
+);
+
+const SidebarSwitch = ({ checked, ...props }) => (
+	<label
+		css={{
+			alignItems: 'center',
+			borderTop: '1px solid',
+			borderTopColor: checked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
+			boxSizing: 'border-box',
+			color: checked ? 'inherit' : '#1F252C',
+			cursor: 'pointer',
+			flex: 1,
+			fontWeight: 500,
+			justifyContent: 'center',
+			paddingBottom: '0.75rem',
+			paddingTop: '0.75rem',
+			textAlign: 'center',
+
+			input: {
+				height: 1,
+				position: 'absolute',
+				visibility: 'hidden',
+				width: 1,
+			},
+		}}
+		{...props}
+	/>
+);
 
 // ==============================
 // Render to node
 // ==============================
 
-export default (pkg, components) => {
+export default (packageName, pkg, components) => {
 	const rootElement = document.getElementById('root');
-	ReactDOM.render(<App packageName={pkg} components={components} />, rootElement);
+	ReactDOM.render(<App packageName={packageName} pkg={pkg} components={components} />, rootElement);
 };

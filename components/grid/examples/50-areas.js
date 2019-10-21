@@ -1,13 +1,11 @@
 import React from 'react';
-
 import { Cell, Grid } from '../src';
 import { Box } from './_utils';
 
 export default () => (
 	<Grid
-		columns={'100px 1fr 100px'}
-		rows={'45px 1fr 45px'}
-		areas={['header header  header', 'menu   content ads   ', 'footer footer  footer']}
+		columns={'10rem 1fr 10rem'}
+		areas={['header header header', 'menu content ads', 'footer footer footer']}
 	>
 		<Cell area="header">
 			<Box>Header</Box>

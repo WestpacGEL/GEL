@@ -2,18 +2,52 @@
 
 The design system for Westpac GEL
 
+## Install and start running locally
+
+Install dependencies
+
+```sh
+yarn
+```
+
+and then run the build:
+
+```sh
+yarn build
+```
+
+to then be able to run a component via:
+
+```sh
+yarn start button
+```
+
 ## npm scripts
 
-| script                      | description                                    |
-| --------------------------- | ---------------------------------------------- |
-| `bolt`                      | install all dependencies                       |
-| `bolt nuke`                 | removes all `node_modules` for fresh start     |
-| `bolt fresh`                | removes all `node_modules` and reinstalls them |
-| `bolt dev [package-name]`   | run the examples of the specified component    |
-| `bolt new [package-name]`   | create a specified empty component             |
-| `bolt start [package-name]` | the script is reserved for something we ...    |
-| `bolt test`                 | runs test                                      |
-| `bolt format`               | runs prettier to format all code               |
+### root level
+
+| script                      | description                                       |
+| --------------------------- | ------------------------------------------------- |
+| `yarn`                      | install all dependencies                          |
+| `yarn nuke`                 | removes all `node_modules` for fresh start        |
+| `yarn fresh`                | removes all `node_modules` and reinstalls them    |
+| `yarn build`                | build all dist folders                            |
+| `yarn docs`                 | build docs for all components and open server     |
+| `yarn docs:build`           | build docs for all components to `./docs/` folder |
+| `yarn dev [package-name]`   | run the examples of the specified component       |
+| `yarn new [package-name]`   | create a specified empty component                |
+| `yarn start [package-name]` | start the example server of a component           |
+| `yarn test`                 | runs test                                         |
+| `yarn format`               | runs prettier to format all code                  |
+
+### component level
+
+| script          | description                      |
+| --------------- | -------------------------------- |
+| `yarn start`    | start the example server         |
+| `yarn build`    | builds dist files                |
+| `yarn test`     | runs test headless               |
+| `yarn test:dev` | runs test by opening cypress app |
 
 ## Monorepo
 
@@ -26,8 +60,12 @@ The design system for Westpac GEL
 │
 ├── helper/
 │   ├── example/
-│   │   ├── index.js          # example wrapper for `bolt dev`
-│   │   └── webpack.config.js # dynamic webpack config to run the `bolt dev` task
+│   │   ├── index.js          # example wrapper for `yarn dev`
+│   │   └── webpack.config.js # dynamic webpack config to run the `yarn dev` task
+│   ├── docz/                 # Docz files to style the docs
+│   │   ├── theme.js
+│   │   └── wrapper.js
+│   ├── tester.js             # Helps cypress testing of each component
 │   └── cli.js                # helper file for cli like adding a new module
 │
 ├── components/               # all ds components that will be published
@@ -41,9 +79,8 @@ The design system for Westpac GEL
 │   │   ├── README.md
 │   │   ├── package.json
 │   │   ├── index.js          # only for exports
-│   │   ├── svg/              # and with like svgs
-│   │   ├── data/             # like design tokens
-│   │   └── fonts/            # or font files
+│   │   ├── fonts/            # design tokens files
+│   │   └── tokens/           # font files
 │   ├── STG/
 │   │   └── etc
 │   └── BOM/
@@ -55,10 +92,7 @@ The design system for Westpac GEL
 │   ├── demo2/
 │   └── demo3/
 │
-└── docs/                     # everything related to the documentation site
-    ├── page1.mdx
-    ├── page2.mdx
-    └── page3.mdx
+└── docs/                     # the built out files for the documentation
 ```
 
 ## Component
@@ -83,7 +117,7 @@ The design system for Westpac GEL
 ├── examples/               # the demo folder is for seeing the components in action
 │   ├── 00-example.js       # show-case props and variations
 │   ├── 10-example.js       # all files not starting with a dot or an underscore
-│   ├── 20-example.js       # will be processes with `bolt dev`
+│   ├── 20-example.js       # will be processes with `yarn dev`
 │   └── _util.js            # for reused logic within the examples [optional]
 │
 └── tests/                  # test includes all tests
@@ -95,23 +129,47 @@ The design system for Westpac GEL
 
 ## Decisions
 
-- All scripts are run through the `bolt` command
-- The helper file will include all helpers for builds
+- All scripts are run through the `yarn` command
+- The `helpers/` folder will include all helpers for builds/docs/testing
 - We have two different example / doc concerns:
   1. Examples: they are for building components locally and to explain code
-  1. Docs: this is a website that will be published for documenting APIs
-- Multi-brand will be achieved by added a brand package that will be dynamically imported inside `core`
-- Tokens and everything regarding branding will be contained in the brand packages in `brands/*`
-- To select a brand the consumer has to import the `@westpac/[brand]` package and pass it to core
+  1. Docs: this is a website that will be published for documenting APIs to devs (https://westpacgel.github.io/GEL/)
+- Multi-brand will be achieved by added a brand package that will be passed to the `<GEL/>` component
 
   ```jsx
-  import { brand } from '@westpac/wbc';
   import { GEL } from '@westpac/core';
+  import brand from '@westpac/WBC';
 
-  <GEL brand={brand}>Your app</GEL>;
+  export const App = () => <GEL brand={brand}>Your app</GEL>;
   ```
 
-### Naming convention
+- Tokens and everything regarding consistent branding will be contained in the brand packages in `brands/*`
+- Tokens will include at least the four categories:
+  - `breakpoints`
+  - `colors`
+  - `spacing`
+  - `typography`
+- Brands will only have a default export containing the "tokens" object.
+- All components (not brand packages) have at least one named export
+- Each component has local tokens that can be overwritten with the object passed into `<GEL/>`
+
+  ```jsx
+  import { GEL } from '@westpac/core';
+  import brand from '@westpac/WBC';
+
+  brand['@westpac/tabcordion'].heading.space = '2rem';
+  brand['@westpac/tabcordion'].components.TabRow = <TabRow />;
+
+  export const App = () => <GEL brand={brand}>Your app</GEL>;
+  ```
+
+- Each package can be addressed by its name as the key in the tokens
+- The `example/` folder is for documenting composition of several components together e.g. templates
+- Fonts can't be shipped with npm so the tokens only define the path to the fonts
+- css-in-js emotion will be used with the `jsx` pragma and babel plugin
+- For css-in-js we use `jsx` by importing from `@westpac/core` and never depend on `emotion` directly other than inside core itself
+
+### Naming convention for files inside components
 
 | name            | purpose                                                                     |
 | --------------- | --------------------------------------------------------------------------- |
@@ -123,11 +181,20 @@ The design system for Westpac GEL
 | `*.js`          | All jsx files are postfixed with `.js`                                      |
 | `*.spec.js`     | All (jest) unit tests are postfixed with `.spec.js`                         |
 
+## Props API vocabulary
+
+| Prop   | Description                                                         |
+| ------ | ------------------------------------------------------------------- |
+| `tag`  | When a component can be rendered as different tags                  |
+| `look` | When talking about the look of a component like `success` or `hero` |
+| `href` | When something points at a thing via a link                         |
+| `icon` | For passing in an icon                                              |
+
 ## TODO
 
-- [x] jest tests setup for each component
-- [/] cypress test setup for each component
-- [x] add circleCI
-- [x] write more docs around each decision me made
-- [x] connect brand/wbc packages to core component
-- [x] fix up other components to new folder structure
+- [ ] create a GEL brand
+- [ ] build out root examples
+- [x] create local default tokens
+- [ ] add render props for visual internal components
+- [ ] add helper for making new component
+- [ ] make playground and docz multibrand

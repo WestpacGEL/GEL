@@ -1,22 +1,64 @@
-import PropTypes from 'prop-types';
-import { styled } from '@westpac/core';
+/** @jsx jsx */
 
-export const Cell = styled.div(({ area, center, height, left, middle, top, width }) => ({
-	height: '100%',
-	minWidth: 0,
-	gridColumnEnd: `span ${width}`,
-	gridRowEnd: `span ${height}`,
-	gridColumnStart: left,
-	gridRowStart: top,
-	gridArea: area,
-}));
+import PropTypes from 'prop-types';
+import { jsx, useMediaQuery } from '@westpac/core';
+
+// ==============================
+// Utils
+// ==============================
+
+// allow string or array values for height/width
+const span = n => `span ${n}`;
+const getEndSpan = c => (Array.isArray(c) ? c.map(span) : span(c));
+
+// ==============================
+// Component
+// ==============================
+
+export const Cell = ({ area, center, height, left, middle, top, width, ...props }) => {
+	const mq = useMediaQuery();
+
+	return (
+		<div
+			css={mq({
+				gridArea: area,
+				gridColumnEnd: !area && getEndSpan(width),
+				gridColumnStart: left,
+				gridRowEnd: !area && getEndSpan(height),
+				gridRowStart: top,
+				height: '100%',
+				minWidth: 0,
+			})}
+			{...props}
+		/>
+	);
+};
+
+// ==============================
+// Types
+// ==============================
 
 Cell.propTypes = {
+	/**
+	 * The `grid-area` that this cell belongs to (if any).
+	 */
 	area: PropTypes.string,
-	height: PropTypes.number,
-	left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-	top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-	width: PropTypes.number,
+	/**
+	 * The cell height in units. When using an array the units are applied to the applicable breakpoints.
+	 */
+	height: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+	/**
+	 * The `grid-column-start` CSS property.
+	 */
+	left: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+	/**
+	 * The `grid-row-start` CSS property.
+	 */
+	top: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+	/**
+	 * The cell width in units. When using an array the units are applied to the applicable breakpoints.
+	 */
+	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
 };
 Cell.defaultProps = {
 	height: 1,

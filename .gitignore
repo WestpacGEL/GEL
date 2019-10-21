@@ -1,3 +1,7 @@
+# Components
+brands/**/dist/
+components/**/dist/
+
 # Logs
 logs
 *.log
@@ -60,7 +64,15 @@ typings/
 # next.js build output
 .next
 
+# Documentation
+.docz/*
+
+# Miscellaneous
 *.sublime-project
 *.sublime-workspace
+*.code-workspace
+jsconfig.json
 .DS_Store
 bundle.js
+cypress/
+docs/

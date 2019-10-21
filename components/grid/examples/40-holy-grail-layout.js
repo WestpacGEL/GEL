@@ -1,10 +1,9 @@
 import React from 'react';
-
 import { Cell, Grid } from '../src';
 import { Box } from './_utils';
 
 export default () => (
-	<Grid columns={'100px 1fr 100px'} rows={'minmax(45px,auto) 1fr minmax(45px,auto)'}>
+	<Grid columns={'10rem 1fr 10rem'} rows={'minmax(4.5rem,auto) 1fr minmax(4.5rem,auto)'}>
 		<Cell width={3}>
 			<Box>Header</Box>
 		</Cell>
