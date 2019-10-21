@@ -2,7 +2,7 @@ module.exports = {
 	TYPE: {
 		files: [
 			{
-				name: 'brown',
+				name: '"brown"',
 				files: {
 					woff2: '../font/lineto-brown-pro-light.woff2',
 					woff: '../font/lineto-brown-pro-light.woff',
@@ -11,7 +11,7 @@ module.exports = {
 				style: 'normal',
 			},
 			{
-				name: 'brown',
+				name: '"brown"',
 				files: {
 					woff2: '../font/lineto-brown-pro-regular.woff2',
 					woff: '../font/lineto-brown-pro-regular.woff',
@@ -20,7 +20,7 @@ module.exports = {
 				style: 'normal',
 			},
 			{
-				name: 'brown',
+				name: '"brown"',
 				files: {
 					woff2: '../font/lineto-brown-pro-bold.woff2',
 					woff: '../font/lineto-brown-pro-bold.woff',

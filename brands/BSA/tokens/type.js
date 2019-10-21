@@ -2,7 +2,7 @@ module.exports = {
 	TYPE: {
 		files: [
 			{
-				name: 'aller',
+				name: '"aller"',
 				files: {
 					woff2: '../font/Aller_Lt.woff2',
 					woff: '../font/Aller_Lt.woff',
@@ -11,7 +11,7 @@ module.exports = {
 				style: 'normal',
 			},
 			{
-				name: 'aller',
+				name: '"aller"',
 				files: {
 					woff2: '../font/Aller_Bd.woff2',
 					woff: '../font/Aller_Bd.woff',
