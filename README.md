@@ -181,6 +181,15 @@ yarn start button
 | `*.js`          | All jsx files are postfixed with `.js`                                      |
 | `*.spec.js`     | All (jest) unit tests are postfixed with `.spec.js`                         |
 
+## Props API vocabulary
+
+| Prop   | Description                                                         |
+| ------ | ------------------------------------------------------------------- |
+| `tag`  | When a component can be rendered as different tags                  |
+| `look` | When talking about the look of a component like `success` or `hero` |
+| `href` | When something points at a thing via a link                         |
+| `icon` | For passing in an icon                                              |
+
 ## TODO
 
 - [ ] create a GEL brand

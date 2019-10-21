@@ -2,8 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { jsx, useBrand } from '@westpac/core';
+import { VisuallyHidden } from '@westpac/a11y';
 
 // ==============================
 // Utils
@@ -21,7 +21,7 @@ const round = value => Math.round(value);
  * the user is in a journey.
  */
 export const ProgressBar = ({ value, skinny, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	const roundedValue = round(value);
 
@@ -97,7 +97,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 						{roundedValue}%
 					</span>
 				)}
-				<SrOnly>Complete</SrOnly>
+				<VisuallyHidden>Complete</VisuallyHidden>
 			</div>
 		</div>
 	);

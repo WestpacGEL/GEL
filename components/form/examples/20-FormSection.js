@@ -40,7 +40,7 @@ export default () => (
 
 		<h2>FormSection with no padding</h2>
 		<Form>
-			<FormSection isNoPadding>
+			<FormSection noPadding>
 				<FormGroup>
 					<Box>FormGroup content</Box>
 				</FormGroup>
@@ -48,7 +48,7 @@ export default () => (
 					<Box>FormGroup content</Box>
 				</FormGroup>
 			</FormSection>
-			<FormSection isNoPadding>
+			<FormSection noPadding>
 				<FormGroup>
 					<Box>FormGroup content</Box>
 				</FormGroup>

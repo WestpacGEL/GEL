@@ -1,14 +1,14 @@
 /** @jsx jsx */
 
 import React from 'react';
-import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const PanelFooter = props => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (

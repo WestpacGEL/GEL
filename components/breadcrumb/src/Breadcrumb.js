@@ -2,8 +2,8 @@
 
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { jsx } from '@westpac/core';
+import { VisuallyHidden } from '@westpac/a11y';
 
 // ==============================
 // Component
@@ -13,23 +13,27 @@ import { SrOnly } from '@westpac/accessibility-helpers';
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
 export const Breadcrumb = ({ children, ...props }) => {
-	const { breadcrumb } = useTheme();
-
-	const common = {
-		padding: breadcrumb.padding,
-		marginBottom: breadcrumb.marginBottom,
-		fontSize: breadcrumb.fontSize,
-		listStyle: 'none',
-	};
-
-	const childrenWithProps = Children.map(children, (child, index) =>
-		index === Children.count(children) - 1 ? cloneElement(child, { last: 'true' }) : child
-	);
+	const childrenWithProps = Children.map(children, (child, index) => {
+		// Make sure we don't break the expected implementation contract of using `cloneElement`.
+		if (!child.type.isCrumb) {
+			throw new Error('<Breadcrumb /> only accepts <Crumb /> as direct children.');
+		}
+		return index === Children.count(children) - 1 ? cloneElement(child, { last: true }) : child;
+	});
 
 	return (
 		<div {...props}>
-			<SrOnly>Page navigation:</SrOnly>
-			<ol css={common}>{childrenWithProps}</ol>
+			<VisuallyHidden>Page navigation:</VisuallyHidden>
+			<ol
+				css={{
+					padding: '0.375rem 1.125rem',
+					marginBottom: '1.3125rem',
+					fontSize: '0.8125rem',
+					listStyle: 'none',
+				}}
+			>
+				{childrenWithProps}
+			</ol>
 		</div>
 	);
 };

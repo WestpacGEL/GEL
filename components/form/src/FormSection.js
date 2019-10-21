@@ -2,38 +2,38 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, paint } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormSection = ({ isNoPadding, ...props }) => {
-	const {
-		breakpoints,
-		form: { section },
-	} = useTheme();
-	const mq = paint(breakpoints);
+export const FormSection = ({ noPadding, ...props }) => {
+	const { COLORS } = useBrand();
+	const mq = useMediaQuery();
 
-	const common = {
-		position: 'relative', //for `.form-section-actions` positioning
-		paddingLeft: !isNoPadding && section.paddingLeft,
-		paddingRight: !isNoPadding && section.paddingRight,
+	return (
+		<div
+			css={mq({
+				position: 'relative', //for `.form-section-actions` positioning
+				paddingLeft: !noPadding && [null, '3.375rem', '2.875rem', '3.125rem'],
+				paddingRight: !noPadding && [null, '3.375rem', '2.875rem', '3.125rem'],
 
-		':not(:first-of-type)': {
-			paddingTop: section.paddingTop,
-		},
-		':not(:last-child)': {
-			paddingBottom: section.paddingBottom, //0.6rem assuming there will be a `FormGroup` margin-bottom (3rem)
-		},
+				':not(:first-of-type)': {
+					paddingTop: ['1.875rem', '2.25rem'],
+				},
+				':not(:last-child)': {
+					paddingBottom: '0.375rem', //0.6rem assuming there will be a `FormGroup` margin-bottom (3rem)
+				},
 
-		// Subequent sections
-		'& + &': {
-			borderTop: section.borderTop,
-		},
-	};
-
-	return <div css={mq(common)} {...props} />;
+				// Subequent sections
+				'& + &': {
+					borderTop: `1px solid ${COLORS.border}`,
+				},
+			})}
+			{...props}
+		/>
+	);
 };
 
 // ==============================
@@ -44,7 +44,7 @@ FormSection.propTypes = {
 	/**
 	 * Remove section padding
 	 */
-	isNoPadding: PropTypes.bool,
+	noPadding: PropTypes.bool,
 
 	/**
 	 * Component children
@@ -53,5 +53,5 @@ FormSection.propTypes = {
 };
 
 FormSection.defaultProps = {
-	isNoPadding: false,
+	noPadding: false,
 };

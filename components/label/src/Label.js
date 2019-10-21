@@ -2,65 +2,56 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
-export const Label = ({ appearance, tag: Tag, children, ...props }) => {
-	const { label } = useTheme();
-
-	const style = {
-		// Common styling
-		common: {
-			border: `${label.borderWidth} solid`,
-			borderRadius: label.borderRadius,
-			display: 'inline',
-			fontSize: label.fontSize,
-			fontWeight: label.fontWeight,
-			lineHeight: label.lineHeight,
-			padding: label.padding,
-			textAlign: 'center',
-			verticalAlign: 'baseline',
-			whiteSpace: 'nowrap',
-
-			'&:empty': {
-				display: 'none',
-			},
-			'a&': {
-				textDecoration: 'none',
-			},
-
-			'@media print': {
-				color: '#000',
-				backgroundColor: '#fff',
-				border: '1px solid #000',
-			},
-		},
-
-		// Label appearance styling
-		appearance: {
-			color: label.appearance[appearance].default.color,
-			backgroundColor: label.appearance[appearance].default.backgroundColor,
-			borderColor: label.appearance[appearance].default.borderColor,
-
-			'a&:hover, a&:focus': {
-				cursor: 'pointer',
-				backgroundColor: label.appearance[appearance].hover.backgroundColor,
-				borderColor: label.appearance[appearance].hover.borderColor,
-			},
-		},
-	};
+export const Label = ({ appearance, tag: Tag, ...props }) => {
+	const { COLORS } = useBrand();
 
 	if (props.href && Tag === 'span') {
 		Tag = 'a';
 	}
 
 	return (
-		<Tag css={{ ...style.common, ...style.appearance }} {...props}>
-			{children}
-		</Tag>
+		<Tag
+			css={{
+				border: '1px solid',
+				borderRadius: '0.125rem',
+				display: 'inline',
+				fontSize: '0.75rem',
+				fontWeight: 400,
+				lineHeight: 1,
+				padding: '0.0625rem 0.375rem',
+				textAlign: 'center',
+				verticalAlign: 'baseline',
+				whiteSpace: 'nowrap',
+				color: appearance === 'faint' ? COLORS.muted : '#fff', //TODO: STG uses `COLORS.text`
+				backgroundColor: appearance === 'faint' ? COLORS.light : COLORS[appearance],
+				borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
+
+				':empty': {
+					display: 'none',
+				},
+				'a&': {
+					textDecoration: 'none',
+				},
+				'a&:hover, a&:focus': {
+					cursor: 'pointer',
+					backgroundColor: appearance === 'faint' ? '#fff' : COLORS.tints[`${appearance}50`],
+					borderColor: appearance !== 'faint' && COLORS.tints[`${appearance}50`],
+				},
+
+				'@media print': {
+					color: '#000',
+					backgroundColor: '#fff',
+					border: '1px solid #000',
+				},
+			}}
+			{...props}
+		/>
 	);
 };
 
@@ -69,16 +60,7 @@ export const Label = ({ appearance, tag: Tag, children, ...props }) => {
 // ==============================
 
 const options = {
-	appearance: [
-		'primary',
-		'hero',
-		'neutral',
-		'faint',
-		'success',
-		'information',
-		'warning',
-		'danger',
-	],
+	appearance: ['primary', 'hero', 'neutral', 'faint', 'success', 'info', 'warning', 'danger'],
 };
 
 Label.propTypes = {

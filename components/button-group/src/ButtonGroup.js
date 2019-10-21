@@ -72,7 +72,7 @@ export const ButtonGroup = ({
 // ==============================
 
 const options = {
-	appearance: ['primary', 'hero', 'neutral'],
+	appearance: ['primary', 'hero'],
 	size: ['small', 'medium', 'large', 'xlarge'],
 };
 

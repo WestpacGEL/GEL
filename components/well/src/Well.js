@@ -2,14 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 export const Well = props => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
