@@ -1,3 +1,6 @@
+const bodyFont = '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif';
+const brandFont = '"brandFontBOM"';
+
 module.exports = {
 	TYPE: {
 		files: [
@@ -37,6 +40,28 @@ module.exports = {
 		brandFont: {
 			weights: [300, 400, 700],
 			fontFamily: '"brandFontBOM"',
+		},
+		packs: {
+			headline: {
+				1: {
+					fontWeight: 700,
+					fontSize: '3.375rem',
+					lineHeight: 1.4,
+					fontFamily: bodyFont,
+				},
+				2: {
+					fontWeight: 700,
+					fontSize: '3.375rem',
+					lineHeight: 1.4,
+					fontFamily: bodyFont,
+				},
+			},
+			lead: {
+				marginBottom: '1.3125rem',
+				fontSize: ['1rem', '1.125rem'],
+				fontWeight: 300,
+				lineHeight: 1.4,
+			},
 		},
 	},
 };
