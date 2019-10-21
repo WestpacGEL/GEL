@@ -22,6 +22,6 @@ function Example({ brand }) {
 			</Alert>
 		</GEL>
 	);
-};
+}
 
 export default Example;

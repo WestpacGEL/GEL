@@ -48,7 +48,7 @@ function Example({ brand }) {
 						>
 							<div
 								css={{
-									width: TOKENS.SPACING.minor[unit],
+									width: TOKENS.SPACING(unit, 'minor'),
 									height: '1rem',
 									border: `1px solid ${primaryColors.borderDark}`,
 									background: primaryColors.background,
@@ -59,7 +59,7 @@ function Example({ brand }) {
 							/>
 							<div
 								css={{
-									width: TOKENS.SPACING[unit],
+									width: TOKENS.SPACING(unit),
 									height: '1rem',
 									border: `1px solid ${primaryColors.borderDark}`,
 									background: primaryColors.primary,

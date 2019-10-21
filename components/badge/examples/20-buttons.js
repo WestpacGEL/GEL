@@ -223,6 +223,6 @@ function Example({ brand }) {
 			</p>
 		</GEL>
 	);
-};
+}
 
 export default Example;

@@ -9,6 +9,6 @@ function Example({ brand }) {
 			<_COMPONENT_NAME_ />
 		</GEL>
 	);
-};
+}
 
 export default Example;

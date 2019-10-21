@@ -38,20 +38,33 @@ function convertFonts(fonts) {
 function build(BRAND) {
 	const cwd = path.resolve(__dirname, `../../brands/${BRAND}`);
 
-	const { COLORS } = require(`${cwd}/tokens/colors`);
-	const { SPACING } = require(`${cwd}/tokens/spacing`);
-	const { LAYOUT } = require(`${cwd}/tokens/layout`);
-	const { TYPE } = require(`${cwd}/tokens/type`);
+	const { COLORS: colors } = require(`${cwd}/tokens/colors`);
+	// const { SPACING: spacing } = require(`${cwd}/tokens/spacing`);
+	const { LAYOUT: layout } = require(`${cwd}/tokens/layout`);
+	const { TYPE: type } = require(`${cwd}/tokens/type`);
 
-	// COLORS
+	// spacing
+	// const SPACING = {
+	// 	minor: spacing.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
+	// 	...spacing.major.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
+	// };
+
+	// colors
 	let tints = {};
-	Object.keys(COLORS).map(color => (tints = { ...tints, ...makeTints(COLORS[color], color) }));
+	Object.keys(colors).map(color => (tints = { ...tints, ...makeTints(colors[color], color) }));
+	const COLORS = {
+		tints,
+		...colors,
+	};
 
-	// TYPE
-	const fonts = {
-		bodyFont: TYPE.bodyFont,
-		brandFont: TYPE.brandFont,
-		files: convertFonts(TYPE.files),
+	// layout
+	const LAYOUT = layout;
+
+	// type
+	const TYPE = {
+		bodyFont: type.bodyFont,
+		brandFont: type.brandFont,
+		files: convertFonts(type.files),
 	};
 
 	console.log();
@@ -61,18 +74,20 @@ function build(BRAND) {
 		space: false,
 	});
 
-	return {
-		SPACING: {
-			minor: SPACING.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
-			...SPACING.major.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
-		},
-		COLORS: {
-			tints,
-			...COLORS,
-		},
-		LAYOUT,
-		TYPE: { ...fonts },
-	};
+	return `
+		export const SPACING = ( unit, minor ) => {
+			return ( unit * 6 - (minor ? 3 : 0) ) / 16 + (unit > 0 ? 'rem' : 0);
+		};
+		export const COLORS = ${JSON.stringify(COLORS)};
+		export const LAYOUT = ${JSON.stringify(LAYOUT)};
+		export const TYPE = ${JSON.stringify(TYPE)};
+		export default {
+			SPACING,
+			COLORS,
+			LAYOUT,
+			TYPE,
+		};
+	`;
 }
 
 module.exports = build;

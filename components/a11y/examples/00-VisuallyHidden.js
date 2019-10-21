@@ -26,6 +26,6 @@ function Example({ brand }) {
 			<VisuallyHidden tag="div">This is screen reader only text</VisuallyHidden>
 		</GEL>
 	);
-};
+}
 
 export default Example;

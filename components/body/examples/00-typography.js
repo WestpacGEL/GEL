@@ -6,9 +6,11 @@ import { Body } from '@westpac/body';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Body css={{
-				margin: '0 0 3rem 0'
-			}}>
+			<Body
+				css={{
+					margin: '0 0 3rem 0',
+				}}
+			>
 				<h2>Headings</h2>
 				<h1>This is a h1 heading</h1>
 				<h2>This is a h2 heading</h2>
@@ -33,17 +35,18 @@ function Example({ brand }) {
 					<br />
 					Lorem <abbr title="Explained">Abbr element</abbr> consectetur adipisicing elit. Aperiam
 					reprehenderit, dolorum error perferendis. This element has been deleted and replaced with{' '}
-					<del>this</del> <ins>that</ins>. But we would like to <mark>highlight</mark> this statement!
+					<del>this</del> <ins>that</ins>. But we would like to <mark>highlight</mark> this
+					statement!
 				</p>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias porro, laboriosam recusandae
-					ex ipsum harum unde illum neque, dolorem eaque quam vero aliquam fuga commodi, fugit odio.
-					Incidunt, veritatis, quod.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias porro, laboriosam
+					recusandae ex ipsum harum unde illum neque, dolorem eaque quam vero aliquam fuga commodi,
+					fugit odio. Incidunt, veritatis, quod.
 				</p>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum obcaecati natus corporis earum
-					ipsam maxime, temporibus possimus veritatis doloribus consectetur repudiandae beatae,
-					exercitationem autem magnam qui quod provident repellat aliquam.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum obcaecati natus corporis
+					earum ipsam maxime, temporibus possimus veritatis doloribus consectetur repudiandae
+					beatae, exercitationem autem magnam qui quod provident repellat aliquam.
 				</p>
 
 				<hr />
@@ -112,6 +115,6 @@ function Example({ brand }) {
 			</Body>
 		</GEL>
 	);
-};
+}
 
 export default Example;

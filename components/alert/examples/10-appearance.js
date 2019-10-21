@@ -47,11 +47,11 @@ function Example({ brand }) {
 
 			<h2>System</h2>
 			<Alert appearance="system">
-				<strong>System Error 8942:</strong> The server is no responding. Please try again later. Sorry
-				for the inconvenience. <a href="#">Link</a>
+				<strong>System Error 8942:</strong> The server is no responding. Please try again later.
+				Sorry for the inconvenience. <a href="#">Link</a>
 			</Alert>
 		</GEL>
 	);
-};
+}
 
 export default Example;
