@@ -14,12 +14,10 @@
 		"test:test-dev": "cypress open"
 	},
 	"main": "dist/switch.cjs.js",
-	"module": "dist/switch.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.6.2",
+		"@babel/runtime": "^7.6.3",
 		"@westpac/a11y": "^0.0.1",
 		"@westpac/core": "^0.0.1",
-		"facepaint": "^1.2.1",
 		"prop-types": "^15.6.2",
 		"shortid": "^2.2.14"
 	},

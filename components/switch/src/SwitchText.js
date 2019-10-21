@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { VisuallyHidden } from '@westpac/a11y';
 import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
@@ -25,7 +25,7 @@ export const SwitchText = ({ srOnlyText, children }) => {
 				paddingRight: '6px',
 			}}
 		>
-			{srOnlyText ? <SrOnly>children</SrOnly> : children}
+			{srOnlyText ? <VisuallyHidden>children</VisuallyHidden> : children}
 		</span>
 	);
 };
