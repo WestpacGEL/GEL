@@ -2,7 +2,7 @@ module.exports = {
 	TYPE: {
 		files: [
 			{
-				name: '"brown"',
+				name: '"brandFontBOM"',
 				files: {
 					woff2: '../font/lineto-brown-pro-light.woff2',
 					woff: '../font/lineto-brown-pro-light.woff',
@@ -11,7 +11,7 @@ module.exports = {
 				style: 'normal',
 			},
 			{
-				name: '"brown"',
+				name: '"brandFontBOM"',
 				files: {
 					woff2: '../font/lineto-brown-pro-regular.woff2',
 					woff: '../font/lineto-brown-pro-regular.woff',
@@ -20,7 +20,7 @@ module.exports = {
 				style: 'normal',
 			},
 			{
-				name: '"brown"',
+				name: '"brandFontBOM"',
 				files: {
 					woff2: '../font/lineto-brown-pro-bold.woff2',
 					woff: '../font/lineto-brown-pro-bold.woff',
@@ -29,13 +29,14 @@ module.exports = {
 				style: 'normal',
 			},
 		],
-		weights: [300, 400, 700],
-		bodyFonts: {
+		bodyFont: {
+			weights: [400, 700],
 			fontFamily:
 				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 		},
-		brandFonts: {
-			fontFamily: '"brown"',
+		brandFont: {
+			weights: [300, 400, 700],
+			fontFamily: '"brandFontBOM"',
 		},
 	},
 };

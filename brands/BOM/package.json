@@ -18,6 +18,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {},
-	"main": "dist/index.js",
-	"dependencies": {}
+	"main": "dist/bom.cjs.js",
+	"dependencies": {},
+	"devDependencies": {}
 }
