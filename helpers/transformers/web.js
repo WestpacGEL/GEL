@@ -73,35 +73,6 @@ function build(BRAND) {
 		LAYOUT,
 		TYPE: { ...fonts },
 	};
-
-	// try {
-	// 	fs.mkdirSync(path.join(cwd, 'dist'));
-	// } catch (error) {
-	// 	if (error.code !== 'EEXIST') {
-	// 		console.error(error);
-	// 		process.exit(1);
-	// 	}
-	// }
-
-	// try {
-	// 	fs.writeFileSync(
-	// 		path.join(cwd, 'dist/index.js'),
-	// 		`module.exports = ${JSON.stringify(content)}`,
-	// 		{
-	// 			encoding: 'utf8',
-	// 		}
-	// 	);
-
-	// 	cfonts.say('File written successfully', {
-	// 		font: 'console',
-	// 		colors: ['green'],
-	// 		space: false,
-	// 	});
-	// 	console.log();
-	// } catch (error) {
-	// 	console.error(error);
-	// 	process.exit(1);
-	// }
 }
 
 module.exports = build;

@@ -18,5 +18,6 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {},
-	"main": "dist/wbg.cjs.js"
+	"main": "dist/wbg.cjs.js",
+	"module": "dist/wbg.esm.js"
 }

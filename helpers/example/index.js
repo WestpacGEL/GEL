@@ -34,7 +34,7 @@ const BRANDS = {
 // ==============================
 
 const App = ({ components, packageName, pkg }) => {
-	const [inputValue, setInputValue] = useState('');
+	const [searchValue, setSearchValue] = useState('');
 	const [brand, setBrand] = useState('WBC');
 
 	// update doc title
@@ -43,8 +43,8 @@ const App = ({ components, packageName, pkg }) => {
 	}, [packageName]);
 
 	// filter components for search
-	const navItems = inputValue.length
-		? components.filter(p => p.label.toLowerCase().includes(inputValue.toLowerCase()))
+	const navItems = searchValue.length
+		? components.filter(p => p.label.toLowerCase().includes(searchValue.toLowerCase()))
 		: components;
 
 	const primaryColor = BRANDS[brand].COLORS.primary;
@@ -71,10 +71,10 @@ const App = ({ components, packageName, pkg }) => {
 					<Sidebar>
 						<SidebarTitle to="/">{packageName}</SidebarTitle>
 						<SidebarSearch
-							onChange={e => setInputValue(e.target.value)}
+							onChange={e => setSearchValue(e.target.value)}
 							placeholder="Search..."
 							type="search"
-							value={inputValue}
+							value={searchValue}
 						/>
 
 						<SidebarNav>

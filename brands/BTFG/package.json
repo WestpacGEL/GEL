@@ -19,5 +19,6 @@
 	"license": "GPL-3.0+",
 	"scripts": {},
 	"main": "dist/btfg.cjs.js",
+	"module": "dist/btfg.esm.js",
 	"dependencies": {}
 }

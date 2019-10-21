@@ -19,5 +19,6 @@
 	"license": "GPL-3.0+",
 	"scripts": {},
 	"main": "dist/bsa.cjs.js",
+	"module": "dist/bsa.esm.js",
 	"dependencies": {}
 }

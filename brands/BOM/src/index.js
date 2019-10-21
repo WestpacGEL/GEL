@@ -1,6 +1,8 @@
 // @codegen
 const build = require('../../../helpers/transformers/web');
-const Brand = require('../package.json').name.replace('@westpac/', '').toUpperCase();
+const Brand = require('../package.json')
+	.name.replace('@westpac/', '')
+	.toUpperCase();
 
 const TOKENS = build(Brand);
 const SPACING = JSON.stringify(TOKENS.SPACING);

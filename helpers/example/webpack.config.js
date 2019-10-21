@@ -12,17 +12,10 @@ const slugFromFilename = filename => {
 		return filename;
 	}
 };
+
 const labelFromSlug = slug => {
-	/*return slug
-		.split('-')
-		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(' ');*/
 	return slug.replace(/-/g, ' ').replace(slug[0], slug[0].toUpperCase());
 };
-// const brandLabel = brand => {
-// 	const brands = fs.readdirSync(path.normalize(`${__dirname}/../../brands`), { encoding: 'utf8' });
-// 	return brands.includes(brand) ? brand : 'WBC';
-// };
 
 const { PACKAGE_NAME } = process.env;
 
