@@ -24,8 +24,6 @@ export const ButtonGroupButton = ({
 	const { appearance, size, name, checked, handleChange } = useButtonGroupContext();
 	const [buttonId] = useState(`button-${shortid.generate()}`);
 
-	console.log({ value, checked });
-
 	return (
 		<label htmlFor={buttonId} css={{ flex: 1 }} {...props}>
 			<input
