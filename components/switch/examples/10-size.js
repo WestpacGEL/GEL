@@ -1,9 +1,11 @@
-import React from 'react';
-import { Switch } from '../src';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<>
+import { GEL, jsx } from '@westpac/core';
+import { Switch } from '@westpac/switch';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
 			<h2>Small</h2>
 			<Switch name="example-small" size="small">
 				Turn notifications
@@ -29,6 +31,8 @@ export default () => (
 			<Switch name="example-xlarge" size="xlarge">
 				Turn notifications
 			</Switch>
-		</>
-	</>
-);
+		</GEL>
+	);
+}
+
+export default Example;
