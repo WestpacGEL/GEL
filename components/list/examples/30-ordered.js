@@ -1,22 +1,28 @@
-import React from 'react';
-import { List, ListItem } from '../src';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { List, Item } from '@westpac/list';
 import { listGenerator } from './_utils';
 
-export default () => (
-	<>
-		<h3>Ordered</h3>
-		<List type="ordered">
-			{listGenerator('Ordered', 3)}
-			<ListItem>
-				Ordered list
-				<List>{listGenerator('Ordered', 3)}</List>
-			</ListItem>
-			{listGenerator('Ordered', 3)}
-			<ListItem>
-				Ordered list
-				<List type="bullet">{listGenerator('Ordered', 3)}</List>
-			</ListItem>
-			{listGenerator('Ordered', 3)}
-		</List>
-	</>
-);
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<h3>Ordered</h3>
+			<List type="ordered">
+				{listGenerator('Ordered', 3)}
+				<Item>
+					Ordered list
+					<List>{listGenerator('Ordered', 3)}</List>
+				</Item>
+				{listGenerator('Ordered', 3)}
+				<Item>
+					Ordered list
+					<List type="bullet">{listGenerator('Ordered', 3)}</List>
+				</Item>
+				{listGenerator('Ordered', 3)}
+			</List>
+		</GEL>
+	);
+}
+
+export default Example;

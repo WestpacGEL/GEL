@@ -1,17 +1,20 @@
 /** @jsx jsx */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 import { FormLabel } from './FormLabel';
-import { FormContext } from './Form.context';
+
+import { useFormContext } from './Form';
 
 // ==============================
 // Component
 // ==============================
 
 export const Fieldset = ({ legend, children, ...props }) => {
-	const { spacing } = useContext(FormContext);
+	// Consume FormContext
+	const formContext = useFormContext();
+	const spacing = (formContext && formContext.spacing) || 'medium';
 
 	return (
 		<fieldset {...props}>

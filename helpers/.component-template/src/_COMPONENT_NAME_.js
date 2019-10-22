@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
 
 // ==============================
 // Utils

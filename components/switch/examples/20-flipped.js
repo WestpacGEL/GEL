@@ -1,10 +1,16 @@
-import React from 'react';
-import { Switch } from '../src';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<Switch name="example-flipped" isFlipped>
-			Turn notifications
-		</Switch>
-	</>
-);
+import { GEL, jsx } from '@westpac/core';
+import { Switch } from '@westpac/switch';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Switch name="example-flipped" flipped>
+				Turn notifications
+			</Switch>
+		</GEL>
+	);
+}
+
+export default Example;

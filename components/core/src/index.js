@@ -1,4 +1,4 @@
 export { jsx, css, Global, ClassNames } from '@emotion/core';
-export { GEL, ThemeContext, useTheme } from './Theme';
-export { Core } from './Core';
+export { BrandContext, useBrand } from './Brand'; // We need to export the context object for class components
 export { useMediaQuery } from './utils';
+export { GEL } from './GEL';

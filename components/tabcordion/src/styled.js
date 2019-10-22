@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import React, { forwardRef } from 'react';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 export const TabRow = forwardRef((props, ref) => (
 	<div
@@ -16,7 +16,7 @@ export const TabRow = forwardRef((props, ref) => (
 ));
 
 export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props }) => {
-	const { colors } = useTheme();
+	const { COLORS: colors } = useBrand();
 	const common = {
 		flex: isJustified ? 1 : 0,
 		fontSize: '1.6rem',
@@ -59,7 +59,7 @@ export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props 
 };
 
 export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => {
-	const { colors } = useTheme();
+	const { COLORS: colors } = useBrand();
 	const common = {
 		alignItems: 'center',
 		backgroundColor: colors.background,
@@ -110,7 +110,7 @@ export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => 
 };
 
 export const Panel = forwardRef(({ appearance, isLast, isSelected, mode, ...props }, ref) => {
-	const { colors, typography } = useTheme();
+	const { COLORS: colors, PACKS: packs } = useBrand();
 	const common = {
 		borderLeft: `1px solid ${colors.border}`,
 		borderRight: `1px solid ${colors.border}`,
@@ -119,7 +119,7 @@ export const Panel = forwardRef(({ appearance, isLast, isSelected, mode, ...prop
 		padding: '2.4rem 3.22%',
 
 		'&:focus': {
-			...typography.link.focus,
+			color: packs.link.color,
 		},
 	};
 	const styles =

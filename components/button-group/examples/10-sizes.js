@@ -1,40 +1,46 @@
-import React from 'react';
-import { ButtonGroup, ButtonGroupButton } from '../src';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<h2>Small</h2>
-		<ButtonGroup size="small" name="example-small">
-			<ButtonGroupButton value="left">Left</ButtonGroupButton>
-			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
-			<ButtonGroupButton value="right">Right</ButtonGroupButton>
-		</ButtonGroup>
+import { GEL, jsx } from '@westpac/core';
+import { ButtonGroup, Button } from '@westpac/button-group';
 
-		<hr />
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<h2>Small</h2>
+			<ButtonGroup size="small" name="example-small">
+				<Button value="left">Left</Button>
+				<Button value="middle">Middle</Button>
+				<Button value="right">Right</Button>
+			</ButtonGroup>
 
-		<h2>Medium</h2>
-		<ButtonGroup size="medium" name="example-medium">
-			<ButtonGroupButton value="left">Left</ButtonGroupButton>
-			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
-			<ButtonGroupButton value="right">Right</ButtonGroupButton>
-		</ButtonGroup>
+			<hr />
 
-		<hr />
+			<h2>Medium</h2>
+			<ButtonGroup size="medium" name="example-medium">
+				<Button value="left">Left</Button>
+				<Button value="middle">Middle</Button>
+				<Button value="right">Right</Button>
+			</ButtonGroup>
 
-		<h2>Large</h2>
-		<ButtonGroup size="large" name="example-large">
-			<ButtonGroupButton value="left">Left</ButtonGroupButton>
-			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
-			<ButtonGroupButton value="right">Right</ButtonGroupButton>
-		</ButtonGroup>
+			<hr />
 
-		<hr />
+			<h2>Large</h2>
+			<ButtonGroup size="large" name="example-large">
+				<Button value="left">Left</Button>
+				<Button value="middle">Middle</Button>
+				<Button value="right">Right</Button>
+			</ButtonGroup>
 
-		<h2>Extra large</h2>
-		<ButtonGroup size="xlarge" name="example-xlarge">
-			<ButtonGroupButton value="left">Left</ButtonGroupButton>
-			<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
-			<ButtonGroupButton value="right">Right</ButtonGroupButton>
-		</ButtonGroup>
-	</>
-);
+			<hr />
+
+			<h2>Extra large</h2>
+			<ButtonGroup size="xlarge" name="example-xlarge">
+				<Button value="left">Left</Button>
+				<Button value="middle">Middle</Button>
+				<Button value="right">Right</Button>
+			</ButtonGroup>
+		</GEL>
+	);
+}
+
+export default Example;

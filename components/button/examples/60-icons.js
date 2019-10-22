@@ -1,5 +1,7 @@
-import React from 'react';
-import { Button } from '../src';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { Button } from '@westpac/button';
 import {
 	HouseIcon,
 	AlertIcon,
@@ -10,10 +12,10 @@ import {
 	StarIcon,
 } from '@westpac/icon';
 
-export default () => (
-	<>
-		<h2>Icon after</h2>
-		<p>
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<h2>Icon after</h2>
 			<Button appearance="primary" size="small" iconAfter={HouseIcon}>
 				Small
 			</Button>{' '}
@@ -26,37 +28,29 @@ export default () => (
 			<Button appearance="primary" size="xlarge" iconAfter={AccessibilityIcon}>
 				Extra large
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} isBlock>
+			<br />
+			<br />
+			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} block>
 				Extra large block
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="small" iconAfter={ArrowRightIcon} isBlock isJustify>
+			<br />
+			<Button appearance="primary" size="small" iconAfter={ArrowRightIcon} block justify>
 				Small block justify
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="medium" iconAfter={ArrowRightIcon} isBlock isJustify>
+			<br />
+			<Button appearance="primary" size="medium" iconAfter={ArrowRightIcon} block justify>
 				Medium block justify
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="large" iconAfter={ArrowRightIcon} isBlock isJustify>
+			<br />
+			<Button appearance="primary" size="large" iconAfter={ArrowRightIcon} block justify>
 				Large block justify
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} isBlock isJustify>
+			<br />
+			<Button appearance="primary" size="xlarge" iconAfter={ArrowRightIcon} block justify>
 				Extra large block justify
 			</Button>
-		</p>
-
-		<hr />
-
-		<h2>Icon before</h2>
-		<p>
+			<hr />
+			<h2>Icon before</h2>
 			<Button appearance="primary" size="small" iconBefore={HouseIcon}>
 				Small
 			</Button>{' '}
@@ -69,44 +63,38 @@ export default () => (
 			<Button appearance="primary" size="xlarge" iconBefore={AccessibilityIcon}>
 				Extra large
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} isBlock>
+			<br />
+			<br />
+			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} block>
 				Extra large block
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="small" iconBefore={ArrowLeftIcon} isBlock isJustify>
+			<br />
+			<Button appearance="primary" size="small" iconBefore={ArrowLeftIcon} block justify>
 				Small block justify
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="medium" iconBefore={ArrowLeftIcon} isBlock isJustify>
+			<br />
+			<Button appearance="primary" size="medium" iconBefore={ArrowLeftIcon} block justify>
 				Medium block justify
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="large" iconBefore={ArrowLeftIcon} isBlock isJustify>
+			<br />
+			<Button appearance="primary" size="large" iconBefore={ArrowLeftIcon} block justify>
 				Large block justify
 			</Button>
-		</p>
-		<p>
-			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} isBlock isJustify>
+			<br />
+			<Button appearance="primary" size="xlarge" iconBefore={ArrowLeftIcon} block justify>
 				Extra large block justify
 			</Button>
-		</p>
-
-		<hr />
-
-		<h2>Icon only (no text)</h2>
-		<p>
+			<hr />
+			<h2>Icon only (no text)</h2>
 			<Button appearance="primary" size="small" iconBefore={StarIcon} />{' '}
 			<Button appearance="primary" size="medium" iconBefore={StarIcon} />{' '}
 			<Button appearance="primary" size="large" iconBefore={StarIcon} />{' '}
 			<Button appearance="primary" size="xlarge" iconBefore={StarIcon} />
-		</p>
-		<p>
-			<Button appearance="primary" size="xlarge" iconBefore={StarIcon} isBlock />
-		</p>
-	</>
-);
+			<br />
+			<br />
+			<Button appearance="primary" size="xlarge" iconBefore={StarIcon} block />
+		</GEL>
+	);
+}
+
+export default Example;

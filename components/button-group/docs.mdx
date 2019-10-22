@@ -5,7 +5,7 @@ route: /button-group
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { ButtonGroup, ButtonGroupButton } from './src';
+import { ButtonGroup, Button } from './src';
 
 import { InfoIcon } from '@westpac/icon';
 
@@ -17,9 +17,9 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 
 <Playground>
 	<ButtonGroup name="example-buttongroup">
-		<ButtonGroupButton value="left">Left</ButtonGroupButton>
-		<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
-		<ButtonGroupButton value="right">Right</ButtonGroupButton>
+		<Button value="left">Left</Button>
+		<Button value="middle">Middle</Button>
+		<Button value="right">Right</Button>
 	</ButtonGroup>
 </Playground>
 
@@ -27,20 +27,12 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 
 <Playground>
 	<ButtonGroup appearance="primary" name="example-buttongroup-primary">
-		<ButtonGroupButton>Yes</ButtonGroupButton>
-		<ButtonGroupButton>No</ButtonGroupButton>
+		<Button value="yes">Yes</Button>
+		<Button value="no">No</Button>
 	</ButtonGroup>{' '}
 	<ButtonGroup appearance="hero" name="example-buttongroup-hero">
-		<ButtonGroupButton>Yes</ButtonGroupButton>
-		<ButtonGroupButton>No</ButtonGroupButton>
-	</ButtonGroup>{' '}
-	<ButtonGroup appearance="neutral" name="example-buttongroup-neutral">
-		<ButtonGroupButton>Yes</ButtonGroupButton>
-		<ButtonGroupButton>No</ButtonGroupButton>
-	</ButtonGroup>{' '}
-	<ButtonGroup appearance="faint" name="example-buttongroup-faint">
-		<ButtonGroupButton>Yes</ButtonGroupButton>
-		<ButtonGroupButton>No</ButtonGroupButton>
+		<Button value="yes">Yes</Button>
+		<Button value="no">No</Button>
 	</ButtonGroup>
 </Playground>
 
@@ -48,30 +40,30 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 
 <Playground>
 	<ButtonGroup size="small" name="example-buttongroup-small">
-		<ButtonGroupButton>Yes</ButtonGroupButton>
-		<ButtonGroupButton>No</ButtonGroupButton>
+		<Button value="yes">Yes</Button>
+		<Button value="no">No</Button>
 	</ButtonGroup>{' '}
 	<ButtonGroup size="medium" name="example-buttongroup-medium">
-		<ButtonGroupButton>Yes</ButtonGroupButton>
-		<ButtonGroupButton>No</ButtonGroupButton>
+		<Button value="yes">Yes</Button>
+		<Button value="no">No</Button>
 	</ButtonGroup>{' '}
 	<ButtonGroup size="large" name="example-buttongroup-large">
-		<ButtonGroupButton>Yes</ButtonGroupButton>
-		<ButtonGroupButton>No</ButtonGroupButton>
+		<Button value="yes">Yes</Button>
+		<Button value="no">No</Button>
 	</ButtonGroup>{' '}
 	<ButtonGroup size="xlarge" name="example-buttongroup-xlarge">
-		<ButtonGroupButton>Yes</ButtonGroupButton>
-		<ButtonGroupButton>No</ButtonGroupButton>
+		<Button value="yes">Yes</Button>
+		<Button value="no">No</Button>
 	</ButtonGroup>
 </Playground>
 
 ## Block
 
 <Playground>
-	<ButtonGroup name="example-buttongroup-block" isBlock>
-		<ButtonGroupButton value="left">Left</ButtonGroupButton>
-		<ButtonGroupButton value="middle">Middle</ButtonGroupButton>
-		<ButtonGroupButton value="right">Right</ButtonGroupButton>
+	<ButtonGroup name="example-buttongroup-block" block>
+		<Button value="left">Left</Button>
+		<Button value="middle">Middle</Button>
+		<Button value="right">Right</Button>
 	</ButtonGroup>
 </Playground>
 
@@ -79,34 +71,62 @@ ButtonGroup components inherit Button appearance, sizing and icon options, and c
 
 <Playground>
 	<ButtonGroup name="example-buttongroup-iconafter">
-		<ButtonGroupButton iconAfter={InfoIcon}>Left</ButtonGroupButton>
-		<ButtonGroupButton iconAfter={InfoIcon}>Middle</ButtonGroupButton>
-		<ButtonGroupButton iconAfter={InfoIcon}>Right</ButtonGroupButton>
+		<Button value="left" iconAfter={InfoIcon}>
+			Left
+		</Button>
+		<Button value="middle" iconAfter={InfoIcon}>
+			Middle
+		</Button>
+		<Button value="right" iconAfter={InfoIcon}>
+			Right
+		</Button>
 	</ButtonGroup>
 	<br />
 	<br />
 	<ButtonGroup name="example-buttongroup-iconbefore">
-		<ButtonGroupButton iconBefore={InfoIcon}>Left</ButtonGroupButton>
-		<ButtonGroupButton iconBefore={InfoIcon}>Middle</ButtonGroupButton>
-		<ButtonGroupButton iconBefore={InfoIcon}>Right</ButtonGroupButton>
+		<Button value="left" iconBefore={InfoIcon}>
+			Left
+		</Button>
+		<Button value="middle" iconBefore={InfoIcon}>
+			Middle
+		</Button>
+		<Button value="right" iconBefore={InfoIcon}>
+			Right
+		</Button>
+	</ButtonGroup>
+</Playground>
+
+## Checked
+
+<Playground>
+	<ButtonGroup name="example-buttongroup-checked" defaultChecked="middle">
+		<Button value="left" iconAfter={InfoIcon}>
+			Left
+		</Button>
+		<Button value="middle" iconAfter={InfoIcon}>
+			Middle
+		</Button>
+		<Button value="right" iconAfter={InfoIcon}>
+			Right
+		</Button>
 	</ButtonGroup>
 </Playground>
 
 ## srOnlyText
 
-You can visually hide button text by providing a `isSrOnlyText` prop.
+You can visually hide button text by providing a `srOnlyText` prop.
 
 <Playground>
 	<ButtonGroup name="example-buttongroup-sronlytext">
-		<ButtonGroupButton iconAfter={InfoIcon} isSrOnlyText>
+		<Button value="left" iconAfter={InfoIcon} srOnlyText>
 			Screen reader only
-		</ButtonGroupButton>
-		<ButtonGroupButton iconAfter={InfoIcon} isSrOnlyText>
+		</Button>
+		<Button value="middle" iconAfter={InfoIcon} srOnlyText>
 			Screen reader only
-		</ButtonGroupButton>
-		<ButtonGroupButton iconAfter={InfoIcon} isSrOnlyText>
+		</Button>
+		<Button value="right" iconAfter={InfoIcon} srOnlyText>
 			Screen reader only
-		</ButtonGroupButton>
+		</Button>
 	</ButtonGroup>
 </Playground>
 
@@ -116,6 +136,6 @@ You can visually hide button text by providing a `isSrOnlyText` prop.
 
 <PropsTable of={ButtonGroup} />
 
-### ButtonGroupButton
+### Button
 
-<PropsTable of={ButtonGroupButton} />
+<PropsTable of={Button} />

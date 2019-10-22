@@ -1,16 +1,22 @@
-import React from 'react';
-import { Breadcrumb, Crumb } from '../src';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<Breadcrumb>
-			<Crumb>
-				<a href="/">Home</a>
-			</Crumb>
-			<Crumb>
-				<a href="/personal-banking/">Personal</a>
-			</Crumb>
-			<Crumb>Credit cards</Crumb>
-		</Breadcrumb>
-	</>
-);
+import { GEL, jsx } from '@westpac/core';
+import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Breadcrumb>
+				<Crumb>
+					<a href="/">Home</a>
+				</Crumb>
+				<Crumb>
+					<a href="/personal-banking/">Personal</a>
+				</Crumb>
+				<Crumb>Credit cards</Crumb>
+			</Breadcrumb>
+		</GEL>
+	);
+}
+
+export default Example;

@@ -4,16 +4,17 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
-import { Global, css, jsx } from '@emotion/core';
-import { Container } from '../../components/grid';
+import { Global, css, jsx } from '@westpac/core';
+import { Container } from '@westpac/grid';
 
-import { GEL } from '../../components/core';
-import bomBrand from '../../brands/BOM';
-import bsaBrand from '../../brands/BSA';
-import btfgBrand from '../../brands/BTFG';
-import stgBrand from '../../brands/STG';
-import wbcBrand from '../../brands/WBC';
-import wbgBrand from '../../brands/WBG';
+import { GEL } from '@westpac/core';
+
+import bomBrand from '@westpac/bom';
+import bsaBrand from '@westpac/bsa';
+import btfgBrand from '@westpac/btfg';
+import stgBrand from '@westpac/stg';
+import wbcBrand from '@westpac/wbc';
+import wbgBrand from '@westpac/wbg';
 
 // ==============================
 // Get the data
@@ -32,8 +33,8 @@ const BRANDS = {
 // Compose the pieces
 // ==============================
 
-const App = ({ components, packageName }) => {
-	const [inputValue, setInputValue] = useState('');
+const App = ({ components, packageName, pkg }) => {
+	const [searchValue, setSearchValue] = useState('');
 	const [brand, setBrand] = useState('WBC');
 
 	// update doc title
@@ -42,8 +43,8 @@ const App = ({ components, packageName }) => {
 	}, [packageName]);
 
 	// filter components for search
-	const navItems = inputValue.length
-		? components.filter(p => p.label.toLowerCase().includes(inputValue.toLowerCase()))
+	const navItems = searchValue.length
+		? components.filter(p => p.label.toLowerCase().includes(searchValue.toLowerCase()))
 		: components;
 
 	const primaryColor = BRANDS[brand].COLORS.primary;
@@ -70,10 +71,10 @@ const App = ({ components, packageName }) => {
 					<Sidebar>
 						<SidebarTitle to="/">{packageName}</SidebarTitle>
 						<SidebarSearch
-							onChange={e => setInputValue(e.target.value)}
+							onChange={e => setSearchValue(e.target.value)}
 							placeholder="Search..."
 							type="search"
-							value={inputValue}
+							value={searchValue}
 						/>
 
 						<SidebarNav>
@@ -108,12 +109,16 @@ const App = ({ components, packageName }) => {
 						</SidebarSwitcher>
 					</Sidebar>
 					<Switch>
-						<Route exact path="/" render={route => <Home {...route} packageName={packageName} />} />
+						<Route
+							exact
+							path="/"
+							render={route => <Home {...route} packageName={packageName} pkg={pkg} />}
+						/>
 						{components.map(({ slug, ...props }) => (
 							<Route
 								key={slug}
 								path={`/${slug}`}
-								render={route => <Page {...route} {...props} />}
+								render={route => <Page {...route} {...props} brand={BRANDS[brand]} />}
 							/>
 						))}
 					</Switch>
@@ -129,7 +134,7 @@ class Page extends React.Component {
 		this.setState({ error, info });
 	}
 	render() {
-		const { Module, filename, label } = this.props;
+		const { Module, filename, label, ...rest } = this.props;
 		const { error, info } = this.state;
 
 		if (error) {
@@ -160,26 +165,30 @@ class Page extends React.Component {
 
 		return (
 			<Article>
-				<Container>
+				<Container css={{ marginBottom: '3rem' }}>
 					<h1>{label}</h1>
-					<Module.default />
+					<Module.default {...rest} />
 				</Container>
 			</Article>
 		);
 	}
 }
 
-const Home = ({ packageName }) => (
+const Home = ({ packageName, pkg }) => (
 	<Article>
 		<Container>
 			<h1>{packageName} Examples</h1>
-			<p>
-				Click one of the examples on the left to view it. To load the examples for another package
-				run:
-			</p>
-			<pre>
-				<code>yarn dev {'{package_name}'}</code>
+			<p>Click one of the examples on the left to view it.</p>
+			<pre
+				css={{
+					background: '#f9f9f9',
+					padding: '1rem',
+					border: '1px solid #ccc',
+				}}
+			>
+				<code>yarn start {pkg}</code>
 			</pre>
+			<p>To load the examples for another package run the above code with another package name</p>
 		</Container>
 	</Article>
 );
@@ -198,6 +207,7 @@ const Body = props => (
 		{...props}
 	/>
 );
+
 const Article = props => (
 	<article
 		css={{
@@ -222,11 +232,13 @@ const Sidebar = props => (
 		{...props}
 	/>
 );
+
 const SidebarNav = props => (
 	<nav css={{ flex: 1, overflowY: 'auto' }}>
 		<ul css={{ listStyle: 'none', margin: '1rem 0', padding: 0 }} {...props} />
 	</nav>
 );
+
 const SidebarSearch = props => (
 	<input
 		css={{
@@ -236,7 +248,7 @@ const SidebarSearch = props => (
 			borderColor: 'rgba(0, 0, 0, 0.075)',
 			boxSizing: 'border-box',
 			fontSize: 'inherit',
-			padding: '1rem 2rem',
+			padding: '0.625rem 1.25rem',
 			width: '100%',
 
 			':focus': {
@@ -247,6 +259,7 @@ const SidebarSearch = props => (
 		{...props}
 	/>
 );
+
 const SidebarLink = ({ primaryColor, ...props }) => (
 	<NavLink
 		css={{
@@ -255,7 +268,7 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 			color: primaryColor,
 			display: 'block',
 			fontWeight: 500,
-			padding: '0.625rem 1.25rem',
+			padding: '0.625rem 1.0625rem',
 			fontSize: '1rem',
 			textDecoration: 'none',
 
@@ -276,11 +289,13 @@ const SidebarLink = ({ primaryColor, ...props }) => (
 		{...props}
 	/>
 );
+
 const SidebarItem = props => (
 	<li data-test-nav>
 		<SidebarLink {...props} />
 	</li>
 );
+
 const SidebarTitle = props => (
 	<NavLink
 		css={{
@@ -312,6 +327,7 @@ const SidebarSwitcher = props => (
 		{...props}
 	/>
 );
+
 const SidebarSwitch = ({ checked, ...props }) => (
 	<label
 		css={{
@@ -343,7 +359,7 @@ const SidebarSwitch = ({ checked, ...props }) => (
 // Render to node
 // ==============================
 
-export default (pkg, components) => {
+export default (packageName, pkg, components) => {
 	const rootElement = document.getElementById('root');
-	ReactDOM.render(<App packageName={pkg} components={components} />, rootElement);
+	ReactDOM.render(<App packageName={packageName} pkg={pkg} components={components} />, rootElement);
 };

@@ -1,14 +1,12 @@
 /** @jsx jsx */
 
-import React, { useState } from 'react';
-import { jsx } from '@westpac/core';
-
-import * as components from '../src';
+import { GEL, jsx } from '@westpac/core';
+import * as components from '@westpac/icon';
 import { Cell, Grid, Name } from './_util';
+import { useState } from 'react';
 
 // can't believe this works...
 const icons = Object.keys(components);
-const lcase = s => s.toLowerCase();
 
 const Search = props => (
 	<input
@@ -31,14 +29,19 @@ const Search = props => (
 	/>
 );
 
-export default () => {
+function Example({ brand }) {
 	const [inputValue, setInputValue] = useState('');
 	const filteredIcons = inputValue.length
-		? icons.filter(p => lcase(p.slice(0, p.length - 4)).includes(lcase(inputValue)))
+		? icons.filter(p =>
+				p
+					.slice(0, p.length - 4)
+					.toLowerCase()
+					.includes(inputValue.toLowerCase())
+		  )
 		: icons;
 
 	return (
-		<>
+		<GEL brand={brand}>
 			<Search
 				autoFocus
 				onChange={e => setInputValue(e.target.value)}
@@ -47,16 +50,18 @@ export default () => {
 				value={inputValue}
 			/>
 			<Grid>
-				{filteredIcons.map(s => {
-					const Icon = components[s];
+				{filteredIcons.map(icon => {
+					const Icon = components[icon];
 					return (
-						<Cell key={s}>
+						<Cell key={icon}>
 							<Icon />
-							<Name>{s}</Name>
+							<Name>{icon}</Name>
 						</Cell>
 					);
 				})}
 			</Grid>
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

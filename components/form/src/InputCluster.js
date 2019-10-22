@@ -1,31 +1,40 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
+
+// ==============================
+// Context and consumer hook
+// ==============================
+
+const InputClusterContext = createContext();
+
+export const useInputClusterContext = () => {
+	const context = useContext(InputClusterContext);
+	if (!context) {
+		throw new Error('InputCluster sub-components should be wrapped in a <InputCluster>.');
+	}
+	return context;
+};
 
 // ==============================
 // Component
 // ==============================
 
-export const InputCluster = ({ isHorizontal, children, ...props }) => {
-	// Pass the selected prop on to children (that way InputClusterItem styling can be set by parent InputCluster)
-	const giftedChildren = Children.map(children, child => {
-		return React.isValidElement(child) ? cloneElement(child, { isHorizontal }) : child;
-	});
-
-	return (
+export const InputCluster = ({ horizontal, children, ...props }) => (
+	<InputClusterContext.Provider value={{ horizontal }}>
 		<div
 			css={{
-				display: isHorizontal && 'flex',
-				flexWrap: isHorizontal && 'wrap',
+				display: horizontal && 'flex',
+				flexWrap: horizontal && 'wrap',
 			}}
 			{...props}
 		>
-			{giftedChildren}
+			{children}
 		</div>
-	);
-};
+	</InputClusterContext.Provider>
+);
 
 // ==============================
 // Types
@@ -37,7 +46,7 @@ InputCluster.propTypes = {
 	 *
 	 * This prop is passed to child elements.
 	 */
-	isHorizontal: PropTypes.bool,
+	horizontal: PropTypes.bool,
 
 	/**
 	 * Component children
@@ -46,5 +55,5 @@ InputCluster.propTypes = {
 };
 
 InputCluster.defaultProps = {
-	isHorizontal: false,
+	horizontal: false,
 };

@@ -7,28 +7,23 @@ const { makeTints } = require('./utils');
 /**
  * Convert a font token object to a styled object for emotion to use
  *
- * @param  {array} fonts - An array of token objects for a font
+ * @param  {array} fonts - An array or font objects for a font
  *
  * @return {object}      - The styled object for emotion
  */
 function convertFonts(fonts) {
 	const output = {};
+	output[''] = [];
 
 	fonts.map(font => {
-		if (font.name) {
-			if (!output['']) output[''] = [];
-
-			output[''].push({
-				'@font-face': {
-					fontFamily: font.name,
-					src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
-					weight: font.weight,
-					style: font.style,
-				},
-			});
-		} else if (font.fontFamily) {
-			output['fontFamily'] = font.fontFamily;
-		}
+		output[''].push({
+			'@font-face': {
+				fontFamily: font.name,
+				src: `url("${font.files.woff2}") format("woff2"), url("${font.files.woff}") format("woff")`,
+				weight: font.weight,
+				style: font.style,
+			},
+		});
 	});
 
 	return output;
@@ -43,20 +38,39 @@ function convertFonts(fonts) {
 function build(BRAND) {
 	const cwd = path.resolve(__dirname, `../../brands/${BRAND}`);
 
-	const { COLORS } = require(`${cwd}/tokens/colors`);
-	const { SPACING } = require(`${cwd}/tokens/spacing`);
-	const { LAYOUT } = require(`${cwd}/tokens/layout`);
-	const { TYPE } = require(`${cwd}/tokens/type`);
+	const { COLORS: colors } = require(`${cwd}/tokens/colors`);
+	// const { SPACING: spacing } = require(`${cwd}/tokens/spacing`);
+	const { LAYOUT: layout } = require(`${cwd}/tokens/layout`);
+	const {
+		TYPE: { files, ...typeRest },
+	} = require(`${cwd}/tokens/type`);
+	const { PACKS: packs } = require(`${cwd}/tokens/packs`);
 
-	// COLORS
+	// spacing
+	// const SPACING = {
+	// 	minor: spacing.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
+	// 	...spacing.major.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
+	// };
+
+	// colors
 	let tints = {};
-	Object.keys(COLORS).map(color => (tints = { ...tints, ...makeTints(COLORS[color], color) }));
-
-	// TYPE
-	const fonts = {
-		bodyFont: convertFonts(TYPE.bodyFonts),
-		brandFont: convertFonts(TYPE.brandFonts),
+	Object.keys(colors).map(color => (tints = { ...tints, ...makeTints(colors[color], color) }));
+	const COLORS = {
+		tints,
+		...colors,
 	};
+
+	// layout
+	const LAYOUT = layout;
+
+	// type
+	const TYPE = {
+		files: convertFonts(files),
+		...typeRest,
+	};
+
+	// packs
+	const PACKS = packs;
 
 	console.log();
 	cfonts.say(`${BRAND} TOKENS`, {
@@ -65,44 +79,22 @@ function build(BRAND) {
 		space: false,
 	});
 
-	const content = {
-		SPACING: SPACING.map(space => `${space / 16}rem`),
-		COLORS: {
-			tints,
-			...COLORS,
-		},
-		LAYOUT,
-		TYPE: { ...fonts },
-	};
-
-	try {
-		fs.mkdirSync(path.join(cwd, 'dist'));
-	} catch (error) {
-		if (error.code !== 'EEXIST') {
-			console.error(error);
-			process.exit(1);
-		}
-	}
-
-	try {
-		fs.writeFileSync(
-			path.join(cwd, 'dist/index.js'),
-			`module.exports = ${JSON.stringify(content)}`,
-			{
-				encoding: 'utf8',
-			}
-		);
-
-		cfonts.say('File written successfully', {
-			font: 'console',
-			colors: ['green'],
-			space: false,
-		});
-		console.log();
-	} catch (error) {
-		console.error(error);
-		process.exit(1);
-	}
+	return `
+		export const SPACING = ( unit, minor ) => {
+			return ( unit * 6 - (minor ? 3 : 0) ) / 16 + (unit > 0 ? 'rem' : 0);
+		};
+		export const COLORS = ${JSON.stringify(COLORS)};
+		export const LAYOUT = ${JSON.stringify(LAYOUT)};
+		export const TYPE = ${JSON.stringify(TYPE)};
+		export const PACKS = ${JSON.stringify(PACKS)};
+		export default {
+			SPACING,
+			COLORS,
+			LAYOUT,
+			TYPE,
+			PACKS,
+		};
+	`;
 }
 
 module.exports = build;

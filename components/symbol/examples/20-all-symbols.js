@@ -1,16 +1,14 @@
 /** @jsx jsx */
 
-import React from 'react';
-import { jsx } from '@westpac/core';
-
-import * as components from '../src';
+import { GEL, jsx } from '@westpac/core';
+import * as components from '@westpac/symbol';
 import { Cell, Grid, Name } from './_util';
 
 const symbols = Object.keys(components).filter(s => s.includes('Symbol'));
 
-export default () => {
+function Example({ brand }) {
 	return (
-		<>
+		<GEL brand={brand}>
 			<Grid>
 				{symbols.map(s => {
 					const Symbol = components[s];
@@ -22,6 +20,8 @@ export default () => {
 					);
 				})}
 			</Grid>
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

@@ -1,40 +1,48 @@
-import React from 'react';
-import { ListGroup, ListGroupItem } from '../src';
-import { ButtonGroup, ButtonGroupButton } from '@westpac/button-group';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { ListGroup, Item } from '@westpac/list-group';
+import { ButtonGroup, Button } from '@westpac/button-group';
 
 const styleExample = {
-	marginLeft: 12,
+	marginLeft: '0.75rem',
 };
 
-export default () => (
-	<ListGroup>
-		<ListGroupItem>
-			Send me sms reminders
-			<ButtonGroup size="small" name="example-default-1" css={styleExample}>
-				<ButtonGroupButton value="yes">Yes</ButtonGroupButton>
-				<ButtonGroupButton value="no">No</ButtonGroupButton>
-			</ButtonGroup>
-		</ListGroupItem>
-		<ListGroupItem>
-			Give me free money
-			<ButtonGroup size="small" name="example-default-2" css={styleExample}>
-				<ButtonGroupButton value="yes">Yes</ButtonGroupButton>
-				<ButtonGroupButton value="no">No</ButtonGroupButton>
-			</ButtonGroup>
-		</ListGroupItem>
-		<ListGroupItem>
-			Call me all the time
-			<ButtonGroup size="small" name="example-default-3" css={styleExample}>
-				<ButtonGroupButton value="yes">Yes</ButtonGroupButton>
-				<ButtonGroupButton value="no">No</ButtonGroupButton>
-			</ButtonGroup>
-		</ListGroupItem>
-		<ListGroupItem>
-			Deleted messages
-			<ButtonGroup size="small" name="example-default-4" css={styleExample}>
-				<ButtonGroupButton value="yes">Yes</ButtonGroupButton>
-				<ButtonGroupButton value="no">No</ButtonGroupButton>
-			</ButtonGroup>
-		</ListGroupItem>
-	</ListGroup>
-);
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<ListGroup>
+				<Item>
+					Send me sms reminders
+					<ButtonGroup size="small" name="example-default-1" css={styleExample}>
+						<Button value="yes">Yes</Button>
+						<Button value="no">No</Button>
+					</ButtonGroup>
+				</Item>
+				<Item>
+					Give me free money
+					<ButtonGroup size="small" name="example-default-2" css={styleExample}>
+						<Button value="yes">Yes</Button>
+						<Button value="no">No</Button>
+					</ButtonGroup>
+				</Item>
+				<Item>
+					Call me all the time
+					<ButtonGroup size="small" name="example-default-3" css={styleExample}>
+						<Button value="yes">Yes</Button>
+						<Button value="no">No</Button>
+					</ButtonGroup>
+				</Item>
+				<Item>
+					Deleted messages
+					<ButtonGroup size="small" name="example-default-4" css={styleExample}>
+						<Button value="yes">Yes</Button>
+						<Button value="no">No</Button>
+					</ButtonGroup>
+				</Item>
+			</ListGroup>
+		</GEL>
+	);
+}
+
+export default Example;

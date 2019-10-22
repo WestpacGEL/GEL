@@ -1,33 +1,41 @@
 /** @jsx jsx */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { FormContext } from './Form.context';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { jsx } from '@westpac/core';
+import { VisuallyHidden } from '@westpac/a11y';
+
+import { useFormContext } from './Form';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormLabel = ({ isSublabel, tag: Tag, htmlFor, isSrOnly, ...props }) => {
-	const {
-		form: { label },
-	} = useTheme();
-	const { spacing } = useContext(FormContext);
+export const FormLabel = ({ sublabel, tag: Tag, htmlFor, srOnly, ...props }) => {
+	// Consume FormContext
+	const formContext = useFormContext();
+	const spacing = (formContext && formContext.spacing) || 'medium';
 
-	if (isSrOnly) {
-		Tag = SrOnly;
+	if (srOnly) {
+		Tag = VisuallyHidden;
 	}
+
+	const mapSpacing = {
+		medium: {
+			marginBottom: sublabel ? '0.375rem' : '0.75rem',
+		},
+		large: {
+			marginBottom: sublabel ? '0.375rem' : '1.125rem',
+		},
+	};
 
 	return (
 		<Tag
 			css={{
 				display: 'inline-block',
-				fontWeight: label.fontWeight,
-				fontSize: label.fontSize,
-				...label.spacing[spacing],
-				...(isSublabel && label.sublabel), //overrides spacing (sublabel overrides marginBottom)
+				fontWeight: 500,
+				fontSize: sublabel ? '0.875rem' : '1rem',
+				marginBottom: mapSpacing[spacing].marginBottom,
 			}}
 			htmlFor={htmlFor}
 			{...props}
@@ -43,7 +51,7 @@ FormLabel.propTypes = {
 	/**
 	 * Sub-label mode (smaller label text size)
 	 */
-	isSublabel: PropTypes.bool,
+	sublabel: PropTypes.bool,
 
 	/**
 	 * Component tag
@@ -66,7 +74,7 @@ FormLabel.propTypes = {
 	/**
 	 * Enable ‘screen reader only’ mode
 	 */
-	isSrOnly: PropTypes.bool,
+	srOnly: PropTypes.bool,
 
 	/**
 	 * Label text
@@ -75,6 +83,6 @@ FormLabel.propTypes = {
 };
 
 FormLabel.defaultProps = {
-	isSublabel: false,
+	sublabel: false,
 	tag: 'label',
 };

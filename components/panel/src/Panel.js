@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 // ==============================
 // Context and consumer hook
@@ -23,7 +23,7 @@ export const usePanelContext = () => {
 // ==============================
 
 export const Panel = ({ appearance, ...props }) => {
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	const appearanceMap = {
 		hero: {
@@ -39,12 +39,6 @@ export const Panel = ({ appearance, ...props }) => {
 		backgroundColor: '#fff',
 		border: `1px solid ${appearanceMap[appearance].borderColor}`,
 		borderRadius: '0.1875rem',
-
-		// Child table styling
-		'.table-responsive': {
-			border: 0,
-			marginBottom: 0,
-		},
 		table: {
 			overflow: 'hidden', //clip overflow for rounded corners
 			marginBottom: 0,

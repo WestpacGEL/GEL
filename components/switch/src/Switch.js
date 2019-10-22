@@ -1,85 +1,75 @@
 /** @jsx jsx */
 
-import React, { useState, useEffect } from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import shortid from 'shortid';
-import { SwitchText, SwitchToggle } from './styled';
+import { jsx } from '@westpac/core';
+import { SwitchLabel } from './SwitchLabel';
+
+// ==============================
+// Context and consumer hook
+// ==============================
+
+const SwitchContext = createContext();
+
+export const useSwitchContext = () => {
+	const context = useContext(SwitchContext);
+	if (!context) {
+		throw new Error('Switch sub-components should be wrapped in a <Switch>.');
+	}
+	return context;
+};
+
+// ==============================
+// Utils
+// ==============================
+
+const sizeMap = {
+	small: {
+		width: '4.375rem',
+		height: '1.875rem',
+		borderRadius: '1.875rem',
+		fontSize: '0.875rem',
+	},
+	medium: {
+		width: '5rem',
+		height: '2.25rem',
+		borderRadius: '2.25rem',
+		fontSize: '1rem',
+	},
+	large: {
+		width: '5.5625rem',
+		height: '2.625rem',
+		borderRadius: '2.625rem',
+		fontSize: '1rem',
+	},
+	xlarge: {
+		width: '6rem',
+		height: '3rem',
+		borderRadius: '3rem',
+		fontSize: '1.125rem',
+	},
+};
+
+const responsiveMap = size => ({
+	width: size.map(s => s && sizeMap[s].width),
+	height: size.map(s => s && sizeMap[s].height),
+	borderRadius: size.map(s => s && sizeMap[s].borderRadius),
+	fontSize: size.map(s => s && sizeMap[s].fontSize),
+});
+
+const asArray = val => (Array.isArray(val) ? val : [val]);
 
 // ==============================
 // Component
 // ==============================
 
-export const Switch = ({
-	name,
-	value,
-	toggleText,
-	size,
-	isBlock,
-	isFlipped,
-	isSrOnlyText,
-	isChecked,
-	disabled,
-	onChange,
-	children,
-	...props
-}) => {
-	const { switch: formSwitch } = useTheme();
-	const [checked, setChecked] = useState(isChecked);
-	const [switchId] = useState(`switch-${shortid.generate()}`);
-
-	useEffect(() => {
-		setChecked(checked);
-	}, [checked]);
-
-	const toggle = () => {
-		if (onChange) {
-			onChange();
-		} else {
-			setChecked(!checked);
-		}
-	};
-
-	// Common styling
-	const common = {
-		position: 'relative',
-		display: isBlock ? 'flex' : 'inline-flex',
-		flexWrap: 'wrap',
-		verticalAlign: 'middle',
-		marginRight: !isBlock && formSwitch.marginRight,
-		marginBottom: formSwitch.marginBottom,
-		alignItems: 'center',
-		width: isBlock && '100%',
-		flexDirection: isFlipped && 'row-reverse',
-
-		':hover': {
-			cursor: 'pointer',
-		},
-	};
+export const Switch = ({ size, ...props }) => {
+	const flexiSize = responsiveMap(asArray(size));
 
 	return (
-		<label htmlFor={switchId} css={common} {...props}>
-			<input
-				type="checkbox"
-				css={{
-					position: 'absolute',
-					zIndex: -1,
-					opacity: 0,
-				}}
-				name={name}
-				id={switchId}
-				value={value}
-				checked={checked}
-				disabled={disabled}
-				onChange={toggle}
-			/>
-			{children && (
-				<SwitchText isBlock={isBlock} isFlipped={isFlipped} size={size} isSrOnlyText={isSrOnlyText}>
-					{children}
-				</SwitchText>
-			)}
-			<SwitchToggle toggleText={toggleText} size={size} />
-		</label>
+		<SwitchContext.Provider value={{ flexiSize }}>
+			<SwitchLabel {...props} />
+		</SwitchContext.Provider>
 	);
 };
 
@@ -96,11 +86,6 @@ Switch.propTypes = {
 	 * Switch input element name
 	 */
 	name: PropTypes.string,
-
-	/**
-	 * Switch input element value
-	 */
-	value: PropTypes.string,
 
 	/**
 	 * On/off text.
@@ -120,22 +105,22 @@ Switch.propTypes = {
 	/**
 	 * Block mode
 	 */
-	isBlock: PropTypes.bool,
+	block: PropTypes.bool,
 
 	/**
 	 * Reverse the horizontal orientation. Renders the toggle on the left of the label text.
 	 */
-	isFlipped: PropTypes.bool,
+	flipped: PropTypes.bool,
 
 	/**
 	 * Enable ‘screen reader only’ label text mode.
 	 */
-	isSrOnlyText: PropTypes.bool,
+	srOnlyText: PropTypes.bool,
 
 	/**
 	 * Switch on
 	 */
-	isChecked: PropTypes.bool,
+	checked: PropTypes.bool,
 
 	/**
 	 * Disable the switch
@@ -158,9 +143,9 @@ Switch.propTypes = {
 Switch.defaultProps = {
 	size: 'medium',
 	toggleText: ['On', 'Off'],
-	isBlock: false,
-	isFlipped: false,
-	isSrOnlyText: false,
-	isChecked: false,
+	block: false,
+	flipped: false,
+	srOnlyText: false,
+	checked: false,
 	disabled: false,
 };

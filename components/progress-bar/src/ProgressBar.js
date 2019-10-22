@@ -2,95 +2,102 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { SrOnly } from '@westpac/accessibility-helpers';
+import { jsx, useBrand } from '@westpac/core';
+import { VisuallyHidden } from '@westpac/a11y';
+
+// ==============================
+// Utils
+// ==============================
+
+const round = value => Math.round(value);
 
 // ==============================
 // Component
 // ==============================
 
 /**
- * Progress Bar: A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.
+ * Progress Bar: A visual indication of progress.
+ * Use when loading content or to indicate how far along
+ * the user is in a journey.
  */
-export const ProgressBar = ({ value, isSkinny, ...props }) => {
-	const { progressBar } = useTheme();
+export const ProgressBar = ({ value, skinny, ...props }) => {
+	const { COLORS } = useBrand();
 
-	const valueRound = Math.round(value);
-
-	const size = isSkinny ? 'skinny' : 'default';
-
-	const style = {
-		// Common styling
-		common: {
-			height: progressBar.size[size].height,
-			marginBottom: progressBar.marginBottom,
-			overflow: 'hidden',
-			backgroundColor: 'white',
-			borderRadius: progressBar.size[size].height,
-			border: `${progressBar.borderWidth} solid ${progressBar.borderColor}`,
-			padding: progressBar.padding,
-			position: 'relative',
-
-			'::after': {
-				display: isSkinny && 'none',
-				content: '"0%"',
-				position: 'absolute',
-				left: '1rem',
-				top: 0,
-				height: '100%',
-				color: '#575f65',
-				fontSize: '1.4rem',
-				fontWeight: 700,
-				zIndex: 1,
-			},
-		},
-
-		// Bar styling
-		bar: {
-			display: 'flex',
-			justifyContent: 'flex-end',
-			alignItems: 'center',
-			position: 'relative',
-			float: 'left',
-			width: 0,
-			height: '100%',
-			fontSize: progressBar.fontSize,
-			fontWeight: progressBar.fontWeight,
-			lineHeight: progressBar.lineHeight,
-			color: progressBar.color,
-			textAlign: 'right',
-			backgroundColor: progressBar.backgroundColor,
-			borderRadius: progressBar.size[size].height,
-			zIndex: 2,
-			overflow: 'hidden',
-			transition: 'width .6s ease',
-
-			'@media print': {
-				backgroundColor: 'black !important',
-
-				span: {
-					color: 'white !important',
-					backgroundColor: 'black !important',
-				},
-			},
-		},
-	};
+	const roundedValue = round(value);
 
 	return (
-		<div css={style.common} {...props}>
+		<div
+			css={{
+				height: skinny ? '0.625rem' : '1.5rem',
+				marginBottom: '1.3125rem',
+				overflow: 'hidden',
+				backgroundColor: '#fff',
+				borderRadius: skinny ? '0.625rem' : '1.5rem',
+				border: `1px solid ${COLORS.border}`,
+				padding: '0.0625rem',
+				position: 'relative',
+
+				'::after': {
+					display: skinny && 'none',
+					content: '"0%"',
+					position: 'absolute',
+					left: '0.625rem',
+					top: 0,
+					height: '100%',
+					color: COLORS.muted,
+					fontSize: '0.875rem',
+					fontWeight: 700,
+					zIndex: 1,
+				},
+			}}
+			{...props}
+		>
 			<div
-				css={style.bar}
-				style={{ width: `${valueRound}%` }}
+				css={{
+					display: 'flex',
+					justifyContent: 'flex-end',
+					alignItems: 'center',
+					position: 'relative',
+					float: 'left',
+					width: 0,
+					height: '100%',
+					fontSize: '0.875rem',
+					fontWeight: 700,
+					lineHeight: '1.25rem',
+					color: '#fff',
+					textAlign: 'right',
+					backgroundColor: COLORS.hero,
+					borderRadius: skinny ? '0.625rem' : '1.5rem',
+					zIndex: 2,
+					overflow: 'hidden',
+					transition: 'width .6s ease',
+
+					'@media print': {
+						backgroundColor: '#000 !important',
+					},
+				}}
+				style={{ width: `${roundedValue}%` }}
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
 				aria-valuenow={value}
 				aria-live="polite"
 			>
-				{!isSkinny && (
-					<span css={{ display: 'inline-block', margin: '0 1.2rem' }}>{valueRound}%</span>
+				{!skinny && (
+					<span
+						css={{
+							display: 'inline-block',
+							margin: '0 0.75rem',
+							'@media print': {
+								backgroundColor: '#000 !important',
+								color: '#fff !important',
+							},
+						}}
+					>
+						{roundedValue}%
+					</span>
 				)}
-				<SrOnly>Complete</SrOnly>
+				<VisuallyHidden>Complete</VisuallyHidden>
 			</div>
 		</div>
 	);
@@ -109,10 +116,10 @@ ProgressBar.propTypes = {
 	/**
 	 * Enable skinny mode
 	 */
-	isSkinny: PropTypes.bool,
+	skinny: PropTypes.bool,
 };
 
 ProgressBar.defaultProps = {
 	value: 0,
-	isSkinny: false,
+	skinny: false,
 };

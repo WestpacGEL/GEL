@@ -1,14 +1,20 @@
-import React from 'react';
-import { ButtonGroup, ButtonGroupButton } from '../src';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<ButtonGroup name="example-checked">
-			<ButtonGroupButton value="left">Left</ButtonGroupButton>
-			<ButtonGroupButton value="middle" isChecked>
-				Middle
-			</ButtonGroupButton>
-			<ButtonGroupButton value="right">Right</ButtonGroupButton>
-		</ButtonGroup>
-	</>
-);
+import { GEL, jsx } from '@westpac/core';
+import { ButtonGroup, Button } from '@westpac/button-group';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<ButtonGroup name="example-checked" defaultChecked="left">
+				<Button value="left">Left</Button>
+				<Button value="middle" checked>
+					Middle
+				</Button>
+				<Button value="right">Right</Button>
+			</ButtonGroup>
+		</GEL>
+	);
+}
+
+export default Example;

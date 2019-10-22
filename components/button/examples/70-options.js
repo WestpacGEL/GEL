@@ -1,23 +1,27 @@
-import React from 'react';
-import { Button } from '../src';
-import { HouseIcon } from '@westpac/icon';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<h2>Trim</h2>
-		<p>
-			<Button appearance="link" isTrim>
+import { HouseIcon } from '@westpac/icon';
+import { GEL, jsx } from '@westpac/core';
+import { Button } from '@westpac/button';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<h2>Trim</h2>
+
+			<Button appearance="link" trim>
 				Trimmed link button
 			</Button>
-		</p>
 
-		<hr />
+			<hr />
 
-		<h2>‘Screen reader only’ text mode</h2>
-		<p>
-			<Button iconAfter={HouseIcon} isSrOnlyText>
+			<h2>‘Screen reader only’ text mode</h2>
+
+			<Button iconAfter={HouseIcon} srOnlyText>
 				Screen reader only text
 			</Button>
-		</p>
-	</>
-);
+		</GEL>
+	);
+}
+
+export default Example;

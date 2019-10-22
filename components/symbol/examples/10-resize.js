@@ -1,32 +1,38 @@
-import React from 'react';
-import { MastercardAcceptedSymbol } from '../src';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<h2>Resize by width</h2>
+import { GEL, jsx } from '@westpac/core';
+import { MastercardAcceptedSymbol } from '@westpac/symbol';
 
-		<h3>
-			Width <code>100</code>
-		</h3>
-		<MastercardAcceptedSymbol width={100} />
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<h2>Resize by width</h2>
 
-		<h3>
-			Responsive width <code>[100, 150, 200, 250]</code>
-		</h3>
-		<MastercardAcceptedSymbol width={[100, 150, 200, 250]} />
+			<h3>
+				Width <code>100</code>
+			</h3>
+			<MastercardAcceptedSymbol width={100} />
 
-		<hr />
+			<h3>
+				Responsive width <code>[100, 150, 200, 250]</code>
+			</h3>
+			<MastercardAcceptedSymbol width={[100, 150, 200, 250]} />
 
-		<h2>Resize by height</h2>
+			<hr />
 
-		<h3>
-			Height <code>100</code>
-		</h3>
-		<MastercardAcceptedSymbol height={100} />
+			<h2>Resize by height</h2>
 
-		<h3>
-			Responsive height <code>[100, 150, 200, 250]</code>
-		</h3>
-		<MastercardAcceptedSymbol height={[100, 150, 200, 250]} />
-	</>
-);
+			<h3>
+				Height <code>100</code>
+			</h3>
+			<MastercardAcceptedSymbol height={100} />
+
+			<h3>
+				Responsive height <code>[100, 150, 200, 250]</code>
+			</h3>
+			<MastercardAcceptedSymbol height={[100, 150, 200, 250]} />
+		</GEL>
+	);
+}
+
+export default Example;
