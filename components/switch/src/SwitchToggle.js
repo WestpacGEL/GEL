@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { useSwitchContext } from './Switch';
 
@@ -11,13 +10,11 @@ import { useSwitchContext } from './Switch';
 const calcKnob = height => height.map(h => h && `${parseFloat(h) - 0.25}rem`);
 
 const calcKnobAlt = height => height.map(h => h && `calc(100% - (${h} - 0.25rem))`);
+
 // ==============================
 // Component
 // ==============================
 
-/**
- * Switch: Switch component for the Westpac GEL
- */
 export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
@@ -103,19 +100,4 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 			)}
 		</span>
 	);
-};
-
-// ==============================
-// Types
-// ==============================
-
-SwitchToggle.propTypes = {
-	/**
-	 * Describe `someProperty` here
-	 */
-	someProperty: PropTypes.string,
-};
-
-SwitchToggle.defaultProps = {
-	checked: false,
 };

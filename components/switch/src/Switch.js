@@ -19,6 +19,10 @@ export const useSwitchContext = () => {
 	return context;
 };
 
+// ==============================
+// Utils
+// ==============================
+
 const sizeMap = {
 	small: {
 		width: '4.375rem',
@@ -54,13 +58,11 @@ const responsiveMap = size => ({
 });
 
 const asArray = val => (Array.isArray(val) ? val : [val]);
+
 // ==============================
 // Component
 // ==============================
 
-/**
- * Switch: Switch component for the Westpac GEL
- */
 export const Switch = ({ size, ...props }) => {
 	const flexiSize = responsiveMap(asArray(size));
 

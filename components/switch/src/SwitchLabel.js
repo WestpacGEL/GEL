@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { SwitchText } from './SwitchText';
@@ -9,20 +8,9 @@ import { SwitchToggle } from './SwitchToggle';
 import { useSwitchContext } from './Switch';
 
 // ==============================
-// Context and consumer hook
-// ==============================
-
-// ==============================
-// Context and consumer hook
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 
-/**
- * Switch: Switch component for the Westpac GEL
- */
 export const SwitchLabel = ({
 	toggleText,
 	checked,
@@ -34,12 +22,10 @@ export const SwitchLabel = ({
 	...props
 }) => {
 	const [isChecked, setChecked] = useState(checked);
-
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 	const { flexiSize } = useSwitchContext();
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
-
 	const toggle = () => {
 		setChecked(!isChecked);
 	};
@@ -88,14 +74,4 @@ export const SwitchLabel = ({
 			<SwitchToggle toggleText={toggleText} checked={isChecked} />
 		</label>
 	);
-};
-
-// ==============================
-// Types
-// ==============================
-
-SwitchLabel.propTypes = {};
-
-SwitchLabel.defaultProps = {
-	checked: false,
 };

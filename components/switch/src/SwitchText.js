@@ -1,21 +1,13 @@
 /** @jsx jsx */
 
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { VisuallyHidden } from '@westpac/a11y';
 import { jsx } from '@westpac/core';
-
-// ==============================
-// Utils
-// ==============================
 
 // ==============================
 // Component
 // ==============================
 
-/**
- * Switch: Switch component for the Westpac GEL
- */
 export const SwitchText = ({ srOnlyText, flipped, block, children }) => {
 	return (
 		<span
@@ -32,16 +24,3 @@ export const SwitchText = ({ srOnlyText, flipped, block, children }) => {
 		</span>
 	);
 };
-
-// ==============================
-// Types
-// ==============================
-
-SwitchText.propTypes = {
-	/**
-	 * Describe `someProperty` here
-	 */
-	someProperty: PropTypes.string,
-};
-
-SwitchText.defaultProps = {};
