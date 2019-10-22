@@ -38,22 +38,34 @@ function convertFonts(fonts) {
 function build(BRAND) {
 	const cwd = path.resolve(__dirname, `../../brands/${BRAND}`);
 
-	const { COLORS } = require(`${cwd}/tokens/colors`);
-	const { SPACING } = require(`${cwd}/tokens/spacing`);
-	const { LAYOUT } = require(`${cwd}/tokens/layout`);
-	const { TYPE } = require(`${cwd}/tokens/type`);
-	const { SYMBOLS } = require(`${cwd}/tokens/symbols`);
+	const { COLORS: colors } = require(`${cwd}/tokens/colors`);
+	// const { SPACING: spacing } = require(`${cwd}/tokens/spacing`);
+	const { LAYOUT: layout } = require(`${cwd}/tokens/layout`);
+	const {
+		TYPE: { files, ...typeRest },
+	} = require(`${cwd}/tokens/type`);
 
-	// COLORS
+	// spacing
+	// const SPACING = {
+	// 	minor: spacing.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
+	// 	...spacing.major.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
+	// };
+
+	// colors
 	let tints = {};
-	Object.keys(COLORS).map(color => (tints = { ...tints, ...makeTints(COLORS[color], color) }));
+	Object.keys(colors).map(color => (tints = { ...tints, ...makeTints(colors[color], color) }));
+	const COLORS = {
+		tints,
+		...colors,
+	};
 
-	// TYPE
-	const fonts = {
-		bodyFont: TYPE.bodyFonts,
-		brandFont: TYPE.brandFonts,
-		weights: TYPE.weights,
-		files: convertFonts(TYPE.files),
+	// layout
+	const LAYOUT = layout;
+
+	// type
+	const TYPE = {
+		files: convertFonts(files),
+		...typeRest,
 	};
 
 	console.log();
@@ -63,48 +75,20 @@ function build(BRAND) {
 		space: false,
 	});
 
-	const content = {
-		SPACING: {
-			minor: SPACING.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
-			...SPACING.major.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
-		},
-		COLORS: {
-			tints,
-			...COLORS,
-		},
-		LAYOUT,
-		TYPE: { ...fonts },
-		SYMBOLS,
-	};
-
-	try {
-		fs.mkdirSync(path.join(cwd, 'dist'));
-	} catch (error) {
-		if (error.code !== 'EEXIST') {
-			console.error(error);
-			process.exit(1);
-		}
-	}
-
-	try {
-		fs.writeFileSync(
-			path.join(cwd, 'dist/index.js'),
-			`module.exports = ${JSON.stringify(content)}`,
-			{
-				encoding: 'utf8',
-			}
-		);
-
-		cfonts.say('File written successfully', {
-			font: 'console',
-			colors: ['green'],
-			space: false,
-		});
-		console.log();
-	} catch (error) {
-		console.error(error);
-		process.exit(1);
-	}
+	return `
+		export const SPACING = ( unit, minor ) => {
+			return ( unit * 6 - (minor ? 3 : 0) ) / 16 + (unit > 0 ? 'rem' : 0);
+		};
+		export const COLORS = ${JSON.stringify(COLORS)};
+		export const LAYOUT = ${JSON.stringify(LAYOUT)};
+		export const TYPE = ${JSON.stringify(TYPE)};
+		export default {
+			SPACING,
+			COLORS,
+			LAYOUT,
+			TYPE,
+		};
+	`;
 }
 
 module.exports = build;

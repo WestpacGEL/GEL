@@ -4,16 +4,17 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
-import { Global, css, jsx } from '@emotion/core';
-import { Container } from '../../components/grid';
+import { Global, css, jsx } from '@westpac/core';
+import { Container } from '@westpac/grid';
 
-import { GEL } from '../../components/core';
-import bomBrand from '../../brands/BOM';
-import bsaBrand from '../../brands/BSA';
-import btfgBrand from '../../brands/BTFG';
-import stgBrand from '../../brands/STG';
-import wbcBrand from '../../brands/WBC';
-import wbgBrand from '../../brands/WBG';
+import { GEL } from '@westpac/core';
+
+import bomBrand from '@westpac/bom';
+import bsaBrand from '@westpac/bsa';
+import btfgBrand from '@westpac/btfg';
+import stgBrand from '@westpac/stg';
+import wbcBrand from '@westpac/wbc';
+import wbgBrand from '@westpac/wbg';
 
 // ==============================
 // Get the data
@@ -33,7 +34,7 @@ const BRANDS = {
 // ==============================
 
 const App = ({ components, packageName, pkg }) => {
-	const [inputValue, setInputValue] = useState('');
+	const [searchValue, setSearchValue] = useState('');
 	const [brand, setBrand] = useState('WBC');
 
 	// update doc title
@@ -42,8 +43,8 @@ const App = ({ components, packageName, pkg }) => {
 	}, [packageName]);
 
 	// filter components for search
-	const navItems = inputValue.length
-		? components.filter(p => p.label.toLowerCase().includes(inputValue.toLowerCase()))
+	const navItems = searchValue.length
+		? components.filter(p => p.label.toLowerCase().includes(searchValue.toLowerCase()))
 		: components;
 
 	const primaryColor = BRANDS[brand].COLORS.primary;
@@ -70,10 +71,10 @@ const App = ({ components, packageName, pkg }) => {
 					<Sidebar>
 						<SidebarTitle to="/">{packageName}</SidebarTitle>
 						<SidebarSearch
-							onChange={e => setInputValue(e.target.value)}
+							onChange={e => setSearchValue(e.target.value)}
 							placeholder="Search..."
 							type="search"
-							value={inputValue}
+							value={searchValue}
 						/>
 
 						<SidebarNav>
@@ -164,7 +165,7 @@ class Page extends React.Component {
 
 		return (
 			<Article>
-				<Container>
+				<Container css={{ marginBottom: '3rem' }}>
 					<h1>{label}</h1>
 					<Module.default {...rest} />
 				</Container>

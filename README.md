@@ -32,9 +32,9 @@ yarn start button
 | `yarn nuke`                 | removes all `node_modules` for fresh start        |
 | `yarn fresh`                | removes all `node_modules` and reinstalls them    |
 | `yarn build`                | build all dist folders                            |
+| `yarn dev`                  | build all dist for local consumption              |
 | `yarn docs`                 | build docs for all components and open server     |
 | `yarn docs:build`           | build docs for all components to `./docs/` folder |
-| `yarn dev [package-name]`   | run the examples of the specified component       |
 | `yarn new [package-name]`   | create a specified empty component                |
 | `yarn start [package-name]` | start the example server of a component           |
 | `yarn test`                 | runs test                                         |
@@ -42,12 +42,12 @@ yarn start button
 
 ### component level
 
-| script          | description                      |
-| --------------- | -------------------------------- |
-| `yarn start`    | start the example server         |
-| `yarn build`    | builds dist files                |
-| `yarn test`     | runs test headless               |
-| `yarn test:dev` | runs test by opening cypress app |
+| script                  | description                      |
+| ----------------------- | -------------------------------- |
+| `yarn start`            | start the example server         |
+| `yarn test`             | runs test headless               |
+| `yarn test:dev`         | runs test by opening cypress app |
+| `yarn test:integration` | runs integration tests           |
 
 ## Monorepo
 
@@ -145,7 +145,7 @@ yarn start button
 
 - Tokens and everything regarding consistent branding will be contained in the brand packages in `brands/*`
 - Tokens will include at least the four categories:
-  - `breakpoints`
+  - `layout`
   - `colors`
   - `spacing`
   - `typography`
@@ -183,18 +183,10 @@ yarn start button
 
 ## Props API vocabulary
 
-| Prop   | Description                                                         |
-| ------ | ------------------------------------------------------------------- |
-| `tag`  | When a component can be rendered as different tags                  |
-| `look` | When talking about the look of a component like `success` or `hero` |
-| `href` | When something points at a thing via a link                         |
-| `icon` | For passing in an icon                                              |
-
-## TODO
-
-- [ ] create a GEL brand
-- [ ] build out root examples
-- [x] create local default tokens
-- [ ] add render props for visual internal components
-- [ ] add helper for making new component
-- [ ] make playground and docz multibrand
+| Prop                     | Description                                                                      |
+| ------------------------ | -------------------------------------------------------------------------------- |
+| `tag`                    | When a component can be rendered as different tags                               |
+| `look`                   | When talking about the look of a component like `success` or `hero`              |
+| `href`                   | When something points at a thing via a link                                      |
+| `icon`                   | For passing in an icon                                                           |
+| `disabled` or `noBorder` | For passing boolean flags we use natural language and not `is` or `has` prefixes |

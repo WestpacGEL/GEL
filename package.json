@@ -22,14 +22,12 @@
 		"docs": "docz dev",
 		"docs:build": "docz build && yarn docs:redirects",
 		"docs:redirects": "cp helpers/public/* docs/",
-		"nuke": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} +",
+		"nuke": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
 		"nuke:lock": "rm yarn.lock && rm yarn-error.log",
-		"build:packages": "preconstruct build",
-		"build:brands": "node ./helpers/buildBrands.js",
-		"build": "yarn build:packages && yarn build:brands",
-		"fresh": "yarn nuke && yarn install",
+		"build": "preconstruct build",
+		"dev": "preconstruct dev",
+		"fresh": "yarn nuke && yarn",
 		"new": "node ./helpers/cli.js",
-		"dev": "/bin/sh -c 'PACKAGE_NAME=$0 webpack-dev-server --config helpers/example/webpack.config.js'",
 		"format": "prettier --write \"**/*.{js,md,mdx,json}\"",
 		"test:format": "prettier --list-different \"**/*.{js,md,mdx,json}\"",
 		"test:unit": "jest",
@@ -66,6 +64,7 @@
 		"babel-core": "^7.0.0-bridge.0",
 		"babel-jest": "^23.6.0",
 		"babel-loader": "^8.0.4",
+		"babel-plugin-codegen": "^3.0.0",
 		"cfonts": "^2.4.5",
 		"chalk": "^2.4.2",
 		"color": "^3.1.2",
@@ -104,7 +103,8 @@
 	},
 	"preconstruct": {
 		"packages": [
-			"components/*"
+			"components/*",
+			"brands/*"
 		]
 	}
 }

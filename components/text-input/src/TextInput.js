@@ -88,7 +88,7 @@ export const TextInput = ({ size, width, inline, invalid, tag: Tag, children, ..
 
 		// Focus styling (for all, not just keyboard users)
 		':focus': {
-			outline: `2px solid ${COLORS.focus}`,
+			outline: `2px solid ${COLORS.focus} !important`,
 			outlineOffset: 3,
 		},
 

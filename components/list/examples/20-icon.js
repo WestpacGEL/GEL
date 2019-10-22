@@ -1,11 +1,13 @@
-import React from 'react';
-import { List, Item } from '../src';
-import { listGenerator } from './_utils';
-import { AndroidIcon, GithubIcon } from '@westpac/icon';
+/** @jsx jsx */
 
-export default () => {
+import { GEL, jsx } from '@westpac/core';
+import { AndroidIcon, GithubIcon } from '@westpac/icon';
+import { List, Item } from '@westpac/list';
+import { listGenerator } from './_utils';
+
+function Example({ brand }) {
 	return (
-		<>
+		<GEL brand={brand}>
 			<h3>Icon</h3>
 			<List type="icon" icon={AndroidIcon}>
 				{listGenerator('Styled icon list', 3)}
@@ -26,6 +28,8 @@ export default () => {
 					<List>{listGenerator('Styled icon list', 3)}</List>
 				</Item>
 			</List>
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

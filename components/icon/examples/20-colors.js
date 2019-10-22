@@ -1,20 +1,21 @@
-import React from 'react';
-import { FavouriteIcon } from '../src';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { FavouriteIcon } from '@westpac/icon';
 import { Row } from './_util';
 
-const colors = [
-	{ key: 'red', value: '#DE350B' },
-	{ key: 'yellow', value: '#FF991F' },
-	{ key: 'green', value: '#00875A' },
-	{ key: 'teal', value: '#00A3BF' },
-	{ key: 'blue', value: '#0052CC' },
-	{ key: 'purple', value: '#5243AA' },
-];
+const colors = ['#DE350B', '#FF991F', '#00875A', '#00A3BF', '#0052CC', '#5243AA'];
 
-export default () => (
-	<Row>
-		{colors.map(s => (
-			<FavouriteIcon key={s.key} label={`${s.key} heart`} color={s.value} />
-		))}
-	</Row>
-);
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Row>
+				{colors.map((color, i) => (
+					<FavouriteIcon key={i} label={`${color} heart`} color={color} />
+				))}
+			</Row>
+		</GEL>
+	);
+}
+
+export default Example;

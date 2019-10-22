@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useTheme } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 // ==============================

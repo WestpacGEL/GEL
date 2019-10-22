@@ -1,7 +1,6 @@
-import React from 'react';
+/** @jsx jsx */
 
-import { Global, useBrand } from '@westpac/core';
-
+import { GEL, jsx, Global, useBrand } from '@westpac/core';
 import {
 	FormPod,
 	FormPodActions,
@@ -10,11 +9,12 @@ import {
 	FormPodPanel,
 	FormPodPanelBody,
 	FormPodPanelFooter,
-} from '../src';
+} from '@westpac/form-pod';
 import { HeadsetIcon, LiveChatIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
+import { Fragment } from 'react';
 
-export default () => {
+function Example({ brand }) {
 	const { COLORS } = useBrand();
 
 	// Contact detail data
@@ -36,7 +36,7 @@ export default () => {
 	];
 
 	return (
-		<>
+		<GEL brand={brand}>
 			<Global
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
@@ -56,14 +56,14 @@ export default () => {
 				</FormPodPanel>
 				<FormPodActions
 					primary={
-						<>
+						<Fragment>
 							<Button appearance="primary" soft size="large" block={[true, false]}>
 								Back
 							</Button>
 							<Button appearance="primary" size="large" block={[true, false]}>
 								Next
 							</Button>
-						</>
+						</Fragment>
 					}
 					secondary={
 						<Button appearance="faint" soft size="large" block={[true, false]}>
@@ -72,6 +72,8 @@ export default () => {
 					}
 				/>
 			</FormPod>
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

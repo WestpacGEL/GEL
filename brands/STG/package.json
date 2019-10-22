@@ -18,6 +18,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {},
-	"main": "dist/index.js",
+	"main": "dist/stg.cjs.js",
+	"module": "dist/stg.esm.js",
 	"dependencies": {}
 }

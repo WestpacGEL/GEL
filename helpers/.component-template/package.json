@@ -16,6 +16,7 @@
 	"main": "dist/_COMPONENT_KEY_.cjs.js",
 	"module": "dist/_COMPONENT_KEY_.esm.js",
 	"dependencies": {
+		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",
 		"prop-types": "^15.6.2"
 	},
