@@ -5,13 +5,6 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { useSwitchContext } from './Switch';
 
 // ==============================
-// utils
-// ==============================
-const calcKnob = height => height.map(h => h && `${parseFloat(h) - 0.25}rem`);
-
-const calcKnobAlt = height => height.map(h => h && `calc(100% - (${h} - 0.25rem))`);
-
-// ==============================
 // Component
 // ==============================
 
@@ -38,8 +31,8 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 				transition: 'border .3s ease,background .3s ease',
 
 				'::after': {
-					height: calcKnob(flexiSize.height),
-					width: calcKnob(flexiSize.height),
+					height: flexiSize.height,
+					width: flexiSize.height,
 					content: '""',
 					display: 'block',
 					position: 'absolute',
@@ -63,9 +56,9 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 				<>
 					<span
 						css={mq({
-							lineHeight: calcKnob(flexiSize.height),
+							lineHeight: flexiSize.height,
 							fontSize: flexiSize.fontSize,
-							width: calcKnobAlt(flexiSize.height),
+							width: flexiSize.height,
 							right: 0,
 							color: COLORS.neutral,
 							position: 'absolute',
@@ -80,9 +73,9 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 					</span>
 					<span
 						css={mq({
-							lineHeight: calcKnob(flexiSize.height),
+							lineHeight: flexiSize.height,
 							fontSize: flexiSize.fontSize,
-							width: calcKnobAlt(flexiSize.height),
+							width: flexiSize.height,
 							opacity: checked ? null : 0,
 							left: 0,
 							color: '#fff',
