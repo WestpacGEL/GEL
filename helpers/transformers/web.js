@@ -44,6 +44,7 @@ function build(BRAND) {
 	const {
 		TYPE: { files, ...typeRest },
 	} = require(`${cwd}/tokens/type`);
+	const { PACKS: packs } = require(`${cwd}/tokens/packs`);
 
 	// spacing
 	// const SPACING = {
@@ -68,6 +69,9 @@ function build(BRAND) {
 		...typeRest,
 	};
 
+	// packs
+	const PACKS = packs;
+
 	console.log();
 	cfonts.say(`${BRAND} TOKENS`, {
 		font: 'chrome',
@@ -82,11 +86,13 @@ function build(BRAND) {
 		export const COLORS = ${JSON.stringify(COLORS)};
 		export const LAYOUT = ${JSON.stringify(LAYOUT)};
 		export const TYPE = ${JSON.stringify(TYPE)};
+		export const PACKS = ${JSON.stringify(PACKS)};
 		export default {
 			SPACING,
 			COLORS,
 			LAYOUT,
 			TYPE,
+			PACKS,
 		};
 	`;
 }

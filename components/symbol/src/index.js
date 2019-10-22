@@ -37,7 +37,3 @@ export { WBGLogo } from './logos/WBGLogo';
 export { RedAvatarCircleLogo } from './logos/RedAvatarCircleLogo';
 export { RedAvatarCircleReversedLogo } from './logos/RedAvatarCircleReversedLogo';
 export { RedAvatarLogo } from './logos/RedAvatarLogo';
-
-// Multi-brand logos
-export { LogoLarge } from './logos/LogoLarge';
-export { LogoSmall } from './logos/LogoSmall';

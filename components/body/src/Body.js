@@ -19,6 +19,7 @@ export const Body = ({ children, ...props }) => {
 				'h1, h2, h3, h4, h5, h6': {
 					color: COLORS.heading,
 				},
+
 				p: {
 					margin: '0.75rem 0',
 				},
@@ -47,6 +48,15 @@ export const Body = ({ children, ...props }) => {
 
 				mark: {
 					backgroundColor: COLORS.tints.primary20,
+				},
+
+				a: {
+					color: COLORS.primary,
+					textDecoration: 'underline',
+
+					':hover': {
+						textDecoration: 'underline',
+					},
 				},
 			}}
 			{...props}

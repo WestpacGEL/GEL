@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
  * Heading: Headlines for your page needs
  */
 export const Heading = ({ tag: Tag, size, children, ...props }) => {
-	const { TYPE } = useBrand();
+	const { PACKS } = useBrand();
 
 	// ignore all non h1-h6 tags
 	if (Tag && !Tag.startsWith('h') && !(Tag.length === 2)) {
@@ -34,7 +34,7 @@ export const Heading = ({ tag: Tag, size, children, ...props }) => {
 			{...props}
 			css={{
 				margin: 0,
-				...TYPE.packs.headline[size],
+				...PACKS.headline[size],
 			}}
 		>
 			{children}

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Modal, Header, Body, Footer } from '../src';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { useState } from 'react';
+import { Modal, Header, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
-export default () => {
+function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 
-	const openModal = () => setOpen(true);
-	const closeModal = () => setOpen(false);
-
 	return (
-		<>
-			<Button onClick={openModal}>Open</Button>
-			<Modal open={open} onClose={closeModal}>
+		<GEL brand={brand}>
+			<Button onClick={() => setOpen(true)}>Open</Button>
+			<Modal open={open} onClose={() => setOpen(false)}>
 				<Header>Modal Title</Header>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
@@ -22,11 +22,13 @@ export default () => {
 					ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<Button appearance="faint" onClick={closeModal}>
+					<Button appearance="faint" onClick={() => setOpen(false)}>
 						Close
 					</Button>
 				</Footer>
 			</Modal>
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

@@ -24,21 +24,13 @@ export const Core = ({ children }) => {
 						fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
 						...TYPE.bodyFont,
 					},
-					':focus, button:focus': {
+					':focus, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring, button:-moz-focusring': {
 						// button:focus because of normalize reset (needs higher specificity)
 						outline: `3px dotted ${COLORS.text}`,
 						outlineOffset: '2px',
 					},
 					'::selection': {
 						backgroundColor: COLORS.tints.primary20,
-					},
-					a: {
-						color: COLORS.primary,
-						textDecoration: 'underline',
-
-						':hover': {
-							textDecoration: 'underline',
-						},
 					},
 				}}
 			/>

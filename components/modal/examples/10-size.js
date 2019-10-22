@@ -1,8 +1,11 @@
-import React, { useReducer } from 'react';
-import { Modal, Header, Body, Footer } from '../src';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { useReducer } from 'react';
+import { Modal, Header, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
-export default () => {
+function Example({ brand }) {
 	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };
 
 	const modalReducer = (state, action) => {
@@ -23,7 +26,7 @@ export default () => {
 	const updateModal = (type, open) => dispatch({ type, payload: { open } });
 
 	return (
-		<>
+		<GEL brand={brand}>
 			<p>
 				<Button onClick={() => updateModal('default', true)}>Open default modal</Button>
 			</p>
@@ -94,6 +97,8 @@ export default () => {
 					</Button>
 				</Footer>
 			</Modal>
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

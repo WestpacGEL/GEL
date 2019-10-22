@@ -10,7 +10,7 @@ export const Tab = forwardRef(
 		{ appearance, children, isLast, isSelected, label, mode, panelId, onClick, tabId, ...props },
 		ref
 	) => {
-		const theme = useBrand();
+		const { COLORS } = useBrand();
 		const Icon = isSelected ? ExpandLessIcon : ExpandMoreIcon;
 		const iconLabel = isSelected ? 'Show Less' : 'Show More';
 
@@ -27,7 +27,7 @@ export const Tab = forwardRef(
 						aria-expanded={isSelected}
 					>
 						<span>{label}</span>
-						<Icon color={theme.colors.muted} label={iconLabel} size="small" />
+						<Icon color={COLORS.muted} label={iconLabel} size="small" />
 					</AccordionLabel>
 				) : null}
 				<Panel
