@@ -25,7 +25,7 @@
 	"dependencies": {
 		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",
-		"prop-types": "^15.6.2"
+		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.10.1"
@@ -33,8 +33,8 @@
 	"devDependencies": {
 		"@westpac/button": "^0.0.1",
 		"@westpac/text-input": "^0.0.1",
-		"cypress": "^3.1.3",
-		"react": "^16.10.1",
-		"start-server-and-test": "^1.7.11"
+		"cypress": "^3.4.1",
+		"react": "^16.10.2",
+		"start-server-and-test": "^1.10.6"
 	}
 }

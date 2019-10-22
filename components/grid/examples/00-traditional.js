@@ -18,7 +18,7 @@ const rows = counts =>
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Grid>{rows([12, 6, 4, 2, 1])}</Grid>;
+			<Grid>{rows([12, 6, 4, 2, 1])}</Grid>
 		</GEL>
 	);
 }

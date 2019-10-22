@@ -16,7 +16,7 @@ function Example({ brand }) {
 					padding: 0,
 				}}
 			>
-				{Object.entries(primaryColors).map(([primaryColor, color], i) => (
+				{Object.entries(primaryColors).sort().map(([primaryColor, color], i) => (
 					<li key={i} css={{ display: 'block' }}>
 						<span
 							css={{
