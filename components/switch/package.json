@@ -14,6 +14,7 @@
 		"test:test-dev": "cypress open"
 	},
 	"main": "dist/switch.cjs.js",
+	"module": "dist/switch.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.6.2",
 		"@westpac/a11y": "^0.0.1",
