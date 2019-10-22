@@ -10,7 +10,7 @@ import { useSwitchContext } from './Switch';
 // ==============================
 const calcKnob = height => height.map(h => h && `${parseFloat(h) - 0.25}rem`);
 
-const calcKnob2 = height => height.map(h => h && `calc(100% - ${h} - 0.25rem`);
+const calcKnobAlt = height => height.map(h => h && `calc(100% - (${h} - 0.25rem))`);
 // ==============================
 // Component
 // ==============================
@@ -21,14 +21,14 @@ const calcKnob2 = height => height.map(h => h && `calc(100% - ${h} - 0.25rem`);
 export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
-	const { sizeArr } = useSwitchContext();
+	const { flexiSize } = useSwitchContext();
 
 	return (
 		<span
 			css={mq({
-				borderRadius: sizeArr.borderRadius,
-				height: sizeArr.height,
-				width: sizeArr.width,
+				borderRadius: flexiSize.borderRadius,
+				height: flexiSize.height,
+				width: flexiSize.width,
 				display: 'block',
 				position: 'relative',
 				right: 0,
@@ -41,8 +41,8 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 				transition: 'border .3s ease,background .3s ease',
 
 				'::after': {
-					height: calcKnob(sizeArr.height),
-					width: calcKnob(sizeArr.height),
+					height: calcKnob(flexiSize.height),
+					width: calcKnob(flexiSize.height),
 					content: '""',
 					display: 'block',
 					position: 'absolute',
@@ -66,9 +66,9 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 				<>
 					<span
 						css={mq({
-							lineHeight: calcKnob(sizeArr.height),
-							fontSize: sizeMap[size].fontSize,
-							width: calcKnob2(sizeArr.height),
+							lineHeight: calcKnob(flexiSize.height),
+							fontSize: flexiSize.fontSize,
+							width: calcKnobAlt(flexiSize.height),
 							right: 0,
 							color: COLORS.neutral,
 							position: 'absolute',
@@ -83,9 +83,9 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 					</span>
 					<span
 						css={mq({
-							lineHeight: calcKnob(sizeArr.height),
-							fontSize: sizeMap[size].fontSize,
-							width: calcKnob2(sizeArr.height),
+							lineHeight: calcKnob(flexiSize.height),
+							fontSize: flexiSize.fontSize,
+							width: calcKnobAlt(flexiSize.height),
 							opacity: checked ? null : 0,
 							left: 0,
 							color: '#fff',

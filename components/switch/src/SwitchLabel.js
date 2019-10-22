@@ -36,7 +36,7 @@ export const SwitchLabel = ({
 	const [isChecked, setChecked] = useState(checked);
 
 	const [switchId] = useState(`switch-${shortid.generate()}`);
-	const { sizeArr } = useSwitchContext();
+	const { flexiSize } = useSwitchContext();
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -57,8 +57,7 @@ export const SwitchLabel = ({
 				alignItems: 'center',
 				position: 'relative',
 				marginRight: !block && '1.125rem',
-				height: !block && sizeArr.height,
-				paddingRight: sizeArr.width,
+				height: !block && flexiSize.height,
 				marginBottom: '0.375rem',
 				flexDirection: flipped && 'row-reverse',
 

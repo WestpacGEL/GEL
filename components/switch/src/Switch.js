@@ -62,10 +62,10 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
  * Switch: Switch component for the Westpac GEL
  */
 export const Switch = ({ size, ...props }) => {
-	const sizeArr = responsiveMap(asArray(size));
+	const flexiSize = responsiveMap(asArray(size));
 
 	return (
-		<SwitchContext.Provider value={{ sizeArr }}>
+		<SwitchContext.Provider value={{ flexiSize }}>
 			<SwitchLabel {...props} />
 		</SwitchContext.Provider>
 	);
