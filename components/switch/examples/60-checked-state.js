@@ -3,7 +3,7 @@ import { Switch } from '../src';
 
 export default () => (
 	<>
-		<Switch name="example-checked" isChecked>
+		<Switch name="example-checked" checked>
 			Turn notifications
 		</Switch>
 	</>

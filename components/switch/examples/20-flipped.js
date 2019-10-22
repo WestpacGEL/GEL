@@ -3,7 +3,7 @@ import { Switch } from '../src';
 
 export default () => (
 	<>
-		<Switch name="example-flipped" isFlipped>
+		<Switch name="example-flipped" flipped>
 			Turn notifications
 		</Switch>
 	</>
