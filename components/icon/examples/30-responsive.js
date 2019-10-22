@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
-import React, { Fragment, useState } from 'react';
-import { jsx } from '@westpac/core';
-
+import { GEL, jsx } from '@westpac/core';
+import { Fragment, useState } from 'react';
 import {
 	AddIcon,
 	CalendarIcon,
@@ -16,7 +15,7 @@ import {
 	ProgressIcon,
 	StarIcon,
 	WriteIcon,
-} from '../src';
+} from '@westpac/icon';
 import { Row } from './_util';
 
 const sizes = [
@@ -24,6 +23,7 @@ const sizes = [
 	['large', 'medium'],
 	['small', null, 'large'],
 ];
+
 const icons = [
 	AddIcon,
 	CalendarIcon,
@@ -39,9 +39,9 @@ const icons = [
 	WriteIcon,
 ];
 
-export default () => {
+function Example({ brand }) {
 	return (
-		<>
+		<GEL brand={brand}>
 			<h2>Size</h2>
 			{sizes.map((s, i) => (
 				<Fragment key={i}>
@@ -53,6 +53,8 @@ export default () => {
 					</Row>
 				</Fragment>
 			))}
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

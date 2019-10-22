@@ -183,9 +183,10 @@ yarn start button
 
 ## Props API vocabulary
 
-| Prop   | Description                                                         |
-| ------ | ------------------------------------------------------------------- |
-| `tag`  | When a component can be rendered as different tags                  |
-| `look` | When talking about the look of a component like `success` or `hero` |
-| `href` | When something points at a thing via a link                         |
-| `icon` | For passing in an icon                                              |
+| Prop                     | Description                                                                      |
+| ------------------------ | -------------------------------------------------------------------------------- |
+| `tag`                    | When a component can be rendered as different tags                               |
+| `look`                   | When talking about the look of a component like `success` or `hero`              |
+| `href`                   | When something points at a thing via a link                                      |
+| `icon`                   | For passing in an icon                                                           |
+| `disabled` or `noBorder` | For passing boolean flags we use natural language and not `is` or `has` prefixes |

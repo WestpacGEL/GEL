@@ -41,7 +41,9 @@ function build(BRAND) {
 	const { COLORS: colors } = require(`${cwd}/tokens/colors`);
 	// const { SPACING: spacing } = require(`${cwd}/tokens/spacing`);
 	const { LAYOUT: layout } = require(`${cwd}/tokens/layout`);
-	const { TYPE: { files, ...typeRest } } = require(`${cwd}/tokens/type`);
+	const {
+		TYPE: { files, ...typeRest },
+	} = require(`${cwd}/tokens/type`);
 
 	// spacing
 	// const SPACING = {

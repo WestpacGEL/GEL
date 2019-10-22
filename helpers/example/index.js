@@ -165,7 +165,7 @@ class Page extends React.Component {
 
 		return (
 			<Article>
-				<Container>
+				<Container css={{ marginBottom: '3rem' }}>
 					<h1>{label}</h1>
 					<Module.default {...rest} />
 				</Container>

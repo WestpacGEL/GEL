@@ -1,5 +1,7 @@
-import React from 'react';
-import { Cell, Grid } from '../src';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { Cell, Grid } from '@westpac/grid';
 import { Box } from './_utils';
 
 const tuples = [
@@ -13,12 +15,18 @@ const tuples = [
 	[12, 4, 3, 6],
 ];
 
-export default () => (
-	<Grid>
-		{tuples.map((t, i) => (
-			<Cell key={i} width={t}>
-				<Box>{t.join(', ')}</Box>
-			</Cell>
-		))}
-	</Grid>
-);
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Grid>
+				{tuples.map((t, i) => (
+					<Cell key={i} width={t}>
+						<Box>{t.join(', ')}</Box>
+					</Cell>
+				))}
+			</Grid>
+		</GEL>
+	);
+}
+
+export default Example;

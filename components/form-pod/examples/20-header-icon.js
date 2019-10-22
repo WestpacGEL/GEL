@@ -1,15 +1,14 @@
-import React from 'react';
+/** @jsx jsx */
 
-import { Global, useBrand } from '@westpac/core';
-
-import { FormPod, FormPodPanel, FormPodPanelBody } from '../src';
+import { GEL, jsx, Global, useBrand } from '@westpac/core';
+import { FormPod, FormPodPanel, FormPodPanelBody } from '@westpac/form-pod';
 import { TickIcon } from '@westpac/icon';
 
-export default () => {
+function Example({ brand }) {
 	const { COLORS } = useBrand();
 
 	return (
-		<>
+		<GEL brand={brand}>
 			<Global
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
@@ -24,6 +23,8 @@ export default () => {
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
 				</FormPodPanel>
 			</FormPod>
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

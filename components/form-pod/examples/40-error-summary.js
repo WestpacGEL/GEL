@@ -1,5 +1,6 @@
-import React from 'react';
-import { Global, useBrand } from '@westpac/core';
+/** @jsx jsx */
+
+import { GEL, jsx, Global, useBrand } from '@westpac/core';
 import {
 	FormPod,
 	FormPodPanel,
@@ -8,13 +9,14 @@ import {
 	FormPodContactList,
 	FormPodIndicator,
 	FormPodActions,
-} from '../src';
+} from '@westpac/form-pod';
 import { Alert, Heading } from '@westpac/alert';
-import { List, ListItem } from '@westpac/list';
+import { List, Item } from '@westpac/list';
 import { HeadsetIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
+import { Fragment } from 'react';
 
-export default () => {
+function Example({ brand }) {
 	const { COLORS } = useBrand();
 
 	// Contact detail data
@@ -28,7 +30,7 @@ export default () => {
 	];
 
 	return (
-		<>
+		<GEL brand={brand}>
 			<Global
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
@@ -47,15 +49,15 @@ export default () => {
 						</Heading>
 
 						<List type="unstyled">
-							<ListItem>
+							<Item>
 								<a href="#title">Select a title</a>
-							</ListItem>
-							<ListItem>
+							</Item>
+							<Item>
 								<a href="#given-name">Enter your given name</a>
-							</ListItem>
-							<ListItem>
+							</Item>
+							<Item>
 								<a href="#family-name">Enter your family name</a>
-							</ListItem>
+							</Item>
 						</List>
 					</Alert>
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
@@ -66,14 +68,14 @@ export default () => {
 				</FormPodPanel>
 				<FormPodActions
 					primary={
-						<>
+						<Fragment>
 							<Button appearance="primary" soft size="large" block={[true, false]}>
 								Back
 							</Button>
 							<Button appearance="primary" size="large" block={[true, false]}>
 								Next
 							</Button>
-						</>
+						</Fragment>
 					}
 					secondary={
 						<Button appearance="faint" soft size="large" block={[true, false]}>
@@ -82,6 +84,8 @@ export default () => {
 					}
 				/>
 			</FormPod>
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

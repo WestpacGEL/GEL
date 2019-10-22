@@ -1,4 +1,5 @@
-const bodyFont = '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif';
+const bodyFont =
+	'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif';
 const brandFont = '"brandFontBOM"';
 
 module.exports = {

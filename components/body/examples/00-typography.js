@@ -6,11 +6,7 @@ import { Body } from '@westpac/body';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Body
-				css={{
-					margin: '0 0 3rem 0',
-				}}
-			>
+			<Body>
 				<h2>Headings</h2>
 				<h1>This is a h1 heading</h1>
 				<h2>This is a h2 heading</h2>

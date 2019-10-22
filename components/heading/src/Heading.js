@@ -14,28 +14,29 @@ export const Heading = ({ tag: Tag, size, children, ...props }) => {
 	const { TYPE } = useBrand();
 
 	// ignore all non h1-h6 tags
-	if( Tag && !Tag.startsWith('h') && !(Tag.length === 2) ) {
+	if (Tag && !Tag.startsWith('h') && !(Tag.length === 2)) {
 		Tag = null;
 	}
 
 	// fall back to size = semantic if no tag is given
-	if( !Tag ) {
-		if( size > 6 ) {
+	if (!Tag) {
+		if (size > 6) {
 			Tag = 'h6';
-		}
-		else if( size < 1 ) {
+		} else if (size < 1) {
 			Tag = 'h1';
-		}
-		else {
+		} else {
 			Tag = `h${size}`;
 		}
 	}
 
 	return (
-		<Tag {...props} css={{
-			margin: 0,
-			...TYPE.packs.headline[ size ],
-		}}>
+		<Tag
+			{...props}
+			css={{
+				margin: 0,
+				...TYPE.packs.headline[size],
+			}}
+		>
 			{children}
 		</Tag>
 	);
@@ -49,12 +50,13 @@ Heading.propTypes = {
 	/**
 	 * Component tag
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.oneOf([ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ])]),
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])]),
 
 	/**
 	 * The visual size of the headline
 	 */
-	size: PropTypes.oneOf([ 1, '1', 2, '2', 3, '3', 4, '4', 5, '5', 6, '6', 7, '7', 8, '8', 9, '9' ]).isRequired,
+	size: PropTypes.oneOf([1, '1', 2, '2', 3, '3', 4, '4', 5, '5', 6, '6', 7, '7', 8, '8', 9, '9'])
+		.isRequired,
 };
 
 Heading.defaultProps = {};

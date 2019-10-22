@@ -1,5 +1,7 @@
-import React from 'react';
-import { Button } from '../src';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { Button } from '@westpac/button';
 
 // Examples
 const sizes = [
@@ -9,26 +11,30 @@ const sizes = [
 ];
 const blocks = [[true, false, true, false], [true, false], [true, null, false]];
 
-export default () => (
-	<>
-		<h2>Responsive sizing</h2>
-		{sizes.map((s, i) => (
-			<p key={i}>
-				<Button appearance="primary" size={s}>
-					[{s.map(v => String(v)).join(', ')}]
-				</Button>
-			</p>
-		))}
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<h2>Responsive sizing</h2>
+			{sizes.map((s, i) => (
+				<p key={i}>
+					<Button appearance="primary" size={s}>
+						[{s.map(v => String(v)).join(', ')}]
+					</Button>
+				</p>
+			))}
 
-		<hr />
+			<hr />
 
-		<h2>Responsive block</h2>
-		{blocks.map((b, i) => (
-			<p key={i}>
-				<Button appearance="primary" size="xlarge" block={b}>
-					[{b.map(v => String(v)).join(', ')}]
-				</Button>
-			</p>
-		))}
-	</>
-);
+			<h2>Responsive block</h2>
+			{blocks.map((b, i) => (
+				<p key={i}>
+					<Button appearance="primary" size="xlarge" block={b}>
+						[{b.map(v => String(v)).join(', ')}]
+					</Button>
+				</p>
+			))}
+		</GEL>
+	);
+}
+
+export default Example;

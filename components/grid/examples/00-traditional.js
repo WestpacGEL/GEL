@@ -1,5 +1,7 @@
-import React from 'react';
-import { Cell, Grid } from '../src';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { Cell, Grid } from '@westpac/grid';
 import { Box, createRange } from './_utils';
 
 const rows = counts =>
@@ -13,4 +15,12 @@ const rows = counts =>
 		))
 	);
 
-export default () => <Grid>{rows([12, 6, 4, 2, 1])}</Grid>;
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Grid>{rows([12, 6, 4, 2, 1])}</Grid>;
+		</GEL>
+	);
+}
+
+export default Example;
