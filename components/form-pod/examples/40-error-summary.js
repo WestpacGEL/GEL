@@ -41,7 +41,7 @@ function Example({ brand }) {
 			/>
 
 			<FormPod preheading="Preheading" heading="Heading">
-				<FormPodPanel isNoBorderTop>
+				<FormPodPanel noBorderTop>
 					<Alert appearance="danger">
 						{/* Nb. Tabindex="-1" for programmatically set focus */}
 						<Heading tag="h3" tabIndex="-1">
