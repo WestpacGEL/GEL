@@ -19,7 +19,7 @@ export const useSwitchContext = () => {
 	return context;
 };
 
-export const sizeMap = {
+const sizeMap = {
 	small: {
 		width: '4.375rem',
 		height: '1.875rem',
@@ -46,6 +46,14 @@ export const sizeMap = {
 	},
 };
 
+const responsiveMap = size => ({
+	width: size.map(s => s && sizeMap[s].width),
+	height: size.map(s => s && sizeMap[s].height),
+	borderRadius: size.map(s => s && sizeMap[s].borderRadius),
+	fontSize: size.map(s => s && sizeMap[s].fontSize),
+});
+
+const asArray = val => (Array.isArray(val) ? val : [val]);
 // ==============================
 // Component
 // ==============================
@@ -53,11 +61,15 @@ export const sizeMap = {
 /**
  * Switch: Switch component for the Westpac GEL
  */
-export const Switch = ({ size, ...props }) => (
-	<SwitchContext.Provider value={{ size }}>
-		<SwitchLabel {...props} />
-	</SwitchContext.Provider>
-);
+export const Switch = ({ size, ...props }) => {
+	const sizeArr = responsiveMap(asArray(size));
+
+	return (
+		<SwitchContext.Provider value={{ sizeArr }}>
+			<SwitchLabel {...props} />
+		</SwitchContext.Provider>
+	);
+};
 
 // ==============================
 // Types

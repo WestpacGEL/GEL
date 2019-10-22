@@ -3,10 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { SwitchText } from './SwitchText';
 import { SwitchToggle } from './SwitchToggle';
-import { useSwitchContext, sizeMap } from './Switch';
+import { useSwitchContext } from './Switch';
+
+// ==============================
+// Context and consumer hook
+// ==============================
 
 // ==============================
 // Context and consumer hook
@@ -30,9 +34,11 @@ export const SwitchLabel = ({
 	...props
 }) => {
 	const [isChecked, setChecked] = useState(checked);
+
 	const [switchId] = useState(`switch-${shortid.generate()}`);
-	const { size } = useSwitchContext();
+	const { sizeArr } = useSwitchContext();
 	const { COLORS } = useBrand();
+	const mq = useMediaQuery();
 
 	const toggle = () => {
 		setChecked(!isChecked);
@@ -44,15 +50,15 @@ export const SwitchLabel = ({
 
 	return (
 		<label
-			css={{
+			css={mq({
 				display: block ? 'flex' : 'inline-flex',
 				width: block && '100%',
 				flexWrap: 'wrap',
 				alignItems: 'center',
 				position: 'relative',
 				marginRight: !block && '1.125rem',
-				height: !block && sizeMap[size].height,
-				paddingRight: sizeMap[size].width,
+				height: !block && sizeArr.height,
+				paddingRight: sizeArr.width,
 				marginBottom: '0.375rem',
 				flexDirection: flipped && 'row-reverse',
 
@@ -60,7 +66,7 @@ export const SwitchLabel = ({
 					cursor: 'default',
 					color: COLORS.muted,
 				},
-			}}
+			})}
 			htmlFor={switchId}
 			checked={checked}
 			{...props}

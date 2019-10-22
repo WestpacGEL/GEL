@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
-import { useSwitchContext, sizeMap } from './Switch';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { useSwitchContext } from './Switch';
 
 // ==============================
-// Context and consumer hook
+// utils
 // ==============================
+const calcKnob = height => height.map(h => h && `${parseFloat(h) - 0.25}rem`);
 
+const calcKnob2 = height => height.map(h => h && `calc(100% - ${h} - 0.25rem`);
 // ==============================
 // Component
 // ==============================
@@ -17,15 +19,16 @@ import { useSwitchContext, sizeMap } from './Switch';
  * Switch: Switch component for the Westpac GEL
  */
 export const SwitchToggle = ({ toggleText, checked, ...props }) => {
+	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
-	const { size } = useSwitchContext();
+	const { sizeArr } = useSwitchContext();
 
 	return (
 		<span
-			css={{
-				borderRadius: sizeMap[size].borderRadius,
-				height: sizeMap[size].height,
-				width: sizeMap[size].width,
+			css={mq({
+				borderRadius: sizeArr.borderRadius,
+				height: sizeArr.height,
+				width: sizeArr.width,
 				display: 'block',
 				position: 'relative',
 				right: 0,
@@ -38,8 +41,8 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 				transition: 'border .3s ease,background .3s ease',
 
 				'::after': {
-					height: `calc(${sizeMap[size].height} - 0.25rem)`,
-					width: `calc(${sizeMap[size].height} - 0.25rem)`,
+					height: calcKnob(sizeArr.height),
+					width: calcKnob(sizeArr.height),
 					content: '""',
 					display: 'block',
 					position: 'absolute',
@@ -57,15 +60,15 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 					cursor: 'default',
 					opacity: 0.5,
 				},
-			}}
+			})}
 		>
 			{toggleText && (
 				<>
 					<span
-						css={{
-							lineHeight: `calc(${sizeMap[size].height} - 0.25rem)`,
+						css={mq({
+							lineHeight: calcKnob(sizeArr.height),
 							fontSize: sizeMap[size].fontSize,
-							width: `calc(100% - (${sizeMap[size].height} - 0.25rem))`,
+							width: calcKnob2(sizeArr.height),
 							right: 0,
 							color: COLORS.neutral,
 							position: 'absolute',
@@ -73,16 +76,16 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 							transition: 'opacity .3s ease',
 							paddingLeft: '0.25rem',
 							paddingRight: '0.25rem',
-						}}
+						})}
 						value={toggleText[0]}
 					>
 						{toggleText[0]}
 					</span>
 					<span
-						css={{
-							lineHeight: `calc(${sizeMap[size].height} - 0.25rem)`,
+						css={mq({
+							lineHeight: calcKnob(sizeArr.height),
 							fontSize: sizeMap[size].fontSize,
-							width: `calc(100% - (${sizeMap[size].height} - 0.25rem))`,
+							width: calcKnob2(sizeArr.height),
 							opacity: checked ? null : 0,
 							left: 0,
 							color: '#fff',
@@ -91,7 +94,7 @@ export const SwitchToggle = ({ toggleText, checked, ...props }) => {
 							transition: 'opacity .3s ease',
 							paddingLeft: '0.25rem',
 							paddingRight: '0.25rem',
-						}}
+						})}
 						value={toggleText[1]}
 					>
 						{toggleText[1]}
