@@ -75,13 +75,75 @@ export const Switch = ({ size, ...props }) => {
 // Types
 // ==============================
 
+const options = {
+	size: ['small', 'medium', 'large', 'xlarge'],
+};
+
 Switch.propTypes = {
 	/**
-	 * Describe `someProperty` here
+	 * Switch input element name
 	 */
-	someProperty: PropTypes.string,
+	name: PropTypes.string,
+
+	/**
+	 * On/off text.
+	 *
+	 * This prop takes an array where the first index is the "on" text and second index is the "off" text e.g. "['Yes', 'No']"
+	 */
+	toggleText: PropTypes.arrayOf(PropTypes.string),
+
+	/**
+	 * Switch size
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(options.size),
+		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
+	]),
+
+	/**
+	 * Block mode
+	 */
+	block: PropTypes.bool,
+
+	/**
+	 * Reverse the horizontal orientation. Renders the toggle on the left of the label text.
+	 */
+	flipped: PropTypes.bool,
+
+	/**
+	 * Enable ‘screen reader only’ label text mode.
+	 */
+	srOnlyText: PropTypes.bool,
+
+	/**
+	 * Switch on
+	 */
+	checked: PropTypes.bool,
+
+	/**
+	 * Disable the switch
+	 */
+	disabled: PropTypes.bool,
+
+	/**
+	 * The onChange handler for this switch
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * Label text.
+	 *
+	 * This prop is required, but can be visually hidden by enabling "srOnlyText" mode.
+	 */
+	children: PropTypes.string.isRequired,
 };
 
 Switch.defaultProps = {
 	size: 'medium',
+	toggleText: ['On', 'Off'],
+	block: false,
+	flipped: false,
+	srOnlyText: false,
+	checked: false,
+	disabled: false,
 };

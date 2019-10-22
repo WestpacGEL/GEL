@@ -94,12 +94,7 @@ export const SwitchLabel = ({
 // Types
 // ==============================
 
-SwitchLabel.propTypes = {
-	/**
-	 * Describe `someProperty` here
-	 */
-	someProperty: PropTypes.string,
-};
+SwitchLabel.propTypes = {};
 
 SwitchLabel.defaultProps = {
 	checked: false,
