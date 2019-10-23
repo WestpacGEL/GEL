@@ -17,7 +17,7 @@ function Example({ brand }) {
 			<h2>Responsive sizing</h2>
 			{sizes.map((s, i) => (
 				<p key={i}>
-					<Button appearance="primary" size={s}>
+					<Button look="primary" size={s}>
 						[{s.map(v => String(v)).join(', ')}]
 					</Button>
 				</p>
@@ -28,7 +28,7 @@ function Example({ brand }) {
 			<h2>Responsive block</h2>
 			{blocks.map((b, i) => (
 				<p key={i}>
-					<Button appearance="primary" size="xlarge" block={b}>
+					<Button look="primary" size="xlarge" block={b}>
 						[{b.map(v => String(v)).join(', ')}]
 					</Button>
 				</p>

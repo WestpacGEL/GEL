@@ -9,19 +9,20 @@ function Example({ brand }) {
 			<h2>Default instance (no styling props)</h2>
 			<Button>Default</Button>
 			<hr />
+
 			<h2>Standard</h2>
-			<Button appearance="primary">Primary standard</Button>{' '}
-			<Button appearance="hero">Hero standard</Button>{' '}
-			<Button appearance="faint">Faint standard</Button> <Button appearance="link">Link</Button>
+			<Button look="primary">Primary standard</Button> <Button look="hero">Hero standard</Button>{' '}
+			<Button look="faint">Faint standard</Button> <Button look="link">Link</Button>
 			<hr />
+
 			<h2>Soft</h2>
-			<Button appearance="primary" soft>
+			<Button look="primary" soft>
 				Primary soft
 			</Button>{' '}
-			<Button appearance="hero" soft>
+			<Button look="hero" soft>
 				Hero soft
 			</Button>{' '}
-			<Button appearance="faint" soft>
+			<Button look="faint" soft>
 				Faint soft
 			</Button>
 		</GEL>

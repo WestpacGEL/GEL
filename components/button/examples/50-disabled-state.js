@@ -6,26 +6,27 @@ import { Button } from '@westpac/button';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Button appearance="primary" disabled>
+			<Button look="primary" disabled>
 				Primary
 			</Button>{' '}
-			<Button appearance="hero" disabled>
+			<Button look="hero" disabled>
 				Hero
 			</Button>{' '}
-			<Button appearance="faint" disabled>
+			<Button look="faint" disabled>
 				Faint
 			</Button>{' '}
-			<Button appearance="link" disabled>
+			<Button look="link" disabled>
 				Link
 			</Button>
 			<hr />
-			<Button appearance="primary" soft disabled>
+
+			<Button look="primary" soft disabled>
 				Primary soft
 			</Button>{' '}
-			<Button appearance="hero" soft disabled>
+			<Button look="hero" soft disabled>
 				Hero soft
 			</Button>{' '}
-			<Button appearance="faint" soft disabled>
+			<Button look="faint" soft disabled>
 				Faint soft
 			</Button>
 		</GEL>

@@ -9,7 +9,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<h2>Trim</h2>
 
-			<Button appearance="link" trim>
+			<Button look="link" trim>
 				Trimmed link button
 			</Button>
 

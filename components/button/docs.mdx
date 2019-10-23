@@ -12,13 +12,13 @@ import { InfoIcon, HouseIcon } from '@westpac/icon';
 
 The button system provides the flexibility of multiple styles, sizes and configurations depending on requirements.
 
-## Appearance
+## Look
 
-Use the following button appearances in your interface. These basic button styles form the base styling options for all other button variations.
+Use the following button looks in your interface. These basic button styles form the base styling options for all other button variations.
 
 <Playground>
-	<Button appearance="primary">Primary</Button> <Button appearance="hero">Hero</Button>{' '}
-	<Button appearance="faint">Faint</Button> <Button appearance="link">Link</Button>
+	<Button look="primary">Primary</Button> <Button look="hero">Hero</Button>{' '}
+	<Button look="faint">Faint</Button> <Button look="link">Link</Button>
 </Playground>
 
 ## Tags
@@ -32,7 +32,7 @@ Use the `tag` prop to configure the Button component to render as a `<button>`, 
 	</p>
 	<p>
 		<Button href="#0">Link</Button>{' '}
-		<Button href="#0" appearance="link">
+		<Button href="#0" look="link">
 			Link
 		</Button>{' '}
 	</p>
@@ -48,13 +48,13 @@ Use the `tag` prop to configure the Button component to render as a `<button>`, 
 Soft buttons render with less visual emphasis, often used when grouping buttons with differing importance.
 
 <Playground>
-	<Button appearance="primary" soft>
+	<Button look="primary" soft>
 		Primary soft
 	</Button>{' '}
-	<Button appearance="hero" soft>
+	<Button look="hero" soft>
 		Hero soft
 	</Button>{' '}
-	<Button appearance="faint" soft>
+	<Button look="faint" soft>
 		Faint soft
 	</Button>
 </Playground>
@@ -95,30 +95,30 @@ Disable Button components by passing a `disabled` prop.
 
 <Playground>
 	<p>
-		<Button appearance="primary" disabled>
+		<Button look="primary" disabled>
 			Primary
 		</Button>{' '}
-		<Button appearance="hero" disabled>
+		<Button look="hero" disabled>
 			Hero
 		</Button>{' '}
-		<Button appearance="faint" disabled>
+		<Button look="faint" disabled>
 			Faint
 		</Button>{' '}
-		<Button appearance="link" disabled>
+		<Button look="link" disabled>
 			Link
 		</Button>
 	</p>
 	<p>
-		<Button appearance="primary" soft disabled>
+		<Button look="primary" soft disabled>
 			Primary soft
 		</Button>{' '}
-		<Button appearance="hero" soft disabled>
+		<Button look="hero" soft disabled>
 			Hero soft
 		</Button>{' '}
-		<Button appearance="faint" soft disabled>
+		<Button look="faint" soft disabled>
 			Faint soft
 		</Button>{' '}
-		<Button appearance="link" soft disabled>
+		<Button look="link" soft disabled>
 			Link soft
 		</Button>
 	</p>
@@ -164,7 +164,7 @@ Use the `justify` option to align the button’s contents with internal edges in
 Use the `trim` option to strip horizontal padding.
 
 <Playground>
-	<Button appearance="link" trim>
+	<Button look="link" trim>
 		Trimmed
 	</Button>
 </Playground>
