@@ -5,7 +5,7 @@ route: /badge
 ---
 
 import { Playground, Props } from 'docz';
-import { Badge } from './src';
+import { Badge } from '@westpac/badge';
 
 # Badge
 
@@ -14,15 +14,15 @@ Badges are styled elements generally used to highlight a number. They come in ni
 <Playground>
 	<Badge>Default</Badge>{' '}
 
-    <Badge appearance="primary">Primary</Badge>{' '}
-    <Badge appearance="hero">Hero</Badge>{' '}
-    <Badge appearance="neutral">Neutral</Badge>{' '}
-    <Badge appearance="faint">Faint</Badge>{' '}
+    	<Badge look="primary value="Primary"/>{' '}
+    	<Badge look="hero value="Hero"/>{' '}
+    	<Badge look="neutral value="Neutral"/>{' '}
+    	<Badge look="faint value="Faint"/>{' '}
 
-    <Badge appearance="success">Success</Badge>{' '}
-    <Badge appearance="information">Information</Badge>{' '}
-    <Badge appearance="warning">Warning</Badge>{' '}
-    <Badge appearance="danger">Danger</Badge>
+    	<Badge look="success value="Success"/>{' '}
+    	<Badge look="information value="Information"/>{' '}
+    	<Badge look="warning value="Warning"/>{' '}
+    	<Badge look="danger value="Danger"/>
 
 </Playground>
 

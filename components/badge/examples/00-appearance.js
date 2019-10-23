@@ -7,15 +7,15 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<p>
-				<Badge>Default</Badge>
+				<Badge value="Default" />
 			</p>
 			<p>
-				<Badge appearance="primary">Primary</Badge> <Badge appearance="hero">Hero</Badge>{' '}
-				<Badge appearance="neutral">Neutral</Badge> <Badge appearance="faint">Faint</Badge>
+				<Badge look="primary" value="Primary" /> <Badge look="hero" value="Hero" />{' '}
+				<Badge look="neutral" value="Neutral" /> <Badge look="faint" value="Faint" />
 			</p>
 			<p>
-				<Badge appearance="success">Success</Badge> <Badge appearance="info">Info</Badge>{' '}
-				<Badge appearance="warning">Warning</Badge> <Badge appearance="danger">Danger</Badge>
+				<Badge look="success" value="Success" /> <Badge look="info" value="Info" />{' '}
+				<Badge look="warning" value="Warning" /> <Badge look="danger" value="Danger" />
 			</p>
 		</GEL>
 	);
