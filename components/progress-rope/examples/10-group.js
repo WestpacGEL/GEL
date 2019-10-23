@@ -2,8 +2,8 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
-import { Button } from '@westpac/Button';
-import { ProgressRope, Group, Item } from '../src';
+import { Button } from '@westpac/button';
+import { ProgressRope, Group, Item } from '@westpac/progress-rope';
 import { useProgress, Link } from './_utils';
 
 function Example({ brand }) {

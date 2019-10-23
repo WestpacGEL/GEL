@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { Children, cloneElement, createContext, useState, useEffect, useContext } from 'react';
+import {
+	Children,
+	cloneElement,
+	createContext,
+	useReducer,
+	useState,
+	useEffect,
+	useContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 import { ProgressRopeGroup } from './ProgressRopeGroup';
@@ -41,49 +49,64 @@ const createRopeGraph = children => {
 // Component
 // ==============================
 export const ProgressRope = ({ current, children, ...props }) => {
-	const [progress, setProgress] = useState({
+	const initialState = {
 		currStep: current,
 		currGroup: 0,
 		openGroup: 0,
 		...createRopeGraph(children),
-	});
-
-	const handleClick = index => {
-		setProgress({ ...progress, openGroup: index !== progress.openGroup ? index : null });
 	};
+
+	const progressReducer = (state, action) => {
+		switch (action.type) {
+			case 'UPDATE_STEP':
+				return { ...state, currStep: action.payload };
+			case 'UPDATE_GROUP':
+				return { ...state, currGroup: action.payload };
+			case 'UPDATE_OPEN_GROUP':
+				return { ...state, openGroup: action.payload };
+			case 'UPDATED_GROUPED':
+				return { ...state, grouped: action.payload };
+			case 'UPDATE_GRAPH':
+				return { ...state, ropeGraph: action.payload };
+			default:
+				return state;
+		}
+	};
+
+	const [state, dispatch] = useReducer(progressReducer, initialState);
 
 	useEffect(() => {
 		let itemCount = 0;
-		const updatedGraph = progress.ropeGraph.map(group => [...group]); // deep copy
-		const updatedProgress = { ...progress };
+		const updatedGraph = state.ropeGraph.map(group => [...group]); // deep copy
 
-		if (progress.grouped) {
-			progress.ropeGraph.forEach((group, i) => {
+		if (state.grouped) {
+			state.ropeGraph.forEach((group, i) => {
 				if (current >= itemCount) {
 					itemCount += group.length;
 					if (current < itemCount) {
 						// current index is in here
 						const pos = group.length - (itemCount - current);
 						updatedGraph[i][pos] = 'visited';
-						Object.assign(updatedProgress, {
-							currStep: pos,
-							currGroup: i,
-							openGroup: i,
-							ropeGraph: updatedGraph,
-						});
+						dispatch({ type: 'UPDATE_GRAPH', payload: updatedGraph });
+						dispatch({ type: 'UPDATE_STEP', payload: pos });
+						dispatch({ type: 'UPDATE_GROUP', payload: i });
+						dispatch({ type: 'UPDATE_OPEN_GROUP', payload: i });
 					}
 				}
 			});
 		} else {
 			if (current < updatedGraph.length && current >= 0) updatedGraph[current][0] = 'visited';
-			Object.assign(updatedProgress, { currStep: current, ropeGraph: updatedGraph });
+			dispatch({ type: 'UPDATE_STEP', payload: current });
+			dispatch({ type: 'UPDATE_GRAPH', payload: updatedGraph });
 		}
-
-		setProgress(updatedProgress);
 	}, [current]);
 
+	const handleClick = index => {
+		dispatch({ type: 'UPDATE_OPEN_GROUP', payload: index !== state.openGroup ? index : null });
+	};
+
 	return (
-		<ProgressRopeContext.Provider value={{ ...progress, handleClick }}>
+		<ProgressRopeContext.Provider value={{ ...state, handleClick }}>
 			<ol css={{ position: 'relative', listStyle: 'none', paddingLeft: 0, margin: 0 }} {...props}>
 				{Children.map(children, (child, i) => cloneElement(child, { index: i }))}
 			</ol>
