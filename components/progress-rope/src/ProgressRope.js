@@ -1,13 +1,6 @@
 /** @jsx jsx */
 
-import React, {
-	Children,
-	cloneElement,
-	createContext,
-	useState,
-	useEffect,
-	useContext,
-} from 'react';
+import { Children, cloneElement, createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
 import { ProgressRopeGroup } from './ProgressRopeGroup';

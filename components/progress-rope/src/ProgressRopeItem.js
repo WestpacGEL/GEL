@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
-import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { useProgressRopeContext } from './ProgressRope';
 
 export const ProgressRopeItem = ({ index, groupIndex, review, ...props }) => {
 	const { currStep, currGroup, grouped, ropeGraph } = useProgressRopeContext();
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 
 	const visited =
 		(grouped && !review && ropeGraph[groupIndex][index] === 'visited') ||
@@ -74,6 +73,7 @@ export const ProgressRopeItem = ({ index, groupIndex, review, ...props }) => {
 					right: grouped && !review ? '2.125rem' : '1.875rem',
 					border: `2px solid ${visited ? COLORS.primary : COLORS.border}`,
 					backgroundColor: grouped || review ? (visited ? COLORS.primary : COLORS.border) : '#fff',
+					boxSizing: 'border-box',
 				},
 
 				':last-child': {
@@ -88,6 +88,11 @@ export const ProgressRopeItem = ({ index, groupIndex, review, ...props }) => {
 // ==============================
 // Types
 // ==============================
+ProgressRopeItem.propTypes = {
+	/** Whether or not a review step*/
+	review: PropTypes.bool,
+};
+
 ProgressRopeItem.defaultProps = {
 	review: false,
 };

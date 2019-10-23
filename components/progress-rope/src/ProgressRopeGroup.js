@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { useProgressRopeContext } from './ProgressRope';
 
 export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 	const { openGroup, ropeGraph, handleClick } = useProgressRopeContext();
-	const { COLORS } = useTheme();
+	const { COLORS } = useBrand();
 	const active = ropeGraph[index].includes('visited');
 
 	return (
@@ -53,6 +53,7 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 						right: '1.875rem',
 						border: `2px solid ${active ? COLORS.primary : COLORS.border}`,
 						backgroundColor: '#fff',
+						boxSizing: 'border-box',
 					},
 				}}
 				onClick={() => handleClick(index)}
@@ -73,5 +74,6 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 // Types
 // ==============================
 ProgressRopeGroup.propTypes = {
+	/** Group Label text */
 	label: PropTypes.string.isRequired,
 };
