@@ -23,15 +23,17 @@ function Example({ brand }) {
 			<Button look="faint" soft>
 				Faint soft
 			</Button>
-			<hr/>
+			<hr />
 			<h2>Text button within text</h2>
 			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, eius temporibus consectetur officia cum reiciendis autem incidunt aperiam similique,
-				pariatur, ducimus quibusdam. Nesciunt consequuntur, ipsum. Id aperiam deleniti dolores sunt.
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. <Button look="link">Provident</Button>, dolorem ab dicta maiores soluta recusandae, ad quidem
-				odio qui culpa quam esse quia cupiditate ex architecto enim pariatur quis porro.
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque corporis soluta aliquam, ut adipisci dicta fugiat dignissimos veritatis dolor.
-				Praesentium neque totam quaerat at possimus culpa laborum, ad repellendus et!
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, eius temporibus consectetur
+				officia cum reiciendis autem incidunt aperiam similique, pariatur, ducimus quibusdam.
+				Nesciunt consequuntur, ipsum. Id aperiam deleniti dolores sunt. Lorem ipsum dolor sit amet,
+				consectetur adipisicing elit. <Button look="link">Provident</Button>, dolorem ab dicta
+				maiores soluta recusandae, ad quidem odio qui culpa quam esse quia cupiditate ex architecto
+				enim pariatur quis porro. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque
+				corporis soluta aliquam, ut adipisci dicta fugiat dignissimos veritatis dolor. Praesentium
+				neque totam quaerat at possimus culpa laborum, ad repellendus et!
 			</p>
 		</GEL>
 	);
