@@ -4,4 +4,5 @@ export default {
 	files: '**/*.mdx',
 	title: 'Westpac GEL Design System',
 	wrapper: 'helpers/docz/wrapper',
+	menu: ['Welcome', 'Components'],
 };
