@@ -3,14 +3,14 @@
 import { GEL, jsx, useBrand } from '@westpac/core';
 
 function Example({ brand }) {
-	const TOKENS = useBrand();
+	const { TYPE } = useBrand();
 
 	return (
 		<GEL brand={brand}>
 			<h2>Type</h2>
 			<div
 				css={{
-					...TOKENS.TYPE.files,
+					...TYPE.files,
 					marginBottom: '3rem',
 				}}
 			>
@@ -19,7 +19,7 @@ function Example({ brand }) {
 						display: 'block',
 						fontSize: '3rem',
 						margin: '1rem 0',
-						fontFamily: TOKENS.TYPE.brandFont.fontFamily,
+						fontFamily: TYPE.brandFont.fontFamily,
 					}}
 				>
 					Brand front
@@ -32,13 +32,13 @@ function Example({ brand }) {
 						margin: 0,
 					}}
 				>
-					{TOKENS.TYPE.brandFont.weights.map((weight, i) => (
+					{TYPE.brandFont.weights.map((weight, i) => (
 						<li
 							key={i}
 							css={{
 								display: 'block',
 								fontSize: '2rem',
-								fontFamily: TOKENS.TYPE.brandFont.fontFamily,
+								fontFamily: TYPE.brandFont.fontFamily,
 								fontWeight: weight,
 							}}
 						>
@@ -52,7 +52,7 @@ function Example({ brand }) {
 						display: 'block',
 						fontSize: '3rem',
 						margin: '1rem 0',
-						fontFamily: TOKENS.TYPE.bodyFont.fontFamily,
+						fontFamily: TYPE.bodyFont.fontFamily,
 					}}
 				>
 					Body front
@@ -65,13 +65,13 @@ function Example({ brand }) {
 						margin: 0,
 					}}
 				>
-					{TOKENS.TYPE.bodyFont.weights.map((weight, i) => (
+					{TYPE.bodyFont.weights.map((weight, i) => (
 						<li
 							key={i}
 							css={{
 								display: 'block',
 								fontSize: '2rem',
-								fontFamily: TOKENS.TYPE.bodyFont.fontFamily,
+								fontFamily: TYPE.bodyFont.fontFamily,
 								fontWeight: weight,
 							}}
 						>

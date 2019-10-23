@@ -4,25 +4,40 @@ import { GEL, jsx, useBrand } from '@westpac/core';
 import { useState } from 'react';
 
 function Example({ brand }) {
-	const TOKENS = useBrand();
-	const { tints, ...primaryColors } = TOKENS.COLORS;
+	const { COLORS, SPACING } = useBrand();
+	const { tints, ...primaryColors } = COLORS;
 	const [showMinor, setShowMinor] = useState(true);
+	const [count, setCount] = useState(11);
 
 	return (
 		<GEL brand={brand}>
 			<h2>Spacing</h2>
-			<label>
+			<label css={{
+				display: 'block',
+				marginTop: SPACING(2),
+			}}>
 				Show Minor:{' '}
 				<input type="checkbox" checked={showMinor} onChange={() => setShowMinor(!showMinor)} />
 			</label>
+			<label css={{
+				display: 'block',
+				marginTop: SPACING(2),
+			}}>
+				Units:
+				<input type="number" value={count} onChange={e => setCount(parseInt(e.target.value))} css={{
+					marginLeft: SPACING(1),
+					width: '3em',
+				}}/>
+			</label>
+
 			<ul
 				css={{
 					listStyle: 'none',
-					margin: 0,
+					margin: `${SPACING(5)} 0 0 0`,
 					padding: 0,
 				}}
 			>
-				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((unit, i) => (
+				{Array(count).fill().map((_, i) => (
 					<li
 						key={i}
 						css={{
@@ -37,7 +52,7 @@ function Example({ brand }) {
 								marginLeft: '0.5em',
 							}}
 						>
-							{unit}
+							{i}
 						</span>
 						<div
 							css={{
@@ -48,7 +63,7 @@ function Example({ brand }) {
 						>
 							<div
 								css={{
-									width: TOKENS.SPACING(unit, 'minor'),
+									width: SPACING(i, 'minor'),
 									height: '1rem',
 									border: `1px solid ${primaryColors.borderDark}`,
 									background: primaryColors.background,
@@ -59,7 +74,7 @@ function Example({ brand }) {
 							/>
 							<div
 								css={{
-									width: TOKENS.SPACING(unit),
+									width: SPACING(i),
 									height: '1rem',
 									border: `1px solid ${primaryColors.borderDark}`,
 									background: primaryColors.primary,

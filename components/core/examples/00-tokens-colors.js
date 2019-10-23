@@ -3,8 +3,8 @@
 import { GEL, jsx, useBrand } from '@westpac/core';
 
 function Example({ brand }) {
-	const TOKENS = useBrand();
-	const { tints, ...primaryColors } = TOKENS.COLORS;
+	const { COLORS} = useBrand();
+	const { tints, ...primaryColors } = COLORS;
 
 	return (
 		<GEL brand={brand}>
