@@ -73,5 +73,9 @@ module.exports = {
 				textDecoration: 'underline',
 			},
 		},
+		focus: {
+			outline: `2px solid ${COLORS.focus}`,
+			outlineOffset: '3px',
+		},
 	},
 };

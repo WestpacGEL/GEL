@@ -8,7 +8,7 @@ import { useBrand } from './Brand';
 import { reset } from './reset';
 
 export const Core = ({ children }) => {
-	const { COLORS, TYPE } = useBrand();
+	const { COLORS, TYPE, PACKS } = useBrand();
 
 	return (
 		<Fragment>
@@ -26,8 +26,7 @@ export const Core = ({ children }) => {
 					},
 					':focus, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring, button:-moz-focusring': {
 						// button:focus because of normalize reset (needs higher specificity)
-						outline: `3px dotted ${COLORS.text}`,
-						outlineOffset: '2px',
+						...PACKS.focus,
 					},
 					'::selection': {
 						backgroundColor: COLORS.tints.primary20,

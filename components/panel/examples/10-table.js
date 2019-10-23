@@ -91,9 +91,9 @@ function Example({ brand }) {
 							<td>Someone else</td>
 							<td>[not disclosed]</td>
 							<td>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta repudiandae, dolores,
-								quam sapiente esse maxime dolor provident impedit similique facilis reprehenderit.
-								Provident voluptatem eum, ipsum illum quisquam quam beatae iste.
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta repudiandae,
+								dolores, quam sapiente esse maxime dolor provident impedit similique facilis
+								reprehenderit. Provident voluptatem eum, ipsum illum quisquam quam beatae iste.
 							</td>
 						</tr>
 					</tbody>

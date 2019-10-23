@@ -14,8 +14,8 @@ function Example({ brand }) {
 			</p>
 			<Tooltip text="This is another tooltip">
 				<p>
-					Tooltip as a div block elements... Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Enim adipisci laboriosam unde dolore, maxime quae amet praesentium minus sit! Cumque
+					Tooltip as a div block elements... Lorem ipsum dolor sit amet, consectetur adipisicing
+					elit. Enim adipisci laboriosam unde dolore, maxime quae amet praesentium minus sit! Cumque
 					repudiandae laboriosam sit ipsum eaque cupiditate temporibus, necessitatibus consectetur
 					debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam itaque sunt hic
 					enim earum explicabo.
