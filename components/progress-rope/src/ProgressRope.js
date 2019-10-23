@@ -64,7 +64,7 @@ export const ProgressRope = ({ current, children, ...props }) => {
 				return { ...state, currGroup: action.payload };
 			case 'UPDATE_OPEN_GROUP':
 				return { ...state, openGroup: action.payload };
-			case 'UPDATED_GROUPED':
+			case 'UPDATE_GROUPED':
 				return { ...state, grouped: action.payload };
 			case 'UPDATE_GRAPH':
 				return { ...state, ropeGraph: action.payload };
