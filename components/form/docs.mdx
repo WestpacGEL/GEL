@@ -4,7 +4,7 @@ menu: Components
 route: /form
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, Props } from 'docz';
 import {
 	ChitChat,
 	ErrorMessage,
@@ -97,7 +97,7 @@ The `@westpac/form` package provides general form styling and layout components 
 
 Form is a wrapper component. It renders a `<form>` element by default; configurable via the `tag` prop. Form component size, spacing and inline options are also configurable. These settings are passed to children, available via `FormContext`.
 
-<PropsTable of={Form} />
+<Props of={Form} />
 
 ## FormSection
 
@@ -125,7 +125,7 @@ Use the optional `isNoPadding` prop to remove horizontal padding. This option is
 	</FormSection>
 </Playground>
 
-<PropsTable of={FormSection} />
+<Props of={FormSection} />
 
 ## FormGroup
 
@@ -162,7 +162,7 @@ Use the `primary` prop to centre the contents of a FormGroup. This option is use
 	</FormGroup>
 </Playground>
 
-<PropsTable of={FormGroup} />
+<Props of={FormGroup} />
 
 ## ChitChat
 
@@ -177,7 +177,7 @@ Form specific heading text, often used to provide a friendly conversational mess
 	</FormSection>
 </Playground>
 
-<PropsTable of={ChitChat} />
+<Props of={ChitChat} />
 
 ## Fieldset
 
@@ -240,7 +240,7 @@ Fieldset takes mandatory legend text via its `legend` prop.
 	</FormGroup>
 </Playground>
 
-<PropsTable of={Fieldset} />
+<Props of={Fieldset} />
 
 ## FormLabel
 
@@ -311,7 +311,7 @@ Always provide a FormLabel component for every associated input to meet WCAG 2.1
 	</FormGroup>
 </Playground>
 
-<PropsTable of={FormLabel} />
+<Props of={FormLabel} />
 
 ## Hint
 
@@ -345,7 +345,7 @@ Hint text is additional text provided to aid the user in understanding the expec
 	</FormGroup>
 </Playground>
 
-<PropsTable of={Hint} />
+<Props of={Hint} />
 
 ## ErrorMessage
 
@@ -381,7 +381,7 @@ Multiple messages can be rendered by passing an array of errors.
 	</FormGroup>
 </Playground>
 
-<PropsTable of={ErrorMessage} />
+<Props of={ErrorMessage} />
 
 ## InputCluster
 
@@ -421,4 +421,4 @@ The `horizontal` mode changes the layout to inline. This mode is used to render 
 	</InputCluster>
 </Playground>
 
-<PropsTable of={InputCluster} />
+<Props of={InputCluster} />

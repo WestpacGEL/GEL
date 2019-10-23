@@ -2,6 +2,13 @@
 
 The design system for Westpac GEL
 
+## Internal docs
+
+| Purpose    | branch    | url                                    |
+| ---------- | --------- | -------------------------------------- |
+| Production | `master`  | https://westpacgel.netlify.com         |
+| Staging    | `develop` | https://westpacgel-staging.netlify.com |
+
 ## Install and start running locally
 
 Install dependencies
@@ -169,6 +176,45 @@ yarn start button
 - css-in-js emotion will be used with the `jsx` pragma and babel plugin
 - For css-in-js we use `jsx` by importing from `@westpac/core` and never depend on `emotion` directly other than inside core itself
 
+### How we handle focus state
+
+We use the useFocus hook in the `GEL` component.
+You can [read about the focus hook on medium](https://medium.com/@wilkowskidom/how-i-learned-to-stop-worrying-and-love-the-outline-7a35b3b49e7).
+The `GEL` also adds the global focus styling from our `PACKS.focus` token pack.
+If you need to add it to something use:
+
+```js
+':focus': {
+	...PACKS.focus,
+},
+```
+
+However if you need a focus state that will persist across mouse users do something like this:
+
+```jsx
+const { PACKS } = useBrand();
+
+const focus = PACKS.focus;
+focus.outline += ' !important'; // adding `!important` will make sure the focus persists
+
+<Component
+	css={{
+		':focus': { ...focus },
+	}}
+/>;
+```
+
+### TOKENS
+
+| name      | purpose                                                  |
+| --------- | -------------------------------------------------------- |
+| `COLORS`  | Our colors including tints                               |
+| `LAYOUT`  | Only breakpoints so far                                  |
+| `PACKS`   | Mostly typography packs for reuse and consistency        |
+| `SPACING` | A function with minor scale to allow you to hit the grid |
+| `TYPE`    | Font files and definitions                               |
+| `BRAND`   | The current brand                                        |
+
 ### Naming convention for files inside components
 
 | name            | purpose                                                                     |
@@ -183,10 +229,12 @@ yarn start button
 
 ## Props API vocabulary
 
-| Prop                     | Description                                                                      |
-| ------------------------ | -------------------------------------------------------------------------------- |
-| `tag`                    | When a component can be rendered as different tags                               |
-| `look`                   | When talking about the look of a component like `success` or `hero`              |
-| `href`                   | When something points at a thing via a link                                      |
-| `icon`                   | For passing in an icon                                                           |
-| `disabled` or `noBorder` | For passing boolean flags we use natural language and not `is` or `has` prefixes |
+| Prop                          | Description                                                                             |
+| ----------------------------- | --------------------------------------------------------------------------------------- |
+| `tag`                         | When a component can be rendered as different tags                                      |
+| `look`                        | When talking about the look of a component like `success` or `hero`                     |
+| `href`                        | When something points at a thing via a link                                             |
+| `icon` `iconLeft` `iconRight` | For passing in an icon                                                                  |
+| `disabled` or `noBorder`      | For passing boolean flags we use natural language and not `is` or `has` prefixes        |
+| `size`                        | For the physical size of a component, should be: `'small', 'medium', 'large', 'xlarge'` |
+| `value`                       | For when a component shows a value, often numbers but not only                          |

@@ -87,12 +87,14 @@ function build(BRAND) {
 		export const LAYOUT = ${JSON.stringify(LAYOUT)};
 		export const TYPE = ${JSON.stringify(TYPE)};
 		export const PACKS = ${JSON.stringify(PACKS)};
+		export const BRAND = "${BRAND}";
 		export default {
 			SPACING,
 			COLORS,
 			LAYOUT,
 			TYPE,
 			PACKS,
+			BRAND,
 		};
 	`;
 }

@@ -18,13 +18,17 @@ const round = f => Math.round(f * 100) / 100; //2DP
 // ==============================
 
 export const TextInput = ({ size, width, inline, invalid, tag: Tag, children, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	// Consume FormContext
 	const formContext = useFormContext();
 	const textInputInline = inline || (formContext && formContext.inline) || false;
 	const textInputSize = size || (formContext && formContext.size) || 'medium';
+
+	// We'll add important to foxus state for text inputs so they are always visible even with the useFocus helper
+	const focus = PACKS.focus;
+	focus.outline += ' !important';
 
 	const sizeMap = {
 		small: {
@@ -88,8 +92,7 @@ export const TextInput = ({ size, width, inline, invalid, tag: Tag, children, ..
 
 		// Focus styling (for all, not just keyboard users)
 		':focus': {
-			outline: `2px solid ${COLORS.focus} !important`,
-			outlineOffset: 3,
+			...focus,
 		},
 
 		// Disabled and read-only inputs

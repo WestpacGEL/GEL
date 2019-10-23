@@ -8,8 +8,16 @@ import { jsx, useBrand } from '@westpac/core';
 // Component
 // ==============================
 
-export const Badge = ({ appearance, ...props }) => {
-	const { COLORS } = useBrand();
+export const Badge = ({ look, value, ...props }) => {
+	const { COLORS, BRAND } = useBrand();
+
+	let color = '#fff';
+	if (look === 'hero' && BRAND === 'STG') {
+		color = COLORS.text;
+	}
+	if (look === 'faint') {
+		color = COLORS.muted;
+	}
 
 	return (
 		<span
@@ -25,9 +33,9 @@ export const Badge = ({ appearance, ...props }) => {
 				textAlign: 'center',
 				verticalAlign: 'baseline',
 				whiteSpace: 'nowrap',
-				color: appearance === 'faint' ? COLORS.muted : '#fff', //TODO: STG uses `COLORS.text`
-				backgroundColor: COLORS[appearance],
-				borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
+				color: color,
+				backgroundColor: COLORS[look],
+				borderColor: look === 'faint' ? COLORS.border : COLORS[look],
 
 				'@media print': {
 					color: '#000',
@@ -36,7 +44,9 @@ export const Badge = ({ appearance, ...props }) => {
 				},
 			}}
 			{...props}
-		/>
+		>
+			{value}
+		</span>
 	);
 };
 
@@ -45,8 +55,10 @@ export const Badge = ({ appearance, ...props }) => {
 // ==============================
 
 Badge.propTypes = {
-	/** Badge appearance */
-	appearance: PropTypes.oneOf([
+	/**
+	 * Badge look
+	 */
+	look: PropTypes.oneOf([
 		'primary',
 		'hero',
 		'neutral',
@@ -57,10 +69,12 @@ Badge.propTypes = {
 		'danger',
 	]),
 
-	/** Badge text */
-	children: PropTypes.node.isRequired,
+	/**
+	 * Badge text
+	 */
+	value: PropTypes.string.isRequired,
 };
 
 Badge.defaultProps = {
-	appearance: 'neutral',
+	look: 'neutral',
 };

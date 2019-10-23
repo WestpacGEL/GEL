@@ -31,11 +31,11 @@ export const Heading = ({ tag: Tag, size, children, ...props }) => {
 
 	return (
 		<Tag
-			{...props}
 			css={{
 				margin: 0,
 				...PACKS.headline[size],
 			}}
+			{...props}
 		>
 			{children}
 		</Tag>

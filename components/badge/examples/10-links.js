@@ -8,49 +8,49 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<p>
 				<a href="#0">
-					Default <Badge>42</Badge>
+					Default <Badge value="42" />
 				</a>
 			</p>
 
 			<p>
 				<a href="#0">
-					Primary <Badge appearance="primary">13</Badge>
+					Primary <Badge look="primary" value="13" />
 				</a>
 			</p>
 			<p>
 				<a href="#0">
-					Hero <Badge appearance="hero">13</Badge>
+					Hero <Badge look="hero" value="13" />
 				</a>
 			</p>
 			<p>
 				<a href="#0">
-					Neutral <Badge appearance="neutral">13</Badge>
+					Neutral <Badge look="neutral" value="13" />
 				</a>
 			</p>
 			<p>
 				<a href="#0">
-					Faint <Badge appearance="faint">13</Badge>
+					Faint <Badge look="faint" value="13" />
 				</a>
 			</p>
 
 			<p>
 				<a href="#0">
-					Success <Badge appearance="success">71</Badge>
+					Success <Badge look="success" value="71" />
 				</a>
 			</p>
 			<p>
 				<a href="#0">
-					Info <Badge appearance="info">71</Badge>
+					Info <Badge look="info" value="71" />
 				</a>
 			</p>
 			<p>
 				<a href="#0">
-					Warning <Badge appearance="warning">71</Badge>
+					Warning <Badge look="warning" value="71" />
 				</a>
 			</p>
 			<p>
 				<a href="#0">
-					Danger <Badge appearance="danger">71</Badge>
+					Danger <Badge look="danger" value="71" />
 				</a>
 			</p>
 		</GEL>

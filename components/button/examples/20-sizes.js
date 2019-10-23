@@ -7,48 +7,48 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Small</h2>
-			<Button appearance="primary" size="small">
+			<Button look="primary" size="small">
 				Primary
 			</Button>{' '}
-			<Button appearance="hero" size="small">
+			<Button look="hero" size="small">
 				Hero
 			</Button>{' '}
-			<Button appearance="faint" size="small">
+			<Button look="faint" size="small">
 				Faint
 			</Button>{' '}
-			<Button appearance="link" size="small">
+			<Button look="link" size="small">
 				Link
 			</Button>
 			<hr />
 			<h2>Medium</h2>
-			<Button appearance="primary">Primary</Button> <Button appearance="hero">Hero</Button>{' '}
-			<Button appearance="faint">Faint</Button> <Button appearance="link">Link</Button>
+			<Button look="primary">Primary</Button> <Button look="hero">Hero</Button>{' '}
+			<Button look="faint">Faint</Button> <Button look="link">Link</Button>
 			<hr />
 			<h2>Large</h2>
-			<Button appearance="primary" size="large">
+			<Button look="primary" size="large">
 				Primary
 			</Button>{' '}
-			<Button appearance="hero" size="large">
+			<Button look="hero" size="large">
 				Hero
 			</Button>{' '}
-			<Button appearance="faint" size="large">
+			<Button look="faint" size="large">
 				Faint
 			</Button>{' '}
-			<Button appearance="link" size="large">
+			<Button look="link" size="large">
 				Link
 			</Button>
 			<hr />
 			<h2>Extra large</h2>
-			<Button appearance="primary" size="xlarge">
+			<Button look="primary" size="xlarge">
 				Primary
 			</Button>{' '}
-			<Button appearance="hero" size="xlarge">
+			<Button look="hero" size="xlarge">
 				Hero
 			</Button>{' '}
-			<Button appearance="faint" size="xlarge">
+			<Button look="faint" size="xlarge">
 				Faint
 			</Button>{' '}
-			<Button appearance="link" size="xlarge">
+			<Button look="link" size="xlarge">
 				Link
 			</Button>
 			<p></p>

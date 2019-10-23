@@ -2,17 +2,18 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Button } from '@westpac/button';
 import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { CSSTransition } from 'react-transition-group';
+import { Heading } from '@westpac/heading';
+import { Button } from '@westpac/button';
 
 // ==============================
 // Component
 // ==============================
 
-export const Alert = ({ appearance, closable, icon: Icon, children }) => {
-	const { COLORS } = useBrand();
+export const Alert = ({ look, closable, icon: Icon, heading, headingTag, children }) => {
+	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	const [open, setOpen] = useState(true);
 
@@ -26,46 +27,40 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 
 	// Set a default icon
 	if (Icon === undefined) {
-		Icon = iconMap[appearance];
+		Icon = iconMap[look];
 	}
 
-	// Common styling
-	const styleCommon = {
-		marginBottom: '1.3125rem',
-		padding: ['1.125rem', closable ? `1.125rem 1.875rem 1.125rem 1.125rem` : '1.125rem'],
-		position: 'relative',
-		display: [null, 'flex'],
-		zIndex: 1,
-		transition: 'opacity 0.3s ease-in-out',
-
-		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
-			color: 'inherit',
-		},
-
-		'&.anim-exit-active': {
-			opacity: 0,
-		},
-	};
-
-	// Appearance styling
-	const styleAppearance = {
-		color: appearance === 'system' ? 'black' : COLORS[appearance],
-		backgroundColor: appearance === 'system' ? COLORS.system : COLORS.tints[`${appearance}5`],
-		borderTop: '1px solid',
-		borderBottom: '1px solid',
-		borderColor: appearance === 'system' ? COLORS.system : COLORS.tints[`${appearance}50`],
-	};
+	//<Transition>
+	//	{state => <div css={{ state === 'exiting' }}}
+	//</Transition>
 
 	return (
 		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
-			<div css={mq({ ...styleCommon, ...styleAppearance })}>
+			<div
+				css={mq({
+					marginBottom: '1.3125rem',
+					padding: ['1.125rem', closable ? `1.125rem 1.875rem 1.125rem 1.125rem` : '1.125rem'],
+					position: 'relative',
+					display: [null, 'flex'],
+					zIndex: 1,
+					transition: 'opacity 0.3s ease-in-out',
+					'&.anim-exit-active': {
+						opacity: 0,
+					},
+					color: look === 'system' ? 'black' : COLORS[look],
+					backgroundColor: look === 'system' ? COLORS.system : COLORS.tints[`${look}5`],
+					borderTop: '1px solid',
+					borderBottom: '1px solid',
+					borderColor: look === 'system' ? COLORS.system : COLORS.tints[`${look}50`],
+				})}
+			>
 				{closable && (
 					<Button
 						onClick={() => {
 							setOpen(false);
 						}}
 						iconAfter={CloseIcon}
-						appearance="link"
+						look="link"
 						css={mq({
 							color: 'inherit',
 							position: ['relative', 'absolute'],
@@ -99,8 +94,16 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 						position: 'relative',
 						flex: 1,
 						top: [null, Icon && '0.125rem'],
+						'& > a, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, & > ol, & > ul': {
+							color: 'inherit',
+						},
 					})}
 				>
+					{heading && (
+						<Heading size={7} tag={headingTag} css={{ marginBottom: SPACING(2) }}>
+							{heading}
+						</Heading>
+					)}
 					{children}
 				</div>
 			</div>
@@ -114,9 +117,9 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 
 Alert.propTypes = {
 	/**
-	 * Alert appearance
+	 * Alert look
 	 */
-	appearance: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']),
+	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']),
 
 	/**
 	 * Enable closable mode
@@ -126,9 +129,19 @@ Alert.propTypes = {
 	/**
 	 * Alert icon.
 	 *
-	 * The alert icon is automatically rendered based on appearance, but can be overriden via this prop. Pass a `null` value to remove completely.
+	 * The alert icon is automatically rendered based on look, but can be overriden via this prop. Pass a `null` value to remove completely.
 	 */
 	icon: PropTypes.func,
+
+	/**
+	 * The heading
+	 */
+	heading: PropTypes.string,
+
+	/**
+	 * The tag of the heading element for semantic reasons
+	 */
+	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
 
 	/**
 	 * Alert children
@@ -137,6 +150,7 @@ Alert.propTypes = {
 };
 
 Alert.defaultProps = {
-	appearance: 'info',
+	look: 'info',
 	closable: false,
+	headingTag: 'h2',
 };

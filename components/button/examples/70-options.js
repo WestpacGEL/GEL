@@ -7,14 +7,6 @@ import { Button } from '@westpac/button';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<h2>Trim</h2>
-
-			<Button appearance="link" trim>
-				Trimmed link button
-			</Button>
-
-			<hr />
-
 			<h2>‘Screen reader only’ text mode</h2>
 
 			<Button iconAfter={HouseIcon} srOnlyText>

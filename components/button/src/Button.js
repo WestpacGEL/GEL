@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { ButtonContent } from './styled';
+import { Content } from './Content';
+import PropTypes from 'prop-types';
 
 // ==============================
 // Utils
@@ -16,11 +15,10 @@ const asArray = val => (Array.isArray(val) ? val : [val]);
 // ==============================
 
 export const Button = ({
-	appearance,
+	look,
 	size,
 	soft,
 	block,
-	trim,
 	iconAfter,
 	iconBefore,
 	justify,
@@ -34,37 +32,7 @@ export const Button = ({
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
-	if (soft && appearance === 'link') soft = false;
-
-	// Common styling
-	const styleCommon = {
-		alignItems: 'center', //vertical
-		appearance: 'none',
-		border: '1px solid transparent',
-		borderRadius: '0.1875rem',
-		cursor: 'pointer',
-		fontWeight: 400,
-		justifyContent: justify ? 'space-between' : 'center', //horizontal
-		lineHeight: 1.5,
-		textAlign: 'center',
-		textDecoration: 'none',
-		touchAction: 'manipulation',
-		transition: 'background 0.2s ease, color 0.2s ease',
-		userSelect: 'none',
-		verticalAlign: 'middle',
-		whiteSpace: 'nowrap',
-
-		// Hover state (but excluded if disabled or inside a disabled fieldset)
-		':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
-			textDecoration: appearance === 'link' ? 'underline' : 'none',
-		},
-
-		// Disabled via `disabled` attribute or inside a disabled fieldset
-		':disabled, fieldset:disabled &': {
-			opacity: '0.5',
-			pointerEvents: 'none',
-		},
-	};
+	if (soft && look === 'link') soft = false;
 
 	// Appearance styling
 	const styleAppearance = {
@@ -155,6 +123,7 @@ export const Button = ({
 
 	// Size styling (responsive)
 	const sizeArr = asArray(size);
+
 	const sizeMap = {
 		small: {
 			padding: ['0.1875rem', '0.5625rem', '0.25rem'],
@@ -177,24 +146,9 @@ export const Button = ({
 			height: '3rem',
 		},
 	};
-	const styleSize = {
-		padding: sizeArr.map(s => {
-			if (!s) return null;
-			const p = [...sizeMap[s].padding];
-			if (trim) p[1] = '0';
-
-			return p.join(' ');
-		}),
-		fontSize: sizeArr.map(s => s && sizeMap[s].fontSize),
-		height: sizeArr.map(s => s && sizeMap[s].height),
-	};
 
 	// Block styling (responsive)
 	const blockArr = asArray(block);
-	const styleBlock = {
-		display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
-		width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
-	};
 
 	if (props.href) {
 		Tag = 'a';
@@ -204,17 +158,59 @@ export const Button = ({
 		<Tag
 			type={Tag === 'button' && props.onClick ? 'button' : undefined}
 			css={mq({
-				...styleCommon,
-				...styleAppearance[appearance][soft ? 'soft' : 'standard'],
-				...styleSize,
-				...styleBlock,
+				alignItems: 'center', //vertical
+				appearance: 'none',
+				border: '1px solid transparent',
+				borderRadius: '0.1875rem',
+				cursor: 'pointer',
+				fontWeight: 400,
+				justifyContent: justify ? 'space-between' : 'center', //horizontal
+				lineHeight: 1.5,
+				textAlign: 'center',
+				textDecoration: 'none',
+				touchAction: 'manipulation',
+				transition: 'background 0.2s ease, color 0.2s ease',
+				userSelect: 'none',
+				verticalAlign: look === 'link' ? 'baseline' : 'middle',
+				whiteSpace: 'nowrap',
+
+				// Hover state (but excluded if disabled or inside a disabled fieldset)
+				':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
+					textDecoration: look === 'link' ? 'underline' : 'none',
+				},
+
+				// Disabled via `disabled` attribute or inside a disabled fieldset
+				':disabled, fieldset:disabled &': {
+					opacity: '0.5',
+					pointerEvents: 'none',
+				},
+				padding: sizeArr.map(s => {
+					if (!s) return null;
+					let p = [...sizeMap[s].padding];
+					if (look === 'link') {
+						p = ['0'];
+					}
+
+					return p.join(' ');
+				}),
+				fontSize: sizeArr.map(s => s && sizeMap[s].fontSize),
+				height: sizeArr.map(s => {
+					if (!s) return null;
+					if (look === 'link') {
+						return null;
+					}
+					return sizeMap[s].height;
+				}),
+				...styleAppearance[look][soft ? 'soft' : 'standard'],
+				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
+				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 			})}
 			onClick={onClick}
 			{...props}
 		>
 			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 			{Tag !== 'input' ? (
-				<ButtonContent
+				<Content
 					size={size}
 					block={block}
 					iconAfter={iconAfter}
@@ -222,7 +218,7 @@ export const Button = ({
 					srOnlyText={srOnlyText}
 				>
 					{children}
-				</ButtonContent>
+				</Content>
 			) : null}
 		</Tag>
 	);
@@ -232,23 +228,18 @@ export const Button = ({
 // Types
 // ==============================
 
-const options = {
-	appearance: ['primary', 'hero', 'faint', 'link'],
-	size: ['small', 'medium', 'large', 'xlarge'],
-};
-
-export const propTypes = {
+Button.propTypes = {
 	/**
-	 * Button appearance
+	 * Button look
 	 */
-	appearance: PropTypes.oneOf(options.appearance),
+	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link']),
 
 	/**
 	 * Button size
 	 */
 	size: PropTypes.oneOfType([
-		PropTypes.oneOf(options.size),
-		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
+		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
 	]),
 
 	/**
@@ -269,13 +260,6 @@ export const propTypes = {
 	 * Fit button width to its parent width.
 	 */
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
-
-	/**
-	 * Trim mode.
-	 *
-	 * Removes horizontal padding.
-	 */
-	trim: PropTypes.bool,
 
 	/**
 	 * Places an icon within the button, after the button’s text
@@ -308,15 +292,11 @@ export const propTypes = {
 	children: PropTypes.node,
 };
 
-export const defaultProps = {
-	appearance: 'primary',
+Button.defaultProps = {
+	look: 'primary',
 	size: 'medium',
 	tag: 'button',
 	soft: false,
 	block: false,
-	trim: false,
 	justify: false,
 };
-
-Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;

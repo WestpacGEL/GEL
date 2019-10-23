@@ -10,215 +10,215 @@ function Example({ brand }) {
 			<h2>Default button instance (no styling props)</h2>
 			<p>
 				<Button>
-					Default <Badge>Default</Badge>
+					Default <Badge value="Default" />
 				</Button>
 			</p>
 
 			<hr />
 
-			<h2>Button appearances</h2>
+			<h2>Button looks</h2>
 
 			<h3>Primary</h3>
 			<p>
-				<Button appearance="primary">
-					Primary <Badge>Default</Badge>
+				<Button look="primary">
+					Primary <Badge value="Default" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="primary">
-					Primary <Badge appearance="primary">Primary</Badge>
+				<Button look="primary">
+					Primary <Badge look="primary" value="Primary" />
 				</Button>{' '}
-				<Button appearance="primary">
-					Primary <Badge appearance="hero">Hero</Badge>
+				<Button look="primary">
+					Primary <Badge look="hero" value="Hero" />
 				</Button>{' '}
-				<Button appearance="primary">
-					Primary <Badge appearance="neutral">Neutral</Badge>
+				<Button look="primary">
+					Primary <Badge look="neutral" value="Neutral" />
 				</Button>{' '}
-				<Button appearance="primary">
-					Primary <Badge appearance="faint">Faint</Badge>
+				<Button look="primary">
+					Primary <Badge look="faint" value="Faint" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="primary">
-					Primary <Badge appearance="success">Success</Badge>
+				<Button look="primary">
+					Primary <Badge look="success" value="Success" />
 				</Button>{' '}
-				<Button appearance="primary">
-					Primary <Badge appearance="info">Info</Badge>
+				<Button look="primary">
+					Primary <Badge look="info" value="Info" />
 				</Button>{' '}
-				<Button appearance="primary">
-					Primary <Badge appearance="warning">Warning</Badge>
+				<Button look="primary">
+					Primary <Badge look="warning" value="Warning" />
 				</Button>{' '}
-				<Button appearance="primary">
-					Primary <Badge appearance="danger">Danger</Badge>
+				<Button look="primary">
+					Primary <Badge look="danger" value="Danger" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="primary" soft>
-					Primary soft <Badge>Default</Badge>
+				<Button look="primary" soft>
+					Primary soft <Badge value="Default" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="primary" soft>
-					Primary soft <Badge appearance="primary">Primary</Badge>
+				<Button look="primary" soft>
+					Primary soft <Badge look="primary" value="Primary" />
 				</Button>{' '}
-				<Button appearance="primary" soft>
-					Primary soft <Badge appearance="hero">Hero</Badge>
+				<Button look="primary" soft>
+					Primary soft <Badge look="hero" value="Hero" />
 				</Button>{' '}
-				<Button appearance="primary" soft>
-					Primary soft <Badge appearance="neutral">Neutral</Badge>
+				<Button look="primary" soft>
+					Primary soft <Badge look="neutral" value="Neutral" />
 				</Button>{' '}
-				<Button appearance="primary" soft>
-					Primary soft <Badge appearance="faint">Faint</Badge>
+				<Button look="primary" soft>
+					Primary soft <Badge look="faint" value="Faint" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="primary" soft>
-					Primary soft <Badge appearance="success">Success</Badge>
+				<Button look="primary" soft>
+					Primary soft <Badge look="success" value="Success" />
 				</Button>{' '}
-				<Button appearance="primary" soft>
-					Primary soft <Badge appearance="info">Info</Badge>
+				<Button look="primary" soft>
+					Primary soft <Badge look="info" value="Info" />
 				</Button>{' '}
-				<Button appearance="primary" soft>
-					Primary soft <Badge appearance="warning">Warning</Badge>
+				<Button look="primary" soft>
+					Primary soft <Badge look="warning" value="Warning" />
 				</Button>{' '}
-				<Button appearance="primary" soft>
-					Primary soft <Badge appearance="danger">Danger</Badge>
+				<Button look="primary" soft>
+					Primary soft <Badge look="danger" value="Danger" />
 				</Button>
 			</p>
 
 			<h3>Hero</h3>
 			<p>
-				<Button appearance="hero">
-					Hero <Badge>Default</Badge>
+				<Button look="hero">
+					Hero <Badge value="Default" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="hero">
-					Hero <Badge appearance="primary">Primary</Badge>
+				<Button look="hero">
+					Hero <Badge look="primary" value="Primary" />
 				</Button>{' '}
-				<Button appearance="hero">
-					Hero <Badge appearance="hero">Hero</Badge>
+				<Button look="hero">
+					Hero <Badge look="hero" value="Hero" />
 				</Button>{' '}
-				<Button appearance="hero">
-					Hero <Badge appearance="neutral">Neutral</Badge>
+				<Button look="hero">
+					Hero <Badge look="neutral" value="Neutral" />
 				</Button>{' '}
-				<Button appearance="hero">
-					Hero <Badge appearance="faint">Faint</Badge>
+				<Button look="hero">
+					Hero <Badge look="faint" value="Faint" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="hero">
-					Hero <Badge appearance="success">Success</Badge>
+				<Button look="hero">
+					Hero <Badge look="success" value="Success" />
 				</Button>{' '}
-				<Button appearance="hero">
-					Hero <Badge appearance="info">Info</Badge>
+				<Button look="hero">
+					Hero <Badge look="info" value="Info" />
 				</Button>{' '}
-				<Button appearance="hero">
-					Hero <Badge appearance="warning">Warning</Badge>
+				<Button look="hero">
+					Hero <Badge look="warning" value="Warning" />
 				</Button>{' '}
-				<Button appearance="hero">
-					Hero <Badge appearance="danger">Danger</Badge>
+				<Button look="hero">
+					Hero <Badge look="danger" value="Danger" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="hero" soft>
-					Hero soft <Badge>Default</Badge>
+				<Button look="hero" soft>
+					Hero soft <Badge value="Default" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="hero" soft>
-					Hero soft <Badge appearance="primary">Primary</Badge>
+				<Button look="hero" soft>
+					Hero soft <Badge look="primary" value="Primary" />
 				</Button>{' '}
-				<Button appearance="hero" soft>
-					Hero soft <Badge appearance="hero">Hero</Badge>
+				<Button look="hero" soft>
+					Hero soft <Badge look="hero" value="Hero" />
 				</Button>{' '}
-				<Button appearance="hero" soft>
-					Hero soft <Badge appearance="neutral">Neutral</Badge>
+				<Button look="hero" soft>
+					Hero soft <Badge look="neutral" value="Neutral" />
 				</Button>{' '}
-				<Button appearance="hero" soft>
-					Hero soft <Badge appearance="faint">Faint</Badge>
+				<Button look="hero" soft>
+					Hero soft <Badge look="faint" value="Faint" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="hero" soft>
-					Hero soft <Badge appearance="success">Success</Badge>
+				<Button look="hero" soft>
+					Hero soft <Badge look="success" value="Success" />
 				</Button>{' '}
-				<Button appearance="hero" soft>
-					Hero soft <Badge appearance="info">Info</Badge>
+				<Button look="hero" soft>
+					Hero soft <Badge look="info" value="Info" />
 				</Button>{' '}
-				<Button appearance="hero" soft>
-					Hero soft <Badge appearance="warning">Warning</Badge>
+				<Button look="hero" soft>
+					Hero soft <Badge look="warning" value="Warning" />
 				</Button>{' '}
-				<Button appearance="hero" soft>
-					Hero soft <Badge appearance="danger">Danger</Badge>
+				<Button look="hero" soft>
+					Hero soft <Badge look="danger" value="Danger" />
 				</Button>
 			</p>
 
 			<h3>Faint</h3>
 			<p>
-				<Button appearance="faint">
-					Faint <Badge>Default</Badge>
+				<Button look="faint">
+					Faint <Badge value="Default" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="faint">
-					Faint <Badge appearance="primary">Primary</Badge>
+				<Button look="faint">
+					Faint <Badge look="primary" value="Primary" />
 				</Button>{' '}
-				<Button appearance="faint">
-					Faint <Badge appearance="hero">Hero</Badge>
+				<Button look="faint">
+					Faint <Badge look="hero" value="Hero" />
 				</Button>{' '}
-				<Button appearance="faint">
-					Faint <Badge appearance="neutral">Neutral</Badge>
+				<Button look="faint">
+					Faint <Badge look="neutral" value="Neutral" />
 				</Button>{' '}
-				<Button appearance="faint">
-					Faint <Badge appearance="faint">Faint</Badge>
+				<Button look="faint">
+					Faint <Badge look="faint" value="Faint" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="faint">
-					Faint <Badge appearance="success">Success</Badge>
+				<Button look="faint">
+					Faint <Badge look="success" value="Success" />
 				</Button>{' '}
-				<Button appearance="faint">
-					Faint <Badge appearance="info">Info</Badge>
+				<Button look="faint">
+					Faint <Badge look="info" value="Info" />
 				</Button>{' '}
-				<Button appearance="faint">
-					Faint <Badge appearance="warning">Warning</Badge>
+				<Button look="faint">
+					Faint <Badge look="warning" value="Warning" />
 				</Button>{' '}
-				<Button appearance="faint">
-					Faint <Badge appearance="danger">Danger</Badge>
+				<Button look="faint">
+					Faint <Badge look="danger" value="Danger" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="faint" soft>
-					Faint soft <Badge>Default</Badge>
+				<Button look="faint" soft>
+					Faint soft <Badge value="Default" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="faint" soft>
-					Faint soft <Badge appearance="primary">Primary</Badge>
+				<Button look="faint" soft>
+					Faint soft <Badge look="primary" value="Primary" />
 				</Button>{' '}
-				<Button appearance="faint" soft>
-					Faint soft <Badge appearance="hero">Hero</Badge>
+				<Button look="faint" soft>
+					Faint soft <Badge look="hero" value="Hero" />
 				</Button>{' '}
-				<Button appearance="faint" soft>
-					Faint soft <Badge appearance="neutral">Neutral</Badge>
+				<Button look="faint" soft>
+					Faint soft <Badge look="neutral" value="Neutral" />
 				</Button>{' '}
-				<Button appearance="faint" soft>
-					Faint soft <Badge appearance="faint">Faint</Badge>
+				<Button look="faint" soft>
+					Faint soft <Badge look="faint" value="Faint" />
 				</Button>
 			</p>
 			<p>
-				<Button appearance="faint" soft>
-					Faint soft <Badge appearance="success">Success</Badge>
+				<Button look="faint" soft>
+					Faint soft <Badge look="success" value="Success" />
 				</Button>{' '}
-				<Button appearance="faint" soft>
-					Faint soft <Badge appearance="info">Info</Badge>
+				<Button look="faint" soft>
+					Faint soft <Badge look="info" value="Info" />
 				</Button>{' '}
-				<Button appearance="faint" soft>
-					Faint soft <Badge appearance="warning">Warning</Badge>
+				<Button look="faint" soft>
+					Faint soft <Badge look="warning" value="Warning" />
 				</Button>{' '}
-				<Button appearance="faint" soft>
-					Faint soft <Badge appearance="danger">Danger</Badge>
+				<Button look="faint" soft>
+					Faint soft <Badge look="danger" value="Danger" />
 				</Button>
 			</p>
 		</GEL>

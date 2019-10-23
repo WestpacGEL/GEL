@@ -3,7 +3,7 @@
 import { GEL, jsx, useBrand } from '@westpac/core';
 
 function Example({ brand }) {
-	const TOKENS = useBrand();
+	const { LAYOUT } = useBrand();
 
 	return (
 		<GEL brand={brand}>
@@ -16,7 +16,7 @@ function Example({ brand }) {
 					padding: 0,
 				}}
 			>
-				{Object.entries(TOKENS.LAYOUT.breakpoints).map(([name, breakpoint], i) => (
+				{Object.entries(LAYOUT.breakpoints).map(([name, breakpoint], i) => (
 					<li key={i}>
 						{name}: {breakpoint}px
 					</li>

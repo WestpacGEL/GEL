@@ -14,39 +14,38 @@ function Example({ brand }) {
 				Active buttons with a <code>&lt;button&gt;</code> tag
 			</h2>
 			<h3>Standard</h3>
-			<Button appearance="primary">Primary default</Button>{' '}
-			<Button appearance="hero">Hero default</Button>{' '}
-			<Button appearance="faint">Faint default</Button>
+			<Button look="primary">Primary default</Button> <Button look="hero">Hero default</Button>{' '}
+			<Button look="faint">Faint default</Button>
 			<br />
 			<br />
-			<Button appearance="primary" className="active">
+			<Button look="primary" className="active">
 				Primary active
 			</Button>{' '}
-			<Button appearance="hero" className="active">
+			<Button look="hero" className="active">
 				Hero active
 			</Button>{' '}
-			<Button appearance="faint" className="active">
+			<Button look="faint" className="active">
 				Faint active
 			</Button>
 			<h3>Soft</h3>
-			<Button appearance="primary" soft>
+			<Button look="primary" soft>
 				Primary soft default
 			</Button>{' '}
-			<Button appearance="hero" soft>
+			<Button look="hero" soft>
 				Hero soft default
 			</Button>{' '}
-			<Button appearance="faint" soft>
+			<Button look="faint" soft>
 				Faint soft default
 			</Button>
 			<br />
 			<br />
-			<Button appearance="primary" className="active" soft>
+			<Button look="primary" className="active" soft>
 				Primary soft active
 			</Button>{' '}
-			<Button appearance="hero" className="active" soft>
+			<Button look="hero" className="active" soft>
 				Hero soft active
 			</Button>{' '}
-			<Button appearance="faint" className="active" soft>
+			<Button look="faint" className="active" soft>
 				Faint soft active
 			</Button>
 			<hr />
@@ -54,45 +53,45 @@ function Example({ brand }) {
 				Active buttons with an <code>&lt;a&gt;</code> tag
 			</h2>
 			<h3>Standard</h3>
-			<Button href="#0" appearance="primary">
+			<Button href="#0" look="primary">
 				Primary default
 			</Button>{' '}
-			<Button href="#0" appearance="hero">
+			<Button href="#0" look="hero">
 				Hero default
 			</Button>{' '}
-			<Button href="#0" appearance="faint">
+			<Button href="#0" look="faint">
 				Faint default
 			</Button>
 			<br />
 			<br />
-			<Button href="#0" appearance="primary" className="active">
+			<Button href="#0" look="primary" className="active">
 				Primary active
 			</Button>{' '}
-			<Button href="#0" appearance="hero" className="active">
+			<Button href="#0" look="hero" className="active">
 				Hero active
 			</Button>{' '}
-			<Button href="#0" appearance="faint" className="active">
+			<Button href="#0" look="faint" className="active">
 				Faint active
 			</Button>
 			<h3>Soft</h3>
-			<Button href="#0" appearance="primary" soft>
+			<Button href="#0" look="primary" soft>
 				Primary soft default
 			</Button>{' '}
-			<Button href="#0" appearance="hero" soft>
+			<Button href="#0" look="hero" soft>
 				Hero soft default
 			</Button>{' '}
-			<Button href="#0" appearance="faint" soft>
+			<Button href="#0" look="faint" soft>
 				Faint soft default
 			</Button>
 			<br />
 			<br />
-			<Button href="#0" appearance="primary" className="active" soft>
+			<Button href="#0" look="primary" className="active" soft>
 				Primary soft active
 			</Button>{' '}
-			<Button href="#0" appearance="hero" className="active" soft>
+			<Button href="#0" look="hero" className="active" soft>
 				Hero soft active
 			</Button>{' '}
-			<Button href="#0" appearance="faint" className="active" soft>
+			<Button href="#0" look="faint" className="active" soft>
 				Faint soft active
 			</Button>
 		</GEL>
