@@ -12,10 +12,9 @@ export const Badge = ({ look, value, ...props }) => {
 	const { COLORS, BRAND } = useBrand();
 
 	let color = '#fff';
-	// TODO: STG uses `COLORS.text`
-	// if(BRAND==='STG') {
-	// 	color = COLORS.text;
-	// }
+	if(look ==='hero' && BRAND==='STG') {
+		color = COLORS.text;
+	}
 	if (look === 'faint') {
 		color = COLORS.muted;
 	}
