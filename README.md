@@ -169,6 +169,34 @@ yarn start button
 - css-in-js emotion will be used with the `jsx` pragma and babel plugin
 - For css-in-js we use `jsx` by importing from `@westpac/core` and never depend on `emotion` directly other than inside core itself
 
+### How we handle focus state
+
+We use the useFocus hook in the `GEL` component.
+You can [read about the focus hook on medium](https://medium.com/@wilkowskidom/how-i-learned-to-stop-worrying-and-love-the-outline-7a35b3b49e7).
+The `GEL` also adds the global focus styling from our `PACKS.focus` token pack.
+If you need to add it to something use:
+
+```js
+':focus': {
+	...PACKS.focus,
+},
+```
+
+However if you need a focus state that will persist across mouse users do something like this:
+
+```jsx
+const { PACKS } = useBrand();
+
+const focus = PACKS.focus;
+focus.outline += ' !important'; // adding `!important` will make sure the focus persists
+
+<Component
+	css={{
+		':focus': { ...focus },
+	}}
+/>;
+```
+
 ### Naming convention for files inside components
 
 | name            | purpose                                                                     |
