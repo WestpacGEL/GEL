@@ -3,7 +3,7 @@
 import { GEL, jsx, useBrand } from '@westpac/core';
 
 function Example({ brand }) {
-	const { COLORS} = useBrand();
+	const { COLORS } = useBrand();
 	const { tints, ...primaryColors } = COLORS;
 
 	return (
