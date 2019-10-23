@@ -19,7 +19,6 @@ export const Button = ({
 	size,
 	soft,
 	block,
-	trim,
 	iconAfter,
 	iconBefore,
 	justify,
@@ -172,7 +171,7 @@ export const Button = ({
 				touchAction: 'manipulation',
 				transition: 'background 0.2s ease, color 0.2s ease',
 				userSelect: 'none',
-				verticalAlign: 'middle',
+				verticalAlign: look === 'link' ? 'baseline' : 'middle',
 				whiteSpace: 'nowrap',
 
 				// Hover state (but excluded if disabled or inside a disabled fieldset)
@@ -187,13 +186,21 @@ export const Button = ({
 				},
 				padding: sizeArr.map(s => {
 					if (!s) return null;
-					const p = [...sizeMap[s].padding];
-					if (trim) p[1] = '0';
+					let p = [...sizeMap[s].padding];
+					if (look==='link') {
+						p = ['0'];
+					}
 
 					return p.join(' ');
 				}),
 				fontSize: sizeArr.map(s => s && sizeMap[s].fontSize),
-				height: sizeArr.map(s => s && sizeMap[s].height),
+				height: sizeArr.map(s => {
+					if (!s) return null;
+					if(look==='link') {
+						return null;
+					}
+					return sizeMap[s].height;
+				}),
 				...styleAppearance[look][soft ? 'soft' : 'standard'],
 				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
 				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
@@ -255,13 +262,6 @@ Button.propTypes = {
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
-	 * Trim mode.
-	 *
-	 * Removes horizontal padding.
-	 */
-	trim: PropTypes.bool,
-
-	/**
 	 * Places an icon within the button, after the button’s text
 	 */
 	iconAfter: PropTypes.func,
@@ -298,6 +298,5 @@ Button.defaultProps = {
 	tag: 'button',
 	soft: false,
 	block: false,
-	trim: false,
 	justify: false,
 };
