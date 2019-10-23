@@ -19,7 +19,6 @@ function Example({ brand }) {
 				Link
 			</Button>
 			<hr />
-
 			<Button look="primary" soft disabled>
 				Primary soft
 			</Button>{' '}

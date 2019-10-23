@@ -16,14 +16,12 @@ function Example({ brand }) {
 				Link
 			</Button>
 			<hr />
-
 			<h2>
 				Button with a <code>&lt;button&gt;</code> tag
 			</h2>
 			<Button type="button">Button</Button> <Button type="reset">Reset</Button>{' '}
 			<Button type="submit">Submit</Button>
 			<hr />
-
 			<h2>
 				Button with an <code>&lt;input&gt;</code> tag
 			</h2>
@@ -31,7 +29,6 @@ function Example({ brand }) {
 			<Button tag="input" type="reset" value="Reset" />{' '}
 			<Button tag="input" type="submit" value="Submit" />
 			<hr />
-
 			<h2>
 				Button with an <code>&lt;Link&gt;</code> tag
 			</h2>

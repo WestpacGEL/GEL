@@ -20,12 +20,10 @@ function Example({ brand }) {
 				Link
 			</Button>
 			<hr />
-
 			<h2>Medium</h2>
 			<Button look="primary">Primary</Button> <Button look="hero">Hero</Button>{' '}
 			<Button look="faint">Faint</Button> <Button look="link">Link</Button>
 			<hr />
-
 			<h2>Large</h2>
 			<Button look="primary" size="large">
 				Primary
@@ -40,7 +38,6 @@ function Example({ brand }) {
 				Link
 			</Button>
 			<hr />
-
 			<h2>Extra large</h2>
 			<Button look="primary" size="xlarge">
 				Primary

@@ -49,7 +49,6 @@ function Example({ brand }) {
 				Faint soft active
 			</Button>
 			<hr />
-
 			<h2>
 				Active buttons with an <code>&lt;a&gt;</code> tag
 			</h2>

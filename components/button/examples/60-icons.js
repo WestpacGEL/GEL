@@ -50,7 +50,6 @@ function Example({ brand }) {
 				Extra large block justify
 			</Button>
 			<hr />
-
 			<h2>Icon before</h2>
 			<Button look="primary" size="small" iconBefore={HouseIcon}>
 				Small
@@ -86,7 +85,6 @@ function Example({ brand }) {
 				Extra large block justify
 			</Button>
 			<hr />
-
 			<h2>Icon only (no text)</h2>
 			<Button look="primary" size="small" iconBefore={StarIcon} />{' '}
 			<Button look="primary" size="medium" iconBefore={StarIcon} />{' '}

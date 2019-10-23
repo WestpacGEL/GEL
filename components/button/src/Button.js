@@ -300,4 +300,4 @@ Button.defaultProps = {
 	block: false,
 	trim: false,
 	justify: false,
-};;
+};
