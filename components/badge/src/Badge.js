@@ -12,7 +12,7 @@ export const Badge = ({ look, value, ...props }) => {
 	const { COLORS, BRAND } = useBrand();
 
 	let color = '#fff';
-	if(look ==='hero' && BRAND==='STG') {
+	if (look === 'hero' && BRAND === 'STG') {
 		color = COLORS.text;
 	}
 	if (look === 'faint') {
