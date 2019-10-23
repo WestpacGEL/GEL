@@ -2,6 +2,13 @@
 
 The design system for Westpac GEL
 
+## Internal docs
+
+| Purpose    | branch    | url                                    |
+| ---------- | --------- | -------------------------------------- |
+| Production | `master`  | https://westpacgel.netlify.com         |
+| Staging    | `develop` | https://westpacgel-staging.netlify.com |
+
 ## Install and start running locally
 
 Install dependencies
