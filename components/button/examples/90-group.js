@@ -1,9 +1,12 @@
 /** @jsx jsx */
 
+import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Button, ButtonGroup } from '@westpac/button';
 
-function Example({ brand }) {
+function ButtonGroupExample({ brand }) {
+	const [selected, setSelected] = useState(-1);
+
 	return (
 		<GEL brand={brand}>
 			<ButtonGroup>
@@ -12,9 +15,9 @@ function Example({ brand }) {
 				<Button>Right</Button>
 			</ButtonGroup>
 
-			<h2>Block</h2>
+			<h2>Controlled</h2>
 
-			<ButtonGroup block>
+			<ButtonGroup selected={selected} onChange={v => setSelected(v)}>
 				<Button>Left</Button>
 				<Button>Middle</Button>
 				<Button>Right</Button>
@@ -23,6 +26,14 @@ function Example({ brand }) {
 			<h2>Default Selected (index)</h2>
 
 			<ButtonGroup defaultSelected={1}>
+				<Button>Left</Button>
+				<Button>Middle</Button>
+				<Button>Right</Button>
+			</ButtonGroup>
+
+			<h2>Block</h2>
+
+			<ButtonGroup block>
 				<Button>Left</Button>
 				<Button>Middle</Button>
 				<Button>Right</Button>
@@ -77,4 +88,4 @@ function Example({ brand }) {
 	);
 }
 
-export default Example;
+export default ButtonGroupExample;

@@ -11,18 +11,24 @@ import { Button } from './Button';
 // ==============================
 
 export const ButtonGroup = props => {
-	const { block, children, defaultSelected, look, size, ...rest } = props;
-	const [checked, setChecked] = useState(defaultSelected);
+	const { block, children, defaultSelected, look, onChange, selected, size, ...rest } = props;
+	const [selectedIndex, setSelectedIndex] = useState(defaultSelected);
 
 	const handleClick = (index, onClick) =>
 		wrapHandlers(onClick, () => {
-			setChecked(index);
+			if (onChange) {
+				onChange(index);
+			} else {
+				setSelectedIndex(index);
+			}
 		});
+
+	const value = selected !== undefined ? selected : selectedIndex;
 
 	return (
 		<GroupWrapper block={block} {...rest}>
 			{Children.map(children, (child, index) => {
-				const soft = index !== checked; // NOTE: this is like the inverse of "selected"
+				const soft = index !== value; // NOTE: this is like the inverse of "selected"
 				const onClick = handleClick(index, child.props.onClick);
 
 				return cloneElement(child, { look, onClick, size, soft });
@@ -39,16 +45,17 @@ ButtonGroup.propTypes = {
 	/** Block mode. Fill parent width. */
 	block: PropTypes.bool,
 	/** Button group children. */
-	children: PropTypes.oneOfType([
-		PropTypes.instanceOf(Button),
-		PropTypes.arrayOf(PropTypes.instanceOf(Button)),
-	]).isRequired,
+	children: PropTypes.oneOfType([Button, PropTypes.arrayOf(Button)]).isRequired,
 	/** The index of the button you wish to be initially selected. */
 	defaultSelected: PropTypes.number,
 	/** Button look. Passed on to each child button. */
 	look: PropTypes.oneOf(['primary', 'hero']),
+	/** Change the curently selected index. Requires `selected`. */
+	onChange: PropTypes.func,
 	/** Button size. Passed on to each child button. */
 	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+	/** Control the curently selected index. Requires `onChange`. */
+	selected: PropTypes.number,
 };
 
 ButtonGroup.defaultProps = {
