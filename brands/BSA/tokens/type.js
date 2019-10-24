@@ -4,8 +4,8 @@ module.exports = {
 			{
 				name: '"brandFontBSA"',
 				files: {
-					woff2: '../font/Aller_Lt.woff2',
-					woff: '../font/Aller_Lt.woff',
+					woff2: 'Aller_Lt.woff2',
+					woff: 'Aller_Lt.woff',
 				},
 				weight: 300,
 				style: 'normal',
@@ -13,8 +13,8 @@ module.exports = {
 			{
 				name: '"brandFontBSA"',
 				files: {
-					woff2: '../font/Aller_Bd.woff2',
-					woff: '../font/Aller_Bd.woff',
+					woff2: 'Aller_Bd.woff2',
+					woff: 'Aller_Bd.woff',
 				},
 				weight: 400,
 				style: 'normal',

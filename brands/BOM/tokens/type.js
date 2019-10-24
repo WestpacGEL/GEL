@@ -4,8 +4,8 @@ module.exports = {
 			{
 				name: '"brandFontBOM"',
 				files: {
-					woff2: '../font/lineto-brown-pro-light.woff2',
-					woff: '../font/lineto-brown-pro-light.woff',
+					woff2: 'lineto-brown-pro-light.woff2',
+					woff: 'lineto-brown-pro-light.woff',
 				},
 				weight: 300,
 				style: 'normal',
@@ -13,8 +13,8 @@ module.exports = {
 			{
 				name: '"brandFontBOM"',
 				files: {
-					woff2: '../font/lineto-brown-pro-regular.woff2',
-					woff: '../font/lineto-brown-pro-regular.woff',
+					woff2: 'lineto-brown-pro-regular.woff2',
+					woff: 'lineto-brown-pro-regular.woff',
 				},
 				weight: 400,
 				style: 'normal',
@@ -22,8 +22,8 @@ module.exports = {
 			{
 				name: '"brandFontBOM"',
 				files: {
-					woff2: '../font/lineto-brown-pro-bold.woff2',
-					woff: '../font/lineto-brown-pro-bold.woff',
+					woff2: 'lineto-brown-pro-bold.woff2',
+					woff: 'lineto-brown-pro-bold.woff',
 				},
 				weight: 700,
 				style: 'normal',

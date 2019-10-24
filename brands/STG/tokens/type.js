@@ -4,8 +4,8 @@ module.exports = {
 			{
 				name: '"brandFontSTG"',
 				files: {
-					woff2: '../font/dragonbold-bold-webfont.woff2',
-					woff: '../font/dragonbold-bold-webfont.woff',
+					woff2: 'dragonbold-bold-webfont.woff2',
+					woff: 'dragonbold-bold-webfont.woff',
 				},
 				weight: 400,
 				style: 'normal',
