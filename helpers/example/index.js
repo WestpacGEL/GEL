@@ -176,20 +176,26 @@ class Page extends React.Component {
 	}
 }
 
+const Code = ({ children }) => (
+	<pre
+		css={{
+			background: '#f9f9f9',
+			padding: '1rem',
+			border: '1px solid #ccc',
+		}}
+	>
+		<code>{children}</code>
+	</pre>
+);
+
 const Home = ({ packageName, pkg }) => (
 	<Article>
 		<Container>
 			<h1>{packageName} Examples</h1>
 			<p>Click one of the examples on the left to view it.</p>
-			<pre
-				css={{
-					background: '#f9f9f9',
-					padding: '1rem',
-					border: '1px solid #ccc',
-				}}
-			>
-				<code>yarn start {pkg}</code>
-			</pre>
+			<Code>yarn add @westpac/{pkg}</Code>
+			<p>To run this component locally:</p>
+			<Code>yarn start {pkg}</Code>
 			<p>To load the examples for another package run the above code with another package name</p>
 		</Container>
 	</Article>
