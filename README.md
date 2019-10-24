@@ -221,7 +221,7 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 | --------------- | --------------------------------------------------------------------------- |
 | `index.js`      | Export only public API                                                      |
 | `styled.js`     | Only for styled components `[optional]`                                     |
-| `_util.js`      | For code shared between components (ignored in examples) `[optional]`       |
+| `_utils.js`     | For code shared between components (ignored in examples) `[optional]`       |
 | `ComponentX.js` | All component files are named after the exported component and pascal cased |
 | `00-*.js`       | All files inside the `examples/` folder are sorted by file name             |
 | `*.js`          | All jsx files are postfixed with `.js`                                      |
