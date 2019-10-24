@@ -31,8 +31,8 @@ function Example({ brand }) {
 					<br />
 					Lorem <abbr title="Explained">Abbr element</abbr> consectetur adipisicing elit. Aperiam
 					reprehenderit, dolorum error perferendis. This element has been deleted and replaced with{' '}
-					<del>this</del> <ins>that</ins>. But we would like to <mark>highlight</mark> this
-					statement!
+					<del>this</del> <ins>that</ins>. But we would like to hi<mark>ghlight this state</mark>
+					ment!
 				</p>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias porro, laboriosam

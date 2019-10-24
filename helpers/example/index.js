@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
@@ -51,79 +51,81 @@ const App = ({ components, packageName, pkg }) => {
 
 	return (
 		<Router>
-			<GEL brand={BRANDS[brand]}>
-				<Body>
-					<Global
-						styles={css`
-							code {
-								font-family: Monaco, monospace;
-								font-size: 0.85em;
-							}
-							p > code {
-								background-color: #ffebe6;
-								color: #bf2600;
-								border-radius: '0.3rem';
-								display: inline-block;
-								padding: '0.1rem 0.3rem';
-							}
-						`}
-					/>
-					<Sidebar>
-						<SidebarTitle to="/">{packageName}</SidebarTitle>
-						<SidebarSearch
-							onChange={e => setSearchValue(e.target.value)}
-							placeholder="Search..."
-							type="search"
-							value={searchValue}
+			<StrictMode>
+				<GEL brand={BRANDS[brand]}>
+					<Body>
+						<Global
+							styles={css`
+								code {
+									font-family: Monaco, monospace;
+									font-size: 0.85em;
+								}
+								p > code {
+									background-color: #ffebe6;
+									color: #bf2600;
+									border-radius: '0.3rem';
+									display: inline-block;
+									padding: '0.1rem 0.3rem';
+								}
+							`}
 						/>
-
-						<SidebarNav>
-							{navItems.map(({ label, slug }) => (
-								<SidebarItem
-									primaryColor={primaryColor}
-									key={slug}
-									to={`/${slug}`}
-									data-test-nav-link
-								>
-									{label}
-								</SidebarItem>
-							))}
-						</SidebarNav>
-
-						<SidebarSwitcher>
-							{Object.keys(BRANDS).map(b => {
-								const isChecked = brand === b;
-								return (
-									<SidebarSwitch key={b} checked={isChecked}>
-										<input
-											name="brand"
-											type="radio"
-											onChange={e => setBrand(b)}
-											value={b}
-											checked={isChecked}
-										/>
-										{b}
-									</SidebarSwitch>
-								);
-							})}
-						</SidebarSwitcher>
-					</Sidebar>
-					<Switch>
-						<Route
-							exact
-							path="/"
-							render={route => <Home {...route} packageName={packageName} pkg={pkg} />}
-						/>
-						{components.map(({ slug, ...props }) => (
-							<Route
-								key={slug}
-								path={`/${slug}`}
-								render={route => <Page {...route} {...props} brand={BRANDS[brand]} />}
+						<Sidebar>
+							<SidebarTitle to="/">{packageName}</SidebarTitle>
+							<SidebarSearch
+								onChange={e => setSearchValue(e.target.value)}
+								placeholder="Search..."
+								type="search"
+								value={searchValue}
 							/>
-						))}
-					</Switch>
-				</Body>
-			</GEL>
+
+							<SidebarNav>
+								{navItems.map(({ label, slug }) => (
+									<SidebarItem
+										primaryColor={primaryColor}
+										key={slug}
+										to={`/${slug}`}
+										data-test-nav-link
+									>
+										{label}
+									</SidebarItem>
+								))}
+							</SidebarNav>
+
+							<SidebarSwitcher>
+								{Object.keys(BRANDS).map(b => {
+									const isChecked = brand === b;
+									return (
+										<SidebarSwitch key={b} checked={isChecked}>
+											<input
+												name="brand"
+												type="radio"
+												onChange={e => setBrand(b)}
+												value={b}
+												checked={isChecked}
+											/>
+											{b}
+										</SidebarSwitch>
+									);
+								})}
+							</SidebarSwitcher>
+						</Sidebar>
+						<Switch>
+							<Route
+								exact
+								path="/"
+								render={route => <Home {...route} packageName={packageName} pkg={pkg} />}
+							/>
+							{components.map(({ slug, ...props }) => (
+								<Route
+									key={slug}
+									path={`/${slug}`}
+									render={route => <Page {...route} {...props} brand={BRANDS[brand]} />}
+								/>
+							))}
+						</Switch>
+					</Body>
+				</GEL>
+			</StrictMode>
 		</Router>
 	);
 };
