@@ -46,6 +46,7 @@ export const SwitchLabel = ({
 				height: !block && flexiSize.height,
 				marginBottom: '0.375rem',
 				flexDirection: flipped && 'row-reverse',
+				cursor: 'pointer',
 
 				'input:disabled ~ &': {
 					cursor: 'default',
