@@ -1,25 +1,10 @@
 /** @jsx jsx */
 
 import { GEL, jsx, useBrand } from '@westpac/core';
+import { Code } from './_utils';
 
 function Example({ brand }) {
 	const { COLORS, PACKS, SPACING } = useBrand();
-
-	const Code = ({ children }) => (
-		<pre
-			css={{
-				boxSizing: 'border-box',
-				width: '90%',
-				overflow: 'auto',
-				background: COLORS.background,
-				padding: SPACING(2),
-				border: `1px solid ${COLORS.border}`,
-				marginTop: SPACING(4),
-			}}
-		>
-			<code>{children}</code>
-		</pre>
-	);
 
 	return (
 		<GEL brand={brand}>
