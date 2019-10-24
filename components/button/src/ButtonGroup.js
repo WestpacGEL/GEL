@@ -2,7 +2,7 @@
 
 import React, { Children, cloneElement, createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+import { jsx, wrapHandlers } from '@westpac/core';
 
 import { Button } from './Button';
 
@@ -52,10 +52,10 @@ ButtonGroup.propTypes = {
 	look: PropTypes.oneOf(['primary', 'hero']),
 	/** Change the curently selected index. Requires `selected`. */
 	onChange: PropTypes.func,
-	/** Button size. Passed on to each child button. */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 	/** Control the curently selected index. Requires `onChange`. */
 	selected: PropTypes.number,
+	/** Button size. Passed on to each child button. */
+	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 };
 
 ButtonGroup.defaultProps = {
@@ -92,19 +92,3 @@ const GroupWrapper = ({ block, ...props }) => (
 		{...props}
 	/>
 );
-
-// ==============================
-// Utils
-// ==============================
-
-// TODO: move to lib?
-
-const wrapHandlers = (consumerHandler, ourHandler) => event => {
-	if (consumerHandler) {
-		consumerHandler(event);
-	}
-
-	if (!event.defaultPrevented) {
-		ourHandler(event);
-	}
-};
