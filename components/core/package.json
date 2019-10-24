@@ -29,7 +29,7 @@
 	"module": "dist/core.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.6.2",
-		"@emotion/core": "^10.0.21",
+		"@emotion/core": "^10.0.22",
 		"@emotion/weak-memoize": "^0.2.4",
 		"color": "^3.1.2",
 		"facepaint": "^1.2.1",
@@ -42,8 +42,8 @@
 	"devDependencies": {
 		"@westpac/button": "^0.0.1",
 		"@westpac/text-input": "^0.0.1",
-		"cypress": "^3.4.1",
-		"react": "^16.10.2",
+		"cypress": "^3.5.0",
+		"react": "^16.11.0",
 		"start-server-and-test": "^1.10.6"
 	}
 }

@@ -44,8 +44,8 @@
 		"react": "^16.10.1"
 	},
 	"devDependencies": {
-		"cypress": "^3.4.1",
-		"react": "^16.10.2",
+		"cypress": "^3.5.0",
+		"react": "^16.11.0",
 		"start-server-and-test": "^1.10.6"
 	}
 }
