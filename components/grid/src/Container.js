@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import { jsx, useMediaQuery } from '@westpac/core';
 
 // ==============================
-// Utils
-// ==============================
-
-// ==============================
 // Component
 // ==============================
 

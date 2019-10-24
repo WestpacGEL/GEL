@@ -5,7 +5,7 @@ route: /grid
 ---
 
 import { Playground, Props } from 'docz';
-import { Cell, Grid } from './src';
+import { Cell, Grid, Container } from '@westpac/grid';
 import { Box, GridOverlay } from './examples/_utils';
 
 # Grid
@@ -27,7 +27,7 @@ other breakpoints it adapts to different widths.
 
 <Playground>
 	<GridOverlay>
-		<Grid style={{ fontSize: 14 }}>
+		<Grid>
 			<Cell width={[12, 4, 2, 8]}>
 				<Box>Column A</Box>
 			</Cell>
@@ -43,11 +43,12 @@ other breakpoints it adapts to different widths.
 
 ### Nested Grids
 
-You can nest columns inside columns to achieve greater complexity and structure the page. In effect, each column can be sub-divided into further 12 columns. The nested columns align to their own 12 col grid based on the width of the parent column.
+You can nest columns inside columns to achieve greater complexity and structure the page. In effect, each column can be sub-divided into further 12 columns.
+The nested columns align to their own 12 col grid based on the width of the parent column.
 
 <Playground>
 	<GridOverlay>
-		<Grid style={{ fontSize: 14 }}>
+		<Grid>
 			<Cell width={[12, 12, 12, 3]}>
 				<Box>Column A</Box>
 			</Cell>
@@ -74,7 +75,7 @@ Columns can be offset to create empty space.
 
 <Playground>
 	<GridOverlay>
-		<Grid style={{ fontSize: 14 }}>
+		<Grid>
 			<Cell width={[12, 12, 10]} left={[1, 1, 2]}>
 				<Box>Offset A</Box>
 			</Cell>
@@ -95,7 +96,7 @@ Columns can be offset to create empty space.
 
 <Playground>
 	<GridOverlay>
-		<Grid style={{ fontSize: 14 }}>
+		<Grid>
 			<Cell width={[12, 6, 3, 4]}>
 				<Box>Column A</Box>
 			</Cell>
@@ -131,7 +132,7 @@ need to break out of the 12/8 column/gap combination you're able to.
 
 <Playground>
 	<GridOverlay columns={16} gap={4}>
-		<Grid style={{ fontSize: 14 }} columns={16} gap={4}>
+		<Grid columns={16} gap={4}>
 			<Cell width={[16, 8, 2, 8]}>
 				<Box>Column A</Box>
 			</Cell>
@@ -157,3 +158,7 @@ need to break out of the 12/8 column/gap combination you're able to.
 ### Cell props
 
 <Props of={Cell} />
+
+### Container props
+
+<Props of={Container} />
