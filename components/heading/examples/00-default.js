@@ -9,7 +9,7 @@ function Example({ brand }) {
 			<h2>
 				Without <code>tag</code> prop
 			</h2>
-			<Heading size="1">Size: 1</Heading>
+			<Heading size={1}>Size: 1</Heading>
 			<Heading size={2}>Size: 2</Heading>
 			<Heading size={3}>Size: 3</Heading>
 			<Heading size={4}>Size: 4</Heading>
@@ -24,31 +24,31 @@ function Example({ brand }) {
 			<h2>
 				With <code>tag</code> prop
 			</h2>
-			<Heading tag="h2" size="1">
+			<Heading tag="h2" size={1}>
 				Tag: h2 size: 1
 			</Heading>
-			<Heading tag="h1" size="2">
+			<Heading tag="h1" size={2}>
 				Tag: h1 size: 2
 			</Heading>
-			<Heading tag="h1" size="3">
+			<Heading tag="h1" size={3}>
 				Tag: h1 size: 3
 			</Heading>
-			<Heading tag="h1" size="4">
+			<Heading tag="h1" size={4}>
 				Tag: h1 size: 4
 			</Heading>
-			<Heading tag="h1" size="5">
+			<Heading tag="h1" size={5}>
 				Tag: h1 size: 5
 			</Heading>
-			<Heading tag="h1" size="6">
+			<Heading tag="h1" size={6}>
 				Tag: h1 size: 6
 			</Heading>
-			<Heading tag="h1" size="7">
+			<Heading tag="h1" size={7}>
 				Tag: h1 size: 7
 			</Heading>
-			<Heading tag="h1" size="8">
+			<Heading tag="h1" size={8}>
 				Tag: h1 size: 8
 			</Heading>
-			<Heading tag="h1" size="9">
+			<Heading tag="h1" size={9}>
 				Tag: h1 size: 9
 			</Heading>
 			<hr />
@@ -59,7 +59,7 @@ function Example({ brand }) {
 				molestias cupiditate ea doloribus assumenda tenetur, neque, deserunt quis atque illo aperiam
 				fuga, vel labore alias!
 			</p>
-			<Heading size="1">Size: 1</Heading>
+			<Heading size={1}>Size: 1</Heading>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati iusto porro optio,
 				cupiditate atque ipsum animi quo ullam, nemo soluta ut at fugiat pariatur facere, laboriosam
@@ -117,9 +117,9 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Invalid props</h2>
-			<Heading size="0">Size too small</Heading>
-			<Heading size="10">Size too large</Heading>
-			<Heading tag="span" size="5">
+			<Heading size={0}>Size too small</Heading>
+			<Heading size={10}>Size too large</Heading>
+			<Heading tag="span" size={5}>
 				Tag not headline tag
 			</Heading>
 		</GEL>
