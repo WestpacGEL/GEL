@@ -1,9 +1,10 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
-import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
+import { cloneElement, Children, createContext, useContext } from 'react';
 import { VisuallyHidden } from '@westpac/a11y';
+import PropTypes from 'prop-types';
+import { Crumb } from './Crumb';
 
 // ==============================
 // Component
@@ -12,18 +13,31 @@ import { VisuallyHidden } from '@westpac/a11y';
 /**
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Breadcrumb = ({ children, ...props }) => {
-	const childrenWithProps = Children.map(children, (child, index) => {
-		// Make sure we don't break the expected implementation contract of using `cloneElement`.
-		if (!child.type.isCrumb) {
-			throw new Error('<Breadcrumb /> only accepts <Crumb /> as direct children.');
-		}
-		return index === Children.count(children) - 1 ? cloneElement(child, { last: true }) : child;
-	});
+export const Breadcrumb = ({ children, data, current, label, crumbLabel, ...props }) => {
+	let allChildren = [];
+	if (data) {
+		data.map(({ href, text, onClick }, index) => {
+			allChildren.push(
+				<Crumb
+					current={index === data.length - 1}
+					label={crumbLabel}
+					href={href}
+					text={text}
+					onClick={onClick}
+					key={index}
+				/>
+			);
+		});
+	} else {
+		const length = Children.count(children);
+		allChildren = Children.map(children, (child, index) => {
+			return cloneElement(child, { current: index === length - 1 }, index);
+		});
+	}
 
 	return (
 		<div {...props}>
-			<VisuallyHidden>Page navigation:</VisuallyHidden>
+			<VisuallyHidden>{label}</VisuallyHidden>
 			<ol
 				css={{
 					padding: '0.375rem 1.125rem',
@@ -32,7 +46,7 @@ export const Breadcrumb = ({ children, ...props }) => {
 					listStyle: 'none',
 				}}
 			>
-				{childrenWithProps}
+				{allChildren}
 			</ol>
 		</div>
 	);
@@ -43,6 +57,38 @@ export const Breadcrumb = ({ children, ...props }) => {
 // ==============================
 
 Breadcrumb.propTypes = {
-	/**  Any renderable child */
+	/**
+	 * Any renderable child
+	 */
 	children: PropTypes.node,
+
+	/**
+	 * Data for the crumbs
+	 */
+	data: PropTypes.arrayOf(
+		PropTypes.shape({
+			text: PropTypes.string.isRequired,
+			href: PropTypes.string,
+			onClick: PropTypes.func,
+		})
+	),
+
+	/**
+	 * The current page
+	 */
+	current: PropTypes.string,
+
+	/**
+	 * The label of the breadcrumb
+	 */
+	label: PropTypes.string.isRequired,
+
+	/**
+	 * The label of the crumb current page
+	 */
+	crumbLabel: PropTypes.string,
+};
+
+Breadcrumb.defaultProps = {
+	label: 'Page navigation:',
 };

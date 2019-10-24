@@ -1,2 +1,2 @@
 export { Breadcrumb } from './Breadcrumb';
-export { BreadcrumbCrumb as Crumb } from './BreadcrumbCrumb';
+export { Crumb } from './Crumb';
