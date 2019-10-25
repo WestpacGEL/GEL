@@ -1,5 +1,6 @@
 const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const tmp = require('tmp');
@@ -106,7 +107,17 @@ module.exports = () => ({
 		],
 	},
 
-	plugins: [new HtmlWebpackPlugin(), new HtmlWebpackRootPlugin()],
+	plugins: [
+		new HtmlWebpackPlugin(),
+		new HtmlWebpackRootPlugin(),
+		new CopyPlugin([
+			{
+				from: '*',
+				to: 'assets/',
+				context: path.normalize(`${__dirname}/../../components/${PACKAGE_NAME}/examples/assets/`),
+			},
+		]),
+	],
 	devServer: {
 		historyApiFallback: true,
 		port: 8080,

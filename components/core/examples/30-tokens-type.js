@@ -10,7 +10,6 @@ function Example({ brand }) {
 			<h2>Type</h2>
 			<div
 				css={{
-					...TYPE.files,
 					marginBottom: '3rem',
 				}}
 			>
