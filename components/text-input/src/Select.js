@@ -14,9 +14,13 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 	const mq = useMediaQuery();
 
 	const childrenData = [];
-	if(data) {
-		data.map( ({label, ...rest}, index) => {
-			childrenData.push(<option key={index} {...rest}>{label}</option>);
+	if (data) {
+		data.map(({ label, ...rest }, index) => {
+			childrenData.push(
+				<option key={index} {...rest}>
+					{label}
+				</option>
+			);
 		});
 	}
 
@@ -56,7 +60,8 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 				height: `calc(${lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
 					sizeMap[size].padding
 				)} + ${2 * borderWidth}px)`,
-				maxWidth: width && `calc(${extras} + ${caretWidth} + ${caretGap} + ${round(width * 1.81)}ex)`,
+				maxWidth:
+					width && `calc(${extras} + ${caretWidth} + ${caretGap} + ${round(width * 1.81)}ex)`,
 				paddingRight: `calc(${sizeMap[size].padding[1]} + ${caretWidth} + ${caretGap})`,
 				backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
 				backgroundRepeat: 'no-repeat',
@@ -102,7 +107,7 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 			})}
 			{...props}
 		>
-			{data ? childrenData : children }
+			{data ? childrenData : children}
 		</select>
 	);
 };

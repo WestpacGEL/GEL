@@ -10,7 +10,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<h2>Default instance</h2>
 			<Text />
-			<br/>
+			<br />
 
 			<hr />
 
@@ -28,7 +28,7 @@ function Example({ brand }) {
 
 			<h2>Invalid</h2>
 			<Text invalid />
-			<br/>
+			<br />
 
 			<hr />
 
@@ -36,21 +36,21 @@ function Example({ brand }) {
 			<Text disabled />
 			<br />
 			<Text disabled value="This input is disabled and contains a value" />
-			<br/>
+			<br />
 
 			<hr />
 
 			<h2>Readonly</h2>
 			<Text readOnly value="This value is readonly" />
-			<br/>
+			<br />
 
 			<hr />
 
 			<h2>Inline</h2>
 			<Form action="#">
-				<Text inline/> <Text inline/> <Button type="submit">Submit</Button>
+				<Text inline /> <Text inline /> <Button type="submit">Submit</Button>
 			</Form>
-			<br/>
+			<br />
 
 			<hr />
 

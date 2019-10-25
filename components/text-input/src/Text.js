@@ -21,7 +21,6 @@ export const Text = ({ size, width, inline, invalid, children, ...props }) => {
 		`${borderWidth}px`
 	)}`;
 
-
 	return (
 		<input
 			css={mq({

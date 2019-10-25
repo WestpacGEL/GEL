@@ -1,4 +1,3 @@
-
 export const round = f => Math.round(f * 100) / 100; //2DP
 
 export const sizeMap = {
