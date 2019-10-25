@@ -31,7 +31,7 @@ export const ButtonGroup = props => {
 			}
 		});
 
-	const actualValue = typeof value !== 'undefined' ? controlledValue : value;
+	const actualValue = typeof controlledValue !== 'undefined' ? controlledValue : value;
 
 	return (
 		<GroupWrapper block={block} {...rest}>
