@@ -1,38 +1,46 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement, createContext, useContext, useState } from 'react';
+import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, wrapHandlers } from '@westpac/core';
-
-import { Button } from './Button';
 
 // ==============================
 // Component
 // ==============================
 
-export const ButtonGroup = props => {
-	const { block, children, defaultSelected, look, onChange, selected, size, ...rest } = props;
-	const [selectedIndex, setSelectedIndex] = useState(defaultSelected);
+// support values of index or key
+function getConfig({ defaultValue, value }) {
+	const isControlled = typeof value !== 'undefined';
 
-	const handleClick = (index, onClick) =>
+	return { isControlled };
+}
+
+export const ButtonGroup = props => {
+	const { isControlled } = getConfig(props);
+	const { block, children, defaultValue, look, name, onChange, value: controlledValue, size, ...rest } = props;
+	const [value, setValue] = useState(defaultValue);
+
+	const handleClick = (val, onClick) =>
 		wrapHandlers(onClick, () => {
 			if (onChange) {
-				onChange(index);
+				onChange(val);
 			} else {
-				setSelectedIndex(index);
+				setValue(val);
 			}
 		});
 
-	const value = selected !== undefined ? selected : selectedIndex;
+	const actualValue = isControlled ? controlledValue : value;
 
 	return (
 		<GroupWrapper block={block} {...rest}>
 			{Children.map(children, (child, index) => {
-				const soft = index !== value; // NOTE: this is like the inverse of "selected"
-				const onClick = handleClick(index, child.props.onClick);
+				const val = child.props.value || index;
+				const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
+				const onClick = handleClick(val, child.props.onClick);
 
 				return cloneElement(child, { look, onClick, size, soft });
 			})}
+			{name && <input type="hidden" value={actualValue} name={name} />}
 		</GroupWrapper>
 	);
 };
@@ -41,19 +49,23 @@ export const ButtonGroup = props => {
 // Types
 // ==============================
 
+const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
+
 ButtonGroup.propTypes = {
 	/** Block mode. Fill parent width. */
 	block: PropTypes.bool,
 	/** Button group children. */
-	children: PropTypes.oneOfType([Button, PropTypes.arrayOf(Button)]).isRequired,
-	/** The index of the button you wish to be initially selected. */
-	defaultSelected: PropTypes.number,
+	children: PropTypes.node.isRequired,
+	/** The value of the initially selected button, if numeric an index is assumed. */
+	defaultValue: ValueType,
 	/** Button look. Passed on to each child button. */
 	look: PropTypes.oneOf(['primary', 'hero']),
-	/** Change the curently selected index. Requires `selected`. */
+	/** If used inside a form, provide a name property to capture the value in a hidden input. */
+	name: PropTypes.string,
+	/** Change the value. Requires `value`. */
 	onChange: PropTypes.func,
-	/** Control the curently selected index. Requires `onChange`. */
-	selected: PropTypes.number,
+	/** Control the value, if numeric an index is assumed. Requires `onChange`. */
+	value: ValueType,
 	/** Button size. Passed on to each child button. */
 	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 };
@@ -61,7 +73,7 @@ ButtonGroup.propTypes = {
 ButtonGroup.defaultProps = {
 	look: 'hero',
 	block: false,
-	defaultSelected: -1,
+	defaultValue: -1,
 	size: 'medium',
 };
 
