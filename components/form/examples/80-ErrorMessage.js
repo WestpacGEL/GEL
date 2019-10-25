@@ -42,11 +42,7 @@ function Example({ brand }) {
 					icon={CarIcon}
 					id="example-custom-icon-error"
 				/>
-				<Text
-					name="example-custom-icon"
-					aria-describedby="example-custom-icon-error"
-					invalid
-				/>
+				<Text name="example-custom-icon" aria-describedby="example-custom-icon-error" invalid />
 			</FormGroup>
 		</GEL>
 	);
