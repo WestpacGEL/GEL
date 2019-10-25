@@ -9,7 +9,6 @@ import { jsx, wrapHandlers } from '@westpac/core';
 // ==============================
 
 export const ButtonGroup = props => {
-	const { isControlled } = getConfig(props);
 	const {
 		block,
 		children,
