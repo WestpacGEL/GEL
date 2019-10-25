@@ -8,13 +8,6 @@ import { jsx, wrapHandlers } from '@westpac/core';
 // Component
 // ==============================
 
-// support values of index or key
-function getConfig({ defaultValue, value }) {
-	const isControlled = typeof value !== 'undefined';
-
-	return { isControlled };
-}
-
 export const ButtonGroup = props => {
 	const { isControlled } = getConfig(props);
 	const { block, children, defaultValue, look, name, onChange, value: controlledValue, size, ...rest } = props;
@@ -29,7 +22,7 @@ export const ButtonGroup = props => {
 			}
 		});
 
-	const actualValue = isControlled ? controlledValue : value;
+	const actualValue = typeof value !== 'undefined' ? controlledValue : value;
 
 	return (
 		<GroupWrapper block={block} {...rest}>
