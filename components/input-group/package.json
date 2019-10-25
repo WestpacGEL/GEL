@@ -36,7 +36,6 @@
 		"@babel/runtime": "^7.6.2",
 		"@westpac/button": "^0.0.1",
 		"@westpac/core": "^0.0.1",
-		"@westpac/form": "^0.0.1",
 		"@westpac/text-input": "^0.0.1",
 		"prop-types": "^15.7.2"
 	},

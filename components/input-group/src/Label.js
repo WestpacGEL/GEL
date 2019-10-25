@@ -1,22 +1,14 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx, useBrand } from '@westpac/core';
-import { useInputGroupContext } from './InputGroup';
+import PropTypes from 'prop-types';
 
 // ==============================
 // Component
 // ==============================
 
-/**
- * Input Group: Styled input fields with attached addons. Addons can be text ($,
- * %,
- * .00 etc) or form controls (buttons or select inputs).
- */
-export const InputGroupAddon = ({ first, last, ...props }) => {
+export const Label = ({ position, size, data, ...props }) => {
 	const { COLORS } = useBrand();
-	const { size } = useInputGroupContext();
 
 	const sizeMap = {
 		small: {
@@ -44,34 +36,33 @@ export const InputGroupAddon = ({ first, last, ...props }) => {
 	return (
 		<span
 			css={{
-				fontSize: sizeMap[size].fontSize,
+				...sizeMap[size],
 				lineHeight: 1.5,
-				padding: sizeMap[size].padding,
-				height: sizeMap[size].height,
 				backgroundColor: COLORS.light,
 				border: `1px solid ${COLORS.borderDark}`,
 				borderRadius: '0.1875rem',
 				borderTopRightRadius: 0,
 				borderBottomRightRadius: 0,
 				whiteSpace: 'nowrap',
+				boxSizing: 'border-box',
+				borderRight: position === 'left' && 0,
 
-				borderRight: first && 0,
-				...(last && {
+				...(position === 'right' && {
 					borderTopRightRadius: '0.1875rem',
 					borderBottomRightRadius: '0.1875rem',
 					borderLeft: 0,
 				}),
-				...(!first && {
+				...(!(position === 'left') && {
 					borderTopLeftRadius: 0,
 					borderBottomLeftRadius: 0,
-				}),
-				...(!last && {
 					borderTopRightRadius: 0,
 					borderBottomRightRadius: 0,
 				}),
 			}}
 			{...props}
-		/>
+		>
+			{data}
+		</span>
 	);
 };
 
@@ -79,9 +70,23 @@ export const InputGroupAddon = ({ first, last, ...props }) => {
 // Types
 // ==============================
 
-InputGroupAddon.propTypes = {
-	/**  Component text */
-	children: PropTypes.string.isRequired,
+Label.propTypes = {
+	/**
+	 * What position this component is at
+	 */
+	position: PropTypes.oneOf(['left', 'right']).isRequired,
+
+	/**
+	 * What size the button-group is
+	 */
+	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
+
+	/**
+	 * The content of the component
+	 */
+	data: PropTypes.string.isRequired,
 };
 
-InputGroupAddon.defaultProps = {};
+Label.defaultProps = {
+	size: 'medium',
+};
