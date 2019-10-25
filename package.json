@@ -60,7 +60,7 @@
 		"@changesets/cli": "^2.1.2",
 		"@emotion/core": "^10.0.22",
 		"@emotion/weak-memoize": "^0.2.4",
-		"@manypkg/cli": "^0.7.0",
+		"@manypkg/cli": "^0.8.0",
 		"babel-core": "^7.0.0-bridge.0",
 		"babel-jest": "^24.9.0",
 		"babel-loader": "^8.0.6",

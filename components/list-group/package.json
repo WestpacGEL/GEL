@@ -36,7 +36,7 @@
 		"react": "^16.10.1"
 	},
 	"devDependencies": {
-		"@westpac/button-group": "^0.0.1",
+		"@westpac/button-group": "*",
 		"cypress": "^3.5.0",
 		"react": "^16.11.0",
 		"start-server-and-test": "^1.10.6"
