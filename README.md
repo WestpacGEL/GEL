@@ -229,14 +229,15 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 
 ## Props API vocabulary
 
-| Prop                          | Description                                                                                                 |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `tag`                         | When a component can be rendered as different tags                                                          |
-| `look`                        | When talking about the look of a component like `success` or `hero`                                         |
-| `href`                        | When something points at a thing via a link                                                                 |
-| `icon` `iconLeft` `iconRight` | For passing in an icon                                                                                      |
-| `disabled` or `noBorder`      | For passing boolean flags we use natural language and not `is` or `has` prefixes                            |
-| `size`                        | For the physical size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                     |
-| `value`                       | For when a component shows a value, often numbers but not only                                              |
-| `selected`                    | For things inside lists that are being targeted. Like `ButtonGroups` or `CheckGroup`. Takes string or array |
-| `label`                       | For labeling things that are visible or a11y text                                                           |
+| Prop                                       | Description                                                                                                 |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `tag`                                      | When a component can be rendered as different tags                                                          |
+| `look`                                     | When talking about the look of a component like `success` or `hero`                                         |
+| `href`                                     | When something points at a thing via a link                                                                 |
+| `icon` `iconLeft` `iconRight`              | For passing in an icon                                                                                      |
+| `disabled` or `noBorder`                   | For passing boolean flags we use natural language and not `is` or `has` prefixes                            |
+| `size`                                     | For the physical size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                     |
+| `value`                                    | For when a component shows a value, often numbers but not only                                              |
+| `selected`                                 | For things inside lists that are being targeted. Like `ButtonGroups` or `CheckGroup`. Takes string or array |
+| `label`                                    | For labeling things that are visible or a11y text                                                           |
+| `xsmall` `small` `medium` `large` `xlarge` | For t-shirt sizing                                                                                          |
