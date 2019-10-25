@@ -10,7 +10,17 @@ import { jsx, wrapHandlers } from '@westpac/core';
 
 export const ButtonGroup = props => {
 	const { isControlled } = getConfig(props);
-	const { block, children, defaultValue, look, name, onChange, value: controlledValue, size, ...rest } = props;
+	const {
+		block,
+		children,
+		defaultValue,
+		look,
+		name,
+		onChange,
+		value: controlledValue,
+		size,
+		...rest
+	} = props;
 	const [value, setValue] = useState(defaultValue);
 
 	const handleClick = (val, onClick) =>
