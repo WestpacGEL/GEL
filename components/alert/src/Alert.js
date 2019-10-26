@@ -17,7 +17,7 @@ const CloseBtn = ({ onClose, icon, ...rest }) => (
 	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />
 );
 
-const BodyHeading = ({tag, children, ...rest}) => (
+const BodyHeading = ({ tag, children, ...rest }) => (
 	<Heading size={7} tag={tag} {...rest}>
 		{children}
 	</Heading>

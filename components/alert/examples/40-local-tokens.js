@@ -10,14 +10,12 @@ const CloseBtnNew = ({ onClose, icon: Icon, ...rest }) => (
 	</button>
 );
 
-const Heading = ({children}) => (
-	<h3 css={{ margin: '0 0 0.5rem 0', color: 'red !important' }}>
-		{children}
-	</h3>
+const Heading = ({ children }) => (
+	<h3 css={{ margin: '0 0 0.5rem 0', color: 'red !important' }}>{children}</h3>
 );
 
 function Example({ brand }) {
-	const brandWithTokens = { ...brand }
+	const brandWithTokens = { ...brand };
 	brandWithTokens['@westpac/alert'] = {
 		innerCSS: {
 			outline: '1px solid red',
@@ -42,8 +40,8 @@ function Example({ brand }) {
 			</Alert>
 
 			<Alert look="system" heading="System Error 8942" closable>
-				The server is no responding. Please try again later.
-				Sorry for the inconvenience. Hey neato, I can be closed. <a href="#">Link</a>
+				The server is no responding. Please try again later. Sorry for the inconvenience. Hey neato,
+				I can be closed. <a href="#">Link</a>
 			</Alert>
 
 			<hr />
