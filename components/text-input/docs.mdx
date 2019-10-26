@@ -5,7 +5,7 @@ route: /text-input
 ---
 
 import { Playground, Props } from 'docz';
-import { TextInput } from './src';
+import { Text, Textarea, Select } from '@westpac/text-input';
 import { Form } from '@westpac/form';
 import { Button } from '@westpac/button';
 
@@ -20,16 +20,16 @@ Generally form TextInput components don’t exist on their own, they require add
 The TextInput component renders text input, select and textarea elements. Use the `tag` prop to change the input type.
 
 <Playground>
-	<TextInput />
+	<Text />
 	<br />
-	<TextInput tag="select">
+	<Select">
 		<option>Select</option>
 		<option>1</option>
 		<option>2</option>
 		<option>3</option>
-	</TextInput>
+	</Select>
 	<br />
-	<TextInput tag="textarea" />
+	<Textarea />
 </Playground>
 
 ## Sizes
@@ -37,31 +37,31 @@ The TextInput component renders text input, select and textarea elements. Use th
 Input fields are available in four sizes; in addition to the default (Medium) size, there are two larger sizes (Extra large and Large) and one smaller size (Small). These sizes align with other form element sizes. We generally use Large for mobile apps.
 
 <Playground>
-	<TextInput size="small" placeholder="Small" />
+	<Text size="small" placeholder="Small" />
 	<br />
-	<TextInput size="medium" placeholder="Medium" />
+	<Text size="medium" placeholder="Medium" />
 	<br />
-	<TextInput size="large" placeholder="Large" />
+	<Text size="large" placeholder="Large" />
 	<br />
-	<TextInput size="xlarge" placeholder="Extra large" />
+	<Text size="xlarge" placeholder="Extra large" />
 </Playground>
 
 ## Invalid
 
 <Playground>
-	<TextInput invalid />
+	<Text invalid />
 </Playground>
 
 ## Disabled
 
 <Playground>
-	<TextInput disabled />
+	<Text disabled />
 </Playground>
 
 ## Readonly
 
 <Playground>
-	<TextInput readOnly value="This value is readonly" />
+	<Text readOnly value="This value is readonly" />
 </Playground>
 
 ## Inline
@@ -69,8 +69,8 @@ Input fields are available in four sizes; in addition to the default (Medium) si
 TextInput components are block-level by default. You can render inline inputs by passing an `inline` prop to the wrapping Form component.
 
 <Playground>
-	<Form inline>
-		<TextInput /> <TextInput /> <Button type="submit">Submit</Button>
+	<Form>
+		<Text inline /> <Text inline /> <Button type="submit">Submit</Button>
 	</Form>
 </Playground>
 
@@ -79,21 +79,31 @@ TextInput components are block-level by default. You can render inline inputs by
 Use fixed width sizing classes to set a maximum width based on character length. These classes are particularly useful for content that has a specific, known length such as postcodes, telephone numbers and dates etc.
 
 <Playground>
-	<TextInput width={2} placeholder={2} />
+	<Text width={2} placeholder={2} />
 	<br />
-	<TextInput width={3} placeholder={3} />
+	<Text width={3} placeholder={3} />
 	<br />
-	<TextInput width={4} placeholder={4} />
+	<Text width={4} placeholder={4} />
 	<br />
-	<TextInput width={5} placeholder={5} />
+	<Text width={5} placeholder={5} />
 	<br />
-	<TextInput width={10} placeholder={10} />
+	<Text width={10} placeholder={10} />
 	<br />
-	<TextInput width={20} placeholder={20} />
+	<Text width={20} placeholder={20} />
 	<br />
-	<TextInput width={30} placeholder={30} />
+	<Text width={30} placeholder={30} />
 </Playground>
 
 ## Props
 
-<Props of={TextInput} />
+### Text
+
+<Props of={Text} />
+
+### Textarea
+
+<Props of={Textarea} />
+
+### Select
+
+<Props of={Select} />

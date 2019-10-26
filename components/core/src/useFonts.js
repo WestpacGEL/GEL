@@ -6,7 +6,7 @@ export const useFonts = ({ path }) => {
 	return {
 		'': TYPE.files[''].map(file => {
 			const { src, ...rest } = file['@font-face'];
-			return { src: src.replace(/_PATH_/g, path), ...rest };
+			return { '@font-face': { src: src.replace(/_PATH_/g, path), ...rest } };
 		}),
 	};
 };

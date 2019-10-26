@@ -18,9 +18,9 @@ import {
 	Hint,
 	InputCluster,
 	Item,
-} from './src';
+} from '@westpac/form';
 
-import { TextInput } from '@westpac/text-input';
+import { Text, Textarea, Select } from '@westpac/text-input';
 import { ButtonGroup, ButtonGroupButton } from '@westpac/button-group';
 import { Alert } from '@westpac/alert';
 import { AlertIcon } from '@westpac/icon';
@@ -48,19 +48,19 @@ The `@westpac/form` package provides general form styling and layout components 
     			<FormLabel htmlFor="example-textinput">This is a label</FormLabel>
     			<Hint>This is a hint</Hint>
     			<ErrorMessage message="This is an error message" />
-    			<TextInput name="example-textinput" id="example-textinput" />
+    			<Text name="example-textinput" id="example-textinput" />
     		</FormGroup>
 
     		<FormGroup>
     			<FormLabel htmlFor="example-select">This is a label</FormLabel>
     			<Hint>This is a hint</Hint>
     			<ErrorMessage message="This is an error message" />
-    			<TextInput tag="select" name="example-select" id="example-select">
+    			<Select name="example-select" id="example-select">
     					<option>Select</option>
     					<option>Option 1</option>
     					<option>Option 2</option>
     					<option>Option 3</option>
-    				</TextInput>
+    				</Select>
     		</FormGroup>
     	</FormSection>
 
@@ -69,7 +69,7 @@ The `@westpac/form` package provides general form styling and layout components 
     			<FormLabel htmlFor="example-textarea">This is a label</FormLabel>
     			<Hint>This is a hint</Hint>
     			<ErrorMessage message="This is an error message" />
-    			<TextInput tag="textarea" name="example-textarea" id="example-textarea" />
+    			<Textarea name="example-textarea" id="example-textarea" />
     		</FormGroup>
 
     		<FormGroup>
@@ -79,11 +79,11 @@ The `@westpac/form` package provides general form styling and layout components 
     				<InputCluster>
     					<Item>
     						<FormLabel htmlFor="example-fieldset-line1" sublabel>This is a sub-label</FormLabel>
-    						<TextInput name="example-fieldset-line1" id="example-fieldset-line1" />
+    						<Text name="example-fieldset-line1" id="example-fieldset-line1" />
     					</Item>
     					<Item>
     						<FormLabel htmlFor="example-fieldset-line2" sublabel>This is a sub-label</FormLabel>
-    						<TextInput name="example-fieldset-line2" id="example-fieldset-line2" />
+    						<Text name="example-fieldset-line2" id="example-fieldset-line2" />
     					</Item>
     				</InputCluster>
     			</Fieldset>
@@ -138,7 +138,7 @@ Always use the FormGroup component to wrap the components that make up each form
 		<FormLabel htmlFor="example-formgroup">This is a label</FormLabel>
 		<Hint id="example-formgroup-hint">This is a hint</Hint>
 		<ErrorMessage message="This is an error message" id="example-formgroup-error" />
-		<TextInput
+		<Text
 			name="example-formgroup"
 			id="example-formgroup"
 			aria-describedby="example-formgroup-hint example-formgroup-error"
@@ -194,7 +194,7 @@ Fieldset takes mandatory legend text via its `legend` prop.
 					<FormLabel htmlFor="example-fieldset-input-1" sublabel>
 						Day
 					</FormLabel>
-					<TextInput
+					<Text
 						type="number"
 						autoComplete="bday-day"
 						pattern="[0-9]*"
@@ -209,7 +209,7 @@ Fieldset takes mandatory legend text via its `legend` prop.
 					<FormLabel htmlFor="example-fieldset-input-2" sublabel>
 						Month
 					</FormLabel>
-					<TextInput
+					<Text
 						type="number"
 						autoComplete="bday-month"
 						pattern="[0-9]*"
@@ -224,7 +224,7 @@ Fieldset takes mandatory legend text via its `legend` prop.
 					<FormLabel htmlFor="example-fieldset-input-3" sublabel>
 						Year
 					</FormLabel>
-					<TextInput
+					<Text
 						type="number"
 						autoComplete="bday-year"
 						pattern="[0-9]*"
@@ -255,7 +255,7 @@ Every input component in a form requires an associated text label to describe th
 <Playground>
 	<FormGroup>
 		<FormLabel htmlFor="example-formlabel">This is a label</FormLabel>
-		<TextInput name="example-formlabel" id="example-formlabel" />
+		<Text name="example-formlabel" id="example-formlabel" />
 	</FormGroup>
 </Playground>
 
@@ -273,13 +273,13 @@ These patterns also require use of the Fieldset component to meet WCAG 2.1 AA ac
 					<FormLabel htmlFor="example-formlabel-sublabel-1" sublabel>
 						This is a sub-label
 					</FormLabel>
-					<TextInput name="example-formlabel-sublabel-1" id="example-formlabel-sublabel-1" />
+					<Text name="example-formlabel-sublabel-1" id="example-formlabel-sublabel-1" />
 				</Item>
 				<Item>
 					<FormLabel htmlFor="example-formlabel-sublabel-2" sublabel>
 						This is another sub-label
 					</FormLabel>
-					<TextInput name="example-formlabel-sublabel-2" id="example-formlabel-sublabel-2" />
+					<Text name="example-formlabel-sublabel-2" id="example-formlabel-sublabel-2" />
 				</Item>
 			</InputCluster>
 		</Fieldset>
@@ -298,13 +298,13 @@ Always provide a FormLabel component for every associated input to meet WCAG 2.1
 					<FormLabel htmlFor="example-formlabel-sronly-1" srOnly>
 						This is a ‘screen reader only’ label
 					</FormLabel>
-					<TextInput name="example-formlabel-sronly-1" id="example-formlabel-sronly-1" />
+					<Text name="example-formlabel-sronly-1" id="example-formlabel-sronly-1" />
 				</Item>
 				<Item>
 					<FormLabel htmlFor="example-formlabel-sronly-2" srOnly>
 						This is another ‘screen reader only’ label
 					</FormLabel>
-					<TextInput name="example-formlabel-sronly-2" id="example-formlabel-sronly-2" />
+					<Text name="example-formlabel-sronly-2" id="example-formlabel-sronly-2" />
 				</Item>
 			</InputCluster>
 		</Fieldset>
@@ -328,17 +328,17 @@ Hint text is additional text provided to aid the user in understanding the expec
 	<FormGroup>
 		<FormLabel htmlFor="example-hint-input">This is a label</FormLabel>
 		<Hint id="example-hint">This is a hint</Hint>
-		<TextInput name="example-hint-input" id="example-hint-input" aria-describedby="example-hint" />
+		<Text name="example-hint-input" id="example-hint-input" aria-describedby="example-hint" />
 	</FormGroup>
 	<FormGroup>
 		<Fieldset legend="This is a legend" aria-describedby="example-fieldset-hint">
 			<Hint id="example-fieldset-hint">This is a hint</Hint>
 			<InputCluster>
 				<Item>
-					<TextInput name="example-fieldset-hint-input-1" id="example-fieldset-hint-input-1" />
+					<Text name="example-fieldset-hint-input-1" id="example-fieldset-hint-input-1" />
 				</Item>
 				<Item>
-					<TextInput name="example-fieldset-hint-input-2" id="example-fieldset-hint-input-2" />
+					<Text name="example-fieldset-hint-input-2" id="example-fieldset-hint-input-2" />
 				</Item>
 			</InputCluster>
 		</Fieldset>
@@ -365,7 +365,7 @@ Use the `message` prop to pass error message text.
 <Playground>
 	<FormGroup>
 		<ErrorMessage message="This is an error message" id="example-single-error" />
-		<TextInput name="example-single" aria-describedby="example-single-error" invalid />
+		<Text name="example-single" aria-describedby="example-single-error" invalid />
 	</FormGroup>
 </Playground>
 
@@ -377,7 +377,7 @@ Multiple messages can be rendered by passing an array of errors.
 			message={['This is an error message', 'This is another error message']}
 			id="example-multiple-error"
 		/>
-		<TextInput name="example-multiple" aria-describedby="example-multiple-error" invalid />
+		<Text name="example-multiple" aria-describedby="example-multiple-error" invalid />
 	</FormGroup>
 </Playground>
 
@@ -392,10 +392,10 @@ The default (vertical) mode is used to render the multi-line ‘Street’ patter
 <Playground>
 	<InputCluster>
 		<Item>
-			<TextInput name="example-inputcluster-input-1" id="example-inputcluster-input-1" />
+			<Text name="example-inputcluster-input-1" id="example-inputcluster-input-1" />
 		</Item>
 		<Item>
-			<TextInput name="example-inputcluster-input-2" id="example-inputcluster-input-2" />
+			<Text name="example-inputcluster-input-2" id="example-inputcluster-input-2" />
 		</Item>
 	</InputCluster>
 </Playground>
@@ -407,13 +407,13 @@ The `horizontal` mode changes the layout to inline. This mode is used to render 
 <Playground>
 	<InputCluster horizontal>
 		<Item>
-			<TextInput
+			<Text
 				name="example-inputcluster-horizontal-input-1"
 				id="example-inputcluster-horizontal-input-1"
 			/>
 		</Item>
 		<Item>
-			<TextInput
+			<Text
 				name="example-inputcluster-horizontal-input-2"
 				id="example-inputcluster-horizontal-input-2"
 			/>
