@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
-import { ArrowRightIcon } from '@westpac/icon';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
+import { ArrowRightIcon } from '@westpac/icon';
+import { name } from '../package.json';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -13,8 +14,15 @@ import React from 'react';
 /**
  * Crumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Crumb = ({ current, href, text, label, onClick, ...props }) => {
-	const { COLORS } = useBrand();
+export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...props }) => {
+	const { COLORS, [name]: localBrandTokens } = useBrand();
+
+	const localTokens = {
+		crumbCSS: {},
+		crumbLinkCSS: {},
+		Icon,
+	};
+	merge(localTokens, localBrandTokens);
 
 	return (
 		<li
@@ -24,6 +32,7 @@ export const Crumb = ({ current, href, text, label, onClick, ...props }) => {
 				position: 'relative',
 				color: COLORS.text,
 				verticalAlign: 'middle',
+				...localTokens.crumbCSS,
 			}}
 			{...props}
 		>
@@ -41,12 +50,14 @@ export const Crumb = ({ current, href, text, label, onClick, ...props }) => {
 					':focus, :hover': {
 						textDecoration: current ? 'none' : 'underline',
 					},
+
+					...localTokens.crumbLinkCSS,
 				}}
 			>
 				{text}
 			</a>
 			{!current && (
-				<ArrowRightIcon
+				<localTokens.Icon
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
@@ -87,8 +98,14 @@ Crumb.propTypes = {
 	 * The label of the current page
 	 */
 	label: PropTypes.string.isRequired,
+
+	/**
+	 * The icon between Crumbs
+	 */
+	icon: PropTypes.func.isRequired,
 };
 
 Crumb.defaultProps = {
 	label: 'Current page:',
+	icon: ArrowRightIcon,
 };
