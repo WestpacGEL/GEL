@@ -3,39 +3,65 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import { CSSTransition } from 'react-transition-group';
 import { Heading } from '@westpac/heading';
 import { Button } from '@westpac/button';
+import { name } from '../package.json';
+
+// ==============================
+// Token component
+// ==============================
+
+const CloseBtn = ({ onClose, icon, ...rest }) => (
+	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />
+);
+
+const BodyHeading = ({tag, children, ...rest}) => (
+	<Heading size={7} tag={tag} {...rest}>
+		{children}
+	</Heading>
+);
 
 // ==============================
 // Component
 // ==============================
 
-export const Alert = ({ look, closable, icon: Icon, heading, headingTag, children }) => {
-	const { COLORS, SPACING } = useBrand();
+export const Alert = ({ look, closable, icon: Icon, heading, headingTag, children, ...rest }) => {
+	const { COLORS, SPACING, [name]: localBrandTokens } = useBrand();
 	const mq = useMediaQuery();
 	const [open, setOpen] = useState(true);
 
-	const iconMap = {
-		success: TickIcon,
-		info: InfoIcon,
-		warning: AlertIcon,
-		danger: AlertIcon,
-		system: AlertIcon,
+	const localTokens = {
+		success: {
+			icon: TickIcon,
+		},
+		info: {
+			icon: InfoIcon,
+		},
+		warning: {
+			icon: AlertIcon,
+		},
+		danger: {
+			icon: AlertIcon,
+		},
+		system: {
+			icon: AlertIcon,
+		},
+		speed: 300,
+		innerCSS: {},
+		CloseBtn,
+		Heading: BodyHeading,
 	};
+	merge(localTokens, localBrandTokens);
 
 	// Set a default icon
 	if (Icon === undefined) {
-		Icon = iconMap[look];
+		Icon = localTokens[look].icon;
 	}
 
-	//<Transition>
-	//	{state => <div css={{ state === 'exiting' }}}
-	//</Transition>
-
 	return (
-		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
+		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={localTokens.speed + 100}>
 			<div
 				css={mq({
 					marginBottom: '1.3125rem',
@@ -43,7 +69,8 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 					position: 'relative',
 					display: [null, 'flex'],
 					zIndex: 1,
-					transition: 'opacity 0.3s ease-in-out',
+					transition: `opacity ${localTokens.speed / 1000}s ease-in-out`,
+					opacity: 1,
 					'&.anim-exit-active': {
 						opacity: 0,
 					},
@@ -53,14 +80,12 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 					borderBottom: '1px solid',
 					borderColor: look === 'system' ? COLORS.system : COLORS.tints[`${look}50`],
 				})}
+				{...rest}
 			>
 				{closable && (
-					<Button
-						onClick={() => {
-							setOpen(false);
-						}}
-						iconAfter={CloseIcon}
-						look="link"
+					<localTokens.CloseBtn
+						onClose={() => setOpen(false)}
+						icon={CloseIcon}
 						css={mq({
 							color: 'inherit',
 							position: ['relative', 'absolute'],
@@ -97,12 +122,13 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 						'& > a, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, & > ol, & > ul': {
 							color: 'inherit',
 						},
+						...localTokens.innerCSS,
 					})}
 				>
 					{heading && (
-						<Heading size={7} tag={headingTag} css={{ marginBottom: SPACING(2) }}>
+						<localTokens.Heading tag={headingTag} css={{ marginBottom: SPACING(2) }}>
 							{heading}
-						</Heading>
+						</localTokens.Heading>
 					)}
 					{children}
 				</div>

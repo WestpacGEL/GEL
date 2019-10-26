@@ -2,7 +2,6 @@
 
 import { Global, jsx } from '@emotion/core';
 import { Fragment } from 'react';
-import merge from 'lodash.merge';
 
 import { useBrand } from './Brand';
 import { reset } from './reset';
