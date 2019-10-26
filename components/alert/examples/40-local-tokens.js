@@ -4,7 +4,7 @@ import { GEL, jsx } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
 
-const CloseBtnNew = ({ onClose, icon: Icon, ...rest }) => (
+const CloseBtnNew = ({ onClose, icon: Icon, closable, look, ...rest }) => (
 	<button onClick={() => onClose()} {...rest}>
 		Close <Icon />
 	</button>

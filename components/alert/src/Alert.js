@@ -13,7 +13,7 @@ import { name } from '../package.json';
 // Token component
 // ==============================
 
-const CloseBtn = ({ onClose, icon, ...rest }) => (
+const CloseBtn = ({ onClose, icon, look, closable, ...rest }) => (
 	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />
 );
 
@@ -109,6 +109,8 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 					<localTokens.CloseBtn
 						onClose={() => setOpen(false)}
 						icon={CloseIcon}
+						look={look}
+						closable={closable}
 						css={mq({
 							color: 'inherit',
 							position: ['relative', 'absolute'],
@@ -149,7 +151,7 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 					})}
 				>
 					{heading && (
-						<localTokens.Heading tag={headingTag} css={{ marginBottom: SPACING(2) }}>
+						<localTokens.Heading tag={headingTag} css={{ marginBottom: SPACING(2) }} look={look} closable={closable}>
 							{heading}
 						</localTokens.Heading>
 					)}
@@ -168,12 +170,12 @@ Alert.propTypes = {
 	/**
 	 * Alert look
 	 */
-	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']),
+	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']).isRequired,
 
 	/**
 	 * Enable closable mode
 	 */
-	closable: PropTypes.bool,
+	closable: PropTypes.bool.isRequired,
 
 	/**
 	 * Alert icon.
@@ -190,7 +192,7 @@ Alert.propTypes = {
 	/**
 	 * The tag of the heading element for semantic reasons
 	 */
-	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
+	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
 
 	/**
 	 * Alert children
