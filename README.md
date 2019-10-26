@@ -137,10 +137,10 @@ yarn start button
 ## Decisions
 
 - All scripts are run through the `yarn` command
-- The `helpers/` folder will include all helpers for builds/docs/testing
+- The `helpers/` folder will include all helpers for builds, docs, testing etc
 - We have two different example / doc concerns:
-  1. Examples: they are for building components locally and to explain code
-  1. Docs: this is a website that will be published for documenting APIs to devs (https://westpacgel.github.io/GEL/)
+  1. Examples: they are for building components locally and to explain code per component
+  1. Docs: this is a website that will be published for documenting APIs (https://westpacgel.github.io/GEL/)
 - Multi-brand will be achieved by added a brand package that will be passed to the `<GEL/>` component
 
   ```jsx
@@ -151,13 +151,14 @@ yarn start button
   ```
 
 - Tokens and everything regarding consistent branding will be contained in the brand packages in `brands/*`
-- Tokens will include at least the four categories:
-  - `layout`
+- Tokens will include these four categories:
   - `colors`
+  - `layout`
+  - `packs`
   - `spacing`
-  - `typography`
-- Brands will only have a default export containing the "tokens" object.
-- All components (not brand packages) have at least one named export
+  - `type`
+- All components use named exports as the default, no default exports
+- Brands will also have a default export containing the "tokens" objects in addition to the named exports of each.
 - Each component has local tokens that can be overwritten with the object passed into `<GEL/>`
 
   ```jsx
@@ -170,11 +171,40 @@ yarn start button
   export const App = () => <GEL brand={brand}>Your app</GEL>;
   ```
 
+- These local tokens are defined in the component themself and will merge the global tokens before applying them
 - Each package can be addressed by its name as the key in the tokens
 - The `example/` folder is for documenting composition of several components together e.g. templates
-- Fonts can't be shipped with npm so the tokens only define the path to the fonts
+- Fonts can't be shipped with npm so the tokens only define the css declarations for the fonts
 - css-in-js emotion will be used with the `jsx` pragma and babel plugin
-- For css-in-js we use `jsx` by importing from `@westpac/core` and never depend on `emotion` directly other than inside core itself
+- For css-in-js we use `jsx` imported from `@westpac/core` and never depend on `emotion` directly other than inside core itself
+- All components that are made up of a group of other components like `list`, `breadcrumb`, `button-group`, `input-group` etc can be driven solely by the `data` prop
+- If children have to be altered inside a component we use the `cloneElement` function when we know it's a shallow depth.
+  We use context when we don't know how deep the children are going to be.
+
+### Data driven API
+
+Components that are made up by other components like `list`, `breadcrumb`, `button-group`, `input-group` etc can be solely driven by the `data` prop.
+We also offer declarative APIs in-case a consumer wants to wrap a component.
+
+```js
+<Breadcrumb>
+	<Crumb href="#/" text="Home" />
+	<Crumb href="#/personal-banking/" text="Personal" />
+	<Crumb href="#/credit-cards/" text="Credit cards" />
+</Breadcrumb>
+```
+
+Is the same as:
+
+```js
+<Breadcrumb
+	data={[
+		{ href: '#/', text: 'Home' },
+		{ href: '#/personal-banking/', text: 'Personal' },
+		{ href: '#/credit-cards/', text: 'Credit cards' },
+	]}
+/>
+```
 
 ### How we handle focus state
 
@@ -241,3 +271,4 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 | `selected`                                 | For things inside lists that are being targeted. Like `ButtonGroups` or `CheckGroup`. Takes string or array |
 | `label`                                    | For labeling things that are visible or a11y text                                                           |
 | `xsmall` `small` `medium` `large` `xlarge` | For t-shirt sizing                                                                                          |
+| `data`                                     | A prop to drive a component-group from data alone                                                           |
