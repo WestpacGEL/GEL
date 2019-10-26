@@ -151,7 +151,12 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 					})}
 				>
 					{heading && (
-						<localTokens.Heading tag={headingTag} css={{ marginBottom: SPACING(2) }} look={look} closable={closable}>
+						<localTokens.Heading
+							tag={headingTag}
+							css={{ marginBottom: SPACING(2) }}
+							look={look}
+							closable={closable}
+						>
 							{heading}
 						</localTokens.Heading>
 					)}
