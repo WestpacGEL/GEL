@@ -24,6 +24,10 @@ function Example({ brand }) {
 		},
 		info: {
 			icon: HouseIcon,
+			css: {
+				color: 'rebeccapurple',
+				padding: '4rem 0.5rem',
+			},
 		},
 		speed: 5000,
 		CloseBtn: CloseBtnNew,

@@ -35,18 +35,43 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 	const localTokens = {
 		success: {
 			icon: TickIcon,
+			css: {
+				backgroundColor: COLORS.tints[`${look}5`],
+				color: COLORS[look],
+				borderColor: COLORS.tints[`${look}50`],
+			},
 		},
 		info: {
 			icon: InfoIcon,
+			css: {
+				backgroundColor: COLORS.tints[`${look}5`],
+				color: COLORS[look],
+				borderColor: COLORS.tints[`${look}50`],
+			},
 		},
 		warning: {
 			icon: AlertIcon,
+			css: {
+				backgroundColor: COLORS.tints[`${look}5`],
+				color: COLORS[look],
+				borderColor: COLORS.tints[`${look}50`],
+			},
 		},
 		danger: {
 			icon: AlertIcon,
+			css: {
+				backgroundColor: COLORS.tints[`${look}5`],
+				color: COLORS[look],
+				borderColor: COLORS.tints[`${look}50`],
+			},
 		},
 		system: {
 			icon: AlertIcon,
+			css: {
+				backgroundColor: COLORS.system,
+				color: 'black',
+				borderColor: COLORS.system,
+			},
 		},
 		speed: 300,
 		innerCSS: {},
@@ -74,11 +99,9 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 					'&.anim-exit-active': {
 						opacity: 0,
 					},
-					color: look === 'system' ? 'black' : COLORS[look],
-					backgroundColor: look === 'system' ? COLORS.system : COLORS.tints[`${look}5`],
 					borderTop: '1px solid',
 					borderBottom: '1px solid',
-					borderColor: look === 'system' ? COLORS.system : COLORS.tints[`${look}50`],
+					...localTokens[look].css,
 				})}
 				{...rest}
 			>
