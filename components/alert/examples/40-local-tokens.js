@@ -27,7 +27,7 @@ function Example({ brand }) {
 				padding: '4rem 0.5rem',
 			},
 		},
-		speed: 5000,
+		duration: 5000,
 		CloseBtn: CloseBtnNew,
 		Heading,
 	};

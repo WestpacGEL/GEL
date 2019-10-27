@@ -73,7 +73,7 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 				borderColor: COLORS.system,
 			},
 		},
-		speed: 300,
+		duration: 300,
 		innerCSS: {},
 		CloseBtn,
 		Heading: BodyHeading,
@@ -86,7 +86,7 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 	}
 
 	return (
-		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={localTokens.speed + 100}>
+		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={localTokens.duration + 100}>
 			<div
 				css={mq({
 					marginBottom: '1.3125rem',
@@ -94,7 +94,7 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 					position: 'relative',
 					display: [null, 'flex'],
 					zIndex: 1,
-					transition: `opacity ${localTokens.speed / 1000}s ease-in-out`,
+					transition: `opacity ${localTokens.duration}ms ease-in-out`,
 					opacity: 1,
 					'&.anim-exit-active': {
 						opacity: 0,
