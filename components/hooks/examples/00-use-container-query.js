@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { useRef, useState } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
+import { useRef } from 'react';
 
 function Example({ brand }) {
 	const textareaRef = useRef();
