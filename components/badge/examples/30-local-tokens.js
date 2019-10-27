@@ -21,7 +21,7 @@ const Wrapper = ({ children, look }) => (
 function Example({ brand }) {
 	const brandWithTokens = { ...brand };
 	brandWithTokens['@westpac/badge'] = {
-		primary: {
+		neutral: {
 			css: {
 				backgroundColor: 'rebeccapurple',
 				outline: '1px solid red',
