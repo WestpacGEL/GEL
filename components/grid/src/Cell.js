@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import PropTypes from 'prop-types';
 import { jsx, useMediaQuery } from '@westpac/core';
+import PropTypes from 'prop-types';
 
 // ==============================
 // Utils
@@ -47,7 +47,7 @@ Cell.propTypes = {
 	/**
 	 * The cell height in units. When using an array the units are applied to the applicable breakpoints.
 	 */
-	height: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+	height: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).isRequired,
 
 	/**
 	 * The `grid-column-start` CSS property.
@@ -62,8 +62,9 @@ Cell.propTypes = {
 	/**
 	 * The cell width in units. When using an array the units are applied to the applicable breakpoints.
 	 */
-	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).isRequired,
 };
+
 Cell.defaultProps = {
 	height: 1,
 	width: 1,

@@ -25,7 +25,7 @@ TextWrapper.propTypes = {
 	 *
 	 * Fit button width to its parent width.
 	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
 
 	/**
 	 * Enable ‘screen reader only’ text mode
