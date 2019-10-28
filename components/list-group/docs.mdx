@@ -6,7 +6,7 @@ route: /list-group
 
 import { Playground, Props } from 'docz';
 import { ListGroup, ListGroupItem } from '@westpac/list-group';
-import { ButtonGroup, ButtonGroupButton } from '@westpac/button-group';
+import { ButtonGroup, Button } from '@westpac/button';
 
 # ListGroup
 
@@ -22,29 +22,29 @@ Write your docs here
 				<ListGroupItem>
 					Send me sms reminders
 					<ButtonGroup size="small" name="example-default-1" css={styleExample}>
-						<ButtonGroupButton>Yes</ButtonGroupButton>
-						<ButtonGroupButton>No</ButtonGroupButton>
+						<Button value="yes">Yes</Button>
+						<Button value="no">No</Button>
 					</ButtonGroup>
 				</ListGroupItem>
 				<ListGroupItem>
 					Give me free money
 					<ButtonGroup size="small" name="example-default-2" css={styleExample}>
-						<ButtonGroupButton>Yes</ButtonGroupButton>
-						<ButtonGroupButton>No</ButtonGroupButton>
+						<Button value="yes">Yes</Button>
+						<Button value="no">No</Button>
 					</ButtonGroup>
 				</ListGroupItem>
 				<ListGroupItem>
 					Call me all the time
 					<ButtonGroup size="small" name="example-default-3" css={styleExample}>
-						<ButtonGroupButton>Yes</ButtonGroupButton>
-						<ButtonGroupButton>No</ButtonGroupButton>
+						<Button value="yes">Yes</Button>
+						<Button value="no">No</Button>
 					</ButtonGroup>
 				</ListGroupItem>
 				<ListGroupItem>
 					Deleted messages
 					<ButtonGroup size="small" name="example-default-4" css={styleExample}>
-						<ButtonGroupButton>Yes</ButtonGroupButton>
-						<ButtonGroupButton>No</ButtonGroupButton>
+						<Button value="yes">Yes</Button>
+						<Button value="no">No</Button>
 					</ButtonGroup>
 				</ListGroupItem>
 			</ListGroup>

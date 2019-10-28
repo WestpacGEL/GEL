@@ -21,7 +21,7 @@ import {
 } from '@westpac/form';
 
 import { Text, Textarea, Select } from '@westpac/text-input';
-import { ButtonGroup, ButtonGroupButton } from '@westpac/button-group';
+import { ButtonGroup, Button } from '@westpac/button';
 import { Alert } from '@westpac/alert';
 import { AlertIcon } from '@westpac/icon';
 
@@ -155,8 +155,12 @@ Use the `primary` prop to centre the contents of a FormGroup. This option is use
 	<FormGroup primary>
 		<Fieldset legend="Do you have a different mailing address?">
 			<ButtonGroup name="example-formgroup-primary">
-				<ButtonGroupButton id="example-formgroup-primary-1">Yes</ButtonGroupButton>
-				<ButtonGroupButton id="example-formgroup-primary-2">No</ButtonGroupButton>
+				<Button id="example-formgroup-primary-1" value="yes">
+					Yes
+				</Button>
+				<Button id="example-formgroup-primary-2" value="no">
+					No
+				</Button>
 			</ButtonGroup>
 		</Fieldset>
 	</FormGroup>
