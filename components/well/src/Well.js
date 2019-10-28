@@ -1,16 +1,21 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
 export const Well = props => {
-	const { COLORS } = useBrand();
+	const { COLORS, [pkg.name]: localBrandTokens } = useBrand();
 	const mq = useMediaQuery();
+
+	const localTokens = {
+		css: {},
+	};
+	merge(localTokens, localBrandTokens);
 
 	return (
 		<div
@@ -26,6 +31,7 @@ export const Well = props => {
 					backgroundColor: '#fff',
 					margin: '0.75rem 0',
 				},
+				...localTokens.css,
 			})}
 			{...props}
 		/>
