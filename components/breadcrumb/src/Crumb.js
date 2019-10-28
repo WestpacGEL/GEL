@@ -3,7 +3,7 @@
 import { jsx, useBrand, merge } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import { ArrowRightIcon } from '@westpac/icon';
-import { name } from '../package.json';
+import pkg from '../package.json';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -15,7 +15,7 @@ import React from 'react';
  * Crumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
 export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...props }) => {
-	const { COLORS, [name]: localBrandTokens } = useBrand();
+	const { COLORS, [pkg.name]: localBrandTokens } = useBrand();
 
 	const localTokens = {
 		crumbCSS: {},

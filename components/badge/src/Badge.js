@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, merge } from '@westpac/core';
-import { name } from '../package.json';
 import PropTypes from 'prop-types';
+import pkg from '../package.json';
 import { Fragment } from 'react';
 
 // ==============================
@@ -10,7 +10,7 @@ import { Fragment } from 'react';
 // ==============================
 
 export const Badge = ({ look, value, ...props }) => {
-	const { COLORS, BRAND, [name]: localBrandTokens } = useBrand();
+	const { COLORS, BRAND, [pkg.name]: localBrandTokens } = useBrand();
 
 	let color = '#fff';
 	if (look === 'hero' && BRAND === 'STG') {

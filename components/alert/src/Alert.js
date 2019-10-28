@@ -7,7 +7,7 @@ import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import { CSSTransition } from 'react-transition-group';
 import { Heading } from '@westpac/heading';
 import { Button } from '@westpac/button';
-import { name } from '../package.json';
+import pkg from '../package.json';
 
 // ==============================
 // Token component
@@ -28,7 +28,7 @@ const BodyHeading = ({ tag, children, ...rest }) => (
 // ==============================
 
 export const Alert = ({ look, closable, icon: Icon, heading, headingTag, children, ...rest }) => {
-	const { COLORS, SPACING, [name]: localBrandTokens } = useBrand();
+	const { COLORS, SPACING, [pkg.name]: localBrandTokens } = useBrand();
 	const mq = useMediaQuery();
 	const [open, setOpen] = useState(true);
 
