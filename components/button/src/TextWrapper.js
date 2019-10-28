@@ -10,8 +10,8 @@ import pkg from '../package.json';
 // Token component
 // ==============================
 
-function BlockWrapper({children}) {
-	return <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>
+function BlockWrapper({ children }) {
+	return <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>;
 }
 
 // ==============================
@@ -31,7 +31,11 @@ export const TextWrapper = ({ block, srOnlyText, children }) => {
 		return <localTokens.VisuallyHidden>{children}</localTokens.VisuallyHidden>;
 	} else if (block) {
 		// Wrap with styled span to provide text truncation (only available in block mode)
-		return <localTokens.BlockWrapper css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</localTokens.BlockWrapper>;
+		return (
+			<localTokens.BlockWrapper css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+				{children}
+			</localTokens.BlockWrapper>
+		);
 	} else {
 		return children;
 	}

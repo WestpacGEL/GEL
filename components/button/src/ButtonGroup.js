@@ -81,7 +81,7 @@ export const ButtonGroup = props => {
 						const onClick = handleClick(val, button.onClick);
 						const btnProps = { ...button, disabled, look, onClick, size, soft };
 
-						return <Button key={val} {...btnProps} css={{...localTokens.buttonGroupCSS}}/>;
+						return <Button key={val} {...btnProps} css={{ ...localTokens.buttonGroupCSS }} />;
 				  })
 				: Children.map(children, (child, index) => {
 						const val = child.props.value || index;

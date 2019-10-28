@@ -8,7 +8,7 @@ import { Fragment } from 'react';
 const TextWrapper = ({ children, ...rest }) => (
 	<Fragment>
 		{children}
-		<HouseIcon size="small" color="currentColor" css={{ marginLeft: '0.5em'}}/>
+		<HouseIcon size="small" color="currentColor" css={{ marginLeft: '0.5em' }} />
 	</Fragment>
 );
 
@@ -30,11 +30,10 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brandWithTokens}>
 			<h2>With local tokens applied</h2>
-			<Button>Default standard</Button> <Button look="primary">Primary standard</Button> <Button look="hero">Hero standard</Button>{' '}
-			<Button look="faint">Faint standard</Button> <Button look="link">Link</Button>
-
-			<hr/>
-
+			<Button>Default standard</Button> <Button look="primary">Primary standard</Button>{' '}
+			<Button look="hero">Hero standard</Button> <Button look="faint">Faint standard</Button>{' '}
+			<Button look="link">Link</Button>
+			<hr />
 			<ButtonGroup
 				data={[
 					{ children: 'Left', value: 'left' },
