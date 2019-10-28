@@ -174,6 +174,7 @@ export const Button = ({
 				userSelect: 'none',
 				verticalAlign: look === 'link' ? 'baseline' : 'middle',
 				whiteSpace: 'nowrap',
+				boxSizing: 'border-box',
 
 				// Hover state (but excluded if disabled or inside a disabled fieldset)
 				':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
