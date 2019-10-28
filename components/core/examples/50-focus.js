@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
-import { TextInput } from '@westpac/text-input';
+import { Text, Textarea, Select } from '@westpac/text-input';
 
 function Example({ brand }) {
 	return (
@@ -31,13 +31,13 @@ function Example({ brand }) {
 			<hr />
 
 			<p>Note: All users should see our focus outline styling; not just keyboard users.</p>
-			<TextInput />
+			<Text />
 			<br />
-			<TextInput tag="select">
+			<Select>
 				<option>Select</option>
-			</TextInput>
+			</Select>
 			<br />
-			<TextInput tag="textarea" />
+			<Textarea />
 
 			<hr />
 

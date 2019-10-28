@@ -63,7 +63,7 @@ Content.propTypes = {
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
-	]),
+	]).isRequired,
 
 	/**
 	 * Places an icon within the button, after the button’s text
@@ -85,7 +85,7 @@ Content.propTypes = {
 	 *
 	 * Fit button width to its parent width.
 	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
 
 	/**
 	 * Button text

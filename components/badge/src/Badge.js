@@ -1,15 +1,16 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, merge } from '@westpac/core';
+import { name } from '../package.json';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { Fragment } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
 export const Badge = ({ look, value, ...props }) => {
-	const { COLORS, BRAND } = useBrand();
+	const { COLORS, BRAND, [name]: localBrandTokens } = useBrand();
 
 	let color = '#fff';
 	if (look === 'hero' && BRAND === 'STG') {
@@ -18,6 +19,67 @@ export const Badge = ({ look, value, ...props }) => {
 	if (look === 'faint') {
 		color = COLORS.muted;
 	}
+
+	const localTokens = {
+		primary: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		hero: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		neutral: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		faint: {
+			css: {
+				color,
+				backgroundColor: '#fff',
+				borderColor: COLORS.border,
+			},
+		},
+		success: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		info: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		warning: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		danger: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		Wrapper: Fragment,
+	};
+	merge(localTokens, localBrandTokens);
 
 	return (
 		<span
@@ -33,9 +95,7 @@ export const Badge = ({ look, value, ...props }) => {
 				textAlign: 'center',
 				verticalAlign: 'baseline',
 				whiteSpace: 'nowrap',
-				color: color,
-				backgroundColor: COLORS[look],
-				borderColor: look === 'faint' ? COLORS.border : COLORS[look],
+				...localTokens[look].css,
 
 				'@media print': {
 					color: '#000',
@@ -45,7 +105,7 @@ export const Badge = ({ look, value, ...props }) => {
 			}}
 			{...props}
 		>
-			{value}
+			<localTokens.Wrapper look={look}>{value}</localTokens.Wrapper>
 		</span>
 	);
 };

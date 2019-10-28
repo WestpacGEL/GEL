@@ -1,8 +1,10 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
-import { cloneElement, Children, createContext, useContext } from 'react';
+import { jsx, useBrand, merge } from '@westpac/core';
+import { cloneElement, Children } from 'react';
 import { VisuallyHidden } from '@westpac/a11y';
+import { ArrowRightIcon } from '@westpac/icon';
+import { name } from '../package.json';
 import PropTypes from 'prop-types';
 import { Crumb } from './Crumb';
 
@@ -13,18 +15,29 @@ import { Crumb } from './Crumb';
 /**
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Breadcrumb = ({ children, data, current, label, crumbLabel, ...props }) => {
+export const Breadcrumb = ({ children, data, current, label, currentLabel, ...props }) => {
+	const { [name]: localBrandTokens } = useBrand();
+
+	const localTokens = {
+		Crumb,
+		listCSS: {},
+		Label: VisuallyHidden,
+		Icon: ArrowRightIcon,
+	};
+	merge(localTokens, localBrandTokens);
+
 	let allChildren = [];
 	if (data) {
 		data.map(({ href, text, onClick }, index) => {
 			allChildren.push(
-				<Crumb
+				<localTokens.Crumb
+					key={index}
 					current={index === data.length - 1}
-					label={crumbLabel}
+					label={currentLabel}
 					href={href}
 					text={text}
+					icon={localTokens.Icon}
 					onClick={onClick}
-					key={index}
 				/>
 			);
 		});
@@ -37,13 +50,14 @@ export const Breadcrumb = ({ children, data, current, label, crumbLabel, ...prop
 
 	return (
 		<div {...props}>
-			<VisuallyHidden>{label}</VisuallyHidden>
+			<localTokens.Label>{label}</localTokens.Label>
 			<ol
 				css={{
 					padding: '0.375rem 1.125rem',
 					marginBottom: '1.3125rem',
 					fontSize: '0.8125rem',
 					listStyle: 'none',
+					...localTokens.listCSS,
 				}}
 			>
 				{allChildren}
@@ -74,11 +88,6 @@ Breadcrumb.propTypes = {
 	),
 
 	/**
-	 * The current page
-	 */
-	current: PropTypes.string,
-
-	/**
 	 * The label of the breadcrumb
 	 */
 	label: PropTypes.string.isRequired,
@@ -86,7 +95,7 @@ Breadcrumb.propTypes = {
 	/**
 	 * The label of the crumb current page
 	 */
-	crumbLabel: PropTypes.string,
+	currentLabel: PropTypes.string,
 };
 
 Breadcrumb.defaultProps = {

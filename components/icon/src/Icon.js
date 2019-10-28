@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import PropTypes from 'prop-types';
 
 // ==============================
 // Utils
@@ -21,14 +20,6 @@ export const sizeMap = {
 const IconWrapper = ({ size, ...props }) => {
 	const mq = useMediaQuery();
 
-	// Common styling
-	const styleCommon = {
-		display: 'inline-block',
-		flexShrink: 0,
-		lineHeight: 1,
-		verticalAlign: 'middle',
-	};
-
 	// Size styling (responsive)
 	const sizeArr = asArray(size);
 	const styleSize = {
@@ -39,7 +30,10 @@ const IconWrapper = ({ size, ...props }) => {
 	return (
 		<span
 			css={mq({
-				...styleCommon,
+				display: 'inline-block',
+				flexShrink: 0,
+				lineHeight: 1,
+				verticalAlign: 'middle',
 				...styleSize,
 			})}
 			{...props}
@@ -54,11 +48,8 @@ const IconWrapper = ({ size, ...props }) => {
 export const Icon = ({ children, color, label, size, ...props }) => {
 	const { COLORS } = useBrand();
 
-	// TODO Investigate:
-	// I suspect that using the style attribute to apply the color property will
-	// improve CSS reuse.
 	return (
-		<IconWrapper size={size} style={{ color: color ? color : COLORS.muted }} {...props}>
+		<IconWrapper size={size} css={{ color: color ? color : COLORS.muted }} {...props}>
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"

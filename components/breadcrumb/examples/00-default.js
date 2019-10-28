@@ -12,17 +12,19 @@ function Example({ brand }) {
 				<Crumb href="#/personal-banking/" text="Personal" />
 				<Crumb href="#/credit-cards/" text="Credit cards" />
 			</Breadcrumb>
+
 			<hr />
 
 			<h2>Declarative as router</h2>
-			<Breadcrumb>
+			<Breadcrumb label="Page transitions and the such">
 				<Crumb text="Home" onClick={() => console.log('Clicked Home')} />
 				<Crumb text="Personal" onClick={() => console.log('Clicked Personal')} />
 				<Crumb text="Credit cards" onClick={() => console.log('Clicked Credit cards')} />
 			</Breadcrumb>
+
 			<hr />
 
-			<h2>Programatically as links</h2>
+			<h2>Data driven as links</h2>
 			<Breadcrumb
 				data={[
 					{ href: '#/', text: 'Home' },
@@ -31,8 +33,10 @@ function Example({ brand }) {
 				]}
 			/>
 
-			<h2>Programatically as router</h2>
+			<h2>Data driven as router</h2>
 			<Breadcrumb
+				label="Page transitions and the such"
+				currentLabel="This page:"
 				data={[
 					{ text: 'Home', onClick: () => console.log('Clicked Home') },
 					{ text: 'Personal', onClick: () => console.log('Clicked Personal') },
