@@ -1,14 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Content } from './Content';
 import PropTypes from 'prop-types';
 
-// ==============================
-// Utils
-// ==============================
-
-const asArray = val => (Array.isArray(val) ? val : [val]);
+import { Content } from './Content';
+import { asArray } from './_utils';
 
 // ==============================
 // Component

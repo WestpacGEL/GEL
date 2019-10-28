@@ -1,9 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, devWarning, wrapHandlers } from '@westpac/core';
+import { jsx, devWarning, wrapHandlers, useMediaQuery } from '@westpac/core';
 import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { asArray } from './_utils';
 import { Button } from './Button';
 
 // ==============================
@@ -23,6 +24,7 @@ export const ButtonGroup = props => {
 		size,
 		...rest
 	} = props;
+	const mq = useMediaQuery();
 	const [value, setValue] = useState(defaultValue);
 
 	devWarning(children && data, 'ButtonGroup accepts either `children` or `data`, not both.');
@@ -38,10 +40,31 @@ export const ButtonGroup = props => {
 		});
 
 	const actualValue = typeof controlledValue !== 'undefined' ? controlledValue : value;
+	const blockArr = asArray(block);
 
 	// Fork map behaviour when children VS data
 	return (
-		<GroupWrapper block={block} {...rest}>
+		<div
+			css={mq({
+				alignItems: 'center',
+				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
+				verticalAlign: 'middle',
+
+				'& > *': {
+					flex: blockArr.map(b => b !== null && (b ? 1 : null)),
+				},
+				'& > *:not(:last-of-type)': {
+					borderTopRightRadius: 0,
+					borderBottomRightRadius: 0,
+					borderRight: 0,
+				},
+				'& > *:not(:first-of-type)': {
+					borderTopLeftRadius: 0,
+					borderBottomLeftRadius: 0,
+				},
+			})}
+			{...rest}
+		>
 			{data
 				? data.map((button, index) => {
 						const val = button.value || index;
@@ -59,7 +82,7 @@ export const ButtonGroup = props => {
 						return cloneElement(child, { look, onClick, size, soft });
 				  })}
 			{name && <input type="hidden" value={actualValue} name={name} />}
-		</GroupWrapper>
+		</div>
 	);
 };
 
@@ -70,24 +93,50 @@ export const ButtonGroup = props => {
 const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 ButtonGroup.propTypes = {
-	/** Block mode. Fill parent width. */
-	block: PropTypes.bool,
-	/** Button group children. */
+	/**
+	 * Block mode. Fill parent width
+	 */
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
+
+	/**
+	 * Button group children
+	 */
 	children: PropTypes.node,
-	/** Alternative to children. */
+
+	/**
+	 * Alternative to children
+	 */
 	data: PropTypes.arrayOf(PropTypes.object),
-	/** The value of the initially selected button, if numeric an index is assumed. */
-	defaultValue: ValueType,
-	/** Button look. Passed on to each child button. */
-	look: PropTypes.oneOf(['primary', 'hero']),
-	/** If used inside a form, provide a name property to capture the value in a hidden input. */
+
+	/**
+	 * The value of the initially selected button, if numeric an index is assumed
+	 */
+	defaultValue: ValueType.isRequired,
+
+	/**
+	 * Button look. Passed on to each child button
+	 */
+	look: PropTypes.oneOf(['primary', 'hero', 'faint']).isRequired,
+
+	/**
+	 * If used inside a form, provide a name property to capture the value in a hidden input
+	 */
 	name: PropTypes.string,
-	/** Change the value. Requires `value`. */
+
+	/**
+	 * Change the value. Requires `value`
+	 */
 	onChange: PropTypes.func,
-	/** Control the value, if numeric an index is assumed. Requires `onChange`. */
+
+	/**
+	 * Control the value, if numeric an index is assumed. Requires `onChange`
+	 */
 	value: ValueType,
-	/** Button size. Passed on to each child button. */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+
+	/**
+	 * Button size. Passed on to each child button
+	 */
+	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
 };
 
 ButtonGroup.defaultProps = {
@@ -96,31 +145,3 @@ ButtonGroup.defaultProps = {
 	defaultValue: -1,
 	size: 'medium',
 };
-
-// ==============================
-// Styled Components
-// ==============================
-
-const GroupWrapper = ({ block, ...props }) => (
-	<div
-		css={{
-			alignItems: 'center',
-			display: block ? 'flex' : 'inline-flex',
-			verticalAlign: 'middle',
-
-			'& > *': {
-				flex: block ? 1 : null,
-			},
-			'& > *:not(:last-of-type)': {
-				borderTopRightRadius: 0,
-				borderBottomRightRadius: 0,
-				borderRight: 0,
-			},
-			'& > *:not(:first-of-type)': {
-				borderTopLeftRadius: 0,
-				borderBottomLeftRadius: 0,
-			},
-		}}
-		{...props}
-	/>
-);
