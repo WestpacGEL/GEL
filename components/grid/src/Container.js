@@ -11,7 +11,7 @@ export const Container = props => {
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
-	const padding = [SPACING(2), SPACING(6), SPACING(8), SPACING(10)];
+	const padding = [SPACING(2), SPACING(3), SPACING(6), SPACING(8), SPACING(10)];
 
 	return (
 		<div
