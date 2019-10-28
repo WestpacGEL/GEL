@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const GridIcon = props => (
-	<Icon {...props}>
+	<Icon icon="GridIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

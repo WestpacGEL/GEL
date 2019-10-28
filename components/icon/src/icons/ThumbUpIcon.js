@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ThumbUpIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ThumbUpIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

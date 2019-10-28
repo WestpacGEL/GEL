@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const LiveChatIcon = props => (
-	<Icon {...props}>
+	<Icon icon="LiveChatIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

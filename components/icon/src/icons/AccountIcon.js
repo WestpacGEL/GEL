@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const AccountIcon = props => (
-	<Icon {...props}>
+	<Icon icon="AccountIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

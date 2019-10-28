@@ -16,6 +16,9 @@ export const Code = ({ children }) => {
 				padding: SPACING(2),
 				border: `1px solid ${COLORS.border}`,
 				marginTop: SPACING(4),
+				tabSize: '2em',
+				MozTabSize: '2em',
+				OTabSize: '2em',
 			}}
 		>
 			<code>{children}</code>

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const HeadsetIcon = props => (
-	<Icon {...props}>
+	<Icon icon="HeadsetIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

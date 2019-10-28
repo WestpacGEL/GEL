@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ImageSquareIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ImageSquareIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const EmailIcon = props => (
-	<Icon {...props}>
+	<Icon icon="EmailIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

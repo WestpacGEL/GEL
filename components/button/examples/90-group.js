@@ -5,12 +5,21 @@ import { GEL, jsx } from '@westpac/core';
 import { Button, ButtonGroup } from '@westpac/button';
 
 function ButtonGroupExample({ brand }) {
+	const [controlled, setControlled] = useState();
 	const [value, setValue] = useState('');
 	const [index, setIndex] = useState(-1);
 
 	return (
 		<GEL brand={brand}>
 			<ButtonGroup>
+				<Button>Left</Button>
+				<Button>Middle</Button>
+				<Button>Right</Button>
+			</ButtonGroup>
+
+			<h2>Responsive</h2>
+
+			<ButtonGroup block={[true, false, true, false, true]}>
 				<Button>Left</Button>
 				<Button>Middle</Button>
 				<Button>Right</Button>
@@ -36,6 +45,26 @@ function ButtonGroupExample({ brand }) {
 			/>
 
 			<h2>Controlled</h2>
+
+			<button type="button" onClick={() => setControlled('yes')}>
+				Set to "yes"
+			</button>
+			<button type="button" onClick={() => setControlled('maybe')}>
+				Set to "maybe"
+			</button>
+			<button type="button" onClick={() => setControlled('no')}>
+				Set to "no"
+			</button>
+			<button type="button" onClick={() => setControlled('')}>
+				reset
+			</button>
+			<br />
+			<br />
+			<ButtonGroup value={controlled} onChange={v => setControlled(v)}>
+				<Button value="yes">Yes</Button>
+				<Button value="maybe">Maybe</Button>
+				<Button value="no">No</Button>
+			</ButtonGroup>
 
 			<h3>Index (integer)</h3>
 			<ButtonGroup value={index} onChange={v => setIndex(v)}>
@@ -94,6 +123,14 @@ function ButtonGroupExample({ brand }) {
 
 			<h3>Hero</h3>
 			<ButtonGroup look="hero">
+				<Button>Left</Button>
+				<Button>Middle</Button>
+				<Button>Right</Button>
+			</ButtonGroup>
+
+			<h2>Disabled</h2>
+
+			<ButtonGroup disabled>
 				<Button>Left</Button>
 				<Button>Middle</Button>
 				<Button>Right</Button>

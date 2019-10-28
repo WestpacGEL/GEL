@@ -8,7 +8,7 @@ import {
 	WBCLogo,
 	STGLogo,
 } from '@westpac/symbol';
-import { Cell, Grid, Name } from './_util';
+import { Cell, Grid, Name } from './_utils';
 
 function Example({ brand }) {
 	return (

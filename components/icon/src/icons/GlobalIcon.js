@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const GlobalIcon = props => (
-	<Icon {...props}>
+	<Icon icon="GlobalIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
