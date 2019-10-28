@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const InstagramIcon = props => (
-	<Icon {...props}>
+	<Icon icon="InstagramIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

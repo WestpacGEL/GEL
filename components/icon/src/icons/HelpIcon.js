@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const HelpIcon = props => (
-	<Icon {...props}>
+	<Icon icon="HelpIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
