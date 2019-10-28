@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import shortid from 'shortid';
+import pkg from '../package.json';
 // ==============================
 // Utils
 // ==============================
@@ -59,11 +60,21 @@ export const Switch = ({
 	disabled,
 	srOnlyText,
 }) => {
+	const { COLORS, [pkg.name]: localBrandTokens } = useBrand();
 	const mq = useMediaQuery();
 	const [checked, setChecked] = useState(isChecked);
 	const [switchId] = useState(`switch-${shortid.generate()}`);
 
 	const sizeArr = responsiveMap(asArray(size));
+
+	const localTokens = {
+		labelCss: {},
+		textCss: {},
+		toggleCss: {},
+		toggleTextCss: {},
+	};
+
+	merge(localTokens, localBrandTokens);
 
 	useEffect(() => {
 		setChecked(isChecked);
@@ -92,6 +103,7 @@ export const Switch = ({
 				marginBottom: '0.375rem',
 				flexDirection: flipped && 'row-reverse',
 				cursor: disabled ? 'not-allowed' : 'pointer',
+				...localTokens.labelCss,
 			})}
 		>
 			<input
@@ -115,22 +127,63 @@ export const Switch = ({
 					whiteSpace: 'normal',
 					position: 'relative',
 					[flipped ? 'paddingLeft' : 'paddingRight']: '0.375rem',
+					...localTokens.textCss,
 				}}
 			>
 				{srOnlyText ? <VisuallyHidden>{label}</VisuallyHidden> : label}
 			</span>
-			<Toggle checked={checked} size={sizeArr}>
+			<span
+				css={mq({
+					display: 'block',
+					position: 'relative',
+					border: `2px solid ${checked ? COLORS.hero : COLORS.border}`,
+					borderRadius: sizeArr.borderRadius,
+					backgroundColor: checked ? COLORS.hero : '#fff',
+					height: sizeArr.height,
+					width: sizeArr.width,
+					overflow: 'hidden',
+					lineHeight: 1.5,
+					transition: 'border .3s ease,background .3s ease',
+
+					// the thumb/dot
+					'::after': {
+						content: '""',
+						height: sizeArr.height,
+						width: sizeArr.height,
+						display: 'block',
+						position: 'absolute',
+						left: checked ? '100%' : 0,
+						transform: checked ? 'translateX(-100%)' : null,
+						top: 0,
+						borderRadius: '50%',
+						backgroundColor: '#fff',
+						boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
+						transition: 'all .3s ease',
+					},
+					...localTokens.toggleCss,
+				})}
+			>
 				{!!toggleText.length && (
 					<>
-						<ToggleText position={'left'} checked={checked} size={sizeArr}>
+						<ToggleText
+							position={'left'}
+							checked={checked}
+							size={sizeArr}
+							css={localTokens.toggleTextCss}
+						>
 							{toggleText[0]}
 						</ToggleText>
-						<ToggleText position={'right'} checked={!checked} size={sizeArr}>
+						<ToggleText
+							position={'right'}
+							checked={!checked}
+							size={sizeArr}
+							css={localTokens.toggleTextCss}
+						>
 							{toggleText[1]}
 						</ToggleText>
 					</>
 				)}
-			</Toggle>
+			</span>
 		</label>
 	);
 };
@@ -204,45 +257,6 @@ Switch.defaultProps = {
 // ==============================
 // Styled Components
 // ==============================
-
-const Toggle = ({ checked, size, ...props }) => {
-	const { COLORS } = useBrand();
-	const mq = useMediaQuery();
-
-	return (
-		<span
-			css={mq({
-				display: 'block',
-				position: 'relative',
-				border: `2px solid ${checked ? COLORS.hero : COLORS.border}`,
-				borderRadius: size.borderRadius,
-				backgroundColor: checked ? COLORS.hero : '#fff',
-				height: size.height,
-				width: size.width,
-				overflow: 'hidden',
-				lineHeight: 1.5,
-				transition: 'border .3s ease,background .3s ease',
-
-				// the thumb/dot
-				'::after': {
-					content: '""',
-					height: size.height,
-					width: size.height,
-					display: 'block',
-					position: 'absolute',
-					left: checked ? '100%' : 0,
-					transform: checked ? 'translateX(-100%)' : null,
-					top: 0,
-					borderRadius: '50%',
-					backgroundColor: '#fff',
-					boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
-					transition: 'all .3s ease',
-				},
-			})}
-			{...props}
-		/>
-	);
-};
 
 const ToggleText = ({ position, checked, size, ...props }) => {
 	const { COLORS } = useBrand();
