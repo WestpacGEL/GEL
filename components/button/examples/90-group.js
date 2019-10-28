@@ -26,11 +26,14 @@ function ButtonGroupExample({ brand }) {
 
 			<h2>Data</h2>
 
-			<ButtonGroup name="data-group" data={[
-				{ children: 'Left', value: 'left' },
-				{ children: 'Middle', value: 'middle' },
-				{ children: 'Right', value: 'right' },
-			]} />
+			<ButtonGroup
+				name="data-group"
+				data={[
+					{ children: 'Left', value: 'left' },
+					{ children: 'Middle', value: 'middle' },
+					{ children: 'Right', value: 'right' },
+				]}
+			/>
 
 			<h2>Controlled</h2>
 

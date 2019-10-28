@@ -49,14 +49,14 @@ export const ButtonGroup = props => {
 						const btnProps = { ...button, look, onClick, size, soft };
 
 						return <Button key={val} {...btnProps} />;
-					})
+				  })
 				: Children.map(children, (child, index) => {
 						const val = child.props.value || index;
 						const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
 						const onClick = handleClick(val, child.props.onClick);
 
 						return cloneElement(child, { look, onClick, size, soft });
-				})}
+				  })}
 			{name && <input type="hidden" value={actualValue} name={name} />}
 		</GroupWrapper>
 	);
