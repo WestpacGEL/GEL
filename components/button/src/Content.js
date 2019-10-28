@@ -1,10 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
-import { TextWrapper } from './TextWrapper';
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
+
+import { TextWrapper } from './TextWrapper';
+import pkg from '../package.json';
 
 // ==============================
 // Utils
@@ -30,6 +32,13 @@ export const Content = ({
 	srOnlyText,
 	children,
 }) => {
+	const { [pkg.name]: localBrandTokens } = useBrand();
+
+	const localTokens = {
+		TextWrapper,
+	};
+	merge(localTokens, localBrandTokens);
+
 	// Compose a button text + icon fragment, if these are provided
 	return (
 		<Fragment>
@@ -41,9 +50,9 @@ export const Content = ({
 				/>
 			)}
 			{children && (
-				<TextWrapper block={block} srOnlyText={srOnlyText}>
+				<localTokens.TextWrapper block={block} srOnlyText={srOnlyText}>
 					{children}
-				</TextWrapper>
+				</localTokens.TextWrapper>
 			)}
 			{IconAfter && (
 				<IconAfter

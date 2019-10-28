@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, devWarning, wrapHandlers, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, devWarning, wrapHandlers, useMediaQuery, merge } from '@westpac/core';
 import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { asArray } from './_utils';
 import { Button } from './Button';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -25,11 +26,18 @@ export const ButtonGroup = props => {
 		size,
 		...rest
 	} = props;
+	const { [pkg.name]: localBrandTokens } = useBrand();
 	const mq = useMediaQuery();
+
 	const [value, setValue] = useState(defaultValue);
 
 	devWarning(children && data, 'ButtonGroup accepts either `children` or `data`, not both.');
 	devWarning(!children && !data, 'ButtonGroup expects either `children` or `data`.');
+
+	const localTokens = {
+		buttonGroupCSS: {},
+	};
+	merge(localTokens, localBrandTokens);
 
 	const handleClick = (val, onClick) =>
 		wrapHandlers(onClick, () => {
@@ -73,7 +81,7 @@ export const ButtonGroup = props => {
 						const onClick = handleClick(val, button.onClick);
 						const btnProps = { ...button, disabled, look, onClick, size, soft };
 
-						return <Button key={val} {...btnProps} />;
+						return <Button key={val} {...btnProps} css={{...localTokens.buttonGroupCSS}}/>;
 				  })
 				: Children.map(children, (child, index) => {
 						const val = child.props.value || index;

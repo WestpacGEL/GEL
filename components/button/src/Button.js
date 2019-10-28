@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Content } from './Content';
 import { asArray } from './_utils';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -25,16 +26,16 @@ export const Button = ({
 	children,
 	...props
 }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, [pkg.name]: localBrandTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
 	if (soft && look === 'link') soft = false;
 
 	// Appearance styling
-	const styleAppearance = {
+	const localTokens = {
 		primary: {
-			standard: {
+			standardCSS: {
 				color: '#fff',
 				backgroundColor: COLORS.primary,
 				borderColor: COLORS.primary,
@@ -46,7 +47,7 @@ export const Button = ({
 					backgroundColor: COLORS.tints.primary50,
 				},
 			},
-			soft: {
+			softCSS: {
 				color: COLORS.text,
 				backgroundColor: '#fff',
 				borderColor: COLORS.primary,
@@ -62,7 +63,7 @@ export const Button = ({
 			},
 		},
 		hero: {
-			standard: {
+			standardCSS: {
 				color: '#fff', //TODO: STG uses `COLORS.text`
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
@@ -74,7 +75,7 @@ export const Button = ({
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},
-			soft: {
+			softCSS: {
 				color: COLORS.text,
 				backgroundColor: '#fff',
 				borderColor: COLORS.hero,
@@ -90,7 +91,7 @@ export const Button = ({
 			},
 		},
 		faint: {
-			standard: {
+			standardCSS: {
 				color: COLORS.muted,
 				backgroundColor: COLORS.light,
 				borderColor: COLORS.border,
@@ -99,7 +100,7 @@ export const Button = ({
 					backgroundColor: '#fff',
 				},
 			},
-			soft: {
+			softCSS: {
 				color: COLORS.muted,
 				backgroundColor: '#fff',
 				borderColor: COLORS.border,
@@ -110,13 +111,15 @@ export const Button = ({
 			},
 		},
 		link: {
-			standard: {
+			standardCSS: {
 				color: COLORS.primary,
 				backgroundColor: 'transparent',
 				borderColor: 'transparent',
 			},
 		},
+		Content,
 	};
+	merge(localTokens, localBrandTokens);
 
 	// Size styling (responsive)
 	const sizeArr = asArray(size);
@@ -199,7 +202,7 @@ export const Button = ({
 					}
 					return sizeMap[s].height;
 				}),
-				...styleAppearance[look][soft ? 'soft' : 'standard'],
+				...localTokens[look][soft ? 'softCSS' : 'standardCSS'],
 				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
 				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 			})}
@@ -208,7 +211,7 @@ export const Button = ({
 		>
 			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 			{Tag !== 'input' ? (
-				<Content
+				<localTokens.Content
 					size={size}
 					block={block}
 					iconAfter={iconAfter}
@@ -216,7 +219,7 @@ export const Button = ({
 					srOnlyText={srOnlyText}
 				>
 					{children}
-				</Content>
+				</localTokens.Content>
 			) : null}
 		</Tag>
 	);

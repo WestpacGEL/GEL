@@ -55,6 +55,9 @@ function ButtonGroupExample({ brand }) {
 			<button type="button" onClick={() => setControlled('no')}>
 				Set to "no"
 			</button>
+			<button type="button" onClick={() => setControlled('')}>
+				reset
+			</button>
 			<br />
 			<br />
 			<ButtonGroup value={controlled} onChange={v => setControlled(v)}>
