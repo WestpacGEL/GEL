@@ -16,7 +16,6 @@ function Example({ brand }) {
 			</Code>
 			=>
 			<Code>{JSON.stringify(merge(object, other), null, 2)}</Code>
-			<hr />
 		</GEL>
 	);
 }

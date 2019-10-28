@@ -1,5 +1,5 @@
 export const wrapHandlers = (consumerHandler, ourHandler) => event => {
-	if (consumerHandler) {
+	if (typeof consumerHandler === 'function') {
 		consumerHandler(event);
 	}
 

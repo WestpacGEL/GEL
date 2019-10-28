@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
+import { jsx, devWarning, wrapHandlers } from '@westpac/core';
 import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, devWarning, wrapHandlers } from '@westpac/core';
 
 import { Button } from './Button';
 
