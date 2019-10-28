@@ -2,7 +2,7 @@
 
 import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, wrapHandlers } from '@westpac/core';
+import { jsx, devWarning, wrapHandlers } from '@westpac/core';
 
 import { Button } from './Button';
 
@@ -123,15 +123,3 @@ const GroupWrapper = ({ block, ...props }) => (
 		{...props}
 	/>
 );
-
-// ==============================
-// Utils
-// ==============================
-
-function devWarning(condition, message) {
-	if (process.env.NODE_ENV !== 'production') {
-		if (condition) {
-			console.error('Warning: ' + message);
-		}
-	}
-}
