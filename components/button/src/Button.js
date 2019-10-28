@@ -18,6 +18,7 @@ export const Button = ({
 	iconAfter,
 	iconBefore,
 	justify,
+	disabled,
 	srOnlyText,
 	tag: Tag,
 	onClick,
@@ -153,6 +154,7 @@ export const Button = ({
 	return (
 		<Tag
 			type={Tag === 'button' && props.onClick ? 'button' : undefined}
+			disabled={disabled}
 			css={mq({
 				alignItems: 'center', //vertical
 				appearance: 'none',
@@ -251,6 +253,11 @@ Button.propTypes = {
 	soft: PropTypes.bool,
 
 	/**
+	 * Button disabled
+	 */
+	disabled: PropTypes.bool.isRequired,
+
+	/**
 	 * Block mode.
 	 *
 	 * Fit button width to its parent width.
@@ -295,4 +302,5 @@ Button.defaultProps = {
 	soft: false,
 	block: false,
 	justify: false,
+	disabled: false,
 };

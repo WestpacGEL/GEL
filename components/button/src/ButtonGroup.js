@@ -19,6 +19,7 @@ export const ButtonGroup = props => {
 		defaultValue,
 		look,
 		name,
+		disabled,
 		onChange,
 		value: controlledValue,
 		size,
@@ -70,7 +71,7 @@ export const ButtonGroup = props => {
 						const val = button.value || index;
 						const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
 						const onClick = handleClick(val, button.onClick);
-						const btnProps = { ...button, look, onClick, size, soft };
+						const btnProps = { ...button, disabled, look, onClick, size, soft };
 
 						return <Button key={val} {...btnProps} />;
 				  })
@@ -79,7 +80,7 @@ export const ButtonGroup = props => {
 						const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
 						const onClick = handleClick(val, child.props.onClick);
 
-						return cloneElement(child, { look, onClick, size, soft });
+						return cloneElement(child, { look, onClick, size, soft, disabled });
 				  })}
 			{name && <input type="hidden" value={actualValue} name={name} />}
 		</div>
@@ -137,6 +138,11 @@ ButtonGroup.propTypes = {
 	 * Button size. Passed on to each child button
 	 */
 	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
+
+	/**
+	 * Button group disabled
+	 */
+	disabled: PropTypes.bool.isRequired,
 };
 
 ButtonGroup.defaultProps = {
@@ -144,4 +150,5 @@ ButtonGroup.defaultProps = {
 	block: false,
 	defaultValue: -1,
 	size: 'medium',
+	disabled: false,
 };

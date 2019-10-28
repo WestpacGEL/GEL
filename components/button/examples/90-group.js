@@ -125,6 +125,14 @@ function ButtonGroupExample({ brand }) {
 				<Button>Right</Button>
 			</ButtonGroup>
 
+			<h2>Disabled</h2>
+
+			<ButtonGroup disabled>
+				<Button>Left</Button>
+				<Button>Middle</Button>
+				<Button>Right</Button>
+			</ButtonGroup>
+
 			<h2>Size</h2>
 
 			<h3>Small</h3>
