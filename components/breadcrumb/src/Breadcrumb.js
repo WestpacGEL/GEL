@@ -4,8 +4,8 @@ import { jsx, useBrand, merge } from '@westpac/core';
 import { cloneElement, Children } from 'react';
 import { VisuallyHidden } from '@westpac/a11y';
 import { ArrowRightIcon } from '@westpac/icon';
-import pkg from '../package.json';
 import PropTypes from 'prop-types';
+import pkg from '../package.json';
 import { Crumb } from './Crumb';
 
 // ==============================
@@ -23,6 +23,7 @@ export const Breadcrumb = ({ children, data, current, label, currentLabel, ...pr
 		listCSS: {},
 		Label: VisuallyHidden,
 		Icon: ArrowRightIcon,
+		css: {},
 	};
 	merge(localTokens, localBrandTokens);
 
@@ -49,7 +50,7 @@ export const Breadcrumb = ({ children, data, current, label, currentLabel, ...pr
 	}
 
 	return (
-		<div {...props}>
+		<div css={localTokens.css} {...props}>
 			<localTokens.Label>{label}</localTokens.Label>
 			<ol
 				css={{

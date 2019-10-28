@@ -20,6 +20,7 @@ export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...prop
 	const localTokens = {
 		crumbCSS: {},
 		crumbLinkCSS: {},
+		crumbLable: VisuallyHidden,
 		Icon,
 	};
 	merge(localTokens, localBrandTokens);
@@ -36,7 +37,7 @@ export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...prop
 			}}
 			{...props}
 		>
-			{current && <VisuallyHidden>{label}</VisuallyHidden>}
+			{current && <localTokens.crumbLable>{label}</localTokens.crumbLable>}
 			<a
 				href={current ? null : href}
 				onClick={onClick}
