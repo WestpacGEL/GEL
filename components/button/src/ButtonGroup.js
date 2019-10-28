@@ -4,6 +4,8 @@ import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, wrapHandlers } from '@westpac/core';
 
+import { Button } from './Button';
+
 // ==============================
 // Component
 // ==============================
@@ -12,6 +14,7 @@ export const ButtonGroup = props => {
 	const {
 		block,
 		children,
+		data,
 		defaultValue,
 		look,
 		name,
@@ -21,6 +24,8 @@ export const ButtonGroup = props => {
 		...rest
 	} = props;
 	const [value, setValue] = useState(defaultValue);
+
+	devWarning(children && data, 'ButtonGroup accepts either `children` or `data`, not both.');
 
 	const handleClick = (val, onClick) =>
 		wrapHandlers(onClick, () => {
@@ -33,15 +38,25 @@ export const ButtonGroup = props => {
 
 	const actualValue = typeof controlledValue !== 'undefined' ? controlledValue : value;
 
+	// Fork map behaviour when children VS data
 	return (
 		<GroupWrapper block={block} {...rest}>
-			{Children.map(children, (child, index) => {
-				const val = child.props.value || index;
-				const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
-				const onClick = handleClick(val, child.props.onClick);
+			{data
+				? data.map((button, index) => {
+						const val = button.value || index;
+						const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
+						const onClick = handleClick(val, button.onClick);
+						const btnProps = { ...button, look, onClick, size, soft };
 
-				return cloneElement(child, { look, onClick, size, soft });
-			})}
+						return <Button key={val} {...btnProps} />;
+					})
+				: Children.map(children, (child, index) => {
+						const val = child.props.value || index;
+						const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
+						const onClick = handleClick(val, child.props.onClick);
+
+						return cloneElement(child, { look, onClick, size, soft });
+				})}
 			{name && <input type="hidden" value={actualValue} name={name} />}
 		</GroupWrapper>
 	);
@@ -57,7 +72,9 @@ ButtonGroup.propTypes = {
 	/** Block mode. Fill parent width. */
 	block: PropTypes.bool,
 	/** Button group children. */
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
+	/** Alternative to children. */
+	data: PropTypes.arrayOf(PropTypes.object),
 	/** The value of the initially selected button, if numeric an index is assumed. */
 	defaultValue: ValueType,
 	/** Button look. Passed on to each child button. */
@@ -106,3 +123,15 @@ const GroupWrapper = ({ block, ...props }) => (
 		{...props}
 	/>
 );
+
+// ==============================
+// Utils
+// ==============================
+
+function devWarning(condition, message) {
+	if (process.env.NODE_ENV !== 'production') {
+		if (condition) {
+			console.error('Warning: ' + message);
+		}
+	}
+}

@@ -24,6 +24,14 @@ function ButtonGroupExample({ brand }) {
 				<Button onClick={() => console.log('You clicked "Right"')}>Right</Button>
 			</ButtonGroup>
 
+			<h2>Data</h2>
+
+			<ButtonGroup name="data-group" data={[
+				{ children: 'Left', value: 'left' },
+				{ children: 'Middle', value: 'middle' },
+				{ children: 'Right', value: 'right' },
+			]} />
+
 			<h2>Controlled</h2>
 
 			<h3>Index (integer)</h3>
