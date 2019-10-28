@@ -1,14 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';
 
 // ==============================
 // Utils
 // ==============================
-
-const asArray = val => (Array.isArray(val) ? val : [val]);
 
 export const sizeMap = {
 	xsmall: 12, // 0.5x

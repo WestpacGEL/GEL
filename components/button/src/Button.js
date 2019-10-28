@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Content } from './Content';
-import { asArray } from './_utils';
 import pkg from '../package.json';
 
 // ==============================

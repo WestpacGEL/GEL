@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, devWarning, wrapHandlers, useMediaQuery, merge } from '@westpac/core';
+import { jsx, useBrand, devWarning, wrapHandlers, useMediaQuery, asArray, merge } from '@westpac/core';
 import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { asArray } from './_utils';
 import { Button } from './Button';
 import pkg from '../package.json';
 
