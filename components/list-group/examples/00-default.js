@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { ListGroup, Item } from '@westpac/list-group';
-import { ButtonGroup, Button } from '@westpac/button-group';
+import { ButtonGroup, Button } from '@westpac/button';
 
 const styleExample = {
 	marginLeft: '0.75rem',
