@@ -26,6 +26,7 @@ export const ButtonGroup = props => {
 	const [value, setValue] = useState(defaultValue);
 
 	devWarning(children && data, 'ButtonGroup accepts either `children` or `data`, not both.');
+	devWarning(!children && !data, 'ButtonGroup expects either `children` or `data`.');
 
 	const handleClick = (val, onClick) =>
 		wrapHandlers(onClick, () => {
