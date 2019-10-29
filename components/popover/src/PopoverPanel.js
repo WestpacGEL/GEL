@@ -16,7 +16,7 @@ export const PopoverPanel = forwardRef(({ open, position, title, content, ...pro
 				tabIndex="-1"
 				aria-label="Use the ESC key to close"
 				css={{
-					position: 'absolute',
+					position: 'fixed',
 					top: `${position.top}rem`,
 					left: `${position.left}rem`,
 					boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
