@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery, merge, wrapHandlers } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, merge, wrapHandlers, asArray } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import pkg from '../package.json';
 
@@ -42,8 +42,6 @@ const responsiveMap = size => ({
 	borderRadius: size.map(s => s && sizeMap[s].borderRadius),
 	fontSize: size.map(s => s && sizeMap[s].fontSize),
 });
-
-const asArray = val => (Array.isArray(val) ? val : [val]);
 
 // ==============================
 // Component
