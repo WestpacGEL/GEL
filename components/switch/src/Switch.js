@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
-import shortid from 'shortid';
 import pkg from '../package.json';
+import { wrapHandlers } from '@westpac/core/src';
+
 // ==============================
 // Utils
 // ==============================
@@ -59,19 +60,19 @@ export const Switch = ({
 	toggleText,
 	disabled,
 	srOnlyText,
+	...props
 }) => {
 	const { COLORS, [pkg.name]: localBrandTokens } = useBrand();
 	const mq = useMediaQuery();
 	const [checked, setChecked] = useState(isChecked);
-	const [switchId] = useState(`switch-${shortid.generate()}`);
 
 	const sizeArr = responsiveMap(asArray(size));
 
 	const localTokens = {
-		labelCss: {},
-		textCss: {},
-		toggleCss: {},
-		toggleTextCss: {},
+		toggleCSS: {},
+		toggleTextCSS: {},
+		CSS: {},
+		Label,
 	};
 
 	merge(localTokens, localBrandTokens);
@@ -80,17 +81,10 @@ export const Switch = ({
 		setChecked(isChecked);
 	}, [isChecked]);
 
-	const handleChange = name => () => {
-		if (onChange) {
-			onChange(name);
-		} else {
-			setChecked(!checked);
-		}
-	};
+	const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
 
 	return (
 		<label
-			htmlFor={switchId}
 			css={mq({
 				display: block ? 'flex' : 'inline-flex',
 				opacity: disabled && 0.5,
@@ -103,11 +97,11 @@ export const Switch = ({
 				marginBottom: '0.375rem',
 				flexDirection: flipped && 'row-reverse',
 				cursor: disabled ? 'not-allowed' : 'pointer',
-				...localTokens.labelCss,
+				...localTokens.CSS,
 			})}
+			{...props}
 		>
 			<input
-				id={switchId}
 				type="checkbox"
 				name={name}
 				checked={checked}
@@ -119,19 +113,9 @@ export const Switch = ({
 					opacity: 0,
 				}}
 			/>
-			<span
-				css={{
-					flex: block && 1,
-					display: 'flex',
-					alignItems: 'center',
-					whiteSpace: 'normal',
-					position: 'relative',
-					[flipped ? 'paddingLeft' : 'paddingRight']: '0.375rem',
-					...localTokens.textCss,
-				}}
-			>
+			<localTokens.Label block={block} flipped={flipped}>
 				{srOnlyText ? <VisuallyHidden>{label}</VisuallyHidden> : label}
-			</span>
+			</localTokens.Label>
 			<span
 				css={mq({
 					display: 'block',
@@ -160,16 +144,16 @@ export const Switch = ({
 						boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 						transition: 'all .3s ease',
 					},
-					...localTokens.toggleCss,
+					...localTokens.toggleCSS,
 				})}
 			>
-				{!!toggleText.length && (
-					<>
+				{!!toggleText && (
+					<Fragment>
 						<ToggleText
 							position={'left'}
 							checked={checked}
 							size={sizeArr}
-							css={localTokens.toggleTextCss}
+							css={localTokens.toggleTextCSS}
 						>
 							{toggleText[0]}
 						</ToggleText>
@@ -177,11 +161,11 @@ export const Switch = ({
 							position={'right'}
 							checked={!checked}
 							size={sizeArr}
-							css={localTokens.toggleTextCss}
+							css={localTokens.toggleTextCSS}
 						>
 							{toggleText[1]}
 						</ToggleText>
-					</>
+					</Fragment>
 				)}
 			</span>
 		</label>
@@ -255,8 +239,21 @@ Switch.defaultProps = {
 };
 
 // ==============================
-// Styled Components
+// Styled/Token Components
 // ==============================
+const Label = ({ block, flipped, ...props }) => (
+	<span
+		css={{
+			flex: block && 1,
+			display: 'flex',
+			alignItems: 'center',
+			whiteSpace: 'normal',
+			position: 'relative',
+			[flipped ? 'paddingLeft' : 'paddingRight']: '0.375rem',
+		}}
+		{...props}
+	/>
+);
 
 const ToggleText = ({ position, checked, size, ...props }) => {
 	const { COLORS } = useBrand();

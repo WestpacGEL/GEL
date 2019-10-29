@@ -4,22 +4,21 @@ import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 
+const LabelNew = props => (
+	<strong css={{ color: 'palevioletred', paddingRight: '2rem' }} {...props} />
+);
+
 function Example({ brand }) {
 	const [checked, setChecked] = useState(false);
 	const brandWithTokens = { ...brand };
 
 	brandWithTokens['@westpac/switch'] = {
-		labelCss: {
-			padding: '10px',
-		},
-		textCss: {
-			color: 'palevioletred',
-		},
-		toggleCss: {
+		toggleCSS: {
 			borderColor: 'mediumVioletred',
 			backgroundColor: checked ? 'paleVioletRed' : 'white',
 		},
-		toggleTextCss: { color: checked ? 'white' : 'firebrick' },
+		toggleTextCSS: { color: checked ? 'white' : 'firebrick' },
+		Label: LabelNew,
 	};
 
 	return (
