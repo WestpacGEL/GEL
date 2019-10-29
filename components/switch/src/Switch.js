@@ -71,6 +71,7 @@ export const Switch = ({
 		toggleTextCSS: {},
 		CSS: {},
 		Label,
+		ToggleTextWrapper,
 	};
 
 	merge(overwrites, overwritesWithTokens);
@@ -146,7 +147,7 @@ export const Switch = ({
 				})}
 			>
 				{!!toggleText && (
-					<Fragment>
+					<overwrites.ToggleTextWrapper>
 						<ToggleText
 							position={'left'}
 							checked={checked}
@@ -163,7 +164,7 @@ export const Switch = ({
 						>
 							{toggleText[1]}
 						</ToggleText>
-					</Fragment>
+					</overwrites.ToggleTextWrapper>
 				)}
 			</span>
 		</label>
@@ -276,3 +277,5 @@ const ToggleText = ({ position, checked, size, ...props }) => {
 		/>
 	);
 };
+
+const ToggleTextWrapper = ({ children }) => <Fragment>{children}</Fragment>;

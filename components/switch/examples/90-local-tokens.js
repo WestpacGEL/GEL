@@ -4,9 +4,7 @@ import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 
-const LabelNew = props => (
-	<strong css={{ color: 'palevioletred', paddingRight: '2rem' }} {...props} />
-);
+const Label = props => <strong css={{ color: 'palevioletred', paddingRight: '2rem' }} {...props} />;
 
 function Example({ brand }) {
 	const [checked, setChecked] = useState(false);
@@ -19,7 +17,7 @@ function Example({ brand }) {
 		},
 		toggleTextCSS: { color: checked ? 'white' : 'firebrick' },
 		CSS: { paddingBottom: '1rem', borderBottom: '2px solid palevioletred' },
-		Label: LabelNew,
+		Label,
 	};
 
 	return (
@@ -32,7 +30,7 @@ function Example({ brand }) {
 				onChange={() => setChecked(!checked)}
 			/>
 			<Switch
-				name="example-default"
+				name="example-default2"
 				label="Turn notifications"
 				checked={checked}
 				onChange={() => setChecked(!checked)}
