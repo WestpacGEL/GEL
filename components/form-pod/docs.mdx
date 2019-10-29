@@ -4,7 +4,7 @@ menu: Components
 route: /form-pod
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, Props } from 'docz';
 import {
 	FormPod,
 	FormPodActions,
@@ -14,7 +14,7 @@ import {
 	FormPodPanel,
 	FormPodPanelBody,
 	FormPodPanelFooter,
-} from './src';
+} from '@westpac/form-pod';
 import { TickIcon, HeadsetIcon, LiveChatIcon } from '@westpac/icon';
 import { Alert, AlertHeading } from '@westpac/alert';
 import { List, ListItem } from '@westpac/list';
@@ -88,7 +88,7 @@ Form pods are designed to work inside the Template component. When building a fo
 	</FormPod>
 </Playground>
 
-<PropsTable of={FormPod} />
+<Props of={FormPod} />
 
 ## FormPodPanel
 
@@ -121,7 +121,7 @@ Pass the `noBorderTop` prop to remove the top border. This is required when disp
 	</FormPod>
 </Playground>
 
-<PropsTable of={FormPodPanel} />
+<Props of={FormPodPanel} />
 
 ### FormPodPanelBody
 
@@ -137,7 +137,7 @@ Pass the `expanded` prop to enable expanded body mode. This mode reduces padding
 	</FormPod>
 </Playground>
 
-<PropsTable of={FormPodPanelBody} />
+<Props of={FormPodPanelBody} />
 
 ### FormPodPanelFooter
 
@@ -168,7 +168,7 @@ FormPodPanelFooter provides two content ‘slots’, accessed via two props `lef
 	</FormPod>
 </Playground>
 
-<PropsTable of={FormPodPanelFooter} />
+<Props of={FormPodPanelFooter} />
 
 ## FormPodActions
 
@@ -214,7 +214,7 @@ FormPodActions provides the form navigation controls that sit at the bottom unde
 	</FormPod>
 </Playground>
 
-<PropsTable of={FormPodActions} />
+<Props of={FormPodActions} />
 
 ### FormPodActionsText
 
@@ -257,7 +257,7 @@ FormPodActionsText provides simple styling for any text placed inside a FormPodA
 	</FormPod>
 </Playground>
 
-<PropsTable of={FormPodActionsText} />
+<Props of={FormPodActionsText} />
 
 ## FormPodContactList
 
@@ -286,7 +286,7 @@ The `items` prop takes an array of objects configuring icon, iconColor, text, ur
 	/>
 </Playground>
 
-<PropsTable of={FormPodContactList} />
+<Props of={FormPodContactList} />
 
 ## FormPodIndicator
 
@@ -296,4 +296,4 @@ FormPodIndicator renders a status indicator. The component is passed to FormPodF
 	<FormPodIndicator />
 </Playground>
 
-<PropsTable of={FormPodIndicator} />
+<Props of={FormPodIndicator} />

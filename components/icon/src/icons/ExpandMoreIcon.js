@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ExpandMoreIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ExpandMoreIcon" {...props}>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"

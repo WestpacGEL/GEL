@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ProgressIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ProgressIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

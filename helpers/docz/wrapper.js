@@ -1,6 +1,6 @@
 import React from 'react';
-import { GEL } from '../../components/core';
-import defaultBrand from '../../brands/WBC';
+import { GEL } from '@westpac/core';
+import defaultBrand from '@westpac/wbc';
 
 export default function({ children }) {
 	return (

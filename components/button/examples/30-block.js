@@ -1,40 +1,44 @@
-import React from 'react';
-import { Button } from '../src';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<h2>Default</h2>
+import { GEL, jsx } from '@westpac/core';
+import { Button } from '@westpac/button';
 
-		<Button appearance="primary" size="xlarge" block>
-			Primary extra large block button
-		</Button>
-		<br />
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<h2>Default</h2>
 
-		<Button appearance="hero" size="large" block>
-			Hero large block button
-		</Button>
-		<br />
+			<Button look="primary" size="xlarge" block>
+				Primary extra large block button
+			</Button>
+			<br />
 
-		<Button appearance="faint" size="small" block>
-			Faint small block button
-		</Button>
+			<Button look="hero" size="large" block>
+				Hero large block button
+			</Button>
+			<br />
 
-		<hr />
+			<Button look="faint" size="small" block>
+				Faint small block button
+			</Button>
+			<hr />
 
-		<h2>Soft</h2>
+			<h2>Soft</h2>
+			<Button look="primary" size="xlarge" soft block>
+				Primary extra large soft block button
+			</Button>
+			<br />
 
-		<Button appearance="primary" size="xlarge" soft block>
-			Primary extra large soft block button
-		</Button>
-		<br />
+			<Button look="hero" size="large" soft block>
+				Hero large soft block button
+			</Button>
+			<br />
 
-		<Button appearance="hero" size="large" soft block>
-			Hero large soft block button
-		</Button>
-		<br />
+			<Button look="faint" size="small" soft block>
+				Faint small soft block button
+			</Button>
+		</GEL>
+	);
+}
 
-		<Button appearance="faint" size="small" soft block>
-			Faint small soft block button
-		</Button>
-	</>
-);
+export default Example;

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const WheelchairIcon = props => (
-	<Icon {...props}>
+	<Icon icon="WheelchairIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

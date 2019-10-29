@@ -1,18 +1,24 @@
-import React from 'react';
-import { Badge } from '../src';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<p>
-			<Badge>Default</Badge>
-		</p>
-		<p>
-			<Badge appearance="primary">Primary</Badge> <Badge appearance="hero">Hero</Badge>{' '}
-			<Badge appearance="neutral">Neutral</Badge> <Badge appearance="faint">Faint</Badge>
-		</p>
-		<p>
-			<Badge appearance="success">Success</Badge> <Badge appearance="info">Info</Badge>{' '}
-			<Badge appearance="warning">Warning</Badge> <Badge appearance="danger">Danger</Badge>
-		</p>
-	</>
-);
+import { GEL, jsx } from '@westpac/core';
+import { Badge } from '@westpac/badge';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<p>
+				<Badge value="Default" />
+			</p>
+			<p>
+				<Badge look="primary" value="Primary" /> <Badge look="hero" value="Hero" />{' '}
+				<Badge look="neutral" value="Neutral" /> <Badge look="faint" value="Faint" />
+			</p>
+			<p>
+				<Badge look="success" value="Success" /> <Badge look="info" value="Info" />{' '}
+				<Badge look="warning" value="Warning" /> <Badge look="danger" value="Danger" />
+			</p>
+		</GEL>
+	);
+}
+
+export default Example;

@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx, useMediaQuery } from '@westpac/core';
+import PropTypes from 'prop-types';
 
 // ==============================
 // Utils
@@ -79,23 +78,28 @@ Grid.propTypes = {
 		'start',
 		'stretch',
 	]),
+
 	/**
 	 * The `grid-template-areas` CSS property. Pass an array of strings, e.g. `["a a", "b c"]`.
 	 */
 	areas: PropTypes.arrayOf(PropTypes.string),
+
 	/**
 	 * The `column-gap` CSS property.
 	 */
 	columnGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
 	/**
 	 * The `grid-template-columns` CSS property. When a number is passed it is a
 	 * shorthand to specify the number of columns.
 	 */
-	columns: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	columns: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+
 	/**
 	 * The `grid-auto-flow` CSS property.
 	 */
-	flow: PropTypes.oneOf(['column dense', 'column', 'dense', 'row dense', 'row']),
+	flow: PropTypes.oneOf(['column dense', 'column', 'dense', 'row dense', 'row']).isRequired,
+
 	/**
 	 * The `grid-gap` CSS property.
 	 */
@@ -104,11 +108,13 @@ Grid.propTypes = {
 		PropTypes.string,
 		PropTypes.arrayOf(PropTypes.number),
 		PropTypes.arrayOf(PropTypes.string),
-	]),
+	]).isRequired,
+
 	/**
 	 * The `height` CSS property
 	 */
-	height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+
 	/**
 	 * The `justify-content` CSS property.
 	 */
@@ -126,14 +132,17 @@ Grid.propTypes = {
 		'start',
 		'stretch',
 	]),
+
 	/**
 	 * Minimum height of each row.
 	 */
-	minRowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	minRowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+
 	/**
 	 * The `row-gap` CSS property.
 	 */
 	rowGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
 	/**
 	 * The `grid-template-rows` CSS property. When a number is passed it is a
 	 * shorthand to specify the number of rows.

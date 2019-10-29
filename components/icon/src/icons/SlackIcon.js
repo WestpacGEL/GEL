@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const SlackIcon = props => (
-	<Icon {...props}>
+	<Icon icon="SlackIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const CloseIcon = props => (
-	<Icon {...props}>
+	<Icon icon="CloseIcon" {...props}>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const DragIcon = props => (
-	<Icon {...props}>
+	<Icon icon="DragIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

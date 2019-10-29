@@ -1,30 +1,35 @@
-import React from 'react';
-import { Button } from '../src';
+/** @jsx jsx */
 
-export default () => (
-	<>
-		<Button appearance="primary" disabled>
-			Primary
-		</Button>{' '}
-		<Button appearance="hero" disabled>
-			Hero
-		</Button>{' '}
-		<Button appearance="faint" disabled>
-			Faint
-		</Button>{' '}
-		<Button appearance="link" disabled>
-			Link
-		</Button>
-		<br />
-		<br />
-		<Button appearance="primary" soft disabled>
-			Primary soft
-		</Button>{' '}
-		<Button appearance="hero" soft disabled>
-			Hero soft
-		</Button>{' '}
-		<Button appearance="faint" soft disabled>
-			Faint soft
-		</Button>
-	</>
-);
+import { GEL, jsx } from '@westpac/core';
+import { Button } from '@westpac/button';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Button look="primary" disabled>
+				Primary
+			</Button>{' '}
+			<Button look="hero" disabled>
+				Hero
+			</Button>{' '}
+			<Button look="faint" disabled>
+				Faint
+			</Button>{' '}
+			<Button look="link" disabled>
+				Link
+			</Button>
+			<hr />
+			<Button look="primary" soft disabled>
+				Primary soft
+			</Button>{' '}
+			<Button look="hero" soft disabled>
+				Hero soft
+			</Button>{' '}
+			<Button look="faint" soft disabled>
+				Faint soft
+			</Button>
+		</GEL>
+	);
+}
+
+export default Example;

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const PieChartIcon = props => (
-	<Icon {...props}>
+	<Icon icon="PieChartIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

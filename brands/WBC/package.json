@@ -18,6 +18,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {},
-	"main": "dist/index.js",
+	"main": "dist/wbc.cjs.js",
+	"module": "dist/wbc.esm.js",
 	"dependencies": {}
 }

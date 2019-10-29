@@ -1,19 +1,20 @@
 /** @jsx jsx */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
-import { Global, css, jsx } from '@emotion/core';
-import { Container } from '../../components/grid';
+import { Global, css, jsx } from '@westpac/core';
+import { Container } from '@westpac/grid';
 
-import { GEL } from '../../components/core';
-import bomBrand from '../../brands/BOM';
-import bsaBrand from '../../brands/BSA';
-import btfgBrand from '../../brands/BTFG';
-import stgBrand from '../../brands/STG';
-import wbcBrand from '../../brands/WBC';
-import wbgBrand from '../../brands/WBG';
+import { GEL } from '@westpac/core';
+
+import bomBrand from '@westpac/bom';
+import bsaBrand from '@westpac/bsa';
+import btfgBrand from '@westpac/btfg';
+import stgBrand from '@westpac/stg';
+import wbcBrand from '@westpac/wbc';
+import wbgBrand from '@westpac/wbg';
 
 // ==============================
 // Get the data
@@ -33,7 +34,7 @@ const BRANDS = {
 // ==============================
 
 const App = ({ components, packageName, pkg }) => {
-	const [inputValue, setInputValue] = useState('');
+	const [searchValue, setSearchValue] = useState('');
 	const [brand, setBrand] = useState('WBC');
 
 	// update doc title
@@ -42,87 +43,89 @@ const App = ({ components, packageName, pkg }) => {
 	}, [packageName]);
 
 	// filter components for search
-	const navItems = inputValue.length
-		? components.filter(p => p.label.toLowerCase().includes(inputValue.toLowerCase()))
+	const navItems = searchValue.length
+		? components.filter(p => p.label.toLowerCase().includes(searchValue.toLowerCase()))
 		: components;
 
 	const primaryColor = BRANDS[brand].COLORS.primary;
 
 	return (
 		<Router>
-			<GEL brand={BRANDS[brand]}>
-				<Body>
-					<Global
-						styles={css`
-							code {
-								font-family: Monaco, monospace;
-								font-size: 0.85em;
-							}
-							p > code {
-								background-color: #ffebe6;
-								color: #bf2600;
-								border-radius: '0.3rem';
-								display: inline-block;
-								padding: '0.1rem 0.3rem';
-							}
-						`}
-					/>
-					<Sidebar>
-						<SidebarTitle to="/">{packageName}</SidebarTitle>
-						<SidebarSearch
-							onChange={e => setInputValue(e.target.value)}
-							placeholder="Search..."
-							type="search"
-							value={inputValue}
+			<StrictMode>
+				<GEL brand={BRANDS[brand]}>
+					<Body>
+						<Global
+							styles={css`
+								code {
+									font-family: Monaco, monospace;
+									font-size: 0.85em;
+								}
+								p > code {
+									background-color: #ffebe6;
+									color: #bf2600;
+									border-radius: '0.3rem';
+									display: inline-block;
+									padding: '0.1rem 0.3rem';
+								}
+							`}
 						/>
-
-						<SidebarNav>
-							{navItems.map(({ label, slug }) => (
-								<SidebarItem
-									primaryColor={primaryColor}
-									key={slug}
-									to={`/${slug}`}
-									data-test-nav-link
-								>
-									{label}
-								</SidebarItem>
-							))}
-						</SidebarNav>
-
-						<SidebarSwitcher>
-							{Object.keys(BRANDS).map(b => {
-								const isChecked = brand === b;
-								return (
-									<SidebarSwitch key={b} checked={isChecked}>
-										<input
-											name="brand"
-											type="radio"
-											onChange={e => setBrand(b)}
-											value={b}
-											checked={isChecked}
-										/>
-										{b}
-									</SidebarSwitch>
-								);
-							})}
-						</SidebarSwitcher>
-					</Sidebar>
-					<Switch>
-						<Route
-							exact
-							path="/"
-							render={route => <Home {...route} packageName={packageName} pkg={pkg} />}
-						/>
-						{components.map(({ slug, ...props }) => (
-							<Route
-								key={slug}
-								path={`/${slug}`}
-								render={route => <Page {...route} {...props} />}
+						<Sidebar>
+							<SidebarTitle to="/">{packageName}</SidebarTitle>
+							<SidebarSearch
+								onChange={e => setSearchValue(e.target.value)}
+								placeholder="Search..."
+								type="search"
+								value={searchValue}
 							/>
-						))}
-					</Switch>
-				</Body>
-			</GEL>
+
+							<SidebarNav>
+								{navItems.map(({ label, slug }) => (
+									<SidebarItem
+										primaryColor={primaryColor}
+										key={slug}
+										to={`/${slug}`}
+										data-test-nav-link
+									>
+										{label}
+									</SidebarItem>
+								))}
+							</SidebarNav>
+
+							<SidebarSwitcher>
+								{Object.keys(BRANDS).map(b => {
+									const isChecked = brand === b;
+									return (
+										<SidebarSwitch key={b} checked={isChecked}>
+											<input
+												name="brand"
+												type="radio"
+												onChange={e => setBrand(b)}
+												value={b}
+												checked={isChecked}
+											/>
+											{b}
+										</SidebarSwitch>
+									);
+								})}
+							</SidebarSwitcher>
+						</Sidebar>
+						<Switch>
+							<Route
+								exact
+								path="/"
+								render={route => <Home {...route} packageName={packageName} pkg={pkg} />}
+							/>
+							{components.map(({ slug, ...props }) => (
+								<Route
+									key={slug}
+									path={`/${slug}`}
+									render={route => <Page {...route} {...props} brand={BRANDS[brand]} />}
+								/>
+							))}
+						</Switch>
+					</Body>
+				</GEL>
+			</StrictMode>
 		</Router>
 	);
 };
@@ -133,7 +136,7 @@ class Page extends React.Component {
 		this.setState({ error, info });
 	}
 	render() {
-		const { Module, filename, label } = this.props;
+		const { Module, filename, label, ...rest } = this.props;
 		const { error, info } = this.state;
 
 		if (error) {
@@ -164,29 +167,35 @@ class Page extends React.Component {
 
 		return (
 			<Article>
-				<Container>
+				<Container css={{ marginBottom: '3rem' }}>
 					<h1>{label}</h1>
-					<Module.default />
+					<Module.default {...rest} />
 				</Container>
 			</Article>
 		);
 	}
 }
 
+const Code = ({ children }) => (
+	<pre
+		css={{
+			background: '#f9f9f9',
+			padding: '1rem',
+			border: '1px solid #ccc',
+		}}
+	>
+		<code>{children}</code>
+	</pre>
+);
+
 const Home = ({ packageName, pkg }) => (
 	<Article>
 		<Container>
 			<h1>{packageName} Examples</h1>
 			<p>Click one of the examples on the left to view it.</p>
-			<pre
-				css={{
-					background: '#f9f9f9',
-					padding: '1rem',
-					border: '1px solid #ccc',
-				}}
-			>
-				<code>yarn start {pkg}</code>
-			</pre>
+			<Code>yarn add @westpac/{pkg}</Code>
+			<p>To run this component locally:</p>
+			<Code>yarn start {pkg}</Code>
 			<p>To load the examples for another package run the above code with another package name</p>
 		</Container>
 	</Article>

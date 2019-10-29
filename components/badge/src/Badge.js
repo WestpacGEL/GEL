@@ -1,15 +1,91 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import pkg from '../package.json';
+import { Fragment } from 'react';
+
+// ==============================
+// Overwrite component
+// ==============================
+
+const Wrapper = ({ children, look }) => <Fragment>{children}</Fragment>;
 
 // ==============================
 // Component
 // ==============================
 
-export const Badge = ({ appearance, ...props }) => {
-	const { COLORS } = useBrand();
+export const Badge = ({ look, value, ...props }) => {
+	const { COLORS, BRAND, [pkg.name]: overwritesWithTokens } = useBrand();
+
+	let color = '#fff';
+	if (look === 'hero' && BRAND === 'STG') {
+		color = COLORS.text;
+	}
+	if (look === 'faint') {
+		color = COLORS.muted;
+	}
+
+	const overwrites = {
+		primary: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		hero: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		neutral: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		faint: {
+			css: {
+				color,
+				backgroundColor: '#fff',
+				borderColor: COLORS.border,
+			},
+		},
+		success: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		info: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		warning: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		danger: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		Wrapper,
+	};
+	merge(overwrites, overwritesWithTokens);
 
 	return (
 		<span
@@ -25,9 +101,7 @@ export const Badge = ({ appearance, ...props }) => {
 				textAlign: 'center',
 				verticalAlign: 'baseline',
 				whiteSpace: 'nowrap',
-				color: appearance === 'faint' ? COLORS.muted : '#fff', //TODO: STG uses `COLORS.text`
-				backgroundColor: COLORS[appearance],
-				borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
+				...overwrites[look].css,
 
 				'@media print': {
 					color: '#000',
@@ -36,7 +110,9 @@ export const Badge = ({ appearance, ...props }) => {
 				},
 			}}
 			{...props}
-		/>
+		>
+			<overwrites.Wrapper look={look}>{value}</overwrites.Wrapper>
+		</span>
 	);
 };
 
@@ -45,8 +121,10 @@ export const Badge = ({ appearance, ...props }) => {
 // ==============================
 
 Badge.propTypes = {
-	/** Badge appearance */
-	appearance: PropTypes.oneOf([
+	/**
+	 * Badge look
+	 */
+	look: PropTypes.oneOf([
 		'primary',
 		'hero',
 		'neutral',
@@ -57,10 +135,12 @@ Badge.propTypes = {
 		'danger',
 	]),
 
-	/** Badge text */
-	children: PropTypes.node.isRequired,
+	/**
+	 * Badge text
+	 */
+	value: PropTypes.string.isRequired,
 };
 
 Badge.defaultProps = {
-	appearance: 'neutral',
+	look: 'neutral',
 };

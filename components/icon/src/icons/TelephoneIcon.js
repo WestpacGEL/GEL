@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const TelephoneIcon = props => (
-	<Icon {...props}>
+	<Icon icon="TelephoneIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"

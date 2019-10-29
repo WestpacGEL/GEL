@@ -1,24 +1,30 @@
-import React from 'react';
-import { Tab, Tabcordion } from '../src';
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { data } from './_data';
 
-export default () => (
-	<>
-		<h3>Soft</h3>
-		<Tabcordion mode="tabs" appearance="soft">
-			{data.map(t => (
-				<Tab key={t.label} label={t.label}>
-					{t.content}
-				</Tab>
-			))}
-		</Tabcordion>
-		<h3>Lego</h3>
-		<Tabcordion mode="tabs" appearance="lego">
-			{data.map(t => (
-				<Tab key={t.label} label={t.label}>
-					{t.content}
-				</Tab>
-			))}
-		</Tabcordion>
-	</>
-);
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<h3>Soft</h3>
+			<Tabcordion mode="tabs" appearance="soft">
+				{data.map(t => (
+					<Tab key={t.label} label={t.label}>
+						{t.content}
+					</Tab>
+				))}
+			</Tabcordion>
+			<h3>Lego</h3>
+			<Tabcordion mode="tabs" appearance="lego">
+				{data.map(t => (
+					<Tab key={t.label} label={t.label}>
+						{t.content}
+					</Tab>
+				))}
+			</Tabcordion>
+		</GEL>
+	);
+}
+
+export default Example;

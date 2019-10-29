@@ -2,77 +2,122 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Button } from '@westpac/button';
 import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
+import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import { CSSTransition } from 'react-transition-group';
+import { Heading } from '@westpac/heading';
+import { Button } from '@westpac/button';
+import pkg from '../package.json';
+
+// ==============================
+// Overwrite component
+// ==============================
+
+const CloseBtn = ({ onClose, icon, look, closable, ...rest }) => (
+	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />
+);
+
+const BodyHeading = ({ tag, children, closable, ...rest }) => (
+	<Heading size={7} tag={tag} {...rest}>
+		{children}
+	</Heading>
+);
 
 // ==============================
 // Component
 // ==============================
 
-export const Alert = ({ appearance, closable, icon: Icon, children }) => {
-	const { COLORS } = useBrand();
+export const Alert = ({ look, closable, icon: Icon, heading, headingTag, children, ...rest }) => {
+	const { COLORS, SPACING, [pkg.name]: brandOverwrites } = useBrand();
 	const mq = useMediaQuery();
 	const [open, setOpen] = useState(true);
 
-	const iconMap = {
-		success: TickIcon,
-		info: InfoIcon,
-		warning: AlertIcon,
-		danger: AlertIcon,
-		system: AlertIcon,
+	const overwrites = {
+		success: {
+			icon: TickIcon,
+			css: {
+				backgroundColor: COLORS.tints[`${look}5`],
+				color: COLORS[look],
+				borderColor: COLORS.tints[`${look}50`],
+			},
+		},
+		info: {
+			icon: InfoIcon,
+			css: {
+				backgroundColor: COLORS.tints[`${look}5`],
+				color: COLORS[look],
+				borderColor: COLORS.tints[`${look}50`],
+			},
+		},
+		warning: {
+			icon: AlertIcon,
+			css: {
+				backgroundColor: COLORS.tints[`${look}5`],
+				color: COLORS[look],
+				borderColor: COLORS.tints[`${look}50`],
+			},
+		},
+		danger: {
+			icon: AlertIcon,
+			css: {
+				backgroundColor: COLORS.tints[`${look}5`],
+				color: COLORS[look],
+				borderColor: COLORS.tints[`${look}50`],
+			},
+		},
+		system: {
+			icon: AlertIcon,
+			css: {
+				backgroundColor: COLORS.system,
+				color: 'black',
+				borderColor: COLORS.system,
+			},
+		},
+		duration: 300,
+		innerCSS: {},
+		CloseBtn,
+		Heading: BodyHeading,
 	};
+	merge(overwrites, brandOverwrites);
 
 	// Set a default icon
 	if (Icon === undefined) {
-		Icon = iconMap[appearance];
+		Icon = overwrites[look].icon;
 	}
 
-	// Common styling
-	const styleCommon = {
-		marginBottom: '1.3125rem',
-		padding: ['1.125rem', closable ? `1.125rem 1.875rem 1.125rem 1.125rem` : '1.125rem'],
-		position: 'relative',
-		display: [null, 'flex'],
-		zIndex: 1,
-		transition: 'opacity 0.3s ease-in-out',
-
-		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
-			color: 'inherit',
-		},
-
-		'&.anim-exit-active': {
-			opacity: 0,
-		},
-	};
-
-	// Appearance styling
-	const styleAppearance = {
-		color: appearance === 'system' ? 'black' : COLORS[appearance],
-		backgroundColor: appearance === 'system' ? COLORS.system : COLORS.tints[`${appearance}5`],
-		borderTop: '1px solid',
-		borderBottom: '1px solid',
-		borderColor: appearance === 'system' ? COLORS.system : COLORS.tints[`${appearance}50`],
-	};
-
 	return (
-		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
-			<div css={mq({ ...styleCommon, ...styleAppearance })}>
+		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={overwrites.duration + 100}>
+			<div
+				css={mq({
+					marginBottom: '1.3125rem',
+					padding: ['1.125rem', closable ? `1.125rem 1.875rem 1.125rem 1.125rem` : '1.125rem'],
+					position: 'relative',
+					display: [null, 'flex'],
+					zIndex: 1,
+					transition: `opacity ${overwrites.duration}ms ease-in-out`,
+					opacity: 1,
+					'&.anim-exit-active': {
+						opacity: 0,
+					},
+					borderTop: '1px solid',
+					borderBottom: '1px solid',
+					...overwrites[look].css,
+				})}
+				{...rest}
+			>
 				{closable && (
-					<Button
-						onClick={() => {
-							setOpen(false);
-						}}
-						iconAfter={CloseIcon}
-						appearance="link"
+					<overwrites.CloseBtn
+						onClose={() => setOpen(false)}
+						icon={CloseIcon}
+						look={look}
+						closable={closable}
 						css={mq({
 							color: 'inherit',
 							position: ['relative', 'absolute'],
 							zIndex: 1,
 							float: ['right', 'none'],
-							top: '0.1875rem',
-							right: 0,
+							top: SPACING(1),
+							right: SPACING(1),
 							marginTop: ['-1.125rem', 0],
 							marginRight: ['-1.125rem', 0],
 							opacity: 1,
@@ -99,8 +144,22 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 						position: 'relative',
 						flex: 1,
 						top: [null, Icon && '0.125rem'],
+						'& > a, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, & > ol, & > ul': {
+							color: 'inherit',
+						},
+						...overwrites.innerCSS,
 					})}
 				>
+					{heading && (
+						<overwrites.Heading
+							tag={headingTag}
+							css={{ marginBottom: SPACING(2) }}
+							look={look}
+							closable={closable}
+						>
+							{heading}
+						</overwrites.Heading>
+					)}
 					{children}
 				</div>
 			</div>
@@ -114,21 +173,31 @@ export const Alert = ({ appearance, closable, icon: Icon, children }) => {
 
 Alert.propTypes = {
 	/**
-	 * Alert appearance
+	 * Alert look
 	 */
-	appearance: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']),
+	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']).isRequired,
 
 	/**
 	 * Enable closable mode
 	 */
-	closable: PropTypes.bool,
+	closable: PropTypes.bool.isRequired,
 
 	/**
 	 * Alert icon.
 	 *
-	 * The alert icon is automatically rendered based on appearance, but can be overriden via this prop. Pass a `null` value to remove completely.
+	 * The alert icon is automatically rendered based on look, but can be overriden via this prop. Pass a `null` value to remove completely.
 	 */
 	icon: PropTypes.func,
+
+	/**
+	 * The heading
+	 */
+	heading: PropTypes.string,
+
+	/**
+	 * The tag of the heading element for semantic reasons
+	 */
+	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
 
 	/**
 	 * Alert children
@@ -137,6 +206,7 @@ Alert.propTypes = {
 };
 
 Alert.defaultProps = {
-	appearance: 'info',
+	look: 'info',
 	closable: false,
+	headingTag: 'h2',
 };
