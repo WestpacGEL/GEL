@@ -224,7 +224,7 @@ However if you need a focus state that will persist across mouse users do someth
 ```jsx
 const { PACKS } = useBrand();
 
-const focus = PACKS.focus;
+const focus = { ...PACKS.focus };
 focus.outline += ' !important'; // adding `!important` will make sure the focus persists
 
 <Component

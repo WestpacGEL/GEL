@@ -22,7 +22,10 @@ export const Core = ({ children }) => {
 						fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
 						fontFamily: TYPE.bodyFont.fontFamily,
 					},
-					':focus, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring, button:-moz-focusring': {
+					'*:focus': {
+						...PACKS.focus,
+					},
+					'[type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring, button:-moz-focusring': {
 						// button:focus because of normalize reset (needs higher specificity)
 						...PACKS.focus,
 					},

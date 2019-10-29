@@ -27,7 +27,7 @@ export const useFocus = () => {
 			const styleEl = document.createElement('style');
 			styleEl.setAttribute('type', 'text/css');
 			styleEl.innerHTML = `
-				.isMouseMode *:focus {
+				.isMouseMode :focus {
 					outline: 0 !important;
 				}
 			`;
