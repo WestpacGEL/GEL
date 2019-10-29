@@ -29,6 +29,7 @@ function Example({ brand }) {
 			<Tooltip text="This is another very long tooltip to see what happens with long tooltips">
 				<Button appearance="hero">Tooltip as a button</Button>
 			</Tooltip>
+			<div css={{ height: '100vh' }} />
 		</GEL>
 	);
 }
