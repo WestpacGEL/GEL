@@ -10,14 +10,14 @@ import { Button } from '@westpac/button';
 import pkg from '../package.json';
 
 // ==============================
-// Token component
+// Overwrite component
 // ==============================
 
 const CloseBtn = ({ onClose, icon, look, closable, ...rest }) => (
 	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />
 );
 
-const BodyHeading = ({ tag, children, ...rest }) => (
+const BodyHeading = ({ tag, children, closable, ...rest }) => (
 	<Heading size={7} tag={tag} {...rest}>
 		{children}
 	</Heading>
@@ -28,11 +28,11 @@ const BodyHeading = ({ tag, children, ...rest }) => (
 // ==============================
 
 export const Alert = ({ look, closable, icon: Icon, heading, headingTag, children, ...rest }) => {
-	const { COLORS, SPACING, [pkg.name]: localBrandTokens } = useBrand();
+	const { COLORS, SPACING, [pkg.name]: brandOverwrites } = useBrand();
 	const mq = useMediaQuery();
 	const [open, setOpen] = useState(true);
 
-	const localTokens = {
+	const overwrites = {
 		success: {
 			icon: TickIcon,
 			css: {
@@ -78,15 +78,15 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 		CloseBtn,
 		Heading: BodyHeading,
 	};
-	merge(localTokens, localBrandTokens);
+	merge(overwrites, brandOverwrites);
 
 	// Set a default icon
 	if (Icon === undefined) {
-		Icon = localTokens[look].icon;
+		Icon = overwrites[look].icon;
 	}
 
 	return (
-		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={localTokens.duration + 100}>
+		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={overwrites.duration + 100}>
 			<div
 				css={mq({
 					marginBottom: '1.3125rem',
@@ -94,19 +94,19 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 					position: 'relative',
 					display: [null, 'flex'],
 					zIndex: 1,
-					transition: `opacity ${localTokens.duration}ms ease-in-out`,
+					transition: `opacity ${overwrites.duration}ms ease-in-out`,
 					opacity: 1,
 					'&.anim-exit-active': {
 						opacity: 0,
 					},
 					borderTop: '1px solid',
 					borderBottom: '1px solid',
-					...localTokens[look].css,
+					...overwrites[look].css,
 				})}
 				{...rest}
 			>
 				{closable && (
-					<localTokens.CloseBtn
+					<overwrites.CloseBtn
 						onClose={() => setOpen(false)}
 						icon={CloseIcon}
 						look={look}
@@ -147,18 +147,18 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 						'& > a, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, & > ol, & > ul': {
 							color: 'inherit',
 						},
-						...localTokens.innerCSS,
+						...overwrites.innerCSS,
 					})}
 				>
 					{heading && (
-						<localTokens.Heading
+						<overwrites.Heading
 							tag={headingTag}
 							css={{ marginBottom: SPACING(2) }}
 							look={look}
 							closable={closable}
 						>
 							{heading}
-						</localTokens.Heading>
+						</overwrites.Heading>
 					)}
 					{children}
 				</div>

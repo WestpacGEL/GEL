@@ -186,7 +186,7 @@ yarn start button
 Components that are made up by other components like `list`, `breadcrumb`, `button-group`, `input-group` etc can be solely driven by the `data` prop.
 We also offer declarative APIs in-case a consumer wants to wrap a component.
 
-```js
+```jsx
 <Breadcrumb>
 	<Crumb href="#/" text="Home" />
 	<Crumb href="#/personal-banking/" text="Personal" />
@@ -196,7 +196,7 @@ We also offer declarative APIs in-case a consumer wants to wrap a component.
 
 Is the same as:
 
-```js
+```jsx
 <Breadcrumb
 	data={[
 		{ href: '#/', text: 'Home' },
@@ -244,6 +244,14 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 | `SPACING` | A function with minor scale to allow you to hit the grid |
 | `TYPE`    | Font files and definitions                               |
 | `BRAND`   | The current brand                                        |
+
+## Local tokens naming convention (Overwrites)
+
+| What                   | Rule                                                                 | Do                                                | Don't                                                 |
+| ---------------------- | -------------------------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------- |
+| Component              | Upercase first letter                                                | `Wrapper`, `Button`                               | ~`icon`~, ~`crumb`~                                   |
+| CSS rules to be spread | Either `css` lowercase alone or name then `CSS` uppercase            | `css`, `innerCSS`, `wrapperCSS`                   | ~`CSS`~, ~`innerCss`~, ~`wrapperCss`~                 |
+| Theming items          | In an object with `look` as the key so we can do `localTokens[look]` | `localTokens[look].Icon`, `localTokens[look].css` | ~`localTokens.css[look]`~, ~`localTokens.Icon[look]`~ |
 
 ### Naming convention for files inside components
 

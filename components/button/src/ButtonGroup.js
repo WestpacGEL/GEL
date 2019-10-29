@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, devWarning, wrapHandlers, useMediaQuery, merge } from '@westpac/core';
+import { jsx, useBrand, devWarning, wrapHandlers, useMediaQuery, asArray, merge } from '@westpac/core';
 import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { asArray } from './_utils';
 import { Button } from './Button';
 import pkg from '../package.json';
 
@@ -26,7 +25,7 @@ export const ButtonGroup = props => {
 		size,
 		...rest
 	} = props;
-	const { [pkg.name]: localBrandTokens } = useBrand();
+	const { [pkg.name]: overwritesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	const [value, setValue] = useState(defaultValue);
@@ -34,10 +33,10 @@ export const ButtonGroup = props => {
 	devWarning(children && data, 'ButtonGroup accepts either `children` or `data`, not both.');
 	devWarning(!children && !data, 'ButtonGroup expects either `children` or `data`.');
 
-	const localTokens = {
+	const overwrites = {
 		buttonGroupCSS: {},
 	};
-	merge(localTokens, localBrandTokens);
+	merge(overwrites, overwritesWithTokens);
 
 	const handleClick = (val, onClick) =>
 		wrapHandlers(onClick, () => {
@@ -81,7 +80,7 @@ export const ButtonGroup = props => {
 						const onClick = handleClick(val, button.onClick);
 						const btnProps = { ...button, disabled, look, onClick, size, soft };
 
-						return <Button key={val} {...btnProps} css={{ ...localTokens.buttonGroupCSS }} />;
+						return <Button key={val} {...btnProps} css={{ ...overwrites.buttonGroupCSS }} />;
 				  })
 				: Children.map(children, (child, index) => {
 						const val = child.props.value || index;

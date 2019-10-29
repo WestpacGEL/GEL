@@ -4,8 +4,8 @@ import { jsx, useBrand, merge } from '@westpac/core';
 import { cloneElement, Children } from 'react';
 import { VisuallyHidden } from '@westpac/a11y';
 import { ArrowRightIcon } from '@westpac/icon';
-import pkg from '../package.json';
 import PropTypes from 'prop-types';
+import pkg from '../package.json';
 import { Crumb } from './Crumb';
 
 // ==============================
@@ -16,27 +16,28 @@ import { Crumb } from './Crumb';
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
 export const Breadcrumb = ({ children, data, current, label, currentLabel, ...props }) => {
-	const { [pkg.name]: localBrandTokens } = useBrand();
+	const { [pkg.name]: overwritesWithTokens } = useBrand();
 
-	const localTokens = {
+	const overwrites = {
 		Crumb,
 		listCSS: {},
 		Label: VisuallyHidden,
 		Icon: ArrowRightIcon,
+		css: {},
 	};
-	merge(localTokens, localBrandTokens);
+	merge(overwrites, overwritesWithTokens);
 
 	let allChildren = [];
 	if (data) {
 		data.map(({ href, text, onClick }, index) => {
 			allChildren.push(
-				<localTokens.Crumb
+				<overwrites.Crumb
 					key={index}
 					current={index === data.length - 1}
 					label={currentLabel}
 					href={href}
 					text={text}
-					icon={localTokens.Icon}
+					icon={overwrites.Icon}
 					onClick={onClick}
 				/>
 			);
@@ -49,15 +50,15 @@ export const Breadcrumb = ({ children, data, current, label, currentLabel, ...pr
 	}
 
 	return (
-		<div {...props}>
-			<localTokens.Label>{label}</localTokens.Label>
+		<div css={overwrites.css} {...props}>
+			<overwrites.Label>{label}</overwrites.Label>
 			<ol
 				css={{
 					padding: '0.375rem 1.125rem',
 					marginBottom: '1.3125rem',
 					fontSize: '0.8125rem',
 					listStyle: 'none',
-					...localTokens.listCSS,
+					...overwrites.listCSS,
 				}}
 			>
 				{allChildren}

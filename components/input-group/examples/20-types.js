@@ -17,7 +17,7 @@ function Example({ brand }) {
 				invalid
 				defaultValue="Text that can be edited"
 				data={{
-					left: { type: 'label', data: 'Aus $' },
+					left: { type: 'label', data: 'AUS $' },
 				}}
 			/>
 			<br />
@@ -35,7 +35,7 @@ function Example({ brand }) {
 				disabled
 				value="This input is disabled and contains a value"
 				data={{
-					left: { type: 'label', data: 'Aus $' },
+					left: { type: 'label', data: 'AUS $' },
 				}}
 			/>
 			<br />
@@ -53,7 +53,7 @@ function Example({ brand }) {
 				readOnly
 				value="This input is read only and contains a value"
 				data={{
-					left: { type: 'label', data: 'Aus $' },
+					left: { type: 'label', data: 'AUS $' },
 				}}
 			/>
 		</GEL>

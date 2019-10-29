@@ -1,14 +1,12 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useMediaQuery, asArray } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Utils
 // ==============================
 
-const asArray = val => (Array.isArray(val) ? val : [val]);
 const round = f => Math.round(f * 10) / 10; //1DP
 
 const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props }) => {

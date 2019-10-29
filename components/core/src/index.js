@@ -4,5 +4,6 @@ export { useMediaQuery } from './useMediaQuery';
 export { wrapHandlers } from './wrapHandlers';
 export { devWarning } from './devWarning';
 export { useFonts } from './useFonts';
+export { asArray } from './asArray';
 export { merge } from './merge';
 export { GEL } from './GEL';

@@ -1,12 +1,12 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand, useFonts } from '@westpac/core';
 
 function Example({ brand }) {
 	const { TYPE } = useBrand();
 
 	return (
-		<GEL brand={brand}>
+		<GEL brand={brand} css={{...useFonts({ path: 'assets/' })}}>
 			<h2>Type</h2>
 			<div
 				css={{

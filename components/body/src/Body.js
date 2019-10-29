@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -11,7 +12,12 @@ import PropTypes from 'prop-types';
  * Body: Body component in charge of body text
  */
 export const Body = ({ children, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, [pkg.name]: brandOverwrites } = useBrand();
+
+	const overwrites = {
+		css: {},
+	};
+	merge(overwrites, brandOverwrites);
 
 	return (
 		<div
@@ -58,6 +64,7 @@ export const Body = ({ children, ...props }) => {
 						textDecoration: 'underline',
 					},
 				},
+				...overwrites.css,
 			}}
 			{...props}
 		>

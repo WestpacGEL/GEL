@@ -1,14 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';
 
 // ==============================
 // Utils
 // ==============================
-
-const asArray = val => (Array.isArray(val) ? val : [val]);
 
 export const sizeMap = {
 	xsmall: 12, // 0.5x
@@ -51,16 +49,16 @@ const IconWrapper = ({ size, ...props }) => {
 // ==============================
 
 export const Icon = ({ children, color, label, size, ...props }) => {
-	const { COLORS, [pkg.name]: localBrandTokens } = useBrand();
+	const { COLORS, [pkg.name]: overwritesWithTokens } = useBrand();
 
-	const localTokens = {
+	const overwrites = {
 		Wrapper: IconWrapper,
 		svgAttributes: {},
 	};
-	merge(localTokens, localBrandTokens);
+	merge(overwrites, overwritesWithTokens);
 
 	return (
-		<localTokens.Wrapper
+		<overwrites.Wrapper
 			size={size}
 			color={color}
 			label={label}
@@ -73,11 +71,11 @@ export const Icon = ({ children, color, label, size, ...props }) => {
 				viewBox="0 0 24 24"
 				role="img"
 				focusable="false"
-				{...localTokens.svgAttributes}
+				{...overwrites.svgAttributes}
 			>
 				{children}
 			</svg>
-		</localTokens.Wrapper>
+		</overwrites.Wrapper>
 	);
 };
 
