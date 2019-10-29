@@ -10,25 +10,33 @@ const LabelNew = props => (
 
 function Example({ brand }) {
 	const [checked, setChecked] = useState(false);
-	const brandWithTokens = { ...brand };
+	const overwritesWithTokens = { ...brand };
 
-	brandWithTokens['@westpac/switch'] = {
+	overwritesWithTokens['@westpac/switch'] = {
 		toggleCSS: {
-			borderColor: 'mediumVioletred',
-			backgroundColor: checked ? 'paleVioletRed' : 'white',
+			borderColor: 'mediumvioletred',
+			backgroundColor: checked ? 'palevioletred' : 'white',
 		},
 		toggleTextCSS: { color: checked ? 'white' : 'firebrick' },
+		CSS: { paddingBottom: '1rem', borderBottom: '2px solid palevioletred' },
 		Label: LabelNew,
 	};
 
 	return (
-		<GEL brand={brandWithTokens}>
+		<GEL brand={overwritesWithTokens}>
 			<h2>With local tokens applied</h2>
 			<Switch
 				name="example-default"
 				label="Turn notifications"
 				checked={checked}
 				onChange={() => setChecked(!checked)}
+			/>
+			<Switch
+				name="example-default"
+				label="Turn notifications"
+				checked={checked}
+				onChange={() => setChecked(!checked)}
+				css={{ borderBottom: '2px solid red' }}
 			/>
 		</GEL>
 	);

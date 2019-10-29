@@ -62,20 +62,19 @@ export const Switch = ({
 	srOnlyText,
 	...props
 }) => {
-	const { COLORS, [pkg.name]: localBrandTokens } = useBrand();
+	const { COLORS, [pkg.name]: overwritesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 	const [checked, setChecked] = useState(isChecked);
-
 	const sizeArr = responsiveMap(asArray(size));
 
-	const localTokens = {
+	const overwrites = {
 		toggleCSS: {},
 		toggleTextCSS: {},
 		CSS: {},
 		Label,
 	};
 
-	merge(localTokens, localBrandTokens);
+	merge(overwrites, overwritesWithTokens);
 
 	useEffect(() => {
 		setChecked(isChecked);
@@ -97,7 +96,7 @@ export const Switch = ({
 				marginBottom: '0.375rem',
 				flexDirection: flipped && 'row-reverse',
 				cursor: disabled ? 'not-allowed' : 'pointer',
-				...localTokens.CSS,
+				...overwrites.CSS,
 			})}
 			{...props}
 		>
@@ -113,9 +112,9 @@ export const Switch = ({
 					opacity: 0,
 				}}
 			/>
-			<localTokens.Label block={block} flipped={flipped}>
+			<overwrites.Label block={block} flipped={flipped}>
 				{srOnlyText ? <VisuallyHidden>{label}</VisuallyHidden> : label}
-			</localTokens.Label>
+			</overwrites.Label>
 			<span
 				css={mq({
 					display: 'block',
@@ -144,7 +143,7 @@ export const Switch = ({
 						boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 						transition: 'all .3s ease',
 					},
-					...localTokens.toggleCSS,
+					...overwrites.toggleCSS,
 				})}
 			>
 				{!!toggleText && (
@@ -153,7 +152,7 @@ export const Switch = ({
 							position={'left'}
 							checked={checked}
 							size={sizeArr}
-							css={localTokens.toggleTextCSS}
+							css={overwrites.toggleTextCSS}
 						>
 							{toggleText[0]}
 						</ToggleText>
@@ -161,7 +160,7 @@ export const Switch = ({
 							position={'right'}
 							checked={!checked}
 							size={sizeArr}
-							css={localTokens.toggleTextCSS}
+							css={overwrites.toggleTextCSS}
 						>
 							{toggleText[1]}
 						</ToggleText>
