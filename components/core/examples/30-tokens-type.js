@@ -6,7 +6,7 @@ function Example({ brand }) {
 	const { TYPE } = useBrand();
 
 	return (
-		<GEL brand={brand} css={{...useFonts({ path: 'assets/' })}}>
+		<GEL brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
 			<h2>Type</h2>
 			<div
 				css={{
