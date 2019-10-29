@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import pkg from '../package.json';
 
 // ==============================
-// Token component
+// Overwrite component
 // ==============================
 
 function BlockWrapper({ children }) {
@@ -19,22 +19,22 @@ function BlockWrapper({ children }) {
 // ==============================
 
 export const TextWrapper = ({ block, srOnlyText, children }) => {
-	const { [pkg.name]: localBrandTokens } = useBrand();
+	const { [pkg.name]: overwritesWithTokens } = useBrand();
 
-	const localTokens = {
+	const overwrites = {
 		VisuallyHidden,
 		BlockWrapper,
 	};
-	merge(localTokens, localBrandTokens);
+	merge(overwrites, overwritesWithTokens);
 
 	if (srOnlyText) {
-		return <localTokens.VisuallyHidden>{children}</localTokens.VisuallyHidden>;
+		return <overwrites.VisuallyHidden>{children}</overwrites.VisuallyHidden>;
 	} else if (block) {
 		// Wrap with styled span to provide text truncation (only available in block mode)
 		return (
-			<localTokens.BlockWrapper css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+			<overwrites.BlockWrapper css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
 				{children}
-			</localTokens.BlockWrapper>
+			</overwrites.BlockWrapper>
 		);
 	} else {
 		return children;

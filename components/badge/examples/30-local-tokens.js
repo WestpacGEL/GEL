@@ -19,8 +19,8 @@ const Wrapper = ({ children, look }) => (
 );
 
 function Example({ brand }) {
-	const brandWithTokens = { ...brand };
-	brandWithTokens['@westpac/badge'] = {
+	const overwritesWithTokens = { ...brand };
+	overwritesWithTokens['@westpac/badge'] = {
 		neutral: {
 			css: {
 				backgroundColor: 'rebeccapurple',
@@ -31,8 +31,8 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={brandWithTokens}>
-			<h2>With local tokens applied</h2>
+		<GEL brand={overwritesWithTokens}>
+			<h2>With overwrites applied</h2>
 			<p>
 				<Badge value="Default" />
 			</p>

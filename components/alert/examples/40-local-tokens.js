@@ -15,8 +15,8 @@ const Heading = ({ children }) => (
 );
 
 function Example({ brand }) {
-	const brandWithTokens = { ...brand };
-	brandWithTokens['@westpac/alert'] = {
+	const overwritesWithTokens = { ...brand };
+	overwritesWithTokens['@westpac/alert'] = {
 		innerCSS: {
 			outline: '1px solid red',
 		},
@@ -33,8 +33,8 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={brandWithTokens}>
-			<h2>With local tokens applied</h2>
+		<GEL brand={overwritesWithTokens}>
+			<h2>With overwrites applied</h2>
 			<Alert>
 				This is a default alert. <a href="#">Link</a>
 			</Alert>

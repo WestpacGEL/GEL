@@ -6,11 +6,22 @@ import pkg from '../package.json';
 import { Fragment } from 'react';
 
 // ==============================
+// Overwrite component
+// ==============================
+
+const Wrapper = ({ children, look }) => (
+	<Fragment>
+		{children}
+	</Fragment>
+);
+
+
+// ==============================
 // Component
 // ==============================
 
 export const Badge = ({ look, value, ...props }) => {
-	const { COLORS, BRAND, [pkg.name]: localBrandTokens } = useBrand();
+	const { COLORS, BRAND, [pkg.name]: overwritesWithTokens } = useBrand();
 
 	let color = '#fff';
 	if (look === 'hero' && BRAND === 'STG') {
@@ -20,7 +31,7 @@ export const Badge = ({ look, value, ...props }) => {
 		color = COLORS.muted;
 	}
 
-	const localTokens = {
+	const overwrites = {
 		primary: {
 			css: {
 				color,
@@ -77,9 +88,9 @@ export const Badge = ({ look, value, ...props }) => {
 				borderColor: COLORS[look],
 			},
 		},
-		Wrapper: Fragment,
+		Wrapper,
 	};
-	merge(localTokens, localBrandTokens);
+	merge(overwrites, overwritesWithTokens);
 
 	return (
 		<span
@@ -95,7 +106,7 @@ export const Badge = ({ look, value, ...props }) => {
 				textAlign: 'center',
 				verticalAlign: 'baseline',
 				whiteSpace: 'nowrap',
-				...localTokens[look].css,
+				...overwrites[look].css,
 
 				'@media print': {
 					color: '#000',
@@ -105,7 +116,7 @@ export const Badge = ({ look, value, ...props }) => {
 			}}
 			{...props}
 		>
-			<localTokens.Wrapper look={look}>{value}</localTokens.Wrapper>
+			<overwrites.Wrapper look={look}>{value}</overwrites.Wrapper>
 		</span>
 	);
 };

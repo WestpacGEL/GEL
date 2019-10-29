@@ -21,14 +21,14 @@ const Wrapper = ({ children, icon, ...rest }) => (
 );
 
 function Example({ brand }) {
-	const brandWithTokens = { ...brand };
-	brandWithTokens['@westpac/icon'] = {
+	const overwritesWithTokens = { ...brand };
+	overwritesWithTokens['@westpac/icon'] = {
 		Wrapper,
 	};
 
 	return (
-		<GEL brand={brandWithTokens}>
-			<h2>With local tokens applied</h2>
+		<GEL brand={overwritesWithTokens}>
+			<h2>With overwrites applied</h2>
 			<Row>
 				<AddIcon />
 				<CalendarIcon />

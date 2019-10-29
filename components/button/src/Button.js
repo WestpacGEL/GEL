@@ -25,14 +25,14 @@ export const Button = ({
 	children,
 	...props
 }) => {
-	const { COLORS, [pkg.name]: localBrandTokens } = useBrand();
+	const { COLORS, [pkg.name]: overwritesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
 	if (soft && look === 'link') soft = false;
 
 	// Appearance styling
-	const localTokens = {
+	const overwrites = {
 		primary: {
 			standardCSS: {
 				color: '#fff',
@@ -118,7 +118,7 @@ export const Button = ({
 		},
 		Content,
 	};
-	merge(localTokens, localBrandTokens);
+	merge(overwrites, overwritesWithTokens);
 
 	// Size styling (responsive)
 	const sizeArr = asArray(size);
@@ -202,7 +202,7 @@ export const Button = ({
 					}
 					return sizeMap[s].height;
 				}),
-				...localTokens[look][soft ? 'softCSS' : 'standardCSS'],
+				...overwrites[look][soft ? 'softCSS' : 'standardCSS'],
 				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
 				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 			})}
@@ -211,7 +211,7 @@ export const Button = ({
 		>
 			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 			{Tag !== 'input' ? (
-				<localTokens.Content
+				<overwrites.Content
 					size={size}
 					block={block}
 					iconAfter={iconAfter}
@@ -219,7 +219,7 @@ export const Button = ({
 					srOnlyText={srOnlyText}
 				>
 					{children}
-				</localTokens.Content>
+				</overwrites.Content>
 			) : null}
 		</Tag>
 	);
