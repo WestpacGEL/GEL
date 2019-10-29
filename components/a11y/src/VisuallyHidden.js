@@ -37,7 +37,7 @@ export const VisuallyHidden = ({ tag: Tag, ...props }) => {
 			{...props}
 		/>
 	);
-}
+};
 
 // ==============================
 // Types

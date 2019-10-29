@@ -53,7 +53,7 @@ export const SkipLink = props => {
 			{...props}
 		/>
 	);
-}
+};
 
 // ==============================
 // Types
