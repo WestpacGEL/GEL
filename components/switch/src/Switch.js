@@ -2,10 +2,9 @@
 
 import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, merge, wrapHandlers } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import pkg from '../package.json';
-import { wrapHandlers } from '@westpac/core/src';
 
 // ==============================
 // Utils
