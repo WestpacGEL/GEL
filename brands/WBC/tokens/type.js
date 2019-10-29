@@ -7,17 +7,17 @@ module.exports = {
 					woff2: '7FF5B4E46E46717F5.woff2',
 					woff: '7FF5B4E46E46717F5.woff',
 				},
-				weight: 400,
+				weight: '400',
 				style: 'normal',
 			},
 		],
 		bodyFont: {
-			weights: [400, 700],
+			weights: ['400', '700'],
 			fontFamily:
 				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 		},
 		brandFont: {
-			weights: [400],
+			weights: ['400'],
 			fontFamily: '"brandFontWBC"',
 		},
 	},

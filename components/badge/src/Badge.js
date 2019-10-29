@@ -9,12 +9,7 @@ import { Fragment } from 'react';
 // Overwrite component
 // ==============================
 
-const Wrapper = ({ children, look }) => (
-	<Fragment>
-		{children}
-	</Fragment>
-);
-
+const Wrapper = ({ children, look }) => <Fragment>{children}</Fragment>;
 
 // ==============================
 // Component
