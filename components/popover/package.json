@@ -19,7 +19,8 @@
     "@babel/runtime": "^7.6.2",
     "@westpac/button": "^0.0.1",
     "@westpac/core": "^0.0.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-scrolllock": "^4.0.1"
   },
   "peerDependencies": {
     "react": "^16.10.1",

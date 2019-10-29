@@ -1,18 +1,24 @@
 /** @jsx jsx */
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
+import pkg from '../package.json';
 import { PopoverPanel } from './PopoverPanel';
 
 // ==============================
 // Component
 // ==============================
 export const Popover = ({ open: isOpen, children, ...props }) => {
+	const { [pkg.name]: overwritesWithTokens } = useBrand();
 	const [open, setOpen] = useState(open);
 	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
 	const triggerRef = useRef();
 	const popoverRef = useRef();
+
+	const overwrites = {};
+
+	merge(overwrites, overwritesWithTokens);
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -43,7 +49,6 @@ export const Popover = ({ open: isOpen, children, ...props }) => {
 		}
 	};
 
-	// not sure if this is correct
 	useEffect(() => {
 		if (open) {
 			document.addEventListener('click', handleOutsideClick);
@@ -69,12 +74,12 @@ export const Popover = ({ open: isOpen, children, ...props }) => {
 	});
 
 	return (
-		<>
+		<Fragment>
 			<PopoverPanel open={open} position={position} ref={popoverRef} {...props} />
 			<div css={{ display: 'inline-block' }} ref={triggerRef} onClick={handleClick}>
 				{children}
 			</div>
-		</>
+		</Fragment>
 	);
 };
 

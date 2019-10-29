@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import ReactDOM from 'react-dom';
 import { jsx, useBrand } from '@westpac/core';
+import ScrollLock from 'react-scrolllock';
 
 export const PopoverPanel = forwardRef(({ open, position, title, content, ...props }, ref) => {
 	const { COLORS } = useBrand();
@@ -72,6 +73,7 @@ export const PopoverPanel = forwardRef(({ open, position, title, content, ...pro
 					{title}
 				</p>
 				<p css={{ margin: 0, padding: '0.625rem 0.75rem', color: COLORS.neutral }}>{content}</p>
+				<ScrollLock />
 			</div>,
 			document.body
 		)
