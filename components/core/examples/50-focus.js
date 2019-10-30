@@ -37,10 +37,18 @@ function Example({ brand }) {
 				</p>
 			</Body>
 
-			<Button>This is a Button as a &lt;button&gt;</Button>
+			<Button>Button as a &lt;button&gt;</Button>
 			<br />
 			<br />
-			<Button href="#0">This is a Button as an &lt;a&gt;</Button>
+			<Button href="#0">Button as an &lt;a&gt;</Button>
+			<br />
+			<br />
+			<Body>
+				<Button>Button as a &lt;button&gt; and child of Body</Button>
+				<br />
+				<br />
+				<Button href="#0">Button as an &lt;a&gt; and child of Body</Button>
+			</Body>
 
 			<hr />
 
