@@ -52,7 +52,7 @@ export { FingerprintIcon } from './icons/FingerprintIcon';
 export { FutureClockIcon } from './icons/FutureClockIcon';
 export { GenericFileIcon } from './icons/GenericFileIcon';
 export { GeolocationIcon } from './icons/GeolocationIcon';
-export { Gel } from './icons/Gel';
+export { GelIcon } from './icons/GelIcon';
 export { GiftIcon } from './icons/GiftIcon';
 export { GithubIcon } from './icons/GithubIcon';
 export { GlobalIcon } from './icons/GlobalIcon';

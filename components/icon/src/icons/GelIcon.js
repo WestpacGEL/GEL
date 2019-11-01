@@ -1,8 +1,8 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const Gel = props => (
-	<Icon icon="Gel" {...props}>
+export const GelIcon = props => (
+	<Icon icon="GelIcon" {...props}>
 		<path
 			fill="currentColor"
 			fill-rule="nonzero"
@@ -11,8 +11,8 @@ export const Gel = props => (
 	</Icon>
 );
 
-Gel.defaultProps = {
+GelIcon.defaultProps = {
 	...defaultProps,
 	label: 'Gift',
 };
-Gel.propTypes = propTypes;
+GelIcon.propTypes = propTypes;
