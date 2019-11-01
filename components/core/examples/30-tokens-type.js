@@ -21,7 +21,7 @@ function Example({ brand }) {
 						fontFamily: TYPE.brandFont.fontFamily,
 					}}
 				>
-					Brand font
+					Brand front
 				</span>
 
 				<ul
@@ -54,7 +54,7 @@ function Example({ brand }) {
 						fontFamily: TYPE.bodyFont.fontFamily,
 					}}
 				>
-					Body font
+					Body front
 				</span>
 
 				<ul
