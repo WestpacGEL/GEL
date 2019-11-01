@@ -32,12 +32,12 @@ export const Content = ({
 	srOnlyText,
 	children,
 }) => {
-	const { [pkg.name]: overwritesWithTokens } = useBrand();
+	const { [pkg.name]: overridesWithTokens } = useBrand();
 
-	const overwrites = {
+	const overrides = {
 		TextWrapper,
 	};
-	merge(overwrites, overwritesWithTokens);
+	merge(overrides, overridesWithTokens);
 
 	// Compose a button text + icon fragment, if these are provided
 	return (
@@ -50,9 +50,9 @@ export const Content = ({
 				/>
 			)}
 			{children && (
-				<overwrites.TextWrapper block={block} srOnlyText={srOnlyText}>
+				<overrides.TextWrapper block={block} srOnlyText={srOnlyText}>
 					{children}
-				</overwrites.TextWrapper>
+				</overrides.TextWrapper>
 			)}
 			{IconAfter && (
 				<IconAfter

@@ -19,22 +19,22 @@ function BlockWrapper({ children }) {
 // ==============================
 
 export const TextWrapper = ({ block, srOnlyText, children }) => {
-	const { [pkg.name]: overwritesWithTokens } = useBrand();
+	const { [pkg.name]: overridesWithTokens } = useBrand();
 
-	const overwrites = {
+	const overrides = {
 		VisuallyHidden,
 		BlockWrapper,
 	};
-	merge(overwrites, overwritesWithTokens);
+	merge(overrides, overridesWithTokens);
 
 	if (srOnlyText) {
-		return <overwrites.VisuallyHidden>{children}</overwrites.VisuallyHidden>;
+		return <overrides.VisuallyHidden>{children}</overrides.VisuallyHidden>;
 	} else if (block) {
 		// Wrap with styled span to provide text truncation (only available in block mode)
 		return (
-			<overwrites.BlockWrapper css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+			<overrides.BlockWrapper css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
 				{children}
-			</overwrites.BlockWrapper>
+			</overrides.BlockWrapper>
 		);
 	} else {
 		return children;

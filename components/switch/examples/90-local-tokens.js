@@ -8,9 +8,9 @@ const Label = props => <strong css={{ color: 'palevioletred', paddingRight: '2re
 
 function Example({ brand }) {
 	const [checked, setChecked] = useState(false);
-	const overwritesWithTokens = { ...brand };
+	const overridesWithTokens = { ...brand };
 
-	overwritesWithTokens['@westpac/switch'] = {
+	overridesWithTokens['@westpac/switch'] = {
 		toggleCSS: {
 			borderColor: 'mediumvioletred',
 			backgroundColor: checked ? 'palevioletred' : 'white',
@@ -21,7 +21,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overwritesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<h2>With local tokens applied</h2>
 			<Switch
 				name="example-default"

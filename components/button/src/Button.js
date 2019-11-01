@@ -25,14 +25,20 @@ export const Button = ({
 	children,
 	...props
 }) => {
-	const { COLORS, [pkg.name]: overwritesWithTokens } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
 	if (soft && look === 'link') soft = false;
 
+	const bg = {
+		background:
+			'linear-gradient(to bottom,rgb(255, 62, 24) 16.66666666666667%,rgb(252, 154, 0) 16.66666666666667%,rgb(252, 154, 0) 33.33333333333333%,rgb(255, 216, 0) 33.33333333333333%,rgb(255, 216, 0) 33.33333333333333%,rgb(255, 216, 0) 50.00000000000001%,rgb(57, 234, 124) 50.00000000000001%,rgb(57, 234, 124) 66.66666666666668%,rgb(11, 178, 255) 66.66666666666668%,rgb(11, 178, 255) 83.33333333333335%,rgb(152, 90, 255) 83.33333333333335%)',
+		color: COLORS.text,
+	};
+
 	// Appearance styling
-	const overwrites = {
+	const overrides = {
 		primary: {
 			standardCSS: {
 				color: '#fff',
@@ -116,9 +122,13 @@ export const Button = ({
 				borderColor: 'transparent',
 			},
 		},
+		[atob('cHJpZGU=')]: {
+			standardCSS: { ...bg },
+			soft: { ...bg },
+		},
 		Content,
 	};
-	merge(overwrites, overwritesWithTokens);
+	merge(overrides, overridesWithTokens);
 
 	// Size styling (responsive)
 	const sizeArr = asArray(size);
@@ -202,7 +212,7 @@ export const Button = ({
 					}
 					return sizeMap[s].height;
 				}),
-				...overwrites[look][soft ? 'softCSS' : 'standardCSS'],
+				...overrides[look][soft ? 'softCSS' : 'standardCSS'],
 				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
 				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 			})}
@@ -211,7 +221,7 @@ export const Button = ({
 		>
 			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 			{Tag !== 'input' ? (
-				<overwrites.Content
+				<overrides.Content
 					size={size}
 					block={block}
 					iconAfter={iconAfter}
@@ -219,7 +229,7 @@ export const Button = ({
 					srOnlyText={srOnlyText}
 				>
 					{children}
-				</overwrites.Content>
+				</overrides.Content>
 			) : null}
 		</Tag>
 	);

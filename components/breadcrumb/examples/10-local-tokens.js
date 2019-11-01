@@ -11,8 +11,8 @@ const NewCrumb = ({ current, ...rest }) => {
 const Label = ({ children, look }) => <span css={{ verticalAlign: 'middle' }}>{children}</span>;
 
 function Example({ brand }) {
-	const overwritesWithTokens = { ...brand };
-	overwritesWithTokens['@westpac/breadcrumb'] = {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/breadcrumb'] = {
 		Crumb: NewCrumb,
 		listCSS: {
 			display: 'inline-block',
@@ -31,8 +31,8 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overwritesWithTokens}>
-			<h2>With overwrites applied</h2>
+		<GEL brand={overridesWithTokens}>
+			<h2>With overrides applied</h2>
 			<Breadcrumb>
 				<Crumb href="#/" text="Home" />
 				<Crumb href="#/personal-banking/" text="Personal" />

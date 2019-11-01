@@ -16,28 +16,28 @@ import { Crumb } from './Crumb';
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
 export const Breadcrumb = ({ children, data, current, label, currentLabel, ...props }) => {
-	const { [pkg.name]: overwritesWithTokens } = useBrand();
+	const { [pkg.name]: overridesWithTokens } = useBrand();
 
-	const overwrites = {
+	const overrides = {
 		Crumb,
 		listCSS: {},
 		Label: VisuallyHidden,
 		Icon: ArrowRightIcon,
 		css: {},
 	};
-	merge(overwrites, overwritesWithTokens);
+	merge(overrides, overridesWithTokens);
 
 	let allChildren = [];
 	if (data) {
 		data.map(({ href, text, onClick }, index) => {
 			allChildren.push(
-				<overwrites.Crumb
+				<overrides.Crumb
 					key={index}
 					current={index === data.length - 1}
 					label={currentLabel}
 					href={href}
 					text={text}
-					icon={overwrites.Icon}
+					icon={overrides.Icon}
 					onClick={onClick}
 				/>
 			);
@@ -50,15 +50,15 @@ export const Breadcrumb = ({ children, data, current, label, currentLabel, ...pr
 	}
 
 	return (
-		<div css={overwrites.css} {...props}>
-			<overwrites.Label>{label}</overwrites.Label>
+		<div css={overrides.css} {...props}>
+			<overrides.Label>{label}</overrides.Label>
 			<ol
 				css={{
 					padding: '0.375rem 1.125rem',
 					marginBottom: '1.3125rem',
 					fontSize: '0.8125rem',
 					listStyle: 'none',
-					...overwrites.listCSS,
+					...overrides.listCSS,
 				}}
 			>
 				{allChildren}

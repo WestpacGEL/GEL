@@ -9,13 +9,13 @@ import pkg from '../package.json';
 // ==============================
 
 export const Well = props => {
-	const { COLORS, [pkg.name]: brandOverwrites } = useBrand();
+	const { COLORS, [pkg.name]: brandOverrides } = useBrand();
 	const mq = useMediaQuery();
 
-	const overwrites = {
+	const overrides = {
 		css: {},
 	};
-	merge(overwrites, brandOverwrites);
+	merge(overrides, brandOverrides);
 
 	return (
 		<div
@@ -31,7 +31,7 @@ export const Well = props => {
 					backgroundColor: '#fff',
 					margin: '0.75rem 0',
 				},
-				...overwrites.css,
+				...overrides.css,
 			})}
 			{...props}
 		/>

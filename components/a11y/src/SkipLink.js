@@ -9,12 +9,12 @@ import pkg from '../package.json';
 // ==============================
 
 export const SkipLink = props => {
-	const { [pkg.name]: brandOverwrites } = useBrand();
+	const { [pkg.name]: brandOverrides } = useBrand();
 
-	const overwrites = {
+	const overrides = {
 		css: {},
 	};
-	merge(overwrites, brandOverwrites);
+	merge(overrides, brandOverrides);
 
 	return (
 		<a
@@ -48,7 +48,7 @@ export const SkipLink = props => {
 				':focus': {
 					outlineOffset: -2, // override to be inside
 				},
-				...overwrites.css,
+				...overrides.css,
 			}}
 			{...props}
 		/>

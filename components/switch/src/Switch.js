@@ -59,12 +59,12 @@ export const Switch = ({
 	srOnlyText,
 	...props
 }) => {
-	const { COLORS, [pkg.name]: overwritesWithTokens } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 	const [checked, setChecked] = useState(isChecked);
 	const sizeArr = responsiveMap(asArray(size));
 
-	const overwrites = {
+	const overrides = {
 		toggleCSS: {},
 		toggleTextCSS: {},
 		CSS: {},
@@ -72,7 +72,7 @@ export const Switch = ({
 		ToggleTextWrapper,
 	};
 
-	merge(overwrites, overwritesWithTokens);
+	merge(overrides, overridesWithTokens);
 
 	useEffect(() => {
 		setChecked(isChecked);
@@ -94,7 +94,7 @@ export const Switch = ({
 				marginBottom: '0.375rem',
 				flexDirection: flipped && 'row-reverse',
 				cursor: disabled ? 'not-allowed' : 'pointer',
-				...overwrites.CSS,
+				...overrides.CSS,
 			})}
 			{...props}
 		>
@@ -110,9 +110,9 @@ export const Switch = ({
 					opacity: 0,
 				}}
 			/>
-			<overwrites.Label block={block} flipped={flipped}>
+			<overrides.Label block={block} flipped={flipped}>
 				{srOnlyText ? <VisuallyHidden>{label}</VisuallyHidden> : label}
-			</overwrites.Label>
+			</overrides.Label>
 			<span
 				css={mq({
 					display: 'block',
@@ -141,16 +141,16 @@ export const Switch = ({
 						boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 						transition: 'all .3s ease',
 					},
-					...overwrites.toggleCSS,
+					...overrides.toggleCSS,
 				})}
 			>
 				{!!toggleText && (
-					<overwrites.ToggleTextWrapper>
+					<overrides.ToggleTextWrapper>
 						<ToggleText
 							position={'left'}
 							checked={checked}
 							size={sizeArr}
-							css={overwrites.toggleTextCSS}
+							css={overrides.toggleTextCSS}
 						>
 							{toggleText[0]}
 						</ToggleText>
@@ -158,11 +158,11 @@ export const Switch = ({
 							position={'right'}
 							checked={!checked}
 							size={sizeArr}
-							css={overwrites.toggleTextCSS}
+							css={overrides.toggleTextCSS}
 						>
 							{toggleText[1]}
 						</ToggleText>
-					</overwrites.ToggleTextWrapper>
+					</overrides.ToggleTextWrapper>
 				)}
 			</span>
 		</label>
