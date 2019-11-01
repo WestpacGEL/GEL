@@ -19,10 +19,10 @@ export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props 
 	const { COLORS: colors } = useBrand();
 	const common = {
 		flex: isJustified ? 1 : 0,
-		fontSize: '1.6rem',
-		marginRight: '0.2rem',
+		fontSize: '1rem',
+		marginRight: '0.125rem',
 		outline: 0,
-		padding: '1.4rem 1.8rem',
+		padding: '0.875rem 1.125rem',
 		textAlign: 'left',
 		textDecoration: 'none',
 		transition: 'background .3s ease',
@@ -41,8 +41,8 @@ export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props 
 			borderBottom: 0,
 			color: '#333',
 			cursor: 'pointer',
-			marginBottom: isSelected ? '-0.1rem' : null,
-			paddingBottom: isSelected ? '1.5rem' : null,
+			marginBottom: isSelected ? '-0.0625rem' : null,
+			paddingBottom: isSelected ? '0.9375rem' : null,
 		},
 		lego: {
 			backgroundColor: isSelected ? '#fff' : colors.hero.default,
@@ -50,8 +50,8 @@ export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props 
 			borderBottom: 0,
 			color: isSelected ? colors.text : colors.hero.foreground,
 			cursor: 'pointer',
-			marginBottom: isSelected ? '-0.1rem' : '0.2rem',
-			paddingBottom: isSelected ? '1.7rem' : null,
+			marginBottom: isSelected ? '-0.0625rem' : '0.125rem',
+			paddingBottom: isSelected ? '1.0625rem' : null,
 		},
 	};
 
@@ -69,10 +69,10 @@ export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => 
 		borderRight: `1px solid ${colors.border}`,
 		cursor: 'pointer',
 		display: 'flex',
-		fontSize: '1.6rem',
+		fontSize: '1rem',
 		justifyContent: 'space-between',
 		outline: 0,
-		padding: '1.2rem 1.8rem',
+		padding: '0.75rem 1.125rem',
 		position: 'relative',
 		textAlign: 'left',
 		width: '100%',
@@ -116,7 +116,7 @@ export const Panel = forwardRef(({ appearance, isLast, isSelected, mode, ...prop
 		borderRight: `1px solid ${colors.border}`,
 		borderBottom: mode === 'tabs' || isLast ? `1px solid ${colors.border}` : null,
 		borderTop: mode === 'tabs' ? `1px solid ${colors.border}` : null,
-		padding: '2.4rem 3.22%',
+		padding: '1.5rem 3.22%',
 
 		'&:focus': {
 			color: packs.link.color,
