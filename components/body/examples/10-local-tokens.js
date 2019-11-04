@@ -4,15 +4,15 @@ import { GEL, jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 function Example({ brand }) {
-	const overwritesWithTokens = { ...brand };
-	overwritesWithTokens['@westpac/body'] = {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/body'] = {
 		css: {
 			outline: '1px solid red',
 		},
 	};
 
 	return (
-		<GEL brand={overwritesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Body>
 				<h2>Headings</h2>
 				<h1>This is a h1 heading</h1>

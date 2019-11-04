@@ -15,15 +15,15 @@ import React from 'react';
  * Crumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
 export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...props }) => {
-	const { COLORS, [pkg.name]: overwritesWithTokens } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
-	const overwrites = {
+	const overrides = {
 		crumbCSS: {},
 		crumbLinkCSS: {},
 		crumbLable: VisuallyHidden,
 		Icon,
 	};
-	merge(overwrites, overwritesWithTokens);
+	merge(overrides, overridesWithTokens);
 
 	return (
 		<li
@@ -33,11 +33,11 @@ export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...prop
 				position: 'relative',
 				color: COLORS.text,
 				verticalAlign: 'middle',
-				...overwrites.crumbCSS,
+				...overrides.crumbCSS,
 			}}
 			{...props}
 		>
-			{current && <overwrites.crumbLable>{label}</overwrites.crumbLable>}
+			{current && <overrides.crumbLable>{label}</overrides.crumbLable>}
 			<a
 				href={current ? null : href}
 				onClick={onClick}
@@ -52,13 +52,13 @@ export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...prop
 						textDecoration: current ? 'none' : 'underline',
 					},
 
-					...overwrites.crumbLinkCSS,
+					...overrides.crumbLinkCSS,
 				}}
 			>
 				{text}
 			</a>
 			{!current && (
-				<overwrites.Icon
+				<overrides.Icon
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}

@@ -26,7 +26,7 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 
 	// Common styling
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
-	const focus = PACKS.focus;
+	const focus = { ...PACKS.focus };
 	focus.outline += ' !important';
 	const borderWidth = 1; //px
 	const lineHeight = 1.5;

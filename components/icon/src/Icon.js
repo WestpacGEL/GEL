@@ -49,16 +49,16 @@ const IconWrapper = ({ size, ...props }) => {
 // ==============================
 
 export const Icon = ({ children, color, label, size, ...props }) => {
-	const { COLORS, [pkg.name]: overwritesWithTokens } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
-	const overwrites = {
+	const overrides = {
 		Wrapper: IconWrapper,
 		svgAttributes: {},
 	};
-	merge(overwrites, overwritesWithTokens);
+	merge(overrides, overridesWithTokens);
 
 	return (
-		<overwrites.Wrapper
+		<overrides.Wrapper
 			size={size}
 			color={color}
 			label={label}
@@ -71,11 +71,11 @@ export const Icon = ({ children, color, label, size, ...props }) => {
 				viewBox="0 0 24 24"
 				role="img"
 				focusable="false"
-				{...overwrites.svgAttributes}
+				{...overrides.svgAttributes}
 			>
 				{children}
 			</svg>
-		</overwrites.Wrapper>
+		</overrides.Wrapper>
 	);
 };
 
