@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
 import { useRef } from 'react';
-import { GEL, jsx, useOutsideClick } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
+import { useOutsideClick } from '@westpac/hooks';
 import { Button } from '@westpac/button';
 import { Code } from './_utils';
 
