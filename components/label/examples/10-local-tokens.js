@@ -3,12 +3,37 @@
 import { GEL, jsx } from '@westpac/core';
 import { Label } from '@westpac/label';
 
+const Wrapper = ({ children, look }) => (
+	<span>
+		{children}
+		<span
+			href="#"
+			css={{
+				color: look === 'faint' ? '#000' : '#fff',
+				marginLeft: '0.5em',
+				fontWeight: '900',
+			}}
+		>
+			Edit
+		</span>
+	</span>
+);
+
 function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/label'] = {
+		neutral: {
+			css: {
+				backgroundColor: 'rebeccapurple',
+				outline: '2px dotted red',
+			},
+		},
+		Wrapper,
+	};
+
 	return (
-		<GEL brand={brand}>
-			<h3>
-				Label with a <code>&lt;span&gt;</code> tag
-			</h3>
+		<GEL brand={overridesWithTokens}>
+			<h2>With overrides applied</h2>
 			<p>
 				<Label value="Default" />
 			</p>
