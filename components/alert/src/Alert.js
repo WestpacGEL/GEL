@@ -28,11 +28,11 @@ const BodyHeading = ({ tag, children, closable, ...rest }) => (
 // ==============================
 
 export const Alert = ({ look, closable, icon: Icon, heading, headingTag, children, ...rest }) => {
-	const { COLORS, SPACING, [pkg.name]: brandOverwrites } = useBrand();
+	const { COLORS, SPACING, [pkg.name]: brandOverrides } = useBrand();
 	const mq = useMediaQuery();
 	const [open, setOpen] = useState(true);
 
-	const overwrites = {
+	const overrides = {
 		success: {
 			icon: TickIcon,
 			css: {
@@ -78,15 +78,15 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 		CloseBtn,
 		Heading: BodyHeading,
 	};
-	merge(overwrites, brandOverwrites);
+	merge(overrides, brandOverrides);
 
 	// Set a default icon
 	if (Icon === undefined) {
-		Icon = overwrites[look].icon;
+		Icon = overrides[look].icon;
 	}
 
 	return (
-		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={overwrites.duration + 100}>
+		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={overrides.duration + 100}>
 			<div
 				css={mq({
 					marginBottom: '1.3125rem',
@@ -94,19 +94,19 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 					position: 'relative',
 					display: [null, 'flex'],
 					zIndex: 1,
-					transition: `opacity ${overwrites.duration}ms ease-in-out`,
+					transition: `opacity ${overrides.duration}ms ease-in-out`,
 					opacity: 1,
 					'&.anim-exit-active': {
 						opacity: 0,
 					},
 					borderTop: '1px solid',
 					borderBottom: '1px solid',
-					...overwrites[look].css,
+					...overrides[look].css,
 				})}
 				{...rest}
 			>
 				{closable && (
-					<overwrites.CloseBtn
+					<overrides.CloseBtn
 						onClose={() => setOpen(false)}
 						icon={CloseIcon}
 						look={look}
@@ -147,18 +147,18 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 						'& > a, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, & > ol, & > ul': {
 							color: 'inherit',
 						},
-						...overwrites.innerCSS,
+						...overrides.innerCSS,
 					})}
 				>
 					{heading && (
-						<overwrites.Heading
+						<overrides.Heading
 							tag={headingTag}
 							css={{ marginBottom: SPACING(2) }}
 							look={look}
 							closable={closable}
 						>
 							{heading}
-						</overwrites.Heading>
+						</overrides.Heading>
 					)}
 					{children}
 				</div>

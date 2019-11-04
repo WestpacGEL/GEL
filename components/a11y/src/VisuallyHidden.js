@@ -14,12 +14,12 @@ import pkg from '../package.json';
 // See: https://hugogiraudel.com/2016/10/13/css-hide-and-seek/
 
 export const VisuallyHidden = ({ tag: Tag, ...props }) => {
-	const { [pkg.name]: brandOverwrites } = useBrand();
+	const { [pkg.name]: brandOverrides } = useBrand();
 
-	const overwrites = {
+	const overrides = {
 		css: {},
 	};
-	merge(overwrites, brandOverwrites);
+	merge(overrides, brandOverrides);
 
 	return (
 		<Tag
@@ -32,7 +32,7 @@ export const VisuallyHidden = ({ tag: Tag, ...props }) => {
 				clip: 'rect(0, 0, 0, 0)',
 				whiteSpace: 'nowrap',
 				border: 0,
-				...overwrites.css,
+				...overrides.css,
 			}}
 			{...props}
 		/>

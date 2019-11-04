@@ -16,7 +16,7 @@ const Wrapper = ({ children, look }) => <Fragment>{children}</Fragment>;
 // ==============================
 
 export const Badge = ({ look, value, ...props }) => {
-	const { COLORS, BRAND, [pkg.name]: overwritesWithTokens } = useBrand();
+	const { COLORS, BRAND, [pkg.name]: overridesWithTokens } = useBrand();
 
 	let color = '#fff';
 	if (look === 'hero' && BRAND === 'STG') {
@@ -26,7 +26,7 @@ export const Badge = ({ look, value, ...props }) => {
 		color = COLORS.muted;
 	}
 
-	const overwrites = {
+	const overrides = {
 		primary: {
 			css: {
 				color,
@@ -85,7 +85,7 @@ export const Badge = ({ look, value, ...props }) => {
 		},
 		Wrapper,
 	};
-	merge(overwrites, overwritesWithTokens);
+	merge(overrides, overridesWithTokens);
 
 	return (
 		<span
@@ -101,7 +101,7 @@ export const Badge = ({ look, value, ...props }) => {
 				textAlign: 'center',
 				verticalAlign: 'baseline',
 				whiteSpace: 'nowrap',
-				...overwrites[look].css,
+				...overrides[look].css,
 
 				'@media print': {
 					color: '#000',
@@ -111,7 +111,7 @@ export const Badge = ({ look, value, ...props }) => {
 			}}
 			{...props}
 		>
-			<overwrites.Wrapper look={look}>{value}</overwrites.Wrapper>
+			<overrides.Wrapper look={look}>{value}</overrides.Wrapper>
 		</span>
 	);
 };

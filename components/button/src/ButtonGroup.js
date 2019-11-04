@@ -33,7 +33,7 @@ export const ButtonGroup = props => {
 		size,
 		...rest
 	} = props;
-	const { [pkg.name]: overwritesWithTokens } = useBrand();
+	const { [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	const [value, setValue] = useState(defaultValue);
@@ -41,10 +41,10 @@ export const ButtonGroup = props => {
 	devWarning(children && data, 'ButtonGroup accepts either `children` or `data`, not both.');
 	devWarning(!children && !data, 'ButtonGroup expects either `children` or `data`.');
 
-	const overwrites = {
+	const overrides = {
 		buttonGroupCSS: {},
 	};
-	merge(overwrites, overwritesWithTokens);
+	merge(overrides, overridesWithTokens);
 
 	const handleClick = (val, onClick) =>
 		wrapHandlers(onClick, () => {
@@ -88,7 +88,7 @@ export const ButtonGroup = props => {
 						const onClick = handleClick(val, button.onClick);
 						const btnProps = { ...button, disabled, look, onClick, size, soft };
 
-						return <Button key={val} {...btnProps} css={{ ...overwrites.buttonGroupCSS }} />;
+						return <Button key={val} {...btnProps} css={{ ...overrides.buttonGroupCSS }} />;
 				  })
 				: Children.map(children, (child, index) => {
 						const val = child.props.value || index;

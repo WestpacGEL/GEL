@@ -13,8 +13,8 @@ const TextWrapper = ({ children, ...rest }) => (
 );
 
 function Example({ brand }) {
-	const overwritesWithTokens = { ...brand };
-	overwritesWithTokens['@westpac/button'] = {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/button'] = {
 		primary: {
 			standardCSS: {
 				backgroundColor: 'rebeccapurple',
@@ -28,8 +28,8 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overwritesWithTokens}>
-			<h2>With overwrites applied</h2>
+		<GEL brand={overridesWithTokens}>
+			<h2>With overrides applied</h2>
 			<Button>Default standard</Button> <Button look="primary">Primary standard</Button>{' '}
 			<Button look="hero">Hero standard</Button> <Button look="faint">Faint standard</Button>{' '}
 			<Button look="link">Link</Button>
