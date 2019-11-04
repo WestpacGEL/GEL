@@ -1,9 +1,10 @@
 import React, { Children, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useBrand, merge } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
-
-import { TabItem, TabRow } from './styled';
+import { TabItem, TabRow, AccordionLabel, Panel } from './styled';
 import { Tab } from './Tab';
+import pkg from '../package.json';
 
 let instanceId = 0;
 const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'Enter', 'PageDown', 'PageUp', 'End', 'Home'];
@@ -12,6 +13,16 @@ export const Tabcordion = props => {
 	// TODO: unless explicitly provided, preset the intial index
 	// const initialIndex =
 	// 	props.initialTabIndex !== undefined ? props.initialTabIndex : mode === 'accordion' ? null : 0;
+	const { [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		CSS: {},
+		Panel,
+		TabItem,
+		AccordionLabel,
+	};
+
+	merge(overrides, overridesWithTokens);
 
 	const [activeTabIndex, setActiveTabIndex] = useState(props.initialTabIndex);
 	const [instancePrefix, setInstancePrefix] = useState(props.instanceId);
@@ -87,13 +98,13 @@ export const Tabcordion = props => {
 	const tabCount = Children.count(props.children);
 
 	return (
-		<div ref={containerRef}>
+		<div ref={containerRef} css={{ ...overrides.CSS }}>
 			{mode === 'tabs' ? (
 				<TabRow role="tablist" aria-label={props.ariaLabel} ref={tablistRef}>
 					{Children.map(props.children, (child, idx) => {
 						const isSelected = activeTabIndex === idx;
 						return (
-							<TabItem
+							<overrides.TabItem
 								appearance={props.appearance}
 								aria-controls={getId('panel', idx)}
 								aria-selected={isSelected}
@@ -107,7 +118,7 @@ export const Tabcordion = props => {
 								tabIndex={isSelected ? 0 : -1}
 							>
 								{child.props.label}
-							</TabItem>
+							</overrides.TabItem>
 						);
 					})}
 				</TabRow>
@@ -128,6 +139,8 @@ export const Tabcordion = props => {
 						panelId={getId('panel', idx)}
 						ref={isSelected ? panelRef : null}
 						tabId={getId('tab', idx)}
+						Panel={overrides.Panel}
+						AccordionLabel={overrides.AccordionLabel}
 					/>
 				);
 			})}

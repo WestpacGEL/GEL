@@ -17,21 +17,6 @@ export const TabRow = forwardRef((props, ref) => (
 
 export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props }) => {
 	const { COLORS: colors } = useBrand();
-	const common = {
-		flex: isJustified ? 1 : 0,
-		fontSize: '1rem',
-		marginRight: '0.125rem',
-		outline: 0,
-		padding: '0.875rem 1.125rem',
-		textAlign: 'left',
-		textDecoration: 'none',
-		transition: 'background .3s ease',
-		width: '100%',
-
-		'&:last-child': {
-			marginRight: 0,
-		},
-	};
 	const styles = {
 		soft: {
 			backgroundColor: isSelected ? '#fff' : colors.background,
@@ -39,8 +24,7 @@ export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props 
 			borderTopRightRadius: 3,
 			border: `1px solid ${colors.border}`,
 			borderBottom: 0,
-			color: '#333',
-			cursor: 'pointer',
+			color: colors.neutral,
 			marginBottom: isSelected ? '-0.0625rem' : null,
 			paddingBottom: isSelected ? '0.9375rem' : null,
 		},
@@ -49,46 +33,46 @@ export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props 
 			border: `1px solid ${isSelected ? colors.border : 'transparent'}`,
 			borderBottom: 0,
 			color: isSelected ? colors.text : colors.hero.foreground,
-			cursor: 'pointer',
 			marginBottom: isSelected ? '-0.0625rem' : '0.125rem',
 			paddingBottom: isSelected ? '1.0625rem' : null,
 		},
 	};
 
-	return <button css={{ ...common, ...styles[appearance] }} {...props} />;
+	return (
+		<button
+			css={{
+				flex: isJustified ? 1 : 0,
+				fontSize: '1rem',
+				marginRight: '0.125rem',
+				outline: 0,
+				padding: '0.875rem 1.125rem',
+				textAlign: 'left',
+				textDecoration: 'none',
+				transition: 'background .3s ease',
+				width: '100%',
+				cursor: 'pointer',
+
+				'&:last-child': {
+					marginRight: 0,
+				},
+				...styles[appearance],
+			}}
+			{...props}
+		/>
+	);
 };
 
 export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => {
 	const { COLORS: colors } = useBrand();
-	const common = {
-		alignItems: 'center',
-		backgroundColor: colors.background,
-		border: 0,
-		borderTop: `1px solid ${colors.border}`,
-		borderLeft: `1px solid ${colors.border}`,
-		borderRight: `1px solid ${colors.border}`,
-		cursor: 'pointer',
-		display: 'flex',
-		fontSize: '1rem',
-		justifyContent: 'space-between',
-		outline: 0,
-		padding: '0.75rem 1.125rem',
-		position: 'relative',
-		textAlign: 'left',
-		width: '100%',
-	};
-	const lastStyles =
-		isLast && !isSelected
-			? {
-					borderBottom: `1px solid ${colors.border}`,
-					borderBottomLeftRadius: 3,
-					borderBottomRightRadius: 3,
-			  }
-			: {};
 	const styles = {
 		soft: {
 			borderBottom: isSelected && `1px solid ${colors.border}`,
-			...lastStyles,
+			...(isLast &&
+				!isSelected && {
+					borderBottom: `1px solid ${colors.border}`,
+					borderBottomLeftRadius: 3,
+					borderBottomRightRadius: 3,
+				}),
 
 			'&:first-of-type': {
 				borderTopLeftRadius: 3,
@@ -106,22 +90,33 @@ export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => 
 		},
 	};
 
-	return <button css={{ ...common, ...styles[appearance] }} {...props} />;
+	return (
+		<button
+			css={{
+				alignItems: 'center',
+				backgroundColor: colors.background,
+				border: 0,
+				borderTop: `1px solid ${colors.border}`,
+				borderLeft: `1px solid ${colors.border}`,
+				borderRight: `1px solid ${colors.border}`,
+				cursor: 'pointer',
+				display: 'flex',
+				fontSize: '1rem',
+				justifyContent: 'space-between',
+				outline: 0,
+				padding: '0.75rem 1.125rem',
+				position: 'relative',
+				textAlign: 'left',
+				width: '100%',
+				...styles[appearance],
+			}}
+			{...props}
+		/>
+	);
 };
 
 export const Panel = forwardRef(({ appearance, isLast, isSelected, mode, ...props }, ref) => {
 	const { COLORS: colors, PACKS: packs } = useBrand();
-	const common = {
-		borderLeft: `1px solid ${colors.border}`,
-		borderRight: `1px solid ${colors.border}`,
-		borderBottom: mode === 'tabs' || isLast ? `1px solid ${colors.border}` : null,
-		borderTop: mode === 'tabs' ? `1px solid ${colors.border}` : null,
-		padding: '1.5rem 3.22%',
-
-		'&:focus': {
-			color: packs.link.color,
-		},
-	};
 	const styles =
 		mode === 'accordion'
 			? {
@@ -138,5 +133,22 @@ export const Panel = forwardRef(({ appearance, isLast, isSelected, mode, ...prop
 			  }
 			: {};
 
-	return <div ref={ref} css={{ ...common, ...styles[appearance] }} {...props} />;
+	return (
+		<div
+			ref={ref}
+			css={{
+				borderLeft: `1px solid ${colors.border}`,
+				borderRight: `1px solid ${colors.border}`,
+				borderBottom: mode === 'tabs' || isLast ? `1px solid ${colors.border}` : null,
+				borderTop: mode === 'tabs' ? `1px solid ${colors.border}` : null,
+				padding: '1.5rem 3.22%',
+
+				'&:focus': {
+					color: packs.link.color,
+				},
+				...styles[appearance],
+			}}
+			{...props}
+		/>
+	);
 });

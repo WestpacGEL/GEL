@@ -3,11 +3,22 @@ import PropTypes from 'prop-types';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 import { useBrand } from '@westpac/core';
 
-import { AccordionLabel, Panel } from './styled';
-
 export const Tab = forwardRef(
 	(
-		{ appearance, children, isLast, isSelected, label, mode, panelId, onClick, tabId, ...props },
+		{
+			appearance,
+			children,
+			isLast,
+			isSelected,
+			label,
+			mode,
+			panelId,
+			onClick,
+			tabId,
+			Panel,
+			AccordionLabel,
+			...props
+		},
 		ref
 	) => {
 		const { COLORS } = useBrand();
