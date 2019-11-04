@@ -69,7 +69,7 @@ const TableWrapper = ({ bordered, responsive, wrappingStyles, ...props }) => {
 // ==============================
 
 export const Table = ({ striped, bordered, responsive, wrappingStyles, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 
 	return (
 		<TableWrapper bordered={bordered} responsive={responsive} wrappingStyles={wrappingStyles}>
@@ -82,10 +82,10 @@ export const Table = ({ striped, bordered, responsive, wrappingStyles, ...props 
 					borderCollapse: 'collapse',
 
 					caption: {
-						fontWeight: 300,
 						fontSize: '1.125rem',
 						textAlign: 'left',
 						marginBottom: '0.75rem',
+						...TYPE.bodyFont[300],
 					},
 
 					// All child rows in the tbody
@@ -146,8 +146,8 @@ export const Table = ({ striped, bordered, responsive, wrappingStyles, ...props 
 					'thead > tr > th': {
 						verticalAlign: 'bottom',
 						borderBottom: `${bordered ? '2px' : '3px'} solid ${COLORS.hero}`,
-						fontWeight: 500,
 						color: COLORS.text,
+						...TYPE.bodyFont[500],
 					},
 
 					tfoot: {

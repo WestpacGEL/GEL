@@ -9,7 +9,7 @@ import { jsx, useBrand } from '@westpac/core';
 // ==============================
 
 export const Label = ({ appearance, tag: Tag, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 
 	if (props.href && Tag === 'span') {
 		Tag = 'a';
@@ -22,7 +22,6 @@ export const Label = ({ appearance, tag: Tag, ...props }) => {
 				borderRadius: '0.125rem',
 				display: 'inline',
 				fontSize: '0.75rem',
-				fontWeight: 400,
 				lineHeight: 1,
 				padding: '0.0625rem 0.375rem',
 				textAlign: 'center',
@@ -31,6 +30,7 @@ export const Label = ({ appearance, tag: Tag, ...props }) => {
 				color: appearance === 'faint' ? COLORS.muted : '#fff', //TODO: STG uses `COLORS.text`
 				backgroundColor: appearance === 'faint' ? COLORS.light : COLORS[appearance],
 				borderColor: appearance === 'faint' ? COLORS.border : COLORS[appearance],
+				...TYPE.bodyFont[400],
 
 				':empty': {
 					display: 'none',
