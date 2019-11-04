@@ -1,17 +1,17 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx, useBrand } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { useListContext } from './List';
+import PropTypes from 'prop-types';
 
 // ==============================
 // Component
 // ==============================
-export const ListItem = ({ icon, children, ...props }) => {
+export const Item = ({ children, ...props }) => {
 	const { COLORS } = useBrand();
-	const { appearance, type, spacing, icon: contextIcon } = useListContext();
+
+	const { look, type, spacing, icon: Icon } = useListContext();
 
 	const linkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><polygon fill="${COLORS.primary}" fillRule="evenodd" points="14.588 12 8 18.588 9.412 20 17.412 12 9.412 4 8 5.412"/></svg>`;
 
@@ -28,8 +28,8 @@ export const ListItem = ({ icon, children, ...props }) => {
 				width: '0.5rem',
 				height: '0.5rem',
 				borderRadius: '50%',
-				border: `1px solid ${COLORS[appearance]}`,
-				backgroundColor: COLORS[appearance],
+				border: `1px solid ${COLORS[look]}`,
+				backgroundColor: COLORS[look],
 			},
 
 			'ul > li::before': {
@@ -78,12 +78,6 @@ export const ListItem = ({ icon, children, ...props }) => {
 		},
 	};
 
-	let Icon;
-
-	if (icon || contextIcon) {
-		Icon = icon ? icon : contextIcon;
-	}
-
 	return (
 		<li
 			css={{
@@ -106,15 +100,29 @@ export const ListItem = ({ icon, children, ...props }) => {
 // ==============================
 // Types
 // ==============================
-ListItem.propTypes = {
-	/** The appearance of the bullet list */
-	appearance: PropTypes.oneOf(['primary', 'hero', 'neutral']),
-	/** The type of the bullet */
+Item.propTypes = {
+	/**
+	 * The look of the bullet list
+	 */
+	look: PropTypes.oneOf(['primary', 'hero', 'neutral']),
+
+	/**
+	 * The type of the bullet
+	 */
 	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
-	/** The size of space between list elements */
+
+	/**
+	 * The size of space between list elements
+	 */
 	spacing: PropTypes.oneOf(['medium', 'large']),
-	/** The icon for list item */
+
+	/**
+	 * The icon for list item
+	 */
 	icon: PropTypes.func,
-	/** Any renderable content */
+
+	/**
+	 * Any renderable content
+	 */
 	children: PropTypes.node,
 };
