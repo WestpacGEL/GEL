@@ -16,7 +16,7 @@ const Wrapper = ({ children, look }) => <Fragment>{children}</Fragment>;
 // ==============================
 
 export const Badge = ({ look, value, ...props }) => {
-	const { COLORS, BRAND, [pkg.name]: overridesWithTokens } = useBrand();
+	const { COLORS, BRAND, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 
 	let color = '#fff';
 	if (look === 'hero' && BRAND === 'STG') {
@@ -94,13 +94,13 @@ export const Badge = ({ look, value, ...props }) => {
 				borderRadius: '0.75rem',
 				display: 'inline-block',
 				fontSize: '0.875rem',
-				fontWeight: 700,
 				lineHeight: 1,
 				minWidth: '0.625rem',
 				padding: '0.25rem 0.4375rem',
 				textAlign: 'center',
 				verticalAlign: 'baseline',
 				whiteSpace: 'nowrap',
+				...TYPE.bodyFont[700],
 				...overrides[look].css,
 
 				'@media print': {

@@ -4,6 +4,7 @@ import { GEL, jsx, useBrand, useFonts } from '@westpac/core';
 
 function Example({ brand }) {
 	const { TYPE } = useBrand();
+	const weights = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
 	return (
 		<GEL brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
@@ -31,14 +32,13 @@ function Example({ brand }) {
 						margin: 0,
 					}}
 				>
-					{TYPE.brandFont.weights.map((weight, i) => (
+					{weights.map((weight, i) => (
 						<li
 							key={i}
 							css={{
 								display: 'block',
 								fontSize: '2rem',
-								fontFamily: TYPE.brandFont.fontFamily,
-								fontWeight: weight,
+								...TYPE.brandFont[weight],
 							}}
 						>
 							weight {weight}
@@ -64,14 +64,13 @@ function Example({ brand }) {
 						margin: 0,
 					}}
 				>
-					{TYPE.bodyFont.weights.map((weight, i) => (
+					{weights.map((weight, i) => (
 						<li
 							key={i}
 							css={{
 								display: 'block',
 								fontSize: '2rem',
-								fontFamily: TYPE.bodyFont.fontFamily,
-								fontWeight: weight,
+								...TYPE.bodyFont[weight],
 							}}
 						>
 							weight {weight}

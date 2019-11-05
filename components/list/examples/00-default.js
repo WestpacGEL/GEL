@@ -2,42 +2,87 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
-import { listGenerator } from './_utils';
 
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<List>
+				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list - primary</Item>
+			</List>
+
+			<br />
+			<hr />
+			<br />
+
 			<h3>Bullet List</h3>
-			<List appearance="primary">
-				{listGenerator('Styled bullet list - primary', 3)}
+			<List look="primary">
+				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list - primary</Item>
 				<Item>
 					Styled bullet list - primary
 					<List>
-						{listGenerator('Styled bullet list - primary', 3)}
+						<Item>Styled bullet list - primary</Item>
+						<Item>Styled bullet list - primary</Item>
+						<Item>Styled bullet list - primary</Item>
 						<Item>
 							Styled bullet list - primary
-							<List>{listGenerator('Styled bullet list - primary', 3)}</List>
+							<List>
+								<Item>Styled bullet list - primary</Item>
+								<Item>Styled bullet list - primary</Item>
+								<Item>Styled bullet list - primary</Item>
+							</List>
 						</Item>
 						<Item>Styled bullet list - primary</Item>
 					</List>
 				</Item>
 				<Item>Styled bullet list - primary</Item>
 			</List>
+
+			<br />
 			<hr />
-			<List appearance="hero">
-				{listGenerator('Styled bullet list - hero', 3)}
+			<br />
+
+			<List look="hero">
+				<Item>Styled bullet list - hero</Item>
+				<Item>Styled bullet list - hero</Item>
+				<Item>Styled bullet list - hero</Item>
 				<Item>
 					Styled bullet list - hero
-					<List>{listGenerator('Styled bullet list - hero', 3)}</List>
+					<List>
+						<Item>Styled bullet list - hero</Item>
+						<Item>Styled bullet list - hero</Item>
+						<Item>Styled bullet list - hero</Item>
+						<Item>
+							Styled bullet list - hero
+							<List>
+								<Item>Styled bullet list - hero</Item>
+								<Item>Styled bullet list - hero</Item>
+								<Item>Styled bullet list - hero</Item>
+							</List>
+						</Item>
+					</List>
 				</Item>
 				<Item>Styled bullet list - hero</Item>
 			</List>
+
+			<br />
 			<hr />
-			<List appearance="neutral">
-				{listGenerator('Styled bullet list - neutral', 3)}
+			<br />
+
+			<List look="neutral">
+				<Item>Styled bullet list - neutral</Item>
+				<Item>Styled bullet list - neutral</Item>
+				<Item>Styled bullet list - neutral</Item>
 				<Item>
 					Styled bullet list - neutral
-					<List>{listGenerator('Styled bullet list - neutral', 3)}</List>
+					<List>
+						<Item>Styled bullet list - neutral</Item>
+						<Item>Styled bullet list - neutral</Item>
+						<Item>Styled bullet list - neutral</Item>
+					</List>
 				</Item>
 				<Item>Styled bullet list - neutral</Item>
 			</List>

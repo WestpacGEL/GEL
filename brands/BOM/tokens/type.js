@@ -30,12 +30,12 @@ module.exports = {
 			},
 		],
 		bodyFont: {
-			weights: ['400', '700'],
+			weights: ['100', '100', '100', '400', '400', '400', '700', '700', '700'],
 			fontFamily:
 				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 		},
 		brandFont: {
-			weights: ['300', '400', '700'],
+			weights: ['300', '300', '300', '400', '400', '400', '700', '700', '700'],
 			fontFamily: '"brandFontBOM"',
 		},
 	},
