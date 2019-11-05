@@ -10,8 +10,10 @@ const fs = require('fs');
  *
  * @return {array}           - an array of all files inside a folder with the ".js" extension stripped
  */
-function getIcons( iconPath ) {
-	const icons = fs.readdirSync(path.normalize(`${process.cwd()}/${iconPath}`)).map(item => item.replace('.js', ''));
+function getIcons(iconPath) {
+	const icons = fs
+		.readdirSync(path.normalize(`${process.cwd()}/${iconPath}`))
+		.map(item => item.replace('.js', ''));
 
 	console.info(chalk.green('✅ Got all icons successfully'));
 
@@ -25,12 +27,11 @@ function getIcons( iconPath ) {
  * @param  {string} indexPath - The path to the export file
  */
 function insertIndex(icons, indexPath) {
-	const index = icons.map( icon => `export { ${icon} } from './icons/${icon}';` ).join('\n') + '\n';
+	const index = icons.map(icon => `export { ${icon} } from './icons/${icon}';`).join('\n') + '\n';
 
 	try {
 		fs.writeFileSync(path.normalize(`${process.cwd()}/${indexPath}`), index, { encoding: 'utf8' });
-	}
-	catch( error ) {
+	} catch (error) {
 		console.error(chalk.red(`❌ ${error}`));
 		process.exit(1);
 	}
@@ -46,11 +47,10 @@ function insertIndex(icons, indexPath) {
  *
  * @return {boolean}        - True or false
  */
-function writePkg( pkgPath, content ) {
+function writePkg(pkgPath, content) {
 	try {
 		fs.writeFileSync(pkgPath, JSON.stringify(content, null, '\t') + '\n', { encoding: 'utf8' });
-	}
-	catch( error ) {
+	} catch (error) {
 		console.error(chalk.red(`❌ ${error}`));
 		process.exit(1);
 	}
@@ -64,11 +64,11 @@ function writePkg( pkgPath, content ) {
  * @param  {array}  icons   - An array of icons
  * @param  {string} pkgPath - The path to the package.json file
  */
-function insertPkg( icons, pkgPath ) {
-	pkgPath = path.normalize(`${process.cwd()}/${pkgPath}`)
+function insertPkg(icons, pkgPath) {
+	pkgPath = path.normalize(`${process.cwd()}/${pkgPath}`);
 	const pkg = require(pkgPath);
 
-	pkg.preconstruct.entrypoints = [".", ...icons];
+	pkg.preconstruct.entrypoints = ['.', ...icons];
 
 	writePkg(pkgPath, pkg);
 
@@ -80,12 +80,14 @@ function insertPkg( icons, pkgPath ) {
  *
  * @param  {array} icons - An array of all icons
  */
-function fixSource( icons) {
-	icons.map( icon => {
-		const pkgPath = path.normalize(`${process.cwd()}/${icon}/package.json`)
+function fixSource(icons) {
+	icons.map(icon => {
+		const pkgPath = path.normalize(`${process.cwd()}/${icon}/package.json`);
 		const pkg = require(pkgPath);
 
-		if(!pkg.preconstruct) {pkg.preconstruct = {};}
+		if (!pkg.preconstruct) {
+			pkg.preconstruct = {};
+		}
 		pkg.preconstruct.source = `../src/icons/${icon}`;
 
 		writePkg(pkgPath, pkg);
@@ -97,7 +99,7 @@ function fixSource( icons) {
 /**
  * Only run this with flags so we can test the functions above
  */
-if(process.argv.includes('export')) {
+if (process.argv.includes('export')) {
 	cfonts.say('Building icon exports', {
 		font: 'chrome',
 		colors: ['red', 'green', 'white'],
@@ -106,7 +108,7 @@ if(process.argv.includes('export')) {
 	const icons = getIcons('./src/icons/');
 	insertIndex(icons, 'src/index.js');
 	insertPkg(icons, 'package.json');
-	fixSource(icons)
+	fixSource(icons);
 
 	console.info();
 }
