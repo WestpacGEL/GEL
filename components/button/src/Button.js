@@ -25,7 +25,7 @@ export const Button = ({
 	children,
 	...props
 }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
@@ -173,7 +173,6 @@ export const Button = ({
 				border: '1px solid transparent',
 				borderRadius: '0.1875rem',
 				cursor: 'pointer',
-				fontWeight: 400,
 				justifyContent: justify ? 'space-between' : 'center', //horizontal
 				lineHeight: 1.5,
 				textAlign: 'center',
@@ -184,6 +183,7 @@ export const Button = ({
 				verticalAlign: look === 'link' ? 'baseline' : 'middle',
 				whiteSpace: 'nowrap',
 				boxSizing: 'border-box',
+				...TYPE.bodyFont[400],
 
 				// Hover state (but excluded if disabled or inside a disabled fieldset)
 				':hover:not(:disabled), fieldset:not(:disabled) &:hover': {

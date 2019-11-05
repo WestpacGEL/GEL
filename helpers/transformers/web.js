@@ -42,7 +42,7 @@ function build(BRAND) {
 	// const { SPACING: spacing } = require(`${cwd}/tokens/spacing`);
 	const { LAYOUT: layout } = require(`${cwd}/tokens/layout`);
 	const {
-		TYPE: { files, ...typeRest },
+		TYPE: { files, bodyFont, brandFont, ...typeRest },
 	} = require(`${cwd}/tokens/type`);
 	const { PACKS: packs } = require(`${cwd}/tokens/packs`);
 
@@ -64,10 +64,46 @@ function build(BRAND) {
 	const LAYOUT = layout;
 
 	// type
-	const TYPE = {
-		files: convertFonts(files),
-		...typeRest,
-	};
+	const weights = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
+	const errors = [];
+	const TYPE = `
+	{
+		files: ${JSON.stringify(convertFonts(files))},
+		bodyFont: {
+			fontFamily: bodyFont,
+			${weights.map((weight, i) => {
+				if (typeof bodyFont.weights[i] !== 'string' || !weights.includes(bodyFont.weights[i])) {
+					errors.push(
+						`The weights array in the brand token for "${BRAND}" contains a wrong item "${bodyFont.weights[i]}"`
+					);
+				}
+
+				return `${weight}: {
+						fontFamily: bodyFont,
+						fontWeight: ${bodyFont.weights[i]},
+					}`;
+			})}
+		},
+		brandFont: {
+			fontFamily: brandFont,
+			${weights.map((weight, i) => {
+				if (typeof brandFont.weights[i] !== 'string' || !weights.includes(brandFont.weights[i])) {
+					errors.push(
+						`The weights array in the brand token for "${BRAND}" contains a wrong item "${brandFont.weights[i]}"`
+					);
+				}
+
+				return `${weight}: {
+						fontFamily: brandFont,
+						fontWeight: ${brandFont.weights[i]},
+					}`;
+			})}
+		},
+	};`;
+
+	if (errors.length > 0) {
+		throw errors.join('\n');
+	}
 
 	// packs
 	const PACKS = packs;
@@ -80,12 +116,14 @@ function build(BRAND) {
 	});
 
 	return `
-		export const SPACING = ( unit, minor ) => {
-			return ( unit * 6 - (minor ? 3 : 0) ) / 16 + (unit > 0 ? 'rem' : 0);
+		const bodyFont = ${JSON.stringify(bodyFont.fontFamily)};
+		const brandFont = ${JSON.stringify(brandFont.fontFamily)};
+		export const SPACING = ( unit, minor, rem = true ) => {
+			return ( unit * 6 - (minor ? 3 : 0) ) / 16 + (rem ? (unit > 0 ? 'rem' : 0) : 0);
 		};
 		export const COLORS = ${JSON.stringify(COLORS)};
 		export const LAYOUT = ${JSON.stringify(LAYOUT)};
-		export const TYPE = ${JSON.stringify(TYPE)};
+		export const TYPE = ${TYPE};
 		export const PACKS = ${JSON.stringify(PACKS)};
 		export const BRAND = "${BRAND}";
 		export default {

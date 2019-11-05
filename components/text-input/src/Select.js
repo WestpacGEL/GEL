@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 // ==============================
 
 export const Select = ({ size, width, inline, invalid, children, data, ...props }) => {
-	const { COLORS, PACKS } = useBrand();
+	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
 	const childrenData = [];
@@ -46,7 +46,7 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 				width: inline ? ['100%', 'auto'] : '100%',
 				appearance: 'none',
 				lineHeight: lineHeight,
-				fontWeight: 400,
+				...TYPE.bodyFont[400],
 				color: COLORS.text,
 				backgroundColor: '#fff',
 				border: `${borderWidth}px solid ${
@@ -69,8 +69,8 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 
 				'&::placeholder': {
 					opacity: 1, // Override Firefox's unusual default opacity
-					fontWeight: 300,
 					color: COLORS.tints.text50,
+					...TYPE.bodyFont[300],
 				},
 
 				// Focus styling (for all, not just keyboard users)

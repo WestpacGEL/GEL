@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
+import PropTypes from 'prop-types';
 
 import { useFormContext } from './Form';
 
@@ -12,6 +11,7 @@ import { useFormContext } from './Form';
 // ==============================
 
 export const FormLabel = ({ sublabel, tag: Tag, htmlFor, srOnly, ...props }) => {
+	const { TYPE } = useBrand();
 	// Consume FormContext
 	const formContext = useFormContext();
 	const spacing = (formContext && formContext.spacing) || 'medium';
@@ -33,9 +33,9 @@ export const FormLabel = ({ sublabel, tag: Tag, htmlFor, srOnly, ...props }) => 
 		<Tag
 			css={{
 				display: 'inline-block',
-				fontWeight: 500,
 				fontSize: sublabel ? '0.875rem' : '1rem',
 				marginBottom: mapSpacing[spacing].marginBottom,
+				...TYPE.bodyFont[500],
 			}}
 			htmlFor={htmlFor}
 			{...props}
