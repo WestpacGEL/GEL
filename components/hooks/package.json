@@ -34,7 +34,7 @@
 		"resize-observer-polyfill": "^1.5.1"
 	},
 	"peerDependencies": {
-		"react": "^16.10.1"
+		"react": "^16.11.0"
 	},
 	"devDependencies": {
 		"@westpac/button": "*",
