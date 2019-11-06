@@ -16,7 +16,6 @@ function getIcons(iconPath) {
 		.map(item => item.replace('.js', ''));
 
 	console.info(chalk.green('✅ Got all icons successfully'));
-
 	return icons;
 }
 
@@ -67,6 +66,10 @@ function writePkg(pkgPath, content) {
 function insertPkg(icons, pkgPath) {
 	pkgPath = path.normalize(`${process.cwd()}/${pkgPath}`);
 	const pkg = require(pkgPath);
+
+	if (!pkg.preconstruct) {
+		pkg.preconstruct = {};
+	}
 
 	pkg.preconstruct.entrypoints = ['.', ...icons];
 
