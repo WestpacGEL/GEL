@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const RedAvatarCircleReversedLogo = props => (
-	<Symbol {...props}>
+	<Symbol symbol="RedAvatarCircleReversedLogo" {...props}>
 		<g fill="none" fillRule="evenodd">
 			<circle fill="#D5002B" cx="32" cy="32" r="32" />
 			<path

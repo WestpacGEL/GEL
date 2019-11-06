@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const WBGLogo = props => (
-	<Symbol {...props}>
+	<Symbol symbol="WBGLogo" {...props}>
 		<path
 			d="M15.3 16.1L11.1 2.6C10.5 0.6 9.5 0 7.9 0H0c0.6 0.3 1 1.9 1 1.9l3.8 13.5C5.3 17.1 6.7 18 8.2 18h8.4C16 17.9 15.3 16.1 15.3 16.1"
 			fill="#D5002B"

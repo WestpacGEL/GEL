@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const WBCLiveLogo = props => (
-	<Symbol {...props}>
+	<Symbol symbol="WBCLiveLogo" {...props}>
 		<path
 			fill="#D5002B"
 			d="M18.5,39.8l-5.1-15.7c-0.7-2.4-2-3.1-3.8-3.1H0c0.7,0.3,1.2,2.2,1.2,2.2L5.8,39c0.5,2,2.2,3,4.1,3H20

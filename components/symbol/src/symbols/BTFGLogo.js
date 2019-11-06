@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const BTFGLogo = props => (
-	<Symbol {...props}>
+	<Symbol symbol="BTFGLogo" {...props}>
 		<path
 			d="M8.4 13.5c-0.5 0-1-0.4-1-1 0-0.5 0.4-1 1-1h13.5c-0.2-1.5-0.9-3-2-4.2 0 0 0 0-0.1-0.1l-1.7-1.7c0 0 0 0-0.1-0.1L12.5 0 0 12.5 12.5 25l5.6-5.6c0 0 0.1-0.1 0.1-0.1l1.7-1.7c0 0 0.1-0.1 0.1-0.1 1.1-1.2 1.8-2.6 2-4.2H8.4z"
 			fill="#7998AC"

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const AppleStoreSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="AppleStoreSymbol" {...props}>
 		<g fill="none" fillRule="evenodd">
 			<path
 				fill="#A6A6A6"
