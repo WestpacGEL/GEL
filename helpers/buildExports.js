@@ -6,28 +6,30 @@ const fs = require('fs');
 /**
  * Getting all files from a directory
  *
- * @param  {string} iconPath - The path to the folder
+ * @param  {string} svgPath   - The path to the folder containing all component svgs
+ * @param  {string} component - The component name i.e. icons, symbols
  *
  * @return {array}           - an array of all files inside a folder with the ".js" extension stripped
  */
-function getIcons(iconPath) {
-	const icons = fs
-		.readdirSync(path.normalize(`${process.cwd()}/${iconPath}`))
+function getSvgs(svgPath, component) {
+	const svgs = fs
+		.readdirSync(path.normalize(`${process.cwd()}/${svgPath}`))
 		.map(item => item.replace('.js', ''));
 
-	console.info(chalk.green('✅ Got all icons successfully'));
-
-	return icons;
+	console.info(chalk.green(`✅ Got all ${component} successfully`));
+	return svgs;
 }
 
 /**
- * Insert an array of icons into a js export file
+ * Insert an array of component svgs into a js export file
  *
- * @param  {array}  icons     - An array of icons
+ * @param  {array}  svgs      - An array of component svgs
  * @param  {string} indexPath - The path to the export file
+ * @param  {string} component - The component name
  */
-function insertIndex(icons, indexPath) {
-	const index = icons.map(icon => `export { ${icon} } from './icons/${icon}';`).join('\n') + '\n';
+function insertIndex(svgs, indexPath, component) {
+	const index =
+		svgs.map(svg => `export { ${svg} } from './${component}/${svg}';`).join('\n') + '\n';
 
 	try {
 		fs.writeFileSync(path.normalize(`${process.cwd()}/${indexPath}`), index, { encoding: 'utf8' });
@@ -59,16 +61,20 @@ function writePkg(pkgPath, content) {
 }
 
 /**
- * Insert an array of icons into the preconstruct entrypoint array of a package.json
+ * Insert an array of component svgs into the preconstruct entrypoint array of a package.json
  *
- * @param  {array}  icons   - An array of icons
+ * @param  {array}  svgs    - An array of component svgs
  * @param  {string} pkgPath - The path to the package.json file
  */
-function insertPkg(icons, pkgPath) {
+function insertPkg(svgs, pkgPath) {
 	pkgPath = path.normalize(`${process.cwd()}/${pkgPath}`);
 	const pkg = require(pkgPath);
 
-	pkg.preconstruct.entrypoints = ['.', ...icons];
+	if (!pkg.preconstruct) {
+		pkg.preconstruct = {};
+	}
+
+	pkg.preconstruct.entrypoints = ['.', ...svgs];
 
 	writePkg(pkgPath, pkg);
 
@@ -76,19 +82,20 @@ function insertPkg(icons, pkgPath) {
 }
 
 /**
- * Fix the source key inside each icons package.json file
+ * Fix the source key inside each svgs package.json file
  *
- * @param  {array} icons - An array of all icons
+ * @param  {array} svgs  - An array of all component svgs
  */
-function fixSource(icons) {
-	icons.map(icon => {
-		const pkgPath = path.normalize(`${process.cwd()}/${icon}/package.json`);
+function fixSource(svgs, component) {
+	svgs.map(svg => {
+		const pkgPath = path.normalize(`${process.cwd()}/${svg}/package.json`);
 		const pkg = require(pkgPath);
 
 		if (!pkg.preconstruct) {
 			pkg.preconstruct = {};
 		}
-		pkg.preconstruct.source = `../src/icons/${icon}`;
+
+		pkg.preconstruct.source = `../src/${component}/${svg}`;
 
 		writePkg(pkgPath, pkg);
 	});
@@ -99,16 +106,18 @@ function fixSource(icons) {
 /**
  * Only run this with flags so we can test the functions above
  */
+const component = process.argv[3]; // icons or symbols
+
 if (process.argv.includes('export')) {
-	cfonts.say('Building icon exports', {
+	cfonts.say(`Building ${component} exports`, {
 		font: 'chrome',
 		colors: ['red', 'green', 'white'],
 	});
 
-	const icons = getIcons('./src/icons/');
-	insertIndex(icons, 'src/index.js');
-	insertPkg(icons, 'package.json');
-	fixSource(icons);
+	const svgs = getSvgs(`./src/${component}/`, component);
+	insertIndex(svgs, 'src/index.js', component);
+	insertPkg(svgs, 'package.json');
+	fixSource(svgs, component);
 
 	console.info();
 }

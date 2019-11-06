@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, asArray } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
+import pkg from '../package.json';
 
 // ==============================
 // Utils
@@ -49,8 +50,17 @@ export const Symbol = ({
 	children,
 	...props
 }) => {
+	const { [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		Wrapper: SymbolWrapper,
+		svgAttributes: {},
+		css: {},
+	};
+	merge(overrides, overridesWithTokens);
+
 	return (
-		<SymbolWrapper
+		<overrides.Wrapper
 			width={width}
 			height={height}
 			viewBoxWidth={viewBoxWidth}
@@ -64,10 +74,12 @@ export const Symbol = ({
 				role="img"
 				focusable="false"
 				style={{ width: '100%', height: '100%' }}
+				css={overrides.css}
+				{...overrides.svgAttributes}
 			>
 				{children}
 			</svg>
-		</SymbolWrapper>
+		</overrides.Wrapper>
 	);
 };
 
