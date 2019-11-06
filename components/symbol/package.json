@@ -24,7 +24,7 @@
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open",
-		"build": "node ../../helpers/buildExports.js export"
+		"build": "node ../../helpers/buildExports.js export symbols"
 	},
 	"main": "dist/symbol.cjs.js",
 	"module": "dist/symbol.esm.js",
