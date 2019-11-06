@@ -7,7 +7,7 @@ import { useProgressRopeContext } from './ProgressRope';
 
 export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 	const { openGroup, ropeGraph, handleClick } = useProgressRopeContext();
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 	const active = ropeGraph[index].includes('visited');
 
 	return (
@@ -17,7 +17,6 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 					position: 'relative',
 					padding: '0.375rem 3.5rem 1.625rem 1.875rem',
 					fontSize: '1rem',
-					fontWeight: 'bold',
 					display: 'flex',
 					alignItems: 'center',
 					border: 'none',
@@ -26,6 +25,7 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 					cursor: 'pointer',
 					color: active ? COLORS.neutral : COLORS.tints.muted70,
 					width: '100%',
+					...TYPE.bodyFont[700],
 
 					// the line
 					'::before': {

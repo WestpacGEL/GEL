@@ -1,9 +1,10 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { Text } from '@westpac/text-input';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
+import pkg from '../package.json';
 import { Right } from './Right';
 import { Left } from './Left';
 
@@ -27,6 +28,17 @@ export const InputGroup = ({
 	look,
 	...props
 }) => {
+	const { [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		css: {},
+		textCSS: {},
+		Left,
+		Text,
+		Right,
+	};
+	merge(overrides, overridesWithTokens);
+
 	let added = false;
 	const childrenWithProps = [];
 	const length = Children.count(children);
@@ -36,11 +48,11 @@ export const InputGroup = ({
 
 		if (left) {
 			childrenWithProps.push(
-				<Left key="left" look={look} disabled={disabled} size={size} {...left} />
+				<overrides.Left key="left" look={look} disabled={disabled} size={size} {...left} />
 			);
 		}
 		childrenWithProps.push(
-			<Text
+			<overrides.Text
 				key="textinput1"
 				size={size}
 				invalid={invalid}
@@ -59,12 +71,13 @@ export const InputGroup = ({
 						borderTopRightRadius: 0,
 						borderBottomRightRadius: 0,
 					}),
+					...overrides.textCSS,
 				}}
 			/>
 		);
 		if (right) {
 			childrenWithProps.push(
-				<Right key="right" look={look} disabled={disabled} size={size} {...right} />
+				<overrides.Right key="right" look={look} disabled={disabled} size={size} {...right} />
 			);
 		}
 	} else {
@@ -72,7 +85,7 @@ export const InputGroup = ({
 			if (child.type.name === 'Left' && !added) {
 				childrenWithProps.push(cloneElement(child, { look, size, disabled, key: 'left' }));
 				childrenWithProps.push(
-					<Text
+					<overrides.Text
 						key="textinput1"
 						size={size}
 						invalid={invalid}
@@ -89,13 +102,14 @@ export const InputGroup = ({
 								borderTopRightRadius: 0,
 								borderBottomRightRadius: 0,
 							}),
+							...overrides.textCSS,
 						}}
 					/>
 				);
 				added = true;
 			} else if (child.type.name === 'Right' && !added) {
 				childrenWithProps.push(
-					<Text
+					<overrides.Text
 						key="textinput2"
 						size={size}
 						invalid={invalid}
@@ -108,6 +122,7 @@ export const InputGroup = ({
 							boxSizing: 'border-box',
 							borderTopRightRadius: 0,
 							borderBottomRightRadius: 0,
+							...overrides.textCSS,
 						}}
 					/>
 				);
@@ -120,7 +135,7 @@ export const InputGroup = ({
 	}
 
 	return (
-		<div css={{ display: 'flex' }} {...props}>
+		<div css={{ display: 'flex', ...overrides.css }} {...props}>
 			{childrenWithProps}
 		</div>
 	);

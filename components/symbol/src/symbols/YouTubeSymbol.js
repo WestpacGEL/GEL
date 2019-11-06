@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const YouTubeSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="YouTubeSymbol" {...props}>
 		<defs>
 			<linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="YouTubeSymbol">
 				<stop stopColor="#E52D27" offset="0%" />

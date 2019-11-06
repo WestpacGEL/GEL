@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const TwitterSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="TwitterSymbol" {...props}>
 		<g fillRule="nonzero" fill="none">
 			<rect fill="#0BABE3" width="32" height="32" rx="2" />
 			<path

@@ -36,13 +36,13 @@
 		"shortid": "^2.2.15"
 	},
 	"peerDependencies": {
-		"react": "^16.10.1"
+		"react": "^16.11.0"
 	},
 	"devDependencies": {
 		"@westpac/alert": "*",
 		"@westpac/button": "*",
 		"@westpac/text-input": "*",
-		"cypress": "^3.5.0",
+		"cypress": "^3.6.0",
 		"react": "^16.11.0",
 		"start-server-and-test": "^1.10.6"
 	}

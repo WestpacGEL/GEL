@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const AmericanExpressSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="AmericanExpressSymbol" {...props}>
 		<g>
 			<path
 				fill="#007CC3"

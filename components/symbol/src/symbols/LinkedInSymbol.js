@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const LinkedInSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="LinkedInSymbol" {...props}>
 		<g fill="none" fillRule="evenodd">
 			<rect fill="#0D7FB7" width="32" height="32" rx="2" />
 			<path
