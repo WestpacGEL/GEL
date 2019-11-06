@@ -39,12 +39,8 @@ export const Item = ({ look, type, spacing, icon, children, ...props }) => {
 				height: '0.5rem',
 				borderRadius: '50%',
 				border: `1px solid ${COLORS[look]}`,
-				backgroundColor: COLORS[look],
+				backgroundColor: nested > 0 ? 'transparent' : COLORS[look],
 				boxSizing: 'border-box',
-			},
-
-			'ul > li::before': {
-				backgroundColor: 'transparent',
 			},
 		},
 		linkCSS: {
