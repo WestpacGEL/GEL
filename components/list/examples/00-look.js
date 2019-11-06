@@ -6,6 +6,7 @@ import { List, Item } from '@westpac/list';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<h2>Primary</h2>
 			<List>
 				<Item>Styled bullet list - primary</Item>
 				<Item>Styled bullet list - primary</Item>
@@ -16,7 +17,29 @@ function Example({ brand }) {
 			<hr />
 			<br />
 
-			<h3>Bullet List</h3>
+			<h2>Hero</h2>
+			<List look="hero">
+				<Item>Styled bullet list - hero</Item>
+				<Item>Styled bullet list - hero</Item>
+				<Item>Styled bullet list - hero</Item>
+			</List>
+
+			<br />
+			<hr />
+			<br />
+
+			<h2>Neutral</h2>
+			<List look="neutral">
+				<Item>Styled bullet list - neutral</Item>
+				<Item>Styled bullet list - neutral</Item>
+				<Item>Styled bullet list - neutral</Item>
+			</List>
+
+			<br />
+			<hr />
+			<br />
+
+			<h2>Nesting with cascading look prop</h2>
 			<List look="primary">
 				<Item>Styled bullet list - primary</Item>
 				<Item>Styled bullet list - primary</Item>
@@ -81,6 +104,15 @@ function Example({ brand }) {
 					<List>
 						<Item>Styled bullet list - neutral</Item>
 						<Item>Styled bullet list - neutral</Item>
+						<Item>Styled bullet list - neutral</Item>
+						<Item>
+							Styled bullet list - neutral
+							<List>
+								<Item>Styled bullet list - neutral</Item>
+								<Item>Styled bullet list - neutral</Item>
+								<Item>Styled bullet list - neutral</Item>
+							</List>
+						</Item>
 						<Item>Styled bullet list - neutral</Item>
 					</List>
 				</Item>
