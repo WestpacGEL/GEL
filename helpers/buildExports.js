@@ -102,8 +102,8 @@ function fixSource(svgs, component) {
 			}
 
 			const package = {
-				main: `dist/${component}.cjs.js`,
-				module: `dist/${component}.esm.js`,
+				main: `dist/${component.slice(0, -1)}.cjs.js`,
+				module: `dist/${component.slice(0, -1)}.esm.js`,
 				preconstruct: {
 					source: `../src/${component}/${svg}`,
 				},
