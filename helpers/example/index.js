@@ -205,12 +205,14 @@ const Home = ({ packageName, pkg }) => (
 // Styled components
 // ==============================
 
+const SIDEBAR_WIDTH = 240;
+
 const Body = props => (
 	<div
 		css={{
 			alignItems: 'stretch',
 			display: 'flex',
-			height: '100vh',
+			minHeight: '100vh',
 		}}
 		{...props}
 	/>
@@ -221,8 +223,9 @@ const Article = props => (
 		css={{
 			flex: 1,
 			overflowY: 'auto',
-			paddingTop: '1rem',
 			paddingBottom: '4rem',
+			paddingLeft: SIDEBAR_WIDTH,
+			paddingTop: '1rem',
 		}}
 		{...props}
 	/>
@@ -235,7 +238,9 @@ const Sidebar = props => (
 			borderRight: '1px solid rgba(0, 0, 0, 0.075)',
 			display: 'flex',
 			flexDirection: 'column',
-			width: 240,
+			height: '100vh',
+			position: 'fixed',
+			width: SIDEBAR_WIDTH,
 		}}
 		{...props}
 	/>
