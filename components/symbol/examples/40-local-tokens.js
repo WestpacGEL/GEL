@@ -8,17 +8,18 @@ import {
 	WBCLogo,
 	STGLogo,
 } from '@westpac/symbol';
-import { Cell, Grid, Name } from './_utils';
+import { Cell, Grid } from './_utils';
 
-const Wrapper = ({ children, ...props }) => (
+const Wrapper = ({ children, symbol, ...props }) => (
 	<div
 		css={{
 			border: '2px solid red',
 			padding: '24px',
 			height: '100%',
 		}}
+		{...props}
 	>
-		{children}
+		{children} - {symbol}
 	</div>
 );
 

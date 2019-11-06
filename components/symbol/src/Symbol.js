@@ -55,6 +55,7 @@ export const Symbol = ({
 	const overrides = {
 		Wrapper: SymbolWrapper,
 		svgAttributes: {},
+		css: {},
 	};
 	merge(overrides, overridesWithTokens);
 
@@ -73,6 +74,7 @@ export const Symbol = ({
 				role="img"
 				focusable="false"
 				style={{ width: '100%', height: '100%' }}
+				css={overrides.css}
 				{...overrides.svgAttributes}
 			>
 				{children}

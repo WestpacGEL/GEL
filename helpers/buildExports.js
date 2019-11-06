@@ -6,9 +6,8 @@ const fs = require('fs');
 /**
  * Getting all files from a directory
  *
- * @param  {string} svgPath - The path to the folder containing all component svgs
- *
- * @param	{string} component - The component name i.e. icons, symbols
+ * @param  {string} svgPath   - The path to the folder containing all component svgs
+ * @param  {string} component - The component name i.e. icons, symbols
  *
  * @return {array}           - an array of all files inside a folder with the ".js" extension stripped
  */
@@ -24,7 +23,7 @@ function getSvgs(svgPath, component) {
 /**
  * Insert an array of component svgs into a js export file
  *
- * @param  {array}  svgs     - An array of component svgs
+ * @param  {array}  svgs      - An array of component svgs
  * @param  {string} indexPath - The path to the export file
  * @param  {string} component - The component name
  */
@@ -64,7 +63,7 @@ function writePkg(pkgPath, content) {
 /**
  * Insert an array of component svgs into the preconstruct entrypoint array of a package.json
  *
- * @param  {array}  svgs   - An array of component svgs
+ * @param  {array}  svgs    - An array of component svgs
  * @param  {string} pkgPath - The path to the package.json file
  */
 function insertPkg(svgs, pkgPath) {
@@ -85,49 +84,20 @@ function insertPkg(svgs, pkgPath) {
 /**
  * Fix the source key inside each svgs package.json file
  *
- * @param  {array} svgs - An array of all component svgs
+ * @param  {array} svgs  - An array of all component svgs
  */
 function fixSource(svgs, component) {
 	svgs.map(svg => {
-		// check if package exists
-		const folderPath = path.normalize(`${process.cwd()}/${svg}`);
-		if (!fs.existsSync(folderPath)) {
-			// have a log about creating folder here
-			// need to have error handlers here
-			try {
-				fs.mkdirSync(folderPath);
-			} catch (error) {
-				console.error(chalk.red(`❌ ${error}`));
-				process.exit(1);
-			}
+		const pkgPath = path.normalize(`${process.cwd()}/${svg}/package.json`);
+		const pkg = require(pkgPath);
 
-			const package = {
-				main: `dist/${component.slice(0, -1)}.cjs.js`,
-				module: `dist/${component.slice(0, -1)}.esm.js`,
-				preconstruct: {
-					source: `../src/${component}/${svg}`,
-				},
-			};
-
-			try {
-				fs.writeFileSync(`${folderPath}/package.json`, JSON.stringify(package), {
-					encoding: 'utf8',
-				});
-			} catch (error) {
-				console.error(chalk.red(`❌ ${error}`));
-				process.exit(1);
-			}
-		} else {
-			const pkgPath = path.normalize(`${process.cwd()}/${svg}/package.json`);
-			const pkg = require(pkgPath);
-
-			if (!pkg.preconstruct) {
-				pkg.preconstruct = {};
-			}
-			pkg.preconstruct.source = `../src/${component}/${svg}`;
-
-			writePkg(pkgPath, pkg);
+		if (!pkg.preconstruct) {
+			pkg.preconstruct = {};
 		}
+
+		pkg.preconstruct.source = `../src/${component}/${svg}`;
+
+		writePkg(pkgPath, pkg);
 	});
 
 	console.info(chalk.green('✅ "source" inside all package.json files written successfully'));
