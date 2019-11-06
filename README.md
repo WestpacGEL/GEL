@@ -275,6 +275,7 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 | `icon` `iconLeft` `iconRight`              | For passing in an icon                                                                                      |
 | `disabled` or `noBorder`                   | For passing boolean flags we use natural language and not `is` or `has` prefixes                            |
 | `size`                                     | For the physical size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                     |
+| `spacing`                                  | For the whitspace size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                    |
 | `value`                                    | For when a component shows a value, often numbers but not only                                              |
 | `selected`                                 | For things inside lists that are being targeted. Like `ButtonGroups` or `CheckGroup`. Takes string or array |
 | `label`                                    | For labeling things that are visible or a11y text                                                           |

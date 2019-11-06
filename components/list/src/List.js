@@ -4,7 +4,6 @@ import { jsx, useBrand, merge } from '@westpac/core';
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';
-import { Item } from './Item';
 
 // ==============================
 // Context and Consumer Hook
@@ -17,21 +16,22 @@ export const useListContext = () => useContext(ListContext);
 // Component
 // ==============================
 
-export const List = ({ look, type, spacing, icon, data, children, ...props }) => {
+export const List = ({ look, type, spacing, icon, children, ...props }) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 
 	const overrides = {
-		Item,
-		listCSS: {},
 		css: {},
+		Icon: icon,
+		nestedCSS: {},
 	};
 	merge(overrides, overridesWithTokens);
 
 	const context = useListContext();
-	look = (context && context.look) || look;
-	type = (context && context.type) || type;
-	spacing = (context && context.spacing) || spacing;
-	icon = (context && context.icon) || icon;
+	look = (context && context.look) || look || 'primary';
+	type = type || (context && context.type) || 'bullet';
+	spacing = spacing || (context && context.spacing) || 'medium';
+	icon = icon || overrides.Icon || (context && context.icon);
+	const nested = (context && context.nested + 1) || 0;
 
 	const ListType = type === 'ordered' ? 'ol' : 'ul';
 
@@ -42,12 +42,15 @@ export const List = ({ look, type, spacing, icon, data, children, ...props }) =>
 				type,
 				spacing,
 				icon,
+				nested,
 			}}
 		>
 			<ListType
 				css={{
 					margin: 0,
 					padding: type === 'ordered' ? '0 0 0 1.25rem' : 0,
+					...overrides.css,
+					...(overrides.nestedCSS[nested] ? overrides.nestedCSS[nested] : {}),
 				}}
 				{...props}
 			>
@@ -64,17 +67,17 @@ List.propTypes = {
 	/**
 	 * The look of the bullet list
 	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'neutral']).isRequired,
+	look: PropTypes.oneOf(['primary', 'hero', 'neutral']),
 
 	/**
 	 * The type of the bullet
 	 */
-	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']).isRequired,
+	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
 
 	/**
 	 * The size of space between list elements
 	 */
-	size: PropTypes.oneOf(['medium', 'large']).isRequired,
+	spacing: PropTypes.oneOf(['medium', 'large']),
 
 	/**
 	 * The icon for list
@@ -84,11 +87,5 @@ List.propTypes = {
 	/**
 	 * Any renderable child
 	 */
-	children: PropTypes.node,
-};
-
-List.defaultProps = {
-	look: 'primary',
-	type: 'bullet',
-	size: 'medium',
+	children: PropTypes.node.isRequired,
 };

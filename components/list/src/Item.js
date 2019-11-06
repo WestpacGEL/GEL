@@ -1,24 +1,34 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { useListContext } from './List';
 import PropTypes from 'prop-types';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Item = ({ children, ...props }) => {
-	const { COLORS } = useBrand();
+export const Item = ({ look, type, spacing, icon, children, ...props }) => {
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
-	const { look, type, spacing, icon: Icon } = useListContext();
+	const {
+		look: lookCtx,
+		type: typeCtx,
+		spacing: spacingCtx,
+		icon: iconCtx,
+		nested,
+	} = useListContext();
+
+	look = look || lookCtx;
+	type = type || typeCtx;
+	spacing = spacing || spacingCtx;
+	const Icon = icon || iconCtx;
 
 	const linkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><polygon fill="${COLORS.primary}" fillRule="evenodd" points="14.588 12 8 18.588 9.412 20 17.412 12 9.412 4 8 5.412"/></svg>`;
-
 	const tickSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><polygon fill="${COLORS.primary}" points="8.6 15.6 4.4 11.4 3 12.8 8.6 18.4 20.6 6.4 19.2 5"/></svg>`;
-
-	const style = {
-		bullet: {
+	const overrides = {
+		bulletCSS: {
 			'::before': {
 				content: '""',
 				position: 'absolute',
@@ -30,13 +40,14 @@ export const Item = ({ children, ...props }) => {
 				borderRadius: '50%',
 				border: `1px solid ${COLORS[look]}`,
 				backgroundColor: COLORS[look],
+				boxSizing: 'border-box',
 			},
 
 			'ul > li::before': {
 				backgroundColor: 'transparent',
 			},
 		},
-		link: {
+		linkCSS: {
 			'::before': {
 				content: "''",
 				position: 'absolute',
@@ -48,9 +59,10 @@ export const Item = ({ children, ...props }) => {
 				backgroundImage: `url("${svgToTinyDataURI(linkSVG)}")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'contain',
+				boxSizing: 'border-box',
 			},
 		},
-		tick: {
+		tickCSS: {
 			'::before': {
 				content: "''",
 				position: 'absolute',
@@ -62,21 +74,24 @@ export const Item = ({ children, ...props }) => {
 				backgroundImage: `url("${svgToTinyDataURI(tickSVG)}")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'contain',
+				boxSizing: 'border-box',
 			},
 		},
-		unstyled: {
+		unstyledCSS: {
 			paddingLeft: 0,
 			li: {
 				paddingLeft: '1.1875rem',
 			},
 		},
-		icon: {
+		iconCSS: {
 			paddingLeft: '1.4375rem',
 		},
-		ordered: {
+		orderedCSS: {
 			paddingLeft: 0,
 		},
+		nestedListCSS: {},
 	};
+	merge(overrides, overridesWithTokens);
 
 	return (
 		<li
@@ -85,7 +100,8 @@ export const Item = ({ children, ...props }) => {
 				listStyle: type !== 'ordered' && 'none',
 				paddingLeft: '1.1875rem',
 				position: 'relative',
-				...style[type],
+				...overrides[`${type}CSS`],
+				...(overrides.nestedListCSS[nested] ? overrides.nestedListCSS[nested] : {}),
 			}}
 			{...props}
 		>
@@ -124,5 +140,5 @@ Item.propTypes = {
 	/**
 	 * Any renderable content
 	 */
-	children: PropTypes.node,
+	children: PropTypes.node.isRequired,
 };
