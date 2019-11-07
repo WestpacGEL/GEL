@@ -6,7 +6,7 @@ import { useBrand } from '@westpac/core';
 export const Tab = forwardRef(
 	(
 		{
-			appearance,
+			look,
 			children,
 			isLast,
 			isSelected,
@@ -29,7 +29,7 @@ export const Tab = forwardRef(
 			<>
 				{mode === 'accordion' ? (
 					<AccordionLabel
-						appearance={appearance}
+						look={look}
 						onClick={onClick}
 						id={tabId}
 						isLast={isLast}
@@ -43,7 +43,7 @@ export const Tab = forwardRef(
 				) : null}
 				<Panel
 					hidden={!isSelected}
-					appearance={appearance}
+					look={look}
 					aria-labelledby={tabId}
 					id={panelId}
 					aria-selected={isSelected}

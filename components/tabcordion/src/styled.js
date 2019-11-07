@@ -15,7 +15,7 @@ export const TabRow = forwardRef((props, ref) => (
 	/>
 ));
 
-export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props }) => {
+export const TabItem = ({ look, isJustified, isLast, isSelected, ...props }) => {
 	const { COLORS: colors } = useBrand();
 	const styles = {
 		soft: {
@@ -55,14 +55,14 @@ export const TabItem = ({ appearance, isJustified, isLast, isSelected, ...props 
 				'&:last-child': {
 					marginRight: 0,
 				},
-				...styles[appearance],
+				...styles[look],
 			}}
 			{...props}
 		/>
 	);
 };
 
-export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => {
+export const AccordionLabel = ({ look, isLast, isSelected, ...props }) => {
 	const { COLORS: colors } = useBrand();
 	const styles = {
 		soft: {
@@ -108,14 +108,14 @@ export const AccordionLabel = ({ appearance, isLast, isSelected, ...props }) => 
 				position: 'relative',
 				textAlign: 'left',
 				width: '100%',
-				...styles[appearance],
+				...styles[look],
 			}}
 			{...props}
 		/>
 	);
 };
 
-export const Panel = forwardRef(({ appearance, isLast, isSelected, mode, ...props }, ref) => {
+export const Panel = forwardRef(({ look, isLast, isSelected, mode, ...props }, ref) => {
 	const { COLORS: colors, PACKS: packs } = useBrand();
 	const styles =
 		mode === 'accordion'
@@ -146,7 +146,7 @@ export const Panel = forwardRef(({ appearance, isLast, isSelected, mode, ...prop
 				'&:focus': {
 					color: packs.link.color,
 				},
-				...styles[appearance],
+				...styles[look],
 			}}
 			{...props}
 		/>

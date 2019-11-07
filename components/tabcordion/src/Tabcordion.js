@@ -16,7 +16,7 @@ export const Tabcordion = props => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 
 	const overrides = {
-		CSS: {},
+		css: {},
 		Panel,
 		TabItem,
 		AccordionLabel,
@@ -98,14 +98,14 @@ export const Tabcordion = props => {
 	const tabCount = Children.count(props.children);
 
 	return (
-		<div ref={containerRef} css={{ ...overrides.CSS }}>
+		<div ref={containerRef} css={{ ...overrides.css }}>
 			{mode === 'tabs' ? (
 				<TabRow role="tablist" aria-label={props.ariaLabel} ref={tablistRef}>
 					{Children.map(props.children, (child, idx) => {
 						const isSelected = activeTabIndex === idx;
 						return (
 							<overrides.TabItem
-								appearance={props.appearance}
+								look={props.look}
 								aria-controls={getId('panel', idx)}
 								aria-selected={isSelected}
 								id={getId('tab', idx)}
@@ -130,7 +130,7 @@ export const Tabcordion = props => {
 					<Tab
 						{...child.props}
 						activeTabIndex={activeTabIndex}
-						appearance={props.appearance}
+						look={props.look}
 						isSelected={isSelected}
 						isLast={idx + 1 === tabCount}
 						key={child.props.label}
@@ -149,8 +149,8 @@ export const Tabcordion = props => {
 };
 
 Tabcordion.propTypes = {
-	/** The appearance of the tabs */
-	appearance: PropTypes.oneOf(['soft', 'lego']),
+	/** The look of the tabs */
+	look: PropTypes.oneOf(['soft', 'lego']),
 	/** Provide a label that describes the purpose of the set of tabs. */
 	ariaLabel: PropTypes.string,
 	/** An array of Tab components that can be navigated through */
@@ -169,7 +169,7 @@ Tabcordion.propTypes = {
 	mode: PropTypes.oneOf(['accordion', 'responsive', 'tabs']),
 };
 Tabcordion.defaultProps = {
-	appearance: 'soft',
+	look: 'soft',
 	initialTabIndex: 0,
 	justifyTabs: false,
 	mode: 'responsive',
