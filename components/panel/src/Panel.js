@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
+import pkg from '../package.json';
 
 // ==============================
 // Context and consumer hook
@@ -22,10 +23,16 @@ export const usePanelContext = () => {
 // Component
 // ==============================
 
-export const Panel = ({ appearance, ...props }) => {
-	const { COLORS } = useBrand();
+export const Panel = ({ look, ...props }) => {
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
-	const appearanceMap = {
+	const overrides = {
+		panelCSS: {},
+	};
+
+	merge(overrides, overridesWithTokens);
+
+	const lookMap = {
 		hero: {
 			borderColor: COLORS.hero,
 		},
@@ -34,25 +41,27 @@ export const Panel = ({ appearance, ...props }) => {
 		},
 	};
 
-	const common = {
-		marginBottom: '1.3125rem',
-		backgroundColor: '#fff',
-		border: `1px solid ${appearanceMap[appearance].borderColor}`,
-		borderRadius: '0.1875rem',
-		table: {
-			overflow: 'hidden', //clip overflow for rounded corners
-			marginBottom: 0,
-			borderBottomRightRadius: `calc(0.1875rem - 1px)`,
-			borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
-		},
-		'table caption': {
-			padding: ['0.75rem 0.75rem 0 0.75rem', '1.5rem 1.5rem 0 1.5rem'],
-		},
-	};
-
 	return (
-		<PanelContext.Provider value={{ appearance }}>
-			<div css={common} {...props} />
+		<PanelContext.Provider value={{ look }}>
+			<div
+				css={{
+					marginBottom: '1.3125rem',
+					backgroundColor: '#fff',
+					border: `1px solid ${lookMap[look].borderColor}`,
+					borderRadius: '0.1875rem',
+					table: {
+						overflow: 'hidden', //clip overflow for rounded corners
+						marginBottom: 0,
+						borderBottomRightRadius: `calc(0.1875rem - 1px)`,
+						borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
+					},
+					'table caption': {
+						padding: ['0.75rem 0.75rem 0 0.75rem', '1.5rem 1.5rem 0 1.5rem'],
+					},
+					...overrides.panelCSS,
+				}}
+				{...props}
+			/>
 		</PanelContext.Provider>
 	);
 };
@@ -62,14 +71,14 @@ export const Panel = ({ appearance, ...props }) => {
 // ==============================
 
 const options = {
-	appearance: ['hero', 'faint'],
+	look: ['hero', 'faint'],
 };
 
-export const propTypes = {
+Panel.propTypes = {
 	/**
-	 * Panel appearance
+	 * Panel look
 	 */
-	appearance: PropTypes.oneOf(options.appearance),
+	look: PropTypes.oneOf(options.look),
 
 	/**
 	 * Panel content
@@ -77,9 +86,6 @@ export const propTypes = {
 	children: PropTypes.node,
 };
 
-export const defaultProps = {
-	appearance: 'hero',
+Panel.defaultProps = {
+	look: 'hero',
 };
-
-Panel.propTypes = propTypes;
-Panel.defaultProps = defaultProps;

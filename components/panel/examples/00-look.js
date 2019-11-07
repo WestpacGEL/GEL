@@ -21,7 +21,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Hero</h2>
-			<Panel appearance="hero">
+			<Panel look="hero">
 				<Header>Panel title</Header>
 				<Body>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
@@ -42,7 +42,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Faint</h2>
-			<Panel appearance="faint">
+			<Panel look="faint">
 				<Header>Panel title</Header>
 				<Body>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
