@@ -29,10 +29,10 @@ export const TabItem = ({ look, isJustified, isLast, isSelected, ...props }) => 
 			paddingBottom: isSelected ? '0.9375rem' : null,
 		},
 		lego: {
-			backgroundColor: isSelected ? '#fff' : colors.hero.default,
+			backgroundColor: isSelected ? '#fff' : colors.hero,
 			border: `1px solid ${isSelected ? colors.border : 'transparent'}`,
 			borderBottom: 0,
-			color: isSelected ? colors.text : colors.hero.foreground,
+			color: isSelected ? colors.text : '#fff',
 			marginBottom: isSelected ? '-0.0625rem' : '0.125rem',
 			paddingBottom: isSelected ? '1.0625rem' : null,
 		},
