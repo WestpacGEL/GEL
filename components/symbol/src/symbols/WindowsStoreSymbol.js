@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const WindowsStoreSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="WindowsStoreSymbol" {...props}>
 		<rect y="69.1" fill="#231F20" width="170" height="58" />
 		<g>
 			<g>

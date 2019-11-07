@@ -21,7 +21,7 @@ const round = value => Math.round(value);
  * the user is in a journey.
  */
 export const ProgressBar = ({ value, skinny, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 
 	const roundedValue = round(value);
 
@@ -46,8 +46,8 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 					height: '100%',
 					color: COLORS.muted,
 					fontSize: '0.875rem',
-					fontWeight: 700,
 					zIndex: 1,
+					...TYPE.bodyFont[700],
 				},
 			}}
 			{...props}
@@ -62,7 +62,6 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 					width: 0,
 					height: '100%',
 					fontSize: '0.875rem',
-					fontWeight: 700,
 					lineHeight: '1.25rem',
 					color: '#fff',
 					textAlign: 'right',
@@ -71,6 +70,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 					zIndex: 2,
 					overflow: 'hidden',
 					transition: 'width .6s ease',
+					...TYPE.bodyFont[700],
 
 					'@media print': {
 						backgroundColor: '#000 !important',

@@ -12,7 +12,7 @@ import pkg from '../package.json';
  * Body: Body component in charge of body text
  */
 export const Body = ({ children, ...props }) => {
-	const { COLORS, [pkg.name]: brandOverrides } = useBrand();
+	const { COLORS, TYPE, [pkg.name]: brandOverrides } = useBrand();
 
 	const overrides = {
 		css: {},
@@ -31,7 +31,7 @@ export const Body = ({ children, ...props }) => {
 				},
 
 				dt: {
-					fontWeight: 700,
+					...TYPE.bodyFont[700],
 				},
 				dd: {
 					margin: 0,
@@ -49,7 +49,7 @@ export const Body = ({ children, ...props }) => {
 
 				blockquote: {
 					fontSize: '1rem',
-					fontWeight: 300,
+					...TYPE.bodyFont[300],
 				},
 
 				mark: {

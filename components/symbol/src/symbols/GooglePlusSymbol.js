@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const GooglePlusSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="GooglePlusSymbol" {...props}>
 		<g fill="none" fillRule="evenodd">
 			<rect fill="#DC4E41" fillRule="nonzero" width="32" height="32" rx="2" />
 			<path

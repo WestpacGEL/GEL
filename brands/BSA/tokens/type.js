@@ -16,17 +16,17 @@ module.exports = {
 					woff2: 'Aller_Bd.woff2',
 					woff: 'Aller_Bd.woff',
 				},
-				weight: '400',
+				weight: '700',
 				style: 'normal',
 			},
 		],
 		bodyFont: {
-			weights: ['400', '700'],
+			weights: ['100', '100', '100', '400', '400', '400', '700', '700', '700'],
 			fontFamily:
 				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 		},
 		brandFont: {
-			weights: ['300', '400'],
+			weights: ['300', '300', '300', '300', '300', '300', '700', '700', '700'],
 			fontFamily: '"brandFontBSA"',
 		},
 	},

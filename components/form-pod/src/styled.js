@@ -55,7 +55,7 @@ export const FormPodHeaderIcon = ({ icon: Icon, ...props }) => {
  * FormPodPreheading
  */
 export const FormPodPreheading = ({ tag: Tag, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -66,7 +66,7 @@ export const FormPodPreheading = ({ tag: Tag, ...props }) => {
 				margin: '0 0 0.375rem',
 				textTransform: 'uppercase',
 				fontSize: '0.6875rem',
-				fontWeight: 'bold',
+				...TYPE.bodyFont[700],
 			})}
 			{...props}
 		/>
@@ -76,16 +76,20 @@ export const FormPodPreheading = ({ tag: Tag, ...props }) => {
 /**
  * FormPodHeading
  */
-export const FormPodHeading = ({ tag: Tag, ...props }) => (
-	<Tag
-		css={{
-			fontWeight: 300, //light
-			fontSize: ['1.5rem', '1.875rem'],
-			margin: 0,
-		}}
-		{...props}
-	/>
-);
+export const FormPodHeading = ({ tag: Tag, ...props }) => {
+	const { TYPE } = useBrand();
+
+	return (
+		<Tag
+			css={{
+				fontSize: ['1.5rem', '1.875rem'],
+				margin: 0,
+				...TYPE.bodyFont[300],
+			}}
+			{...props}
+		/>
+	);
+};
 
 /**
  * FormPodActionsPrimary

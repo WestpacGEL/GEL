@@ -15,12 +15,11 @@ export const Core = ({ children }) => {
 			<Global
 				styles={{
 					body: {
-						fontWeight: 400,
 						fontSize: '0.875rem', // (14px)
 						lineHeight: 1.428571429,
 						color: COLORS.text,
 						fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
-						fontFamily: TYPE.bodyFont.fontFamily,
+						...TYPE.bodyFont[400],
 					},
 					'*:focus': {
 						...PACKS.focus,
