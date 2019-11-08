@@ -23,7 +23,7 @@
 	},
 	"peerDependencies": {
 		"react": "^16.11.0",
-		"react-dom": "^16.10.1"
+		"react-dom": "^16.11.0"
 	},
 	"devDependencies": {
 		"cypress": "^3.6.0",
