@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
-import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
+import pkg from '../package.json';
 
 // ==============================
 // Utils
@@ -15,30 +15,18 @@ const round = value => Math.round(value);
 // Component
 // ==============================
 
-/**
- * Progress Bar: A visual indication of progress.
- * Use when loading content or to indicate how far along
- * the user is in a journey.
- */
-export const ProgressBar = ({ value, skinny, ...props }) => {
-	const { COLORS, TYPE } = useBrand();
+export const ProgressBar = ({ value, look, ...props }) => {
+	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 
 	const roundedValue = round(value);
 
-	return (
-		<div
-			css={{
-				height: skinny ? '0.625rem' : '1.5rem',
-				marginBottom: '1.3125rem',
-				overflow: 'hidden',
-				backgroundColor: '#fff',
-				borderRadius: skinny ? '0.625rem' : '1.5rem',
-				border: `1px solid ${COLORS.border}`,
-				padding: '0.0625rem',
-				position: 'relative',
+	const overrides = {
+		default: {
+			wrapperCSS: {
+				height: '1.5rem',
+				borderRadius: '1.5rem',
 
 				'::after': {
-					display: skinny && 'none',
 					content: '"0%"',
 					position: 'absolute',
 					left: '0.625rem',
@@ -49,14 +37,40 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 					zIndex: 1,
 					...TYPE.bodyFont[700],
 				},
+			},
+			barCSS: {
+				borderRadius: '1.5rem',
+			},
+		},
+		skinny: {
+			wrapperCSS: {
+				height: '0.625rem',
+				borderRadius: '0.625rem',
+			},
+			barCSS: {
+				borderRadius: '0.625rem',
+			},
+		},
+	};
+
+	merge(overrides, overridesWithTokens);
+
+	return (
+		<div
+			css={{
+				marginBottom: '1.3125rem',
+				overflow: 'hidden',
+				backgroundColor: '#fff',
+				border: `1px solid ${COLORS.border}`,
+				padding: '0.0625rem',
+				position: 'relative',
+				boxSizing: 'border-box',
+				...overrides[look].wrapperCSS,
 			}}
 			{...props}
 		>
 			<div
 				css={{
-					display: 'flex',
-					justifyContent: 'flex-end',
-					alignItems: 'center',
 					position: 'relative',
 					float: 'left',
 					width: 0,
@@ -66,11 +80,12 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 					color: '#fff',
 					textAlign: 'right',
 					backgroundColor: COLORS.hero,
-					borderRadius: skinny ? '0.625rem' : '1.5rem',
 					zIndex: 2,
 					overflow: 'hidden',
+					boxSizing: 'border-box',
 					transition: 'width .6s ease',
 					...TYPE.bodyFont[700],
+					...overrides[look].barCSS,
 
 					'@media print': {
 						backgroundColor: '#000 !important',
@@ -83,7 +98,7 @@ export const ProgressBar = ({ value, skinny, ...props }) => {
 				aria-valuenow={value}
 				aria-live="polite"
 			>
-				{!skinny && (
+				{look === 'default' && (
 					<span
 						css={{
 							display: 'inline-block',
@@ -116,10 +131,10 @@ ProgressBar.propTypes = {
 	/**
 	 * Enable skinny mode
 	 */
-	skinny: PropTypes.bool,
+	look: PropTypes.oneOf(['default', 'skinny']),
 };
 
 ProgressBar.defaultProps = {
 	value: 0,
-	skinny: false,
+	look: 'default',
 };
