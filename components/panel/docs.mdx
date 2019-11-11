@@ -5,37 +5,37 @@ route: /panel
 ---
 
 import { Playground, Props } from 'docz';
-import { Panel, PanelHeader, PanelBody, PanelFooter } from '@westpac/panel';
+import { Panel, Header, Body, Footer } from '@westpac/panel';
 import { Table } from '@westpac/table';
 
 # Panel
 
 Containers with headers and optional footers for grouping elements and text.
 
-## Appearance
+## look
 
 Panels come in two flavours... `hero` and `faint`.
 
 <Playground>
-	<Panel appearance="hero">
-		<PanelHeader>Panel title</PanelHeader>
-		<PanelBody>
+	<Panel look="hero">
+		<Header>Panel title</Header>
+		<Body>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 			aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 			eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit amet,
 			consectetur adipisicing elit.
-		</PanelBody>
-		<PanelFooter>Panel footer</PanelFooter>
+		</Body>
+		<Footer>Panel footer</Footer>
 	</Panel>
-	<Panel appearance="faint">
-		<PanelHeader>Panel title</PanelHeader>
-		<PanelBody>
+	<Panel look="faint">
+		<Header>Panel title</Header>
+		<Body>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 			aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 			eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit amet,
 			consectetur adipisicing elit.
-		</PanelBody>
-		<PanelFooter>Panel footer</PanelFooter>
+		</Body>
+		<Footer>Panel footer</Footer>
 	</Panel>
 </Playground>
 
@@ -45,12 +45,12 @@ You can place Table components within Panel.
 
 <Playground>
 	<Panel>
-		<PanelHeader>Panel title</PanelHeader>
-		<PanelBody>
+		<Header>Panel title</Header>
+		<Body>
 			Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia
 			bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
 			venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
-		</PanelBody>
+		</Body>
 		<Table striped responsive>
 			<caption>
 				Table caption this table width is: <em>(100%)</em>
@@ -97,14 +97,14 @@ You can place Table components within Panel.
 
 <Props of={Panel} />
 
-### PanelHeader
+### Header
 
-<Props of={PanelHeader} />
+<Props of={Header} />
 
-### PanelBody
+### Body
 
-<Props of={PanelBody} />
+<Props of={Body} />
 
-### PanelFooter
+### Footer
 
-<Props of={PanelFooter} />
+<Props of={Footer} />

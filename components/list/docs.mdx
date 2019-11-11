@@ -5,7 +5,7 @@ route: /list
 ---
 
 import { Playground, Props } from 'docz';
-import { List, ListItem } from '@westpac/list';
+import { List, Item } from '@westpac/list';
 import { AndroidIcon } from '@westpac/icon';
 
 # List
@@ -14,17 +14,17 @@ import { AndroidIcon } from '@westpac/icon';
 
 <Playground>
 	<List>
-		<ListItem look="primary">Styled bullet list - primary</ListItem>
-		<ListItem>Styled bullet list - primary</ListItem>
-		<ListItem>
+		<Item look="primary">Styled bullet list - primary</Item>
+		<Item>Styled bullet list - primary</Item>
+		<Item>
 			Styled bullet list - primary
 			<List>
-				<ListItem>Styled bullet list - primary</ListItem>
-				<ListItem>Styled bullet list - primary</ListItem>
-				<ListItem>Styled bullet list - primary</ListItem>
+				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list - primary</Item>
 			</List>
-		</ListItem>
-		<ListItem>Styled bullet list - primary</ListItem>
+		</Item>
+		<Item>Styled bullet list - primary</Item>
 	</List>
 
     <br />
@@ -32,17 +32,17 @@ import { AndroidIcon } from '@westpac/icon';
     <br />
 
     <List>
-    	<ListItem>Styled bullet list - hero</ListItem>
-    	<ListItem>Styled bullet list - hero</ListItem>
-    	<ListItem>
+    	<Item>Styled bullet list - hero</Item>
+    	<Item>Styled bullet list - hero</Item>
+    	<Item>
     		Styled bullet list - hero
     		<List>
-    			<ListItem>Styled bullet list - hero</ListItem>
-    			<ListItem>Styled bullet list - hero</ListItem>
-    			<ListItem>Styled bullet list - hero</ListItem>
+    			<Item>Styled bullet list - hero</Item>
+    			<Item>Styled bullet list - hero</Item>
+    			<Item>Styled bullet list - hero</Item>
     		</List>
-    	</ListItem>
-    	<ListItem>Styled bullet list - hero</ListItem>
+    	</Item>
+    	<Item>Styled bullet list - hero</Item>
     </List>
 
     <br />
@@ -50,17 +50,17 @@ import { AndroidIcon } from '@westpac/icon';
     <br />
 
     <List look="neutral">
-    	<ListItem>Styled bullet list - neutral</ListItem>
-    	<ListItem>Styled bullet list - neutral</ListItem>
-    	<ListItem>
+    	<Item>Styled bullet list - neutral</Item>
+    	<Item>Styled bullet list - neutral</Item>
+    	<Item>
     		Styled bullet list - neutral
     		<List>
-    			<ListItem>Styled bullet list - neutral</ListItem>
-    			<ListItem>Styled bullet list - neutral</ListItem>
-    			<ListItem>Styled bullet list - neutral</ListItem>
+    			<Item>Styled bullet list - neutral</Item>
+    			<Item>Styled bullet list - neutral</Item>
+    			<Item>Styled bullet list - neutral</Item>
     		</List>
-    	</ListItem>
-    	<ListItem>Styled bullet list - neutral</ListItem>
+    	</Item>
+    	<Item>Styled bullet list - neutral</Item>
     </List>
 
 </Playground>
@@ -71,9 +71,9 @@ Use this style when the list items are clickable.
 
 <Playground>
 	<List type="link">
-		<ListItem>Styled link list</ListItem>
-		<ListItem>Styled link list</ListItem>
-		<ListItem>Styled link list</ListItem>
+		<Item>Styled link list</Item>
+		<Item>Styled link list</Item>
+		<Item>Styled link list</Item>
 	</List>
 </Playground>
 
@@ -81,9 +81,9 @@ Use this style when the list items are clickable.
 
 <Playground>
 	<List type="tick">
-		<ListItem>Styled tick list</ListItem>
-		<ListItem>Styled tick list</ListItem>
-		<ListItem>Styled tick list</ListItem>
+		<Item>Styled tick list</Item>
+		<Item>Styled tick list</Item>
+		<Item>Styled tick list</Item>
 	</List>
 </Playground>
 
@@ -93,9 +93,9 @@ You can use any GUI icon in a list if the provided options are not sufficient.
 
 <Playground>
 	<List type="icon" icon={AndroidIcon}>
-		<ListItem>Styled icon list</ListItem>
-		<ListItem>Styled icon list</ListItem>
-		<ListItem>Styled icon list</ListItem>
+		<Item>Styled icon list</Item>
+		<Item>Styled icon list</Item>
+		<Item>Styled icon list</Item>
 	</List>
 </Playground>
 
@@ -105,9 +105,9 @@ A list without any bullets, ticks or icons.
 
 <Playground>
 	<List type="unstyled">
-		<ListItem>Unstyled list</ListItem>
-		<ListItem>Unstyled list</ListItem>
-		<ListItem>Unstyled list</ListItem>
+		<Item>Unstyled list</Item>
+		<Item>Unstyled list</Item>
+		<Item>Unstyled list</Item>
 	</List>
 </Playground>
 
@@ -117,9 +117,9 @@ Use a larger list when you have interactive elements. This increases the afforda
 
 <Playground>
 	<List spacing="large">
-		<ListItem>Large size list</ListItem>
-		<ListItem>Large size list</ListItem>
-		<ListItem>Large size list</ListItem>
+		<Item>Large size list</Item>
+		<Item>Large size list</Item>
+		<Item>Large size list</Item>
 	</List>
 </Playground>
 

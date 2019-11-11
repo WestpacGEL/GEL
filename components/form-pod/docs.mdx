@@ -16,8 +16,8 @@ import {
 	FormPodPanelFooter,
 } from '@westpac/form-pod';
 import { TickIcon, HeadsetIcon, LiveChatIcon } from '@westpac/icon';
-import { Alert, AlertHeading } from '@westpac/alert';
-import { List, ListItem } from '@westpac/list';
+import { Alert } from '@westpac/alert';
+import { List, Item } from '@westpac/list';
 import { Button } from '@westpac/button';
 
 # Form Pod
@@ -99,21 +99,23 @@ Pass the `noBorderTop` prop to remove the top border. This is required when disp
 <Playground>
 	<FormPod preheading="Preheading" heading="Heading">
 		<FormPodPanel isNoBorderTop>
-			<Alert appearance="danger">
-				{/* Nb. Tabindex="-1" for programmatically set focus */}
-				<AlertHeading tag="h3" tabIndex="-1">
-					Please fix the 4 errors listed below
-				</AlertHeading>
+			{/* Nb. Tabindex="-1" for programmatically set focus */}
+			<Alert
+				heading="Please fix the 4 errors listed below"
+				headingTag="h3"
+				look="danger"
+				tabIndex="-1"
+			>
 				<List type="unstyled">
-					<ListItem>
+					<Item>
 						<a href="#title">Select a title</a>
-					</ListItem>
-					<ListItem>
+					</Item>
+					<Item>
 						<a href="#given-name">Enter your given name</a>
-					</ListItem>
-					<ListItem>
+					</Item>
+					<Item>
 						<a href="#family-name">Enter your family name</a>
-					</ListItem>
+					</Item>
 				</List>
 			</Alert>
 			<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>

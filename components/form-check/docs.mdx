@@ -6,7 +6,7 @@ route: /form-check
 
 import { Playground, Props } from 'docz';
 import { FormCheck, Option } from '@westpac/form-check';
-import { Alert, AlertHeading } from '@westpac/alert';
+import { Alert } from '@westpac/alert';
 
 # FormCheck
 
@@ -14,8 +14,7 @@ Checkbox and radio inputs are provided by the FormCheck component.
 
 FormCheck items are block-level by default; inline layout is available via the `inline` prop. FormCheck toggles can sit on the left (default) of the label text, but can be configured to render on the right via the `flipped` prop.
 
-<Alert appearance="information">
-	<AlertHeading>Accessibility requirement</AlertHeading>
+<Alert heading="Accessibility requirement" look="information">
 	<p>
 		Checkbox and radio inputs must be Fieldset wrapped in order to meet accessibility compliance
 		requirements. Fieldset and other form components are found in the `@westpac/form` package.
