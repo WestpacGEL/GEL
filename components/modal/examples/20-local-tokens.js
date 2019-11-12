@@ -5,11 +5,50 @@ import { useState } from 'react';
 import { Modal, Header, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
+const HeaderNew = props => {
+	return (
+		<div
+			css={{
+				display: 'flex',
+				justifyContent: 'space-between',
+				alignItems: 'flex-start',
+				overflow: 'hidden',
+				borderBottom: `2px solid palevioletred`,
+				backgroundColor: 'white',
+				padding: '1rem 1.5rem 0.75rem',
+			}}
+			{...props}
+		/>
+	);
+};
+
+const Title = props => <h2 css={{ color: 'darkmagenta' }} {...props} />;
+
 function Example({ brand }) {
 	const [open, setOpen] = useState(false);
+	const overridesWithTokens = { ...brand };
+
+	overridesWithTokens['@westpac/modal'] = {
+		duration: 500,
+		Header: HeaderNew,
+		Title,
+		backdropCSS: {
+			backgroundColor: 'black',
+		},
+		bodyCSS: {
+			color: 'lightcoral',
+		},
+		footerCSS: {
+			borderTop: '2px solid palevioletred',
+			backgroundColor: 'lavenderblush',
+		},
+		css: {
+			border: `2px solid palevioletred`,
+		},
+	};
 
 	return (
-		<GEL brand={brand}>
+		<GEL brand={overridesWithTokens}>
 			<Button onClick={() => setOpen(true)}>Open</Button>
 			<Modal open={open} onClose={() => setOpen(false)}>
 				<Header>Modal Title</Header>

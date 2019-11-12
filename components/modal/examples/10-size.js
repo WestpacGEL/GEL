@@ -41,7 +41,7 @@ function Example({ brand }) {
 					ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<Button appearance="faint" onClick={() => updateModal('default', false)}>
+					<Button look="faint" onClick={() => updateModal('default', false)}>
 						Close
 					</Button>
 				</Footer>
@@ -72,7 +72,7 @@ function Example({ brand }) {
 					of one! There ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<Button appearance="faint" onClick={() => updateModal('small', false)}>
+					<Button look="faint" onClick={() => updateModal('small', false)}>
 						Close
 					</Button>
 				</Footer>
@@ -92,7 +92,7 @@ function Example({ brand }) {
 					ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<Button appearance="faint" onClick={() => updateModal('large', false)}>
+					<Button look="faint" onClick={() => updateModal('large', false)}>
 						Close
 					</Button>
 				</Footer>
