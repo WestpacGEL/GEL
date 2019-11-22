@@ -8,7 +8,7 @@ import { useTableContext } from './Table';
 // Component
 // ==============================
 
-export const Tr = ({ striped, bordered, ...props }) => {
+export const Tr = ({ striped, bordered, highlighted, ...props }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	const { bordered: borderedCtx } = useTableContext();
@@ -18,7 +18,8 @@ export const Tr = ({ striped, bordered, ...props }) => {
 		<tr
 			css={{
 				transition: !striped && 'background 0.2s ease',
-				borderBottom: `1px solid ${COLORS.border}`,
+				borderLeft: highlighted ? `6px solid ${COLORS.primary}` : 0,
+				borderBottom: highlighted ? `1px solid ${COLORS.primary}` : `1px solid ${COLORS.border}`,
 				// Hovered row
 				':hover': {
 					backgroundColor: !striped && COLORS.background,
