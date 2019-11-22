@@ -6,7 +6,6 @@ import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table'
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<h2>Basic table</h2>
 			<Table>
 				<Caption>
 					Table caption this table width is: <em>(100%)</em>
@@ -24,7 +23,7 @@ function Example({ brand }) {
 						<Td>Cell 7</Td>
 						<Td>Cell 13</Td>
 					</Tr>
-					<Tr>
+					<Tr highlighted>
 						<Td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</Td>
 						<Td>Odit eligendi quasi quo nihil quia reiciendis obcaecati nosTrum.</Td>
 						<Td>Rem saepe eos, modi perferendis.</Td>
@@ -36,8 +35,8 @@ function Example({ brand }) {
 					</Tr>
 					<Tr>
 						<Td>Cell 4</Td>
-						<Td>Cell 10</Td>
-						<Td>Cell 16</Td>
+						<Td highlighted>Cell 10</Td>
+						<Td highlighted>Cell 16</Td>
 					</Tr>
 					<Tr>
 						<Td>Cell 5</Td>

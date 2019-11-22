@@ -6,7 +6,6 @@ import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table'
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<h2>Basic table</h2>
 			<Table>
 				<Caption>
 					Table caption this table width is: <em>(100%)</em>
