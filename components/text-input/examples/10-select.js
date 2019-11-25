@@ -1,11 +1,18 @@
 /** @jsx jsx */
 
+import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Select } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
 
 function Example({ brand }) {
+	const [value, setValue] = useState();
+
+	const handleChange = event => {
+		setValue(event.target.value);
+	};
+
 	return (
 		<GEL brand={brand}>
 			<h2>Default instance</h2>
@@ -17,6 +24,14 @@ function Example({ brand }) {
 			</Select>
 			<br />
 
+			<h2>Controlled</h2>
+			<Select name="thing" value={value} onChange={handleChange}>
+				<option>Select</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</Select>
+			<br />
 			<hr />
 
 			<h2>Default instance data driven</h2>
