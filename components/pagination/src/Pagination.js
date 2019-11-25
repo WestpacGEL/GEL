@@ -150,7 +150,7 @@ Pagination.propTypes = {
 	/**
 	 * Index of current active page (zero-indexed)
 	 */
-	current: PropTypes.number,
+	current: PropTypes.number.isRequired,
 
 	/**
 	 *	Back button options
@@ -169,4 +169,8 @@ Pagination.propTypes = {
 
 	/**  Any renderable child */
 	children: PropTypes.node,
+};
+
+Pagination.defaultProps = {
+	current: 0,
 };

@@ -100,6 +100,12 @@ Page.propTypes = {
 	ariaLabel: PropTypes.string,
 };
 
+Page.defaultProps = {
+	first: false,
+	last: false,
+	disabled: false,
+};
+
 // ==============================
 // Override Component
 // ==============================
