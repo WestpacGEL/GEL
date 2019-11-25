@@ -1,6 +1,5 @@
 /** @jsx jsx */
 
-import { useState, useEffect } from 'react';
 import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import PropTypes from 'prop-types';
@@ -11,32 +10,9 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Select = ({
-	value: controlledValue,
-	onChange,
-	size,
-	width,
-	inline,
-	invalid,
-	children,
-	data,
-	...props
-}) => {
+export const Select = ({ size, width, inline, invalid, children, data, ...props }) => {
 	const { COLORS, PACKS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
-	const [value, setValue] = useState(controlledValue);
-
-	const handleChange = event => {
-		if (onChange) {
-			onChange(event.target.value);
-		} else {
-			setValue(event.target.value);
-		}
-	};
-
-	useEffect(() => {
-		setValue(controlledValue);
-	}, [controlledValue]);
 
 	const childrenData = [];
 	if (data) {
@@ -69,8 +45,6 @@ export const Select = ({
 
 	return (
 		<select
-			value={value}
-			onChange={handleChange}
 			css={mq({
 				boxSizing: 'border-box',
 				display: inline ? ['block', 'inline-block'] : 'block',

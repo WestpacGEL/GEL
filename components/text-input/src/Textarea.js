@@ -1,6 +1,5 @@
 /** @jsx jsx */
 
-import { useState, useEffect } from 'react';
 import { jsx, useBrand, merge, useMediaQuery } from '@westpac/core';
 import PropTypes from 'prop-types';
 import { round, sizeMap } from './_utils';
@@ -10,31 +9,9 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Textarea = ({
-	value: controlledValue,
-	onChange,
-	size,
-	width,
-	inline,
-	invalid,
-	children,
-	...props
-}) => {
+export const Textarea = ({ size, width, inline, invalid, children, ...props }) => {
 	const { COLORS, PACKS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
-	const [value, setValue] = useState(controlledValue);
-
-	const handleChange = event => {
-		if (onChange) {
-			onChange(event.target.value);
-		} else {
-			setValue(event.target.value);
-		}
-	};
-
-	useEffect(() => {
-		setValue(controlledValue);
-	}, [controlledValue]);
 
 	const overrides = { textareaCSS: {} };
 
@@ -51,8 +28,6 @@ export const Textarea = ({
 
 	return (
 		<textarea
-			value={value}
-			onChange={handleChange}
 			css={mq({
 				boxSizing: 'border-box',
 				display: inline ? ['block', 'inline-block'] : 'block',

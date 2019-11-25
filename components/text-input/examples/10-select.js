@@ -9,8 +9,8 @@ import { Form } from '@westpac/form';
 function Example({ brand }) {
 	const [value, setValue] = useState();
 
-	const handleChange = value => {
-		setValue(value);
+	const handleChange = event => {
+		setValue(event.target.value);
 	};
 
 	return (
