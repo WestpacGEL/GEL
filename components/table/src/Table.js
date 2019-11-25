@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Context and Consumer Hook
@@ -15,24 +15,8 @@ export const useTableContext = () => useContext(TableContext);
 // Component
 // ==============================
 
-const Wrapper = props => {
-	const {
-		COLORS,
-		LAYOUT: { breakpoints },
-	} = useBrand();
-
-	// find screen width
-	const maxWidth = width => `@media (max-width: ${width}px)`;
-	const xsOnly = maxWidth(breakpoints.sm - 1);
-
-	console.log('xs', xsOnly);
-
-	return xsOnly ? <div css={{}}>{props.children}</div> : props.children;
-};
-
 export const Table = ({ striped, bordered, responsive, ...props }) => {
-	const { COLORS, TYPE } = useBrand();
-
+	const { COLORS } = useBrand();
 	const context = useTableContext();
 
 	bordered = (context && context.bordered) || bordered;
@@ -43,7 +27,17 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 				bordered,
 			}}
 		>
-			<Wrapper>
+			<div
+				css={{
+					'@media screen and (max-width: 480px)': {
+						width: '100%',
+						marginBottom: '1.125rem',
+						overflowY: 'hidden',
+						overflowX: 'auto',
+						border: `1px solid ${COLORS.border}`,
+					},
+				}}
+			>
 				<table
 					css={{
 						width: '100%',
@@ -64,7 +58,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 					}}
 					{...props}
 				/>
-			</Wrapper>
+			</div>
 		</TableContext.Provider>
 	);
 };
