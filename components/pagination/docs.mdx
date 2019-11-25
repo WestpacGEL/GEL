@@ -5,14 +5,40 @@ route: /pagination
 ---
 
 import { Playground, Props } from 'docz';
-import { Pagination } from './src/Pagination';
+import { Pagination, Page } from './src/Pagination';
 
 # Pagination
 
 Write your docs here
 
 <Playground>
-	<Pagination />
+	## Declarative
+	<Pagination current={1}>
+		<Page label="1" />
+		<Page label="2" />
+		<Page label="3" />
+	</Pagination>
+
+    ## Data Driven
+    <Pagination
+    	current={2}
+    	back={{
+    		visible: true,
+    		label: 'Back',
+    		ariaLabel: 'Go to previous page',
+    	}}
+    	next={{
+    		visible: true,
+    		label: 'Next',
+    		ariaLabel: 'Go to the next page',
+    	}}
+    	data={{
+    		pages: [{ label: '1' }, { label: '2' }, { label: '3' }],
+    	}}
+    />
+
 </Playground>
 
 <Props of={Pagination} />
+
+<Props of {Page} />
