@@ -1,38 +1,62 @@
 /** @jsx jsx */
 
+import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Pagination, Page } from '@westpac/pagination';
 
+const PageLink = props => <button {...props} />;
+
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
+	const [current, setCurrent] = useState(0);
 
 	overridesWithTokens['@westpac/pagination'] = {
-		css: {
-			justifyContent: 'center',
-		},
 		pageCSS: {
 			borderColor: 'palevioletred',
 		},
+		css: {
+			justifyContent: 'center',
+		},
+		PageLink,
 	};
 
 	return (
 		<GEL brand={overridesWithTokens}>
 			<Pagination
-				current={1}
+				current={current}
 				back={{
-					visible: true,
-					label: 'Back',
-					ariaLabel: 'Go to previous page',
+					onClick: () => {
+						setCurrent(current - 1);
+					},
 				}}
 				next={{
-					visible: true,
-					label: 'Next',
-					ariaLabel: 'Go to the next page',
+					onClick: e => {
+						e.preventDefault();
+						setCurrent(current + 1);
+					},
 				}}
 			>
-				<Page onClick={() => {}} label="1" />
-				<Page onClick={() => {}} label="2" />
-				<Page onClick={() => {}} label="3" />
+				<Page
+					onClick={e => {
+						e.preventDefault();
+						setCurrent(0);
+					}}
+					label="1"
+				/>
+				<Page
+					onClick={e => {
+						e.preventDefault();
+						setCurrent(1);
+					}}
+					label="2"
+				/>
+				<Page
+					onClick={e => {
+						e.preventDefault();
+						setCurrent(2);
+					}}
+					label="3"
+				/>
 			</Pagination>
 		</GEL>
 	);

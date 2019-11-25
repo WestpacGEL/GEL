@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useEffect, Children, cloneElement, createContext, useContext } from 'react';
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, merge, wrapHandlers } from '@westpac/core';
 import PropTypes from 'prop-types';
 import { Page } from './Page';
 import { usePagination } from './usePagination';
@@ -26,7 +26,14 @@ export const usePaginationContext = () => {
 // Component
 // ==============================
 
-export const Pagination = ({ current, back, next, data, children, ...props }) => {
+export const Pagination = ({
+	current,
+	back: backProps,
+	next: nextProps,
+	data,
+	children,
+	...props
+}) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 	const pageLogic = usePagination(current);
 
@@ -34,7 +41,21 @@ export const Pagination = ({ current, back, next, data, children, ...props }) =>
 		css: {},
 	};
 
+	const back = {
+		label: 'Back',
+		visible: true,
+		ariaLabel: 'Step back one page',
+	};
+
+	const next = {
+		label: 'Next',
+		visible: true,
+		ariaLabel: 'Step to the next page',
+	};
+
 	merge(overrides, overridesWithTokens);
+	merge(back, backProps);
+	merge(next, nextProps);
 
 	useEffect(() => {
 		pageLogic.setCurrent(current);
@@ -50,7 +71,10 @@ export const Pagination = ({ current, back, next, data, children, ...props }) =>
 				key={index}
 				index={index}
 				label={page.label}
-				onClick={page.onClick}
+				onClick={wrapHandlers(page.onClick, event => {
+					event.preventDefault();
+					pageLogic.setCurrent(index);
+				})}
 				first={index === 0 && !back.visible}
 				last={index === pageCount - 1 && !next.visible}
 			/>
@@ -61,11 +85,14 @@ export const Pagination = ({ current, back, next, data, children, ...props }) =>
 				index,
 				first: index === 0 && !back.visible,
 				last: index === pageCount - 1 && !next.visible,
+				onClick: wrapHandlers(child.props.onClick, event => {
+					event.preventDefault();
+					pageLogic.setCurrent(index);
+				}),
 			})
 		);
 	}
 
-	// do i need to be using wraphandlers for this? I need to run their onClick event and mine as well?
 	return (
 		<PaginationContext.Provider value={{ current: pageLogic.current }}>
 			<ul
@@ -85,10 +112,10 @@ export const Pagination = ({ current, back, next, data, children, ...props }) =>
 						first
 						disabled={pageLogic.current === 0}
 						ariaLabel={back.ariaLabel}
-						onClick={e => {
-							e.preventDefault();
+						onClick={wrapHandlers(back.onClick, event => {
+							event.preventDefault();
 							pageLogic.previous();
-						}}
+						})}
 					/>
 				)}
 				{allChildren}
@@ -98,10 +125,10 @@ export const Pagination = ({ current, back, next, data, children, ...props }) =>
 						last
 						disabled={pageLogic.current === pageCount - 1}
 						ariaLabel={next.ariaLabel}
-						onClick={e => {
-							e.preventDefault();
+						onClick={wrapHandlers(next.onClick, event => {
+							event.preventDefault();
 							pageLogic.next();
-						}}
+						})}
 					/>
 				)}
 			</ul>
@@ -112,21 +139,34 @@ export const Pagination = ({ current, back, next, data, children, ...props }) =>
 // ==============================
 // Types
 // ==============================
-
-Pagination.propTypes = {
-	/**  Any renderable child */
-	children: PropTypes.node,
+const interaction = {
+	label: PropTypes.string,
+	visible: PropTypes.bool,
+	ariaLabel: PropTypes.string,
+	onClick: PropTypes.func,
 };
 
-Pagination.defaultProps = {
-	back: {
-		label: 'Back',
-		visible: true,
-		ariaLabel: 'Step back one page',
-	},
-	next: {
-		label: 'Next',
-		visible: true,
-		ariaLabel: 'Step to the next page',
-	},
+Pagination.propTypes = {
+	/**
+	 * Index of current active page (zero-indexed)
+	 */
+	current: PropTypes.number,
+
+	/**
+	 *	Back button options
+	 */
+	back: PropTypes.shape(interaction),
+
+	/**
+	 * Next button options
+	 */
+	next: PropTypes.shape(interaction),
+
+	/**
+	 * Alternative to children
+	 */
+	data: PropTypes.object,
+
+	/**  Any renderable child */
+	children: PropTypes.node,
 };
