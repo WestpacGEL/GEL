@@ -42,3 +42,7 @@ Td.propTypes = {
 	 */
 	highlighted: PropTypes.bool,
 };
+
+Td.defaultProps = {
+	highlighted: false,
+};

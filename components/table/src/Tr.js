@@ -36,3 +36,7 @@ Tr.propTypes = {
 	 */
 	highlighted: PropTypes.bool,
 };
+
+Tr.defaultProps = {
+	highlighted: false,
+};
