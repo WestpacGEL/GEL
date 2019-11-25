@@ -9,7 +9,7 @@ import { useTableContext } from './Table';
 // Component
 // ==============================
 
-export const Th = ({ highlighted, bordered, ...props }) => {
+export const Th = ({ bordered, ...props }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	const { bordered: borderedCtx } = useTableContext();

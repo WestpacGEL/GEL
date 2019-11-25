@@ -35,3 +35,10 @@ export const Td = ({ highlighted, bordered, ...props }) => {
 // ==============================
 // Types
 // ==============================
+
+Td.propTypes = {
+	/**
+	 * Highlighted mode
+	 */
+	highlighted: PropTypes.bool,
+};

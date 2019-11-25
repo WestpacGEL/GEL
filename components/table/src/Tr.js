@@ -2,17 +2,13 @@
 
 import PropTypes from 'prop-types';
 import { jsx, useBrand } from '@westpac/core';
-import { useTableContext } from './Table';
 
 // ==============================
 // Component
 // ==============================
 
-export const Tr = ({ striped, bordered, highlighted, ...props }) => {
+export const Tr = ({ striped, highlighted, ...props }) => {
 	const { COLORS, TYPE } = useBrand();
-
-	const { bordered: borderedCtx } = useTableContext();
-	bordered = bordered || borderedCtx;
 
 	return (
 		<tr
@@ -33,3 +29,10 @@ export const Tr = ({ striped, bordered, highlighted, ...props }) => {
 // ==============================
 // Types
 // ==============================
+
+Tr.propTypes = {
+	/**
+	 * Highlighted mode
+	 */
+	highlighted: PropTypes.bool,
+};

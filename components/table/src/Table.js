@@ -72,8 +72,14 @@ Table.propTypes = {
 	 * Bordered mode
 	 */
 	bordered: PropTypes.bool,
+
+	/**
+	 * Striped mode
+	 */
+	striped: PropTypes.bool,
 };
 
 Table.defaultProps = {
 	bordered: false,
+	striped: false,
 };
