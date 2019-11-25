@@ -3,9 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Text, Textarea, Select } from '@westpac/text-input';
 
-// Example options
-const options = ['Select', '1', '2', '3'];
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
@@ -15,9 +12,10 @@ function Example({ brand }) {
 				<Text />
 				<br />
 				<Select>
-					{options.map((v, i) => (
-						<option key={i}>{v}</option>
-					))}
+					<option>Select</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
 				</Select>
 				<br />
 				<Textarea />
@@ -31,9 +29,10 @@ function Example({ brand }) {
 				<Text />
 				<br />
 				<Select>
-					{options.map((v, i) => (
-						<option key={i}>{v}</option>
-					))}
+					<option>Select</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
 				</Select>
 				<br />
 				<Textarea />
