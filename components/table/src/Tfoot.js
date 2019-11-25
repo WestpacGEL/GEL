@@ -14,8 +14,6 @@ export const Tfoot = ({ bordered, ...props }) => {
 	const { bordered: borderedCtx } = useTableContext();
 	bordered = bordered || borderedCtx;
 
-	console.log(bordered);
-
 	return (
 		<tfoot
 			css={{
