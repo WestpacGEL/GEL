@@ -2,7 +2,8 @@
 
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
@@ -16,8 +17,14 @@ export const useTableContext = () => useContext(TableContext);
 // ==============================
 
 export const Table = ({ striped, bordered, responsive, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 	const context = useTableContext();
+
+	const overrides = {
+		tableCSS: {},
+	};
+
+	merge(overrides, overridesWithTokens);
 
 	bordered = (context && context.bordered) || bordered;
 
@@ -55,6 +62,7 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 						'tbody + tbody': {
 							borderTop: `2px solid ${COLORS.hero}`,
 						},
+						...overrides.tableCSS,
 					}}
 					{...props}
 				/>
