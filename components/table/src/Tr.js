@@ -2,7 +2,8 @@
 
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
+import pkg from '../package.json';
 
 // ==============================
 // Utils
@@ -26,7 +27,12 @@ const generateHighlightMap = (highlighted, tdCount) => {
 // ==============================
 
 export const Tr = ({ striped, highlighted, children, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		trCSS: {},
+	};
+	merge(overrides, overridesWithTokens);
 
 	let highlightedChildren;
 
@@ -60,6 +66,7 @@ export const Tr = ({ striped, highlighted, children, ...props }) => {
 				':hover': {
 					backgroundColor: !striped && COLORS.background,
 				},
+				...overrides.trCSS,
 			}}
 			{...props}
 		>

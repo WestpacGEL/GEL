@@ -1,14 +1,20 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { useTableContext } from './Table';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 export const Thead = ({ bordered, ...props }) => {
-	const { COLORS, TYPE } = useBrand();
+	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		theadCSS: {},
+	};
+	merge(overrides, overridesWithTokens);
 
 	const { bordered: borderedCtx } = useTableContext();
 	bordered = bordered || borderedCtx;
@@ -24,6 +30,7 @@ export const Thead = ({ bordered, ...props }) => {
 					color: COLORS.text,
 					...TYPE.bodyFont[700],
 				},
+				...overrides.theadCSS,
 			}}
 			{...props}
 		/>
