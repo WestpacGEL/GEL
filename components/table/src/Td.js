@@ -8,7 +8,7 @@ import { useTableContext } from './Table';
 // Component
 // ==============================
 
-export const Td = ({ highlighted, bordered, ...props }) => {
+export const Td = ({ highlighted, highlightStart, bordered, ...props }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	const { bordered: borderedCtx } = useTableContext();
@@ -19,7 +19,7 @@ export const Td = ({ highlighted, bordered, ...props }) => {
 			css={{
 				padding: '0.75rem',
 				verticalAlign: 'top',
-				borderLeft: highlighted ? `6px solid ${COLORS.primary}` : 0,
+				borderLeft: highlightStart ? `6px solid ${COLORS.primary}` : 0,
 				borderBottom: highlighted ? `1px solid ${COLORS.primary}` : 0,
 				border: bordered && `1px solid ${COLORS.border}`,
 				// bold scope
@@ -38,11 +38,17 @@ export const Td = ({ highlighted, bordered, ...props }) => {
 
 Td.propTypes = {
 	/**
-	 * Highlighted mode
+	 * Whether or not the cell is highlighted
 	 */
 	highlighted: PropTypes.bool,
+
+	/**
+	 * Whether or not the start of the highlighted cells
+	 */
+	highlightStart: PropTypes.bool,
 };
 
 Td.defaultProps = {
 	highlighted: false,
+	highlightStart: false,
 };

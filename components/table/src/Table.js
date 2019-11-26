@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 // ==============================
 // Context and Consumer Hook
@@ -66,7 +66,6 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 // ==============================
 // Types
 // ==============================
-
 Table.propTypes = {
 	/**
 	 * Bordered mode

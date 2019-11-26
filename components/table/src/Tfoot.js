@@ -7,13 +7,11 @@ import { useTableContext } from './Table';
 // ==============================
 // Component
 // ==============================
-
 export const Tfoot = ({ bordered, ...props }) => {
-	const { COLORS, TYPE } = useBrand();
+	const { COLORS } = useBrand();
 
 	const { bordered: borderedCtx } = useTableContext();
 	bordered = bordered || borderedCtx;
-
 	return (
 		<tfoot
 			css={{
@@ -23,4 +21,11 @@ export const Tfoot = ({ bordered, ...props }) => {
 			{...props}
 		/>
 	);
+};
+
+Tfoot.propTypes = {
+	/**
+	 * Whether or not there should border styling
+	 */
+	bordered: PropTypes.bool,
 };

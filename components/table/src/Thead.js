@@ -7,7 +7,6 @@ import { useTableContext } from './Table';
 // ==============================
 // Component
 // ==============================
-
 export const Thead = ({ bordered, ...props }) => {
 	const { COLORS, TYPE } = useBrand();
 
@@ -29,4 +28,14 @@ export const Thead = ({ bordered, ...props }) => {
 			{...props}
 		/>
 	);
+};
+
+// ==============================
+// Types
+// ==============================
+Thead.propTypes = {
+	/**
+	 * Whether or not there should border styling
+	 */
+	bordered: PropTypes.bool,
 };

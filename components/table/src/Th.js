@@ -1,6 +1,5 @@
 /** @jsx jsx */
 
-import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand } from '@westpac/core';
 import { useTableContext } from './Table';
@@ -8,9 +7,8 @@ import { useTableContext } from './Table';
 // ==============================
 // Component
 // ==============================
-
 export const Th = ({ bordered, ...props }) => {
-	const { COLORS, TYPE } = useBrand();
+	const { COLORS } = useBrand();
 
 	const { bordered: borderedCtx } = useTableContext();
 	bordered = bordered || borderedCtx;
@@ -33,3 +31,9 @@ export const Th = ({ bordered, ...props }) => {
 // ==============================
 // Types
 // ==============================
+Th.propTypes = {
+	/**
+	 * Whether or not there should border styling
+	 */
+	bordered: PropTypes.bool,
+};

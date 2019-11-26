@@ -1,7 +1,5 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { jsx, useBrand } from '@westpac/core';
 
 // ==============================
@@ -9,7 +7,7 @@ import { jsx, useBrand } from '@westpac/core';
 // ==============================
 
 export const Caption = props => {
-	const { COLORS, TYPE } = useBrand();
+	const { TYPE } = useBrand();
 
 	return (
 		<caption
@@ -23,7 +21,3 @@ export const Caption = props => {
 		/>
 	);
 };
-
-// ==============================
-// Types
-// ==============================
