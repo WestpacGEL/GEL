@@ -5,9 +5,13 @@ import { Tooltip } from '@westpac/tooltip';
 import { Button } from '@westpac/button';
 import { InfoIcon } from '@westpac/icon';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia/>
+
 			<h3>In text</h3>
 			<p>
 				This is a <Tooltip text="This is a tooltip">random</Tooltip> sentence.

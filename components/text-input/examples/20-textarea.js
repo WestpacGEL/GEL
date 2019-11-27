@@ -5,6 +5,8 @@ import { GEL, jsx } from '@westpac/core';
 import { Textarea } from '@westpac/text-input';
 import { Form } from '@westpac/form';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const sizes = ['small', 'medium', 'large', 'xlarge'];
 const widths = [2, 3, 4, 5, 10, 20, 30];
 
@@ -17,6 +19,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<Intopia/>
+
 			<h2>Default instance</h2>
 			<Textarea />
 
