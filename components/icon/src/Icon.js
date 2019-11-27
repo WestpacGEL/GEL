@@ -108,7 +108,7 @@ export const propTypes = {
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(Object.keys(sizeMap)),
 		PropTypes.arrayOf(PropTypes.oneOf(Object.keys(sizeMap))),
-	]).isRequired,
+	]),
 };
 
 export const defaultProps = {
