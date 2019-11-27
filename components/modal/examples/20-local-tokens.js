@@ -5,24 +5,9 @@ import { useState } from 'react';
 import { Modal, Header, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
-const HeaderNew = props => {
-	return (
-		<div
-			css={{
-				display: 'flex',
-				justifyContent: 'space-between',
-				alignItems: 'flex-start',
-				overflow: 'hidden',
-				borderBottom: `2px solid palevioletred`,
-				backgroundColor: 'white',
-				padding: '1rem 1.5rem 0.75rem',
-			}}
-			{...props}
-		/>
-	);
-};
+const HeaderNew = props => <div css={{ borderBottom: `2px solid palevioletred` }} {...props} />;
 
-const Title = props => <h2 css={{ color: 'darkmagenta' }} {...props} />;
+const Title = props => <h3 css={{ color: 'darkmagenta' }} {...props} />;
 
 function Example({ brand }) {
 	const [open, setOpen] = useState(false);

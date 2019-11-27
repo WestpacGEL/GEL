@@ -27,7 +27,14 @@ export const useModalContext = () => {
 // ==============================
 // Component
 // ==============================
-export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
+export const Modal = ({
+	open: isOpen,
+	onClose,
+	size,
+	overrides: overridesComponent,
+	children,
+	...props
+}) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 	const [open, setOpen] = useState(isOpen);
 
@@ -37,7 +44,7 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 		css: {},
 	};
 
-	merge(overrides, overridesWithTokens);
+	merge(overrides, overridesWithTokens, overridesComponent);
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -112,12 +119,29 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 // ==============================
 
 Modal.propTypes = {
-	/** State of whether the modal is open */
+	/**
+	 * State of whether the modal is open
+	 */
 	open: PropTypes.bool.isRequired,
-	/** Callback function for handling modal state */
+
+	/**
+	 * Callback function for handling modal state
+	 */
 	onClose: PropTypes.func,
-	/** Size of the modal */
+
+	/**
+	 * Size of the modal
+	 */
 	size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
+
+	/**
+	 * Modal overrides
+	 */
+	overrides: PropTypes.shape({
+		duration: PropTypes.number,
+		backdropCSS: PropTypes.object,
+		css: PropTypes.object,
+	}),
 };
 
 Modal.defaultProps = {
