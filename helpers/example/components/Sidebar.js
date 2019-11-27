@@ -92,8 +92,9 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 					}}
 				>
 					{navItems.map(({ label, slug }) => (
-						<li data-test-nav key={slug} data-test-nav-link>
+						<li data-test-nav key={slug}>
 							<NavLink
+								data-test-nav-link
 								to={`/${slug}`}
 								css={{
 									backgroundColor: '#F4F5F7',
