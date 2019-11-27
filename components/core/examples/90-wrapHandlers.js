@@ -3,6 +3,8 @@
 import { GEL, jsx, wrapHandlers } from '@westpac/core';
 import { Code } from './_utils';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function one() {
 	console.log('one called!');
 }
@@ -22,6 +24,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore />
+
 			<Code>
 				{`function one() {
 	console.log('one called!')

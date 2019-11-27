@@ -3,9 +3,13 @@
 import { GEL, jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia/>
+
 			<Body>
 				<h2>Headings</h2>
 				<h1>This is a h1 heading</h1>

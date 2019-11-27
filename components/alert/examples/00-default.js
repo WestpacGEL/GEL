@@ -3,9 +3,13 @@
 import { GEL, jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia/>
+
 			<h2>Default instance (no styling props)</h2>
 			<Alert>
 				This is a default alert. <a href="#">Link</a>

@@ -3,9 +3,13 @@
 import { GEL, jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia/>
+
 			<FormCheck type="checkbox" name="example-checkbox-checked">
 				<Option value="1" checked>
 					Option 1

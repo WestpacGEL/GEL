@@ -3,9 +3,13 @@
 import { GEL, jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia/>
+
 			<h2>Success</h2>
 			<Alert look="success">
 				<strong>Well done!</strong> You successfully read this important alert message. Lorem ipsum

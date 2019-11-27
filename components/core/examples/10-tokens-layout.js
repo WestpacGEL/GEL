@@ -2,11 +2,15 @@
 
 import { GEL, jsx, useBrand } from '@westpac/core';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const { LAYOUT } = useBrand();
 
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore/>
+
 			<h2>Layout</h2>
 			Breakpoints:
 			<ul
