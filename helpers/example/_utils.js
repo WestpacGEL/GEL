@@ -53,6 +53,7 @@ const findExampleFiles = (component, parent = '') => {
 				slug,
 				label,
 				parent,
+				landing: parent.length > 0 ? false : true,
 				relativePath: path.relative(__dirname, `${exampleFolder}/${filename}`),
 				absolutePath: `${exampleFolder}/${filename}`,
 				path: exampleFolder,
@@ -63,6 +64,15 @@ const findExampleFiles = (component, parent = '') => {
 	}
 };
 
+/**
+ * Generate the code with all components for temp file
+ *
+ * @param  {array}  components - An array of all components
+ * @param  {string} entry      - The entry file we will use
+ * @param  {String} name       - The name of the component, optional
+ *
+ * @return {string}            - A string of code to be saved into a temp file for webpack
+ */
 function makeCode(components, entry, name = ' ') {
 	return `
 		import app from '${__dirname}/${entry}';
