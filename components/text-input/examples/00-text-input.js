@@ -1,17 +1,26 @@
 /** @jsx jsx */
 
+import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Text } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
 
 function Example({ brand }) {
+	const [value, setValue] = useState('default text');
+
+	const handleChange = event => {
+		setValue(event.target.value);
+	};
+
 	return (
 		<GEL brand={brand}>
 			<h2>Default instance</h2>
 			<Text />
-			<br />
 
+			<h2>Controlled</h2>
+			<Text value={value} onChange={handleChange} />
+			<br />
 			<hr />
 
 			<h2>Size</h2>

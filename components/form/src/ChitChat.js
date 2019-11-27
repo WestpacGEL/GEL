@@ -9,7 +9,7 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 // ==============================
 
 export const ChitChat = ({ tag: Tag, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -18,9 +18,9 @@ export const ChitChat = ({ tag: Tag, ...props }) => {
 				fontSize: '1.125rem',
 				color: COLORS.heading,
 				lineHeight: 1.4,
-				fontWeight: 'bold',
 				textAlign: 'center',
 				margin: [0, '0 0 1.875rem'],
+				...TYPE.bodyFont[700],
 			})}
 			{...props}
 		/>

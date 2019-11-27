@@ -1,16 +1,17 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
-import { round, sizeMap } from './_utils';
 import PropTypes from 'prop-types';
+import { round, sizeMap } from './_utils';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
 export const Select = ({ size, width, inline, invalid, children, data, ...props }) => {
-	const { COLORS, PACKS } = useBrand();
+	const { COLORS, PACKS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	const childrenData = [];
@@ -23,6 +24,10 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 			);
 		});
 	}
+
+	const overrides = { selectCSS: {} };
+
+	merge(overrides, overridesWithTokens);
 
 	// Common styling
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
@@ -46,7 +51,7 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 				width: inline ? ['100%', 'auto'] : '100%',
 				appearance: 'none',
 				lineHeight: lineHeight,
-				fontWeight: 400,
+				...TYPE.bodyFont[400],
 				color: COLORS.text,
 				backgroundColor: '#fff',
 				border: `${borderWidth}px solid ${
@@ -69,8 +74,8 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 
 				'&::placeholder': {
 					opacity: 1, // Override Firefox's unusual default opacity
-					fontWeight: 300,
 					color: COLORS.tints.text50,
+					...TYPE.bodyFont[300],
 				},
 
 				// Focus styling (for all, not just keyboard users)
@@ -104,6 +109,7 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 						backgroundColor: '#fff',
 					},
 				},
+				...overrides.selectCSS,
 			})}
 			{...props}
 		>

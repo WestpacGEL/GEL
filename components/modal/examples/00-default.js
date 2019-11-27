@@ -22,7 +22,7 @@ function Example({ brand }) {
 					ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<Button appearance="faint" onClick={() => setOpen(false)}>
+					<Button look="faint" onClick={() => setOpen(false)}>
 						Close
 					</Button>
 				</Footer>

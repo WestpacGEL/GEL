@@ -1,19 +1,25 @@
 /** @jsx jsx */
 
-import React from 'react';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import { usePanelContext } from './Panel';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
 export const PanelHeader = props => {
-	const { COLORS } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
-	const { appearance } = usePanelContext();
+	const { look } = usePanelContext();
 
-	const appearanceMap = {
+	const overrides = {
+		headerCSS: {},
+	};
+
+	merge(overrides, overridesWithTokens);
+
+	const lookMap = {
 		hero: {
 			color: '#fff',
 			backgroundColor: COLORS.hero,
@@ -30,15 +36,16 @@ export const PanelHeader = props => {
 		<div
 			css={mq({
 				padding: ['0.625rem 0.75rem', '0.625rem 1.5rem'],
-				backgroundColor: appearanceMap[appearance].backgroundColor,
-				borderBottom: `1px solid ${appearanceMap[appearance].borderColor}`,
-				color: appearanceMap[appearance].color,
+				backgroundColor: lookMap[look].backgroundColor,
+				borderBottom: `1px solid ${lookMap[look].borderColor}`,
+				color: lookMap[look].color,
 				borderTopRightRadius: `calc(0.1875rem - 1px)`,
 				borderTopLeftRadius: `calc(0.1875rem - 1px)`,
 				fontSize: '1rem',
 				'@media print': {
 					borderBottom: '1px solid #000',
 				},
+				...overrides.headerCSS,
 			})}
 			{...props}
 		/>

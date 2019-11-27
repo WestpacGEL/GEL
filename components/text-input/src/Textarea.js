@@ -1,16 +1,21 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, merge, useMediaQuery } from '@westpac/core';
 import PropTypes from 'prop-types';
 import { round, sizeMap } from './_utils';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
 export const Textarea = ({ size, width, inline, invalid, children, ...props }) => {
-	const { COLORS, PACKS } = useBrand();
+	const { COLORS, PACKS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
+
+	const overrides = { textareaCSS: {} };
+
+	merge(overrides, overridesWithTokens);
 
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
 	const focus = { ...PACKS.focus };
@@ -29,7 +34,6 @@ export const Textarea = ({ size, width, inline, invalid, children, ...props }) =
 				width: inline ? ['100%', 'auto'] : '100%',
 				appearance: 'none',
 				lineHeight: lineHeight,
-				fontWeight: 400,
 				color: COLORS.text,
 				backgroundColor: '#fff',
 				border: `${borderWidth}px solid ${
@@ -43,11 +47,12 @@ export const Textarea = ({ size, width, inline, invalid, children, ...props }) =
 				height: `calc(${lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
 					sizeMap[size].padding
 				)} + ${2 * borderWidth}px)`,
+				...TYPE.bodyFont[400],
 
 				'&::placeholder': {
 					opacity: 1, // Override Firefox's unusual default opacity
-					fontWeight: 300,
 					color: COLORS.tints.text50,
+					...TYPE.bodyFont[300],
 				},
 
 				// Focus styling (for all, not just keyboard users)
@@ -71,6 +76,7 @@ export const Textarea = ({ size, width, inline, invalid, children, ...props }) =
 				verticalAlign: inline && 'top',
 				minHeight: sizeMap[size].textarea.minHeight,
 				maxWidth: width && `calc(${extras} + ${round(width * 1.81)}ex)`,
+				...overrides.textareaCSS,
 			})}
 			{...props}
 		/>

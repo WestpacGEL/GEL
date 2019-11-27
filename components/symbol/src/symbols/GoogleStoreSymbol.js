@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const GoogleStoreSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="GoogleStoreSymbol" {...props}>
 		<defs>
 			<linearGradient
 				id="GoogleStoreSymbol-a"

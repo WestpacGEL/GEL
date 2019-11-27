@@ -18,7 +18,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=form-pod webpack-dev-server --config ../../helpers/example/webpack.config.js",
+		"start": "PACKAGE_NAME=form-pod webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
@@ -34,14 +34,14 @@
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
-		"react": "^16.10.1"
+		"react": "^16.11.0"
 	},
 	"devDependencies": {
 		"@westpac/alert": "*",
 		"@westpac/button": "*",
 		"@westpac/list": "*",
-		"cypress": "^3.5.0",
-		"react": "^16.11.0",
+		"cypress": "^3.6.1",
+		"react": "^16.12.0",
 		"start-server-and-test": "^1.10.6"
 	}
 }

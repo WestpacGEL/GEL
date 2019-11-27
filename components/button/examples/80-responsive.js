@@ -9,7 +9,11 @@ const sizes = [
 	['large', 'medium'],
 	['small', null, 'large'],
 ];
-const blocks = [[true, false, true, false], [true, false], [true, null, false]];
+const blocks = [
+	[true, false, true, false],
+	[true, false],
+	[true, null, false],
+];
 
 function Example({ brand }) {
 	return (

@@ -1,71 +1,90 @@
 /** @jsx jsx */
 
-import React, { useState } from 'react';
+import { useState, useEffect, useRef, forwardRef, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import shortid from 'shortid';
+import pkg from '../package.json';
+import { TooltipBubble } from './TooltipBubble';
+
+// ==============================
+// Overwrite component
+// ==============================
+const Wrapper = forwardRef((props, ref) => <span ref={ref} {...props} />);
 
 // ==============================
 // Component
 // ==============================
-export const Tooltip = ({ text, children, ...props }) => {
+export const Tooltip = ({ text, ...props }) => {
+	const { [pkg.name]: overwritesWithTokens } = useBrand();
 	const [visible, setVisible] = useState(false);
+	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
 	const [tooltipId] = useState(`tooltipBubble-${shortid.generate()}`);
+	const triggerRef = useRef();
+	const tooltipRef = useRef();
 
-	const handleMouseEnter = () => setVisible(true);
-	const handleMouseLeave = () => setVisible(false);
+	const overwrites = {
+		tooltipCSS: {},
+		CSS: {},
+		Wrapper,
+	};
+
+	merge(overwrites, overwritesWithTokens);
+
+	const handleEnter = () => setVisible(true);
+	const handleLeave = () => setVisible(false);
+
+	useEffect(() => {
+		if (visible) {
+			document.addEventListener('scroll', handleLeave, true);
+		}
+		return document.removeEventListener('scroll', handleLeave);
+	}, [visible]);
+
+	useEffect(() => {
+		if (visible) {
+			const trigger = triggerRef.current.getBoundingClientRect();
+			const tooltip = tooltipRef.current.getBoundingClientRect();
+			const remSize = parseInt(
+				window.getComputedStyle(document.getElementsByTagName('html')[0]).fontSize
+			);
+			const left = (trigger.left - tooltip.width / 2 + trigger.width / 2) / remSize;
+
+			if (tooltip.height > trigger.top) {
+				const top = (trigger.top + trigger.height + remSize) / remSize;
+				setPosition({ placement: 'bottom', top, left });
+			} else {
+				const top = (trigger.top - tooltip.height - remSize) / remSize;
+				setPosition({ placement: 'top', top, left });
+			}
+		}
+	}, [visible]);
 
 	return (
-		<span
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
-			aria-describedby={tooltipId}
-			tabIndex={0}
-			css={{ display: 'inline-block', position: 'relative', cursor: 'help', borderBottom: 'none' }}
-			{...props}
-		>
-			{children}
-			<span
-				id={tooltipId}
+		<Fragment>
+			<TooltipBubble
+				tooltipId={tooltipId}
+				text={text}
+				visible={visible}
+				position={position}
+				ref={tooltipRef}
+				css={overwrites.tooltipCSS}
+			/>
+			<overwrites.Wrapper
+				onMouseEnter={handleEnter}
+				onMouseLeave={handleLeave}
+				aria-describedby={tooltipId}
+				tabIndex={0}
+				ref={triggerRef}
 				css={{
-					visibility: visible ? 'visible' : 'hidden',
-					position: 'absolute',
-					left: '50%',
-					bottom: '110%',
-					transform: 'translate(-50%)',
-					margin: '0 0 0.375rem 0',
-					borderRadius: 3,
-					padding: '0.4375rem',
-					width: '18.75rem',
-					color: '#fff',
-					backgroundColor: '#000',
-					fontSize: '0.75rem',
-					textAlign: 'center',
-					lineHeight: 1.2,
-					whiteSpace: 'normal',
-					pointerEvents: 'none',
-					transition: 'opacity 0.2 ease, visibility 0.2 ease',
-					transitionDelay: '100ms',
-					zIndex: 100,
-
-					'::after': {
-						content: "''",
-						marginLeft: '-0.3125rem',
-						width: 0,
-						borderTop: '0.3125rem solid #000',
-						borderRight: '0.3125rem solid transparent',
-						borderLeft: '0.3125rem solid transparent',
-						fontSize: 0,
-						lineHeight: 0,
-						position: 'absolute',
-						bottom: '-0.3125rem',
-						left: '50%',
-					},
+					display: 'inline-block',
+					cursor: 'help',
+					borderBottom: 'none',
+					...overwrites.CSS,
 				}}
-			>
-				{text}
-			</span>
-		</span>
+				{...props}
+			/>
+		</Fragment>
 	);
 };
 

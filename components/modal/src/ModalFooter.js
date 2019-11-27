@@ -1,10 +1,17 @@
 /** @jsx jsx */
 
-import React from 'react';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
+import pkg from '../package.json';
 
 export const ModalFooter = props => {
 	const { COLORS } = useBrand();
+	const { [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		footerCSS: {},
+	};
+
+	merge(overrides, overridesWithTokens);
 
 	return (
 		<div
@@ -17,6 +24,7 @@ export const ModalFooter = props => {
 				'button + button': {
 					marginLeft: '0.375rem',
 				},
+				...overrides.footerCSS,
 			}}
 			{...props}
 		/>

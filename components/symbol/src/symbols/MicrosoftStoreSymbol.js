@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const MicrosoftStoreSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="MicrosoftStoreSymbol" {...props}>
 		<g fillRule="nonzero" fill="none">
 			<path fill="#000" d="M.453.453h169.115v60.503H.453z" />
 			<path d="M.885.885h168.23v59.618H.885V.885zM0 61.39h170V0H0v61.389z" fill="#D2D2D2" />

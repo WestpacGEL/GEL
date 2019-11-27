@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
 export const MastercardSymbol = props => (
-	<Symbol {...props}>
+	<Symbol symbol="MastercardSymbol" {...props}>
 		<g fill="none">
 			<path
 				d="M66.88 31.6v-.66h-.173l-.2.453-.197-.454h-.173v.66h.122v-.5l.185.43h.127l.186-.43v.5h.122zm-1.094 0v-.55h.22v-.11h-.562v.11h.22v.55h.122z"
