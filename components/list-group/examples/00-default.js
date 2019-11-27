@@ -4,6 +4,8 @@ import { GEL, jsx } from '@westpac/core';
 import { ListGroup, Item } from '@westpac/list-group';
 import { ButtonGroup, Button } from '@westpac/button';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const styleExample = {
 	marginLeft: '0.75rem',
 };
@@ -11,6 +13,27 @@ const styleExample = {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia/>
+
+			<ListGroup>
+				<Item>
+					List item 1
+				</Item>
+				<Item>
+					List item 2
+				</Item>
+				<Item>
+					List item 3
+				</Item>
+				<Item>
+					List item 4
+				</Item>
+			</ListGroup>
+
+			<br/>
+			<hr/>
+			<br/>
+
 			<ListGroup>
 				<Item>
 					Send me sms reminders

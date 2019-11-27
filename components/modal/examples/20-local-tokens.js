@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { Modal, Header, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const HeaderNew = props => (
 	<div
 		css={{
@@ -47,6 +49,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<Button onClick={() => setOpen(true)}>Open</Button>
 			<Modal open={open} onClose={() => setOpen(false)}>
 				<Header>Modal Title</Header>

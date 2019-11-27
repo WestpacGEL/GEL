@@ -3,9 +3,13 @@
 import { GEL, jsx } from '@westpac/core';
 import { InputGroup, Left, Right } from '@westpac/input-group';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia/>
+
 			<h2>Invalid</h2>
 
 			<InputGroup invalid defaultValue="Text that can be edited">
