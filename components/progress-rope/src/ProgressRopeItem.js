@@ -10,6 +10,7 @@ export const ProgressRopeItem = ({
 	groupIndex,
 	review,
 	overrides: overridesComponent,
+	children,
 	...props
 }) => {
 	const { currStep, currGroup, grouped, ropeGraph } = useProgressRopeContext();
@@ -54,12 +55,6 @@ export const ProgressRopeItem = ({
 				padding: `0.5rem 3.5rem 0.875rem ${grouped && !review ? '3rem' : '1.875rem'}`,
 				position: 'relative',
 
-				a: {
-					color: active ? COLORS.primary : visited ? COLORS.neutral : COLORS.tints.muted90,
-					textDecoration: 'none',
-					pointerEvents: active || visited ? 'auto' : 'none',
-				},
-
 				// the line
 				'::before': {
 					content: review ? 'none' : "''",
@@ -94,8 +89,19 @@ export const ProgressRopeItem = ({
 				},
 				...overrides.ropeItemCSS,
 			}}
-			{...props}
-		/>
+		>
+			<a
+				css={{
+					color: active ? COLORS.primary : visited ? COLORS.neutral : COLORS.tints.muted90,
+					textDecoration: 'none',
+					pointerEvents: active || visited ? 'auto' : 'none',
+					cursor: 'pointer',
+				}}
+				{...props}
+			>
+				{children}
+			</a>
+		</li>
 	);
 };
 

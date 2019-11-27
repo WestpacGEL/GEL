@@ -25,65 +25,39 @@ function Example({ brand }) {
 		},
 	};
 
+	const handleClick = index => e => {
+		e.preventDefault();
+		dispatch({ type: 'goto', index });
+	};
+
 	return (
 		<GEL brand={overridesWithTokens}>
 			<Grid>
 				<Cell width={4}>
 					<ProgressRope current={state.index}>
 						<Group label={'Group 1'}>
-							<Item>
-								<Link index={0} dispatch={dispatch}>
-									Step 0
-								</Link>
-							</Item>
-							<Item>
-								<Link index={1} dispatch={dispatch}>
-									Step 1
-								</Link>
-							</Item>
+							<Item onClick={handleClick(0)}>Step 0</Item>
+							<Item onClick={handleClick(1)}>Step 1</Item>
 						</Group>
 						<Group label={'Group 2'}>
-							<Item>
-								<Link index={2} dispatch={dispatch}>
-									Step 2
-								</Link>
-							</Item>
-							<Item>
-								<Link index={3} dispatch={dispatch}>
-									Step 3
-								</Link>
-							</Item>
+							<Item onClick={handleClick(2)}>Step 2</Item>
+							<Item onClick={handleClick(3)}>Step 3</Item>
 						</Group>
 						<Group label={'Group 3'}>
-							<Item>
-								<Link index={4} dispatch={dispatch}>
-									Step 4
-								</Link>
-							</Item>
-							<Item>
-								<Link index={5} dispatch={dispatch}>
-									Step 5
-								</Link>
-							</Item>
-							<Item>
-								<Link index={6} dispatch={dispatch}>
-									Step 6
-								</Link>
-							</Item>
+							<Item onClick={handleClick(4)}>Step 4</Item>
+							<Item onClick={handleClick(5)}>Step 5</Item>
+							<Item onClick={handleClick(6)}>Step 6</Item>
 						</Group>
-						<Item review>
-							<Link index={7} dispatch={dispatch}>
-								Review and Submit
-							</Link>
+						<Item review onClick={handleClick(5)}>
+							Review and Submit
 						</Item>
 					</ProgressRope>
 				</Cell>
-				<Cell width={4}>
+				<Cell top={2} width={4}>
+					<h3>Helper Controls</h3>
+					<h4>Current: {state.index}</h4>
 					<Button onClick={() => dispatch({ type: 'prev' })}>prev</Button>{' '}
 					<Button onClick={() => dispatch({ type: 'next' })}>next</Button>
-				</Cell>
-				<Cell width={4}>
-					<h3>current: {state.index}</h3>
 				</Cell>
 			</Grid>
 		</GEL>
