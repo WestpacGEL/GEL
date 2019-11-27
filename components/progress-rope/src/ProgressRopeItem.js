@@ -1,12 +1,25 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { useProgressRopeContext } from './ProgressRope';
+import pkg from '../package.json';
 
-export const ProgressRopeItem = ({ index, groupIndex, review, ...props }) => {
+export const ProgressRopeItem = ({
+	index,
+	groupIndex,
+	review,
+	overrides: overridesComponent,
+	...props
+}) => {
 	const { currStep, currGroup, grouped, ropeGraph } = useProgressRopeContext();
-	const { COLORS } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		ropeItemCSS: {},
+	};
+
+	merge(overrides, overridesWithTokens, overridesComponent);
 
 	const visited =
 		(grouped && !review && ropeGraph[groupIndex][index] === 'visited') ||
@@ -79,6 +92,7 @@ export const ProgressRopeItem = ({ index, groupIndex, review, ...props }) => {
 				':last-child': {
 					...(grouped && !review && { paddingBottom: '2.75rem' }),
 				},
+				...overrides.ropeItemCSS,
 			}}
 			{...props}
 		/>
@@ -89,8 +103,17 @@ export const ProgressRopeItem = ({ index, groupIndex, review, ...props }) => {
 // Types
 // ==============================
 ProgressRopeItem.propTypes = {
-	/** Whether or not a review step*/
+	/**
+	 * Whether or not a review step
+	 */
 	review: PropTypes.bool,
+
+	/**
+	 * ProgressRopeItem overrides
+	 */
+	overrides: PropTypes.shape({
+		ropeItemCSS: PropTypes.object,
+	}),
 };
 
 ProgressRopeItem.defaultProps = {
