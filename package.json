@@ -20,7 +20,7 @@
 	"scripts": {
 		"start": "/bin/sh -c 'cd components/${1:-$0} && yarn start'",
 		"docs": "webpack-dev-server --progress --config ./helpers/example/docs.webpack.config.js",
-		"docs:build": "NODE_ENV=production webpack --progress --config ./helpers/example/docs.webpack.config.js && yarn docs:redirects",
+		"docs:build": "NODE_ENV=development webpack --progress --config ./helpers/example/docs.webpack.config.js && yarn docs:redirects",
 		"docs:redirects": "cp helpers/public/* docs/",
 		"nuke": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
 		"nuke:lock": "rm yarn.lock && rm yarn-error.log",
