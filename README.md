@@ -178,9 +178,9 @@ yarn start button
 - css-in-js [emotion](https://emotion.sh/docs/introduction) is used with the `jsx` pragma and babel plugin
 - For css-in-js we use `jsx` imported from `@westpac/core` and never depend on `emotion` directly other than inside core itself
 - All components that are made up of a group of other components like `list`, `breadcrumb`, `button-group`, `input-group` etc can be driven solely by the
-	`data` prop
+  `data` prop
 - If children have to be altered inside a component we use the `cloneElement` function when we know it's a shallow depth.
-	We use context when we don't know how deep the children are going to be.
+  We use context when we don't know how deep the children are going to be.
 
 ### Data driven API
 
