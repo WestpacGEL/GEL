@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<Alert look="success" closable>
 				<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I

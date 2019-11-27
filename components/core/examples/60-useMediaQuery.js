@@ -10,7 +10,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia ignore/>
+			<Intopia ignore />
 
 			<strong>[1,2,3,4]</strong>
 			<Code>{JSON.stringify(mq({ thing: [1, 2, 3, 4] }), null, 2)}</Code>

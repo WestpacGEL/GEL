@@ -29,7 +29,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<p>
 				<Button onClick={() => updateModal('default', true)}>Open default modal</Button>

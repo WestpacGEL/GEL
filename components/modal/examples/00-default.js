@@ -12,7 +12,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<Button onClick={() => setOpen(true)}>Open</Button>
 			<Modal open={open} onClose={() => setOpen(false)}>

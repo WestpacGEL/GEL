@@ -17,7 +17,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<h2>Default instance</h2>
 			<Text />

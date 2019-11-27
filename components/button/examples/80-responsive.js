@@ -20,7 +20,7 @@ const blocks = [
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<h2>Responsive sizing</h2>
 			{sizes.map((s, i) => (

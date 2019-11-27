@@ -44,7 +44,7 @@ const icons = [
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<h2>Size</h2>
 			{sizes.map((s, i) => (

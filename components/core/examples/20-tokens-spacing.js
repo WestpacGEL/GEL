@@ -13,7 +13,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia ignore/>
+			<Intopia ignore />
 
 			<h2>Spacing</h2>
 			<label

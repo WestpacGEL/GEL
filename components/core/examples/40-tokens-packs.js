@@ -10,7 +10,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia ignore/>
+			<Intopia ignore />
 
 			<h2>Headlines</h2>
 			{Array(9)

@@ -13,7 +13,7 @@ function ButtonGroupExample({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<ButtonGroup>
 				<Button>Left</Button>

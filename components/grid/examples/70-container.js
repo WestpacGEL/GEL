@@ -32,7 +32,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<div
 				ref={containerRef}

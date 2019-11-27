@@ -13,26 +13,18 @@ const styleExample = {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<ListGroup>
-				<Item>
-					List item 1
-				</Item>
-				<Item>
-					List item 2
-				</Item>
-				<Item>
-					List item 3
-				</Item>
-				<Item>
-					List item 4
-				</Item>
+				<Item>List item 1</Item>
+				<Item>List item 2</Item>
+				<Item>List item 3</Item>
+				<Item>List item 4</Item>
 			</ListGroup>
 
-			<br/>
-			<hr/>
-			<br/>
+			<br />
+			<hr />
+			<br />
 
 			<ListGroup>
 				<Item>

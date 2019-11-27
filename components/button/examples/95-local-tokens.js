@@ -32,7 +32,6 @@ function Example({ brand }) {
 	return (
 		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<Button>Default standard</Button> <Button look="primary">Primary standard</Button>{' '}
 			<Button look="hero">Hero standard</Button> <Button look="faint">Faint standard</Button>{' '}

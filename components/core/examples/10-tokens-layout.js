@@ -9,8 +9,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia ignore/>
-
+			<Intopia ignore />
 			<h2>Layout</h2>
 			Breakpoints:
 			<ul

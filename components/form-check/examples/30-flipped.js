@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<h2>Medium</h2>
 			<FormCheck type="checkbox" name="example-checkbox-large-flip" size="medium" flipped>

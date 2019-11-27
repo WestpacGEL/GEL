@@ -25,7 +25,6 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia ignore />
-
 			<Code>
 				{`function one() {
 	console.log('one called!')

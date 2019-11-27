@@ -9,7 +9,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<Row>
 				<FavouriteIcon label="Colored heart" color="#DE350B" />

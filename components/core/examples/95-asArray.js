@@ -10,7 +10,6 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia ignore />
-
 			<Code>{`asArray([ 1, 2, 3])`}</Code>
 			=>
 			<Code>{JSON.stringify(asArray([1, 2, 3]))}</Code>

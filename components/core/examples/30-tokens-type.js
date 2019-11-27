@@ -10,7 +10,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
-			<Intopia ignore/>
+			<Intopia ignore />
 
 			<h2>Type</h2>
 			<div

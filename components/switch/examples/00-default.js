@@ -11,7 +11,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<h2>Default instance (no styling props)</h2>
 			<Switch name="example-default" label="Turn notifications" />

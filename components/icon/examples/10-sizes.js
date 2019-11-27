@@ -66,7 +66,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<Row>
 				{sizes.map((s, i) => (

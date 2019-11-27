@@ -13,7 +13,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<Grid>
 				<Cell width={4}>

@@ -30,18 +30,18 @@ function Example({ brand }) {
 		},
 	};
 
-	function handleProgress( unit ) {
-		let newProgress  = progress + unit;
+	function handleProgress(unit) {
+		let newProgress = progress + unit;
 
-		if( newProgress > 100 ) {
+		if (newProgress > 100) {
 			newProgress = 100;
 		}
 
-		if( newProgress < 0 ) {
+		if (newProgress < 0) {
 			newProgress = 0;
 		}
 
-		setProgress( newProgress );
+		setProgress(newProgress);
 	}
 
 	return (
@@ -55,9 +55,9 @@ function Example({ brand }) {
 			<ProgressBar value={progress} look="skinny" />
 			<div css={{ display: 'flex', marginTop: '3rem', width: '50%' }}>
 				<Button onClick={() => handleProgress(1)}>+1</Button>
-				<Button onClick={() => handleProgress(- 1)}>-1</Button>
+				<Button onClick={() => handleProgress(-1)}>-1</Button>
 				<Button onClick={() => handleProgress(10)}>+10</Button>
-				<Button onClick={() => handleProgress(- 10)}>-10</Button>
+				<Button onClick={() => handleProgress(-10)}>-10</Button>
 			</div>
 		</GEL>
 	);

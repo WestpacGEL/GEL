@@ -10,8 +10,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
-
+			<Intopia />
 			<h2>
 				Button with an <code>&lt;a&gt;</code> tag
 			</h2>

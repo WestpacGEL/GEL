@@ -10,7 +10,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<h2>Screen reader skip link</h2>
 			<p>Note: The example link below is visibility hidden until focussed.</p>

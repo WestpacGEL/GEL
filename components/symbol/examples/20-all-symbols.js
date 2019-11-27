@@ -11,7 +11,7 @@ const symbols = Object.keys(components).filter(s => s.includes('Symbol'));
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<Grid>
 				{symbols.map(s => {

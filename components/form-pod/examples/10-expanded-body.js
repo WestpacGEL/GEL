@@ -10,7 +10,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia ignore/>
+			<Intopia ignore />
 
 			<Global
 				styles={{

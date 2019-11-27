@@ -12,7 +12,7 @@ const logos = Object.keys(components).filter(s => s.endsWith('Logo'));
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<Grid>
 				{logos.map(s => {

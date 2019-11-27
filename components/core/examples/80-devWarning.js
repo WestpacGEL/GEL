@@ -11,7 +11,6 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia ignore />
-
 			<Code>
 				devWarning( true, 'Warn consumer about a thing but ignore the wanring in production!' );
 			</Code>

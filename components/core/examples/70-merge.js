@@ -12,7 +12,6 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia ignore />
-
 			<Code>
 				const object = {JSON.stringify(object, null, 2)};{<br css={{ margin: '1rem' }} />}
 				const other = {JSON.stringify(other, null, 2)};{<br css={{ margin: '1rem' }} />}

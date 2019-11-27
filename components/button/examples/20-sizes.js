@@ -8,8 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
-
+			<Intopia />
 			<h2>Small</h2>
 			<Button look="primary" size="small">
 				Primary

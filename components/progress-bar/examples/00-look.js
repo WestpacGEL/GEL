@@ -10,23 +10,23 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const [progress, setProgress] = useState(0);
 
-	function handleProgress( unit ) {
-		let newProgress  = progress + unit;
+	function handleProgress(unit) {
+		let newProgress = progress + unit;
 
-		if( newProgress > 100 ) {
+		if (newProgress > 100) {
 			newProgress = 100;
 		}
 
-		if( newProgress < 0 ) {
+		if (newProgress < 0) {
 			newProgress = 0;
 		}
 
-		setProgress( newProgress );
+		setProgress(newProgress);
 	}
 
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<h2>Default</h2>
 			<ProgressBar value={progress} />

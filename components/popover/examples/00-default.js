@@ -15,7 +15,7 @@ const content =
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia/>
+			<Intopia />
 
 			<Popover title="Popover Title" content={content}>
 				<Button>Click Me</Button>
