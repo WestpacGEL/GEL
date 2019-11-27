@@ -6,6 +6,8 @@ import { useContainerQuery } from '@westpac/hooks';
 import { useRef } from 'react';
 import { Box } from './_utils';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const {
 		COLORS,
@@ -30,6 +32,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<div
 				ref={containerRef}
 				css={{

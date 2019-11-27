@@ -5,7 +5,24 @@ import { useState } from 'react';
 import { Modal, Header, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const HeaderNew = props => <div css={{ borderBottom: `2px solid palevioletred` }} {...props} />;
+
+const HeaderNew = props => (
+	<div
+		css={{
+			display: 'flex',
+			justifyContent: 'space-between',
+			alignItems: 'flex-start',
+			overflow: 'hidden',
+			borderBottom: `2px solid palevioletred`,
+			backgroundColor: 'white',
+			padding: '1rem 1.5rem 0.75rem',
+		}}
+		{...props}
+	/>
+);
 
 const Title = props => <h3 css={{ color: 'darkmagenta' }} {...props} />;
 
@@ -34,6 +51,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<Button onClick={() => setOpen(true)}>Open</Button>
 			<Modal open={open} onClose={() => setOpen(false)}>
 				<Header>Modal Title</Header>

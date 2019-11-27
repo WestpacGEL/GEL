@@ -5,11 +5,15 @@ import { useState } from 'react';
 import { Modal, Header, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<Button onClick={() => setOpen(true)}>Open</Button>
 			<Modal open={open} onClose={() => setOpen(false)}>
 				<Header>Modal Title</Header>

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const Label = props => <strong css={{ color: 'palevioletred', paddingRight: '2rem' }} {...props} />;
 
 function Example({ brand }) {
@@ -22,6 +24,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<h2>With local tokens applied</h2>
 			<Switch
 				name="example-default"

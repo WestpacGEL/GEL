@@ -6,11 +6,15 @@ import { Button } from '@westpac/button';
 import { ProgressRope, Group, Item } from '@westpac/progress-rope';
 import { useProgress, Link } from './_utils';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const [state, dispatch] = useProgress();
 
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<Grid>
 				<Cell width={4}>
 					<ProgressRope current={state.index}>

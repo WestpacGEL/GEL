@@ -5,9 +5,13 @@ import { FormGroup, ErrorMessage } from '@westpac/form';
 import { Text } from '@westpac/text-input';
 import { CarIcon } from '@westpac/icon';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore />
+
 			<h2>Default instance (no styling props)</h2>
 			<FormGroup>
 				<ErrorMessage id="example-default-error" />

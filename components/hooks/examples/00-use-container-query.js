@@ -4,6 +4,8 @@ import { GEL, jsx } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
 import { useRef } from 'react';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const textareaRef = useRef();
 	const containerRef = useRef();
@@ -12,6 +14,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore />
+
 			<div ref={containerRef}>
 				<pre>Container width = {containerWidth}px</pre>
 				<hr />

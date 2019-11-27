@@ -25,7 +25,7 @@ export const Button = ({
 	children,
 	...props
 }) => {
-	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
+	const { COLORS, TYPE, BRAND, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
@@ -69,7 +69,7 @@ export const Button = ({
 		},
 		hero: {
 			standardCSS: {
-				color: '#fff', //TODO: STG uses `COLORS.text`
+				color: BRAND === 'STG' ? COLORS.text : '#fff',
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
 
@@ -86,11 +86,11 @@ export const Button = ({
 				borderColor: COLORS.hero,
 
 				':hover': {
-					color: '#fff', //TODO: STG uses `COLORS.text` (i.e. `color: null`)
+					color: BRAND === 'STG' ? COLORS.text : '#fff',
 					backgroundColor: COLORS.tints.hero70,
 				},
 				':active, &.active': {
-					color: '#fff', //TODO: STG uses `COLORS.text` (i.e. `color: null`)
+					color: BRAND === 'STG' ? COLORS.text : '#fff',
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},

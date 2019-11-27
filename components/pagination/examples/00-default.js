@@ -4,9 +4,13 @@ import { GEL, jsx } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import { Pagination, Item } from '@westpac/pagination';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<Pagination>
 				<Item disabled>
 					<VisuallyHidden>Step</VisuallyHidden>
