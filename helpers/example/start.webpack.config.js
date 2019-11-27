@@ -13,8 +13,8 @@ const { PACKAGE_NAME } = process.env;
  */
 tmp.setGracefulCleanup();
 const tmpObj = tmp.fileSync();
-const code = makeCode( findExampleFiles(PACKAGE_NAME), 'start.js', PACKAGE_NAME);
-fs.writeSync( tmpObj.fd, code );
+const code = makeCode(findExampleFiles(PACKAGE_NAME), 'start.js', PACKAGE_NAME);
+fs.writeSync(tmpObj.fd, code);
 
 process.on('exit', () => {
 	tmpObj.removeCallback();

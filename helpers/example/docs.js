@@ -40,11 +40,13 @@ const App = ({ components, packageName, pkg }) => {
 		<Router>
 			<StrictMode>
 				<GEL brand={BRANDS[brand]}>
-					<div css={{
-						alignItems: 'stretch',
-						display: 'flex',
-						minHeight: '100vh',
-					}}>
+					<div
+						css={{
+							alignItems: 'stretch',
+							display: 'flex',
+							minHeight: '100vh',
+						}}
+					>
 						<Global
 							styles={css`
 								code {
@@ -64,23 +66,19 @@ const App = ({ components, packageName, pkg }) => {
 							<Route
 								exact
 								path="/"
-								render={route =>
+								render={route => (
 									<Fragment>
-										<Sidebar
-											components={components}
-											brand={brand}
-											setBrand={setBrand}
-										/>
+										<Sidebar components={components} brand={brand} setBrand={setBrand} />
 										<Home {...route} />
 									</Fragment>
-								}
+								)}
 							/>
 							{components.map(({ slug, ...props }) => (
 								<Route
 									key={slug}
 									exact
 									path={`/${slug}`}
-									render={route =>
+									render={route => (
 										<Fragment>
 											<Sidebar
 												components={components}
@@ -90,7 +88,7 @@ const App = ({ components, packageName, pkg }) => {
 											/>
 											<Page {...route} {...props} brand={BRANDS[brand]} />
 										</Fragment>
-									}
+									)}
 								/>
 							))}
 						</Switch>
@@ -102,7 +100,6 @@ const App = ({ components, packageName, pkg }) => {
 };
 
 class Page extends React.Component {
-
 	state = { error: null, info: null };
 
 	componentDidCatch(error, info) {
@@ -140,7 +137,7 @@ class Page extends React.Component {
 			);
 		}
 
-		if( landing ) {
+		if (landing) {
 			return <Home />;
 		}
 
@@ -188,15 +185,14 @@ const Sidebar = ({ components, brand, setBrand, parent = '' }) => {
 
 	let navItems = components;
 
-	if(location.pathname !== '/') {
-		navItems = navItems.filter( component => location.pathname.startsWith(`/${component.parent}`) );
-	}
-	else {
-		navItems = navItems.filter( component => component.landing );
+	if (location.pathname !== '/') {
+		navItems = navItems.filter(component => location.pathname.startsWith(`/${component.parent}`));
+	} else {
+		navItems = navItems.filter(component => component.landing);
 	}
 
-	if(searchValue.length) {
-		navItems = navItems.filter(p => p.label.toLowerCase().includes(searchValue.toLowerCase()))
+	if (searchValue.length) {
+		navItems = navItems.filter(p => p.label.toLowerCase().includes(searchValue.toLowerCase()));
 	}
 
 	return (
@@ -232,119 +228,122 @@ const Sidebar = ({ components, brand, setBrand, parent = '' }) => {
 			>
 				GEL
 			</NavLink>
-				<input
-					onChange={e => setSearchValue(e.target.value)}
-					placeholder="Search..."
-					type="search"
-					value={searchValue}
-					css={{
-						background: 0,
-						borderWidth: '1px 0',
-						borderStyle: 'solid',
-						borderColor: 'rgba(0, 0, 0, 0.075)',
-						boxSizing: 'border-box',
-						fontSize: 'inherit',
-						padding: '0.625rem 1.25rem',
-						width: '100%',
+			<input
+				onChange={e => setSearchValue(e.target.value)}
+				placeholder="Search..."
+				type="search"
+				value={searchValue}
+				css={{
+					background: 0,
+					borderWidth: '1px 0',
+					borderStyle: 'solid',
+					borderColor: 'rgba(0, 0, 0, 0.075)',
+					boxSizing: 'border-box',
+					fontSize: 'inherit',
+					padding: '0.625rem 1.25rem',
+					width: '100%',
 
-						':focus': {
-							background: 'rgba(0,0,0,0.04)',
-							outlineOffset: -3,
-						},
-					}}
-				/>
+					':focus': {
+						background: 'rgba(0,0,0,0.04)',
+						outlineOffset: -3,
+					},
+				}}
+			/>
 
-				<nav css={{
+			<nav
+				css={{
 					flex: 1,
 					overflowY: 'auto',
-				}}>
-					<ul css={{
+				}}
+			>
+				<ul
+					css={{
 						listStyle: 'none',
 						margin: '1rem 0',
 						padding: 0,
-					}}>
-						{navItems.map(({ label, slug }) => (
-							<li data-test-nav
-								key={slug}
-								data-test-nav-link
-							>
-								<NavLink
-									to={`/${slug}`}
-									css={{
-										backgroundColor: '#F4F5F7',
-										borderLeft: '3px solid transparent',
-										color: primaryColor,
-										display: 'block',
-										fontWeight: 500,
-										padding: '0.625rem 1.0625rem',
-										fontSize: '1rem',
-										textDecoration: 'none',
-
-										':hover, :focus': {
-											background: '#fafbfc',
-											textDecoration: 'inherit',
-										},
-
-										':focus': {
-											outlineOffset: -3,
-										},
-
-										'&.active': {
-											borderLeftColor: primaryColor,
-											color: 'inherit',
-										},
-									}}
-								>
-									{label}
-								</NavLink>
-							</li>
-						))}
-					</ul>
-				</nav>
-
-				<div css={{
-					display: 'flex',
-					fontSize: '0.8125rem',
-				}}>
-					{Object.keys(BRANDS).map(b => {
-						const isChecked = brand === b;
-						return (
-							<label
-								key={b}
+					}}
+				>
+					{navItems.map(({ label, slug }) => (
+						<li data-test-nav key={slug} data-test-nav-link>
+							<NavLink
+								to={`/${slug}`}
 								css={{
-									alignItems: 'center',
-									borderTop: '1px solid',
-									borderTopColor: isChecked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
-									boxSizing: 'border-box',
-									color: isChecked ? 'inherit' : '#1F252C',
-									cursor: 'pointer',
-									flex: 1,
+									backgroundColor: '#F4F5F7',
+									borderLeft: '3px solid transparent',
+									color: primaryColor,
+									display: 'block',
 									fontWeight: 500,
-									justifyContent: 'center',
-									paddingBottom: '0.75rem',
-									paddingTop: '0.75rem',
-									textAlign: 'center',
+									padding: '0.625rem 1.0625rem',
+									fontSize: '1rem',
+									textDecoration: 'none',
 
-									input: {
-										height: 1,
-										position: 'absolute',
-										visibility: 'hidden',
-										width: 1,
+									':hover, :focus': {
+										background: '#fafbfc',
+										textDecoration: 'inherit',
+									},
+
+									':focus': {
+										outlineOffset: -3,
+									},
+
+									'&.active': {
+										borderLeftColor: primaryColor,
+										color: 'inherit',
 									},
 								}}
 							>
-								<input
-									name="brand"
-									type="radio"
-									onChange={e => setBrand(b)}
-									value={b}
-									checked={isChecked}
-								/>
-								{b}
-							</label>
-						);
-					})}
-				</div>
+								{label}
+							</NavLink>
+						</li>
+					))}
+				</ul>
+			</nav>
+
+			<div
+				css={{
+					display: 'flex',
+					fontSize: '0.8125rem',
+				}}
+			>
+				{Object.keys(BRANDS).map(b => {
+					const isChecked = brand === b;
+					return (
+						<label
+							key={b}
+							css={{
+								alignItems: 'center',
+								borderTop: '1px solid',
+								borderTopColor: isChecked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
+								boxSizing: 'border-box',
+								color: isChecked ? 'inherit' : '#1F252C',
+								cursor: 'pointer',
+								flex: 1,
+								fontWeight: 500,
+								justifyContent: 'center',
+								paddingBottom: '0.75rem',
+								paddingTop: '0.75rem',
+								textAlign: 'center',
+
+								input: {
+									height: 1,
+									position: 'absolute',
+									visibility: 'hidden',
+									width: 1,
+								},
+							}}
+						>
+							<input
+								name="brand"
+								type="radio"
+								onChange={e => setBrand(b)}
+								value={b}
+								checked={isChecked}
+							/>
+							{b}
+						</label>
+					);
+				})}
+			</div>
 		</div>
 	);
 };
@@ -353,7 +352,7 @@ const Sidebar = ({ components, brand, setBrand, parent = '' }) => {
 // Render to node
 // ==============================
 
-export default (components) => {
+export default components => {
 	const rootElement = document.getElementById('root');
 	ReactDOM.render(<App components={components} />, rootElement);
 };

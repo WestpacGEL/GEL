@@ -63,25 +63,26 @@ const findExampleFiles = (component, parent = '') => {
 	}
 };
 
-function makeCode( components, entry, name = ' ' ) {
+function makeCode(components, entry, name = ' ') {
 	return `
 		import app from '${__dirname}/${entry}';
 
 		const components = [
 			${components
-				.map( example => `{
+				.map(
+					example => `{
 					${Object.entries(example)
-						.map( ([key, value]) => `"${key}": ${JSON.stringify(value)}`)
+						.map(([key, value]) => `"${key}": ${JSON.stringify(value)}`)
 						.join(',\n')},
-					${ example.absolutePath ? `Module: require('${example.absolutePath}'),` : '' }
-				}`)
+					${example.absolutePath ? `Module: require('${example.absolutePath}'),` : ''}
+				}`
+				)
 				.join(',\n')}
 		];
 
 		app(components, "${labelFromSlug(name)}", "${name}");
 	`;
 }
-
 
 module.exports = {
 	slugFromFilename,

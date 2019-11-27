@@ -6,7 +6,6 @@ const path = require('path');
 const tmp = require('tmp');
 const fs = require('fs');
 
-
 /**
  * Find all components
  *
@@ -15,8 +14,7 @@ const fs = require('fs');
 const findComponents = () => {
 	let components = [];
 
-	fs
-		.readdirSync(path.normalize(`${__dirname}/../../components/`))
+	fs.readdirSync(path.normalize(`${__dirname}/../../components/`))
 		.filter(file => !file.startsWith('.'))
 		.map(component => {
 			const slug = slugFromFilename(component);
@@ -27,7 +25,7 @@ const findComponents = () => {
 				filename: component,
 				landing: true,
 			});
-			components = [ ...components, ...findExampleFiles(component, slug) ];
+			components = [...components, ...findExampleFiles(component, slug)];
 		});
 
 	return components;
@@ -40,8 +38,8 @@ const components = findComponents();
  */
 tmp.setGracefulCleanup();
 const tmpObj = tmp.fileSync();
-const code = makeCode( components, 'docs.js' );
-fs.writeSync( tmpObj.fd, code );
+const code = makeCode(components, 'docs.js');
+fs.writeSync(tmpObj.fd, code);
 
 process.on('exit', () => {
 	tmpObj.removeCallback();
@@ -79,15 +77,14 @@ module.exports = () => ({
 		new HtmlWebpackRootPlugin(),
 		new CopyPlugin(
 			components
-				.filter( component => component.landing )
-				.map( component => (
-					{
-						from: '*',
-						to: `${component.slug}/assets/`,
-						context: path.normalize(`${__dirname}/../../components/${component.slug}/examples/assets/`),
-					}
-				)
-			)
+				.filter(component => component.landing)
+				.map(component => ({
+					from: '*',
+					to: `${component.slug}/assets/`,
+					context: path.normalize(
+						`${__dirname}/../../components/${component.slug}/examples/assets/`
+					),
+				}))
 		),
 	],
 	devServer: {

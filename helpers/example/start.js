@@ -372,7 +372,7 @@ const SidebarSwitch = ({ checked, ...props }) => (
 // Render to node
 // ==============================
 
-export default (components, packageName, pkg ) => {
+export default (components, packageName, pkg) => {
 	const rootElement = document.getElementById('root');
 	ReactDOM.render(<App packageName={packageName} pkg={pkg} components={components} />, rootElement);
 };
