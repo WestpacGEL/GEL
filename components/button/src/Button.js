@@ -198,6 +198,7 @@ export const Button = ({
 				padding: sizeArr.map(s => {
 					if (!s) return null;
 					let p = [...sizeMap[s].padding];
+					if (look === 'link') p[1] = '0';
 					return p.join(' ');
 				}),
 				fontSize: sizeArr.map(s => s && sizeMap[s].fontSize),
