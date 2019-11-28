@@ -180,7 +180,7 @@ export const Button = ({
 				touchAction: 'manipulation',
 				transition: 'background 0.2s ease, color 0.2s ease',
 				userSelect: 'none',
-				verticalAlign: look === 'link' ? 'baseline' : 'middle',
+				verticalAlign: 'middle',
 				whiteSpace: 'nowrap',
 				boxSizing: 'border-box',
 				...TYPE.bodyFont[400],
@@ -198,20 +198,10 @@ export const Button = ({
 				padding: sizeArr.map(s => {
 					if (!s) return null;
 					let p = [...sizeMap[s].padding];
-					if (look === 'link') {
-						p = ['0'];
-					}
-
 					return p.join(' ');
 				}),
 				fontSize: sizeArr.map(s => s && sizeMap[s].fontSize),
-				height: sizeArr.map(s => {
-					if (!s) return null;
-					if (look === 'link') {
-						return null;
-					}
-					return sizeMap[s].height;
-				}),
+				height: sizeArr.map(s => s && sizeMap[s].height),
 				...overrides[look][soft ? 'softCSS' : 'standardCSS'],
 				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
 				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
