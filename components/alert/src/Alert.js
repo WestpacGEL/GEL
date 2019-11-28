@@ -162,7 +162,6 @@ export const Alert = ({
 						<overrides.Heading
 							tag={headingTag}
 							css={{ marginBottom: SPACING(2) }}
-							look={look}
 							dismissible={dismissible}
 						>
 							{heading}
