@@ -8,8 +8,8 @@ export const Tab = forwardRef(
 		{
 			look,
 			children,
-			isLast,
-			isSelected,
+			last,
+			selected,
 			label,
 			mode,
 			panelId,
@@ -22,8 +22,8 @@ export const Tab = forwardRef(
 		ref
 	) => {
 		const { COLORS } = useBrand();
-		const Icon = isSelected ? ExpandLessIcon : ExpandMoreIcon;
-		const iconLabel = isSelected ? 'Show Less' : 'Show More';
+		const Icon = selected ? ExpandLessIcon : ExpandMoreIcon;
+		const iconLabel = selected ? 'Show Less' : 'Show More';
 
 		return (
 			<>
@@ -32,23 +32,23 @@ export const Tab = forwardRef(
 						look={look}
 						onClick={onClick}
 						id={tabId}
-						isLast={isLast}
-						isSelected={isSelected}
+						last={last}
+						selected={selected}
 						aria-controls={panelId}
-						aria-expanded={isSelected}
+						aria-expanded={selected}
 					>
 						<span>{label}</span>
 						<Icon color={COLORS.muted} label={iconLabel} size="small" />
 					</AccordionLabel>
 				) : null}
 				<Panel
-					hidden={!isSelected}
+					hidden={!selected}
 					look={look}
 					aria-labelledby={tabId}
 					id={panelId}
-					aria-selected={isSelected}
-					isLast={isLast}
-					isSelected={isSelected}
+					aria-selected={selected}
+					last={last}
+					selected={selected}
 					mode={mode}
 					role="tabpanel"
 					ref={ref}
@@ -65,7 +65,7 @@ Tab.propTypes = {
 	/** The panel content for this tab */
 	children: PropTypes.node.isRequired,
 	// Whether this tab/panel is selected/expanded
-	isSelected: PropTypes.bool,
+	selected: PropTypes.bool,
 	/** Provide a label that describes the purpose of the set of tabs. */
 	label: PropTypes.string.isRequired,
 	// Whether or not to display the accordion label

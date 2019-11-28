@@ -1,18 +1,19 @@
-import React, { Children, useEffect, useRef, useState } from 'react';
+/** @jsx jsx */
+
+import { Children, forwardRef, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
-import { TabItem, TabRow, AccordionLabel, Panel } from './styled';
 import { Tab } from './Tab';
 import pkg from '../package.json';
 
 let instanceId = 0;
 const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'Enter', 'PageDown', 'PageUp', 'End', 'Home'];
 
+// ==============================
+// Component
+// ==============================
 export const Tabcordion = props => {
-	// TODO: unless explicitly provided, preset the intial index
-	// const initialIndex =
-	// 	props.initialTabIndex !== undefined ? props.initialTabIndex : mode === 'accordion' ? null : 0;
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 
 	const overrides = {
@@ -102,20 +103,19 @@ export const Tabcordion = props => {
 			{mode === 'tabs' ? (
 				<TabRow role="tablist" aria-label={props.ariaLabel} ref={tablistRef}>
 					{Children.map(props.children, (child, idx) => {
-						const isSelected = activeTabIndex === idx;
+						const selected = activeTabIndex === idx;
 						return (
 							<overrides.TabItem
 								look={props.look}
 								aria-controls={getId('panel', idx)}
-								aria-selected={isSelected}
+								aria-selected={selected}
 								id={getId('tab', idx)}
-								isJustified={props.justifyTabs}
-								isLast={idx + 1 === tabCount}
-								isSelected={isSelected}
+								justify={props.justify}
+								last={idx + 1 === tabCount}
+								selected={selected}
 								key={child.props.label}
 								onClick={setActive(idx)}
 								role="tab"
-								tabIndex={isSelected ? 0 : -1}
 							>
 								{child.props.label}
 							</overrides.TabItem>
@@ -125,19 +125,19 @@ export const Tabcordion = props => {
 			) : null}
 
 			{Children.map(props.children, (child, idx) => {
-				const isSelected = activeTabIndex === idx;
+				const selected = activeTabIndex === idx;
 				return (
 					<Tab
 						{...child.props}
 						activeTabIndex={activeTabIndex}
 						look={props.look}
-						isSelected={isSelected}
-						isLast={idx + 1 === tabCount}
+						selected={selected}
+						last={idx + 1 === tabCount}
 						key={child.props.label}
 						mode={mode}
 						onClick={setActive(idx)}
 						panelId={getId('panel', idx)}
-						ref={isSelected ? panelRef : null}
+						ref={selected ? panelRef : null}
 						tabId={getId('tab', idx)}
 						Panel={overrides.Panel}
 						AccordionLabel={overrides.AccordionLabel}
@@ -148,6 +148,9 @@ export const Tabcordion = props => {
 	);
 };
 
+// ==============================
+// Types
+// ==============================
 Tabcordion.propTypes = {
 	/** The look of the tabs */
 	look: PropTypes.oneOf(['soft', 'lego']),
@@ -164,13 +167,167 @@ Tabcordion.propTypes = {
 	/** Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc. */
 	instanceId: PropTypes.string,
 	/** Whether or not tabs should stretch full width */
-	justifyTabs: PropTypes.bool,
+	justify: PropTypes.bool,
 	/** Lock the mode to either "accordion" or "tabs". The default is responsive. */
 	mode: PropTypes.oneOf(['accordion', 'responsive', 'tabs']),
 };
 Tabcordion.defaultProps = {
 	look: 'soft',
 	initialTabIndex: 0,
-	justifyTabs: false,
+	justify: false,
 	mode: 'responsive',
 };
+
+// ==============================
+// Overrides & Styled Components
+// ==============================
+const TabRow = forwardRef((props, ref) => (
+	<div
+		ref={ref}
+		css={{
+			display: 'flex',
+			whiteSpace: 'nowrap',
+			position: 'relative',
+		}}
+		{...props}
+	/>
+));
+
+const TabItem = ({ look, justify, selected, last, ...props }) => {
+	// last prop instead of last child??
+	const { COLORS: colors } = useBrand();
+	const tabRef = useRef();
+
+	const styles = {
+		soft: {
+			backgroundColor: selected ? '#fff' : colors.background,
+			borderTopLeftRadius: '0.1875rem',
+			borderTopRightRadius: '0.1875rem',
+			border: `1px solid ${colors.border}`,
+			borderBottom: 0,
+			color: colors.neutral,
+			marginBottom: selected && '-1px',
+		},
+		lego: {
+			backgroundColor: selected ? '#fff' : colors.hero,
+			border: `1px solid ${selected ? colors.border : 'transparent'}`,
+			borderBottom: 0,
+			color: selected ? colors.text : '#fff',
+			marginBottom: selected ? '-1px' : '0.125rem',
+		},
+	};
+
+	// might be able to move this
+	useEffect(() => {
+		if (selected) {
+			tabRef.current.focus();
+		}
+	}, [selected]);
+
+	return (
+		<button
+			ref={tabRef}
+			css={{
+				flex: justify ? 1 : 0,
+				fontSize: '1rem',
+				marginRight: '0.125rem',
+				padding: '0.875rem 1.125rem',
+				textAlign: 'left',
+				textDecoration: 'none',
+				transition: 'background .3s ease',
+				width: '100%',
+				cursor: 'pointer',
+				':last-child': {
+					marginRight: 0,
+				},
+				...styles[look],
+			}}
+			{...props}
+		/>
+	);
+};
+
+const AccordionLabel = ({ look, last, selected, ...props }) => {
+	const { COLORS: colors } = useBrand();
+	const styles = {
+		soft: {
+			borderBottom: selected && `1px solid ${colors.border}`,
+			...(last &&
+				!selected && {
+					borderBottom: `1px solid ${colors.border}`,
+					borderBottomLeftRadius: '0.1875rem',
+					borderBottomRightRadius: '0.1875rem',
+				}),
+			':first-of-type': {
+				borderTopLeftRadius: '0.1875rem',
+				borderTopRightRadius: '0.1875rem',
+			},
+		},
+		lego: {
+			borderBottom: selected && `1px solid ${colors.border}`,
+			borderLeftWidth: '6px',
+			borderLeftColor: selected ? colors.border : colors.hero.default,
+			':last-of-type': {
+				borderBottom: `1px solid ${colors.border}`,
+			},
+		},
+	};
+	return (
+		<button
+			css={{
+				alignItems: 'center',
+				backgroundColor: colors.background,
+				border: 0,
+				borderTop: `1px solid ${colors.border}`,
+				borderLeft: `1px solid ${colors.border}`,
+				borderRight: `1px solid ${colors.border}`,
+				cursor: 'pointer',
+				display: 'flex',
+				fontSize: '1rem',
+				justifyContent: 'space-between',
+				padding: '0.75rem 1.125rem',
+				position: 'relative',
+				textAlign: 'left',
+				width: '100%',
+				...styles[look],
+			}}
+			{...props}
+		/>
+	);
+};
+
+const Panel = forwardRef(({ look, last, selected, mode, ...props }, ref) => {
+	const { COLORS: colors, PACKS: packs } = useBrand();
+	const styles =
+		mode === 'accordion'
+			? {
+					lego: {
+						borderLeftWidth: '0.375rem',
+						borderLeftColor: colors.border,
+					},
+					soft: last
+						? {
+								borderBottomLeftRadius: '0.1875rem',
+								borderBottomRightRadius: '0.1875rem',
+						  }
+						: {},
+			  }
+			: {};
+	return (
+		<div
+			ref={ref}
+			css={{
+				borderLeft: `1px solid ${colors.border}`,
+				borderRight: `1px solid ${colors.border}`,
+				borderBottom: (mode === 'tabs' || last) && `1px solid ${colors.border}`,
+				borderTop: mode === 'tabs' && `1px solid ${colors.border}`,
+				padding: '1.5rem 3.22%',
+				':focus': {
+					// color: packs.link.color,
+				},
+				...styles[look],
+			}}
+			{...props}
+		/>
+	);
+});

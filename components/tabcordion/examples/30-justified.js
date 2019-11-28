@@ -7,7 +7,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h3>Soft</h3>
-			<Tabcordion mode="tabs" appearance="soft" justifyTabs>
+			<Tabcordion mode="tabs" appearance="soft" justify>
 				<Tab label="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -52,7 +52,7 @@ function Example({ brand }) {
 				</Tab>
 			</Tabcordion>
 			<h3>Lego</h3>
-			<Tabcordion mode="tabs" appearance="lego" justifyTabs>
+			<Tabcordion mode="tabs" appearance="lego" justify>
 				<Tab label="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
