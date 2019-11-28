@@ -4,6 +4,8 @@ import { GEL, jsx } from '@westpac/core';
 import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
 import { HouseIcon } from '@westpac/icon';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const NewCrumb = ({ current, ...rest }) => {
 	return <Crumb {...rest} />;
 };
@@ -32,6 +34,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<h2>With overrides applied</h2>
 			<Breadcrumb>
 				<Crumb href="#/" text="Home" />

@@ -10,9 +10,13 @@ import {
 } from '@westpac/symbol';
 import { Cell, Grid, Name } from './_utils';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<Grid>
 				<Cell>
 					<MastercardAcceptedSymbol />

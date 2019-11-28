@@ -4,6 +4,8 @@ import { GEL, jsx } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const CloseBtnNew = ({ onClose, icon: Icon, closable, look, ...rest }) => (
 	<button onClick={() => onClose()} {...rest}>
 		Close <Icon />
@@ -34,6 +36,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<h2>With overrides applied</h2>
 			<Alert>
 				This is a default alert. <a href="#">Link</a>

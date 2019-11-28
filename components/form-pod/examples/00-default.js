@@ -14,6 +14,8 @@ import { HeadsetIcon, LiveChatIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 import { Fragment } from 'react';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const { COLORS } = useBrand();
 
@@ -37,6 +39,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore />
+
 			<Global
 				styles={{
 					// Lets apply a background to simulate being inside the Template component

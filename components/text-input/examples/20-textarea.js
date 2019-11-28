@@ -1,19 +1,32 @@
 /** @jsx jsx */
 
+import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Textarea } from '@westpac/text-input';
 import { Form } from '@westpac/form';
+
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const sizes = ['small', 'medium', 'large', 'xlarge'];
 const widths = [2, 3, 4, 5, 10, 20, 30];
 
 function Example({ brand }) {
+	const [value, setValue] = useState('default text');
+
+	const handleChange = event => {
+		setValue(event.target.value);
+	};
+
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<h2>Default instance</h2>
 			<Textarea />
-			<br />
 
+			<h2>Controlled</h2>
+			<Textarea value={value} onChange={handleChange} />
+			<br />
 			<hr />
 
 			<h2>Size</h2>

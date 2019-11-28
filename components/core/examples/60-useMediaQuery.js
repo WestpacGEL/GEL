@@ -3,11 +3,15 @@
 import { GEL, jsx, useMediaQuery } from '@westpac/core';
 import { Code } from './_utils';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const mq = useMediaQuery();
 
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore />
+
 			<strong>[1,2,3,4]</strong>
 			<Code>{JSON.stringify(mq({ thing: [1, 2, 3, 4] }), null, 2)}</Code>
 

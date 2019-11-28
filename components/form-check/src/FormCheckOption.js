@@ -11,7 +11,7 @@ import { useFormCheckContext } from './FormCheck';
 // ==============================
 
 export const FormCheckOption = ({ value, checked, disabled, onChange, children, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, BRAND } = useBrand();
 	const { type, name, size, inline, flipped } = useFormCheckContext();
 
 	const [isChecked, setChecked] = useState(checked);
@@ -178,7 +178,7 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 					'::after': {
 						content: '""',
 						position: 'absolute',
-						border: `solid ${COLORS.hero}`,
+						border: `solid ${BRAND === 'STG' ? COLORS.text : COLORS.hero}`,
 						opacity: 0, //hide
 						top: `calc(((${controlHeight} - ${checkHeight}) / 2) + ${checkTweak})`,
 						[flipped ? 'right' : 'left']: `calc((${controlWidth} - ${checkWidth}) / 2)`,

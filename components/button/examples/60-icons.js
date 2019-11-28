@@ -12,9 +12,12 @@ import {
 	StarIcon,
 } from '@westpac/icon';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia />
 			<h2>Icon after</h2>
 			<Button look="primary" size="small" iconAfter={HouseIcon}>
 				Small

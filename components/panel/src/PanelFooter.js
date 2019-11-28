@@ -1,15 +1,21 @@
 /** @jsx jsx */
 
-import React from 'react';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
 export const PanelFooter = props => {
-	const { COLORS } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
+
+	const overrides = {
+		footerCSS: {},
+	};
+
+	merge(overrides, overridesWithTokens);
 
 	return (
 		<div
@@ -19,6 +25,7 @@ export const PanelFooter = props => {
 				borderTop: `1px solid ${COLORS.border}`,
 				borderBottomRightRadius: `calc(0.1875rem - 1px)`,
 				borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
+				...overrides.footerCSS,
 			})}
 			{...props}
 		/>

@@ -3,9 +3,12 @@
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia />
 			<p>
 				Active state styling is provided with a <code>:active</code> pseudo-class. The following
 				examples have been programatically forced via use of an <code>active</code> class.

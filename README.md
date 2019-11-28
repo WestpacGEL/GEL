@@ -66,40 +66,45 @@ yarn start button
 ├── yarn.lock
 │
 ├── helper/
+│   ├── component-template/         # the starter files for when a new component is created via cli
+│   │
 │   ├── example/
-│   │   ├── index.js          # example wrapper for `yarn dev`
-│   │   └── webpack.config.js # dynamic webpack config to run the `yarn dev` task
-│   ├── docz/                 # Docz files to style the docs
-│   │   ├── theme.js
-│   │   └── wrapper.js
-│   ├── tester.js             # Helps cypress testing of each component
-│   └── cli.js                # helper file for cli like adding a new module
+│   │   ├── components/             # an assortment of components helping us build the example pages
+│   │   ├── _utils.js               # shared logic
+│   │   ├── docs.js                 # entry file for `yarn docs` task
+│   │   ├── docs.webpack.config.js  # dynamic webpack config to run the `yarn docs` task
+│   │   ├── start.js                # entry file for `yarn start` task
+│   │   └── start.webpack.config.js # dynamic webpack config to run the `yarn start` task
+│   │
+│   ├── public/                     # file in this folder will be moved into the docs/ folder
+│   │
+│   ├── transformer/                # the transfomer files to convert tokens into platform data
+│   │   ├── _utils.js               # shared logic
+│   │   └── web.js                  # transforms tokens to web
+│   │
+│   ├── buildExports.js             # helps cypress testing of each component
+│   ├── cli.js                      # helper file for cli like adding a new module
+│   └── tester.js                   # helps cypress testing of each component
 │
-├── components/               # all ds components that will be published
+├── components/                     # all ds components that are published
 │   ├── component1/
 │   ├── component2/
 │   └── component3/
 │
-├── brands/
-│   ├── WBC/
+├── brands/                         # all brand components
+│   ├── BOM/
+│   │   ├── dist/                   # distribution files (build artifact)
+│   │   ├── src/                    # to automatically create the dist
+│   │   ├── tokens/                 # token files
 │   │   ├── LICENSE
-│   │   ├── README.md
 │   │   ├── package.json
-│   │   ├── index.js          # only for exports
-│   │   ├── fonts/            # design tokens files
-│   │   └── tokens/           # font files
+│   │   └── README.md
 │   ├── STG/
 │   │   └── etc
-│   └── BOM/
+│   └── WBC/
 │       └── etc
 │
-├── examples/                 # complex examples like templates
-│   ├── demo1/                # for testing multiple components
-│   │   └── tests/            # each have test folders
-│   ├── demo2/
-│   └── demo3/
-│
-└── docs/                     # the built out files for the documentation
+└── docs/                           # the static files for the documentation (build artifact)
 ```
 
 ## Component
@@ -111,36 +116,31 @@ yarn start button
 ├── package.json            # scope: `@westpac/`
 │
 ├── src/                    # all the source
+│   ├── _util.js            # for reused logic within the component [optional]
 │   ├── index.js            # only for exports
 │   ├── ComponentX.js       # only for the components, can be multiple files
-│   ├── styled.js           # only for styles [optional]
-│   ├── vanilla.js          # only for static site generation
-│   └── _util.js            # for reused logic within the component [optional]
-│
-├── docs/                   # documentation for docz later
-│   ├── thing1.mdx          # documenting features etc
-│   └── thing2.mdx
+│   └── styled.js           # only for styles [optional]
 │
 ├── examples/               # the demo folder is for seeing the components in action
+│   ├── _util.js            # for reused logic within the examples [optional]
 │   ├── 00-example.js       # show-case props and variations
 │   ├── 10-example.js       # all files not starting with a dot or an underscore
-│   ├── 20-example.js       # will be processes with `yarn dev`
-│   └── _util.js            # for reused logic within the examples [optional]
+│   └── 20-example.js       # will be processes with `yarn start`
 │
 └── tests/                  # test includes all tests
-    ├── unit/
-    │   └── unit.spec.js    # jest test file for unit tests
-    └── integration/
-        └── test.cypress.js # cypress test file for integration tests
+    ├── integration/
+    │   └── test.cypress.js # cypress test file for integration tests
+    └── unit/
+        └── unit.spec.js    # jest test file for unit tests
 ```
 
 ## Decisions
 
 - All scripts are run through the `yarn` command
-- The `helpers/` folder will include all helpers for builds, docs, testing etc
+- The `helpers/` folder includes all helpers for builds, docs, testing etc
 - We have two different example / doc concerns:
   1. Examples: they are for building components locally and to explain code per component
-  1. Docs: this is a website that will be published for documenting APIs (https://westpacgel.github.io/GEL/)
+  1. Docs: this is a website that includes all components and be published to https://westpacgel.github.io/GEL/
 - Multi-brand will be achieved by added a brand package that will be passed to the `<GEL/>` component
 
   ```jsx
@@ -158,8 +158,8 @@ yarn start button
   - `spacing`
   - `type`
 - All components use named exports as the default, no default exports
-- Brands will also have a default export containing the "tokens" objects in addition to the named exports of each.
-- Each component has local tokens that can be overwritten with the object passed into `<GEL/>`
+- All brands components will have a default export containing the "tokens" objects in addition to the named exports of each.
+- Each component has overrides that can be overwritten with the object passed into `<GEL/>`
 
   ```jsx
   import { GEL } from '@westpac/core';
@@ -171,13 +171,14 @@ yarn start button
   export const App = () => <GEL brand={brand}>Your app</GEL>;
   ```
 
-- These local tokens are defined in the component themself and will merge the global tokens before applying them
+- These overrides are defined in the component them-self and merge the global tokens before applying them
 - Each package can be addressed by its name as the key in the tokens
 - The `example/` folder is for documenting composition of several components together e.g. templates
 - Fonts can't be shipped with npm so the tokens only define the css declarations for the fonts
-- css-in-js emotion will be used with the `jsx` pragma and babel plugin
+- css-in-js [emotion](https://emotion.sh/docs/introduction) is used with the `jsx` pragma and babel plugin
 - For css-in-js we use `jsx` imported from `@westpac/core` and never depend on `emotion` directly other than inside core itself
-- All components that are made up of a group of other components like `list`, `breadcrumb`, `button-group`, `input-group` etc can be driven solely by the `data` prop
+- All components that are made up of a group of other components like `list`, `breadcrumb`, `button-group`, `input-group` etc can be driven solely by the
+  `data` prop
 - If children have to be altered inside a component we use the `cloneElement` function when we know it's a shallow depth.
   We use context when we don't know how deep the children are going to be.
 
@@ -245,7 +246,7 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 | `TYPE`    | Font files and definitions                               |
 | `BRAND`   | The current brand                                        |
 
-## Local tokens naming convention (Overwrites)
+## Overrides naming convention
 
 | What                   | Rule                                                                 | Do                                                | Don't                                                 |
 | ---------------------- | -------------------------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------- |

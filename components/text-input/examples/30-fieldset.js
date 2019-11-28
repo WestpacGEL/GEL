@@ -1,26 +1,28 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { TextInput } from '@westpac/text-input';
+import { Text, Textarea, Select } from '@westpac/text-input';
 
-// Example options
-const options = ['Select', '1', '2', '3'];
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<h2>Default</h2>
 			<fieldset>
 				<legend>Legend</legend>
-				<TextInput />
+				<Text />
 				<br />
-				<TextInput tag="select">
-					{options.map((v, i) => (
-						<option key={i}>{v}</option>
-					))}
-				</TextInput>
+				<Select>
+					<option>Select</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+				</Select>
 				<br />
-				<TextInput tag="textarea" />
+				<Textarea />
 			</fieldset>
 
 			<hr />
@@ -28,15 +30,16 @@ function Example({ brand }) {
 			<h2>Disabled</h2>
 			<fieldset disabled>
 				<legend>Legend</legend>
-				<TextInput />
+				<Text />
 				<br />
-				<TextInput tag="select">
-					{options.map((v, i) => (
-						<option key={i}>{v}</option>
-					))}
-				</TextInput>
+				<Select>
+					<option>Select</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+				</Select>
 				<br />
-				<TextInput tag="textarea" />
+				<Textarea />
 			</fieldset>
 		</GEL>
 	);

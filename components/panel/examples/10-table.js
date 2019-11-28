@@ -4,9 +4,13 @@ import { GEL, jsx } from '@westpac/core';
 import { Panel, Header, Body } from '@westpac/panel';
 import { PanelTable } from '@westpac/table';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore />
+
 			<h2>Panel with body and table</h2>
 			<Panel>
 				<Header>Panel title</Header>

@@ -3,17 +3,25 @@
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 // Examples
 const sizes = [
 	['small', 'medium', 'large', 'xlarge'],
 	['large', 'medium'],
 	['small', null, 'large'],
 ];
-const blocks = [[true, false, true, false], [true, false], [true, null, false]];
+const blocks = [
+	[true, false, true, false],
+	[true, false],
+	[true, null, false],
+];
 
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<h2>Responsive sizing</h2>
 			{sizes.map((s, i) => (
 				<p key={i}>

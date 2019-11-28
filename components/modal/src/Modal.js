@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { jsx } from '@westpac/core';
+import { createContext, useContext, useState, useEffect } from 'react';
+import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import FocusLock from 'react-focus-lock';
 import { CSSTransition } from 'react-transition-group';
-import { Backdrop, StyledModal } from './styled';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
@@ -28,7 +28,16 @@ export const useModalContext = () => {
 // Component
 // ==============================
 export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
+	const { [pkg.name]: overridesWithTokens } = useBrand();
 	const [open, setOpen] = useState(isOpen);
+
+	const overrides = {
+		duration: 300,
+		backdropCSS: {},
+		css: {},
+	};
+
+	merge(overrides, overridesWithTokens);
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -66,8 +75,14 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 	};
 
 	return ReactDOM.createPortal(
-		<CSSTransition mountOnEnter unmountOnExit in={open} timeout={300} classNames="modal-backdrop">
-			<Backdrop onClick={handleBackdropClick}>
+		<CSSTransition
+			mountOnEnter
+			unmountOnExit
+			in={open}
+			timeout={overrides.duration}
+			classNames="modal-backdrop"
+		>
+			<Backdrop onClick={handleBackdropClick} css={overrides.backdropCSS}>
 				<FocusLock returnFocus autoFocus={false}>
 					<CSSTransition appear in={open} timeout={100} classNames="modal">
 						<ModalContext.Provider value={{ titleId, bodyId, handleClose }}>
@@ -78,6 +93,7 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 								aria-describedby={bodyId}
 								tabIndex="-1"
 								size={size}
+								css={overrides.css}
 								{...props}
 							>
 								{children}
@@ -97,14 +113,80 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 
 Modal.propTypes = {
 	/** State of whether the modal is open */
-	open: PropTypes.bool,
+	open: PropTypes.bool.isRequired,
 	/** Callback function for handling modal state */
 	onClose: PropTypes.func,
 	/** Size of the modal */
-	size: PropTypes.oneOf(['small', 'medium', 'large']),
+	size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
 };
 
 Modal.defaultProps = {
 	open: false,
 	size: 'medium',
+};
+
+// ==============================
+// Styled Components
+// ==============================
+const Backdrop = props => (
+	<div
+		css={{
+			position: 'fixed',
+			zIndex: '1001',
+			backgroundColor: 'rgba(0,0,0,0.5)',
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0,
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'baseline',
+			transition: 'all 0.3s ease',
+
+			'&.modal-backdrop-enter': {
+				opacity: 0,
+			},
+
+			'&.modal-backdrop-enter-active': {
+				opacity: 1,
+			},
+
+			'&.modal-backdrop-exit': {
+				opacity: 1,
+			},
+
+			'&.modal-backdrop-exit-active': {
+				opacity: 0,
+			},
+		}}
+		{...props}
+	/>
+);
+
+const StyledModal = ({ size, ...props }) => {
+	const mq = useMediaQuery();
+
+	return (
+		<div
+			css={mq({
+				overflow: 'auto',
+				maxHeight: '85%',
+				margin: '0 0.75rem',
+				backgroundColor: '#fff',
+				borderRadius: 3,
+				boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
+				transition: 'all 0.3s ease',
+				width: ['auto', size === 'small' ? '18.75rem' : '37.5rem', size === 'large' && '56.25rem'],
+
+				'&.modal-appear': {
+					opacity: 0,
+				},
+
+				'&.modal-appear-done': {
+					transform: 'translate(0rem,1.875rem)',
+				},
+			})}
+			{...props}
+		/>
+	);
 };

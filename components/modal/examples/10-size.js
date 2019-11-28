@@ -5,6 +5,8 @@ import { useReducer } from 'react';
 import { Modal, Header, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };
 
@@ -27,6 +29,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<p>
 				<Button onClick={() => updateModal('default', true)}>Open default modal</Button>
 			</p>
@@ -41,7 +45,7 @@ function Example({ brand }) {
 					ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<Button appearance="faint" onClick={() => updateModal('default', false)}>
+					<Button look="faint" onClick={() => updateModal('default', false)}>
 						Close
 					</Button>
 				</Footer>
@@ -72,7 +76,7 @@ function Example({ brand }) {
 					of one! There ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<Button appearance="faint" onClick={() => updateModal('small', false)}>
+					<Button look="faint" onClick={() => updateModal('small', false)}>
 						Close
 					</Button>
 				</Footer>
@@ -92,7 +96,7 @@ function Example({ brand }) {
 					ought to be a book written about me, that there ought!’
 				</Body>
 				<Footer>
-					<Button appearance="faint" onClick={() => updateModal('large', false)}>
+					<Button look="faint" onClick={() => updateModal('large', false)}>
 						Close
 					</Button>
 				</Footer>
