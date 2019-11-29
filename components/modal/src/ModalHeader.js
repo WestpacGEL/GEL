@@ -29,7 +29,7 @@ export const ModalHeader = ({ overrides: overridesComponent, children, ...props 
 				justifyContent: 'space-between',
 				alignItems: 'flex-start',
 				overflow: 'hidden',
-				borderBottom: `1px solid ${COLORS.border}`,
+				borderBottom: `1px solid ${COLORS.hero}`,
 				padding: '1rem 1.5rem 0.75rem',
 			}}
 			{...props}
