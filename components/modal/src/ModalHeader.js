@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // ==============================
 export const ModalHeader = ({ overrides: overridesComponent, children, ...props }) => {
 	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
-	const { titleId, handleClose } = useModalContext();
+	const { dismissible, titleId, handleClose } = useModalContext();
 
 	const overrides = {
 		Header: props => <div {...props} />,
@@ -25,12 +25,8 @@ export const ModalHeader = ({ overrides: overridesComponent, children, ...props 
 	return (
 		<overrides.Header
 			css={{
-				display: 'flex',
-				justifyContent: 'space-between',
-				alignItems: 'flex-start',
-				overflow: 'hidden',
 				borderBottom: `1px solid ${COLORS.hero}`,
-				padding: '1rem 1.5rem 0.75rem',
+				padding: '1.5rem 2.25rem 1.125rem 1.5rem',
 			}}
 			{...props}
 		>
@@ -44,18 +40,21 @@ export const ModalHeader = ({ overrides: overridesComponent, children, ...props 
 			>
 				{children}
 			</overrides.Title>
-			<overrides.CloseBtn
-				onClick={handleClose}
-				icon={CloseIcon}
-				css={{
-					marginTop: '-0.3125rem',
-					marginRight: '-0.625rem',
-					color: COLORS.text,
-					':hover svg': {
-						opacity: 0.5,
-					},
-				}}
-			/>
+			{dismissible && (
+				<overrides.CloseBtn
+					onClick={handleClose}
+					icon={CloseIcon}
+					css={{
+						position: 'absolute',
+						top: '0.375rem',
+						right: '0.75rem',
+						color: COLORS.text,
+						':hover svg': {
+							opacity: 0.5,
+						},
+					}}
+				/>
+			)}
 		</overrides.Header>
 	);
 };
@@ -83,5 +82,5 @@ ModalHeader.propTypes = {
 // Styled Components
 // ==============================
 const CloseBtn = ({ onClose, icon, ...props }) => (
-	<Button iconAfter={icon} look="link" {...props} />
+	<Button look="link" iconAfter={icon} {...props} />
 );

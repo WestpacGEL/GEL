@@ -9,6 +9,8 @@ import FocusLock from 'react-focus-lock';
 import { CSSTransition } from 'react-transition-group';
 import pkg from '../package.json';
 
+import { ModalHeader } from './ModalHeader';
+
 // ==============================
 // Context and Consumer Hook
 // ==============================
@@ -28,9 +30,11 @@ export const useModalContext = () => {
 // Component
 // ==============================
 export const Modal = ({
+	heading,
 	open: isOpen,
 	onClose,
 	size,
+	dismissible,
 	overrides: overridesComponent,
 	children,
 	...props
@@ -64,7 +68,7 @@ export const Modal = ({
 
 	// on escape close modal
 	const keyHandler = event => {
-		if (event.keyCode === 27) handleClose();
+		if (dismissible && event.keyCode === 27) handleClose();
 	};
 
 	// bind key events
@@ -76,7 +80,7 @@ export const Modal = ({
 	});
 
 	const handleBackdropClick = e => {
-		if (e.target === e.currentTarget) {
+		if (dismissible && e.target === e.currentTarget) {
 			handleClose();
 		}
 	};
@@ -92,7 +96,7 @@ export const Modal = ({
 			<Backdrop onClick={handleBackdropClick} css={overrides.backdropCSS}>
 				<FocusLock returnFocus autoFocus={false}>
 					<CSSTransition appear in={open} timeout={100} classNames="modal">
-						<ModalContext.Provider value={{ titleId, bodyId, handleClose }}>
+						<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
 							<StyledModal
 								role="dialog"
 								aria-modal="true"
@@ -103,6 +107,7 @@ export const Modal = ({
 								css={overrides.css}
 								{...props}
 							>
+								<ModalHeader>{heading}</ModalHeader>
 								{children}
 							</StyledModal>
 						</ModalContext.Provider>
@@ -120,6 +125,11 @@ export const Modal = ({
 
 Modal.propTypes = {
 	/**
+	 * Modal heading text
+	 */
+	heading: PropTypes.string.isRequired,
+
+	/**
 	 * State of whether the modal is open
 	 */
 	open: PropTypes.bool.isRequired,
@@ -135,6 +145,13 @@ Modal.propTypes = {
 	size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
 
 	/**
+	 * Enable dismissible mode.
+	 *
+	 * Allows modal close via close button, background overlay click and Esc key.
+	 */
+	dismissible: PropTypes.bool,
+
+	/**
 	 * Modal overrides
 	 */
 	overrides: PropTypes.shape({
@@ -147,6 +164,7 @@ Modal.propTypes = {
 Modal.defaultProps = {
 	open: false,
 	size: 'medium',
+	dismissible: true,
 };
 
 // ==============================
@@ -197,7 +215,7 @@ const StyledModal = ({ size, ...props }) => {
 				maxHeight: '85%',
 				margin: '0 0.75rem',
 				backgroundColor: '#fff',
-				borderRadius: 3,
+				borderRadius: '0.1875rem',
 				boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
 				transition: 'all 0.3s ease',
 				width: ['auto', size === 'small' ? '18.75rem' : '37.5rem', size === 'large' && '56.25rem'],
@@ -207,7 +225,7 @@ const StyledModal = ({ size, ...props }) => {
 				},
 
 				'&.modal-appear-done': {
-					transform: 'translate(0rem,1.875rem)',
+					transform: 'translate(0,1.875rem)',
 				},
 			})}
 			{...props}

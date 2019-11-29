@@ -2,12 +2,12 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { useState } from 'react';
-import { Modal, Header, Body, Footer } from '@westpac/modal';
+import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const HeaderNew = props => <div css={{ borderBottom: `2px solid palevioletred` }} {...props} />;
+// const HeaderNew = props => <div css={{ borderBottom: `2px solid palevioletred` }} {...props} />;
 
 const HeaderNew = props => (
 	<div
@@ -54,8 +54,7 @@ function Example({ brand }) {
 			<Intopia ignore />
 
 			<Button onClick={() => setOpen(true)}>Open</Button>
-			<Modal open={open} onClose={() => setOpen(false)}>
-				<Header>Modal Title</Header>
+			<Modal heading="Modal Title" open={open} onClose={() => setOpen(false)}>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
