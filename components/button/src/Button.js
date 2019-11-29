@@ -165,7 +165,7 @@ export const Button = ({
 
 	return (
 		<Tag
-			type={Tag === 'button' && props.onClick ? 'button' : undefined}
+			type={Tag === 'button' ? 'button' : undefined}
 			disabled={disabled}
 			css={mq({
 				alignItems: 'center', //vertical

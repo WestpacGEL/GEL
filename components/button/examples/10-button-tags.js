@@ -22,8 +22,8 @@ function Example({ brand }) {
 			<h2>
 				Button with a <code>&lt;button&gt;</code> tag
 			</h2>
-			<Button type="button">Button</Button> <Button type="reset">Reset</Button>{' '}
-			<Button type="submit">Submit</Button>
+			<Button>Default</Button> <Button type="button">Button</Button>{' '}
+			<Button type="reset">Reset</Button> <Button type="submit">Submit</Button>
 			<hr />
 			<h2>
 				Button with an <code>&lt;input&gt;</code> tag
