@@ -20,7 +20,7 @@ export const sizeMap = {
 // Token component
 // ==============================
 
-const IconWrapper = ({ size, ...props }) => {
+const IconWrapper = ({ icon, color, label, size, ...props }) => {
 	const mq = useMediaQuery();
 
 	// Size styling (responsive)
@@ -48,7 +48,7 @@ const IconWrapper = ({ size, ...props }) => {
 // Component
 // ==============================
 
-export const Icon = ({ icon, color, label, size, children, ...props }) => {
+export const Icon = ({ color, label, size, children, ...props }) => {
 	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
 	const overrides = {
