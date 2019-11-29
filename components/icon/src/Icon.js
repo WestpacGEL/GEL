@@ -48,7 +48,7 @@ const IconWrapper = ({ size, ...props }) => {
 // Component
 // ==============================
 
-export const Icon = ({ children, color, label, size, ...props }) => {
+export const Icon = ({ icon, color, label, size, children, ...props }) => {
 	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
 	const overrides = {
@@ -58,13 +58,7 @@ export const Icon = ({ children, color, label, size, ...props }) => {
 	merge(overrides, overridesWithTokens);
 
 	return (
-		<overrides.Wrapper
-			size={size}
-			color={color}
-			label={label}
-			css={{ color: color ? color : COLORS.muted }}
-			{...props}
-		>
+		<overrides.Wrapper size={size} css={{ color: color ? color : COLORS.muted }} {...props}>
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"
