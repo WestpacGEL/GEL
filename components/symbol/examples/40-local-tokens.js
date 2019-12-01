@@ -10,6 +10,8 @@ import {
 } from '@westpac/symbol';
 import { Cell, Grid } from './_utils';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const Wrapper = ({ children, symbol, ...props }) => (
 	<div
 		css={{
@@ -31,6 +33,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<h2>With overrides applied</h2>
 			<Grid>
 				<Cell>

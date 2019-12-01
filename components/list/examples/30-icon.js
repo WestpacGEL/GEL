@@ -4,9 +4,13 @@ import { GEL, jsx } from '@westpac/core';
 import { AndroidIcon, GithubIcon } from '@westpac/icon';
 import { List, Item } from '@westpac/list';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<h3>Icon</h3>
 			<List type="icon" icon={AndroidIcon}>
 				<Item>Styled icon list</Item>

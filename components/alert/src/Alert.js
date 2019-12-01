@@ -13,11 +13,11 @@ import pkg from '../package.json';
 // Overwrite component
 // ==============================
 
-const CloseBtn = ({ onClose, icon, look, closable, ...rest }) => (
+const CloseBtn = ({ onClose, icon, look, dismissible, ...rest }) => (
 	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />
 );
 
-const BodyHeading = ({ tag, children, closable, ...rest }) => (
+const BodyHeading = ({ tag, children, dismissible, ...rest }) => (
 	<Heading size={7} tag={tag} {...rest}>
 		{children}
 	</Heading>
@@ -27,7 +27,15 @@ const BodyHeading = ({ tag, children, closable, ...rest }) => (
 // Component
 // ==============================
 
-export const Alert = ({ look, closable, icon: Icon, heading, headingTag, children, ...rest }) => {
+export const Alert = ({
+	look,
+	dismissible,
+	icon: Icon,
+	heading,
+	headingTag,
+	children,
+	...rest
+}) => {
 	const { COLORS, SPACING, [pkg.name]: brandOverrides } = useBrand();
 	const mq = useMediaQuery();
 	const [open, setOpen] = useState(true);
@@ -90,7 +98,7 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 			<div
 				css={mq({
 					marginBottom: '1.3125rem',
-					padding: ['1.125rem', closable ? `1.125rem 1.875rem 1.125rem 1.125rem` : '1.125rem'],
+					padding: ['1.125rem', dismissible ? `1.125rem 1.875rem 1.125rem 1.125rem` : '1.125rem'],
 					position: 'relative',
 					display: [null, 'flex'],
 					zIndex: 1,
@@ -105,12 +113,12 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 				})}
 				{...rest}
 			>
-				{closable && (
+				{dismissible && (
 					<overrides.CloseBtn
 						onClose={() => setOpen(false)}
 						icon={CloseIcon}
 						look={look}
-						closable={closable}
+						dismissible={dismissible}
 						css={mq({
 							color: 'inherit',
 							position: ['relative', 'absolute'],
@@ -154,8 +162,7 @@ export const Alert = ({ look, closable, icon: Icon, heading, headingTag, childre
 						<overrides.Heading
 							tag={headingTag}
 							css={{ marginBottom: SPACING(2) }}
-							look={look}
-							closable={closable}
+							dismissible={dismissible}
 						>
 							{heading}
 						</overrides.Heading>
@@ -178,9 +185,9 @@ Alert.propTypes = {
 	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']).isRequired,
 
 	/**
-	 * Enable closable mode
+	 * Enable dismissible mode
 	 */
-	closable: PropTypes.bool.isRequired,
+	dismissible: PropTypes.bool.isRequired,
 
 	/**
 	 * Alert icon.
@@ -207,6 +214,6 @@ Alert.propTypes = {
 
 Alert.defaultProps = {
 	look: 'info',
-	closable: false,
+	dismissible: false,
 	headingTag: 'h2',
 };

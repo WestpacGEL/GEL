@@ -4,7 +4,9 @@ import { GEL, jsx } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
 
-const CloseBtnNew = ({ onClose, icon: Icon, closable, look, ...rest }) => (
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
+const CloseBtnNew = ({ onClose, icon: Icon, dismissible, look, ...rest }) => (
 	<button onClick={() => onClose()} {...rest}>
 		Close <Icon />
 	</button>
@@ -34,12 +36,14 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<h2>With overrides applied</h2>
 			<Alert>
 				This is a default alert. <a href="#">Link</a>
 			</Alert>
 
-			<Alert look="system" heading="System Error 8942" closable>
+			<Alert look="system" heading="System Error 8942" dismissible>
 				The server is no responding. Please try again later. Sorry for the inconvenience. Hey neato,
 				I can be closed. <a href="#">Link</a>
 			</Alert>
@@ -62,7 +66,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h3>Alert heading</h3>
-			<Alert look="success" closable>
+			<Alert look="success" dismissible>
 				<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I
 				can be closed. <a href="#">Link</a>
 			</Alert>

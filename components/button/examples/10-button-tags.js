@@ -3,11 +3,14 @@
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const Link = ({ children, ...rest }) => <span {...rest}>{children}</span>;
 
 	return (
 		<GEL brand={brand}>
+			<Intopia />
 			<h2>
 				Button with an <code>&lt;a&gt;</code> tag
 			</h2>
@@ -19,8 +22,8 @@ function Example({ brand }) {
 			<h2>
 				Button with a <code>&lt;button&gt;</code> tag
 			</h2>
-			<Button type="button">Button</Button> <Button type="reset">Reset</Button>{' '}
-			<Button type="submit">Submit</Button>
+			<Button>Default</Button> <Button type="button">Button</Button>{' '}
+			<Button type="reset">Reset</Button> <Button type="submit">Submit</Button>
 			<hr />
 			<h2>
 				Button with an <code>&lt;input&gt;</code> tag

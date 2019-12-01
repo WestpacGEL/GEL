@@ -3,9 +3,13 @@
 import { GEL, jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<h3>Link List</h3>
 			<List type="link">
 				<Item>Styled link list</Item>

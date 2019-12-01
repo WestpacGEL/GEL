@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Pagination, Page } from '@westpac/pagination';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const content = ['Page One', 'Page Two', 'Page Three'];
 	const [current, setCurrent] = useState(0);
@@ -11,11 +13,34 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<h2>Declarative</h2>
 			<Pagination current={1}>
 				<Page label="1" />
 				<Page label="2" />
 				<Page label="3" />
+
+			<Pagination>
+				<Item disabled>
+					<VisuallyHidden>Step</VisuallyHidden>
+					<span>Back</span>
+					<VisuallyHidden>one page</VisuallyHidden>
+				</Item>
+				<Item active>
+					<a href="#">1</a>
+				</Item>
+				<Item>
+					<a href="#">2</a>
+				</Item>
+				<Item>
+					<a href="#">3</a>
+				</Item>
+				<Item>
+					<VisuallyHidden>Step to the</VisuallyHidden>
+					<a href="#">Next</a>
+					<VisuallyHidden>page</VisuallyHidden>
+				</Item>
 			</Pagination>
 
 			<h2>Declarative as router</h2>

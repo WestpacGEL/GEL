@@ -1,16 +1,21 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { round, sizeMap } from './_utils';
+import { jsx, useBrand, merge, useMediaQuery } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { round, sizeMap } from './_utils';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
 export const Text = ({ size, width, inline, invalid, children, ...props }) => {
-	const { COLORS, PACKS, TYPE } = useBrand();
+	const { COLORS, PACKS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
+
+	const overrides = { textCSS: {} };
+
+	merge(overrides, overridesWithTokens);
 
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
 	const focus = { ...PACKS.focus };
@@ -69,6 +74,7 @@ export const Text = ({ size, width, inline, invalid, children, ...props }) => {
 					appearance: 'none',
 				},
 				maxWidth: width && `calc(${extras} + ${round(width * 1.81)}ex)`,
+				...overrides.textCSS,
 			})}
 			{...props}
 		/>

@@ -25,7 +25,7 @@ export const Button = ({
 	children,
 	...props
 }) => {
-	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
+	const { COLORS, TYPE, BRAND, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
@@ -69,7 +69,7 @@ export const Button = ({
 		},
 		hero: {
 			standardCSS: {
-				color: '#fff', //TODO: STG uses `COLORS.text`
+				color: BRAND === 'STG' ? COLORS.text : '#fff',
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
 
@@ -86,11 +86,11 @@ export const Button = ({
 				borderColor: COLORS.hero,
 
 				':hover': {
-					color: '#fff', //TODO: STG uses `COLORS.text` (i.e. `color: null`)
+					color: BRAND === 'STG' ? COLORS.text : '#fff',
 					backgroundColor: COLORS.tints.hero70,
 				},
 				':active, &.active': {
-					color: '#fff', //TODO: STG uses `COLORS.text` (i.e. `color: null`)
+					color: BRAND === 'STG' ? COLORS.text : '#fff',
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},
@@ -165,7 +165,7 @@ export const Button = ({
 
 	return (
 		<Tag
-			type={Tag === 'button' && props.onClick ? 'button' : undefined}
+			type={Tag === 'button' ? 'button' : undefined}
 			disabled={disabled}
 			css={mq({
 				alignItems: 'center', //vertical
@@ -180,7 +180,7 @@ export const Button = ({
 				touchAction: 'manipulation',
 				transition: 'background 0.2s ease, color 0.2s ease',
 				userSelect: 'none',
-				verticalAlign: look === 'link' ? 'baseline' : 'middle',
+				verticalAlign: 'middle',
 				whiteSpace: 'nowrap',
 				boxSizing: 'border-box',
 				...TYPE.bodyFont[400],
@@ -198,20 +198,11 @@ export const Button = ({
 				padding: sizeArr.map(s => {
 					if (!s) return null;
 					let p = [...sizeMap[s].padding];
-					if (look === 'link') {
-						p = ['0'];
-					}
-
+					if (look === 'link') p[1] = '0';
 					return p.join(' ');
 				}),
 				fontSize: sizeArr.map(s => s && sizeMap[s].fontSize),
-				height: sizeArr.map(s => {
-					if (!s) return null;
-					if (look === 'link') {
-						return null;
-					}
-					return sizeMap[s].height;
-				}),
+				height: sizeArr.map(s => s && sizeMap[s].height),
 				...overrides[look][soft ? 'softCSS' : 'standardCSS'],
 				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
 				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),

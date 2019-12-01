@@ -3,6 +3,8 @@
 import { GEL, jsx, useBrand } from '@westpac/core';
 import { useState } from 'react';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const { COLORS, SPACING } = useBrand();
 	const { tints, ...primaryColors } = COLORS;
@@ -11,6 +13,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore />
+
 			<h2>Spacing</h2>
 			<label
 				css={{

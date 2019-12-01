@@ -4,9 +4,13 @@ import { GEL, jsx } from '@westpac/core';
 import { Form, FormGroup, FormLabel } from '@westpac/form';
 import { Box } from './_utils';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore />
+
 			<h2>Default instance (no styling props)</h2>
 			<Form>
 				<FormGroup>

@@ -5,6 +5,8 @@ import * as components from '@westpac/icon';
 import { Cell, Grid, Name } from './_util';
 import { useState } from 'react';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 // can't believe this works...
 const icons = Object.keys(components);
 
@@ -42,6 +44,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<Intopia />
+
 			<Search
 				autoFocus
 				onChange={e => setInputValue(e.target.value)}
