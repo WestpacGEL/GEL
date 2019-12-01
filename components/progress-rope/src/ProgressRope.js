@@ -1,17 +1,10 @@
 /** @jsx jsx */
 
-import {
-	Children,
-	cloneElement,
-	createContext,
-	useReducer,
-	useState,
-	useEffect,
-	useContext,
-} from 'react';
+import { Children, cloneElement, createContext, useReducer, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { ProgressRopeGroup } from './ProgressRopeGroup';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
@@ -34,7 +27,7 @@ export const useProgressRopeContext = () => {
 const createRopeGraph = children => {
 	const ropeGraph = [];
 	let grouped = false;
-	Children.forEach(children, (child, i) => {
+	Children.forEach(children, child => {
 		if (child.type === ProgressRopeGroup) {
 			grouped = true;
 			ropeGraph.push(Array(Children.count(child.props.children)).fill('unvisited'));
@@ -48,7 +41,14 @@ const createRopeGraph = children => {
 // ==============================
 // Component
 // ==============================
-export const ProgressRope = ({ current, children, ...props }) => {
+export const ProgressRope = ({ current, overrides: overridesComponent, children, ...props }) => {
+	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const overrides = {
+		ropeCSS: {},
+	};
+
+	merge(overrides, overridesWithTokens, overridesComponent);
+
 	const initialState = {
 		currStep: current,
 		currGroup: 0,
@@ -107,7 +107,16 @@ export const ProgressRope = ({ current, children, ...props }) => {
 
 	return (
 		<ProgressRopeContext.Provider value={{ ...state, handleClick }}>
-			<ol css={{ position: 'relative', listStyle: 'none', paddingLeft: 0, margin: 0 }} {...props}>
+			<ol
+				css={{
+					position: 'relative',
+					listStyle: 'none',
+					paddingLeft: 0,
+					margin: 0,
+					...overrides.ropeCSS,
+				}}
+				{...props}
+			>
 				{Children.map(children, (child, i) => cloneElement(child, { index: i }))}
 			</ol>
 		</ProgressRopeContext.Provider>
@@ -118,7 +127,17 @@ export const ProgressRope = ({ current, children, ...props }) => {
 // Types
 // ==============================
 ProgressRope.propTypes = {
-	current: PropTypes.number,
+	/**
+	 * Current active item (zero-indexed)
+	 */
+	current: PropTypes.number.isRequired,
+
+	/**
+	 * ProgressRope overrides
+	 */
+	overrides: PropTypes.shape({
+		ropeCSS: PropTypes.object,
+	}),
 };
 
 ProgressRope.defaultProps = {

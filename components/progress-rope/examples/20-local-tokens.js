@@ -6,10 +6,24 @@ import { Button } from '@westpac/button';
 import { ProgressRope, Group, Item } from '@westpac/progress-rope';
 import { useProgress, Link } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const [state, dispatch] = useProgress();
+
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/progress-rope'] = {
+		ropeCSS: {
+			border: '1px solid black',
+		},
+		ropeGroupCSS: {
+			backgroundColor: 'lavender',
+		},
+		ropeGroupLabelCSS: {
+			color: 'palevioletred',
+		},
+		ropeItemCSS: {
+			textDecoration: 'underline',
+		},
+	};
 
 	const handleClick = index => e => {
 		e.preventDefault();
@@ -17,9 +31,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={brand}>
-			<Intopia />
-
+		<GEL brand={overridesWithTokens}>
 			<Grid>
 				<Cell width={4}>
 					<ProgressRope current={state.index}>
