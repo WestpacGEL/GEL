@@ -1,15 +1,19 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
 export const Caption = props => {
-	const { COLORS, TYPE } = useBrand();
+	const { TYPE, [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		captionCSS: {},
+	};
+	merge(overrides, overridesWithTokens);
 
 	return (
 		<caption
@@ -18,12 +22,9 @@ export const Caption = props => {
 				textAlign: 'left',
 				marginBottom: '0.75rem',
 				...TYPE.bodyFont[300],
+				...overrides.captionCSS,
 			}}
 			{...props}
 		/>
 	);
 };
-
-// ==============================
-// Types
-// ==============================

@@ -1,19 +1,25 @@
 /** @jsx jsx */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-
 export const Tbody = ({ ...props }) => {
-	const { COLORS, TYPE } = useBrand();
+	const { [pkg.name]: overridesWithTokens } = useBrand();
 
-	return <tbody css={{}} {...props} />;
+	const overrides = {
+		tbodyCSS: {},
+	};
+	merge(overrides, overridesWithTokens);
+
+	return (
+		<tbody
+			css={{
+				...overrides.tbodyCSS,
+			}}
+			{...props}
+		/>
+	);
 };
-
-// ==============================
-// Types
-// ==============================
