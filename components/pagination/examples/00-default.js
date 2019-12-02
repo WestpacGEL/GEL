@@ -20,6 +20,7 @@ function Example({ brand }) {
 				<Page label="1" />
 				<Page label="2" />
 				<Page label="3" />
+			</Pagination>
 
 			<Pagination>
 				<Item disabled>
