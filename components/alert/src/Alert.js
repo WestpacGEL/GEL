@@ -125,10 +125,10 @@ export const Alert = ({
 							position: ['relative', 'absolute'],
 							zIndex: 1,
 							float: ['right', 'none'],
-							top: SPACING(1),
+							top: SPACING(1, 'minor'),
 							right: SPACING(1),
-							marginTop: ['-1.125rem', 0],
-							marginRight: ['-1.125rem', 0],
+							marginTop: [`-${SPACING(3, 'major')}`, 0],
+							marginRight: [`-${SPACING(3, 'major')}`, 0],
 							opacity: 1,
 
 							':hover': {
