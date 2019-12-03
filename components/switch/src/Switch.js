@@ -59,7 +59,7 @@ export const Switch = ({
 	srOnlyText,
 	...props
 }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+	const { COLORS, PACKS, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 	const [checked, setChecked] = useState(isChecked);
 	const sizeArr = responsiveMap(asArray(size));
@@ -140,6 +140,9 @@ export const Switch = ({
 						backgroundColor: '#fff',
 						boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 						transition: 'all .3s ease',
+					},
+					'input:focus ~ &': {
+						...PACKS.focus,
 					},
 					...overrides.toggleCSS,
 				})}
