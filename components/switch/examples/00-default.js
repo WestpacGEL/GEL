@@ -14,10 +14,11 @@ function Example({ brand }) {
 			<Intopia />
 
 			<h2>Default instance (no styling props)</h2>
-			<Switch name="example-default" label="Turn notifications" />
+			<Switch name="example-default" id="example-default" label="Turn notifications" />
 			<h2>Controlled</h2>
 			<Switch
 				name="example-checked"
+				id="example-checked"
 				label={'Turn notifications'}
 				checked={checked}
 				onChange={() => {

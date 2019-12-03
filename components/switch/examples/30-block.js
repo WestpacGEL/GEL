@@ -12,16 +12,33 @@ function Example({ brand }) {
 			<Intopia />
 
 			<h2>Default block</h2>
-			<Switch name="example-block-1" label={label} block />
-			<Switch name="example-block-2" label="Lorem ipsum dolor sit amet" block />
+			<Switch name="example-block-1" id="example-block-1" label={label} block />
+			<Switch
+				name="example-block-2"
+				id="example-block-2"
+				label="Lorem ipsum dolor sit amet"
+				block
+			/>
 
 			<hr />
 
 			<h2>Flipped block</h2>
-			<Switch name="example-flipped-block-1" label="Enable notifications" flipped block />
+			<Switch
+				name="example-flipped-block-1"
+				id="example-flipped-block-1"
+				label="Enable notifications"
+				flipped
+				block
+			/>
 			<hr />
 
-			<Switch name="example-flipped-block-2" label={label} flipped block />
+			<Switch
+				name="example-flipped-block-2"
+				id="example-flipped-block-2"
+				label={label}
+				flipped
+				block
+			/>
 		</GEL>
 	);
 }

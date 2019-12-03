@@ -12,10 +12,16 @@ function Example({ brand }) {
 
 			<Switch
 				name="example-toggletext"
+				id="example-toggletext"
 				label="This example uses custom Yes/No toggle text"
 				toggleText={['Yes', 'No']}
 			/>
-			<Switch name="no-toggletext" label="Pass an empty array for no toggle text" toggleText={[]} />
+			<Switch
+				name="no-toggletext"
+				id="no-toggletext"
+				label="Pass an empty array for no toggle text"
+				toggleText={[]}
+			/>
 		</GEL>
 	);
 }

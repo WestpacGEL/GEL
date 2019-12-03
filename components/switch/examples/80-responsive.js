@@ -13,12 +13,14 @@ function Example({ brand }) {
 			<h2>This breakpoint and wider</h2>
 			<Switch
 				name="example-responsive-1"
+				id="example-responsive-1"
 				label="Extra large for MD breakpoint and wider"
 				size={['medium', 'xlarge']}
 				block
 			/>
 			<Switch
 				name="example-responsive-2"
+				id="example-responsive-2"
 				label="Small but Extra large for LG breakpoint"
 				size={['small', null, 'xlarge']}
 				block
@@ -27,18 +29,21 @@ function Example({ brand }) {
 			<h2>This breakpoint only</h2>
 			<Switch
 				name="example-responsive-3"
+				id="example-responsive-3"
 				label="Extra large for LG breakpoint only"
 				size={['medium', null, 'xlarge', 'medium']}
 				block
 			/>
 			<Switch
 				name="example-responsive-4"
+				id="example-responsive-4"
 				label="Small for LG breakpoint only"
 				size={['medium', null, 'small', 'medium']}
 				block
 			/>
 			<Switch
 				name="example-responsive-5"
+				id="example-responsive-5"
 				label="Small but Extra large for SM breakpoint only"
 				size={['small', 'xlarge', 'small']}
 				block
