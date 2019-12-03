@@ -253,8 +253,13 @@ const Label = ({ block, flipped, ...props }) => (
 );
 
 const ToggleText = ({ position, checked, size, ...props }) => {
-	const { COLORS } = useBrand();
+	const { BRAND, COLORS } = useBrand();
 	const mq = useMediaQuery();
+
+	let color = '#fff';
+	if (BRAND === 'STG') {
+		color = COLORS.text;
+	}
 
 	return (
 		<span
@@ -268,7 +273,7 @@ const ToggleText = ({ position, checked, size, ...props }) => {
 				fontSize: size.fontSize,
 				paddingLeft: '0.25rem',
 				paddingRight: '0.25rem',
-				color: position === 'right' ? COLORS.neutral : '#fff',
+				color: position === 'right' ? COLORS.text : color,
 				textAlign: 'center',
 			})}
 			{...props}
