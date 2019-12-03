@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
+import { Body } from '@westpac/body';
 import { CSSTransition } from 'react-transition-group';
 import { Heading } from '@westpac/heading';
 import { Button } from '@westpac/button';
@@ -147,7 +148,7 @@ export const Alert = ({
 						color="inherit"
 					/>
 				)}
-				<div
+				<Body
 					css={mq({
 						position: 'relative',
 						flex: 1,
@@ -168,7 +169,7 @@ export const Alert = ({
 						</overrides.Heading>
 					)}
 					{children}
-				</div>
+				</Body>
 			</div>
 		</CSSTransition>
 	);
