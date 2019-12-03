@@ -153,7 +153,7 @@ export const Alert = ({
 						position: 'relative',
 						flex: 1,
 						top: [null, Icon && '0.125rem'],
-						'& > a, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, & > ol, & > ul': {
+						'a, h1, h2, h3, h4, h5, h6, ol, ul': {
 							color: 'inherit',
 						},
 						...overrides.innerCSS,
