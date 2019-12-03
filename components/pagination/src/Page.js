@@ -7,11 +7,17 @@ import { usePaginationContext } from './Pagination';
 import pkg from '../package.json';
 
 // ==============================
+// Override Component
+// ==============================
+
+const PageLink = props => <button {...props} />;
+
+// ==============================
 // Component
 // ==============================
 
 export const Page = ({ index, label, first, last, disabled, ariaLabel, ...props }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+	const { BRAND, COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 	const { current } = usePaginationContext();
 
 	const active = index === current;
@@ -23,16 +29,21 @@ export const Page = ({ index, label, first, last, disabled, ariaLabel, ...props 
 
 	merge(overrides, overridesWithTokens);
 
+	const activeColor = BRAND === 'STG' ? COLORS.text : '#fff';
+
 	return (
 		<li>
 			<overrides.PageLink
 				css={{
+					appearance: 'none',
 					marginLeft: -1,
+					lineHeight: 1.15,
+					display: 'inline-block',
 					border: `1px solid ${active ? COLORS.hero : COLORS.border}`,
 					backgroundColor: active ? COLORS.hero : '#fff',
 					padding: '0.4375rem 0.75rem',
 					fontSize: '0.875rem',
-					color: active ? '#fff' : COLORS.neutral,
+					color: active ? activeColor : COLORS.neutral,
 					textDecoration: 'none',
 					cursor: 'pointer',
 					transition: 'background .2s ease, border .2s ease',
@@ -105,9 +116,3 @@ Page.defaultProps = {
 	last: false,
 	disabled: false,
 };
-
-// ==============================
-// Override Component
-// ==============================
-
-const PageLink = props => <a {...props} />;

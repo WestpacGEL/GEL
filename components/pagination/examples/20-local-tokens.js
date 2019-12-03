@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Pagination, Page } from '@westpac/pagination';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const PageLink = props => <button {...props} />;
 
 function Example({ brand }) {
@@ -22,6 +24,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<Pagination
 				current={current}
 				back={{

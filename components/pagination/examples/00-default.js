@@ -16,40 +16,19 @@ function Example({ brand }) {
 			<Intopia />
 
 			<h2>Declarative</h2>
-			<Pagination current={1}>
-				<Page label="1" />
-				<Page label="2" />
-				<Page label="3" />
-			</Pagination>
-
-			<Pagination>
-				<Item disabled>
-					<VisuallyHidden>Step</VisuallyHidden>
-					<span>Back</span>
-					<VisuallyHidden>one page</VisuallyHidden>
-				</Item>
-				<Item active>
-					<a href="#">1</a>
-				</Item>
-				<Item>
-					<a href="#">2</a>
-				</Item>
-				<Item>
-					<a href="#">3</a>
-				</Item>
-				<Item>
-					<VisuallyHidden>Step to the</VisuallyHidden>
-					<a href="#">Next</a>
-					<VisuallyHidden>page</VisuallyHidden>
-				</Item>
+			<Pagination current={0}>
+				<Page label="1" onClick={() => console.log('Page 1')} />
+				<Page label="2" onClick={() => console.log('Page 2')} />
+				<Page label="3" onClick={() => console.log('Page 3')} />
 			</Pagination>
 
 			<h2>Declarative as router</h2>
-			<p> {content[current]}</p>
+			<p>{content[current]}</p>
 			<Pagination
 				current={current}
 				back={{
-					onClick: () => {
+					onClick: e => {
+						e.preventDefault();
 						setCurrent(current - 1);
 					},
 				}}
@@ -99,12 +78,16 @@ function Example({ brand }) {
 					ariaLabel: 'Go to the next page',
 				}}
 				data={{
-					pages: [{ label: '1' }, { label: '2' }, { label: '3' }],
+					pages: [
+						{ label: '1', onClick: () => console.log('Page 1') },
+						{ label: '2', onClick: () => console.log('Page 2') },
+						{ label: '3', onClick: () => console.log('Page 3') },
+					],
 				}}
 			/>
 
 			<h2>Data Driven as router</h2>
-			<p> {content[current2]}</p>
+			<p>{content[current2]}</p>
 			<Pagination
 				current={current2}
 				back={{

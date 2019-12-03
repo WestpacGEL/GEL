@@ -72,7 +72,6 @@ export const Pagination = ({
 				index={index}
 				label={page.label}
 				onClick={wrapHandlers(page.onClick, event => {
-					event.preventDefault();
 					pageLogic.setCurrent(index);
 				})}
 				first={index === 0 && !back.visible}
@@ -86,7 +85,6 @@ export const Pagination = ({
 				first: index === 0 && !back.visible,
 				last: index === pageCount - 1 && !next.visible,
 				onClick: wrapHandlers(child.props.onClick, event => {
-					event.preventDefault();
 					pageLogic.setCurrent(index);
 				}),
 			})
@@ -102,6 +100,7 @@ export const Pagination = ({
 					margin: '1.3125rem 0',
 					borderRadius: '0.1875rem',
 					listStyle: 'none',
+					alignItems: 'center',
 					...overrides.css,
 				}}
 				{...props}
@@ -113,7 +112,6 @@ export const Pagination = ({
 						disabled={pageLogic.current === 0}
 						ariaLabel={back.ariaLabel}
 						onClick={wrapHandlers(back.onClick, event => {
-							event.preventDefault();
 							pageLogic.previous();
 						})}
 					/>
@@ -126,7 +124,6 @@ export const Pagination = ({
 						disabled={pageLogic.current === pageCount - 1}
 						ariaLabel={next.ariaLabel}
 						onClick={wrapHandlers(next.onClick, event => {
-							event.preventDefault();
 							pageLogic.next();
 						})}
 					/>
@@ -153,7 +150,7 @@ Pagination.propTypes = {
 	current: PropTypes.number.isRequired,
 
 	/**
-	 *	Back button options
+	 * Back button options
 	 */
 	back: PropTypes.shape(interaction),
 
@@ -165,9 +162,18 @@ Pagination.propTypes = {
 	/**
 	 * Alternative to children
 	 */
-	data: PropTypes.object,
+	data: PropTypes.shape({
+		pages: PropTypes.arrayOf(
+			PropTypes.shape({
+				label: PropTypes.string.isRequired,
+				onClick: PropTypes.func.isRequired,
+			})
+		),
+	}),
 
-	/**  Any renderable child */
+	/**
+	 * Any renderable child
+	 */
 	children: PropTypes.node,
 };
 
