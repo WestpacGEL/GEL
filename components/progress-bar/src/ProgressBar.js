@@ -16,7 +16,7 @@ const round = value => Math.round(value);
 // ==============================
 
 export const ProgressBar = ({ value, look, ...props }) => {
-	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
+	const { COLORS, TYPE, BRAND, [pkg.name]: overridesWithTokens } = useBrand();
 
 	const roundedValue = round(value);
 
@@ -77,7 +77,7 @@ export const ProgressBar = ({ value, look, ...props }) => {
 					height: '100%',
 					fontSize: '0.875rem',
 					lineHeight: '1.25rem',
-					color: '#fff',
+					color: BRAND === 'STG' ? COLORS.text : '#fff',
 					textAlign: 'right',
 					backgroundColor: COLORS.hero,
 					zIndex: 2,
