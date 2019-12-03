@@ -9,7 +9,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	const content = ['Page One', 'Page Two', 'Page Three'];
-	const paginate = usePagination({ pageCount: 3, infinite: true });
+	const paginate = usePagination({ pages: content, infinite: true });
 
 	return (
 		<GEL brand={brand}>
@@ -17,19 +17,9 @@ function Example({ brand }) {
 
 			<h2>usePagination</h2>
 			<div css={{ display: 'flex', justifyContent: 'space-between', width: '300px' }}>
-				<Button
-					look="link"
-					size="xlarge"
-					iconAfter={ArrowLeftIcon}
-					onClick={() => paginate.previous()}
-				/>
+				<Button look="link" size="xlarge" iconAfter={ArrowLeftIcon} onClick={paginate.previous} />
 				<p>{content[paginate.current]}</p>
-				<Button
-					look="link"
-					size="xlarge"
-					iconAfter={ArrowRightIcon}
-					onClick={() => paginate.next()}
-				/>
+				<Button look="link" size="xlarge" iconAfter={ArrowRightIcon} onClick={paginate.next} />
 			</div>
 		</GEL>
 	);

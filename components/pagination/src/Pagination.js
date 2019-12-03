@@ -3,9 +3,10 @@
 import { useEffect, Children, cloneElement, createContext, useContext } from 'react';
 import { jsx, useBrand, merge, wrapHandlers } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { Page } from './Page';
+
 import { usePagination } from './usePagination';
 import pkg from '../package.json';
+import { Page } from './Page';
 
 // ==============================
 // Context and Consumer Hook
@@ -28,6 +29,7 @@ export const usePaginationContext = () => {
 
 export const Pagination = ({
 	current,
+	infinite,
 	back: backProps,
 	next: nextProps,
 	data,
@@ -35,7 +37,6 @@ export const Pagination = ({
 	...props
 }) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
-	const pageLogic = usePagination(current);
 
 	const overrides = {
 		css: {},
@@ -57,38 +58,38 @@ export const Pagination = ({
 	merge(back, backProps);
 	merge(next, nextProps);
 
+	let allChildren = data;
+
+	if (!data) {
+		allChildren = Children.map(children, child => ({
+			...child.props,
+		}));
+	}
+
+	const pageLogic = usePagination({ pages: allChildren, current, infinite });
+
 	useEffect(() => {
 		pageLogic.setCurrent(current);
 	}, [current]);
 
-	let allChildren;
+	const pageCount = allChildren.length;
 
-	const pageCount = data ? data.pages.length : Children.count(children);
+	let nextIndex = pageLogic.current + 1;
+	if (nextIndex > pageCount - 1) {
+		if (infinite) {
+			nextIndex = 0;
+		} else {
+			nextIndex = pageCount - 1;
+		}
+	}
 
-	if (data) {
-		allChildren = data.pages.map((page, index) => (
-			<Page
-				key={index}
-				index={index}
-				label={page.label}
-				onClick={wrapHandlers(page.onClick, event => {
-					pageLogic.setCurrent(index);
-				})}
-				first={index === 0 && !back.visible}
-				last={index === pageCount - 1 && !next.visible}
-			/>
-		));
-	} else {
-		allChildren = Children.map(children, (child, index) =>
-			cloneElement(child, {
-				index,
-				first: index === 0 && !back.visible,
-				last: index === pageCount - 1 && !next.visible,
-				onClick: wrapHandlers(child.props.onClick, event => {
-					pageLogic.setCurrent(index);
-				}),
-			})
-		);
+	let backIndex = pageLogic.current - 1;
+	if (backIndex < 0) {
+		if (infinite) {
+			backIndex = pageCount - 1;
+		} else {
+			backIndex = 0;
+		}
 	}
 
 	return (
@@ -109,23 +110,37 @@ export const Pagination = ({
 					<Page
 						label={back.label}
 						first
-						disabled={pageLogic.current === 0}
+						disabled={pageLogic.current === 0 && !infinite}
 						ariaLabel={back.ariaLabel}
-						onClick={wrapHandlers(back.onClick, event => {
-							pageLogic.previous();
-						})}
+						onClick={wrapHandlers(
+							event => back.onClick && back.onClick(event, backIndex),
+							event => pageLogic.previous(event)
+						)}
 					/>
 				)}
-				{allChildren}
+				{allChildren.map((page, index) => (
+					<Page
+						key={index}
+						index={index}
+						label={page.label}
+						onClick={wrapHandlers(
+							event => page.onClick(event, index),
+							event => pageLogic.setCurrent(index, event)
+						)}
+						first={index === 0 && !back.visible}
+						last={index === pageCount - 1 && !next.visible}
+					/>
+				))}
 				{next.visible && (
 					<Page
 						label={next.label}
 						last
-						disabled={pageLogic.current === pageCount - 1}
+						disabled={pageLogic.current === pageCount - 1 && !infinite}
 						ariaLabel={next.ariaLabel}
-						onClick={wrapHandlers(next.onClick, event => {
-							pageLogic.next();
-						})}
+						onClick={wrapHandlers(
+							event => next.onClick && next.onClick(event, nextIndex),
+							event => pageLogic.next(event)
+						)}
 					/>
 				)}
 			</ul>
@@ -160,16 +175,19 @@ Pagination.propTypes = {
 	next: PropTypes.shape(interaction),
 
 	/**
+	 * Infinite option
+	 */
+	infinite: PropTypes.bool,
+
+	/**
 	 * Alternative to children
 	 */
-	data: PropTypes.shape({
-		pages: PropTypes.arrayOf(
-			PropTypes.shape({
-				label: PropTypes.string.isRequired,
-				onClick: PropTypes.func.isRequired,
-			})
-		),
-	}),
+	data: PropTypes.arrayOf(
+		PropTypes.shape({
+			label: PropTypes.string.isRequired,
+			onClick: PropTypes.func.isRequired,
+		})
+	),
 
 	/**
 	 * Any renderable child

@@ -16,10 +16,23 @@ function Example({ brand }) {
 			<Intopia />
 
 			<h2>Declarative</h2>
-			<Pagination current={0}>
-				<Page label="1" onClick={() => console.log('Page 1')} />
-				<Page label="2" onClick={() => console.log('Page 2')} />
-				<Page label="3" onClick={() => console.log('Page 3')} />
+			<Pagination>
+				<Page label="1" onClick={(_, page) => console.log(`Page ${page}`)} />
+				<Page label="2" onClick={(_, page) => console.log(`Page ${page}`)} />
+				<Page label="3" onClick={(_, page) => console.log(`Page ${page}`)} />
+			</Pagination>
+
+			<Pagination current={1}>
+				<Page label="1" onClick={(_, page) => console.log(`Page ${page}`)} />
+				<Page label="2" onClick={(_, page) => console.log(`Page ${page}`)} />
+				<Page label="3" onClick={(_, page) => console.log(`Page ${page}`)} />
+			</Pagination>
+
+			<h2>Infinite</h2>
+			<Pagination infinite>
+				<Page label="1" onClick={(_, page) => console.log(`Infinite page ${page}`)} />
+				<Page label="2" onClick={(_, page) => console.log(`Infinite page ${page}`)} />
+				<Page label="3" onClick={(_, page) => console.log(`Infinite page ${page}`)} />
 			</Pagination>
 
 			<h2>Declarative as router</h2>
@@ -61,9 +74,11 @@ function Example({ brand }) {
 					label="3"
 				/>
 			</Pagination>
+
 			<br />
 			<hr />
 			<br />
+
 			<h2>Data Driven</h2>
 			<Pagination
 				current={2}
@@ -77,13 +92,11 @@ function Example({ brand }) {
 					label: 'Next',
 					ariaLabel: 'Go to the next page',
 				}}
-				data={{
-					pages: [
-						{ label: '1', onClick: () => console.log('Page 1') },
-						{ label: '2', onClick: () => console.log('Page 2') },
-						{ label: '3', onClick: () => console.log('Page 3') },
-					],
-				}}
+				data={[
+					{ label: '1', onClick: () => console.log('Page 1') },
+					{ label: '2', onClick: () => console.log('Page 2') },
+					{ label: '3', onClick: () => console.log('Page 3') },
+				]}
 			/>
 
 			<h2>Data Driven as router</h2>
@@ -101,28 +114,26 @@ function Example({ brand }) {
 						setCurrent2(current2 + 1);
 					},
 				}}
-				data={{
-					pages: [
-						{
-							onClick: () => {
-								setCurrent2(0);
-							},
-							label: '1',
+				data={[
+					{
+						onClick: () => {
+							setCurrent2(0);
 						},
-						{
-							onClick: () => {
-								setCurrent2(1);
-							},
-							label: '2',
+						label: '1',
+					},
+					{
+						onClick: () => {
+							setCurrent2(1);
 						},
-						{
-							onClick: () => {
-								setCurrent2(2);
-							},
-							label: '3',
+						label: '2',
+					},
+					{
+						onClick: () => {
+							setCurrent2(2);
 						},
-					],
-				}}
+						label: '3',
+					},
+				]}
 			/>
 		</GEL>
 	);

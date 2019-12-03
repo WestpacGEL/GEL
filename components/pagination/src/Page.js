@@ -70,6 +70,7 @@ export const Page = ({ index, label, first, last, disabled, ariaLabel, ...props 
 
 					...overrides.pageCSS,
 				}}
+				disabled={disabled}
 				{...props}
 			>
 				<VisuallyHidden>{ariaLabel ? ariaLabel : `Go to page ${label}`}</VisuallyHidden>
@@ -91,16 +92,6 @@ Page.propTypes = {
 	label: PropTypes.string,
 
 	/**
-	 * If page is first in pagination
-	 */
-	first: PropTypes.bool,
-
-	/**
-	 * If page is last in pagination
-	 */
-	last: PropTypes.bool,
-
-	/**
 	 * If page is disabled
 	 */
 	disabled: PropTypes.bool,
@@ -112,7 +103,5 @@ Page.propTypes = {
 };
 
 Page.defaultProps = {
-	first: false,
-	last: false,
 	disabled: false,
 };
