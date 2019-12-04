@@ -10,7 +10,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<Switch name="example-checked" id="example-checked" label="Turn notifications" checked />
+			<Switch name="example-checked" label="Turn notifications" checked />
 		</GEL>
 	);
 }

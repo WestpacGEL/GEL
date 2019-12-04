@@ -13,17 +13,11 @@ function Example({ brand }) {
 			<h2>Screenreader only text mode</h2>
 			<Switch
 				name="example-sronlytext-1"
-				id="example-sronlytext-1"
 				label="Screen reader only text"
 				toggleText={[]}
 				srOnlyText
 			/>
-			<Switch
-				name="example-sronlytext-2"
-				id="example-sronlytext-2"
-				label="Screen reader only text"
-				srOnlyText
-			/>
+			<Switch name="example-sronlytext-2" label="Screen reader only text" srOnlyText />
 		</GEL>
 	);
 }

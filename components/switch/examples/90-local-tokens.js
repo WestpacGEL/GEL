@@ -29,14 +29,12 @@ function Example({ brand }) {
 			<h2>With local tokens applied</h2>
 			<Switch
 				name="example-default"
-				id="example-default"
 				label="Turn notifications"
 				checked={checked}
 				onChange={() => setChecked(!checked)}
 			/>
 			<Switch
 				name="example-default2"
-				id="example-default2"
 				label="Turn notifications"
 				checked={checked}
 				onChange={() => setChecked(!checked)}

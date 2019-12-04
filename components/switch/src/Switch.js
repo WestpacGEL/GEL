@@ -48,7 +48,6 @@ const responsiveMap = size => ({
 // ==============================
 export const Switch = ({
 	name,
-	id,
 	label,
 	checked: isChecked,
 	onChange,
@@ -83,7 +82,6 @@ export const Switch = ({
 
 	return (
 		<label
-			htmlFor={id}
 			css={mq({
 				display: block ? 'flex' : 'inline-flex',
 				opacity: disabled && 0.5,
@@ -103,7 +101,6 @@ export const Switch = ({
 			<input
 				type="checkbox"
 				name={name}
-				id={id}
 				checked={checked}
 				onChange={handleChange(name)}
 				disabled={disabled}
@@ -188,11 +185,6 @@ Switch.propTypes = {
 	 * Switch input element name
 	 */
 	name: PropTypes.string,
-
-	/**
-	 * Switch input element id
-	 */
-	id: PropTypes.string.isRequired,
 
 	/**
 	 * On/off text.
