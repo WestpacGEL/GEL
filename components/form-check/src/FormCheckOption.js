@@ -11,7 +11,7 @@ import { useFormCheckContext } from './FormCheck';
 // ==============================
 
 export const FormCheckOption = ({ value, checked, disabled, onChange, children, ...props }) => {
-	const { COLORS, BRAND } = useBrand();
+	const { COLORS, PACKS, BRAND } = useBrand();
 	const { type, name, size, inline, flipped } = useFormCheckContext();
 
 	const [isChecked, setChecked] = useState(checked);
@@ -163,8 +163,7 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 
 						// Focus state
 						'body:not(.isMouseMode) input:focus + &': {
-							outline: `2px solid ${COLORS.focus}`,
-							outlineOffset: 3,
+							...PACKS.focus,
 						},
 
 						// Disabled state
