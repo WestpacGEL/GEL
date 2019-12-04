@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
+import { Body } from '@westpac/body';
 import { CSSTransition } from 'react-transition-group';
 import { Heading } from '@westpac/heading';
 import { Button } from '@westpac/button';
@@ -124,10 +125,10 @@ export const Alert = ({
 							position: ['relative', 'absolute'],
 							zIndex: 1,
 							float: ['right', 'none'],
-							top: SPACING(1),
+							top: SPACING(1, 'minor'),
 							right: SPACING(1),
-							marginTop: ['-1.125rem', 0],
-							marginRight: ['-1.125rem', 0],
+							marginTop: [`-${SPACING(3, 'major')}`, 0],
+							marginRight: [`-${SPACING(3, 'major')}`, 0],
 							opacity: 1,
 
 							':hover': {
@@ -147,12 +148,12 @@ export const Alert = ({
 						color="inherit"
 					/>
 				)}
-				<div
+				<Body
 					css={mq({
 						position: 'relative',
 						flex: 1,
 						top: [null, Icon && '0.125rem'],
-						'& > a, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, & > ol, & > ul': {
+						'a, h1, h2, h3, h4, h5, h6, ol, ul': {
 							color: 'inherit',
 						},
 						...overrides.innerCSS,
@@ -168,7 +169,7 @@ export const Alert = ({
 						</overrides.Heading>
 					)}
 					{children}
-				</div>
+				</Body>
 			</div>
 		</CSSTransition>
 	);

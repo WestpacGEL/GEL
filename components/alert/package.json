@@ -29,6 +29,7 @@
 	"module": "dist/alert.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.6.2",
+		"@westpac/body": "^0.0.1",
 		"@westpac/button": "^0.0.1",
 		"@westpac/core": "^0.0.1",
 		"@westpac/heading": "^0.0.1",

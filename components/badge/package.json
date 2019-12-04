@@ -36,6 +36,7 @@
 		"react": "^16.11.0"
 	},
 	"devDependencies": {
+		"@westpac/body": "*",
 		"@westpac/button": "*",
 		"cypress": "^3.6.1",
 		"react": "^16.12.0",
