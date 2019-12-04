@@ -54,7 +54,8 @@ function Example({ brand }) {
 					label: 'Go forth',
 					ariaLabel: page => `Go to next page which is ${page}`,
 					onClick: (event, page) => console.log(`Go to ${page}`, event),
-				}}>
+				}}
+			>
 				<Page label="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
 				<Page label="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
 				<Page label="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
@@ -69,15 +70,19 @@ function Example({ brand }) {
 				next={{
 					onClick: event => {
 						event.preventDefault();
-						console.log('this event will only run without the onClick of the page')
+						console.log('this event will only run without the onClick of the page');
 					},
-				}}>
+				}}
+			>
 				<Page label="1" onClick={() => console.log('this page will run the normal code')} />
 				<Page label="2" onClick={() => console.log('this page will run the normal code')} />
-				<Page label="3" onClick={event => {
-					event.preventDefault();
-					console.log('this page will only run our code')}
-				} />
+				<Page
+					label="3"
+					onClick={event => {
+						event.preventDefault();
+						console.log('this page will only run our code');
+					}}
+				/>
 			</Pagination>
 
 			<h2>Declarative as router</h2>
@@ -166,10 +171,10 @@ function Example({ brand }) {
 			<Pagination
 				current={current2}
 				back={{
-					onClick: (event, page) => console.log(`Go to page ${page + 1}`,event),
+					onClick: (event, page) => console.log(`Go to page ${page + 1}`, event),
 				}}
 				next={{
-					onClick: (event, page) => console.log(`Go to page ${page + 1}`,event),
+					onClick: (event, page) => console.log(`Go to page ${page + 1}`, event),
 				}}
 				data={[
 					{
