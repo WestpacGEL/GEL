@@ -162,7 +162,7 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 						borderRadius: type === 'radio' ? '50%' : 3,
 
 						// Focus state
-						'body:not(.isMouseMode) input:focus + &': {
+						'input:focus + &': {
 							...PACKS.focus,
 						},
 
