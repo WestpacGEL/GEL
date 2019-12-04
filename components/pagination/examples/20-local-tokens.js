@@ -31,11 +31,13 @@ function Example({ brand }) {
 				<Page label="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
 			</Pagination>
 
-			<Pagination>
-				<Page label="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
-				<Page label="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
-				<Page label="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
-			</Pagination>
+			<Pagination
+				data={[
+					{ label: '1', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ label: '2', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ label: '3', onClick: (event, page) => console.log(`Page ${page}`, event) },
+				]}
+			/>
 		</GEL>
 	);
 }
