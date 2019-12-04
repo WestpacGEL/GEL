@@ -46,6 +46,8 @@ function build(BRAND) {
 	} = require(`${cwd}/tokens/type`);
 	const { PACKS: packs } = require(`${cwd}/tokens/packs`);
 
+	const { OVERRIDES } = require(`${cwd}/overrides/index`);
+
 	// spacing
 	// const SPACING = {
 	// 	minor: spacing.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
