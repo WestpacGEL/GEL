@@ -10,7 +10,6 @@ const PageLink = props => <button {...props} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
-	const [current, setCurrent] = useState(0);
 
 	overridesWithTokens['@westpac/pagination'] = {
 		pageCSS: {
@@ -26,41 +25,16 @@ function Example({ brand }) {
 		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
-			<Pagination
-				current={current}
-				back={{
-					onClick: () => {
-						setCurrent(current - 1);
-					},
-				}}
-				next={{
-					onClick: e => {
-						e.preventDefault();
-						setCurrent(current + 1);
-					},
-				}}
-			>
-				<Page
-					onClick={e => {
-						e.preventDefault();
-						setCurrent(0);
-					}}
-					label="1"
-				/>
-				<Page
-					onClick={e => {
-						e.preventDefault();
-						setCurrent(1);
-					}}
-					label="2"
-				/>
-				<Page
-					onClick={e => {
-						e.preventDefault();
-						setCurrent(2);
-					}}
-					label="3"
-				/>
+			<Pagination>
+				<Page label="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+			</Pagination>
+
+			<Pagination>
+				<Page label="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
 			</Pagination>
 		</GEL>
 	);

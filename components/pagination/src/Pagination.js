@@ -45,13 +45,13 @@ export const Pagination = ({
 	const back = {
 		label: 'Back',
 		visible: true,
-		ariaLabel: 'Step back one page',
+		ariaLabel: page => `Step back to page ${page + 1}`,
 	};
 
 	const next = {
 		label: 'Next',
 		visible: true,
-		ariaLabel: 'Step to the next page',
+		ariaLabel: page => `Step forward to page ${page + 1}`,
 	};
 
 	merge(overrides, overridesWithTokens);
@@ -111,7 +111,7 @@ export const Pagination = ({
 						label={back.label}
 						first
 						disabled={pageLogic.current === 0 && !infinite}
-						ariaLabel={back.ariaLabel}
+						ariaLabel={back.ariaLabel(backIndex)}
 						onClick={wrapHandlers(
 							event => back.onClick && back.onClick(event, backIndex),
 							event => pageLogic.previous(event)
@@ -136,7 +136,7 @@ export const Pagination = ({
 						label={next.label}
 						last
 						disabled={pageLogic.current === pageCount - 1 && !infinite}
-						ariaLabel={next.ariaLabel}
+						ariaLabel={next.ariaLabel(nextIndex)}
 						onClick={wrapHandlers(
 							event => next.onClick && next.onClick(event, nextIndex),
 							event => pageLogic.next(event)
@@ -154,7 +154,7 @@ export const Pagination = ({
 const interaction = {
 	label: PropTypes.string,
 	visible: PropTypes.bool,
-	ariaLabel: PropTypes.string,
+	ariaLabel: PropTypes.func,
 	onClick: PropTypes.func,
 };
 

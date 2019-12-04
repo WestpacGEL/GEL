@@ -17,22 +17,67 @@ function Example({ brand }) {
 
 			<h2>Declarative</h2>
 			<Pagination>
-				<Page label="1" onClick={(_, page) => console.log(`Page ${page}`)} />
-				<Page label="2" onClick={(_, page) => console.log(`Page ${page}`)} />
-				<Page label="3" onClick={(_, page) => console.log(`Page ${page}`)} />
+				<Page label="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
 			</Pagination>
 
 			<Pagination current={1}>
-				<Page label="1" onClick={(_, page) => console.log(`Page ${page}`)} />
-				<Page label="2" onClick={(_, page) => console.log(`Page ${page}`)} />
-				<Page label="3" onClick={(_, page) => console.log(`Page ${page}`)} />
+				<Page label="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
 			</Pagination>
 
 			<h2>Infinite</h2>
 			<Pagination infinite>
-				<Page label="1" onClick={(_, page) => console.log(`Infinite page ${page}`)} />
-				<Page label="2" onClick={(_, page) => console.log(`Infinite page ${page}`)} />
-				<Page label="3" onClick={(_, page) => console.log(`Infinite page ${page}`)} />
+				<Page label="1" onClick={(event, page) => console.log(`Infinite page ${page}`, event)} />
+				<Page label="2" onClick={(event, page) => console.log(`Infinite page ${page}`, event)} />
+				<Page label="3" onClick={(event, page) => console.log(`Infinite page ${page}`, event)} />
+			</Pagination>
+
+			<Pagination infinite current={1}>
+				<Page label="1" onClick={(event, page) => console.log(`Infinite page ${page}`, event)} />
+				<Page label="2" onClick={(event, page) => console.log(`Infinite page ${page}`, event)} />
+				<Page label="3" onClick={(event, page) => console.log(`Infinite page ${page}`, event)} />
+			</Pagination>
+
+			<h2>Customise back and next buttons</h2>
+			<Pagination
+				back={{
+					visible: true,
+					label: 'Go Back',
+					ariaLabel: page => `Go to previous page which is ${page}`,
+					onClick: (event, page) => console.log(`Go to ${page}`, event),
+				}}
+				next={{
+					visible: true,
+					label: 'Go forth',
+					ariaLabel: page => `Go to next page which is ${page}`,
+					onClick: (event, page) => console.log(`Go to ${page}`, event),
+				}}>
+				<Page label="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page label="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+			</Pagination>
+
+			<h2>Event bubble</h2>
+			<Pagination
+				current={1}
+				back={{
+					onClick: () => console.log('this event will run in addition to the onClick of the page'),
+				}}
+				next={{
+					onClick: event => {
+						event.preventDefault();
+						console.log('this event will only run without the onClick of the page')
+					},
+				}}>
+				<Page label="1" onClick={() => console.log('this page will run the normal code')} />
+				<Page label="2" onClick={() => console.log('this page will run the normal code')} />
+				<Page label="3" onClick={event => {
+					event.preventDefault();
+					console.log('this page will only run our code')}
+				} />
 			</Pagination>
 
 			<h2>Declarative as router</h2>
@@ -40,36 +85,36 @@ function Example({ brand }) {
 			<Pagination
 				current={current}
 				back={{
-					onClick: e => {
-						e.preventDefault();
-						setCurrent(current - 1);
+					onClick: (event, index) => {
+						event.preventDefault();
+						setCurrent(index);
 					},
 				}}
 				next={{
-					onClick: e => {
-						e.preventDefault();
-						setCurrent(current + 1);
+					onClick: (event, index) => {
+						event.preventDefault();
+						setCurrent(index);
 					},
 				}}
 			>
 				<Page
-					onClick={e => {
-						e.preventDefault();
-						setCurrent(0);
+					onClick={(event, index) => {
+						event.preventDefault();
+						setCurrent(index);
 					}}
 					label="1"
 				/>
 				<Page
-					onClick={e => {
-						e.preventDefault();
-						setCurrent(1);
+					onClick={(event, index) => {
+						event.preventDefault();
+						setCurrent(index);
 					}}
 					label="2"
 				/>
 				<Page
-					onClick={e => {
-						e.preventDefault();
-						setCurrent(2);
+					onClick={(event, index) => {
+						event.preventDefault();
+						setCurrent(index);
 					}}
 					label="3"
 				/>
@@ -81,21 +126,38 @@ function Example({ brand }) {
 
 			<h2>Data Driven</h2>
 			<Pagination
+				data={[
+					{ label: '1', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ label: '2', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ label: '3', onClick: (event, page) => console.log(`Page ${page}`, event) },
+				]}
+			/>
+
+			<Pagination
+				current={1}
+				data={[
+					{ label: '1', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ label: '2', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ label: '3', onClick: (event, page) => console.log(`Page ${page}`, event) },
+				]}
+			/>
+
+			<Pagination
 				current={2}
 				back={{
 					visible: true,
 					label: 'Back',
-					ariaLabel: 'Go to previous page',
+					ariaLabel: page => `Go to previous page which is ${page}`,
 				}}
 				next={{
 					visible: true,
 					label: 'Next',
-					ariaLabel: 'Go to the next page',
+					ariaLabel: page => `Go to next page which is ${page}`,
 				}}
 				data={[
-					{ label: '1', onClick: () => console.log('Page 1') },
-					{ label: '2', onClick: () => console.log('Page 2') },
-					{ label: '3', onClick: () => console.log('Page 3') },
+					{ label: '1', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ label: '2', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ label: '3', onClick: (event, page) => console.log(`Page ${page}`, event) },
 				]}
 			/>
 
@@ -104,32 +166,27 @@ function Example({ brand }) {
 			<Pagination
 				current={current2}
 				back={{
-					onClick: () => {
-						setCurrent2(current2 - 1);
-					},
+					onClick: (event, page) => console.log(`Go to page ${page + 1}`,event),
 				}}
 				next={{
-					onClick: e => {
-						e.preventDefault();
-						setCurrent2(current2 + 1);
-					},
+					onClick: (event, page) => console.log(`Go to page ${page + 1}`,event),
 				}}
 				data={[
 					{
-						onClick: () => {
-							setCurrent2(0);
+						onClick: (_, index) => {
+							setCurrent2(index);
 						},
 						label: '1',
 					},
 					{
-						onClick: () => {
-							setCurrent2(1);
+						onClick: (_, index) => {
+							setCurrent2(index);
 						},
 						label: '2',
 					},
 					{
-						onClick: () => {
-							setCurrent2(2);
+						onClick: (_, index) => {
+							setCurrent2(index);
 						},
 						label: '3',
 					},

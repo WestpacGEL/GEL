@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, merge } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
 import PropTypes from 'prop-types';
+
 import { usePaginationContext } from './Pagination';
 import pkg from '../package.json';
 
@@ -72,8 +72,8 @@ export const Page = ({ index, label, first, last, disabled, ariaLabel, ...props 
 				}}
 				disabled={disabled}
 				{...props}
+				aria-label={ariaLabel ? ariaLabel : `Go to page ${label}`}
 			>
-				<VisuallyHidden>{ariaLabel ? ariaLabel : `Go to page ${label}`}</VisuallyHidden>
 				{label}
 			</overrides.PageLink>
 		</li>
