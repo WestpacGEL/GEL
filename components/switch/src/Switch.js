@@ -59,7 +59,7 @@ export const Switch = ({
 	srOnlyText,
 	...props
 }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+	const { COLORS, PACKS, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 	const [checked, setChecked] = useState(isChecked);
 	const sizeArr = responsiveMap(asArray(size));
@@ -140,6 +140,9 @@ export const Switch = ({
 						backgroundColor: '#fff',
 						boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 						transition: 'all .3s ease',
+					},
+					'input:focus ~ &': {
+						...PACKS.focus,
 					},
 					...overrides.toggleCSS,
 				})}
@@ -253,8 +256,13 @@ const Label = ({ block, flipped, ...props }) => (
 );
 
 const ToggleText = ({ position, checked, size, ...props }) => {
-	const { COLORS } = useBrand();
+	const { BRAND, COLORS } = useBrand();
 	const mq = useMediaQuery();
+
+	let color = '#fff';
+	if (BRAND === 'STG') {
+		color = COLORS.text;
+	}
 
 	return (
 		<span
@@ -268,7 +276,7 @@ const ToggleText = ({ position, checked, size, ...props }) => {
 				fontSize: size.fontSize,
 				paddingLeft: '0.25rem',
 				paddingRight: '0.25rem',
-				color: position === 'right' ? COLORS.neutral : '#fff',
+				color: position === 'right' ? COLORS.text : color,
 				textAlign: 'center',
 			})}
 			{...props}
