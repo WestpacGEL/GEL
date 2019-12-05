@@ -11,7 +11,7 @@ import pkg from '../package.json';
 /**
  * Body: Body component in charge of body text
  */
-export const Body = ({ children, ...props }) => {
+export const Body = ({ tag: Tag, children, ...props }) => {
 	const { COLORS, TYPE, [pkg.name]: brandOverrides } = useBrand();
 
 	const overrides = {
@@ -20,7 +20,7 @@ export const Body = ({ children, ...props }) => {
 	merge(overrides, brandOverrides);
 
 	return (
-		<div
+		<Tag
 			css={{
 				'h1, h2, h3, h4, h5, h6': {
 					color: COLORS.heading,
@@ -80,7 +80,7 @@ export const Body = ({ children, ...props }) => {
 			{...props}
 		>
 			{children}
-		</div>
+		</Tag>
 	);
 };
 
@@ -89,7 +89,17 @@ export const Body = ({ children, ...props }) => {
 // ==============================
 
 Body.propTypes = {
+	/**
+	 * Body tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+
+	/**
+	 * Body children
+	 */
 	children: PropTypes.node.isRequired,
 };
 
-Body.defaultProps = {};
+Body.defaultProps = {
+	tag: 'div',
+};
