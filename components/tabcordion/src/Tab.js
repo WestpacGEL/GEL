@@ -1,48 +1,48 @@
-import React, { forwardRef } from 'react';
+/** @jsx jsx */
+
+import React, { useState, useEffect, forwardRef } from 'react';
+import { jsx, useBrand, merge, wrapHandlers } from '@westpac/core';
 import PropTypes from 'prop-types';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
-import { useBrand } from '@westpac/core';
+import pkg from '../package.json';
 
 export const Tab = forwardRef(
-	(
-		{
-			look,
-			children,
-			last,
-			selected,
-			label,
-			mode,
-			panelId,
-			onClick,
-			tabId,
+	({ look, children, last, selected, label, mode, panelId, onClick, tabId, ...props }, ref) => {
+		const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+		const [hidden, setHidden] = useState(!selected);
+		const Icon = hidden ? ExpandMoreIcon : ExpandLessIcon;
+		const iconLabel = hidden ? 'Show More' : 'Show Less';
+
+		const overrides = {
 			Panel,
 			AccordionLabel,
-			...props
-		},
-		ref
-	) => {
-		const { COLORS } = useBrand();
-		const Icon = selected ? ExpandLessIcon : ExpandMoreIcon;
-		const iconLabel = selected ? 'Show Less' : 'Show More';
+		};
+
+		merge(overrides, overridesWithTokens);
+
+		const handleAccordionClick = () => {
+			onClick();
+			setHidden(!hidden);
+		};
 
 		return (
 			<>
 				{mode === 'accordion' ? (
-					<AccordionLabel
+					<overrides.AccordionLabel
 						look={look}
-						onClick={onClick}
+						onClick={handleAccordionClick}
 						id={tabId}
 						last={last}
-						selected={selected}
+						hidden={hidden}
 						aria-controls={panelId}
 						aria-expanded={selected}
 					>
 						<span>{label}</span>
 						<Icon color={COLORS.muted} label={iconLabel} size="small" />
-					</AccordionLabel>
+					</overrides.AccordionLabel>
 				) : null}
-				<Panel
-					hidden={!selected}
+				<overrides.Panel
+					hidden={mode === 'accordion' ? hidden : !selected}
 					look={look}
 					aria-labelledby={tabId}
 					id={panelId}
@@ -55,7 +55,7 @@ export const Tab = forwardRef(
 					tabIndex="0"
 				>
 					{children}
-				</Panel>
+				</overrides.Panel>
 			</>
 		);
 	}
@@ -76,4 +76,92 @@ Tab.propTypes = {
 	onClick: PropTypes.func,
 	// The id for the tab
 	tabId: PropTypes.string,
+};
+
+// ==============================
+// Overrides & Styled Components
+// ==============================
+const Panel = forwardRef(({ look, last, selected, mode, ...props }, ref) => {
+	const { COLORS: colors, PACKS: packs } = useBrand();
+	const styles =
+		mode === 'accordion'
+			? {
+					lego: {
+						borderLeftWidth: '0.375rem',
+						borderLeftColor: colors.border,
+					},
+					soft: last
+						? {
+								borderBottomLeftRadius: '0.1875rem',
+								borderBottomRightRadius: '0.1875rem',
+						  }
+						: {},
+			  }
+			: {};
+	return (
+		<div
+			ref={ref}
+			css={{
+				borderLeft: `1px solid ${colors.border}`,
+				borderRight: `1px solid ${colors.border}`,
+				borderBottom: (mode === 'tabs' || last) && `1px solid ${colors.border}`,
+				borderTop: mode === 'tabs' && `1px solid ${colors.border}`,
+				padding: '1.5rem 3.22%',
+				':focus': {
+					// color: packs.link.color,
+				},
+				...styles[look],
+			}}
+			{...props}
+		/>
+	);
+});
+
+const AccordionLabel = ({ look, last, hidden, ...props }) => {
+	const { COLORS: colors } = useBrand();
+	const styles = {
+		soft: {
+			borderBottom: !hidden && `1px solid ${colors.border}`,
+			...(last &&
+				hidden && {
+					borderBottom: `1px solid ${colors.border}`,
+					borderBottomLeftRadius: '0.1875rem',
+					borderBottomRightRadius: '0.1875rem',
+				}),
+			':first-of-type': {
+				borderTopLeftRadius: '0.1875rem',
+				borderTopRightRadius: '0.1875rem',
+			},
+		},
+		lego: {
+			borderBottom: !hidden && `1px solid ${colors.border}`,
+			borderLeftWidth: '6px',
+			borderLeftColor: !hidden ? colors.border : colors.hero.default,
+			':last-of-type': {
+				borderBottom: `1px solid ${colors.border}`,
+			},
+		},
+	};
+	return (
+		<button
+			css={{
+				alignItems: 'center',
+				backgroundColor: colors.background,
+				border: 0,
+				borderTop: `1px solid ${colors.border}`,
+				borderLeft: `1px solid ${colors.border}`,
+				borderRight: `1px solid ${colors.border}`,
+				cursor: 'pointer',
+				display: 'flex',
+				fontSize: '1rem',
+				justifyContent: 'space-between',
+				padding: '0.75rem 1.125rem',
+				position: 'relative',
+				textAlign: 'left',
+				width: '100%',
+				...styles[look],
+			}}
+			{...props}
+		/>
+	);
 };
