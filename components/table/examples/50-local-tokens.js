@@ -4,9 +4,38 @@ import { GEL, jsx } from '@westpac/core';
 import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table';
 
 function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/table'] = {
+		captionCSS: {
+			color: 'DodgerBlue',
+		},
+		tableCSS: {
+			backgroundColor: '#efe8ed',
+		},
+		theadCSS: {
+			backgroundColor: 'Moccasin',
+		},
+		thCSS: {
+			paddingTop: 30,
+			paddingBottom: 30,
+		},
+		tbodyCSS: {
+			fontWeight: 700,
+		},
+		trCSS: {
+			borderBottom: '2px dashed Tomato',
+		},
+		tdCSS: {
+			color: 'DarkSlateBlue',
+		},
+		tfootCSS: {
+			backgroundColor: 'PowderBlue',
+		},
+	};
+
 	return (
-		<GEL brand={brand}>
-			<h2>Basic table</h2>
+		<GEL brand={overridesWithTokens}>
+			<h2>Overrides on caption, table, thead, tbody, tfoot, th, tr, td</h2>
 			<Table>
 				<Caption>
 					Table caption this table width is: <em>(100%)</em>
