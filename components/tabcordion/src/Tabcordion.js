@@ -13,7 +13,16 @@ const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'PageDown', 'PageUp', 'Enter', 'E
 // ==============================
 // Component
 // ==============================
-export const Tabcordion = props => {
+export const Tabcordion = ({
+	mode: tabcordionMode,
+	look,
+	justify,
+	initialTabIndex,
+	instanceIdPrefix,
+	ariaLabel,
+	children,
+	...props
+}) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 
 	const overrides = {
@@ -23,15 +32,16 @@ export const Tabcordion = props => {
 
 	merge(overrides, overridesWithTokens);
 
-	const [activeTabIndex, setActiveTabIndex] = useState(props.initialTabIndex);
-	const [instancePrefix, setInstancePrefix] = useState(props.instanceId);
+	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
+	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
 
 	const containerRef = useRef();
 	const panelRef = useRef();
 	const tablistRef = useRef();
-	const tabRefs = useRef([...Array(Children.count(props.children))].map(() => createRef()));
+	const tabRefs = useRef([...Array(Children.count(children))].map(() => createRef()));
 	const { width } = useContainerQuery(containerRef);
-	const mode = props.mode !== 'responsive' ? props.mode : width < 768 ? 'accordion' : 'tabs';
+	const mode =
+		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
 	const setActive = idx => () => setActiveTabIndex(idx);
 
 	// create the prefix for internal IDs
@@ -56,7 +66,7 @@ export const Tabcordion = props => {
 		}
 
 		let nextIndex;
-		let lastIndex = Children.count(props.children) - 1;
+		let lastIndex = Children.count(children) - 1;
 
 		switch (event.key) {
 			case 'Enter':
@@ -97,21 +107,21 @@ export const Tabcordion = props => {
 	});
 
 	const getId = (type, index) => `${instancePrefix}-${type}-${index + 1}`;
-	const tabCount = Children.count(props.children);
+	const tabCount = Children.count(children);
 
 	return (
-		<div ref={containerRef} css={{ ...overrides.css }}>
+		<div ref={containerRef} css={{ ...overrides.css }} {...props}>
 			{mode === 'tabs' ? (
-				<TabRow role="tablist" aria-label={props.ariaLabel} ref={tablistRef}>
-					{Children.map(props.children, (child, idx) => {
+				<TabRow role="tablist" aria-label={ariaLabel} ref={tablistRef}>
+					{Children.map(children, (child, idx) => {
 						const selected = activeTabIndex === idx;
 						return (
 							<overrides.TabItem
-								look={props.look}
+								look={look}
 								aria-controls={getId('panel', idx)}
 								aria-selected={selected}
 								id={getId('tab', idx)}
-								justify={props.justify}
+								justify={justify}
 								last={idx + 1 === tabCount}
 								selected={selected}
 								key={child.props.label}
@@ -126,13 +136,13 @@ export const Tabcordion = props => {
 				</TabRow>
 			) : null}
 
-			{Children.map(props.children, (child, idx) => {
+			{Children.map(children, (child, idx) => {
 				const selected = activeTabIndex === idx;
 				return (
 					<Tab
 						{...child.props}
 						activeTabIndex={activeTabIndex}
-						look={props.look}
+						look={look}
 						selected={selected}
 						last={idx + 1 === tabCount}
 						key={child.props.label}
@@ -165,7 +175,7 @@ Tabcordion.propTypes = {
 	/** The tab index to mount this component with */
 	initialTabIndex: PropTypes.number,
 	/** Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc. */
-	instanceId: PropTypes.string,
+	instanceIdPrefix: PropTypes.string,
 	/** Whether or not tabs should stretch full width */
 	justify: PropTypes.bool,
 	/** Lock the mode to either "accordion" or "tabs". The default is responsive. */
