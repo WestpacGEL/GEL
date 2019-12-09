@@ -13,10 +13,12 @@ const CloseBtn = ({ onClose, icon: Icon, dismissible, headingTag, look, ...rest 
 );
 
 const Heading = ({ children }) => (
-	<h3 css={{
-		margin: '0 0 0.5rem 0',
-		color: 'red !important'
-	}}>
+	<h3
+		css={{
+			margin: '0 0 0.5rem 0',
+			color: 'red !important',
+		}}
+	>
 		{children}
 	</h3>
 );
@@ -31,7 +33,7 @@ const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest }) => 
 	};
 	const Tag = icon ? icon : iconMap[look];
 
-	if( icon === null ) {
+	if (icon === null) {
 		return null;
 	}
 
@@ -41,7 +43,6 @@ const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest }) => 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/alert'] = {
-
 		styles: styles => ({
 			...styles,
 			outline: '1px solid red',
@@ -49,9 +50,9 @@ function Example({ brand }) {
 
 		Icon: {
 			component: Icon,
-			styles: (styles, {look}) => ({
+			styles: (styles, { look }) => ({
 				...styles,
-				outline: `2px solid ${ look === 'info' ? 'red' : 'black'}`,
+				outline: `2px solid ${look === 'info' ? 'red' : 'black'}`,
 			}),
 		},
 		CloseBtn: {
@@ -99,17 +100,19 @@ function Example({ brand }) {
 				can be closed. <a href="#">Link</a>
 			</Alert>
 
-			<hr/>
+			<hr />
 
 			<h2>With overrides and component overrides</h2>
-			<Alert overrides={{
-				Icon: {
-					styles: styles => ({
-						...styles,
-						outline: '3px dotted green',
-					}),
-				}
-			}}>
+			<Alert
+				overrides={{
+					Icon: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
+					},
+				}}
+			>
 				This is a default alert. <a href="#">Link</a>
 			</Alert>
 		</GEL>

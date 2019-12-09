@@ -46,8 +46,6 @@ function build(BRAND) {
 	} = require(`${cwd}/tokens/type`);
 	const { PACKS: packs } = require(`${cwd}/tokens/packs`);
 
-	const { OVERRIDES } = require(`${cwd}/overrides/index`);
-
 	// spacing
 	// const SPACING = {
 	// 	minor: spacing.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
@@ -128,6 +126,7 @@ function build(BRAND) {
 		export const TYPE = ${TYPE};
 		export const PACKS = ${JSON.stringify(PACKS)};
 		export const BRAND = "${BRAND}";
+		export const OVERRIDES = require('../overrides/index');
 		export default {
 			SPACING,
 			COLORS,
@@ -135,6 +134,7 @@ function build(BRAND) {
 			TYPE,
 			PACKS,
 			BRAND,
+			OVERRIDES,
 		};
 	`;
 }

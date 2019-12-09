@@ -1,5 +1,5 @@
 module.exports = {
-	pageCSS: {
-		color: '#fff',
-	}
+	Icon: {
+		style: () => ({ color: '#fff' }),
+	},
 };
