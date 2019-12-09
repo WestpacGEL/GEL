@@ -1,37 +1,65 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { HouseIcon } from '@westpac/icon';
+import { TickIcon, InfoIcon, AlertIcon, HouseIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const CloseBtnNew = ({ onClose, icon: Icon, dismissible, look, ...rest }) => (
+const CloseBtn = ({ onClose, icon: Icon, dismissible, headingTag, look, ...rest }) => (
 	<button onClick={() => onClose()} {...rest}>
 		Close <Icon />
 	</button>
 );
 
 const Heading = ({ children }) => (
-	<h3 css={{ margin: '0 0 0.5rem 0', color: 'red !important' }}>{children}</h3>
+	<h3 css={{
+		margin: '0 0 0.5rem 0',
+		color: 'red !important'
+	}}>
+		{children}
+	</h3>
 );
+
+const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest }) => {
+	const iconMap = {
+		success: TickIcon,
+		info: InfoIcon,
+		warning: AlertIcon,
+		danger: AlertIcon,
+		system: HouseIcon,
+	};
+	const Tag = icon ? icon : iconMap[look];
+
+	if( icon === null ) {
+		return null;
+	}
+
+	return <Tag size={size} color={color} {...rest} />;
+};
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/alert'] = {
-		innerCSS: {
+
+		styles: styles => ({
+			...styles,
 			outline: '1px solid red',
+		}),
+
+		Icon: {
+			component: Icon,
+			styles: (styles, {look}) => ({
+				...styles,
+				outline: `2px solid ${ look === 'info' ? 'red' : 'black'}`,
+			}),
 		},
-		info: {
-			icon: HouseIcon,
-			css: {
-				color: 'rebeccapurple',
-				padding: '4rem 0.5rem',
-			},
+		CloseBtn: {
+			component: CloseBtn,
 		},
-		duration: 5000,
-		CloseBtn: CloseBtnNew,
-		Heading,
+		Heading: {
+			component: Heading,
+		},
 	};
 
 	return (
@@ -69,6 +97,20 @@ function Example({ brand }) {
 			<Alert look="success" dismissible>
 				<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I
 				can be closed. <a href="#">Link</a>
+			</Alert>
+
+			<hr/>
+
+			<h2>With overrides and component overrides</h2>
+			<Alert overrides={{
+				Icon: {
+					styles: styles => ({
+						...styles,
+						outline: '3px dotted green',
+					}),
+				}
+			}}>
+				This is a default alert. <a href="#">Link</a>
 			</Alert>
 		</GEL>
 	);
