@@ -2,12 +2,11 @@
 
 import { Children, forwardRef, useEffect, useRef, useState, createRef } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, merge, useInstanceId } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
 import { Tab } from './Tab';
 import pkg from '../package.json';
 
-let instanceId = 0;
 const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'PageDown', 'PageUp', 'Enter', 'End', 'Home'];
 
 // ==============================
@@ -47,7 +46,7 @@ export const Tabcordion = ({
 	// create the prefix for internal IDs
 	useEffect(() => {
 		if (!instancePrefix) {
-			setInstancePrefix(`gel-tabcordion-${++instanceId}`);
+			setInstancePrefix(`gel-tabcordion-${useInstanceId()}`);
 		}
 	}, [instancePrefix]);
 

@@ -53,7 +53,7 @@ function Example({ brand }) {
 			</Tabcordion>
 
 			<h3>Always accordion</h3>
-			<Tabcordion mode="accordion" instanceId="always-accordion">
+			<Tabcordion mode="accordion" instanceIdPrefix="always-accordion">
 				<Tab label="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -99,7 +99,7 @@ function Example({ brand }) {
 			</Tabcordion>
 
 			<h3>Always tabs</h3>
-			<Tabcordion mode="tabs" instanceId="always-tabs">
+			<Tabcordion mode="tabs" instanceIdPrefix="always-tabs">
 				<Tab label="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
