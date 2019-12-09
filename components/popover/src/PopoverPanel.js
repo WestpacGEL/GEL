@@ -3,7 +3,10 @@
 import { forwardRef, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { jsx, useBrand, merge } from '@westpac/core';
-import ScrollLock from 'react-scrolllock';
+import { Body } from '@westpac/body';
+import { CloseIcon } from '@westpac/icon';
+import { Button } from '@westpac/button';
+// import ScrollLock from 'react-scrolllock';
 import pkg from '../package.json';
 
 export const PopoverPanel = forwardRef(({ open, title, content, position, ...props }, ref) => {
@@ -32,15 +35,17 @@ export const PopoverPanel = forwardRef(({ open, title, content, position, ...pro
 					}}
 					{...props}
 				/>
-				<ScrollLock />
 			</Fragment>,
 			document.body
 		)
 	);
 });
 
-const Panel = forwardRef(({ title, content, position, ...props }, ref) => {
-	const { COLORS } = useBrand();
+// ==============================
+// Override Component
+// ==============================
+const Panel = forwardRef(({ title, content, position, handleClose, ...props }, ref) => {
+	const { SPACING, COLORS } = useBrand();
 	return (
 		<div
 			ref={ref}
@@ -100,7 +105,24 @@ const Panel = forwardRef(({ title, content, position, ...props }, ref) => {
 			>
 				{title}
 			</p>
-			<p css={{ margin: 0, padding: '0.625rem 0.75rem', color: COLORS.neutral }}>{content}</p>
+			<Body css={{ margin: 0, padding: '0.625rem 0.75rem', color: COLORS.neutral }}>{content}</Body>
+			<CloseBtn
+				onClose={handleClose}
+				icon={CloseIcon}
+				css={{
+					position: 'absolute',
+					top: 0,
+					right: SPACING(1),
+					color: '#fff',
+					':hover svg': {
+						opacity: 0.5,
+					},
+				}}
+			/>
 		</div>
 	);
 });
+
+const CloseBtn = ({ onClose, icon, ...props }) => (
+	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...props} />
+);
