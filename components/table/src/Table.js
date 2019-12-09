@@ -2,7 +2,8 @@
 
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
@@ -16,9 +17,14 @@ export const useTableContext = () => useContext(TableContext);
 // ==============================
 
 export const Table = ({ striped, bordered, responsive, ...props }) => {
-	const { COLORS, TYPE } = useBrand();
-
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 	const context = useTableContext();
+
+	const overrides = {
+		tableCSS: {},
+	};
+
+	merge(overrides, overridesWithTokens);
 
 	bordered = (context && context.bordered) || bordered;
 
@@ -28,26 +34,39 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 				bordered,
 			}}
 		>
-			<table
+			<div
 				css={{
-					width: '100%',
-					maxWidth: '100%',
-					marginBottom: '1.3125rem',
-					backgroundColor: '#fff',
-					borderCollapse: 'collapse',
-
-					// Odd row
-					'tbody > tr:nth-of-type(even)': {
-						backgroundColor: striped && COLORS.light,
-					},
-
-					// Adjacent `tbody` elements
-					'tbody + tbody': {
-						borderTop: `2px solid ${COLORS.hero}`,
+					'@media screen and (max-width: 480px)': {
+						width: '100%',
+						marginBottom: '1.125rem',
+						overflowY: 'hidden',
+						overflowX: 'auto',
+						border: `1px solid ${COLORS.border}`,
 					},
 				}}
-				{...props}
-			/>
+			>
+				<table
+					css={{
+						width: '100%',
+						maxWidth: '100%',
+						marginBottom: '1.3125rem',
+						backgroundColor: '#fff',
+						borderCollapse: 'collapse',
+
+						// Odd row
+						'tbody > tr:nth-of-type(even)': {
+							backgroundColor: striped && COLORS.light,
+						},
+
+						// Adjacent `tbody` elements
+						'tbody + tbody': {
+							borderTop: `2px solid ${COLORS.hero}`,
+						},
+						...overrides.tableCSS,
+					}}
+					{...props}
+				/>
+			</div>
 		</TableContext.Provider>
 	);
 };
@@ -55,14 +74,19 @@ export const Table = ({ striped, bordered, responsive, ...props }) => {
 // ==============================
 // Types
 // ==============================
-
 Table.propTypes = {
 	/**
 	 * Bordered mode
 	 */
 	bordered: PropTypes.bool,
+
+	/**
+	 * Striped mode
+	 */
+	striped: PropTypes.bool,
 };
 
 Table.defaultProps = {
 	bordered: false,
+	striped: false,
 };

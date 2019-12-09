@@ -3,9 +3,13 @@
 import { GEL, jsx } from '@westpac/core';
 import { Form, FormSection, ChitChat } from '@westpac/form';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<Intopia ignore />
+
 			<Form>
 				<FormSection>
 					<ChitChat>

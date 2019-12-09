@@ -2,7 +2,7 @@ const path = require('path');
 const cfonts = require('cfonts');
 const fs = require('fs');
 
-const { makeTints } = require('./utils');
+const { makeTints } = require('./_utils');
 
 /**
  * Convert a font token object to a styled object for emotion to use

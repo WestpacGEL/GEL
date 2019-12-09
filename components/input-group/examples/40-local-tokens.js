@@ -3,6 +3,8 @@
 import { GEL, jsx } from '@westpac/core';
 import { InputGroup, Left, Right } from '@westpac/input-group';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const Label = props => (
 	<span css={{ textAlign: 'center' }} {...props}>
 		replaced!
@@ -32,6 +34,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<h2>With overrides applied</h2>
 			<InputGroup>
 				<Left type="label" data="AUS $" />

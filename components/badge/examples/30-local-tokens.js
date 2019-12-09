@@ -3,6 +3,8 @@
 import { GEL, jsx } from '@westpac/core';
 import { Badge } from '@westpac/badge';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 const Wrapper = ({ children, look }) => (
 	<span>
 		{children}
@@ -32,6 +34,8 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
 			<h2>With overrides applied</h2>
 			<p>
 				<Badge value="Default" />

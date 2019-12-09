@@ -8,7 +8,7 @@ export const useProgress = () => {
 			case 'next':
 				return { index: state.index + 1 };
 			case 'prev':
-				return { index: state.index - 1 };
+				return { index: state.index === 0 ? 0 : state.index - 1 };
 			case 'goto':
 				return { index: action.index };
 			default:

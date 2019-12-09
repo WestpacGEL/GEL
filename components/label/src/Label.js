@@ -127,6 +127,7 @@ export const Label = ({ look, value, tag: Tag, ...props }) => {
 
 	return (
 		<Tag
+			type={Tag === 'button' ? 'button' : undefined}
 			css={{
 				display: 'inline-block',
 				appearance: 'none',

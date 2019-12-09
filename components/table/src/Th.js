@@ -1,16 +1,20 @@
 /** @jsx jsx */
 
-import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { useTableContext } from './Table';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+export const Th = ({ bordered, ...props }) => {
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
-export const Th = ({ highlighted, bordered, ...props }) => {
-	const { COLORS, TYPE } = useBrand();
+	const overrides = {
+		thCSS: {},
+	};
+	merge(overrides, overridesWithTokens);
 
 	const { bordered: borderedCtx } = useTableContext();
 	bordered = bordered || borderedCtx;
@@ -24,6 +28,7 @@ export const Th = ({ highlighted, bordered, ...props }) => {
 				borderLeft: !bordered && 0,
 				borderRight: !bordered && 0,
 				textAlign: 'left',
+				...overrides.thCSS,
 			}}
 			{...props}
 		/>
@@ -33,3 +38,9 @@ export const Th = ({ highlighted, bordered, ...props }) => {
 // ==============================
 // Types
 // ==============================
+Th.propTypes = {
+	/**
+	 * Whether or not there should border styling
+	 */
+	bordered: PropTypes.bool,
+};
