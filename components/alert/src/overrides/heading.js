@@ -14,4 +14,4 @@ export const headingStyles = () => {
 	const { SPACING } = useBrand();
 
 	return { marginBottom: SPACING(2) };
-}
+};

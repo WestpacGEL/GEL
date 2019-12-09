@@ -14,7 +14,7 @@ export const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest
 	};
 	const Tag = icon ? icon : iconMap[look];
 
-	if( icon === null ) {
+	if (icon === null) {
 		return null;
 	}
 
@@ -29,4 +29,4 @@ export const iconStyles = () => {
 		marginRight: ['0.375rem', '0.75rem'],
 		flex: 'none',
 	})[0];
-}
+};

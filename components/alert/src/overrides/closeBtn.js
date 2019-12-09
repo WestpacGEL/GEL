@@ -27,4 +27,4 @@ export const closeBtnStyles = (_, {}) => {
 			opacity: 0.5,
 		},
 	})[0];
-}
+};

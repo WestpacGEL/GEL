@@ -27,9 +27,11 @@ export const Alert = ({
 	overrides: componentOverrides,
 	...rest
 }) => {
-	const { OVERRIDES, [pkg.name]: brandOverrides } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 	const [open, setOpen] = useState(true);
-	console.log(OVERRIDES);
 
 	const defaultOverrides = {
 		styles: wrapperStyles,
@@ -60,7 +62,7 @@ export const Alert = ({
 			attributes: state => state,
 		},
 	};
-	const overrides = merge(defaultOverrides, brandOverrides, componentOverrides);
+	const overrides = merge(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const state = {
 		look,
@@ -76,33 +78,33 @@ export const Alert = ({
 	return (
 		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
 			<overrides.component
-				css={overrides.styles( wrapperStyles( null, state ), state )}
-				{...overrides.attributes( state )}
+				css={overrides.styles(wrapperStyles(null, state), state)}
+				{...overrides.attributes(state)}
 			>
 				{dismissible && (
 					<overrides.CloseBtn.component
-						css={overrides.CloseBtn.styles( closeBtnStyles( null, state ), state )}
-						{...overrides.CloseBtn.attributes( state )}
+						css={overrides.CloseBtn.styles(closeBtnStyles(null, state), state)}
+						{...overrides.CloseBtn.attributes(state)}
 						onClose={() => setOpen(false)}
 						icon={CloseIcon}
 					/>
 				)}
 				{overrides.Icon.component && (
 					<overrides.Icon.component
-						css={overrides.Icon.styles( iconStyles( null, state ), state )}
-						{...overrides.Icon.attributes( state )}
+						css={overrides.Icon.styles(iconStyles(null, state), state)}
+						{...overrides.Icon.attributes(state)}
 						size={['small', 'medium']}
 						color="inherit"
 					/>
 				)}
 				<overrides.Body.component
-					css={overrides.Body.styles( bodyStyles( null, state ), state )}
-					{...overrides.Body.attributes( state )}
+					css={overrides.Body.styles(bodyStyles(null, state), state)}
+					{...overrides.Body.attributes(state)}
 				>
 					{heading && (
 						<overrides.Heading.component
-							css={overrides.Heading.styles( headingStyles( null, state ), state )}
-							{...overrides.Heading.attributes( state )}
+							css={overrides.Heading.styles(headingStyles(null, state), state)}
+							{...overrides.Heading.attributes(state)}
 							tag={headingTag}
 						>
 							{heading}
