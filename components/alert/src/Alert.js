@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { CSSTransition } from 'react-transition-group';
 import { CloseIcon } from '@westpac/icon';
 import React, { useState } from 'react';
@@ -38,31 +38,32 @@ export const Alert = ({
 		component: Wrapper,
 		attributes: state => state,
 
-		Body: {
-			styles: bodyStyles,
-			component: AlertBody,
-			attributes: state => state,
-		},
+		subComponent: {
+			Body: {
+				styles: bodyStyles,
+				component: AlertBody,
+				attributes: state => state,
+			},
 
-		CloseBtn: {
-			styles: closeBtnStyles,
-			component: CloseBtn,
-			attributes: state => state,
-		},
+			CloseBtn: {
+				styles: closeBtnStyles,
+				component: CloseBtn,
+				attributes: state => state,
+			},
 
-		Icon: {
-			styles: iconStyles,
-			component: Icon,
-			attributes: state => state,
-		},
+			Icon: {
+				styles: iconStyles,
+				component: Icon,
+				attributes: state => state,
+			},
 
-		Heading: {
-			styles: headingStyles,
-			component: AlertHeading,
-			attributes: state => state,
+			Heading: {
+				styles: headingStyles,
+				component: AlertHeading,
+				attributes: state => state,
+			},
 		},
 	};
-	const overrides = merge(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const state = {
 		look,
@@ -75,43 +76,48 @@ export const Alert = ({
 		...rest,
 	};
 
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
+
 	return (
 		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
-			<overrides.component
-				css={overrides.styles(wrapperStyles(null, state), state)}
-				{...overrides.attributes(state)}
-			>
+			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
 				{dismissible && (
-					<overrides.CloseBtn.component
-						css={overrides.CloseBtn.styles(closeBtnStyles(null, state), state)}
-						{...overrides.CloseBtn.attributes(state)}
+					<overrides.subComponent.CloseBtn.component
+						css={overrides.subComponent.CloseBtn.styles}
+						{...overrides.subComponent.CloseBtn.attributes(state)}
 						onClose={() => setOpen(false)}
 						icon={CloseIcon}
 					/>
 				)}
-				{overrides.Icon.component && (
-					<overrides.Icon.component
-						css={overrides.Icon.styles(iconStyles(null, state), state)}
-						{...overrides.Icon.attributes(state)}
+				{overrides.subComponent.Icon.component && (
+					<overrides.subComponent.Icon.component
+						css={overrides.subComponent.Icon.styles}
+						{...overrides.subComponent.Icon.attributes(state)}
 						size={['small', 'medium']}
 						color="inherit"
 					/>
 				)}
-				<overrides.Body.component
-					css={overrides.Body.styles(bodyStyles(null, state), state)}
-					{...overrides.Body.attributes(state)}
+				<overrides.subComponent.Body.component
+					css={overrides.subComponent.Body.styles}
+					{...overrides.subComponent.Body.attributes(state)}
 				>
 					{heading && (
-						<overrides.Heading.component
-							css={overrides.Heading.styles(headingStyles(null, state), state)}
-							{...overrides.Heading.attributes(state)}
+						<overrides.subComponent.Heading.component
+							css={overrides.subComponent.Heading.styles}
+							{...overrides.subComponent.Heading.attributes(state)}
 							tag={headingTag}
 						>
 							{heading}
-						</overrides.Heading.component>
+						</overrides.subComponent.Heading.component>
 					)}
 					{children}
-				</overrides.Body.component>
+				</overrides.subComponent.Body.component>
 			</overrides.component>
 		</CSSTransition>
 	);
