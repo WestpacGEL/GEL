@@ -20,7 +20,7 @@ export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...prop
 	const overrides = {
 		crumbCSS: {},
 		crumbLinkCSS: {},
-		crumbLable: VisuallyHidden,
+		crumbLabel: VisuallyHidden,
 		Icon,
 	};
 	merge(overrides, overridesWithTokens);
@@ -37,7 +37,7 @@ export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...prop
 			}}
 			{...props}
 		>
-			{current && <overrides.crumbLable>{label}</overrides.crumbLable>}
+			{current && <overrides.crumbLabel>{label}</overrides.crumbLabel>}
 			<a
 				href={current ? null : href}
 				onClick={onClick}
