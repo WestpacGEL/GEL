@@ -13,6 +13,6 @@ export const WriteIcon = props => (
 
 WriteIcon.defaultProps = {
 	...defaultProps,
-	label: 'Write',
+	assistiveText: 'Write',
 };
 WriteIcon.propTypes = propTypes;

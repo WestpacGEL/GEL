@@ -13,6 +13,6 @@ export const WindowsNewIcon = props => (
 
 WindowsNewIcon.defaultProps = {
 	...defaultProps,
-	label: 'Windows New',
+	assistiveText: 'Windows New',
 };
 WindowsNewIcon.propTypes = propTypes;

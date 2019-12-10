@@ -13,6 +13,6 @@ export const ThumbDownIcon = props => (
 
 ThumbDownIcon.defaultProps = {
 	...defaultProps,
-	label: 'Thumb Down',
+	assistiveText: 'Thumb Down',
 };
 ThumbDownIcon.propTypes = propTypes;

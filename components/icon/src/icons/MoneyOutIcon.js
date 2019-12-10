@@ -13,6 +13,6 @@ export const MoneyOutIcon = props => (
 
 MoneyOutIcon.defaultProps = {
 	...defaultProps,
-	label: 'Money Out',
+	assistiveText: 'Money Out',
 };
 MoneyOutIcon.propTypes = propTypes;

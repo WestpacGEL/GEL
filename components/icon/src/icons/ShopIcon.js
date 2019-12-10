@@ -13,6 +13,6 @@ export const ShopIcon = props => (
 
 ShopIcon.defaultProps = {
 	...defaultProps,
-	label: 'Shop',
+	assistiveText: 'Shop',
 };
 ShopIcon.propTypes = propTypes;

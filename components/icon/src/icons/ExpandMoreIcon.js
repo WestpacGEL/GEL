@@ -13,6 +13,6 @@ export const ExpandMoreIcon = props => (
 
 ExpandMoreIcon.defaultProps = {
 	...defaultProps,
-	label: 'Expand More',
+	assistiveText: 'Expand More',
 };
 ExpandMoreIcon.propTypes = propTypes;

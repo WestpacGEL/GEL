@@ -13,6 +13,6 @@ export const WalkIcon = props => (
 
 WalkIcon.defaultProps = {
 	...defaultProps,
-	label: 'Walk',
+	assistiveText: 'Walk',
 };
 WalkIcon.propTypes = propTypes;

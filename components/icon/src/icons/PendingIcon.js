@@ -13,6 +13,6 @@ export const PendingIcon = props => (
 
 PendingIcon.defaultProps = {
 	...defaultProps,
-	label: 'Pending',
+	assistiveText: 'Pending',
 };
 PendingIcon.propTypes = propTypes;

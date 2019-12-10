@@ -13,6 +13,6 @@ export const GenericFileIcon = props => (
 
 GenericFileIcon.defaultProps = {
 	...defaultProps,
-	label: 'Generic File',
+	assistiveText: 'Generic File',
 };
 GenericFileIcon.propTypes = propTypes;

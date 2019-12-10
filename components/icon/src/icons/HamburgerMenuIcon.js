@@ -13,6 +13,6 @@ export const HamburgerMenuIcon = props => (
 
 HamburgerMenuIcon.defaultProps = {
 	...defaultProps,
-	label: 'Hamburger Menu',
+	assistiveText: 'Hamburger Menu',
 };
 HamburgerMenuIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const AustraliaIcon = props => (
 
 AustraliaIcon.defaultProps = {
 	...defaultProps,
-	label: 'Australia',
+	assistiveText: 'Australia',
 };
 AustraliaIcon.propTypes = propTypes;

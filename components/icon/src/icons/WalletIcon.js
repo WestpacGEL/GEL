@@ -13,6 +13,6 @@ export const WalletIcon = props => (
 
 WalletIcon.defaultProps = {
 	...defaultProps,
-	label: 'Wallet',
+	assistiveText: 'Wallet',
 };
 WalletIcon.propTypes = propTypes;

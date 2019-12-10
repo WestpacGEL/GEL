@@ -13,6 +13,6 @@ export const TakeOutIcon = props => (
 
 TakeOutIcon.defaultProps = {
 	...defaultProps,
-	label: 'Take Out',
+	assistiveText: 'Take Out',
 };
 TakeOutIcon.propTypes = propTypes;

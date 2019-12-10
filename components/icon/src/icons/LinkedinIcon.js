@@ -13,6 +13,6 @@ export const LinkedinIcon = props => (
 
 LinkedinIcon.defaultProps = {
 	...defaultProps,
-	label: 'Linkedin',
+	assistiveText: 'Linkedin',
 };
 LinkedinIcon.propTypes = propTypes;

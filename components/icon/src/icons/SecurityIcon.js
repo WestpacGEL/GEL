@@ -13,6 +13,6 @@ export const SecurityIcon = props => (
 
 SecurityIcon.defaultProps = {
 	...defaultProps,
-	label: 'Security',
+	assistiveText: 'Security',
 };
 SecurityIcon.propTypes = propTypes;

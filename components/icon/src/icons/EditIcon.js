@@ -13,6 +13,6 @@ export const EditIcon = props => (
 
 EditIcon.defaultProps = {
 	...defaultProps,
-	label: 'Edit',
+	assistiveText: 'Edit',
 };
 EditIcon.propTypes = propTypes;

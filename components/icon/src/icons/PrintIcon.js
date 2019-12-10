@@ -13,6 +13,6 @@ export const PrintIcon = props => (
 
 PrintIcon.defaultProps = {
 	...defaultProps,
-	label: 'Print',
+	assistiveText: 'Print',
 };
 PrintIcon.propTypes = propTypes;

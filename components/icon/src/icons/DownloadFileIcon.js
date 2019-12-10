@@ -13,6 +13,6 @@ export const DownloadFileIcon = props => (
 
 DownloadFileIcon.defaultProps = {
 	...defaultProps,
-	label: 'Download File',
+	assistiveText: 'Download File',
 };
 DownloadFileIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const PlayCircleIcon = props => (
 
 PlayCircleIcon.defaultProps = {
 	...defaultProps,
-	label: 'Play Circle',
+	assistiveText: 'Play Circle',
 };
 PlayCircleIcon.propTypes = propTypes;

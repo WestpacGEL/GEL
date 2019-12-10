@@ -12,12 +12,12 @@ function Example({ brand }) {
 			<Intopia />
 
 			<Row>
-				<FavouriteIcon label="Colored heart" color="#DE350B" />
-				<FavouriteIcon label="Colored heart" color="#FF991F" />
-				<FavouriteIcon label="Colored heart" color="#00875A" />
-				<FavouriteIcon label="Colored heart" color="#00A3BF" />
-				<FavouriteIcon label="Colored heart" color="#0052CC" />
-				<FavouriteIcon label="Colored heart" color="#5243AA" />
+				<FavouriteIcon assistiveText="Colored heart" color="#DE350B" />
+				<FavouriteIcon assistiveText="Colored heart" color="#FF991F" />
+				<FavouriteIcon assistiveText="Colored heart" color="#00875A" />
+				<FavouriteIcon assistiveText="Colored heart" color="#00A3BF" />
+				<FavouriteIcon assistiveText="Colored heart" color="#0052CC" />
+				<FavouriteIcon assistiveText="Colored heart" color="#5243AA" />
 			</Row>
 		</GEL>
 	);

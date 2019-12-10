@@ -13,6 +13,6 @@ export const InstagramIcon = props => (
 
 InstagramIcon.defaultProps = {
 	...defaultProps,
-	label: 'Instagram',
+	assistiveText: 'Instagram',
 };
 InstagramIcon.propTypes = propTypes;

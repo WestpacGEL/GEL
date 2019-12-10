@@ -13,6 +13,6 @@ export const ImageSquareIcon = props => (
 
 ImageSquareIcon.defaultProps = {
 	...defaultProps,
-	label: 'Image Square',
+	assistiveText: 'Image Square',
 };
 ImageSquareIcon.propTypes = propTypes;

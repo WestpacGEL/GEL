@@ -13,6 +13,6 @@ export const ListIcon = props => (
 
 ListIcon.defaultProps = {
 	...defaultProps,
-	label: 'List',
+	assistiveText: 'List',
 };
 ListIcon.propTypes = propTypes;

@@ -3,7 +3,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, useMediaQuery, merge, wrapHandlers, asArray } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
 import pkg from '../package.json';
 
 // ==============================
@@ -56,7 +55,7 @@ export const Switch = ({
 	flipped,
 	toggleText,
 	disabled,
-	srOnlyText,
+	assistiveText,
 	...props
 }) => {
 	const { COLORS, PACKS, [pkg.name]: overridesWithTokens } = useBrand();
@@ -102,6 +101,7 @@ export const Switch = ({
 				type="checkbox"
 				name={name}
 				checked={checked}
+				aria-label={assistiveText}
 				onChange={handleChange(name)}
 				disabled={disabled}
 				css={{
@@ -111,7 +111,7 @@ export const Switch = ({
 				}}
 			/>
 			<overrides.Label block={block} flipped={flipped}>
-				{srOnlyText ? <VisuallyHidden>{label}</VisuallyHidden> : label}
+				{label}
 			</overrides.Label>
 			<span
 				css={mq({
@@ -125,6 +125,7 @@ export const Switch = ({
 					overflow: 'hidden',
 					lineHeight: 1.5,
 					transition: 'border .3s ease,background .3s ease',
+					userSelect: 'none',
 
 					// the thumb/dot
 					'::after': {
@@ -187,6 +188,11 @@ Switch.propTypes = {
 	name: PropTypes.string,
 
 	/**
+	 * Switch label text
+	 */
+	label: PropTypes.string,
+
+	/**
 	 * On/off text.
 	 *
 	 * This prop takes an array where the first index is the "on" text and second index is the "off" text e.g. "['Yes', 'No']"
@@ -212,9 +218,9 @@ Switch.propTypes = {
 	flipped: PropTypes.bool,
 
 	/**
-	 * Enable ‘screen reader only’ label text mode.
+	 * Text to use as the aria-label for the switch input.
 	 */
-	srOnlyText: PropTypes.bool,
+	assistiveText: PropTypes.string,
 
 	/**
 	 * Switch on/off state

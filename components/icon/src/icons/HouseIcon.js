@@ -13,6 +13,6 @@ export const HouseIcon = props => (
 
 HouseIcon.defaultProps = {
 	...defaultProps,
-	label: 'House',
+	assistiveText: 'House',
 };
 HouseIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const TickIcon = props => (
 
 TickIcon.defaultProps = {
 	...defaultProps,
-	label: 'Tick',
+	assistiveText: 'Tick',
 };
 TickIcon.propTypes = propTypes;

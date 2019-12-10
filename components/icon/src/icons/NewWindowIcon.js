@@ -13,6 +13,6 @@ export const NewWindowIcon = props => (
 
 NewWindowIcon.defaultProps = {
 	...defaultProps,
-	label: 'New Window',
+	assistiveText: 'New Window',
 };
 NewWindowIcon.propTypes = propTypes;

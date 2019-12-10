@@ -13,6 +13,6 @@ export const ErrorIcon = props => (
 
 ErrorIcon.defaultProps = {
 	...defaultProps,
-	label: 'Error',
+	assistiveText: 'Error',
 };
 ErrorIcon.propTypes = propTypes;

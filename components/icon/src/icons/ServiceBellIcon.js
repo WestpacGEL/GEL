@@ -13,6 +13,6 @@ export const ServiceBellIcon = props => (
 
 ServiceBellIcon.defaultProps = {
 	...defaultProps,
-	label: 'Service Bell',
+	assistiveText: 'Service Bell',
 };
 ServiceBellIcon.propTypes = propTypes;

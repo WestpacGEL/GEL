@@ -13,6 +13,6 @@ export const YoutubeIcon = props => (
 
 YoutubeIcon.defaultProps = {
 	...defaultProps,
-	label: 'Youtube',
+	assistiveText: 'Youtube',
 };
 YoutubeIcon.propTypes = propTypes;

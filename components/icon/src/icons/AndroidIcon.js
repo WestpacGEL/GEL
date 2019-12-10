@@ -13,6 +13,6 @@ export const AndroidIcon = props => (
 
 AndroidIcon.defaultProps = {
 	...defaultProps,
-	label: 'Android',
+	assistiveText: 'Android',
 };
 AndroidIcon.propTypes = propTypes;
