@@ -142,7 +142,7 @@ export const Switch = ({
 						boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 						transition: 'all .3s ease',
 					},
-					'input:focus ~ &': {
+					'body:not(.isMouseMode) input:focus ~ &': {
 						...PACKS.focus,
 					},
 					...overrides.toggleCSS,
