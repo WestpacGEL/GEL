@@ -83,6 +83,7 @@ export const Switch = ({
 		<label
 			css={mq({
 				display: block ? 'flex' : 'inline-flex',
+				verticalAlign: 'top',
 				opacity: disabled && 0.5,
 				width: block && '100%',
 				flexWrap: 'wrap',
@@ -115,6 +116,7 @@ export const Switch = ({
 			</overrides.Label>
 			<span
 				css={mq({
+					boxSizing: 'border-box',
 					display: 'block',
 					position: 'relative',
 					border: `2px solid ${checked ? COLORS.hero : COLORS.border}`,
