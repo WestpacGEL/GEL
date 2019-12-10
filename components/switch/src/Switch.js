@@ -13,24 +13,28 @@ const sizeMap = {
 		width: '4.375rem',
 		height: '1.875rem',
 		borderRadius: '1.875rem',
+		borderWidth: '2px',
 		fontSize: '0.875rem',
 	},
 	medium: {
 		width: '5rem',
 		height: '2.25rem',
 		borderRadius: '2.25rem',
+		borderWidth: '2px',
 		fontSize: '1rem',
 	},
 	large: {
 		width: '5.5625rem',
 		height: '2.625rem',
 		borderRadius: '2.625rem',
+		borderWidth: '2px',
 		fontSize: '1rem',
 	},
 	xlarge: {
 		width: '6rem',
 		height: '3rem',
 		borderRadius: '3rem',
+		borderWidth: '2px',
 		fontSize: '1.125rem',
 	},
 };
@@ -39,6 +43,7 @@ const responsiveMap = size => ({
 	width: size.map(s => s && sizeMap[s].width),
 	height: size.map(s => s && sizeMap[s].height),
 	borderRadius: size.map(s => s && sizeMap[s].borderRadius),
+	borderWidth: size.map(s => s && sizeMap[s].borderWidth),
 	fontSize: size.map(s => s && sizeMap[s].fontSize),
 });
 
@@ -111,15 +116,17 @@ export const Switch = ({
 					opacity: 0,
 				}}
 			/>
-			<overrides.Label block={block} flipped={flipped}>
-				{label}
-			</overrides.Label>
+			{label && (
+				<overrides.Label block={block} flipped={flipped}>
+					{label}
+				</overrides.Label>
+			)}
 			<span
 				css={mq({
 					boxSizing: 'border-box',
 					display: 'block',
 					position: 'relative',
-					border: `2px solid ${checked ? COLORS.hero : COLORS.border}`,
+					border: `${sizeArr.borderWidth} solid ${checked ? COLORS.hero : COLORS.border}`,
 					borderRadius: sizeArr.borderRadius,
 					backgroundColor: checked ? COLORS.hero : '#fff',
 					height: sizeArr.height,
@@ -132,8 +139,8 @@ export const Switch = ({
 					// the thumb/dot
 					'::after': {
 						content: '""',
-						height: sizeArr.height,
-						width: sizeArr.height,
+						height: `calc(${sizeArr.height} - ${sizeArr.borderWidth} - ${sizeArr.borderWidth})`,
+						width: `calc(${sizeArr.height} - ${sizeArr.borderWidth} - ${sizeArr.borderWidth})`,
 						display: 'block',
 						position: 'absolute',
 						left: checked ? '100%' : 0,
@@ -220,7 +227,7 @@ Switch.propTypes = {
 	flipped: PropTypes.bool,
 
 	/**
-	 * Text to use as the aria-label for the switch input.
+	 * Text to use as the `aria-label` for the switch input
 	 */
 	assistiveText: PropTypes.string,
 
@@ -272,20 +279,23 @@ const ToggleText = ({ position, checked, size, ...props }) => {
 		color = COLORS.text;
 	}
 
+	// Internal height CSS
+	const height = `calc(${size.height} - ${size.borderWidth} - ${size.borderWidth})`;
+
 	return (
 		<span
 			css={mq({
+				boxSizing: 'border-box',
 				position: 'absolute',
-				[position]: 0,
-				transition: 'opacity .3s ease',
-				opacity: checked ? 1 : 0,
-				width: size.height,
-				lineHeight: size.height,
+				width: '100%',
+				lineHeight: height,
 				fontSize: size.fontSize,
-				paddingLeft: '0.25rem',
-				paddingRight: '0.25rem',
+				paddingLeft: position === 'right' ? height : '6%',
+				paddingRight: position === 'left' ? height : '6%',
 				color: position === 'right' ? COLORS.text : color,
 				textAlign: 'center',
+				opacity: checked ? 1 : 0,
+				transition: 'opacity .3s ease',
 			})}
 			{...props}
 		/>
