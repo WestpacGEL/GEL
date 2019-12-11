@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 export const data = [
 	{
-		label: 'Rabbit hole',
+		text: 'Rabbit hole',
 		content: (
 			<Fragment>
 				‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing larger
@@ -15,7 +15,7 @@ export const data = [
 		),
 	},
 	{
-		label: 'Flamingo',
+		text: 'Flamingo',
 		content: (
 			<Fragment>
 				The chief difficulty Alice found at first was in managing her flamingo: she succeeded in
@@ -32,7 +32,7 @@ export const data = [
 		),
 	},
 	{
-		label: 'Caterpillar',
+		text: 'Caterpillar',
 		content: (
 			<Fragment>
 				The Caterpillar and Alice looked at each other for some time in silence: at last the
