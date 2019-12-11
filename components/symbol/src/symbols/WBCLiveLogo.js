@@ -58,6 +58,6 @@ WBCLiveLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 133,
 	viewBoxHeight: 43,
-	label: 'Westpac Live',
+	assistiveText: 'Westpac Live',
 };
 WBCLiveLogo.propTypes = propTypes;

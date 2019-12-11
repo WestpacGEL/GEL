@@ -13,6 +13,6 @@ export const ExcelFileIcon = props => (
 
 ExcelFileIcon.defaultProps = {
 	...defaultProps,
-	label: 'Excel File',
+	assistiveText: 'Excel File',
 };
 ExcelFileIcon.propTypes = propTypes;

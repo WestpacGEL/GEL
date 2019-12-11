@@ -9,6 +9,6 @@ export const DropDownIcon = props => (
 
 DropDownIcon.defaultProps = {
 	...defaultProps,
-	label: 'Drop Down',
+	assistiveText: 'Drop Down',
 };
 DropDownIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const TwitterIcon = props => (
 
 TwitterIcon.defaultProps = {
 	...defaultProps,
-	label: 'Twitter',
+	assistiveText: 'Twitter',
 };
 TwitterIcon.propTypes = propTypes;

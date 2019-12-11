@@ -13,6 +13,6 @@ export const AccessibilityIcon = props => (
 
 AccessibilityIcon.defaultProps = {
 	...defaultProps,
-	label: 'Accessibility',
+	assistiveText: 'Accessibility',
 };
 AccessibilityIcon.propTypes = propTypes;

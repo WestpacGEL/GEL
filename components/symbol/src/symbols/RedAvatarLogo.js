@@ -20,6 +20,6 @@ RedAvatarLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 67,
 	viewBoxHeight: 32,
-	label: 'Red Avatar',
+	assistiveText: 'Red Avatar',
 };
 RedAvatarLogo.propTypes = propTypes;

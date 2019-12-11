@@ -43,15 +43,15 @@ export const Pagination = ({
 	};
 
 	const back = {
-		label: 'Back',
+		text: 'Back',
 		visible: true,
-		ariaLabel: page => `Step back to page ${page + 1}`,
+		assistiveText: page => `Step back to page ${page + 1}`,
 	};
 
 	const next = {
-		label: 'Next',
+		text: 'Next',
 		visible: true,
-		ariaLabel: page => `Step forward to page ${page + 1}`,
+		assistiveText: page => `Step forward to page ${page + 1}`,
 	};
 
 	merge(overrides, overridesWithTokens);
@@ -108,10 +108,10 @@ export const Pagination = ({
 			>
 				{back.visible && (
 					<Page
-						label={back.label}
+						text={back.text}
 						first
 						disabled={pageLogic.current === 0 && !infinite}
-						ariaLabel={back.ariaLabel(backIndex)}
+						assistiveText={back.assistiveText(backIndex)}
 						onClick={wrapHandlers(
 							event => back.onClick && back.onClick(event, backIndex),
 							event => pageLogic.previous(event)
@@ -122,7 +122,7 @@ export const Pagination = ({
 					<Page
 						key={index}
 						index={index}
-						label={page.label}
+						text={page.text}
 						onClick={wrapHandlers(
 							event => page.onClick(event, index),
 							event => pageLogic.setCurrent(index, event)
@@ -133,10 +133,10 @@ export const Pagination = ({
 				))}
 				{next.visible && (
 					<Page
-						label={next.label}
+						text={next.text}
 						last
 						disabled={pageLogic.current === pageCount - 1 && !infinite}
-						ariaLabel={next.ariaLabel(nextIndex)}
+						assistiveText={next.assistiveText(nextIndex)}
 						onClick={wrapHandlers(
 							event => next.onClick && next.onClick(event, nextIndex),
 							event => pageLogic.next(event)
@@ -152,9 +152,9 @@ export const Pagination = ({
 // Types
 // ==============================
 const interaction = {
-	label: PropTypes.string,
+	text: PropTypes.string,
 	visible: PropTypes.bool,
-	ariaLabel: PropTypes.func,
+	assistiveText: PropTypes.func,
 	onClick: PropTypes.func,
 };
 
@@ -184,7 +184,7 @@ Pagination.propTypes = {
 	 */
 	data: PropTypes.arrayOf(
 		PropTypes.shape({
-			label: PropTypes.string.isRequired,
+			text: PropTypes.string.isRequired,
 			onClick: PropTypes.func.isRequired,
 		})
 	),

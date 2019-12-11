@@ -13,6 +13,6 @@ export const DeleteIcon = props => (
 
 DeleteIcon.defaultProps = {
 	...defaultProps,
-	label: 'Delete',
+	assistiveText: 'Delete',
 };
 DeleteIcon.propTypes = propTypes;

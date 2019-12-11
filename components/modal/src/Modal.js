@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, forwardRef } from 'react';
 import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -8,6 +8,8 @@ import shortid from 'shortid';
 import FocusLock from 'react-focus-lock';
 import { CSSTransition } from 'react-transition-group';
 import pkg from '../package.json';
+
+import { ModalHeader } from './ModalHeader';
 
 // ==============================
 // Context and Consumer Hook
@@ -27,7 +29,16 @@ export const useModalContext = () => {
 // ==============================
 // Component
 // ==============================
-export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
+export const Modal = ({
+	heading,
+	open: isOpen,
+	onClose,
+	size,
+	dismissible,
+	overrides: overridesComponent,
+	children,
+	...props
+}) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 	const [open, setOpen] = useState(isOpen);
 
@@ -37,7 +48,7 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 		css: {},
 	};
 
-	merge(overrides, overridesWithTokens);
+	merge(overrides, overridesWithTokens, overridesComponent);
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -57,7 +68,7 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 
 	// on escape close modal
 	const keyHandler = event => {
-		if (event.keyCode === 27) handleClose();
+		if (dismissible && event.keyCode === 27) handleClose();
 	};
 
 	// bind key events
@@ -69,7 +80,7 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 	});
 
 	const handleBackdropClick = e => {
-		if (e.target === e.currentTarget) {
+		if (dismissible && e.target === e.currentTarget) {
 			handleClose();
 		}
 	};
@@ -83,9 +94,9 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 			classNames="modal-backdrop"
 		>
 			<Backdrop onClick={handleBackdropClick} css={overrides.backdropCSS}>
-				<FocusLock returnFocus autoFocus={false}>
+				<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
 					<CSSTransition appear in={open} timeout={100} classNames="modal">
-						<ModalContext.Provider value={{ titleId, bodyId, handleClose }}>
+						<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
 							<StyledModal
 								role="dialog"
 								aria-modal="true"
@@ -96,6 +107,7 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 								css={overrides.css}
 								{...props}
 							>
+								<ModalHeader>{heading}</ModalHeader>
 								{children}
 							</StyledModal>
 						</ModalContext.Provider>
@@ -112,17 +124,47 @@ export const Modal = ({ open: isOpen, onClose, size, children, ...props }) => {
 // ==============================
 
 Modal.propTypes = {
-	/** State of whether the modal is open */
+	/**
+	 * Modal heading text
+	 */
+	heading: PropTypes.string.isRequired,
+
+	/**
+	 * State of whether the modal is open
+	 */
 	open: PropTypes.bool.isRequired,
-	/** Callback function for handling modal state */
+
+	/**
+	 * Callback function for handling modal state
+	 */
 	onClose: PropTypes.func,
-	/** Size of the modal */
+
+	/**
+	 * Size of the modal
+	 */
 	size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
+
+	/**
+	 * Enable dismissible mode.
+	 *
+	 * Allows modal close via close button, background overlay click and Esc key.
+	 */
+	dismissible: PropTypes.bool,
+
+	/**
+	 * Modal overrides
+	 */
+	overrides: PropTypes.shape({
+		duration: PropTypes.number,
+		backdropCSS: PropTypes.object,
+		css: PropTypes.object,
+	}),
 };
 
 Modal.defaultProps = {
 	open: false,
 	size: 'medium',
+	dismissible: true,
 };
 
 // ==============================
@@ -173,7 +215,7 @@ const StyledModal = ({ size, ...props }) => {
 				maxHeight: '85%',
 				margin: '0 0.75rem',
 				backgroundColor: '#fff',
-				borderRadius: 3,
+				borderRadius: '0.1875rem',
 				boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
 				transition: 'all 0.3s ease',
 				width: ['auto', size === 'small' ? '18.75rem' : '37.5rem', size === 'large' && '56.25rem'],
@@ -183,10 +225,14 @@ const StyledModal = ({ size, ...props }) => {
 				},
 
 				'&.modal-appear-done': {
-					transform: 'translate(0rem,1.875rem)',
+					transform: 'translate(0,1.875rem)',
 				},
 			})}
 			{...props}
 		/>
 	);
 };
+
+const FocusWrapper = forwardRef((props, ref) => (
+	<div ref={ref} css={{ height: '100%' }} {...props} />
+));

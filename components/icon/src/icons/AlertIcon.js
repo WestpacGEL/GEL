@@ -13,6 +13,6 @@ export const AlertIcon = props => (
 
 AlertIcon.defaultProps = {
 	...defaultProps,
-	label: 'Alert',
+	assistiveText: 'Alert',
 };
 AlertIcon.propTypes = propTypes;

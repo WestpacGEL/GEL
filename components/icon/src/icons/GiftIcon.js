@@ -13,6 +13,6 @@ export const GiftIcon = props => (
 
 GiftIcon.defaultProps = {
 	...defaultProps,
-	label: 'Gift',
+	assistiveText: 'Gift',
 };
 GiftIcon.propTypes = propTypes;

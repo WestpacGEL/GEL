@@ -13,6 +13,6 @@ export const MoneyInIcon = props => (
 
 MoneyInIcon.defaultProps = {
 	...defaultProps,
-	label: 'Money In',
+	assistiveText: 'Money In',
 };
 MoneyInIcon.propTypes = propTypes;

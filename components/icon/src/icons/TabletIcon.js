@@ -13,6 +13,6 @@ export const TabletIcon = props => (
 
 TabletIcon.defaultProps = {
 	...defaultProps,
-	label: 'Tablet',
+	assistiveText: 'Tablet',
 };
 TabletIcon.propTypes = propTypes;

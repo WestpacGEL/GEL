@@ -13,6 +13,6 @@ export const GithubIcon = props => (
 
 GithubIcon.defaultProps = {
 	...defaultProps,
-	label: 'Github',
+	assistiveText: 'Github',
 };
 GithubIcon.propTypes = propTypes;

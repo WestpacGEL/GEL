@@ -13,6 +13,6 @@ export const InfoIcon = props => (
 
 InfoIcon.defaultProps = {
 	...defaultProps,
-	label: 'Info',
+	assistiveText: 'Info',
 };
 InfoIcon.propTypes = propTypes;

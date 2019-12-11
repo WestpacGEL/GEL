@@ -1,9 +1,10 @@
 /** @jsx jsx */
 
+import PropTypes from 'prop-types';
 import { jsx, useBrand, merge } from '@westpac/core';
 import pkg from '../package.json';
 
-export const ModalFooter = props => {
+export const ModalFooter = ({ overrides: overridesComponent, ...props }) => {
 	const { COLORS } = useBrand();
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 
@@ -11,7 +12,7 @@ export const ModalFooter = props => {
 		footerCSS: {},
 	};
 
-	merge(overrides, overridesWithTokens);
+	merge(overrides, overridesWithTokens, overridesComponent);
 
 	return (
 		<div
@@ -29,4 +30,16 @@ export const ModalFooter = props => {
 			{...props}
 		/>
 	);
+};
+
+// ==============================
+// Types
+// ==============================
+ModalFooter.propTypes = {
+	/**
+	 * ModalFooter overrides
+	 */
+	overrides: PropTypes.shape({
+		footerCSS: PropTypes.object,
+	}),
 };

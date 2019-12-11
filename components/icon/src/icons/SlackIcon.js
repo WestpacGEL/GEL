@@ -13,6 +13,6 @@ export const SlackIcon = props => (
 
 SlackIcon.defaultProps = {
 	...defaultProps,
-	label: 'Slack',
+	assistiveText: 'Slack',
 };
 SlackIcon.propTypes = propTypes;

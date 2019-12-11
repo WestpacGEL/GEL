@@ -13,6 +13,6 @@ export const AddCircleIcon = props => (
 
 AddCircleIcon.defaultProps = {
 	...defaultProps,
-	label: 'Add Circle',
+	assistiveText: 'Add Circle',
 };
 AddCircleIcon.propTypes = propTypes;

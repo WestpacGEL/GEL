@@ -30,6 +30,6 @@ BTFGStackedLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 73,
 	viewBoxHeight: 65,
-	label: 'BT',
+	assistiveText: 'BT',
 };
 BTFGStackedLogo.propTypes = propTypes;

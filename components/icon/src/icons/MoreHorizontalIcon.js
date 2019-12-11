@@ -13,6 +13,6 @@ export const MoreHorizontalIcon = props => (
 
 MoreHorizontalIcon.defaultProps = {
 	...defaultProps,
-	label: 'More Horizontal',
+	assistiveText: 'More Horizontal',
 };
 MoreHorizontalIcon.propTypes = propTypes;

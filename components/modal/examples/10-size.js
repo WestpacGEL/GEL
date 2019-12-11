@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { useReducer } from 'react';
-import { Modal, Header, Body, Footer } from '@westpac/modal';
+import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -34,8 +34,11 @@ function Example({ brand }) {
 			<p>
 				<Button onClick={() => updateModal('default', true)}>Open default modal</Button>
 			</p>
-			<Modal open={state.default.open} onClose={() => updateModal('default', false)}>
-				<Header>Modal Title</Header>
+			<Modal
+				heading="Modal Title"
+				open={state.default.open}
+				onClose={() => updateModal('default', false)}
+			>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -54,8 +57,12 @@ function Example({ brand }) {
 			<p>
 				<Button onClick={() => updateModal('small', true)}>Open small modal</Button>
 			</p>
-			<Modal open={state.small.open} onClose={() => updateModal('small', false)} size="small">
-				<Header>Modal Title Modal Title Modal Title Modal Title Modal Title Modal Title</Header>
+			<Modal
+				heading="Modal Title Modal Title Modal Title Modal Title Modal Title Modal Title"
+				open={state.small.open}
+				onClose={() => updateModal('small', false)}
+				size="small"
+			>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -85,8 +92,12 @@ function Example({ brand }) {
 			<p>
 				<Button onClick={() => updateModal('large', true)}>Open large modal</Button>
 			</p>
-			<Modal open={state.large.open} onClose={() => updateModal('large', false)} size="large">
-				<Header>Modal Title</Header>
+			<Modal
+				heading="Modal Title"
+				open={state.large.open}
+				onClose={() => updateModal('large', false)}
+				size="large"
+			>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t

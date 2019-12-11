@@ -13,6 +13,6 @@ export const UmbrellaIcon = props => (
 
 UmbrellaIcon.defaultProps = {
 	...defaultProps,
-	label: 'Umbrella',
+	assistiveText: 'Umbrella',
 };
 UmbrellaIcon.propTypes = propTypes;

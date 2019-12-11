@@ -13,6 +13,6 @@ export const HistoryClockIcon = props => (
 
 HistoryClockIcon.defaultProps = {
 	...defaultProps,
-	label: 'History Clock',
+	assistiveText: 'History Clock',
 };
 HistoryClockIcon.propTypes = propTypes;

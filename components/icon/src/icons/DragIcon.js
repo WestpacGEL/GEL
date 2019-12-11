@@ -13,6 +13,6 @@ export const DragIcon = props => (
 
 DragIcon.defaultProps = {
 	...defaultProps,
-	label: 'Drag',
+	assistiveText: 'Drag',
 };
 DragIcon.propTypes = propTypes;

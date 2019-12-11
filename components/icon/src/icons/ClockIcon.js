@@ -13,6 +13,6 @@ export const ClockIcon = props => (
 
 ClockIcon.defaultProps = {
 	...defaultProps,
-	label: 'Clock',
+	assistiveText: 'Clock',
 };
 ClockIcon.propTypes = propTypes;

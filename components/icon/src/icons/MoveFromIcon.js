@@ -13,6 +13,6 @@ export const MoveFromIcon = props => (
 
 MoveFromIcon.defaultProps = {
 	...defaultProps,
-	label: 'Move From',
+	assistiveText: 'Move From',
 };
 MoveFromIcon.propTypes = propTypes;

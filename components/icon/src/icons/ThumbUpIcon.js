@@ -14,6 +14,6 @@ export const ThumbUpIcon = props => (
 
 ThumbUpIcon.defaultProps = {
 	...defaultProps,
-	label: 'Thumb Up',
+	assistiveText: 'Thumb Up',
 };
 ThumbUpIcon.propTypes = propTypes;

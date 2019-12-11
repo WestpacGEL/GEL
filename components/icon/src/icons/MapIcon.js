@@ -13,6 +13,6 @@ export const MapIcon = props => (
 
 MapIcon.defaultProps = {
 	...defaultProps,
-	label: 'Map',
+	assistiveText: 'Map',
 };
 MapIcon.propTypes = propTypes;

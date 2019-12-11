@@ -13,6 +13,6 @@ export const QuickBalanceIcon = props => (
 
 QuickBalanceIcon.defaultProps = {
 	...defaultProps,
-	label: 'Quick Balance',
+	assistiveText: 'Quick Balance',
 };
 QuickBalanceIcon.propTypes = propTypes;

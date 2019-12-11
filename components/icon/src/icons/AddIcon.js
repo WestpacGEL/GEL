@@ -13,6 +13,6 @@ export const AddIcon = props => (
 
 AddIcon.defaultProps = {
 	...defaultProps,
-	label: 'Add',
+	assistiveText: 'Add',
 };
 AddIcon.propTypes = propTypes;

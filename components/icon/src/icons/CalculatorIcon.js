@@ -13,6 +13,6 @@ export const CalculatorIcon = props => (
 
 CalculatorIcon.defaultProps = {
 	...defaultProps,
-	label: 'Calculator',
+	assistiveText: 'Calculator',
 };
 CalculatorIcon.propTypes = propTypes;

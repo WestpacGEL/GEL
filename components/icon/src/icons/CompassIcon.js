@@ -13,6 +13,6 @@ export const CompassIcon = props => (
 
 CompassIcon.defaultProps = {
 	...defaultProps,
-	label: 'Compass',
+	assistiveText: 'Compass',
 };
 CompassIcon.propTypes = propTypes;

@@ -19,6 +19,6 @@ WBCLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 69,
 	viewBoxHeight: 28,
-	label: 'Westpac',
+	assistiveText: 'Westpac',
 };
 WBCLogo.propTypes = propTypes;

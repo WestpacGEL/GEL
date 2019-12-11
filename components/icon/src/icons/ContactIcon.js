@@ -13,6 +13,6 @@ export const ContactIcon = props => (
 
 ContactIcon.defaultProps = {
 	...defaultProps,
-	label: 'Contact',
+	assistiveText: 'Contact',
 };
 ContactIcon.propTypes = propTypes;

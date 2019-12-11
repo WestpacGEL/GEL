@@ -13,6 +13,6 @@ export const TransportIcon = props => (
 
 TransportIcon.defaultProps = {
 	...defaultProps,
-	label: 'Transport',
+	assistiveText: 'Transport',
 };
 TransportIcon.propTypes = propTypes;

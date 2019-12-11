@@ -13,6 +13,6 @@ export const BarChartIcon = props => (
 
 BarChartIcon.defaultProps = {
 	...defaultProps,
-	label: 'Bar Chart',
+	assistiveText: 'Bar Chart',
 };
 BarChartIcon.propTypes = propTypes;

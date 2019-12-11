@@ -38,15 +38,15 @@ function Example({ brand }) {
 			<Grid>
 				<Cell width={4}>
 					<ProgressRope current={state.index}>
-						<Group label={'Group 1'}>
+						<Group text={'Group 1'}>
 							<Item onClick={handleClick(0)}>Step 0</Item>
 							<Item onClick={handleClick(1)}>Step 1</Item>
 						</Group>
-						<Group label={'Group 2'}>
+						<Group text={'Group 2'}>
 							<Item onClick={handleClick(2)}>Step 2</Item>
 							<Item onClick={handleClick(3)}>Step 3</Item>
 						</Group>
-						<Group label={'Group 3'}>
+						<Group text={'Group 3'}>
 							<Item onClick={handleClick(4)}>Step 4</Item>
 							<Item onClick={handleClick(5)}>Step 5</Item>
 							<Item onClick={handleClick(6)}>Step 6</Item>

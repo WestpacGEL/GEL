@@ -13,6 +13,6 @@ export const CalendarIcon = props => (
 
 CalendarIcon.defaultProps = {
 	...defaultProps,
-	label: 'Calendar',
+	assistiveText: 'Calendar',
 };
 CalendarIcon.propTypes = propTypes;

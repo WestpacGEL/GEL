@@ -14,6 +14,6 @@ export const DropUpIcon = props => (
 
 DropUpIcon.defaultProps = {
 	...defaultProps,
-	label: 'Drop Up',
+	assistiveText: 'Drop Up',
 };
 DropUpIcon.propTypes = propTypes;
