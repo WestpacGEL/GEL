@@ -14,7 +14,7 @@ import React from 'react';
 /**
  * Crumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...props }) => {
+export const Crumb = ({ current, href, text, assistiveText, icon: Icon, onClick, ...props }) => {
 	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
 	const overrides = {
@@ -37,7 +37,7 @@ export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...prop
 			}}
 			{...props}
 		>
-			{current && <overrides.crumbLabel>{label}</overrides.crumbLabel>}
+			{current && <overrides.crumbLabel>{assistiveText}</overrides.crumbLabel>}
 			<a
 				href={current ? null : href}
 				onClick={onClick}
@@ -96,9 +96,9 @@ Crumb.propTypes = {
 	onClick: PropTypes.func,
 
 	/**
-	 * The label of the current page
+	 * Visually hidden text to use for the current page crumb
 	 */
-	label: PropTypes.string.isRequired,
+	assistiveText: PropTypes.string.isRequired,
 
 	/**
 	 * The icon between Crumbs
@@ -107,6 +107,6 @@ Crumb.propTypes = {
 };
 
 Crumb.defaultProps = {
-	label: 'Current page:',
+	assistiveText: 'Current page:',
 	icon: ArrowRightIcon,
 };
