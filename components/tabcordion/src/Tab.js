@@ -11,7 +11,7 @@ export const Tab = forwardRef(
 		const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 		const [hidden, setHidden] = useState(!selected);
 		const Icon = hidden ? ExpandMoreIcon : ExpandLessIcon;
-		const iconLabel = hidden ? 'Show More' : 'Show Less';
+		const iconAssistiveText = hidden ? 'Show More' : 'Show Less';
 
 		const overrides = {
 			Panel,
@@ -38,7 +38,7 @@ export const Tab = forwardRef(
 						aria-expanded={selected}
 					>
 						<span>{text}</span>
-						<Icon color={COLORS.muted} label={iconLabel} size="small" />
+						<Icon color={COLORS.muted} assistiveText={iconAssistiveText} size="small" />
 					</overrides.AccordionLabel>
 				) : null}
 				<overrides.Panel
