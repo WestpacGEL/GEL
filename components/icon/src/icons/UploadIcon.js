@@ -13,6 +13,6 @@ export const UploadIcon = props => (
 
 UploadIcon.defaultProps = {
 	...defaultProps,
-	label: 'Upload',
+	assistiveText: 'Upload',
 };
 UploadIcon.propTypes = propTypes;

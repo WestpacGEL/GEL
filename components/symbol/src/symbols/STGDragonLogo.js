@@ -66,6 +66,6 @@ STGDragonLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 54,
 	viewBoxHeight: 38,
-	label: 'St.George',
+	assistiveText: 'St.George',
 };
 STGDragonLogo.propTypes = propTypes;

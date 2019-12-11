@@ -13,6 +13,6 @@ export const MessageIcon = props => (
 
 MessageIcon.defaultProps = {
 	...defaultProps,
-	label: 'Message',
+	assistiveText: 'Message',
 };
 MessageIcon.propTypes = propTypes;

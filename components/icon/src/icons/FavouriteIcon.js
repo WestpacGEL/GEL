@@ -13,6 +13,6 @@ export const FavouriteIcon = props => (
 
 FavouriteIcon.defaultProps = {
 	...defaultProps,
-	label: 'Favourite',
+	assistiveText: 'Favourite',
 };
 FavouriteIcon.propTypes = propTypes;

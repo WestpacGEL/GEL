@@ -30,6 +30,6 @@ BTFGLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 180,
 	viewBoxHeight: 28,
-	label: 'BT',
+	assistiveText: 'BT',
 };
 BTFGLogo.propTypes = propTypes;

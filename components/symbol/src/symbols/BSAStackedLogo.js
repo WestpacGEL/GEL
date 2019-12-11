@@ -38,6 +38,6 @@ BSAStackedLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 32,
 	viewBoxHeight: 54,
-	label: 'Bank SA',
+	assistiveText: 'Bank SA',
 };
 BSAStackedLogo.propTypes = propTypes;

@@ -18,11 +18,11 @@ function Example({ brand }) {
 			<Intopia />
 
 			<Popover title="Popover Title" content={content}>
-				<Button>Click Me</Button>
+				<Button>Default popover</Button>
 			</Popover>
 			<div style={{ marginTop: '50rem' }} />
 			<Popover title="Popover Title" content={content}>
-				<Button>Click Me</Button>
+				<Button>Default popover</Button>
 			</Popover>
 		</GEL>
 	);

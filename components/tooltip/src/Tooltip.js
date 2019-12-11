@@ -10,12 +10,12 @@ import { TooltipBubble } from './TooltipBubble';
 // ==============================
 // Overwrite component
 // ==============================
-const Wrapper = forwardRef((props, ref) => <span ref={ref} {...props} />);
+const Wrapper = forwardRef(({ tag: Tag, ...props }, ref) => <Tag ref={ref} {...props} />);
 
 // ==============================
 // Component
 // ==============================
-export const Tooltip = ({ text, ...props }) => {
+export const Tooltip = ({ tag, text, ...props }) => {
 	const { [pkg.name]: overwritesWithTokens } = useBrand();
 	const [visible, setVisible] = useState(false);
 	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
@@ -71,15 +71,17 @@ export const Tooltip = ({ text, ...props }) => {
 				css={overwrites.tooltipCSS}
 			/>
 			<overwrites.Wrapper
+				tag={tag}
+				title={tag === 'abbr' ? text : undefined}
 				onMouseEnter={handleEnter}
 				onMouseLeave={handleLeave}
 				aria-describedby={tooltipId}
 				tabIndex={0}
 				ref={triggerRef}
 				css={{
+					position: 'relative',
 					display: 'inline-block',
 					cursor: 'help',
-					borderBottom: 'none',
 					...overwrites.CSS,
 				}}
 				{...props}
@@ -92,6 +94,16 @@ export const Tooltip = ({ text, ...props }) => {
 // Types
 // ==============================
 Tooltip.propTypes = {
-	/** Tooltip text */
+	/**
+	 * Tooltip tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * Tooltip text
+	 */
 	text: PropTypes.string.isRequired,
+};
+Tooltip.defaultProps = {
+	tag: 'span',
 };

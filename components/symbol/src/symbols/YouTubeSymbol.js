@@ -24,6 +24,6 @@ YouTubeSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 32,
 	viewBoxHeight: 32,
-	label: 'YouTube',
+	assistiveText: 'YouTube',
 };
 YouTubeSymbol.propTypes = propTypes;

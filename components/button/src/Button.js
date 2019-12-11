@@ -19,7 +19,7 @@ export const Button = ({
 	iconBefore,
 	justify,
 	disabled,
-	srOnlyText,
+	assistiveText,
 	tag: Tag,
 	onClick,
 	children,
@@ -165,7 +165,7 @@ export const Button = ({
 
 	return (
 		<Tag
-			type={Tag === 'button' && props.onClick ? 'button' : undefined}
+			type={Tag === 'button' ? 'button' : undefined}
 			disabled={disabled}
 			css={mq({
 				alignItems: 'center', //vertical
@@ -207,18 +207,13 @@ export const Button = ({
 				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
 				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 			})}
+			aria-label={assistiveText}
 			onClick={onClick}
 			{...props}
 		>
 			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 			{Tag !== 'input' ? (
-				<overrides.Content
-					size={size}
-					block={block}
-					iconAfter={iconAfter}
-					iconBefore={iconBefore}
-					srOnlyText={srOnlyText}
-				>
+				<overrides.Content size={size} block={block} iconAfter={iconAfter} iconBefore={iconBefore}>
 					{children}
 				</overrides.Content>
 			) : null}
@@ -284,9 +279,9 @@ Button.propTypes = {
 	justify: PropTypes.bool,
 
 	/**
-	 * Enable ‘screen reader only’ text mode
+	 * Text to use as the `aria-label` for the button
 	 */
-	srOnlyText: PropTypes.bool,
+	assistiveText: PropTypes.string,
 
 	/**
 	 * Handler to be called on click

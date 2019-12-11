@@ -13,6 +13,6 @@ export const VideoIcon = props => (
 
 VideoIcon.defaultProps = {
 	...defaultProps,
-	label: 'Video',
+	assistiveText: 'Video',
 };
 VideoIcon.propTypes = propTypes;

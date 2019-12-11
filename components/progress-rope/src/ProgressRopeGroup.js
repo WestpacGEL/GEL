@@ -2,13 +2,27 @@
 
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { useProgressRopeContext } from './ProgressRope';
+import pkg from '../package.json';
 
-export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
+export const ProgressRopeGroup = ({
+	index,
+	text,
+	overrides: overridesComponent,
+	children,
+	...props
+}) => {
 	const { openGroup, ropeGraph, handleClick } = useProgressRopeContext();
-	const { COLORS, TYPE } = useBrand();
+	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 	const active = ropeGraph[index].includes('visited');
+
+	const overrides = {
+		ropeGroupCSS: {},
+		ropeGroupLabelCSS: {},
+	};
+
+	merge(overrides, overridesWithTokens, overridesComponent);
 
 	return (
 		<li {...props}>
@@ -55,13 +69,20 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 						backgroundColor: '#fff',
 						boxSizing: 'border-box',
 					},
+					...overrides.ropeGroupLabelCSS,
 				}}
 				onClick={() => handleClick(index)}
 			>
-				{label}
+				{text}
 			</button>
 			<ol
-				css={{ position: 'relative', listStyle: 'none', paddingLeft: 0, margin: 0 }}
+				css={{
+					position: 'relative',
+					listStyle: 'none',
+					paddingLeft: 0,
+					margin: 0,
+					...overrides.ropeGroupCSS,
+				}}
 				hidden={openGroup === null || index !== openGroup}
 			>
 				{Children.map(children, (child, i) => cloneElement(child, { index: i, groupIndex: index }))}
@@ -74,6 +95,16 @@ export const ProgressRopeGroup = ({ index, label, children, ...props }) => {
 // Types
 // ==============================
 ProgressRopeGroup.propTypes = {
-	/** Group Label text */
-	label: PropTypes.string.isRequired,
+	/**
+	 * Group text
+	 */
+	text: PropTypes.string.isRequired,
+
+	/**
+	 * ProgressRopeGroup overrides
+	 */
+	overrides: PropTypes.shape({
+		ropeGroupCSS: PropTypes.object,
+		ropeGroupLabelCSS: PropTypes.object,
+	}),
 };

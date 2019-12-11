@@ -13,6 +13,6 @@ export const EftposIcon = props => (
 
 EftposIcon.defaultProps = {
 	...defaultProps,
-	label: 'Eftpos',
+	assistiveText: 'Eftpos',
 };
 EftposIcon.propTypes = propTypes;

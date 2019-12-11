@@ -13,6 +13,6 @@ export const GooglePlusIcon = props => (
 
 GooglePlusIcon.defaultProps = {
 	...defaultProps,
-	label: 'Google Plus',
+	assistiveText: 'Google Plus',
 };
 GooglePlusIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const NotificationIcon = props => (
 
 NotificationIcon.defaultProps = {
 	...defaultProps,
-	label: 'Notification',
+	assistiveText: 'Notification',
 };
 NotificationIcon.propTypes = propTypes;

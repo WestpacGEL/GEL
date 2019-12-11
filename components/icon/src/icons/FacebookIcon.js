@@ -13,6 +13,6 @@ export const FacebookIcon = props => (
 
 FacebookIcon.defaultProps = {
 	...defaultProps,
-	label: 'Facebook',
+	assistiveText: 'Facebook',
 };
 FacebookIcon.propTypes = propTypes;

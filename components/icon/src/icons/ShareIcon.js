@@ -13,6 +13,6 @@ export const ShareIcon = props => (
 
 ShareIcon.defaultProps = {
 	...defaultProps,
-	label: 'Share',
+	assistiveText: 'Share',
 };
 ShareIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const GelIcon = props => (
 
 GelIcon.defaultProps = {
 	...defaultProps,
-	label: 'Gift',
+	assistiveText: 'Gift',
 };
 GelIcon.propTypes = propTypes;

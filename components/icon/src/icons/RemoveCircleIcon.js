@@ -13,6 +13,6 @@ export const RemoveCircleIcon = props => (
 
 RemoveCircleIcon.defaultProps = {
 	...defaultProps,
-	label: 'Remove Circle',
+	assistiveText: 'Remove Circle',
 };
 RemoveCircleIcon.propTypes = propTypes;

@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, merge } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 
@@ -29,7 +28,6 @@ export const Content = ({
 	block,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
-	srOnlyText,
 	children,
 }) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
@@ -44,19 +42,15 @@ export const Content = ({
 		<Fragment>
 			{IconBefore && (
 				<IconBefore
-					css={{ marginRight: children && !srOnlyText && '0.4em' }}
+					css={{ marginRight: children && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
 				/>
 			)}
-			{children && (
-				<overrides.TextWrapper block={block} srOnlyText={srOnlyText}>
-					{children}
-				</overrides.TextWrapper>
-			)}
+			{children && <overrides.TextWrapper block={block}>{children}</overrides.TextWrapper>}
 			{IconAfter && (
 				<IconAfter
-					css={{ marginLeft: children && !srOnlyText && '0.4em' }}
+					css={{ marginLeft: children && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
 				/>
@@ -83,11 +77,6 @@ Content.propTypes = {
 	 * Places an icon within the button, before the button’s text
 	 */
 	iconBefore: PropTypes.func,
-
-	/**
-	 * Enable ‘screen reader only’ text mode
-	 */
-	srOnlyText: PropTypes.bool,
 
 	/**
 	 * Block mode.

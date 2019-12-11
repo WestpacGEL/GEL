@@ -13,6 +13,6 @@ export const PieChartIcon = props => (
 
 PieChartIcon.defaultProps = {
 	...defaultProps,
-	label: 'Pie Chart',
+	assistiveText: 'Pie Chart',
 };
 PieChartIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const FutureClockIcon = props => (
 
 FutureClockIcon.defaultProps = {
 	...defaultProps,
-	label: 'Future Clock',
+	assistiveText: 'Future Clock',
 };
 FutureClockIcon.propTypes = propTypes;

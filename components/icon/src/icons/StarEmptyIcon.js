@@ -13,6 +13,6 @@ export const StarEmptyIcon = props => (
 
 StarEmptyIcon.defaultProps = {
 	...defaultProps,
-	label: 'Star Empty',
+	assistiveText: 'Star Empty',
 };
 StarEmptyIcon.propTypes = propTypes;

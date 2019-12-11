@@ -13,6 +13,6 @@ export const GlobalIcon = props => (
 
 GlobalIcon.defaultProps = {
 	...defaultProps,
-	label: 'Global',
+	assistiveText: 'Global',
 };
 GlobalIcon.propTypes = propTypes;

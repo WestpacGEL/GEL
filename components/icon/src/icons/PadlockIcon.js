@@ -13,6 +13,6 @@ export const PadlockIcon = props => (
 
 PadlockIcon.defaultProps = {
 	...defaultProps,
-	label: 'Padlock',
+	assistiveText: 'Padlock',
 };
 PadlockIcon.propTypes = propTypes;

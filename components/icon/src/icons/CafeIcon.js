@@ -13,6 +13,6 @@ export const CafeIcon = props => (
 
 CafeIcon.defaultProps = {
 	...defaultProps,
-	label: 'Cafe',
+	assistiveText: 'Cafe',
 };
 CafeIcon.propTypes = propTypes;

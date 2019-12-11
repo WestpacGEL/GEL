@@ -13,6 +13,6 @@ export const LiveChatIcon = props => (
 
 LiveChatIcon.defaultProps = {
 	...defaultProps,
-	label: 'Live Chat',
+	assistiveText: 'Live Chat',
 };
 LiveChatIcon.propTypes = propTypes;

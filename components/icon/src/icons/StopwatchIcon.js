@@ -13,6 +13,6 @@ export const StopwatchIcon = props => (
 
 StopwatchIcon.defaultProps = {
 	...defaultProps,
-	label: 'Stopwatch',
+	assistiveText: 'Stopwatch',
 };
 StopwatchIcon.propTypes = propTypes;

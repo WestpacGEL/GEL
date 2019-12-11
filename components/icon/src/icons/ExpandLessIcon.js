@@ -13,6 +13,6 @@ export const ExpandLessIcon = props => (
 
 ExpandLessIcon.defaultProps = {
 	...defaultProps,
-	label: 'Expand Less',
+	assistiveText: 'Expand Less',
 };
 ExpandLessIcon.propTypes = propTypes;

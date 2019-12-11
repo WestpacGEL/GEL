@@ -13,6 +13,6 @@ export const PersonIcon = props => (
 
 PersonIcon.defaultProps = {
 	...defaultProps,
-	label: 'Person',
+	assistiveText: 'Person',
 };
 PersonIcon.propTypes = propTypes;

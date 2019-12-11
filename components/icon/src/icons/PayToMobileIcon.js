@@ -13,6 +13,6 @@ export const PayToMobileIcon = props => (
 
 PayToMobileIcon.defaultProps = {
 	...defaultProps,
-	label: 'Pay To Mobile',
+	assistiveText: 'Pay To Mobile',
 };
 PayToMobileIcon.propTypes = propTypes;

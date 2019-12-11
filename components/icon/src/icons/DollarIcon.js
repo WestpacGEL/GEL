@@ -13,6 +13,6 @@ export const DollarIcon = props => (
 
 DollarIcon.defaultProps = {
 	...defaultProps,
-	label: 'Dollar',
+	assistiveText: 'Dollar',
 };
 DollarIcon.propTypes = propTypes;

@@ -9,6 +9,6 @@ export const PlayIcon = props => (
 
 PlayIcon.defaultProps = {
 	...defaultProps,
-	label: 'Play',
+	assistiveText: 'Play',
 };
 PlayIcon.propTypes = propTypes;

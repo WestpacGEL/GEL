@@ -20,7 +20,7 @@ export const sizeMap = {
 // Token component
 // ==============================
 
-const IconWrapper = ({ size, ...props }) => {
+const IconWrapper = ({ icon, color, size, assistiveText, ...props }) => {
 	const mq = useMediaQuery();
 
 	// Size styling (responsive)
@@ -48,7 +48,7 @@ const IconWrapper = ({ size, ...props }) => {
 // Component
 // ==============================
 
-export const Icon = ({ children, color, label, size, ...props }) => {
+export const Icon = ({ color, size, assistiveText, children, ...props }) => {
 	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
 	const overrides = {
@@ -58,15 +58,9 @@ export const Icon = ({ children, color, label, size, ...props }) => {
 	merge(overrides, overridesWithTokens);
 
 	return (
-		<overrides.Wrapper
-			size={size}
-			color={color}
-			label={label}
-			css={{ color: color ? color : COLORS.muted }}
-			{...props}
-		>
+		<overrides.Wrapper size={size} css={{ color: color ? color : COLORS.muted }} {...props}>
 			<svg
-				aria-label={label}
+				aria-label={assistiveText}
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
 				role="img"
@@ -92,13 +86,13 @@ export const propTypes = {
 	color: PropTypes.string,
 
 	/**
-	 * String to use as the aria-label for the icon. Set to an empty string if you
+	 * String to use as the `aria-label` for the icon. Set to an empty string if you
 	 * are rendering the icon with visible text to prevent accessibility label
 	 * duplication.
 	 *
 	 * Defaults to the icon name e.g. `BusinessPersonIcon` --> "Business Person"
 	 */
-	label: PropTypes.string,
+	assistiveText: PropTypes.string,
 
 	/**
 	 * Control the size of the icon.

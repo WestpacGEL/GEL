@@ -30,6 +30,6 @@ BOMShieldLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 26,
 	viewBoxHeight: 39,
-	label: 'Bank of Melbourne',
+	assistiveText: 'Bank of Melbourne',
 };
 BOMShieldLogo.propTypes = propTypes;

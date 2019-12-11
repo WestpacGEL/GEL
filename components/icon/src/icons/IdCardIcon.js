@@ -13,6 +13,6 @@ export const IdCardIcon = props => (
 
 IdCardIcon.defaultProps = {
 	...defaultProps,
-	label: 'Id Card',
+	assistiveText: 'Id Card',
 };
 IdCardIcon.propTypes = propTypes;

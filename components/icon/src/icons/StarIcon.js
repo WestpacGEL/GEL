@@ -13,6 +13,6 @@ export const StarIcon = props => (
 
 StarIcon.defaultProps = {
 	...defaultProps,
-	label: 'Star',
+	assistiveText: 'Star',
 };
 StarIcon.propTypes = propTypes;

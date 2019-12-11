@@ -13,6 +13,6 @@ export const DropboxIcon = props => (
 
 DropboxIcon.defaultProps = {
 	...defaultProps,
-	label: 'Dropbox',
+	assistiveText: 'Dropbox',
 };
 DropboxIcon.propTypes = propTypes;

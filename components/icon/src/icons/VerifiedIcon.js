@@ -13,6 +13,6 @@ export const VerifiedIcon = props => (
 
 VerifiedIcon.defaultProps = {
 	...defaultProps,
-	label: 'Verified',
+	assistiveText: 'Verified',
 };
 VerifiedIcon.propTypes = propTypes;

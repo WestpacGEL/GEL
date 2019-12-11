@@ -13,6 +13,6 @@ export const HelpIcon = props => (
 
 HelpIcon.defaultProps = {
 	...defaultProps,
-	label: 'Help',
+	assistiveText: 'Help',
 };
 HelpIcon.propTypes = propTypes;

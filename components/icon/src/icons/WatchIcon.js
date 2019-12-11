@@ -13,6 +13,6 @@ export const WatchIcon = props => (
 
 WatchIcon.defaultProps = {
 	...defaultProps,
-	label: 'Watch',
+	assistiveText: 'Watch',
 };
 WatchIcon.propTypes = propTypes;

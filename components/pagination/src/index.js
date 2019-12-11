@@ -1,2 +1,3 @@
+export { usePagination } from './usePagination';
 export { Pagination } from './Pagination';
-export { PaginationItem as Item } from './PaginationItem';
+export { Page } from './Page';

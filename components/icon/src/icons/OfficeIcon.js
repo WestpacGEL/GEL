@@ -13,6 +13,6 @@ export const OfficeIcon = props => (
 
 OfficeIcon.defaultProps = {
 	...defaultProps,
-	label: 'Office',
+	assistiveText: 'Office',
 };
 OfficeIcon.propTypes = propTypes;
