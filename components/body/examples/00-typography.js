@@ -5,10 +5,42 @@ import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
+// Body tag as a component example
+const BodyTag = ({ children, ...props }) => {
+	let num = 0;
+	return (
+		<section
+			css={{ cursor: 'pointer' }}
+			role="button" //please don't ever actually do this
+			onClick={() => {
+				console.log(`<Body /> clicked ${++num} ${num !== 1 ? `times` : `time`}`);
+			}}
+			{...props}
+		>
+			<span>{children}</span>
+		</section>
+	);
+};
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia />
+
+			<Body>
+				<h2>Body</h2>
+				<p>Body with default tag</p>
+			</Body>
+
+			<Body tag="section">
+				<p>
+					Body with a <code>&lt;section&gt;</code> tag
+				</p>
+			</Body>
+
+			<Body tag={BodyTag}>
+				<p>Body with a component tag (illustrating nested elements and an onClick event)</p>
+			</Body>
 
 			<Body>
 				<h2>Headings</h2>
