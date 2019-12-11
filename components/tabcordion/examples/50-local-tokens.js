@@ -5,17 +5,17 @@ import { GEL, jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { data } from './_data';
 
-const Panel = forwardRef(({ isLast, isSelected, ...props }, ref) => {
+const Panel = forwardRef(({ last, selected, ...props }, ref) => {
 	return (
 		<div ref={ref} css={{ backgroundColor: 'black', color: 'white', padding: '1rem' }} {...props} />
 	);
 });
 
-const TabItem = ({ isSelected, isJustified, isLast, ...props }) => {
+const TabItem = ({ selected, justify, last, ...props }) => {
 	return (
 		<button
 			css={{
-				flex: isJustified ? 1 : 0,
+				flex: justify ? 1 : 0,
 				fontSize: '1rem',
 				marginRight: '0.125rem',
 				outline: 0,
@@ -25,14 +25,14 @@ const TabItem = ({ isSelected, isJustified, isLast, ...props }) => {
 				transition: 'background .3s ease',
 				width: '100%',
 				border: `1px solid black`,
-				backgroundColor: isSelected ? 'black' : 'white',
+				backgroundColor: selected ? 'black' : 'white',
 				borderTopLeftRadius: 3,
 				borderTopRightRadius: 3,
 				borderBottom: 0,
-				color: isSelected ? 'white' : 'black',
+				color: selected ? 'white' : 'black',
 				cursor: 'pointer',
 
-				'&:last-child': {
+				':last-child': {
 					marginRight: 0,
 				},
 			}}
@@ -41,7 +41,7 @@ const TabItem = ({ isSelected, isJustified, isLast, ...props }) => {
 	);
 };
 
-const AccordionLabel = ({ isLast, isSelected, ...props }) => {
+const AccordionLabel = ({ last, selected, ...props }) => {
 	return (
 		<button
 			css={{
@@ -60,8 +60,8 @@ const AccordionLabel = ({ isLast, isSelected, ...props }) => {
 				position: 'relative',
 				textAlign: 'left',
 				width: '100%',
-				...(isLast &&
-					!isSelected && {
+				...(last &&
+					!selected && {
 						borderBottom: `1px solid black`,
 						borderBottomLeftRadius: 3,
 						borderBottomRightRadius: 3,

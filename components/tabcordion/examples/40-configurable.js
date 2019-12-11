@@ -6,7 +6,7 @@ import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { Row } from './_utils';
 
 const modes = ['responsive', 'accordion', 'tabs'];
-const appearances = ['soft', 'lego'];
+const looks = ['soft', 'lego'];
 
 const Control = ({ children, ...props }) => (
 	<label>
@@ -20,26 +20,20 @@ const Checkbox = p => <Control {...p} />;
 Checkbox.defaultProps = { type: 'checkbox' };
 
 function Example({ brand }) {
-	const [appearance, setAppearance] = useState(appearances[0]);
+	const [look, setLook] = useState(looks[0]);
 	const [mode, setMode] = useState(modes[0]);
 	const [justify, setJustify] = useState(false);
 
 	const changeJustify = () => setJustify(!justify);
-	const changeAppearance = v => () => setAppearance(v);
+	const changeLook = v => () => setLook(v);
 	const changeMode = v => () => setMode(v);
 
 	return (
 		<GEL brand={brand}>
 			<Row>
-				Appearance:
-				{appearances.map(v => (
-					<Radio
-						key={v}
-						value={v}
-						name="appearance"
-						checked={v === appearance}
-						onChange={changeAppearance(v)}
-					>
+				Look:
+				{looks.map(v => (
+					<Radio key={v} value={v} name="look" checked={v === look} onChange={changeLook(v)}>
 						{v}
 					</Radio>
 				))}
@@ -58,7 +52,7 @@ function Example({ brand }) {
 				</Checkbox>
 			</Row>
 
-			<Tabcordion appearance={appearance} justifyTabs={justify} mode={mode}>
+			<Tabcordion look={look} justifyTabs={justify} mode={mode}>
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
