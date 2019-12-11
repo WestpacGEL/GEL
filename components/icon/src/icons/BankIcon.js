@@ -13,6 +13,6 @@ export const BankIcon = props => (
 
 BankIcon.defaultProps = {
 	...defaultProps,
-	label: 'Bank',
+	assistiveText: 'Bank',
 };
 BankIcon.propTypes = propTypes;

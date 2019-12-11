@@ -13,6 +13,6 @@ export const PauseCircleIcon = props => (
 
 PauseCircleIcon.defaultProps = {
 	...defaultProps,
-	label: 'Pause Circle',
+	assistiveText: 'Pause Circle',
 };
 PauseCircleIcon.propTypes = propTypes;

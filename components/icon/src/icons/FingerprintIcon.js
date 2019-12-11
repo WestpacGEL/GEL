@@ -13,6 +13,6 @@ export const FingerprintIcon = props => (
 
 FingerprintIcon.defaultProps = {
 	...defaultProps,
-	label: 'Fingerprint',
+	assistiveText: 'Fingerprint',
 };
 FingerprintIcon.propTypes = propTypes;

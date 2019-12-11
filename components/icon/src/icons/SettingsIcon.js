@@ -13,6 +13,6 @@ export const SettingsIcon = props => (
 
 SettingsIcon.defaultProps = {
 	...defaultProps,
-	label: 'Settings',
+	assistiveText: 'Settings',
 };
 SettingsIcon.propTypes = propTypes;

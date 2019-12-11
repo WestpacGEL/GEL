@@ -13,6 +13,6 @@ export const DesktopIcon = props => (
 
 DesktopIcon.defaultProps = {
 	...defaultProps,
-	label: 'Desktop',
+	assistiveText: 'Desktop',
 };
 DesktopIcon.propTypes = propTypes;

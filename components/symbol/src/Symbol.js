@@ -42,7 +42,7 @@ const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props })
 // ==============================
 
 export const Symbol = ({
-	label,
+	assistiveText,
 	width,
 	height,
 	viewBoxWidth,
@@ -68,7 +68,7 @@ export const Symbol = ({
 			{...props}
 		>
 			<svg
-				aria-label={label}
+				aria-label={assistiveText}
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
 				role="img"
@@ -89,11 +89,11 @@ export const Symbol = ({
 
 export const propTypes = {
 	/**
-	 * String to use as the aria-label for the symbol. Set to an empty string if you
+	 * String to use as the `aria-label` for the symbol. Set to an empty string if you
 	 * are rendering the symbol with visible text to prevent accessibility label
 	 * duplication.
 	 */
-	label: PropTypes.string,
+	assistiveText: PropTypes.string,
 
 	/**
 	 * Set a symbol width in pixels.

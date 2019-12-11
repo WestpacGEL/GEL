@@ -13,6 +13,6 @@ export const WearableIcon = props => (
 
 WearableIcon.defaultProps = {
 	...defaultProps,
-	label: 'Wearable',
+	assistiveText: 'Wearable',
 };
 WearableIcon.propTypes = propTypes;

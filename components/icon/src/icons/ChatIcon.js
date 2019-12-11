@@ -13,6 +13,6 @@ export const ChatIcon = props => (
 
 ChatIcon.defaultProps = {
 	...defaultProps,
-	label: 'Chat',
+	assistiveText: 'Chat',
 };
 ChatIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const KeyholeIcon = props => (
 
 KeyholeIcon.defaultProps = {
 	...defaultProps,
-	label: 'Keyhole',
+	assistiveText: 'Keyhole',
 };
 KeyholeIcon.propTypes = propTypes;

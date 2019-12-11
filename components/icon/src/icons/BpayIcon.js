@@ -13,6 +13,6 @@ export const BpayIcon = props => (
 
 BpayIcon.defaultProps = {
 	...defaultProps,
-	label: 'Bpay',
+	assistiveText: 'Bpay',
 };
 BpayIcon.propTypes = propTypes;

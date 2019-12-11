@@ -102,6 +102,6 @@ STGLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 170,
 	viewBoxHeight: 51,
-	label: 'St.George',
+	assistiveText: 'St.George',
 };
 STGLogo.propTypes = propTypes;

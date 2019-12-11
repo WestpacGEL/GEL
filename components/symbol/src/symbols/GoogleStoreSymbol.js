@@ -117,6 +117,6 @@ GoogleStoreSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 170,
 	viewBoxHeight: 50,
-	label: 'Google Store',
+	assistiveText: 'Google Store',
 };
 GoogleStoreSymbol.propTypes = propTypes;

@@ -17,6 +17,6 @@ YammerSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 32,
 	viewBoxHeight: 32,
-	label: 'Yammer',
+	assistiveText: 'Yammer',
 };
 YammerSymbol.propTypes = propTypes;

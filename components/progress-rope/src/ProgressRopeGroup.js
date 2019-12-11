@@ -8,7 +8,7 @@ import pkg from '../package.json';
 
 export const ProgressRopeGroup = ({
 	index,
-	label,
+	text,
 	overrides: overridesComponent,
 	children,
 	...props
@@ -73,7 +73,7 @@ export const ProgressRopeGroup = ({
 				}}
 				onClick={() => handleClick(index)}
 			>
-				{label}
+				{text}
 			</button>
 			<ol
 				css={{
@@ -96,9 +96,9 @@ export const ProgressRopeGroup = ({
 // ==============================
 ProgressRopeGroup.propTypes = {
 	/**
-	 * Group label text
+	 * Group text
 	 */
-	label: PropTypes.string.isRequired,
+	text: PropTypes.string.isRequired,
 
 	/**
 	 * ProgressRopeGroup overrides

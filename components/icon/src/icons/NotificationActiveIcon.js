@@ -13,6 +13,6 @@ export const NotificationActiveIcon = props => (
 
 NotificationActiveIcon.defaultProps = {
 	...defaultProps,
-	label: 'Notification Active',
+	assistiveText: 'Notification Active',
 };
 NotificationActiveIcon.propTypes = propTypes;

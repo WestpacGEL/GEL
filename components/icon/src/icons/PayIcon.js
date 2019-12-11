@@ -13,6 +13,6 @@ export const PayIcon = props => (
 
 PayIcon.defaultProps = {
 	...defaultProps,
-	label: 'Pay',
+	assistiveText: 'Pay',
 };
 PayIcon.propTypes = propTypes;

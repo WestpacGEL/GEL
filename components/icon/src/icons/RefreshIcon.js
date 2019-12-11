@@ -13,6 +13,6 @@ export const RefreshIcon = props => (
 
 RefreshIcon.defaultProps = {
 	...defaultProps,
-	label: 'Refresh',
+	assistiveText: 'Refresh',
 };
 RefreshIcon.propTypes = propTypes;

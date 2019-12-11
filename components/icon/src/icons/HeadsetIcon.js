@@ -13,6 +13,6 @@ export const HeadsetIcon = props => (
 
 HeadsetIcon.defaultProps = {
 	...defaultProps,
-	label: 'Headset',
+	assistiveText: 'Headset',
 };
 HeadsetIcon.propTypes = propTypes;

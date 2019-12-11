@@ -13,6 +13,6 @@ export const BookIcon = props => (
 
 BookIcon.defaultProps = {
 	...defaultProps,
-	label: 'Book',
+	assistiveText: 'Book',
 };
 BookIcon.propTypes = propTypes;

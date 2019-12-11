@@ -13,6 +13,6 @@ export const CarIcon = props => (
 
 CarIcon.defaultProps = {
 	...defaultProps,
-	label: 'Car',
+	assistiveText: 'Car',
 };
 CarIcon.propTypes = propTypes;

@@ -9,7 +9,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const PanelHeader = props => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+	const { COLORS, BRAND, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 	const { look } = usePanelContext();
 
@@ -21,7 +21,7 @@ export const PanelHeader = props => {
 
 	const lookMap = {
 		hero: {
-			color: '#fff',
+			color: BRAND === 'STG' ? COLORS.text : '#fff',
 			backgroundColor: COLORS.hero,
 			borderColor: COLORS.hero,
 		},

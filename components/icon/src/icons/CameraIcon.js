@@ -13,6 +13,6 @@ export const CameraIcon = props => (
 
 CameraIcon.defaultProps = {
 	...defaultProps,
-	label: 'Camera',
+	assistiveText: 'Camera',
 };
 CameraIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const SwitchIcon = props => (
 
 SwitchIcon.defaultProps = {
 	...defaultProps,
-	label: 'Switch',
+	assistiveText: 'Switch',
 };
 SwitchIcon.propTypes = propTypes;

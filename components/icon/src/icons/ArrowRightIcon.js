@@ -13,6 +13,6 @@ export const ArrowRightIcon = props => (
 
 ArrowRightIcon.defaultProps = {
 	...defaultProps,
-	label: 'Arrow Right',
+	assistiveText: 'Arrow Right',
 };
 ArrowRightIcon.propTypes = propTypes;

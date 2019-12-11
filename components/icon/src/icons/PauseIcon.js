@@ -13,6 +13,6 @@ export const PauseIcon = props => (
 
 PauseIcon.defaultProps = {
 	...defaultProps,
-	label: 'Pause',
+	assistiveText: 'Pause',
 };
 PauseIcon.propTypes = propTypes;

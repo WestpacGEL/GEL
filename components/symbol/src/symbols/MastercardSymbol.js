@@ -29,6 +29,6 @@ MastercardSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 80,
 	viewBoxHeight: 50,
-	label: 'Mastercard',
+	assistiveText: 'Mastercard',
 };
 MastercardSymbol.propTypes = propTypes;

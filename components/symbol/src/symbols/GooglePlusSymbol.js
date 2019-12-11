@@ -33,6 +33,6 @@ GooglePlusSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 32,
 	viewBoxHeight: 32,
-	label: 'Google+',
+	assistiveText: 'Google+',
 };
 GooglePlusSymbol.propTypes = propTypes;

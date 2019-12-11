@@ -13,6 +13,6 @@ export const FilterIcon = props => (
 
 FilterIcon.defaultProps = {
 	...defaultProps,
-	label: 'Filter',
+	assistiveText: 'Filter',
 };
 FilterIcon.propTypes = propTypes;

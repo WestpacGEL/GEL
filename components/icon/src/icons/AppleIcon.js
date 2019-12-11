@@ -13,6 +13,6 @@ export const AppleIcon = props => (
 
 AppleIcon.defaultProps = {
 	...defaultProps,
-	label: 'Apple',
+	assistiveText: 'Apple',
 };
 AppleIcon.propTypes = propTypes;

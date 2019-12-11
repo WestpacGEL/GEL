@@ -20,7 +20,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Declarative as router</h2>
-			<Breadcrumb label="Page transitions and the such">
+			<Breadcrumb assistiveText="Page transitions and the such">
 				<Crumb text="Home" onClick={() => console.log('Clicked Home')} />
 				<Crumb text="Personal" onClick={() => console.log('Clicked Personal')} />
 				<Crumb text="Credit cards" onClick={() => console.log('Clicked Credit cards')} />
@@ -39,8 +39,8 @@ function Example({ brand }) {
 
 			<h2>Data driven as router</h2>
 			<Breadcrumb
-				label="Page transitions and the such"
-				currentLabel="This page:"
+				assistiveText="Page transitions and the such"
+				currentAssistiveText="This page:"
 				data={[
 					{ text: 'Home', onClick: () => console.log('Clicked Home') },
 					{ text: 'Personal', onClick: () => console.log('Clicked Personal') },

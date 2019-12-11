@@ -13,6 +13,6 @@ export const AtmIcon = props => (
 
 AtmIcon.defaultProps = {
 	...defaultProps,
-	label: 'Atm',
+	assistiveText: 'Atm',
 };
 AtmIcon.propTypes = propTypes;

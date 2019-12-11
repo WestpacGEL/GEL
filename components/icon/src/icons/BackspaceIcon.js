@@ -13,6 +13,6 @@ export const BackspaceIcon = props => (
 
 BackspaceIcon.defaultProps = {
 	...defaultProps,
-	label: 'Backspace',
+	assistiveText: 'Backspace',
 };
 BackspaceIcon.propTypes = propTypes;

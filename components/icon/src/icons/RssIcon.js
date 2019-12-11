@@ -13,6 +13,6 @@ export const RssIcon = props => (
 
 RssIcon.defaultProps = {
 	...defaultProps,
-	label: 'Rss',
+	assistiveText: 'Rss',
 };
 RssIcon.propTypes = propTypes;

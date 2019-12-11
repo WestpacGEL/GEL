@@ -2,7 +2,7 @@ module.exports = {
 	TYPE: {
 		files: [],
 		bodyFont: {
-			weights: ['100', '100', '100', '400', '400', '400', '700', '700', '700'],
+			weights: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 			fontFamily:
 				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 		},

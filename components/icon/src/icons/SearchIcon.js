@@ -13,6 +13,6 @@ export const SearchIcon = props => (
 
 SearchIcon.defaultProps = {
 	...defaultProps,
-	label: 'Search',
+	assistiveText: 'Search',
 };
 SearchIcon.propTypes = propTypes;

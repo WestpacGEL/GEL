@@ -17,6 +17,6 @@ TwitterSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 32,
 	viewBoxHeight: 32,
-	label: 'Twitter',
+	assistiveText: 'Twitter',
 };
 TwitterSymbol.propTypes = propTypes;

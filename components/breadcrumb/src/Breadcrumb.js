@@ -15,13 +15,20 @@ import { Crumb } from './Crumb';
 /**
  * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Breadcrumb = ({ children, data, current, label, currentLabel, ...props }) => {
+export const Breadcrumb = ({
+	children,
+	data,
+	current,
+	assistiveText,
+	currentAssistiveText,
+	...props
+}) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 
 	const overrides = {
 		Crumb,
 		listCSS: {},
-		Label: VisuallyHidden,
+		AssistiveText: VisuallyHidden,
 		Icon: ArrowRightIcon,
 		css: {},
 	};
@@ -34,7 +41,7 @@ export const Breadcrumb = ({ children, data, current, label, currentLabel, ...pr
 				<overrides.Crumb
 					key={index}
 					current={index === data.length - 1}
-					label={currentLabel}
+					assistiveText={currentAssistiveText}
 					href={href}
 					text={text}
 					icon={overrides.Icon}
@@ -51,7 +58,7 @@ export const Breadcrumb = ({ children, data, current, label, currentLabel, ...pr
 
 	return (
 		<div css={overrides.css} {...props}>
-			<overrides.Label>{label}</overrides.Label>
+			<overrides.AssistiveText>{assistiveText}</overrides.AssistiveText>
 			<ol
 				css={{
 					padding: '0.375rem 1.125rem',
@@ -89,16 +96,16 @@ Breadcrumb.propTypes = {
 	),
 
 	/**
-	 * The label of the breadcrumb
+	 * Visually hidden text to use for the breadcrumb
 	 */
-	label: PropTypes.string.isRequired,
+	assistiveText: PropTypes.string.isRequired,
 
 	/**
-	 * The label of the crumb current page
+	 * Visually hidden text to use for the current page crumb
 	 */
-	currentLabel: PropTypes.string,
+	currentAssistiveText: PropTypes.string,
 };
 
 Breadcrumb.defaultProps = {
-	label: 'Page navigation:',
+	assistiveText: 'Page navigation:',
 };

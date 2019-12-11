@@ -13,6 +13,6 @@ export const PercentIcon = props => (
 
 PercentIcon.defaultProps = {
 	...defaultProps,
-	label: 'Percent',
+	assistiveText: 'Percent',
 };
 PercentIcon.propTypes = propTypes;

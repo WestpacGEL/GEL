@@ -26,16 +26,16 @@ function Example({ brand }) {
 			<Intopia ignore />
 
 			<Pagination>
-				<Page label="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
-				<Page label="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
-				<Page label="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page text="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page text="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page text="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />
 			</Pagination>
 
 			<Pagination
 				data={[
-					{ label: '1', onClick: (event, page) => console.log(`Page ${page}`, event) },
-					{ label: '2', onClick: (event, page) => console.log(`Page ${page}`, event) },
-					{ label: '3', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ text: '1', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ text: '2', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ text: '3', onClick: (event, page) => console.log(`Page ${page}`, event) },
 				]}
 			/>
 		</GEL>

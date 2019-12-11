@@ -13,6 +13,6 @@ export const AccountIcon = props => (
 
 AccountIcon.defaultProps = {
 	...defaultProps,
-	label: 'Account',
+	assistiveText: 'Account',
 };
 AccountIcon.propTypes = propTypes;

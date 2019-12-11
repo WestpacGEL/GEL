@@ -9,6 +9,6 @@ export const RemoveIcon = props => (
 
 RemoveIcon.defaultProps = {
 	...defaultProps,
-	label: 'Remove',
+	assistiveText: 'Remove',
 };
 RemoveIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const TransferIcon = props => (
 
 TransferIcon.defaultProps = {
 	...defaultProps,
-	label: 'Transfer',
+	assistiveText: 'Transfer',
 };
 TransferIcon.propTypes = propTypes;
