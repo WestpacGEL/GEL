@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 import { Tooltip } from '@westpac/tooltip';
 import { Button } from '@westpac/button';
 import { InfoIcon } from '@westpac/icon';
@@ -10,16 +10,19 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 // Tooltip tag as a component example
 const TooltipTag = ({ children, ...props }) => {
+	const { COLORS } = useBrand();
+
 	let num = 0;
 	return (
-		<abbr
+		<span
+			css={{ cursor: 'help', borderBottom: `1px dotted ${COLORS.text}` }}
 			onClick={() => {
 				console.log(`<Tooltip /> clicked ${++num} ${num !== 1 ? `times` : `time`}`);
 			}}
 			{...props}
 		>
 			<span>{children}</span>
-		</abbr>
+		</span>
 	);
 };
 
