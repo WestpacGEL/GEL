@@ -17,6 +17,6 @@ BPayPortSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 60,
 	viewBoxHeight: 88,
-	label: 'BPay',
+	assistiveText: 'BPay',
 };
 BPayPortSymbol.propTypes = propTypes;

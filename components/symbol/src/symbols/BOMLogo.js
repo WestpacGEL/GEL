@@ -90,6 +90,6 @@ BOMLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 150,
 	viewBoxHeight: 39,
-	label: 'Bank of Melbourne',
+	assistiveText: 'Bank of Melbourne',
 };
 BOMLogo.propTypes = propTypes;

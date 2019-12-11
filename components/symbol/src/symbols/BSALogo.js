@@ -38,6 +38,6 @@ BSALogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 90,
 	viewBoxHeight: 41,
-	label: 'Bank SA',
+	assistiveText: 'Bank SA',
 };
 BSALogo.propTypes = propTypes;
