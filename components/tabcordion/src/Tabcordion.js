@@ -1,32 +1,51 @@
-import React, { Children, useEffect, useRef, useState } from 'react';
+/** @jsx jsx */
+
+import { Children, forwardRef, useEffect, useRef, useState, createRef } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, merge, useInstanceId } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
-
-import { TabItem, TabRow } from './styled';
 import { Tab } from './Tab';
+import pkg from '../package.json';
 
-let instanceId = 0;
-const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'Enter', 'PageDown', 'PageUp', 'End', 'Home'];
+const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'PageDown', 'PageUp', 'Enter', 'End', 'Home'];
 
-export const Tabcordion = props => {
-	// TODO: unless explicitly provided, preset the intial index
-	// const initialIndex =
-	// 	props.initialTabIndex !== undefined ? props.initialTabIndex : mode === 'accordion' ? null : 0;
+// ==============================
+// Component
+// ==============================
+export const Tabcordion = ({
+	mode: tabcordionMode,
+	look,
+	justify,
+	initialTabIndex,
+	instanceIdPrefix,
+	children,
+	...props
+}) => {
+	const { [pkg.name]: overridesWithTokens } = useBrand();
 
-	const [activeTabIndex, setActiveTabIndex] = useState(props.initialTabIndex);
-	const [instancePrefix, setInstancePrefix] = useState(props.instanceId);
+	const overrides = {
+		css: {},
+		TabItem,
+	};
+
+	merge(overrides, overridesWithTokens);
+
+	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
+	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
 
 	const containerRef = useRef();
 	const panelRef = useRef();
 	const tablistRef = useRef();
+	const tabRefs = useRef([...Array(Children.count(children))].map(() => createRef()));
 	const { width } = useContainerQuery(containerRef);
-	const mode = props.mode !== 'responsive' ? props.mode : width < 768 ? 'accordion' : 'tabs';
+	const mode =
+		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
 	const setActive = idx => () => setActiveTabIndex(idx);
 
 	// create the prefix for internal IDs
 	useEffect(() => {
 		if (!instancePrefix) {
-			setInstancePrefix(`gel-tabcordion-${++instanceId}`);
+			setInstancePrefix(`gel-tabcordion-${useInstanceId()}`);
 		}
 	}, [instancePrefix]);
 
@@ -45,11 +64,12 @@ export const Tabcordion = props => {
 		}
 
 		let nextIndex;
-		let lastIndex = Children.count(props.children) - 1;
+		let lastIndex = Children.count(children) - 1;
 
 		switch (event.key) {
 			case 'Enter':
-				panelRef.current.focus(); // select the active panel
+				document.activeElement.click();
+				panelRef.current.focus();
 				break;
 			case 'ArrowLeft':
 				nextIndex = activeTabIndex === 0 ? lastIndex : activeTabIndex - 1;
@@ -72,6 +92,7 @@ export const Tabcordion = props => {
 		// only update to valid index
 		if (typeof nextIndex === 'number') {
 			setActiveTabIndex(nextIndex);
+			tabRefs.current[nextIndex].current.focus();
 		}
 	};
 
@@ -84,49 +105,49 @@ export const Tabcordion = props => {
 	});
 
 	const getId = (type, index) => `${instancePrefix}-${type}-${index + 1}`;
-	const tabCount = Children.count(props.children);
+	const tabCount = Children.count(children);
 
 	return (
-		<div ref={containerRef}>
+		<div ref={containerRef} css={{ ...overrides.css }} {...props}>
 			{mode === 'tabs' ? (
-				<TabRow role="tablist" aria-label={props.ariaLabel} ref={tablistRef}>
-					{Children.map(props.children, (child, idx) => {
-						const isSelected = activeTabIndex === idx;
+				<TabRow role="tablist" ref={tablistRef}>
+					{Children.map(children, (child, idx) => {
+						const selected = activeTabIndex === idx;
 						return (
-							<TabItem
-								appearance={props.appearance}
+							<overrides.TabItem
+								look={look}
 								aria-controls={getId('panel', idx)}
-								aria-selected={isSelected}
+								aria-selected={selected}
 								id={getId('tab', idx)}
-								isJustified={props.justifyTabs}
-								isLast={idx + 1 === tabCount}
-								isSelected={isSelected}
-								key={child.props.label}
+								justify={justify}
+								last={idx + 1 === tabCount}
+								selected={selected}
+								key={child.props.text}
 								onClick={setActive(idx)}
 								role="tab"
-								tabIndex={isSelected ? 0 : -1}
+								ref={tabRefs.current[idx]}
 							>
-								{child.props.label}
-							</TabItem>
+								{child.props.text}
+							</overrides.TabItem>
 						);
 					})}
 				</TabRow>
 			) : null}
 
-			{Children.map(props.children, (child, idx) => {
-				const isSelected = activeTabIndex === idx;
+			{Children.map(children, (child, idx) => {
+				const selected = activeTabIndex === idx;
 				return (
 					<Tab
 						{...child.props}
 						activeTabIndex={activeTabIndex}
-						appearance={props.appearance}
-						isSelected={isSelected}
-						isLast={idx + 1 === tabCount}
-						key={child.props.label}
+						look={look}
+						selected={selected}
+						last={idx + 1 === tabCount}
+						key={child.props.text}
 						mode={mode}
 						onClick={setActive(idx)}
 						panelId={getId('panel', idx)}
-						ref={isSelected ? panelRef : null}
+						ref={selected ? panelRef : null}
 						tabId={getId('tab', idx)}
 					/>
 				);
@@ -135,11 +156,12 @@ export const Tabcordion = props => {
 	);
 };
 
+// ==============================
+// Types
+// ==============================
 Tabcordion.propTypes = {
-	/** The appearance of the tabs */
-	appearance: PropTypes.oneOf(['soft', 'lego']),
-	/** Provide a label that describes the purpose of the set of tabs. */
-	ariaLabel: PropTypes.string,
+	/** The look of the tabs */
+	look: PropTypes.oneOf(['soft', 'lego']),
 	/** An array of Tab components that can be navigated through */
 	children: PropTypes.arrayOf(
 		PropTypes.shape({
@@ -149,15 +171,73 @@ Tabcordion.propTypes = {
 	/** The tab index to mount this component with */
 	initialTabIndex: PropTypes.number,
 	/** Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc. */
-	instanceId: PropTypes.string,
+	instanceIdPrefix: PropTypes.string,
 	/** Whether or not tabs should stretch full width */
-	justifyTabs: PropTypes.bool,
+	justify: PropTypes.bool,
 	/** Lock the mode to either "accordion" or "tabs". The default is responsive. */
 	mode: PropTypes.oneOf(['accordion', 'responsive', 'tabs']),
 };
 Tabcordion.defaultProps = {
-	appearance: 'soft',
+	look: 'soft',
 	initialTabIndex: 0,
-	justifyTabs: false,
+	justify: false,
 	mode: 'responsive',
 };
+
+// ==============================
+// Overrides & Styled Components
+// ==============================
+const TabRow = forwardRef((props, ref) => (
+	<div
+		ref={ref}
+		css={{
+			display: 'flex',
+			whiteSpace: 'nowrap',
+			position: 'relative',
+		}}
+		{...props}
+	/>
+));
+
+const TabItem = forwardRef(({ look, justify, selected, last, ...props }, ref) => {
+	const { COLORS: colors } = useBrand();
+
+	const styles = {
+		soft: {
+			backgroundColor: selected ? '#fff' : colors.background,
+			borderTopLeftRadius: '0.1875rem',
+			borderTopRightRadius: '0.1875rem',
+			border: `1px solid ${colors.border}`,
+			borderBottom: 0,
+			color: colors.neutral,
+			marginBottom: selected && '-1px',
+		},
+		lego: {
+			backgroundColor: selected ? '#fff' : colors.hero,
+			border: `1px solid ${selected ? colors.border : 'transparent'}`,
+			borderBottom: 0,
+			color: selected ? colors.text : '#fff',
+			marginBottom: selected ? '-1px' : '0.125rem',
+		},
+	};
+
+	return (
+		<button
+			ref={ref}
+			css={{
+				flex: justify ? 1 : 0,
+				fontSize: '1rem',
+				marginRight: '0.125rem',
+				padding: '0.875rem 1.125rem',
+				textAlign: 'left',
+				textDecoration: 'none',
+				transition: 'background .3s ease',
+				width: '100%',
+				cursor: 'pointer',
+				...(last && { marginRight: 0 }),
+				...styles[look],
+			}}
+			{...props}
+		/>
+	);
+});
