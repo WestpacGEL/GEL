@@ -18,7 +18,6 @@ export const Tabcordion = ({
 	justify,
 	initialTabIndex,
 	instanceIdPrefix,
-	ariaLabel,
 	children,
 	...props
 }) => {
@@ -111,7 +110,7 @@ export const Tabcordion = ({
 	return (
 		<div ref={containerRef} css={{ ...overrides.css }} {...props}>
 			{mode === 'tabs' ? (
-				<TabRow role="tablist" aria-label={ariaLabel} ref={tablistRef}>
+				<TabRow role="tablist" ref={tablistRef}>
 					{Children.map(children, (child, idx) => {
 						const selected = activeTabIndex === idx;
 						return (
@@ -123,12 +122,12 @@ export const Tabcordion = ({
 								justify={justify}
 								last={idx + 1 === tabCount}
 								selected={selected}
-								key={child.props.label}
+								key={child.props.text}
 								onClick={setActive(idx)}
 								role="tab"
 								ref={tabRefs.current[idx]}
 							>
-								{child.props.label}
+								{child.props.text}
 							</overrides.TabItem>
 						);
 					})}
@@ -144,7 +143,7 @@ export const Tabcordion = ({
 						look={look}
 						selected={selected}
 						last={idx + 1 === tabCount}
-						key={child.props.label}
+						key={child.props.text}
 						mode={mode}
 						onClick={setActive(idx)}
 						panelId={getId('panel', idx)}
@@ -163,8 +162,6 @@ export const Tabcordion = ({
 Tabcordion.propTypes = {
 	/** The look of the tabs */
 	look: PropTypes.oneOf(['soft', 'lego']),
-	/** Provide a label that describes the purpose of the set of tabs. */
-	ariaLabel: PropTypes.string,
 	/** An array of Tab components that can be navigated through */
 	children: PropTypes.arrayOf(
 		PropTypes.shape({

@@ -58,13 +58,8 @@ function Example({ brand }) {
 				</Checkbox>
 			</Row>
 
-			<Tabcordion
-				appearance={appearance}
-				ariaLabel="Configurable Tablist"
-				justifyTabs={justify}
-				mode={mode}
-			>
-				<Tab label="Rabbit hole">
+			<Tabcordion appearance={appearance} justifyTabs={justify} mode={mode}>
+				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
 					gone down that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort
@@ -72,7 +67,7 @@ function Example({ brand }) {
 					fancied that kind of thing never happened, and now here I am in the middle of one! There
 					ought to be a book written about me, that there ought! And when I grow up, I’ll write one.
 				</Tab>
-				<Tab label="Flamingo">
+				<Tab text="Flamingo">
 					The chief difficulty Alice found at first was in managing her flamingo: she succeeded in
 					getting its body tucked away, comfortably enough, under her arm, with its legs hanging
 					down, but generally, just as she had got its neck nicely straightened out, and was going
@@ -85,7 +80,7 @@ function Example({ brand }) {
 					other parts of the ground, Alice soon came to the conclusion that it was a very difficult
 					game indeed.
 				</Tab>
-				<Tab label="Caterpillar">
+				<Tab text="Caterpillar">
 					The Caterpillar and Alice looked at each other for some time in silence: at last the
 					Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy
 					voice.

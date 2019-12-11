@@ -86,7 +86,7 @@ function Example({ brand }) {
 			<h3>Responsive</h3>
 			<Tabcordion>
 				{data.map(t => (
-					<Tab key={t.label} label={t.label}>
+					<Tab key={t.text} text={t.text}>
 						{t.content}
 					</Tab>
 				))}
@@ -95,7 +95,7 @@ function Example({ brand }) {
 			<h3>Always accordion</h3>
 			<Tabcordion mode="accordion" instanceId="always-accordion">
 				{data.map(t => (
-					<Tab key={t.label} label={t.label}>
+					<Tab key={t.text} text={t.text}>
 						{t.content}
 					</Tab>
 				))}
@@ -104,7 +104,7 @@ function Example({ brand }) {
 			<h3>Always tabs</h3>
 			<Tabcordion mode="tabs" instanceId="always-tabs">
 				{data.map(t => (
-					<Tab key={t.label} label={t.label}>
+					<Tab key={t.text} text={t.text}>
 						{t.content}
 					</Tab>
 				))}

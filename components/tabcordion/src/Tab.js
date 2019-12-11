@@ -7,7 +7,7 @@ import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 import pkg from '../package.json';
 
 export const Tab = forwardRef(
-	({ look, children, last, selected, label, mode, panelId, onClick, tabId, ...props }, ref) => {
+	({ look, children, last, selected, text, mode, panelId, onClick, tabId, ...props }, ref) => {
 		const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 		const [hidden, setHidden] = useState(!selected);
 		const Icon = hidden ? ExpandMoreIcon : ExpandLessIcon;
@@ -37,7 +37,7 @@ export const Tab = forwardRef(
 						aria-controls={panelId}
 						aria-expanded={selected}
 					>
-						<span>{label}</span>
+						<span>{text}</span>
 						<Icon color={COLORS.muted} label={iconLabel} size="small" />
 					</overrides.AccordionLabel>
 				) : null}
@@ -66,9 +66,9 @@ Tab.propTypes = {
 	children: PropTypes.node.isRequired,
 	// Whether this tab/panel is selected/expanded
 	selected: PropTypes.bool,
-	/** Provide a label that describes the purpose of the set of tabs. */
-	label: PropTypes.string.isRequired,
-	// Whether or not to display the accordion label
+	/** The text label for this tab */
+	text: PropTypes.string.isRequired,
+	// Render as either an accordion or tabs
 	mode: PropTypes.oneOf(['accordion', 'tabs']),
 	// The id for this tab's panel
 	panelId: PropTypes.string,
