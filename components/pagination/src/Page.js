@@ -16,7 +16,7 @@ const PageLink = props => <button {...props} />;
 // Component
 // ==============================
 
-export const Page = ({ index, label, first, last, disabled, ariaLabel, ...props }) => {
+export const Page = ({ index, text, first, last, disabled, assistiveText, ...props }) => {
 	const { BRAND, COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 	const { current } = usePaginationContext();
 
@@ -72,9 +72,9 @@ export const Page = ({ index, label, first, last, disabled, ariaLabel, ...props 
 				}}
 				disabled={disabled}
 				{...props}
-				aria-label={ariaLabel ? ariaLabel : `Go to page ${label}`}
+				aria-label={assistiveText ? assistiveText : `Go to page ${text}`}
 			>
-				{label}
+				{text}
 			</overrides.PageLink>
 		</li>
 	);
@@ -87,9 +87,9 @@ Page.propTypes = {
 	index: PropTypes.number,
 
 	/**
-	 * Page label
+	 * Page text
 	 */
-	label: PropTypes.string,
+	text: PropTypes.string,
 
 	/**
 	 * If page is disabled
@@ -97,9 +97,9 @@ Page.propTypes = {
 	disabled: PropTypes.bool,
 
 	/**
-	 * Aria label for the page
+	 * Text to use as the `aria-label` for the page
 	 */
-	ariaLabel: PropTypes.string,
+	assistiveText: PropTypes.string,
 };
 
 Page.defaultProps = {
