@@ -27,10 +27,6 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const handleClose = () => {
-		setOpen(false);
-	};
-
 	useEffect(() => {
 		if (open) {
 			const trigger = triggerRef.current.getBoundingClientRect();
@@ -41,18 +37,23 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 			const left = (trigger.left - popover.width / 2 + trigger.width / 2) / remSize;
 
 			if (popover.height > trigger.top) {
-				const top = (trigger.top + trigger.height + remSize) / remSize;
+				const top = (trigger.top + window.scrollY + trigger.height + remSize) / remSize;
 				setPosition({ placement: 'bottom', top, left });
 			} else {
-				const top = (trigger.top - popover.height - remSize) / remSize;
+				const top = (trigger.top + window.scrollY - popover.height - remSize) / remSize;
 				setPosition({ placement: 'top', top, left });
 			}
 		}
 	}, [open]);
 
 	const handleOutsideClick = e => {
+		if (dismissible) {
+			if (open) {
+				console.log(popoverRef);
+			}
+		}
 		if (dismissible && open && !popoverRef.current.contains(e.target)) {
-			handleClose();
+			handleOpen();
 		}
 	};
 
@@ -64,10 +65,6 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 			document.removeEventListener('click', handleOutsideClick);
 		};
 	}, [open]);
-
-	const handleClick = () => {
-		setOpen(!open);
-	};
 
 	// on escape close modal
 	const keyHandler = event => {
@@ -82,6 +79,10 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 		};
 	});
 
+	const handleOpen = () => {
+		setOpen(!open);
+	};
+
 	return (
 		<Fragment>
 			<PopoverPanel
@@ -89,13 +90,13 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 				content={content}
 				open={open}
 				position={position}
-				handleClose={handleClose}
+				handleOpen={handleOpen}
 				ref={popoverRef}
 			/>
 			<overrides.Wrapper
 				css={{ display: 'inline-block', ...overrides.CSS }}
 				ref={triggerRef}
-				onClick={handleClick}
+				onClick={handleOpen}
 				{...props}
 			>
 				{children}

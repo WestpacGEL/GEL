@@ -6,7 +6,6 @@ import { jsx, useBrand, merge } from '@westpac/core';
 import { Body } from '@westpac/body';
 import { CloseIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
-// import ScrollLock from 'react-scrolllock';
 import pkg from '../package.json';
 
 export const PopoverPanel = forwardRef(({ open, title, content, position, ...props }, ref) => {
@@ -21,21 +20,20 @@ export const PopoverPanel = forwardRef(({ open, title, content, position, ...pro
 	return (
 		open &&
 		ReactDOM.createPortal(
-			<Fragment>
-				<overrides.Panel
-					position={position}
-					title={title}
-					content={content}
-					ref={ref}
-					css={{
-						position: 'fixed',
-						top: 0,
-						left: 0,
-						transform: `translate(${position.left}rem, ${position.top}rem)`,
-					}}
-					{...props}
-				/>
-			</Fragment>,
+			<overrides.Panel
+				position={position}
+				title={title}
+				content={content}
+				ref={ref}
+				css={{
+					position: 'absolute',
+					willChange: 'transform',
+					top: 0,
+					left: 0,
+					transform: `translate3d(${position.left}rem, ${position.top}rem, 0px)`,
+				}}
+				{...props}
+			/>,
 			document.body
 		)
 	);
@@ -44,7 +42,7 @@ export const PopoverPanel = forwardRef(({ open, title, content, position, ...pro
 // ==============================
 // Override Component
 // ==============================
-const Panel = forwardRef(({ title, content, position, handleClose, ...props }, ref) => {
+const Panel = forwardRef(({ title, content, position, handleOpen, ...props }, ref) => {
 	const { SPACING, COLORS } = useBrand();
 	return (
 		<div
@@ -107,7 +105,7 @@ const Panel = forwardRef(({ title, content, position, handleClose, ...props }, r
 			</p>
 			<Body css={{ margin: 0, padding: '0.625rem 0.75rem', color: COLORS.neutral }}>{content}</Body>
 			<CloseBtn
-				onClose={handleClose}
+				onClose={handleOpen}
 				icon={CloseIcon}
 				css={{
 					position: 'absolute',
