@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, forwardRef } from 'react';
 import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -94,7 +94,7 @@ export const Modal = ({
 			classNames="modal-backdrop"
 		>
 			<Backdrop onClick={handleBackdropClick} css={overrides.backdropCSS}>
-				<FocusLock returnFocus autoFocus={false}>
+				<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
 					<CSSTransition appear in={open} timeout={100} classNames="modal">
 						<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
 							<StyledModal
@@ -232,3 +232,7 @@ const StyledModal = ({ size, ...props }) => {
 		/>
 	);
 };
+
+const FocusWrapper = forwardRef((props, ref) => (
+	<div ref={ref} css={{ height: '100%' }} {...props} />
+));
