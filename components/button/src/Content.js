@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, merge } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 
