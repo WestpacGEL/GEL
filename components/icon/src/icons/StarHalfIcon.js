@@ -13,6 +13,6 @@ export const StarHalfIcon = props => (
 
 StarHalfIcon.defaultProps = {
 	...defaultProps,
-	label: 'Star Half',
+	assistiveText: 'Star Half',
 };
 StarHalfIcon.propTypes = propTypes;

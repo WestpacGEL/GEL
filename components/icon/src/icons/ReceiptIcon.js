@@ -13,6 +13,6 @@ export const ReceiptIcon = props => (
 
 ReceiptIcon.defaultProps = {
 	...defaultProps,
-	label: 'Receipt',
+	assistiveText: 'Receipt',
 };
 ReceiptIcon.propTypes = propTypes;

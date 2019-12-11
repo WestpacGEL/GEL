@@ -13,6 +13,6 @@ export const PhoneIcon = props => (
 
 PhoneIcon.defaultProps = {
 	...defaultProps,
-	label: 'Phone',
+	assistiveText: 'Phone',
 };
 PhoneIcon.propTypes = propTypes;

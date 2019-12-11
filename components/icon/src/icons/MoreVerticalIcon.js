@@ -13,6 +13,6 @@ export const MoreVerticalIcon = props => (
 
 MoreVerticalIcon.defaultProps = {
 	...defaultProps,
-	label: 'More Vertical',
+	assistiveText: 'More Vertical',
 };
 MoreVerticalIcon.propTypes = propTypes;

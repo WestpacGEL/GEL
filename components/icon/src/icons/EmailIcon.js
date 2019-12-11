@@ -13,6 +13,6 @@ export const EmailIcon = props => (
 
 EmailIcon.defaultProps = {
 	...defaultProps,
-	label: 'Email',
+	assistiveText: 'Email',
 };
 EmailIcon.propTypes = propTypes;

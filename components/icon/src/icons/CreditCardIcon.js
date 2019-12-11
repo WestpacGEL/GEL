@@ -13,6 +13,6 @@ export const CreditCardIcon = props => (
 
 CreditCardIcon.defaultProps = {
 	...defaultProps,
-	label: 'Credit Card',
+	assistiveText: 'Credit Card',
 };
 CreditCardIcon.propTypes = propTypes;

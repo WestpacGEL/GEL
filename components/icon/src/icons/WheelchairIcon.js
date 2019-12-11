@@ -13,6 +13,6 @@ export const WheelchairIcon = props => (
 
 WheelchairIcon.defaultProps = {
 	...defaultProps,
-	label: 'Wheelchair',
+	assistiveText: 'Wheelchair',
 };
 WheelchairIcon.propTypes = propTypes;

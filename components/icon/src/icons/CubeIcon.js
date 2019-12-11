@@ -13,6 +13,6 @@ export const CubeIcon = props => (
 
 CubeIcon.defaultProps = {
 	...defaultProps,
-	label: 'Cube',
+	assistiveText: 'Cube',
 };
 CubeIcon.propTypes = propTypes;

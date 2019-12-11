@@ -13,6 +13,6 @@ export const WordFileIcon = props => (
 
 WordFileIcon.defaultProps = {
 	...defaultProps,
-	label: 'Word File',
+	assistiveText: 'Word File',
 };
 WordFileIcon.propTypes = propTypes;

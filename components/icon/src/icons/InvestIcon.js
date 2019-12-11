@@ -13,6 +13,6 @@ export const InvestIcon = props => (
 
 InvestIcon.defaultProps = {
 	...defaultProps,
-	label: 'Invest',
+	assistiveText: 'Invest',
 };
 InvestIcon.propTypes = propTypes;

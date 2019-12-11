@@ -13,6 +13,6 @@ export const CloseIcon = props => (
 
 CloseIcon.defaultProps = {
 	...defaultProps,
-	label: 'Close',
+	assistiveText: 'Close',
 };
 CloseIcon.propTypes = propTypes;

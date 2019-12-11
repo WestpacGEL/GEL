@@ -13,6 +13,6 @@ export const ZipFileIcon = props => (
 
 ZipFileIcon.defaultProps = {
 	...defaultProps,
-	label: 'ZipFile',
+	assistiveText: 'ZipFile',
 };
 ZipFileIcon.propTypes = propTypes;

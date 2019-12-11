@@ -13,6 +13,6 @@ export const GrowthIcon = props => (
 
 GrowthIcon.defaultProps = {
 	...defaultProps,
-	label: 'Growth',
+	assistiveText: 'Growth',
 };
 GrowthIcon.propTypes = propTypes;

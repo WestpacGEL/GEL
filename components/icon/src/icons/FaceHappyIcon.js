@@ -13,6 +13,6 @@ export const FaceHappyIcon = props => (
 
 FaceHappyIcon.defaultProps = {
 	...defaultProps,
-	label: 'Face Happy',
+	assistiveText: 'Face Happy',
 };
 FaceHappyIcon.propTypes = propTypes;

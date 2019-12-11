@@ -46,6 +46,6 @@ AppleStoreInverseSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 170,
 	viewBoxHeight: 58,
-	label: 'Apple Store',
+	assistiveText: 'Apple Store',
 };
 AppleStoreInverseSymbol.propTypes = propTypes;

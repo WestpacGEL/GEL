@@ -13,6 +13,6 @@ export const NewContentIcon = props => (
 
 NewContentIcon.defaultProps = {
 	...defaultProps,
-	label: 'New Content',
+	assistiveText: 'New Content',
 };
 NewContentIcon.propTypes = propTypes;

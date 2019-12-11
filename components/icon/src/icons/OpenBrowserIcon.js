@@ -13,6 +13,6 @@ export const OpenBrowserIcon = props => (
 
 OpenBrowserIcon.defaultProps = {
 	...defaultProps,
-	label: 'Open Browser',
+	assistiveText: 'Open Browser',
 };
 OpenBrowserIcon.propTypes = propTypes;

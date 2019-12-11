@@ -13,6 +13,6 @@ export const YammerIcon = props => (
 
 YammerIcon.defaultProps = {
 	...defaultProps,
-	label: 'Yammer',
+	assistiveText: 'Yammer',
 };
 YammerIcon.propTypes = propTypes;

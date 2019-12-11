@@ -13,6 +13,6 @@ export const ProgressIcon = props => (
 
 ProgressIcon.defaultProps = {
 	...defaultProps,
-	label: 'Progress',
+	assistiveText: 'Progress',
 };
 ProgressIcon.propTypes = propTypes;

@@ -9,6 +9,6 @@ export const GeolocationIcon = props => (
 
 GeolocationIcon.defaultProps = {
 	...defaultProps,
-	label: 'Geolocation',
+	assistiveText: 'Geolocation',
 };
 GeolocationIcon.propTypes = propTypes;

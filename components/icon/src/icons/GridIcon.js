@@ -13,6 +13,6 @@ export const GridIcon = props => (
 
 GridIcon.defaultProps = {
 	...defaultProps,
-	label: 'Grid',
+	assistiveText: 'Grid',
 };
 GridIcon.propTypes = propTypes;

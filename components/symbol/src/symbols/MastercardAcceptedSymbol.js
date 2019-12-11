@@ -30,6 +30,6 @@ MastercardAcceptedSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 80,
 	viewBoxHeight: 50,
-	label: 'Mastercard Accepted',
+	assistiveText: 'Mastercard Accepted',
 };
 MastercardAcceptedSymbol.propTypes = propTypes;

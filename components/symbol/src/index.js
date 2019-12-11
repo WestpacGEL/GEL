@@ -32,6 +32,5 @@ export { VisaWhiteSymbol } from './symbols/VisaWhiteSymbol';
 export { WBCLiveLogo } from './symbols/WBCLiveLogo';
 export { WBCLogo } from './symbols/WBCLogo';
 export { WBGLogo } from './symbols/WBGLogo';
-export { WindowsStoreSymbol } from './symbols/WindowsStoreSymbol';
 export { YammerSymbol } from './symbols/YammerSymbol';
 export { YouTubeSymbol } from './symbols/YouTubeSymbol';

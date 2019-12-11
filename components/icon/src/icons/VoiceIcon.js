@@ -13,6 +13,6 @@ export const VoiceIcon = props => (
 
 VoiceIcon.defaultProps = {
 	...defaultProps,
-	label: 'Voice',
+	assistiveText: 'Voice',
 };
 VoiceIcon.propTypes = propTypes;

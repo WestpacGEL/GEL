@@ -13,6 +13,6 @@ export const LightBulbIcon = props => (
 
 LightBulbIcon.defaultProps = {
 	...defaultProps,
-	label: 'Light Bulb',
+	assistiveText: 'Light Bulb',
 };
 LightBulbIcon.propTypes = propTypes;

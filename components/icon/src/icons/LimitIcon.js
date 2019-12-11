@@ -13,6 +13,6 @@ export const LimitIcon = props => (
 
 LimitIcon.defaultProps = {
 	...defaultProps,
-	label: 'Limit',
+	assistiveText: 'Limit',
 };
 LimitIcon.propTypes = propTypes;

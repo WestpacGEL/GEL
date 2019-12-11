@@ -11,7 +11,7 @@ import { useFormCheckContext } from './FormCheck';
 // ==============================
 
 export const FormCheckOption = ({ value, checked, disabled, onChange, children, ...props }) => {
-	const { COLORS, BRAND } = useBrand();
+	const { COLORS, PACKS, BRAND } = useBrand();
 	const { type, name, size, inline, flipped } = useFormCheckContext();
 
 	const [isChecked, setChecked] = useState(checked);
@@ -44,7 +44,7 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 				radio: {
 					width: '0.75rem',
 					height: '0.75rem',
-					tweak: '0rem',
+					tweak: '0rem', //must state 'rem', used in calc()
 				},
 			},
 			option: {
@@ -71,7 +71,7 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 				radio: {
 					width: '1rem',
 					height: '1rem',
-					tweak: '0rem',
+					tweak: '0rem', //must state 'rem', used in calc()
 				},
 			},
 			option: {
@@ -163,8 +163,7 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 
 						// Focus state
 						'body:not(.isMouseMode) input:focus + &': {
-							outline: `2px solid ${COLORS.focus}`,
-							outlineOffset: 3,
+							...PACKS.focus,
 						},
 
 						// Disabled state
@@ -177,6 +176,7 @@ export const FormCheckOption = ({ value, checked, disabled, onChange, children, 
 					// Control 'check' (tick or dot)
 					'::after': {
 						content: '""',
+						boxSizing: 'border-box',
 						position: 'absolute',
 						border: `solid ${BRAND === 'STG' ? COLORS.text : COLORS.hero}`,
 						opacity: 0, //hide

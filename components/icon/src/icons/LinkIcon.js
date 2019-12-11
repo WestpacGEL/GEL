@@ -13,6 +13,6 @@ export const LinkIcon = props => (
 
 LinkIcon.defaultProps = {
 	...defaultProps,
-	label: 'Link',
+	assistiveText: 'Link',
 };
 LinkIcon.propTypes = propTypes;

@@ -13,6 +13,6 @@ export const SdStorageIcon = props => (
 
 SdStorageIcon.defaultProps = {
 	...defaultProps,
-	label: 'Sd Storage',
+	assistiveText: 'Sd Storage',
 };
 SdStorageIcon.propTypes = propTypes;

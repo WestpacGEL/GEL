@@ -29,7 +29,6 @@
 	"module": "dist/button.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.6.2",
-		"@westpac/a11y": "^0.0.1",
 		"@westpac/core": "^0.0.1",
 		"prop-types": "^15.7.2"
 	},

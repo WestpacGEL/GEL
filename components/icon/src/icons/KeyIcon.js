@@ -13,6 +13,6 @@ export const KeyIcon = props => (
 
 KeyIcon.defaultProps = {
 	...defaultProps,
-	label: 'Key',
+	assistiveText: 'Key',
 };
 KeyIcon.propTypes = propTypes;

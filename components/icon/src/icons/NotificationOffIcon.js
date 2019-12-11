@@ -13,6 +13,6 @@ export const NotificationOffIcon = props => (
 
 NotificationOffIcon.defaultProps = {
 	...defaultProps,
-	label: 'Notification Off',
+	assistiveText: 'Notification Off',
 };
 NotificationOffIcon.propTypes = propTypes;

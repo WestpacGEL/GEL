@@ -13,6 +13,6 @@ export const PlaneIcon = props => (
 
 PlaneIcon.defaultProps = {
 	...defaultProps,
-	label: 'Plane',
+	assistiveText: 'Plane',
 };
 PlaneIcon.propTypes = propTypes;

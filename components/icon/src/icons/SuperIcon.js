@@ -13,6 +13,6 @@ export const SuperIcon = props => (
 
 SuperIcon.defaultProps = {
 	...defaultProps,
-	label: 'Super',
+	assistiveText: 'Super',
 };
 SuperIcon.propTypes = propTypes;

@@ -10,7 +10,9 @@ const NewCrumb = ({ current, ...rest }) => {
 	return <Crumb {...rest} />;
 };
 
-const Label = ({ children, look }) => <span css={{ verticalAlign: 'middle' }}>{children}</span>;
+const AssistiveText = ({ children, look }) => (
+	<span css={{ verticalAlign: 'middle' }}>{children}</span>
+);
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -28,7 +30,7 @@ function Example({ brand }) {
 		crumbLinkCSS: {
 			color: '#fff',
 		},
-		Label,
+		AssistiveText,
 		Icon: HouseIcon,
 	};
 

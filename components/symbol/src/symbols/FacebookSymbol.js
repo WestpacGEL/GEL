@@ -17,6 +17,6 @@ FacebookSymbol.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 32,
 	viewBoxHeight: 32,
-	label: 'Facebook',
+	assistiveText: 'Facebook',
 };
 FacebookSymbol.propTypes = propTypes;

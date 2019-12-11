@@ -13,6 +13,6 @@ export const ExitIcon = props => (
 
 ExitIcon.defaultProps = {
 	...defaultProps,
-	label: 'Exit',
+	assistiveText: 'Exit',
 };
 ExitIcon.propTypes = propTypes;
