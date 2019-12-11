@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { useState } from 'react';
-import { Modal, Body } from '@westpac/modal';
+import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -24,6 +24,11 @@ function Example({ brand }) {
 					fancied that kind of thing never happened, and now here I am in the middle of one! There
 					ought to be a book written about me, that there ought!’
 				</Body>
+				<Footer>
+					<Button look="faint" onClick={() => setOpen(false)}>
+						Close
+					</Button>
+				</Footer>
 			</Modal>
 		</GEL>
 	);
