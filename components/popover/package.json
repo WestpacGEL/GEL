@@ -21,8 +21,7 @@
 		"@westpac/button": "^0.0.1",
 		"@westpac/core": "^0.0.1",
 		"@westpac/icon": "^0.0.1",
-		"prop-types": "^15.7.2",
-		"react-scrolllock": "^4.0.1"
+		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.11.0",
