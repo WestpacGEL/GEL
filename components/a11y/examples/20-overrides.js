@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const SkipLinkWrapper = ({ children, ...rest }) => (
 	<div {...rest} tabIndex={1}>
-		<HouseIcon color='#fff' css={{ marginRight: '1rem' }} />
+		<HouseIcon color="#fff" css={{ marginRight: '1rem' }} />
 		{children}
 	</div>
 );
@@ -25,7 +25,7 @@ function Example({ brand }) {
 					':focus': {
 						background: COLORS.primary,
 						color: '#fff',
-					}
+					},
 				}),
 				component: SkipLinkWrapper,
 			},

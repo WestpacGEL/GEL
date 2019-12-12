@@ -3,7 +3,7 @@
 import { jsx } from '@westpac/core';
 import React from 'react';
 
-export const SkipLinkWrapper = ( rest ) => <a {...rest} />;
+export const SkipLinkWrapper = rest => <a {...rest} />;
 
 export const skipLinkStyles = () => ({
 	position: 'absolute',

@@ -10,10 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const SkipLink = ({
-	overrides: componentOverrides,
-	...rest
-}) => {
+export const SkipLink = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -43,7 +40,10 @@ export const SkipLink = ({
 	);
 
 	return (
-		<overrides.subComponent.SkipLink.component css={overrides.subComponent.SkipLink.styles} {...overrides.subComponent.SkipLink.attributes(state)} />
+		<overrides.subComponent.SkipLink.component
+			css={overrides.subComponent.SkipLink.styles}
+			{...overrides.subComponent.SkipLink.attributes(state)}
+		/>
 	);
 };
 
