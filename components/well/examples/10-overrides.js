@@ -8,9 +8,10 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/well'] = {
-		css: {
+		styles: styles => ({
+			...styles,
 			outline: '1px solid red',
-		},
+		}),
 	};
 
 	return (
@@ -25,6 +26,18 @@ function Example({ brand }) {
 			<Well>
 				I am outside
 				<Well>I am inside</Well>
+			</Well>
+
+			<h2>With overrides and component overrides</h2>
+			<Well
+				overrides={{
+					styles: styles => ({
+						...styles,
+						outline: '1px solid blue',
+					}),
+				}}
+			>
+				Look, I'm in a well.
 			</Well>
 		</GEL>
 	);
