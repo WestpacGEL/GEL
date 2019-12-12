@@ -82,13 +82,13 @@ Tab.propTypes = {
 // Overrides & Styled Components
 // ==============================
 const Panel = forwardRef(({ look, last, selected, mode, ...props }, ref) => {
-	const { COLORS: colors, PACKS: packs } = useBrand();
+	const { COLORS } = useBrand();
 	const styles =
 		mode === 'accordion'
 			? {
 					lego: {
 						borderLeftWidth: '0.375rem',
-						borderLeftColor: colors.border,
+						borderLeftColor: COLORS.border,
 					},
 					soft: last
 						? {
@@ -102,14 +102,11 @@ const Panel = forwardRef(({ look, last, selected, mode, ...props }, ref) => {
 		<div
 			ref={ref}
 			css={{
-				borderLeft: `1px solid ${colors.border}`,
-				borderRight: `1px solid ${colors.border}`,
-				borderBottom: (mode === 'tabs' || last) && `1px solid ${colors.border}`,
-				borderTop: mode === 'tabs' && `1px solid ${colors.border}`,
+				borderLeft: `1px solid ${COLORS.border}`,
+				borderRight: `1px solid ${COLORS.border}`,
+				borderBottom: (mode === 'tabs' || last) && `1px solid ${COLORS.border}`,
+				borderTop: mode === 'tabs' && `1px solid ${COLORS.border}`,
 				padding: '1.5rem 3.22%',
-				':focus': {
-					// color: packs.link.color,
-				},
 				...styles[look],
 			}}
 			{...props}
@@ -118,13 +115,13 @@ const Panel = forwardRef(({ look, last, selected, mode, ...props }, ref) => {
 });
 
 const AccordionLabel = ({ look, last, hidden, ...props }) => {
-	const { COLORS: colors } = useBrand();
+	const { COLORS } = useBrand();
 	const styles = {
 		soft: {
-			borderBottom: !hidden && `1px solid ${colors.border}`,
+			borderBottom: !hidden && `1px solid ${COLORS.border}`,
 			...(last &&
 				hidden && {
-					borderBottom: `1px solid ${colors.border}`,
+					borderBottom: `1px solid ${COLORS.border}`,
 					borderBottomLeftRadius: '0.1875rem',
 					borderBottomRightRadius: '0.1875rem',
 				}),
@@ -134,11 +131,11 @@ const AccordionLabel = ({ look, last, hidden, ...props }) => {
 			},
 		},
 		lego: {
-			borderBottom: !hidden && `1px solid ${colors.border}`,
+			borderBottom: !hidden && `1px solid ${COLORS.border}`,
 			borderLeftWidth: '6px',
-			borderLeftColor: !hidden ? colors.border : colors.hero.default,
+			borderLeftColor: !hidden ? COLORS.border : COLORS.hero,
 			':last-of-type': {
-				borderBottom: `1px solid ${colors.border}`,
+				borderBottom: `1px solid ${COLORS.border}`,
 			},
 		},
 	};
@@ -146,11 +143,11 @@ const AccordionLabel = ({ look, last, hidden, ...props }) => {
 		<button
 			css={{
 				alignItems: 'center',
-				backgroundColor: colors.background,
+				backgroundColor: COLORS.background,
 				border: 0,
-				borderTop: `1px solid ${colors.border}`,
-				borderLeft: `1px solid ${colors.border}`,
-				borderRight: `1px solid ${colors.border}`,
+				borderTop: `1px solid ${COLORS.border}`,
+				borderLeft: `1px solid ${COLORS.border}`,
+				borderRight: `1px solid ${COLORS.border}`,
 				cursor: 'pointer',
 				display: 'flex',
 				fontSize: '1rem',
