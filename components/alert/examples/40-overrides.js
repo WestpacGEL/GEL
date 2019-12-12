@@ -48,18 +48,20 @@ function Example({ brand }) {
 			outline: '1px solid red',
 		}),
 
-		Icon: {
-			component: Icon,
-			styles: (styles, { look }) => ({
-				...styles,
-				outline: `2px solid ${look === 'info' ? 'red' : 'black'}`,
-			}),
-		},
-		CloseBtn: {
-			component: CloseBtn,
-		},
-		Heading: {
-			component: Heading,
+		subComponent: {
+			Icon: {
+				component: Icon,
+				styles: (styles, { look }) => ({
+					...styles,
+					outline: `2px solid ${look === 'info' ? 'red' : 'black'}`,
+				}),
+			},
+			CloseBtn: {
+				component: CloseBtn,
+			},
+			Heading: {
+				component: Heading,
+			},
 		},
 	};
 
