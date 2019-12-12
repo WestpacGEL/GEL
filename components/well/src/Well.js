@@ -21,7 +21,7 @@ export const Well = ({ overrides: componentOverrides, ...props }) => {
 		attributes: state => state,
 	};
 
-	const state = { ...props };
+	const state = { overrides: componentOverrides, ...props };
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
