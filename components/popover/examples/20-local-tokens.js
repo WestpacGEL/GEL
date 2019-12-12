@@ -15,7 +15,7 @@ const content =
 
 const Wrapper = forwardRef((props, ref) => <span ref={ref} {...props} />);
 
-const Panel = forwardRef(({ position, ...props }, ref) => (
+const Panel = forwardRef(({ position, handleOpen, ...props }, ref) => (
 	<div
 		ref={ref}
 		tabIndex="-1"
