@@ -52,7 +52,7 @@ function Example({ brand }) {
 				</Checkbox>
 			</Row>
 
-			<Tabcordion look={look} justifyTabs={justify} mode={mode}>
+			<Tabcordion look={look} justify={justify} mode={mode}>
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
