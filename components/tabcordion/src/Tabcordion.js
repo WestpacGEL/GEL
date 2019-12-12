@@ -174,7 +174,7 @@ Tabcordion.propTypes = {
 	instanceIdPrefix: PropTypes.string,
 	/** Whether or not tabs should stretch full width */
 	justify: PropTypes.bool,
-	/** Lock the mode to either "accordion" or "tabs". The default is responsive. */
+	/** Lock the mode to either "accordion" or "tabs". The default is "responsive". */
 	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
 };
 Tabcordion.defaultProps = {
@@ -200,23 +200,23 @@ const TabRow = forwardRef((props, ref) => (
 ));
 
 const TabItem = forwardRef(({ look, justify, selected, last, ...props }, ref) => {
-	const { COLORS: colors } = useBrand();
+	const { COLORS } = useBrand();
 
 	const styles = {
 		soft: {
-			backgroundColor: selected ? '#fff' : colors.background,
+			backgroundColor: selected ? '#fff' : COLORS.background,
 			borderTopLeftRadius: '0.1875rem',
 			borderTopRightRadius: '0.1875rem',
-			border: `1px solid ${colors.border}`,
+			border: `1px solid ${COLORS.border}`,
 			borderBottom: 0,
-			color: colors.neutral,
+			color: COLORS.neutral,
 			marginBottom: selected && '-1px',
 		},
 		lego: {
-			backgroundColor: selected ? '#fff' : colors.hero,
-			border: `1px solid ${selected ? colors.border : 'transparent'}`,
+			backgroundColor: selected ? '#fff' : COLORS.hero,
+			border: `1px solid ${selected ? COLORS.border : 'transparent'}`,
 			borderBottom: 0,
-			color: selected ? colors.text : '#fff',
+			color: selected ? COLORS.text : '#fff',
 			marginBottom: selected ? '-1px' : '0.125rem',
 		},
 	};
