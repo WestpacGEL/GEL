@@ -136,7 +136,7 @@ const AccordionLabel = ({ look, last, hidden, ...props }) => {
 		lego: {
 			borderBottom: !hidden && `1px solid ${colors.border}`,
 			borderLeftWidth: '6px',
-			borderLeftColor: !hidden ? colors.border : colors.hero.default,
+			borderLeftColor: !hidden ? colors.border : colors.hero,
 			':last-of-type': {
 				borderBottom: `1px solid ${colors.border}`,
 			},
