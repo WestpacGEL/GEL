@@ -1,11 +1,9 @@
 const pagination = require('./pagination');
 
 module.exports = {
-	'@westpac/pagination': pagination,
-	'@westpac/alert': {
+	'@westpac/pagination': {
 		styles: styles => ({
 			...styles,
-			background: 'red',
 		}),
 	},
 };
