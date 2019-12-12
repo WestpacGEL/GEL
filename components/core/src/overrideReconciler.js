@@ -48,9 +48,9 @@ export function overrideReconciler(
 				);
 			}
 			if (
-				tokenOverrides &&
-				tokenOverrides.subComponent &&
-				tokenOverrides.subComponent[key] &&
+				brandOverrides &&
+				brandOverrides.subComponent &&
+				brandOverrides.subComponent[key] &&
 				typeof brandOverrides.subComponent[key].styles === 'function'
 			) {
 				overrides.subComponent[key].styles = brandOverrides.subComponent[key].styles(
@@ -59,9 +59,9 @@ export function overrideReconciler(
 				);
 			}
 			if (
-				tokenOverrides &&
-				tokenOverrides.subComponent &&
-				tokenOverrides.subComponent[key] &&
+				componentOverrides &&
+				componentOverrides.subComponent &&
+				componentOverrides.subComponent[key] &&
 				typeof componentOverrides.subComponent[key].styles === 'function'
 			) {
 				overrides.subComponent[key].styles = componentOverrides.subComponent[key].styles(
