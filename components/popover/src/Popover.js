@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
 import { useState, useEffect, useRef, forwardRef, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { jsx, useBrand, merge } from '@westpac/core';
-import pkg from '../package.json';
 import { PopoverPanel } from './PopoverPanel';
+import PropTypes from 'prop-types';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -47,12 +47,7 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 	}, [open]);
 
 	const handleOutsideClick = e => {
-		if (dismissible) {
-			if (open) {
-				console.log(popoverRef);
-			}
-		}
-		if (dismissible && open && !popoverRef.current.contains(e.target)) {
+		if (dismissible && open && popoverRef.current && !popoverRef.current.contains(e.target)) {
 			handleOpen();
 		}
 	};

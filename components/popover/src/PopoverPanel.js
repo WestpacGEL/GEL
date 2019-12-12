@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import { forwardRef, Fragment } from 'react';
-import ReactDOM from 'react-dom';
 import { jsx, useBrand, merge } from '@westpac/core';
-import { Body } from '@westpac/body';
 import { CloseIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
+import { Body } from '@westpac/body';
+import { forwardRef } from 'react';
+import ReactDOM from 'react-dom';
 import pkg from '../package.json';
 
 export const PopoverPanel = forwardRef(({ open, title, content, position, ...props }, ref) => {
