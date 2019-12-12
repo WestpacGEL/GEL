@@ -35,39 +35,41 @@ export function overrideReconciler(
 
 	if (overrides.subComponent) {
 		for (let [key] of Object.entries(overrides.subComponent)) {
-			overrides.subComponent[key].styles = defaultOverrides.subComponent[key].styles(null, state);
-			if (
-				tokenOverrides &&
-				tokenOverrides.subComponent &&
-				tokenOverrides.subComponent[key] &&
-				typeof tokenOverrides.subComponent[key].styles === 'function'
-			) {
-				overrides.subComponent[key].styles = tokenOverrides.subComponent[key].styles(
-					overrides.subComponent[key].styles,
-					state
-				);
-			}
-			if (
-				brandOverrides &&
-				brandOverrides.subComponent &&
-				brandOverrides.subComponent[key] &&
-				typeof brandOverrides.subComponent[key].styles === 'function'
-			) {
-				overrides.subComponent[key].styles = brandOverrides.subComponent[key].styles(
-					overrides.subComponent[key].styles,
-					state
-				);
-			}
-			if (
-				componentOverrides &&
-				componentOverrides.subComponent &&
-				componentOverrides.subComponent[key] &&
-				typeof componentOverrides.subComponent[key].styles === 'function'
-			) {
-				overrides.subComponent[key].styles = componentOverrides.subComponent[key].styles(
-					overrides[key].styles,
-					state
-				);
+			if( defaultOverrides.subComponent[key] ) {
+				overrides.subComponent[key].styles = defaultOverrides.subComponent[key].styles(null, state);
+				if (
+					tokenOverrides &&
+					tokenOverrides.subComponent &&
+					tokenOverrides.subComponent[key] &&
+					typeof tokenOverrides.subComponent[key].styles === 'function'
+				) {
+					overrides.subComponent[key].styles = tokenOverrides.subComponent[key].styles(
+						overrides.subComponent[key].styles,
+						state
+					);
+				}
+				if (
+					brandOverrides &&
+					brandOverrides.subComponent &&
+					brandOverrides.subComponent[key] &&
+					typeof brandOverrides.subComponent[key].styles === 'function'
+				) {
+					overrides.subComponent[key].styles = brandOverrides.subComponent[key].styles(
+						overrides.subComponent[key].styles,
+						state
+					);
+				}
+				if (
+					componentOverrides &&
+					componentOverrides.subComponent &&
+					componentOverrides.subComponent[key] &&
+					typeof componentOverrides.subComponent[key].styles === 'function'
+				) {
+					overrides.subComponent[key].styles = componentOverrides.subComponent[key].styles(
+						overrides[key].styles,
+						state
+					);
+				}
 			}
 		}
 	}
