@@ -175,7 +175,7 @@ Tabcordion.propTypes = {
 	/** Whether or not tabs should stretch full width */
 	justify: PropTypes.bool,
 	/** Lock the mode to either "accordion" or "tabs". The default is responsive. */
-	mode: PropTypes.oneOf(['accordion', 'responsive', 'tabs']),
+	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
 };
 Tabcordion.defaultProps = {
 	look: 'soft',

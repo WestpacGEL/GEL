@@ -84,7 +84,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={overridesWithTokens}>
 			<h3>Responsive</h3>
-			<Tabcordion>
+			<Tabcordion mode="responsive">
 				{data.map(t => (
 					<Tab key={t.text} text={t.text}>
 						{t.content}
