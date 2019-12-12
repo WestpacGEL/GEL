@@ -14,6 +14,7 @@ const Panel = forwardRef(({ last, selected, ...props }, ref) => {
 const TabItem = forwardRef(({ selected, justify, last, ...props }, ref) => {
 	return (
 		<button
+			ref={ref}
 			css={{
 				flex: justify ? 1 : 0,
 				fontSize: '1rem',
