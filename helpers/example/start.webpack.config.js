@@ -49,9 +49,8 @@ module.exports = () => ({
 
 	plugins: [
 		new HtmlWebpackPlugin({
-			meta: {
-				viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-			},
+			title: 'Westpac GEL 3 - Local development',
+			template: path.normalize(`${__dirname}/index.html`),
 		}),
 		new HtmlWebpackRootPlugin(),
 		new CopyPlugin([

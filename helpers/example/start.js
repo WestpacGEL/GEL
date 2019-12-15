@@ -1,3 +1,6 @@
+import 'raf/polyfill';
+import 'core-js/es';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
