@@ -1,9 +1,4 @@
-const pagination = require('./pagination');
-
-module.exports = {
-	'@westpac/pagination': {
-		styles: styles => ({
-			...styles,
-		}),
-	},
-};
+module.exports = TOKENS => ({
+	'@westpac/pagination': require('./pagination')(TOKENS),
+	'@westpac/badge': require('./badge')(TOKENS),
+});
