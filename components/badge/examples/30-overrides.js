@@ -5,13 +5,13 @@ import { Badge } from '@westpac/badge';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Wrapper = ({ children, look }) => (
-	<span>
+const Wrapper = ({ look, children, ...rest }) => (
+	<span {...rest}>
 		{children}
 		<a
 			href="#"
 			css={{
-				color: look === 'faint' ? '#000' : '#fff',
+				color: look === 'faint' ? 'red' : '#fff',
 				marginLeft: '0.5em',
 			}}
 		>
@@ -23,13 +23,12 @@ const Wrapper = ({ children, look }) => (
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/badge'] = {
-		neutral: {
-			css: {
-				backgroundColor: 'rebeccapurple',
-				outline: '1px solid red',
-			},
-		},
-		Wrapper,
+		styles: (styles, { look }) => ({
+			...styles,
+			backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
+			outline: '1px solid red',
+		}),
+		component: Wrapper,
 	};
 
 	return (
@@ -48,6 +47,17 @@ function Example({ brand }) {
 				<Badge look="success" value="Success" /> <Badge look="info" value="Info" />{' '}
 				<Badge look="warning" value="Warning" /> <Badge look="danger" value="Danger" />
 			</p>
+
+			<h2>With overrides and component overrides</h2>
+			<Badge
+				value="override"
+				overrides={{
+					styles: styles => ({
+						...styles,
+						outline: '3px dotted green',
+					}),
+				}}
+			/>
 		</GEL>
 	);
 }
