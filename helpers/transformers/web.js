@@ -126,7 +126,14 @@ function build(BRAND) {
 		export const TYPE = ${TYPE};
 		export const PACKS = ${JSON.stringify(PACKS)};
 		export const BRAND = "${BRAND}";
-		export const OVERRIDES = require('../overrides/index');
+		export const OVERRIDES = require('../overrides/index')({
+			SPACING,
+			COLORS,
+			LAYOUT,
+			TYPE,
+			PACKS,
+			BRAND,
+		});
 		export default {
 			SPACING,
 			COLORS,

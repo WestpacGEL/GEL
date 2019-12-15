@@ -1,5 +1,5 @@
-module.exports = {
+module.exports = () => ({
 	Icon: {
 		style: () => ({ color: '#fff' }),
 	},
-};
+});
