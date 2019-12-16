@@ -1,11 +1,13 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
-import pkg from '../package.json';
 import PropTypes from 'prop-types';
 import React from 'react';
+
+import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
+import { Crumb as CrumbWrapper, crumbStyles } from './overrides/crumb';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -14,34 +16,74 @@ import React from 'react';
 /**
  * Crumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Crumb = ({ current, href, text, assistiveText, icon: Icon, onClick, ...props }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+export const Crumb = ({
+	current,
+	href,
+	text,
+	assistiveText,
+	icon: Icon,
+	onClick,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const {
+		COLORS,
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		crumbCSS: {},
-		crumbLinkCSS: {},
-		crumbLabel: VisuallyHidden,
-		Icon,
+	const defaultOverrides = {
+		subComponent: {
+			AssistiveText: {
+				styles: assistiveTextStyles,
+				component: AssistiveText,
+				attributes: state => state,
+			},
+			Crumb: {
+				styles: crumbStyles,
+				component: CrumbWrapper,
+				attributes: state => state,
+			},
+		},
 	};
-	merge(overrides, overridesWithTokens);
+
+	const state = {
+		current,
+		href,
+		text,
+		assistiveText,
+		icon: Icon,
+		onClick,
+		overrides: componentOverrides,
+		...rest
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
-		<li
-			css={{
-				boxSizing: 'border-box',
-				display: 'inline-block',
-				position: 'relative',
-				color: COLORS.text,
-				verticalAlign: 'middle',
-				...overrides.crumbCSS,
-			}}
-			{...props}
+		<overrides.subComponent.Crumb.component
+			css={overrides.subComponent.Crumb.styles}
+			{...overrides.subComponent.Crumb.attributes(state)}
 		>
-			{current && <overrides.crumbLabel>{assistiveText}</overrides.crumbLabel>}
+			{current &&
+				<overrides.subComponent.AssistiveText.component
+					css={overrides.subComponent.AssistiveText.styles}
+					{...overrides.subComponent.AssistiveText.attributes(state)}
+					insideCrumb={true}
+				>
+					{assistiveText}
+				</overrides.subComponent.AssistiveText.component>
+			}
 			<a
 				href={current ? null : href}
 				onClick={onClick}
-				{...props}
+				{...rest}
 				css={{
 					color: COLORS.text,
 					textDecoration: 'none',
@@ -52,13 +94,13 @@ export const Crumb = ({ current, href, text, assistiveText, icon: Icon, onClick,
 						textDecoration: current ? 'none' : 'underline',
 					},
 
-					...overrides.crumbLinkCSS,
+					// ...overrides.crumbLinkCSS,
 				}}
 			>
 				{text}
 			</a>
 			{!current && (
-				<overrides.Icon
+				<ArrowRightIcon
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
@@ -69,7 +111,7 @@ export const Crumb = ({ current, href, text, assistiveText, icon: Icon, onClick,
 					}}
 				/>
 			)}
-		</li>
+		</overrides.subComponent.Crumb.component>
 	);
 };
 
@@ -104,6 +146,24 @@ Crumb.propTypes = {
 	 * The icon between Crumbs
 	 */
 	icon: PropTypes.func.isRequired,
+
+	/**
+	 * The override API
+	 */
+	override: PropTypes.shape({
+		subComponent: PropTypes.shape({
+			AssistiveText: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Crumb: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Crumb.defaultProps = {
