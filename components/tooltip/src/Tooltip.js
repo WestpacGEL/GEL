@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
-import { useState, useEffect, useRef, forwardRef, Fragment } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
 import { jsx, useBrand, useInstanceId, overrideReconciler } from '@westpac/core';
-// import { TooltipBubble } from './TooltipBubble';
 import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import { TooltipBubble, tooltipBubbleStyles } from './overrides/tooltipBubble';
 import PropTypes from 'prop-types';
@@ -53,7 +52,6 @@ export const Tooltip = ({ text, title, overrides: componentOverrides, ...props }
 	);
 
 	console.log(componentOverrides);
-	// console.log(overrides);
 	const handleEnter = () => setVisible(true);
 	const handleLeave = () => setVisible(false);
 
