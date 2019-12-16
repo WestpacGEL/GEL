@@ -1,36 +1,59 @@
 /** @jsx jsx */
 
 import { useState, useEffect, useRef, forwardRef, Fragment } from 'react';
+import { jsx, useBrand, useInstanceId, overrideReconciler } from '@westpac/core';
+// import { TooltipBubble } from './TooltipBubble';
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { TooltipBubble, tooltipBubbleStyles } from './overrides/tooltipBubble';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
-import shortid from 'shortid';
 import pkg from '../package.json';
-import { TooltipBubble } from './TooltipBubble';
-
-// ==============================
-// Overwrite component
-// ==============================
-const Wrapper = forwardRef(({ tag: Tag, ...props }, ref) => <Tag ref={ref} {...props} />);
 
 // ==============================
 // Component
 // ==============================
-export const Tooltip = ({ tag, text, ...props }) => {
-	const { [pkg.name]: overwritesWithTokens } = useBrand();
+export const Tooltip = ({ text, title, overrides: componentOverrides, ...props }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 	const [visible, setVisible] = useState(false);
 	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
-	const [tooltipId] = useState(`tooltipBubble-${shortid.generate()}`);
+	const [tooltipId] = useState(`tooltipBubble-${useInstanceId()}`);
 	const triggerRef = useRef();
 	const tooltipRef = useRef();
 
-	const overwrites = {
-		tooltipCSS: {},
-		CSS: {},
-		Wrapper,
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
+
+		subComponent: {
+			TooltipBubble: {
+				styles: tooltipBubbleStyles,
+				component: TooltipBubble,
+				attributes: state => state,
+			},
+		},
 	};
 
-	merge(overwrites, overwritesWithTokens);
+	const state = {
+		text,
+		position,
+		visible,
+		overrides: componentOverrides,
+		...props,
+	};
 
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
+
+	console.log(componentOverrides);
+	// console.log(overrides);
 	const handleEnter = () => setVisible(true);
 	const handleLeave = () => setVisible(false);
 
@@ -62,29 +85,22 @@ export const Tooltip = ({ tag, text, ...props }) => {
 
 	return (
 		<Fragment>
-			<TooltipBubble
+			<overrides.subComponent.TooltipBubble.component
+				css={overrides.subComponent.TooltipBubble.styles}
+				{...overrides.subComponent.TooltipBubble.attributes(state)}
 				tooltipId={tooltipId}
 				text={text}
-				visible={visible}
-				position={position}
 				ref={tooltipRef}
-				css={overwrites.tooltipCSS}
 			/>
-			<overwrites.Wrapper
-				tag={tag}
-				title={tag === 'abbr' ? text : undefined}
+			<overrides.component
+				title={title ? text : undefined}
 				onMouseEnter={handleEnter}
 				onMouseLeave={handleLeave}
 				aria-describedby={tooltipId}
 				tabIndex={0}
 				ref={triggerRef}
-				css={{
-					position: 'relative',
-					display: 'inline-block',
-					cursor: 'help',
-					...overwrites.CSS,
-				}}
-				{...props}
+				css={overrides.styles}
+				{...overrides.attributes(state)}
 			/>
 		</Fragment>
 	);
@@ -95,15 +111,25 @@ export const Tooltip = ({ tag, text, ...props }) => {
 // ==============================
 Tooltip.propTypes = {
 	/**
-	 * Tooltip tag
-	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-
-	/**
 	 * Tooltip text
 	 */
 	text: PropTypes.string.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			TooltipBubble: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
-Tooltip.defaultProps = {
-	tag: 'span',
-};
+
+Tooltip.defaultProps = {};

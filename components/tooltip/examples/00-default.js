@@ -8,24 +8,9 @@ import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-// Tooltip tag as a component example
-const TooltipTag = forwardRef(({ children, ...props }, ref) => {
-	const { COLORS } = useBrand();
-
-	let num = 0;
-	return (
-		<span
-			ref={ref}
-			css={{ cursor: 'help', borderBottom: `1px dotted ${COLORS.text}` }}
-			onClick={() => {
-				console.log(`<Tooltip /> clicked ${++num} ${num !== 1 ? `times` : `time`}`);
-			}}
-			{...props}
-		>
-			<span>{children}</span>
-		</span>
-	);
-});
+const TooltipTag = forwardRef(({ visible, position, ...props }, ref) => (
+	<abbr ref={ref} {...props} />
+));
 
 function Example({ brand }) {
 	return (
@@ -49,15 +34,11 @@ function Example({ brand }) {
 				</h3>
 				<p>
 					This is a{' '}
-					<Tooltip tag="abbr" text="This is a tooltip on an abbr element">
-						random
-					</Tooltip>{' '}
-					sentence.
-				</p>
-				<h3>Tooltip with a component tag</h3>
-				<p>
-					This is also a{' '}
-					<Tooltip tag={TooltipTag} text="This is a tooltip with a component tag">
+					<Tooltip
+						text="This is a tooltip on an abbr element"
+						title
+						overrides={{ component: TooltipTag }}
+					>
 						random
 					</Tooltip>{' '}
 					sentence.
