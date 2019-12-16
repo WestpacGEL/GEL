@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import PropTypes from 'prop-types';
+
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import pkg from '../package.json';
 
 // ==============================
