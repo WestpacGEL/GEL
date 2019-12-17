@@ -50,7 +50,7 @@ function Example({ brand }) {
 
 			<h2>With overrides and component overrides</h2>
 			<Badge
-				value="override"
+				value="Default overridden"
 				overrides={{
 					styles: styles => ({
 						...styles,
