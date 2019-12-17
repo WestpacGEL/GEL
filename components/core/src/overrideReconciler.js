@@ -21,7 +21,7 @@ export function overrideReconciler(
 	const overrides = merge(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	if (typeof overrides.styles === 'function') {
-		overrides.styles = defaultOverrides.styles(null, state);
+		overrides.styles = defaultOverrides.styles ? defaultOverrides.styles(null, state) : null;
 		if (tokenOverrides && typeof tokenOverrides.styles === 'function') {
 			overrides.styles = tokenOverrides.styles(overrides.styles, state);
 		}
