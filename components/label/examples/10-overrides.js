@@ -5,39 +5,53 @@ import { Label } from '@westpac/label';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Wrapper = ({ children, look }) => (
-	<span>
-		{children}
-		<span
-			href="#"
-			css={{
-				color: look === 'faint' ? '#000' : '#fff',
-				marginLeft: '0.5em',
-				fontWeight: '900',
-			}}
-		>
-			Edit
-		</span>
-	</span>
-);
+const Wrapper = ({ look, value, children, ...props }) => {
+	let Tag = 'span';
+
+	if (props.href) {
+		Tag = 'a';
+	}
+	if (props.onClick) {
+		Tag = 'button';
+	}
+
+	return (
+		<Tag type={Tag === 'button' && 'button'} {...props}>
+			{children}
+			{(props.href || props.onClick) && (
+				<span
+					css={{
+						marginLeft: '0.5em',
+						fontWeight: '900',
+						textDecoration: 'underline',
+						color: 'inherit',
+					}}
+				>
+					Edit
+				</span>
+			)}
+		</Tag>
+	);
+};
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/label'] = {
-		neutral: {
-			css: {
-				backgroundColor: 'rebeccapurple',
-				outline: '2px dotted red',
-			},
-		},
-		Wrapper,
+		styles: (styles, { look }) => ({
+			...styles,
+			backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
+			outline: '1px solid red',
+		}),
+		component: Wrapper,
 	};
 
 	return (
 		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
+			<h3>
+				Label with a <code>&lt;span&gt;</code> tag
+			</h3>
 			<p>
 				<Label value="Default" />
 			</p>
@@ -49,9 +63,6 @@ function Example({ brand }) {
 				<Label look="success" value="Success" /> <Label look="info" value="Info" />{' '}
 				<Label look="warning" value="Warning" /> <Label look="danger" value="Danger" />
 			</p>
-
-			<hr />
-
 			<h3>
 				Label as <code>&lt;a&gt;</code> tag
 			</h3>
@@ -70,9 +81,6 @@ function Example({ brand }) {
 				<Label href="#0" look="warning" value="Warning" />{' '}
 				<Label href="#0" look="danger" value="Danger" />
 			</p>
-
-			<hr />
-
 			<h3>
 				Label as <code>&lt;button&gt;</code> tag
 			</h3>
@@ -91,6 +99,19 @@ function Example({ brand }) {
 				<Label onClick={() => console.log('Label clicked!')} look="warning" value="Warning" />{' '}
 				<Label onClick={() => console.log('Label clicked!')} look="danger" value="Danger" />
 			</p>
+
+			<hr />
+
+			<h2>With overrides and component overrides</h2>
+			<Label
+				value="Default overridden"
+				overrides={{
+					styles: styles => ({
+						...styles,
+						outline: '3px dotted green',
+					}),
+				}}
+			/>
 		</GEL>
 	);
 }

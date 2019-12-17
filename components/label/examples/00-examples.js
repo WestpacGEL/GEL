@@ -10,9 +10,9 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h3>
+			<h2>
 				Label with a <code>&lt;span&gt;</code> tag
-			</h3>
+			</h2>
 			<p>
 				<Label value="Default" />
 			</p>
@@ -27,9 +27,9 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h3>
+			<h2>
 				Label as <code>&lt;a&gt;</code> tag
-			</h3>
+			</h2>
 			<p>
 				<Label href="#0" value="Default" />
 			</p>
@@ -48,9 +48,9 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h3>
+			<h2>
 				Label as <code>&lt;button&gt;</code> tag
-			</h3>
+			</h2>
 			<p>
 				<Label onClick={() => console.log('Label clicked!')} value="Default" />
 			</p>
