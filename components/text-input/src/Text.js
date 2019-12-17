@@ -1,82 +1,58 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { TextComponent, textStyles } from './overrides/text';
 import PropTypes from 'prop-types';
-import { round, sizeMap } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+export const Text = ({
+	size,
+	width,
+	inline,
+	invalid,
+	overrides: componentOverrides,
+	children,
+	...props
+}) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-export const Text = ({ size, width, inline, invalid, children, ...props }) => {
-	const { COLORS, PACKS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
-	const mq = useMediaQuery();
+	const defaultOverrides = {
+		subComponent: {
+			Text: {
+				styles: textStyles,
+				component: TextComponent,
+				attributes: state => state,
+			},
+		},
+	};
 
-	const overrides = { textCSS: {} };
+	const state = {
+		size,
+		width,
+		inline,
+		invalid,
+		overrides: componentOverrides,
+		...props,
+	};
 
-	merge(overrides, overridesWithTokens);
-
-	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
-	const focus = { ...PACKS.focus };
-	focus.outline += ' !important';
-	const borderWidth = 1; //px
-	const lineHeight = 1.5;
-	const extras = `${(p => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${(b => `${b} + ${b}`)(
-		`${borderWidth}px`
-	)}`;
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
-		<input
-			css={mq({
-				boxSizing: 'border-box',
-				display: inline ? ['block', 'inline-block'] : 'block',
-				width: inline ? ['100%', 'auto'] : '100%',
-				appearance: 'none',
-				lineHeight: lineHeight,
-				color: COLORS.text,
-				backgroundColor: '#fff',
-				border: `${borderWidth}px solid ${
-					invalid || props.ariaInvalid ? COLORS.danger : COLORS.borderDark
-				}`,
-				borderRadius: '0.1875rem',
-				transition: 'border 0.2s ease',
-				verticalAlign: inline && 'middle',
-				padding: sizeMap[size].padding.join(' '),
-				fontSize: sizeMap[size].fontSize,
-				height: `calc(${lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
-					sizeMap[size].padding
-				)} + ${2 * borderWidth}px)`,
-				...TYPE.bodyFont[400],
-
-				'&::placeholder': {
-					opacity: 1, // Override Firefox's unusual default opacity
-					color: COLORS.tints.text50,
-					...TYPE.bodyFont[300],
-				},
-
-				// Focus styling (for all, not just keyboard users)
-				':focus': {
-					...focus,
-				},
-
-				// Disabled and read-only inputs
-				':disabled, &[readonly]': {
-					cursor: 'not-allowed',
-					opacity: 1, // iOS fix for unreadable disabled content
-					backgroundColor: COLORS.light,
-					color: COLORS.muted,
-				},
-
-				// Disable number input spinners/steppers
-				'&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
-					margin: 0,
-					appearance: 'none',
-				},
-				maxWidth: width && `calc(${extras} + ${round(width * 1.81)}ex)`,
-				...overrides.textCSS,
-			})}
-			{...props}
+		<overrides.subComponent.Text.component
+			css={overrides.subComponent.Text.styles}
+			{...overrides.subComponent.Text.attributes(state)}
 		/>
 	);
 };
@@ -107,6 +83,19 @@ Text.propTypes = {
 	 * Invalid input mode
 	 */
 	invalid: PropTypes.bool.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		subComponent: PropTypes.shape({
+			Text: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Text.defaultProps = {

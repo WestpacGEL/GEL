@@ -51,7 +51,6 @@ export const Tooltip = ({ text, title, overrides: componentOverrides, ...props }
 		state
 	);
 
-	console.log(componentOverrides);
 	const handleEnter = () => setVisible(true);
 	const handleLeave = () => setVisible(false);
 
