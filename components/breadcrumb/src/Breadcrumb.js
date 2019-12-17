@@ -1,10 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { cloneElement, Children } from 'react';
-import { VisuallyHidden } from '@westpac/a11y';
-import { ArrowRightIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
+
+import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { List, listStyles } from './overrides/list';
 import pkg from '../package.json';
 import { Crumb } from './Crumb';
 
@@ -21,24 +23,56 @@ export const Breadcrumb = ({
 	current,
 	assistiveText,
 	currentAssistiveText,
-	...props
+	overrides: componentOverrides,
+	...rest
 }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		Crumb,
-		listCSS: {},
-		AssistiveText: VisuallyHidden,
-		Icon: ArrowRightIcon,
-		css: {},
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
+
+		subComponent: {
+			AssistiveText: {
+				styles: assistiveTextStyles,
+				component: AssistiveText,
+				attributes: state => state,
+			},
+			List: {
+				styles: listStyles,
+				component: List,
+				attributes: state => state,
+			},
+		},
 	};
-	merge(overrides, overridesWithTokens);
+
+	const state = {
+		children,
+		data,
+		current,
+		assistiveText,
+		currentAssistiveText,
+		overrides: componentOverrides,
+		...rest
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	let allChildren = [];
 	if (data) {
 		data.map(({ href, text, onClick }, index) => {
 			allChildren.push(
-				<overrides.Crumb
+				<Crumb
 					key={index}
 					current={index === data.length - 1}
 					assistiveText={currentAssistiveText}
@@ -57,20 +91,20 @@ export const Breadcrumb = ({
 	}
 
 	return (
-		<div css={overrides.css} {...props}>
-			<overrides.AssistiveText>{assistiveText}</overrides.AssistiveText>
-			<ol
-				css={{
-					padding: '0.375rem 1.125rem',
-					marginBottom: '1.3125rem',
-					fontSize: '0.8125rem',
-					listStyle: 'none',
-					...overrides.listCSS,
-				}}
+		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+			<overrides.subComponent.AssistiveText.component
+				css={overrides.subComponent.AssistiveText.styles}
+				{...overrides.subComponent.AssistiveText.attributes(state)}
+			>
+				{assistiveText}
+			</overrides.subComponent.AssistiveText.component>
+			<overrides.subComponent.List.component
+				css={overrides.subComponent.List.styles}
+				{...overrides.subComponent.List.attributes(state)}
 			>
 				{allChildren}
-			</ol>
-		</div>
+			</overrides.subComponent.List.component>
+		</overrides.component>
 	);
 };
 
@@ -104,6 +138,32 @@ Breadcrumb.propTypes = {
 	 * Visually hidden text to use for the current page crumb
 	 */
 	currentAssistiveText: PropTypes.string,
+
+	/**
+	 * The override API
+	 */
+	override: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			AssistiveText: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			List: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Crumb: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Breadcrumb.defaultProps = {
