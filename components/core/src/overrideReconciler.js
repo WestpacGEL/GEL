@@ -66,7 +66,7 @@ export function overrideReconciler(
 					typeof componentOverrides.subComponent[key].styles === 'function'
 				) {
 					overrides.subComponent[key].styles = componentOverrides.subComponent[key].styles(
-						overrides[key].styles,
+						overrides.subComponent[key].styles,
 						state
 					);
 				}

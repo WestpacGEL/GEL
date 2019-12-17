@@ -60,6 +60,29 @@ function Example({ brand }) {
 					)
 				)}
 			</Code>
+			<h2>SubComponent Style function merge</h2>
+			<Code>
+				{`overrideReconciler(
+						{ subComponent: { Test: { styles: styles => ({ ...styles, a: 1 }) } } },
+						{ subComponent: { Test: { styles: styles => ({ ...styles, b: 1 }) } } },
+						{ subComponent: { Test: { styles: styles => ({ ...styles, c: 1 }) } } },
+						{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } },
+						{}
+					);
+			`}
+			</Code>
+			=>
+			<Code>
+				{JSON.stringify(
+					overrideReconciler(
+						{ subComponent: { Test: { styles: styles => ({ ...styles, a: 1 }) } } },
+						{ subComponent: { Test: { styles: styles => ({ ...styles, b: 1 }) } } },
+						{ subComponent: { Test: { styles: styles => ({ ...styles, c: 1 }) } } },
+						{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } },
+						{}
+					)
+				)}
+			</Code>
 		</GEL>
 	);
 }
