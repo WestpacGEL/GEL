@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 
-export const Crumb = ({ current, assistiveText, icon, ...props }) => <li {...props} />;
+export const Crumb = ({ current, assistiveText, ...props }) => <li {...props} />;
 
 export const crumbStyles = () => {
 	const { COLORS } = useBrand();

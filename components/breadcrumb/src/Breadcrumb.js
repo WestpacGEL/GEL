@@ -57,7 +57,7 @@ export const Breadcrumb = ({
 		assistiveText,
 		currentAssistiveText,
 		overrides: componentOverrides,
-		...rest
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -78,15 +78,19 @@ export const Breadcrumb = ({
 					assistiveText={currentAssistiveText}
 					href={href}
 					text={text}
-					icon={overrides.Icon}
 					onClick={onClick}
+					overrides={componentOverrides}
 				/>
 			);
 		});
 	} else {
 		const length = Children.count(children);
 		allChildren = Children.map(children, (child, index) => {
-			return cloneElement(child, { current: index === length - 1 }, index);
+			return cloneElement(
+				child,
+				{ current: index === length - 1, overrides: componentOverrides },
+				index
+			);
 		});
 	}
 
@@ -158,6 +162,16 @@ Breadcrumb.propTypes = {
 				attributes: PropTypes.object,
 			}),
 			Crumb: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Link: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Icon: PropTypes.shape({
 				styles: PropTypes.func,
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,

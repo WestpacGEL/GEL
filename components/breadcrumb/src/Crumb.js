@@ -1,12 +1,13 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { ArrowRightIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
 import { Crumb as CrumbWrapper, crumbStyles } from './overrides/crumb';
+import { Link, linkStyles } from './overrides/link';
+import { Icon, iconStyles } from './overrides/icon';
 import pkg from '../package.json';
 
 // ==============================
@@ -21,7 +22,6 @@ export const Crumb = ({
 	href,
 	text,
 	assistiveText,
-	icon: Icon,
 	onClick,
 	overrides: componentOverrides,
 	...rest
@@ -44,6 +44,16 @@ export const Crumb = ({
 				component: CrumbWrapper,
 				attributes: state => state,
 			},
+			Link: {
+				styles: linkStyles,
+				component: Link,
+				attributes: state => state,
+			},
+			Icon: {
+				styles: iconStyles,
+				component: Icon,
+				attributes: state => state,
+			},
 		},
 	};
 
@@ -52,10 +62,9 @@ export const Crumb = ({
 		href,
 		text,
 		assistiveText,
-		icon: Icon,
 		onClick,
 		overrides: componentOverrides,
-		...rest
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -71,7 +80,7 @@ export const Crumb = ({
 			css={overrides.subComponent.Crumb.styles}
 			{...overrides.subComponent.Crumb.attributes(state)}
 		>
-			{current &&
+			{current && (
 				<overrides.subComponent.AssistiveText.component
 					css={overrides.subComponent.AssistiveText.styles}
 					{...overrides.subComponent.AssistiveText.attributes(state)}
@@ -79,36 +88,22 @@ export const Crumb = ({
 				>
 					{assistiveText}
 				</overrides.subComponent.AssistiveText.component>
-			}
-			<a
+			)}
+			<overrides.subComponent.Link.component
+				css={overrides.subComponent.Link.styles}
+				{...overrides.subComponent.Link.attributes(state)}
 				href={current ? null : href}
 				onClick={onClick}
-				{...rest}
-				css={{
-					color: COLORS.text,
-					textDecoration: 'none',
-					verticalAlign: 'middle',
-					cursor: current ? 'auto' : 'pointer',
-
-					':focus, :hover': {
-						textDecoration: current ? 'none' : 'underline',
-					},
-
-					// ...overrides.crumbLinkCSS,
-				}}
 			>
 				{text}
-			</a>
+			</overrides.subComponent.Link.component>
 			{!current && (
-				<ArrowRightIcon
+				<overrides.subComponent.Icon.component
+					css={overrides.subComponent.Icon.styles}
+					{...overrides.subComponent.Icon.attributes(state)}
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
-					css={{
-						marginLeft: '0.1875rem',
-						marginRight: '0.1875rem',
-						verticalAlign: 'middle',
-					}}
 				/>
 			)}
 		</overrides.subComponent.Crumb.component>
@@ -143,11 +138,6 @@ Crumb.propTypes = {
 	assistiveText: PropTypes.string.isRequired,
 
 	/**
-	 * The icon between Crumbs
-	 */
-	icon: PropTypes.func.isRequired,
-
-	/**
 	 * The override API
 	 */
 	override: PropTypes.shape({
@@ -162,11 +152,20 @@ Crumb.propTypes = {
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,
 			}),
+			Link: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Icon: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
 		}),
 	}),
 };
 
 Crumb.defaultProps = {
 	assistiveText: 'Current page:',
-	icon: ArrowRightIcon,
 };

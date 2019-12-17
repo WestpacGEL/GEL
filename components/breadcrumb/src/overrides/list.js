@@ -10,7 +10,7 @@ export const listStyles = (_, props) => {
 
 	return {
 		padding: '0.375rem 1.125rem',
-		marginBottom: SPACING(4,'minor'),
+		marginBottom: SPACING(4, 'minor'),
 		fontSize: '0.8125rem',
 		listStyle: 'none',
 	};
