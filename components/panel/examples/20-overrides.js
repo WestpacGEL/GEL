@@ -5,24 +5,40 @@ import { Panel, Header, Body, Footer } from '@westpac/panel';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
+const Wrapper = props => <div {...props} />;
+
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/panel'] = {
-		panelCSS: {
+		styles: styles => ({
+			...styles,
 			borderColor: 'palevioletred',
-		},
-		headerCSS: {
-			backgroundColor: 'palevioletred',
-			borderColor: 'palevioletred',
-		},
-		bodyCSS: {
-			color: 'darkmagenta',
-		},
-		footerCSS: {
-			backgroundColor: 'lightpink',
-			border: 'pink',
-			color: 'mediumvioletred',
+			outline: '1px solid red',
+		}),
+		component: Wrapper,
+		subComponent: {
+			PanelHeader: {
+				styles: styles => ({
+					...styles,
+					backgroundColor: 'palevioletred',
+					borderColor: 'palevioletred',
+				}),
+			},
+			PanelBody: {
+				styles: styles => ({
+					...styles,
+					color: 'darkmagenta',
+				}),
+			},
+			PanelFooter: {
+				styles: styles => ({
+					...styles,
+					backgroundColor: 'lightpink',
+					border: 'pink',
+					color: 'mediumvioletred',
+				}),
+			},
 		},
 	};
 
@@ -31,6 +47,7 @@ function Example({ brand }) {
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
+
 			<Panel>
 				<Header>Panel title</Header>
 				<Body>
