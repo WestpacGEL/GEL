@@ -1,15 +1,17 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Footer, footerStyles } from './overrides/footer';
 import PropTypes from 'prop-types';
+
+import { Footer, footerStyles } from './overrides/footer';
+import { usePanelContext } from './Panel';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const PanelFooter = ({ children, overrides: componentOverrides, ...props }) => {
+export const PanelFooter = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -27,7 +29,8 @@ export const PanelFooter = ({ children, overrides: componentOverrides, ...props 
 
 	const state = {
 		overrides: componentOverrides,
-		...props,
+		...usePanelContext(),
+		...rest,
 	};
 
 	const overrides = overrideReconciler(

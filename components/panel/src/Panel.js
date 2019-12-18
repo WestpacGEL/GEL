@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, devWarning, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import pkg from '../package.json';
@@ -16,9 +16,7 @@ const PanelContext = createContext();
 export const usePanelContext = () => {
 	const context = useContext(PanelContext);
 
-	if (!context) {
-		throw new Error('Panel children should be wrapped in a <Panel>.');
-	}
+	devWarning(!context, 'Panel children should be wrapped in a <Panel>.');
 	return context;
 };
 
@@ -26,7 +24,7 @@ export const usePanelContext = () => {
 // Component
 // ==============================
 
-export const Panel = ({ look, children, overrides: componentOverrides, ...props }) => {
+export const Panel = ({ look, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -41,7 +39,7 @@ export const Panel = ({ look, children, overrides: componentOverrides, ...props 
 	const state = {
 		look,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(

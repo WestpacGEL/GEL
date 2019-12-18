@@ -1,15 +1,17 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Header, headerStyles } from './overrides/header';
 import PropTypes from 'prop-types';
+
+import { Header, headerStyles } from './overrides/header';
+import { usePanelContext } from './Panel';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const PanelHeader = ({ children, overrides: componentOverrides, ...props }) => {
+export const PanelHeader = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -27,7 +29,8 @@ export const PanelHeader = ({ children, overrides: componentOverrides, ...props 
 
 	const state = {
 		overrides: componentOverrides,
-		...props,
+		...usePanelContext(),
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
