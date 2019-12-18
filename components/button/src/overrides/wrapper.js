@@ -55,7 +55,7 @@ export const wrapperStyles = (_, { size, block, justify, look, soft }) => {
 		},
 		hero: {
 			standardCSS: {
-				color: BRAND === 'STG' ? COLORS.text : '#fff', // TODO
+				color: '#fff',
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
 
@@ -72,11 +72,11 @@ export const wrapperStyles = (_, { size, block, justify, look, soft }) => {
 				borderColor: COLORS.hero,
 
 				':hover': {
-					color: BRAND === 'STG' ? COLORS.text : '#fff', // TODO
+					color: '#fff',
 					backgroundColor: COLORS.tints.hero70,
 				},
 				':active, &.active': {
-					color: BRAND === 'STG' ? COLORS.text : '#fff', // TODO
+					color: '#fff',
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},
