@@ -10,7 +10,7 @@ export const headerStyles = (_, { look }) => {
 
 	const styleMap = {
 		hero: {
-			color: '#fff', //TODO: `COLORS.text` for STG brand
+			color: '#fff',
 			backgroundColor: COLORS.hero,
 			borderColor: COLORS.hero,
 		},
