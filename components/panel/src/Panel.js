@@ -51,7 +51,7 @@ export const Panel = ({ look, overrides: componentOverrides, ...rest }) => {
 	);
 
 	return (
-		<PanelContext.Provider value={{ look }}>
+		<PanelContext.Provider value={{ look, overrides: componentOverrides }}>
 			<overrides.component css={overrides.styles} {...overrides.attributes(state)} />
 		</PanelContext.Provider>
 	);
