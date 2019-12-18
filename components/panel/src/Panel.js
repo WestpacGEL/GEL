@@ -2,7 +2,9 @@
 
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import pkg from '../package.json';
 
 // ==============================
@@ -13,6 +15,7 @@ const PanelContext = createContext();
 
 export const usePanelContext = () => {
 	const context = useContext(PanelContext);
+
 	if (!context) {
 		throw new Error('Panel children should be wrapped in a <Panel>.');
 	}
@@ -23,45 +26,37 @@ export const usePanelContext = () => {
 // Component
 // ==============================
 
-export const Panel = ({ look, ...props }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+export const Panel = ({ look, children, overrides: componentOverrides, ...props }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		panelCSS: {},
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
 	};
 
-	merge(overrides, overridesWithTokens);
-
-	const lookMap = {
-		hero: {
-			borderColor: COLORS.hero,
-		},
-		faint: {
-			borderColor: COLORS.border,
-		},
+	const state = {
+		look,
+		overrides: componentOverrides,
+		...props,
 	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
 		<PanelContext.Provider value={{ look }}>
-			<div
-				css={{
-					marginBottom: '1.3125rem',
-					backgroundColor: '#fff',
-					border: `1px solid ${lookMap[look].borderColor}`,
-					borderRadius: '0.1875rem',
-					table: {
-						overflow: 'hidden', //clip overflow for rounded corners
-						marginBottom: 0,
-						borderBottomRightRadius: `calc(0.1875rem - 1px)`,
-						borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
-					},
-					'table caption': {
-						padding: ['0.75rem 0.75rem 0 0.75rem', '1.5rem 1.5rem 0 1.5rem'],
-					},
-					...overrides.panelCSS,
-				}}
-				{...props}
-			/>
+			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+				{children}
+			</overrides.component>
 		</PanelContext.Provider>
 	);
 };
@@ -70,20 +65,42 @@ export const Panel = ({ look, ...props }) => {
 // Types
 // ==============================
 
-const options = {
-	look: ['hero', 'faint'],
-};
-
 Panel.propTypes = {
 	/**
 	 * Panel look
 	 */
-	look: PropTypes.oneOf(options.look),
+	look: PropTypes.oneOf(['hero', 'faint']).isRequired,
 
 	/**
 	 * Panel content
 	 */
 	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			PanelHeader: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			PanelBody: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			PanelFooter: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Panel.defaultProps = {
