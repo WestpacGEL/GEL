@@ -28,9 +28,9 @@ function Example({ brand }) {
 			<h2>
 				Button with an <code>&lt;input&gt;</code> tag
 			</h2>
-			<Button tag="input" type="button" value="Button" />{' '}
-			<Button tag="input" type="reset" value="Reset" />{' '}
-			<Button tag="input" type="submit" value="Submit" />
+			<Button tag="input" type="button" defaultValue="Button" />{' '}
+			<Button tag="input" type="reset" defaultValue="Reset" />{' '}
+			<Button tag="input" type="submit" defaultValue="Submit" />
 			<hr />
 			<h2>
 				Button with an <code>&lt;Link&gt;</code> tag

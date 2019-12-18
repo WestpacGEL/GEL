@@ -1,23 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { Fragment } from 'react';
+import React from 'react';
 
+import { Content as ContentWrapper, contentStyles } from './overrides/content';
 import { TextWrapper } from './TextWrapper';
 import pkg from '../package.json';
-
-// ==============================
-// Utils
-// ==============================
-
-// Map button size to icon size
-const iconSizeMap = {
-	small: 'small', //18px
-	medium: 'small', //18px
-	large: 'medium', //24px
-	xlarge: 'medium', //24px
-};
 
 // ==============================
 // Component
@@ -29,17 +18,56 @@ export const Content = ({
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
 	children,
+	overrides: componentOverrides,
+	...rest
 }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		TextWrapper,
+	const defaultOverrides = {
+		subComponent: {
+			Content: {
+				styles: contentStyles,
+				component: ContentWrapper,
+				attributes: state => state,
+			},
+		},
 	};
-	merge(overrides, overridesWithTokens);
+
+	const state = {
+		size,
+		block,
+		iconAfter: IconAfter,
+		iconBefore: IconBefore,
+		children,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
+
+	// Map button size to icon size
+	const iconSizeMap = {
+		small: 'small', //18px
+		medium: 'small', //18px
+		large: 'medium', //24px
+		xlarge: 'medium', //24px
+	};
 
 	// Compose a button text + icon fragment, if these are provided
 	return (
-		<Fragment>
+		<overrides.subComponent.Content.component
+			css={overrides.subComponent.Content.styles}
+			{...overrides.subComponent.Content.attributes(state)}
+		>
 			{IconBefore && (
 				<IconBefore
 					css={{ marginRight: children && '0.4em' }}
@@ -47,7 +75,7 @@ export const Content = ({
 					color="inherit"
 				/>
 			)}
-			{children && <overrides.TextWrapper block={block}>{children}</overrides.TextWrapper>}
+			{children && <TextWrapper block={block}>{children}</TextWrapper>}
 			{IconAfter && (
 				<IconAfter
 					css={{ marginLeft: children && '0.4em' }}
@@ -55,7 +83,7 @@ export const Content = ({
 					color="inherit"
 				/>
 			)}
-		</Fragment>
+		</overrides.subComponent.Content.component>
 	);
 };
 
@@ -89,6 +117,19 @@ Content.propTypes = {
 	 * Button text
 	 */
 	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	override: PropTypes.shape({
+		subComponent: PropTypes.shape({
+			Content: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Content.defaultProps = {
