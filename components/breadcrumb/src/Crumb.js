@@ -140,7 +140,7 @@ Crumb.propTypes = {
 	/**
 	 * The override API
 	 */
-	override: PropTypes.shape({
+	overrides: PropTypes.shape({
 		subComponent: PropTypes.shape({
 			AssistiveText: PropTypes.shape({
 				styles: PropTypes.func,

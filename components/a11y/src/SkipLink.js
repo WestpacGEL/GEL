@@ -65,7 +65,7 @@ SkipLink.propTypes = {
 	/**
 	 * The override API
 	 */
-	override: PropTypes.shape({
+	overrides: PropTypes.shape({
 		subComponent: PropTypes.shape({
 			SkipLink: PropTypes.shape({
 				styles: PropTypes.func,

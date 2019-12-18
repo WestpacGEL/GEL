@@ -163,7 +163,7 @@ Alert.propTypes = {
 	/**
 	 * The override API
 	 */
-	override: PropTypes.shape({
+	overrides: PropTypes.shape({
 		styles: PropTypes.func,
 		component: PropTypes.elementType,
 		attributes: PropTypes.object,

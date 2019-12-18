@@ -66,7 +66,7 @@ TextWrapper.propTypes = {
 	/**
 	 * The override API
 	 */
-	override: PropTypes.shape({
+	overrides: PropTypes.shape({
 		subComponent: PropTypes.shape({
 			TextWrapper: PropTypes.shape({
 				styles: PropTypes.func,

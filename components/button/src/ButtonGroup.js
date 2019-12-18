@@ -174,7 +174,7 @@ ButtonGroup.propTypes = {
 	/**
 	 * The override API
 	 */
-	override: PropTypes.shape({
+	overrides: PropTypes.shape({
 		subComponent: PropTypes.shape({
 			ButtonGroup: PropTypes.shape({
 				styles: PropTypes.func,

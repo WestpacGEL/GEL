@@ -121,7 +121,7 @@ Content.propTypes = {
 	/**
 	 * The override API
 	 */
-	override: PropTypes.shape({
+	overrides: PropTypes.shape({
 		subComponent: PropTypes.shape({
 			Content: PropTypes.shape({
 				styles: PropTypes.func,
