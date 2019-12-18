@@ -18,20 +18,20 @@ function Example({ brand }) {
 		}),
 		component: Wrapper,
 		subComponent: {
-			PanelHeader: {
+			Header: {
 				styles: styles => ({
 					...styles,
 					backgroundColor: 'palevioletred',
 					borderColor: 'palevioletred',
 				}),
 			},
-			PanelBody: {
+			Body: {
 				styles: styles => ({
 					...styles,
 					color: 'darkmagenta',
 				}),
 			},
-			PanelFooter: {
+			Footer: {
 				styles: styles => ({
 					...styles,
 					backgroundColor: 'lightpink',
@@ -49,6 +49,32 @@ function Example({ brand }) {
 			<h2>With overrides applied</h2>
 
 			<Panel>
+				<Header>Panel title</Header>
+				<Body>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
+					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
+					eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit
+					amet, consectetur adipisicing elit.
+				</Body>
+				<Footer>Panel footer</Footer>
+			</Panel>
+
+			<hr />
+
+			<h2>With overrides and component overrides applied</h2>
+
+			<Panel
+				overrides={{
+					subComponent: {
+						Header: {
+							styles: styles => ({
+								...styles,
+								outline: '3px dotted green',
+							}),
+						},
+					},
+				}}
+			>
 				<Header>Panel title</Header>
 				<Body>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis

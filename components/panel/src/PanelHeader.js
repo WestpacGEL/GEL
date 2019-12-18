@@ -11,7 +11,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const PanelHeader = ({ children, overrides: componentOverrides, ...rest }) => {
+export const PanelHeader = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -19,7 +19,7 @@ export const PanelHeader = ({ children, overrides: componentOverrides, ...rest }
 
 	const defaultOverrides = {
 		subComponent: {
-			PanelHeader: {
+			Header: {
 				styles: headerStyles,
 				component: Header,
 				attributes: state => state,
@@ -42,12 +42,10 @@ export const PanelHeader = ({ children, overrides: componentOverrides, ...rest }
 	);
 
 	return (
-		<overrides.subComponent.PanelHeader.component
-			css={overrides.subComponent.PanelHeader.styles}
-			{...overrides.subComponent.PanelHeader.attributes(state)}
-		>
-			{children}
-		</overrides.subComponent.PanelHeader.component>
+		<overrides.subComponent.Header.component
+			css={overrides.subComponent.Header.styles}
+			{...overrides.subComponent.Header.attributes(state)}
+		/>
 	);
 };
 
@@ -66,7 +64,7 @@ PanelHeader.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		subComponent: PropTypes.shape({
-			PanelHeader: PropTypes.shape({
+			Header: PropTypes.shape({
 				styles: PropTypes.func,
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,

@@ -24,7 +24,7 @@ export const usePanelContext = () => {
 // Component
 // ==============================
 
-export const Panel = ({ look, children, overrides: componentOverrides, ...rest }) => {
+export const Panel = ({ look, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -52,9 +52,7 @@ export const Panel = ({ look, children, overrides: componentOverrides, ...rest }
 
 	return (
 		<PanelContext.Provider value={{ look }}>
-			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
-				{children}
-			</overrides.component>
+			<overrides.component css={overrides.styles} {...overrides.attributes(state)} />
 		</PanelContext.Provider>
 	);
 };
@@ -82,17 +80,17 @@ Panel.propTypes = {
 		component: PropTypes.elementType,
 		attributes: PropTypes.object,
 		subComponent: PropTypes.shape({
-			PanelHeader: PropTypes.shape({
+			Header: PropTypes.shape({
 				styles: PropTypes.func,
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,
 			}),
-			PanelBody: PropTypes.shape({
+			Body: PropTypes.shape({
 				styles: PropTypes.func,
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,
 			}),
-			PanelFooter: PropTypes.shape({
+			Footer: PropTypes.shape({
 				styles: PropTypes.func,
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,

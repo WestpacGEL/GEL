@@ -11,7 +11,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const PanelFooter = ({ children, overrides: componentOverrides, ...rest }) => {
+export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -19,7 +19,7 @@ export const PanelFooter = ({ children, overrides: componentOverrides, ...rest }
 
 	const defaultOverrides = {
 		subComponent: {
-			PanelFooter: {
+			Footer: {
 				styles: footerStyles,
 				component: Footer,
 				attributes: state => state,
@@ -42,12 +42,10 @@ export const PanelFooter = ({ children, overrides: componentOverrides, ...rest }
 	);
 
 	return (
-		<overrides.subComponent.PanelFooter.component
-			css={overrides.subComponent.PanelFooter.styles}
-			{...overrides.subComponent.PanelFooter.attributes(state)}
-		>
-			{children}
-		</overrides.subComponent.PanelFooter.component>
+		<overrides.subComponent.Footer.component
+			css={overrides.subComponent.Footer.styles}
+			{...overrides.subComponent.Footer.attributes(state)}
+		/>
 	);
 };
 
@@ -66,7 +64,7 @@ PanelFooter.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		subComponent: PropTypes.shape({
-			PanelFooter: PropTypes.shape({
+			Footer: PropTypes.shape({
 				styles: PropTypes.func,
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,

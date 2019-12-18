@@ -11,7 +11,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const PanelBody = ({ children, overrides: componentOverrides, ...rest }) => {
+export const PanelBody = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -19,7 +19,7 @@ export const PanelBody = ({ children, overrides: componentOverrides, ...rest }) 
 
 	const defaultOverrides = {
 		subComponent: {
-			PanelBody: {
+			Body: {
 				styles: bodyStyles,
 				component: Body,
 				attributes: state => state,
@@ -42,12 +42,10 @@ export const PanelBody = ({ children, overrides: componentOverrides, ...rest }) 
 	);
 
 	return (
-		<overrides.subComponent.PanelBody.component
-			css={overrides.subComponent.PanelBody.styles}
-			{...overrides.subComponent.PanelBody.attributes(state)}
-		>
-			{children}
-		</overrides.subComponent.PanelBody.component>
+		<overrides.subComponent.Body.component
+			css={overrides.subComponent.Body.styles}
+			{...overrides.subComponent.Body.attributes(state)}
+		/>
 	);
 };
 
@@ -66,7 +64,7 @@ PanelBody.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		subComponent: PropTypes.shape({
-			PanelBody: PropTypes.shape({
+			Body: PropTypes.shape({
 				styles: PropTypes.func,
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,

@@ -1,6 +1,6 @@
 module.exports = ({ COLORS }) => ({
 	subComponent: {
-		PanelHeader: {
+		Header: {
 			styles: (styles, { look }) => {
 				if (look === 'hero') {
 					return {

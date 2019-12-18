@@ -1,14 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { usePanelContext } from '../Panel';
 
-export const Header = ({ look, ...props }) => <div {...props} />;
+export const Header = props => <div {...props} />;
 
-export const headerStyles = () => {
+export const headerStyles = (_, { look }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
-	const { look } = usePanelContext();
 
 	const styleMap = {
 		hero: {
