@@ -72,7 +72,7 @@ export const Tooltip = ({ tag, text, ...props }) => {
 			/>
 			<overwrites.Wrapper
 				tag={tag}
-				aria-describedy={tooltipId}
+				aria-describedby={tooltipId}
 				title={tag === 'abbr' ? text : undefined}
 				onMouseEnter={handleEnter}
 				onMouseLeave={handleLeave}
@@ -99,7 +99,7 @@ Tooltip.propTypes = {
 	/**
 	 * Tooltip tag
 	 */
-	// tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
 	 * Tooltip text
