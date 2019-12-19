@@ -3,12 +3,9 @@ import gql from 'graphql-tag';
 export const ALL_COMPONENTS = {
 	query: gql`
 		{
-			allGELComponents {
-				name
+			allComponents {
 				packageName
-				version
-				description
-				author
+				name
 			}
 		}
 	`,
