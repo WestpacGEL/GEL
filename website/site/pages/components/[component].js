@@ -10,7 +10,8 @@ import { Alert } from '@westpac/alert';
 // import ReactLive from '../../components/react-live';
 import { Playground } from '../../components/playground';
 import ChangelogWrapper from '../../components/changelog';
-import { ALL_COMPONENTS } from '../../graphql';
+import { ALL_COMPONENTS } from '../../../graphql';
+
 let Component = ({ component }) => {
 	let DataComponent = useMemo(() => {
 		return dynamic(
