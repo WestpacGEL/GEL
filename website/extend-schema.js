@@ -6,9 +6,9 @@ const isDev = process.env.NODE_ENV !== 'production';
 const packages = fs
 	.readdirSync('../components')
 	// ToDo: Maybe warn if folder could not load?
-	.filter(item => fs.existsSync(path.join(__dirname, `components/${item}/package.json`)))
+	.filter(item => fs.existsSync(path.join(__dirname, `../components/${item}/package.json`)))
 	.map(item => {
-		const pkg = require(path.join(__dirname, `components/${item}/package.json`));
+		const pkg = require(path.join(__dirname, `../components/${item}/package.json`));
 		return { ...pkg, path: item };
 	});
 
@@ -37,18 +37,19 @@ const resolveComponent = async args =>
 module.exports = {
 	resolveComponent,
 	resolveComponents,
-	extendKeystoneGraphQLSchema: keystone =>
-		keystone.extendGraphQLSchema({
-			types: [
-				{
-					type: `type GELComponent { packageName:String, name:String, version:String, description:String, author:String }`,
-				},
-			],
-			queries: [
-				{
-					schema: `allGELComponents: [GELComponent]`,
-					resolver: resolveComponents,
-				},
-			],
-		}),
+	extendKeystoneGraphQLSchema: keystone => {
+		// keystone.extendGraphQLSchema({
+		// 	types: [
+		// 		{
+		// 			type: `type GELComponent { packageName:String, name:String, version:String, description:String, author:String }`,
+		// 		},
+		// 	],
+		// 	queries: [
+		// 		{
+		// 			schema: `allGELComponents: [GELComponent]`,
+		// 			resolver: resolveComponents,
+		// 		},
+		// 	],
+		// });
+	},
 };

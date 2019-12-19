@@ -9,38 +9,38 @@ const { extendKeystoneGraphQLSchema, resolveComponents } = require('./extend-sch
 const { getComponentSchema } = require('./schema/component');
 
 const keystone = new Keystone({
-  name: 'GEL3 Website',
-  adapter: new KnexAdapter(),
-  dropDatabase: true,
+	name: 'GEL3 Website',
+	adapter: new KnexAdapter(),
+	dropDatabase: true,
 });
 
 extendKeystoneGraphQLSchema(keystone);
 
 const apps = [
-  new GraphQLApp(),
-  new AdminUIApp({
-    adminPath: '/admin',
-    hooks: require.resolve('./admin'),
-  }),
-  // new NextApp({ dir: 'site' }),
+	new GraphQLApp(),
+	new AdminUIApp({
+		adminPath: '/admin',
+		hooks: require.resolve('./admin'),
+	}),
+	new NextApp({ dir: 'site' }),
 ];
 
 const prepareKeystone = async () => {
-  const options = await resolveComponents();
+	const options = await resolveComponents();
 
-  keystone.createList(
-    'Component',
-    getComponentSchema(options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name })))
-  );
+	keystone.createList(
+		'Component',
+		getComponentSchema(options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name })))
+	);
 
-  keystone
-    .prepare({ apps, dev: process.env.NODE_ENV !== 'production' })
-    .then(async ({ middlewares }) => {
-      await keystone.connect();
+	keystone
+		.prepare({ apps, dev: process.env.NODE_ENV !== 'production' })
+		.then(async ({ middlewares }) => {
+			await keystone.connect();
 
-      const app = express();
-      app.use(middlewares).listen(3000);
-    });
+			const app = express();
+			app.use(middlewares).listen(3000);
+		});
 };
 
 prepareKeystone();
