@@ -4,10 +4,9 @@ import { forwardRef } from 'react';
 import ReactDOM from 'react-dom';
 import { jsx } from '@westpac/core';
 
-export const TooltipBubble = forwardRef(({ tooltipId, text, visible, position, ...props }, ref) => {
+export const TooltipBubble = forwardRef(({ text, visible, position, ...props }, ref) => {
 	return ReactDOM.createPortal(
 		<span
-			id={tooltipId}
 			ref={ref}
 			css={{
 				visibility: visible ? 'visible' : 'hidden',

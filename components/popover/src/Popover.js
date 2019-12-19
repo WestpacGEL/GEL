@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { useState, useEffect, useRef, forwardRef, Fragment } from 'react';
-import { jsx, useBrand, merge } from '@westpac/core';
+import { useState, useEffect, useRef, forwardRef, cloneElement, Fragment } from 'react';
+import { jsx, useBrand, merge, useInstanceId } from '@westpac/core';
 import { PopoverPanel } from './PopoverPanel';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';
@@ -11,6 +11,7 @@ import pkg from '../package.json';
 // ==============================
 export const Popover = ({ open: isOpen, title, content, dismissible, children, ...props }) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const [popoverId] = useState(useInstanceId());
 	const [open, setOpen] = useState(open);
 	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
 	const triggerRef = useRef();
@@ -78,15 +79,20 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 		setOpen(!open);
 	};
 
+	const childrenWithProps = cloneElement(children, {
+		'aria-describedby': `gel-popover-${popoverId}`,
+	});
 	return (
 		<Fragment>
 			<PopoverPanel
+				id={`gel-popover-${popoverId}`}
 				title={title}
 				content={content}
 				open={open}
 				position={position}
 				handleOpen={handleOpen}
 				ref={popoverRef}
+				role="tooltip"
 			/>
 			<overrides.Wrapper
 				css={{ display: 'inline-block', ...overrides.CSS }}
@@ -94,7 +100,7 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 				onClick={handleOpen}
 				{...props}
 			>
-				{children}
+				{childrenWithProps}
 			</overrides.Wrapper>
 		</Fragment>
 	);

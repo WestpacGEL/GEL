@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
 import { useState, useEffect, useRef, forwardRef, Fragment } from 'react';
+import { jsx, useBrand, merge, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
-import shortid from 'shortid';
-import pkg from '../package.json';
+
 import { TooltipBubble } from './TooltipBubble';
+import pkg from '../package.json';
 
 // ==============================
 // Overwrite component
@@ -19,7 +19,7 @@ export const Tooltip = ({ tag, text, ...props }) => {
 	const { [pkg.name]: overwritesWithTokens } = useBrand();
 	const [visible, setVisible] = useState(false);
 	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
-	const [tooltipId] = useState(`tooltipBubble-${shortid.generate()}`);
+	const [tooltipId] = useState(`gel-tooltip-${useInstanceId()}`);
 	const triggerRef = useRef();
 	const tooltipRef = useRef();
 
@@ -63,7 +63,7 @@ export const Tooltip = ({ tag, text, ...props }) => {
 	return (
 		<Fragment>
 			<TooltipBubble
-				tooltipId={tooltipId}
+				id={tooltipId}
 				text={text}
 				visible={visible}
 				position={position}
@@ -72,10 +72,12 @@ export const Tooltip = ({ tag, text, ...props }) => {
 			/>
 			<overwrites.Wrapper
 				tag={tag}
+				aria-describedy={tooltipId}
 				title={tag === 'abbr' ? text : undefined}
 				onMouseEnter={handleEnter}
 				onMouseLeave={handleLeave}
-				aria-describedby={tooltipId}
+				onFocus={handleEnter}
+				onBlur={handleLeave}
 				tabIndex={0}
 				ref={triggerRef}
 				css={{
@@ -97,7 +99,7 @@ Tooltip.propTypes = {
 	/**
 	 * Tooltip tag
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	// tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
 	 * Tooltip text
