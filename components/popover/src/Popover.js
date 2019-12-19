@@ -62,9 +62,8 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 		};
 	}, [open]);
 
-	// on escape close modal
 	const keyHandler = event => {
-		if (event.keyCode === 27) handleClose();
+		if (open && event.keyCode === 27) handleOpen();
 	};
 
 	// bind key events
