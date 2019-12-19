@@ -4,7 +4,7 @@ const path = require('path');
 const isDev = process.env.NODE_ENV !== 'production';
 
 const packages = fs
-	.readdirSync('./components')
+	.readdirSync('../components')
 	// ToDo: Maybe warn if folder could not load?
 	.filter(item => fs.existsSync(path.join(__dirname, `components/${item}/package.json`)))
 	.map(item => {
