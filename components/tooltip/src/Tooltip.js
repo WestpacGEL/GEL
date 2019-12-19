@@ -51,10 +51,10 @@ export const Tooltip = ({ tag, text, ...props }) => {
 			const left = (trigger.left - tooltip.width / 2 + trigger.width / 2) / remSize;
 
 			if (tooltip.height > trigger.top) {
-				const top = (trigger.top + trigger.height + remSize) / remSize;
+				const top = (trigger.top + window.scrollY + trigger.height + remSize) / remSize;
 				setPosition({ placement: 'bottom', top, left });
 			} else {
-				const top = (trigger.top - tooltip.height - remSize) / remSize;
+				const top = (trigger.top + window.scrollY - tooltip.height - remSize) / remSize;
 				setPosition({ placement: 'top', top, left });
 			}
 		}

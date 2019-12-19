@@ -17,25 +17,24 @@ export const PopoverPanel = forwardRef(({ open, title, content, position, ...pro
 
 	merge(overrides, overridesWithTokens);
 
-	return (
-		open &&
-		ReactDOM.createPortal(
-			<overrides.Panel
-				position={position}
-				title={title}
-				content={content}
-				ref={ref}
-				css={{
-					position: 'absolute',
-					willChange: 'transform',
-					top: 0,
-					left: 0,
-					transform: `translate3d(${position.left}rem, ${position.top}rem, 0px)`,
-				}}
-				{...props}
-			/>,
-			document.body
-		)
+	return ReactDOM.createPortal(
+		<overrides.Panel
+			position={position}
+			title={title}
+			content={content}
+			hidden={!open}
+			tabIndex={0}
+			ref={ref}
+			css={{
+				position: 'absolute',
+				willChange: 'transform',
+				top: 0,
+				left: 0,
+				transform: `translate3d(${position.left}rem, ${position.top}rem, 0px)`,
+			}}
+			{...props}
+		/>,
+		document.body
 	);
 });
 

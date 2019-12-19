@@ -76,7 +76,14 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 	});
 
 	const handleOpen = () => {
-		setOpen(!open);
+		if (open) {
+			setOpen(false);
+			// seems like a hack but will do for now...
+			setTimeout(() => triggerRef.current.focus(), 100);
+		} else {
+			setOpen(true);
+			setTimeout(() => popoverRef.current.focus(), 100);
+		}
 	};
 
 	const childrenWithProps = cloneElement(children, {
