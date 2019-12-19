@@ -7,7 +7,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h3>Responsive</h3>
-			<Tabcordion>
+			<Tabcordion mode="responsive">
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t

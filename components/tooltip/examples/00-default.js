@@ -1,5 +1,5 @@
 /** @jsx jsx */
-
+import { forwardRef } from 'react';
 import { GEL, jsx, useBrand } from '@westpac/core';
 import { Tooltip } from '@westpac/tooltip';
 import { Button } from '@westpac/button';
@@ -9,12 +9,13 @@ import { Body } from '@westpac/body';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 // Tooltip tag as a component example
-const TooltipTag = ({ children, ...props }) => {
+const TooltipTag = forwardRef(({ children, ...props }, ref) => {
 	const { COLORS } = useBrand();
 
 	let num = 0;
 	return (
 		<span
+			ref={ref}
 			css={{ cursor: 'help', borderBottom: `1px dotted ${COLORS.text}` }}
 			onClick={() => {
 				console.log(`<Tooltip /> clicked ${++num} ${num !== 1 ? `times` : `time`}`);
@@ -24,7 +25,7 @@ const TooltipTag = ({ children, ...props }) => {
 			<span>{children}</span>
 		</span>
 	);
-};
+});
 
 function Example({ brand }) {
 	return (

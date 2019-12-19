@@ -11,9 +11,10 @@ const Panel = forwardRef(({ last, selected, ...props }, ref) => {
 	);
 });
 
-const TabItem = ({ selected, justify, last, ...props }) => {
+const TabItem = forwardRef(({ selected, justify, last, ...props }, ref) => {
 	return (
 		<button
+			ref={ref}
 			css={{
 				flex: justify ? 1 : 0,
 				fontSize: '1rem',
@@ -39,7 +40,7 @@ const TabItem = ({ selected, justify, last, ...props }) => {
 			{...props}
 		/>
 	);
-};
+});
 
 const AccordionLabel = ({ last, selected, ...props }) => {
 	return (
@@ -84,7 +85,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={overridesWithTokens}>
 			<h3>Responsive</h3>
-			<Tabcordion>
+			<Tabcordion mode="responsive">
 				{data.map(t => (
 					<Tab key={t.text} text={t.text}>
 						{t.content}
@@ -93,7 +94,7 @@ function Example({ brand }) {
 			</Tabcordion>
 
 			<h3>Always accordion</h3>
-			<Tabcordion mode="accordion" instanceId="always-accordion">
+			<Tabcordion mode="accordion" instanceIdPrefix="always-accordion">
 				{data.map(t => (
 					<Tab key={t.text} text={t.text}>
 						{t.content}
@@ -102,7 +103,7 @@ function Example({ brand }) {
 			</Tabcordion>
 
 			<h3>Always tabs</h3>
-			<Tabcordion mode="tabs" instanceId="always-tabs">
+			<Tabcordion mode="tabs" instanceIdPrefix="always-tabs">
 				{data.map(t => (
 					<Tab key={t.text} text={t.text}>
 						{t.content}
