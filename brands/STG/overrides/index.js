@@ -4,4 +4,5 @@ module.exports = TOKENS => ({
 	'@westpac/button': require('./button')(TOKENS),
 	'@westpac/pagination': require('./pagination')(TOKENS),
 	'@westpac/panel': require('./panel')(TOKENS),
+	'@westpac/form-check': require('./formCheck')(TOKENS),
 });

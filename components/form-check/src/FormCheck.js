@@ -1,32 +1,96 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { cloneElement, Children, useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
 
-// ==============================
-// Context and consumer hook
-// ==============================
-
-const FormCheckContext = createContext();
-
-export const useFormCheckContext = () => {
-	const context = useContext(FormCheckContext);
-	if (!context) {
-		throw new Error('Form check sub-components should be wrapped in a <FormCheck>.');
-	}
-	return context;
-};
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Option } from './Option';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormCheck = ({ type, name, size, inline, flipped, ...props }) => (
-	<FormCheckContext.Provider value={{ type, name, size, inline, flipped }}>
-		<div {...props} />
-	</FormCheckContext.Provider>
-);
+export const FormCheck = ({
+	children,
+	type,
+	name,
+	size,
+	inline,
+	flipped,
+	data,
+	current: currentDefault,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const [current, setCurrent] = useState(currentDefault);
+
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
+	};
+
+	const state = {
+		type,
+		name,
+		size,
+		inline,
+		flipped,
+		current,
+		data,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
+
+	let allChildren = [];
+	if (data) {
+		data.map((props, index) => {
+			allChildren.push(
+				<Option
+					key={index}
+					{...state}
+					setCurrent={setCurrent}
+					value={props.value}
+					checked={props.value === current}
+					overrides={componentOverrides}
+				>
+					{props.text}
+				</Option>
+			);
+		});
+	} else {
+		const length = Children.count(children);
+		allChildren = Children.map(children, child =>
+			cloneElement(child, {
+				...state,
+				setCurrent,
+				checked: child.props.value === current,
+				overrides: componentOverrides,
+			})
+		);
+	}
+
+	return (
+		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+			{allChildren}
+		</overrides.component>
+	);
+};
 
 // ==============================
 // Types
@@ -43,7 +107,7 @@ FormCheck.propTypes = {
 	 *
 	 * This prop is passed to children.
 	 */
-	type: PropTypes.oneOf(options.type),
+	type: PropTypes.oneOf(options.type).isRequired,
 
 	/**
 	 * The form check input element’s name.
@@ -57,19 +121,45 @@ FormCheck.propTypes = {
 	 *
 	 * This prop is passed to children.
 	 */
-	size: PropTypes.oneOf(options.size),
+	size: PropTypes.oneOf(options.size).isRequired,
 
 	/**
 	 * Form check orientation (control on the right).
 	 *
 	 * This prop is passed to children.
 	 */
-	flipped: PropTypes.bool,
+	flipped: PropTypes.bool.isRequired,
 
 	/**
 	 * Form check item(s)
 	 */
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Option: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Label: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Input: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 FormCheck.defaultProps = {

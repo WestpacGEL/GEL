@@ -51,7 +51,6 @@ export const Breadcrumb = ({
 	};
 
 	const state = {
-		children,
 		data,
 		current,
 		assistiveText,

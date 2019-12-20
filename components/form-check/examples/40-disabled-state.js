@@ -13,7 +13,7 @@ function Example({ brand }) {
 			<h2>Disabled input</h2>
 
 			<h3>Medium</h3>
-			<FormCheck type="checkbox" name="example-checkbox-medium-disabled" size="medium">
+			<FormCheck type="checkbox" name="example-checkbox-medium-disabled" current="2">
 				<Option value="1" disabled>
 					Option 1
 				</Option>
@@ -24,8 +24,10 @@ function Example({ brand }) {
 					aspernatur eveniet libero.
 				</Option>
 			</FormCheck>
-			<br />
-			<FormCheck type="radio" name="example-radio-medium-disabled" size="medium">
+
+			<hr />
+
+			<FormCheck type="radio" name="example-radio-medium-disabled" current="2">
 				<Option value="1" disabled>
 					Option 1
 				</Option>
@@ -38,7 +40,7 @@ function Example({ brand }) {
 			</FormCheck>
 
 			<h3>Large</h3>
-			<FormCheck type="checkbox" name="example-checkbox-large-disabled" size="large">
+			<FormCheck type="checkbox" name="example-checkbox-large-disabled" size="large" current="2">
 				<Option value="1" disabled>
 					Option 1
 				</Option>
@@ -50,7 +52,7 @@ function Example({ brand }) {
 				</Option>
 			</FormCheck>
 			<br />
-			<FormCheck type="radio" name="example-radio-large-disabled" size="large">
+			<FormCheck type="radio" name="example-radio-large-disabled" size="large" current="2">
 				<Option value="1" disabled>
 					Option 1
 				</Option>
@@ -68,6 +70,7 @@ function Example({ brand }) {
 				name="example-checkbox-medium-inline-disabled"
 				size="medium"
 				inline
+				current="2"
 			>
 				<Option value="1" disabled>
 					Option 1
@@ -82,8 +85,16 @@ function Example({ brand }) {
 					aspernatur eveniet libero.
 				</Option>
 			</FormCheck>
-			<br />
-			<FormCheck type="radio" name="example-checkbox-large-inline-disabled" size="large" inline>
+
+			<hr />
+
+			<FormCheck
+				type="radio"
+				name="example-checkbox-large-inline-disabled"
+				size="large"
+				inline
+				current="2"
+			>
 				<Option value="1" disabled>
 					Option 1
 				</Option>
@@ -104,7 +115,7 @@ function Example({ brand }) {
 
 			<fieldset disabled>
 				<h3>Medium</h3>
-				<FormCheck type="checkbox" name="example-checkbox-medium-disabled-fieldset" size="medium">
+				<FormCheck type="checkbox" name="example-checkbox-medium-disabled-fieldset" current="2">
 					<Option value="1">Option 1</Option>
 					<Option value="2">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint
@@ -113,8 +124,10 @@ function Example({ brand }) {
 						quaerat vitae aspernatur eveniet libero.
 					</Option>
 				</FormCheck>
-				<br />
-				<FormCheck type="radio" name="example-radio-medium-disabled-fieldset" size="medium">
+
+				<hr />
+
+				<FormCheck type="radio" name="example-radio-medium-disabled-fieldset" current="2">
 					<Option value="1">Option 1</Option>
 					<Option value="2">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint
@@ -125,7 +138,12 @@ function Example({ brand }) {
 				</FormCheck>
 
 				<h3>Large</h3>
-				<FormCheck type="checkbox" name="example-checkbox-large-disabled-fieldset" size="large">
+				<FormCheck
+					type="checkbox"
+					name="example-checkbox-large-disabled-fieldset"
+					size="large"
+					current="2"
+				>
 					<Option value="1">Option 1</Option>
 					<Option value="2">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint
@@ -134,8 +152,15 @@ function Example({ brand }) {
 						quaerat vitae aspernatur eveniet libero.
 					</Option>
 				</FormCheck>
-				<br />
-				<FormCheck type="radio" name="example-radio-large-disabled-fieldset" size="large">
+
+				<hr />
+
+				<FormCheck
+					type="radio"
+					name="example-radio-large-disabled-fieldset"
+					size="large"
+					current="2"
+				>
 					<Option value="1">Option 1</Option>
 					<Option value="2">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint
@@ -151,6 +176,7 @@ function Example({ brand }) {
 					name="example-checkbox-medium-inline-disabled-fieldset"
 					size="medium"
 					inline
+					current="2"
 				>
 					<Option value="1">Option 1</Option>
 					<Option value="2">Option 2</Option>
@@ -161,12 +187,15 @@ function Example({ brand }) {
 						quaerat vitae aspernatur eveniet libero.
 					</Option>
 				</FormCheck>
-				<br />
+
+				<hr />
+
 				<FormCheck
 					type="radio"
 					name="example-checkbox-large-inline-disabled-fieldset"
 					size="large"
 					inline
+					current="2"
 				>
 					<Option value="1">Option 1</Option>
 					<Option value="2">Option 2</Option>

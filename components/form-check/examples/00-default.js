@@ -10,15 +10,43 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Default instance (no styling props)</h2>
-			<FormCheck name="example-default">
+			<h2>Checkbox</h2>
+			<FormCheck name="default">
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
+				<Option value="3">Option 3</Option>
 			</FormCheck>
 
 			<hr />
 
-			<h2>Checkbox</h2>
+			<h2>Radio</h2>
+			<FormCheck type="radio" name="default-radio">
+				<Option value="1">Option 1</Option>
+				<Option value="2">Option 2</Option>
+				<Option value="3">Option 3</Option>
+			</FormCheck>
+
+			<hr />
+
+			<h2>Checkbox and Radio with default value</h2>
+			<FormCheck name="default-value" current="2">
+				<Option value="1">Option 1</Option>
+				<Option value="2">Option 2</Option>
+				<Option value="3">Option 3</Option>
+			</FormCheck>
+
+			<hr />
+
+			<h2>Radio</h2>
+			<FormCheck type="radio" name="default-radio-value" current="2">
+				<Option value="1">Option 1</Option>
+				<Option value="2">Option 2</Option>
+				<Option value="3">Option 3</Option>
+			</FormCheck>
+
+			<hr />
+
+			<h2>Checkbox with long lines</h2>
 			<FormCheck type="checkbox" name="example-checkbox">
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
@@ -32,7 +60,7 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h2>Radio</h2>
+			<h2>Radio with long lines</h2>
 			<FormCheck type="radio" name="example-radio">
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
