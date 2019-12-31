@@ -128,44 +128,56 @@ export const FormCheck = ({
 // Types
 // ==============================
 
-const options = {
-	type: ['checkbox', 'radio'],
-	size: ['medium', 'large'],
-};
-
 FormCheck.propTypes = {
 	/**
 	 * Form check type.
-	 *
-	 * This prop is passed to children.
 	 */
-	type: PropTypes.oneOf(options.type).isRequired,
+	type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
 
 	/**
 	 * The form check input element’s name.
-	 *
-	 * This prop is passed to children.
 	 */
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 
 	/**
 	 * Form check size.
-	 *
-	 * This prop is passed to children.
 	 */
-	size: PropTypes.oneOf(options.size).isRequired,
+	size: PropTypes.oneOf(['medium', 'large']).isRequired,
+
+	/**
+	 * To inline the element
+	 */
+	inline: PropTypes.bool.isRequired,
 
 	/**
 	 * Form check orientation (control on the right).
-	 *
-	 * This prop is passed to children.
 	 */
 	flipped: PropTypes.bool.isRequired,
+
+	/**
+	 * A function called on change
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * The data prop shape
+	 */
+	data: PropTypes.arrayOf(
+		PropTypes.shape({
+			value: PropTypes.node,
+			text: PropTypes.string,
+		})
+	),
 
 	/**
 	 * Form check item(s)
 	 */
 	children: PropTypes.node,
+
+	/**
+	 * The options already selected
+	 */
+	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
 
 	/**
 	 * The override API
@@ -191,6 +203,7 @@ FormCheck.propTypes = {
 
 FormCheck.defaultProps = {
 	type: 'checkbox',
+	inline: false,
 	size: 'medium',
 	flipped: false,
 };

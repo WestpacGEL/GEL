@@ -99,6 +99,31 @@ export const Option = ({
 
 Option.propTypes = {
 	/**
+	 * Form check type.
+	 */
+	type: PropTypes.oneOf(['checkbox', 'radio']),
+
+	/**
+	 * The form check input element’s name.
+	 */
+	name: PropTypes.string,
+
+	/**
+	 * Form check size.
+	 */
+	size: PropTypes.oneOf(['medium', 'large']),
+
+	/**
+	 * To inline the element
+	 */
+	inline: PropTypes.bool,
+
+	/**
+	 * Form check orientation (control on the right).
+	 */
+	flipped: PropTypes.bool,
+
+	/**
 	 * Form check option value
 	 */
 	value: PropTypes.string,
@@ -106,12 +131,17 @@ Option.propTypes = {
 	/**
 	 * Check the Form check option
 	 */
-	selected: PropTypes.bool,
+	selected: PropTypes.bool.isRequired,
+
+	/**
+	 * A function called on change
+	 */
+	handleChange: PropTypes.func,
 
 	/**
 	 * Disable the Form check option
 	 */
-	disabled: PropTypes.bool,
+	disabled: PropTypes.bool.isRequired,
 
 	/**
 	 * Form check option label text
