@@ -21,8 +21,6 @@ function Example({ brand }) {
 				</Option>
 			</FormCheck>
 
-			<hr />
-
 			<FormCheck type="radio" name="example-radio-medium">
 				<Option value="1">Option 1</Option>
 				<Option value="2">

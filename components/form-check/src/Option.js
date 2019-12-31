@@ -1,12 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import { Option as OptionWrapper, optionStyles } from './overrides/option';
 import { Label, labelStyles } from './overrides/label';
-import { Input, inputStyles } from './overrides/input';
 import pkg from '../package.json';
 
 // ==============================
@@ -15,21 +13,19 @@ import pkg from '../package.json';
 
 export const Option = ({
 	value,
-	checked,
+	selected,
+	handleChange,
 	disabled,
-	onChange,
 	children,
 	type,
 	name,
 	size,
 	inline,
 	flipped,
-	setCurrent,
 	overrides: componentOverrides,
 	...rest
 }) => {
-	const [isChecked, setIsChecked] = useState(checked);
-	const formCheckId = `formCheck-${name.replace(/ /g, '-')}-${useInstanceId()}`;
+	const formCheckId = `form-check-${name.replace(/ /g, '-')}-${useInstanceId()}`;
 
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -48,19 +44,13 @@ export const Option = ({
 				component: Label,
 				attributes: state => state,
 			},
-			Input: {
-				styles: inputStyles,
-				component: Input,
-				attributes: state => state,
-			},
 		},
 	};
 
 	const state = {
 		value,
-		checked,
+		selected,
 		disabled,
-		onChange,
 		type,
 		name,
 		size,
@@ -77,22 +67,20 @@ export const Option = ({
 		state
 	);
 
-	const handleChange = value => {
-		setIsChecked(!isChecked);
-		wrapHandlers(onChange, setCurrent(value));
-	};
-
 	return (
 		<overrides.subComponent.Option.component
 			css={overrides.subComponent.Option.styles}
 			{...overrides.subComponent.Option.attributes(state)}
 		>
-			<overrides.subComponent.Input.component
-				css={overrides.subComponent.Input.styles}
-				{...overrides.subComponent.Input.attributes(state)}
+			<input
 				type={type}
+				selected={selected}
 				id={formCheckId}
-				onChange={() => handleChange(value)}
+				onClick={disabled ? null : event => handleChange(event, value, selected)}
+				css={{
+					position: 'absolute', // just to hide the input element needed for a11y
+					opacity: 0, // we decided to not expose this as an override
+				}} // as it contains logic and is important for the component to work
 			/>
 			<overrides.subComponent.Label.component
 				css={overrides.subComponent.Label.styles}
@@ -118,17 +106,12 @@ Option.propTypes = {
 	/**
 	 * Check the Form check option
 	 */
-	checked: PropTypes.bool,
+	selected: PropTypes.bool,
 
 	/**
 	 * Disable the Form check option
 	 */
 	disabled: PropTypes.bool,
-
-	/**
-	 * Handler to be called on change
-	 */
-	onChange: PropTypes.func,
 
 	/**
 	 * Form check option label text
@@ -150,16 +133,11 @@ Option.propTypes = {
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,
 			}),
-			Input: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
 		}),
 	}),
 };
 
 Option.defaultProps = {
-	checked: false,
+	selected: false,
 	disabled: false,
 };

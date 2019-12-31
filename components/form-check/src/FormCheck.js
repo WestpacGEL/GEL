@@ -1,6 +1,13 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	overrideReconciler,
+	wrapHandlers,
+	devWarning,
+	asArray,
+} from '@westpac/core';
 import { cloneElement, Children, useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -20,11 +27,36 @@ export const FormCheck = ({
 	inline,
 	flipped,
 	data,
-	current: currentDefault,
+	onChange = () => {},
+	defaultValue,
 	overrides: componentOverrides,
 	...rest
 }) => {
-	const [current, setCurrent] = useState(currentDefault);
+	const defaultValueAsArray = defaultValue ? asArray(defaultValue) : [];
+
+	devWarning(
+		type === 'radio' && defaultValueAsArray.length > 1,
+		'The form-check as radio may only have one "current" item set.'
+	);
+
+	const [selected, setSelected] = useState(defaultValueAsArray);
+
+	const handleChange = (event, value, wasSelected) => {
+		wrapHandlers(
+			() => onChange(event, value, wasSelected),
+			() => {
+				if (type === 'radio') {
+					setSelected(asArray(value));
+				} else {
+					if (wasSelected) {
+						setSelected(selected.filter(item => item !== value));
+					} else {
+						setSelected([...selected, value]);
+					}
+				}
+			}
+		)(event);
+	};
 
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -43,8 +75,8 @@ export const FormCheck = ({
 		size,
 		inline,
 		flipped,
-		current,
 		data,
+		defaultValue,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -64,9 +96,9 @@ export const FormCheck = ({
 				<Option
 					key={index}
 					{...state}
-					setCurrent={setCurrent}
 					value={props.value}
-					checked={props.value === current}
+					handleChange={handleChange}
+					selected={selected.includes(props.value)}
 					overrides={componentOverrides}
 				>
 					{props.text}
@@ -78,8 +110,8 @@ export const FormCheck = ({
 		allChildren = Children.map(children, child =>
 			cloneElement(child, {
 				...state,
-				setCurrent,
-				checked: child.props.value === current,
+				handleChange,
+				selected: selected.includes(child.props.value),
 				overrides: componentOverrides,
 			})
 		);
@@ -149,11 +181,6 @@ FormCheck.propTypes = {
 				attributes: PropTypes.object,
 			}),
 			Label: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Input: PropTypes.shape({
 				styles: PropTypes.func,
 				component: PropTypes.elementType,
 				attributes: PropTypes.object,

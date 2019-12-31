@@ -5,7 +5,7 @@ import React from 'react';
 
 export const Label = ({ flipped, inline, ...rest }) => <label {...rest} />;
 
-export const labelStyles = (_, { type, size, flipped, checked }) => {
+export const labelStyles = (_, { type, size, flipped, selected, disabled }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	const sizeMap = {
@@ -70,8 +70,8 @@ export const labelStyles = (_, { type, size, flipped, checked }) => {
 			[flipped ? 'right' : 'left']: 0,
 			width: sizeMap[size].width,
 			height: sizeMap[size].height,
-			border: `1px solid ${COLORS.hero}`,
-			background: 'transparent',
+			border: `1px solid ${disabled ? COLORS.border : COLORS.hero}`,
+			background: disabled ? COLORS.light : 'transparent',
 			borderRadius: type === 'radio' ? '50%' : 3,
 
 			// Focus state
@@ -87,12 +87,12 @@ export const labelStyles = (_, { type, size, flipped, checked }) => {
 		},
 
 		// Control 'check' (tick or dot)
-		...(checked && {
+		...(selected && {
 			'::after': {
 				content: '""',
 				boxSizing: 'border-box',
 				position: 'absolute',
-				border: `solid ${COLORS.hero}`,
+				border: `solid ${disabled ? COLORS.border : COLORS.hero}`,
 				top: `calc(((${sizeMap[size].height} - ${checkHeight}) / 2) + ${checkTweak})`,
 				[flipped ? 'right' : 'left']: `calc((${sizeMap[size].width} - ${checkWidth}) / 2)`,
 				width: type === 'radio' ? 0 : checkWidth,

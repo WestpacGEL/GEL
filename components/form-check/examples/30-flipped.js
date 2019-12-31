@@ -21,8 +21,6 @@ function Example({ brand }) {
 				</Option>
 			</FormCheck>
 
-			<hr />
-
 			<FormCheck type="radio" name="example-checkbox-large-flip" flipped>
 				<Option value="1">Option 1</Option>
 				<Option value="r">
@@ -45,8 +43,6 @@ function Example({ brand }) {
 					aspernatur eveniet libero.
 				</Option>
 			</FormCheck>
-
-			<hr />
 
 			<FormCheck type="radio" name="example-checkbox-large-flip" size="large" flipped>
 				<Option value="1">Option 1</Option>
@@ -77,8 +73,6 @@ function Example({ brand }) {
 					aspernatur eveniet libero.
 				</Option>
 			</FormCheck>
-
-			<hr />
 
 			<FormCheck type="radio" name="example-checkbox-large-inline-flip" size="large" inline flipped>
 				<Option value="1">Option 1</Option>
