@@ -33,7 +33,7 @@
 	"devDependencies": {
 		"@westpac/button": "*",
 		"@westpac/text-input": "*",
-		"cypress": "^3.6.1",
+		"cypress": "^3.8.1",
 		"react": "^16.12.0",
 		"start-server-and-test": "^1.10.6"
 	}
