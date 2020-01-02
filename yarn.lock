@@ -1708,7 +1708,7 @@ ansi-regex@^4.0.0, ansi-regex@^4.1.0:
   resolved "https://registry.npmjs.org/ansi-regex/-/ansi-regex-4.1.0.tgz#8b9f8f08cf1acb843756a839ca8c7e3168c51997"
   integrity sha512-1apePfXM1UOSqw0o9IiFAovVz9M5S1Dg+4TrDwfMewQ6p/rmMueb7tWZjQ1rx4Loy1ArBggoqGpfqqdI4rondg==
 
-ansi-styles@^2.2.1, ansi-styles@^3.2.0, ansi-styles@^3.2.1, ansi-styles@^4.1.0, ansi-styles@^4.2.0:
+ansi-styles@^2.2.1, ansi-styles@^3.2.0, ansi-styles@^3.2.1, ansi-styles@^4.1.0:
   version "3.2.1"
   resolved "https://registry.npmjs.org/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
   integrity sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==
@@ -2396,12 +2396,11 @@ caseless@~0.12.0:
   resolved "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-cfonts@^2.4.6:
-  version "2.4.6"
-  resolved "https://registry.npmjs.org/cfonts/-/cfonts-2.4.6.tgz#3760fa7271dfe90e1af6e1e3533f34ac432e607c"
-  integrity sha512-6uCpPuvxzCjmBxIoV3d/HGyV+XUh6XiEJtKiX4IOEvBRao7Qq7mJeXjk1nooYcKFrOdgRy3nN3B8Y35hE4fkKw==
+cfonts@^2.4.8:
+  version "2.4.8"
+  resolved "https://registry.npmjs.org/cfonts/-/cfonts-2.4.8.tgz#43f956b7cd3f41480e0ea495aa330e652ffb1d56"
+  integrity sha512-7HIISAdFyoKkZd3HvGvCDjYFnRBc/bHiJ0I+DfzKpIOc2u90d2mutfkGCgEudnTiRY7d97ItgHaUAOXBQFdUrQ==
   dependencies:
-    ansi-styles "^4.2.0"
     chalk "^3.0.0"
     window-size "^1.1.1"
 
@@ -6713,9 +6712,9 @@ p-limit@^1.1.0:
     p-try "^1.0.0"
 
 p-limit@^2.0.0, p-limit@^2.2.0, p-limit@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/p-limit/-/p-limit-2.2.1.tgz#aa07a788cc3151c939b5131f63570f0dd2009537"
-  integrity sha512-85Tk+90UCVWvbDavCLKPOLC9vvY8OwEX/RtKF+/1OADJMVlFfEHOiMTPVyxg7mk/dKa+ipdHm0OUkTvCpMTuwg==
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/p-limit/-/p-limit-2.2.2.tgz#61279b67721f5287aa1c13a9a7fbbc48c9291b1e"
+  integrity sha512-WGR+xHecKTr7EbUEhyLSh5Dube9JtdiG78ufaeLxTgpudf/20KqyMioIUZJAezlTIi6evxuoUs9YXc11cU+yzQ==
   dependencies:
     p-try "^2.0.0"
 
