@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useMediaQuery } from '@westpac/core';
-import { Body } from '@westpac/body';
 import React from 'react';
 
 export const Cell = ({ area, height, left, top, width, ...rest }) => <div {...rest} />;

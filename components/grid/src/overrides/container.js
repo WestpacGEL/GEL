@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Body } from '@westpac/body';
 import React from 'react';
 
 export const Container = props => <div {...props} />;
