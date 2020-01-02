@@ -107,11 +107,13 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<Alert
 				overrides={{
-					Icon: {
-						styles: styles => ({
-							...styles,
-							outline: '3px dotted green',
-						}),
+					subComponent: {
+						Icon: {
+							styles: styles => ({
+								...styles,
+								outline: '3px dotted green',
+							}),
+						},
 					},
 				}}
 			>
