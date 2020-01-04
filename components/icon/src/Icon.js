@@ -1,75 +1,74 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Svg, svgStyles } from './overrides/svg';
 import pkg from '../package.json';
-
-// ==============================
-// Utils
-// ==============================
-
-export const sizeMap = {
-	xsmall: 12, // 0.5x
-	small: 18, //  0.75x
-	medium: 24, // 1x (default)
-	large: 36, //  1.5x
-	xlarge: 48, // 2x
-};
-
-// ==============================
-// Token component
-// ==============================
-
-const IconWrapper = ({ icon, color, size, assistiveText, ...props }) => {
-	const mq = useMediaQuery();
-
-	// Size styling (responsive)
-	const sizeArr = asArray(size);
-	const styleSize = {
-		height: sizeArr.map(s => s && sizeMap[s]),
-		width: sizeArr.map(s => s && sizeMap[s]),
-	};
-
-	return (
-		<span
-			css={mq({
-				display: 'inline-block',
-				flexShrink: 0,
-				lineHeight: 1,
-				verticalAlign: 'middle',
-				...styleSize,
-			})}
-			{...props}
-		/>
-	);
-};
 
 // ==============================
 // Component
 // ==============================
 
-export const Icon = ({ color, size, assistiveText, children, ...props }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+export const Icon = ({
+	color,
+	size,
+	assistiveText,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const {
+		COLORS,
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		Wrapper: IconWrapper,
-		svgAttributes: {},
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
+
+		subComponent: {
+			Svg: {
+				styles: svgStyles,
+				component: Svg,
+				attributes: state => state,
+			},
+		},
 	};
-	merge(overrides, overridesWithTokens);
+
+	const state = {
+		color,
+		size,
+		assistiveText,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
-		<overrides.Wrapper size={size} css={{ color: color ? color : COLORS.muted }} {...props}>
-			<svg
+		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+			<overrides.subComponent.Svg.component
+				css={overrides.subComponent.Svg.styles}
+				{...overrides.subComponent.Svg.attributes(state)}
 				aria-label={assistiveText}
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
 				role="img"
 				focusable="false"
-				{...overrides.svgAttributes}
 			>
 				{children}
-			</svg>
-		</overrides.Wrapper>
+			</overrides.subComponent.Svg.component>
+		</overrides.component>
 	);
 };
 
@@ -100,9 +99,25 @@ export const propTypes = {
 	 * Defaults to "medium" --> 24px
 	 */
 	size: PropTypes.oneOfType([
-		PropTypes.oneOf(Object.keys(sizeMap)),
-		PropTypes.arrayOf(PropTypes.oneOf(Object.keys(sizeMap))),
+		PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge'])),
 	]),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Svg: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 export const defaultProps = {
