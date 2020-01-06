@@ -1,0 +1,50 @@
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { Heading } from '@westpac/heading';
+
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/heading'] = {
+		styles: styles => ({
+			...styles,
+			outline: '1px solid red',
+		}),
+	};
+
+	return (
+		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+
+			<h2>
+				Without <code>tag</code> prop
+			</h2>
+			<Heading size={1}>Size: 1</Heading>
+			<Heading size={2}>Size: 2</Heading>
+			<Heading size={3}>Size: 3</Heading>
+			<Heading size={4}>Size: 4</Heading>
+			<Heading size={5}>Size: 5</Heading>
+			<Heading size={6}>Size: 6</Heading>
+			<Heading size={7}>Size: 7</Heading>
+			<Heading size={8}>Size: 8</Heading>
+			<Heading size={9}>Size: 9</Heading>
+
+			<h2>With overrides and component overrides</h2>
+			<Heading
+				size={1}
+				overrides={{
+					styles: styles => ({
+						...styles,
+						outline: '3px dotted green',
+					}),
+				}}
+			>
+				Heading text
+			</Heading>
+		</GEL>
+	);
+}
+
+export default Example;
