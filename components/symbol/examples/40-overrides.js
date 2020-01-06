@@ -13,7 +13,7 @@ import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Wrapper = ({ children, symbol, assistiveText, ...rest }) => (
+const Wrapper = ({ children, symbol, assistiveText, viewBoxWidth, viewBoxHeight, ...rest }) => (
 	<Fragment>
 		<div {...rest}>{children}</div>
 		<div css={{ marginBottom: '1rem' }}>
@@ -54,26 +54,20 @@ function Example({ brand }) {
 					<STGLogo />
 				</Cell>
 			</Grid>
+
 			<h2>With overrides and component overrides</h2>
-			<Grid>
-				<Cell>
-					<MastercardAcceptedSymbol
-						overrides={{
-							subComponent: {
-								Svg: {
-									styles: styles => ({
-										...styles,
-										outline: '3px dotted green',
-									}),
-								},
-							},
-						}}
-					/>
-				</Cell>
-				<Cell></Cell>
-				<Cell></Cell>
-				<Cell></Cell>
-			</Grid>
+			<MastercardAcceptedSymbol
+				overrides={{
+					subComponent: {
+						Svg: {
+							styles: styles => ({
+								...styles,
+								outline: '3px dotted green',
+							}),
+						},
+					},
+				}}
+			/>
 		</GEL>
 	);
 }

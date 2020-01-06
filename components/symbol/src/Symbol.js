@@ -46,7 +46,6 @@ export const Symbol = ({
 		assistiveText,
 		viewBoxWidth,
 		viewBoxHeight,
-		children,
 		overrides: componentOverrides,
 		...rest,
 	};

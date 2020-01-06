@@ -3,13 +3,14 @@
 import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
 import React from 'react';
 
-const round = f => Math.round(f * 10) / 10; //1DP
-
-export const Wrapper = ({ assistiveText, ...rest }) => <span {...rest} />;
+export const Wrapper = ({ assistiveText, viewBoxWidth, viewBoxHeight, ...rest }) => (
+	<span {...rest} />
+);
 
 export const wrapperStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
 	const mq = useMediaQuery();
 
+	const round = f => Math.round(f * 10) / 10; // 1DP
 	const ratio = viewBoxWidth / viewBoxHeight;
 
 	// Size styling (responsive)
