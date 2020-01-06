@@ -1,9 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import pkg from '../package.json';
+import { Item } from './Item';
 
 // ==============================
 // Context and Consumer Hook
@@ -16,24 +19,55 @@ export const useListContext = () => useContext(ListContext);
 // Component
 // ==============================
 
-export const List = ({ look, type, spacing, icon, children, ...props }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+export const List = ({
+	look,
+	type,
+	nested,
+	spacing,
+	icon,
+	data,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		css: {},
-		Icon: icon,
-		nestedCSS: {},
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
 	};
-	merge(overrides, overridesWithTokens);
 
 	const context = useListContext();
-	look = (context && context.look) || look || 'primary';
+	look = look || (context && context.look) || 'primary';
 	type = type || (context && context.type) || 'bullet';
 	spacing = spacing || (context && context.spacing) || 'medium';
-	icon = icon || overrides.Icon || (context && context.icon);
-	const nested = (context && context.nested + 1) || 0;
+	icon = icon || (context && context.icon);
+	if (typeof nested !== 'number') {
+		nested = (context && context.nested + 1) || 0;
+	}
 
-	const ListType = type === 'ordered' ? 'ol' : 'ul';
+	const state = {
+		look,
+		type,
+		nested,
+		spacing,
+		icon,
+		data,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
 		<ListContext.Provider
@@ -43,19 +77,12 @@ export const List = ({ look, type, spacing, icon, children, ...props }) => {
 				spacing,
 				icon,
 				nested,
+				overrides: componentOverrides,
 			}}
 		>
-			<ListType
-				css={{
-					margin: 0,
-					padding: type === 'ordered' ? '0 0 0 1.25rem' : 0,
-					...overrides.css,
-					...(overrides.nestedCSS[nested] ? overrides.nestedCSS[nested] : {}),
-				}}
-				{...props}
-			>
+			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
 				{children}
-			</ListType>
+			</overrides.component>
 		</ListContext.Provider>
 	);
 };
@@ -80,6 +107,11 @@ List.propTypes = {
 	spacing: PropTypes.oneOf(['medium', 'large']),
 
 	/**
+	 * The level of nesting
+	 */
+	nested: PropTypes.number,
+
+	/**
 	 * The icon for list
 	 */
 	icon: PropTypes.func,
@@ -88,4 +120,25 @@ List.propTypes = {
 	 * Any renderable child
 	 */
 	children: PropTypes.node.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Item: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Icon: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };

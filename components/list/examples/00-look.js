@@ -52,7 +52,14 @@ function Example({ brand }) {
 					Styled bullet list - primary
 					<List>
 						<Item>Styled bullet list - primary</Item>
-						<Item>Styled bullet list - primary</Item>
+						<Item>
+							Styled bullet list - primary
+							<List look="neutral">
+								<Item>Styled bullet list - neutral</Item>
+								<Item>Styled bullet list - neutral</Item>
+								<Item>Styled bullet list - neutral</Item>
+							</List>
+						</Item>
 						<Item>Styled bullet list - primary</Item>
 						<Item>
 							Styled bullet list - primary
@@ -80,7 +87,14 @@ function Example({ brand }) {
 					Styled bullet list - hero
 					<List>
 						<Item>Styled bullet list - hero</Item>
-						<Item>Styled bullet list - hero</Item>
+						<Item>
+							Styled bullet list - hero
+							<List look="neutral">
+								<Item>Styled bullet list - neutral</Item>
+								<Item>Styled bullet list - neutral</Item>
+								<Item>Styled bullet list - neutral</Item>
+							</List>
+						</Item>
 						<Item>Styled bullet list - hero</Item>
 						<Item>
 							Styled bullet list - hero
@@ -107,7 +121,14 @@ function Example({ brand }) {
 					Styled bullet list - neutral
 					<List>
 						<Item>Styled bullet list - neutral</Item>
-						<Item>Styled bullet list - neutral</Item>
+						<Item>
+							Styled bullet list - neutral
+							<List look="primary">
+								<Item>Styled bullet list - primary</Item>
+								<Item>Styled bullet list - primary</Item>
+								<Item>Styled bullet list - primary</Item>
+							</List>
+						</Item>
 						<Item>Styled bullet list - neutral</Item>
 						<Item>
 							Styled bullet list - neutral
