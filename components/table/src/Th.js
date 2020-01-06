@@ -1,36 +1,51 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+
+import { TableHeader, thStyles } from './overrides/th';
 import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Th = ({ bordered, ...props }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+export const Th = ({ bordered, overrides: componentOverrides, ...props }) => {
+	const context = useTableContext();
+	bordered = (context && context.bordered) || bordered;
 
-	const overrides = {
-		thCSS: {},
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		subComponent: {
+			Th: {
+				styles: thStyles,
+				component: TableHeader,
+				attributes: state => state,
+			},
+		},
 	};
-	merge(overrides, overridesWithTokens);
 
-	const { bordered: borderedCtx } = useTableContext();
-	bordered = bordered || borderedCtx;
+	const state = {
+		bordered,
+		overrides: componentOverrides,
+		...props,
+	};
 
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 	return (
-		<th
-			css={{
-				padding: '0.75rem',
-				verticalAlign: 'top',
-				border: `1px solid ${COLORS.border}`,
-				borderLeft: !bordered && 0,
-				borderRight: !bordered && 0,
-				textAlign: 'left',
-				...overrides.thCSS,
-			}}
-			{...props}
+		<overrides.subComponent.Th.component
+			css={overrides.subComponent.Th.styles}
+			{...overrides.subComponent.Th.attributes(state)}
 		/>
 	);
 };
@@ -43,4 +58,17 @@ Th.propTypes = {
 	 * Whether or not there should border styling
 	 */
 	bordered: PropTypes.bool,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		subComponent: PropTypes.shape({
+			Th: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };

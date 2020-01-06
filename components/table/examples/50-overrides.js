@@ -3,38 +3,67 @@
 import { GEL, jsx } from '@westpac/core';
 import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table';
 
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/table'] = {
-		captionCSS: {
-			color: 'DodgerBlue',
-		},
-		tableCSS: {
-			backgroundColor: '#efe8ed',
-		},
-		theadCSS: {
-			backgroundColor: 'Moccasin',
-		},
-		thCSS: {
-			paddingTop: 30,
-			paddingBottom: 30,
-		},
-		tbodyCSS: {
-			fontWeight: 700,
-		},
-		trCSS: {
-			borderBottom: '2px dashed Tomato',
-		},
-		tdCSS: {
-			color: 'DarkSlateBlue',
-		},
-		tfootCSS: {
-			backgroundColor: 'PowderBlue',
+		subComponent: {
+			Table: {
+				styles: styles => ({
+					...styles,
+					backgroundColor: '#efe8ed',
+				}),
+			},
+			Tbody: {
+				styles: styles => ({
+					...styles,
+					fontWeight: 700,
+				}),
+			},
+			Td: {
+				styles: styles => ({
+					...styles,
+					color: 'DarkSlateBlue',
+				}),
+			},
+			Tfoot: {
+				styles: styles => ({
+					...styles,
+					backgroundColor: 'PowderBlue',
+				}),
+			},
+			Th: {
+				styles: styles => ({
+					...styles,
+					paddingTop: 30,
+					paddingBottom: 30,
+				}),
+			},
+			Thead: {
+				styles: styles => ({
+					...styles,
+					backgroundColor: 'Moccasin',
+				}),
+			},
+			Tr: {
+				styles: styles => ({
+					...styles,
+					borderBottom: '2px dashed Tomato',
+				}),
+			},
+			Caption: {
+				styles: styles => ({
+					...styles,
+					color: 'DodgerBlue',
+				}),
+			},
 		},
 	};
 
 	return (
 		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
 			<h2>Overrides on caption, table, thead, tbody, tfoot, th, tr, td</h2>
 			<Table>
 				<Caption>

@@ -1,40 +1,60 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+
+import { TableData, tdStyles } from './overrides/td';
 import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+export const Td = ({
+	highlighted,
+	highlightStart,
+	bordered,
+	overrides: componentOverrides,
+	...props
+}) => {
+	const context = useTableContext();
+	bordered = (context && context.bordered) || bordered;
 
-export const Td = ({ highlighted, highlightStart, bordered, ...props }) => {
-	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		tdCSS: {},
+	const defaultOverrides = {
+		subComponent: {
+			Td: {
+				styles: tdStyles,
+				component: TableData,
+				attributes: state => state,
+			},
+		},
 	};
-	merge(overrides, overridesWithTokens);
 
-	const { bordered: borderedCtx } = useTableContext();
-	bordered = bordered || borderedCtx;
+	const state = {
+		highlighted,
+		highlightStart,
+		bordered,
+		overrides: componentOverrides,
+		...props,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
-		<td
-			css={{
-				padding: '0.75rem',
-				verticalAlign: 'top',
-				borderLeft: highlightStart ? `6px solid ${COLORS.primary}` : 0,
-				borderBottom: highlighted ? `1px solid ${COLORS.primary}` : 0,
-				border: bordered && `1px solid ${COLORS.border}`,
-				// bold scope
-				'&[scope=row]': {
-					...TYPE.bodyFont[700],
-				},
-				...overrides.tdCSS,
-			}}
-			{...props}
+		<overrides.subComponent.Td.component
+			css={overrides.subComponent.Td.styles}
+			{...overrides.subComponent.Td.attributes(state)}
 		/>
 	);
 };
@@ -53,6 +73,19 @@ Td.propTypes = {
 	 * Whether or not the start of the highlighted cells
 	 */
 	highlightStart: PropTypes.bool,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		subComponent: PropTypes.shape({
+			Td: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Td.defaultProps = {
