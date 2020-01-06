@@ -22,10 +22,8 @@ const Layout = ({ children, components, routerPath }) => {
 		return <BrandPicker routerPath={routerPath} />;
 	}
 
-	console.log({ brands, brand });
 	return (
 		<GEL brand={brands[brand]}>
-			<pre>{JSON.stringify({ components }, null, 2)}</pre>
 			<Normalize />
 			<GridContainer>
 				<SidebarContainer>

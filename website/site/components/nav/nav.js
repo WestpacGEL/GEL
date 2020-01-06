@@ -15,6 +15,8 @@ function LinkItem({ name, path }) {
 const Nav = ({ components = [] }) => (
 	<ul>
 		<LinkItem name="Welcome!" path="/" />
+		<LinkItem name="Components..." path="/" />
+		<LinkItem name="will come here!" path="/" />
 		{components.map(component => (
 			<LinkItem name={component.name} path={`/components/${component.name}`} />
 		))}

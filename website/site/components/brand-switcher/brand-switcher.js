@@ -2,6 +2,8 @@
 import { jsx, useBrand } from '@westpac/core';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 
+import { useRouter } from 'next/router';
+
 const BrandSwitcher = () => {
 	const { brands, setBrand } = useBrandSwitcher();
 	return (
@@ -15,6 +17,8 @@ const BrandSwitcher = () => {
 
 const BrandButton = ({ brand: [brandName, brandData], setBrand }) => {
 	const { brand: currentBrandName } = useBrandSwitcher();
+
+	const router = useRouter();
 
 	return (
 		<li>
@@ -31,7 +35,10 @@ const BrandButton = ({ brand: [brandName, brandData], setBrand }) => {
 						cursor: 'pointer',
 					},
 				}}
-				onClick={() => setBrand(brandName)}
+				onClick={() => {
+					setBrand(brandName);
+					router.push(router.route, router.asPath.replace(currentBrandName, brandName));
+				}}
 			>
 				{brandName}
 			</button>
