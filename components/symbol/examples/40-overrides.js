@@ -8,27 +8,28 @@ import {
 	WBCLogo,
 	STGLogo,
 } from '@westpac/symbol';
-import { Cell, Grid } from './_utils';
+import { Cell, Grid, Name } from './_utils';
+import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Wrapper = ({ children, symbol, ...props }) => (
-	<div
-		css={{
-			border: '2px solid red',
-			padding: '24px',
-			height: '100%',
-		}}
-		{...props}
-	>
-		{children} - {symbol}
-	</div>
+const Wrapper = ({ children, symbol, assistiveText, ...rest }) => (
+	<Fragment>
+		<div {...rest}>{children}</div>
+		<div css={{ marginBottom: '1rem' }}>
+			<Name>{symbol}</Name>
+		</div>
+	</Fragment>
 );
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/symbol'] = {
-		Wrapper,
+		styles: styles => ({
+			...styles,
+			outline: '1px solid red',
+		}),
+		component: Wrapper,
 	};
 
 	return (
@@ -52,6 +53,26 @@ function Example({ brand }) {
 				<Cell>
 					<STGLogo />
 				</Cell>
+			</Grid>
+			<h2>With overrides and component overrides</h2>
+			<Grid>
+				<Cell>
+					<MastercardAcceptedSymbol
+						overrides={{
+							subComponent: {
+								Svg: {
+									styles: styles => ({
+										...styles,
+										outline: '3px dotted green',
+									}),
+								},
+							},
+						}}
+					/>
+				</Cell>
+				<Cell></Cell>
+				<Cell></Cell>
+				<Cell></Cell>
 			</Grid>
 		</GEL>
 	);
