@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
@@ -34,6 +34,8 @@ export const List = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
+	devWarning(type === 'icon' && !icon, 'The icon prop is required for all type="icon" lists!');
 
 	const defaultOverrides = {
 		styles: wrapperStyles,
