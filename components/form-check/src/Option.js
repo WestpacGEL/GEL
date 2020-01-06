@@ -83,9 +83,9 @@ export const Option = ({
 				}} // as it contains logic and is important for the component to work
 			/>
 			<overrides.subComponent.Label.component
+				htmlFor={formCheckId}
 				css={overrides.subComponent.Label.styles}
 				{...overrides.subComponent.Label.attributes(state)}
-				htmlFor={formCheckId}
 			>
 				{children}
 			</overrides.subComponent.Label.component>

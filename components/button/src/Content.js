@@ -75,7 +75,11 @@ export const Content = ({
 					color="inherit"
 				/>
 			)}
-			{children && <TextWrapper block={block}>{children}</TextWrapper>}
+			{children && (
+				<TextWrapper block={block} overrides={componentOverrides}>
+					{children}
+				</TextWrapper>
+			)}
 			{IconAfter && (
 				<IconAfter
 					css={{ marginLeft: children && '0.4em' }}

@@ -89,18 +89,18 @@ export const Alert = ({
 			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
 				{dismissible && (
 					<overrides.subComponent.CloseBtn.component
-						css={overrides.subComponent.CloseBtn.styles}
-						{...overrides.subComponent.CloseBtn.attributes(state)}
 						onClose={() => setOpen(false)}
 						icon={CloseIcon}
+						css={overrides.subComponent.CloseBtn.styles}
+						{...overrides.subComponent.CloseBtn.attributes(state)}
 					/>
 				)}
 				{overrides.subComponent.Icon.component && (
 					<overrides.subComponent.Icon.component
-						css={overrides.subComponent.Icon.styles}
-						{...overrides.subComponent.Icon.attributes(state)}
 						size={['small', 'medium']}
 						color="inherit"
+						css={overrides.subComponent.Icon.styles}
+						{...overrides.subComponent.Icon.attributes(state)}
 					/>
 				)}
 				<overrides.subComponent.Body.component
@@ -109,9 +109,9 @@ export const Alert = ({
 				>
 					{heading && (
 						<overrides.subComponent.Heading.component
+							tag={headingTag}
 							css={overrides.subComponent.Heading.styles}
 							{...overrides.subComponent.Heading.attributes(state)}
-							tag={headingTag}
 						>
 							{heading}
 						</overrides.subComponent.Heading.component>

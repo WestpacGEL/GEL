@@ -74,16 +74,22 @@ export const Button = ({
 
 	return (
 		<overrides.component
-			css={overrides.styles}
-			{...overrides.attributes(state)}
 			type={tag === 'button' ? 'button' : undefined}
 			disabled={disabled}
 			aria-label={assistiveText}
 			onClick={onClick}
+			css={overrides.styles}
+			{...overrides.attributes(state)}
 		>
 			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 			{tag !== 'input' ? (
-				<Content size={size} block={block} iconAfter={iconAfter} iconBefore={iconBefore}>
+				<Content
+					size={size}
+					block={block}
+					iconAfter={iconAfter}
+					iconBefore={iconBefore}
+					overrides={componentOverrides}
+				>
 					{children}
 				</Content>
 			) : null}
