@@ -1,17 +1,10 @@
 /** @jsx jsx */
 
-import {
-	jsx,
-	useBrand,
-	devWarning,
-	wrapHandlers,
-	useMediaQuery,
-	asArray,
-	merge,
-} from '@westpac/core';
+import { jsx, useBrand, devWarning, wrapHandlers, overrideReconciler } from '@westpac/core';
 import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { ButtonGroup as BtnGroupWrapper, buttonGroupStyles } from './overrides/buttonGroup';
 import { Button } from './Button';
 import pkg from '../package.json';
 
@@ -31,20 +24,50 @@ export const ButtonGroup = props => {
 		onChange,
 		value: controlledValue,
 		size,
+		overrides: componentOverrides,
 		...rest
 	} = props;
-	const { [pkg.name]: overridesWithTokens } = useBrand();
-	const mq = useMediaQuery();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
 	const [value, setValue] = useState(defaultValue);
 
 	devWarning(children && data, 'ButtonGroup accepts either `children` or `data`, not both.');
-	devWarning(!children && !data, 'ButtonGroup expects either `children` or `data`.');
+	devWarning(!children && !data, 'ButtonGroup requires either `children` or `data`.');
 
-	const overrides = {
-		buttonGroupCSS: {},
+	const defaultOverrides = {
+		subComponent: {
+			ButtonGroup: {
+				styles: buttonGroupStyles,
+				component: BtnGroupWrapper,
+				attributes: state => state,
+			},
+		},
 	};
-	merge(overrides, overridesWithTokens);
+
+	const state = {
+		block,
+		data,
+		defaultValue,
+		look,
+		name,
+		disabled,
+		onChange,
+		value: controlledValue,
+		size,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	const handleClick = (val, onClick) =>
 		wrapHandlers(onClick, () => {
@@ -56,30 +79,12 @@ export const ButtonGroup = props => {
 		});
 
 	const actualValue = typeof controlledValue !== 'undefined' ? controlledValue : value;
-	const blockArr = asArray(block);
 
 	// Fork map behaviour when children VS data
 	return (
-		<div
-			css={mq({
-				alignItems: 'center',
-				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
-				verticalAlign: 'middle',
-
-				'& > *': {
-					flex: blockArr.map(b => b !== null && (b ? 1 : null)),
-				},
-				'& > *:not(:last-of-type)': {
-					borderTopRightRadius: 0,
-					borderBottomRightRadius: 0,
-					borderRight: 0,
-				},
-				'& > *:not(:first-of-type)': {
-					borderTopLeftRadius: 0,
-					borderBottomLeftRadius: 0,
-				},
-			})}
-			{...rest}
+		<overrides.subComponent.ButtonGroup.component
+			css={overrides.subComponent.ButtonGroup.styles}
+			{...overrides.subComponent.ButtonGroup.attributes(state)}
 		>
 			{data
 				? data.map((button, index) => {
@@ -88,17 +93,24 @@ export const ButtonGroup = props => {
 						const onClick = handleClick(val, button.onClick);
 						const btnProps = { ...button, disabled, look, onClick, size, soft };
 
-						return <Button key={val} {...btnProps} css={{ ...overrides.buttonGroupCSS }} />;
+						return <Button key={val} {...btnProps} overrides={componentOverrides} />;
 				  })
 				: Children.map(children, (child, index) => {
 						const val = child.props.value || index;
 						const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
 						const onClick = handleClick(val, child.props.onClick);
 
-						return cloneElement(child, { look, onClick, size, soft, disabled });
+						return cloneElement(child, {
+							look,
+							onClick,
+							size,
+							soft,
+							disabled,
+							overrides: componentOverrides,
+						});
 				  })}
 			{name && <input type="hidden" value={actualValue} name={name} />}
-		</div>
+		</overrides.subComponent.ButtonGroup.component>
 	);
 };
 
@@ -158,6 +170,19 @@ ButtonGroup.propTypes = {
 	 * Button group disabled
 	 */
 	disabled: PropTypes.bool.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		subComponent: PropTypes.shape({
+			ButtonGroup: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 ButtonGroup.defaultProps = {

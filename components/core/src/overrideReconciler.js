@@ -35,7 +35,7 @@ export function overrideReconciler(
 
 	if (overrides.subComponent) {
 		for (let [key] of Object.entries(overrides.subComponent)) {
-			if (defaultOverrides.subComponent[key]) {
+			if (defaultOverrides.subComponent && defaultOverrides.subComponent[key]) {
 				overrides.subComponent[key].styles = defaultOverrides.subComponent[key].styles(null, state);
 				if (
 					tokenOverrides &&

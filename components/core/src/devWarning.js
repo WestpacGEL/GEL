@@ -10,7 +10,7 @@
 export function devWarning(condition, message) {
 	if (process.env.NODE_ENV !== 'production') {
 		if (condition) {
-			console.error('Warning: ' + message);
+			console.error('🛑 GEL component Warning\n' + message);
 		}
 	}
 }

@@ -71,7 +71,7 @@ VisuallyHidden.propTypes = {
 	/**
 	 * The override API
 	 */
-	override: PropTypes.shape({
+	overrides: PropTypes.shape({
 		subComponent: PropTypes.shape({
 			VisuallyHidden: PropTypes.shape({
 				styles: PropTypes.func,

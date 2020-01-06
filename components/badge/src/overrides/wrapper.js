@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const Wrapper = ({ ...rest }) => <span {...rest} />;
+export const Wrapper = ({ look, value, ...rest }) => <span {...rest} />;
 
 export const wrapperStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();

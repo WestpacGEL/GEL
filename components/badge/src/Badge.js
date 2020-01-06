@@ -2,7 +2,6 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { Fragment } from 'react';
 
 import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import pkg from '../package.json';
@@ -62,7 +61,7 @@ Badge.propTypes = {
 		'info',
 		'warning',
 		'danger',
-	]),
+	]).isRequired,
 
 	/**
 	 * Badge text
@@ -72,7 +71,7 @@ Badge.propTypes = {
 	/**
 	 * The override API
 	 */
-	override: PropTypes.shape({
+	overrides: PropTypes.shape({
 		styles: PropTypes.func,
 		component: PropTypes.elementType,
 		attributes: PropTypes.object,

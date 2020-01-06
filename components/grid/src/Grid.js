@@ -1,15 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-// ==============================
-// Utils
-// ==============================
-
-export const stringVal = v => (typeof v === 'number' ? `${v}px` : v);
-export const repeatNumeric = v => (typeof v === 'number' ? `repeat(${v}, 1fr)` : v);
-export const formatAreas = areas => areas.map(area => `"${area}"`).join(' ');
+import { Grid as GridWrapper, gridStyles } from './overrides/grid';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -18,39 +13,38 @@ export const formatAreas = areas => areas.map(area => `"${area}"`).join(' ');
 /**
  * A group of `Cell` components must be wrapped in a `Grid`.
  */
-export const Grid = ({
-	alignContent,
-	areas,
-	columnGap,
-	columns,
-	flow,
-	gap,
-	height,
-	justifyContent,
-	minRowHeight,
-	rowGap,
-	rows,
-	...props
-}) => {
-	const mq = useMediaQuery();
+export const Grid = ({ overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		subComponent: {
+			Grid: {
+				styles: gridStyles,
+				component: GridWrapper,
+				attributes: state => state,
+			},
+		},
+	};
+
+	const state = {
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
-		<div
-			css={mq({
-				alignContent: alignContent,
-				columnGap: columnGap,
-				display: 'grid',
-				gridAutoFlow: flow,
-				gridAutoRows: `minmax(${stringVal(minRowHeight)}, auto)`,
-				gridGap: gap,
-				gridTemplateAreas: areas ? formatAreas(areas) : null,
-				gridTemplateColumns: repeatNumeric(columns),
-				gridTemplateRows: rows ? repeatNumeric(rows) : null,
-				height: height,
-				justifyContent: justifyContent,
-				rowGap: rowGap,
-			})}
-			{...props}
+		<overrides.subComponent.Grid.component
+			css={overrides.subComponent.Grid.styles}
+			{...overrides.subComponent.Grid.attributes(state)}
 		/>
 	);
 };
@@ -148,6 +142,34 @@ Grid.propTypes = {
 	 * shorthand to specify the number of rows.
 	 */
 	rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+	/**
+	 * Alert children
+	 */
+	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		subComponent: PropTypes.shape({
+			Grid: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Container: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Container: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Grid.defaultProps = {

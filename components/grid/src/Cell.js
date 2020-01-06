@@ -1,35 +1,47 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-// ==============================
-// Utils
-// ==============================
-
-// allow string or array values for height/width
-const span = n => `span ${n}`;
-const getEndSpan = c => (Array.isArray(c) ? c.map(span) : span(c));
+import { Cell as CellWrapper, cellStyles } from './overrides/cell';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Cell = ({ area, center, height, left, middle, top, width, ...props }) => {
-	const mq = useMediaQuery();
+export const Cell = ({ overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		subComponent: {
+			Cell: {
+				styles: cellStyles,
+				component: CellWrapper,
+				attributes: state => state,
+			},
+		},
+	};
+
+	const state = {
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
-		<div
-			css={mq({
-				gridArea: area,
-				gridColumnEnd: !area && getEndSpan(width),
-				gridColumnStart: left,
-				gridRowEnd: !area && getEndSpan(height),
-				gridRowStart: top,
-				height: '100%',
-				minWidth: 0,
-			})}
-			{...props}
+		<overrides.subComponent.Cell.component
+			css={overrides.subComponent.Cell.styles}
+			{...overrides.subComponent.Cell.attributes(state)}
 		/>
 	);
 };
@@ -63,6 +75,24 @@ Cell.propTypes = {
 	 * The cell width in units. When using an array the units are applied to the applicable breakpoints.
 	 */
 	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).isRequired,
+
+	/**
+	 * Alert children
+	 */
+	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		subComponent: PropTypes.shape({
+			Cell: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Cell.defaultProps = {
