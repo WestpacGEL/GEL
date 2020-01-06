@@ -1,35 +1,36 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
+import { HouseIcon } from '@westpac/icon';
 import { InputGroup, Left, Right } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const Label = props => (
-	<span css={{ textAlign: 'center' }} {...props}>
-		replaced!
-		<br />
-		{props.data}
+	<span {...props}>
+		<HouseIcon size="small" /> {props.data}
 	</span>
 );
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/input-group'] = {
-		css: {
-			outline: '1px dotted red',
-			outlineOffset: '5px',
+		styles: styles => ({
+			...styles,
+			outline: '1px solid red',
+		}),
+
+		subComponent: {
+			Label: {
+				component: Label,
+			},
+			Text: {
+				styles: styles => ({
+					...styles,
+					outline: '4px dotted green',
+				}),
+			},
 		},
-		leftCSS: {
-			outline: '4px dotted green',
-		},
-		textCSS: {
-			outline: '4px solid hotpink',
-		},
-		rightCSS: {
-			outline: '4px dotted blue',
-		},
-		Label,
 	};
 
 	return (
@@ -78,6 +79,51 @@ function Example({ brand }) {
 			<br />
 
 			<InputGroup
+				data={{
+					left: {
+						type: 'select',
+						data: [
+							{ label: 'AUD $', onClick: () => console.log('Selected AUD') },
+							{ label: 'USD $', onClick: () => console.log('Selected USD') },
+							{ label: 'EUR €', onClick: () => console.log('Selected EUR') },
+						],
+					},
+					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
+				}}
+			/>
+
+			<h2>With overrides and component overrides</h2>
+			<InputGroup
+				overrides={{
+					subComponent: {
+						Button: {
+							styles: styles => ({
+								...styles,
+								outline: '3px dotted blue',
+							}),
+						},
+					},
+				}}
+			>
+				<Left type="label" data="AUS $" />
+				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
+			</InputGroup>
+
+			<br />
+			<hr />
+			<br />
+
+			<InputGroup
+				overrides={{
+					subComponent: {
+						Select: {
+							styles: styles => ({
+								...styles,
+								outline: '3px dotted blue',
+							}),
+						},
+					},
+				}}
 				data={{
 					left: {
 						type: 'select',

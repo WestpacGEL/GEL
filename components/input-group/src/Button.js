@@ -1,35 +1,60 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
-import { Button as ButtonOr } from '@westpac/button';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+
+import { Button as ButtonWrapper, buttonStyles } from './overrides/button';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Button = ({ position, size, data, ...props }) => (
-	<ButtonOr
-		size={size}
-		css={{
-			boxSizing: 'border-box',
-			borderRight: position === 'left' && 0,
-			borderLeft: position === 'right' && 0,
+export const Button = ({ position, size, data, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-			...(!(position === 'left') && {
-				borderTopLeftRadius: 0,
-				borderBottomLeftRadius: 0,
-			}),
-			...(!(position === 'right') && {
-				borderTopRightRadius: 0,
-				borderBottomRightRadius: 0,
-			}),
-		}}
-		{...props}
-	>
-		{data}
-	</ButtonOr>
-);
+	const defaultOverrides = {
+		subComponent: {
+			Button: {
+				styles: buttonStyles,
+				component: ButtonWrapper,
+				attributes: state => state,
+			},
+		},
+	};
+
+	const state = {
+		position,
+		size,
+		data,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
+
+	return (
+		<overrides.subComponent.Button.component
+			css={overrides.subComponent.Button.styles}
+			{...overrides.subComponent.Button.attributes(state)}
+		>
+			{data}
+		</overrides.subComponent.Button.component>
+	);
+};
+
+// ==============================
+// Types
+// ==============================
 
 Button.propTypes = {
 	/**
