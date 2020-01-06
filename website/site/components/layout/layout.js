@@ -1,17 +1,28 @@
 /** @jsx jsx */
 import { useState } from 'react';
-import { jsx } from '@emotion/core';
-
-import { GEL } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 
 import Footer from '../footer';
 import Normalize from './normalize';
 import Sidebar from '../sidebar';
 
+import BrandPicker from '../brand-picker';
+
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
 
-const Layout = ({ children, components }) => {
+const Layout = ({ children, components, routerPath }) => {
+	// Isolating the brand path, if available
+	const brandSegment = routerPath.split('/')[1] || '';
+
 	const { brands, brand } = useBrandSwitcher();
+	const brandNames = Object.keys(brands);
+	const isMatch = brandNames.filter(name => name === brandSegment).length > 0;
+
+	if (!isMatch) {
+		return <BrandPicker routerPath={routerPath} />;
+	}
+
+	console.log({ brands, brand });
 	return (
 		<GEL brand={brands[brand]}>
 			<pre>{JSON.stringify({ components }, null, 2)}</pre>
@@ -66,8 +77,10 @@ const MainContainer = props => (
 	/>
 );
 
-export default ({ children, components }) => (
+export default ({ children, components, routerPath }) => (
 	<BrandSwitcherProvider>
-		<Layout components={components}>{children}</Layout>
+		<Layout components={components} routerPath={routerPath}>
+			{children}
+		</Layout>
 	</BrandSwitcherProvider>
 );

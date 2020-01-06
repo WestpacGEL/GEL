@@ -24,6 +24,7 @@ const BrandSwitcherContext = createContext();
 
 const BrandSwitcherProvider = ({ children }) => {
 	const [brand, setBrand] = useState('BOM');
+
 	return (
 		<BrandSwitcherContext.Provider
 			value={{
