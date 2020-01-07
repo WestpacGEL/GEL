@@ -28,10 +28,10 @@ const formatPackageData = pkgData => {
 	});
 };
 
-const resolveComponents = async args =>
+const resolveComponents = args =>
 	formatPackageData(isDev ? getPackagesFromFileSystem(args) : getPackagesFromRemote(args));
 
-const resolveComponent = async args =>
+const resolveComponent = args =>
 	formatPackageData(isDev ? getPackageFromFileSystem(args) : getPackageFromRemote(args))[0];
 
 module.exports = {

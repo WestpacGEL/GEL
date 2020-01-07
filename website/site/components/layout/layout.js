@@ -1,6 +1,9 @@
 /** @jsx jsx */
 import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
+import { useRouter } from 'next/router';
+
+import { useQuery } from '@apollo/react-hooks';
 
 import Footer from '../footer';
 import Normalize from './normalize';
@@ -9,18 +12,31 @@ import Sidebar from '../sidebar';
 import BrandPicker from '../brand-picker';
 
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
+import { ALL_COMPONENTS } from '../../../graphql';
 
-const Layout = ({ children, components, routerPath }) => {
-	// Isolating the brand path, if available
-	const brandSegment = routerPath.split('/')[1] || '';
+const Layout = ({ children }) => {
+	const router = useRouter();
+	const brandParam = router.query.brand || '';
+
+	console.log({ brandParam });
 
 	const { brands, brand } = useBrandSwitcher();
+	const { data, error } = useQuery(ALL_COMPONENTS);
+
 	const brandNames = Object.keys(brands);
-	const isMatch = brandNames.filter(name => name === brandSegment).length > 0;
+	const isMatch = brandNames.filter(name => name === brandParam).length > 0;
 
 	if (!isMatch) {
-		return <BrandPicker routerPath={routerPath} />;
+		// TODO: check in cookies
+
+		// show brand selector
+		return <BrandPicker />;
 	}
+
+	if (!data) return 'loading...';
+	if (error) return 'error!!';
+
+	const components = data.allComponents;
 
 	return (
 		<GEL brand={brands[brand]}>
@@ -75,10 +91,8 @@ const MainContainer = props => (
 	/>
 );
 
-export default ({ children, components, routerPath }) => (
+export default ({ children }) => (
 	<BrandSwitcherProvider>
-		<Layout components={components} routerPath={routerPath}>
-			{children}
-		</Layout>
+		<Layout>{children}</Layout>
 	</BrandSwitcherProvider>
 );

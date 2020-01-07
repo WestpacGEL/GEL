@@ -1,9 +1,16 @@
 import React from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 
 const BrandPicker = () => {
 	const { brands, brand, setBrand } = useBrandSwitcher();
+	const router = useRouter();
+
+	const selectBrand = brandName => {
+		setBrand(brandName);
+		router.push(`${router.asPath}?brand=${brandName}`);
+	};
+
 	return (
 		<div>
 			<h2>Pick your brand!</h2>
@@ -11,14 +18,7 @@ const BrandPicker = () => {
 				{Object.entries(brands).map(([brandName, brand], i) => {
 					return (
 						<li key={i}>
-							<button
-								onClick={() => {
-									setBrand(brandName);
-									Router.push('/[brand]', `/${brandName}`);
-								}}
-							>
-								{brandName}
-							</button>
+							<button onClick={() => selectBrand(brandName)}>{brandName}</button>
 						</li>
 					);
 				})}
