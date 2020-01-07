@@ -2,23 +2,18 @@
 import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { useRouter } from 'next/router';
-
 import { useQuery } from '@apollo/react-hooks';
 
+import BrandPicker from '../brand-picker';
 import Footer from '../footer';
 import Normalize from './normalize';
 import Sidebar from '../sidebar';
-
-import BrandPicker from '../brand-picker';
-
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
 import { ALL_COMPONENTS } from '../../../graphql';
 
 const Layout = ({ children }) => {
 	const router = useRouter();
 	const brandParam = router.query.brand || '';
-
-	console.log({ brandParam });
 
 	const { brands, brand } = useBrandSwitcher();
 	const { data, error } = useQuery(ALL_COMPONENTS);

@@ -36,9 +36,13 @@ const BrandButton = ({ brand: [brandName, brandData], setBrand }) => {
 					},
 				}}
 				onClick={() => {
-					console.log({ router });
+					console.log(router);
 					setBrand(brandName);
-					router.push(router.route, router.asPath, { query: { brand: brandName } });
+					router.push(
+						`${router.route}?brand=${brandName}`,
+						// uggggh no! Must be a better way... 👇
+						`${router.asPath.split('?')[0]}?brand=${brandName}`
+					);
 				}}
 			>
 				{brandName}
