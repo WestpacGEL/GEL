@@ -32,33 +32,9 @@ const ComponentWrapper = () => {
 };
 
 const Component = ({ component }) => {
-	const { name } = component;
+	const { id, name, packageName, version, description, author } = component;
 
-	const ExamplesComponent = useMemo(() => {
-		return dynamic(
-			() =>
-				import(`@westpac/${name}/examples`)
-					.then(module => ({ children }) => children(module))
-					.catch(error => () => <p>{JSON.stringify(error, null, 4)}</p>),
-			{
-				loading: () => <p>loading...</p>,
-			}
-		);
-	}, [name]);
-
-	const ChangelogComponent = useMemo(() => {
-		return dynamic(
-			() =>
-				import(`@westpac/${name}/CHANGELOG.md`)
-					.then(x => x.default)
-					.catch(error => () => <p>{JSON.stringify(error, null, 4)}</p>),
-
-			{
-				loading: () => <p>loading...</p>,
-			}
-		);
-	}, [name]);
-	let DataComponent = useMemo(() => {
+	const DataComponent = useMemo(() => {
 		return dynamic(
 			() =>
 				Promise.all([
@@ -78,29 +54,25 @@ const Component = ({ component }) => {
 			<Heading size={1} css={{ textTransform: 'capitalize' }}>
 				{name}
 			</Heading>
-			<p>This is the intro text for the {name} component. It will probably come from Keystone.</p>
-			<p>
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos quae nulla dicta. Iure
-				laudantium neque numquam omnis voluptates tempore alias animi porro, placeat eius
-				dignissimos repellendus, excepturi obcaecati voluptatum nihil.
-			</p>
+			<p>{description}</p>
 
-			<h2>Debugging...</h2>
-			<h4>Promise.All</h4>
-			<DataComponent></DataComponent>
-			<h4>Examples</h4>
-			<ExamplesComponent></ExamplesComponent>
-			<h4>Changelog</h4>
-			<ChangelogComponent></ChangelogComponent>
+			<ul>
+				<li>Package name: {packageName}</li>
+				<li>Version: {version}</li>
+				<li>Author: {author}</li>
+			</ul>
 
 			<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
 				Code examples
 			</Heading>
+			<p>// TODO: examples</p>
+			<DataComponent></DataComponent>
 
 			{/*<Examples examples={examples} name={name} />*/}
 			<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
 				Changelog
 			</Heading>
+			<p>// TODO: changelog</p>
 			{/*<ChangelogWrapper data={changelog}></ChangelogWrapper>*/}
 		</div>
 	);
