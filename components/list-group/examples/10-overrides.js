@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { ListGroup, Item } from '@westpac/list-group';
+import { List, Item as ListItem } from '@westpac/list';
 import { ButtonGroup, Button } from '@westpac/button';
+import { ListGroup, Item } from '@westpac/list-group';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -12,11 +13,26 @@ const styleExample = {
 };
 
 function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/list-group'] = {
+		styles: styles => ({
+			...styles,
+			outline: '4px solid hotpink',
+		}),
+		subComponent: {
+			Item: {
+				styles: (styles, { look }) => ({
+					...styles,
+					outline: '2px dotted blue',
+				}),
+			},
+		},
+	};
+
 	return (
-		<GEL brand={brand}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia />
 
-			<h2>Simple</h2>
 			<ListGroup>
 				<Item>List item 1</Item>
 				<Item>List item 2</Item>
@@ -28,7 +44,6 @@ function Example({ brand }) {
 			<hr />
 			<br />
 
-			<h2>More complex</h2>
 			<ListGroup>
 				<Item>
 					Send me sms reminders
@@ -64,8 +79,45 @@ function Example({ brand }) {
 			<hr />
 			<br />
 
-			<h2>Data driven</h2>
 			<ListGroup
+				data={[
+					'List item 1',
+					'List item 2',
+					'List item 3',
+					'List item 4',
+					<Fragment>
+						Send me sms reminders
+						<ButtonGroup size="small" name="example-default-1" css={styleExample}>
+							<Button value="yes">Yes</Button>
+							<Button value="no">No</Button>
+						</ButtonGroup>
+					</Fragment>,
+					<Fragment>
+						Call me all the time
+						<ButtonGroup size="small" name="example-default-3" css={styleExample}>
+							<Button value="yes">Yes</Button>
+							<Button value="no">No</Button>
+						</ButtonGroup>
+					</Fragment>,
+				]}
+			/>
+
+			<br />
+			<hr />
+			<br />
+
+			<h2>With overrides and component overrides</h2>
+			<ListGroup
+				overrides={{
+					subComponent: {
+						Item: {
+							styles: styles => ({
+								...styles,
+								outline: '3px dotted green',
+							}),
+						},
+					},
+				}}
 				data={[
 					'List item 1',
 					'List item 2',

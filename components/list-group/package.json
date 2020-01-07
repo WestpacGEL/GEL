@@ -30,6 +30,7 @@
 	"dependencies": {
 		"@babel/runtime": "^7.6.2",
 		"@westpac/core": "^0.0.1",
+		"@westpac/list": "^0.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
