@@ -12,20 +12,16 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/progress-bar'] = {
-		default: {
-			wrapperCSS: {
-				borderColor: 'skyblue',
-			},
-			barCSS: {
-				backgroundColor: 'cornflowerblue',
-			},
-		},
-		skinny: {
-			wrapperCSS: {
-				borderColor: 'mediumaquamarine',
-			},
-			barCSS: {
-				backgroundColor: 'darkcyan',
+		styles: styles => ({
+			...styles,
+			borderColor: 'mediumaquamarine',
+		}),
+		subComponent: {
+			Bar: {
+				styles: styles => ({
+					...styles,
+					backgroundColor: 'darkcyan',
+				}),
 			},
 		},
 	};
@@ -48,11 +44,28 @@ function Example({ brand }) {
 		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
-			<h2>Default</h2>
+			<h2>With overrides applied</h2>
 			<ProgressBar value={progress} />
 			<br />
-			<h2>Skinny</h2>
 			<ProgressBar value={progress} look="skinny" />
+			<h2>With overrides and component overrides</h2>
+			<ProgressBar
+				value={progress}
+				overrides={{
+					styles: styles => ({
+						...styles,
+						borderColor: 'skyblue',
+					}),
+					subComponent: {
+						Bar: {
+							styles: styles => ({
+								...styles,
+								backgroundColor: 'cornflowerblue',
+							}),
+						},
+					},
+				}}
+			/>
 			<div css={{ display: 'flex', marginTop: '3rem', width: '50%' }}>
 				<Button onClick={() => handleProgress(1)}>+1</Button>
 				<Button onClick={() => handleProgress(-1)}>-1</Button>
