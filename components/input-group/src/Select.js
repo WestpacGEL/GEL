@@ -1,35 +1,58 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
-import { Select as SelectOrg } from '@westpac/text-input';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+
+import { Select as SelectWrapper, selectStyles } from './overrides/select';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Select = ({ position, size, data, ...props }) => (
-	<SelectOrg
-		size={size}
-		data={data}
-		css={{
-			boxSizing: 'border-box',
-			width: 'auto',
-			marginLeft: position === 'right' && '-1px',
-			marginRight: position === 'left' && '-1px',
+export const Select = ({ position, size, data, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-			...(position === 'right' && {
-				borderTopLeftRadius: 0,
-				borderBottomLeftRadius: 0,
-			}),
-			...(position === 'left' && {
-				borderTopRightRadius: 0,
-				borderBottomRightRadius: 0,
-			}),
-		}}
-		{...props}
-	/>
-);
+	const defaultOverrides = {
+		subComponent: {
+			Select: {
+				styles: selectStyles,
+				component: SelectWrapper,
+				attributes: state => state,
+			},
+		},
+	};
+
+	const state = {
+		position,
+		size,
+		data,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
+
+	return (
+		<overrides.subComponent.Select.component
+			css={overrides.subComponent.Select.styles}
+			{...overrides.subComponent.Select.attributes(state)}
+		/>
+	);
+};
+
+// ==============================
+// Types
+// ==============================
 
 Select.propTypes = {
 	/**
