@@ -36,7 +36,6 @@ const BrandButton = ({ brand: [brandName, brandData], setBrand }) => {
 					},
 				}}
 				onClick={() => {
-					console.log(router);
 					setBrand(brandName);
 					router.push(
 						`${router.route}?brand=${brandName}`,

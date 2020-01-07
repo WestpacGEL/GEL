@@ -8,7 +8,11 @@ const BrandPicker = () => {
 
 	const selectBrand = brandName => {
 		setBrand(brandName);
-		router.push(`${router.asPath}?brand=${brandName}`);
+		router.push(
+			`${router.route}?brand=${brandName}`,
+			// uggggh no! Must be a better way... 👇
+			`${router.asPath.split('?')[0]}?brand=${brandName}`
+		);
 	};
 
 	return (
