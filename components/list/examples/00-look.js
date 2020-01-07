@@ -44,7 +44,7 @@ function Example({ brand }) {
 			<br />
 
 			<h2>Nesting with cascading look prop</h2>
-			<List look="primary">
+			<List>
 				<Item>Styled bullet list - primary</Item>
 				<Item>Styled bullet list - primary</Item>
 				<Item>Styled bullet list - primary</Item>

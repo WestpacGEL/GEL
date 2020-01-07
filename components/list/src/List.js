@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { Wrapper, wrapperStyles } from './overrides/wrapper';
@@ -14,6 +14,65 @@ import { Item } from './Item';
 const ListContext = createContext();
 
 export const useListContext = () => useContext(ListContext);
+
+// ==============================
+// Utilities - makeItems
+// ==============================
+
+const makeItems = data => {
+	if (!Array.isArray(data)) {
+		return null;
+	}
+
+	const result = [];
+	for (let i = 0; i < data.length; i++) {
+		const iterator = i;
+		let nested;
+		if (typeof data[iterator + 1] === 'object' && data[iterator + 1].items) {
+			const { items, ...rest } = data[iterator + 1];
+			nested = (
+				<List key={iterator + 1} {...rest}>
+					{makeItems(items)}
+				</List>
+			);
+			i++;
+		}
+		if (Array.isArray(data[iterator + 1])) {
+			nested = <List key={iterator + 1}>{makeItems(data[iterator + 1])}</List>;
+			i++;
+		}
+
+		let item = '';
+		let attributes = {};
+		if (typeof data[iterator] === 'string') {
+			item = data[iterator];
+		} else if (Array.isArray(data[iterator])) {
+			item = <List key={iterator}>{makeItems(data[iterator])}</List>;
+		} else if (typeof data[iterator] === 'object' && data[iterator].items) {
+			const { items, ...rest } = data[iterator];
+			item = (
+				<List key={iterator} {...rest}>
+					{makeItems(items)}
+				</List>
+			);
+		} else if (isValidElement(data[iterator])) {
+			item = data[iterator];
+		} else if (typeof data[iterator] === 'object') {
+			const { text, ...rest } = data[iterator];
+			item = text;
+			attributes = rest;
+		}
+
+		result.push(
+			<Item key={iterator} {...attributes}>
+				{item}
+				{nested && nested}
+			</Item>
+		);
+	}
+
+	return result;
+};
 
 // ==============================
 // Component
@@ -36,6 +95,8 @@ export const List = ({
 	} = useBrand();
 
 	devWarning(type === 'icon' && !icon, 'The icon prop is required for all type="icon" lists!');
+	devWarning(!children && !data, 'Either children or data is required');
+	devWarning(data && !Array.isArray(data), 'The data prop must be an array');
 
 	const defaultOverrides = {
 		styles: wrapperStyles,
@@ -70,6 +131,10 @@ export const List = ({
 		componentOverrides,
 		state
 	);
+
+	if (data) {
+		children = makeItems(data);
+	}
 
 	return (
 		<ListContext.Provider
@@ -121,7 +186,7 @@ List.propTypes = {
 	/**
 	 * Any renderable child
 	 */
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 
 	/**
 	 * The override API

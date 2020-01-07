@@ -90,6 +90,33 @@ function Example({ brand }) {
 				<Item>List item</Item>
 			</List>
 
+			<br />
+			<hr />
+			<br />
+
+			<List
+				data={[
+					'Styled bullet list',
+					'Styled bullet list',
+					'Styled bullet list',
+					[
+						'Styled bullet list - nested',
+						'Styled bullet list - nested',
+						'Styled bullet list - nested',
+						[
+							'Styled bullet list - nested',
+							'Styled bullet list - nested',
+							'Styled bullet list - nested',
+							[
+								'Styled bullet list - nested',
+								'Styled bullet list - nested',
+								'Styled bullet list - nested',
+							],
+						],
+					],
+				]}
+			/>
+
 			<h2>With overrides and component overrides</h2>
 			<List
 				type="tick"
@@ -133,6 +160,44 @@ function Example({ brand }) {
 				</Item>
 				<Item>List item</Item>
 			</List>
+
+			<br />
+			<hr />
+			<br />
+
+			<List
+				type="tick"
+				overrides={{
+					subComponent: {
+						Item: {
+							styles: styles => ({
+								...styles,
+								outline: '1px dashed rebeccapurple',
+							}),
+						},
+					},
+				}}
+				data={[
+					'Styled bullet list',
+					'Styled bullet list',
+					'Styled bullet list',
+					[
+						'Styled bullet list - nested',
+						'Styled bullet list - nested',
+						'Styled bullet list - nested',
+						[
+							'Styled bullet list - nested',
+							'Styled bullet list - nested',
+							'Styled bullet list - nested',
+							[
+								'Styled bullet list - nested',
+								'Styled bullet list - nested',
+								'Styled bullet list - nested',
+							],
+						],
+					],
+				]}
+			/>
 		</GEL>
 	);
 }
