@@ -14,8 +14,16 @@ function Example({ brand }) {
 			const styleMap = ['red', 'green', 'blue'];
 			return {
 				...styles,
-				outline: `3px dotted ${nested > 2 ? 'hotpink' : styleMap[nested]}`,
+				outline: `4px dotted ${nested > 2 ? 'hotpink' : styleMap[nested]}`,
 			};
+		},
+		subComponent: {
+			Item: {
+				styles: (styles, { look }) => ({
+					...styles,
+					outline: '1px solid rebeccapurple',
+				}),
+			},
 		},
 	};
 

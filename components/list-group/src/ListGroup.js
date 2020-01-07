@@ -1,36 +1,57 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler, GEL } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import React from 'react';
+
+import { Wrapper, wrapperStyles, wrapperAttributes } from './overrides/wrapper';
+import pkg from '../package.json';
 
 // ==============================
 // Component
+//
+// List Group: List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content.
+// Ideal for settings pages or preferences.
 // ==============================
 
-/**
- * List Group: List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content. Ideal for settings pages or preferences.
- */
-export const ListGroup = props => {
-	const { COLORS } = useBrand();
+export const ListGroup = ({ overrides: componentOverrides, ...rest }) => {
+	const brand = useBrand();
+	const tokenOverrides = brand.OVERRIDES[pkg.name];
+	const brandOverrides = brand[pkg.name];
+
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => ({ ...state, ...wrapperAttributes(state) }),
+	};
+
+	const state = {
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
-		<ul
-			css={{
-				listStyle: 'none',
-				margin: 0,
-				padding: 0,
-				display: 'inline-block',
-				border: `1px solid ${COLORS.border}`,
-				borderBottom: 0,
-				borderRadius: '0.1875rem',
-
-				'@media print': {
-					borderColor: '#000',
-				},
+		<GEL
+			brand={{
+				...brand,
+				// We have to pass on the overrides to our list component in it's own name-space
+				'@westpac/list': { ...tokenOverrides, ...brandOverrides, ...componentOverrides },
 			}}
-			{...props}
-		/>
+		>
+			<overrides.component
+				type="unstyled"
+				css={overrides.styles}
+				{...overrides.attributes(state)}
+			/>
+		</GEL>
 	);
 };
 
@@ -42,7 +63,28 @@ ListGroup.propTypes = {
 	/**
 	 * The content for this list group
 	 */
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
+
+	/**
+	 * Data for the crumbs
+	 */
+	data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.node])),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Item: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 ListGroup.defaultProps = {};

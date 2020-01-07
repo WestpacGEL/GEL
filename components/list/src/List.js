@@ -189,6 +189,13 @@ List.propTypes = {
 	children: PropTypes.node,
 
 	/**
+	 * Data for the crumbs
+	 */
+	data: PropTypes.arrayOf(
+		PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object, PropTypes.array])
+	),
+
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
