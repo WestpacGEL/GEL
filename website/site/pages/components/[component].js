@@ -84,16 +84,18 @@ const Component = ({ component }) => {
 				laudantium neque numquam omnis voluptates tempore alias animi porro, placeat eius
 				dignissimos repellendus, excepturi obcaecati voluptatum nihil.
 			</p>
-			<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
-				Code examples
-			</Heading>
 
+			<h2>Debugging...</h2>
 			<h4>Promise.All</h4>
 			<DataComponent></DataComponent>
 			<h4>Examples</h4>
 			<ExamplesComponent></ExamplesComponent>
 			<h4>Changelog</h4>
 			<ChangelogComponent></ChangelogComponent>
+
+			<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
+				Code examples
+			</Heading>
 
 			{/*<Examples examples={examples} name={name} />*/}
 			<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
