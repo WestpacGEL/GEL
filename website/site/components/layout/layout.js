@@ -80,7 +80,6 @@ const MainContainer = props => (
 			gridColumnStart: 2,
 			gridColumnEnd: 3,
 			overflowY: 'scroll',
-			padding: 10,
 		}}
 		{...props}
 	/>
