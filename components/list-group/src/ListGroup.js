@@ -42,8 +42,16 @@ export const ListGroup = ({ overrides: componentOverrides, ...rest }) => {
 		<GEL
 			brand={{
 				...brand,
-				// We have to pass on the overrides to our list component in it's own name-space
-				'@westpac/list': { ...tokenOverrides, ...brandOverrides, ...componentOverrides },
+				// We have to pass on the overrides to our list Item component in it's own name-space
+				'@westpac/list': {
+					...(overrides.subComponent && {
+						subComponent: {
+							Item: {
+								styles: overrides.subComponent.Item.styles,
+							},
+						},
+					}),
+				},
 			}}
 		>
 			<overrides.component

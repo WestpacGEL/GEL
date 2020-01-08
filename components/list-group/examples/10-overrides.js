@@ -21,9 +21,21 @@ function Example({ brand }) {
 		}),
 		subComponent: {
 			Item: {
-				styles: (styles, { look }) => ({
+				styles: styles => ({
 					...styles,
 					outline: '2px dotted blue',
+				}),
+			},
+		},
+	};
+
+	// to test that list styles don't spill over
+	overridesWithTokens['@westpac/list'] = {
+		subComponent: {
+			Item: {
+				styles: styles => ({
+					...styles,
+					background: 'rgba(255,0,0,0.2)',
 				}),
 			},
 		},
