@@ -1,11 +1,14 @@
 /** @jsx jsx */
-import React, { useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 
-import { jsx } from '@westpac/core';
-import { Tab, Tabcordion } from '@westpac/tabcordion';
-import { Heading } from '@westpac/heading';
+import { jsx, useBrand } from '@westpac/core';
 import { Alert } from '@westpac/alert';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { Heading } from '@westpac/heading';
+import { ArrowRightIcon } from '@westpac/icon';
+import { Item, List } from '@westpac/list';
+import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 // import ReactLive from '../../components/react-live';
 import { Playground } from '../../components/playground';
@@ -32,6 +35,9 @@ const ComponentWrapper = () => {
 };
 
 const Component = ({ component }) => {
+	const { COLORS, SPACING, PACKS } = useBrand();
+
+	console.log({ PACKS });
 	const { id, name, packageName, version, description, author } = component;
 
 	const DataComponent = useMemo(() => {
@@ -50,31 +56,105 @@ const Component = ({ component }) => {
 	}, [name]);
 
 	return (
-		<div css={{ maxWidth: 700 }}>
-			<Heading size={1} css={{ textTransform: 'capitalize' }}>
-				{name}
-			</Heading>
-			<p>{description}</p>
+		<div>
+			<div>
+				<section
+					css={{
+						background: COLORS.primary,
+						color: COLORS.light,
+						paddingTop: SPACING(12),
+						paddingBottom: SPACING(8),
+					}}
+				>
+					<Container>
+						<Heading size={1} css={{ textTransform: 'capitalize' }}>
+							{name}
+						</Heading>
+						<span>Version {version}</span>
+					</Container>
+				</section>
+				<Tabcordion>
+					<Tab text="Design">
+						<Grid css={{ padding: `${SPACING(4)} 0` }}>
+							<Cell width={7}>
+								<p css={{ ...PACKS.lead, marginTop: 0 }}>{description}</p>
+								<p css={{ ...PACKS.lead }}>
+									This is some placeholder text to make the intro section look nicer, until the
+									content is entered in the system.
+								</p>
+							</Cell>
+							<Cell width={1} />
+							<Cell width={4}>
+								<PageLinks title="Page content" links={['Item 1', 'Item 2', 'Item 3']} />
+							</Cell>
+						</Grid>
+					</Tab>
 
-			<ul>
-				<li>Package name: {packageName}</li>
-				<li>Version: {version}</li>
-				<li>Author: {author}</li>
-			</ul>
+					<Tab text="Accessibility">
+						<Grid css={{ padding: `${SPACING(4)} 0` }}>
+							<Cell width={7}>
+								<p css={{ ...PACKS.lead, marginTop: 0 }}>
+									This is some accessibility tab placeholder text to make the intro section look
+									nicer, until the content is entered in the system.
+								</p>
+							</Cell>
+							<Cell width={1} />
+							<Cell width={4}>
+								<PageLinks title="Page content" links={['Item 4', 'Item 5', 'Item 6']} />
+							</Cell>
+						</Grid>
+					</Tab>
 
-			<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
-				Code examples
-			</Heading>
-			<p>// TODO: examples</p>
-			<DataComponent></DataComponent>
+					<Tab text="Code">
+						<Grid css={{ padding: `${SPACING(4)} 0` }}>
+							<Cell width={7}>
+								<p css={{ ...PACKS.lead, marginTop: 0 }}>
+									Developer focused overview text goes here it will need to be at least this long.
+								</p>
+							</Cell>
+							<Cell width={1} />
+							<Cell width={4}>
+								<PageLinks title="Page content" links={['Item 4', 'Item 5', 'Item 6']} />
+							</Cell>
+						</Grid>
 
-			{/*<Examples examples={examples} name={name} />*/}
-			<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
-				Changelog
-			</Heading>
-			<p>// TODO: changelog</p>
-			{/*<ChangelogWrapper data={changelog}></ChangelogWrapper>*/}
+						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
+							Code examples
+						</Heading>
+						<p>// TODO: examples</p>
+						<DataComponent></DataComponent>
+
+						{/*<Examples examples={examples} name={name} />*/}
+						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
+							Changelog
+						</Heading>
+						<p>// TODO: changelog</p>
+						{/*<ChangelogWrapper data={changelog}></ChangelogWrapper>*/}
+					</Tab>
+				</Tabcordion>
+			</div>
 		</div>
+	);
+};
+
+const PageLinks = ({ title, links }) => {
+	const { COLORS, SPACING } = useBrand();
+	return (
+		<Fragment>
+			<Heading tag="h2" size={6}>
+				{title}
+			</Heading>
+
+			<hr
+				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
+			/>
+
+			<List type="icon" icon={ArrowRightIcon}>
+				{links.map((link, index) => (
+					<Item key={index}>{link}</Item>
+				))}
+			</List>
+		</Fragment>
 	);
 };
 
