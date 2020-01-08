@@ -73,7 +73,6 @@ export const Switch = ({
 	const state = {
 		name,
 		label,
-		onChange,
 		size,
 		block,
 		flipped,
@@ -127,15 +126,17 @@ export const Switch = ({
 					<Fragment>
 						<overrides.subComponent.ToggleText.component
 							position={'left'}
+							css={overrides.subComponent.ToggleText.styles}
+							{...overrides.subComponent.ToggleText.attributes(state)}
 							checked={checked}
-							css={overrides.toggleTextCSS}
 						>
 							{toggleText[0]}
 						</overrides.subComponent.ToggleText.component>
 						<overrides.subComponent.ToggleText.component
 							position={'right'}
+							css={overrides.subComponent.ToggleText.styles}
+							{...overrides.subComponent.ToggleText.attributes(state)}
 							checked={!checked}
-							css={overrides.toggleTextCSS}
 						>
 							{toggleText[1]}
 						</overrides.subComponent.ToggleText.component>
@@ -209,6 +210,42 @@ Switch.propTypes = {
 	 * The onChange handler for this switch
 	 */
 	onChange: PropTypes.func,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Input: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Label: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Toggle: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			ToggleText: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			ToggleTextWrapper: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Switch.defaultProps = {

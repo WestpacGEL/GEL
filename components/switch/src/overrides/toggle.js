@@ -3,18 +3,32 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { sizeMap } from './_utils';
 
-export const Toggle = props => <span {...props} />;
+export const Toggle = ({
+	name,
+	label,
+	toggleText,
+	flipped,
+	block,
+	disabled,
+	assistiveText,
+	...props
+}) => <span {...props} />;
 
 export const toggleStyles = (_, { size, checked }) => {
 	const mq = useMediaQuery();
 	const { COLORS, PACKS } = useBrand();
 	const sizing = sizeMap(size);
+	const sizeCalcArr = sizing.height.map((height, i) =>
+		height ? `calc(${height} - ${sizing.borderWidth[i]} - ${sizing.borderWidth[i]})` : null
+	);
 
 	return mq({
 		boxSizing: 'border-box',
 		display: 'block',
 		position: 'relative',
-		border: `${sizing.borderWidth} solid ${checked ? COLORS.hero : COLORS.border}`,
+		borderWidth: sizing.borderWidth,
+		borderStyle: 'solid',
+		borderColor: checked ? COLORS.hero : COLORS.border,
 		borderRadius: sizing.borderRadius,
 		backgroundColor: checked ? COLORS.hero : '#fff',
 		height: sizing.height,
@@ -27,8 +41,8 @@ export const toggleStyles = (_, { size, checked }) => {
 		// the thumb/dot
 		'::after': {
 			content: '""',
-			height: `calc(${sizing.height} - ${sizing.borderWidth} - ${sizing.borderWidth})`,
-			width: `calc(${sizing.height} - ${sizing.borderWidth} - ${sizing.borderWidth})`,
+			height: sizeCalcArr,
+			width: sizeCalcArr,
 			display: 'block',
 			position: 'absolute',
 			left: checked ? '100%' : 0,
