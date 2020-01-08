@@ -17,12 +17,13 @@ function LinkItem({ name, href, as }) {
 }
 
 const Nav = ({ components }) => {
+	const brandName = useRouter().query.brand || '';
 	return (
 		<div>
 			<h2>GEL</h2>
 
 			<ul>
-				<LinkItem name="Home" as="/" href="/" />
+				<LinkItem name="Home" as="/" href={`/?brand=${brandName}`} />
 				<LinkItem name="Accessibility" as="/" href="/" />
 				<LinkItem name="Design tokens" as="/" href="/" />
 				<LinkItem name="Downloads" as="/" href="/" />
