@@ -36,8 +36,6 @@ const ComponentWrapper = () => {
 
 const Component = ({ component }) => {
 	const { COLORS, SPACING, PACKS } = useBrand();
-
-	console.log({ PACKS });
 	const { id, name, packageName, version, description, author } = component;
 
 	const DataComponent = useMemo(() => {

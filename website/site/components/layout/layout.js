@@ -39,7 +39,6 @@ const LayoutWrapper = props => {
 
 	// If no brand is detected, show the brand picker...
 	if (!isMatch) {
-		// TODO: check in cookies
 		// show brand selector
 		return <BrandPicker />;
 	}
