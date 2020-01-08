@@ -1,50 +1,110 @@
 /** @jsx jsx */
 
-import { useState, useEffect, useRef, forwardRef, Fragment } from 'react';
-import { jsx, useBrand, merge } from '@westpac/core';
-import { PopoverPanel } from './PopoverPanel';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { useState, useEffect, useRef, cloneElement } from 'react';
+import { CloseIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
+
+import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { PopoverBody, bodyStyles } from './overrides/body';
+import { Panel, panelStyles } from './overrides/panel';
+import { Title, titleStyles } from './overrides/title';
 import pkg from '../package.json';
 
-// ==============================
-// Component
-// ==============================
-export const Popover = ({ open: isOpen, title, content, dismissible, children, ...props }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+export const Popover = ({
+	open: isOpen,
+	title,
+	content,
+	dismissible,
+	children,
+	overrides: componentOverrides,
+	...props
+}) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+	const [popoverId] = useState(useInstanceId());
 	const [open, setOpen] = useState(open);
-	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
+	const [position, setPosition] = useState('top');
 	const triggerRef = useRef();
 	const popoverRef = useRef();
 
-	const overrides = {
-		css: {},
-		Wrapper: forwardRef((props, ref) => <div ref={ref} {...props} />),
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
+		subComponent: {
+			Panel: {
+				styles: panelStyles,
+				component: Panel,
+				attributes: state => state,
+			},
+			Title: {
+				styles: titleStyles,
+				component: Title,
+				attributes: state => state,
+			},
+			Body: {
+				styles: bodyStyles,
+				component: PopoverBody,
+				attributes: state => state,
+			},
+			CloseBtn: {
+				styles: closeBtnStyles,
+				component: CloseBtn,
+				attributes: state => state,
+			},
+		},
 	};
 
-	merge(overrides, overridesWithTokens);
+	const state = {
+		open,
+		title,
+		content,
+		dismissible,
+		position,
+		overrides: componentOverrides,
+		...props,
+	};
 
-	useEffect(() => {
-		setOpen(isOpen);
-	}, [isOpen]);
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	useEffect(() => {
 		if (open) {
 			const trigger = triggerRef.current.getBoundingClientRect();
 			const popover = popoverRef.current.getBoundingClientRect();
-			const remSize = parseInt(
-				window.getComputedStyle(document.getElementsByTagName('html')[0]).fontSize
-			);
-			const left = (trigger.left - popover.width / 2 + trigger.width / 2) / remSize;
 
 			if (popover.height > trigger.top) {
-				const top = (trigger.top + window.scrollY + trigger.height + remSize) / remSize;
-				setPosition({ placement: 'bottom', top, left });
+				setPosition('bottom');
 			} else {
-				const top = (trigger.top + window.scrollY - popover.height - remSize) / remSize;
-				setPosition({ placement: 'top', top, left });
+				setPosition('top');
 			}
 		}
-	}, [open]);
+	});
+
+	useEffect(() => {
+		setOpen(isOpen);
+	}, [isOpen]);
+
+	const handleOpen = () => {
+		if (open) {
+			if (popoverRef.current.contains(document.activeElement)) {
+				setTimeout(() => triggerRef.current.focus(), 100);
+			}
+			setOpen(false);
+		} else {
+			setOpen(true);
+			setTimeout(() => popoverRef.current.focus(), 100);
+		}
+	};
 
 	const handleOutsideClick = e => {
 		if (dismissible && open && popoverRef.current && !popoverRef.current.contains(e.target)) {
@@ -61,9 +121,9 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 		};
 	}, [open]);
 
-	// on escape close modal
+	// on escape close should also check if focused
 	const keyHandler = event => {
-		if (event.keyCode === 27) handleClose();
+		if (open && event.keyCode === 27) handleOpen();
 	};
 
 	// bind key events
@@ -74,29 +134,48 @@ export const Popover = ({ open: isOpen, title, content, dismissible, children, .
 		};
 	});
 
-	const handleOpen = () => {
-		setOpen(!open);
-	};
+	const childrenWithProps = cloneElement(children, {
+		'aria-describedby': `gel-popover-${popoverId}`,
+	});
 
 	return (
-		<Fragment>
-			<PopoverPanel
-				title={title}
-				content={content}
-				open={open}
-				position={position}
-				handleOpen={handleOpen}
-				ref={popoverRef}
-			/>
-			<overrides.Wrapper
-				css={{ display: 'inline-block', ...overrides.CSS }}
-				ref={triggerRef}
-				onClick={handleOpen}
-				{...props}
-			>
-				{children}
-			</overrides.Wrapper>
-		</Fragment>
+		<overrides.component
+			ref={triggerRef}
+			onClick={handleOpen}
+			css={overrides.styles}
+			{...overrides.attributes(state)}
+		>
+			{childrenWithProps}
+			{open && (
+				<overrides.subComponent.Panel.component
+					id={`gel-popover-${popoverId}`}
+					aria-label="Use the ESC key to close"
+					ref={popoverRef}
+					css={overrides.subComponent.Panel.styles}
+					tabIndex="-1"
+					{...overrides.subComponent.Panel.attributes(state)}
+				>
+					<overrides.subComponent.Title.component
+						css={overrides.subComponent.Title.styles}
+						{...overrides.subComponent.Title.attributes(state)}
+					>
+						{title}
+					</overrides.subComponent.Title.component>
+					<overrides.subComponent.Body.component
+						css={overrides.subComponent.Body.styles}
+						{...overrides.subComponent.Body.attributes(state)}
+					>
+						{content}
+					</overrides.subComponent.Body.component>
+					<overrides.subComponent.CloseBtn.component
+						onClick={() => handleOpen()}
+						icon={CloseIcon}
+						css={overrides.subComponent.CloseBtn.styles}
+						{...overrides.subComponent.CloseBtn.attributes(state)}
+					/>
+				</overrides.subComponent.Panel.component>
+			)}
+		</overrides.component>
 	);
 };
 
@@ -120,6 +199,37 @@ Popover.propTypes = {
 	 * Trigger element to open the popover
 	 */
 	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Panel: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Title: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Body: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			CloseBtn: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 Popover.defaultProps = {
