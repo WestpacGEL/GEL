@@ -7,6 +7,8 @@ import { LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
 
 const Homepage = () => {
 	const { COLORS, PACKS, SPACING, TYPE } = useBrand();
+
+	console.log({ TYPE });
 	return (
 		<Fragment>
 			<section
@@ -17,11 +19,13 @@ const Homepage = () => {
 				}}
 			>
 				<Container>
-					<Heading size={1}>Design to scale with confidence</Heading>
+					<Heading size={1} css={{ fontFamily: TYPE.brandFont.fontFamily }}>
+						Design to scale with confidence
+					</Heading>
 
 					<p>Assemble enterprise solutions with our components and patterns</p>
 
-					<Grid>
+					<Grid css={{ marginTop: SPACING(8) }}>
 						<Cell width={4}>
 							<IconText icon={UmbrellaIcon}>
 								Get to market faster by leveraging our knowledge and tools

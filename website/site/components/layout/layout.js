@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { useState } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { GEL, jsx, useFonts } from '@westpac/core';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -11,7 +11,23 @@ import Sidebar from '../sidebar';
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
 import { ALL_COMPONENTS } from '../../../graphql';
 
-const Layout = ({ children }) => {
+const Layout = ({ components, children }) => (
+	<GridContainer>
+		<SidebarContainer>
+			<Sidebar components={components} />
+		</SidebarContainer>
+		<MainContainer>
+			{children}
+			<Footer />
+		</MainContainer>
+	</GridContainer>
+);
+
+/*
+  Wrapper with logic
+*/
+
+const LayoutWrapper = props => {
 	const router = useRouter();
 	const brandParam = router.query.brand || '';
 
@@ -21,48 +37,49 @@ const Layout = ({ children }) => {
 	const brandNames = Object.keys(brands);
 	const isMatch = brandNames.filter(name => name === brandParam).length > 0;
 
+	// If no brand is detected, show the brand picker...
 	if (!isMatch) {
 		// TODO: check in cookies
-
 		// show brand selector
 		return <BrandPicker />;
 	}
 
+	// Handle async state...
 	if (!data) return 'loading...';
 	if (error) return 'error!!';
 
+	// We can now assume we have our components data...
 	const components = data.allComponents;
 
 	return (
 		<GEL brand={brands[brand]}>
 			<Normalize />
-			<GridContainer>
-				<SidebarContainer>
-					<Sidebar components={components} />
-				</SidebarContainer>
-				<MainContainer>
-					{children}
-					<Footer />
-				</MainContainer>
-			</GridContainer>
+			<Layout components={components} {...props} />
 		</GEL>
 	);
 };
 
-const GridContainer = props => (
-	<div
-		css={{
-			fontFamily:
-				'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-			display: 'grid',
-			width: '100vw',
-			height: '100vh',
-			gridTemplateColumns: '270px auto',
-			gridColumnGap: 20,
-		}}
-		{...props}
-	/>
-);
+/*
+  Styled components
+*/
+
+const GridContainer = props => {
+	return (
+		<div
+			css={{
+				fontFamily:
+					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+				display: 'grid',
+				width: '100vw',
+				height: '100vh',
+				gridTemplateColumns: '270px auto',
+				gridColumnGap: 20,
+				...useFonts({ path: '/fonts/' }),
+			}}
+			{...props}
+		/>
+	);
+};
 
 const SidebarContainer = props => (
 	<div
@@ -85,8 +102,10 @@ const MainContainer = props => (
 	/>
 );
 
-export default ({ children }) => (
+const MainWrapper = props => (
 	<BrandSwitcherProvider>
-		<Layout>{children}</Layout>
+		<LayoutWrapper {...props} />
 	</BrandSwitcherProvider>
 );
+
+export default MainWrapper;
