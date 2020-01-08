@@ -1,25 +1,42 @@
 /** @jsx jsx */
-import { Fragment } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
 
 const Homepage = () => {
-	const { COLORS, PACKS, SPACING, TYPE } = useBrand();
+	const { COLORS, SPACING, TYPE } = useBrand();
 
-	console.log({ TYPE });
 	return (
-		<Fragment>
+		<div css={{ textAlign: 'center' }}>
 			<section
 				css={{
 					background: COLORS.primary,
 					color: COLORS.light,
-					padding: `${SPACING(12)} 0`,
+					paddingBottom: SPACING(12),
 				}}
 			>
 				<Container>
-					<Heading size={1} css={{ fontFamily: TYPE.brandFont.fontFamily }}>
+					<p
+						css={{
+							textAlign: 'left',
+							margin: 0,
+							paddingTop: SPACING(2),
+							paddingBottom: SPACING(1),
+						}}
+					>
+						UI Framework
+					</p>
+					<hr />
+					<Heading
+						size={1}
+						css={{
+							paddingTop: SPACING(12),
+							fontFamily: TYPE.brandFont.fontFamily,
+							maxWidth: 600,
+							margin: '0 auto',
+						}}
+					>
 						Design to scale with confidence
 					</Heading>
 
@@ -43,50 +60,68 @@ const Homepage = () => {
 				</Container>
 			</section>
 
-			<section css={{ padding: `${SPACING(8)} 0` }}>
+			<section css={{ padding: `${SPACING(12)} 0` }}>
 				<Container>
-					<Heading size={2}>Accessibility is in everything we do</Heading>
+					<Heading tag="h2" size={4}>
+						Accessibility is in everything we do
+					</Heading>
 					<p>
 						Accessibility and inclusive design is a strong part of how we design in the Design
-						Quality team. We delve into the detail and pressure test solutions against the latest
-						WCAG requirements, delivering the most accessible components and patterns possible. We
-						then guide teams further along the path of accessibility. Read more about our commitment
-						to accessibility
+						Quality team.
+					</p>
+
+					<p>
+						We delve into the detail and pressure test solutions against the latest WCAG
+						requirements, delivering the most accessible components and patterns possible. We then
+						guide teams further along the path of accessibility. Read more about our commitment to
+						accessibility.
 					</p>
 				</Container>
 			</section>
 
-			<section css={{ background: COLORS.background, padding: `${SPACING(8)} 0` }}>
+			<section css={{ background: COLORS.background, padding: `${SPACING(12)} 0` }}>
 				<Container>
-					<Heading size={2}>Built on React</Heading>
+					<Heading tag="h2" size={4}>
+						Built on React
+					</Heading>
 					<p>
 						We're moving with the times. With React we can showcase so much more and deliver higher
 						quality, more accessible code.
 					</p>
 
-					<Heading size={3}>Who else is using React?</Heading>
+					<Heading tag="h3" size={5}>
+						Who else is using React?
+					</Heading>
 				</Container>
 			</section>
 
-			<section css={{ padding: `${SPACING(8)} 0` }}>
+			<section css={{ padding: `${SPACING(12)} 0` }}>
 				<Container>
-					<Heading size={2}>Subscribe to our update</Heading>
+					<Heading tag="h2" size={4}>
+						Subscribe to our update
+					</Heading>
 					<p>Get news about components, code chages, new resources, and helpful tips</p>
 				</Container>
 			</section>
 
 			<section css={{ background: COLORS.background, padding: `${SPACING(8)} 0` }}>
 				<Container>
-					<Heading size={2}>Downloads & links</Heading>
+					<Heading tag="h2" size={4}>
+						Downloads & links
+					</Heading>
 					<p>
 						Get the Sketch UI or Axure kit to start designing. Visit Git to get the latest code and
 						development framework
 					</p>
 				</Container>
 			</section>
-		</Fragment>
+		</div>
 	);
 };
+
+/* 
+  Styled components
+*/
 
 const IconText = ({ icon: Icon, children }) => {
 	const { COLORS } = useBrand();
