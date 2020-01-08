@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { useState } from 'react';
-import { GEL, jsx, useFonts } from '@westpac/core';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
+
+import { GEL, jsx } from '@westpac/core';
 
 import BrandPicker from '../brand-picker';
 import Footer from '../footer';
@@ -74,7 +74,6 @@ const GridContainer = props => {
 				height: '100vh',
 				gridTemplateColumns: '270px auto',
 				gridColumnGap: 20,
-				...useFonts({ path: '/fonts/' }),
 			}}
 			{...props}
 		/>
