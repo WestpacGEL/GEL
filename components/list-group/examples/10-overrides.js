@@ -29,6 +29,7 @@ function Example({ brand }) {
 		},
 	};
 
+	// to test that list styles don't spill over
 	overridesWithTokens['@westpac/list'] = {
 		subComponent: {
 			Item: {
