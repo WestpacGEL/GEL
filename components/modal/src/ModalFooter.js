@@ -1,33 +1,44 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+
+import { Footer, footerStyles } from './overrides/footer';
 import pkg from '../package.json';
 
-export const ModalFooter = ({ overrides: overridesComponent, ...props }) => {
-	const { COLORS } = useBrand();
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+export const ModalFooter = ({ overrides: componentOverrides, ...props }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		footerCSS: {},
+	const defaultOverrides = {
+		subComponent: {
+			Footer: {
+				styles: footerStyles,
+				component: Footer,
+				attributes: state => state,
+			},
+		},
 	};
 
-	merge(overrides, overridesWithTokens, overridesComponent);
+	const state = {
+		overrides: componentOverrides,
+		...props,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	return (
-		<div
-			css={{
-				backgroundColor: COLORS.background,
-				borderTop: `1px solid ${COLORS.border}`,
-				textAlign: 'right',
-				padding: '0.75rem 1.125rem',
-
-				'button + button': {
-					marginLeft: '0.375rem',
-				},
-				...overrides.footerCSS,
-			}}
-			{...props}
+		<overrides.subComponent.Footer.component
+			css={overrides.subComponent.Footer.styles}
+			{...overrides.subComponent.Footer.attributes(state)}
 		/>
 	);
 };
@@ -37,9 +48,15 @@ export const ModalFooter = ({ overrides: overridesComponent, ...props }) => {
 // ==============================
 ModalFooter.propTypes = {
 	/**
-	 * ModalFooter overrides
+	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		footerCSS: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Footer: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
 	}),
 };
