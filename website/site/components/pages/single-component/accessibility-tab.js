@@ -2,12 +2,13 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
 
+import { MaxWidthGrid, Row } from './_utils';
 import { PageLinks } from './page-links';
 
 export const AccessibilityTab = () => {
 	const { SPACING, PACKS } = useBrand();
 	return (
-		<Grid css={{ padding: `${SPACING(4)} 0` }}>
+		<MaxWidthGrid>
 			<Cell width={7}>
 				<p css={{ ...PACKS.lead, marginTop: 0 }}>
 					This is some accessibility tab placeholder text to make the intro section look nicer,
@@ -18,6 +19,6 @@ export const AccessibilityTab = () => {
 			<Cell width={4}>
 				<PageLinks title="Page content" links={['Item 4', 'Item 5', 'Item 6']} />
 			</Cell>
-		</Grid>
+		</MaxWidthGrid>
 	);
 };

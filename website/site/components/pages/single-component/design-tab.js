@@ -1,14 +1,15 @@
 /** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
-import { Grid, Cell } from '@westpac/grid';
+import { Heading } from '@westpac/heading';
+import { Cell, Grid } from '@westpac/grid';
 
 import { PageLinks } from './page-links';
+import { MaxWidthGrid, Row } from './_utils';
 
 export const DesignTab = ({ description }) => {
 	const { SPACING, PACKS } = useBrand();
-
 	return (
-		<Grid css={{ padding: `${SPACING(4)} 0` }}>
+		<MaxWidthGrid>
 			<Cell width={7}>
 				<p css={{ ...PACKS.lead, marginTop: 0 }}>{description}</p>
 				<p css={{ ...PACKS.lead }}>
@@ -20,6 +21,52 @@ export const DesignTab = ({ description }) => {
 			<Cell width={4}>
 				<PageLinks title="Page content" links={['Item 1', 'Item 2', 'Item 3']} />
 			</Cell>
-		</Grid>
+			<UxRationale />
+			<VisualDesignRationale />
+		</MaxWidthGrid>
+	);
+};
+
+const UxRationale = () => {
+	return (
+		<Row>
+			<Heading tag="h2" size={5}>
+				UX rationale
+			</Heading>
+
+			<Grid>
+				<Cell left={3} width={8}>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua. Ut enim ad minim Lorem ipsum dolor sit
+						amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+						magna aliqua. Ut enim ad minim Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</p>
+				</Cell>
+			</Grid>
+		</Row>
+	);
+};
+
+const VisualDesignRationale = () => {
+	return (
+		<Row>
+			<Heading tag="h2" size={5}>
+				Visual design rationale
+			</Heading>
+
+			<Grid>
+				<Cell left={3} width={8}>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua. Ut enim ad minim Lorem ipsum dolor sit
+						amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+						magna aliqua. Ut enim ad minim Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</p>
+				</Cell>
+			</Grid>
+		</Row>
 	);
 };
