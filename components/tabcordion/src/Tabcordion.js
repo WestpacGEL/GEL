@@ -1,11 +1,15 @@
 /** @jsx jsx */
 
-import { Children, forwardRef, useEffect, useRef, useState, createRef } from 'react';
-import PropTypes from 'prop-types';
-import { jsx, useBrand, merge, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import React, { Children, useEffect, useRef, useState, createRef } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
-import { Tab } from './Tab';
+import PropTypes from 'prop-types';
+
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { TabItem, tabItemStyles } from './overrides/tabItem';
+import { TabRow, tabRowStyles } from './overrides/tabRow';
 import pkg from '../package.json';
+import { Tab } from './Tab';
 
 const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'PageDown', 'PageUp', 'Enter', 'End', 'Home'];
 
@@ -19,17 +23,48 @@ export const Tabcordion = ({
 	initialTabIndex,
 	instanceIdPrefix,
 	children,
+	overrides: componentOverrides,
 	...props
 }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		css: {},
-		TabItem,
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
+		subComponent: {
+			TabItem: {
+				styles: tabItemStyles,
+				component: TabItem,
+				attributes: state => state,
+			},
+			TabRow: {
+				styles: tabRowStyles,
+				component: TabRow,
+				attributes: state => state,
+			},
+		},
 	};
 
-	merge(overrides, overridesWithTokens);
+	const state = {
+		look,
+		justify,
+		activeTabIndex,
+		instancePrefix,
+		overrides: componentOverrides,
+		...props,
+	};
 
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
 	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
 
@@ -40,6 +75,7 @@ export const Tabcordion = ({
 	const { width } = useContainerQuery(containerRef);
 	const mode =
 		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
+	console.log(mode);
 	const setActive = idx => () => setActiveTabIndex(idx);
 
 	// create the prefix for internal IDs
@@ -108,30 +144,35 @@ export const Tabcordion = ({
 	const tabCount = Children.count(children);
 
 	return (
-		<div ref={containerRef} css={{ ...overrides.css }} {...props}>
+		<overrides.component ref={containerRef} css={overrides.styles} {...overrides.attributes(state)}>
 			{mode === 'tabs' ? (
-				<TabRow role="tablist" ref={tablistRef}>
+				<overrides.subComponent.TabRow.component
+					role="tablist"
+					ref={tablistRef}
+					css={overrides.subComponent.TabRow.styles}
+					{...overrides.subComponent.TabRow.attributes(state)}
+				>
 					{Children.map(children, (child, idx) => {
 						const selected = activeTabIndex === idx;
 						return (
-							<overrides.TabItem
-								look={look}
+							<overrides.subComponent.TabItem.component
 								aria-controls={getId('panel', idx)}
 								aria-selected={selected}
 								id={getId('tab', idx)}
-								justify={justify}
 								last={idx + 1 === tabCount}
-								selected={selected}
+								selected={selected} //how would this work with styles...
 								key={child.props.text}
 								onClick={setActive(idx)}
 								role="tab"
 								ref={tabRefs.current[idx]}
+								css={overrides.subComponent.TabItem.styles}
+								{...overrides.subComponent.TabItem.attributes(state)}
 							>
 								{child.props.text}
-							</overrides.TabItem>
+							</overrides.subComponent.TabItem.component>
 						);
 					})}
-				</TabRow>
+				</overrides.subComponent.TabRow.component>
 			) : null}
 
 			{Children.map(children, (child, idx) => {
@@ -152,7 +193,7 @@ export const Tabcordion = ({
 					/>
 				);
 			})}
-		</div>
+		</overrides.component>
 	);
 };
 
@@ -183,61 +224,3 @@ Tabcordion.defaultProps = {
 	justify: false,
 	mode: 'responsive',
 };
-
-// ==============================
-// Overrides & Styled Components
-// ==============================
-const TabRow = forwardRef((props, ref) => (
-	<div
-		ref={ref}
-		css={{
-			display: 'flex',
-			whiteSpace: 'nowrap',
-			position: 'relative',
-		}}
-		{...props}
-	/>
-));
-
-const TabItem = forwardRef(({ look, justify, selected, last, ...props }, ref) => {
-	const { COLORS } = useBrand();
-
-	const styles = {
-		soft: {
-			backgroundColor: selected ? '#fff' : COLORS.background,
-			borderTopLeftRadius: '0.1875rem',
-			borderTopRightRadius: '0.1875rem',
-			border: `1px solid ${COLORS.border}`,
-			borderBottom: 0,
-			color: COLORS.neutral,
-			marginBottom: selected && '-1px',
-		},
-		lego: {
-			backgroundColor: selected ? '#fff' : COLORS.hero,
-			border: `1px solid ${selected ? COLORS.border : 'transparent'}`,
-			borderBottom: 0,
-			color: selected ? COLORS.text : '#fff',
-			marginBottom: selected ? '-1px' : '0.125rem',
-		},
-	};
-
-	return (
-		<button
-			ref={ref}
-			css={{
-				flex: justify ? 1 : 0,
-				fontSize: '1rem',
-				marginRight: '0.125rem',
-				padding: '0.875rem 1.125rem',
-				textAlign: 'left',
-				textDecoration: 'none',
-				transition: 'background .3s ease',
-				width: '100%',
-				cursor: 'pointer',
-				...(last && { marginRight: 0 }),
-				...styles[look],
-			}}
-			{...props}
-		/>
-	);
-});

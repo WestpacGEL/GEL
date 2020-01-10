@@ -1,26 +1,43 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+
 import { useProgressRopeContext } from './ProgressRope';
+import { Item, itemStyles } from './overrides/item';
+import { ItemText, itemTextStyles } from './overrides/itemText';
 import pkg from '../package.json';
 
 export const ProgressRopeItem = ({
 	index,
 	groupIndex,
 	review,
-	overrides: overridesComponent,
+	onClick,
+	overrides: componentOverrides,
 	children,
 	...props
 }) => {
 	const { currStep, currGroup, grouped, ropeGraph } = useProgressRopeContext();
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 
-	const overrides = {
-		ropeItemCSS: {},
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		subComponent: {
+			Item: {
+				styles: itemStyles,
+				component: Item,
+				attributes: state => state,
+			},
+			ItemText: {
+				styles: itemTextStyles,
+				component: ItemText,
+				attributes: state => state,
+			},
+		},
 	};
-
-	merge(overrides, overridesWithTokens, overridesComponent);
 
 	const visited =
 		(grouped && !review && ropeGraph[groupIndex][index] === 'visited') ||
@@ -49,59 +66,39 @@ export const ProgressRopeItem = ({
 		}
 	}
 
+	const state = {
+		index,
+		groupIndex,
+		review,
+		visited,
+		grouped,
+		active,
+		furthest,
+		overrides: componentOverrides,
+		...props,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
+
 	return (
-		<li
-			css={{
-				padding: `0.5rem 3.5rem 0.875rem ${grouped && !review ? '3rem' : '1.875rem'}`,
-				position: 'relative',
-
-				// the line
-				'::before': {
-					content: review ? 'none' : "''",
-					display: 'block',
-					position: 'absolute',
-					borderLeft: `2px solid ${visited && !furthest ? COLORS.primary : COLORS.border}`,
-					top: 0,
-					right: '2.25rem',
-					bottom: 0,
-					height: 'auto',
-					transform: 'translateY(0.625rem)',
-				},
-
-				// the circle
-				':after': {
-					content: "''",
-					zIndex: 1,
-					display: 'block',
-					borderRadius: '50%',
-					position: 'absolute',
-					top: '0.625rem',
-					width: grouped && !review ? '0.375rem' : '0.875rem',
-					height: grouped && !review ? '0.375rem' : '0.875rem',
-					right: grouped && !review ? '2.125rem' : '1.875rem',
-					border: `2px solid ${visited ? COLORS.primary : COLORS.border}`,
-					backgroundColor: grouped || review ? (visited ? COLORS.primary : COLORS.border) : '#fff',
-					boxSizing: 'border-box',
-				},
-
-				':last-child': {
-					...(grouped && !review && { paddingBottom: '2.75rem' }),
-				},
-				...overrides.ropeItemCSS,
-			}}
+		<overrides.subComponent.Item.component
+			css={overrides.subComponent.Item.styles}
+			{...overrides.subComponent.Item.attributes(state)}
 		>
-			<a
-				css={{
-					color: active ? COLORS.primary : visited ? COLORS.neutral : COLORS.tints.muted90,
-					textDecoration: 'none',
-					pointerEvents: active || visited ? 'auto' : 'none',
-					cursor: 'pointer',
-				}}
-				{...props}
+			<overrides.subComponent.ItemText.component
+				onClick={onClick}
+				css={overrides.subComponent.ItemText.styles}
+				{...overrides.subComponent.ItemText.attributes(state)}
 			>
 				{children}
-			</a>
-		</li>
+			</overrides.subComponent.ItemText.component>
+		</overrides.subComponent.Item.component>
 	);
 };
 
@@ -115,10 +112,21 @@ ProgressRopeItem.propTypes = {
 	review: PropTypes.bool,
 
 	/**
-	 * ProgressRopeItem overrides
+	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		ropeItemCSS: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Item: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			ItemText: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
 	}),
 };
 

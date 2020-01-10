@@ -26,18 +26,18 @@
 		"@babel/runtime": "^7.6.2",
 		"@westpac/button": "^0.0.1",
 		"@westpac/core": "^0.0.1",
+		"@westpac/hooks": "^0.0.1",
 		"@westpac/icon": "^0.0.1",
 		"prop-types": "^15.7.2",
 		"react-focus-lock": "^2.2.1",
-		"react-transition-group": "^4.3.0",
-		"shortid": "^2.2.15"
+		"react-transition-group": "^4.3.0"
 	},
 	"peerDependencies": {
 		"react": "^16.11.0",
 		"react-dom": "^16.11.0"
 	},
 	"devDependencies": {
-		"cypress": "^3.6.1",
+		"cypress": "^3.8.1",
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0",
 		"start-server-and-test": "^1.10.6"

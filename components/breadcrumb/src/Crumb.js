@@ -82,28 +82,28 @@ export const Crumb = ({
 		>
 			{current && (
 				<overrides.subComponent.AssistiveText.component
+					insideCrumb={true}
 					css={overrides.subComponent.AssistiveText.styles}
 					{...overrides.subComponent.AssistiveText.attributes(state)}
-					insideCrumb={true}
 				>
 					{assistiveText}
 				</overrides.subComponent.AssistiveText.component>
 			)}
 			<overrides.subComponent.Link.component
-				css={overrides.subComponent.Link.styles}
-				{...overrides.subComponent.Link.attributes(state)}
 				href={current ? null : href}
 				onClick={onClick}
+				css={overrides.subComponent.Link.styles}
+				{...overrides.subComponent.Link.attributes(state)}
 			>
 				{text}
 			</overrides.subComponent.Link.component>
 			{!current && (
 				<overrides.subComponent.Icon.component
-					css={overrides.subComponent.Icon.styles}
-					{...overrides.subComponent.Icon.attributes(state)}
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
+					css={overrides.subComponent.Icon.styles}
+					{...overrides.subComponent.Icon.attributes(state)}
 				/>
 			)}
 		</overrides.subComponent.Crumb.component>

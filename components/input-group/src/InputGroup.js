@@ -1,9 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
-import { Text } from '@westpac/text-input';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
+
+import { Text as TextWrapper, textStyles } from './overrides/text';
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import pkg from '../package.json';
 import { Right } from './Right';
 import { Left } from './Left';
@@ -26,18 +28,49 @@ export const InputGroup = ({
 	value,
 	defaultValue,
 	look,
-	...props
+	overrides: componentOverrides,
+	...rest
 }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		css: {},
-		textCSS: {},
-		Left,
-		Text,
-		Right,
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
+
+		subComponent: {
+			Text: {
+				styles: textStyles,
+				component: TextWrapper,
+				attributes: state => state,
+			},
+		},
 	};
-	merge(overrides, overridesWithTokens);
+
+	const state = {
+		name,
+		size,
+		data,
+		invalid,
+		disabled,
+		readOnly,
+		value,
+		defaultValue,
+		look,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	let added = false;
 	const childrenWithProps = [];
@@ -48,96 +81,82 @@ export const InputGroup = ({
 
 		if (left) {
 			childrenWithProps.push(
-				<overrides.Left key="left" look={look} disabled={disabled} size={size} {...left} />
+				<Left
+					key="left"
+					look={look}
+					disabled={disabled}
+					size={size}
+					overrides={componentOverrides}
+					{...left}
+				/>
 			);
 		}
 		childrenWithProps.push(
-			<overrides.Text
+			<overrides.subComponent.Text.component
 				key="textinput1"
-				size={size}
-				invalid={invalid}
-				disabled={disabled}
-				readOnly={readOnly}
-				value={value}
-				defaultValue={defaultValue}
-				name={name}
-				css={{
-					boxSizing: 'border-box',
-					...(left && {
-						borderTopLeftRadius: 0,
-						borderBottomLeftRadius: 0,
-					}),
-					...(right && {
-						borderTopRightRadius: 0,
-						borderBottomRightRadius: 0,
-					}),
-					...overrides.textCSS,
-				}}
+				left={!!left}
+				right={!!right}
+				overrides={componentOverrides}
+				css={overrides.subComponent.Text.styles}
+				{...overrides.subComponent.Text.attributes(state)}
 			/>
 		);
 		if (right) {
 			childrenWithProps.push(
-				<overrides.Right key="right" look={look} disabled={disabled} size={size} {...right} />
+				<Right
+					key="right"
+					look={look}
+					disabled={disabled}
+					size={size}
+					overrides={componentOverrides}
+					{...right}
+				/>
 			);
 		}
 	} else {
 		Children.map(children, child => {
 			if (child.type.name === 'Left' && !added) {
-				childrenWithProps.push(cloneElement(child, { look, size, disabled, key: 'left' }));
 				childrenWithProps.push(
-					<overrides.Text
+					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'left' })
+				);
+				childrenWithProps.push(
+					<overrides.subComponent.Text.component
 						key="textinput1"
-						size={size}
-						invalid={invalid}
-						disabled={disabled}
-						readOnly={readOnly}
-						value={value}
-						defaultValue={defaultValue}
-						name={name}
-						css={{
-							boxSizing: 'border-box',
-							borderTopLeftRadius: 0,
-							borderBottomLeftRadius: 0,
-							...(length > 1 && {
-								borderTopRightRadius: 0,
-								borderBottomRightRadius: 0,
-							}),
-							...overrides.textCSS,
-						}}
+						left={true}
+						right={length > 1}
+						overrides={componentOverrides}
+						css={overrides.subComponent.Text.styles}
+						{...overrides.subComponent.Text.attributes(state)}
 					/>
 				);
 				added = true;
 			} else if (child.type.name === 'Right' && !added) {
 				childrenWithProps.push(
-					<overrides.Text
+					<overrides.subComponent.Text.component
 						key="textinput2"
-						size={size}
-						invalid={invalid}
-						disabled={disabled}
-						readOnly={readOnly}
-						value={value}
-						defaultValue={defaultValue}
-						name={name}
-						css={{
-							boxSizing: 'border-box',
-							borderTopRightRadius: 0,
-							borderBottomRightRadius: 0,
-							...overrides.textCSS,
-						}}
+						left={false}
+						right={true}
+						overrides={componentOverrides}
+						css={overrides.subComponent.Text.styles}
+						{...overrides.subComponent.Text.attributes(state)}
 					/>
 				);
-				childrenWithProps.push(cloneElement(child, { look, size, disabled, key: 'right' }));
+				childrenWithProps.push(
+					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'right' })
+				);
 				added = true;
 			} else {
-				childrenWithProps.push(cloneElement(child, { look, size, disabled, key: 'other' }));
+				childrenWithProps.push(
+					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'other' })
+				);
 			}
 		});
 	}
 
 	return (
-		<div css={{ display: 'flex', ...overrides.css }} {...props}>
+		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
 			{childrenWithProps}
-		</div>
+		</overrides.component>
 	);
 };
 
@@ -186,6 +205,37 @@ InputGroup.propTypes = {
 	 * InputGroup children
 	 */
 	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Text: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Button: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Label: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Select: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
 
 InputGroup.defaultProps = {

@@ -1,9 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
-import { createContext, useContext } from 'react';
+import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
+import { createContext, useContext, isValidElement } from 'react';
 import PropTypes from 'prop-types';
+
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import pkg from '../package.json';
+import { Item } from './Item';
 
 // ==============================
 // Context and Consumer Hook
@@ -13,27 +16,125 @@ const ListContext = createContext();
 export const useListContext = () => useContext(ListContext);
 
 // ==============================
+// Utilities - makeItems
+// ==============================
+
+const makeItems = data => {
+	if (!Array.isArray(data)) {
+		return null;
+	}
+
+	const result = [];
+	for (let i = 0; i < data.length; i++) {
+		const iterator = i;
+		let nested;
+		if (typeof data[iterator + 1] === 'object' && data[iterator + 1].items) {
+			const { items, ...rest } = data[iterator + 1];
+			nested = (
+				<List key={iterator + 1} {...rest}>
+					{makeItems(items)}
+				</List>
+			);
+			i++;
+		}
+		if (Array.isArray(data[iterator + 1])) {
+			nested = <List key={iterator + 1}>{makeItems(data[iterator + 1])}</List>;
+			i++;
+		}
+
+		let item = '';
+		let attributes = {};
+		if (typeof data[iterator] === 'string') {
+			item = data[iterator];
+		} else if (Array.isArray(data[iterator])) {
+			item = <List key={iterator}>{makeItems(data[iterator])}</List>;
+		} else if (typeof data[iterator] === 'object' && data[iterator].items) {
+			const { items, ...rest } = data[iterator];
+			item = (
+				<List key={iterator} {...rest}>
+					{makeItems(items)}
+				</List>
+			);
+		} else if (isValidElement(data[iterator])) {
+			item = data[iterator];
+		} else if (typeof data[iterator] === 'object') {
+			const { text, ...rest } = data[iterator];
+			item = text;
+			attributes = rest;
+		}
+
+		result.push(
+			<Item key={iterator} {...attributes}>
+				{item}
+				{nested && nested}
+			</Item>
+		);
+	}
+
+	return result;
+};
+
+// ==============================
 // Component
 // ==============================
 
-export const List = ({ look, type, spacing, icon, children, ...props }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+export const List = ({
+	look,
+	type,
+	nested,
+	spacing,
+	icon,
+	data,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		css: {},
-		Icon: icon,
-		nestedCSS: {},
+	devWarning(type === 'icon' && !icon, 'The icon prop is required for all type="icon" lists!');
+	devWarning(!children && !data, 'Either children or data is required');
+	devWarning(data && !Array.isArray(data), 'The data prop must be an array');
+
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
 	};
-	merge(overrides, overridesWithTokens);
 
 	const context = useListContext();
-	look = (context && context.look) || look || 'primary';
+	look = look || (context && context.look) || 'primary';
 	type = type || (context && context.type) || 'bullet';
 	spacing = spacing || (context && context.spacing) || 'medium';
-	icon = icon || overrides.Icon || (context && context.icon);
-	const nested = (context && context.nested + 1) || 0;
+	icon = icon || (context && context.icon);
+	if (typeof nested !== 'number') {
+		nested = (context && context.nested + 1) || 0;
+	}
 
-	const ListType = type === 'ordered' ? 'ol' : 'ul';
+	const state = {
+		look,
+		type,
+		nested,
+		spacing,
+		icon,
+		data,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
+
+	if (data) {
+		children = makeItems(data);
+	}
 
 	return (
 		<ListContext.Provider
@@ -43,19 +144,12 @@ export const List = ({ look, type, spacing, icon, children, ...props }) => {
 				spacing,
 				icon,
 				nested,
+				overrides: componentOverrides,
 			}}
 		>
-			<ListType
-				css={{
-					margin: 0,
-					padding: type === 'ordered' ? '0 0 0 1.25rem' : 0,
-					...overrides.css,
-					...(overrides.nestedCSS[nested] ? overrides.nestedCSS[nested] : {}),
-				}}
-				{...props}
-			>
+			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
 				{children}
-			</ListType>
+			</overrides.component>
 		</ListContext.Provider>
 	);
 };
@@ -80,6 +174,11 @@ List.propTypes = {
 	spacing: PropTypes.oneOf(['medium', 'large']),
 
 	/**
+	 * The level of nesting
+	 */
+	nested: PropTypes.number,
+
+	/**
 	 * The icon for list
 	 */
 	icon: PropTypes.func,
@@ -87,5 +186,33 @@ List.propTypes = {
 	/**
 	 * Any renderable child
 	 */
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
+
+	/**
+	 * Data for the crumbs
+	 */
+	data: PropTypes.arrayOf(
+		PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object, PropTypes.array])
+	),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Item: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			Icon: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };

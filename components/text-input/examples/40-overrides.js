@@ -49,23 +49,40 @@ function Example({ brand }) {
 
 			<h2>With overrides and component overrides</h2>
 			<Text
-			// overrides={{
-			// 	subComponent: {
-			// 		Text: {
-			// 			styles: styles => ({ ...styles, backgroundColor: 'red' }),
-			// 		},
-			// 	},
-			// }}
+				overrides={{
+					subComponent: {
+						Text: {
+							styles: styles => ({ ...styles, borderWidth: '3px' }),
+						},
+					},
+				}}
 			/>
 			<br />
-			<Select name="thing">
+			<Select
+				name="thing"
+				overrides={{
+					subComponent: {
+						Select: {
+							styles: styles => ({ ...styles, borderWidth: '3px' }),
+						},
+					},
+				}}
+			>
 				<option>Select</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</Select>
 			<br />
-			<Textarea />
+			<Textarea
+				overrides={{
+					subComponent: {
+						Textarea: {
+							styles: styles => ({ ...styles, borderWidth: '3px' }),
+						},
+					},
+				}}
+			/>
 		</GEL>
 	);
 }

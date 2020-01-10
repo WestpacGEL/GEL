@@ -1,38 +1,51 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useTableContext } from './Table';
+
+import { Tablehead, theadStyles } from './overrides/thead';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Thead = ({ bordered, ...props }) => {
-	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
+export const Thead = ({ bordered, overrides: componentOverrides, ...props }) => {
+	const context = useTableContext();
+	bordered = (context && context.bordered) || bordered;
 
-	const overrides = {
-		theadCSS: {},
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		subComponent: {
+			Thead: {
+				styles: theadStyles,
+				component: Tablehead,
+				attributes: state => state,
+			},
+		},
 	};
-	merge(overrides, overridesWithTokens);
 
-	const { bordered: borderedCtx } = useTableContext();
-	bordered = bordered || borderedCtx;
+	const state = {
+		bordered,
+		overrides: componentOverrides,
+		...props,
+	};
 
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 	return (
-		<thead
-			css={{
-				'th, td': { borderTop: !bordered && 0 },
-				// `th` cells in the `thead`
-				th: {
-					verticalAlign: 'bottom',
-					borderBottom: `${bordered ? '2px' : '3px'} solid ${COLORS.hero}`,
-					color: COLORS.text,
-					...TYPE.bodyFont[700],
-				},
-				...overrides.theadCSS,
-			}}
-			{...props}
+		<overrides.subComponent.Thead.component
+			css={overrides.subComponent.Thead.styles}
+			{...overrides.subComponent.Thead.attributes(state)}
 		/>
 	);
 };
@@ -45,4 +58,17 @@ Thead.propTypes = {
 	 * Whether or not there should border styling
 	 */
 	bordered: PropTypes.bool,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		subComponent: PropTypes.shape({
+			Thead: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
+	}),
 };
