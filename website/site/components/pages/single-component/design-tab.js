@@ -28,13 +28,14 @@ export const DesignTab = ({ description }) => {
 };
 
 const UxRationale = () => {
+	const { SPACING } = useBrand();
 	return (
 		<Row>
 			<Heading tag="h2" size={5}>
 				UX rationale
 			</Heading>
 
-			<Grid>
+			<Grid css={{ marginTop: SPACING(2) }}>
 				<Cell left={3} width={8}>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -50,13 +51,14 @@ const UxRationale = () => {
 };
 
 const VisualDesignRationale = () => {
+	const { SPACING } = useBrand();
 	return (
 		<Row>
 			<Heading tag="h2" size={5}>
 				Visual design rationale
 			</Heading>
 
-			<Grid>
+			<Grid css={{ marginTop: SPACING(2) }}>
 				<Cell left={3} width={8}>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

@@ -4,7 +4,6 @@ import { Cell, Grid } from '@westpac/grid';
 
 // Max width container
 const maxWidth = 760;
-
 export const MaxWidthGrid = props => {
 	const { SPACING } = useBrand();
 	return <Grid css={{ padding: `${SPACING(4)} 0`, maxWidth: maxWidth }} {...props} />;

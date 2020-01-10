@@ -1,51 +1,56 @@
 /** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
-import { useBrandSwitcher } from '../providers/brand-switcher';
-
+import { Fragment } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { jsx, useBrand } from '@westpac/core';
+import { BOMLogo, BSALogo, BTFGLogo, STGLogo, WBCLogo, WBGLogo } from '@westpac/symbol';
+
+import { useBrandSwitcher } from '../providers/brand-switcher';
+
 export const BrandSwitcher = () => {
-	const { brands, setBrand } = useBrandSwitcher();
+	const brandName = useRouter().query.brand || '';
+	const { brands, brand, setBrand } = useBrandSwitcher();
+	const { SPACING, COLORS } = useBrand();
+
+	const logosMap = {
+		BOM: BOMLogo,
+		BSA: BSALogo,
+		BTFG: BTFGLogo,
+		STG: STGLogo,
+		WBC: WBCLogo,
+		WBG: WBGLogo,
+	};
+
+	const Logo = logosMap[brand];
+
 	return (
-		<ul css={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
-			{Object.entries(brands).map((brand, i) => {
-				return <BrandButton key={i} brand={brand} setBrand={setBrand} />;
-			})}
-		</ul>
-	);
-};
-
-const BrandButton = ({ brand: [brandName, brandData], setBrand }) => {
-	const { brand: currentBrandName } = useBrandSwitcher();
-
-	const router = useRouter();
-
-	return (
-		<li>
-			<button
+		<Fragment>
+			<div css={{ height: 40 }}>
+				<Link href={`/?brand=${brandName}`}>
+					<a>
+						<Logo />
+					</a>
+				</Link>
+			</div>
+			<label
 				css={{
-					border: 'none',
-					height: 40,
-					width: 40,
+					display: 'block',
+					textTransform: 'uppercase',
+					color: COLORS.muted,
 					fontSize: 12,
-					backgroundColor: brandName === currentBrandName ? '#cbffc3' : '#f7f7f7',
-					margin: 2,
-					':hover': {
-						backgroundColor: brandName === currentBrandName ? '#b2f7a7' : '#e7e7e7',
-						cursor: 'pointer',
-					},
-				}}
-				onClick={() => {
-					setBrand(brandName);
-					router.push(
-						`${router.route}?brand=${brandName}`,
-						// uggggh no! Must be a better way... 👇
-						`${router.asPath.split('?')[0]}?brand=${brandName}`
-					);
+					letterSpacing: 2,
+					marginTop: SPACING(4),
+					marginBottom: SPACING(1),
 				}}
 			>
-				{brandName}
-			</button>
-		</li>
+				brand switcher
+			</label>
+			<select css={{ width: '100%' }} value={brand} onChange={e => setBrand(e.target.value)}>
+				{Object.entries(brands).map(([brandName, brand], i) => {
+					return <option value={brandName}>{brandName}</option>;
+				})}
+			</select>
+		</Fragment>
 	);
 };
