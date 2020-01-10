@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
 import { Children, cloneElement, createContext, useReducer, useEffect, useContext } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
 
-import { ProgressRopeItem } from './ProgressRopeItem';
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import { ProgressRopeGroup } from './ProgressRopeGroup';
+import { ProgressRopeItem } from './ProgressRopeItem';
 import pkg from '../package.json';
 
 // ==============================
@@ -61,15 +62,34 @@ export const ProgressRope = ({
 	current,
 	data,
 	children,
-	overrides: overridesComponent,
+	overrides: componentOverrides,
 	...props
 }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
-	const overrides = {
-		ropeCSS: {},
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		styles: wrapperStyles,
+		component: Wrapper,
+		attributes: state => state,
 	};
 
-	merge(overrides, overridesWithTokens, overridesComponent);
+	const state = {
+		current,
+		data,
+		overrides: componentOverrides,
+		...props,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 
 	const initialState = {
 		currStep: current,
@@ -95,14 +115,14 @@ export const ProgressRope = ({
 		}
 	};
 
-	const [state, dispatch] = useReducer(progressReducer, initialState);
+	const [progState, dispatch] = useReducer(progressReducer, initialState);
 
 	useEffect(() => {
 		let itemCount = 0;
-		const updatedGraph = state.ropeGraph.map(group => [...group]); // deep copy
+		const updatedGraph = progState.ropeGraph.map(group => [...group]); // deep copy
 
-		if (state.grouped) {
-			state.ropeGraph.forEach((group, i) => {
+		if (progState.grouped) {
+			progState.ropeGraph.forEach((group, i) => {
 				if (current >= itemCount) {
 					itemCount += group.length;
 					if (current < itemCount) {
@@ -124,18 +144,17 @@ export const ProgressRope = ({
 	}, [current]);
 
 	const handleClick = index => {
-		dispatch({ type: 'UPDATE_OPEN_GROUP', payload: index !== state.openGroup ? index : null });
+		dispatch({ type: 'UPDATE_OPEN_GROUP', payload: index !== progState.openGroup ? index : null });
 	};
 
 	let allChildren = [];
 	if (data) {
-		// generate the children here
 		data.forEach(({ type, text, onClick, items }, i) => {
 			if (type && type === 'group') {
 				allChildren.push(
-					<ProgressRopeGroup key={i} index={i} text={text}>
+					<ProgressRopeGroup key={i} index={i} text={text} overrides={componentOverrides}>
 						{items.map((item, index) => (
-							<ProgressRopeItem key={index} onClick={item.onClick}>
+							<ProgressRopeItem key={index} onClick={item.onClick} overrides={componentOverrides}>
 								{item.text}
 							</ProgressRopeItem>
 						))}
@@ -143,7 +162,13 @@ export const ProgressRope = ({
 				);
 			} else {
 				allChildren.push(
-					<ProgressRopeItem key={i} index={i} onClick={onClick} review={type && type === 'review'}>
+					<ProgressRopeItem
+						key={i}
+						index={i}
+						onClick={onClick}
+						review={type && type === 'review'}
+						overrides={componentOverrides}
+					>
 						{text}
 					</ProgressRopeItem>
 				);
@@ -154,19 +179,10 @@ export const ProgressRope = ({
 	}
 
 	return (
-		<ProgressRopeContext.Provider value={{ ...state, handleClick }}>
-			<ol
-				css={{
-					position: 'relative',
-					listStyle: 'none',
-					paddingLeft: 0,
-					margin: 0,
-					...overrides.ropeCSS,
-				}}
-				{...props}
-			>
+		<ProgressRopeContext.Provider value={{ ...progState, handleClick }}>
+			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
 				{allChildren}
-			</ol>
+			</overrides.component>
 		</ProgressRopeContext.Provider>
 	);
 };
@@ -181,10 +197,12 @@ ProgressRope.propTypes = {
 	current: PropTypes.number.isRequired,
 
 	/**
-	 * ProgressRope overrides
+	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		ropeCSS: PropTypes.object,
+		styles: PropTypes.func,
+		component: PropTypes.elementType,
+		attributes: PropTypes.object,
 	}),
 };
 

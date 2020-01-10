@@ -4,11 +4,9 @@ import { GEL, jsx } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { ProgressRope, Group, Item } from '@westpac/progress-rope';
-import { useProgress, Link } from './_utils';
+import { useProgress, Wrapper } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
-const Wrapper = props => <div css={{ width: '60%' }} {...props} />;
 
 function Example({ brand }) {
 	const [state, dispatch] = useProgress();

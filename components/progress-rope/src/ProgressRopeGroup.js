@@ -1,93 +1,84 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+
+import { GroupItems, groupItemsStyles } from './overrides/groupItems';
+import { GroupText, groupTextStyles } from './overrides/groupText';
+import { Group, groupStyles } from './overrides/group';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
 export const ProgressRopeGroup = ({
 	index,
 	text,
-	overrides: overridesComponent,
+	overrides: componentOverrides,
 	children,
 	...props
 }) => {
 	const { openGroup, ropeGraph, handleClick } = useProgressRopeContext();
-	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 	const active = ropeGraph[index].includes('visited');
 
-	const overrides = {
-		ropeGroupCSS: {},
-		ropeGroupLabelCSS: {},
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		subComponent: {
+			Group: {
+				styles: groupStyles,
+				component: Group,
+				attributes: state => state,
+			},
+			GroupText: {
+				styles: groupTextStyles,
+				component: GroupText,
+				attributes: state => state,
+			},
+			GroupItems: {
+				styles: groupItemsStyles,
+				component: GroupItems,
+				attributes: state => state,
+			},
+		},
 	};
 
-	merge(overrides, overridesWithTokens, overridesComponent);
+	const state = {
+		text,
+		active,
+		overrides: componentOverrides,
+		...props,
+	};
 
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		state
+	);
 	return (
-		<li {...props}>
-			<button
-				css={{
-					position: 'relative',
-					padding: '0.375rem 3.5rem 1.625rem 1.875rem',
-					fontSize: '1rem',
-					display: 'flex',
-					alignItems: 'center',
-					border: 'none',
-					background: 'none',
-					touchAction: 'manipulation',
-					cursor: 'pointer',
-					color: active ? COLORS.neutral : COLORS.tints.muted70,
-					width: '100%',
-					...TYPE.bodyFont[700],
-
-					// the line
-					'::before': {
-						content: "''",
-						display: 'block',
-						position: 'absolute',
-						borderLeft: `2px solid ${active ? COLORS.primary : COLORS.border}`,
-						top: 0,
-						right: '2.25rem',
-						bottom: 0,
-						height: 'auto',
-						transform: 'translateY(0.625rem)',
-					},
-
-					// the circle
-					':after': {
-						content: "''",
-						zIndex: 1,
-						display: 'block',
-						borderRadius: '50%',
-						position: 'absolute',
-						top: '0.625rem',
-						width: '0.875rem',
-						height: '0.875rem',
-						right: '1.875rem',
-						border: `2px solid ${active ? COLORS.primary : COLORS.border}`,
-						backgroundColor: '#fff',
-						boxSizing: 'border-box',
-					},
-					...overrides.ropeGroupLabelCSS,
-				}}
+		<overrides.subComponent.Group.component
+			css={overrides.subComponent.Group.styles}
+			{...overrides.subComponent.Group.attributes(state)}
+		>
+			<overrides.subComponent.GroupText.component
 				onClick={() => handleClick(index)}
+				css={overrides.subComponent.GroupText.styles}
+				{...overrides.subComponent.GroupText.attributes(state)}
 			>
 				{text}
-			</button>
-			<ol
-				css={{
-					position: 'relative',
-					listStyle: 'none',
-					paddingLeft: 0,
-					margin: 0,
-					...overrides.ropeGroupCSS,
-				}}
+			</overrides.subComponent.GroupText.component>
+			<overrides.subComponent.GroupItems.component
 				hidden={openGroup === null || index !== openGroup}
+				css={overrides.subComponent.GroupItems.styles}
+				{...overrides.subComponent.GroupItems.attributes(state)}
 			>
 				{Children.map(children, (child, i) => cloneElement(child, { index: i, groupIndex: index }))}
-			</ol>
-		</li>
+			</overrides.subComponent.GroupItems.component>
+		</overrides.subComponent.Group.component>
 	);
 };
 
@@ -101,10 +92,25 @@ ProgressRopeGroup.propTypes = {
 	text: PropTypes.string.isRequired,
 
 	/**
-	 * ProgressRopeGroup overrides
+	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		ropeGroupCSS: PropTypes.object,
-		ropeGroupLabelCSS: PropTypes.object,
+		subComponent: PropTypes.shape({
+			Group: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			GroupText: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+			GroupItems: PropTypes.shape({
+				styles: PropTypes.func,
+				component: PropTypes.elementType,
+				attributes: PropTypes.object,
+			}),
+		}),
 	}),
 };
