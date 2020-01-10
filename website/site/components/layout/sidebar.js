@@ -8,14 +8,26 @@ import { Navigation } from '.';
 
 export const Sidebar = ({ components }) => {
 	return (
-		<Wrapper>
-			<BrandSwitcher />
-			<Navigation components={components} />
-		</Wrapper>
+		<Fragment>
+			<Padding>
+				<BrandSwitcher />
+			</Padding>
+			<Separator />
+			<Padding>
+				<Navigation components={components} />
+			</Padding>
+		</Fragment>
 	);
 };
 
-const Wrapper = props => {
+const Padding = props => {
 	const { SPACING } = useBrand();
 	return <div css={{ padding: SPACING(2) }} {...props} />;
+};
+
+const Separator = () => {
+	const { COLORS, SPACING } = useBrand();
+	return (
+		<hr css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, marginTop: SPACING(3) }} />
+	);
 };

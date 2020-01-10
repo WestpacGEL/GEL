@@ -13,7 +13,7 @@ export const Navigation = ({ components }) => {
 	const { SPACING } = useBrand();
 	return (
 		<Fragment>
-			<Heading tag="h2" size={6} css={{ marginTop: SPACING(2) }}>
+			<Heading tag="h2" size={6} css={{ marginTop: SPACING(1) }}>
 				GEL
 			</Heading>
 

@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 
-import { GEL, jsx } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 
 import { BrandPicker } from '../brand-picker';
 import { Footer, Normalize, Sidebar } from './';
@@ -70,22 +70,25 @@ const GridContainer = props => {
 				width: '100vw',
 				height: '100vh',
 				gridTemplateColumns: '270px auto',
-				gridColumnGap: 20,
 			}}
 			{...props}
 		/>
 	);
 };
 
-const SidebarContainer = props => (
-	<div
-		css={{
-			gridColumnStart: 1,
-			gridColumnEnd: 2,
-		}}
-		{...props}
-	/>
-);
+const SidebarContainer = props => {
+	const { COLORS } = useBrand();
+	return (
+		<div
+			css={{
+				gridColumnStart: 1,
+				gridColumnEnd: 2,
+				boxShadow: `1px 0 1px ${COLORS.border}`,
+			}}
+			{...props}
+		/>
+	);
+};
 
 const MainContainer = props => (
 	<div
