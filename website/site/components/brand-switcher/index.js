@@ -1,1 +1,1 @@
-export { default } from './brand-switcher';
+export { BrandSwitcher } from './brand-switcher';

@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Nav from '../nav';
-import BrandSwitcher from '../brand-switcher';
+
+import { BrandSwitcher } from '../brand-switcher';
+import { Navigation } from '.';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 
-const Sidebar = ({ components }) => {
+export const Sidebar = ({ components }) => {
 	const brandName = useRouter().query.brand || '';
 	const { brand } = useBrandSwitcher();
 	return (
@@ -14,9 +15,7 @@ const Sidebar = ({ components }) => {
 				<a>{brand} logo</a>
 			</Link>
 			<BrandSwitcher />
-			<Nav components={components} />
+			<Navigation components={components} />
 		</div>
 	);
 };
-
-export default Sidebar;

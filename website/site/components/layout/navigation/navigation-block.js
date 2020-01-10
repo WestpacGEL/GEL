@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { useState } from 'react';
+
 import { jsx, useBrand } from '@westpac/core';
 
-const NavBlock = ({ title, children }) => {
+export const NavigationBlock = ({ title, children }) => {
 	const { SPACING } = useBrand();
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -19,5 +20,3 @@ const NavBlock = ({ title, children }) => {
 		</div>
 	);
 };
-
-export default NavBlock;

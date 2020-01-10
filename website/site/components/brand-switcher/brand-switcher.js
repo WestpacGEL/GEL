@@ -4,7 +4,7 @@ import { useBrandSwitcher } from '../providers/brand-switcher';
 
 import { useRouter } from 'next/router';
 
-const BrandSwitcher = () => {
+export const BrandSwitcher = () => {
 	const { brands, setBrand } = useBrandSwitcher();
 	return (
 		<ul css={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
@@ -49,5 +49,3 @@ const BrandButton = ({ brand: [brandName, brandData], setBrand }) => {
 		</li>
 	);
 };
-
-export default BrandSwitcher;

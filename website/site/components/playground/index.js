@@ -7,7 +7,7 @@ function renderCode(code) {
 	return jsxString(code, { maxInlineAttributesLineLength: 100, showFunctions: true });
 }
 
-const Playground = ({ children, scope, theme = {} }) => (
+export const Playground = ({ children, scope, theme = {} }) => (
 	<LiveProvider code={renderCode(children)} scope={scope}>
 		<LivePreview css={theme.preview} />
 		<div>
@@ -16,5 +16,3 @@ const Playground = ({ children, scope, theme = {} }) => (
 		<LiveEditor css={theme.editor} />
 	</LiveProvider>
 );
-
-export { Playground };

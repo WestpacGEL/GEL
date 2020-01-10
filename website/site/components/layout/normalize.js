@@ -1,7 +1,7 @@
 import React from 'react';
 import { css, Global, useFonts } from '@westpac/core';
 
-const Normalize = () => {
+export const Normalize = () => {
 	return (
 		<Global
 			styles={[
@@ -180,5 +180,3 @@ const Normalize = () => {
 		/>
 	);
 };
-
-export default Normalize;

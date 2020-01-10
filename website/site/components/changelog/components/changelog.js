@@ -1,12 +1,13 @@
 /** @jsx jsx */
-import React, { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+
 import { jsx } from '@westpac/core';
 import { Text } from '@westpac/text-input';
 
-import LogList from './log-list';
+import { LogList } from './log-list';
 
-function Changelog({ data }) {
-	const [range, updateRange] = React.useState('');
+export const Changelog = ({ data }) => {
+	const [range, updateRange] = useState('');
 
 	const handleChange = event => {
 		updateRange(event.target.value);
@@ -24,6 +25,4 @@ function Changelog({ data }) {
 			<LogList changelog={data} range={range} />
 		</Fragment>
 	);
-}
-
-export default Changelog;
+};

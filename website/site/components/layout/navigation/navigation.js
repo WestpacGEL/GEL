@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import NavBlock from './nav-block';
+import { jsx } from '@westpac/core';
+
+import { NavigationBlock } from './navigation-block';
 
 function LinkItem({ name, href, as }) {
 	const brandName = useRouter().query.brand || '';
@@ -16,7 +17,7 @@ function LinkItem({ name, href, as }) {
 	);
 }
 
-const Nav = ({ components }) => {
+export const Navigation = ({ components }) => {
 	const brandName = useRouter().query.brand || '';
 	return (
 		<div>
@@ -25,11 +26,11 @@ const Nav = ({ components }) => {
 			<ul>
 				<LinkItem name="Home" as="/" href={`/?brand=${brandName}`} />
 				<LinkItem name="Accessibility" as="/" href="/" />
-				<LinkItem name="Design tokens" as="/" href="/" />
+				<LinkItem name="Design tokens" as="/tokens" href="/tokens" />
 				<LinkItem name="Downloads" as="/" href="/" />
 
 				<li>
-					<NavBlock title="Foundation">
+					<NavigationBlock title="Foundation">
 						<ul>
 							<LinkItem name="Color" href="/" as="/" />
 							<LinkItem name="Grid" href="/" as="/" />
@@ -38,10 +39,10 @@ const Nav = ({ components }) => {
 							<LinkItem name="Spacing" href="/" as="/" />
 							<LinkItem name="Typography" href="/" as="/" />
 						</ul>
-					</NavBlock>
+					</NavigationBlock>
 				</li>
 				<li>
-					<NavBlock title="Components">
+					<NavigationBlock title="Components">
 						<ul>
 							{components.map(component => (
 								<LinkItem
@@ -52,11 +53,9 @@ const Nav = ({ components }) => {
 								/>
 							))}
 						</ul>
-					</NavBlock>
+					</NavigationBlock>
 				</li>
 			</ul>
 		</div>
 	);
 };
-
-export default Nav;

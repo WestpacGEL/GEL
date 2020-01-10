@@ -3,9 +3,8 @@ import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import cookie from 'cookie';
 
-import BrandPicker from '../components/brand-picker';
+import { Layout as DefaultLayout } from '../components/layout';
 import withApollo from '../lib/withApollo';
-import DefaultLayout from '../components/layout';
 
 class MyApp extends App {
 	static async getInitialProps({ router, ctx: { req, res } }) {

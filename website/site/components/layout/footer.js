@@ -2,7 +2,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
 
-const Footer = () => {
+export const Footer = () => {
 	const { COLORS, SPACING } = useBrand();
 	return (
 		<div css={{ marginTop: SPACING(4), borderTop: `solid 1px ${COLORS.border}` }}>
@@ -27,5 +27,3 @@ const FooterIcon = ({ icon: Icon, href }) => {
 		</a>
 	);
 };
-
-export default Footer;

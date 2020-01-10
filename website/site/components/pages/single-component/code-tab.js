@@ -3,10 +3,10 @@ import { jsx, useBrand } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 
-import ChangelogWrapper from '../../changelog';
+import { Changelog } from '../../changelog';
 import { PageLinks } from './page-links';
 import { Playground } from '../../playground';
-// import ReactLive from '../../components/react-live';
+// import { ReactLive } from '../../components/react-live';
 
 export const CodeTab = ({ dataComponent: DataComponent }) => {
 	const { SPACING, PACKS } = useBrand();
@@ -35,7 +35,7 @@ export const CodeTab = ({ dataComponent: DataComponent }) => {
 				Changelog
 			</Heading>
 			<p>// TODO: changelog</p>
-			{/*<ChangelogWrapper data={changelog}></ChangelogWrapper>*/}
+			{/*<Changelog data={changelog}></Changelog>*/}
 		</div>
 	);
 };

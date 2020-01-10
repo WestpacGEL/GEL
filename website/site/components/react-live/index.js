@@ -1,1 +1,1 @@
-export { default } from './react-live';
+export { ReactLive } from './react-live';

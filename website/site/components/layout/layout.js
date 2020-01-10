@@ -4,14 +4,12 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { GEL, jsx } from '@westpac/core';
 
-import BrandPicker from '../brand-picker';
-import Footer from '../footer';
-import Normalize from './normalize';
-import Sidebar from '../sidebar';
+import { BrandPicker } from '../brand-picker';
+import { Footer, Normalize, Sidebar } from './';
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
 import { ALL_COMPONENTS } from '../../../graphql';
 
-const Layout = ({ components, children }) => (
+const LayoutView = ({ components, children }) => (
 	<GridContainer>
 		<SidebarContainer>
 			<Sidebar components={components} />
@@ -27,7 +25,7 @@ const Layout = ({ components, children }) => (
   Wrapper with logic
 */
 
-const LayoutWrapper = props => {
+const Wrapper = props => {
 	const router = useRouter();
 	const brandParam = router.query.brand || '';
 
@@ -53,7 +51,7 @@ const LayoutWrapper = props => {
 	return (
 		<GEL brand={brands[brand]}>
 			<Normalize />
-			<Layout components={components} {...props} />
+			<LayoutView components={components} {...props} />
 		</GEL>
 	);
 };
@@ -100,10 +98,8 @@ const MainContainer = props => (
 	/>
 );
 
-const MainWrapper = props => (
+export const Layout = props => (
 	<BrandSwitcherProvider>
-		<LayoutWrapper {...props} />
+		<Wrapper {...props} />
 	</BrandSwitcherProvider>
 );
-
-export default MainWrapper;

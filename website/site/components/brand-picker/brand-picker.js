@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 
-const BrandPicker = () => {
+export const BrandPicker = () => {
 	const { brands, brand, setBrand } = useBrandSwitcher();
 	const router = useRouter();
 
@@ -30,5 +30,3 @@ const BrandPicker = () => {
 		</div>
 	);
 };
-
-export default BrandPicker;
