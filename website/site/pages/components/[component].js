@@ -7,7 +7,12 @@ import { useRouter } from 'next/router';
 import { jsx, useBrand } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
-import { AccessibilityTab, CodeTab, DesignTab, PageHeader } from '../../components/component-view';
+import {
+	AccessibilityTab,
+	CodeTab,
+	DesignTab,
+	PageHeader,
+} from '../../components/pages/single-component';
 import { ALL_COMPONENTS } from '../../../graphql';
 
 const ComponentWrapper = () => {

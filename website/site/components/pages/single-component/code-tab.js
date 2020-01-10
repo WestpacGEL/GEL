@@ -3,9 +3,9 @@ import { jsx, useBrand } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 
-import ChangelogWrapper from '../../components/changelog';
+import ChangelogWrapper from '../../changelog';
 import { PageLinks } from './page-links';
-import { Playground } from '../../components/playground';
+import { Playground } from '../../playground';
 // import ReactLive from '../../components/react-live';
 
 export const CodeTab = ({ dataComponent: DataComponent }) => {
