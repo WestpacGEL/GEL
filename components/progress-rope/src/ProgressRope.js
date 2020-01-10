@@ -3,6 +3,8 @@
 import { Children, cloneElement, createContext, useReducer, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, merge } from '@westpac/core';
+
+import { ProgressRopeItem } from './ProgressRopeItem';
 import { ProgressRopeGroup } from './ProgressRopeGroup';
 import pkg from '../package.json';
 
@@ -24,24 +26,44 @@ export const useProgressRopeContext = () => {
 // ==============================
 // Utils
 // ==============================
-const createRopeGraph = children => {
+const createRopeGraph = (data, children) => {
 	const ropeGraph = [];
 	let grouped = false;
-	Children.forEach(children, child => {
-		if (child.type === ProgressRopeGroup) {
-			grouped = true;
-			ropeGraph.push(Array(Children.count(child.props.children)).fill('unvisited'));
-		} else {
-			ropeGraph.push(['unvisited']);
-		}
-	});
+
+	if (data) {
+		// generate graph from data
+		data.forEach(progress => {
+			if (progress.type && progress.type === 'group') {
+				grouped = true;
+				ropeGraph.push(Array(progress.items.length).fill('unvisited'));
+			} else {
+				ropeGraph.push(['unvisited']);
+			}
+		});
+	} else {
+		Children.forEach(children, child => {
+			if (child.type === ProgressRopeGroup) {
+				grouped = true;
+				ropeGraph.push(Array(Children.count(child.props.children)).fill('unvisited'));
+			} else {
+				ropeGraph.push(['unvisited']);
+			}
+		});
+	}
+
 	return { ropeGraph, grouped };
 };
 
 // ==============================
 // Component
 // ==============================
-export const ProgressRope = ({ current, overrides: overridesComponent, children, ...props }) => {
+export const ProgressRope = ({
+	current,
+	data,
+	children,
+	overrides: overridesComponent,
+	...props
+}) => {
 	const { [pkg.name]: overridesWithTokens } = useBrand();
 	const overrides = {
 		ropeCSS: {},
@@ -53,7 +75,7 @@ export const ProgressRope = ({ current, overrides: overridesComponent, children,
 		currStep: current,
 		currGroup: 0,
 		openGroup: 0,
-		...createRopeGraph(children),
+		...createRopeGraph(data, children),
 	};
 
 	const progressReducer = (state, action) => {
@@ -105,6 +127,32 @@ export const ProgressRope = ({ current, overrides: overridesComponent, children,
 		dispatch({ type: 'UPDATE_OPEN_GROUP', payload: index !== state.openGroup ? index : null });
 	};
 
+	let allChildren = [];
+	if (data) {
+		// generate the children here
+		data.forEach(({ type, text, onClick, items }, i) => {
+			if (type && type === 'group') {
+				allChildren.push(
+					<ProgressRopeGroup key={i} index={i} text={text}>
+						{items.map((item, index) => (
+							<ProgressRopeItem key={index} onClick={item.onClick}>
+								{item.text}
+							</ProgressRopeItem>
+						))}
+					</ProgressRopeGroup>
+				);
+			} else {
+				allChildren.push(
+					<ProgressRopeItem key={i} index={i} onClick={onClick} review={type && type === 'review'}>
+						{text}
+					</ProgressRopeItem>
+				);
+			}
+		});
+	} else {
+		allChildren = Children.map(children, (child, i) => cloneElement(child, { index: i }));
+	}
+
 	return (
 		<ProgressRopeContext.Provider value={{ ...state, handleClick }}>
 			<ol
@@ -117,7 +165,7 @@ export const ProgressRope = ({ current, overrides: overridesComponent, children,
 				}}
 				{...props}
 			>
-				{Children.map(children, (child, i) => cloneElement(child, { index: i }))}
+				{allChildren}
 			</ol>
 		</ProgressRopeContext.Provider>
 	);
