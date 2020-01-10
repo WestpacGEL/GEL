@@ -26,6 +26,7 @@
 		"@babel/runtime": "^7.6.2",
 		"@westpac/button": "^0.0.1",
 		"@westpac/core": "^0.0.1",
+		"@westpac/hooks": "^0.0.1",
 		"@westpac/icon": "^0.0.1",
 		"prop-types": "^15.7.2",
 		"react-focus-lock": "^2.2.1",
