@@ -1,27 +1,21 @@
 /** @jsx jsx */
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
+import { Heading } from '@westpac/heading';
 
 import { NavigationBlock } from './navigation-block';
 
-function LinkItem({ name, href, as }) {
-	const brandName = useRouter().query.brand || '';
-	return (
-		<li>
-			<Link href={`${href}?brand=${brandName}`} as={`${as}?brand=${brandName}`}>
-				<a>{name}</a>
-			</Link>
-		</li>
-	);
-}
-
 export const Navigation = ({ components }) => {
 	const brandName = useRouter().query.brand || '';
+	const { SPACING } = useBrand();
 	return (
-		<div>
-			<h2>GEL</h2>
+		<Fragment>
+			<Heading tag="h2" size={6} css={{ marginTop: SPACING(2) }}>
+				GEL
+			</Heading>
 
 			<ul>
 				<LinkItem name="Home" as="/" href={`/?brand=${brandName}`} />
@@ -29,18 +23,23 @@ export const Navigation = ({ components }) => {
 				<LinkItem name="Design tokens" as="/tokens" href="/tokens" />
 				<LinkItem name="Downloads" as="/" href="/" />
 
-				<li>
-					<NavigationBlock title="Foundation">
-						<ul>
-							<LinkItem name="Color" href="/" as="/" />
-							<LinkItem name="Grid" href="/" as="/" />
-							<LinkItem name="Icons" href="/" as="/" />
-							<LinkItem name="Logos" href="/" as="/" />
-							<LinkItem name="Spacing" href="/" as="/" />
-							<LinkItem name="Typography" href="/" as="/" />
-						</ul>
-					</NavigationBlock>
-				</li>
+				<NavigationBlock title="Foundation" tag="li">
+					<ul>
+						<LinkItem name="Color" href="/" as="/" />
+						<LinkItem name="Grid" href="/" as="/" />
+						<LinkItem name="Icons" href="/" as="/" />
+						<LinkItem name="Logos" href="/" as="/" />
+						<LinkItem name="Spacing" href="/" as="/" />
+						<NavigationBlock title="Typogrpahy" tag="li">
+							<ul>
+								<LinkItem name="Spacing" href="/" as="/" />
+								<LinkItem name="Spacing" href="/" as="/" />
+								<LinkItem name="Spacing" href="/" as="/" />
+							</ul>
+						</NavigationBlock>
+					</ul>
+				</NavigationBlock>
+
 				<li>
 					<NavigationBlock title="Components">
 						<ul>
@@ -56,6 +55,18 @@ export const Navigation = ({ components }) => {
 					</NavigationBlock>
 				</li>
 			</ul>
-		</div>
+		</Fragment>
+	);
+};
+
+const LinkItem = ({ name, href, as, tag: Tag = 'li', children }) => {
+	const brandName = useRouter().query.brand || '';
+	return (
+		<Tag>
+			<Link href={`${href}?brand=${brandName}`} as={`${as}?brand=${brandName}`}>
+				<a>{name}</a>
+			</Link>
+			{children}
+		</Tag>
 	);
 };

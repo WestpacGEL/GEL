@@ -26,7 +26,7 @@ export const BrandSwitcher = () => {
 
 	return (
 		<Fragment>
-			<div css={{ height: 40 }}>
+			<div css={{ height: 35 }}>
 				<Link href={`/?brand=${brandName}`}>
 					<a>
 						<Logo />
