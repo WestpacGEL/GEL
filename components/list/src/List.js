@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler, devWarning } from '@westpac/core';
 import { createContext, useContext, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { List as ListWrapper, listStyles } from './overrides/list';
 import pkg from '../package.json';
 import { Item } from './Item';
 
@@ -100,9 +100,11 @@ export const List = ({
 	devWarning(data && !Array.isArray(data), 'The data prop must be an array');
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		List: {
+			styles: listStyles,
+			component: ListWrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const context = useListContext();
@@ -129,8 +131,7 @@ export const List = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	if (data) {
@@ -148,13 +149,13 @@ export const List = ({
 				overrides: componentOverrides,
 			}}
 		>
-			<overrides.component
+			<overrides.List.component
 				className={className}
-				{...overrides.attributes(state)}
-				css={overrides.styles}
+				{...overrides.List.attributes(state)}
+				css={overrides.List.styles(state)}
 			>
 				{children}
-			</overrides.component>
+			</overrides.List.component>
 		</ListContext.Provider>
 	);
 };
@@ -204,20 +205,20 @@ List.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Item: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Icon: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		List: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

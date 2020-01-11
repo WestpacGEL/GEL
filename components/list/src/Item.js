@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Item as ItemWrapper, itemStyles } from './overrides/item';
@@ -19,17 +19,15 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Item: {
-				styles: itemStyles,
-				component: ItemWrapper,
-				attributes: state => state,
-			},
-			Icon: {
-				styles: iconStyles,
-				component: IconWrapper,
-				attributes: state => state,
-			},
+		Item: {
+			styles: itemStyles,
+			component: ItemWrapper,
+			attributes: (_, a) => a,
+		},
+		Icon: {
+			styles: iconStyles,
+			component: IconWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -62,25 +60,24 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Item.component
-			{...overrides.subComponent.Item.attributes(state)}
-			css={overrides.subComponent.Item.styles}
+		<overrides.Item.component
+			{...overrides.Item.attributes(state)}
+			css={overrides.Item.styles(state)}
 		>
 			{type === 'icon' && icon && (
-				<overrides.subComponent.Icon.component
+				<overrides.Icon.component
 					size="small"
 					color={COLORS.muted}
-					{...overrides.subComponent.Icon.attributes(state)}
-					css={overrides.subComponent.Icon.styles}
+					{...overrides.Icon.attributes(state)}
+					css={overrides.Icon.styles(state)}
 				/>
 			)}
 			{children}
-		</overrides.subComponent.Item.component>
+		</overrides.Item.component>
 	);
 };
 
@@ -122,17 +119,15 @@ Item.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Item: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Icon: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
