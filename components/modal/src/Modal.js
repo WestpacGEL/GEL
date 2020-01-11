@@ -1,11 +1,6 @@
 /** @jsx jsx */
 
-import {
-	jsx,
-	useBrand,
-	overrideReconciler2 as overrideReconciler,
-	useInstanceId,
-} from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import { createContext, useContext, useState, useEffect, useRef, forwardRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useOutsideClick } from '@westpac/hooks';

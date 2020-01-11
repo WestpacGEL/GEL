@@ -1,11 +1,6 @@
 /** @jsx jsx */
 
-import {
-	jsx,
-	useBrand,
-	overrideReconciler2 as overrideReconciler,
-	useInstanceId,
-} from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import { useState, useEffect, useRef, cloneElement } from 'react';
 import { CloseIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';

@@ -3,7 +3,7 @@
 import {
 	jsx,
 	useBrand,
-	overrideReconciler2 as overrideReconciler,
+	overrideReconciler,
 	wrapHandlers,
 	devWarning,
 	asArray,

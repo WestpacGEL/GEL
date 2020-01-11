@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler2 as overrideReconciler, GEL } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, GEL } from '@westpac/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 

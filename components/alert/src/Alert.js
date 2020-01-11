@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { CSSTransition } from 'react-transition-group';
 import { CloseIcon } from '@westpac/icon';
 import React, { useState } from 'react';

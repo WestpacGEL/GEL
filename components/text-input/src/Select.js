@@ -1,11 +1,6 @@
 /** @jsx jsx */
 
-import {
-	jsx,
-	useBrand,
-	useMediaQuery,
-	overrideReconciler2 as overrideReconciler,
-} from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, overrideReconciler } from '@westpac/core';
 import { SelectComponent, selectStyles } from './overrides/select';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';

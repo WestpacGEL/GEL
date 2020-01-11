@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler2 as overrideReconciler, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Body, bodyStyles } from './overrides/body';

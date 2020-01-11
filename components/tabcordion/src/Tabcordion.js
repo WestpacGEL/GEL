@@ -1,11 +1,6 @@
 /** @jsx jsx */
 
-import {
-	jsx,
-	useBrand,
-	overrideReconciler2 as overrideReconciler,
-	useInstanceId,
-} from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import React, { Children, useEffect, useRef, useState, createRef } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
