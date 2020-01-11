@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { SkipLinkWrapper, skipLinkStyles } from './overrides/skipLink';
@@ -17,12 +17,10 @@ export const SkipLink = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			SkipLink: {
-				styles: skipLinkStyles,
-				component: SkipLinkWrapper,
-				attributes: state => state,
-			},
+		SkipLink: {
+			styles: skipLinkStyles,
+			component: SkipLinkWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -35,14 +33,13 @@ export const SkipLink = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.SkipLink.component
-			{...overrides.subComponent.SkipLink.attributes(state)}
-			css={overrides.subComponent.SkipLink.styles}
+		<overrides.SkipLink.component
+			{...overrides.SkipLink.attributes(state)}
+			css={overrides.SkipLink.styles(state)}
 		/>
 	);
 };
@@ -66,12 +63,10 @@ SkipLink.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			SkipLink: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		SkipLink: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { VisuallyHiddenWrapper, visuallyHiddenStyles } from './overrides/visuallyHidden';
@@ -22,12 +22,10 @@ export const VisuallyHidden = ({ overrides: componentOverrides, tag: Tag, ...res
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			VisuallyHidden: {
-				styles: visuallyHiddenStyles,
-				component: VisuallyHiddenWrapper,
-				attributes: state => state,
-			},
+		VisuallyHidden: {
+			styles: visuallyHiddenStyles,
+			component: VisuallyHiddenWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -41,14 +39,13 @@ export const VisuallyHidden = ({ overrides: componentOverrides, tag: Tag, ...res
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.VisuallyHidden.component
-			{...overrides.subComponent.VisuallyHidden.attributes(state)}
-			css={overrides.subComponent.VisuallyHidden.styles}
+		<overrides.VisuallyHidden.component
+			{...overrides.VisuallyHidden.attributes(state)}
+			css={overrides.VisuallyHidden.styles}
 		/>
 	);
 };
@@ -72,12 +69,10 @@ VisuallyHidden.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			VisuallyHidden: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		VisuallyHidden: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };
