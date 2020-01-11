@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Grid, Cell } from '@westpac/grid';
-import { Button } from '@westpac/button';
 import { ProgressRope, Item } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';
+import { Grid, Cell } from '@westpac/grid';
+import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -24,41 +24,27 @@ function Example({ brand }) {
 
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-rope'] = {
-		subComponent: {
-			Item: {
-				styles: (styles, { grouped, review, visited, furthest }) => ({
-					...styles,
+		Item: {
+			styles: (styles, { grouped, review, visited, furthest }) => ({
+				...styles,
 
-					'::before': {
-						...styles['::before'],
-						borderLeft: `2px solid ${visited && !furthest ? 'navy' : 'cornflowerblue'}`,
-					},
+				'::before': {
+					...styles['::before'],
+					borderLeft: `2px solid ${visited && !furthest ? 'navy' : 'cornflowerblue'}`,
+				},
 
-					'::after': {
-						...styles['::after'],
-						border: `2px solid ${visited ? 'navy' : 'cornflowerblue'}`,
-						backgroundColor: grouped || review ? (visited ? 'navy' : 'cornflowerblue') : '#fff',
-					},
-				}),
-			},
-			ItemText: {
-				styles: (styles, { active, visited }) => ({
-					...styles,
-					color: active ? 'navy' : visited ? 'black' : 'cornflowerblue',
-				}),
-			},
+				'::after': {
+					...styles['::after'],
+					border: `2px solid ${visited ? 'navy' : 'cornflowerblue'}`,
+					backgroundColor: grouped || review ? (visited ? 'navy' : 'cornflowerblue') : '#fff',
+				},
+			}),
 		},
-		ropeCSS: {
-			border: '1px solid black',
-		},
-		ropeGroupCSS: {
-			backgroundColor: 'lavender',
-		},
-		ropeGroupLabelCSS: {
-			color: 'palevioletred',
-		},
-		ropeItemCSS: {
-			textDecoration: 'underline',
+		ItemText: {
+			styles: (styles, { active, visited }) => ({
+				...styles,
+				color: active ? 'navy' : visited ? 'black' : 'cornflowerblue',
+			}),
 		},
 	};
 
@@ -121,45 +107,43 @@ function Example({ brand }) {
 								{ type: 'review', text: 'Review and Submit', onClick: handleClick2(7) },
 							]}
 							overrides={{
-								subComponent: {
-									GroupText: {
-										styles: (styles, { active }) => ({
-											...styles,
+								GroupText: {
+									styles: (styles, { active }) => ({
+										...styles,
 
-											'::before': {
-												...styles['::before'],
-												borderLeft: `2px solid ${active ? 'darkmagenta' : 'plum'}`,
-											},
+										'::before': {
+											...styles['::before'],
+											borderLeft: `2px solid ${active ? 'darkmagenta' : 'plum'}`,
+										},
 
-											'::after': {
-												...styles['::after'],
-												border: `2px solid ${active ? 'darkmagenta' : 'plum'}`,
-											},
-										}),
-									},
-									Item: {
-										styles: (styles, { grouped, review, visited, furthest }) => ({
-											...styles,
+										'::after': {
+											...styles['::after'],
+											border: `2px solid ${active ? 'darkmagenta' : 'plum'}`,
+										},
+									}),
+								},
+								Item: {
+									styles: (styles, { grouped, review, visited, furthest }) => ({
+										...styles,
 
-											'::before': {
-												...styles['::before'],
-												borderLeft: `2px solid ${visited && !furthest ? 'darkmagenta' : 'plum'}`,
-											},
+										'::before': {
+											...styles['::before'],
+											borderLeft: `2px solid ${visited && !furthest ? 'darkmagenta' : 'plum'}`,
+										},
 
-											'::after': {
-												...styles['::after'],
-												border: `2px solid ${visited ? 'darkmagenta' : 'plum'}`,
-												backgroundColor:
-													grouped || review ? (visited ? 'darkmagenta' : 'plum') : '#fff',
-											},
-										}),
-									},
-									ItemText: {
-										styles: (styles, { active, visited }) => ({
-											...styles,
-											color: active ? 'darkmagenta' : visited ? 'black' : 'plum',
-										}),
-									},
+										'::after': {
+											...styles['::after'],
+											border: `2px solid ${visited ? 'darkmagenta' : 'plum'}`,
+											backgroundColor:
+												grouped || review ? (visited ? 'darkmagenta' : 'plum') : '#fff',
+										},
+									}),
+								},
+								ItemText: {
+									styles: (styles, { active, visited }) => ({
+										...styles,
+										color: active ? 'darkmagenta' : visited ? 'black' : 'plum',
+									}),
 								},
 							}}
 						/>
@@ -171,49 +155,6 @@ function Example({ brand }) {
 					<Button onClick={() => dispatch2({ type: 'prev' })}>prev</Button>{' '}
 					<Button onClick={() => dispatch2({ type: 'next' })}>next</Button>
 				</Cell>
-				{/* <Cell width={6}>
-					<h2>With overrides and component overrides + data driven</h2>
-					<Wrapper>
-						<ProgressRope
-							current={state.index}
-							data={[
-								{ text: 'Step 1', onClick: handleClick(0) },
-								{ text: 'Step 2', onClick: handleClick(1) },
-								{ text: 'Step 3', onClick: handleClick(2) },
-								{ text: 'Step 4', onClick: handleClick(3) },
-								{ text: 'Step 5', onClick: handleClick(5) },
-								{ type: 'review', text: 'Review and Submit', onClick: handleClick(5) },
-							]}
-							overrides={{
-								subComponent: {
-									Item: {
-										styles: (styles, { grouped, review, visited, furthest }) => ({
-											...styles,
-
-											'::before': {
-												...styles['::before'],
-												borderLeft: `2px solid ${visited && !furthest ? 'darkmagenta' : 'plum'}`,
-											},
-
-											'::after': {
-												...styles['::after'],
-												border: `2px solid ${visited ? 'darkmagenta' : 'plum'}`,
-												backgroundColor:
-													grouped || review ? (visited ? 'darkmagenta' : 'plum') : '#fff',
-											},
-										}),
-									},
-									ItemText: {
-										styles: (styles, { active, visited }) => ({
-											...styles,
-											color: active ? 'darkmagenta' : visited ? 'black' : 'plum',
-										}),
-									},
-								},
-							}}
-						/>
-					</Wrapper>
-				</Cell> */}
 			</Grid>
 		</GEL>
 	);

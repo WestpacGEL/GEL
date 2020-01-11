@@ -1,12 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
+import { Group as GroupWrapper, groupStyles } from './overrides/group';
 import { GroupItems, groupItemsStyles } from './overrides/groupItems';
 import { GroupText, groupTextStyles } from './overrides/groupText';
-import { Group, groupStyles } from './overrides/group';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
@@ -27,22 +27,20 @@ export const Group = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Group: {
-				styles: groupStyles,
-				component: Group,
-				attributes: state => state,
-			},
-			GroupText: {
-				styles: groupTextStyles,
-				component: GroupText,
-				attributes: state => state,
-			},
-			GroupItems: {
-				styles: groupItemsStyles,
-				component: GroupItems,
-				attributes: state => state,
-			},
+		Group: {
+			styles: groupStyles,
+			component: GroupWrapper,
+			attributes: (_, a) => a,
+		},
+		GroupText: {
+			styles: groupTextStyles,
+			component: GroupText,
+			attributes: (_, a) => a,
+		},
+		GroupItems: {
+			styles: groupItemsStyles,
+			component: GroupItems,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -57,30 +55,29 @@ export const Group = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 	return (
-		<overrides.subComponent.Group.component
+		<overrides.Group.component
 			className={className}
-			{...overrides.subComponent.Group.attributes(state)}
-			css={overrides.subComponent.Group.styles}
+			{...overrides.Group.attributes(state)}
+			css={overrides.Group.styles(state)}
 		>
-			<overrides.subComponent.GroupText.component
+			<overrides.GroupText.component
 				onClick={() => handleClick(index)}
-				{...overrides.subComponent.GroupText.attributes(state)}
-				css={overrides.subComponent.GroupText.styles}
+				{...overrides.GroupText.attributes(state)}
+				css={overrides.GroupText.styles(state)}
 			>
 				{text}
-			</overrides.subComponent.GroupText.component>
-			<overrides.subComponent.GroupItems.component
+			</overrides.GroupText.component>
+			<overrides.GroupItems.component
 				hidden={openGroup === null || index !== openGroup}
-				{...overrides.subComponent.GroupItems.attributes(state)}
-				css={overrides.subComponent.GroupItems.styles}
+				{...overrides.GroupItems.attributes(state)}
+				css={overrides.GroupItems.styles(state)}
 			>
 				{Children.map(children, (child, i) => cloneElement(child, { index: i, groupIndex: index }))}
-			</overrides.subComponent.GroupItems.component>
-		</overrides.subComponent.Group.component>
+			</overrides.GroupItems.component>
+		</overrides.Group.component>
 	);
 };
 
@@ -97,22 +94,20 @@ Group.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Group: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			GroupText: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			GroupItems: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Group: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		GroupText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		GroupItems: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
