@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import { TextComponent, textStyles } from './overrides/text';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';
@@ -23,12 +23,10 @@ export const Text = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Text: {
-				styles: textStyles,
-				component: TextComponent,
-				attributes: state => state,
-			},
+		Text: {
+			styles: textStyles,
+			component: TextComponent,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -45,14 +43,13 @@ export const Text = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Text.component
-			{...overrides.subComponent.Text.attributes(state)}
-			css={overrides.subComponent.Text.styles}
+		<overrides.Text.component
+			{...overrides.Text.attributes(state)}
+			css={overrides.Text.styles(state)}
 		/>
 	);
 };
@@ -88,12 +85,10 @@ Text.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Text: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Text: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

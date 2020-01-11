@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Text } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
+import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -23,7 +23,7 @@ function Example({ brand }) {
 			<Text />
 
 			<h2>Controlled</h2>
-			<Text value={value} onChange={handleChange} />
+			<Text defaultValue={value} onChange={handleChange} />
 			<br />
 			<hr />
 
@@ -48,13 +48,13 @@ function Example({ brand }) {
 			<h2>Disabled</h2>
 			<Text disabled />
 			<br />
-			<Text disabled value="This input is disabled and contains a value" />
+			<Text disabled defaultValue="This input is disabled and contains a value" />
 			<br />
 
 			<hr />
 
 			<h2>Readonly</h2>
-			<Text readOnly value="This value is readonly" />
+			<Text readOnly defaultValue="This value is readonly" />
 			<br />
 
 			<hr />

@@ -1,6 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, overrideReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	overrideReconciler2 as overrideReconciler,
+} from '@westpac/core';
 import { SelectComponent, selectStyles } from './overrides/select';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';
@@ -38,12 +43,10 @@ export const Select = ({
 	}
 
 	const defaultOverrides = {
-		subComponent: {
-			Select: {
-				styles: selectStyles,
-				component: SelectComponent,
-				attributes: state => state,
-			},
+		Select: {
+			styles: selectStyles,
+			component: SelectComponent,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -60,17 +63,16 @@ export const Select = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Select.component
-			{...overrides.subComponent.Select.attributes(state)}
-			css={overrides.subComponent.Select.styles}
+		<overrides.Select.component
+			{...overrides.Select.attributes(state)}
+			css={overrides.Select.styles(state)}
 		>
 			{data ? childrenData : children}
-		</overrides.subComponent.Select.component>
+		</overrides.Select.component>
 	);
 };
 
@@ -112,12 +114,10 @@ Select.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Select: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Select: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
