@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import React, { Fragment, useState, forwardRef } from 'react';
 import { jsx, useBrand, merge } from '@westpac/core';
+import React, { Fragment, useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 import pkg from '../package.json';

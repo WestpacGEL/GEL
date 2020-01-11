@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler, useInstanceId } from '@westpac/core';
 import React, { Children, useEffect, useRef, useState, createRef } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Tabcordion as TabcordionWrapper, tabcordionStyles } from './overrides/tabcordion';
 import { TabItem, tabItemStyles } from './overrides/tabItem';
 import { TabRow, tabRowStyles } from './overrides/tabRow';
 import pkg from '../package.json';
@@ -33,20 +33,20 @@ export const Tabcordion = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-		subComponent: {
-			TabItem: {
-				styles: tabItemStyles,
-				component: TabItem,
-				attributes: state => state,
-			},
-			TabRow: {
-				styles: tabRowStyles,
-				component: TabRow,
-				attributes: state => state,
-			},
+		Tabcordion: {
+			styles: tabcordionStyles,
+			component: TabcordionWrapper,
+			attributes: (_, a) => a,
+		},
+		TabItem: {
+			styles: tabItemStyles,
+			component: TabItem,
+			attributes: (_, a) => a,
+		},
+		TabRow: {
+			styles: tabRowStyles,
+			component: TabRow,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -63,8 +63,7 @@ export const Tabcordion = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
 	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
@@ -145,23 +144,23 @@ export const Tabcordion = ({
 	const tabCount = Children.count(children);
 
 	return (
-		<overrides.component
+		<overrides.Tabcordion.component
 			ref={containerRef}
 			className={className}
-			{...overrides.attributes(state)}
-			css={overrides.styles}
+			{...overrides.Tabcordion.attributes(state)}
+			css={overrides.Tabcordion.styles(state)}
 		>
 			{mode === 'tabs' ? (
-				<overrides.subComponent.TabRow.component
+				<overrides.TabRow.component
 					role="tablist"
 					ref={tablistRef}
-					{...overrides.subComponent.TabRow.attributes(state)}
-					css={overrides.subComponent.TabRow.styles}
+					{...overrides.TabRow.attributes(state)}
+					css={overrides.TabRow.styles(state)}
 				>
 					{Children.map(children, (child, idx) => {
 						const selected = activeTabIndex === idx;
 						return (
-							<overrides.subComponent.TabItem.component
+							<overrides.TabItem.component
 								aria-controls={getId('panel', idx)}
 								aria-selected={selected}
 								id={getId('tab', idx)}
@@ -171,14 +170,14 @@ export const Tabcordion = ({
 								onClick={setActive(idx)}
 								role="tab"
 								ref={tabRefs.current[idx]}
-								{...overrides.subComponent.TabItem.attributes(state)}
-								css={overrides.subComponent.TabItem.styles}
+								{...overrides.TabItem.attributes(state)}
+								css={overrides.TabItem.styles(state)}
 							>
 								{child.props.text}
-							</overrides.subComponent.TabItem.component>
+							</overrides.TabItem.component>
 						);
 					})}
-				</overrides.subComponent.TabRow.component>
+				</overrides.TabRow.component>
 			) : null}
 
 			{Children.map(children, (child, idx) => {
@@ -199,7 +198,7 @@ export const Tabcordion = ({
 					/>
 				);
 			})}
-		</overrides.component>
+		</overrides.Tabcordion.component>
 	);
 };
 
@@ -240,6 +239,27 @@ Tabcordion.propTypes = {
 	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
 	 */
 	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Tabcordion: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		TabItem: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		TabRow: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Tabcordion.defaultProps = {

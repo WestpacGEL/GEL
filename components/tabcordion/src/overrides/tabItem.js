@@ -3,8 +3,8 @@
 import { forwardRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
-export const TabItem = forwardRef((props, ref) => {
-	return <button ref={ref} {...props} />;
+export const TabItem = forwardRef(({justify,...rest}, ref) => {
+	return <button ref={ref} {...rest} />;
 });
 
 export const tabItemStyles = (_, { look, justify, selected, last }) => {
