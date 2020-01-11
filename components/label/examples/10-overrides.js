@@ -16,7 +16,7 @@ const Wrapper = ({ look, value, children, ...props }) => {
 	}
 
 	return (
-		<Tag type={Tag === 'button' && 'button'} {...props}>
+		<Tag {...(Tag === 'button' && {type: 'button'})} {...props}>
 			{children}
 			{(props.href || props.onClick) && (
 				<span
@@ -37,12 +37,14 @@ const Wrapper = ({ look, value, children, ...props }) => {
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/label'] = {
-		styles: (styles, { look }) => ({
-			...styles,
-			backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
-			outline: '1px solid red',
-		}),
-		component: Wrapper,
+		Label: {
+			styles: (styles, { look }) => ({
+				...styles,
+				backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
+				outline: '3px solid blue',
+			}),
+			component: Wrapper,
+		},
 	};
 
 	return (
@@ -106,10 +108,12 @@ function Example({ brand }) {
 			<Label
 				value="Default overridden"
 				overrides={{
-					styles: styles => ({
-						...styles,
-						outline: '3px dotted green',
-					}),
+					Label: {
+						styles: styles => ({
+							...styles,
+							outline: '6px dotted green',
+						}),
+					}
 				}}
 			/>
 		</GEL>
