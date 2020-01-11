@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Wrapper, wrapperStyles } from './overrides/wrapper';
@@ -17,9 +17,11 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		Badge: {
+			styles: wrapperStyles,
+			component: Wrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const state = {
@@ -33,14 +35,13 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.component {...overrides.attributes(state)} css={overrides.styles}>
+		<overrides.Badge.component {...overrides.Badge.attributes(state)} css={overrides.Badge.styles(state)}>
 			{value}
-		</overrides.component>
+		</overrides.Badge.component>
 	);
 };
 
@@ -72,9 +73,11 @@ Badge.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
+		Badge: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
 	}),
 };
 
