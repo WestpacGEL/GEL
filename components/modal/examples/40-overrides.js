@@ -14,27 +14,27 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/modal'] = {
-		styles: styles => ({ ...styles, border: '2px solid palevioletred' }),
-		subComponent: {
-			Header: {
-				styles: styles => ({ ...styles, borderBottom: `2px solid palevioletred` }),
-			},
-			Title: {
-				styles: styles => ({ ...styles, color: 'darkmagenta' }),
-			},
-			Backdrop: {
-				styles: styles => ({ ...styles, backgroundColor: 'rgba(153,0,0,0.6)' }),
-			},
-			Body: {
-				styles: styles => ({ ...styles, color: 'lightcoral' }),
-			},
-			Footer: {
-				styles: styles => ({
-					...styles,
-					borderTop: '2px solid palevioletred',
-					backgroundColor: 'lavenderblush',
-				}),
-			},
+		Modal: {
+			styles: styles => ({ ...styles, border: '2px solid palevioletred' }),
+		},
+		Header: {
+			styles: styles => ({ ...styles, borderBottom: `2px solid palevioletred` }),
+		},
+		Title: {
+			styles: styles => ({ ...styles, color: 'darkmagenta' }),
+		},
+		Backdrop: {
+			styles: styles => ({ ...styles, backgroundColor: 'rgba(153,0,0,0.6)' }),
+		},
+		Body: {
+			styles: styles => ({ ...styles, color: 'lightcoral' }),
+		},
+		Footer: {
+			styles: styles => ({
+				...styles,
+				borderTop: '2px solid palevioletred',
+				backgroundColor: 'lavenderblush',
+			}),
 		},
 	};
 
@@ -67,25 +67,21 @@ function Example({ brand }) {
 				open={open2}
 				onClose={() => setOpen2(false)}
 				overrides={{
-					subComponent: {
-						Header: {
-							styles: styles => ({ ...styles, borderBottom: `2px solid black` }),
-						},
-						Title: {
-							styles: styles => ({ ...styles, color: 'black' }),
-						},
-						Backdrop: {
-							styles: styles => ({ ...styles, backgroundColor: 'rgba(153,0,0,0.6)' }),
-						},
+					Header: {
+						styles: styles => ({ ...styles, borderBottom: `2px solid black` }),
+					},
+					Title: {
+						styles: styles => ({ ...styles, color: 'black' }),
+					},
+					Backdrop: {
+						styles: styles => ({ ...styles, backgroundColor: 'rgba(153,0,0,0.6)' }),
 					},
 				}}
 			>
 				<Body
 					overrides={{
-						subComponent: {
-							Body: {
-								styles: styles => ({ ...styles, color: 'black' }),
-							},
+						Body: {
+							styles: styles => ({ ...styles, color: 'black' }),
 						},
 					}}
 				>
@@ -98,14 +94,12 @@ function Example({ brand }) {
 				</Body>
 				<Footer
 					overrides={{
-						subComponent: {
-							Footer: {
-								styles: styles => ({
-									...styles,
-									borderTop: '2px solid black',
-									backgroundColor: 'white',
-								}),
-							},
+						Footer: {
+							styles: styles => ({
+								...styles,
+								borderTop: '2px solid black',
+								backgroundColor: 'white',
+							}),
 						},
 					}}
 				>

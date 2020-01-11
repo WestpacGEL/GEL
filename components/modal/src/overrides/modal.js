@@ -3,11 +3,13 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { forwardRef } from 'react';
 
-export const Wrapper = forwardRef(({ open, heading, size, dismissible, ...props }, ref) => (
-	<div ref={ref} {...props} />
-));
+export const Modal = forwardRef(
+	({ heading, open, onClose, size, dismissible, overrides, ...rest }, ref) => (
+		<div ref={ref} {...rest} />
+	)
+);
 
-export const wrapperStyles = (_, { size }) => {
+export const modalStyles = (_, { size }) => {
 	const mq = useMediaQuery();
 
 	return mq({

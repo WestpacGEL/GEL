@@ -2,7 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Header = ({ open, heading, size, dismissible, ...props }) => <div {...props} />;
+export const Header = ({ heading, open, onClose, size, dismissible, overrides, ...rest }) => (
+	<div {...rest} />
+);
 
 export const headerStyles = (_, {}) => {
 	const { COLORS } = useBrand();

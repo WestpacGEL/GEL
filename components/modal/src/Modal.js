@@ -1,7 +1,12 @@
 /** @jsx jsx */
 
+import {
+	jsx,
+	useBrand,
+	overrideReconciler2 as overrideReconciler,
+	useInstanceId,
+} from '@westpac/core';
 import { createContext, useContext, useState, useEffect, useRef, forwardRef } from 'react';
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import { CSSTransition } from 'react-transition-group';
 import { useOutsideClick } from '@westpac/hooks';
 import { CloseIcon } from '@westpac/icon';
@@ -9,9 +14,9 @@ import FocusLock from 'react-focus-lock';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
+import { Modal as ModalWrapper, modalStyles } from './overrides/modal';
 import { Backdrop, backdropStyles } from './overrides/backdrop';
 import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import { Header, headerStyles } from './overrides/header';
 import { Title, titleStyles } from './overrides/title';
 import pkg from '../package.json';
@@ -58,31 +63,30 @@ export const Modal = ({
 	const modalRef = useRef();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			Backdrop: {
-				styles: backdropStyles,
-				component: Backdrop,
-				attributes: state => state,
-			},
-			Header: {
-				styles: headerStyles,
-				component: Header,
-				attributes: state => state,
-			},
-			Title: {
-				styles: titleStyles,
-				component: Title,
-				attributes: state => state,
-			},
-			CloseBtn: {
-				styles: closeBtnStyles,
-				component: CloseBtn,
-				attributes: state => state,
-			},
+		Modal: {
+			styles: modalStyles,
+			component: ModalWrapper,
+			attributes: (_, a) => a,
+		},
+		Backdrop: {
+			styles: backdropStyles,
+			component: Backdrop,
+			attributes: (_, a) => a,
+		},
+		Header: {
+			styles: headerStyles,
+			component: Header,
+			attributes: (_, a) => a,
+		},
+		Title: {
+			styles: titleStyles,
+			component: Title,
+			attributes: (_, a) => a,
+		},
+		CloseBtn: {
+			styles: closeBtnStyles,
+			component: CloseBtn,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -99,8 +103,7 @@ export const Modal = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	useEffect(() => {
@@ -136,14 +139,14 @@ export const Modal = ({
 
 	return ReactDOM.createPortal(
 		<CSSTransition mountOnEnter unmountOnExit in={open} timeout={300} classNames="modal-backdrop">
-			<overrides.subComponent.Backdrop.component
-				{...overrides.subComponent.Backdrop.attributes(state)}
-				css={overrides.subComponent.Backdrop.styles}
+			<overrides.Backdrop.component
+				{...overrides.Backdrop.attributes(state)}
+				css={overrides.Backdrop.styles(state)}
 			>
 				<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
 					<CSSTransition appear in={open} timeout={100} classNames="modal">
 						<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
-							<overrides.component
+							<overrides.Modal.component
 								role="dialog"
 								aria-modal="true"
 								aria-labelledby={titleId}
@@ -151,35 +154,35 @@ export const Modal = ({
 								tabIndex="-1"
 								ref={modalRef}
 								className={className}
-								{...overrides.attributes(state)}
-								css={overrides.styles}
+								{...overrides.Modal.attributes(state)}
+								css={overrides.Modal.styles(state)}
 							>
-								<overrides.subComponent.Header.component
-									{...overrides.subComponent.Header.attributes(state)}
-									css={overrides.subComponent.Header.styles}
+								<overrides.Header.component
+									{...overrides.Header.attributes(state)}
+									css={overrides.Header.styles(state)}
 								>
-									<overrides.subComponent.Title.component
+									<overrides.Title.component
 										id={titleId}
-										{...overrides.subComponent.Title.attributes(state)}
-										css={overrides.subComponent.Title.styles}
+										{...overrides.Title.attributes(state)}
+										css={overrides.Title.styles(state)}
 									>
 										{heading}
-									</overrides.subComponent.Title.component>
+									</overrides.Title.component>
 									{dismissible && (
-										<overrides.subComponent.CloseBtn.component
+										<overrides.CloseBtn.component
 											onClick={() => handleClose()}
 											icon={CloseIcon}
-											{...overrides.subComponent.CloseBtn.attributes(state)}
-											css={overrides.subComponent.CloseBtn.styles}
+											{...overrides.CloseBtn.attributes(state)}
+											css={overrides.CloseBtn.styles(state)}
 										/>
 									)}
-								</overrides.subComponent.Header.component>
+								</overrides.Header.component>
 								{children}
-							</overrides.component>
+							</overrides.Modal.component>
 						</ModalContext.Provider>
 					</CSSTransition>
 				</FocusLock>
-			</overrides.subComponent.Backdrop.component>
+			</overrides.Backdrop.component>
 		</CSSTransition>,
 		document.body
 	);
@@ -221,30 +224,30 @@ Modal.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Backdrop: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Header: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Title: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			CloseBtn: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Modal: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Backdrop: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Header: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Title: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		CloseBtn: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
