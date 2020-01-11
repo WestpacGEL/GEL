@@ -15,19 +15,17 @@ function Example({ brand }) {
 	{ b: 2 }, // tokenOverrides
 	{ c: 3 }, // brandOverrides
 	{ a: 4 }, // componentOverrides
-	{}        // state
 );`}</Code>
 			=>
-			<Code>{JSON.stringify(overrideReconciler({ a: 1 }, { b: 2 }, { c: 3 }, { a: 4 }, {}))}</Code>
+			<Code>{JSON.stringify(overrideReconciler({ a: 1 }, { b: 2 }, { c: 3 }, { a: 4 }))}</Code>
 			<hr />
 			<h2>Style function merge</h2>
 			<Code>{`overrideReconciler(
 	{ styles: () => ({ a: 1, b: 1 }) },
 	{ styles: style => ({ a: 2 + '' + style.a, b: 2 + '' + style.b }) },
 	{ styles: style => ({ a: 3 + '' + style.a, b: 3 + '' + style.b }) },
-	{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
-	{}
-);`}</Code>
+	{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) }
+).styles();`}</Code>
 			=>
 			<Code>
 				{JSON.stringify(
@@ -35,9 +33,8 @@ function Example({ brand }) {
 						{ styles: () => ({ a: 1, b: 1 }) },
 						{ styles: style => ({ a: 2 + '' + style.a, b: 2 + '' + style.b }) },
 						{ styles: style => ({ a: 3 + '' + style.a, b: 3 + '' + style.b }) },
-						{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
-						{}
-					)
+						{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) }
+					).styles()
 				)}
 			</Code>
 			<hr />
@@ -45,9 +42,8 @@ function Example({ brand }) {
 	{ styles: () => ({ a: 1, b: 1 }) },
 	{},
 	{},
-	{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
-	{}
-);`}</Code>
+	{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) }
+).styles();`}</Code>
 			=>
 			<Code>
 				{JSON.stringify(
@@ -55,9 +51,8 @@ function Example({ brand }) {
 						{ styles: () => ({ a: 1, b: 1 }) },
 						{},
 						{},
-						{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
-						{}
-					)
+						{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) }
+					).styles()
 				)}
 			</Code>
 			<h2>SubComponent Style function merge</h2>
@@ -66,9 +61,8 @@ function Example({ brand }) {
 	{ subComponent: { Test: { styles: styles => ({ ...styles, a: 1 }) } } },
 	{ subComponent: { Test: { styles: styles => ({ ...styles, b: 1 }) } } },
 	{ subComponent: { Test: { styles: styles => ({ ...styles, c: 1 }) } } },
-	{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } },
-	{}
-);
+	{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } }
+).styles();
 			`}
 			</Code>
 			=>
@@ -78,9 +72,8 @@ function Example({ brand }) {
 						{ subComponent: { Test: { styles: styles => ({ ...styles, a: 1 }) } } },
 						{ subComponent: { Test: { styles: styles => ({ ...styles, b: 1 }) } } },
 						{ subComponent: { Test: { styles: styles => ({ ...styles, c: 1 }) } } },
-						{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } },
-						{}
-					)
+						{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } }
+					).styles()
 				)}
 			</Code>
 		</GEL>
