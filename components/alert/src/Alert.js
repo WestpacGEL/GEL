@@ -71,8 +71,8 @@ export const Alert = ({
 		icon: ComponentIcon,
 		heading,
 		headingTag,
-		overrides: componentOverrides,
 		open,
+		overrides: componentOverrides,
 		...rest,
 	};
 

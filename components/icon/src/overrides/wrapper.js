@@ -3,7 +3,7 @@
 import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
 import React from 'react';
 
-export const Wrapper = ({ icon, color, size, assistiveText, ...rest }) => <span {...rest} />;
+export const Wrapper = ({ color, size, assistiveText, overrides, ...rest }) => <span {...rest} />;
 
 export const wrapperStyles = (_, { color, size }) => {
 	const mq = useMediaQuery();

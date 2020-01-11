@@ -4,7 +4,17 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import React from 'react';
 
-export const CloseBtn = ({ onClose, icon, look, headingTag, dismissible, ...rest }) => (
+export const CloseBtn = ({
+	onClose,
+	look,
+	dismissible,
+	icon,
+	heading,
+	headingTag,
+	open,
+	overrides,
+	...rest
+}) => (
 	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />
 );
 
