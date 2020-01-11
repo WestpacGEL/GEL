@@ -3,7 +3,7 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { sizeMap } from './_utils';
 
-export const Wrapper = ({
+export const Switch = ({
 	name,
 	label,
 	toggleText,
@@ -14,7 +14,7 @@ export const Wrapper = ({
 	...props
 }) => <label {...props} />;
 
-export const wrapperStyles = (_, { block, disabled, flipped, size }) => {
+export const switchStyles = (_, { block, disabled, flipped, size }) => {
 	const mq = useMediaQuery();
 
 	return mq({
