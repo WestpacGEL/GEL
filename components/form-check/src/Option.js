@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Option as OptionWrapper, optionStyles } from './overrides/option';
@@ -34,17 +34,15 @@ export const Option = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Option: {
-				styles: optionStyles,
-				component: OptionWrapper,
-				attributes: state => state,
-			},
-			Label: {
-				styles: labelStyles,
-				component: Label,
-				attributes: state => state,
-			},
+		Option: {
+			styles: optionStyles,
+			component: OptionWrapper,
+			attributes: (_, a) => a,
+		},
+		Label: {
+			styles: labelStyles,
+			component: Label,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -64,15 +62,14 @@ export const Option = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Option.component
+		<overrides.Option.component
 			className={className}
-			{...overrides.subComponent.Option.attributes(state)}
-			css={overrides.subComponent.Option.styles}
+			{...overrides.Option.attributes(state)}
+			css={overrides.Option.styles(state)}
 		>
 			<input
 				type={type}
@@ -84,14 +81,14 @@ export const Option = ({
 					opacity: 0, // we decided to not expose this as an override
 				}} // as it contains logic and is important for the component to work
 			/>
-			<overrides.subComponent.Label.component
+			<overrides.Label.component
 				htmlFor={formCheckId}
-				{...overrides.subComponent.Label.attributes(state)}
-				css={overrides.subComponent.Label.styles}
+				{...overrides.Label.attributes(state)}
+				css={overrides.Label.styles(state)}
 			>
 				{children}
-			</overrides.subComponent.Label.component>
-		</overrides.subComponent.Option.component>
+			</overrides.Label.component>
+		</overrides.Option.component>
 	);
 };
 
@@ -154,17 +151,15 @@ Option.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Option: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Label: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Option: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };

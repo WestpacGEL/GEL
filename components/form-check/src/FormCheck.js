@@ -3,7 +3,7 @@
 import {
 	jsx,
 	useBrand,
-	overrideReconciler,
+	overrideReconciler2 as overrideReconciler,
 	wrapHandlers,
 	devWarning,
 	asArray,
@@ -11,7 +11,7 @@ import {
 import { cloneElement, Children, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { FormCheck as FormCheckWrapper, formCheckStyles } from './overrides/formCheck';
 import { Option } from './Option';
 import pkg from '../package.json';
 
@@ -65,9 +65,11 @@ export const FormCheck = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		FormCheck: {
+			styles: formCheckStyles,
+			component: FormCheckWrapper,
+			attributes: (_, a) => a,
+		}
 	};
 
 	const state = {
@@ -86,8 +88,7 @@ export const FormCheck = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	let allChildren = [];
@@ -119,13 +120,13 @@ export const FormCheck = ({
 	}
 
 	return (
-		<overrides.component
+		<overrides.FormCheck.component
 			className={className}
-			{...overrides.attributes(state)}
-			css={overrides.styles}
+			{...overrides.FormCheck.attributes(state)}
+			css={overrides.FormCheck.styles(state)}
 		>
 			{allChildren}
-		</overrides.component>
+		</overrides.FormCheck.component>
 	);
 };
 
@@ -188,20 +189,20 @@ FormCheck.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Option: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Label: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		FormCheck: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Option: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };

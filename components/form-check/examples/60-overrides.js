@@ -10,25 +10,24 @@ const Wrapper = ({ inline, flipped, ...rest }) => <div {...rest} />;
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/form-check'] = {
-		styles: styles => ({
-			...styles,
-			outline: '5px solid red',
-		}),
-		component: Wrapper,
-
-		subComponent: {
-			Option: {
-				styles: styles => ({
-					...styles,
-					outline: '2px dotted green',
-				}),
-			},
-			Label: {
-				styles: styles => ({
-					...styles,
-					outline: '2px dashed blue',
-				}),
-			},
+		FormCheck: {
+			styles: styles => ({
+				...styles,
+				outline: '5px solid red',
+			}),
+			component: Wrapper,
+		},
+		Option: {
+			styles: styles => ({
+				...styles,
+				outline: '2px dotted green',
+			}),
+		},
+		Label: {
+			styles: styles => ({
+				...styles,
+				outline: '2px dashed blue',
+			}),
 		},
 	};
 
@@ -75,14 +74,13 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<FormCheck
 				name="default"
+				defaultValue="2"
 				overrides={{
-					subComponent: {
-						Label: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted hotpink',
-							}),
-						},
+					Label: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted hotpink',
+						}),
 					},
 				}}
 			>
@@ -101,13 +99,11 @@ function Example({ brand }) {
 					{ value: '3', text: 'Option 3' },
 				]}
 				overrides={{
-					subComponent: {
-						Label: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted hotpink',
-							}),
-						},
+					Label: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted hotpink',
+						}),
 					},
 				}}
 			/>
