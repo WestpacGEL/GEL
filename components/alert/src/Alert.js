@@ -167,27 +167,27 @@ Alert.propTypes = {
 		Alert: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Body: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		CloseBtn: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Icon: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Heading: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

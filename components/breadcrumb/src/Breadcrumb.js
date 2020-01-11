@@ -152,32 +152,32 @@ Breadcrumb.propTypes = {
 		Breadcrumb: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		AssistiveText: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		List: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Crumb: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Link: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Icon: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

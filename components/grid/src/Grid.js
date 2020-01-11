@@ -152,17 +152,17 @@ Grid.propTypes = {
 		Grid: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Cell: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Container: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

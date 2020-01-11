@@ -66,7 +66,7 @@ SkipLink.propTypes = {
 		SkipLink: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

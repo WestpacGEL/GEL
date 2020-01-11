@@ -192,17 +192,17 @@ FormCheck.propTypes = {
 		FormCheck: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Option: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 		Label: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

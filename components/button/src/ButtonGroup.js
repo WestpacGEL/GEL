@@ -177,7 +177,7 @@ ButtonGroup.propTypes = {
 		ButtonGroup: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.object,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
