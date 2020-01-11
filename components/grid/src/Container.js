@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Container as ContainerWrapper, containerStyles } from './overrides/container';
@@ -17,12 +17,10 @@ export const Container = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Container: {
-				styles: containerStyles,
-				component: ContainerWrapper,
-				attributes: state => state,
-			},
+		Container: {
+			styles: containerStyles,
+			component: ContainerWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -34,14 +32,13 @@ export const Container = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Container.component
-			{...overrides.subComponent.Container.attributes(state)}
-			css={overrides.subComponent.Container.styles}
+		<overrides.Container.component
+			{...overrides.Container.attributes(state)}
+			css={overrides.Container.styles(state)}
 		/>
 	);
 };
@@ -51,12 +48,10 @@ Container.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Container: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Container: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };

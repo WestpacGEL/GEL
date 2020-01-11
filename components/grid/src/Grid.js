@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Grid as GridWrapper, gridStyles } from './overrides/grid';
@@ -20,12 +20,10 @@ export const Grid = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Grid: {
-				styles: gridStyles,
-				component: GridWrapper,
-				attributes: state => state,
-			},
+		Grid: {
+			styles: gridStyles,
+			component: GridWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -37,14 +35,13 @@ export const Grid = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Grid.component
-			{...overrides.subComponent.Grid.attributes(state)}
-			css={overrides.subComponent.Grid.styles}
+		<overrides.Grid.component
+			{...overrides.Grid.attributes(state)}
+			css={overrides.Grid.styles(state)}
 		/>
 	);
 };
@@ -152,22 +149,20 @@ Grid.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Grid: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Container: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Container: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Grid: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Cell: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Container: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };
