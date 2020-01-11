@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 
-export const Wrapper = ({ tag: Tag, size, ...rest }) => {
+export const Heading = ({ tag: Tag, size, ...rest }) => {
 	// ignore all non h1-h6 tags
 	if (Tag && !Tag.startsWith('h') && !(Tag.length === 2)) {
 		Tag = null;
@@ -23,7 +23,7 @@ export const Wrapper = ({ tag: Tag, size, ...rest }) => {
 	return <Tag {...rest} />;
 };
 
-export const wrapperStyles = (_, { size }) => {
+export const headingStyles = (_, { size }) => {
 	const { PACKS } = useBrand();
 
 	return {

@@ -8,10 +8,12 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/heading'] = {
-		styles: styles => ({
-			...styles,
-			outline: '1px solid red',
-		}),
+		Heading: {
+			styles: styles => ({
+				...styles,
+				outline: '1px solid red',
+			}),
+		},
 	};
 
 	return (
@@ -35,10 +37,12 @@ function Example({ brand }) {
 			<Heading
 				size={1}
 				overrides={{
-					styles: styles => ({
-						...styles,
-						outline: '3px dotted green',
-					}),
+					Heading: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
+					},
 				}}
 			>
 				Heading text
