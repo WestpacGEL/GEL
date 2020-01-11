@@ -41,7 +41,7 @@ export const Heading = ({ tag: Tag, size, children, overrides: componentOverride
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component {...overrides.attributes(state)} css={overrides.styles}>
 			{children}
 		</overrides.component>
 	);

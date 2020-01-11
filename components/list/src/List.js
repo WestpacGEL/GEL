@@ -86,6 +86,7 @@ export const List = ({
 	icon,
 	data,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -147,7 +148,11 @@ export const List = ({
 				overrides: componentOverrides,
 			}}
 		>
-			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+			<overrides.component
+				className={className}
+				{...overrides.attributes(state)}
+				css={overrides.styles}
+			>
 				{children}
 			</overrides.component>
 		</ListContext.Provider>

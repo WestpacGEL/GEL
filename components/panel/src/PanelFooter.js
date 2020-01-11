@@ -45,8 +45,8 @@ export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.subComponent.Footer.component
-			css={overrides.subComponent.Footer.styles}
 			{...overrides.subComponent.Footer.attributes(state)}
+			css={overrides.subComponent.Footer.styles}
 		/>
 	);
 };

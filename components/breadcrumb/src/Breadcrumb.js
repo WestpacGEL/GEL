@@ -23,6 +23,7 @@ export const Breadcrumb = ({
 	current,
 	assistiveText,
 	currentAssistiveText,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -94,16 +95,20 @@ export const Breadcrumb = ({
 	}
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component
+			className={className}
+			{...overrides.attributes(state)}
+			css={overrides.styles}
+		>
 			<overrides.subComponent.AssistiveText.component
-				css={overrides.subComponent.AssistiveText.styles}
 				{...overrides.subComponent.AssistiveText.attributes(state)}
+				css={overrides.subComponent.AssistiveText.styles}
 			>
 				{assistiveText}
 			</overrides.subComponent.AssistiveText.component>
 			<overrides.subComponent.List.component
-				css={overrides.subComponent.List.styles}
 				{...overrides.subComponent.List.attributes(state)}
+				css={overrides.subComponent.List.styles}
 			>
 				{allChildren}
 			</overrides.subComponent.List.component>

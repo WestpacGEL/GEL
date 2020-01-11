@@ -24,6 +24,7 @@ export const Button = ({
 	tag,
 	onClick,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -78,8 +79,9 @@ export const Button = ({
 			disabled={disabled}
 			aria-label={assistiveText}
 			onClick={onClick}
-			css={overrides.styles}
+			className={className}
 			{...overrides.attributes(state)}
+			css={overrides.styles}
 		>
 			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 			{tag !== 'input' ? (

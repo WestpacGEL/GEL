@@ -15,7 +15,7 @@ export const Td = ({
 	highlightStart,
 	bordered,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const context = useTableContext();
 	bordered = (context && context.bordered) || bordered;
@@ -40,7 +40,7 @@ export const Td = ({
 		highlightStart,
 		bordered,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -53,8 +53,8 @@ export const Td = ({
 
 	return (
 		<overrides.subComponent.Td.component
-			css={overrides.subComponent.Td.styles}
 			{...overrides.subComponent.Td.attributes(state)}
+			css={overrides.subComponent.Td.styles}
 		/>
 	);
 };

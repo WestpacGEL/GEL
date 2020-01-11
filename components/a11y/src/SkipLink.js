@@ -41,8 +41,8 @@ export const SkipLink = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.subComponent.SkipLink.component
-			css={overrides.subComponent.SkipLink.styles}
 			{...overrides.subComponent.SkipLink.attributes(state)}
+			css={overrides.subComponent.SkipLink.styles}
 		/>
 	);
 };

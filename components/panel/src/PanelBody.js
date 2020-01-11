@@ -45,8 +45,8 @@ export const PanelBody = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.subComponent.Body.component
-			css={overrides.subComponent.Body.styles}
 			{...overrides.subComponent.Body.attributes(state)}
+			css={overrides.subComponent.Body.styles}
 		/>
 	);
 };

@@ -42,7 +42,7 @@ export const Body = ({ tag: Tag, children, overrides: componentOverrides, ...res
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component {...overrides.attributes(state)} css={overrides.styles}>
 			{children}
 		</overrides.component>
 	);

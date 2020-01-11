@@ -16,7 +16,7 @@ export const Textarea = ({
 	invalid,
 	overrides: componentOverrides,
 	children,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -39,7 +39,7 @@ export const Textarea = ({
 		inline,
 		invalid,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -52,8 +52,8 @@ export const Textarea = ({
 
 	return (
 		<overrides.subComponent.Textarea.component
-			css={overrides.subComponent.Textarea.styles}
 			{...overrides.subComponent.Textarea.attributes(state)}
+			css={overrides.subComponent.Textarea.styles}
 		/>
 	);
 };

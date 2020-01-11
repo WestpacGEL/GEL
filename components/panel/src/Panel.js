@@ -24,7 +24,7 @@ export const usePanelContext = () => {
 // Component
 // ==============================
 
-export const Panel = ({ look, overrides: componentOverrides, ...rest }) => {
+export const Panel = ({ look, className, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -52,7 +52,11 @@ export const Panel = ({ look, overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<PanelContext.Provider value={{ look, overrides: componentOverrides }}>
-			<overrides.component css={overrides.styles} {...overrides.attributes(state)} />
+			<overrides.component
+				className={className}
+				{...overrides.attributes(state)}
+				css={overrides.styles}
+			/>
 		</PanelContext.Provider>
 	);
 };

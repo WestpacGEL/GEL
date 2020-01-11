@@ -21,8 +21,9 @@ export const Table = ({
 	striped,
 	bordered,
 	responsive,
+	className,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const context = useTableContext();
 	bordered = (context && context.bordered) || bordered;
@@ -51,7 +52,7 @@ export const Table = ({
 		responsive,
 		bordered,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -68,10 +69,14 @@ export const Table = ({
 				bordered,
 			}}
 		>
-			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+			<overrides.component
+				className={className}
+				{...overrides.attributes(state)}
+				css={overrides.styles}
+			>
 				<overrides.subComponent.Table.component
-					css={overrides.subComponent.Table.styles}
 					{...overrides.subComponent.Table.attributes(state)}
+					css={overrides.subComponent.Table.styles}
 				/>
 			</overrides.component>
 		</TableContext.Provider>

@@ -24,6 +24,7 @@ export const Alert = ({
 	heading,
 	headingTag,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -86,32 +87,36 @@ export const Alert = ({
 
 	return (
 		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
-			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+			<overrides.component
+				className={className}
+				{...overrides.attributes(state)}
+				css={overrides.styles}
+			>
 				{dismissible && (
 					<overrides.subComponent.CloseBtn.component
 						onClose={() => setOpen(false)}
 						icon={CloseIcon}
-						css={overrides.subComponent.CloseBtn.styles}
 						{...overrides.subComponent.CloseBtn.attributes(state)}
+						css={overrides.subComponent.CloseBtn.styles}
 					/>
 				)}
 				{overrides.subComponent.Icon.component && (
 					<overrides.subComponent.Icon.component
 						size={['small', 'medium']}
 						color="inherit"
-						css={overrides.subComponent.Icon.styles}
 						{...overrides.subComponent.Icon.attributes(state)}
+						css={overrides.subComponent.Icon.styles}
 					/>
 				)}
 				<overrides.subComponent.Body.component
-					css={overrides.subComponent.Body.styles}
 					{...overrides.subComponent.Body.attributes(state)}
+					css={overrides.subComponent.Body.styles}
 				>
 					{heading && (
 						<overrides.subComponent.Heading.component
 							tag={headingTag}
-							css={overrides.subComponent.Heading.styles}
 							{...overrides.subComponent.Heading.attributes(state)}
+							css={overrides.subComponent.Heading.styles}
 						>
 							{heading}
 						</overrides.subComponent.Heading.component>

@@ -24,6 +24,7 @@ export const ButtonGroup = props => {
 		onChange,
 		value: controlledValue,
 		size,
+		className,
 		overrides: componentOverrides,
 		...rest
 	} = props;
@@ -83,8 +84,9 @@ export const ButtonGroup = props => {
 	// Fork map behaviour when children VS data
 	return (
 		<overrides.subComponent.ButtonGroup.component
-			css={overrides.subComponent.ButtonGroup.styles}
+			className={className}
 			{...overrides.subComponent.ButtonGroup.attributes(state)}
+			css={overrides.subComponent.ButtonGroup.styles}
 		>
 			{data
 				? data.map((button, index) => {

@@ -28,6 +28,7 @@ export const InputGroup = ({
 	value,
 	defaultValue,
 	look,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -154,7 +155,11 @@ export const InputGroup = ({
 	}
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component
+			className={className}
+			{...overrides.attributes(state)}
+			css={overrides.styles}
+		>
 			{childrenWithProps}
 		</overrides.component>
 	);

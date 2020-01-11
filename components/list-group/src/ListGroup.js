@@ -14,7 +14,7 @@ import pkg from '../package.json';
 // Ideal for settings pages or preferences.
 // ==============================
 
-export const ListGroup = ({ overrides: componentOverrides, ...rest }) => {
+export const ListGroup = ({ className, overrides: componentOverrides, ...rest }) => {
 	const brand = useBrand();
 	const tokenOverrides = brand.OVERRIDES[pkg.name];
 	const brandOverrides = brand[pkg.name];
@@ -56,8 +56,9 @@ export const ListGroup = ({ overrides: componentOverrides, ...rest }) => {
 		>
 			<overrides.component
 				type="unstyled"
-				css={overrides.styles}
+				className={className}
 				{...overrides.attributes(state)}
+				css={overrides.styles}
 			/>
 		</GEL>
 	);

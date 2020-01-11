@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Tfoot = ({ bordered, overrides: componentOverrides, ...props }) => {
+export const Tfoot = ({ bordered, overrides: componentOverrides, ...rest }) => {
 	const context = useTableContext();
 	bordered = (context && context.bordered) || bordered;
 
@@ -32,7 +32,7 @@ export const Tfoot = ({ bordered, overrides: componentOverrides, ...props }) => 
 	const state = {
 		bordered,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -44,8 +44,8 @@ export const Tfoot = ({ bordered, overrides: componentOverrides, ...props }) => 
 	);
 	return (
 		<overrides.subComponent.Tfoot.component
-			css={overrides.subComponent.Tfoot.styles}
 			{...overrides.subComponent.Tfoot.attributes(state)}
+			css={overrides.subComponent.Tfoot.styles}
 		/>
 	);
 };

@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Well = ({ overrides: componentOverrides, ...props }) => {
+export const Well = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -22,7 +22,7 @@ export const Well = ({ overrides: componentOverrides, ...props }) => {
 		attributes: state => state,
 	};
 
-	const state = { overrides: componentOverrides, ...props };
+	const state = { overrides: componentOverrides, ...rest };
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
@@ -32,7 +32,7 @@ export const Well = ({ overrides: componentOverrides, ...props }) => {
 		state
 	);
 
-	return <overrides.component css={overrides.styles} {...overrides.attributes(state)} />;
+	return <overrides.component {...overrides.attributes(state)} css={overrides.styles} />;
 };
 
 // ==============================

@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Caption = ({ overrides: componentOverrides, ...props }) => {
+export const Caption = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -28,7 +28,7 @@ export const Caption = ({ overrides: componentOverrides, ...props }) => {
 
 	const state = {
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -41,8 +41,8 @@ export const Caption = ({ overrides: componentOverrides, ...props }) => {
 
 	return (
 		<overrides.subComponent.Caption.component
-			css={overrides.subComponent.Caption.styles}
 			{...overrides.subComponent.Caption.attributes(state)}
+			css={overrides.subComponent.Caption.styles}
 		/>
 	);
 };

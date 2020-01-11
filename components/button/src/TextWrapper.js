@@ -10,7 +10,13 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const TextWrapper = ({ block, children, overrides: componentOverrides, ...rest }) => {
+export const TextWrapper = ({
+	block,
+	children,
+	className,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -42,8 +48,9 @@ export const TextWrapper = ({ block, children, overrides: componentOverrides, ..
 
 	return (
 		<overrides.subComponent.TextWrapper.component
-			css={overrides.subComponent.TextWrapper.styles}
+			className={className}
 			{...overrides.subComponent.TextWrapper.attributes(state)}
+			css={overrides.subComponent.TextWrapper.styles}
 		>
 			{children}
 		</overrides.subComponent.TextWrapper.component>

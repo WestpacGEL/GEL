@@ -20,6 +20,7 @@ export const Symbol = ({
 	viewBoxWidth,
 	viewBoxHeight,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -59,7 +60,11 @@ export const Symbol = ({
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component
+			className={className}
+			{...overrides.attributes(state)}
+			css={overrides.styles}
+		>
 			<overrides.subComponent.Svg.component
 				aria-label={assistiveText}
 				xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +72,8 @@ export const Symbol = ({
 				role="img"
 				focusable="false"
 				style={{ width: '100%', height: '100%' }}
-				css={overrides.subComponent.Svg.styles}
 				{...overrides.subComponent.Svg.attributes(state)}
+				css={overrides.subComponent.Svg.styles}
 			>
 				{children}
 			</overrides.subComponent.Svg.component>

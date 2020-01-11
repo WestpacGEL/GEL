@@ -45,8 +45,8 @@ export const Item = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.subComponent.Item.component
-			css={overrides.subComponent.Item.styles}
 			{...overrides.subComponent.Item.attributes(state)}
+			css={overrides.subComponent.Item.styles}
 		/>
 	);
 };

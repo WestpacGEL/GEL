@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Th = ({ bordered, overrides: componentOverrides, ...props }) => {
+export const Th = ({ bordered, overrides: componentOverrides, ...rest }) => {
 	const context = useTableContext();
 	bordered = (context && context.bordered) || bordered;
 
@@ -32,7 +32,7 @@ export const Th = ({ bordered, overrides: componentOverrides, ...props }) => {
 	const state = {
 		bordered,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -44,8 +44,8 @@ export const Th = ({ bordered, overrides: componentOverrides, ...props }) => {
 	);
 	return (
 		<overrides.subComponent.Th.component
-			css={overrides.subComponent.Th.styles}
 			{...overrides.subComponent.Th.attributes(state)}
+			css={overrides.subComponent.Th.styles}
 		/>
 	);
 };

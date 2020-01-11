@@ -29,6 +29,7 @@ export const FormCheck = ({
 	data,
 	onChange = () => {},
 	defaultValue,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -118,7 +119,11 @@ export const FormCheck = ({
 	}
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component
+			className={className}
+			{...overrides.attributes(state)}
+			css={overrides.styles}
+		>
 			{allChildren}
 		</overrides.component>
 	);

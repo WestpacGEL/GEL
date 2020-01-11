@@ -43,8 +43,8 @@ export const Grid = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.subComponent.Grid.component
-			css={overrides.subComponent.Grid.styles}
 			{...overrides.subComponent.Grid.attributes(state)}
+			css={overrides.subComponent.Grid.styles}
 		/>
 	);
 };

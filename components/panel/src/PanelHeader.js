@@ -45,8 +45,8 @@ export const PanelHeader = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.subComponent.Header.component
-			css={overrides.subComponent.Header.styles}
 			{...overrides.subComponent.Header.attributes(state)}
+			css={overrides.subComponent.Header.styles}
 		/>
 	);
 };

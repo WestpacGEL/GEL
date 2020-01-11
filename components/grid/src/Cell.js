@@ -40,8 +40,8 @@ export const Cell = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.subComponent.Cell.component
-			css={overrides.subComponent.Cell.styles}
 			{...overrides.subComponent.Cell.attributes(state)}
+			css={overrides.subComponent.Cell.styles}
 		/>
 	);
 };

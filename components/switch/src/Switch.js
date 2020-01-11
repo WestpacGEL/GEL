@@ -27,8 +27,9 @@ export const Switch = ({
 	toggleText,
 	disabled,
 	assistiveText,
+	className,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -81,7 +82,7 @@ export const Switch = ({
 		assistiveText,
 		overrides: componentOverrides,
 		checked,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -99,7 +100,11 @@ export const Switch = ({
 	const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component
+			className={className}
+			{...overrides.attributes(state)}
+			css={overrides.styles}
+		>
 			<overrides.subComponent.Input.component
 				type="checkbox"
 				name={name}
@@ -107,36 +112,34 @@ export const Switch = ({
 				aria-label={assistiveText}
 				onChange={handleChange(name)}
 				disabled={disabled}
-				css={overrides.subComponent.Input.styles}
 				{...overrides.subComponent.Input.attributes(state)}
+				css={overrides.subComponent.Input.styles}
 			/>
 			{label && (
 				<overrides.subComponent.Label.component
-					css={overrides.subComponent.Label.styles}
 					{...overrides.subComponent.Label.attributes(state)}
+					css={overrides.subComponent.Label.styles}
 				>
 					{label}
 				</overrides.subComponent.Label.component>
 			)}
 			<overrides.subComponent.Toggle.component
-				css={overrides.subComponent.Toggle.styles}
 				{...overrides.subComponent.Toggle.attributes(state)}
+				css={overrides.subComponent.Toggle.styles}
 			>
 				{!!toggleText && (
 					<Fragment>
 						<overrides.subComponent.ToggleText.component
 							position={'left'}
+							{...overrides.subComponent.ToggleText.attributes({ ...state, checked })}
 							css={overrides.subComponent.ToggleText.styles}
-							{...overrides.subComponent.ToggleText.attributes(state)}
-							checked={checked}
 						>
 							{toggleText[0]}
 						</overrides.subComponent.ToggleText.component>
 						<overrides.subComponent.ToggleText.component
 							position={'right'}
+							{...overrides.subComponent.ToggleText.attributes({ ...state, checked: !checked })}
 							css={overrides.subComponent.ToggleText.styles}
-							{...overrides.subComponent.ToggleText.attributes(state)}
-							checked={!checked}
 						>
 							{toggleText[1]}
 						</overrides.subComponent.ToggleText.component>

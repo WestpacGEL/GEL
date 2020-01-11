@@ -18,8 +18,9 @@ export const Popover = ({
 	content,
 	dismissible,
 	children,
+	className,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -66,7 +67,7 @@ export const Popover = ({
 		dismissible,
 		position,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -142,8 +143,9 @@ export const Popover = ({
 		<overrides.component
 			ref={triggerRef}
 			onClick={handleOpen}
-			css={overrides.styles}
+			className={className}
 			{...overrides.attributes(state)}
+			css={overrides.styles}
 		>
 			{childrenWithProps}
 			{open && (
@@ -151,27 +153,27 @@ export const Popover = ({
 					id={`gel-popover-${popoverId}`}
 					aria-label="Use the ESC key to close"
 					ref={popoverRef}
-					css={overrides.subComponent.Panel.styles}
 					tabIndex="-1"
 					{...overrides.subComponent.Panel.attributes(state)}
+					css={overrides.subComponent.Panel.styles}
 				>
 					<overrides.subComponent.Title.component
-						css={overrides.subComponent.Title.styles}
 						{...overrides.subComponent.Title.attributes(state)}
+						css={overrides.subComponent.Title.styles}
 					>
 						{title}
 					</overrides.subComponent.Title.component>
 					<overrides.subComponent.Body.component
-						css={overrides.subComponent.Body.styles}
 						{...overrides.subComponent.Body.attributes(state)}
+						css={overrides.subComponent.Body.styles}
 					>
 						{content}
 					</overrides.subComponent.Body.component>
 					<overrides.subComponent.CloseBtn.component
 						onClick={() => handleOpen()}
 						icon={CloseIcon}
-						css={overrides.subComponent.CloseBtn.styles}
 						{...overrides.subComponent.CloseBtn.attributes(state)}
+						css={overrides.subComponent.CloseBtn.styles}
 					/>
 				</overrides.subComponent.Panel.component>
 			)}

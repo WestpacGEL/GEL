@@ -44,8 +44,8 @@ export const Button = ({ position, size, data, overrides: componentOverrides, ..
 
 	return (
 		<overrides.subComponent.Button.component
-			css={overrides.subComponent.Button.styles}
 			{...overrides.subComponent.Button.attributes(state)}
+			css={overrides.subComponent.Button.styles}
 		>
 			{data}
 		</overrides.subComponent.Button.component>

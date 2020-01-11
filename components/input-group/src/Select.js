@@ -44,8 +44,8 @@ export const Select = ({ position, size, data, overrides: componentOverrides, ..
 
 	return (
 		<overrides.subComponent.Select.component
-			css={overrides.subComponent.Select.styles}
 			{...overrides.subComponent.Select.attributes(state)}
+			css={overrides.subComponent.Select.styles}
 		/>
 	);
 };

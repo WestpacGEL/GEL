@@ -23,8 +23,9 @@ export const Tabcordion = ({
 	initialTabIndex,
 	instanceIdPrefix,
 	children,
+	className,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -55,7 +56,7 @@ export const Tabcordion = ({
 		activeTabIndex,
 		instancePrefix,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -75,7 +76,7 @@ export const Tabcordion = ({
 	const { width } = useContainerQuery(containerRef);
 	const mode =
 		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
-	console.log(mode);
+
 	const setActive = idx => () => setActiveTabIndex(idx);
 
 	// create the prefix for internal IDs
@@ -144,13 +145,18 @@ export const Tabcordion = ({
 	const tabCount = Children.count(children);
 
 	return (
-		<overrides.component ref={containerRef} css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component
+			ref={containerRef}
+			className={className}
+			{...overrides.attributes(state)}
+			css={overrides.styles}
+		>
 			{mode === 'tabs' ? (
 				<overrides.subComponent.TabRow.component
 					role="tablist"
 					ref={tablistRef}
-					css={overrides.subComponent.TabRow.styles}
 					{...overrides.subComponent.TabRow.attributes(state)}
+					css={overrides.subComponent.TabRow.styles}
 				>
 					{Children.map(children, (child, idx) => {
 						const selected = activeTabIndex === idx;
@@ -165,8 +171,8 @@ export const Tabcordion = ({
 								onClick={setActive(idx)}
 								role="tab"
 								ref={tabRefs.current[idx]}
-								css={overrides.subComponent.TabItem.styles}
 								{...overrides.subComponent.TabItem.attributes(state)}
+								css={overrides.subComponent.TabItem.styles}
 							>
 								{child.props.text}
 							</overrides.subComponent.TabItem.component>
@@ -201,23 +207,41 @@ export const Tabcordion = ({
 // Types
 // ==============================
 Tabcordion.propTypes = {
-	/** The look of the tabs */
+	/**
+	 * The look of the tabs
+	 */
 	look: PropTypes.oneOf(['soft', 'lego']),
-	/** An array of Tab components that can be navigated through */
+
+	/**
+	 * An array of Tab components that can be navigated through
+	 */
 	children: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.oneOf([Tab]),
 		})
 	).isRequired,
-	/** The tab index to mount this component with */
+
+	/**
+	 * The tab index to mount this component with
+	 */
 	initialTabIndex: PropTypes.number,
-	/** Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc. */
+
+	/**
+	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
+	 */
 	instanceIdPrefix: PropTypes.string,
-	/** Whether or not tabs should stretch full width */
+
+	/**
+	 * Whether or not tabs should stretch full width
+	 */
 	justify: PropTypes.bool,
-	/** Lock the mode to either "accordion" or "tabs". The default is "responsive". */
+
+	/**
+	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
+	 */
 	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
 };
+
 Tabcordion.defaultProps = {
 	look: 'soft',
 	initialTabIndex: 0,

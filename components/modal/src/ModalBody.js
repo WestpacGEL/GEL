@@ -40,8 +40,8 @@ export const ModalBody = ({ overrides: componentOverrides, ...props }) => {
 	return (
 		<overrides.subComponent.Body.component
 			id={bodyId}
-			css={overrides.subComponent.Body.styles}
 			{...overrides.subComponent.Body.attributes(state)}
+			css={overrides.subComponent.Body.styles}
 		/>
 	);
 };

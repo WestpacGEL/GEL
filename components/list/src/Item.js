@@ -68,15 +68,15 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 
 	return (
 		<overrides.subComponent.Item.component
-			css={overrides.subComponent.Item.styles}
 			{...overrides.subComponent.Item.attributes(state)}
+			css={overrides.subComponent.Item.styles}
 		>
 			{type === 'icon' && icon && (
 				<overrides.subComponent.Icon.component
 					size="small"
 					color={COLORS.muted}
-					css={overrides.subComponent.Icon.styles}
 					{...overrides.subComponent.Icon.attributes(state)}
+					css={overrides.subComponent.Icon.styles}
 				/>
 			)}
 			{children}

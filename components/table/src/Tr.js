@@ -28,7 +28,7 @@ const generateHighlightMap = (highlighted, tdCount) => {
 // Component
 // ==============================
 
-export const Tr = ({ striped, highlighted, children, overrides: componentOverrides, ...props }) => {
+export const Tr = ({ striped, highlighted, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -48,7 +48,7 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 		striped,
 		highlighted,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -79,8 +79,8 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 
 	return (
 		<overrides.subComponent.Tr.component
-			css={overrides.subComponent.Tr.styles}
 			{...overrides.subComponent.Tr.attributes(state)}
+			css={overrides.subComponent.Tr.styles}
 		>
 			{highlightedChildren || children}
 		</overrides.subComponent.Tr.component>

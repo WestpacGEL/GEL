@@ -38,7 +38,7 @@ export const Label = ({ look, value, overrides: componentOverrides, ...rest }) =
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component {...overrides.attributes(state)} css={overrides.styles}>
 			{value}
 		</overrides.component>
 	);

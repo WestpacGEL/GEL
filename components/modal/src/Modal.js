@@ -40,9 +40,10 @@ export const Modal = ({
 	onClose,
 	size,
 	dismissible,
-	overrides: componentOverrides,
 	children,
-	...props
+	className,
+	overrides: componentOverrides,
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -91,7 +92,7 @@ export const Modal = ({
 		size,
 		dismissible,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -136,8 +137,8 @@ export const Modal = ({
 	return ReactDOM.createPortal(
 		<CSSTransition mountOnEnter unmountOnExit in={open} timeout={300} classNames="modal-backdrop">
 			<overrides.subComponent.Backdrop.component
-				css={overrides.subComponent.Backdrop.styles}
 				{...overrides.subComponent.Backdrop.attributes(state)}
+				css={overrides.subComponent.Backdrop.styles}
 			>
 				<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
 					<CSSTransition appear in={open} timeout={100} classNames="modal">
@@ -149,17 +150,18 @@ export const Modal = ({
 								aria-describedby={bodyId}
 								tabIndex="-1"
 								ref={modalRef}
-								css={overrides.styles}
+								className={className}
 								{...overrides.attributes(state)}
+								css={overrides.styles}
 							>
 								<overrides.subComponent.Header.component
-									css={overrides.subComponent.Header.styles}
 									{...overrides.subComponent.Header.attributes(state)}
+									css={overrides.subComponent.Header.styles}
 								>
 									<overrides.subComponent.Title.component
 										id={titleId}
-										css={overrides.subComponent.Title.styles}
 										{...overrides.subComponent.Title.attributes(state)}
+										css={overrides.subComponent.Title.styles}
 									>
 										{heading}
 									</overrides.subComponent.Title.component>
@@ -167,8 +169,8 @@ export const Modal = ({
 										<overrides.subComponent.CloseBtn.component
 											onClick={() => handleClose()}
 											icon={CloseIcon}
-											css={overrides.subComponent.CloseBtn.styles}
 											{...overrides.subComponent.CloseBtn.attributes(state)}
+											css={overrides.subComponent.CloseBtn.styles}
 										/>
 									)}
 								</overrides.subComponent.Header.component>

@@ -40,8 +40,8 @@ export const Container = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.subComponent.Container.component
-			css={overrides.subComponent.Container.styles}
 			{...overrides.subComponent.Container.attributes(state)}
+			css={overrides.subComponent.Container.styles}
 		/>
 	);
 };

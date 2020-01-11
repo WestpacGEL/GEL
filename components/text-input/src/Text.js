@@ -13,9 +13,9 @@ export const Text = ({
 	width,
 	inline,
 	invalid,
-	overrides: componentOverrides,
 	children,
-	...props
+	overrides: componentOverrides,
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -38,7 +38,7 @@ export const Text = ({
 		inline,
 		invalid,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -51,8 +51,8 @@ export const Text = ({
 
 	return (
 		<overrides.subComponent.Text.component
-			css={overrides.subComponent.Text.styles}
 			{...overrides.subComponent.Text.attributes(state)}
+			css={overrides.subComponent.Text.styles}
 		/>
 	);
 };

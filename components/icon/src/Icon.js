@@ -16,6 +16,7 @@ export const Icon = ({
 	size,
 	assistiveText,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -56,7 +57,11 @@ export const Icon = ({
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component
+			className={className}
+			{...overrides.attributes(state)}
+			css={overrides.styles}
+		>
 			<overrides.subComponent.Svg.component
 				aria-label={assistiveText}
 				xmlns="http://www.w3.org/2000/svg"

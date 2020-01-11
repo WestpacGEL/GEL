@@ -22,6 +22,7 @@ export const Option = ({
 	size,
 	inline,
 	flipped,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -69,8 +70,9 @@ export const Option = ({
 
 	return (
 		<overrides.subComponent.Option.component
-			css={overrides.subComponent.Option.styles}
+			className={className}
 			{...overrides.subComponent.Option.attributes(state)}
+			css={overrides.subComponent.Option.styles}
 		>
 			<input
 				type={type}
@@ -84,8 +86,8 @@ export const Option = ({
 			/>
 			<overrides.subComponent.Label.component
 				htmlFor={formCheckId}
-				css={overrides.subComponent.Label.styles}
 				{...overrides.subComponent.Label.attributes(state)}
+				css={overrides.subComponent.Label.styles}
 			>
 				{children}
 			</overrides.subComponent.Label.component>

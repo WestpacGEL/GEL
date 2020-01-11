@@ -45,8 +45,8 @@ export const Label = ({ position, size, data, overrides: componentOverrides, ...
 
 	return (
 		<overrides.subComponent.Label.component
-			css={overrides.subComponent.Label.styles}
 			{...overrides.subComponent.Label.attributes(state)}
+			css={overrides.subComponent.Label.styles}
 		>
 			{data}
 		</overrides.subComponent.Label.component>

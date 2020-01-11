@@ -18,6 +18,7 @@ export const Content = ({
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -65,8 +66,9 @@ export const Content = ({
 	// Compose a button text + icon fragment, if these are provided
 	return (
 		<overrides.subComponent.Content.component
-			css={overrides.subComponent.Content.styles}
+			className={className}
 			{...overrides.subComponent.Content.attributes(state)}
+			css={overrides.subComponent.Content.styles}
 		>
 			{IconBefore && (
 				<IconBefore

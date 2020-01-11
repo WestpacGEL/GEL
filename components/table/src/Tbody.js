@@ -9,7 +9,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Tbody = ({ overrides: componentOverrides, ...props }) => {
+export const Tbody = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -27,7 +27,7 @@ export const Tbody = ({ overrides: componentOverrides, ...props }) => {
 
 	const state = {
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -40,8 +40,8 @@ export const Tbody = ({ overrides: componentOverrides, ...props }) => {
 
 	return (
 		<overrides.subComponent.Tbody.component
-			css={overrides.subComponent.Tbody.styles}
 			{...overrides.subComponent.Tbody.attributes(state)}
+			css={overrides.subComponent.Tbody.styles}
 		/>
 	);
 };

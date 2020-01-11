@@ -8,14 +8,15 @@ import { Item, itemStyles } from './overrides/item';
 import { ItemText, itemTextStyles } from './overrides/itemText';
 import pkg from '../package.json';
 
-export const ProgressRopeItem = ({
+export const Item = ({
 	index,
 	groupIndex,
 	review,
 	onClick,
-	overrides: componentOverrides,
 	children,
-	...props
+	className,
+	overrides: componentOverrides,
+	...rest
 }) => {
 	const { currStep, currGroup, grouped, ropeGraph } = useProgressRopeContext();
 
@@ -75,7 +76,7 @@ export const ProgressRopeItem = ({
 		active,
 		furthest,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -88,13 +89,14 @@ export const ProgressRopeItem = ({
 
 	return (
 		<overrides.subComponent.Item.component
-			css={overrides.subComponent.Item.styles}
+			className={className}
 			{...overrides.subComponent.Item.attributes(state)}
+			css={overrides.subComponent.Item.styles}
 		>
 			<overrides.subComponent.ItemText.component
 				onClick={onClick}
-				css={overrides.subComponent.ItemText.styles}
 				{...overrides.subComponent.ItemText.attributes(state)}
+				css={overrides.subComponent.ItemText.styles}
 			>
 				{children}
 			</overrides.subComponent.ItemText.component>
@@ -105,7 +107,7 @@ export const ProgressRopeItem = ({
 // ==============================
 // Types
 // ==============================
-ProgressRopeItem.propTypes = {
+Item.propTypes = {
 	/**
 	 * Whether or not a review step
 	 */
@@ -130,6 +132,6 @@ ProgressRopeItem.propTypes = {
 	}),
 };
 
-ProgressRopeItem.defaultProps = {
+Item.defaultProps = {
 	review: false,
 };

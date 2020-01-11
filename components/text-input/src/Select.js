@@ -17,7 +17,7 @@ export const Select = ({
 	children,
 	data,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -53,7 +53,7 @@ export const Select = ({
 		inline,
 		invalid,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -66,8 +66,8 @@ export const Select = ({
 
 	return (
 		<overrides.subComponent.Select.component
-			css={overrides.subComponent.Select.styles}
 			{...overrides.subComponent.Select.attributes(state)}
+			css={overrides.subComponent.Select.styles}
 		>
 			{data ? childrenData : children}
 		</overrides.subComponent.Select.component>

@@ -62,8 +62,9 @@ export const ProgressRope = ({
 	current,
 	data,
 	children,
+	className,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -80,7 +81,7 @@ export const ProgressRope = ({
 		current,
 		data,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -180,7 +181,11 @@ export const ProgressRope = ({
 
 	return (
 		<ProgressRopeContext.Provider value={{ ...progState, handleClick }}>
-			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+			<overrides.component
+				className={className}
+				{...overrides.attributes(state)}
+				css={overrides.styles}
+			>
 				{allChildren}
 			</overrides.component>
 		</ProgressRopeContext.Provider>

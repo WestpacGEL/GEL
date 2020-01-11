@@ -13,7 +13,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const ProgressBar = ({ value, look, overrides: componentOverrides, ...props }) => {
+export const ProgressBar = ({ value, look, className, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -44,7 +44,7 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...pro
 		look,
 		value: roundedValue,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -56,22 +56,26 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...pro
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.component
+			className={className}
+			{...overrides.attributes(state)}
+			css={overrides.styles}
+		>
 			<overrides.subComponent.Bar.component
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
 				aria-valuenow={roundedValue}
 				aria-live="polite"
-				css={overrides.subComponent.Bar.styles}
 				{...overrides.subComponent.Bar.attributes(state)}
+				css={overrides.subComponent.Bar.styles}
 			>
 				{look !== 'skinny' ? (
 					<Fragment>
 						<overrides.subComponent.Text.component
 							role="text"
-							css={overrides.subComponent.Text.styles}
 							{...overrides.subComponent.Text.attributes(state)}
+							css={overrides.subComponent.Text.styles}
 						>
 							{roundedValue}%
 						</overrides.subComponent.Text.component>

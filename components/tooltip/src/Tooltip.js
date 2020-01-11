@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Tooltip = ({ text, title, overrides: componentOverrides, ...props }) => {
+export const Tooltip = ({ text, title, className, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -40,7 +40,7 @@ export const Tooltip = ({ text, title, overrides: componentOverrides, ...props }
 		position,
 		visible,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -83,11 +83,11 @@ export const Tooltip = ({ text, title, overrides: componentOverrides, ...props }
 	return (
 		<Fragment>
 			<overrides.subComponent.TooltipBubble.component
-				css={overrides.subComponent.TooltipBubble.styles}
-				{...overrides.subComponent.TooltipBubble.attributes(state)}
 				tooltipId={tooltipId}
 				text={text}
 				ref={tooltipRef}
+				{...overrides.subComponent.TooltipBubble.attributes(state)}
+				css={overrides.subComponent.TooltipBubble.styles}
 			/>
 			<overrides.component
 				title={title ? text : undefined}
@@ -96,8 +96,9 @@ export const Tooltip = ({ text, title, overrides: componentOverrides, ...props }
 				aria-describedby={tooltipId}
 				tabIndex={0}
 				ref={triggerRef}
-				css={overrides.styles}
+				className={className}
 				{...overrides.attributes(state)}
+				css={overrides.styles}
 			/>
 		</Fragment>
 	);

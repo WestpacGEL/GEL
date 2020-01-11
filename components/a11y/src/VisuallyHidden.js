@@ -47,8 +47,8 @@ export const VisuallyHidden = ({ overrides: componentOverrides, tag: Tag, ...res
 
 	return (
 		<overrides.subComponent.VisuallyHidden.component
-			css={overrides.subComponent.VisuallyHidden.styles}
 			{...overrides.subComponent.VisuallyHidden.attributes(state)}
+			css={overrides.subComponent.VisuallyHidden.styles}
 		/>
 	);
 };

@@ -14,9 +14,7 @@ export const CloseBtn = ({
 	open,
 	overrides,
 	...rest
-}) => (
-	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />
-);
+}) => <Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />;
 
 export const closeBtnStyles = (_, {}) => {
 	const mq = useMediaQuery();

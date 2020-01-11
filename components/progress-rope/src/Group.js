@@ -10,12 +10,13 @@ import { Group, groupStyles } from './overrides/group';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
-export const ProgressRopeGroup = ({
+export const Group = ({
 	index,
 	text,
-	overrides: componentOverrides,
 	children,
-	...props
+	className,
+	overrides: componentOverrides,
+	...rest
 }) => {
 	const { openGroup, ropeGraph, handleClick } = useProgressRopeContext();
 	const active = ropeGraph[index].includes('visited');
@@ -49,7 +50,7 @@ export const ProgressRopeGroup = ({
 		text,
 		active,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
@@ -61,20 +62,21 @@ export const ProgressRopeGroup = ({
 	);
 	return (
 		<overrides.subComponent.Group.component
-			css={overrides.subComponent.Group.styles}
+			className={className}
 			{...overrides.subComponent.Group.attributes(state)}
+			css={overrides.subComponent.Group.styles}
 		>
 			<overrides.subComponent.GroupText.component
 				onClick={() => handleClick(index)}
-				css={overrides.subComponent.GroupText.styles}
 				{...overrides.subComponent.GroupText.attributes(state)}
+				css={overrides.subComponent.GroupText.styles}
 			>
 				{text}
 			</overrides.subComponent.GroupText.component>
 			<overrides.subComponent.GroupItems.component
 				hidden={openGroup === null || index !== openGroup}
-				css={overrides.subComponent.GroupItems.styles}
 				{...overrides.subComponent.GroupItems.attributes(state)}
+				css={overrides.subComponent.GroupItems.styles}
 			>
 				{Children.map(children, (child, i) => cloneElement(child, { index: i, groupIndex: index }))}
 			</overrides.subComponent.GroupItems.component>
@@ -85,7 +87,7 @@ export const ProgressRopeGroup = ({
 // ==============================
 // Types
 // ==============================
-ProgressRopeGroup.propTypes = {
+Group.propTypes = {
 	/**
 	 * Group text
 	 */
