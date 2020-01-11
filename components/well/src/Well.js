@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Well as WellWrapper, wellStyles } from './overrides/well';
 import pkg from '../package.json';
 
 // ==============================
@@ -17,9 +17,11 @@ export const Well = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		Well: {
+			styles: wellStyles,
+			component: WellWrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const state = { overrides: componentOverrides, ...rest };
@@ -28,11 +30,10 @@ export const Well = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
-	return <overrides.component {...overrides.attributes(state)} css={overrides.styles} />;
+	return <overrides.Well.component {...overrides.Well.attributes(state)} css={overrides.Well.styles(state)} />;
 };
 
 // ==============================
@@ -44,9 +45,11 @@ Well.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
+		Well: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 	}),
 };
 
