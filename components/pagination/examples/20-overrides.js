@@ -6,19 +6,28 @@ import { Pagination, Page } from '@westpac/pagination';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const PageLink = props => <button {...props} />;
-
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/pagination'] = {
-		pageCSS: {
-			borderColor: 'palevioletred',
+		Pagination: {
+			styles: styles => ({
+				...styles,
+				outline: '6px solid blue',
+			}),
 		},
-		css: {
-			justifyContent: 'center',
+		Page: {
+			styles: styles => ({
+				...styles,
+				outline: '12px dotted palevioletred',
+			}),
 		},
-		PageLink,
+		Link: {
+			styles: styles => ({
+				...styles,
+				outline: '3px dashed hotpink',
+			}),
+		},
 	};
 
 	return (
@@ -32,6 +41,42 @@ function Example({ brand }) {
 			</Pagination>
 
 			<Pagination
+				data={[
+					{ text: '1', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ text: '2', onClick: (event, page) => console.log(`Page ${page}`, event) },
+					{ text: '3', onClick: (event, page) => console.log(`Page ${page}`, event) },
+				]}
+			/>
+
+			<br />
+			<hr />
+			<br />
+
+			<h2>With overrides and component overrides</h2>
+			<Pagination
+				overrides={{
+					Link: {
+						styles: styles => ({
+							...styles,
+							background: 'rgba(0,255,0,0.3)',
+						}),
+					},
+				}}
+			>
+				<Page text="one" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page text="two" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+				<Page text="three" onClick={(event, page) => console.log(`Page ${page}`, event)} />
+			</Pagination>
+
+			<Pagination
+				overrides={{
+					Link: {
+						styles: styles => ({
+							...styles,
+							background: 'rgba(0,255,0,0.3)',
+						}),
+					},
+				}}
 				data={[
 					{ text: '1', onClick: (event, page) => console.log(`Page ${page}`, event) },
 					{ text: '2', onClick: (event, page) => console.log(`Page ${page}`, event) },

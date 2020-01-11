@@ -65,12 +65,12 @@ function Example({ brand }) {
 			<Pagination
 				current={1}
 				back={{
-					onClick: () => console.log('this event will run in addition to the onClick of the page'),
+					onClick: () => console.log('this event will run in addition to the normal logic'),
 				}}
 				next={{
 					onClick: event => {
 						event.preventDefault();
-						console.log('this event will only run without the onClick of the page');
+						console.log('this event will only run without any logic disabling the default');
 					},
 				}}
 			>
@@ -149,14 +149,12 @@ function Example({ brand }) {
 
 			<Pagination
 				current={2}
+				infinite
 				back={{
 					visible: true,
-					text: 'Back',
 					assistiveText: page => `Go to previous page which is ${page}`,
 				}}
 				next={{
-					visible: true,
-					text: 'Next',
 					assistiveText: page => `Go to next page which is ${page}`,
 				}}
 				data={[
