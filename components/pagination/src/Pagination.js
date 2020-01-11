@@ -17,7 +17,7 @@ export const usePaginationContext = () => {
 	const context = useContext(PaginationContext);
 
 	if (!context) {
-		throw new Error('Page sub-components should be wrapped in a <Pagination>.');
+		throw new Error('Page components should be wrapped in <Pagination>.');
 	}
 
 	return context;

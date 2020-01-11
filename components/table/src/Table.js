@@ -12,7 +12,15 @@ import pkg from '../package.json';
 // ==============================
 const TableContext = createContext();
 
-export const useTableContext = () => useContext(TableContext);
+export const useTableContext = () => {
+	const context = useContext(TableContext);
+
+	if (!context) {
+		throw new Error('Table sub-components should be wrapped in <Table>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
