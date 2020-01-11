@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -34,27 +34,25 @@ export const Crumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			AssistiveText: {
-				styles: assistiveTextStyles,
-				component: AssistiveText,
-				attributes: state => state,
-			},
-			Crumb: {
-				styles: crumbStyles,
-				component: CrumbWrapper,
-				attributes: state => state,
-			},
-			Link: {
-				styles: linkStyles,
-				component: Link,
-				attributes: state => state,
-			},
-			Icon: {
-				styles: iconStyles,
-				component: Icon,
-				attributes: state => state,
-			},
+		AssistiveText: {
+			styles: assistiveTextStyles,
+			component: AssistiveText,
+			attributes: state => state,
+		},
+		Crumb: {
+			styles: crumbStyles,
+			component: CrumbWrapper,
+			attributes: state => state,
+		},
+		Link: {
+			styles: linkStyles,
+			component: Link,
+			attributes: state => state,
+		},
+		Icon: {
+			styles: iconStyles,
+			component: Icon,
+			attributes: state => state,
 		},
 	};
 
@@ -72,43 +70,42 @@ export const Crumb = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Crumb.component
+		<overrides.Crumb.component
 			className={className}
-			{...overrides.subComponent.Crumb.attributes(state)}
-			css={overrides.subComponent.Crumb.styles}
+			{...overrides.Crumb.attributes(state)}
+			css={overrides.Crumb.styles(state)}
 		>
 			{current && (
-				<overrides.subComponent.AssistiveText.component
+				<overrides.AssistiveText.component
 					insideCrumb={true}
-					{...overrides.subComponent.AssistiveText.attributes(state)}
-					css={overrides.subComponent.AssistiveText.styles}
+					{...overrides.AssistiveText.attributes(state)}
+					css={overrides.AssistiveText.styles(state)}
 				>
 					{assistiveText}
-				</overrides.subComponent.AssistiveText.component>
+				</overrides.AssistiveText.component>
 			)}
-			<overrides.subComponent.Link.component
+			<overrides.Link.component
 				href={current ? null : href}
 				onClick={onClick}
-				{...overrides.subComponent.Link.attributes(state)}
-				css={overrides.subComponent.Link.styles}
+				{...overrides.Link.attributes(state)}
+				css={overrides.Link.styles(state)}
 			>
 				{text}
-			</overrides.subComponent.Link.component>
+			</overrides.Link.component>
 			{!current && (
-				<overrides.subComponent.Icon.component
+				<overrides.Icon.component
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
-					{...overrides.subComponent.Icon.attributes(state)}
-					css={overrides.subComponent.Icon.styles}
+					{...overrides.Icon.attributes(state)}
+					css={overrides.Icon.styles(state)}
 				/>
 			)}
-		</overrides.subComponent.Crumb.component>
+		</overrides.Crumb.component>
 	);
 };
 
@@ -143,27 +140,25 @@ Crumb.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			AssistiveText: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Crumb: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Link: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Icon: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		AssistiveText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Crumb: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Link: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };

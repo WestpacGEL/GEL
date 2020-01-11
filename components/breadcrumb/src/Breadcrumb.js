@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import { cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 
 import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Breadcrumb as BreadcrumbWrapper, breadcrumbStyles } from './overrides/breadcrumb';
 import { List, listStyles } from './overrides/list';
 import pkg from '../package.json';
 import { Crumb } from './Crumb';
@@ -33,21 +33,20 @@ export const Breadcrumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			AssistiveText: {
-				styles: assistiveTextStyles,
-				component: AssistiveText,
-				attributes: state => state,
-			},
-			List: {
-				styles: listStyles,
-				component: List,
-				attributes: state => state,
-			},
+		Breadcrumb: {
+			styles: breadcrumbStyles,
+			component: BreadcrumbWrapper,
+			attributes: state => state,
+		},
+		AssistiveText: {
+			styles: assistiveTextStyles,
+			component: AssistiveText,
+			attributes: state => state,
+		},
+		List: {
+			styles: listStyles,
+			component: List,
+			attributes: state => state,
 		},
 	};
 
@@ -64,8 +63,7 @@ export const Breadcrumb = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	let allChildren = [];
@@ -95,24 +93,24 @@ export const Breadcrumb = ({
 	}
 
 	return (
-		<overrides.component
+		<overrides.Breadcrumb.component
 			className={className}
-			{...overrides.attributes(state)}
-			css={overrides.styles}
+			{...overrides.Breadcrumb.attributes(state)}
+			css={overrides.Breadcrumb.styles(state)}
 		>
-			<overrides.subComponent.AssistiveText.component
-				{...overrides.subComponent.AssistiveText.attributes(state)}
-				css={overrides.subComponent.AssistiveText.styles}
+			<overrides.AssistiveText.component
+				{...overrides.AssistiveText.attributes(state)}
+				css={overrides.AssistiveText.styles(state)}
 			>
 				{assistiveText}
-			</overrides.subComponent.AssistiveText.component>
-			<overrides.subComponent.List.component
-				{...overrides.subComponent.List.attributes(state)}
-				css={overrides.subComponent.List.styles}
+			</overrides.AssistiveText.component>
+			<overrides.List.component
+				{...overrides.List.attributes(state)}
+				css={overrides.List.styles(state)}
 			>
 				{allChildren}
-			</overrides.subComponent.List.component>
-		</overrides.component>
+			</overrides.List.component>
+		</overrides.Breadcrumb.component>
 	);
 };
 
@@ -151,35 +149,35 @@ Breadcrumb.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			AssistiveText: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			List: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Crumb: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Link: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Icon: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Breadcrumb: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		AssistiveText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		List: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Crumb: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Link: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };
