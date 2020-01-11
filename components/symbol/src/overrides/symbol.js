@@ -3,11 +3,11 @@
 import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
 import React from 'react';
 
-export const Wrapper = ({ assistiveText, viewBoxWidth, viewBoxHeight, ...rest }) => (
+export const Symbol = ({ assistiveText, viewBoxWidth, viewBoxHeight, ...rest }) => (
 	<span {...rest} />
 );
 
-export const wrapperStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
+export const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
 	const mq = useMediaQuery();
 
 	const round = f => Math.round(f * 10) / 10; // 1DP
