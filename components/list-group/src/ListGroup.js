@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, GEL } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler, GEL } from '@westpac/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Wrapper, wrapperStyles, wrapperAttributes } from './overrides/wrapper';
+import { ListGroup as ListGroupWrapper, listGroupStyles, listGroupAttributes } from './overrides/listGroup';
 import pkg from '../package.json';
 
 // ==============================
@@ -20,9 +20,11 @@ export const ListGroup = ({ className, overrides: componentOverrides, ...rest })
 	const brandOverrides = brand[pkg.name];
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => ({ ...state, ...wrapperAttributes(state) }),
+		ListGroup: {
+			styles: listGroupStyles,
+			component: ListGroupWrapper,
+			attributes: (_, state) => ({ ...state, ...listGroupAttributes(state) }),
+		},
 	};
 
 	const state = {
@@ -34,8 +36,7 @@ export const ListGroup = ({ className, overrides: componentOverrides, ...rest })
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
@@ -44,21 +45,17 @@ export const ListGroup = ({ className, overrides: componentOverrides, ...rest })
 				...brand,
 				// We have to pass on the overrides to our list Item component in it's own name-space
 				'@westpac/list': {
-					...(overrides.subComponent && {
-						subComponent: {
-							Item: {
-								styles: overrides.subComponent.Item.styles,
-							},
-						},
+					...(overrides.Item && {
+						Item: overrides.Item,
 					}),
 				},
 			}}
 		>
-			<overrides.component
+			<overrides.ListGroup.component
 				type="unstyled"
 				className={className}
-				{...overrides.attributes(state)}
-				css={overrides.styles}
+				{...overrides.ListGroup.attributes(state)}
+				css={overrides.ListGroup.styles(state)}
 			/>
 		</GEL>
 	);
@@ -83,15 +80,15 @@ ListGroup.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Item: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		ListGroup: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
