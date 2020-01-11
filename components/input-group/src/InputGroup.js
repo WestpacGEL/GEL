@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
+import { InputGroup as InputGroupWrapper, inputGroupStyles } from './overrides/inputGroup';
 import { Text as TextWrapper, textStyles } from './overrides/text';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import pkg from '../package.json';
 import { Right } from './Right';
 import { Left } from './Left';
@@ -38,16 +38,15 @@ export const InputGroup = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			Text: {
-				styles: textStyles,
-				component: TextWrapper,
-				attributes: state => state,
-			},
+		InputGroup: {
+			styles: inputGroupStyles,
+			component: InputGroupWrapper,
+			attributes: (_, a) => a,
+		},
+		Text: {
+			styles: textStyles,
+			component: TextWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -69,8 +68,7 @@ export const InputGroup = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	let added = false;
@@ -93,13 +91,10 @@ export const InputGroup = ({
 			);
 		}
 		childrenWithProps.push(
-			<overrides.subComponent.Text.component
+			<overrides.Text.component
 				key="textinput1"
-				left={!!left}
-				right={!!right}
-				overrides={componentOverrides}
-				css={overrides.subComponent.Text.styles}
-				{...overrides.subComponent.Text.attributes(state)}
+				css={overrides.Text.styles({...state, left: !!left, right: !!right })}
+				{...overrides.Text.attributes({...state, left: !!left, right: !!right})}
 			/>
 		);
 		if (right) {
@@ -121,25 +116,19 @@ export const InputGroup = ({
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'left' })
 				);
 				childrenWithProps.push(
-					<overrides.subComponent.Text.component
+					<overrides.Text.component
 						key="textinput1"
-						left={true}
-						right={length > 1}
-						overrides={componentOverrides}
-						css={overrides.subComponent.Text.styles}
-						{...overrides.subComponent.Text.attributes(state)}
+						css={overrides.Text.styles({...state, left: true, right: length > 1})}
+						{...overrides.Text.attributes({...state, left: true, right: length > 1})}
 					/>
 				);
 				added = true;
 			} else if (child.type.name === 'Right' && !added) {
 				childrenWithProps.push(
-					<overrides.subComponent.Text.component
+					<overrides.Text.component
 						key="textinput2"
-						left={false}
-						right={true}
-						overrides={componentOverrides}
-						css={overrides.subComponent.Text.styles}
-						{...overrides.subComponent.Text.attributes(state)}
+						css={overrides.Text.styles({...state, left: false, right: true })}
+						{...overrides.Text.attributes({...state, left: false, right: true })}
 					/>
 				);
 				childrenWithProps.push(
@@ -155,13 +144,13 @@ export const InputGroup = ({
 	}
 
 	return (
-		<overrides.component
+		<overrides.InputGroup.component
 			className={className}
-			{...overrides.attributes(state)}
-			css={overrides.styles}
+			{...overrides.InputGroup.attributes(state)}
+			css={overrides.InputGroup.styles(state)}
 		>
 			{childrenWithProps}
-		</overrides.component>
+		</overrides.InputGroup.component>
 	);
 };
 
@@ -215,30 +204,30 @@ InputGroup.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Text: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Button: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Label: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Select: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		InputGroup: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Text: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Button: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Select: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

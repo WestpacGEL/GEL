@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Select as SelectWrapper, selectStyles } from './overrides/select';
@@ -17,12 +17,10 @@ export const Select = ({ position, size, data, overrides: componentOverrides, ..
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Select: {
-				styles: selectStyles,
-				component: SelectWrapper,
-				attributes: state => state,
-			},
+		Select: {
+			styles: selectStyles,
+			component: SelectWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -38,14 +36,13 @@ export const Select = ({ position, size, data, overrides: componentOverrides, ..
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Select.component
-			{...overrides.subComponent.Select.attributes(state)}
-			css={overrides.subComponent.Select.styles}
+		<overrides.Select.component
+			{...overrides.Select.attributes(state)}
+			css={overrides.Select.styles(state)}
 		/>
 	);
 };
@@ -69,6 +66,17 @@ Select.propTypes = {
 	 * The content of the component
 	 */
 	data: PropTypes.array.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Select: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Select.defaultProps = {

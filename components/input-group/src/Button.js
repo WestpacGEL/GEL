@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Button as ButtonWrapper, buttonStyles } from './overrides/button';
@@ -17,12 +17,10 @@ export const Button = ({ position, size, data, overrides: componentOverrides, ..
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Button: {
-				styles: buttonStyles,
-				component: ButtonWrapper,
-				attributes: state => state,
-			},
+		Button: {
+			styles: buttonStyles,
+			component: ButtonWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -38,17 +36,16 @@ export const Button = ({ position, size, data, overrides: componentOverrides, ..
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Button.component
-			{...overrides.subComponent.Button.attributes(state)}
-			css={overrides.subComponent.Button.styles}
+		<overrides.Button.component
+			{...overrides.Button.attributes(state)}
+			css={overrides.Button.styles(state)}
 		>
 			{data}
-		</overrides.subComponent.Button.component>
+		</overrides.Button.component>
 	);
 };
 
@@ -71,6 +68,17 @@ Button.propTypes = {
 	 * The content of the component
 	 */
 	data: PropTypes.string.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Button: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Button.defaultProps = {
