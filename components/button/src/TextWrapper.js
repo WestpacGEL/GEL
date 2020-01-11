@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Text, textStyles } from './overrides/text';
@@ -23,12 +23,10 @@ export const TextWrapper = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			TextWrapper: {
-				styles: textStyles,
-				component: Text,
-				attributes: state => state,
-			},
+		TextWrapper: {
+			styles: textStyles,
+			component: Text,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -42,18 +40,17 @@ export const TextWrapper = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.TextWrapper.component
+		<overrides.TextWrapper.component
 			className={className}
-			{...overrides.subComponent.TextWrapper.attributes(state)}
-			css={overrides.subComponent.TextWrapper.styles}
+			{...overrides.TextWrapper.attributes(state)}
+			css={overrides.TextWrapper.styles(state)}
 		>
 			{children}
-		</overrides.subComponent.TextWrapper.component>
+		</overrides.TextWrapper.component>
 	);
 };
 
@@ -74,12 +71,10 @@ TextWrapper.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			TextWrapper: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		TextWrapper: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };

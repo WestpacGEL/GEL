@@ -17,21 +17,20 @@ const TextWrapper = ({ children, ...rest }) => (
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button'] = {
-		styles: styles => ({
-			...styles,
-			outline: '1px dotted blue',
-		}),
-
-		subComponent: {
-			ButtonGroup: {
-				styles: styles => ({
-					...styles,
-					outline: `4px solid green`,
-				}),
-			},
-			TextWrapper: {
-				component: TextWrapper,
-			},
+		Button: {
+			styles: styles => ({
+				...styles,
+				outline: '1px dotted blue',
+			}),
+		},
+		ButtonGroup: {
+			styles: styles => ({
+				...styles,
+				outline: `4px solid green`,
+			}),
+		},
+		TextWrapper: {
+			component: TextWrapper,
 		},
 	};
 
@@ -60,13 +59,11 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<ButtonGroup
 				overrides={{
-					subComponent: {
-						ButtonGroup: {
-							styles: styles => ({
-								...styles,
-								outline: `5px solid rebeccapurple`,
-							}),
-						},
+					ButtonGroup: {
+						styles: styles => ({
+							...styles,
+							outline: `5px solid rebeccapurple`,
+						}),
 					},
 				}}
 			>
@@ -77,13 +74,11 @@ function Example({ brand }) {
 			<hr />
 			<ButtonGroup
 				overrides={{
-					subComponent: {
-						ButtonGroup: {
-							styles: styles => ({
-								...styles,
-								outline: `5px solid hotpink`,
-							}),
-						},
+					ButtonGroup: {
+						styles: styles => ({
+							...styles,
+							outline: `5px solid hotpink`,
+						}),
 					},
 				}}
 				data={[

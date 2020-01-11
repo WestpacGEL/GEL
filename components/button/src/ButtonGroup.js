@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, devWarning, wrapHandlers, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, devWarning, wrapHandlers, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -39,12 +39,10 @@ export const ButtonGroup = props => {
 	devWarning(!children && !data, 'ButtonGroup requires either `children` or `data`.');
 
 	const defaultOverrides = {
-		subComponent: {
-			ButtonGroup: {
-				styles: buttonGroupStyles,
-				component: BtnGroupWrapper,
-				attributes: state => state,
-			},
+		ButtonGroup: {
+			styles: buttonGroupStyles,
+			component: BtnGroupWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -66,8 +64,7 @@ export const ButtonGroup = props => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	const handleClick = (val, onClick) =>
@@ -83,10 +80,10 @@ export const ButtonGroup = props => {
 
 	// Fork map behaviour when children VS data
 	return (
-		<overrides.subComponent.ButtonGroup.component
+		<overrides.ButtonGroup.component
 			className={className}
-			{...overrides.subComponent.ButtonGroup.attributes(state)}
-			css={overrides.subComponent.ButtonGroup.styles}
+			{...overrides.ButtonGroup.attributes(state)}
+			css={overrides.ButtonGroup.styles(state)}
 		>
 			{data
 				? data.map((button, index) => {
@@ -112,7 +109,7 @@ export const ButtonGroup = props => {
 						});
 				  })}
 			{name && <input type="hidden" value={actualValue} name={name} />}
-		</overrides.subComponent.ButtonGroup.component>
+		</overrides.ButtonGroup.component>
 	);
 };
 
@@ -177,12 +174,10 @@ ButtonGroup.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			ButtonGroup: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		ButtonGroup: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };
