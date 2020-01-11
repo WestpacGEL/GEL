@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Footer, footerStyles } from './overrides/footer';
@@ -18,12 +18,10 @@ export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Footer: {
-				styles: footerStyles,
-				component: Footer,
-				attributes: state => state,
-			},
+		Footer: {
+			styles: footerStyles,
+			component: Footer,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -39,14 +37,13 @@ export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		merge(componentOverrides, overridesCtx),
-		state
+		merge(componentOverrides, overridesCtx)
 	);
 
 	return (
-		<overrides.subComponent.Footer.component
-			{...overrides.subComponent.Footer.attributes(state)}
-			css={overrides.subComponent.Footer.styles}
+		<overrides.Footer.component
+			{...overrides.Footer.attributes(state)}
+			css={overrides.Footer.styles(state)}
 		/>
 	);
 };
@@ -65,12 +62,10 @@ PanelFooter.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Footer: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Footer: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

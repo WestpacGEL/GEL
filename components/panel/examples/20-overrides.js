@@ -11,34 +11,34 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/panel'] = {
-		styles: styles => ({
-			...styles,
-			borderColor: 'palevioletred',
-			outline: '1px solid red',
-		}),
-		component: Wrapper,
-		subComponent: {
-			Header: {
-				styles: styles => ({
-					...styles,
-					backgroundColor: 'palevioletred',
-					borderColor: 'palevioletred',
-				}),
-			},
-			Body: {
-				styles: styles => ({
-					...styles,
-					color: 'darkmagenta',
-				}),
-			},
-			Footer: {
-				styles: styles => ({
-					...styles,
-					backgroundColor: 'lightpink',
-					border: 'pink',
-					color: 'mediumvioletred',
-				}),
-			},
+		Panel: {
+			styles: styles => ({
+				...styles,
+				borderColor: 'palevioletred',
+				outline: '1px solid red',
+			}),
+			component: Wrapper,
+		},
+		Header: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: 'palevioletred',
+				borderColor: 'palevioletred',
+			}),
+		},
+		Body: {
+			styles: styles => ({
+				...styles,
+				color: 'darkmagenta',
+			}),
+		},
+		Footer: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: 'lightpink',
+				border: 'pink',
+				color: 'mediumvioletred',
+			}),
 		},
 	};
 
@@ -65,13 +65,11 @@ function Example({ brand }) {
 
 			<Panel
 				overrides={{
-					subComponent: {
-						Header: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted green',
-							}),
-						},
+					Header: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
 					},
 				}}
 			>
