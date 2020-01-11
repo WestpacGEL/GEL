@@ -17,33 +17,31 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/popover'] = {
-		subComponent: {
-			Panel: {
-				styles: (styles, { position }) => ({
-					...styles,
-					borderColor: 'palevioletred',
+		Panel: {
+			styles: (styles, { position }) => ({
+				...styles,
+				borderColor: 'palevioletred',
 
-					'::before': {
-						content: '""',
-						position: 'absolute',
-						[position === 'top' ? 'bottom' : 'top']: '-0.8125rem',
-						left: '50%',
-						marginLeft: '-0.5rem',
-						width: 0,
-						[position === 'top' ? 'borderTop' : 'borderBottom']: `0.75rem solid palevioletred`,
-						borderRight: '0.5rem solid transparent',
-						borderLeft: '0.5rem solid transparent',
-						fontSize: 0,
-						lineHeight: 0,
-					},
-				}),
-			},
-			Title: {
-				styles: styles => ({
-					...styles,
-					backgroundColor: 'palevioletred',
-				}),
-			},
+				'::before': {
+					content: '""',
+					position: 'absolute',
+					[position === 'top' ? 'bottom' : 'top']: '-0.8125rem',
+					left: '50%',
+					marginLeft: '-0.5rem',
+					width: 0,
+					[position === 'top' ? 'borderTop' : 'borderBottom']: `0.75rem solid palevioletred`,
+					borderRight: '0.5rem solid transparent',
+					borderLeft: '0.5rem solid transparent',
+					fontSize: 0,
+					lineHeight: 0,
+				},
+			}),
+		},
+		Title: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: 'palevioletred',
+			}),
 		},
 	};
 
@@ -64,7 +62,7 @@ function Example({ brand }) {
 				title="Example Title"
 				content={content}
 				overrides={{
-					subComponent: { Panel: { styles: styles => ({ ...styles, border: '2px dotted red' }) } },
+					Panel: { styles: styles => ({ ...styles, border: '2px dotted red' }) },
 				}}
 			>
 				<Button>Click Me</Button>

@@ -1,12 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler, useInstanceId } from '@westpac/core';
 import { useState, useEffect, useRef, cloneElement } from 'react';
 import { CloseIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
 
+import { Popover as PopoverWrapper, popoverStyles } from './overrides/popover';
 import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import { PopoverBody, bodyStyles } from './overrides/body';
 import { Panel, panelStyles } from './overrides/panel';
 import { Title, titleStyles } from './overrides/title';
@@ -33,30 +33,30 @@ export const Popover = ({
 	const popoverRef = useRef();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-		subComponent: {
-			Panel: {
-				styles: panelStyles,
-				component: Panel,
-				attributes: state => state,
-			},
-			Title: {
-				styles: titleStyles,
-				component: Title,
-				attributes: state => state,
-			},
-			Body: {
-				styles: bodyStyles,
-				component: PopoverBody,
-				attributes: state => state,
-			},
-			CloseBtn: {
-				styles: closeBtnStyles,
-				component: CloseBtn,
-				attributes: state => state,
-			},
+		Popover: {
+			styles: popoverStyles,
+			component: PopoverWrapper,
+			attributes: (_, a) => a,
+		},
+		Panel: {
+			styles: panelStyles,
+			component: Panel,
+			attributes: (_, a) => a,
+		},
+		Title: {
+			styles: titleStyles,
+			component: Title,
+			attributes: (_, a) => a,
+		},
+		Body: {
+			styles: bodyStyles,
+			component: PopoverBody,
+			attributes: (_, a) => a,
+		},
+		CloseBtn: {
+			styles: closeBtnStyles,
+			component: CloseBtn,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -74,8 +74,7 @@ export const Popover = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	useEffect(() => {
@@ -140,44 +139,44 @@ export const Popover = ({
 	});
 
 	return (
-		<overrides.component
+		<overrides.Popover.component
 			ref={triggerRef}
 			onClick={handleOpen}
 			className={className}
-			{...overrides.attributes(state)}
-			css={overrides.styles}
+			{...overrides.Popover.attributes(state)}
+			css={overrides.Popover.styles(state)}
 		>
 			{childrenWithProps}
 			{open && (
-				<overrides.subComponent.Panel.component
+				<overrides.Panel.component
 					id={`gel-popover-${popoverId}`}
 					aria-label="Use the ESC key to close"
 					ref={popoverRef}
 					tabIndex="-1"
-					{...overrides.subComponent.Panel.attributes(state)}
-					css={overrides.subComponent.Panel.styles}
+					{...overrides.Panel.attributes(state)}
+					css={overrides.Panel.styles(state)}
 				>
-					<overrides.subComponent.Title.component
-						{...overrides.subComponent.Title.attributes(state)}
-						css={overrides.subComponent.Title.styles}
+					<overrides.Title.component
+						{...overrides.Title.attributes(state)}
+						css={overrides.Title.styles(state)}
 					>
 						{title}
-					</overrides.subComponent.Title.component>
-					<overrides.subComponent.Body.component
-						{...overrides.subComponent.Body.attributes(state)}
-						css={overrides.subComponent.Body.styles}
+					</overrides.Title.component>
+					<overrides.Body.component
+						{...overrides.Body.attributes(state)}
+						css={overrides.Body.styles(state)}
 					>
 						{content}
-					</overrides.subComponent.Body.component>
-					<overrides.subComponent.CloseBtn.component
+					</overrides.Body.component>
+					<overrides.CloseBtn.component
 						onClick={() => handleOpen()}
 						icon={CloseIcon}
-						{...overrides.subComponent.CloseBtn.attributes(state)}
-						css={overrides.subComponent.CloseBtn.styles}
+						{...overrides.CloseBtn.attributes(state)}
+						css={overrides.CloseBtn.styles(state)}
 					/>
-				</overrides.subComponent.Panel.component>
+				</overrides.Panel.component>
 			)}
-		</overrides.component>
+		</overrides.Popover.component>
 	);
 };
 
@@ -206,30 +205,30 @@ Popover.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Panel: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Title: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Body: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			CloseBtn: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Popover: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Panel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Title: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Body: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		CloseBtn: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
