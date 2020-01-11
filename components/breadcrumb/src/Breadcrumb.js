@@ -36,17 +36,17 @@ export const Breadcrumb = ({
 		Breadcrumb: {
 			styles: breadcrumbStyles,
 			component: BreadcrumbWrapper,
-			attributes: state => state,
+			attributes: (_, a) => a,
 		},
 		AssistiveText: {
 			styles: assistiveTextStyles,
 			component: AssistiveText,
-			attributes: state => state,
+			attributes: (_, a) => a,
 		},
 		List: {
 			styles: listStyles,
 			component: List,
-			attributes: state => state,
+			attributes: (_, a) => a,
 		},
 	};
 

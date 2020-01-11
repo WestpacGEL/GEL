@@ -37,22 +37,22 @@ export const Crumb = ({
 		AssistiveText: {
 			styles: assistiveTextStyles,
 			component: AssistiveText,
-			attributes: state => state,
+			attributes: (_, a) => a,
 		},
 		Crumb: {
 			styles: crumbStyles,
 			component: CrumbWrapper,
-			attributes: state => state,
+			attributes: (_, a) => a,
 		},
 		Link: {
 			styles: linkStyles,
 			component: Link,
-			attributes: state => state,
+			attributes: (_, a) => a,
 		},
 		Icon: {
 			styles: iconStyles,
 			component: Icon,
-			attributes: state => state,
+			attributes: (_, a) => a,
 		},
 	};
 
