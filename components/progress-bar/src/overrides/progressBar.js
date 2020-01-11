@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Wrapper = props => <div {...props} />;
+export const ProgressBar = props => <div {...props} />;
 
-export const wrapperStyles = (_, { look }) => {
+export const progressBarStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	const styleMap = {
