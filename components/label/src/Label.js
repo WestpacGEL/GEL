@@ -39,7 +39,10 @@ export const Label = ({ look, value, overrides: componentOverrides, ...rest }) =
 	);
 
 	return (
-		<overrides.Label.component {...overrides.Label.attributes(state)} css={overrides.Label.styles(state)}>
+		<overrides.Label.component
+			{...overrides.Label.attributes(state)}
+			css={overrides.Label.styles(state)}
+		>
 			{value}
 		</overrides.Label.component>
 	);

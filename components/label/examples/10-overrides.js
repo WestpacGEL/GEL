@@ -16,7 +16,7 @@ const Wrapper = ({ look, value, children, ...props }) => {
 	}
 
 	return (
-		<Tag {...(Tag === 'button' && {type: 'button'})} {...props}>
+		<Tag {...(Tag === 'button' && { type: 'button' })} {...props}>
 			{children}
 			{(props.href || props.onClick) && (
 				<span
@@ -113,7 +113,7 @@ function Example({ brand }) {
 							...styles,
 							outline: '6px dotted green',
 						}),
-					}
+					},
 				}}
 			/>
 		</GEL>

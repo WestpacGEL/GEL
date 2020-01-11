@@ -6,7 +6,7 @@ import { InputGroup, Left, Right } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Label = ({data, overrides, ...rest}) => (
+const Label = ({ data, overrides, ...rest }) => (
 	<span {...rest}>
 		<HouseIcon size="small" /> {data}
 	</span>

@@ -1,6 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, devWarning, wrapHandlers, overrideReconciler2 as overrideReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	devWarning,
+	wrapHandlers,
+	overrideReconciler2 as overrideReconciler,
+} from '@westpac/core';
 import React, { Children, cloneElement, useState } from 'react';
 import PropTypes from 'prop-types';
 

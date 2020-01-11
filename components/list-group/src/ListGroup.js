@@ -4,7 +4,11 @@ import { jsx, useBrand, overrideReconciler2 as overrideReconciler, GEL } from '@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { ListGroup as ListGroupWrapper, listGroupStyles, listGroupAttributes } from './overrides/listGroup';
+import {
+	ListGroup as ListGroupWrapper,
+	listGroupStyles,
+	listGroupAttributes,
+} from './overrides/listGroup';
 import pkg from '../package.json';
 
 // ==============================

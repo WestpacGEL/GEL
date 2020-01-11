@@ -33,7 +33,12 @@ export const Well = ({ overrides: componentOverrides, ...rest }) => {
 		componentOverrides
 	);
 
-	return <overrides.Well.component {...overrides.Well.attributes(state)} css={overrides.Well.styles(state)} />;
+	return (
+		<overrides.Well.component
+			{...overrides.Well.attributes(state)}
+			css={overrides.Well.styles(state)}
+		/>
+	);
 };
 
 // ==============================

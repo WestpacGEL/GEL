@@ -38,7 +38,7 @@ function Example({ brand }) {
 							...styles,
 							outline: '1px solid blue',
 						}),
-					}
+					},
 				}}
 			>
 				Look, I'm in a well.

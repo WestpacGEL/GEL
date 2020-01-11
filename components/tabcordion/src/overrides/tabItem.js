@@ -3,7 +3,7 @@
 import { forwardRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
-export const TabItem = forwardRef(({justify,...rest}, ref) => {
+export const TabItem = forwardRef(({ justify, ...rest }, ref) => {
 	return <button ref={ref} {...rest} />;
 });
 

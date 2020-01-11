@@ -25,9 +25,7 @@ function Example({ brand }) {
 				backgroundColor: 'palevioletred',
 				'::after': {
 					...styles['::after'],
-					[position.placement === 'top'
-						? 'borderTopColor'
-						: 'borderBottomColor']: 'palevioletred',
+					[position.placement === 'top' ? 'borderTopColor' : 'borderBottomColor']: 'palevioletred',
 				},
 			}),
 		},

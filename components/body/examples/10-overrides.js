@@ -132,7 +132,7 @@ function Example({ brand }) {
 							...styles,
 							outline: '3px dotted green',
 						}),
-					}
+					},
 				}}
 			>
 				This is a default alert. <a href="#">Link</a>

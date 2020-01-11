@@ -1,6 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler2 as overrideReconciler, useInstanceId } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	overrideReconciler2 as overrideReconciler,
+	useInstanceId,
+} from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Option as OptionWrapper, optionStyles } from './overrides/option';

@@ -40,10 +40,7 @@ export const Th = ({ bordered, overrides: componentOverrides, ...rest }) => {
 		componentOverrides
 	);
 	return (
-		<overrides.Th.component
-			{...overrides.Th.attributes(state)}
-			css={overrides.Th.styles(state)}
-		/>
+		<overrides.Th.component {...overrides.Th.attributes(state)} css={overrides.Th.styles(state)} />
 	);
 };
 

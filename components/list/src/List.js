@@ -1,6 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler2 as overrideReconciler, devWarning } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	overrideReconciler2 as overrideReconciler,
+	devWarning,
+} from '@westpac/core';
 import { createContext, useContext, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 

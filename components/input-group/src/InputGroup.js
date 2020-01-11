@@ -93,8 +93,8 @@ export const InputGroup = ({
 		childrenWithProps.push(
 			<overrides.Text.component
 				key="textinput1"
-				css={overrides.Text.styles({...state, left: !!left, right: !!right })}
-				{...overrides.Text.attributes({...state, left: !!left, right: !!right})}
+				css={overrides.Text.styles({ ...state, left: !!left, right: !!right })}
+				{...overrides.Text.attributes({ ...state, left: !!left, right: !!right })}
 			/>
 		);
 		if (right) {
@@ -118,8 +118,8 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					<overrides.Text.component
 						key="textinput1"
-						css={overrides.Text.styles({...state, left: true, right: length > 1})}
-						{...overrides.Text.attributes({...state, left: true, right: length > 1})}
+						css={overrides.Text.styles({ ...state, left: true, right: length > 1 })}
+						{...overrides.Text.attributes({ ...state, left: true, right: length > 1 })}
 					/>
 				);
 				added = true;
@@ -127,8 +127,8 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					<overrides.Text.component
 						key="textinput2"
-						css={overrides.Text.styles({...state, left: false, right: true })}
-						{...overrides.Text.attributes({...state, left: false, right: true })}
+						css={overrides.Text.styles({ ...state, left: false, right: true })}
+						{...overrides.Text.attributes({ ...state, left: false, right: true })}
 					/>
 				);
 				childrenWithProps.push(

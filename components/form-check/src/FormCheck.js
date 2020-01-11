@@ -69,7 +69,7 @@ export const FormCheck = ({
 			styles: formCheckStyles,
 			component: FormCheckWrapper,
 			attributes: (_, a) => a,
-		}
+		},
 	};
 
 	const state = {

@@ -49,10 +49,7 @@ export const Td = ({
 	);
 
 	return (
-		<overrides.Td.component
-			{...overrides.Td.attributes(state)}
-			css={overrides.Td.styles(state)}
-		/>
+		<overrides.Td.component {...overrides.Td.attributes(state)} css={overrides.Td.styles(state)} />
 	);
 };
 
