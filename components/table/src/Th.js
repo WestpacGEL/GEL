@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { TableHeader, thStyles } from './overrides/th';
 import { useTableContext } from './Table';
@@ -20,12 +20,10 @@ export const Th = ({ bordered, overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Th: {
-				styles: thStyles,
-				component: TableHeader,
-				attributes: state => state,
-			},
+		Th: {
+			styles: thStyles,
+			component: TableHeader,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -39,13 +37,12 @@ export const Th = ({ bordered, overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 	return (
-		<overrides.subComponent.Th.component
-			{...overrides.subComponent.Th.attributes(state)}
-			css={overrides.subComponent.Th.styles}
+		<overrides.Th.component
+			{...overrides.Th.attributes(state)}
+			css={overrides.Th.styles(state)}
 		/>
 	);
 };
@@ -63,12 +60,10 @@ Th.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Th: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Th: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

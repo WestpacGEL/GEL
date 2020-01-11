@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useTableContext } from './Table';
 
 import { Tablehead, theadStyles } from './overrides/thead';
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
@@ -20,12 +20,10 @@ export const Thead = ({ bordered, overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Thead: {
-				styles: theadStyles,
-				component: Tablehead,
-				attributes: state => state,
-			},
+		Thead: {
+			styles: theadStyles,
+			component: Tablehead,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -39,13 +37,13 @@ export const Thead = ({ bordered, overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
+
 	return (
-		<overrides.subComponent.Thead.component
-			{...overrides.subComponent.Thead.attributes(state)}
-			css={overrides.subComponent.Thead.styles}
+		<overrides.Thead.component
+			{...overrides.Thead.attributes(state)}
+			css={overrides.Thead.styles(state)}
 		/>
 	);
 };
@@ -63,12 +61,10 @@ Thead.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Thead: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Thead: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

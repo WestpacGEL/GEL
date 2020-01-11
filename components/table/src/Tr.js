@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { TableRow, trStyles } from './overrides/tr';
@@ -35,12 +35,10 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Tr: {
-				styles: trStyles,
-				component: TableRow,
-				attributes: state => state,
-			},
+		Tr: {
+			styles: trStyles,
+			component: TableRow,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -55,8 +53,7 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	let highlightedChildren;
@@ -78,12 +75,12 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 	}
 
 	return (
-		<overrides.subComponent.Tr.component
-			{...overrides.subComponent.Tr.attributes(state)}
-			css={overrides.subComponent.Tr.styles}
+		<overrides.Tr.component
+			{...overrides.Tr.attributes(state)}
+			css={overrides.Tr.styles(state)}
 		>
 			{highlightedChildren || children}
-		</overrides.subComponent.Tr.component>
+		</overrides.Tr.component>
 	);
 };
 
@@ -101,12 +98,10 @@ Tr.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Tr: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Tr: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

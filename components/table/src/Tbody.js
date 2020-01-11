@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { TableBody, tbodyStyles } from './overrides/tbody';
@@ -16,12 +16,10 @@ export const Tbody = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Tbody: {
-				styles: tbodyStyles,
-				component: TableBody,
-				attributes: state => state,
-			},
+		Tbody: {
+			styles: tbodyStyles,
+			component: TableBody,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -34,14 +32,13 @@ export const Tbody = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Tbody.component
-			{...overrides.subComponent.Tbody.attributes(state)}
-			css={overrides.subComponent.Tbody.styles}
+		<overrides.Tbody.component
+			{...overrides.Tbody.attributes(state)}
+			css={overrides.Tbody.styles(state)}
 		/>
 	);
 };
@@ -51,12 +48,10 @@ Tbody.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Tbody: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Tbody: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

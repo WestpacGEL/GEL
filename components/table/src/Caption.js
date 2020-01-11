@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { CaptionComponent, captionStyles } from './overrides/caption';
@@ -17,12 +17,10 @@ export const Caption = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Caption: {
-				styles: captionStyles,
-				component: CaptionComponent,
-				attributes: state => state,
-			},
+		Caption: {
+			styles: captionStyles,
+			component: CaptionComponent,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -35,14 +33,13 @@ export const Caption = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Caption.component
-			{...overrides.subComponent.Caption.attributes(state)}
-			css={overrides.subComponent.Caption.styles}
+		<overrides.Caption.component
+			{...overrides.Caption.attributes(state)}
+			css={overrides.Caption.styles(state)}
 		/>
 	);
 };
@@ -52,12 +49,10 @@ Caption.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Caption: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Caption: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

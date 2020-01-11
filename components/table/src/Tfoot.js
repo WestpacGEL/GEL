@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { TableFoot, tfootStyles } from './overrides/tfoot';
 import { useTableContext } from './Table';
@@ -20,12 +20,10 @@ export const Tfoot = ({ bordered, overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Tfoot: {
-				styles: tfootStyles,
-				component: TableFoot,
-				attributes: state => state,
-			},
+		Tfoot: {
+			styles: tfootStyles,
+			component: TableFoot,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -39,13 +37,12 @@ export const Tfoot = ({ bordered, overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 	return (
-		<overrides.subComponent.Tfoot.component
-			{...overrides.subComponent.Tfoot.attributes(state)}
-			css={overrides.subComponent.Tfoot.styles}
+		<overrides.Tfoot.component
+			{...overrides.Tfoot.attributes(state)}
+			css={overrides.Tfoot.styles(state)}
 		/>
 	);
 };
@@ -60,12 +57,10 @@ Tfoot.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Tfoot: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Tfoot: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
