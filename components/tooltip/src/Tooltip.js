@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, useInstanceId, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import { useState, useEffect, useRef, Fragment } from 'react';
-import { jsx, useBrand, useInstanceId, overrideReconciler } from '@westpac/core';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
-import { TooltipBubble, tooltipBubbleStyles } from './overrides/tooltipBubble';
 import PropTypes from 'prop-types';
+
+import { Tooltip as TooltipWrapper, tooltipStyles } from './overrides/tooltip';
+import { Bubble, bubbleStyles } from './overrides/bubble';
 import pkg from '../package.json';
 
 // ==============================
@@ -22,16 +23,15 @@ export const Tooltip = ({ text, title, className, overrides: componentOverrides,
 	const tooltipRef = useRef();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			TooltipBubble: {
-				styles: tooltipBubbleStyles,
-				component: TooltipBubble,
-				attributes: state => state,
-			},
+		Tooltip: {
+			styles: tooltipStyles,
+			component: TooltipWrapper,
+			attributes: (_, a) => a,
+		},
+		Bubble: {
+			styles: bubbleStyles,
+			component: Bubble,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -47,8 +47,7 @@ export const Tooltip = ({ text, title, className, overrides: componentOverrides,
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	const handleEnter = () => setVisible(true);
@@ -82,14 +81,14 @@ export const Tooltip = ({ text, title, className, overrides: componentOverrides,
 
 	return (
 		<Fragment>
-			<overrides.subComponent.TooltipBubble.component
+			<overrides.Bubble.component
 				tooltipId={tooltipId}
 				text={text}
 				ref={tooltipRef}
-				{...overrides.subComponent.TooltipBubble.attributes(state)}
-				css={overrides.subComponent.TooltipBubble.styles}
+				{...overrides.Bubble.attributes(state)}
+				css={overrides.Bubble.styles(state)}
 			/>
-			<overrides.component
+			<overrides.Tooltip.component
 				title={title ? text : undefined}
 				onMouseEnter={handleEnter}
 				onMouseLeave={handleLeave}
@@ -97,8 +96,8 @@ export const Tooltip = ({ text, title, className, overrides: componentOverrides,
 				tabIndex={0}
 				ref={triggerRef}
 				className={className}
-				{...overrides.attributes(state)}
-				css={overrides.styles}
+				{...overrides.Tooltip.attributes(state)}
+				css={overrides.Tooltip.styles(state)}
 			/>
 		</Fragment>
 	);
@@ -117,15 +116,15 @@ Tooltip.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			TooltipBubble: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Tooltip: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Bubble: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

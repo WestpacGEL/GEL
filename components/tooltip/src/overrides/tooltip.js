@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 
-export const Wrapper = forwardRef(({ title, position, visible, ...props }, ref) => (
+export const Tooltip = forwardRef(({ text, title, position, visible, ...props }, ref) => (
 	<span ref={ref} {...props} />
 ));
 
-export const wrapperStyles = (_, {}) => ({
+export const tooltipStyles = (_, {}) => ({
 	position: 'relative',
 	display: 'inline-block',
 	cursor: 'help',

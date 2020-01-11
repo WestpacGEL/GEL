@@ -12,23 +12,24 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/tooltip'] = {
-		styles: styles => ({
-			...styles,
-			outline: `2px dotted red`,
-		}),
-		component: Wrapper,
-		subComponent: {
-			TooltipBubble: {
-				styles: (styles, { position }) => ({
-					...styles,
-					backgroundColor: 'palevioletred',
-					'::after': {
-						[position.placement === 'top'
-							? 'borderTopColor'
-							: 'borderBottomColor']: 'palevioletred',
-					},
-				}),
-			},
+		Tooltip: {
+			styles: styles => ({
+				...styles,
+				outline: `2px dotted red`,
+			}),
+			component: Wrapper,
+		},
+		Bubble: {
+			styles: (styles, { position }) => ({
+				...styles,
+				backgroundColor: 'palevioletred',
+				'::after': {
+					...styles['::after'],
+					[position.placement === 'top'
+						? 'borderTopColor'
+						: 'borderBottomColor']: 'palevioletred',
+				},
+			}),
 		},
 	};
 
@@ -49,10 +50,8 @@ function Example({ brand }) {
 				<Tooltip
 					text="This is a tooltip"
 					overrides={{
-						subComponent: {
-							TooltipBubble: {
-								styles: styles => ({ ...styles, backgroundColor: 'tomato' }),
-							},
+						Bubble: {
+							styles: styles => ({ ...styles, backgroundColor: 'tomato' }),
 						},
 					}}
 				>
