@@ -1,14 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler2 as overrideReconciler } from '@westpac/core';
 import { CSSTransition } from 'react-transition-group';
 import { CloseIcon } from '@westpac/icon';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { Alert as AlertWrapper, alertStyles } from './overrides/alert';
 import { AlertHeading, headingStyles } from './overrides/heading';
 import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import { AlertBody, bodyStyles } from './overrides/body';
 import { Icon, iconStyles } from './overrides/icon';
 import pkg from '../package.json';
@@ -20,7 +20,7 @@ import pkg from '../package.json';
 export const Alert = ({
 	look,
 	dismissible,
-	icon: ComponentIcon,
+	icon,
 	heading,
 	headingTag,
 	children,
@@ -35,41 +35,37 @@ export const Alert = ({
 	const [open, setOpen] = useState(true);
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			Body: {
-				styles: bodyStyles,
-				component: AlertBody,
-				attributes: state => state,
-			},
-
-			CloseBtn: {
-				styles: closeBtnStyles,
-				component: CloseBtn,
-				attributes: state => state,
-			},
-
-			Icon: {
-				styles: iconStyles,
-				component: Icon,
-				attributes: state => state,
-			},
-
-			Heading: {
-				styles: headingStyles,
-				component: AlertHeading,
-				attributes: state => state,
-			},
+		Alert: {
+			styles: alertStyles,
+			component: AlertWrapper,
+			attributes: (_, a) => a,
+		},
+		Body: {
+			styles: bodyStyles,
+			component: AlertBody,
+			attributes: (_, a) => a,
+		},
+		CloseBtn: {
+			styles: closeBtnStyles,
+			component: CloseBtn,
+			attributes: (_, a) => a,
+		},
+		Icon: {
+			styles: iconStyles,
+			component: Icon,
+			attributes: (_, a) => a,
+		},
+		Heading: {
+			styles: headingStyles,
+			component: AlertHeading,
+			attributes: (_, a) => a,
 		},
 	};
 
 	const state = {
 		look,
 		dismissible: dismissible ? dismissible : undefined,
-		icon: ComponentIcon,
+		icon,
 		heading,
 		headingTag,
 		open,
@@ -81,49 +77,48 @@ export const Alert = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
 		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
-			<overrides.component
+			<overrides.Alert.component
 				className={className}
-				{...overrides.attributes(state)}
-				css={overrides.styles}
+				{...overrides.Alert.attributes(state)}
+				css={overrides.Alert.styles(state)}
 			>
 				{dismissible && (
-					<overrides.subComponent.CloseBtn.component
+					<overrides.CloseBtn.component
 						onClose={() => setOpen(false)}
 						icon={CloseIcon}
-						{...overrides.subComponent.CloseBtn.attributes(state)}
-						css={overrides.subComponent.CloseBtn.styles}
+						{...overrides.CloseBtn.attributes(state)}
+						css={overrides.CloseBtn.styles(state)}
 					/>
 				)}
-				{overrides.subComponent.Icon.component && (
-					<overrides.subComponent.Icon.component
+				{overrides.Icon.component && (
+					<overrides.Icon.component
 						size={['small', 'medium']}
 						color="inherit"
-						{...overrides.subComponent.Icon.attributes(state)}
-						css={overrides.subComponent.Icon.styles}
+						{...overrides.Icon.attributes(state)}
+						css={overrides.Icon.styles(state)}
 					/>
 				)}
-				<overrides.subComponent.Body.component
-					{...overrides.subComponent.Body.attributes(state)}
-					css={overrides.subComponent.Body.styles}
+				<overrides.Body.component
+					{...overrides.Body.attributes(state)}
+					css={overrides.Body.styles(state)}
 				>
 					{heading && (
-						<overrides.subComponent.Heading.component
+						<overrides.Heading.component
 							tag={headingTag}
-							{...overrides.subComponent.Heading.attributes(state)}
-							css={overrides.subComponent.Heading.styles}
+							{...overrides.Heading.attributes(state)}
+							css={overrides.Heading.styles(state)}
 						>
 							{heading}
-						</overrides.subComponent.Heading.component>
+						</overrides.Heading.component>
 					)}
 					{children}
-				</overrides.subComponent.Body.component>
-			</overrides.component>
+				</overrides.Body.component>
+			</overrides.Alert.component>
 		</CSSTransition>
 	);
 };
@@ -169,30 +164,30 @@ Alert.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Body: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			CloseBtn: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Icon: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Heading: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Alert: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Body: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		CloseBtn: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
+		}),
+		Heading: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.object,
 		}),
 	}),
 };
