@@ -58,22 +58,22 @@ function Example({ brand }) {
 			<h2>SubComponent Style function merge</h2>
 			<Code>
 				{`overrideReconciler(
-	{ subComponent: { Test: { styles: styles => ({ ...styles, a: 1 }) } } },
-	{ subComponent: { Test: { styles: styles => ({ ...styles, b: 1 }) } } },
-	{ subComponent: { Test: { styles: styles => ({ ...styles, c: 1 }) } } },
-	{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } }
-).styles();
+	{ Test: { styles: styles => ({ ...styles, a: 1 }) } },
+	{ Test: { styles: styles => ({ ...styles, b: 1 }) } },
+	{ Test: { styles: styles => ({ ...styles, c: 1 }) } },
+	{ Test: { styles: styles => ({ ...styles, d: 1 }) } }
+).Test.styles();
 			`}
 			</Code>
 			=>
 			<Code>
 				{JSON.stringify(
 					overrideReconciler(
-						{ subComponent: { Test: { styles: styles => ({ ...styles, a: 1 }) } } },
-						{ subComponent: { Test: { styles: styles => ({ ...styles, b: 1 }) } } },
-						{ subComponent: { Test: { styles: styles => ({ ...styles, c: 1 }) } } },
-						{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } }
-					).styles()
+						{ Test: { styles: styles => ({ ...styles, a: 1 }) } },
+						{ Test: { styles: styles => ({ ...styles, b: 1 }) } },
+						{ Test: { styles: styles => ({ ...styles, c: 1 }) } },
+						{ Test: { styles: styles => ({ ...styles, d: 1 }) } }
+					).Test.styles()
 				)}
 			</Code>
 		</GEL>
