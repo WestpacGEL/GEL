@@ -6,6 +6,8 @@ export const usePagination = ({ pages = [], current = 0, infinite = false } = {}
 	const pageCount = pages.length;
 
 	const setPage = (event, pages, curr) => {
+		event.persist();
+
 		if (typeof pages[curr].onClick === 'function') {
 			pages[curr].onClick(event, curr);
 		}
@@ -13,6 +15,9 @@ export const usePagination = ({ pages = [], current = 0, infinite = false } = {}
 	};
 
 	const next = event => {
+		// https://reactjs.org/docs/events.html#event-pooling
+		event.persist();
+
 		if (curr === pageCount - 1) {
 			// boundary
 			if (infinite) {
@@ -26,6 +31,8 @@ export const usePagination = ({ pages = [], current = 0, infinite = false } = {}
 	};
 
 	const previous = event => {
+		event.persist();
+
 		if (curr === 0) {
 			// boundary
 			if (infinite) {
