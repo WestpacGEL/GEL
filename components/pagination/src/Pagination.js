@@ -144,10 +144,7 @@ export const Pagination = ({
 						key={index}
 						index={index}
 						text={page.text}
-						onClick={wrapHandlers(
-							event => page.onClick(event, index),
-							event => pageLogic.setCurrent(index, event)
-						)}
+						onClick={event => pageLogic.setPage(event, allChildren, index)}
 					/>
 				))}
 				{next.visible && (

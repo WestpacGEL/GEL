@@ -12,7 +12,17 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Page = ({ index, nextIndex, text, first, last, disabled, assistiveText, ...rest }) => {
+export const Page = ({
+	index,
+	nextIndex,
+	text,
+	first,
+	last,
+	onClick,
+	disabled,
+	assistiveText,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -63,6 +73,7 @@ export const Page = ({ index, nextIndex, text, first, last, disabled, assistiveT
 			<overrides.Link.component
 				aria-label={assistiveText ? assistiveText : `Go to page ${text}`}
 				disabled={disabled}
+				onClick={onClick}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
 			>

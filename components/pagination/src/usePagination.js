@@ -5,7 +5,7 @@ export const usePagination = ({ pages = [], current = 0, infinite = false } = {}
 	const [curr, setCurr] = useState(current);
 	const pageCount = pages.length;
 
-	const setPage = (pages, curr) => {
+	const setPage = (event, pages, curr) => {
 		if (typeof pages[curr].onClick === 'function') {
 			pages[curr].onClick(event, curr);
 		}
@@ -16,12 +16,12 @@ export const usePagination = ({ pages = [], current = 0, infinite = false } = {}
 		if (curr === pageCount - 1) {
 			// boundary
 			if (infinite) {
-				setPage(pages, 0, event);
+				setPage(event, pages, 0);
 			} else {
-				setPage(pages, pageCount - 1, event);
+				setPage(event, pages, pageCount - 1);
 			}
 		} else {
-			setPage(pages, curr + 1, event);
+			setPage(event, pages, curr + 1);
 		}
 	};
 
@@ -29,14 +29,14 @@ export const usePagination = ({ pages = [], current = 0, infinite = false } = {}
 		if (curr === 0) {
 			// boundary
 			if (infinite) {
-				setPage(pages, pageCount - 1, event);
+				setPage(event, pages, pageCount - 1);
 			} else {
-				setPage(pages, 0, event);
+				setPage(event, pages, 0);
 			}
 		} else if (curr !== 0) {
-			setPage(pages, curr - 1, event);
+			setPage(event, pages, curr - 1);
 		}
 	};
 
-	return { next, previous, current: curr, setCurrent: setCurr };
+	return { next, previous, current: curr, setCurrent: setCurr, setPage };
 };

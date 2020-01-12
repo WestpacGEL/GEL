@@ -63,6 +63,7 @@ function Example({ brand }) {
 
 			<h2>Event bubble</h2>
 			<Pagination
+				infinite
 				current={1}
 				back={{
 					onClick: () => console.log('this event will run in addition to the normal logic'),
@@ -168,6 +169,7 @@ function Example({ brand }) {
 			<p>{content[current2]}</p>
 			<Pagination
 				current={current2}
+				infinite
 				back={{
 					onClick: (event, page) => console.log(`Go to page ${page + 1}`, event),
 				}}
