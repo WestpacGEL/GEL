@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -9,17 +10,21 @@ import { Footer, Normalize, Sidebar } from './';
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
 import { ALL_COMPONENTS } from '../../../graphql';
 
-const LayoutView = ({ components, children }) => (
-	<GridContainer>
-		<SidebarContainer>
-			<Sidebar components={components} />
-		</SidebarContainer>
-		<MainContainer>
-			{children}
-			<Footer />
-		</MainContainer>
-	</GridContainer>
-);
+const LayoutView = ({ components, children }) => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	return (
+		<GridContainer>
+			<SidebarContainer isOpen={isOpen} setIsOpen={setIsOpen}>
+				<Sidebar components={components} />
+			</SidebarContainer>
+			<MainContainer setIsOpen={setIsOpen} isOpen={isOpen}>
+				{children}
+				<Footer />
+			</MainContainer>
+		</GridContainer>
+	);
+};
 
 /*
   Wrapper with logic
@@ -64,40 +69,65 @@ const GridContainer = props => {
 	return (
 		<div
 			css={{
-				fontFamily:
-					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 				display: 'grid',
+				gridTemplateColumns: '1fr',
 				width: '100vw',
 				height: '100vh',
-				gridTemplateColumns: '270px auto',
+				fontFamily:
+					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+
+				'@media only screen and (min-width: 840px)': {
+					gridTemplateColumns: '270px auto',
+				},
 			}}
 			{...props}
 		/>
 	);
 };
 
-const SidebarContainer = props => {
+const SidebarContainer = ({ isOpen, setIsOpen, children, ...props }) => {
+	console.log('isopenfrom sidebar', isOpen);
 	const { COLORS } = useBrand();
 	return (
-		<div
+		<aside
 			css={{
+				background: 'white',
 				gridColumnStart: 1,
 				gridColumnEnd: 2,
+				transition: 'transform 0.15s',
 				boxShadow: `1px 0 1px ${COLORS.border}`,
+
+				'@media only screen and (max-width: 839px)': {
+					position: 'absolute',
+					top: 0,
+					left: 0,
+					width: 270,
+					minHeight: '100vh',
+					transform: isOpen ? 'translateX(0px)' : 'translateX(-270px)',
+				},
 			}}
 			{...props}
-		/>
+		>
+			{isOpen && (
+				<button onClick={() => setIsOpen(false)} css={{ position: 'absolute', top: 0, right: 0 }}>
+					close
+				</button>
+			)}
+			{children}
+		</aside>
 	);
 };
 
-const MainContainer = props => (
-	<div
+const MainContainer = ({ setIsOpen, isOpen, ...props }) => (
+	<main
 		css={{
 			gridColumnStart: 2,
 			gridColumnEnd: 3,
 			overflowY: 'scroll',
 		}}
 		{...props}
+		setIsOpen={setIsOpen}
+		isOpen={isOpen}
 	/>
 );
 
