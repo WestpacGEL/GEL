@@ -4,7 +4,21 @@ import { Heading } from '@westpac/heading';
 import { Cell, Grid } from '@westpac/grid';
 
 import { MaxWidthContainer, Separator, Row } from './_utils';
+import { Blockquote, Paragraph, YesNo } from './blocks';
 import { PageLinks } from './page-links';
+
+export const DesignTab = ({ description, doc }) => {
+	const nodes = doc && doc.document ? JSON.parse(doc.document).nodes : null;
+	return (
+		<MaxWidthContainer>
+			<Intro description={description} />
+			<Separator />
+			<UxRationale nodes={nodes} />
+			<Separator />
+			<VisualDesignRationale />
+		</MaxWidthContainer>
+	);
+};
 
 const Intro = ({ description }) => {
 	const { PACKS } = useBrand();
@@ -27,6 +41,7 @@ const Intro = ({ description }) => {
 
 const UxRationale = ({ nodes }) => {
 	const { SPACING } = useBrand();
+
 	return (
 		<Grid>
 			<Row>
@@ -34,54 +49,41 @@ const UxRationale = ({ nodes }) => {
 					UX rationale
 				</Heading>
 
-				<Grid css={{ marginTop: SPACING(2) }}>
-					<DesignDocs nodes={nodes} />
-				</Grid>
+				{nodes ? (
+					<Grid css={{ marginTop: SPACING(2) }}>
+						<DesignDocs nodes={nodes} />
+					</Grid>
+				) : (
+					<p>No documentation specified for this component.</p>
+				)}
 			</Row>
 		</Grid>
 	);
 };
 
-import { Blockquote, Paragraph, YesNo } from './blocks';
-
-export const DesignTab = ({ description, doc }) => {
-	const parsedDoc = JSON.parse(doc.document);
-	const { nodes } = parsedDoc;
-
-	return (
-		<MaxWidthContainer>
-			<Intro description={description} />
-			<Separator />
-			<UxRationale nodes={nodes} />
-			<Separator />
-			<VisualDesignRationale />
-		</MaxWidthContainer>
-	);
-};
-
 const DesignDocs = ({ nodes }) => {
-	return nodes.map(node => {
+	return nodes.map((node, index) => {
 		switch (node.type) {
 			case 'do-or-do-not':
 				return (
-					<Row>
+					<Row key={index}>
 						<YesNo yes={node.nodes[0]} no={node.nodes[1]} />
 					</Row>
 				);
 			case 'paragraph':
 				return (
-					<Cell left={3} width={8}>
+					<Cell left={3} width={8} key={index}>
 						<Paragraph node={node} />
 					</Cell>
 				);
 			case 'blockquote':
 				return (
-					<Cell left={3} width={8}>
+					<Cell left={3} width={8} key={index}>
 						<Blockquote node={node} />
 					</Cell>
 				);
 			default:
-				return 'not matching component type!';
+				return <p key={index}>not matching component type!</p>;
 		}
 	});
 };

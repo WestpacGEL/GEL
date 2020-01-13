@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 
 import { GEL, jsx, useBrand } from '@westpac/core';
+import { CloseIcon } from '@westpac/icon';
 
 import { BrandPicker } from '../brand-picker';
 import { Footer, Normalize, Sidebar } from './';
@@ -13,8 +13,6 @@ import { SidebarProvider, useSidebar } from '../providers/sidebar';
 import { ALL_COMPONENTS } from '../../../graphql';
 
 const LayoutView = ({ components, children }) => {
-	const { isOpen, setIsOpen } = useSidebar();
-
 	return (
 		<GridContainer>
 			<SidebarContainer>
@@ -91,7 +89,7 @@ const GridContainer = props => {
 
 const SidebarContainer = ({ children, ...props }) => {
 	const { isOpen, setIsOpen } = useSidebar();
-	const { COLORS } = useBrand();
+	const { COLORS, SPACING } = useBrand();
 	return (
 		<aside
 			css={{
@@ -100,40 +98,59 @@ const SidebarContainer = ({ children, ...props }) => {
 				gridColumnEnd: 2,
 				transition: 'transform 0.15s',
 				boxShadow: `1px 0 1px ${COLORS.border}`,
-
+				zIndex: 2,
 				'@media only screen and (max-width: 839px)': {
 					position: 'absolute',
+					overflowY: 'scroll',
 					top: 0,
 					left: 0,
 					width: 270,
-					minHeight: '100vh',
+					height: '100vh',
 					transform: isOpen ? 'translateX(0px)' : 'translateX(-270px)',
 				},
 			}}
 			{...props}
 		>
-			{isOpen && (
-				<button onClick={() => setIsOpen(false)} css={{ position: 'absolute', top: 0, right: 0 }}>
-					close
-				</button>
-			)}
+			<CloseButton />
 			{children}
 		</aside>
 	);
 };
 
-const MainContainer = props => {
+const CloseButton = () => {
 	const { isOpen, setIsOpen } = useSidebar();
+	const { COLORS, SPACING } = useBrand();
+	return (
+		<button
+			onClick={() => setIsOpen(false)}
+			css={{
+				position: 'absolute',
+				top: 0,
+				right: 0,
+				margin: SPACING(1),
+				padding: 0,
+				background: 'none',
+				border: 'none',
+				cursor: 'pointer',
+				'@media only screen and (min-width: 840px)': { display: 'none' },
+			}}
+		>
+			<CloseIcon color={COLORS.neutral} size="small" />
+		</button>
+	);
+};
+
+const MainContainer = props => {
 	return (
 		<main
 			css={{
-				gridColumnStart: 2,
-				gridColumnEnd: 3,
 				overflowY: 'scroll',
+				'@media only screen and (min-width: 840px)': {
+					gridColumnStart: 2,
+					gridColumnEnd: 3,
+				},
 			}}
 			{...props}
-			setIsOpen={setIsOpen}
-			isOpen={isOpen}
 		/>
 	);
 };

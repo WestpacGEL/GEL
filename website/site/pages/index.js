@@ -2,13 +2,12 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
-import { LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
+import { HamburgerMenuIcon, LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
 
 import { useSidebar } from '../components/providers/sidebar';
 
 const Homepage = () => {
-	const { COLORS, SPACING, TYPE } = useBrand();
-	const { isOpen, setIsOpen } = useSidebar();
+	const { COLORS, SPACING } = useBrand();
 
 	return (
 		<div css={{ textAlign: 'center' }}>
@@ -19,60 +18,8 @@ const Homepage = () => {
 					paddingBottom: SPACING(12),
 				}}
 			>
-				<Container>
-					<div css={{ display: 'flex' }}>
-						<button
-							css={{
-								'@media only screen and (min-width: 840px)': {
-									display: 'none',
-								},
-							}}
-							onClick={() => setIsOpen(status => !status)}
-						>
-							menu
-						</button>
-						<p
-							css={{
-								textAlign: 'left',
-								margin: 0,
-								paddingTop: SPACING(2),
-								paddingBottom: SPACING(1),
-							}}
-						>
-							UI Framework
-						</p>
-					</div>
-					<hr />
-					<Heading
-						size={1}
-						css={{
-							paddingTop: SPACING(12),
-							fontFamily: TYPE.brandFont.fontFamily,
-							maxWidth: 600,
-							margin: '0 auto',
-						}}
-					>
-						Design to scale with confidence
-					</Heading>
-
-					<p>Assemble enterprise solutions with our components and patterns</p>
-
-					<Grid css={{ marginTop: SPACING(8) }}>
-						<Cell width={4}>
-							<IconText icon={UmbrellaIcon}>
-								Get to market faster by leveraging our knowledge and tools
-							</IconText>
-						</Cell>
-						<Cell width={4}>
-							<IconText icon={LightBulbIcon}>
-								Design, build and ship consistent, quality, branded solutions
-							</IconText>
-						</Cell>
-						<Cell width={4}>
-							<IconText icon={MapIcon}>Be more accessible and inclusive with our assets</IconText>
-						</Cell>
-					</Grid>
-				</Container>
+				<Header />
+				<HeroIntro />
 			</section>
 
 			<section css={{ padding: `${SPACING(12)} 0` }}>
@@ -145,6 +92,81 @@ const IconText = ({ icon: Icon, children }) => {
 			<Icon size="xlarge" color={COLORS.light} />
 			<p>{children}</p>
 		</div>
+	);
+};
+
+const Header = () => {
+	const { COLORS, SPACING } = useBrand();
+	const { isOpen, setIsOpen } = useSidebar();
+	return (
+		<div
+			css={{
+				display: 'flex',
+				alignItems: 'center',
+				padding: SPACING(2),
+			}}
+		>
+			<button
+				css={{
+					marginRight: SPACING(2),
+					background: 'none',
+					border: 'none',
+					cursor: 'pointer',
+					'@media only screen and (min-width: 840px)': {
+						display: 'none',
+					},
+				}}
+				onClick={() => setIsOpen(status => !status)}
+			>
+				<HamburgerMenuIcon color={COLORS.light} />
+			</button>
+			<p
+				css={{
+					textAlign: 'left',
+					margin: 0,
+					padding: 0,
+				}}
+			>
+				UI Framework
+			</p>
+		</div>
+	);
+};
+
+const HeroIntro = () => {
+	const { SPACING, TYPE } = useBrand();
+	return (
+		<Container>
+			<Heading
+				size={1}
+				css={{
+					paddingTop: SPACING(12),
+					fontFamily: TYPE.brandFont.fontFamily,
+					maxWidth: 600,
+					margin: '0 auto',
+				}}
+			>
+				Design to scale with confidence
+			</Heading>
+
+			<p>Assemble enterprise solutions with our components and patterns</p>
+
+			<Grid css={{ marginTop: SPACING(8) }}>
+				<Cell width={4}>
+					<IconText icon={UmbrellaIcon}>
+						Get to market faster by leveraging our knowledge and tools
+					</IconText>
+				</Cell>
+				<Cell width={4}>
+					<IconText icon={LightBulbIcon}>
+						Design, build and ship consistent, quality, branded solutions
+					</IconText>
+				</Cell>
+				<Cell width={4}>
+					<IconText icon={MapIcon}>Be more accessible and inclusive with our assets</IconText>
+				</Cell>
+			</Grid>
+		</Container>
 	);
 };
 

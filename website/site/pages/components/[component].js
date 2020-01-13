@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useMemo } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
@@ -33,8 +33,6 @@ const ComponentWrapper = () => {
 };
 
 const Component = ({ component }) => {
-	console.log({ component });
-	const { SPACING, PACKS } = useBrand();
 	const { id, name, packageName, version, description, author, doc } = component;
 
 	const DataComponent = useMemo(() => {

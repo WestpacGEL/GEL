@@ -6,13 +6,13 @@ import { Panel, Header, Body } from '@westpac/panel';
 
 export const YesNo = ({ yes, no }) => {
 	const { COLORS } = useBrand();
-	const yesList = yes.nodes.map(item => <li>{item.nodes[0].text}</li>);
-	const noList = no.nodes.map(item => <li>{item.nodes[0].text}</li>);
+	const yesList = yes.nodes.map((item, index) => <li key={index}>{item.nodes[0].text}</li>);
+	const noList = no.nodes.map((item, index) => <li key={index}>{item.nodes[0].text}</li>);
 
 	return (
 		<Grid columns={2}>
 			<ContentPanel look="success" title="Dos" content={yesList} />
-			<ContentPanel look="warning" title="Don'ts" content={yesList} />
+			<ContentPanel look="warning" title="Don'ts" content={noList} />
 		</Grid>
 	);
 };

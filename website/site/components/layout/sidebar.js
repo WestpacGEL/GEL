@@ -9,18 +9,18 @@ import { Navigation } from '.';
 export const Sidebar = ({ components }) => {
 	return (
 		<Fragment>
-			<Padding>
+			<PaddingContainer>
 				<BrandSwitcher />
-			</Padding>
+			</PaddingContainer>
 			<Separator />
-			<Padding>
+			<PaddingContainer>
 				<Navigation components={components} />
-			</Padding>
+			</PaddingContainer>
 		</Fragment>
 	);
 };
 
-const Padding = props => {
+const PaddingContainer = props => {
 	const { SPACING } = useBrand();
 	return <div css={{ padding: SPACING(2) }} {...props} />;
 };
