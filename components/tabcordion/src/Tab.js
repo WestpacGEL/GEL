@@ -1,61 +1,110 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
-import React, { Fragment, useState, forwardRef } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { Fragment, useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
+
+import { AccordionLabel, accordionLabelStyles } from './overrides/accordionLabel';
+import { AccordionIcon, accordionIconStyles } from './overrides/accordionIcon';
+import { Panel, panelStyles } from './overrides/panel';
 import pkg from '../package.json';
 
 export const Tab = forwardRef(
-	({ look, children, last, selected, text, mode, panelId, onClick, tabId, ...rest }, ref) => {
-		const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+	(
+		{
+			look,
+			last,
+			selected,
+			text,
+			mode,
+			panelId,
+			onClick,
+			tabId,
+			children,
+			overrides: componentOverrides,
+			...rest
+		},
+		ref
+	) => {
 		const [hidden, setHidden] = useState(!selected);
-		const Icon = hidden ? ExpandMoreIcon : ExpandLessIcon;
-		const iconAssistiveText = hidden ? 'Show More' : 'Show Less';
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-		const overrides = {
-			Panel,
-			AccordionLabel,
+		const defaultOverrides = {
+			AccordionLabel: {
+				styles: accordionLabelStyles,
+				component: AccordionLabel,
+				attributes: (_, a) => a,
+			},
+			AccordionIcon: {
+				styles: accordionIconStyles,
+				component: AccordionIcon,
+				attributes: (_, a) => a,
+			},
+			Panel: {
+				styles: panelStyles,
+				component: Panel,
+				attributes: (_, a) => a,
+			},
 		};
 
-		merge(overrides, overridesWithTokens);
+		const state = {
+			look,
+			last,
+			selected,
+			mode,
+			hidden,
+			overrides: componentOverrides,
+			...rest,
+		};
+
+		const overrides = overrideReconciler(
+			defaultOverrides,
+			tokenOverrides,
+			brandOverrides,
+			componentOverrides
+		);
 
 		const handleAccordionClick = () => {
-			onClick();
 			setHidden(!hidden);
+			onClick();
 		};
 
 		return (
 			<Fragment>
 				{mode === 'accordion' ? (
-					<overrides.AccordionLabel
-						look={look}
+					<overrides.AccordionLabel.component
 						onClick={handleAccordionClick}
 						id={tabId}
-						last={last}
-						hidden={hidden}
 						aria-controls={panelId}
 						aria-expanded={selected}
+						{...overrides.AccordionLabel.attributes(state)}
+						css={overrides.AccordionLabel.styles(state)}
 					>
 						<span>{text}</span>
-						<Icon color={COLORS.muted} assistiveText={iconAssistiveText} size="small" />
-					</overrides.AccordionLabel>
+						<overrides.AccordionIcon.component
+							{...overrides.AccordionIcon.attributes(state)}
+							css={overrides.AccordionIcon.styles(state)}
+						/>
+					</overrides.AccordionLabel.component>
 				) : null}
-				<overrides.Panel
-					hidden={mode === 'accordion' ? hidden : !selected}
-					look={look}
-					aria-labelledby={tabId}
+				<overrides.Panel.component
 					id={panelId}
+					aria-labelledby={tabId}
 					aria-selected={selected}
-					last={last}
-					selected={selected}
-					mode={mode}
 					role="tabpanel"
 					ref={ref}
 					tabIndex="0"
+					{...overrides.Panel.attributes({
+						...state,
+						hidden: mode === 'accordion' ? hidden : !selected,
+					})}
+					css={overrides.Panel.styles(state)}
 				>
 					{children}
-				</overrides.Panel>
+				</overrides.Panel.component>
 			</Fragment>
 		);
 	}
@@ -96,89 +145,25 @@ Tab.propTypes = {
 	 * The id for the tab
 	 */
 	tabId: PropTypes.string,
-};
 
-// ==============================
-// Overrides & Styled Components
-// ==============================
-const Panel = forwardRef(({ look, last, selected, mode, ...rest }, ref) => {
-	const { COLORS } = useBrand();
-	const styles =
-		mode === 'accordion'
-			? {
-					lego: {
-						borderLeftWidth: '0.375rem',
-						borderLeftColor: COLORS.border,
-					},
-					soft: last
-						? {
-								borderBottomLeftRadius: '0.1875rem',
-								borderBottomRightRadius: '0.1875rem',
-						  }
-						: {},
-			  }
-			: {};
-	return (
-		<div
-			ref={ref}
-			css={{
-				borderLeft: `1px solid ${COLORS.border}`,
-				borderRight: `1px solid ${COLORS.border}`,
-				borderBottom: (mode === 'tabs' || last) && `1px solid ${COLORS.border}`,
-				borderTop: mode === 'tabs' && `1px solid ${COLORS.border}`,
-				padding: '1.5rem 3.22%',
-				...styles[look],
-			}}
-			{...rest}
-		/>
-	);
-});
-
-const AccordionLabel = ({ look, last, hidden, ...rest }) => {
-	const { COLORS } = useBrand();
-	const styles = {
-		soft: {
-			borderBottom: !hidden && `1px solid ${COLORS.border}`,
-			...(last &&
-				hidden && {
-					borderBottom: `1px solid ${COLORS.border}`,
-					borderBottomLeftRadius: '0.1875rem',
-					borderBottomRightRadius: '0.1875rem',
-				}),
-			':first-of-type': {
-				borderTopLeftRadius: '0.1875rem',
-				borderTopRightRadius: '0.1875rem',
-			},
-		},
-		lego: {
-			borderBottom: !hidden && `1px solid ${COLORS.border}`,
-			borderLeftWidth: '6px',
-			borderLeftColor: !hidden ? COLORS.border : COLORS.hero,
-			':last-of-type': {
-				borderBottom: `1px solid ${COLORS.border}`,
-			},
-		},
-	};
-	return (
-		<button
-			css={{
-				alignItems: 'center',
-				backgroundColor: COLORS.background,
-				border: 0,
-				borderTop: `1px solid ${COLORS.border}`,
-				borderLeft: `1px solid ${COLORS.border}`,
-				borderRight: `1px solid ${COLORS.border}`,
-				cursor: 'pointer',
-				display: 'flex',
-				fontSize: '1rem',
-				justifyContent: 'space-between',
-				padding: '0.75rem 1.125rem',
-				position: 'relative',
-				textAlign: 'left',
-				width: '100%',
-				...styles[look],
-			}}
-			{...rest}
-		/>
-	);
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		AccordionLabel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		AccordionIcon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Panel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
