@@ -4,8 +4,11 @@ import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
 
+import { useSidebar } from '../components/providers/sidebar';
+
 const Homepage = () => {
 	const { COLORS, SPACING, TYPE } = useBrand();
+	const { isOpen, setIsOpen } = useSidebar();
 
 	return (
 		<div css={{ textAlign: 'center' }}>
@@ -17,16 +20,28 @@ const Homepage = () => {
 				}}
 			>
 				<Container>
-					<p
-						css={{
-							textAlign: 'left',
-							margin: 0,
-							paddingTop: SPACING(2),
-							paddingBottom: SPACING(1),
-						}}
-					>
-						UI Framework
-					</p>
+					<div css={{ display: 'flex' }}>
+						<button
+							css={{
+								'@media only screen and (min-width: 840px)': {
+									display: 'none',
+								},
+							}}
+							onClick={() => setIsOpen(status => !status)}
+						>
+							menu
+						</button>
+						<p
+							css={{
+								textAlign: 'left',
+								margin: 0,
+								paddingTop: SPACING(2),
+								paddingBottom: SPACING(1),
+							}}
+						>
+							UI Framework
+						</p>
+					</div>
 					<hr />
 					<Heading
 						size={1}

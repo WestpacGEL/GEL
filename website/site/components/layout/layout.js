@@ -8,17 +8,19 @@ import { GEL, jsx, useBrand } from '@westpac/core';
 import { BrandPicker } from '../brand-picker';
 import { Footer, Normalize, Sidebar } from './';
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
+import { SidebarProvider, useSidebar } from '../providers/sidebar';
+
 import { ALL_COMPONENTS } from '../../../graphql';
 
 const LayoutView = ({ components, children }) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const { isOpen, setIsOpen } = useSidebar();
 
 	return (
 		<GridContainer>
-			<SidebarContainer isOpen={isOpen} setIsOpen={setIsOpen}>
+			<SidebarContainer>
 				<Sidebar components={components} />
 			</SidebarContainer>
-			<MainContainer setIsOpen={setIsOpen} isOpen={isOpen}>
+			<MainContainer>
 				{children}
 				<Footer />
 			</MainContainer>
@@ -56,7 +58,9 @@ const Wrapper = props => {
 	return (
 		<GEL brand={brands[brand]}>
 			<Normalize />
-			<LayoutView components={components} {...props} />
+			<SidebarProvider>
+				<LayoutView components={components} {...props} />
+			</SidebarProvider>
 		</GEL>
 	);
 };
@@ -85,8 +89,8 @@ const GridContainer = props => {
 	);
 };
 
-const SidebarContainer = ({ isOpen, setIsOpen, children, ...props }) => {
-	console.log('isopenfrom sidebar', isOpen);
+const SidebarContainer = ({ children, ...props }) => {
+	const { isOpen, setIsOpen } = useSidebar();
 	const { COLORS } = useBrand();
 	return (
 		<aside
@@ -118,18 +122,21 @@ const SidebarContainer = ({ isOpen, setIsOpen, children, ...props }) => {
 	);
 };
 
-const MainContainer = ({ setIsOpen, isOpen, ...props }) => (
-	<main
-		css={{
-			gridColumnStart: 2,
-			gridColumnEnd: 3,
-			overflowY: 'scroll',
-		}}
-		{...props}
-		setIsOpen={setIsOpen}
-		isOpen={isOpen}
-	/>
-);
+const MainContainer = props => {
+	const { isOpen, setIsOpen } = useSidebar();
+	return (
+		<main
+			css={{
+				gridColumnStart: 2,
+				gridColumnEnd: 3,
+				overflowY: 'scroll',
+			}}
+			{...props}
+			setIsOpen={setIsOpen}
+			isOpen={isOpen}
+		/>
+	);
+};
 
 export const Layout = props => (
 	<BrandSwitcherProvider>
