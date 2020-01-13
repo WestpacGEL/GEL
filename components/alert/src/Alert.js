@@ -2,7 +2,6 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { CSSTransition } from 'react-transition-group';
-import { CloseIcon } from '@westpac/icon';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -90,7 +89,6 @@ export const Alert = ({
 				{dismissible && (
 					<overrides.CloseBtn.component
 						onClose={() => setOpen(false)}
-						icon={CloseIcon}
 						{...overrides.CloseBtn.attributes(state)}
 						css={overrides.CloseBtn.styles(state)}
 					/>
