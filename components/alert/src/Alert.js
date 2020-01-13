@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { CSSTransition } from 'react-transition-group';
+import { useTransition, animated } from 'react-spring';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -32,6 +32,13 @@ export const Alert = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 	const [open, setOpen] = useState(true);
+	const transition = useTransition(open, null, {
+		initial: { opacity: 1 },
+		from: { opacity: 1 },
+		enter: { opacity: 1 },
+		leave: { opacity: 0 },
+		config: { duration: 400 },
+	});
 
 	const defaultOverrides = {
 		Alert: {
@@ -79,45 +86,48 @@ export const Alert = ({
 		componentOverrides
 	);
 
-	return (
-		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={400}>
-			<overrides.Alert.component
-				className={className}
-				{...overrides.Alert.attributes(state)}
-				css={overrides.Alert.styles(state)}
-			>
-				{dismissible && (
-					<overrides.CloseBtn.component
-						onClose={() => setOpen(false)}
-						{...overrides.CloseBtn.attributes(state)}
-						css={overrides.CloseBtn.styles(state)}
-					/>
-				)}
-				{overrides.Icon.component && (
-					<overrides.Icon.component
-						size={['small', 'medium']}
-						color="inherit"
-						{...overrides.Icon.attributes(state)}
-						css={overrides.Icon.styles(state)}
-					/>
-				)}
-				<overrides.Body.component
-					{...overrides.Body.attributes(state)}
-					css={overrides.Body.styles(state)}
-				>
-					{heading && (
-						<overrides.Heading.component
-							tag={headingTag}
-							{...overrides.Heading.attributes(state)}
-							css={overrides.Heading.styles(state)}
+	return transition.map(
+		({ item, key, props }) =>
+			item && (
+				<animated.div key={key} style={props}>
+					<overrides.Alert.component
+						className={className}
+						{...overrides.Alert.attributes(state)}
+						css={overrides.Alert.styles(state)}
+					>
+						{dismissible && (
+							<overrides.CloseBtn.component
+								onClose={() => setOpen(false)}
+								{...overrides.CloseBtn.attributes(state)}
+								css={overrides.CloseBtn.styles(state)}
+							/>
+						)}
+						{overrides.Icon.component && (
+							<overrides.Icon.component
+								size={['small', 'medium']}
+								color="inherit"
+								{...overrides.Icon.attributes(state)}
+								css={overrides.Icon.styles(state)}
+							/>
+						)}
+						<overrides.Body.component
+							{...overrides.Body.attributes(state)}
+							css={overrides.Body.styles(state)}
 						>
-							{heading}
-						</overrides.Heading.component>
-					)}
-					{children}
-				</overrides.Body.component>
-			</overrides.Alert.component>
-		</CSSTransition>
+							{heading && (
+								<overrides.Heading.component
+									tag={headingTag}
+									{...overrides.Heading.attributes(state)}
+									css={overrides.Heading.styles(state)}
+								>
+									{heading}
+								</overrides.Heading.component>
+							)}
+							{children}
+						</overrides.Body.component>
+					</overrides.Alert.component>
+				</animated.div>
+			)
 	);
 };
 
