@@ -48,7 +48,11 @@ export const BrandSwitcher = () => {
 			</label>
 			<select css={{ width: '100%' }} value={brand} onChange={e => setBrand(e.target.value)}>
 				{Object.entries(brands).map(([brandName, brand], i) => {
-					return <option value={brandName}>{brandName}</option>;
+					return (
+						<option key={brandName} value={brandName}>
+							{brandName}
+						</option>
+					);
 				})}
 			</select>
 		</Fragment>

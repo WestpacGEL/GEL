@@ -17,7 +17,7 @@ export const Select = ({
 	children,
 	data,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -38,12 +38,10 @@ export const Select = ({
 	}
 
 	const defaultOverrides = {
-		subComponent: {
-			Select: {
-				styles: selectStyles,
-				component: SelectComponent,
-				attributes: state => state,
-			},
+		Select: {
+			styles: selectStyles,
+			component: SelectComponent,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -53,24 +51,23 @@ export const Select = ({
 		inline,
 		invalid,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Select.component
-			css={overrides.subComponent.Select.styles}
-			{...overrides.subComponent.Select.attributes(state)}
+		<overrides.Select.component
+			{...overrides.Select.attributes(state)}
+			css={overrides.Select.styles(state)}
 		>
 			{data ? childrenData : children}
-		</overrides.subComponent.Select.component>
+		</overrides.Select.component>
 	);
 };
 
@@ -112,12 +109,10 @@ Select.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Select: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Select: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

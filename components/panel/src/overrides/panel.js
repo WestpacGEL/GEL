@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Wrapper = ({ look, ...props }) => <div {...props} />;
+export const Panel = ({ look, ...props }) => <div {...props} />;
 
-export const wrapperStyles = (_, { look }) => {
+export const panelStyles = (_, { look }) => {
 	const { COLORS } = useBrand();
 
 	const styleMap = {

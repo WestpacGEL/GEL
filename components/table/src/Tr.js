@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { Children, cloneElement } from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { TableRow, trStyles } from './overrides/tr';
@@ -28,19 +28,17 @@ const generateHighlightMap = (highlighted, tdCount) => {
 // Component
 // ==============================
 
-export const Tr = ({ striped, highlighted, children, overrides: componentOverrides, ...props }) => {
+export const Tr = ({ striped, highlighted, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Tr: {
-				styles: trStyles,
-				component: TableRow,
-				attributes: state => state,
-			},
+		Tr: {
+			styles: trStyles,
+			component: TableRow,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -48,15 +46,14 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 		striped,
 		highlighted,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	let highlightedChildren;
@@ -78,12 +75,9 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 	}
 
 	return (
-		<overrides.subComponent.Tr.component
-			css={overrides.subComponent.Tr.styles}
-			{...overrides.subComponent.Tr.attributes(state)}
-		>
+		<overrides.Tr.component {...overrides.Tr.attributes(state)} css={overrides.Tr.styles(state)}>
 			{highlightedChildren || children}
-		</overrides.subComponent.Tr.component>
+		</overrides.Tr.component>
 	);
 };
 
@@ -101,12 +95,10 @@ Tr.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Tr: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Tr: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

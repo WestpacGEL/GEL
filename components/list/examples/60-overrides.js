@@ -10,20 +10,20 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/list'] = {
-		styles: (styles, { nested }) => {
-			const styleMap = ['red', 'green', 'blue'];
-			return {
-				...styles,
-				outline: `4px dotted ${nested > 2 ? 'hotpink' : styleMap[nested]}`,
-			};
-		},
-		subComponent: {
-			Item: {
-				styles: (styles, { look }) => ({
+		List: {
+			styles: (styles, { nested }) => {
+				const styleMap = ['red', 'green', 'blue'];
+				return {
 					...styles,
-					outline: '1px solid rebeccapurple',
-				}),
+					outline: `4px dotted ${nested > 2 ? 'hotpink' : styleMap[nested]}`,
+				};
 			},
+		},
+		Item: {
+			styles: (styles, { look }) => ({
+				...styles,
+				outline: '1px solid rebeccapurple',
+			}),
 		},
 	};
 
@@ -129,13 +129,11 @@ function Example({ brand }) {
 			<List
 				type="tick"
 				overrides={{
-					subComponent: {
-						Item: {
-							styles: styles => ({
-								...styles,
-								outline: '1px dashed rebeccapurple',
-							}),
-						},
+					Item: {
+						styles: styles => ({
+							...styles,
+							outline: '1px dashed rebeccapurple',
+						}),
 					},
 				}}
 			>
@@ -176,13 +174,11 @@ function Example({ brand }) {
 			<List
 				type="tick"
 				overrides={{
-					subComponent: {
-						Item: {
-							styles: styles => ({
-								...styles,
-								outline: '1px dashed rebeccapurple',
-							}),
-						},
+					Item: {
+						styles: styles => ({
+							...styles,
+							outline: '1px dashed rebeccapurple',
+						}),
 					},
 				}}
 				data={[

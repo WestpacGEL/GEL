@@ -2,7 +2,9 @@
 
 import { jsx } from '@westpac/core';
 
-export const Body = ({ open, heading, size, dismissible, ...props }) => <div {...props} />;
+export const Body = ({ heading, open, onClose, size, dismissible, overrides, ...rest }) => (
+	<div {...rest} />
+);
 
 export const bodyStyles = (_, {}) => {
 	return {

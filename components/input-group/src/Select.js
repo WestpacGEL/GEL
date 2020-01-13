@@ -17,12 +17,10 @@ export const Select = ({ position, size, data, overrides: componentOverrides, ..
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Select: {
-				styles: selectStyles,
-				component: SelectWrapper,
-				attributes: state => state,
-			},
+		Select: {
+			styles: selectStyles,
+			component: SelectWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -38,14 +36,13 @@ export const Select = ({ position, size, data, overrides: componentOverrides, ..
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Select.component
-			css={overrides.subComponent.Select.styles}
-			{...overrides.subComponent.Select.attributes(state)}
+		<overrides.Select.component
+			{...overrides.Select.attributes(state)}
+			css={overrides.Select.styles(state)}
 		/>
 	);
 };
@@ -69,6 +66,17 @@ Select.propTypes = {
 	 * The content of the component
 	 */
 	data: PropTypes.array.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Select: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Select.defaultProps = {

@@ -25,11 +25,13 @@ const Wrapper = ({ children, symbol, assistiveText, viewBoxWidth, viewBoxHeight,
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/symbol'] = {
-		styles: styles => ({
-			...styles,
-			outline: '1px solid red',
-		}),
-		component: Wrapper,
+		Symbol: {
+			styles: styles => ({
+				...styles,
+				outline: '1px solid red',
+			}),
+			component: Wrapper,
+		},
 	};
 
 	return (
@@ -58,13 +60,11 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<MastercardAcceptedSymbol
 				overrides={{
-					subComponent: {
-						Svg: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted green',
-							}),
-						},
+					Svg: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
 					},
 				}}
 			/>

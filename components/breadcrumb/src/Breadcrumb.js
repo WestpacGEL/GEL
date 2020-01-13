@@ -5,7 +5,7 @@ import { cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 
 import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Breadcrumb as BreadcrumbWrapper, breadcrumbStyles } from './overrides/breadcrumb';
 import { List, listStyles } from './overrides/list';
 import pkg from '../package.json';
 import { Crumb } from './Crumb';
@@ -23,6 +23,7 @@ export const Breadcrumb = ({
 	current,
 	assistiveText,
 	currentAssistiveText,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -32,21 +33,20 @@ export const Breadcrumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			AssistiveText: {
-				styles: assistiveTextStyles,
-				component: AssistiveText,
-				attributes: state => state,
-			},
-			List: {
-				styles: listStyles,
-				component: List,
-				attributes: state => state,
-			},
+		Breadcrumb: {
+			styles: breadcrumbStyles,
+			component: BreadcrumbWrapper,
+			attributes: (_, a) => a,
+		},
+		AssistiveText: {
+			styles: assistiveTextStyles,
+			component: AssistiveText,
+			attributes: (_, a) => a,
+		},
+		List: {
+			styles: listStyles,
+			component: List,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -63,8 +63,7 @@ export const Breadcrumb = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	let allChildren = [];
@@ -94,20 +93,24 @@ export const Breadcrumb = ({
 	}
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
-			<overrides.subComponent.AssistiveText.component
-				css={overrides.subComponent.AssistiveText.styles}
-				{...overrides.subComponent.AssistiveText.attributes(state)}
+		<overrides.Breadcrumb.component
+			className={className}
+			{...overrides.Breadcrumb.attributes(state)}
+			css={overrides.Breadcrumb.styles(state)}
+		>
+			<overrides.AssistiveText.component
+				{...overrides.AssistiveText.attributes(state)}
+				css={overrides.AssistiveText.styles(state)}
 			>
 				{assistiveText}
-			</overrides.subComponent.AssistiveText.component>
-			<overrides.subComponent.List.component
-				css={overrides.subComponent.List.styles}
-				{...overrides.subComponent.List.attributes(state)}
+			</overrides.AssistiveText.component>
+			<overrides.List.component
+				{...overrides.List.attributes(state)}
+				css={overrides.List.styles(state)}
 			>
 				{allChildren}
-			</overrides.subComponent.List.component>
-		</overrides.component>
+			</overrides.List.component>
+		</overrides.Breadcrumb.component>
 	);
 };
 
@@ -146,35 +149,35 @@ Breadcrumb.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			AssistiveText: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			List: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Crumb: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Link: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Icon: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Breadcrumb: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		AssistiveText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		List: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Crumb: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Link: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

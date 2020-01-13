@@ -17,12 +17,10 @@ export const Cell = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Cell: {
-				styles: cellStyles,
-				component: CellWrapper,
-				attributes: state => state,
-			},
+		Cell: {
+			styles: cellStyles,
+			component: CellWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -34,14 +32,13 @@ export const Cell = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Cell.component
-			css={overrides.subComponent.Cell.styles}
-			{...overrides.subComponent.Cell.attributes(state)}
+		<overrides.Cell.component
+			{...overrides.Cell.attributes(state)}
+			css={overrides.Cell.styles(state)}
 		/>
 	);
 };
@@ -85,12 +82,10 @@ Cell.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Cell: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Cell: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Symbol as SymbolWrapper, symbolStyles } from './overrides/symbol';
 import { Svg, svgStyles } from './overrides/svg';
 import pkg from '../package.json';
 
@@ -20,6 +20,7 @@ export const Symbol = ({
 	viewBoxWidth,
 	viewBoxHeight,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -29,16 +30,15 @@ export const Symbol = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			Svg: {
-				styles: svgStyles,
-				component: Svg,
-				attributes: state => state,
-			},
+		Symbol: {
+			styles: symbolStyles,
+			component: SymbolWrapper,
+			attributes: (_, a) => a,
+		},
+		Svg: {
+			styles: svgStyles,
+			component: Svg,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -54,25 +54,28 @@ export const Symbol = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
-			<overrides.subComponent.Svg.component
+		<overrides.Symbol.component
+			className={className}
+			{...overrides.Symbol.attributes(state)}
+			css={overrides.Symbol.styles(state)}
+		>
+			<overrides.Svg.component
 				aria-label={assistiveText}
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
 				role="img"
 				focusable="false"
 				style={{ width: '100%', height: '100%' }}
-				css={overrides.subComponent.Svg.styles}
-				{...overrides.subComponent.Svg.attributes(state)}
+				{...overrides.Svg.attributes(state)}
+				css={overrides.Svg.styles(state)}
 			>
 				{children}
-			</overrides.subComponent.Svg.component>
-		</overrides.component>
+			</overrides.Svg.component>
+		</overrides.Symbol.component>
 	);
 };
 
@@ -106,15 +109,15 @@ export const propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Svg: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Symbol: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Svg: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
@@ -122,4 +125,5 @@ export const propTypes = {
 export const defaultProps = {};
 
 Symbol.propTypes = propTypes;
+
 Symbol.defaultProps = defaultProps;

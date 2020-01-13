@@ -5,7 +5,7 @@ import React, { Children, useEffect, useRef, useState, createRef } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Tabcordion as TabcordionWrapper, tabcordionStyles } from './overrides/tabcordion';
 import { TabItem, tabItemStyles } from './overrides/tabItem';
 import { TabRow, tabRowStyles } from './overrides/tabRow';
 import pkg from '../package.json';
@@ -23,8 +23,9 @@ export const Tabcordion = ({
 	initialTabIndex,
 	instanceIdPrefix,
 	children,
+	className,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -32,20 +33,20 @@ export const Tabcordion = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-		subComponent: {
-			TabItem: {
-				styles: tabItemStyles,
-				component: TabItem,
-				attributes: state => state,
-			},
-			TabRow: {
-				styles: tabRowStyles,
-				component: TabRow,
-				attributes: state => state,
-			},
+		Tabcordion: {
+			styles: tabcordionStyles,
+			component: TabcordionWrapper,
+			attributes: (_, a) => a,
+		},
+		TabItem: {
+			styles: tabItemStyles,
+			component: TabItem,
+			attributes: (_, a) => a,
+		},
+		TabRow: {
+			styles: tabRowStyles,
+			component: TabRow,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -55,15 +56,14 @@ export const Tabcordion = ({
 		activeTabIndex,
 		instancePrefix,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
 	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
@@ -75,7 +75,7 @@ export const Tabcordion = ({
 	const { width } = useContainerQuery(containerRef);
 	const mode =
 		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
-	console.log(mode);
+
 	const setActive = idx => () => setActiveTabIndex(idx);
 
 	// create the prefix for internal IDs
@@ -144,18 +144,23 @@ export const Tabcordion = ({
 	const tabCount = Children.count(children);
 
 	return (
-		<overrides.component ref={containerRef} css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.Tabcordion.component
+			ref={containerRef}
+			className={className}
+			{...overrides.Tabcordion.attributes(state)}
+			css={overrides.Tabcordion.styles(state)}
+		>
 			{mode === 'tabs' ? (
-				<overrides.subComponent.TabRow.component
+				<overrides.TabRow.component
 					role="tablist"
 					ref={tablistRef}
-					css={overrides.subComponent.TabRow.styles}
-					{...overrides.subComponent.TabRow.attributes(state)}
+					{...overrides.TabRow.attributes(state)}
+					css={overrides.TabRow.styles(state)}
 				>
 					{Children.map(children, (child, idx) => {
 						const selected = activeTabIndex === idx;
 						return (
-							<overrides.subComponent.TabItem.component
+							<overrides.TabItem.component
 								aria-controls={getId('panel', idx)}
 								aria-selected={selected}
 								id={getId('tab', idx)}
@@ -165,14 +170,14 @@ export const Tabcordion = ({
 								onClick={setActive(idx)}
 								role="tab"
 								ref={tabRefs.current[idx]}
-								css={overrides.subComponent.TabItem.styles}
-								{...overrides.subComponent.TabItem.attributes(state)}
+								{...overrides.TabItem.attributes(state)}
+								css={overrides.TabItem.styles(state)}
 							>
 								{child.props.text}
-							</overrides.subComponent.TabItem.component>
+							</overrides.TabItem.component>
 						);
 					})}
-				</overrides.subComponent.TabRow.component>
+				</overrides.TabRow.component>
 			) : null}
 
 			{Children.map(children, (child, idx) => {
@@ -193,7 +198,7 @@ export const Tabcordion = ({
 					/>
 				);
 			})}
-		</overrides.component>
+		</overrides.Tabcordion.component>
 	);
 };
 
@@ -201,23 +206,62 @@ export const Tabcordion = ({
 // Types
 // ==============================
 Tabcordion.propTypes = {
-	/** The look of the tabs */
+	/**
+	 * The look of the tabs
+	 */
 	look: PropTypes.oneOf(['soft', 'lego']),
-	/** An array of Tab components that can be navigated through */
+
+	/**
+	 * An array of Tab components that can be navigated through
+	 */
 	children: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.oneOf([Tab]),
 		})
 	).isRequired,
-	/** The tab index to mount this component with */
+
+	/**
+	 * The tab index to mount this component with
+	 */
 	initialTabIndex: PropTypes.number,
-	/** Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc. */
+
+	/**
+	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
+	 */
 	instanceIdPrefix: PropTypes.string,
-	/** Whether or not tabs should stretch full width */
+
+	/**
+	 * Whether or not tabs should stretch full width
+	 */
 	justify: PropTypes.bool,
-	/** Lock the mode to either "accordion" or "tabs". The default is "responsive". */
+
+	/**
+	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
+	 */
 	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Tabcordion: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		TabItem: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		TabRow: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
+
 Tabcordion.defaultProps = {
 	look: 'soft',
 	initialTabIndex: 0,

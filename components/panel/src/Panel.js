@@ -4,7 +4,7 @@ import { jsx, useBrand, devWarning, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Panel as PanelWrapper, panelStyles } from './overrides/panel';
 import pkg from '../package.json';
 
 // ==============================
@@ -24,16 +24,18 @@ export const usePanelContext = () => {
 // Component
 // ==============================
 
-export const Panel = ({ look, overrides: componentOverrides, ...rest }) => {
+export const Panel = ({ look, className, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		Panel: {
+			styles: panelStyles,
+			component: PanelWrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const state = {
@@ -46,13 +48,16 @@ export const Panel = ({ look, overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
 		<PanelContext.Provider value={{ look, overrides: componentOverrides }}>
-			<overrides.component css={overrides.styles} {...overrides.attributes(state)} />
+			<overrides.Panel.component
+				className={className}
+				{...overrides.Panel.attributes(state)}
+				css={overrides.Panel.styles(state)}
+			/>
 		</PanelContext.Provider>
 	);
 };
@@ -76,25 +81,25 @@ Panel.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Header: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Body: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Footer: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Panel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Header: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Body: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Footer: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

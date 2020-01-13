@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Button as ButtonWrapper, buttonStyles } from './overrides/button';
 import { Content } from './Content';
 import pkg from '../package.json';
 
@@ -24,6 +24,7 @@ export const Button = ({
 	tag,
 	onClick,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -43,9 +44,11 @@ export const Button = ({
 	}
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		Button: {
+			styles: buttonStyles,
+			component: ButtonWrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const state = {
@@ -68,18 +71,18 @@ export const Button = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.component
+		<overrides.Button.component
 			type={tag === 'button' ? 'button' : undefined}
 			disabled={disabled}
 			aria-label={assistiveText}
 			onClick={onClick}
-			css={overrides.styles}
-			{...overrides.attributes(state)}
+			className={className}
+			{...overrides.Button.attributes(state)}
+			css={overrides.Button.styles(state)}
 		>
 			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 			{tag !== 'input' ? (
@@ -93,7 +96,7 @@ export const Button = ({
 					{children}
 				</Content>
 			) : null}
-		</overrides.component>
+		</overrides.Button.component>
 	);
 };
 
@@ -173,26 +176,25 @@ Button.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-
-		subComponent: PropTypes.shape({
-			Content: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			TextWrapper: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			ButtonGroup: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Button: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Content: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		TextWrapper: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ButtonGroup: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

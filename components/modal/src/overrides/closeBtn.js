@@ -3,9 +3,16 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Button } from '@westpac/button';
 
-export const CloseBtn = ({ open, heading, size, dismissible, icon, ...props }) => (
-	<Button iconAfter={icon} look="link" {...props} />
-);
+export const CloseBtn = ({
+	icon,
+	heading,
+	open,
+	onClose,
+	size,
+	dismissible,
+	overrides,
+	...rest
+}) => <Button iconAfter={icon} look="link" {...rest} />;
 
 export const closeBtnStyles = (_, {}) => {
 	const { COLORS } = useBrand();

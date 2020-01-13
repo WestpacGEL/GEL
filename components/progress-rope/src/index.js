@@ -1,3 +1,3 @@
 export { ProgressRope } from './ProgressRope';
-export { ProgressRopeGroup as Group } from './ProgressRopeGroup';
-export { ProgressRopeItem as Item } from './ProgressRopeItem';
+export { Group } from './Group';
+export { Item } from './Item';

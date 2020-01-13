@@ -8,7 +8,7 @@ import { StyledButton as Button } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
-	const [progress, setProgress] = useState(0);
+	const [progress, setProgress] = useState(5);
 
 	function handleProgress(unit) {
 		let newProgress = progress + unit;
@@ -29,7 +29,12 @@ function Example({ brand }) {
 			<Intopia />
 
 			<h2>Default</h2>
+			<ProgressBar value={20} />
+
+			<br />
+			<h2>Controlled</h2>
 			<ProgressBar value={progress} />
+
 			<br />
 			<h2>Skinny</h2>
 			<ProgressBar value={progress} look="skinny" />

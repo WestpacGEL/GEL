@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Label as LabelWrapper, labelStyles } from './overrides/label';
 import pkg from '../package.json';
 
 // ==============================
@@ -17,9 +17,11 @@ export const Label = ({ look, value, overrides: componentOverrides, ...rest }) =
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		Label: {
+			styles: labelStyles,
+			component: LabelWrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const state = {
@@ -33,14 +35,16 @@ export const Label = ({ look, value, overrides: componentOverrides, ...rest }) =
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.Label.component
+			{...overrides.Label.attributes(state)}
+			css={overrides.Label.styles(state)}
+		>
 			{value}
-		</overrides.component>
+		</overrides.Label.component>
 	);
 };
 
@@ -72,9 +76,11 @@ Label.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
+		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 	}),
 };
 

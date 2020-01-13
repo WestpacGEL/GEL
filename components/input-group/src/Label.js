@@ -18,12 +18,10 @@ export const Label = ({ position, size, data, overrides: componentOverrides, ...
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Label: {
-				styles: labelStyles,
-				component: LabelWrapper,
-				attributes: state => state,
-			},
+		Label: {
+			styles: labelStyles,
+			component: LabelWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -39,17 +37,16 @@ export const Label = ({ position, size, data, overrides: componentOverrides, ...
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Label.component
-			css={overrides.subComponent.Label.styles}
-			{...overrides.subComponent.Label.attributes(state)}
+		<overrides.Label.component
+			{...overrides.Label.attributes(state)}
+			css={overrides.Label.styles(state)}
 		>
 			{data}
-		</overrides.subComponent.Label.component>
+		</overrides.Label.component>
 	);
 };
 
@@ -72,6 +69,17 @@ Label.propTypes = {
 	 * The content of the component
 	 */
 	data: PropTypes.string.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Label.defaultProps = {

@@ -15,7 +15,7 @@ export const Td = ({
 	highlightStart,
 	bordered,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const context = useTableContext();
 	bordered = (context && context.bordered) || bordered;
@@ -26,12 +26,10 @@ export const Td = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Td: {
-				styles: tdStyles,
-				component: TableData,
-				attributes: state => state,
-			},
+		Td: {
+			styles: tdStyles,
+			component: TableData,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -40,22 +38,18 @@ export const Td = ({
 		highlightStart,
 		bordered,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Td.component
-			css={overrides.subComponent.Td.styles}
-			{...overrides.subComponent.Td.attributes(state)}
-		/>
+		<overrides.Td.component {...overrides.Td.attributes(state)} css={overrides.Td.styles(state)} />
 	);
 };
 
@@ -78,12 +72,10 @@ Td.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Td: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Td: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

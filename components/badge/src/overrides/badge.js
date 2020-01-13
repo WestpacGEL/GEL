@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Wrapper = ({ look, value, ...rest }) => <span {...rest} />;
+export const Badge = ({ look, value, ...rest }) => <span {...rest} />;
 
-export const wrapperStyles = (_, { look }) => {
+export const badgeStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	const styleMap = {

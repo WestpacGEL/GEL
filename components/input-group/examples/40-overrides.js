@@ -6,30 +6,29 @@ import { InputGroup, Left, Right } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Label = props => (
-	<span {...props}>
-		<HouseIcon size="small" /> {props.data}
+const Label = ({ data, overrides, ...rest }) => (
+	<span {...rest}>
+		<HouseIcon size="small" /> {data}
 	</span>
 );
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/input-group'] = {
-		styles: styles => ({
-			...styles,
-			outline: '1px solid red',
-		}),
-
-		subComponent: {
-			Label: {
-				component: Label,
-			},
-			Text: {
-				styles: styles => ({
-					...styles,
-					outline: '4px dotted green',
-				}),
-			},
+		InputGroup: {
+			styles: styles => ({
+				...styles,
+				outline: '1px solid red',
+			}),
+		},
+		Label: {
+			component: Label,
+		},
+		Text: {
+			styles: styles => ({
+				...styles,
+				outline: '4px dotted green',
+			}),
 		},
 	};
 
@@ -95,13 +94,11 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<InputGroup
 				overrides={{
-					subComponent: {
-						Button: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted blue',
-							}),
-						},
+					Button: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted blue',
+						}),
 					},
 				}}
 			>
@@ -115,13 +112,11 @@ function Example({ brand }) {
 
 			<InputGroup
 				overrides={{
-					subComponent: {
-						Select: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted blue',
-							}),
-						},
+					Select: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted blue',
+						}),
 					},
 				}}
 				data={{

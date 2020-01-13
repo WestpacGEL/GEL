@@ -22,6 +22,7 @@ export const Option = ({
 	size,
 	inline,
 	flipped,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -33,17 +34,15 @@ export const Option = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Option: {
-				styles: optionStyles,
-				component: OptionWrapper,
-				attributes: state => state,
-			},
-			Label: {
-				styles: labelStyles,
-				component: Label,
-				attributes: state => state,
-			},
+		Option: {
+			styles: optionStyles,
+			component: OptionWrapper,
+			attributes: (_, a) => a,
+		},
+		Label: {
+			styles: labelStyles,
+			component: Label,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -63,14 +62,14 @@ export const Option = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Option.component
-			css={overrides.subComponent.Option.styles}
-			{...overrides.subComponent.Option.attributes(state)}
+		<overrides.Option.component
+			className={className}
+			{...overrides.Option.attributes(state)}
+			css={overrides.Option.styles(state)}
 		>
 			<input
 				type={type}
@@ -82,14 +81,14 @@ export const Option = ({
 					opacity: 0, // we decided to not expose this as an override
 				}} // as it contains logic and is important for the component to work
 			/>
-			<overrides.subComponent.Label.component
+			<overrides.Label.component
 				htmlFor={formCheckId}
-				css={overrides.subComponent.Label.styles}
-				{...overrides.subComponent.Label.attributes(state)}
+				{...overrides.Label.attributes(state)}
+				css={overrides.Label.styles(state)}
 			>
 				{children}
-			</overrides.subComponent.Label.component>
-		</overrides.subComponent.Option.component>
+			</overrides.Label.component>
+		</overrides.Option.component>
 	);
 };
 
@@ -152,17 +151,15 @@ Option.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Option: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Label: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Option: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

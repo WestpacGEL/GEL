@@ -4,9 +4,18 @@ import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React from 'react';
 
-export const Wrapper = ({ headingTag, icon, dismissible, ...rest }) => <div {...rest} />;
+export const Alert = ({
+	look,
+	dismissible,
+	icon,
+	heading,
+	headingTag,
+	open,
+	overrides,
+	...rest
+}) => <div {...rest} />;
 
-export const wrapperStyles = (_, { dismissible, look }) => {
+export const alertStyles = (_, { dismissible, look }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
 

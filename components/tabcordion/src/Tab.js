@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import React, { useState, forwardRef } from 'react';
 import { jsx, useBrand, merge } from '@westpac/core';
+import React, { Fragment, useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 import pkg from '../package.json';
 
 export const Tab = forwardRef(
-	({ look, children, last, selected, text, mode, panelId, onClick, tabId, ...props }, ref) => {
+	({ look, children, last, selected, text, mode, panelId, onClick, tabId, ...rest }, ref) => {
 		const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
 		const [hidden, setHidden] = useState(!selected);
 		const Icon = hidden ? ExpandMoreIcon : ExpandLessIcon;
@@ -26,7 +26,7 @@ export const Tab = forwardRef(
 		};
 
 		return (
-			<>
+			<Fragment>
 				{mode === 'accordion' ? (
 					<overrides.AccordionLabel
 						look={look}
@@ -56,32 +56,52 @@ export const Tab = forwardRef(
 				>
 					{children}
 				</overrides.Panel>
-			</>
+			</Fragment>
 		);
 	}
 );
 
 Tab.propTypes = {
-	/** The panel content for this tab */
+	/**
+	 * The panel content for this tab
+	 */
 	children: PropTypes.node.isRequired,
-	// Whether this tab/panel is selected/expanded
+
+	/**
+	 * Whether this tab/panel is selected/expanded
+	 */
 	selected: PropTypes.bool,
-	/** The text label for this tab */
+
+	/**
+	 * The text label for this tab
+	 */
 	text: PropTypes.string.isRequired,
-	// Render as either an accordion or tabs
+
+	/**
+	 * Render as either an accordion or tabs
+	 */
 	mode: PropTypes.oneOf(['accordion', 'tabs']),
-	// The id for this tab's panel
+
+	/**
+	 * The id for this tab's panel
+	 */
 	panelId: PropTypes.string,
-	// The onClick handler for the accordion label
+
+	/**
+	 * The onClick handler for the accordion label
+	 */
 	onClick: PropTypes.func,
-	// The id for the tab
+
+	/**
+	 * The id for the tab
+	 */
 	tabId: PropTypes.string,
 };
 
 // ==============================
 // Overrides & Styled Components
 // ==============================
-const Panel = forwardRef(({ look, last, selected, mode, ...props }, ref) => {
+const Panel = forwardRef(({ look, last, selected, mode, ...rest }, ref) => {
 	const { COLORS } = useBrand();
 	const styles =
 		mode === 'accordion'
@@ -109,12 +129,12 @@ const Panel = forwardRef(({ look, last, selected, mode, ...props }, ref) => {
 				padding: '1.5rem 3.22%',
 				...styles[look],
 			}}
-			{...props}
+			{...rest}
 		/>
 	);
 });
 
-const AccordionLabel = ({ look, last, hidden, ...props }) => {
+const AccordionLabel = ({ look, last, hidden, ...rest }) => {
 	const { COLORS } = useBrand();
 	const styles = {
 		soft: {
@@ -158,7 +178,7 @@ const AccordionLabel = ({ look, last, hidden, ...props }) => {
 				width: '100%',
 				...styles[look],
 			}}
-			{...props}
+			{...rest}
 		/>
 	);
 };

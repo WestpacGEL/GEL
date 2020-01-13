@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Heading as HeadingWrapper, headingStyles } from './overrides/heading';
 import pkg from '../package.json';
 
 // ==============================
@@ -20,9 +20,11 @@ export const Heading = ({ tag: Tag, size, children, overrides: componentOverride
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		Heading: {
+			styles: headingStyles,
+			component: HeadingWrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const state = {
@@ -36,14 +38,16 @@ export const Heading = ({ tag: Tag, size, children, overrides: componentOverride
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.Heading.component
+			{...overrides.Heading.attributes(state)}
+			css={overrides.Heading.styles(state)}
+		>
 			{children}
-		</overrides.component>
+		</overrides.Heading.component>
 	);
 };
 
@@ -66,9 +70,11 @@ Heading.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
+		Heading: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 	}),
 };
 

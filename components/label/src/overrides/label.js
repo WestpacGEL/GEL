@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Wrapper = ({ look, value, ...props }) => {
+export const Label = ({ look, value, ...props }) => {
 	let Tag = 'span';
 
 	if (props.href) {
@@ -15,7 +15,7 @@ export const Wrapper = ({ look, value, ...props }) => {
 	return <Tag type={Tag === 'button' ? 'button' : undefined} {...props} />;
 };
 
-export const wrapperStyles = (_, { look, href, onClick }) => {
+export const labelStyles = (_, { look, href, onClick }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	let color = '#fff';

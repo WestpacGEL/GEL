@@ -5,7 +5,7 @@ import { VisuallyHidden } from '@westpac/a11y';
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { ProgressBar as ProgressBarWrapper, progressBarStyles } from './overrides/progressBar';
 import { Text, textStyles } from './overrides/text';
 import { Bar, barStyles } from './overrides/bar';
 import pkg from '../package.json';
@@ -13,7 +13,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const ProgressBar = ({ value, look, overrides: componentOverrides, ...props }) => {
+export const ProgressBar = ({ value, look, className, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -22,21 +22,20 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...pro
 	const roundedValue = Math.round(value);
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			Bar: {
-				styles: barStyles,
-				component: Bar,
-				attributes: state => state,
-			},
-			Text: {
-				styles: textStyles,
-				component: Text,
-				attributes: state => state,
-			},
+		ProgressBar: {
+			styles: progressBarStyles,
+			component: ProgressBarWrapper,
+			attributes: (_, a) => a,
+		},
+		Bar: {
+			styles: barStyles,
+			component: Bar,
+			attributes: (_, a) => a,
+		},
+		Text: {
+			styles: textStyles,
+			component: Text,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -44,44 +43,47 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...pro
 		look,
 		value: roundedValue,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
-			<overrides.subComponent.Bar.component
+		<overrides.ProgressBar.component
+			className={className}
+			{...overrides.ProgressBar.attributes(state)}
+			css={overrides.ProgressBar.styles(state)}
+		>
+			<overrides.Bar.component
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
 				aria-valuenow={roundedValue}
 				aria-live="polite"
-				css={overrides.subComponent.Bar.styles}
-				{...overrides.subComponent.Bar.attributes(state)}
+				{...overrides.Bar.attributes(state)}
+				css={overrides.Bar.styles(state)}
 			>
 				{look !== 'skinny' ? (
 					<Fragment>
-						<overrides.subComponent.Text.component
+						<overrides.Text.component
 							role="text"
-							css={overrides.subComponent.Text.styles}
-							{...overrides.subComponent.Text.attributes(state)}
+							{...overrides.Text.attributes(state)}
+							css={overrides.Text.styles(state)}
 						>
 							{roundedValue}%
-						</overrides.subComponent.Text.component>
+						</overrides.Text.component>
 						<VisuallyHidden>Complete</VisuallyHidden>
 					</Fragment>
 				) : (
 					<VisuallyHidden>{roundedValue}% Complete</VisuallyHidden>
 				)}
-			</overrides.subComponent.Bar.component>
-		</overrides.component>
+			</overrides.Bar.component>
+		</overrides.ProgressBar.component>
 	);
 };
 
@@ -104,20 +106,20 @@ ProgressBar.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Bar: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Text: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		ProgressBar: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Bar: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Text: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

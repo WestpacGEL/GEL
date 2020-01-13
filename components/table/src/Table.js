@@ -4,7 +4,8 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles, TableComponent, tableStyles } from './overrides/table';
+import { Table as TableWrapper, tableStyles } from './overrides/table';
+import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import pkg from '../package.json';
 
 // ==============================
@@ -12,7 +13,15 @@ import pkg from '../package.json';
 // ==============================
 const TableContext = createContext();
 
-export const useTableContext = () => useContext(TableContext);
+export const useTableContext = () => {
+	const context = useContext(TableContext);
+
+	if (!context) {
+		throw new Error('Table sub-components should be wrapped in <Table>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
@@ -21,10 +30,11 @@ export const Table = ({
 	striped,
 	bordered,
 	responsive,
+	className,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
-	const context = useTableContext();
+	const context = useContext(TableContext);
 	bordered = (context && context.bordered) || bordered;
 
 	const {
@@ -33,16 +43,15 @@ export const Table = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			Table: {
-				styles: tableStyles,
-				component: TableComponent,
-				attributes: state => state,
-			},
+		Wrapper: {
+			styles: wrapperStyles,
+			component: Wrapper,
+			attributes: (_, a) => a,
+		},
+		Table: {
+			styles: tableStyles,
+			component: TableWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -51,15 +60,14 @@ export const Table = ({
 		responsive,
 		bordered,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
@@ -68,12 +76,16 @@ export const Table = ({
 				bordered,
 			}}
 		>
-			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
-				<overrides.subComponent.Table.component
-					css={overrides.subComponent.Table.styles}
-					{...overrides.subComponent.Table.attributes(state)}
+			<overrides.Wrapper.component
+				className={className}
+				{...overrides.Wrapper.attributes(state)}
+				css={overrides.Wrapper.styles(state)}
+			>
+				<overrides.Table.component
+					{...overrides.Table.attributes(state)}
+					css={overrides.Table.styles(state)}
 				/>
-			</overrides.component>
+			</overrides.Wrapper.component>
 		</TableContext.Provider>
 	);
 };
@@ -96,15 +108,45 @@ Table.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Table: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Table: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Caption: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Tbody: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Td: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Tfoot: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Th: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Thead: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Tr: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

@@ -27,11 +27,13 @@ const Wrapper = ({ children, icon, color, size, assistiveText, ...rest }) => (
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/icon'] = {
-		styles: styles => ({
-			...styles,
-			outline: '1px solid red',
-		}),
-		component: Wrapper,
+		Icon: {
+			styles: styles => ({
+				...styles,
+				outline: '1px solid red',
+			}),
+			component: Wrapper,
+		},
 	};
 
 	return (
@@ -51,13 +53,11 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<AddIcon
 				overrides={{
-					subComponent: {
-						Svg: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted green',
-							}),
-						},
+					Svg: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
 					},
 				}}
 			/>

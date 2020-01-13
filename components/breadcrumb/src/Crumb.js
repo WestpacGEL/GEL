@@ -23,6 +23,7 @@ export const Crumb = ({
 	text,
 	assistiveText,
 	onClick,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -33,27 +34,25 @@ export const Crumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			AssistiveText: {
-				styles: assistiveTextStyles,
-				component: AssistiveText,
-				attributes: state => state,
-			},
-			Crumb: {
-				styles: crumbStyles,
-				component: CrumbWrapper,
-				attributes: state => state,
-			},
-			Link: {
-				styles: linkStyles,
-				component: Link,
-				attributes: state => state,
-			},
-			Icon: {
-				styles: iconStyles,
-				component: Icon,
-				attributes: state => state,
-			},
+		AssistiveText: {
+			styles: assistiveTextStyles,
+			component: AssistiveText,
+			attributes: (_, a) => a,
+		},
+		Crumb: {
+			styles: crumbStyles,
+			component: CrumbWrapper,
+			attributes: (_, a) => a,
+		},
+		Link: {
+			styles: linkStyles,
+			component: Link,
+			attributes: (_, a) => a,
+		},
+		Icon: {
+			styles: iconStyles,
+			component: Icon,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -71,42 +70,42 @@ export const Crumb = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Crumb.component
-			css={overrides.subComponent.Crumb.styles}
-			{...overrides.subComponent.Crumb.attributes(state)}
+		<overrides.Crumb.component
+			className={className}
+			{...overrides.Crumb.attributes(state)}
+			css={overrides.Crumb.styles(state)}
 		>
 			{current && (
-				<overrides.subComponent.AssistiveText.component
+				<overrides.AssistiveText.component
 					insideCrumb={true}
-					css={overrides.subComponent.AssistiveText.styles}
-					{...overrides.subComponent.AssistiveText.attributes(state)}
+					{...overrides.AssistiveText.attributes(state)}
+					css={overrides.AssistiveText.styles(state)}
 				>
 					{assistiveText}
-				</overrides.subComponent.AssistiveText.component>
+				</overrides.AssistiveText.component>
 			)}
-			<overrides.subComponent.Link.component
+			<overrides.Link.component
 				href={current ? null : href}
 				onClick={onClick}
-				css={overrides.subComponent.Link.styles}
-				{...overrides.subComponent.Link.attributes(state)}
+				{...overrides.Link.attributes(state)}
+				css={overrides.Link.styles(state)}
 			>
 				{text}
-			</overrides.subComponent.Link.component>
+			</overrides.Link.component>
 			{!current && (
-				<overrides.subComponent.Icon.component
+				<overrides.Icon.component
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
-					css={overrides.subComponent.Icon.styles}
-					{...overrides.subComponent.Icon.attributes(state)}
+					{...overrides.Icon.attributes(state)}
+					css={overrides.Icon.styles(state)}
 				/>
 			)}
-		</overrides.subComponent.Crumb.component>
+		</overrides.Crumb.component>
 	);
 };
 
@@ -141,27 +140,25 @@ Crumb.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			AssistiveText: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Crumb: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Link: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Icon: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		AssistiveText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Crumb: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Link: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

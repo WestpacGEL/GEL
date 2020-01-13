@@ -10,25 +10,23 @@ function Example({ brand }) {
 	const { COLORS } = useBrand();
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/grid'] = {
-		subComponent: {
-			Grid: {
-				styles: styles => ({
-					...styles,
-					outline: '5px dotted green',
-				}),
-			},
-			Container: {
-				styles: (styles, { look }) => ({
-					...styles,
-					outline: '3px dotted blue',
-				}),
-			},
-			Cell: {
-				styles: (styles, { look }) => ({
-					...styles,
-					outline: '3px dotted hotpink',
-				}),
-			},
+		Grid: {
+			styles: styles => ({
+				...styles,
+				outline: '5px dotted green',
+			}),
+		},
+		Container: {
+			styles: (styles, { look }) => ({
+				...styles,
+				outline: '3px dotted blue',
+			}),
+		},
+		Cell: {
+			styles: (styles, { look }) => ({
+				...styles,
+				outline: '3px dotted hotpink',
+			}),
 		},
 	};
 

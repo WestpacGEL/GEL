@@ -9,25 +9,23 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/text-input'] = {
-		subComponent: {
-			Text: {
-				styles: styles => ({
-					...styles,
-					borderColor: 'palevioletred',
-				}),
-			},
-			Select: {
-				styles: styles => ({
-					...styles,
-					borderColor: 'forestgreen',
-				}),
-			},
-			Textarea: {
-				styles: styles => ({
-					...styles,
-					borderColor: 'royalblue',
-				}),
-			},
+		Text: {
+			styles: styles => ({
+				...styles,
+				borderColor: 'palevioletred',
+			}),
+		},
+		Select: {
+			styles: styles => ({
+				...styles,
+				borderColor: 'forestgreen',
+			}),
+		},
+		Textarea: {
+			styles: styles => ({
+				...styles,
+				borderColor: 'royalblue',
+			}),
 		},
 	};
 
@@ -50,10 +48,8 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<Text
 				overrides={{
-					subComponent: {
-						Text: {
-							styles: styles => ({ ...styles, borderWidth: '3px' }),
-						},
+					Text: {
+						styles: styles => ({ ...styles, borderWidth: '3px' }),
 					},
 				}}
 			/>
@@ -61,10 +57,8 @@ function Example({ brand }) {
 			<Select
 				name="thing"
 				overrides={{
-					subComponent: {
-						Select: {
-							styles: styles => ({ ...styles, borderWidth: '3px' }),
-						},
+					Select: {
+						styles: styles => ({ ...styles, borderWidth: '3px' }),
 					},
 				}}
 			>
@@ -76,10 +70,8 @@ function Example({ brand }) {
 			<br />
 			<Textarea
 				overrides={{
-					subComponent: {
-						Textarea: {
-							styles: styles => ({ ...styles, borderWidth: '3px' }),
-						},
+					Textarea: {
+						styles: styles => ({ ...styles, borderWidth: '3px' }),
 					},
 				}}
 			/>

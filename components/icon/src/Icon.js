@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Icon as IconWrapper, iconStyles } from './overrides/icon';
 import { Svg, svgStyles } from './overrides/svg';
 import pkg from '../package.json';
 
@@ -16,6 +16,7 @@ export const Icon = ({
 	size,
 	assistiveText,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -26,16 +27,15 @@ export const Icon = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			Svg: {
-				styles: svgStyles,
-				component: Svg,
-				attributes: state => state,
-			},
+		Icon: {
+			styles: iconStyles,
+			component: IconWrapper,
+			attributes: (_, a) => a,
+		},
+		Svg: {
+			styles: svgStyles,
+			component: Svg,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -51,24 +51,27 @@ export const Icon = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
-			<overrides.subComponent.Svg.component
+		<overrides.Icon.component
+			className={className}
+			{...overrides.Icon.attributes(state)}
+			css={overrides.Icon.styles(state)}
+		>
+			<overrides.Svg.component
 				aria-label={assistiveText}
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
 				role="img"
 				focusable="false"
-				css={overrides.subComponent.Svg.styles}
-				{...overrides.subComponent.Svg.attributes(state)}
+				css={overrides.Svg.styles(state)}
+				{...overrides.Svg.attributes(state)}
 			>
 				{children}
-			</overrides.subComponent.Svg.component>
-		</overrides.component>
+			</overrides.Svg.component>
+		</overrides.Icon.component>
 	);
 };
 
@@ -107,15 +110,15 @@ export const propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Svg: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Svg: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

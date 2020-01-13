@@ -1,16 +1,16 @@
 /** @jsx jsx */
 
-import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useTableContext } from './Table';
+import PropTypes from 'prop-types';
 
 import { Tablehead, theadStyles } from './overrides/thead';
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Thead = ({ bordered, overrides: componentOverrides, ...props }) => {
+export const Thead = ({ bordered, overrides: componentOverrides, ...rest }) => {
 	const context = useTableContext();
 	bordered = (context && context.bordered) || bordered;
 
@@ -20,32 +20,30 @@ export const Thead = ({ bordered, overrides: componentOverrides, ...props }) => 
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Thead: {
-				styles: theadStyles,
-				component: Tablehead,
-				attributes: state => state,
-			},
+		Thead: {
+			styles: theadStyles,
+			component: Tablehead,
+			attributes: (_, a) => a,
 		},
 	};
 
 	const state = {
 		bordered,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
+
 	return (
-		<overrides.subComponent.Thead.component
-			css={overrides.subComponent.Thead.styles}
-			{...overrides.subComponent.Thead.attributes(state)}
+		<overrides.Thead.component
+			{...overrides.Thead.attributes(state)}
+			css={overrides.Thead.styles(state)}
 		/>
 	);
 };
@@ -63,12 +61,10 @@ Thead.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Thead: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Thead: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

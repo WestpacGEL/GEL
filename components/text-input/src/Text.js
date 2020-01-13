@@ -13,9 +13,9 @@ export const Text = ({
 	width,
 	inline,
 	invalid,
-	overrides: componentOverrides,
 	children,
-	...props
+	overrides: componentOverrides,
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -23,12 +23,10 @@ export const Text = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Text: {
-				styles: textStyles,
-				component: TextComponent,
-				attributes: state => state,
-			},
+		Text: {
+			styles: textStyles,
+			component: TextComponent,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -38,21 +36,20 @@ export const Text = ({
 		inline,
 		invalid,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Text.component
-			css={overrides.subComponent.Text.styles}
-			{...overrides.subComponent.Text.attributes(state)}
+		<overrides.Text.component
+			{...overrides.Text.attributes(state)}
+			css={overrides.Text.styles(state)}
 		/>
 	);
 };
@@ -88,12 +85,10 @@ Text.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Text: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Text: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

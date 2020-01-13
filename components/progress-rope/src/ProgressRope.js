@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { Children, cloneElement, createContext, useReducer, useEffect, useContext } from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { Children, cloneElement, createContext, useReducer, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
-import { ProgressRopeGroup } from './ProgressRopeGroup';
-import { ProgressRopeItem } from './ProgressRopeItem';
+import { ProgressRope as ProgressRopeWrapper, progressRopeStyles } from './overrides/progressRope';
 import pkg from '../package.json';
+import { Group } from './Group';
+import { Item } from './Item';
 
 // ==============================
 // Context and Consumer Hook
@@ -18,7 +18,7 @@ export const useProgressRopeContext = () => {
 	const context = useContext(ProgressRopeContext);
 
 	if (!context) {
-		throw new Error('ProgressRope sub-components should be wrapped in a <ProgressRope>.');
+		throw new Error('ProgressRope sub-components should be wrapped in <ProgressRope>.');
 	}
 
 	return context;
@@ -43,7 +43,7 @@ const createRopeGraph = (data, children) => {
 		});
 	} else {
 		Children.forEach(children, child => {
-			if (child.type === ProgressRopeGroup) {
+			if (child.type === Group) {
 				grouped = true;
 				ropeGraph.push(Array(Children.count(child.props.children)).fill('unvisited'));
 			} else {
@@ -62,8 +62,9 @@ export const ProgressRope = ({
 	current,
 	data,
 	children,
+	className,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -71,24 +72,25 @@ export const ProgressRope = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		ProgressRope: {
+			styles: progressRopeStyles,
+			component: ProgressRopeWrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const state = {
 		current,
 		data,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	const initialState = {
@@ -152,17 +154,17 @@ export const ProgressRope = ({
 		data.forEach(({ type, text, onClick, items }, i) => {
 			if (type && type === 'group') {
 				allChildren.push(
-					<ProgressRopeGroup key={i} index={i} text={text} overrides={componentOverrides}>
+					<Group key={i} index={i} text={text} overrides={componentOverrides}>
 						{items.map((item, index) => (
-							<ProgressRopeItem key={index} onClick={item.onClick} overrides={componentOverrides}>
+							<Item key={index} onClick={item.onClick} overrides={componentOverrides}>
 								{item.text}
-							</ProgressRopeItem>
+							</Item>
 						))}
-					</ProgressRopeGroup>
+					</Group>
 				);
 			} else {
 				allChildren.push(
-					<ProgressRopeItem
+					<Item
 						key={i}
 						index={i}
 						onClick={onClick}
@@ -170,7 +172,7 @@ export const ProgressRope = ({
 						overrides={componentOverrides}
 					>
 						{text}
-					</ProgressRopeItem>
+					</Item>
 				);
 			}
 		});
@@ -180,9 +182,13 @@ export const ProgressRope = ({
 
 	return (
 		<ProgressRopeContext.Provider value={{ ...progState, handleClick }}>
-			<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+			<overrides.ProgressRope.component
+				className={className}
+				{...overrides.ProgressRope.attributes(state)}
+				css={overrides.ProgressRope.styles(state)}
+			>
 				{allChildren}
-			</overrides.component>
+			</overrides.ProgressRope.component>
 		</ProgressRopeContext.Provider>
 	);
 };
@@ -200,9 +206,36 @@ ProgressRope.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
+		ProgressRope: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Group: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		GroupText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		GroupItems: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ItemText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 	}),
 };
 

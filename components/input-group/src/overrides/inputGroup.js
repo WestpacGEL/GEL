@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 
-export const Wrapper = ({
+export const InputGroup = ({
 	name,
 	size,
 	data,
@@ -17,6 +17,6 @@ export const Wrapper = ({
 	...rest
 }) => <div {...rest} />;
 
-export const wrapperStyles = () => ({
+export const inputGroupStyles = () => ({
 	display: 'flex',
 });

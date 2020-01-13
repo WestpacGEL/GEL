@@ -6,39 +6,36 @@ import PropTypes from 'prop-types';
 import { Footer, footerStyles } from './overrides/footer';
 import pkg from '../package.json';
 
-export const ModalFooter = ({ overrides: componentOverrides, ...props }) => {
+export const ModalFooter = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Footer: {
-				styles: footerStyles,
-				component: Footer,
-				attributes: state => state,
-			},
+		Footer: {
+			styles: footerStyles,
+			component: Footer,
+			attributes: (_, a) => a,
 		},
 	};
 
 	const state = {
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Footer.component
-			css={overrides.subComponent.Footer.styles}
-			{...overrides.subComponent.Footer.attributes(state)}
+		<overrides.Footer.component
+			{...overrides.Footer.attributes(state)}
+			css={overrides.Footer.styles(state)}
 		/>
 	);
 };
@@ -51,12 +48,10 @@ ModalFooter.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Footer: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Footer: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

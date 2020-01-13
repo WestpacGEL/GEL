@@ -2,11 +2,16 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { Cell, Grid } from '@westpac/grid';
+import { Panel, Header, Body, Footer } from '@westpac/panel';
 
 import { PageLinks } from './page-links';
 import { MaxWidthGrid, Row } from './_utils';
 
-export const DesignTab = ({ description }) => {
+import { YesNo } from './blocks/do-or-do-not';
+
+export const DesignTab = ({ description, doc }) => {
+	const docsData = JSON.parse(doc.document);
+	const { nodes } = docsData;
 	const { SPACING, PACKS } = useBrand();
 	return (
 		<MaxWidthGrid>
@@ -21,10 +26,27 @@ export const DesignTab = ({ description }) => {
 			<Cell width={4}>
 				<PageLinks title="Page content" links={['Item 1', 'Item 2', 'Item 3']} />
 			</Cell>
+
 			<UxRationale />
+			<Row>
+				<DesignDocs docs={nodes} />
+			</Row>
 			<VisualDesignRationale />
 		</MaxWidthGrid>
 	);
+};
+
+const DesignDocs = ({ docs }) => {
+	return docs.map(node => {
+		switch (node.type) {
+			case 'do-or-do-not':
+				return <YesNo yes={node.nodes[0]} no={node.nodes[1]} />;
+			case 'paragraph':
+				return 'paragraph here';
+			default:
+				return 'not matching component type!';
+		}
+	});
 };
 
 const UxRationale = () => {

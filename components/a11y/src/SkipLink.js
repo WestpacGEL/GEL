@@ -17,12 +17,10 @@ export const SkipLink = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			SkipLink: {
-				styles: skipLinkStyles,
-				component: SkipLinkWrapper,
-				attributes: state => state,
-			},
+		SkipLink: {
+			styles: skipLinkStyles,
+			component: SkipLinkWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -35,14 +33,13 @@ export const SkipLink = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.SkipLink.component
-			css={overrides.subComponent.SkipLink.styles}
-			{...overrides.subComponent.SkipLink.attributes(state)}
+		<overrides.SkipLink.component
+			{...overrides.SkipLink.attributes(state)}
+			css={overrides.SkipLink.styles(state)}
 		/>
 	);
 };
@@ -66,12 +63,10 @@ SkipLink.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			SkipLink: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		SkipLink: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

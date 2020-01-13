@@ -15,17 +15,17 @@ const Icon = ({ current, assistiveText, ...props }) => <HouseIcon {...props} />;
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/breadcrumb'] = {
-		styles: styles => ({
-			...styles,
-			outline: '1px solid red',
-		}),
-		subComponent: {
-			Icon: {
-				component: Icon,
-			},
-			AssistiveText: {
-				component: AssistiveText,
-			},
+		Breadcrumb: {
+			styles: styles => ({
+				...styles,
+				outline: '1px solid red',
+			}),
+		},
+		Icon: {
+			component: Icon,
+		},
+		AssistiveText: {
+			component: AssistiveText,
 		},
 	};
 
@@ -53,13 +53,11 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<Breadcrumb
 				overrides={{
-					subComponent: {
-						Crumb: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted green',
-							}),
-						},
+					Crumb: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
 					},
 				}}
 			>
@@ -72,13 +70,11 @@ function Example({ brand }) {
 
 			<Breadcrumb
 				overrides={{
-					subComponent: {
-						Crumb: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted green',
-							}),
-						},
+					Crumb: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
 					},
 				}}
 				data={[

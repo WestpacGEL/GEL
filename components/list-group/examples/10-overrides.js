@@ -15,29 +15,27 @@ const styleExample = {
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/list-group'] = {
-		styles: styles => ({
-			...styles,
-			outline: '4px solid hotpink',
-		}),
-		subComponent: {
-			Item: {
-				styles: styles => ({
-					...styles,
-					outline: '2px dotted blue',
-				}),
-			},
+		ListGroup: {
+			styles: styles => ({
+				...styles,
+				outline: '4px solid hotpink',
+			}),
+		},
+		Item: {
+			styles: styles => ({
+				...styles,
+				outline: '2px dotted blue',
+			}),
 		},
 	};
 
 	// to test that list styles don't spill over
 	overridesWithTokens['@westpac/list'] = {
-		subComponent: {
-			Item: {
-				styles: styles => ({
-					...styles,
-					background: 'rgba(255,0,0,0.2)',
-				}),
-			},
+		Item: {
+			styles: styles => ({
+				...styles,
+				background: 'rgba(255,0,0,0.2)',
+			}),
 		},
 	};
 
@@ -121,13 +119,11 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<ListGroup
 				overrides={{
-					subComponent: {
-						Item: {
-							styles: styles => ({
-								...styles,
-								outline: '3px dotted green',
-							}),
-						},
+					Item: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
 					},
 				}}
 				data={[

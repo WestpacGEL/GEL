@@ -8,56 +8,54 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/table'] = {
-		subComponent: {
-			Table: {
-				styles: styles => ({
-					...styles,
-					backgroundColor: '#efe8ed',
-				}),
-			},
-			Tbody: {
-				styles: styles => ({
-					...styles,
-					fontWeight: 700,
-				}),
-			},
-			Td: {
-				styles: styles => ({
-					...styles,
-					color: 'DarkSlateBlue',
-				}),
-			},
-			Tfoot: {
-				styles: styles => ({
-					...styles,
-					backgroundColor: 'PowderBlue',
-				}),
-			},
-			Th: {
-				styles: styles => ({
-					...styles,
-					paddingTop: 30,
-					paddingBottom: 30,
-				}),
-			},
-			Thead: {
-				styles: styles => ({
-					...styles,
-					backgroundColor: 'Moccasin',
-				}),
-			},
-			Tr: {
-				styles: styles => ({
-					...styles,
-					borderBottom: '2px dashed Tomato',
-				}),
-			},
-			Caption: {
-				styles: styles => ({
-					...styles,
-					color: 'DodgerBlue',
-				}),
-			},
+		Table: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: '#efe8ed',
+			}),
+		},
+		Tbody: {
+			styles: styles => ({
+				...styles,
+				fontWeight: 700,
+			}),
+		},
+		Td: {
+			styles: styles => ({
+				...styles,
+				color: 'DarkSlateBlue',
+			}),
+		},
+		Tfoot: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: 'PowderBlue',
+			}),
+		},
+		Th: {
+			styles: styles => ({
+				...styles,
+				paddingTop: 30,
+				paddingBottom: 30,
+			}),
+		},
+		Thead: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: 'Moccasin',
+			}),
+		},
+		Tr: {
+			styles: styles => ({
+				...styles,
+				borderBottom: '2px dashed Tomato',
+			}),
+		},
+		Caption: {
+			styles: styles => ({
+				...styles,
+				color: 'DodgerBlue',
+			}),
 		},
 	};
 

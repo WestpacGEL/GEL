@@ -14,9 +14,9 @@ export const Textarea = ({
 	width,
 	inline,
 	invalid,
-	overrides: componentOverrides,
 	children,
-	...props
+	overrides: componentOverrides,
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -24,12 +24,10 @@ export const Textarea = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Textarea: {
-				styles: textareaStyles,
-				component: TextareaComponent,
-				attributes: state => state,
-			},
+		Textarea: {
+			styles: textareaStyles,
+			component: TextareaComponent,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -39,21 +37,20 @@ export const Textarea = ({
 		inline,
 		invalid,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Textarea.component
-			css={overrides.subComponent.Textarea.styles}
-			{...overrides.subComponent.Textarea.attributes(state)}
+		<overrides.Textarea.component
+			{...overrides.Textarea.attributes(state)}
+			css={overrides.Textarea.styles(state)}
 		/>
 	);
 };
@@ -89,12 +86,10 @@ Textarea.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Textarea: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Textarea: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

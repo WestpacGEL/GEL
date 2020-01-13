@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Fragment, useMemo } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
@@ -33,8 +33,9 @@ const ComponentWrapper = () => {
 };
 
 const Component = ({ component }) => {
+	console.log({ component });
 	const { SPACING, PACKS } = useBrand();
-	const { id, name, packageName, version, description, author } = component;
+	const { id, name, packageName, version, description, author, doc } = component;
 
 	const DataComponent = useMemo(() => {
 		return dynamic(
@@ -56,7 +57,7 @@ const Component = ({ component }) => {
 			<PageHeader name={name} version={version} />
 			<Tabcordion mode="tabs">
 				<Tab text="Design">
-					<DesignTab description={description} />
+					<DesignTab description={description} doc={doc} />
 				</Tab>
 				<Tab text="Accessibility">
 					<AccessibilityTab />

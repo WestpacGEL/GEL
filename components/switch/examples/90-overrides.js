@@ -12,24 +12,22 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/switch'] = {
-		subComponent: {
-			Label: {
-				styles: styles => ({ ...styles, color: 'palevioletred', paddingRight: '2rem' }),
-				component: Label,
-			},
-			Toggle: {
-				styles: (styles, { checked }) => ({
-					...styles,
-					borderColor: 'mediumvioletred',
-					backgroundColor: checked ? 'palevioletred' : 'white',
-				}),
-			},
-			ToggleText: {
-				styles: (styles, { checked }) => ({
-					...styles,
-					color: checked ? 'white' : 'firebrick',
-				}),
-			},
+		Label: {
+			styles: styles => ({ ...styles, color: 'palevioletred', paddingRight: '2rem' }),
+			component: Label,
+		},
+		Toggle: {
+			styles: (styles, { checked }) => ({
+				...styles,
+				borderColor: 'mediumvioletred',
+				backgroundColor: checked ? 'palevioletred' : 'white',
+			}),
+		},
+		ToggleText: {
+			styles: (styles, { checked }) => ({
+				...styles,
+				color: checked ? 'white' : 'firebrick',
+			}),
 		},
 	};
 
@@ -45,13 +43,11 @@ function Example({ brand }) {
 				name="example-default"
 				label="Turn notifications"
 				overrides={{
-					subComponent: {
-						Toggle: {
-							styles: (styles, { checked }) => ({
-								...styles,
-								backgroundColor: checked ? 'magenta' : 'white',
-							}),
-						},
+					Toggle: {
+						styles: (styles, { checked }) => ({
+							...styles,
+							backgroundColor: checked ? 'magenta' : 'white',
+						}),
 					},
 				}}
 			/>

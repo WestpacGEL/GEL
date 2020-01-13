@@ -10,19 +10,23 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const TextWrapper = ({ block, children, overrides: componentOverrides, ...rest }) => {
+export const TextWrapper = ({
+	block,
+	children,
+	className,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			TextWrapper: {
-				styles: textStyles,
-				component: Text,
-				attributes: state => state,
-			},
+		TextWrapper: {
+			styles: textStyles,
+			component: Text,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -36,17 +40,17 @@ export const TextWrapper = ({ block, children, overrides: componentOverrides, ..
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.TextWrapper.component
-			css={overrides.subComponent.TextWrapper.styles}
-			{...overrides.subComponent.TextWrapper.attributes(state)}
+		<overrides.TextWrapper.component
+			className={className}
+			{...overrides.TextWrapper.attributes(state)}
+			css={overrides.TextWrapper.styles(state)}
 		>
 			{children}
-		</overrides.subComponent.TextWrapper.component>
+		</overrides.TextWrapper.component>
 	);
 };
 
@@ -67,12 +71,10 @@ TextWrapper.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			TextWrapper: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		TextWrapper: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

@@ -24,6 +24,7 @@ export const ButtonGroup = props => {
 		onChange,
 		value: controlledValue,
 		size,
+		className,
 		overrides: componentOverrides,
 		...rest
 	} = props;
@@ -38,12 +39,10 @@ export const ButtonGroup = props => {
 	devWarning(!children && !data, 'ButtonGroup requires either `children` or `data`.');
 
 	const defaultOverrides = {
-		subComponent: {
-			ButtonGroup: {
-				styles: buttonGroupStyles,
-				component: BtnGroupWrapper,
-				attributes: state => state,
-			},
+		ButtonGroup: {
+			styles: buttonGroupStyles,
+			component: BtnGroupWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -65,8 +64,7 @@ export const ButtonGroup = props => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	const handleClick = (val, onClick) =>
@@ -82,9 +80,10 @@ export const ButtonGroup = props => {
 
 	// Fork map behaviour when children VS data
 	return (
-		<overrides.subComponent.ButtonGroup.component
-			css={overrides.subComponent.ButtonGroup.styles}
-			{...overrides.subComponent.ButtonGroup.attributes(state)}
+		<overrides.ButtonGroup.component
+			className={className}
+			{...overrides.ButtonGroup.attributes(state)}
+			css={overrides.ButtonGroup.styles(state)}
 		>
 			{data
 				? data.map((button, index) => {
@@ -110,7 +109,7 @@ export const ButtonGroup = props => {
 						});
 				  })}
 			{name && <input type="hidden" value={actualValue} name={name} />}
-		</overrides.subComponent.ButtonGroup.component>
+		</overrides.ButtonGroup.component>
 	);
 };
 
@@ -175,12 +174,10 @@ ButtonGroup.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			ButtonGroup: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		ButtonGroup: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

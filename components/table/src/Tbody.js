@@ -9,39 +9,36 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Tbody = ({ overrides: componentOverrides, ...props }) => {
+export const Tbody = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Tbody: {
-				styles: tbodyStyles,
-				component: TableBody,
-				attributes: state => state,
-			},
+		Tbody: {
+			styles: tbodyStyles,
+			component: TableBody,
+			attributes: (_, a) => a,
 		},
 	};
 
 	const state = {
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Tbody.component
-			css={overrides.subComponent.Tbody.styles}
-			{...overrides.subComponent.Tbody.attributes(state)}
+		<overrides.Tbody.component
+			{...overrides.Tbody.attributes(state)}
+			css={overrides.Tbody.styles(state)}
 		/>
 	);
 };
@@ -51,12 +48,10 @@ Tbody.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Tbody: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Tbody: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

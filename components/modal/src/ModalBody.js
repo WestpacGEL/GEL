@@ -7,7 +7,7 @@ import { Body, bodyStyles } from './overrides/body';
 import { useModalContext } from './Modal';
 import pkg from '../package.json';
 
-export const ModalBody = ({ overrides: componentOverrides, ...props }) => {
+export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
 	const { bodyId } = useModalContext();
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -15,33 +15,30 @@ export const ModalBody = ({ overrides: componentOverrides, ...props }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Body: {
-				styles: bodyStyles,
-				component: Body,
-				attributes: state => state,
-			},
+		Body: {
+			styles: bodyStyles,
+			component: Body,
+			attributes: (_, a) => a,
 		},
 	};
 
 	const state = {
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Body.component
+		<overrides.Body.component
 			id={bodyId}
-			css={overrides.subComponent.Body.styles}
-			{...overrides.subComponent.Body.attributes(state)}
+			{...overrides.Body.attributes(state)}
+			css={overrides.Body.styles(state)}
 		/>
 	);
 };
@@ -54,12 +51,10 @@ ModalBody.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Body: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Body: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

@@ -18,6 +18,7 @@ export const Content = ({
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
 	children,
+	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -27,12 +28,10 @@ export const Content = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Content: {
-				styles: contentStyles,
-				component: ContentWrapper,
-				attributes: state => state,
-			},
+		Content: {
+			styles: contentStyles,
+			component: ContentWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -50,8 +49,7 @@ export const Content = ({
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	// Map button size to icon size
@@ -64,9 +62,10 @@ export const Content = ({
 
 	// Compose a button text + icon fragment, if these are provided
 	return (
-		<overrides.subComponent.Content.component
-			css={overrides.subComponent.Content.styles}
-			{...overrides.subComponent.Content.attributes(state)}
+		<overrides.Content.component
+			className={className}
+			{...overrides.Content.attributes(state)}
+			css={overrides.Content.styles(state)}
 		>
 			{IconBefore && (
 				<IconBefore
@@ -87,7 +86,7 @@ export const Content = ({
 					color="inherit"
 				/>
 			)}
-		</overrides.subComponent.Content.component>
+		</overrides.Content.component>
 	);
 };
 
@@ -126,12 +125,10 @@ Content.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Content: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Content: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

@@ -18,12 +18,10 @@ export const PanelBody = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Body: {
-				styles: bodyStyles,
-				component: Body,
-				attributes: state => state,
-			},
+		Body: {
+			styles: bodyStyles,
+			component: Body,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -39,14 +37,13 @@ export const PanelBody = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		merge(componentOverrides, overridesCtx),
-		state
+		merge(componentOverrides, overridesCtx)
 	);
 
 	return (
-		<overrides.subComponent.Body.component
-			css={overrides.subComponent.Body.styles}
-			{...overrides.subComponent.Body.attributes(state)}
+		<overrides.Body.component
+			{...overrides.Body.attributes(state)}
+			css={overrides.Body.styles(state)}
 		/>
 	);
 };
@@ -65,12 +62,10 @@ PanelBody.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Body: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Body: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

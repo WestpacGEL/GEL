@@ -2,9 +2,9 @@
 
 import { jsx } from '@westpac/core';
 
-export const Wrapper = ({ current, data, overrides, ...props }) => <ol {...props} />;
+export const ProgressRope = ({ current, data, overrides, ...props }) => <ol {...props} />;
 
-export const wrapperStyles = (_, {}) => {
+export const progressRopeStyles = (_, {}) => {
 	return {
 		position: 'relative',
 		listStyle: 'none',

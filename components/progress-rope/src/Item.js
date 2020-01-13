@@ -3,19 +3,20 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { useProgressRopeContext } from './ProgressRope';
-import { Item, itemStyles } from './overrides/item';
+import { Item as ItemWrapper, itemStyles } from './overrides/item';
 import { ItemText, itemTextStyles } from './overrides/itemText';
+import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
-export const ProgressRopeItem = ({
+export const Item = ({
 	index,
 	groupIndex,
 	review,
 	onClick,
-	overrides: componentOverrides,
 	children,
-	...props
+	className,
+	overrides: componentOverrides,
+	...rest
 }) => {
 	const { currStep, currGroup, grouped, ropeGraph } = useProgressRopeContext();
 
@@ -25,17 +26,15 @@ export const ProgressRopeItem = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Item: {
-				styles: itemStyles,
-				component: Item,
-				attributes: state => state,
-			},
-			ItemText: {
-				styles: itemTextStyles,
-				component: ItemText,
-				attributes: state => state,
-			},
+		Item: {
+			styles: itemStyles,
+			component: ItemWrapper,
+			attributes: (_, a) => a,
+		},
+		ItemText: {
+			styles: itemTextStyles,
+			component: ItemText,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -75,37 +74,37 @@ export const ProgressRopeItem = ({
 		active,
 		furthest,
 		overrides: componentOverrides,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.subComponent.Item.component
-			css={overrides.subComponent.Item.styles}
-			{...overrides.subComponent.Item.attributes(state)}
+		<overrides.Item.component
+			className={className}
+			{...overrides.Item.attributes(state)}
+			css={overrides.Item.styles(state)}
 		>
-			<overrides.subComponent.ItemText.component
+			<overrides.ItemText.component
 				onClick={onClick}
-				css={overrides.subComponent.ItemText.styles}
-				{...overrides.subComponent.ItemText.attributes(state)}
+				{...overrides.ItemText.attributes(state)}
+				css={overrides.ItemText.styles(state)}
 			>
 				{children}
-			</overrides.subComponent.ItemText.component>
-		</overrides.subComponent.Item.component>
+			</overrides.ItemText.component>
+		</overrides.Item.component>
 	);
 };
 
 // ==============================
 // Types
 // ==============================
-ProgressRopeItem.propTypes = {
+Item.propTypes = {
 	/**
 	 * Whether or not a review step
 	 */
@@ -115,21 +114,19 @@ ProgressRopeItem.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Item: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			ItemText: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ItemText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
 
-ProgressRopeItem.defaultProps = {
+Item.defaultProps = {
 	review: false,
 };

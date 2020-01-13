@@ -2,7 +2,9 @@
 
 import { jsx } from '@westpac/core';
 
-export const Backdrop = ({ open, heading, size, dismissible, ...props }) => <div {...props} />;
+export const Backdrop = ({ heading, open, onClose, size, dismissible, overrides, ...rest }) => (
+	<div {...rest} />
+);
 
 export const backdropStyles = (_, {}) => {
 	return {

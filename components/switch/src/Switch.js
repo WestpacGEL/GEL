@@ -5,8 +5,8 @@ import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { ToggleTextWrapper, toggleTextWrapperStyles } from './overrides/toggleTextWrapper';
+import { Switch as SwitchWrapper, switchStyles } from './overrides/switch';
 import { ToggleText, toggleTextStyles } from './overrides/toggleText';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
 import { Toggle, toggleStyles } from './overrides/toggle';
 import { Input, inputStyles } from './overrides/input';
 import { Label, labelStyles } from './overrides/label';
@@ -27,8 +27,9 @@ export const Switch = ({
 	toggleText,
 	disabled,
 	assistiveText,
+	className,
 	overrides: componentOverrides,
-	...props
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -37,36 +38,35 @@ export const Switch = ({
 	const [checked, setChecked] = useState(isChecked);
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-
-		subComponent: {
-			Input: {
-				styles: inputStyles,
-				component: Input,
-				attributes: state => state,
-			},
-			Label: {
-				styles: labelStyles,
-				component: Label,
-				attributes: state => state,
-			},
-			Toggle: {
-				styles: toggleStyles,
-				component: Toggle,
-				attributes: state => state,
-			},
-			ToggleText: {
-				styles: toggleTextStyles,
-				component: ToggleText,
-				attributes: state => state,
-			},
-			ToggleTextWrapper: {
-				styles: toggleTextWrapperStyles,
-				component: ToggleTextWrapper,
-				attributes: state => state,
-			},
+		Switch: {
+			styles: switchStyles,
+			component: SwitchWrapper,
+			attributes: (_, a) => a,
+		},
+		Input: {
+			styles: inputStyles,
+			component: Input,
+			attributes: (_, a) => a,
+		},
+		Label: {
+			styles: labelStyles,
+			component: Label,
+			attributes: (_, a) => a,
+		},
+		Toggle: {
+			styles: toggleStyles,
+			component: Toggle,
+			attributes: (_, a) => a,
+		},
+		ToggleText: {
+			styles: toggleTextStyles,
+			component: ToggleText,
+			attributes: (_, a) => a,
+		},
+		ToggleTextWrapper: {
+			styles: toggleTextWrapperStyles,
+			component: ToggleTextWrapper,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -81,15 +81,14 @@ export const Switch = ({
 		assistiveText,
 		overrides: componentOverrides,
 		checked,
-		...props,
+		...rest,
 	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	useEffect(() => {
@@ -99,51 +98,53 @@ export const Switch = ({
 	const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
-			<overrides.subComponent.Input.component
+		<overrides.Switch.component
+			className={className}
+			{...overrides.Switch.attributes(state)}
+			css={overrides.Switch.styles(state)}
+		>
+			<overrides.Input.component
 				type="checkbox"
 				name={name}
 				checked={checked}
 				aria-label={assistiveText}
 				onChange={handleChange(name)}
 				disabled={disabled}
-				css={overrides.subComponent.Input.styles}
-				{...overrides.subComponent.Input.attributes(state)}
+				{...overrides.Input.attributes(state)}
+				css={overrides.Input.styles(state)}
 			/>
 			{label && (
-				<overrides.subComponent.Label.component
-					css={overrides.subComponent.Label.styles}
-					{...overrides.subComponent.Label.attributes(state)}
+				<overrides.Label.component
+					{...overrides.Label.attributes(state)}
+					css={overrides.Label.styles(state)}
 				>
 					{label}
-				</overrides.subComponent.Label.component>
+				</overrides.Label.component>
 			)}
-			<overrides.subComponent.Toggle.component
-				css={overrides.subComponent.Toggle.styles}
-				{...overrides.subComponent.Toggle.attributes(state)}
+			<overrides.Toggle.component
+				{...overrides.Toggle.attributes(state)}
+				css={overrides.Toggle.styles(state)}
 			>
 				{!!toggleText && (
 					<Fragment>
-						<overrides.subComponent.ToggleText.component
+						<overrides.ToggleText.component
 							position={'left'}
-							css={overrides.subComponent.ToggleText.styles}
-							{...overrides.subComponent.ToggleText.attributes(state)}
-							checked={checked}
+							{...overrides.ToggleText.attributes({ ...state, checked })}
+							css={overrides.ToggleText.styles(state)}
 						>
 							{toggleText[0]}
-						</overrides.subComponent.ToggleText.component>
-						<overrides.subComponent.ToggleText.component
+						</overrides.ToggleText.component>
+						<overrides.ToggleText.component
 							position={'right'}
-							css={overrides.subComponent.ToggleText.styles}
-							{...overrides.subComponent.ToggleText.attributes(state)}
-							checked={!checked}
+							{...overrides.ToggleText.attributes({ ...state, checked: !checked })}
+							css={overrides.ToggleText.styles(state)}
 						>
 							{toggleText[1]}
-						</overrides.subComponent.ToggleText.component>
+						</overrides.ToggleText.component>
 					</Fragment>
 				)}
-			</overrides.subComponent.Toggle.component>
-		</overrides.component>
+			</overrides.Toggle.component>
+		</overrides.Switch.component>
 	);
 };
 
@@ -215,35 +216,35 @@ Switch.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-		subComponent: PropTypes.shape({
-			Input: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Label: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			Toggle: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			ToggleText: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			ToggleTextWrapper: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Switch: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Input: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Toggle: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ToggleText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ToggleTextWrapper: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };
