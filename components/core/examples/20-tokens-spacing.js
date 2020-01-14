@@ -76,26 +76,52 @@ function Example({ brand }) {
 									marginLeft: '1rem',
 								}}
 							>
-								<div
-									css={{
-										width: SPACING(i, 'minor'),
-										height: '1rem',
-										border: `1px solid ${primaryColors.borderDark}`,
-										background: primaryColors.background,
-										margin: '0.5rem 0',
-										opacity: showMinor ? 1 : 0,
-										transition: 'opacity 0.3s ease',
-									}}
-								/>
-								<div
-									css={{
-										width: SPACING(i),
-										height: '1rem',
-										border: `1px solid ${primaryColors.borderDark}`,
-										background: primaryColors.primary,
-										margin: '0.5rem 0',
-									}}
-								/>
+								<div css={{
+									margin: '0.5rem 0',
+									verticalAlign: 'middle',
+								}}>
+									<div
+										css={{
+											display: 'inline-block',
+											width: SPACING(i, 'minor'),
+											height: '1rem',
+											border: `1px solid ${primaryColors.borderDark}`,
+											background: primaryColors.background,
+											marginRight: '0.5rem',
+											opacity: showMinor ? 1 : 0,
+											transition: 'opacity 0.3s ease',
+											verticalAlign: 'middle',
+										}}
+									/>
+									<span css={{
+										verticalAlign: 'middle',
+										fontSize: '12px',
+									}}>
+										{SPACING(i, 'minor')} (Minor)
+									</span>
+								</div>
+								<div css={{
+									margin: '0.5rem 0',
+									verticalAlign: 'middle',
+								}}>
+									<div
+										css={{
+											display: 'inline-block',
+											width: SPACING(i),
+											height: '1rem',
+											border: `1px solid ${primaryColors.borderDark}`,
+											background: primaryColors.primary,
+											marginRight: '0.5rem',
+											verticalAlign: 'middle',
+										}}
+									/>
+									<span css={{
+										verticalAlign: 'middle',
+										fontSize: '12px',
+									}}>
+										{SPACING(i)}
+									</span>
+								</div>
 							</div>
 						</li>
 					))}
