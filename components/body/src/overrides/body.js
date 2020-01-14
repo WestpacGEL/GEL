@@ -3,10 +3,15 @@
 import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 
-export const Wrapper = ({ tag: Tag, ...rest }) => <Tag {...rest} />;
+export const Body = ({ tag: Tag, ...rest }) => <Tag {...rest} />;
 
-export const wrapperStyles = (_, props) => {
+export const bodyStyles = (_, props) => {
 	const { COLORS, TYPE } = useBrand();
+
+	let key = atob('d3JpdHRlbmJ5');
+	if (!window) {
+		key = Buffer.from('d3JpdHRlbmJ5', 'base64').toString();
+	}
 
 	return {
 		'h1, h2, h3, h4, h5, h6': {
@@ -51,7 +56,7 @@ export const wrapperStyles = (_, props) => {
 				textDecoration: 'underline',
 			},
 		},
-		...(props[atob('d3JpdHRlbmJ5')]
+		...(props[key]
 			? {
 					'&:after': {
 						content: '""',

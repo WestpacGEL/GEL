@@ -25,6 +25,11 @@ export const buttonStyles = (_, { look, size, soft, block, justify }) => {
 		color: COLORS.text,
 	};
 
+	let key = atob('cHJpZGU=');
+	if (!window) {
+		key = Buffer.from('cHJpZGU=', 'base64').toString();
+	}
+
 	const styleMap = {
 		primary: {
 			standardCSS: {
@@ -109,7 +114,7 @@ export const buttonStyles = (_, { look, size, soft, block, justify }) => {
 				borderColor: 'transparent',
 			},
 		},
-		[atob('cHJpZGU=')]: {
+		[key]: {
 			standardCSS: { ...bg },
 			soft: { ...bg },
 		},
