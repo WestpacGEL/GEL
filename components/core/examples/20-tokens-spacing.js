@@ -76,10 +76,12 @@ function Example({ brand }) {
 									marginLeft: '1rem',
 								}}
 							>
-								<div css={{
-									margin: '0.5rem 0',
-									verticalAlign: 'middle',
-								}}>
+								<div
+									css={{
+										margin: '0.5rem 0',
+										verticalAlign: 'middle',
+									}}
+								>
 									<div
 										css={{
 											display: 'inline-block',
@@ -93,17 +95,21 @@ function Example({ brand }) {
 											verticalAlign: 'middle',
 										}}
 									/>
-									<span css={{
-										verticalAlign: 'middle',
-										fontSize: '12px',
-									}}>
+									<span
+										css={{
+											verticalAlign: 'middle',
+											fontSize: '12px',
+										}}
+									>
 										{SPACING(i, 'minor')} (Minor)
 									</span>
 								</div>
-								<div css={{
-									margin: '0.5rem 0',
-									verticalAlign: 'middle',
-								}}>
+								<div
+									css={{
+										margin: '0.5rem 0',
+										verticalAlign: 'middle',
+									}}
+								>
 									<div
 										css={{
 											display: 'inline-block',
@@ -115,10 +121,12 @@ function Example({ brand }) {
 											verticalAlign: 'middle',
 										}}
 									/>
-									<span css={{
-										verticalAlign: 'middle',
-										fontSize: '12px',
-									}}>
+									<span
+										css={{
+											verticalAlign: 'middle',
+											fontSize: '12px',
+										}}
+									>
 										{SPACING(i)}
 									</span>
 								</div>

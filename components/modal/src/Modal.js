@@ -1,8 +1,15 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { createContext, useContext, useState, useEffect, useRef, forwardRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import {
+	Fragment,
+	createContext,
+	useContext,
+	useState,
+	useEffect,
+	useRef,
+	forwardRef,
+} from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { CloseIcon } from '@westpac/icon';
 import FocusLock from 'react-focus-lock';
@@ -52,11 +59,6 @@ export const Modal = ({
 	const [modalId] = useState(useInstanceId());
 	const [open, setOpen] = useState(isOpen);
 
-	const titleId = `modal-header-title-${modalId}`;
-	const bodyId = `modal-body-${modalId}`;
-
-	const modalRef = useRef();
-
 	const defaultOverrides = {
 		Modal: {
 			styles: modalStyles,
@@ -101,6 +103,11 @@ export const Modal = ({
 		componentOverrides
 	);
 
+	const titleId = `GEL3-modal-header-title-${modalId}`;
+	const bodyId = `GEL3-modal-body-${modalId}`;
+
+	const modalRef = useRef();
+
 	useEffect(() => {
 		setOpen(isOpen);
 	}, [isOpen]);
@@ -133,52 +140,49 @@ export const Modal = ({
 	});
 
 	return ReactDOM.createPortal(
-		<CSSTransition mountOnEnter unmountOnExit in={open} timeout={300} classNames="modal-backdrop">
+		<Fragment>
 			<overrides.Backdrop.component
 				{...overrides.Backdrop.attributes(state)}
 				css={overrides.Backdrop.styles(state)}
-			>
-				<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
-					<CSSTransition appear in={open} timeout={100} classNames="modal">
-						<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
-							<overrides.Modal.component
-								role="dialog"
-								aria-modal="true"
-								aria-labelledby={titleId}
-								aria-describedby={bodyId}
-								tabIndex="-1"
-								ref={modalRef}
-								className={className}
-								{...overrides.Modal.attributes(state)}
-								css={overrides.Modal.styles(state)}
+			/>
+			<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
+				<overrides.Modal.component
+					role="dialog"
+					aria-modal="true"
+					aria-labelledby={titleId}
+					aria-describedby={bodyId}
+					tabIndex="-1"
+					ref={modalRef}
+					className={className}
+					{...overrides.Modal.attributes(state)}
+					css={overrides.Modal.styles(state)}
+				>
+					<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
+						<overrides.Header.component
+							{...overrides.Header.attributes(state)}
+							css={overrides.Header.styles(state)}
+						>
+							<overrides.Title.component
+								id={titleId}
+								{...overrides.Title.attributes(state)}
+								css={overrides.Title.styles(state)}
 							>
-								<overrides.Header.component
-									{...overrides.Header.attributes(state)}
-									css={overrides.Header.styles(state)}
-								>
-									<overrides.Title.component
-										id={titleId}
-										{...overrides.Title.attributes(state)}
-										css={overrides.Title.styles(state)}
-									>
-										{heading}
-									</overrides.Title.component>
-									{dismissible && (
-										<overrides.CloseBtn.component
-											onClick={() => handleClose()}
-											icon={CloseIcon}
-											{...overrides.CloseBtn.attributes(state)}
-											css={overrides.CloseBtn.styles(state)}
-										/>
-									)}
-								</overrides.Header.component>
-								{children}
-							</overrides.Modal.component>
-						</ModalContext.Provider>
-					</CSSTransition>
-				</FocusLock>
-			</overrides.Backdrop.component>
-		</CSSTransition>,
+								{heading}
+							</overrides.Title.component>
+							{dismissible && (
+								<overrides.CloseBtn.component
+									onClick={() => handleClose()}
+									icon={CloseIcon}
+									{...overrides.CloseBtn.attributes(state)}
+									css={overrides.CloseBtn.styles(state)}
+								/>
+							)}
+						</overrides.Header.component>
+						{children}
+					</FocusLock>
+				</overrides.Modal.component>
+			</ModalContext.Provider>
+		</Fragment>,
 		document.body
 	);
 };
