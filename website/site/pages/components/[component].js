@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 import {
@@ -60,6 +60,24 @@ const Component = ({ component }) => {
 
 const Tabs = ({ component, dataComponent: DataComponent }) => {
 	const { SPACING, COLORS } = useBrand();
+	const mq = useMediaQuery();
+	const tabOverrides = {
+		TabItem: {
+			styles: (styles, { selected }) =>
+				mq({
+					...styles,
+					backgroundColor: 'white',
+					border: 'none',
+					margin: 0,
+					marginTop: [SPACING(2), SPACING(3)],
+					borderRight: `solid 1px ${COLORS.border}`,
+					padding: [`${SPACING(2)} ${SPACING(4)}`, `${SPACING(3)} ${SPACING(10)}`],
+					borderBottom: `solid 2px ${selected ? COLORS.primary : 'transparent'}`,
+					fontWeight: 600,
+					color: selected ? COLORS.text : COLORS.muted,
+				}),
+		},
+	};
 	const overrides = {
 		Panel: {
 			styles: styles => ({
@@ -70,7 +88,7 @@ const Tabs = ({ component, dataComponent: DataComponent }) => {
 		},
 	};
 	return (
-		<Tabcordion mode="tabs">
+		<Tabcordion mode="tabs" overrides={tabOverrides}>
 			<Tab overrides={overrides} text="Design">
 				<DesignTab description={component.description} doc={component.doc} />
 			</Tab>

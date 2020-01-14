@@ -33,9 +33,11 @@ const DesignExamples = () => {
 						title="Some fancy badges"
 						intro="This is a little intro blurb text for the example."
 					>
-						<Badge value="Default" /> <Badge look="primary" value="Primary" />{' '}
-						<Badge look="hero" value="Hero" /> <Badge look="neutral" value="Neutral" />{' '}
-						<Badge look="faint" value="Faint" />
+						<p>
+							<Badge value="Default" /> <Badge look="primary" value="Primary" />{' '}
+							<Badge look="hero" value="Hero" /> <Badge look="neutral" value="Neutral" />{' '}
+							<Badge look="faint" value="Faint" />
+						</p>
 					</ExampleBlock>
 
 					<ExampleBlock

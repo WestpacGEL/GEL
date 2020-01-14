@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { Well } from '@westpac/well';
@@ -18,13 +18,22 @@ export const BlocksDocs = ({ title, blocks }) => {
 					</Heading>
 				</Cell>
 			</Grid>
-			{blocks ? <BlocksHub blocks={blocks} /> : <p>No documentation specified for this section.</p>}
+			{blocks ? (
+				<BlocksHub blocks={blocks} />
+			) : (
+				<Grid>
+					<Cell width={10} left={2}>
+						<p>No documentation specified for this section.</p>
+					</Cell>
+				</Grid>
+			)}
 		</Container>
 	);
 };
 
 export const ExampleBlock = ({ title, intro, children }) => {
 	const { SPACING } = useBrand();
+	const mq = useMediaQuery();
 	return (
 		<div css={{ marginBottom: SPACING(6) }}>
 			<Heading tag="h2" size={5}>
@@ -34,15 +43,14 @@ export const ExampleBlock = ({ title, intro, children }) => {
 			<Well
 				overrides={{
 					Well: {
-						styles: styles => ({
-							...styles,
-							border: 'none',
-							borderRadius: 0,
-							'@media only screen and (min-width: 576px)': {
-								padding: SPACING(6),
-							},
-							marginTop: SPACING(4),
-						}),
+						styles: styles =>
+							mq({
+								...styles,
+								border: 'none',
+								borderRadius: 0,
+								padding: [SPACING(3), SPACING(6)],
+								marginTop: SPACING(4),
+							}),
 					},
 				}}
 			>
