@@ -1,13 +1,55 @@
 /** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
-import { Cell, Grid } from '@westpac/grid';
+import { Cell, Container, Grid } from '@westpac/grid';
+import { Heading } from '@westpac/heading';
+import { Well } from '@westpac/well';
 
-// Max width container
-const maxWidth = 760;
+import { BlocksHub } from './blocks-hub';
+import { PageLinks } from './page-links';
 
-export const MaxWidthContainer = props => {
+export const BlocksDocs = ({ title, blocks }) => {
 	const { SPACING } = useBrand();
-	return <div css={{ padding: `${SPACING(4)} 0`, maxWidth: maxWidth }} {...props} />;
+	return (
+		<Container>
+			<Grid css={{ marginBottom: SPACING(2) }}>
+				<Cell width={10} left={2}>
+					<Heading tag="h2" size={5}>
+						{title}
+					</Heading>
+				</Cell>
+			</Grid>
+			{blocks ? <BlocksHub blocks={blocks} /> : <p>No documentation specified for this section.</p>}
+		</Container>
+	);
+};
+
+export const ExampleBlock = ({ title, intro, children }) => {
+	const { SPACING } = useBrand();
+	return (
+		<div css={{ marginBottom: SPACING(6) }}>
+			<Heading tag="h2" size={5}>
+				{title}
+			</Heading>
+			<p css={{ maxWidth: 570 }}>{intro}</p>
+			<Well
+				overrides={{
+					Well: {
+						styles: styles => ({
+							...styles,
+							border: 'none',
+							borderRadius: 0,
+							'@media only screen and (min-width: 576px)': {
+								padding: SPACING(6),
+							},
+							marginTop: SPACING(4),
+						}),
+					},
+				}}
+			>
+				{children}
+			</Well>
+		</div>
+	);
 };
 
 // Separator
@@ -17,6 +59,24 @@ export const Separator = () => {
 		<hr
 			css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(6)} 0` }}
 		/>
+	);
+};
+
+// Intro section
+export const IntroSection = ({ description, pageLinks }) => {
+	const { PACKS, SPACING } = useBrand();
+	return (
+		<Container css={{ marginTop: SPACING(6) }}>
+			<Grid>
+				<Cell width={7}>
+					<p css={{ ...PACKS.lead, marginTop: 0 }}>{description}</p>
+				</Cell>
+				<Cell width={1} />
+				<Cell width={4}>
+					<PageLinks title="Page content" links={pageLinks} />
+				</Cell>
+			</Grid>
+		</Container>
 	);
 };
 

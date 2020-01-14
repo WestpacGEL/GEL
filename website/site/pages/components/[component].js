@@ -33,7 +33,7 @@ const ComponentWrapper = () => {
 };
 
 const Component = ({ component }) => {
-	const { id, name, packageName, version, description, author, doc } = component;
+	const { name, version } = component;
 
 	const DataComponent = useMemo(() => {
 		return dynamic(
@@ -53,18 +53,34 @@ const Component = ({ component }) => {
 	return (
 		<Fragment>
 			<PageHeader name={name} version={version} />
-			<Tabcordion mode="tabs">
-				<Tab text="Design">
-					<DesignTab description={description} doc={doc} />
-				</Tab>
-				<Tab text="Accessibility">
-					<AccessibilityTab />
-				</Tab>
-				<Tab text="Code">
-					<CodeTab dataComponent={DataComponent} />
-				</Tab>
-			</Tabcordion>
+			<Tabs component={component} dataComponent={DataComponent} />
 		</Fragment>
+	);
+};
+
+const Tabs = ({ component, dataComponent: DataComponent }) => {
+	const { SPACING, COLORS } = useBrand();
+	const overrides = {
+		Panel: {
+			styles: styles => ({
+				...styles,
+				padding: `${SPACING(4)} 0`,
+				backgroundColor: COLORS.background,
+			}),
+		},
+	};
+	return (
+		<Tabcordion mode="tabs">
+			<Tab overrides={overrides} text="Design">
+				<DesignTab description={component.description} doc={component.doc} />
+			</Tab>
+			<Tab overrides={overrides} text="Accessibility">
+				<AccessibilityTab />
+			</Tab>
+			<Tab overrides={overrides} text="Code">
+				<CodeTab dataComponent={DataComponent} />
+			</Tab>
+		</Tabcordion>
 	);
 };
 

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import React, { Children, useEffect, useRef, useState, createRef } from 'react';
+import { Children, useEffect, useRef, useState, createRef } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
@@ -50,21 +50,6 @@ export const Tabcordion = ({
 		},
 	};
 
-	const state = {
-		look,
-		justify,
-		activeTabIndex,
-		instancePrefix,
-		overrides: componentOverrides,
-		...rest,
-	};
-
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
 	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
 	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
 
@@ -72,6 +57,7 @@ export const Tabcordion = ({
 	const panelRef = useRef();
 	const tablistRef = useRef();
 	const tabRefs = useRef([...Array(Children.count(children))].map(() => createRef()));
+
 	const { width } = useContainerQuery(containerRef);
 	const mode =
 		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
@@ -143,6 +129,22 @@ export const Tabcordion = ({
 	const getId = (type, index) => `${instancePrefix}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
 
+	const state = {
+		look,
+		justify,
+		activeTabIndex,
+		instancePrefix,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
+
 	return (
 		<overrides.Tabcordion.component
 			ref={containerRef}
@@ -161,17 +163,15 @@ export const Tabcordion = ({
 						const selected = activeTabIndex === idx;
 						return (
 							<overrides.TabItem.component
+								id={getId('tab', idx)}
+								key={child.props.text}
+								ref={tabRefs.current[idx]}
+								onClick={setActive(idx)}
 								aria-controls={getId('panel', idx)}
 								aria-selected={selected}
-								id={getId('tab', idx)}
-								last={idx + 1 === tabCount}
-								selected={selected} //how would this work with styles...
-								key={child.props.text}
-								onClick={setActive(idx)}
 								role="tab"
-								ref={tabRefs.current[idx]}
 								{...overrides.TabItem.attributes(state)}
-								css={overrides.TabItem.styles(state)}
+								css={overrides.TabItem.styles({ ...state, selected, last: idx + 1 === tabCount })}
 							>
 								{child.props.text}
 							</overrides.TabItem.component>
@@ -185,16 +185,15 @@ export const Tabcordion = ({
 				return (
 					<Tab
 						{...child.props}
-						activeTabIndex={activeTabIndex}
-						look={look}
-						selected={selected}
-						last={idx + 1 === tabCount}
+						tabId={getId('tab', idx)}
 						key={child.props.text}
-						mode={mode}
-						onClick={setActive(idx)}
 						panelId={getId('panel', idx)}
 						ref={selected ? panelRef : null}
-						tabId={getId('tab', idx)}
+						look={look}
+						mode={mode}
+						selected={selected}
+						last={idx + 1 === tabCount}
+						onClick={setActive(idx)}
 					/>
 				);
 			})}

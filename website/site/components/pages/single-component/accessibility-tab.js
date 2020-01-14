@@ -1,26 +1,34 @@
-/** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
-import { Grid, Cell } from '@westpac/grid';
+import React, { Fragment } from 'react';
 
-import { MaxWidthContainer, Row } from './_utils';
-import { PageLinks } from './page-links';
+import { Badge } from '@westpac/badge';
+import { Cell, Container, Grid } from '@westpac/grid';
+
+import { ExampleBlock, IntroSection, Separator } from './_utils';
 
 export const AccessibilityTab = () => {
-	const { SPACING, PACKS } = useBrand();
 	return (
-		<MaxWidthContainer>
-			<Grid>
-				<Cell width={7}>
-					<p css={{ ...PACKS.lead, marginTop: 0 }}>
-						This is some accessibility tab placeholder text to make the intro section look nicer,
-						until the content is entered in the system.
-					</p>
-				</Cell>
-				<Cell width={1} />
-				<Cell width={4}>
-					<PageLinks title="Page content" links={['Item 4', 'Item 5', 'Item 6']} />
-				</Cell>
-			</Grid>
-		</MaxWidthContainer>
+		<Fragment>
+			<IntroSection
+				description="This is some accessibility tab placeholder text to make the intro section look nicer,
+						until the content is entered in the system."
+				pageLinks={['Item A', 'Item B', 'Item C']}
+			/>
+			<Separator />
+
+			<Container>
+				<Grid>
+					<Cell width={10} left={2}>
+						<ExampleBlock
+							title="Accessibility matters"
+							intro="This is a little intro blurb text for the example."
+						>
+							<Badge value="Default" /> <Badge look="primary" value="Primary" />{' '}
+							<Badge look="hero" value="Hero" /> <Badge look="neutral" value="Neutral" />{' '}
+							<Badge look="faint" value="Faint" />
+						</ExampleBlock>
+					</Cell>
+				</Grid>
+			</Container>
+		</Fragment>
 	);
 };

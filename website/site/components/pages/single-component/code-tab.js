@@ -1,48 +1,43 @@
-/** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
-import { Grid, Cell } from '@westpac/grid';
+import React, { Fragment } from 'react';
+
+import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 
-import { MaxWidthContainer, Row } from './_utils';
-import { Changelog } from '../../changelog';
-import { PageLinks } from './page-links';
+import { IntroSection, Separator } from './_utils';
 import { Playground } from '../../playground';
-// import { ReactLive } from '../../components/react-live';
+
+import { Changelog } from '../../changelog';
+import { ReactLive } from '../../react-live';
 
 export const CodeTab = ({ dataComponent: DataComponent }) => {
-	const { SPACING, PACKS } = useBrand();
 	return (
-		<MaxWidthContainer>
-			<Grid>
-				<Cell width={7}>
-					<p css={{ ...PACKS.lead, marginTop: 0 }}>
-						Developer focused overview text goes here it will need to be at least this long.
-					</p>
-				</Cell>
-				<Cell width={1} />
-				<Cell width={4}>
-					<PageLinks title="Page content" links={['Item 4', 'Item 5', 'Item 6']} />
-				</Cell>
+		<Fragment>
+			<IntroSection
+				description="Developer focused overview text goes here it will need to be at least this long."
+				pageLinks={['Woo', 'Weee', 'Hooaa']}
+			/>
+			<Separator />
 
-				<Row>
-					<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
-						Code examples
-					</Heading>
-					<p>// TODO: examples</p>
-					<DataComponent></DataComponent>
-
-					{/*<Examples examples={examples} name={name} />*/}
-				</Row>
-
-				<Row>
-					<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
-						Changelog
-					</Heading>
-					<p>// TODO: changelog</p>
-					{/*<Changelog data={changelog}></Changelog>*/}
-				</Row>
-			</Grid>
-		</MaxWidthContainer>
+			<Container>
+				<Grid>
+					<Cell width={10} left={2}>
+						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
+							Code examples
+						</Heading>
+						<p>// TODO: examples</p>
+						<DataComponent></DataComponent>
+						{/*<Examples examples={examples} name={name} />*/}
+					</Cell>
+					<Cell width={10} left={2}>
+						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
+							Changelog
+						</Heading>
+						<p>// TODO: changelog</p>
+						{/*<Changelog data={changelog}></Changelog>*/}
+					</Cell>
+				</Grid>
+			</Container>
+		</Fragment>
 	);
 };
 
