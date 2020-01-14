@@ -13,15 +13,7 @@ import { Item } from './Item';
 // ==============================
 const ListContext = createContext();
 
-export const useListContext = () => {
-	const context = useContext(ListContext);
-
-	if (!context) {
-		throw new Error('Item components should be wrapped in a <List>.');
-	}
-
-	return context;
-};
+export const useListContext = () => useContext(ListContext);
 
 // ==============================
 // Utilities - makeItems
