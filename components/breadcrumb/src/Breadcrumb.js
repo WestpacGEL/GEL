@@ -1,10 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { cloneElement, Children } from 'react';
-import { VisuallyHidden } from '@westpac/a11y';
-import { ArrowRightIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
+
+import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
+import { Breadcrumb as BreadcrumbWrapper, breadcrumbStyles } from './overrides/breadcrumb';
+import { List, listStyles } from './overrides/list';
 import pkg from '../package.json';
 import { Crumb } from './Crumb';
 
@@ -21,56 +23,94 @@ export const Breadcrumb = ({
 	current,
 	assistiveText,
 	currentAssistiveText,
-	...props
+	className,
+	overrides: componentOverrides,
+	...rest
 }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		Crumb,
-		listCSS: {},
-		AssistiveText: VisuallyHidden,
-		Icon: ArrowRightIcon,
-		css: {},
+	const defaultOverrides = {
+		Breadcrumb: {
+			styles: breadcrumbStyles,
+			component: BreadcrumbWrapper,
+			attributes: (_, a) => a,
+		},
+		AssistiveText: {
+			styles: assistiveTextStyles,
+			component: AssistiveText,
+			attributes: (_, a) => a,
+		},
+		List: {
+			styles: listStyles,
+			component: List,
+			attributes: (_, a) => a,
+		},
 	};
-	merge(overrides, overridesWithTokens);
+
+	const state = {
+		data,
+		current,
+		assistiveText,
+		currentAssistiveText,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	let allChildren = [];
 	if (data) {
 		data.map(({ href, text, onClick }, index) => {
 			allChildren.push(
-				<overrides.Crumb
+				<Crumb
 					key={index}
 					current={index === data.length - 1}
 					assistiveText={currentAssistiveText}
 					href={href}
 					text={text}
-					icon={overrides.Icon}
 					onClick={onClick}
+					overrides={componentOverrides}
 				/>
 			);
 		});
 	} else {
 		const length = Children.count(children);
 		allChildren = Children.map(children, (child, index) => {
-			return cloneElement(child, { current: index === length - 1 }, index);
+			return cloneElement(
+				child,
+				{ current: index === length - 1, overrides: componentOverrides },
+				index
+			);
 		});
 	}
 
 	return (
-		<div css={overrides.css} {...props}>
-			<overrides.AssistiveText>{assistiveText}</overrides.AssistiveText>
-			<ol
-				css={{
-					padding: '0.375rem 1.125rem',
-					marginBottom: '1.3125rem',
-					fontSize: '0.8125rem',
-					listStyle: 'none',
-					...overrides.listCSS,
-				}}
+		<overrides.Breadcrumb.component
+			className={className}
+			{...overrides.Breadcrumb.attributes(state)}
+			css={overrides.Breadcrumb.styles(state)}
+		>
+			<overrides.AssistiveText.component
+				{...overrides.AssistiveText.attributes(state)}
+				css={overrides.AssistiveText.styles(state)}
+			>
+				{assistiveText}
+			</overrides.AssistiveText.component>
+			<overrides.List.component
+				{...overrides.List.attributes(state)}
+				css={overrides.List.styles(state)}
 			>
 				{allChildren}
-			</ol>
-		</div>
+			</overrides.List.component>
+		</overrides.Breadcrumb.component>
 	);
 };
 
@@ -104,6 +144,42 @@ Breadcrumb.propTypes = {
 	 * Visually hidden text to use for the current page crumb
 	 */
 	currentAssistiveText: PropTypes.string,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Breadcrumb: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		AssistiveText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		List: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Crumb: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Link: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Breadcrumb.defaultProps = {

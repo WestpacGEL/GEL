@@ -1,41 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+
+import { Symbol as SymbolWrapper, symbolStyles } from './overrides/symbol';
+import { Svg, svgStyles } from './overrides/svg';
 import pkg from '../package.json';
 
 // ==============================
 // Utils
 // ==============================
-
-const round = f => Math.round(f * 10) / 10; //1DP
-
-const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props }) => {
-	const mq = useMediaQuery();
-
-	const ratio = viewBoxWidth / viewBoxHeight;
-
-	// Size styling (responsive)
-	const widthArr = asArray(width || viewBoxWidth);
-	const heightArr = asArray(height || viewBoxHeight);
-	const styleSize = {
-		width: width ? widthArr : heightArr.map(h => (h !== null ? round(h * ratio) : null)),
-		height: width ? widthArr.map(w => (w !== null ? round(w / ratio) : null)) : heightArr,
-	};
-
-	return (
-		<span
-			css={mq({
-				display: 'inline-block',
-				flexShrink: 0,
-				lineHeight: 1,
-				verticalAlign: 'middle',
-				...styleSize,
-			})}
-			{...props}
-		/>
-	);
-};
 
 // ==============================
 // Component
@@ -43,43 +17,65 @@ const SymbolWrapper = ({ width, height, viewBoxWidth, viewBoxHeight, ...props })
 
 export const Symbol = ({
 	assistiveText,
-	width,
-	height,
 	viewBoxWidth,
 	viewBoxHeight,
 	children,
-	...props
+	className,
+	overrides: componentOverrides,
+	...rest
 }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		Wrapper: SymbolWrapper,
-		svgAttributes: {},
-		css: {},
+	const defaultOverrides = {
+		Symbol: {
+			styles: symbolStyles,
+			component: SymbolWrapper,
+			attributes: (_, a) => a,
+		},
+		Svg: {
+			styles: svgStyles,
+			component: Svg,
+			attributes: (_, a) => a,
+		},
 	};
-	merge(overrides, overridesWithTokens);
+
+	const state = {
+		assistiveText,
+		viewBoxWidth,
+		viewBoxHeight,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	return (
-		<overrides.Wrapper
-			width={width}
-			height={height}
-			viewBoxWidth={viewBoxWidth}
-			viewBoxHeight={viewBoxHeight}
-			{...props}
+		<overrides.Symbol.component
+			className={className}
+			{...overrides.Symbol.attributes(state)}
+			css={overrides.Symbol.styles(state)}
 		>
-			<svg
+			<overrides.Svg.component
 				aria-label={assistiveText}
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
 				role="img"
 				focusable="false"
 				style={{ width: '100%', height: '100%' }}
-				css={overrides.css}
-				{...overrides.svgAttributes}
+				{...overrides.Svg.attributes(state)}
+				css={overrides.Svg.styles(state)}
 			>
 				{children}
-			</svg>
-		</overrides.Wrapper>
+			</overrides.Svg.component>
+		</overrides.Symbol.component>
 	);
 };
 
@@ -108,9 +104,26 @@ export const propTypes = {
 	 * Symbol will scale to fit (width will be set automatically). Note: If both "width" and "height" props are provided "height" will be ignored.
 	 */
 	height: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Symbol: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Svg: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 export const defaultProps = {};
 
 Symbol.propTypes = propTypes;
+
 Symbol.defaultProps = defaultProps;

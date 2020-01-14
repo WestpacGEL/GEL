@@ -1,40 +1,57 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
+import { Text, textStyles } from './overrides/text';
 import pkg from '../package.json';
-
-// ==============================
-// Overwrite component
-// ==============================
-
-function BlockWrapper({ children }) {
-	return <span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>;
-}
 
 // ==============================
 // Component
 // ==============================
 
-export const TextWrapper = ({ block, children }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+export const TextWrapper = ({
+	block,
+	children,
+	className,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		BlockWrapper,
+	const defaultOverrides = {
+		TextWrapper: {
+			styles: textStyles,
+			component: Text,
+			attributes: (_, a) => a,
+		},
 	};
-	merge(overrides, overridesWithTokens);
 
-	if (block) {
-		// Wrap with styled span to provide text truncation (only available in block mode)
-		return (
-			<overrides.BlockWrapper css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-				{children}
-			</overrides.BlockWrapper>
-		);
-	} else {
-		return children;
-	}
+	const state = {
+		block,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
+
+	return (
+		<overrides.TextWrapper.component
+			className={className}
+			{...overrides.TextWrapper.attributes(state)}
+			css={overrides.TextWrapper.styles(state)}
+		>
+			{children}
+		</overrides.TextWrapper.component>
+	);
 };
 
 TextWrapper.propTypes = {
@@ -49,6 +66,17 @@ TextWrapper.propTypes = {
 	 * Button text
 	 */
 	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		TextWrapper: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 TextWrapper.defaultProps = {

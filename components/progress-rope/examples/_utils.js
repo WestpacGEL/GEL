@@ -30,3 +30,5 @@ export const Link = ({ index, dispatch, ...props }) => (
 		{...props}
 	/>
 );
+
+export const Wrapper = props => <div css={{ width: '60%' }} {...props} />;

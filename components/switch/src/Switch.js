@@ -1,51 +1,17 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery, merge, wrapHandlers, asArray } from '@westpac/core';
+
+import { ToggleTextWrapper, toggleTextWrapperStyles } from './overrides/toggleTextWrapper';
+import { Switch as SwitchWrapper, switchStyles } from './overrides/switch';
+import { ToggleText, toggleTextStyles } from './overrides/toggleText';
+import { Toggle, toggleStyles } from './overrides/toggle';
+import { Input, inputStyles } from './overrides/input';
+import { Label, labelStyles } from './overrides/label';
+
 import pkg from '../package.json';
-
-// ==============================
-// Utils
-// ==============================
-const sizeMap = {
-	small: {
-		width: '4.375rem',
-		height: '1.875rem',
-		borderRadius: '1.875rem',
-		borderWidth: '2px',
-		fontSize: '0.875rem',
-	},
-	medium: {
-		width: '5rem',
-		height: '2.25rem',
-		borderRadius: '2.25rem',
-		borderWidth: '2px',
-		fontSize: '1rem',
-	},
-	large: {
-		width: '5.5625rem',
-		height: '2.625rem',
-		borderRadius: '2.625rem',
-		borderWidth: '2px',
-		fontSize: '1rem',
-	},
-	xlarge: {
-		width: '6rem',
-		height: '3rem',
-		borderRadius: '3rem',
-		borderWidth: '2px',
-		fontSize: '1.125rem',
-	},
-};
-
-const responsiveMap = size => ({
-	width: size.map(s => s && sizeMap[s].width),
-	height: size.map(s => s && sizeMap[s].height),
-	borderRadius: size.map(s => s && sizeMap[s].borderRadius),
-	borderWidth: size.map(s => s && sizeMap[s].borderWidth),
-	fontSize: size.map(s => s && sizeMap[s].fontSize),
-});
 
 // ==============================
 // Component
@@ -61,22 +27,69 @@ export const Switch = ({
 	toggleText,
 	disabled,
 	assistiveText,
-	...props
+	className,
+	overrides: componentOverrides,
+	...rest
 }) => {
-	const { COLORS, PACKS, [pkg.name]: overridesWithTokens } = useBrand();
-	const mq = useMediaQuery();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 	const [checked, setChecked] = useState(isChecked);
-	const sizeArr = responsiveMap(asArray(size));
 
-	const overrides = {
-		toggleCSS: {},
-		toggleTextCSS: {},
-		CSS: {},
-		Label,
-		ToggleTextWrapper,
+	const defaultOverrides = {
+		Switch: {
+			styles: switchStyles,
+			component: SwitchWrapper,
+			attributes: (_, a) => a,
+		},
+		Input: {
+			styles: inputStyles,
+			component: Input,
+			attributes: (_, a) => a,
+		},
+		Label: {
+			styles: labelStyles,
+			component: Label,
+			attributes: (_, a) => a,
+		},
+		Toggle: {
+			styles: toggleStyles,
+			component: Toggle,
+			attributes: (_, a) => a,
+		},
+		ToggleText: {
+			styles: toggleTextStyles,
+			component: ToggleText,
+			attributes: (_, a) => a,
+		},
+		ToggleTextWrapper: {
+			styles: toggleTextWrapperStyles,
+			component: ToggleTextWrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
-	merge(overrides, overridesWithTokens);
+	const state = {
+		name,
+		label,
+		size,
+		block,
+		flipped,
+		toggleText,
+		disabled,
+		assistiveText,
+		overrides: componentOverrides,
+		checked,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	useEffect(() => {
 		setChecked(isChecked);
@@ -85,100 +98,53 @@ export const Switch = ({
 	const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
 
 	return (
-		<label
-			css={mq({
-				display: block ? 'flex' : 'inline-flex',
-				verticalAlign: 'top',
-				opacity: disabled && 0.5,
-				width: block && '100%',
-				flexWrap: 'wrap',
-				alignItems: 'center',
-				position: 'relative',
-				marginRight: !block && '1.125rem',
-				height: !block && sizeArr.height,
-				marginBottom: '0.375rem',
-				flexDirection: flipped && 'row-reverse',
-				cursor: disabled ? 'not-allowed' : 'pointer',
-				...overrides.CSS,
-			})}
-			{...props}
+		<overrides.Switch.component
+			className={className}
+			{...overrides.Switch.attributes(state)}
+			css={overrides.Switch.styles(state)}
 		>
-			<input
+			<overrides.Input.component
 				type="checkbox"
 				name={name}
 				checked={checked}
 				aria-label={assistiveText}
 				onChange={handleChange(name)}
 				disabled={disabled}
-				css={{
-					position: 'absolute',
-					zIndex: '-1',
-					opacity: 0,
-				}}
+				{...overrides.Input.attributes(state)}
+				css={overrides.Input.styles(state)}
 			/>
 			{label && (
-				<overrides.Label block={block} flipped={flipped}>
+				<overrides.Label.component
+					{...overrides.Label.attributes(state)}
+					css={overrides.Label.styles(state)}
+				>
 					{label}
-				</overrides.Label>
+				</overrides.Label.component>
 			)}
-			<span
-				css={mq({
-					boxSizing: 'border-box',
-					display: 'block',
-					position: 'relative',
-					border: `${sizeArr.borderWidth} solid ${checked ? COLORS.hero : COLORS.border}`,
-					borderRadius: sizeArr.borderRadius,
-					backgroundColor: checked ? COLORS.hero : '#fff',
-					height: sizeArr.height,
-					width: sizeArr.width,
-					overflow: 'hidden',
-					lineHeight: 1.5,
-					transition: 'border .3s ease,background .3s ease',
-					userSelect: 'none',
-
-					// the thumb/dot
-					'::after': {
-						content: '""',
-						height: `calc(${sizeArr.height} - ${sizeArr.borderWidth} - ${sizeArr.borderWidth})`,
-						width: `calc(${sizeArr.height} - ${sizeArr.borderWidth} - ${sizeArr.borderWidth})`,
-						display: 'block',
-						position: 'absolute',
-						left: checked ? '100%' : 0,
-						transform: checked ? 'translateX(-100%)' : null,
-						top: 0,
-						borderRadius: '50%',
-						backgroundColor: '#fff',
-						boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
-						transition: 'all .3s ease',
-					},
-					'body:not(.isMouseMode) input:focus ~ &': {
-						...PACKS.focus,
-					},
-					...overrides.toggleCSS,
-				})}
+			<overrides.Toggle.component
+				{...overrides.Toggle.attributes(state)}
+				css={overrides.Toggle.styles(state)}
 			>
 				{!!toggleText && (
-					<overrides.ToggleTextWrapper>
-						<ToggleText
+					<Fragment>
+						<overrides.ToggleText.component
 							position={'left'}
-							checked={checked}
-							size={sizeArr}
-							css={overrides.toggleTextCSS}
+							{...overrides.ToggleText.attributes({ ...state, checked })}
+							css={overrides.ToggleText.styles(state)}
 						>
 							{toggleText[0]}
-						</ToggleText>
-						<ToggleText
+						</overrides.ToggleText.component>
+						<overrides.ToggleText.component
 							position={'right'}
-							checked={!checked}
-							size={sizeArr}
-							css={overrides.toggleTextCSS}
+							{...overrides.ToggleText.attributes({ ...state, checked: !checked })}
+							css={overrides.ToggleText.styles(state)}
 						>
 							{toggleText[1]}
-						</ToggleText>
-					</overrides.ToggleTextWrapper>
+						</overrides.ToggleText.component>
+					</Fragment>
 				)}
-			</span>
-		</label>
+			</overrides.Toggle.component>
+		</overrides.Switch.component>
 	);
 };
 
@@ -245,6 +211,42 @@ Switch.propTypes = {
 	 * The onChange handler for this switch
 	 */
 	onChange: PropTypes.func,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Switch: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Input: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Toggle: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ToggleText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ToggleTextWrapper: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Switch.defaultProps = {
@@ -252,54 +254,3 @@ Switch.defaultProps = {
 	checked: false,
 	toggleText: ['On', 'Off'],
 };
-
-// ==============================
-// Styled/Token Components
-// ==============================
-const Label = ({ block, flipped, ...props }) => (
-	<span
-		css={{
-			flex: block && 1,
-			display: 'flex',
-			alignItems: 'center',
-			whiteSpace: 'normal',
-			position: 'relative',
-			[flipped ? 'paddingLeft' : 'paddingRight']: '0.375rem',
-		}}
-		{...props}
-	/>
-);
-
-const ToggleText = ({ position, checked, size, ...props }) => {
-	const { BRAND, COLORS } = useBrand();
-	const mq = useMediaQuery();
-
-	let color = '#fff';
-	if (BRAND === 'STG') {
-		color = COLORS.text;
-	}
-
-	// Internal height CSS
-	const height = `calc(${size.height} - ${size.borderWidth} - ${size.borderWidth})`;
-
-	return (
-		<span
-			css={mq({
-				boxSizing: 'border-box',
-				position: 'absolute',
-				width: '100%',
-				lineHeight: height,
-				fontSize: size.fontSize,
-				paddingLeft: position === 'right' ? height : '6%',
-				paddingRight: position === 'left' ? height : '6%',
-				color: position === 'right' ? COLORS.text : color,
-				textAlign: 'center',
-				opacity: checked ? 1 : 0,
-				transition: 'opacity .3s ease',
-			})}
-			{...props}
-		/>
-	);
-};
-
-const ToggleTextWrapper = ({ children }) => <Fragment>{children}</Fragment>;

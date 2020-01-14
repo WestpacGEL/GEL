@@ -1,124 +1,89 @@
 /** @jsx jsx */
 
-import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
+import { Fragment } from 'react';
+import PropTypes from 'prop-types';
+
+import { ProgressBar as ProgressBarWrapper, progressBarStyles } from './overrides/progressBar';
+import { Text, textStyles } from './overrides/text';
+import { Bar, barStyles } from './overrides/bar';
 import pkg from '../package.json';
-
-// ==============================
-// Utils
-// ==============================
-
-const round = value => Math.round(value);
 
 // ==============================
 // Component
 // ==============================
+export const ProgressBar = ({ value, look, className, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-export const ProgressBar = ({ value, look, ...props }) => {
-	const { COLORS, TYPE, BRAND, [pkg.name]: overridesWithTokens } = useBrand();
+	const roundedValue = Math.round(value);
 
-	const roundedValue = round(value);
-
-	const overrides = {
-		default: {
-			wrapperCSS: {
-				height: '1.5rem',
-				borderRadius: '1.5rem',
-
-				'::after': {
-					content: '"0%"',
-					position: 'absolute',
-					left: '0.625rem',
-					top: 0,
-					height: '100%',
-					color: COLORS.muted,
-					fontSize: '0.875rem',
-					zIndex: 1,
-					...TYPE.bodyFont[700],
-				},
-			},
-			barCSS: {
-				borderRadius: '1.5rem',
-			},
+	const defaultOverrides = {
+		ProgressBar: {
+			styles: progressBarStyles,
+			component: ProgressBarWrapper,
+			attributes: (_, a) => a,
 		},
-		skinny: {
-			wrapperCSS: {
-				height: '0.625rem',
-				borderRadius: '0.625rem',
-			},
-			barCSS: {
-				borderRadius: '0.625rem',
-			},
+		Bar: {
+			styles: barStyles,
+			component: Bar,
+			attributes: (_, a) => a,
+		},
+		Text: {
+			styles: textStyles,
+			component: Text,
+			attributes: (_, a) => a,
 		},
 	};
 
-	merge(overrides, overridesWithTokens);
+	const state = {
+		look,
+		value: roundedValue,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	return (
-		<div
-			css={{
-				marginBottom: '1.3125rem',
-				overflow: 'hidden',
-				backgroundColor: '#fff',
-				border: `1px solid ${COLORS.border}`,
-				padding: '0.0625rem',
-				position: 'relative',
-				boxSizing: 'border-box',
-				...overrides[look].wrapperCSS,
-			}}
-			{...props}
+		<overrides.ProgressBar.component
+			className={className}
+			{...overrides.ProgressBar.attributes(state)}
+			css={overrides.ProgressBar.styles(state)}
 		>
-			<div
-				css={{
-					position: 'relative',
-					float: 'left',
-					width: 0,
-					height: '100%',
-					fontSize: '0.875rem',
-					lineHeight: '1.25rem',
-					color: BRAND === 'STG' ? COLORS.text : '#fff',
-					textAlign: 'right',
-					backgroundColor: COLORS.hero,
-					zIndex: 2,
-					overflow: 'hidden',
-					boxSizing: 'border-box',
-					transition: 'width .6s ease',
-					...TYPE.bodyFont[700],
-					...overrides[look].barCSS,
-
-					'@media print': {
-						backgroundColor: '#000 !important',
-					},
-				}}
-				style={{ width: `${roundedValue}%` }}
+			<overrides.Bar.component
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
-				aria-valuenow={value}
+				aria-valuenow={roundedValue}
 				aria-live="polite"
+				{...overrides.Bar.attributes(state)}
+				css={overrides.Bar.styles(state)}
 			>
 				{look !== 'skinny' ? (
-					<span role="text">
-						<span
-							css={{
-								display: 'inline-block',
-								margin: '0 0.75rem',
-								'@media print': {
-									backgroundColor: '#000 !important',
-									color: '#fff !important',
-								},
-							}}
+					<Fragment>
+						<overrides.Text.component
+							role="text"
+							{...overrides.Text.attributes(state)}
+							css={overrides.Text.styles(state)}
 						>
 							{roundedValue}%
-						</span>
+						</overrides.Text.component>
 						<VisuallyHidden>Complete</VisuallyHidden>
-					</span>
+					</Fragment>
 				) : (
 					<VisuallyHidden>{roundedValue}% Complete</VisuallyHidden>
 				)}
-			</div>
-		</div>
+			</overrides.Bar.component>
+		</overrides.ProgressBar.component>
 	);
 };
 
@@ -136,6 +101,27 @@ ProgressBar.propTypes = {
 	 * Enable skinny mode
 	 */
 	look: PropTypes.oneOf(['default', 'skinny']),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		ProgressBar: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Bar: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Text: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 ProgressBar.defaultProps = {

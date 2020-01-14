@@ -1,39 +1,42 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+
+import { Well as WellWrapper, wellStyles } from './overrides/well';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Well = props => {
-	const { COLORS, [pkg.name]: brandOverrides } = useBrand();
-	const mq = useMediaQuery();
+export const Well = ({ overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		css: {},
+	const defaultOverrides = {
+		Well: {
+			styles: wellStyles,
+			component: WellWrapper,
+			attributes: (_, a) => a,
+		},
 	};
-	merge(overrides, brandOverrides);
+
+	const state = { overrides: componentOverrides, ...rest };
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	return (
-		<div
-			css={mq({
-				padding: ['0.75rem', '1.5rem'],
-				marginBottom: '1.125rem',
-				backgroundColor: COLORS.light,
-				border: `1px solid ${COLORS.border}`,
-				borderRadius: '0.1875rem',
-
-				// Nested Well styling
-				'& &': {
-					backgroundColor: '#fff',
-					margin: '0.75rem 0',
-				},
-				...overrides.css,
-			})}
-			{...props}
+		<overrides.Well.component
+			{...overrides.Well.attributes(state)}
+			css={overrides.Well.styles(state)}
 		/>
 	);
 };
@@ -44,9 +47,15 @@ export const Well = props => {
 
 Well.propTypes = {
 	/**
-	 * Well content
+	 * The override API
 	 */
-	children: PropTypes.node,
+	overrides: PropTypes.shape({
+		Well: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Well.defaultProps = {};

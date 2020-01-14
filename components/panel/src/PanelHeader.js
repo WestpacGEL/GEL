@@ -1,6 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, merge } from '@westpac/core';
+import PropTypes from 'prop-types';
+
+import { Header, headerStyles } from './overrides/header';
 import { usePanelContext } from './Panel';
 import pkg from '../package.json';
 
@@ -8,46 +11,61 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const PanelHeader = props => {
-	const { COLORS, BRAND, [pkg.name]: overridesWithTokens } = useBrand();
-	const mq = useMediaQuery();
-	const { look } = usePanelContext();
+export const PanelHeader = ({ overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		headerCSS: {},
-	};
-
-	merge(overrides, overridesWithTokens);
-
-	const lookMap = {
-		hero: {
-			color: BRAND === 'STG' ? COLORS.text : '#fff',
-			backgroundColor: COLORS.hero,
-			borderColor: COLORS.hero,
-		},
-		faint: {
-			color: COLORS.text,
-			backgroundColor: COLORS.background,
-			borderColor: COLORS.border,
+	const defaultOverrides = {
+		Header: {
+			styles: headerStyles,
+			component: Header,
+			attributes: (_, a) => a,
 		},
 	};
+
+	const { overrides: overridesCtx, ...context } = usePanelContext();
+
+	const state = {
+		overrides: componentOverrides,
+		...context,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		merge(componentOverrides, overridesCtx)
+	);
 
 	return (
-		<div
-			css={mq({
-				padding: ['0.625rem 0.75rem', '0.625rem 1.5rem'],
-				backgroundColor: lookMap[look].backgroundColor,
-				borderBottom: `1px solid ${lookMap[look].borderColor}`,
-				color: lookMap[look].color,
-				borderTopRightRadius: `calc(0.1875rem - 1px)`,
-				borderTopLeftRadius: `calc(0.1875rem - 1px)`,
-				fontSize: '1rem',
-				'@media print': {
-					borderBottom: '1px solid #000',
-				},
-				...overrides.headerCSS,
-			})}
-			{...props}
+		<overrides.Header.component
+			{...overrides.Header.attributes(state)}
+			css={overrides.Header.styles(state)}
 		/>
 	);
+};
+
+// ==============================
+// Types
+// ==============================
+
+PanelHeader.propTypes = {
+	/**
+	 * Panel body content
+	 */
+	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Header: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };

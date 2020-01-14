@@ -50,6 +50,7 @@ module.exports = () => ({
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Westpac GEL 3 - Local development',
+			mode: 'start',
 			template: path.normalize(`${__dirname}/index.html`),
 		}),
 		new HtmlWebpackRootPlugin(),

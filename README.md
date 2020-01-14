@@ -248,11 +248,29 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 
 ## Overrides naming convention
 
-| What                   | Rule                                                                 | Do                                                | Don't                                                 |
-| ---------------------- | -------------------------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------- |
-| Component              | Upercase first letter                                                | `Wrapper`, `Button`                               | ~`icon`~, ~`crumb`~                                   |
-| CSS rules to be spread | Either `css` lowercase alone or name then `CSS` uppercase            | `css`, `innerCSS`, `wrapperCSS`                   | ~`CSS`~, ~`innerCss`~, ~`wrapperCss`~                 |
-| Theming items          | In an object with `look` as the key so we can do `localTokens[look]` | `localTokens[look].Icon`, `localTokens[look].css` | ~`localTokens.css[look]`~, ~`localTokens.Icon[look]`~ |
+Every single component (including root component) have three items in their override object:
+
+```
+overrides = {
+	styles: (basestyles, state-props) => styles,
+	component: <React.Component/>,
+	attributes: (state-props) => Object,
+
+	subComponent : {
+		[name]: {
+			styles: (basestyles, state-props) => styles,
+			component: <React.Component/>
+			attributes: (state-props) => Object,
+		}
+	}
+}
+```
+
+| Key          | Type                 | Description                                                                            | Function arguments                                                                                                                                                    |
+| ------------ | -------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `styles`     | `function` => Object | A function that returns an object of css properties for emotion                        | (`basestyles`,`state/props`) `basestyles` = the styles that would have been applied to the component, `state/props` = all props and all known state (without setters) |
+| `attributes` | `function` => Object | A function that returns an object of attributes that will be spread onto the component | (`state/props`) `state/props` = all props and all known state (without setters)                                                                                       |
+| `component`  | `react component`    | A react component which will receive all props                                         | -                                                                                                                                                                     |
 
 ### Naming convention for files inside components
 

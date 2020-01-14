@@ -1,28 +1,16 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useTransition, animated } from 'react-spring';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { CloseIcon, AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
-import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
-import { Body } from '@westpac/body';
-import { CSSTransition } from 'react-transition-group';
-import { Heading } from '@westpac/heading';
-import { Button } from '@westpac/button';
+
+import { Alert as AlertWrapper, alertStyles } from './overrides/alert';
+import { AlertHeading, headingStyles } from './overrides/heading';
+import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
+import { AlertBody, bodyStyles } from './overrides/body';
+import { Icon, iconStyles } from './overrides/icon';
 import pkg from '../package.json';
-
-// ==============================
-// Overwrite component
-// ==============================
-
-const CloseBtn = ({ onClose, icon, look, dismissible, ...rest }) => (
-	<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest} />
-);
-
-const BodyHeading = ({ tag, children, dismissible, ...rest }) => (
-	<Heading size={7} tag={tag} {...rest}>
-		{children}
-	</Heading>
-);
 
 // ==============================
 // Component
@@ -31,147 +19,115 @@ const BodyHeading = ({ tag, children, dismissible, ...rest }) => (
 export const Alert = ({
 	look,
 	dismissible,
-	icon: Icon,
+	icon,
 	heading,
 	headingTag,
 	children,
+	className,
+	overrides: componentOverrides,
 	...rest
 }) => {
-	const { COLORS, SPACING, [pkg.name]: brandOverrides } = useBrand();
-	const mq = useMediaQuery();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 	const [open, setOpen] = useState(true);
+	const transition = useTransition(open, null, {
+		initial: { opacity: 1 },
+		from: { opacity: 1 },
+		enter: { opacity: 1 },
+		leave: { opacity: 0 },
+		config: { duration: 400 },
+	});
 
-	const overrides = {
-		success: {
-			icon: TickIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+	const defaultOverrides = {
+		Alert: {
+			styles: alertStyles,
+			component: AlertWrapper,
+			attributes: (_, a) => a,
 		},
-		info: {
-			icon: InfoIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+		Body: {
+			styles: bodyStyles,
+			component: AlertBody,
+			attributes: (_, a) => a,
 		},
-		warning: {
-			icon: AlertIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+		CloseBtn: {
+			styles: closeBtnStyles,
+			component: CloseBtn,
+			attributes: (_, a) => a,
 		},
-		danger: {
-			icon: AlertIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+		Icon: {
+			styles: iconStyles,
+			component: Icon,
+			attributes: (_, a) => a,
 		},
-		system: {
-			icon: AlertIcon,
-			css: {
-				backgroundColor: COLORS.system,
-				color: 'black',
-				borderColor: COLORS.system,
-			},
+		Heading: {
+			styles: headingStyles,
+			component: AlertHeading,
+			attributes: (_, a) => a,
 		},
-		duration: 300,
-		innerCSS: {},
-		CloseBtn,
-		Heading: BodyHeading,
 	};
-	merge(overrides, brandOverrides);
 
-	// Set a default icon
-	if (Icon === undefined) {
-		Icon = overrides[look].icon;
-	}
+	const state = {
+		look,
+		dismissible: dismissible ? dismissible : undefined,
+		icon,
+		heading,
+		headingTag,
+		open,
+		overrides: componentOverrides,
+		...rest,
+	};
 
-	return (
-		<CSSTransition in={open} unmountOnExit classNames="anim" timeout={overrides.duration + 100}>
-			<div
-				css={mq({
-					marginBottom: '1.3125rem',
-					padding: ['1.125rem', dismissible ? `1.125rem 1.875rem 1.125rem 1.125rem` : '1.125rem'],
-					position: 'relative',
-					display: [null, 'flex'],
-					zIndex: 1,
-					transition: `opacity ${overrides.duration}ms ease-in-out`,
-					opacity: 1,
-					'&.anim-exit-active': {
-						opacity: 0,
-					},
-					borderTop: '1px solid',
-					borderBottom: '1px solid',
-					...overrides[look].css,
-				})}
-				{...rest}
-			>
-				{dismissible && (
-					<overrides.CloseBtn
-						onClose={() => setOpen(false)}
-						icon={CloseIcon}
-						look={look}
-						dismissible={dismissible}
-						css={mq({
-							color: 'inherit',
-							position: ['relative', 'absolute'],
-							zIndex: 1,
-							float: ['right', 'none'],
-							top: SPACING(1, 'minor'),
-							right: SPACING(1),
-							marginTop: [`-${SPACING(3, 'major')}`, 0],
-							marginRight: [`-${SPACING(3, 'major')}`, 0],
-							opacity: 1,
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
-							':hover': {
-								opacity: 0.5,
-							},
-						})}
-					/>
-				)}
-				{Icon && (
-					<Icon
-						css={mq({
-							float: ['left', 'none'],
-							marginRight: ['0.375rem', '0.75rem'],
-							flex: 'none',
-						})}
-						size={['small', 'medium']}
-						color="inherit"
-					/>
-				)}
-				<Body
-					css={mq({
-						position: 'relative',
-						flex: 1,
-						top: [null, Icon && '0.125rem'],
-						'a, h1, h2, h3, h4, h5, h6, ol, ul': {
-							color: 'inherit',
-						},
-						...overrides.innerCSS,
-					})}
-				>
-					{heading && (
-						<overrides.Heading
-							tag={headingTag}
-							css={{ marginBottom: SPACING(2) }}
-							dismissible={dismissible}
+	return transition.map(
+		({ item, key, props }) =>
+			item && (
+				<animated.div key={key} style={props}>
+					<overrides.Alert.component
+						className={className}
+						{...overrides.Alert.attributes(state)}
+						css={overrides.Alert.styles(state)}
+					>
+						{dismissible && (
+							<overrides.CloseBtn.component
+								onClose={() => setOpen(false)}
+								{...overrides.CloseBtn.attributes(state)}
+								css={overrides.CloseBtn.styles(state)}
+							/>
+						)}
+						{overrides.Icon.component && (
+							<overrides.Icon.component
+								size={['small', 'medium']}
+								color="inherit"
+								{...overrides.Icon.attributes(state)}
+								css={overrides.Icon.styles(state)}
+							/>
+						)}
+						<overrides.Body.component
+							{...overrides.Body.attributes(state)}
+							css={overrides.Body.styles(state)}
 						>
-							{heading}
-						</overrides.Heading>
-					)}
-					{children}
-				</Body>
-			</div>
-		</CSSTransition>
+							{heading && (
+								<overrides.Heading.component
+									tag={headingTag}
+									{...overrides.Heading.attributes(state)}
+									css={overrides.Heading.styles(state)}
+								>
+									{heading}
+								</overrides.Heading.component>
+							)}
+							{children}
+						</overrides.Body.component>
+					</overrides.Alert.component>
+				</animated.div>
+			)
 	);
 };
 
@@ -211,6 +167,37 @@ Alert.propTypes = {
 	 * Alert children
 	 */
 	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Alert: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Body: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		CloseBtn: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Heading: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Alert.defaultProps = {
