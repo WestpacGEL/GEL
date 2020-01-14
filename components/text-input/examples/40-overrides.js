@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Text, Textarea, Select } from '@westpac/text-input';
+import { TextInput, Textarea, Select } from '@westpac/text-input';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/text-input'] = {
-		Text: {
+		TextInput: {
 			styles: styles => ({
 				...styles,
 				borderColor: 'palevioletred',
@@ -34,7 +34,7 @@ function Example({ brand }) {
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
-			<Text />
+			<TextInput />
 			<br />
 			<Select name="thing">
 				<option>Select</option>
@@ -46,9 +46,9 @@ function Example({ brand }) {
 			<Textarea />
 
 			<h2>With overrides and component overrides</h2>
-			<Text
+			<TextInput
 				overrides={{
-					Text: {
+					TextInput: {
 						styles: styles => ({ ...styles, borderWidth: '3px' }),
 					},
 				}}

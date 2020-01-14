@@ -1,14 +1,14 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { TextComponent, textStyles } from './overrides/text';
+import { TextInput as TextInputWrapper, textInputStyles } from './overrides/textInput';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Text = ({
+export const TextInput = ({
 	size,
 	width,
 	inline,
@@ -23,9 +23,9 @@ export const Text = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Text: {
-			styles: textStyles,
-			component: TextComponent,
+		TextInput: {
+			styles: textInputStyles,
+			component: TextInputWrapper,
 			attributes: (_, a) => a,
 		},
 	};
@@ -47,9 +47,9 @@ export const Text = ({
 	);
 
 	return (
-		<overrides.Text.component
-			{...overrides.Text.attributes(state)}
-			css={overrides.Text.styles(state)}
+		<overrides.TextInput.component
+			{...overrides.TextInput.attributes(state)}
+			css={overrides.TextInput.styles(state)}
 		/>
 	);
 };
@@ -58,7 +58,7 @@ export const Text = ({
 // Types
 // ==============================
 
-Text.propTypes = {
+TextInput.propTypes = {
 	/**
 	 * Component size
 	 */
@@ -85,7 +85,7 @@ Text.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Text: PropTypes.shape({
+		TextInput: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -93,7 +93,7 @@ Text.propTypes = {
 	}),
 };
 
-Text.defaultProps = {
+TextInput.defaultProps = {
 	size: 'medium',
 	inline: false,
 	invalid: false,
