@@ -81,7 +81,7 @@ export const IntroSection = ({ description, pageLinks }) => {
 				</Cell>
 				<Cell width={1} />
 				<Cell width={4}>
-					<PageLinks title="Page content" links={pageLinks} />
+					<PageLinks title="Page content" pageLinks={pageLinks} />
 				</Cell>
 			</Grid>
 		</Container>

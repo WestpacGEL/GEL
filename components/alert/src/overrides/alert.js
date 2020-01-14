@@ -70,9 +70,6 @@ export const alertStyles = (_, { dismissible, look }) => {
 		zIndex: 1,
 		transition: `opacity 300ms ease-in-out`,
 		opacity: 1,
-		'&.anim-exit-active': {
-			opacity: 0,
-		},
 		borderTop: '1px solid',
 		borderBottom: '1px solid',
 		...styleMap[look].css,

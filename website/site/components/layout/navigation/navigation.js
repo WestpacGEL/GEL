@@ -13,58 +13,89 @@ export const Navigation = ({ components }) => {
 	const { SPACING } = useBrand();
 	return (
 		<Fragment>
-			<Heading tag="h2" size={6} css={{ marginTop: SPACING(1) }}>
+			<Heading
+				tag="h2"
+				size={6}
+				css={{ paddingLeft: SPACING(1), marginTop: SPACING(1), marginBottom: SPACING(3) }}
+			>
 				GEL
 			</Heading>
 
-			<ul>
+			<LinkList>
 				<LinkItem name="Home" as="/" href={`/?brand=${brandName}`} />
 				<LinkItem name="Accessibility" as="/" href="/" />
 				<LinkItem name="Design tokens" as="/tokens" href="/tokens" />
 				<LinkItem name="Downloads" as="/" href="/" />
 
 				<NavigationBlock title="Foundation" tag="li">
-					<ul>
+					<LinkList secondary>
 						<LinkItem name="Color" href="/" as="/" />
 						<LinkItem name="Grid" href="/" as="/" />
 						<LinkItem name="Icons" href="/" as="/" />
 						<LinkItem name="Logos" href="/" as="/" />
 						<LinkItem name="Spacing" href="/" as="/" />
 						<NavigationBlock title="Typogrpahy" tag="li">
-							<ul>
+							<LinkList>
 								<LinkItem name="Spacing" href="/" as="/" />
 								<LinkItem name="Spacing" href="/" as="/" />
 								<LinkItem name="Spacing" href="/" as="/" />
-							</ul>
+							</LinkList>
 						</NavigationBlock>
-					</ul>
+					</LinkList>
 				</NavigationBlock>
 
-				<li>
-					<NavigationBlock title="Components">
-						<ul>
-							{components.map(component => (
-								<LinkItem
-									key={component.id}
-									name={component.name}
-									as={`/components/${component.name}`}
-									href={'/components/[component]'}
-								/>
-							))}
-						</ul>
-					</NavigationBlock>
-				</li>
-			</ul>
+				<NavigationBlock title="Components" tag="li">
+					<LinkList secondary>
+						{components.map(component => (
+							<LinkItem
+								key={component.id}
+								name={component.name}
+								as={`/components/${component.name}`}
+								href={'/components/[component]'}
+							/>
+						))}
+					</LinkList>
+				</NavigationBlock>
+			</LinkList>
 		</Fragment>
 	);
 };
 
+const LinkList = props => {
+	const { SPACING } = useBrand();
+	return (
+		<ul
+			css={{
+				listStyle: 'none',
+				paddingLeft: SPACING(2),
+				margin: 0,
+				// TODO: This is pretty bad, need to improve!
+				a: {
+					fontWeight: props.secondary ? 400 : 700,
+				},
+			}}
+			{...props}
+		/>
+	);
+};
+
 const LinkItem = ({ name, href, as, tag: Tag = 'li', children }) => {
+	const { SPACING } = useBrand();
 	const brandName = useRouter().query.brand || '';
 	return (
 		<Tag>
 			<Link href={`${href}?brand=${brandName}`} as={`${as}?brand=${brandName}`}>
-				<a>{name}</a>
+				<a
+					css={{
+						cursor: 'pointer',
+						display: 'block',
+						textDecoration: 'none',
+						fontWeight: 600,
+						padding: `${SPACING(1)} 0`,
+					}}
+				>
+					{name}
+				</a>
 			</Link>
 			{children}
 		</Tag>

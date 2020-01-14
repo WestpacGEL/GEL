@@ -31,6 +31,11 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 		},
 	};
 
+	const context = useListContext();
+	if (!context) {
+		throw new Error('Item components should be wrapped in a <List>.');
+	}
+
 	const {
 		look: lookCtx,
 		type: typeCtx,
@@ -38,7 +43,7 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 		spacing: spacingCtx,
 		icon: iconCtx,
 		overrides: componentOverrides,
-	} = useListContext();
+	} = context;
 
 	look = look || lookCtx;
 	type = type || typeCtx;

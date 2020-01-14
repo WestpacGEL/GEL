@@ -3,9 +3,9 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { round, sizeMap } from '../_utils';
 
-export const TextComponent = ({ inline, invalid, ...props }) => <input {...props} />;
+export const TextInput = ({ inline, invalid, ...props }) => <input {...props} />;
 
-export const textStyles = (_, { size, width, inline, invalid, ...props }) => {
+export const textInputStyles = (_, { size, width, inline, invalid, ...props }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 

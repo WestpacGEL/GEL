@@ -12,7 +12,7 @@ export const DesignTab = ({ description, doc }) => {
 			<IntroSection
 				description={`${description}. 
         This is some accessibility tab placeholder text to make the intro section look nicer, until the content is entered in the system.`}
-				links={['Item one', 'Item two', 'Item three', 'Item four']}
+				pageLinks={['Item one', 'Item two', 'Item three', 'Item four']}
 			/>
 			<Separator />
 			<DesignExamples />

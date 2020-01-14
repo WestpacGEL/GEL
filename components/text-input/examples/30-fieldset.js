@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Text, Textarea, Select } from '@westpac/text-input';
+import { TextInput, Textarea, Select } from '@westpac/text-input';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -13,7 +13,7 @@ function Example({ brand }) {
 			<h2>Default</h2>
 			<fieldset>
 				<legend>Legend</legend>
-				<Text />
+				<TextInput />
 				<br />
 				<Select>
 					<option>Select</option>
@@ -30,7 +30,7 @@ function Example({ brand }) {
 			<h2>Disabled</h2>
 			<fieldset disabled>
 				<legend>Legend</legend>
-				<Text />
+				<TextInput />
 				<br />
 				<Select>
 					<option>Select</option>

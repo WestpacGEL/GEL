@@ -118,8 +118,8 @@ function build(BRAND) {
 	return `
 		const bodyFont = ${JSON.stringify(bodyFont.fontFamily)};
 		const brandFont = ${JSON.stringify(brandFont.fontFamily)};
-		export const SPACING = ( unit, minor, rem = true ) => {
-			return ( unit * 6 - (minor ? 3 : 0) ) / 16 + (rem ? (unit > 0 ? 'rem' : 0) : 0);
+		export const SPACING = ( i, minor, unit = 'rem' ) => {
+			return ( i * 6 - (minor && i !== 0 ? 3 : 0) ) / 16 + (unit ? (i > 0 ? unit : 0) : 0);
 		};
 		export const COLORS = ${JSON.stringify(COLORS)};
 		export const LAYOUT = ${JSON.stringify(LAYOUT)};

@@ -3,9 +3,9 @@ import { Fragment } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
 import { Heading } from '@westpac/heading';
-import { List, Item } from '@westpac/list';
+import { Item, List } from '@westpac/list';
 
-export const PageLinks = ({ title, links }) => {
+export const PageLinks = ({ title, pageLinks }) => {
 	const { COLORS, SPACING } = useBrand();
 	return (
 		<Fragment>
@@ -17,15 +17,11 @@ export const PageLinks = ({ title, links }) => {
 				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
 			/>
 
-			{/* 
-        // Currently throwing an error: 
-        // Item components should be wrapped in a <List>.
-        <List type="icon" icon={ArrowRightIcon}>
-          {links.map((link, index) => (
-            <Item key={index}>{link}</Item>
-          ))}
-        </List>
-      */}
+			<List type="icon" icon={ArrowRightIcon}>
+				{pageLinks.map((link, index) => (
+					<Item key={index}>{link}</Item>
+				))}
+			</List>
 		</Fragment>
 	);
 };
