@@ -1,68 +1,169 @@
-import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
-import { useTheme } from '@westpac/core';
+/** @jsx jsx */
 
-import { AccordionLabel, Panel } from './styled';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { Fragment, useState, forwardRef } from 'react';
+import PropTypes from 'prop-types';
+
+import { AccordionLabel, accordionLabelStyles } from './overrides/accordionLabel';
+import { AccordionIcon, accordionIconStyles } from './overrides/accordionIcon';
+import { Panel, panelStyles } from './overrides/panel';
+import pkg from '../package.json';
 
 export const Tab = forwardRef(
 	(
-		{ appearance, children, isLast, isSelected, label, mode, panelId, onClick, tabId, ...props },
+		{
+			look,
+			last,
+			selected,
+			text,
+			mode,
+			panelId,
+			onClick,
+			tabId,
+			children,
+			overrides: componentOverrides,
+			...rest
+		},
 		ref
 	) => {
-		const theme = useTheme();
-		const Icon = isSelected ? ExpandLessIcon : ExpandMoreIcon;
-		const iconLabel = isSelected ? 'Show Less' : 'Show More';
+		const [hidden, setHidden] = useState(!selected);
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
+
+		const defaultOverrides = {
+			AccordionLabel: {
+				styles: accordionLabelStyles,
+				component: AccordionLabel,
+				attributes: (_, a) => a,
+			},
+			AccordionIcon: {
+				styles: accordionIconStyles,
+				component: AccordionIcon,
+				attributes: (_, a) => a,
+			},
+			Panel: {
+				styles: panelStyles,
+				component: Panel,
+				attributes: (_, a) => a,
+			},
+		};
+
+		const state = {
+			look,
+			last,
+			selected,
+			mode,
+			hidden,
+			overrides: componentOverrides,
+			...rest,
+		};
+
+		const overrides = overrideReconciler(
+			defaultOverrides,
+			tokenOverrides,
+			brandOverrides,
+			componentOverrides
+		);
+
+		const handleAccordionClick = () => {
+			setHidden(!hidden);
+			onClick();
+		};
 
 		return (
-			<>
+			<Fragment>
 				{mode === 'accordion' ? (
-					<AccordionLabel
-						appearance={appearance}
-						onClick={onClick}
+					<overrides.AccordionLabel.component
+						onClick={handleAccordionClick}
 						id={tabId}
-						isLast={isLast}
-						isSelected={isSelected}
 						aria-controls={panelId}
-						aria-expanded={isSelected}
+						aria-expanded={selected}
+						{...overrides.AccordionLabel.attributes(state)}
+						css={overrides.AccordionLabel.styles(state)}
 					>
-						<span>{label}</span>
-						<Icon color={theme.colors.muted} label={iconLabel} size="small" />
-					</AccordionLabel>
+						<span>{text}</span>
+						<overrides.AccordionIcon.component
+							{...overrides.AccordionIcon.attributes(state)}
+							css={overrides.AccordionIcon.styles(state)}
+						/>
+					</overrides.AccordionLabel.component>
 				) : null}
-				<Panel
-					hidden={!isSelected}
-					appearance={appearance}
-					aria-labelledby={tabId}
+				<overrides.Panel.component
 					id={panelId}
-					aria-selected={isSelected}
-					isLast={isLast}
-					isSelected={isSelected}
-					mode={mode}
+					aria-labelledby={tabId}
+					aria-selected={selected}
 					role="tabpanel"
 					ref={ref}
 					tabIndex="0"
+					{...overrides.Panel.attributes({
+						...state,
+						hidden: mode === 'accordion' ? hidden : !selected,
+					})}
+					css={overrides.Panel.styles(state)}
 				>
 					{children}
-				</Panel>
-			</>
+				</overrides.Panel.component>
+			</Fragment>
 		);
 	}
 );
 
 Tab.propTypes = {
-	/** The panel content for this tab */
+	/**
+	 * The panel content for this tab
+	 */
 	children: PropTypes.node.isRequired,
-	// Whether this tab/panel is selected/expanded
-	isSelected: PropTypes.bool,
-	/** Provide a label that describes the purpose of the set of tabs. */
-	label: PropTypes.string.isRequired,
-	// Whether or not to display the accordion label
+
+	/**
+	 * Whether this tab/panel is selected/expanded
+	 */
+	selected: PropTypes.bool,
+
+	/**
+	 * The text label for this tab
+	 */
+	text: PropTypes.string.isRequired,
+
+	/**
+	 * Render as either an accordion or tabs
+	 */
 	mode: PropTypes.oneOf(['accordion', 'tabs']),
-	// The id for this tab's panel
+
+	/**
+	 * The id for this tab's panel
+	 */
 	panelId: PropTypes.string,
-	// The onClick handler for the accordion label
+
+	/**
+	 * The onClick handler for the accordion label
+	 */
 	onClick: PropTypes.func,
-	// The id for the tab
+
+	/**
+	 * The id for the tab
+	 */
 	tabId: PropTypes.string,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		AccordionLabel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		AccordionIcon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Panel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };

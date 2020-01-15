@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const SuperIcon = props => (
-	<Icon {...props}>
+	<Icon icon="SuperIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const SuperIcon = props => (
 
 SuperIcon.defaultProps = {
 	...defaultProps,
-	label: 'Super',
+	assistiveText: 'Super',
 };
 SuperIcon.propTypes = propTypes;

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const LinkedinIcon = props => (
-	<Icon {...props}>
+	<Icon icon="LinkedinIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const LinkedinIcon = props => (
 
 LinkedinIcon.defaultProps = {
 	...defaultProps,
-	label: 'Linkedin',
+	assistiveText: 'Linkedin',
 };
 LinkedinIcon.propTypes = propTypes;

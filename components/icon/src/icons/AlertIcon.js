@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const AlertIcon = props => (
-	<Icon {...props}>
+	<Icon icon="AlertIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const AlertIcon = props => (
 
 AlertIcon.defaultProps = {
 	...defaultProps,
-	label: 'Alert',
+	assistiveText: 'Alert',
 };
 AlertIcon.propTypes = propTypes;

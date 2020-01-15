@@ -1,25 +1,39 @@
-import React from 'react';
+/** @jsx jsx */
 
-import { Cell, Grid } from '../src';
+import { GEL, jsx } from '@westpac/core';
+import { Cell, Grid } from '@westpac/grid';
 import { Box } from './_utils';
 
-const tuples = [
-	[12, 6, 3, 4],
-	[12, 6, 3, 4],
-	[12, 12, 3, 4],
-	[12, 4, 3, 2],
-	[12, 4, 3, 8],
-	[12, 4, 3, 2],
-	[12, 8, 3, 6],
-	[12, 4, 3, 6],
-];
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-export default () => (
-	<Grid>
-		{tuples.map((t, i) => (
-			<Cell key={i} width={t}>
-				<Box>{t.join(', ')}</Box>
-			</Cell>
-		))}
-	</Grid>
-);
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Intopia />
+
+			<Grid>
+				<Cell width={[12, 6, 3, 4]}>
+					<Box>[12, 6, 3, 4]</Box>
+				</Cell>
+			</Grid>
+
+			<hr />
+
+			<Grid>
+				<Cell width={[12, 10, 10, 12]}>
+					<Box>[12, 10, 10, 12]</Box>
+				</Cell>
+			</Grid>
+
+			<hr />
+
+			<Grid>
+				<Cell width={[12, 8, 3, 6]}>
+					<Box>[12, 8, 3, 6]</Box>
+				</Cell>
+			</Grid>
+		</GEL>
+	);
+}
+
+export default Example;

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const CalendarIcon = props => (
-	<Icon {...props}>
+	<Icon icon="CalendarIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const CalendarIcon = props => (
 
 CalendarIcon.defaultProps = {
 	...defaultProps,
-	label: 'Calendar',
+	assistiveText: 'Calendar',
 };
 CalendarIcon.propTypes = propTypes;

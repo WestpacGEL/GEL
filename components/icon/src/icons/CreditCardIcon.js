@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const CreditCardIcon = props => (
-	<Icon {...props}>
+	<Icon icon="CreditCardIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const CreditCardIcon = props => (
 
 CreditCardIcon.defaultProps = {
 	...defaultProps,
-	label: 'Credit Card',
+	assistiveText: 'Credit Card',
 };
 CreditCardIcon.propTypes = propTypes;

@@ -1,58 +1,77 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
 
-// ==============================
-// Utils
-// ==============================
-
-export const sizeMap = {
-	xsmall: 12, // 0.5x
-	small: 18, //  0.75x
-	medium: 24, // 1x (default)
-	large: 36, //  1.5x
-	xlarge: 48, // 2x
-};
-export const getSizeInt = s => sizeMap[s];
-
-const Wrapper = ({ color, size, ...props }) => (
-	<span
-		css={{
-			display: 'inline-block',
-			flexShrink: 0,
-			height: size,
-			lineHeight: 1,
-			verticalAlign: 'middle',
-			width: size,
-		}}
-		{...props}
-	/>
-);
+import { Icon as IconWrapper, iconStyles } from './overrides/icon';
+import { Svg, svgStyles } from './overrides/svg';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Icon = ({ children, color, label, size }) => {
-	const sizeInt = getSizeInt(size);
+export const Icon = ({
+	color,
+	size,
+	assistiveText,
+	children,
+	className,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const {
+		COLORS,
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	// TODO Investigate:
-	// I suspect that using the style attribute to apply the color property will
-	// improve CSS reuse.
+	const defaultOverrides = {
+		Icon: {
+			styles: iconStyles,
+			component: IconWrapper,
+			attributes: (_, a) => a,
+		},
+		Svg: {
+			styles: svgStyles,
+			component: Svg,
+			attributes: (_, a) => a,
+		},
+	};
+
+	const state = {
+		color,
+		size,
+		assistiveText,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
+
 	return (
-		<Wrapper color={color} size={sizeInt} style={{ color }}>
-			<svg
-				aria-label={label}
+		<overrides.Icon.component
+			className={className}
+			{...overrides.Icon.attributes(state)}
+			css={overrides.Icon.styles(state)}
+		>
+			<overrides.Svg.component
+				aria-label={assistiveText}
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
 				role="img"
 				focusable="false"
+				css={overrides.Svg.styles(state)}
+				{...overrides.Svg.attributes(state)}
 			>
 				{children}
-			</svg>
-		</Wrapper>
+			</overrides.Svg.component>
+		</overrides.Icon.component>
 	);
 };
 
@@ -67,20 +86,41 @@ export const propTypes = {
 	 * Defaults to the current text color.
 	 */
 	color: PropTypes.string,
+
 	/**
-	 * String to use as the aria-label for the icon. Set to an empty string if you
+	 * String to use as the `aria-label` for the icon. Set to an empty string if you
 	 * are rendering the icon with visible text to prevent accessibility label
 	 * duplication.
 	 *
 	 * Defaults to the icon name e.g. `BusinessPersonIcon` --> "Business Person"
 	 */
-	label: PropTypes.string,
+	assistiveText: PropTypes.string,
+
 	/**
 	 * Control the size of the icon.
 	 *
 	 * Defaults to "medium" --> 24px
 	 */
-	size: PropTypes.oneOf(Object.keys(sizeMap)),
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge'])),
+	]),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Icon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Svg: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 export const defaultProps = {

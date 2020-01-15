@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const PhoneIcon = props => (
-	<Icon {...props}>
+	<Icon icon="PhoneIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const PhoneIcon = props => (
 
 PhoneIcon.defaultProps = {
 	...defaultProps,
-	label: 'Phone',
+	assistiveText: 'Phone',
 };
 PhoneIcon.propTypes = propTypes;

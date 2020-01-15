@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const AccessibilityIcon = props => (
-	<Icon {...props}>
+	<Icon icon="AccessibilityIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const AccessibilityIcon = props => (
 
 AccessibilityIcon.defaultProps = {
 	...defaultProps,
-	label: 'Accessibility',
+	assistiveText: 'Accessibility',
 };
 AccessibilityIcon.propTypes = propTypes;

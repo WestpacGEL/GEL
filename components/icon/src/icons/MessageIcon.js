@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const MessageIcon = props => (
-	<Icon {...props}>
+	<Icon icon="MessageIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const MessageIcon = props => (
 
 MessageIcon.defaultProps = {
 	...defaultProps,
-	label: 'Message',
+	assistiveText: 'Message',
 };
 MessageIcon.propTypes = propTypes;

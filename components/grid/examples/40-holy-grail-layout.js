@@ -1,26 +1,37 @@
-import React from 'react';
+/** @jsx jsx */
 
-import { Cell, Grid } from '../src';
+import { GEL, jsx } from '@westpac/core';
+import { Cell, Grid } from '@westpac/grid';
 import { Box } from './_utils';
 
-export default () => (
-	<Grid columns={'100px 1fr 100px'} rows={'minmax(45px,auto) 1fr minmax(45px,auto)'}>
-		<Cell width={3}>
-			<Box>Header</Box>
-		</Cell>
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-		<Cell>
-			<Box>Menu</Box>
-		</Cell>
-		<Cell>
-			<Box>Content</Box>
-		</Cell>
-		<Cell>
-			<Box>Ads</Box>
-		</Cell>
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Intopia />
 
-		<Cell width={3}>
-			<Box>Footer</Box>
-		</Cell>
-	</Grid>
-);
+			<Grid columns={'10rem 1fr 10rem'} rows={'minmax(4.5rem,auto) 1fr minmax(4.5rem,auto)'}>
+				<Cell width={3}>
+					<Box>Header</Box>
+				</Cell>
+
+				<Cell>
+					<Box>Menu</Box>
+				</Cell>
+				<Cell>
+					<Box>Content</Box>
+				</Cell>
+				<Cell>
+					<Box>Ads</Box>
+				</Cell>
+
+				<Cell width={3}>
+					<Box>Footer</Box>
+				</Cell>
+			</Grid>
+		</GEL>
+	);
+}
+
+export default Example;

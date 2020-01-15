@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ThumbDownIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ThumbDownIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const ThumbDownIcon = props => (
 
 ThumbDownIcon.defaultProps = {
 	...defaultProps,
-	label: 'Thumb Down',
+	assistiveText: 'Thumb Down',
 };
 ThumbDownIcon.propTypes = propTypes;

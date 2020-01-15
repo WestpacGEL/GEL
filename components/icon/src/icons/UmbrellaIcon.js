@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const UmbrellaIcon = props => (
-	<Icon {...props}>
+	<Icon icon="UmbrellaIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const UmbrellaIcon = props => (
 
 UmbrellaIcon.defaultProps = {
 	...defaultProps,
-	label: 'Umbrella',
+	assistiveText: 'Umbrella',
 };
 UmbrellaIcon.propTypes = propTypes;

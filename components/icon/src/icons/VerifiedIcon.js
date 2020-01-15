@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const VerifiedIcon = props => (
-	<Icon {...props}>
+	<Icon icon="VerifiedIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const VerifiedIcon = props => (
 
 VerifiedIcon.defaultProps = {
 	...defaultProps,
-	label: 'Verified',
+	assistiveText: 'Verified',
 };
 VerifiedIcon.propTypes = propTypes;

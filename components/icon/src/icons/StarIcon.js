@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const StarIcon = props => (
-	<Icon {...props}>
+	<Icon icon="StarIcon" {...props}>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const StarIcon = props => (
 
 StarIcon.defaultProps = {
 	...defaultProps,
-	label: 'Star',
+	assistiveText: 'Star',
 };
 StarIcon.propTypes = propTypes;

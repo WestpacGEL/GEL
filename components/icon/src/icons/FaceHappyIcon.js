@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const FaceHappyIcon = props => (
-	<Icon {...props}>
+	<Icon icon="FaceHappyIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const FaceHappyIcon = props => (
 
 FaceHappyIcon.defaultProps = {
 	...defaultProps,
-	label: 'Face Happy',
+	assistiveText: 'Face Happy',
 };
 FaceHappyIcon.propTypes = propTypes;

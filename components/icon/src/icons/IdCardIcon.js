@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const IdCardIcon = props => (
-	<Icon {...props}>
+	<Icon icon="IdCardIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const IdCardIcon = props => (
 
 IdCardIcon.defaultProps = {
 	...defaultProps,
-	label: 'Id Card',
+	assistiveText: 'Id Card',
 };
 IdCardIcon.propTypes = propTypes;

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const SearchIcon = props => (
-	<Icon {...props}>
+	<Icon icon="SearchIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const SearchIcon = props => (
 
 SearchIcon.defaultProps = {
 	...defaultProps,
-	label: 'Search',
+	assistiveText: 'Search',
 };
 SearchIcon.propTypes = propTypes;

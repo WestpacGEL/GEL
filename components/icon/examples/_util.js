@@ -14,6 +14,7 @@ export const RowPrimitive = props => (
 		{...props}
 	/>
 );
+
 export const RowWrap = props => (
 	<div
 		css={{
@@ -26,6 +27,7 @@ export const RowWrap = props => (
 		{...props}
 	/>
 );
+
 export const RowLabel = props => (
 	<h4
 		css={{
@@ -40,10 +42,10 @@ export const RowLabel = props => (
 	/>
 );
 
-export const Row = ({ children, label, ...props }) =>
-	label ? (
+export const Row = ({ children, assistiveText, ...props }) =>
+	assistiveText ? (
 		<RowWrap>
-			<RowLabel>{label}</RowLabel>
+			<RowLabel>{assistiveText}</RowLabel>
 			<RowPrimitive {...props}>{children}</RowPrimitive>
 		</RowWrap>
 	) : (

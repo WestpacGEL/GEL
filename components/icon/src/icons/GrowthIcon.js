@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const GrowthIcon = props => (
-	<Icon {...props}>
+	<Icon icon="GrowthIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const GrowthIcon = props => (
 
 GrowthIcon.defaultProps = {
 	...defaultProps,
-	label: 'Growth',
+	assistiveText: 'Growth',
 };
 GrowthIcon.propTypes = propTypes;

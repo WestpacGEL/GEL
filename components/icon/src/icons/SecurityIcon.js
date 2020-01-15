@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const SecurityIcon = props => (
-	<Icon {...props}>
+	<Icon icon="SecurityIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const SecurityIcon = props => (
 
 SecurityIcon.defaultProps = {
 	...defaultProps,
-	label: 'Security',
+	assistiveText: 'Security',
 };
 SecurityIcon.propTypes = propTypes;

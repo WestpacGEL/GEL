@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const KeyholeIcon = props => (
-	<Icon {...props}>
+	<Icon icon="KeyholeIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const KeyholeIcon = props => (
 
 KeyholeIcon.defaultProps = {
 	...defaultProps,
-	label: 'Keyhole',
+	assistiveText: 'Keyhole',
 };
 KeyholeIcon.propTypes = propTypes;

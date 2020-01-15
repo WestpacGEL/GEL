@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const DropUpIcon = props => (
-	<Icon {...props}>
+	<Icon icon="DropUpIcon" {...props}>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -14,6 +14,6 @@ export const DropUpIcon = props => (
 
 DropUpIcon.defaultProps = {
 	...defaultProps,
-	label: 'Drop Up',
+	assistiveText: 'Drop Up',
 };
 DropUpIcon.propTypes = propTypes;

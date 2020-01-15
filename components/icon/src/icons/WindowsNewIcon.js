@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const WindowsNewIcon = props => (
-	<Icon {...props}>
+	<Icon icon="WindowsNewIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const WindowsNewIcon = props => (
 
 WindowsNewIcon.defaultProps = {
 	...defaultProps,
-	label: 'Windows New',
+	assistiveText: 'Windows New',
 };
 WindowsNewIcon.propTypes = propTypes;

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const VideoIcon = props => (
-	<Icon {...props}>
+	<Icon icon="VideoIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const VideoIcon = props => (
 
 VideoIcon.defaultProps = {
 	...defaultProps,
-	label: 'Video',
+	assistiveText: 'Video',
 };
 VideoIcon.propTypes = propTypes;

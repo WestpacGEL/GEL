@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const PayToMobileIcon = props => (
-	<Icon {...props}>
+	<Icon icon="PayToMobileIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const PayToMobileIcon = props => (
 
 PayToMobileIcon.defaultProps = {
 	...defaultProps,
-	label: 'Pay To Mobile',
+	assistiveText: 'Pay To Mobile',
 };
 PayToMobileIcon.propTypes = propTypes;

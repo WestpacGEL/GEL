@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const MoreHorizontalIcon = props => (
-	<Icon {...props}>
+	<Icon icon="MoreHorizontalIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const MoreHorizontalIcon = props => (
 
 MoreHorizontalIcon.defaultProps = {
 	...defaultProps,
-	label: 'More Horizontal',
+	assistiveText: 'More Horizontal',
 };
 MoreHorizontalIcon.propTypes = propTypes;

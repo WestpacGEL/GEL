@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ServiceBellIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ServiceBellIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const ServiceBellIcon = props => (
 
 ServiceBellIcon.defaultProps = {
 	...defaultProps,
-	label: 'Service Bell',
+	assistiveText: 'Service Bell',
 };
 ServiceBellIcon.propTypes = propTypes;

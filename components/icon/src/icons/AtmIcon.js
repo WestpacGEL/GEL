@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const AtmIcon = props => (
-	<Icon {...props}>
+	<Icon icon="AtmIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const AtmIcon = props => (
 
 AtmIcon.defaultProps = {
 	...defaultProps,
-	label: 'Atm',
+	assistiveText: 'Atm',
 };
 AtmIcon.propTypes = propTypes;

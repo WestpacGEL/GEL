@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const GooglePlusIcon = props => (
-	<Icon {...props}>
+	<Icon icon="GooglePlusIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const GooglePlusIcon = props => (
 
 GooglePlusIcon.defaultProps = {
 	...defaultProps,
-	label: 'Google Plus',
+	assistiveText: 'Google Plus',
 };
 GooglePlusIcon.propTypes = propTypes;

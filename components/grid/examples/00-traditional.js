@@ -1,17 +1,56 @@
-import React from 'react';
+/** @jsx jsx */
 
-import { Cell, Grid } from '../src';
-import { Box, createRange } from './_utils';
+import { GEL, jsx } from '@westpac/core';
+import { Cell, Grid } from '@westpac/grid';
+import { Box } from './_utils';
 
-const rows = counts =>
-	counts.map(number =>
-		createRange(number).map(i => (
-			<Cell width={12 / number} key={`${number}_${i}`}>
-				<Box>
-					{i + 1}/{number}
-				</Box>
-			</Cell>
-		))
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Intopia />
+
+			<Grid>
+				<Cell>
+					<Box>1</Box>
+				</Cell>
+				<Cell>
+					<Box>2</Box>
+				</Cell>
+				<Cell>
+					<Box>3</Box>
+				</Cell>
+				<Cell>
+					<Box>4</Box>
+				</Cell>
+				<Cell>
+					<Box>5</Box>
+				</Cell>
+				<Cell>
+					<Box>6</Box>
+				</Cell>
+				<Cell>
+					<Box>7</Box>
+				</Cell>
+				<Cell>
+					<Box>8</Box>
+				</Cell>
+				<Cell>
+					<Box>9</Box>
+				</Cell>
+				<Cell>
+					<Box>10</Box>
+				</Cell>
+				<Cell>
+					<Box>11</Box>
+				</Cell>
+				<Cell>
+					<Box>12</Box>
+				</Cell>
+			</Grid>
+		</GEL>
 	);
+}
 
-export default () => <Grid>{rows([12, 6, 4, 2, 1])}</Grid>;
+export default Example;

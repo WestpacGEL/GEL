@@ -1,10 +1,14 @@
-import React from 'react';
+/** @jsx jsx */
 
-import { Component } from '../src';
-import { Box } from './_utils';
+import { GEL, jsx } from '@westpac/core';
+import { _COMPONENT_NAME_ } from '@westpac/_COMPONENT_KEY_';
 
-export default () => (
-	<Component>
-		<Box />
-	</Component>
-);
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<_COMPONENT_NAME_ />
+		</GEL>
+	);
+}
+
+export default Example;

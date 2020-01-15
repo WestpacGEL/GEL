@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ExpandLessIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ExpandLessIcon" {...props}>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const ExpandLessIcon = props => (
 
 ExpandLessIcon.defaultProps = {
 	...defaultProps,
-	label: 'Expand Less',
+	assistiveText: 'Expand Less',
 };
 ExpandLessIcon.propTypes = propTypes;

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const WriteIcon = props => (
-	<Icon {...props}>
+	<Icon icon="WriteIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const WriteIcon = props => (
 
 WriteIcon.defaultProps = {
 	...defaultProps,
-	label: 'Write',
+	assistiveText: 'Write',
 };
 WriteIcon.propTypes = propTypes;

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ExcelFileIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ExcelFileIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const ExcelFileIcon = props => (
 
 ExcelFileIcon.defaultProps = {
 	...defaultProps,
-	label: 'Excel File',
+	assistiveText: 'Excel File',
 };
 ExcelFileIcon.propTypes = propTypes;

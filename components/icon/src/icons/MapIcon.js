@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const MapIcon = props => (
-	<Icon {...props}>
+	<Icon icon="MapIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const MapIcon = props => (
 
 MapIcon.defaultProps = {
 	...defaultProps,
-	label: 'Map',
+	assistiveText: 'Map',
 };
 MapIcon.propTypes = propTypes;

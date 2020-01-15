@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const PendingIcon = props => (
-	<Icon {...props}>
+	<Icon icon="PendingIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const PendingIcon = props => (
 
 PendingIcon.defaultProps = {
 	...defaultProps,
-	label: 'Pending',
+	assistiveText: 'Pending',
 };
 PendingIcon.propTypes = propTypes;

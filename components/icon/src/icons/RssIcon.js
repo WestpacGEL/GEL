@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const RssIcon = props => (
-	<Icon {...props}>
+	<Icon icon="RssIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const RssIcon = props => (
 
 RssIcon.defaultProps = {
 	...defaultProps,
-	label: 'Rss',
+	assistiveText: 'Rss',
 };
 RssIcon.propTypes = propTypes;

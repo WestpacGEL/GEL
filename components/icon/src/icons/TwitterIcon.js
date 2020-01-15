@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const TwitterIcon = props => (
-	<Icon {...props}>
+	<Icon icon="TwitterIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const TwitterIcon = props => (
 
 TwitterIcon.defaultProps = {
 	...defaultProps,
-	label: 'Twitter',
+	assistiveText: 'Twitter',
 };
 TwitterIcon.propTypes = propTypes;

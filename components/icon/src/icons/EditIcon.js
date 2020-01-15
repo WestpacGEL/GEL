@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const EditIcon = props => (
-	<Icon {...props}>
+	<Icon icon="EditIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const EditIcon = props => (
 
 EditIcon.defaultProps = {
 	...defaultProps,
-	label: 'Edit',
+	assistiveText: 'Edit',
 };
 EditIcon.propTypes = propTypes;

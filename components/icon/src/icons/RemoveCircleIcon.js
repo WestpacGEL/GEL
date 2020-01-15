@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const RemoveCircleIcon = props => (
-	<Icon {...props}>
+	<Icon icon="RemoveCircleIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const RemoveCircleIcon = props => (
 
 RemoveCircleIcon.defaultProps = {
 	...defaultProps,
-	label: 'Remove Circle',
+	assistiveText: 'Remove Circle',
 };
 RemoveCircleIcon.propTypes = propTypes;

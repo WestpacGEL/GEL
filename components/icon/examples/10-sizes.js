@@ -1,8 +1,7 @@
-/* @jsx jsx */
+/** @jsx jsx */
 
-import React, { useState } from 'react';
-import { jsx } from '@westpac/core';
-
+import { GEL, jsx } from '@westpac/core';
+import { useState } from 'react';
 import {
 	AddIcon,
 	CalendarIcon,
@@ -16,8 +15,10 @@ import {
 	ProgressIcon,
 	StarIcon,
 	WriteIcon,
-} from '../src';
+} from '@westpac/icon';
 import { Row } from './_util';
+
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const sizes = ['xsmall', 'small', 'medium', 'large', 'xlarge'];
 const icons = [
@@ -45,7 +46,7 @@ const Button = ({ children, isActive, ...props }) => (
 			cursor: 'pointer',
 			display: 'inline-block',
 			fontSize: 12,
-			padding: '4px 8px',
+			padding: '0.4rem 0.8rem',
 		}}
 		{...props}
 	>
@@ -60,11 +61,13 @@ const Button = ({ children, isActive, ...props }) => (
 	</label>
 );
 
-export default () => {
+function Example({ brand }) {
 	const [activeSize, setSize] = useState(2);
 
 	return (
-		<>
+		<GEL brand={brand}>
+			<Intopia />
+
 			<Row>
 				{sizes.map((s, i) => (
 					<Button key={s} onClick={() => setSize(i)} isActive={i === activeSize}>
@@ -77,6 +80,8 @@ export default () => {
 					<I key={i} size={sizes[activeSize]} />
 				))}
 			</Row>
-		</>
+		</GEL>
 	);
-};
+}
+
+export default Example;

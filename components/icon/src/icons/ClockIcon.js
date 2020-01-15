@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ClockIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ClockIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const ClockIcon = props => (
 
 ClockIcon.defaultProps = {
 	...defaultProps,
-	label: 'Clock',
+	assistiveText: 'Clock',
 };
 ClockIcon.propTypes = propTypes;

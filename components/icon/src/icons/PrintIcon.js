@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const PrintIcon = props => (
-	<Icon {...props}>
+	<Icon icon="PrintIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const PrintIcon = props => (
 
 PrintIcon.defaultProps = {
 	...defaultProps,
-	label: 'Print',
+	assistiveText: 'Print',
 };
 PrintIcon.propTypes = propTypes;

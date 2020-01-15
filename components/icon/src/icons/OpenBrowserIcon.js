@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const OpenBrowserIcon = props => (
-	<Icon {...props}>
+	<Icon icon="OpenBrowserIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const OpenBrowserIcon = props => (
 
 OpenBrowserIcon.defaultProps = {
 	...defaultProps,
-	label: 'Open Browser',
+	assistiveText: 'Open Browser',
 };
 OpenBrowserIcon.propTypes = propTypes;

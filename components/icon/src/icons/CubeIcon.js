@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const CubeIcon = props => (
-	<Icon {...props}>
+	<Icon icon="CubeIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const CubeIcon = props => (
 
 CubeIcon.defaultProps = {
 	...defaultProps,
-	label: 'Cube',
+	assistiveText: 'Cube',
 };
 CubeIcon.propTypes = propTypes;

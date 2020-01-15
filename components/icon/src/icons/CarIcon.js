@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const CarIcon = props => (
-	<Icon {...props}>
+	<Icon icon="CarIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const CarIcon = props => (
 
 CarIcon.defaultProps = {
 	...defaultProps,
-	label: 'Car',
+	assistiveText: 'Car',
 };
 CarIcon.propTypes = propTypes;

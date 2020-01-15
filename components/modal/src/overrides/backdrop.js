@@ -1,0 +1,39 @@
+/** @jsx jsx */
+
+import { jsx } from '@westpac/core';
+import { useTransition, animated } from 'react-spring';
+
+export const Backdrop = ({ heading, open, onClose, size, dismissible, overrides, ...rest }) => {
+	const backdropTransition = useTransition(open, null, {
+		from: {
+			opacity: 0,
+			zIndex: '1001',
+		},
+		enter: { opacity: 1 },
+		leave: { opacity: 0 },
+		config: { duration: 400 },
+	});
+
+	return backdropTransition.map(
+		({ item, key, props }) =>
+			item && (
+				<animated.div key={key} style={props}>
+					<div {...rest} />
+				</animated.div>
+			)
+	);
+};
+
+export const backdropStyles = (_, {}) => {
+	return {
+		position: 'fixed',
+		backgroundColor: 'rgba(0,0,0,0.5)',
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'baseline',
+	};
+};

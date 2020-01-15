@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const OfficeIcon = props => (
-	<Icon {...props}>
+	<Icon icon="OfficeIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const OfficeIcon = props => (
 
 OfficeIcon.defaultProps = {
 	...defaultProps,
-	label: 'Office',
+	assistiveText: 'Office',
 };
 OfficeIcon.propTypes = propTypes;

@@ -1,23 +1,27 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Cell, Grid } from '../src';
 
-export const Box = props => (
-	<div
-		css={{
-			alignItems: 'center',
-			backgroundColor: 'rgba(197,59,0,0.15)',
-			borderRadius: 1,
-			color: '#c53b00',
-			display: 'flex',
-			height: '100%',
-			justifyContent: 'center',
-			minHeight: 60,
-		}}
-		{...props}
-	/>
-);
+export const Box = props => {
+	const { COLORS } = useBrand();
+
+	return (
+		<div
+			css={{
+				alignItems: 'center',
+				backgroundColor: COLORS.tints.hero10,
+				borderRadius: 1,
+				color: COLORS.hero,
+				display: 'flex',
+				height: '100%',
+				justifyContent: 'center',
+				minHeight: 60,
+			}}
+			{...props}
+		/>
+	);
+};
 
 export const GridOverlay = ({ children, columns = 12, gap }) => (
 	<div css={{ height: '100%', position: 'relative' }}>
@@ -47,21 +51,3 @@ export const GridOverlay = ({ children, columns = 12, gap }) => (
 		{children}
 	</div>
 );
-
-export function createRange(start, end, step = 1) {
-	if (end === undefined) {
-		end = start;
-		start = 0;
-	}
-
-	let index = -1;
-	let length = Math.max(Math.ceil((end - start) / step), 0);
-	let result = Array(length);
-
-	while (length--) {
-		result[++index] = start;
-		start += step;
-	}
-
-	return result;
-}

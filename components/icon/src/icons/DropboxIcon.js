@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const DropboxIcon = props => (
-	<Icon {...props}>
+	<Icon icon="DropboxIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const DropboxIcon = props => (
 
 DropboxIcon.defaultProps = {
 	...defaultProps,
-	label: 'Dropbox',
+	assistiveText: 'Dropbox',
 };
 DropboxIcon.propTypes = propTypes;

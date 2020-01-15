@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const TickIcon = props => (
-	<Icon {...props}>
+	<Icon icon="TickIcon" {...props}>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const TickIcon = props => (
 
 TickIcon.defaultProps = {
 	...defaultProps,
-	label: 'Tick',
+	assistiveText: 'Tick',
 };
 TickIcon.propTypes = propTypes;

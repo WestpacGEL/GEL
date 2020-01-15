@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const WordFileIcon = props => (
-	<Icon {...props}>
+	<Icon icon="WordFileIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const WordFileIcon = props => (
 
 WordFileIcon.defaultProps = {
 	...defaultProps,
-	label: 'Word File',
+	assistiveText: 'Word File',
 };
 WordFileIcon.propTypes = propTypes;

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const PauseCircleIcon = props => (
-	<Icon {...props}>
+	<Icon icon="PauseCircleIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const PauseCircleIcon = props => (
 
 PauseCircleIcon.defaultProps = {
 	...defaultProps,
-	label: 'Pause Circle',
+	assistiveText: 'Pause Circle',
 };
 PauseCircleIcon.propTypes = propTypes;

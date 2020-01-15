@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ShareIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ShareIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const ShareIcon = props => (
 
 ShareIcon.defaultProps = {
 	...defaultProps,
-	label: 'Share',
+	assistiveText: 'Share',
 };
 ShareIcon.propTypes = propTypes;

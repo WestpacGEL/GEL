@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const TransferIcon = props => (
-	<Icon {...props}>
+	<Icon icon="TransferIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const TransferIcon = props => (
 
 TransferIcon.defaultProps = {
 	...defaultProps,
-	label: 'Transfer',
+	assistiveText: 'Transfer',
 };
 TransferIcon.propTypes = propTypes;

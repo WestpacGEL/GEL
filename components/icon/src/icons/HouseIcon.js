@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const HouseIcon = props => (
-	<Icon {...props}>
+	<Icon icon="HouseIcon" {...props}>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const HouseIcon = props => (
 
 HouseIcon.defaultProps = {
 	...defaultProps,
-	label: 'House',
+	assistiveText: 'House',
 };
 HouseIcon.propTypes = propTypes;

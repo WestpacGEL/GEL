@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const UploadIcon = props => (
-	<Icon {...props}>
+	<Icon icon="UploadIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const UploadIcon = props => (
 
 UploadIcon.defaultProps = {
 	...defaultProps,
-	label: 'Upload',
+	assistiveText: 'Upload',
 };
 UploadIcon.propTypes = propTypes;

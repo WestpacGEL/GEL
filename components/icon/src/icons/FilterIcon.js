@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const FilterIcon = props => (
-	<Icon {...props}>
+	<Icon icon="FilterIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const FilterIcon = props => (
 
 FilterIcon.defaultProps = {
 	...defaultProps,
-	label: 'Filter',
+	assistiveText: 'Filter',
 };
 FilterIcon.propTypes = propTypes;

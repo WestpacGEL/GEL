@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const NotificationOffIcon = props => (
-	<Icon {...props}>
+	<Icon icon="NotificationOffIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const NotificationOffIcon = props => (
 
 NotificationOffIcon.defaultProps = {
 	...defaultProps,
-	label: 'Notification Off',
+	assistiveText: 'Notification Off',
 };
 NotificationOffIcon.propTypes = propTypes;

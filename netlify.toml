@@ -1,8 +1,8 @@
 [build]
-  command = "yarn bolt && yarn build && yarn docs:build"
+  command = "yarn && yarn build && yarn docs:build"
   publish = "docs/"
 
 [build.environment]
-  NODE_VERSION = "8"
+  NODE_VERSION = "10"
   YARN_VERSION = "1.12.3"
   YARN_FLAGS = "--frozen-lockfile"

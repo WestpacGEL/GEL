@@ -1,25 +1,59 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { paint } from './utils';
 
-export const Container = props => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
-	const padding = [12, 36, 48, 60]; // TODO: sholud come from `theme`
-	const maxWidth = 1320; // TODO: move to "local token"
+import { Container as ContainerWrapper, containerStyles } from './overrides/container';
+import pkg from '../package.json';
+
+// ==============================
+// Component
+// ==============================
+
+export const Container = ({ overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		Container: {
+			styles: containerStyles,
+			component: ContainerWrapper,
+			attributes: (_, a) => a,
+		},
+	};
+
+	const state = {
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	return (
-		<div
-			css={arrayValues({
-				marginLeft: 'auto',
-				marginRight: 'auto',
-				maxWidth: maxWidth,
-				paddingLeft: padding,
-				paddingRight: padding,
-			})}
-			{...props}
+		<overrides.Container.component
+			{...overrides.Container.attributes(state)}
+			css={overrides.Container.styles(state)}
 		/>
 	);
 };
+
+Container.propTypes = {
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Container: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
+};
+
+Container.defaultProps = {};

@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const MoreVerticalIcon = props => (
-	<Icon {...props}>
+	<Icon icon="MoreVerticalIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const MoreVerticalIcon = props => (
 
 MoreVerticalIcon.defaultProps = {
 	...defaultProps,
-	label: 'More Vertical',
+	assistiveText: 'More Vertical',
 };
 MoreVerticalIcon.propTypes = propTypes;

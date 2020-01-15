@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const PadlockOpenIcon = props => (
-	<Icon {...props}>
+	<Icon icon="PadlockOpenIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const PadlockOpenIcon = props => (
 
 PadlockOpenIcon.defaultProps = {
 	...defaultProps,
-	label: 'Padlock Open',
+	assistiveText: 'Padlock Open',
 };
 PadlockOpenIcon.propTypes = propTypes;

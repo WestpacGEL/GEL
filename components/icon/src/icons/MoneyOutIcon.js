@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const MoneyOutIcon = props => (
-	<Icon {...props}>
+	<Icon icon="MoneyOutIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const MoneyOutIcon = props => (
 
 MoneyOutIcon.defaultProps = {
 	...defaultProps,
-	label: 'Money Out',
+	assistiveText: 'Money Out',
 };
 MoneyOutIcon.propTypes = propTypes;

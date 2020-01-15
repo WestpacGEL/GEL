@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const CameraIcon = props => (
-	<Icon {...props}>
+	<Icon icon="CameraIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const CameraIcon = props => (
 
 CameraIcon.defaultProps = {
 	...defaultProps,
-	label: 'Camera',
+	assistiveText: 'Camera',
 };
 CameraIcon.propTypes = propTypes;

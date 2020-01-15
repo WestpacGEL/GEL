@@ -1,17 +1,10 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useTheme } from '@westpac/core';
-import { paint } from './utils';
 
-// ==============================
-// Utils
-// ==============================
-
-export const stringVal = v => (typeof v === 'number' ? `${v}px` : v);
-export const repeatNumeric = v => (typeof v === 'number' ? `repeat(${v}, 1fr)` : v);
-export const formatAreas = areas => areas.map(area => `"${area}"`).join(' ');
+import { Grid as GridWrapper, gridStyles } from './overrides/grid';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -20,40 +13,35 @@ export const formatAreas = areas => areas.map(area => `"${area}"`).join(' ');
 /**
  * A group of `Cell` components must be wrapped in a `Grid`.
  */
-export const Grid = ({
-	alignContent,
-	areas,
-	columnGap,
-	columns,
-	flow,
-	gap,
-	height,
-	justifyContent,
-	minRowHeight,
-	rowGap,
-	rows,
-	...props
-}) => {
-	const theme = useTheme();
-	const arrayValues = paint(theme.breakpoints);
+export const Grid = ({ overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		Grid: {
+			styles: gridStyles,
+			component: GridWrapper,
+			attributes: (_, a) => a,
+		},
+	};
+
+	const state = {
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	return (
-		<div
-			css={arrayValues({
-				alignContent: alignContent,
-				columnGap: columnGap,
-				display: 'grid',
-				gridAutoFlow: flow,
-				gridAutoRows: `minmax(${stringVal(minRowHeight)}, auto)`,
-				gridGap: gap,
-				gridTemplateAreas: areas ? formatAreas(areas) : null,
-				gridTemplateColumns: repeatNumeric(columns),
-				gridTemplateRows: rows ? repeatNumeric(rows) : null,
-				height: height,
-				justifyContent: justifyContent,
-				rowGap: rowGap,
-			})}
-			{...props}
+		<overrides.Grid.component
+			{...overrides.Grid.attributes(state)}
+			css={overrides.Grid.styles(state)}
 		/>
 	);
 };
@@ -81,23 +69,28 @@ Grid.propTypes = {
 		'start',
 		'stretch',
 	]),
+
 	/**
 	 * The `grid-template-areas` CSS property. Pass an array of strings, e.g. `["a a", "b c"]`.
 	 */
 	areas: PropTypes.arrayOf(PropTypes.string),
+
 	/**
 	 * The `column-gap` CSS property.
 	 */
 	columnGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
 	/**
 	 * The `grid-template-columns` CSS property. When a number is passed it is a
 	 * shorthand to specify the number of columns.
 	 */
-	columns: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	columns: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+
 	/**
 	 * The `grid-auto-flow` CSS property.
 	 */
-	flow: PropTypes.oneOf(['column dense', 'column', 'dense', 'row dense', 'row']),
+	flow: PropTypes.oneOf(['column dense', 'column', 'dense', 'row dense', 'row']).isRequired,
+
 	/**
 	 * The `grid-gap` CSS property.
 	 */
@@ -106,11 +99,13 @@ Grid.propTypes = {
 		PropTypes.string,
 		PropTypes.arrayOf(PropTypes.number),
 		PropTypes.arrayOf(PropTypes.string),
-	]),
+	]).isRequired,
+
 	/**
 	 * The `height` CSS property
 	 */
-	height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+
 	/**
 	 * The `justify-content` CSS property.
 	 */
@@ -128,25 +123,54 @@ Grid.propTypes = {
 		'start',
 		'stretch',
 	]),
+
 	/**
 	 * Minimum height of each row.
 	 */
-	minRowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	minRowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+
 	/**
 	 * The `row-gap` CSS property.
 	 */
 	rowGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
 	/**
 	 * The `grid-template-rows` CSS property. When a number is passed it is a
 	 * shorthand to specify the number of rows.
 	 */
 	rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+	/**
+	 * Alert children
+	 */
+	children: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Grid: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Cell: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Container: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Grid.defaultProps = {
 	columns: 12,
-	gap: [12, 24],
+	gap: ['1.2rem', '2.4rem'],
 	flow: 'row',
 	height: 'auto',
-	minRowHeight: 20,
+	minRowHeight: '2rem',
 };

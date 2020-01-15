@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const TakeOutIcon = props => (
-	<Icon {...props}>
+	<Icon icon="TakeOutIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const TakeOutIcon = props => (
 
 TakeOutIcon.defaultProps = {
 	...defaultProps,
-	label: 'Take Out',
+	assistiveText: 'Take Out',
 };
 TakeOutIcon.propTypes = propTypes;

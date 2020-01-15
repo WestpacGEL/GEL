@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const DeleteIcon = props => (
-	<Icon {...props}>
+	<Icon icon="DeleteIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const DeleteIcon = props => (
 
 DeleteIcon.defaultProps = {
 	...defaultProps,
-	label: 'Delete',
+	assistiveText: 'Delete',
 };
 DeleteIcon.propTypes = propTypes;

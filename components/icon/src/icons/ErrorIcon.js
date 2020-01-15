@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const ErrorIcon = props => (
-	<Icon {...props}>
+	<Icon icon="ErrorIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const ErrorIcon = props => (
 
 ErrorIcon.defaultProps = {
 	...defaultProps,
-	label: 'Error',
+	assistiveText: 'Error',
 };
 ErrorIcon.propTypes = propTypes;

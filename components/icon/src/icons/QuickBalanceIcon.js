@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const QuickBalanceIcon = props => (
-	<Icon {...props}>
+	<Icon icon="QuickBalanceIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const QuickBalanceIcon = props => (
 
 QuickBalanceIcon.defaultProps = {
 	...defaultProps,
-	label: 'Quick Balance',
+	assistiveText: 'Quick Balance',
 };
 QuickBalanceIcon.propTypes = propTypes;

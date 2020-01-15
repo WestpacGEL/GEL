@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const DownloadIcon = props => (
-	<Icon {...props}>
+	<Icon icon="DownloadIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const DownloadIcon = props => (
 
 DownloadIcon.defaultProps = {
 	...defaultProps,
-	label: 'Download',
+	assistiveText: 'Download',
 };
 DownloadIcon.propTypes = propTypes;

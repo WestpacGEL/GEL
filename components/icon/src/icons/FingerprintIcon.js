@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const FingerprintIcon = props => (
-	<Icon {...props}>
+	<Icon icon="FingerprintIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const FingerprintIcon = props => (
 
 FingerprintIcon.defaultProps = {
 	...defaultProps,
-	label: 'Fingerprint',
+	assistiveText: 'Fingerprint',
 };
 FingerprintIcon.propTypes = propTypes;

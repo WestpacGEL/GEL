@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const AndroidIcon = props => (
-	<Icon {...props}>
+	<Icon icon="AndroidIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const AndroidIcon = props => (
 
 AndroidIcon.defaultProps = {
 	...defaultProps,
-	label: 'Android',
+	assistiveText: 'Android',
 };
 AndroidIcon.propTypes = propTypes;

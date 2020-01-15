@@ -2,7 +2,7 @@ import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
 export const StarEmptyIcon = props => (
-	<Icon {...props}>
+	<Icon icon="StarEmptyIcon" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -13,6 +13,6 @@ export const StarEmptyIcon = props => (
 
 StarEmptyIcon.defaultProps = {
 	...defaultProps,
-	label: 'Star Empty',
+	assistiveText: 'Star Empty',
 };
 StarEmptyIcon.propTypes = propTypes;
