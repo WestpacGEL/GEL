@@ -88,8 +88,8 @@ export const Alert = ({
 	);
 
 	useEffect(() => {
-		setOpen(isOpen)
-	},[isOpen])
+		setOpen(isOpen);
+	}, [isOpen]);
 
 	return transition.map(
 		({ item, key, props }) =>
