@@ -28,7 +28,7 @@ export const Navigation = ({ components }) => {
 				<LinkItem name="Downloads" as="/" href="/" />
 
 				<NavigationBlock title="Foundation" tag="li">
-					<LinkList secondary>
+					<LinkList>
 						<LinkItem name="Color" href="/" as="/" />
 						<LinkItem name="Grid" href="/" as="/" />
 						<LinkItem name="Icons" href="/" as="/" />
@@ -45,7 +45,7 @@ export const Navigation = ({ components }) => {
 				</NavigationBlock>
 
 				<NavigationBlock title="Components" tag="li">
-					<LinkList secondary>
+					<LinkList>
 						{components.map(component => (
 							<LinkItem
 								key={component.id}
@@ -61,7 +61,7 @@ export const Navigation = ({ components }) => {
 	);
 };
 
-const LinkList = ({ secondary, ...props }) => {
+const LinkList = props => {
 	const { SPACING } = useBrand();
 	return (
 		<ul
@@ -69,9 +69,11 @@ const LinkList = ({ secondary, ...props }) => {
 				listStyle: 'none',
 				paddingLeft: SPACING(2),
 				margin: 0,
-				// TODO: This is pretty bad, need to improve!
 				a: {
-					fontWeight: secondary ? 400 : 700,
+					fontWeight: 700,
+				},
+				'li a': {
+					fontWeight: 400,
 				},
 			}}
 			{...props}
