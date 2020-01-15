@@ -46,13 +46,11 @@ function Example({ brand }) {
 				back={{
 					visible: true,
 					text: 'Go back',
-					assistiveText: page => `Go to previous page which is ${page}`,
 					onClick: (event, page) => console.log(`Go to ${page}`, event),
 				}}
 				next={{
 					visible: true,
 					text: 'Go forth',
-					assistiveText: page => `Go to next page which is ${page}`,
 					onClick: (event, page) => console.log(`Go to ${page}`, event),
 				}}
 			>
@@ -153,10 +151,6 @@ function Example({ brand }) {
 				infinite
 				back={{
 					visible: true,
-					assistiveText: page => `Go to previous page which is ${page}`,
-				}}
-				next={{
-					assistiveText: page => `Go to next page which is ${page}`,
 				}}
 				data={[
 					{ text: '1', onClick: (event, page) => console.log(`Page ${page}`, event) },

@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers, merge } from '@westpac/core';
-import { useEffect, Children, cloneElement, createContext, useContext } from 'react';
+import { useEffect, Children, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { Pagination as PaginationWrapper, paginationStyles } from './overrides/pagination';
+import { PageList, pageListStyles } from './overrides/pageList';
 import { usePagination } from './usePagination';
 import pkg from '../package.json';
 import { Page } from './Page';
@@ -50,6 +51,11 @@ export const Pagination = ({
 			component: PaginationWrapper,
 			attributes: (_, a) => a,
 		},
+		PageList: {
+			styles: pageListStyles,
+			component: PageList,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const state = {
@@ -72,12 +78,11 @@ export const Pagination = ({
 	const backDefault = {
 		text: 'Back',
 		visible: true,
-		assistiveText: page => `Step back to page ${page + 1}`,
 	};
+
 	const nextDefault = {
 		text: 'Next',
 		visible: true,
-		assistiveText: page => `Step forward to page ${page + 1}`,
 	};
 
 	const back = merge(backDefault, backProps);
@@ -122,44 +127,48 @@ export const Pagination = ({
 			value={{ current: pageLogic.current, overrides: componentOverrides }}
 		>
 			<overrides.Pagination.component
+				aria-label={`Page ${current + 1}`}
 				className={className}
 				{...overrides.Pagination.attributes(state)}
 				css={overrides.Pagination.styles(state)}
 			>
-				{back.visible && (
-					<Page
-						text={back.text}
-						first
-						nextIndex={backIndex}
-						disabled={pageLogic.current === 0 && !infinite}
-						assistiveText={back.assistiveText(backIndex)}
-						onClick={wrapHandlers(
-							event => back.onClick && back.onClick(event, backIndex),
-							event => pageLogic.previous(event)
-						)}
-					/>
-				)}
-				{allChildren.map((page, index) => (
-					<Page
-						key={index}
-						index={index}
-						text={page.text}
-						onClick={event => pageLogic.setPage(event, allChildren, index)}
-					/>
-				))}
-				{next.visible && (
-					<Page
-						text={next.text}
-						last
-						nextIndex={nextIndex}
-						disabled={pageLogic.current === pageCount - 1 && !infinite}
-						assistiveText={next.assistiveText(nextIndex)}
-						onClick={wrapHandlers(
-							event => next.onClick && next.onClick(event, nextIndex),
-							event => pageLogic.next(event)
-						)}
-					/>
-				)}
+				<overrides.PageList.component
+					{...overrides.PageList.attributes(state)}
+					css={overrides.PageList.styles(state)}
+				>
+					{back.visible && (
+						<Page
+							text={back.text}
+							first
+							nextIndex={backIndex}
+							disabled={pageLogic.current === 0 && !infinite}
+							onClick={wrapHandlers(
+								event => back.onClick && back.onClick(event, backIndex),
+								event => pageLogic.previous(event)
+							)}
+						/>
+					)}
+					{allChildren.map((page, index) => (
+						<Page
+							key={index}
+							index={index}
+							text={page.text}
+							onClick={event => pageLogic.setPage(event, allChildren, index)}
+						/>
+					))}
+					{next.visible && (
+						<Page
+							text={next.text}
+							last
+							nextIndex={nextIndex}
+							disabled={pageLogic.current === pageCount - 1 && !infinite}
+							onClick={wrapHandlers(
+								event => next.onClick && next.onClick(event, nextIndex),
+								event => pageLogic.next(event)
+							)}
+						/>
+					)}
+				</overrides.PageList.component>
 			</overrides.Pagination.component>
 		</PaginationContext.Provider>
 	);
@@ -220,6 +229,11 @@ Pagination.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		Pagination: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		PageList: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
