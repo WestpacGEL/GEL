@@ -22,7 +22,7 @@ export const Navigation = ({ components }) => {
 			</Heading>
 
 			<LinkList>
-				<LinkItem name="Home" as="/" href={`/?brand=${brandName}`} />
+				<LinkItem name="Home" as="/" href="/" />
 				<LinkItem name="Accessibility" as="/" href="/" />
 				<LinkItem name="Design tokens" as="/tokens" href="/tokens" />
 				<LinkItem name="Downloads" as="/" href="/" />
@@ -61,7 +61,7 @@ export const Navigation = ({ components }) => {
 	);
 };
 
-const LinkList = props => {
+const LinkList = ({ secondary, ...props }) => {
 	const { SPACING } = useBrand();
 	return (
 		<ul
@@ -71,7 +71,7 @@ const LinkList = props => {
 				margin: 0,
 				// TODO: This is pretty bad, need to improve!
 				a: {
-					fontWeight: props.secondary ? 400 : 700,
+					fontWeight: secondary ? 400 : 700,
 				},
 			}}
 			{...props}
