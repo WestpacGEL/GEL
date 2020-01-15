@@ -13,9 +13,9 @@ export const panelStyles = (_, { position }) => {
 	return {
 		position: 'absolute',
 		left: '50%',
-		bottom: position === 'top' && '100%',
+		bottom: position.placement === 'top' && '100%',
 		transform: 'translateX(-50%)',
-		[position === 'top' ? 'marginBottom' : 'marginTop']: '0.9375rem',
+		[position.placement === 'top' ? 'marginBottom' : 'marginTop']: '0.9375rem',
 		boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
 		border: `1px solid ${COLORS.muted}`,
 		borderRadius: 3,
@@ -27,18 +27,20 @@ export const panelStyles = (_, { position }) => {
 		'::before': {
 			content: '""',
 			position: 'absolute',
-			[position === 'top' ? 'bottom' : 'top']: '-0.8125rem',
+			[position.placement === 'top' ? 'bottom' : 'top']: '-0.8125rem',
 			left: '50%',
 			marginLeft: '-0.5rem',
 			width: 0,
-			[position === 'top' ? 'borderTop' : 'borderBottom']: `0.75rem solid ${COLORS.muted}`,
+			[position.placement === 'top'
+				? 'borderTop'
+				: 'borderBottom']: `0.75rem solid ${COLORS.muted}`,
 			borderRight: '0.5rem solid transparent',
 			borderLeft: '0.5rem solid transparent',
 			fontSize: 0,
 			lineHeight: 0,
 		},
 
-		...(position === 'top' && {
+		...(position.placement === 'top' && {
 			'::after': {
 				content: '""',
 				position: 'absolute',

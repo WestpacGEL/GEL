@@ -2,6 +2,7 @@
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import { useState, useEffect, useRef, cloneElement } from 'react';
+import { usePopoverPosition } from '@westpac/hooks';
 import { CloseIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
 
@@ -28,7 +29,7 @@ export const Popover = ({
 	} = useBrand();
 	const [popoverId] = useState(useInstanceId());
 	const [open, setOpen] = useState(open);
-	const [position, setPosition] = useState('top');
+	const [position, setPosition] = useState({ placement: 'top' });
 	const triggerRef = useRef();
 	const popoverRef = useRef();
 
@@ -78,19 +79,6 @@ export const Popover = ({
 	);
 
 	useEffect(() => {
-		if (open) {
-			const trigger = triggerRef.current.getBoundingClientRect();
-			const popover = popoverRef.current.getBoundingClientRect();
-
-			if (popover.height > trigger.top) {
-				setPosition('bottom');
-			} else {
-				setPosition('top');
-			}
-		}
-	});
-
-	useEffect(() => {
 		setOpen(isOpen);
 	}, [isOpen]);
 
@@ -114,6 +102,7 @@ export const Popover = ({
 
 	useEffect(() => {
 		if (open) {
+			setPosition(usePopoverPosition(triggerRef, popoverRef));
 			document.addEventListener('click', handleOutsideClick);
 		}
 		return () => {
