@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Body as BodyWrapper, bodyStyles } from './overrides/body';
 import pkg from '../package.json';
 
 // ==============================
@@ -22,8 +22,8 @@ export const Body = ({ tag: Tag, children, overrides: componentOverrides, ...res
 
 	const defaultOverrides = {
 		Body: {
-			styles: wrapperStyles,
-			component: Wrapper,
+			styles: bodyStyles,
+			component: BodyWrapper,
 			attributes: (_, a) => a,
 		},
 	};
