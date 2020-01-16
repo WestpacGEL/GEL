@@ -13,8 +13,10 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 
 	let navItems = components;
 
-	if (location.pathname !== '/') {
-		navItems = navItems.filter(component => location.pathname.startsWith(`/${component.parent}`));
+	if (location.pathname !== '/' && (location.pathname.match(/\//g) || []).length === 1) {
+		navItems = navItems.filter(component => location.pathname === `/${component.parent}`);
+	} else if ((location.pathname.match(/\//g) || []).length > 1) {
+		navItems = navItems.filter(component => location.pathname.split('/')[1] === component.parent);
 	} else {
 		navItems = navItems.filter(component => component.landing);
 	}

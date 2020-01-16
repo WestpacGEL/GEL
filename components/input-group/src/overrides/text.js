@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
-import { Text as TextInput } from '@westpac/text-input';
+import { jsx } from '@westpac/core';
+import { TextInput } from '@westpac/text-input';
 import React from 'react';
 
 export const Text = ({ data, look, left, right, overrides, ...rest }) => (

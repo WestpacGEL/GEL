@@ -4,14 +4,14 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Item as ItemWrapper, itemStyles } from './overrides/item';
-import { ItemText, itemTextStyles } from './overrides/itemText';
+import { ItemButton, itemButtonStyles } from './overrides/itemButton';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
 export const Item = ({
 	index,
 	groupIndex,
-	review,
+	end,
 	onClick,
 	children,
 	className,
@@ -31,26 +31,26 @@ export const Item = ({
 			component: ItemWrapper,
 			attributes: (_, a) => a,
 		},
-		ItemText: {
-			styles: itemTextStyles,
-			component: ItemText,
+		ItemButton: {
+			styles: itemButtonStyles,
+			component: ItemButton,
 			attributes: (_, a) => a,
 		},
 	};
 
 	const visited =
-		(grouped && !review && ropeGraph[groupIndex][index] === 'visited') ||
-		((!grouped || review) && ropeGraph[index][0] === 'visited');
+		(grouped && !end && ropeGraph[groupIndex][index] === 'visited') ||
+		((!grouped || end) && ropeGraph[index][0] === 'visited');
 
 	const active =
 		(!grouped && index === currStep) ||
 		(index === currStep && groupIndex === currGroup) ||
-		(review && index === currGroup);
+		(end && index === currGroup);
 
 	let furthest = false;
 
 	if (visited) {
-		if (grouped && !review) {
+		if (grouped && !end) {
 			if (ropeGraph[groupIndex][index + 1] && ropeGraph[groupIndex][index + 1] === 'unvisited') {
 				furthest = true;
 			} else if (
@@ -68,7 +68,7 @@ export const Item = ({
 	const state = {
 		index,
 		groupIndex,
-		review,
+		end,
 		visited,
 		grouped,
 		active,
@@ -90,13 +90,13 @@ export const Item = ({
 			{...overrides.Item.attributes(state)}
 			css={overrides.Item.styles(state)}
 		>
-			<overrides.ItemText.component
+			<overrides.ItemButton.component
 				onClick={onClick}
-				{...overrides.ItemText.attributes(state)}
-				css={overrides.ItemText.styles(state)}
+				{...overrides.ItemButton.attributes(state)}
+				css={overrides.ItemButton.styles(state)}
 			>
 				{children}
-			</overrides.ItemText.component>
+			</overrides.ItemButton.component>
 		</overrides.Item.component>
 	);
 };
@@ -106,9 +106,9 @@ export const Item = ({
 // ==============================
 Item.propTypes = {
 	/**
-	 * Whether or not a review step
+	 * Whether or not a end step
 	 */
-	review: PropTypes.bool,
+	end: PropTypes.bool,
 
 	/**
 	 * The override API
@@ -119,7 +119,7 @@ Item.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ItemText: PropTypes.shape({
+		ItemButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -128,5 +128,5 @@ Item.propTypes = {
 };
 
 Item.defaultProps = {
-	review: false,
+	end: false,
 };
