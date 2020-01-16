@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, wrapHandlers, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, wrapHandlers, mergeWith } from '@westpac/core';
 import { useEffect, Children, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
@@ -85,8 +85,8 @@ export const Pagination = ({
 		visible: true,
 	};
 
-	const back = merge(backDefault, backProps);
-	const next = merge(nextDefault, nextProps);
+	const back = mergeWith(backDefault, backProps);
+	const next = mergeWith(nextDefault, nextProps);
 
 	let allChildren = data;
 

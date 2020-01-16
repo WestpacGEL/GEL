@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import { Group as GroupWrapper, groupStyles } from './overrides/group';
 import { GroupItems, groupItemsStyles } from './overrides/groupItems';
-import { GroupText, groupTextStyles } from './overrides/groupText';
+import { GroupButton, groupButtonStyles } from './overrides/groupButton';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
@@ -32,9 +32,9 @@ export const Group = ({
 			component: GroupWrapper,
 			attributes: (_, a) => a,
 		},
-		GroupText: {
-			styles: groupTextStyles,
-			component: GroupText,
+		GroupButton: {
+			styles: groupButtonStyles,
+			component: GroupButton,
 			attributes: (_, a) => a,
 		},
 		GroupItems: {
@@ -63,13 +63,13 @@ export const Group = ({
 			{...overrides.Group.attributes(state)}
 			css={overrides.Group.styles(state)}
 		>
-			<overrides.GroupText.component
+			<overrides.GroupButton.component
 				onClick={() => handleClick(index)}
-				{...overrides.GroupText.attributes(state)}
-				css={overrides.GroupText.styles(state)}
+				{...overrides.GroupButton.attributes(state)}
+				css={overrides.GroupButton.styles(state)}
 			>
 				{text}
-			</overrides.GroupText.component>
+			</overrides.GroupButton.component>
 			<overrides.GroupItems.component
 				hidden={openGroup === null || index !== openGroup}
 				{...overrides.GroupItems.attributes(state)}
@@ -99,7 +99,7 @@ Group.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		GroupText: PropTypes.shape({
+		GroupButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

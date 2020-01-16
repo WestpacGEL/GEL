@@ -1,6 +1,8 @@
 const { COLORS } = require('./colors');
 const { TYPE } = require('./type');
 
+const focusOutlineWidth = '2px';
+
 module.exports = {
 	PACKS: {
 		headline: {
@@ -74,7 +76,8 @@ module.exports = {
 			},
 		},
 		focus: {
-			outline: `2px solid ${COLORS.focus}`,
+			outline: `solid ${COLORS.focus}`,
+			outlineWidth: focusOutlineWidth,
 			outlineOffset: '3px',
 		},
 	},

@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import ReactDOM from 'react-dom';
 import { jsx } from '@westpac/core';
 
-export const Bubble = forwardRef(({ tooltipId, text, title, visible, ...props }, ref) => {
+export const Bubble = forwardRef(({ position, tooltipId, text, title, visible, ...props }, ref) => {
 	return ReactDOM.createPortal(
 		<span id={tooltipId} ref={ref} {...props}>
 			{text}
