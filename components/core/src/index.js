@@ -5,7 +5,7 @@ export { useMediaQuery } from './useMediaQuery';
 export { useInstanceId } from './useInstanceId';
 export { wrapHandlers } from './wrapHandlers';
 export { devWarning } from './devWarning';
+export { mergeWith } from './mergeWith';
 export { useFonts } from './useFonts';
 export { asArray } from './asArray';
-export { merge } from './merge';
 export { GEL } from './GEL';

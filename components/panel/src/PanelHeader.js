@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, mergeWith } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Header, headerStyles } from './overrides/header';
@@ -37,7 +37,7 @@ export const PanelHeader = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		merge(componentOverrides, overridesCtx)
+		mergeWith(componentOverrides, overridesCtx)
 	);
 
 	return (

@@ -9,10 +9,11 @@ export const bodyStyles = (_, props) => {
 	const { COLORS, TYPE } = useBrand();
 
 	let key;
-	if (typeof window === 'undefined') {
-		key = Buffer.from('d3JpdHRlbmJ5', 'base64').toString();
-	} else {
+
+	if (window) {
 		key = atob('d3JpdHRlbmJ5');
+	} else {
+		key = Buffer.from('d3JpdHRlbmJ5', 'base64').toString();
 	}
 
 	return {

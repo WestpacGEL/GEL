@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Alert as AlertWrapper, alertStyles } from './overrides/alert';
@@ -17,6 +17,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const Alert = ({
+	open: isOpen,
 	look,
 	dismissible,
 	icon,
@@ -31,7 +32,7 @@ export const Alert = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(isOpen);
 	const transition = useTransition(open, null, {
 		initial: { opacity: 1 },
 		from: { opacity: 1 },
@@ -85,6 +86,10 @@ export const Alert = ({
 		brandOverrides,
 		componentOverrides
 	);
+
+	useEffect(() => {
+		setOpen(isOpen);
+	}, [isOpen]);
 
 	return transition.map(
 		({ item, key, props }) =>
@@ -201,6 +206,7 @@ Alert.propTypes = {
 };
 
 Alert.defaultProps = {
+	open: true,
 	look: 'info',
 	dismissible: false,
 	headingTag: 'h2',
