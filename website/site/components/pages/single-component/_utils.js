@@ -2,7 +2,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
-import { CubeIcon, GenericFileIcon } from '@westpac/icon';
+import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { Well } from '@westpac/well';
 
 import { BlocksHub } from './blocks-hub';
@@ -90,7 +90,7 @@ export const IntroSection = ({ description, pageLinks }) => {
 };
 
 export const RelatedInformation = () => {
-	const { SPACING } = useBrand();
+	const { COLORS, SPACING } = useBrand();
 	return (
 		<Container>
 			<Grid>
@@ -110,23 +110,67 @@ export const RelatedInformation = () => {
 					<Grid columns={10}>
 						<Cell width={5}>
 							<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
-							<Heading tag="h4" sise={8}>
-								Iconography
-							</Heading>
-							<p css={{ marginTop: 0 }}>How to use icons, when and when not to use icons.</p>
-							<Heading tag="h4" sise={8}>
-								Sketch UI kit
-							</Heading>
-							<p css={{ marginTop: 0 }}>How to use icons, when and when not to use icons.</p>
+							<TextBlock title="Iconography">
+								<p css={{ marginTop: 0 }}>
+									How to use icons, when and when not to use icons.{' '}
+									<a href="#" css={{ color: COLORS.primary }}>
+										Read about our UI icon library
+									</a>
+								</p>
+							</TextBlock>
+
+							<TextBlock title="Sketch UI Kit">
+								<p css={{ marginTop: 0 }}>
+									Design assets to help you create high quality consistent digital experiences.{' '}
+									<a href="#" css={{ color: COLORS.primary }}>
+										Read about the Sketch UI Kit
+									</a>
+								</p>
+							</TextBlock>
 						</Cell>
 						<Cell width={1} />
 						<Cell width={4}>
 							<IconTitle icon={CubeIcon}>Components</IconTitle>
+							<ul css={{ margin: 0, padding: 0 }}>
+								<ComponentLink>Button drop downs</ComponentLink>
+								<ComponentLink>Button groups</ComponentLink>
+								<ComponentLink>Icons</ComponentLink>
+							</ul>
 						</Cell>
 					</Grid>
 				</Cell>
 			</Grid>
 		</Container>
+	);
+};
+
+const TextBlock = ({ title, children }) => {
+	const { SPACING } = useBrand();
+	return (
+		<div css={{ marginTop: SPACING(4) }}>
+			<Heading tag="h4" size={9}>
+				{title}
+			</Heading>
+			{children}
+		</div>
+	);
+};
+
+const ComponentLink = ({ children }) => {
+	const { COLORS, SPACING } = useBrand();
+	return (
+		<li
+			css={{
+				listStyle: 'none',
+				padding: `${SPACING(3)} 0`,
+				borderBottom: `solid 1px ${COLORS.border}`,
+			}}
+		>
+			<div css={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+				<span>{children}</span>
+				<ArrowRightIcon color={COLORS.primary} />
+			</div>
+		</li>
 	);
 };
 
@@ -138,7 +182,6 @@ const IconTitle = ({ icon: Icon, children }) => {
 				display: 'flex',
 				justifyContent: 'space-between',
 				paddingBottom: SPACING(3),
-				marginBottom: SPACING(3),
 				borderBottom: `solid 1px ${COLORS.neutral}`,
 			}}
 		>
