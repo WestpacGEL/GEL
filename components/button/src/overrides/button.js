@@ -25,8 +25,10 @@ export const buttonStyles = (_, { look, size, soft, block, justify }) => {
 		color: COLORS.text,
 	};
 
-	let key = atob('cHJpZGU=');
-	if (!window) {
+	let key;
+	if (window) {
+		key = atob('cHJpZGU=');
+	} else {
 		key = Buffer.from('cHJpZGU=', 'base64').toString();
 	}
 
