@@ -25,7 +25,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-rope'] = {
 		Item: {
-			styles: (styles, { grouped, review, visited, furthest }) => ({
+			styles: (styles, { grouped, end, visited, furthest }) => ({
 				...styles,
 
 				'::before': {
@@ -36,7 +36,7 @@ function Example({ brand }) {
 				'::after': {
 					...styles['::after'],
 					border: `2px solid ${visited ? 'navy' : 'cornflowerblue'}`,
-					backgroundColor: grouped || review ? (visited ? 'navy' : 'cornflowerblue') : '#fff',
+					backgroundColor: grouped || end ? (visited ? 'navy' : 'cornflowerblue') : '#fff',
 				},
 			}),
 		},
@@ -61,7 +61,7 @@ function Example({ brand }) {
 							<Item onClick={handleClick(2)}>Step 3</Item>
 							<Item onClick={handleClick(3)}>Step 4</Item>
 							<Item onClick={handleClick(4)}>Step 5</Item>
-							<Item review onClick={handleClick(5)}>
+							<Item end onClick={handleClick(5)}>
 								Review and Submit
 							</Item>
 						</ProgressRope>
@@ -104,7 +104,7 @@ function Example({ brand }) {
 										{ text: 'Step 6', onClick: handleClick2(6) },
 									],
 								},
-								{ type: 'review', text: 'Review and Submit', onClick: handleClick2(7) },
+								{ type: 'end', text: 'Review and Submit', onClick: handleClick2(7) },
 							]}
 							overrides={{
 								GroupText: {
@@ -123,7 +123,7 @@ function Example({ brand }) {
 									}),
 								},
 								Item: {
-									styles: (styles, { grouped, review, visited, furthest }) => ({
+									styles: (styles, { grouped, end, visited, furthest }) => ({
 										...styles,
 
 										'::before': {
@@ -134,8 +134,7 @@ function Example({ brand }) {
 										'::after': {
 											...styles['::after'],
 											border: `2px solid ${visited ? 'darkmagenta' : 'plum'}`,
-											backgroundColor:
-												grouped || review ? (visited ? 'darkmagenta' : 'plum') : '#fff',
+											backgroundColor: grouped || end ? (visited ? 'darkmagenta' : 'plum') : '#fff',
 										},
 									}),
 								},
