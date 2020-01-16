@@ -20,7 +20,7 @@ export const DesignTab = ({ description, doc }) => {
 			<BlocksDocs title="UX rationale" blocks={nodes} />
 			<Separator />
 			<BlocksDocs title="Visual design rationale" blocks={nodes} />
-			<Separator />
+			<Separator style={{ marginBottom: 0 }} />
 			<RelatedInformation />
 		</Fragment>
 	);

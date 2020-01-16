@@ -82,7 +82,7 @@ const Tabs = ({ component, dataComponent: DataComponent }) => {
 		Panel: {
 			styles: styles => ({
 				...styles,
-				padding: `${SPACING(4)} 0`,
+				padding: `${SPACING(4)} 0 0`,
 				backgroundColor: COLORS.background,
 			}),
 		},
