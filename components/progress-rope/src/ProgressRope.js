@@ -168,7 +168,7 @@ export const ProgressRope = ({
 						key={i}
 						index={i}
 						onClick={onClick}
-						review={type && type === 'review'}
+						end={type && type === 'end'}
 						overrides={componentOverrides}
 					>
 						{text}
