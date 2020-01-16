@@ -14,7 +14,7 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 	let navItems = components;
 
 	if (location.pathname !== '/') {
-		navItems = navItems.filter(component => location.pathname.startsWith(`/${component.parent}`));
+		navItems = navItems.filter(component => location.pathname === `/${component.parent}`);
 	} else {
 		navItems = navItems.filter(component => component.landing);
 	}

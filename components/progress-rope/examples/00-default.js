@@ -36,7 +36,7 @@ function Example({ brand }) {
 							<Item onClick={handleClick(2)}>Step 3</Item>
 							<Item onClick={handleClick(3)}>Step 4</Item>
 							<Item onClick={handleClick(4)}>Step 5</Item>
-							<Item review onClick={handleClick(5)}>
+							<Item end onClick={handleClick(5)}>
 								Review and Submit
 							</Item>
 						</ProgressRope>
@@ -59,7 +59,7 @@ function Example({ brand }) {
 								{ text: 'Step 3', onClick: handleClick2(2) },
 								{ text: 'Step 4', onClick: handleClick2(3) },
 								{ text: 'Step 5', onClick: handleClick2(5) },
-								{ type: 'review', text: 'Review and Submit', onClick: handleClick2(5) },
+								{ type: 'end', text: 'Review and Submit', onClick: handleClick2(5) },
 							]}
 						/>
 					</Wrapper>

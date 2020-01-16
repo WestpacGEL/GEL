@@ -8,8 +8,10 @@ export const Body = ({ tag: Tag, ...rest }) => <Tag {...rest} />;
 export const bodyStyles = (_, props) => {
 	const { COLORS, TYPE } = useBrand();
 
-	let key = atob('d3JpdHRlbmJ5');
-	if (!window) {
+	let key;
+	if (window) {
+		key = atob('d3JpdHRlbmJ5');
+	} else {
 		key = Buffer.from('d3JpdHRlbmJ5', 'base64').toString();
 	}
 
