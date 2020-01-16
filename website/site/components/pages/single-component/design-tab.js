@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { Badge } from '@westpac/badge';
 import { Cell, Container, Grid } from '@westpac/grid';
 
-import { BlocksDocs, ExampleBlock, IntroSection, Separator } from './_utils';
+import { BlocksDocs, ExampleBlock, IntroSection, RelatedInformation, Separator } from './_utils';
 
 export const DesignTab = ({ description, doc }) => {
 	const nodes = doc && doc.document ? JSON.parse(doc.document).nodes : null;
@@ -20,6 +20,8 @@ export const DesignTab = ({ description, doc }) => {
 			<BlocksDocs title="UX rationale" blocks={nodes} />
 			<Separator />
 			<BlocksDocs title="Visual design rationale" blocks={nodes} />
+			<Separator />
+			<RelatedInformation />
 		</Fragment>
 	);
 };
