@@ -20,7 +20,7 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 		navItems = navItems.filter(component => location.pathname.split('/')[1] === component.parent);
 	} else {
 		navItems = navItems.filter(component => component.landing);
-		if(navItems.length === 0) {
+		if (navItems.length === 0) {
 			navItems = components;
 		}
 	}

@@ -45,13 +45,17 @@ export function AppStart({ components, packageName, pkg, version }) {
 							<Route
 								exact
 								path="/"
-								render={route => <HomeStart {...route} packageName={packageName} pkg={pkg} version={version} />}
+								render={route => (
+									<HomeStart {...route} packageName={packageName} pkg={pkg} version={version} />
+								)}
 							/>
 							{components.map(({ slug, ...props }) => (
 								<Route
 									key={slug}
 									path={`/${slug}`}
-									render={route => <Page {...route} {...props} brand={BRANDS[brand]} pkgVersion={version} />}
+									render={route => (
+										<Page {...route} {...props} brand={BRANDS[brand]} pkgVersion={version} />
+									)}
 								/>
 							))}
 						</Switch>

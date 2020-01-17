@@ -53,12 +53,14 @@ export class Page extends React.Component {
 				<Container css={{ marginBottom: '3rem' }}>
 					<h1>
 						{label}
-						<span css={{
-							display: 'inline-block',
-							fontSize: '1rem',
-							fontWeight: 400,
-							marginLeft: '1rem',
-						}}>
+						<span
+							css={{
+								display: 'inline-block',
+								fontSize: '1rem',
+								fontWeight: 400,
+								marginLeft: '1rem',
+							}}
+						>
 							v{version}
 						</span>
 					</h1>

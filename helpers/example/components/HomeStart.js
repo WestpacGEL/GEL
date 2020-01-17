@@ -12,15 +12,18 @@ export function HomeStart({ packageName, pkg, version }) {
 			<Container>
 				<h1>
 					{packageName} Examples
-					{ version && <span css={{
-						display: 'inline-block',
-						fontSize: '1rem',
-						fontWeight: 400,
-						marginLeft: '1rem',
-					}}>
-						v{version}
-					</span>
-				}
+					{version && (
+						<span
+							css={{
+								display: 'inline-block',
+								fontSize: '1rem',
+								fontWeight: 400,
+								marginLeft: '1rem',
+							}}
+						>
+							v{version}
+						</span>
+					)}
 				</h1>
 
 				<p>Click one of the examples on the left to view it.</p>
