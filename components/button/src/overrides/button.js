@@ -26,10 +26,10 @@ export const buttonStyles = (_, { look, size, soft, block, justify }) => {
 	};
 
 	let key;
-	if (window) {
-		key = atob('cHJpZGU=');
-	} else {
+	if (typeof window === 'undefined') {
 		key = Buffer.from('cHJpZGU=', 'base64').toString();
+	} else {
+		key = atob('cHJpZGU=');
 	}
 
 	const styleMap = {

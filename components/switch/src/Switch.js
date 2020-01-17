@@ -134,7 +134,11 @@ export const Switch = ({
 							{toggleText[0]}
 						</overrides.ToggleText.component>
 						<overrides.ToggleText.component
-							{...overrides.ToggleText.attributes({ ...state, checked: !checked, position: 'right' })}
+							{...overrides.ToggleText.attributes({
+								...state,
+								checked: !checked,
+								position: 'right',
+							})}
 							css={overrides.ToggleText.styles({ ...state, checked: !checked, position: 'right' })}
 						>
 							{toggleText[1]}
