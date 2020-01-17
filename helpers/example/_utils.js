@@ -43,12 +43,15 @@ const findExampleFiles = (component, parent = '') => {
 			.readdirSync(exampleFolder)
 			.filter(file => !file.startsWith('.') && !file.startsWith('_') && file.endsWith('.js'));
 
+		const { version } = require(path.normalize(`${__dirname}/../../components/${component}/package.json`));
+
 		return files.map(filename => {
 			const slug = `${component}/${slugFromFilename(filename)}`;
 			const label = labelFromSlug(slug);
 
 			return {
 				component,
+				version,
 				filename,
 				slug,
 				label,
@@ -73,7 +76,7 @@ const findExampleFiles = (component, parent = '') => {
  *
  * @return {string}            - A string of code to be saved into a temp file for webpack
  */
-function makeCode(components, entry, name = ' ') {
+function makeCode(components, entry, name = ' ', version = '') {
 	return `
 		import app from '${__dirname}/${entry}';
 
@@ -90,7 +93,7 @@ function makeCode(components, entry, name = ' ') {
 				.join(',\n')}
 		];
 
-		app(components, "${labelFromSlug(name)}", "${name}");
+		app(components, "${labelFromSlug(name)}", "${name}", "${version}");
 	`;
 }
 

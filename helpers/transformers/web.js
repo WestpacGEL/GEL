@@ -116,6 +116,8 @@ function build(BRAND) {
 	});
 
 	return `
+		import { OVERRIDES as _OVERRIDES } from '../overrides/index';
+
 		const bodyFont = ${JSON.stringify(bodyFont.fontFamily)};
 		const brandFont = ${JSON.stringify(brandFont.fontFamily)};
 		export const SPACING = ( i, minor, unit = 'rem' ) => {
@@ -126,7 +128,7 @@ function build(BRAND) {
 		export const TYPE = ${TYPE};
 		export const PACKS = ${JSON.stringify(PACKS)};
 		export const BRAND = "${BRAND}";
-		export const OVERRIDES = require('../overrides/index')({
+		export const OVERRIDES = _OVERRIDES({
 			SPACING,
 			COLORS,
 			LAYOUT,

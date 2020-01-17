@@ -15,7 +15,7 @@ export class Page extends React.Component {
 	}
 
 	render() {
-		const { Module, filename, label, slug, location, ...rest } = this.props;
+		const { Module, filename, label, slug, location, version, pkgVersion, ...rest } = this.props;
 		const { error, info } = this.state;
 
 		if (error) {
@@ -45,13 +45,23 @@ export class Page extends React.Component {
 		}
 
 		if (location.pathname.split('/').length === 2) {
-			return <HomeStart packageName={label} pkg={slug} />;
+			return <HomeStart packageName={label} pkg={slug} version={pkgVersion} />;
 		}
 
 		return (
 			<Article>
 				<Container css={{ marginBottom: '3rem' }}>
-					<h1>{label}</h1>
+					<h1>
+						{label}
+						<span css={{
+							display: 'inline-block',
+							fontSize: '1rem',
+							fontWeight: 400,
+							marginLeft: '1rem',
+						}}>
+							v{version}
+						</span>
+					</h1>
 					<Module.default {...rest} />
 				</Container>
 			</Article>

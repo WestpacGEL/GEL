@@ -1,4 +1,4 @@
-module.exports = ({ COLORS }) => ({
+export const pagination = ({ COLORS }) => ({
 	Link: {
 		styles: (styles, { active }) => {
 			if (active) {
