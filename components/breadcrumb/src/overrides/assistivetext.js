@@ -10,6 +10,7 @@ export const AssistiveText = ({
 	current,
 	insideCrumb,
 	icon,
+	data,
 	...props
 }) => <VisuallyHidden {...props} />;
 

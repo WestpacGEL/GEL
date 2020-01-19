@@ -95,6 +95,7 @@ export const Breadcrumb = ({
 	return (
 		<overrides.Breadcrumb.component
 			className={className}
+			aria-label="breadcrumb"
 			{...overrides.Breadcrumb.attributes(state)}
 			css={overrides.Breadcrumb.styles(state)}
 		>
