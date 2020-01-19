@@ -95,13 +95,6 @@ export const Alert = ({
 						{...overrides.Alert.attributes(state)}
 						css={overrides.Alert.styles(state)}
 					>
-						{dismissible && (
-							<overrides.CloseBtn.component
-								onClose={() => setOpen(false)}
-								{...overrides.CloseBtn.attributes(state)}
-								css={overrides.CloseBtn.styles(state)}
-							/>
-						)}
 						{overrides.Icon.component && (
 							<overrides.Icon.component
 								size={['small', 'medium']}
@@ -125,6 +118,13 @@ export const Alert = ({
 							)}
 							{children}
 						</overrides.Body.component>
+						{dismissible && (
+							<overrides.CloseBtn.component
+								onClose={() => setOpen(false)}
+								{...overrides.CloseBtn.attributes(state)}
+								css={overrides.CloseBtn.styles(state)}
+							/>
+						)}
 					</overrides.Alert.component>
 				</animated.div>
 			)
