@@ -64,7 +64,7 @@ export const ProgressBar = ({ value, look, className, overrides: componentOverri
 				aria-valuemin="0"
 				aria-valuemax="100"
 				aria-valuenow={roundedValue}
-				aria-live="polite"
+				aria-label={roundedValue}
 				{...overrides.Bar.attributes(state)}
 				css={overrides.Bar.styles(state)}
 			>

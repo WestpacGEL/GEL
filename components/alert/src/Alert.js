@@ -121,6 +121,7 @@ export const Alert = ({
 						{dismissible && (
 							<overrides.CloseBtn.component
 								onClose={() => setOpen(false)}
+								aria-label="close"
 								{...overrides.CloseBtn.attributes(state)}
 								css={overrides.CloseBtn.styles(state)}
 							/>
