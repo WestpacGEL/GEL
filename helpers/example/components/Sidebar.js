@@ -12,11 +12,17 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 	const { COLORS } = useBrand();
 
 	let navItems = components;
+	const length = (location.pathname.match(/\//g) || []).length;
 
-	if (location.pathname !== '/') {
-		navItems = navItems.filter(component => location.pathname.startsWith(`/${component.parent}`));
+	if (location.pathname !== '/' && length === 1) {
+		navItems = navItems.filter(component => location.pathname === `/${component.parent}`);
+	} else if (length > 1) {
+		navItems = navItems.filter(component => location.pathname.split('/')[1] === component.parent);
 	} else {
 		navItems = navItems.filter(component => component.landing);
+		if (navItems.length === 0) {
+			navItems = components;
+		}
 	}
 
 	if (searchValue.length) {

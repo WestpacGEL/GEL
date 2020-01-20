@@ -2,6 +2,7 @@
 
 import { jsx, useBrand, useInstanceId, overrideReconciler } from '@westpac/core';
 import { useState, useEffect, useRef, Fragment } from 'react';
+import { usePopoverPosition } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
 import { Tooltip as TooltipWrapper, tooltipStyles } from './overrides/tooltip';
@@ -18,6 +19,7 @@ export const Tooltip = ({ text, title, className, overrides: componentOverrides,
 	} = useBrand();
 	const [visible, setVisible] = useState(false);
 	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
+
 	const [tooltipId] = useState(`tooltipBubble-${useInstanceId()}`);
 	const triggerRef = useRef();
 	const tooltipRef = useRef();
@@ -55,28 +57,10 @@ export const Tooltip = ({ text, title, className, overrides: componentOverrides,
 
 	useEffect(() => {
 		if (visible) {
+			setPosition(usePopoverPosition(triggerRef, tooltipRef));
 			document.addEventListener('scroll', handleLeave, true);
 		}
 		return document.removeEventListener('scroll', handleLeave);
-	}, [visible]);
-
-	useEffect(() => {
-		if (visible) {
-			const trigger = triggerRef.current.getBoundingClientRect();
-			const tooltip = tooltipRef.current.getBoundingClientRect();
-			const remSize = parseInt(
-				window.getComputedStyle(document.getElementsByTagName('html')[0]).fontSize
-			);
-			const left = (trigger.left - tooltip.width / 2 + trigger.width / 2) / remSize;
-
-			if (tooltip.height > trigger.top) {
-				const top = (trigger.top + window.scrollY + trigger.height + remSize) / remSize;
-				setPosition({ placement: 'bottom', top, left });
-			} else {
-				const top = (trigger.top + window.scrollY - tooltip.height - remSize) / remSize;
-				setPosition({ placement: 'top', top, left });
-			}
-		}
 	}, [visible]);
 
 	return (

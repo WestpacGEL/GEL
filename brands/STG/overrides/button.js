@@ -1,4 +1,4 @@
-module.exports = ({ COLORS }) => ({
+export const button = ({ COLORS }) => ({
 	Button: {
 		styles: (styles, { look, soft }) => {
 			if (look === 'hero') {

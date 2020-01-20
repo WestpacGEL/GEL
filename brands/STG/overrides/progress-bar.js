@@ -1,4 +1,4 @@
-module.exports = ({ COLORS }) => ({
+export const progressBar = ({ COLORS }) => ({
 	Bar: {
 		styles: (styles, {}) => {
 			return {

@@ -1,4 +1,6 @@
-import { merge } from './merge';
+import { isValidElementType } from 'react-is';
+
+import { mergeWith } from './mergeWith';
 
 /**
  * Reconcile all overrides into one, cascade styles and attributes through
@@ -16,7 +18,14 @@ export function overrideReconciler(
 	brandOverrides = {},
 	componentOverrides = {}
 ) {
-	const overrides = merge(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+	const overrides = mergeWith(
+		{},
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides,
+		(_, item) => (isValidElementType(item) ? item : undefined)
+	);
 
 	for (let [key] of Object.entries(overrides)) {
 		defaultOverrides[key] = defaultOverrides[key] || {};

@@ -1,4 +1,4 @@
-module.exports = ({ COLORS }) => ({
+export const label = ({ COLORS }) => ({
 	Label: {
 		styles: (styles, { look }) => {
 			if (look === 'hero') {

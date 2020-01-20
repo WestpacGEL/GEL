@@ -145,6 +145,35 @@ export const Tabcordion = ({
 		componentOverrides
 	);
 
+	// conditional logic can't include hooks and since our style functions likely contain hooks we build the JSX before we do the condition
+	const TabsContent = (
+		<overrides.TabRow.component
+			role="tablist"
+			ref={tablistRef}
+			{...overrides.TabRow.attributes(state)}
+			css={overrides.TabRow.styles(state)}
+		>
+			{Children.map(children, (child, idx) => {
+				const selected = activeTabIndex === idx;
+				return (
+					<overrides.TabItem.component
+						id={getId('tab', idx)}
+						key={child.props.text}
+						ref={tabRefs.current[idx]}
+						onClick={setActive(idx)}
+						aria-controls={getId('panel', idx)}
+						aria-selected={selected}
+						role="tab"
+						{...overrides.TabItem.attributes(state)}
+						css={overrides.TabItem.styles({ ...state, selected, last: idx + 1 === tabCount })}
+					>
+						{child.props.text}
+					</overrides.TabItem.component>
+				);
+			})}
+		</overrides.TabRow.component>
+	);
+
 	return (
 		<overrides.Tabcordion.component
 			ref={containerRef}
@@ -152,33 +181,7 @@ export const Tabcordion = ({
 			{...overrides.Tabcordion.attributes(state)}
 			css={overrides.Tabcordion.styles(state)}
 		>
-			{mode === 'tabs' ? (
-				<overrides.TabRow.component
-					role="tablist"
-					ref={tablistRef}
-					{...overrides.TabRow.attributes(state)}
-					css={overrides.TabRow.styles(state)}
-				>
-					{Children.map(children, (child, idx) => {
-						const selected = activeTabIndex === idx;
-						return (
-							<overrides.TabItem.component
-								id={getId('tab', idx)}
-								key={child.props.text}
-								ref={tabRefs.current[idx]}
-								onClick={setActive(idx)}
-								aria-controls={getId('panel', idx)}
-								aria-selected={selected}
-								role="tab"
-								{...overrides.TabItem.attributes(state)}
-								css={overrides.TabItem.styles({ ...state, selected, last: idx + 1 === tabCount })}
-							>
-								{child.props.text}
-							</overrides.TabItem.component>
-						);
-					})}
-				</overrides.TabRow.component>
-			) : null}
+			{mode === 'tabs' && TabsContent}
 
 			{Children.map(children, (child, idx) => {
 				const selected = activeTabIndex === idx;
@@ -254,6 +257,21 @@ Tabcordion.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		TabRow: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		AccordionLabel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		AccordionIcon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Panel: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

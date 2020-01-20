@@ -128,16 +128,18 @@ export const Switch = ({
 				{!!toggleText && (
 					<Fragment>
 						<overrides.ToggleText.component
-							position={'left'}
-							{...overrides.ToggleText.attributes({ ...state, checked })}
-							css={overrides.ToggleText.styles(state)}
+							{...overrides.ToggleText.attributes({ ...state, checked, position: 'left' })}
+							css={overrides.ToggleText.styles({ ...state, checked, position: 'left' })}
 						>
 							{toggleText[0]}
 						</overrides.ToggleText.component>
 						<overrides.ToggleText.component
-							position={'right'}
-							{...overrides.ToggleText.attributes({ ...state, checked: !checked })}
-							css={overrides.ToggleText.styles(state)}
+							{...overrides.ToggleText.attributes({
+								...state,
+								checked: !checked,
+								position: 'right',
+							})}
+							css={overrides.ToggleText.styles({ ...state, checked: !checked, position: 'right' })}
 						>
 							{toggleText[1]}
 						</overrides.ToggleText.component>

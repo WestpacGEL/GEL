@@ -10,7 +10,7 @@ import { Sidebar } from './Sidebar';
 import { HomeStart } from './HomeStart';
 import { Page } from './Page';
 
-export function AppStart({ components, packageName, pkg }) {
+export function AppStart({ components, packageName, pkg, version }) {
 	const [brand, setBrand] = useState('WBC');
 
 	return (
@@ -40,17 +40,22 @@ export function AppStart({ components, packageName, pkg }) {
 							`}
 						/>
 						<Sidebar components={components} brand={brand} setBrand={setBrand} />
+						<p>{version}</p>
 						<Switch>
 							<Route
 								exact
 								path="/"
-								render={route => <HomeStart {...route} packageName={packageName} pkg={pkg} />}
+								render={route => (
+									<HomeStart {...route} packageName={packageName} pkg={pkg} version={version} />
+								)}
 							/>
 							{components.map(({ slug, ...props }) => (
 								<Route
 									key={slug}
 									path={`/${slug}`}
-									render={route => <Page {...route} {...props} brand={BRANDS[brand]} />}
+									render={route => (
+										<Page {...route} {...props} brand={BRANDS[brand]} pkgVersion={version} />
+									)}
 								/>
 							))}
 						</Switch>

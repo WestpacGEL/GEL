@@ -20,6 +20,7 @@
 		"@westpac/body": "^1.0.0",
 		"@westpac/button": "^1.0.0",
 		"@westpac/core": "^1.0.0",
+		"@westpac/hooks": "^1.0.0",
 		"@westpac/icon": "^1.0.0",
 		"prop-types": "^15.7.2"
 	},
