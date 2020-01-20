@@ -85,6 +85,8 @@ export const Tab = forwardRef(
 					>
 						<span>{text}</span>
 						<overrides.AccordionIcon.component
+							aria-hidden="true"
+							focusable="false"
 							{...overrides.AccordionIcon.attributes(state)}
 							css={overrides.AccordionIcon.styles(state)}
 						/>
