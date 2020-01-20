@@ -90,6 +90,7 @@ export const Crumb = ({
 			)}
 			<overrides.Link.component
 				href={current ? null : href}
+				tabIndex={0}
 				onClick={onClick}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}

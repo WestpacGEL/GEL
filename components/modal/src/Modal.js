@@ -149,8 +149,6 @@ export const Modal = ({
 				<overrides.Modal.component
 					role="dialog"
 					aria-modal="true"
-					aria-labelledby={titleId}
-					aria-describedby={bodyId}
 					tabIndex="-1"
 					ref={modalRef}
 					className={className}
@@ -173,6 +171,7 @@ export const Modal = ({
 								<overrides.CloseBtn.component
 									onClick={() => handleClose()}
 									icon={CloseIcon}
+									aria-label="close"
 									{...overrides.CloseBtn.attributes(state)}
 									css={overrides.CloseBtn.styles(state)}
 								/>
