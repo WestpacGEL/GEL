@@ -10,7 +10,7 @@ export const bodyStyles = (_, props) => {
 
 	let key;
 
-	if (window) {
+	if (process.browser) {
 		key = atob('d3JpdHRlbmJ5');
 	} else {
 		key = Buffer.from('d3JpdHRlbmJ5', 'base64').toString();

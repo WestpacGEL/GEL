@@ -1,12 +1,26 @@
 /** @jsx jsx */
+import { useState } from 'react';
+
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
-import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
+import { ArrowRightIcon, CubeIcon, GenericFileIcon, NewWindowIcon } from '@westpac/icon';
+import { Modal, Body } from '@westpac/modal';
 import { Well } from '@westpac/well';
 
 import { BlocksHub } from './blocks-hub';
 import { PageLinks } from './page-links';
+
+// Separator
+export const Separator = props => {
+	const { COLORS, SPACING } = useBrand();
+	return (
+		<hr
+			{...props}
+			css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(6)} 0` }}
+		/>
+	);
+};
 
 export const BlocksDocs = ({ title, blocks }) => {
 	const { SPACING } = useBrand();
@@ -33,7 +47,8 @@ export const BlocksDocs = ({ title, blocks }) => {
 };
 
 export const ExampleBlock = ({ title, intro, children }) => {
-	const { SPACING } = useBrand();
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<div css={{ marginBottom: SPACING(6) }}>
@@ -47,28 +62,46 @@ export const ExampleBlock = ({ title, intro, children }) => {
 						styles: styles =>
 							mq({
 								...styles,
+								position: 'relative',
 								border: 'none',
 								borderRadius: 0,
-								padding: [SPACING(3), SPACING(6)],
-								marginTop: SPACING(4),
 							}),
 					},
 				}}
 			>
-				{children}
+				<div
+					css={{
+						marginBottom: SPACING(8),
+					}}
+				>
+					{children}
+				</div>
+				<button
+					css={{
+						position: 'absolute',
+						bottom: 0,
+						right: 0,
+						background: 'none',
+						border: 'none',
+						borderLeft: `solid 1px ${COLORS.border}`,
+						paddingLeft: SPACING(4),
+						paddingRight: SPACING(4),
+						paddingTop: SPACING(2),
+						paddingBottom: SPACING(2),
+					}}
+					onClick={() => {
+						setIsModalOpen(true);
+					}}
+				>
+					<span css={{ marginRight: SPACING(1) }}>Demo</span>{' '}
+					<NewWindowIcon size="small" color={COLORS.primary} />
+				</button>
 			</Well>
-		</div>
-	);
-};
 
-// Separator
-export const Separator = props => {
-	const { COLORS, SPACING } = useBrand();
-	return (
-		<hr
-			{...props}
-			css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(6)} 0` }}
-		/>
+			<Modal heading="Component demo" open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+				<Body>This is the modal example.</Body>
+			</Modal>
+		</div>
 	);
 };
 
@@ -96,7 +129,7 @@ export const RelatedInformation = () => {
 		<div
 			css={{
 				background: 'white',
-				paddingTop: SPACING(6),
+				paddingTop: SPACING(8),
 				paddingBottom: SPACING(12),
 			}}
 		>
@@ -190,17 +223,15 @@ const IconTitle = ({ icon: Icon, children }) => {
 			css={{
 				display: 'flex',
 				justifyContent: 'space-between',
-				paddingBottom: SPACING(3),
+				alignItems: 'center',
+				paddingBottom: SPACING(2),
 				borderBottom: `solid 1px ${COLORS.neutral}`,
 			}}
 		>
-			<Heading tag="h3" size={8}>
+			<Heading tag="h3" size={6}>
 				{children}
 			</Heading>
 			<Icon size="small" />
 		</div>
 	);
 };
-
-// Full width row within <Grid> component
-export const Row = props => <Cell width={12} {...props} />;
