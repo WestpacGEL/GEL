@@ -7,10 +7,11 @@ export const Panel = forwardRef(
 	({ title, content, position, open, dismissible, ...props }, ref) => <div ref={ref} {...props} />
 );
 
-export const panelStyles = (_, { position }) => {
+export const panelStyles = (_, { open, position }) => {
 	const { COLORS } = useBrand();
 
 	return {
+		visibility: open && !position.empty ? 'visible' : 'hidden',
 		position: 'absolute',
 		left: '50%',
 		bottom: position.placement === 'top' && '100%',
