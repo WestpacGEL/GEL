@@ -1,5 +1,5 @@
-const path = require('path');
 const cfonts = require('cfonts');
+const path = require('path');
 const fs = require('fs');
 
 const { makeTints } = require('./_utils');
