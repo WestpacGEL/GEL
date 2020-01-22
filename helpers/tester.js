@@ -6,7 +6,6 @@ const chalk = require('chalk');
 	const workspaces = await getWorkspaces();
 
 	const longestName = [...workspaces].sort((a, b) => a.name.length < b.name.length)[0].name.length;
-	console.log(longestName);
 
 	workspaces.map(workspace => {
 		process.stdout.write(
