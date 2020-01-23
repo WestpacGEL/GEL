@@ -72,7 +72,7 @@ export const Page = ({
 		>
 			<overrides.Link.component
 				aria-current={active ? 'page' : undefined}
-				aria-label={text}
+				aria-label={assistiveText}
 				disabled={disabled}
 				onClick={onClick}
 				{...overrides.Link.attributes(state)}
