@@ -52,6 +52,7 @@ function Example({ brand }) {
 				next={{
 					visible: true,
 					text: 'Go forth',
+					onClick: (event, page) => console.log(`Go to ${page}`, event),
 					assistiveText: page => `Go to next page which is ${page}`,
 				}}
 			>
