@@ -108,7 +108,6 @@ export const FormCheck = ({
 			);
 		});
 	} else {
-		const length = Children.count(children);
 		allChildren = Children.map(children, child =>
 			cloneElement(child, {
 				...state,

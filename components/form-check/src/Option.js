@@ -73,8 +73,10 @@ export const Option = ({
 		>
 			<input
 				type={type}
+				value={value}
 				selected={selected}
 				id={formCheckId}
+				disabled={disabled}
 				onClick={disabled ? null : event => handleChange(event, value, selected)}
 				css={{
 					position: 'absolute', // just to hide the input element needed for a11y
