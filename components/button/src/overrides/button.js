@@ -1,19 +1,14 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, asArray, useMediaQuery } from '@westpac/core';
-import React from 'react';
+import { forwardRef } from 'react';
 
-export const Button = ({
-	look,
-	soft,
-	block,
-	justify,
-	iconAfter,
-	iconBefore,
-	assistiveText,
-	tag: Tag,
-	...rest
-}) => <Tag {...rest} />;
+export const Button = forwardRef(
+	(
+		{ look, soft, block, justify, iconAfter, iconBefore, assistiveText, tag: Tag, ...rest },
+		ref
+	) => <Tag ref={ref} {...rest} />
+);
 
 export const buttonStyles = (_, { look, size, soft, block, justify }) => {
 	const mq = useMediaQuery();
