@@ -58,6 +58,11 @@ export function AppStart({ components, packageName, pkg, version }) {
 									)}
 								/>
 							))}
+							<Route
+								render={route => (
+									<HomeStart {...route} packageName={packageName} pkg={pkg} version={version} />
+								)}
+							/>
 						</Switch>
 					</div>
 				</GEL>

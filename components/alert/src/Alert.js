@@ -91,47 +91,56 @@ export const Alert = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
+	const CloseBtnJSX = () => (
+		<overrides.CloseBtn.component
+			onClose={() => setOpen(false)}
+			{...overrides.CloseBtn.attributes(state)}
+			css={overrides.CloseBtn.styles(state)}
+		/>
+	);
+
+	const IconJSX = () => (
+		<overrides.Icon.component
+			size={['small', 'medium']}
+			color="inherit"
+			{...overrides.Icon.attributes(state)}
+			css={overrides.Icon.styles(state)}
+		/>
+	);
+
+	const HeadingJSX = () => (
+		<overrides.Heading.component
+			tag={headingTag}
+			{...overrides.Heading.attributes(state)}
+			css={overrides.Heading.styles(state)}
+		>
+			{heading}
+		</overrides.Heading.component>
+	);
+
+	const AlertJSX = ({ props }) => (
+		<overrides.Alert.component
+			className={className}
+			{...overrides.Alert.attributes(state)}
+			css={overrides.Alert.styles(state)}
+		>
+			{dismissible && <CloseBtnJSX />}
+			{overrides.Icon.component && <IconJSX />}
+			<overrides.Body.component
+				{...overrides.Body.attributes(state)}
+				css={overrides.Body.styles(state)}
+			>
+				{heading && <HeadingJSX />}
+				{children}
+			</overrides.Body.component>
+		</overrides.Alert.component>
+	);
+
 	return transition.map(
 		({ item, key, props }) =>
 			item && (
 				<animated.div key={key} style={props}>
-					<overrides.Alert.component
-						className={className}
-						{...overrides.Alert.attributes(state)}
-						css={overrides.Alert.styles(state)}
-					>
-						{overrides.Icon.component && (
-							<overrides.Icon.component
-								size={['small', 'medium']}
-								color="inherit"
-								{...overrides.Icon.attributes(state)}
-								css={overrides.Icon.styles(state)}
-							/>
-						)}
-						<overrides.Body.component
-							{...overrides.Body.attributes(state)}
-							css={overrides.Body.styles(state)}
-						>
-							{heading && (
-								<overrides.Heading.component
-									tag={headingTag}
-									{...overrides.Heading.attributes(state)}
-									css={overrides.Heading.styles(state)}
-								>
-									{heading}
-								</overrides.Heading.component>
-							)}
-							{children}
-						</overrides.Body.component>
-						{dismissible && (
-							<overrides.CloseBtn.component
-								onClose={() => setOpen(false)}
-								aria-label="close"
-								{...overrides.CloseBtn.attributes(state)}
-								css={overrides.CloseBtn.styles(state)}
-							/>
-						)}
-					</overrides.Alert.component>
+					<AlertJSX />
 				</animated.div>
 			)
 	);

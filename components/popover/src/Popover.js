@@ -29,7 +29,7 @@ export const Popover = ({
 	} = useBrand();
 	const [popoverId] = useState(useInstanceId());
 	const [open, setOpen] = useState(open);
-	const [position, setPosition] = useState({ placement: 'top' });
+	const [position, setPosition] = useState({ placement: 'top', empty: true });
 	const triggerRef = useRef();
 	const popoverRef = useRef();
 
@@ -136,35 +136,33 @@ export const Popover = ({
 			css={overrides.Popover.styles(state)}
 		>
 			{childrenWithProps}
-			{open && (
-				<overrides.Panel.component
-					id={`gel-popover-${popoverId}`}
-					aria-label="Use the ESC key to close"
-					ref={popoverRef}
-					tabIndex="-1"
-					{...overrides.Panel.attributes(state)}
-					css={overrides.Panel.styles(state)}
+			<overrides.Panel.component
+				id={`gel-popover-${popoverId}`}
+				aria-label="Use the ESC key to close"
+				ref={popoverRef}
+				tabIndex="-1"
+				{...overrides.Panel.attributes(state)}
+				css={overrides.Panel.styles(state)}
+			>
+				<overrides.Title.component
+					{...overrides.Title.attributes(state)}
+					css={overrides.Title.styles(state)}
 				>
-					<overrides.Title.component
-						{...overrides.Title.attributes(state)}
-						css={overrides.Title.styles(state)}
-					>
-						{title}
-					</overrides.Title.component>
-					<overrides.Body.component
-						{...overrides.Body.attributes(state)}
-						css={overrides.Body.styles(state)}
-					>
-						{content}
-					</overrides.Body.component>
-					<overrides.CloseBtn.component
-						onClick={() => handleOpen()}
-						icon={CloseIcon}
-						{...overrides.CloseBtn.attributes(state)}
-						css={overrides.CloseBtn.styles(state)}
-					/>
-				</overrides.Panel.component>
-			)}
+					{title}
+				</overrides.Title.component>
+				<overrides.Body.component
+					{...overrides.Body.attributes(state)}
+					css={overrides.Body.styles(state)}
+				>
+					{content}
+				</overrides.Body.component>
+				<overrides.CloseBtn.component
+					onClick={() => handleOpen()}
+					icon={CloseIcon}
+					{...overrides.CloseBtn.attributes(state)}
+					css={overrides.CloseBtn.styles(state)}
+				/>
+			</overrides.Panel.component>
 		</overrides.Popover.component>
 	);
 };
