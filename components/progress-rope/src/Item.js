@@ -92,6 +92,7 @@ export const Item = ({
 		>
 			<overrides.ItemButton.component
 				onClick={onClick}
+				aria-current={active ? 'step' : undefined}
 				{...overrides.ItemButton.attributes(state)}
 				css={overrides.ItemButton.styles(state)}
 			>

@@ -65,6 +65,7 @@ export const Group = ({
 		>
 			<overrides.GroupButton.component
 				onClick={() => handleClick(index)}
+				aria-expanded={openGroup === index}
 				{...overrides.GroupButton.attributes(state)}
 				css={overrides.GroupButton.styles(state)}
 			>
