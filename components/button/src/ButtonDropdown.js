@@ -133,7 +133,10 @@ ButtonDropdown.propTypes = {
 	/**
 	 * Dropdown size
 	 */
-	dropdownSize: PropTypes.string.isRequired,
+	dropdownSize: PropTypes.oneOfType([
+		PropTypes.oneOf(['small', 'medium', 'large']),
+		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large'])),
+	]),
 
 	/**
 	 * The override API

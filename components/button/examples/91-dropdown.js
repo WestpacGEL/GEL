@@ -49,7 +49,24 @@ function Example({ brand }) {
 			<br />
 			<ButtonDropdown look="primary" text="Extra Large" size="xlarge">
 				<p>Example dropdown content...</p>
-			</ButtonDropdown>{' '}
+			</ButtonDropdown>
+			<h2>Responsive size</h2>
+			<ButtonDropdown
+				look="primary"
+				text="Responsive size"
+				size={['small', 'medium', 'large', 'xlarge']}
+			>
+				<p>Example dropdown content...</p>
+			</ButtonDropdown>
+			<br />
+			<br />
+			<ButtonDropdown
+				look="primary"
+				text="Responsive size"
+				size={['xlarge', 'small', 'large', 'medium']}
+			>
+				<p>Example dropdown content...</p>
+			</ButtonDropdown>
 			<h2>Icons </h2>
 			<ButtonDropdown iconBefore={AndroidIcon} look="primary" text="Primary Dropdown">
 				<p>Example dropdown content...</p>
@@ -87,6 +104,29 @@ function Example({ brand }) {
 			<ButtonDropdown look="primary" text="Large" dropdownSize="large">
 				<p>Example dropdown content...</p>
 			</ButtonDropdown>{' '}
+			<br />
+			<br />
+			<ButtonDropdown
+				look="primary"
+				text="Responsive"
+				dropdownSize={['large', 'small', 'large', 'small']}
+			>
+				<p>Example dropdown content...</p>
+			</ButtonDropdown>{' '}
+			<h2>Dropdown long content</h2>
+			<ButtonDropdown text="Long content">
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+				<p>Example dropdown content...</p>
+			</ButtonDropdown>
 		</GEL>
 	);
 }
