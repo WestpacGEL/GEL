@@ -14,7 +14,7 @@ export const Bubble = forwardRef(({ position, tooltipId, text, title, visible, .
 });
 
 export const bubbleStyles = (_, { visible, position }) => ({
-	visibility: visible ? 'visible' : 'hidden',
+	visibility: visible && !position.empty ? 'visible' : 'hidden',
 	position: 'absolute',
 	top: 0,
 	left: 0,
@@ -36,7 +36,7 @@ export const bubbleStyles = (_, { visible, position }) => ({
 	'::after': {
 		content: "''",
 		position: 'absolute',
-		[position.placement === 'top' ? 'bottom' : 'top']: '-0.3125rem',
+		[position.placement === 'top' ? 'bottom' : 'top']: '-0.3rem',
 		left: '50%',
 		marginLeft: '-0.3125rem',
 		width: 0,

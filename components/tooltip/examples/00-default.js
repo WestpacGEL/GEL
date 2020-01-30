@@ -37,7 +37,11 @@ function Example({ brand }) {
 					<Tooltip
 						text="This is a tooltip on an abbr element"
 						title
-						overrides={{ component: TooltipTag }}
+						overrides={{
+							Tooltip: {
+								component: TooltipTag,
+							},
+						}}
 					>
 						random
 					</Tooltip>{' '}

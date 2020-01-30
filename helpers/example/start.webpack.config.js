@@ -7,13 +7,21 @@ const tmp = require('tmp');
 const fs = require('fs');
 
 const { PACKAGE_NAME } = process.env;
+const { version } = require(path.normalize(
+	`${__dirname}/../../components/${PACKAGE_NAME}/package.json`
+));
 
 /**
  * Prepare a dynamic temp file to include all components
  */
 tmp.setGracefulCleanup();
 const tmpObj = tmp.fileSync();
-const code = makeCode(findExampleFiles(PACKAGE_NAME), 'start.js', PACKAGE_NAME);
+const code = makeCode(
+	findExampleFiles(PACKAGE_NAME, PACKAGE_NAME),
+	'start.js',
+	PACKAGE_NAME,
+	version
+);
 fs.writeSync(tmpObj.fd, code);
 
 process.on('exit', () => {

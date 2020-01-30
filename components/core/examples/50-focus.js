@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
-import { Text, Textarea, Select } from '@westpac/text-input';
+import { TextInput, Textarea, Select } from '@westpac/text-input';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -57,7 +57,7 @@ function Example({ brand }) {
 			<hr />
 
 			<p>Note: All users should see our focus outline styling; not just keyboard users.</p>
-			<Text />
+			<TextInput />
 			<br />
 			<Select>
 				<option>Select</option>

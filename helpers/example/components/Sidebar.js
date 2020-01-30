@@ -21,6 +21,9 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 	} else {
 		navItems = navItems.filter(component => component.landing);
 	}
+	if (navItems.length === 0) {
+		navItems = components;
+	}
 
 	if (searchValue.length) {
 		navItems = navItems.filter(p => p.label.toLowerCase().includes(searchValue.toLowerCase()));

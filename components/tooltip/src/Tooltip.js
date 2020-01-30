@@ -18,7 +18,7 @@ export const Tooltip = ({ text, title, className, overrides: componentOverrides,
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 	const [visible, setVisible] = useState(false);
-	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0 });
+	const [position, setPosition] = useState({ placement: 'top', top: 0, left: 0, empty: true });
 
 	const [tooltipId] = useState(`tooltipBubble-${useInstanceId()}`);
 	const triggerRef = useRef();

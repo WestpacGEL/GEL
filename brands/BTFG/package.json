@@ -20,5 +20,7 @@
 	"scripts": {},
 	"main": "dist/btfg.cjs.js",
 	"module": "dist/btfg.esm.js",
-	"dependencies": {}
+	"dependencies": {
+		"@babel/runtime": "^7.6.2"
+	}
 }
