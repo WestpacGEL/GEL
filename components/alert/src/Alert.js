@@ -124,7 +124,6 @@ export const Alert = ({
 			{...overrides.Alert.attributes(state)}
 			css={overrides.Alert.styles(state)}
 		>
-			{dismissible && <CloseBtnJSX />}
 			{overrides.Icon.component && <IconJSX />}
 			<overrides.Body.component
 				{...overrides.Body.attributes(state)}
@@ -133,6 +132,7 @@ export const Alert = ({
 				{heading && <HeadingJSX />}
 				{children}
 			</overrides.Body.component>
+			{dismissible && <CloseBtnJSX />}
 		</overrides.Alert.component>
 	);
 

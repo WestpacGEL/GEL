@@ -39,13 +39,10 @@ export const closeBtnStyles = (_, {}) => {
 
 	return mq({
 		color: 'inherit',
-		position: ['relative', 'absolute'],
+		position: 'absolute',
 		zIndex: 1,
-		float: ['right', 'none'],
 		top: SPACING(1, 'minor'),
 		right: SPACING(1),
-		marginTop: [`-${SPACING(3, 'major')}`, 0],
-		marginRight: [`-${SPACING(3, 'major')}`, 0],
 		opacity: 1,
 
 		':hover': {

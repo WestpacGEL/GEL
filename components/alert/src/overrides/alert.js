@@ -64,11 +64,11 @@ export const alertStyles = (_, { dismissible, look }) => {
 
 	return mq({
 		marginBottom: '1.3125rem',
-		padding: ['1.125rem', dismissible ? `1.125rem 1.875rem 1.125rem 1.125rem` : '1.125rem'],
+		padding: dismissible ? '1.125rem 1.875rem 1.125rem 1.125rem' : '1.125rem',
 		position: 'relative',
 		display: [null, 'flex'],
 		zIndex: 1,
-		transition: `opacity 300ms ease-in-out`,
+		transition: 'opacity 300ms ease-in-out',
 		opacity: 1,
 		borderTop: '1px solid',
 		borderBottom: '1px solid',
