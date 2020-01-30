@@ -27,8 +27,8 @@ export const CloseBtn = ({
 	};
 
 	return (
-		<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest}>
-			<CloseIcon color={styleMap[look]} size="small" />
+		<Button onClick={() => onClose()} iconAfter={icon} look="link" aria-label="Close" {...rest}>
+			<CloseIcon color={styleMap[look]} size="small" assistiveText={null} aria-hidden={true} />
 		</Button>
 	);
 };
