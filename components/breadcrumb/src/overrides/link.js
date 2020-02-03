@@ -6,9 +6,7 @@ import React from 'react';
 export const Link = ({ current, assistiveText, href, ...props }) => {
 	const Tag = href ? 'a' : 'button';
 
-	return (
-		<Tag href={href} {...props} />
-	);
+	return <Tag href={href} {...props} />;
 };
 
 export const linkStyles = (_, { current }) => {
