@@ -26,7 +26,6 @@ export const Switch = ({
 	flipped,
 	toggleText,
 	disabled,
-	assistiveText,
 	className,
 	overrides: componentOverrides,
 	...rest
@@ -78,7 +77,6 @@ export const Switch = ({
 		flipped,
 		toggleText,
 		disabled,
-		assistiveText,
 		overrides: componentOverrides,
 		checked,
 		...rest,
@@ -107,7 +105,6 @@ export const Switch = ({
 				type="checkbox"
 				name={name}
 				checked={checked}
-				aria-label={assistiveText}
 				onChange={handleChange(name)}
 				disabled={disabled}
 				{...overrides.Input.attributes(state)}
@@ -167,7 +164,7 @@ Switch.propTypes = {
 	/**
 	 * Switch label text
 	 */
-	label: PropTypes.string,
+	label: PropTypes.string.isRequired,
 
 	/**
 	 * On/off text.
@@ -193,11 +190,6 @@ Switch.propTypes = {
 	 * Reverse the horizontal orientation. Renders the toggle on the left of the label text.
 	 */
 	flipped: PropTypes.bool,
-
-	/**
-	 * Text to use as the `aria-label` for the switch input
-	 */
-	assistiveText: PropTypes.string,
 
 	/**
 	 * Switch on/off state

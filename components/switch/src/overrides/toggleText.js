@@ -10,7 +10,6 @@ export const ToggleText = ({
 	flipped,
 	block,
 	disabled,
-	assistiveText,
 	position,
 	checked,
 	size,

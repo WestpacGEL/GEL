@@ -2,16 +2,9 @@
 
 import { jsx } from '@westpac/core';
 
-export const Label = ({
-	name,
-	label,
-	toggleText,
-	flipped,
-	block,
-	disabled,
-	assistiveText,
-	...props
-}) => <span {...props} />;
+export const Label = ({ name, label, toggleText, flipped, block, disabled, ...props }) => (
+	<span {...props} />
+);
 
 export const labelStyles = (_, { block, flipped }) => {
 	return {
