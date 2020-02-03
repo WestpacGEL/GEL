@@ -15,34 +15,11 @@ export const ToggleText = ({
 	checked,
 	size,
 	...props
-}) => {
-	const { BRAND, COLORS } = useBrand();
-	const sizing = sizeMap(size);
+}) => <span {...props} />;
 
-	let color = '#fff';
-	if (BRAND === 'STG') {
-		color = COLORS.text;
-	}
-
-	const height = sizing.height.map((height, i) =>
-		height ? `calc(${height} - ${sizing.borderWidth[i]} - ${sizing.borderWidth[i]})` : null
-	);
-
-	return (
-		<span
-			css={{
-				paddingLeft: position === 'right' ? height : '6%',
-				paddingRight: position === 'left' ? height : '6%',
-				color: position === 'right' ? COLORS.text : color,
-				opacity: checked ? 1 : 0,
-			}}
-			{...props}
-		/>
-	);
-};
-
-export const toggleTextStyles = (_, { size }) => {
+export const toggleTextStyles = (_, { size, position, checked }) => {
 	const mq = useMediaQuery();
+	const { COLORS } = useBrand();
 
 	const sizing = sizeMap(size);
 
@@ -52,6 +29,10 @@ export const toggleTextStyles = (_, { size }) => {
 	);
 
 	return mq({
+		paddingLeft: position === 'right' ? height : '6%',
+		paddingRight: position === 'left' ? height : '6%',
+		color: position === 'right' ? COLORS.text : '#fff',
+		opacity: checked ? 1 : 0,
 		boxSizing: 'border-box',
 		position: 'absolute',
 		width: '100%',

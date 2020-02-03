@@ -68,6 +68,14 @@ export function AppDocs({ components, packageName, pkg }) {
 									)}
 								/>
 							))}
+							<Route
+								render={route => (
+									<Fragment>
+										<Sidebar components={components} brand={brand} setBrand={setBrand} />
+										<HomeDocs {...route} />
+									</Fragment>
+								)}
+							/>
 						</Switch>
 					</div>
 				</GEL>

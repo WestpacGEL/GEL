@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Button, ButtonGroup } from '@westpac/button';
+import { Button, ButtonGroup, ButtonDropdown } from '@westpac/button';
 import { HouseIcon } from '@westpac/icon';
 import { Fragment } from 'react';
 
@@ -32,6 +32,13 @@ function Example({ brand }) {
 		TextWrapper: {
 			component: TextWrapper,
 		},
+		Panel: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: 'palevioletred',
+				color: 'white',
+			}),
+		},
 	};
 
 	return (
@@ -56,6 +63,10 @@ function Example({ brand }) {
 					{ children: 'Right', value: 'right' },
 				]}
 			/>
+			<hr />
+			<ButtonDropdown look="primary" text="Primary Dropdown">
+				<p>Example dropdown content...</p>
+			</ButtonDropdown>
 			<h2>With overrides and component overrides</h2>
 			<ButtonGroup
 				overrides={{
@@ -87,6 +98,21 @@ function Example({ brand }) {
 					{ children: 'Right', value: 'right' },
 				]}
 			/>
+			<hr />
+			<ButtonDropdown
+				look="primary"
+				text="Primary Dropdown"
+				overrides={{
+					Panel: {
+						styles: styles => ({
+							...styles,
+							backgroundColor: 'darkred',
+						}),
+					},
+				}}
+			>
+				<p>Example dropdown content...</p>
+			</ButtonDropdown>
 		</GEL>
 	);
 }

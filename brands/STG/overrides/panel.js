@@ -1,4 +1,4 @@
-module.exports = ({ COLORS }) => ({
+export const panel = ({ COLORS }) => ({
 	Header: {
 		styles: (styles, { look }) => {
 			if (look === 'hero') {

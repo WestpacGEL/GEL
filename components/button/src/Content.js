@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { DropDownIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -17,6 +18,7 @@ export const Content = ({
 	block,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
+	dropdown,
 	children,
 	className,
 	overrides: componentOverrides,
@@ -82,6 +84,13 @@ export const Content = ({
 			{IconAfter && (
 				<IconAfter
 					css={{ marginLeft: children && '0.4em' }}
+					size={iconSizeMap[size]}
+					color="inherit"
+				/>
+			)}
+			{dropdown && (
+				<DropDownIcon
+					css={{ marginLeft: block ? 'auto' : '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
 				/>

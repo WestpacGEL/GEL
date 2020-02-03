@@ -20,5 +20,7 @@
 	"scripts": {},
 	"main": "dist/wbc.cjs.js",
 	"module": "dist/wbc.esm.js",
-	"dependencies": {}
+	"dependencies": {
+		"@babel/runtime": "^7.6.2"
+	}
 }

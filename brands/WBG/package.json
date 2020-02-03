@@ -19,5 +19,8 @@
 	"license": "GPL-3.0+",
 	"scripts": {},
 	"main": "dist/wbg.cjs.js",
-	"module": "dist/wbg.esm.js"
+	"module": "dist/wbg.esm.js",
+	"dependencies": {
+		"@babel/runtime": "^7.6.2"
+	}
 }

@@ -6,99 +6,105 @@ import PropTypes from 'prop-types';
 import { Button as ButtonWrapper, buttonStyles } from './overrides/button';
 import { Content } from './Content';
 import pkg from '../package.json';
+import { forwardRef } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
-export const Button = ({
-	look,
-	size,
-	soft,
-	block,
-	iconAfter,
-	iconBefore,
-	justify,
-	disabled,
-	assistiveText,
-	tag,
-	onClick,
-	children,
-	className,
-	overrides: componentOverrides,
-	...rest
-}) => {
-	const {
-		COLORS,
-		TYPE,
-		BRAND,
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
-
-	// We don't support soft links, so don't want them to cause styling issues
-	if (soft && look === 'link') soft = false;
-
-	if (rest.href) {
-		tag = 'a';
-	}
-
-	const defaultOverrides = {
-		Button: {
-			styles: buttonStyles,
-			component: ButtonWrapper,
-			attributes: (_, a) => a,
+export const Button = forwardRef(
+	(
+		{
+			look,
+			size,
+			soft,
+			block,
+			iconAfter,
+			iconBefore,
+			justify,
+			disabled,
+			assistiveText,
+			tag,
+			onClick,
+			dropdown,
+			children,
+			className,
+			overrides: componentOverrides,
+			...rest
 		},
-	};
+		ref
+	) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	const state = {
-		look,
-		size,
-		soft,
-		block,
-		iconAfter,
-		iconBefore,
-		justify,
-		disabled,
-		assistiveText,
-		tag,
-		onClick,
-		overrides: componentOverrides,
-		...rest,
-	};
+		// We don't support soft links, so don't want them to cause styling issues
+		if (soft && look === 'link') soft = false;
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+		if (rest.href) {
+			tag = 'a';
+		}
 
-	return (
-		<overrides.Button.component
-			type={tag === 'button' ? 'button' : undefined}
-			disabled={disabled}
-			aria-label={assistiveText}
-			onClick={onClick}
-			className={className}
-			{...overrides.Button.attributes(state)}
-			css={overrides.Button.styles(state)}
-		>
-			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
-			{tag !== 'input' ? (
-				<Content
-					size={size}
-					block={block}
-					iconAfter={iconAfter}
-					iconBefore={iconBefore}
-					overrides={componentOverrides}
-				>
-					{children}
-				</Content>
-			) : null}
-		</overrides.Button.component>
-	);
-};
+		const defaultOverrides = {
+			Button: {
+				styles: buttonStyles,
+				component: ButtonWrapper,
+				attributes: (_, a) => a,
+			},
+		};
+
+		const state = {
+			look,
+			size,
+			soft,
+			block,
+			iconAfter,
+			iconBefore,
+			justify,
+			disabled,
+			assistiveText,
+			tag,
+			onClick,
+			overrides: componentOverrides,
+			...rest,
+		};
+
+		const overrides = overrideReconciler(
+			defaultOverrides,
+			tokenOverrides,
+			brandOverrides,
+			componentOverrides
+		);
+
+		return (
+			<overrides.Button.component
+				ref={ref}
+				type={tag === 'button' ? 'button' : undefined}
+				disabled={disabled}
+				aria-label={assistiveText}
+				onClick={onClick}
+				className={className}
+				{...overrides.Button.attributes(state)}
+				css={overrides.Button.styles(state)}
+			>
+				{/* `<input>` elements cannot have children; they would use a `value` prop) */}
+				{tag !== 'input' ? (
+					<Content
+						size={size}
+						block={block}
+						iconAfter={iconAfter}
+						iconBefore={iconBefore}
+						dropdown={dropdown}
+						overrides={componentOverrides}
+					>
+						{children}
+					</Content>
+				) : null}
+			</overrides.Button.component>
+		);
+	}
+);
 
 // ==============================
 // Types

@@ -1,4 +1,4 @@
-module.exports = ({ COLORS }) => ({
+export const formCheck = ({ COLORS }) => ({
 	Label: {
 		styles: (styles, { checked }) => {
 			return {

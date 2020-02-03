@@ -20,5 +20,7 @@
 	"scripts": {},
 	"main": "dist/bsa.cjs.js",
 	"module": "dist/bsa.esm.js",
-	"dependencies": {}
+	"dependencies": {
+		"@babel/runtime": "^7.6.2"
+	}
 }

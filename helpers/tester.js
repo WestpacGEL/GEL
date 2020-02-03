@@ -1,15 +1,16 @@
-const Spawn = require('child_process');
-const cfonts = require('cfonts');
 const getWorkspaces = require('get-workspaces').default;
+const Spawn = require('child_process');
+const chalk = require('chalk');
 
 (async () => {
 	const workspaces = await getWorkspaces();
 
+	const longestName = [...workspaces].sort((a, b) => a.name.length < b.name.length)[0].name.length;
+
 	workspaces.map(workspace => {
-		cfonts.say(`${workspace.name.split('/')[1]}`, {
-			colors: ['redBright', 'magenta', 'whiteBright'],
-			font: 'chrome',
-		});
+		process.stdout.write(
+			`${chalk.bold.yellow(workspace.name.split('/')[1].padEnd(longestName, ' '))}  `
+		);
 
 		const command = Spawn.spawnSync('npm', ['test'], {
 			cwd: workspace.dir,
@@ -18,11 +19,12 @@ const getWorkspaces = require('get-workspaces').default;
 		});
 
 		if (command.status) {
-			console.error(`The test for ${workspace.name} failed!\n`, command.stderr.toString());
+			process.stdout.write(chalk.bgRed.black('🛑  failed\n'));
+			console.error(command.stderr.toString());
 			console.log(command.stdout);
 			process.exit(1);
 		} else {
-			console.log(`✅ success`);
+			process.stdout.write(chalk.bgGreen.black('✅  success\n'));
 		}
 	});
 
