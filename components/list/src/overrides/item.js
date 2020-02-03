@@ -41,6 +41,14 @@ export const itemStyles = (_, { type, look, spacing, nested }) => {
 				backgroundSize: 'contain',
 				boxSizing: 'border-box',
 			},
+			a: {
+				color: COLORS.text,
+				textDecoration: 'none',
+
+				':hover': {
+					textDecoration: 'underline',
+				},
+			},
 		},
 		tick: {
 			'::before': {

@@ -32,18 +32,32 @@ function Example({ brand }) {
 
 			<h2>Link List</h2>
 			<List type="link">
-				<Item>Styled link list</Item>
-				<Item>Styled link list</Item>
-				<Item>Styled link list</Item>
 				<Item>
-					Styled link list
+					<a href="#">Styled link list</a>
+				</Item>
+				<Item>
+					<a href="#">Styled link list</a>
+				</Item>
+				<Item>
+					<a href="#">Styled link list</a>
+				</Item>
+				<Item>
+					<a href="#">Styled link list</a>
 					<List>
-						<Item>Styled link list</Item>
-						<Item>Styled link list</Item>
-						<Item>Styled link list</Item>
+						<Item>
+							<a href="#">Styled link list</a>
+						</Item>
+						<Item>
+							<a href="#">Styled link list</a>
+						</Item>
+						<Item>
+							<a href="#">Styled link list</a>
+						</Item>
 					</List>
 				</Item>
-				<Item>Styled link list</Item>
+				<Item>
+					<a href="#">Styled link list</a>
+				</Item>
 			</List>
 
 			<br />
