@@ -1,3 +1,4 @@
+const babelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except');
 const { slugFromFilename, labelFromSlug, findExampleFiles, makeCode } = require('./_utils.js');
 const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -51,7 +52,8 @@ process.on('exit', () => {
 module.exports = () => ({
 	entry: tmpObj.name,
 	context: path.normalize(`${__dirname}/../../components/`),
-	mode: process.env.NODE_ENV,
+	mode: 'production', // process.env.NODE_ENV,
+	devtool: false,
 
 	output: {
 		filename: '[name]-[hash].js',
@@ -63,7 +65,9 @@ module.exports = () => ({
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: /node_modules/,
+				exclude: babelLoaderExcludeNodeModulesExcept([
+					'react-spring',
+				]),
 				loader: 'babel-loader',
 				options: {
 					rootMode: 'upward',
