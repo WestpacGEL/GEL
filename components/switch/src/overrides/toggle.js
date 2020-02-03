@@ -33,6 +33,7 @@ export const toggleStyles = (_, { size, checked }) => {
 
 		// the thumb/dot
 		'::after': {
+			boxSizing: 'border-box',
 			content: '""',
 			height: sizeCalcArr,
 			width: sizeCalcArr,
@@ -43,6 +44,7 @@ export const toggleStyles = (_, { size, checked }) => {
 			top: 0,
 			borderRadius: '50%',
 			backgroundColor: '#fff',
+			border: '1px solid transparent', //for high contrast mode
 			boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 			transition: 'all .3s ease',
 		},
