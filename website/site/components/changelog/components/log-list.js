@@ -4,8 +4,8 @@ import { jsx } from '@westpac/core';
 import ReactMarkdown from 'react-markdown';
 
 // import Pagination from '@atlaskit/pagination';
-import filterChangelog from '../utils/filter-changelog';
-import divideChangelog from '../utils/divide-changelog';
+import { filterChangelog } from '../utils/filter-changelog';
+import { divideChangelog } from '../utils/divide-changelog';
 
 function getVersion(str) {
 	return str.match(/^(\d+\.\d+\.\d+)/);
@@ -37,7 +37,7 @@ const Heading = ({ children, href }) => {
 	);
 };
 
-export default class LogList extends React.Component {
+export class LogList extends React.Component {
 	state = {
 		currentPage: 1,
 	};

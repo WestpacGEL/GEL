@@ -1,37 +1,46 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+
+import { TableHeader, thStyles } from './overrides/th';
 import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Th = ({ bordered, ...props }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+export const Th = ({ bordered, overrides: componentOverrides, ...rest }) => {
+	const context = useTableContext();
+	bordered = (context && context.bordered) || bordered;
 
-	const overrides = {
-		thCSS: {},
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		Th: {
+			styles: thStyles,
+			component: TableHeader,
+			attributes: (_, a) => a,
+		},
 	};
-	merge(overrides, overridesWithTokens);
 
-	const { bordered: borderedCtx } = useTableContext();
-	bordered = bordered || borderedCtx;
+	const state = {
+		bordered,
+		overrides: componentOverrides,
+		...rest,
+	};
 
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 	return (
-		<th
-			css={{
-				padding: '0.75rem',
-				verticalAlign: 'top',
-				border: `1px solid ${COLORS.border}`,
-				borderLeft: !bordered && 0,
-				borderRight: !bordered && 0,
-				textAlign: 'left',
-				...overrides.thCSS,
-			}}
-			{...props}
-		/>
+		<overrides.Th.component {...overrides.Th.attributes(state)} css={overrides.Th.styles(state)} />
 	);
 };
 
@@ -43,4 +52,15 @@ Th.propTypes = {
 	 * Whether or not there should border styling
 	 */
 	bordered: PropTypes.bool,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Th: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };

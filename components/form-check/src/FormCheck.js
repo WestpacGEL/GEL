@@ -1,79 +1,215 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext } from 'react';
+import {
+	jsx,
+	useBrand,
+	overrideReconciler,
+	wrapHandlers,
+	devWarning,
+	asArray,
+} from '@westpac/core';
+import { cloneElement, Children, useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
 
-// ==============================
-// Context and consumer hook
-// ==============================
-
-const FormCheckContext = createContext();
-
-export const useFormCheckContext = () => {
-	const context = useContext(FormCheckContext);
-	if (!context) {
-		throw new Error('Form check sub-components should be wrapped in a <FormCheck>.');
-	}
-	return context;
-};
+import { FormCheck as FormCheckWrapper, formCheckStyles } from './overrides/formCheck';
+import { Option } from './Option';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormCheck = ({ type, name, size, inline, flipped, ...props }) => (
-	<FormCheckContext.Provider value={{ type, name, size, inline, flipped }}>
-		<div {...props} />
-	</FormCheckContext.Provider>
-);
+export const FormCheck = ({
+	children,
+	type,
+	name,
+	size,
+	inline,
+	flipped,
+	data,
+	onChange = () => {},
+	defaultValue,
+	className,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const defaultValueAsArray = defaultValue ? asArray(defaultValue) : [];
+
+	devWarning(
+		type === 'radio' && defaultValueAsArray.length > 1,
+		'The form-check as radio may only have one "current" item set.'
+	);
+
+	const [selected, setSelected] = useState(defaultValueAsArray);
+
+	const handleChange = (event, value, wasSelected) => {
+		wrapHandlers(
+			() => onChange(event, value, wasSelected),
+			() => {
+				if (type === 'radio') {
+					setSelected(asArray(value));
+				} else {
+					if (wasSelected) {
+						setSelected(selected.filter(item => item !== value));
+					} else {
+						setSelected([...selected, value]);
+					}
+				}
+			}
+		)(event);
+	};
+
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		FormCheck: {
+			styles: formCheckStyles,
+			component: FormCheckWrapper,
+			attributes: (_, a) => a,
+		},
+	};
+
+	const state = {
+		type,
+		name,
+		size,
+		inline,
+		flipped,
+		data,
+		defaultValue,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
+
+	let allChildren = [];
+	if (data) {
+		data.map((props, index) => {
+			allChildren.push(
+				<Option
+					key={index}
+					{...state}
+					value={props.value}
+					handleChange={handleChange}
+					selected={selected.includes(props.value)}
+					overrides={componentOverrides}
+				>
+					{props.text}
+				</Option>
+			);
+		});
+	} else {
+		const length = Children.count(children);
+		allChildren = Children.map(children, child =>
+			cloneElement(child, {
+				...state,
+				handleChange,
+				selected: selected.includes(child.props.value),
+				overrides: componentOverrides,
+			})
+		);
+	}
+
+	return (
+		<overrides.FormCheck.component
+			className={className}
+			{...overrides.FormCheck.attributes(state)}
+			css={overrides.FormCheck.styles(state)}
+		>
+			{allChildren}
+		</overrides.FormCheck.component>
+	);
+};
 
 // ==============================
 // Types
 // ==============================
 
-const options = {
-	type: ['checkbox', 'radio'],
-	size: ['medium', 'large'],
-};
-
 FormCheck.propTypes = {
 	/**
 	 * Form check type.
-	 *
-	 * This prop is passed to children.
 	 */
-	type: PropTypes.oneOf(options.type),
+	type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
 
 	/**
 	 * The form check input element’s name.
-	 *
-	 * This prop is passed to children.
 	 */
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 
 	/**
 	 * Form check size.
-	 *
-	 * This prop is passed to children.
 	 */
-	size: PropTypes.oneOf(options.size),
+	size: PropTypes.oneOf(['medium', 'large']).isRequired,
+
+	/**
+	 * To inline the element
+	 */
+	inline: PropTypes.bool.isRequired,
 
 	/**
 	 * Form check orientation (control on the right).
-	 *
-	 * This prop is passed to children.
 	 */
-	flipped: PropTypes.bool,
+	flipped: PropTypes.bool.isRequired,
+
+	/**
+	 * A function called on change
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * The data prop shape
+	 */
+	data: PropTypes.arrayOf(
+		PropTypes.shape({
+			value: PropTypes.node,
+			text: PropTypes.string,
+		})
+	),
 
 	/**
 	 * Form check item(s)
 	 */
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
+
+	/**
+	 * The options already selected
+	 */
+	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		FormCheck: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Option: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 FormCheck.defaultProps = {
 	type: 'checkbox',
+	inline: false,
 	size: 'medium',
 	flipped: false,
 };

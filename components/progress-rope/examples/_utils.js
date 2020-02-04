@@ -1,4 +1,7 @@
-import React, { useReducer } from 'react';
+/** @jsx jsx */
+
+import { jsx } from '@westpac/core';
+import { useReducer } from 'react';
 
 export const useProgress = () => {
 	const initialState = { index: 0 };
@@ -30,3 +33,5 @@ export const Link = ({ index, dispatch, ...props }) => (
 		{...props}
 	/>
 );
+
+export const Wrapper = props => <div css={{ width: '300px' }} {...props} />;

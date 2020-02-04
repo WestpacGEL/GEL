@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, merge } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, mergeWith } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Header, headerStyles } from './overrides/header';
@@ -18,12 +18,10 @@ export const PanelHeader = ({ overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		subComponent: {
-			Header: {
-				styles: headerStyles,
-				component: Header,
-				attributes: state => state,
-			},
+		Header: {
+			styles: headerStyles,
+			component: Header,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -39,14 +37,13 @@ export const PanelHeader = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		merge(componentOverrides, overridesCtx),
-		state
+		mergeWith(componentOverrides, overridesCtx)
 	);
 
 	return (
-		<overrides.subComponent.Header.component
-			css={overrides.subComponent.Header.styles}
-			{...overrides.subComponent.Header.attributes(state)}
+		<overrides.Header.component
+			{...overrides.Header.attributes(state)}
+			css={overrides.Header.styles(state)}
 		/>
 	);
 };
@@ -65,12 +62,10 @@ PanelHeader.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		subComponent: PropTypes.shape({
-			Header: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Header: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

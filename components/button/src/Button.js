@@ -3,93 +3,108 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Button as ButtonWrapper, buttonStyles } from './overrides/button';
 import { Content } from './Content';
 import pkg from '../package.json';
+import { forwardRef } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
-export const Button = ({
-	look,
-	size,
-	soft,
-	block,
-	iconAfter,
-	iconBefore,
-	justify,
-	disabled,
-	assistiveText,
-	tag,
-	onClick,
-	children,
-	overrides: componentOverrides,
-	...rest
-}) => {
-	const {
-		COLORS,
-		TYPE,
-		BRAND,
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
+export const Button = forwardRef(
+	(
+		{
+			look,
+			size,
+			soft,
+			block,
+			iconAfter,
+			iconBefore,
+			justify,
+			disabled,
+			assistiveText,
+			tag,
+			onClick,
+			dropdown,
+			children,
+			className,
+			overrides: componentOverrides,
+			...rest
+		},
+		ref
+	) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	// We don't support soft links, so don't want them to cause styling issues
-	if (soft && look === 'link') soft = false;
+		// We don't support soft links, so don't want them to cause styling issues
+		if (soft && look === 'link') soft = false;
 
-	if (rest.href) {
-		tag = 'a';
+		if (rest.href) {
+			tag = 'a';
+		}
+
+		const defaultOverrides = {
+			Button: {
+				styles: buttonStyles,
+				component: ButtonWrapper,
+				attributes: (_, a) => a,
+			},
+		};
+
+		const state = {
+			look,
+			size,
+			soft,
+			block,
+			iconAfter,
+			iconBefore,
+			justify,
+			disabled,
+			assistiveText,
+			tag,
+			onClick,
+			overrides: componentOverrides,
+			...rest,
+		};
+
+		const overrides = overrideReconciler(
+			defaultOverrides,
+			tokenOverrides,
+			brandOverrides,
+			componentOverrides
+		);
+
+		return (
+			<overrides.Button.component
+				ref={ref}
+				type={tag === 'button' ? 'button' : undefined}
+				disabled={disabled}
+				aria-label={assistiveText}
+				onClick={onClick}
+				className={className}
+				{...overrides.Button.attributes(state)}
+				css={overrides.Button.styles(state)}
+			>
+				{/* `<input>` elements cannot have children; they would use a `value` prop) */}
+				{tag !== 'input' ? (
+					<Content
+						size={size}
+						block={block}
+						iconAfter={iconAfter}
+						iconBefore={iconBefore}
+						dropdown={dropdown}
+						overrides={componentOverrides}
+					>
+						{children}
+					</Content>
+				) : null}
+			</overrides.Button.component>
+		);
 	}
-
-	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
-	};
-
-	const state = {
-		look,
-		size,
-		soft,
-		block,
-		iconAfter,
-		iconBefore,
-		justify,
-		disabled,
-		assistiveText,
-		tag,
-		onClick,
-		overrides: componentOverrides,
-		...rest,
-	};
-
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides,
-		state
-	);
-
-	return (
-		<overrides.component
-			css={overrides.styles}
-			{...overrides.attributes(state)}
-			type={tag === 'button' ? 'button' : undefined}
-			disabled={disabled}
-			aria-label={assistiveText}
-			onClick={onClick}
-		>
-			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
-			{tag !== 'input' ? (
-				<Content size={size} block={block} iconAfter={iconAfter} iconBefore={iconBefore}>
-					{children}
-				</Content>
-			) : null}
-		</overrides.component>
-	);
-};
+);
 
 // ==============================
 // Types
@@ -167,26 +182,25 @@ Button.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
-
-		subComponent: PropTypes.shape({
-			Content: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			TextWrapper: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
-			ButtonGroup: PropTypes.shape({
-				styles: PropTypes.func,
-				component: PropTypes.elementType,
-				attributes: PropTypes.object,
-			}),
+		Button: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Content: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		TextWrapper: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ButtonGroup: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
 		}),
 	}),
 };

@@ -23,12 +23,14 @@ const Wrapper = ({ look, children, ...rest }) => (
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/badge'] = {
-		styles: (styles, { look }) => ({
-			...styles,
-			backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
-			outline: '1px solid red',
-		}),
-		component: Wrapper,
+		Badge: {
+			styles: (styles, { look }) => ({
+				...styles,
+				backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
+				outline: '1px solid red',
+			}),
+			component: Wrapper,
+		},
 	};
 
 	return (
@@ -52,10 +54,12 @@ function Example({ brand }) {
 			<Badge
 				value="Default overridden"
 				overrides={{
-					styles: styles => ({
-						...styles,
-						outline: '3px dotted green',
-					}),
+					Badge: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
+					},
 				}}
 			/>
 		</GEL>

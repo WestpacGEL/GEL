@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Button, ButtonGroup } from '@westpac/button';
+import { Button, ButtonGroup, ButtonDropdown } from '@westpac/button';
 import { HouseIcon } from '@westpac/icon';
 import { Fragment } from 'react';
 
@@ -17,21 +17,27 @@ const TextWrapper = ({ children, ...rest }) => (
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button'] = {
-		styles: styles => ({
-			...styles,
-			outline: '1px dotted blue',
-		}),
-
-		subComponent: {
-			ButtonGroup: {
-				styles: styles => ({
-					...styles,
-					outline: `4px solid green`,
-				}),
-			},
-			TextWrapper: {
-				component: TextWrapper,
-			},
+		Button: {
+			styles: styles => ({
+				...styles,
+				outline: '1px dotted blue',
+			}),
+		},
+		ButtonGroup: {
+			styles: styles => ({
+				...styles,
+				outline: `4px solid green`,
+			}),
+		},
+		TextWrapper: {
+			component: TextWrapper,
+		},
+		Panel: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: 'palevioletred',
+				color: 'white',
+			}),
 		},
 	};
 
@@ -57,16 +63,18 @@ function Example({ brand }) {
 					{ children: 'Right', value: 'right' },
 				]}
 			/>
+			<hr />
+			<ButtonDropdown look="primary" text="Primary Dropdown">
+				<p>Example dropdown content...</p>
+			</ButtonDropdown>
 			<h2>With overrides and component overrides</h2>
 			<ButtonGroup
 				overrides={{
-					subComponent: {
-						ButtonGroup: {
-							styles: styles => ({
-								...styles,
-								outline: `5px solid rebeccapurple`,
-							}),
-						},
+					ButtonGroup: {
+						styles: styles => ({
+							...styles,
+							outline: `5px solid rebeccapurple`,
+						}),
 					},
 				}}
 			>
@@ -77,13 +85,11 @@ function Example({ brand }) {
 			<hr />
 			<ButtonGroup
 				overrides={{
-					subComponent: {
-						ButtonGroup: {
-							styles: styles => ({
-								...styles,
-								outline: `5px solid hotpink`,
-							}),
-						},
+					ButtonGroup: {
+						styles: styles => ({
+							...styles,
+							outline: `5px solid hotpink`,
+						}),
 					},
 				}}
 				data={[
@@ -92,6 +98,21 @@ function Example({ brand }) {
 					{ children: 'Right', value: 'right' },
 				]}
 			/>
+			<hr />
+			<ButtonDropdown
+				look="primary"
+				text="Primary Dropdown"
+				overrides={{
+					Panel: {
+						styles: styles => ({
+							...styles,
+							backgroundColor: 'darkred',
+						}),
+					},
+				}}
+			>
+				<p>Example dropdown content...</p>
+			</ButtonDropdown>
 		</GEL>
 	);
 }

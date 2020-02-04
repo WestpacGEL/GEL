@@ -1,1 +1,1 @@
-export { default } from './brand-picker';
+export { BrandPicker } from './brand-picker';

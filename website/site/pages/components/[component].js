@@ -1,60 +1,105 @@
 /** @jsx jsx */
-import { useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import dynamic from 'next/dynamic';
-import { jsx } from '@westpac/core';
-import { Heading } from '@westpac/heading';
+import { useRouter } from 'next/router';
 
-// import ReactLive from '../../components/react-live';
-import ChangelogWrapper from '../../components/changelog';
-import { ALL_COMPONENTS, COMPONENTS } from '../../../graphql';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Tab, Tabcordion } from '@westpac/tabcordion';
 
-let Component = ({ component }) => {
-	let Example = useMemo(() => {
+import {
+	AccessibilityTab,
+	CodeTab,
+	DesignTab,
+	PageHeader,
+} from '../../components/pages/single-component';
+import { ALL_COMPONENTS } from '../../../graphql';
+
+const ComponentWrapper = () => {
+	const { data, error } = useQuery(ALL_COMPONENTS);
+	const router = useRouter();
+	const componentParam = router.query.component;
+	if (error) return 'error!';
+	if (!data) return 'loading...';
+
+	const currentComponent =
+		data.allComponents.filter(component => component.name === componentParam)[0] || '';
+
+	return currentComponent ? (
+		<Component component={currentComponent} />
+	) : (
+		'Sorry, no component matching!'
+	);
+};
+
+const Component = ({ component }) => {
+	const { name, version } = component;
+
+	const DataComponent = useMemo(() => {
 		return dynamic(
 			() =>
-				import(`@westpac/a11y/examples/00-VisuallyHidden`)
-					.then(x => x.default)
+				Promise.all([
+					import(`@westpac/${name}/examples`),
+					import(`@westpac/${name}/CHANGELOG.md`).then(x => x.default),
+				])
+					.then(modules => ({ children }) => children(modules))
 					.catch(error => () => <p>{JSON.stringify(error, null, 4)}</p>),
 			{
 				loading: () => <p>loading...</p>,
 			}
 		);
-	}, [component.packageName]);
+	}, [name]);
 
 	return (
-		<div css={{ maxWidth: 700 }}>
-			<Heading size={1} css={{ textTransform: 'capitalize' }}>
-				{component.packageName}
-			</Heading>
-			<p>
-				This is the intro text for the {component.packageName} component. It will probably come from
-				Keystone.
-			</p>
-			<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
-				Code examples
-			</Heading>
-			<Example editor={true} />
-			<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
-				Changelog
-			</Heading>
-			{/* <ChangelogWrapper data={changelog}></ChangelogWrapper> */}
-		</div>
+		<Fragment>
+			<PageHeader name={name} version={version} />
+			<Tabs component={component} dataComponent={DataComponent} />
+		</Fragment>
 	);
 };
 
-Component.getInitialProps = async ({ apolloClient, query: { component } }) => {
-	try {
-		const { data, error } = await apolloClient.query(ALL_COMPONENTS);
-		console.log({ c: data.allComponents.find(c => c.packageName === component) });
-		return {
-			error: error,
-			component: data.allComponents.find(c => c.packageName === component),
-		};
-	} catch (error) {
-		// If there was an error, we need to pass it down so the page can handle it.
-		console.log('error', error);
-		return { error, component };
-	}
+const Tabs = ({ component, dataComponent: DataComponent }) => {
+	const { SPACING, COLORS } = useBrand();
+	const mq = useMediaQuery();
+	const tabOverrides = {
+		TabItem: {
+			styles: (styles, { selected }) =>
+				mq({
+					...styles,
+					backgroundColor: 'white',
+					border: 'none',
+					margin: 0,
+					marginTop: [SPACING(2), SPACING(3)],
+					borderRight: `solid 1px ${COLORS.border}`,
+					padding: [`${SPACING(2)} ${SPACING(4)}`, `${SPACING(3)} ${SPACING(10)}`],
+					borderBottom: `solid 2px ${selected ? COLORS.primary : 'transparent'}`,
+					fontWeight: 600,
+					color: selected ? COLORS.text : COLORS.muted,
+				}),
+		},
+	};
+	const overrides = {
+		Panel: {
+			styles: styles => ({
+				...styles,
+				padding: `${SPACING(4)} 0 0`,
+				backgroundColor: COLORS.background,
+			}),
+		},
+	};
+	return (
+		<Tabcordion mode="tabs" overrides={tabOverrides}>
+			<Tab overrides={overrides} text="Design">
+				<DesignTab description={component.description} doc={component.doc} />
+			</Tab>
+			<Tab overrides={overrides} text="Accessibility">
+				<AccessibilityTab />
+			</Tab>
+			<Tab overrides={overrides} text="Code">
+				<CodeTab dataComponent={DataComponent} />
+			</Tab>
+		</Tabcordion>
+	);
 };
 
-export default Component;
+export default ComponentWrapper;

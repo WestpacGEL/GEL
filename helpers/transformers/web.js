@@ -1,5 +1,5 @@
-const path = require('path');
 const cfonts = require('cfonts');
+const path = require('path');
 const fs = require('fs');
 
 const { makeTints } = require('./_utils');
@@ -116,17 +116,19 @@ function build(BRAND) {
 	});
 
 	return `
+		import { OVERRIDES as _OVERRIDES } from '../overrides/index';
+
 		const bodyFont = ${JSON.stringify(bodyFont.fontFamily)};
 		const brandFont = ${JSON.stringify(brandFont.fontFamily)};
-		export const SPACING = ( unit, minor, rem = true ) => {
-			return ( unit * 6 - (minor ? 3 : 0) ) / 16 + (rem ? (unit > 0 ? 'rem' : 0) : 0);
+		export const SPACING = ( i, minor, unit = 'rem' ) => {
+			return ( i * 6 - (minor && i !== 0 ? 3 : 0) ) / 16 + (unit ? (i > 0 ? unit : 0) : 0);
 		};
 		export const COLORS = ${JSON.stringify(COLORS)};
 		export const LAYOUT = ${JSON.stringify(LAYOUT)};
 		export const TYPE = ${TYPE};
 		export const PACKS = ${JSON.stringify(PACKS)};
 		export const BRAND = "${BRAND}";
-		export const OVERRIDES = require('../overrides/index')({
+		export const OVERRIDES = _OVERRIDES({
 			SPACING,
 			COLORS,
 			LAYOUT,

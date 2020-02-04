@@ -10,7 +10,27 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h3>Link List</h3>
+			<h2>Bullet List</h2>
+			<List type="bullet">
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
+				<Item>
+					Styled bullet list
+					<List>
+						<Item>Styled bullet list</Item>
+						<Item>Styled bullet list</Item>
+						<Item>Styled bullet list</Item>
+					</List>
+				</Item>
+				<Item>Styled bullet list</Item>
+			</List>
+
+			<br />
+			<hr />
+			<br />
+
+			<h2>Link List</h2>
 			<List type="link">
 				<Item>Styled link list</Item>
 				<Item>Styled link list</Item>
@@ -30,7 +50,7 @@ function Example({ brand }) {
 			<hr />
 			<br />
 
-			<h3>Tick List</h3>
+			<h2>Tick List</h2>
 			<List type="tick">
 				<Item>Styled tick list</Item>
 				<Item>Styled tick list</Item>
@@ -50,7 +70,33 @@ function Example({ brand }) {
 			<hr />
 			<br />
 
-			<h3>Unstyled</h3>
+			<h2>Ordered</h2>
+			<List type="ordered">
+				<Item>Styled ordered list</Item>
+				<Item>Styled ordered list</Item>
+				<Item>Styled ordered list</Item>
+				<Item>
+					Styled ordered list
+					<List>
+						<Item>Styled ordered list</Item>
+						<Item>Styled ordered list</Item>
+						<Item>Styled ordered list</Item>
+					</List>
+				</Item>
+				<Item>Styled ordered list</Item>
+				<Item>Styled ordered list</Item>
+				<Item>Styled ordered list</Item>
+				<Item>Styled ordered list</Item>
+				<Item>Styled ordered list</Item>
+				<Item>Styled ordered list</Item>
+				<Item>Styled ordered list</Item>
+			</List>
+
+			<br />
+			<hr />
+			<br />
+
+			<h2>Unstyled</h2>
 			<List type="unstyled">
 				<Item>Unstyled list</Item>
 				<Item>Unstyled list</Item>

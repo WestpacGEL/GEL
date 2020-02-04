@@ -1,8 +1,10 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+
+import { TableRow, trStyles } from './overrides/tr';
 import pkg from '../package.json';
 
 // ==============================
@@ -26,13 +28,33 @@ const generateHighlightMap = (highlighted, tdCount) => {
 // Component
 // ==============================
 
-export const Tr = ({ striped, highlighted, children, ...props }) => {
-	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+export const Tr = ({ striped, highlighted, children, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		trCSS: {},
+	const defaultOverrides = {
+		Tr: {
+			styles: trStyles,
+			component: TableRow,
+			attributes: (_, a) => a,
+		},
 	};
-	merge(overrides, overridesWithTokens);
+
+	const state = {
+		striped,
+		highlighted,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	let highlightedChildren;
 
@@ -53,25 +75,9 @@ export const Tr = ({ striped, highlighted, children, ...props }) => {
 	}
 
 	return (
-		<tr
-			css={{
-				transition: !striped && 'background 0.2s ease',
-				borderLeft:
-					typeof highlighted === 'boolean' && highlighted ? `6px solid ${COLORS.primary}` : 0,
-				borderBottom:
-					typeof highlighted === 'boolean' && highlighted
-						? `1px solid ${COLORS.primary}`
-						: `1px solid ${COLORS.border}`,
-				// Hovered row
-				':hover': {
-					backgroundColor: !striped && COLORS.background,
-				},
-				...overrides.trCSS,
-			}}
-			{...props}
-		>
+		<overrides.Tr.component {...overrides.Tr.attributes(state)} css={overrides.Tr.styles(state)}>
 			{highlightedChildren || children}
-		</tr>
+		</overrides.Tr.component>
 	);
 };
 
@@ -83,9 +89,20 @@ Tr.propTypes = {
 	/**
 	 * Highlighted mode
 	 */
-	// highlighted: PropTypes.bool,
+	highlighted: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Tr: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Tr.defaultProps = {
-	// highlighted: false,
+	highlighted: false,
 };

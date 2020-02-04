@@ -5,9 +5,10 @@ module.exports = {
 		'babel-plugin-codegen',
 		'@babel/plugin-transform-runtime',
 	],
+
 	overrides: [
 		{
-			include: 'website/field-content',
+			test: x => x.includes('field-content'),
 			presets: [
 				[
 					'@babel/preset-env',

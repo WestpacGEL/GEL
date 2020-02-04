@@ -2,10 +2,14 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
+import { Button } from '@westpac/button';
+import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
+	const [open, setOpen] = useState(false);
+
 	return (
 		<GEL brand={brand}>
 			<Intopia />
@@ -29,6 +33,15 @@ function Example({ brand }) {
 			<Alert look="system" dismissible>
 				<strong>System Error 8942:</strong> The server is no responding. Please try again later.
 				Sorry for the inconvenience. Hey neato, I can be closed. <a href="#">Link</a>
+			</Alert>
+
+			<h2>Visibility Controlled via props</h2>
+			<Button onClick={() => setOpen(!open)}>{open ? 'Hide' : 'Show'}</Button>
+			<br />
+			<br />
+			<Alert open={open} look="success" dismissible>
+				<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I
+				can be closed. <a href="#">Link</a>
 			</Alert>
 		</GEL>
 	);

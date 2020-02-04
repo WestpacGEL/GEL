@@ -10,8 +10,8 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Medium</h2>
-			<FormCheck type="checkbox" name="example-checkbox-medium" size="medium">
+			<h2>Default</h2>
+			<FormCheck type="checkbox" name="example-checkbox-medium">
 				<Option value="1">Option 1</Option>
 				<Option value="2">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
@@ -20,7 +20,8 @@ function Example({ brand }) {
 					aspernatur eveniet libero.
 				</Option>
 			</FormCheck>
-			<FormCheck type="radio" name="example-radio-medium" size="medium">
+
+			<FormCheck type="radio" name="example-radio-medium">
 				<Option value="1">Option 1</Option>
 				<Option value="2">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora

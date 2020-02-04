@@ -1,20 +1,18 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 const { Keystone } = require('@keystonejs/keystone');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { NextApp } = require('@keystonejs/app-next');
-const { KnexAdapter } = require('@keystonejs/adapter-knex');
+const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
 const { extendKeystoneGraphQLSchema, resolveComponents } = require('./extend-schema');
 const { getComponentSchema } = require('./schema/component');
 
 const keystone = new Keystone({
 	name: 'GEL3 Website',
-	adapter: new KnexAdapter(),
+	adapter: new MongooseAdapter(),
 	dropDatabase: true,
 });
-
-extendKeystoneGraphQLSchema(keystone);
 
 const apps = [
 	new GraphQLApp(),
@@ -25,14 +23,19 @@ const apps = [
 	new NextApp({ dir: 'site' }),
 ];
 
+const options = resolveComponents();
+
+keystone.createList(
+	'Component',
+	getComponentSchema(options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name })))
+);
+
+module.exports = {
+	keystone,
+	apps,
+};
+
 const prepareKeystone = async () => {
-	const options = await resolveComponents();
-
-	keystone.createList(
-		'Component',
-		getComponentSchema(options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name })))
-	);
-
 	keystone
 		.prepare({ apps, dev: process.env.NODE_ENV !== 'production' })
 		.then(async ({ middlewares }) => {

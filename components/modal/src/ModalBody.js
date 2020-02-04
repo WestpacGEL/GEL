@@ -1,21 +1,46 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, merge } from '@westpac/core';
+
+import { Body, bodyStyles } from './overrides/body';
 import { useModalContext } from './Modal';
 import pkg from '../package.json';
 
-export const ModalBody = ({ overrides: overridesComponent, ...props }) => {
+export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
 	const { bodyId } = useModalContext();
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const overrides = {
-		bodyCSS: {},
+	const defaultOverrides = {
+		Body: {
+			styles: bodyStyles,
+			component: Body,
+			attributes: (_, a) => a,
+		},
 	};
 
-	merge(overrides, overridesWithTokens, overridesComponent);
+	const state = {
+		overrides: componentOverrides,
+		...rest,
+	};
 
-	return <div id={bodyId} css={{ padding: '1.125rem 1.5rem', ...overrides.bodyCSS }} {...props} />;
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
+
+	return (
+		<overrides.Body.component
+			id={bodyId}
+			{...overrides.Body.attributes(state)}
+			css={overrides.Body.styles(state)}
+		/>
+	);
 };
 
 // ==============================
@@ -23,9 +48,13 @@ export const ModalBody = ({ overrides: overridesComponent, ...props }) => {
 // ==============================
 ModalBody.propTypes = {
 	/**
-	 * ModalBody overrides
+	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		bodyCSS: PropTypes.object,
+		Body: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 	}),
 };

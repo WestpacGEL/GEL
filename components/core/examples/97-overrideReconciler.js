@@ -11,76 +11,75 @@ function Example({ brand }) {
 			<Intopia ignore />
 			<h2>General merge</h2>
 			<Code>{`overrideReconciler(
-	{ a: 1 }, // defaultOverrides
-	{ b: 2 }, // tokenOverrides
-	{ c: 3 }, // brandOverrides
-	{ a: 4 }, // componentOverrides
-	{}        // state
-);`}</Code>
-			=>
-			<Code>{JSON.stringify(overrideReconciler({ a: 1 }, { b: 2 }, { c: 3 }, { a: 4 }, {}))}</Code>
-			<hr />
-			<h2>Style function merge</h2>
-			<Code>{`overrideReconciler(
-	{ styles: () => ({ a: 1, b: 1 }) },
-	{ styles: style => ({ a: 2 + '' + style.a, b: 2 + '' + style.b }) },
-	{ styles: style => ({ a: 3 + '' + style.a, b: 3 + '' + style.b }) },
-	{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
-	{}
+	{ a: { one: 1 } },   // defaultOverrides
+	{ b: { two: 2 } },   // tokenOverrides
+	{ c: { three: 3 } }, // brandOverrides
+	{ a: { four: 4 } }   // componentOverrides
 );`}</Code>
 			=>
 			<Code>
 				{JSON.stringify(
 					overrideReconciler(
-						{ styles: () => ({ a: 1, b: 1 }) },
-						{ styles: style => ({ a: 2 + '' + style.a, b: 2 + '' + style.b }) },
-						{ styles: style => ({ a: 3 + '' + style.a, b: 3 + '' + style.b }) },
-						{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
-						{}
+						{ a: { one: 1 } },
+						{ b: { two: 2 } },
+						{ c: { three: 3 } },
+						{ a: { four: 4 } }
 					)
 				)}
 			</Code>
 			<hr />
+			<h2>Style function merge</h2>
 			<Code>{`overrideReconciler(
-	{ styles: () => ({ a: 1, b: 1 }) },
-	{},
-	{},
-	{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
-	{}
-);`}</Code>
+	{ a: { styles: () => ({ a: 1, b: 1 }) } },
+	{ a: { styles: style => ({ a: 2 + '' + style.a, b: 2 + '' + style.b }) } },
+	{ a: { styles: style => ({ a: 3 + '' + style.a, b: 3 + '' + style.b }) } },
+	{ a: { styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) } }
+).a.styles();`}</Code>
 			=>
 			<Code>
 				{JSON.stringify(
 					overrideReconciler(
-						{ styles: () => ({ a: 1, b: 1 }) },
-						{},
-						{},
-						{ styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
-						{}
-					)
+						{ a: { styles: () => ({ a: 1, b: 1 }) } },
+						{ a: { styles: style => ({ a: 2 + '' + style.a, b: 2 + '' + style.b }) } },
+						{ a: { styles: style => ({ a: 3 + '' + style.a, b: 3 + '' + style.b }) } },
+						{ a: { styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) } }
+					).a.styles()
+				)}
+			</Code>
+			<hr />
+			<Code>{`overrideReconciler(
+	{ a: { styles: () => ({ a: 1, b: 1 }) } },
+	undefined,
+	undefined,
+	{ a: { styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) } }
+).a.styles();`}</Code>
+			=>
+			<Code>
+				{JSON.stringify(
+					overrideReconciler({ a: { styles: () => ({ a: 1, b: 1 }) } }, undefined, undefined, {
+						a: { styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
+					}).a.styles()
 				)}
 			</Code>
 			<h2>SubComponent Style function merge</h2>
 			<Code>
 				{`overrideReconciler(
-	{ subComponent: { Test: { styles: styles => ({ ...styles, a: 1 }) } } },
-	{ subComponent: { Test: { styles: styles => ({ ...styles, b: 1 }) } } },
-	{ subComponent: { Test: { styles: styles => ({ ...styles, c: 1 }) } } },
-	{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } },
-	{}
-);
+	{ Test: { styles: styles => ({ ...styles, a: 1 }) } },
+	{ Test: { styles: styles => ({ ...styles, b: 1 }) } },
+	{ Test: { styles: styles => ({ ...styles, c: 1 }) } },
+	{ Test: { styles: styles => ({ ...styles, d: 1 }) } }
+).Test.styles();
 			`}
 			</Code>
 			=>
 			<Code>
 				{JSON.stringify(
 					overrideReconciler(
-						{ subComponent: { Test: { styles: styles => ({ ...styles, a: 1 }) } } },
-						{ subComponent: { Test: { styles: styles => ({ ...styles, b: 1 }) } } },
-						{ subComponent: { Test: { styles: styles => ({ ...styles, c: 1 }) } } },
-						{ subComponent: { Test: { styles: styles => ({ ...styles, d: 1 }) } } },
-						{}
-					)
+						{ Test: { styles: styles => ({ ...styles, a: 1 }) } },
+						{ Test: { styles: styles => ({ ...styles, b: 1 }) } },
+						{ Test: { styles: styles => ({ ...styles, c: 1 }) } },
+						{ Test: { styles: styles => ({ ...styles, d: 1 }) } }
+					).Test.styles()
 				)}
 			</Code>
 		</GEL>

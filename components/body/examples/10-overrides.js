@@ -8,10 +8,12 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/body'] = {
-		styles: styles => ({
-			...styles,
-			border: '1px solid red',
-		}),
+		Body: {
+			styles: styles => ({
+				...styles,
+				border: '1px solid red',
+			}),
+		},
 	};
 
 	return (
@@ -125,10 +127,12 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<Body
 				overrides={{
-					styles: styles => ({
-						...styles,
-						outline: '3px dotted green',
-					}),
+					Body: {
+						styles: styles => ({
+							...styles,
+							outline: '3px dotted green',
+						}),
+					},
 				}}
 			>
 				This is a default alert. <a href="#">Link</a>

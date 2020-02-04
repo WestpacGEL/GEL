@@ -1,32 +1,59 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, useBrand } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+
+import { Container as ContainerWrapper, containerStyles } from './overrides/container';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Container = props => {
-	const { SPACING } = useBrand();
-	const mq = useMediaQuery();
+export const Container = ({ overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	const padding = [SPACING(2), SPACING(3), SPACING(6), SPACING(8), SPACING(10)];
+	const defaultOverrides = {
+		Container: {
+			styles: containerStyles,
+			component: ContainerWrapper,
+			attributes: (_, a) => a,
+		},
+	};
+
+	const state = {
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	return (
-		<div
-			css={mq({
-				marginLeft: 'auto',
-				marginRight: 'auto',
-				maxWidth: SPACING(352),
-				paddingLeft: padding,
-				paddingRight: padding,
-			})}
-			{...props}
+		<overrides.Container.component
+			{...overrides.Container.attributes(state)}
+			css={overrides.Container.styles(state)}
 		/>
 	);
 };
 
-Container.propTypes = {};
+Container.propTypes = {
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Container: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
+};
 
 Container.defaultProps = {};

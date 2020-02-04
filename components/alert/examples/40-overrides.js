@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const CloseBtn = ({ onClose, icon: Icon, dismissible, headingTag, look, ...rest }) => (
 	<button onClick={() => onClose()} {...rest}>
-		Close <Icon />
+		Close <HouseIcon />
 	</button>
 );
 
@@ -43,25 +43,24 @@ const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest }) => 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/alert'] = {
-		styles: styles => ({
-			...styles,
-			outline: '1px solid red',
-		}),
-
-		subComponent: {
-			Icon: {
-				component: Icon,
-				styles: (styles, { look }) => ({
-					...styles,
-					outline: `2px solid ${look === 'info' ? 'red' : 'black'}`,
-				}),
-			},
-			CloseBtn: {
-				component: CloseBtn,
-			},
-			Heading: {
-				component: Heading,
-			},
+		Alert: {
+			styles: styles => ({
+				...styles,
+				outline: '1px solid red',
+			}),
+		},
+		Icon: {
+			component: Icon,
+			styles: (styles, { look }) => ({
+				...styles,
+				outline: `2px solid ${look === 'info' ? 'red' : 'black'}`,
+			}),
+		},
+		CloseBtn: {
+			component: CloseBtn,
+		},
+		Heading: {
+			component: Heading,
 		},
 	};
 

@@ -3,7 +3,7 @@ import { jsx, useBrand } from '@westpac/core';
 
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
-const ReactLive = ({
+export const ReactLive = ({
 	code = `<p>Add your own code in a "code" prop on the "ReactLive" component!</p>`,
 	scope = {},
 }) => {
@@ -36,5 +36,3 @@ const ReactLive = ({
 		</LiveProvider>
 	);
 };
-
-export default ReactLive;

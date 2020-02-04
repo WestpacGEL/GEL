@@ -1,7 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+
+import { Heading as HeadingWrapper, headingStyles } from './overrides/heading';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -10,35 +13,41 @@ import PropTypes from 'prop-types';
 /**
  * Heading: Headlines for your page needs
  */
-export const Heading = ({ tag: Tag, size, children, ...props }) => {
-	const { PACKS } = useBrand();
+export const Heading = ({ tag: Tag, size, children, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	// ignore all non h1-h6 tags
-	if (Tag && !Tag.startsWith('h') && !(Tag.length === 2)) {
-		Tag = null;
-	}
+	const defaultOverrides = {
+		Heading: {
+			styles: headingStyles,
+			component: HeadingWrapper,
+			attributes: (_, a) => a,
+		},
+	};
 
-	// fall back to size = semantic if no tag is given
-	if (!Tag) {
-		if (size > 6) {
-			Tag = 'h6';
-		} else if (size < 1) {
-			Tag = 'h1';
-		} else {
-			Tag = `h${size}`;
-		}
-	}
+	const state = {
+		tag: Tag,
+		size,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
 
 	return (
-		<Tag
-			css={{
-				margin: 0,
-				...PACKS.headline[size],
-			}}
-			{...props}
+		<overrides.Heading.component
+			{...overrides.Heading.attributes(state)}
+			css={overrides.Heading.styles(state)}
 		>
 			{children}
-		</Tag>
+		</overrides.Heading.component>
 	);
 };
 
@@ -56,6 +65,17 @@ Heading.propTypes = {
 	 * The visual size of the headline
 	 */
 	size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9]).isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Heading: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Heading.defaultProps = {};

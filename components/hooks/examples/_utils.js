@@ -9,7 +9,6 @@ export const Code = ({ children }) => {
 		<pre
 			css={{
 				boxSizing: 'border-box',
-				width: '90%',
 				overflow: 'auto',
 				background: COLORS.background,
 				padding: SPACING(2),

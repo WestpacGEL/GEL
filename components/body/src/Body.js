@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { Body as BodyWrapper, bodyStyles } from './overrides/body';
 import pkg from '../package.json';
 
 // ==============================
@@ -21,9 +21,11 @@ export const Body = ({ tag: Tag, children, overrides: componentOverrides, ...res
 	} = useBrand();
 
 	const defaultOverrides = {
-		styles: wrapperStyles,
-		component: Wrapper,
-		attributes: state => state,
+		Body: {
+			styles: bodyStyles,
+			component: BodyWrapper,
+			attributes: (_, a) => a,
+		},
 	};
 
 	const state = {
@@ -37,14 +39,16 @@ export const Body = ({ tag: Tag, children, overrides: componentOverrides, ...res
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		componentOverrides,
-		state
+		componentOverrides
 	);
 
 	return (
-		<overrides.component css={overrides.styles} {...overrides.attributes(state)}>
+		<overrides.Body.component
+			{...overrides.Body.attributes(state)}
+			css={overrides.Body.styles(state)}
+		>
 			{children}
-		</overrides.component>
+		</overrides.Body.component>
 	);
 };
 
@@ -67,9 +71,11 @@ Body.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		styles: PropTypes.func,
-		component: PropTypes.elementType,
-		attributes: PropTypes.object,
+		Body: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 	}),
 };
 

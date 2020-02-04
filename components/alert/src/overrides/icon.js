@@ -4,7 +4,18 @@ import { jsx, useMediaQuery } from '@westpac/core';
 import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import React from 'react';
 
-export const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest }) => {
+export const Icon = ({
+	size,
+	color,
+	look,
+	dismissible,
+	icon,
+	heading,
+	headingTag,
+	open,
+	overrides,
+	...rest
+}) => {
 	const iconMap = {
 		success: TickIcon,
 		info: InfoIcon,

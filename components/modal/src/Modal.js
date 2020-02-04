@@ -1,15 +1,27 @@
 /** @jsx jsx */
 
-import { createContext, useContext, useState, useEffect, forwardRef } from 'react';
-import { jsx, useBrand, useMediaQuery, merge } from '@westpac/core';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import shortid from 'shortid';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import {
+	Fragment,
+	createContext,
+	useContext,
+	useState,
+	useEffect,
+	useRef,
+	forwardRef,
+} from 'react';
+import { useOutsideClick } from '@westpac/hooks';
+import { CloseIcon } from '@westpac/icon';
 import FocusLock from 'react-focus-lock';
-import { CSSTransition } from 'react-transition-group';
-import pkg from '../package.json';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 
-import { ModalHeader } from './ModalHeader';
+import { Modal as ModalWrapper, modalStyles } from './overrides/modal';
+import { Backdrop, backdropStyles } from './overrides/backdrop';
+import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
+import { Header, headerStyles } from './overrides/header';
+import { Title, titleStyles } from './overrides/title';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
@@ -35,20 +47,66 @@ export const Modal = ({
 	onClose,
 	size,
 	dismissible,
-	overrides: overridesComponent,
 	children,
-	...props
+	className,
+	overrides: componentOverrides,
+	...rest
 }) => {
-	const { [pkg.name]: overridesWithTokens } = useBrand();
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+	const [modalId] = useState(useInstanceId());
 	const [open, setOpen] = useState(isOpen);
 
-	const overrides = {
-		duration: 300,
-		backdropCSS: {},
-		css: {},
+	const defaultOverrides = {
+		Modal: {
+			styles: modalStyles,
+			component: ModalWrapper,
+			attributes: (_, a) => a,
+		},
+		Backdrop: {
+			styles: backdropStyles,
+			component: Backdrop,
+			attributes: (_, a) => a,
+		},
+		Header: {
+			styles: headerStyles,
+			component: Header,
+			attributes: (_, a) => a,
+		},
+		Title: {
+			styles: titleStyles,
+			component: Title,
+			attributes: (_, a) => a,
+		},
+		CloseBtn: {
+			styles: closeBtnStyles,
+			component: CloseBtn,
+			attributes: (_, a) => a,
+		},
 	};
 
-	merge(overrides, overridesWithTokens, overridesComponent);
+	const state = {
+		open,
+		heading,
+		size,
+		dismissible,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const overrides = overrideReconciler(
+		defaultOverrides,
+		tokenOverrides,
+		brandOverrides,
+		componentOverrides
+	);
+
+	const titleId = `GEL3-modal-header-title-${modalId}`;
+	const bodyId = `GEL3-modal-body-${modalId}`;
+
+	const modalRef = useRef();
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -62,13 +120,9 @@ export const Modal = ({
 		}
 	};
 
-	const modalId = shortid.generate();
-	const titleId = `modal-header-title-${modalId}`;
-	const bodyId = `modal-body-${modalId}`;
-
 	// on escape close modal
 	const keyHandler = event => {
-		if (dismissible && event.keyCode === 27) handleClose();
+		if (dismissible && open && event.keyCode === 27) handleClose();
 	};
 
 	// bind key events
@@ -79,42 +133,56 @@ export const Modal = ({
 		};
 	});
 
-	const handleBackdropClick = e => {
-		if (dismissible && e.target === e.currentTarget) {
+	useOutsideClick(modalRef, () => {
+		if (dismissible) {
 			handleClose();
 		}
-	};
+	});
 
 	return ReactDOM.createPortal(
-		<CSSTransition
-			mountOnEnter
-			unmountOnExit
-			in={open}
-			timeout={overrides.duration}
-			classNames="modal-backdrop"
-		>
-			<Backdrop onClick={handleBackdropClick} css={overrides.backdropCSS}>
-				<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
-					<CSSTransition appear in={open} timeout={100} classNames="modal">
-						<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
-							<StyledModal
-								role="dialog"
-								aria-modal="true"
-								aria-labelledby={titleId}
-								aria-describedby={bodyId}
-								tabIndex="-1"
-								size={size}
-								css={overrides.css}
-								{...props}
+		<Fragment>
+			<overrides.Backdrop.component
+				{...overrides.Backdrop.attributes(state)}
+				css={overrides.Backdrop.styles(state)}
+			/>
+			<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
+				<overrides.Modal.component
+					role="dialog"
+					aria-modal="true"
+					aria-labelledby={titleId}
+					aria-describedby={bodyId}
+					tabIndex="-1"
+					ref={modalRef}
+					className={className}
+					{...overrides.Modal.attributes(state)}
+					css={overrides.Modal.styles(state)}
+				>
+					<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
+						<overrides.Header.component
+							{...overrides.Header.attributes(state)}
+							css={overrides.Header.styles(state)}
+						>
+							<overrides.Title.component
+								id={titleId}
+								{...overrides.Title.attributes(state)}
+								css={overrides.Title.styles(state)}
 							>
-								<ModalHeader>{heading}</ModalHeader>
-								{children}
-							</StyledModal>
-						</ModalContext.Provider>
-					</CSSTransition>
-				</FocusLock>
-			</Backdrop>
-		</CSSTransition>,
+								{heading}
+							</overrides.Title.component>
+							{dismissible && (
+								<overrides.CloseBtn.component
+									onClick={() => handleClose()}
+									icon={CloseIcon}
+									{...overrides.CloseBtn.attributes(state)}
+									css={overrides.CloseBtn.styles(state)}
+								/>
+							)}
+						</overrides.Header.component>
+						{children}
+					</FocusLock>
+				</overrides.Modal.component>
+			</ModalContext.Provider>
+		</Fragment>,
 		document.body
 	);
 };
@@ -152,12 +220,34 @@ Modal.propTypes = {
 	dismissible: PropTypes.bool,
 
 	/**
-	 * Modal overrides
+	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		duration: PropTypes.number,
-		backdropCSS: PropTypes.object,
-		css: PropTypes.object,
+		Modal: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Backdrop: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Header: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Title: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		CloseBtn: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 	}),
 };
 
@@ -168,71 +258,8 @@ Modal.defaultProps = {
 };
 
 // ==============================
-// Styled Components
+// Utils
 // ==============================
-const Backdrop = props => (
-	<div
-		css={{
-			position: 'fixed',
-			zIndex: '1001',
-			backgroundColor: 'rgba(0,0,0,0.5)',
-			top: 0,
-			right: 0,
-			bottom: 0,
-			left: 0,
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'baseline',
-			transition: 'all 0.3s ease',
-
-			'&.modal-backdrop-enter': {
-				opacity: 0,
-			},
-
-			'&.modal-backdrop-enter-active': {
-				opacity: 1,
-			},
-
-			'&.modal-backdrop-exit': {
-				opacity: 1,
-			},
-
-			'&.modal-backdrop-exit-active': {
-				opacity: 0,
-			},
-		}}
-		{...props}
-	/>
-);
-
-const StyledModal = ({ size, ...props }) => {
-	const mq = useMediaQuery();
-
-	return (
-		<div
-			css={mq({
-				overflow: 'auto',
-				maxHeight: '85%',
-				margin: '0 0.75rem',
-				backgroundColor: '#fff',
-				borderRadius: '0.1875rem',
-				boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
-				transition: 'all 0.3s ease',
-				width: ['auto', size === 'small' ? '18.75rem' : '37.5rem', size === 'large' && '56.25rem'],
-
-				'&.modal-appear': {
-					opacity: 0,
-				},
-
-				'&.modal-appear-done': {
-					transform: 'translate(0,1.875rem)',
-				},
-			})}
-			{...props}
-		/>
-	);
-};
-
 const FocusWrapper = forwardRef((props, ref) => (
 	<div ref={ref} css={{ height: '100%' }} {...props} />
 ));
