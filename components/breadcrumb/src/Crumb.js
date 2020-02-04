@@ -37,22 +37,22 @@ export const Crumb = ({
 		AssistiveText: {
 			styles: assistiveTextStyles,
 			component: AssistiveText,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Crumb: {
 			styles: crumbStyles,
 			component: CrumbWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Link: {
 			styles: linkStyles,
 			component: Link,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Icon: {
 			styles: iconStyles,
 			component: Icon,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -75,6 +75,10 @@ export const Crumb = ({
 
 	return (
 		<overrides.Crumb.component
+			current={current}
+			href={href}
+			text={text}
+			assistiveText={assistiveText}
 			className={className}
 			{...overrides.Crumb.attributes(state)}
 			css={overrides.Crumb.styles(state)}
@@ -89,7 +93,10 @@ export const Crumb = ({
 				</overrides.AssistiveText.component>
 			)}
 			<overrides.Link.component
+				current={current}
 				href={current ? null : href}
+				text={text}
+				assistiveText={assistiveText}
 				onClick={onClick}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
@@ -101,6 +108,10 @@ export const Crumb = ({
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
+					current={current}
+					href={href}
+					text={text}
+					assistiveText={assistiveText}
 					{...overrides.Icon.attributes(state)}
 					css={overrides.Icon.styles(state)}
 				/>

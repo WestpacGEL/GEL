@@ -14,16 +14,12 @@ import { Crumb } from './Crumb';
 // Component
 // ==============================
 
-/**
- * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
- */
 export const Breadcrumb = ({
-	children,
 	data,
-	current,
 	assistiveText,
 	currentAssistiveText,
 	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -36,23 +32,22 @@ export const Breadcrumb = ({
 		Breadcrumb: {
 			styles: breadcrumbStyles,
 			component: BreadcrumbWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		AssistiveText: {
 			styles: assistiveTextStyles,
 			component: AssistiveText,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		List: {
 			styles: listStyles,
 			component: List,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
 		data,
-		current,
 		assistiveText,
 		currentAssistiveText,
 		overrides: componentOverrides,
@@ -94,6 +89,9 @@ export const Breadcrumb = ({
 
 	return (
 		<overrides.Breadcrumb.component
+			data={data}
+			assistiveText={assistiveText}
+			currentAssistiveText={currentAssistiveText}
 			className={className}
 			{...overrides.Breadcrumb.attributes(state)}
 			css={overrides.Breadcrumb.styles(state)}
@@ -120,11 +118,6 @@ export const Breadcrumb = ({
 
 Breadcrumb.propTypes = {
 	/**
-	 * Any renderable child
-	 */
-	children: PropTypes.node,
-
-	/**
 	 * Data for the crumbs
 	 */
 	data: PropTypes.arrayOf(
@@ -144,6 +137,11 @@ Breadcrumb.propTypes = {
 	 * Visually hidden text to use for the current page crumb
 	 */
 	currentAssistiveText: PropTypes.string,
+
+	/**
+	 * Any renderable child
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API
