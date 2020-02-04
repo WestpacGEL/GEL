@@ -13,7 +13,22 @@ import pkg from '../package.json';
 /**
  * A group of `Cell` components must be wrapped in a `Grid`.
  */
-export const Grid = ({ alignContent, areas, columnGap, columns, flow, gap, height, justifyContent, minRowHeight, rowGap, rows, children, overrides: componentOverrides, ...rest }) => {
+export const Grid = ({
+	alignContent,
+	areas,
+	columnGap,
+	columns,
+	flow,
+	gap,
+	height,
+	justifyContent,
+	minRowHeight,
+	rowGap,
+	rows,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,

@@ -10,7 +10,16 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Cell = ({ area, height, left, top, width, children, overrides: componentOverrides, ...rest }) => {
+export const Cell = ({
+	area,
+	height,
+	left,
+	top,
+	width,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,

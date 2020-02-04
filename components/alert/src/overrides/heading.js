@@ -33,6 +33,6 @@ export const headingStyles = (_, { look }) => {
 
 	return {
 		marginBottom: SPACING(2),
-		color: `${styleMap[ look]} !important`,
+		color: `${styleMap[look]} !important`,
 	};
 };

@@ -15,7 +15,13 @@ import pkg from '../package.json';
 // See: https://hugogiraudel.com/2016/10/13/css-hide-and-seek/
 // ==============================
 
-export const VisuallyHidden = ({ tag, children, overrides: componentOverrides, tag: Tag, ...rest }) => {
+export const VisuallyHidden = ({
+	tag,
+	children,
+	overrides: componentOverrides,
+	tag: Tag,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
