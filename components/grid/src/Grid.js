@@ -13,7 +13,7 @@ import pkg from '../package.json';
 /**
  * A group of `Cell` components must be wrapped in a `Grid`.
  */
-export const Grid = ({ overrides: componentOverrides, ...rest }) => {
+export const Grid = ({ alignContent, areas, columnGap, columns, flow, gap, height, justifyContent, minRowHeight, rowGap, rows, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -23,11 +23,22 @@ export const Grid = ({ overrides: componentOverrides, ...rest }) => {
 		Grid: {
 			styles: gridStyles,
 			component: GridWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
+		alignContent,
+		areas,
+		columnGap,
+		columns,
+		flow,
+		gap,
+		height,
+		justifyContent,
+		minRowHeight,
+		rowGap,
+		rows,
 		...rest,
 	};
 
@@ -40,8 +51,20 @@ export const Grid = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Grid.component
+			alignContent={alignContent}
+			areas={areas}
+			columnGap={columnGap}
+			columns={columns}
+			flow={flow}
+			gap={gap}
+			height={height}
+			justifyContent={justifyContent}
+			minRowHeight={minRowHeight}
+			rowGap={rowGap}
+			rows={rows}
 			{...overrides.Grid.attributes(state)}
 			css={overrides.Grid.styles(state)}
+			children={children}
 		/>
 	);
 };

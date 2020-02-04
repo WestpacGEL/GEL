@@ -50,7 +50,7 @@ export const Button = forwardRef(
 			Button: {
 				styles: buttonStyles,
 				component: ButtonWrapper,
-				attributes: (_, a) => a,
+				attributes: () => null,
 			},
 		};
 
@@ -80,11 +80,12 @@ export const Button = forwardRef(
 		return (
 			<overrides.Button.component
 				ref={ref}
-				type={tag === 'button' ? 'button' : undefined}
+				type={tag === 'button' ? 'button' : null}
 				disabled={disabled}
 				aria-label={assistiveText}
 				onClick={onClick}
 				className={className}
+				{...state}
 				{...overrides.Button.attributes(state)}
 				css={overrides.Button.styles(state)}
 			>

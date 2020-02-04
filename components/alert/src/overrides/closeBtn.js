@@ -27,7 +27,7 @@ export const CloseBtn = ({
 	};
 
 	return (
-		<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest}>
+		<Button type="button" onClick={() => onClose()} iconAfter={icon} look="link" {...rest}>
 			<CloseIcon color={styleMap[look]} size="small" />
 		</Button>
 	);

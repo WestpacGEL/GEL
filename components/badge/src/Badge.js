@@ -20,7 +20,7 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 		Badge: {
 			styles: badgeStyles,
 			component: BadgeWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -40,6 +40,8 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 
 	return (
 		<overrides.Badge.component
+			look={look}
+			value={value}
 			{...overrides.Badge.attributes(state)}
 			css={overrides.Badge.styles(state)}
 		>

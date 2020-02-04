@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Container = ({ overrides: componentOverrides, ...rest }) => {
+export const Container = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -20,7 +20,7 @@ export const Container = ({ overrides: componentOverrides, ...rest }) => {
 		Container: {
 			styles: containerStyles,
 			component: ContainerWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -37,6 +37,7 @@ export const Container = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Container.component
+			children={children}
 			{...overrides.Container.attributes(state)}
 			css={overrides.Container.styles(state)}
 		/>
