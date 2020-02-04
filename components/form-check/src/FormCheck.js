@@ -20,7 +20,6 @@ import pkg from '../package.json';
 // ==============================
 
 export const FormCheck = ({
-	children,
 	type,
 	name,
 	size,
@@ -30,6 +29,7 @@ export const FormCheck = ({
 	onChange = () => {},
 	defaultValue,
 	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -68,7 +68,7 @@ export const FormCheck = ({
 		FormCheck: {
 			styles: formCheckStyles,
 			component: FormCheckWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -111,7 +111,13 @@ export const FormCheck = ({
 		const length = Children.count(children);
 		allChildren = Children.map(children, child =>
 			cloneElement(child, {
-				...state,
+				type,
+				name,
+				size,
+				inline,
+				flipped,
+				data,
+				defaultValue,
 				handleChange,
 				selected: selected.includes(child.props.value),
 				overrides: componentOverrides,
@@ -121,6 +127,13 @@ export const FormCheck = ({
 
 	return (
 		<overrides.FormCheck.component
+			type={type}
+			name={name}
+			size={size}
+			inline={inline}
+			flipped={flipped}
+			data={data}
+			defaultValue={defaultValue}
 			className={className}
 			{...overrides.FormCheck.attributes(state)}
 			css={overrides.FormCheck.styles(state)}

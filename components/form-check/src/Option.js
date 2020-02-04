@@ -16,13 +16,13 @@ export const Option = ({
 	selected,
 	handleChange,
 	disabled,
-	children,
 	type,
 	name,
 	size,
 	inline,
 	flipped,
 	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -37,18 +37,19 @@ export const Option = ({
 		Option: {
 			styles: optionStyles,
 			component: OptionWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Label: {
 			styles: labelStyles,
 			component: Label,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
 		value,
 		selected,
+		handleChange,
 		disabled,
 		type,
 		name,
@@ -67,6 +68,14 @@ export const Option = ({
 
 	return (
 		<overrides.Option.component
+			value={value}
+			selected={selected}
+			disabled={disabled}
+			type={type}
+			name={name}
+			size={size}
+			inline={inline}
+			flipped={flipped}
 			className={className}
 			{...overrides.Option.attributes(state)}
 			css={overrides.Option.styles(state)}
@@ -82,6 +91,14 @@ export const Option = ({
 				}} // as it contains logic and is important for the component to work
 			/>
 			<overrides.Label.component
+				value={value}
+				selected={selected}
+				disabled={disabled}
+				type={type}
+				name={name}
+				size={size}
+				inline={inline}
+				flipped={flipped}
 				htmlFor={formCheckId}
 				{...overrides.Label.attributes(state)}
 				css={overrides.Label.styles(state)}
