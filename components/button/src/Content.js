@@ -19,8 +19,8 @@ export const Content = ({
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
 	dropdown,
-	children,
 	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -33,7 +33,7 @@ export const Content = ({
 		Content: {
 			styles: contentStyles,
 			component: ContentWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -42,6 +42,7 @@ export const Content = ({
 		block,
 		iconAfter: IconAfter,
 		iconBefore: IconBefore,
+		dropdown,
 		children,
 		overrides: componentOverrides,
 		...rest,
@@ -65,6 +66,11 @@ export const Content = ({
 	// Compose a button text + icon fragment, if these are provided
 	return (
 		<overrides.Content.component
+			size={size}
+			block={block}
+			iconAfter={IconAfter}
+			iconBefore={IconBefore}
+			dropdown={dropdown}
 			className={className}
 			{...overrides.Content.attributes(state)}
 			css={overrides.Content.styles(state)}
@@ -124,6 +130,11 @@ Content.propTypes = {
 	 * Fit button width to its parent width.
 	 */
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
+
+	/**
+	 * Enable dropdown mode
+	 */
+	dropdown: PropTypes.bool,
 
 	/**
 	 * Button text

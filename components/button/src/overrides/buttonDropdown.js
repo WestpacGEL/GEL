@@ -3,6 +3,7 @@
 import { jsx } from '@westpac/core';
 
 export const ButtonDropdown = ({
+	dropdown,
 	dropdownSize,
 	look,
 	soft,

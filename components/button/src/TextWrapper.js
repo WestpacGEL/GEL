@@ -26,7 +26,7 @@ export const TextWrapper = ({
 		TextWrapper: {
 			styles: textStyles,
 			component: Text,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -45,6 +45,7 @@ export const TextWrapper = ({
 
 	return (
 		<overrides.TextWrapper.component
+			block={block}
 			className={className}
 			{...overrides.TextWrapper.attributes(state)}
 			css={overrides.TextWrapper.styles(state)}

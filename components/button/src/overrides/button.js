@@ -5,7 +5,18 @@ import { forwardRef } from 'react';
 
 export const Button = forwardRef(
 	(
-		{ look, soft, block, justify, iconAfter, iconBefore, assistiveText, tag: Tag, ...rest },
+		{
+			dropdown,
+			look,
+			soft,
+			block,
+			justify,
+			iconAfter,
+			iconBefore,
+			assistiveText,
+			tag: Tag,
+			...rest
+		},
 		ref
 	) => <Tag ref={ref} {...rest} />
 );
