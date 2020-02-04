@@ -65,7 +65,7 @@ function Example({ brand }) {
 			<br />
 
 			<h2>Tick List</h2>
-			<List type="tick">
+			<List type="tick" assistiveText="The following items are included">
 				<Item>Styled tick list</Item>
 				<Item>Styled tick list</Item>
 				<Item>Styled tick list</Item>

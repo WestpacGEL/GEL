@@ -3,7 +3,17 @@
 import { jsx } from '@westpac/core';
 import React from 'react';
 
-export const List = ({ look, type, nested, spacing, icon, data, overrides, ...rest }) => {
+export const List = ({
+	look,
+	type,
+	nested,
+	spacing,
+	icon,
+	assistiveText,
+	data,
+	overrides,
+	...rest
+}) => {
 	const ListType = type === 'ordered' ? 'ol' : 'ul';
 	return <ListType {...rest} />;
 };

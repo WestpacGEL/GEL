@@ -84,6 +84,7 @@ export const List = ({
 	nested,
 	spacing,
 	icon,
+	assistiveText,
 	data,
 	children,
 	className,
@@ -122,6 +123,7 @@ export const List = ({
 		nested,
 		spacing,
 		icon,
+		assistiveText,
 		data,
 		overrides: componentOverrides,
 		...rest,
@@ -145,12 +147,14 @@ export const List = ({
 				type,
 				spacing,
 				icon,
+				assistiveText,
 				nested,
 				overrides: componentOverrides,
 			}}
 		>
 			<overrides.List.component
 				className={className}
+				aria-label={assistiveText}
 				{...overrides.List.attributes(state)}
 				css={overrides.List.styles(state)}
 			>
@@ -188,6 +192,28 @@ List.propTypes = {
 	 * The icon for list
 	 */
 	icon: PropTypes.func,
+
+	/**
+	 * Visually hidden text to use for the list
+	 */
+	// assistiveText: PropTypes.string.isRequired,
+	assistiveText: function(props, propName, componentName) {
+		const propValue = props[propName];
+
+		// Optional, but must be a string
+		if (propValue && typeof propValue !== 'string') {
+			return new Error(
+				`Invalid prop \`${propName}\` of type \`${typeof propValue}\` supplied to \`${componentName}\`, expected \`string\`.`
+			);
+		}
+		// Required, if type is 'tick'
+		if (props.type === 'tick' && typeof propValue === 'undefined') {
+			return new Error(
+				`The prop \`${propName}\` is marked as required in \`${componentName}\` when prop \`type\` is \`tick\`, but its value is \`undefined\`.`
+			);
+		}
+		return null;
+	},
 
 	/**
 	 * Any renderable child
