@@ -162,8 +162,7 @@ export const Tabcordion = ({
 						ref={tabRefs.current[idx]}
 						onClick={setActive(idx)}
 						aria-controls={getId('panel', idx)}
-						aria-selected={selected}
-						role="tab"
+						aria-expanded={selected}
 						{...overrides.TabItem.attributes(state)}
 						css={overrides.TabItem.styles({ ...state, selected, last: idx + 1 === tabCount })}
 					>

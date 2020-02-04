@@ -94,9 +94,6 @@ export const Tab = forwardRef(
 				) : null}
 				<overrides.Panel.component
 					id={panelId}
-					aria-labelledby={tabId}
-					aria-selected={selected}
-					role="tabpanel"
 					ref={ref}
 					tabIndex="0"
 					{...overrides.Panel.attributes({
