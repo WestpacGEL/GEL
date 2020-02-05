@@ -14,8 +14,8 @@ export const Select = ({
 	width,
 	inline,
 	invalid,
-	children,
 	data,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -41,7 +41,7 @@ export const Select = ({
 		Select: {
 			styles: selectStyles,
 			component: SelectComponent,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -63,6 +63,11 @@ export const Select = ({
 
 	return (
 		<overrides.Select.component
+			size={size}
+			width={width}
+			inline={inline}
+			invalid={invalid}
+			{...rest}
 			{...overrides.Select.attributes(state)}
 			css={overrides.Select.styles(state)}
 		>
