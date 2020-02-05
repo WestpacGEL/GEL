@@ -36,7 +36,13 @@ const getComponentSchema = options => ({
 		author: { type: Virtual, resolver: getResolver('author') },
 		doc: {
 			type: Content,
-			blocks: [DoOrDoNot, Example, Content.blocks.blockquote, Content.blocks.image],
+			blocks: [
+				DoOrDoNot,
+				Example,
+				Content.blocks.blockquote,
+				Content.blocks.image,
+				[Content.blocks.dynamicComponent, { components: require.resolve('./block-components') }],
+			],
 		},
 	},
 });
