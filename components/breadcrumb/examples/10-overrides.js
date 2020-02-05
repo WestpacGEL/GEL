@@ -6,10 +6,6 @@ import { HouseIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const AssistiveText = ({ children, look }) => (
-	<span css={{ verticalAlign: 'middle' }}>{children}</span>
-);
-
 const Icon = ({ current, assistiveText, ...props }) => <HouseIcon {...props} />;
 
 function Example({ brand }) {
@@ -23,9 +19,6 @@ function Example({ brand }) {
 		},
 		Icon: {
 			component: Icon,
-		},
-		AssistiveText: {
-			component: AssistiveText,
 		},
 	};
 

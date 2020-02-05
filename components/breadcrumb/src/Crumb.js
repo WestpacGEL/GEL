@@ -4,7 +4,6 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
 import { Crumb as CrumbWrapper, crumbStyles } from './overrides/crumb';
 import { Link, linkStyles } from './overrides/link';
 import { Icon, iconStyles } from './overrides/icon';
@@ -21,7 +20,6 @@ export const Crumb = ({
 	current,
 	href,
 	text,
-	assistiveText,
 	onClick,
 	className,
 	overrides: componentOverrides,
@@ -34,11 +32,6 @@ export const Crumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		AssistiveText: {
-			styles: assistiveTextStyles,
-			component: AssistiveText,
-			attributes: (_, a) => a,
-		},
 		Crumb: {
 			styles: crumbStyles,
 			component: CrumbWrapper,
@@ -60,7 +53,6 @@ export const Crumb = ({
 		current,
 		href,
 		text,
-		assistiveText,
 		onClick,
 		overrides: componentOverrides,
 		...rest,
@@ -76,21 +68,12 @@ export const Crumb = ({
 	return (
 		<overrides.Crumb.component
 			className={className}
+			aria-current={current ? 'page' : undefined}
 			{...overrides.Crumb.attributes(state)}
 			css={overrides.Crumb.styles(state)}
 		>
-			{current && (
-				<overrides.AssistiveText.component
-					insideCrumb={true}
-					{...overrides.AssistiveText.attributes(state)}
-					css={overrides.AssistiveText.styles(state)}
-				>
-					{assistiveText}
-				</overrides.AssistiveText.component>
-			)}
 			<overrides.Link.component
 				href={current ? null : href}
-				tabIndex={0}
 				onClick={onClick}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
@@ -133,19 +116,9 @@ Crumb.propTypes = {
 	onClick: PropTypes.func,
 
 	/**
-	 * Visually hidden text to use for the current page crumb
-	 */
-	assistiveText: PropTypes.string.isRequired,
-
-	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		AssistiveText: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Crumb: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
@@ -164,6 +137,4 @@ Crumb.propTypes = {
 	}),
 };
 
-Crumb.defaultProps = {
-	assistiveText: 'Current page:',
-};
+Crumb.defaultProps = {};
