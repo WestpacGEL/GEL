@@ -171,7 +171,7 @@ export const Modal = ({
 								<overrides.CloseBtn.component
 									onClick={() => handleClose()}
 									icon={CloseIcon}
-									aria-label="close"
+									aria-label="Close"
 									{...overrides.CloseBtn.attributes(state)}
 									css={overrides.CloseBtn.styles(state)}
 								/>
