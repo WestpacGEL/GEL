@@ -24,11 +24,9 @@ export const InputGroup = ({
 	invalid,
 	disabled,
 	readOnly,
-	children,
-	value,
-	defaultValue,
 	look,
 	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -41,12 +39,12 @@ export const InputGroup = ({
 		InputGroup: {
 			styles: inputGroupStyles,
 			component: InputGroupWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Text: {
 			styles: textStyles,
 			component: TextWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -57,8 +55,6 @@ export const InputGroup = ({
 		invalid,
 		disabled,
 		readOnly,
-		value,
-		defaultValue,
 		look,
 		overrides: componentOverrides,
 		...rest,
@@ -93,6 +89,16 @@ export const InputGroup = ({
 		childrenWithProps.push(
 			<overrides.Text.component
 				key="textinput1"
+				name={name}
+				size={size}
+				data={data}
+				invalid={invalid}
+				disabled={disabled}
+				readOnly={readOnly}
+				look={look}
+				left={!!left}
+				right={!!right}
+				{...rest}
 				css={overrides.Text.styles({ ...state, left: !!left, right: !!right })}
 				{...overrides.Text.attributes({ ...state, left: !!left, right: !!right })}
 			/>
@@ -118,6 +124,16 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					<overrides.Text.component
 						key="textinput1"
+						name={name}
+						size={size}
+						data={data}
+						invalid={invalid}
+						disabled={disabled}
+						readOnly={readOnly}
+						look={look}
+						left={true}
+						right={length > 1}
+						{...rest}
 						css={overrides.Text.styles({ ...state, left: true, right: length > 1 })}
 						{...overrides.Text.attributes({ ...state, left: true, right: length > 1 })}
 					/>
@@ -127,6 +143,16 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					<overrides.Text.component
 						key="textinput2"
+						name={name}
+						size={size}
+						data={data}
+						invalid={invalid}
+						disabled={disabled}
+						readOnly={readOnly}
+						look={look}
+						left={false}
+						right={true}
+						{...rest}
 						css={overrides.Text.styles({ ...state, left: false, right: true })}
 						{...overrides.Text.attributes({ ...state, left: false, right: true })}
 					/>
@@ -145,6 +171,13 @@ export const InputGroup = ({
 
 	return (
 		<overrides.InputGroup.component
+			name={name}
+			size={size}
+			data={data}
+			invalid={invalid}
+			disabled={disabled}
+			readOnly={readOnly}
+			look={look}
 			className={className}
 			{...overrides.InputGroup.attributes(state)}
 			css={overrides.InputGroup.styles(state)}
@@ -194,6 +227,16 @@ InputGroup.propTypes = {
 	 * Disabled input mode
 	 */
 	disabled: PropTypes.bool.isRequired,
+
+	/**
+	 * Read only mode
+	 */
+	readOnly: PropTypes.bool,
+
+	/**
+	 * The look of the component
+	 */
+	look: PropTypes.oneOf(['primary', 'hero', 'faint']),
 
 	/**
 	 * InputGroup children
