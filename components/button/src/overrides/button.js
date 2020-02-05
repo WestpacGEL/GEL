@@ -109,6 +109,7 @@ export const buttonStyles = (_, { look, size, soft, block, justify }) => {
 				color: COLORS.primary,
 				backgroundColor: 'transparent',
 				borderColor: 'transparent',
+				textDecoration: 'underline', //a11y
 			},
 		},
 		[key]: {
