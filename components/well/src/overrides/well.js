@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
-export const Well = props => <div {...props} />;
+export const Well = ({ tag: Tag, ...rest }) => <Tag {...rest} />;
 
 export const wellStyles = () => {
 	const mq = useMediaQuery();

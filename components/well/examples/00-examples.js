@@ -4,22 +4,53 @@ import { GEL, jsx } from '@westpac/core';
 import { Well } from '@westpac/well';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Code } from '../../../helpers/example/components/Code.js';
+
+// Well tag as a component example
+const WellTag = ({ children, ...props }) => (
+	<aside {...props}>
+		<span>{children}</span>
+	</aside>
+);
 
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia />
 
+			<h2>Default</h2>
+
 			<h3>Default</h3>
 			<Well>Look, I'm in a well.</Well>
-
-			<hr />
 
 			<h3>Nested</h3>
 			<Well>
 				I am outside
 				<Well>I am inside</Well>
 			</Well>
+
+			<hr />
+
+			<h2>Custom tag</h2>
+
+			<h3>
+				Tag as <code>&lt;article&gt;</code>
+			</h3>
+			<Well tag="article">Look, I'm in a well.</Well>
+
+			<h3>
+				Nested tag as <code>&lt;section&gt;</code>
+			</h3>
+			<Well tag="section">
+				I am outside
+				<Well>I am inside</Well>
+			</Well>
+
+			<h3>
+				Tag as <code>&lt;aside&gt;</code> with child <code>&lt;span&gt;</code>, rendered as a
+				component
+			</h3>
+			<Well tag={WellTag}>Look, I'm in a well.</Well>
 		</GEL>
 	);
 }
