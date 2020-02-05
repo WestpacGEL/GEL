@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Bar = props => <div {...props} />;
+export const Bar = ({ look, value, ...rest }) => <div {...rest} />;
 
 export const barStyles = (_, { look, value }) => {
 	const { COLORS, TYPE } = useBrand();

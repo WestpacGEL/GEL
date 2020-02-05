@@ -29,6 +29,7 @@ function Example({ brand }) {
 			<Intopia />
 
 			<h2>Default</h2>
+			<ProgressBar value={0} />
 			<ProgressBar value={20} />
 
 			<br />
