@@ -20,7 +20,7 @@ const apps = [
 		adminPath: '/admin',
 		hooks: require.resolve('./admin'),
 	}),
-	// new NextApp({ dir: 'site' }),
+	new NextApp({ dir: 'site' }),
 ];
 
 const options = resolveComponents();
@@ -40,7 +40,6 @@ const prepareKeystone = async () => {
 		.prepare({ apps, dev: process.env.NODE_ENV !== 'production' })
 		.then(async ({ middlewares }) => {
 			await keystone.connect();
-
 			const app = express();
 			app.use(middlewares).listen(3000);
 		});
