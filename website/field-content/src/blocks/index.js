@@ -8,16 +8,18 @@ import listItem from './list-item';
 import orderedList from './ordered-list';
 import paragraph from './paragraph';
 import unorderedList from './unordered-list';
+import dynamicComponent from './dynamic-components';
 
 export {
-  blockquote,
-  caption,
-  heading,
-  imageContainer,
-  image,
-  link,
-  listItem,
-  orderedList,
-  paragraph,
-  unorderedList,
+	blockquote,
+	caption,
+	heading,
+	imageContainer,
+	image,
+	link,
+	listItem,
+	orderedList,
+	paragraph,
+	unorderedList,
+	dynamicComponent,
 };
