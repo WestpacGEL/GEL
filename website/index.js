@@ -20,7 +20,7 @@ const apps = [
 		adminPath: '/admin',
 		hooks: require.resolve('./admin'),
 	}),
-	// new NextApp({ dir: 'site' }),
+	new NextApp({ dir: 'site' }),
 ];
 
 const options = resolveComponents();
