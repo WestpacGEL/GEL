@@ -103,9 +103,6 @@ export const Modal = ({
 		componentOverrides
 	);
 
-	const titleId = `GEL3-modal-header-title-${modalId}`;
-	const bodyId = `GEL3-modal-body-${modalId}`;
-
 	const modalRef = useRef();
 
 	useEffect(() => {
@@ -145,7 +142,7 @@ export const Modal = ({
 				{...overrides.Backdrop.attributes(state)}
 				css={overrides.Backdrop.styles(state)}
 			/>
-			<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
+			<ModalContext.Provider value={{ dismissible, handleClose }}>
 				<overrides.Modal.component
 					role="dialog"
 					aria-modal="true"
@@ -161,7 +158,6 @@ export const Modal = ({
 							css={overrides.Header.styles(state)}
 						>
 							<overrides.Title.component
-								id={titleId}
 								{...overrides.Title.attributes(state)}
 								css={overrides.Title.styles(state)}
 							>
