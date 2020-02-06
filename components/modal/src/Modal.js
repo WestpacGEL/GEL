@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import {
 	Fragment,
 	createContext,
@@ -56,7 +56,6 @@ export const Modal = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
-	const [modalId] = useState(useInstanceId());
 	const [open, setOpen] = useState(isOpen);
 
 	const defaultOverrides = {
