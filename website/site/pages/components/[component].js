@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { Fragment, useMemo } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
@@ -35,30 +34,15 @@ const ComponentWrapper = () => {
 const Component = ({ component }) => {
 	const { name, version } = component;
 
-	const DataComponent = useMemo(() => {
-		return dynamic(
-			() =>
-				Promise.all([
-					import(`@westpac/${name}/examples`),
-					import(`@westpac/${name}/CHANGELOG.md`).then(x => x.default),
-				])
-					.then(modules => ({ children }) => children(modules))
-					.catch(error => () => <p>{JSON.stringify(error, null, 4)}</p>),
-			{
-				loading: () => <p>loading...</p>,
-			}
-		);
-	}, [name]);
-
 	return (
 		<Fragment>
 			<PageHeader name={name} version={version} />
-			<Tabs component={component} dataComponent={DataComponent} />
+			<Tabs component={component} />
 		</Fragment>
 	);
 };
 
-const Tabs = ({ component, dataComponent: DataComponent }) => {
+const Tabs = ({ component }) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const tabOverrides = {
@@ -96,7 +80,7 @@ const Tabs = ({ component, dataComponent: DataComponent }) => {
 				<AccessibilityTab />
 			</Tab>
 			<Tab overrides={overrides} text="Code">
-				<CodeTab dataComponent={DataComponent} />
+				<CodeTab />
 			</Tab>
 		</Tabcordion>
 	);

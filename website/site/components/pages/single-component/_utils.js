@@ -10,6 +10,7 @@ import { Well } from '@westpac/well';
 
 import { BlocksHub } from './blocks-hub';
 import { PageLinks } from './page-links';
+import dynamic from 'next/dynamic';
 
 // Separator
 export const Separator = props => {
@@ -46,7 +47,12 @@ export const BlocksDocs = ({ title, blocks }) => {
 	);
 };
 
-export const ExampleBlock = ({ title, intro, children }) => {
+// Example block contains modal that is not SSR safe
+export const ExampleBlock = dynamic(() => Promise.resolve(UnSafeExampleBlock), {
+	ssr: false,
+});
+
+const UnSafeExampleBlock = ({ title, intro, children }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();

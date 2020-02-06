@@ -2,6 +2,10 @@ export const useInstanceId = () => {
 	let instanceId = 0;
 
 	if (typeof window === 'undefined') {
+		if (!global.window) {
+			global.window = {};
+		}
+
 		// for SSR
 		if ('instanceId' in global.window) {
 			instanceId = ++global.window.instanceId;

@@ -1,15 +1,39 @@
 import React, { Fragment } from 'react';
-
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
-
 import { IntroSection, Separator } from './_utils';
-import { Playground } from '../../playground';
+import dynamic from 'next/dynamic';
+// import Test from '@westpac/a11y/examples/00-VisuallyHidden';
+//``import(`@westpac/heading`
 
-import { Changelog } from '../../changelog';
-import { ReactLive } from '../../react-live';
+const DynamicExample = dynamic(
+	() =>
+		import(`@westpac/a11y/examples/00-VisuallyHidden`)
+			.then(mod => mod)
+			.catch(error => () => <p>{JSON.stringify(error, null, 4)}</p>),
+	{
+		loading: () => <p>Loading...</p>,
+		ssr: false,
+	}
+);
+const Example = () => <DynamicExample editor={true} />;
 
-export const CodeTab = ({ dataComponent: DataComponent }) => {
+// const Example = useMemo(() => {
+// 	return dynamic(
+// 		() =>
+// 			Promise.all([])
+// 				.then(modules => ({ children }) => {
+// 					console.log(modules);
+// 					return <p>test</p>; //children(modules);
+// 				})
+// 		{
+// 			loading: () => <p>loading...</p>,
+// 			ssr: false,
+// 		}
+// 	);
+// }, [name]);
+
+export const CodeTab = () => {
 	return (
 		<Fragment>
 			<IntroSection
@@ -25,8 +49,7 @@ export const CodeTab = ({ dataComponent: DataComponent }) => {
 							Code examples
 						</Heading>
 						<p>// TODO: examples</p>
-						<DataComponent></DataComponent>
-						{/*<Examples examples={examples} name={name} />*/}
+						<Example />
 					</Cell>
 					<Cell width={10} left={2}>
 						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
@@ -40,67 +63,3 @@ export const CodeTab = ({ dataComponent: DataComponent }) => {
 		</Fragment>
 	);
 };
-
-// ==============================
-// Examples
-// ==============================
-
-const Examples = ({ examples, name }) => {
-	// Bail out if there are no examples in the snippets folder
-	if (!Object.keys(examples).length > 0 || Object.keys(examples)[0] === 'default') {
-		return (
-			<Alert look="warning">
-				No live code examples for this component. They can be added in{' '}
-				<code>
-					@westpac/{name}
-					/website/snippets
-				</code>
-				.
-			</Alert>
-		);
-	}
-
-	// If we have examples, display each group (file) in a Tab
-	return (
-		<Tabcordion mode="tabs" appearance="soft">
-			{Object.entries(examples).map(([name, snippets]) => (
-				<Tab key={name} label={name.charAt(0).toUpperCase() + name.slice(1).replace('_', ' ')}>
-					<ExamplesGroup key={name} snippets={snippets} />
-				</Tab>
-			))}
-		</Tabcordion>
-	);
-};
-
-const Nest = () => {
-	return <p>Hello</p>;
-};
-
-const Test = () => {
-	return (
-		<p>
-			<Nest />
-		</p>
-	);
-};
-
-const myTest = elm => {
-	const c = elm.props.children;
-	console.log(React.Children.count(c));
-	console.log(React.Children.toArray(c));
-};
-
-const ExamplesGroup = ({ snippets }) => {
-	return Object.entries(snippets).map(([name, code]) => {
-		if (name !== 'scope') {
-			return (
-				<Playground scope={{ Test }}>
-					<Test prop="string" />
-				</Playground>
-			);
-			//<Example key={name} name={name} code={code} scope={snippets.scope} />;
-		}
-	});
-};
-
-// const Example = ({ code, scope }) => <ReactLive code={code} scope={scope}></ReactLive>;

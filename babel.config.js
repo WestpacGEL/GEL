@@ -8,7 +8,7 @@ module.exports = {
 
 	overrides: [
 		{
-			test: x => x.includes('field-content'),
+			test: x => x && x.includes('field-content'),
 			presets: [
 				[
 					'@babel/preset-env',
