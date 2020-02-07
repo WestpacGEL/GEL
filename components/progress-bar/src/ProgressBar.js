@@ -60,18 +60,18 @@ export const ProgressBar = ({ value, look, className, overrides: componentOverri
 			aria-valuemin="0"
 			aria-valuemax="100"
 			aria-valuenow={roundedValue}
+			aria-valuetext={`${roundedValueWithPercent} complete`}
+			aria-live="polite"
 			{...overrides.ProgressBar.attributes(state)}
 			css={overrides.ProgressBar.styles(state)}
 		>
 			<overrides.Bar.component
-				aria-label={`${roundedValueWithPercent} complete`}
 				{...overrides.Bar.attributes(state)}
 				css={overrides.Bar.styles(state)}
 			>
 				{look !== 'skinny' && (
 					<Fragment>
 						<overrides.Text.component
-							role="text"
 							{...overrides.Text.attributes(state)}
 							css={overrides.Text.styles(state)}
 						>
