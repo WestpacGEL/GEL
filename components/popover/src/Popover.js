@@ -140,11 +140,11 @@ export const Popover = ({
 				id={`gel-popover-${popoverId}`}
 				aria-label="Use the ESC key to close"
 				ref={popoverRef}
-				tabIndex="-1"
 				{...overrides.Panel.attributes(state)}
 				css={overrides.Panel.styles(state)}
 			>
 				<overrides.Title.component
+					tabIndex="-1"
 					{...overrides.Title.attributes(state)}
 					css={overrides.Title.styles(state)}
 				>
