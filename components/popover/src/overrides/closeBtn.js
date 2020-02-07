@@ -14,8 +14,8 @@ export const closeBtnStyles = (_, {}) => {
 		top: 0,
 		right: SPACING(1),
 		color: '#fff',
-		':hover svg': {
-			opacity: 0.5,
+		':hover': {
+			opacity: 0.8,
 		},
 	};
 };
