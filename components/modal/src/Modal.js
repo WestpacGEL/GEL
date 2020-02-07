@@ -145,7 +145,6 @@ export const Modal = ({
 				<overrides.Modal.component
 					role="dialog"
 					aria-modal="true"
-					tabIndex="-1"
 					ref={modalRef}
 					className={className}
 					{...overrides.Modal.attributes(state)}
@@ -157,6 +156,7 @@ export const Modal = ({
 							css={overrides.Header.styles(state)}
 						>
 							<overrides.Title.component
+								tabIndex="-1"
 								{...overrides.Title.attributes(state)}
 								css={overrides.Title.styles(state)}
 							>

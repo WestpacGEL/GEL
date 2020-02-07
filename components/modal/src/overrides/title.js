@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 
 export const Title = ({ heading, open, onClose, size, dismissible, overrides, ...rest }) => (
-	<span {...rest} />
+	<h1 {...rest} />
 );
 
 export const titleStyles = (_, {}) => {
@@ -13,5 +13,6 @@ export const titleStyles = (_, {}) => {
 		fontSize: '1.125rem',
 		fontWeight: 700,
 		color: COLORS.text,
+		margin: 0,
 	};
 };
