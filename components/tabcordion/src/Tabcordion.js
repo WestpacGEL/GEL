@@ -56,7 +56,6 @@ export const Tabcordion = ({
 	const containerRef = useRef();
 	const panelRef = useRef();
 	const tablistRef = useRef();
-	const tabRefs = useRef([...Array(Children.count(children))].map(() => createRef()));
 
 	const { width } = useContainerQuery(containerRef);
 	const mode =
@@ -70,61 +69,6 @@ export const Tabcordion = ({
 			setInstancePrefix(`gel-tabcordion-${useInstanceId()}`);
 		}
 	}, [instancePrefix]);
-
-	// handle keys
-	const keyHandler = event => {
-		// bail unless a tab belonging to this tablist is focused
-		if (!tablistRef.current || !tablistRef.current.contains(document.activeElement)) return;
-
-		// bail on unknown keys
-		if (VALID_KEYS.indexOf(event.key) === -1) return;
-
-		// prevent scrolling when user navigates using keys that would influence
-		// page scroll
-		if (['PageDown', 'End', 'PageUp', 'Home'].indexOf(event.key) > -1) {
-			event.preventDefault();
-		}
-
-		let nextIndex;
-		let lastIndex = Children.count(children) - 1;
-
-		switch (event.key) {
-			case 'Enter':
-				document.activeElement.click();
-				panelRef.current.focus();
-				break;
-			case 'ArrowLeft':
-				nextIndex = activeTabIndex === 0 ? lastIndex : activeTabIndex - 1;
-				break;
-			case 'ArrowRight':
-				nextIndex = activeTabIndex === lastIndex ? 0 : activeTabIndex + 1;
-				break;
-			case 'PageDown':
-			case 'End':
-				nextIndex = lastIndex;
-				break;
-			case 'PageUp':
-			case 'Home':
-				nextIndex = 0;
-				break;
-			default:
-				nextIndex = activeTabIndex;
-		}
-
-		// only update to valid index
-		if (typeof nextIndex === 'number') {
-			setActiveTabIndex(nextIndex);
-			tabRefs.current[nextIndex].current.focus();
-		}
-	};
-
-	// bind key events
-	useEffect(() => {
-		window.document.addEventListener('keydown', keyHandler);
-		return () => {
-			window.document.removeEventListener('keydown', keyHandler);
-		};
-	});
 
 	const getId = (type, index) => `${instancePrefix}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
@@ -159,7 +103,6 @@ export const Tabcordion = ({
 					<overrides.TabItem.component
 						id={getId('tab', idx)}
 						key={child.props.text}
-						ref={tabRefs.current[idx]}
 						onClick={setActive(idx)}
 						aria-controls={getId('panel', idx)}
 						aria-expanded={selected}

@@ -95,7 +95,6 @@ export const Tab = forwardRef(
 				<overrides.Panel.component
 					id={panelId}
 					ref={ref}
-					tabIndex="0"
 					{...overrides.Panel.attributes({
 						...state,
 						hidden: mode === 'accordion' ? hidden : !selected,
