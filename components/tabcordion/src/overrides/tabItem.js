@@ -9,6 +9,7 @@ export const TabItem = forwardRef(
 			mode,
 			look,
 			justify,
+			hidden,
 			initialTabIndex,
 			instanceIdPrefix,
 			instancePrefix,
@@ -18,7 +19,7 @@ export const TabItem = forwardRef(
 		},
 		ref
 	) => {
-		return <button ref={ref} {...rest} />;
+		return <button type="button" ref={ref} {...rest} />;
 	}
 );
 

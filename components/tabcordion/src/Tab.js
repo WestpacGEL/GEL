@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, forwardRef } from 'react';
+import { Fragment, useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { AccordionLabel, accordionLabelStyles } from './overrides/accordionLabel';
@@ -71,6 +71,10 @@ export const Tab = forwardRef(
 			setHidden(!hidden);
 			onClick();
 		};
+
+		useEffect(() => {
+			setHidden(!selected);
+		}, [mode]);
 
 		return (
 			<Fragment>
