@@ -29,7 +29,7 @@
 		"@westpac/hooks": "^1.0.0",
 		"@westpac/icon": "^1.0.0",
 		"prop-types": "^15.7.2",
-		"react-focus-lock": "^2.2.1"
+		"react-focus-on": "^3.3.0"
 	},
 	"peerDependencies": {
 		"react": "^16.11.0",

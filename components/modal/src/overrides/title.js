@@ -1,9 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
+import { forwardRef } from 'react';
 
-export const Title = ({ heading, open, onClose, size, dismissible, overrides, ...rest }) => (
-	<h1 {...rest} />
+export const Title = forwardRef(
+	({ heading, open, onClose, size, dismissible, overrides, ...rest }, ref) => (
+		<h1 ref={ref} {...rest} />
+	)
 );
 
 export const titleStyles = (_, {}) => {

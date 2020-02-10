@@ -1,18 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import {
-	Fragment,
-	createContext,
-	useContext,
-	useState,
-	useEffect,
-	useRef,
-	forwardRef,
-} from 'react';
+import { Fragment, createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { CloseIcon } from '@westpac/icon';
 import FocusLock from 'react-focus-lock';
+import { FocusOn, MoveFocusInside } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
@@ -103,6 +96,7 @@ export const Modal = ({
 	);
 
 	const modalRef = useRef();
+	const titleRef = useRef();
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -142,20 +136,21 @@ export const Modal = ({
 				css={overrides.Backdrop.styles(state)}
 			/>
 			<ModalContext.Provider value={{ dismissible, handleClose }}>
-				<overrides.Modal.component
-					role="dialog"
-					aria-modal="true"
-					ref={modalRef}
-					className={className}
-					{...overrides.Modal.attributes(state)}
-					css={overrides.Modal.styles(state)}
-				>
-					<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
+				<FocusOn enabled={open} onActivation={() => titleRef.current.focus()}>
+					<overrides.Modal.component
+						role="dialog"
+						aria-modal="true"
+						ref={modalRef}
+						className={className}
+						{...overrides.Modal.attributes(state)}
+						css={overrides.Modal.styles(state)}
+					>
 						<overrides.Header.component
 							{...overrides.Header.attributes(state)}
 							css={overrides.Header.styles(state)}
 						>
 							<overrides.Title.component
+								ref={titleRef}
 								tabIndex="-1"
 								{...overrides.Title.attributes(state)}
 								css={overrides.Title.styles(state)}
@@ -173,8 +168,8 @@ export const Modal = ({
 							)}
 						</overrides.Header.component>
 						{children}
-					</FocusLock>
-				</overrides.Modal.component>
+					</overrides.Modal.component>
+				</FocusOn>
 			</ModalContext.Provider>
 		</Fragment>,
 		document.body
@@ -250,10 +245,3 @@ Modal.defaultProps = {
 	size: 'medium',
 	dismissible: true,
 };
-
-// ==============================
-// Utils
-// ==============================
-const FocusWrapper = forwardRef((props, ref) => (
-	<div ref={ref} css={{ height: '100%' }} {...props} />
-));
