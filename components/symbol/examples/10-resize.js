@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { MastercardAcceptedSymbol } from '@westpac/symbol';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Resize by width</h2>
@@ -35,7 +35,7 @@ function Example({ brand }) {
 				Responsive height <code>[100, 150, 200, 250]</code>
 			</h3>
 			<MastercardAcceptedSymbol height={[100, 150, 200, 250]} />
-		</GEL>
+		</Playground>
 	);
 }
 

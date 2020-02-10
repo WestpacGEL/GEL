@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { usePopoverPosition } from '@westpac/hooks';
 import { useRef, useState, useEffect } from 'react';
 import { Code } from './_utils';
@@ -32,7 +32,7 @@ function Example({ brand }) {
 	}, []);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 
 			<div
@@ -184,7 +184,7 @@ function Example({ brand }) {
 				<br />
 				{JSON.stringify(position4, null, '\t')}
 			</Code>
-		</GEL>
+		</Playground>
 	);
 }
 

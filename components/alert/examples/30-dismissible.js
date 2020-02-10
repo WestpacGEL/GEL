@@ -1,17 +1,17 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
 import { Button } from '@westpac/button';
 import { useState } from 'react';
-
+import { Playground } from '../../../website/site/components/playground';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand} scope={{ Intopia, Alert, open, setOpen }}>
 			<Intopia />
 
 			<Alert look="success" dismissible>
@@ -43,7 +43,7 @@ function Example({ brand }) {
 				<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I
 				can be closed. <a href="#">Link</a>
 			</Alert>
-		</GEL>
+		</Playground>
 	);
 }
 

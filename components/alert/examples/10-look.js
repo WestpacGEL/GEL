@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
-
+import { Playground } from '../../../website/site/components/playground';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand} scope={{ Intopia, Alert }}>
 			<Intopia />
 
 			<h2>Success</h2>
@@ -54,7 +54,7 @@ function Example({ brand }) {
 				<strong>System Error 8942:</strong> The server is no responding. Please try again later.
 				Sorry for the inconvenience. <a href="#">Link</a>
 			</Alert>
-		</GEL>
+		</Playground>
 	);
 }
 

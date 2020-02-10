@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { useState } from 'react';
 import {
 	AddIcon,
@@ -65,7 +65,7 @@ function Example({ brand }) {
 	const [activeSize, setSize] = useState(2);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Row>
@@ -80,7 +80,7 @@ function Example({ brand }) {
 					<I key={i} size={sizes[activeSize]} />
 				))}
 			</Row>
-		</GEL>
+		</Playground>
 	);
 }
 

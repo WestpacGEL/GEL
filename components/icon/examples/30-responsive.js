@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Fragment, useState } from 'react';
 import {
 	AddIcon,
@@ -43,7 +43,7 @@ const icons = [
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Size</h2>
@@ -57,7 +57,7 @@ function Example({ brand }) {
 					</Row>
 				</Fragment>
 			))}
-		</GEL>
+		</Playground>
 	);
 }
 

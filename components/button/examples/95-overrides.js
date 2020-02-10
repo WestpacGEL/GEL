@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button, ButtonGroup, ButtonDropdown } from '@westpac/button';
 import { HouseIcon } from '@westpac/icon';
 import { Fragment } from 'react';
@@ -42,7 +42,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 			<h2>With overrides applied</h2>
 			<Button>Default standard</Button> <Button look="primary">Primary standard</Button>{' '}
@@ -113,7 +113,7 @@ function Example({ brand }) {
 			>
 				<p>Example dropdown content...</p>
 			</ButtonDropdown>
-		</GEL>
+		</Playground>
 	);
 }
 

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { ListGroup, Item } from '@westpac/list-group';
 import { ButtonGroup, Button } from '@westpac/button';
 import { Fragment } from 'react';
@@ -13,7 +13,7 @@ const styleExample = {
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Simple</h2>
@@ -87,7 +87,7 @@ function Example({ brand }) {
 					</Fragment>,
 				]}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

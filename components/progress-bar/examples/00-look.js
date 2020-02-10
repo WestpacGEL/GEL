@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { ProgressBar } from '@westpac/progress-bar';
 import { StyledButton as Button } from './_utils';
 
@@ -25,7 +25,7 @@ function Example({ brand }) {
 	}
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Default</h2>
@@ -44,7 +44,7 @@ function Example({ brand }) {
 				<Button onClick={() => handleProgress(10)}>+10</Button>
 				<Button onClick={() => handleProgress(-10)}>-10</Button>
 			</div>
-		</GEL>
+		</Playground>
 	);
 }
 

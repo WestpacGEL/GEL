@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -12,7 +12,7 @@ function Example({ brand }) {
 	const [count, setCount] = useState(11);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 
 			<h2>Spacing</h2>
@@ -134,7 +134,7 @@ function Example({ brand }) {
 						</li>
 					))}
 			</ul>
-		</GEL>
+		</Playground>
 	);
 }
 

@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Small</h2>
@@ -24,7 +24,7 @@ function Example({ brand }) {
 
 			<h2>Extra large</h2>
 			<Switch name="example-xlarge" size="xlarge" label="Turn notifications" />
-		</GEL>
+		</Playground>
 	);
 }
 

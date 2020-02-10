@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 function Example({ brand }) {
@@ -40,7 +40,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<h2>With overrides applied</h2>
 			<h3>Always accordion</h3>
 			<Tabcordion mode="accordion" instanceIdPrefix="always-accordion">
@@ -353,7 +353,7 @@ function Example({ brand }) {
 					confusing.’
 				</Tab>
 			</Tabcordion>
-		</GEL>
+		</Playground>
 	);
 }
 

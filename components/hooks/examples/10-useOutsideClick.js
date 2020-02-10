@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useRef } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { useOutsideClick } from '@westpac/hooks';
 import { Button } from '@westpac/button';
 import { Code } from './_utils';
@@ -14,7 +14,7 @@ function Example({ brand }) {
 	useOutsideClick(ref, () => alert('Clicked outside'));
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 
 			<Code>{`useOutsideClick(ref, () => alert(Clicked outside))`}</Code>
@@ -22,7 +22,7 @@ function Example({ brand }) {
 			<div css={{ display: 'inline-block' }} ref={ref}>
 				<Button>Click outside me</Button>
 			</div>
-		</GEL>
+		</Playground>
 	);
 }
 

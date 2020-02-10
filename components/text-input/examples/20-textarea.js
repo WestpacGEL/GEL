@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Textarea } from '@westpac/text-input';
 import { Form } from '@westpac/form';
 
@@ -18,7 +18,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Default instance</h2>
@@ -85,7 +85,7 @@ function Example({ brand }) {
 			<br />
 			<Textarea width={30} placeholder={'W'.repeat(30)} />
 			<br />
-		</GEL>
+		</Playground>
 	);
 }
 

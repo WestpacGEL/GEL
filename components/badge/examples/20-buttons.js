@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { Badge } from '@westpac/badge';
 
@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Default button instance (no styling props)</h2>
@@ -225,7 +225,7 @@ function Example({ brand }) {
 					Faint soft <Badge look="danger" value="Danger" />
 				</Button>
 			</p>
-		</GEL>
+		</Playground>
 	);
 }
 

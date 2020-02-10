@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Popover } from '@westpac/popover';
 import { Button } from '@westpac/button';
 
@@ -48,7 +48,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -69,7 +69,7 @@ function Example({ brand }) {
 			>
 				<Button>Click Me</Button>
 			</Popover>
-		</GEL>
+		</Playground>
 	);
 }
 

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { usePagination } from '@westpac/pagination';
 import { Button } from '@westpac/button';
 import { ArrowLeftIcon, ArrowRightIcon } from '@westpac/icon';
@@ -12,7 +12,7 @@ function Example({ brand }) {
 	const paginate = usePagination({ pages: content, infinite: true });
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 
 			<h2>usePagination</h2>
@@ -21,7 +21,7 @@ function Example({ brand }) {
 				<p>{content[paginate.current]}</p>
 				<Button look="link" size="xlarge" iconAfter={ArrowRightIcon} onClick={paginate.next} />
 			</div>
-		</GEL>
+		</Playground>
 	);
 }
 

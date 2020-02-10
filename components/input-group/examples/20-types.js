@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { InputGroup, Left, Right } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Invalid</h2>
@@ -60,7 +60,7 @@ function Example({ brand }) {
 					left: { type: 'label', data: 'AUS $' },
 				}}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

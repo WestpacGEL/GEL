@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Data driven</h2>
@@ -33,7 +33,7 @@ function Example({ brand }) {
 					{ value: '3', text: 'Option 3' },
 				]}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

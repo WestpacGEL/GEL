@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import {
 	MastercardAcceptedSymbol,
 	BPayLandSymbol,
@@ -14,7 +14,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Grid>
@@ -39,7 +39,7 @@ function Example({ brand }) {
 					<Name>STGLogo</Name>
 				</Cell>
 			</Grid>
-		</GEL>
+		</Playground>
 	);
 }
 

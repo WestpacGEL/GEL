@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const mq = useMediaQuery();
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 
 			<strong>[1,2,3,4]</strong>
@@ -49,7 +49,7 @@ function Example({ brand }) {
 
 			<strong>1</strong>
 			<Code>{JSON.stringify(mq({ thing: 1 }), null, 2)}</Code>
-		</GEL>
+		</Playground>
 	);
 }
 

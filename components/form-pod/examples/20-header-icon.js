@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, Global, useBrand } from '@westpac/core';
+import { jsx, Global, useBrand } from '@westpac/core';
 import { FormPod, FormPodPanel, FormPodPanelBody } from '@westpac/form-pod';
 import { TickIcon } from '@westpac/icon';
 
@@ -10,7 +10,7 @@ function Example({ brand }) {
 	const { COLORS } = useBrand();
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 
 			<Global
@@ -27,7 +27,7 @@ function Example({ brand }) {
 					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
 				</FormPodPanel>
 			</FormPod>
-		</GEL>
+		</Playground>
 	);
 }
 

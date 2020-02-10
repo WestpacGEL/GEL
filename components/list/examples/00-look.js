@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Primary</h2>
@@ -143,7 +143,7 @@ function Example({ brand }) {
 				</Item>
 				<Item>Styled bullet list - neutral</Item>
 			</List>
-		</GEL>
+		</Playground>
 	);
 }
 

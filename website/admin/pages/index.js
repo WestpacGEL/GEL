@@ -192,7 +192,7 @@ export default function Index() {
 					<OrphanComponents refetch={refetch} items={orphanComponents} />
 				</Fragment>
 			) : null}
-			<PageTitle>Components without Docs</PageTitle>
+			<PageTitle>Components Without Docs</PageTitle>
 			<ComponentsWithoutDocs items={data.allComponents} />
 			<div css={{ marginBottom: 320 }} />
 		</Container>

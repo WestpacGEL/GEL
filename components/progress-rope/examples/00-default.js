@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { ProgressRope, Item } from '@westpac/progress-rope';
@@ -23,7 +23,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Grid>
@@ -71,7 +71,7 @@ function Example({ brand }) {
 					<Button onClick={() => dispatch2({ type: 'next' })}>next</Button>
 				</Cell>
 			</Grid>
-		</GEL>
+		</Playground>
 	);
 }
 

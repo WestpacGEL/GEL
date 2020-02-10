@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { forwardRef } from 'react';
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Tooltip } from '@westpac/tooltip';
 import { Button } from '@westpac/button';
 import { InfoIcon } from '@westpac/icon';
@@ -14,7 +14,7 @@ const TooltipTag = forwardRef(({ visible, position, ...props }, ref) => (
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Body>
@@ -57,7 +57,7 @@ function Example({ brand }) {
 				</Tooltip>
 				<div css={{ height: '100vh' }} />
 			</Body>
-		</GEL>
+		</Playground>
 	);
 }
 

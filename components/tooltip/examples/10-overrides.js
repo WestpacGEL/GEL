@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Tooltip } from '@westpac/tooltip';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -32,7 +32,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -57,7 +57,7 @@ function Example({ brand }) {
 				</Tooltip>{' '}
 				sentence.
 			</p>
-		</GEL>
+		</Playground>
 	);
 }
 

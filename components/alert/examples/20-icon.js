@@ -1,14 +1,14 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { HelpIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
-
+import { Playground } from '../../../website/site/components/playground';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand} scope={{ Intopia, Alert, HelpIcon }}>
 			<Intopia />
 
 			<h2>Custom icon</h2>
@@ -24,7 +24,7 @@ function Example({ brand }) {
 				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important. Oh
 				wow look, I have no icon. <a href="#">Link</a>
 			</Alert>
-		</GEL>
+		</Playground>
 	);
 }
 

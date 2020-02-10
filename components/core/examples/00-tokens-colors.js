@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const { tints, ...primaryColors } = COLORS;
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 
 			<h2>Colors</h2>
@@ -72,7 +72,7 @@ function Example({ brand }) {
 						</li>
 					))}
 			</ul>
-		</GEL>
+		</Playground>
 	);
 }
 

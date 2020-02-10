@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Select } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
@@ -16,7 +16,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Default instance</h2>
@@ -174,7 +174,7 @@ function Example({ brand }) {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-		</GEL>
+		</Playground>
 	);
 }
 

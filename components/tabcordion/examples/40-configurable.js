@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { useState } from 'react';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { Row } from './_utils';
@@ -29,7 +29,7 @@ function Example({ brand }) {
 	const changeMode = v => () => setMode(v);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Row>
 				Look:
 				{looks.map(v => (
@@ -96,7 +96,7 @@ function Example({ brand }) {
 					confusing.’
 				</Tab>
 			</Tabcordion>
-		</GEL>
+		</Playground>
 	);
 }
 

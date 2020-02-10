@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const Link = ({ children, ...rest }) => <span {...rest}>{children}</span>;
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 			<h2>
 				Button with an <code>&lt;a&gt;</code> tag
@@ -38,7 +38,7 @@ function Example({ brand }) {
 			<Button tag={Link} to="path/to/thing" value="Button">
 				Nav
 			</Button>
-		</GEL>
+		</Playground>
 	);
 }
 

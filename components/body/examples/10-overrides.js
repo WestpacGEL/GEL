@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -17,7 +17,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<Body>
@@ -137,7 +137,7 @@ function Example({ brand }) {
 			>
 				This is a default alert. <a href="#">Link</a>
 			</Body>
-		</GEL>
+		</Playground>
 	);
 }
 

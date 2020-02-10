@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Label } from '@westpac/label';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>
@@ -66,7 +66,7 @@ function Example({ brand }) {
 				<Label onClick={() => console.log('Label clicked!')} look="warning" value="Warning" />{' '}
 				<Label onClick={() => console.log('Label clicked!')} look="danger" value="Danger" />
 			</p>
-		</GEL>
+		</Playground>
 	);
 }
 

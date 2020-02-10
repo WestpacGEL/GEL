@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Panel, Header, Body, Footer } from '@westpac/panel';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Default instance (no styling props)</h2>
@@ -63,7 +63,7 @@ function Example({ brand }) {
 				</Body>
 				<Footer>Panel footer</Footer>
 			</Panel>
-		</GEL>
+		</Playground>
 	);
 }
 

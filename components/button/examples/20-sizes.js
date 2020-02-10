@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 			<h2>Small</h2>
 			<Button look="primary" size="small">
@@ -55,7 +55,7 @@ function Example({ brand }) {
 				Link
 			</Button>
 			<p></p>
-		</GEL>
+		</Playground>
 	);
 }
 

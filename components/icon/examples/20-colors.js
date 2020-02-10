@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { FavouriteIcon } from '@westpac/icon';
 import { Row } from './_util';
 
@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Row>
@@ -19,7 +19,7 @@ function Example({ brand }) {
 				<FavouriteIcon assistiveText="Colored heart" color="#0052CC" />
 				<FavouriteIcon assistiveText="Colored heart" color="#5243AA" />
 			</Row>
-		</GEL>
+		</Playground>
 	);
 }
 

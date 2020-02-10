@@ -5,7 +5,7 @@ import facepaint from 'facepaint';
 const minWidth = width => `@media (min-width: ${width}px)`;
 const mapBreakpoints = ([key, value]) => minWidth(value);
 
-// NOTE: `breakpoints` come through context from the brand via <GEL brand={brand} />
+// NOTE: `breakpoints` come through context from the brand via <Playground brand={brand} />
 const paint = weakMemo(breakpoints => facepaint(Object.entries(breakpoints).map(mapBreakpoints)));
 
 export const useMediaQuery = () => {

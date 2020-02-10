@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Pagination, Page } from '@westpac/pagination';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -12,7 +12,7 @@ function Example({ brand }) {
 	const [current2, setCurrent2] = useState(0);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Declarative</h2>
@@ -197,7 +197,7 @@ function Example({ brand }) {
 					},
 				]}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Declarative as links</h2>
@@ -47,7 +47,7 @@ function Example({ brand }) {
 					{ text: 'Credit cards', onClick: () => console.log('Clicked Credit cards') },
 				]}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

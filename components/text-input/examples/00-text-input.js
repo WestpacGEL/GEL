@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
@@ -16,7 +16,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Default instance</h2>
@@ -81,7 +81,7 @@ function Example({ brand }) {
 			<TextInput width={20} placeholder={20} />
 			<br />
 			<TextInput width={30} placeholder={30} />
-		</GEL>
+		</Playground>
 	);
 }
 

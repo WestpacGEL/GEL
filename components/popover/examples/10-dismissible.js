@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Popover } from '@westpac/popover';
 import { Button } from '@westpac/button';
 
@@ -14,7 +14,7 @@ const content =
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Popover title="Popover Title" content={content} dismissible>
@@ -24,7 +24,7 @@ function Example({ brand }) {
 			<Popover title="Popover Title" content={content} dismissible>
 				<Button>Dismissible popover</Button>
 			</Popover>
-		</GEL>
+		</Playground>
 	);
 }
 

@@ -34,7 +34,27 @@ const getComponentSchema = options => ({
 		version: { type: Virtual, resolver: getResolver('version') },
 		description: { type: Virtual, resolver: getResolver('description') },
 		author: { type: Virtual, resolver: getResolver('author') },
-		doc: {
+		design: {
+			type: Content,
+			blocks: [
+				DoOrDoNot,
+				Example,
+				Content.blocks.blockquote,
+				Content.blocks.image,
+				[Content.blocks.dynamicComponent, { components: require.resolve('./block-components') }],
+			],
+		},
+		accessibility: {
+			type: Content,
+			blocks: [
+				DoOrDoNot,
+				Example,
+				Content.blocks.blockquote,
+				Content.blocks.image,
+				[Content.blocks.dynamicComponent, { components: require.resolve('./block-components') }],
+			],
+		},
+		code: {
 			type: Content,
 			blocks: [
 				DoOrDoNot,

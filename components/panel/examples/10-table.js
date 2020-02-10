@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Panel, Header, Body } from '@westpac/panel';
 import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table';
 
@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 
 			<h2>Panel with body and table</h2>
@@ -115,7 +115,7 @@ function Example({ brand }) {
 					</Tfoot>
 				</Table>
 			</Panel>
-		</GEL>
+		</Playground>
 	);
 }
 

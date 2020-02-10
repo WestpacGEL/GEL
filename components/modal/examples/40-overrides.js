@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { useState } from 'react';
 import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
@@ -39,7 +39,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -108,7 +108,7 @@ function Example({ brand }) {
 					</Button>
 				</Footer>
 			</Modal>
-		</GEL>
+		</Playground>
 	);
 }
 

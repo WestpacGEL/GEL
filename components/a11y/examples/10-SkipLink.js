@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { SkipLink } from '@westpac/a11y';
 import { Playground } from '../../../website/site/components/playground';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';

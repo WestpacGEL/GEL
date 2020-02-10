@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -24,7 +24,7 @@ const BodyTag = ({ children, ...props }) => {
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Body>
@@ -145,7 +145,7 @@ function Example({ brand }) {
 				<h2>Label</h2>
 				<label>This is a default label</label>
 			</Body>
-		</GEL>
+		</Playground>
 	);
 }
 

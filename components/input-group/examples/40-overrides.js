@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { InputGroup, Left, Right } from '@westpac/input-group';
 
@@ -33,7 +33,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -131,7 +131,7 @@ function Example({ brand }) {
 					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
 				}}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

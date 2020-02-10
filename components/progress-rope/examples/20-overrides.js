@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { ProgressRope, Item } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';
 import { Grid, Cell } from '@westpac/grid';
@@ -49,7 +49,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 			<Grid>
 				<Cell width={6}>
@@ -155,7 +155,7 @@ function Example({ brand }) {
 					<Button onClick={() => dispatch2({ type: 'next' })}>next</Button>
 				</Cell>
 			</Grid>
-		</GEL>
+		</Playground>
 	);
 }
 

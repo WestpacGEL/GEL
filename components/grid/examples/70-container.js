@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Container, Cell, Grid } from '@westpac/grid';
 import { useContainerQuery } from '@westpac/hooks';
 import { useRef } from 'react';
@@ -31,7 +31,7 @@ function Example({ brand }) {
 	}
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<div
@@ -49,7 +49,7 @@ function Example({ brand }) {
 					{containerWidth}px = {breakpoint}
 				</Box>
 			</Container>
-		</GEL>
+		</Playground>
 	);
 }
 

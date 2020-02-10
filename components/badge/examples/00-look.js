@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Badge } from '@westpac/badge';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<p>
@@ -21,7 +21,7 @@ function Example({ brand }) {
 				<Badge look="success" value="Success" /> <Badge look="info" value="Info" />{' '}
 				<Badge look="warning" value="Warning" /> <Badge look="danger" value="Danger" />
 			</p>
-		</GEL>
+		</Playground>
 	);
 }
 

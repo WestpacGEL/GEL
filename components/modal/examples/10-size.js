@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { useReducer } from 'react';
 import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
@@ -28,7 +28,7 @@ function Example({ brand }) {
 	const updateModal = (type, open) => dispatch({ type, payload: { open } });
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<p>
@@ -112,7 +112,7 @@ function Example({ brand }) {
 					</Button>
 				</Footer>
 			</Modal>
-		</GEL>
+		</Playground>
 	);
 }
 

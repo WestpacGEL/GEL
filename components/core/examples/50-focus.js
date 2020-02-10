@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { TextInput, Textarea, Select } from '@westpac/text-input';
 import { Body } from '@westpac/body';
@@ -9,7 +9,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Focus test</h2>
@@ -76,7 +76,7 @@ function Example({ brand }) {
 				<h5 tabIndex="0">This is a h5 heading</h5>
 				<h6 tabIndex="0">This is a h6 heading</h6>
 			</Body>
-		</GEL>
+		</Playground>
 	);
 }
 

@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
-
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand} scope={{ Intopia, Alert }}>
 			<Intopia />
 
 			<h2>Default instance (no styling props)</h2>
@@ -61,7 +61,7 @@ function Example({ brand }) {
 					tempore maxime? Neque, obcaecati. <a href="#">Link</a>
 				</p>
 			</Alert>
-		</GEL>
+		</Playground>
 	);
 }
 

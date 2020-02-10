@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { Box } from './_utils';
 
@@ -31,7 +31,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -56,7 +56,7 @@ function Example({ brand }) {
 					</Cell>
 				</Grid>
 			</Container>
-		</GEL>
+		</Playground>
 	);
 }
 

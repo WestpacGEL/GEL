@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -10,7 +10,7 @@ function Example({ brand }) {
 	const [checked, setChecked] = useState(false);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Default instance (no styling props)</h2>
@@ -25,7 +25,7 @@ function Example({ brand }) {
 					setChecked(!checked);
 				}}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
 import { GithubIcon, HouseIcon } from '@westpac/icon';
 import { Fragment } from 'react';
@@ -9,7 +9,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Flat</h2>
@@ -71,7 +71,7 @@ function Example({ brand }) {
 					],
 				]}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

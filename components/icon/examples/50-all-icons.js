@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import * as components from '@westpac/icon';
 import { Cell, Grid, Name } from './_util';
 import { useState } from 'react';
@@ -43,7 +43,7 @@ function Example({ brand }) {
 		: icons;
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Search
@@ -64,7 +64,7 @@ function Example({ brand }) {
 					);
 				})}
 			</Grid>
-		</GEL>
+		</Playground>
 	);
 }
 

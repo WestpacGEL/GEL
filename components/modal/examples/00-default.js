@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { useState } from 'react';
 import { Modal, Body } from '@westpac/modal';
 import { Button } from '@westpac/button';
@@ -11,7 +11,7 @@ function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Button onClick={() => setOpen(true)}>Open</Button>
@@ -25,7 +25,7 @@ function Example({ brand }) {
 					ought to be a book written about me, that there ought!’
 				</Body>
 			</Modal>
-		</GEL>
+		</Playground>
 	);
 }
 

@@ -1,9 +1,18 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
-import { Fragment } from 'react';
+import { jsx, GEL } from '@westpac/core';
+import bom from '@westpac/bom';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
-export const Playground = ({ editor = false, code, children, scope, inline, theme = {} }) => {
+export const Playground = ({
+	brand = bom,
+	editor = false,
+	code,
+	children,
+	scope,
+	inline,
+	theme = {},
+}) => {
+	console.log({ editor, inline });
 	console.log(code);
 	if (!code && children.length > 1) {
 		console.warning(
@@ -21,10 +30,12 @@ export const Playground = ({ editor = false, code, children, scope, inline, them
 			</LiveProvider>
 		);
 	}
-
 	return (
-		<LiveProvider code={code} scope={scope} noInline={inline}>
-			<LivePreview />
-		</LiveProvider>
+		<GEL brand={brand}>
+			<LiveProvider code={code} scope={scope} noInline={inline}>
+				<LiveError css={theme.errors} />
+				<LivePreview />
+			</LiveProvider>
+		</GEL>
 	);
 };

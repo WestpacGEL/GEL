@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h3>Medium</h3>
@@ -45,7 +45,7 @@ function Example({ brand }) {
 				</Item>
 				<Item>Large list spacing</Item>
 			</List>
-		</GEL>
+		</Playground>
 	);
 }
 

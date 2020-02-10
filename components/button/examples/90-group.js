@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button, ButtonGroup } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -12,7 +12,7 @@ function ButtonGroupExample({ brand }) {
 	const [index, setIndex] = useState(-1);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<ButtonGroup>
@@ -169,7 +169,7 @@ function ButtonGroupExample({ brand }) {
 				<Button>Middle</Button>
 				<Button>Right</Button>
 			</ButtonGroup>
-		</GEL>
+		</Playground>
 	);
 }
 

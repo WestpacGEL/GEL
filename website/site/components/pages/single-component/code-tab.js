@@ -48,7 +48,6 @@ export const CodeTab = () => {
 						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
 							Code examples
 						</Heading>
-						<p>// TODO: examples</p>
 						<Example />
 					</Cell>
 					<Cell width={10} left={2}>

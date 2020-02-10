@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { List, Item as ListItem } from '@westpac/list';
 import { ButtonGroup, Button } from '@westpac/button';
 import { ListGroup, Item } from '@westpac/list-group';
@@ -40,7 +40,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia />
 
 			<ListGroup>
@@ -147,7 +147,7 @@ function Example({ brand }) {
 					</Fragment>,
 				]}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -32,7 +32,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>Checkbox</h2>
@@ -107,7 +107,7 @@ function Example({ brand }) {
 					},
 				}}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

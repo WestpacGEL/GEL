@@ -17,35 +17,43 @@ Install dependencies
 yarn
 ```
 
-and then run the build:
+### Start the website
+
+```sh
+yarn start
+```
+
+Will launch the GEL Keystone Admin UI and front-end design system website.
+
+### Develop components
 
 ```sh
 yarn build
 ```
 
-to then be able to run a component via:
+You should then be able to run a component via:
 
 ```sh
 yarn start button
 ```
 
+Launches a development webserver running examples from `button/examples`.
+
 ## npm scripts
 
 ### root level
 
-| script                      | description                                       |
-| --------------------------- | ------------------------------------------------- |
-| `yarn`                      | install all dependencies                          |
-| `yarn nuke`                 | removes all `node_modules` for fresh start        |
-| `yarn fresh`                | removes all `node_modules` and reinstalls them    |
-| `yarn build`                | build all dist folders                            |
-| `yarn dev`                  | build all dist for local consumption              |
-| `yarn docs`                 | build docs for all components and open server     |
-| `yarn docs:build`           | build docs for all components to `./docs/` folder |
-| `yarn new [package-name]`   | create a specified empty component                |
-| `yarn start [package-name]` | start the example server of a component           |
-| `yarn test`                 | runs test                                         |
-| `yarn format`               | runs prettier to format all code                  |
+| script                      | description                                    |
+| --------------------------- | ---------------------------------------------- |
+| `yarn`                      | install all dependencies                       |
+| `yarn nuke`                 | removes all `node_modules` for fresh start     |
+| `yarn fresh`                | removes all `node_modules` and reinstalls them |
+| `yarn build`                | build all dist folders                         |
+| `yarn dev`                  | build all dist for local consumption           |
+| `yarn new [package-name]`   | create a specified empty component             |
+| `yarn start [package-name]` | start the example server of a component        |
+| `yarn test`                 | runs test                                      |
+| `yarn format`               | runs prettier to format all code               |
 
 ### component level
 

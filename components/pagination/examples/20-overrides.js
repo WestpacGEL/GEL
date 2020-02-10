@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Pagination, Page } from '@westpac/pagination';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -31,7 +31,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<Pagination>
@@ -83,7 +83,7 @@ function Example({ brand }) {
 					{ text: '3', onClick: (event, page) => console.log(`Page ${page}`, event) },
 				]}
 			/>
-		</GEL>
+		</Playground>
 	);
 }
 

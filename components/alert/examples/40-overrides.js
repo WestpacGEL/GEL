@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { TickIcon, InfoIcon, AlertIcon, HouseIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
-
+import { Playground } from '../../../website/site/components/playground';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const CloseBtn = ({ onClose, icon: Icon, dismissible, headingTag, look, ...rest }) => (
@@ -65,7 +65,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground brand={overridesWithTokens} scope={{ Intopia, Alert }}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -116,7 +116,7 @@ function Example({ brand }) {
 			>
 				This is a default alert. <a href="#">Link</a>
 			</Alert>
-		</GEL>
+		</Playground>
 	);
 }
 

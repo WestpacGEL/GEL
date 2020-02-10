@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
 import { useRef } from 'react';
 
@@ -13,7 +13,7 @@ function Example({ brand }) {
 	const { height: textareaHeight, width: textareaWidth } = useContainerQuery(textareaRef);
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 
 			<div ref={containerRef}>
@@ -35,7 +35,7 @@ function Example({ brand }) {
 					}}
 				/>
 			</div>
-		</GEL>
+		</Playground>
 	);
 }
 

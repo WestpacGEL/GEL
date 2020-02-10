@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, wrapHandlers } from '@westpac/core';
+import { jsx, wrapHandlers } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -23,7 +23,7 @@ function Example({ brand }) {
 	wrapHandlers(one, two)({});
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 			<Code>
 				{`function one() {
@@ -46,7 +46,7 @@ wrapHandlers( one, two );`}
 			<button onClick={wrapHandlers(four, () => console.log('button clicked again'))} type="button">
 				Click me!
 			</button>
-		</GEL>
+		</Playground>
 	);
 }
 

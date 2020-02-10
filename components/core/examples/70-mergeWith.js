@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, mergeWith } from '@westpac/core';
+import { jsx, mergeWith } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -10,7 +10,7 @@ function Example({ brand }) {
 	let other = (other = { a: [{ c: 3 }, { e: 5 }] });
 
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia ignore />
 			<Code>
 				const object = {JSON.stringify(object, null, 2)};{<br css={{ margin: '1rem' }} />}
@@ -19,7 +19,7 @@ function Example({ brand }) {
 			</Code>
 			=>
 			<Code>{JSON.stringify(mergeWith(object, other), null, 2)}</Code>
-		</GEL>
+		</Playground>
 	);
 }
 

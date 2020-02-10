@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { SkipLink, VisuallyHidden } from '@westpac/a11y';
-
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground';
 
 const SkipLinkWrapper = ({ children, ...rest }) => (
 	<div {...rest} tabIndex={1}>
@@ -41,7 +41,10 @@ function Example({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<Playground
+			brand={overridesWithTokens}
+			scope={{ Intopia, VisuallyHidden, HouseIcon, SkipLink, SPACING }}
+		>
 			<Intopia ignore />
 
 			<h2>Screen reader only text </h2>
@@ -108,7 +111,7 @@ function Example({ brand }) {
 					incididunt in est.
 				</p>
 			</div>
-		</GEL>
+		</Playground>
 	);
 }
 

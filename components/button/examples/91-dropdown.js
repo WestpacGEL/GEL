@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button, ButtonDropdown } from '@westpac/button';
 import { AndroidIcon, AppleIcon } from '@westpac/icon';
 
@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<Playground brand={brand}>
 			<Intopia />
 			<h2>Default instance</h2>
 			<ButtonDropdown look="primary" text="Primary Dropdown">
@@ -127,7 +127,7 @@ function Example({ brand }) {
 				<p>Example dropdown content...</p>
 				<p>Example dropdown content...</p>
 			</ButtonDropdown>
-		</GEL>
+		</Playground>
 	);
 }
 
