@@ -79,7 +79,7 @@ export const Tab = forwardRef(
 						onClick={handleAccordionClick}
 						id={tabId}
 						aria-controls={panelId}
-						aria-expanded={selected}
+						aria-expanded={!hidden}
 						{...overrides.AccordionLabel.attributes(state)}
 						css={overrides.AccordionLabel.styles(state)}
 					>
