@@ -139,52 +139,54 @@ export const Modal = ({
 		}
 	});
 
-	return ReactDOM.createPortal(
-		<Fragment>
-			<overrides.Backdrop.component
-				{...overrides.Backdrop.attributes(state)}
-				css={overrides.Backdrop.styles(state)}
-			/>
-			<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
-				<overrides.Modal.component
-					role="dialog"
-					aria-modal="true"
-					aria-labelledby={titleId}
-					aria-describedby={bodyId}
-					tabIndex="-1"
-					ref={modalRef}
-					className={className}
-					{...overrides.Modal.attributes(state)}
-					css={overrides.Modal.styles(state)}
-				>
-					<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
-						<overrides.Header.component
-							{...overrides.Header.attributes(state)}
-							css={overrides.Header.styles(state)}
+	return typeof document === 'undefined'
+		? null
+		: ReactDOM.createPortal(
+				<Fragment>
+					<overrides.Backdrop.component
+						{...overrides.Backdrop.attributes(state)}
+						css={overrides.Backdrop.styles(state)}
+					/>
+					<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
+						<overrides.Modal.component
+							role="dialog"
+							aria-modal="true"
+							aria-labelledby={titleId}
+							aria-describedby={bodyId}
+							tabIndex="-1"
+							ref={modalRef}
+							className={className}
+							{...overrides.Modal.attributes(state)}
+							css={overrides.Modal.styles(state)}
 						>
-							<overrides.Title.component
-								id={titleId}
-								{...overrides.Title.attributes(state)}
-								css={overrides.Title.styles(state)}
-							>
-								{heading}
-							</overrides.Title.component>
-							{dismissible && (
-								<overrides.CloseBtn.component
-									onClick={() => handleClose()}
-									icon={CloseIcon}
-									{...overrides.CloseBtn.attributes(state)}
-									css={overrides.CloseBtn.styles(state)}
-								/>
-							)}
-						</overrides.Header.component>
-						{children}
-					</FocusLock>
-				</overrides.Modal.component>
-			</ModalContext.Provider>
-		</Fragment>,
-		document.body
-	);
+							<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
+								<overrides.Header.component
+									{...overrides.Header.attributes(state)}
+									css={overrides.Header.styles(state)}
+								>
+									<overrides.Title.component
+										id={titleId}
+										{...overrides.Title.attributes(state)}
+										css={overrides.Title.styles(state)}
+									>
+										{heading}
+									</overrides.Title.component>
+									{dismissible && (
+										<overrides.CloseBtn.component
+											onClick={() => handleClose()}
+											icon={CloseIcon}
+											{...overrides.CloseBtn.attributes(state)}
+											css={overrides.CloseBtn.styles(state)}
+										/>
+									)}
+								</overrides.Header.component>
+								{children}
+							</FocusLock>
+						</overrides.Modal.component>
+					</ModalContext.Provider>
+				</Fragment>,
+				document.body
+		  );
 };
 
 // ==============================

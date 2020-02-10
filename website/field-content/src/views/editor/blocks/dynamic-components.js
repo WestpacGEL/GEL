@@ -44,13 +44,15 @@ export function Sidebar({ blocks, editor, ...other }) {
 			icon={icon}
 			text={`Insert ${compName}`}
 			insertBlock={() => {
-				editor.insertBlock({
+				let block = Block.create({
 					type,
 					data: {
 						component: compName,
 						props: {},
 					},
 				});
+				setCurrentlyEditingBlocks(x => ({ ...x, [block.get('key')]: true }));
+				editor.insertBlock(block);
 			}}
 		/>
 	));
@@ -59,7 +61,10 @@ export function Sidebar({ blocks, editor, ...other }) {
 export function Node(props) {
 	let { adminMeta, components } = useContext(Context);
 	let [view] = adminMeta.readViews([components]);
-	let [isEditing, setIsEditing] = useState(true);
+	const { currentlyEditingBlocks, setCurrentlyEditingBlocks } = useContext(
+		CurrentlyEditingBlocksContext
+	);
+	let isEditing = currentlyEditingBlocks[props.node.key];
 	let componentName = props.node.get('data').get('component');
 	let Editor = view[componentName].editor;
 	let Component = view[componentName].component;
@@ -96,7 +101,7 @@ export function Node(props) {
 						},
 					}}
 					onClick={() => {
-						setIsEditing(x => !x);
+						setCurrentlyEditingBlocks(x => ({ ...x, [props.node.key]: !x[props.node.key] }));
 					}}
 					title={isEditing ? 'Show rendered component' : 'Edit component'}
 				>
