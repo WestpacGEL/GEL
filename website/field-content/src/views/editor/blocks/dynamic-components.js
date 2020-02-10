@@ -70,10 +70,15 @@ export function Node(props) {
 				// we want to stop stopPropagation here so that focussing works
 				e.stopPropagation();
 			}}
-			css={{ position: 'relative' }}
+			css={{
+				position: 'relative',
+				'&:hover #add-edit-button': {
+					opacity: 1,
+				},
+			}}
 			contentEditable={false}
 		>
-			<div css={{ position: 'absolute', top: 0, left: -32 }}>
+			<div id="add-edit-button" css={{ opacity: 0, position: 'absolute', top: 0, left: -32 }}>
 				<button
 					type="button"
 					css={{
