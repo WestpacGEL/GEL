@@ -90,8 +90,8 @@ function Package({ item, refetch, items }) {
 function OrphanPages({ items, refetch }) {
 	return (
 		<Fragment>
-			The packages below have been deleted or renamed. You can decide what should happen to the docs
-			below.
+			Pages below relate to packages that have been deleted or renamed. Please decide what should
+			happen to the pages.
 			<Grid columns={3} css={{ marginTop: gridSize * 2 }} gap={gridSize * 2}>
 				{items.map(item => {
 					return <Package items={items} key={item.id} refetch={refetch} item={item} />;
@@ -101,10 +101,17 @@ function OrphanPages({ items, refetch }) {
 	);
 }
 
-function PagesWithoutDocs() {
+function PagesWithoutDocs({ items }) {
 	let adminMeta = useAdminMeta();
 	let list = adminMeta.getListByKey('Page');
 	let options = list.fields.find(x => x.path === 'packageName').options;
+	const packagesWithoutDocs = options.filter(
+		o =>
+			!items
+				.filter(i => i.packageName)
+				.map(i => i.packageName)
+				.includes(o.value)
+	);
 	let [createPage] = useMutation(gql`
 		mutation CreatePage($pkgName: PagePackageNameType!) {
 			createPage(data: { packageName: $pkgName }) {
@@ -116,7 +123,7 @@ function PagesWithoutDocs() {
 		<Route>
 			{({ history }) => (
 				<Grid columns={3} css={{ marginTop: gridSize * 2 }} gap={gridSize * 2}>
-					{options.map(({ value }) => {
+					{packagesWithoutDocs.map(({ value }) => {
 						return (
 							<Card key={value} css={{ width: 320 }}>
 								<Title css={{ marginBottom: gridSize * 2 }}>{value}</Title>
@@ -146,9 +153,15 @@ function Pages({ items }) {
 				{items.map(item => {
 					return (
 						<Card key={item.id} css={{ width: 320 }}>
-							<Title css={{ marginBottom: gridSize * 2 }}>
-								{item.pageTitle || item.packageName}
-							</Title>
+							<div css={{ marginBottom: gridSize * 2 }}>
+								<Title css={{ marginBottom: 2 }}>{item.pageTitle || item.packageName}</Title>
+								{item.packageName && (
+									<p css={{ fontSize: 'small', marginTop: 0, marginBottom: 0 }}>
+										Package: {item.packageName}
+									</p>
+								)}
+							</div>
+
 							<Button
 								to={`${adminMeta.adminPath}/pages/${item.id}`}
 								css={{ marginRight: gridSize }}
@@ -178,9 +191,10 @@ export default function Index() {
 		`,
 		{ fetchPolicy: 'cache-and-network' }
 	);
-	if (error) return 'There was an error fetching data for the custom dashboard';
+	if (error) return <p>There was an error fetching data for the dashboard.</p>;
 	if (!data) return <LoadingIndicator />;
 	let orphanPages = data.allPages.filter(x => x.isOrphaned === 'true'); // ... yes, it's a string true
+	let undocumentedPages = data.allPages.filter(x => x.isOrphaned === 'true'); // ... yes, it's a string true
 	console.log(data.allPages);
 	return (
 		<Container css={{}}>
@@ -188,11 +202,15 @@ export default function Index() {
 			<Pages items={data.allPages} />
 			{orphanPages.length ? (
 				<Fragment>
-					<PageTitle>Orphaned Packages</PageTitle>
+					<PageTitle css={{ marginTop: gridSize * 5, marginBottom: gridSize * 4 }}>
+						Orphaned Packages
+					</PageTitle>
 					<OrphanPages refetch={refetch} items={orphanPages} />
 				</Fragment>
 			) : null}
-			<PageTitle>Undocumented Packages</PageTitle>
+			<PageTitle css={{ marginTop: gridSize * 5, marginBottom: gridSize * 4 }}>
+				Undocumented Packages
+			</PageTitle>
 			<PagesWithoutDocs items={data.allPages} />
 			<div css={{ marginBottom: 320 }} />
 		</Container>

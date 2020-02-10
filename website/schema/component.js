@@ -51,7 +51,7 @@ const getComponentSchema = options => ({
 			],
 		},
 		documentPackage: { type: Checkbox },
-		packageName: { type: Select, options, isUnique: true },
+		packageName: { type: Select, options },
 		name: { type: Virtual, resolver: getResolver('name') },
 		version: { type: Virtual, resolver: getResolver('version') },
 		description: { type: Virtual, resolver: getResolver('description') },
