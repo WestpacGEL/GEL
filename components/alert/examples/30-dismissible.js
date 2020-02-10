@@ -11,7 +11,7 @@ function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<Playground brand={brand} scope={{ Intopia, Alert, open, setOpen }}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<Alert look="success" dismissible>

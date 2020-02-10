@@ -32,7 +32,6 @@ function Example({ brand }) {
 	return (
 		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<Breadcrumb>
 				<Crumb href="#/" text="Home" />

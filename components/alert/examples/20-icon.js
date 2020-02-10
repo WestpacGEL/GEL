@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<Playground brand={brand} scope={{ Intopia, Alert, HelpIcon }}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Custom icon</h2>

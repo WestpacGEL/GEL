@@ -65,7 +65,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<Playground brand={overridesWithTokens} scope={{ Intopia, Alert }}>
+		<Playground brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>

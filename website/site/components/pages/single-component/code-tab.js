@@ -3,8 +3,6 @@ import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { IntroSection, Separator } from './_utils';
 import dynamic from 'next/dynamic';
-// import Test from '@westpac/a11y/examples/00-VisuallyHidden';
-//``import(`@westpac/heading`
 
 const DynamicExample = dynamic(
 	() =>

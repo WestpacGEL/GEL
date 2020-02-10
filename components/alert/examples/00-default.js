@@ -7,7 +7,7 @@ import { Playground } from '../../../website/site/components/playground';
 
 function Example({ brand }) {
 	return (
-		<Playground brand={brand} scope={{ Intopia, Alert }}>
+		<Playground brand={brand}>
 			<Intopia />
 
 			<h2>Default instance (no styling props)</h2>

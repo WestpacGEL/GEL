@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const { SPACING } = useBrand();
 
 	return (
-		<Playground scope={{ Intopia, SkipLink, brand, SPACING }}>
+		<Playground>
 			<Intopia />
 
 			<h2>Screen reader skip link</h2>
