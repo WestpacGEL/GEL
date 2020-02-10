@@ -5,6 +5,9 @@ const { Content } = require('@keystonejs/field-content');
 const { resolveComponent } = require('../extend-schema');
 
 const getResolver = key => async args => {
+	if (!args.packageName) {
+		return null;
+	}
 	// making some big assumptions here about the path format
 	const component = await resolveComponent(args.packageName.replace('_', '-'));
 	if (component === null || typeof component === 'undefined') {
@@ -56,6 +59,9 @@ const getComponentSchema = options => ({
 			adminDoc: 'This page relates to a package that has been removed.',
 			type: Virtual,
 			resolver: async args => {
+				if (!args.packageName) {
+					return false;
+				}
 				const result = await getResolver('packageName')(args);
 				return result ? false : true;
 			},
