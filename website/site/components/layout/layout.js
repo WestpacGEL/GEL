@@ -10,7 +10,7 @@ import { Footer, Normalize, Sidebar } from './';
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
 import { SidebarProvider, useSidebar } from '../providers/sidebar';
 
-import { ALL_COMPONENTS } from '../../../graphql';
+import { ALL_PAGES } from '../../../graphql';
 
 const LayoutView = ({ components, children }) => {
 	return (
@@ -35,7 +35,7 @@ const Wrapper = props => {
 	const brandParam = router.query.brand || '';
 
 	const { brands, brand } = useBrandSwitcher();
-	const { data, error } = useQuery(ALL_COMPONENTS);
+	const { data, error } = useQuery(ALL_PAGES);
 
 	const brandNames = Object.keys(brands);
 	const isMatch = brandNames.filter(name => name === brandParam).length > 0;
@@ -51,7 +51,7 @@ const Wrapper = props => {
 	if (error) return 'error!!';
 
 	// We can now assume we have our components data...
-	const components = data.allComponents;
+	const components = data.allPages;
 
 	return (
 		<GEL brand={brands[brand]}>

@@ -12,17 +12,17 @@ import {
 	DesignTab,
 	PageHeader,
 } from '../../components/pages/single-component';
-import { ALL_COMPONENTS } from '../../../graphql';
+import { ALL_PAGES } from '../../../graphql';
 
 const ComponentWrapper = () => {
-	const { data, error } = useQuery(ALL_COMPONENTS);
+	const { data, error } = useQuery(ALL_PAGES);
 	const router = useRouter();
 	const componentParam = router.query.component;
 	if (error) return 'error!';
 	if (!data) return 'loading...';
 
 	const currentComponent =
-		data.allComponents.filter(component => component.name === componentParam)[0] || '';
+		data.allPages.filter(component => component.name === componentParam)[0] || '';
 
 	return currentComponent ? (
 		<Component component={currentComponent} />

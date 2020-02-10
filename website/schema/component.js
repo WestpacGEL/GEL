@@ -26,7 +26,7 @@ const getResolver = key => async args => {
 };
 
 const getComponentSchema = options => ({
-	labelResolver: x => x.packageName,
+	labelResolver: x => x.pageTitle || x.packageName,
 	fields: {
 		pageTitle: { type: Text },
 		design: {
