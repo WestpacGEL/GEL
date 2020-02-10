@@ -5,7 +5,7 @@ export const ALL_COMPONENTS = gql`
 		allComponents {
 			id
 			packageName
-			isOrphan
+			isOrphaned
 			name
 			version
 			description

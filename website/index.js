@@ -8,7 +8,6 @@ const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
 const { resolveComponents } = require('./extend-schema');
 const { getComponentSchema } = require('./schema/component');
 const { userSchema } = require('./schema/user');
-const { pageSchema } = require('./schema/page');
 
 const keystone = new Keystone({
 	name: 'GEL3 Website',
@@ -28,11 +27,10 @@ const apps = [
 const options = resolveComponents();
 
 keystone.createList(
-	'Component',
+	'Page',
 	getComponentSchema(options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name })))
 );
 keystone.createList('User', userSchema);
-keystone.createList('Page', pageSchema);
 
 module.exports = {
 	keystone,

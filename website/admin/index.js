@@ -8,13 +8,10 @@ export default {
 			component: Dashboard,
 		},
 		{
-			listKey: 'Component',
+			listKey: 'Page',
 		},
 		{
-			listKey: 'Pages',
-		},
-		{
-			listKey: 'Users',
+			listKey: 'User',
 		},
 	],
 };

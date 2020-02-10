@@ -17,20 +17,20 @@ import { LoadingIndicator } from '@arch-ui/loading';
 
 function Package({ item, refetch, items }) {
 	let adminMeta = useAdminMeta();
-	let list = adminMeta.getListByKey('Component');
+	let list = adminMeta.getListByKey('Page');
 	let options = list.fields.find(x => x.path === 'packageName').options;
 	let [isDeleteOpen, setIsDeleteOpen] = useState(false);
 	let [isWorkingOnNewPkgThing, setIsWorkingOnNewPkgThing] = useState(false);
-	let [deleteComponent] = useMutation(gql`
-		mutation DeleteComponent($id: ID!) {
-			deleteComponent(id: $id) {
+	let [deletePage] = useMutation(gql`
+		mutation DeletePage($id: ID!) {
+			deletePage(id: $id) {
 				id
 			}
 		}
 	`);
 	let [changePackageName] = useMutation(gql`
-		mutation ChangePackageName($id: ID!, $pkgName: ComponentPackageNameType!) {
-			updateComponent(id: $id, data: { packageName: $pkgName }) {
+		mutation ChangePackageName($id: ID!, $pkgName: PagePackageNameType!) {
+			updatePage(id: $id, data: { packageName: $pkgName }) {
 				id
 			}
 		}
@@ -50,16 +50,13 @@ function Package({ item, refetch, items }) {
 							setIsWorkingOnNewPkgThing(true);
 							let existingItem = items.find(x => x.packageName === value);
 							if (existingItem !== undefined) {
-								await deleteComponent({ variables: { id: existingItem.id } });
+								await deletePage({ variables: { id: existingItem.id } });
 							}
 							await changePackageName({ variables: { pkgName: value, id: item.id } });
-							history.push(`${adminMeta.adminPath}/components/${item.id}`);
+							history.push(`${adminMeta.adminPath}/pages/${item.id}`);
 						}}
 					/>
-					<Button
-						to={`${adminMeta.adminPath}/components/${item.id}`}
-						css={{ marginRight: gridSize }}
-					>
+					<Button to={`${adminMeta.adminPath}/pages/${item.id}`} css={{ marginRight: gridSize }}>
 						Edit
 					</Button>
 
@@ -90,10 +87,10 @@ function Package({ item, refetch, items }) {
 	);
 }
 
-function OrphanComponents({ items, refetch }) {
+function OrphanPages({ items, refetch }) {
 	return (
 		<Fragment>
-			The packages below have been deleted in GEL. You can decide what should happen to the docs
+			The packages below have been deleted or renamed. You can decide what should happen to the docs
 			below.
 			<Grid columns={3} css={{ marginTop: gridSize * 2 }} gap={gridSize * 2}>
 				{items.map(item => {
@@ -104,13 +101,13 @@ function OrphanComponents({ items, refetch }) {
 	);
 }
 
-function ComponentsWithoutDocs() {
+function PagesWithoutDocs() {
 	let adminMeta = useAdminMeta();
-	let list = adminMeta.getListByKey('Component');
+	let list = adminMeta.getListByKey('Page');
 	let options = list.fields.find(x => x.path === 'packageName').options;
-	let [createComponent] = useMutation(gql`
-		mutation CreateComponent($pkgName: ComponentPackageNameType!) {
-			createComponent(data: { packageName: $pkgName }) {
+	let [createPage] = useMutation(gql`
+		mutation CreatePage($pkgName: PagePackageNameType!) {
+			createPage(data: { packageName: $pkgName }) {
 				id
 			}
 		}
@@ -125,12 +122,12 @@ function ComponentsWithoutDocs() {
 								<Title css={{ marginBottom: gridSize * 2 }}>{value}</Title>
 								<Button
 									onClick={async () => {
-										let { data } = await createComponent({ variables: { pkgName: value } });
-										history.push(`${adminMeta.adminPath}/components/${data.createComponent.id}`);
+										let { data } = await createPage({ variables: { pkgName: value } });
+										history.push(`${adminMeta.adminPath}/pages/${data.createPage.id}`);
 									}}
 									css={{ marginRight: gridSize }}
 								>
-									Create
+									Create Page
 								</Button>
 							</Card>
 						);
@@ -141,7 +138,7 @@ function ComponentsWithoutDocs() {
 	);
 }
 
-function Components({ items }) {
+function Pages({ items }) {
 	let adminMeta = useAdminMeta();
 	return (
 		<Fragment>
@@ -149,9 +146,11 @@ function Components({ items }) {
 				{items.map(item => {
 					return (
 						<Card key={item.id} css={{ width: 320 }}>
-							<Title css={{ marginBottom: gridSize * 2 }}>{item.packageName}</Title>
+							<Title css={{ marginBottom: gridSize * 2 }}>
+								{item.pageTitle || item.packageName}
+							</Title>
 							<Button
-								to={`${adminMeta.adminPath}/components/${item.id}`}
+								to={`${adminMeta.adminPath}/pages/${item.id}`}
 								css={{ marginRight: gridSize }}
 							>
 								Edit
@@ -167,33 +166,34 @@ function Components({ items }) {
 export default function Index() {
 	let { data, error, refetch } = useQuery(
 		gql`
-			query AllComponents {
-				allComponents {
+			query AllPages {
+				allPages {
 					_label_
 					id
-					isOrphan
+					pageTitle
+					isOrphaned
 					packageName
 				}
 			}
 		`,
 		{ fetchPolicy: 'cache-and-network' }
 	);
-	if (error) return 'There was an error fetching data';
+	if (error) return 'There was an error fetching data for the custom dashboard';
 	if (!data) return <LoadingIndicator />;
-	let orphanComponents = data.allComponents.filter(x => x.isOrphan === 'true'); // ... yes, it's a string true
-	console.log(data.allComponents);
+	let orphanPages = data.allPages.filter(x => x.isOrphaned === 'true'); // ... yes, it's a string true
+	console.log(data.allPages);
 	return (
 		<Container css={{}}>
-			<PageTitle>Components</PageTitle>
-			<Components items={data.allComponents} />
-			{orphanComponents.length ? (
+			<PageTitle>Pages</PageTitle>
+			<Pages items={data.allPages} />
+			{orphanPages.length ? (
 				<Fragment>
-					<PageTitle>Orphan Components</PageTitle>
-					<OrphanComponents refetch={refetch} items={orphanComponents} />
+					<PageTitle>Orphaned Packages</PageTitle>
+					<OrphanPages refetch={refetch} items={orphanPages} />
 				</Fragment>
 			) : null}
-			<PageTitle>Components Without Docs</PageTitle>
-			<ComponentsWithoutDocs items={data.allComponents} />
+			<PageTitle>Undocumented Packages</PageTitle>
+			<PagesWithoutDocs items={data.allPages} />
 			<div css={{ marginBottom: 320 }} />
 		</Container>
 	);

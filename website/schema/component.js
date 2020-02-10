@@ -1,13 +1,13 @@
 const { DoOrDoNot } = require('./blocks/do-or-do-not');
 const { Example } = require('./blocks/code-examples');
-const { Select, Virtual } = require('@keystonejs/fields');
+const { Select, Virtual, Checkbox, Text } = require('@keystonejs/fields');
 const { Content } = require('@keystonejs/field-content');
 const { resolveComponent } = require('../extend-schema');
 
 const getResolver = key => async args => {
 	// making some big assumptions here about the path format
 	const component = await resolveComponent(args.packageName.replace('_', '-'));
-	if (component === null) {
+	if (component === null || typeof component === 'undefined') {
 		return null;
 	}
 	if (key === 'packageName') {
@@ -25,15 +25,7 @@ const getResolver = key => async args => {
 const getComponentSchema = options => ({
 	labelResolver: x => x.packageName,
 	fields: {
-		packageName: { type: Select, options, isUnique: true },
-		isOrphan: {
-			type: Virtual,
-			resolver: args => (getResolver('packageName')(args) ? false : true),
-		},
-		name: { type: Virtual, resolver: getResolver('name') },
-		version: { type: Virtual, resolver: getResolver('version') },
-		description: { type: Virtual, resolver: getResolver('description') },
-		author: { type: Virtual, resolver: getResolver('author') },
+		pageTitle: { type: Text },
 		design: {
 			type: Content,
 			blocks: [
@@ -44,6 +36,7 @@ const getComponentSchema = options => ({
 				[Content.blocks.dynamicComponent, { components: require.resolve('./block-components') }],
 			],
 		},
+		documentAccessibility: { type: Checkbox },
 		accessibility: {
 			type: Content,
 			blocks: [
@@ -54,6 +47,20 @@ const getComponentSchema = options => ({
 				[Content.blocks.dynamicComponent, { components: require.resolve('./block-components') }],
 			],
 		},
+		documentPackage: { type: Checkbox },
+		packageName: { type: Select, options, isUnique: true },
+		name: { type: Virtual, resolver: getResolver('name') },
+		version: { type: Virtual, resolver: getResolver('version') },
+		description: { type: Virtual, resolver: getResolver('description') },
+		isOrphaned: {
+			adminDoc: 'This page relates to a package that has been removed.',
+			type: Virtual,
+			resolver: async args => {
+				const result = await getResolver('packageName')(args);
+				return result ? false : true;
+			},
+		},
+		author: { type: Virtual, resolver: getResolver('author') },
 		code: {
 			type: Content,
 			blocks: [
