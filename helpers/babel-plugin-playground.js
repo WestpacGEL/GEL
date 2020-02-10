@@ -11,19 +11,9 @@ module.exports = function(babel) {
 					path.node.openingElement.name.name === 'Playground'
 				) {
 					let attributes = path.node.openingElement.attributes;
-					let format = true;
-
-					if (attributes.length && attributes.find(t => t.name.name === 'format')) {
-						let formatAttr = attributes.find(t => t.name.name === 'format');
-						let value = formatAttr.value.expression;
-						if (value && value.value) {
-							format = !!value;
-						}
-					}
 
 					if (attributes.length && attributes.find(t => t.name.name === 'code')) {
 						// If we have a code attribute just use this and ignore the inner content
-
 						if (attributes.length && !attributes.find(t => t.name.name === 'inline')) {
 							// If we have an inline attribute, ues this, if not assume code attribute implies inline
 							attributes.push(
@@ -74,9 +64,52 @@ module.exports = function(babel) {
 								code = `<>${code}</>`;
 							}
 
-							if (format) {
-								code = prettier.format(code, prettierOpts);
+							code = prettier.format(code, prettierOpts);
+
+							let jsxElementNode = path.node;
+							let identifiers = new Set();
+							path.traverse({
+								ReferencedIdentifier(path) {
+									if (
+										path.scope.bindings[path.node.name] &&
+										!path.scope.bindings[path.node.name].path.findParent(
+											x => x.node === jsxElementNode
+										)
+									) {
+										identifiers.add(path.node.name);
+									}
+								},
+							});
+							if (identifiers.size) {
+								let objectProperties = [...identifiers].map(x =>
+									t.objectProperty(t.identifier(x), t.identifier(x))
+								);
+
+								let maybeScopeAttribute = path.node.openingElement.attributes.find(
+									x =>
+										x.type === 'JSXAttribute' &&
+										x.name.name === 'scope' &&
+										x.value.type === 'JSXExpressionContainer'
+								);
+								if (maybeScopeAttribute) {
+									if (maybeScopeAttribute.value.expression.type === 'ObjectExpression') {
+										maybeScopeAttribute.value.expression.properties.push(...objectProperties);
+									} else {
+										maybeScopeAttribute.value.expression = t.objectExpression([
+											t.spreadElement(maybeScopeAttribute.value.expression),
+											...objectProperties,
+										]);
+									}
+								} else {
+									path.node.openingElement.attributes.push(
+										t.jsxAttribute(
+											t.jsxIdentifier('scope'),
+											t.jsxExpressionContainer(t.objectExpression(objectProperties))
+										)
+									);
+								}
 							}
+
 							// Add the code attribute
 							attributes.push(
 								t.jsxAttribute(
