@@ -8,7 +8,7 @@ import { ArrowRightIcon, CubeIcon, GenericFileIcon, NewWindowIcon } from '@westp
 import { Modal, Body } from '@westpac/modal';
 import { Well } from '@westpac/well';
 
-import { BlocksHub } from './blocks-hub';
+import { SlateContent } from './blocks-hub';
 import { PageLinks } from './page-links';
 import dynamic from 'next/dynamic';
 
@@ -35,7 +35,7 @@ export const BlocksDocs = ({ title, blocks }) => {
 				</Cell>
 			</Grid>
 			{blocks ? (
-				<BlocksHub blocks={blocks} />
+				<SlateContent content={blocks} />
 			) : (
 				<Grid>
 					<Cell width={10} left={2}>

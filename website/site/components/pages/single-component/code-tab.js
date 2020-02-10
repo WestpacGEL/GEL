@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
-import { IntroSection, Separator } from './_utils';
+import { IntroSection, Separator, BlocksDocs } from './_utils';
 import dynamic from 'next/dynamic';
 
 const DynamicExample = dynamic(
@@ -31,7 +31,7 @@ const Example = () => <DynamicExample editor={true} />;
 // 	);
 // }, [name]);
 
-export const CodeTab = () => {
+export const CodeTab = ({ blocks }) => {
 	return (
 		<Fragment>
 			<IntroSection
@@ -43,10 +43,7 @@ export const CodeTab = () => {
 			<Container>
 				<Grid>
 					<Cell width={10} left={2}>
-						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
-							Code examples
-						</Heading>
-						<Example />
+						<BlocksDocs blocks={blocks} />
 					</Cell>
 					<Cell width={10} left={2}>
 						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>

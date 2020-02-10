@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
 import { Panel, Header, Body } from '@westpac/panel';
 
-export const YesNo = ({ yes, no }) => {
+export const DoDoNotWrapper = ({ yes, no, children, ...props }) => {
 	const yesList = yes.nodes.map((item, index) => (
 		<YesNoItem type="do" key={index} text={item.nodes[0].text} />
 	));
@@ -13,18 +13,15 @@ export const YesNo = ({ yes, no }) => {
 	));
 
 	return (
-		<Grid>
+		<Grid {...props}>
 			<Cell width={10} left={2}>
-				<Grid columns={2}>
-					<ContentBlock type="do" content={yesList} />
-					<ContentBlock type="avoid" content={noList} />
-				</Grid>
+				<Grid columns={2}>{children}</Grid>
 			</Cell>
 		</Grid>
 	);
 };
 
-const ContentBlock = ({ type, content }) => {
+const ContentBlock = ({ type, children }) => {
 	const { COLORS, SPACING } = useBrand();
 	return (
 		<Cell css={{ margin: `${SPACING(4)} 0` }}>
@@ -62,12 +59,12 @@ const ContentBlock = ({ type, content }) => {
 					</p>
 				</Body>
 			</Panel>
-			{content}
+			{children}
 		</Cell>
 	);
 };
 
-const YesNoItem = ({ text, type }) => {
+export const YesNoItem = ({ text, type }) => {
 	const { COLORS } = useBrand();
 	const typeMap = {
 		do: {
@@ -82,8 +79,10 @@ const YesNoItem = ({ text, type }) => {
 	const variant = typeMap[type];
 
 	return (
-		<li>
-			<span css={{ fontWeight: 700, color: variant.color }}>{variant.word}</span> - {text}
-		</li>
+		<ContentBlock type={type}>
+			<li>
+				<span css={{ fontWeight: 700, color: variant.color }}>{variant.word}</span> - {text}
+			</li>
+		</ContentBlock>
 	);
 };

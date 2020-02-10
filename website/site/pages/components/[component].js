@@ -74,13 +74,13 @@ const Tabs = ({ component }) => {
 	return (
 		<Tabcordion mode="tabs" overrides={tabOverrides}>
 			<Tab overrides={overrides} text="Design">
-				<DesignTab description={component.description} doc={component.doc} />
+				<DesignTab description={component.description} blocks={component.design} />
 			</Tab>
 			<Tab overrides={overrides} text="Accessibility">
-				<AccessibilityTab />
+				<AccessibilityTab blocks={component.accessibility} />
 			</Tab>
 			<Tab overrides={overrides} text="Code">
-				<CodeTab />
+				<CodeTab blocks={component.code} />
 			</Tab>
 		</Tabcordion>
 	);

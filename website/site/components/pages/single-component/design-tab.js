@@ -5,8 +5,7 @@ import { Cell, Container, Grid } from '@westpac/grid';
 
 import { BlocksDocs, ExampleBlock, IntroSection, RelatedInformation, Separator } from './_utils';
 
-export const DesignTab = ({ description, doc }) => {
-	const nodes = doc && doc.document ? JSON.parse(doc.document).nodes : null;
+export const DesignTab = ({ description, blocks }) => {
 	return (
 		<Fragment>
 			<IntroSection
@@ -15,11 +14,7 @@ export const DesignTab = ({ description, doc }) => {
 				pageLinks={['Item one', 'Item two', 'Item three', 'Item four']}
 			/>
 			<Separator />
-			<DesignExamples />
-			<Separator />
-			<BlocksDocs title="UX rationale" blocks={nodes} />
-			<Separator />
-			<BlocksDocs title="Visual design rationale" blocks={nodes} />
+			<BlocksDocs blocks={blocks} />
 			<Separator style={{ marginBottom: 0 }} />
 			<RelatedInformation />
 		</Fragment>
