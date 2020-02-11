@@ -143,6 +143,7 @@ export const Alert = ({
 			headingTag={headingTag}
 			open={open}
 			className={className}
+			{...rest}
 			{...overrides.Alert.attributes(state)}
 			css={overrides.Alert.styles(state)}
 		>

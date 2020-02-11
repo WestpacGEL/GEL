@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
@@ -67,7 +67,7 @@ export const InputGroup = ({
 		componentOverrides
 	);
 
-	let added = false;
+	let textFieldAdded = false;
 	const childrenWithProps = [];
 	const length = Children.count(children);
 
@@ -117,7 +117,7 @@ export const InputGroup = ({
 		}
 	} else {
 		Children.map(children, child => {
-			if (child.type.name === 'Left' && !added) {
+			if (child.type.name === 'Left' && !textFieldAdded) {
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'left' })
 				);
@@ -138,8 +138,8 @@ export const InputGroup = ({
 						{...overrides.Text.attributes({ ...state, left: true, right: length > 1 })}
 					/>
 				);
-				added = true;
-			} else if (child.type.name === 'Right' && !added) {
+				textFieldAdded = true;
+			} else if (child.type.name === 'Right' && !textFieldAdded) {
 				childrenWithProps.push(
 					<overrides.Text.component
 						key="textinput2"
@@ -160,10 +160,16 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'right' })
 				);
-				added = true;
-			} else {
+				textFieldAdded = true;
+			} else if (child.type.name === 'Right' || child.type.name === 'Left') {
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'other' })
+				);
+			} else {
+				devWarning(
+					true,
+					`The input-group only accepts a Left or Right component as children. But found "<${child
+						.type.name || child.type}/>"`
 				);
 			}
 		});
