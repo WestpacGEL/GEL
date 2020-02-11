@@ -24,7 +24,6 @@ export const Alert = ({
 	heading,
 	headingTag,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -70,12 +69,12 @@ export const Alert = ({
 	};
 
 	const state = {
+		open,
 		look,
 		dismissible: dismissible ? dismissible : undefined,
 		icon,
 		heading,
 		headingTag,
-		open,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -93,12 +92,12 @@ export const Alert = ({
 
 	const CloseBtnJSX = () => (
 		<overrides.CloseBtn.component
+			open={open}
 			look={look}
 			dismissible={dismissible}
 			icon={icon}
 			heading={heading}
 			headingTag={headingTag}
-			open={open}
 			children={children}
 			onClose={() => setOpen(false)}
 			{...overrides.CloseBtn.attributes(state)}
@@ -108,12 +107,12 @@ export const Alert = ({
 
 	const IconJSX = () => (
 		<overrides.Icon.component
+			open={open}
 			look={look}
 			dismissible={dismissible}
 			icon={icon}
 			heading={heading}
 			headingTag={headingTag}
-			open={open}
 			size={['small', 'medium']}
 			color="inherit"
 			{...overrides.Icon.attributes(state)}
@@ -123,12 +122,12 @@ export const Alert = ({
 
 	const HeadingJSX = () => (
 		<overrides.Heading.component
+			open={open}
 			look={look}
 			dismissible={dismissible}
 			icon={icon}
 			heading={heading}
 			headingTag={headingTag}
-			open={open}
 			{...overrides.Heading.attributes(state)}
 			css={overrides.Heading.styles(state)}
 		/>
@@ -136,13 +135,12 @@ export const Alert = ({
 
 	const AlertJSX = ({ props }) => (
 		<overrides.Alert.component
+			open={open}
 			look={look}
 			dismissible={dismissible}
 			icon={icon}
 			heading={heading}
 			headingTag={headingTag}
-			open={open}
-			className={className}
 			{...rest}
 			{...overrides.Alert.attributes(state)}
 			css={overrides.Alert.styles(state)}
@@ -150,12 +148,12 @@ export const Alert = ({
 			{dismissible && <CloseBtnJSX />}
 			{overrides.Icon.component && <IconJSX />}
 			<overrides.Body.component
+				open={open}
 				look={look}
 				dismissible={dismissible}
 				icon={icon}
 				heading={heading}
 				headingTag={headingTag}
-				open={open}
 				{...overrides.Body.attributes(state)}
 				css={overrides.Body.styles(state)}
 			>

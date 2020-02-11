@@ -6,14 +6,13 @@ import { Button } from '@westpac/button';
 import React from 'react';
 
 export const CloseBtn = ({
-	onClose,
+	open,
 	look,
 	dismissible,
 	icon,
 	heading,
 	headingTag,
-	open,
-	overrides,
+	onClose,
 	...rest
 }) => {
 	const { COLORS } = useBrand();

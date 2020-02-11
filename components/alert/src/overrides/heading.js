@@ -5,13 +5,12 @@ import { Heading } from '@westpac/heading';
 import React from 'react';
 
 export const AlertHeading = ({
+	open,
 	look,
 	dismissible,
 	icon,
 	heading,
 	headingTag,
-	open,
-	overrides,
 	children,
 	...rest
 }) => (

@@ -5,13 +5,12 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React from 'react';
 
 export const Alert = ({
+	open,
 	look,
 	dismissible,
 	icon,
 	heading,
 	headingTag,
-	open,
-	overrides,
 	...rest
 }) => <div {...rest} />;
 
