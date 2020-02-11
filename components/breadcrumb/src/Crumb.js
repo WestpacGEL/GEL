@@ -22,8 +22,8 @@ export const Crumb = ({
 	href,
 	text,
 	assistiveText,
+	currentAssistiveText,
 	onClick,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -61,6 +61,7 @@ export const Crumb = ({
 		href,
 		text,
 		assistiveText,
+		currentAssistiveText,
 		onClick,
 		overrides: componentOverrides,
 		...rest,
@@ -79,24 +80,31 @@ export const Crumb = ({
 			href={href}
 			text={text}
 			assistiveText={assistiveText}
-			className={className}
+			currentAssistiveText={currentAssistiveText}
+			{...rest}
 			{...overrides.Crumb.attributes(state)}
 			css={overrides.Crumb.styles(state)}
 		>
 			{current && (
 				<overrides.AssistiveText.component
+					current={current}
+					href={href}
+					text={text}
+					assistiveText={currentAssistiveText}
+					currentAssistiveText={currentAssistiveText}
 					insideCrumb={true}
 					{...overrides.AssistiveText.attributes(state)}
 					css={overrides.AssistiveText.styles(state)}
 				>
-					{assistiveText}
+					{currentAssistiveText}
 				</overrides.AssistiveText.component>
 			)}
 			<overrides.Link.component
 				current={current}
-				href={current ? null : href}
+				href={href}
 				text={text}
-				assistiveText={assistiveText}
+				assistiveText={currentAssistiveText}
+				currentAssistiveText={currentAssistiveText}
 				onClick={onClick}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
@@ -105,13 +113,14 @@ export const Crumb = ({
 			</overrides.Link.component>
 			{!current && (
 				<overrides.Icon.component
-					aria-hidden="true"
-					size="small"
-					color={COLORS.primary}
 					current={current}
 					href={href}
 					text={text}
-					assistiveText={assistiveText}
+					assistiveText={currentAssistiveText}
+					currentAssistiveText={currentAssistiveText}
+					aria-hidden="true"
+					size="small"
+					color={COLORS.primary}
 					{...overrides.Icon.attributes(state)}
 					css={overrides.Icon.styles(state)}
 				/>
@@ -130,7 +139,7 @@ Crumb.propTypes = {
 	/**
 	 * The text of the crumb
 	 */
-	text: PropTypes.string.isRequired,
+	current: PropTypes.bool,
 
 	/**
 	 * An href for a link
@@ -138,14 +147,24 @@ Crumb.propTypes = {
 	href: PropTypes.string,
 
 	/**
-	 * A function for the onClick event
+	 * The text of the crumb
 	 */
-	onClick: PropTypes.func,
+	text: PropTypes.string.isRequired,
 
 	/**
 	 * Visually hidden text to use for the current page crumb
 	 */
 	assistiveText: PropTypes.string.isRequired,
+
+	/**
+	 * Visually hidden text to use for the current page crumb
+	 */
+	currentAssistiveText: PropTypes.string,
+
+	/**
+	 * A function for the onClick event
+	 */
+	onClick: PropTypes.func,
 
 	/**
 	 * The override API

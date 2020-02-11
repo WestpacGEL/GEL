@@ -5,11 +5,10 @@ import { VisuallyHidden } from '@westpac/a11y';
 import React from 'react';
 
 export const AssistiveText = ({
+	data,
 	assistiveText,
 	currentAssistiveText,
-	current,
 	insideCrumb,
-	icon,
 	...props
 }) => <VisuallyHidden {...props} />;
 

@@ -18,7 +18,6 @@ export const Breadcrumb = ({
 	data,
 	assistiveText,
 	currentAssistiveText,
-	className,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -68,10 +67,11 @@ export const Breadcrumb = ({
 				<Crumb
 					key={index}
 					current={index === data.length - 1}
-					assistiveText={currentAssistiveText}
 					href={href}
 					text={text}
 					onClick={onClick}
+					assistiveText={assistiveText}
+					currentAssistiveText={currentAssistiveText}
 					overrides={componentOverrides}
 				/>
 			);
@@ -81,7 +81,12 @@ export const Breadcrumb = ({
 		allChildren = Children.map(children, (child, index) => {
 			return cloneElement(
 				child,
-				{ current: index === length - 1, overrides: componentOverrides },
+				{
+					current: index === length - 1,
+					assistiveText,
+					currentAssistiveText,
+					overrides: componentOverrides,
+				},
 				index
 			);
 		});
@@ -92,17 +97,23 @@ export const Breadcrumb = ({
 			data={data}
 			assistiveText={assistiveText}
 			currentAssistiveText={currentAssistiveText}
-			className={className}
 			{...overrides.Breadcrumb.attributes(state)}
 			css={overrides.Breadcrumb.styles(state)}
 		>
 			<overrides.AssistiveText.component
+				data={data}
+				assistiveText={assistiveText}
+				currentAssistiveText={currentAssistiveText}
 				{...overrides.AssistiveText.attributes(state)}
 				css={overrides.AssistiveText.styles(state)}
 			>
 				{assistiveText}
 			</overrides.AssistiveText.component>
 			<overrides.List.component
+				data={data}
+				assistiveText={assistiveText}
+				currentAssistiveText={currentAssistiveText}
+				{...rest}
 				{...overrides.List.attributes(state)}
 				css={overrides.List.styles(state)}
 			>
