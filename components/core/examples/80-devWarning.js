@@ -9,7 +9,7 @@ function Example({ brand }) {
 	devWarning(true, 'Warn consumer about a thing but ignore the wanring in production!');
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 			<Code>
 				devWarning( true, 'Warn consumer about a thing but ignore the wanring in production!' );

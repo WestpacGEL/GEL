@@ -7,7 +7,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia />
 
 			<Switch name="example-checked" label="Turn notifications" checked />

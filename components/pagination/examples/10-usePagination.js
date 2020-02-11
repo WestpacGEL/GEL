@@ -12,7 +12,7 @@ function Example({ brand }) {
 	const paginate = usePagination({ pages: content, infinite: true });
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 
 			<h2>usePagination</h2>

@@ -41,7 +41,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<Playground
+		<Playground context={context}
 			brand={overridesWithTokens}
 			scope={{ Intopia, VisuallyHidden, HouseIcon, SkipLink, SPACING }}
 		>

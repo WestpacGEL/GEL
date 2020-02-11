@@ -10,7 +10,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const [instanceId, setInstanceId] = useState();
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 			<Button onClick={() => setInstanceId(useInstanceId())}>Get instance id</Button>
 			<h2>{instanceId}</h2>

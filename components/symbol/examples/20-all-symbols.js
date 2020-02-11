@@ -10,7 +10,7 @@ const symbols = Object.keys(components).filter(s => s.includes('Symbol'));
 
 function Example({ brand }) {
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia />
 
 			<Grid>

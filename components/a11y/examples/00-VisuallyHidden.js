@@ -5,9 +5,9 @@ import { VisuallyHidden } from '@westpac/a11y';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/site/components/playground';
 
-export default ({ editor }) => {
+export default ({ context }) => {
 	return (
-		<Playground editor={editor} scope={{ Intopia, VisuallyHidden }}>
+		<Playground context={context} context={context}>
 			<Intopia />
 
 			<h2>Screen reader only text</h2>

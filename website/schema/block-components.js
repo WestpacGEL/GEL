@@ -1,17 +1,7 @@
-import React from 'react';
+import { TestComponent } from './dynamic-blocks/test-component';
+import { CodeExample } from './dynamic-blocks/code-example';
 
 export default {
-	TestComponent: {
-		editor: ({ value, onChange }) => {
-			return (
-				<input
-					value={value.value}
-					onChange={event => {
-						onChange({ value: event.target.value });
-					}}
-				/>
-			);
-		},
-		component: ({ value }) => value,
-	},
+	TestComponent,
+	CodeExample,
 };

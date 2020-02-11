@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	console.log(asArray([1, 2, 3]));
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 			<Code>{`asArray([ 1, 2, 3])`}</Code>
 			=>

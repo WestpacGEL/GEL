@@ -10,7 +10,8 @@ import {
 	FormPodIndicator,
 	FormPodActions,
 } from '@westpac/form-pod';
-import { Alert, Heading } from '@westpac/alert';
+import { Alert } from '@westpac/alert';
+import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
 import { HeadsetIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
@@ -32,7 +33,7 @@ function Example({ brand }) {
 	];
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 
 			<Global

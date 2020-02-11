@@ -2,7 +2,7 @@
 import { Fragment, useState } from 'react';
 
 import { jsx } from '@westpac/core';
-import { Text } from '@westpac/text-input';
+import { TextInput } from '@westpac/text-input';
 
 import { LogList } from './log-list';
 
@@ -16,7 +16,7 @@ export const Changelog = ({ data }) => {
 	return (
 		<Fragment>
 			<div css={{ maxWidth: 320 }}>
-				<Text
+				<TextInput
 					onChange={handleChange}
 					placeholder={'Semver Range: e.g. "> 1.0.6 <= 3.0.2"'}
 					value={range}

@@ -10,7 +10,7 @@ function Example({ brand }) {
 	const [checked, setChecked] = useState(false);
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia />
 
 			<h2>Default instance (no styling props)</h2>

@@ -5,7 +5,7 @@ import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 function Example({ brand }) {
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<h2>Soft</h2>
 			<h3>Accordion</h3>
 			<Tabcordion mode="accordion" look="soft">

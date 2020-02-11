@@ -10,7 +10,7 @@ const { getComponentSchema } = require('./schema/component');
 const { userSchema } = require('./schema/user');
 
 const keystone = new Keystone({
-	name: 'GEL3 Website',
+	name: 'GEL3 Website again',
 	adapter: new MongooseAdapter(),
 	dropDatabase: true,
 });

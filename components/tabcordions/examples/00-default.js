@@ -1,11 +1,10 @@
 /** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 function Example({ brand }) {
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Tabcordion>
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing

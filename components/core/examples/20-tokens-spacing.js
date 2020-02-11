@@ -12,7 +12,7 @@ function Example({ brand }) {
 	const [count, setCount] = useState(11);
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 
 			<h2>Spacing</h2>

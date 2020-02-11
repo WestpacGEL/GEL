@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const { COLORS, PACKS, SPACING } = useBrand();
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 
 			<h2>Headlines</h2>

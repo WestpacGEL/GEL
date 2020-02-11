@@ -1,5 +1,3 @@
-const { DoOrDoNot } = require('./blocks/do-or-do-not');
-const { Example } = require('./blocks/code-examples');
 const { Select, Virtual, Checkbox, Text } = require('@keystonejs/fields');
 const { Content } = require('@keystonejs/field-content');
 const { resolveComponent } = require('../extend-schema');
@@ -32,8 +30,6 @@ const getComponentSchema = options => ({
 		design: {
 			type: Content,
 			blocks: [
-				DoOrDoNot,
-				Example,
 				Content.blocks.blockquote,
 				Content.blocks.image,
 				[Content.blocks.dynamicComponent, { components: require.resolve('./block-components') }],
@@ -43,8 +39,6 @@ const getComponentSchema = options => ({
 		accessibility: {
 			type: Content,
 			blocks: [
-				DoOrDoNot,
-				Example,
 				Content.blocks.blockquote,
 				Content.blocks.image,
 				[Content.blocks.dynamicComponent, { components: require.resolve('./block-components') }],
@@ -70,8 +64,6 @@ const getComponentSchema = options => ({
 		code: {
 			type: Content,
 			blocks: [
-				DoOrDoNot,
-				Example,
 				Content.blocks.blockquote,
 				Content.blocks.image,
 				[Content.blocks.dynamicComponent, { components: require.resolve('./block-components') }],

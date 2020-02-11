@@ -12,7 +12,7 @@ function Example({ brand }) {
 	const [current2, setCurrent2] = useState(0);
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia />
 
 			<h2>Declarative</h2>

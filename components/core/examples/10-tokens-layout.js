@@ -8,7 +8,7 @@ function Example({ brand }) {
 	const { LAYOUT } = useBrand();
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 			<h2>Layout</h2>
 			Breakpoints:

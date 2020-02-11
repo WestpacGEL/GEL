@@ -49,7 +49,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<Playground brand={overridesWithTokens}>
+		<Playground context={context} brand={overridesWithTokens}>
 			<Intopia ignore />
 			<Grid>
 				<Cell width={6}>

@@ -2,34 +2,6 @@ import React, { Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { IntroSection, Separator, BlocksDocs } from './_utils';
-import dynamic from 'next/dynamic';
-
-const DynamicExample = dynamic(
-	() =>
-		import(`@westpac/a11y/examples/00-VisuallyHidden`)
-			.then(mod => mod)
-			.catch(error => () => <p>{JSON.stringify(error, null, 4)}</p>),
-	{
-		loading: () => <p>Loading...</p>,
-		ssr: false,
-	}
-);
-const Example = () => <DynamicExample editor={true} />;
-
-// const Example = useMemo(() => {
-// 	return dynamic(
-// 		() =>
-// 			Promise.all([])
-// 				.then(modules => ({ children }) => {
-// 					console.log(modules);
-// 					return <p>test</p>; //children(modules);
-// 				})
-// 		{
-// 			loading: () => <p>loading...</p>,
-// 			ssr: false,
-// 		}
-// 	);
-// }, [name]);
 
 export const CodeTab = ({ blocks }) => {
 	return (

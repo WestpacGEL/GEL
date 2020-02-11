@@ -6,6 +6,7 @@ module.exports = {
 		'@babel/plugin-proposal-class-properties',
 		'babel-plugin-codegen',
 		'@babel/plugin-transform-runtime',
+		'macros',
 		path.join(__dirname, 'helpers/babel-plugin-playground'),
 	],
 

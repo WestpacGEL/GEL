@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const { SPACING } = useBrand();
 
 	return (
-		<Playground>
+		<Playground context={context}>
 			<Intopia />
 
 			<h2>Screen reader skip link</h2>

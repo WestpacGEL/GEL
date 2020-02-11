@@ -32,7 +32,7 @@ function Example({ brand }) {
 	}, []);
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 
 			<div

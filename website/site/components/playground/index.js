@@ -5,21 +5,31 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
 export const Playground = ({
 	brand = bom,
-	editor = false,
+	context = null,
 	code,
 	children,
 	scope,
 	inline,
 	theme = {},
 }) => {
-	console.log({ editor, inline });
+	console.log({ context, inline });
 	console.log(code);
 	if (!code && children.length > 1) {
-		console.warning(
+		console.warn(
 			'Playground code has not been compiled by the babel plugin. Please check configuration.'
 		);
 	}
-	if (editor) {
+	if (!context) {
+		return (
+			<GEL brand={brand}>
+				<LiveProvider code={code} scope={scope} noInline={inline}>
+					<LiveError css={theme.errors} />
+					<LivePreview />
+				</LiveProvider>
+			</GEL>
+		);
+	}
+	if (context === 'editor') {
 		return (
 			<LiveProvider code={code} scope={scope} noInline={inline}>
 				<LivePreview css={theme.preview} />
@@ -30,12 +40,7 @@ export const Playground = ({
 			</LiveProvider>
 		);
 	}
-	return (
-		<GEL brand={brand}>
-			<LiveProvider code={code} scope={scope} noInline={inline}>
-				<LiveError css={theme.errors} />
-				<LivePreview />
-			</LiveProvider>
-		</GEL>
-	);
+	if (context === 'admin') {
+		return <p>Code example</p>;
+	}
 };

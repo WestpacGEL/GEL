@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia />
 			<h2>Assistive text (screen reader text)</h2>
 			<Button iconAfter={HouseIcon} assistiveText="Go to home" />{' '}

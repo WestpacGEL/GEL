@@ -40,7 +40,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<Playground brand={overridesWithTokens}>
+		<Playground context={context} brand={overridesWithTokens}>
 			<h2>With overrides applied</h2>
 			<h3>Always accordion</h3>
 			<Tabcordion mode="accordion" instanceIdPrefix="always-accordion">

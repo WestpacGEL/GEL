@@ -11,7 +11,7 @@ function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia />
 
 			<Button onClick={() => setOpen(true)}>Open</Button>

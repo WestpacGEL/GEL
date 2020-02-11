@@ -14,7 +14,7 @@ const content =
 
 function Example({ brand }) {
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia />
 
 			<Popover title="Popover Title" content={content}>

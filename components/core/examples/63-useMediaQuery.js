@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const mq = useMediaQuery();
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Intopia ignore />
 
 			<strong>[1,2,3,4]</strong>

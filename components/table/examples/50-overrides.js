@@ -60,7 +60,7 @@ function Example({ brand }) {
 	};
 
 	return (
-		<Playground brand={overridesWithTokens}>
+		<Playground context={context} brand={overridesWithTokens}>
 			<Intopia ignore />
 			<h2>Overrides on caption, table, thead, tbody, tfoot, th, tr, td</h2>
 			<Table>

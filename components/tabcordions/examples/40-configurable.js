@@ -29,7 +29,7 @@ function Example({ brand }) {
 	const changeMode = v => () => setMode(v);
 
 	return (
-		<Playground brand={brand}>
+		<Playground context={context} brand={brand}>
 			<Row>
 				Look:
 				{looks.map(v => (
