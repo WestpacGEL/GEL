@@ -179,6 +179,11 @@ export const Alert = ({
 
 Alert.propTypes = {
 	/**
+	 * Manually signal an open or close state of this alert
+	 */
+	open: PropTypes.bool,
+
+	/**
 	 * Alert look
 	 */
 	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']).isRequired,
@@ -204,11 +209,6 @@ Alert.propTypes = {
 	 * The tag of the heading element for semantic reasons
 	 */
 	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
-
-	/**
-	 * Manually signal an open or close state of this alert
-	 */
-	open: PropTypes.bool,
 
 	/**
 	 * Alert children

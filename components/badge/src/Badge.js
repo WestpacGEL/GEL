@@ -42,6 +42,7 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 		<overrides.Badge.component
 			look={look}
 			value={value}
+			{...rest}
 			{...overrides.Badge.attributes(state)}
 			css={overrides.Badge.styles(state)}
 		>
