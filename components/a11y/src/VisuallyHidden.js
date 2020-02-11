@@ -19,7 +19,6 @@ export const VisuallyHidden = ({
 	tag,
 	children,
 	overrides: componentOverrides,
-	tag: Tag,
 	...rest
 }) => {
 	const {
@@ -36,8 +35,8 @@ export const VisuallyHidden = ({
 	};
 
 	const state = {
+		tag,
 		overrides: componentOverrides,
-		tag: Tag,
 		...rest,
 	};
 
@@ -52,6 +51,7 @@ export const VisuallyHidden = ({
 		<overrides.VisuallyHidden.component
 			tag={tag}
 			children={children}
+			{...rest}
 			{...overrides.VisuallyHidden.attributes(state)}
 			css={overrides.VisuallyHidden.styles}
 		/>
