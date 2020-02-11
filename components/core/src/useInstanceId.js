@@ -3,17 +3,17 @@ export const useInstanceId = () => {
 
 	if (typeof window === 'undefined') {
 		// for SSR
-		if ('instanceId' in global.window) {
-			instanceId = ++global.window.instanceId;
+		if ('instanceId' in global) {
+			instanceId = ++global.GELinstanceId;
 		} else {
-			global.window.instanceId = 0;
+			global.GELinstanceId = 0;
 		}
 	} else {
 		// for browser
 		if ('instanceId' in window) {
-			instanceId = ++window.instanceId;
+			instanceId = ++window.GELinstanceId;
 		} else {
-			window.instanceId = 0;
+			window.GELinstanceId = 0;
 		}
 	}
 
