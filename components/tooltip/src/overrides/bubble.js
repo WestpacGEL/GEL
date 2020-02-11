@@ -5,12 +5,16 @@ import ReactDOM from 'react-dom';
 import { jsx } from '@westpac/core';
 
 export const Bubble = forwardRef(({ position, tooltipId, text, title, visible, ...props }, ref) => {
-	return ReactDOM.createPortal(
-		<span id={tooltipId} ref={ref} {...props}>
-			{text}
-		</span>,
-		document.body
-	);
+	if (typeof window !== 'undefined') {
+		return ReactDOM.createPortal(
+			<span id={tooltipId} ref={ref} {...props}>
+				{text}
+			</span>,
+			document.body
+		);
+	} else {
+		return null;
+	}
 });
 
 export const bubbleStyles = (_, { visible, position }) => ({
