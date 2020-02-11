@@ -4,8 +4,7 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Fragment, createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { CloseIcon } from '@westpac/icon';
-import FocusLock from 'react-focus-lock';
-import { FocusOn, MoveFocusInside } from 'react-focus-on';
+import { FocusOn } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
