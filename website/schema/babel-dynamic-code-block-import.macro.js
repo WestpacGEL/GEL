@@ -1,13 +1,11 @@
-const fs = require('fs');
-const path = require('path');
 const { createMacro } = require('babel-plugin-macros');
 
 module.exports = createMacro(prevalMacros);
 
-function prevalMacros({ references, state, babel }) {
+function prevalMacros({ references, babel }) {
 	references.default.forEach(referencePath => {
 		if (referencePath.parentPath.type === 'CallExpression') {
-			deferredVersion({ referencePath, state, babel });
+			importAllDeferred({ referencePath, babel });
 		} else {
 			throw new Error(
 				`This is not supported: \`${referencePath
@@ -18,7 +16,7 @@ function prevalMacros({ references, state, babel }) {
 	});
 }
 
-function deferredVersion({ referencePath, babel }) {
+function importAllDeferred({ referencePath, babel }) {
 	const { types: t } = babel;
 	const importSources = referencePath.parentPath.get('arguments')[0].evaluate().value;
 
@@ -35,7 +33,6 @@ function deferredVersion({ referencePath, babel }) {
 		);
 	});
 	const objectExpression = t.objectExpression(objectProperties);
-
 
 	referencePath.parentPath.replaceWith(objectExpression);
 }

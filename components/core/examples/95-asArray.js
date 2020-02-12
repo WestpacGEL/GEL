@@ -5,7 +5,7 @@ import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	console.log(asArray([1, 2, 3]));
 	return (
 		<Playground context={context} brand={brand}>

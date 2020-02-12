@@ -5,8 +5,8 @@ import { Heading } from '@westpac/heading';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/heading'] = {
 		Heading: {
 			styles: styles => ({

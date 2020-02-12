@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [value, setValue] = useState('default text');
 
 	const handleChange = event => {

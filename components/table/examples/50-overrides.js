@@ -5,8 +5,8 @@ import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table'
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/table'] = {
 		Table: {
 			styles: styles => ({

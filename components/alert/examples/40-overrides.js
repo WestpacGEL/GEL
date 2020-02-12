@@ -40,8 +40,8 @@ const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest }) => 
 	return <Tag size={size} color={color} {...rest} />;
 };
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/alert'] = {
 		Alert: {
 			styles: styles => ({

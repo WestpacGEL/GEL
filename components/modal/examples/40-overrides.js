@@ -7,11 +7,11 @@ import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [open, setOpen] = useState(false);
 	const [open2, setOpen2] = useState(false);
 
-	const overridesWithTokens = { ...brand };
+	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/modal'] = {
 		Modal: {

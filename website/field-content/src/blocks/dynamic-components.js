@@ -1,7 +1,5 @@
 import { importView } from '@keystonejs/build-field-types';
 import { Block } from '../Block';
-import image from './image';
-import caption from './caption';
 
 export default class DynamicComponentsBlock extends Block {
 	constructor(options, stuff) {

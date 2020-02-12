@@ -8,7 +8,7 @@ import { useProgress, Wrapper } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [state, dispatch] = useProgress();
 	const [state2, dispatch2] = useProgress();
 

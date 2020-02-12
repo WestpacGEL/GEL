@@ -6,9 +6,9 @@ import { Box } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const { COLORS } = useBrand();
-	const overridesWithTokens = { ...brand };
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/grid'] = {
 		Grid: {
 			styles: styles => ({

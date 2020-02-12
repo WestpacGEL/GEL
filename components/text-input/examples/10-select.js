@@ -8,7 +8,7 @@ import { Form } from '@westpac/form';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [value, setValue] = useState();
 
 	const handleChange = event => {

@@ -5,7 +5,7 @@ import { List, Item } from '@westpac/list';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<Playground context={context} brand={brand}>
 			<Intopia />

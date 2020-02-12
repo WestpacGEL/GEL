@@ -7,8 +7,8 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const Wrapper = ({ inline, flipped, ...rest }) => <div {...rest} />;
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/form-check'] = {
 		FormCheck: {
 			styles: styles => ({

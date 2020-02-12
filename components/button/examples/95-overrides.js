@@ -14,8 +14,8 @@ const TextWrapper = ({ children, ...rest }) => (
 	</Fragment>
 );
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/button'] = {
 		Button: {
 			styles: styles => ({

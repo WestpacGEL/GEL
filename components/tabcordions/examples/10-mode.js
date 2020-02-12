@@ -3,7 +3,7 @@
 import { jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<Playground context={context} brand={brand}>
 			<h3>Responsive</h3>

@@ -5,7 +5,7 @@ import { SkipLink } from '@westpac/a11y';
 import { Playground } from '../../../website/site/components/playground';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const { SPACING } = useBrand();
 
 	return (

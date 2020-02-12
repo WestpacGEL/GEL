@@ -5,7 +5,7 @@ import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table'
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<Playground context={context} brand={brand}>
 			<Intopia />

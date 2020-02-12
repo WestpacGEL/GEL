@@ -6,7 +6,7 @@ import { useRef } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const textareaRef = useRef();
 	const containerRef = useRef();
 	const { width: containerWidth } = useContainerQuery(containerRef);

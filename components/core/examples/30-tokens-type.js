@@ -4,7 +4,7 @@ import { jsx, useBrand, useFonts } from '@westpac/core';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const { TYPE } = useBrand();
 	const weights = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
 

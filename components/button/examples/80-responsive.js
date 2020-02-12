@@ -17,7 +17,7 @@ const blocks = [
 	[true, null, false],
 ];
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<Playground context={context} brand={brand}>
 			<Intopia />

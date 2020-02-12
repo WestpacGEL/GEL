@@ -7,9 +7,9 @@ import { StyledButton as Button } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [progress, setProgress] = useState(10);
-	const overridesWithTokens = { ...brand };
+	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/progress-bar'] = {
 		ProgressBar: {

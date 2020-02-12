@@ -19,7 +19,7 @@ Radio.defaultProps = { type: 'radio' };
 const Checkbox = p => <Control {...p} />;
 Checkbox.defaultProps = { type: 'checkbox' };
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [look, setLook] = useState(looks[0]);
 	const [mode, setMode] = useState(modes[0]);
 	const [justify, setJustify] = useState(false);

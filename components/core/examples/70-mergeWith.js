@@ -5,7 +5,7 @@ import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	let object = { a: [{ b: 2 }, { d: 4 }] };
 	let other = (other = { a: [{ c: 3 }, { e: 5 }] });
 

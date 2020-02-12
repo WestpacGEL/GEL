@@ -7,7 +7,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const content = ['Page One', 'Page Two', 'Page Three'];
 	const paginate = usePagination({ pages: content, infinite: true });
 

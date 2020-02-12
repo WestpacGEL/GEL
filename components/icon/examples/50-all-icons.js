@@ -31,7 +31,7 @@ const Search = props => (
 	/>
 );
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [inputValue, setInputValue] = useState('');
 	const filteredIcons = inputValue.length
 		? icons.filter(p =>

@@ -6,7 +6,7 @@ import { Button, ButtonGroup } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function ButtonGroupExample({ brand }) {
+function ButtonGroupExample({ context }) {
 	const [controlled, setControlled] = useState();
 	const [value, setValue] = useState('');
 	const [index, setIndex] = useState(-1);

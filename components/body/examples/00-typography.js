@@ -22,7 +22,7 @@ const BodyTag = ({ children, ...props }) => {
 	);
 };
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<Playground context={context} brand={brand}>
 			<Intopia />

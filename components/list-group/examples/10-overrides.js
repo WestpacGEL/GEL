@@ -12,8 +12,8 @@ const styleExample = {
 	marginLeft: '0.75rem',
 };
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/list-group'] = {
 		ListGroup: {
 			styles: styles => ({

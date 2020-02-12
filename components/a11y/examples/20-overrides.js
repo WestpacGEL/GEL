@@ -13,10 +13,10 @@ const SkipLinkWrapper = ({ children, ...rest }) => (
 	</div>
 );
 
-function Example({ brand }) {
+function Example({ context }) {
 	const { COLORS, SPACING } = useBrand();
 
-	const overridesWithTokens = { ...brand };
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/a11y'] = {
 		subComponent: {
 			SkipLink: {
@@ -41,7 +41,8 @@ function Example({ brand }) {
 	};
 
 	return (
-		<Playground context={context}
+		<Playground
+			context={context}
 			brand={overridesWithTokens}
 			scope={{ Intopia, VisuallyHidden, HouseIcon, SkipLink, SPACING }}
 		>

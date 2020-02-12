@@ -6,7 +6,7 @@ import { TickIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const { COLORS } = useBrand();
 
 	return (

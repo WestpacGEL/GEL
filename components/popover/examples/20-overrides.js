@@ -13,8 +13,8 @@ const content =
 	'possimus non architecto. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut animi velit in? Suscipit nostrum itaque voluptatibus ' +
 	'dolorem qui soluta nobis modi officia incidunt eos dolores atque, unde error delectus officiis.';
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/popover'] = {
 		Panel: {

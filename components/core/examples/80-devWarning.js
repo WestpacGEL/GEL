@@ -5,7 +5,7 @@ import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	devWarning(true, 'Warn consumer about a thing but ignore the wanring in production!');
 
 	return (

@@ -8,7 +8,7 @@ import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [state, dispatch] = useProgress();
 	const [state2, dispatch2] = useProgress();
 
@@ -22,7 +22,7 @@ function Example({ brand }) {
 		dispatch2({ type: 'goto', index });
 	};
 
-	const overridesWithTokens = { ...brand };
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/progress-rope'] = {
 		Item: {
 			styles: (styles, { grouped, end, visited, furthest }) => ({

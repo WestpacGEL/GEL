@@ -37,14 +37,10 @@ module.exports = {
 	apps,
 };
 
-const prepareKeystone = async () => {
-	keystone
-		.prepare({ apps, dev: process.env.NODE_ENV !== 'production' })
-		.then(async ({ middlewares }) => {
-			await keystone.connect();
-			const app = express();
-			app.use(middlewares).listen(3000);
-		});
-};
-
-prepareKeystone();
+keystone
+	.prepare({ apps, dev: process.env.NODE_ENV !== 'production' })
+	.then(async ({ middlewares }) => {
+		await keystone.connect();
+		const app = express();
+		app.use(middlewares).listen(3000);
+	});

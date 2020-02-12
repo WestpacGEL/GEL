@@ -19,7 +19,7 @@ function four(event) {
 	console.log('This should not be called');
 }
 
-function Example({ brand }) {
+function Example({ context }) {
 	wrapHandlers(one, two)({});
 
 	return (

@@ -12,8 +12,8 @@ const Label = ({ data, overrides, ...rest }) => (
 	</span>
 );
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/input-group'] = {
 		InputGroup: {
 			styles: styles => ({

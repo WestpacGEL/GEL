@@ -9,7 +9,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const logos = Object.keys(components).filter(s => s.endsWith('Logo'));
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<Playground context={context} brand={brand}>
 			<Intopia />

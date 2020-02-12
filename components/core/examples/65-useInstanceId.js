@@ -7,7 +7,7 @@ import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [instanceId, setInstanceId] = useState();
 	return (
 		<Playground context={context} brand={brand}>

@@ -24,8 +24,8 @@ const Wrapper = ({ children, icon, color, size, assistiveText, ...rest }) => (
 	</Fragment>
 );
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/icon'] = {
 		Icon: {
 			styles: styles => ({

@@ -7,7 +7,7 @@ import { StyledButton as Button } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [progress, setProgress] = useState(5);
 
 	function handleProgress(unit) {

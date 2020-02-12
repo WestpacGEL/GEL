@@ -34,8 +34,8 @@ const Wrapper = ({ look, value, children, ...props }) => {
 	);
 };
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/label'] = {
 		Label: {
 			styles: (styles, { look }) => ({

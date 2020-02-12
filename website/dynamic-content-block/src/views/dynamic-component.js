@@ -60,6 +60,7 @@ export function Node(props) {
 	let componentName = props.node.get('data').get('component');
 	let Editor = view[componentName].editor;
 	let Component = view[componentName].component;
+
 	return (
 		<div
 			{...props.attributes}

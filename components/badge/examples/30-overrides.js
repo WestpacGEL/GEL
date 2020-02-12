@@ -20,8 +20,8 @@ const Wrapper = ({ look, children, ...rest }) => (
 	</span>
 );
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/badge'] = {
 		Badge: {
 			styles: (styles, { look }) => ({

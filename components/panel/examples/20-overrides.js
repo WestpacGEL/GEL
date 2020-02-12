@@ -7,8 +7,8 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const Wrapper = props => <div {...props} />;
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/panel'] = {
 		Panel: {

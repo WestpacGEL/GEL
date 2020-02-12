@@ -12,7 +12,7 @@ const TooltipTag = forwardRef(({ visible, position, ...props }, ref) => (
 	<abbr ref={ref} {...props} />
 ));
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<Playground context={context} brand={brand}>
 			<Intopia />

@@ -156,7 +156,10 @@ const MainContainer = props => {
 };
 
 export const Layout = props => (
-	<BrandSwitcherProvider>
-		<Wrapper {...props} />
-	</BrandSwitcherProvider>
+	console.log(BrandSwitcherProvider),
+	(
+		<BrandSwitcherProvider>
+			<Wrapper {...props} />
+		</BrandSwitcherProvider>
+	)
 );

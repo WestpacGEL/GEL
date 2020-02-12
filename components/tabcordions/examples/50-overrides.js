@@ -4,8 +4,8 @@ import { forwardRef } from 'react';
 import { jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/tabcordion'] = {
 		TabItem: {

@@ -61,7 +61,7 @@ const Button = ({ children, isActive, ...props }) => (
 	</label>
 );
 
-function Example({ brand }) {
+function Example({ context }) {
 	const [activeSize, setSize] = useState(2);
 
 	return (

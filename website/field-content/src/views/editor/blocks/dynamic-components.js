@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { useMemo, createContext, useContext, useState } from 'react';
-import { findNode } from 'slate-react';
+import { useMemo, createContext, useContext, useState, useRef } from 'react';
 import { Block } from 'slate';
 import { PencilIcon, CheckIcon } from '@arch-ui/icons';
 import { BlockMenuItem } from '../block-menu-item';
@@ -58,6 +57,8 @@ export function Sidebar({ blocks, editor, ...other }) {
 	));
 }
 
+let thing = new Set();
+
 export function Node(props) {
 	let { adminMeta, components } = useContext(Context);
 	let [view] = adminMeta.readViews([components]);
@@ -68,6 +69,11 @@ export function Node(props) {
 	let componentName = props.node.get('data').get('component');
 	let Editor = view[componentName].editor;
 	let Component = view[componentName].component;
+
+	thing.add(useRef());
+
+	console.log(thing);
+
 	return (
 		<div
 			{...props.attributes}
@@ -118,7 +124,7 @@ export function Node(props) {
 					}}
 				/>
 			) : (
-				<Component {...props.node.get('data').get('props')} />
+				<Component {...props.node.get('data').get('props')} context={'admin'} />
 			)}
 		</div>
 	);

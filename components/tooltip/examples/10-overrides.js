@@ -8,8 +8,8 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const Wrapper = forwardRef(({ visible, position, ...props }, ref) => <abbr ref={ref} {...props} />);
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/tooltip'] = {
 		Tooltip: {

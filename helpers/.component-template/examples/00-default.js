@@ -3,7 +3,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { _COMPONENT_NAME_ } from '@westpac/_COMPONENT_KEY_';
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<GEL brand={brand}>
 			<_COMPONENT_NAME_ />

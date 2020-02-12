@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const { LAYOUT } = useBrand();
 
 	return (

@@ -5,7 +5,7 @@ import { Alert } from '@westpac/alert';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/site/components/playground';
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<Playground context={context} brand={brand}>
 			<Intopia />

@@ -7,7 +7,7 @@ import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const triggerRef1 = useRef();
 	const popoverRef1 = useRef();
 	const [position1, setPosition1] = useState({ placement: 'top', top: 0, left: 0 });

@@ -12,8 +12,8 @@ const AssistiveText = ({ children, look }) => (
 
 const Icon = ({ current, assistiveText, ...props }) => <HouseIcon {...props} />;
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = { };
 	overridesWithTokens['@westpac/breadcrumb'] = {
 		Breadcrumb: {
 			styles: styles => ({

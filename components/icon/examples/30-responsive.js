@@ -41,7 +41,7 @@ const icons = [
 	WriteIcon,
 ];
 
-function Example({ brand }) {
+function Example({ context }) {
 	return (
 		<Playground context={context} brand={brand}>
 			<Intopia />

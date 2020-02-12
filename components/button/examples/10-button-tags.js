@@ -5,7 +5,7 @@ import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const Link = ({ children, ...rest }) => <span {...rest}>{children}</span>;
 
 	return (

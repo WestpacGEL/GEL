@@ -8,8 +8,8 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 const Label = ({ toggleText, assistiveText, ...props }) => <strong {...props} />;
 
-function Example({ brand }) {
-	const overridesWithTokens = { ...brand };
+function Example({ context }) {
+	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/switch'] = {
 		Label: {

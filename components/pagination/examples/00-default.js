@@ -6,7 +6,7 @@ import { Pagination, Page } from '@westpac/pagination';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const content = ['Page One', 'Page Two', 'Page Three'];
 	const [current, setCurrent] = useState(0);
 	const [current2, setCurrent2] = useState(0);

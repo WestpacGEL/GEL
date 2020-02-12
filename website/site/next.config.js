@@ -7,6 +7,8 @@ const config = {
 			use: 'raw-loader',
 		});
 
+		config.externals = [];
+
 		if (!isServer) {
 			config.node = {
 				fs: 'empty',

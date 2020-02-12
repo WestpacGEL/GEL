@@ -7,7 +7,7 @@ import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-function Example({ brand }) {
+function Example({ context }) {
 	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };
 
 	const modalReducer = (state, action) => {
