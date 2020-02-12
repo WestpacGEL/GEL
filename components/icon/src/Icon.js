@@ -15,7 +15,6 @@ export const Icon = ({
 	color,
 	size,
 	assistiveText,
-	className,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -59,7 +58,7 @@ export const Icon = ({
 			color={color}
 			size={size}
 			assistiveText={assistiveText}
-			className={className}
+			{...rest}
 			{...overrides.Icon.attributes(state)}
 			css={overrides.Icon.styles(state)}
 		>

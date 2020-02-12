@@ -13,13 +13,7 @@ import pkg from '../package.json';
 /**
  * Heading: Headlines for your page needs
  */
-export const Heading = ({
-	tag,
-	size,
-	children,
-	overrides: componentOverrides,
-	...rest
-}) => {
+export const Heading = ({ tag, size, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
