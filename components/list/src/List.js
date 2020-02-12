@@ -86,7 +86,6 @@ export const List = ({
 	icon,
 	data,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -103,7 +102,7 @@ export const List = ({
 		List: {
 			styles: listStyles,
 			component: ListWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -150,7 +149,13 @@ export const List = ({
 			}}
 		>
 			<overrides.List.component
-				className={className}
+				look={look}
+				type={type}
+				nested={nested}
+				spacing={spacing}
+				icon={icon}
+				data={data}
+				{...rest}
 				{...overrides.List.attributes(state)}
 				css={overrides.List.styles(state)}
 			>
@@ -190,16 +195,16 @@ List.propTypes = {
 	icon: PropTypes.func,
 
 	/**
-	 * Any renderable child
-	 */
-	children: PropTypes.node,
-
-	/**
 	 * Data for the crumbs
 	 */
 	data: PropTypes.arrayOf(
 		PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object, PropTypes.array])
 	),
+
+	/**
+	 * Any renderable child
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API
