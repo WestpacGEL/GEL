@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Select as SelectInput } from '@westpac/text-input';
 import React from 'react';
 
-export const Select = ({ position, overrides, ...rest }) => <SelectInput {...rest} />;
+export const Select = ({ position, ...rest }) => <SelectInput {...rest} />;
 
 export const selectStyles = (_, { position }) => ({
 	boxSizing: 'border-box',

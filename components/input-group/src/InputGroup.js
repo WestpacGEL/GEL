@@ -25,7 +25,6 @@ export const InputGroup = ({
 	disabled,
 	readOnly,
 	look,
-	className,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -184,7 +183,6 @@ export const InputGroup = ({
 			disabled={disabled}
 			readOnly={readOnly}
 			look={look}
-			className={className}
 			{...overrides.InputGroup.attributes(state)}
 			css={overrides.InputGroup.styles(state)}
 		>
