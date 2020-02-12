@@ -50,6 +50,7 @@ export const Select = ({
 		width,
 		inline,
 		invalid,
+		data,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -67,6 +68,7 @@ export const Select = ({
 			width={width}
 			inline={inline}
 			invalid={invalid}
+			data={data}
 			{...rest}
 			{...overrides.Select.attributes(state)}
 			css={overrides.Select.styles(state)}
@@ -102,6 +104,15 @@ Select.propTypes = {
 	 * Invalid input mode
 	 */
 	invalid: PropTypes.bool.isRequired,
+
+	/**
+	 * Data drive this component
+	 */
+	data: PropTypes.arrayOf(
+		PropTypes.shape({
+			label: PropTypes.string.isRequired,
+		})
+	),
 
 	/**
 	 * Component children.
