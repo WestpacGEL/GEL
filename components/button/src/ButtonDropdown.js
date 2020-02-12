@@ -20,7 +20,6 @@ export const ButtonDropdown = ({
 	text,
 	dropdownSize,
 	block,
-	className,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -48,9 +47,9 @@ export const ButtonDropdown = ({
 
 	const state = {
 		open,
+		text,
 		dropdownSize,
 		block,
-		text,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -94,15 +93,13 @@ export const ButtonDropdown = ({
 	return (
 		<overrides.ButtonDropdown.component
 			open={open}
+			text={text}
 			dropdownSize={dropdownSize}
 			block={block}
-			text={text}
-			className={className}
 			{...overrides.ButtonDropdown.attributes(state)}
 			css={overrides.ButtonDropdown.styles(state)}
 		>
 			<Button
-				{...rest}
 				ref={buttonRef}
 				aria-label="Dropdown. Hit enter to open dropdown"
 				aria-haspopup={true}
@@ -110,6 +107,7 @@ export const ButtonDropdown = ({
 				dropdown={true}
 				block={block}
 				overrides={componentOverrides}
+				{...rest}
 			>
 				{text}
 			</Button>
@@ -118,9 +116,9 @@ export const ButtonDropdown = ({
 				tabIndex="-1"
 				aria-label="Use the ESC key to close"
 				open={open}
+				text={text}
 				dropdownSize={dropdownSize}
 				block={block}
-				text={text}
 				{...overrides.Panel.attributes(state)}
 				css={overrides.Panel.styles(state)}
 			>

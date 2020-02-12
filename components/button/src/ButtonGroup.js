@@ -15,16 +15,15 @@ import pkg from '../package.json';
 export const ButtonGroup = props => {
 	const {
 		block,
-		children,
 		data,
 		defaultValue,
 		look,
 		name,
 		disabled,
-		onChange,
 		value: controlledValue,
 		size,
-		className,
+		onChange,
+		children,
 		overrides: componentOverrides,
 		...rest
 	} = props;
@@ -52,10 +51,10 @@ export const ButtonGroup = props => {
 		defaultValue,
 		look,
 		name,
-		onChange,
+		disabled,
 		value: controlledValue,
 		size,
-		disabled,
+		onChange,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -86,11 +85,11 @@ export const ButtonGroup = props => {
 			defaultValue={defaultValue}
 			look={look}
 			name={name}
-			onChange={onChange}
+			disabled={disabled}
 			value={controlledValue}
 			size={size}
-			disabled={disabled}
-			className={className}
+			onChange={onChange}
+			{...rest}
 			{...overrides.ButtonGroup.attributes(state)}
 			css={overrides.ButtonGroup.styles(state)}
 		>

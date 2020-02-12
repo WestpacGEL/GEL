@@ -6,15 +6,16 @@ import { forwardRef } from 'react';
 export const Button = forwardRef(
 	(
 		{
-			dropdown,
 			look,
+			size,
 			soft,
 			block,
-			justify,
 			iconAfter,
 			iconBefore,
+			justify,
 			assistiveText,
 			tag: Tag,
+			dropdown,
 			...rest
 		},
 		ref

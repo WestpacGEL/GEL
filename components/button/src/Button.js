@@ -26,11 +26,8 @@ export const Button = forwardRef(
 			assistiveText,
 			tag,
 			type,
-			onClick,
 			dropdown,
-			value,
-			defaultValue,
-			className,
+			onClick,
 			children,
 			overrides: componentOverrides,
 			...rest
@@ -69,10 +66,8 @@ export const Button = forwardRef(
 			assistiveText,
 			tag,
 			type,
-			onClick,
 			dropdown,
-			value,
-			defaultValue,
+			onClick,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -97,12 +92,10 @@ export const Button = forwardRef(
 				disabled={disabled}
 				assistiveText={assistiveText}
 				tag={tag}
-				type={tag === 'button' ? 'button' : type}
-				onClick={onClick}
+				type={type}
 				dropdown={dropdown}
-				value={value}
-				defaultValue={defaultValue}
-				className={className}
+				onClick={onClick}
+				{...rest}
 				{...overrides.Button.attributes(state)}
 				css={overrides.Button.styles(state)}
 			>
@@ -120,11 +113,8 @@ export const Button = forwardRef(
 						assistiveText={assistiveText}
 						tag={tag}
 						type={type}
-						onClick={onClick}
 						dropdown={dropdown}
-						value={value}
-						defaultValue={defaultValue}
-						className={className}
+						onClick={onClick}
 						overrides={componentOverrides}
 					>
 						{children}
@@ -203,24 +193,14 @@ Button.propTypes = {
 	assistiveText: PropTypes.string,
 
 	/**
-	 * Handler to be called on click
-	 */
-	onClick: PropTypes.func,
-
-	/**
 	 * Enable dropdown mode
 	 */
 	dropdown: PropTypes.bool,
 
 	/**
-	 * Value of this component
+	 * Handler to be called on click
 	 */
-	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
-	/**
-	 * Default value of this component
-	 */
-	defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	onClick: PropTypes.func,
 
 	/**
 	 * Button text
@@ -262,4 +242,5 @@ Button.defaultProps = {
 	block: false,
 	justify: false,
 	disabled: false,
+	type: 'button',
 };

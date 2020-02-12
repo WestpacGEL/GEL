@@ -19,7 +19,6 @@ export const Content = ({
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
 	dropdown,
-	className,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -71,14 +70,14 @@ export const Content = ({
 			iconAfter={IconAfter}
 			iconBefore={IconBefore}
 			dropdown={dropdown}
-			className={className}
+			{...rest}
 			{...overrides.Content.attributes(state)}
 			css={overrides.Content.styles(state)}
 		>
 			{IconBefore && (
 				<IconBefore
-					css={{ marginRight: children && '0.4em' }}
 					size={iconSizeMap[size]}
+					css={{ marginRight: children && '0.4em' }}
 					color="inherit"
 				/>
 			)}
@@ -115,6 +114,13 @@ Content.propTypes = {
 	]).isRequired,
 
 	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
+
+	/**
 	 * Places an icon within the button, after the button’s text
 	 */
 	iconAfter: PropTypes.func,
@@ -123,13 +129,6 @@ Content.propTypes = {
 	 * Places an icon within the button, before the button’s text
 	 */
 	iconBefore: PropTypes.func,
-
-	/**
-	 * Block mode.
-	 *
-	 * Fit button width to its parent width.
-	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
 
 	/**
 	 * Enable dropdown mode
