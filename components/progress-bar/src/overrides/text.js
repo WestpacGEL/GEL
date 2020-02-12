@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const Text = props => <span {...props} />;
+export const Text = ({ value, look, ...rest }) => <span {...rest} />;
 
 export const textStyles = (_, {}) => {
 	return {

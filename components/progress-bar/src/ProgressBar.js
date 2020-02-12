@@ -13,7 +13,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const ProgressBar = ({ value, look, className, overrides: componentOverrides, ...rest }) => {
+export const ProgressBar = ({ value, look, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -25,23 +25,23 @@ export const ProgressBar = ({ value, look, className, overrides: componentOverri
 		ProgressBar: {
 			styles: progressBarStyles,
 			component: ProgressBarWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Bar: {
 			styles: barStyles,
 			component: Bar,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Text: {
 			styles: textStyles,
 			component: Text,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
-		look,
 		value: roundedValue,
+		look,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -55,7 +55,9 @@ export const ProgressBar = ({ value, look, className, overrides: componentOverri
 
 	return (
 		<overrides.ProgressBar.component
-			className={className}
+			value={roundedValue}
+			look={look}
+			{...rest}
 			{...overrides.ProgressBar.attributes(state)}
 			css={overrides.ProgressBar.styles(state)}
 		>
@@ -65,6 +67,8 @@ export const ProgressBar = ({ value, look, className, overrides: componentOverri
 				aria-valuemax="100"
 				aria-valuenow={roundedValue}
 				aria-live="polite"
+				value={roundedValue}
+				look={look}
 				{...overrides.Bar.attributes(state)}
 				css={overrides.Bar.styles(state)}
 			>
@@ -72,6 +76,8 @@ export const ProgressBar = ({ value, look, className, overrides: componentOverri
 					<Fragment>
 						<overrides.Text.component
 							role="text"
+							value={roundedValue}
+							look={look}
 							{...overrides.Text.attributes(state)}
 							css={overrides.Text.styles(state)}
 						>
@@ -95,12 +101,12 @@ ProgressBar.propTypes = {
 	/**
 	 * The progress bar value as a percentage. Decimal numbers are rounded.
 	 */
-	value: PropTypes.number,
+	value: PropTypes.number.isRequired,
 
 	/**
 	 * Enable skinny mode
 	 */
-	look: PropTypes.oneOf(['default', 'skinny']),
+	look: PropTypes.oneOf(['default', 'skinny']).isRequired,
 
 	/**
 	 * The override API
