@@ -19,7 +19,6 @@ export const Popover = ({
 	content,
 	dismissible,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -37,27 +36,27 @@ export const Popover = ({
 		Popover: {
 			styles: popoverStyles,
 			component: PopoverWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Panel: {
 			styles: panelStyles,
 			component: Panel,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Title: {
 			styles: titleStyles,
 			component: Title,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Body: {
 			styles: bodyStyles,
 			component: PopoverBody,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		CloseBtn: {
 			styles: closeBtnStyles,
 			component: CloseBtn,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -131,7 +130,12 @@ export const Popover = ({
 		<overrides.Popover.component
 			ref={triggerRef}
 			onClick={handleOpen}
-			className={className}
+			open={open}
+			title={title}
+			content={content}
+			dismissible={dismissible}
+			position={position}
+			{...rest}
 			{...overrides.Popover.attributes(state)}
 			css={overrides.Popover.styles(state)}
 		>
@@ -141,16 +145,31 @@ export const Popover = ({
 				aria-label="Use the ESC key to close"
 				ref={popoverRef}
 				tabIndex="-1"
+				open={open}
+				title={title}
+				content={content}
+				dismissible={dismissible}
+				position={position}
 				{...overrides.Panel.attributes(state)}
 				css={overrides.Panel.styles(state)}
 			>
 				<overrides.Title.component
+					open={open}
+					title={title}
+					content={content}
+					dismissible={dismissible}
+					position={position}
 					{...overrides.Title.attributes(state)}
 					css={overrides.Title.styles(state)}
 				>
 					{title}
 				</overrides.Title.component>
 				<overrides.Body.component
+					open={open}
+					title={title}
+					content={content}
+					dismissible={dismissible}
+					position={position}
 					{...overrides.Body.attributes(state)}
 					css={overrides.Body.styles(state)}
 				>
@@ -159,6 +178,11 @@ export const Popover = ({
 				<overrides.CloseBtn.component
 					onClick={() => handleOpen()}
 					icon={CloseIcon}
+					open={open}
+					title={title}
+					content={content}
+					dismissible={dismissible}
+					position={position}
 					{...overrides.CloseBtn.attributes(state)}
 					css={overrides.CloseBtn.styles(state)}
 				/>
@@ -175,6 +199,16 @@ Popover.propTypes = {
 	 * State of whether the popover is open
 	 */
 	open: PropTypes.bool,
+
+	/**
+	 * The title of the popover
+	 */
+	title: PropTypes.string.isRequired,
+
+	/**
+	 * The body of the popover
+	 */
+	content: PropTypes.string.isRequired,
 
 	/**
 	 * Enable dismissible mode.

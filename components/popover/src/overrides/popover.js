@@ -4,12 +4,10 @@ import { jsx } from '@westpac/core';
 import { forwardRef } from 'react';
 
 export const Popover = forwardRef(
-	({ title, content, position, open, dismissible, ...props }, ref) => <div ref={ref} {...props} />
+	({ open, title, content, dismissible, position, ...rest }, ref) => <div ref={ref} {...rest} />
 );
 
-export const popoverStyles = (_, {}) => {
-	return {
-		position: 'relative',
-		display: 'inline-block',
-	};
-};
+export const popoverStyles = () => ({
+	position: 'relative',
+	display: 'inline-block',
+});
