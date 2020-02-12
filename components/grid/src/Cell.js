@@ -95,7 +95,7 @@ Cell.propTypes = {
 	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).isRequired,
 
 	/**
-	 * Alert children
+	 * Children
 	 */
 	children: PropTypes.node,
 
