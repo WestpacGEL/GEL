@@ -3,18 +3,18 @@ export const useInstanceId = () => {
 
 	if (typeof window === 'undefined') {
 		// for SSR
-		if ('instanceId' in global) {
-			instanceId = ++global.GELinstanceId;
-		} else {
+		if (!global.GELinstanceId) {
 			global.GELinstanceId = 0;
 		}
+
+		instanceId = ++global.GELinstanceId;
 	} else {
 		// for browser
-		if ('instanceId' in window) {
-			instanceId = ++window.GELinstanceId;
-		} else {
+		if (!window.GELinstanceId) {
 			window.GELinstanceId = 0;
 		}
+
+		instanceId = ++window.GELinstanceId;
 	}
 
 	return instanceId;
