@@ -132,16 +132,11 @@ export const Pagination = ({
 			>
 				{back.visible && (
 					<Page
+						nextIndex={backIndex}
 						text={back.text}
 						first
-						nextIndex={backIndex}
 						disabled={pageLogic.current === 0 && !infinite}
 						assistiveText={back.assistiveText(backIndex)}
-						current={current}
-						infinite={infinite}
-						back={backProps}
-						next={nextProps}
-						data={data}
 						onClick={wrapHandlers(
 							event => back.onClick && back.onClick(event, backIndex),
 							event => pageLogic.previous(event)
@@ -153,26 +148,16 @@ export const Pagination = ({
 						key={index}
 						index={index}
 						text={page.text}
-						current={current}
-						infinite={infinite}
-						back={backProps}
-						next={nextProps}
-						data={data}
 						onClick={event => pageLogic.setPage(event, allChildren, index)}
 					/>
 				))}
 				{next.visible && (
 					<Page
+						nextIndex={nextIndex}
 						text={next.text}
 						last
-						nextIndex={nextIndex}
 						disabled={pageLogic.current === pageCount - 1 && !infinite}
 						assistiveText={next.assistiveText(nextIndex)}
-						current={current}
-						infinite={infinite}
-						back={backProps}
-						next={nextProps}
-						data={data}
 						onClick={wrapHandlers(
 							event => next.onClick && next.onClick(event, nextIndex),
 							event => pageLogic.next(event)
