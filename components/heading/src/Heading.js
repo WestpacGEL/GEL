@@ -16,7 +16,6 @@ import pkg from '../package.json';
 export const Heading = ({
 	tag,
 	size,
-	className,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -52,7 +51,7 @@ export const Heading = ({
 		<overrides.Heading.component
 			tag={tag}
 			size={size}
-			className={className}
+			{...rest}
 			{...overrides.Heading.attributes(state)}
 			css={overrides.Heading.styles(state)}
 		>
