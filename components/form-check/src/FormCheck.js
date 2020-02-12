@@ -26,9 +26,8 @@ export const FormCheck = ({
 	inline,
 	flipped,
 	data,
-	onChange = () => {},
 	defaultValue,
-	className,
+	onChange = () => {},
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -80,6 +79,7 @@ export const FormCheck = ({
 		flipped,
 		data,
 		defaultValue,
+		onChange,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -97,7 +97,13 @@ export const FormCheck = ({
 			allChildren.push(
 				<Option
 					key={index}
-					{...state}
+					type={type}
+					name={name}
+					size={size}
+					inline={inline}
+					flipped={flipped}
+					data={data}
+					defaultValue={defaultValue}
 					value={props.value}
 					handleChange={handleChange}
 					selected={selected.includes(props.value)}
@@ -134,7 +140,7 @@ export const FormCheck = ({
 			flipped={flipped}
 			data={data}
 			defaultValue={defaultValue}
-			className={className}
+			{...rest}
 			{...overrides.FormCheck.attributes(state)}
 			css={overrides.FormCheck.styles(state)}
 		>
@@ -174,11 +180,6 @@ FormCheck.propTypes = {
 	flipped: PropTypes.bool.isRequired,
 
 	/**
-	 * A function called on change
-	 */
-	onChange: PropTypes.func,
-
-	/**
 	 * The data prop shape
 	 */
 	data: PropTypes.arrayOf(
@@ -189,14 +190,19 @@ FormCheck.propTypes = {
 	),
 
 	/**
-	 * Form check item(s)
-	 */
-	children: PropTypes.node,
-
-	/**
 	 * The options already selected
 	 */
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+
+	/**
+	 * A function called on change
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * Form check item(s)
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API

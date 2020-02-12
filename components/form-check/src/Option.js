@@ -2,6 +2,7 @@
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import { Option as OptionWrapper, optionStyles } from './overrides/option';
 import { Label, labelStyles } from './overrides/label';
@@ -21,12 +22,11 @@ export const Option = ({
 	size,
 	inline,
 	flipped,
-	className,
 	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
-	const formCheckId = `form-check-${name.replace(/ /g, '-')}-${useInstanceId()}`;
+	const [formCheckId] = useState(`form-check-${name.replace(/ /g, '-')}-${useInstanceId()}`);
 
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -76,7 +76,7 @@ export const Option = ({
 			size={size}
 			inline={inline}
 			flipped={flipped}
-			className={className}
+			{...rest}
 			{...overrides.Option.attributes(state)}
 			css={overrides.Option.styles(state)}
 		>
@@ -84,7 +84,8 @@ export const Option = ({
 				type={type}
 				selected={selected}
 				id={formCheckId}
-				onClick={disabled ? null : event => handleChange(event, value, selected)}
+				value={value}
+				onChange={disabled ? null : event => handleChange(event, value, selected)}
 				css={{
 					position: 'absolute', // just to hide the input element needed for a11y
 					opacity: 0, // we decided to not expose this as an override
@@ -115,6 +116,21 @@ export const Option = ({
 
 Option.propTypes = {
 	/**
+	 * Form check option value
+	 */
+	value: PropTypes.string,
+
+	/**
+	 * Check the Form check option
+	 */
+	selected: PropTypes.bool.isRequired,
+
+	/**
+	 * Disable the Form check option
+	 */
+	disabled: PropTypes.bool.isRequired,
+
+	/**
 	 * Form check type.
 	 */
 	type: PropTypes.oneOf(['checkbox', 'radio']),
@@ -140,24 +156,9 @@ Option.propTypes = {
 	flipped: PropTypes.bool,
 
 	/**
-	 * Form check option value
-	 */
-	value: PropTypes.string,
-
-	/**
-	 * Check the Form check option
-	 */
-	selected: PropTypes.bool.isRequired,
-
-	/**
 	 * A function called on change
 	 */
 	handleChange: PropTypes.func,
-
-	/**
-	 * Disable the Form check option
-	 */
-	disabled: PropTypes.bool.isRequired,
 
 	/**
 	 * Form check option label text
