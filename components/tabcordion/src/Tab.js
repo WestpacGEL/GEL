@@ -36,26 +36,30 @@ export const Tab = forwardRef(
 			AccordionLabel: {
 				styles: accordionLabelStyles,
 				component: AccordionLabel,
-				attributes: (_, a) => a,
+				attributes: () => null,
 			},
 			AccordionIcon: {
 				styles: accordionIconStyles,
 				component: AccordionIcon,
-				attributes: (_, a) => a,
+				attributes: () => null,
 			},
 			Panel: {
 				styles: panelStyles,
 				component: Panel,
-				attributes: (_, a) => a,
+				attributes: () => null,
 			},
 		};
 
 		const state = {
+			hidden,
 			look,
 			last,
 			selected,
+			text,
 			mode,
-			hidden,
+			panelId,
+			onClick,
+			tabId,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -80,11 +84,27 @@ export const Tab = forwardRef(
 						id={tabId}
 						aria-controls={panelId}
 						aria-expanded={selected}
+						hidden={hidden}
+						look={look}
+						last={last}
+						selected={selected}
+						text={text}
+						mode={mode}
+						panelId={panelId}
+						tabId={tabId}
 						{...overrides.AccordionLabel.attributes(state)}
 						css={overrides.AccordionLabel.styles(state)}
 					>
 						<span>{text}</span>
 						<overrides.AccordionIcon.component
+							hidden={hidden}
+							look={look}
+							last={last}
+							selected={selected}
+							text={text}
+							mode={mode}
+							panelId={panelId}
+							tabId={tabId}
 							{...overrides.AccordionIcon.attributes(state)}
 							css={overrides.AccordionIcon.styles(state)}
 						/>
@@ -97,6 +117,14 @@ export const Tab = forwardRef(
 					role="tabpanel"
 					ref={ref}
 					tabIndex="0"
+					hidden={mode === 'accordion' ? hidden : !selected}
+					look={look}
+					last={last}
+					selected={selected}
+					text={text}
+					mode={mode}
+					panelId={panelId}
+					tabId={tabId}
 					{...overrides.Panel.attributes({
 						...state,
 						hidden: mode === 'accordion' ? hidden : !selected,
@@ -112,9 +140,14 @@ export const Tab = forwardRef(
 
 Tab.propTypes = {
 	/**
-	 * The panel content for this tab
+	 * The look of the tabs
 	 */
-	children: PropTypes.node.isRequired,
+	look: PropTypes.oneOf(['soft', 'lego']),
+
+	/**
+	 * Indicator if this is the last tab
+	 */
+	last: PropTypes.bool,
 
 	/**
 	 * Whether this tab/panel is selected/expanded
@@ -145,6 +178,11 @@ Tab.propTypes = {
 	 * The id for the tab
 	 */
 	tabId: PropTypes.string,
+
+	/**
+	 * The panel content for this tab
+	 */
+	children: PropTypes.node.isRequired,
 
 	/**
 	 * The override API

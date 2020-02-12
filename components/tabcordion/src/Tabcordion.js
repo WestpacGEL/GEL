@@ -23,7 +23,6 @@ export const Tabcordion = ({
 	initialTabIndex,
 	instanceIdPrefix,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -36,17 +35,17 @@ export const Tabcordion = ({
 		Tabcordion: {
 			styles: tabcordionStyles,
 			component: TabcordionWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		TabItem: {
 			styles: tabItemStyles,
 			component: TabItem,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		TabRow: {
 			styles: tabRowStyles,
 			component: TabRow,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -130,10 +129,11 @@ export const Tabcordion = ({
 	const tabCount = Children.count(children);
 
 	const state = {
+		mode,
 		look,
 		justify,
-		activeTabIndex,
-		instancePrefix,
+		initialTabIndex: activeTabIndex,
+		instanceIdPrefix: instancePrefix,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -150,6 +150,11 @@ export const Tabcordion = ({
 		<overrides.TabRow.component
 			role="tablist"
 			ref={tablistRef}
+			mode={mode}
+			look={look}
+			justify={justify}
+			initialTabIndex={activeTabIndex}
+			instanceIdPrefix={instancePrefix}
 			{...overrides.TabRow.attributes(state)}
 			css={overrides.TabRow.styles(state)}
 		>
@@ -164,6 +169,13 @@ export const Tabcordion = ({
 						aria-controls={getId('panel', idx)}
 						aria-selected={selected}
 						role="tab"
+						selected={selected}
+						last={idx + 1 === tabCount}
+						mode={mode}
+						look={look}
+						justify={justify}
+						initialTabIndex={activeTabIndex}
+						instanceIdPrefix={instancePrefix}
 						{...overrides.TabItem.attributes(state)}
 						css={overrides.TabItem.styles({ ...state, selected, last: idx + 1 === tabCount })}
 					>
@@ -177,7 +189,12 @@ export const Tabcordion = ({
 	return (
 		<overrides.Tabcordion.component
 			ref={containerRef}
-			className={className}
+			mode={mode}
+			look={look}
+			justify={justify}
+			initialTabIndex={activeTabIndex}
+			instanceIdPrefix={instancePrefix}
+			{...rest}
 			{...overrides.Tabcordion.attributes(state)}
 			css={overrides.Tabcordion.styles(state)}
 		>
@@ -192,11 +209,14 @@ export const Tabcordion = ({
 						key={child.props.text}
 						panelId={getId('panel', idx)}
 						ref={selected ? panelRef : null}
-						look={look}
-						mode={mode}
 						selected={selected}
 						last={idx + 1 === tabCount}
 						onClick={setActive(idx)}
+						mode={mode}
+						look={look}
+						justify={justify}
+						initialTabIndex={activeTabIndex}
+						instanceIdPrefix={instancePrefix}
 					/>
 				);
 			})}
@@ -209,18 +229,19 @@ export const Tabcordion = ({
 // ==============================
 Tabcordion.propTypes = {
 	/**
+	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
+	 */
+	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
+
+	/**
 	 * The look of the tabs
 	 */
 	look: PropTypes.oneOf(['soft', 'lego']),
 
 	/**
-	 * An array of Tab components that can be navigated through
+	 * Whether or not tabs should stretch full width
 	 */
-	children: PropTypes.arrayOf(
-		PropTypes.shape({
-			type: PropTypes.oneOf([Tab]),
-		})
-	).isRequired,
+	justify: PropTypes.bool,
 
 	/**
 	 * The tab index to mount this component with
@@ -233,14 +254,13 @@ Tabcordion.propTypes = {
 	instanceIdPrefix: PropTypes.string,
 
 	/**
-	 * Whether or not tabs should stretch full width
+	 * An array of Tab components that can be navigated through
 	 */
-	justify: PropTypes.bool,
-
-	/**
-	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
-	 */
-	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
+	children: PropTypes.arrayOf(
+		PropTypes.shape({
+			type: PropTypes.oneOf([Tab]),
+		})
+	).isRequired,
 
 	/**
 	 * The override API
