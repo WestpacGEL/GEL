@@ -2,9 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Footer = ({ heading, open, onClose, size, dismissible, overrides, ...rest }) => (
-	<div {...rest} />
-);
+export const Footer = props => <div {...props} />;
 
 export const footerStyles = (_, {}) => {
 	const { COLORS } = useBrand();

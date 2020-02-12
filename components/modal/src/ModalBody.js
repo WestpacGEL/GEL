@@ -7,7 +7,7 @@ import { Body, bodyStyles } from './overrides/body';
 import { useModalContext } from './Modal';
 import pkg from '../package.json';
 
-export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
+export const ModalBody = ({ children, overrides: componentOverrides, ...rest }) => {
 	const { bodyId } = useModalContext();
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -18,7 +18,7 @@ export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
 		Body: {
 			styles: bodyStyles,
 			component: Body,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -37,9 +37,12 @@ export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
 	return (
 		<overrides.Body.component
 			id={bodyId}
+			{...rest}
 			{...overrides.Body.attributes(state)}
 			css={overrides.Body.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Body.component>
 	);
 };
 
@@ -47,6 +50,11 @@ export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
 // Types
 // ==============================
 ModalBody.propTypes = {
+	/**
+	 * The content for this list group
+	 */
+	children: PropTypes.node,
+
 	/**
 	 * The override API
 	 */

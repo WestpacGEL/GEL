@@ -48,7 +48,6 @@ export const Modal = ({
 	size,
 	dismissible,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -63,33 +62,34 @@ export const Modal = ({
 		Modal: {
 			styles: modalStyles,
 			component: ModalWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Backdrop: {
 			styles: backdropStyles,
 			component: Backdrop,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Header: {
 			styles: headerStyles,
 			component: Header,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Title: {
 			styles: titleStyles,
 			component: Title,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		CloseBtn: {
 			styles: closeBtnStyles,
 			component: CloseBtn,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
-		open,
 		heading,
+		open,
+		onClose,
 		size,
 		dismissible,
 		overrides: componentOverrides,
@@ -143,6 +143,11 @@ export const Modal = ({
 		return ReactDOM.createPortal(
 			<Fragment>
 				<overrides.Backdrop.component
+					heading={heading}
+					open={open}
+					onClose={onClose}
+					size={size}
+					dismissible={dismissible}
 					{...overrides.Backdrop.attributes(state)}
 					css={overrides.Backdrop.styles(state)}
 				/>
@@ -154,17 +159,32 @@ export const Modal = ({
 						aria-describedby={bodyId}
 						tabIndex="-1"
 						ref={modalRef}
-						className={className}
+						heading={heading}
+						open={open}
+						onClose={onClose}
+						size={size}
+						dismissible={dismissible}
+						{...rest}
 						{...overrides.Modal.attributes(state)}
 						css={overrides.Modal.styles(state)}
 					>
 						<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
 							<overrides.Header.component
+								heading={heading}
+								open={open}
+								onClose={onClose}
+								size={size}
+								dismissible={dismissible}
 								{...overrides.Header.attributes(state)}
 								css={overrides.Header.styles(state)}
 							>
 								<overrides.Title.component
 									id={titleId}
+									heading={heading}
+									open={open}
+									onClose={onClose}
+									size={size}
+									dismissible={dismissible}
 									{...overrides.Title.attributes(state)}
 									css={overrides.Title.styles(state)}
 								>
@@ -174,6 +194,11 @@ export const Modal = ({
 									<overrides.CloseBtn.component
 										onClick={() => handleClose()}
 										icon={CloseIcon}
+										heading={heading}
+										open={open}
+										onClose={onClose}
+										size={size}
+										dismissible={dismissible}
 										{...overrides.CloseBtn.attributes(state)}
 										css={overrides.CloseBtn.styles(state)}
 									/>
@@ -222,6 +247,11 @@ Modal.propTypes = {
 	 * Allows modal close via close button, background overlay click and Esc key.
 	 */
 	dismissible: PropTypes.bool,
+
+	/**
+	 * The content for this list group
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API
