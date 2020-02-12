@@ -6,13 +6,15 @@ import { sizeMap } from './_utils';
 export const Switch = ({
 	name,
 	label,
-	toggleText,
-	flipped,
+	checked,
+	size,
 	block,
+	flipped,
+	toggleText,
 	disabled,
 	assistiveText,
-	...props
-}) => <label {...props} />;
+	...rest
+}) => <label {...rest} />;
 
 export const switchStyles = (_, { block, disabled, flipped, size }) => {
 	const mq = useMediaQuery();
