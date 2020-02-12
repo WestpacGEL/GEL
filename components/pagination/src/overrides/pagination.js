@@ -3,9 +3,7 @@
 import { jsx } from '@westpac/core';
 import React from 'react';
 
-export const Pagination = ({ current, infinite, back, next, data, overrides, ...rest }) => (
-	<ul {...rest} />
-);
+export const Pagination = ({ current, infinite, back, next, data, ...rest }) => <ul {...rest} />;
 
 export const paginationStyles = () => ({
 	listStyle: 'none',

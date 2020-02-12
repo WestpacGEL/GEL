@@ -13,7 +13,6 @@ export const Page = ({
 	assistiveText,
 	current,
 	active,
-	overrides,
 	...rest
 }) => <li {...rest} />;
 

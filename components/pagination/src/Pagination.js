@@ -35,7 +35,6 @@ export const Pagination = ({
 	next: nextProps,
 	data,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -48,7 +47,7 @@ export const Pagination = ({
 		Pagination: {
 			styles: paginationStyles,
 			component: PaginationWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -122,7 +121,12 @@ export const Pagination = ({
 			value={{ current: pageLogic.current, overrides: componentOverrides }}
 		>
 			<overrides.Pagination.component
-				className={className}
+				current={current}
+				infinite={infinite}
+				back={backProps}
+				next={nextProps}
+				data={data}
+				{...rest}
 				{...overrides.Pagination.attributes(state)}
 				css={overrides.Pagination.styles(state)}
 			>
@@ -133,6 +137,11 @@ export const Pagination = ({
 						nextIndex={backIndex}
 						disabled={pageLogic.current === 0 && !infinite}
 						assistiveText={back.assistiveText(backIndex)}
+						current={current}
+						infinite={infinite}
+						back={backProps}
+						next={nextProps}
+						data={data}
 						onClick={wrapHandlers(
 							event => back.onClick && back.onClick(event, backIndex),
 							event => pageLogic.previous(event)
@@ -144,6 +153,11 @@ export const Pagination = ({
 						key={index}
 						index={index}
 						text={page.text}
+						current={current}
+						infinite={infinite}
+						back={backProps}
+						next={nextProps}
+						data={data}
 						onClick={event => pageLogic.setPage(event, allChildren, index)}
 					/>
 				))}
@@ -154,6 +168,11 @@ export const Pagination = ({
 						nextIndex={nextIndex}
 						disabled={pageLogic.current === pageCount - 1 && !infinite}
 						assistiveText={next.assistiveText(nextIndex)}
+						current={current}
+						infinite={infinite}
+						back={backProps}
+						next={nextProps}
+						data={data}
 						onClick={wrapHandlers(
 							event => next.onClick && next.onClick(event, nextIndex),
 							event => pageLogic.next(event)
@@ -176,6 +195,11 @@ Pagination.propTypes = {
 	current: PropTypes.number.isRequired,
 
 	/**
+	 * Infinite option
+	 */
+	infinite: PropTypes.bool,
+
+	/**
 	 * Back button options
 	 */
 	back: PropTypes.shape({
@@ -194,11 +218,6 @@ Pagination.propTypes = {
 		assistiveText: PropTypes.func,
 		onClick: PropTypes.func,
 	}),
-
-	/**
-	 * Infinite option
-	 */
-	infinite: PropTypes.bool,
 
 	/**
 	 * Alternative to children
