@@ -11,7 +11,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
+export const PanelFooter = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -21,7 +21,7 @@ export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 		Footer: {
 			styles: footerStyles,
 			component: Footer,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -42,9 +42,12 @@ export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Footer.component
+			{...rest}
 			{...overrides.Footer.attributes(state)}
 			css={overrides.Footer.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Footer.component>
 	);
 };
 
