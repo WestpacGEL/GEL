@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // Body component in charge of body text
 // ==============================
 
-export const Body = ({ tag: Tag, children, overrides: componentOverrides, ...rest }) => {
+export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		COLORS,
 		TYPE,
@@ -24,12 +24,12 @@ export const Body = ({ tag: Tag, children, overrides: componentOverrides, ...res
 		Body: {
 			styles: bodyStyles,
 			component: BodyWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
-		tag: Tag,
+		tag,
 		children,
 		overrides: componentOverrides,
 		...rest,
@@ -44,6 +44,8 @@ export const Body = ({ tag: Tag, children, overrides: componentOverrides, ...res
 
 	return (
 		<overrides.Body.component
+			tag={tag}
+			{...rest}
 			{...overrides.Body.attributes(state)}
 			css={overrides.Body.styles(state)}
 		>

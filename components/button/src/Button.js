@@ -25,10 +25,10 @@ export const Button = forwardRef(
 			disabled,
 			assistiveText,
 			tag,
-			onClick,
+			type,
 			dropdown,
+			onClick,
 			children,
-			className,
 			overrides: componentOverrides,
 			...rest
 		},
@@ -50,7 +50,7 @@ export const Button = forwardRef(
 			Button: {
 				styles: buttonStyles,
 				component: ButtonWrapper,
-				attributes: (_, a) => a,
+				attributes: () => null,
 			},
 		};
 
@@ -65,6 +65,8 @@ export const Button = forwardRef(
 			disabled,
 			assistiveText,
 			tag,
+			type,
+			dropdown,
 			onClick,
 			overrides: componentOverrides,
 			...rest,
@@ -80,22 +82,39 @@ export const Button = forwardRef(
 		return (
 			<overrides.Button.component
 				ref={ref}
-				type={tag === 'button' ? 'button' : undefined}
+				look={look}
+				size={size}
+				soft={soft}
+				block={block}
+				iconAfter={iconAfter}
+				iconBefore={iconBefore}
+				justify={justify}
 				disabled={disabled}
-				aria-label={assistiveText}
+				assistiveText={assistiveText}
+				tag={tag}
+				type={type}
+				dropdown={dropdown}
 				onClick={onClick}
-				className={className}
+				{...rest}
 				{...overrides.Button.attributes(state)}
 				css={overrides.Button.styles(state)}
 			>
 				{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 				{tag !== 'input' ? (
 					<Content
+						look={look}
 						size={size}
+						soft={soft}
 						block={block}
 						iconAfter={iconAfter}
 						iconBefore={iconBefore}
+						justify={justify}
+						disabled={disabled}
+						assistiveText={assistiveText}
+						tag={tag}
+						type={type}
 						dropdown={dropdown}
+						onClick={onClick}
 						overrides={componentOverrides}
 					>
 						{children}
@@ -128,6 +147,11 @@ Button.propTypes = {
 	 * Button tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * Button type, overwritten when tag = button
+	 */
+	type: PropTypes.string,
 
 	/**
 	 * Soft mode.
@@ -167,6 +191,11 @@ Button.propTypes = {
 	 * Text to use as the `aria-label` for the button
 	 */
 	assistiveText: PropTypes.string,
+
+	/**
+	 * Enable dropdown mode
+	 */
+	dropdown: PropTypes.bool,
 
 	/**
 	 * Handler to be called on click
@@ -213,4 +242,5 @@ Button.defaultProps = {
 	block: false,
 	justify: false,
 	disabled: false,
+	type: 'button',
 };

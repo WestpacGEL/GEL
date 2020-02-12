@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
@@ -24,11 +24,8 @@ export const InputGroup = ({
 	invalid,
 	disabled,
 	readOnly,
-	children,
-	value,
-	defaultValue,
 	look,
-	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -41,12 +38,12 @@ export const InputGroup = ({
 		InputGroup: {
 			styles: inputGroupStyles,
 			component: InputGroupWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Text: {
 			styles: textStyles,
 			component: TextWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -57,8 +54,6 @@ export const InputGroup = ({
 		invalid,
 		disabled,
 		readOnly,
-		value,
-		defaultValue,
 		look,
 		overrides: componentOverrides,
 		...rest,
@@ -71,7 +66,7 @@ export const InputGroup = ({
 		componentOverrides
 	);
 
-	let added = false;
+	let textFieldAdded = false;
 	const childrenWithProps = [];
 	const length = Children.count(children);
 
@@ -93,6 +88,16 @@ export const InputGroup = ({
 		childrenWithProps.push(
 			<overrides.Text.component
 				key="textinput1"
+				name={name}
+				size={size}
+				data={data}
+				invalid={invalid}
+				disabled={disabled}
+				readOnly={readOnly}
+				look={look}
+				left={!!left}
+				right={!!right}
+				{...rest}
 				css={overrides.Text.styles({ ...state, left: !!left, right: !!right })}
 				{...overrides.Text.attributes({ ...state, left: !!left, right: !!right })}
 			/>
@@ -111,22 +116,42 @@ export const InputGroup = ({
 		}
 	} else {
 		Children.map(children, child => {
-			if (child.type.name === 'Left' && !added) {
+			if (child.type.name === 'Left' && !textFieldAdded) {
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'left' })
 				);
 				childrenWithProps.push(
 					<overrides.Text.component
 						key="textinput1"
+						name={name}
+						size={size}
+						data={data}
+						invalid={invalid}
+						disabled={disabled}
+						readOnly={readOnly}
+						look={look}
+						left={true}
+						right={length > 1}
+						{...rest}
 						css={overrides.Text.styles({ ...state, left: true, right: length > 1 })}
 						{...overrides.Text.attributes({ ...state, left: true, right: length > 1 })}
 					/>
 				);
-				added = true;
-			} else if (child.type.name === 'Right' && !added) {
+				textFieldAdded = true;
+			} else if (child.type.name === 'Right' && !textFieldAdded) {
 				childrenWithProps.push(
 					<overrides.Text.component
 						key="textinput2"
+						name={name}
+						size={size}
+						data={data}
+						invalid={invalid}
+						disabled={disabled}
+						readOnly={readOnly}
+						look={look}
+						left={false}
+						right={true}
+						{...rest}
 						css={overrides.Text.styles({ ...state, left: false, right: true })}
 						{...overrides.Text.attributes({ ...state, left: false, right: true })}
 					/>
@@ -134,10 +159,16 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'right' })
 				);
-				added = true;
-			} else {
+				textFieldAdded = true;
+			} else if (child.type.name === 'Right' || child.type.name === 'Left') {
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'other' })
+				);
+			} else {
+				devWarning(
+					true,
+					`The input-group only accepts a Left or Right component as children. But found "<${child
+						.type.name || child.type}/>"`
 				);
 			}
 		});
@@ -145,7 +176,13 @@ export const InputGroup = ({
 
 	return (
 		<overrides.InputGroup.component
-			className={className}
+			name={name}
+			size={size}
+			data={data}
+			invalid={invalid}
+			disabled={disabled}
+			readOnly={readOnly}
+			look={look}
 			{...overrides.InputGroup.attributes(state)}
 			css={overrides.InputGroup.styles(state)}
 		>
@@ -194,6 +231,16 @@ InputGroup.propTypes = {
 	 * Disabled input mode
 	 */
 	disabled: PropTypes.bool.isRequired,
+
+	/**
+	 * Read only mode
+	 */
+	readOnly: PropTypes.bool,
+
+	/**
+	 * The look of the component
+	 */
+	look: PropTypes.oneOf(['primary', 'hero', 'faint']),
 
 	/**
 	 * InputGroup children

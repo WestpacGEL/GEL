@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Caption = ({ overrides: componentOverrides, ...rest }) => {
+export const Caption = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -20,7 +20,7 @@ export const Caption = ({ overrides: componentOverrides, ...rest }) => {
 		Caption: {
 			styles: captionStyles,
 			component: CaptionComponent,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -38,9 +38,12 @@ export const Caption = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Caption.component
+			{...rest}
 			{...overrides.Caption.attributes(state)}
 			css={overrides.Caption.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Caption.component>
 	);
 };
 

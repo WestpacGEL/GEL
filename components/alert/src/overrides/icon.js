@@ -5,15 +5,14 @@ import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import React from 'react';
 
 export const Icon = ({
-	size,
-	color,
+	open,
 	look,
 	dismissible,
 	icon,
 	heading,
 	headingTag,
-	open,
-	overrides,
+	size,
+	color,
 	...rest
 }) => {
 	const iconMap = {

@@ -62,7 +62,6 @@ export const ProgressRope = ({
 	current,
 	data,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -75,7 +74,7 @@ export const ProgressRope = ({
 		ProgressRope: {
 			styles: progressRopeStyles,
 			component: ProgressRopeWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -183,7 +182,9 @@ export const ProgressRope = ({
 	return (
 		<ProgressRopeContext.Provider value={{ ...progState, handleClick }}>
 			<overrides.ProgressRope.component
-				className={className}
+				current={current}
+				data={data}
+				{...rest}
 				{...overrides.ProgressRope.attributes(state)}
 				css={overrides.ProgressRope.styles(state)}
 			>

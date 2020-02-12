@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import React from 'react';
 
-export const Item = ({ look, type, nested, spacing, icon, overrides, ...rest }) => <li {...rest} />;
+export const Item = ({ look, type, nested, spacing, icon, ...rest }) => <li {...rest} />;
 
 export const itemStyles = (_, { type, look, spacing, nested }) => {
 	const { COLORS } = useBrand();

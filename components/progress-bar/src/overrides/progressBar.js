@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const ProgressBar = props => <div {...props} />;
+export const ProgressBar = ({ value, look, ...rest }) => <div {...rest} />;
 
 export const progressBarStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();

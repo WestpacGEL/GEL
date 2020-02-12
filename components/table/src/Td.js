@@ -14,6 +14,7 @@ export const Td = ({
 	highlighted,
 	highlightStart,
 	bordered,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -29,7 +30,7 @@ export const Td = ({
 		Td: {
 			styles: tdStyles,
 			component: TableData,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -49,7 +50,16 @@ export const Td = ({
 	);
 
 	return (
-		<overrides.Td.component {...overrides.Td.attributes(state)} css={overrides.Td.styles(state)} />
+		<overrides.Td.component
+			highlighted={highlighted}
+			highlightStart={highlightStart}
+			bordered={bordered}
+			{...rest}
+			{...overrides.Td.attributes(state)}
+			css={overrides.Td.styles(state)}
+		>
+			{children}
+		</overrides.Td.component>
 	);
 };
 

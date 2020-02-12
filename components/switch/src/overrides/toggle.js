@@ -6,13 +6,15 @@ import { sizeMap } from './_utils';
 export const Toggle = ({
 	name,
 	label,
-	toggleText,
-	flipped,
+	checked,
+	size,
 	block,
+	flipped,
+	toggleText,
 	disabled,
 	assistiveText,
-	...props
-}) => <span {...props} />;
+	...rest
+}) => <span {...rest} />;
 
 export const toggleStyles = (_, { size, checked }) => {
 	const mq = useMediaQuery();

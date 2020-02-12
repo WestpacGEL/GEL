@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Tfoot = ({ bordered, overrides: componentOverrides, ...rest }) => {
+export const Tfoot = ({ bordered, children, overrides: componentOverrides, ...rest }) => {
 	const context = useTableContext();
 	bordered = (context && context.bordered) || bordered;
 
@@ -23,7 +23,7 @@ export const Tfoot = ({ bordered, overrides: componentOverrides, ...rest }) => {
 		Tfoot: {
 			styles: tfootStyles,
 			component: TableFoot,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -41,9 +41,13 @@ export const Tfoot = ({ bordered, overrides: componentOverrides, ...rest }) => {
 	);
 	return (
 		<overrides.Tfoot.component
+			bordered={bordered}
+			{...rest}
 			{...overrides.Tfoot.attributes(state)}
 			css={overrides.Tfoot.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Tfoot.component>
 	);
 };
 

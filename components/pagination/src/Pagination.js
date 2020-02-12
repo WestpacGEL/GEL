@@ -35,7 +35,6 @@ export const Pagination = ({
 	next: nextProps,
 	data,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -48,7 +47,7 @@ export const Pagination = ({
 		Pagination: {
 			styles: paginationStyles,
 			component: PaginationWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -122,15 +121,20 @@ export const Pagination = ({
 			value={{ current: pageLogic.current, overrides: componentOverrides }}
 		>
 			<overrides.Pagination.component
-				className={className}
+				current={current}
+				infinite={infinite}
+				back={backProps}
+				next={nextProps}
+				data={data}
+				{...rest}
 				{...overrides.Pagination.attributes(state)}
 				css={overrides.Pagination.styles(state)}
 			>
 				{back.visible && (
 					<Page
+						nextIndex={backIndex}
 						text={back.text}
 						first
-						nextIndex={backIndex}
 						disabled={pageLogic.current === 0 && !infinite}
 						assistiveText={back.assistiveText(backIndex)}
 						onClick={wrapHandlers(
@@ -149,9 +153,9 @@ export const Pagination = ({
 				))}
 				{next.visible && (
 					<Page
+						nextIndex={nextIndex}
 						text={next.text}
 						last
-						nextIndex={nextIndex}
 						disabled={pageLogic.current === pageCount - 1 && !infinite}
 						assistiveText={next.assistiveText(nextIndex)}
 						onClick={wrapHandlers(
@@ -176,6 +180,11 @@ Pagination.propTypes = {
 	current: PropTypes.number.isRequired,
 
 	/**
+	 * Infinite option
+	 */
+	infinite: PropTypes.bool,
+
+	/**
 	 * Back button options
 	 */
 	back: PropTypes.shape({
@@ -194,11 +203,6 @@ Pagination.propTypes = {
 		assistiveText: PropTypes.func,
 		onClick: PropTypes.func,
 	}),
-
-	/**
-	 * Infinite option
-	 */
-	infinite: PropTypes.bool,
 
 	/**
 	 * Alternative to children

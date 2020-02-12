@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Footer, footerStyles } from './overrides/footer';
 import pkg from '../package.json';
 
-export const ModalFooter = ({ overrides: componentOverrides, ...rest }) => {
+export const ModalFooter = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -16,7 +16,7 @@ export const ModalFooter = ({ overrides: componentOverrides, ...rest }) => {
 		Footer: {
 			styles: footerStyles,
 			component: Footer,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -34,9 +34,12 @@ export const ModalFooter = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Footer.component
+			{...rest}
 			{...overrides.Footer.attributes(state)}
 			css={overrides.Footer.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Footer.component>
 	);
 };
 
@@ -44,6 +47,11 @@ export const ModalFooter = ({ overrides: componentOverrides, ...rest }) => {
 // Types
 // ==============================
 ModalFooter.propTypes = {
+	/**
+	 * The content for this list group
+	 */
+	children: PropTypes.node,
+
 	/**
 	 * The override API
 	 */

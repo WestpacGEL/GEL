@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Thead = ({ bordered, overrides: componentOverrides, ...rest }) => {
+export const Thead = ({ bordered, children, overrides: componentOverrides, ...rest }) => {
 	const context = useTableContext();
 	bordered = (context && context.bordered) || bordered;
 
@@ -23,7 +23,7 @@ export const Thead = ({ bordered, overrides: componentOverrides, ...rest }) => {
 		Thead: {
 			styles: theadStyles,
 			component: Tablehead,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -42,9 +42,13 @@ export const Thead = ({ bordered, overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Thead.component
+			bordered={bordered}
+			{...rest}
 			{...overrides.Thead.attributes(state)}
 			css={overrides.Thead.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Thead.component>
 	);
 };
 

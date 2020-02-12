@@ -5,13 +5,15 @@ import { jsx } from '@westpac/core';
 export const Label = ({
 	name,
 	label,
-	toggleText,
-	flipped,
+	checked,
+	size,
 	block,
+	flipped,
+	toggleText,
 	disabled,
 	assistiveText,
-	...props
-}) => <span {...props} />;
+	...rest
+}) => <span {...rest} />;
 
 export const labelStyles = (_, { block, flipped }) => {
 	return {

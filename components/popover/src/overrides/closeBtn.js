@@ -3,15 +3,15 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Button } from '@westpac/button';
 
-export const CloseBtn = ({ title, content, position, open, dismissible, icon, ...props }) => (
-	<Button iconAfter={icon} look="link" {...props} />
+export const CloseBtn = ({ open, title, content, dismissible, position, icon, ...rest }) => (
+	<Button iconAfter={icon} look="link" {...rest} />
 );
 
 export const closeBtnStyles = (_, {}) => {
 	const { SPACING } = useBrand();
 	return {
 		position: 'absolute',
-		top: 0,
+		top: SPACING(1, true),
 		right: SPACING(1),
 		color: '#fff',
 		':hover svg': {

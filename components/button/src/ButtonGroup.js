@@ -15,16 +15,15 @@ import pkg from '../package.json';
 export const ButtonGroup = props => {
 	const {
 		block,
-		children,
 		data,
 		defaultValue,
 		look,
 		name,
 		disabled,
-		onChange,
 		value: controlledValue,
 		size,
-		className,
+		onChange,
+		children,
 		overrides: componentOverrides,
 		...rest
 	} = props;
@@ -42,7 +41,7 @@ export const ButtonGroup = props => {
 		ButtonGroup: {
 			styles: buttonGroupStyles,
 			component: BtnGroupWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -53,9 +52,9 @@ export const ButtonGroup = props => {
 		look,
 		name,
 		disabled,
-		onChange,
 		value: controlledValue,
 		size,
+		onChange,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -81,7 +80,16 @@ export const ButtonGroup = props => {
 	// Fork map behaviour when children VS data
 	return (
 		<overrides.ButtonGroup.component
-			className={className}
+			block={block}
+			data={data}
+			defaultValue={defaultValue}
+			look={look}
+			name={name}
+			disabled={disabled}
+			value={controlledValue}
+			size={size}
+			onChange={onChange}
+			{...rest}
 			{...overrides.ButtonGroup.attributes(state)}
 			css={overrides.ButtonGroup.styles(state)}
 		>
@@ -117,8 +125,6 @@ export const ButtonGroup = props => {
 // Types
 // ==============================
 
-const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
-
 ButtonGroup.propTypes = {
 	/**
 	 * Block mode. Fill parent width
@@ -126,19 +132,14 @@ ButtonGroup.propTypes = {
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
 
 	/**
-	 * Button group children
-	 */
-	children: PropTypes.node,
-
-	/**
 	 * Alternative to children
 	 */
 	data: PropTypes.arrayOf(PropTypes.object),
 
 	/**
-	 * The value of the initially selected button, if numeric an index is assumed
+	 * Default value of this component
 	 */
-	defaultValue: ValueType.isRequired,
+	defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
 	/**
 	 * Button look. Passed on to each child button
@@ -158,7 +159,7 @@ ButtonGroup.propTypes = {
 	/**
 	 * Control the value, if numeric an index is assumed. Requires `onChange`
 	 */
-	value: ValueType,
+	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
 	/**
 	 * Button size. Passed on to each child button
@@ -169,6 +170,11 @@ ButtonGroup.propTypes = {
 	 * Button group disabled
 	 */
 	disabled: PropTypes.bool.isRequired,
+
+	/**
+	 * Button group children
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API

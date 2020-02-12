@@ -16,7 +16,6 @@ export const Icon = ({
 	size,
 	assistiveText,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -30,12 +29,12 @@ export const Icon = ({
 		Icon: {
 			styles: iconStyles,
 			component: IconWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Svg: {
 			styles: svgStyles,
 			component: Svg,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -56,16 +55,17 @@ export const Icon = ({
 
 	return (
 		<overrides.Icon.component
-			className={className}
+			color={color}
+			size={size}
+			assistiveText={assistiveText}
+			{...rest}
 			{...overrides.Icon.attributes(state)}
 			css={overrides.Icon.styles(state)}
 		>
 			<overrides.Svg.component
-				aria-label={assistiveText}
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 24 24"
-				role="img"
-				focusable="false"
+				color={color}
+				size={size}
+				assistiveText={assistiveText}
 				css={overrides.Svg.styles(state)}
 				{...overrides.Svg.attributes(state)}
 			>

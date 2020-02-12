@@ -21,7 +21,7 @@ export const Label = ({ position, size, data, overrides: componentOverrides, ...
 		Label: {
 			styles: labelStyles,
 			component: LabelWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -42,6 +42,10 @@ export const Label = ({ position, size, data, overrides: componentOverrides, ...
 
 	return (
 		<overrides.Label.component
+			position={position}
+			size={size}
+			data={data}
+			{...rest}
 			{...overrides.Label.attributes(state)}
 			css={overrides.Label.styles(state)}
 		>

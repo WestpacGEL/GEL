@@ -20,7 +20,6 @@ export const Symbol = ({
 	viewBoxWidth,
 	viewBoxHeight,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -33,12 +32,12 @@ export const Symbol = ({
 		Symbol: {
 			styles: symbolStyles,
 			component: SymbolWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Svg: {
 			styles: svgStyles,
 			component: Svg,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -59,7 +58,10 @@ export const Symbol = ({
 
 	return (
 		<overrides.Symbol.component
-			className={className}
+			assistiveText={assistiveText}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			{...rest}
 			{...overrides.Symbol.attributes(state)}
 			css={overrides.Symbol.styles(state)}
 		>
@@ -69,7 +71,9 @@ export const Symbol = ({
 				viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
 				role="img"
 				focusable="false"
-				style={{ width: '100%', height: '100%' }}
+				assistiveText={assistiveText}
+				viewBoxWidth={viewBoxWidth}
+				viewBoxHeight={viewBoxHeight}
 				{...overrides.Svg.attributes(state)}
 				css={overrides.Svg.styles(state)}
 			>

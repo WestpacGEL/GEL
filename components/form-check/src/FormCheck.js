@@ -20,16 +20,15 @@ import pkg from '../package.json';
 // ==============================
 
 export const FormCheck = ({
-	children,
 	type,
 	name,
 	size,
 	inline,
 	flipped,
 	data,
-	onChange = () => {},
 	defaultValue,
-	className,
+	onChange = () => {},
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -68,7 +67,7 @@ export const FormCheck = ({
 		FormCheck: {
 			styles: formCheckStyles,
 			component: FormCheckWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -80,6 +79,7 @@ export const FormCheck = ({
 		flipped,
 		data,
 		defaultValue,
+		onChange,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -97,7 +97,13 @@ export const FormCheck = ({
 			allChildren.push(
 				<Option
 					key={index}
-					{...state}
+					type={type}
+					name={name}
+					size={size}
+					inline={inline}
+					flipped={flipped}
+					data={data}
+					defaultValue={defaultValue}
 					value={props.value}
 					handleChange={handleChange}
 					selected={selected.includes(props.value)}
@@ -111,7 +117,13 @@ export const FormCheck = ({
 		const length = Children.count(children);
 		allChildren = Children.map(children, child =>
 			cloneElement(child, {
-				...state,
+				type,
+				name,
+				size,
+				inline,
+				flipped,
+				data,
+				defaultValue,
 				handleChange,
 				selected: selected.includes(child.props.value),
 				overrides: componentOverrides,
@@ -121,7 +133,14 @@ export const FormCheck = ({
 
 	return (
 		<overrides.FormCheck.component
-			className={className}
+			type={type}
+			name={name}
+			size={size}
+			inline={inline}
+			flipped={flipped}
+			data={data}
+			defaultValue={defaultValue}
+			{...rest}
 			{...overrides.FormCheck.attributes(state)}
 			css={overrides.FormCheck.styles(state)}
 		>
@@ -161,11 +180,6 @@ FormCheck.propTypes = {
 	flipped: PropTypes.bool.isRequired,
 
 	/**
-	 * A function called on change
-	 */
-	onChange: PropTypes.func,
-
-	/**
 	 * The data prop shape
 	 */
 	data: PropTypes.arrayOf(
@@ -176,14 +190,19 @@ FormCheck.propTypes = {
 	),
 
 	/**
-	 * Form check item(s)
-	 */
-	children: PropTypes.node,
-
-	/**
 	 * The options already selected
 	 */
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+
+	/**
+	 * A function called on change
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * Form check item(s)
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API

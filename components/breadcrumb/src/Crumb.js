@@ -22,8 +22,8 @@ export const Crumb = ({
 	href,
 	text,
 	assistiveText,
+	currentAssistiveText,
 	onClick,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -37,22 +37,22 @@ export const Crumb = ({
 		AssistiveText: {
 			styles: assistiveTextStyles,
 			component: AssistiveText,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Crumb: {
 			styles: crumbStyles,
 			component: CrumbWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Link: {
 			styles: linkStyles,
 			component: Link,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Icon: {
 			styles: iconStyles,
 			component: Icon,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -61,6 +61,7 @@ export const Crumb = ({
 		href,
 		text,
 		assistiveText,
+		currentAssistiveText,
 		onClick,
 		overrides: componentOverrides,
 		...rest,
@@ -75,21 +76,35 @@ export const Crumb = ({
 
 	return (
 		<overrides.Crumb.component
-			className={className}
+			current={current}
+			href={href}
+			text={text}
+			assistiveText={assistiveText}
+			currentAssistiveText={currentAssistiveText}
+			{...rest}
 			{...overrides.Crumb.attributes(state)}
 			css={overrides.Crumb.styles(state)}
 		>
 			{current && (
 				<overrides.AssistiveText.component
+					current={current}
+					href={href}
+					text={text}
+					assistiveText={currentAssistiveText}
+					currentAssistiveText={currentAssistiveText}
 					insideCrumb={true}
 					{...overrides.AssistiveText.attributes(state)}
 					css={overrides.AssistiveText.styles(state)}
 				>
-					{assistiveText}
+					{currentAssistiveText}
 				</overrides.AssistiveText.component>
 			)}
 			<overrides.Link.component
-				href={current ? null : href}
+				current={current}
+				href={href}
+				text={text}
+				assistiveText={currentAssistiveText}
+				currentAssistiveText={currentAssistiveText}
 				onClick={onClick}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
@@ -98,6 +113,11 @@ export const Crumb = ({
 			</overrides.Link.component>
 			{!current && (
 				<overrides.Icon.component
+					current={current}
+					href={href}
+					text={text}
+					assistiveText={currentAssistiveText}
+					currentAssistiveText={currentAssistiveText}
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
@@ -119,7 +139,7 @@ Crumb.propTypes = {
 	/**
 	 * The text of the crumb
 	 */
-	text: PropTypes.string.isRequired,
+	current: PropTypes.bool,
 
 	/**
 	 * An href for a link
@@ -127,14 +147,24 @@ Crumb.propTypes = {
 	href: PropTypes.string,
 
 	/**
-	 * A function for the onClick event
+	 * The text of the crumb
 	 */
-	onClick: PropTypes.func,
+	text: PropTypes.string.isRequired,
 
 	/**
 	 * Visually hidden text to use for the current page crumb
 	 */
-	assistiveText: PropTypes.string.isRequired,
+	assistiveText: PropTypes.string,
+
+	/**
+	 * Visually hidden text to use for the current page crumb
+	 */
+	currentAssistiveText: PropTypes.string.isRequired,
+
+	/**
+	 * A function for the onClick event
+	 */
+	onClick: PropTypes.func,
 
 	/**
 	 * The override API
@@ -164,5 +194,5 @@ Crumb.propTypes = {
 };
 
 Crumb.defaultProps = {
-	assistiveText: 'Current page:',
+	currentAssistiveText: 'Current page:',
 };

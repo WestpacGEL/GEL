@@ -4,22 +4,18 @@ import { jsx } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
 import React from 'react';
 
-export const Text = ({ data, look, left, right, overrides, ...rest }) => (
-	<TextInput
-		{...rest}
-		css={{
-			...(left && {
-				borderTopLeftRadius: 0,
-				borderBottomLeftRadius: 0,
-			}),
-			...(right && {
-				borderTopRightRadius: 0,
-				borderBottomRightRadius: 0,
-			}),
-		}}
-	/>
+export const Text = ({ name, data, invalid, disabled, readOnly, look, left, right, ...rest }) => (
+	<TextInput {...rest} />
 );
 
-export const textStyles = () => ({
+export const textStyles = (_, { left, right }) => ({
 	boxSizing: 'border-box',
+	...(left && {
+		borderTopLeftRadius: 0,
+		borderBottomLeftRadius: 0,
+	}),
+	...(right && {
+		borderTopRightRadius: 0,
+		borderBottomRightRadius: 0,
+	}),
 });

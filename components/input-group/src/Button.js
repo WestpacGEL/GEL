@@ -20,7 +20,7 @@ export const Button = ({ position, size, data, overrides: componentOverrides, ..
 		Button: {
 			styles: buttonStyles,
 			component: ButtonWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -41,6 +41,10 @@ export const Button = ({ position, size, data, overrides: componentOverrides, ..
 
 	return (
 		<overrides.Button.component
+			position={position}
+			size={size}
+			data={data}
+			{...rest}
 			{...overrides.Button.attributes(state)}
 			css={overrides.Button.styles(state)}
 		>

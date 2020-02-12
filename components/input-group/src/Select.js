@@ -20,7 +20,7 @@ export const Select = ({ position, size, data, overrides: componentOverrides, ..
 		Select: {
 			styles: selectStyles,
 			component: SelectWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -41,6 +41,10 @@ export const Select = ({ position, size, data, overrides: componentOverrides, ..
 
 	return (
 		<overrides.Select.component
+			position={position}
+			size={size}
+			data={data}
+			{...rest}
 			{...overrides.Select.attributes(state)}
 			css={overrides.Select.styles(state)}
 		/>

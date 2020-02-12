@@ -6,14 +6,13 @@ import { Button } from '@westpac/button';
 import React from 'react';
 
 export const CloseBtn = ({
-	onClose,
+	open,
 	look,
 	dismissible,
 	icon,
 	heading,
 	headingTag,
-	open,
-	overrides,
+	onClose,
 	...rest
 }) => {
 	const { COLORS } = useBrand();
@@ -27,7 +26,7 @@ export const CloseBtn = ({
 	};
 
 	return (
-		<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest}>
+		<Button type="button" onClick={() => onClose()} iconAfter={icon} look="link" {...rest}>
 			<CloseIcon color={styleMap[look]} size="small" />
 		</Button>
 	);

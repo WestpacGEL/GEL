@@ -20,7 +20,7 @@ function Example({ brand }) {
 			<hr />
 			<br />
 
-			<InputGroup>
+			<InputGroup placeholder="Fill me out">
 				<Right type="button" data="Go" />
 			</InputGroup>
 			<br />
@@ -125,6 +125,7 @@ function Example({ brand }) {
 			<br />
 
 			<InputGroup
+				look="primary"
 				data={{
 					left: {
 						type: 'select',

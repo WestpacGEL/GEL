@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { AndroidIcon, GithubIcon } from '@westpac/icon';
+import { AndroidIcon, GithubIcon, AppleIcon } from '@westpac/icon';
 import { List, Item } from '@westpac/list';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -40,7 +40,7 @@ function Example({ brand }) {
 				<Item>Styled icon list</Item>
 				<Item type="icon" icon={GithubIcon}>
 					Styled icon list
-					<List>
+					<List icon={AppleIcon}>
 						<Item>Styled icon list</Item>
 						<Item>Styled icon list</Item>
 						<Item>Styled icon list</Item>

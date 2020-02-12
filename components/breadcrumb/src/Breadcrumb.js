@@ -14,16 +14,11 @@ import { Crumb } from './Crumb';
 // Component
 // ==============================
 
-/**
- * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
- */
 export const Breadcrumb = ({
-	children,
 	data,
-	current,
 	assistiveText,
 	currentAssistiveText,
-	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -36,23 +31,22 @@ export const Breadcrumb = ({
 		Breadcrumb: {
 			styles: breadcrumbStyles,
 			component: BreadcrumbWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		AssistiveText: {
 			styles: assistiveTextStyles,
 			component: AssistiveText,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		List: {
 			styles: listStyles,
 			component: List,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
 		data,
-		current,
 		assistiveText,
 		currentAssistiveText,
 		overrides: componentOverrides,
@@ -73,10 +67,11 @@ export const Breadcrumb = ({
 				<Crumb
 					key={index}
 					current={index === data.length - 1}
-					assistiveText={currentAssistiveText}
 					href={href}
 					text={text}
 					onClick={onClick}
+					assistiveText={assistiveText}
+					currentAssistiveText={currentAssistiveText}
 					overrides={componentOverrides}
 				/>
 			);
@@ -86,7 +81,12 @@ export const Breadcrumb = ({
 		allChildren = Children.map(children, (child, index) => {
 			return cloneElement(
 				child,
-				{ current: index === length - 1, overrides: componentOverrides },
+				{
+					current: index === length - 1,
+					assistiveText,
+					currentAssistiveText,
+					overrides: componentOverrides,
+				},
 				index
 			);
 		});
@@ -94,17 +94,26 @@ export const Breadcrumb = ({
 
 	return (
 		<overrides.Breadcrumb.component
-			className={className}
+			data={data}
+			assistiveText={assistiveText}
+			currentAssistiveText={currentAssistiveText}
 			{...overrides.Breadcrumb.attributes(state)}
 			css={overrides.Breadcrumb.styles(state)}
 		>
 			<overrides.AssistiveText.component
+				data={data}
+				assistiveText={assistiveText}
+				currentAssistiveText={currentAssistiveText}
 				{...overrides.AssistiveText.attributes(state)}
 				css={overrides.AssistiveText.styles(state)}
 			>
 				{assistiveText}
 			</overrides.AssistiveText.component>
 			<overrides.List.component
+				data={data}
+				assistiveText={assistiveText}
+				currentAssistiveText={currentAssistiveText}
+				{...rest}
 				{...overrides.List.attributes(state)}
 				css={overrides.List.styles(state)}
 			>
@@ -119,11 +128,6 @@ export const Breadcrumb = ({
 // ==============================
 
 Breadcrumb.propTypes = {
-	/**
-	 * Any renderable child
-	 */
-	children: PropTypes.node,
-
 	/**
 	 * Data for the crumbs
 	 */
@@ -144,6 +148,11 @@ Breadcrumb.propTypes = {
 	 * Visually hidden text to use for the current page crumb
 	 */
 	currentAssistiveText: PropTypes.string,
+
+	/**
+	 * Any renderable child
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API
