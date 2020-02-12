@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
 export const Panel = forwardRef(
-	({ hidden, look, last, selected, text, mode, panelId, tabId, ...rest }, ref) => (
+	({ look, last, selected, text, mode, panelId, tabId, ...rest }, ref) => (
 		<div ref={ref} {...rest} />
 	)
 );
