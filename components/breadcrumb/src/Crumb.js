@@ -154,12 +154,12 @@ Crumb.propTypes = {
 	/**
 	 * Visually hidden text to use for the current page crumb
 	 */
-	assistiveText: PropTypes.string.isRequired,
+	assistiveText: PropTypes.string,
 
 	/**
 	 * Visually hidden text to use for the current page crumb
 	 */
-	currentAssistiveText: PropTypes.string,
+	currentAssistiveText: PropTypes.string.isRequired,
 
 	/**
 	 * A function for the onClick event
@@ -194,5 +194,5 @@ Crumb.propTypes = {
 };
 
 Crumb.defaultProps = {
-	assistiveText: 'Current page:',
+	currentAssistiveText: 'Current page:',
 };

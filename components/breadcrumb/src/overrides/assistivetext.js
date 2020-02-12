@@ -5,6 +5,9 @@ import { VisuallyHidden } from '@westpac/a11y';
 import React from 'react';
 
 export const AssistiveText = ({
+	current,
+	href,
+	text,
 	data,
 	assistiveText,
 	currentAssistiveText,
