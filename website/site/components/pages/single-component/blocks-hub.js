@@ -1,5 +1,4 @@
 import React from 'react';
-import { NoMatch, Paragraph } from './blocks';
 import createReactRenderer from './react-renderer';
 import dynamicComponents from '../../../../schema/block-components';
 import { Heading } from '@westpac/heading';
