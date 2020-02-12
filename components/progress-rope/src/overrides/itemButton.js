@@ -10,9 +10,8 @@ export const ItemButton = ({
 	grouped,
 	active,
 	furthest,
-	overrides,
-	...props
-}) => <button type="button" disabled={!visited} {...props} />;
+	...rest
+}) => <button type="button" disabled={!visited} {...rest} />;
 
 export const itemButtonStyles = (_, { end, visited, grouped, active, furthest }) => {
 	const { COLORS, PACKS } = useBrand();

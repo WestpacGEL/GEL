@@ -14,7 +14,6 @@ export const Item = ({
 	end,
 	onClick,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -29,12 +28,12 @@ export const Item = ({
 		Item: {
 			styles: itemStyles,
 			component: ItemWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		ItemButton: {
 			styles: itemButtonStyles,
 			component: ItemButton,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -69,6 +68,7 @@ export const Item = ({
 		index,
 		groupIndex,
 		end,
+		onClick,
 		visited,
 		grouped,
 		active,
@@ -86,12 +86,26 @@ export const Item = ({
 
 	return (
 		<overrides.Item.component
-			className={className}
+			index={index}
+			groupIndex={groupIndex}
+			end={end}
+			visited={visited}
+			grouped={grouped}
+			active={active}
+			furthest={furthest}
+			{...rest}
 			{...overrides.Item.attributes(state)}
 			css={overrides.Item.styles(state)}
 		>
 			<overrides.ItemButton.component
+				index={index}
+				groupIndex={groupIndex}
+				end={end}
 				onClick={onClick}
+				visited={visited}
+				grouped={grouped}
+				active={active}
+				furthest={furthest}
 				{...overrides.ItemButton.attributes(state)}
 				css={overrides.ItemButton.styles(state)}
 			>
@@ -106,9 +120,29 @@ export const Item = ({
 // ==============================
 Item.propTypes = {
 	/**
+	 * The index of this item
+	 */
+	index: PropTypes.number,
+
+	/**
+	 * The index of this item
+	 */
+	groupIndex: PropTypes.number,
+
+	/**
 	 * Whether or not a end step
 	 */
 	end: PropTypes.bool,
+
+	/**
+	 * Handler to be called on click
+	 */
+	onClick: PropTypes.func.isRequired,
+
+	/**
+	 * Children
+	 */
+	children: PropTypes.node.isRequired,
 
 	/**
 	 * The override API

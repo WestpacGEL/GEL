@@ -10,14 +10,7 @@ import { GroupButton, groupButtonStyles } from './overrides/groupButton';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
-export const Group = ({
-	index,
-	text,
-	children,
-	className,
-	overrides: componentOverrides,
-	...rest
-}) => {
+export const Group = ({ index, text, children, overrides: componentOverrides, ...rest }) => {
 	const { openGroup, ropeGraph, handleClick } = useProgressRopeContext();
 	const active = ropeGraph[index].includes('visited');
 
@@ -30,21 +23,22 @@ export const Group = ({
 		Group: {
 			styles: groupStyles,
 			component: GroupWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		GroupButton: {
 			styles: groupButtonStyles,
 			component: GroupButton,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		GroupItems: {
 			styles: groupItemsStyles,
 			component: GroupItems,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
+		index,
 		text,
 		active,
 		overrides: componentOverrides,
@@ -59,12 +53,18 @@ export const Group = ({
 	);
 	return (
 		<overrides.Group.component
-			className={className}
+			index={index}
+			text={text}
+			active={active}
+			{...rest}
 			{...overrides.Group.attributes(state)}
 			css={overrides.Group.styles(state)}
 		>
 			<overrides.GroupButton.component
 				onClick={() => handleClick(index)}
+				index={index}
+				text={text}
+				active={active}
 				{...overrides.GroupButton.attributes(state)}
 				css={overrides.GroupButton.styles(state)}
 			>
@@ -72,6 +72,9 @@ export const Group = ({
 			</overrides.GroupButton.component>
 			<overrides.GroupItems.component
 				hidden={openGroup === null || index !== openGroup}
+				index={index}
+				text={text}
+				active={active}
 				{...overrides.GroupItems.attributes(state)}
 				css={overrides.GroupItems.styles(state)}
 			>
@@ -85,6 +88,11 @@ export const Group = ({
 // Types
 // ==============================
 Group.propTypes = {
+	/**
+	 * The index of this item
+	 */
+	index: PropTypes.number,
+
 	/**
 	 * Group text
 	 */
