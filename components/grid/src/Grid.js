@@ -77,6 +77,7 @@ export const Grid = ({
 			minRowHeight={minRowHeight}
 			rowGap={rowGap}
 			rows={rows}
+			{...rest}
 			{...overrides.Grid.attributes(state)}
 			css={overrides.Grid.styles(state)}
 			children={children}

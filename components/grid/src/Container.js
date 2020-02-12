@@ -37,9 +37,10 @@ export const Container = ({ children, overrides: componentOverrides, ...rest }) 
 
 	return (
 		<overrides.Container.component
-			children={children}
+			{...rest}
 			{...overrides.Container.attributes(state)}
 			css={overrides.Container.styles(state)}
+			children={children}
 		/>
 	);
 };

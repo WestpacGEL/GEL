@@ -56,9 +56,10 @@ export const Cell = ({
 			left={left}
 			top={top}
 			width={width}
-			children={children}
+			{...rest}
 			{...overrides.Cell.attributes(state)}
 			css={overrides.Cell.styles(state)}
+			children={children}
 		/>
 	);
 };
