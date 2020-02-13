@@ -43,7 +43,13 @@ export const ModalFooter = ({ overrides: componentOverrides, ...rest }) => {
 // ==============================
 // Types
 // ==============================
+
 ModalFooter.propTypes = {
+	/**
+	 * Modal footer content
+	 */
+	children: PropTypes.node,
+
 	/**
 	 * The override API
 	 */

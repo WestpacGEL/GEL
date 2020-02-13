@@ -45,6 +45,11 @@ export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
 // ==============================
 ModalBody.propTypes = {
 	/**
+	 * Modal body content
+	 */
+	children: PropTypes.node,
+
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
