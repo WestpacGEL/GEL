@@ -1,7 +1,6 @@
-import { importView } from '@keystonejs/build-field-types';
-import { Block } from '../Block';
+const { Block } = require('@keystonejs/field-content/Block');
 
-export default class DynamicComponentsBlock extends Block {
+class DynamicComponentsBlock extends Block {
 	constructor(options, stuff) {
 		super(options, stuff);
 		if (!options.components) {
@@ -13,9 +12,11 @@ export default class DynamicComponentsBlock extends Block {
 		return 'dynamic-components';
 	}
 	getAdminViews() {
-		return [importView('../views/editor/blocks/dynamic-components'), this.components];
+		return [require.resolve('./dynamic-components-view'), this.components];
 	}
 	getViewOptions() {
 		return { components: this.components };
 	}
 }
+
+module.exports = { DynamicComponentsBlock };
