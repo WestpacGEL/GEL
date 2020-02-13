@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, mergeWith } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Footer, footerStyles } from './overrides/footer';
-import { usePanelContext } from './Panel';
 import pkg from '../package.json';
 
 // ==============================
@@ -25,11 +24,8 @@ export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 		},
 	};
 
-	const { overrides: overridesCtx, ...context } = usePanelContext();
-
 	const state = {
 		overrides: componentOverrides,
-		...context,
 		...rest,
 	};
 
@@ -37,7 +33,7 @@ export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
-		mergeWith(componentOverrides, overridesCtx)
+		componentOverrides
 	);
 
 	return (
@@ -54,7 +50,7 @@ export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 
 PanelFooter.propTypes = {
 	/**
-	 * Panel body content
+	 * Panel footer content
 	 */
 	children: PropTypes.node,
 

@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Panel, Header, Body, Footer } from '@westpac/panel';
+import { Panel, Body, Footer } from '@westpac/panel';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Wrapper = props => <div {...props} />;
+const Wrapper = ({ look, heading, headingTag, overrides, ...rest }) => <aside {...rest} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -26,6 +26,12 @@ function Example({ brand }) {
 				borderColor: 'palevioletred',
 			}),
 		},
+		Heading: {
+			styles: styles => ({
+				...styles,
+				color: 'darkmagenta',
+			}),
+		},
 		Body: {
 			styles: styles => ({
 				...styles,
@@ -37,7 +43,7 @@ function Example({ brand }) {
 				...styles,
 				backgroundColor: 'lightpink',
 				border: 'pink',
-				color: 'mediumvioletred',
+				color: 'darkmagenta',
 			}),
 		},
 	};
@@ -48,8 +54,7 @@ function Example({ brand }) {
 
 			<h2>With overrides applied</h2>
 
-			<Panel>
-				<Header>Panel title</Header>
+			<Panel heading="Panel title">
 				<Body>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
@@ -64,6 +69,7 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides applied</h2>
 
 			<Panel
+				heading="Panel title"
 				overrides={{
 					Header: {
 						styles: styles => ({
@@ -73,7 +79,6 @@ function Example({ brand }) {
 					},
 				}}
 			>
-				<Header>Panel title</Header>
 				<Body>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
