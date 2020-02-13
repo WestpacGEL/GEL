@@ -1,33 +1,30 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, devWarning, wrapHandlers, overrideReconciler } from '@westpac/core';
-import React, { Children, cloneElement, useState } from 'react';
+import { Children, cloneElement, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { ButtonGroup as BtnGroupWrapper, buttonGroupStyles } from './overrides/buttonGroup';
-import { Button } from './Button';
+import { ButtonGroupItem } from './ButtonGroupItem';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-
-export const ButtonGroup = props => {
-	const {
-		block,
-		children,
-		data,
-		defaultValue,
-		look,
-		name,
-		disabled,
-		onChange,
-		value: controlledValue,
-		size,
-		className,
-		overrides: componentOverrides,
-		...rest
-	} = props;
+export const ButtonGroup = ({
+	name,
+	value: controlledValue,
+	defaultValue,
+	onChange = () => {},
+	data,
+	look,
+	size,
+	block,
+	disabled,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -42,20 +39,21 @@ export const ButtonGroup = props => {
 		ButtonGroup: {
 			styles: buttonGroupStyles,
 			component: BtnGroupWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
-		block,
-		data,
-		defaultValue,
-		look,
 		name,
-		disabled,
-		onChange,
 		value: controlledValue,
+		defaultValue,
+		onChange,
+		data,
+		look,
 		size,
+		block,
+		disabled,
+		children,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -67,48 +65,51 @@ export const ButtonGroup = props => {
 		componentOverrides
 	);
 
-	const handleClick = (val, onClick) =>
-		wrapHandlers(onClick, () => {
-			if (onChange) {
-				onChange(val);
-			} else {
-				setValue(val);
-			}
-		});
+	const handleChange = (event, val) => {
+		wrapHandlers(
+			() => onChange(event, val),
+			() => setValue(val)
+		)(event);
+	};
 
 	const actualValue = typeof controlledValue !== 'undefined' ? controlledValue : value;
 
-	// Fork map behaviour when children VS data
 	return (
 		<overrides.ButtonGroup.component
-			className={className}
+			{...rest}
 			{...overrides.ButtonGroup.attributes(state)}
 			css={overrides.ButtonGroup.styles(state)}
 		>
 			{data
-				? data.map((button, index) => {
-						const val = button.value || index;
-						const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
-						const onClick = handleClick(val, button.onClick);
-						const btnProps = { ...button, disabled, look, onClick, size, soft };
-
-						return <Button key={val} {...btnProps} overrides={componentOverrides} />;
+				? data.map((item, index) => {
+						const val = item.value || index;
+						const checked = val === actualValue;
+						const itemProps = {
+							...item,
+							name,
+							value: val,
+							onChange: handleChange,
+							checked,
+							look,
+							size,
+							disabled,
+						};
+						return <ButtonGroupItem key={val} {...itemProps} overrides={componentOverrides} />;
 				  })
 				: Children.map(children, (child, index) => {
 						const val = child.props.value || index;
-						const soft = val !== actualValue; // NOTE: this is like the inverse of "selected"
-						const onClick = handleClick(val, child.props.onClick);
-
+						const checked = val === actualValue;
 						return cloneElement(child, {
+							name,
+							value: val,
+							checked,
 							look,
-							onClick,
+							onChange: handleChange,
 							size,
-							soft,
 							disabled,
 							overrides: componentOverrides,
 						});
 				  })}
-			{name && <input type="hidden" value={actualValue} name={name} />}
 		</overrides.ButtonGroup.component>
 	);
 };
@@ -121,39 +122,9 @@ const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 ButtonGroup.propTypes = {
 	/**
-	 * Block mode. Fill parent width
-	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
-
-	/**
-	 * Button group children
-	 */
-	children: PropTypes.node,
-
-	/**
-	 * Alternative to children
-	 */
-	data: PropTypes.arrayOf(PropTypes.object),
-
-	/**
-	 * The value of the initially selected button, if numeric an index is assumed
-	 */
-	defaultValue: ValueType.isRequired,
-
-	/**
-	 * Button look. Passed on to each child button
-	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'faint']).isRequired,
-
-	/**
-	 * If used inside a form, provide a name property to capture the value in a hidden input
+	 * Name to be used for radio inputs
 	 */
 	name: PropTypes.string,
-
-	/**
-	 * Change the value. Requires `value`
-	 */
-	onChange: PropTypes.func,
 
 	/**
 	 * Control the value, if numeric an index is assumed. Requires `onChange`
@@ -161,14 +132,47 @@ ButtonGroup.propTypes = {
 	value: ValueType,
 
 	/**
+	 * The value of the initially selected button, if numeric an index is assumed
+	 */
+	defaultValue: ValueType.isRequired,
+
+	/**
+	 * Change the value. Requires `value`
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * Alternative to children
+	 */
+	data: PropTypes.arrayOf(PropTypes.object),
+
+	/**
+	 * Button look. Passed on to each child button
+	 */
+	look: PropTypes.oneOf(['primary', 'hero', 'faint']).isRequired,
+
+	/**
 	 * Button size. Passed on to each child button
 	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
+	]).isRequired,
+
+	/**
+	 * Block mode. Fill parent width
+	 */
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
 
 	/**
 	 * Button group disabled
 	 */
 	disabled: PropTypes.bool.isRequired,
+
+	/**
+	 * Button group children
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API
@@ -183,9 +187,9 @@ ButtonGroup.propTypes = {
 };
 
 ButtonGroup.defaultProps = {
-	look: 'hero',
-	block: false,
 	defaultValue: -1,
+	look: 'hero',
 	size: 'medium',
+	block: false,
 	disabled: false,
 };

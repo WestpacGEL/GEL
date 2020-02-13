@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, asArray, useMediaQuery } from '@westpac/core';
-import React from 'react';
 
 export const ButtonGroup = ({ block, ...rest }) => <div {...rest} />;
 

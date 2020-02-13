@@ -1,0 +1,94 @@
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { ButtonGroup, Item } from '@westpac/button-group';
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/button-group'] = {
+		ButtonGroup: {
+			styles: styles => ({
+				...styles,
+				padding: 5,
+				outline: `2px solid palevioletred`,
+			}),
+		},
+		ButtonGroupItem: {
+			styles: (styles, { checked }) => ({
+				...styles,
+				backgroundColor: !checked ? 'white' : 'palevioletred',
+
+				':hover': {
+					backgroundColor: 'rgba(219,112,147,0.7)',
+				},
+			}),
+		},
+	};
+	return (
+		<GEL brand={overridesWithTokens}>
+			<Intopia ignore />
+			<h2>With overrides applied</h2>
+			<ButtonGroup>
+				<Item value="left">Left</Item>
+				<Item value="middle">Middle</Item>
+				<Item value="right">Right</Item>
+			</ButtonGroup>
+			<h3>Data Driven</h3>
+			<ButtonGroup
+				name="data-group"
+				data={[
+					{ children: 'Left', value: 'left' },
+					{ children: 'Middle', value: 'middle' },
+					{ children: 'Right', value: 'right' },
+				]}
+			/>
+			<h2>With overrides and component overrides</h2>
+			<ButtonGroup
+				overrides={{
+					ButtonGroup: {
+						styles: styles => ({
+							...styles,
+							padding: 5,
+							outline: `2px solid blue`,
+						}),
+					},
+				}}
+			>
+				<Item value="left">Left</Item>
+				<Item value="middle">Middle</Item>
+				<Item value="right">Right</Item>
+			</ButtonGroup>
+			<h3>Data Driven</h3>
+			<ButtonGroup
+				name="data-group"
+				data={[
+					{ children: 'Left', value: 'left' },
+					{ children: 'Middle', value: 'middle' },
+					{ children: 'Right', value: 'right' },
+				]}
+				overrides={{
+					ButtonGroup: {
+						styles: styles => ({
+							...styles,
+							padding: 5,
+							outline: `2px solid red`,
+						}),
+					},
+					ButtonGroupItem: {
+						styles: (styles, { checked }) => ({
+							...styles,
+							backgroundColor: !checked ? 'white' : 'dodgerblue',
+
+							':hover': {
+								backgroundColor: 'rgba(30,144,255,0.7)',
+							},
+						}),
+					},
+				}}
+			/>
+		</GEL>
+	);
+}
+
+export default Example;
