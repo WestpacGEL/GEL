@@ -12,7 +12,7 @@ function Example({ context }) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 
 			<Alert look="success" dismissible>

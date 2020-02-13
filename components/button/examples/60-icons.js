@@ -17,7 +17,7 @@ import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 			<h2>Icon after</h2>
 			<Button look="primary" size="small" iconAfter={HouseIcon}>

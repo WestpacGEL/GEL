@@ -12,7 +12,7 @@ const logos = Object.keys(components).filter(s => s.endsWith('Logo'));
 
 function Example({ context }) {
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 
 			<Grid>

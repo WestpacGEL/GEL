@@ -8,7 +8,7 @@ import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 			<Button look="primary" disabled>
 				Primary

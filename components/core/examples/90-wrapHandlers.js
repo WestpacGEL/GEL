@@ -24,7 +24,7 @@ function Example({ context }) {
 	wrapHandlers(one, two)({});
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia ignore />
 			<Code>
 				{`function one() {

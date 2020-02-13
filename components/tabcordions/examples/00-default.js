@@ -4,7 +4,7 @@ import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 function Example({ context }) {
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Tabcordion>
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing

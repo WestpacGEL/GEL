@@ -66,7 +66,7 @@ function Example({ context }) {
 	const [activeSize, setSize] = useState(2);
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 
 			<Row>

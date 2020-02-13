@@ -9,7 +9,7 @@ import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 			<h2>Assistive text (screen reader text)</h2>
 			<Button iconAfter={HouseIcon} assistiveText="Go to home" />{' '}

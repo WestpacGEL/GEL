@@ -10,7 +10,7 @@ function Example({ context }) {
 	const weights = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
 	return (
-		<Playground context={context} brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
+		<Playground context={context} css={{ ...useFonts({ path: 'assets/' }) }}>
 			<Intopia ignore />
 
 			<h2>Type</h2>

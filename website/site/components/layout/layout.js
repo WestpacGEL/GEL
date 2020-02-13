@@ -32,7 +32,7 @@ const LayoutView = ({ components, children }) => {
 
 const Wrapper = props => {
 	const router = useRouter();
-	const brandParam = router.query.brand || '';
+	const brandParam = router.query.b || '';
 
 	const { brands, brand } = useBrandSwitcher();
 	const { data, error } = useQuery(ALL_PAGES);
@@ -155,8 +155,10 @@ const MainContainer = props => {
 	);
 };
 
-export const Layout = props => (
-	<BrandSwitcherProvider>
-		<Wrapper {...props} />
-	</BrandSwitcherProvider>
-);
+export const Layout = props => {
+	return (
+		<BrandSwitcherProvider brand={props.brand}>
+			<Wrapper {...props} />
+		</BrandSwitcherProvider>
+	);
+};

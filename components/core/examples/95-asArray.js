@@ -9,7 +9,7 @@ import { Playground } from '../../../website/site/components/playground/macro';
 function Example({ context }) {
 	console.log(asArray([1, 2, 3]));
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia ignore />
 			<Code>{`asArray([ 1, 2, 3])`}</Code>
 			=>

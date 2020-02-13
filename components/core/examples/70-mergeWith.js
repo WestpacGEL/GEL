@@ -11,7 +11,7 @@ function Example({ context }) {
 	let other = (other = { a: [{ c: 3 }, { e: 5 }] });
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia ignore />
 			<Code>
 				const object = {JSON.stringify(object, null, 2)};{<br css={{ margin: '1rem' }} />}

@@ -13,7 +13,7 @@ function ButtonGroupExample({ context }) {
 	const [index, setIndex] = useState(-1);
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 
 			<ButtonGroup>

@@ -13,7 +13,7 @@ function Example({ context }) {
 	const [current2, setCurrent2] = useState(0);
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 
 			<h2>Declarative</h2>

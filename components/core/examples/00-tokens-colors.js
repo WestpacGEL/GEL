@@ -10,7 +10,7 @@ function Example({ context }) {
 	const { tints, ...primaryColors } = COLORS;
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia ignore />
 
 			<h2>Colors</h2>

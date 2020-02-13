@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-
+import { useRouter } from 'next/router';
 import bomBrand from '@westpac/bom';
 import bsaBrand from '@westpac/bsa';
 import btfgBrand from '@westpac/btfg';
@@ -12,25 +12,32 @@ import wbgBrand from '@westpac/wbg';
 // ==============================
 
 const BRANDS = {
-	BOM: bomBrand,
-	BSA: bsaBrand,
-	BTFG: btfgBrand,
-	STG: stgBrand,
-	WBC: wbcBrand,
-	WBG: wbgBrand,
+	BOM: { ...bomBrand, name: 'Bank of Melbourne' },
+	BSA: { ...bsaBrand, name: 'Bank of South Australia' },
+	BTFG: { ...btfgBrand, name: 'BT Financial Group' },
+	STG: { ...stgBrand, name: 'St.George' },
+	WBC: { ...wbcBrand, name: 'Westpac' },
+	WBG: { ...wbgBrand, name: 'Westpac Group' },
 };
 
 const BrandSwitcherContext = createContext();
 
-const BrandSwitcherProvider = ({ children }) => {
-	const [brand, setBrand] = useState('BOM');
+const BrandSwitcherProvider = ({ children, brand: initialBrand }) => {
+	const [brand, setBrand] = useState(initialBrand || 'BOM');
+	const router = useRouter();
 
 	return (
 		<BrandSwitcherContext.Provider
 			value={{
 				brands: BRANDS,
 				brand,
-				setBrand,
+				setBrand: brand => {
+					document.cookie = `gel_selected_brand=${brand}`;
+					setBrand(brand);
+					router.push({
+						query: { b: brand },
+					});
+				},
 			}}
 		>
 			{children}

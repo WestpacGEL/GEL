@@ -12,7 +12,7 @@ function Example({ context }) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 
 			<Button onClick={() => setOpen(true)}>Open</Button>

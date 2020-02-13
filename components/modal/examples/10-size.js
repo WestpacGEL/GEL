@@ -29,7 +29,7 @@ function Example({ context }) {
 	const updateModal = (type, open) => dispatch({ type, payload: { open } });
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 
 			<p>

@@ -10,7 +10,7 @@ function Example({ context }) {
 	const Link = ({ children, ...rest }) => <span {...rest}>{children}</span>;
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 			<h2>
 				Button with an <code>&lt;a&gt;</code> tag

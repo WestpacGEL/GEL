@@ -14,7 +14,7 @@ function Example({ context }) {
 	const { height: textareaHeight, width: textareaWidth } = useContainerQuery(textareaRef);
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia ignore />
 
 			<div ref={containerRef}>

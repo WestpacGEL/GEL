@@ -26,7 +26,7 @@ function Example({ context }) {
 	}
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 
 			<h2>Default</h2>

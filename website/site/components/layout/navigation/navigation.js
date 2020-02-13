@@ -9,7 +9,7 @@ import { Heading } from '@westpac/heading';
 import { NavigationBlock } from './navigation-block';
 
 export const Navigation = ({ components }) => {
-	const brandName = useRouter().query.brand || '';
+	const brandName = useRouter().query.b || '';
 	const { SPACING } = useBrand();
 	return (
 		<Fragment>
@@ -83,10 +83,10 @@ const LinkList = props => {
 
 const LinkItem = ({ name, href, as, tag: Tag = 'li', children }) => {
 	const { SPACING } = useBrand();
-	const brandName = useRouter().query.brand || '';
+	const brandName = useRouter().query.b || '';
 	return (
 		<Tag>
-			<Link href={`${href}?brand=${brandName}`} as={`${as}?brand=${brandName}`}>
+			<Link href={`${href}?b=${brandName}`} as={`${as}?b=${brandName}`}>
 				<a
 					css={{
 						cursor: 'pointer',

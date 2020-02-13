@@ -2,10 +2,6 @@ import React, { useState, Suspense } from 'react';
 import Select from '@arch-ui/select';
 import preval from 'preval.macro';
 import importCodeExamples from '../../schema/babel-dynamic-code-block-import.macro';
-import bomBrand from '@westpac/bom';
-import { GEL } from '@westpac/core';
-
-import {} from '@westpac/tabcordion/examples/00-default';
 
 let data = preval`
 const fs = require('fs');
@@ -51,11 +47,7 @@ function ShowCodeBlock({ loadCodeBlock }) {
 	if (!CodeBlock) {
 		throw promise;
 	}
-	return (
-		<GEL brand={bomBrand}>
-			<CodeBlock context="editor" />
-		</GEL>
-	);
+	return <CodeBlock context="editor" />;
 }
 
 export const CodeExample = {

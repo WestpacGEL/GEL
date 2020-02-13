@@ -15,7 +15,7 @@ function Example({ context }) {
 	useOutsideClick(ref, () => alert('Clicked outside'));
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia ignore />
 
 			<Code>{`useOutsideClick(ref, () => alert(Clicked outside))`}</Code>

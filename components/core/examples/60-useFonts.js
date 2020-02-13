@@ -10,7 +10,7 @@ function Example({ context }) {
 	const { TYPE } = useBrand();
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia ignore />
 			<div
 				css={{

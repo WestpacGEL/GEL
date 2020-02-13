@@ -8,7 +8,7 @@ import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 			<p>
 				Active state styling is provided with a <code>:active</code> pseudo-class. The following

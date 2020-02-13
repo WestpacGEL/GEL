@@ -11,7 +11,7 @@ import { Playground } from '../../../website/site/components/playground/macro';
 function Example({ context }) {
 	const [instanceId, setInstanceId] = useState();
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia ignore />
 			<Button onClick={() => setInstanceId(useInstanceId())}>Get instance id</Button>
 			<h2>{instanceId}</h2>

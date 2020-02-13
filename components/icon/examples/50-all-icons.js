@@ -44,7 +44,7 @@ function Example({ context }) {
 		: icons;
 
 	return (
-		<Playground context={context} brand={brand}>
+		<Playground context={context}>
 			<Intopia />
 
 			<Search
