@@ -119,6 +119,7 @@ export const Switch = ({
 				</overrides.Label.component>
 			)}
 			<overrides.Toggle.component
+				aria-label={toggleText[checked ? 0 : 1]}
 				{...overrides.Toggle.attributes(state)}
 				css={overrides.Toggle.styles(state)}
 			>
