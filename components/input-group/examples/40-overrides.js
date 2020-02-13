@@ -5,6 +5,7 @@ import { HouseIcon } from '@westpac/icon';
 import { InputGroup, Left, Right } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const Label = ({ data, overrides, ...rest }) => (
 	<span {...rest}>

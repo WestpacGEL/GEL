@@ -4,6 +4,7 @@ import { jsx } from '@westpac/core';
 import { Label } from '@westpac/label';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const Wrapper = ({ look, value, children, ...props }) => {
 	let Tag = 'span';

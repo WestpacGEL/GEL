@@ -6,6 +6,7 @@ import { HouseIcon } from '@westpac/icon';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const TextWrapper = ({ children, ...rest }) => (
 	<Fragment>

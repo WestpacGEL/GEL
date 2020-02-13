@@ -1,8 +1,10 @@
 import React from 'react';
 import createReactRenderer from './react-renderer';
-import dynamicComponents from '../../../../schema/block-components';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
+import dynamic from 'next/dynamic';
+
+const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
 const Bold = props => <strong css={{ fontWeight: 'bold' }} {...props} />;
 const Italic = props => <em css={{ fontStyle: 'italic' }} {...props} />;
@@ -71,13 +73,8 @@ const slateRenderer = createReactRenderer([
 					</List>
 				);
 
-			case 'do-or-do-not': {
-				debugger;
-			}
-
 			case 'dynamic-components': {
-				let Comp = dynamicComponents[node.data.component].component;
-				return <Comp key={path} {...node.data.props} />;
+				return <DynamicComponents key={path} data={node.data} />;
 			}
 
 			default: {

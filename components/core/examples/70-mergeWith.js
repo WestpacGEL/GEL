@@ -4,6 +4,7 @@ import { jsx, mergeWith } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	let object = { a: [{ b: 2 }, { d: 4 }] };

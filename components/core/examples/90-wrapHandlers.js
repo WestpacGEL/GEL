@@ -4,6 +4,7 @@ import { jsx, wrapHandlers } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function one() {
 	console.log('one called!');

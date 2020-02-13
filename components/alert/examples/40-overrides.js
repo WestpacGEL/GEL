@@ -3,8 +3,9 @@
 import { jsx } from '@westpac/core';
 import { TickIcon, InfoIcon, AlertIcon, HouseIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
-import { Playground } from '../../../website/site/components/playground';
+
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const CloseBtn = ({ onClose, icon: Icon, dismissible, headingTag, look, ...rest }) => (
 	<button onClick={() => onClose()} {...rest}>

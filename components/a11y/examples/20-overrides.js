@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { SkipLink, VisuallyHidden } from '@westpac/a11y';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const SkipLinkWrapper = ({ children, ...rest }) => (
 	<div {...rest} tabIndex={1}>

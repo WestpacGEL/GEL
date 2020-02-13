@@ -4,6 +4,7 @@ import { jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const Wrapper = ({ inline, flipped, ...rest }) => <div {...rest} />;
 

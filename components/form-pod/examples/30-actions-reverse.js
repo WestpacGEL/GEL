@@ -12,6 +12,7 @@ import { Button } from '@westpac/button';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	const { COLORS } = useBrand();

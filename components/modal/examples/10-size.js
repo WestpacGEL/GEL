@@ -6,6 +6,7 @@ import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };

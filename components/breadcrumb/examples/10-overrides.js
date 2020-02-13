@@ -5,6 +5,7 @@ import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
 import { HouseIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const AssistiveText = ({ children, look }) => (
 	<span css={{ verticalAlign: 'middle' }}>{children}</span>
@@ -13,7 +14,7 @@ const AssistiveText = ({ children, look }) => (
 const Icon = ({ current, assistiveText, ...props }) => <HouseIcon {...props} />;
 
 function Example({ context }) {
-	const overridesWithTokens = { };
+	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/breadcrumb'] = {
 		Breadcrumb: {
 			styles: styles => ({

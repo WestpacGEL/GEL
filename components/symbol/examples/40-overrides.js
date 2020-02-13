@@ -12,6 +12,7 @@ import { Cell, Grid, Name } from './_utils';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const Wrapper = ({ children, symbol, assistiveText, viewBoxWidth, viewBoxHeight, ...rest }) => (
 	<Fragment>

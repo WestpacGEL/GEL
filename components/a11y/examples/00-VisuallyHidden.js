@@ -3,11 +3,11 @@
 import { jsx } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 export default ({ context }) => {
 	return (
-		<Playground context={context} context={context}>
+		<Playground context={context}>
 			<Intopia />
 
 			<h2>Screen reader only text</h2>

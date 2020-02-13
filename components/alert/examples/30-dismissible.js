@@ -4,8 +4,9 @@ import { jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
 import { Button } from '@westpac/button';
 import { useState } from 'react';
-import { Playground } from '../../../website/site/components/playground';
+
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	const [open, setOpen] = useState(false);

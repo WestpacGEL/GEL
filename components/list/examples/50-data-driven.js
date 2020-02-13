@@ -6,6 +6,7 @@ import { GithubIcon, HouseIcon } from '@westpac/icon';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	return (

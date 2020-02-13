@@ -2,6 +2,8 @@ import React, { useState, Suspense } from 'react';
 import Select from '@arch-ui/select';
 import preval from 'preval.macro';
 import importCodeExamples from '../../schema/babel-dynamic-code-block-import.macro';
+import bomBrand from '@westpac/bom';
+import { GEL } from '@westpac/core';
 
 import {} from '@westpac/tabcordion/examples/00-default';
 
@@ -39,7 +41,7 @@ function ShowCodeBlock({ loadCodeBlock }) {
 	let promise = promiseCache.get(loadCodeBlock);
 	if (!promise) {
 		promise = loadCodeBlock().then(mod => {
-			cache.set(loadCodeBlock, mod.default);
+			valueCache.set(loadCodeBlock, mod.default);
 		});
 
 		promiseCache.set(loadCodeBlock, promise);
@@ -49,7 +51,11 @@ function ShowCodeBlock({ loadCodeBlock }) {
 	if (!CodeBlock) {
 		throw promise;
 	}
-	return <CodeBlock context="editor" />;
+	return (
+		<GEL brand={bomBrand}>
+			<CodeBlock context="editor" />
+		</GEL>
+	);
 }
 
 export const CodeExample = {
@@ -67,11 +73,16 @@ export const CodeExample = {
 		);
 	},
 	component: ({ value }) => {
+		debugger;
+		if (typeof window === 'undefined') {
+			debugger;
+
+			return <p>Loading...</p>;
+		}
+		debugger;
+
 		const loadCodeBlock = codeExamples[value];
-		// const [loaded, setLoaded] = useState();
-		// window.setTimeout(() => {
-		// 	setLoaded(true);
-		// }, 1500);
+
 		return (
 			<Suspense fallback={<p>Loading...</p>}>
 				{loadCodeBlock && typeof window !== 'undefined' ? (

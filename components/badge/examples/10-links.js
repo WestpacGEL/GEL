@@ -5,6 +5,7 @@ import { Badge } from '@westpac/badge';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	return (

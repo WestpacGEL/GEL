@@ -7,6 +7,7 @@ import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	const [state, dispatch] = useProgress();

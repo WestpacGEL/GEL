@@ -5,6 +5,7 @@ import { jsx } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const Label = ({ toggleText, assistiveText, ...props }) => <strong {...props} />;
 

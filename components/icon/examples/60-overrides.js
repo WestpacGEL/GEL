@@ -14,6 +14,7 @@ import {
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const Wrapper = ({ children, icon, color, size, assistiveText, ...rest }) => (
 	<Fragment>

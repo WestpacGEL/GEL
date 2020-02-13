@@ -5,6 +5,7 @@ import { FormPod, FormPodPanel, FormPodPanelBody } from '@westpac/form-pod';
 import { TickIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	const { COLORS } = useBrand();

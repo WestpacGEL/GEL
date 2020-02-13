@@ -4,6 +4,7 @@ import { jsx } from '@westpac/core';
 import { Badge } from '@westpac/badge';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const Wrapper = ({ look, children, ...rest }) => (
 	<span {...rest}>

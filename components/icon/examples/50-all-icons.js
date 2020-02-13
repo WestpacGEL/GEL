@@ -6,6 +6,7 @@ import { Cell, Grid, Name } from './_util';
 import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 // can't believe this works...
 const icons = Object.keys(components);

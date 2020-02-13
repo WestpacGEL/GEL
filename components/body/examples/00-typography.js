@@ -4,6 +4,7 @@ import { jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 // Body tag as a component example
 const BodyTag = ({ children, ...props }) => {

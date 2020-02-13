@@ -3,8 +3,9 @@
 import { jsx } from '@westpac/core';
 import { HelpIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
-import { Playground } from '../../../website/site/components/playground';
+
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	return (

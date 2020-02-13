@@ -5,6 +5,7 @@ import { useContainerQuery } from '@westpac/hooks';
 import { useRef } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	const textareaRef = useRef();

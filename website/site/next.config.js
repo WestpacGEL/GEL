@@ -7,7 +7,7 @@ const config = {
 			use: 'raw-loader',
 		});
 
-		config.externals = [];
+		delete config.devtool;
 
 		if (!isServer) {
 			config.node = {

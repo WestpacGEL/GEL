@@ -12,8 +12,6 @@ export const Playground = ({
 	inline,
 	theme = {},
 }) => {
-	console.log({ context, inline });
-	console.log(code);
 	if (!code && children.length > 1) {
 		console.warn(
 			'Playground code has not been compiled by the babel plugin. Please check configuration.'

@@ -5,6 +5,7 @@ import { jsx } from '@westpac/core';
 import { Button, ButtonGroup } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function ButtonGroupExample({ context }) {
 	const [controlled, setControlled] = useState();

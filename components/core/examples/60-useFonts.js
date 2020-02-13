@@ -4,6 +4,7 @@ import { jsx, Global, useFonts, useBrand } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	const { TYPE } = useBrand();

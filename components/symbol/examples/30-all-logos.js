@@ -6,6 +6,7 @@ import { LogoSmall } from '@westpac/symbol';
 import { Cell, Grid, Name } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 const logos = Object.keys(components).filter(s => s.endsWith('Logo'));
 

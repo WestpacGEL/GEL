@@ -4,6 +4,7 @@ import { jsx } from '@westpac/core';
 import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	return (

@@ -6,6 +6,7 @@ import { TextInput, Textarea, Select } from '@westpac/text-input';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
+import { Playground } from '../../../website/site/components/playground/macro';
 
 function Example({ context }) {
 	return (
