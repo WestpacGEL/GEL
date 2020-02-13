@@ -73,13 +73,9 @@ export const CodeExample = {
 		);
 	},
 	component: ({ value }) => {
-		debugger;
 		if (typeof window === 'undefined') {
-			debugger;
-
 			return <p>Loading...</p>;
 		}
-		debugger;
 
 		const loadCodeBlock = codeExamples[value];
 
