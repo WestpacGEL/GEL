@@ -81,7 +81,6 @@ export const itemStyles = (_, { type, look, spacing, nested }) => {
 
 	return {
 		margin: spacing === 'large' ? '0.75rem 0' : '0.375rem 0',
-		listStyle: type !== 'ordered' && 'none',
 		paddingLeft: '1.1875rem',
 		position: 'relative',
 		...styleMap[type],
