@@ -20,15 +20,16 @@ import pkg from '../package.json';
 // ==============================
 
 export const FormCheck = ({
-	children,
 	type,
 	name,
 	size,
 	inline,
 	flipped,
-	data,
-	onChange = () => {},
+	disabled,
 	defaultValue,
+	data,
+	children,
+	onChange = () => {},
 	className,
 	overrides: componentOverrides,
 	...rest
