@@ -71,6 +71,7 @@ export const ButtonGroupItem = ({
 				name={name}
 				value={value}
 				checked={checked}
+				disabled={disabled}
 				type="radio"
 				css={{ position: 'absolute', zIndex: '-1', opacity: 0 }}
 				onChange={event => onChange(event, value)}

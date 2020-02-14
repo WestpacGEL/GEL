@@ -124,7 +124,7 @@ ButtonGroup.propTypes = {
 	/**
 	 * Name to be used for radio inputs
 	 */
-	name: PropTypes.string,
+	name: PropTypes.string.isRequired,
 
 	/**
 	 * Control the value, if numeric an index is assumed. Requires `onChange`
