@@ -79,8 +79,9 @@ export const FormCheck = ({
 		size,
 		inline,
 		flipped,
-		data,
+		disabled,
 		defaultValue,
+		data,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -114,6 +115,7 @@ export const FormCheck = ({
 				...state,
 				handleChange,
 				selected: selected.includes(child.props.value),
+				disabled: child.props.disabled || disabled,
 				overrides: componentOverrides,
 			})
 		);
@@ -159,6 +161,11 @@ FormCheck.propTypes = {
 	 * Form check orientation (control on the right).
 	 */
 	flipped: PropTypes.bool.isRequired,
+
+	/**
+	 * Disable all Form check options
+	 */
+	disabled: PropTypes.bool,
 
 	/**
 	 * A function called on change
