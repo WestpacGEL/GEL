@@ -2,16 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const Input = ({
-	name,
-	label,
-	size,
-	block,
-	flipped,
-	toggleText,
-	assistiveText,
-	...rest
-}) => {
+export const Input = ({ name, label, size, block, flipped, toggleText, ...rest }) => {
 	return <input {...rest} />;
 };
 

@@ -12,7 +12,6 @@ export const Switch = ({
 	flipped,
 	toggleText,
 	disabled,
-	assistiveText,
 	...rest
 }) => <label {...rest} />;
 

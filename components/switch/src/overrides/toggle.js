@@ -12,7 +12,6 @@ export const Toggle = ({
 	flipped,
 	toggleText,
 	disabled,
-	assistiveText,
 	...rest
 }) => <span {...rest} />;
 

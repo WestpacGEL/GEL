@@ -13,8 +13,6 @@ export const ToggleText = ({
 	toggleText,
 	disabled,
 	position,
-	checked,
-	size,
 	...props
 }) => <span {...props} />;
 

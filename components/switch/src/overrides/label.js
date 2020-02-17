@@ -11,7 +11,6 @@ export const Label = ({
 	flipped,
 	toggleText,
 	disabled,
-	assistiveText,
 	...rest
 }) => <span {...rest} />;
 
