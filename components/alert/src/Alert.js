@@ -133,7 +133,7 @@ export const Alert = ({
 		/>
 	);
 
-	const AlertJSX = ({ props }) => (
+	const AlertJSX = () => (
 		<overrides.Alert.component
 			open={open}
 			look={look}

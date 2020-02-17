@@ -12,7 +12,15 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Crumb = ({ current, href, text, onClick, overrides: componentOverrides, ...rest }) => {
+export const Crumb = ({
+	current,
+	href,
+	text,
+	assistiveText,
+	onClick,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		COLORS,
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -41,6 +49,7 @@ export const Crumb = ({ current, href, text, onClick, overrides: componentOverri
 		current,
 		href,
 		text,
+		assistiveText,
 		onClick,
 		overrides: componentOverrides,
 		...rest,
@@ -60,31 +69,15 @@ export const Crumb = ({ current, href, text, onClick, overrides: componentOverri
 			href={href}
 			text={text}
 			assistiveText={assistiveText}
-			currentAssistiveText={currentAssistiveText}
 			{...rest}
 			{...overrides.Crumb.attributes(state)}
 			css={overrides.Crumb.styles(state)}
 		>
-			{current && (
-				<overrides.AssistiveText.component
-					current={current}
-					href={href}
-					text={text}
-					assistiveText={currentAssistiveText}
-					currentAssistiveText={currentAssistiveText}
-					insideCrumb={true}
-					{...overrides.AssistiveText.attributes(state)}
-					css={overrides.AssistiveText.styles(state)}
-				>
-					{currentAssistiveText}
-				</overrides.AssistiveText.component>
-			)}
 			<overrides.Link.component
 				current={current}
-				href={href}
+				href={current ? null : href}
 				text={text}
-				assistiveText={currentAssistiveText}
-				currentAssistiveText={currentAssistiveText}
+				assistiveText={assistiveText}
 				onClick={onClick}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
@@ -93,14 +86,13 @@ export const Crumb = ({ current, href, text, onClick, overrides: componentOverri
 			</overrides.Link.component>
 			{!current && (
 				<overrides.Icon.component
-					current={current}
-					href={href}
-					text={text}
-					assistiveText={currentAssistiveText}
-					currentAssistiveText={currentAssistiveText}
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
+					current={current}
+					href={href}
+					text={text}
+					assistiveText={assistiveText}
 					{...overrides.Icon.attributes(state)}
 					css={overrides.Icon.styles(state)}
 				/>

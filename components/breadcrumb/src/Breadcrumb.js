@@ -75,7 +75,6 @@ export const Breadcrumb = ({
 				{
 					current: index === length - 1,
 					assistiveText,
-					currentAssistiveText,
 					overrides: componentOverrides,
 				},
 				index
@@ -85,8 +84,8 @@ export const Breadcrumb = ({
 
 	return (
 		<overrides.Breadcrumb.component
-			className={className}
 			aria-label={assistiveText}
+			data={data}
 			{...overrides.Breadcrumb.attributes(state)}
 			css={overrides.Breadcrumb.styles(state)}
 		>
