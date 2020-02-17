@@ -118,8 +118,6 @@ export const ButtonGroup = ({
 // Types
 // ==============================
 
-const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
-
 ButtonGroup.propTypes = {
 	/**
 	 * Name to be used for radio inputs
@@ -132,9 +130,9 @@ ButtonGroup.propTypes = {
 	value: ValueType,
 
 	/**
-	 * The value of the initially selected button, if numeric an index is assumed
+	 * Default value of this component
 	 */
-	defaultValue: ValueType.isRequired,
+	defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
 	/**
 	 * Change the value. Requires `value`

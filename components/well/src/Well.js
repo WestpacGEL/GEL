@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Well = ({ overrides: componentOverrides, tag: Tag, ...rest }) => {
+export const Well = ({ tag: Tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -20,7 +20,7 @@ export const Well = ({ overrides: componentOverrides, tag: Tag, ...rest }) => {
 		Well: {
 			styles: wellStyles,
 			component: WellWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -39,9 +39,12 @@ export const Well = ({ overrides: componentOverrides, tag: Tag, ...rest }) => {
 
 	return (
 		<overrides.Well.component
+			{...rest}
 			{...overrides.Well.attributes(state)}
 			css={overrides.Well.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Well.component>
 	);
 };
 

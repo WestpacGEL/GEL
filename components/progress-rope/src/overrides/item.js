@@ -11,12 +11,10 @@ export const Item = ({
 	active,
 	furthest,
 	overrides,
-	...props
-}) => <li {...props} />;
+	...rest
+}) => <li {...rest} />;
 
-export const itemStyles = (_, { grouped, end }) => {
-	return {
-		position: 'relative',
-		marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
-	};
-};
+export const itemStyles = (_, { grouped, end }) => ({
+	position: 'relative',
+	marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
+});

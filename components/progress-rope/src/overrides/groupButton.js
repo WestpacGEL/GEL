@@ -2,9 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const GroupButton = ({ text, active, overrides, ...props }) => (
-	<button type="button" {...props} />
-);
+export const GroupButton = ({ index, text, active, ...rest }) => <button type="button" {...rest} />;
 
 export const groupButtonStyles = (_, { active }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();

@@ -30,7 +30,7 @@ export const Table = ({
 	striped,
 	bordered,
 	responsive,
-	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -46,12 +46,12 @@ export const Table = ({
 		Wrapper: {
 			styles: wrapperStyles,
 			component: Wrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Table: {
 			styles: tableStyles,
 			component: TableWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -77,14 +77,22 @@ export const Table = ({
 			}}
 		>
 			<overrides.Wrapper.component
-				className={className}
+				striped={striped}
+				bordered={bordered}
+				responsive={responsive}
 				{...overrides.Wrapper.attributes(state)}
 				css={overrides.Wrapper.styles(state)}
 			>
 				<overrides.Table.component
+					striped={striped}
+					bordered={bordered}
+					responsive={responsive}
+					{...rest}
 					{...overrides.Table.attributes(state)}
 					css={overrides.Table.styles(state)}
-				/>
+				>
+					{children}
+				</overrides.Table.component>
 			</overrides.Wrapper.component>
 		</TableContext.Provider>
 	);

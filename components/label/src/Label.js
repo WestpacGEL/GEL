@@ -20,7 +20,7 @@ export const Label = ({ look, value, overrides: componentOverrides, ...rest }) =
 		Label: {
 			styles: labelStyles,
 			component: LabelWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -40,6 +40,9 @@ export const Label = ({ look, value, overrides: componentOverrides, ...rest }) =
 
 	return (
 		<overrides.Label.component
+			look={look}
+			value={value}
+			{...rest}
 			{...overrides.Label.attributes(state)}
 			css={overrides.Label.styles(state)}
 		>

@@ -2,16 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const ButtonDropdown = ({
-	dropdownSize,
-	look,
-	soft,
-	block,
-	justify,
-	iconAfter,
-	iconBefore,
-	...rest
-}) => <div {...rest} />;
+export const ButtonDropdown = ({ open, text, dropdownSize, block, ...rest }) => <div {...rest} />;
 
 export const buttonDropdownStyles = (_, { block }) => {
 	return {

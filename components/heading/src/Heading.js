@@ -13,7 +13,7 @@ import pkg from '../package.json';
 /**
  * Heading: Headlines for your page needs
  */
-export const Heading = ({ tag: Tag, size, children, overrides: componentOverrides, ...rest }) => {
+export const Heading = ({ tag, size, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -23,12 +23,12 @@ export const Heading = ({ tag: Tag, size, children, overrides: componentOverride
 		Heading: {
 			styles: headingStyles,
 			component: HeadingWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
-		tag: Tag,
+		tag,
 		size,
 		overrides: componentOverrides,
 		...rest,
@@ -43,6 +43,9 @@ export const Heading = ({ tag: Tag, size, children, overrides: componentOverride
 
 	return (
 		<overrides.Heading.component
+			tag={tag}
+			size={size}
+			{...rest}
 			{...overrides.Heading.attributes(state)}
 			css={overrides.Heading.styles(state)}
 		>

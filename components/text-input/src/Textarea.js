@@ -27,7 +27,7 @@ export const Textarea = ({
 		Textarea: {
 			styles: textareaStyles,
 			component: TextareaComponent,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -49,6 +49,11 @@ export const Textarea = ({
 
 	return (
 		<overrides.Textarea.component
+			size={size}
+			width={width}
+			inline={inline}
+			invalid={invalid}
+			{...rest}
 			{...overrides.Textarea.attributes(state)}
 			css={overrides.Textarea.styles(state)}
 		/>

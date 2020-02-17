@@ -2,14 +2,21 @@
 
 import { jsx } from '@westpac/core';
 
-export const Input = ({ label, toggleText, flipped, block, ...props }) => {
-	return <input {...props} />;
+export const Input = ({
+	name,
+	label,
+	size,
+	block,
+	flipped,
+	toggleText,
+	assistiveText,
+	...rest
+}) => {
+	return <input {...rest} />;
 };
 
-export const inputStyles = (_, {}) => {
-	return {
-		position: 'absolute',
-		zIndex: '-1',
-		opacity: 0,
-	};
-};
+export const inputStyles = () => ({
+	position: 'absolute',
+	zIndex: '-1',
+	opacity: 0,
+});

@@ -13,15 +13,10 @@ import { Crumb } from './Crumb';
 // Component
 // ==============================
 
-/**
- * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
- */
 export const Breadcrumb = ({
-	children,
 	data,
-	current,
 	assistiveText,
-	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -34,18 +29,17 @@ export const Breadcrumb = ({
 		Breadcrumb: {
 			styles: breadcrumbStyles,
 			component: BreadcrumbWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		List: {
 			styles: listStyles,
 			component: List,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
 		data,
-		current,
 		assistiveText,
 		overrides: componentOverrides,
 		...rest,
@@ -68,6 +62,7 @@ export const Breadcrumb = ({
 					href={href}
 					text={text}
 					onClick={onClick}
+					assistiveText={assistiveText}
 					overrides={componentOverrides}
 				/>
 			);
@@ -77,7 +72,12 @@ export const Breadcrumb = ({
 		allChildren = Children.map(children, (child, index) => {
 			return cloneElement(
 				child,
-				{ current: index === length - 1, overrides: componentOverrides },
+				{
+					current: index === length - 1,
+					assistiveText,
+					currentAssistiveText,
+					overrides: componentOverrides,
+				},
 				index
 			);
 		});
@@ -91,6 +91,9 @@ export const Breadcrumb = ({
 			css={overrides.Breadcrumb.styles(state)}
 		>
 			<overrides.List.component
+				data={data}
+				assistiveText={assistiveText}
+				{...rest}
 				{...overrides.List.attributes(state)}
 				css={overrides.List.styles(state)}
 			>
@@ -105,11 +108,6 @@ export const Breadcrumb = ({
 // ==============================
 
 Breadcrumb.propTypes = {
-	/**
-	 * Any renderable child
-	 */
-	children: PropTypes.node,
-
 	/**
 	 * Data for the crumbs
 	 */

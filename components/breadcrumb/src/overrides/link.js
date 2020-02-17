@@ -3,13 +3,13 @@
 import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 
-export const Link = ({ current, text, href, ...props }) => {
+export const Link = ({ current, href, text, assistiveText, ...rest }) => {
 	const Tag = href ? 'a' : 'button';
 	if (!href) {
-		props.type = 'button';
+		rest.type = 'button';
 	}
 
-	return <Tag href={href} {...props} />;
+	return <Tag href={href} {...rest} />;
 };
 
 export const linkStyles = (_, { current }) => {

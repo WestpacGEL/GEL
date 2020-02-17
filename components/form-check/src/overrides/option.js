@@ -3,9 +3,17 @@
 import { jsx } from '@westpac/core';
 import React from 'react';
 
-export const Option = ({ value, disabled, type, name, flipped, inline, ...rest }) => (
-	<div {...rest} />
-);
+export const Option = ({
+	value,
+	selected,
+	disabled,
+	type,
+	name,
+	size,
+	inline,
+	flipped,
+	...rest
+}) => <div {...rest} />;
 
 export const optionStyles = (_, { size, inline, flipped }) => {
 	const sizeMap = {

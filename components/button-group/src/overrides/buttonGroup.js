@@ -2,7 +2,18 @@
 
 import { jsx, asArray, useMediaQuery } from '@westpac/core';
 
-export const ButtonGroup = ({ block, ...rest }) => <div {...rest} />;
+export const ButtonGroup = ({
+	block,
+	data,
+	defaultValue,
+	look,
+	name,
+	disabled,
+	value: controlledValue,
+	size,
+	onChange,
+	...rest
+}) => <div {...rest} />;
 
 export const buttonGroupStyles = (_, { block }) => {
 	const mq = useMediaQuery();

@@ -13,7 +13,6 @@ export const InputGroup = ({
 	value,
 	defaultValue,
 	look,
-	overrides,
 	...rest
 }) => <div {...rest} />;
 

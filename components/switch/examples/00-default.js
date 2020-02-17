@@ -21,7 +21,7 @@ function Example({ brand }) {
 				label={'Turn notifications'}
 				checked={checked}
 				onChange={() => {
-					console.log('Controlled');
+					console.log(`Controlled = ${JSON.stringify(!checked)}`);
 					setChecked(!checked);
 				}}
 			/>

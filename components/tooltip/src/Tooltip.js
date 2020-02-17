@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Tooltip = ({ text, title, className, overrides: componentOverrides, ...rest }) => {
+export const Tooltip = ({ text, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -28,12 +28,12 @@ export const Tooltip = ({ text, title, className, overrides: componentOverrides,
 		Tooltip: {
 			styles: tooltipStyles,
 			component: TooltipWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Bubble: {
 			styles: bubbleStyles,
 			component: Bubble,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -67,22 +67,28 @@ export const Tooltip = ({ text, title, className, overrides: componentOverrides,
 		<Fragment>
 			<overrides.Bubble.component
 				tooltipId={tooltipId}
-				text={text}
 				ref={tooltipRef}
+				text={text}
+				position={position}
+				visible={visible}
 				{...overrides.Bubble.attributes(state)}
 				css={overrides.Bubble.styles(state)}
 			/>
 			<overrides.Tooltip.component
-				title={title ? text : undefined}
 				onMouseEnter={handleEnter}
 				onMouseLeave={handleLeave}
 				aria-describedby={tooltipId}
 				tabIndex={0}
 				ref={triggerRef}
-				className={className}
+				text={text}
+				position={position}
+				visible={visible}
+				{...rest}
 				{...overrides.Tooltip.attributes(state)}
 				css={overrides.Tooltip.styles(state)}
-			/>
+			>
+				{children}
+			</overrides.Tooltip.component>
 		</Fragment>
 	);
 };
