@@ -39,6 +39,7 @@ export const Well = ({ tag: Tag, children, overrides: componentOverrides, ...res
 
 	return (
 		<overrides.Well.component
+			tag={Tag}
 			{...rest}
 			{...overrides.Well.attributes(state)}
 			css={overrides.Well.styles(state)}
