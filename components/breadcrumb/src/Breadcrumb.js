@@ -62,7 +62,6 @@ export const Breadcrumb = ({
 					href={href}
 					text={text}
 					onClick={onClick}
-					assistiveText={assistiveText}
 					overrides={componentOverrides}
 				/>
 			);
@@ -74,7 +73,6 @@ export const Breadcrumb = ({
 				child,
 				{
 					current: index === length - 1,
-					assistiveText,
 					overrides: componentOverrides,
 				},
 				index
@@ -91,7 +89,6 @@ export const Breadcrumb = ({
 		>
 			<overrides.List.component
 				data={data}
-				assistiveText={assistiveText}
 				{...rest}
 				{...overrides.List.attributes(state)}
 				css={overrides.List.styles(state)}

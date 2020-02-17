@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 
-export const List = ({ data, assistiveText, ...props }) => <ol {...props} />;
+export const List = ({ data, ...props }) => <ol {...props} />;
 
 export const listStyles = () => {
 	const { SPACING } = useBrand();
