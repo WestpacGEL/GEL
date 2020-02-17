@@ -34,12 +34,12 @@ export const Panel = ({
 		Header: {
 			styles: headerStyles,
 			component: Header,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Heading: {
 			styles: headingStyles,
 			component: Heading,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -60,14 +60,24 @@ export const Panel = ({
 
 	return (
 		<overrides.Panel.component
+			look={look}
+			heading={heading}
+			headingTag={headingTag}
+			{...rest}
 			{...overrides.Panel.attributes(state)}
 			css={overrides.Panel.styles(state)}
 		>
 			<overrides.Header.component
+				look={look}
+				heading={heading}
+				headingTag={headingTag}
 				{...overrides.Header.attributes(state)}
 				css={overrides.Header.styles(state)}
 			>
 				<overrides.Heading.component
+					look={look}
+					heading={heading}
+					headingTag={headingTag}
 					{...overrides.Heading.attributes(state)}
 					css={overrides.Heading.styles(state)}
 				>
