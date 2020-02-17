@@ -15,9 +15,7 @@ export const List = ({
 	...rest
 }) => {
 	const ListType = type === 'ordered' ? 'ol' : 'ul';
-
-	// As we're using `list-style: none` CSS (below), we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
-	return <ListType role={type !== 'ordered' && 'list'} {...rest} />;
+	return <ListType {...rest} />;
 };
 
 export const listStyles = (_, { type }) => ({
