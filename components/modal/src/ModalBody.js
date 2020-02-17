@@ -48,7 +48,7 @@ export const ModalBody = ({ children, overrides: componentOverrides, ...rest }) 
 // ==============================
 ModalBody.propTypes = {
 	/**
-	 * The content for this list group
+	 * Modal body content
 	 */
 	children: PropTypes.node,
 

@@ -16,7 +16,7 @@ export const wellStyles = () => {
 		borderRadius: '0.1875rem',
 
 		// Nested Well styling
-		'& &': {
+		'& > &': {
 			backgroundColor: '#fff',
 			margin: '0.75rem 0',
 		},

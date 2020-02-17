@@ -46,9 +46,10 @@ export const ModalFooter = ({ children, overrides: componentOverrides, ...rest }
 // ==============================
 // Types
 // ==============================
+
 ModalFooter.propTypes = {
 	/**
-	 * The content for this list group
+	 * Modal footer content
 	 */
 	children: PropTypes.node,
 

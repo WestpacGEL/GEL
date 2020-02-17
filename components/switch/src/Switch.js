@@ -144,6 +144,7 @@ export const Switch = ({
 				flipped={flipped}
 				toggleText={toggleText}
 				disabled={disabled}
+				aria-label={toggleText[checked ? 0 : 1]}
 				{...overrides.Toggle.attributes(state)}
 				css={overrides.Toggle.styles(state)}
 			>

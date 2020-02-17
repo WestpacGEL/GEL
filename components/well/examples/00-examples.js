@@ -4,11 +4,10 @@ import { GEL, jsx } from '@westpac/core';
 import { Well } from '@westpac/well';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Code } from '../../../helpers/example/components/Code.js';
 
 // Well tag as a component example
-const WellTag = ({ children, ...props }) => (
-	<aside {...props}>
+const WellTag = ({ children, ...rest }) => (
+	<aside {...rest}>
 		<span>{children}</span>
 	</aside>
 );

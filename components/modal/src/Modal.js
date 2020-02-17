@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, createContext, useContext, useState, useEffect, useRef } from 'react';
+import { Fragment, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { CloseIcon } from '@westpac/icon';
 import { FocusOn } from 'react-focus-on';
@@ -14,21 +14,6 @@ import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
 import { Header, headerStyles } from './overrides/header';
 import { Title, titleStyles } from './overrides/title';
 import pkg from '../package.json';
-
-// ==============================
-// Context and Consumer Hook
-// ==============================
-const ModalContext = createContext();
-
-export const useModalContext = () => {
-	const context = useContext(ModalContext);
-
-	if (!context) {
-		throw new Error('Modal sub-components should be wrapped in a <Modal>.');
-	}
-
-	return context;
-};
 
 // ==============================
 // Component
@@ -140,62 +125,60 @@ export const Modal = ({
 					{...overrides.Backdrop.attributes(state)}
 					css={overrides.Backdrop.styles(state)}
 				/>
-				<ModalContext.Provider value={{ dismissible, handleClose }}>
-					<FocusOn enabled={open} onActivation={() => titleRef.current.focus()}>
-						<overrides.Modal.component
-							role="dialog"
-							aria-modal="true"
-							ref={modalRef}
+				<FocusOn enabled={open} onActivation={() => titleRef.current.focus()}>
+					<overrides.Modal.component
+						role="dialog"
+						aria-modal="true"
+						ref={modalRef}
+						heading={heading}
+						open={open}
+						onClose={onClose}
+						size={size}
+						dismissible={dismissible}
+						{...rest}
+						{...overrides.Modal.attributes(state)}
+						css={overrides.Modal.styles(state)}
+					>
+						<overrides.Header.component
 							heading={heading}
 							open={open}
 							onClose={onClose}
 							size={size}
 							dismissible={dismissible}
-							{...rest}
-							{...overrides.Modal.attributes(state)}
-							css={overrides.Modal.styles(state)}
+							{...overrides.Header.attributes(state)}
+							css={overrides.Header.styles(state)}
 						>
-							<overrides.Header.component
+							<overrides.Title.component
+								ref={titleRef}
+								tabIndex="-1"
 								heading={heading}
 								open={open}
 								onClose={onClose}
 								size={size}
 								dismissible={dismissible}
-								{...overrides.Header.attributes(state)}
-								css={overrides.Header.styles(state)}
+								{...overrides.Title.attributes(state)}
+								css={overrides.Title.styles(state)}
 							>
-								<overrides.Title.component
-									ref={titleRef}
-									tabIndex="-1"
+								{heading}
+							</overrides.Title.component>
+							{dismissible && (
+								<overrides.CloseBtn.component
+									onClick={() => handleClose()}
+									icon={CloseIcon}
+									aria-label="Close"
 									heading={heading}
 									open={open}
 									onClose={onClose}
 									size={size}
 									dismissible={dismissible}
-									{...overrides.Title.attributes(state)}
-									css={overrides.Title.styles(state)}
-								>
-									{heading}
-								</overrides.Title.component>
-								{dismissible && (
-									<overrides.CloseBtn.component
-										onClick={() => handleClose()}
-										icon={CloseIcon}
-										aria-label="Close"
-										heading={heading}
-										open={open}
-										onClose={onClose}
-										size={size}
-										dismissible={dismissible}
-										{...overrides.CloseBtn.attributes(state)}
-										css={overrides.CloseBtn.styles(state)}
-									/>
-								)}
-							</overrides.Header.component>
-							{children}
-						</overrides.Modal.component>
-					</FocusOn>
-				</ModalContext.Provider>
+									{...overrides.CloseBtn.attributes(state)}
+									css={overrides.CloseBtn.styles(state)}
+								/>
+							)}
+						</overrides.Header.component>
+						{children}
+					</overrides.Modal.component>
+				</FocusOn>
 			</Fragment>,
 			document.body
 		);
