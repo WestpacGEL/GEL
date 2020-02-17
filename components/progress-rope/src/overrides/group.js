@@ -2,8 +2,6 @@
 
 import { jsx } from '@westpac/core';
 
-export const Group = ({ text, active, overrides, ...props }) => <li {...props} />;
+export const Group = ({ index, text, active, ...rest }) => <li {...rest} />;
 
-export const groupStyles = (_, {}) => {
-	return {};
-};
+export const groupStyles = () => ({});

@@ -6,9 +6,11 @@ import { sizeMap } from './_utils';
 export const ToggleText = ({
 	name,
 	label,
-	toggleText,
-	flipped,
+	checked,
+	size,
 	block,
+	flipped,
+	toggleText,
 	disabled,
 	position,
 	checked,

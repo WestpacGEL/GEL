@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 
-export const Tooltip = forwardRef(({ text, title, position, visible, ...props }, ref) => (
-	<span ref={ref} {...props} />
+export const Tooltip = forwardRef(({ text, position, visible, ...rest }, ref) => (
+	<span ref={ref} {...rest} />
 ));
 
-export const tooltipStyles = (_, {}) => ({
+export const tooltipStyles = () => ({
 	position: 'relative',
 	display: 'inline-block',
 	cursor: 'help',

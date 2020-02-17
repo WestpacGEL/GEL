@@ -3,7 +3,7 @@
 import { jsx } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 
-export const Backdrop = ({ heading, open, onClose, size, dismissible, overrides, ...rest }) => {
+export const Backdrop = ({ heading, open, onClose, size, dismissible, ...rest }) => {
 	const backdropTransition = useTransition(open, null, {
 		from: {
 			opacity: 0,

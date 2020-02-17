@@ -10,7 +10,16 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Cell = ({ overrides: componentOverrides, ...rest }) => {
+export const Cell = ({
+	area,
+	height,
+	left,
+	top,
+	width,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -20,11 +29,16 @@ export const Cell = ({ overrides: componentOverrides, ...rest }) => {
 		Cell: {
 			styles: cellStyles,
 			component: CellWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
+		area,
+		height,
+		left,
+		top,
+		width,
 		...rest,
 	};
 
@@ -37,8 +51,15 @@ export const Cell = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Cell.component
+			area={area}
+			height={height}
+			left={left}
+			top={top}
+			width={width}
+			{...rest}
 			{...overrides.Cell.attributes(state)}
 			css={overrides.Cell.styles(state)}
+			children={children}
 		/>
 	);
 };
@@ -74,7 +95,7 @@ Cell.propTypes = {
 	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).isRequired,
 
 	/**
-	 * Alert children
+	 * Children
 	 */
 	children: PropTypes.node,
 

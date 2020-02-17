@@ -20,7 +20,7 @@ function Example({ brand }) {
 			<Body>
 				<h2>On text</h2>
 				<h3>Tooltip with default tag</h3>
-				<Tooltip text="This is a tooltip on a block-level element">
+				<Tooltip title="???" text="This is a tooltip on a block-level element">
 					<p>
 						Tooltip on a block-level element... Lorem ipsum dolor sit amet, consectetur adipisicing
 						elit. Enim adipisci laboriosam unde dolore, maxime quae amet praesentium minus sit!
@@ -36,7 +36,6 @@ function Example({ brand }) {
 					This is a{' '}
 					<Tooltip
 						text="This is a tooltip on an abbr element"
-						title
 						overrides={{
 							Tooltip: {
 								component: TooltipTag,

@@ -17,7 +17,6 @@ export const Panel = ({
 	heading,
 	headingTag,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -30,7 +29,7 @@ export const Panel = ({
 		Panel: {
 			styles: panelStyles,
 			component: PanelWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Header: {
 			styles: headerStyles,
@@ -61,7 +60,6 @@ export const Panel = ({
 
 	return (
 		<overrides.Panel.component
-			className={className}
 			{...overrides.Panel.attributes(state)}
 			css={overrides.Panel.styles(state)}
 		>

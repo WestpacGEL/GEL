@@ -4,7 +4,6 @@ import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { ToggleTextWrapper, toggleTextWrapperStyles } from './overrides/toggleTextWrapper';
 import { Switch as SwitchWrapper, switchStyles } from './overrides/switch';
 import { ToggleText, toggleTextStyles } from './overrides/toggleText';
 import { Toggle, toggleStyles } from './overrides/toggle';
@@ -26,7 +25,6 @@ export const Switch = ({
 	flipped,
 	toggleText,
 	disabled,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -40,45 +38,41 @@ export const Switch = ({
 		Switch: {
 			styles: switchStyles,
 			component: SwitchWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Input: {
 			styles: inputStyles,
 			component: Input,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Label: {
 			styles: labelStyles,
 			component: Label,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Toggle: {
 			styles: toggleStyles,
 			component: Toggle,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		ToggleText: {
 			styles: toggleTextStyles,
 			component: ToggleText,
-			attributes: (_, a) => a,
-		},
-		ToggleTextWrapper: {
-			styles: toggleTextWrapperStyles,
-			component: ToggleTextWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
 		name,
 		label,
+		checked,
+		onChange,
 		size,
 		block,
 		flipped,
 		toggleText,
 		disabled,
 		overrides: componentOverrides,
-		checked,
 		...rest,
 	};
 
@@ -97,7 +91,15 @@ export const Switch = ({
 
 	return (
 		<overrides.Switch.component
-			className={className}
+			name={name}
+			label={label}
+			checked={checked}
+			size={size}
+			block={block}
+			flipped={flipped}
+			toggleText={toggleText}
+			disabled={disabled}
+			{...rest}
 			{...overrides.Switch.attributes(state)}
 			css={overrides.Switch.styles(state)}
 		>
@@ -106,12 +108,27 @@ export const Switch = ({
 				name={name}
 				checked={checked}
 				onChange={handleChange(name)}
+				name={name}
+				label={label}
+				checked={checked}
+				size={size}
+				block={block}
+				flipped={flipped}
+				toggleText={toggleText}
 				disabled={disabled}
 				{...overrides.Input.attributes(state)}
 				css={overrides.Input.styles(state)}
 			/>
 			{label && (
 				<overrides.Label.component
+					name={name}
+					label={label}
+					checked={checked}
+					size={size}
+					block={block}
+					flipped={flipped}
+					toggleText={toggleText}
+					disabled={disabled}
 					{...overrides.Label.attributes(state)}
 					css={overrides.Label.styles(state)}
 				>
@@ -119,6 +136,14 @@ export const Switch = ({
 				</overrides.Label.component>
 			)}
 			<overrides.Toggle.component
+				name={name}
+				label={label}
+				checked={checked}
+				size={size}
+				block={block}
+				flipped={flipped}
+				toggleText={toggleText}
+				disabled={disabled}
 				aria-label={toggleText[checked ? 0 : 1]}
 				{...overrides.Toggle.attributes(state)}
 				css={overrides.Toggle.styles(state)}
@@ -126,12 +151,30 @@ export const Switch = ({
 				{!!toggleText && (
 					<Fragment>
 						<overrides.ToggleText.component
+							position="left"
+							name={name}
+							label={label}
+							checked={checked}
+							size={size}
+							block={block}
+							flipped={flipped}
+							toggleText={toggleText}
+							disabled={disabled}
 							{...overrides.ToggleText.attributes({ ...state, checked, position: 'left' })}
 							css={overrides.ToggleText.styles({ ...state, checked, position: 'left' })}
 						>
 							{toggleText[0]}
 						</overrides.ToggleText.component>
 						<overrides.ToggleText.component
+							position="right"
+							name={name}
+							label={label}
+							checked={!checked}
+							size={size}
+							block={block}
+							flipped={flipped}
+							toggleText={toggleText}
+							disabled={disabled}
 							{...overrides.ToggleText.attributes({
 								...state,
 								checked: !checked,
@@ -152,10 +195,6 @@ export const Switch = ({
 // Types
 // ==============================
 
-const options = {
-	size: ['small', 'medium', 'large', 'xlarge'],
-};
-
 Switch.propTypes = {
 	/**
 	 * Switch input element name
@@ -168,18 +207,21 @@ Switch.propTypes = {
 	label: PropTypes.string.isRequired,
 
 	/**
-	 * On/off text.
-	 *
-	 * This prop takes an array where the first index is the "on" text and second index is the "off" text e.g. "['Yes', 'No']"
+	 * Switch on/off state
 	 */
-	toggleText: PropTypes.arrayOf(PropTypes.string),
+	checked: PropTypes.bool,
+
+	/**
+	 * The onChange handler for this switch
+	 */
+	onChange: PropTypes.func,
 
 	/**
 	 * Switch size
 	 */
 	size: PropTypes.oneOfType([
-		PropTypes.oneOf(options.size),
-		PropTypes.arrayOf(PropTypes.oneOf(options.size)),
+		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
 	]),
 
 	/**
@@ -195,7 +237,7 @@ Switch.propTypes = {
 	/**
 	 * Switch on/off state
 	 */
-	checked: PropTypes.bool,
+	toggleText: PropTypes.arrayOf(PropTypes.string),
 
 	/**
 	 * Disable the switch
@@ -203,9 +245,9 @@ Switch.propTypes = {
 	disabled: PropTypes.bool,
 
 	/**
-	 * The onChange handler for this switch
+	 * Text to use as the `aria-label` for the switch input
 	 */
-	onChange: PropTypes.func,
+	assistiveText: PropTypes.string,
 
 	/**
 	 * The override API
@@ -232,11 +274,6 @@ Switch.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		ToggleText: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		ToggleTextWrapper: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

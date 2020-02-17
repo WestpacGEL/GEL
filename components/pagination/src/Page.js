@@ -18,9 +18,9 @@ export const Page = ({
 	text,
 	first,
 	last,
-	onClick,
 	disabled,
 	assistiveText,
+	onClick,
 	...rest
 }) => {
 	const {
@@ -32,12 +32,12 @@ export const Page = ({
 		Page: {
 			styles: pageStyles,
 			component: PageWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Link: {
 			styles: linkStyles,
 			component: Link,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -52,6 +52,7 @@ export const Page = ({
 		last,
 		disabled,
 		assistiveText,
+		onClick,
 		current,
 		active,
 		overrides: componentOverrides,
@@ -67,6 +68,16 @@ export const Page = ({
 
 	return (
 		<overrides.Page.component
+			index={index}
+			nextIndex={nextIndex}
+			text={text}
+			first={first}
+			last={last}
+			disabled={disabled}
+			assistiveText={assistiveText}
+			current={current}
+			active={active}
+			{...rest}
 			{...overrides.Page.attributes(state)}
 			css={overrides.Page.styles(state)}
 		>
@@ -76,6 +87,15 @@ export const Page = ({
 				aria-disabled={disabled} //a11y: required to aid VoiceOver/Talkback UX
 				disabled={disabled}
 				onClick={onClick}
+				index={index}
+				nextIndex={nextIndex}
+				text={text}
+				first={first}
+				last={last}
+				disabled={disabled}
+				assistiveText={assistiveText}
+				current={current}
+				active={active}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
 			>
@@ -96,9 +116,24 @@ Page.propTypes = {
 	index: PropTypes.number,
 
 	/**
+	 * Index of next page
+	 */
+	nextIndex: PropTypes.number,
+
+	/**
 	 * Page text
 	 */
 	text: PropTypes.string,
+
+	/**
+	 * Indicates first item in list which is the back button
+	 */
+	first: PropTypes.bool,
+
+	/**
+	 * Indicates first item in list which is the next button
+	 */
+	last: PropTypes.bool,
 
 	/**
 	 * If page is disabled
@@ -109,6 +144,11 @@ Page.propTypes = {
 	 * Text to use as the `aria-label` for the page
 	 */
 	assistiveText: PropTypes.string,
+
+	/**
+	 * An on click function
+	 */
+	onClick: PropTypes.func,
 
 	/**
 	 * The override API

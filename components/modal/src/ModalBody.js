@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Body, bodyStyles } from './overrides/body';
 import pkg from '../package.json';
 
-export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
+export const ModalBody = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -16,7 +16,7 @@ export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
 		Body: {
 			styles: bodyStyles,
 			component: Body,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -34,9 +34,12 @@ export const ModalBody = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Body.component
+			{...rest}
 			{...overrides.Body.attributes(state)}
 			css={overrides.Body.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Body.component>
 	);
 };
 

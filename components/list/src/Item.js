@@ -22,12 +22,12 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 		Item: {
 			styles: itemStyles,
 			component: ItemWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Icon: {
 			styles: iconStyles,
 			component: IconWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -70,11 +70,22 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 
 	return (
 		<overrides.Item.component
+			look={look}
+			type={type}
+			nested={nested}
+			spacing={spacing}
+			icon={icon}
+			{...rest}
 			{...overrides.Item.attributes(state)}
 			css={overrides.Item.styles(state)}
 		>
 			{type === 'icon' && icon && (
 				<overrides.Icon.component
+					look={look}
+					type={type}
+					nested={nested}
+					spacing={spacing}
+					icon={icon}
 					size="small"
 					color={COLORS.muted}
 					{...overrides.Icon.attributes(state)}
@@ -101,14 +112,14 @@ Item.propTypes = {
 	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
 
 	/**
-	 * The size of space between list elements
-	 */
-	spacing: PropTypes.oneOf(['medium', 'large']),
-
-	/**
 	 * The level of nesting
 	 */
 	nested: PropTypes.number,
+
+	/**
+	 * The size of space between list elements
+	 */
+	spacing: PropTypes.oneOf(['medium', 'large']),
 
 	/**
 	 * The icon for list item

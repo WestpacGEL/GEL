@@ -4,6 +4,10 @@ export const usePopoverPosition = (triggerRef, popoverRef) => {
 		throw new Error('You must pass two valid refs.');
 	}
 
+	if (typeof window === 'undefined') {
+		return { placement: '', top: 0, left: 0 };
+	}
+
 	const trigger = triggerRef.current.getBoundingClientRect();
 	const popover = popoverRef.current.getBoundingClientRect();
 	let position;

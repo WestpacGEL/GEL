@@ -2,17 +2,17 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Label = ({ look, value, ...props }) => {
+export const Label = ({ look, value, ...rest }) => {
 	let Tag = 'span';
 
-	if (props.href) {
+	if (rest.href) {
 		Tag = 'a';
 	}
-	if (props.onClick) {
+	if (rest.onClick) {
 		Tag = 'button';
 	}
 
-	return <Tag type={Tag === 'button' ? 'button' : undefined} {...props} />;
+	return <Tag type={Tag === 'button' ? 'button' : undefined} {...rest} />;
 };
 
 export const labelStyles = (_, { look, href, onClick }) => {

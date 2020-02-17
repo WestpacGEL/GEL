@@ -28,7 +28,6 @@ export const usePaginationContext = () => {
 // ==============================
 // Component
 // ==============================
-
 export const Pagination = ({
 	current,
 	infinite,
@@ -36,7 +35,6 @@ export const Pagination = ({
 	next: nextProps,
 	data,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -49,7 +47,7 @@ export const Pagination = ({
 		Pagination: {
 			styles: paginationStyles,
 			component: PaginationWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		PageList: {
 			styles: pageListStyles,
@@ -130,18 +128,28 @@ export const Pagination = ({
 		>
 			<overrides.Pagination.component
 				aria-label="Page number"
-				className={className}
+				current={current}
+				infinite={infinite}
+				back={backProps}
+				next={nextProps}
+				data={data}
+				{...rest}
 				{...overrides.Pagination.attributes(state)}
 				css={overrides.Pagination.styles(state)}
 			>
 				<overrides.PageList.component
+					current={current}
+					infinite={infinite}
+					back={backProps}
+					next={nextProps}
+					data={data}
 					{...overrides.PageList.attributes(state)}
 					css={overrides.PageList.styles(state)}
 				>
 					{back.visible && (
 						<Page
-							text={back.text}
 							first
+							text={back.text}
 							nextIndex={backIndex}
 							disabled={pageLogic.current === 0 && !infinite}
 							assistiveText={back.assistiveText(backIndex)}
@@ -161,8 +169,8 @@ export const Pagination = ({
 					))}
 					{next.visible && (
 						<Page
-							text={next.text}
 							last
+							text={next.text}
 							nextIndex={nextIndex}
 							disabled={pageLogic.current === pageCount - 1 && !infinite}
 							assistiveText={next.assistiveText(nextIndex)}
@@ -189,6 +197,11 @@ Pagination.propTypes = {
 	current: PropTypes.number.isRequired,
 
 	/**
+	 * Infinite option
+	 */
+	infinite: PropTypes.bool,
+
+	/**
 	 * Back button options
 	 */
 	back: PropTypes.shape({
@@ -207,11 +220,6 @@ Pagination.propTypes = {
 		assistiveText: PropTypes.func,
 		onClick: PropTypes.func,
 	}),
-
-	/**
-	 * Infinite option
-	 */
-	infinite: PropTypes.bool,
 
 	/**
 	 * Alternative to children

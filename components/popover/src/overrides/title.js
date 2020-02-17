@@ -2,9 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Title = ({ title, content, position, open, dismissible, ...props }) => (
-	<h4 {...props} />
-);
+export const Title = ({ open, title, content, dismissible, position, ...rest }) => <p {...rest} />;
 
 export const titleStyles = (_, {}) => {
 	const { COLORS } = useBrand();
@@ -15,5 +13,6 @@ export const titleStyles = (_, {}) => {
 		color: '#fff',
 		fontSize: '1rem',
 		fontWeight: 'normal',
+		minHeight: '1em',
 	};
 };

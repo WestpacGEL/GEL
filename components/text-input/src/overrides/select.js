@@ -4,9 +4,11 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { round, sizeMap } from '../_utils';
 
-export const SelectComponent = ({ invalid, inline, ...props }) => <select {...props} />;
+export const SelectComponent = ({ size, width, invalid, inline, data, ...rest }) => (
+	<select {...rest} />
+);
 
-export const selectStyles = (_, { size, width, inline, invalid, ...props }) => {
+export const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
@@ -33,7 +35,7 @@ export const selectStyles = (_, { size, width, inline, invalid, ...props }) => {
 		color: COLORS.text,
 		backgroundColor: '#fff',
 		border: `${borderWidth}px solid ${
-			invalid || props.ariaInvalid ? COLORS.danger : COLORS.borderDark
+			invalid || rest.ariaInvalid ? COLORS.danger : COLORS.borderDark
 		}`,
 		borderRadius: '0.1875rem',
 		transition: 'border 0.2s ease',

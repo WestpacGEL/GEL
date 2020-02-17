@@ -3,11 +3,9 @@
 import { jsx, useMediaQuery, asArray, useBrand } from '@westpac/core';
 import { forwardRef } from 'react';
 
-export const Panel = forwardRef(
-	({ dropdownSize, look, soft, block, justify, iconAfter, iconBefore, ...rest }, ref) => (
-		<div ref={ref} {...rest} />
-	)
-);
+export const Panel = forwardRef(({ open, text, dropdownSize, block, ...rest }, ref) => (
+	<div ref={ref} {...rest} />
+));
 
 export const panelStyles = (_, { open, dropdownSize }) => {
 	const mq = useMediaQuery();

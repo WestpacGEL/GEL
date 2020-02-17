@@ -38,7 +38,7 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 		Tr: {
 			styles: trStyles,
 			component: TableRow,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -75,7 +75,13 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 	}
 
 	return (
-		<overrides.Tr.component {...overrides.Tr.attributes(state)} css={overrides.Tr.styles(state)}>
+		<overrides.Tr.component
+			striped={striped}
+			highlighted={highlighted}
+			{...rest}
+			{...overrides.Tr.attributes(state)}
+			css={overrides.Tr.styles(state)}
+		>
 			{highlightedChildren || children}
 		</overrides.Tr.component>
 	);

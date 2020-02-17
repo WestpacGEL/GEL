@@ -3,8 +3,8 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-export const PopoverBody = ({ title, content, position, open, dismissible, ...props }) => (
-	<Body {...props} />
+export const PopoverBody = ({ open, title, content, dismissible, position, ...rest }) => (
+	<Body {...rest} />
 );
 
 export const bodyStyles = (_, {}) => {

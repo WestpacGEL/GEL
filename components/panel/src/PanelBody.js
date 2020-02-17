@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const PanelBody = ({ overrides: componentOverrides, ...rest }) => {
+export const PanelBody = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -20,7 +20,7 @@ export const PanelBody = ({ overrides: componentOverrides, ...rest }) => {
 		Body: {
 			styles: bodyStyles,
 			component: Body,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -38,9 +38,12 @@ export const PanelBody = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Body.component
+			{...rest}
 			{...overrides.Body.attributes(state)}
 			css={overrides.Body.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Body.component>
 	);
 };
 

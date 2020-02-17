@@ -21,7 +21,6 @@ export const ButtonDropdown = ({
 	dropdownSize,
 	block,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -37,17 +36,18 @@ export const ButtonDropdown = ({
 		ButtonDropdown: {
 			styles: buttonDropdownStyles,
 			component: BtnDropdownWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Panel: {
 			styles: panelStyles,
 			component: Panel,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
 		open,
+		text,
 		dropdownSize,
 		block,
 		overrides: componentOverrides,
@@ -92,12 +92,14 @@ export const ButtonDropdown = ({
 
 	return (
 		<overrides.ButtonDropdown.component
-			className={className}
+			open={open}
+			text={text}
+			dropdownSize={dropdownSize}
+			block={block}
 			{...overrides.ButtonDropdown.attributes(state)}
 			css={overrides.ButtonDropdown.styles(state)}
 		>
 			<Button
-				{...rest}
 				ref={buttonRef}
 				aria-label="Dropdown. Hit enter to open dropdown"
 				aria-haspopup={true}
@@ -105,6 +107,7 @@ export const ButtonDropdown = ({
 				dropdown={true}
 				block={block}
 				overrides={componentOverrides}
+				{...rest}
 			>
 				{text}
 			</Button>
@@ -112,6 +115,10 @@ export const ButtonDropdown = ({
 				ref={panelRef}
 				tabIndex="-1"
 				aria-label="Use the ESC key to close"
+				open={open}
+				text={text}
+				dropdownSize={dropdownSize}
+				block={block}
 				{...overrides.Panel.attributes(state)}
 				css={overrides.Panel.styles(state)}
 			>
@@ -137,6 +144,13 @@ ButtonDropdown.propTypes = {
 		PropTypes.oneOf(['small', 'medium', 'large']),
 		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large'])),
 	]),
+
+	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
 	 * The override API

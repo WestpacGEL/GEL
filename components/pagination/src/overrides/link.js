@@ -12,7 +12,6 @@ export const Link = ({
 	assistiveText,
 	current,
 	active,
-	overrides,
 	...rest
 }) => <button type="button" {...rest} />;
 

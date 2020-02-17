@@ -30,7 +30,6 @@ export const FormCheck = ({
 	data,
 	children,
 	onChange = () => {},
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -69,7 +68,7 @@ export const FormCheck = ({
 		FormCheck: {
 			styles: formCheckStyles,
 			component: FormCheckWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -80,8 +79,8 @@ export const FormCheck = ({
 		inline,
 		flipped,
 		disabled,
-		defaultValue,
 		data,
+		defaultValue,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -99,7 +98,13 @@ export const FormCheck = ({
 			allChildren.push(
 				<Option
 					key={index}
-					{...state}
+					type={type}
+					name={name}
+					size={size}
+					inline={inline}
+					flipped={flipped}
+					data={data}
+					defaultValue={defaultValue}
 					value={props.value}
 					handleChange={handleChange}
 					selected={selected.includes(props.value)}
@@ -112,7 +117,13 @@ export const FormCheck = ({
 	} else {
 		allChildren = Children.map(children, child =>
 			cloneElement(child, {
-				...state,
+				type,
+				name,
+				size,
+				inline,
+				flipped,
+				data,
+				defaultValue,
 				handleChange,
 				selected: selected.includes(child.props.value),
 				disabled: child.props.disabled || disabled,
@@ -123,7 +134,14 @@ export const FormCheck = ({
 
 	return (
 		<overrides.FormCheck.component
-			className={className}
+			type={type}
+			name={name}
+			size={size}
+			inline={inline}
+			flipped={flipped}
+			data={data}
+			defaultValue={defaultValue}
+			{...rest}
 			{...overrides.FormCheck.attributes(state)}
 			css={overrides.FormCheck.styles(state)}
 		>
@@ -183,14 +201,19 @@ FormCheck.propTypes = {
 	),
 
 	/**
-	 * Form check item(s)
-	 */
-	children: PropTypes.node,
-
-	/**
 	 * The options already selected
 	 */
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+
+	/**
+	 * A function called on change
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * Form check item(s)
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API
