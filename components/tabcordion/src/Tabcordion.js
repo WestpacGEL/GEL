@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { Children, useEffect, useRef, useState, createRef } from 'react';
+import { Children, useEffect, useRef, useState } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
@@ -10,8 +10,6 @@ import { TabItem, tabItemStyles } from './overrides/tabItem';
 import { TabRow, tabRowStyles } from './overrides/tabRow';
 import pkg from '../package.json';
 import { Tab } from './Tab';
-
-const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'PageDown', 'PageUp', 'Enter', 'End', 'Home'];
 
 // ==============================
 // Component
