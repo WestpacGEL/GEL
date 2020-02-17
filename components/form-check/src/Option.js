@@ -85,7 +85,7 @@ export const Option = ({
 				value={value}
 				selected={selected}
 				id={formCheckId}
-				value={value}
+				disabled={disabled}
 				onChange={disabled ? null : event => handleChange(event, value, selected)}
 				css={{
 					position: 'absolute', // just to hide the input element needed for a11y

@@ -103,6 +103,7 @@ export const FormCheck = ({
 					size={size}
 					inline={inline}
 					flipped={flipped}
+					disabled={disabled}
 					data={data}
 					defaultValue={defaultValue}
 					value={props.value}
@@ -140,6 +141,7 @@ export const FormCheck = ({
 			inline={inline}
 			flipped={flipped}
 			data={data}
+			disabled={disabled}
 			defaultValue={defaultValue}
 			{...rest}
 			{...overrides.FormCheck.attributes(state)}
