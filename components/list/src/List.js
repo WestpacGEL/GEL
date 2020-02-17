@@ -152,6 +152,9 @@ export const List = ({
 			}}
 		>
 			<overrides.List.component
+				// As we're using `list-style: none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
+				role={type !== 'ordered' ? 'list' : undefined}
+				className={className}
 				aria-label={assistiveText}
 				look={look}
 				type={type}
@@ -195,7 +198,6 @@ List.propTypes = {
 
 	/**
 	 * The icon for list
-	 */
 	icon: PropTypes.func,
 
 	/**
