@@ -73,6 +73,7 @@ export const Page = ({
 			<overrides.Link.component
 				aria-current={active ? 'page' : undefined}
 				aria-label={assistiveText}
+				aria-disabled={disabled} //a11y: required to aid VoiceOver/Talkback UX
 				disabled={disabled}
 				onClick={onClick}
 				{...overrides.Link.attributes(state)}
