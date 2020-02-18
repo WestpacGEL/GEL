@@ -65,6 +65,7 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 	return (
 		<TableContext.Provider
 			value={{
+				striped,
 				bordered,
 			}}
 		>

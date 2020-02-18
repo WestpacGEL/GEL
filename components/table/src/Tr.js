@@ -5,6 +5,7 @@ import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { TableRow, trStyles } from './overrides/tr';
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
@@ -29,6 +30,9 @@ const generateHighlightMap = (highlighted, tdCount) => {
 // ==============================
 
 export const Tr = ({ striped, highlighted, children, overrides: componentOverrides, ...rest }) => {
+	const context = useTableContext();
+	striped = (context && context.striped) || striped;
+
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,

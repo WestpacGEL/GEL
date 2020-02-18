@@ -15,7 +15,7 @@ export const trStyles = (_, { striped, highlighted }) => {
 				? `2px solid ${COLORS.primary}`
 				: `1px solid ${COLORS.border}`,
 		// Hovered row
-		':hover': {
+		'tbody > &:hover': {
 			backgroundColor: !striped && COLORS.background,
 		},
 	};
