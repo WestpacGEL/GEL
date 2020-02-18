@@ -93,7 +93,6 @@ export const Crumb = ({
 					current={current}
 					href={href}
 					text={text}
-					assistiveText={assistiveText}
 					{...overrides.Icon.attributes(state)}
 					css={overrides.Icon.styles(state)}
 				/>
