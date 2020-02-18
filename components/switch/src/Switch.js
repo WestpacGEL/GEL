@@ -94,7 +94,6 @@ export const Switch = ({
 				id={switchId}
 				onChange={handleChange(name)}
 				name={name}
-				label={label}
 				checked={checked}
 				disabled={disabled}
 				css={{
