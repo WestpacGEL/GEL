@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Table = ({ striped, bordered, responsive, ...rest }) => <table {...rest} />;
+export const Table = ({ striped, bordered, ...rest }) => <table {...rest} />;
 
 export const tableStyles = (_, { striped }) => {
 	const { COLORS } = useBrand();
