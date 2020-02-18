@@ -21,7 +21,6 @@ export const Option = ({
 	name,
 	size,
 	inline,
-	flipped,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -55,7 +54,6 @@ export const Option = ({
 		name,
 		size,
 		inline,
-		flipped,
 		...rest,
 	};
 
@@ -75,11 +73,11 @@ export const Option = ({
 			name={name}
 			size={size}
 			inline={inline}
-			flipped={flipped}
 			{...rest}
 			{...overrides.Option.attributes(state)}
 			css={overrides.Option.styles(state)}
 		>
+			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
 				type={type}
 				value={value}
@@ -88,11 +86,13 @@ export const Option = ({
 				disabled={disabled}
 				onChange={disabled ? null : event => handleChange(event, value, selected)}
 				css={{
-					position: 'absolute', // just to hide the input element needed for a11y
-					opacity: 0, // we decided to not expose this as an override
-				}} // as it contains logic and is important for the component to work
+					position: 'absolute',
+					zIndex: '-1',
+					opacity: 0,
+				}}
 			/>
 			<overrides.Label.component
+				htmlFor={formCheckId}
 				value={value}
 				selected={selected}
 				disabled={disabled}
@@ -100,8 +100,6 @@ export const Option = ({
 				name={name}
 				size={size}
 				inline={inline}
-				flipped={flipped}
-				htmlFor={formCheckId}
 				{...overrides.Label.attributes(state)}
 				css={overrides.Label.styles(state)}
 			>
@@ -150,11 +148,6 @@ Option.propTypes = {
 	 * To inline the element
 	 */
 	inline: PropTypes.bool,
-
-	/**
-	 * Form check orientation (control on the right).
-	 */
-	flipped: PropTypes.bool,
 
 	/**
 	 * A function called on change

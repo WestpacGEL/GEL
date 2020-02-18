@@ -24,7 +24,6 @@ export const FormCheck = ({
 	name,
 	size,
 	inline,
-	flipped,
 	disabled,
 	defaultValue,
 	data,
@@ -77,7 +76,6 @@ export const FormCheck = ({
 		name,
 		size,
 		inline,
-		flipped,
 		disabled,
 		data,
 		defaultValue,
@@ -102,7 +100,6 @@ export const FormCheck = ({
 					name={name}
 					size={size}
 					inline={inline}
-					flipped={flipped}
 					disabled={disabled}
 					data={data}
 					defaultValue={defaultValue}
@@ -122,7 +119,6 @@ export const FormCheck = ({
 				name,
 				size,
 				inline,
-				flipped,
 				data,
 				defaultValue,
 				handleChange,
@@ -139,7 +135,6 @@ export const FormCheck = ({
 			name={name}
 			size={size}
 			inline={inline}
-			flipped={flipped}
 			data={data}
 			disabled={disabled}
 			defaultValue={defaultValue}
@@ -176,11 +171,6 @@ FormCheck.propTypes = {
 	 * To inline the element
 	 */
 	inline: PropTypes.bool.isRequired,
-
-	/**
-	 * Form check orientation (control on the right).
-	 */
-	flipped: PropTypes.bool.isRequired,
 
 	/**
 	 * Disable all Form check options
@@ -243,5 +233,4 @@ FormCheck.defaultProps = {
 	type: 'checkbox',
 	inline: false,
 	size: 'medium',
-	flipped: false,
 };
