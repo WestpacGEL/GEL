@@ -1,13 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, wrapHandlers, useInstanceId } from '@westpac/core';
 import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { Switch as SwitchWrapper, switchStyles } from './overrides/switch';
-import { ToggleText, toggleTextStyles } from './overrides/toggleText';
 import { Toggle, toggleStyles } from './overrides/toggle';
-import { Input, inputStyles } from './overrides/input';
 import { Label, labelStyles } from './overrides/label';
 
 import pkg from '../package.json';
@@ -22,12 +20,12 @@ export const Switch = ({
 	onChange,
 	size,
 	block,
-	flipped,
-	toggleText,
 	disabled,
 	overrides: componentOverrides,
 	...rest
 }) => {
+	const [switchId] = useState(`switch-${useInstanceId()}`);
+
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -40,11 +38,6 @@ export const Switch = ({
 			component: SwitchWrapper,
 			attributes: () => null,
 		},
-		Input: {
-			styles: inputStyles,
-			component: Input,
-			attributes: () => null,
-		},
 		Label: {
 			styles: labelStyles,
 			component: Label,
@@ -53,11 +46,6 @@ export const Switch = ({
 		Toggle: {
 			styles: toggleStyles,
 			component: Toggle,
-			attributes: () => null,
-		},
-		ToggleText: {
-			styles: toggleTextStyles,
-			component: ToggleText,
 			attributes: () => null,
 		},
 	};
@@ -69,8 +57,6 @@ export const Switch = ({
 		onChange,
 		size,
 		block,
-		flipped,
-		toggleText,
 		disabled,
 		overrides: componentOverrides,
 		...rest,
@@ -91,102 +77,54 @@ export const Switch = ({
 
 	return (
 		<overrides.Switch.component
+			htmlFor={switchId}
 			name={name}
 			label={label}
 			checked={checked}
 			size={size}
 			block={block}
-			flipped={flipped}
-			toggleText={toggleText}
 			disabled={disabled}
 			{...rest}
 			{...overrides.Switch.attributes(state)}
 			css={overrides.Switch.styles(state)}
 		>
-			<overrides.Input.component
+			{/* a11y: input not exposed as an override, contains logic required to function */}
+			<input
 				type="checkbox"
-				name={name}
-				checked={checked}
+				id={switchId}
 				onChange={handleChange(name)}
+				name={name}
+				label={label}
+				checked={checked}
+				disabled={disabled}
+				css={{
+					position: 'absolute',
+					zIndex: '-1',
+					opacity: 0,
+				}}
+			/>
+			<overrides.Label.component
 				name={name}
 				label={label}
 				checked={checked}
 				size={size}
 				block={block}
-				flipped={flipped}
-				toggleText={toggleText}
 				disabled={disabled}
-				{...overrides.Input.attributes(state)}
-				css={overrides.Input.styles(state)}
-			/>
-			{label && (
-				<overrides.Label.component
-					name={name}
-					label={label}
-					checked={checked}
-					size={size}
-					block={block}
-					flipped={flipped}
-					toggleText={toggleText}
-					disabled={disabled}
-					{...overrides.Label.attributes(state)}
-					css={overrides.Label.styles(state)}
-				>
-					{label}
-				</overrides.Label.component>
-			)}
+				{...overrides.Label.attributes(state)}
+				css={overrides.Label.styles(state)}
+			>
+				{label}
+			</overrides.Label.component>
 			<overrides.Toggle.component
 				name={name}
 				label={label}
 				checked={checked}
 				size={size}
 				block={block}
-				flipped={flipped}
-				toggleText={toggleText}
 				disabled={disabled}
-				aria-label={toggleText[checked ? 0 : 1]}
 				{...overrides.Toggle.attributes(state)}
 				css={overrides.Toggle.styles(state)}
-			>
-				{!!toggleText && (
-					<Fragment>
-						<overrides.ToggleText.component
-							position="left"
-							name={name}
-							label={label}
-							checked={checked}
-							size={size}
-							block={block}
-							flipped={flipped}
-							toggleText={toggleText}
-							disabled={disabled}
-							{...overrides.ToggleText.attributes({ ...state, checked, position: 'left' })}
-							css={overrides.ToggleText.styles({ ...state, checked, position: 'left' })}
-						>
-							{toggleText[0]}
-						</overrides.ToggleText.component>
-						<overrides.ToggleText.component
-							position="right"
-							name={name}
-							label={label}
-							checked={!checked}
-							size={size}
-							block={block}
-							flipped={flipped}
-							toggleText={toggleText}
-							disabled={disabled}
-							{...overrides.ToggleText.attributes({
-								...state,
-								checked: !checked,
-								position: 'right',
-							})}
-							css={overrides.ToggleText.styles({ ...state, checked: !checked, position: 'right' })}
-						>
-							{toggleText[1]}
-						</overrides.ToggleText.component>
-					</Fragment>
-				)}
-			</overrides.Toggle.component>
+			/>
 		</overrides.Switch.component>
 	);
 };
@@ -230,16 +168,6 @@ Switch.propTypes = {
 	block: PropTypes.bool,
 
 	/**
-	 * Reverse the horizontal orientation. Renders the toggle on the left of the label text.
-	 */
-	flipped: PropTypes.bool,
-
-	/**
-	 * Switch on/off state
-	 */
-	toggleText: PropTypes.arrayOf(PropTypes.string),
-
-	/**
 	 * Disable the switch
 	 */
 	disabled: PropTypes.bool,
@@ -258,11 +186,6 @@ Switch.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Input: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Label: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
@@ -273,16 +196,10 @@ Switch.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ToggleText: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 	}),
 };
 
 Switch.defaultProps = {
 	size: 'medium',
 	checked: false,
-	toggleText: ['On', 'Off'],
 };
