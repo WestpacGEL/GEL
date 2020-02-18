@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useState, useEffect, useRef, forwardRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
+import { Button } from '@westpac/button';
 import PropTypes from 'prop-types';
 
 import {
@@ -10,7 +11,6 @@ import {
 	buttonDropdownStyles,
 } from './overrides/buttonDropdown';
 import { Panel, panelStyles } from './overrides/panel';
-import { Button } from './Button';
 import pkg from '../package.json';
 
 // ==============================
