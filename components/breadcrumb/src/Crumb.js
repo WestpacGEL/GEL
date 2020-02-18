@@ -87,12 +87,12 @@ export const Crumb = ({
 			{!current && (
 				<overrides.Icon.component
 					aria-hidden="true"
-					assistiveText={null}
 					size="small"
 					color={COLORS.primary}
 					current={current}
 					href={href}
 					text={text}
+					assistiveText={null} //remove icon's `aria-label`
 					{...overrides.Icon.attributes(state)}
 					css={overrides.Icon.styles(state)}
 				/>
