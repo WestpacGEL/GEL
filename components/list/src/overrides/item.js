@@ -56,7 +56,7 @@ export const itemStyles = (_, { type, look, spacing, nested }) => {
 				display: 'block',
 				width: '0.75rem',
 				height: '0.375rem',
-				border: `solid ${COLORS.primary}`,
+				border: `solid ${COLORS.hero}`,
 				borderWidth: '0 0 0.125rem 0.125rem',
 				transform: 'rotate(-44deg)',
 				boxSizing: 'border-box',
