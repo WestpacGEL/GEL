@@ -56,7 +56,8 @@ export const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => 
 		':disabled, &[readonly]': {
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
-			backgroundColor: COLORS.light,
+			backgroundColor: COLORS.background,
+			borderStyle: 'dashed',
 			color: COLORS.muted,
 		},
 
