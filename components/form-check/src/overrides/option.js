@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const Option = ({ value, selected, disabled, type, name, size, inline, ...rest }) => (
+export const Option = ({ value, checked, disabled, type, name, size, inline, ...rest }) => (
 	<div {...rest} />
 );
 

@@ -12,8 +12,9 @@ function Example({ brand }) {
 
 			<h2>Data driven</h2>
 			<FormCheck
-				name="example-checkbox-data"
-				defaultValue="2"
+				type="checkbox"
+				name="example-checkbox-data-driven"
+				defaultValue={['2', '3']}
 				data={[
 					{ value: '1', text: 'Option 1' },
 					{ value: '2', text: 'Option 2' },
@@ -25,7 +26,7 @@ function Example({ brand }) {
 
 			<FormCheck
 				type="radio"
-				name="example-radio-data"
+				name="example-radio-data-driven"
 				defaultValue="2"
 				data={[
 					{ value: '1', text: 'Option 1' },
