@@ -39,7 +39,7 @@ function Example({ brand }) {
 				},
 			}),
 		},
-		Title: {
+		Heading: {
 			styles: styles => ({
 				...styles,
 				backgroundColor: 'palevioletred',
@@ -52,16 +52,16 @@ function Example({ brand }) {
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
-			<Popover title="Example Title" content={content}>
+			<Popover heading="Example heading" content={content}>
 				<Button>Click Me</Button>
 			</Popover>
 			<div style={{ marginTop: '40rem' }} />
-			<Popover title="Example Title" content={content}>
+			<Popover heading="Example heading" content={content}>
 				<Button>Click Me</Button>
 			</Popover>
 			<h2>With overrides and component overrides</h2>
 			<Popover
-				title="Example Title"
+				heading="Example heading"
 				content={content}
 				overrides={{
 					Panel: { styles: styles => ({ ...styles, border: '2px dotted red' }) },

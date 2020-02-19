@@ -17,11 +17,11 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<Popover title="Popover Title" content={content} dismissible>
+			<Popover heading="Popover heading" content={content} dismissible>
 				<Button>Dismissible popover</Button>
 			</Popover>
 			<div style={{ marginTop: '50rem' }} />
-			<Popover title="Popover Title" content={content} dismissible>
+			<Popover heading="Popover heading" content={content} dismissible>
 				<Button>Dismissible popover</Button>
 			</Popover>
 		</GEL>
