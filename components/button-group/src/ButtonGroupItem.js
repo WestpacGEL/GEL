@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -24,6 +25,8 @@ export const ButtonGroupItem = ({
 	overrides: componentOverrides,
 	...rest
 }) => {
+	const [buttonGroupItemId] = useState(`button-group-item-${useInstanceId()}`);
+
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -38,6 +41,7 @@ export const ButtonGroupItem = ({
 	};
 
 	const state = {
+		name,
 		value,
 		onChange,
 		checked,
@@ -58,23 +62,35 @@ export const ButtonGroupItem = ({
 
 	return (
 		<overrides.ButtonGroupItem.component
+			htmlFor={buttonGroupItemId} //a11y: use explicit association
 			tag="label"
-			look={look}
+			type={null} //reset Button's default `button` type
 			soft={!checked}
+			name={name}
+			value={value}
+			onChange={onChange}
+			checked={checked}
+			look={look}
 			size={size}
 			disabled={disabled}
 			{...rest}
 			{...overrides.ButtonGroupItem.attributes(state)}
 			css={overrides.ButtonGroupItem.styles(state)}
 		>
+			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
+				type="radio"
+				id={buttonGroupItemId}
 				name={name}
 				value={value}
+				onChange={event => onChange(event, value)}
 				checked={checked}
 				disabled={disabled}
-				type="radio"
-				css={{ position: 'absolute', zIndex: '-1', opacity: 0 }}
-				onChange={event => onChange(event, value)}
+				css={{
+					position: 'absolute',
+					zIndex: '-1',
+					opacity: 0,
+				}}
 			/>
 			{children}
 		</overrides.ButtonGroupItem.component>
