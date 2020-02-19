@@ -1,8 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, forwardRef, useEffect } from 'react';
+import { Fragment, useState, forwardRef, useEffect, useRef } from 'react';
+import { useTransition, useSpring, animated } from 'react-spring';
+import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
+
+import { useMeasure } from './_utils';
 
 import { AccordionLabel, accordionLabelStyles } from './overrides/accordionLabel';
 import { AccordionIcon, accordionIconStyles } from './overrides/accordionIcon';
@@ -26,11 +30,21 @@ export const Tab = forwardRef(
 		},
 		ref
 	) => {
-		const [hidden, setHidden] = useState(!selected);
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
 			[pkg.name]: brandOverrides,
 		} = useBrand();
+
+		const [hidden, setHidden] = useState(!selected);
+		const [bind, { height }] = useMeasure();
+		console.log(mode);
+		// doesnt work for responsive...
+		// im going to have a conditional arent i...
+		const animate = useSpring({
+			height: mode === 'accordion' ? (hidden ? 0 : height) : 'auto',
+			opacity: mode === 'accordion' ? (hidden ? 0 : 1) : 'auto',
+			overflow: 'hidden',
+		});
 
 		const defaultOverrides = {
 			AccordionLabel: {
@@ -116,25 +130,31 @@ export const Tab = forwardRef(
 						/>
 					</overrides.AccordionLabel.component>
 				) : null}
-				<overrides.Panel.component
-					id={panelId}
-					ref={ref}
-					hidden={mode === 'accordion' ? hidden : !selected}
-					look={look}
-					last={last}
-					selected={selected}
-					text={text}
-					mode={mode}
-					panelId={panelId}
-					tabId={tabId}
-					{...overrides.Panel.attributes({
-						...state,
-						hidden: mode === 'accordion' ? hidden : !selected,
-					})}
-					css={overrides.Panel.styles(state)}
-				>
-					{children}
-				</overrides.Panel.component>
+
+				<animated.div style={animate}>
+					<div {...bind}>
+						<overrides.Panel.component
+							id={panelId}
+							ref={ref}
+							aria-hidden={hidden}
+							hidden={mode === 'tabs' && !selected}
+							look={look}
+							last={last}
+							selected={selected}
+							text={text}
+							mode={mode}
+							panelId={panelId}
+							tabId={tabId}
+							{...overrides.Panel.attributes({
+								...state,
+								hidden: mode === 'accordion' ? hidden : !selected,
+							})}
+							css={overrides.Panel.styles(state)}
+						>
+							{children}
+						</overrides.Panel.component>
+					</div>
+				</animated.div>
 			</Fragment>
 		);
 	}
