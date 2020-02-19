@@ -163,9 +163,8 @@ export const Modal = ({
 							</overrides.Title.component>
 							{dismissible && (
 								<overrides.CloseBtn.component
+									assistiveText="Close"
 									onClick={() => handleClose()}
-									icon={CloseIcon}
-									aria-label="Close"
 									heading={heading}
 									open={open}
 									onClose={onClose}
