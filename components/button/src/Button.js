@@ -81,6 +81,7 @@ export const Button = forwardRef(
 
 		return (
 			<overrides.Button.component
+				aria-label={assistiveText}
 				ref={ref}
 				look={look}
 				size={size}
