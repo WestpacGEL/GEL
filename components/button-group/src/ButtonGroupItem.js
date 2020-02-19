@@ -5,9 +5,10 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-	ButtonGroupItem as BtnGroupItemWrapper,
+	ButtonGroupItem as ButtonGroupItemWrapper,
 	buttonGroupItemStyles,
 } from './overrides/buttonGroupItem';
+import { ButtonGroupButton, buttonGroupButtonStyles } from './overrides/buttonGroupButton';
 import pkg from '../package.json';
 
 // ==============================
@@ -20,6 +21,7 @@ export const ButtonGroupItem = ({
 	checked,
 	look,
 	size,
+	block,
 	disabled,
 	children,
 	overrides: componentOverrides,
@@ -35,7 +37,12 @@ export const ButtonGroupItem = ({
 	const defaultOverrides = {
 		ButtonGroupItem: {
 			styles: buttonGroupItemStyles,
-			component: BtnGroupItemWrapper,
+			component: ButtonGroupItemWrapper,
+			attributes: () => null,
+		},
+		ButtonGroupButton: {
+			styles: buttonGroupButtonStyles,
+			component: ButtonGroupButton,
 			attributes: () => null,
 		},
 	};
@@ -47,6 +54,7 @@ export const ButtonGroupItem = ({
 		checked,
 		look,
 		size,
+		block,
 		disabled,
 		children,
 		overrides: componentOverrides,
@@ -63,15 +71,13 @@ export const ButtonGroupItem = ({
 	return (
 		<overrides.ButtonGroupItem.component
 			htmlFor={buttonGroupItemId} //a11y: use explicit association
-			tag="label"
-			type={null} //reset Button's default `button` type
-			soft={!checked}
 			name={name}
 			value={value}
 			onChange={onChange}
 			checked={checked}
 			look={look}
 			size={size}
+			block={block}
 			disabled={disabled}
 			{...rest}
 			{...overrides.ButtonGroupItem.attributes(state)}
@@ -92,7 +98,20 @@ export const ButtonGroupItem = ({
 					opacity: 0,
 				}}
 			/>
-			{children}
+			<overrides.ButtonGroupButton.component
+				name={name}
+				value={value}
+				onChange={onChange}
+				checked={checked}
+				look={look}
+				size={size}
+				block={block}
+				disabled={disabled}
+				{...overrides.ButtonGroupButton.attributes(state)}
+				css={overrides.ButtonGroupButton.styles(state)}
+			>
+				{children}
+			</overrides.ButtonGroupButton.component>
 		</overrides.ButtonGroupItem.component>
 	);
 };
@@ -102,7 +121,12 @@ export const ButtonGroupItem = ({
 // ==============================
 ButtonGroupItem.propTypes = {
 	overrides: PropTypes.shape({
-		ButtonGroup: PropTypes.shape({
+		ButtonGroupItem: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ButtonGroupButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

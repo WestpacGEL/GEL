@@ -25,9 +25,9 @@ function Example({ brand }) {
 			<ButtonGroup
 				name="example-data-driven"
 				data={[
-					{ children: 'Left', value: 'left' },
-					{ children: 'Middle', value: 'middle' },
-					{ children: 'Right', value: 'right' },
+					{ text: 'Left', value: 'left' },
+					{ text: 'Middle', value: 'middle' },
+					{ text: 'Right', value: 'right' },
 				]}
 			/>
 
