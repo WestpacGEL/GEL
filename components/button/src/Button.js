@@ -89,10 +89,10 @@ export const Button = forwardRef(
 				iconAfter={iconAfter}
 				iconBefore={iconBefore}
 				justify={justify}
-				disabled={disabled}
+				disabled={tag === 'button' ? disabled : undefined}
 				assistiveText={assistiveText}
 				tag={tag}
-				type={type}
+				type={tag === 'button' ? type || 'button' : undefined}
 				dropdown={dropdown}
 				onClick={onClick}
 				{...rest}
@@ -149,7 +149,9 @@ Button.propTypes = {
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
-	 * Button type, overwritten when tag = button
+	 * Button type.
+	 *
+	 * Default type of 'button' if tag is 'button'.
 	 */
 	type: PropTypes.string,
 
@@ -237,5 +239,4 @@ Button.defaultProps = {
 	block: false,
 	justify: false,
 	disabled: false,
-	type: 'button',
 };
