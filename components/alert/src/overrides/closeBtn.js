@@ -17,7 +17,7 @@ export const CloseBtn = ({
 	const { COLORS } = useBrand();
 
 	return (
-		<Button onClick={() => onClose()} iconAfter={CloseIcon} look="link" size="small" {...rest} />
+		<Button onClick={() => onClose()} iconAfter={CloseIcon} look="link" size="medium" {...rest} />
 	);
 };
 
@@ -29,7 +29,7 @@ export const closeBtnStyles = (_, {}) => {
 		color: 'inherit',
 		position: 'absolute',
 		zIndex: 1,
-		top: SPACING(1, 'minor'),
+		top: 0,
 		right: SPACING(1),
 		opacity: 1,
 

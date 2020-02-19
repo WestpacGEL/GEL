@@ -120,7 +120,7 @@ export const Alert = ({
 
 	const CloseBtnJSX = () => (
 		<overrides.CloseBtn.component
-			aria-label="Close"
+			assistiveText="Close"
 			onClose={() => setOpen(false)}
 			open={open}
 			look={look}
