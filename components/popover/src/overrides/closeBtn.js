@@ -5,7 +5,7 @@ import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
 export const CloseBtn = ({ open, heading, content, dismissible, position, ...rest }) => (
-	<Button iconAfter={CloseIcon} look="link" size="small" {...rest} />
+	<Button iconAfter={CloseIcon} look="link" size="medium" {...rest} />
 );
 
 export const closeBtnStyles = (_, {}) => {
@@ -13,7 +13,7 @@ export const closeBtnStyles = (_, {}) => {
 	return {
 		position: 'absolute',
 		zIndex: 1,
-		top: SPACING(1, true),
+		top: 0,
 		right: SPACING(1),
 		color: COLORS.text,
 
