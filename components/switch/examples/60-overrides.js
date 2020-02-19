@@ -6,7 +6,7 @@ import { Switch } from '@westpac/switch';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Label = ({ toggleText, ...props }) => <strong {...props} />;
+const Label = props => <strong {...props} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -36,12 +36,12 @@ function Example({ brand }) {
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
-			<Switch name="example-default" label="Turn notifications" />
+			<Switch name="example-overrides" label="eStatements" />
 
 			<h2>With overrides and component overrides</h2>
 			<Switch
-				name="example-default"
-				label="Turn notifications"
+				name="example-component-overrides"
+				label="eStatements"
 				overrides={{
 					Toggle: {
 						styles: (styles, { checked }) => ({

@@ -74,11 +74,11 @@ export const Crumb = ({
 			css={overrides.Crumb.styles(state)}
 		>
 			<overrides.Link.component
+				onClick={onClick}
 				current={current}
 				href={current ? null : href}
 				text={text}
 				assistiveText={assistiveText}
-				onClick={onClick}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
 			>
@@ -92,7 +92,7 @@ export const Crumb = ({
 					current={current}
 					href={href}
 					text={text}
-					assistiveText={assistiveText}
+					assistiveText={null} //remove icon's `aria-label`
 					{...overrides.Icon.attributes(state)}
 					css={overrides.Icon.styles(state)}
 				/>

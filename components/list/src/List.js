@@ -152,14 +152,16 @@ export const List = ({
 			}}
 		>
 			<overrides.List.component
-				// As we're using `list-style: none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
+				//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
 				role={type !== 'ordered' ? 'list' : undefined}
-				aria-label={assistiveText}
+				//a11y: tick bullet meaning must be conveyed; setting a default (but configurable) aria-label value
+				aria-label={type === 'tick' ? assistiveText || 'The following items are ticked' : undefined}
 				look={look}
 				type={type}
 				nested={nested}
 				spacing={spacing}
 				icon={icon}
+				assistiveText={assistiveText}
 				data={data}
 				{...rest}
 				{...overrides.List.attributes(state)}
@@ -201,25 +203,11 @@ List.propTypes = {
 	icon: PropTypes.func,
 
 	/**
-	 * Visually hidden text to use for the list
+	 * Visually hidden text to use for the list.
+	 *
+	 * Tick list default value: "The following items are ticked"
 	 */
-	assistiveText: function(props, propName, componentName) {
-		const propValue = props[propName];
-
-		// Optional, but must be a string
-		if (propValue && typeof propValue !== 'string') {
-			return new Error(
-				`Invalid prop \`${propName}\` of type \`${typeof propValue}\` supplied to \`${componentName}\`, expected \`string\`.`
-			);
-		}
-		// Required, if type is 'tick'
-		if (props.type === 'tick' && typeof propValue === 'undefined') {
-			return new Error(
-				`The prop \`${propName}\` is marked as required in \`${componentName}\` when prop \`type\` is \`tick\`, but its value is \`undefined\`.`
-			);
-		}
-		return null;
-	},
+	assistiveText: PropTypes.string,
 
 	/**
 	 * Any renderable child

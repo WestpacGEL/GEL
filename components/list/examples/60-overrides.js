@@ -66,7 +66,7 @@ function Example({ brand }) {
 			<hr />
 			<br />
 
-			<List type="tick" assistiveText="The following items are included">
+			<List type="tick">
 				<Item>List item</Item>
 				<Item>List item</Item>
 				<Item>List item</Item>

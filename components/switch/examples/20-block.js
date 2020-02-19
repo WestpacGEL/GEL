@@ -13,15 +13,7 @@ function Example({ brand }) {
 
 			<h2>Default block</h2>
 			<Switch name="example-block-1" label={label} block />
-			<Switch name="example-block-2" label="Lorem ipsum dolor sit amet" block />
-
-			<hr />
-
-			<h2>Flipped block</h2>
-			<Switch name="example-flipped-block-1" label="Enable notifications" flipped block />
-			<hr />
-
-			<Switch name="example-flipped-block-2" label={label} flipped block />
+			<Switch name="example-block-2" label="eStatements" block />
 		</GEL>
 	);
 }
