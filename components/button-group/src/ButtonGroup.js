@@ -117,6 +117,7 @@ export const ButtonGroup = ({
 // ==============================
 // Types
 // ==============================
+const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 ButtonGroup.propTypes = {
 	/**
