@@ -23,7 +23,7 @@ function Example({ brand }) {
 			</ButtonGroup>
 			<h3>Data-driven</h3>
 			<ButtonGroup
-				name="exmaple-data-driven"
+				name="example-data-driven"
 				data={[
 					{ children: 'Left', value: 'left' },
 					{ children: 'Middle', value: 'middle' },
