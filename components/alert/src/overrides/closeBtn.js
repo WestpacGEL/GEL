@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { CloseIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
+import { CloseIcon } from '@westpac/icon';
 
 export const CloseBtn = ({
 	open,
@@ -16,18 +16,8 @@ export const CloseBtn = ({
 }) => {
 	const { COLORS } = useBrand();
 
-	const styleMap = {
-		success: COLORS.success,
-		info: COLORS.info,
-		warning: COLORS.warning,
-		danger: COLORS.danger,
-		system: '#000',
-	};
-
 	return (
-		<Button onClick={() => onClose()} iconAfter={icon} look="link" aria-label="Close" {...rest}>
-			<CloseIcon color={styleMap[look]} size="small" assistiveText={null} aria-hidden={true} />
-		</Button>
+		<Button onClick={() => onClose()} iconAfter={CloseIcon} look="link" size="small" {...rest} />
 	);
 };
 
@@ -44,7 +34,7 @@ export const closeBtnStyles = (_, {}) => {
 		opacity: 1,
 
 		':hover': {
-			opacity: 0.5,
+			opacity: 0.8,
 		},
 	})[0];
 };
