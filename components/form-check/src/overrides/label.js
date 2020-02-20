@@ -3,11 +3,11 @@
 import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 
-export const Label = ({ value, selected, disabled, type, name, size, inline, ...rest }) => (
+export const Label = ({ value, checked, disabled, type, name, size, inline, ...rest }) => (
 	<label {...rest} />
 );
 
-export const labelStyles = (_, { type, size, selected, disabled }) => {
+export const labelStyles = (_, { checked, disabled, type, size }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	const sizeMap = {
@@ -89,7 +89,7 @@ export const labelStyles = (_, { type, size, selected, disabled }) => {
 		},
 
 		// Control 'check' (tick or dot)
-		...(selected && {
+		...(checked && {
 			'::after': {
 				content: '""',
 				boxSizing: 'border-box',

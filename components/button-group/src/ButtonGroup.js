@@ -4,7 +4,7 @@ import { jsx, useBrand, devWarning, wrapHandlers, overrideReconciler } from '@we
 import { Children, cloneElement, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { ButtonGroup as BtnGroupWrapper, buttonGroupStyles } from './overrides/buttonGroup';
+import { ButtonGroup as ButtonGroupWrapper, buttonGroupStyles } from './overrides/buttonGroup';
 import { ButtonGroupItem } from './ButtonGroupItem';
 import pkg from '../package.json';
 
@@ -38,7 +38,7 @@ export const ButtonGroup = ({
 	const defaultOverrides = {
 		ButtonGroup: {
 			styles: buttonGroupStyles,
-			component: BtnGroupWrapper,
+			component: ButtonGroupWrapper,
 			attributes: () => null,
 		},
 	};
@@ -74,42 +74,64 @@ export const ButtonGroup = ({
 
 	const actualValue = typeof controlledValue !== 'undefined' ? controlledValue : value;
 
+	let allChildren = [];
+	if (data) {
+		data.map((props, index) => {
+			const val = props.value || index;
+			const checked = val === actualValue;
+			allChildren.push(
+				<ButtonGroupItem
+					key={val}
+					name={name}
+					value={val}
+					onChange={handleChange}
+					data={data}
+					checked={checked}
+					look={look}
+					size={size}
+					block={block}
+					disabled={disabled}
+					overrides={componentOverrides}
+				>
+					{props.text}
+				</ButtonGroupItem>
+			);
+		});
+	} else {
+		allChildren = Children.map(children, (child, index) => {
+			const val = child.props.value || index;
+			const checked = val === actualValue;
+			return cloneElement(child, {
+				name,
+				value: val,
+				onChange: handleChange,
+				data,
+				checked,
+				look,
+				size,
+				block,
+				disabled,
+				overrides: componentOverrides,
+			});
+		});
+	}
+
 	return (
 		<overrides.ButtonGroup.component
+			name={name}
+			value={value}
+			defaultValue={defaultValue}
+			onChange={onChange}
+			data={data}
+			look={look}
+			size={size}
+			block={block}
+			disabled={disabled}
 			{...rest}
 			{...overrides.ButtonGroup.attributes(state)}
 			css={overrides.ButtonGroup.styles(state)}
 		>
-			{data
-				? data.map((item, index) => {
-						const val = item.value || index;
-						const checked = val === actualValue;
-						const itemProps = {
-							...item,
-							name,
-							value: val,
-							onChange: handleChange,
-							checked,
-							look,
-							size,
-							disabled,
-						};
-						return <ButtonGroupItem key={val} {...itemProps} overrides={componentOverrides} />;
-				  })
-				: Children.map(children, (child, index) => {
-						const val = child.props.value || index;
-						const checked = val === actualValue;
-						return cloneElement(child, {
-							name,
-							value: val,
-							checked,
-							look,
-							onChange: handleChange,
-							size,
-							disabled,
-							overrides: componentOverrides,
-						});
-				  })}
+			{allChildren}
 		</overrides.ButtonGroup.component>
 	);
 };

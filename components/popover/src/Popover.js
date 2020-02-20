@@ -3,19 +3,18 @@
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import { useState, useEffect, useRef, cloneElement } from 'react';
 import { usePopoverPosition } from '@westpac/hooks';
-import { CloseIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
 
 import { Popover as PopoverWrapper, popoverStyles } from './overrides/popover';
 import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
 import { PopoverBody, bodyStyles } from './overrides/body';
 import { Panel, panelStyles } from './overrides/panel';
-import { Title, titleStyles } from './overrides/title';
+import { Heading, headingStyles } from './overrides/heading';
 import pkg from '../package.json';
 
 export const Popover = ({
 	open: isOpen,
-	title,
+	heading,
 	content,
 	dismissible,
 	children,
@@ -43,9 +42,9 @@ export const Popover = ({
 			component: Panel,
 			attributes: () => null,
 		},
-		Title: {
-			styles: titleStyles,
-			component: Title,
+		Heading: {
+			styles: headingStyles,
+			component: Heading,
 			attributes: () => null,
 		},
 		Body: {
@@ -62,7 +61,7 @@ export const Popover = ({
 
 	const state = {
 		open,
-		title,
+		heading,
 		content,
 		dismissible,
 		position,
@@ -131,7 +130,7 @@ export const Popover = ({
 			ref={triggerRef}
 			onClick={handleOpen}
 			open={open}
-			title={title}
+			heading={heading}
 			content={content}
 			dismissible={dismissible}
 			position={position}
@@ -146,27 +145,29 @@ export const Popover = ({
 				ref={popoverRef}
 				tabIndex="-1"
 				open={open}
-				title={title}
+				heading={heading}
 				content={content}
 				dismissible={dismissible}
 				position={position}
 				{...overrides.Panel.attributes(state)}
 				css={overrides.Panel.styles(state)}
 			>
-				<overrides.Title.component
-					open={open}
-					title={title}
-					content={content}
-					dismissible={dismissible}
-					position={position}
-					{...overrides.Title.attributes(state)}
-					css={overrides.Title.styles(state)}
-				>
-					{title}
-				</overrides.Title.component>
+				{heading && (
+					<overrides.Heading.component
+						open={open}
+						heading={heading}
+						content={content}
+						dismissible={dismissible}
+						position={position}
+						{...overrides.Heading.attributes(state)}
+						css={overrides.Heading.styles(state)}
+					>
+						{heading}
+					</overrides.Heading.component>
+				)}
 				<overrides.Body.component
 					open={open}
-					title={title}
+					heading={heading}
 					content={content}
 					dismissible={dismissible}
 					position={position}
@@ -176,10 +177,10 @@ export const Popover = ({
 					{content}
 				</overrides.Body.component>
 				<overrides.CloseBtn.component
+					assistiveText="Close"
 					onClick={() => handleOpen()}
-					icon={CloseIcon}
 					open={open}
-					title={title}
+					heading={heading}
 					content={content}
 					dismissible={dismissible}
 					position={position}
@@ -196,14 +197,14 @@ export const Popover = ({
 // ==============================
 Popover.propTypes = {
 	/**
-	 * State of whether the popover is open
+	 * State of whether the Popover is open
 	 */
 	open: PropTypes.bool,
 
 	/**
-	 * The title of the popover
+	 * The Popover heading
 	 */
-	title: PropTypes.string.isRequired,
+	heading: PropTypes.string,
 
 	/**
 	 * The body of the popover
@@ -236,7 +237,7 @@ Popover.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Title: PropTypes.shape({
+		heading: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

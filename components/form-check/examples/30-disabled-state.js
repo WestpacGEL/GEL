@@ -10,7 +10,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Global disable</h2>
+			<h2>Global disabled</h2>
 			<FormCheck name="default" disabled>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>

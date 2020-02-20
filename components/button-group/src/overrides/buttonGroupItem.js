@@ -1,10 +1,26 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
-import { Button } from '@westpac/button';
+import { jsx, asArray, useMediaQuery } from '@westpac/core';
 
-export const ButtonGroupItem = props => <Button {...props} />;
+export const ButtonGroupItem = ({
+	name,
+	value,
+	onChange,
+	data,
+	checked,
+	look,
+	size,
+	block,
+	disabled,
+	...rest
+}) => <label {...rest} />;
 
-export const buttonGroupItemStyles = () => {
-	return {};
+export const buttonGroupItemStyles = (_, { block }) => {
+	const mq = useMediaQuery();
+
+	const blockArr = asArray(block);
+
+	return mq({
+		flex: blockArr.map(b => b !== null && (b ? 1 : null)),
+	})[0];
 };

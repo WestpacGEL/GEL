@@ -16,13 +16,15 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia />
-
-			<Popover title="Popover Title" content={content}>
-				<Button>Default popover</Button>
+			<Popover heading="Popover heading" content={content}>
+				<Button>Popover with heading</Button>
+			</Popover>{' '}
+			<Popover content={content}>
+				<Button>Popover without heading</Button>
 			</Popover>
 			<div style={{ marginTop: '50rem' }} />
-			<Popover title="Popover Title" content={content}>
-				<Button>Default popover</Button>
+			<Popover heading="Popover heading" content={content}>
+				<Button>Popover with heading</Button>
 			</Popover>
 		</GEL>
 	);

@@ -14,7 +14,7 @@ import pkg from '../package.json';
 
 export const Option = ({
 	value,
-	selected,
+	checked,
 	handleChange,
 	disabled,
 	type,
@@ -25,7 +25,7 @@ export const Option = ({
 	overrides: componentOverrides,
 	...rest
 }) => {
-	const [formCheckId] = useState(`form-check-${name.replace(/ /g, '-')}-${useInstanceId()}`);
+	const [formCheckId] = useState(`form-check-option-${name.replace(/ /g, '-')}-${useInstanceId()}`);
 
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -47,7 +47,7 @@ export const Option = ({
 
 	const state = {
 		value,
-		selected,
+		checked,
 		handleChange,
 		disabled,
 		type,
@@ -67,7 +67,7 @@ export const Option = ({
 	return (
 		<overrides.Option.component
 			value={value}
-			selected={selected}
+			checked={checked}
 			disabled={disabled}
 			type={type}
 			name={name}
@@ -79,12 +79,13 @@ export const Option = ({
 		>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
-				type={type}
-				value={value}
-				selected={selected}
 				id={formCheckId}
+				onChange={disabled ? null : event => handleChange(event, value, checked)}
+				value={value}
+				checked={checked}
 				disabled={disabled}
-				onChange={disabled ? null : event => handleChange(event, value, selected)}
+				type={type}
+				name={name}
 				css={{
 					position: 'absolute',
 					zIndex: '-1',
@@ -94,7 +95,7 @@ export const Option = ({
 			<overrides.Label.component
 				htmlFor={formCheckId}
 				value={value}
-				selected={selected}
+				checked={checked}
 				disabled={disabled}
 				type={type}
 				name={name}
@@ -122,7 +123,7 @@ Option.propTypes = {
 	/**
 	 * Check the Form check option
 	 */
-	selected: PropTypes.bool.isRequired,
+	checked: PropTypes.bool.isRequired,
 
 	/**
 	 * Disable the Form check option
@@ -177,6 +178,6 @@ Option.propTypes = {
 };
 
 Option.defaultProps = {
-	selected: false,
+	checked: false,
 	disabled: false,
 };

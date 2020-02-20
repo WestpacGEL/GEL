@@ -29,22 +29,23 @@ function Example({ brand }) {
 		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 			<h2>With overrides applied</h2>
-			<ButtonGroup>
+			<ButtonGroup name="example-overrides">
 				<Item value="left">Left</Item>
 				<Item value="middle">Middle</Item>
 				<Item value="right">Right</Item>
 			</ButtonGroup>
 			<h3>Data Driven</h3>
 			<ButtonGroup
-				name="data-group"
+				name="example-data-driven"
 				data={[
-					{ children: 'Left', value: 'left' },
-					{ children: 'Middle', value: 'middle' },
-					{ children: 'Right', value: 'right' },
+					{ text: 'Left', value: 'left' },
+					{ text: 'Middle', value: 'middle' },
+					{ text: 'Right', value: 'right' },
 				]}
 			/>
 			<h2>With overrides and component overrides</h2>
 			<ButtonGroup
+				name="example-overrides"
 				overrides={{
 					ButtonGroup: {
 						styles: styles => ({
@@ -61,11 +62,11 @@ function Example({ brand }) {
 			</ButtonGroup>
 			<h3>Data Driven</h3>
 			<ButtonGroup
-				name="data-group"
+				name="example-data-driven-overrides"
 				data={[
-					{ children: 'Left', value: 'left' },
-					{ children: 'Middle', value: 'middle' },
-					{ children: 'Right', value: 'right' },
+					{ text: 'Left', value: 'left' },
+					{ text: 'Middle', value: 'middle' },
+					{ text: 'Right', value: 'right' },
 				]}
 				overrides={{
 					ButtonGroup: {

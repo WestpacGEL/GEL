@@ -90,36 +90,6 @@ export const Alert = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const CloseBtnJSX = () => (
-		<overrides.CloseBtn.component
-			open={open}
-			look={look}
-			dismissible={dismissible}
-			icon={icon}
-			heading={heading}
-			headingTag={headingTag}
-			children={children}
-			onClose={() => setOpen(false)}
-			{...overrides.CloseBtn.attributes(state)}
-			css={overrides.CloseBtn.styles(state)}
-		/>
-	);
-
-	const IconJSX = () => (
-		<overrides.Icon.component
-			open={open}
-			look={look}
-			dismissible={dismissible}
-			icon={icon}
-			heading={heading}
-			headingTag={headingTag}
-			size={['small', 'medium']}
-			color="inherit"
-			{...overrides.Icon.attributes(state)}
-			css={overrides.Icon.styles(state)}
-		/>
-	);
-
 	const HeadingJSX = () => (
 		<overrides.Heading.component
 			open={open}
@@ -130,6 +100,36 @@ export const Alert = ({
 			headingTag={headingTag}
 			{...overrides.Heading.attributes(state)}
 			css={overrides.Heading.styles(state)}
+		/>
+	);
+
+	const IconJSX = () => (
+		<overrides.Icon.component
+			size={['small', 'medium']}
+			color="inherit"
+			open={open}
+			look={look}
+			dismissible={dismissible}
+			icon={icon}
+			heading={heading}
+			headingTag={headingTag}
+			{...overrides.Icon.attributes(state)}
+			css={overrides.Icon.styles(state)}
+		/>
+	);
+
+	const CloseBtnJSX = () => (
+		<overrides.CloseBtn.component
+			assistiveText="Close"
+			onClose={() => setOpen(false)}
+			open={open}
+			look={look}
+			dismissible={dismissible}
+			icon={icon}
+			heading={heading}
+			headingTag={headingTag}
+			{...overrides.CloseBtn.attributes(state)}
+			css={overrides.CloseBtn.styles(state)}
 		/>
 	);
 

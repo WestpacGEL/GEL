@@ -3,7 +3,6 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Fragment, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
-import { CloseIcon } from '@westpac/icon';
 import { FocusOn } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
@@ -163,9 +162,8 @@ export const Modal = ({
 							</overrides.Title.component>
 							{dismissible && (
 								<overrides.CloseBtn.component
+									assistiveText="Close"
 									onClick={() => handleClose()}
-									icon={CloseIcon}
-									aria-label="Close"
 									heading={heading}
 									open={open}
 									onClose={onClose}

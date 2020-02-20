@@ -24,6 +24,7 @@ export const panelStyles = (_, { open, position }) => {
 		backgroundColor: '#fff',
 		pointerEvents: 'all',
 		textAlign: 'left',
+		padding: '24px 30px 24px 18px',
 
 		'::before': {
 			content: '""',

@@ -77,7 +77,7 @@ export const Switch = ({
 
 	return (
 		<overrides.Switch.component
-			htmlFor={switchId}
+			htmlFor={switchId} //a11y: use explicit association
 			name={name}
 			label={label}
 			checked={checked}

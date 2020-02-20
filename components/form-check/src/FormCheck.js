@@ -39,19 +39,19 @@ export const FormCheck = ({
 		'The form-check as radio may only have one "current" item set.'
 	);
 
-	const [selected, setSelected] = useState(defaultValueAsArray);
+	const [checked, setChecked] = useState(defaultValueAsArray);
 
-	const handleChange = (event, value, wasSelected) => {
+	const handleChange = (event, value, wasChecked) => {
 		wrapHandlers(
-			() => onChange(event, value, wasSelected),
+			() => onChange(event, value, wasChecked),
 			() => {
 				if (type === 'radio') {
-					setSelected(asArray(value));
+					setChecked(asArray(value));
 				} else {
-					if (wasSelected) {
-						setSelected(selected.filter(item => item !== value));
+					if (wasChecked) {
+						setChecked(checked.filter(item => item !== value));
 					} else {
-						setSelected([...selected, value]);
+						setChecked([...checked, value]);
 					}
 				}
 			}
@@ -96,16 +96,16 @@ export const FormCheck = ({
 			allChildren.push(
 				<Option
 					key={index}
+					value={props.value}
+					checked={props.checked || checked.includes(props.value)}
+					handleChange={handleChange}
 					type={type}
 					name={name}
 					size={size}
 					inline={inline}
-					disabled={disabled}
+					disabled={props.disabled || disabled}
 					data={data}
 					defaultValue={defaultValue}
-					value={props.value}
-					handleChange={handleChange}
-					selected={selected.includes(props.value)}
 					overrides={componentOverrides}
 				>
 					{props.text}
@@ -115,15 +115,15 @@ export const FormCheck = ({
 	} else {
 		allChildren = Children.map(children, child =>
 			cloneElement(child, {
+				checked: child.props.checked || checked.includes(child.props.value),
+				handleChange,
 				type,
 				name,
 				size,
 				inline,
+				disabled: child.props.disabled || disabled,
 				data,
 				defaultValue,
-				handleChange,
-				selected: selected.includes(child.props.value),
-				disabled: child.props.disabled || disabled,
 				overrides: componentOverrides,
 			})
 		);
@@ -193,7 +193,7 @@ FormCheck.propTypes = {
 	),
 
 	/**
-	 * The options already selected
+	 * The options already checked
 	 */
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
 
