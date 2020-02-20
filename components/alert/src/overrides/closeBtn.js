@@ -8,18 +8,20 @@ export const CloseBtn = ({
 	open,
 	look,
 	dismissible,
+	onClose,
 	icon,
 	heading,
 	headingTag,
-	onClose,
 	...rest
-}) => {
-	const { COLORS } = useBrand();
-
-	return (
-		<Button onClick={() => onClose()} iconAfter={CloseIcon} look="link" size="medium" {...rest} />
-	);
-};
+}) => (
+	<Button
+		onClick={event => onClose(event)}
+		iconAfter={CloseIcon}
+		look="link"
+		size="medium"
+		{...rest}
+	/>
+);
 
 export const closeBtnStyles = (_, {}) => {
 	const mq = useMediaQuery();

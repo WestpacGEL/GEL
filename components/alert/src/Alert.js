@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -20,6 +20,7 @@ export const Alert = ({
 	open: isOpen,
 	look,
 	dismissible,
+	onClose = () => {},
 	icon,
 	heading,
 	headingTag,
@@ -72,6 +73,7 @@ export const Alert = ({
 		open,
 		look,
 		dismissible: dismissible ? dismissible : undefined,
+		onClose,
 		icon,
 		heading,
 		headingTag,
@@ -90,11 +92,19 @@ export const Alert = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
+	const handleClose = event => {
+		wrapHandlers(
+			() => onClose(),
+			() => setOpen(false)
+		)(event);
+	};
+
 	const HeadingJSX = () => (
 		<overrides.Heading.component
 			open={open}
 			look={look}
 			dismissible={dismissible}
+			onClose={onClose}
 			icon={icon}
 			heading={heading}
 			headingTag={headingTag}
@@ -110,6 +120,7 @@ export const Alert = ({
 			open={open}
 			look={look}
 			dismissible={dismissible}
+			onClose={onClose}
 			icon={icon}
 			heading={heading}
 			headingTag={headingTag}
@@ -121,7 +132,7 @@ export const Alert = ({
 	const CloseBtnJSX = () => (
 		<overrides.CloseBtn.component
 			assistiveText="Close"
-			onClose={() => setOpen(false)}
+			onClose={event => handleClose(event)}
 			open={open}
 			look={look}
 			dismissible={dismissible}
@@ -138,6 +149,7 @@ export const Alert = ({
 			open={open}
 			look={look}
 			dismissible={dismissible}
+			onClose={onClose}
 			icon={icon}
 			heading={heading}
 			headingTag={headingTag}
@@ -150,6 +162,7 @@ export const Alert = ({
 				open={open}
 				look={look}
 				dismissible={dismissible}
+				onClose={onClose}
 				icon={icon}
 				heading={heading}
 				headingTag={headingTag}
@@ -192,6 +205,11 @@ Alert.propTypes = {
 	 * Enable dismissible mode
 	 */
 	dismissible: PropTypes.bool.isRequired,
+
+	/**
+	 * onClose function for dismissible mode
+	 */
+	onClose: PropTypes.func,
 
 	/**
 	 * Alert icon.

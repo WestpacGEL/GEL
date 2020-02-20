@@ -4,7 +4,7 @@ import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React from 'react';
 
-export const Alert = ({ open, look, dismissible, icon, heading, headingTag, ...rest }) => (
+export const Alert = ({ open, look, dismissible, onClose, icon, heading, headingTag, ...rest }) => (
 	<div {...rest} />
 );
 
