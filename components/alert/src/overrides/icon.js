@@ -8,6 +8,7 @@ export const Icon = ({
 	open,
 	look,
 	dismissible,
+	onClose,
 	icon,
 	heading,
 	headingTag,
