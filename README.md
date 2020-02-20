@@ -66,7 +66,7 @@ yarn start button
 ├── yarn.lock
 │
 ├── helper/
-│   ├── component-template/         # the starter files for when a new component is created via cli
+│   ├── .component-template/        # the starter files for when a new component is created via cli
 │   │
 │   ├── example/
 │   │   ├── components/             # an assortment of components helping us build the example pages
@@ -87,7 +87,7 @@ yarn start button
 │   └── tester.js                   # helps cypress testing of each component
 │
 ├── components/                     # all ds components that are published
-│   ├── component1/
+│   ├── component1/                 # more on the structure of components below
 │   ├── component2/
 │   └── component3/
 │
@@ -116,10 +116,10 @@ yarn start button
 ├── package.json            # scope: `@westpac/`
 │
 ├── src/                    # all the source
+│   ├── overrides/          # all overrides files for each sub-component
 │   ├── _util.js            # for reused logic within the component [optional]
 │   ├── index.js            # only for exports
-│   ├── ComponentX.js       # only for the components, can be multiple files
-│   └── styled.js           # only for styles [optional]
+│   └── ComponentX.js       # only for the components, can be multiple files
 │
 ├── examples/               # the demo folder is for seeing the components in action
 │   ├── _util.js            # for reused logic within the examples [optional]
@@ -150,7 +150,7 @@ yarn start button
   export const App = () => <GEL brand={brand}>Your app</GEL>;
   ```
 
-- Tokens and everything regarding consistent branding will be contained in the brand packages in `brands/*`
+- Tokens and overrides (everything regarding consistent branding) will be contained in the brand packages in `brands/*`
 - Tokens will include these four categories:
   - `colors`
   - `layout`
@@ -159,19 +159,22 @@ yarn start button
   - `type`
 - All components use named exports as the default, no default exports
 - All brands components will have a default export containing the "tokens" objects in addition to the named exports of each.
-- Each component has overrides that can be overwritten with the object passed into `<GEL/>`
+- Each component has overrides that can be overridden by:
+  1. overrides contained in the brand object
+  2. overrides passed into `<GEL/>` wrapper
+  3. overrides passed to the component directly via the `overrides` prop
 
   ```jsx
   import { GEL } from '@westpac/core';
   import brand from '@westpac/WBC';
 
-  brand['@westpac/tabcordion'].heading.space = '2rem';
-  brand['@westpac/tabcordion'].components.TabRow = <TabRow />;
+  brand['@westpac/tabcordion'].TabItem.styles = ( styles, state ) => { ...styles, border: 'red solid 2px' };
+  brand['@westpac/tabcordion'].TabRow.component = <TabRow />;
 
   export const App = () => <GEL brand={brand}>Your app</GEL>;
   ```
 
-- These overrides are defined in the component them-self and merge the global tokens before applying them
+- These overrides are pre-defined in the component them-self and will be reconciled as a cascade
 - Each package can be addressed by its name as the key in the tokens
 - The `example/` folder is for documenting composition of several components together e.g. templates
 - Fonts can't be shipped with npm so the tokens only define the css declarations for the fonts
@@ -244,7 +247,7 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 | `PACKS`   | Mostly typography packs for reuse and consistency        |
 | `SPACING` | A function with minor scale to allow you to hit the grid |
 | `TYPE`    | Font files and definitions                               |
-| `BRAND`   | The current brand                                        |
+| `BRAND`   | The current brand string                                 |
 
 ## Overrides naming convention
 
@@ -277,7 +280,6 @@ overrides = {
 | name            | purpose                                                                     |
 | --------------- | --------------------------------------------------------------------------- |
 | `index.js`      | Export only public API                                                      |
-| `styled.js`     | Only for styled components `[optional]`                                     |
 | `_utils.js`     | For code shared between components (ignored in examples) `[optional]`       |
 | `ComponentX.js` | All component files are named after the exported component and pascal cased |
 | `00-*.js`       | All files inside the `examples/` folder are sorted by file name             |
