@@ -23,19 +23,10 @@ function Example({ brand }) {
 				borderColor: 'palevioletred',
 
 				'::before': {
-					content: '""',
-					position: 'absolute',
-					[position.placement === 'top' ? 'bottom' : 'top']: '-0.8125rem',
-					left: '50%',
-					marginLeft: '-0.5rem',
-					width: 0,
-					[position.placement === 'top'
-						? 'borderTop'
-						: 'borderBottom']: `0.75rem solid palevioletred`,
-					borderRight: '0.5rem solid transparent',
-					borderLeft: '0.5rem solid transparent',
-					fontSize: 0,
-					lineHeight: 0,
+					borderLeftWidth: '8px',
+					borderRightWidth: '8px',
+					marginLeft: '-8px',
+					[position.placement === 'top' ? 'borderTop' : 'borderBottom']: `12px solid palevioletred`,
 				},
 			}),
 		},

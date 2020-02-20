@@ -3,9 +3,11 @@
 import { jsx, useBrand } from '@westpac/core';
 import { forwardRef } from 'react';
 
-export const Panel = forwardRef(({ open, title, content, dismissible, position, ...rest }, ref) => (
-	<div ref={ref} {...rest} />
-));
+export const Panel = forwardRef(
+	({ open, heading, headingTag, content, dismissible, position, ...rest }, ref) => (
+		<div ref={ref} {...rest} />
+	)
+);
 
 export const panelStyles = (_, { open, position }) => {
 	const { COLORS } = useBrand();

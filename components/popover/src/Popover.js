@@ -15,6 +15,7 @@ import pkg from '../package.json';
 export const Popover = ({
 	open: isOpen,
 	heading,
+	headingTag,
 	content,
 	dismissible,
 	children,
@@ -62,6 +63,7 @@ export const Popover = ({
 	const state = {
 		open,
 		heading,
+		headingTag,
 		content,
 		dismissible,
 		position,
@@ -131,6 +133,7 @@ export const Popover = ({
 			onClick={handleOpen}
 			open={open}
 			heading={heading}
+			headingTag={headingTag}
 			content={content}
 			dismissible={dismissible}
 			position={position}
@@ -146,6 +149,7 @@ export const Popover = ({
 				tabIndex="-1"
 				open={open}
 				heading={heading}
+				headingTag={headingTag}
 				content={content}
 				dismissible={dismissible}
 				position={position}
@@ -156,6 +160,7 @@ export const Popover = ({
 					<overrides.Heading.component
 						open={open}
 						heading={heading}
+						headingTag={headingTag}
 						content={content}
 						dismissible={dismissible}
 						position={position}
@@ -168,6 +173,7 @@ export const Popover = ({
 				<overrides.Body.component
 					open={open}
 					heading={heading}
+					headingTag={headingTag}
 					content={content}
 					dismissible={dismissible}
 					position={position}
@@ -181,6 +187,7 @@ export const Popover = ({
 					onClick={() => handleOpen()}
 					open={open}
 					heading={heading}
+					headingTag={headingTag}
 					content={content}
 					dismissible={dismissible}
 					position={position}
@@ -205,6 +212,11 @@ Popover.propTypes = {
 	 * The Popover heading
 	 */
 	heading: PropTypes.string,
+
+	/**
+	 * The tag of the heading element for semantic reasons
+	 */
+	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
 
 	/**
 	 * The body of the popover
@@ -258,4 +270,5 @@ Popover.propTypes = {
 Popover.defaultProps = {
 	open: false,
 	dismissible: false,
+	headingTag: 'h4',
 };
