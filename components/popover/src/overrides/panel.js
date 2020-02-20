@@ -26,36 +26,28 @@ export const panelStyles = (_, { open, position }) => {
 		textAlign: 'left',
 		padding: '24px 30px 24px 18px',
 
-		'::before': {
+		// Arrow
+		'::before, ::after': {
 			content: '""',
-			position: 'absolute',
-			[position.placement === 'top' ? 'bottom' : 'top']: '-0.8125rem',
+			[position.placement === 'top' ? 'top' : 'bottom']: '100%',
 			left: '50%',
-			marginLeft: '-0.5rem',
+			border: 'solid transparent',
+			position: 'absolute',
+			height: 0,
 			width: 0,
-			[position.placement === 'top'
-				? 'borderTop'
-				: 'borderBottom']: `0.75rem solid ${COLORS.muted}`,
-			borderRight: '0.5rem solid transparent',
-			borderLeft: '0.5rem solid transparent',
-			fontSize: 0,
-			lineHeight: 0,
+			pointerEvents: 'none',
 		},
-
-		...(position.placement === 'top' && {
-			'::after': {
-				content: '""',
-				position: 'absolute',
-				bottom: '-0.6875rem',
-				left: '50%',
-				marginLeft: '-0.5rem',
-				width: 0,
-				borderTop: '0.75rem solid #fff',
-				borderRight: '0.5rem solid transparent',
-				borderLeft: '0.5rem solid transparent',
-				fontSize: 0,
-				lineHeight: 0,
-			},
-		}),
+		'::before': {
+			borderLeftWidth: '8px',
+			borderRightWidth: '8px',
+			marginLeft: '-8px',
+			[position.placement === 'top' ? 'borderTop' : 'borderBottom']: `12px solid ${COLORS.muted}`,
+		},
+		'::after': {
+			borderLeftWidth: '7px',
+			borderRightWidth: '7px',
+			marginLeft: '-7px',
+			[position.placement === 'top' ? 'borderTop' : 'borderBottom']: '11px solid #fff',
+		},
 	};
 };
