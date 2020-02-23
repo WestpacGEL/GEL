@@ -35,10 +35,14 @@ export const Tab = forwardRef(
 
 		const [hidden, setHidden] = useState(!selected);
 		const [bind, { height }] = useMeasure();
+		const [initial, setInitial] = useState(true);
 
 		const animate = useSpring({
-			height: mode === 'accordion' ? (hidden ? 0 : height) : 'auto',
-			overflow: 'hidden',
+			to: {
+				height: mode === 'accordion' ? (hidden ? 0 : height) : 'auto',
+				overflow: 'hidden',
+			},
+			immediate: initial,
 		});
 
 		const defaultOverrides = {
@@ -81,6 +85,7 @@ export const Tab = forwardRef(
 		);
 
 		const handleAccordionClick = () => {
+			setInitial(false);
 			setHidden(!hidden);
 			onClick();
 		};
