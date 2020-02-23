@@ -2,9 +2,15 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Heading = ({ open, heading, content, dismissible, position, ...rest }) => (
-	<h1 {...rest} />
-);
+export const Heading = ({
+	open,
+	heading,
+	headingTag: Tag,
+	content,
+	dismissible,
+	position,
+	...rest
+}) => <Tag {...rest} />;
 
 export const headingStyles = (_, {}) => {
 	const { COLORS } = useBrand();
