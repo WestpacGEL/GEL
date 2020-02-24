@@ -72,6 +72,7 @@ export const Option = ({
 			css={overrides.Option.styles(state)}
 		>
 			<input
+				name={name}
 				type={type}
 				selected={selected}
 				id={formCheckId}
@@ -80,6 +81,7 @@ export const Option = ({
 					position: 'absolute', // just to hide the input element needed for a11y
 					opacity: 0, // we decided to not expose this as an override
 				}} // as it contains logic and is important for the component to work
+				value={value}
 			/>
 			<overrides.Label.component
 				htmlFor={formCheckId}

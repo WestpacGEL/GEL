@@ -9,8 +9,9 @@ const fs = require('fs');
  * @return {string}          - A name without the slashes
  */
 const slugFromFilename = filename => {
-	if (filename.match(/^[0-9][0-9]-/)) {
-		return filename.slice(3, -3);
+	if (filename.match(/^[0-9]+-/)) {
+		const name = filename.match(/^[0-9]+-([^.]+)/);
+		return name[1];
 	} else {
 		return filename;
 	}
