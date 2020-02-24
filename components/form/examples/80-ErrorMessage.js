@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { FormGroup, ErrorMessage } from '@westpac/form';
-import { Text } from '@westpac/text-input';
+import { TextInput } from '@westpac/text-input';
 import { CarIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -15,7 +15,7 @@ function Example({ brand }) {
 			<h2>Default instance (no styling props)</h2>
 			<FormGroup>
 				<ErrorMessage id="example-default-error" />
-				<Text name="example-default" aria-describedby="example-default-error" invalid />
+				<TextInput name="example-default" aria-describedby="example-default-error" invalid />
 			</FormGroup>
 
 			<hr />
@@ -23,7 +23,7 @@ function Example({ brand }) {
 			<h2>Single error message</h2>
 			<FormGroup>
 				<ErrorMessage message="This is an error message" id="example-single-error" />
-				<Text name="example-single" aria-describedby="example-single-error" invalid />
+				<TextInput name="example-single" aria-describedby="example-single-error" invalid />
 			</FormGroup>
 
 			<hr />
@@ -34,7 +34,7 @@ function Example({ brand }) {
 					message={['This is an error message', 'This is another error message']}
 					id="example-multiple-error"
 				/>
-				<Text name="example-multiple" aria-describedby="example-multiple-error" invalid />
+				<TextInput name="example-multiple" aria-describedby="example-multiple-error" invalid />
 			</FormGroup>
 
 			<hr />
@@ -46,7 +46,11 @@ function Example({ brand }) {
 					icon={CarIcon}
 					id="example-custom-icon-error"
 				/>
-				<Text name="example-custom-icon" aria-describedby="example-custom-icon-error" invalid />
+				<TextInput
+					name="example-custom-icon"
+					aria-describedby="example-custom-icon-error"
+					invalid
+				/>
 			</FormGroup>
 		</GEL>
 	);

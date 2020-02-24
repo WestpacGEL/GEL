@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Form, FormGroup, InputCluster, Item, FormLabel } from '@westpac/form';
-import { Text } from '@westpac/text-input';
+import { TextInput } from '@westpac/text-input';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -19,13 +19,13 @@ function Example({ brand }) {
 							<FormLabel htmlFor="example-1" sublabel>
 								This is a sub-label
 							</FormLabel>
-							<Text />
+							<TextInput />
 						</Item>
 						<Item>
 							<FormLabel htmlFor="example-2" sublabel>
 								This is a sub-label
 							</FormLabel>
-							<Text />
+							<TextInput />
 						</Item>
 					</InputCluster>
 				</FormGroup>
@@ -43,13 +43,13 @@ function Example({ brand }) {
 							<FormLabel htmlFor="example-3" sublabel>
 								This is a sub-label
 							</FormLabel>
-							<Text />
+							<TextInput />
 						</Item>
 						<Item>
 							<FormLabel htmlFor="example-4" sublabel>
 								This is a sub-label
 							</FormLabel>
-							<Text />
+							<TextInput />
 						</Item>
 					</InputCluster>
 				</FormGroup>
