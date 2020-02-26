@@ -21,7 +21,11 @@ export const itemStyles = (_, { end, visited, grouped, active, furthest }) => {
 		position: 'relative',
 		marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
 
-		// the line
+		':last-of-type': {
+			paddingBottom: grouped && !end && '30px',
+		},
+
+		// line
 		'::before': {
 			content: end ? 'none' : '""',
 			display: 'block',
@@ -35,11 +39,6 @@ export const itemStyles = (_, { end, visited, grouped, active, furthest }) => {
 			// right: '2.25rem',
 			left: '36px',
 			transform: grouped && !end ? 'translateY(0.875rem)' : 'translateY(0.625rem)',
-		},
-
-		// TODO: styling to be applied via a prop (:last-child not liked by SSR)
-		':last-of-type': {
-			paddingBottom: grouped && !end && '30px',
 		},
 	};
 };

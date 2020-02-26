@@ -56,8 +56,10 @@ export const groupButtonStyles = (_, { complete, active }) => {
 			height: '14px',
 			// right: '1.875rem',
 			left: '30px',
-			border: `2px ${active ? `solid ${COLORS.primary}` : `solid ${COLORS.border}`}`,
-			backgroundColor: complete ? COLORS.primary : '#fff',
+			border: `${complete ? '7px' : '2px'} ${
+				active ? `solid ${COLORS.primary}` : `solid ${COLORS.border}`
+			}`, //a11y: filling with border for HCM support
+			backgroundColor: '#fff',
 			boxSizing: 'border-box',
 		},
 	};

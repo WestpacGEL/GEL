@@ -47,7 +47,7 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, furthest })
 			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
 		},
 
-		// the circle
+		// circle
 		':after': {
 			content: '""',
 			zIndex: 1,
@@ -59,8 +59,10 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, furthest })
 			height: grouped && !end ? '8px' : '14px',
 			// right: grouped && !end ? '2.125rem' : '1.875rem',
 			left: grouped && !end ? '33px' : '30px',
-			border: `2px solid ${visited ? COLORS.primary : COLORS.border}`,
-			backgroundColor: furthest || !visited ? '#fff' : COLORS.primary,
+			border: `${!furthest && visited ? (grouped && !end ? '4px' : '7px') : '2px'} solid ${
+				visited ? COLORS.primary : COLORS.border
+			}`, //a11y: filling with border for HCM support
+			backgroundColor: '#fff',
 			boxSizing: 'border-box',
 		},
 	};
