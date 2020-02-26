@@ -160,6 +160,7 @@ yarn start button
 - All components use named exports as the default, no default exports
 - All brands components will have a default export containing the "tokens" objects in addition to the named exports of each.
 - Each component has overrides that can be overridden by:
+
   1. overrides contained in the brand object
   2. overrides passed into `<GEL/>` wrapper
   3. overrides passed to the component directly via the `overrides` prop
