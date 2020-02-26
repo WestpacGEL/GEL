@@ -7,7 +7,7 @@ import { Form } from '@westpac/form';
 import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 function Example({ context }) {
 	const [value, setValue] = useState('default text');

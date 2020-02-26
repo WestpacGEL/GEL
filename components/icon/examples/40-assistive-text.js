@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 import { FavouriteIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 function Example({ context }) {
 	return (

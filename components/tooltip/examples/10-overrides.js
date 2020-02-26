@@ -5,7 +5,7 @@ import { jsx } from '@westpac/core';
 import { Tooltip } from '@westpac/tooltip';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 const Wrapper = forwardRef(({ visible, position, ...props }, ref) => <abbr ref={ref} {...props} />);
 

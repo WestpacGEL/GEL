@@ -6,7 +6,7 @@ import { ProgressBar } from '@westpac/progress-bar';
 import { StyledButton as Button } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 function Example({ context }) {
 	const [progress, setProgress] = useState(10);

@@ -1,0 +1,89 @@
+/** @jsx jsx */
+import { Fragment } from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
+
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Tab, Tabcordion } from '@westpac/tabcordion';
+
+import {
+	AccessibilityTab,
+	CodeTab,
+	DesignTab,
+	PageHeader,
+} from '../../components/pages/single-component';
+import { ALL_PAGES } from '../../../graphql';
+
+const ComponentWrapper = () => {
+	const { data, error } = useQuery(ALL_PAGES);
+	const router = useRouter();
+	const componentParam = router.query.component;
+	if (error) return 'error!';
+	if (!data) return 'loading...';
+
+	const currentComponent =
+		data.allPages.filter(component => component.name === componentParam)[0] || '';
+
+	return currentComponent ? (
+		<Component component={currentComponent} />
+	) : (
+		'Sorry, no component matching!'
+	);
+};
+
+const Component = ({ component }) => {
+	const { name, version } = component;
+
+	return (
+		<Fragment>
+			<PageHeader name={name} version={version} />
+			<Tabs component={component} />
+		</Fragment>
+	);
+};
+
+const Tabs = ({ component }) => {
+	const { SPACING, COLORS } = useBrand();
+	const mq = useMediaQuery();
+	const tabOverrides = {
+		TabItem: {
+			styles: (styles, { selected }) =>
+				mq({
+					...styles,
+					backgroundColor: 'white',
+					border: 'none',
+					margin: 0,
+					marginTop: [SPACING(2), SPACING(3)],
+					borderRight: `solid 1px ${COLORS.border}`,
+					padding: [`${SPACING(2)} ${SPACING(4)}`, `${SPACING(3)} ${SPACING(10)}`],
+					borderBottom: `solid 2px ${selected ? COLORS.primary : 'transparent'}`,
+					fontWeight: 600,
+					color: selected ? COLORS.text : COLORS.muted,
+				}),
+		},
+	};
+	const overrides = {
+		Panel: {
+			styles: styles => ({
+				...styles,
+				padding: `${SPACING(4)} 0 0`,
+				backgroundColor: COLORS.background,
+			}),
+		},
+	};
+	return (
+		<Tabcordion mode="tabs" overrides={tabOverrides}>
+			<Tab overrides={overrides} text="Design">
+				<DesignTab description={component.description} blocks={component.design} />
+			</Tab>
+			<Tab overrides={overrides} text="Accessibility">
+				<AccessibilityTab blocks={component.accessibility} />
+			</Tab>
+			<Tab overrides={overrides} text="Code">
+				<CodeTab blocks={component.code} />
+			</Tab>
+		</Tabcordion>
+	);
+};
+
+export default ComponentWrapper;

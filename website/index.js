@@ -1,4 +1,3 @@
-// require('dotenv').config();
 const express = require('express');
 const { Keystone } = require('@keystonejs/keystone');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
@@ -8,6 +7,7 @@ const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
 const { resolveComponents } = require('./extend-schema');
 const { getComponentSchema } = require('./schema/component');
 const { userSchema } = require('./schema/user');
+const { settingSchema } = require('./schema/setting');
 
 const keystone = new Keystone({
 	name: 'GEL3 Website again',
@@ -21,7 +21,7 @@ const apps = [
 		adminPath: '/admin',
 		hooks: require.resolve('./admin'),
 	}),
-	new NextApp({ dir: 'site' }),
+	new NextApp({ dir: 'src' }),
 ];
 
 const options = resolveComponents();
@@ -31,6 +31,8 @@ keystone.createList(
 	getComponentSchema(options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name })))
 );
 keystone.createList('User', userSchema);
+
+keystone.createList('Setting', settingSchema);
 
 module.exports = {
 	keystone,

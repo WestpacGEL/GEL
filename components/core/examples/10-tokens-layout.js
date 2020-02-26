@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 function Example({ context }) {
 	const { LAYOUT } = useBrand();

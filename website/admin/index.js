@@ -1,4 +1,4 @@
-import Dashboard from './pages';
+import { Dashboard, Settings } from './pages';
 
 export default {
 	pages: () => [
@@ -12,6 +12,12 @@ export default {
 		},
 		{
 			listKey: 'User',
+		},
+		{
+			// listKey: 'Setting',
+			label: 'Settings',
+			path: 'settings',
+			component: Settings,
 		},
 	],
 };

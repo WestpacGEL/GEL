@@ -1,7 +1,15 @@
 const { Select, Virtual, Checkbox, Text } = require('@keystonejs/fields');
 const { Content } = require('@keystonejs/field-content');
-const { DynamicComponentsBlock } = require('./dynamic-component-block');
+const { DynamicComponentsBlock } = require('../utils/dynamic-component-block');
 const { resolveComponent } = require('../extend-schema');
+
+const DYNAMIC_BLOCKS_DIR = require.resolve('../dynamic-blocks');
+
+const BLOCKS_CONFIG = [
+	Content.blocks.blockquote,
+	Content.blocks.image,
+	[DynamicComponentsBlock, { components: DYNAMIC_BLOCKS_DIR }],
+];
 
 const getResolver = key => async args => {
 	if (!args.packageName) {
@@ -30,20 +38,17 @@ const getComponentSchema = options => ({
 		pageTitle: { type: Text },
 		design: {
 			type: Content,
-			blocks: [
-				Content.blocks.blockquote,
-				Content.blocks.image,
-				[DynamicComponentsBlock, { components: require.resolve('./block-components') }],
-			],
+			blocks: BLOCKS_CONFIG,
 		},
 		documentAccessibility: { type: Checkbox },
 		accessibility: {
 			type: Content,
-			blocks: [
-				Content.blocks.blockquote,
-				Content.blocks.image,
-				[DynamicComponentsBlock, { components: require.resolve('./block-components') }],
-			],
+			blocks: BLOCKS_CONFIG,
+		},
+		documentCode: { type: Checkbox },
+		code: {
+			type: Content,
+			blocks: BLOCKS_CONFIG,
 		},
 		documentPackage: { type: Checkbox },
 		packageName: { type: Select, options },
@@ -62,14 +67,6 @@ const getComponentSchema = options => ({
 			},
 		},
 		author: { type: Virtual, resolver: getResolver('author') },
-		code: {
-			type: Content,
-			blocks: [
-				Content.blocks.blockquote,
-				Content.blocks.image,
-				[DynamicComponentsBlock, { components: require.resolve('./block-components') }],
-			],
-		},
 	},
 });
 

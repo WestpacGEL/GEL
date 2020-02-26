@@ -5,7 +5,7 @@ import { Button, ButtonDropdown } from '@westpac/button';
 import { AndroidIcon, AppleIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 function Example({ context }) {
 	return (

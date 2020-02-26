@@ -1,9 +1,8 @@
 /** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 export default ({ context }) => {
 	return (

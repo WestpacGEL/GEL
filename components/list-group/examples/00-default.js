@@ -6,7 +6,7 @@ import { ButtonGroup, Button } from '@westpac/button';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 const styleExample = {
 	marginLeft: '0.75rem',

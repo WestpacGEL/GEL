@@ -7,7 +7,7 @@ import { ProgressRope, Group, Item } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 function Example({ context }) {
 	const [state, dispatch] = useProgress();

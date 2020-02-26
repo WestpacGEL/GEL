@@ -6,7 +6,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 function Example({ context }) {
 	const triggerRef1 = useRef();

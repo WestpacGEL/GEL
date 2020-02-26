@@ -37,19 +37,4 @@ const resolveComponent = args =>
 module.exports = {
 	resolveComponent,
 	resolveComponents,
-	extendKeystoneGraphQLSchema: keystone => {
-		// keystone.extendGraphQLSchema({
-		// 	types: [
-		// 		{
-		// 			type: `type GELComponent { packageName:String, name:String, version:String, description:String, author:String }`,
-		// 		},
-		// 	],
-		// 	queries: [
-		// 		{
-		// 			schema: `allGELComponents: [GELComponent]`,
-		// 			resolver: resolveComponents,
-		// 		},
-		// 	],
-		// });
-	},
 };

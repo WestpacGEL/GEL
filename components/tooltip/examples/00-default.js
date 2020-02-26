@@ -7,7 +7,7 @@ import { InfoIcon } from '@westpac/icon';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/site/components/playground/macro';
+import { Playground } from '../../../website/src/components/playground/macro';
 
 const TooltipTag = forwardRef(({ visible, position, ...props }, ref) => (
 	<abbr ref={ref} {...props} />
