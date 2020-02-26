@@ -2,6 +2,7 @@
 brands/**/dist/
 components/**/dist/
 dist
+.vscode/*
 
 # Logs
 logs
