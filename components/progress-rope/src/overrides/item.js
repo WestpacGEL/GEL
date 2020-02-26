@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 export const Item = ({
 	index,
@@ -14,7 +14,30 @@ export const Item = ({
 	...rest
 }) => <li {...rest} />;
 
-export const itemStyles = (_, { grouped, end }) => ({
-	position: 'relative',
-	marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
-});
+export const itemStyles = (_, { end, visited, grouped, active, furthest }) => {
+	const { COLORS } = useBrand();
+
+	return {
+		position: 'relative',
+		marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
+
+		// the line
+		'::before': {
+			content: end ? 'none' : '""',
+			display: 'block',
+			position: 'absolute',
+			zIndex: 0,
+			borderLeft: `2px solid ${visited && !furthest ? COLORS.primary : COLORS.border}`,
+			top: 0,
+			bottom: 0,
+			// right: '2.25rem',
+			left: '2.25rem',
+			transform: grouped && !end ? 'translateY(0.875rem)' : 'translateY(0.625rem)',
+		},
+
+		// TODO: styling to be applied via a prop (:last-child not liked by SSR)
+		':last-child': {
+			paddingBottom: grouped && !end && '1.875rem',
+		},
+	};
+};

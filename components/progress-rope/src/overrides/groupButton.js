@@ -9,7 +9,8 @@ export const groupButtonStyles = (_, { active }) => {
 
 	return {
 		position: 'relative',
-		padding: '0.375rem 3.5rem 1.625rem 1.875rem',
+		// padding: '0.375rem 3.5rem 1.625rem 1.875rem',
+		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		fontSize: '1rem',
 		lineHeight: '1.428571429', //`<body>` line-height
 		textAlign: 'left',
@@ -34,7 +35,8 @@ export const groupButtonStyles = (_, { active }) => {
 			zIndex: 1,
 			borderLeft: `2px solid ${active ? COLORS.primary : COLORS.border}`,
 			top: 0,
-			right: '2.25rem',
+			// right: '2.25rem',
+			left: '2.25rem',
 			bottom: 0,
 			height: 'auto',
 			transform: 'translateY(0.875rem)',
@@ -50,7 +52,8 @@ export const groupButtonStyles = (_, { active }) => {
 			top: '0.625rem',
 			width: '0.875rem',
 			height: '0.875rem',
-			right: '1.875rem',
+			// right: '1.875rem',
+			left: '1.875rem',
 			border: `2px solid ${active ? COLORS.primary : COLORS.border}`,
 			backgroundColor: '#fff',
 			boxSizing: 'border-box',
