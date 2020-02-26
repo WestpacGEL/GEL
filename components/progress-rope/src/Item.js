@@ -59,9 +59,15 @@ export const Item = ({
 			) {
 				furthest = true;
 			}
+			/* else if (end && ropeGraph[groupIndex][index] === currStep) {
+				furthest = true;
+			} */
 		} else if (ropeGraph[index + 1] && ropeGraph[index + 1][0] === 'unvisited') {
 			furthest = true;
 		}
+	}
+	if (end) {
+		furthest = true;
 	}
 
 	const state = {

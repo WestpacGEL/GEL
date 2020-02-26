@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const GroupItems = ({ index, text, active, ...rest }) => <ol {...rest} />;
+export const GroupItems = ({ index, text, active, complete, ...rest }) => <ol {...rest} />;
 
 export const groupItemsStyles = () => ({
 	position: 'relative',

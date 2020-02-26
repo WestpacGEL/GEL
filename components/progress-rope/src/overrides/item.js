@@ -27,17 +27,19 @@ export const itemStyles = (_, { end, visited, grouped, active, furthest }) => {
 			display: 'block',
 			position: 'absolute',
 			zIndex: 0,
-			borderLeft: `2px solid ${visited && !furthest ? COLORS.primary : COLORS.border}`,
+			borderLeft: `2px ${
+				visited && !furthest ? `solid ${COLORS.primary}` : `dashed ${COLORS.border}`
+			}`,
 			top: 0,
 			bottom: 0,
 			// right: '2.25rem',
-			left: '2.25rem',
+			left: '36px',
 			transform: grouped && !end ? 'translateY(0.875rem)' : 'translateY(0.625rem)',
 		},
 
 		// TODO: styling to be applied via a prop (:last-child not liked by SSR)
-		':last-child': {
-			paddingBottom: grouped && !end && '1.875rem',
+		':last-of-type': {
+			paddingBottom: grouped && !end && '30px',
 		},
 	};
 };

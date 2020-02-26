@@ -13,6 +13,7 @@ import pkg from '../package.json';
 export const Group = ({ index, text, children, overrides: componentOverrides, ...rest }) => {
 	const { openGroup, ropeGraph, handleClick } = useProgressRopeContext();
 	const active = ropeGraph[index].includes('visited');
+	const complete = ropeGraph[index + 1][0] === 'visited';
 
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -40,6 +41,7 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 	const state = {
 		index,
 		text,
+		complete,
 		active,
 		overrides: componentOverrides,
 		...rest,
@@ -55,6 +57,7 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 		<overrides.Group.component
 			index={index}
 			text={text}
+			complete={complete}
 			active={active}
 			{...rest}
 			{...overrides.Group.attributes(state)}
@@ -65,6 +68,7 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 				aria-expanded={openGroup === index}
 				index={index}
 				text={text}
+				complete={complete}
 				active={active}
 				{...overrides.GroupButton.attributes(state)}
 				css={overrides.GroupButton.styles(state)}
@@ -75,6 +79,7 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 				hidden={openGroup === null || index !== openGroup}
 				index={index}
 				text={text}
+				complete={complete}
 				active={active}
 				{...overrides.GroupItems.attributes(state)}
 				css={overrides.GroupItems.styles(state)}

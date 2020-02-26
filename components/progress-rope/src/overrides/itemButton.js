@@ -18,11 +18,11 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, furthest })
 
 	return {
 		position: 'relative',
-		fontSize: '0.875rem',
+		fontSize: '14px',
 		lineHeight: 1.428571429, //`<body>` line-height
 		textAlign: 'left',
 		// padding: `0.5rem 3.5rem 0.875rem ${grouped && !end ? '3rem' : '1.875rem'}`,
-		padding: `0.5rem 1.875rem 0.875rem ${grouped && !end ? '4.625rem' : '3.5rem'}`,
+		padding: '8px 30px 14px 56px',
 		border: 0,
 		background: 'none',
 		display: 'block',
@@ -37,6 +37,7 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, furthest })
 
 		':disabled': {
 			color: COLORS.tints.muted90,
+			cursor: 'default',
 		},
 		/* ':disabled:active, :disabled:hover': {
 			cursor: 'not-allowed',
@@ -46,20 +47,6 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, furthest })
 			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
 		},
 
-		// the line
-		/* '::before': {
-			content: end ? 'none' : '""',
-			display: 'block',
-			position: 'absolute',
-			zIndex: 0,
-			borderLeft: `2px solid ${visited && !furthest ? COLORS.primary : COLORS.border}`,
-			top: 0,
-			bottom: 0,
-			// right: '2.25rem',
-			left: '2.25rem',
-			transform: grouped && !end ? 'translateY(0.875rem)' : 'translateY(0.625rem)',
-		}, */
-
 		// the circle
 		':after': {
 			content: '""',
@@ -67,13 +54,13 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, furthest })
 			display: 'block',
 			borderRadius: '50%',
 			position: 'absolute',
-			top: grouped && !end ? '0.875rem' : '0.625rem',
-			width: grouped && !end ? '0.375rem' : '0.875rem',
-			height: grouped && !end ? '0.375rem' : '0.875rem',
+			top: grouped && !end ? '14px' : '10px',
+			width: grouped && !end ? '8px' : '14px',
+			height: grouped && !end ? '8px' : '14px',
 			// right: grouped && !end ? '2.125rem' : '1.875rem',
-			left: grouped && !end ? '2.125rem' : '1.875rem',
+			left: grouped && !end ? '33px' : '30px',
 			border: `2px solid ${visited ? COLORS.primary : COLORS.border}`,
-			backgroundColor: grouped || end ? (visited ? COLORS.primary : COLORS.border) : '#fff',
+			backgroundColor: furthest || !visited ? '#fff' : COLORS.primary,
 			boxSizing: 'border-box',
 		},
 	};
