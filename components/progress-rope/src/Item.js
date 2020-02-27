@@ -9,10 +9,12 @@ import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
 export const Item = ({
+	groupItemsId,
 	index,
 	groupIndex,
 	end,
 	onClick,
+	instanceIdPrefix,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -71,6 +73,7 @@ export const Item = ({
 	}
 
 	const state = {
+		groupItemsId,
 		index,
 		groupIndex,
 		end,
@@ -92,6 +95,7 @@ export const Item = ({
 
 	return (
 		<overrides.Item.component
+			groupItemsId={groupItemsId}
 			index={index}
 			groupIndex={groupIndex}
 			end={end}
@@ -104,6 +108,7 @@ export const Item = ({
 			css={overrides.Item.styles(state)}
 		>
 			<overrides.ItemButton.component
+				groupItemsId={groupItemsId}
 				index={index}
 				groupIndex={groupIndex}
 				end={end}

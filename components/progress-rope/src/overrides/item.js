@@ -3,6 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 
 export const Item = ({
+	groupItemsId,
 	index,
 	groupIndex,
 	end,
@@ -14,7 +15,7 @@ export const Item = ({
 	...rest
 }) => <li {...rest} />;
 
-export const itemStyles = (_, { end, visited, grouped, active, furthest }) => {
+export const itemStyles = (_, { end, visited, grouped, furthest }) => {
 	const { COLORS } = useBrand();
 
 	return {

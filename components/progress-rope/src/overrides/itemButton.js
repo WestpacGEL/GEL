@@ -3,6 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 
 export const ItemButton = ({
+	groupItemsId,
 	index,
 	groupIndex,
 	end,

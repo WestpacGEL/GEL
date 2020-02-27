@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const GroupButton = ({ index, text, complete, active, ...rest }) => (
+export const GroupButton = ({ groupItemsId, index, text, complete, active, ...rest }) => (
 	<button type="button" {...rest} />
 );
 

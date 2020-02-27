@@ -10,7 +10,15 @@ import { GroupButton, groupButtonStyles } from './overrides/groupButton';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
-export const Group = ({ index, text, children, overrides: componentOverrides, ...rest }) => {
+export const Group = ({
+	groupItemsId,
+	index,
+	text,
+	instanceIdPrefix,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const { openGroup, ropeGraph, handleClick } = useProgressRopeContext();
 	const active = ropeGraph[index].includes('visited');
 	const complete = ropeGraph[index + 1][0] === 'visited';
@@ -39,6 +47,7 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 	};
 
 	const state = {
+		groupItemsId,
 		index,
 		text,
 		complete,
@@ -55,6 +64,7 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 	);
 	return (
 		<overrides.Group.component
+			groupItemsId={groupItemsId}
 			index={index}
 			text={text}
 			complete={complete}
@@ -66,6 +76,8 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 			<overrides.GroupButton.component
 				onClick={() => handleClick(index)}
 				aria-expanded={openGroup === index}
+				aria-controls={groupItemsId}
+				groupItemsId={groupItemsId}
 				index={index}
 				text={text}
 				complete={complete}
@@ -77,6 +89,8 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 			</overrides.GroupButton.component>
 			<overrides.GroupItems.component
 				hidden={openGroup === null || index !== openGroup}
+				id={groupItemsId}
+				groupItemsId={groupItemsId}
 				index={index}
 				text={text}
 				complete={complete}
