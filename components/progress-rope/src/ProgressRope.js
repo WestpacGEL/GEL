@@ -158,6 +158,10 @@ export const ProgressRope = ({
 					}
 				}
 			});
+
+			if (current >= itemCount) {
+				dispatch({ type: 'UPDATE_STEP', payload: current });
+			}
 		} else {
 			if (current < updatedGraph.length && current >= 0) updatedGraph[current][0] = 'visited';
 			dispatch({ type: 'UPDATE_STEP', payload: current });
