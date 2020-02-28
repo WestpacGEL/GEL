@@ -58,6 +58,9 @@ function Example({ brand }) {
 				<Item>
 					<a href="#">Styled link list</a>
 				</Item>
+				<Item>
+					<a href="#unstyled">Autofocus on anchor links</a>
+				</Item>
 			</List>
 
 			<br />
@@ -110,7 +113,9 @@ function Example({ brand }) {
 			<hr />
 			<br />
 
-			<h2>Unstyled</h2>
+			<h2 id="unstyled" tabIndex="-1">
+				Unstyled
+			</h2>
 			<List type="unstyled">
 				<Item>Unstyled list</Item>
 				<Item>Unstyled list</Item>

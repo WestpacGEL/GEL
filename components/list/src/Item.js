@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { Item as ItemWrapper, itemStyles } from './overrides/item';
@@ -68,6 +69,16 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 		componentOverrides
 	);
 
+	const allChildren = Children.map(children, child => {
+		if (child.props && child.props.href && /^#.+/.test(child.props.href)) {
+			return cloneElement(child, {
+				onClick: () => document.getElementById(child.props.href.slice(1)).focus(),
+			});
+		} else {
+			return child;
+		}
+	});
+
 	return (
 		<overrides.Item.component
 			look={look}
@@ -92,7 +103,7 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 					css={overrides.Icon.styles(state)}
 				/>
 			)}
-			{children}
+			{allChildren}
 		</overrides.Item.component>
 	);
 };
