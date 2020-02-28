@@ -174,8 +174,18 @@ export const Group = ({
 						{...overrides.GroupItems.attributes(state)}
 						css={overrides.GroupItems.styles(state)}
 					>
-						{Children.map(children, (child, i) =>
-							cloneElement(child, { index: i, groupIndex: index })
+						{Children.map(children, (child, idx) =>
+							cloneElement(child, {
+								index: idx,
+								instanceIdPrefix,
+								current,
+								complete,
+								active,
+								groupItemsId,
+								groupIndex: index,
+								headingsTag,
+								assistiveText,
+							})
 						)}
 					</overrides.GroupItems.component>
 				</div>
