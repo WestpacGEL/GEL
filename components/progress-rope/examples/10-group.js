@@ -32,17 +32,17 @@ function Example({ brand }) {
 						<h2>Composition</h2>
 						<ProgressRope current={state.index}>
 							<Group text={'Group 1'}>
-								<Item onClick={handleClick(0)}>Step 0</Item>
-								<Item onClick={handleClick(1)}>Step 1</Item>
+								<Item onClick={handleClick(0)}>Step 1</Item>
+								<Item onClick={handleClick(1)}>Step 2</Item>
 							</Group>
 							<Group text={'Group 2'}>
-								<Item onClick={handleClick(2)}>Step 2</Item>
-								<Item onClick={handleClick(3)}>Step 3</Item>
+								<Item onClick={handleClick(2)}>Step 3</Item>
+								<Item onClick={handleClick(3)}>Step 4</Item>
 							</Group>
 							<Group text={'Group 3'}>
-								<Item onClick={handleClick(4)}>Step 4</Item>
-								<Item onClick={handleClick(5)}>Step 5</Item>
-								<Item onClick={handleClick(6)}>Step 6</Item>
+								<Item onClick={handleClick(4)}>Step 5</Item>
+								<Item onClick={handleClick(5)}>Step 6</Item>
+								<Item onClick={handleClick(6)}>Step 7</Item>
 							</Group>
 							<Item end onClick={handleClick(5)}>
 								Review and Submit
@@ -66,25 +66,25 @@ function Example({ brand }) {
 									type: 'group',
 									text: 'Group 1',
 									items: [
-										{ text: 'Step 0', onClick: handleClick2(0) },
-										{ text: 'Step 1', onClick: handleClick2(1) },
+										{ text: 'Step 1', onClick: handleClick2(0) },
+										{ text: 'Step 2', onClick: handleClick2(1) },
 									],
 								},
 								{
 									type: 'group',
 									text: 'Group 2',
 									items: [
-										{ text: 'Step 2', onClick: handleClick2(2) },
-										{ text: 'Step 3', onClick: handleClick2(3) },
+										{ text: 'Step 3', onClick: handleClick2(2) },
+										{ text: 'Step 4', onClick: handleClick2(3) },
 									],
 								},
 								{
 									type: 'group',
 									text: 'Group 3',
 									items: [
-										{ text: 'Step 4', onClick: handleClick2(4) },
-										{ text: 'Step 5', onClick: handleClick2(5) },
-										{ text: 'Step 6', onClick: handleClick2(6) },
+										{ text: 'Step 5', onClick: handleClick2(4) },
+										{ text: 'Step 6', onClick: handleClick2(5) },
+										{ text: 'Step 7', onClick: handleClick2(6) },
 									],
 								},
 								{ type: 'end', text: 'Review and Submit', onClick: handleClick2(7) },
