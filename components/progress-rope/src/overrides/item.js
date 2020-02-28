@@ -3,14 +3,17 @@
 import { jsx, useBrand } from '@westpac/core';
 
 export const Item = ({
-	groupItemsId,
-	index,
-	groupIndex,
-	end,
-	visited,
 	grouped,
 	active,
+	visited,
 	furthest,
+	end,
+	current,
+	index,
+	groupIndex,
+	groupItemsId,
+	headingsTag,
+	assistiveText,
 	overrides,
 	...rest
 }) => <li {...rest} />;

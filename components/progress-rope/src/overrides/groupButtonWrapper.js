@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const GroupItems = ({
+export const GroupButtonWrapper = ({
 	index,
 	groupItemsId,
 	text,
@@ -10,14 +10,12 @@ export const GroupItems = ({
 	complete,
 	active,
 	instanceIdPrefix,
-	headingsTag,
+	headingsTag: Tag,
 	assistiveText,
 	...rest
-}) => <ol {...rest} />;
+}) => <Tag {...rest} />;
 
-export const groupItemsStyles = () => ({
-	position: 'relative',
-	listStyle: 'none',
-	paddingLeft: 0,
+export const groupButtonWrapperStyles = () => ({
 	margin: 0,
+	fontSize: 'inherit',
 });

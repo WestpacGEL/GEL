@@ -9,12 +9,15 @@ import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
 export const Item = ({
+	onClick,
+	end,
+	groupIndex,
 	groupItemsId,
 	index,
-	groupIndex,
-	end,
-	onClick,
+	current,
 	instanceIdPrefix,
+	headingsTag,
+	assistiveText,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -73,15 +76,18 @@ export const Item = ({
 	}
 
 	const state = {
-		groupItemsId,
-		index,
-		groupIndex,
-		end,
 		onClick,
-		visited,
+		index,
 		grouped,
+		visited,
 		active,
 		furthest,
+		end,
+		current,
+		groupItemsId,
+		instanceIdPrefix,
+		headingsTag,
+		assistiveText,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -95,29 +101,35 @@ export const Item = ({
 
 	return (
 		<overrides.Item.component
-			groupItemsId={groupItemsId}
 			index={index}
-			groupIndex={groupIndex}
-			end={end}
-			visited={visited}
 			grouped={grouped}
+			visited={visited}
 			active={active}
 			furthest={furthest}
+			end={end}
+			current={current}
+			groupIndex={groupIndex}
+			groupItemsId={groupItemsId}
+			headingsTag={headingsTag}
+			assistiveText={assistiveText}
 			{...rest}
 			{...overrides.Item.attributes(state)}
 			css={overrides.Item.styles(state)}
 		>
 			<overrides.ItemButton.component
-				groupItemsId={groupItemsId}
-				index={index}
-				groupIndex={groupIndex}
-				end={end}
 				onClick={onClick}
 				aria-current={active ? 'step' : undefined}
-				visited={visited}
 				grouped={grouped}
+				visited={visited}
 				active={active}
 				furthest={furthest}
+				end={end}
+				current={current}
+				groupIndex={groupIndex}
+				groupItemsId={groupItemsId}
+				index={index}
+				headingsTag={headingsTag}
+				assistiveText={assistiveText}
 				{...overrides.ItemButton.attributes(state)}
 				css={overrides.ItemButton.styles(state)}
 			>

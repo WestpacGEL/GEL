@@ -6,15 +6,19 @@ import PropTypes from 'prop-types';
 
 import { Group as GroupWrapper, groupStyles } from './overrides/group';
 import { GroupItems, groupItemsStyles } from './overrides/groupItems';
+import { GroupButtonWrapper, groupButtonWrapperStyles } from './overrides/groupButtonWrapper';
 import { GroupButton, groupButtonStyles } from './overrides/groupButton';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
 export const Group = ({
-	groupItemsId,
 	index,
+	groupItemsId,
 	text,
+	current,
 	instanceIdPrefix,
+	headingsTag,
+	assistiveText,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -34,6 +38,11 @@ export const Group = ({
 			component: GroupWrapper,
 			attributes: () => null,
 		},
+		GroupButtonWrapper: {
+			styles: groupButtonWrapperStyles,
+			component: GroupButtonWrapper,
+			attributes: () => null,
+		},
 		GroupButton: {
 			styles: groupButtonStyles,
 			component: GroupButton,
@@ -47,11 +56,15 @@ export const Group = ({
 	};
 
 	const state = {
-		groupItemsId,
 		index,
+		groupItemsId,
 		text,
+		current,
 		complete,
 		active,
+		instanceIdPrefix,
+		headingsTag,
+		assistiveText,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -64,37 +77,63 @@ export const Group = ({
 	);
 	return (
 		<overrides.Group.component
-			groupItemsId={groupItemsId}
 			index={index}
+			groupItemsId={groupItemsId}
 			text={text}
+			current={current}
 			complete={complete}
 			active={active}
+			instanceIdPrefix={instanceIdPrefix}
+			headingsTag={headingsTag}
+			assistiveText={assistiveText}
 			{...rest}
 			{...overrides.Group.attributes(state)}
 			css={overrides.Group.styles(state)}
 		>
-			<overrides.GroupButton.component
-				onClick={() => handleClick(index)}
-				aria-expanded={openGroup === index}
-				aria-controls={groupItemsId}
-				groupItemsId={groupItemsId}
+			<overrides.GroupButtonWrapper.component
 				index={index}
+				groupItemsId={groupItemsId}
 				text={text}
+				current={current}
 				complete={complete}
 				active={active}
-				{...overrides.GroupButton.attributes(state)}
-				css={overrides.GroupButton.styles(state)}
+				instanceIdPrefix={instanceIdPrefix}
+				headingsTag={headingsTag}
+				assistiveText={assistiveText}
+				{...overrides.GroupButtonWrapper.attributes(state)}
+				css={overrides.GroupButtonWrapper.styles(state)}
 			>
-				{text}
-			</overrides.GroupButton.component>
+				<overrides.GroupButton.component
+					index={index}
+					onClick={() => handleClick(index)}
+					aria-expanded={openGroup === index}
+					aria-controls={groupItemsId}
+					groupItemsId={groupItemsId}
+					text={text}
+					current={current}
+					complete={complete}
+					active={active}
+					instanceIdPrefix={instanceIdPrefix}
+					headingsTag={headingsTag}
+					assistiveText={assistiveText}
+					{...overrides.GroupButton.attributes(state)}
+					css={overrides.GroupButton.styles(state)}
+				>
+					{text}
+				</overrides.GroupButton.component>
+			</overrides.GroupButtonWrapper.component>
 			<overrides.GroupItems.component
-				hidden={openGroup === null || index !== openGroup}
 				id={groupItemsId}
-				groupItemsId={groupItemsId}
+				hidden={openGroup === null || index !== openGroup}
 				index={index}
+				groupItemsId={groupItemsId}
 				text={text}
+				current={current}
 				complete={complete}
 				active={active}
+				instanceIdPrefix={instanceIdPrefix}
+				headingsTag={headingsTag}
+				assistiveText={assistiveText}
 				{...overrides.GroupItems.attributes(state)}
 				css={overrides.GroupItems.styles(state)}
 			>

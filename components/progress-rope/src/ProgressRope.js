@@ -69,6 +69,8 @@ const createRopeGraph = (data, children) => {
 export const ProgressRope = ({
 	current,
 	instanceIdPrefix,
+	headingsTag,
+	assistiveText,
 	data,
 	children,
 	overrides: componentOverrides,
@@ -101,6 +103,8 @@ export const ProgressRope = ({
 	const state = {
 		current,
 		instanceIdPrefix: instancePrefix,
+		headingsTag,
+		assistiveText,
 		data,
 		overrides: componentOverrides,
 		...rest,
@@ -176,14 +180,29 @@ export const ProgressRope = ({
 				allChildren.push(
 					<Group
 						key={idx}
-						groupItemsId={getGroupItemsId(idx)}
 						index={idx}
+						groupItemsId={getGroupItemsId(idx)}
 						text={text}
+						current={current}
 						instanceIdPrefix={instancePrefix}
+						headingsTag={headingsTag}
+						assistiveText={assistiveText}
 						overrides={componentOverrides}
 					>
-						{items.map((item, index) => (
-							<Item key={index} onClick={item.onClick} overrides={componentOverrides}>
+						{items.map((item, itemIndex) => (
+							<Item
+								key={itemIndex}
+								index={itemIndex}
+								onClick={item.onClick}
+								end={type && type === 'end'}
+								current={item.current}
+								instanceIdPrefix={item.instancePrefix}
+								groupIndex={idx}
+								groupItemsId={getGroupItemsId(itemIndex)}
+								headingsTag={item.headingsTag}
+								assistiveText={item.assistiveText}
+								overrides={componentOverrides}
+							>
 								{item.text}
 							</Item>
 						))}
@@ -193,11 +212,13 @@ export const ProgressRope = ({
 				allChildren.push(
 					<Item
 						key={idx}
-						groupItemsId={getGroupItemsId(idx)}
 						index={idx}
 						onClick={onClick}
 						end={type && type === 'end'}
+						current={current}
 						instanceIdPrefix={instancePrefix}
+						headingsTag={headingsTag}
+						assistiveText={assistiveText}
 						overrides={componentOverrides}
 					>
 						{text}
@@ -208,8 +229,12 @@ export const ProgressRope = ({
 	} else {
 		allChildren = Children.map(children, (child, idx) =>
 			cloneElement(child, {
-				groupItemsId: getGroupItemsId(idx),
 				index: idx,
+				current,
+				instanceIdPrefix,
+				groupItemsId: getGroupItemsId(idx),
+				headingsTag,
+				assistiveText,
 			})
 		);
 	}
@@ -217,8 +242,11 @@ export const ProgressRope = ({
 	return (
 		<ProgressRopeContext.Provider value={{ ...progState, handleClick }}>
 			<overrides.ProgressRope.component
+				aria-label={assistiveText}
 				current={current}
 				instanceIdPrefix={instancePrefix}
+				headingsTag={headingsTag}
+				assistiveText={assistiveText}
 				data={data}
 				{...rest}
 				{...overrides.ProgressRope.attributes(state)}
@@ -238,6 +266,21 @@ ProgressRope.propTypes = {
 	 * Current active item (zero-indexed)
 	 */
 	current: PropTypes.number.isRequired,
+
+	/**
+	 * Define an id prefix for the group item elements e.g. for a prefix of "progress" --> "progress-group-1" etc.
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
+	 * The tag of the heading elements wrapping group toggles for semantic reasons
+	 */
+	headingsTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
+
+	/**
+	 * Text to use as the `aria-label` for the progress rope
+	 */
+	assistiveText: PropTypes.string.isRequired,
 
 	/**
 	 * The override API
@@ -278,4 +321,6 @@ ProgressRope.propTypes = {
 
 ProgressRope.defaultProps = {
 	current: 0,
+	headingsTag: 'h3',
+	assistiveText: 'In this form',
 };

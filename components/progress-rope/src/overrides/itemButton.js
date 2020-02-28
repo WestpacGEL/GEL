@@ -3,14 +3,17 @@
 import { jsx, useBrand } from '@westpac/core';
 
 export const ItemButton = ({
-	groupItemsId,
-	index,
-	groupIndex,
-	end,
-	visited,
 	grouped,
+	visited,
 	active,
 	furthest,
+	end,
+	current,
+	groupIndex,
+	groupItemsId,
+	index,
+	headingsTag,
+	assistiveText,
 	...rest
 }) => <button type="button" disabled={!visited} {...rest} />;
 

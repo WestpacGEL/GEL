@@ -2,7 +2,14 @@
 
 import { jsx } from '@westpac/core';
 
-export const ProgressRope = ({ current, instanceIdPrefix, data, ...rest }) => <ol {...rest} />;
+export const ProgressRope = ({
+	current,
+	instanceIdPrefix,
+	headingsTag,
+	assistiveText,
+	data,
+	...rest
+}) => <ol {...rest} />;
 
 export const progressRopeStyles = () => ({
 	position: 'relative',
