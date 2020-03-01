@@ -11,7 +11,7 @@ const propTypes = {};
 let i = 0;
 
 for (const comp of components) {
-	i ++;
+	i++;
 	process.stdout.write(`\x1b[2K\x1b[0G${i}/${components.length}`);
 
 	if (comp.isDirectory()) {
