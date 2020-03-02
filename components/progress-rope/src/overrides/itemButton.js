@@ -17,7 +17,7 @@ export const ItemButton = ({
 	...rest
 }) => <button type="button" disabled={!visited} {...rest} />;
 
-export const itemButtonStyles = (_, { end, visited, grouped, active, hidden, furthest }) => {
+export const itemButtonStyles = (_, { grouped, visited, active, furthest, end, current }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
@@ -38,6 +38,7 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, hidden, fur
 		touchAction: 'manipulation',
 		userSelect: 'none',
 		boxSizing: 'border-box',
+		// textDecoration: visited && 'underline',
 
 		':disabled': {
 			color: COLORS.tints.muted90,
@@ -54,7 +55,7 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, hidden, fur
 		// circle
 		':after': {
 			content: '""',
-			zIndex: 1,
+			zIndex: 2,
 			display: 'block',
 			borderRadius: '50%',
 			position: 'absolute',

@@ -3,28 +3,31 @@
 import { jsx, useBrand } from '@westpac/core';
 
 export const Item = ({
-	grouped,
+	index,
+	current,
 	active,
+	complete,
+	end,
+	grouped,
 	visited,
 	furthest,
-	end,
-	current,
-	complete,
-	index,
+	hidden,
 	groupIndex,
 	groupItemsId,
+	instanceIdPrefix,
 	headingsTag,
 	assistiveText,
 	overrides,
 	...rest
 }) => <li {...rest} />;
 
-export const itemStyles = (_, { end, visited, grouped, furthest }) => {
+export const itemStyles = (_, { end, grouped, visited, furthest }) => {
 	const { COLORS } = useBrand();
 
 	return {
 		position: 'relative',
 		marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
+		backgroundColor: '#fff',
 
 		':last-of-type': {
 			paddingBottom: grouped && !end && '30px',
@@ -32,13 +35,15 @@ export const itemStyles = (_, { end, visited, grouped, furthest }) => {
 
 		// line
 		'::before': {
-			content: end ? 'none' : '""',
-			display: 'block',
+			// content: end ? 'none' : '""',
+			content: '""',
+			display: visited && !furthest ? 'block' : 'none',
 			position: 'absolute',
-			zIndex: 0,
-			borderLeft: `2px ${
+			zIndex: 1,
+			/* borderLeft: `2px ${
 				visited && !furthest ? `solid ${COLORS.primary}` : `dashed ${COLORS.border}`
-			}`,
+			}`, */
+			borderLeft: visited && !furthest && !end && `2px solid ${COLORS.primary}`,
 			top: 0,
 			bottom: 0,
 			// right: '2.25rem',

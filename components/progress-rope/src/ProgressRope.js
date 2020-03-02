@@ -203,12 +203,12 @@ export const ProgressRope = ({
 							<Item
 								key={itemIndex}
 								index={itemIndex}
-								onClick={item.onClick}
-								end={type && type === 'end'}
 								current={item.current}
-								instanceIdPrefix={item.instancePrefix}
+								end={type && type === 'end'}
+								onClick={item.onClick}
 								groupIndex={idx}
 								groupItemsId={getGroupItemsId(itemIndex)}
+								instanceIdPrefix={item.instancePrefix}
 								headingsTag={item.headingsTag}
 								assistiveText={item.assistiveText}
 								overrides={componentOverrides}
@@ -241,8 +241,8 @@ export const ProgressRope = ({
 			cloneElement(child, {
 				index: idx,
 				current,
-				instanceIdPrefix,
 				groupItemsId: getGroupItemsId(idx),
+				instanceIdPrefix,
 				headingsTag,
 				assistiveText,
 			})

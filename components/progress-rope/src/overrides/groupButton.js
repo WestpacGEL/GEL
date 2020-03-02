@@ -4,11 +4,11 @@ import { jsx, useBrand } from '@westpac/core';
 
 export const GroupButton = ({
 	index,
-	groupItemsId,
 	text,
+	groupItemsId,
 	current,
-	complete,
 	active,
+	complete,
 	hidden,
 	instanceIdPrefix,
 	headingsTag,
@@ -45,7 +45,8 @@ export const groupButtonStyles = (_, { complete, active }) => {
 			display: 'block',
 			position: 'absolute',
 			zIndex: 1,
-			borderLeft: `2px ${active ? `solid ${COLORS.primary}` : `dashed ${COLORS.border}`}`,
+			// borderLeft: `2px ${active ? `solid ${COLORS.primary}` : `dashed ${COLORS.border}`}`,
+			borderLeft: active && `2px solid ${COLORS.primary}`,
 			top: 0,
 			// right: '2.25rem',
 			left: '36px',

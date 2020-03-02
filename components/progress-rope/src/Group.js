@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, config } from 'react-spring';
 import { Children, cloneElement, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -39,10 +39,15 @@ export const Group = ({
 	const [initial, setInitial] = useState(true);
 
 	const animate = useSpring({
-		to: {
-			height: hidden ? 0 : height,
-			overflow: hidden ? 'hidden' : 'visible',
-			opacity: hidden ? 0 : 1,
+		config: { duration: 300 },
+		to: async (next, cancel) => {
+			await next({
+				overflow: 'hidden',
+				height: hidden ? 0 : height,
+			});
+			await next({
+				overflow: hidden ? 'hidden' : 'visible',
+			});
 		},
 		immediate: initial,
 	});
@@ -117,8 +122,8 @@ export const Group = ({
 			groupItemsId={groupItemsId}
 			text={text}
 			current={current}
-			complete={complete}
 			active={active}
+			complete={complete}
 			hidden={hidden}
 			instanceIdPrefix={instanceIdPrefix}
 			headingsTag={headingsTag}
@@ -129,11 +134,11 @@ export const Group = ({
 		>
 			<overrides.GroupButtonWrapper.component
 				index={index}
-				groupItemsId={groupItemsId}
 				text={text}
+				groupItemsId={groupItemsId}
 				current={current}
-				complete={complete}
 				active={active}
+				complete={complete}
 				hidden={hidden}
 				instanceIdPrefix={instanceIdPrefix}
 				headingsTag={headingsTag}
@@ -142,15 +147,15 @@ export const Group = ({
 				css={overrides.GroupButtonWrapper.styles(state)}
 			>
 				<overrides.GroupButton.component
-					index={index}
-					onClick={() => handleClick(index)}
 					aria-expanded={openGroup === index}
 					aria-controls={groupItemsId}
-					groupItemsId={groupItemsId}
+					index={index}
 					text={text}
+					onClick={() => handleClick(index)}
+					groupItemsId={groupItemsId}
 					current={current}
-					complete={complete}
 					active={active}
+					complete={complete}
 					hidden={hidden}
 					instanceIdPrefix={instanceIdPrefix}
 					headingsTag={headingsTag}
@@ -161,17 +166,17 @@ export const Group = ({
 					{text}
 				</overrides.GroupButton.component>
 			</overrides.GroupButtonWrapper.component>
-			<animated.div style={animate}>
+			<animated.div style={{ ...animate }}>
 				<div ref={bind.ref}>
 					<overrides.GroupItems.component
+						aria-hidden={openGroup === null || index !== openGroup}
 						id={groupItemsId}
-						hidden={openGroup === null || index !== openGroup}
 						index={index}
 						groupItemsId={groupItemsId}
 						text={text}
 						current={current}
-						complete={complete}
 						active={active}
+						complete={complete}
 						hidden={hidden}
 						instanceIdPrefix={instanceIdPrefix}
 						headingsTag={headingsTag}
@@ -182,13 +187,13 @@ export const Group = ({
 						{Children.map(children, (child, idx) =>
 							cloneElement(child, {
 								index: idx,
-								instanceIdPrefix,
 								current,
+								// groupActive: active,
 								complete,
-								active,
 								hidden,
-								groupItemsId,
 								groupIndex: index,
+								groupItemsId,
+								instanceIdPrefix,
 								headingsTag,
 								assistiveText,
 							})

@@ -9,12 +9,12 @@ import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
 export const Item = ({
-	onClick,
-	end,
-	groupIndex,
-	groupItemsId,
 	index,
 	current,
+	end,
+	onClick,
+	groupIndex,
+	groupItemsId,
 	instanceIdPrefix,
 	headingsTag,
 	assistiveText,
@@ -76,14 +76,14 @@ export const Item = ({
 	}
 
 	const state = {
-		onClick,
 		index,
+		current,
+		end,
 		grouped,
 		visited,
 		active,
 		furthest,
-		end,
-		current,
+		onClick,
 		groupItemsId,
 		instanceIdPrefix,
 		headingsTag,
@@ -102,14 +102,15 @@ export const Item = ({
 	return (
 		<overrides.Item.component
 			index={index}
+			current={current}
+			end={end}
 			grouped={grouped}
 			visited={visited}
 			active={active}
 			furthest={furthest}
-			end={end}
-			current={current}
 			groupIndex={groupIndex}
 			groupItemsId={groupItemsId}
+			instanceIdPrefix={instanceIdPrefix}
 			headingsTag={headingsTag}
 			assistiveText={assistiveText}
 			{...rest}
