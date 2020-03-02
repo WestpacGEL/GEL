@@ -55,6 +55,7 @@ GELApp.getInitialProps = async appContext => {
 			: (document.cookie = `gel_selected_brand=${brandMatch}`);
 	}
 
+	let brandCookieMatch = false;
 	// 2. If no brand found in url, look for a cookie!
 	if (!brandMatch) {
 		// Check for cookie (on server or client)
@@ -63,8 +64,8 @@ GELApp.getInitialProps = async appContext => {
 		];
 
 		const brandCookieMatch = brandsList.find(b => b === brandCookie);
-
 		// 3. If found, update URL param
+
 		if (brandCookieMatch) {
 			if (res) {
 				res.writeHead(302, { Location: `${router.asPath}?b=${brandCookieMatch}` });
