@@ -27,7 +27,7 @@ export const Popover = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
-	const [popoverId] = useState(useInstanceId());
+	const [popoverId] = useState(`gel-popover-${useInstanceId()}`);
 	const [open, setOpen] = useState(open);
 	const [position, setPosition] = useState({ placement: 'top', empty: true });
 	const triggerRef = useRef();
@@ -138,7 +138,8 @@ export const Popover = ({
 			css={overrides.Popover.styles(state)}
 		>
 			<overrides.Trigger.component
-				aria-describedby={`gel-popover-${popoverId}`}
+				aria-controls={popoverId}
+				aria-expanded={open}
 				onClick={handleOpen}
 				open={open}
 				heading={heading}
@@ -153,7 +154,7 @@ export const Popover = ({
 				{children}
 			</overrides.Trigger.component>
 			<overrides.Panel.component
-				id={`gel-popover-${popoverId}`}
+				id={popoverId}
 				aria-label="Use the ESC key to close"
 				ref={popoverRef}
 				tabIndex="-1"
