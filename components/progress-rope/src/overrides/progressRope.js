@@ -9,11 +9,9 @@ export const ProgressRope = ({
 	assistiveText,
 	data,
 	...rest
-}) => <ol {...rest} />;
+}) => <nav role="navigation" {...rest} />;
 
 export const progressRopeStyles = () => ({
-	position: 'relative',
-	listStyle: 'none',
-	paddingLeft: 0,
-	margin: 0,
+	// paddingTop: '3.75rem',
+	// paddingBottom: '3.75rem',
 });

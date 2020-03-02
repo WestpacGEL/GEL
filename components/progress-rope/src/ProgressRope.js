@@ -13,6 +13,7 @@ import {
 import PropTypes from 'prop-types';
 
 import { ProgressRope as ProgressRopeWrapper, progressRopeStyles } from './overrides/progressRope';
+import { List, listStyles } from './overrides/list';
 import pkg from '../package.json';
 import { Group } from './Group';
 import { Item } from './Item';
@@ -85,6 +86,11 @@ export const ProgressRope = ({
 		ProgressRope: {
 			styles: progressRopeStyles,
 			component: ProgressRopeWrapper,
+			attributes: () => null,
+		},
+		List: {
+			styles: listStyles,
+			component: List,
 			attributes: () => null,
 		},
 	};
@@ -256,7 +262,17 @@ export const ProgressRope = ({
 				{...overrides.ProgressRope.attributes(state)}
 				css={overrides.ProgressRope.styles(state)}
 			>
-				{allChildren}
+				<overrides.List.component
+					current={current}
+					instanceIdPrefix={instancePrefix}
+					headingsTag={headingsTag}
+					assistiveText={assistiveText}
+					data={data}
+					{...overrides.List.attributes(state)}
+					css={overrides.List.styles(state)}
+				>
+					{allChildren}
+				</overrides.List.component>
 			</overrides.ProgressRope.component>
 		</ProgressRopeContext.Provider>
 	);
