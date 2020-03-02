@@ -17,7 +17,7 @@ export const ItemButton = ({
 	...rest
 }) => <button type="button" disabled={!visited} {...rest} />;
 
-export const itemButtonStyles = (_, { end, visited, grouped, active, furthest }) => {
+export const itemButtonStyles = (_, { end, visited, grouped, active, hidden, furthest }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
