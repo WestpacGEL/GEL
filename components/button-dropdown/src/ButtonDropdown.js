@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import { useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { Button } from '@westpac/button';
@@ -28,6 +28,8 @@ export const ButtonDropdown = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
+	const [dropdownId] = useState(`gel-btn-dropdown-${useInstanceId()}`);
 	const [open, setOpen] = useState(false);
 	const panelRef = useRef();
 	const buttonRef = useRef();
@@ -101,8 +103,8 @@ export const ButtonDropdown = ({
 		>
 			<Button
 				ref={buttonRef}
-				aria-label="Dropdown. Hit enter to open dropdown"
-				aria-haspopup={true}
+				aria-controls={dropdownId}
+				aria-expanded={open}
 				onClick={handleOpen}
 				dropdown={true}
 				block={block}
@@ -113,6 +115,7 @@ export const ButtonDropdown = ({
 			</Button>
 			<overrides.Panel.component
 				ref={panelRef}
+				id={dropdownId}
 				tabIndex="-1"
 				aria-label="Use the ESC key to close"
 				open={open}
