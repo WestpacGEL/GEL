@@ -1,9 +1,7 @@
 /** @jsx jsx */
 
-import { forwardRef } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Popover } from '@westpac/popover';
-import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -44,11 +42,11 @@ function Example({ brand }) {
 
 			<h2>With overrides applied</h2>
 			<Popover heading="Example heading" content={content}>
-				<Button>Click Me</Button>
+				Click Me
 			</Popover>
 			<div style={{ marginTop: '40rem' }} />
 			<Popover heading="Example heading" content={content}>
-				<Button>Click Me</Button>
+				Click Me
 			</Popover>
 			<h2>With overrides and component overrides</h2>
 			<Popover
@@ -58,7 +56,7 @@ function Example({ brand }) {
 					Panel: { styles: styles => ({ ...styles, border: '2px dotted red' }) },
 				}}
 			>
-				<Button>Click Me</Button>
+				Click Me
 			</Popover>
 		</GEL>
 	);

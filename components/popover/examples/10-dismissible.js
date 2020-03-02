@@ -2,7 +2,6 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Popover } from '@westpac/popover';
-import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -18,11 +17,11 @@ function Example({ brand }) {
 			<Intopia />
 
 			<Popover heading="Popover heading" content={content} dismissible>
-				<Button>Dismissible popover</Button>
+				Dismissible popover
 			</Popover>
 			<div style={{ marginTop: '50rem' }} />
 			<Popover heading="Popover heading" content={content} dismissible>
-				<Button>Dismissible popover</Button>
+				Dismissible popover
 			</Popover>
 		</GEL>
 	);
