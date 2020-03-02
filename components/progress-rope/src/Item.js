@@ -109,8 +109,8 @@ export const Item = ({
 			active={active}
 			furthest={furthest}
 			groupIndex={groupIndex}
-			groupItemsId={groupItemsId}
 			instanceIdPrefix={instanceIdPrefix}
+			groupItemsId={groupItemsId}
 			headingsTag={headingsTag}
 			assistiveText={assistiveText}
 			{...rest}
@@ -118,17 +118,18 @@ export const Item = ({
 			css={overrides.Item.styles(state)}
 		>
 			<overrides.ItemButton.component
-				onClick={onClick}
 				aria-current={active ? 'step' : undefined}
+				index={index}
+				current={current}
+				end={end}
+				onClick={onClick}
 				grouped={grouped}
 				visited={visited}
 				active={active}
 				furthest={furthest}
-				end={end}
-				current={current}
 				groupIndex={groupIndex}
+				instanceIdPrefix={instanceIdPrefix}
 				groupItemsId={groupItemsId}
-				index={index}
 				headingsTag={headingsTag}
 				assistiveText={assistiveText}
 				{...overrides.ItemButton.attributes(state)}

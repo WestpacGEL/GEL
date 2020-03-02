@@ -75,6 +75,8 @@ export const Group = ({
 		},
 	};
 
+	const getGroupItemsId = index => `${instanceIdPrefix}-group-${index + 1}`;
+
 	const state = {
 		index,
 		groupItemsId,
@@ -119,13 +121,13 @@ export const Group = ({
 	return (
 		<overrides.Group.component
 			index={index}
-			groupItemsId={groupItemsId}
+			instanceIdPrefix={instanceIdPrefix}
+			groupItemsId={getGroupItemsId(index)}
 			text={text}
 			current={current}
 			active={active}
 			complete={complete}
 			hidden={hidden}
-			instanceIdPrefix={instanceIdPrefix}
 			headingsTag={headingsTag}
 			assistiveText={assistiveText}
 			{...rest}
@@ -134,8 +136,8 @@ export const Group = ({
 		>
 			<overrides.GroupButtonWrapper.component
 				index={index}
+				groupItemsId={getGroupItemsId(index)}
 				text={text}
-				groupItemsId={groupItemsId}
 				current={current}
 				active={active}
 				complete={complete}
@@ -148,7 +150,7 @@ export const Group = ({
 			>
 				<overrides.GroupButton.component
 					aria-expanded={openGroup === index}
-					aria-controls={groupItemsId}
+					aria-controls={getGroupItemsId(index)}
 					index={index}
 					text={text}
 					onClick={() => handleClick(index)}
@@ -170,9 +172,8 @@ export const Group = ({
 				<div ref={bind.ref}>
 					<overrides.GroupItems.component
 						aria-hidden={openGroup === null || index !== openGroup}
-						id={groupItemsId}
+						id={getGroupItemsId(index)}
 						index={index}
-						groupItemsId={groupItemsId}
 						text={text}
 						current={current}
 						active={active}
@@ -192,8 +193,8 @@ export const Group = ({
 								complete,
 								hidden,
 								groupIndex: index,
-								groupItemsId,
 								instanceIdPrefix,
+								groupItemsId: getGroupItemsId(index),
 								headingsTag,
 								assistiveText,
 							})

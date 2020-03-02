@@ -104,8 +104,6 @@ export const ProgressRope = ({
 		}
 	}, [instancePrefix]);
 
-	const getGroupItemsId = index => `${instancePrefix}-group-${index + 1}`;
-
 	const state = {
 		current,
 		instanceIdPrefix: instancePrefix,
@@ -191,7 +189,6 @@ export const ProgressRope = ({
 					<Group
 						key={idx}
 						index={idx}
-						groupItemsId={getGroupItemsId(idx)}
 						text={text}
 						current={current}
 						instanceIdPrefix={instancePrefix}
@@ -207,7 +204,6 @@ export const ProgressRope = ({
 								end={type && type === 'end'}
 								onClick={item.onClick}
 								groupIndex={idx}
-								groupItemsId={getGroupItemsId(itemIndex)}
 								instanceIdPrefix={item.instancePrefix}
 								headingsTag={item.headingsTag}
 								assistiveText={item.assistiveText}
@@ -241,8 +237,7 @@ export const ProgressRope = ({
 			cloneElement(child, {
 				index: idx,
 				current,
-				groupItemsId: getGroupItemsId(idx),
-				instanceIdPrefix,
+				instanceIdPrefix: instancePrefix,
 				headingsTag,
 				assistiveText,
 			})
@@ -264,7 +259,6 @@ export const ProgressRope = ({
 			>
 				<overrides.List.component
 					current={current}
-					instanceIdPrefix={instancePrefix}
 					headingsTag={headingsTag}
 					assistiveText={assistiveText}
 					data={data}
