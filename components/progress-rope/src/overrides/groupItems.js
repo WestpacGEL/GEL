@@ -9,13 +9,14 @@ export const GroupItems = ({
 	current,
 	complete,
 	active,
+	hidden,
 	instanceIdPrefix,
 	headingsTag,
 	assistiveText,
 	...rest
 }) => <ol {...rest} />;
 
-export const groupItemsStyles = () => ({
+export const groupItemsStyles = (_, { hidden }) => ({
 	position: 'relative',
 	listStyle: 'none',
 	paddingLeft: 0,

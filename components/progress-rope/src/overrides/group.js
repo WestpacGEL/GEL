@@ -9,6 +9,7 @@ export const Group = ({
 	current,
 	complete,
 	active,
+	hidden,
 	instanceIdPrefix,
 	headingsTag,
 	assistiveText,

@@ -9,6 +9,7 @@ export const GroupButtonWrapper = ({
 	current,
 	complete,
 	active,
+	hidden,
 	instanceIdPrefix,
 	headingsTag: Tag,
 	assistiveText,

@@ -9,6 +9,7 @@ export const Item = ({
 	furthest,
 	end,
 	current,
+	complete,
 	index,
 	groupIndex,
 	groupItemsId,

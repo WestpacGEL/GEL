@@ -77,6 +77,7 @@ export const Group = ({
 		current,
 		complete,
 		active,
+		hidden,
 		instanceIdPrefix,
 		headingsTag,
 		assistiveText,
@@ -118,6 +119,7 @@ export const Group = ({
 			current={current}
 			complete={complete}
 			active={active}
+			hidden={hidden}
 			instanceIdPrefix={instanceIdPrefix}
 			headingsTag={headingsTag}
 			assistiveText={assistiveText}
@@ -132,6 +134,7 @@ export const Group = ({
 				current={current}
 				complete={complete}
 				active={active}
+				hidden={hidden}
 				instanceIdPrefix={instanceIdPrefix}
 				headingsTag={headingsTag}
 				assistiveText={assistiveText}
@@ -148,6 +151,7 @@ export const Group = ({
 					current={current}
 					complete={complete}
 					active={active}
+					hidden={hidden}
 					instanceIdPrefix={instanceIdPrefix}
 					headingsTag={headingsTag}
 					assistiveText={assistiveText}
@@ -168,6 +172,7 @@ export const Group = ({
 						current={current}
 						complete={complete}
 						active={active}
+						hidden={hidden}
 						instanceIdPrefix={instanceIdPrefix}
 						headingsTag={headingsTag}
 						assistiveText={assistiveText}
@@ -181,6 +186,7 @@ export const Group = ({
 								current,
 								complete,
 								active,
+								hidden,
 								groupItemsId,
 								groupIndex: index,
 								headingsTag,
