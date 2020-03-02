@@ -1,11 +1,11 @@
 'use strict';
 
 const shell = require('child_process').execSync;
-const fs = require('fs');
-const path = require('path');
 const readline = require('readline');
-const chalk = require('chalk');
 const cfonts = require('cfonts');
+const chalk = require('chalk');
+const path = require('path');
+const fs = require('fs');
 
 const rl = readline.createInterface({
 	input: process.stdin,

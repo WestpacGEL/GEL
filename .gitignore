@@ -76,3 +76,4 @@ jsconfig.json
 bundle.js
 cypress/
 docs/
+prop-types.json
