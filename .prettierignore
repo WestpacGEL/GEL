@@ -3,3 +3,4 @@ components/**/dist/
 components/**/cypress/
 .docz/
 docs/
+prop-types.json

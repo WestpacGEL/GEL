@@ -2,7 +2,6 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Popover } from '@westpac/popover';
-import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -17,14 +16,12 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 			<Popover heading="Popover heading" content={content}>
-				<Button>Popover with heading</Button>
+				Popover with heading
 			</Popover>{' '}
-			<Popover content={content}>
-				<Button>Popover without heading</Button>
-			</Popover>
+			<Popover content={content}>Popover without heading</Popover>
 			<div style={{ marginTop: '50rem' }} />
 			<Popover heading="Popover heading" content={content}>
-				<Button>Popover with heading</Button>
+				Popover with heading
 			</Popover>
 		</GEL>
 	);
