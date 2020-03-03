@@ -155,9 +155,7 @@ export const Popover = ({
 			</overrides.Trigger.component>
 			<overrides.Panel.component
 				id={popoverId}
-				aria-label="Use the ESC key to close"
 				ref={popoverRef}
-				tabIndex="-1"
 				open={open}
 				heading={heading}
 				headingTag={headingTag}
