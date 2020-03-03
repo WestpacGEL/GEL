@@ -39,8 +39,8 @@ export const SkipLink = ({ href, children, overrides: componentOverrides, ...res
 
 	return (
 		<overrides.SkipLink.component
-			children={children}
 			href={href}
+			children={children}
 			{...rest}
 			{...overrides.SkipLink.attributes(state)}
 			css={overrides.SkipLink.styles(state)}
