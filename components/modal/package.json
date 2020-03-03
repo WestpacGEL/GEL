@@ -37,9 +37,9 @@
 		"react-spring": "^8.0.27"
 	},
 	"devDependencies": {
-		"cypress": "^4.0.2",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0",
+		"cypress": "^4.1.0",
+		"react": "^16.13.0",
+		"react-dom": "^16.13.0",
 		"react-spring": "^8.0.27",
 		"start-server-and-test": "^1.10.8"
 	}
