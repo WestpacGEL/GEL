@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers, mergeWith } from '@westpac/core';
-import { useEffect, Children, cloneElement, createContext, useContext } from 'react';
+import { useEffect, Children, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { Pagination as PaginationWrapper, paginationStyles } from './overrides/pagination';
+import { PageList, pageListStyles } from './overrides/pageList';
 import { usePagination } from './usePagination';
 import pkg from '../package.json';
 import { Page } from './Page';
@@ -27,7 +28,6 @@ export const usePaginationContext = () => {
 // ==============================
 // Component
 // ==============================
-
 export const Pagination = ({
 	current,
 	infinite,
@@ -48,6 +48,11 @@ export const Pagination = ({
 			styles: paginationStyles,
 			component: PaginationWrapper,
 			attributes: () => null,
+		},
+		PageList: {
+			styles: pageListStyles,
+			component: PageList,
+			attributes: (_, a) => a,
 		},
 	};
 
@@ -71,12 +76,13 @@ export const Pagination = ({
 	const backDefault = {
 		text: 'Back',
 		visible: true,
-		assistiveText: page => `Step back to page ${page + 1}`,
+		assistiveText: page => null,
 	};
+
 	const nextDefault = {
 		text: 'Next',
 		visible: true,
-		assistiveText: page => `Step forward to page ${page + 1}`,
+		assistiveText: page => null,
 	};
 
 	const back = mergeWith(backDefault, backProps);
@@ -121,6 +127,7 @@ export const Pagination = ({
 			value={{ current: pageLogic.current, overrides: componentOverrides }}
 		>
 			<overrides.Pagination.component
+				aria-label="Page number"
 				current={current}
 				infinite={infinite}
 				back={backProps}
@@ -130,40 +137,50 @@ export const Pagination = ({
 				{...overrides.Pagination.attributes(state)}
 				css={overrides.Pagination.styles(state)}
 			>
-				{back.visible && (
-					<Page
-						nextIndex={backIndex}
-						text={back.text}
-						first
-						disabled={pageLogic.current === 0 && !infinite}
-						assistiveText={back.assistiveText(backIndex)}
-						onClick={wrapHandlers(
-							event => back.onClick && back.onClick(event, backIndex),
-							event => pageLogic.previous(event)
-						)}
-					/>
-				)}
-				{allChildren.map((page, index) => (
-					<Page
-						key={index}
-						index={index}
-						text={page.text}
-						onClick={event => pageLogic.setPage(event, allChildren, index)}
-					/>
-				))}
-				{next.visible && (
-					<Page
-						nextIndex={nextIndex}
-						text={next.text}
-						last
-						disabled={pageLogic.current === pageCount - 1 && !infinite}
-						assistiveText={next.assistiveText(nextIndex)}
-						onClick={wrapHandlers(
-							event => next.onClick && next.onClick(event, nextIndex),
-							event => pageLogic.next(event)
-						)}
-					/>
-				)}
+				<overrides.PageList.component
+					current={current}
+					infinite={infinite}
+					back={backProps}
+					next={nextProps}
+					data={data}
+					{...overrides.PageList.attributes(state)}
+					css={overrides.PageList.styles(state)}
+				>
+					{back.visible && (
+						<Page
+							first
+							text={back.text}
+							nextIndex={backIndex}
+							disabled={pageLogic.current === 0 && !infinite}
+							assistiveText={back.assistiveText(backIndex)}
+							onClick={wrapHandlers(
+								event => back.onClick && back.onClick(event, backIndex),
+								event => pageLogic.previous(event)
+							)}
+						/>
+					)}
+					{allChildren.map((page, index) => (
+						<Page
+							key={index}
+							index={index}
+							text={page.text}
+							onClick={event => pageLogic.setPage(event, allChildren, index)}
+						/>
+					))}
+					{next.visible && (
+						<Page
+							last
+							text={next.text}
+							nextIndex={nextIndex}
+							disabled={pageLogic.current === pageCount - 1 && !infinite}
+							assistiveText={next.assistiveText(nextIndex)}
+							onClick={wrapHandlers(
+								event => next.onClick && next.onClick(event, nextIndex),
+								event => pageLogic.next(event)
+							)}
+						/>
+					)}
+				</overrides.PageList.component>
 			</overrides.Pagination.component>
 		</PaginationContext.Provider>
 	);
@@ -224,6 +241,11 @@ Pagination.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		Pagination: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		PageList: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

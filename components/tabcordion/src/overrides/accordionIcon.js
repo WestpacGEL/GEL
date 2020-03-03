@@ -16,9 +16,8 @@ export const AccordionIcon = ({
 }) => {
 	const { COLORS } = useBrand();
 	const Icon = hidden ? ExpandMoreIcon : ExpandLessIcon;
-	const iconAssistiveText = hidden ? 'Show More' : 'Show Less';
 
-	return <Icon color={COLORS.muted} assistiveText={iconAssistiveText} size="small" {...rest} />;
+	return <Icon color={COLORS.muted} size="small" {...rest} />;
 };
 
 export const accordionIconStyles = () => ({});

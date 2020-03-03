@@ -91,6 +91,8 @@ export const Content = ({
 					css={{ marginLeft: children && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
+					aria-hidden="true"
+					assistiveText={null}
 				/>
 			)}
 			{dropdown && (
@@ -98,6 +100,8 @@ export const Content = ({
 					css={{ marginLeft: block ? 'auto' : '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
+					aria-hidden="true"
+					assistiveText={null}
 				/>
 			)}
 		</overrides.Content.component>

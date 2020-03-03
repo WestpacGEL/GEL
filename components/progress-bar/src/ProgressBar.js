@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
@@ -55,6 +54,12 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...res
 
 	return (
 		<overrides.ProgressBar.component
+			role="progressbar"
+			aria-valuemin="0"
+			aria-valuemax="100"
+			aria-valuenow={roundedValue}
+			aria-valuetext={`${roundedValue}% complete`}
+			aria-live="polite"
 			value={roundedValue}
 			look={look}
 			{...rest}
@@ -62,31 +67,22 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...res
 			css={overrides.ProgressBar.styles(state)}
 		>
 			<overrides.Bar.component
-				role="progressbar"
-				aria-valuemin="0"
-				aria-valuemax="100"
-				aria-valuenow={roundedValue}
-				aria-live="polite"
 				value={roundedValue}
 				look={look}
 				{...overrides.Bar.attributes(state)}
 				css={overrides.Bar.styles(state)}
 			>
-				{look !== 'skinny' ? (
+				{look !== 'skinny' && (
 					<Fragment>
 						<overrides.Text.component
-							role="text"
 							value={roundedValue}
 							look={look}
 							{...overrides.Text.attributes(state)}
 							css={overrides.Text.styles(state)}
 						>
-							{roundedValue}%
+							{`${roundedValue}%`}
 						</overrides.Text.component>
-						<VisuallyHidden>Complete</VisuallyHidden>
 					</Fragment>
-				) : (
-					<VisuallyHidden>{roundedValue}% Complete</VisuallyHidden>
 				)}
 			</overrides.Bar.component>
 		</overrides.ProgressBar.component>

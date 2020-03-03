@@ -4,11 +4,9 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { Body, bodyStyles } from './overrides/body';
-import { useModalContext } from './Modal';
 import pkg from '../package.json';
 
 export const ModalBody = ({ children, overrides: componentOverrides, ...rest }) => {
-	const { bodyId } = useModalContext();
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -36,7 +34,6 @@ export const ModalBody = ({ children, overrides: componentOverrides, ...rest }) 
 
 	return (
 		<overrides.Body.component
-			id={bodyId}
 			{...rest}
 			{...overrides.Body.attributes(state)}
 			css={overrides.Body.styles(state)}
@@ -51,7 +48,7 @@ export const ModalBody = ({ children, overrides: componentOverrides, ...rest }) 
 // ==============================
 ModalBody.propTypes = {
 	/**
-	 * The content for this list group
+	 * Modal body content
 	 */
 	children: PropTypes.node,
 

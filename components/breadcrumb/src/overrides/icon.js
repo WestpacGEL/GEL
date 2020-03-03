@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
 import React from 'react';
 
-export const Icon = ({ current, href, text, assistiveText, currentAssistiveText, ...rest }) => (
+export const Icon = ({ current, href, text, assistiveText, ...rest }) => (
 	<ArrowRightIcon {...rest} />
 );
 

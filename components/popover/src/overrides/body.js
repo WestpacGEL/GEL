@@ -3,15 +3,19 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-export const PopoverBody = ({ open, title, content, dismissible, position, ...rest }) => (
-	<Body {...rest} />
-);
+export const PopoverBody = ({
+	open,
+	heading,
+	headingTag,
+	content,
+	dismissible,
+	position,
+	...rest
+}) => <Body {...rest} />;
 
 export const bodyStyles = (_, {}) => {
 	const { COLORS } = useBrand();
 	return {
-		margin: 0,
-		padding: '0.625rem 0.75rem',
 		color: COLORS.neutral,
 	};
 };

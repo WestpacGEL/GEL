@@ -8,6 +8,7 @@ export const AlertHeading = ({
 	open,
 	look,
 	dismissible,
+	onClose,
 	icon,
 	heading,
 	headingTag,

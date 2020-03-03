@@ -1,18 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import {
-	Fragment,
-	createContext,
-	useContext,
-	useState,
-	useEffect,
-	useRef,
-	forwardRef,
-} from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { Fragment, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
-import { CloseIcon } from '@westpac/icon';
-import FocusLock from 'react-focus-lock';
+import { FocusOn } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
@@ -22,21 +13,6 @@ import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
 import { Header, headerStyles } from './overrides/header';
 import { Title, titleStyles } from './overrides/title';
 import pkg from '../package.json';
-
-// ==============================
-// Context and Consumer Hook
-// ==============================
-const ModalContext = createContext();
-
-export const useModalContext = () => {
-	const context = useContext(ModalContext);
-
-	if (!context) {
-		throw new Error('Modal sub-components should be wrapped in a <Modal>.');
-	}
-
-	return context;
-};
 
 // ==============================
 // Component
@@ -55,7 +31,6 @@ export const Modal = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
-	const [modalId] = useState(useInstanceId());
 	const [open, setOpen] = useState(isOpen);
 
 	const defaultOverrides = {
@@ -103,10 +78,8 @@ export const Modal = ({
 		componentOverrides
 	);
 
-	const titleId = `GEL3-modal-header-title-${modalId}`;
-	const bodyId = `GEL3-modal-body-${modalId}`;
-
 	const modalRef = useRef();
+	const titleRef = useRef();
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -151,13 +124,10 @@ export const Modal = ({
 					{...overrides.Backdrop.attributes(state)}
 					css={overrides.Backdrop.styles(state)}
 				/>
-				<ModalContext.Provider value={{ dismissible, titleId, bodyId, handleClose }}>
+				<FocusOn enabled={open} onActivation={() => titleRef.current.focus()}>
 					<overrides.Modal.component
 						role="dialog"
 						aria-modal="true"
-						aria-labelledby={titleId}
-						aria-describedby={bodyId}
-						tabIndex="-1"
 						ref={modalRef}
 						heading={heading}
 						open={open}
@@ -168,46 +138,45 @@ export const Modal = ({
 						{...overrides.Modal.attributes(state)}
 						css={overrides.Modal.styles(state)}
 					>
-						<FocusLock returnFocus autoFocus={false} as={FocusWrapper}>
-							<overrides.Header.component
+						<overrides.Header.component
+							heading={heading}
+							open={open}
+							onClose={onClose}
+							size={size}
+							dismissible={dismissible}
+							{...overrides.Header.attributes(state)}
+							css={overrides.Header.styles(state)}
+						>
+							<overrides.Title.component
+								ref={titleRef}
+								tabIndex="-1"
 								heading={heading}
 								open={open}
 								onClose={onClose}
 								size={size}
 								dismissible={dismissible}
-								{...overrides.Header.attributes(state)}
-								css={overrides.Header.styles(state)}
+								{...overrides.Title.attributes(state)}
+								css={overrides.Title.styles(state)}
 							>
-								<overrides.Title.component
-									id={titleId}
+								{heading}
+							</overrides.Title.component>
+							{dismissible && (
+								<overrides.CloseBtn.component
+									assistiveText="Close"
+									onClick={() => handleClose()}
 									heading={heading}
 									open={open}
 									onClose={onClose}
 									size={size}
 									dismissible={dismissible}
-									{...overrides.Title.attributes(state)}
-									css={overrides.Title.styles(state)}
-								>
-									{heading}
-								</overrides.Title.component>
-								{dismissible && (
-									<overrides.CloseBtn.component
-										onClick={() => handleClose()}
-										icon={CloseIcon}
-										heading={heading}
-										open={open}
-										onClose={onClose}
-										size={size}
-										dismissible={dismissible}
-										{...overrides.CloseBtn.attributes(state)}
-										css={overrides.CloseBtn.styles(state)}
-									/>
-								)}
-							</overrides.Header.component>
-							{children}
-						</FocusLock>
+									{...overrides.CloseBtn.attributes(state)}
+									css={overrides.CloseBtn.styles(state)}
+								/>
+							)}
+						</overrides.Header.component>
+						{children}
 					</overrides.Modal.component>
-				</ModalContext.Provider>
+				</FocusOn>
 			</Fragment>,
 			document.body
 		);
@@ -290,10 +259,3 @@ Modal.defaultProps = {
 	size: 'medium',
 	dismissible: true,
 };
-
-// ==============================
-// Utils
-// ==============================
-const FocusWrapper = forwardRef((props, ref) => (
-	<div ref={ref} css={{ height: '100%' }} {...props} />
-));

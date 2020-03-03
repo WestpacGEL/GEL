@@ -1,30 +1,25 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, devWarning, overrideReconciler } from '@westpac/core';
-import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { Panel as PanelWrapper, panelStyles } from './overrides/panel';
+import { Header, headerStyles } from './overrides/header';
+import { Heading, headingStyles } from './overrides/heading';
 import pkg from '../package.json';
-
-// ==============================
-// Context and consumer hook
-// ==============================
-
-const PanelContext = createContext();
-
-export const usePanelContext = () => {
-	const context = useContext(PanelContext);
-
-	devWarning(!context, 'Panel children should be wrapped in a <Panel>.');
-	return context;
-};
 
 // ==============================
 // Component
 // ==============================
 
-export const Panel = ({ look, children, overrides: componentOverrides, ...rest }) => {
+export const Panel = ({
+	look,
+	heading,
+	headingTag,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -36,10 +31,22 @@ export const Panel = ({ look, children, overrides: componentOverrides, ...rest }
 			component: PanelWrapper,
 			attributes: () => null,
 		},
+		Header: {
+			styles: headerStyles,
+			component: Header,
+			attributes: () => null,
+		},
+		Heading: {
+			styles: headingStyles,
+			component: Heading,
+			attributes: () => null,
+		},
 	};
 
 	const state = {
 		look,
+		heading,
+		headingTag,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -52,16 +59,33 @@ export const Panel = ({ look, children, overrides: componentOverrides, ...rest }
 	);
 
 	return (
-		<PanelContext.Provider value={{ look, overrides: componentOverrides }}>
-			<overrides.Panel.component
+		<overrides.Panel.component
+			look={look}
+			heading={heading}
+			headingTag={headingTag}
+			{...rest}
+			{...overrides.Panel.attributes(state)}
+			css={overrides.Panel.styles(state)}
+		>
+			<overrides.Header.component
 				look={look}
-				{...rest}
-				{...overrides.Panel.attributes(state)}
-				css={overrides.Panel.styles(state)}
+				heading={heading}
+				headingTag={headingTag}
+				{...overrides.Header.attributes(state)}
+				css={overrides.Header.styles(state)}
 			>
-				{children}
-			</overrides.Panel.component>
-		</PanelContext.Provider>
+				<overrides.Heading.component
+					look={look}
+					heading={heading}
+					headingTag={headingTag}
+					{...overrides.Heading.attributes(state)}
+					css={overrides.Heading.styles(state)}
+				>
+					{heading}
+				</overrides.Heading.component>
+			</overrides.Header.component>
+			{children}
+		</overrides.Panel.component>
 	);
 };
 
@@ -76,9 +100,14 @@ Panel.propTypes = {
 	look: PropTypes.oneOf(['hero', 'faint']).isRequired,
 
 	/**
-	 * Panel content
+	 * Panel heading text
 	 */
-	children: PropTypes.node,
+	heading: PropTypes.string.isRequired,
+
+	/**
+	 * Panel heading tag
+	 */
+	headingTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
 
 	/**
 	 * The override API
@@ -94,12 +123,7 @@ Panel.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Body: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Footer: PropTypes.shape({
+		Heading: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -109,4 +133,5 @@ Panel.propTypes = {
 
 Panel.defaultProps = {
 	look: 'hero',
+	headingTag: 'h1',
 };

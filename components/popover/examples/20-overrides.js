@@ -1,9 +1,7 @@
 /** @jsx jsx */
 
-import { forwardRef } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Popover } from '@westpac/popover';
-import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -23,23 +21,14 @@ function Example({ brand }) {
 				borderColor: 'palevioletred',
 
 				'::before': {
-					content: '""',
-					position: 'absolute',
-					[position.placement === 'top' ? 'bottom' : 'top']: '-0.8125rem',
-					left: '50%',
-					marginLeft: '-0.5rem',
-					width: 0,
-					[position.placement === 'top'
-						? 'borderTop'
-						: 'borderBottom']: `0.75rem solid palevioletred`,
-					borderRight: '0.5rem solid transparent',
-					borderLeft: '0.5rem solid transparent',
-					fontSize: 0,
-					lineHeight: 0,
+					borderLeftWidth: '8px',
+					borderRightWidth: '8px',
+					marginLeft: '-8px',
+					[position.placement === 'top' ? 'borderTop' : 'borderBottom']: `12px solid palevioletred`,
 				},
 			}),
 		},
-		Title: {
+		Heading: {
 			styles: styles => ({
 				...styles,
 				backgroundColor: 'palevioletred',
@@ -52,22 +41,22 @@ function Example({ brand }) {
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
-			<Popover title="Example Title" content={content}>
-				<Button>Click Me</Button>
+			<Popover heading="Example heading" content={content}>
+				Click Me
 			</Popover>
 			<div style={{ marginTop: '40rem' }} />
-			<Popover title="Example Title" content={content}>
-				<Button>Click Me</Button>
+			<Popover heading="Example heading" content={content}>
+				Click Me
 			</Popover>
 			<h2>With overrides and component overrides</h2>
 			<Popover
-				title="Example Title"
+				heading="Example heading"
 				content={content}
 				overrides={{
 					Panel: { styles: styles => ({ ...styles, border: '2px dotted red' }) },
 				}}
 			>
-				<Button>Click Me</Button>
+				Click Me
 			</Popover>
 		</GEL>
 	);

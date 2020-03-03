@@ -84,6 +84,7 @@ export const List = ({
 	nested,
 	spacing,
 	icon,
+	assistiveText,
 	data,
 	children,
 	overrides: componentOverrides,
@@ -121,6 +122,7 @@ export const List = ({
 		nested,
 		spacing,
 		icon,
+		assistiveText,
 		data,
 		overrides: componentOverrides,
 		...rest,
@@ -144,16 +146,22 @@ export const List = ({
 				type,
 				spacing,
 				icon,
+				assistiveText,
 				nested,
 				overrides: componentOverrides,
 			}}
 		>
 			<overrides.List.component
+				//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
+				role={type !== 'ordered' ? 'list' : undefined}
+				//a11y: tick bullet meaning must be conveyed; setting a default (but configurable) aria-label value
+				aria-label={type === 'tick' ? assistiveText || 'The following items are ticked' : undefined}
 				look={look}
 				type={type}
 				nested={nested}
 				spacing={spacing}
 				icon={icon}
+				assistiveText={assistiveText}
 				data={data}
 				{...rest}
 				{...overrides.List.attributes(state)}
@@ -193,6 +201,18 @@ List.propTypes = {
 	 * The icon for list
 	 */
 	icon: PropTypes.func,
+
+	/**
+	 * Visually hidden text to use for the list.
+	 *
+	 * Tick list default value: "The following items are ticked"
+	 */
+	assistiveText: PropTypes.string,
+
+	/**
+	 * Any renderable child
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * Data for the crumbs

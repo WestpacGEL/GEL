@@ -8,6 +8,7 @@ export const Icon = ({
 	open,
 	look,
 	dismissible,
+	onClose,
 	icon,
 	heading,
 	headingTag,
@@ -28,7 +29,7 @@ export const Icon = ({
 		return null;
 	}
 
-	return <Tag size={size} color={color} {...rest} />;
+	return <Tag size={size} color={color} assistiveText={null} aria-hidden={true} {...rest} />;
 };
 
 export const iconStyles = () => {

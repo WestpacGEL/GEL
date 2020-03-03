@@ -12,7 +12,7 @@ export const AccordionLabel = ({
 	panelId,
 	tabId,
 	...rest
-}) => <button {...rest} />;
+}) => <button type="button" {...rest} />;
 
 export const accordionLabelStyles = (_, { look, last, hidden }) => {
 	const { COLORS } = useBrand();

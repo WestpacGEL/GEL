@@ -82,7 +82,10 @@ export const Page = ({
 			css={overrides.Page.styles(state)}
 		>
 			<overrides.Link.component
-				aria-label={assistiveText ? assistiveText : `Go to page ${text}`}
+				aria-current={active ? 'page' : undefined}
+				aria-label={assistiveText}
+				aria-disabled={disabled} //a11y: required to aid VoiceOver/Talkback UX
+				disabled={disabled}
 				onClick={onClick}
 				index={index}
 				nextIndex={nextIndex}

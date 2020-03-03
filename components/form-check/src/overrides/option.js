@@ -1,21 +1,12 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-export const Option = ({
-	value,
-	selected,
-	disabled,
-	type,
-	name,
-	size,
-	inline,
-	flipped,
-	...rest
-}) => <div {...rest} />;
+export const Option = ({ value, checked, disabled, type, name, size, inline, ...rest }) => (
+	<div {...rest} />
+);
 
-export const optionStyles = (_, { size, inline, flipped }) => {
+export const optionStyles = (_, { size, inline }) => {
 	const sizeMap = {
 		medium: {
 			marginRight: '1.125rem',
@@ -38,6 +29,6 @@ export const optionStyles = (_, { size, inline, flipped }) => {
 		marginRight: inline && sizeMap[size].marginRight,
 		marginBottom: sizeMap[size].marginBottom,
 		minHeight: sizeMap[size].height,
-		[flipped ? 'paddingRight' : 'paddingLeft']: sizeMap[size].width,
+		paddingLeft: sizeMap[size].width,
 	};
 };

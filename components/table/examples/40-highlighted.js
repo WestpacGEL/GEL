@@ -68,7 +68,7 @@ function Example({ brand }) {
 				</Tbody>
 				<Tfoot>
 					<Tr>
-						<Td colSpan="3">Footer goes here and should colSpan all columns</Td>
+						<Td colSpan="6">Footer goes here and should colSpan all columns</Td>
 					</Tr>
 				</Tfoot>
 			</Table>

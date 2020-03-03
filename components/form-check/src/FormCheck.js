@@ -24,11 +24,11 @@ export const FormCheck = ({
 	name,
 	size,
 	inline,
-	flipped,
-	data,
+	disabled,
 	defaultValue,
-	onChange = () => {},
+	data,
 	children,
+	onChange = () => {},
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -39,19 +39,19 @@ export const FormCheck = ({
 		'The form-check as radio may only have one "current" item set.'
 	);
 
-	const [selected, setSelected] = useState(defaultValueAsArray);
+	const [checked, setChecked] = useState(defaultValueAsArray);
 
-	const handleChange = (event, value, wasSelected) => {
+	const handleChange = (event, value, wasChecked) => {
 		wrapHandlers(
-			() => onChange(event, value, wasSelected),
+			() => onChange(event, value, wasChecked),
 			() => {
 				if (type === 'radio') {
-					setSelected(asArray(value));
+					setChecked(asArray(value));
 				} else {
-					if (wasSelected) {
-						setSelected(selected.filter(item => item !== value));
+					if (wasChecked) {
+						setChecked(checked.filter(item => item !== value));
 					} else {
-						setSelected([...selected, value]);
+						setChecked([...checked, value]);
 					}
 				}
 			}
@@ -76,10 +76,9 @@ export const FormCheck = ({
 		name,
 		size,
 		inline,
-		flipped,
+		disabled,
 		data,
 		defaultValue,
-		onChange,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -97,16 +96,16 @@ export const FormCheck = ({
 			allChildren.push(
 				<Option
 					key={index}
+					value={props.value}
+					checked={props.checked || checked.includes(props.value)}
+					handleChange={handleChange}
 					type={type}
 					name={name}
 					size={size}
 					inline={inline}
-					flipped={flipped}
+					disabled={props.disabled || disabled}
 					data={data}
 					defaultValue={defaultValue}
-					value={props.value}
-					handleChange={handleChange}
-					selected={selected.includes(props.value)}
 					overrides={componentOverrides}
 				>
 					{props.text}
@@ -114,18 +113,17 @@ export const FormCheck = ({
 			);
 		});
 	} else {
-		const length = Children.count(children);
 		allChildren = Children.map(children, child =>
 			cloneElement(child, {
+				checked: child.props.checked || checked.includes(child.props.value),
+				handleChange,
 				type,
 				name,
 				size,
 				inline,
-				flipped,
+				disabled: child.props.disabled || disabled,
 				data,
 				defaultValue,
-				handleChange,
-				selected: selected.includes(child.props.value),
 				overrides: componentOverrides,
 			})
 		);
@@ -137,8 +135,8 @@ export const FormCheck = ({
 			name={name}
 			size={size}
 			inline={inline}
-			flipped={flipped}
 			data={data}
+			disabled={disabled}
 			defaultValue={defaultValue}
 			{...rest}
 			{...overrides.FormCheck.attributes(state)}
@@ -175,9 +173,14 @@ FormCheck.propTypes = {
 	inline: PropTypes.bool.isRequired,
 
 	/**
-	 * Form check orientation (control on the right).
+	 * Disable all Form check options
 	 */
-	flipped: PropTypes.bool.isRequired,
+	disabled: PropTypes.bool,
+
+	/**
+	 * A function called on change
+	 */
+	onChange: PropTypes.func,
 
 	/**
 	 * The data prop shape
@@ -190,7 +193,7 @@ FormCheck.propTypes = {
 	),
 
 	/**
-	 * The options already selected
+	 * The options already checked
 	 */
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
 
@@ -230,5 +233,4 @@ FormCheck.defaultProps = {
 	type: 'checkbox',
 	inline: false,
 	size: 'medium',
-	flipped: false,
 };

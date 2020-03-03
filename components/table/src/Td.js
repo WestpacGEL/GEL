@@ -79,6 +79,11 @@ Td.propTypes = {
 	highlightStart: PropTypes.bool,
 
 	/**
+	 * Bordered mode
+	 */
+	bordered: PropTypes.bool,
+
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({

@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
-export const Footer = props => <div {...props} />;
+export const Footer = ({ overrides, ...rest }) => <div {...rest} />;
 
 export const footerStyles = () => {
 	const { COLORS } = useBrand();

@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { ListGroup, Item } from '@westpac/list-group';
-import { ButtonGroup, Button } from '@westpac/button';
+import { ButtonGroup, Item as BtnGroupItem } from '@westpac/button-group';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -33,29 +33,29 @@ function Example({ brand }) {
 				<Item>
 					Send me sms reminders
 					<ButtonGroup size="small" name="example-default-1" css={styleExample}>
-						<Button value="yes">Yes</Button>
-						<Button value="no">No</Button>
+						<BtnGroupItem value="yes">Yes</BtnGroupItem>
+						<BtnGroupItem value="no">No</BtnGroupItem>
 					</ButtonGroup>
 				</Item>
 				<Item>
 					Give me free money
 					<ButtonGroup size="small" name="example-default-2" css={styleExample}>
-						<Button value="yes">Yes</Button>
-						<Button value="no">No</Button>
+						<BtnGroupItem value="yes">Yes</BtnGroupItem>
+						<BtnGroupItem value="no">No</BtnGroupItem>
 					</ButtonGroup>
 				</Item>
 				<Item>
 					Call me all the time
 					<ButtonGroup size="small" name="example-default-3" css={styleExample}>
-						<Button value="yes">Yes</Button>
-						<Button value="no">No</Button>
+						<BtnGroupItem value="yes">Yes</BtnGroupItem>
+						<BtnGroupItem value="no">No</BtnGroupItem>
 					</ButtonGroup>
 				</Item>
 				<Item>
 					Deleted messages
 					<ButtonGroup size="small" name="example-default-4" css={styleExample}>
-						<Button value="yes">Yes</Button>
-						<Button value="no">No</Button>
+						<BtnGroupItem value="yes">Yes</BtnGroupItem>
+						<BtnGroupItem value="no">No</BtnGroupItem>
 					</ButtonGroup>
 				</Item>
 			</ListGroup>
@@ -74,15 +74,15 @@ function Example({ brand }) {
 					<Fragment>
 						Send me sms reminders
 						<ButtonGroup size="small" name="example-default-1" css={styleExample}>
-							<Button value="yes">Yes</Button>
-							<Button value="no">No</Button>
+							<BtnGroupItem value="yes">Yes</BtnGroupItem>
+							<BtnGroupItem value="no">No</BtnGroupItem>
 						</ButtonGroup>
 					</Fragment>,
 					<Fragment>
 						Call me all the time
 						<ButtonGroup size="small" name="example-default-3" css={styleExample}>
-							<Button value="yes">Yes</Button>
-							<Button value="no">No</Button>
+							<BtnGroupItem value="yes">Yes</BtnGroupItem>
+							<BtnGroupItem value="no">No</BtnGroupItem>
 						</ButtonGroup>
 					</Fragment>,
 				]}

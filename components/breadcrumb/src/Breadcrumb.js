@@ -4,7 +4,6 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 
-import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
 import { Breadcrumb as BreadcrumbWrapper, breadcrumbStyles } from './overrides/breadcrumb';
 import { List, listStyles } from './overrides/list';
 import pkg from '../package.json';
@@ -17,7 +16,6 @@ import { Crumb } from './Crumb';
 export const Breadcrumb = ({
 	data,
 	assistiveText,
-	currentAssistiveText,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -33,11 +31,6 @@ export const Breadcrumb = ({
 			component: BreadcrumbWrapper,
 			attributes: () => null,
 		},
-		AssistiveText: {
-			styles: assistiveTextStyles,
-			component: AssistiveText,
-			attributes: () => null,
-		},
 		List: {
 			styles: listStyles,
 			component: List,
@@ -48,7 +41,6 @@ export const Breadcrumb = ({
 	const state = {
 		data,
 		assistiveText,
-		currentAssistiveText,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -71,7 +63,6 @@ export const Breadcrumb = ({
 					text={text}
 					onClick={onClick}
 					assistiveText={assistiveText}
-					currentAssistiveText={currentAssistiveText}
 					overrides={componentOverrides}
 				/>
 			);
@@ -84,7 +75,6 @@ export const Breadcrumb = ({
 				{
 					current: index === length - 1,
 					assistiveText,
-					currentAssistiveText,
 					overrides: componentOverrides,
 				},
 				index
@@ -94,25 +84,14 @@ export const Breadcrumb = ({
 
 	return (
 		<overrides.Breadcrumb.component
+			aria-label={assistiveText}
 			data={data}
-			assistiveText={assistiveText}
-			currentAssistiveText={currentAssistiveText}
 			{...overrides.Breadcrumb.attributes(state)}
 			css={overrides.Breadcrumb.styles(state)}
 		>
-			<overrides.AssistiveText.component
-				data={data}
-				assistiveText={assistiveText}
-				currentAssistiveText={currentAssistiveText}
-				{...overrides.AssistiveText.attributes(state)}
-				css={overrides.AssistiveText.styles(state)}
-			>
-				{assistiveText}
-			</overrides.AssistiveText.component>
 			<overrides.List.component
 				data={data}
 				assistiveText={assistiveText}
-				currentAssistiveText={currentAssistiveText}
 				{...rest}
 				{...overrides.List.attributes(state)}
 				css={overrides.List.styles(state)}
@@ -140,30 +119,15 @@ Breadcrumb.propTypes = {
 	),
 
 	/**
-	 * Visually hidden text to use for the breadcrumb
+	 * Text to use as the `aria-label` for the breadcrumb
 	 */
 	assistiveText: PropTypes.string.isRequired,
-
-	/**
-	 * Visually hidden text to use for the current page crumb
-	 */
-	currentAssistiveText: PropTypes.string,
-
-	/**
-	 * Any renderable child
-	 */
-	children: PropTypes.node,
 
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Breadcrumb: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		AssistiveText: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -192,5 +156,5 @@ Breadcrumb.propTypes = {
 };
 
 Breadcrumb.defaultProps = {
-	assistiveText: 'Page navigation:',
+	assistiveText: 'Breadcrumb',
 };

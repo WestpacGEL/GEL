@@ -9,7 +9,6 @@ export const Link = ({
 	text,
 	first,
 	last,
-	disabled,
 	assistiveText,
 	current,
 	active,

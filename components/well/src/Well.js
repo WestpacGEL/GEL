@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Well = ({ children, overrides: componentOverrides, ...rest }) => {
+export const Well = ({ tag: Tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -24,7 +24,11 @@ export const Well = ({ children, overrides: componentOverrides, ...rest }) => {
 		},
 	};
 
-	const state = { overrides: componentOverrides, ...rest };
+	const state = {
+		overrides: componentOverrides,
+		tag: Tag,
+		...rest,
+	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
@@ -35,6 +39,7 @@ export const Well = ({ children, overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Well.component
+			tag={Tag}
 			{...rest}
 			{...overrides.Well.attributes(state)}
 			css={overrides.Well.styles(state)}
@@ -50,6 +55,11 @@ export const Well = ({ children, overrides: componentOverrides, ...rest }) => {
 
 Well.propTypes = {
 	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
@@ -61,4 +71,6 @@ Well.propTypes = {
 	}),
 };
 
-Well.defaultProps = {};
+Well.defaultProps = {
+	tag: 'div',
+};

@@ -15,6 +15,7 @@ export const Icon = ({
 	color,
 	size,
 	assistiveText,
+	icon,
 	children,
 	overrides: componentOverrides,
 	...rest

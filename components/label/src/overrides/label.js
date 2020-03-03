@@ -134,7 +134,7 @@ export const labelStyles = (_, { look, href, onClick }) => {
 		...(href || onClick
 			? {
 					textDecoration: 'none',
-					':hover, :focus': {
+					':hover': {
 						cursor: 'pointer',
 						...styleMap[look].hoverCSS,
 					},

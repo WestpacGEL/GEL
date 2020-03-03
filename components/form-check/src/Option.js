@@ -14,19 +14,18 @@ import pkg from '../package.json';
 
 export const Option = ({
 	value,
-	selected,
+	checked,
 	handleChange,
 	disabled,
 	type,
 	name,
 	size,
 	inline,
-	flipped,
 	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
-	const [formCheckId] = useState(`form-check-${name.replace(/ /g, '-')}-${useInstanceId()}`);
+	const [formCheckId] = useState(`form-check-option-${name.replace(/ /g, '-')}-${useInstanceId()}`);
 
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -48,14 +47,13 @@ export const Option = ({
 
 	const state = {
 		value,
-		selected,
+		checked,
 		handleChange,
 		disabled,
 		type,
 		name,
 		size,
 		inline,
-		flipped,
 		...rest,
 	};
 
@@ -69,38 +67,40 @@ export const Option = ({
 	return (
 		<overrides.Option.component
 			value={value}
-			selected={selected}
+			checked={checked}
 			disabled={disabled}
 			type={type}
 			name={name}
 			size={size}
 			inline={inline}
-			flipped={flipped}
 			{...rest}
 			{...overrides.Option.attributes(state)}
 			css={overrides.Option.styles(state)}
 		>
+			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
-				type={type}
-				selected={selected}
 				id={formCheckId}
+				onChange={disabled ? null : event => handleChange(event, value, checked)}
 				value={value}
-				onChange={disabled ? null : event => handleChange(event, value, selected)}
+				checked={checked}
+				disabled={disabled}
+				type={type}
+				name={name}
 				css={{
-					position: 'absolute', // just to hide the input element needed for a11y
-					opacity: 0, // we decided to not expose this as an override
-				}} // as it contains logic and is important for the component to work
+					position: 'absolute',
+					zIndex: '-1',
+					opacity: 0,
+				}}
 			/>
 			<overrides.Label.component
+				htmlFor={formCheckId}
 				value={value}
-				selected={selected}
+				checked={checked}
 				disabled={disabled}
 				type={type}
 				name={name}
 				size={size}
 				inline={inline}
-				flipped={flipped}
-				htmlFor={formCheckId}
 				{...overrides.Label.attributes(state)}
 				css={overrides.Label.styles(state)}
 			>
@@ -123,7 +123,7 @@ Option.propTypes = {
 	/**
 	 * Check the Form check option
 	 */
-	selected: PropTypes.bool.isRequired,
+	checked: PropTypes.bool.isRequired,
 
 	/**
 	 * Disable the Form check option
@@ -149,11 +149,6 @@ Option.propTypes = {
 	 * To inline the element
 	 */
 	inline: PropTypes.bool,
-
-	/**
-	 * Form check orientation (control on the right).
-	 */
-	flipped: PropTypes.bool,
 
 	/**
 	 * A function called on change
@@ -183,6 +178,6 @@ Option.propTypes = {
 };
 
 Option.defaultProps = {
-	selected: false,
+	checked: false,
 	disabled: false,
 };

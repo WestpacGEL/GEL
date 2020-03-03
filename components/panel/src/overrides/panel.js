@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Panel = ({ look, ...props }) => <div {...props} />;
+export const Panel = ({ look, heading, headingTag, overrides, ...rest }) => <div {...rest} />;
 
 export const panelStyles = (_, { look }) => {
 	const { COLORS } = useBrand();

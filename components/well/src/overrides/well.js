@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
-export const Well = props => <div {...props} />;
+export const Well = ({ tag: Tag, ...rest }) => <Tag {...rest} />;
 
 export const wellStyles = () => {
 	const mq = useMediaQuery();
@@ -16,7 +16,7 @@ export const wellStyles = () => {
 		borderRadius: '0.1875rem',
 
 		// Nested Well styling
-		'& &': {
+		'& > &': {
 			backgroundColor: '#fff',
 			margin: '0.75rem 0',
 		},

@@ -4,7 +4,6 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
 import { Crumb as CrumbWrapper, crumbStyles } from './overrides/crumb';
 import { Link, linkStyles } from './overrides/link';
 import { Icon, iconStyles } from './overrides/icon';
@@ -13,16 +12,11 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-
-/**
- * Crumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
- */
 export const Crumb = ({
 	current,
 	href,
 	text,
 	assistiveText,
-	currentAssistiveText,
 	onClick,
 	overrides: componentOverrides,
 	...rest
@@ -34,11 +28,6 @@ export const Crumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		AssistiveText: {
-			styles: assistiveTextStyles,
-			component: AssistiveText,
-			attributes: () => null,
-		},
 		Crumb: {
 			styles: crumbStyles,
 			component: CrumbWrapper,
@@ -61,7 +50,6 @@ export const Crumb = ({
 		href,
 		text,
 		assistiveText,
-		currentAssistiveText,
 		onClick,
 		overrides: componentOverrides,
 		...rest,
@@ -76,36 +64,21 @@ export const Crumb = ({
 
 	return (
 		<overrides.Crumb.component
+			aria-current={current ? 'page' : undefined}
 			current={current}
 			href={href}
 			text={text}
 			assistiveText={assistiveText}
-			currentAssistiveText={currentAssistiveText}
 			{...rest}
 			{...overrides.Crumb.attributes(state)}
 			css={overrides.Crumb.styles(state)}
 		>
-			{current && (
-				<overrides.AssistiveText.component
-					current={current}
-					href={href}
-					text={text}
-					assistiveText={currentAssistiveText}
-					currentAssistiveText={currentAssistiveText}
-					insideCrumb={true}
-					{...overrides.AssistiveText.attributes(state)}
-					css={overrides.AssistiveText.styles(state)}
-				>
-					{currentAssistiveText}
-				</overrides.AssistiveText.component>
-			)}
 			<overrides.Link.component
-				current={current}
-				href={href}
-				text={text}
-				assistiveText={currentAssistiveText}
-				currentAssistiveText={currentAssistiveText}
 				onClick={onClick}
+				current={current}
+				href={current ? null : href}
+				text={text}
+				assistiveText={assistiveText}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
 			>
@@ -113,14 +86,13 @@ export const Crumb = ({
 			</overrides.Link.component>
 			{!current && (
 				<overrides.Icon.component
-					current={current}
-					href={href}
-					text={text}
-					assistiveText={currentAssistiveText}
-					currentAssistiveText={currentAssistiveText}
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
+					current={current}
+					href={href}
+					text={text}
+					assistiveText={null} //remove icon's `aria-label`
 					{...overrides.Icon.attributes(state)}
 					css={overrides.Icon.styles(state)}
 				/>
@@ -128,8 +100,6 @@ export const Crumb = ({
 		</overrides.Crumb.component>
 	);
 };
-
-Crumb.isCrumb = true;
 
 // ==============================
 // Types
@@ -152,29 +122,19 @@ Crumb.propTypes = {
 	text: PropTypes.string.isRequired,
 
 	/**
-	 * Visually hidden text to use for the current page crumb
-	 */
-	assistiveText: PropTypes.string,
-
-	/**
-	 * Visually hidden text to use for the current page crumb
-	 */
-	currentAssistiveText: PropTypes.string.isRequired,
-
-	/**
 	 * A function for the onClick event
 	 */
 	onClick: PropTypes.func,
 
 	/**
+	 * Visually hidden text to use for the current page crumb
+	 */
+	assistiveText: PropTypes.string,
+
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		AssistiveText: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Crumb: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
@@ -193,6 +153,4 @@ Crumb.propTypes = {
 	}),
 };
 
-Crumb.defaultProps = {
-	currentAssistiveText: 'Current page:',
-};
+Crumb.defaultProps = {};
