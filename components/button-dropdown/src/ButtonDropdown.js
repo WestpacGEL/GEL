@@ -10,6 +10,7 @@ import {
 	ButtonDropdown as BtnDropdownWrapper,
 	buttonDropdownStyles,
 } from './overrides/buttonDropdown';
+import { Header, headerStyles } from './overrides/header';
 import { Panel, panelStyles } from './overrides/panel';
 import pkg from '../package.json';
 
@@ -20,6 +21,8 @@ export const ButtonDropdown = ({
 	text,
 	dropdownSize,
 	block,
+	headerText,
+	headerTag,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -45,6 +48,11 @@ export const ButtonDropdown = ({
 			component: Panel,
 			attributes: () => null,
 		},
+		Header: {
+			styles: headerStyles,
+			component: Header,
+			attributes: () => null,
+		},
 	};
 
 	const state = {
@@ -52,6 +60,8 @@ export const ButtonDropdown = ({
 		text,
 		dropdownSize,
 		block,
+		headerText,
+		headerTag,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -98,6 +108,8 @@ export const ButtonDropdown = ({
 			text={text}
 			dropdownSize={dropdownSize}
 			block={block}
+			headerText={headerText}
+			headerTag={headerTag}
 			{...overrides.ButtonDropdown.attributes(state)}
 			css={overrides.ButtonDropdown.styles(state)}
 		>
@@ -122,9 +134,25 @@ export const ButtonDropdown = ({
 				text={text}
 				dropdownSize={dropdownSize}
 				block={block}
+				headerText={headerText}
+				headerTag={headerTag}
 				{...overrides.Panel.attributes(state)}
 				css={overrides.Panel.styles(state)}
 			>
+				{headerText && (
+					<overrides.Header.component
+						open={open}
+						text={text}
+						dropdownSize={dropdownSize}
+						block={block}
+						headerText={headerText}
+						headerTag={headerTag}
+						{...overrides.Header.attributes(state)}
+						css={overrides.Header.styles(state)}
+					>
+						{headerText}
+					</overrides.Header.component>
+				)}
 				{children}
 			</overrides.Panel.component>
 		</overrides.ButtonDropdown.component>
@@ -174,4 +202,5 @@ ButtonDropdown.propTypes = {
 
 ButtonDropdown.defaultProps = {
 	dropdownSize: 'medium',
+	headerTag: 'h3',
 };
