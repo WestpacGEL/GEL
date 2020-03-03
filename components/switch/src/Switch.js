@@ -4,9 +4,9 @@ import { jsx, useBrand, overrideReconciler, wrapHandlers, useInstanceId } from '
 import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { Switch as SwitchWrapper, switchStyles } from './overrides/switch';
-import { Toggle, toggleStyles } from './overrides/toggle';
-import { Label, labelStyles } from './overrides/label';
+import { defaultRoot } from './overrides/root';
+import { defaultToggle } from './overrides/toggle';
+import { defaultLabel } from './overrides/label';
 
 import pkg from '../package.json';
 
@@ -33,41 +33,45 @@ export const Switch = ({
 	const [checked, setChecked] = useState(isChecked);
 
 	const defaultOverrides = {
-		Switch: {
-			styles: switchStyles,
-			component: SwitchWrapper,
-			attributes: () => null,
-		},
-		Label: {
-			styles: labelStyles,
-			component: Label,
-			attributes: () => null,
-		},
-		Toggle: {
-			styles: toggleStyles,
-			component: Toggle,
-			attributes: () => null,
-		},
+		Root: defaultRoot, // First sub-component will always be called the root component
+		Label: defaultLabel,
+		Toggle: defaultToggle,
 	};
 
+	/* 
+	This sharedState contains everything that is needed for the component. It contains in this order:
+		1. Internal component state variables e.g. useState
+		2. Expected props
+		3. Component overrides
+		4. Rest props
+	- This will be spread onto components as a state prop
+	- Any props that we know that are explicitly being used in a sub-component or that we want to force on a component (e.g. a11y) we manually add to pass it
+	*/
 	const state = {
+		// internal state
+		checked,
+
+		// props
 		name,
 		label,
-		checked,
 		onChange,
 		size,
 		block,
 		disabled,
+
+		// component overrides
 		overrides: componentOverrides,
+
+		// rest props
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	// destructure reconciled component items, makes for cleaner and easier to read code in return
+	const {
+		Root: { component: Root, styles: rootStyles, attributes: rootAttributes },
+		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+		Toggle: { component: Toggle, styles: toggleStyles, attributes: toggleAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	useEffect(() => {
 		setChecked(isChecked);
@@ -75,18 +79,21 @@ export const Switch = ({
 
 	const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
 
+	/* 
+	Component structure
+	1. Known needed props/
+	2. a11y props
+	3. sharedState
+	4. rest if applicable
+
+	*/
 	return (
-		<overrides.Switch.component
+		<Root
 			htmlFor={switchId} //a11y: use explicit association
-			name={name}
-			label={label}
-			checked={checked}
-			size={size}
-			block={block}
-			disabled={disabled}
+			state={state}
 			{...rest}
-			{...overrides.Switch.attributes(state)}
-			css={overrides.Switch.styles(state)}
+			{...rootAttributes(state)}
+			css={rootStyles(state)}
 		>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
@@ -102,29 +109,11 @@ export const Switch = ({
 					opacity: 0,
 				}}
 			/>
-			<overrides.Label.component
-				name={name}
-				label={label}
-				checked={checked}
-				size={size}
-				block={block}
-				disabled={disabled}
-				{...overrides.Label.attributes(state)}
-				css={overrides.Label.styles(state)}
-			>
+			<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
 				{label}
-			</overrides.Label.component>
-			<overrides.Toggle.component
-				name={name}
-				label={label}
-				checked={checked}
-				size={size}
-				block={block}
-				disabled={disabled}
-				{...overrides.Toggle.attributes(state)}
-				css={overrides.Toggle.styles(state)}
-			/>
-		</overrides.Switch.component>
+			</Label>
+			<Toggle state={state} {...toggleAttributes(state)} css={toggleStyles(state)} />
+		</Root>
 	);
 };
 

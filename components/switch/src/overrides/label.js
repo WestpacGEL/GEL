@@ -2,11 +2,9 @@
 
 import { jsx } from '@westpac/core';
 
-export const Label = ({ name, label, checked, size, block, disabled, ...rest }) => (
-	<span {...rest} />
-);
+const Label = ({ state, ...rest }) => <span {...rest} />;
 
-export const labelStyles = (_, { block }) => {
+const labelStyles = (_, { block }) => {
 	return {
 		flex: block && 1,
 		display: 'flex',
@@ -16,3 +14,5 @@ export const labelStyles = (_, { block }) => {
 		paddingRight: '0.375rem',
 	};
 };
+
+export const defaultLabel = { component: Label, styles: labelStyles, attributes: () => null };

@@ -3,11 +3,9 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { sizeMap } from './_utils';
 
-export const Switch = ({ name, label, checked, size, block, disabled, ...rest }) => (
-	<label {...rest} />
-);
+const Root = ({ state, ...rest }) => <label {...rest} />;
 
-export const switchStyles = (_, { block, disabled, size }) => {
+const rootStyles = (_, { block, disabled, size }) => {
 	const mq = useMediaQuery();
 
 	return mq({
@@ -24,3 +22,5 @@ export const switchStyles = (_, { block, disabled, size }) => {
 		cursor: disabled ? 'not-allowed' : 'pointer',
 	})[0];
 };
+
+export const defaultRoot = { component: Root, styles: rootStyles, attributes: () => null };
