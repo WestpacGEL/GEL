@@ -2,9 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const GroupItems = ({ groupItemsId, index, text, active, complete, ...rest }) => (
-	<ol {...rest} />
-);
+export const GroupItems = ({ state, ...rest }) => <ol {...rest} />;
 
 export const groupItemsStyles = () => ({
 	position: 'relative',
@@ -12,3 +10,9 @@ export const groupItemsStyles = () => ({
 	paddingLeft: 0,
 	margin: 0,
 });
+
+export const defaultGroupItems = {
+	component: GroupItems,
+	styles: groupItemsStyles,
+	attributes: () => null,
+};

@@ -12,7 +12,7 @@ import {
 } from 'react';
 import PropTypes from 'prop-types';
 
-import { ProgressRope as ProgressRopeWrapper, progressRopeStyles } from './overrides/progressRope';
+import { defaultProgressRopeRoot } from './overrides/progressRope';
 import pkg from '../package.json';
 import { Group } from './Group';
 import { Item } from './Item';
@@ -79,12 +79,10 @@ export const ProgressRope = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	// might have to change my naming convention
+	// Maybe have it as <ComponentName>Root
 	const defaultOverrides = {
-		ProgressRope: {
-			styles: progressRopeStyles,
-			component: ProgressRopeWrapper,
-			attributes: () => null,
-		},
+		ProgressRopeRoot: defaultProgressRopeRoot,
 	};
 
 	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
@@ -96,8 +94,6 @@ export const ProgressRope = ({
 		}
 	}, [instancePrefix]);
 
-	const getGroupItemsId = index => `${instancePrefix}-group-${index + 1}`;
-
 	const state = {
 		current,
 		instanceIdPrefix: instancePrefix,
@@ -106,12 +102,13 @@ export const ProgressRope = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ProgressRopeRoot: {
+			component: ProgressRopeRoot,
+			styles: progressRopeRootStyles,
+			attributes: progressRopeRootAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const initialState = {
 		currStep: current,
@@ -173,19 +170,15 @@ export const ProgressRope = ({
 		dispatch({ type: 'UPDATE_OPEN_GROUP', payload: index !== progState.openGroup ? index : null });
 	};
 
+	// only pass to children that are part of overrides for this component
+	// if mutating children do not pass the state prop only pass needed props as part of the mutation
+	// only pass to override components that make up this component
 	let allChildren = [];
 	if (data) {
 		data.forEach(({ type, text, onClick, items }, idx) => {
 			if (type && type === 'group') {
 				allChildren.push(
-					<Group
-						key={idx}
-						groupItemsId={getGroupItemsId(idx)}
-						index={idx}
-						text={text}
-						instanceIdPrefix={instancePrefix}
-						overrides={componentOverrides}
-					>
+					<Group key={idx} index={idx} text={text} overrides={componentOverrides}>
 						{items.map((item, index) => (
 							<Item key={index} onClick={item.onClick} overrides={componentOverrides}>
 								{item.text}
@@ -197,11 +190,9 @@ export const ProgressRope = ({
 				allChildren.push(
 					<Item
 						key={idx}
-						groupItemsId={getGroupItemsId(idx)}
 						index={idx}
 						onClick={onClick}
 						end={type && type === 'end'}
-						instanceIdPrefix={instancePrefix}
 						overrides={componentOverrides}
 					>
 						{text}
@@ -212,24 +203,21 @@ export const ProgressRope = ({
 	} else {
 		allChildren = Children.map(children, (child, idx) =>
 			cloneElement(child, {
-				groupItemsId: getGroupItemsId(idx),
 				index: idx,
 			})
 		);
 	}
 
 	return (
-		<ProgressRopeContext.Provider value={{ ...progState, handleClick }}>
-			<overrides.ProgressRope.component
-				current={current}
-				instanceIdPrefix={instancePrefix}
-				data={data}
+		<ProgressRopeContext.Provider value={{ ...progState, instancePrefix, handleClick }}>
+			<ProgressRopeRoot
+				state={state}
 				{...rest}
-				{...overrides.ProgressRope.attributes(state)}
-				css={overrides.ProgressRope.styles(state)}
+				{...progressRopeRootAttributes(state)}
+				css={progressRopeRootStyles(state)}
 			>
 				{allChildren}
-			</overrides.ProgressRope.component>
+			</ProgressRopeRoot>
 		</ProgressRopeContext.Provider>
 	);
 };

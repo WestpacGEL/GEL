@@ -2,11 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const GroupButton = ({ groupItemsId, index, text, complete, active, ...rest }) => (
-	<button type="button" {...rest} />
-);
+const GroupButton = ({ state, ...rest }) => <button type="button" {...rest} />;
 
-export const groupButtonStyles = (_, { complete, active }) => {
+const groupButtonStyles = (_, { complete, active }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 
 	return {
@@ -63,4 +61,10 @@ export const groupButtonStyles = (_, { complete, active }) => {
 			boxSizing: 'border-box',
 		},
 	};
+};
+
+export const defaultGroupButton = {
+	component: GroupButton,
+	styles: groupButtonStyles,
+	attributes: () => null,
 };

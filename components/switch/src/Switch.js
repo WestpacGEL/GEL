@@ -46,6 +46,7 @@ export const Switch = ({
 		4. Rest props
 	- This will be spread onto components as a state prop
 	- Any props that we know that are explicitly being used in a sub-component or that we want to force on a component (e.g. a11y) we manually add to pass it
+	- Issues with passing all props to children is if the child component is using a variable with the same name 
 	*/
 	const state = {
 		// internal state
@@ -86,6 +87,7 @@ export const Switch = ({
 	3. sharedState
 	4. rest if applicable
 
+	Root wont work for composed components since root can appear multiple times and component override names need to be unique
 	*/
 	return (
 		<Root

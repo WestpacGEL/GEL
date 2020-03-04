@@ -2,19 +2,11 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const ItemButton = ({
-	groupItemsId,
-	index,
-	groupIndex,
-	end,
-	visited,
-	grouped,
-	active,
-	furthest,
-	...rest
-}) => <button type="button" disabled={!visited} {...rest} />;
+const ItemButton = ({ visited, state, ...rest }) => (
+	<button type="button" disabled={!visited} {...rest} />
+);
 
-export const itemButtonStyles = (_, { end, visited, grouped, active, furthest }) => {
+const itemButtonStyles = (_, { end, visited, grouped, active, furthest }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
@@ -67,4 +59,10 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, furthest })
 			boxSizing: 'border-box',
 		},
 	};
+};
+
+export const defaultItemButton = {
+	component: ItemButton,
+	styles: itemButtonStyles,
+	attributes: () => null,
 };

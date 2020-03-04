@@ -24,7 +24,7 @@ function Example({ brand }) {
 
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-rope'] = {
-		Item: {
+		ItemRoot: {
 			styles: (styles, { grouped, end, visited, furthest }) => ({
 				...styles,
 

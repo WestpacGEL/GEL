@@ -3,18 +3,17 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Item as ItemWrapper, itemStyles } from './overrides/item';
-import { ItemButton, itemButtonStyles } from './overrides/itemButton';
+import { defaultItemRoot } from './overrides/item';
+import { defaultItemButton } from './overrides/itemButton';
+
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
 export const Item = ({
-	groupItemsId,
 	index,
 	groupIndex,
 	end,
 	onClick,
-	instanceIdPrefix,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -27,16 +26,8 @@ export const Item = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Item: {
-			styles: itemStyles,
-			component: ItemWrapper,
-			attributes: () => null,
-		},
-		ItemButton: {
-			styles: itemButtonStyles,
-			component: ItemButton,
-			attributes: () => null,
-		},
+		ItemRoot: defaultItemRoot,
+		ItemButton: defaultItemButton,
 	};
 
 	const visited =
@@ -73,7 +64,6 @@ export const Item = ({
 	}
 
 	const state = {
-		groupItemsId,
 		index,
 		groupIndex,
 		end,
@@ -86,44 +76,28 @@ export const Item = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ItemRoot: { component: ItemRoot, styles: itemRootStyles, attributes: itemRootAttributes },
+		ItemButton: {
+			component: ItemButton,
+			styles: itemButtonStyles,
+			attributes: itemButtonAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Item.component
-			groupItemsId={groupItemsId}
-			index={index}
-			groupIndex={groupIndex}
-			end={end}
-			visited={visited}
-			grouped={grouped}
-			active={active}
-			furthest={furthest}
-			{...rest}
-			{...overrides.Item.attributes(state)}
-			css={overrides.Item.styles(state)}
-		>
-			<overrides.ItemButton.component
-				groupItemsId={groupItemsId}
-				index={index}
-				groupIndex={groupIndex}
-				end={end}
-				onClick={onClick}
+		<ItemRoot state={state} {...rest} {...itemRootAttributes(state)} css={itemRootStyles(state)}>
+			<ItemButton
 				aria-current={active ? 'step' : undefined}
+				onClick={onClick}
 				visited={visited}
-				grouped={grouped}
-				active={active}
-				furthest={furthest}
-				{...overrides.ItemButton.attributes(state)}
-				css={overrides.ItemButton.styles(state)}
+				state={state}
+				{...itemButtonAttributes(state)}
+				css={itemButtonStyles(state)}
 			>
 				{children}
-			</overrides.ItemButton.component>
-		</overrides.Item.component>
+			</ItemButton>
+		</ItemRoot>
 	);
 };
 

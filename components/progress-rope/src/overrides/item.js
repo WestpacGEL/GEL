@@ -2,20 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Item = ({
-	groupItemsId,
-	index,
-	groupIndex,
-	end,
-	visited,
-	grouped,
-	active,
-	furthest,
-	overrides,
-	...rest
-}) => <li {...rest} />;
+const Item = ({ state, ...rest }) => <li {...rest} />;
 
-export const itemStyles = (_, { end, visited, grouped, furthest }) => {
+const itemStyles = (_, { end, visited, grouped, furthest }) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -43,3 +32,5 @@ export const itemStyles = (_, { end, visited, grouped, furthest }) => {
 		},
 	};
 };
+
+export const defaultItemRoot = { component: Item, styles: itemStyles, attributes: () => null };
