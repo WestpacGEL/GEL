@@ -14,11 +14,7 @@ export const AlertHeading = ({
 	headingTag,
 	children,
 	...rest
-}) => (
-	<Heading size={7} tag={headingTag} {...rest}>
-		{heading}
-	</Heading>
-);
+}) => <Heading tag={headingTag} size={7} {...rest} />;
 
 export const headingStyles = (_, {}) => {
 	const { SPACING } = useBrand();

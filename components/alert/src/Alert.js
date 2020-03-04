@@ -110,7 +110,9 @@ export const Alert = ({
 			headingTag={headingTag}
 			{...overrides.Heading.attributes(state)}
 			css={overrides.Heading.styles(state)}
-		/>
+		>
+			{heading}
+		</overrides.Heading.component>
 	);
 
 	const IconJSX = () => (
