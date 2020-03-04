@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const TableRow = ({ highlighted, ...props }) => <tr {...props} />;
+export const TableRow = ({ striped, highlighted, ...rest }) => <tr {...rest} />;
 
 export const trStyles = (_, { striped, highlighted }) => {
 	const { COLORS } = useBrand();
@@ -12,10 +12,10 @@ export const trStyles = (_, { striped, highlighted }) => {
 		borderLeft: typeof highlighted === 'boolean' && highlighted ? `6px solid ${COLORS.primary}` : 0,
 		borderBottom:
 			typeof highlighted === 'boolean' && highlighted
-				? `1px solid ${COLORS.primary}`
+				? `2px solid ${COLORS.primary}`
 				: `1px solid ${COLORS.border}`,
 		// Hovered row
-		':hover': {
+		'tbody > &:hover': {
 			backgroundColor: !striped && COLORS.background,
 		},
 	};

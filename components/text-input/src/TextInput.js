@@ -26,7 +26,7 @@ export const TextInput = ({
 		TextInput: {
 			styles: textInputStyles,
 			component: TextInputWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -48,6 +48,11 @@ export const TextInput = ({
 
 	return (
 		<overrides.TextInput.component
+			size={size}
+			width={width}
+			inline={inline}
+			invalid={invalid}
+			{...rest}
 			{...overrides.TextInput.attributes(state)}
 			css={overrides.TextInput.styles(state)}
 		/>

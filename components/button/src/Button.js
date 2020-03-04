@@ -25,10 +25,10 @@ export const Button = forwardRef(
 			disabled,
 			assistiveText,
 			tag,
-			onClick,
+			type,
 			dropdown,
+			onClick,
 			children,
-			className,
 			overrides: componentOverrides,
 			...rest
 		},
@@ -50,7 +50,7 @@ export const Button = forwardRef(
 			Button: {
 				styles: buttonStyles,
 				component: ButtonWrapper,
-				attributes: (_, a) => a,
+				attributes: () => null,
 			},
 		};
 
@@ -65,6 +65,8 @@ export const Button = forwardRef(
 			disabled,
 			assistiveText,
 			tag,
+			type,
+			dropdown,
 			onClick,
 			overrides: componentOverrides,
 			...rest,
@@ -79,23 +81,41 @@ export const Button = forwardRef(
 
 		return (
 			<overrides.Button.component
-				ref={ref}
-				type={tag === 'button' ? 'button' : undefined}
-				disabled={disabled}
 				aria-label={assistiveText}
+				ref={ref}
+				look={look}
+				size={size}
+				soft={soft}
+				block={block}
+				iconAfter={iconAfter}
+				iconBefore={iconBefore}
+				justify={justify}
+				disabled={tag === 'button' ? disabled : undefined}
+				assistiveText={assistiveText}
+				tag={tag}
+				type={tag === 'button' ? type || 'button' : undefined}
+				dropdown={dropdown}
 				onClick={onClick}
-				className={className}
+				{...rest}
 				{...overrides.Button.attributes(state)}
 				css={overrides.Button.styles(state)}
 			>
 				{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 				{tag !== 'input' ? (
 					<Content
+						look={look}
 						size={size}
+						soft={soft}
 						block={block}
 						iconAfter={iconAfter}
 						iconBefore={iconBefore}
+						justify={justify}
+						disabled={disabled}
+						assistiveText={assistiveText}
+						tag={tag}
+						type={type}
 						dropdown={dropdown}
+						onClick={onClick}
 						overrides={componentOverrides}
 					>
 						{children}
@@ -128,6 +148,13 @@ Button.propTypes = {
 	 * Button tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * Button type.
+	 *
+	 * Default type of 'button' if tag is 'button'.
+	 */
+	type: PropTypes.string,
 
 	/**
 	 * Soft mode.
@@ -169,6 +196,11 @@ Button.propTypes = {
 	assistiveText: PropTypes.string,
 
 	/**
+	 * Enable dropdown mode
+	 */
+	dropdown: PropTypes.bool,
+
+	/**
 	 * Handler to be called on click
 	 */
 	onClick: PropTypes.func,
@@ -193,11 +225,6 @@ Button.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		TextWrapper: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		ButtonGroup: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

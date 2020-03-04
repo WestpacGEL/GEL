@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 
-export const Label = ({ position, size, data, overrides, ...rest }) => <span {...rest} />;
+export const Label = ({ position, size, data, ...rest }) => <span {...rest} />;
 
 export const labelStyles = (_, { size, position }) => {
 	const { COLORS } = useBrand();

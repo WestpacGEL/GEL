@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Well = ({ overrides: componentOverrides, ...rest }) => {
+export const Well = ({ tag: Tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -20,11 +20,15 @@ export const Well = ({ overrides: componentOverrides, ...rest }) => {
 		Well: {
 			styles: wellStyles,
 			component: WellWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
-	const state = { overrides: componentOverrides, ...rest };
+	const state = {
+		overrides: componentOverrides,
+		tag: Tag,
+		...rest,
+	};
 
 	const overrides = overrideReconciler(
 		defaultOverrides,
@@ -35,9 +39,13 @@ export const Well = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Well.component
+			tag={Tag}
+			{...rest}
 			{...overrides.Well.attributes(state)}
 			css={overrides.Well.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Well.component>
 	);
 };
 
@@ -46,6 +54,11 @@ export const Well = ({ overrides: componentOverrides, ...rest }) => {
 // ==============================
 
 Well.propTypes = {
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+
 	/**
 	 * The override API
 	 */
@@ -58,4 +71,6 @@ Well.propTypes = {
 	}),
 };
 
-Well.defaultProps = {};
+Well.defaultProps = {
+	tag: 'div',
+};

@@ -84,25 +84,25 @@ export default ({ context, showCode, showDemo }) => {
 									type: 'group',
 									text: 'Group 1',
 									items: [
-										{ text: 'Step 0', onClick: handleClick2(0) },
-										{ text: 'Step 1', onClick: handleClick2(1) },
+										{ text: 'Step 1', onClick: handleClick2(0) },
+										{ text: 'Step 2', onClick: handleClick2(1) },
 									],
 								},
 								{
 									type: 'group',
 									text: 'Group 2',
 									items: [
-										{ text: 'Step 2', onClick: handleClick2(2) },
-										{ text: 'Step 3', onClick: handleClick2(3) },
+										{ text: 'Step 3', onClick: handleClick2(2) },
+										{ text: 'Step 4', onClick: handleClick2(3) },
 									],
 								},
 								{
 									type: 'group',
 									text: 'Group 3',
 									items: [
-										{ text: 'Step 4', onClick: handleClick2(4) },
-										{ text: 'Step 5', onClick: handleClick2(5) },
-										{ text: 'Step 6', onClick: handleClick2(6) },
+										{ text: 'Step 5', onClick: handleClick2(4) },
+										{ text: 'Step 6', onClick: handleClick2(5) },
+										{ text: 'Step 7', onClick: handleClick2(6) },
 									],
 								},
 								{ type: 'end', text: 'Review and Submit', onClick: handleClick2(7) },

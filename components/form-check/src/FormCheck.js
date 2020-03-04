@@ -20,16 +20,15 @@ import pkg from '../package.json';
 // ==============================
 
 export const FormCheck = ({
-	children,
 	type,
 	name,
 	size,
 	inline,
-	flipped,
-	data,
-	onChange = () => {},
+	disabled,
 	defaultValue,
-	className,
+	data,
+	children,
+	onChange = () => {},
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -40,19 +39,19 @@ export const FormCheck = ({
 		'The form-check as radio may only have one "current" item set.'
 	);
 
-	const [selected, setSelected] = useState(defaultValueAsArray);
+	const [checked, setChecked] = useState(defaultValueAsArray);
 
-	const handleChange = (event, value, wasSelected) => {
+	const handleChange = (event, value, wasChecked) => {
 		wrapHandlers(
-			() => onChange(event, value, wasSelected),
+			() => onChange(event, value, wasChecked),
 			() => {
 				if (type === 'radio') {
-					setSelected(asArray(value));
+					setChecked(asArray(value));
 				} else {
-					if (wasSelected) {
-						setSelected(selected.filter(item => item !== value));
+					if (wasChecked) {
+						setChecked(checked.filter(item => item !== value));
 					} else {
-						setSelected([...selected, value]);
+						setChecked([...checked, value]);
 					}
 				}
 			}
@@ -68,7 +67,7 @@ export const FormCheck = ({
 		FormCheck: {
 			styles: formCheckStyles,
 			component: FormCheckWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -77,7 +76,7 @@ export const FormCheck = ({
 		name,
 		size,
 		inline,
-		flipped,
+		disabled,
 		data,
 		defaultValue,
 		overrides: componentOverrides,
@@ -97,10 +96,16 @@ export const FormCheck = ({
 			allChildren.push(
 				<Option
 					key={index}
-					{...state}
 					value={props.value}
+					checked={props.checked || checked.includes(props.value)}
 					handleChange={handleChange}
-					selected={selected.includes(props.value)}
+					type={type}
+					name={name}
+					size={size}
+					inline={inline}
+					disabled={props.disabled || disabled}
+					data={data}
+					defaultValue={defaultValue}
 					overrides={componentOverrides}
 				>
 					{props.text}
@@ -108,12 +113,17 @@ export const FormCheck = ({
 			);
 		});
 	} else {
-		const length = Children.count(children);
 		allChildren = Children.map(children, child =>
 			cloneElement(child, {
-				...state,
+				checked: child.props.checked || checked.includes(child.props.value),
 				handleChange,
-				selected: selected.includes(child.props.value),
+				type,
+				name,
+				size,
+				inline,
+				disabled: child.props.disabled || disabled,
+				data,
+				defaultValue,
 				overrides: componentOverrides,
 			})
 		);
@@ -121,7 +131,14 @@ export const FormCheck = ({
 
 	return (
 		<overrides.FormCheck.component
-			className={className}
+			type={type}
+			name={name}
+			size={size}
+			inline={inline}
+			data={data}
+			disabled={disabled}
+			defaultValue={defaultValue}
+			{...rest}
 			{...overrides.FormCheck.attributes(state)}
 			css={overrides.FormCheck.styles(state)}
 		>
@@ -156,9 +173,9 @@ FormCheck.propTypes = {
 	inline: PropTypes.bool.isRequired,
 
 	/**
-	 * Form check orientation (control on the right).
+	 * Disable all Form check options
 	 */
-	flipped: PropTypes.bool.isRequired,
+	disabled: PropTypes.bool,
 
 	/**
 	 * A function called on change
@@ -176,14 +193,19 @@ FormCheck.propTypes = {
 	),
 
 	/**
+	 * The options already checked
+	 */
+	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+
+	/**
+	 * A function called on change
+	 */
+	onChange: PropTypes.func,
+
+	/**
 	 * Form check item(s)
 	 */
 	children: PropTypes.node,
-
-	/**
-	 * The options already selected
-	 */
-	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
 
 	/**
 	 * The override API
@@ -211,5 +233,4 @@ FormCheck.defaultProps = {
 	type: 'checkbox',
 	inline: false,
 	size: 'medium',
-	flipped: false,
 };

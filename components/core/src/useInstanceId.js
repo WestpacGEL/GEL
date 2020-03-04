@@ -7,18 +7,18 @@ export const useInstanceId = () => {
 		}
 
 		// for SSR
-		if ('instanceId' in global.window) {
-			instanceId = ++global.window.instanceId;
-		} else {
-			global.window.instanceId = 0;
+		if (!global.GELinstanceId) {
+			global.GELinstanceId = 0;
 		}
+
+		instanceId = ++global.GELinstanceId;
 	} else {
 		// for browser
-		if ('instanceId' in window) {
-			instanceId = ++window.instanceId;
-		} else {
-			window.instanceId = 0;
+		if (!window.GELinstanceId) {
+			window.GELinstanceId = 0;
 		}
+
+		instanceId = ++window.GELinstanceId;
 	}
 
 	return instanceId;

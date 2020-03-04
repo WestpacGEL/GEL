@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const TableHeader = ({ bordered, ...props }) => <th {...props} />;
+export const TableHeader = ({ bordered, ...rest }) => <th {...rest} />;
 
 export const thStyles = (_, { bordered }) => {
 	const { COLORS } = useBrand();

@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Th = ({ bordered, overrides: componentOverrides, ...rest }) => {
+export const Th = ({ bordered, children, overrides: componentOverrides, ...rest }) => {
 	const context = useTableContext();
 	bordered = (context && context.bordered) || bordered;
 
@@ -23,7 +23,7 @@ export const Th = ({ bordered, overrides: componentOverrides, ...rest }) => {
 		Th: {
 			styles: thStyles,
 			component: TableHeader,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -40,7 +40,14 @@ export const Th = ({ bordered, overrides: componentOverrides, ...rest }) => {
 		componentOverrides
 	);
 	return (
-		<overrides.Th.component {...overrides.Th.attributes(state)} css={overrides.Th.styles(state)} />
+		<overrides.Th.component
+			bordered={bordered}
+			{...rest}
+			{...overrides.Th.attributes(state)}
+			css={overrides.Th.styles(state)}
+		>
+			{children}
+		</overrides.Th.component>
 	);
 };
 

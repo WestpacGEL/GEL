@@ -41,7 +41,6 @@ export default ({ context, showCode, showDemo }) => {
 			<h2>Data driven as router</h2>
 			<Breadcrumb
 				assistiveText="Page transitions and the such"
-				currentAssistiveText="This page:"
 				data={[
 					{ text: 'Home', onClick: () => console.log('Clicked Home') },
 					{ text: 'Personal', onClick: () => console.log('Clicked Personal') },

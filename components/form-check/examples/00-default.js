@@ -11,15 +11,23 @@ export default ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
+			<h2>Default</h2>
+			<FormCheck name="example-default">
+				<Option value="1">Option 1</Option>
+				<Option value="2">Option 2</Option>
+				<Option value="3">Option 3</Option>
+			</FormCheck>
+			<hr />
+
 			<h2>Checkbox</h2>
-			<FormCheck name="default">
+			<FormCheck type="checkbox" name="example-checkbox">
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">Option 3</Option>
 			</FormCheck>
 
 			<h2>Radio</h2>
-			<FormCheck type="radio" name="default-radio">
+			<FormCheck type="radio" name="example-radio">
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">Option 3</Option>
@@ -27,18 +35,40 @@ export default ({ context, showCode, showDemo }) => {
 
 			<hr />
 
-			<h2>With default value</h2>
+			<h2>With defaultValue</h2>
 			<h3>Checkbox</h3>
-			<FormCheck name="default-value" defaultValue={['2', '3']}>
+			<FormCheck type="checkbox" name="example-checkbox-defaultvalue" defaultValue={['2', '3']}>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">Option 3</Option>
 			</FormCheck>
 
 			<h3>Radio</h3>
-			<FormCheck type="radio" name="default-radio-value" defaultValue="2">
+			<FormCheck type="radio" name="exmaple-radio-defaultvalue" defaultValue="2">
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
+				<Option value="3">Option 3</Option>
+			</FormCheck>
+
+			<hr />
+
+			<h2>With checked</h2>
+			<FormCheck type="checkbox" name="example-checkbox-checked">
+				<Option value="1">Option 1</Option>
+				<Option value="2" checked>
+					Option 2
+				</Option>
+				<Option value="3" checked>
+					Option 3
+				</Option>
+			</FormCheck>
+
+			<h3>Radio</h3>
+			<FormCheck type="radio" name="example-radio-checked">
+				<Option value="1">Option 1</Option>
+				<Option value="2" checked>
+					Option 2
+				</Option>
 				<Option value="3">Option 3</Option>
 			</FormCheck>
 
@@ -47,7 +77,8 @@ export default ({ context, showCode, showDemo }) => {
 			<h2>With onChange</h2>
 			<h3>Checkbox</h3>
 			<FormCheck
-				name="onChange"
+				type="checkbox"
+				name="example-checkbox-onchange"
 				onChange={(_, value, wasSelected) =>
 					console.log(`${wasSelected ? 'De-selected' : 'Selected'} option ${value}`)
 				}
@@ -60,7 +91,7 @@ export default ({ context, showCode, showDemo }) => {
 			<h3>Radio</h3>
 			<FormCheck
 				type="radio"
-				name="onChange-radio"
+				name="example-radio-onchange"
 				onChange={(_, value) => console.log(`Selected option ${value}`)}
 			>
 				<Option value="1">Option 1</Option>
@@ -74,7 +105,8 @@ export default ({ context, showCode, showDemo }) => {
 			<p css={{ fontStyle: 'italic' }}>Checking not implemented</p>
 			<h3>Checkbox</h3>
 			<FormCheck
-				name="onChange"
+				type="checkbox"
+				name="example-checkbox-preventdefault"
 				onChange={event => {
 					event.preventDefault();
 					console.log('I have to do all the logic myself now');
@@ -88,7 +120,7 @@ export default ({ context, showCode, showDemo }) => {
 			<h3>Radio</h3>
 			<FormCheck
 				type="radio"
-				name="onChange-radio"
+				name="example-radio-preventdefault"
 				onChange={event => {
 					event.preventDefault();
 					console.log('I have to do all the logic myself now');
@@ -103,7 +135,7 @@ export default ({ context, showCode, showDemo }) => {
 
 			<h2>With long lines</h2>
 			<h3>Checkbox</h3>
-			<FormCheck type="checkbox" name="example-checkbox">
+			<FormCheck type="checkbox" name="example-checkbox-longlines">
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">
@@ -115,7 +147,7 @@ export default ({ context, showCode, showDemo }) => {
 			</FormCheck>
 
 			<h3>Radio</h3>
-			<FormCheck type="radio" name="example-radio">
+			<FormCheck type="radio" name="example-radio-longlines">
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">

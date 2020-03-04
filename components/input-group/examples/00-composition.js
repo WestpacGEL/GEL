@@ -21,7 +21,7 @@ export default ({ context, showCode, showDemo }) => {
 			<hr />
 			<br />
 
-			<InputGroup>
+			<InputGroup placeholder="Fill me out">
 				<Right type="button" data="Go" />
 			</InputGroup>
 			<br />
@@ -126,6 +126,7 @@ export default ({ context, showCode, showDemo }) => {
 			<br />
 
 			<InputGroup
+				look="primary"
 				data={{
 					left: {
 						type: 'select',

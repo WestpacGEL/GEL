@@ -31,14 +31,14 @@ export default ({ context, showCode, showDemo }) => {
 
 			<h2>Disabled</h2>
 
-			<InputGroup disabled value="This input is disabled and contains a value">
+			<InputGroup disabled defaultValue="This input is disabled and contains a value">
 				<Left type="label" data="AUS $" />
 			</InputGroup>
 			<br />
 
 			<InputGroup
 				disabled
-				value="This input is disabled and contains a value"
+				defaultValue="This input is disabled and contains a value"
 				data={{
 					left: { type: 'label', data: 'AUS $' },
 				}}
@@ -49,14 +49,14 @@ export default ({ context, showCode, showDemo }) => {
 
 			<h2>Read only</h2>
 
-			<InputGroup readOnly value="This input is read only and contains a value">
+			<InputGroup readOnly defaultValue="This input is read only and contains a value">
 				<Left type="label" data="AUS $" />
 			</InputGroup>
 			<br />
 
 			<InputGroup
 				readOnly
-				value="This input is read only and contains a value"
+				defaultValue="This input is read only and contains a value"
 				data={{
 					left: { type: 'label', data: 'AUS $' },
 				}}

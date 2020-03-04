@@ -29,7 +29,7 @@
 		"@westpac/hooks": "^1.0.0",
 		"@westpac/icon": "^1.0.0",
 		"prop-types": "^15.7.2",
-		"react-focus-lock": "^2.2.1"
+		"react-focus-on": "^3.3.0"
 	},
 	"peerDependencies": {
 		"react": "^16.11.0",
@@ -37,10 +37,10 @@
 		"react-spring": "^8.0.27"
 	},
 	"devDependencies": {
-		"cypress": "^3.8.2",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0",
+		"cypress": "^4.1.0",
+		"react": "^16.13.0",
+		"react-dom": "^16.13.0",
 		"react-spring": "^8.0.27",
-		"start-server-and-test": "^1.10.6"
+		"start-server-and-test": "^1.10.8"
 	}
 }

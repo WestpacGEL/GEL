@@ -5,13 +5,13 @@ import { Body } from '@westpac/body';
 import React from 'react';
 
 export const AlertBody = ({
+	open,
 	look,
 	dismissible,
+	onClose,
 	icon,
 	heading,
 	headingTag,
-	open,
-	overrides,
 	...rest
 }) => <Body {...rest} />;
 

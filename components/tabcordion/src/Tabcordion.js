@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { Children, useEffect, useRef, useState, createRef } from 'react';
+import { Children, useEffect, useRef, useState } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
@@ -10,8 +10,6 @@ import { TabItem, tabItemStyles } from './overrides/tabItem';
 import { TabRow, tabRowStyles } from './overrides/tabRow';
 import pkg from '../package.json';
 import { Tab } from './Tab';
-
-const VALID_KEYS = ['ArrowLeft', 'ArrowRight', 'PageDown', 'PageUp', 'Enter', 'End', 'Home'];
 
 // ==============================
 // Component
@@ -23,7 +21,6 @@ export const Tabcordion = ({
 	initialTabIndex,
 	instanceIdPrefix,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -36,17 +33,17 @@ export const Tabcordion = ({
 		Tabcordion: {
 			styles: tabcordionStyles,
 			component: TabcordionWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		TabItem: {
 			styles: tabItemStyles,
 			component: TabItem,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		TabRow: {
 			styles: tabRowStyles,
 			component: TabRow,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -56,7 +53,6 @@ export const Tabcordion = ({
 	const containerRef = useRef();
 	const panelRef = useRef();
 	const tablistRef = useRef();
-	const tabRefs = useRef([...Array(Children.count(children))].map(() => createRef()));
 
 	const { width } = useContainerQuery(containerRef);
 	const mode =
@@ -71,69 +67,15 @@ export const Tabcordion = ({
 		}
 	}, [instancePrefix]);
 
-	// handle keys
-	const keyHandler = event => {
-		// bail unless a tab belonging to this tablist is focused
-		if (!tablistRef.current || !tablistRef.current.contains(document.activeElement)) return;
-
-		// bail on unknown keys
-		if (VALID_KEYS.indexOf(event.key) === -1) return;
-
-		// prevent scrolling when user navigates using keys that would influence
-		// page scroll
-		if (['PageDown', 'End', 'PageUp', 'Home'].indexOf(event.key) > -1) {
-			event.preventDefault();
-		}
-
-		let nextIndex;
-		let lastIndex = Children.count(children) - 1;
-
-		switch (event.key) {
-			case 'Enter':
-				document.activeElement.click();
-				panelRef.current.focus();
-				break;
-			case 'ArrowLeft':
-				nextIndex = activeTabIndex === 0 ? lastIndex : activeTabIndex - 1;
-				break;
-			case 'ArrowRight':
-				nextIndex = activeTabIndex === lastIndex ? 0 : activeTabIndex + 1;
-				break;
-			case 'PageDown':
-			case 'End':
-				nextIndex = lastIndex;
-				break;
-			case 'PageUp':
-			case 'Home':
-				nextIndex = 0;
-				break;
-			default:
-				nextIndex = activeTabIndex;
-		}
-
-		// only update to valid index
-		if (typeof nextIndex === 'number') {
-			setActiveTabIndex(nextIndex);
-			tabRefs.current[nextIndex].current.focus();
-		}
-	};
-
-	// bind key events
-	useEffect(() => {
-		window.document.addEventListener('keydown', keyHandler);
-		return () => {
-			window.document.removeEventListener('keydown', keyHandler);
-		};
-	});
-
 	const getId = (type, index) => `${instancePrefix}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
 
 	const state = {
+		mode,
 		look,
 		justify,
-		activeTabIndex,
-		instancePrefix,
+		initialTabIndex: activeTabIndex,
+		instanceIdPrefix: instancePrefix,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -150,6 +92,11 @@ export const Tabcordion = ({
 		<overrides.TabRow.component
 			role="tablist"
 			ref={tablistRef}
+			mode={mode}
+			look={look}
+			justify={justify}
+			initialTabIndex={activeTabIndex}
+			instanceIdPrefix={instancePrefix}
 			{...overrides.TabRow.attributes(state)}
 			css={overrides.TabRow.styles(state)}
 		>
@@ -159,11 +106,16 @@ export const Tabcordion = ({
 					<overrides.TabItem.component
 						id={getId('tab', idx)}
 						key={child.props.text}
-						ref={tabRefs.current[idx]}
 						onClick={setActive(idx)}
 						aria-controls={getId('panel', idx)}
-						aria-selected={selected}
-						role="tab"
+						aria-expanded={selected}
+						selected={selected}
+						last={idx + 1 === tabCount}
+						mode={mode}
+						look={look}
+						justify={justify}
+						initialTabIndex={activeTabIndex}
+						instanceIdPrefix={instancePrefix}
 						{...overrides.TabItem.attributes(state)}
 						css={overrides.TabItem.styles({ ...state, selected, last: idx + 1 === tabCount })}
 					>
@@ -177,7 +129,12 @@ export const Tabcordion = ({
 	return (
 		<overrides.Tabcordion.component
 			ref={containerRef}
-			className={className}
+			mode={mode}
+			look={look}
+			justify={justify}
+			initialTabIndex={activeTabIndex}
+			instanceIdPrefix={instancePrefix}
+			{...rest}
 			{...overrides.Tabcordion.attributes(state)}
 			css={overrides.Tabcordion.styles(state)}
 		>
@@ -192,11 +149,14 @@ export const Tabcordion = ({
 						key={child.props.text}
 						panelId={getId('panel', idx)}
 						ref={selected ? panelRef : null}
-						look={look}
-						mode={mode}
 						selected={selected}
 						last={idx + 1 === tabCount}
 						onClick={setActive(idx)}
+						mode={mode}
+						look={look}
+						justify={justify}
+						initialTabIndex={activeTabIndex}
+						instanceIdPrefix={instancePrefix}
 					/>
 				);
 			})}
@@ -209,18 +169,19 @@ export const Tabcordion = ({
 // ==============================
 Tabcordion.propTypes = {
 	/**
+	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
+	 */
+	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
+
+	/**
 	 * The look of the tabs
 	 */
 	look: PropTypes.oneOf(['soft', 'lego']),
 
 	/**
-	 * An array of Tab components that can be navigated through
+	 * Whether or not tabs should stretch full width
 	 */
-	children: PropTypes.arrayOf(
-		PropTypes.shape({
-			type: PropTypes.oneOf([Tab]),
-		})
-	).isRequired,
+	justify: PropTypes.bool,
 
 	/**
 	 * The tab index to mount this component with
@@ -233,14 +194,13 @@ Tabcordion.propTypes = {
 	instanceIdPrefix: PropTypes.string,
 
 	/**
-	 * Whether or not tabs should stretch full width
+	 * An array of Tab components that can be navigated through
 	 */
-	justify: PropTypes.bool,
-
-	/**
-	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
-	 */
-	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
+	children: PropTypes.arrayOf(
+		PropTypes.shape({
+			type: PropTypes.oneOf([Tab]),
+		})
+	).isRequired,
 
 	/**
 	 * The override API

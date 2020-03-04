@@ -1,12 +1,14 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, forwardRef } from 'react';
+import { Fragment, useState, forwardRef, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
 import PropTypes from 'prop-types';
 
 import { AccordionLabel, accordionLabelStyles } from './overrides/accordionLabel';
 import { AccordionIcon, accordionIconStyles } from './overrides/accordionIcon';
 import { Panel, panelStyles } from './overrides/panel';
+import { useMeasure } from './_utils';
 import pkg from '../package.json';
 
 export const Tab = forwardRef(
@@ -26,36 +28,51 @@ export const Tab = forwardRef(
 		},
 		ref
 	) => {
-		const [hidden, setHidden] = useState(!selected);
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
 			[pkg.name]: brandOverrides,
 		} = useBrand();
 
+		const [hidden, setHidden] = useState(!selected);
+		const [bind, { height }] = useMeasure();
+		const [initial, setInitial] = useState(true);
+
+		const animate = useSpring({
+			to: {
+				height: mode === 'accordion' ? (hidden ? 0 : height) : 'auto',
+				overflow: 'hidden',
+			},
+			immediate: initial,
+		});
+
 		const defaultOverrides = {
 			AccordionLabel: {
 				styles: accordionLabelStyles,
 				component: AccordionLabel,
-				attributes: (_, a) => a,
+				attributes: () => null,
 			},
 			AccordionIcon: {
 				styles: accordionIconStyles,
 				component: AccordionIcon,
-				attributes: (_, a) => a,
+				attributes: () => null,
 			},
 			Panel: {
 				styles: panelStyles,
 				component: Panel,
-				attributes: (_, a) => a,
+				attributes: () => null,
 			},
 		};
 
 		const state = {
+			hidden,
 			look,
 			last,
 			selected,
+			text,
 			mode,
-			hidden,
+			panelId,
+			onClick,
+			tabId,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -68,9 +85,14 @@ export const Tab = forwardRef(
 		);
 
 		const handleAccordionClick = () => {
+			setInitial(false);
 			setHidden(!hidden);
 			onClick();
 		};
+
+		useEffect(() => {
+			setHidden(!selected);
+		}, [mode]);
 
 		return (
 			<Fragment>
@@ -79,32 +101,60 @@ export const Tab = forwardRef(
 						onClick={handleAccordionClick}
 						id={tabId}
 						aria-controls={panelId}
-						aria-expanded={selected}
+						aria-expanded={!hidden}
+						hidden={hidden}
+						look={look}
+						last={last}
+						selected={selected}
+						text={text}
+						mode={mode}
+						panelId={panelId}
+						tabId={tabId}
 						{...overrides.AccordionLabel.attributes(state)}
 						css={overrides.AccordionLabel.styles(state)}
 					>
 						<span>{text}</span>
 						<overrides.AccordionIcon.component
+							assistiveText={null}
+							aria-hidden="true"
+							hidden={hidden}
+							look={look}
+							last={last}
+							selected={selected}
+							text={text}
+							mode={mode}
+							panelId={panelId}
+							tabId={tabId}
 							{...overrides.AccordionIcon.attributes(state)}
 							css={overrides.AccordionIcon.styles(state)}
 						/>
 					</overrides.AccordionLabel.component>
 				) : null}
-				<overrides.Panel.component
-					id={panelId}
-					aria-labelledby={tabId}
-					aria-selected={selected}
-					role="tabpanel"
-					ref={ref}
-					tabIndex="0"
-					{...overrides.Panel.attributes({
-						...state,
-						hidden: mode === 'accordion' ? hidden : !selected,
-					})}
-					css={overrides.Panel.styles(state)}
-				>
-					{children}
-				</overrides.Panel.component>
+
+				<animated.div style={animate}>
+					<div ref={bind.ref}>
+						<overrides.Panel.component
+							id={panelId}
+							ref={ref}
+							aria-hidden={mode === 'accordion' ? hidden : !selected}
+							hidden={mode === 'tabs' && !selected}
+							look={look}
+							last={last}
+							selected={selected}
+							text={text}
+							mode={mode}
+							panelId={panelId}
+							tabId={tabId}
+							{...overrides.Panel.attributes({
+								...state,
+								hidden: mode === 'tabs' && !selected,
+							})}
+							css={overrides.Panel.styles(state)}
+						>
+							{children}
+						</overrides.Panel.component>
+					</div>
+				</animated.div>
 			</Fragment>
 		);
 	}
@@ -112,9 +162,14 @@ export const Tab = forwardRef(
 
 Tab.propTypes = {
 	/**
-	 * The panel content for this tab
+	 * The look of the tabs
 	 */
-	children: PropTypes.node.isRequired,
+	look: PropTypes.oneOf(['soft', 'lego']),
+
+	/**
+	 * Indicator if this is the last tab
+	 */
+	last: PropTypes.bool,
 
 	/**
 	 * Whether this tab/panel is selected/expanded
@@ -145,6 +200,11 @@ Tab.propTypes = {
 	 * The id for the tab
 	 */
 	tabId: PropTypes.string,
+
+	/**
+	 * The panel content for this tab
+	 */
+	children: PropTypes.node.isRequired,
 
 	/**
 	 * The override API

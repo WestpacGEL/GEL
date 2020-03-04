@@ -9,7 +9,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-export const Tbody = ({ overrides: componentOverrides, ...rest }) => {
+export const Tbody = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -19,7 +19,7 @@ export const Tbody = ({ overrides: componentOverrides, ...rest }) => {
 		Tbody: {
 			styles: tbodyStyles,
 			component: TableBody,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -37,9 +37,12 @@ export const Tbody = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Tbody.component
+			{...rest}
 			{...overrides.Tbody.attributes(state)}
 			css={overrides.Tbody.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Tbody.component>
 	);
 };
 

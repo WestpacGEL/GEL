@@ -2,7 +2,7 @@
 
 import { jsx, useMediaQuery } from '@westpac/core';
 
-export const Body = props => <div {...props} />;
+export const Body = ({ overrides, ...rest }) => <div {...rest} />;
 
 export const bodyStyles = () => {
 	const mq = useMediaQuery();

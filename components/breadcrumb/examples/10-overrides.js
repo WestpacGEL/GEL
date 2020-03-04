@@ -7,11 +7,7 @@ import { HouseIcon } from '@westpac/icon';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-const AssistiveText = ({ children, look }) => (
-	<span css={{ verticalAlign: 'middle' }}>{children}</span>
-);
-
-const Icon = ({ current, assistiveText, ...props }) => <HouseIcon {...props} />;
+const Icon = ({ current, href, text, assistiveText, ...props }) => <HouseIcon {...props} />;
 
 export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
@@ -24,9 +20,6 @@ export default ({ context, showCode, showDemo }) => {
 		},
 		Icon: {
 			component: Icon,
-		},
-		AssistiveText: {
-			component: AssistiveText,
 		},
 	};
 

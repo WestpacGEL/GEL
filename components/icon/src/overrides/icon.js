@@ -3,7 +3,7 @@
 import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
 import React from 'react';
 
-export const Icon = ({ color, size, assistiveText, overrides, ...rest }) => <span {...rest} />;
+export const Icon = ({ color, size, assistiveText, ...rest }) => <span {...rest} />;
 
 export const iconStyles = (_, { color, size }) => {
 	const mq = useMediaQuery();

@@ -2,13 +2,13 @@
 
 import { jsx } from '@westpac/core';
 
-export const GroupItems = ({ text, active, overrides, ...props }) => <ol {...props} />;
+export const GroupItems = ({ groupItemsId, index, text, active, complete, ...rest }) => (
+	<ol {...rest} />
+);
 
-export const groupItemsStyles = (_, {}) => {
-	return {
-		position: 'relative',
-		listStyle: 'none',
-		paddingLeft: 0,
-		margin: 0,
-	};
-};
+export const groupItemsStyles = () => ({
+	position: 'relative',
+	listStyle: 'none',
+	paddingLeft: 0,
+	margin: 0,
+});

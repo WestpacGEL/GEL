@@ -38,8 +38,8 @@
 	"devDependencies": {
 		"@westpac/button": "*",
 		"@westpac/icon": "*",
-		"cypress": "^3.8.2",
-		"react": "^16.12.0",
-		"start-server-and-test": "^1.10.6"
+		"cypress": "^4.1.0",
+		"react": "^16.13.0",
+		"start-server-and-test": "^1.10.8"
 	}
 }

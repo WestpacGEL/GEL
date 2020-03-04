@@ -5,15 +5,15 @@ import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import React from 'react';
 
 export const Icon = ({
-	size,
-	color,
+	open,
 	look,
 	dismissible,
+	onClose,
 	icon,
 	heading,
 	headingTag,
-	open,
-	overrides,
+	size,
+	color,
 	...rest
 }) => {
 	const iconMap = {
@@ -29,7 +29,7 @@ export const Icon = ({
 		return null;
 	}
 
-	return <Tag size={size} color={color} {...rest} />;
+	return <Tag size={size} color={color} assistiveText={null} aria-hidden={true} {...rest} />;
 };
 
 export const iconStyles = () => {

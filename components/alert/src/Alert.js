@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -20,11 +20,11 @@ export const Alert = ({
 	open: isOpen,
 	look,
 	dismissible,
+	onClose = () => {},
 	icon,
 	heading,
 	headingTag,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -45,37 +45,38 @@ export const Alert = ({
 		Alert: {
 			styles: alertStyles,
 			component: AlertWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Body: {
 			styles: bodyStyles,
 			component: AlertBody,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		CloseBtn: {
 			styles: closeBtnStyles,
 			component: CloseBtn,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Icon: {
 			styles: iconStyles,
 			component: Icon,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Heading: {
 			styles: headingStyles,
 			component: AlertHeading,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
+		open,
 		look,
 		dismissible: dismissible ? dismissible : undefined,
+		onClose,
 		icon,
 		heading,
 		headingTag,
-		open,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -91,11 +92,24 @@ export const Alert = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const CloseBtnJSX = () => (
-		<overrides.CloseBtn.component
-			onClose={() => setOpen(false)}
-			{...overrides.CloseBtn.attributes(state)}
-			css={overrides.CloseBtn.styles(state)}
+	const handleClose = event => {
+		wrapHandlers(
+			() => onClose(),
+			() => setOpen(false)
+		)(event);
+	};
+
+	const HeadingJSX = () => (
+		<overrides.Heading.component
+			open={open}
+			look={look}
+			dismissible={dismissible}
+			onClose={onClose}
+			icon={icon}
+			heading={heading}
+			headingTag={headingTag}
+			{...overrides.Heading.attributes(state)}
+			css={overrides.Heading.styles(state)}
 		/>
 	);
 
@@ -103,36 +117,62 @@ export const Alert = ({
 		<overrides.Icon.component
 			size={['small', 'medium']}
 			color="inherit"
+			open={open}
+			look={look}
+			dismissible={dismissible}
+			onClose={onClose}
+			icon={icon}
+			heading={heading}
+			headingTag={headingTag}
 			{...overrides.Icon.attributes(state)}
 			css={overrides.Icon.styles(state)}
 		/>
 	);
 
-	const HeadingJSX = () => (
-		<overrides.Heading.component
-			tag={headingTag}
-			{...overrides.Heading.attributes(state)}
-			css={overrides.Heading.styles(state)}
-		>
-			{heading}
-		</overrides.Heading.component>
+	const CloseBtnJSX = () => (
+		<overrides.CloseBtn.component
+			assistiveText="Close"
+			onClose={event => handleClose(event)}
+			open={open}
+			look={look}
+			dismissible={dismissible}
+			icon={icon}
+			heading={heading}
+			headingTag={headingTag}
+			{...overrides.CloseBtn.attributes(state)}
+			css={overrides.CloseBtn.styles(state)}
+		/>
 	);
 
-	const AlertJSX = ({ props }) => (
+	const AlertJSX = () => (
 		<overrides.Alert.component
-			className={className}
+			open={open}
+			look={look}
+			dismissible={dismissible}
+			onClose={onClose}
+			icon={icon}
+			heading={heading}
+			headingTag={headingTag}
+			{...rest}
 			{...overrides.Alert.attributes(state)}
 			css={overrides.Alert.styles(state)}
 		>
-			{dismissible && <CloseBtnJSX />}
 			{overrides.Icon.component && <IconJSX />}
 			<overrides.Body.component
+				open={open}
+				look={look}
+				dismissible={dismissible}
+				onClose={onClose}
+				icon={icon}
+				heading={heading}
+				headingTag={headingTag}
 				{...overrides.Body.attributes(state)}
 				css={overrides.Body.styles(state)}
 			>
 				{heading && <HeadingJSX />}
 				{children}
 			</overrides.Body.component>
+			{dismissible && <CloseBtnJSX />}
 		</overrides.Alert.component>
 	);
 
@@ -152,6 +192,11 @@ export const Alert = ({
 
 Alert.propTypes = {
 	/**
+	 * Manually signal an open or close state of this alert
+	 */
+	open: PropTypes.bool,
+
+	/**
 	 * Alert look
 	 */
 	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']).isRequired,
@@ -160,6 +205,11 @@ Alert.propTypes = {
 	 * Enable dismissible mode
 	 */
 	dismissible: PropTypes.bool.isRequired,
+
+	/**
+	 * onClose function for dismissible mode
+	 */
+	onClose: PropTypes.func,
 
 	/**
 	 * Alert icon.

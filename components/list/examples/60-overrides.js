@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
-import svgToTinyDataURI from 'mini-svg-data-uri';
+import { GEL, jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
 import { HouseIcon } from '@westpac/icon';
 
@@ -129,6 +128,7 @@ export default ({ context, showCode, showDemo }) => {
 			<h2>With overrides and component overrides</h2>
 			<List
 				type="tick"
+				assistiveText="The following items are included"
 				overrides={{
 					Item: {
 						styles: styles => ({
@@ -174,6 +174,7 @@ export default ({ context, showCode, showDemo }) => {
 
 			<List
 				type="tick"
+				assistiveText="The following items are included"
 				overrides={{
 					Item: {
 						styles: styles => ({

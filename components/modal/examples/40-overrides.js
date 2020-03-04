@@ -45,7 +45,7 @@ export default ({ context, showCode, showDemo }) => {
 
 			<h2>With overrides applied</h2>
 			<Button onClick={() => setOpen(true)}>Open</Button>
-			<Modal heading="Modal Title" open={open} onClose={() => setOpen(false)}>
+			<Modal heading="Modal title" open={open} onClose={() => setOpen(false)}>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -64,7 +64,7 @@ export default ({ context, showCode, showDemo }) => {
 			<h2>With overrides and component overrides</h2>
 			<Button onClick={() => setOpen2(true)}>Open</Button>
 			<Modal
-				heading="Modal Title"
+				heading="Modal title"
 				open={open2}
 				onClose={() => setOpen2(false)}
 				overrides={{

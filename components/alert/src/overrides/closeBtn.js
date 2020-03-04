@@ -1,37 +1,27 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { CloseIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
-import React from 'react';
+import { CloseIcon } from '@westpac/icon';
 
 export const CloseBtn = ({
-	onClose,
+	open,
 	look,
 	dismissible,
+	onClose,
 	icon,
 	heading,
 	headingTag,
-	open,
-	overrides,
 	...rest
-}) => {
-	const { COLORS } = useBrand();
-
-	const styleMap = {
-		success: COLORS.success,
-		info: COLORS.info,
-		warning: COLORS.warning,
-		danger: COLORS.danger,
-		system: '#000',
-	};
-
-	return (
-		<Button onClick={() => onClose()} iconAfter={icon} look="link" {...rest}>
-			<CloseIcon color={styleMap[look]} size="small" />
-		</Button>
-	);
-};
+}) => (
+	<Button
+		onClick={event => onClose(event)}
+		iconAfter={CloseIcon}
+		look="link"
+		size="medium"
+		{...rest}
+	/>
+);
 
 export const closeBtnStyles = (_, {}) => {
 	const mq = useMediaQuery();
@@ -39,17 +29,14 @@ export const closeBtnStyles = (_, {}) => {
 
 	return mq({
 		color: 'inherit',
-		position: ['relative', 'absolute'],
+		position: 'absolute',
 		zIndex: 1,
-		float: ['right', 'none'],
-		top: SPACING(1, 'minor'),
+		top: 0,
 		right: SPACING(1),
-		marginTop: [`-${SPACING(3, 'major')}`, 0],
-		marginRight: [`-${SPACING(3, 'major')}`, 0],
 		opacity: 1,
 
 		':hover': {
-			opacity: 0.5,
+			opacity: 0.8,
 		},
 	})[0];
 };

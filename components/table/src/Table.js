@@ -26,14 +26,7 @@ export const useTableContext = () => {
 // ==============================
 // Component
 // ==============================
-export const Table = ({
-	striped,
-	bordered,
-	responsive,
-	className,
-	overrides: componentOverrides,
-	...rest
-}) => {
+export const Table = ({ striped, bordered, children, overrides: componentOverrides, ...rest }) => {
 	const context = useContext(TableContext);
 	bordered = (context && context.bordered) || bordered;
 
@@ -46,18 +39,17 @@ export const Table = ({
 		Wrapper: {
 			styles: wrapperStyles,
 			component: Wrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Table: {
 			styles: tableStyles,
 			component: TableWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
 		striped,
-		responsive,
 		bordered,
 		overrides: componentOverrides,
 		...rest,
@@ -73,18 +65,25 @@ export const Table = ({
 	return (
 		<TableContext.Provider
 			value={{
+				striped,
 				bordered,
 			}}
 		>
 			<overrides.Wrapper.component
-				className={className}
+				striped={striped}
+				bordered={bordered}
 				{...overrides.Wrapper.attributes(state)}
 				css={overrides.Wrapper.styles(state)}
 			>
 				<overrides.Table.component
+					striped={striped}
+					bordered={bordered}
+					{...rest}
 					{...overrides.Table.attributes(state)}
 					css={overrides.Table.styles(state)}
-				/>
+				>
+					{children}
+				</overrides.Table.component>
 			</overrides.Wrapper.component>
 		</TableContext.Provider>
 	);
@@ -95,14 +94,13 @@ export const Table = ({
 // ==============================
 Table.propTypes = {
 	/**
-	 * Bordered mode
-	 */
-	bordered: PropTypes.bool,
-
-	/**
 	 * Striped mode
 	 */
 	striped: PropTypes.bool,
+	/**
+	 * Bordered mode
+	 */
+	bordered: PropTypes.bool,
 
 	/**
 	 * The override API

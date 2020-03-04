@@ -36,11 +36,11 @@ export default ({ context, showCode, showDemo }) => {
 				Sorry for the inconvenience. Hey neato, I can be closed. <a href="#">Link</a>
 			</Alert>
 
-			<h2>Visibility Controlled via props</h2>
+			<h2>Visibility Controlled via props and onClose</h2>
 			<Button onClick={() => setOpen(!open)}>{open ? 'Hide' : 'Show'}</Button>
 			<br />
 			<br />
-			<Alert open={open} look="success" dismissible>
+			<Alert open={open} look="success" dismissible onClose={() => setOpen(false)}>
 				<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I
 				can be closed. <a href="#">Link</a>
 			</Alert>

@@ -2,7 +2,6 @@
 
 import { jsx } from '@westpac/core';
 import { Popover } from '@westpac/popover';
-import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
@@ -17,13 +16,13 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
-
-			<Popover title="Popover Title" content={content}>
-				<Button>Default popover</Button>
-			</Popover>
+			<Popover heading="Popover heading" content={content}>
+				Popover with heading
+			</Popover>{' '}
+			<Popover content={content}>Popover without heading</Popover>
 			<div style={{ marginTop: '50rem' }} />
-			<Popover title="Popover Title" content={content}>
-				<Button>Default popover</Button>
+			<Popover heading="Popover heading" content={content}>
+				Popover with heading
 			</Popover>
 		</Playground>
 	);

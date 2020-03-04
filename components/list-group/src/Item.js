@@ -14,7 +14,7 @@ import pkg from '../package.json';
 // Ideal for settings pages or preferences.
 // ==============================
 
-export const Item = ({ overrides: componentOverrides, ...rest }) => {
+export const Item = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -24,7 +24,7 @@ export const Item = ({ overrides: componentOverrides, ...rest }) => {
 		Item: {
 			styles: itemStyles,
 			component: ItemWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -42,9 +42,12 @@ export const Item = ({ overrides: componentOverrides, ...rest }) => {
 
 	return (
 		<overrides.Item.component
+			{...rest}
 			{...overrides.Item.attributes(state)}
 			css={overrides.Item.styles(state)}
-		/>
+		>
+			{children}
+		</overrides.Item.component>
 	);
 };
 

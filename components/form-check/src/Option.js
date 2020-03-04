@@ -2,6 +2,7 @@
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import { Option as OptionWrapper, optionStyles } from './overrides/option';
 import { Label, labelStyles } from './overrides/label';
@@ -13,20 +14,18 @@ import pkg from '../package.json';
 
 export const Option = ({
 	value,
-	selected,
+	checked,
 	handleChange,
 	disabled,
-	children,
 	type,
 	name,
 	size,
 	inline,
-	flipped,
-	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
-	const formCheckId = `form-check-${name.replace(/ /g, '-')}-${useInstanceId()}`;
+	const [formCheckId] = useState(`form-check-option-${name.replace(/ /g, '-')}-${useInstanceId()}`);
 
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -37,24 +36,24 @@ export const Option = ({
 		Option: {
 			styles: optionStyles,
 			component: OptionWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Label: {
 			styles: labelStyles,
 			component: Label,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
 	const state = {
 		value,
-		selected,
+		checked,
+		handleChange,
 		disabled,
 		type,
 		name,
 		size,
 		inline,
-		flipped,
 		...rest,
 	};
 
@@ -67,22 +66,41 @@ export const Option = ({
 
 	return (
 		<overrides.Option.component
-			className={className}
+			value={value}
+			checked={checked}
+			disabled={disabled}
+			type={type}
+			name={name}
+			size={size}
+			inline={inline}
+			{...rest}
 			{...overrides.Option.attributes(state)}
 			css={overrides.Option.styles(state)}
 		>
+			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
-				type={type}
-				selected={selected}
 				id={formCheckId}
-				onClick={disabled ? null : event => handleChange(event, value, selected)}
+				onChange={disabled ? null : event => handleChange(event, value, checked)}
+				value={value}
+				checked={checked}
+				disabled={disabled}
+				type={type}
+				name={name}
 				css={{
-					position: 'absolute', // just to hide the input element needed for a11y
-					opacity: 0, // we decided to not expose this as an override
-				}} // as it contains logic and is important for the component to work
+					position: 'absolute',
+					zIndex: '-1',
+					opacity: 0,
+				}}
 			/>
 			<overrides.Label.component
 				htmlFor={formCheckId}
+				value={value}
+				checked={checked}
+				disabled={disabled}
+				type={type}
+				name={name}
+				size={size}
+				inline={inline}
 				{...overrides.Label.attributes(state)}
 				css={overrides.Label.styles(state)}
 			>
@@ -97,6 +115,21 @@ export const Option = ({
 // ==============================
 
 Option.propTypes = {
+	/**
+	 * Form check option value
+	 */
+	value: PropTypes.string,
+
+	/**
+	 * Check the Form check option
+	 */
+	checked: PropTypes.bool.isRequired,
+
+	/**
+	 * Disable the Form check option
+	 */
+	disabled: PropTypes.bool.isRequired,
+
 	/**
 	 * Form check type.
 	 */
@@ -118,29 +151,9 @@ Option.propTypes = {
 	inline: PropTypes.bool,
 
 	/**
-	 * Form check orientation (control on the right).
-	 */
-	flipped: PropTypes.bool,
-
-	/**
-	 * Form check option value
-	 */
-	value: PropTypes.string,
-
-	/**
-	 * Check the Form check option
-	 */
-	selected: PropTypes.bool.isRequired,
-
-	/**
 	 * A function called on change
 	 */
 	handleChange: PropTypes.func,
-
-	/**
-	 * Disable the Form check option
-	 */
-	disabled: PropTypes.bool.isRequired,
 
 	/**
 	 * Form check option label text
@@ -165,6 +178,6 @@ Option.propTypes = {
 };
 
 Option.defaultProps = {
-	selected: false,
+	checked: false,
 	disabled: false,
 };

@@ -14,19 +14,26 @@ export default ({ context, showCode, showDemo }) => {
 		Pagination: {
 			styles: styles => ({
 				...styles,
-				outline: '6px solid blue',
+				border: '3px solid blue',
+			}),
+		},
+		PageList: {
+			styles: styles => ({
+				...styles,
+				border: '3px solid red',
 			}),
 		},
 		Page: {
 			styles: styles => ({
 				...styles,
-				outline: '12px dotted palevioletred',
+				outline: '3px solid red',
 			}),
 		},
 		Link: {
-			styles: styles => ({
+			styles: (styles, { active }) => ({
 				...styles,
-				outline: '3px dashed hotpink',
+				borderColor: active ? 'palevioletred' : 'white',
+				backgroundColor: active ? 'palevioletred' : 'white',
 			}),
 		},
 	};

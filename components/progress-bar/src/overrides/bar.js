@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Bar = props => <div {...props} />;
+export const Bar = ({ look, value, ...rest }) => <div {...rest} />;
 
 export const barStyles = (_, { look, value }) => {
 	const { COLORS, TYPE } = useBrand();
@@ -12,14 +12,14 @@ export const barStyles = (_, { look, value }) => {
 		float: 'left',
 		width: `${value}%`,
 		borderRadius: look === 'skinny' ? '0.625rem' : '1.5rem',
+		border: value > 0 && '1px solid transparent', //for high contrast mode
 		height: '100%',
 		fontSize: '0.875rem',
-		lineHeight: '1.25rem',
-		color: '#fff',
+		lineHeight: value > 0 ? '1.125rem' : '1.25rem',
+		color: value === 0 ? COLORS.text : '#fff',
 		textAlign: 'right',
 		backgroundColor: COLORS.hero,
 		zIndex: 2,
-		overflow: 'hidden',
 		boxSizing: 'border-box',
 		transition: 'width .6s ease',
 		...TYPE.bodyFont[700],

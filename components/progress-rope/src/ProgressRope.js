@@ -1,7 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Children, cloneElement, createContext, useReducer, useEffect, useContext } from 'react';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import {
+	Children,
+	cloneElement,
+	createContext,
+	useReducer,
+	useEffect,
+	useContext,
+	useState,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import { ProgressRope as ProgressRopeWrapper, progressRopeStyles } from './overrides/progressRope';
@@ -60,9 +68,9 @@ const createRopeGraph = (data, children) => {
 // ==============================
 export const ProgressRope = ({
 	current,
+	instanceIdPrefix,
 	data,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -75,12 +83,24 @@ export const ProgressRope = ({
 		ProgressRope: {
 			styles: progressRopeStyles,
 			component: ProgressRopeWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
+	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
+
+	// create the prefix for internal IDs
+	useEffect(() => {
+		if (!instancePrefix) {
+			setInstancePrefix(`gel-progress-rope-${useInstanceId()}`);
+		}
+	}, [instancePrefix]);
+
+	const getGroupItemsId = index => `${instancePrefix}-group-${index + 1}`;
+
 	const state = {
 		current,
+		instanceIdPrefix: instancePrefix,
 		data,
 		overrides: componentOverrides,
 		...rest,
@@ -138,6 +158,10 @@ export const ProgressRope = ({
 					}
 				}
 			});
+
+			if (current >= itemCount) {
+				dispatch({ type: 'UPDATE_STEP', payload: current });
+			}
 		} else {
 			if (current < updatedGraph.length && current >= 0) updatedGraph[current][0] = 'visited';
 			dispatch({ type: 'UPDATE_STEP', payload: current });
@@ -151,10 +175,17 @@ export const ProgressRope = ({
 
 	let allChildren = [];
 	if (data) {
-		data.forEach(({ type, text, onClick, items }, i) => {
+		data.forEach(({ type, text, onClick, items }, idx) => {
 			if (type && type === 'group') {
 				allChildren.push(
-					<Group key={i} index={i} text={text} overrides={componentOverrides}>
+					<Group
+						key={idx}
+						groupItemsId={getGroupItemsId(idx)}
+						index={idx}
+						text={text}
+						instanceIdPrefix={instancePrefix}
+						overrides={componentOverrides}
+					>
 						{items.map((item, index) => (
 							<Item key={index} onClick={item.onClick} overrides={componentOverrides}>
 								{item.text}
@@ -165,10 +196,12 @@ export const ProgressRope = ({
 			} else {
 				allChildren.push(
 					<Item
-						key={i}
-						index={i}
+						key={idx}
+						groupItemsId={getGroupItemsId(idx)}
+						index={idx}
 						onClick={onClick}
 						end={type && type === 'end'}
+						instanceIdPrefix={instancePrefix}
 						overrides={componentOverrides}
 					>
 						{text}
@@ -177,13 +210,21 @@ export const ProgressRope = ({
 			}
 		});
 	} else {
-		allChildren = Children.map(children, (child, i) => cloneElement(child, { index: i }));
+		allChildren = Children.map(children, (child, idx) =>
+			cloneElement(child, {
+				groupItemsId: getGroupItemsId(idx),
+				index: idx,
+			})
+		);
 	}
 
 	return (
 		<ProgressRopeContext.Provider value={{ ...progState, handleClick }}>
 			<overrides.ProgressRope.component
-				className={className}
+				current={current}
+				instanceIdPrefix={instancePrefix}
+				data={data}
+				{...rest}
 				{...overrides.ProgressRope.attributes(state)}
 				css={overrides.ProgressRope.styles(state)}
 			>

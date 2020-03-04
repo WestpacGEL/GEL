@@ -1,8 +1,10 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React, { Fragment } from 'react';
+import React from 'react';
 
-export const FormCheck = ({ children }) => <Fragment children={children} />;
+export const FormCheck = ({ type, name, size, inline, disabled, defaultValue, data, ...rest }) => (
+	<div {...rest} />
+);
 
 export const formCheckStyles = () => ({});

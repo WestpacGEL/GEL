@@ -9,13 +9,11 @@ export const Link = ({
 	text,
 	first,
 	last,
-	disabled,
 	assistiveText,
 	current,
 	active,
-	overrides,
 	...rest
-}) => <button {...rest} />;
+}) => <button type="button" {...rest} />;
 
 export const linkStyles = (_, { active, first, last, disabled }) => {
 	const { COLORS } = useBrand();

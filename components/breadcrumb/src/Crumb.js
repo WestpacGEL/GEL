@@ -4,7 +4,6 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
 import { Crumb as CrumbWrapper, crumbStyles } from './overrides/crumb';
 import { Link, linkStyles } from './overrides/link';
 import { Icon, iconStyles } from './overrides/icon';
@@ -13,17 +12,12 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-
-/**
- * Crumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
- */
 export const Crumb = ({
 	current,
 	href,
 	text,
 	assistiveText,
 	onClick,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -34,25 +28,20 @@ export const Crumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		AssistiveText: {
-			styles: assistiveTextStyles,
-			component: AssistiveText,
-			attributes: (_, a) => a,
-		},
 		Crumb: {
 			styles: crumbStyles,
 			component: CrumbWrapper,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Link: {
 			styles: linkStyles,
 			component: Link,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 		Icon: {
 			styles: iconStyles,
 			component: Icon,
-			attributes: (_, a) => a,
+			attributes: () => null,
 		},
 	};
 
@@ -75,22 +64,21 @@ export const Crumb = ({
 
 	return (
 		<overrides.Crumb.component
-			className={className}
+			aria-current={current ? 'page' : undefined}
+			current={current}
+			href={href}
+			text={text}
+			assistiveText={assistiveText}
+			{...rest}
 			{...overrides.Crumb.attributes(state)}
 			css={overrides.Crumb.styles(state)}
 		>
-			{current && (
-				<overrides.AssistiveText.component
-					insideCrumb={true}
-					{...overrides.AssistiveText.attributes(state)}
-					css={overrides.AssistiveText.styles(state)}
-				>
-					{assistiveText}
-				</overrides.AssistiveText.component>
-			)}
 			<overrides.Link.component
-				href={current ? null : href}
 				onClick={onClick}
+				current={current}
+				href={current ? null : href}
+				text={text}
+				assistiveText={assistiveText}
 				{...overrides.Link.attributes(state)}
 				css={overrides.Link.styles(state)}
 			>
@@ -101,6 +89,10 @@ export const Crumb = ({
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
+					current={current}
+					href={href}
+					text={text}
+					assistiveText={null} //remove icon's `aria-label`
 					{...overrides.Icon.attributes(state)}
 					css={overrides.Icon.styles(state)}
 				/>
@@ -108,8 +100,6 @@ export const Crumb = ({
 		</overrides.Crumb.component>
 	);
 };
-
-Crumb.isCrumb = true;
 
 // ==============================
 // Types
@@ -119,12 +109,17 @@ Crumb.propTypes = {
 	/**
 	 * The text of the crumb
 	 */
-	text: PropTypes.string.isRequired,
+	current: PropTypes.bool,
 
 	/**
 	 * An href for a link
 	 */
 	href: PropTypes.string,
+
+	/**
+	 * The text of the crumb
+	 */
+	text: PropTypes.string.isRequired,
 
 	/**
 	 * A function for the onClick event
@@ -134,17 +129,12 @@ Crumb.propTypes = {
 	/**
 	 * Visually hidden text to use for the current page crumb
 	 */
-	assistiveText: PropTypes.string.isRequired,
+	assistiveText: PropTypes.string,
 
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		AssistiveText: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Crumb: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
@@ -163,6 +153,4 @@ Crumb.propTypes = {
 	}),
 };
 
-Crumb.defaultProps = {
-	assistiveText: 'Current page:',
-};
+Crumb.defaultProps = {};

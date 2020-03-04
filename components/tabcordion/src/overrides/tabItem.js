@@ -4,21 +4,8 @@ import { forwardRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
 export const TabItem = forwardRef(
-	(
-		{
-			mode,
-			look,
-			justify,
-			initialTabIndex,
-			instanceIdPrefix,
-			instancePrefix,
-			activeTabIndex,
-			overrides,
-			...rest
-		},
-		ref
-	) => {
-		return <button ref={ref} {...rest} />;
+	({ selected, last, mode, look, justify, initialTabIndex, instanceIdPrefix, ...rest }, ref) => {
+		return <button type="button" ref={ref} {...rest} />;
 	}
 );
 

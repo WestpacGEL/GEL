@@ -12,19 +12,19 @@ export default ({ context, showCode, showDemo }) => {
 			<Intopia />
 
 			<h2>Small</h2>
-			<Switch name="example-small" label="Turn notifications" size="small" />
+			<Switch name="example-small" size="small" label="eStatements" />
 			<hr />
 
 			<h2>Medium</h2>
-			<Switch name="example-medium" size="medium" label="Turn notifications" />
+			<Switch name="example-medium" size="medium" label="eStatements" />
 			<hr />
 
 			<h2>Large</h2>
-			<Switch name="example-large" size="large" label="Turn notifications" />
+			<Switch name="example-large" size="large" label="eStatements" />
 			<hr />
 
 			<h2>Extra large</h2>
-			<Switch name="example-xlarge" size="xlarge" label="Turn notifications" />
+			<Switch name="example-xlarge" size="xlarge" label="eStatements" />
 		</Playground>
 	);
 };
