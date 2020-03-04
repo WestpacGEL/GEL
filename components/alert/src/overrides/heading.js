@@ -12,7 +12,6 @@ export const AlertHeading = ({
 	icon,
 	heading,
 	headingTag,
-	children,
 	...rest
 }) => <Heading tag={headingTag} size={7} {...rest} />;
 
