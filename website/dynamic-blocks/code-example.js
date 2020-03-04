@@ -50,12 +50,11 @@ function ShowCodeBlock({ showCode, showDemo, loadCodeBlock, context }) {
 	if (!CodeBlock) {
 		throw promise;
 	}
-	return <CodeBlock context={context} code={showCode} demo={showDemo} />;
+	return <CodeBlock context={context} showCode={showCode} showDemo={showDemo} />;
 }
 
 export const CodeExample = {
 	editor: ({ value, onChange }) => {
-		console.log(value);
 		const currentValue = {
 			codeExample: null,
 			showCode: true,

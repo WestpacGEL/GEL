@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { useState } from 'react';
+import wbc from '@westpac/wbc';
 import { jsx, GEL, useBrand } from '@westpac/core';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Modal, Body } from '@westpac/modal';
 import { Well } from '@westpac/well';
 import dynamic from 'next/dynamic';
-import bom from '@westpac/bom';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import editorTheme from './theme';
 
@@ -83,7 +83,7 @@ const UnSafeExampleBlock = ({ code, demo, error }) => {
 				</div>
 			</Well>
 			{code && showCode ? <LiveEditor /> : null}
-			<Modal heading={null} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
 				<Body>
 					<LivePreview />
 				</Body>
@@ -93,9 +93,12 @@ const UnSafeExampleBlock = ({ code, demo, error }) => {
 };
 
 export const Playground = ({
-	brand = bom,
+	brand = wbc,
 	context = null,
 	code,
+	showCode,
+	showDemo,
+	showErrors = false,
 	children,
 	scope,
 	inline,
@@ -119,7 +122,7 @@ export const Playground = ({
 		return (
 			<GEL brand={brand}>
 				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-					<ExampleBlock code={true} demo={true} error={true} />
+					<ExampleBlock code={showCode} demo={showDemo} error={showErrors} />
 					{/* TODO: make code and demo button options passed through editor */}
 				</LiveProvider>
 			</GEL>
@@ -130,7 +133,7 @@ export const Playground = ({
 			<GEL brand={brand}>
 				<div css={{ transformZ: 0, pointerEvents: 'none', zIndex: 0, cursor: 'not-allowed' }}>
 					<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-						<ExampleBlock code={true} demo={true} />
+						<ExampleBlock code={showCode} demo={showDemo} />
 					</LiveProvider>
 				</div>
 			</GEL>

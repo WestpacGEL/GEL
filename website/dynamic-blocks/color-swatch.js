@@ -24,7 +24,6 @@ const Component = props => {
 			}
 		}
 	}
-	console.log(COLORS);
 	return (
 		<Fragment>
 			<div css={{ display: 'flex', flexWrap: 'wrap' }}>{swatches}</div>

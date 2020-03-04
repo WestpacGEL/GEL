@@ -12,7 +12,6 @@ const { settingSchema } = require('./schema/setting');
 const keystone = new Keystone({
 	name: 'GEL3 Website',
 	adapter: new KnexAdapter({ dropDatabase: true }),
-	dropDatabase: true,
 });
 
 const apps = [

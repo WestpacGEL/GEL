@@ -36,21 +36,7 @@ const getComponentSchema = options => ({
 	labelResolver: x => x.pageTitle || x.packageName,
 	fields: {
 		pageTitle: { type: Text },
-		design: {
-			type: Content,
-			blocks: BLOCKS_CONFIG,
-		},
-		documentAccessibility: { type: Checkbox },
-		accessibility: {
-			type: Content,
-			blocks: BLOCKS_CONFIG,
-		},
-		documentCode: { type: Checkbox },
-		code: {
-			type: Content,
-			blocks: BLOCKS_CONFIG,
-		},
-		documentPackage: { type: Checkbox },
+
 		packageName: { type: Select, options },
 		name: { type: Virtual, resolver: getResolver('name') },
 		version: { type: Virtual, resolver: getResolver('version') },
@@ -67,6 +53,20 @@ const getComponentSchema = options => ({
 			},
 		},
 		author: { type: Virtual, resolver: getResolver('author') },
+		design: {
+			type: Content,
+			blocks: BLOCKS_CONFIG,
+		},
+		hideAccessibilityTab: { type: Checkbox },
+		accessibility: {
+			type: Content,
+			blocks: BLOCKS_CONFIG,
+		},
+		hideCodeTab: { type: Checkbox },
+		code: {
+			type: Content,
+			blocks: BLOCKS_CONFIG,
+		},
 	},
 });
 
