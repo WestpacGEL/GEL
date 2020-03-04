@@ -18,8 +18,6 @@ export default ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
-			<h2>Default</h2>
-
 			<h3>Default</h3>
 			<Well>Look, I'm in a well.</Well>
 
