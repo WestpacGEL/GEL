@@ -4,7 +4,7 @@ import { jsx, useBrand, overrideReconciler, wrapHandlers, useInstanceId } from '
 import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultSwitchRoot } from './overrides/root';
+import { defaultSwitch } from './overrides/switch';
 import { defaultToggle } from './overrides/toggle';
 import { defaultLabel } from './overrides/label';
 
@@ -33,7 +33,7 @@ export const Switch = ({
 	const [checked, setChecked] = useState(isChecked);
 
 	const defaultOverrides = {
-		SwitchRoot: defaultSwitchRoot, // First sub-component will always be called the <component-name>Root component
+		SwitchRoot: defaultSwitch, // First sub-component will always be called the <component-name>Root component
 		Label: defaultLabel,
 		Toggle: defaultToggle,
 	};

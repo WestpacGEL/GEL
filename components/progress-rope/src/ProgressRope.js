@@ -12,7 +12,7 @@ import {
 } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultProgressRopeRoot } from './overrides/progressRope';
+import { defaultProgressRope } from './overrides/progressRope';
 import pkg from '../package.json';
 import { Group } from './Group';
 import { Item } from './Item';
@@ -82,7 +82,7 @@ export const ProgressRope = ({
 	// might have to change my naming convention
 	// Maybe have it as <ComponentName>Root
 	const defaultOverrides = {
-		ProgressRopeRoot: defaultProgressRopeRoot,
+		ProgressRopeRoot: defaultProgressRope,
 	};
 
 	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);

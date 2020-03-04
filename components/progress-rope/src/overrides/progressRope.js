@@ -11,7 +11,7 @@ const progressRopeStyles = () => ({
 	margin: 0,
 });
 
-export const defaultProgressRopeRoot = {
+export const defaultProgressRope = {
 	component: ProgressRope,
 	styles: progressRopeStyles,
 	attributes: () => null,
