@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useState } from 'react';
 import { jsx, GEL, useBrand } from '@westpac/core';
-import { NewWindowIcon } from '@westpac/icon';
+import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Modal, Body } from '@westpac/modal';
 import { Well } from '@westpac/well';
 import dynamic from 'next/dynamic';
@@ -73,7 +73,11 @@ const UnSafeExampleBlock = ({ code, demo, error }) => {
 							}}
 						>
 							<span css={{ marginRight: SPACING(1) }}>Code</span>{' '}
-							<NewWindowIcon size="small" color={COLORS.primary} />
+							{showCode ? (
+								<ExpandMoreIcon size="small" color={COLORS.primary} />
+							) : (
+								<ExpandLessIcon size="small" color={COLORS.primary} />
+							)}
 						</Button>
 					) : null}
 				</div>
@@ -124,7 +128,7 @@ export const Playground = ({
 	if (context === 'admin') {
 		return (
 			<GEL brand={brand}>
-				<div css={{ transformZ: 0, pointerEvents: 'none', zIndex: 0 }}>
+				<div css={{ transformZ: 0, pointerEvents: 'none', zIndex: 0, cursor: 'not-allowed' }}>
 					<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
 						<ExampleBlock code={true} demo={true} />
 					</LiveProvider>

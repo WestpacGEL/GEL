@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import React, { useState } from 'react'; // Needed for within Keystone
-import { jsx, GEL } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import * as icons from '@westpac/icon';
-import bom from '@westpac/bom';
 import { FieldContainer, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 
@@ -46,7 +45,7 @@ const renderIcons = search => {
 const Icon = () => {
 	const [search, setSearch] = useState('');
 	return (
-		<GEL brand={bom}>
+		<div>
 			<FieldContainer>
 				<FieldInput>
 					<label htmlFor={'filter-icons'}>Filter by name</label>
@@ -71,7 +70,7 @@ const Icon = () => {
 			>
 				{renderIcons(search)}
 			</div>
-		</GEL>
+		</div>
 	);
 };
 

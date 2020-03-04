@@ -5,6 +5,8 @@ import { useMemo, createContext, useContext, useState } from 'react';
 import { Block } from 'slate';
 import { PencilIcon, CheckIcon } from '@arch-ui/icons';
 import { BlockMenuItem } from '@keystonejs/field-content/block-components';
+import wbc from '@westpac/wbc';
+import { GEL } from '@westpac/core';
 
 export let type = 'dynamic-components';
 
@@ -18,14 +20,16 @@ let CurrentlyEditingBlocksContext = createContext({
 export let Provider = ({ value, children }) => {
 	let [currentlyEditingBlocks, setCurrentlyEditingBlocks] = useState({});
 	return (
-		<CurrentlyEditingBlocksContext.Provider
-			value={useMemo(() => ({ currentlyEditingBlocks, setCurrentlyEditingBlocks }), [
-				currentlyEditingBlocks,
-				setCurrentlyEditingBlocks,
-			])}
-		>
-			<Context.Provider value={value}>{children}</Context.Provider>
-		</CurrentlyEditingBlocksContext.Provider>
+		<GEL brand={wbc}>
+			<CurrentlyEditingBlocksContext.Provider
+				value={useMemo(() => ({ currentlyEditingBlocks, setCurrentlyEditingBlocks }), [
+					currentlyEditingBlocks,
+					setCurrentlyEditingBlocks,
+				])}
+			>
+				<Context.Provider value={value}>{children}</Context.Provider>
+			</CurrentlyEditingBlocksContext.Provider>
+		</GEL>
 	);
 };
 

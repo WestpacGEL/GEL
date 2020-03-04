@@ -3,15 +3,15 @@ const { Keystone } = require('@keystonejs/keystone');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { NextApp } = require('@keystonejs/app-next');
-const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
+const { KnexAdapter } = require('@keystonejs/adapter-knex');
 const { resolveComponents } = require('./extend-schema');
 const { getComponentSchema } = require('./schema/component');
 const { userSchema } = require('./schema/user');
 const { settingSchema } = require('./schema/setting');
 
 const keystone = new Keystone({
-	name: 'GEL3 Website again',
-	adapter: new MongooseAdapter(),
+	name: 'GEL3 Website',
+	adapter: new KnexAdapter({ dropDatabase: true }),
 	dropDatabase: true,
 });
 
@@ -31,7 +31,6 @@ keystone.createList(
 	getComponentSchema(options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name })))
 );
 keystone.createList('User', userSchema);
-
 keystone.createList('Setting', settingSchema);
 
 module.exports = {

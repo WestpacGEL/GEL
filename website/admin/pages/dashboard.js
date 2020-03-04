@@ -12,7 +12,7 @@ import Select from '@arch-ui/select';
 import { Button } from '@arch-ui/button';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { DeleteItemModal, useAdminMeta } from '@keystonejs/app-admin-ui/client';
+import { DeleteItemModal, useAdminMeta } from '@keystonejs/app-admin-ui/components';
 import { LoadingIndicator } from '@arch-ui/loading';
 
 function Package({ item, refetch, items }) {

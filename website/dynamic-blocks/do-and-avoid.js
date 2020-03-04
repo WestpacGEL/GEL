@@ -95,7 +95,7 @@ export const DoAndAvoid = {
 			</>
 		);
 	},
-	component: props => {
+	component: ({ dos, avoid }) => {
 		const dodontFigure = {
 			flexBasis: '50%',
 		};

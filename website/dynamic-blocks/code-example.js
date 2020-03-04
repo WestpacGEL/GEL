@@ -1,5 +1,8 @@
-import React, { Suspense } from 'react';
+/** @jsx jsx */
+import React, { Suspense, Fragment } from 'react';
+import { jsx } from '@westpac/core';
 import Select from '@arch-ui/select';
+import { CheckboxPrimitive } from '@arch-ui/controls';
 import preval from 'preval.macro';
 import importCodeExamples from './babel-dynamic-code-block-import.macro';
 
@@ -33,7 +36,7 @@ const codeExamples = importCodeExamples(data);
 let valueCache = new Map();
 let promiseCache = new Map();
 
-function ShowCodeBlock({ loadCodeBlock, context }) {
+function ShowCodeBlock({ showCode, showDemo, loadCodeBlock, context }) {
 	let promise = promiseCache.get(loadCodeBlock);
 	if (!promise) {
 		promise = loadCodeBlock().then(mod => {
@@ -47,36 +50,78 @@ function ShowCodeBlock({ loadCodeBlock, context }) {
 	if (!CodeBlock) {
 		throw promise;
 	}
-	return <CodeBlock context={context} />;
+	return <CodeBlock context={context} code={showCode} demo={showDemo} />;
 }
 
 export const CodeExample = {
 	editor: ({ value, onChange }) => {
+		console.log(value);
+		const currentValue = {
+			codeExample: null,
+			showCode: true,
+			showDemo: true,
+			...(value || {}),
+		};
+
+		const update = changes =>
+			onChange({
+				...currentValue,
+				...changes,
+			});
+
 		return (
-			<Select
-				isSearchable={true}
-				placeholder="Select a new package for these docs"
-				options={options}
-				value={options.find(o => o.value === value.value)}
-				onChange={({ value }) => {
-					onChange({ value });
-				}}
-			/>
+			<Fragment>
+				<Select
+					isSearchable={true}
+					placeholder="Select a code example"
+					options={options}
+					value={options.find(o => o.value === currentValue.codeExample)}
+					onChange={({ value }) => {
+						update({ codeExample: value });
+					}}
+				/>
+				<div css={{ display: 'flex' }}>
+					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+						<CheckboxPrimitive
+							checked={currentValue.showCode}
+							tabIndex="0"
+							onChange={({ target }) => {
+								update({ showCode: target.checked });
+							}}
+						/>
+						<span>Show code</span>
+					</label>
+					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+						<CheckboxPrimitive
+							checked={currentValue.showDemo}
+							tabIndex="0"
+							onChange={({ target }) => {
+								update({ showDemo: target.checked });
+							}}
+						/>
+						<span>Show demo</span>
+					</label>
+				</div>
+			</Fragment>
 		);
 	},
-	component: ({ value, context }) => {
+	component: ({ codeExample, showCode, showDemo, context }) => {
 		if (typeof window === 'undefined') {
 			return <p>Loading...</p>;
 		}
-
-		const loadCodeBlock = codeExamples[value];
+		const loadCodeBlock = codeExamples[codeExample];
 
 		return (
 			<Suspense fallback={<p>Loading...</p>}>
 				{loadCodeBlock && typeof window !== 'undefined' ? (
-					<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
+					<ShowCodeBlock
+						loadCodeBlock={loadCodeBlock}
+						context={context}
+						showCode={showCode}
+						showDemo={showDemo}
+					/>
 				) : (
-					'No Example found'
+					'Example not found.'
 				)}
 			</Suspense>
 		);

@@ -9,22 +9,22 @@ export const ALL_PAGES = gql`
 				id
 				document
 			}
-			documentAccessibility
+			hideAccessibilityTab
 			accessibility {
 				id
 				document
 			}
-			documentPackage
+			hideCodeTab
+			code {
+				id
+				document
+			}
 			packageName
 			isOrphaned
 			name
 			version
 			description
 			author
-			code {
-				id
-				document
-			}
 		}
 	}
 `;
