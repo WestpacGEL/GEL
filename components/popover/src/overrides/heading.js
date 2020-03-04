@@ -11,11 +11,7 @@ export const PopoverHeading = ({
 	dismissible,
 	position,
 	...rest
-}) => (
-	<Heading size={8} tag={headingTag} {...rest}>
-		{heading}
-	</Heading>
-);
+}) => <Heading size={8} tag={headingTag} {...rest} />;
 
 export const headingStyles = (_, {}) => {
 	const { SPACING, COLORS } = useBrand();
