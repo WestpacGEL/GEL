@@ -10,7 +10,7 @@ import { Trigger, triggerStyles } from './overrides/trigger';
 import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
 import { PopoverBody, bodyStyles } from './overrides/body';
 import { Panel, panelStyles } from './overrides/panel';
-import { Heading, headingStyles } from './overrides/heading';
+import { PopoverHeading, headingStyles } from './overrides/heading';
 import pkg from '../package.json';
 
 export const Popover = ({
@@ -51,7 +51,7 @@ export const Popover = ({
 		},
 		Heading: {
 			styles: headingStyles,
-			component: Heading,
+			component: PopoverHeading,
 			attributes: () => null,
 		},
 		Body: {
