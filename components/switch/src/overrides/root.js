@@ -3,9 +3,9 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { sizeMap } from './_utils';
 
-const Root = ({ state, ...rest }) => <label {...rest} />;
+const SwitchRoot = ({ state, ...rest }) => <label {...rest} />;
 
-const rootStyles = (_, { block, disabled, size }) => {
+const switchRootStyles = (_, { block, disabled, size }) => {
 	const mq = useMediaQuery();
 
 	return mq({
@@ -23,4 +23,8 @@ const rootStyles = (_, { block, disabled, size }) => {
 	})[0];
 };
 
-export const defaultRoot = { component: Root, styles: rootStyles, attributes: () => null };
+export const defaultSwitchRoot = {
+	component: SwitchRoot,
+	styles: switchRootStyles,
+	attributes: () => null,
+};

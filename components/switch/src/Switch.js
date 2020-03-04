@@ -4,7 +4,7 @@ import { jsx, useBrand, overrideReconciler, wrapHandlers, useInstanceId } from '
 import { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultRoot } from './overrides/root';
+import { defaultSwitchRoot } from './overrides/root';
 import { defaultToggle } from './overrides/toggle';
 import { defaultLabel } from './overrides/label';
 
@@ -33,15 +33,15 @@ export const Switch = ({
 	const [checked, setChecked] = useState(isChecked);
 
 	const defaultOverrides = {
-		Root: defaultRoot, // First sub-component will always be called the root component
+		SwitchRoot: defaultSwitchRoot, // First sub-component will always be called the <component-name>Root component
 		Label: defaultLabel,
 		Toggle: defaultToggle,
 	};
 
 	/* 
-	This sharedState contains everything that is needed for the component. It contains in this order:
+	The state object contains everything that is needed for the component. It contains in this order:
 		1. Internal component state variables e.g. useState
-		2. Expected props
+		2. Passed props
 		3. Component overrides
 		4. Rest props
 	- This will be spread onto components as a state prop
@@ -69,7 +69,11 @@ export const Switch = ({
 
 	// destructure reconciled component items, makes for cleaner and easier to read code in return
 	const {
-		Root: { component: Root, styles: rootStyles, attributes: rootAttributes },
+		SwitchRoot: {
+			component: SwitchRoot,
+			styles: switchRootStyles,
+			attributes: switchRootAttributes,
+		},
 		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
 		Toggle: { component: Toggle, styles: toggleStyles, attributes: toggleAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
@@ -81,21 +85,19 @@ export const Switch = ({
 	const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
 
 	/* 
-	Component structure
-	1. Known needed props/
+	Component props structure
+	1. Known needed props
 	2. a11y props
-	3. sharedState
+	3. state prop
 	4. rest if applicable
-
-	Root wont work for composed components since root can appear multiple times and component override names need to be unique
 	*/
 	return (
-		<Root
+		<SwitchRoot
 			htmlFor={switchId} //a11y: use explicit association
 			state={state}
 			{...rest}
-			{...rootAttributes(state)}
-			css={rootStyles(state)}
+			{...switchRootAttributes(state)}
+			css={switchRootStyles(state)}
 		>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
@@ -115,7 +117,7 @@ export const Switch = ({
 				{label}
 			</Label>
 			<Toggle state={state} {...toggleAttributes(state)} css={toggleStyles(state)} />
-		</Root>
+		</SwitchRoot>
 	);
 };
 
