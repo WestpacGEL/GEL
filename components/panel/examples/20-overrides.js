@@ -8,7 +8,7 @@ import { Playground } from '../../../website/src/components/playground/macro';
 
 const Wrapper = props => <div {...props} />;
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/panel'] = {
@@ -85,6 +85,4 @@ function Example({ context }) {
 			</Panel>
 		</Playground>
 	);
-}
-
-export default Example;
+};

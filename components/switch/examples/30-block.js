@@ -6,10 +6,10 @@ import { Switch } from '@westpac/switch';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const label = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur corporis sint, facere sequi provident eius similique ab velit, beatae aut architecto porro quidem neque necessitatibus, quis nulla itaque labore harum, in nesciunt! Molestiae, voluptatum, voluptas. Quo pariatur, voluptate ducimus nemo?`;
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<h2>Default block</h2>
@@ -25,6 +25,4 @@ function Example({ context }) {
 			<Switch name="example-flipped-block-2" label={label} flipped block />
 		</Playground>
 	);
-}
-
-export default Example;
+};

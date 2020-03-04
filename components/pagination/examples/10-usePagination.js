@@ -8,12 +8,12 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@westpac/icon';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const content = ['Page One', 'Page Two', 'Page Three'];
 	const paginate = usePagination({ pages: content, infinite: true });
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 
 			<h2>usePagination</h2>
@@ -24,6 +24,4 @@ function Example({ context }) {
 			</div>
 		</Playground>
 	);
-}
-
-export default Example;
+};

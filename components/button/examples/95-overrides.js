@@ -15,7 +15,7 @@ const TextWrapper = ({ children, ...rest }) => (
 	</Fragment>
 );
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/button'] = {
 		Button: {
@@ -116,6 +116,4 @@ function Example({ context }) {
 			</ButtonDropdown>
 		</Playground>
 	);
-}
-
-export default Example;
+};

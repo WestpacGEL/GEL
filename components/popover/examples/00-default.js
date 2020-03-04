@@ -13,9 +13,9 @@ const content =
 	'possimus non architecto. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut animi velit in? Suscipit nostrum itaque voluptatibus ' +
 	'dolorem qui soluta nobis modi officia incidunt eos dolores atque, unde error delectus officiis.';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<Popover title="Popover Title" content={content}>
@@ -27,6 +27,4 @@ function Example({ context }) {
 			</Popover>
 		</Playground>
 	);
-}
-
-export default Example;
+};

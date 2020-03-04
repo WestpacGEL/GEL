@@ -7,7 +7,7 @@ import { Box } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const { COLORS } = useBrand();
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/grid'] = {
@@ -59,6 +59,4 @@ function Example({ context }) {
 			</Container>
 		</Playground>
 	);
-}
-
-export default Example;
+};

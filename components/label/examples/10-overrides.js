@@ -35,7 +35,7 @@ const Wrapper = ({ look, value, children, ...props }) => {
 	);
 };
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/label'] = {
 		Label: {
@@ -119,6 +119,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

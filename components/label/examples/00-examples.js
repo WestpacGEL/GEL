@@ -6,9 +6,9 @@ import { Label } from '@westpac/label';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<h2>
@@ -69,6 +69,4 @@ function Example({ context }) {
 			</p>
 		</Playground>
 	);
-}
-
-export default Example;
+};

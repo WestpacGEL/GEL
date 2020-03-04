@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import { jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/tabcordion'] = {
@@ -355,6 +355,4 @@ function Example({ context }) {
 			</Tabcordion>
 		</Playground>
 	);
-}
-
-export default Example;
+};

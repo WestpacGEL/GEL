@@ -15,9 +15,9 @@ import {
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 			<h2>Icon after</h2>
 			<Button look="primary" size="small" iconAfter={HouseIcon}>
@@ -99,6 +99,4 @@ function Example({ context }) {
 			<Button look="primary" size="xlarge" iconBefore={StarIcon} block />
 		</Playground>
 	);
-}
-
-export default Example;
+};

@@ -6,11 +6,11 @@ import { Code } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const { TYPE } = useBrand();
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 			<div
 				css={{
@@ -41,6 +41,4 @@ function Example({ context }) {
 			<Code>{JSON.stringify(useFonts({ path: 'path/to/my/fonts/' }), null, 2)}</Code>
 		</Playground>
 	);
-}
-
-export default Example;
+};

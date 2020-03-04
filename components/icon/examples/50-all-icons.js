@@ -32,7 +32,7 @@ const Search = props => (
 	/>
 );
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const [inputValue, setInputValue] = useState('');
 	const filteredIcons = inputValue.length
 		? icons.filter(p =>
@@ -44,7 +44,7 @@ function Example({ context }) {
 		: icons;
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<Search
@@ -67,6 +67,4 @@ function Example({ context }) {
 			</Grid>
 		</Playground>
 	);
-}
-
-export default Example;
+};

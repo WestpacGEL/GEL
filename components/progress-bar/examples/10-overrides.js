@@ -8,7 +8,7 @@ import { StyledButton as Button } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const [progress, setProgress] = useState(10);
 	const overridesWithTokens = {};
 
@@ -75,6 +75,4 @@ function Example({ context }) {
 			</div>
 		</Playground>
 	);
-}
-
-export default Example;
+};

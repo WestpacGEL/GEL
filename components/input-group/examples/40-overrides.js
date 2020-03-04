@@ -13,7 +13,7 @@ const Label = ({ data, overrides, ...rest }) => (
 	</span>
 );
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/input-group'] = {
 		InputGroup: {
@@ -134,6 +134,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

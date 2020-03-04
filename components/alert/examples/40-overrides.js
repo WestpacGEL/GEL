@@ -41,7 +41,7 @@ const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest }) => 
 	return <Tag size={size} color={color} {...rest} />;
 };
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/alert'] = {
 		Alert: {
@@ -119,6 +119,4 @@ function Example({ context }) {
 			</Alert>
 		</Playground>
 	);
-}
-
-export default Example;
+};

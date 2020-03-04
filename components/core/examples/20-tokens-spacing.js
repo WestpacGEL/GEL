@@ -6,14 +6,14 @@ import { useState } from 'react';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const { COLORS, SPACING } = useBrand();
 	const { tints, ...primaryColors } = COLORS;
 	const [showMinor, setShowMinor] = useState(true);
 	const [count, setCount] = useState(11);
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 
 			<h2>Spacing</h2>
@@ -137,6 +137,4 @@ function Example({ context }) {
 			</ul>
 		</Playground>
 	);
-}
-
-export default Example;
+};

@@ -9,9 +9,9 @@ import { Playground } from '../../../website/src/components/playground/macro';
 
 const symbols = Object.keys(components).filter(s => s.includes('Symbol'));
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<Grid>
@@ -27,6 +27,4 @@ function Example({ context }) {
 			</Grid>
 		</Playground>
 	);
-}
-
-export default Example;
+};

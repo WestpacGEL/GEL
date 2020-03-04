@@ -6,10 +6,10 @@ import { Code } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	console.log(asArray([1, 2, 3]));
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 			<Code>{`asArray([ 1, 2, 3])`}</Code>
 			=>
@@ -20,6 +20,4 @@ function Example({ context }) {
 			<Code>{JSON.stringify(asArray(1))}</Code>
 		</Playground>
 	);
-}
-
-export default Example;
+};

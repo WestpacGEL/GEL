@@ -6,11 +6,11 @@ import { Code } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const mq = useMediaQuery();
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 
 			<strong>[1,2,3,4]</strong>
@@ -52,6 +52,4 @@ function Example({ context }) {
 			<Code>{JSON.stringify(mq({ thing: 1 }), null, 2)}</Code>
 		</Playground>
 	);
-}
-
-export default Example;
+};

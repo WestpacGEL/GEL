@@ -6,11 +6,11 @@ import { Code } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	devWarning(true, 'Warn consumer about a thing but ignore the wanring in production!');
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 			<Code>
 				devWarning( true, 'Warn consumer about a thing but ignore the wanring in production!' );
@@ -19,6 +19,4 @@ function Example({ context }) {
 			<Code>> Warning: Warn consumer about a thing but ignore the wanring in production!</Code>
 		</Playground>
 	);
-}
-
-export default Example;
+};

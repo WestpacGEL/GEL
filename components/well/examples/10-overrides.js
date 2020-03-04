@@ -6,7 +6,7 @@ import { Well } from '@westpac/well';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/well'] = {
 		Well: {
@@ -46,6 +46,4 @@ function Example({ context }) {
 			</Well>
 		</Playground>
 	);
-}
-
-export default Example;
+};

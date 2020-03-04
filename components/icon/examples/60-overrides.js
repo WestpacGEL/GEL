@@ -25,7 +25,7 @@ const Wrapper = ({ children, icon, color, size, assistiveText, ...rest }) => (
 	</Fragment>
 );
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/icon'] = {
 		Icon: {
@@ -64,6 +64,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

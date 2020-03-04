@@ -6,9 +6,9 @@ import { Form, FormSection, ChitChat } from '@westpac/form';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 
 			<Form>
@@ -21,6 +21,4 @@ function Example({ context }) {
 			</Form>
 		</Playground>
 	);
-}
-
-export default Example;
+};

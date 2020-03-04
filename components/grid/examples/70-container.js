@@ -9,7 +9,7 @@ import { Box } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const {
 		COLORS,
 		LAYOUT: { breakpoints },
@@ -32,7 +32,7 @@ function Example({ context }) {
 	}
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<div
@@ -52,6 +52,4 @@ function Example({ context }) {
 			</Container>
 		</Playground>
 	);
-}
-
-export default Example;
+};

@@ -21,7 +21,7 @@ const Wrapper = ({ look, children, ...rest }) => (
 	</span>
 );
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/badge'] = {
 		Badge: {
@@ -65,6 +65,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

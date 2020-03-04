@@ -62,11 +62,11 @@ const Button = ({ children, isActive, ...props }) => (
 	</label>
 );
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const [activeSize, setSize] = useState(2);
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<Row>
@@ -83,6 +83,4 @@ function Example({ context }) {
 			</Row>
 		</Playground>
 	);
-}
-
-export default Example;
+};

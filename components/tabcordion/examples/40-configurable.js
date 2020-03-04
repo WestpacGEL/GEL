@@ -19,7 +19,7 @@ Radio.defaultProps = { type: 'radio' };
 const Checkbox = p => <Control {...p} />;
 Checkbox.defaultProps = { type: 'checkbox' };
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const [look, setLook] = useState(looks[0]);
 	const [mode, setMode] = useState(modes[0]);
 	const [justify, setJustify] = useState(false);
@@ -29,7 +29,7 @@ function Example({ context }) {
 	const changeMode = v => () => setMode(v);
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Row>
 				Look:
 				{looks.map(v => (
@@ -98,6 +98,4 @@ function Example({ context }) {
 			</Tabcordion>
 		</Playground>
 	);
-}
-
-export default Example;
+};

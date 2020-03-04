@@ -23,9 +23,9 @@ const BodyTag = ({ children, ...props }) => {
 	);
 };
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<Body>
@@ -148,6 +148,4 @@ function Example({ context }) {
 			</Body>
 		</Playground>
 	);
-}
-
-export default Example;
+};

@@ -6,9 +6,9 @@ import { Switch } from '@westpac/switch';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<Switch
@@ -19,6 +19,4 @@ function Example({ context }) {
 			<Switch name="no-toggletext" label="Pass an empty array for no toggle text" toggleText={[]} />
 		</Playground>
 	);
-}
-
-export default Example;
+};

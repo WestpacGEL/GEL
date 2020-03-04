@@ -13,7 +13,7 @@ const AssistiveText = ({ children, look }) => (
 
 const Icon = ({ current, assistiveText, ...props }) => <HouseIcon {...props} />;
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/breadcrumb'] = {
 		Breadcrumb: {
@@ -31,7 +31,12 @@ function Example({ context }) {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<Playground
+			context={context}
+			showCode={showCode}
+			showDemo={showDemo}
+			brand={overridesWithTokens}
+		>
 			<Intopia ignore />
 			<h2>With overrides applied</h2>
 			<Breadcrumb>
@@ -85,6 +90,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

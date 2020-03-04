@@ -8,7 +8,7 @@ import { Code } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const triggerRef1 = useRef();
 	const popoverRef1 = useRef();
 	const [position1, setPosition1] = useState({ placement: 'top', top: 0, left: 0 });
@@ -33,7 +33,7 @@ function Example({ context }) {
 	}, []);
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 
 			<div
@@ -187,6 +187,4 @@ function Example({ context }) {
 			</Code>
 		</Playground>
 	);
-}
-
-export default Example;
+};

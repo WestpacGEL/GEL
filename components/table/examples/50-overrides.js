@@ -6,7 +6,7 @@ import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table'
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/table'] = {
 		Table: {
@@ -110,6 +110,4 @@ function Example({ context }) {
 			</Table>
 		</Playground>
 	);
-}
-
-export default Example;
+};

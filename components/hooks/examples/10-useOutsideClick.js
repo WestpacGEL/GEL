@@ -9,13 +9,13 @@ import { Code } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const ref = useRef();
 
 	useOutsideClick(ref, () => alert('Clicked outside'));
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 
 			<Code>{`useOutsideClick(ref, () => alert(Clicked outside))`}</Code>
@@ -25,6 +25,4 @@ function Example({ context }) {
 			</div>
 		</Playground>
 	);
-}
-
-export default Example;
+};

@@ -7,9 +7,9 @@ import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table'
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 
 			<h2>Panel with body and table</h2>
@@ -118,6 +118,4 @@ function Example({ context }) {
 			</Panel>
 		</Playground>
 	);
-}
-
-export default Example;
+};

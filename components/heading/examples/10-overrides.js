@@ -6,7 +6,7 @@ import { Heading } from '@westpac/heading';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/heading'] = {
 		Heading: {
@@ -50,6 +50,4 @@ function Example({ context }) {
 			</Heading>
 		</Playground>
 	);
-}
-
-export default Example;
+};

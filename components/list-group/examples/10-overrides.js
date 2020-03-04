@@ -13,7 +13,7 @@ const styleExample = {
 	marginLeft: '0.75rem',
 };
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/list-group'] = {
 		ListGroup: {
@@ -150,6 +150,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

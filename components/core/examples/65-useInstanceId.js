@@ -8,10 +8,10 @@ import { Code } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const [instanceId, setInstanceId] = useState();
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 			<Button onClick={() => setInstanceId(useInstanceId())}>Get instance id</Button>
 			<h2>{instanceId}</h2>
@@ -20,6 +20,4 @@ function Example({ context }) {
 			<Code>> Get an id for component instances.</Code>
 		</Playground>
 	);
-}
-
-export default Example;
+};

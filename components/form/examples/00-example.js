@@ -18,9 +18,9 @@ import { TextInput } from '@westpac/text-input';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 
 			<h2>Default size and spacing</h2>
@@ -130,6 +130,4 @@ function Example({ context }) {
 			</Form>
 		</Playground>
 	);
-}
-
-export default Example;
+};

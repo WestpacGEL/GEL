@@ -12,9 +12,9 @@ const styleExample = {
 	marginLeft: '0.75rem',
 };
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<h2>Simple</h2>
@@ -90,6 +90,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

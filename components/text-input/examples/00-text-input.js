@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const [value, setValue] = useState('default text');
 
 	const handleChange = event => {
@@ -17,7 +17,7 @@ function Example({ context }) {
 	};
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<h2>Default instance</h2>
@@ -84,6 +84,4 @@ function Example({ context }) {
 			<TextInput width={30} placeholder={30} />
 		</Playground>
 	);
-}
-
-export default Example;
+};

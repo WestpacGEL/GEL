@@ -9,7 +9,7 @@ import { Playground } from '../../../website/src/components/playground/macro';
 
 const Wrapper = forwardRef(({ visible, position, ...props }, ref) => <abbr ref={ref} {...props} />);
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/tooltip'] = {
@@ -60,6 +60,4 @@ function Example({ context }) {
 			</p>
 		</Playground>
 	);
-}
-
-export default Example;
+};

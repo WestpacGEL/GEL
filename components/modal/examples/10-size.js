@@ -8,7 +8,7 @@ import { Button } from '@westpac/button';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };
 
 	const modalReducer = (state, action) => {
@@ -29,7 +29,7 @@ function Example({ context }) {
 	const updateModal = (type, open) => dispatch({ type, payload: { open } });
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<p>
@@ -115,6 +115,4 @@ function Example({ context }) {
 			</Modal>
 		</Playground>
 	);
-}
-
-export default Example;
+};

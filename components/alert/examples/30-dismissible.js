@@ -8,11 +8,11 @@ import { useState } from 'react';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<Alert look="success" dismissible>
@@ -46,6 +46,4 @@ function Example({ context }) {
 			</Alert>
 		</Playground>
 	);
-}
-
-export default Example;
+};

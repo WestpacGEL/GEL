@@ -13,7 +13,7 @@ const SkipLinkWrapper = ({ children, ...rest }) => (
 	</div>
 );
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const { COLORS, SPACING } = useBrand();
 
 	const overridesWithTokens = {};
@@ -114,6 +114,4 @@ function Example({ context }) {
 			</div>
 		</Playground>
 	);
-}
-
-export default Example;
+};

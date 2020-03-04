@@ -6,12 +6,12 @@ import { Code } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	let object = { a: [{ b: 2 }, { d: 4 }] };
 	let other = (other = { a: [{ c: 3 }, { e: 5 }] });
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 			<Code>
 				const object = {JSON.stringify(object, null, 2)};{<br css={{ margin: '1rem' }} />}
@@ -22,6 +22,4 @@ function Example({ context }) {
 			<Code>{JSON.stringify(mergeWith(object, other), null, 2)}</Code>
 		</Playground>
 	);
-}
-
-export default Example;
+};

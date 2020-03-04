@@ -9,7 +9,7 @@ import { Playground } from '../../../website/src/components/playground/macro';
 
 const Label = ({ toggleText, assistiveText, ...props }) => <strong {...props} />;
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/switch'] = {
@@ -54,6 +54,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

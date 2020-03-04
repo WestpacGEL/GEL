@@ -5,7 +5,7 @@ import { jsx, useBrand, useFonts } from '@westpac/core';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const { TYPE } = useBrand();
 	const weights = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
@@ -85,6 +85,4 @@ function Example({ context }) {
 			</div>
 		</Playground>
 	);
-}
-
-export default Example;
+};

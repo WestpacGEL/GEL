@@ -3,9 +3,9 @@
 import { jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<h3>Soft</h3>
 			<Tabcordion mode="tabs" look="soft" justify>
 				<Tab text="Rabbit hole">
@@ -98,6 +98,4 @@ function Example({ context }) {
 			</Tabcordion>
 		</Playground>
 	);
-}
-
-export default Example;
+};

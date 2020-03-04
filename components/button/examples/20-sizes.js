@@ -6,9 +6,9 @@ import { Button } from '@westpac/button';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 			<h2>Small</h2>
 			<Button look="primary" size="small">
@@ -58,6 +58,4 @@ function Example({ context }) {
 			<p></p>
 		</Playground>
 	);
-}
-
-export default Example;
+};

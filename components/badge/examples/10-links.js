@@ -7,9 +7,9 @@ import { Body } from '@westpac/body';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<Body>
@@ -63,6 +63,4 @@ function Example({ context }) {
 			</Body>
 		</Playground>
 	);
-}
-
-export default Example;
+};

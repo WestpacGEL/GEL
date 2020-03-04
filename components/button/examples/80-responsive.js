@@ -18,9 +18,9 @@ const blocks = [
 	[true, null, false],
 ];
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<h2>Responsive sizing</h2>
@@ -44,6 +44,4 @@ function Example({ context }) {
 			))}
 		</Playground>
 	);
-}
-
-export default Example;
+};

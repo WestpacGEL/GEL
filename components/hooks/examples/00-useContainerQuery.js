@@ -7,14 +7,14 @@ import { useRef } from 'react';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const textareaRef = useRef();
 	const containerRef = useRef();
 	const { width: containerWidth } = useContainerQuery(containerRef);
 	const { height: textareaHeight, width: textareaWidth } = useContainerQuery(textareaRef);
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 
 			<div ref={containerRef}>
@@ -38,6 +38,4 @@ function Example({ context }) {
 			</div>
 		</Playground>
 	);
-}
-
-export default Example;
+};

@@ -8,7 +8,7 @@ import { Playground } from '../../../website/src/components/playground/macro';
 
 const Wrapper = ({ inline, flipped, ...rest }) => <div {...rest} />;
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 	overridesWithTokens['@westpac/form-check'] = {
 		FormCheck: {
@@ -110,6 +110,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

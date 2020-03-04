@@ -8,7 +8,7 @@ import { Button } from '@westpac/button';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const [open, setOpen] = useState(false);
 	const [open2, setOpen2] = useState(false);
 
@@ -111,6 +111,4 @@ function Example({ context }) {
 			</Modal>
 		</Playground>
 	);
-}
-
-export default Example;
+};

@@ -9,7 +9,7 @@ import { useProgress, Wrapper } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const [state, dispatch] = useProgress();
 	const [state2, dispatch2] = useProgress();
 
@@ -24,7 +24,7 @@ function Example({ context }) {
 	};
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia />
 
 			<Grid>
@@ -102,6 +102,4 @@ function Example({ context }) {
 			</Grid>
 		</Playground>
 	);
-}
-
-export default Example;
+};

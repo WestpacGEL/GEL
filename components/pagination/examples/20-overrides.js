@@ -7,7 +7,7 @@ import { Pagination, Page } from '@westpac/pagination';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 import { Playground } from '../../../website/src/components/playground/macro';
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	const overridesWithTokens = {};
 
 	overridesWithTokens['@westpac/pagination'] = {
@@ -86,6 +86,4 @@ function Example({ context }) {
 			/>
 		</Playground>
 	);
-}
-
-export default Example;
+};

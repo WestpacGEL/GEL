@@ -20,11 +20,11 @@ function four(event) {
 	console.log('This should not be called');
 }
 
-function Example({ context }) {
+export default ({ context, showCode, showDemo }) => {
 	wrapHandlers(one, two)({});
 
 	return (
-		<Playground context={context}>
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Intopia ignore />
 			<Code>
 				{`function one() {
@@ -49,6 +49,4 @@ wrapHandlers( one, two );`}
 			</button>
 		</Playground>
 	);
-}
-
-export default Example;
+};
