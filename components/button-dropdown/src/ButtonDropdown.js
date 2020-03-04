@@ -116,8 +116,6 @@ export const ButtonDropdown = ({
 			<overrides.Panel.component
 				ref={panelRef}
 				id={dropdownId}
-				tabIndex="-1"
-				aria-label="Use the ESC key to close"
 				open={open}
 				text={text}
 				dropdownSize={dropdownSize}
