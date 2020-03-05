@@ -35,19 +35,15 @@ export const itemStyles = (_, { end, grouped, visited, furthest }) => {
 
 		// line
 		'::before': {
-			// content: end ? 'none' : '""',
 			content: '""',
-			display: visited && !furthest ? 'block' : 'none',
+			display: visited && !furthest && !end ? 'block' : 'none',
 			position: 'absolute',
 			zIndex: 1,
-			/* borderLeft: `2px ${
-				visited && !furthest ? `solid ${COLORS.primary}` : `dashed ${COLORS.border}`
-			}`, */
-			borderLeft: visited && !furthest && !end && `2px solid ${COLORS.primary}`,
+			borderLeft:
+				visited && !furthest ? `4px solid ${COLORS.primary}` : `2px solid ${COLORS.border}`,
 			top: 0,
 			bottom: 0,
-			// right: '2.25rem',
-			left: '36px',
+			left: visited && !furthest ? '35px' : '36px',
 			transform: grouped && !end ? 'translateY(0.875rem)' : 'translateY(0.625rem)',
 		},
 	};
