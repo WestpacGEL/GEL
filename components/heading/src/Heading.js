@@ -69,7 +69,7 @@ Heading.propTypes = {
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])]),
 
 	/**
-	 * The visual size of the headline
+	 * The visual size of the heading
 	 */
 	size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9]).isRequired,
 
