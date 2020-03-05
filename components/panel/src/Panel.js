@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { Panel as PanelWrapper, panelStyles } from './overrides/panel';
 import { Header, headerStyles } from './overrides/header';
-import { Heading, headingStyles } from './overrides/heading';
+import { PanelHeading, headingStyles } from './overrides/heading';
 import pkg from '../package.json';
 
 // ==============================
@@ -38,7 +38,7 @@ export const Panel = ({
 		},
 		Heading: {
 			styles: headingStyles,
-			component: Heading,
+			component: PanelHeading,
 			attributes: () => null,
 		},
 	};
@@ -107,7 +107,7 @@ Panel.propTypes = {
 	/**
 	 * Panel heading tag
 	 */
-	headingTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+	headingTag: PropTypes.string.isRequired,
 
 	/**
 	 * The override API
