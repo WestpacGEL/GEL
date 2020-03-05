@@ -5,7 +5,7 @@ import React from 'react';
 
 export const Heading = ({ tag: Tag, size, ...rest }) => {
 	// ignore all non h1-h6 tags
-	if (Tag && !Tag.startsWith('h') && !(Tag.length === 2)) {
+	if (Tag && typeof Tag !== 'function' && !Tag.startsWith('h') && !(Tag.length === 2)) {
 		Tag = null;
 	}
 

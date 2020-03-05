@@ -16,7 +16,7 @@ export const buttonDropdownHeadingStyles = (_, {}) => {
 		fontWeight: '500', // what is the correct way to do this??
 		// fontSize: '0.75rem',
 
-		':first-child': {
+		':first-of-type': {
 			marginTop: '-0.375rem',
 		},
 	};

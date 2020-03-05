@@ -17,6 +17,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 export const ButtonDropdown = ({
+	instanceIdPrefix,
 	text,
 	dropdownSize,
 	block,
@@ -29,7 +30,6 @@ export const ButtonDropdown = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [dropdownId] = useState(`gel-btn-dropdown-${useInstanceId()}`);
 	const [open, setOpen] = useState(false);
 	const panelRef = useRef();
 	const buttonRef = useRef();
@@ -46,6 +46,17 @@ export const ButtonDropdown = ({
 			attributes: () => null,
 		},
 	};
+
+	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
+
+	// create the prefix for internal IDs
+	useEffect(() => {
+		if (!instancePrefix) {
+			setInstancePrefix(`gel-button-dropdown`);
+		}
+	}, [instancePrefix]);
+
+	const dropdownId = `${instancePrefix}-${useInstanceId()}`;
 
 	const state = {
 		open,
@@ -103,8 +114,8 @@ export const ButtonDropdown = ({
 		>
 			<Button
 				ref={buttonRef}
-				aria-controls={dropdownId}
 				aria-expanded={open}
+				aria-controls={dropdownId}
 				onClick={handleOpen}
 				dropdown={true}
 				block={block}
