@@ -107,7 +107,7 @@ Panel.propTypes = {
 	/**
 	 * Panel heading tag
 	 */
-	headingTag: PropTypes.string.isRequired,
+	headingTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
 
 	/**
 	 * The override API
