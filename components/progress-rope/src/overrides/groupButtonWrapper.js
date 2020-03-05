@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 
 export const GroupButtonWrapper = ({
 	index,
-	groupItemsId,
+	groupListId,
 	text,
 	current,
 	complete,

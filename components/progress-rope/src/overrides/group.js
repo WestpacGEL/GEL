@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 
 export const Group = ({
 	index,
-	groupItemsId,
+	groupListId,
 	text,
 	current,
 	complete,

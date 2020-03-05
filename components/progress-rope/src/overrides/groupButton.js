@@ -5,7 +5,7 @@ import { jsx, useBrand } from '@westpac/core';
 export const GroupButton = ({
 	index,
 	text,
-	groupItemsId,
+	groupListId,
 	current,
 	active,
 	complete,
@@ -43,7 +43,7 @@ export const groupButtonStyles = (_, { complete, active }) => {
 			display: 'block',
 			position: 'absolute',
 			zIndex: 1,
-			borderLeft: active ? `4px solid ${COLORS.primary}` : `2px solid ${COLORS.border}`,
+			borderLeft: active && `4px solid ${COLORS.primary}`,
 			top: 0,
 			left: active ? '35px' : '36px',
 			bottom: 0,
@@ -62,8 +62,7 @@ export const groupButtonStyles = (_, { complete, active }) => {
 			width: '14px',
 			height: '14px',
 			left: '30px',
-			borderColor: active ? COLORS.primary : COLORS.border,
-			borderStyle: 'solid',
+			border: `solid ${active ? COLORS.primary : COLORS.border}`,
 			borderWidth: complete ? '7px' : active ? '3px' : '2px', //a11y: filling with border for HCM support
 			backgroundColor: '#fff',
 			boxSizing: 'border-box',

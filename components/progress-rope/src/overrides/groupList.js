@@ -2,9 +2,9 @@
 
 import { jsx } from '@westpac/core';
 
-export const GroupItems = ({
+export const GroupList = ({
 	index,
-	groupItemsId,
+	groupListId,
 	text,
 	current,
 	active,
@@ -16,7 +16,7 @@ export const GroupItems = ({
 	...rest
 }) => <ol {...rest} />;
 
-export const groupItemsStyles = (_, { hidden }) => ({
+export const groupListStyles = (_, { hidden }) => ({
 	position: 'relative',
 	listStyle: 'none',
 	paddingLeft: 0,

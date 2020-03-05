@@ -6,7 +6,7 @@ import { Children, cloneElement, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Group as GroupWrapper, groupStyles } from './overrides/group';
-import { GroupItems, groupItemsStyles } from './overrides/groupItems';
+import { GroupList, groupListStyles } from './overrides/groupList';
 import { GroupButtonWrapper, groupButtonWrapperStyles } from './overrides/groupButtonWrapper';
 import { GroupButton, groupButtonStyles } from './overrides/groupButton';
 import { useProgressRopeContext } from './ProgressRope';
@@ -15,7 +15,6 @@ import pkg from '../package.json';
 
 export const Group = ({
 	index,
-	groupItemsId,
 	text,
 	current,
 	instanceIdPrefix,
@@ -68,18 +67,18 @@ export const Group = ({
 			component: GroupButton,
 			attributes: () => null,
 		},
-		GroupItems: {
-			styles: groupItemsStyles,
-			component: GroupItems,
+		GroupList: {
+			styles: groupListStyles,
+			component: GroupList,
 			attributes: () => null,
 		},
 	};
 
-	const getGroupItemsId = index => `${instanceIdPrefix}-group-${index + 1}`;
+	const getGroupListId = index => `${instanceIdPrefix}-group-${index + 1}`;
 
 	const state = {
 		index,
-		groupItemsId,
+		groupListId: getGroupListId(index),
 		text,
 		current,
 		complete,
@@ -122,7 +121,7 @@ export const Group = ({
 		<overrides.Group.component
 			index={index}
 			instanceIdPrefix={instanceIdPrefix}
-			groupItemsId={getGroupItemsId(index)}
+			groupListId={getGroupListId(index)}
 			text={text}
 			current={current}
 			active={active}
@@ -136,7 +135,7 @@ export const Group = ({
 		>
 			<overrides.GroupButtonWrapper.component
 				index={index}
-				groupItemsId={getGroupItemsId(index)}
+				groupListId={getGroupListId(index)}
 				text={text}
 				current={current}
 				active={active}
@@ -150,11 +149,11 @@ export const Group = ({
 			>
 				<overrides.GroupButton.component
 					aria-expanded={openGroup === index}
-					aria-controls={getGroupItemsId(index)}
+					aria-controls={getGroupListId(index)}
 					index={index}
 					text={text}
 					onClick={() => handleClick(index)}
-					groupItemsId={groupItemsId}
+					groupListId={getGroupListId(index)}
 					current={current}
 					active={active}
 					complete={complete}
@@ -170,9 +169,9 @@ export const Group = ({
 			</overrides.GroupButtonWrapper.component>
 			<animated.div style={{ ...animate }}>
 				<div ref={bind.ref}>
-					<overrides.GroupItems.component
+					<overrides.GroupList.component
 						aria-hidden={openGroup === null || index !== openGroup}
-						id={getGroupItemsId(index)}
+						id={getGroupListId(index)}
 						index={index}
 						text={text}
 						current={current}
@@ -182,8 +181,8 @@ export const Group = ({
 						instanceIdPrefix={instanceIdPrefix}
 						headingsTag={headingsTag}
 						assistiveText={assistiveText}
-						{...overrides.GroupItems.attributes(state)}
-						css={overrides.GroupItems.styles(state)}
+						{...overrides.GroupList.attributes(state)}
+						css={overrides.GroupList.styles(state)}
 					>
 						{Children.map(children, (child, idx) =>
 							cloneElement(child, {
@@ -194,12 +193,12 @@ export const Group = ({
 								hidden,
 								groupIndex: index,
 								instanceIdPrefix,
-								groupItemsId: getGroupItemsId(index),
+								groupListId: getGroupListId(index),
 								headingsTag,
 								assistiveText,
 							})
 						)}
-					</overrides.GroupItems.component>
+					</overrides.GroupList.component>
 				</div>
 			</animated.div>
 		</overrides.Group.component>
@@ -211,7 +210,7 @@ export const Group = ({
 // ==============================
 Group.propTypes = {
 	/**
-	 * The index of this item
+	 * The index of this step
 	 */
 	index: PropTypes.number,
 
@@ -234,7 +233,7 @@ Group.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		GroupItems: PropTypes.shape({
+		GroupList: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

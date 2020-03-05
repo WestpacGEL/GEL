@@ -16,7 +16,7 @@ import { ProgressRope as ProgressRopeWrapper, progressRopeStyles } from './overr
 import { List, listStyles } from './overrides/list';
 import pkg from '../package.json';
 import { Group } from './Group';
-import { Item } from './Item';
+import { Step } from './Step';
 
 // ==============================
 // Context and Consumer Hook
@@ -45,7 +45,7 @@ const createRopeGraph = (data, children) => {
 		data.forEach(progress => {
 			if (progress.type && progress.type === 'group') {
 				grouped = true;
-				ropeGraph.push(Array(progress.items.length).fill('unvisited'));
+				ropeGraph.push(Array(progress.steps.length).fill('unvisited'));
 			} else {
 				ropeGraph.push(['unvisited']);
 			}
@@ -148,16 +148,16 @@ export const ProgressRope = ({
 	const [progState, dispatch] = useReducer(progressReducer, initialState);
 
 	useEffect(() => {
-		let itemCount = 0;
+		let stepCount = 0;
 		const updatedGraph = progState.ropeGraph.map(group => [...group]); // deep copy
 
 		if (progState.grouped) {
 			progState.ropeGraph.forEach((group, i) => {
-				if (current >= itemCount) {
-					itemCount += group.length;
-					if (current < itemCount) {
+				if (current >= stepCount) {
+					stepCount += group.length;
+					if (current < stepCount) {
 						// current index is in here
-						const pos = group.length - (itemCount - current);
+						const pos = group.length - (stepCount - current);
 						updatedGraph[i][pos] = 'visited';
 						dispatch({ type: 'UPDATE_GRAPH', payload: updatedGraph });
 						dispatch({ type: 'UPDATE_STEP', payload: pos });
@@ -167,7 +167,7 @@ export const ProgressRope = ({
 				}
 			});
 
-			if (current >= itemCount) {
+			if (current >= stepCount) {
 				dispatch({ type: 'UPDATE_STEP', payload: current });
 			}
 		} else {
@@ -183,7 +183,7 @@ export const ProgressRope = ({
 
 	let allChildren = [];
 	if (data) {
-		data.forEach(({ type, text, onClick, items }, idx) => {
+		data.forEach(({ type, text, onClick, steps }, idx) => {
 			if (type && type === 'group') {
 				allChildren.push(
 					<Group
@@ -196,27 +196,27 @@ export const ProgressRope = ({
 						assistiveText={assistiveText}
 						overrides={componentOverrides}
 					>
-						{items.map((item, itemIndex) => (
-							<Item
-								key={itemIndex}
-								index={itemIndex}
-								current={item.current}
+						{steps.map((step, stepIndex) => (
+							<Step
+								key={stepIndex}
+								index={stepIndex}
+								current={step.current}
 								end={type && type === 'end'}
-								onClick={item.onClick}
+								onClick={step.onClick}
 								groupIndex={idx}
-								instanceIdPrefix={item.instancePrefix}
-								headingsTag={item.headingsTag}
-								assistiveText={item.assistiveText}
+								instanceIdPrefix={step.instancePrefix}
+								headingsTag={step.headingsTag}
+								assistiveText={step.assistiveText}
 								overrides={componentOverrides}
 							>
-								{item.text}
-							</Item>
+								{step.text}
+							</Step>
 						))}
 					</Group>
 				);
 			} else {
 				allChildren.push(
-					<Item
+					<Step
 						key={idx}
 						index={idx}
 						onClick={onClick}
@@ -228,7 +228,7 @@ export const ProgressRope = ({
 						overrides={componentOverrides}
 					>
 						{text}
-					</Item>
+					</Step>
 				);
 			}
 		});
@@ -277,12 +277,12 @@ export const ProgressRope = ({
 // ==============================
 ProgressRope.propTypes = {
 	/**
-	 * Current active item (zero-indexed)
+	 * Current active step (zero-indexed)
 	 */
 	current: PropTypes.number.isRequired,
 
 	/**
-	 * Define an id prefix for the group item elements e.g. for a prefix of "progress" --> "progress-group-1" etc.
+	 * Define an id prefix for the group step elements e.g. for a prefix of "progress" --> "progress-group-1" etc.
 	 */
 	instanceIdPrefix: PropTypes.string,
 
@@ -315,17 +315,17 @@ ProgressRope.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		GroupItems: PropTypes.shape({
+		GroupList: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Item: PropTypes.shape({
+		Step: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ItemText: PropTypes.shape({
+		StepText: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

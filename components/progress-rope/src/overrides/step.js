@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Item = ({
+export const Step = ({
 	index,
 	current,
 	active,
@@ -13,7 +13,7 @@ export const Item = ({
 	furthest,
 	hidden,
 	groupIndex,
-	groupItemsId,
+	groupListId,
 	instanceIdPrefix,
 	headingsTag,
 	assistiveText,
@@ -21,7 +21,7 @@ export const Item = ({
 	...rest
 }) => <li {...rest} />;
 
-export const itemStyles = (_, { end, grouped, visited, furthest }) => {
+export const stepStyles = (_, { end, grouped, visited, furthest }) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -39,8 +39,7 @@ export const itemStyles = (_, { end, grouped, visited, furthest }) => {
 			display: visited && !furthest && !end ? 'block' : 'none',
 			position: 'absolute',
 			zIndex: 1,
-			borderLeft:
-				visited && !furthest ? `4px solid ${COLORS.primary}` : `2px solid ${COLORS.border}`,
+			borderLeft: visited && !furthest && `4px solid ${COLORS.primary}`,
 			top: 0,
 			bottom: 0,
 			left: visited && !furthest ? '35px' : '36px',

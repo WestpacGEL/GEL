@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const ItemButton = ({
+export const StepButton = ({
 	grouped,
 	visited,
 	active,
@@ -10,14 +10,15 @@ export const ItemButton = ({
 	end,
 	current,
 	groupIndex,
-	groupItemsId,
+	instanceIdPrefix,
+	groupListId,
 	index,
 	headingsTag,
 	assistiveText,
 	...rest
 }) => <button type="button" disabled={!visited} {...rest} />;
 
-export const itemButtonStyles = (_, { grouped, visited, active, furthest, end, current }) => {
+export const stepButtonStyles = (_, { grouped, visited, active, furthest, end, current }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
@@ -62,8 +63,7 @@ export const itemButtonStyles = (_, { grouped, visited, active, furthest, end, c
 			width: grouped && !end ? '10px' : '14px',
 			height: grouped && !end ? '10px' : '14px',
 			left: grouped && !end ? '32px' : '30px',
-			borderColor: visited ? COLORS.primary : COLORS.border,
-			borderStyle: 'solid',
+			border: `solid ${visited ? COLORS.primary : COLORS.border}`,
 			borderWidth:
 				visited && !furthest ? (grouped && !end ? '5px' : '7px') : visited ? '3px' : '2px', //a11y: filling with border for HCM support
 			backgroundColor: '#fff',
