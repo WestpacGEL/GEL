@@ -5,9 +5,9 @@ import { Fragment, useState, forwardRef, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import PropTypes from 'prop-types';
 
-import { AccordionLabel, accordionLabelStyles } from './overrides/accordionLabel';
-import { AccordionIcon, accordionIconStyles } from './overrides/accordionIcon';
-import { Panel, panelStyles } from './overrides/panel';
+import { defaultAccordionLabel } from './overrides/accordionLabel';
+import { defaultAccordionIcon } from './overrides/accordionIcon';
+import { defaultPanel } from './overrides/panel';
 import { useMeasure } from './_utils';
 import pkg from '../package.json';
 
@@ -46,21 +46,9 @@ export const Tab = forwardRef(
 		});
 
 		const defaultOverrides = {
-			AccordionLabel: {
-				styles: accordionLabelStyles,
-				component: AccordionLabel,
-				attributes: () => null,
-			},
-			AccordionIcon: {
-				styles: accordionIconStyles,
-				component: AccordionIcon,
-				attributes: () => null,
-			},
-			Panel: {
-				styles: panelStyles,
-				component: Panel,
-				attributes: () => null,
-			},
+			AccordionLabel: defaultAccordionLabel,
+			AccordionIcon: defaultAccordionIcon,
+			Panel: defaultPanel,
 		};
 
 		const state = {
@@ -77,12 +65,19 @@ export const Tab = forwardRef(
 			...rest,
 		};
 
-		const overrides = overrideReconciler(
-			defaultOverrides,
-			tokenOverrides,
-			brandOverrides,
-			componentOverrides
-		);
+		const {
+			AccordionLabel: {
+				component: AccordionLabel,
+				styles: accordionLabelStyles,
+				attributes: accordionLabelAttributes,
+			},
+			AccordionIcon: {
+				component: AccordionIcon,
+				styles: accordionIconStyles,
+				attributes: accordionIconAttributes,
+			},
+			Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		const handleAccordionClick = () => {
 			setInitial(false);
@@ -97,62 +92,42 @@ export const Tab = forwardRef(
 		return (
 			<Fragment>
 				{mode === 'accordion' ? (
-					<overrides.AccordionLabel.component
-						onClick={handleAccordionClick}
+					<AccordionLabel
 						id={tabId}
+						onClick={handleAccordionClick}
 						aria-controls={panelId}
 						aria-expanded={!hidden}
-						hidden={hidden}
-						look={look}
-						last={last}
-						selected={selected}
-						text={text}
-						mode={mode}
-						panelId={panelId}
-						tabId={tabId}
-						{...overrides.AccordionLabel.attributes(state)}
-						css={overrides.AccordionLabel.styles(state)}
+						state={state}
+						{...accordionLabelAttributes(state)}
+						css={accordionLabelStyles(state)}
 					>
 						<span>{text}</span>
-						<overrides.AccordionIcon.component
+						<AccordionIcon
 							assistiveText={null}
 							aria-hidden="true"
-							hidden={hidden}
-							look={look}
-							last={last}
-							selected={selected}
-							text={text}
-							mode={mode}
-							panelId={panelId}
-							tabId={tabId}
-							{...overrides.AccordionIcon.attributes(state)}
-							css={overrides.AccordionIcon.styles(state)}
+							state={state}
+							{...accordionIconAttributes(state)}
+							css={accordionIconStyles(state)}
 						/>
-					</overrides.AccordionLabel.component>
+					</AccordionLabel>
 				) : null}
 
 				<animated.div style={animate}>
 					<div ref={bind.ref}>
-						<overrides.Panel.component
+						<Panel
 							id={panelId}
 							ref={ref}
 							aria-hidden={mode === 'accordion' ? hidden : !selected}
 							hidden={mode === 'tabs' && !selected}
-							look={look}
-							last={last}
-							selected={selected}
-							text={text}
-							mode={mode}
-							panelId={panelId}
-							tabId={tabId}
-							{...overrides.Panel.attributes({
+							state={state}
+							{...panelAttributes({
 								...state,
 								hidden: mode === 'tabs' && !selected,
 							})}
-							css={overrides.Panel.styles(state)}
+							css={panelStyles(state)}
 						>
 							{children}
-						</overrides.Panel.component>
+						</Panel>
 					</div>
 				</animated.div>
 			</Fragment>

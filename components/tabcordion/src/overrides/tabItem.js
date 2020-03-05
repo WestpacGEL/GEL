@@ -3,13 +3,11 @@
 import { forwardRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
-export const TabItem = forwardRef(
-	({ selected, last, mode, look, justify, initialTabIndex, instanceIdPrefix, ...rest }, ref) => {
-		return <button type="button" ref={ref} {...rest} />;
-	}
-);
+const TabItem = forwardRef(({ state, ...rest }, ref) => {
+	return <button type="button" ref={ref} {...rest} />;
+});
 
-export const tabItemStyles = (_, { look, justify, selected, last }) => {
+const tabItemStyles = (_, { look, justify, selected, last }) => {
 	const { COLORS } = useBrand();
 
 	const styles = {
@@ -45,3 +43,5 @@ export const tabItemStyles = (_, { look, justify, selected, last }) => {
 		...styles[look],
 	};
 };
+
+export const defaultTabItem = { component: TabItem, styles: tabItemStyles, attributes: () => null };

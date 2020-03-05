@@ -5,9 +5,10 @@ import { Children, useEffect, useRef, useState } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
-import { Tabcordion as TabcordionWrapper, tabcordionStyles } from './overrides/tabcordion';
-import { TabItem, tabItemStyles } from './overrides/tabItem';
-import { TabRow, tabRowStyles } from './overrides/tabRow';
+import { defaultTabcordion } from './overrides/tabcordion';
+import { defaultTabItem } from './overrides/tabItem';
+import { defaultTabRow } from './overrides/tabRow';
+
 import pkg from '../package.json';
 import { Tab } from './Tab';
 
@@ -30,21 +31,9 @@ export const Tabcordion = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Tabcordion: {
-			styles: tabcordionStyles,
-			component: TabcordionWrapper,
-			attributes: () => null,
-		},
-		TabItem: {
-			styles: tabItemStyles,
-			component: TabItem,
-			attributes: () => null,
-		},
-		TabRow: {
-			styles: tabRowStyles,
-			component: TabRow,
-			attributes: () => null,
-		},
+		TabcordionRoot: defaultTabcordion,
+		TabItem: defaultTabItem,
+		TabRow: defaultTabRow,
 	};
 
 	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
@@ -80,63 +69,52 @@ export const Tabcordion = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TabcordionRoot: {
+			component: TabcordionRoot,
+			styles: tabcordionRootStyles,
+			attributes: tabcordionRootAttributes,
+		},
+		TabItem: { component: TabItem, styles: tabItemStyles, attributes: tabItemAttributes },
+		TabRow: { component: TabRow, styles: tabRowStyles, attributes: tabRowAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	// conditional logic can't include hooks and since our style functions likely contain hooks we build the JSX before we do the condition
 	const TabsContent = (
-		<overrides.TabRow.component
+		<TabRow
 			role="tablist"
 			ref={tablistRef}
-			mode={mode}
-			look={look}
-			justify={justify}
-			initialTabIndex={activeTabIndex}
-			instanceIdPrefix={instancePrefix}
-			{...overrides.TabRow.attributes(state)}
-			css={overrides.TabRow.styles(state)}
+			state={state}
+			{...tabRowAttributes(state)}
+			css={tabRowStyles(state)}
 		>
 			{Children.map(children, (child, idx) => {
 				const selected = activeTabIndex === idx;
 				return (
-					<overrides.TabItem.component
+					<TabItem
 						id={getId('tab', idx)}
 						key={child.props.text}
 						onClick={setActive(idx)}
 						aria-controls={getId('panel', idx)}
 						aria-expanded={selected}
-						selected={selected}
-						last={idx + 1 === tabCount}
-						mode={mode}
-						look={look}
-						justify={justify}
-						initialTabIndex={activeTabIndex}
-						instanceIdPrefix={instancePrefix}
-						{...overrides.TabItem.attributes(state)}
-						css={overrides.TabItem.styles({ ...state, selected, last: idx + 1 === tabCount })}
+						state={state}
+						{...tabItemAttributes(state)}
+						css={tabItemStyles({ ...state, selected, last: idx + 1 === tabCount })}
 					>
 						{child.props.text}
-					</overrides.TabItem.component>
+					</TabItem>
 				);
 			})}
-		</overrides.TabRow.component>
+		</TabRow>
 	);
 
 	return (
-		<overrides.Tabcordion.component
+		<TabcordionRoot
 			ref={containerRef}
-			mode={mode}
-			look={look}
-			justify={justify}
-			initialTabIndex={activeTabIndex}
-			instanceIdPrefix={instancePrefix}
+			state={state}
 			{...rest}
-			{...overrides.Tabcordion.attributes(state)}
-			css={overrides.Tabcordion.styles(state)}
+			{...tabcordionRootAttributes(state)}
+			css={tabcordionRootStyles(state)}
 		>
 			{mode === 'tabs' && TabsContent}
 
@@ -154,13 +132,13 @@ export const Tabcordion = ({
 						onClick={setActive(idx)}
 						mode={mode}
 						look={look}
-						justify={justify}
-						initialTabIndex={activeTabIndex}
-						instanceIdPrefix={instancePrefix}
+						// justify={justify}
+						// initialTabIndex={activeTabIndex}
+						// instanceIdPrefix={instancePrefix}
 					/>
 				);
 			})}
-		</overrides.Tabcordion.component>
+		</TabcordionRoot>
 	);
 };
 

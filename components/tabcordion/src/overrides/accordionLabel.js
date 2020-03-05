@@ -2,19 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const AccordionLabel = ({
-	hidden,
-	look,
-	last,
-	selected,
-	text,
-	mode,
-	panelId,
-	tabId,
-	...rest
-}) => <button type="button" {...rest} />;
+const AccordionLabel = ({ state, ...rest }) => <button type="button" {...rest} />;
 
-export const accordionLabelStyles = (_, { look, last, hidden }) => {
+const accordionLabelStyles = (_, { look, last, hidden }) => {
 	const { COLORS } = useBrand();
 	const styles = {
 		soft: {
@@ -57,4 +47,10 @@ export const accordionLabelStyles = (_, { look, last, hidden }) => {
 		width: '100%',
 		...styles[look],
 	};
+};
+
+export const defaultAccordionLabel = {
+	component: AccordionLabel,
+	styles: accordionLabelStyles,
+	attributes: () => null,
 };
