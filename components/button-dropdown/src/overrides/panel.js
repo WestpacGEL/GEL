@@ -4,7 +4,7 @@ import { jsx, useMediaQuery, asArray, useBrand } from '@westpac/core';
 import { forwardRef } from 'react';
 
 export const Panel = forwardRef(
-	({ open, text, dropdownSize, block, headerText, headerTag, ...rest }, ref) => (
+	({ instanceId, open, text, dropdownSize, block, headerText, headerTag, ...rest }, ref) => (
 		<div ref={ref} {...rest} />
 	)
 );

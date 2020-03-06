@@ -56,9 +56,10 @@ export const ButtonDropdown = ({
 		}
 	}, [instancePrefix]);
 
-	const dropdownId = `${instancePrefix}-${useInstanceId()}`;
+	const instanceId = `${instancePrefix}-${useInstanceId()}`;
 
 	const state = {
+		instanceId,
 		open,
 		text,
 		dropdownSize,
@@ -105,6 +106,7 @@ export const ButtonDropdown = ({
 
 	return (
 		<overrides.ButtonDropdown.component
+			instanceId={instanceId}
 			open={open}
 			text={text}
 			dropdownSize={dropdownSize}
@@ -115,7 +117,7 @@ export const ButtonDropdown = ({
 			<Button
 				ref={buttonRef}
 				aria-expanded={open}
-				aria-controls={dropdownId}
+				aria-controls={instanceId}
 				onClick={handleOpen}
 				dropdown={true}
 				block={block}
@@ -126,7 +128,8 @@ export const ButtonDropdown = ({
 			</Button>
 			<overrides.Panel.component
 				ref={panelRef}
-				id={dropdownId}
+				id={instanceId}
+				instanceId={instanceId}
 				open={open}
 				text={text}
 				dropdownSize={dropdownSize}
