@@ -67,7 +67,7 @@ function Example({ brand }) {
 								{
 									type: 'group',
 									text: 'Group 1',
-									Steps: [
+									steps: [
 										{ text: 'Step 1', onClick: handleClick2(0) },
 										{ text: 'Step 2', onClick: handleClick2(1) },
 									],
@@ -75,7 +75,7 @@ function Example({ brand }) {
 								{
 									type: 'group',
 									text: 'Group 2',
-									Steps: [
+									steps: [
 										{ text: 'Step 3', onClick: handleClick2(2) },
 										{ text: 'Step 4', onClick: handleClick2(3) },
 									],
@@ -83,7 +83,7 @@ function Example({ brand }) {
 								{
 									type: 'group',
 									text: 'Group 3',
-									Steps: [
+									steps: [
 										{ text: 'Step 5', onClick: handleClick2(4) },
 										{ text: 'Step 6', onClick: handleClick2(5) },
 										{ text: 'Step 7', onClick: handleClick2(6) },
