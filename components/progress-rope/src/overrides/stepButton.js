@@ -2,19 +2,23 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const ItemButton = ({
-	groupItemsId,
-	index,
-	groupIndex,
-	end,
-	visited,
+export const StepButton = ({
 	grouped,
+	visited,
 	active,
 	furthest,
+	end,
+	current,
+	groupIndex,
+	instanceId,
+	groupListId,
+	index,
+	headingsTag,
+	assistiveText,
 	...rest
 }) => <button type="button" disabled={!visited} {...rest} />;
 
-export const itemButtonStyles = (_, { end, visited, grouped, active, furthest }) => {
+export const stepButtonStyles = (_, { grouped, visited, active, furthest, end }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
@@ -22,8 +26,7 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, furthest })
 		fontSize: '14px',
 		lineHeight: 1.428571429, //`<body>` line-height
 		textAlign: 'left',
-		// padding: `0.5rem 3.5rem 0.875rem ${grouped && !end ? '3rem' : '1.875rem'}`,
-		padding: '8px 30px 14px 56px',
+		padding: `8px 30px 14px ${grouped && !end ? '68px' : '56px'}`,
 		border: 0,
 		background: 'none',
 		display: 'block',
@@ -51,18 +54,17 @@ export const itemButtonStyles = (_, { end, visited, grouped, active, furthest })
 		// circle
 		':after': {
 			content: '""',
-			zIndex: 1,
+			zIndex: 2,
 			display: 'block',
 			borderRadius: '50%',
 			position: 'absolute',
 			top: grouped && !end ? '14px' : '10px',
-			width: grouped && !end ? '8px' : '14px',
-			height: grouped && !end ? '8px' : '14px',
-			// right: grouped && !end ? '2.125rem' : '1.875rem',
-			left: grouped && !end ? '33px' : '30px',
-			border: `${!furthest && visited ? (grouped && !end ? '4px' : '7px') : '2px'} solid ${
-				visited ? COLORS.primary : COLORS.border
-			}`, //a11y: filling with border for HCM support
+			width: grouped && !end ? '10px' : '14px',
+			height: grouped && !end ? '10px' : '14px',
+			left: grouped && !end ? '32px' : '30px',
+			border: `solid ${visited ? COLORS.primary : COLORS.border}`,
+			borderWidth:
+				visited && !furthest ? (grouped && !end ? '5px' : '7px') : visited ? '3px' : '2px', //a11y: filling with border for HCM support
 			backgroundColor: '#fff',
 			boxSizing: 'border-box',
 		},

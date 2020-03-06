@@ -13,9 +13,10 @@ import {
 import PropTypes from 'prop-types';
 
 import { ProgressRope as ProgressRopeWrapper, progressRopeStyles } from './overrides/progressRope';
+import { List, listStyles } from './overrides/list';
 import pkg from '../package.json';
 import { Group } from './Group';
-import { Item } from './Item';
+import { Step } from './Step';
 
 // ==============================
 // Context and Consumer Hook
@@ -44,7 +45,7 @@ const createRopeGraph = (data, children) => {
 		data.forEach(progress => {
 			if (progress.type && progress.type === 'group') {
 				grouped = true;
-				ropeGraph.push(Array(progress.items.length).fill('unvisited'));
+				ropeGraph.push(Array(progress.steps.length).fill('unvisited'));
 			} else {
 				ropeGraph.push(['unvisited']);
 			}
@@ -67,8 +68,10 @@ const createRopeGraph = (data, children) => {
 // Component
 // ==============================
 export const ProgressRope = ({
-	current,
 	instanceIdPrefix,
+	current,
+	headingsTag,
+	assistiveText,
 	data,
 	children,
 	overrides: componentOverrides,
@@ -85,6 +88,11 @@ export const ProgressRope = ({
 			component: ProgressRopeWrapper,
 			attributes: () => null,
 		},
+		List: {
+			styles: listStyles,
+			component: List,
+			attributes: () => null,
+		},
 	};
 
 	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
@@ -92,15 +100,17 @@ export const ProgressRope = ({
 	// create the prefix for internal IDs
 	useEffect(() => {
 		if (!instancePrefix) {
-			setInstancePrefix(`gel-progress-rope-${useInstanceId()}`);
+			setInstancePrefix('gel-progress-rope');
 		}
 	}, [instancePrefix]);
 
-	const getGroupItemsId = index => `${instancePrefix}-group-${index + 1}`;
+	const instanceId = `${instancePrefix}-${useInstanceId()}`;
 
 	const state = {
+		instanceId,
 		current,
-		instanceIdPrefix: instancePrefix,
+		headingsTag,
+		assistiveText,
 		data,
 		overrides: componentOverrides,
 		...rest,
@@ -140,16 +150,16 @@ export const ProgressRope = ({
 	const [progState, dispatch] = useReducer(progressReducer, initialState);
 
 	useEffect(() => {
-		let itemCount = 0;
+		let stepCount = 0;
 		const updatedGraph = progState.ropeGraph.map(group => [...group]); // deep copy
 
 		if (progState.grouped) {
 			progState.ropeGraph.forEach((group, i) => {
-				if (current >= itemCount) {
-					itemCount += group.length;
-					if (current < itemCount) {
+				if (current >= stepCount) {
+					stepCount += group.length;
+					if (current < stepCount) {
 						// current index is in here
-						const pos = group.length - (itemCount - current);
+						const pos = group.length - (stepCount - current);
 						updatedGraph[i][pos] = 'visited';
 						dispatch({ type: 'UPDATE_GRAPH', payload: updatedGraph });
 						dispatch({ type: 'UPDATE_STEP', payload: pos });
@@ -159,7 +169,7 @@ export const ProgressRope = ({
 				}
 			});
 
-			if (current >= itemCount) {
+			if (current >= stepCount) {
 				dispatch({ type: 'UPDATE_STEP', payload: current });
 			}
 		} else {
@@ -175,45 +185,63 @@ export const ProgressRope = ({
 
 	let allChildren = [];
 	if (data) {
-		data.forEach(({ type, text, onClick, items }, idx) => {
+		data.forEach(({ type, text, onClick, steps }, idx) => {
 			if (type && type === 'group') {
 				allChildren.push(
 					<Group
 						key={idx}
-						groupItemsId={getGroupItemsId(idx)}
 						index={idx}
 						text={text}
-						instanceIdPrefix={instancePrefix}
+						current={current}
+						instanceId={instanceId}
+						headingsTag={headingsTag}
+						assistiveText={assistiveText}
 						overrides={componentOverrides}
 					>
-						{items.map((item, index) => (
-							<Item key={index} onClick={item.onClick} overrides={componentOverrides}>
-								{item.text}
-							</Item>
+						{steps.map((step, stepIndex) => (
+							<Step
+								key={stepIndex}
+								index={stepIndex}
+								current={step.current}
+								end={type && type === 'end'}
+								onClick={step.onClick}
+								groupIndex={idx}
+								instanceId={step.instanceId}
+								headingsTag={step.headingsTag}
+								assistiveText={step.assistiveText}
+								overrides={componentOverrides}
+							>
+								{step.text}
+							</Step>
 						))}
 					</Group>
 				);
 			} else {
 				allChildren.push(
-					<Item
+					<Step
 						key={idx}
-						groupItemsId={getGroupItemsId(idx)}
 						index={idx}
 						onClick={onClick}
 						end={type && type === 'end'}
-						instanceIdPrefix={instancePrefix}
+						instanceId={instanceId}
+						current={current}
+						headingsTag={headingsTag}
+						assistiveText={assistiveText}
 						overrides={componentOverrides}
 					>
 						{text}
-					</Item>
+					</Step>
 				);
 			}
 		});
 	} else {
 		allChildren = Children.map(children, (child, idx) =>
 			cloneElement(child, {
-				groupItemsId: getGroupItemsId(idx),
 				index: idx,
+				instanceId,
+				current,
+				headingsTag,
+				assistiveText,
 			})
 		);
 	}
@@ -221,14 +249,26 @@ export const ProgressRope = ({
 	return (
 		<ProgressRopeContext.Provider value={{ ...progState, handleClick }}>
 			<overrides.ProgressRope.component
+				aria-label={assistiveText}
+				instanceId={instanceId}
 				current={current}
-				instanceIdPrefix={instancePrefix}
+				headingsTag={headingsTag}
+				assistiveText={assistiveText}
 				data={data}
 				{...rest}
 				{...overrides.ProgressRope.attributes(state)}
 				css={overrides.ProgressRope.styles(state)}
 			>
-				{allChildren}
+				<overrides.List.component
+					current={current}
+					headingsTag={headingsTag}
+					assistiveText={assistiveText}
+					data={data}
+					{...overrides.List.attributes(state)}
+					css={overrides.List.styles(state)}
+				>
+					{allChildren}
+				</overrides.List.component>
 			</overrides.ProgressRope.component>
 		</ProgressRopeContext.Provider>
 	);
@@ -239,9 +279,24 @@ export const ProgressRope = ({
 // ==============================
 ProgressRope.propTypes = {
 	/**
-	 * Current active item (zero-indexed)
+	 * Define an id prefix for the group step elements e.g. for a prefix of "progress-rope" --> "progress-rope-1-group-1" etc.
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
+	 * Current active step (zero-indexed)
 	 */
 	current: PropTypes.number.isRequired,
+
+	/**
+	 * The tag of the heading elements wrapping group toggles for semantic reasons
+	 */
+	headingsTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
+
+	/**
+	 * Text to use as the `aria-label` for the progress rope
+	 */
+	assistiveText: PropTypes.string.isRequired,
 
 	/**
 	 * The override API
@@ -262,17 +317,17 @@ ProgressRope.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		GroupItems: PropTypes.shape({
+		GroupList: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Item: PropTypes.shape({
+		Step: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ItemText: PropTypes.shape({
+		StepText: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -282,4 +337,6 @@ ProgressRope.propTypes = {
 
 ProgressRope.defaultProps = {
 	current: 0,
+	headingsTag: 'h3',
+	assistiveText: 'In this form',
 };

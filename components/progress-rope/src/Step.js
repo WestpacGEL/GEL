@@ -3,18 +3,21 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Item as ItemWrapper, itemStyles } from './overrides/item';
-import { ItemButton, itemButtonStyles } from './overrides/itemButton';
+import { Step as StepWrapper, stepStyles } from './overrides/step';
+import { StepButton, stepButtonStyles } from './overrides/stepButton';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
-export const Item = ({
-	groupItemsId,
+export const Step = ({
 	index,
-	groupIndex,
+	current,
 	end,
 	onClick,
-	instanceIdPrefix,
+	groupIndex,
+	groupListId,
+	instanceId,
+	headingsTag,
+	assistiveText,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -27,14 +30,14 @@ export const Item = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Item: {
-			styles: itemStyles,
-			component: ItemWrapper,
+		Step: {
+			styles: stepStyles,
+			component: StepWrapper,
 			attributes: () => null,
 		},
-		ItemButton: {
-			styles: itemButtonStyles,
-			component: ItemButton,
+		StepButton: {
+			styles: stepButtonStyles,
+			component: StepButton,
 			attributes: () => null,
 		},
 	};
@@ -73,15 +76,18 @@ export const Item = ({
 	}
 
 	const state = {
-		groupItemsId,
 		index,
-		groupIndex,
+		current,
 		end,
-		onClick,
-		visited,
 		grouped,
+		visited,
 		active,
 		furthest,
+		onClick,
+		groupListId,
+		instanceId,
+		headingsTag,
+		assistiveText,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -94,50 +100,58 @@ export const Item = ({
 	);
 
 	return (
-		<overrides.Item.component
-			groupItemsId={groupItemsId}
+		<overrides.Step.component
 			index={index}
-			groupIndex={groupIndex}
+			current={current}
 			end={end}
-			visited={visited}
 			grouped={grouped}
+			visited={visited}
 			active={active}
 			furthest={furthest}
+			groupIndex={groupIndex}
+			instanceId={instanceId}
+			groupListId={groupListId}
+			headingsTag={headingsTag}
+			assistiveText={assistiveText}
 			{...rest}
-			{...overrides.Item.attributes(state)}
-			css={overrides.Item.styles(state)}
+			{...overrides.Step.attributes(state)}
+			css={overrides.Step.styles(state)}
 		>
-			<overrides.ItemButton.component
-				groupItemsId={groupItemsId}
+			<overrides.StepButton.component
+				aria-current={active ? 'step' : undefined}
 				index={index}
-				groupIndex={groupIndex}
+				current={current}
 				end={end}
 				onClick={onClick}
-				aria-current={active ? 'step' : undefined}
-				visited={visited}
 				grouped={grouped}
+				visited={visited}
 				active={active}
 				furthest={furthest}
-				{...overrides.ItemButton.attributes(state)}
-				css={overrides.ItemButton.styles(state)}
+				groupIndex={groupIndex}
+				instanceId={instanceId}
+				groupListId={groupListId}
+				headingsTag={headingsTag}
+				assistiveText={assistiveText}
+				{...overrides.StepButton.attributes(state)}
+				css={overrides.StepButton.styles(state)}
 			>
 				{children}
-			</overrides.ItemButton.component>
-		</overrides.Item.component>
+			</overrides.StepButton.component>
+		</overrides.Step.component>
 	);
 };
 
 // ==============================
 // Types
 // ==============================
-Item.propTypes = {
+Step.propTypes = {
 	/**
-	 * The index of this item
+	 * The index of this step
 	 */
 	index: PropTypes.number,
 
 	/**
-	 * The index of this item
+	 * The index of this step
 	 */
 	groupIndex: PropTypes.number,
 
@@ -160,12 +174,12 @@ Item.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Item: PropTypes.shape({
+		Step: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ItemButton: PropTypes.shape({
+		StepButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -173,6 +187,6 @@ Item.propTypes = {
 	}),
 };
 
-Item.defaultProps = {
+Step.defaultProps = {
 	end: false,
 };

@@ -31,7 +31,7 @@ export const panelStyles = (_, { look, mode, last }) => {
 	return {
 		borderLeft: `1px solid ${COLORS.border}`,
 		borderRight: `1px solid ${COLORS.border}`,
-		borderBottom: (mode === 'tabs' || last) && `1px solid ${COLORS.border}`,
+		borderBottom: `1px solid ${COLORS.border}`,
 		borderTop: mode === 'tabs' && `1px solid ${COLORS.border}`,
 		padding: '1.5rem 3.22%',
 		...styles[look],

@@ -26,11 +26,13 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
+			<h2>Custom AssistiveText and HeadingsTag values</h2>
+
 			<Grid>
 				<Cell width={6}>
 					<Wrapper>
-						<h2>Composition</h2>
-						<ProgressRope current={state.index}>
+						<h3>Composition</h3>
+						<ProgressRope current={state.index} assistiveText="Form steps" headingsTag="h2">
 							<Group text={'Group 1'}>
 								<Step onClick={handleClick(0)}>Step 1</Step>
 								<Step onClick={handleClick(1)}>Step 2</Step>
@@ -58,7 +60,7 @@ function Example({ brand }) {
 				</Cell>
 				<Cell width={6}>
 					<Wrapper>
-						<h2>Data Driven</h2>
+						<h3>Data Driven</h3>
 						<ProgressRope
 							current={state2.index}
 							data={[

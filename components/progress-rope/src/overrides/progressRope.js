@@ -2,11 +2,16 @@
 
 import { jsx } from '@westpac/core';
 
-export const ProgressRope = ({ current, instanceIdPrefix, data, ...rest }) => <ol {...rest} />;
+export const ProgressRope = ({
+	instanceId,
+	current,
+	headingsTag,
+	assistiveText,
+	data,
+	...rest
+}) => <nav role="navigation" {...rest} />;
 
 export const progressRopeStyles = () => ({
-	position: 'relative',
-	listStyle: 'none',
-	paddingLeft: 0,
-	margin: 0,
+	// paddingTop: '3.75rem',
+	// paddingBottom: '3.75rem',
 });
