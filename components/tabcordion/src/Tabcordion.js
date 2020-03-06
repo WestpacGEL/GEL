@@ -63,11 +63,13 @@ export const Tabcordion = ({
 	// create the prefix for internal IDs
 	useEffect(() => {
 		if (!instancePrefix) {
-			setInstancePrefix(`gel-tabcordion-${useInstanceId()}`);
+			setInstancePrefix('gel-tabcordion');
 		}
 	}, [instancePrefix]);
 
-	const getId = (type, index) => `${instancePrefix}-${type}-${index + 1}`;
+	const instanceId = `${instancePrefix}-${useInstanceId()}`;
+
+	const getId = (type, index) => `${instanceId}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
 
 	const state = {
@@ -75,7 +77,7 @@ export const Tabcordion = ({
 		look,
 		justify,
 		initialTabIndex: activeTabIndex,
-		instanceIdPrefix: instancePrefix,
+		instanceId,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -96,7 +98,7 @@ export const Tabcordion = ({
 			look={look}
 			justify={justify}
 			initialTabIndex={activeTabIndex}
-			instanceIdPrefix={instancePrefix}
+			instanceId={instanceId}
 			{...overrides.TabRow.attributes(state)}
 			css={overrides.TabRow.styles(state)}
 		>
@@ -115,7 +117,7 @@ export const Tabcordion = ({
 						look={look}
 						justify={justify}
 						initialTabIndex={activeTabIndex}
-						instanceIdPrefix={instancePrefix}
+						instanceId={instanceId}
 						{...overrides.TabItem.attributes(state)}
 						css={overrides.TabItem.styles({ ...state, selected, last: idx + 1 === tabCount })}
 					>
@@ -133,7 +135,7 @@ export const Tabcordion = ({
 			look={look}
 			justify={justify}
 			initialTabIndex={activeTabIndex}
-			instanceIdPrefix={instancePrefix}
+			instanceId={instanceId}
 			{...rest}
 			{...overrides.Tabcordion.attributes(state)}
 			css={overrides.Tabcordion.styles(state)}
@@ -156,7 +158,7 @@ export const Tabcordion = ({
 						look={look}
 						justify={justify}
 						initialTabIndex={activeTabIndex}
-						instanceIdPrefix={instancePrefix}
+						instanceId={instanceId}
 					/>
 				);
 			})}
@@ -189,7 +191,7 @@ Tabcordion.propTypes = {
 	initialTabIndex: PropTypes.number,
 
 	/**
-	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
+	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-1-panel-1" etc.
 	 */
 	instanceIdPrefix: PropTypes.string,
 
