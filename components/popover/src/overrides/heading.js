@@ -10,6 +10,7 @@ export const PopoverHeading = ({
 	content,
 	dismissible,
 	position,
+	instanceId,
 	...rest
 }) => <Heading size={8} tag={headingTag} {...rest} />;
 

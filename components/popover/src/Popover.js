@@ -19,6 +19,7 @@ export const Popover = ({
 	headingTag,
 	content,
 	dismissible,
+	instanceIdPrefix,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -27,7 +28,7 @@ export const Popover = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
-	const [popoverId] = useState(`gel-popover-${useInstanceId()}`);
+
 	const [open, setOpen] = useState(open);
 	const [position, setPosition] = useState({ placement: 'top', empty: true });
 	const triggerRef = useRef();
@@ -66,6 +67,17 @@ export const Popover = ({
 		},
 	};
 
+	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
+
+	// create the prefix for internal ID
+	useEffect(() => {
+		if (!instancePrefix) {
+			setInstancePrefix('gel-popover');
+		}
+	}, [instancePrefix]);
+
+	const instanceId = `${instancePrefix}-${useInstanceId()}`;
+
 	const state = {
 		open,
 		heading,
@@ -73,6 +85,7 @@ export const Popover = ({
 		content,
 		dismissible,
 		position,
+		instanceId,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -134,11 +147,12 @@ export const Popover = ({
 			content={content}
 			dismissible={dismissible}
 			position={position}
+			instanceId={instanceId}
 			{...overrides.Popover.attributes(state)}
 			css={overrides.Popover.styles(state)}
 		>
 			<overrides.Trigger.component
-				aria-controls={popoverId}
+				aria-controls={instanceId}
 				aria-expanded={open}
 				onClick={handleOpen}
 				open={open}
@@ -147,6 +161,7 @@ export const Popover = ({
 				content={content}
 				dismissible={dismissible}
 				position={position}
+				instanceId={instanceId}
 				{...rest}
 				{...overrides.Popover.attributes(state)}
 				css={overrides.Popover.styles(state)}
@@ -154,7 +169,7 @@ export const Popover = ({
 				{children}
 			</overrides.Trigger.component>
 			<overrides.Panel.component
-				id={popoverId}
+				id={instanceId}
 				ref={popoverRef}
 				open={open}
 				heading={heading}
@@ -162,6 +177,7 @@ export const Popover = ({
 				content={content}
 				dismissible={dismissible}
 				position={position}
+				instanceId={instanceId}
 				{...overrides.Panel.attributes(state)}
 				css={overrides.Panel.styles(state)}
 			>
@@ -173,6 +189,7 @@ export const Popover = ({
 						content={content}
 						dismissible={dismissible}
 						position={position}
+						instanceId={instanceId}
 						{...overrides.Heading.attributes(state)}
 						css={overrides.Heading.styles(state)}
 					>
@@ -186,6 +203,7 @@ export const Popover = ({
 					content={content}
 					dismissible={dismissible}
 					position={position}
+					instanceId={instanceId}
 					{...overrides.Body.attributes(state)}
 					css={overrides.Body.styles(state)}
 				>
@@ -200,6 +218,7 @@ export const Popover = ({
 					content={content}
 					dismissible={dismissible}
 					position={position}
+					instanceId={instanceId}
 					{...overrides.CloseBtn.attributes(state)}
 					css={overrides.CloseBtn.styles(state)}
 				/>
