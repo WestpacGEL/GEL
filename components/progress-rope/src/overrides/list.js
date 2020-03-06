@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const List = ({ current, instanceIdPrefix, headingsTag, assistiveText, data, ...rest }) => (
+export const List = ({ current, instanceId, headingsTag, assistiveText, data, ...rest }) => (
 	<ol {...rest} />
 );
 

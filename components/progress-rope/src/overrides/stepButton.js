@@ -10,7 +10,7 @@ export const StepButton = ({
 	end,
 	current,
 	groupIndex,
-	instanceIdPrefix,
+	instanceId,
 	groupListId,
 	index,
 	headingsTag,
@@ -18,7 +18,7 @@ export const StepButton = ({
 	...rest
 }) => <button type="button" disabled={!visited} {...rest} />;
 
-export const stepButtonStyles = (_, { grouped, visited, active, furthest, end, current }) => {
+export const stepButtonStyles = (_, { grouped, visited, active, furthest, end }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
@@ -38,7 +38,6 @@ export const stepButtonStyles = (_, { grouped, visited, active, furthest, end, c
 		touchAction: 'manipulation',
 		userSelect: 'none',
 		boxSizing: 'border-box',
-		// textDecoration: visited && 'underline',
 
 		':disabled': {
 			color: COLORS.tints.muted90,

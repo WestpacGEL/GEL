@@ -15,7 +15,7 @@ export const Step = ({
 	onClick,
 	groupIndex,
 	groupListId,
-	instanceIdPrefix,
+	instanceId,
 	headingsTag,
 	assistiveText,
 	children,
@@ -85,7 +85,7 @@ export const Step = ({
 		furthest,
 		onClick,
 		groupListId,
-		instanceIdPrefix,
+		instanceId,
 		headingsTag,
 		assistiveText,
 		overrides: componentOverrides,
@@ -109,7 +109,7 @@ export const Step = ({
 			active={active}
 			furthest={furthest}
 			groupIndex={groupIndex}
-			instanceIdPrefix={instanceIdPrefix}
+			instanceId={instanceId}
 			groupListId={groupListId}
 			headingsTag={headingsTag}
 			assistiveText={assistiveText}
@@ -128,7 +128,7 @@ export const Step = ({
 				active={active}
 				furthest={furthest}
 				groupIndex={groupIndex}
-				instanceIdPrefix={instanceIdPrefix}
+				instanceId={instanceId}
 				groupListId={groupListId}
 				headingsTag={headingsTag}
 				assistiveText={assistiveText}

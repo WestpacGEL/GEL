@@ -10,7 +10,7 @@ export const GroupButton = ({
 	active,
 	complete,
 	hidden,
-	instanceIdPrefix,
+	instanceId,
 	headingsTag,
 	assistiveText,
 	...rest

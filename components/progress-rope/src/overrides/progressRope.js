@@ -3,8 +3,8 @@
 import { jsx } from '@westpac/core';
 
 export const ProgressRope = ({
+	instanceId,
 	current,
-	instanceIdPrefix,
 	headingsTag,
 	assistiveText,
 	data,

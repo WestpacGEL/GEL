@@ -10,7 +10,7 @@ export const GroupList = ({
 	active,
 	complete,
 	hidden,
-	instanceIdPrefix,
+	instanceId,
 	headingsTag,
 	assistiveText,
 	...rest

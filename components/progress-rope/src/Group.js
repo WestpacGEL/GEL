@@ -17,7 +17,7 @@ export const Group = ({
 	index,
 	text,
 	current,
-	instanceIdPrefix,
+	instanceId,
 	headingsTag,
 	assistiveText,
 	children,
@@ -74,7 +74,7 @@ export const Group = ({
 		},
 	};
 
-	const getGroupListId = index => `${instanceIdPrefix}-group-${index + 1}`;
+	const getGroupListId = index => `${instanceId}-group-${index + 1}`;
 
 	const state = {
 		index,
@@ -84,7 +84,7 @@ export const Group = ({
 		complete,
 		active,
 		hidden,
-		instanceIdPrefix,
+		instanceId,
 		headingsTag,
 		assistiveText,
 		overrides: componentOverrides,
@@ -120,7 +120,7 @@ export const Group = ({
 	return (
 		<overrides.Group.component
 			index={index}
-			instanceIdPrefix={instanceIdPrefix}
+			instanceId={instanceId}
 			groupListId={getGroupListId(index)}
 			text={text}
 			current={current}
@@ -141,7 +141,7 @@ export const Group = ({
 				active={active}
 				complete={complete}
 				hidden={hidden}
-				instanceIdPrefix={instanceIdPrefix}
+				instanceId={instanceId}
 				headingsTag={headingsTag}
 				assistiveText={assistiveText}
 				{...overrides.GroupButtonWrapper.attributes(state)}
@@ -158,7 +158,7 @@ export const Group = ({
 					active={active}
 					complete={complete}
 					hidden={hidden}
-					instanceIdPrefix={instanceIdPrefix}
+					instanceId={instanceId}
 					headingsTag={headingsTag}
 					assistiveText={assistiveText}
 					{...overrides.GroupButton.attributes(state)}
@@ -178,7 +178,7 @@ export const Group = ({
 						active={active}
 						complete={complete}
 						hidden={hidden}
-						instanceIdPrefix={instanceIdPrefix}
+						instanceId={instanceId}
 						headingsTag={headingsTag}
 						assistiveText={assistiveText}
 						{...overrides.GroupList.attributes(state)}
@@ -192,7 +192,7 @@ export const Group = ({
 								complete,
 								hidden,
 								groupIndex: index,
-								instanceIdPrefix,
+								instanceId,
 								groupListId: getGroupListId(index),
 								headingsTag,
 								assistiveText,

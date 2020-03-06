@@ -68,8 +68,8 @@ const createRopeGraph = (data, children) => {
 // Component
 // ==============================
 export const ProgressRope = ({
-	current,
 	instanceIdPrefix,
+	current,
 	headingsTag,
 	assistiveText,
 	data,
@@ -100,13 +100,15 @@ export const ProgressRope = ({
 	// create the prefix for internal IDs
 	useEffect(() => {
 		if (!instancePrefix) {
-			setInstancePrefix(`gel-progress-rope-${useInstanceId()}`);
+			setInstancePrefix('gel-progress-rope');
 		}
 	}, [instancePrefix]);
 
+	const instanceId = `${instancePrefix}-${useInstanceId()}`;
+
 	const state = {
+		instanceId,
 		current,
-		instanceIdPrefix: instancePrefix,
 		headingsTag,
 		assistiveText,
 		data,
@@ -191,7 +193,7 @@ export const ProgressRope = ({
 						index={idx}
 						text={text}
 						current={current}
-						instanceIdPrefix={instancePrefix}
+						instanceId={instanceId}
 						headingsTag={headingsTag}
 						assistiveText={assistiveText}
 						overrides={componentOverrides}
@@ -204,7 +206,7 @@ export const ProgressRope = ({
 								end={type && type === 'end'}
 								onClick={step.onClick}
 								groupIndex={idx}
-								instanceIdPrefix={step.instancePrefix}
+								instanceId={step.instanceId}
 								headingsTag={step.headingsTag}
 								assistiveText={step.assistiveText}
 								overrides={componentOverrides}
@@ -221,8 +223,8 @@ export const ProgressRope = ({
 						index={idx}
 						onClick={onClick}
 						end={type && type === 'end'}
+						instanceId={instanceId}
 						current={current}
-						instanceIdPrefix={instancePrefix}
 						headingsTag={headingsTag}
 						assistiveText={assistiveText}
 						overrides={componentOverrides}
@@ -236,8 +238,8 @@ export const ProgressRope = ({
 		allChildren = Children.map(children, (child, idx) =>
 			cloneElement(child, {
 				index: idx,
+				instanceId,
 				current,
-				instanceIdPrefix: instancePrefix,
 				headingsTag,
 				assistiveText,
 			})
@@ -248,8 +250,8 @@ export const ProgressRope = ({
 		<ProgressRopeContext.Provider value={{ ...progState, handleClick }}>
 			<overrides.ProgressRope.component
 				aria-label={assistiveText}
+				instanceId={instanceId}
 				current={current}
-				instanceIdPrefix={instancePrefix}
 				headingsTag={headingsTag}
 				assistiveText={assistiveText}
 				data={data}
@@ -277,14 +279,14 @@ export const ProgressRope = ({
 // ==============================
 ProgressRope.propTypes = {
 	/**
+	 * Define an id prefix for the group step elements e.g. for a prefix of "progress-rope" --> "progress-rope-1-group-1" etc.
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
 	 * Current active step (zero-indexed)
 	 */
 	current: PropTypes.number.isRequired,
-
-	/**
-	 * Define an id prefix for the group step elements e.g. for a prefix of "progress" --> "progress-group-1" etc.
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * The tag of the heading elements wrapping group toggles for semantic reasons

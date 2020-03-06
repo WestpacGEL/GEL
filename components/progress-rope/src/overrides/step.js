@@ -14,7 +14,7 @@ export const Step = ({
 	hidden,
 	groupIndex,
 	groupListId,
-	instanceIdPrefix,
+	instanceId,
 	headingsTag,
 	assistiveText,
 	overrides,
