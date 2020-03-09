@@ -3,8 +3,8 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Button as ButtonWrapper, buttonStyles } from './overrides/button';
-import { Content } from './Content';
+import { defaultButton } from './overrides/button';
+import { ButtonContent as Content } from './Content';
 import pkg from '../package.json';
 import { forwardRef } from 'react';
 
@@ -47,11 +47,7 @@ export const Button = forwardRef(
 		}
 
 		const defaultOverrides = {
-			Button: {
-				styles: buttonStyles,
-				component: ButtonWrapper,
-				attributes: () => null,
-			},
+			ButtonRoot: defaultButton,
 		};
 
 		const state = {
@@ -72,56 +68,28 @@ export const Button = forwardRef(
 			...rest,
 		};
 
-		const overrides = overrideReconciler(
-			defaultOverrides,
-			tokenOverrides,
-			brandOverrides,
-			componentOverrides
-		);
+		const {
+			ButtonRoot: {
+				component: ButtonRoot,
+				styles: buttonRootStyles,
+				attributes: buttonRootAttributes,
+			},
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		return (
-			<overrides.Button.component
-				aria-label={assistiveText}
+			<ButtonRoot
 				ref={ref}
-				look={look}
-				size={size}
-				soft={soft}
-				block={block}
-				iconAfter={iconAfter}
-				iconBefore={iconBefore}
-				justify={justify}
 				disabled={tag === 'button' ? disabled : undefined}
-				assistiveText={assistiveText}
-				tag={tag}
 				type={tag === 'button' ? type || 'button' : undefined}
-				dropdown={dropdown}
 				onClick={onClick}
 				{...rest}
-				{...overrides.Button.attributes(state)}
-				css={overrides.Button.styles(state)}
+				state={state}
+				{...buttonRootAttributes(state)}
+				css={buttonRootStyles(state)}
 			>
 				{/* `<input>` elements cannot have children; they would use a `value` prop) */}
-				{tag !== 'input' ? (
-					<Content
-						look={look}
-						size={size}
-						soft={soft}
-						block={block}
-						iconAfter={iconAfter}
-						iconBefore={iconBefore}
-						justify={justify}
-						disabled={disabled}
-						assistiveText={assistiveText}
-						tag={tag}
-						type={type}
-						dropdown={dropdown}
-						onClick={onClick}
-						overrides={componentOverrides}
-					>
-						{children}
-					</Content>
-				) : null}
-			</overrides.Button.component>
+				{tag !== 'input' ? <Content state={state}>{children}</Content> : null}
+			</ButtonRoot>
 		);
 	}
 );

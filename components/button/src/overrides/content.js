@@ -3,6 +3,14 @@
 import { jsx } from '@westpac/core';
 import React, { Fragment } from 'react';
 
-export const Content = ({ children }) => <Fragment>{children}</Fragment>;
+const Content = ({ state, children }) => <Fragment>{children}</Fragment>;
 
-export const contentStyles = () => ({});
+const contentStyles = () => ({});
+
+const contentAttributes = () => null;
+
+export const defaultContent = {
+	component: Content,
+	styles: contentStyles,
+	attributes: contentAttributes,
+};

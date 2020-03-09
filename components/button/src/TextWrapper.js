@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Text, textStyles } from './overrides/text';
+import { defaultText } from './overrides/text';
 import pkg from '../package.json';
 
 // ==============================
@@ -17,11 +17,7 @@ export const TextWrapper = ({ block, children, overrides: componentOverrides, ..
 	} = useBrand();
 
 	const defaultOverrides = {
-		TextWrapper: {
-			styles: textStyles,
-			component: Text,
-			attributes: () => null,
-		},
+		TextWrapper: defaultText,
 	};
 
 	const state = {
@@ -39,8 +35,8 @@ export const TextWrapper = ({ block, children, overrides: componentOverrides, ..
 
 	return (
 		<overrides.TextWrapper.component
-			block={block}
 			{...rest}
+			state={state}
 			{...overrides.TextWrapper.attributes(state)}
 			css={overrides.TextWrapper.styles(state)}
 		>

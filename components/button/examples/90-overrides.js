@@ -17,7 +17,7 @@ const TextWrapper = ({ children, ...rest }) => (
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button'] = {
-		Button: {
+		ButtonRoot: {
 			styles: styles => ({
 				...styles,
 				outline: '1px dotted blue',
@@ -38,7 +38,7 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<Button
 				overrides={{
-					Button: {
+					ButtonRoot: {
 						styles: styles => ({
 							...styles,
 							outline: '2px dotted black',

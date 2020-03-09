@@ -3,24 +3,24 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { DropDownIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
-import React from 'react';
 
-import { Content as ContentWrapper, contentStyles } from './overrides/content';
+import { defaultContent } from './overrides/content';
 import { TextWrapper } from './TextWrapper';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-
-export const Content = ({
-	size,
-	block,
-	iconAfter: IconAfter,
-	iconBefore: IconBefore,
-	dropdown,
+export const ButtonContent = ({
+	state: {
+		size,
+		block,
+		iconAfter: IconAfter,
+		iconBefore: IconBefore,
+		dropdown,
+		overrides: componentOverrides,
+	},
 	children,
-	overrides: componentOverrides,
 	...rest
 }) => {
 	const {
@@ -29,11 +29,7 @@ export const Content = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Content: {
-			styles: contentStyles,
-			component: ContentWrapper,
-			attributes: () => null,
-		},
+		Content: defaultContent,
 	};
 
 	const state = {
@@ -42,17 +38,13 @@ export const Content = ({
 		iconAfter: IconAfter,
 		iconBefore: IconBefore,
 		dropdown,
-		children,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	// Map button size to icon size
 	const iconSizeMap = {
@@ -64,16 +56,7 @@ export const Content = ({
 
 	// Compose a button text + icon fragment, if these are provided
 	return (
-		<overrides.Content.component
-			size={size}
-			block={block}
-			iconAfter={IconAfter}
-			iconBefore={IconBefore}
-			dropdown={dropdown}
-			{...rest}
-			{...overrides.Content.attributes(state)}
-			css={overrides.Content.styles(state)}
-		>
+		<Content {...rest} state={state} {...contentAttributes(state)} css={contentStyles(state)}>
 			{IconBefore && (
 				<IconBefore
 					size={iconSizeMap[size]}
@@ -104,11 +87,11 @@ export const Content = ({
 					assistiveText={null}
 				/>
 			)}
-		</overrides.Content.component>
+		</Content>
 	);
 };
 
-Content.propTypes = {
+ButtonContent.propTypes = {
 	/**
 	 * Button size
 	 */
@@ -156,7 +139,7 @@ Content.propTypes = {
 	}),
 };
 
-Content.defaultProps = {
+ButtonContent.defaultProps = {
 	size: 'medium',
 	block: false,
 };
