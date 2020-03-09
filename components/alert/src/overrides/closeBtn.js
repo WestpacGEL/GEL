@@ -4,16 +4,7 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
-export const CloseBtn = ({
-	open,
-	look,
-	dismissible,
-	onClose,
-	icon,
-	heading,
-	headingTag,
-	...rest
-}) => (
+const CloseBtn = ({ onClose, state, ...rest }) => (
 	<Button
 		onClick={event => onClose(event)}
 		iconAfter={CloseIcon}
@@ -23,7 +14,7 @@ export const CloseBtn = ({
 	/>
 );
 
-export const closeBtnStyles = (_, {}) => {
+const closeBtnStyles = (_, {}) => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 
@@ -39,4 +30,12 @@ export const closeBtnStyles = (_, {}) => {
 			opacity: 0.8,
 		},
 	})[0];
+};
+
+const closeBtnAttributes = () => ({ 'aria-label': 'Close' });
+
+export const defaultCloseBtn = {
+	component: CloseBtn,
+	styles: closeBtnStyles,
+	attributes: closeBtnAttributes,
 };

@@ -4,16 +4,7 @@ import { jsx, useMediaQuery } from '@westpac/core';
 import { Body } from '@westpac/body';
 import React from 'react';
 
-export const AlertBody = ({
-	open,
-	look,
-	dismissible,
-	onClose,
-	icon,
-	heading,
-	headingTag,
-	...rest
-}) => <Body {...rest} />;
+export const AlertBody = ({ state, ...rest }) => <Body {...rest} />;
 
 export const bodyStyles = (_, { icon: Icon }) => {
 	const mq = useMediaQuery();
@@ -26,4 +17,12 @@ export const bodyStyles = (_, { icon: Icon }) => {
 			color: 'inherit',
 		},
 	})[0];
+};
+
+const bodyAttributes = () => null;
+
+export const defaultBody = {
+	component: AlertBody,
+	styles: bodyStyles,
+	attributes: bodyAttributes,
 };
