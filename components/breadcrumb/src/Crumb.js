@@ -2,102 +2,61 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import React from 'react';
 
-import { Crumb as CrumbWrapper, crumbStyles } from './overrides/crumb';
-import { Link, linkStyles } from './overrides/link';
-import { Icon, iconStyles } from './overrides/icon';
+import { useBreadcrumbContext } from './Breadcrumb';
+import { defaultCrumb } from './overrides/crumb';
+import { defaultLink } from './overrides/link';
+import { defaultIcon } from './overrides/icon';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Crumb = ({
-	current,
-	href,
-	text,
-	assistiveText,
-	onClick,
-	overrides: componentOverrides,
-	...rest
-}) => {
+export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 	const {
-		COLORS,
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useBreadcrumbContext();
+
 	const defaultOverrides = {
-		Crumb: {
-			styles: crumbStyles,
-			component: CrumbWrapper,
-			attributes: () => null,
-		},
-		Link: {
-			styles: linkStyles,
-			component: Link,
-			attributes: () => null,
-		},
-		Icon: {
-			styles: iconStyles,
-			component: Icon,
-			attributes: () => null,
-		},
+		CrumbRoot: defaultCrumb,
+		Link: defaultLink,
+		Icon: defaultIcon,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		current,
 		href,
 		text,
-		assistiveText,
+		assistiveText: context.assistiveText,
 		onClick,
-		overrides: componentOverrides,
+		overrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		CrumbRoot: { component: CrumbRoot, styles: crumbRootStyles, attributes: crumbRootAttributes },
+		Link: { component: Link, styles: linkStyles, attributes: linkAttributes },
+		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Crumb.component
-			aria-current={current ? 'page' : undefined}
-			current={current}
-			href={href}
-			text={text}
-			assistiveText={assistiveText}
-			{...rest}
-			{...overrides.Crumb.attributes(state)}
-			css={overrides.Crumb.styles(state)}
-		>
-			<overrides.Link.component
+		<CrumbRoot {...rest} {...crumbRootAttributes(state)} css={crumbRootStyles(state)}>
+			<Link
 				onClick={onClick}
-				current={current}
 				href={current ? null : href}
-				text={text}
-				assistiveText={assistiveText}
-				{...overrides.Link.attributes(state)}
-				css={overrides.Link.styles(state)}
+				state={state}
+				{...linkAttributes(state)}
+				css={linkStyles(state)}
 			>
 				{text}
-			</overrides.Link.component>
-			{!current && (
-				<overrides.Icon.component
-					aria-hidden="true"
-					size="small"
-					color={COLORS.primary}
-					current={current}
-					href={href}
-					text={text}
-					assistiveText={null} //remove icon's `aria-label`
-					{...overrides.Icon.attributes(state)}
-					css={overrides.Icon.styles(state)}
-				/>
-			)}
-		</overrides.Crumb.component>
+			</Link>
+			{!current && <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />}
+		</CrumbRoot>
 	);
 };
 

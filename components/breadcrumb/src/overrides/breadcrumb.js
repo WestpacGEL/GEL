@@ -1,8 +1,15 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-export const Breadcrumb = ({ assistiveText, data, ...props }) => <nav {...props} />;
+const Breadcrumb = ({ state, ...props }) => <nav {...props} />;
 
-export const breadcrumbStyles = () => ({});
+const breadcrumbStyles = () => ({});
+
+const breadcrumbAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
+
+export const defaultBreadcrumb = {
+	component: Breadcrumb,
+	styles: breadcrumbStyles,
+	attributes: breadcrumbAttributes,
+};
