@@ -5,7 +5,7 @@ import { Badge } from '@westpac/badge';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Wrapper = ({ look, children, ...rest }) => (
+const Wrapper = ({ state: { look }, children, ...rest }) => (
 	<span {...rest}>
 		{children}
 		<a
@@ -23,7 +23,7 @@ const Wrapper = ({ look, children, ...rest }) => (
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/badge'] = {
-		Badge: {
+		BadgeRoot: {
 			styles: (styles, { look }) => ({
 				...styles,
 				backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
@@ -54,7 +54,7 @@ function Example({ brand }) {
 			<Badge
 				value="Default overridden"
 				overrides={{
-					Badge: {
+					BadgeRoot: {
 						styles: styles => ({
 							...styles,
 							outline: '3px dotted green',

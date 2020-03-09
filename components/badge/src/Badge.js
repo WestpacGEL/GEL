@@ -3,13 +3,12 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Badge as BadgeWrapper, badgeStyles } from './overrides/badge';
+import { defaultBadge } from './overrides/badge';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-
 export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -17,11 +16,7 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 	} = useBrand();
 
 	const defaultOverrides = {
-		Badge: {
-			styles: badgeStyles,
-			component: BadgeWrapper,
-			attributes: () => null,
-		},
+		BadgeRoot: defaultBadge,
 	};
 
 	const state = {
@@ -31,23 +26,14 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		BadgeRoot: { component: BadgeRoot, styles: badgeRootStyles, attributes: badgeRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Badge.component
-			look={look}
-			value={value}
-			{...rest}
-			{...overrides.Badge.attributes(state)}
-			css={overrides.Badge.styles(state)}
-		>
+		<BadgeRoot {...rest} state={state} {...badgeRootAttributes(state)} css={badgeRootStyles(state)}>
 			{value}
-		</overrides.Badge.component>
+		</BadgeRoot>
 	);
 };
 
