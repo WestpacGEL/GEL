@@ -3,29 +3,20 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Body as BodyWrapper, bodyStyles } from './overrides/body';
+import { defaultBody } from './overrides/body';
 import pkg from '../package.json';
 
 // ==============================
 // Component
-//
-// Body component in charge of body text
 // ==============================
-
 export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
-		COLORS,
-		TYPE,
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		Body: {
-			styles: bodyStyles,
-			component: BodyWrapper,
-			attributes: () => null,
-		},
+		BodyRoot: defaultBody,
 	};
 
 	const state = {
@@ -35,22 +26,14 @@ export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) 
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		BodyRoot: { component: BodyRoot, styles: bodyRootStyles, attributes: bodyRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Body.component
-			tag={tag}
-			{...rest}
-			{...overrides.Body.attributes(state)}
-			css={overrides.Body.styles(state)}
-		>
+		<BodyRoot {...rest} state={state} {...bodyRootAttributes(state)} css={bodyRootStyles(state)}>
 			{children}
-		</overrides.Body.component>
+		</BodyRoot>
 	);
 };
 

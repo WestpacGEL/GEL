@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const Body = ({ tag: Tag, ...rest }) => <Tag {...rest} />;
+const Body = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
-export const bodyStyles = (_, props) => {
+const bodyStyles = (_, props) => {
 	const { COLORS, TYPE } = useBrand();
 
 	let key;
@@ -70,4 +69,12 @@ export const bodyStyles = (_, props) => {
 			  }
 			: {}),
 	};
+};
+
+const bodyAttributes = () => null;
+
+export const defaultBody = {
+	component: Body,
+	styles: bodyStyles,
+	attributes: bodyAttributes,
 };
