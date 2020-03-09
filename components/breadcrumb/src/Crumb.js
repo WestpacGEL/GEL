@@ -32,9 +32,9 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 		current,
 		href,
 		text,
-		assistiveText: context.assistiveText,
 		onClick,
 		overrides,
+		context: { ...context.state },
 		...rest,
 	};
 
@@ -45,7 +45,7 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<CrumbRoot {...rest} {...crumbRootAttributes(state)} css={crumbRootStyles(state)}>
+		<CrumbRoot {...rest} state={state} {...crumbRootAttributes(state)} css={crumbRootStyles(state)}>
 			<Link
 				onClick={onClick}
 				href={current ? null : href}
