@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { SkipLinkWrapper, skipLinkStyles } from './overrides/skipLink';
+import { defaultSkipLink } from './overrides/skipLink';
 import pkg from '../package.json';
 
 // ==============================
@@ -17,11 +17,7 @@ export const SkipLink = ({ href, children, overrides: componentOverrides, ...res
 	} = useBrand();
 
 	const defaultOverrides = {
-		SkipLink: {
-			styles: skipLinkStyles,
-			component: SkipLinkWrapper,
-			attributes: () => null,
-		},
+		SkipLinkRoot: defaultSkipLink,
 	};
 
 	const state = {
@@ -30,20 +26,21 @@ export const SkipLink = ({ href, children, overrides: componentOverrides, ...res
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		SkipLinkRoot: {
+			component: SkipLinkRoot,
+			styles: skipLinkRootStyles,
+			attributes: skipLinkRootAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.SkipLink.component
+		<SkipLinkRoot
 			href={href}
 			children={children}
 			{...rest}
-			{...overrides.SkipLink.attributes(state)}
-			css={overrides.SkipLink.styles(state)}
+			{...skipLinkRootAttributes(state)}
+			css={skipLinkRootStyles(state)}
 		/>
 	);
 };

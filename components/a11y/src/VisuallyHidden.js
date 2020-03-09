@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { VisuallyHiddenWrapper, visuallyHiddenStyles } from './overrides/visuallyHidden';
+import { defaultVisuallyHidden } from './overrides/visuallyHidden';
 import pkg from '../package.json';
 
 // ==============================
@@ -22,11 +22,7 @@ export const VisuallyHidden = ({ tag, children, overrides: componentOverrides, .
 	} = useBrand();
 
 	const defaultOverrides = {
-		VisuallyHidden: {
-			styles: visuallyHiddenStyles,
-			component: VisuallyHiddenWrapper,
-			attributes: () => null,
-		},
+		VisuallyHiddenRoot: defaultVisuallyHidden,
 	};
 
 	const state = {
@@ -35,20 +31,21 @@ export const VisuallyHidden = ({ tag, children, overrides: componentOverrides, .
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		VisuallyHiddenRoot: {
+			component: VisuallyHiddenRoot,
+			styles: visuallyHiddenRootStyles,
+			attributes: visuallyHiddenRootAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.VisuallyHidden.component
+		<VisuallyHiddenRoot
 			tag={tag}
 			children={children}
 			{...rest}
-			{...overrides.VisuallyHidden.attributes(state)}
-			css={overrides.VisuallyHidden.styles}
+			{...visuallyHiddenRootAttributes(state)}
+			css={visuallyHiddenRootStyles(state)}
 		/>
 	);
 };
