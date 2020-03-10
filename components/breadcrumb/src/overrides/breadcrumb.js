@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-const Breadcrumb = ({ state, ...props }) => <nav {...props} />;
+const Breadcrumb = ({ state, ...rest }) => <nav {...rest} />;
 
 const breadcrumbStyles = () => ({});
 
