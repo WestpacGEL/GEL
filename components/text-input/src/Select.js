@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, overrideReconciler } from '@westpac/core';
-import { SelectComponent, selectStyles } from './overrides/select';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { defaultSelect } from './overrides/select';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';
 
@@ -24,25 +24,8 @@ export const Select = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const mq = useMediaQuery();
-
-	const childrenData = [];
-	if (data) {
-		data.map(({ label, ...rest }, index) => {
-			childrenData.push(
-				<option key={index} {...rest}>
-					{label}
-				</option>
-			);
-		});
-	}
-
 	const defaultOverrides = {
-		Select: {
-			styles: selectStyles,
-			component: SelectComponent,
-			attributes: () => null,
-		},
+		SelectRoot: defaultSelect,
 	};
 
 	const state = {
@@ -55,26 +38,36 @@ export const Select = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		SelectRoot: {
+			component: SelectRoot,
+			styles: selectRootStyles,
+			attributes: selectRootAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
+	let allChildren = [];
+	if (data) {
+		data.map(({ text, ...rest }, index) => {
+			allChildren.push(
+				<option key={index} {...rest}>
+					{text}
+				</option>
+			);
+		});
+	} else {
+		allChildren = children;
+	}
 
 	return (
-		<overrides.Select.component
-			size={size}
-			width={width}
-			inline={inline}
-			invalid={invalid}
-			data={data}
+		<SelectRoot
 			{...rest}
-			{...overrides.Select.attributes(state)}
-			css={overrides.Select.styles(state)}
+			state={state}
+			{...selectRootAttributes(state)}
+			css={selectRootStyles(state)}
 		>
-			{data ? childrenData : children}
-		</overrides.Select.component>
+			{allChildren}
+		</SelectRoot>
 	);
 };
 
@@ -110,7 +103,7 @@ Select.propTypes = {
 	 */
 	data: PropTypes.arrayOf(
 		PropTypes.shape({
-			label: PropTypes.string.isRequired,
+			text: PropTypes.string.isRequired,
 		})
 	),
 

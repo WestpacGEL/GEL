@@ -3,9 +3,9 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { round, sizeMap } from '../_utils';
 
-export const TextInput = ({ size, width, inline, invalid, ...rest }) => <input {...rest} />;
+const TextInput = ({ size, width, inline, invalid, ...rest }) => <input {...rest} />;
 
-export const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
+const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
@@ -66,4 +66,12 @@ export const textInputStyles = (_, { size, width, inline, invalid, ...rest }) =>
 		},
 		maxWidth: width && `calc(${extras} + ${round(width * 1.81)}ex)`,
 	})[0];
+};
+
+const textinputAttributes = () => {};
+
+export const defaultTextInput = {
+	component: TextInput,
+	styles: textInputStyles,
+	attributes: textinputAttributes,
 };

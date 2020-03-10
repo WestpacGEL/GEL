@@ -19,12 +19,13 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Default instance</h2>
+			<h2>Default</h2>
 			<TextInput />
+
+			<hr />
 
 			<h2>Controlled</h2>
 			<TextInput defaultValue={value} onChange={handleChange} />
-			<br />
 			<hr />
 
 			<h2>Size</h2>
@@ -35,13 +36,11 @@ function Example({ brand }) {
 			<TextInput size="large" placeholder="large" />
 			<br />
 			<TextInput size="xlarge" placeholder="xlarge" />
-			<br />
 
 			<hr />
 
 			<h2>Invalid</h2>
 			<TextInput invalid />
-			<br />
 
 			<hr />
 
@@ -49,13 +48,11 @@ function Example({ brand }) {
 			<TextInput disabled />
 			<br />
 			<TextInput disabled defaultValue="This input is disabled and contains a value" />
-			<br />
 
 			<hr />
 
 			<h2>Readonly</h2>
 			<TextInput readOnly defaultValue="This value is readonly" />
-			<br />
 
 			<hr />
 
@@ -63,7 +60,6 @@ function Example({ brand }) {
 			<Form action="#">
 				<TextInput inline /> <TextInput inline /> <Button type="submit">Submit</Button>
 			</Form>
-			<br />
 
 			<hr />
 

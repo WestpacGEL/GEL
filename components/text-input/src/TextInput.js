@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { TextInput as TextInputWrapper, textInputStyles } from './overrides/textInput';
+import { defaultTextInput } from './overrides/textInput';
 import PropTypes from 'prop-types';
 import pkg from '../package.json';
 
@@ -23,11 +23,7 @@ export const TextInput = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		TextInput: {
-			styles: textInputStyles,
-			component: TextInputWrapper,
-			attributes: () => null,
-		},
+		TextInputRoot: defaultTextInput,
 	};
 
 	const state = {
@@ -39,22 +35,20 @@ export const TextInput = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TextInputRoot: {
+			component: TextInputRoot,
+			styles: textInputRootStyles,
+			attributes: textInputRootAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.TextInput.component
-			size={size}
-			width={width}
-			inline={inline}
-			invalid={invalid}
+		<TextInputRoot
 			{...rest}
-			{...overrides.TextInput.attributes(state)}
-			css={overrides.TextInput.styles(state)}
+			state={state}
+			{...textInputRootAttributes(state)}
+			css={textInputRootStyles(state)}
 		/>
 	);
 };
