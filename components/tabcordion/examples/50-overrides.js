@@ -16,7 +16,7 @@ function Example({ brand }) {
 				color: selected ? 'white' : 'black',
 			}),
 		},
-		AccordionLabel: {
+		AccordionButton: {
 			styles: (styles, { last, selected }) => ({
 				...styles,
 				backgroundColor: 'white',
@@ -140,7 +140,7 @@ function Example({ brand }) {
 				<Tab
 					text="Rabbit hole"
 					overrides={{
-						AccordionLabel: {
+						AccordionButton: {
 							styles: (styles, { last, selected }) => ({
 								...styles,
 								backgroundColor: 'white',
@@ -174,7 +174,7 @@ function Example({ brand }) {
 				<Tab
 					text="Flamingo"
 					overrides={{
-						AccordionLabel: {
+						AccordionButton: {
 							styles: (styles, { last, selected }) => ({
 								...styles,
 								backgroundColor: 'white',
@@ -213,7 +213,7 @@ function Example({ brand }) {
 				<Tab
 					text="Caterpillar"
 					overrides={{
-						AccordionLabel: {
+						AccordionButton: {
 							styles: (styles, { last, selected }) => ({
 								...styles,
 								backgroundColor: 'white',

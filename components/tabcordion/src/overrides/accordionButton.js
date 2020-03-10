@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const AccordionLabel = ({ state, ...rest }) => <button type="button" {...rest} />;
+const AccordionButton = ({ state, ...rest }) => <button type="button" {...rest} />;
 
-const accordionLabelStyles = (_, { look, last, hidden }) => {
+const accordionButtonStyles = (_, { look, last, hidden }) => {
 	const { COLORS } = useBrand();
 	const styles = {
 		soft: {
@@ -49,14 +49,14 @@ const accordionLabelStyles = (_, { look, last, hidden }) => {
 	};
 };
 
-const accordionLabelAttributes = (_, { tabId, panelId, hidden }) => ({
+const accordionButtonAttributes = (_, { tabId, panelId, hidden }) => ({
 	id: tabId,
 	'aria-controls': panelId,
 	'aria-expanded': !hidden,
 });
 
-export const defaultAccordionLabel = {
-	component: AccordionLabel,
-	styles: accordionLabelStyles,
-	attributes: accordionLabelAttributes,
+export const defaultAccordionButton = {
+	component: AccordionButton,
+	styles: accordionButtonStyles,
+	attributes: accordionButtonAttributes,
 };

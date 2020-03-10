@@ -81,25 +81,24 @@ export const Tabcordion = ({
 
 	// conditional logic can't include hooks and since our style functions likely contain hooks we build the JSX before we do the condition
 	const TabsContent = (
-		<TabRow
-			// role="tablist"
-			ref={tablistRef}
-			state={state}
-			{...tabRowAttributes(state)}
-			css={tabRowStyles(state)}
-		>
+		<TabRow ref={tablistRef} state={state} {...tabRowAttributes(state)} css={tabRowStyles(state)}>
 			{Children.map(children, (child, idx) => {
 				const selected = activeTabIndex === idx;
+				const last = idx + 1 === tabCount;
+
 				return (
 					<TabButton
-						id={getId('tab', idx)}
 						key={child.props.text}
 						onClick={setActive(idx)}
-						aria-controls={getId('panel', idx)}
-						// aria-expanded={selected}
 						state={state}
-						{...tabButtonAttributes(state)}
-						css={tabButtonStyles({ ...state, selected, last: idx + 1 === tabCount })}
+						{...tabButtonAttributes({
+							...state,
+							tabId: getId('tab', idx),
+							panelId: getId('panel', idx),
+							selected,
+							last,
+						})}
+						css={tabButtonStyles({ ...state, selected, last })}
 					>
 						{child.props.text}
 					</TabButton>
@@ -199,7 +198,7 @@ Tabcordion.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		AccordionLabel: PropTypes.shape({
+		AccordionButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

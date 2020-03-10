@@ -5,7 +5,7 @@ import { Fragment, useState, forwardRef, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import PropTypes from 'prop-types';
 
-import { defaultAccordionLabel } from './overrides/accordionLabel';
+import { defaultAccordionButton } from './overrides/accordionButton';
 import { defaultAccordionIcon } from './overrides/accordionIcon';
 import { defaultPanel } from './overrides/panel';
 import { useMeasure } from './_utils';
@@ -46,7 +46,7 @@ export const Tab = forwardRef(
 		});
 
 		const defaultOverrides = {
-			AccordionLabel: defaultAccordionLabel,
+			AccordionButton: defaultAccordionButton,
 			AccordionIcon: defaultAccordionIcon,
 			Panel: defaultPanel,
 		};
@@ -66,10 +66,10 @@ export const Tab = forwardRef(
 		};
 
 		const {
-			AccordionLabel: {
-				component: AccordionLabel,
-				styles: accordionLabelStyles,
-				attributes: accordionLabelAttributes,
+			AccordionButton: {
+				component: AccordionButton,
+				styles: accordionButtonStyles,
+				attributes: accordionButtonAttributes,
 			},
 			AccordionIcon: {
 				component: AccordionIcon,
@@ -92,11 +92,11 @@ export const Tab = forwardRef(
 		return (
 			<Fragment>
 				{mode === 'accordion' ? (
-					<AccordionLabel
+					<AccordionButton
 						onClick={handleAccordionClick}
 						state={state}
-						{...accordionLabelAttributes(state)}
-						css={accordionLabelStyles(state)}
+						{...accordionButtonAttributes(state)}
+						css={accordionButtonStyles(state)}
 					>
 						<span>{text}</span>
 						<AccordionIcon
@@ -104,7 +104,7 @@ export const Tab = forwardRef(
 							{...accordionIconAttributes(state)}
 							css={accordionIconStyles(state)}
 						/>
-					</AccordionLabel>
+					</AccordionButton>
 				) : null}
 
 				<animated.div style={animate}>
@@ -169,7 +169,7 @@ Tab.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		AccordionLabel: PropTypes.shape({
+		AccordionButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
