@@ -6,7 +6,7 @@ import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
 import { defaultTabcordion } from './overrides/tabcordion';
-import { defaultTabItem } from './overrides/tabItem';
+import { defaultTabButton } from './overrides/tabButton';
 import { defaultTabRow } from './overrides/tabRow';
 
 import pkg from '../package.json';
@@ -32,12 +32,12 @@ export const Tabcordion = ({
 
 	const defaultOverrides = {
 		TabcordionRoot: defaultTabcordion,
-		TabItem: defaultTabItem,
+		TabButton: defaultTabButton,
 		TabRow: defaultTabRow,
 	};
 
 	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
-	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 
 	const containerRef = useRef();
 	const panelRef = useRef();
@@ -51,12 +51,10 @@ export const Tabcordion = ({
 
 	// create the prefix for internal IDs
 	useEffect(() => {
-		if (!instancePrefix) {
-			setInstancePrefix('gel-tabcordion');
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-tabcordion-${useInstanceId()}`);
 		}
-	}, [instancePrefix]);
-
-	const instanceId = `${instancePrefix}-${useInstanceId()}`;
+	}, [instanceIdPrefix]);
 
 	const getId = (type, index) => `${instanceId}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
@@ -77,14 +75,14 @@ export const Tabcordion = ({
 			styles: tabcordionRootStyles,
 			attributes: tabcordionRootAttributes,
 		},
-		TabItem: { component: TabItem, styles: tabItemStyles, attributes: tabItemAttributes },
+		TabButton: { component: TabButton, styles: tabButtonStyles, attributes: tabButtonAttributes },
 		TabRow: { component: TabRow, styles: tabRowStyles, attributes: tabRowAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	// conditional logic can't include hooks and since our style functions likely contain hooks we build the JSX before we do the condition
 	const TabsContent = (
 		<TabRow
-			role="tablist"
+			// role="tablist"
 			ref={tablistRef}
 			state={state}
 			{...tabRowAttributes(state)}
@@ -93,18 +91,18 @@ export const Tabcordion = ({
 			{Children.map(children, (child, idx) => {
 				const selected = activeTabIndex === idx;
 				return (
-					<TabItem
+					<TabButton
 						id={getId('tab', idx)}
 						key={child.props.text}
 						onClick={setActive(idx)}
 						aria-controls={getId('panel', idx)}
-						aria-expanded={selected}
+						// aria-expanded={selected}
 						state={state}
-						{...tabItemAttributes(state)}
-						css={tabItemStyles({ ...state, selected, last: idx + 1 === tabCount })}
+						{...tabButtonAttributes(state)}
+						css={tabButtonStyles({ ...state, selected, last: idx + 1 === tabCount })}
 					>
 						{child.props.text}
-					</TabItem>
+					</TabButton>
 				);
 			})}
 		</TabRow>
@@ -113,8 +111,8 @@ export const Tabcordion = ({
 	return (
 		<TabcordionRoot
 			ref={containerRef}
-			state={state}
 			{...rest}
+			state={state}
 			{...tabcordionRootAttributes(state)}
 			css={tabcordionRootStyles(state)}
 		>
@@ -191,7 +189,7 @@ Tabcordion.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		TabItem: PropTypes.shape({
+		TabButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

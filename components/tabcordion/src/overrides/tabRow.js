@@ -11,4 +11,10 @@ const tabRowStyles = () => ({
 	position: 'relative',
 });
 
-export const defaultTabRow = { component: TabRow, styles: tabRowStyles, attributes: () => null };
+const tabRowAttributes = (_, {}) => ({ role: 'tablist' });
+
+export const defaultTabRow = {
+	component: TabRow,
+	styles: tabRowStyles,
+	attributes: tabRowAttributes,
+};

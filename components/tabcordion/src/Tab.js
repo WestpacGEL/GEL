@@ -93,18 +93,13 @@ export const Tab = forwardRef(
 			<Fragment>
 				{mode === 'accordion' ? (
 					<AccordionLabel
-						id={tabId}
 						onClick={handleAccordionClick}
-						aria-controls={panelId}
-						aria-expanded={!hidden}
 						state={state}
 						{...accordionLabelAttributes(state)}
 						css={accordionLabelStyles(state)}
 					>
 						<span>{text}</span>
 						<AccordionIcon
-							assistiveText={null}
-							aria-hidden="true"
 							state={state}
 							{...accordionIconAttributes(state)}
 							css={accordionIconStyles(state)}
@@ -114,18 +109,7 @@ export const Tab = forwardRef(
 
 				<animated.div style={animate}>
 					<div ref={bind.ref}>
-						<Panel
-							id={panelId}
-							ref={ref}
-							aria-hidden={mode === 'accordion' ? hidden : !selected}
-							hidden={mode === 'tabs' && !selected}
-							state={state}
-							{...panelAttributes({
-								...state,
-								hidden: mode === 'tabs' && !selected,
-							})}
-							css={panelStyles(state)}
-						>
+						<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
 							{children}
 						</Panel>
 					</div>

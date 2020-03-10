@@ -49,8 +49,14 @@ const accordionLabelStyles = (_, { look, last, hidden }) => {
 	};
 };
 
+const accordionLabelAttributes = (_, { tabId, panelId, hidden }) => ({
+	id: tabId,
+	'aria-controls': panelId,
+	'aria-expanded': !hidden,
+});
+
 export const defaultAccordionLabel = {
 	component: AccordionLabel,
 	styles: accordionLabelStyles,
-	attributes: () => null,
+	attributes: accordionLabelAttributes,
 };

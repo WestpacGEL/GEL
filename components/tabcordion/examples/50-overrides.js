@@ -8,7 +8,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/tabcordion'] = {
-		TabItem: {
+		TabButton: {
 			styles: (styles, { selected }) => ({
 				...styles,
 				border: `1px solid black`,
@@ -264,7 +264,7 @@ function Example({ brand }) {
 				mode="tabs"
 				instanceIdPrefix="always-tabs"
 				overrides={{
-					TabItem: {
+					TabButton: {
 						styles: (styles, { selected }) => ({
 							...styles,
 							border: `1px solid darkred`,
