@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { TableData, tdStyles } from './overrides/td';
+import { defaultTd } from './overrides/td';
 import { useTableContext } from './Table';
 import pkg from '../package.json';
 
@@ -27,11 +27,7 @@ export const Td = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Td: {
-			styles: tdStyles,
-			component: TableData,
-			attributes: () => null,
-		},
+		TdRoot: defaultTd,
 	};
 
 	const state = {
@@ -42,24 +38,14 @@ export const Td = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TdRoot: { component: TdRoot, styles: tdRootStyles, attributes: tdRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Td.component
-			highlighted={highlighted}
-			highlightStart={highlightStart}
-			bordered={bordered}
-			{...rest}
-			{...overrides.Td.attributes(state)}
-			css={overrides.Td.styles(state)}
-		>
+		<TdRoot {...rest} state={state} {...tdRootAttributes(state)} css={tdRootStyles(state)}>
 			{children}
-		</overrides.Td.component>
+		</TdRoot>
 	);
 };
 

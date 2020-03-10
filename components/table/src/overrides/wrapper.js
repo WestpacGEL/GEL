@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Wrapper = ({ striped, bordered, ...rest }) => <div {...rest} />;
+const Wrapper = ({ state, ...rest }) => <div {...rest} />;
 
-export const wrapperStyles = (_, {}) => {
+const wrapperStyles = (_, {}) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -16,4 +16,12 @@ export const wrapperStyles = (_, {}) => {
 			border: `1px solid ${COLORS.border}`,
 		},
 	};
+};
+
+const wrapperAttributes = () => null;
+
+export const defaultWrapper = {
+	component: Wrapper,
+	styles: wrapperStyles,
+	attributes: wrapperAttributes,
 };

@@ -4,8 +4,8 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Table as TableWrapper, tableStyles } from './overrides/table';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { defaultWrapper } from './overrides/wrapper';
+import { defaultTable } from './overrides/table';
 import pkg from '../package.json';
 
 // ==============================
@@ -36,16 +36,8 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 	} = useBrand();
 
 	const defaultOverrides = {
-		Wrapper: {
-			styles: wrapperStyles,
-			component: Wrapper,
-			attributes: () => null,
-		},
-		Table: {
-			styles: tableStyles,
-			component: TableWrapper,
-			attributes: () => null,
-		},
+		TableRoot: defaultWrapper,
+		Table: defaultTable,
 	};
 
 	const state = {
@@ -55,12 +47,10 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TableRoot: { component: TableRoot, styles: tableRootStyles, attributes: tableRootAttributes },
+		Table: { component: Table, styles: tableStyles, attributes: tableAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
 		<TableContext.Provider
@@ -69,22 +59,11 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 				bordered,
 			}}
 		>
-			<overrides.Wrapper.component
-				striped={striped}
-				bordered={bordered}
-				{...overrides.Wrapper.attributes(state)}
-				css={overrides.Wrapper.styles(state)}
-			>
-				<overrides.Table.component
-					striped={striped}
-					bordered={bordered}
-					{...rest}
-					{...overrides.Table.attributes(state)}
-					css={overrides.Table.styles(state)}
-				>
+			<TableRoot state={state} {...tableRootAttributes(state)} css={tableRootStyles(state)}>
+				<Table {...rest} state={state} {...tableAttributes(state)} css={tableStyles(state)}>
 					{children}
-				</overrides.Table.component>
-			</overrides.Wrapper.component>
+				</Table>
+			</TableRoot>
 		</TableContext.Provider>
 	);
 };

@@ -4,7 +4,7 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
-import { TableRow, trStyles } from './overrides/tr';
+import { defaultTr } from './overrides/tr';
 import { useTableContext } from './Table';
 import pkg from '../package.json';
 
@@ -39,11 +39,7 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 	} = useBrand();
 
 	const defaultOverrides = {
-		Tr: {
-			styles: trStyles,
-			component: TableRow,
-			attributes: () => null,
-		},
+		TrRoot: defaultTr,
 	};
 
 	const state = {
@@ -53,12 +49,9 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TrRoot: { component: TrRoot, styles: trRootStyles, attributes: trRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	let highlightedChildren;
 
@@ -79,15 +72,9 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 	}
 
 	return (
-		<overrides.Tr.component
-			striped={striped}
-			highlighted={highlighted}
-			{...rest}
-			{...overrides.Tr.attributes(state)}
-			css={overrides.Tr.styles(state)}
-		>
+		<TrRoot {...rest} state={state} {...trRootAttributes(state)} css={trRootStyles(state)}>
 			{highlightedChildren || children}
-		</overrides.Tr.component>
+		</TrRoot>
 	);
 };
 

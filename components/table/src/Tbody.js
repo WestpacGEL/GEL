@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { TableBody, tbodyStyles } from './overrides/tbody';
+import { defaultTBody } from './overrides/tbody';
 import pkg from '../package.json';
 
 // ==============================
@@ -16,11 +16,7 @@ export const Tbody = ({ children, overrides: componentOverrides, ...rest }) => {
 	} = useBrand();
 
 	const defaultOverrides = {
-		Tbody: {
-			styles: tbodyStyles,
-			component: TableBody,
-			attributes: () => null,
-		},
+		TbodyRoot: defaultTBody,
 	};
 
 	const state = {
@@ -28,21 +24,14 @@ export const Tbody = ({ children, overrides: componentOverrides, ...rest }) => {
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TbodyRoot: { component: TbodyRoot, styles: tbodyRootStyles, attributes: tbodyRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Tbody.component
-			{...rest}
-			{...overrides.Tbody.attributes(state)}
-			css={overrides.Tbody.styles(state)}
-		>
+		<TbodyRoot {...rest} state={state} {...tbodyRootAttributes(state)} css={tbodyRootStyles(state)}>
 			{children}
-		</overrides.Tbody.component>
+		</TbodyRoot>
 	);
 };
 

@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { TableFoot, tfootStyles } from './overrides/tfoot';
+import { defaultTfoot } from './overrides/tfoot';
 import { useTableContext } from './Table';
 import pkg from '../package.json';
 
@@ -20,11 +20,7 @@ export const Tfoot = ({ bordered, children, overrides: componentOverrides, ...re
 	} = useBrand();
 
 	const defaultOverrides = {
-		Tfoot: {
-			styles: tfootStyles,
-			component: TableFoot,
-			attributes: () => null,
-		},
+		TfootRoot: defaultTfoot,
 	};
 
 	const state = {
@@ -33,21 +29,13 @@ export const Tfoot = ({ bordered, children, overrides: componentOverrides, ...re
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TfootRoot: { component: TfootRoot, styles: tfootRootStyles, attributes: tfootRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 	return (
-		<overrides.Tfoot.component
-			bordered={bordered}
-			{...rest}
-			{...overrides.Tfoot.attributes(state)}
-			css={overrides.Tfoot.styles(state)}
-		>
+		<TfootRoot {...rest} state={state} {...tfootRootAttributes(state)} css={tfootRootStyles(state)}>
 			{children}
-		</overrides.Tfoot.component>
+		</TfootRoot>
 	);
 };
 

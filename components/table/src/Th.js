@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { TableHeader, thStyles } from './overrides/th';
+import { defaultTh } from './overrides/th';
 import { useTableContext } from './Table';
 import pkg from '../package.json';
 
@@ -20,11 +20,7 @@ export const Th = ({ bordered, children, overrides: componentOverrides, ...rest 
 	} = useBrand();
 
 	const defaultOverrides = {
-		Th: {
-			styles: thStyles,
-			component: TableHeader,
-			attributes: () => null,
-		},
+		ThRoot: defaultTh,
 	};
 
 	const state = {
@@ -33,21 +29,13 @@ export const Th = ({ bordered, children, overrides: componentOverrides, ...rest 
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ThRoot: { component: ThRoot, styles: thRootStyles, attributes: thRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 	return (
-		<overrides.Th.component
-			bordered={bordered}
-			{...rest}
-			{...overrides.Th.attributes(state)}
-			css={overrides.Th.styles(state)}
-		>
+		<ThRoot {...rest} state={state} {...thRootAttributes(state)} css={thRootStyles(state)}>
 			{children}
-		</overrides.Th.component>
+		</ThRoot>
 	);
 };
 
