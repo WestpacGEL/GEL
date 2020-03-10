@@ -9,7 +9,6 @@ const groupButtonStyles = (_, { complete, active }) => {
 
 	return {
 		position: 'relative',
-		// padding: '0.375rem 3.5rem 1.625rem 1.875rem',
 		padding: '6px 30px 26px 56px',
 		fontSize: '1rem',
 		lineHeight: '1.428571429', //`<body>` line-height
@@ -21,7 +20,6 @@ const groupButtonStyles = (_, { complete, active }) => {
 		touchAction: 'manipulation',
 		cursor: 'pointer',
 		color: active ? COLORS.neutral : COLORS.tints.muted70,
-		// ...TYPE.bodyFont[700],
 
 		':focus': {
 			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
@@ -33,10 +31,9 @@ const groupButtonStyles = (_, { complete, active }) => {
 			display: 'block',
 			position: 'absolute',
 			zIndex: 1,
-			borderLeft: `2px ${active ? `solid ${COLORS.primary}` : `dashed ${COLORS.border}`}`,
+			borderLeft: active && `4px solid ${COLORS.primary}`,
 			top: 0,
-			// right: '2.25rem',
-			left: '36px',
+			left: active ? '35px' : '36px',
 			bottom: 0,
 			height: 'auto',
 			transform: 'translateY(0.875rem)',
@@ -52,19 +49,22 @@ const groupButtonStyles = (_, { complete, active }) => {
 			top: '10px',
 			width: '14px',
 			height: '14px',
-			// right: '1.875rem',
 			left: '30px',
-			border: `${complete ? '7px' : '2px'} ${
-				active ? `solid ${COLORS.primary}` : `solid ${COLORS.border}`
-			}`, //a11y: filling with border for HCM support
+			border: `solid ${active ? COLORS.primary : COLORS.border}`,
+			borderWidth: complete ? '7px' : active ? '3px' : '2px', //a11y: filling with border for HCM support
 			backgroundColor: '#fff',
 			boxSizing: 'border-box',
 		},
 	};
 };
 
+const groupButtonAttributes = (_, { hidden, groupListId }) => ({
+	'aria-expanded': !hidden,
+	'aria-controls': groupListId,
+});
+
 export const defaultGroupButton = {
 	component: GroupButton,
 	styles: groupButtonStyles,
-	attributes: () => null,
+	attributes: groupButtonAttributes,
 };

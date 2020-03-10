@@ -5,7 +5,7 @@ import { Panel, Header, Body, Footer } from '@westpac/panel';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-// Well tag as a component example
+// Heading tag as a component example
 const PanelHeadingTag = ({ children, ...rest }) => (
 	<h2 {...rest}>
 		<span>{children}</span>

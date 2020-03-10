@@ -9,8 +9,8 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia />
-			<h2>Default instance (no styling props)</h2>
-			<ButtonDropdown text="Default Dropdown">
+			<h2>Default</h2>
+			<ButtonDropdown text="Default Dropdown" instanceIdPrefix="jonny">
 				<p>Example dropdown content...</p>
 			</ButtonDropdown>{' '}
 			<h2>Standard</h2>

@@ -11,6 +11,7 @@ export const CloseBtn = ({
 	content,
 	dismissible,
 	position,
+	instanceId,
 	...rest
 }) => <Button iconAfter={CloseIcon} look="link" size="medium" {...rest} />;
 

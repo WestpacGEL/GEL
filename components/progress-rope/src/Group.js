@@ -1,72 +1,85 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, config } from 'react-spring';
 import { Children, cloneElement, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-// import { Group as GroupWrapper, groupStyles } from './overrides/group';
-// import { GroupItems, groupItemsStyles } from './overrides/groupItems';
-// import { GroupButton, groupButtonStyles } from './overrides/groupButton';
-
 import { defaultGroupRoot } from './overrides/group';
+import { defaultGroupButtonWrapper } from './overrides/groupButtonWrapper';
 import { defaultGroupButton } from './overrides/groupButton';
-import { defaultGroupItems } from './overrides/groupItems';
+import { defaultGroupList } from './overrides/groupList';
+
 import { useProgressRopeContext } from './ProgressRope';
 import { useMeasure } from './_utils';
 import pkg from '../package.json';
 
-export const Group = ({ index, text, children, overrides: componentOverrides, ...rest }) => {
-	const { openGroup, ropeGraph, handleClick, instancePrefix } = useProgressRopeContext();
-	const active = ropeGraph[index].includes('visited');
-	const complete = ropeGraph[index + 1][0] === 'visited';
-	const groupItemsId = `${instancePrefix}-group-${index + 1}`;
+export const Group = ({ index, text, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
+	const context = useProgressRopeContext();
+	const { openGroup, ropeGraph, handleClick, instancePrefix } = context;
+
+	const groupListId = `${instancePrefix}-group-${index + 1}`;
+
+	const active = ropeGraph[index].includes('visited');
+	const complete = ropeGraph[index + 1][0] === 'visited';
 
 	const [hidden, setHidden] = useState(true);
 	const [bind, { height }] = useMeasure();
 	const [initial, setInitial] = useState(true);
 
 	const animate = useSpring({
-		to: {
-			height: hidden ? 0 : height,
-			overflow: hidden ? 'hidden' : 'visible',
-			opacity: hidden ? 0 : 1,
+		config: { duration: 300 },
+		to: async (next, cancel) => {
+			await next({
+				overflow: 'hidden',
+				height: hidden ? 0 : height,
+			});
+			await next({
+				overflow: hidden ? 'hidden' : 'visible',
+			});
 		},
 		immediate: initial,
 	});
 
 	const defaultOverrides = {
 		GroupRoot: defaultGroupRoot,
+		GroupButtonWrapper: defaultGroupButtonWrapper,
 		GroupButton: defaultGroupButton,
-		GroupItems: defaultGroupItems,
+		GroupList: defaultGroupList,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
-		groupItemsId,
 		index,
 		text,
-		complete,
+		groupListId,
 		active,
-		overrides: componentOverrides,
+		complete,
+		hidden,
+		context: { ...context.state },
+		overrides,
 		...rest,
 	};
 
 	const {
 		GroupRoot: { component: GroupRoot, styles: groupRootStyles, attributes: groupRootAttributes },
+		GroupButtonWrapper: {
+			component: GroupButtonWrapper,
+			styles: groupButtonWrapperStyles,
+			attributes: groupButtonWrapperAttributes,
+		},
 		GroupButton: {
 			component: GroupButton,
 			styles: groupButtonStyles,
 			attributes: groupButtonAttributes,
 		},
-		GroupItems: {
-			component: GroupItems,
-			styles: groupItemsStyles,
-			attributes: groupItemsAttributes,
-		},
+		GroupList: { component: GroupList, styles: groupListStyles, attributes: groupListAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	useEffect(() => {
@@ -89,11 +102,9 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 	};
 
 	return (
-		<GroupRoot state={state} {...rest} {...groupRootAttributes(state)} css={groupRootStyles(state)}>
+		<GroupRoot {...rest} state={state} {...groupRootAttributes(state)} css={groupRootStyles(state)}>
 			<GroupButton
 				onClick={handleGroupClick}
-				aria-expanded={!hidden}
-				aria-controls={groupItemsId}
 				state={state}
 				{...groupButtonAttributes(state)}
 				css={groupButtonStyles(state)}
@@ -102,17 +113,11 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 			</GroupButton>
 			<animated.div style={animate}>
 				<div ref={bind.ref}>
-					<GroupItems
-						aria-hidden={hidden}
-						id={groupItemsId}
-						state={state}
-						{...groupItemsAttributes(state)}
-						css={groupItemsStyles(state)}
-					>
-						{Children.map(children, (child, i) =>
-							cloneElement(child, { index: i, groupIndex: index })
+					<GroupList state={state} {...groupListAttributes(state)} css={groupListStyles(state)}>
+						{Children.map(children, (child, idx) =>
+							cloneElement(child, { index: idx, groupIndex: index })
 						)}
-					</GroupItems>
+					</GroupList>
 				</div>
 			</animated.div>
 		</GroupRoot>
@@ -124,7 +129,7 @@ export const Group = ({ index, text, children, overrides: componentOverrides, ..
 // ==============================
 Group.propTypes = {
 	/**
-	 * The index of this item
+	 * The index of this step
 	 */
 	index: PropTypes.number,
 
@@ -147,7 +152,7 @@ Group.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		GroupItems: PropTypes.shape({
+		GroupList: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
