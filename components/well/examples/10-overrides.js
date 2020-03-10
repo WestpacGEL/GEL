@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/well'] = {
-		Well: {
+		WellRoot: {
 			styles: styles => ({
 				...styles,
 				outline: '1px solid red',
