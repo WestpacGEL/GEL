@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useBreadcrumbContext } from './Breadcrumb';
 import PropTypes from 'prop-types';
 
-import { useBreadcrumbContext } from './Breadcrumb';
 import { defaultCrumb } from './overrides/crumb';
 import { defaultLink } from './overrides/link';
 import { defaultIcon } from './overrides/icon';

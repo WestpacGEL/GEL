@@ -19,8 +19,8 @@ const Icon = ({ state: { look, icon }, ...rest }) => {
 
 	return (
 		<Tag
-			// size={['small', 'medium']}
-			// color="inherit"
+			size={['small', 'medium']}
+			color="inherit"
 			assistiveText={null}
 			aria-hidden="true"
 			{...rest}
@@ -40,8 +40,6 @@ const iconStyles = () => {
 
 const iconAttributes = () => ({
 	'aria-hidden': 'true',
-	size: ['small', 'medium'],
-	color: 'inherit',
 });
 
 export const defaultIcon = {

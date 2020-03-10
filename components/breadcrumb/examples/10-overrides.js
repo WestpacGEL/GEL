@@ -6,7 +6,7 @@ import { HouseIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Icon = ({ state, ...props }) => <HouseIcon {...props} />;
+const Icon = ({ state, ...props }) => <HouseIcon color="red" {...props} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
