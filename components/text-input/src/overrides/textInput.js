@@ -3,7 +3,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { round, sizeMap } from '../_utils';
 
-const TextInput = ({ size, width, inline, invalid, ...rest }) => <input {...rest} />;
+const TextInput = ({ state, ...rest }) => <input {...rest} />;
 
 const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
@@ -39,7 +39,7 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		)} + ${2 * borderWidth}px)`,
 		...TYPE.bodyFont[400],
 
-		'&::placeholder': {
+		'::placeholder': {
 			opacity: 1, // Override Firefox's unusual default opacity
 			color: COLORS.tints.text50,
 			...TYPE.bodyFont[300],
@@ -51,7 +51,7 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		},
 
 		// Disabled and read-only inputs
-		':disabled, &[readonly]': {
+		':disabled, &["readonly"]': {
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
 			backgroundColor: COLORS.background,
@@ -60,7 +60,7 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		},
 
 		// Disable number input spinners/steppers
-		'&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+		'::-webkit-outer-spin-button, ::-webkit-inner-spin-button': {
 			margin: 0,
 			appearance: 'none',
 		},

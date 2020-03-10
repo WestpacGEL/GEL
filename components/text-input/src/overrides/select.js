@@ -49,7 +49,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: `right ${sizeMap[size].padding[1]} center`,
 
-		'&::placeholder': {
+		'::placeholder': {
 			opacity: 1, // Override Firefox's unusual default opacity
 			color: COLORS.tints.text50,
 			...TYPE.bodyFont[300],
@@ -60,7 +60,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 			...focus,
 		},
 
-		// Disabled and read-only inputs
+		// Disabled input
 		':disabled': {
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
@@ -70,13 +70,13 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		},
 
 		// Disable number input spinners/steppers
-		'&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+		'::-webkit-outer-spin-button, ::-webkit-inner-spin-button': {
 			margin: 0,
 			appearance: 'none',
 		},
 
 		// Remove the caret on `<select>`s in IE10+.
-		'&::-ms-expand': {
+		'::-ms-expand': {
 			display: 'none',
 		},
 

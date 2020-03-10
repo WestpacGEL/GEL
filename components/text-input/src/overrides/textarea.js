@@ -51,7 +51,7 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		},
 
 		// Disabled and read-only inputs
-		':disabled, &[readonly]': {
+		':disabled, &["readonly"]': {
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
 			backgroundColor: COLORS.background,

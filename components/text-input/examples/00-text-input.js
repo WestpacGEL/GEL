@@ -47,12 +47,12 @@ function Example({ brand }) {
 			<h2>Disabled</h2>
 			<TextInput disabled />
 			<br />
-			<TextInput disabled defaultValue="This input is disabled and contains a value" />
+			<TextInput defaultValue="This input is disabled and contains a value" disabled />
 
 			<hr />
 
-			<h2>Readonly</h2>
-			<TextInput readOnly defaultValue="This value is readonly" />
+			<h2>Read-only</h2>
+			<TextInput defaultValue="This value is readonly" readOnly />
 
 			<hr />
 

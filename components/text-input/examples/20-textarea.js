@@ -47,15 +47,13 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Disabled</h2>
-			<Textarea
-				placeholder="disabled"
-				disabled
-				defaultValue="This textarea is disabled and contains a value"
-			/>
+			<Textarea disabled />
+			<br />
+			<Textarea defaultValue="This textarea is disabled and contains a value" disabled />
 
 			<hr />
-			<h2>Readonly</h2>
-			<Textarea placeholder="readonly" readOnly defaultValue="This value is readonly" />
+			<h2>Read-only</h2>
+			<Textarea defaultValue="This value is readonly" readOnly />
 
 			<hr />
 
