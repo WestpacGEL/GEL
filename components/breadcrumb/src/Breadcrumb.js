@@ -18,7 +18,7 @@ export const useBreadcrumbContext = () => {
 	const context = useContext(BreadcrumbContext);
 
 	if (!context) {
-		throw new Error('Breadcrumb sub-components should be wrapped in <Breadcrumb>.');
+		throw new Error('<Crumb/> components should be wrapped in <Breadcrumb>.');
 	}
 
 	return context;

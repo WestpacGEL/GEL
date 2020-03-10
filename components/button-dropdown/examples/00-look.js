@@ -10,7 +10,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 			<h2>Default</h2>
-			<ButtonDropdown text="Default Dropdown" instanceIdPrefix="jonny">
+			<ButtonDropdown text="Default Dropdown">
 				<p>Example dropdown content...</p>
 			</ButtonDropdown>{' '}
 			<h2>Standard</h2>

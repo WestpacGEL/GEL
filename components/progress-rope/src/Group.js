@@ -103,14 +103,20 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 
 	return (
 		<GroupRoot {...rest} state={state} {...groupRootAttributes(state)} css={groupRootStyles(state)}>
-			<GroupButton
-				onClick={handleGroupClick}
+			<GroupButtonWrapper
 				state={state}
-				{...groupButtonAttributes(state)}
-				css={groupButtonStyles(state)}
+				{...groupButtonWrapperAttributes(state)}
+				css={groupButtonWrapperStyles(state)}
 			>
-				{text}
-			</GroupButton>
+				<GroupButton
+					onClick={handleGroupClick}
+					state={state}
+					{...groupButtonAttributes(state)}
+					css={groupButtonStyles(state)}
+				>
+					{text}
+				</GroupButton>
+			</GroupButtonWrapper>
 			<animated.div style={animate}>
 				<div ref={bind.ref}>
 					<GroupList state={state} {...groupListAttributes(state)} css={groupListStyles(state)}>

@@ -3,16 +3,9 @@
 import { jsx } from '@westpac/core';
 
 const GroupButtonWrapper = ({
-	index,
-	groupListId,
-	text,
-	current,
-	complete,
-	active,
-	hidden,
-	instanceId,
-	headingsTag: Tag,
-	assistiveText,
+	state: {
+		context: { headingsTag: Tag },
+	},
 	...rest
 }) => <Tag {...rest} />;
 

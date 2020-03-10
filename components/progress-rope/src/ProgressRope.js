@@ -97,7 +97,7 @@ export const ProgressRope = ({
 	}, [instancePrefix]);
 
 	const state = {
-		instanceIdPrefix,
+		instancePrefix,
 		current,
 		headingsTag,
 		assistiveText,

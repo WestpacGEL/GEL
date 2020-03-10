@@ -6,11 +6,8 @@ import { useOutsideClick } from '@westpac/hooks';
 import { Button } from '@westpac/button';
 import PropTypes from 'prop-types';
 
-import {
-	ButtonDropdown as BtnDropdownWrapper,
-	buttonDropdownStyles,
-} from './overrides/buttonDropdown';
-import { Panel, panelStyles } from './overrides/panel';
+import { defaultButtonDropdown } from './overrides/buttonDropdown';
+import { defaultPanel } from './overrides/panel';
 import pkg from '../package.json';
 
 // ==============================
@@ -35,28 +32,18 @@ export const ButtonDropdown = ({
 	const buttonRef = useRef();
 
 	const defaultOverrides = {
-		ButtonDropdown: {
-			styles: buttonDropdownStyles,
-			component: BtnDropdownWrapper,
-			attributes: () => null,
-		},
-		Panel: {
-			styles: panelStyles,
-			component: Panel,
-			attributes: () => null,
-		},
+		ButtonDropdownRoot: defaultButtonDropdown,
+		Panel: defaultPanel,
 	};
 
-	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 
 	// create the prefix for internal IDs
 	useEffect(() => {
-		if (!instancePrefix) {
-			setInstancePrefix(`gel-button-dropdown`);
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-button-dropdown-${useInstanceId()}`);
 		}
-	}, [instancePrefix]);
-
-	const instanceId = `${instancePrefix}-${useInstanceId()}`;
+	}, [instanceIdPrefix]);
 
 	const state = {
 		instanceId,
@@ -68,12 +55,14 @@ export const ButtonDropdown = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ButtonDropdownRoot: {
+			component: ButtonDropdownRoot,
+			styles: buttonDropdownRootStyles,
+			attributes: buttonDropdownRootAttributes,
+		},
+		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const handleOpen = () => {
 		if (open) {
@@ -105,14 +94,10 @@ export const ButtonDropdown = ({
 	});
 
 	return (
-		<overrides.ButtonDropdown.component
-			instanceId={instanceId}
-			open={open}
-			text={text}
-			dropdownSize={dropdownSize}
-			block={block}
-			{...overrides.ButtonDropdown.attributes(state)}
-			css={overrides.ButtonDropdown.styles(state)}
+		<ButtonDropdownRoot
+			state={state}
+			{...buttonDropdownRootAttributes(state)}
+			css={buttonDropdownRootStyles(state)}
 		>
 			<Button
 				ref={buttonRef}
@@ -126,20 +111,16 @@ export const ButtonDropdown = ({
 			>
 				{text}
 			</Button>
-			<overrides.Panel.component
+			<Panel
 				ref={panelRef}
 				id={instanceId}
-				instanceId={instanceId}
-				open={open}
-				text={text}
-				dropdownSize={dropdownSize}
-				block={block}
-				{...overrides.Panel.attributes(state)}
-				css={overrides.Panel.styles(state)}
+				state={state}
+				{...panelAttributes(state)}
+				css={panelStyles(state)}
 			>
 				{children}
-			</overrides.Panel.component>
-		</overrides.ButtonDropdown.component>
+			</Panel>
+		</ButtonDropdownRoot>
 	);
 };
 

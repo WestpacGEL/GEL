@@ -4,7 +4,9 @@ import { jsx, useBrand } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
 
 const Icon = ({ state, ...rest }) => {
-	return <ArrowRightIcon {...rest} />;
+	const { COLORS } = useBrand();
+
+	return <ArrowRightIcon size="small" color={COLORS.primary} assistiveText={null} {...rest} />;
 };
 
 const iconStyles = () => ({
@@ -13,16 +15,9 @@ const iconStyles = () => ({
 	verticalAlign: 'middle',
 });
 
-const iconAttributes = () => {
-	const { COLORS } = useBrand();
-
-	return {
-		'aria-hidden': 'true',
-		assistiveText: null, //remove icon's `aria-label`
-		size: 'small',
-		color: COLORS.primary,
-	};
-};
+const iconAttributes = () => ({
+	'aria-hidden': 'true',
+});
 
 export const defaultIcon = {
 	component: Icon,

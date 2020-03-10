@@ -3,13 +3,9 @@
 import { jsx, useMediaQuery, asArray, useBrand } from '@westpac/core';
 import { forwardRef } from 'react';
 
-export const Panel = forwardRef(
-	({ instanceId, open, text, dropdownSize, block, headerText, headerTag, ...rest }, ref) => (
-		<div ref={ref} {...rest} />
-	)
-);
+const Panel = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
-export const panelStyles = (_, { open, dropdownSize }) => {
+const panelStyles = (_, { open, dropdownSize }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
 
@@ -43,4 +39,12 @@ export const panelStyles = (_, { open, dropdownSize }) => {
 		backgroundColor: '#fff',
 		zIndex: 100,
 	})[0];
+};
+
+const panelAttributes = () => null;
+
+export const defaultPanel = {
+	component: Panel,
+	styles: panelStyles,
+	attributes: panelAttributes,
 };
