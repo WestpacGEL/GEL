@@ -3,13 +3,12 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Cell as CellWrapper, cellStyles } from './overrides/cell';
+import { defaultCell } from './overrides/cell';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-
 export const Cell = ({
 	area,
 	height,
@@ -26,11 +25,7 @@ export const Cell = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Cell: {
-			styles: cellStyles,
-			component: CellWrapper,
-			attributes: () => null,
-		},
+		Cell: defaultCell,
 	};
 
 	const state = {
@@ -39,26 +34,20 @@ export const Cell = ({
 		left,
 		top,
 		width,
+		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Cell: { component: Cell, styles: cellStyles, attributes: cellAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Cell.component
-			area={area}
-			height={height}
-			left={left}
-			top={top}
-			width={width}
+		<Cell
 			{...rest}
-			{...overrides.Cell.attributes(state)}
-			css={overrides.Cell.styles(state)}
+			state={state}
+			{...cellAttributes(state)}
+			css={cellStyles(state)}
 			children={children}
 		/>
 	);

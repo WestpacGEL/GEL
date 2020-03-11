@@ -1,24 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useMediaQuery } from '@westpac/core';
-import React from 'react';
 
-export const Grid = ({
-	alignContent,
-	areas,
-	columnGap,
-	columns,
-	flow,
-	gap,
-	height,
-	justifyContent,
-	minRowHeight,
-	rowGap,
-	rows,
-	...rest
-}) => <div {...rest} />;
+const Grid = ({ state, ...rest }) => <div {...rest} />;
 
-export const gridStyles = (
+const gridStyles = (
 	_,
 	{
 		alignContent,
@@ -54,4 +40,12 @@ export const gridStyles = (
 		justifyContent: justifyContent,
 		rowGap,
 	})[0];
+};
+
+const gridAttributes = () => null;
+
+export const defaultGrid = {
+	component: Grid,
+	styles: gridStyles,
+	attributes: gridAttributes,
 };
