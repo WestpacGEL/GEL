@@ -33,8 +33,8 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 		href,
 		text,
 		onClick,
-		overrides,
 		context: { ...context.state },
+		overrides,
 		...rest,
 	};
 
@@ -46,13 +46,7 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 
 	return (
 		<CrumbRoot {...rest} state={state} {...crumbRootAttributes(state)} css={crumbRootStyles(state)}>
-			<Link
-				onClick={onClick}
-				href={current ? null : href}
-				state={state}
-				{...linkAttributes(state)}
-				css={linkStyles(state)}
-			>
+			<Link onClick={onClick} state={state} {...linkAttributes(state)} css={linkStyles(state)}>
 				{text}
 			</Link>
 			{!current && <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />}

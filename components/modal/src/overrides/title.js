@@ -1,19 +1,18 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
+import { Heading } from '@westpac/heading';
 import { forwardRef } from 'react';
 
 export const Title = forwardRef(({ heading, open, onClose, size, dismissible, ...rest }, ref) => (
-	<h1 ref={ref} {...rest} />
+	<Heading ref={ref} tag="h1" size={7} {...rest} />
 ));
 
 export const titleStyles = (_, {}) => {
 	const { COLORS } = useBrand();
 
 	return {
-		fontSize: '1.125rem',
-		fontWeight: 700,
 		color: COLORS.text,
-		margin: 0,
+		fontWeight: 700,
 	};
 };

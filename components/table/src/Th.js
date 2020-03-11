@@ -1,53 +1,44 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
-import { TableHeader, thStyles } from './overrides/th';
-import { useTableContext } from './Table';
+import { defaultTh } from './overrides/th';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Th = ({ bordered, children, overrides: componentOverrides, ...rest }) => {
-	const context = useTableContext();
-	bordered = (context && context.bordered) || bordered;
-
+export const Th = ({ bordered, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+	bordered = (context && context.bordered) || bordered;
+
 	const defaultOverrides = {
-		Th: {
-			styles: thStyles,
-			component: TableHeader,
-			attributes: () => null,
-		},
+		ThRoot: defaultTh,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		bordered,
-		overrides: componentOverrides,
+		context: { ...context.state },
+		overrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ThRoot: { component: ThRoot, styles: thRootStyles, attributes: thRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 	return (
-		<overrides.Th.component
-			bordered={bordered}
-			{...rest}
-			{...overrides.Th.attributes(state)}
-			css={overrides.Th.styles(state)}
-		>
+		<ThRoot {...rest} state={state} {...thRootAttributes(state)} css={thRootStyles(state)}>
 			{children}
-		</overrides.Th.component>
+		</ThRoot>
 	);
 };
 

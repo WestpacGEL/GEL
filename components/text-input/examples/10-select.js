@@ -19,14 +19,15 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Default instance</h2>
+			<h2>Default</h2>
 			<Select name="thing">
 				<option>Select</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
+
+			<hr />
 
 			<h2>Controlled</h2>
 			<Select name="thing" value={value} onChange={handleChange}>
@@ -35,19 +36,18 @@ function Example({ brand }) {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
+
 			<hr />
 
-			<h2>Default instance data driven</h2>
+			<h2>Data driven</h2>
 			<Select
 				data={[
-					{ label: 'Select', value: '' },
-					{ label: '1', value: '', onClick: () => console.log('Selected 1') },
-					{ label: '2', value: '', onClick: () => console.log('Selected 2') },
-					{ label: '3', value: '', onClick: () => console.log('Selected 3') },
+					{ text: 'Select', value: '' },
+					{ text: '1', value: '', onClick: () => console.log('Selected 1') },
+					{ text: '2', value: '', onClick: () => console.log('Selected 2') },
+					{ text: '3', value: '', onClick: () => console.log('Selected 3') },
 				]}
 			/>
-			<br />
 
 			<hr />
 
@@ -79,7 +79,6 @@ function Example({ brand }) {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
 
 			<hr />
 
@@ -90,7 +89,6 @@ function Example({ brand }) {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
 
 			<hr />
 
@@ -101,7 +99,6 @@ function Example({ brand }) {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
 
 			<hr />
 
@@ -121,7 +118,6 @@ function Example({ brand }) {
 				</Select>{' '}
 				<Button type="submit">Submit</Button>
 			</Form>
-			<br />
 
 			<hr />
 

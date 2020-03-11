@@ -41,10 +41,7 @@ const panelStyles = (_, { open, dropdownSize }) => {
 	})[0];
 };
 
-const panelAttributes = () => ({
-	tabIndex: '-1',
-	'aria-label': 'Use the ESC key to close',
-});
+const panelAttributes = () => null;
 
 export const defaultPanel = {
 	component: Panel,

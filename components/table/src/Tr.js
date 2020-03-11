@@ -2,10 +2,10 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
+import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
-import { TableRow, trStyles } from './overrides/tr';
-import { useTableContext } from './Table';
+import { defaultTr } from './overrides/tr';
 import pkg from '../package.json';
 
 // ==============================
@@ -29,36 +29,32 @@ const generateHighlightMap = (highlighted, tdCount) => {
 // Component
 // ==============================
 
-export const Tr = ({ striped, highlighted, children, overrides: componentOverrides, ...rest }) => {
-	const context = useTableContext();
-	striped = (context && context.striped) || striped;
-
+export const Tr = ({ striped, highlighted, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+	striped = (context && context.striped) || striped;
+
 	const defaultOverrides = {
-		Tr: {
-			styles: trStyles,
-			component: TableRow,
-			attributes: () => null,
-		},
+		TrRoot: defaultTr,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		striped,
 		highlighted,
-		overrides: componentOverrides,
+		context: { ...context.state },
+		overrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TrRoot: { component: TrRoot, styles: trRootStyles, attributes: trRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	let highlightedChildren;
 
@@ -79,15 +75,9 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 	}
 
 	return (
-		<overrides.Tr.component
-			striped={striped}
-			highlighted={highlighted}
-			{...rest}
-			{...overrides.Tr.attributes(state)}
-			css={overrides.Tr.styles(state)}
-		>
+		<TrRoot {...rest} state={state} {...trRootAttributes(state)} css={trRootStyles(state)}>
 			{highlightedChildren || children}
-		</overrides.Tr.component>
+		</TrRoot>
 	);
 };
 

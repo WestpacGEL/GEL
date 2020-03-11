@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const TableHeader = ({ bordered, ...rest }) => <th {...rest} />;
+const Th = ({ state, ...rest }) => <th {...rest} />;
 
-export const thStyles = (_, { bordered }) => {
+const thStyles = (_, { bordered }) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -15,4 +15,12 @@ export const thStyles = (_, { bordered }) => {
 		borderRight: !bordered && 0,
 		textAlign: 'left',
 	};
+};
+
+const thAttributes = () => null;
+
+export const defaultTh = {
+	component: Th,
+	styles: thStyles,
+	attributes: thAttributes,
 };

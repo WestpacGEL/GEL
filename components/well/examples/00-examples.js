@@ -46,7 +46,7 @@ function Example({ brand }) {
 			</Well>
 
 			<h3>
-				Tag as <code>&lt;aside&gt;</code> with child <code>&lt;span&gt;</code>, rendered as a
+				Tag as <code>&lt;aside&gt;</code> with child <code>&lt;span&gt;</code>, passed as a
 				component
 			</h3>
 			<Well tag={WellTag}>Look, I'm in a well.</Well>

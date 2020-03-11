@@ -80,7 +80,9 @@ export const Alert = ({
 	};
 
 	const HeadingJSX = () => (
-		<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)} />
+		<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
+			{heading}
+		</Heading>
 	);
 
 	const IconJSX = () => <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />;

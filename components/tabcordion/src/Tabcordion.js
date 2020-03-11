@@ -6,7 +6,7 @@ import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
 import { defaultTabcordion } from './overrides/tabcordion';
-import { defaultTabItem } from './overrides/tabItem';
+import { defaultTabButton } from './overrides/tabButton';
 import { defaultTabRow } from './overrides/tabRow';
 
 import pkg from '../package.json';
@@ -32,12 +32,12 @@ export const Tabcordion = ({
 
 	const defaultOverrides = {
 		TabcordionRoot: defaultTabcordion,
-		TabItem: defaultTabItem,
+		TabButton: defaultTabButton,
 		TabRow: defaultTabRow,
 	};
 
 	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
-	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 
 	const containerRef = useRef();
 	const panelRef = useRef();
@@ -51,12 +51,12 @@ export const Tabcordion = ({
 
 	// create the prefix for internal IDs
 	useEffect(() => {
-		if (!instancePrefix) {
-			setInstancePrefix(`gel-tabcordion-${useInstanceId()}`);
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-tabcordion-${useInstanceId()}`);
 		}
-	}, [instancePrefix]);
+	}, [instanceIdPrefix]);
 
-	const getId = (type, index) => `${instancePrefix}-${type}-${index + 1}`;
+	const getId = (type, index) => `${instanceId}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
 
 	const state = {
@@ -64,7 +64,7 @@ export const Tabcordion = ({
 		look,
 		justify,
 		initialTabIndex: activeTabIndex,
-		instanceIdPrefix: instancePrefix,
+		instanceId,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -75,34 +75,33 @@ export const Tabcordion = ({
 			styles: tabcordionRootStyles,
 			attributes: tabcordionRootAttributes,
 		},
-		TabItem: { component: TabItem, styles: tabItemStyles, attributes: tabItemAttributes },
+		TabButton: { component: TabButton, styles: tabButtonStyles, attributes: tabButtonAttributes },
 		TabRow: { component: TabRow, styles: tabRowStyles, attributes: tabRowAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	// conditional logic can't include hooks and since our style functions likely contain hooks we build the JSX before we do the condition
 	const TabsContent = (
-		<TabRow
-			role="tablist"
-			ref={tablistRef}
-			state={state}
-			{...tabRowAttributes(state)}
-			css={tabRowStyles(state)}
-		>
+		<TabRow ref={tablistRef} state={state} {...tabRowAttributes(state)} css={tabRowStyles(state)}>
 			{Children.map(children, (child, idx) => {
 				const selected = activeTabIndex === idx;
+				const last = idx + 1 === tabCount;
+
 				return (
-					<TabItem
-						id={getId('tab', idx)}
+					<TabButton
 						key={child.props.text}
 						onClick={setActive(idx)}
-						aria-controls={getId('panel', idx)}
-						aria-expanded={selected}
 						state={state}
-						{...tabItemAttributes(state)}
-						css={tabItemStyles({ ...state, selected, last: idx + 1 === tabCount })}
+						{...tabButtonAttributes({
+							...state,
+							tabId: getId('tab', idx),
+							panelId: getId('panel', idx),
+							selected,
+							last,
+						})}
+						css={tabButtonStyles({ ...state, selected, last })}
 					>
 						{child.props.text}
-					</TabItem>
+					</TabButton>
 				);
 			})}
 		</TabRow>
@@ -111,8 +110,8 @@ export const Tabcordion = ({
 	return (
 		<TabcordionRoot
 			ref={containerRef}
-			state={state}
 			{...rest}
+			state={state}
 			{...tabcordionRootAttributes(state)}
 			css={tabcordionRootStyles(state)}
 		>
@@ -123,18 +122,15 @@ export const Tabcordion = ({
 				return (
 					<Tab
 						{...child.props}
-						tabId={getId('tab', idx)}
 						key={child.props.text}
-						panelId={getId('panel', idx)}
 						ref={selected ? panelRef : null}
-						selected={selected}
-						last={idx + 1 === tabCount}
-						onClick={setActive(idx)}
-						mode={mode}
 						look={look}
-						// justify={justify}
-						// initialTabIndex={activeTabIndex}
-						// instanceIdPrefix={instancePrefix}
+						last={idx + 1 === tabCount}
+						selected={selected}
+						mode={mode}
+						panelId={getId('panel', idx)}
+						tabId={getId('tab', idx)}
+						onClick={setActive(idx)}
 					/>
 				);
 			})}
@@ -167,7 +163,7 @@ Tabcordion.propTypes = {
 	initialTabIndex: PropTypes.number,
 
 	/**
-	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
+	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-1-panel-1" etc.
 	 */
 	instanceIdPrefix: PropTypes.string,
 
@@ -189,7 +185,7 @@ Tabcordion.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		TabItem: PropTypes.shape({
+		TabButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -199,7 +195,7 @@ Tabcordion.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		AccordionLabel: PropTypes.shape({
+		AccordionButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

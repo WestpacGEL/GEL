@@ -2,17 +2,17 @@
 
 import { jsx } from '@westpac/core';
 
-const ProgressRope = ({ state, ...rest }) => <ol {...rest} />;
+const ProgressRope = ({ state, ...rest }) => <nav role="navigation" {...rest} />;
 
 const progressRopeStyles = () => ({
-	position: 'relative',
-	listStyle: 'none',
-	paddingLeft: 0,
-	margin: 0,
+	// paddingTop: '3.75rem',
+	// paddingBottom: '3.75rem',
 });
+
+const progressRopeAttributes = () => null;
 
 export const defaultProgressRope = {
 	component: ProgressRope,
 	styles: progressRopeStyles,
-	attributes: () => null,
+	attributes: progressRopeAttributes,
 };

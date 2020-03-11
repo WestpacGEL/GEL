@@ -33,7 +33,7 @@ const linkStyles = (_, { current }) => {
 	};
 };
 
-const linkAttributes = () => null;
+const linkAttributes = (_, { current, href }) => ({ href: current ? null : href });
 
 export const defaultLink = {
 	component: Link,

@@ -149,7 +149,7 @@ export const Modal = ({
 						>
 							<overrides.Title.component
 								ref={titleRef}
-								tabIndex="-1"
+								tabIndex="-1" //a11y: heading receives focus on open
 								heading={heading}
 								open={open}
 								onClose={onClose}

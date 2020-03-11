@@ -1,54 +1,45 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
-import { Tablehead, theadStyles } from './overrides/thead';
-import { useTableContext } from './Table';
+import { defaultThead } from './overrides/thead';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Thead = ({ bordered, children, overrides: componentOverrides, ...rest }) => {
-	const context = useTableContext();
-	bordered = (context && context.bordered) || bordered;
-
+export const Thead = ({ bordered, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+	bordered = (context && context.bordered) || bordered;
+
 	const defaultOverrides = {
-		Thead: {
-			styles: theadStyles,
-			component: Tablehead,
-			attributes: () => null,
-		},
+		TheadRoot: defaultThead,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		bordered,
-		overrides: componentOverrides,
+		context: { ...context.state },
+		overrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TheadRoot: { component: TheadRoot, styles: theadRootStyles, attributes: theadRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Thead.component
-			bordered={bordered}
-			{...rest}
-			{...overrides.Thead.attributes(state)}
-			css={overrides.Thead.styles(state)}
-		>
+		<TheadRoot {...rest} state={state} {...theadRootAttributes(state)} css={theadRootStyles(state)}>
 			{children}
-		</overrides.Thead.component>
+		</TheadRoot>
 	);
 };
 

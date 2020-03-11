@@ -9,19 +9,19 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/text-input'] = {
-		TextInput: {
+		TextInputRoot: {
 			styles: styles => ({
 				...styles,
 				borderColor: 'palevioletred',
 			}),
 		},
-		Select: {
+		SelectRoot: {
 			styles: styles => ({
 				...styles,
 				borderColor: 'forestgreen',
 			}),
 		},
-		Textarea: {
+		TextareaRoot: {
 			styles: styles => ({
 				...styles,
 				borderColor: 'royalblue',
@@ -44,6 +44,8 @@ function Example({ brand }) {
 			</Select>
 			<br />
 			<Textarea />
+
+			<hr />
 
 			<h2>With overrides and component overrides</h2>
 			<TextInput

@@ -10,6 +10,7 @@ export const PopoverBody = ({
 	content,
 	dismissible,
 	position,
+	instanceId,
 	...rest
 }) => <Body {...rest} />;
 

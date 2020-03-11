@@ -1,53 +1,44 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
-import { TableFoot, tfootStyles } from './overrides/tfoot';
-import { useTableContext } from './Table';
+import { defaultTfoot } from './overrides/tfoot';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Tfoot = ({ bordered, children, overrides: componentOverrides, ...rest }) => {
-	const context = useTableContext();
-	bordered = (context && context.bordered) || bordered;
-
+export const Tfoot = ({ bordered, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+	bordered = (context && context.bordered) || bordered;
+
 	const defaultOverrides = {
-		Tfoot: {
-			styles: tfootStyles,
-			component: TableFoot,
-			attributes: () => null,
-		},
+		TfootRoot: defaultTfoot,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		bordered,
-		overrides: componentOverrides,
+		context: { ...context.state },
+		overrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		TfootRoot: { component: TfootRoot, styles: tfootRootStyles, attributes: tfootRootAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 	return (
-		<overrides.Tfoot.component
-			bordered={bordered}
-			{...rest}
-			{...overrides.Tfoot.attributes(state)}
-			css={overrides.Tfoot.styles(state)}
-		>
+		<TfootRoot {...rest} state={state} {...tfootRootAttributes(state)} css={tfootRootStyles(state)}>
 			{children}
-		</overrides.Tfoot.component>
+		</TfootRoot>
 	);
 };
 

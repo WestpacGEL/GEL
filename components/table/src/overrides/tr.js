@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const TableRow = ({ striped, highlighted, ...rest }) => <tr {...rest} />;
+export const Tr = ({ state, ...rest }) => <tr {...rest} />;
 
 export const trStyles = (_, { striped, highlighted }) => {
 	const { COLORS } = useBrand();
@@ -19,4 +19,12 @@ export const trStyles = (_, { striped, highlighted }) => {
 			backgroundColor: !striped && COLORS.background,
 		},
 	};
+};
+
+const trAttributes = () => null;
+
+export const defaultTr = {
+	component: Tr,
+	styles: trStyles,
+	attributes: trAttributes,
 };

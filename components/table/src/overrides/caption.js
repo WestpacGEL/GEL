@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const CaptionComponent = props => <caption {...props} />;
+const Caption = ({ state, ...rest }) => <caption {...rest} />;
 
-export const captionStyles = (_, {}) => {
+const captionStyles = (_, {}) => {
 	const { TYPE } = useBrand();
 
 	return {
@@ -13,4 +13,12 @@ export const captionStyles = (_, {}) => {
 		marginBottom: '0.75rem',
 		...TYPE.bodyFont[300],
 	};
+};
+
+const captionAttributes = () => null;
+
+export const defaultCaption = {
+	component: Caption,
+	styles: captionStyles,
+	attributes: captionAttributes,
 };

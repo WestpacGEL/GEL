@@ -4,26 +4,15 @@ import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import React from 'react';
 
-export const AlertHeading = ({ state: { headingTag, heading }, ...rest }) => (
-	<Heading size={7} tag={headingTag} {...rest}>
-		{heading}
-	</Heading>
+export const AlertHeading = ({ state: { headingTag }, ...rest }) => (
+	<Heading size={7} tag={headingTag} {...rest} />
 );
 
-export const headingStyles = (_, { look }) => {
-	const { SPACING, COLORS } = useBrand();
-
-	const styleMap = {
-		success: COLORS[look],
-		info: COLORS[look],
-		warning: COLORS[look],
-		danger: COLORS[look],
-		system: 'black',
-	};
+export const headingStyles = (_, {}) => {
+	const { SPACING } = useBrand();
 
 	return {
 		marginBottom: SPACING(2),
-		color: `${styleMap[look]} !important`,
 	};
 };
 

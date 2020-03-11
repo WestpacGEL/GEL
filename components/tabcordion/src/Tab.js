@@ -5,7 +5,7 @@ import { Fragment, useState, forwardRef, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import PropTypes from 'prop-types';
 
-import { defaultAccordionLabel } from './overrides/accordionLabel';
+import { defaultAccordionButton } from './overrides/accordionButton';
 import { defaultAccordionIcon } from './overrides/accordionIcon';
 import { defaultPanel } from './overrides/panel';
 import { useMeasure } from './_utils';
@@ -20,8 +20,8 @@ export const Tab = forwardRef(
 			text,
 			mode,
 			panelId,
-			onClick,
 			tabId,
+			onClick,
 			children,
 			overrides: componentOverrides,
 			...rest
@@ -46,7 +46,7 @@ export const Tab = forwardRef(
 		});
 
 		const defaultOverrides = {
-			AccordionLabel: defaultAccordionLabel,
+			AccordionButton: defaultAccordionButton,
 			AccordionIcon: defaultAccordionIcon,
 			Panel: defaultPanel,
 		};
@@ -66,10 +66,10 @@ export const Tab = forwardRef(
 		};
 
 		const {
-			AccordionLabel: {
-				component: AccordionLabel,
-				styles: accordionLabelStyles,
-				attributes: accordionLabelAttributes,
+			AccordionButton: {
+				component: AccordionButton,
+				styles: accordionButtonStyles,
+				attributes: accordionButtonAttributes,
 			},
 			AccordionIcon: {
 				component: AccordionIcon,
@@ -92,40 +92,24 @@ export const Tab = forwardRef(
 		return (
 			<Fragment>
 				{mode === 'accordion' ? (
-					<AccordionLabel
-						id={tabId}
+					<AccordionButton
 						onClick={handleAccordionClick}
-						aria-controls={panelId}
-						aria-expanded={!hidden}
 						state={state}
-						{...accordionLabelAttributes(state)}
-						css={accordionLabelStyles(state)}
+						{...accordionButtonAttributes(state)}
+						css={accordionButtonStyles(state)}
 					>
 						<span>{text}</span>
 						<AccordionIcon
-							assistiveText={null}
-							aria-hidden="true"
 							state={state}
 							{...accordionIconAttributes(state)}
 							css={accordionIconStyles(state)}
 						/>
-					</AccordionLabel>
+					</AccordionButton>
 				) : null}
 
 				<animated.div style={animate}>
 					<div ref={bind.ref}>
-						<Panel
-							id={panelId}
-							ref={ref}
-							aria-hidden={mode === 'accordion' ? hidden : !selected}
-							hidden={mode === 'tabs' && !selected}
-							state={state}
-							{...panelAttributes({
-								...state,
-								hidden: mode === 'tabs' && !selected,
-							})}
-							css={panelStyles(state)}
-						>
+						<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
 							{children}
 						</Panel>
 					</div>
@@ -185,7 +169,7 @@ Tab.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		AccordionLabel: PropTypes.shape({
+		AccordionButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
