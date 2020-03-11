@@ -1,60 +1,48 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useInputGroupContext } from './InputGroup';
 import PropTypes from 'prop-types';
 
-import { Select as SelectWrapper, selectStyles } from './overrides/select';
+import { defaultSelect } from './overrides/select';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Select = ({ position, size, data, overrides: componentOverrides, ...rest }) => {
+export const Select = ({ position, size, data, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+	const context = useInputGroupContext();
 
 	const defaultOverrides = {
-		Select: {
-			styles: selectStyles,
-			component: SelectWrapper,
-			attributes: () => null,
-		},
+		Select: defaultSelect,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		position,
 		size,
 		data,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	return (
-		<overrides.Select.component
-			position={position}
-			size={size}
-			data={data}
-			{...rest}
-			{...overrides.Select.attributes(state)}
-			css={overrides.Select.styles(state)}
-		/>
-	);
+	return <Select {...rest} state={state} {...selectAttributes(state)} css={selectStyles(state)} />;
 };
 
 // ==============================
 // Types
 // ==============================
-
 Select.propTypes = {
 	/**
 	 * What position this component is at
