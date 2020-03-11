@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 
-export const Heading = forwardRef(({ tag: Tag, size, ...rest }, ref) => {
+const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	// ignore all non h1-h6 tags
 	if (Tag && typeof Tag !== 'function' && !Tag.startsWith('h') && !(Tag.length === 2)) {
 		Tag = null;
@@ -23,11 +23,19 @@ export const Heading = forwardRef(({ tag: Tag, size, ...rest }, ref) => {
 	return <Tag ref={ref} {...rest} />;
 });
 
-export const headingStyles = (_, { size }) => {
+const headingStyles = (_, { size }) => {
 	const { PACKS } = useBrand();
 
 	return {
 		margin: 0,
 		...PACKS.headline[size],
 	};
+};
+
+const headingAttributes = () => ({});
+
+export const defaultHeading = {
+	component: Heading,
+	styles: headingStyles,
+	attributes: headingAttributes,
 };

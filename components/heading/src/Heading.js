@@ -4,7 +4,7 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { Heading as HeadingWrapper, headingStyles } from './overrides/heading';
+import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
 
 // ==============================
@@ -22,11 +22,7 @@ export const Heading = forwardRef(
 		} = useBrand();
 
 		const defaultOverrides = {
-			Heading: {
-				styles: headingStyles,
-				component: HeadingWrapper,
-				attributes: () => null,
-			},
+			Heading: defaultHeading,
 		};
 
 		const state = {
@@ -36,24 +32,20 @@ export const Heading = forwardRef(
 			...rest,
 		};
 
-		const overrides = overrideReconciler(
-			defaultOverrides,
-			tokenOverrides,
-			brandOverrides,
-			componentOverrides
-		);
+		const {
+			Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		return (
-			<overrides.Heading.component
+			<Heading
 				ref={ref}
-				tag={tag}
-				size={size}
 				{...rest}
-				{...overrides.Heading.attributes(state)}
-				css={overrides.Heading.styles(state)}
+				state={state}
+				{...headingAttributes(state)}
+				css={headingStyles(state)}
 			>
 				{children}
-			</overrides.Heading.component>
+			</Heading>
 		);
 	}
 );
