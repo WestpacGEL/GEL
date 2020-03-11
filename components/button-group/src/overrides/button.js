@@ -3,11 +3,19 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 
-export const ButtonGroupButton = ({ name, value, onChange, data, checked, block, ...rest }) => (
-	<Button tag="span" soft={!checked} block {...rest} />
+const ButtonGroupButton = ({ state: { checked, look, size, block, disabled }, ...rest }) => (
+	<Button
+		tag="span"
+		soft={!checked}
+		look={look}
+		size={size}
+		block={block}
+		disabled={disabled}
+		{...rest}
+	/>
 );
 
-export const buttonGroupButtonStyles = (_, { checked }) => {
+const buttonStyles = (_, { checked }) => {
 	const mq = useMediaQuery();
 
 	return mq({
@@ -23,4 +31,12 @@ export const buttonGroupButtonStyles = (_, { checked }) => {
 			borderBottomLeftRadius: 0,
 		},
 	})[0];
+};
+
+const buttonAttributes = () => null;
+
+export const defaultButton = {
+	component: ButtonGroupButton,
+	styles: buttonStyles,
+	attributes: buttonAttributes,
 };
