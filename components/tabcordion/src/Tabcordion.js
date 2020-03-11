@@ -122,18 +122,15 @@ export const Tabcordion = ({
 				return (
 					<Tab
 						{...child.props}
-						tabId={getId('tab', idx)}
 						key={child.props.text}
-						panelId={getId('panel', idx)}
 						ref={selected ? panelRef : null}
-						selected={selected}
-						last={idx + 1 === tabCount}
-						onClick={setActive(idx)}
-						mode={mode}
 						look={look}
-						// justify={justify}
-						// initialTabIndex={activeTabIndex}
-						// instanceIdPrefix={instancePrefix}
+						last={idx + 1 === tabCount}
+						selected={selected}
+						mode={mode}
+						panelId={getId('panel', idx)}
+						tabId={getId('tab', idx)}
+						onClick={setActive(idx)}
 					/>
 				);
 			})}

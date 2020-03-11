@@ -20,8 +20,8 @@ export const Tab = forwardRef(
 			text,
 			mode,
 			panelId,
-			onClick,
 			tabId,
+			onClick,
 			children,
 			overrides: componentOverrides,
 			...rest
