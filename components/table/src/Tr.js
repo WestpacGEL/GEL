@@ -2,10 +2,10 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
+import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
 import { defaultTr } from './overrides/tr';
-import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
@@ -29,23 +29,26 @@ const generateHighlightMap = (highlighted, tdCount) => {
 // Component
 // ==============================
 
-export const Tr = ({ striped, highlighted, children, overrides: componentOverrides, ...rest }) => {
-	const context = useTableContext();
-	striped = (context && context.striped) || striped;
-
+export const Tr = ({ striped, highlighted, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+	striped = (context && context.striped) || striped;
+
 	const defaultOverrides = {
 		TrRoot: defaultTr,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
 		striped,
 		highlighted,
-		overrides: componentOverrides,
+		context: { ...context.state },
+		overrides,
 		...rest,
 	};
 

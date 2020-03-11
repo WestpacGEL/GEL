@@ -57,6 +57,7 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 			value={{
 				striped,
 				bordered,
+				state,
 			}}
 		>
 			<TableRoot state={state} {...tableRootAttributes(state)} css={tableRootStyles(state)}>

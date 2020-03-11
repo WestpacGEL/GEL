@@ -1,40 +1,36 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
 import { defaultTd } from './overrides/td';
-import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Td = ({
-	highlighted,
-	highlightStart,
-	bordered,
-	children,
-	overrides: componentOverrides,
-	...rest
-}) => {
-	const context = useTableContext();
-	bordered = (context && context.bordered) || bordered;
-
+export const Td = ({ highlighted, highlightStart, bordered, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+	bordered = (context && context.bordered) || bordered;
+
 	const defaultOverrides = {
 		TdRoot: defaultTd,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		highlighted,
 		highlightStart,
 		bordered,
-		overrides: componentOverrides,
+		context: { ...context.state },
+		overrides,
 		...rest,
 	};
 

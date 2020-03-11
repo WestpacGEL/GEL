@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
 import { defaultCaption } from './overrides/caption';
@@ -10,18 +11,23 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Caption = ({ children, overrides: componentOverrides, ...rest }) => {
+export const Caption = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+
 	const defaultOverrides = {
 		CaptionRoot: defaultCaption,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
-		overrides: componentOverrides,
+		context: { ...context.state },
+		overrides,
 		...rest,
 	};
 
