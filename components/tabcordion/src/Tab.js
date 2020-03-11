@@ -2,36 +2,27 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Fragment, useState, forwardRef, useEffect } from 'react';
+import { useTabcordionContext } from './Tabcordion';
 import { useSpring, animated } from 'react-spring';
 import PropTypes from 'prop-types';
 
 import { defaultAccordionButton } from './overrides/accordionButton';
-import { defaultAccordionIcon } from './overrides/accordionIcon';
+import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
 import { defaultPanel } from './overrides/panel';
 import { useMeasure } from './_utils';
 import pkg from '../package.json';
 
 export const Tab = forwardRef(
 	(
-		{
-			look,
-			last,
-			selected,
-			text,
-			mode,
-			panelId,
-			tabId,
-			onClick,
-			children,
-			overrides: componentOverrides,
-			...rest
-		},
+		{ look, last, selected, text, mode, panelId, tabId, onClick, children, overrides, ...rest },
 		ref
 	) => {
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
 			[pkg.name]: brandOverrides,
 		} = useBrand();
+
+		const context = useTabcordionContext();
 
 		const [hidden, setHidden] = useState(!selected);
 		const [bind, { height }] = useMeasure();
@@ -47,9 +38,11 @@ export const Tab = forwardRef(
 
 		const defaultOverrides = {
 			AccordionButton: defaultAccordionButton,
-			AccordionIcon: defaultAccordionIcon,
+			AccordionButtonIcon: defaultAccordionButtonIcon,
 			Panel: defaultPanel,
 		};
+
+		const componentOverrides = overrides || context.state.overrides;
 
 		const state = {
 			hidden,
@@ -61,7 +54,8 @@ export const Tab = forwardRef(
 			panelId,
 			onClick,
 			tabId,
-			overrides: componentOverrides,
+			context: { ...context.state },
+			overrides,
 			...rest,
 		};
 
@@ -71,10 +65,10 @@ export const Tab = forwardRef(
 				styles: accordionButtonStyles,
 				attributes: accordionButtonAttributes,
 			},
-			AccordionIcon: {
-				component: AccordionIcon,
-				styles: accordionIconStyles,
-				attributes: accordionIconAttributes,
+			AccordionButtonIcon: {
+				component: AccordionButtonIcon,
+				styles: accordionButtonIconStyles,
+				attributes: accordionButtonIconAttributes,
 			},
 			Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
@@ -99,10 +93,10 @@ export const Tab = forwardRef(
 						css={accordionButtonStyles(state)}
 					>
 						<span>{text}</span>
-						<AccordionIcon
+						<AccordionButtonIcon
 							state={state}
-							{...accordionIconAttributes(state)}
-							css={accordionIconStyles(state)}
+							{...accordionButtonIconAttributes(state)}
+							css={accordionButtonIconStyles(state)}
 						/>
 					</AccordionButton>
 				) : null}
@@ -151,14 +145,14 @@ Tab.propTypes = {
 	panelId: PropTypes.string,
 
 	/**
-	 * The onClick handler for the accordion label
-	 */
-	onClick: PropTypes.func,
-
-	/**
 	 * The id for the tab
 	 */
 	tabId: PropTypes.string,
+
+	/**
+	 * The onClick handler for the accordion button
+	 */
+	onClick: PropTypes.func,
 
 	/**
 	 * The panel content for this tab
@@ -174,7 +168,7 @@ Tab.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		AccordionIcon: PropTypes.shape({
+		AccordionButtonIcon: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

@@ -7,8 +7,10 @@ const Tabcordion = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...re
 
 const tabcordionStyles = () => ({});
 
+const tabcordionAttributes = () => null;
+
 export const defaultTabcordion = {
 	component: Tabcordion,
 	styles: tabcordionStyles,
-	attributes: () => null,
+	attributes: tabcordionAttributes,
 };

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { Children, useEffect, useRef, useState } from 'react';
+import { createContext, useContext, Children, useEffect, useRef, useState } from 'react';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
@@ -11,6 +11,21 @@ import { defaultTabRow } from './overrides/tabRow';
 
 import pkg from '../package.json';
 import { Tab } from './Tab';
+
+// ==============================
+// Context and Consumer Hook
+// ==============================
+const TabcordionContext = createContext();
+
+export const useTabcordionContext = () => {
+	const context = useContext(TabcordionContext);
+
+	if (!context) {
+		throw new Error('<Tab/> components should be wrapped in <Tabcordion>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
@@ -108,33 +123,35 @@ export const Tabcordion = ({
 	);
 
 	return (
-		<TabcordionRoot
-			ref={containerRef}
-			{...rest}
-			state={state}
-			{...tabcordionRootAttributes(state)}
-			css={tabcordionRootStyles(state)}
-		>
-			{mode === 'tabs' && TabsContent}
+		<TabcordionContext.Provider value={{ state }}>
+			<TabcordionRoot
+				ref={containerRef}
+				{...rest}
+				state={state}
+				{...tabcordionRootAttributes(state)}
+				css={tabcordionRootStyles(state)}
+			>
+				{mode === 'tabs' && TabsContent}
 
-			{Children.map(children, (child, idx) => {
-				const selected = activeTabIndex === idx;
-				return (
-					<Tab
-						{...child.props}
-						key={child.props.text}
-						ref={selected ? panelRef : null}
-						look={look}
-						last={idx + 1 === tabCount}
-						selected={selected}
-						mode={mode}
-						panelId={getId('panel', idx)}
-						tabId={getId('tab', idx)}
-						onClick={setActive(idx)}
-					/>
-				);
-			})}
-		</TabcordionRoot>
+				{Children.map(children, (child, idx) => {
+					const selected = activeTabIndex === idx;
+					return (
+						<Tab
+							{...child.props}
+							key={child.props.text}
+							ref={selected ? panelRef : null}
+							look={look}
+							last={idx + 1 === tabCount}
+							selected={selected}
+							mode={mode}
+							panelId={getId('panel', idx)}
+							tabId={getId('tab', idx)}
+							onClick={setActive(idx)}
+						/>
+					);
+				})}
+			</TabcordionRoot>
+		</TabcordionContext.Provider>
 	);
 };
 
