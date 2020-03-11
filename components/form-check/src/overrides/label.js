@@ -1,13 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const Label = ({ value, checked, disabled, type, name, size, inline, ...rest }) => (
-	<label {...rest} />
-);
+const Label = ({ state, ...rest }) => <label {...rest} />;
 
-export const labelStyles = (_, { checked, disabled, type, size }) => {
+const labelStyles = (_, { checked, disabled, type, size }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	const sizeMap = {
@@ -120,4 +117,12 @@ export const labelStyles = (_, { checked, disabled, type, size }) => {
 			color: COLORS.muted,
 		},
 	};
+};
+
+const labelAttributes = (_, { formCheckId }) => ({ htmlFor: formCheckId });
+
+export const defaultLabel = {
+	component: Label,
+	styles: labelStyles,
+	attributes: labelAttributes,
 };

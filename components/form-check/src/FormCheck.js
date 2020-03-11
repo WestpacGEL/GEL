@@ -8,17 +8,31 @@ import {
 	devWarning,
 	asArray,
 } from '@westpac/core';
-import { cloneElement, Children, useState } from 'react';
+import { cloneElement, Children, useState, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { FormCheck as FormCheckWrapper, formCheckStyles } from './overrides/formCheck';
+import { defaultFormCheck } from './overrides/formCheck';
 import { Option } from './Option';
 import pkg from '../package.json';
 
 // ==============================
+// Context and Consumer Hook
+// ==============================
+const FormCheckContext = createContext();
+
+export const useFormCheckContext = () => {
+	const context = useContext(FormCheckContext);
+
+	// if (!context) {
+	// 	throw new Error('<Crumb/> components should be wrapped in <Breadcrumb>.');
+	// }
+
+	return context;
+};
+
+// ==============================
 // Component
 // ==============================
-
 export const FormCheck = ({
 	type,
 	name,
@@ -39,7 +53,31 @@ export const FormCheck = ({
 		'The form-check as radio may only have one "current" item set.'
 	);
 
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 	const [checked, setChecked] = useState(defaultValueAsArray);
+
+	const defaultOverrides = {
+		FormCheck: defaultFormCheck,
+	};
+
+	const state = {
+		type,
+		name,
+		size,
+		inline,
+		disabled,
+		data,
+		defaultValue,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		FormCheck: { component: FormCheck, styles: formCheckStyles, attributes: formCheckAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const handleChange = (event, value, wasChecked) => {
 		wrapHandlers(
@@ -58,38 +96,6 @@ export const FormCheck = ({
 		)(event);
 	};
 
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
-
-	const defaultOverrides = {
-		FormCheck: {
-			styles: formCheckStyles,
-			component: FormCheckWrapper,
-			attributes: () => null,
-		},
-	};
-
-	const state = {
-		type,
-		name,
-		size,
-		inline,
-		disabled,
-		data,
-		defaultValue,
-		overrides: componentOverrides,
-		...rest,
-	};
-
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
-
 	let allChildren = [];
 	if (data) {
 		data.map((props, index) => {
@@ -104,9 +110,6 @@ export const FormCheck = ({
 					size={size}
 					inline={inline}
 					disabled={props.disabled || disabled}
-					data={data}
-					defaultValue={defaultValue}
-					overrides={componentOverrides}
 				>
 					{props.text}
 				</Option>
@@ -122,28 +125,21 @@ export const FormCheck = ({
 				size,
 				inline,
 				disabled: child.props.disabled || disabled,
-				data,
-				defaultValue,
-				overrides: componentOverrides,
 			})
 		);
 	}
 
 	return (
-		<overrides.FormCheck.component
-			type={type}
-			name={name}
-			size={size}
-			inline={inline}
-			data={data}
-			disabled={disabled}
-			defaultValue={defaultValue}
-			{...rest}
-			{...overrides.FormCheck.attributes(state)}
-			css={overrides.FormCheck.styles(state)}
-		>
-			{allChildren}
-		</overrides.FormCheck.component>
+		<FormCheckContext.Provider value={{ state }}>
+			<FormCheck
+				{...rest}
+				state={state}
+				{...formCheckAttributes(state)}
+				css={formCheckStyles(state)}
+			>
+				{allChildren}
+			</FormCheck>
+		</FormCheckContext.Provider>
 	);
 };
 

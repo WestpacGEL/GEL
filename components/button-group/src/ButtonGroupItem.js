@@ -1,14 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState } from 'react';
+import { useButtonGroupContext } from './ButtonGroup';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-import {
-	ButtonGroupItem as ButtonGroupItemWrapper,
-	buttonGroupItemStyles,
-} from './overrides/buttonGroupItem';
-import { ButtonGroupButton, buttonGroupButtonStyles } from './overrides/buttonGroupButton';
+import { defaultItem } from './overrides/item';
+import { defaultButton } from './overrides/button';
 import pkg from '../package.json';
 
 // ==============================
@@ -24,28 +22,23 @@ export const ButtonGroupItem = ({
 	block,
 	disabled,
 	children,
-	overrides: componentOverrides,
+	overrides,
 	...rest
 }) => {
-	const [buttonGroupItemId] = useState(`button-group-item-${useInstanceId()}`);
-
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const [buttonGroupItemId] = useState(`button-group-item-${useInstanceId()}`);
+	const context = useButtonGroupContext();
+
 	const defaultOverrides = {
-		ButtonGroupItem: {
-			styles: buttonGroupItemStyles,
-			component: ButtonGroupItemWrapper,
-			attributes: () => null,
-		},
-		ButtonGroupButton: {
-			styles: buttonGroupButtonStyles,
-			component: ButtonGroupButton,
-			attributes: () => null,
-		},
+		ItemRoot: defaultItem,
+		Button: defaultButton,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		name,
@@ -56,32 +49,23 @@ export const ButtonGroupItem = ({
 		size,
 		block,
 		disabled,
-		children,
+		context: { ...context.state },
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ItemRoot: { component: ItemRoot, styles: itemRootStyles, attributes: itemRootAttributes },
+		Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.ButtonGroupItem.component
-			htmlFor={buttonGroupItemId} //a11y: use explicit association
-			name={name}
-			value={value}
-			onChange={onChange}
-			checked={checked}
-			look={look}
-			size={size}
-			block={block}
-			disabled={disabled}
+		<ItemRoot
+			// htmlFor={buttonGroupItemId} //a11y: use explicit association
 			{...rest}
-			{...overrides.ButtonGroupItem.attributes(state)}
-			css={overrides.ButtonGroupItem.styles(state)}
+			state={state}
+			{...itemRootAttributes({ ...state, buttonGroupItemId })}
+			css={itemRootStyles(state)}
 		>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
@@ -98,21 +82,19 @@ export const ButtonGroupItem = ({
 					opacity: 0,
 				}}
 			/>
-			<overrides.ButtonGroupButton.component
-				name={name}
-				value={value}
-				onChange={onChange}
-				checked={checked}
-				look={look}
-				size={size}
-				block={block}
-				disabled={disabled}
-				{...overrides.ButtonGroupButton.attributes(state)}
-				css={overrides.ButtonGroupButton.styles(state)}
+			<Button
+				// checked={checked}
+				// look={look}
+				// size={size}
+				// block={block}
+				// disabled={disabled}
+				state={state}
+				{...buttonAttributes(state)}
+				css={buttonStyles(state)}
 			>
 				{children}
-			</overrides.ButtonGroupButton.component>
-		</overrides.ButtonGroupItem.component>
+			</Button>
+		</ItemRoot>
 	);
 };
 

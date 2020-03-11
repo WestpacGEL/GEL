@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import React from 'react';
 
-export const Container = props => <div {...props} />;
+const Container = props => <div {...props} />;
 
-export const containerStyles = () => {
+const containerStyles = () => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 
@@ -18,4 +17,12 @@ export const containerStyles = () => {
 		paddingLeft: padding,
 		paddingRight: padding,
 	})[0];
+};
+
+const containerAttributes = () => null;
+
+export const defaultContainer = {
+	component: Container,
+	styles: containerStyles,
+	attributes: containerAttributes,
 };
