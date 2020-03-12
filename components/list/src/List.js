@@ -4,7 +4,7 @@ import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
 import { createContext, useContext, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 
-import { List as ListWrapper, listStyles } from './overrides/list';
+import { defaultList } from './overrides/list';
 import pkg from '../package.json';
 import { Item } from './Item';
 
@@ -100,11 +100,7 @@ export const List = ({
 	devWarning(data && !Array.isArray(data), 'The data prop must be an array');
 
 	const defaultOverrides = {
-		List: {
-			styles: listStyles,
-			component: ListWrapper,
-			attributes: () => null,
-		},
+		List: defaultList,
 	};
 
 	const context = useListContext();
@@ -128,12 +124,9 @@ export const List = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		List: { component: List, styles: listStyles, attributes: listAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	if (data) {
 		children = makeItems(data);
@@ -151,24 +144,9 @@ export const List = ({
 				overrides: componentOverrides,
 			}}
 		>
-			<overrides.List.component
-				//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
-				role={type !== 'ordered' ? 'list' : undefined}
-				//a11y: tick bullet meaning must be conveyed; setting a default (but configurable) aria-label value
-				aria-label={type === 'tick' ? assistiveText || 'The following items are ticked' : undefined}
-				look={look}
-				type={type}
-				nested={nested}
-				spacing={spacing}
-				icon={icon}
-				assistiveText={assistiveText}
-				data={data}
-				{...rest}
-				{...overrides.List.attributes(state)}
-				css={overrides.List.styles(state)}
-			>
+			<List {...rest} state={state} {...listAttributes(state)} css={listStyles(state)}>
 				{children}
-			</overrides.List.component>
+			</List>
 		</ListContext.Provider>
 	);
 };
