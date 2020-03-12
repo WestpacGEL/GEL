@@ -20,7 +20,7 @@ export const Tfoot = ({ bordered, children, overrides, ...rest }) => {
 	bordered = (context && context.bordered) || bordered;
 
 	const defaultOverrides = {
-		TfootRoot: defaultTfoot,
+		Tfoot: defaultTfoot,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
@@ -33,12 +33,12 @@ export const Tfoot = ({ bordered, children, overrides, ...rest }) => {
 	};
 
 	const {
-		TfootRoot: { component: TfootRoot, styles: tfootRootStyles, attributes: tfootRootAttributes },
+		Tfoot: { component: Tfoot, styles: tfootStyles, attributes: tfootAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 	return (
-		<TfootRoot {...rest} state={state} {...tfootRootAttributes(state)} css={tfootRootStyles(state)}>
+		<Tfoot {...rest} state={state} {...tfootAttributes(state)} css={tfootStyles(state)}>
 			{children}
-		</TfootRoot>
+		</Tfoot>
 	);
 };
 

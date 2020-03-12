@@ -36,7 +36,7 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 	} = useBrand();
 
 	const defaultOverrides = {
-		TableRoot: defaultWrapper,
+		Wrapper: defaultWrapper,
 		Table: defaultTable,
 	};
 
@@ -48,7 +48,7 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 	};
 
 	const {
-		TableRoot: { component: TableRoot, styles: tableRootStyles, attributes: tableRootAttributes },
+		Wrapper: { component: Wrapper, styles: wrapperStyles, attributes: wrapperAttributes },
 		Table: { component: Table, styles: tableStyles, attributes: tableAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
@@ -60,11 +60,11 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 				state,
 			}}
 		>
-			<TableRoot state={state} {...tableRootAttributes(state)} css={tableRootStyles(state)}>
+			<Wrapper state={state} {...tableAttributes(state)} css={tableStyles(state)}>
 				<Table {...rest} state={state} {...tableAttributes(state)} css={tableStyles(state)}>
 					{children}
 				</Table>
-			</TableRoot>
+			</Wrapper>
 		</TableContext.Provider>
 	);
 };

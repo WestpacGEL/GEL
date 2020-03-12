@@ -20,7 +20,7 @@ export const Thead = ({ bordered, children, overrides, ...rest }) => {
 	bordered = (context && context.bordered) || bordered;
 
 	const defaultOverrides = {
-		TheadRoot: defaultThead,
+		Thead: defaultThead,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
@@ -33,13 +33,13 @@ export const Thead = ({ bordered, children, overrides, ...rest }) => {
 	};
 
 	const {
-		TheadRoot: { component: TheadRoot, styles: theadRootStyles, attributes: theadRootAttributes },
+		Thead: { component: Thead, styles: theadStyles, attributes: theadAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<TheadRoot {...rest} state={state} {...theadRootAttributes(state)} css={theadRootStyles(state)}>
+		<Thead {...rest} state={state} {...theadAttributes(state)} css={theadStyles(state)}>
 			{children}
-		</TheadRoot>
+		</Thead>
 	);
 };
 

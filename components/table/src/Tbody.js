@@ -19,7 +19,7 @@ export const Tbody = ({ children, overrides, ...rest }) => {
 	const context = useTableContext();
 
 	const defaultOverrides = {
-		TbodyRoot: defaultTBody,
+		Tbody: defaultTBody,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
@@ -31,13 +31,13 @@ export const Tbody = ({ children, overrides, ...rest }) => {
 	};
 
 	const {
-		TbodyRoot: { component: TbodyRoot, styles: tbodyRootStyles, attributes: tbodyRootAttributes },
+		Tbody: { component: Tbody, styles: tbodyStyles, attributes: tbodyAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<TbodyRoot {...rest} state={state} {...tbodyRootAttributes(state)} css={tbodyRootStyles(state)}>
+		<Tbody {...rest} state={state} {...tbodyAttributes(state)} css={tbodyStyles(state)}>
 			{children}
-		</TbodyRoot>
+		</Tbody>
 	);
 };
 
