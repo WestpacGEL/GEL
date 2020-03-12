@@ -21,19 +21,27 @@ export const Switch = ({
 	size,
 	block,
 	disabled,
+	instanceIdPrefix,
 	overrides: componentOverrides,
 	...rest
 }) => {
-	const [switchId] = useState(`switch-${useInstanceId()}`);
-
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const [checked, setChecked] = useState(isChecked);
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+
+	// create the prefix for internal IDs
+	useEffect(() => {
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-switch-${useInstanceId()}`);
+		}
+	}, [instanceIdPrefix]);
 
 	const defaultOverrides = {
-		SwitchRoot: defaultSwitch, // First sub-component will always be called the <component-name>Root component
+		Switch: defaultSwitch, // First sub-component will always be called the component
 		Label: defaultLabel,
 		Toggle: defaultToggle,
 	};
@@ -51,6 +59,7 @@ export const Switch = ({
 	const state = {
 		// internal state
 		checked,
+		instanceId,
 
 		// props
 		name,
@@ -69,11 +78,7 @@ export const Switch = ({
 
 	// destructure reconciled component items, makes for cleaner and easier to read code in return
 	const {
-		SwitchRoot: {
-			component: SwitchRoot,
-			styles: switchRootStyles,
-			attributes: switchRootAttributes,
-		},
+		Switch: { component: Switch, styles: switchStyles, attributes: switchAttributes },
 		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
 		Toggle: { component: Toggle, styles: toggleStyles, attributes: toggleAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
@@ -92,17 +97,11 @@ export const Switch = ({
 	4. rest if applicable
 	*/
 	return (
-		<SwitchRoot
-			htmlFor={switchId} //a11y: use explicit association
-			state={state}
-			{...rest}
-			{...switchRootAttributes(state)}
-			css={switchRootStyles(state)}
-		>
+		<Switch state={state} {...rest} {...switchAttributes(state)} css={switchStyles(state)}>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
 				type="checkbox"
-				id={switchId}
+				id={instanceId}
 				onChange={handleChange(name)}
 				name={name}
 				checked={checked}
@@ -117,7 +116,7 @@ export const Switch = ({
 				{label}
 			</Label>
 			<Toggle state={state} {...toggleAttributes(state)} css={toggleStyles(state)} />
-		</SwitchRoot>
+		</Switch>
 	);
 };
 

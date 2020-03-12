@@ -9,19 +9,19 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/text-input'] = {
-		TextInputRoot: {
+		TextInput: {
 			styles: styles => ({
 				...styles,
 				borderColor: 'palevioletred',
 			}),
 		},
-		SelectRoot: {
+		Select: {
 			styles: styles => ({
 				...styles,
 				borderColor: 'forestgreen',
 			}),
 		},
-		TextareaRoot: {
+		Textarea: {
 			styles: styles => ({
 				...styles,
 				borderColor: 'royalblue',

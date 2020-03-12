@@ -23,8 +23,12 @@ const switchStyles = (_, { block, disabled, size }) => {
 	})[0];
 };
 
+const switchAttributes = (_, { instanceId }) => ({
+	htmlFor: instanceId, //a11y: must use explicit association
+});
+
 export const defaultSwitch = {
 	component: Switch,
 	styles: switchStyles,
-	attributes: () => null,
+	attributes: switchAttributes,
 };

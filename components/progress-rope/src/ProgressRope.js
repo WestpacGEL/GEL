@@ -82,11 +82,6 @@ export const ProgressRope = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const defaultOverrides = {
-		ProgressRopeRoot: defaultProgressRope,
-		List: defaultList,
-	};
-
 	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
 
 	// create the prefix for internal IDs
@@ -95,6 +90,11 @@ export const ProgressRope = ({
 			setInstancePrefix(`gel-progress-rope-${useInstanceId()}`);
 		}
 	}, [instancePrefix]);
+
+	const defaultOverrides = {
+		ProgressRopeRoot: defaultProgressRope,
+		List: defaultList,
+	};
 
 	const state = {
 		instancePrefix,
@@ -239,7 +239,7 @@ export const ProgressRope = ({
 // ==============================
 ProgressRope.propTypes = {
 	/**
-	 * Define an id prefix for the group step elements e.g. for a prefix of "progress-rope" --> "progress-rope-1-group-1" etc.
+	 * Define an id prefix for the group step elements e.g. for a prefix of "progress-rope" --> "progress-rope-group-1" etc.
 	 */
 	instanceIdPrefix: PropTypes.string,
 

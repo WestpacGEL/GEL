@@ -16,7 +16,7 @@ export const Well = ({ tag, children, overrides: componentOverrides, ...rest }) 
 	} = useBrand();
 
 	const defaultOverrides = {
-		WellRoot: defaultWell,
+		Well: defaultWell,
 	};
 
 	const state = {
@@ -26,13 +26,13 @@ export const Well = ({ tag, children, overrides: componentOverrides, ...rest }) 
 	};
 
 	const {
-		WellRoot: { component: WellRoot, styles: wellRootStyles, attributes: wellRootAttributes },
+		Well: { component: Well, styles: wellStyles, attributes: wellAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<WellRoot {...rest} state={state} {...wellRootAttributes(state)} css={wellRootStyles(state)}>
+		<Well {...rest} state={state} {...wellAttributes(state)} css={wellStyles(state)}>
 			{children}
-		</WellRoot>
+		</Well>
 	);
 };
 

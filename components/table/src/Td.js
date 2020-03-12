@@ -20,7 +20,7 @@ export const Td = ({ highlighted, highlightStart, bordered, children, overrides,
 	bordered = (context && context.bordered) || bordered;
 
 	const defaultOverrides = {
-		TdRoot: defaultTd,
+		Td: defaultTd,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
@@ -35,13 +35,13 @@ export const Td = ({ highlighted, highlightStart, bordered, children, overrides,
 	};
 
 	const {
-		TdRoot: { component: TdRoot, styles: tdRootStyles, attributes: tdRootAttributes },
+		Td: { component: Td, styles: tdStyles, attributes: tdAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<TdRoot {...rest} state={state} {...tdRootAttributes(state)} css={tdRootStyles(state)}>
+		<Td {...rest} state={state} {...tdAttributes(state)} css={tdStyles(state)}>
 			{children}
-		</TdRoot>
+		</Td>
 	);
 };
 

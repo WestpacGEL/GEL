@@ -20,7 +20,7 @@ export const Caption = ({ children, overrides, ...rest }) => {
 	const context = useTableContext();
 
 	const defaultOverrides = {
-		CaptionRoot: defaultCaption,
+		Caption: defaultCaption,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
@@ -32,22 +32,13 @@ export const Caption = ({ children, overrides, ...rest }) => {
 	};
 
 	const {
-		CaptionRoot: {
-			component: CaptionRoot,
-			styles: CaptionRootStyles,
-			attributes: CaptionRootAttributes,
-		},
+		Caption: { component: Caption, styles: CaptionStyles, attributes: CaptionAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<CaptionRoot
-			{...rest}
-			state={state}
-			{...CaptionRootAttributes(state)}
-			css={CaptionRootStyles(state)}
-		>
+		<Caption {...rest} state={state} {...CaptionAttributes(state)} css={CaptionStyles(state)}>
 			{children}
-		</CaptionRoot>
+		</Caption>
 	);
 };
 

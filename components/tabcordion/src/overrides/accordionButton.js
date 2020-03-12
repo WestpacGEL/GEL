@@ -8,13 +8,9 @@ const accordionButtonStyles = (_, { look, last, hidden }) => {
 	const { COLORS } = useBrand();
 	const styles = {
 		soft: {
-			borderBottom: `1px solid ${COLORS.border}`,
-			...(last &&
-				hidden && {
-					borderBottom: `1px solid ${COLORS.border}`,
-					borderBottomLeftRadius: '0.1875rem',
-					borderBottomRightRadius: '0.1875rem',
-				}),
+			borderBottomLeftRadius: last && hidden && '0.1875rem',
+			borderBottomRightRadius: last && hidden && '0.1875rem',
+
 			':first-of-type': {
 				borderTop: `1px solid ${COLORS.border}`,
 				borderTopLeftRadius: '0.1875rem',
@@ -22,11 +18,11 @@ const accordionButtonStyles = (_, { look, last, hidden }) => {
 			},
 		},
 		lego: {
-			borderBottom: !hidden && `1px solid ${COLORS.border}`,
-			borderLeftWidth: '6px',
+			borderLeftWidth: '0.375rem',
 			borderLeftColor: !hidden ? COLORS.border : COLORS.hero,
-			':last-of-type': {
-				borderBottom: `1px solid ${COLORS.border}`,
+
+			':first-of-type': {
+				borderTop: `1px solid ${COLORS.border}`,
 			},
 		},
 	};
@@ -45,6 +41,7 @@ const accordionButtonStyles = (_, { look, last, hidden }) => {
 		position: 'relative',
 		textAlign: 'left',
 		width: '100%',
+		borderBottom: `1px solid ${COLORS.border}`,
 		...styles[look],
 	};
 };

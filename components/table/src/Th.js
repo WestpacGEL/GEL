@@ -20,7 +20,7 @@ export const Th = ({ bordered, children, overrides, ...rest }) => {
 	bordered = (context && context.bordered) || bordered;
 
 	const defaultOverrides = {
-		ThRoot: defaultTh,
+		Th: defaultTh,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
@@ -33,12 +33,12 @@ export const Th = ({ bordered, children, overrides, ...rest }) => {
 	};
 
 	const {
-		ThRoot: { component: ThRoot, styles: thRootStyles, attributes: thRootAttributes },
+		Th: { component: Th, styles: thStyles, attributes: thAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 	return (
-		<ThRoot {...rest} state={state} {...thRootAttributes(state)} css={thRootStyles(state)}>
+		<Th {...rest} state={state} {...thAttributes(state)} css={thStyles(state)}>
 			{children}
-		</ThRoot>
+		</Th>
 	);
 };
 

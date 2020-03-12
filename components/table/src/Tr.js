@@ -39,7 +39,7 @@ export const Tr = ({ striped, highlighted, children, overrides, ...rest }) => {
 	striped = (context && context.striped) || striped;
 
 	const defaultOverrides = {
-		TrRoot: defaultTr,
+		Tr: defaultTr,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
@@ -53,7 +53,7 @@ export const Tr = ({ striped, highlighted, children, overrides, ...rest }) => {
 	};
 
 	const {
-		TrRoot: { component: TrRoot, styles: trRootStyles, attributes: trRootAttributes },
+		Tr: { component: Tr, styles: trStyles, attributes: trAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	let highlightedChildren;
@@ -75,9 +75,9 @@ export const Tr = ({ striped, highlighted, children, overrides, ...rest }) => {
 	}
 
 	return (
-		<TrRoot {...rest} state={state} {...trRootAttributes(state)} css={trRootStyles(state)}>
+		<Tr {...rest} state={state} {...trAttributes(state)} css={trStyles(state)}>
 			{highlightedChildren || children}
-		</TrRoot>
+		</Tr>
 	);
 };
 

@@ -23,7 +23,7 @@ export const TextInput = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		TextInputRoot: defaultTextInput,
+		TextInput: defaultTextInput,
 	};
 
 	const state = {
@@ -36,19 +36,15 @@ export const TextInput = ({
 	};
 
 	const {
-		TextInputRoot: {
-			component: TextInputRoot,
-			styles: textInputRootStyles,
-			attributes: textInputRootAttributes,
-		},
+		TextInput: { component: TextInput, styles: textInputStyles, attributes: textInputAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<TextInputRoot
+		<TextInput
 			{...rest}
 			state={state}
-			{...textInputRootAttributes(state)}
-			css={textInputRootStyles(state)}
+			{...textInputAttributes(state)}
+			css={textInputStyles(state)}
 		/>
 	);
 };

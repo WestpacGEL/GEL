@@ -24,7 +24,7 @@ export const Textarea = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		TextareaRoot: defaultTextarea,
+		Textarea: defaultTextarea,
 	};
 
 	const state = {
@@ -37,20 +37,11 @@ export const Textarea = ({
 	};
 
 	const {
-		TextareaRoot: {
-			component: TextareaRoot,
-			styles: textareaRootStyles,
-			attributes: textareaRootAttributes,
-		},
+		Textarea: { component: Textarea, styles: textareaStyles, attributes: textareaAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<TextareaRoot
-			{...rest}
-			state={state}
-			{...textareaRootAttributes(state)}
-			css={textareaRootStyles(state)}
-		/>
+		<Textarea {...rest} state={state} {...textareaAttributes(state)} css={textareaStyles(state)} />
 	);
 };
 
