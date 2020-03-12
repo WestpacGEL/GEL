@@ -13,7 +13,7 @@ import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Wrapper = ({ children, symbol, assistiveText, viewBoxWidth, viewBoxHeight, ...rest }) => (
+const Wrapper = ({ children, symbol, state, ...rest }) => (
 	<Fragment>
 		<div {...rest}>{children}</div>
 		<div css={{ marginBottom: '1rem' }}>

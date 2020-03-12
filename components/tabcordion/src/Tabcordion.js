@@ -46,7 +46,7 @@ export const Tabcordion = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		TabcordionRoot: defaultTabcordion,
+		Tabcordion: defaultTabcordion,
 		TabButton: defaultTabButton,
 		TabRow: defaultTabRow,
 	};
@@ -85,10 +85,10 @@ export const Tabcordion = ({
 	};
 
 	const {
-		TabcordionRoot: {
-			component: TabcordionRoot,
-			styles: tabcordionRootStyles,
-			attributes: tabcordionRootAttributes,
+		Tabcordion: {
+			component: Tabcordion,
+			styles: tabcordionStyles,
+			attributes: tabcordionAttributes,
 		},
 		TabButton: { component: TabButton, styles: tabButtonStyles, attributes: tabButtonAttributes },
 		TabRow: { component: TabRow, styles: tabRowStyles, attributes: tabRowAttributes },
@@ -124,12 +124,12 @@ export const Tabcordion = ({
 
 	return (
 		<TabcordionContext.Provider value={{ state }}>
-			<TabcordionRoot
+			<Tabcordion
 				ref={containerRef}
 				{...rest}
 				state={state}
-				{...tabcordionRootAttributes(state)}
-				css={tabcordionRootStyles(state)}
+				{...tabcordionAttributes(state)}
+				css={tabcordionStyles(state)}
 			>
 				{mode === 'tabs' && TabsContent}
 
@@ -150,7 +150,7 @@ export const Tabcordion = ({
 						/>
 					);
 				})}
-			</TabcordionRoot>
+			</Tabcordion>
 		</TabcordionContext.Provider>
 	);
 };

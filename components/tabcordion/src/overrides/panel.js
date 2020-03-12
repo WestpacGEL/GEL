@@ -8,12 +8,11 @@ const Panel = forwardRef(({ hidden, state, ...rest }, ref) => <div ref={ref} {..
 const panelStyles = (_, { look, mode, last, selected }) => {
 	const { COLORS } = useBrand();
 
-	const styles =
+	const stylesMap =
 		mode === 'accordion'
 			? {
 					lego: {
-						borderLeftWidth: '0.375rem',
-						borderLeftColor: COLORS.border,
+						borderLeft: `0.375rem solid ${COLORS.border}`,
 					},
 					soft: last
 						? {
@@ -26,12 +25,12 @@ const panelStyles = (_, { look, mode, last, selected }) => {
 
 	return {
 		display: mode === 'tabs' && !selected ? 'none' : 'block',
+		borderTop: mode === 'tabs' && `1px solid ${COLORS.border}`,
+		borderBottom: `1px solid ${COLORS.border}`,
 		borderLeft: `1px solid ${COLORS.border}`,
 		borderRight: `1px solid ${COLORS.border}`,
-		borderBottom: `1px solid ${COLORS.border}`,
-		borderTop: mode === 'tabs' && `1px solid ${COLORS.border}`,
 		padding: '1.5rem 3.22%',
-		...styles[look],
+		...stylesMap[look],
 	};
 };
 
