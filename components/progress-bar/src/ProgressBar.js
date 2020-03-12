@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultProgressBar } from './overrides/progressBar';
@@ -52,11 +51,9 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...res
 		>
 			<Bar state={state} {...barAttributes(state)} css={barStyles(state)}>
 				{look !== 'skinny' && (
-					<Fragment>
-						<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
-							{`${roundedValue}%`}
-						</Text>
-					</Fragment>
+					<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
+						{`${roundedValue}%`}
+					</Text>
 				)}
 			</Bar>
 		</ProgressBar>
