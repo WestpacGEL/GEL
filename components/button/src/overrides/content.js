@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 const Content = ({ state, children }) => <Fragment>{children}</Fragment>;
 

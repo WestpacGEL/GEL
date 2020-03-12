@@ -1,12 +1,27 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { forwardRef, createContext, useContext } from 'react';
+import { Content } from './Content';
 import PropTypes from 'prop-types';
 
 import { defaultButton } from './overrides/button';
-import { ButtonContent as Content } from './Content';
 import pkg from '../package.json';
-import { forwardRef } from 'react';
+
+// ==============================
+// Context and Consumer Hook
+// ==============================
+const ButtonContext = createContext();
+
+export const useButtonContext = () => {
+	const context = useContext(ButtonContext);
+
+	if (!context) {
+		throw new Error('<Content/> & <TextWrapper/> components should be wrapped in <Breadcrumb>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
@@ -47,7 +62,7 @@ export const Button = forwardRef(
 		}
 
 		const defaultOverrides = {
-			ButtonRoot: defaultButton,
+			Button: defaultButton,
 		};
 
 		const state = {
@@ -69,27 +84,35 @@ export const Button = forwardRef(
 		};
 
 		const {
-			ButtonRoot: {
-				component: ButtonRoot,
-				styles: buttonRootStyles,
-				attributes: buttonRootAttributes,
-			},
+			Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		return (
-			<ButtonRoot
-				ref={ref}
-				disabled={tag === 'button' ? disabled : undefined}
-				type={tag === 'button' ? type || 'button' : undefined}
-				onClick={onClick}
-				{...rest}
-				state={state}
-				{...buttonRootAttributes(state)}
-				css={buttonRootStyles(state)}
-			>
-				{/* `<input>` elements cannot have children; they would use a `value` prop) */}
-				{tag !== 'input' ? <Content state={state}>{children}</Content> : null}
-			</ButtonRoot>
+			<ButtonContext.Provider value={{ state }}>
+				<Button
+					ref={ref}
+					disabled={tag === 'button' ? disabled : undefined}
+					type={tag === 'button' || tag === 'input' ? type || 'button' : undefined}
+					onClick={onClick}
+					{...rest}
+					state={state}
+					{...buttonAttributes(state)}
+					css={buttonStyles(state)}
+				>
+					{/* `<input>` elements cannot have children; they would use a `value` prop) */}
+					{tag !== 'input' ? (
+						<Content
+							size={size}
+							block={block}
+							iconAfter={iconAfter}
+							iconBefore={iconBefore}
+							dropdown={dropdown}
+						>
+							{children}
+						</Content>
+					) : null}
+				</Button>
+			</ButtonContext.Provider>
 		);
 	}
 );
@@ -192,7 +215,7 @@ Button.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		TextWrapper: PropTypes.shape({
+		Text: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

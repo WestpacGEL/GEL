@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useButtonContext } from './Button';
 import PropTypes from 'prop-types';
 
 import { defaultText } from './overrides/text';
@@ -10,42 +11,39 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const TextWrapper = ({ block, children, overrides: componentOverrides, ...rest }) => {
+export const Text = ({ block, children, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useButtonContext();
+
 	const defaultOverrides = {
-		TextWrapper: defaultText,
+		Text: defaultText,
 	};
+
+	const componentOverrides = context.state.overrides;
 
 	const state = {
 		block,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Text: { component: Text, styles: textStyles, attributes: textAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.TextWrapper.component
-			{...rest}
-			state={state}
-			{...overrides.TextWrapper.attributes(state)}
-			css={overrides.TextWrapper.styles(state)}
-		>
+		<Text {...rest} state={state} {...textAttributes(state)} css={textStyles(state)}>
 			{children}
-		</overrides.TextWrapper.component>
+		</Text>
 	);
 };
 
-TextWrapper.propTypes = {
+Text.propTypes = {
 	/**
 	 * Block mode.
 	 *
@@ -62,7 +60,7 @@ TextWrapper.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		TextWrapper: PropTypes.shape({
+		Text: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -70,6 +68,6 @@ TextWrapper.propTypes = {
 	}),
 };
 
-TextWrapper.defaultProps = {
+Text.defaultProps = {
 	block: false,
 };

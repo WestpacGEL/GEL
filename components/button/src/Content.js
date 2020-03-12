@@ -2,24 +2,23 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { DropDownIcon } from '@westpac/icon';
+import { useButtonContext } from './Button';
 import PropTypes from 'prop-types';
+import { Text } from './Text';
 
 import { defaultContent } from './overrides/content';
-import { TextWrapper } from './TextWrapper';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const ButtonContent = ({
-	state: {
-		size,
-		block,
-		iconAfter: IconAfter,
-		iconBefore: IconBefore,
-		dropdown,
-		overrides: componentOverrides,
-	},
+
+export const Content = ({
+	size,
+	block,
+	iconAfter: IconAfter,
+	iconBefore: IconBefore,
+	dropdown,
 	children,
 	...rest
 }) => {
@@ -28,9 +27,13 @@ export const ButtonContent = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useButtonContext();
+
 	const defaultOverrides = {
 		Content: defaultContent,
 	};
+
+	const componentOverrides = context.state.overrides;
 
 	const state = {
 		size,
@@ -38,6 +41,7 @@ export const ButtonContent = ({
 		iconAfter: IconAfter,
 		iconBefore: IconBefore,
 		dropdown,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -64,11 +68,7 @@ export const ButtonContent = ({
 					color="inherit"
 				/>
 			)}
-			{children && (
-				<TextWrapper block={block} overrides={componentOverrides}>
-					{children}
-				</TextWrapper>
-			)}
+			{children && <Text block={block}>{children}</Text>}
 			{IconAfter && (
 				<IconAfter
 					css={{ marginLeft: children && '0.4em' }}
@@ -91,7 +91,7 @@ export const ButtonContent = ({
 	);
 };
 
-ButtonContent.propTypes = {
+Content.propTypes = {
 	/**
 	 * Button size
 	 */
@@ -139,7 +139,7 @@ ButtonContent.propTypes = {
 	}),
 };
 
-ButtonContent.defaultProps = {
+Content.defaultProps = {
 	size: 'medium',
 	block: false,
 };
