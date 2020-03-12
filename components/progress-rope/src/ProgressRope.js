@@ -92,7 +92,7 @@ export const ProgressRope = ({
 	}, [instancePrefix]);
 
 	const defaultOverrides = {
-		ProgressRopeRoot: defaultProgressRope,
+		ProgressRope: defaultProgressRope,
 		List: defaultList,
 	};
 
@@ -107,10 +107,10 @@ export const ProgressRope = ({
 	};
 
 	const {
-		ProgressRopeRoot: {
-			component: ProgressRopeRoot,
-			styles: progressRopeRootStyles,
-			attributes: progressRopeRootAttributes,
+		ProgressRope: {
+			component: ProgressRope,
+			styles: progressRopeStyles,
+			attributes: progressRopeAttributes,
 		},
 		List: { component: List, styles: listStyles, attributes: listAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
@@ -220,16 +220,16 @@ export const ProgressRope = ({
 
 	return (
 		<ProgressRopeContext.Provider value={{ ...progState, state, instancePrefix, handleClick }}>
-			<ProgressRopeRoot
+			<ProgressRope
 				{...rest}
 				state={state}
-				{...progressRopeRootAttributes(state)}
-				css={progressRopeRootStyles(state)}
+				{...progressRopeAttributes(state)}
+				css={progressRopeStyles(state)}
 			>
 				<List state={state} {...listAttributes(state)} css={listStyles(state)}>
 					{allChildren}
 				</List>
-			</ProgressRopeRoot>
+			</ProgressRope>
 		</ProgressRopeContext.Provider>
 	);
 };

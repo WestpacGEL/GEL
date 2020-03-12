@@ -7,14 +7,14 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button-group'] = {
-		ButtonGroupRoot: {
+		ButtonGroup: {
 			styles: styles => ({
 				...styles,
 				padding: 5,
 				outline: `2px solid palevioletred`,
 			}),
 		},
-		ItemRoot: {
+		Item: {
 			styles: (styles, { checked }) => ({
 				...styles,
 				backgroundColor: !checked ? 'white' : 'palevioletred',
@@ -47,7 +47,7 @@ function Example({ brand }) {
 			<ButtonGroup
 				name="example-overrides"
 				overrides={{
-					ButtonGroupRoot: {
+					ButtonGroup: {
 						styles: styles => ({
 							...styles,
 							padding: 5,
@@ -69,14 +69,14 @@ function Example({ brand }) {
 					{ text: 'Right', value: 'right' },
 				]}
 				overrides={{
-					ButtonGroupRoot: {
+					ButtonGroup: {
 						styles: styles => ({
 							...styles,
 							padding: 5,
 							outline: `2px solid red`,
 						}),
 					},
-					ItemRoot: {
+					Item: {
 						styles: (styles, { checked }) => ({
 							...styles,
 							backgroundColor: !checked ? 'white' : 'dodgerblue',

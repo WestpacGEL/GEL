@@ -5,7 +5,7 @@ import { useSpring, animated, config } from 'react-spring';
 import { Children, cloneElement, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultGroupRoot } from './overrides/group';
+import { defaultGroup } from './overrides/group';
 import { defaultGroupButtonWrapper } from './overrides/groupButtonWrapper';
 import { defaultGroupButton } from './overrides/groupButton';
 import { defaultGroupList } from './overrides/groupList';
@@ -47,7 +47,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 	});
 
 	const defaultOverrides = {
-		GroupRoot: defaultGroupRoot,
+		Group: defaultGroup,
 		GroupButtonWrapper: defaultGroupButtonWrapper,
 		GroupButton: defaultGroupButton,
 		GroupList: defaultGroupList,
@@ -68,7 +68,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 	};
 
 	const {
-		GroupRoot: { component: GroupRoot, styles: groupRootStyles, attributes: groupRootAttributes },
+		Group: { component: Group, styles: groupStyles, attributes: groupAttributes },
 		GroupButtonWrapper: {
 			component: GroupButtonWrapper,
 			styles: groupButtonWrapperStyles,
@@ -102,7 +102,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 	};
 
 	return (
-		<GroupRoot {...rest} state={state} {...groupRootAttributes(state)} css={groupRootStyles(state)}>
+		<Group {...rest} state={state} {...groupAttributes(state)} css={groupStyles(state)}>
 			<GroupButtonWrapper
 				state={state}
 				{...groupButtonWrapperAttributes(state)}
@@ -126,7 +126,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 					</GroupList>
 				</div>
 			</animated.div>
-		</GroupRoot>
+		</Group>
 	);
 };
 

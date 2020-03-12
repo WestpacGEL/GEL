@@ -23,7 +23,7 @@ const Wrapper = ({ state: { look }, children, ...rest }) => (
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/badge'] = {
-		BadgeRoot: {
+		Badge: {
 			styles: (styles, { look }) => ({
 				...styles,
 				backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
@@ -54,7 +54,7 @@ function Example({ brand }) {
 			<Badge
 				value="Default overridden"
 				overrides={{
-					BadgeRoot: {
+					Badge: {
 						styles: styles => ({
 							...styles,
 							outline: '3px dotted green',

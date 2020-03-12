@@ -34,7 +34,7 @@ export const ButtonGroupItem = ({
 	const context = useButtonGroupContext();
 
 	const defaultOverrides = {
-		ItemRoot: defaultItem,
+		Item: defaultItem,
 		Button: defaultButton,
 	};
 
@@ -55,17 +55,17 @@ export const ButtonGroupItem = ({
 	};
 
 	const {
-		ItemRoot: { component: ItemRoot, styles: itemRootStyles, attributes: itemRootAttributes },
+		Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
 		Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<ItemRoot
+		<Item
 			// htmlFor={buttonGroupItemId} //a11y: use explicit association
 			{...rest}
 			state={state}
-			{...itemRootAttributes({ ...state, buttonGroupItemId })}
-			css={itemRootStyles(state)}
+			{...itemAttributes({ ...state, buttonGroupItemId })}
+			css={itemStyles(state)}
 		>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
@@ -94,7 +94,7 @@ export const ButtonGroupItem = ({
 			>
 				{children}
 			</Button>
-		</ItemRoot>
+		</Item>
 	);
 };
 

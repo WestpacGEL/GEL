@@ -22,7 +22,7 @@ export const VisuallyHidden = ({ tag, children, overrides: componentOverrides, .
 	} = useBrand();
 
 	const defaultOverrides = {
-		VisuallyHiddenRoot: defaultVisuallyHidden,
+		VisuallyHidden: defaultVisuallyHidden,
 	};
 
 	const state = {
@@ -32,20 +32,20 @@ export const VisuallyHidden = ({ tag, children, overrides: componentOverrides, .
 	};
 
 	const {
-		VisuallyHiddenRoot: {
-			component: VisuallyHiddenRoot,
-			styles: visuallyHiddenRootStyles,
-			attributes: visuallyHiddenRootAttributes,
+		VisuallyHidden: {
+			component: VisuallyHidden,
+			styles: visuallyHiddenStyles,
+			attributes: visuallyHiddenAttributes,
 		},
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<VisuallyHiddenRoot
+		<VisuallyHidden
 			tag={tag}
 			children={children}
 			{...rest}
-			{...visuallyHiddenRootAttributes(state)}
-			css={visuallyHiddenRootStyles(state)}
+			{...visuallyHiddenAttributes(state)}
+			css={visuallyHiddenStyles(state)}
 		/>
 	);
 };

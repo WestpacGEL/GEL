@@ -43,7 +43,7 @@ const Icon = ({ state: { look, icon }, ...rest }) => {
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/alert'] = {
-		AlertRoot: {
+		Alert: {
 			styles: styles => ({
 				...styles,
 				outline: '1px solid red',

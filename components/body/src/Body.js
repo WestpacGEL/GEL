@@ -16,7 +16,7 @@ export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) 
 	} = useBrand();
 
 	const defaultOverrides = {
-		BodyRoot: defaultBody,
+		Body: defaultBody,
 	};
 
 	const state = {
@@ -27,13 +27,13 @@ export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) 
 	};
 
 	const {
-		BodyRoot: { component: BodyRoot, styles: bodyRootStyles, attributes: bodyRootAttributes },
+		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<BodyRoot {...rest} state={state} {...bodyRootAttributes(state)} css={bodyRootStyles(state)}>
+		<Body {...rest} state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 			{children}
-		</BodyRoot>
+		</Body>
 	);
 };
 

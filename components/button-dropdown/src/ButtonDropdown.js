@@ -40,7 +40,7 @@ export const ButtonDropdown = ({
 	}, [instanceIdPrefix]);
 
 	const defaultOverrides = {
-		ButtonDropdownRoot: defaultButtonDropdown,
+		ButtonDropdown: defaultButtonDropdown,
 		Panel: defaultPanel,
 	};
 
@@ -55,10 +55,10 @@ export const ButtonDropdown = ({
 	};
 
 	const {
-		ButtonDropdownRoot: {
-			component: ButtonDropdownRoot,
-			styles: buttonDropdownRootStyles,
-			attributes: buttonDropdownRootAttributes,
+		ButtonDropdown: {
+			component: ButtonDropdown,
+			styles: buttonDropdownStyles,
+			attributes: buttonDropdownAttributes,
 		},
 		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
@@ -93,10 +93,10 @@ export const ButtonDropdown = ({
 	});
 
 	return (
-		<ButtonDropdownRoot
+		<ButtonDropdown
 			state={state}
-			{...buttonDropdownRootAttributes(state)}
-			css={buttonDropdownRootStyles(state)}
+			{...buttonDropdownAttributes(state)}
+			css={buttonDropdownStyles(state)}
 		>
 			<Button
 				ref={buttonRef}
@@ -119,7 +119,7 @@ export const ButtonDropdown = ({
 			>
 				{children}
 			</Panel>
-		</ButtonDropdownRoot>
+		</ButtonDropdown>
 	);
 };
 

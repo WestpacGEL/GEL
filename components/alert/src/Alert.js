@@ -41,7 +41,7 @@ export const Alert = ({
 	});
 
 	const defaultOverrides = {
-		AlertRoot: defaultAlert,
+		Alert: defaultAlert,
 		Body: defaultBody,
 		CloseBtn: defaultCloseBtn,
 		Heading: defaultHeading,
@@ -61,7 +61,7 @@ export const Alert = ({
 	};
 
 	const {
-		AlertRoot: { component: AlertRoot, styles: alertRootStyles, attributes: alertRootAttributes },
+		Alert: { component: Alert, styles: alertStyles, attributes: alertAttributes },
 		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
 		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
 		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
@@ -97,14 +97,14 @@ export const Alert = ({
 	);
 
 	const AlertJSX = () => (
-		<AlertRoot state={state} {...rest} {...alertRootAttributes(state)} css={alertRootStyles(state)}>
+		<Alert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
 			{Icon && <IconJSX />}
 			<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 				{heading && <HeadingJSX />}
 				{children}
 			</Body>
 			{dismissible && <CloseBtnJSX />}
-		</AlertRoot>
+		</Alert>
 	);
 
 	return transition.map(

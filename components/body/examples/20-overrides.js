@@ -8,7 +8,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/body'] = {
-		BodyRoot: {
+		Body: {
 			styles: styles => ({
 				...styles,
 				border: '1px solid red',
@@ -127,7 +127,7 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<Body
 				overrides={{
-					BodyRoot: {
+					Body: {
 						styles: styles => ({
 							...styles,
 							outline: '3px dotted green',

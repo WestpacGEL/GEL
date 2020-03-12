@@ -21,7 +21,7 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 	const context = useBreadcrumbContext();
 
 	const defaultOverrides = {
-		CrumbRoot: defaultCrumb,
+		Crumb: defaultCrumb,
 		Link: defaultLink,
 		Icon: defaultIcon,
 	};
@@ -39,18 +39,18 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 	};
 
 	const {
-		CrumbRoot: { component: CrumbRoot, styles: crumbRootStyles, attributes: crumbRootAttributes },
+		Crumb: { component: Crumb, styles: crumbStyles, attributes: crumbAttributes },
 		Link: { component: Link, styles: linkStyles, attributes: linkAttributes },
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<CrumbRoot {...rest} state={state} {...crumbRootAttributes(state)} css={crumbRootStyles(state)}>
+		<Crumb {...rest} state={state} {...crumbAttributes(state)} css={crumbStyles(state)}>
 			<Link onClick={onClick} state={state} {...linkAttributes(state)} css={linkStyles(state)}>
 				{text}
 			</Link>
 			{!current && <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />}
-		</CrumbRoot>
+		</Crumb>
 	);
 };
 

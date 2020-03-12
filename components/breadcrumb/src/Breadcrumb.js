@@ -40,7 +40,7 @@ export const Breadcrumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		BreadcrumbRoot: defaultBreadcrumb,
+		Breadcrumb: defaultBreadcrumb,
 		List: defaultList,
 	};
 
@@ -52,10 +52,10 @@ export const Breadcrumb = ({
 	};
 
 	const {
-		BreadcrumbRoot: {
-			component: BreadcrumbRoot,
-			styles: breadcrumbRootStyles,
-			attributes: breadcrumbRootAttributes,
+		Breadcrumb: {
+			component: Breadcrumb,
+			styles: breadcrumbStyles,
+			attributes: breadcrumbAttributes,
 		},
 		List: { component: List, styles: listStyles, attributes: listAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
@@ -88,15 +88,11 @@ export const Breadcrumb = ({
 
 	return (
 		<BreadcrumbContext.Provider value={{ state }}>
-			<BreadcrumbRoot
-				state={state}
-				{...breadcrumbRootAttributes(state)}
-				css={breadcrumbRootStyles(state)}
-			>
+			<Breadcrumb state={state} {...breadcrumbAttributes(state)} css={breadcrumbStyles(state)}>
 				<List {...rest} state={state} {...listAttributes(state)} css={listStyles(state)}>
 					{allChildren}
 				</List>
-			</BreadcrumbRoot>
+			</Breadcrumb>
 		</BreadcrumbContext.Provider>
 	);
 };

@@ -8,7 +8,7 @@ const groupStyles = () => ({});
 
 const groupAttributes = () => null;
 
-export const defaultGroupRoot = {
+export const defaultGroup = {
 	component: Group,
 	styles: groupStyles,
 	attributes: groupAttributes,

@@ -4,7 +4,7 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { useProgressRopeContext } from './ProgressRope';
-import { defaultStepRoot } from './overrides/step';
+import { defaultStep } from './overrides/step';
 import { defaultStepButton } from './overrides/stepButton';
 import pkg from '../package.json';
 
@@ -21,7 +21,7 @@ export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...
 	const { currStep, currGroup, grouped, ropeGraph } = context;
 
 	const defaultOverrides = {
-		StepRoot: defaultStepRoot,
+		Step: defaultStep,
 		StepButton: defaultStepButton,
 	};
 
@@ -75,7 +75,7 @@ export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...
 	};
 
 	const {
-		StepRoot: { component: StepRoot, styles: stepRootStyles, attributes: stepRootAttributes },
+		Step: { component: Step, styles: stepStyles, attributes: stepAttributes },
 		StepButton: {
 			component: StepButton,
 			styles: stepButtonStyles,
@@ -84,7 +84,7 @@ export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<StepRoot {...rest} state={state} {...stepRootAttributes(state)} css={stepRootStyles(state)}>
+		<Step {...rest} state={state} {...stepAttributes(state)} css={stepStyles(state)}>
 			<StepButton
 				visited={visited}
 				onClick={onClick}
@@ -94,7 +94,7 @@ export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...
 			>
 				{children}
 			</StepButton>
-		</StepRoot>
+		</Step>
 	);
 };
 

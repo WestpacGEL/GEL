@@ -17,7 +17,7 @@ export const SkipLink = ({ href, children, overrides: componentOverrides, ...res
 	} = useBrand();
 
 	const defaultOverrides = {
-		SkipLinkRoot: defaultSkipLink,
+		SkipLink: defaultSkipLink,
 	};
 
 	const state = {
@@ -27,20 +27,16 @@ export const SkipLink = ({ href, children, overrides: componentOverrides, ...res
 	};
 
 	const {
-		SkipLinkRoot: {
-			component: SkipLinkRoot,
-			styles: skipLinkRootStyles,
-			attributes: skipLinkRootAttributes,
-		},
+		SkipLink: { component: SkipLink, styles: skipLinkStyles, attributes: skipLinkAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<SkipLinkRoot
+		<SkipLink
 			href={href}
 			children={children}
 			{...rest}
-			{...skipLinkRootAttributes(state)}
-			css={skipLinkRootStyles(state)}
+			{...skipLinkAttributes(state)}
+			css={skipLinkStyles(state)}
 		/>
 	);
 };

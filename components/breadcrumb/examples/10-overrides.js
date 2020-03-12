@@ -11,7 +11,7 @@ const Icon = ({ state, ...props }) => <HouseIcon color="red" {...props} />;
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/breadcrumb'] = {
-		BreadcrumbRoot: {
+		Breadcrumb: {
 			styles: styles => ({
 				...styles,
 				outline: '1px solid red',
@@ -46,7 +46,7 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<Breadcrumb
 				overrides={{
-					CrumbRoot: {
+					Crumb: {
 						styles: styles => ({
 							...styles,
 							outline: '3px dotted green',
@@ -58,7 +58,7 @@ function Example({ brand }) {
 				<Crumb href="#/personal-banking/" text="Personal" />
 				<Crumb
 					overrides={{
-						CrumbRoot: {
+						Crumb: {
 							styles: styles => ({
 								...styles,
 								outline: '3px dotted blue',
@@ -74,7 +74,7 @@ function Example({ brand }) {
 
 			<Breadcrumb
 				overrides={{
-					CrumbRoot: {
+					Crumb: {
 						styles: styles => ({
 							...styles,
 							outline: '3px dotted green',

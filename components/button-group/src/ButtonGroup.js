@@ -51,7 +51,7 @@ export const ButtonGroup = ({
 	devWarning(!children && !data, 'ButtonGroup requires either `children` or `data`.');
 
 	const defaultOverrides = {
-		ButtonGroupRoot: defaultButtonGroup,
+		ButtonGroup: defaultButtonGroup,
 	};
 
 	const state = {
@@ -69,10 +69,10 @@ export const ButtonGroup = ({
 	};
 
 	const {
-		ButtonGroupRoot: {
-			component: ButtonGroupRoot,
-			styles: buttonGroupRootStyles,
-			attributes: buttonGroupRootAttributes,
+		ButtonGroup: {
+			component: ButtonGroup,
+			styles: buttonGroupStyles,
+			attributes: buttonGroupAttributes,
 		},
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
@@ -125,14 +125,14 @@ export const ButtonGroup = ({
 
 	return (
 		<ButtonGroupContext.Provider value={{ state }}>
-			<ButtonGroupRoot
+			<ButtonGroup
 				{...rest}
 				state={state}
-				{...buttonGroupRootAttributes(state)}
-				css={buttonGroupRootStyles(state)}
+				{...buttonGroupAttributes(state)}
+				css={buttonGroupStyles(state)}
 			>
 				{allChildren}
-			</ButtonGroupRoot>
+			</ButtonGroup>
 		</ButtonGroupContext.Provider>
 	);
 };

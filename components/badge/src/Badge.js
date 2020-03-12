@@ -16,7 +16,7 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 	} = useBrand();
 
 	const defaultOverrides = {
-		BadgeRoot: defaultBadge,
+		Badge: defaultBadge,
 	};
 
 	const state = {
@@ -27,13 +27,13 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 	};
 
 	const {
-		BadgeRoot: { component: BadgeRoot, styles: badgeRootStyles, attributes: badgeRootAttributes },
+		Badge: { component: Badge, styles: badgeStyles, attributes: badgeAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<BadgeRoot {...rest} state={state} {...badgeRootAttributes(state)} css={badgeRootStyles(state)}>
+		<Badge {...rest} state={state} {...badgeAttributes(state)} css={badgeStyles(state)}>
 			{value}
-		</BadgeRoot>
+		</Badge>
 	);
 };
 
