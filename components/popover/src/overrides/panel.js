@@ -3,13 +3,9 @@
 import { jsx, useBrand } from '@westpac/core';
 import { forwardRef } from 'react';
 
-export const Panel = forwardRef(
-	({ open, heading, headingTag, content, dismissible, position, instanceId, ...rest }, ref) => (
-		<div ref={ref} {...rest} />
-	)
-);
+const Panel = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
-export const panelStyles = (_, { open, position }) => {
+const panelStyles = (_, { open, position }) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -52,4 +48,12 @@ export const panelStyles = (_, { open, position }) => {
 			[position.placement === 'top' ? 'borderTop' : 'borderBottom']: '11px solid #fff',
 		},
 	};
+};
+
+const panelAttributes = (_, { instanceId }) => ({ id: instanceId });
+
+export const defaultPanel = {
+	component: Panel,
+	styles: panelStyles,
+	attributes: panelAttributes,
 };

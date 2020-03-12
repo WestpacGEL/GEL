@@ -3,17 +3,19 @@
 import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
-export const Trigger = ({
-	open,
-	heading,
-	headingTag,
-	content,
-	dismissible,
-	position,
-	instanceId,
-	...rest
-}) => <Button {...rest} />;
+const Trigger = ({ state, ...rest }) => <Button {...rest} />;
 
-export const triggerStyles = (_, {}) => {
+const triggerStyles = (_, {}) => {
 	return {};
+};
+
+const triggerAtttributes = (_, { instanceId, open }) => ({
+	'aria-controls': instanceId,
+	'aria-expanded': open,
+});
+
+export const defaultTrigger = {
+	component: Trigger,
+	styles: triggerStyles,
+	attributes: triggerAtttributes,
 };

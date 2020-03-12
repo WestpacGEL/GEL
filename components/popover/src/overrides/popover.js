@@ -3,13 +3,17 @@
 import { jsx } from '@westpac/core';
 import { forwardRef } from 'react';
 
-export const Popover = forwardRef(
-	({ open, heading, headingTag, content, dismissible, position, instanceId, ...rest }, ref) => (
-		<div ref={ref} {...rest} />
-	)
-);
+const Popover = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
-export const popoverStyles = () => ({
+const popoverStyles = () => ({
 	position: 'relative',
 	display: 'inline-block',
 });
+
+const popoverAttributes = () => null;
+
+export const defaultPopover = {
+	component: Popover,
+	styles: popoverStyles,
+	attributes: popoverAttributes,
+};

@@ -5,12 +5,12 @@ import { useState, useEffect, useRef, cloneElement } from 'react';
 import { usePopoverPosition } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
-import { Popover as PopoverWrapper, popoverStyles } from './overrides/popover';
-import { Trigger, triggerStyles } from './overrides/trigger';
-import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
-import { PopoverBody, bodyStyles } from './overrides/body';
-import { Panel, panelStyles } from './overrides/panel';
-import { PopoverHeading, headingStyles } from './overrides/heading';
+import { defaultPopover } from './overrides/popover';
+import { defaultTrigger } from './overrides/trigger';
+import { defaultCloseBtn } from './overrides/closeBtn';
+import { defaultBody } from './overrides/body';
+import { defaultPanel } from './overrides/panel';
+import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
 
 export const Popover = ({
@@ -35,48 +35,21 @@ export const Popover = ({
 	const popoverRef = useRef();
 
 	const defaultOverrides = {
-		Popover: {
-			styles: popoverStyles,
-			component: PopoverWrapper,
-			attributes: () => null,
-		},
-		Trigger: {
-			styles: triggerStyles,
-			component: Trigger,
-			attributes: () => null,
-		},
-		Panel: {
-			styles: panelStyles,
-			component: Panel,
-			attributes: () => null,
-		},
-		Heading: {
-			styles: headingStyles,
-			component: PopoverHeading,
-			attributes: () => null,
-		},
-		Body: {
-			styles: bodyStyles,
-			component: PopoverBody,
-			attributes: () => null,
-		},
-		CloseBtn: {
-			styles: closeBtnStyles,
-			component: CloseBtn,
-			attributes: () => null,
-		},
+		Popover: defaultPopover,
+		Trigger: defaultTrigger,
+		Panel: defaultPanel,
+		Heading: defaultHeading,
+		Body: defaultBody,
+		CloseBtn: defaultCloseBtn,
 	};
 
-	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 
-	// create the prefix for internal ID
 	useEffect(() => {
-		if (!instancePrefix) {
-			setInstancePrefix('gel-popover');
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-popover-${useInstanceId()}`);
 		}
-	}, [instancePrefix]);
-
-	const instanceId = `${instancePrefix}-${useInstanceId()}`;
+	}, [instanceIdPrefix]);
 
 	const state = {
 		open,
@@ -90,12 +63,14 @@ export const Popover = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Popover: { component: Popover, styles: popoverStyles, attributes: popoverAttributes },
+		Trigger: { component: Trigger, styles: triggerStyles, attributes: triggerAttributes },
+		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
+		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
+		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -139,91 +114,38 @@ export const Popover = ({
 	});
 
 	return (
-		<overrides.Popover.component
+		<Popover
 			ref={triggerRef}
-			open={open}
-			heading={heading}
-			headingTag={headingTag}
-			content={content}
-			dismissible={dismissible}
-			position={position}
-			instanceId={instanceId}
-			{...overrides.Popover.attributes(state)}
-			css={overrides.Popover.styles(state)}
+			state={state}
+			{...popoverAttributes(state)}
+			css={popoverStyles(state)}
 		>
-			<overrides.Trigger.component
-				aria-controls={instanceId}
-				aria-expanded={open}
+			<Trigger
 				onClick={handleOpen}
-				open={open}
-				heading={heading}
-				headingTag={headingTag}
-				content={content}
-				dismissible={dismissible}
-				position={position}
-				instanceId={instanceId}
 				{...rest}
-				{...overrides.Popover.attributes(state)}
-				css={overrides.Popover.styles(state)}
+				state={state}
+				{...triggerAttributes(state)}
+				css={triggerStyles(state)}
 			>
 				{children}
-			</overrides.Trigger.component>
-			<overrides.Panel.component
-				id={instanceId}
-				ref={popoverRef}
-				open={open}
-				heading={heading}
-				headingTag={headingTag}
-				content={content}
-				dismissible={dismissible}
-				position={position}
-				instanceId={instanceId}
-				{...overrides.Panel.attributes(state)}
-				css={overrides.Panel.styles(state)}
-			>
+			</Trigger>
+			<Panel ref={popoverRef} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
 				{heading && (
-					<overrides.Heading.component
-						open={open}
-						heading={heading}
-						headingTag={headingTag}
-						content={content}
-						dismissible={dismissible}
-						position={position}
-						instanceId={instanceId}
-						{...overrides.Heading.attributes(state)}
-						css={overrides.Heading.styles(state)}
-					>
+					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
 						{heading}
-					</overrides.Heading.component>
+					</Heading>
 				)}
-				<overrides.Body.component
-					open={open}
-					heading={heading}
-					headingTag={headingTag}
-					content={content}
-					dismissible={dismissible}
-					position={position}
-					instanceId={instanceId}
-					{...overrides.Body.attributes(state)}
-					css={overrides.Body.styles(state)}
-				>
+				<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 					{content}
-				</overrides.Body.component>
-				<overrides.CloseBtn.component
-					assistiveText="Close"
+				</Body>
+				<CloseBtn
 					onClick={() => handleOpen()}
-					open={open}
-					heading={heading}
-					headingTag={headingTag}
-					content={content}
-					dismissible={dismissible}
-					position={position}
-					instanceId={instanceId}
-					{...overrides.CloseBtn.attributes(state)}
-					css={overrides.CloseBtn.styles(state)}
+					state={state}
+					{...closeBtnAttributes(state)}
+					css={closeBtnStyles(state)}
 				/>
-			</overrides.Panel.component>
-		</overrides.Popover.component>
+			</Panel>
+		</Popover>
 	);
 };
 
