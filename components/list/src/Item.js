@@ -4,8 +4,8 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
-import { Item as ItemWrapper, itemStyles } from './overrides/item';
-import { Icon as IconWrapper, iconStyles } from './overrides/icon';
+import { defaultItem } from './overrides/item';
+import { defaultIcon } from './overrides/icon';
 import { useListContext } from './List';
 import pkg from '../package.json';
 
@@ -14,27 +14,18 @@ import pkg from '../package.json';
 // ==============================
 export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) => {
 	const {
-		COLORS,
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		Item: {
-			styles: itemStyles,
-			component: ItemWrapper,
-			attributes: () => null,
-		},
-		Icon: {
-			styles: iconStyles,
-			component: IconWrapper,
-			attributes: () => null,
-		},
+		Item: defaultItem,
+		Icon: defaultIcon,
 	};
 
 	const context = useListContext();
 	if (!context) {
-		throw new Error('Item components should be wrapped in a <List>.');
+		throw new Error('<Item/> components should be wrapped in a <List>.');
 	}
 
 	const {
@@ -62,17 +53,15 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
+		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const allChildren = Children.map(children, child => {
-		if (child.props && child.props.href && /^#.+/.test(child.props.href)) {
+		if (child && child.props && child.props.href && /^#.+/.test(child.props.href)) {
 			return cloneElement(child, {
-				onClick: () => document.getElementById(child.props.href.slice(1)).focus(),
+				onClick: () => document.getElementById(child.props.href.slice(1)).focus(), // auto-focus anchor tags in link-lists
 			});
 		} else {
 			return child;
@@ -80,31 +69,12 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 	});
 
 	return (
-		<overrides.Item.component
-			look={look}
-			type={type}
-			nested={nested}
-			spacing={spacing}
-			icon={icon}
-			{...rest}
-			{...overrides.Item.attributes(state)}
-			css={overrides.Item.styles(state)}
-		>
+		<Item {...rest} state={state} {...itemAttributes(state)} css={itemStyles(state)}>
 			{type === 'icon' && icon && (
-				<overrides.Icon.component
-					look={look}
-					type={type}
-					nested={nested}
-					spacing={spacing}
-					icon={icon}
-					size="small"
-					color={COLORS.muted}
-					{...overrides.Icon.attributes(state)}
-					css={overrides.Icon.styles(state)}
-				/>
+				<Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />
 			)}
 			{allChildren}
-		</overrides.Item.component>
+		</Item>
 	);
 };
 

@@ -1,53 +1,43 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useListGroupContext } from './ListGroup';
 import PropTypes from 'prop-types';
-import React from 'react';
 
-import { Item as ItemWrapper, itemStyles } from './overrides/item';
+import { defaultItem } from './overrides/item';
 import pkg from '../package.json';
 
 // ==============================
 // Component
-//
-// List Group: List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content.
-// Ideal for settings pages or preferences.
 // ==============================
 
-export const Item = ({ children, overrides: componentOverrides, ...rest }) => {
+export const Item = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+	const context = useListGroupContext();
 
 	const defaultOverrides = {
-		Item: {
-			styles: itemStyles,
-			component: ItemWrapper,
-			attributes: () => null,
-		},
+		Item: defaultItem,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Item.component
-			{...rest}
-			{...overrides.Item.attributes(state)}
-			css={overrides.Item.styles(state)}
-		>
+		<Item {...rest} {...itemAttributes(state)} css={itemStyles(state)}>
 			{children}
-		</overrides.Item.component>
+		</Item>
 	);
 };
 
