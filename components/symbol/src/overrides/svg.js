@@ -3,7 +3,7 @@
 import { jsx } from '@westpac/core';
 import React from 'react';
 
-const Svg = ({ assistiveText, viewBoxWidth, viewBoxHeight, ...rest }) => <svg {...rest} />;
+const Svg = ({ state, ...rest }) => <svg {...rest} />;
 
 const svgStyles = () => ({
 	width: '100%',

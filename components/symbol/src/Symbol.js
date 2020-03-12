@@ -12,6 +12,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const Symbol = ({
+	width,
 	assistiveText,
 	viewBoxWidth,
 	viewBoxHeight,
@@ -25,11 +26,12 @@ export const Symbol = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		SymbolRoot: defaultSymbol,
+		Symbol: defaultSymbol,
 		Svg: defaultSvg,
 	};
 
 	const state = {
+		width,
 		assistiveText,
 		viewBoxWidth,
 		viewBoxHeight,
@@ -38,25 +40,16 @@ export const Symbol = ({
 	};
 
 	const {
-		SymbolRoot: {
-			component: SymbolRoot,
-			styles: symbolRootStyles,
-			attributes: symbolRootAttributes,
-		},
+		Symbol: { component: Symbol, styles: symbolStyles, attributes: symbolAttributes },
 		Svg: { component: Svg, styles: svgStyles, attributes: svgAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<SymbolRoot
-			{...rest}
-			state={state}
-			{...symbolRootAttributes(state)}
-			css={symbolRootStyles(state)}
-		>
+		<Symbol {...rest} state={state} {...symbolAttributes(state)} css={symbolStyles(state)}>
 			<Svg state={state} {...svgAttributes(state)} css={svgStyles(state)}>
 				{children}
 			</Svg>
-		</SymbolRoot>
+		</Symbol>
 	);
 };
 

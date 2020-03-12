@@ -3,7 +3,7 @@
 import { jsx, useMediaQuery, asArray } from '@westpac/core';
 import React from 'react';
 
-const Symbol = ({ assistiveText, viewBoxWidth, viewBoxHeight, ...rest }) => <span {...rest} />;
+const Symbol = ({ symbol, state, ...rest }) => <span {...rest} />;
 
 const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
 	const mq = useMediaQuery();
