@@ -6,7 +6,7 @@ import { Switch } from '@westpac/switch';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Label = ({ state: { label }, ...rest }) => <strong {...rest}>{label}</strong>;
+const Label = ({ state, ...rest }) => <strong {...rest} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
