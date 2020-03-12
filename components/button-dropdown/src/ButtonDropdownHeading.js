@@ -1,58 +1,46 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useButtonDropdownContext } from './ButtonDropdown';
 import PropTypes from 'prop-types';
 
-import {
-	ButtonDropdownHeading as ButtonDropdownHeadingWrapper,
-	buttonDropdownHeadingStyles,
-} from './overrides/heading';
+import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const ButtonDropdownHeading = ({
-	tag,
-	children,
-	overrides: componentOverrides,
-	...rest
-}) => {
+
+export const ButtonDropdownHeading = ({ tag, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useButtonDropdownContext();
+
 	const defaultOverrides = {
-		ButtonDropdownHeading: {
-			styles: buttonDropdownHeadingStyles,
-			component: ButtonDropdownHeadingWrapper,
-			attributes: () => null,
-		},
+		Heading: defaultHeading,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		tag,
 		children,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.ButtonDropdownHeading.component
-			tag={tag}
-			{...overrides.ButtonDropdownHeading.attributes(state)}
-			css={overrides.ButtonDropdownHeading.styles(state)}
-		>
+		<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
 			{children}
-		</overrides.ButtonDropdownHeading.component>
+		</Heading>
 	);
 };
 
@@ -69,7 +57,7 @@ ButtonDropdownHeading.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		ButtonDropdownHeading: PropTypes.shape({
+		Heading: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

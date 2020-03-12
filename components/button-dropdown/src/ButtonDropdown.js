@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState, useEffect, useRef } from 'react';
+import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { Button } from '@westpac/button';
 import PropTypes from 'prop-types';
@@ -11,8 +11,25 @@ import { defaultPanel } from './overrides/panel';
 import pkg from '../package.json';
 
 // ==============================
+// Context and Consumer Hook
+// ==============================
+
+const ButtonDropdownContext = createContext();
+
+export const useButtonDropdownContext = () => {
+	const context = useContext(ButtonDropdownContext);
+
+	if (!context) {
+		throw new Error('<Heading/> components should be wrapped in a <ButtonDropdown>.');
+	}
+
+	return context;
+};
+
+// ==============================
 // Component
 // ==============================
+
 export const ButtonDropdown = ({
 	instanceIdPrefix,
 	text,
@@ -93,33 +110,29 @@ export const ButtonDropdown = ({
 	});
 
 	return (
-		<ButtonDropdown
-			state={state}
-			{...buttonDropdownAttributes(state)}
-			css={buttonDropdownStyles(state)}
-		>
-			<Button
-				ref={buttonRef}
-				aria-expanded={open}
-				aria-controls={instanceId}
-				onClick={handleOpen}
-				dropdown={true}
-				block={block}
-				overrides={componentOverrides}
-				{...rest}
-			>
-				{text}
-			</Button>
-			<Panel
-				ref={panelRef}
-				id={instanceId}
+		<ButtonDropdownContext.Provider value={{ state }}>
+			<ButtonDropdown
 				state={state}
-				{...panelAttributes(state)}
-				css={panelStyles(state)}
+				{...buttonDropdownAttributes(state)}
+				css={buttonDropdownStyles(state)}
 			>
-				{children}
-			</Panel>
-		</ButtonDropdown>
+				<Button
+					ref={buttonRef}
+					aria-expanded={open}
+					aria-controls={instanceId}
+					onClick={handleOpen}
+					dropdown={true}
+					block={block}
+					overrides={componentOverrides}
+					{...rest}
+				>
+					{text}
+				</Button>
+				<Panel ref={panelRef} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+					{children}
+				</Panel>
+			</ButtonDropdown>
+		</ButtonDropdownContext.Provider>
 	);
 };
 
@@ -157,6 +170,11 @@ ButtonDropdown.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Panel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Heading: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

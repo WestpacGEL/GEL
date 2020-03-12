@@ -3,9 +3,11 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 
-export const ButtonDropdownHeading = ({ tag, ...rest }) => <Heading size={9} tag={tag} {...rest} />;
+const ButtonDropdownHeading = ({ state: { tag }, ...rest }) => (
+	<Heading size={9} tag={tag} {...rest} />
+);
 
-export const buttonDropdownHeadingStyles = (_, {}) => {
+const headingStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -20,4 +22,12 @@ export const buttonDropdownHeadingStyles = (_, {}) => {
 			marginTop: '-0.375rem',
 		},
 	};
+};
+
+const headingAttributes = () => null;
+
+export const defaultHeading = {
+	component: ButtonDropdownHeading,
+	styles: headingStyles,
+	attributes: headingAttributes,
 };

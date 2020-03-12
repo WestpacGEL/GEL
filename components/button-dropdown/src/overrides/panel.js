@@ -41,7 +41,7 @@ const panelStyles = (_, { open, dropdownSize }) => {
 	})[0];
 };
 
-const panelAttributes = () => null;
+const panelAttributes = (_, { instanceId }) => ({ id: instanceId });
 
 export const defaultPanel = {
 	component: Panel,
