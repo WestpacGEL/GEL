@@ -8,7 +8,7 @@ const CloseBtn = ({ state, ...rest }) => (
 	<Button iconAfter={CloseIcon} look="link" size="medium" assistiveText="Close" {...rest} />
 );
 
-const closeBtnStyles = (_, {}) => {
+const closeBtnStyles = () => {
 	const { COLORS, SPACING } = useBrand();
 	return {
 		position: 'absolute',

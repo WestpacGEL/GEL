@@ -10,13 +10,14 @@ import pkg from '../package.json';
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const ListGroupContext = createContext();
 
 export const useListGroupContext = () => {
 	const context = useContext(ListGroupContext);
 
 	if (!context) {
-		throw new Error('<Item/> components should be wrapped in <ListGroup>.');
+		throw new Error('<Item/> components should be wrapped in a <ListGroup>.');
 	}
 
 	return context;

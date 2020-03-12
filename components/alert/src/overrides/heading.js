@@ -2,13 +2,12 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
-import React from 'react';
 
-export const AlertHeading = ({ state: { headingTag }, ...rest }) => (
+const AlertHeading = ({ state: { headingTag }, ...rest }) => (
 	<Heading size={7} tag={headingTag} {...rest} />
 );
 
-export const headingStyles = (_, {}) => {
+const headingStyles = () => {
 	const { SPACING } = useBrand();
 
 	return {

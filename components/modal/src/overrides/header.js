@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 
 const Header = ({ state, ...rest }) => <div {...rest} />;
 
-const headerStyles = (_, {}) => {
+const headerStyles = () => {
 	const { COLORS } = useBrand();
 	return {
 		borderBottom: `1px solid ${COLORS.hero}`,

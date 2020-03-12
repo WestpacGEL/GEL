@@ -33,4 +33,8 @@ const stepStyles = (_, { end, visited, grouped, furthest }) => {
 
 const stepAttributes = () => null;
 
-export const defaultStep = { component: Step, styles: stepStyles, attributes: stepAttributes };
+export const defaultStep = {
+	component: Step,
+	styles: stepStyles,
+	attributes: stepAttributes,
+};

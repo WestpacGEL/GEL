@@ -4,7 +4,7 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 const Well = ({ state: { tag: Tag }, state, ...rest }) => <Tag {...rest} />;
 
-const wellStyles = (_, {}) => {
+const wellStyles = () => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
 

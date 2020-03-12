@@ -32,7 +32,7 @@ const headingStyles = (_, { size }) => {
 	};
 };
 
-const headingAttributes = () => ({});
+const headingAttributes = () => null;
 
 export const defaultHeading = {
 	component: Heading,

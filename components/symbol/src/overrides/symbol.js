@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useMediaQuery, asArray } from '@westpac/core';
-import React from 'react';
 
 const Symbol = ({ symbol, state, ...rest }) => <span {...rest} />;
 

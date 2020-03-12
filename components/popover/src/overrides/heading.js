@@ -7,7 +7,7 @@ const PopoverHeading = ({ state: { headingTag }, ...rest }) => (
 	<Heading size={8} tag={headingTag} {...rest} />
 );
 
-const headingStyles = (_, {}) => {
+const headingStyles = () => {
 	const { SPACING, COLORS } = useBrand();
 	return {
 		marginBottom: SPACING(2),

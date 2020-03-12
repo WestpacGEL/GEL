@@ -12,20 +12,22 @@ import { cloneElement, Children, useState, useContext, createContext } from 'rea
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
+
 import { Option } from './Option';
 import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const FormCheckContext = createContext();
 
 export const useFormCheckContext = () => {
 	const context = useContext(FormCheckContext);
 
-	// if (!context) {
-	// 	throw new Error('<Crumb/> components should be wrapped in <Breadcrumb>.');
-	// }
+	if (!context) {
+		throw new Error('<Option/> components should be wrapped in a <FormCheck>.');
+	}
 
 	return context;
 };
@@ -33,6 +35,7 @@ export const useFormCheckContext = () => {
 // ==============================
 // Component
 // ==============================
+
 export const FormCheck = ({
 	type,
 	name,
@@ -46,6 +49,11 @@ export const FormCheck = ({
 	overrides: componentOverrides,
 	...rest
 }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
 	const defaultValueAsArray = defaultValue ? asArray(defaultValue) : [];
 
 	devWarning(
@@ -53,10 +61,6 @@ export const FormCheck = ({
 		'The form-check as radio may only have one "current" item set.'
 	);
 
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
 	const [checked, setChecked] = useState(defaultValueAsArray);
 
 	const defaultOverrides = {

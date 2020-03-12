@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { usePaginationContext } from './Pagination';
 import PropTypes from 'prop-types';
 
 import { defaultPage } from './overrides/page';
 import { defaultLink } from './overrides/link';
+
+import { usePaginationContext } from './Pagination';
 import pkg from '../package.json';
 
 // ==============================
@@ -28,6 +29,7 @@ export const Page = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const { current, ...context } = usePaginationContext();
 	const active = index === current;
 

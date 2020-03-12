@@ -11,13 +11,14 @@ import pkg from '../package.json';
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const TableContext = createContext();
 
 export const useTableContext = () => {
 	const context = useContext(TableContext);
 
 	if (!context) {
-		throw new Error('Table sub-components should be wrapped in <Table>.');
+		throw new Error('Table sub-components should be wrapped in a <Table>.');
 	}
 
 	return context;
@@ -26,6 +27,7 @@ export const useTableContext = () => {
 // ==============================
 // Component
 // ==============================
+
 export const Table = ({ striped, bordered, children, overrides: componentOverrides, ...rest }) => {
 	const context = useContext(TableContext);
 	bordered = (context && context.bordered) || bordered;
@@ -72,6 +74,7 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 // ==============================
 // Types
 // ==============================
+
 Table.propTypes = {
 	/**
 	 * Striped mode

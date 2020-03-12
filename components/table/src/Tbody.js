@@ -1,15 +1,17 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
 import { defaultTBody } from './overrides/tbody';
+
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const Tbody = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -25,8 +27,8 @@ export const Tbody = ({ children, overrides, ...rest }) => {
 	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
-		context: { ...context.state },
-		overrides,
+		context: context.state,
+		overrides: componentOverrides,
 		...rest,
 	};
 
@@ -40,6 +42,10 @@ export const Tbody = ({ children, overrides, ...rest }) => {
 		</Tbody>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Tbody.propTypes = {
 	/**

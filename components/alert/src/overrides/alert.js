@@ -2,11 +2,10 @@
 
 import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import React from 'react';
 
-export const Alert = ({ state, ...rest }) => <div {...rest} />;
+const Alert = ({ state, ...rest }) => <div {...rest} />;
 
-export const alertStyles = (_, { dismissible, look }) => {
+const alertStyles = (_, { dismissible, look }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
 

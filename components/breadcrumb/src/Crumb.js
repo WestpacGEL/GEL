@@ -1,17 +1,19 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useBreadcrumbContext } from './Breadcrumb';
 import PropTypes from 'prop-types';
 
 import { defaultCrumb } from './overrides/crumb';
 import { defaultLink } from './overrides/link';
 import { defaultIcon } from './overrides/icon';
+
+import { useBreadcrumbContext } from './Breadcrumb';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -33,7 +35,7 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 		href,
 		text,
 		onClick,
-		context: { ...context.state },
+		context: context.state,
 		overrides,
 		...rest,
 	};

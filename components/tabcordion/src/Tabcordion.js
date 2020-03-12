@@ -9,19 +9,20 @@ import { defaultTabcordion } from './overrides/tabcordion';
 import { defaultTabButton } from './overrides/tabButton';
 import { defaultTabRow } from './overrides/tabRow';
 
-import pkg from '../package.json';
 import { Tab } from './Tab';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const TabcordionContext = createContext();
 
 export const useTabcordionContext = () => {
 	const context = useContext(TabcordionContext);
 
 	if (!context) {
-		throw new Error('<Tab/> components should be wrapped in <Tabcordion>.');
+		throw new Error('<Tab/> components should be wrapped in a <Tabcordion>.');
 	}
 
 	return context;
@@ -30,6 +31,7 @@ export const useTabcordionContext = () => {
 // ==============================
 // Component
 // ==============================
+
 export const Tabcordion = ({
 	mode: tabcordionMode,
 	look,
@@ -158,6 +160,7 @@ export const Tabcordion = ({
 // ==============================
 // Types
 // ==============================
+
 Tabcordion.propTypes = {
 	/**
 	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".

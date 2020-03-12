@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
 const Svg = ({ state, ...rest }) => <svg {...rest} />;
 

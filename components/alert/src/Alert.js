@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultCloseBtn } from './overrides/closeBtn';
@@ -15,6 +15,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
+
 export const Alert = ({
 	open: isOpen,
 	look,

@@ -9,6 +9,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
+
 export const Cell = ({
 	area,
 	height,

@@ -5,12 +5,14 @@ import { createContext, useContext, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultList } from './overrides/list';
-import pkg from '../package.json';
+
 import { Item } from './Item';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const ListContext = createContext();
 
 export const useListContext = () => useContext(ListContext);
@@ -104,10 +106,12 @@ export const List = ({
 	};
 
 	const context = useListContext();
+
 	look = look || (context && context.look) || 'primary';
 	type = type || (context && context.type) || 'bullet';
 	spacing = spacing || (context && context.spacing) || 'medium';
 	icon = icon || (context && context.icon);
+
 	if (typeof nested !== 'number') {
 		nested = (context && context.nested + 1) || 0;
 	}
@@ -154,6 +158,7 @@ export const List = ({
 // ==============================
 // Types
 // ==============================
+
 List.propTypes = {
 	/**
 	 * The look of the bullet list

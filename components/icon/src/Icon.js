@@ -21,7 +21,6 @@ export const Icon = ({
 	...rest
 }) => {
 	const {
-		COLORS,
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();

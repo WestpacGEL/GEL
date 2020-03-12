@@ -14,7 +14,7 @@ export const itemStyles = (_, { block }) => {
 	})[0];
 };
 
-const itemAttributes = (_, { buttonGroupItemId }) => ({ htmlFor: buttonGroupItemId });
+const itemAttributes = (_, { buttonGroupItemId }) => ({ htmlFor: buttonGroupItemId }); //a11y: use explicit association
 
 export const defaultItem = {
 	component: Item,

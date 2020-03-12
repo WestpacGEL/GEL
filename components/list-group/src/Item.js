@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useListGroupContext } from './ListGroup';
 import PropTypes from 'prop-types';
 
 import { defaultItem } from './overrides/item';
+
+import { useListGroupContext } from './ListGroup';
 import pkg from '../package.json';
 
 // ==============================

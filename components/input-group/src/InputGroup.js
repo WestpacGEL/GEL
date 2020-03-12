@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 
 import { defaultInputGroup } from './overrides/inputGroup';
 import { defaultText } from './overrides/text';
-import pkg from '../package.json';
+
 import { Right } from './Right';
 import { Left } from './Left';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook

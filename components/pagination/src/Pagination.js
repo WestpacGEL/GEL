@@ -2,24 +2,26 @@
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers, mergeWith } from '@westpac/core';
 import { useEffect, Children, createContext, useContext } from 'react';
-import { usePagination } from './usePagination';
 import PropTypes from 'prop-types';
-import { Page } from './Page';
 
 import { defaultPagination } from './overrides/pagination';
 import { defaultPageList } from './overrides/pageList';
+
+import { usePagination } from './usePagination';
+import { Page } from './Page';
 import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const PaginationContext = createContext();
 
 export const usePaginationContext = () => {
 	const context = useContext(PaginationContext);
 
 	if (!context) {
-		throw new Error('Page components should be wrapped in <Pagination>.');
+		throw new Error('<Page/> components should be wrapped in a <Pagination>.');
 	}
 
 	return context;
@@ -28,6 +30,7 @@ export const usePaginationContext = () => {
 // ==============================
 // Component
 // ==============================
+
 export const Pagination = ({
 	current,
 	infinite,

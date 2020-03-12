@@ -14,6 +14,10 @@ import { useProgressRopeContext } from './ProgressRope';
 import { useMeasure } from './_utils';
 import pkg from '../package.json';
 
+// ==============================
+// Component
+// ==============================
+
 export const Group = ({ index, text, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -62,8 +66,8 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 		active,
 		complete,
 		hidden,
-		context: { ...context.state },
-		overrides,
+		context: context.state,
+		overrides: componentOverrides,
 		...rest,
 	};
 
@@ -133,6 +137,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 // ==============================
 // Types
 // ==============================
+
 Group.propTypes = {
 	/**
 	 * The index of this step

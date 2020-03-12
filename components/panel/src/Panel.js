@@ -12,13 +12,14 @@ import pkg from '../package.json';
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const PanelContext = createContext();
 
 export const usePanelContext = () => {
 	const context = useContext(PanelContext);
 
 	if (!context) {
-		throw new Error('<Body/> and <Footer/> components should be wrapped in <Panel>.');
+		throw new Error('<Body/> and <Footer/> components should be wrapped in a <Panel>.');
 	}
 
 	return context;

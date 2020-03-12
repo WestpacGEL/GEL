@@ -2,11 +2,12 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { DropDownIcon } from '@westpac/icon';
-import { useButtonContext } from './Button';
 import PropTypes from 'prop-types';
-import { Text } from './Text';
 
 import { defaultContent } from './overrides/content';
+
+import { useButtonContext } from './Button';
+import { Text } from './Text';
 import pkg from '../package.json';
 
 // ==============================
@@ -90,6 +91,10 @@ export const Content = ({
 		</Content>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Content.propTypes = {
 	/**

@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 
 const Tbody = ({ state, ...rest }) => <tbody {...rest} />;
 
-const tbodyStyles = (_, {}) => ({});
+const tbodyStyles = () => ({});
 
 const tbodyAttributes = () => null;
 

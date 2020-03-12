@@ -6,12 +6,14 @@ import PropTypes from 'prop-types';
 
 import { defaultItem } from './overrides/item';
 import { defaultIcon } from './overrides/icon';
+
 import { useListContext } from './List';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -81,6 +83,7 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 // ==============================
 // Types
 // ==============================
+
 Item.propTypes = {
 	/**
 	 * The look of the bullet list

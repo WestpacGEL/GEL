@@ -2,22 +2,24 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { forwardRef, createContext, useContext } from 'react';
-import { Content } from './Content';
 import PropTypes from 'prop-types';
 
 import { defaultButton } from './overrides/button';
+
+import { Content } from './Content';
 import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const ButtonContext = createContext();
 
 export const useButtonContext = () => {
 	const context = useContext(ButtonContext);
 
 	if (!context) {
-		throw new Error('<Content/> & <TextWrapper/> components should be wrapped in <Breadcrumb>.');
+		throw new Error('<Content/> and <TextWrapper/> components should be wrapped in a <Button>.');
 	}
 
 	return context;

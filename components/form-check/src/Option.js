@@ -1,17 +1,19 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useFormCheckContext } from './FormCheck';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import { defaultOption } from './overrides/option';
 import { defaultLabel } from './overrides/label';
+
+import { useFormCheckContext } from './FormCheck';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const Option = ({
 	value,
 	checked,
@@ -29,6 +31,7 @@ export const Option = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const context = useFormCheckContext();
 	const [formCheckId] = useState(`form-check-option-${name.replace(/ /g, '-')}-${useInstanceId()}`);
 

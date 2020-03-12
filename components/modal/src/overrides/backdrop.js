@@ -24,7 +24,7 @@ const Backdrop = ({ state: { open }, ...rest }) => {
 	);
 };
 
-const backdropStyles = (_, {}) => {
+const backdropStyles = () => {
 	return {
 		position: 'fixed',
 		backgroundColor: 'rgba(0,0,0,0.5)',

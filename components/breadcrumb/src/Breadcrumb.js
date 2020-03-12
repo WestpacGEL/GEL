@@ -6,19 +6,21 @@ import PropTypes from 'prop-types';
 
 import { defaultBreadcrumb } from './overrides/breadcrumb';
 import { defaultList } from './overrides/list';
-import pkg from '../package.json';
+
 import { Crumb } from './Crumb';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const BreadcrumbContext = createContext();
 
 export const useBreadcrumbContext = () => {
 	const context = useContext(BreadcrumbContext);
 
 	if (!context) {
-		throw new Error('<Crumb/> components should be wrapped in <Breadcrumb>.');
+		throw new Error('<Crumb/> components should be wrapped in a <Breadcrumb>.');
 	}
 
 	return context;
@@ -27,6 +29,7 @@ export const useBreadcrumbContext = () => {
 // ==============================
 // Component
 // ==============================
+
 export const Breadcrumb = ({
 	data,
 	assistiveText,

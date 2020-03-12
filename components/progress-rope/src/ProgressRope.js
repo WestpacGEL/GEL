@@ -14,13 +14,15 @@ import PropTypes from 'prop-types';
 
 import { defaultProgressRope } from './overrides/progressRope';
 import { defaultList } from './overrides/list';
-import pkg from '../package.json';
+
 import { Group } from './Group';
 import { Step } from './Step';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const ProgressRopeContext = createContext();
 
 export const useProgressRopeContext = () => {
@@ -36,6 +38,7 @@ export const useProgressRopeContext = () => {
 // ==============================
 // Utils
 // ==============================
+
 const createRopeGraph = (data, children) => {
 	const ropeGraph = [];
 	let grouped = false;
@@ -67,6 +70,7 @@ const createRopeGraph = (data, children) => {
 // ==============================
 // Component
 // ==============================
+
 export const ProgressRope = ({
 	instanceIdPrefix,
 	current,
@@ -175,9 +179,6 @@ export const ProgressRope = ({
 		dispatch({ type: 'UPDATE_OPEN_GROUP', payload: index !== progState.openGroup ? index : null });
 	};
 
-	// only pass to children that are part of overrides for this component
-	// if mutating children do not pass the state prop only pass needed props as part of the mutation
-	// only pass to override components that make up this component
 	let allChildren = [];
 	if (data) {
 		data.forEach(({ type, text, onClick, steps }, idx) => {
@@ -237,6 +238,7 @@ export const ProgressRope = ({
 // ==============================
 // Types
 // ==============================
+
 ProgressRope.propTypes = {
 	/**
 	 * Define an id prefix for the group step elements e.g. for a prefix of "progress-rope" --> "progress-rope-group-1" etc.

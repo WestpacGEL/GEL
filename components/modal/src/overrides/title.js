@@ -8,7 +8,7 @@ const Title = forwardRef(({ state, ...rest }, ref) => (
 	<Heading ref={ref} tag="h1" size={7} {...rest} />
 ));
 
-const titleStyles = (_, {}) => {
+const titleStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {

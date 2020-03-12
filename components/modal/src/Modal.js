@@ -24,7 +24,7 @@ export const useModalContext = () => {
 	const context = useContext(ModalContext);
 
 	if (!context) {
-		throw new Error('<Body/> and <Footer/> components should be wrapped in <Modal>.');
+		throw new Error('<Body/> and <Footer/> components should be wrapped in a <Modal>.');
 	}
 
 	return context;
@@ -33,6 +33,7 @@ export const useModalContext = () => {
 // ==============================
 // Component
 // ==============================
+
 export const Modal = ({
 	heading,
 	open: isOpen,
@@ -47,6 +48,7 @@ export const Modal = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const [open, setOpen] = useState(isOpen);
 
 	const defaultOverrides = {

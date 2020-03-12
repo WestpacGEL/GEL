@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
 import { defaultCaption } from './overrides/caption';
+
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
@@ -26,8 +27,8 @@ export const Caption = ({ children, overrides, ...rest }) => {
 	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
-		context: { ...context.state },
-		overrides,
+		context: context.state,
+		overrides: componentOverrides,
 		...rest,
 	};
 
@@ -41,6 +42,10 @@ export const Caption = ({ children, overrides, ...rest }) => {
 		</Caption>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Caption.propTypes = {
 	/**

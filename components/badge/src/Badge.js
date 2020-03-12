@@ -9,6 +9,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
+
 export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },

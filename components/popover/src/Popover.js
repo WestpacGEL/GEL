@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState, useEffect, useRef, cloneElement } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePopoverPosition } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
@@ -12,6 +12,10 @@ import { defaultBody } from './overrides/body';
 import { defaultPanel } from './overrides/panel';
 import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
+
+// ==============================
+// Component
+// ==============================
 
 export const Popover = ({
 	open: isOpen,
@@ -152,6 +156,7 @@ export const Popover = ({
 // ==============================
 // Types
 // ==============================
+
 Popover.propTypes = {
 	/**
 	 * State of whether the Popover is open

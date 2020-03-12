@@ -11,13 +11,14 @@ import pkg from '../package.json';
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const ButtonGroupContext = createContext();
 
 export const useButtonGroupContext = () => {
 	const context = useContext(ButtonGroupContext);
 
 	if (!context) {
-		throw new Error('<Item/> components should be wrapped in <ButtonGroup>.');
+		throw new Error('<Item/> components should be wrapped in a <ButtonGroup>.');
 	}
 
 	return context;
@@ -26,6 +27,7 @@ export const useButtonGroupContext = () => {
 // ==============================
 // Component
 // ==============================
+
 export const ButtonGroup = ({
 	name,
 	value: controlledValue,
@@ -140,6 +142,7 @@ export const ButtonGroup = ({
 // ==============================
 // Types
 // ==============================
+
 const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 ButtonGroup.propTypes = {
@@ -201,6 +204,16 @@ ButtonGroup.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		ButtonGroup: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Button: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Item: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

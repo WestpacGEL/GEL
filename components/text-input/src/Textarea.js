@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { defaultTextarea } from './overrides/textarea';
 import PropTypes from 'prop-types';
+
+import { defaultTextarea } from './overrides/textarea';
 import pkg from '../package.json';
 
 // ==============================

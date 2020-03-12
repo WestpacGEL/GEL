@@ -1,17 +1,23 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useModalContext } from './Modal';
 import PropTypes from 'prop-types';
 
 import { defaultBody } from './overrides/body';
+
+import { useModalContext } from './Modal';
 import pkg from '../package.json';
+
+// ==============================
+// Component
+// ==============================
 
 export const ModalBody = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const context = useModalContext();
 
 	const defaultOverrides = {
@@ -40,6 +46,7 @@ export const ModalBody = ({ children, overrides, ...rest }) => {
 // ==============================
 // Types
 // ==============================
+
 ModalBody.propTypes = {
 	/**
 	 * Modal body content

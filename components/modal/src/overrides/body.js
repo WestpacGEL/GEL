@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 
 const Body = ({ state, ...rest }) => <div {...rest} />;
 
-const bodyStyles = (_, {}) => {
+const bodyStyles = () => {
 	return {
 		padding: '1.125rem 1.5rem',
 	};

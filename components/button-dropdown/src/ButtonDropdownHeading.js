@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useButtonDropdownContext } from './ButtonDropdown';
 import PropTypes from 'prop-types';
 
 import { defaultHeading } from './overrides/heading';
+
+import { useButtonDropdownContext } from './ButtonDropdown';
 import pkg from '../package.json';
 
 // ==============================
@@ -47,6 +48,7 @@ export const ButtonDropdownHeading = ({ tag, children, overrides, ...rest }) => 
 // ==============================
 // Types
 // ==============================
+
 ButtonDropdownHeading.propTypes = {
 	/**
 	 * The tag of the heading element for semantic reasons

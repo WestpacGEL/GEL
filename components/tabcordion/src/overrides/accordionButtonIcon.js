@@ -12,7 +12,7 @@ const AccordionButtonIcon = ({ state, ...rest }) => {
 
 const accordionButtonIconStyles = () => ({});
 
-const accordionButtonIconAttributes = (_, {}) => ({ 'aria-hidden': 'true' });
+const accordionButtonIconAttributes = () => ({ 'aria-hidden': 'true' });
 
 export const defaultAccordionButtonIcon = {
 	component: AccordionButtonIcon,

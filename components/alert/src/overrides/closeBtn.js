@@ -14,7 +14,7 @@ const CloseBtn = ({ onClose, state, ...rest }) => (
 	/>
 );
 
-const closeBtnStyles = (_, {}) => {
+const closeBtnStyles = () => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 

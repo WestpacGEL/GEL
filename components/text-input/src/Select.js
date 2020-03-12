@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { defaultSelect } from './overrides/select';
 import PropTypes from 'prop-types';
+
+import { defaultSelect } from './overrides/select';
 import pkg from '../package.json';
 
 // ==============================

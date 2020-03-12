@@ -33,7 +33,7 @@ const iconStyles = (_, { color, size }) => {
 	})[0];
 };
 
-const iconAttributes = () => ({});
+const iconAttributes = () => null;
 
 export const defaultIcon = {
 	component: Icon,

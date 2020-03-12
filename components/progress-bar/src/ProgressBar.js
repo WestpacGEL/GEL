@@ -11,6 +11,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
+
 export const ProgressBar = ({ value, look, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },

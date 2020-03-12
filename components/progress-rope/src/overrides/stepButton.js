@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const StepButton = ({ visited, state, ...rest }) => (
+const StepButton = ({ state: { visited }, ...rest }) => (
 	<button type="button" disabled={!visited} {...rest} />
 );
 

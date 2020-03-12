@@ -9,6 +9,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
+
 export const Container = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -38,6 +39,10 @@ export const Container = ({ children, overrides: componentOverrides, ...rest }) 
 		/>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Container.propTypes = {
 	/**

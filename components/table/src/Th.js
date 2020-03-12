@@ -1,15 +1,17 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
 import { defaultTh } from './overrides/th';
+
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const Th = ({ bordered, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -27,8 +29,8 @@ export const Th = ({ bordered, children, overrides, ...rest }) => {
 
 	const state = {
 		bordered,
-		context: { ...context.state },
-		overrides,
+		context: context.state,
+		overrides: componentOverrides,
 		...rest,
 	};
 
@@ -45,6 +47,7 @@ export const Th = ({ bordered, children, overrides, ...rest }) => {
 // ==============================
 // Types
 // ==============================
+
 Th.propTypes = {
 	/**
 	 * Whether or not there should border styling

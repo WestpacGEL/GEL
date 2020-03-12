@@ -2,15 +2,20 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Fragment, useState, forwardRef, useEffect } from 'react';
-import { useTabcordionContext } from './Tabcordion';
 import { useSpring, animated } from 'react-spring';
 import PropTypes from 'prop-types';
 
 import { defaultAccordionButton } from './overrides/accordionButton';
 import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
 import { defaultPanel } from './overrides/panel';
+
+import { useTabcordionContext } from './Tabcordion';
 import { useMeasure } from './_utils';
 import pkg from '../package.json';
+
+// ==============================
+// Component
+// ==============================
 
 export const Tab = forwardRef(
 	(
@@ -23,7 +28,6 @@ export const Tab = forwardRef(
 		} = useBrand();
 
 		const context = useTabcordionContext();
-
 		const [hidden, setHidden] = useState(!selected);
 		const [bind, { height }] = useMeasure();
 		const [initial, setInitial] = useState(true);
@@ -54,8 +58,8 @@ export const Tab = forwardRef(
 			panelId,
 			onClick,
 			tabId,
-			context: { ...context.state },
-			overrides,
+			context: context.state,
+			overrides: componentOverrides,
 			...rest,
 		};
 
@@ -112,6 +116,10 @@ export const Tab = forwardRef(
 		);
 	}
 );
+
+// ==============================
+// Types
+// ==============================
 
 Tab.propTypes = {
 	/**

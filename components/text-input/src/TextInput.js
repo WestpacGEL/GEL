@@ -1,13 +1,15 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { defaultTextInput } from './overrides/textInput';
 import PropTypes from 'prop-types';
+
+import { defaultTextInput } from './overrides/textInput';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const TextInput = ({
 	size,
 	width,

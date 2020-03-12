@@ -2,15 +2,17 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
-import { useTableContext } from './Table';
 import PropTypes from 'prop-types';
 
 import { defaultTr } from './overrides/tr';
+
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Utils
 // ==============================
+
 const generateHighlightMap = (highlighted, tdCount) => {
 	const map = Array(tdCount).fill(false);
 
@@ -47,8 +49,8 @@ export const Tr = ({ striped, highlighted, children, overrides, ...rest }) => {
 	const state = {
 		striped,
 		highlighted,
-		context: { ...context.state },
-		overrides,
+		context: context.state,
+		overrides: componentOverrides,
 		...rest,
 	};
 

@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useInputGroupContext } from './InputGroup';
 import PropTypes from 'prop-types';
 
 import { defaultLabel } from './overrides/label';
+
+import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
 
 // ==============================
@@ -16,6 +17,7 @@ export const Label = ({ position, size, data, overrides, ...rest }) => {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const context = useInputGroupContext();
 
 	const defaultOverrides = {

@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { usePanelContext } from './Panel';
 import PropTypes from 'prop-types';
 
 import { defaultBody } from './overrides/body';
+
+import { usePanelContext } from './Panel';
 import pkg from '../package.json';
 
 // ==============================

@@ -1,17 +1,19 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useButtonGroupContext } from './ButtonGroup';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import { defaultItem } from './overrides/item';
 import { defaultButton } from './overrides/button';
+import { defaultItem } from './overrides/item';
+
+import { useButtonGroupContext } from './ButtonGroup';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const ButtonGroupItem = ({
 	name,
 	value,
@@ -30,8 +32,8 @@ export const ButtonGroupItem = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [buttonGroupItemId] = useState(`button-group-item-${useInstanceId()}`);
 	const context = useButtonGroupContext();
+	const [buttonGroupItemId] = useState(`button-group-item-${useInstanceId()}`);
 
 	const defaultOverrides = {
 		Item: defaultItem,
@@ -49,7 +51,7 @@ export const ButtonGroupItem = ({
 		size,
 		block,
 		disabled,
-		context: { ...context.state },
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -61,7 +63,6 @@ export const ButtonGroupItem = ({
 
 	return (
 		<Item
-			// htmlFor={buttonGroupItemId} //a11y: use explicit association
 			{...rest}
 			state={state}
 			{...itemAttributes({ ...state, buttonGroupItemId })}
@@ -82,16 +83,7 @@ export const ButtonGroupItem = ({
 					opacity: 0,
 				}}
 			/>
-			<Button
-				// checked={checked}
-				// look={look}
-				// size={size}
-				// block={block}
-				// disabled={disabled}
-				state={state}
-				{...buttonAttributes(state)}
-				css={buttonStyles(state)}
-			>
+			<Button state={state} {...buttonAttributes(state)} css={buttonStyles(state)}>
 				{children}
 			</Button>
 		</Item>
@@ -101,14 +93,15 @@ export const ButtonGroupItem = ({
 // ==============================
 // Types
 // ==============================
+
 ButtonGroupItem.propTypes = {
 	overrides: PropTypes.shape({
-		ButtonGroupItem: PropTypes.shape({
+		Button: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ButtonGroupButton: PropTypes.shape({
+		Item: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

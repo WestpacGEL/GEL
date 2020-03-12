@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-const SkipLink = props => <a {...props} />;
+const SkipLink = ({ state: { href }, ...rest }) => <a href={href} {...rest} />;
 
 const skipLinkStyles = () => ({
 	position: 'absolute',

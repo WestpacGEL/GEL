@@ -3,14 +3,16 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { useProgressRopeContext } from './ProgressRope';
-import { defaultStep } from './overrides/step';
 import { defaultStepButton } from './overrides/stepButton';
+import { defaultStep } from './overrides/step';
+
+import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -69,8 +71,8 @@ export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...
 		groupIndex,
 		end,
 		onClick,
-		context: { ...context.state },
-		overrides,
+		context: context.state,
+		overrides: componentOverrides,
 		...rest,
 	};
 
@@ -86,7 +88,6 @@ export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...
 	return (
 		<Step {...rest} state={state} {...stepAttributes(state)} css={stepStyles(state)}>
 			<StepButton
-				visited={visited}
 				onClick={onClick}
 				state={state}
 				{...stepButtonAttributes(state)}
@@ -101,6 +102,7 @@ export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...
 // ==============================
 // Types
 // ==============================
+
 Step.propTypes = {
 	/**
 	 * The index of this step

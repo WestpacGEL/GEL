@@ -1,18 +1,18 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers, useInstanceId } from '@westpac/core';
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultSwitch } from './overrides/switch';
 import { defaultToggle } from './overrides/toggle';
 import { defaultLabel } from './overrides/label';
-
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const Switch = ({
 	name,
 	label,
@@ -41,42 +41,24 @@ export const Switch = ({
 	}, [instanceIdPrefix]);
 
 	const defaultOverrides = {
-		Switch: defaultSwitch, // First sub-component will always be called the component
+		Switch: defaultSwitch,
 		Label: defaultLabel,
 		Toggle: defaultToggle,
 	};
 
-	/* 
-	The state object contains everything that is needed for the component. It contains in this order:
-		1. Internal component state variables e.g. useState
-		2. Passed props
-		3. Component overrides
-		4. Rest props
-	- This will be spread onto components as a state prop
-	- Any props that we know that are explicitly being used in a sub-component or that we want to force on a component (e.g. a11y) we manually add to pass it
-	- Issues with passing all props to children is if the child component is using a variable with the same name 
-	*/
 	const state = {
-		// internal state
 		checked,
 		instanceId,
-
-		// props
 		name,
 		label,
 		onChange,
 		size,
 		block,
 		disabled,
-
-		// component overrides
 		overrides: componentOverrides,
-
-		// rest props
 		...rest,
 	};
 
-	// destructure reconciled component items, makes for cleaner and easier to read code in return
 	const {
 		Switch: { component: Switch, styles: switchStyles, attributes: switchAttributes },
 		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
@@ -89,13 +71,6 @@ export const Switch = ({
 
 	const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
 
-	/* 
-	Component props structure
-	1. Known needed props
-	2. a11y props
-	3. state prop
-	4. rest if applicable
-	*/
 	return (
 		<Switch state={state} {...rest} {...switchAttributes(state)} css={switchStyles(state)}>
 			{/* a11y: input not exposed as an override, contains logic required to function */}

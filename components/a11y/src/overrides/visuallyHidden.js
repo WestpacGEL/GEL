@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-const VisuallyHidden = ({ tag: Tag, ...rest }) => <Tag {...rest} />;
+const VisuallyHidden = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
 const visuallyHiddenStyles = () => ({
 	position: 'absolute',

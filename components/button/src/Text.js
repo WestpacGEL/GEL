@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useButtonContext } from './Button';
 import PropTypes from 'prop-types';
 
 import { defaultText } from './overrides/text';
+
+import { useButtonContext } from './Button';
 import pkg from '../package.json';
 
 // ==============================
@@ -42,6 +43,10 @@ export const Text = ({ block, children, ...rest }) => {
 		</Text>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Text.propTypes = {
 	/**

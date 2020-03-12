@@ -139,6 +139,7 @@ export const ButtonDropdown = ({
 // ==============================
 // Types
 // ==============================
+
 ButtonDropdown.propTypes = {
 	/**
 	 * Button text

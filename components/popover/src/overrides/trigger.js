@@ -5,9 +5,7 @@ import { Button } from '@westpac/button';
 
 const Trigger = ({ state, ...rest }) => <Button {...rest} />;
 
-const triggerStyles = (_, {}) => {
-	return {};
-};
+const triggerStyles = () => ({});
 
 const triggerAtttributes = (_, { instanceId, open }) => ({
 	'aria-controls': instanceId,

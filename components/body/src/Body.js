@@ -9,6 +9,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
+
 export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },

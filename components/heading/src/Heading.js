@@ -11,9 +11,6 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-/**
- * Heading: Headlines for your page needs
- */
 export const Heading = forwardRef(
 	({ tag, size, children, overrides: componentOverrides, ...rest }, ref) => {
 		const {
