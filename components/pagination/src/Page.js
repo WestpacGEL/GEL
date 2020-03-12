@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { usePaginationContext } from './Pagination';
 import PropTypes from 'prop-types';
 
-import { Page as PageWrapper, pageStyles } from './overrides/page';
-import { Link, linkStyles } from './overrides/link';
-import { usePaginationContext } from './Pagination';
+import { defaultPage } from './overrides/page';
+import { defaultLink } from './overrides/link';
 import pkg from '../package.json';
 
 // ==============================
@@ -21,28 +21,22 @@ export const Page = ({
 	disabled,
 	assistiveText,
 	onClick,
+	overrides,
 	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+	const { current, ...context } = usePaginationContext();
+	const active = index === current;
 
 	const defaultOverrides = {
-		Page: {
-			styles: pageStyles,
-			component: PageWrapper,
-			attributes: () => null,
-		},
-		Link: {
-			styles: linkStyles,
-			component: Link,
-			attributes: () => null,
-		},
+		Page: defaultPage,
+		Link: defaultLink,
 	};
 
-	const { current, overrides: componentOverrides } = usePaginationContext();
-	const active = index === current;
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		index,
@@ -55,53 +49,22 @@ export const Page = ({
 		onClick,
 		current,
 		active,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Page: { component: Page, styles: pageStyles, attributes: pageAttributes },
+		Link: { component: Link, styles: linkStyles, attributes: linkAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Page.component
-			index={index}
-			nextIndex={nextIndex}
-			text={text}
-			first={first}
-			last={last}
-			disabled={disabled}
-			assistiveText={assistiveText}
-			current={current}
-			active={active}
-			{...rest}
-			{...overrides.Page.attributes(state)}
-			css={overrides.Page.styles(state)}
-		>
-			<overrides.Link.component
-				aria-current={active ? 'page' : undefined}
-				aria-label={assistiveText}
-				aria-disabled={disabled} //a11y: required to aid VoiceOver/Talkback UX
-				disabled={disabled}
-				onClick={onClick}
-				index={index}
-				nextIndex={nextIndex}
-				text={text}
-				first={first}
-				last={last}
-				disabled={disabled}
-				assistiveText={assistiveText}
-				current={current}
-				active={active}
-				{...overrides.Link.attributes(state)}
-				css={overrides.Link.styles(state)}
-			>
+		<Page {...rest} state={state} {...pageAttributes(state)} css={pageStyles(state)}>
+			<Link onClick={onClick} state={state} {...linkAttributes(state)} css={linkStyles(state)}>
 				{text}
-			</overrides.Link.component>
-		</overrides.Page.component>
+			</Link>
+		</Page>
 	);
 };
 

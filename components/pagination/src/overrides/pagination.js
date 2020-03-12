@@ -2,6 +2,14 @@
 
 import { jsx } from '@westpac/core';
 
-export const Pagination = ({ current, infinite, back, next, data, ...rest }) => <nav {...rest} />;
+const Pagination = ({ state, ...rest }) => <nav {...rest} />;
 
-export const paginationStyles = () => ({});
+const paginationStyles = () => ({});
+
+const paginationAttributes = () => ({ 'aria-label': 'Page number' });
+
+export const defaultPagination = {
+	component: Pagination,
+	styles: paginationStyles,
+	attributes: paginationAttributes,
+};

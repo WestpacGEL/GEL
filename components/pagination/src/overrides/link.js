@@ -1,21 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const Link = ({
-	index,
-	nextIndex,
-	text,
-	first,
-	last,
-	assistiveText,
-	current,
-	active,
-	...rest
-}) => <button type="button" {...rest} />;
+const Link = ({ state: { disabled }, ...rest }) => (
+	<button type="button" disabled={disabled} {...rest} />
+);
 
-export const linkStyles = (_, { active, first, last, disabled }) => {
+const linkStyles = (_, { active, first, last, disabled }) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -52,4 +43,16 @@ export const linkStyles = (_, { active, first, last, disabled }) => {
 			opacity: '0.5',
 		}),
 	};
+};
+
+const linkAttributes = (_, { active, assistiveText, disabled }) => ({
+	'aria-current': active ? 'page' : undefined,
+	'aria-label': assistiveText,
+	'aria-disabled': disabled, //a11y: required to aid VoiceOver/Talkback UX
+});
+
+export const defaultLink = {
+	component: Link,
+	styles: linkStyles,
+	attributes: linkAttributes,
 };

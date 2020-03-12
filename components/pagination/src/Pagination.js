@@ -2,13 +2,13 @@
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers, mergeWith } from '@westpac/core';
 import { useEffect, Children, createContext, useContext } from 'react';
-import PropTypes from 'prop-types';
-
-import { Pagination as PaginationWrapper, paginationStyles } from './overrides/pagination';
-import { PageList, pageListStyles } from './overrides/pageList';
 import { usePagination } from './usePagination';
-import pkg from '../package.json';
+import PropTypes from 'prop-types';
 import { Page } from './Page';
+
+import { defaultPagination } from './overrides/pagination';
+import { defaultPageList } from './overrides/pageList';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
@@ -44,16 +44,8 @@ export const Pagination = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Pagination: {
-			styles: paginationStyles,
-			component: PaginationWrapper,
-			attributes: () => null,
-		},
-		PageList: {
-			styles: pageListStyles,
-			component: PageList,
-			attributes: (_, a) => a,
-		},
+		Pagination: defaultPagination,
+		PageList: defaultPageList,
 	};
 
 	const state = {
@@ -66,12 +58,14 @@ export const Pagination = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Pagination: {
+			component: Pagination,
+			styles: paginationStyles,
+			attributes: paginationAttributes,
+		},
+		PageList: { component: PageList, styles: pageListStyles, attributes: pageListAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const backDefault = {
 		text: 'Back',
@@ -123,29 +117,14 @@ export const Pagination = ({
 	}
 
 	return (
-		<PaginationContext.Provider
-			value={{ current: pageLogic.current, overrides: componentOverrides }}
-		>
-			<overrides.Pagination.component
-				aria-label="Page number"
-				current={current}
-				infinite={infinite}
-				back={backProps}
-				next={nextProps}
-				data={data}
+		<PaginationContext.Provider value={{ current: pageLogic.current, state }}>
+			<Pagination
 				{...rest}
-				{...overrides.Pagination.attributes(state)}
-				css={overrides.Pagination.styles(state)}
+				state={state}
+				{...paginationAttributes(state)}
+				css={paginationStyles(state)}
 			>
-				<overrides.PageList.component
-					current={current}
-					infinite={infinite}
-					back={backProps}
-					next={nextProps}
-					data={data}
-					{...overrides.PageList.attributes(state)}
-					css={overrides.PageList.styles(state)}
-				>
+				<PageList state={state} {...pageListAttributes(state)} css={pageListStyles(state)}>
 					{back.visible && (
 						<Page
 							first
@@ -180,8 +159,8 @@ export const Pagination = ({
 							)}
 						/>
 					)}
-				</overrides.PageList.component>
-			</overrides.Pagination.component>
+				</PageList>
+			</Pagination>
 		</PaginationContext.Provider>
 	);
 };
