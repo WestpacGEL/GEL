@@ -1,18 +1,34 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, useEffect, useRef } from 'react';
+import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { FocusOn } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
-import { Modal as ModalWrapper, modalStyles } from './overrides/modal';
-import { Backdrop, backdropStyles } from './overrides/backdrop';
-import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
-import { Header, headerStyles } from './overrides/header';
-import { Title, titleStyles } from './overrides/title';
+import { defaultModal } from './overrides/modal';
+import { defaultBackdrop } from './overrides/backdrop';
+import { defaultCloseBtn } from './overrides/closeBtn';
+import { defaultHeader } from './overrides/header';
+import { defaultTitle } from './overrides/title';
 import pkg from '../package.json';
+
+// ==============================
+// Context and Consumer Hook
+// ==============================
+
+const ModalContext = createContext();
+
+export const useModalContext = () => {
+	const context = useContext(ModalContext);
+
+	if (!context) {
+		throw new Error('<Body/> and <Footer/> components should be wrapped in <Modal>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
@@ -34,36 +50,16 @@ export const Modal = ({
 	const [open, setOpen] = useState(isOpen);
 
 	const defaultOverrides = {
-		Modal: {
-			styles: modalStyles,
-			component: ModalWrapper,
-			attributes: () => null,
-		},
-		Backdrop: {
-			styles: backdropStyles,
-			component: Backdrop,
-			attributes: () => null,
-		},
-		Header: {
-			styles: headerStyles,
-			component: Header,
-			attributes: () => null,
-		},
-		Title: {
-			styles: titleStyles,
-			component: Title,
-			attributes: () => null,
-		},
-		CloseBtn: {
-			styles: closeBtnStyles,
-			component: CloseBtn,
-			attributes: () => null,
-		},
+		Modal: defaultModal,
+		Backdrop: defaultBackdrop,
+		Header: defaultHeader,
+		Title: defaultTitle,
+		CloseBtn: defaultCloseBtn,
 	};
 
 	const state = {
-		heading,
 		open,
+		heading,
 		onClose,
 		size,
 		dismissible,
@@ -71,12 +67,13 @@ export const Modal = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Modal: { component: Modal, styles: modalStyles, attributes: modalAttributes },
+		Backdrop: { component: Backdrop, styles: backdropStyles, attributes: backdropAttributes },
+		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
+		Title: { component: Title, styles: titleStyles, attributes: titleAttributes },
+		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const modalRef = useRef();
 	const titleRef = useRef();
@@ -114,70 +111,38 @@ export const Modal = ({
 
 	if (typeof window !== 'undefined') {
 		return ReactDOM.createPortal(
-			<Fragment>
-				<overrides.Backdrop.component
-					heading={heading}
-					open={open}
-					onClose={onClose}
-					size={size}
-					dismissible={dismissible}
-					{...overrides.Backdrop.attributes(state)}
-					css={overrides.Backdrop.styles(state)}
-				/>
+			<ModalContext.Provider value={{ state }}>
+				<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
 				<FocusOn enabled={open} onActivation={() => titleRef.current.focus()}>
-					<overrides.Modal.component
-						role="dialog"
-						aria-modal="true"
+					<Modal
 						ref={modalRef}
-						heading={heading}
-						open={open}
-						onClose={onClose}
-						size={size}
-						dismissible={dismissible}
+						state={state}
 						{...rest}
-						{...overrides.Modal.attributes(state)}
-						css={overrides.Modal.styles(state)}
+						{...modalAttributes(state)}
+						css={modalStyles(state)}
 					>
-						<overrides.Header.component
-							heading={heading}
-							open={open}
-							onClose={onClose}
-							size={size}
-							dismissible={dismissible}
-							{...overrides.Header.attributes(state)}
-							css={overrides.Header.styles(state)}
-						>
-							<overrides.Title.component
+						<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
+							<Title
 								ref={titleRef}
-								tabIndex="-1" //a11y: heading receives focus on open
-								heading={heading}
-								open={open}
-								onClose={onClose}
-								size={size}
-								dismissible={dismissible}
-								{...overrides.Title.attributes(state)}
-								css={overrides.Title.styles(state)}
+								state={state}
+								{...titleAttributes(state)}
+								css={titleStyles(state)}
 							>
 								{heading}
-							</overrides.Title.component>
+							</Title>
 							{dismissible && (
-								<overrides.CloseBtn.component
-									assistiveText="Close"
+								<CloseBtn
 									onClick={() => handleClose()}
-									heading={heading}
-									open={open}
-									onClose={onClose}
-									size={size}
-									dismissible={dismissible}
-									{...overrides.CloseBtn.attributes(state)}
-									css={overrides.CloseBtn.styles(state)}
+									state={state}
+									{...closeBtnAttributes(state)}
+									css={closeBtnStyles(state)}
 								/>
 							)}
-						</overrides.Header.component>
+						</Header>
 						{children}
-					</overrides.Modal.component>
+					</Modal>
 				</FocusOn>
-			</Fragment>,
+			</ModalContext.Provider>,
 			document.body
 		);
 	} else {

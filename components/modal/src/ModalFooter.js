@@ -1,45 +1,39 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useModalContext } from './Modal';
 import PropTypes from 'prop-types';
 
-import { Footer, footerStyles } from './overrides/footer';
+import { defaultFooter } from './overrides/footer';
 import pkg from '../package.json';
 
-export const ModalFooter = ({ children, overrides: componentOverrides, ...rest }) => {
+export const ModalFooter = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+	const context = useModalContext();
 
 	const defaultOverrides = {
-		Footer: {
-			styles: footerStyles,
-			component: Footer,
-			attributes: () => null,
-		},
+		Footer: defaultFooter,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Footer: { component: Footer, styles: footerStyles, attributes: footerAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Footer.component
-			{...rest}
-			{...overrides.Footer.attributes(state)}
-			css={overrides.Footer.styles(state)}
-		>
+		<Footer {...rest} state={state} {...footerAttributes(state)} css={footerStyles(state)}>
 			{children}
-		</overrides.Footer.component>
+		</Footer>
 	);
 };
 

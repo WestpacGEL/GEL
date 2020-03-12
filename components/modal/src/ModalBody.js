@@ -1,45 +1,39 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useModalContext } from './Modal';
 import PropTypes from 'prop-types';
 
-import { Body, bodyStyles } from './overrides/body';
+import { defaultBody } from './overrides/body';
 import pkg from '../package.json';
 
-export const ModalBody = ({ children, overrides: componentOverrides, ...rest }) => {
+export const ModalBody = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+	const context = useModalContext();
 
 	const defaultOverrides = {
-		Body: {
-			styles: bodyStyles,
-			component: Body,
-			attributes: () => null,
-		},
+		Body: defaultBody,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Body.component
-			{...rest}
-			{...overrides.Body.attributes(state)}
-			css={overrides.Body.styles(state)}
-		>
+		<Body {...rest} state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 			{children}
-		</overrides.Body.component>
+		</Body>
 	);
 };
 

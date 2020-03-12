@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Footer = props => <div {...props} />;
+const Footer = ({ state, ...rest }) => <div {...rest} />;
 
-export const footerStyles = (_, {}) => {
+const footerStyles = (_, {}) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -17,4 +17,12 @@ export const footerStyles = (_, {}) => {
 			marginLeft: '0.375rem',
 		},
 	};
+};
+
+const footerAttributes = () => null;
+
+export const defaultFooter = {
+	component: Footer,
+	styles: footerStyles,
+	attributes: footerAttributes,
 };

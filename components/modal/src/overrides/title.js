@@ -4,15 +4,23 @@ import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { forwardRef } from 'react';
 
-export const Title = forwardRef(({ heading, open, onClose, size, dismissible, ...rest }, ref) => (
+const Title = forwardRef(({ state, ...rest }, ref) => (
 	<Heading ref={ref} tag="h1" size={7} {...rest} />
 ));
 
-export const titleStyles = (_, {}) => {
+const titleStyles = (_, {}) => {
 	const { COLORS } = useBrand();
 
 	return {
 		color: COLORS.text,
 		fontWeight: 700,
 	};
+};
+
+const titleAttributes = () => ({ tabIndex: '-1' }); //a11y: heading receives focus on open
+
+export const defaultTitle = {
+	component: Title,
+	styles: titleStyles,
+	attributes: titleAttributes,
 };
