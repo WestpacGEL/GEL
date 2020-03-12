@@ -1,21 +1,17 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
+import { jsx } from '@westpac/core';
 
-export const InputGroup = ({
-	name,
-	size,
-	data,
-	invalid,
-	disabled,
-	readOnly,
-	value,
-	defaultValue,
-	look,
-	...rest
-}) => <div {...rest} />;
+const InputGroup = ({ state, ...rest }) => <div {...rest} />;
 
-export const inputGroupStyles = () => ({
+const inputGroupStyles = () => ({
 	display: 'flex',
 });
+
+const inputGroupAttributes = () => null;
+
+export const defaultInputGroup = {
+	component: InputGroup,
+	styles: inputGroupStyles,
+	attributes: inputGroupAttributes,
+};

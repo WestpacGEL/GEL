@@ -54,10 +54,10 @@ function Example({ brand }) {
 				<Right
 					type="select"
 					data={[
-						{ label: 'Select', value: '' },
-						{ label: '1', value: '' },
-						{ label: '2', value: '' },
-						{ label: '3', value: '' },
+						{ text: 'Select', value: '' },
+						{ text: '1', value: '1' },
+						{ text: '2', value: '2' },
+						{ text: '3', value: '3' },
 					]}
 				/>
 			</InputGroup>
@@ -67,10 +67,10 @@ function Example({ brand }) {
 				<Right
 					type="select"
 					data={[
-						{ label: 'Select', value: '' },
-						{ label: '1', value: '' },
-						{ label: '2', value: '' },
-						{ label: '3', value: '' },
+						{ text: 'Select', value: '' },
+						{ text: '1', value: '1' },
+						{ text: '2', value: '2' },
+						{ text: '3', value: '3' },
 					]}
 				/>
 			</InputGroup>
@@ -80,10 +80,10 @@ function Example({ brand }) {
 				<Right
 					type="select"
 					data={[
-						{ label: 'Select', value: '' },
-						{ label: '1', value: '' },
-						{ label: '2', value: '' },
-						{ label: '3', value: '' },
+						{ text: 'Select', value: '' },
+						{ text: '1', value: '1' },
+						{ text: '2', value: '2' },
+						{ text: '3', value: '3' },
 					]}
 				/>
 			</InputGroup>

@@ -3,8 +3,8 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Icon as IconWrapper, iconStyles } from './overrides/icon';
-import { Svg, svgStyles } from './overrides/svg';
+import { defaultIcon } from './overrides/icon';
+import { defaultSvg } from './overrides/svg';
 import pkg from '../package.json';
 
 // ==============================
@@ -27,16 +27,8 @@ export const Icon = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Icon: {
-			styles: iconStyles,
-			component: IconWrapper,
-			attributes: () => null,
-		},
-		Svg: {
-			styles: svgStyles,
-			component: Svg,
-			attributes: () => null,
-		},
+		Icon: defaultIcon,
+		Svg: defaultSvg,
 	};
 
 	const state = {
@@ -47,32 +39,17 @@ export const Icon = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
+		Svg: { component: Svg, styles: svgStyles, attributes: svgAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Icon.component
-			color={color}
-			size={size}
-			assistiveText={assistiveText}
-			{...rest}
-			{...overrides.Icon.attributes(state)}
-			css={overrides.Icon.styles(state)}
-		>
-			<overrides.Svg.component
-				color={color}
-				size={size}
-				assistiveText={assistiveText}
-				css={overrides.Svg.styles(state)}
-				{...overrides.Svg.attributes(state)}
-			>
+		<Icon {...rest} state={state} {...iconAttributes(state)} css={iconStyles(state)}>
+			<Svg state={state} css={svgStyles(state)} {...svgAttributes(state)}>
 				{children}
-			</overrides.Svg.component>
-		</overrides.Icon.component>
+			</Svg>
+		</Icon>
 	);
 };
 

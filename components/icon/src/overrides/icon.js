@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
-import React from 'react';
 
-export const Icon = ({ color, size, assistiveText, ...rest }) => <span {...rest} />;
+const Icon = ({ state, ...rest }) => <span {...rest} />;
 
-export const iconStyles = (_, { color, size }) => {
+const iconStyles = (_, { color, size }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
 
@@ -32,4 +31,12 @@ export const iconStyles = (_, { color, size }) => {
 		color: color ? color : COLORS.muted,
 		...styleSize,
 	})[0];
+};
+
+const iconAttributes = () => ({});
+
+export const defaultIcon = {
+	component: Icon,
+	styles: iconStyles,
+	attributes: iconAttributes,
 };

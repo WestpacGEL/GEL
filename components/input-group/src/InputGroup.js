@@ -1,22 +1,35 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
-import { Children, cloneElement } from 'react';
+import { Children, cloneElement, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { InputGroup as InputGroupWrapper, inputGroupStyles } from './overrides/inputGroup';
-import { Text as TextWrapper, textStyles } from './overrides/text';
+import { defaultInputGroup } from './overrides/inputGroup';
+import { defaultText } from './overrides/text';
 import pkg from '../package.json';
 import { Right } from './Right';
 import { Left } from './Left';
 
 // ==============================
+// Context and Consumer Hook
+// ==============================
+
+const InputGroupContext = createContext();
+
+export const useInputGroupContext = () => {
+	const context = useContext(InputGroupContext);
+
+	if (!context) {
+		throw new Error('<Left/> and <Right/> components should be wrapped in <InputGroup>.');
+	}
+
+	return context;
+};
+
+// ==============================
 // Component
 // ==============================
 
-/**
- * Input Group
- */
 export const InputGroup = ({
 	name,
 	size,
@@ -35,16 +48,8 @@ export const InputGroup = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		InputGroup: {
-			styles: inputGroupStyles,
-			component: InputGroupWrapper,
-			attributes: () => null,
-		},
-		Text: {
-			styles: textStyles,
-			component: TextWrapper,
-			attributes: () => null,
-		},
+		InputGroup: defaultInputGroup,
+		Text: defaultText,
 	};
 
 	const state = {
@@ -59,12 +64,14 @@ export const InputGroup = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		InputGroup: {
+			component: InputGroup,
+			styles: inputGroupStyles,
+			attributes: inputGroupAttributes,
+		},
+		Text: { component: Text, styles: textStyles, attributes: textAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	let textFieldAdded = false;
 	const childrenWithProps = [];
@@ -86,20 +93,12 @@ export const InputGroup = ({
 			);
 		}
 		childrenWithProps.push(
-			<overrides.Text.component
+			<Text
 				key="textinput1"
-				name={name}
-				size={size}
-				data={data}
-				invalid={invalid}
-				disabled={disabled}
-				readOnly={readOnly}
-				look={look}
-				left={!!left}
-				right={!!right}
 				{...rest}
-				css={overrides.Text.styles({ ...state, left: !!left, right: !!right })}
-				{...overrides.Text.attributes({ ...state, left: !!left, right: !!right })}
+				state={state}
+				css={textStyles({ ...state, left: !!left, right: !!right })}
+				{...textAttributes({ ...state, left: !!left, right: !!right })}
 			/>
 		);
 		if (right) {
@@ -121,39 +120,23 @@ export const InputGroup = ({
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'left' })
 				);
 				childrenWithProps.push(
-					<overrides.Text.component
+					<Text
 						key="textinput1"
-						name={name}
-						size={size}
-						data={data}
-						invalid={invalid}
-						disabled={disabled}
-						readOnly={readOnly}
-						look={look}
-						left={true}
-						right={length > 1}
 						{...rest}
-						css={overrides.Text.styles({ ...state, left: true, right: length > 1 })}
-						{...overrides.Text.attributes({ ...state, left: true, right: length > 1 })}
+						state={state}
+						css={textStyles({ ...state, left: true, right: length > 1 })}
+						{...textAttributes({ ...state, left: true, right: length > 1 })}
 					/>
 				);
 				textFieldAdded = true;
 			} else if (child.type.name === 'Right' && !textFieldAdded) {
 				childrenWithProps.push(
-					<overrides.Text.component
+					<Text
 						key="textinput2"
-						name={name}
-						size={size}
-						data={data}
-						invalid={invalid}
-						disabled={disabled}
-						readOnly={readOnly}
-						look={look}
-						left={false}
-						right={true}
+						state={state}
 						{...rest}
-						css={overrides.Text.styles({ ...state, left: false, right: true })}
-						{...overrides.Text.attributes({ ...state, left: false, right: true })}
+						css={textStyles({ ...state, left: false, right: true })}
+						{...textAttributes({ ...state, left: false, right: true })}
 					/>
 				);
 				childrenWithProps.push(
@@ -175,19 +158,11 @@ export const InputGroup = ({
 	}
 
 	return (
-		<overrides.InputGroup.component
-			name={name}
-			size={size}
-			data={data}
-			invalid={invalid}
-			disabled={disabled}
-			readOnly={readOnly}
-			look={look}
-			{...overrides.InputGroup.attributes(state)}
-			css={overrides.InputGroup.styles(state)}
-		>
-			{childrenWithProps}
-		</overrides.InputGroup.component>
+		<InputGroupContext.Provider value={{ state }}>
+			<InputGroup state={state} {...inputGroupAttributes(state)} css={inputGroupStyles(state)}>
+				{childrenWithProps}
+			</InputGroup>
+		</InputGroupContext.Provider>
 	);
 };
 
