@@ -4,9 +4,9 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { ProgressBar as ProgressBarWrapper, progressBarStyles } from './overrides/progressBar';
-import { Text, textStyles } from './overrides/text';
-import { Bar, barStyles } from './overrides/bar';
+import { defaultProgressBar } from './overrides/progressBar';
+import { defaultText } from './overrides/text';
+import { defaultBar } from './overrides/bar';
 import pkg from '../package.json';
 
 // ==============================
@@ -21,21 +21,9 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...res
 	const roundedValue = Math.round(value);
 
 	const defaultOverrides = {
-		ProgressBar: {
-			styles: progressBarStyles,
-			component: ProgressBarWrapper,
-			attributes: () => null,
-		},
-		Bar: {
-			styles: barStyles,
-			component: Bar,
-			attributes: () => null,
-		},
-		Text: {
-			styles: textStyles,
-			component: Text,
-			attributes: () => null,
-		},
+		ProgressBar: defaultProgressBar,
+		Bar: defaultBar,
+		Text: defaultText,
 	};
 
 	const state = {
@@ -45,47 +33,33 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...res
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ProgressBar: {
+			component: ProgressBar,
+			styles: progressBarStyles,
+			attributes: progressBarAttributes,
+		},
+		Bar: { component: Bar, styles: barStyles, attributes: barAttributes },
+		Text: { component: Text, styles: textStyles, attributes: textAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.ProgressBar.component
-			role="progressbar"
-			aria-valuemin="0"
-			aria-valuemax="100"
-			aria-valuenow={roundedValue}
-			aria-valuetext={`${roundedValue}% complete`}
-			aria-live="polite"
-			value={roundedValue}
-			look={look}
+		<ProgressBar
 			{...rest}
-			{...overrides.ProgressBar.attributes(state)}
-			css={overrides.ProgressBar.styles(state)}
+			state={state}
+			{...progressBarAttributes(state)}
+			css={progressBarStyles(state)}
 		>
-			<overrides.Bar.component
-				value={roundedValue}
-				look={look}
-				{...overrides.Bar.attributes(state)}
-				css={overrides.Bar.styles(state)}
-			>
+			<Bar state={state} {...barAttributes(state)} css={barStyles(state)}>
 				{look !== 'skinny' && (
 					<Fragment>
-						<overrides.Text.component
-							value={roundedValue}
-							look={look}
-							{...overrides.Text.attributes(state)}
-							css={overrides.Text.styles(state)}
-						>
+						<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
 							{`${roundedValue}%`}
-						</overrides.Text.component>
+						</Text>
 					</Fragment>
 				)}
-			</overrides.Bar.component>
-		</overrides.ProgressBar.component>
+			</Bar>
+		</ProgressBar>
 	);
 };
 
