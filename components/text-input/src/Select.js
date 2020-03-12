@@ -25,7 +25,7 @@ export const Select = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		SelectRoot: defaultSelect,
+		Select: defaultSelect,
 	};
 
 	const state = {
@@ -39,11 +39,7 @@ export const Select = ({
 	};
 
 	const {
-		SelectRoot: {
-			component: SelectRoot,
-			styles: selectRootStyles,
-			attributes: selectRootAttributes,
-		},
+		Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	let allChildren = [];
@@ -60,14 +56,9 @@ export const Select = ({
 	}
 
 	return (
-		<SelectRoot
-			{...rest}
-			state={state}
-			{...selectRootAttributes(state)}
-			css={selectRootStyles(state)}
-		>
+		<Select {...rest} state={state} {...selectAttributes(state)} css={selectStyles(state)}>
 			{allChildren}
-		</SelectRoot>
+		</Select>
 	);
 };
 
