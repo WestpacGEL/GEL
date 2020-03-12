@@ -2,11 +2,10 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { List } from '@westpac/list';
-import React from 'react';
 
-export const ListGroup = props => <List {...props} />;
+const ListGroup = props => <List type="unstyled" {...props} />;
 
-export const listGroupStyles = () => {
+const listGroupStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -21,7 +20,7 @@ export const listGroupStyles = () => {
 	};
 };
 
-export const listGroupAttributes = () => {
+const listGroupAttributes = () => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -43,4 +42,10 @@ export const listGroupAttributes = () => {
 			},
 		},
 	};
+};
+
+export const defaultListGroup = {
+	component: ListGroup,
+	styles: listGroupStyles,
+	attributes: listGroupAttributes,
 };
