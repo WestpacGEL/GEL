@@ -2,9 +2,9 @@
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
-export const Header = ({ look, heading, headingTag, overrides, ...rest }) => <div {...rest} />;
+const Header = ({ state, ...rest }) => <div {...rest} />;
 
-export const headerStyles = (_, { look }) => {
+const headerStyles = (_, { look }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
 
@@ -29,4 +29,12 @@ export const headerStyles = (_, { look }) => {
 			borderBottom: '1px solid #000',
 		},
 	})[0];
+};
+
+const headerAttributes = () => null;
+
+export const defaultHeader = {
+	component: Header,
+	styles: headerStyles,
+	attributes: headerAttributes,
 };

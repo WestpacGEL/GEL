@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Panel = ({ look, heading, headingTag, overrides, ...rest }) => <div {...rest} />;
+const Panel = ({ state, ...rest }) => <div {...rest} />;
 
-export const panelStyles = (_, { look }) => {
+const panelStyles = (_, { look }) => {
 	const { COLORS } = useBrand();
 
 	const styleMap = {
@@ -31,4 +31,12 @@ export const panelStyles = (_, { look }) => {
 			padding: ['0.75rem 0.75rem 0 0.75rem', '1.5rem 1.5rem 0 1.5rem'],
 		},
 	};
+};
+
+const panelAttributes = () => null;
+
+export const defaultPanel = {
+	component: Panel,
+	styles: panelStyles,
+	attributes: panelAttributes,
 };

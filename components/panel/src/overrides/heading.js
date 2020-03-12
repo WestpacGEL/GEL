@@ -3,11 +3,11 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 
-export const PanelHeading = ({ look, heading, headingTag, overrides, ...rest }) => (
+const PanelHeading = ({ state: { headingTag }, ...rest }) => (
 	<Heading tag={headingTag} size={8} {...rest} />
 );
 
-export const headingStyles = (_, { look }) => {
+const headingStyles = (_, { look }) => {
 	const { COLORS } = useBrand();
 
 	const styleMap = {
@@ -23,4 +23,12 @@ export const headingStyles = (_, { look }) => {
 		color: styleMap[look].color,
 		fontWeight: 'normal',
 	};
+};
+
+const headingAttributes = () => null;
+
+export const defaultHeading = {
+	component: PanelHeading,
+	styles: headingStyles,
+	attributes: headingAttributes,
 };

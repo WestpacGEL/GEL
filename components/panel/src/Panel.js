@@ -1,12 +1,28 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, devWarning, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Panel as PanelWrapper, panelStyles } from './overrides/panel';
-import { Header, headerStyles } from './overrides/header';
-import { PanelHeading, headingStyles } from './overrides/heading';
+import { defaultPanel } from './overrides/panel';
+import { defaultHeader } from './overrides/header';
+import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
+
+// ==============================
+// Context and Consumer Hook
+// ==============================
+const PanelContext = createContext();
+
+export const usePanelContext = () => {
+	const context = useContext(PanelContext);
+
+	if (!context) {
+		throw new Error('<Body/> and <Footer/> components should be wrapped in <Panel>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
@@ -26,21 +42,9 @@ export const Panel = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Panel: {
-			styles: panelStyles,
-			component: PanelWrapper,
-			attributes: () => null,
-		},
-		Header: {
-			styles: headerStyles,
-			component: Header,
-			attributes: () => null,
-		},
-		Heading: {
-			styles: headingStyles,
-			component: PanelHeading,
-			attributes: () => null,
-		},
+		Panel: defaultPanel,
+		Header: defaultHeader,
+		Heading: defaultHeading,
 	};
 
 	const state = {
@@ -51,41 +55,23 @@ export const Panel = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
+		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Panel.component
-			look={look}
-			heading={heading}
-			headingTag={headingTag}
-			{...rest}
-			{...overrides.Panel.attributes(state)}
-			css={overrides.Panel.styles(state)}
-		>
-			<overrides.Header.component
-				look={look}
-				heading={heading}
-				headingTag={headingTag}
-				{...overrides.Header.attributes(state)}
-				css={overrides.Header.styles(state)}
-			>
-				<overrides.Heading.component
-					look={look}
-					heading={heading}
-					headingTag={headingTag}
-					{...overrides.Heading.attributes(state)}
-					css={overrides.Heading.styles(state)}
-				>
-					{heading}
-				</overrides.Heading.component>
-			</overrides.Header.component>
-			{children}
-		</overrides.Panel.component>
+		<PanelContext.Provider value={{ state }}>
+			<Panel {...rest} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+				<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
+					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
+						{heading}
+					</Heading>
+				</Header>
+				{children}
+			</Panel>
+		</PanelContext.Provider>
 	);
 };
 
