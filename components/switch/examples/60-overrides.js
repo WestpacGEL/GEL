@@ -23,12 +23,6 @@ function Example({ brand }) {
 				backgroundColor: checked ? 'palevioletred' : 'white',
 			}),
 		},
-		ToggleText: {
-			styles: (styles, { checked }) => ({
-				...styles,
-				color: checked ? 'white' : 'firebrick',
-			}),
-		},
 	};
 
 	return (

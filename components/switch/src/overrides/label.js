@@ -15,4 +15,6 @@ const labelStyles = (_, { block }) => {
 	};
 };
 
-export const defaultLabel = { component: Label, styles: labelStyles, attributes: () => null };
+const labelAttributes = () => null;
+
+export const defaultLabel = { component: Label, styles: labelStyles, attributes: labelAttributes };

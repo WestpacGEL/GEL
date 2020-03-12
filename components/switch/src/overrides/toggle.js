@@ -52,4 +52,10 @@ const toggleStyles = (_, { size, checked }) => {
 	})[0];
 };
 
-export const defaultToggle = { component: Toggle, styles: toggleStyles, attributes: () => null };
+const toggleAttributes = () => null;
+
+export const defaultToggle = {
+	component: Toggle,
+	styles: toggleStyles,
+	attributes: toggleAttributes,
+};
