@@ -9,9 +9,7 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-/**
- * A group of `Cell` components must be wrapped in a `Grid`.
- */
+
 export const Grid = ({
 	alignContent,
 	areas,
