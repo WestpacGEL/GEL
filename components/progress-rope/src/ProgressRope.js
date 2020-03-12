@@ -239,7 +239,7 @@ export const ProgressRope = ({
 // ==============================
 ProgressRope.propTypes = {
 	/**
-	 * Define an id prefix for the group step elements e.g. for a prefix of "progress-rope" --> "progress-rope-1-group-1" etc.
+	 * Define an id prefix for the group step elements e.g. for a prefix of "progress-rope" --> "progress-rope-group-1" etc.
 	 */
 	instanceIdPrefix: PropTypes.string,
 
