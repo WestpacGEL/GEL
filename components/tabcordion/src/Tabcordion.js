@@ -180,18 +180,14 @@ Tabcordion.propTypes = {
 	initialTabIndex: PropTypes.number,
 
 	/**
-	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-1-panel-1" etc.
+	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
 	 */
 	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * An array of Tab components that can be navigated through
 	 */
-	children: PropTypes.arrayOf(
-		PropTypes.shape({
-			type: PropTypes.oneOf([Tab]),
-		})
-	).isRequired,
+	children: PropTypes.node.isRequired,
 
 	/**
 	 * The override API
