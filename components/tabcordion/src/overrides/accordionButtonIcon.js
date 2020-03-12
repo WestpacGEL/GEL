@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 import { jsx, useBrand } from '@westpac/core';
+import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 
 const AccordionButtonIcon = ({ state, ...rest }) => {
 	const { COLORS } = useBrand();
