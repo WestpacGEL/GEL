@@ -2,12 +2,20 @@
 
 import { jsx, useMediaQuery } from '@westpac/core';
 
-export const Body = ({ overrides, ...rest }) => <div {...rest} />;
+const Body = ({ state, ...rest }) => <div {...rest} />;
 
-export const bodyStyles = () => {
+const bodyStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
 		padding: ['0.75rem', '1.5rem'],
 	})[0];
+};
+
+const bodyAttributes = () => null;
+
+export const defaultBody = {
+	component: Body,
+	styles: bodyStyles,
+	attributes: bodyAttributes,
 };

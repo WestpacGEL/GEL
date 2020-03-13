@@ -1,7 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
-export const TableBody = props => <tbody {...props} />;
+const Tbody = ({ state, ...rest }) => <tbody {...rest} />;
 
-export const tbodyStyles = () => ({});
+const tbodyStyles = () => ({});
+
+const tbodyAttributes = () => null;
+
+export const defaultTBody = {
+	component: Tbody,
+	styles: tbodyStyles,
+	attributes: tbodyAttributes,
+};

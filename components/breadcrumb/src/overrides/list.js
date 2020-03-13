@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const List = ({ data, assistiveText, ...props }) => <ol {...props} />;
+const List = ({ state, ...props }) => <ol {...props} />;
 
-export const listStyles = () => {
+const listStyles = () => {
 	const { SPACING } = useBrand();
 
 	return {
@@ -14,4 +13,12 @@ export const listStyles = () => {
 		fontSize: '0.8125rem',
 		listStyle: 'none',
 	};
+};
+
+const listAttributes = () => null;
+
+export const defaultList = {
+	component: List,
+	styles: listStyles,
+	attributes: listAttributes,
 };

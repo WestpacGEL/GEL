@@ -1,10 +1,15 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-export const FormCheck = ({ type, name, size, inline, disabled, defaultValue, data, ...rest }) => (
-	<div {...rest} />
-);
+const FormCheck = ({ state, ...rest }) => <div {...rest} />;
 
-export const formCheckStyles = () => ({});
+const formCheckStyles = () => ({});
+
+const formCheckAttributes = () => null;
+
+export const defaultFormCheck = {
+	component: FormCheck,
+	styles: formCheckStyles,
+	attribute: formCheckAttributes,
+};

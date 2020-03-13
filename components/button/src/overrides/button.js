@@ -3,28 +3,11 @@
 import { jsx, useBrand, asArray, useMediaQuery } from '@westpac/core';
 import { forwardRef } from 'react';
 
-export const Button = forwardRef(
-	(
-		{
-			look,
-			size,
-			soft,
-			block,
-			iconAfter,
-			iconBefore,
-			justify,
-			assistiveText,
-			tag: Tag,
-			dropdown,
-			...rest
-		},
-		ref
-	) => <Tag ref={ref} {...rest} />
-);
+const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
 
-export const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
+const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const mq = useMediaQuery();
-	const { BRAND, COLORS, TYPE } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 
 	const bg = {
 		background:
@@ -201,4 +184,12 @@ export const buttonStyles = (_, { look, size, soft, block, justify, disabled }) 
 		width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 	})[0];
+};
+
+const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
+
+export const defaultButton = {
+	component: Button,
+	styles: buttonStyles,
+	attributes: buttonAttributes,
 };

@@ -3,41 +3,31 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Item as ItemWrapper, itemStyles } from './overrides/item';
-import { ItemButton, itemButtonStyles } from './overrides/itemButton';
+import { defaultStepButton } from './overrides/stepButton';
+import { defaultStep } from './overrides/step';
+
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
-export const Item = ({
-	groupItemsId,
-	index,
-	groupIndex,
-	end,
-	onClick,
-	instanceIdPrefix,
-	children,
-	overrides: componentOverrides,
-	...rest
-}) => {
-	const { currStep, currGroup, grouped, ropeGraph } = useProgressRopeContext();
+// ==============================
+// Component
+// ==============================
 
+export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useProgressRopeContext();
+	const { currStep, currGroup, grouped, ropeGraph } = context;
+
 	const defaultOverrides = {
-		Item: {
-			styles: itemStyles,
-			component: ItemWrapper,
-			attributes: () => null,
-		},
-		ItemButton: {
-			styles: itemButtonStyles,
-			component: ItemButton,
-			attributes: () => null,
-		},
+		Step: defaultStep,
+		StepButton: defaultStepButton,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const visited =
 		(grouped && !end && ropeGraph[groupIndex][index] === 'visited') ||
@@ -73,71 +63,54 @@ export const Item = ({
 	}
 
 	const state = {
-		groupItemsId,
+		grouped,
+		visited,
+		active,
+		furthest,
 		index,
 		groupIndex,
 		end,
 		onClick,
-		visited,
-		grouped,
-		active,
-		furthest,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Step: { component: Step, styles: stepStyles, attributes: stepAttributes },
+		StepButton: {
+			component: StepButton,
+			styles: stepButtonStyles,
+			attributes: stepButtonAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Item.component
-			groupItemsId={groupItemsId}
-			index={index}
-			groupIndex={groupIndex}
-			end={end}
-			visited={visited}
-			grouped={grouped}
-			active={active}
-			furthest={furthest}
-			{...rest}
-			{...overrides.Item.attributes(state)}
-			css={overrides.Item.styles(state)}
-		>
-			<overrides.ItemButton.component
-				groupItemsId={groupItemsId}
-				index={index}
-				groupIndex={groupIndex}
-				end={end}
+		<Step {...rest} state={state} {...stepAttributes(state)} css={stepStyles(state)}>
+			<StepButton
 				onClick={onClick}
-				aria-current={active ? 'step' : undefined}
-				visited={visited}
-				grouped={grouped}
-				active={active}
-				furthest={furthest}
-				{...overrides.ItemButton.attributes(state)}
-				css={overrides.ItemButton.styles(state)}
+				state={state}
+				{...stepButtonAttributes(state)}
+				css={stepButtonStyles(state)}
 			>
 				{children}
-			</overrides.ItemButton.component>
-		</overrides.Item.component>
+			</StepButton>
+		</Step>
 	);
 };
 
 // ==============================
 // Types
 // ==============================
-Item.propTypes = {
+
+Step.propTypes = {
 	/**
-	 * The index of this item
+	 * The index of this step
 	 */
 	index: PropTypes.number,
 
 	/**
-	 * The index of this item
+	 * The index of this step's group
 	 */
 	groupIndex: PropTypes.number,
 
@@ -160,12 +133,12 @@ Item.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Item: PropTypes.shape({
+		Step: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ItemButton: PropTypes.shape({
+		StepButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -173,6 +146,6 @@ Item.propTypes = {
 	}),
 };
 
-Item.defaultProps = {
+Step.defaultProps = {
 	end: false,
 };

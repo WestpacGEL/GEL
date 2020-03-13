@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const TableData = ({ highlighted, highlightStart, bordered, ...rest }) => <td {...rest} />;
+const Td = ({ state, ...rest }) => <td {...rest} />;
 
-export const tdStyles = (_, { highlighted, highlightStart, bordered }) => {
+const tdStyles = (_, { highlighted, highlightStart, bordered }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
@@ -18,4 +18,12 @@ export const tdStyles = (_, { highlighted, highlightStart, bordered }) => {
 			...TYPE.bodyFont[700],
 		},
 	};
+};
+
+const tdAttributes = () => null;
+
+export const defaultTd = {
+	component: Td,
+	styles: tdStyles,
+	attributes: tdAttributes,
 };

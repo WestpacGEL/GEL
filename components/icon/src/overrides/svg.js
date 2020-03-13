@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-export const Svg = ({ color, size, assistiveText, ...rest }) => (
+const Svg = ({ state: { assistiveText }, ...rest }) => (
 	<svg
 		aria-label={assistiveText}
 		xmlns="http://www.w3.org/2000/svg"
@@ -14,4 +13,12 @@ export const Svg = ({ color, size, assistiveText, ...rest }) => (
 	/>
 );
 
-export const svgStyles = () => ({});
+const svgStyles = () => ({});
+
+const svgAttributes = () => null;
+
+export const defaultSvg = {
+	component: Svg,
+	styles: svgStyles,
+	attributes: svgAttributes,
+};

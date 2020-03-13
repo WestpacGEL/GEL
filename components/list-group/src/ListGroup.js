@@ -1,21 +1,30 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, GEL } from '@westpac/core';
+import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
 
-import {
-	ListGroup as ListGroupWrapper,
-	listGroupStyles,
-	listGroupAttributes,
-} from './overrides/listGroup';
+import { defaultListGroup } from './overrides/listGroup';
 import pkg from '../package.json';
 
 // ==============================
+// Context and Consumer Hook
+// ==============================
+
+const ListGroupContext = createContext();
+
+export const useListGroupContext = () => {
+	const context = useContext(ListGroupContext);
+
+	if (!context) {
+		throw new Error('<Item/> components should be wrapped in a <ListGroup>.');
+	}
+
+	return context;
+};
+
+// ==============================
 // Component
-//
-// List Group: List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content.
-// Ideal for settings pages or preferences.
 // ==============================
 
 export const ListGroup = ({ children, overrides: componentOverrides, ...rest }) => {
@@ -24,11 +33,7 @@ export const ListGroup = ({ children, overrides: componentOverrides, ...rest }) 
 	const brandOverrides = brand[pkg.name];
 
 	const defaultOverrides = {
-		ListGroup: {
-			styles: listGroupStyles,
-			component: ListGroupWrapper,
-			attributes: (_, state) => ({ ...state, ...listGroupAttributes(state) }),
-		},
+		ListGroup: defaultListGroup,
 	};
 
 	const state = {
@@ -36,12 +41,10 @@ export const ListGroup = ({ children, overrides: componentOverrides, ...rest }) 
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ListGroup: { component: ListGroup, styles: listGroupStyles, attributes: listGroupAttributes },
+		...overrides
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
 		<GEL
@@ -55,14 +58,16 @@ export const ListGroup = ({ children, overrides: componentOverrides, ...rest }) 
 				},
 			}}
 		>
-			<overrides.ListGroup.component
-				type="unstyled"
-				{...rest}
-				{...overrides.ListGroup.attributes(state)}
-				css={overrides.ListGroup.styles(state)}
-			>
-				{children}
-			</overrides.ListGroup.component>
+			<ListGroupContext.Provider value={{ state }}>
+				<ListGroup
+					{...rest}
+					state={state}
+					{...listGroupAttributes(state)}
+					css={listGroupStyles(state)}
+				>
+					{children}
+				</ListGroup>
+			</ListGroupContext.Provider>
 		</GEL>
 	);
 };

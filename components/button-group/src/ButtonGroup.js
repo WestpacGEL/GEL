@@ -1,16 +1,33 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, devWarning, wrapHandlers, overrideReconciler } from '@westpac/core';
-import { Children, cloneElement, useState, useEffect } from 'react';
+import { Children, cloneElement, useState, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { ButtonGroup as ButtonGroupWrapper, buttonGroupStyles } from './overrides/buttonGroup';
+import { defaultButtonGroup } from './overrides/buttonGroup';
 import { ButtonGroupItem } from './ButtonGroupItem';
 import pkg from '../package.json';
 
 // ==============================
+// Context and Consumer Hook
+// ==============================
+
+const ButtonGroupContext = createContext();
+
+export const useButtonGroupContext = () => {
+	const context = useContext(ButtonGroupContext);
+
+	if (!context) {
+		throw new Error('<Item/> components should be wrapped in a <ButtonGroup>.');
+	}
+
+	return context;
+};
+
+// ==============================
 // Component
 // ==============================
+
 export const ButtonGroup = ({
 	name,
 	value: controlledValue,
@@ -36,11 +53,7 @@ export const ButtonGroup = ({
 	devWarning(!children && !data, 'ButtonGroup requires either `children` or `data`.');
 
 	const defaultOverrides = {
-		ButtonGroup: {
-			styles: buttonGroupStyles,
-			component: ButtonGroupWrapper,
-			attributes: () => null,
-		},
+		ButtonGroup: defaultButtonGroup,
 	};
 
 	const state = {
@@ -53,17 +66,17 @@ export const ButtonGroup = ({
 		size,
 		block,
 		disabled,
-		children,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ButtonGroup: {
+			component: ButtonGroup,
+			styles: buttonGroupStyles,
+			attributes: buttonGroupAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const handleChange = (event, val) => {
 		wrapHandlers(
@@ -85,13 +98,11 @@ export const ButtonGroup = ({
 					name={name}
 					value={val}
 					onChange={handleChange}
-					data={data}
 					checked={checked}
 					look={look}
 					size={size}
 					block={block}
 					disabled={disabled}
-					overrides={componentOverrides}
 				>
 					{props.text}
 				</ButtonGroupItem>
@@ -105,40 +116,33 @@ export const ButtonGroup = ({
 				name,
 				value: val,
 				onChange: handleChange,
-				data,
 				checked,
 				look,
 				size,
 				block,
 				disabled,
-				overrides: componentOverrides,
 			});
 		});
 	}
 
 	return (
-		<overrides.ButtonGroup.component
-			name={name}
-			value={value}
-			defaultValue={defaultValue}
-			onChange={onChange}
-			data={data}
-			look={look}
-			size={size}
-			block={block}
-			disabled={disabled}
-			{...rest}
-			{...overrides.ButtonGroup.attributes(state)}
-			css={overrides.ButtonGroup.styles(state)}
-		>
-			{allChildren}
-		</overrides.ButtonGroup.component>
+		<ButtonGroupContext.Provider value={{ state }}>
+			<ButtonGroup
+				{...rest}
+				state={state}
+				{...buttonGroupAttributes(state)}
+				css={buttonGroupStyles(state)}
+			>
+				{allChildren}
+			</ButtonGroup>
+		</ButtonGroupContext.Provider>
 	);
 };
 
 // ==============================
 // Types
 // ==============================
+
 const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 ButtonGroup.propTypes = {
@@ -200,6 +204,16 @@ ButtonGroup.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		ButtonGroup: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Button: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Item: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

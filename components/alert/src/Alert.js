@@ -2,14 +2,14 @@
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Alert as AlertWrapper, alertStyles } from './overrides/alert';
-import { AlertHeading, headingStyles } from './overrides/heading';
-import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
-import { AlertBody, bodyStyles } from './overrides/body';
-import { Icon, iconStyles } from './overrides/icon';
+import { defaultCloseBtn } from './overrides/closeBtn';
+import { defaultHeading } from './overrides/heading';
+import { defaultAlert } from './overrides/alert';
+import { defaultBody } from './overrides/body';
+import { defaultIcon } from './overrides/icon';
 import pkg from '../package.json';
 
 // ==============================
@@ -42,31 +42,11 @@ export const Alert = ({
 	});
 
 	const defaultOverrides = {
-		Alert: {
-			styles: alertStyles,
-			component: AlertWrapper,
-			attributes: () => null,
-		},
-		Body: {
-			styles: bodyStyles,
-			component: AlertBody,
-			attributes: () => null,
-		},
-		CloseBtn: {
-			styles: closeBtnStyles,
-			component: CloseBtn,
-			attributes: () => null,
-		},
-		Icon: {
-			styles: iconStyles,
-			component: Icon,
-			attributes: () => null,
-		},
-		Heading: {
-			styles: headingStyles,
-			component: AlertHeading,
-			attributes: () => null,
-		},
+		Alert: defaultAlert,
+		Body: defaultBody,
+		CloseBtn: defaultCloseBtn,
+		Heading: defaultHeading,
+		Icon: defaultIcon,
 	};
 
 	const state = {
@@ -81,12 +61,13 @@ export const Alert = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Alert: { component: Alert, styles: alertStyles, attributes: alertAttributes },
+		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
+		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
+		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
+		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -100,80 +81,31 @@ export const Alert = ({
 	};
 
 	const HeadingJSX = () => (
-		<overrides.Heading.component
-			open={open}
-			look={look}
-			dismissible={dismissible}
-			onClose={onClose}
-			icon={icon}
-			heading={heading}
-			headingTag={headingTag}
-			{...overrides.Heading.attributes(state)}
-			css={overrides.Heading.styles(state)}
-		/>
+		<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
+			{heading}
+		</Heading>
 	);
 
-	const IconJSX = () => (
-		<overrides.Icon.component
-			size={['small', 'medium']}
-			color="inherit"
-			open={open}
-			look={look}
-			dismissible={dismissible}
-			onClose={onClose}
-			icon={icon}
-			heading={heading}
-			headingTag={headingTag}
-			{...overrides.Icon.attributes(state)}
-			css={overrides.Icon.styles(state)}
-		/>
-	);
+	const IconJSX = () => <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />;
 
 	const CloseBtnJSX = () => (
-		<overrides.CloseBtn.component
-			assistiveText="Close"
+		<CloseBtn
 			onClose={event => handleClose(event)}
-			open={open}
-			look={look}
-			dismissible={dismissible}
-			icon={icon}
-			heading={heading}
-			headingTag={headingTag}
-			{...overrides.CloseBtn.attributes(state)}
-			css={overrides.CloseBtn.styles(state)}
+			state={state}
+			{...closeBtnAttributes(state)}
+			css={closeBtnStyles(state)}
 		/>
 	);
 
 	const AlertJSX = () => (
-		<overrides.Alert.component
-			open={open}
-			look={look}
-			dismissible={dismissible}
-			onClose={onClose}
-			icon={icon}
-			heading={heading}
-			headingTag={headingTag}
-			{...rest}
-			{...overrides.Alert.attributes(state)}
-			css={overrides.Alert.styles(state)}
-		>
-			{overrides.Icon.component && <IconJSX />}
-			<overrides.Body.component
-				open={open}
-				look={look}
-				dismissible={dismissible}
-				onClose={onClose}
-				icon={icon}
-				heading={heading}
-				headingTag={headingTag}
-				{...overrides.Body.attributes(state)}
-				css={overrides.Body.styles(state)}
-			>
+		<Alert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
+			{Icon && <IconJSX />}
+			<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 				{heading && <HeadingJSX />}
 				{children}
-			</overrides.Body.component>
+			</Body>
 			{dismissible && <CloseBtnJSX />}
-		</overrides.Alert.component>
+		</Alert>
 	);
 
 	return transition.map(

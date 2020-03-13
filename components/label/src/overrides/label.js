@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Label = ({ look, value, ...rest }) => {
+const Label = ({ state, ...rest }) => {
 	let Tag = 'span';
 
 	if (rest.href) {
@@ -15,7 +15,7 @@ export const Label = ({ look, value, ...rest }) => {
 	return <Tag type={Tag === 'button' ? 'button' : undefined} {...rest} />;
 };
 
-export const labelStyles = (_, { look, href, onClick }) => {
+const labelStyles = (_, { look, href, onClick }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	let color = '#fff';
@@ -147,4 +147,12 @@ export const labelStyles = (_, { look, href, onClick }) => {
 			border: '1px solid #000',
 		},
 	};
+};
+
+const labelAttributes = () => null;
+
+export const defaultLabel = {
+	component: Label,
+	styles: labelStyles,
+	attributes: labelAttributes,
 };

@@ -6,7 +6,7 @@ import { Alert } from '@westpac/alert';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const CloseBtn = ({ onClose, icon: Icon, dismissible, headingTag, look, ...rest }) => (
+const CloseBtn = ({ onClose, state, ...rest }) => (
 	<button onClick={() => onClose()} {...rest}>
 		Close <HouseIcon />
 	</button>
@@ -23,7 +23,7 @@ const Heading = ({ children }) => (
 	</h3>
 );
 
-const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest }) => {
+const Icon = ({ state: { look, icon }, ...rest }) => {
 	const iconMap = {
 		success: TickIcon,
 		info: InfoIcon,
@@ -37,7 +37,7 @@ const Icon = ({ icon, look, size, color, dismissible, headingTag, ...rest }) => 
 		return null;
 	}
 
-	return <Tag size={size} color={color} {...rest} />;
+	return <Tag {...rest} />;
 };
 
 function Example({ brand }) {

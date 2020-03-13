@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const Item = ({ look, type, nested, spacing, icon, ...rest }) => <li {...rest} />;
+const Item = ({ state, ...rest }) => <li {...rest} />;
 
-export const itemStyles = (_, { type, look, spacing, nested }) => {
+const itemStyles = (_, { type, look, spacing, nested }) => {
 	const { COLORS } = useBrand();
 
 	const styleMap = {
@@ -82,4 +81,12 @@ export const itemStyles = (_, { type, look, spacing, nested }) => {
 		position: 'relative',
 		...styleMap[type],
 	};
+};
+
+const itemAttributes = () => null;
+
+export const defaultItem = {
+	component: Item,
+	styles: itemStyles,
+	attributes: itemAttributes,
 };

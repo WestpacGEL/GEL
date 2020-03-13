@@ -6,7 +6,7 @@ import { HouseIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Icon = ({ current, href, text, assistiveText, ...props }) => <HouseIcon {...props} />;
+const Icon = ({ state, ...props }) => <HouseIcon color="red" {...props} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -56,7 +56,18 @@ function Example({ brand }) {
 			>
 				<Crumb href="#/" text="Home" />
 				<Crumb href="#/personal-banking/" text="Personal" />
-				<Crumb href="#/credit-cards/" text="Credit cards" />
+				<Crumb
+					overrides={{
+						Crumb: {
+							styles: styles => ({
+								...styles,
+								outline: '3px dotted blue',
+							}),
+						},
+					}}
+					href="#/credit-cards/"
+					text="Credit cards"
+				/>
 			</Breadcrumb>
 
 			<hr />

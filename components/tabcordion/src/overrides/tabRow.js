@@ -3,14 +3,18 @@
 import { forwardRef } from 'react';
 import { jsx } from '@westpac/core';
 
-export const TabRow = forwardRef(
-	({ mode, look, justify, initialTabIndex, instanceIdPrefix, ...rest }, ref) => (
-		<div ref={ref} {...rest} />
-	)
-);
+const TabRow = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
-export const tabRowStyles = () => ({
+const tabRowStyles = () => ({
 	display: 'flex',
 	whiteSpace: 'nowrap',
 	position: 'relative',
 });
+
+const tabRowAttributes = (_, {}) => ({ role: 'tablist' });
+
+export const defaultTabRow = {
+	component: TabRow,
+	styles: tabRowStyles,
+	attributes: tabRowAttributes,
+};

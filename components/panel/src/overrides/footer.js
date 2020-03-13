@@ -2,9 +2,9 @@
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
-export const Footer = ({ overrides, ...rest }) => <div {...rest} />;
+const Footer = ({ state, ...rest }) => <div {...rest} />;
 
-export const footerStyles = () => {
+const footerStyles = () => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -15,4 +15,12 @@ export const footerStyles = () => {
 		borderBottomRightRadius: `calc(0.1875rem - 1px)`,
 		borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
 	})[0];
+};
+
+const footerAttributes = () => null;
+
+export const defaultFooter = {
+	component: Footer,
+	styles: footerStyles,
+	attributes: footerAttributes,
 };

@@ -1,13 +1,10 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-export const PageList = ({ current, infinite, back, next, data, overrides, ...rest }) => (
-	<ul {...rest} />
-);
+const PageList = ({ state, ...rest }) => <ul {...rest} />;
 
-export const pageListStyles = () => ({
+const pageListStyles = () => ({
 	listStyle: 'none',
 	display: 'flex',
 	paddingLeft: 0,
@@ -15,3 +12,11 @@ export const pageListStyles = () => ({
 	borderRadius: '0.1875rem',
 	alignItems: 'center',
 });
+
+const pageListAttributes = () => null;
+
+export const defaultPageList = {
+	component: PageList,
+	styles: pageListStyles,
+	attributes: pageListAttributes,
+};

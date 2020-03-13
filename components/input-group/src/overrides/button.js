@@ -1,12 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Button as ButtonInput } from '@westpac/button';
-import React from 'react';
 
-export const Button = ({ position, data, ...rest }) => <ButtonInput {...rest} />;
+const Button = ({ state: { size }, ...rest }) => <ButtonInput size={size} {...rest} />;
 
-export const buttonStyles = (_, { position }) => ({
+const buttonStyles = (_, { position }) => ({
 	boxSizing: 'border-box',
 	borderRight: position === 'left' && 0,
 	borderLeft: position === 'right' && 0,
@@ -20,3 +19,11 @@ export const buttonStyles = (_, { position }) => ({
 		borderBottomRightRadius: 0,
 	}),
 });
+
+const buttonAttributes = () => null;
+
+export const defaultButton = {
+	component: Button,
+	styles: buttonStyles,
+	attributes: buttonAttributes,
+};

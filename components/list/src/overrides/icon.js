@@ -1,12 +1,22 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
-import React from 'react';
+import { jsx, useBrand } from '@westpac/core';
 
-export const Icon = ({ look, type, nested, spacing, icon: Icon, ...rest }) => <Icon {...rest} />;
+const Icon = ({ state: { icon: Icon }, ...rest }) => {
+	const { COLORS } = useBrand();
+	return <Icon size="small" color={COLORS.muted} {...rest} />;
+};
 
-export const iconStyles = () => ({
+const iconStyles = () => ({
 	position: 'absolute',
 	top: 0,
 	left: 0,
 });
+
+const iconAttributes = () => null;
+
+export const defaultIcon = {
+	component: Icon,
+	styles: iconStyles,
+	attributes: iconAttributes,
+};

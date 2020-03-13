@@ -2,6 +2,14 @@
 
 import { jsx } from '@westpac/core';
 
-export const Group = ({ groupItemsId, index, text, active, complete, ...rest }) => <li {...rest} />;
+const Group = ({ state, ...rest }) => <li {...rest} />;
 
-export const groupStyles = () => ({});
+const groupStyles = () => ({});
+
+const groupAttributes = () => null;
+
+export const defaultGroup = {
+	component: Group,
+	styles: groupStyles,
+	attributes: groupAttributes,
+};

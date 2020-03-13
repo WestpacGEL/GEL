@@ -14,7 +14,7 @@ function Example({ brand }) {
 				outline: `2px solid palevioletred`,
 			}),
 		},
-		ButtonGroupItem: {
+		Item: {
 			styles: (styles, { checked }) => ({
 				...styles,
 				backgroundColor: !checked ? 'white' : 'palevioletred',
@@ -76,7 +76,7 @@ function Example({ brand }) {
 							outline: `2px solid red`,
 						}),
 					},
-					ButtonGroupItem: {
+					Item: {
 						styles: (styles, { checked }) => ({
 							...styles,
 							backgroundColor: !checked ? 'white' : 'dodgerblue',

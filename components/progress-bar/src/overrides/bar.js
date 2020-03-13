@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Bar = ({ look, value, ...rest }) => <div {...rest} />;
+const Bar = ({ state, ...rest }) => <div {...rest} />;
 
-export const barStyles = (_, { look, value }) => {
+const barStyles = (_, { look, value }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
@@ -28,4 +28,12 @@ export const barStyles = (_, { look, value }) => {
 			backgroundColor: '#000 !important',
 		},
 	};
+};
+
+const barAttributes = () => null;
+
+export const defaultBar = {
+	component: Bar,
+	styles: barStyles,
+	attributes: barAttributes,
 };

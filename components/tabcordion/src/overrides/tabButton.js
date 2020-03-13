@@ -3,13 +3,11 @@
 import { forwardRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
-export const TabItem = forwardRef(
-	({ selected, last, mode, look, justify, initialTabIndex, instanceIdPrefix, ...rest }, ref) => {
-		return <button type="button" ref={ref} {...rest} />;
-	}
-);
+const TabButton = forwardRef(({ state, ...rest }, ref) => {
+	return <button type="button" ref={ref} {...rest} />;
+});
 
-export const tabItemStyles = (_, { look, justify, selected, last }) => {
+const tabButtonStyles = (_, { look, justify, selected, last }) => {
 	const { COLORS } = useBrand();
 
 	const styles = {
@@ -34,14 +32,25 @@ export const tabItemStyles = (_, { look, justify, selected, last }) => {
 	return {
 		flex: justify ? 1 : 0,
 		fontSize: '1rem',
-		marginRight: '0.125rem',
+		marginRight: !last && '0.125rem',
 		padding: '0.875rem 1.125rem',
 		textAlign: 'left',
 		textDecoration: 'none',
 		transition: 'background .3s ease',
 		width: '100%',
 		cursor: 'pointer',
-		...(last && { marginRight: 0 }),
 		...styles[look],
 	};
+};
+
+const tabButtonAttributes = (_, { tabId, panelId, selected }) => ({
+	id: tabId,
+	'aria-controls': panelId,
+	'aria-expanded': selected,
+});
+
+export const defaultTabButton = {
+	component: TabButton,
+	styles: tabButtonStyles,
+	attributes: tabButtonAttributes,
 };

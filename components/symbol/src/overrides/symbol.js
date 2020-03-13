@@ -1,13 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
-import React from 'react';
+import { jsx, useMediaQuery, asArray } from '@westpac/core';
 
-export const Symbol = ({ assistiveText, viewBoxWidth, viewBoxHeight, ...rest }) => (
-	<span {...rest} />
-);
+const Symbol = ({ symbol, state, ...rest }) => <span {...rest} />;
 
-export const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
+const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
 	const mq = useMediaQuery();
 
 	const round = f => Math.round(f * 10) / 10; // 1DP
@@ -28,4 +25,12 @@ export const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) 
 		verticalAlign: 'middle',
 		...styleSize,
 	})[0];
+};
+
+const symbolAttributes = () => null;
+
+export const defaultSymbol = {
+	component: Symbol,
+	styles: symbolStyles,
+	attributes: symbolAttributes,
 };

@@ -3,7 +3,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
-import { ProgressRope, Group, Item } from '@westpac/progress-rope';
+import { ProgressRope, Group, Step } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -32,21 +32,21 @@ function Example({ brand }) {
 						<h2>Composition</h2>
 						<ProgressRope current={state.index}>
 							<Group text={'Group 1'}>
-								<Item onClick={handleClick(0)}>Step 1</Item>
-								<Item onClick={handleClick(1)}>Step 2</Item>
+								<Step onClick={handleClick(0)}>Step 1</Step>
+								<Step onClick={handleClick(1)}>Step 2</Step>
 							</Group>
 							<Group text={'Group 2'}>
-								<Item onClick={handleClick(2)}>Step 3</Item>
-								<Item onClick={handleClick(3)}>Step 4</Item>
+								<Step onClick={handleClick(2)}>Step 3</Step>
+								<Step onClick={handleClick(3)}>Step 4</Step>
 							</Group>
 							<Group text={'Group 3'}>
-								<Item onClick={handleClick(4)}>Step 5</Item>
-								<Item onClick={handleClick(5)}>Step 6</Item>
-								<Item onClick={handleClick(6)}>Step 7</Item>
+								<Step onClick={handleClick(4)}>Step 5</Step>
+								<Step onClick={handleClick(5)}>Step 6</Step>
+								<Step onClick={handleClick(6)}>Step 7</Step>
 							</Group>
-							<Item end onClick={handleClick(5)}>
+							<Step end onClick={handleClick(5)}>
 								Review and Submit
-							</Item>
+							</Step>
 						</ProgressRope>
 					</Wrapper>
 				</Cell>
@@ -65,7 +65,7 @@ function Example({ brand }) {
 								{
 									type: 'group',
 									text: 'Group 1',
-									items: [
+									steps: [
 										{ text: 'Step 1', onClick: handleClick2(0) },
 										{ text: 'Step 2', onClick: handleClick2(1) },
 									],
@@ -73,7 +73,7 @@ function Example({ brand }) {
 								{
 									type: 'group',
 									text: 'Group 2',
-									items: [
+									steps: [
 										{ text: 'Step 3', onClick: handleClick2(2) },
 										{ text: 'Step 4', onClick: handleClick2(3) },
 									],
@@ -81,7 +81,7 @@ function Example({ brand }) {
 								{
 									type: 'group',
 									text: 'Group 3',
-									items: [
+									steps: [
 										{ text: 'Step 5', onClick: handleClick2(4) },
 										{ text: 'Step 6', onClick: handleClick2(5) },
 										{ text: 'Step 7', onClick: handleClick2(6) },
