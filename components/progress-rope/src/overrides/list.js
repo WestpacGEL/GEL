@@ -13,16 +13,16 @@ const listStyles = () => {
 		paddingLeft: 0,
 		margin: 0,
 
-		// line
+		// default line
 		'::after': {
 			content: '""',
 			display: 'block',
 			position: 'absolute',
 			zIndex: 0,
-			borderLeft: `2px solid ${COLORS.border}`,
-			top: '17px',
-			bottom: '24px',
-			left: '36px',
+			borderLeft: `2px dashed ${COLORS.border}`,
+			top: '1.0625rem',
+			bottom: '1.5rem',
+			left: '2.25rem',
 		},
 	};
 };

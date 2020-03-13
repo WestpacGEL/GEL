@@ -6,7 +6,9 @@ const ProgressRope = ({ state, ...rest }) => <nav role="navigation" {...rest} />
 
 const progressRopeStyles = () => ({});
 
-const progressRopeAttributes = () => null;
+const progressRopeAttributes = (_, { assistiveText }) => ({
+	'aria-label': assistiveText,
+});
 
 export const defaultProgressRope = {
 	component: ProgressRope,

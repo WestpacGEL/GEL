@@ -13,19 +13,19 @@ const stepStyles = (_, { end, visited, grouped, furthest }) => {
 		backgroundColor: '#fff',
 
 		':last-of-type': {
-			paddingBottom: grouped && !end && '30px',
+			paddingBottom: grouped && !end && '1.875rem',
 		},
 
-		// line
+		// visited line
 		'::before': {
 			content: '""',
 			display: visited && !furthest && !end ? 'block' : 'none',
 			position: 'absolute',
 			zIndex: 1,
-			borderLeft: visited && !furthest && `4px solid ${COLORS.primary}`,
+			borderLeft: visited && !furthest && `2px solid ${COLORS.primary}`,
 			top: 0,
 			bottom: 0,
-			left: visited && !furthest ? '35px' : '36px',
+			left: '2.25rem',
 			transform: grouped && !end ? 'translateY(0.875rem)' : 'translateY(0.625rem)',
 		},
 	};

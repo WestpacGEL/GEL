@@ -11,7 +11,7 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 
 	return {
 		position: 'relative',
-		fontSize: '14px',
+		fontSize: '0.875rem',
 		lineHeight: 1.428571429, //`<body>` line-height
 		textAlign: 'left',
 		padding: `8px 30px 14px ${grouped && !end ? '68px' : '56px'}`,
@@ -46,13 +46,19 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 			display: 'block',
 			borderRadius: '50%',
 			position: 'absolute',
-			top: grouped && !end ? '14px' : '10px',
-			width: grouped && !end ? '10px' : '14px',
-			height: grouped && !end ? '10px' : '14px',
-			left: grouped && !end ? '32px' : '30px',
+			top: grouped && !end ? '0.875rem' : '0.625rem',
+			width: grouped && !end ? '0.625rem' : '0.875rem',
+			height: grouped && !end ? '0.625rem' : '0.875rem',
+			left: grouped && !end ? '2rem' : '1.875rem',
 			border: `solid ${visited ? COLORS.primary : COLORS.border}`,
 			borderWidth:
-				visited && !furthest ? (grouped && !end ? '5px' : '7px') : visited ? '3px' : '2px', //a11y: filling with border for HCM support
+				visited && !furthest
+					? grouped && !end
+						? '0.3125rem'
+						: '0.4375rem'
+					: visited
+					? '3px'
+					: '2px', //a11y: filling with border for HCM support
 			backgroundColor: '#fff',
 			boxSizing: 'border-box',
 		},
