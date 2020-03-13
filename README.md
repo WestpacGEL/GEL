@@ -127,6 +127,11 @@ yarn start button
 │   ├── 10-example.js       # all files not starting with a dot or an underscore
 │   └── 20-example.js       # will be processes with `yarn start`
 │
+├── demos/                  # the examples that can be embedded into the website
+│   ├── example-x.js
+│   ├── example-y.js
+│   └── example-z.js
+│
 └── tests/                  # test includes all tests
     ├── integration/
     │   └── test.cypress.js # cypress test file for integration tests
