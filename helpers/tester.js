@@ -1,17 +1,19 @@
-const getWorkspaces = require('get-workspaces').default;
+const { getPackages } = require('@manypkg/get-packages');
 const Spawn = require('child_process');
 const chalk = require('chalk');
 
 (async () => {
-	const workspaces = await getWorkspaces();
+	const { packages } = await getPackages(process.cwd());
 
-	const longestName = [...workspaces].sort((a, b) => a.name.length < b.name.length)[0].name.length;
+	const longestName = [...packages].sort(
+		(a, b) => a.packageJson.name.length < b.packageJson.name.length
+	)[0].packageJson.name.length;
 
-	workspaces
-		.filter(pkg => pkg.name !== '@westpac/website')
+	packages
+		.filter(pkg => pkg.packageJson.name !== '@westpac/website')
 		.map(workspace => {
 			process.stdout.write(
-				`${chalk.bold.yellow(workspace.name.split('/')[1].padEnd(longestName, ' '))}  `
+				`${chalk.bold.yellow(workspace.packageJson.name.split('/')[1].padEnd(longestName, ' '))}  `
 			);
 
 			const command = Spawn.spawnSync('npm', ['test'], {

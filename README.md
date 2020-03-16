@@ -48,6 +48,15 @@ You run it via:
 yarn start
 ```
 
+To run the website locally you'll need [postgres](https://www.keystonejs.com/quick-start/adapters#installing-postgresql) and a `.env` file.
+The `.env` file requires the following items:
+
+```
+CLOUDINARY_CLOUD_NAME="FILLME"
+CLOUDINARY_KEY="FILLME"
+CLOUDINARY_SECRET="FILLME"
+```
+
 ## npm scripts
 
 ### root level
