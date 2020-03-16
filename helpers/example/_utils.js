@@ -61,13 +61,13 @@ const findExampleFiles = (component, parent = '') => {
 				label,
 				parent,
 				landing: parent.length > 0 ? false : true,
-				relativePath: path.relative(__dirname, `${exampleFolder}/${filename}`),
-				absolutePath: `${exampleFolder}/${filename}`,
-				path: exampleFolder,
+				relativePath: path.relative(__dirname, `${exampleDir}/${filename}`),
+				absolutePath: `${exampleDir}/${filename}`,
+				path: exampleDir,
 			};
 		});
 	} else {
-		console.error(`Package doesn't exist: ${exampleFolder}`);
+		console.error(`Package doesn't exist: ${exampleDir}`);
 	}
 };
 
