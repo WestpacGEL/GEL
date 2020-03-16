@@ -1,4 +1,4 @@
-const { Block } = require('../../field-content');
+const { Block } = require('@westpac/field-content/Block');
 
 class DynamicComponentsBlock extends Block {
 	constructor(options, stuff) {

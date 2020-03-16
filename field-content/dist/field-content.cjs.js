@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-let unregister = require("/Users/mike/Development/keystone/node_modules/@preconstruct/hook/dist/hook.cjs.js").___internalHook("/Users/mike/Development/keystone");
-
-module.exports = require("/Users/mike/Development/keystone/packages/field-content/src/index.js");
-
-unregister();
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./field-content.cjs.prod.js");
+} else {
+  module.exports = require("./field-content.cjs.dev.js");
+}

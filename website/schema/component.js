@@ -1,5 +1,5 @@
 const { Select, Virtual, Checkbox, Text, Relationship } = require('@keystonejs/fields');
-const { Content } = require('../../field-content');
+const { Content } = require('@westpac/field-content');
 const { DynamicComponentsBlock } = require('../utils/dynamic-component-block');
 const { resolveComponent } = require('../extend-schema');
 

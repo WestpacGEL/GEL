@@ -44,6 +44,7 @@
 		"version-packages": "yarn changeset version"
 	},
 	"workspaces": [
+		"field-content",
 		"brands/*",
 		"components/*",
 		"website"
@@ -113,6 +114,7 @@
 	},
 	"preconstruct": {
 		"packages": [
+			"field-content",
 			"components/*",
 			"brands/*"
 		]

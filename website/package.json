@@ -6,8 +6,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "cross-env NODE_ENV=development DISABLE_LOGGING=true node index.js",
-		"start:prod": "cross-env NODE_ENV=production node index.js",
+		"start": "cross-env NODE_ENV=development DISABLE_LOGGING=true keystone dev",
+		"start:prod": "cross-env NODE_ENV=production keystone start",
 		"build": "cross-env NODE_ENV=production keystone build"
 	},
 	"keywords": [],
