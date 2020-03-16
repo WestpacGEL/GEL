@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[194],{1242:function(t,e,c){"use strict";c.r(e);var s=c(6),a=(c(25),c(302),c(309));class n extends a.a{constructor(...t){super(...t),Object(s.a)(this,"getQueryFragment",()=>"".concat(this.path).concat(this.config.graphQLSelection)),Object(s.a)(this,"getFilterTypes",()=>[])}}e.default=n}}]);
