@@ -3,7 +3,7 @@ brands/**/dist/
 components/**/dist/
 
 # Website
-dist/*
+website/dist/*
 
 # Logs
 logs
