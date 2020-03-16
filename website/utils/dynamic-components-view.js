@@ -131,14 +131,6 @@ export function Node({ node, attributes, editor, item }) {
 	let Component = view[componentName].component;
 	let Editor = view[componentName].editor;
 
-	// useEffect(() => {
-	// 	editor.setNodeByKey(node.key, {
-	// 		data: node.data.set('props', { item, ...node.get('data').get('props') }),
-	// 	});
-	// 	node.data.set('props', { item, ...node.get('data').get('props') });
-	// 	console.log({ p: node.get('data').get('props'), item });
-	// }, []);
-
 	return (
 		<div
 			{...attributes}
