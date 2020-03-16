@@ -44,8 +44,8 @@
 		"version-packages": "yarn changeset version"
 	},
 	"workspaces": [
-		"components/*",
 		"brands/*",
+		"components/*",
 		"website"
 	],
 	"jest": {
