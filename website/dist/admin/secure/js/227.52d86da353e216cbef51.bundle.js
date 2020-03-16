@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[227],{1249:function(n,t,e){"use strict";e.r(t),e.d(t,"type",(function(){return c})),e.d(t,"Node",(function(){return a}));var i=e(226);var c="caption",r={name:"1j7apoz",styles:"padding:8px;text-align:center;"};function a(n){var t=n.attributes,e=n.children;return Object(i.b)("figcaption",Object.assign({css:r},t),e)}}}]);

@@ -2,16 +2,13 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const GroupButton = ({ groupItemsId, index, text, complete, active, ...rest }) => (
-	<button type="button" {...rest} />
-);
+const GroupButton = ({ state, ...rest }) => <button type="button" {...rest} />;
 
-export const groupButtonStyles = (_, { complete, active }) => {
+const groupButtonStyles = (_, { complete, active }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 
 	return {
 		position: 'relative',
-		// padding: '0.375rem 3.5rem 1.625rem 1.875rem',
 		padding: '6px 30px 26px 56px',
 		fontSize: '1rem',
 		lineHeight: '1.428571429', //`<body>` line-height
@@ -23,44 +20,51 @@ export const groupButtonStyles = (_, { complete, active }) => {
 		touchAction: 'manipulation',
 		cursor: 'pointer',
 		color: active ? COLORS.neutral : COLORS.tints.muted70,
-		// ...TYPE.bodyFont[700],
 
 		':focus': {
 			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
 		},
 
-		// the line
+		// visited line
 		'::before': {
 			content: '""',
 			display: 'block',
 			position: 'absolute',
 			zIndex: 1,
-			borderLeft: `2px ${active ? `solid ${COLORS.primary}` : `dashed ${COLORS.border}`}`,
+			borderLeft: active && `2px solid ${COLORS.primary}`,
 			top: 0,
-			// right: '2.25rem',
-			left: '36px',
+			left: '2.25rem',
 			bottom: 0,
 			height: 'auto',
 			transform: 'translateY(0.875rem)',
 		},
 
-		// the circle
-		':after': {
+		// circle
+		'::after': {
 			content: '""',
 			zIndex: 1,
 			display: 'block',
 			borderRadius: '50%',
 			position: 'absolute',
-			top: '10px',
-			width: '14px',
-			height: '14px',
-			// right: '1.875rem',
-			left: '30px',
-			border: `${complete ? '7px' : '2px'} ${
-				active ? `solid ${COLORS.primary}` : `solid ${COLORS.border}`
-			}`, //a11y: filling with border for HCM support
+			top: '0.625rem',
+			width: '0.875rem',
+			height: '0.875rem',
+			left: '1.875rem',
+			border: `solid ${active ? COLORS.primary : COLORS.border}`,
+			borderWidth: complete ? '0.4375rem' : active ? '3px' : '2px', //a11y: filling with border for HCM support
 			backgroundColor: '#fff',
 			boxSizing: 'border-box',
 		},
 	};
+};
+
+const groupButtonAttributes = (_, { hidden, groupListId }) => ({
+	'aria-expanded': !hidden,
+	'aria-controls': groupListId,
+});
+
+export const defaultGroupButton = {
+	component: GroupButton,
+	styles: groupButtonStyles,
+	attributes: groupButtonAttributes,
 };

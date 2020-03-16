@@ -3,10 +3,11 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { DropDownIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
-import React from 'react';
 
-import { Content as ContentWrapper, contentStyles } from './overrides/content';
-import { TextWrapper } from './TextWrapper';
+import { defaultContent } from './overrides/content';
+
+import { useButtonContext } from './Button';
+import { Text } from './Text';
 import pkg from '../package.json';
 
 // ==============================
@@ -20,7 +21,6 @@ export const Content = ({
 	iconBefore: IconBefore,
 	dropdown,
 	children,
-	overrides: componentOverrides,
 	...rest
 }) => {
 	const {
@@ -28,13 +28,13 @@ export const Content = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useButtonContext();
+
 	const defaultOverrides = {
-		Content: {
-			styles: contentStyles,
-			component: ContentWrapper,
-			attributes: () => null,
-		},
+		Content: defaultContent,
 	};
+
+	const componentOverrides = context.state.overrides;
 
 	const state = {
 		size,
@@ -42,17 +42,14 @@ export const Content = ({
 		iconAfter: IconAfter,
 		iconBefore: IconBefore,
 		dropdown,
-		children,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	// Map button size to icon size
 	const iconSizeMap = {
@@ -64,16 +61,7 @@ export const Content = ({
 
 	// Compose a button text + icon fragment, if these are provided
 	return (
-		<overrides.Content.component
-			size={size}
-			block={block}
-			iconAfter={IconAfter}
-			iconBefore={IconBefore}
-			dropdown={dropdown}
-			{...rest}
-			{...overrides.Content.attributes(state)}
-			css={overrides.Content.styles(state)}
-		>
+		<Content {...rest} state={state} {...contentAttributes(state)} css={contentStyles(state)}>
 			{IconBefore && (
 				<IconBefore
 					size={iconSizeMap[size]}
@@ -81,11 +69,7 @@ export const Content = ({
 					color="inherit"
 				/>
 			)}
-			{children && (
-				<TextWrapper block={block} overrides={componentOverrides}>
-					{children}
-				</TextWrapper>
-			)}
+			{children && <Text block={block}>{children}</Text>}
 			{IconAfter && (
 				<IconAfter
 					css={{ marginLeft: children && '0.4em' }}
@@ -104,9 +88,13 @@ export const Content = ({
 					assistiveText={null}
 				/>
 			)}
-		</overrides.Content.component>
+		</Content>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Content.propTypes = {
 	/**

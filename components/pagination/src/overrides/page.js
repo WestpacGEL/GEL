@@ -1,19 +1,15 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-export const Page = ({
-	index,
-	nextIndex,
-	text,
-	first,
-	last,
-	disabled,
-	assistiveText,
-	current,
-	active,
-	...rest
-}) => <li {...rest} />;
+const Page = ({ state, ...rest }) => <li {...rest} />;
 
-export const pageStyles = () => ({});
+const pageStyles = () => ({});
+
+const pageAttributes = () => null;
+
+export const defaultPage = {
+	component: Page,
+	styles: pageStyles,
+	attributes: pageAttributes,
+};

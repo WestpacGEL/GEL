@@ -1,8 +1,9 @@
 # Components
 brands/**/dist/
 components/**/dist/
-dist
-.vscode/*
+
+# Website
+dist/*
 
 # Logs
 logs
@@ -73,6 +74,7 @@ typings/
 *.sublime-project
 *.sublime-workspace
 *.code-workspace
+.vscode/*
 jsconfig.json
 .DS_Store
 bundle.js

@@ -6,27 +6,25 @@ import { Switch } from '@westpac/switch';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Label = props => <strong {...props} />;
+const Label = ({ state, ...rest }) => <strong {...rest} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/switch'] = {
 		Label: {
-			styles: styles => ({ ...styles, color: 'palevioletred', paddingRight: '2rem' }),
 			component: Label,
+			styles: styles => ({
+				...styles,
+				color: 'palevioletred',
+				paddingRight: '2rem',
+			}),
 		},
 		Toggle: {
 			styles: (styles, { checked }) => ({
 				...styles,
 				borderColor: 'mediumvioletred',
 				backgroundColor: checked ? 'palevioletred' : 'white',
-			}),
-		},
-		ToggleText: {
-			styles: (styles, { checked }) => ({
-				...styles,
-				color: checked ? 'white' : 'firebrick',
 			}),
 		},
 	};

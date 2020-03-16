@@ -4,11 +4,11 @@ import { jsx, useBrand } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
-export const CloseBtn = ({ heading, open, onClose, size, dismissible, ...rest }) => (
-	<Button iconAfter={CloseIcon} look="link" size="medium" {...rest} />
+const CloseBtn = ({ state, ...rest }) => (
+	<Button iconAfter={CloseIcon} look="link" size="medium" assistiveText="Close" {...rest} />
 );
 
-export const closeBtnStyles = (_, {}) => {
+const closeBtnStyles = () => {
 	const { COLORS, SPACING } = useBrand();
 	return {
 		position: 'absolute',
@@ -21,4 +21,12 @@ export const closeBtnStyles = (_, {}) => {
 			opacity: 0.8,
 		},
 	};
+};
+
+const closeBtnAttributes = () => null;
+
+export const defaultCloseBtn = {
+	component: CloseBtn,
+	styles: closeBtnStyles,
+	attributes: closeBtnAttributes,
 };

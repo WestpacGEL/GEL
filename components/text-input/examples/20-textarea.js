@@ -21,12 +21,13 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Default instance</h2>
+			<h2>Default</h2>
 			<Textarea />
+
+			<hr />
 
 			<h2>Controlled</h2>
 			<Textarea value={value} onChange={handleChange} />
-			<br />
 			<hr />
 
 			<h2>Size</h2>
@@ -37,28 +38,22 @@ function Example({ brand }) {
 			<Textarea size="large" placeholder="large" />
 			<br />
 			<Textarea size="xlarge" placeholder="xlarge" />
-			<br />
 
 			<hr />
 
 			<h2>Invalid</h2>
 			<Textarea placeholder="invalid" invalid />
-			<br />
 
 			<hr />
 
 			<h2>Disabled</h2>
-			<Textarea
-				placeholder="disabled"
-				disabled
-				defaultValue="This textarea is disabled and contains a value"
-			/>
+			<Textarea disabled />
 			<br />
+			<Textarea defaultValue="This textarea is disabled and contains a value" disabled />
 
 			<hr />
-			<h2>Readonly</h2>
-			<Textarea placeholder="readonly" readOnly defaultValue="This value is readonly" />
-			<br />
+			<h2>Read-only</h2>
+			<Textarea defaultValue="This value is readonly" readOnly />
 
 			<hr />
 
@@ -66,7 +61,6 @@ function Example({ brand }) {
 			<Form>
 				<Textarea inline /> <Textarea inline />
 			</Form>
-			<br />
 
 			<hr />
 

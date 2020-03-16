@@ -4,8 +4,10 @@ import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core'
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import { Option as OptionWrapper, optionStyles } from './overrides/option';
-import { Label, labelStyles } from './overrides/label';
+import { defaultOption } from './overrides/option';
+import { defaultLabel } from './overrides/label';
+
+import { useFormCheckContext } from './FormCheck';
 import pkg from '../package.json';
 
 // ==============================
@@ -16,67 +18,52 @@ export const Option = ({
 	value,
 	checked,
 	handleChange,
-	disabled,
 	type,
 	name,
 	size,
 	inline,
+	disabled,
 	children,
-	overrides: componentOverrides,
+	overrides,
 	...rest
 }) => {
-	const [formCheckId] = useState(`form-check-option-${name.replace(/ /g, '-')}-${useInstanceId()}`);
-
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useFormCheckContext();
+	const [formCheckId] = useState(`form-check-option-${name.replace(/ /g, '-')}-${useInstanceId()}`);
+
 	const defaultOverrides = {
-		Option: {
-			styles: optionStyles,
-			component: OptionWrapper,
-			attributes: () => null,
-		},
-		Label: {
-			styles: labelStyles,
-			component: Label,
-			attributes: () => null,
-		},
+		Option: defaultOption,
+		Label: defaultLabel,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
+		formCheckId,
 		value,
 		checked,
 		handleChange,
-		disabled,
 		type,
 		name,
 		size,
 		inline,
+		disabled,
+		context: { ...context.state },
+		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Option: { component: Option, styles: optionStyles, attributes: optionAttributes },
+		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Option.component
-			value={value}
-			checked={checked}
-			disabled={disabled}
-			type={type}
-			name={name}
-			size={size}
-			inline={inline}
-			{...rest}
-			{...overrides.Option.attributes(state)}
-			css={overrides.Option.styles(state)}
-		>
+		<Option {...rest} state={state} {...optionAttributes(state)} css={optionStyles(state)}>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
 				id={formCheckId}
@@ -92,21 +79,10 @@ export const Option = ({
 					opacity: 0,
 				}}
 			/>
-			<overrides.Label.component
-				htmlFor={formCheckId}
-				value={value}
-				checked={checked}
-				disabled={disabled}
-				type={type}
-				name={name}
-				size={size}
-				inline={inline}
-				{...overrides.Label.attributes(state)}
-				css={overrides.Label.styles(state)}
-			>
+			<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
 				{children}
-			</overrides.Label.component>
-		</overrides.Option.component>
+			</Label>
+		</Option>
 	);
 };
 

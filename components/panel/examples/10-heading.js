@@ -5,7 +5,7 @@ import { Panel, Header, Body, Footer } from '@westpac/panel';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-// Well tag as a component example
+// Heading tag as a component example
 const PanelHeadingTag = ({ children, ...rest }) => (
 	<h2 {...rest}>
 		<span>{children}</span>
@@ -44,7 +44,7 @@ function Example({ brand }) {
 			</Panel>
 
 			<h3>
-				Tag as <code>&lt;h2&gt;</code> with child <code>&lt;span&gt;</code>, rendered as a component
+				Tag as <code>&lt;h2&gt;</code> with child <code>&lt;span&gt;</code>, passed as a component
 			</h3>
 			<Panel heading="Panel title" headingTag={PanelHeadingTag}>
 				<Body>

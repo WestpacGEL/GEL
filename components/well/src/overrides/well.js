@@ -2,9 +2,9 @@
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
-export const Well = ({ tag: Tag, ...rest }) => <Tag {...rest} />;
+const Well = ({ state: { tag: Tag }, state, ...rest }) => <Tag {...rest} />;
 
-export const wellStyles = () => {
+const wellStyles = () => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
 
@@ -21,4 +21,12 @@ export const wellStyles = () => {
 			margin: '0.75rem 0',
 		},
 	})[0];
+};
+
+const wellAttributes = () => null;
+
+export const defaultWell = {
+	component: Well,
+	styles: wellStyles,
+	attributes: wellAttributes,
 };

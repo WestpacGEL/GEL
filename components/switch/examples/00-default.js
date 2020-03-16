@@ -21,7 +21,7 @@ function Example({ brand }) {
 				label={'eStatements'}
 				checked={checked}
 				onChange={() => {
-					console.log(`Controlled = ${JSON.stringify(!checked)}`);
+					console.log(`Controlled: ${JSON.stringify(!checked)}`);
 					setChecked(!checked);
 				}}
 			/>

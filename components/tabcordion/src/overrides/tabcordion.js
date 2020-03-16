@@ -3,10 +3,14 @@
 import { forwardRef } from 'react';
 import { jsx } from '@westpac/core';
 
-export const Tabcordion = forwardRef(
-	({ mode, look, justify, initialTabIndex, instanceIdPrefix, ...rest }, ref) => (
-		<div ref={ref} {...rest} />
-	)
-);
+const Tabcordion = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
-export const tabcordionStyles = () => ({});
+const tabcordionStyles = () => ({});
+
+const tabcordionAttributes = () => null;
+
+export const defaultTabcordion = {
+	component: Tabcordion,
+	styles: tabcordionStyles,
+	attributes: tabcordionAttributes,
+};

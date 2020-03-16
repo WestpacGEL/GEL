@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-export const VisuallyHiddenWrapper = ({ tag: Tag, ...rest }) => <Tag {...rest} />;
+const VisuallyHidden = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
-export const visuallyHiddenStyles = () => ({
+const visuallyHiddenStyles = () => ({
 	position: 'absolute',
 	width: 1,
 	height: 1,
@@ -15,3 +14,11 @@ export const visuallyHiddenStyles = () => ({
 	whiteSpace: 'nowrap',
 	border: 0,
 });
+
+const visuallyHiddenAttributes = () => null;
+
+export const defaultVisuallyHidden = {
+	component: VisuallyHidden,
+	styles: visuallyHiddenStyles,
+	attributes: visuallyHiddenAttributes,
+};

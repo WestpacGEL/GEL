@@ -5,7 +5,7 @@ import { Badge } from '@westpac/badge';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Wrapper = ({ look, children, ...rest }) => (
+const Wrapper = ({ state: { look }, children, ...rest }) => (
 	<span {...rest}>
 		{children}
 		<a

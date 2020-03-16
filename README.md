@@ -2,58 +2,69 @@
 
 The design system for Westpac GEL
 
-## Internal docs
+## Builds
+
+There are three different builds that exist in this repo:
+
+1. [Component build](#component-build)
+1. [Docs build](#docs-build)
+1. [Website build](#website-build)
+
+### Component build
+
+This build is running all the components examples directly and nothing else.
+It's for development of a component and for testing it.
+
+You run it via:
+
+```sh
+yarn dev [component name]
+```
+
+### Docs build
+
+This build is for the developer documentation site that puts all the examples of all components together with a navigation.
+It's for the docs that are published to below:
 
 | Purpose    | branch    | url                                    |
 | ---------- | --------- | -------------------------------------- |
 | Production | `master`  | https://westpacgel.netlify.com         |
 | Staging    | `develop` | https://westpacgel-staging.netlify.com |
 
-## Install and start running locally
-
-Install dependencies
+You run it via:
 
 ```sh
-yarn
+yarn docs
 ```
 
-### Start the website
+### Website build
+
+This build is for the website and keystone process.
+It's for the public documentation site and the admin UI.
+
+You run it via:
 
 ```sh
 yarn start
 ```
 
-Will launch the GEL Keystone Admin UI and front-end design system website.
-
-### Develop components
-
-```sh
-yarn build
-```
-
-You should then be able to run a component via:
-
-```sh
-yarn start button
-```
-
-Launches a development webserver running examples from `button/examples`.
-
 ## npm scripts
 
 ### root level
 
-| script                      | description                                    |
-| --------------------------- | ---------------------------------------------- |
-| `yarn`                      | install all dependencies                       |
-| `yarn nuke`                 | removes all `node_modules` for fresh start     |
-| `yarn fresh`                | removes all `node_modules` and reinstalls them |
-| `yarn build`                | build all dist folders                         |
-| `yarn dev`                  | build all dist for local consumption           |
-| `yarn new [package-name]`   | create a specified empty component             |
-| `yarn start [package-name]` | start the example server of a component        |
-| `yarn test`                 | runs test                                      |
-| `yarn format`               | runs prettier to format all code               |
+| script                    | description                                       |
+| ------------------------- | ------------------------------------------------- |
+| `yarn`                    | install all dependencies                          |
+| `yarn nuke`               | removes all `node_modules` for fresh start        |
+| `yarn fresh`              | removes all `node_modules` and reinstalls them    |
+| `yarn build`              | build all dist folders                            |
+| `yarn build:dev`          | build all dist for local consumption              |
+| `yarn docs`               | build docs for all components and open server     |
+| `yarn docs:build`         | build docs for all components to `./docs/` folder |
+| `yarn new [package-name]` | create a specified empty component                |
+| `yarn dev [package-name]` | start the example server of a component           |
+| `yarn test`               | runs test                                         |
+| `yarn format`             | runs prettier to format all code                  |
 
 ### component level
 
@@ -134,6 +145,11 @@ Launches a development webserver running examples from `button/examples`.
 │   ├── 00-example.js       # show-case props and variations
 │   ├── 10-example.js       # all files not starting with a dot or an underscore
 │   └── 20-example.js       # will be processes with `yarn start`
+│
+├── demos/                  # the examples that can be embedded into the website
+│   ├── example-x.js
+│   ├── example-y.js
+│   └── example-z.js
 │
 └── tests/                  # test includes all tests
     ├── integration/
@@ -293,17 +309,17 @@ overrides = {
 
 ## Props API vocabulary
 
-| Prop                                       | Description                                                                                                 |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| `tag`                                      | When a component can be rendered as different tags                                                          |
-| `look`                                     | When talking about the look of a component like `success` or `hero`                                         |
-| `href`                                     | When something points at a thing via a link                                                                 |
-| `icon` `iconLeft` `iconRight`              | For passing in an icon                                                                                      |
-| `disabled` or `noBorder`                   | For passing boolean flags we use natural language and not `is` or `has` prefixes                            |
-| `size`                                     | For the physical size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                     |
-| `spacing`                                  | For the whitspace size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                    |
-| `value`                                    | For when a component shows a value, often numbers but not only                                              |
-| `selected`                                 | For things inside lists that are being targeted. Like `ButtonGroups` or `CheckGroup`. Takes string or array |
-| `label`                                    | For labeling things that are visible or a11y text                                                           |
-| `xsmall` `small` `medium` `large` `xlarge` | For t-shirt sizing                                                                                          |
-| `data`                                     | A prop to drive a component-group from data alone                                                           |
+| Prop                                       | Description                                                                                                                   |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `tag`                                      | When a component can be rendered as different tags                                                                            |
+| `look`                                     | When talking about the look of a component like `success` or `hero`                                                           |
+| `href`                                     | When something points at a thing via a link                                                                                   |
+| `icon` `iconLeft` `iconRight`              | For passing in an icon                                                                                                        |
+| `disabled` or `noBorder`                   | For passing boolean flags we use natural language and not `is` or `has` prefixes                                              |
+| `size`                                     | For the physical size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                                       |
+| `spacing`                                  | For the whitespace size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                                     |
+| `value`                                    | For when a component shows a value, often numbers but not only                                                                |
+| `selected`                                 | For things inside lists that are being targeted. Like `ButtonGroups` or `CheckGroup`. Takes string or array                   |
+| `assistiveText`                            | For labeling things for assistive technology (generally renders using `VisuallyHidden` or `aria-label` depending on use case) |
+| `xsmall` `small` `medium` `large` `xlarge` | For t-shirt sizing                                                                                                            |
+| `data`                                     | A prop to drive a component-group from data alone                                                                             |

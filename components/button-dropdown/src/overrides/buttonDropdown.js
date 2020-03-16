@@ -2,12 +2,20 @@
 
 import { jsx } from '@westpac/core';
 
-export const ButtonDropdown = ({ open, text, dropdownSize, block, ...rest }) => <div {...rest} />;
+const ButtonDropdown = ({ state, ...rest }) => <div {...rest} />;
 
-export const buttonDropdownStyles = (_, { block }) => {
+const buttonDropdownStyles = (_, { block }) => {
 	return {
 		position: 'relative',
 		display: block ? 'block' : 'inline-block',
 		verticalAlign: 'middle',
 	};
+};
+
+const buttonDropdownAttributes = () => null;
+
+export const defaultButtonDropdown = {
+	component: ButtonDropdown,
+	styles: buttonDropdownStyles,
+	attributes: buttonDropdownAttributes,
 };

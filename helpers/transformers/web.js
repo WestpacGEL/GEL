@@ -108,6 +108,7 @@ function build(BRAND) {
 	// packs
 	const PACKS = packs;
 
+	console.log();
 	cfonts.say(`${BRAND} TOKENS`, {
 		font: 'chrome',
 		colors: [COLORS.primary, COLORS.hero, COLORS.borderDark],

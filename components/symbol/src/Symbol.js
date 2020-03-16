@@ -3,19 +3,16 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Symbol as SymbolWrapper, symbolStyles } from './overrides/symbol';
-import { Svg, svgStyles } from './overrides/svg';
+import { defaultSymbol } from './overrides/symbol';
+import { defaultSvg } from './overrides/svg';
 import pkg from '../package.json';
-
-// ==============================
-// Utils
-// ==============================
 
 // ==============================
 // Component
 // ==============================
 
 export const Symbol = ({
+	width,
 	assistiveText,
 	viewBoxWidth,
 	viewBoxHeight,
@@ -29,19 +26,12 @@ export const Symbol = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Symbol: {
-			styles: symbolStyles,
-			component: SymbolWrapper,
-			attributes: () => null,
-		},
-		Svg: {
-			styles: svgStyles,
-			component: Svg,
-			attributes: () => null,
-		},
+		Symbol: defaultSymbol,
+		Svg: defaultSvg,
 	};
 
 	const state = {
+		width,
 		assistiveText,
 		viewBoxWidth,
 		viewBoxHeight,
@@ -49,37 +39,17 @@ export const Symbol = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Symbol: { component: Symbol, styles: symbolStyles, attributes: symbolAttributes },
+		Svg: { component: Svg, styles: svgStyles, attributes: svgAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Symbol.component
-			assistiveText={assistiveText}
-			viewBoxWidth={viewBoxWidth}
-			viewBoxHeight={viewBoxHeight}
-			{...rest}
-			{...overrides.Symbol.attributes(state)}
-			css={overrides.Symbol.styles(state)}
-		>
-			<overrides.Svg.component
-				aria-label={assistiveText}
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-				role="img"
-				focusable="false"
-				assistiveText={assistiveText}
-				viewBoxWidth={viewBoxWidth}
-				viewBoxHeight={viewBoxHeight}
-				{...overrides.Svg.attributes(state)}
-				css={overrides.Svg.styles(state)}
-			>
+		<Symbol {...rest} state={state} {...symbolAttributes(state)} css={symbolStyles(state)}>
+			<Svg state={state} {...svgAttributes(state)} css={svgStyles(state)}>
 				{children}
-			</overrides.Svg.component>
-		</overrides.Symbol.component>
+			</Svg>
+		</Symbol>
 	);
 };
 

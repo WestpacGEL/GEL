@@ -1,13 +1,30 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { cloneElement, Children } from 'react';
+import { createContext, useContext, cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 
-import { Breadcrumb as BreadcrumbWrapper, breadcrumbStyles } from './overrides/breadcrumb';
-import { List, listStyles } from './overrides/list';
-import pkg from '../package.json';
+import { defaultBreadcrumb } from './overrides/breadcrumb';
+import { defaultList } from './overrides/list';
+
 import { Crumb } from './Crumb';
+import pkg from '../package.json';
+
+// ==============================
+// Context and Consumer Hook
+// ==============================
+
+const BreadcrumbContext = createContext();
+
+export const useBreadcrumbContext = () => {
+	const context = useContext(BreadcrumbContext);
+
+	if (!context) {
+		throw new Error('<Crumb/> components should be wrapped in a <Breadcrumb>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
@@ -26,16 +43,8 @@ export const Breadcrumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Breadcrumb: {
-			styles: breadcrumbStyles,
-			component: BreadcrumbWrapper,
-			attributes: () => null,
-		},
-		List: {
-			styles: listStyles,
-			component: List,
-			attributes: () => null,
-		},
+		Breadcrumb: defaultBreadcrumb,
+		List: defaultList,
 	};
 
 	const state = {
@@ -45,12 +54,14 @@ export const Breadcrumb = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Breadcrumb: {
+			component: Breadcrumb,
+			styles: breadcrumbStyles,
+			attributes: breadcrumbAttributes,
+		},
+		List: { component: List, styles: listStyles, attributes: listAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	let allChildren = [];
 	if (data) {
@@ -62,8 +73,6 @@ export const Breadcrumb = ({
 					href={href}
 					text={text}
 					onClick={onClick}
-					assistiveText={assistiveText}
-					overrides={componentOverrides}
 				/>
 			);
 		});
@@ -74,8 +83,6 @@ export const Breadcrumb = ({
 				child,
 				{
 					current: index === length - 1,
-					assistiveText,
-					overrides: componentOverrides,
 				},
 				index
 			);
@@ -83,22 +90,13 @@ export const Breadcrumb = ({
 	}
 
 	return (
-		<overrides.Breadcrumb.component
-			aria-label={assistiveText}
-			data={data}
-			{...overrides.Breadcrumb.attributes(state)}
-			css={overrides.Breadcrumb.styles(state)}
-		>
-			<overrides.List.component
-				data={data}
-				assistiveText={assistiveText}
-				{...rest}
-				{...overrides.List.attributes(state)}
-				css={overrides.List.styles(state)}
-			>
-				{allChildren}
-			</overrides.List.component>
-		</overrides.Breadcrumb.component>
+		<BreadcrumbContext.Provider value={{ state }}>
+			<Breadcrumb state={state} {...breadcrumbAttributes(state)} css={breadcrumbStyles(state)}>
+				<List {...rest} state={state} {...listAttributes(state)} css={listStyles(state)}>
+					{allChildren}
+				</List>
+			</Breadcrumb>
+		</BreadcrumbContext.Provider>
 	);
 };
 

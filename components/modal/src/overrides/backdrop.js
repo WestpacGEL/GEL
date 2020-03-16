@@ -3,7 +3,7 @@
 import { jsx } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 
-export const Backdrop = ({ heading, open, onClose, size, dismissible, ...rest }) => {
+const Backdrop = ({ state: { open }, ...rest }) => {
 	const backdropTransition = useTransition(open, null, {
 		from: {
 			opacity: 0,
@@ -24,7 +24,7 @@ export const Backdrop = ({ heading, open, onClose, size, dismissible, ...rest })
 	);
 };
 
-export const backdropStyles = (_, {}) => {
+const backdropStyles = () => {
 	return {
 		position: 'fixed',
 		backgroundColor: 'rgba(0,0,0,0.5)',
@@ -36,4 +36,12 @@ export const backdropStyles = (_, {}) => {
 		justifyContent: 'center',
 		alignItems: 'baseline',
 	};
+};
+
+const backdropAttributes = () => null;
+
+export const defaultBackdrop = {
+	component: Backdrop,
+	styles: backdropStyles,
+	attributes: backdropAttributes,
 };
