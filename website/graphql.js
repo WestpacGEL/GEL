@@ -33,6 +33,7 @@ export const ALL_PAGES = gql`
 	}
 `;
 
+// categories_some:
 export const PAGES_WHERE = where => gql`
 	query AllPages {
 		allPages({where}) {

@@ -5,10 +5,10 @@ import { walkSlateNode } from './slate-walker';
 // Convert a Node to JSON without the .nodes list, which avoids recursively
 // calling .toJSON() on all child nodes.
 function shallowNodeToJson(node) {
-  if (node.nodes) {
-    return node.set('nodes', Node.createList()).toJSON();
-  }
-  return node.toJSON();
+	if (node.nodes) {
+		return node.set('nodes', Node.createList()).toJSON();
+	}
+	return node.toJSON();
 }
 
 /**
@@ -83,83 +83,83 @@ function shallowNodeToJson(node) {
  * }
  */
 export function serialize(value, blocks) {
-  const allMutations = {};
+	const allMutations = {};
 
-  const serializedDocument = walkSlateNode(value.document, {
-    visitBlock(node) {
-      const block = blocks[node.type];
+	const serializedDocument = walkSlateNode(value.document, {
+		visitBlock(node) {
+			const block = blocks[node.type];
 
-      // No matching block that we're in charge of
-      if (!block || typeof block.serialize !== 'function') {
-        return;
-      }
+			// No matching block that we're in charge of
+			if (!block || typeof block.serialize !== 'function') {
+				return;
+			}
 
-      const { mutations, node: serializedNode } = block.serialize({ value, node, blocks });
+			const { mutations, node: serializedNode } = block.serialize({ value, node, blocks });
 
-      if (mutations && Object.keys(mutations).length) {
-        if (!serializedNode) {
-          throw new Error(
-            `Must return a serialized 'node' when returning 'mutations'. See '${block.constructor.name}#serialize()'.`
-          );
-        }
+			if (mutations && Object.keys(mutations).length) {
+				if (!serializedNode) {
+					throw new Error(
+						`Must return a serialized 'node' when returning 'mutations'. See '${block.constructor.name}#serialize()'.`
+					);
+				}
 
-        if (!block.path) {
-          throw new Error(
-            `No mutation path set for block view type '${block.type}'. Ensure the block's view exports a 'path' key corresponding to the mutation path for saving block data`
-          );
-        }
+				if (!block.path) {
+					throw new Error(
+						`No mutation path set for block view type '${block.type}'. Ensure the block's view exports a 'path' key corresponding to the mutation path for saving block data`
+					);
+				}
 
-        // Ensure the mutation group exists
-        allMutations[block.path] = allMutations[block.path] || {
-          // TODO: Don't forcible disconnect & reconnect. (It works because we know
-          // the entire document, so all creations & connections exist below).
-          // Really, we should do a diff and only perform the things that have
-          // actually changed. Although, this may be quite complex.
-          disconnectAll: true,
-        };
+				// Ensure the mutation group exists
+				allMutations[block.path] = allMutations[block.path] || {
+					// TODO: Don't forcible disconnect & reconnect. (It works because we know
+					// the entire document, so all creations & connections exist below).
+					// Really, we should do a diff and only perform the things that have
+					// actually changed. Although, this may be quite complex.
+					disconnectAll: true,
+				};
 
-        // Ensure there's a .data._mutationPaths array
-        serializedNode.data = serializedNode.data || {};
-        serializedNode.data._mutationPaths = serializedNode.data._mutationPaths || [];
+				// Ensure there's a .data._mutationPaths array
+				serializedNode.data = serializedNode.data || {};
+				serializedNode.data._mutationPaths = serializedNode.data._mutationPaths || [];
 
-        // Gather up all the mutations, keyed by the block's path & the
-        // "action" returned by the serialize call.
-        Object.entries(mutations).forEach(([action, mutationData]) => {
-          allMutations[block.path][action] = allMutations[block.path][action] || [];
+				// Gather up all the mutations, keyed by the block's path & the
+				// "action" returned by the serialize call.
+				Object.entries(mutations).forEach(([action, mutationData]) => {
+					allMutations[block.path][action] = allMutations[block.path][action] || [];
 
-          mutationData = Array.isArray(mutationData) ? mutationData : [mutationData];
+					mutationData = Array.isArray(mutationData) ? mutationData : [mutationData];
 
-          mutationData.forEach(mutation => {
-            const insertedBefore = allMutations[block.path][action].push(mutation);
+					mutationData.forEach(mutation => {
+						const insertedBefore = allMutations[block.path][action].push(mutation);
 
-            const mutationPath = `${block.path}.${action}[${insertedBefore - 1}]`;
+						const mutationPath = `${block.path}.${action}[${insertedBefore - 1}]`;
 
-            serializedNode.data._mutationPaths.push(mutationPath);
-          });
-        });
-      }
+						serializedNode.data._mutationPaths.push(mutationPath);
+					});
+				});
+			}
 
-      return serializedNode ? serializedNode : null;
-    },
-    // Everything we don't handle, we turn into JSON, but still visit all
-    // the child nodes.
-    defaultVisitor(node, visitNode) {
-      // visit this node first
-      const visitedNode = shallowNodeToJson(node);
+			return serializedNode ? serializedNode : null;
+		},
+		// Everything we don't handle, we turn into JSON, but still visit all
+		// the child nodes.
+		defaultVisitor(node, visitNode) {
+			// visit this node first
+			const visitedNode = shallowNodeToJson(node);
 
-      if (node.nodes) {
-        // Now we recurse into the child nodes array
-        visitedNode.nodes = node.nodes.map(childNode => visitNode(childNode)).toJSON();
-      }
+			if (node.nodes) {
+				// Now we recurse into the child nodes array
+				visitedNode.nodes = node.nodes.map(childNode => visitNode(childNode)).toJSON();
+			}
 
-      return visitedNode;
-    },
-  });
+			return visitedNode;
+		},
+	});
 
-  return {
-    document: serializedDocument,
-    ...allMutations,
-  };
+	return {
+		document: serializedDocument,
+		...allMutations,
+	};
 }
 
 /**
@@ -186,56 +186,56 @@ export function serialize(value, blocks) {
  * the appropriate blocks
  */
 export function deserialize({ document, ...serializations }, blocks) {
-  assert(!!document, 'Must pass document to deserialize()');
-  assert(!!blocks, 'Must pass blocks to deserialize()');
+	assert(!!document, 'Must pass document to deserialize()');
+	assert(!!blocks, 'Must pass blocks to deserialize()');
 
-  const value = Value.fromJSON({ document });
+	const value = Value.fromJSON({ document });
 
-  return value.set(
-    'document',
-    walkSlateNode(value.document, {
-      visitBlock(node) {
-        const block = blocks[node.type];
+	return value.set(
+		'document',
+		walkSlateNode(value.document, {
+			visitBlock(node) {
+				const block = blocks[node.type];
 
-        // No matching block that we're in charge of
-        if (!block || typeof block.deserialize !== 'function') {
-          return;
-        }
+				// No matching block that we're in charge of
+				if (!block || typeof block.deserialize !== 'function') {
+					return;
+				}
 
-        // Pick out the data set based on the block's path
-        const data = serializations[block.path];
+				// Pick out the data set based on the block's path
+				const data = serializations[block.path];
 
-        const nodeData = node.get('data');
+				const nodeData = node.get('data');
 
-        const joins = ((nodeData && nodeData.size && nodeData.get('_joinIds')) || []).map(joinId =>
-          data.find(({ id }) => joinId === id)
-        );
+				const joins = ((nodeData && nodeData.size && nodeData.get('_joinIds')) || []).map(joinId =>
+					data.find(({ id }) => joinId === id)
+				);
 
-        // NOTE: deserialize _may_ return null. It will then fall into the
-        // `defaultVisitor` handler below.
-        const newNode = block.deserialize({ node, joins, blocks });
+				// NOTE: deserialize _may_ return null. It will then fall into the
+				// `defaultVisitor` handler below.
+				const newNode = block.deserialize({ node, joins, blocks });
 
-        // Returning falsey will fall through to the default visitor below
-        if (!newNode) {
-          return;
-        }
+				// Returning falsey will fall through to the default visitor below
+				if (!newNode) {
+					return;
+				}
 
-        if (!Node.isNode(newNode)) {
-          throw new Error(`${block.constructor.name}#deserialize() must return a Slate.js Node.`);
-        }
+				if (!Node.isNode(newNode)) {
+					throw new Error(`${block.constructor.name}#deserialize() must return a Slate.js Node.`);
+				}
 
-        return newNode;
-      },
-      defaultVisitor(node, visitNode) {
-        if (node.nodes) {
-          // Now we recurse into the child nodes array
-          // NOTE: The result is immutable, so we have to return the result of
-          // `.set` here.
-          return node.set('nodes', node.nodes.map(visitNode));
-        }
+				return newNode;
+			},
+			defaultVisitor(node, visitNode) {
+				if (node.nodes) {
+					// Now we recurse into the child nodes array
+					// NOTE: The result is immutable, so we have to return the result of
+					// `.set` here.
+					return node.set('nodes', node.nodes.map(visitNode));
+				}
 
-        return node;
-      },
-    })
-  );
+				return node;
+			},
+		})
+	);
 }

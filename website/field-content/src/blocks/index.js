@@ -10,14 +10,14 @@ import paragraph from './paragraph';
 import unorderedList from './unordered-list';
 
 export {
-  blockquote,
-  caption,
-  heading,
-  imageContainer,
-  image,
-  link,
-  listItem,
-  orderedList,
-  paragraph,
-  unorderedList,
+	blockquote,
+	caption,
+	heading,
+	imageContainer,
+	image,
+	link,
+	listItem,
+	orderedList,
+	paragraph,
+	unorderedList,
 };

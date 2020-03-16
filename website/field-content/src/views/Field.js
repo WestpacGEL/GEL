@@ -6,62 +6,62 @@ import Editor from './editor';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 
 class ErrorBoundary extends Component {
-  state = {
-    hasError: false,
-  };
+	state = {
+		hasError: false,
+	};
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
+	static getDerivedStateFromError() {
+		return { hasError: true };
+	}
 
-  render() {
-    if (this.state.hasError) {
-      return <span css={{ color: colors.danger }}>Unable to render content</span>;
-    }
+	render() {
+		if (this.state.hasError) {
+			return <span css={{ color: colors.danger }}>Unable to render content</span>;
+		}
 
-    return this.props.children;
-  }
+		return this.props.children;
+	}
 }
 
 let ContentField = ({ field, value, onChange, autoFocus, errors, item }) => {
-  const htmlID = `ks-content-editor-${field.path}`;
-  return (
-    <FieldContainer>
-      <FieldLabel htmlFor={htmlID} field={field} errors={errors} />
-      <FieldInput
-        css={{ cursor: 'text', tabIndex: 0 }}
-        onClick={() => {
-          const elm = document.getElementById(htmlID).querySelector('[data-slate-editor]');
-          if (elm) {
-            elm.focus();
-          }
-        }}
-      >
-        <ErrorBoundary>
-          {Object.values(field.getBlocks())
-            .filter(({ Provider, options }) => Provider && options)
-            .reduce(
-              (children, { Provider, options }, index) => (
-                // Using index within key is ok here as the blocks never change
-                // across renders
-                <Provider value={options} key={`${htmlID}-provider-${index}`}>
-                  {children}
-                </Provider>
-              ),
-              <Editor
-                key={htmlID}
-                blocks={field.getBlocks()}
-                value={value}
-                onChange={onChange}
-                autoFocus={autoFocus}
-                id={htmlID}
-                item={item}
-              />
-            )}
-        </ErrorBoundary>
-      </FieldInput>
-    </FieldContainer>
-  );
+	const htmlID = `ks-content-editor-${field.path}`;
+	return (
+		<FieldContainer>
+			<FieldLabel htmlFor={htmlID} field={field} errors={errors} />
+			<FieldInput
+				css={{ cursor: 'text', tabIndex: 0 }}
+				onClick={() => {
+					const elm = document.getElementById(htmlID).querySelector('[data-slate-editor]');
+					if (elm) {
+						elm.focus();
+					}
+				}}
+			>
+				<ErrorBoundary>
+					{Object.values(field.getBlocks())
+						.filter(({ Provider, options }) => Provider && options)
+						.reduce(
+							(children, { Provider, options }, index) => (
+								// Using index within key is ok here as the blocks never change
+								// across renders
+								<Provider value={options} key={`${htmlID}-provider-${index}`}>
+									{children}
+								</Provider>
+							),
+							<Editor
+								key={htmlID}
+								blocks={field.getBlocks()}
+								value={value}
+								onChange={onChange}
+								autoFocus={autoFocus}
+								id={htmlID}
+								item={item}
+							/>
+						)}
+				</ErrorBoundary>
+			</FieldInput>
+		</FieldContainer>
+	);
 };
 
 export default ContentField;
