@@ -2,7 +2,7 @@
 	"name": "@westpac/input-group",
 	"version": "1.0.0",
 	"description": "Styled input fields with attached addons. Addons can be text ($, %, .00 etc) or form controls (buttons or select inputs).",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/input-group",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -45,6 +45,6 @@
 	"devDependencies": {
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }

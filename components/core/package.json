@@ -2,7 +2,7 @@
 	"name": "@westpac/core",
 	"version": "1.0.0",
 	"description": "Core components for the westpac GEL design language",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -49,6 +49,6 @@
 		"@westpac/text-input": "*",
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }

@@ -2,7 +2,7 @@
 	"name": "@westpac/text-input",
 	"version": "1.0.0",
 	"description": "TextInput component for the Westpac GEL",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/text-input",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
@@ -28,6 +28,6 @@
 		"@westpac/button": "*",
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }

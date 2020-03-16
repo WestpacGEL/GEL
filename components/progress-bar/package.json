@@ -2,7 +2,7 @@
 	"name": "@westpac/progress-bar",
 	"version": "1.0.0",
 	"description": "A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-bar",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
@@ -27,6 +27,6 @@
 		"@westpac/button": "*",
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }

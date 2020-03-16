@@ -2,7 +2,7 @@
 	"name": "@westpac/icon",
 	"version": "1.0.0",
 	"description": "Grid component for the Westpac GEL",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/icon",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -206,6 +206,6 @@
 	"devDependencies": {
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }

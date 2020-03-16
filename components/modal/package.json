@@ -2,7 +2,7 @@
 	"name": "@westpac/modal",
 	"version": "1.0.0",
 	"description": "modal",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/modal",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -42,6 +42,6 @@
 		"react": "^16.13.0",
 		"react-dom": "^16.13.0",
 		"react-spring": "^8.0.27",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }

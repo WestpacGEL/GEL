@@ -2,7 +2,7 @@
 	"name": "@westpac/progress-rope",
 	"version": "1.0.0",
 	"description": "Progress rope component",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-rope",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -39,6 +39,6 @@
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
 		"react-spring": "^8.0.27",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }
