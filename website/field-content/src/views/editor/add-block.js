@@ -78,7 +78,6 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 			: () => null;
 
 	const InsertBlock = ({ node }) => {
-		console.log(node);
 		if (!node) return null;
 		if (node.text !== '') return null;
 		if (node.type !== defaultBlockType) return null;
