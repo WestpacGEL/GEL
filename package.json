@@ -44,14 +44,21 @@
 		"version-packages": "yarn changeset version"
 	},
 	"workspaces": [
-		"field-content",
 		"brands/*",
 		"components/*",
-		"website"
+		"website",
+		"website/field-content"
 	],
 	"field-types": {
 		"packages": [
-			"field-content"
+			"website/field-content"
+		]
+	},
+	"preconstruct": {
+		"packages": [
+			"website/field-content",
+			"components/*",
+			"brands/*"
 		]
 	},
 	"jest": {
@@ -116,12 +123,5 @@
 	},
 	"resolutions": {
 		"ansi-styles": "^3.2.0"
-	},
-	"preconstruct": {
-		"packages": [
-			"field-content",
-			"components/*",
-			"brands/*"
-		]
 	}
 }

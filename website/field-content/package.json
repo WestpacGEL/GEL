@@ -1,6 +1,7 @@
 {
 	"name": "@westpac/field-content",
 	"description": "A block-based content field for KeystoneJS",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/website/field-content",
 	"version": "5.4.3",
 	"author": "The KeystoneJS Development Team",
 	"license": "MIT",
@@ -48,6 +49,5 @@
 		]
 	},
 	"main": "dist/field-content.cjs.js",
-	"module": "dist/field-content.esm.js",
-	"repository": "https://github.com/WestpacGEL/GEL/tree/master/field-content"
+	"module": "dist/field-content.esm.js"
 }
