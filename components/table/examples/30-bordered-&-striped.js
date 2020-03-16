@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Table bordered striped>
@@ -55,6 +54,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Tr>
 				</Tfoot>
 			</Table>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

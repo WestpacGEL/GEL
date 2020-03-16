@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Container, Cell, Grid } from '@westpac/grid';
 import { useContainerQuery } from '@westpac/hooks';
 import { useRef } from 'react';
 import { Box } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const {
 		COLORS,
 		LAYOUT: { breakpoints },
@@ -32,7 +31,7 @@ export default ({ context, showCode, showDemo }) => {
 	}
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<div
@@ -50,6 +49,8 @@ export default ({ context, showCode, showDemo }) => {
 					{containerWidth}px = {breakpoint}
 				</Box>
 			</Container>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

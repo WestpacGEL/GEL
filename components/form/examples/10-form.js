@@ -1,17 +1,16 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Form, FormGroup } from '@westpac/form';
-import { TextInput } from '@westpac/text-input';
+import { Text } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Box } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<h2>Default instance (no styling props)</h2>
@@ -55,28 +54,28 @@ export default ({ context, showCode, showDemo }) => {
 			<h3>Small</h3>
 			<Form size="small">
 				<FormGroup>
-					<TextInput />
+					<Text />
 				</FormGroup>
 			</Form>
 
 			<h3>Medium</h3>
 			<Form size="medium">
 				<FormGroup>
-					<TextInput />
+					<Text />
 				</FormGroup>
 			</Form>
 
 			<h3>Large</h3>
 			<Form size="large">
 				<FormGroup>
-					<TextInput />
+					<Text />
 				</FormGroup>
 			</Form>
 
 			<h3>XLarge</h3>
 			<Form size="xlarge">
 				<FormGroup>
-					<TextInput />
+					<Text />
 				</FormGroup>
 			</Form>
 
@@ -85,10 +84,12 @@ export default ({ context, showCode, showDemo }) => {
 			<h2>Inline mode (SM+)</h2>
 			<Form inline>
 				<FormGroup>
-					<TextInput />
+					<Text />
 				</FormGroup>
 				<FormGroup>{/* <Button>Go</Button> */}</FormGroup>
 			</Form>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

@@ -4,7 +4,6 @@ import { GEL, jsx } from '@westpac/core';
 import { Popover } from '@westpac/popover';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const content =
 	'Hello vivamus sagittis lacus vel augue laoreet rutrum faucibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
@@ -12,8 +11,8 @@ const content =
 	'possimus non architecto. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut animi velit in? Suscipit nostrum itaque voluptatibus ' +
 	'dolorem qui soluta nobis modi officia incidunt eos dolores atque, unde error delectus officiis.';
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/popover'] = {
 		Panel: {
@@ -38,7 +37,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -59,6 +58,8 @@ export default ({ context, showCode, showDemo }) => {
 			>
 				Click Me
 			</Popover>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

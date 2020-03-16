@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Well } from '@westpac/well';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/well'] = {
 		Well: {
 			styles: styles => ({
@@ -18,7 +17,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -44,6 +43,8 @@ export default ({ context, showCode, showDemo }) => {
 			>
 				Look, I'm in a well.
 			</Well>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

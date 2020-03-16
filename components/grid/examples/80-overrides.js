@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { Box } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const { COLORS } = useBrand();
-	const overridesWithTokens = {};
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/grid'] = {
 		Grid: {
 			styles: styles => ({
@@ -32,7 +31,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -57,6 +56,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Cell>
 				</Grid>
 			</Container>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

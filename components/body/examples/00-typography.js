@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 // Body tag as a component example
 const BodyTag = ({ children, ...props }) => {
@@ -23,9 +22,9 @@ const BodyTag = ({ children, ...props }) => {
 	);
 };
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Body>
@@ -146,6 +145,8 @@ export default ({ context, showCode, showDemo }) => {
 				<h2>Label</h2>
 				<label>This is a default label</label>
 			</Body>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

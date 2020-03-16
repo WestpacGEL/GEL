@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { ProgressRope, Group, Item } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [state, dispatch] = useProgress();
 	const [state2, dispatch2] = useProgress();
 
@@ -24,7 +23,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Grid>
@@ -100,6 +99,8 @@ export default ({ context, showCode, showDemo }) => {
 					<Button onClick={() => dispatch2({ type: 'next' })}>next</Button>
 				</Cell>
 			</Grid>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/table'] = {
 		Table: {
 			styles: styles => ({
@@ -61,7 +60,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 			<h2>Overrides on caption, table, thead, tbody, tfoot, th, tr, td</h2>
 			<Table>
@@ -108,6 +107,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Tr>
 				</Tfoot>
 			</Table>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

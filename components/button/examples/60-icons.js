@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import {
 	HouseIcon,
@@ -13,11 +13,10 @@ import {
 } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 			<h2>Icon after</h2>
 			<Button look="primary" size="small" iconAfter={HouseIcon}>
@@ -97,6 +96,8 @@ export default ({ context, showCode, showDemo }) => {
 			<br />
 			<br />
 			<Button look="primary" size="xlarge" iconBefore={StarIcon} block />
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

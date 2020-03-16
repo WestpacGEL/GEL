@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, Global, useBrand } from '@westpac/core';
+import { GEL, jsx, Global, useBrand } from '@westpac/core';
 import {
 	FormPod,
 	FormPodActions,
@@ -15,9 +15,8 @@ import { Button } from '@westpac/button';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const { COLORS } = useBrand();
 
 	// Contact detail data
@@ -39,7 +38,7 @@ export default ({ context, showCode, showDemo }) => {
 	];
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<Global
@@ -77,6 +76,8 @@ export default ({ context, showCode, showDemo }) => {
 					}
 				/>
 			</FormPod>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

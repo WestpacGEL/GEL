@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { useState } from 'react';
 import {
 	AddIcon,
@@ -19,7 +19,6 @@ import {
 import { Row } from './_util';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const sizes = ['xsmall', 'small', 'medium', 'large', 'xlarge'];
 const icons = [
@@ -62,11 +61,11 @@ const Button = ({ children, isActive, ...props }) => (
 	</label>
 );
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [activeSize, setSize] = useState(2);
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Row>
@@ -81,6 +80,8 @@ export default ({ context, showCode, showDemo }) => {
 					<I key={i} size={sizes[activeSize]} />
 				))}
 			</Row>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

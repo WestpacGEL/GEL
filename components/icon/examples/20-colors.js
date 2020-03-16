@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { FavouriteIcon } from '@westpac/icon';
 import { Row } from './_util';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Row>
@@ -20,6 +19,8 @@ export default ({ context, showCode, showDemo }) => {
 				<FavouriteIcon assistiveText="Colored heart" color="#0052CC" />
 				<FavouriteIcon assistiveText="Colored heart" color="#5243AA" />
 			</Row>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

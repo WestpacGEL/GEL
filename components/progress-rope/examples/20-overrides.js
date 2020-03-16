@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { ProgressRope, Item } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [state, dispatch] = useProgress();
 	const [state2, dispatch2] = useProgress();
 
@@ -23,7 +22,7 @@ export default ({ context, showCode, showDemo }) => {
 		dispatch2({ type: 'goto', index });
 	};
 
-	const overridesWithTokens = {};
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-rope'] = {
 		Item: {
 			styles: (styles, { grouped, end, visited, furthest }) => ({
@@ -50,7 +49,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 			<Grid>
 				<Cell width={6}>
@@ -156,6 +155,8 @@ export default ({ context, showCode, showDemo }) => {
 					<Button onClick={() => dispatch2({ type: 'next' })}>next</Button>
 				</Cell>
 			</Grid>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

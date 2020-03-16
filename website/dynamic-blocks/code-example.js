@@ -7,6 +7,7 @@ import preval from 'preval.macro';
 import importCodeExamples from './babel-dynamic-code-block-import.macro';
 
 let data = preval`
+const DEMO_FOLDER = 'demos';
 const fs = require('fs');
 const path = require('path');
 
@@ -19,13 +20,16 @@ packageDirectories.forEach(pkg => {
 	const packageExists = fs.existsSync(pkgFile);
 	if (packageExists) {
 		const packageJSON = require(pkgFile);
-		fs.readdirSync(path.join(componentsDir, pkg, 'examples')).forEach(example => {
-			const fullPath = path.join(componentsDir, pkg, 'examples', example);
-			if (fs.lstatSync(fullPath).isFile() && path.extname(fullPath) === '.js') {
-				const packageName = packageJSON.name;
-				examples.push(path.join(packageName, 'examples', example));
+		const demoPath = path.join(componentsDir, pkg, DEMO_FOLDER)
+		if(fs.existsSync(demoPath) && fs.lstatSync(demoPath).isDirectory()) {
+			fs.readdirSync(demoPath).forEach(example => {
+				const fullPath = path.join(componentsDir, pkg, DEMO_FOLDER, example);
+				if (fs.lstatSync(fullPath).isFile() && path.extname(fullPath) === '.js') {
+					const packageName = packageJSON.name;
+					examples.push(path.join(packageName, DEMO_FOLDER, example));
+				}
+			});
 			}
-		});
 	}
 });
 module.exports = examples;

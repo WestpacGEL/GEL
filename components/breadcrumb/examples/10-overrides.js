@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
 import { HouseIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const Icon = ({ current, href, text, assistiveText, ...props }) => <HouseIcon {...props} />;
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/breadcrumb'] = {
 		Breadcrumb: {
 			styles: styles => ({
@@ -24,13 +23,9 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground
-			context={context}
-			showCode={showCode}
-			showDemo={showDemo}
-			brand={overridesWithTokens}
-		>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
+
 			<h2>With overrides applied</h2>
 			<Breadcrumb>
 				<Crumb href="#/" text="Home" />
@@ -81,6 +76,8 @@ export default ({ context, showCode, showDemo }) => {
 					{ href: '#/credit-cards/', text: 'Credit cards' },
 				]}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

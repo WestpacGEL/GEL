@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Tooltip } from '@westpac/tooltip';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const Wrapper = forwardRef(({ visible, position, ...props }, ref) => <abbr ref={ref} {...props} />);
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/tooltip'] = {
 		Tooltip: {
@@ -33,7 +32,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -58,6 +57,8 @@ export default ({ context, showCode, showDemo }) => {
 				</Tooltip>{' '}
 				sentence.
 			</p>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

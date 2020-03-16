@@ -1,20 +1,19 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { ListGroup, Item } from '@westpac/list-group';
 import { ButtonGroup, Item as BtnGroupItem } from '@westpac/button-group';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const styleExample = {
 	marginLeft: '0.75rem',
 };
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Simple</h2>
@@ -88,6 +87,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Fragment>,
 				]}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

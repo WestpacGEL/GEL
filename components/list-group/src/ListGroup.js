@@ -44,8 +44,7 @@ export const ListGroup = ({ children, overrides: componentOverrides, ...rest }) 
 	);
 
 	return (
-		<Playground
-			context={context}
+		<GEL
 			brand={{
 				...brand,
 				// We have to pass on the overrides to our list Item component in it's own name-space
@@ -64,7 +63,7 @@ export const ListGroup = ({ children, overrides: componentOverrides, ...rest }) 
 			>
 				{children}
 			</overrides.ListGroup.component>
-		</Playground>
+		</GEL>
 	);
 };
 

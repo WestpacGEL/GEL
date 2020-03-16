@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Global disabled</h2>
@@ -217,6 +216,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Option>
 				</FormCheck>
 			</fieldset>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

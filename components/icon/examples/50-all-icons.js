@@ -1,12 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import * as components from '@westpac/icon';
 import { Cell, Grid, Name } from './_util';
 import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 // can't believe this works...
 const icons = Object.keys(components);
@@ -32,7 +31,7 @@ const Search = props => (
 	/>
 );
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [inputValue, setInputValue] = useState('');
 	const filteredIcons = inputValue.length
 		? icons.filter(p =>
@@ -44,7 +43,7 @@ export default ({ context, showCode, showDemo }) => {
 		: icons;
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Search
@@ -65,6 +64,8 @@ export default ({ context, showCode, showDemo }) => {
 					);
 				})}
 			</Grid>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

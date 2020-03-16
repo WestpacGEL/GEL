@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Form, FormGroup, FormSection, FormSectionImg } from '@westpac/form';
 import { Box } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<h2>Default</h2>
@@ -65,6 +64,8 @@ export default ({ context, showCode, showDemo }) => {
 					</FormGroup>
 				</FormSection>
 			</Form>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

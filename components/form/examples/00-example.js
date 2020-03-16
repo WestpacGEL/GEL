@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import {
 	Form,
 	ChitChat,
@@ -13,14 +13,13 @@ import {
 	FormLabel,
 	FormSection,
 } from '@westpac/form';
-import { TextInput } from '@westpac/text-input';
+import { Text } from '@westpac/text-input';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<h2>Default size and spacing</h2>
@@ -37,14 +36,14 @@ export default ({ context, showCode, showDemo }) => {
 						<FormLabel htmlFor="example-default-1">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<TextInput name="example-default-1" />
+						<Text name="example-default-1" />
 					</FormGroup>
 
 					<FormGroup>
 						<FormLabel htmlFor="example-default-2">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<TextInput name="example-default-2" />
+						<Text name="example-default-2" />
 					</FormGroup>
 				</FormSection>
 
@@ -53,7 +52,7 @@ export default ({ context, showCode, showDemo }) => {
 						<FormLabel htmlFor="example-default-3">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<TextInput name="example-default-3" />
+						<Text name="example-default-3" />
 					</FormGroup>
 
 					<FormGroup>
@@ -64,10 +63,10 @@ export default ({ context, showCode, showDemo }) => {
 							/>
 							<InputCluster>
 								<Item>
-									<TextInput name="example-default-4-line1" />
+									<Text name="example-default-4-line1" />
 								</Item>
 								<Item>
-									<TextInput name="example-default-4-line2" />
+									<Text name="example-default-4-line2" />
 								</Item>
 							</InputCluster>
 						</Fieldset>
@@ -91,14 +90,14 @@ export default ({ context, showCode, showDemo }) => {
 						<FormLabel htmlFor="example-large-1">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<TextInput name="example-large-1" />
+						<Text name="example-large-1" />
 					</FormGroup>
 
 					<FormGroup>
 						<FormLabel htmlFor="example-large-2">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<TextInput name="example-large-2" />
+						<Text name="example-large-2" />
 					</FormGroup>
 				</FormSection>
 
@@ -107,7 +106,7 @@ export default ({ context, showCode, showDemo }) => {
 						<FormLabel htmlFor="example-large-3">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<TextInput name="example-large-3" />
+						<Text name="example-large-3" />
 					</FormGroup>
 
 					<FormGroup>
@@ -118,16 +117,18 @@ export default ({ context, showCode, showDemo }) => {
 							/>
 							<InputCluster>
 								<Item>
-									<TextInput name="example-large-4-line1" />
+									<Text name="example-large-4-line1" />
 								</Item>
 								<Item>
-									<TextInput name="example-large-4-line2" />
+									<Text name="example-large-4-line2" />
 								</Item>
 							</InputCluster>
 						</Fieldset>
 					</FormGroup>
 				</FormSection>
 			</Form>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

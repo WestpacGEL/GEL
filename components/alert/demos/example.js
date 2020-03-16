@@ -1,15 +1,12 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
+import { Playground } from '../../../website/src/components/playground/macro';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
-function Example({ brand }) {
+export default ({ context, showCode, showDemo }) => {
 	return (
-		<GEL brand={brand}>
-			<Intopia />
-
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<h2>Default instance (no styling props)</h2>
 			<Alert>
 				This is a default alert. <a href="#">Link</a>
@@ -61,8 +58,6 @@ function Example({ brand }) {
 					tempore maxime? Neque, obcaecati. <a href="#">Link</a>
 				</p>
 			</Alert>
-		</GEL>
+		</Playground>
 	);
-}
-
-export default Example;
+};

@@ -5,11 +5,10 @@ import { AndroidIcon, GithubIcon, AppleIcon } from '@westpac/icon';
 import { List, Item } from '@westpac/list';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h3>Icon</h3>
@@ -48,6 +47,8 @@ export default ({ context, showCode, showDemo }) => {
 					</List>
 				</Item>
 			</List>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

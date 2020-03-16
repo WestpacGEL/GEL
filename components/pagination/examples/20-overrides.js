@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Pagination, Page } from '@westpac/pagination';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/pagination'] = {
 		Pagination: {
@@ -39,7 +38,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<Pagination>
@@ -91,6 +90,8 @@ export default ({ context, showCode, showDemo }) => {
 					{ text: '3', onClick: (event, page) => console.log(`Page ${page}`, event) },
 				]}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

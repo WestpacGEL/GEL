@@ -1,18 +1,17 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { useState } from 'react';
 import { Modal, Body } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Button onClick={() => setOpen(true)}>Open</Button>
@@ -26,6 +25,8 @@ export default ({ context, showCode, showDemo }) => {
 					ought to be a book written about me, that there ought!’
 				</Body>
 			</Modal>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

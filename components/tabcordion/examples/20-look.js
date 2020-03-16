@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<h2>Soft</h2>
 			<h3>Accordion</h3>
 			<Tabcordion mode="accordion" look="soft">
@@ -191,6 +191,8 @@ export default ({ context, showCode, showDemo }) => {
 					confusing.’
 				</Tab>
 			</Tabcordion>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

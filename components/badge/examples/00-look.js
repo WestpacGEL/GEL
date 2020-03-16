@@ -1,10 +1,15 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+
+import { GEL, jsx } from '@westpac/core';
 import { Badge } from '@westpac/badge';
-import { Playground } from '../../../website/src/components/playground/macro';
-export default ({ context, showCode, showDemo }) => {
+
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
+			<Intopia />
+
 			<p>
 				<Badge value="Default" />
 			</p>
@@ -16,6 +21,8 @@ export default ({ context, showCode, showDemo }) => {
 				<Badge look="success" value="Success" /> <Badge look="info" value="Info" />{' '}
 				<Badge look="warning" value="Warning" /> <Badge look="danger" value="Danger" />
 			</p>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

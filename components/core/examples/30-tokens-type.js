@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useFonts } from '@westpac/core';
+import { GEL, jsx, useBrand, useFonts } from '@westpac/core';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const { TYPE } = useBrand();
 	const weights = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
 	return (
-		<Playground context={context} css={{ ...useFonts({ path: 'assets/' }) }}>
+		<GEL brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
 			<Intopia ignore />
 
 			<h2>Type</h2>
@@ -83,6 +82,8 @@ export default ({ context, showCode, showDemo }) => {
 					))}
 				</ul>
 			</div>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

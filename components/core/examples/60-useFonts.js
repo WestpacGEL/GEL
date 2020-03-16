@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, Global, useFonts, useBrand } from '@westpac/core';
+import { GEL, jsx, Global, useFonts, useBrand } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const { TYPE } = useBrand();
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 			<div
 				css={{
@@ -39,6 +38,8 @@ export default ({ context, showCode, showDemo }) => {
 			</Code>
 			=>
 			<Code>{JSON.stringify(useFonts({ path: 'path/to/my/fonts/' }), null, 2)}</Code>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

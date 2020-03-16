@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/body'] = {
 		Body: {
 			styles: styles => ({
@@ -18,7 +17,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<Body>
@@ -138,6 +137,8 @@ export default ({ context, showCode, showDemo }) => {
 			>
 				This is a default alert. <a href="#">Link</a>
 			</Body>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

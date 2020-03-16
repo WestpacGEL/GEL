@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Fragment, useState } from 'react';
 import {
 	AddIcon,
@@ -19,7 +19,6 @@ import {
 import { Row } from './_util';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const sizes = [
 	['small', 'medium', 'large', 'xlarge'],
@@ -42,9 +41,9 @@ const icons = [
 	WriteIcon,
 ];
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Size</h2>
@@ -58,6 +57,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Row>
 				</Fragment>
 			))}
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

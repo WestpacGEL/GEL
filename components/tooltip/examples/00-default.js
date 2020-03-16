@@ -1,21 +1,20 @@
 /** @jsx jsx */
 import { forwardRef } from 'react';
-import { jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 import { Tooltip } from '@westpac/tooltip';
 import { Button } from '@westpac/button';
 import { InfoIcon } from '@westpac/icon';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const TooltipTag = forwardRef(({ visible, position, ...props }, ref) => (
 	<abbr ref={ref} {...props} />
 ));
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Body>
@@ -57,6 +56,8 @@ export default ({ context, showCode, showDemo }) => {
 				</Tooltip>
 				<div css={{ height: '100vh' }} />
 			</Body>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

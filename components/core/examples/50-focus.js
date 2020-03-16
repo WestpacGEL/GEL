@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { TextInput, Textarea, Select } from '@westpac/text-input';
 import { Body } from '@westpac/body';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Focus test</h2>
@@ -77,6 +76,8 @@ export default ({ context, showCode, showDemo }) => {
 				<h5 tabIndex="0">This is a h5 heading</h5>
 				<h6 tabIndex="0">This is a h6 heading</h6>
 			</Body>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

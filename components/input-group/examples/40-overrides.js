@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { InputGroup, Left, Right } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const Label = ({ data, overrides, ...rest }) => (
 	<span {...rest}>
@@ -13,8 +12,8 @@ const Label = ({ data, overrides, ...rest }) => (
 	</span>
 );
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/input-group'] = {
 		InputGroup: {
 			styles: styles => ({
@@ -34,7 +33,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -132,6 +131,8 @@ export default ({ context, showCode, showDemo }) => {
 					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
 				}}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

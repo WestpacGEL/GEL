@@ -1,19 +1,18 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const { COLORS, SPACING } = useBrand();
 	const { tints, ...primaryColors } = COLORS;
 	const [showMinor, setShowMinor] = useState(true);
 	const [count, setCount] = useState(11);
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<h2>Spacing</h2>
@@ -135,6 +134,8 @@ export default ({ context, showCode, showDemo }) => {
 						</li>
 					))}
 			</ul>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

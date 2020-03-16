@@ -4,12 +4,11 @@ import { GEL, jsx } from '@westpac/core';
 import { Panel, Body, Footer } from '@westpac/panel';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const Wrapper = ({ look, heading, headingTag, overrides, ...rest }) => <aside {...rest} />;
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/panel'] = {
 		Panel: {
@@ -50,7 +49,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -88,6 +87,8 @@ export default ({ context, showCode, showDemo }) => {
 				</Body>
 				<Footer>Panel footer</Footer>
 			</Panel>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

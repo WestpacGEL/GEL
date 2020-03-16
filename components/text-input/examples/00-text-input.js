@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
 import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [value, setValue] = useState('default text');
 
 	const handleChange = event => {
@@ -17,7 +16,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Default instance</h2>
@@ -82,6 +81,8 @@ export default ({ context, showCode, showDemo }) => {
 			<TextInput width={20} placeholder={20} />
 			<br />
 			<TextInput width={30} placeholder={30} />
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

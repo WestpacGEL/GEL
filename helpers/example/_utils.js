@@ -35,10 +35,10 @@ const labelFromSlug = slug => {
  *
  * @return {array}            - An array of objects with information about the example file
  */
-const EXAMPLES_FOLDER = 'demos';
+const EXAMPLE_FOLDER = 'examples';
 
 const findExampleFiles = (component, parent = '') => {
-	const exampleDir = path.resolve(`${__dirname}/../../components/${component}/${EXAMPLES_FOLDER}`);
+	const exampleDir = path.resolve(`${__dirname}/../../components/${component}/${EXAMPLE_FOLDER}`);
 
 	if (fs.existsSync(exampleDir)) {
 		const files = fs

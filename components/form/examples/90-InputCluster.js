@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Form, FormGroup, InputCluster, Item, FormLabel } from '@westpac/form';
-import { TextInput } from '@westpac/text-input';
+import { Text } from '@westpac/text-input';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<h2>Default instance (no styling props)</h2>
@@ -20,13 +19,13 @@ export default ({ context, showCode, showDemo }) => {
 							<FormLabel htmlFor="example-1" sublabel>
 								This is a sub-label
 							</FormLabel>
-							<TextInput />
+							<Text />
 						</Item>
 						<Item>
 							<FormLabel htmlFor="example-2" sublabel>
 								This is a sub-label
 							</FormLabel>
-							<TextInput />
+							<Text />
 						</Item>
 					</InputCluster>
 				</FormGroup>
@@ -44,17 +43,19 @@ export default ({ context, showCode, showDemo }) => {
 							<FormLabel htmlFor="example-3" sublabel>
 								This is a sub-label
 							</FormLabel>
-							<TextInput />
+							<Text />
 						</Item>
 						<Item>
 							<FormLabel htmlFor="example-4" sublabel>
 								This is a sub-label
 							</FormLabel>
-							<TextInput />
+							<Text />
 						</Item>
 					</InputCluster>
 				</FormGroup>
 			</Form>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

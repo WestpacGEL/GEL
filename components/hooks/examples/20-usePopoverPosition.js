@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { usePopoverPosition } from '@westpac/hooks';
 import { useRef, useState, useEffect } from 'react';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const triggerRef1 = useRef();
 	const popoverRef1 = useRef();
 	const [position1, setPosition1] = useState({ placement: 'top', top: 0, left: 0 });
@@ -33,7 +32,7 @@ export default ({ context, showCode, showDemo }) => {
 	}, []);
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<div
@@ -185,6 +184,8 @@ export default ({ context, showCode, showDemo }) => {
 				<br />
 				{JSON.stringify(position4, null, '\t')}
 			</Code>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;
