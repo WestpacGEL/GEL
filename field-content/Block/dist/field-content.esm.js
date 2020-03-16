@@ -1,4 +1,4 @@
-export class Block {
+class Block {
   constructor() {
     // To be set by a Block if it creates a join table.
     // Instance of @keystonejs/core#List
@@ -6,34 +6,35 @@ export class Block {
   }
 
   get type() {
-    throw new Error(`${this.constructor.name} must have a 'type' getter`);
+    throw new Error("".concat(this.constructor.name, " must have a 'type' getter"));
   }
 
   get path() {
-    throw new Error(`${this.constructor.name} must have a 'path' getter`);
+    throw new Error("".concat(this.constructor.name, " must have a 'path' getter"));
   }
 
   getGqlInputType() {
     if (!this.constructor.type) {
-      throw new Error(`${this.constructor.name} must have a static 'type' property`);
+      throw new Error("".concat(this.constructor.name, " must have a static 'type' property"));
     }
-    return `${this.constructor.type}RelateToManyInput`;
+
+    return "".concat(this.constructor.type, "RelateToManyInput");
   }
 
   getGqlAuxTypes() {
     return [];
-  }
-
-  // To be set by a Block if it requires special input fields (for example; if
+  } // To be set by a Block if it requires special input fields (for example; if
   // it's utilising a join table)
   // Array of Keystone Field Types (most likely a `Relationship`)
+
+
   getGqlInputFields() {
     return [];
-  }
-
-  // To be set by a Block if it requires special input fields (for example; if
+  } // To be set by a Block if it requires special input fields (for example; if
   // it's utilising a join table)
   // Array of Keystone Field Types (most likely a `Relationship`)
+
+
   getGqlOutputFields() {
     return [];
   }
@@ -41,10 +42,11 @@ export class Block {
   getFieldDefinitions() {
     return {};
   }
-
   /**
    * @param graphQlArgs {Object}
    */
+
+
   getMutationOperationResults() {
     return;
   }
@@ -56,4 +58,7 @@ export class Block {
   getViewOptions() {
     return {};
   }
+
 }
+
+export { Block };

@@ -5,6 +5,13 @@ components/**/dist/
 # Website
 website/dist/*
 
+# Field-Content
+field-content/dist/*
+field-content/Block/dist/*
+field-content/block-conponents/dist/*
+field-content/blocks/dist/*
+field-content/slate-serializer/dist/*
+
 # Logs
 logs
 *.log
