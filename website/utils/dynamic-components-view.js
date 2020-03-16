@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { useMemo, createContext, useContext, useState, useEffect } from 'react';
 import { Block } from 'slate';
 import { PencilIcon, CheckIcon } from '@arch-ui/icons';
-import { BlockMenuItem, BlockIcon } from '@keystonejs/field-content/block-components';
+import { BlockMenuItem, BlockIcon } from '../../field-content';
 import wbc from '@westpac/wbc';
 import { GEL } from '@westpac/core';
 

@@ -1,4 +1,4 @@
-const { Block } = require('@keystonejs/field-content/Block');
+const { Block } = require('../../field-content');
 
 class DynamicComponentsBlock extends Block {
 	constructor(options, stuff) {
