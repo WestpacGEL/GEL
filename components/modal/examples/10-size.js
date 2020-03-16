@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { useReducer } from 'react';
 import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };
 
 	const modalReducer = (state, action) => {
@@ -29,7 +28,7 @@ export default ({ context, showCode, showDemo }) => {
 	const updateModal = (type, open) => dispatch({ type, payload: { open } });
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<p>
@@ -113,6 +112,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Button>
 				</Footer>
 			</Modal>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

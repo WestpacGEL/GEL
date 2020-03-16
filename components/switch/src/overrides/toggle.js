@@ -3,11 +3,9 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { sizeMap } from './_utils';
 
-export const Toggle = ({ name, label, checked, size, block, disabled, ...rest }) => (
-	<span {...rest} />
-);
+const Toggle = ({ state, ...rest }) => <span {...rest} />;
 
-export const toggleStyles = (_, { size, checked }) => {
+const toggleStyles = (_, { size, checked }) => {
 	const mq = useMediaQuery();
 	const { COLORS, PACKS } = useBrand();
 	const sizing = sizeMap(size);
@@ -52,4 +50,12 @@ export const toggleStyles = (_, { size, checked }) => {
 			...PACKS.focus,
 		},
 	})[0];
+};
+
+const toggleAttributes = () => null;
+
+export const defaultToggle = {
+	component: Toggle,
+	styles: toggleStyles,
+	attributes: toggleAttributes,
 };

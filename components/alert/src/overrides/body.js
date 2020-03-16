@@ -2,20 +2,10 @@
 
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Body } from '@westpac/body';
-import React from 'react';
 
-export const AlertBody = ({
-	open,
-	look,
-	dismissible,
-	onClose,
-	icon,
-	heading,
-	headingTag,
-	...rest
-}) => <Body {...rest} />;
+const AlertBody = ({ state, ...rest }) => <Body {...rest} />;
 
-export const bodyStyles = (_, { icon: Icon }) => {
+const bodyStyles = (_, { icon: Icon }) => {
 	const mq = useMediaQuery();
 
 	return mq({
@@ -23,7 +13,15 @@ export const bodyStyles = (_, { icon: Icon }) => {
 		flex: 1,
 		top: [null, Icon && '0.125rem'],
 		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
-			color: 'inherit',
+			color: 'inherit !important',
 		},
 	})[0];
+};
+
+const bodyAttributes = () => null;
+
+export const defaultBody = {
+	component: AlertBody,
+	styles: bodyStyles,
+	attributes: bodyAttributes,
 };

@@ -3,53 +3,52 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Text, textStyles } from './overrides/text';
+import { defaultText } from './overrides/text';
+
+import { useButtonContext } from './Button';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const TextWrapper = ({ block, children, overrides: componentOverrides, ...rest }) => {
+export const Text = ({ block, children, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useButtonContext();
+
 	const defaultOverrides = {
-		TextWrapper: {
-			styles: textStyles,
-			component: Text,
-			attributes: () => null,
-		},
+		Text: defaultText,
 	};
+
+	const componentOverrides = context.state.overrides;
 
 	const state = {
 		block,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Text: { component: Text, styles: textStyles, attributes: textAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.TextWrapper.component
-			block={block}
-			{...rest}
-			{...overrides.TextWrapper.attributes(state)}
-			css={overrides.TextWrapper.styles(state)}
-		>
+		<Text {...rest} state={state} {...textAttributes(state)} css={textStyles(state)}>
 			{children}
-		</overrides.TextWrapper.component>
+		</Text>
 	);
 };
 
-TextWrapper.propTypes = {
+// ==============================
+// Types
+// ==============================
+
+Text.propTypes = {
 	/**
 	 * Block mode.
 	 *
@@ -66,7 +65,7 @@ TextWrapper.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		TextWrapper: PropTypes.shape({
+		Text: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -74,6 +73,6 @@ TextWrapper.propTypes = {
 	}),
 };
 
-TextWrapper.defaultProps = {
+Text.defaultProps = {
 	block: false,
 };

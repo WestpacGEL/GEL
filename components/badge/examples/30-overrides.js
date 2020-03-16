@@ -1,12 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Badge } from '@westpac/badge';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-const Wrapper = ({ look, children, ...rest }) => (
+const Wrapper = ({ state: { look }, children, ...rest }) => (
 	<span {...rest}>
 		{children}
 		<a
@@ -21,8 +20,8 @@ const Wrapper = ({ look, children, ...rest }) => (
 	</span>
 );
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/badge'] = {
 		Badge: {
 			styles: (styles, { look }) => ({
@@ -35,7 +34,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -63,6 +62,8 @@ export default ({ context, showCode, showDemo }) => {
 					},
 				}}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

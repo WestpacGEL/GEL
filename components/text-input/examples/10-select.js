@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Select } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [value, setValue] = useState();
 
 	const handleChange = event => {
@@ -17,17 +16,18 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Default instance</h2>
+			<h2>Default</h2>
 			<Select name="thing">
 				<option>Select</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
+
+			<hr />
 
 			<h2>Controlled</h2>
 			<Select name="thing" value={value} onChange={handleChange}>
@@ -36,19 +36,18 @@ export default ({ context, showCode, showDemo }) => {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
+
 			<hr />
 
-			<h2>Default instance data driven</h2>
+			<h2>Data driven</h2>
 			<Select
 				data={[
-					{ label: 'Select', value: '' },
-					{ label: '1', value: '', onClick: () => console.log('Selected 1') },
-					{ label: '2', value: '', onClick: () => console.log('Selected 2') },
-					{ label: '3', value: '', onClick: () => console.log('Selected 3') },
+					{ text: 'Select', value: '' },
+					{ text: '1', value: '', onClick: () => console.log('Selected 1') },
+					{ text: '2', value: '', onClick: () => console.log('Selected 2') },
+					{ text: '3', value: '', onClick: () => console.log('Selected 3') },
 				]}
 			/>
-			<br />
 
 			<hr />
 
@@ -80,7 +79,6 @@ export default ({ context, showCode, showDemo }) => {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
 
 			<hr />
 
@@ -91,7 +89,6 @@ export default ({ context, showCode, showDemo }) => {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
 
 			<hr />
 
@@ -102,7 +99,6 @@ export default ({ context, showCode, showDemo }) => {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-			<br />
 
 			<hr />
 
@@ -122,7 +118,6 @@ export default ({ context, showCode, showDemo }) => {
 				</Select>{' '}
 				<Button type="submit">Submit</Button>
 			</Form>
-			<br />
 
 			<hr />
 
@@ -175,6 +170,8 @@ export default ({ context, showCode, showDemo }) => {
 				<option>2</option>
 				<option>3</option>
 			</Select>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

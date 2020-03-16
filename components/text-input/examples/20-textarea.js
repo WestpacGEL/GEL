@@ -1,17 +1,16 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Textarea } from '@westpac/text-input';
 import { Form } from '@westpac/form';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const sizes = ['small', 'medium', 'large', 'xlarge'];
 const widths = [2, 3, 4, 5, 10, 20, 30];
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [value, setValue] = useState('default text');
 
 	const handleChange = event => {
@@ -19,15 +18,16 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Default instance</h2>
+			<h2>Default</h2>
 			<Textarea />
+
+			<hr />
 
 			<h2>Controlled</h2>
 			<Textarea value={value} onChange={handleChange} />
-			<br />
 			<hr />
 
 			<h2>Size</h2>
@@ -38,28 +38,22 @@ export default ({ context, showCode, showDemo }) => {
 			<Textarea size="large" placeholder="large" />
 			<br />
 			<Textarea size="xlarge" placeholder="xlarge" />
-			<br />
 
 			<hr />
 
 			<h2>Invalid</h2>
 			<Textarea placeholder="invalid" invalid />
-			<br />
 
 			<hr />
 
 			<h2>Disabled</h2>
-			<Textarea
-				placeholder="disabled"
-				disabled
-				defaultValue="This textarea is disabled and contains a value"
-			/>
+			<Textarea disabled />
 			<br />
+			<Textarea defaultValue="This textarea is disabled and contains a value" disabled />
 
 			<hr />
-			<h2>Readonly</h2>
-			<Textarea placeholder="readonly" readOnly defaultValue="This value is readonly" />
-			<br />
+			<h2>Read-only</h2>
+			<Textarea defaultValue="This value is readonly" readOnly />
 
 			<hr />
 
@@ -67,7 +61,6 @@ export default ({ context, showCode, showDemo }) => {
 			<Form>
 				<Textarea inline /> <Textarea inline />
 			</Form>
-			<br />
 
 			<hr />
 
@@ -85,7 +78,8 @@ export default ({ context, showCode, showDemo }) => {
 			<Textarea width={20} placeholder={'W'.repeat(20)} />
 			<br />
 			<Textarea width={30} placeholder={'W'.repeat(30)} />
-			<br />
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

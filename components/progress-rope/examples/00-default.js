@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
-import { ProgressRope, Item } from '@westpac/progress-rope';
+import { ProgressRope, Step } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [state, dispatch] = useProgress();
 	const [state2, dispatch2] = useProgress();
 
@@ -24,7 +23,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Grid>
@@ -32,14 +31,14 @@ export default ({ context, showCode, showDemo }) => {
 					<h2>Composition</h2>
 					<Wrapper>
 						<ProgressRope current={state.index}>
-							<Item onClick={handleClick(0)}>Step 1</Item>
-							<Item onClick={handleClick(1)}>Step 2</Item>
-							<Item onClick={handleClick(2)}>Step 3</Item>
-							<Item onClick={handleClick(3)}>Step 4</Item>
-							<Item onClick={handleClick(4)}>Step 5</Item>
-							<Item end onClick={handleClick(5)}>
+							<Step onClick={handleClick(0)}>Step 1</Step>
+							<Step onClick={handleClick(1)}>Step 2</Step>
+							<Step onClick={handleClick(2)}>Step 3</Step>
+							<Step onClick={handleClick(3)}>Step 4</Step>
+							<Step onClick={handleClick(4)}>Step 5</Step>
+							<Step end onClick={handleClick(5)}>
 								Review and Submit
-							</Item>
+							</Step>
 						</ProgressRope>
 					</Wrapper>
 				</Cell>
@@ -72,6 +71,8 @@ export default ({ context, showCode, showDemo }) => {
 					<Button onClick={() => dispatch2({ type: 'next' })}>next</Button>
 				</Cell>
 			</Grid>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

@@ -1,12 +1,29 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { forwardRef, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Button as ButtonWrapper, buttonStyles } from './overrides/button';
+import { defaultButton } from './overrides/button';
+
 import { Content } from './Content';
 import pkg from '../package.json';
-import { forwardRef } from 'react';
+
+// ==============================
+// Context and Consumer Hook
+// ==============================
+
+const ButtonContext = createContext();
+
+export const useButtonContext = () => {
+	const context = useContext(ButtonContext);
+
+	if (!context) {
+		throw new Error('<Content/> and <TextWrapper/> components should be wrapped in a <Button>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
@@ -47,11 +64,7 @@ export const Button = forwardRef(
 		}
 
 		const defaultOverrides = {
-			Button: {
-				styles: buttonStyles,
-				component: ButtonWrapper,
-				attributes: () => null,
-			},
+			Button: defaultButton,
 		};
 
 		const state = {
@@ -72,56 +85,36 @@ export const Button = forwardRef(
 			...rest,
 		};
 
-		const overrides = overrideReconciler(
-			defaultOverrides,
-			tokenOverrides,
-			brandOverrides,
-			componentOverrides
-		);
+		const {
+			Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		return (
-			<overrides.Button.component
-				aria-label={assistiveText}
-				ref={ref}
-				look={look}
-				size={size}
-				soft={soft}
-				block={block}
-				iconAfter={iconAfter}
-				iconBefore={iconBefore}
-				justify={justify}
-				disabled={tag === 'button' ? disabled : undefined}
-				assistiveText={assistiveText}
-				tag={tag}
-				type={tag === 'button' ? type || 'button' : undefined}
-				dropdown={dropdown}
-				onClick={onClick}
-				{...rest}
-				{...overrides.Button.attributes(state)}
-				css={overrides.Button.styles(state)}
-			>
-				{/* `<input>` elements cannot have children; they would use a `value` prop) */}
-				{tag !== 'input' ? (
-					<Content
-						look={look}
-						size={size}
-						soft={soft}
-						block={block}
-						iconAfter={iconAfter}
-						iconBefore={iconBefore}
-						justify={justify}
-						disabled={disabled}
-						assistiveText={assistiveText}
-						tag={tag}
-						type={type}
-						dropdown={dropdown}
-						onClick={onClick}
-						overrides={componentOverrides}
-					>
-						{children}
-					</Content>
-				) : null}
-			</overrides.Button.component>
+			<ButtonContext.Provider value={{ state }}>
+				<Button
+					ref={ref}
+					disabled={tag === 'button' ? disabled : undefined}
+					type={tag === 'button' || tag === 'input' ? type || 'button' : undefined}
+					onClick={onClick}
+					{...rest}
+					state={state}
+					{...buttonAttributes(state)}
+					css={buttonStyles(state)}
+				>
+					{/* `<input>` elements cannot have children; they would use a `value` prop) */}
+					{tag !== 'input' ? (
+						<Content
+							size={size}
+							block={block}
+							iconAfter={iconAfter}
+							iconBefore={iconBefore}
+							dropdown={dropdown}
+						>
+							{children}
+						</Content>
+					) : null}
+				</Button>
+			</ButtonContext.Provider>
 		);
 	}
 );
@@ -224,7 +217,7 @@ Button.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		TextWrapper: PropTypes.shape({
+		Text: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

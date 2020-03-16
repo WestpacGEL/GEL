@@ -3,54 +3,46 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Label as LabelWrapper, labelStyles } from './overrides/label';
+import { defaultLabel } from './overrides/label';
+
+import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Label = ({ position, size, data, overrides: componentOverrides, ...rest }) => {
+export const Label = ({ position, size, data, overrides, ...rest }) => {
 	const {
-		COLORS,
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useInputGroupContext();
+
 	const defaultOverrides = {
-		Label: {
-			styles: labelStyles,
-			component: LabelWrapper,
-			attributes: () => null,
-		},
+		Label: defaultLabel,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		position,
 		size,
 		data,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Label.component
-			position={position}
-			size={size}
-			data={data}
-			{...rest}
-			{...overrides.Label.attributes(state)}
-			css={overrides.Label.styles(state)}
-		>
+		<Label {...rest} state={state} {...labelAttributes(state)} css={labelStyles(state)}>
 			{data}
-		</overrides.Label.component>
+		</Label>
 	);
 };
 

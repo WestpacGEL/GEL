@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 // Examples
 const sizes = [
@@ -18,9 +17,9 @@ const blocks = [
 	[true, null, false],
 ];
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Responsive sizing</h2>
@@ -42,6 +41,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Button>
 				</p>
 			))}
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

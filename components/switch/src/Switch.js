@@ -1,18 +1,18 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers, useInstanceId } from '@westpac/core';
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Switch as SwitchWrapper, switchStyles } from './overrides/switch';
-import { Toggle, toggleStyles } from './overrides/toggle';
-import { Label, labelStyles } from './overrides/label';
-
+import { defaultSwitch } from './overrides/switch';
+import { defaultToggle } from './overrides/toggle';
+import { defaultLabel } from './overrides/label';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const Switch = ({
 	name,
 	label,
@@ -21,39 +21,36 @@ export const Switch = ({
 	size,
 	block,
 	disabled,
+	instanceIdPrefix,
 	overrides: componentOverrides,
 	...rest
 }) => {
-	const [switchId] = useState(`switch-${useInstanceId()}`);
-
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const [checked, setChecked] = useState(isChecked);
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+
+	// create the prefix for internal IDs
+	useEffect(() => {
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-switch-${useInstanceId()}`);
+		}
+	}, [instanceIdPrefix]);
 
 	const defaultOverrides = {
-		Switch: {
-			styles: switchStyles,
-			component: SwitchWrapper,
-			attributes: () => null,
-		},
-		Label: {
-			styles: labelStyles,
-			component: Label,
-			attributes: () => null,
-		},
-		Toggle: {
-			styles: toggleStyles,
-			component: Toggle,
-			attributes: () => null,
-		},
+		Switch: defaultSwitch,
+		Label: defaultLabel,
+		Toggle: defaultToggle,
 	};
 
 	const state = {
+		checked,
+		instanceId,
 		name,
 		label,
-		checked,
 		onChange,
 		size,
 		block,
@@ -62,12 +59,11 @@ export const Switch = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Switch: { component: Switch, styles: switchStyles, attributes: switchAttributes },
+		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+		Toggle: { component: Toggle, styles: toggleStyles, attributes: toggleAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	useEffect(() => {
 		setChecked(isChecked);
@@ -76,22 +72,11 @@ export const Switch = ({
 	const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
 
 	return (
-		<overrides.Switch.component
-			htmlFor={switchId} //a11y: use explicit association
-			name={name}
-			label={label}
-			checked={checked}
-			size={size}
-			block={block}
-			disabled={disabled}
-			{...rest}
-			{...overrides.Switch.attributes(state)}
-			css={overrides.Switch.styles(state)}
-		>
+		<Switch state={state} {...rest} {...switchAttributes(state)} css={switchStyles(state)}>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
 				type="checkbox"
-				id={switchId}
+				id={instanceId}
 				onChange={handleChange(name)}
 				name={name}
 				checked={checked}
@@ -102,29 +87,11 @@ export const Switch = ({
 					opacity: 0,
 				}}
 			/>
-			<overrides.Label.component
-				name={name}
-				label={label}
-				checked={checked}
-				size={size}
-				block={block}
-				disabled={disabled}
-				{...overrides.Label.attributes(state)}
-				css={overrides.Label.styles(state)}
-			>
+			<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
 				{label}
-			</overrides.Label.component>
-			<overrides.Toggle.component
-				name={name}
-				label={label}
-				checked={checked}
-				size={size}
-				block={block}
-				disabled={disabled}
-				{...overrides.Toggle.attributes(state)}
-				css={overrides.Toggle.styles(state)}
-			/>
-		</overrides.Switch.component>
+			</Label>
+			<Toggle state={state} {...toggleAttributes(state)} css={toggleStyles(state)} />
+		</Switch>
 	);
 };
 

@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, wrapHandlers } from '@westpac/core';
+import { GEL, jsx, wrapHandlers } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 function one() {
 	console.log('one called!');
@@ -20,11 +19,11 @@ function four(event) {
 	console.log('This should not be called');
 }
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	wrapHandlers(one, two)({});
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 			<Code>
 				{`function one() {
@@ -47,6 +46,8 @@ wrapHandlers( one, two );`}
 			<button onClick={wrapHandlers(four, () => console.log('button clicked again'))} type="button">
 				Click me!
 			</button>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

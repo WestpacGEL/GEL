@@ -5,10 +5,9 @@ import { List, Item } from '@westpac/list';
 import { HouseIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/list'] = {
 		List: {
 			styles: (styles, { nested }) => {
@@ -28,7 +27,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -204,6 +203,8 @@ export default ({ context, showCode, showDemo }) => {
 					],
 				]}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

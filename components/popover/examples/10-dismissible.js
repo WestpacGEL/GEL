@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Popover } from '@westpac/popover';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const content =
 	'Hello vivamus sagittis lacus vel augue laoreet rutrum faucibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
@@ -12,9 +11,9 @@ const content =
 	'possimus non architecto. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut animi velit in? Suscipit nostrum itaque voluptatibus ' +
 	'dolorem qui soluta nobis modi officia incidunt eos dolores atque, unde error delectus officiis.';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<Popover heading="Popover heading" content={content} dismissible>
@@ -24,6 +23,8 @@ export default ({ context, showCode, showDemo }) => {
 			<Popover heading="Popover heading" content={content} dismissible>
 				Dismissible popover
 			</Popover>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

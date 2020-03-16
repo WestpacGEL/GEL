@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, asArray } from '@westpac/core';
+import { GEL, jsx, asArray } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	console.log(asArray([1, 2, 3]));
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 			<Code>{`asArray([ 1, 2, 3])`}</Code>
 			=>
@@ -18,6 +17,8 @@ export default ({ context, showCode, showDemo }) => {
 			<Code>{`asArray(1)`}</Code>
 			=>
 			<Code>{JSON.stringify(asArray(1))}</Code>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

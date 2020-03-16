@@ -2,11 +2,9 @@
 
 import { jsx } from '@westpac/core';
 
-export const Option = ({ value, checked, disabled, type, name, size, inline, ...rest }) => (
-	<div {...rest} />
-);
+const Option = ({ state, ...rest }) => <div {...rest} />;
 
-export const optionStyles = (_, { size, inline }) => {
+const optionStyles = (_, { size, inline }) => {
 	const sizeMap = {
 		medium: {
 			marginRight: '1.125rem',
@@ -31,4 +29,12 @@ export const optionStyles = (_, { size, inline }) => {
 		minHeight: sizeMap[size].height,
 		paddingLeft: sizeMap[size].width,
 	};
+};
+
+const optionAttributes = () => null;
+
+export const defaultOption = {
+	component: Option,
+	styles: optionStyles,
+	attributes: optionAttributes,
 };

@@ -4,7 +4,7 @@ import { jsx, useMediaQuery, useBrand } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 import { forwardRef } from 'react';
 
-export const Modal = forwardRef(({ heading, open, onClose, size, dismissible, ...rest }, ref) => {
+const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 	const { SPACING } = useBrand();
 
 	const modalTransition = useTransition(open, null, {
@@ -36,7 +36,7 @@ export const Modal = forwardRef(({ heading, open, onClose, size, dismissible, ..
 	);
 });
 
-export const modalStyles = (_, { size }) => {
+const modalStyles = (_, { size }) => {
 	const mq = useMediaQuery();
 
 	return mq({
@@ -49,4 +49,12 @@ export const modalStyles = (_, { size }) => {
 		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
 		width: ['auto', size === 'small' ? '18.75rem' : '37.5rem', size === 'large' && '56.25rem'],
 	})[0];
+};
+
+const modalAttributes = () => ({ role: 'dialog', 'aria-modal': 'true' });
+
+export const defaultModal = {
+	component: Modal,
+	styles: modalStyles,
+	attributes: modalAttributes,
 };

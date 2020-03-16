@@ -1,21 +1,24 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-const Label = props => <strong {...props} />;
+const Label = ({ state, ...rest }) => <strong {...rest} />;
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/switch'] = {
 		Label: {
-			styles: styles => ({ ...styles, color: 'palevioletred', paddingRight: '2rem' }),
 			component: Label,
+			styles: styles => ({
+				...styles,
+				color: 'palevioletred',
+				paddingRight: '2rem',
+			}),
 		},
 		Toggle: {
 			styles: (styles, { checked }) => ({
@@ -24,16 +27,10 @@ export default ({ context, showCode, showDemo }) => {
 				backgroundColor: checked ? 'palevioletred' : 'white',
 			}),
 		},
-		ToggleText: {
-			styles: (styles, { checked }) => ({
-				...styles,
-				color: checked ? 'white' : 'firebrick',
-			}),
-		},
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -52,6 +49,8 @@ export default ({ context, showCode, showDemo }) => {
 					},
 				}}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

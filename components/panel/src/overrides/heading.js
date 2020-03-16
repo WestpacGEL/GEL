@@ -1,17 +1,34 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
+import { Heading } from '@westpac/heading';
 
-export const Heading = ({ look, heading, headingTag: Tag, overrides, ...rest }) => (
-	<Tag {...rest} />
+const PanelHeading = ({ state: { headingTag }, ...rest }) => (
+	<Heading tag={headingTag} size={8} {...rest} />
 );
 
-export const headingStyles = (_, {}) => {
-	return {
-		margin: 0,
-		color: 'inherit',
-		fontSize: 'inherit',
-		lineHeight: 'inherit',
-		fontWeight: 'inherit',
+const headingStyles = (_, { look }) => {
+	const { COLORS } = useBrand();
+
+	const styleMap = {
+		hero: {
+			color: '#fff',
+		},
+		faint: {
+			color: COLORS.text,
+		},
 	};
+
+	return {
+		color: styleMap[look].color,
+		fontWeight: 'normal',
+	};
+};
+
+const headingAttributes = () => null;
+
+export const defaultHeading = {
+	component: PanelHeading,
+	styles: headingStyles,
+	attributes: headingAttributes,
 };

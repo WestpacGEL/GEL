@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import {
 	AddIcon,
 	CalendarIcon,
@@ -14,7 +14,6 @@ import {
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const Wrapper = ({ children, icon, color, size, assistiveText, ...rest }) => (
 	<Fragment>
@@ -25,8 +24,8 @@ const Wrapper = ({ children, icon, color, size, assistiveText, ...rest }) => (
 	</Fragment>
 );
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/icon'] = {
 		Icon: {
 			styles: styles => ({
@@ -38,7 +37,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -62,6 +61,8 @@ export default ({ context, showCode, showDemo }) => {
 					},
 				}}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

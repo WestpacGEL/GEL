@@ -1,18 +1,17 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { useState } from 'react';
 import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 	const [open2, setOpen2] = useState(false);
 
-	const overridesWithTokens = {};
+	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/modal'] = {
 		Modal: {
@@ -40,7 +39,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
@@ -109,6 +108,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Button>
 				</Footer>
 			</Modal>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

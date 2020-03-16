@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Well } from '@westpac/well';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 // Well tag as a component example
 const WellTag = ({ children, ...rest }) => (
@@ -13,10 +12,12 @@ const WellTag = ({ children, ...rest }) => (
 	</aside>
 );
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
+
+			<h2>Default</h2>
 
 			<h3>Default</h3>
 			<Well>Look, I'm in a well.</Well>
@@ -45,10 +46,12 @@ export default ({ context, showCode, showDemo }) => {
 			</Well>
 
 			<h3>
-				Tag as <code>&lt;aside&gt;</code> with child <code>&lt;span&gt;</code>, rendered as a
+				Tag as <code>&lt;aside&gt;</code> with child <code>&lt;span&gt;</code>, passed as a
 				component
 			</h3>
 			<Well tag={WellTag}>Look, I'm in a well.</Well>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

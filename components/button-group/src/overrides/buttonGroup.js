@@ -2,20 +2,9 @@
 
 import { jsx, asArray, useMediaQuery } from '@westpac/core';
 
-export const ButtonGroup = ({
-	block,
-	data,
-	defaultValue,
-	look,
-	name,
-	disabled,
-	value: controlledValue,
-	size,
-	onChange,
-	...rest
-}) => <div {...rest} />;
+const ButtonGroup = ({ state, ...rest }) => <div {...rest} />;
 
-export const buttonGroupStyles = (_, { block }) => {
+const buttonGroupStyles = (_, { block }) => {
 	const mq = useMediaQuery();
 
 	const blockArr = asArray(block);
@@ -25,4 +14,12 @@ export const buttonGroupStyles = (_, { block }) => {
 		display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
 		verticalAlign: 'middle',
 	})[0];
+};
+
+const buttonGroupAttributes = () => null;
+
+export const defaultButtonGroup = {
+	component: ButtonGroup,
+	styles: buttonGroupStyles,
+	attributes: buttonGroupAttributes,
 };

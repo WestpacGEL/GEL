@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { InputGroup, Left, Right } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Single add-on</h2>
@@ -32,11 +31,12 @@ export default ({ context, showCode, showDemo }) => {
 			<InputGroup>
 				<Right
 					type="select"
+					onChange={event => console.log(`Selected ${event.target.value}`)}
 					data={[
-						{ label: 'Select', value: '' },
-						{ label: '1', value: '', onClick: () => console.log('Selected 1') },
-						{ label: '2', value: '', onClick: () => console.log('Selected 2') },
-						{ label: '3', value: '', onClick: () => console.log('Selected 3') },
+						{ text: 'Select', value: '' },
+						{ text: '1', value: '1' },
+						{ text: '2', value: '2' },
+						{ text: '3', value: '3' },
 					]}
 				/>
 			</InputGroup>
@@ -73,11 +73,12 @@ export default ({ context, showCode, showDemo }) => {
 				data={{
 					left: {
 						type: 'select',
+						onChange: event => console.log(`Selected ${event.target.value}`),
 						data: [
-							{ label: 'Select', value: '' },
-							{ label: '1', value: '', onClick: () => console.log('Selected 1') },
-							{ label: '2', value: '', onClick: () => console.log('Selected 2') },
-							{ label: '3', value: '', onClick: () => console.log('Selected 3') },
+							{ text: 'Select', value: '' },
+							{ text: '1', value: '1' },
+							{ text: '2', value: '2' },
+							{ text: '3', value: '3' },
 						],
 					},
 				}}
@@ -100,10 +101,11 @@ export default ({ context, showCode, showDemo }) => {
 			<InputGroup>
 				<Left
 					type="select"
+					onChange={event => console.log(`Selected ${event.target.value}`)}
 					data={[
-						{ label: 'AUD $', onClick: () => console.log('Selected AUD') },
-						{ label: 'USD $', onClick: () => console.log('Selected USD') },
-						{ label: 'EUR €', onClick: () => console.log('Selected EUR') },
+						{ text: 'AUD $', value: 'AUD' },
+						{ text: 'USD $', value: 'USD' },
+						{ text: 'EUR €', value: 'EUR' },
 					]}
 				/>
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
@@ -130,15 +132,14 @@ export default ({ context, showCode, showDemo }) => {
 				data={{
 					left: {
 						type: 'select',
-						data: [
-							{ label: 'AUD $', onClick: () => console.log('Selected AUD') },
-							{ label: 'USD $', onClick: () => console.log('Selected USD') },
-							{ label: 'EUR €', onClick: () => console.log('Selected EUR') },
-						],
+						onChange: event => console.log(`Selected ${event.target.value}`),
+						data: [{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }],
 					},
 					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
 				}}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

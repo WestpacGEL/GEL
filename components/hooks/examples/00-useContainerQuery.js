@@ -1,20 +1,19 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
 import { useRef } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const textareaRef = useRef();
 	const containerRef = useRef();
 	const { width: containerWidth } = useContainerQuery(containerRef);
 	const { height: textareaHeight, width: textareaWidth } = useContainerQuery(textareaRef);
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<div ref={containerRef}>
@@ -36,6 +35,8 @@ export default ({ context, showCode, showDemo }) => {
 					}}
 				/>
 			</div>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

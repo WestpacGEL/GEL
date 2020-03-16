@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const { COLORS } = useBrand();
 	const { tints, ...primaryColors } = COLORS;
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<h2>Colors</h2>
@@ -73,6 +72,8 @@ export default ({ context, showCode, showDemo }) => {
 						</li>
 					))}
 			</ul>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

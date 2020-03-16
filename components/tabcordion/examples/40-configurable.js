@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { useState } from 'react';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { Row } from './_utils';
@@ -19,7 +19,7 @@ Radio.defaultProps = { type: 'radio' };
 const Checkbox = p => <Control {...p} />;
 Checkbox.defaultProps = { type: 'checkbox' };
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [look, setLook] = useState(looks[0]);
 	const [mode, setMode] = useState(modes[0]);
 	const [justify, setJustify] = useState(false);
@@ -29,7 +29,7 @@ export default ({ context, showCode, showDemo }) => {
 	const changeMode = v => () => setMode(v);
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Row>
 				Look:
 				{looks.map(v => (
@@ -96,6 +96,8 @@ export default ({ context, showCode, showDemo }) => {
 					confusing.’
 				</Tab>
 			</Tabcordion>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

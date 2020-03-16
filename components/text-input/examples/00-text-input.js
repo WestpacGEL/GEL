@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
 import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [value, setValue] = useState('default text');
 
 	const handleChange = event => {
@@ -17,15 +16,16 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Default instance</h2>
+			<h2>Default</h2>
 			<TextInput />
+
+			<hr />
 
 			<h2>Controlled</h2>
 			<TextInput defaultValue={value} onChange={handleChange} />
-			<br />
 			<hr />
 
 			<h2>Size</h2>
@@ -36,27 +36,23 @@ export default ({ context, showCode, showDemo }) => {
 			<TextInput size="large" placeholder="large" />
 			<br />
 			<TextInput size="xlarge" placeholder="xlarge" />
-			<br />
 
 			<hr />
 
 			<h2>Invalid</h2>
 			<TextInput invalid />
-			<br />
 
 			<hr />
 
 			<h2>Disabled</h2>
 			<TextInput disabled />
 			<br />
-			<TextInput disabled defaultValue="This input is disabled and contains a value" />
-			<br />
+			<TextInput defaultValue="This input is disabled and contains a value" disabled />
 
 			<hr />
 
-			<h2>Readonly</h2>
-			<TextInput readOnly defaultValue="This value is readonly" />
-			<br />
+			<h2>Read-only</h2>
+			<TextInput defaultValue="This value is readonly" readOnly />
 
 			<hr />
 
@@ -64,7 +60,6 @@ export default ({ context, showCode, showDemo }) => {
 			<Form action="#">
 				<TextInput inline /> <TextInput inline /> <Button type="submit">Submit</Button>
 			</Form>
-			<br />
 
 			<hr />
 
@@ -82,6 +77,8 @@ export default ({ context, showCode, showDemo }) => {
 			<TextInput width={20} placeholder={20} />
 			<br />
 			<TextInput width={30} placeholder={30} />
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

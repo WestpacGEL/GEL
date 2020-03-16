@@ -1,14 +1,15 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
+import { ExpandLessIcon, ExpandMoreIcon, ThumbUpIcon, ThumbDownIcon } from '@westpac/icon';
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/tabcordion'] = {
-		TabItem: {
+		TabButton: {
 			styles: (styles, { selected }) => ({
 				...styles,
 				border: `1px solid black`,
@@ -16,34 +17,60 @@ export default ({ context, showCode, showDemo }) => {
 				color: selected ? 'white' : 'black',
 			}),
 		},
-		AccordionLabel: {
-			styles: (styles, { last, selected }) => ({
-				...styles,
-				backgroundColor: 'white',
-				borderTop: `1px solid black`,
-				borderLeft: `1px solid black`,
-				borderRight: `1px solid black`,
-				...(last &&
-					!selected && {
-						borderBottom: `1px solid black`,
-					}),
-			}),
+		AccordionButton: {
+			styles: (styles, { look, hidden }) => {
+				const styleMap = {
+					soft: {
+						':first-of-type': {
+							borderTop: '1px solid black',
+							borderTopLeftRadius: '0.1875rem',
+							borderTopRightRadius: '0.1875rem',
+						},
+					},
+					lego: {
+						borderLeft: `0.375rem solid ${!hidden ? 'mediumblue' : 'black'}`,
+
+						':first-of-type': {
+							borderTop: `1px solid black`,
+						},
+					},
+				};
+
+				return {
+					...styles,
+					backgroundColor: 'white',
+					borderLeft: '1px solid black',
+					borderRight: '1px solid black',
+					borderBottom: '1px solid black',
+					...styleMap[look],
+				};
+			},
+		},
+		AccordionButtonIcon: {
+			component: ({ state, ...rest }) => {
+				const Icon = state.hidden ? ExpandMoreIcon : ExpandLessIcon;
+
+				return <Icon color="black" size="small" assistiveText={null} {...rest} />;
+			},
 		},
 		Panel: {
-			styles: styles => ({
+			styles: (styles, { look, mode }) => ({
 				...styles,
 				backgroundColor: 'black',
+				borderTop: 0,
+				borderBottom: 0,
+				borderLeft: mode === 'accordion' && look === 'lego' && '0.375rem solid mediumblue',
+				borderRight: 0,
 				color: 'white',
-				borderColor: 'black',
 			}),
 		},
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<h2>With overrides applied</h2>
-			<h3>Always accordion</h3>
-			<Tabcordion mode="accordion" instanceIdPrefix="always-accordion">
+			<h3>Soft accordion</h3>
+			<Tabcordion mode="accordion" look="soft" instanceIdPrefix="example-default-accordion">
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -88,8 +115,54 @@ export default ({ context, showCode, showDemo }) => {
 				</Tab>
 			</Tabcordion>
 
-			<h3>Always tabs</h3>
-			<Tabcordion mode="tabs" instanceIdPrefix="always-tabs">
+			<h3>Lego accordion</h3>
+			<Tabcordion mode="accordion" look="lego" instanceIdPrefix="example-lego-accordion">
+				<Tab text="Rabbit hole">
+					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
+					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
+					gone down that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort
+					of life! I do wonder what can have happened to me! When I used to read fairy-tales, I
+					fancied that kind of thing never happened, and now here I am in the middle of one! There
+					ought to be a book written about me, that there ought! And when I grow up, I’ll write one.
+				</Tab>
+				<Tab text="Flamingo">
+					The chief difficulty Alice found at first was in managing her flamingo: she succeeded in
+					getting its body tucked away, comfortably enough, under her arm, with its legs hanging
+					down, but generally, just as she had got its neck nicely straightened out, and was going
+					to give the hedgehog a blow with its head, it would twist itself round and look up in her
+					face, with such a puzzled expression that she could not help bursting out laughing: and
+					when she had got its head down, and was going to begin again, it was very provoking to
+					find that the hedgehog had unrolled itself, and was in the act of crawling away: besides
+					all this, there was generally a ridge or furrow in the way wherever she wanted to send the
+					hedgehog to, and, as the doubled-up soldiers were always getting up and walking off to
+					other parts of the ground, Alice soon came to the conclusion that it was a very difficult
+					game indeed.
+				</Tab>
+				<Tab text="Caterpillar">
+					The Caterpillar and Alice looked at each other for some time in silence: at last the
+					Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy
+					voice.
+					<br />
+					‘Who are you?’ said the Caterpillar.
+					<br />
+					This was not an encouraging opening for a conversation. Alice replied, rather shyly, ‘I —
+					I hardly know, sir, just at present — at least I know who I was when I got up this
+					morning, but I think I must have been changed several times since then.’
+					<br />
+					‘What do you mean by that?’ said the Caterpillar sternly. ‘Explain yourself!’
+					<br />
+					‘I can’t explain myself, I’m afraid, sir’ said Alice, ’because I’m not myself, you see.’
+					<br />
+					‘I don’t see,’ said the Caterpillar.
+					<br />
+					‘I’m afraid I can’t put it more clearly,’ Alice replied very politely, ‘for I can’t
+					understand it myself to begin with; and being so many different sizes in a day is very
+					confusing.’
+				</Tab>
+			</Tabcordion>
+
+			<h3>Default tabs</h3>
+			<Tabcordion mode="tabs" instanceIdPrefix="example-default-tabs">
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -135,31 +208,36 @@ export default ({ context, showCode, showDemo }) => {
 			</Tabcordion>
 
 			<h2>With overrides and component overrides</h2>
-			<h3>Always accordion</h3>
-			<Tabcordion mode="accordion" instanceIdPrefix="always-accordion">
+			<h3>Default accordion</h3>
+			<Tabcordion mode="accordion" instanceIdPrefix="example-default-component-overrides-accordion">
 				<Tab
 					text="Rabbit hole"
 					overrides={{
-						AccordionLabel: {
-							styles: (styles, { last, selected }) => ({
+						AccordionButton: {
+							styles: styles => ({
 								...styles,
-								backgroundColor: 'white',
-								borderTop: `1px solid mediumblue`,
-								borderLeft: `1px solid mediumblue`,
-								borderRight: `1px solid mediumblue`,
+								borderLeft: '1px solid mediumblue',
+								borderRight: '1px solid mediumblue',
+								borderBottom: '1px solid mediumblue',
 								color: 'mediumblue',
-								...(last &&
-									!selected && {
-										borderBottom: `1px solid mediumblue`,
-									}),
+
+								':first-of-type': {
+									borderTop: '1px solid mediumblue',
+									borderTopLeftRadius: '0.1875rem',
+									borderTopRightRadius: '0.1875rem',
+								},
 							}),
+						},
+						AccordionButtonIcon: {
+							component: ({ state, ...rest }) => {
+								const Icon = state.hidden ? ThumbDownIcon : ThumbUpIcon;
+								return <Icon color="mediumblue" size="small" assistiveText={null} {...rest} />;
+							},
 						},
 						Panel: {
 							styles: styles => ({
 								...styles,
 								backgroundColor: 'mediumblue',
-								color: 'white',
-								borderColor: 'mediumblue',
 							}),
 						},
 					}}
@@ -174,26 +252,31 @@ export default ({ context, showCode, showDemo }) => {
 				<Tab
 					text="Flamingo"
 					overrides={{
-						AccordionLabel: {
-							styles: (styles, { last, selected }) => ({
+						AccordionButton: {
+							styles: styles => ({
 								...styles,
-								backgroundColor: 'white',
-								borderTop: `1px solid mediumblue`,
-								borderLeft: `1px solid mediumblue`,
-								borderRight: `1px solid mediumblue`,
+								borderLeft: '1px solid mediumblue',
+								borderRight: '1px solid mediumblue',
+								borderBottom: '1px solid mediumblue',
 								color: 'mediumblue',
-								...(last &&
-									!selected && {
-										borderBottom: `1px solid mediumblue`,
-									}),
+
+								':first-of-type': {
+									borderTop: '1px solid mediumblue',
+									borderTopLeftRadius: '0.1875rem',
+									borderTopRightRadius: '0.1875rem',
+								},
 							}),
+						},
+						AccordionButtonIcon: {
+							component: ({ state, ...rest }) => {
+								const Icon = state.hidden ? ThumbDownIcon : ThumbUpIcon;
+								return <Icon color="mediumblue" size="small" assistiveText={null} {...rest} />;
+							},
 						},
 						Panel: {
 							styles: styles => ({
 								...styles,
 								backgroundColor: 'mediumblue',
-								color: 'white',
-								borderColor: 'mediumblue',
 							}),
 						},
 					}}
@@ -213,26 +296,31 @@ export default ({ context, showCode, showDemo }) => {
 				<Tab
 					text="Caterpillar"
 					overrides={{
-						AccordionLabel: {
-							styles: (styles, { last, selected }) => ({
+						AccordionButton: {
+							styles: styles => ({
 								...styles,
-								backgroundColor: 'white',
-								borderTop: `1px solid mediumblue`,
-								borderLeft: `1px solid mediumblue`,
-								borderRight: `1px solid mediumblue`,
+								borderLeft: '1px solid mediumblue',
+								borderRight: '1px solid mediumblue',
+								borderBottom: '1px solid mediumblue',
 								color: 'mediumblue',
-								...(last &&
-									!selected && {
-										borderBottom: `1px solid mediumblue`,
-									}),
+
+								':first-of-type': {
+									borderTop: '1px solid mediumblue',
+									borderTopLeftRadius: '0.1875rem',
+									borderTopRightRadius: '0.1875rem',
+								},
 							}),
+						},
+						AccordionButtonIcon: {
+							component: ({ state, ...rest }) => {
+								const Icon = state.hidden ? ThumbDownIcon : ThumbUpIcon;
+								return <Icon color="mediumblue" size="small" assistiveText={null} {...rest} />;
+							},
 						},
 						Panel: {
 							styles: styles => ({
 								...styles,
 								backgroundColor: 'mediumblue',
-								color: 'white',
-								borderColor: 'mediumblue',
 							}),
 						},
 					}}
@@ -259,12 +347,12 @@ export default ({ context, showCode, showDemo }) => {
 				</Tab>
 			</Tabcordion>
 
-			<h3>Always tabs</h3>
+			<h3>Tabs</h3>
 			<Tabcordion
 				mode="tabs"
-				instanceIdPrefix="always-tabs"
+				instanceIdPrefix="example-default-component-overrides-tabs"
 				overrides={{
-					TabItem: {
+					TabButton: {
 						styles: (styles, { selected }) => ({
 							...styles,
 							border: `1px solid darkred`,
@@ -281,7 +369,6 @@ export default ({ context, showCode, showDemo }) => {
 							styles: styles => ({
 								...styles,
 								backgroundColor: 'darkred',
-								color: 'white',
 								borderColor: 'darkred',
 							}),
 						},
@@ -301,7 +388,6 @@ export default ({ context, showCode, showDemo }) => {
 							styles: styles => ({
 								...styles,
 								backgroundColor: 'darkred',
-								color: 'white',
 								borderColor: 'darkred',
 							}),
 						},
@@ -326,7 +412,6 @@ export default ({ context, showCode, showDemo }) => {
 							styles: styles => ({
 								...styles,
 								backgroundColor: 'darkred',
-								color: 'white',
 								borderColor: 'darkred',
 							}),
 						},
@@ -353,6 +438,8 @@ export default ({ context, showCode, showDemo }) => {
 					confusing.’
 				</Tab>
 			</Tabcordion>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

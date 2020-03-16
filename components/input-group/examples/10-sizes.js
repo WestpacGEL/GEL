@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { InputGroup, Left, Right } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Small size</h2>
@@ -29,13 +28,13 @@ export default ({ context, showCode, showDemo }) => {
 			<br />
 
 			<InputGroup size="small">
-				<Left type="select" data={[{ label: 'AUD $' }, { label: 'USD $' }, { label: 'EUR €' }]} />
+				<Left type="select" data={[{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }]} />
 				<Right type="button" data="Go" />
 			</InputGroup>
 			<br />
 
 			<InputGroup size="small">
-				<Right type="select" data={[{ label: 'AUD $' }, { label: 'USD $' }, { label: 'EUR €' }]} />
+				<Right type="select" data={[{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }]} />
 			</InputGroup>
 			<br />
 
@@ -59,13 +58,13 @@ export default ({ context, showCode, showDemo }) => {
 			<br />
 
 			<InputGroup size="medium">
-				<Left type="select" data={[{ label: 'AUD $' }, { label: 'USD $' }, { label: 'EUR €' }]} />
+				<Left type="select" data={[{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }]} />
 				<Right type="button" data="Go" />
 			</InputGroup>
 			<br />
 
 			<InputGroup size="medium">
-				<Right type="select" data={[{ label: 'AUD $' }, { label: 'USD $' }, { label: 'EUR €' }]} />
+				<Right type="select" data={[{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }]} />
 			</InputGroup>
 			<br />
 
@@ -89,13 +88,13 @@ export default ({ context, showCode, showDemo }) => {
 			<br />
 
 			<InputGroup size="large">
-				<Left type="select" data={[{ label: 'AUD $' }, { label: 'USD $' }, { label: 'EUR €' }]} />
+				<Left type="select" data={[{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }]} />
 				<Right type="button" data="Go" />
 			</InputGroup>
 			<br />
 
 			<InputGroup size="large">
-				<Right type="select" data={[{ label: 'AUD $' }, { label: 'USD $' }, { label: 'EUR €' }]} />
+				<Right type="select" data={[{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }]} />
 			</InputGroup>
 			<br />
 
@@ -119,14 +118,16 @@ export default ({ context, showCode, showDemo }) => {
 			<br />
 
 			<InputGroup size="xlarge">
-				<Left type="select" data={[{ label: 'AUD $' }, { label: 'USD $' }, { label: 'EUR €' }]} />
+				<Left type="select" data={[{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }]} />
 				<Right type="button" data="Go" />
 			</InputGroup>
 			<br />
 
 			<InputGroup size="xlarge">
-				<Right type="select" data={[{ label: 'AUD $' }, { label: 'USD $' }, { label: 'EUR €' }]} />
+				<Right type="select" data={[{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }]} />
 			</InputGroup>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

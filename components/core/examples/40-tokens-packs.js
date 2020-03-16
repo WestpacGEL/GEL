@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const { COLORS, PACKS, SPACING } = useBrand();
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<h2>Headlines</h2>
@@ -62,6 +61,8 @@ export default ({ context, showCode, showDemo }) => {
 				This box has focus!
 			</div>
 			<Code>{JSON.stringify(PACKS.focus, null, 2)}</Code>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

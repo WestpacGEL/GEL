@@ -1,82 +1,90 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, config } from 'react-spring';
 import { Children, cloneElement, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Group as GroupWrapper, groupStyles } from './overrides/group';
-import { GroupItems, groupItemsStyles } from './overrides/groupItems';
-import { GroupButton, groupButtonStyles } from './overrides/groupButton';
+import { defaultGroup } from './overrides/group';
+import { defaultGroupButtonWrapper } from './overrides/groupButtonWrapper';
+import { defaultGroupButton } from './overrides/groupButton';
+import { defaultGroupList } from './overrides/groupList';
+
 import { useProgressRopeContext } from './ProgressRope';
 import { useMeasure } from './_utils';
 import pkg from '../package.json';
 
-export const Group = ({
-	groupItemsId,
-	index,
-	text,
-	instanceIdPrefix,
-	children,
-	overrides: componentOverrides,
-	...rest
-}) => {
-	const { openGroup, ropeGraph, handleClick } = useProgressRopeContext();
-	const active = ropeGraph[index].includes('visited');
-	const complete = ropeGraph[index + 1][0] === 'visited';
+// ==============================
+// Component
+// ==============================
 
+export const Group = ({ index, text, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
+	const context = useProgressRopeContext();
+	const { openGroup, ropeGraph, handleClick, instancePrefix } = context;
+
+	const groupListId = `${instancePrefix}-group-${index + 1}`;
+
+	const active = ropeGraph[index].includes('visited');
+	const complete = ropeGraph[index + 1][0] === 'visited';
 
 	const [hidden, setHidden] = useState(true);
 	const [bind, { height }] = useMeasure();
 	const [initial, setInitial] = useState(true);
 
 	const animate = useSpring({
-		to: {
-			height: hidden ? 0 : height,
-			overflow: hidden ? 'hidden' : 'visible',
-			opacity: hidden ? 0 : 1,
+		config: { duration: 300 },
+		to: async (next, cancel) => {
+			await next({
+				overflow: 'hidden',
+				height: hidden ? 0 : height,
+			});
+			await next({
+				overflow: hidden ? 'hidden' : 'visible',
+			});
 		},
 		immediate: initial,
 	});
 
 	const defaultOverrides = {
-		Group: {
-			styles: groupStyles,
-			component: GroupWrapper,
-			attributes: () => null,
-		},
-		GroupButton: {
-			styles: groupButtonStyles,
-			component: GroupButton,
-			attributes: () => null,
-		},
-		GroupItems: {
-			styles: groupItemsStyles,
-			component: GroupItems,
-			attributes: () => null,
-		},
+		Group: defaultGroup,
+		GroupButtonWrapper: defaultGroupButtonWrapper,
+		GroupButton: defaultGroupButton,
+		GroupList: defaultGroupList,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
-		groupItemsId,
 		index,
 		text,
-		complete,
+		groupListId,
 		active,
+		complete,
+		hidden,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Group: { component: Group, styles: groupStyles, attributes: groupAttributes },
+		GroupButtonWrapper: {
+			component: GroupButtonWrapper,
+			styles: groupButtonWrapperStyles,
+			attributes: groupButtonWrapperAttributes,
+		},
+		GroupButton: {
+			component: GroupButton,
+			styles: groupButtonStyles,
+			attributes: groupButtonAttributes,
+		},
+		GroupList: { component: GroupList, styles: groupListStyles, attributes: groupListAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	useEffect(() => {
 		if (openGroup === null || index !== openGroup) {
@@ -98,59 +106,41 @@ export const Group = ({
 	};
 
 	return (
-		<overrides.Group.component
-			groupItemsId={groupItemsId}
-			index={index}
-			text={text}
-			complete={complete}
-			active={active}
-			{...rest}
-			{...overrides.Group.attributes(state)}
-			css={overrides.Group.styles(state)}
-		>
-			<overrides.GroupButton.component
-				onClick={handleGroupClick}
-				aria-expanded={!hidden}
-				aria-controls={groupItemsId}
-				groupItemsId={groupItemsId}
-				index={index}
-				text={text}
-				complete={complete}
-				active={active}
-				{...overrides.GroupButton.attributes(state)}
-				css={overrides.GroupButton.styles(state)}
+		<Group {...rest} state={state} {...groupAttributes(state)} css={groupStyles(state)}>
+			<GroupButtonWrapper
+				state={state}
+				{...groupButtonWrapperAttributes(state)}
+				css={groupButtonWrapperStyles(state)}
 			>
-				{text}
-			</overrides.GroupButton.component>
+				<GroupButton
+					onClick={handleGroupClick}
+					state={state}
+					{...groupButtonAttributes(state)}
+					css={groupButtonStyles(state)}
+				>
+					{text}
+				</GroupButton>
+			</GroupButtonWrapper>
 			<animated.div style={animate}>
 				<div ref={bind.ref}>
-					<overrides.GroupItems.component
-						aria-hidden={hidden}
-						id={groupItemsId}
-						groupItemsId={groupItemsId}
-						index={index}
-						text={text}
-						complete={complete}
-						active={active}
-						{...overrides.GroupItems.attributes(state)}
-						css={overrides.GroupItems.styles(state)}
-					>
-						{Children.map(children, (child, i) =>
-							cloneElement(child, { index: i, groupIndex: index })
+					<GroupList state={state} {...groupListAttributes(state)} css={groupListStyles(state)}>
+						{Children.map(children, (child, idx) =>
+							cloneElement(child, { index: idx, groupIndex: index })
 						)}
-					</overrides.GroupItems.component>
+					</GroupList>
 				</div>
 			</animated.div>
-		</overrides.Group.component>
+		</Group>
 	);
 };
 
 // ==============================
 // Types
 // ==============================
+
 Group.propTypes = {
 	/**
-	 * The index of this item
+	 * The index of this step
 	 */
 	index: PropTypes.number,
 
@@ -173,7 +163,7 @@ Group.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		GroupItems: PropTypes.shape({
+		GroupList: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

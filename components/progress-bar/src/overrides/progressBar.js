@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const ProgressBar = ({ look, value, ...rest }) => <div {...rest} />;
+export const ProgressBar = ({ state, ...rest }) => <div {...rest} />;
 
 export const progressBarStyles = (_, { look }) => {
 	const { COLORS } = useBrand();
@@ -28,4 +28,19 @@ export const progressBarStyles = (_, { look }) => {
 		boxSizing: 'border-box',
 		...styleMap[look],
 	};
+};
+
+const progressBarAttributes = (_, { roundedValue }) => ({
+	role: 'progressbar',
+	'aria-valuemin': '0',
+	'aria-valuemax': '100',
+	'aria-valuenow': roundedValue,
+	'aria-valuetext': `${roundedValue}% complete`,
+	'aria-live': 'polite',
+});
+
+export const defaultProgressBar = {
+	component: ProgressBar,
+	styles: progressBarStyles,
+	attributes: progressBarAttributes,
 };

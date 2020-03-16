@@ -3,11 +3,9 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { sizeMap } from './_utils';
 
-export const Switch = ({ name, label, checked, size, block, disabled, ...rest }) => (
-	<label {...rest} />
-);
+const Switch = ({ state, ...rest }) => <label {...rest} />;
 
-export const switchStyles = (_, { block, disabled, size }) => {
+const switchStyles = (_, { block, disabled, size }) => {
 	const mq = useMediaQuery();
 
 	return mq({
@@ -23,4 +21,14 @@ export const switchStyles = (_, { block, disabled, size }) => {
 		marginBottom: '0.375rem',
 		cursor: disabled ? 'not-allowed' : 'pointer',
 	})[0];
+};
+
+const switchAttributes = (_, { instanceId }) => ({
+	htmlFor: instanceId, //a11y: must use explicit association
+});
+
+export const defaultSwitch = {
+	component: Switch,
+	styles: switchStyles,
+	attributes: switchAttributes,
 };

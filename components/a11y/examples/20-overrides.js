@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { SkipLink, VisuallyHidden } from '@westpac/a11y';
+
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const SkipLinkWrapper = ({ children, ...rest }) => (
 	<div {...rest} tabIndex={1}>
@@ -13,39 +13,33 @@ const SkipLinkWrapper = ({ children, ...rest }) => (
 	</div>
 );
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const { COLORS, SPACING } = useBrand();
 
-	const overridesWithTokens = {};
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/a11y'] = {
-		subComponent: {
-			SkipLink: {
-				styles: styles => ({
-					...styles,
-					':focus': {
-						background: COLORS.primary,
-						color: '#fff',
-					},
-				}),
-				component: SkipLinkWrapper,
-			},
-			VisuallyHidden: {
-				styles: styles => ({
-					...styles,
-					overflow: 'visible',
-					clip: 'auto',
-					outline: '1px dotted red',
-				}),
-			},
+		SkipLink: {
+			styles: styles => ({
+				...styles,
+				':focus': {
+					background: COLORS.primary,
+					color: '#fff',
+				},
+			}),
+			component: SkipLinkWrapper,
+		},
+		VisuallyHidden: {
+			styles: styles => ({
+				...styles,
+				overflow: 'visible',
+				clip: 'auto',
+				outline: '1px dotted red',
+			}),
 		},
 	};
 
 	return (
-		<Playground
-			context={context}
-			brand={overridesWithTokens}
-			scope={{ Intopia, VisuallyHidden, HouseIcon, SkipLink, SPACING }}
-		>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>Screen reader only text </h2>
@@ -112,6 +106,8 @@ export default ({ context, showCode, showDemo }) => {
 					incididunt in est.
 				</p>
 			</div>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

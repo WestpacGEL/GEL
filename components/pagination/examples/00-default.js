@@ -1,19 +1,18 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { Pagination, Page } from '@westpac/pagination';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const content = ['Page One', 'Page Two', 'Page Three'];
 	const [current, setCurrent] = useState(0);
 	const [current2, setCurrent2] = useState(0);
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Declarative</h2>
@@ -194,6 +193,8 @@ export default ({ context, showCode, showDemo }) => {
 					},
 				]}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

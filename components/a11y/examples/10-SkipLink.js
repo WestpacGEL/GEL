@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 import { SkipLink } from '@westpac/a11y';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const { SPACING } = useBrand();
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Screen reader skip link</h2>
@@ -58,6 +57,8 @@ export default ({ context, showCode, showDemo }) => {
 					incididunt in est.
 				</p>
 			</div>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

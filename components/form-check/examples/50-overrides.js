@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const Wrapper = ({ inline, flipped, ...rest }) => <div {...rest} />;
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/form-check'] = {
 		FormCheck: {
 			styles: styles => ({
@@ -33,7 +32,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
 			<h2>Checkbox</h2>
@@ -108,6 +107,8 @@ export default ({ context, showCode, showDemo }) => {
 					},
 				}}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

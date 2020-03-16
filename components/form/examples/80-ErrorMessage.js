@@ -1,22 +1,21 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { FormGroup, ErrorMessage } from '@westpac/form';
-import { TextInput } from '@westpac/text-input';
+import { Text } from '@westpac/text-input';
 import { CarIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia ignore />
 
 			<h2>Default instance (no styling props)</h2>
 			<FormGroup>
 				<ErrorMessage id="example-default-error" />
-				<TextInput name="example-default" aria-describedby="example-default-error" invalid />
+				<Text name="example-default" aria-describedby="example-default-error" invalid />
 			</FormGroup>
 
 			<hr />
@@ -24,7 +23,7 @@ export default ({ context, showCode, showDemo }) => {
 			<h2>Single error message</h2>
 			<FormGroup>
 				<ErrorMessage message="This is an error message" id="example-single-error" />
-				<TextInput name="example-single" aria-describedby="example-single-error" invalid />
+				<Text name="example-single" aria-describedby="example-single-error" invalid />
 			</FormGroup>
 
 			<hr />
@@ -35,7 +34,7 @@ export default ({ context, showCode, showDemo }) => {
 					message={['This is an error message', 'This is another error message']}
 					id="example-multiple-error"
 				/>
-				<TextInput name="example-multiple" aria-describedby="example-multiple-error" invalid />
+				<Text name="example-multiple" aria-describedby="example-multiple-error" invalid />
 			</FormGroup>
 
 			<hr />
@@ -47,12 +46,10 @@ export default ({ context, showCode, showDemo }) => {
 					icon={CarIcon}
 					id="example-custom-icon-error"
 				/>
-				<TextInput
-					name="example-custom-icon"
-					aria-describedby="example-custom-icon-error"
-					invalid
-				/>
+				<Text name="example-custom-icon" aria-describedby="example-custom-icon-error" invalid />
 			</FormGroup>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

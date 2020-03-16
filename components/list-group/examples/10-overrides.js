@@ -1,20 +1,19 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { List, Item as ListItem } from '@westpac/list';
 import { ButtonGroup, Item as BtnGroupItem } from '@westpac/button-group';
 import { ListGroup, Item } from '@westpac/list-group';
 import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
 const styleExample = {
 	marginLeft: '0.75rem',
 };
 
-export default ({ context, showCode, showDemo }) => {
-	const overridesWithTokens = {};
+function Example({ brand }) {
+	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/list-group'] = {
 		ListGroup: {
 			styles: styles => ({
@@ -41,7 +40,7 @@ export default ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens}>
 			<Intopia />
 
 			<ListGroup>
@@ -148,6 +147,8 @@ export default ({ context, showCode, showDemo }) => {
 					</Fragment>,
 				]}
 			/>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

@@ -1,23 +1,25 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
+import { Heading } from '@westpac/heading';
 
-export const Heading = ({
-	open,
-	heading,
-	headingTag: Tag,
-	content,
-	dismissible,
-	position,
-	...rest
-}) => <Tag {...rest} />;
+const PopoverHeading = ({ state: { headingTag }, ...rest }) => (
+	<Heading size={8} tag={headingTag} {...rest} />
+);
 
-export const headingStyles = (_, {}) => {
-	const { COLORS } = useBrand();
+const headingStyles = () => {
+	const { SPACING, COLORS } = useBrand();
 	return {
-		margin: '0 0 0.75rem',
+		marginBottom: SPACING(2),
 		color: COLORS.neutral,
-		fontSize: '1rem',
 		fontWeight: 500,
 	};
+};
+
+const headingAttributes = () => null;
+
+export const defaultHeading = {
+	component: PopoverHeading,
+	styles: headingStyles,
+	attributes: headingAttributes,
 };

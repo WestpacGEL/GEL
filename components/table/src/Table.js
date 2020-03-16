@@ -4,20 +4,21 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Table as TableWrapper, tableStyles } from './overrides/table';
-import { Wrapper, wrapperStyles } from './overrides/wrapper';
+import { defaultWrapper } from './overrides/wrapper';
+import { defaultTable } from './overrides/table';
 import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const TableContext = createContext();
 
 export const useTableContext = () => {
 	const context = useContext(TableContext);
 
 	if (!context) {
-		throw new Error('Table sub-components should be wrapped in <Table>.');
+		throw new Error('Table sub-components should be wrapped in a <Table>.');
 	}
 
 	return context;
@@ -26,6 +27,7 @@ export const useTableContext = () => {
 // ==============================
 // Component
 // ==============================
+
 export const Table = ({ striped, bordered, children, overrides: componentOverrides, ...rest }) => {
 	const context = useContext(TableContext);
 	bordered = (context && context.bordered) || bordered;
@@ -36,16 +38,8 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 	} = useBrand();
 
 	const defaultOverrides = {
-		Wrapper: {
-			styles: wrapperStyles,
-			component: Wrapper,
-			attributes: () => null,
-		},
-		Table: {
-			styles: tableStyles,
-			component: TableWrapper,
-			attributes: () => null,
-		},
+		Wrapper: defaultWrapper,
+		Table: defaultTable,
 	};
 
 	const state = {
@@ -55,36 +49,24 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Wrapper: { component: Wrapper, styles: wrapperStyles, attributes: wrapperAttributes },
+		Table: { component: Table, styles: tableStyles, attributes: tableAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
 		<TableContext.Provider
 			value={{
 				striped,
 				bordered,
+				state,
 			}}
 		>
-			<overrides.Wrapper.component
-				striped={striped}
-				bordered={bordered}
-				{...overrides.Wrapper.attributes(state)}
-				css={overrides.Wrapper.styles(state)}
-			>
-				<overrides.Table.component
-					striped={striped}
-					bordered={bordered}
-					{...rest}
-					{...overrides.Table.attributes(state)}
-					css={overrides.Table.styles(state)}
-				>
+			<Wrapper state={state} {...tableAttributes(state)} css={tableStyles(state)}>
+				<Table {...rest} state={state} {...tableAttributes(state)} css={tableStyles(state)}>
 					{children}
-				</overrides.Table.component>
-			</overrides.Wrapper.component>
+				</Table>
+			</Wrapper>
 		</TableContext.Provider>
 	);
 };
@@ -92,6 +74,7 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 // ==============================
 // Types
 // ==============================
+
 Table.propTypes = {
 	/**
 	 * Striped mode

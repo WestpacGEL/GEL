@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const Label = ({ position, size, data, ...rest }) => <span {...rest} />;
+const Label = ({ state, ...rest }) => <span {...rest} />;
 
-export const labelStyles = (_, { size, position }) => {
+const labelStyles = (_, { size, position }) => {
 	const { COLORS } = useBrand();
 
 	const sizeMap = {
@@ -55,4 +54,12 @@ export const labelStyles = (_, { size, position }) => {
 			borderBottomRightRadius: 0,
 		}),
 	};
+};
+
+const labelAttributes = () => null;
+
+export const defaultLabel = {
+	component: Label,
+	styles: labelStyles,
+	attributes: labelAttributes,
 };

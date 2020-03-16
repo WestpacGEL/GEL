@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { jsx } from '@westpac/core';
+import { GEL, jsx } from '@westpac/core';
 import { ProgressBar } from '@westpac/progress-bar';
 import { StyledButton as Button } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
-import { Playground } from '../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+function Example({ brand }) {
 	const [progress, setProgress] = useState(5);
 
 	function handleProgress(unit) {
@@ -26,7 +25,7 @@ export default ({ context, showCode, showDemo }) => {
 	}
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<GEL brand={brand}>
 			<Intopia />
 
 			<h2>Default</h2>
@@ -46,6 +45,8 @@ export default ({ context, showCode, showDemo }) => {
 				<Button onClick={() => handleProgress(10)}>+10</Button>
 				<Button onClick={() => handleProgress(-10)}>-10</Button>
 			</div>
-		</Playground>
+		</GEL>
 	);
-};
+}
+
+export default Example;

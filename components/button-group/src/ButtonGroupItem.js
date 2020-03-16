@@ -1,19 +1,19 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-import {
-	ButtonGroupItem as ButtonGroupItemWrapper,
-	buttonGroupItemStyles,
-} from './overrides/buttonGroupItem';
-import { ButtonGroupButton, buttonGroupButtonStyles } from './overrides/buttonGroupButton';
+import { defaultButton } from './overrides/button';
+import { defaultItem } from './overrides/item';
+
+import { useButtonGroupContext } from './ButtonGroup';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
+
 export const ButtonGroupItem = ({
 	name,
 	value,
@@ -24,28 +24,23 @@ export const ButtonGroupItem = ({
 	block,
 	disabled,
 	children,
-	overrides: componentOverrides,
+	overrides,
 	...rest
 }) => {
-	const [buttonGroupItemId] = useState(`button-group-item-${useInstanceId()}`);
-
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useButtonGroupContext();
+	const [buttonGroupItemId] = useState(`button-group-item-${useInstanceId()}`);
+
 	const defaultOverrides = {
-		ButtonGroupItem: {
-			styles: buttonGroupItemStyles,
-			component: ButtonGroupItemWrapper,
-			attributes: () => null,
-		},
-		ButtonGroupButton: {
-			styles: buttonGroupButtonStyles,
-			component: ButtonGroupButton,
-			attributes: () => null,
-		},
+		Item: defaultItem,
+		Button: defaultButton,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		name,
@@ -56,32 +51,22 @@ export const ButtonGroupItem = ({
 		size,
 		block,
 		disabled,
-		children,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
+		Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.ButtonGroupItem.component
-			htmlFor={buttonGroupItemId} //a11y: use explicit association
-			name={name}
-			value={value}
-			onChange={onChange}
-			checked={checked}
-			look={look}
-			size={size}
-			block={block}
-			disabled={disabled}
+		<Item
 			{...rest}
-			{...overrides.ButtonGroupItem.attributes(state)}
-			css={overrides.ButtonGroupItem.styles(state)}
+			state={state}
+			{...itemAttributes({ ...state, buttonGroupItemId })}
+			css={itemStyles(state)}
 		>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
@@ -98,35 +83,25 @@ export const ButtonGroupItem = ({
 					opacity: 0,
 				}}
 			/>
-			<overrides.ButtonGroupButton.component
-				name={name}
-				value={value}
-				onChange={onChange}
-				checked={checked}
-				look={look}
-				size={size}
-				block={block}
-				disabled={disabled}
-				{...overrides.ButtonGroupButton.attributes(state)}
-				css={overrides.ButtonGroupButton.styles(state)}
-			>
+			<Button state={state} {...buttonAttributes(state)} css={buttonStyles(state)}>
 				{children}
-			</overrides.ButtonGroupButton.component>
-		</overrides.ButtonGroupItem.component>
+			</Button>
+		</Item>
 	);
 };
 
 // ==============================
 // Types
 // ==============================
+
 ButtonGroupItem.propTypes = {
 	overrides: PropTypes.shape({
-		ButtonGroupItem: PropTypes.shape({
+		Button: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ButtonGroupButton: PropTypes.shape({
+		Item: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
