@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { ProgressRope, Step } from '@westpac/progress-rope';
+import { ProgressRope, Item } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
