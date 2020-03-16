@@ -58,14 +58,16 @@ export const ListGroup = ({ children, overrides: componentOverrides, ...rest }) 
 				},
 			}}
 		>
-			<overrides.ListGroup.component
-				type="unstyled"
-				{...rest}
-				{...overrides.ListGroup.attributes(state)}
-				css={overrides.ListGroup.styles(state)}
-			>
-				{children}
-			</overrides.ListGroup.component>
+			<ListGroupContext.Provider value={{ state }}>
+				<ListGroup
+					{...rest}
+					state={state}
+					{...listGroupAttributes(state)}
+					css={listGroupStyles(state)}
+				>
+					{children}
+				</ListGroup>
+			</ListGroupContext.Provider>
 		</GEL>
 	);
 };

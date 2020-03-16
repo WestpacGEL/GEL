@@ -78,7 +78,6 @@ function Example({ brand }) {
 			<Textarea width={20} placeholder={'W'.repeat(20)} />
 			<br />
 			<Textarea width={30} placeholder={'W'.repeat(30)} />
-			<br />
 		</GEL>
 	);
 }
