@@ -11,10 +11,18 @@ export default {
 			listKey: 'Page',
 		},
 		{
+			listKey: 'Article',
+		},
+		{
+			listKey: 'Image',
+		},
+		{
+			listKey: 'Category',
+		},
+		{
 			listKey: 'User',
 		},
 		{
-			// listKey: 'Setting',
 			label: 'Settings',
 			path: 'settings',
 			component: Settings,

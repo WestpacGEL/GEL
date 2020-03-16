@@ -24,7 +24,7 @@ export const Navigation = ({ components }) => {
 		`,
 		{ fetchPolicy: 'cache-and-network' }
 	);
-
+	console.log({ nav: data });
 	if (error) return <p>There was an error fetching data for the navigation.</p>;
 	if (!data || !data.allSettings) return <p>Loading...</p>;
 	const navigation = data.allSettings[0] ? JSON.parse(data.allSettings[0].value) : [];

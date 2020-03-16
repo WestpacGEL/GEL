@@ -7,7 +7,7 @@ import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { SlateContent } from './blocks-hub';
 import { PageLinks } from './page-links';
 
-export const BlocksDocs = ({ title, blocks }) => {
+export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
 	return (
 		<Container>
@@ -19,7 +19,7 @@ export const BlocksDocs = ({ title, blocks }) => {
 				</Cell>
 			</Grid>
 			{blocks ? (
-				<SlateContent content={blocks} />
+				<SlateContent content={blocks} item={item} />
 			) : (
 				<Grid>
 					<Cell width={10} left={2}>
@@ -27,24 +27,6 @@ export const BlocksDocs = ({ title, blocks }) => {
 					</Cell>
 				</Grid>
 			)}
-		</Container>
-	);
-};
-
-// Intro section
-export const IntroSection = ({ description, pageLinks }) => {
-	const { PACKS, SPACING } = useBrand();
-	return (
-		<Container css={{ marginTop: SPACING(6) }}>
-			<Grid>
-				<Cell width={7}>
-					<p css={{ ...PACKS.lead, marginTop: 0 }}>{description}</p>
-				</Cell>
-				<Cell width={1} />
-				<Cell width={4}>
-					<PageLinks title="Page content" pageLinks={pageLinks} />
-				</Cell>
-			</Grid>
 		</Container>
 	);
 };

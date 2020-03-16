@@ -35,7 +35,7 @@ const Wrapper = props => {
 	const brandParam = router.query.b || '';
 
 	const { brands, brand } = useBrandSwitcher();
-	const { data, error } = useQuery(ALL_PAGES);
+	const { data, error, ...rest } = useQuery(ALL_PAGES);
 
 	const brandNames = Object.keys(brands);
 	const isMatch = brandNames.filter(name => name === brandParam).length > 0;
@@ -45,6 +45,7 @@ const Wrapper = props => {
 		// show brand selector
 		return <BrandPicker />;
 	}
+	console.log({ data, error, rest });
 
 	// Handle async state...
 	if (!data) return 'loading...';

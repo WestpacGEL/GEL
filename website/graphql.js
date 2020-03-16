@@ -25,6 +25,7 @@ export const ALL_PAGES = gql`
 			version
 			description
 			author
+			requires
 		}
 	}
 `;

@@ -1,22 +1,45 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
-import React from 'react'; // Needed for within Keystone
+import React, { useState, useEffect } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
+import { jsx, useBrand } from '@westpac/core';
+import { useMutation } from '@apollo/react-hooks';
+
+import gql from 'graphql-tag';
+
+const UPLOAD_IMAGE = gql`
+	mutation name($data: ImageCreateInput!) {
+		createImage(data: $data) {
+			id
+			image {
+				id
+				filename
+				publicUrl
+				encoding
+				path
+			}
+			caption
+		}
+	}
+`;
 
 export const DoAndAvoid = {
 	editor: ({ value, onChange }) => {
-		const { dos, avoid } = {
-			dos: { text: '', value: '' },
-			avoid: { text: '', value: '' },
-			...(value || {}),
-		};
+		const [doImage, setDoImage] = useState(value.doImage);
+		const [dontImage, setDontImage] = useState(value.dontImage);
+		const [doText, setDoText] = useState(value.doText);
+		const [dontText, setDontText] = useState(value.dontText);
 
-		const update = object =>
+		useEffect(() => {
 			onChange({
-				dos: { ...dos, ...object.dos },
-				avoid: { ...avoid, ...object.avoid },
+				doImage,
+				dontImage,
+				doText,
+				dontText,
 			});
+		}, [doText, doImage, dontImage, dontText]);
+
+		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
 		return (
 			<>
@@ -25,15 +48,13 @@ export const DoAndAvoid = {
 					<FieldInput>
 						<input
 							css={inputStyles}
-							type="text"
+							type="file"
 							id="do-image"
-							value={dos.image}
-							onChange={e => {
-								update({
-									dos: {
-										image: e.target.value,
-									},
+							onChange={async e => {
+								const { data } = await uploadImage({
+									variables: { data: { image: e.target.files[0] } },
 								});
+								setDoImage(data.createImage.image.publicUrl);
 							}}
 						/>
 					</FieldInput>
@@ -45,13 +66,9 @@ export const DoAndAvoid = {
 							css={inputStyles}
 							type="text"
 							id="do-text"
-							value={dos.text}
-							onChange={e => {
-								update({
-									dos: {
-										text: e.target.value,
-									},
-								});
+							value={doText}
+							onChange={async e => {
+								setDoText(e.target.value);
 							}}
 						/>
 					</FieldInput>
@@ -61,15 +78,13 @@ export const DoAndAvoid = {
 					<FieldInput>
 						<input
 							css={inputStyles}
-							type="text"
+							type="file"
 							id="avoid-image"
-							value={avoid.image}
-							onChange={e => {
-								update({
-									avoid: {
-										image: e.target.value,
-									},
+							onChange={async e => {
+								const { data } = await uploadImage({
+									variables: { data: { image: e.target.files[0] } },
 								});
+								setDontImage(data.createImage.image.publicUrl);
 							}}
 						/>
 					</FieldInput>
@@ -81,13 +96,9 @@ export const DoAndAvoid = {
 							css={inputStyles}
 							type="text"
 							id="avoid-text"
-							value={avoid.text}
+							value={dontText}
 							onChange={e => {
-								update({
-									avoid: {
-										text: e.target.value,
-									},
-								});
+								setDontText(e.target.value);
 							}}
 						/>
 					</FieldInput>
@@ -95,34 +106,39 @@ export const DoAndAvoid = {
 			</>
 		);
 	},
-	component: ({ dos, avoid }) => {
+	component: ({ dontImage, dontText, doImage, doText }) => {
+		const { COLORS, SPACING } = useBrand();
+
 		const dodontFigure = {
+			margin: 0,
 			flexBasis: '50%',
 		};
 		const dodontImage = {
 			maxWidth: '100%',
 		};
 
-		const dontText = {
-			color: 'red',
+		const dontStyle = {
+			color: COLORS.danger,
+			padding: SPACING(2),
 		};
 
-		const doText = {
-			color: 'green',
+		const doStyle = {
+			color: COLORS.success,
+			padding: SPACING(2),
 		};
 
 		return (
-			<div css={{ display: 'flex', width: '100%' }}>
-				<figure css={dodontFigure}>
-					<img css={dodontImage} src={props.dos.image} />
+			<div css={{ display: 'flex', width: '100%', margin: `0 -${SPACING(2)}` }}>
+				<figure css={{ ...dodontFigure, paddingRight: SPACING(1) }}>
+					<img css={dodontImage} src={doImage} />
 					<figcaption>
-						<span css={doText}>Do</span> - {props.dos.text}
+						<span css={doStyle}>Do</span> - {doText}
 					</figcaption>
 				</figure>
 				<figure css={dodontFigure}>
-					<img css={dodontImage} src={props.avoid.image} />
+					<img css={dodontImage} src={dontImage} />
 					<figcaption>
-						<span css={dontText}>Avoid</span> - {props.avoid.text}
+						<span css={dontStyle}>Avoid</span> - {dontText}
 					</figcaption>
 				</figure>
 			</div>

@@ -16,6 +16,7 @@ import { ALL_PAGES } from '../../../graphql';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
+	console.log({ comp: data });
 	const router = useRouter();
 	const componentParam = router.query.component;
 	if (error) return 'error!';
@@ -33,7 +34,6 @@ const ComponentWrapper = () => {
 
 const Component = ({ component }) => {
 	const { name, version } = component;
-
 	return (
 		<Fragment>
 			<PageHeader name={name} version={version} />
@@ -74,13 +74,13 @@ const Tabs = ({ component }) => {
 	return (
 		<Tabcordion mode="tabs" overrides={tabOverrides}>
 			<Tab overrides={overrides} text="Design">
-				<DesignTab description={component.description} blocks={component.design} />
+				<DesignTab description={component.description} blocks={component.design} item={component} />
 			</Tab>
 			<Tab overrides={overrides} text="Accessibility">
-				<AccessibilityTab blocks={component.accessibility} />
+				<AccessibilityTab blocks={component.accessibility} item={component} />
 			</Tab>
 			<Tab overrides={overrides} text="Code">
-				<CodeTab blocks={component.code} />
+				<CodeTab blocks={component.code} item={component} />
 			</Tab>
 		</Tabcordion>
 	);

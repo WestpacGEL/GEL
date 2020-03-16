@@ -12,7 +12,7 @@ export const Footer = () => {
 				<FooterIcon icon={SlackIcon} href="//westpac.slack.com" />
 				<FooterIcon icon={GithubIcon} href="//github.com/westpacgel" />
 			</div>
-			<div>top &uarr;</div>
+			<div>Top &uarr;</div>
 		</div>
 	);
 };

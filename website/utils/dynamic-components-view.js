@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Component } from 'react';
-import { useMemo, createContext, useContext, useState } from 'react';
+import { useMemo, createContext, useContext, useState, useEffect } from 'react';
 import { Block } from 'slate';
 import { PencilIcon, CheckIcon } from '@arch-ui/icons';
-import { BlockMenuItem } from '@keystonejs/field-content/block-components';
+import { BlockMenuItem, BlockIcon } from '@keystonejs/field-content/block-components';
 import wbc from '@westpac/wbc';
 import { GEL } from '@westpac/core';
 
@@ -55,7 +55,7 @@ export function Sidebar({ editor }) {
 				<BlockMenuItem
 					key={compName}
 					icon={icon}
-					text={`Insert ${compName.replace(/([A-Z])/g, ' $1')}`}
+					text={`${compName.replace(/([A-Z])/g, ' $1')}`}
 					insertBlock={() => {
 						let block = Block.create({
 							type,
@@ -70,6 +70,24 @@ export function Sidebar({ editor }) {
 				/>
 			))}
 		</div>
+	);
+}
+
+export function Actions({ node }) {
+	const { currentlyEditingBlocks, setCurrentlyEditingBlocks } = useContext(
+		CurrentlyEditingBlocksContext
+	);
+	if (!node) return null;
+	let isEditing = currentlyEditingBlocks[node.key];
+	return (
+		<BlockIcon
+			onClick={() => {
+				setCurrentlyEditingBlocks(x => ({ ...x, [node.key]: !x[node.key] }));
+			}}
+			title={isEditing ? 'Show rendered component' : 'Edit component'}
+		>
+			{isEditing ? <CheckIcon /> : <PencilIcon />}
+		</BlockIcon>
 	);
 }
 
@@ -95,17 +113,17 @@ class ErrorBoundary extends Component {
 	}
 }
 
-export function Node({ node, attributes, editor }) {
+export function Node({ node, attributes, editor, item }) {
 	let { adminMeta, components } = useContext(Context);
 	let [view] = adminMeta.readViews([components]);
-	const { currentlyEditingBlocks, setCurrentlyEditingBlocks } = useContext(
-		CurrentlyEditingBlocksContext
-	);
+	const { currentlyEditingBlocks } = useContext(CurrentlyEditingBlocksContext);
 	let isEditing = currentlyEditingBlocks[node.key];
 	let componentName = node.get('data').get('component');
+
 	if (!view[componentName]) {
 		return (
 			<p
+				{...attributes}
 				css={{ color: 'red' }}
 			>{`Unable to render ${componentName} (the name of this block may have changed)`}</p>
 		);
@@ -113,9 +131,13 @@ export function Node({ node, attributes, editor }) {
 	let Component = view[componentName].component;
 	let Editor = view[componentName].editor;
 
-	if (!Editor) {
-		return <Component {...node.get('data').get('props')} context={'admin'} />;
-	}
+	// useEffect(() => {
+	// 	editor.setNodeByKey(node.key, {
+	// 		data: node.data.set('props', { item, ...node.get('data').get('props') }),
+	// 	});
+	// 	node.data.set('props', { item, ...node.get('data').get('props') });
+	// 	console.log({ p: node.get('data').get('props'), item });
+	// }, []);
 
 	return (
 		<div
@@ -124,54 +146,20 @@ export function Node({ node, attributes, editor }) {
 				// we want to stop stopPropagation here so that focussing works
 				e.stopPropagation();
 			}}
-			css={{
-				position: 'relative',
-				'& #add-edit-button': {
-					opacity: isEditing ? 1 : 0,
-				},
-				'&:hover #add-edit-button': {
-					opacity: 1,
-				},
-			}}
-			contentEditable={false}
 		>
-			<div id="add-edit-button" css={{ opacity: 0, position: 'absolute', top: 0, left: -32 }}>
-				<button
-					type="button"
-					css={{
-						border: 'none',
-						background: '#efefef',
-						color: '#aaa',
-						width: 24,
-						height: 24,
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						marginLeft: 4,
-						':hover': {
-							color: '#888',
-						},
-					}}
-					onClick={() => {
-						setCurrentlyEditingBlocks(x => ({ ...x, [node.key]: !x[node.key] }));
-					}}
-					title={isEditing ? 'Show rendered component' : 'Edit component'}
-				>
-					{isEditing ? <CheckIcon /> : <PencilIcon />}
-				</button>
-			</div>
 			<ErrorBoundary>
-				{isEditing ? (
+				{!!Editor && isEditing ? (
 					<Editor
+						item={item}
 						value={node.get('data').get('props')}
 						onChange={dynamicComponentProps => {
 							editor.setNodeByKey(node.key, {
-								data: node.data.set('props', dynamicComponentProps),
+								data: node.data.set('props', { ...dynamicComponentProps }),
 							});
 						}}
 					/>
 				) : (
-					<Component {...node.get('data').get('props')} context={'admin'} />
+					<Component {...node.get('data').get('props')} context={'admin'} item={item} />
 				)}
 			</ErrorBoundary>
 		</div>

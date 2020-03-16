@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { useState } from 'react'; // Needed for within Keystone
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import * as icons from '@westpac/icon';
 import { FieldContainer, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
@@ -10,6 +10,7 @@ const renderIcons = search => {
 	for (let key in icons) {
 		iconDetails.push({ name: key, icon: icons[key] });
 	}
+	const { COLORS } = useBrand();
 
 	return iconDetails
 		.filter(icon =>
@@ -19,24 +20,25 @@ const renderIcons = search => {
 			const Icon = icon.icon;
 			return (
 				<div
+					key={icon.name}
 					css={{
 						alignItems: 'center',
 						justifyContent: 'center',
 						display: 'flex',
 						flexDirection: 'column',
+						background: 'white',
+						border: `solid 1px ${COLORS.background}`,
+						padding: '20px 10px',
 					}}
 				>
 					<Icon
 						css={{
-							width: 60,
-							height: 60,
-							padding: 15,
-							background: 'white',
-							border: 'solid 1px #eaeaea',
-							borderRadius: 5,
+							width: 40,
+							height: 40,
+							padding: 5,
 						}}
 					/>
-					<code css={{ fontSize: '0.75rem', marginTop: 5 }}>{`<${icon.name}/>`}</code>
+					<code css={{ fontSize: '0.75rem', marginTop: 5 }}>{icon.name}</code>
 				</div>
 			);
 		});
@@ -47,8 +49,10 @@ const Icon = () => {
 	return (
 		<div>
 			<FieldContainer>
-				<FieldInput>
-					<label htmlFor={'filter-icons'}>Filter by name</label>
+				<FieldInput css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<label htmlFor={'filter-icons'} css={{ minWidth: 150 }}>
+						Filter by name
+					</label>
 					<input
 						css={inputStyles}
 						type="text"

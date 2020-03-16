@@ -3,6 +3,7 @@
 import { jsx } from '@emotion/core';
 import { PageTitle } from '@arch-ui/typography';
 
+import { useToasts } from 'react-toast-notifications';
 import gql from 'graphql-tag';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -63,6 +64,8 @@ export default function Index() {
 		`,
 		{ fetchPolicy: 'cache-and-network' }
 	);
+
+	const { addToast } = useToasts();
 
 	let [updateNavigation] = useMutation(gql`
 		mutation updateNavigation($id: ID!, $data: String!) {
@@ -126,7 +129,11 @@ export default function Index() {
 					try {
 						JSON.parse(navigation);
 					} catch (e) {
-						alert('Invalid JSON');
+						console.log(e);
+						addToast('Invalid JSON.', {
+							appearance: 'error',
+							autoDismiss: true,
+						});
 						return null;
 					}
 					if (data.allSettings[0]) {
@@ -138,6 +145,10 @@ export default function Index() {
 							variables: { data: initialData },
 						});
 					}
+					addToast('Changes saved successfully.', {
+						appearance: 'success',
+						autoDismiss: true,
+					});
 				}}
 			>
 				Save

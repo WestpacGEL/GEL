@@ -23,13 +23,13 @@ class ErrorBoundary extends Component {
 	}
 }
 
-export default function DynamicComponents({ data }) {
+export default function DynamicComponents({ data, item }) {
 	let Comp = dynamicComponents[data.component]
 		? dynamicComponents[data.component].component
 		: () => null;
 	return (
 		<ErrorBoundary>
-			<Comp {...data.props} context="website" />
+			<Comp {...data.props} context="website" item={item} />
 		</ErrorBoundary>
 	);
 }

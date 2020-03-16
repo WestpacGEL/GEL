@@ -1,16 +1,11 @@
 import React, { Fragment } from 'react';
 
-import { BlocksDocs, IntroSection, RelatedInformation } from './_utils';
+import { BlocksDocs, RelatedInformation } from './_utils';
 
-export const DesignTab = ({ description, blocks }) => {
+export const DesignTab = ({ blocks, item }) => {
 	return (
 		<Fragment>
-			<IntroSection
-				description={`${description}.
-        This is some accessibility tab placeholder text to make the intro section look nicer, until the content is entered in the system.`}
-				pageLinks={['Item one', 'Item two', 'Item three', 'Item four']}
-			/>
-			<BlocksDocs blocks={blocks} />
+			<BlocksDocs blocks={blocks} item={item} />
 			<RelatedInformation />
 		</Fragment>
 	);

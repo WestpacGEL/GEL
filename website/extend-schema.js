@@ -22,9 +22,8 @@ const getPackageFromRemote = getPackageFromFileSystem;
 // Anything I rip from package becomes a required key. Sticking to standard npm keys.
 const formatPackageData = pkgData => {
 	return pkgData.map(pkg => {
-		const { name, version, description, author, path } = pkg;
-		const cleanName = name.split('/').reverse()[0];
-		return { packageName: name, name: cleanName, version, description, author, path };
+		const cleanName = pkg.name.split('/').reverse()[0];
+		return { ...pkg, packageName: pkg.name, name: cleanName };
 	});
 };
 

@@ -1,8 +1,10 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react';
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 const SeparatorComponent = props => {
+	const { COLORS } = useBrand();
+
 	return (
 		<Fragment>
 			<button
@@ -16,15 +18,17 @@ const SeparatorComponent = props => {
 				}}
 				onClick={e => {
 					e.preventDefault();
-					window.scroll({
+					const el = document.querySelector('main') || window;
+					el.scroll({
 						top: 0,
+						left: 0,
 						behavior: 'smooth',
 					});
 				}}
 			>
-				Scroll To Top
+				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
 			</button>
-			<hr {...props} css={{ border: 'none', borderTop: `solid 1px #eee`, margin: `20px 0` }} />
+			<hr {...props} css={{ border: 'none', borderTop: `solid 1px #999`, margin: `20px 0` }} />
 		</Fragment>
 	);
 };

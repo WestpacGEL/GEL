@@ -2,17 +2,12 @@ import React, { Fragment } from 'react';
 
 import { Badge } from '@westpac/badge';
 
-import { IntroSection, BlocksDocs } from './_utils';
+import { BlocksDocs } from './_utils';
 
-export const AccessibilityTab = ({ blocks }) => {
+export const AccessibilityTab = ({ blocks, item }) => {
 	return (
 		<Fragment>
-			<IntroSection
-				description="This is some accessibility tab placeholder text to make the intro section look nicer,
-						until the content is entered in the system."
-				pageLinks={['Item A', 'Item B', 'Item C']}
-			/>
-			<BlocksDocs blocks={blocks} />
+			<BlocksDocs blocks={blocks} item={item} />
 		</Fragment>
 	);
 };

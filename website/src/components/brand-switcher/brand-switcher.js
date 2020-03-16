@@ -9,7 +9,7 @@ import { BOMLogo, BSALogo, BTFGLogo, STGLogo, WBCLogo, WBGLogo } from '@westpac/
 import { useBrandSwitcher } from '../providers/brand-switcher';
 
 export const BrandSwitcher = () => {
-	const brandName = useRouter().query.brand || '';
+	const brandName = useRouter().query.b || '';
 	const { brands, brand, setBrand } = useBrandSwitcher();
 	const { SPACING, COLORS } = useBrand();
 
@@ -27,7 +27,7 @@ export const BrandSwitcher = () => {
 	return (
 		<Fragment>
 			<div css={{ height: 35 }}>
-				<Link href={`/?brand=${brandName}`}>
+				<Link href={`/?b=${brandName}`}>
 					<a>
 						<Logo />
 					</a>

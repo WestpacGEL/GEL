@@ -35,12 +35,14 @@ const labelFromSlug = slug => {
  *
  * @return {array}            - An array of objects with information about the example file
  */
-const findExampleFiles = (component, parent = '') => {
-	const exampleFolder = path.resolve(`${__dirname}/../../components/${component}/examples`);
+const EXAMPLES_FOLDER = 'demos';
 
-	if (fs.existsSync(exampleFolder)) {
+const findExampleFiles = (component, parent = '') => {
+	const exampleDir = path.resolve(`${__dirname}/../../components/${component}/${EXAMPLES_FOLDER}`);
+
+	if (fs.existsSync(exampleDir)) {
 		const files = fs
-			.readdirSync(exampleFolder)
+			.readdirSync(exampleDir)
 			.filter(file => !file.startsWith('.') && !file.startsWith('_') && file.endsWith('.js'));
 
 		const { version } = require(path.normalize(

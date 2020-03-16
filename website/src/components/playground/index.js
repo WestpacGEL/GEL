@@ -33,8 +33,8 @@ const Button = ({ onClick, children }) => {
 		</button>
 	);
 };
-const UnSafeExampleBlock = ({ code, demo, error }) => {
-	const [showCode, setCode] = useState(true);
+const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
+	const [codeIsOpen, setCodeOpen] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const { COLORS, SPACING } = useBrand();
 	return (
@@ -53,27 +53,30 @@ const UnSafeExampleBlock = ({ code, demo, error }) => {
 					}}
 				>
 					<LivePreview />
-					{error ? <LiveError /> : null}
+					{showError ? <LiveError /> : null}
 				</div>
 				<div css={{ display: 'flex', justifyContent: 'flex-end' }}>
-					{demo ? (
-						<Button
-							onClick={() => {
-								setIsModalOpen(true);
-							}}
-						>
-							<span css={{ marginRight: SPACING(1) }}>Demo</span>{' '}
-							<NewWindowIcon size="small" color={COLORS.primary} />
-						</Button>
+					{showDemo ? (
+						<form action={'/demo/'} target="_blank" method="GET">
+							<input type="hidden" name="code" value={code} />
+							<Button
+								onClick={() => {
+									setIsModalOpen(true);
+								}}
+							>
+								<span css={{ marginRight: SPACING(1) }}>Demo</span>{' '}
+								<NewWindowIcon size="small" color={COLORS.primary} />
+							</Button>
+						</form>
 					) : null}
-					{code ? (
+					{showCode ? (
 						<Button
 							onClick={() => {
-								setCode(!showCode);
+								setCodeOpen(!codeIsOpen);
 							}}
 						>
 							<span css={{ marginRight: SPACING(1) }}>Code</span>{' '}
-							{showCode ? (
+							{codeIsOpen ? (
 								<ExpandMoreIcon size="small" color={COLORS.primary} />
 							) : (
 								<ExpandLessIcon size="small" color={COLORS.primary} />
@@ -82,7 +85,7 @@ const UnSafeExampleBlock = ({ code, demo, error }) => {
 					) : null}
 				</div>
 			</Well>
-			{code && showCode ? <LiveEditor style={{ fontSize: '1rem' }} /> : null}
+			{showCode && codeIsOpen ? <LiveEditor style={{ fontSize: '1rem' }} /> : null}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
 				<Body>
 					<LivePreview />
@@ -122,7 +125,12 @@ export const Playground = ({
 		return (
 			<GEL brand={brand}>
 				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-					<ExampleBlock code={showCode} demo={showDemo} error={showErrors} />
+					<ExampleBlock
+						code={code}
+						showCode={showCode}
+						showDemo={showDemo}
+						showError={showErrors}
+					/>
 					{/* TODO: make code and demo button options passed through editor */}
 				</LiveProvider>
 			</GEL>
