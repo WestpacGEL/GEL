@@ -2,50 +2,69 @@
 
 The design system for Westpac GEL
 
-## Internal docs
+## Builds
+
+There are three different builds that exist in this repo:
+
+1. [Component build](#component-build)
+1. [Docs build](#docs-build)
+1. [Website build](#website-build)
+
+### Component build
+
+This build is running all the components examples directly and nothing else.
+It's for development of a component and for testing it.
+
+You run it via:
+
+```sh
+yarn dev [component name]
+```
+
+### Docs build
+
+This build is for the developer documentation site that puts all the examples of all components together with a navigation.
+It's for the docs that are published to below:
 
 | Purpose    | branch    | url                                    |
 | ---------- | --------- | -------------------------------------- |
 | Production | `master`  | https://westpacgel.netlify.com         |
 | Staging    | `develop` | https://westpacgel-staging.netlify.com |
 
-## Install and start running locally
-
-Install dependencies
+You run it via:
 
 ```sh
-yarn
+yarn docs
 ```
 
-and then run the build:
+### Website build
+
+This build is for the website and keystone process.
+It's for the public documentation site and the admin UI.
+
+You run it via:
 
 ```sh
-yarn build
-```
-
-to then be able to run a component via:
-
-```sh
-yarn start button
+yarn start
 ```
 
 ## npm scripts
 
 ### root level
 
-| script                      | description                                       |
-| --------------------------- | ------------------------------------------------- |
-| `yarn`                      | install all dependencies                          |
-| `yarn nuke`                 | removes all `node_modules` for fresh start        |
-| `yarn fresh`                | removes all `node_modules` and reinstalls them    |
-| `yarn build`                | build all dist folders                            |
-| `yarn dev`                  | build all dist for local consumption              |
-| `yarn docs`                 | build docs for all components and open server     |
-| `yarn docs:build`           | build docs for all components to `./docs/` folder |
-| `yarn new [package-name]`   | create a specified empty component                |
-| `yarn start [package-name]` | start the example server of a component           |
-| `yarn test`                 | runs test                                         |
-| `yarn format`               | runs prettier to format all code                  |
+| script                    | description                                       |
+| ------------------------- | ------------------------------------------------- |
+| `yarn`                    | install all dependencies                          |
+| `yarn nuke`               | removes all `node_modules` for fresh start        |
+| `yarn fresh`              | removes all `node_modules` and reinstalls them    |
+| `yarn build`              | build all dist folders                            |
+| `yarn build:dev`          | build all dist for local consumption              |
+| `yarn docs`               | build docs for all components and open server     |
+| `yarn docs:build`         | build docs for all components to `./docs/` folder |
+| `yarn new [package-name]` | create a specified empty component                |
+| `yarn dev [package-name]` | start the example server of a component           |
+| `yarn test`               | runs test                                         |
+| `yarn format`             | runs prettier to format all code                  |
 
 ### component level
 

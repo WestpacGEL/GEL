@@ -2,7 +2,7 @@
 	"name": "@westpac/body",
 	"version": "1.0.0",
 	"description": "Body component in charge of body text",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/body",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -37,6 +37,6 @@
 		"@westpac/text-input": "*",
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }

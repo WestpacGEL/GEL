@@ -2,7 +2,7 @@
 	"name": "@westpac/form-check",
 	"version": "1.0.0",
 	"description": "The form check component.",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/form-check",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
@@ -27,6 +27,6 @@
 		"@westpac/alert": "*",
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }

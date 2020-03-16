@@ -2,7 +2,7 @@
 	"name": "@westpac/wbc",
 	"version": "1.0.0",
 	"description": "WBC brand component for the Westpac GEL design language",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/brands/WBC",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

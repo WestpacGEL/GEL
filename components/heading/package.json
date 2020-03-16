@@ -2,7 +2,7 @@
 	"name": "@westpac/heading",
 	"version": "1.0.0",
 	"description": "Headlines for your page needs",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/heading",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
@@ -26,6 +26,6 @@
 	"devDependencies": {
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
-		"start-server-and-test": "^1.10.8"
+		"start-server-and-test": "^1.10.10"
 	}
 }
