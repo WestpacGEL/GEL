@@ -28,7 +28,7 @@
 	"main": "dist/hooks.cjs.js",
 	"module": "dist/hooks.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.6.2",
+		"@babel/runtime": "^7.8.4",
 		"@westpac/core": "^1.0.0",
 		"prop-types": "^15.7.2",
 		"resize-observer-polyfill": "^1.5.1"
