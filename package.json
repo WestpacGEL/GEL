@@ -27,7 +27,7 @@
 		"nuke:node_modules": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
 		"nuke:lock": "rm yarn.lock && rm yarn-error.log ; true",
 		"build": "preconstruct build",
-		"dev": "preconstruct dev",
+		"build:dev": "preconstruct dev",
 		"fresh": "yarn nuke && yarn",
 		"new": "node ./helpers/cli.js",
 		"format": "prettier --write \"**/*.{js,md,mdx,json}\"",
