@@ -23,6 +23,7 @@ const articleSchema = {
 			blocks: BLOCKS_CONFIG,
 		},
 		categories: { type: Relationship, ref: 'Category', many: true },
+		relatedInfo: { type: Content, blocks: [Content.blocks.link, Content.blocks.heading] },
 	},
 };
 
