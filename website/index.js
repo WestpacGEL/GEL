@@ -15,17 +15,8 @@ const { categorySchema } = require('./schema/category');
 
 const keystone = new Keystone({
 	name: 'GEL3 Website',
-	adapter: new KnexAdapter({ dropDatabase: true }),
+	adapter: new KnexAdapter(),
 });
-
-const apps = [
-	new GraphQLApp(),
-	new AdminUIApp({
-		adminPath: '/admin',
-		hooks: require.resolve('./admin'),
-	}),
-	new NextApp({ dir: 'src' }),
-];
 
 const options = resolveComponents();
 
@@ -39,15 +30,16 @@ keystone.createList('Setting', settingSchema);
 keystone.createList('Image', imageSchema);
 keystone.createList('Article', articleSchema);
 
+const apps = [
+	new GraphQLApp(),
+	new AdminUIApp({
+		adminPath: '/admin',
+		hooks: require.resolve('./admin'),
+	}),
+	new NextApp({ dir: 'src' }),
+];
+
 module.exports = {
 	keystone,
 	apps,
 };
-
-keystone
-	.prepare({ apps, dev: process.env.NODE_ENV !== 'production' })
-	.then(async ({ middlewares }) => {
-		await keystone.connect();
-		const app = express();
-		app.use(middlewares).listen(3000);
-	});

@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 import Select from '@arch-ui/select';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import preval from 'preval.macro';
-import importCodeExamples from './babel-dynamic-code-block-import.macro';
+import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
 
 let data = preval`
 const DEMO_FOLDER = 'demos';

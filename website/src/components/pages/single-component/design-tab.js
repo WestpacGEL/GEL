@@ -6,7 +6,7 @@ export const DesignTab = ({ blocks, item }) => {
 	return (
 		<Fragment>
 			<BlocksDocs blocks={blocks} item={item} />
-			<RelatedInformation />
+			<RelatedInformation item={item} />
 		</Fragment>
 	);
 };

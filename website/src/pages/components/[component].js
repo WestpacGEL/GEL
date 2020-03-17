@@ -16,7 +16,6 @@ import { ALL_PAGES } from '../../../graphql';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
-	console.log({ comp: data });
 	const router = useRouter();
 	const componentParam = router.query.component;
 	if (error) return 'error!';

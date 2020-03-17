@@ -3,9 +3,9 @@ import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
-
+import { useQuery } from '@apollo/react-hooks';
+import { PAGES_WHERE } from '../../../../graphql';
 import { SlateContent } from './blocks-hub';
-import { PageLinks } from './page-links';
 
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
@@ -33,6 +33,9 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 
 export const RelatedInformation = () => {
 	const { COLORS, SPACING } = useBrand();
+	let { data, error } = useQuery(PAGES_WHERE({ categories_some: { id_in: ['1'] } }), {
+		fetchPolicy: 'cache-and-network',
+	});
 	return (
 		<div
 			css={{

@@ -26,7 +26,7 @@
 		"nuke": "yarn nuke:lock && yarn nuke:node_modules",
 		"nuke:node_modules": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
 		"nuke:lock": "rm yarn.lock && rm yarn-error.log ; true",
-		"build": "preconstruct build",
+		"build": "preconstruct build && build-field-types build",
 		"build:dev": "preconstruct dev",
 		"fresh": "yarn nuke && yarn",
 		"new": "node ./helpers/cli.js",
@@ -39,15 +39,28 @@
 		"dep:test": "manypkg check && preconstruct build || preconstruct dev",
 		"dep:fix": "manypkg fix",
 		"propTypes": "node helpers/propTypes.js",
-		"postinstall": "yarn dep:test && preconstruct dev && yarn propTypes",
+		"postinstall": "yarn dep:test && preconstruct dev && yarn propTypes && build-field-types dev",
 		"publish-packages": "yarn build && yarn propTypes && yarn changeset publish",
 		"version-packages": "yarn changeset version"
 	},
 	"workspaces": [
 		"brands/*",
 		"components/*",
-		"website"
+		"website",
+		"website/field-content"
 	],
+	"field-types": {
+		"packages": [
+			"website/field-content"
+		]
+	},
+	"preconstruct": {
+		"packages": [
+			"website/field-content",
+			"components/*",
+			"brands/*"
+		]
+	},
 	"jest": {
 		"testRegex": "\\.spec.js$",
 		"collectCoverageFrom": [
@@ -110,11 +123,5 @@
 	},
 	"resolutions": {
 		"ansi-styles": "^3.2.0"
-	},
-	"preconstruct": {
-		"packages": [
-			"components/*",
-			"brands/*"
-		]
 	}
 }

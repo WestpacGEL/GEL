@@ -45,8 +45,6 @@ const Wrapper = props => {
 		// show brand selector
 		return <BrandPicker />;
 	}
-	console.log({ data, error, rest });
-
 	// Handle async state...
 	if (!data) return 'loading...';
 	if (error) return 'error!!';

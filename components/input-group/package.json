@@ -33,7 +33,7 @@
 	"main": "dist/input-group.cjs.js",
 	"module": "dist/input-group.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.6.2",
+		"@babel/runtime": "^7.8.4",
 		"@westpac/button": "^1.0.0",
 		"@westpac/core": "^1.0.0",
 		"@westpac/text-input": "^1.0.0",

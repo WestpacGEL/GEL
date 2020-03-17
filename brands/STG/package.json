@@ -21,6 +21,6 @@
 	"main": "dist/stg.cjs.js",
 	"module": "dist/stg.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.6.2"
+		"@babel/runtime": "^7.8.4"
 	}
 }
