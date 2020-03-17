@@ -11,9 +11,6 @@ export default {
 			listKey: 'Page',
 		},
 		{
-			listKey: 'Article',
-		},
-		{
 			listKey: 'Image',
 		},
 		{

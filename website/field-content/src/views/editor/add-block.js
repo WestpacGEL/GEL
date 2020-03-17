@@ -79,7 +79,7 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 
 	const InsertBlock = ({ node }) => {
 		if (!node) return null;
-		if (!Object.keys(blocks).filter(b => b.Sidebar).length) return null;
+		if (!Object.keys(blocks).filter(key => blocks[key].Sidebar).length) return null;
 		if (node.text !== '') return null;
 		if (node.type !== defaultBlockType) return null;
 		return (
