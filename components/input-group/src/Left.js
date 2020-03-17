@@ -40,3 +40,5 @@ Left.propTypes = {
 Left.defaultProps = {
 	size: 'medium',
 };
+
+Left.displayName = 'Left';
