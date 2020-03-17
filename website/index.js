@@ -9,7 +9,7 @@ const { resolveComponents } = require('./extend-schema');
 const { getComponentSchema } = require('./schema/component');
 const { userSchema } = require('./schema/user');
 const { imageSchema } = require('./schema/image');
-const { articleSchema } = require('./schema/article');
+const { articleShema } = require('./schema/article');
 const { settingSchema } = require('./schema/setting');
 const { categorySchema } = require('./schema/category');
 
@@ -28,7 +28,6 @@ keystone.createList('Category', categorySchema);
 keystone.createList('User', userSchema);
 keystone.createList('Setting', settingSchema);
 keystone.createList('Image', imageSchema);
-keystone.createList('Article', articleSchema);
 
 const apps = [
 	new GraphQLApp(),
