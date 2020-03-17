@@ -10,17 +10,17 @@ const components = fs.readdirSync(path.normalize(`${__dirname}/../components`), 
 const propTypes = {};
 let i = 0;
 
-for (const comp of components) {
+for (const component of components) {
 	i++;
 	process.stdout.write(`\x1b[2K\x1b[0G${i}/${components.length}`);
 
-	if (comp.isDirectory()) {
-		const mod = require(`@westpac/${comp.name}`);
-		propTypes[comp.name] = {};
-		for (const key in mod) {
-			const thing = mod[key];
-			if (thing && thing.propTypes) {
-				propTypes[comp.name][key] = parsePropTypes(thing);
+	if (component.isDirectory()) {
+		const requiredComponent = require(`@westpac/${component.name}`);
+		propTypes[component.name] = {};
+		for (const key in requiredComponent) {
+			const exportedComponent = requiredComponent[key];
+			if (exportedComponent && exportedComponent.propTypes) {
+				propTypes[component.name][key] = parsePropTypes(exportedComponent);
 			}
 		}
 	}
