@@ -53,6 +53,7 @@ function formatValue(value) {
 function Indent({ level }) {
 	return <span css={{ margin: `0 0.5em 0 ${3 * (level - 1)}em` }}>└──</span>;
 }
+
 /**
  * A row component to render each row of the table
  *
