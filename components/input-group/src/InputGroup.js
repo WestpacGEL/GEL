@@ -116,7 +116,7 @@ export const InputGroup = ({
 		}
 	} else {
 		Children.map(children, child => {
-			if (child.type.name === 'Left' && !textFieldAdded) {
+			if (child.type.displayName === 'Left' && !textFieldAdded) {
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'left' })
 				);
@@ -130,7 +130,7 @@ export const InputGroup = ({
 					/>
 				);
 				textFieldAdded = true;
-			} else if (child.type.name === 'Right' && !textFieldAdded) {
+			} else if (child.type.displayName === 'Right' && !textFieldAdded) {
 				childrenWithProps.push(
 					<Text
 						key="textinput2"
@@ -144,7 +144,7 @@ export const InputGroup = ({
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'right' })
 				);
 				textFieldAdded = true;
-			} else if (child.type.name === 'Right' || child.type.name === 'Left') {
+			} else if (child.type.displayName === 'Right' || child.type.displayName === 'Left') {
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'other' })
 				);
