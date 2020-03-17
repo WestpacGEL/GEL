@@ -101,6 +101,7 @@ function PTableRow({ name, data, level = 0 }) {
 		</Fragment>
 	);
 }
+
 /**
  * The props table component
  *
