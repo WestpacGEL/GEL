@@ -76,7 +76,11 @@ export const RelatedInformation = ({ item }) => {
 									{data.allPages
 										.filter(d => d.id !== item.id)
 										.map(d => {
-											return <ComponentLink key={d.id}>{d.pageTitle}</ComponentLink>;
+											return (
+												<ComponentLink key={d.id} link={`components/${d.name}`}>
+													{d.pageTitle}
+												</ComponentLink>
+											);
 										})}
 								</ul>
 							</Cell>
