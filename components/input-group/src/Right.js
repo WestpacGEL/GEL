@@ -41,3 +41,5 @@ Right.propTypes = {
 Right.defaultProps = {
 	size: 'medium',
 };
+
+Right.displayName = 'Right';
