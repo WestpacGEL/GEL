@@ -44,6 +44,7 @@ function formatValue(value) {
 		return value;
 	}
 }
+
 /**
  * A small helper function to show indentation
  *
