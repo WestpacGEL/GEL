@@ -98,15 +98,16 @@ export const BrandSwitcher = () => {
 					flexDirection: 'row',
 					justifyContent: 'space-between',
 					borderBottom: `1px solid ${COLORS.border}`,
-					marginBottom: '1rem',
+					marginTop: SPACING(2),
+					marginBottom: SPACING(2),
 					alignItems: 'base',
 					cursor: 'pointer',
 				}}
 			>
-				<div css={{ padding: '0.75rem', alignSelf: 'flex-end' }}>Change brand</div>
+				<div css={{ padding: SPACING(2), alignSelf: 'flex-end' }}>Change brand</div>
 				<div
 					css={{
-						padding: '0.75rem',
+						padding: SPACING(2),
 						borderLeft: `1px solid ${COLORS.border}`,
 						alignSelf: 'flex-end',
 					}}
@@ -163,12 +164,13 @@ export const BrandSwitcher = () => {
 										cursor: 'pointer',
 										flex: 1,
 										fontWeight: 500,
-										padding: '0.75rem',
+										padding: SPACING(2),
 										textAlign: 'center',
 										backgroundColor: isChecked ? '#eee' : 'none',
 										':hover': {
 											backgroundColor: COLORS.focus,
 										},
+										zIndex: isChecked ? 200 : 201,
 									}}
 								>
 									<div
