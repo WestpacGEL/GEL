@@ -9,9 +9,7 @@ import { Navigation } from '.';
 export const Sidebar = ({ components }) => {
 	return (
 		<Fragment>
-			<PaddingContainer>
-				<BrandSwitcher />
-			</PaddingContainer>
+			<BrandSwitcher />
 			<Separator />
 			<PaddingContainer>
 				<Navigation components={components} />
@@ -27,7 +25,5 @@ const PaddingContainer = props => {
 
 const Separator = () => {
 	const { COLORS, SPACING } = useBrand();
-	return (
-		<hr css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, marginTop: SPACING(3) }} />
-	);
+	return <hr css={{ border: 'none', marginTop: SPACING(3) }} />;
 };
