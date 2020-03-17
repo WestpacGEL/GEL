@@ -13,16 +13,34 @@ export const BrandSwitcher = () => {
 	const { brands, brand, setBrand } = useBrandSwitcher();
 	const { SPACING, COLORS } = useBrand();
 
-	const logosMap = {
-		BOM: BOMLogo,
-		BSA: BSALogo,
-		BTFG: BTFGLogo,
-		STG: STGLogo,
-		WBC: WBCLogo,
-		WBG: WBGLogo,
+	const brandsMap = {
+		BOM: {
+			logo: BOMLogo,
+			label: '',
+		},
+		BSA: {
+			logo: BSALogo,
+			label: '',
+		},
+		BTFG: {
+			logo: BTFGLogo,
+			label: '',
+		},
+		STG: {
+			logo: STGLogo,
+			label: '',
+		},
+		WBC: {
+			logo: WBCLogo,
+			label: '',
+		},
+		WBG: {
+			logo: WBGLogo,
+			label: '',
+		},
 	};
 
-	const Logo = logosMap[brand];
+	const Logo = brandsMap[brand].logo;
 
 	return (
 		<Fragment>
