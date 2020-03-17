@@ -90,7 +90,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	})[0];
 };
 
-const selectAttributes = () => {};
+const selectAttributes = () => null;
 
 export const defaultSelect = {
 	component: Select,
