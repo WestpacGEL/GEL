@@ -27,6 +27,10 @@ requires
 categories {
 	id
 }
+relatedInfo {
+	id
+	document
+}
 `;
 
 export const ALL_PAGES = gql`
@@ -38,9 +42,9 @@ export const ALL_PAGES = gql`
 `;
 
 // { categories_some: { id_in: ["..."] } }
-export const PAGES_WHERE = where => gql`
+export const RELATED_INFORMATION = where => gql`
 	query AllPages {
-		allPages({where}) {
+		allPages(where: ${where}) {
 			${pageFragment}
 		}
 	}

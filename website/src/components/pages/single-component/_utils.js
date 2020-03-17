@@ -4,7 +4,7 @@ import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { useQuery } from '@apollo/react-hooks';
-import { PAGES_WHERE } from '../../../../graphql';
+import { RELATED_INFORMATION } from '../../../../graphql';
 import { SlateContent } from './blocks-hub';
 
 export const BlocksDocs = ({ title, blocks, item }) => {
@@ -31,11 +31,16 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 	);
 };
 
-export const RelatedInformation = () => {
+export const RelatedInformation = ({ item }) => {
 	const { COLORS, SPACING } = useBrand();
-	let { data, error } = useQuery(PAGES_WHERE({ categories_some: { id_in: ['1'] } }), {
+
+	const { categories } = item;
+	if (!categories || !categories.length) return null;
+	const categoryWhere = `{ categories_some: { id_in: [${categories.map(c => c.id).join(', ')}] } }`;
+	let { data, error } = useQuery(RELATED_INFORMATION(categoryWhere), {
 		fetchPolicy: 'cache-and-network',
 	});
+	if (!data) return '';
 	return (
 		<div
 			css={{
@@ -62,31 +67,17 @@ export const RelatedInformation = () => {
 						<Grid columns={10}>
 							<Cell width={5}>
 								<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
-								<TextBlock title="Iconography">
-									<p css={{ marginTop: 0 }}>
-										How to use icons, when and when not to use icons.{' '}
-										<a href="#" css={{ color: COLORS.primary }}>
-											Read about our UI icon library
-										</a>
-									</p>
-								</TextBlock>
-
-								<TextBlock title="Sketch UI Kit">
-									<p css={{ marginTop: 0 }}>
-										Design assets to help you create high quality consistent digital experiences.{' '}
-										<a href="#" css={{ color: COLORS.primary }}>
-											Read about the Sketch UI Kit
-										</a>
-									</p>
-								</TextBlock>
+								<SlateContent content={item.relatedInfo} item={item} />
 							</Cell>
 							<Cell width={1} />
 							<Cell width={4}>
 								<IconTitle icon={CubeIcon}>Components</IconTitle>
 								<ul css={{ margin: 0, padding: 0 }}>
-									<ComponentLink>Button drop downs</ComponentLink>
-									<ComponentLink>Button groups</ComponentLink>
-									<ComponentLink>Icons</ComponentLink>
+									{data.allPages
+										.filter(d => d.id !== item.id)
+										.map(d => {
+											return <ComponentLink key={d.id}>{d.pageTitle}</ComponentLink>;
+										})}
 								</ul>
 							</Cell>
 						</Grid>
@@ -97,19 +88,7 @@ export const RelatedInformation = () => {
 	);
 };
 
-const TextBlock = ({ title, children }) => {
-	const { SPACING } = useBrand();
-	return (
-		<div css={{ marginTop: SPACING(4) }}>
-			<Heading tag="h4" size={9}>
-				{title}
-			</Heading>
-			{children}
-		</div>
-	);
-};
-
-const ComponentLink = ({ children }) => {
+const ComponentLink = ({ children, link }) => {
 	const { COLORS, SPACING } = useBrand();
 	return (
 		<li
@@ -119,10 +98,13 @@ const ComponentLink = ({ children }) => {
 				borderBottom: `solid 1px ${COLORS.border}`,
 			}}
 		>
-			<div css={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+			<a
+				css={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+				href={link}
+			>
 				<span>{children}</span>
 				<ArrowRightIcon color={COLORS.primary} />
-			</div>
+			</a>
 		</li>
 	);
 };
