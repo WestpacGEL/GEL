@@ -29,6 +29,7 @@ const Code = ({ children, ...rest }) => {
 		</pre>
 	);
 };
+
 /**
  * A small helper function to display values
  *
