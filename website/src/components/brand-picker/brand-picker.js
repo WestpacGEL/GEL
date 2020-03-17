@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { useState } from 'react';
+import { Heading } from '@westpac/heading';
 import { jsx } from '@westpac/core';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 
@@ -11,18 +12,20 @@ export const BrandPicker = () => {
 		<div
 			css={{
 				padding: '100px',
+				textAlign: 'center',
 				fontFamily:
 					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
 			}}
 		>
-			<p as="h1" css={{ textAlign: 'center', fontSize: '20px', color: 'rgb(45, 55, 62)' }}>
+			<h1>Select your default brand</h1>
+			<p css={{ fontSize: '20px', color: 'rgb(45, 55, 62)' }}>
 				Once you've made this selection you can change it at any time.
 			</p>
 			<ul
 				css={{
 					margin: '0 auto',
 					padding: '40px 20px',
-					maxWidth: '1160px',
+					maxWidth: '1080px',
 					background: '#e7ecee',
 					listStyle: 'none',
 					display: 'flex',
@@ -35,10 +38,14 @@ export const BrandPicker = () => {
 						<li
 							key={i}
 							css={{
-								flexBasis: '250px',
+								flexBasis: '100%',
+								'@media min-width(600px)': {
+									flexBasis: '100%',
+									maxWidth: 250,
+								},
+								margin: 10,
 								background: 'white',
 								position: 'relative',
-								margin: '20px',
 								':hover': {
 									outline: 'solid 1px rgba(0,0,0,0.2)',
 								},

@@ -168,7 +168,7 @@ export const BrandSwitcher = () => {
 										textAlign: 'center',
 										backgroundColor: isChecked ? '#eee' : 'none',
 										':hover': {
-											backgroundColor: COLORS.focus,
+											backgroundColor: COLORS.light,
 										},
 										zIndex: isChecked ? 200 : 201,
 									}}
