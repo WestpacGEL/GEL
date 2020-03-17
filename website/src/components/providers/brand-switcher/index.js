@@ -12,12 +12,12 @@ import wbgBrand from '@westpac/wbg';
 // ==============================
 
 const BRANDS = {
+	WBC: { ...wbcBrand, name: 'Westpac' },
+	STG: { ...stgBrand, name: 'St.George' },
 	BOM: { ...bomBrand, name: 'Bank of Melbourne' },
 	BSA: { ...bsaBrand, name: 'Bank of South Australia' },
-	BTFG: { ...btfgBrand, name: 'BT Financial Group' },
-	STG: { ...stgBrand, name: 'St.George' },
-	WBC: { ...wbcBrand, name: 'Westpac' },
 	WBG: { ...wbgBrand, name: 'Westpac Group' },
+	BTFG: { ...btfgBrand, name: 'BT Financial Group' },
 };
 
 const BrandSwitcherContext = createContext();

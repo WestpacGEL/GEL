@@ -2,13 +2,22 @@
 import { useState } from 'react';
 import { jsx } from '@westpac/core';
 import { useBrandSwitcher } from '../providers/brand-switcher';
+
 export const BrandPicker = () => {
 	const { brands } = useBrandSwitcher();
 	const [hovered, setHovered] = useState(false);
 
 	return (
-		<div css={{ padding: '100px' }}>
-			<h1 css={{ textAlign: 'center' }}>Select your default brand</h1>
+		<div
+			css={{
+				padding: '100px',
+				fontFamily:
+					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+			}}
+		>
+			<p as="h1" css={{ textAlign: 'center', fontSize: '20px', color: 'rgb(45, 55, 62)' }}>
+				Once you've made this selection you can change it at any time.
+			</p>
 			<ul
 				css={{
 					margin: '0 auto',
@@ -54,7 +63,10 @@ export const BrandPicker = () => {
 							}}
 						>
 							{/* This is not a Next Link as I want the server to re-render and set a cookie */}
-							<a href={`/?b=${brandName}`}>
+							<a
+								href={`/?b=${brandName}`}
+								css={{ textDecoration: 'unset', color: 'rgb(0, 116, 196)' }}
+							>
 								<img
 									css={{ maxWidth: '100%', margin: 0, display: 'block' }}
 									src={`/images/${brandName.toLowerCase()}-gui.png`}
