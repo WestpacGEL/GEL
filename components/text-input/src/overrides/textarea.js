@@ -70,7 +70,7 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	})[0];
 };
 
-const textareaAttributes = () => {};
+const textareaAttributes = () => null;
 
 export const defaultTextarea = {
 	component: Textarea,
