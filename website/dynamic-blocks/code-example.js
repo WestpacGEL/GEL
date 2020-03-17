@@ -54,7 +54,7 @@ function ShowCodeBlock({ showCode, showDemo, loadCodeBlock, context }) {
 	if (!CodeBlock) {
 		throw promise;
 	}
-	return <CodeBlock context={context} showCode={showCode} showDemo={showDemo} />;
+	return <CodeBlock context={context} showCode={showCode} showDemo={false} />;
 }
 
 export const CodeExample = {
@@ -62,7 +62,7 @@ export const CodeExample = {
 		const currentValue = {
 			codeExample: null,
 			showCode: true,
-			showDemo: true,
+			showDemo: false,
 			...(value || {}),
 		};
 
@@ -94,7 +94,7 @@ export const CodeExample = {
 						/>
 						<span>Show code</span>
 					</label>
-					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+					{/* <label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
 						<CheckboxPrimitive
 							checked={currentValue.showDemo}
 							tabIndex="0"
@@ -103,12 +103,12 @@ export const CodeExample = {
 							}}
 						/>
 						<span>Show demo</span>
-					</label>
+					</label> */}
 				</div>
 			</Fragment>
 		);
 	},
-	component: ({ codeExample, showCode, showDemo, context }) => {
+	component: ({ codeExample, showCode, showDemo = false, context }) => {
 		if (typeof window === 'undefined') {
 			return <p>Loading...</p>;
 		}
