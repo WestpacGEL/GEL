@@ -88,7 +88,9 @@ export const BrandSwitcher = () => {
 			</div>
 
 			<div
+				tabindex="0"
 				ref={wrapperRef}
+				onKeyPress={() => toggleIsOpen(!isOpen)}
 				onClick={() => toggleIsOpen(!isOpen)}
 				css={{
 					position: 'relative',
@@ -145,6 +147,7 @@ export const BrandSwitcher = () => {
 							const BrandLogo = brandsMap[b].smallLogo;
 							return (
 								<div
+									tabindex="0"
 									onClick={() => {
 										setBrand(b);
 										toggleIsOpen(!isOpen);
