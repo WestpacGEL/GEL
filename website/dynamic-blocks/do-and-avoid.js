@@ -112,32 +112,44 @@ export const DoAndAvoid = {
 		const dodontFigure = {
 			margin: 0,
 			flexBasis: '50%',
+			marginBottom: SPACING(2),
 		};
 		const dodontImage = {
 			maxWidth: '100%',
+			marginBottom: SPACING(2),
+		};
+
+		const captionStyle = {
+			padding: `${SPACING(2)} 0`,
 		};
 
 		const dontStyle = {
 			color: COLORS.danger,
-			padding: SPACING(2),
+			fontWeight: 'bold',
 		};
 
 		const doStyle = {
 			color: COLORS.success,
-			padding: SPACING(2),
+			fontWeight: 'bold',
 		};
 
 		return (
-			<div css={{ display: 'flex', width: '100%', margin: `0 -${SPACING(2)}` }}>
-				<figure css={{ ...dodontFigure, paddingRight: SPACING(1) }}>
+			<div
+				css={{
+					display: 'flex',
+					width: '100%',
+					justifyContent: 'space-between',
+				}}
+			>
+				<figure css={{ ...dodontFigure, paddingRight: SPACING(3) }}>
 					<img css={dodontImage} src={doImage} />
-					<figcaption>
+					<figcaption css={captionStyle}>
 						<span css={doStyle}>Do</span> - {doText}
 					</figcaption>
 				</figure>
 				<figure css={dodontFigure}>
 					<img css={dodontImage} src={dontImage} />
-					<figcaption>
+					<figcaption css={captionStyle}>
 						<span css={dontStyle}>Avoid</span> - {dontText}
 					</figcaption>
 				</figure>

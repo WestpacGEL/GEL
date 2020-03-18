@@ -54,7 +54,19 @@ const slateRenderer = item =>
 
 			switch (node.type) {
 				case 'paragraph':
-					return <p key={path}>{serializeChildren(node.nodes)}</p>;
+					return (
+						<p
+							css={{
+								paddingLeft: '5rem',
+								'@media (max-width: 568px)': {
+									paddingLeft: '0rem',
+								},
+							}}
+							key={path}
+						>
+							{serializeChildren(node.nodes)}
+						</p>
+					);
 
 				case 'heading':
 					return (
@@ -68,14 +80,32 @@ const slateRenderer = item =>
 
 				case 'unordered-list':
 					return (
-						<List type="bullet" key={path}>
+						<List
+							type="bullet"
+							key={path}
+							css={{
+								'@media (max-width: 568px)': {
+									paddingLeft: '0rem',
+								},
+								paddingLeft: '5rem',
+							}}
+						>
 							{serializeChildren(node.nodes)}
 						</List>
 					);
 
 				case 'ordered-list':
 					return (
-						<List type="ordered" key={path}>
+						<List
+							type="ordered"
+							key={path}
+							css={{
+								paddingLeft: '5rem',
+								'@media (max-width: 576px)': {
+									paddingLeft: '0rem',
+								},
+							}}
+						>
 							{serializeChildren(node.nodes)}
 						</List>
 					);
