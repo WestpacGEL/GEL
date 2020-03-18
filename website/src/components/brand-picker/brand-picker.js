@@ -25,7 +25,7 @@ export const BrandPicker = () => {
 				css={{
 					margin: '0 auto',
 					padding: '40px 20px',
-					maxWidth: '1080px',
+					maxWidth: '67.5rem',
 					background: '#e7ecee',
 					listStyle: 'none',
 					display: 'flex',
