@@ -43,7 +43,7 @@ export const BrandPicker = () => {
 									flexBasis: '100%',
 									maxWidth: '15.625rem',
 								},
-								margin: 10,
+								margin: '0.625rem',
 								background: 'white',
 								position: 'relative',
 								':hover': {
