@@ -6,6 +6,7 @@ import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { useQuery } from '@apollo/react-hooks';
 import { RELATED_INFORMATION } from '../../../../graphql';
 import { SlateContent } from './blocks-hub';
+import Link from 'next/link';
 
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
@@ -102,13 +103,19 @@ const ComponentLink = ({ children, link }) => {
 				borderBottom: `solid 1px ${COLORS.border}`,
 			}}
 		>
-			<a
-				css={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-				href={link}
-			>
-				<span>{children}</span>
-				<ArrowRightIcon color={COLORS.primary} />
-			</a>
+			<Link href={link}>
+				<a
+					css={{
+						cursor: 'pointer',
+						isplay: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+					}}
+				>
+					<span>{children}</span>
+					<ArrowRightIcon color={COLORS.primary} />
+				</a>
+			</Link>
 		</li>
 	);
 };
