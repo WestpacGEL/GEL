@@ -52,7 +52,7 @@ const slateRenderer = item =>
 			const leftIndent = {
 				paddingLeft: SPACING(11),
 				'@media (max-width: 568px)': {
-					paddingLeft: '0rem',
+					paddingLeft: 0,
 				},
 			};
 			if (node.object !== 'block') {
