@@ -41,7 +41,7 @@ export const BrandPicker = () => {
 								flexBasis: '100%',
 								'@media min-width(600px)': {
 									flexBasis: '100%',
-									maxWidth: 250,
+									maxWidth: '15.625rem',
 								},
 								margin: 10,
 								background: 'white',
