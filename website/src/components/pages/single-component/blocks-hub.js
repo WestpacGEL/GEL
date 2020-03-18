@@ -12,6 +12,12 @@ const Bold = props => <strong css={{ fontWeight: 'bold' }} {...props} />;
 const Italic = props => <em css={{ fontStyle: 'italic' }} {...props} />;
 const Strike = props => <span css={{ textDecoration: 'strike-through' }} {...props} />;
 const Under = props => <span css={{ textDecoration: 'underline' }} {...props} />;
+const leftIndent = {
+	paddingLeft: '5rem',
+	'@media (max-width: 568px)': {
+		paddingLeft: '0rem',
+	},
+};
 
 const slateRenderer = item =>
 	createReactRenderer([
@@ -55,15 +61,7 @@ const slateRenderer = item =>
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<p
-							css={{
-								paddingLeft: '5rem',
-								'@media (max-width: 568px)': {
-									paddingLeft: '0rem',
-								},
-							}}
-							key={path}
-						>
+						<p css={leftIndent} key={path}>
 							{serializeChildren(node.nodes)}
 						</p>
 					);
@@ -80,32 +78,14 @@ const slateRenderer = item =>
 
 				case 'unordered-list':
 					return (
-						<List
-							type="bullet"
-							key={path}
-							css={{
-								'@media (max-width: 568px)': {
-									paddingLeft: '0rem',
-								},
-								paddingLeft: '5rem',
-							}}
-						>
+						<List type="bullet" key={path} css={leftIndent}>
 							{serializeChildren(node.nodes)}
 						</List>
 					);
 
 				case 'ordered-list':
 					return (
-						<List
-							type="ordered"
-							key={path}
-							css={{
-								paddingLeft: '5rem',
-								'@media (max-width: 576px)': {
-									paddingLeft: '0rem',
-								},
-							}}
-						>
+						<List type="ordered" key={path} css={leftIndent}>
 							{serializeChildren(node.nodes)}
 						</List>
 					);
