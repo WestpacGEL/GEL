@@ -44,7 +44,11 @@ export const BrandPicker = () => {
 						<li
 							key={i}
 							css={{
-								flexBasis: '250px',
+								flexBasis: '100%',
+								'@media min-width(600px)': {
+									flexBasis: '100%',
+									maxWidth: 250,
+								},
 								margin: '0.625rem',
 								background: 'white',
 								position: 'relative',
