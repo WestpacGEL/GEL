@@ -107,7 +107,7 @@ export const DoAndAvoid = {
 		);
 	},
 	component: ({ dontImage, dontText, doImage, doText }) => {
-		const { COLORS, SPACING } = useBrand();
+		const { COLORS, SPACING, LAYOUT } = useBrand();
 
 		const dodontFigure = {
 			margin: 0,
@@ -139,6 +139,9 @@ export const DoAndAvoid = {
 					display: 'flex',
 					width: '100%',
 					justifyContent: 'space-between',
+					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+						flexDirection: 'column',
+					},
 				}}
 			>
 				<figure css={{ ...dodontFigure, paddingRight: SPACING(3) }}>
