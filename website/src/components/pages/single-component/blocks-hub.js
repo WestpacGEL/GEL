@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 import createReactRenderer from './react-renderer';
 import { Heading } from '@westpac/heading';
@@ -48,13 +48,24 @@ const slateRenderer = item =>
 
 		// serialiser for all the blocks
 		({ node, path, serializeChildren, value }) => {
+			const { SPACING } = useBrand();
+			const leftIndent = {
+				paddingLeft: SPACING(11),
+				'@media (max-width: 568px)': {
+					paddingLeft: 0,
+				},
+			};
 			if (node.object !== 'block') {
 				return;
 			}
 
 			switch (node.type) {
 				case 'paragraph':
-					return <p key={path}>{serializeChildren(node.nodes)}</p>;
+					return (
+						<p css={leftIndent} key={path}>
+							{serializeChildren(node.nodes)}
+						</p>
+					);
 
 				case 'heading':
 					return (
@@ -68,14 +79,14 @@ const slateRenderer = item =>
 
 				case 'unordered-list':
 					return (
-						<List type="bullet" key={path}>
+						<List type="bullet" key={path} css={leftIndent}>
 							{serializeChildren(node.nodes)}
 						</List>
 					);
 
 				case 'ordered-list':
 					return (
-						<List type="ordered" key={path}>
+						<List type="ordered" key={path} css={leftIndent}>
 							{serializeChildren(node.nodes)}
 						</List>
 					);
