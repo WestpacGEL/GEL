@@ -11,7 +11,7 @@ export const BrandPicker = () => {
 	return (
 		<div
 			css={{
-				padding: '100px',
+				padding: '6.25rem',
 				textAlign: 'center',
 				fontFamily:
 					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
