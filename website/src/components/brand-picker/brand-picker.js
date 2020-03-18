@@ -1,24 +1,42 @@
 /** @jsx jsx */
 import { useState } from 'react';
+import { Heading } from '@westpac/heading';
 import { jsx } from '@westpac/core';
 import { useBrandSwitcher } from '../providers/brand-switcher';
+
 export const BrandPicker = () => {
 	const { brands } = useBrandSwitcher();
 	const [hovered, setHovered] = useState(false);
 
 	return (
-		<div css={{ padding: '100px' }}>
-			<h1 css={{ textAlign: 'center' }}>Select your default brand</h1>
+		<div
+			css={{
+				padding: '6.25rem',
+				'@media (max-width: 800px)': {
+					padding: '0px',
+				},
+				textAlign: 'center',
+				fontFamily:
+					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+			}}
+		>
+			<h1>Select your default brand</h1>
+			<p css={{ fontSize: '20px', color: 'rgb(45, 55, 62)' }}>
+				Once you've made this selection you can change it at any time.
+			</p>
 			<ul
 				css={{
 					margin: '0 auto',
-					padding: '40px 20px',
-					maxWidth: '1160px',
+					padding: '2.5rem 1.25rem',
+					maxWidth: '67.5rem',
 					background: '#e7ecee',
 					listStyle: 'none',
 					display: 'flex',
 					flexWrap: 'wrap',
 					alignItems: 'center',
+					'@media (max-width: 800px)': {
+						justifyContent: 'space-around',
+					},
 				}}
 			>
 				{Object.entries(brands).map(([brandName, { name }], i) => {
@@ -27,9 +45,9 @@ export const BrandPicker = () => {
 							key={i}
 							css={{
 								flexBasis: '250px',
+								margin: '0.625rem',
 								background: 'white',
 								position: 'relative',
-								margin: '20px',
 								':hover': {
 									outline: 'solid 1px rgba(0,0,0,0.2)',
 								},
@@ -54,7 +72,10 @@ export const BrandPicker = () => {
 							}}
 						>
 							{/* This is not a Next Link as I want the server to re-render and set a cookie */}
-							<a href={`/?b=${brandName}`}>
+							<a
+								href={`/?b=${brandName}`}
+								css={{ textDecoration: 'unset', color: 'rgb(0, 116, 196)' }}
+							>
 								<img
 									css={{ maxWidth: '100%', margin: 0, display: 'block' }}
 									src={`/images/${brandName.toLowerCase()}-gui.png`}
