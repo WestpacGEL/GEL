@@ -68,10 +68,17 @@ GELApp.getInitialProps = async appContext => {
 
 		if (brandCookieMatch) {
 			if (res) {
-				res.writeHead(302, { Location: `${router.asPath}?b=${brandCookieMatch}` });
+				res.writeHead(302, { Location: `${router.asPath.split('?')[0]}?b=${brandCookieMatch}` });
 				res.end();
 			} else {
 				router.push(`${router.asPath.split('?')[0]}?b=${brandCookieMatch}`);
+			}
+		} else {
+			if (res) {
+				res.writeHead(302, { Location: `${router.asPath.split('?')[0]}` });
+				res.end();
+			} else {
+				router.push(`${router.asPath.split('?')[0]}`);
 			}
 		}
 	}
