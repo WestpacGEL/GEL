@@ -12,6 +12,9 @@ export const BrandPicker = () => {
 		<div
 			css={{
 				padding: '6.25rem',
+				'@media (max-width: 800px)': {
+					padding: '0px',
+				},
 				textAlign: 'center',
 				fontFamily:
 					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
@@ -31,6 +34,9 @@ export const BrandPicker = () => {
 					display: 'flex',
 					flexWrap: 'wrap',
 					alignItems: 'center',
+					'@media (max-width: 800px)': {
+						justifyContent: 'space-around',
+					},
 				}}
 			>
 				{Object.entries(brands).map(([brandName, { name }], i) => {
@@ -38,11 +44,7 @@ export const BrandPicker = () => {
 						<li
 							key={i}
 							css={{
-								flexBasis: '100%',
-								'@media min-width(600px)': {
-									flexBasis: '100%',
-									maxWidth: '15.625rem',
-								},
+								flexBasis: '250px',
 								margin: '0.625rem',
 								background: 'white',
 								position: 'relative',
