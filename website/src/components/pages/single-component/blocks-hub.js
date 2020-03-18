@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 import createReactRenderer from './react-renderer';
 import { Heading } from '@westpac/heading';
@@ -12,12 +12,6 @@ const Bold = props => <strong css={{ fontWeight: 'bold' }} {...props} />;
 const Italic = props => <em css={{ fontStyle: 'italic' }} {...props} />;
 const Strike = props => <span css={{ textDecoration: 'strike-through' }} {...props} />;
 const Under = props => <span css={{ textDecoration: 'underline' }} {...props} />;
-const leftIndent = {
-	paddingLeft: '5rem',
-	'@media (max-width: 568px)': {
-		paddingLeft: '0rem',
-	},
-};
 
 const slateRenderer = item =>
 	createReactRenderer([
@@ -54,6 +48,13 @@ const slateRenderer = item =>
 
 		// serialiser for all the blocks
 		({ node, path, serializeChildren, value }) => {
+			const { SPACING } = useBrand();
+			const leftIndent = {
+				paddingLeft: SPACING(11),
+				'@media (max-width: 568px)': {
+					paddingLeft: '0rem',
+				},
+			};
 			if (node.object !== 'block') {
 				return;
 			}
