@@ -9,8 +9,9 @@ export default ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Alert heading="This is a Heading" headingTag="h3">
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque expedita natus voluptate voluptatem quasi commodi dolorem fuga. Officiis similique,
-					iusto ab. Fugit officiis at, dolores repellendus perferendis maxime quae. Esse!
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque expedita natus voluptate
+					voluptatem quasi commodi dolorem fuga. Officiis similique, iusto ab. Fugit officiis at,
+					dolores repellendus perferendis maxime quae. Esse!
 				</p>
 				<p>
 					Est, unde quis, molestias nisi quae voluptates nemo quaerat nihil, consequuntur nobis
