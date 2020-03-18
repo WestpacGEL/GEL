@@ -49,7 +49,6 @@ const slateRenderer = item =>
 		// serialiser for all the blocks
 		({ node, path, serializeChildren, value }) => {
 			const { SPACING, LAYOUT } = useBrand();
-			console.log(LAYOUT.breakpoints.sm);
 
 			const leftIndent = {
 				paddingLeft: SPACING(11),
