@@ -52,7 +52,9 @@ function formatValue(value) {
  * @param {number} options.level - The level of indentation
  */
 function Indent({ level }) {
-	return <span css={{ margin: `0 0.5em 0 ${3 * (level - 1)}em` }}>└──</span>;
+	const { COLORS, SPACING } = useBrand();
+
+	return <span css={{ color: COLORS.border, margin: `0 0.5em 0 ${parseInt(SPACING(7)) * (level - 1)}em` }}>└─</span>;
 }
 
 /**
