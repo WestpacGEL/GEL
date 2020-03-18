@@ -16,12 +16,13 @@ const Code = ({ children, ...rest }) => {
 				display: 'inline-block',
 				overflow: 'auto',
 				background: COLORS.background,
-				padding: `${SPACING(1, true)} ${SPACING(1)}`,
+				padding: `${SPACING(0.5, true)} ${SPACING(0.5)}`,
 				margin: `0 ${SPACING(1, true)}`,
 				border: `1px solid ${COLORS.border}`,
-				color: COLORS.hero,
+				color: COLORS.muted,
 				fontSize: '0.9em',
 				borderRadius: '2px',
+				verticalAlign: 'middle',
 			}}
 			{...rest}
 		>
@@ -52,7 +53,15 @@ function formatValue(value) {
  * @param {number} options.level - The level of indentation
  */
 function Indent({ level }) {
-	return <span css={{ margin: `0 0.5em 0 ${3 * (level - 1)}em` }}>└──</span>;
+	const { COLORS, SPACING } = useBrand();
+
+	return (
+		<span
+			css={{ color: COLORS.muted, margin: `0 0.5em 0 ${parseInt(SPACING(7)) * (level - 1)}em` }}
+		>
+			└─
+		</span>
+	);
 }
 
 /**
@@ -111,7 +120,7 @@ function PTableRow({ name, data, level = 0 }) {
 function PTable({ data, caption }) {
 	const { SPACING } = useBrand();
 	return (
-		<Table css={{ marginBottom: SPACING(4, true) }}>
+		<Table css={{ marginBottom: SPACING(4, true) }} bordered striped>
 			{caption && (
 				<Caption
 					css={{ fontWeight: 'bold', margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}

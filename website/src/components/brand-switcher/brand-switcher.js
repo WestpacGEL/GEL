@@ -78,7 +78,6 @@ export const BrandSwitcher = () => {
 					</a>
 				</Link>
 			</div>
-
 			<Select
 				closeMenuOnSelect={false}
 				components={{ Option }}

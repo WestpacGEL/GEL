@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import React, { Fragment, useEffect, useState } from 'react'; // Needed for within Keystone
+import React, { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
-import { ArrowRightIcon } from '@westpac/icon';
 import { Heading } from '@westpac/heading';
-import { Item, List } from '@westpac/list';
+import { List } from '@westpac/list';
+import Link from 'next/link';
 import { Cell, Grid } from '@westpac/grid';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
@@ -12,15 +12,53 @@ import { CheckboxPrimitive } from '@arch-ui/controls';
 // Intro section
 const TableOfContents = () => {
 	const { COLORS, SPACING } = useBrand();
-	const headings = document.querySelectorAll('h2').forEach((h, i) => {
-		const htmlID = h.id || 'toc-heading-' + i;
-		h.id = htmlID;
-		return <a href={`#${htmlID}`}>{h.innerText}</a>;
-	});
+	const containerRef = useRef();
+	const [toc, setToc] = useState([]);
+
+	useEffect(() => {
+		const headings = [];
+		if (containerRef && containerRef.current) {
+			const container = containerRef.current.closest('.slate-container') || document;
+			container.querySelectorAll('h2:not(.toc-ignore)').forEach((h, i) => {
+				const htmlID = h.id || 'toc-heading-' + i;
+				h.id = htmlID;
+				headings[i] = (
+					<li key={`nav-${i}`} css={{ listStyle: 'none', paddingBottom: SPACING(2, true) }}>
+						<svg
+							css={{ width: SPACING(2, true) }}
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 8 9"
+						>
+							<path
+								fill="#D5002B"
+								fillRule="evenodd"
+								d="M8 5.5l-3 3-.71-.71L6.085 6H0V0h1v5h5.085L4.29 3.21 5 2.5z"
+							/>
+						</svg>
+						<Link href={`#${htmlID}`}>
+							<a
+								css={{
+									padding: SPACING(4, true),
+									color: COLORS.text,
+									cursor: 'pointer',
+									'&:hover, &:focus': {
+										textDecoration: 'underline',
+									},
+								}}
+							>
+								{h.innerText}
+							</a>
+						</Link>
+					</li>
+				);
+			});
+		}
+		setToc(headings);
+	}, [containerRef]);
 
 	return (
-		<Fragment>
-			<Heading tag="h2" size={6}>
+		<div ref={containerRef}>
+			<Heading tag="h2" className="toc-ignore" size={6}>
 				{'Page content'}
 			</Heading>
 
@@ -28,8 +66,12 @@ const TableOfContents = () => {
 				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
 			/>
 
-			{headings && <nav>{headings}</nav>}
-		</Fragment>
+			{toc.length ? (
+				<nav>
+					<List>{toc}</List>
+				</nav>
+			) : null}
+		</div>
 	);
 };
 
