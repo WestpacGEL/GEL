@@ -5,7 +5,6 @@ import { Icons } from './icons';
 import { ColorSwatch } from './color-swatch';
 import { PropsTable } from './props-table';
 import { IntroSection } from './intro-section';
-import { Heading } from './heading';
 
 export default {
 	DoAndAvoid,
@@ -15,5 +14,4 @@ export default {
 	ColorSwatch,
 	PropsTable,
 	IntroSection,
-	Heading,
 };
