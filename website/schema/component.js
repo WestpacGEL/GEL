@@ -7,7 +7,6 @@ const DYNAMIC_BLOCKS_DIR = require.resolve('../dynamic-blocks');
 
 const BLOCKS_CONFIG = [
 	Content.blocks.blockquote,
-	Content.blocks.image,
 	Content.blocks.orderedList,
 	Content.blocks.unorderedList,
 	Content.blocks.link,

@@ -44,7 +44,7 @@ export const DoAndAvoid = {
 		return (
 			<>
 				<FieldContainer>
-					<FieldLabel htmlFor={'do-image'} field={{ label: 'Do Image (url)', config: {} }} />
+					<FieldLabel htmlFor={'do-image'} field={{ label: 'Do Image', config: {} }} />
 					<FieldInput>
 						<input
 							css={inputStyles}
@@ -74,7 +74,7 @@ export const DoAndAvoid = {
 					</FieldInput>
 				</FieldContainer>
 				<FieldContainer>
-					<FieldLabel htmlFor={'avoid-image'} field={{ label: 'Avoid Image (url)', config: {} }} />
+					<FieldLabel htmlFor={'avoid-image'} field={{ label: 'Avoid Image', config: {} }} />
 					<FieldInput>
 						<input
 							css={inputStyles}
