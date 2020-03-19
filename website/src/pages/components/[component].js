@@ -45,7 +45,7 @@ const Tabs = ({ component }) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const tabOverrides = {
-		TabItem: {
+		TabButton: {
 			styles: (styles, { selected }) =>
 				mq({
 					...styles,
