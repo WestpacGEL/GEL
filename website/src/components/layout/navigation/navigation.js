@@ -8,6 +8,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { useQuery } from '@apollo/react-hooks';
 import { NavigationBlock } from './navigation-block';
+import { ColorSwatch } from '../../../../dynamic-blocks/color-swatch';
 
 export const Navigation = ({ components }) => {
 	const { SPACING } = useBrand();
@@ -47,7 +48,12 @@ export const Navigation = ({ components }) => {
 			<Heading
 				tag="h2"
 				size={6}
-				css={{ paddingLeft: SPACING(1), marginTop: SPACING(1), marginBottom: SPACING(3) }}
+				css={{
+					paddingLeft: SPACING(3),
+					marginTop: SPACING(1),
+					marginBottom: SPACING(5),
+					color: 'rgba(0, 0, 0, 0.75)',
+				}}
 			>
 				GEL
 			</Heading>
@@ -62,13 +68,15 @@ const LinkList = props => {
 		<ul
 			css={{
 				listStyle: 'none',
-				paddingLeft: SPACING(2),
+				paddingLeft: SPACING(3),
 				margin: 0,
-				a: {
-					fontWeight: 700,
+				'> li a, > div button': {
+					fontWeight: 500,
+					color: 'rgba(0, 0, 0, 0.75)',
 				},
-				'li a': {
+				'ul > li a': {
 					fontWeight: 400,
+					color: 'rgba(0, 0, 0, 0.55)',
 				},
 			}}
 			{...props}
@@ -87,8 +95,7 @@ const LinkItem = ({ name, href, as, tag: Tag = 'li', children }) => {
 						cursor: 'pointer',
 						display: 'block',
 						textDecoration: 'none',
-						fontWeight: 600,
-						padding: `${SPACING(1)} 0`,
+						padding: `${SPACING(3)} 0`,
 					}}
 				>
 					{name}
