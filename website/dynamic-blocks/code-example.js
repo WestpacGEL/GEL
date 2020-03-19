@@ -20,7 +20,7 @@ packageDirectories.forEach(pkg => {
 	const packageExists = fs.existsSync(pkgFile);
 	if (packageExists) {
 		const packageJSON = require(pkgFile);
-		const demoPath = path.join(componentsDir, pkg, DEMO_FOLDER)
+		const demoPath = path.join(componentsDir, pkg, DEMO_FOLDER);
 		if(fs.existsSync(demoPath) && fs.lstatSync(demoPath).isDirectory()) {
 			fs.readdirSync(demoPath).forEach(example => {
 				const fullPath = path.join(componentsDir, pkg, DEMO_FOLDER, example);
