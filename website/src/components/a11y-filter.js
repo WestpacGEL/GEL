@@ -6,7 +6,6 @@ import Select from 'react-select';
 const SVGFilters = () => (
 	<svg
 		aria-hidden="true"
-		className="svg-filter sronly"
 		xmlns="http://www.w3.org/2000/svg"
 		version="1.1"
 	>
