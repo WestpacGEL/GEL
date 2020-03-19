@@ -2,7 +2,6 @@
 import { useState } from 'react';
 
 import { jsx, useBrand } from '@westpac/core';
-import { ColorSwatch } from '../../../../dynamic-blocks/color-swatch';
 
 export const NavigationBlock = ({ title, tag: Tag = 'div', children }) => {
 	const { SPACING } = useBrand();

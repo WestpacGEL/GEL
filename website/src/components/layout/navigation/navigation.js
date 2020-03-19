@@ -8,7 +8,6 @@ import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { useQuery } from '@apollo/react-hooks';
 import { NavigationBlock } from './navigation-block';
-import { ColorSwatch } from '../../../../dynamic-blocks/color-swatch';
 
 export const Navigation = ({ components }) => {
 	const { SPACING } = useBrand();
