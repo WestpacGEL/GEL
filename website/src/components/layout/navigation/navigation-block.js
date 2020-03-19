@@ -19,10 +19,9 @@ export const NavigationBlock = ({ title, tag: Tag = 'div', children }) => {
 					justifyContent: 'space-between',
 					alignItems: 'center',
 					width: '100%',
-					padding: `${SPACING(1)} 0`,
+					padding: `${SPACING(3)} 0`,
 					background: 'none',
 					border: 'none',
-					fontWeight: 700,
 				}}
 			>
 				<span>{title}</span>
