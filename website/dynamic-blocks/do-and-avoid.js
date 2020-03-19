@@ -112,10 +112,15 @@ export const DoAndAvoid = {
 		const dodontFigure = {
 			margin: 0,
 			flexBasis: '50%',
+			display: 'flex',
+			flexDirection: 'column',
+			alignItems: 'start',
+			justifyContent: 'flex-end',
 			marginBottom: SPACING(2),
 		};
 		const dodontImage = {
 			maxWidth: '100%',
+			width: '100%',
 			marginBottom: SPACING(2),
 		};
 
@@ -137,6 +142,7 @@ export const DoAndAvoid = {
 			<div
 				css={{
 					display: 'flex',
+					alignItems: 'stretch',
 					width: '100%',
 					justifyContent: 'space-between',
 					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
@@ -145,13 +151,17 @@ export const DoAndAvoid = {
 				}}
 			>
 				<figure css={{ ...dodontFigure, paddingRight: SPACING(3) }}>
-					<img css={dodontImage} src={doImage} />
+					<div>
+						<img css={dodontImage} src={doImage} />
+					</div>
 					<figcaption css={captionStyle}>
 						<span css={doStyle}>Do</span> - {doText}
 					</figcaption>
 				</figure>
 				<figure css={dodontFigure}>
-					<img css={dodontImage} src={dontImage} />
+					<div>
+						<img css={dodontImage} src={dontImage} />
+					</div>
 					<figcaption css={captionStyle}>
 						<span css={dontStyle}>Avoid</span> - {dontText}
 					</figcaption>
