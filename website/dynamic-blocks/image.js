@@ -63,7 +63,7 @@ export const Image = {
 							type="text"
 							id="image-caption"
 							value={caption}
-							onChange={async e => {
+							onChange={e => {
 								setCaption(e.target.value);
 							}}
 						/>
