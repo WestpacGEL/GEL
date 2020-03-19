@@ -23,7 +23,7 @@ const UPLOAD_IMAGE = gql`
 	}
 `;
 
-export const DoAndAvoid = {
+export const Image = {
 	editor: ({ value, onChange }) => {
 		const [image, setImage] = useState(value.image);
 		const [caption, setCaption] = useState(value.caption);
