@@ -5,7 +5,9 @@ import { Icons } from './icons';
 import { ColorSwatch } from './color-swatch';
 import { PropsTable } from './props-table';
 import { IntroSection } from './intro-section';
-import { Heading } from './heading';
+import { VisionFilters } from './vision-filters';
+import { ScreenReaderText } from './screen-reader-demo';
+import { Image } from './image';
 
 export default {
 	DoAndAvoid,
@@ -15,5 +17,7 @@ export default {
 	ColorSwatch,
 	PropsTable,
 	IntroSection,
-	Heading,
+	VisionFilters,
+	ScreenReaderText,
+	Image,
 };
