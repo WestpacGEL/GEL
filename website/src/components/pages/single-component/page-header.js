@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon } from '@westpac/icon';
+import HeaderImageRight from '../../symbols/HeaderImageRight';
+import HeaderImageLeft from '../../symbols/HeaderImageLeft';
 
 import { useSidebar } from '../../providers/sidebar';
 
@@ -43,8 +45,27 @@ export const PageHeader = ({ name, version }) => {
 					zIndex: 2,
 					width: hasScrolled ? '100%' : 'auto',
 					alignItems: hasScrolled ? 'center' : 'unset',
+					overflow: 'hidden',
 				}}
 			>
+				<div
+					css={{
+						position: 'absolute',
+						zIndex: -1,
+						right: hasScrolled ? '235px' : 0,
+					}}
+				>
+					<HeaderImageRight height={'200px'} />
+				</div>
+				<div
+					css={{
+						position: 'absolute',
+						zIndex: -1,
+						alignSelf: 'flex-start',
+					}}
+				>
+					<HeaderImageLeft height={'200px'} />
+				</div>
 				<div>
 					<MenuIcon />
 				</div>
