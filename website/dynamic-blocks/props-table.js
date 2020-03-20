@@ -57,7 +57,7 @@ function Indent({ level }) {
 
 	return (
 		<span
-			css={{ color: COLORS.muted, margin: `0 0.5em 0 ${parseInt(SPACING(7)) * (level - 1)}em` }}
+			css={{ color: COLORS.muted, margin: `0 0.5em 0 ${SPACING(7, false, '') * (level - 1)}em` }}
 		>
 			└─
 		</span>
