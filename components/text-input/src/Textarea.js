@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { TextareaComponent, textareaStyles } from './overrides/textarea';
 import PropTypes from 'prop-types';
+
+import { defaultTextarea } from './overrides/textarea';
 import pkg from '../package.json';
 
 // ==============================
@@ -24,11 +25,7 @@ export const Textarea = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Textarea: {
-			styles: textareaStyles,
-			component: TextareaComponent,
-			attributes: (_, a) => a,
-		},
+		Textarea: defaultTextarea,
 	};
 
 	const state = {
@@ -40,18 +37,12 @@ export const Textarea = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Textarea: { component: Textarea, styles: textareaStyles, attributes: textareaAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Textarea.component
-			{...overrides.Textarea.attributes(state)}
-			css={overrides.Textarea.styles(state)}
-		/>
+		<Textarea {...rest} state={state} {...textareaAttributes(state)} css={textareaStyles(state)} />
 	);
 };
 

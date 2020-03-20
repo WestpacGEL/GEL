@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useMediaQuery } from '@westpac/core';
-import React from 'react';
 
-export const Cell = ({ area, height, left, top, width, ...rest }) => <div {...rest} />;
+const Cell = ({ state, ...rest }) => <div {...rest} />;
 
-export const cellStyles = (_, { area, height, left, top, width }) => {
+const cellStyles = (_, { area, height, left, top, width }) => {
 	const mq = useMediaQuery();
 
 	// allow string or array values for height/width
@@ -21,4 +20,12 @@ export const cellStyles = (_, { area, height, left, top, width }) => {
 		height: '100%',
 		minWidth: 0,
 	})[0];
+};
+
+const cellAttributes = () => ({});
+
+export const defaultCell = {
+	component: Cell,
+	styles: cellStyles,
+	attribute: cellAttributes,
 };

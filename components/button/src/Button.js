@@ -1,12 +1,29 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { forwardRef, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Button as ButtonWrapper, buttonStyles } from './overrides/button';
+import { defaultButton } from './overrides/button';
+
 import { Content } from './Content';
 import pkg from '../package.json';
-import { forwardRef } from 'react';
+
+// ==============================
+// Context and Consumer Hook
+// ==============================
+
+const ButtonContext = createContext();
+
+export const useButtonContext = () => {
+	const context = useContext(ButtonContext);
+
+	if (!context) {
+		throw new Error('<Content/> and <TextWrapper/> components should be wrapped in a <Button>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
@@ -25,10 +42,10 @@ export const Button = forwardRef(
 			disabled,
 			assistiveText,
 			tag,
-			onClick,
+			type,
 			dropdown,
+			onClick,
 			children,
-			className,
 			overrides: componentOverrides,
 			...rest
 		},
@@ -47,11 +64,7 @@ export const Button = forwardRef(
 		}
 
 		const defaultOverrides = {
-			Button: {
-				styles: buttonStyles,
-				component: ButtonWrapper,
-				attributes: (_, a) => a,
-			},
+			Button: defaultButton,
 		};
 
 		const state = {
@@ -65,43 +78,43 @@ export const Button = forwardRef(
 			disabled,
 			assistiveText,
 			tag,
+			type,
+			dropdown,
 			onClick,
 			overrides: componentOverrides,
 			...rest,
 		};
 
-		const overrides = overrideReconciler(
-			defaultOverrides,
-			tokenOverrides,
-			brandOverrides,
-			componentOverrides
-		);
+		const {
+			Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		return (
-			<overrides.Button.component
-				ref={ref}
-				type={tag === 'button' ? 'button' : undefined}
-				disabled={disabled}
-				aria-label={assistiveText}
-				onClick={onClick}
-				className={className}
-				{...overrides.Button.attributes(state)}
-				css={overrides.Button.styles(state)}
-			>
-				{/* `<input>` elements cannot have children; they would use a `value` prop) */}
-				{tag !== 'input' ? (
-					<Content
-						size={size}
-						block={block}
-						iconAfter={iconAfter}
-						iconBefore={iconBefore}
-						dropdown={dropdown}
-						overrides={componentOverrides}
-					>
-						{children}
-					</Content>
-				) : null}
-			</overrides.Button.component>
+			<ButtonContext.Provider value={{ state }}>
+				<Button
+					ref={ref}
+					disabled={tag === 'button' ? disabled : undefined}
+					type={tag === 'button' || tag === 'input' ? type || 'button' : undefined}
+					onClick={onClick}
+					{...rest}
+					state={state}
+					{...buttonAttributes(state)}
+					css={buttonStyles(state)}
+				>
+					{/* `<input>` elements cannot have children; they would use a `value` prop) */}
+					{tag !== 'input' ? (
+						<Content
+							size={size}
+							block={block}
+							iconAfter={iconAfter}
+							iconBefore={iconBefore}
+							dropdown={dropdown}
+						>
+							{children}
+						</Content>
+					) : null}
+				</Button>
+			</ButtonContext.Provider>
 		);
 	}
 );
@@ -128,6 +141,13 @@ Button.propTypes = {
 	 * Button tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * Button type.
+	 *
+	 * Default type of 'button' if tag is 'button'.
+	 */
+	type: PropTypes.string,
 
 	/**
 	 * Soft mode.
@@ -169,6 +189,11 @@ Button.propTypes = {
 	assistiveText: PropTypes.string,
 
 	/**
+	 * Enable dropdown mode
+	 */
+	dropdown: PropTypes.bool,
+
+	/**
 	 * Handler to be called on click
 	 */
 	onClick: PropTypes.func,
@@ -192,12 +217,7 @@ Button.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		TextWrapper: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		ButtonGroup: PropTypes.shape({
+		Text: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

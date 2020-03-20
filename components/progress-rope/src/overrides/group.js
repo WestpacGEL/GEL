@@ -2,8 +2,14 @@
 
 import { jsx } from '@westpac/core';
 
-export const Group = ({ text, active, overrides, ...props }) => <li {...props} />;
+const Group = ({ state, ...rest }) => <li {...rest} />;
 
-export const groupStyles = (_, {}) => {
-	return {};
+const groupStyles = () => ({});
+
+const groupAttributes = () => null;
+
+export const defaultGroup = {
+	component: Group,
+	styles: groupStyles,
+	attributes: groupAttributes,
 };

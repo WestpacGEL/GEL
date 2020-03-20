@@ -2,50 +2,78 @@
 
 The design system for Westpac GEL
 
-## Internal docs
+## Builds
+
+There are three different builds that exist in this repo:
+
+1. [Component build](#component-build)
+1. [Docs build](#docs-build)
+1. [Website build](#website-build)
+
+### Component build
+
+This build is running all the components examples directly and nothing else.
+It's for development of a component and for testing it.
+
+You run it via:
+
+```sh
+yarn dev [component name]
+```
+
+### Docs build
+
+This build is for the developer documentation site that puts all the examples of all components together with a navigation.
+It's for the docs that are published to below:
 
 | Purpose    | branch    | url                                    |
 | ---------- | --------- | -------------------------------------- |
 | Production | `master`  | https://westpacgel.netlify.com         |
 | Staging    | `develop` | https://westpacgel-staging.netlify.com |
 
-## Install and start running locally
-
-Install dependencies
+You run it via:
 
 ```sh
-yarn
+yarn docs
 ```
 
-and then run the build:
+### Website build
+
+This build is for the website and keystone process.
+It's for the public documentation site and the admin UI.
+
+You run it via:
 
 ```sh
-yarn build
+yarn start
 ```
 
-to then be able to run a component via:
+To run the website locally you'll need [postgres](https://www.keystonejs.com/quick-start/adapters#installing-postgresql) and a `.env` file.
+The `.env` file requires the following items:
 
-```sh
-yarn start button
+```
+CLOUDINARY_CLOUD_NAME="FILLME"
+CLOUDINARY_KEY="FILLME"
+CLOUDINARY_SECRET="FILLME"
 ```
 
 ## npm scripts
 
 ### root level
 
-| script                      | description                                       |
-| --------------------------- | ------------------------------------------------- |
-| `yarn`                      | install all dependencies                          |
-| `yarn nuke`                 | removes all `node_modules` for fresh start        |
-| `yarn fresh`                | removes all `node_modules` and reinstalls them    |
-| `yarn build`                | build all dist folders                            |
-| `yarn dev`                  | build all dist for local consumption              |
-| `yarn docs`                 | build docs for all components and open server     |
-| `yarn docs:build`           | build docs for all components to `./docs/` folder |
-| `yarn new [package-name]`   | create a specified empty component                |
-| `yarn start [package-name]` | start the example server of a component           |
-| `yarn test`                 | runs test                                         |
-| `yarn format`               | runs prettier to format all code                  |
+| script                    | description                                       |
+| ------------------------- | ------------------------------------------------- |
+| `yarn`                    | install all dependencies                          |
+| `yarn nuke`               | removes all `node_modules` for fresh start        |
+| `yarn fresh`              | removes all `node_modules` and reinstalls them    |
+| `yarn build`              | build all dist folders                            |
+| `yarn build:dev`          | build all dist for local consumption              |
+| `yarn docs`               | build docs for all components and open server     |
+| `yarn docs:build`         | build docs for all components to `./docs/` folder |
+| `yarn new [package-name]` | create a specified empty component                |
+| `yarn dev [package-name]` | start the example server of a component           |
+| `yarn test`               | runs test                                         |
+| `yarn format`             | runs prettier to format all code                  |
 
 ### component level
 
@@ -66,7 +94,7 @@ yarn start button
 ├── yarn.lock
 │
 ├── helper/
-│   ├── component-template/         # the starter files for when a new component is created via cli
+│   ├── .component-template/        # the starter files for when a new component is created via cli
 │   │
 │   ├── example/
 │   │   ├── components/             # an assortment of components helping us build the example pages
@@ -87,7 +115,7 @@ yarn start button
 │   └── tester.js                   # helps cypress testing of each component
 │
 ├── components/                     # all ds components that are published
-│   ├── component1/
+│   ├── component1/                 # more on the structure of components below
 │   ├── component2/
 │   └── component3/
 │
@@ -116,16 +144,21 @@ yarn start button
 ├── package.json            # scope: `@westpac/`
 │
 ├── src/                    # all the source
+│   ├── overrides/          # all overrides files for each sub-component
 │   ├── _util.js            # for reused logic within the component [optional]
 │   ├── index.js            # only for exports
-│   ├── ComponentX.js       # only for the components, can be multiple files
-│   └── styled.js           # only for styles [optional]
+│   └── ComponentX.js       # only for the components, can be multiple files
 │
 ├── examples/               # the demo folder is for seeing the components in action
 │   ├── _util.js            # for reused logic within the examples [optional]
 │   ├── 00-example.js       # show-case props and variations
 │   ├── 10-example.js       # all files not starting with a dot or an underscore
 │   └── 20-example.js       # will be processes with `yarn start`
+│
+├── demos/                  # the examples that can be embedded into the website
+│   ├── example-x.js
+│   ├── example-y.js
+│   └── example-z.js
 │
 └── tests/                  # test includes all tests
     ├── integration/
@@ -150,7 +183,7 @@ yarn start button
   export const App = () => <GEL brand={brand}>Your app</GEL>;
   ```
 
-- Tokens and everything regarding consistent branding will be contained in the brand packages in `brands/*`
+- Tokens and overrides (everything regarding consistent branding) will be contained in the brand packages in `brands/*`
 - Tokens will include these four categories:
   - `colors`
   - `layout`
@@ -159,19 +192,23 @@ yarn start button
   - `type`
 - All components use named exports as the default, no default exports
 - All brands components will have a default export containing the "tokens" objects in addition to the named exports of each.
-- Each component has overrides that can be overwritten with the object passed into `<GEL/>`
+- Each component has overrides that can be overridden by:
+
+  1. overrides contained in the brand object
+  2. overrides passed into `<GEL/>` wrapper
+  3. overrides passed to the component directly via the `overrides` prop
 
   ```jsx
   import { GEL } from '@westpac/core';
   import brand from '@westpac/WBC';
 
-  brand['@westpac/tabcordion'].heading.space = '2rem';
-  brand['@westpac/tabcordion'].components.TabRow = <TabRow />;
+  brand['@westpac/tabcordion'].TabItem.styles = ( styles, state ) => { ...styles, border: 'red solid 2px' };
+  brand['@westpac/tabcordion'].TabRow.component = <TabRow />;
 
   export const App = () => <GEL brand={brand}>Your app</GEL>;
   ```
 
-- These overrides are defined in the component them-self and merge the global tokens before applying them
+- These overrides are pre-defined in the component them-self and will be reconciled as a cascade
 - Each package can be addressed by its name as the key in the tokens
 - The `example/` folder is for documenting composition of several components together e.g. templates
 - Fonts can't be shipped with npm so the tokens only define the css declarations for the fonts
@@ -244,7 +281,7 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 | `PACKS`   | Mostly typography packs for reuse and consistency        |
 | `SPACING` | A function with minor scale to allow you to hit the grid |
 | `TYPE`    | Font files and definitions                               |
-| `BRAND`   | The current brand                                        |
+| `BRAND`   | The current brand string                                 |
 
 ## Overrides naming convention
 
@@ -252,32 +289,27 @@ Every single component (including root component) have three items in their over
 
 ```
 overrides = {
-	styles: (basestyles, state-props) => styles,
-	component: <React.Component/>,
-	attributes: (state-props) => Object,
-
-	subComponent : {
+	ComponentName : {
 		[name]: {
-			styles: (basestyles, state-props) => styles,
+			styles: (base-styles, state-props) => styles,
 			component: <React.Component/>
-			attributes: (state-props) => Object,
+			attributes: (base-attributes, state-props) => Object,
 		}
 	}
 }
 ```
 
-| Key          | Type                 | Description                                                                            | Function arguments                                                                                                                                                    |
-| ------------ | -------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `styles`     | `function` => Object | A function that returns an object of css properties for emotion                        | (`basestyles`,`state/props`) `basestyles` = the styles that would have been applied to the component, `state/props` = all props and all known state (without setters) |
-| `attributes` | `function` => Object | A function that returns an object of attributes that will be spread onto the component | (`state/props`) `state/props` = all props and all known state (without setters)                                                                                       |
-| `component`  | `react component`    | A react component which will receive all props                                         | -                                                                                                                                                                     |
+| Key          | Type                 | Description                                                                            | Function arguments                                                                                                                                                                  |
+| ------------ | -------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `styles`     | `function` => Object | A function that returns an object of css properties for emotion                        | (`base-styles`,`state/props`) `base-styles` = the styles that would have been applied to the component, `state/props` = all props and all known state (without setters)             |
+| `attributes` | `function` => Object | A function that returns an object of attributes that will be spread onto the component | (`base-attributes`,`state/props`) `base-attributes` = the attributes that would have been applied to the component, `state/props` = all props and all known state (without setters) |
+| `component`  | `react component`    | A react component which will receive all props                                         | -                                                                                                                                                                                   |
 
 ### Naming convention for files inside components
 
 | name            | purpose                                                                     |
 | --------------- | --------------------------------------------------------------------------- |
 | `index.js`      | Export only public API                                                      |
-| `styled.js`     | Only for styled components `[optional]`                                     |
 | `_utils.js`     | For code shared between components (ignored in examples) `[optional]`       |
 | `ComponentX.js` | All component files are named after the exported component and pascal cased |
 | `00-*.js`       | All files inside the `examples/` folder are sorted by file name             |
@@ -286,17 +318,17 @@ overrides = {
 
 ## Props API vocabulary
 
-| Prop                                       | Description                                                                                                 |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| `tag`                                      | When a component can be rendered as different tags                                                          |
-| `look`                                     | When talking about the look of a component like `success` or `hero`                                         |
-| `href`                                     | When something points at a thing via a link                                                                 |
-| `icon` `iconLeft` `iconRight`              | For passing in an icon                                                                                      |
-| `disabled` or `noBorder`                   | For passing boolean flags we use natural language and not `is` or `has` prefixes                            |
-| `size`                                     | For the physical size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                     |
-| `spacing`                                  | For the whitspace size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                    |
-| `value`                                    | For when a component shows a value, often numbers but not only                                              |
-| `selected`                                 | For things inside lists that are being targeted. Like `ButtonGroups` or `CheckGroup`. Takes string or array |
-| `label`                                    | For labeling things that are visible or a11y text                                                           |
-| `xsmall` `small` `medium` `large` `xlarge` | For t-shirt sizing                                                                                          |
-| `data`                                     | A prop to drive a component-group from data alone                                                           |
+| Prop                                       | Description                                                                                                                   |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `tag`                                      | When a component can be rendered as different tags                                                                            |
+| `look`                                     | When talking about the look of a component like `success` or `hero`                                                           |
+| `href`                                     | When something points at a thing via a link                                                                                   |
+| `icon` `iconLeft` `iconRight`              | For passing in an icon                                                                                                        |
+| `disabled` or `noBorder`                   | For passing boolean flags we use natural language and not `is` or `has` prefixes                                              |
+| `size`                                     | For the physical size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                                       |
+| `spacing`                                  | For the whitespace size of a component, should be: `'small', 'medium', 'large', 'xlarge'`                                     |
+| `value`                                    | For when a component shows a value, often numbers but not only                                                                |
+| `selected`                                 | For things inside lists that are being targeted. Like `ButtonGroups` or `CheckGroup`. Takes string or array                   |
+| `assistiveText`                            | For labeling things for assistive technology (generally renders using `VisuallyHidden` or `aria-label` depending on use case) |
+| `xsmall` `small` `medium` `large` `xlarge` | For t-shirt sizing                                                                                                            |
+| `data`                                     | A prop to drive a component-group from data alone                                                                             |

@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { VisuallyHiddenWrapper, visuallyHiddenStyles } from './overrides/visuallyHidden';
+import { defaultVisuallyHidden } from './overrides/visuallyHidden';
 import pkg from '../package.json';
 
 // ==============================
@@ -15,37 +15,37 @@ import pkg from '../package.json';
 // See: https://hugogiraudel.com/2016/10/13/css-hide-and-seek/
 // ==============================
 
-export const VisuallyHidden = ({ overrides: componentOverrides, tag: Tag, ...rest }) => {
+export const VisuallyHidden = ({ tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		VisuallyHidden: {
-			styles: visuallyHiddenStyles,
-			component: VisuallyHiddenWrapper,
-			attributes: (_, a) => a,
-		},
+		VisuallyHidden: defaultVisuallyHidden,
 	};
 
 	const state = {
+		tag,
 		overrides: componentOverrides,
-		tag: Tag,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		VisuallyHidden: {
+			component: VisuallyHidden,
+			styles: visuallyHiddenStyles,
+			attributes: visuallyHiddenAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.VisuallyHidden.component
-			{...overrides.VisuallyHidden.attributes(state)}
-			css={overrides.VisuallyHidden.styles}
+		<VisuallyHidden
+			children={children}
+			{...rest}
+			state={state}
+			{...visuallyHiddenAttributes(state)}
+			css={visuallyHiddenStyles(state)}
 		/>
 	);
 };

@@ -2,6 +2,14 @@
 brands/**/dist/
 components/**/dist/
 
+# Website
+website/dist/*
+website/field-content/dist/*
+website/field-content/Block/dist/*
+website/field-content/block-conponents/dist/*
+website/field-content/blocks/dist/*
+website/field-content/slate-serializer/dist/*
+
 # Logs
 logs
 *.log
@@ -71,8 +79,10 @@ typings/
 *.sublime-project
 *.sublime-workspace
 *.code-workspace
+.vscode/*
 jsconfig.json
 .DS_Store
 bundle.js
 cypress/
 docs/
+prop-types.json

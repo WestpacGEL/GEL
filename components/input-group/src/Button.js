@@ -1,51 +1,46 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useInputGroupContext } from './InputGroup';
 import PropTypes from 'prop-types';
 
-import { Button as ButtonWrapper, buttonStyles } from './overrides/button';
+import { defaultButton } from './overrides/button';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Button = ({ position, size, data, overrides: componentOverrides, ...rest }) => {
+export const Button = ({ position, size, data, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+	const context = useInputGroupContext();
 
 	const defaultOverrides = {
-		Button: {
-			styles: buttonStyles,
-			component: ButtonWrapper,
-			attributes: (_, a) => a,
-		},
+		Button: defaultButton,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		position,
 		size,
 		data,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Button.component
-			{...overrides.Button.attributes(state)}
-			css={overrides.Button.styles(state)}
-		>
+		<Button {...rest} state={state} {...buttonAttributes(state)} css={buttonStyles(state)}>
 			{data}
-		</overrides.Button.component>
+		</Button>
 	);
 };
 

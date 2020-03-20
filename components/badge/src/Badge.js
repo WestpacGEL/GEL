@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Badge as BadgeWrapper, badgeStyles } from './overrides/badge';
+import { defaultBadge } from './overrides/badge';
 import pkg from '../package.json';
 
 // ==============================
@@ -17,11 +17,7 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 	} = useBrand();
 
 	const defaultOverrides = {
-		Badge: {
-			styles: badgeStyles,
-			component: BadgeWrapper,
-			attributes: (_, a) => a,
-		},
+		Badge: defaultBadge,
 	};
 
 	const state = {
@@ -31,20 +27,14 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Badge: { component: Badge, styles: badgeStyles, attributes: badgeAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Badge.component
-			{...overrides.Badge.attributes(state)}
-			css={overrides.Badge.styles(state)}
-		>
+		<Badge {...rest} state={state} {...badgeAttributes(state)} css={badgeStyles(state)}>
 			{value}
-		</overrides.Badge.component>
+		</Badge>
 	);
 };
 

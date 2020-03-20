@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-export const SkipLinkWrapper = rest => <a {...rest} />;
+const SkipLink = ({ state: { href }, ...rest }) => <a href={href} {...rest} />;
 
-export const skipLinkStyles = () => ({
+const skipLinkStyles = () => ({
 	position: 'absolute',
 	width: 1,
 	height: 1,
@@ -36,3 +35,11 @@ export const skipLinkStyles = () => ({
 		outlineOffset: -2, // override to be inside
 	},
 });
+
+const skipLinkAttributes = () => null;
+
+export const defaultSkipLink = {
+	component: SkipLink,
+	styles: skipLinkStyles,
+	attributes: skipLinkAttributes,
+};

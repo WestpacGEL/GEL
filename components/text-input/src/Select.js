@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, overrideReconciler } from '@westpac/core';
-import { SelectComponent, selectStyles } from './overrides/select';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+
+import { defaultSelect } from './overrides/select';
 import pkg from '../package.json';
 
 // ==============================
@@ -14,8 +15,8 @@ export const Select = ({
 	width,
 	inline,
 	invalid,
-	children,
 	data,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -24,25 +25,8 @@ export const Select = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const mq = useMediaQuery();
-
-	const childrenData = [];
-	if (data) {
-		data.map(({ label, ...rest }, index) => {
-			childrenData.push(
-				<option key={index} {...rest}>
-					{label}
-				</option>
-			);
-		});
-	}
-
 	const defaultOverrides = {
-		Select: {
-			styles: selectStyles,
-			component: SelectComponent,
-			attributes: (_, a) => a,
-		},
+		Select: defaultSelect,
 	};
 
 	const state = {
@@ -50,24 +34,32 @@ export const Select = ({
 		width,
 		inline,
 		invalid,
+		data,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
+	let allChildren = [];
+	if (data) {
+		data.map(({ text, ...rest }, index) => {
+			allChildren.push(
+				<option key={index} {...rest}>
+					{text}
+				</option>
+			);
+		});
+	} else {
+		allChildren = children;
+	}
 
 	return (
-		<overrides.Select.component
-			{...overrides.Select.attributes(state)}
-			css={overrides.Select.styles(state)}
-		>
-			{data ? childrenData : children}
-		</overrides.Select.component>
+		<Select {...rest} state={state} {...selectAttributes(state)} css={selectStyles(state)}>
+			{allChildren}
+		</Select>
 	);
 };
 
@@ -97,6 +89,15 @@ Select.propTypes = {
 	 * Invalid input mode
 	 */
 	invalid: PropTypes.bool.isRequired,
+
+	/**
+	 * Data drive this component
+	 */
+	data: PropTypes.arrayOf(
+		PropTypes.shape({
+			text: PropTypes.string.isRequired,
+		})
+	),
 
 	/**
 	 * Component children.

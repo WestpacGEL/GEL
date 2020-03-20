@@ -3,43 +3,40 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { SkipLinkWrapper, skipLinkStyles } from './overrides/skipLink';
+import { defaultSkipLink } from './overrides/skipLink';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const SkipLink = ({ overrides: componentOverrides, ...rest }) => {
+export const SkipLink = ({ href, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		SkipLink: {
-			styles: skipLinkStyles,
-			component: SkipLinkWrapper,
-			attributes: (_, a) => a,
-		},
+		SkipLink: defaultSkipLink,
 	};
 
 	const state = {
+		href,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		SkipLink: { component: SkipLink, styles: skipLinkStyles, attributes: skipLinkAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.SkipLink.component
-			{...overrides.SkipLink.attributes(state)}
-			css={overrides.SkipLink.styles(state)}
+		<SkipLink
+			children={children}
+			{...rest}
+			state={state}
+			{...skipLinkAttributes(state)}
+			css={skipLinkStyles(state)}
 		/>
 	);
 };
@@ -50,12 +47,12 @@ export const SkipLink = ({ overrides: componentOverrides, ...rest }) => {
 
 SkipLink.propTypes = {
 	/**
-	 * `href` attribute
+	 * href attribute
 	 */
 	href: PropTypes.string.isRequired,
 
 	/**
-	 * Link content
+	 * Children attributes
 	 */
 	children: PropTypes.node.isRequired,
 

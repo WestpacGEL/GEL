@@ -2,12 +2,18 @@
 
 import { jsx } from '@westpac/core';
 
-export const Body = ({ heading, open, onClose, size, dismissible, overrides, ...rest }) => (
-	<div {...rest} />
-);
+const Body = ({ state, ...rest }) => <div {...rest} />;
 
-export const bodyStyles = (_, {}) => {
+const bodyStyles = () => {
 	return {
 		padding: '1.125rem 1.5rem',
 	};
+};
+
+const bodyAttributes = () => null;
+
+export const defaultBody = {
+	component: Body,
+	styles: bodyStyles,
+	attributes: bodyAttributes,
 };

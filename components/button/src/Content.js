@@ -3,10 +3,11 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { DropDownIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
-import React from 'react';
 
-import { Content as ContentWrapper, contentStyles } from './overrides/content';
-import { TextWrapper } from './TextWrapper';
+import { defaultContent } from './overrides/content';
+
+import { useButtonContext } from './Button';
+import { Text } from './Text';
 import pkg from '../package.json';
 
 // ==============================
@@ -20,8 +21,6 @@ export const Content = ({
 	iconBefore: IconBefore,
 	dropdown,
 	children,
-	className,
-	overrides: componentOverrides,
 	...rest
 }) => {
 	const {
@@ -29,30 +28,28 @@ export const Content = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useButtonContext();
+
 	const defaultOverrides = {
-		Content: {
-			styles: contentStyles,
-			component: ContentWrapper,
-			attributes: (_, a) => a,
-		},
+		Content: defaultContent,
 	};
+
+	const componentOverrides = context.state.overrides;
 
 	const state = {
 		size,
 		block,
 		iconAfter: IconAfter,
 		iconBefore: IconBefore,
-		children,
+		dropdown,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	// Map button size to icon size
 	const iconSizeMap = {
@@ -64,28 +61,22 @@ export const Content = ({
 
 	// Compose a button text + icon fragment, if these are provided
 	return (
-		<overrides.Content.component
-			className={className}
-			{...overrides.Content.attributes(state)}
-			css={overrides.Content.styles(state)}
-		>
+		<Content {...rest} state={state} {...contentAttributes(state)} css={contentStyles(state)}>
 			{IconBefore && (
 				<IconBefore
-					css={{ marginRight: children && '0.4em' }}
 					size={iconSizeMap[size]}
+					css={{ marginRight: children && '0.4em' }}
 					color="inherit"
 				/>
 			)}
-			{children && (
-				<TextWrapper block={block} overrides={componentOverrides}>
-					{children}
-				</TextWrapper>
-			)}
+			{children && <Text block={block}>{children}</Text>}
 			{IconAfter && (
 				<IconAfter
 					css={{ marginLeft: children && '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
+					aria-hidden="true"
+					assistiveText={null}
 				/>
 			)}
 			{dropdown && (
@@ -93,11 +84,17 @@ export const Content = ({
 					css={{ marginLeft: block ? 'auto' : '0.4em' }}
 					size={iconSizeMap[size]}
 					color="inherit"
+					aria-hidden="true"
+					assistiveText={null}
 				/>
 			)}
-		</overrides.Content.component>
+		</Content>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Content.propTypes = {
 	/**
@@ -107,6 +104,13 @@ Content.propTypes = {
 		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
 	]).isRequired,
+
+	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
 
 	/**
 	 * Places an icon within the button, after the button’s text
@@ -119,11 +123,9 @@ Content.propTypes = {
 	iconBefore: PropTypes.func,
 
 	/**
-	 * Block mode.
-	 *
-	 * Fit button width to its parent width.
+	 * Enable dropdown mode
 	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
+	dropdown: PropTypes.bool,
 
 	/**
 	 * Button text

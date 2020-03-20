@@ -13,15 +13,15 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Default instance (no styling props)</h2>
-			<Switch name="example-default" label="Turn notifications" />
+			<h2>Default</h2>
+			<Switch name="example-default" label="eStatements" />
 			<h2>Controlled</h2>
 			<Switch
-				name="example-checked"
-				label={'Turn notifications'}
+				name="example-controlled"
+				label={'eStatements'}
 				checked={checked}
 				onChange={() => {
-					console.log('Controlled');
+					console.log(`Controlled: ${JSON.stringify(!checked)}`);
 					setChecked(!checked);
 				}}
 			/>

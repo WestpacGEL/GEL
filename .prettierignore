@@ -1,5 +1,8 @@
 brands/**/dist/
 components/**/dist/
+website/**/dist/
+website/**/.next/
 components/**/cypress/
 .docz/
 docs/
+prop-types.json

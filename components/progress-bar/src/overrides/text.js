@@ -2,15 +2,22 @@
 
 import { jsx } from '@westpac/core';
 
-export const Text = props => <span {...props} />;
+const Text = ({ state, ...rest }) => <span {...rest} />;
 
-export const textStyles = (_, {}) => {
-	return {
-		display: 'inline-block',
-		margin: '0 0.75rem',
-		'@media print': {
-			backgroundColor: '#000 !important',
-			color: '#fff !important',
-		},
-	};
+const textStyles = () => ({
+	display: 'inline-block',
+	margin: '0 0.75rem',
+
+	'@media print': {
+		backgroundColor: '#000 !important',
+		color: '#fff !important',
+	},
+});
+
+const textAttributes = () => null;
+
+export const defaultText = {
+	component: Text,
+	styles: textStyles,
+	attributes: textAttributes,
 };

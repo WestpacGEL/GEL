@@ -2,10 +2,18 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const TableFoot = ({ bordered, ...props }) => <tfoot {...props} />;
+const TFoot = ({ state, ...rest }) => <tfoot {...rest} />;
 
-export const tfootStyles = (_, { bordered }) => {
+const tfootStyles = (_, { bordered }) => {
 	const { COLORS } = useBrand();
 
 	return { color: COLORS.muted, 'th, tr, td': { borderBottom: !bordered && 0 } };
+};
+
+const tfootAttributes = () => null;
+
+export const defaultTfoot = {
+	component: TFoot,
+	styles: tfootStyles,
+	attributes: tfootAttributes,
 };

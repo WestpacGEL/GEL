@@ -1,17 +1,55 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, forwardRef } from 'react';
+import { Fragment, useState, forwardRef, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
 import PropTypes from 'prop-types';
 
-import { AccordionLabel, accordionLabelStyles } from './overrides/accordionLabel';
-import { AccordionIcon, accordionIconStyles } from './overrides/accordionIcon';
-import { Panel, panelStyles } from './overrides/panel';
+import { defaultAccordionButton } from './overrides/accordionButton';
+import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
+import { defaultPanel } from './overrides/panel';
+
+import { useTabcordionContext } from './Tabcordion';
+import { useMeasure } from './_utils';
 import pkg from '../package.json';
+
+// ==============================
+// Component
+// ==============================
 
 export const Tab = forwardRef(
 	(
-		{
+		{ look, last, selected, text, mode, panelId, tabId, onClick, children, overrides, ...rest },
+		ref
+	) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
+
+		const context = useTabcordionContext();
+		const [hidden, setHidden] = useState(!selected);
+		const [bind, { height }] = useMeasure();
+		const [initial, setInitial] = useState(true);
+
+		const animate = useSpring({
+			to: {
+				height: mode === 'accordion' ? (hidden ? 0 : height) : 'auto',
+				overflow: 'hidden',
+			},
+			immediate: initial,
+		});
+
+		const defaultOverrides = {
+			AccordionButton: defaultAccordionButton,
+			AccordionButtonIcon: defaultAccordionButtonIcon,
+			Panel: defaultPanel,
+		};
+
+		const componentOverrides = overrides || context.state.overrides;
+
+		const state = {
+			hidden,
 			look,
 			last,
 			selected,
@@ -20,101 +58,79 @@ export const Tab = forwardRef(
 			panelId,
 			onClick,
 			tabId,
-			children,
-			overrides: componentOverrides,
-			...rest
-		},
-		ref
-	) => {
-		const [hidden, setHidden] = useState(!selected);
-		const {
-			OVERRIDES: { [pkg.name]: tokenOverrides },
-			[pkg.name]: brandOverrides,
-		} = useBrand();
-
-		const defaultOverrides = {
-			AccordionLabel: {
-				styles: accordionLabelStyles,
-				component: AccordionLabel,
-				attributes: (_, a) => a,
-			},
-			AccordionIcon: {
-				styles: accordionIconStyles,
-				component: AccordionIcon,
-				attributes: (_, a) => a,
-			},
-			Panel: {
-				styles: panelStyles,
-				component: Panel,
-				attributes: (_, a) => a,
-			},
-		};
-
-		const state = {
-			look,
-			last,
-			selected,
-			mode,
-			hidden,
+			context: context.state,
 			overrides: componentOverrides,
 			...rest,
 		};
 
-		const overrides = overrideReconciler(
-			defaultOverrides,
-			tokenOverrides,
-			brandOverrides,
-			componentOverrides
-		);
+		const {
+			AccordionButton: {
+				component: AccordionButton,
+				styles: accordionButtonStyles,
+				attributes: accordionButtonAttributes,
+			},
+			AccordionButtonIcon: {
+				component: AccordionButtonIcon,
+				styles: accordionButtonIconStyles,
+				attributes: accordionButtonIconAttributes,
+			},
+			Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		const handleAccordionClick = () => {
+			setInitial(false);
 			setHidden(!hidden);
 			onClick();
 		};
 
+		useEffect(() => {
+			setHidden(!selected);
+		}, [mode]);
+
 		return (
 			<Fragment>
 				{mode === 'accordion' ? (
-					<overrides.AccordionLabel.component
+					<AccordionButton
 						onClick={handleAccordionClick}
-						id={tabId}
-						aria-controls={panelId}
-						aria-expanded={selected}
-						{...overrides.AccordionLabel.attributes(state)}
-						css={overrides.AccordionLabel.styles(state)}
+						state={state}
+						{...accordionButtonAttributes(state)}
+						css={accordionButtonStyles(state)}
 					>
 						<span>{text}</span>
-						<overrides.AccordionIcon.component
-							{...overrides.AccordionIcon.attributes(state)}
-							css={overrides.AccordionIcon.styles(state)}
+						<AccordionButtonIcon
+							state={state}
+							{...accordionButtonIconAttributes(state)}
+							css={accordionButtonIconStyles(state)}
 						/>
-					</overrides.AccordionLabel.component>
+					</AccordionButton>
 				) : null}
-				<overrides.Panel.component
-					id={panelId}
-					aria-labelledby={tabId}
-					aria-selected={selected}
-					role="tabpanel"
-					ref={ref}
-					tabIndex="0"
-					{...overrides.Panel.attributes({
-						...state,
-						hidden: mode === 'accordion' ? hidden : !selected,
-					})}
-					css={overrides.Panel.styles(state)}
-				>
-					{children}
-				</overrides.Panel.component>
+
+				<animated.div style={animate}>
+					<div ref={bind.ref}>
+						<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+							{children}
+						</Panel>
+					</div>
+				</animated.div>
 			</Fragment>
 		);
 	}
 );
 
+// ==============================
+// Types
+// ==============================
+
 Tab.propTypes = {
 	/**
-	 * The panel content for this tab
+	 * The look of the tabs
 	 */
-	children: PropTypes.node.isRequired,
+	look: PropTypes.oneOf(['soft', 'lego']),
+
+	/**
+	 * Indicator if this is the last tab
+	 */
+	last: PropTypes.bool,
 
 	/**
 	 * Whether this tab/panel is selected/expanded
@@ -137,25 +153,30 @@ Tab.propTypes = {
 	panelId: PropTypes.string,
 
 	/**
-	 * The onClick handler for the accordion label
-	 */
-	onClick: PropTypes.func,
-
-	/**
 	 * The id for the tab
 	 */
 	tabId: PropTypes.string,
 
 	/**
+	 * The onClick handler for the accordion button
+	 */
+	onClick: PropTypes.func,
+
+	/**
+	 * The panel content for this tab
+	 */
+	children: PropTypes.node.isRequired,
+
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		AccordionLabel: PropTypes.shape({
+		AccordionButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		AccordionIcon: PropTypes.shape({
+		AccordionButtonIcon: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

@@ -3,42 +3,53 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Cell as CellWrapper, cellStyles } from './overrides/cell';
+import { defaultCell } from './overrides/cell';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Cell = ({ overrides: componentOverrides, ...rest }) => {
+export const Cell = ({
+	area,
+	height,
+	left,
+	top,
+	width,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		Cell: {
-			styles: cellStyles,
-			component: CellWrapper,
-			attributes: (_, a) => a,
-		},
+		Cell: defaultCell,
 	};
 
 	const state = {
+		area,
+		height,
+		left,
+		top,
+		width,
+		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Cell: { component: Cell, styles: cellStyles, attributes: cellAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Cell.component
-			{...overrides.Cell.attributes(state)}
-			css={overrides.Cell.styles(state)}
+		<Cell
+			{...rest}
+			state={state}
+			{...cellAttributes(state)}
+			css={cellStyles(state)}
+			children={children}
 		/>
 	);
 };
@@ -74,7 +85,7 @@ Cell.propTypes = {
 	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).isRequired,
 
 	/**
-	 * Alert children
+	 * Children
 	 */
 	children: PropTypes.node,
 

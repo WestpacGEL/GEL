@@ -35,12 +35,14 @@ const labelFromSlug = slug => {
  *
  * @return {array}            - An array of objects with information about the example file
  */
-const findExampleFiles = (component, parent = '') => {
-	const exampleFolder = path.resolve(`${__dirname}/../../components/${component}/examples`);
+const EXAMPLE_FOLDER = 'examples';
 
-	if (fs.existsSync(exampleFolder)) {
+const findExampleFiles = (component, parent = '') => {
+	const exampleDir = path.resolve(`${__dirname}/../../components/${component}/${EXAMPLE_FOLDER}`);
+
+	if (fs.existsSync(exampleDir)) {
 		const files = fs
-			.readdirSync(exampleFolder)
+			.readdirSync(exampleDir)
 			.filter(file => !file.startsWith('.') && !file.startsWith('_') && file.endsWith('.js'));
 
 		const { version } = require(path.normalize(
@@ -59,13 +61,13 @@ const findExampleFiles = (component, parent = '') => {
 				label,
 				parent,
 				landing: parent.length > 0 ? false : true,
-				relativePath: path.relative(__dirname, `${exampleFolder}/${filename}`),
-				absolutePath: `${exampleFolder}/${filename}`,
-				path: exampleFolder,
+				relativePath: path.relative(__dirname, `${exampleDir}/${filename}`),
+				absolutePath: `${exampleDir}/${filename}`,
+				path: exampleDir,
 			};
 		});
 	} else {
-		console.error(`Package doesn't exist: ${exampleFolder}`);
+		console.error(`Package doesn't exist: ${exampleDir}`);
 	}
 };
 

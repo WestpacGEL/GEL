@@ -1,9 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, mergeWith } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Footer, footerStyles } from './overrides/footer';
+import { defaultFooter } from './overrides/footer';
+
 import { usePanelContext } from './Panel';
 import pkg from '../package.json';
 
@@ -11,40 +12,34 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
+export const PanelFooter = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = usePanelContext();
+
 	const defaultOverrides = {
-		Footer: {
-			styles: footerStyles,
-			component: Footer,
-			attributes: (_, a) => a,
-		},
+		Footer: defaultFooter,
 	};
 
-	const { overrides: overridesCtx, ...context } = usePanelContext();
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
+		context: context.state,
 		overrides: componentOverrides,
-		...context,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		mergeWith(componentOverrides, overridesCtx)
-	);
+	const {
+		Footer: { component: Footer, styles: footerStyles, attributes: footerAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Footer.component
-			{...overrides.Footer.attributes(state)}
-			css={overrides.Footer.styles(state)}
-		/>
+		<Footer {...rest} state={state} {...footerAttributes(state)} css={footerStyles(state)}>
+			{children}
+		</Footer>
 	);
 };
 
@@ -54,7 +49,7 @@ export const PanelFooter = ({ overrides: componentOverrides, ...rest }) => {
 
 PanelFooter.propTypes = {
 	/**
-	 * Panel body content
+	 * Panel footer content
 	 */
 	children: PropTypes.node,
 

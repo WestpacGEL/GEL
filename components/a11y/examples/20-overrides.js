@@ -18,25 +18,23 @@ function Example({ brand }) {
 
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/a11y'] = {
-		subComponent: {
-			SkipLink: {
-				styles: styles => ({
-					...styles,
-					':focus': {
-						background: COLORS.primary,
-						color: '#fff',
-					},
-				}),
-				component: SkipLinkWrapper,
-			},
-			VisuallyHidden: {
-				styles: styles => ({
-					...styles,
-					overflow: 'visible',
-					clip: 'auto',
-					outline: '1px dotted red',
-				}),
-			},
+		SkipLink: {
+			styles: styles => ({
+				...styles,
+				':focus': {
+					background: COLORS.primary,
+					color: '#fff',
+				},
+			}),
+			component: SkipLinkWrapper,
+		},
+		VisuallyHidden: {
+			styles: styles => ({
+				...styles,
+				overflow: 'visible',
+				clip: 'auto',
+				outline: '1px dotted red',
+			}),
 		},
 	};
 

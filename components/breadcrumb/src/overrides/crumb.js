@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const Crumb = ({ current, assistiveText, ...props }) => <li {...props} />;
+const Crumb = ({ state, ...rest }) => <li {...rest} />;
 
-export const crumbStyles = () => {
+const crumbStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -15,4 +14,12 @@ export const crumbStyles = () => {
 		color: COLORS.text,
 		verticalAlign: 'middle',
 	};
+};
+
+const crumbAttributes = (_, { current }) => ({ 'aria-current': current ? 'page' : undefined });
+
+export const defaultCrumb = {
+	component: Crumb,
+	styles: crumbStyles,
+	attributes: crumbAttributes,
 };

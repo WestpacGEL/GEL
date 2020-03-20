@@ -1,7 +1,7 @@
 {
 	"name": "gel",
 	"description": "The design system and react components for Westpac GEL",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -18,15 +18,16 @@
 	"license": "GPL-3.0+",
 	"private": true,
 	"scripts": {
-		"start": "/bin/sh -c 'cd components/${1:-$0} && yarn start'",
+		"dev": "/bin/sh -c 'cd components/${1:-$0} && yarn start'",
 		"docs": "webpack-dev-server --progress --config ./helpers/example/docs.webpack.config.js",
 		"docs:build": "NODE_ENV=development webpack --progress --config ./helpers/example/docs.webpack.config.js && yarn docs:redirects",
 		"docs:redirects": "cp helpers/public/* docs/",
+		"start": "cd website && yarn start",
 		"nuke": "yarn nuke:lock && yarn nuke:node_modules",
 		"nuke:node_modules": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
 		"nuke:lock": "rm yarn.lock && rm yarn-error.log ; true",
-		"build": "preconstruct build",
-		"dev": "preconstruct dev",
+		"build": "preconstruct build && build-field-types build",
+		"build:dev": "preconstruct dev",
 		"fresh": "yarn nuke && yarn",
 		"new": "node ./helpers/cli.js",
 		"format": "prettier --write \"**/*.{js,md,mdx,json}\"",
@@ -37,14 +38,29 @@
 		"test": "yarn test:format && yarn test:unit && yarn test:integration",
 		"dep:test": "manypkg check && preconstruct build || preconstruct dev",
 		"dep:fix": "manypkg fix",
-		"postinstall": "yarn dep:test && preconstruct dev",
-		"publish-packages": "yarn build && yarn changeset publish",
+		"propTypes": "node helpers/propTypes.js",
+		"postinstall": "yarn dep:test && preconstruct dev && yarn propTypes && build-field-types dev",
+		"publish-packages": "yarn build && yarn propTypes && yarn changeset publish",
 		"version-packages": "yarn changeset version"
 	},
 	"workspaces": [
+		"brands/*",
 		"components/*",
-		"brands/*"
+		"website",
+		"website/field-content"
 	],
+	"field-types": {
+		"packages": [
+			"website/field-content"
+		]
+	},
+	"preconstruct": {
+		"packages": [
+			"website/field-content",
+			"components/*",
+			"brands/*"
+		]
+	},
 	"jest": {
 		"testRegex": "\\.spec.js$",
 		"collectCoverageFrom": [
@@ -55,64 +71,59 @@
 		]
 	},
 	"dependencies": {
-		"@babel/cli": "^7.8.3",
-		"@babel/core": "^7.8.3",
+		"@babel/cli": "^7.8.4",
+		"@babel/core": "^7.8.7",
 		"@babel/plugin-proposal-class-properties": "^7.8.3",
 		"@babel/plugin-transform-runtime": "^7.8.3",
-		"@babel/preset-env": "^7.8.3",
+		"@babel/preset-env": "^7.8.7",
 		"@babel/preset-react": "^7.8.3",
-		"@changesets/cli": "^2.4.1",
+		"@changesets/cli": "^2.6.1",
 		"@emotion/cache": "^10.0.27",
-		"@emotion/core": "^10.0.27",
+		"@emotion/core": "^10.0.28",
 		"@emotion/weak-memoize": "^0.2.5",
-		"@manypkg/cli": "^0.9.0",
-		"@preconstruct/cli": "^1.1.4",
+		"@manypkg/cli": "^0.11.1",
+		"@preconstruct/cli": "^1.1.8",
 		"babel-core": "^7.0.0-bridge.0",
-		"babel-jest": "^24.9.0",
+		"babel-jest": "^25.1.0",
 		"babel-loader": "^8.0.6",
 		"babel-loader-exclude-node-modules-except": "^1.0.3",
 		"babel-plugin-codegen": "^3.1.0",
-		"cfonts": "^2.4.8",
+		"cfonts": "^2.8.1",
 		"chalk": "^3.0.0",
 		"color": "^3.1.2",
 		"common-tags": "^1.8.0",
 		"copy-webpack-plugin": "^5.1.1",
 		"core-js": "^3.6.4",
 		"create-emotion-server": "^10.0.27",
-		"cypress": "^3.8.2",
+		"cypress": "^4.1.0",
 		"facepaint": "^1.2.1",
 		"focus-trap-react": "^6.0.0",
-		"get-workspaces": "^0.5.2",
+		"get-workspaces": "^1.0.0",
 		"html-webpack-plugin": "^3.2.0",
 		"html-webpack-root-plugin": "^0.10.0",
-		"jest": "^24.9.0",
-		"jest-cli": "^24.9.0",
+		"jest": "^25.1.0",
+		"jest-cli": "^25.1.0",
 		"lodash.merge": "^4.6.2",
 		"mini-svg-data-uri": "^1.1.3",
+		"parse-prop-types": "^0.3.0",
 		"prettier": "^1.19.1",
 		"prop-types": "^15.7.2",
 		"raf": "^3.4.1",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0",
+		"react": "^16.13.0",
+		"react-dom": "^16.13.0",
 		"react-focus-lock": "^2.2.1",
 		"react-router-dom": "^5.1.2",
 		"react-spring": "^8.0.27",
-		"regenerator-runtime": "^0.13.3",
+		"regenerator-runtime": "^0.13.5",
 		"resize-observer-polyfill": "^1.5.1",
 		"shortid": "^2.2.15",
-		"start-server-and-test": "^1.10.6",
+		"start-server-and-test": "^1.10.10",
 		"tmp": "^0.1.0",
-		"webpack": "^4.41.5",
-		"webpack-cli": "^3.3.10",
-		"webpack-dev-server": "^3.10.1"
+		"webpack": "^4.42.0",
+		"webpack-cli": "^3.3.11",
+		"webpack-dev-server": "^3.10.3"
 	},
 	"resolutions": {
 		"ansi-styles": "^3.2.0"
-	},
-	"preconstruct": {
-		"packages": [
-			"components/*",
-			"brands/*"
-		]
 	}
 }

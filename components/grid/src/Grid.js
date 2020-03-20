@@ -3,45 +3,65 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Grid as GridWrapper, gridStyles } from './overrides/grid';
+import { defaultGrid } from './overrides/grid';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-/**
- * A group of `Cell` components must be wrapped in a `Grid`.
- */
-export const Grid = ({ overrides: componentOverrides, ...rest }) => {
+export const Grid = ({
+	alignContent,
+	areas,
+	columnGap,
+	columns,
+	flow,
+	gap,
+	height,
+	justifyContent,
+	minRowHeight,
+	rowGap,
+	rows,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		Grid: {
-			styles: gridStyles,
-			component: GridWrapper,
-			attributes: (_, a) => a,
-		},
+		Grid: defaultGrid,
 	};
 
 	const state = {
+		alignContent,
+		areas,
+		columnGap,
+		columns,
+		flow,
+		gap,
+		height,
+		justifyContent,
+		minRowHeight,
+		rowGap,
+		rows,
+		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Grid: { component: Grid, styles: gridStyles, attributes: gridAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Grid.component
-			{...overrides.Grid.attributes(state)}
-			css={overrides.Grid.styles(state)}
+		<Grid
+			{...rest}
+			state={state}
+			{...gridAttributes(state)}
+			css={gridStyles(state)}
+			children={children}
 		/>
 	);
 };

@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import pkg from '../package.json';
 import { Button } from './Button';
 import { Select } from './Select';
 import { Label } from './Label';
@@ -42,3 +41,5 @@ Right.propTypes = {
 Right.defaultProps = {
 	size: 'medium',
 };
+
+Right.displayName = 'Right';

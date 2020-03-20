@@ -20,7 +20,7 @@ function Example({ brand }) {
 			<hr />
 			<br />
 
-			<InputGroup>
+			<InputGroup placeholder="Fill me out">
 				<Right type="button" data="Go" />
 			</InputGroup>
 			<br />
@@ -31,11 +31,12 @@ function Example({ brand }) {
 			<InputGroup>
 				<Right
 					type="select"
+					onChange={event => console.log(`Selected ${event.target.value}`)}
 					data={[
-						{ label: 'Select', value: '' },
-						{ label: '1', value: '', onClick: () => console.log('Selected 1') },
-						{ label: '2', value: '', onClick: () => console.log('Selected 2') },
-						{ label: '3', value: '', onClick: () => console.log('Selected 3') },
+						{ text: 'Select', value: '' },
+						{ text: '1', value: '1' },
+						{ text: '2', value: '2' },
+						{ text: '3', value: '3' },
 					]}
 				/>
 			</InputGroup>
@@ -72,11 +73,12 @@ function Example({ brand }) {
 				data={{
 					left: {
 						type: 'select',
+						onChange: event => console.log(`Selected ${event.target.value}`),
 						data: [
-							{ label: 'Select', value: '' },
-							{ label: '1', value: '', onClick: () => console.log('Selected 1') },
-							{ label: '2', value: '', onClick: () => console.log('Selected 2') },
-							{ label: '3', value: '', onClick: () => console.log('Selected 3') },
+							{ text: 'Select', value: '' },
+							{ text: '1', value: '1' },
+							{ text: '2', value: '2' },
+							{ text: '3', value: '3' },
 						],
 					},
 				}}
@@ -99,10 +101,11 @@ function Example({ brand }) {
 			<InputGroup>
 				<Left
 					type="select"
+					onChange={event => console.log(`Selected ${event.target.value}`)}
 					data={[
-						{ label: 'AUD $', onClick: () => console.log('Selected AUD') },
-						{ label: 'USD $', onClick: () => console.log('Selected USD') },
-						{ label: 'EUR €', onClick: () => console.log('Selected EUR') },
+						{ text: 'AUD $', value: 'AUD' },
+						{ text: 'USD $', value: 'USD' },
+						{ text: 'EUR €', value: 'EUR' },
 					]}
 				/>
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
@@ -125,14 +128,12 @@ function Example({ brand }) {
 			<br />
 
 			<InputGroup
+				look="primary"
 				data={{
 					left: {
 						type: 'select',
-						data: [
-							{ label: 'AUD $', onClick: () => console.log('Selected AUD') },
-							{ label: 'USD $', onClick: () => console.log('Selected USD') },
-							{ label: 'EUR €', onClick: () => console.log('Selected EUR') },
-						],
+						onChange: event => console.log(`Selected ${event.target.value}`),
+						data: [{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }],
 					},
 					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
 				}}

@@ -3,19 +3,16 @@
 import { forwardRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
-export const Panel = forwardRef(({ look, last, selected, mode, ...rest }, ref) => (
-	<div ref={ref} {...rest} />
-));
+const Panel = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
-export const panelStyles = (_, { look, mode, last }) => {
+const panelStyles = (_, { look, mode, last, selected }) => {
 	const { COLORS } = useBrand();
 
-	const styles =
+	const stylesMap =
 		mode === 'accordion'
 			? {
 					lego: {
-						borderLeftWidth: '0.375rem',
-						borderLeftColor: COLORS.border,
+						borderLeft: `0.375rem solid ${COLORS.border}`,
 					},
 					soft: last
 						? {
@@ -27,11 +24,19 @@ export const panelStyles = (_, { look, mode, last }) => {
 			: {};
 
 	return {
+		display: mode === 'tabs' && !selected ? 'none' : 'block',
+		borderTop: mode === 'tabs' && `1px solid ${COLORS.border}`,
+		borderBottom: `1px solid ${COLORS.border}`,
 		borderLeft: `1px solid ${COLORS.border}`,
 		borderRight: `1px solid ${COLORS.border}`,
-		borderBottom: (mode === 'tabs' || last) && `1px solid ${COLORS.border}`,
-		borderTop: mode === 'tabs' && `1px solid ${COLORS.border}`,
 		padding: '1.5rem 3.22%',
-		...styles[look],
+		...stylesMap[look],
 	};
 };
+
+const panelAttributes = (_, { panelId, mode, hidden, selected }) => ({
+	id: panelId,
+	'aria-hidden': mode === 'accordion' ? hidden : !selected,
+});
+
+export const defaultPanel = { component: Panel, styles: panelStyles, attributes: panelAttributes };

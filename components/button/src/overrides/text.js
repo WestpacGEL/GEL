@@ -1,11 +1,18 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import React from 'react';
 
-export const Text = ({ block, ...rest }) => <span {...rest} />;
+const Text = ({ state, ...rest }) => <span {...rest} />;
 
-export const textStyles = () => ({
+const textStyles = () => ({
 	overflow: 'hidden',
 	textOverflow: 'ellipsis',
 });
+
+const textAttributes = () => null;
+
+export const defaultText = {
+	component: Text,
+	styles: textStyles,
+	attributes: textAttributes,
+};

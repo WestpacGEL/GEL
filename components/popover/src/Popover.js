@@ -1,25 +1,30 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState, useEffect, useRef, cloneElement } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePopoverPosition } from '@westpac/hooks';
-import { CloseIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
 
-import { Popover as PopoverWrapper, popoverStyles } from './overrides/popover';
-import { CloseBtn, closeBtnStyles } from './overrides/closeBtn';
-import { PopoverBody, bodyStyles } from './overrides/body';
-import { Panel, panelStyles } from './overrides/panel';
-import { Title, titleStyles } from './overrides/title';
+import { defaultPopover } from './overrides/popover';
+import { defaultTrigger } from './overrides/trigger';
+import { defaultCloseBtn } from './overrides/closeBtn';
+import { defaultBody } from './overrides/body';
+import { defaultPanel } from './overrides/panel';
+import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
+
+// ==============================
+// Component
+// ==============================
 
 export const Popover = ({
 	open: isOpen,
-	title,
+	heading,
+	headingTag,
 	content,
 	dismissible,
+	instanceIdPrefix,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -27,56 +32,49 @@ export const Popover = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
-	const [popoverId] = useState(useInstanceId());
+
 	const [open, setOpen] = useState(open);
 	const [position, setPosition] = useState({ placement: 'top', empty: true });
 	const triggerRef = useRef();
 	const popoverRef = useRef();
 
 	const defaultOverrides = {
-		Popover: {
-			styles: popoverStyles,
-			component: PopoverWrapper,
-			attributes: (_, a) => a,
-		},
-		Panel: {
-			styles: panelStyles,
-			component: Panel,
-			attributes: (_, a) => a,
-		},
-		Title: {
-			styles: titleStyles,
-			component: Title,
-			attributes: (_, a) => a,
-		},
-		Body: {
-			styles: bodyStyles,
-			component: PopoverBody,
-			attributes: (_, a) => a,
-		},
-		CloseBtn: {
-			styles: closeBtnStyles,
-			component: CloseBtn,
-			attributes: (_, a) => a,
-		},
+		Popover: defaultPopover,
+		Trigger: defaultTrigger,
+		Panel: defaultPanel,
+		Heading: defaultHeading,
+		Body: defaultBody,
+		CloseBtn: defaultCloseBtn,
 	};
+
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+
+	useEffect(() => {
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-popover-${useInstanceId()}`);
+		}
+	}, [instanceIdPrefix]);
 
 	const state = {
 		open,
-		title,
+		heading,
+		headingTag,
 		content,
 		dismissible,
 		position,
+		instanceId,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Popover: { component: Popover, styles: popoverStyles, attributes: popoverAttributes },
+		Trigger: { component: Trigger, styles: triggerStyles, attributes: triggerAttributes },
+		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
+		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
+		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -84,13 +82,9 @@ export const Popover = ({
 
 	const handleOpen = () => {
 		if (open) {
-			if (popoverRef.current.contains(document.activeElement)) {
-				setTimeout(() => triggerRef.current.focus(), 100);
-			}
 			setOpen(false);
 		} else {
 			setOpen(true);
-			setTimeout(() => popoverRef.current.focus(), 100);
 		}
 	};
 
@@ -123,58 +117,66 @@ export const Popover = ({
 		};
 	});
 
-	const childrenWithProps = cloneElement(children, {
-		'aria-describedby': `gel-popover-${popoverId}`,
-	});
-
 	return (
-		<overrides.Popover.component
+		<Popover
 			ref={triggerRef}
-			onClick={handleOpen}
-			className={className}
-			{...overrides.Popover.attributes(state)}
-			css={overrides.Popover.styles(state)}
+			state={state}
+			{...popoverAttributes(state)}
+			css={popoverStyles(state)}
 		>
-			{childrenWithProps}
-			<overrides.Panel.component
-				id={`gel-popover-${popoverId}`}
-				aria-label="Use the ESC key to close"
-				ref={popoverRef}
-				tabIndex="-1"
-				{...overrides.Panel.attributes(state)}
-				css={overrides.Panel.styles(state)}
+			<Trigger
+				onClick={handleOpen}
+				{...rest}
+				state={state}
+				{...triggerAttributes(state)}
+				css={triggerStyles(state)}
 			>
-				<overrides.Title.component
-					{...overrides.Title.attributes(state)}
-					css={overrides.Title.styles(state)}
-				>
-					{title}
-				</overrides.Title.component>
-				<overrides.Body.component
-					{...overrides.Body.attributes(state)}
-					css={overrides.Body.styles(state)}
-				>
+				{children}
+			</Trigger>
+			<Panel ref={popoverRef} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+				{heading && (
+					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
+						{heading}
+					</Heading>
+				)}
+				<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 					{content}
-				</overrides.Body.component>
-				<overrides.CloseBtn.component
+				</Body>
+				<CloseBtn
 					onClick={() => handleOpen()}
-					icon={CloseIcon}
-					{...overrides.CloseBtn.attributes(state)}
-					css={overrides.CloseBtn.styles(state)}
+					state={state}
+					{...closeBtnAttributes(state)}
+					css={closeBtnStyles(state)}
 				/>
-			</overrides.Panel.component>
-		</overrides.Popover.component>
+			</Panel>
+		</Popover>
 	);
 };
 
 // ==============================
 // Types
 // ==============================
+
 Popover.propTypes = {
 	/**
-	 * State of whether the popover is open
+	 * State of whether the Popover is open
 	 */
 	open: PropTypes.bool,
+
+	/**
+	 * The Popover heading
+	 */
+	heading: PropTypes.string,
+
+	/**
+	 * The tag of the heading element for semantic reasons
+	 */
+	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
+
+	/**
+	 * The body of the popover
+	 */
+	content: PropTypes.string.isRequired,
 
 	/**
 	 * Enable dismissible mode.
@@ -202,7 +204,7 @@ Popover.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Title: PropTypes.shape({
+		heading: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -223,4 +225,5 @@ Popover.propTypes = {
 Popover.defaultProps = {
 	open: false,
 	dismissible: false,
+	headingTag: 'h4',
 };

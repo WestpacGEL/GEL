@@ -2,7 +2,7 @@
 	"name": "@westpac/btfg",
 	"version": "1.0.0",
 	"description": "BTFG brand component for the Westpac GEL design language",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/brands/BTFG",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -21,6 +21,6 @@
 	"main": "dist/btfg.cjs.js",
 	"module": "dist/btfg.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.6.2"
+		"@babel/runtime": "^7.8.4"
 	}
 }

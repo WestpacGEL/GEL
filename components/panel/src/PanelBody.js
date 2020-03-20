@@ -1,9 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, mergeWith } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Body, bodyStyles } from './overrides/body';
+import { defaultBody } from './overrides/body';
+
 import { usePanelContext } from './Panel';
 import pkg from '../package.json';
 
@@ -11,40 +12,34 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const PanelBody = ({ overrides: componentOverrides, ...rest }) => {
+export const PanelBody = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = usePanelContext();
+
 	const defaultOverrides = {
-		Body: {
-			styles: bodyStyles,
-			component: Body,
-			attributes: (_, a) => a,
-		},
+		Body: defaultBody,
 	};
 
-	const { overrides: overridesCtx, ...context } = usePanelContext();
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
+		context: context.state,
 		overrides: componentOverrides,
-		...context,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		mergeWith(componentOverrides, overridesCtx)
-	);
+	const {
+		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Body.component
-			{...overrides.Body.attributes(state)}
-			css={overrides.Body.styles(state)}
-		/>
+		<Body {...rest} state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
+			{children}
+		</Body>
 	);
 };
 

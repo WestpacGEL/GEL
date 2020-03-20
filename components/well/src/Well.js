@@ -3,41 +3,37 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Well as WellWrapper, wellStyles } from './overrides/well';
+import { defaultWell } from './overrides/well';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Well = ({ overrides: componentOverrides, ...rest }) => {
+export const Well = ({ tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		Well: {
-			styles: wellStyles,
-			component: WellWrapper,
-			attributes: (_, a) => a,
-		},
+		Well: defaultWell,
 	};
 
-	const state = { overrides: componentOverrides, ...rest };
+	const state = {
+		tag,
+		overrides: componentOverrides,
+		...rest,
+	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Well: { component: Well, styles: wellStyles, attributes: wellAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Well.component
-			{...overrides.Well.attributes(state)}
-			css={overrides.Well.styles(state)}
-		/>
+		<Well {...rest} state={state} {...wellAttributes(state)} css={wellStyles(state)}>
+			{children}
+		</Well>
 	);
 };
 
@@ -46,6 +42,11 @@ export const Well = ({ overrides: componentOverrides, ...rest }) => {
 // ==============================
 
 Well.propTypes = {
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+
 	/**
 	 * The override API
 	 */
@@ -58,4 +59,6 @@ Well.propTypes = {
 	}),
 };
 
-Well.defaultProps = {};
+Well.defaultProps = {
+	tag: 'div',
+};

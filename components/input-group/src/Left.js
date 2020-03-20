@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import pkg from '../package.json';
 import { Button } from './Button';
 import { Select } from './Select';
 import { Label } from './Label';
@@ -11,7 +10,6 @@ import { Label } from './Label';
 // ==============================
 // Component
 // ==============================
-
 export const Left = ({ type, overrides: componentOverrides, ...rest }) => {
 	const componentMap = {
 		label: Label,
@@ -42,3 +40,5 @@ Left.propTypes = {
 Left.defaultProps = {
 	size: 'medium',
 };
+
+Left.displayName = 'Left';
