@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from 'react';
 import { jsx, useBrand } from '@westpac/core';
-import { Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon } from '@westpac/icon';
 
@@ -10,7 +9,6 @@ import { useSidebar } from '../../providers/sidebar';
 export const PageHeader = ({ name, version }) => {
 	const { COLORS, SPACING } = useBrand();
 	const [hasScrolled, setHasScrolled] = useState(false);
-	const [scrollComplete, setScrollComplete] = useState(false);
 
 	useEffect(() => {
 		const main = document.getElementsByTagName('main')[0];
@@ -31,13 +29,6 @@ export const PageHeader = ({ name, version }) => {
 		};
 	});
 
-	useEffect(() => {
-		setTimeout(() => {
-			if (hasScrolled) setScrollComplete(true);
-			if (!hasScrolled) setScrollComplete(false);
-		}, 0);
-	}, [hasScrolled]);
-
 	return (
 		<>
 			<div
@@ -46,35 +37,37 @@ export const PageHeader = ({ name, version }) => {
 					color: COLORS.light,
 					height: hasScrolled ? '65px' : '200px',
 					position: hasScrolled ? 'fixed' : 'relative',
-					transition: '0.5s',
+					transition: '0.3s',
 					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'flex-start',
 					flexDirection: hasScrolled ? 'row' : 'column',
 					zIndex: 2,
-					width: '100%',
+					width: hasScrolled ? '100%' : 'auto',
+					alignItems: hasScrolled ? 'center' : 'unset',
 				}}
 			>
-				<MenuIcon />
+				<div>
+					<MenuIcon />
+				</div>
 				<div
 					css={{
 						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'flex-start',
+						flexDirection: hasScrolled ? 'row' : 'column',
+						alignItems: hasScrolled ? 'baseline' : 'initial',
 						marginLeft: SPACING(3),
 						marginBottom: SPACING(3),
 						paddingTop: SPACING(3),
 					}}
 				>
-					<Heading size={hasScrolled ? 6 : 1} css={{ textTransform: 'capitalize' }}>
+					<Heading
+						size={hasScrolled ? 7 : 1}
+						css={{ textTransform: 'capitalize', marginRight: SPACING(1) }}
+					>
 						{name}
 					</Heading>
-					<span>Version {version}</span>
+					<span css={{ fontSize: '16px' }}> Version {version}</span>
 				</div>
 			</div>
-			{hasScrolled && (
-				<div css={{ height: scrollComplete ? '155px' : '200px', transition: '0.5s' }} />
-			)}
+			{hasScrolled && <div css={{ height: hasScrolled ? '155px' : '200px', transition: '0.5s' }} />}
 		</>
 	);
 };
@@ -85,8 +78,6 @@ const MenuIcon = () => {
 	return (
 		<button
 			css={{
-				top: 0,
-				left: 0,
 				margin: SPACING(2),
 				background: 'none',
 				border: 'none',
