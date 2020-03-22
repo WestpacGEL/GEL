@@ -1,9 +1,15 @@
-import * as React from 'react';
+/** @jsx jsx */
+import { jsx } from '@westpac/core';
 
 const HeaderImageRight = ({ height, width }) => {
 	return (
-		<svg aria-labelledby="title-energy-right" width={width} height={height} viewBox="0 0 268 228">
-			<title>{'Slack'}</title>
+		<svg
+			aria-labelledby="westpac-header-image-right"
+			width={width}
+			height={height}
+			viewBox="0 0 268 228"
+		>
+			<title>Westpac background image</title>
 			<path fill="#DD3A46" d="M104 0h124v96H104z" />
 			<path fill="#B6000B" d="M110 96h118v132H110z" />
 			<path
