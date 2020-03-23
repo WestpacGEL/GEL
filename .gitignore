@@ -6,7 +6,7 @@ components/**/dist/
 website/dist/*
 website/field-content/dist/*
 website/field-content/Block/dist/*
-website/field-content/block-conponents/dist/*
+website/field-content/block-components/dist/*
 website/field-content/blocks/dist/*
 website/field-content/slate-serializer/dist/*
 

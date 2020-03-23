@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, Global, useFonts, useBrand } from '@westpac/core';
+import { GEL, jsx, useFonts, useBrand } from '@westpac/core';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
