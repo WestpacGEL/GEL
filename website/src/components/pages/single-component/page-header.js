@@ -19,13 +19,13 @@ export const PageHeader = ({ name, version }) => {
 		const scrollHandler = () => {
 			if (main.scrollTop >= 0 && main.scrollTop < 135) {
 				header.current.style.height = `${200 - main.scrollTop}px`;
-				header.current.style.paddingTop = `${main.scrollTop}px`;
+				header.current.style.marginTop = `${-50 + main.scrollTop}px`;
 				header.current.style.position = 'relative';
 
 				header.current.nextSibling.style.height = '0px';
 			} else {
 				header.current.style.height = '65px';
-				header.current.style.paddingTop = '0px';
+				header.current.style.marginTop = '-50px';
 				header.current.style.position = 'fixed';
 
 				header.current.nextSibling.style.height = '200px';
@@ -51,6 +51,8 @@ export const PageHeader = ({ name, version }) => {
 					background: COLORS.primary,
 					color: COLORS.light,
 					height: '200px',
+					marginTop: '-50px',
+					paddingTop: '50px',
 					position: 'relative',
 					flexDirection: hasScrolled ? 'row' : 'column',
 					width: hasScrolled ? '100%' : 'auto',
@@ -66,7 +68,7 @@ export const PageHeader = ({ name, version }) => {
 						zIndex: -1,
 						right: 0,
 						bottom: 0,
-						top: 0,
+						top: 50,
 					}}
 				>
 					<HeaderImageRight height={'200px'} />
@@ -76,7 +78,7 @@ export const PageHeader = ({ name, version }) => {
 						position: 'absolute',
 						left: 0,
 						bottom: 0,
-						top: 0,
+						top: 50,
 						zIndex: -1,
 					}}
 				>
@@ -105,7 +107,7 @@ export const PageHeader = ({ name, version }) => {
 					<span css={{ fontSize: '16px' }}> Version {version}</span>
 				</div>
 			</div>
-			<div css={{ display: 'block' }}></div>
+			<div />
 		</>
 	);
 };
