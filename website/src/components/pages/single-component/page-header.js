@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon } from '@westpac/icon';
@@ -9,19 +9,31 @@ import HeaderImageLeft from '../../symbols/HeaderImageLeft';
 import { useSidebar } from '../../providers/sidebar';
 
 export const PageHeader = ({ name, version }) => {
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, BRAND } = useBrand();
 	const [hasScrolled, setHasScrolled] = useState(false);
+	const header = useRef(null);
 
 	useEffect(() => {
-		const main = document.getElementsByTagName('main')[0];
+		const main = header.current.parentElement;
 
 		const scrollHandler = () => {
-			if (main.scrollTop > 50) {
+			if (main.scrollTop >= 0 && main.scrollTop < 135) {
+				header.current.style.height = `${200 - main.scrollTop}px`;
+				header.current.style.marginTop = `${main.scrollTop}px`;
+				header.current.style.position = 'relative';
+
+				header.current.nextSibling.style.height = '0px';
+			} else {
+				header.current.style.height = '65px';
+				header.current.style.marginTop = '0px';
+				header.current.style.position = 'fixed';
+
+				header.current.nextSibling.style.height = '200px';
+			}
+			if (main.scrollTop >= 65) {
 				setHasScrolled(true);
-				console.log(hasScrolled);
 			} else {
 				setHasScrolled(false);
-				console.log(hasScrolled);
 			}
 		};
 
@@ -34,17 +46,17 @@ export const PageHeader = ({ name, version }) => {
 	return (
 		<>
 			<div
+				ref={header}
 				css={{
 					background: COLORS.primary,
 					color: COLORS.light,
-					height: hasScrolled ? '65px' : '200px',
-					position: hasScrolled ? 'fixed' : 'relative',
-					transition: '0.3s',
-					display: 'flex',
+					height: '200px',
+					position: 'relative',
 					flexDirection: hasScrolled ? 'row' : 'column',
-					zIndex: 2,
 					width: hasScrolled ? '100%' : 'auto',
 					alignItems: hasScrolled ? 'center' : 'unset',
+					display: 'flex',
+					zIndex: 999,
 					overflow: 'hidden',
 				}}
 			>
@@ -52,7 +64,8 @@ export const PageHeader = ({ name, version }) => {
 					css={{
 						position: 'absolute',
 						zIndex: -1,
-						right: hasScrolled ? '235px' : 0,
+						right: 0,
+						top: 0,
 					}}
 				>
 					<HeaderImageRight height={'200px'} />
@@ -60,8 +73,9 @@ export const PageHeader = ({ name, version }) => {
 				<div
 					css={{
 						position: 'absolute',
+						left: 0,
+						top: 0,
 						zIndex: -1,
-						alignSelf: 'flex-start',
 					}}
 				>
 					<HeaderImageLeft height={'200px'} />
@@ -74,9 +88,10 @@ export const PageHeader = ({ name, version }) => {
 						display: 'flex',
 						flexDirection: hasScrolled ? 'row' : 'column',
 						alignItems: hasScrolled ? 'baseline' : 'initial',
+						flexGrow: 1,
+						justifyContent: hasScrolled ? 'flex-start' : 'center',
 						marginLeft: SPACING(3),
-						marginBottom: SPACING(3),
-						paddingTop: SPACING(3),
+						marginBottom: hasScrolled ? 0 : SPACING(3),
 					}}
 				>
 					<Heading
@@ -88,7 +103,7 @@ export const PageHeader = ({ name, version }) => {
 					<span css={{ fontSize: '16px' }}> Version {version}</span>
 				</div>
 			</div>
-			{hasScrolled && <div css={{ height: hasScrolled ? '155px' : '200px', transition: '0.5s' }} />}
+			<div css={{ display: 'block' }}></div>
 		</>
 	);
 };
