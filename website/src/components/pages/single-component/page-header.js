@@ -19,13 +19,13 @@ export const PageHeader = ({ name, version }) => {
 		const scrollHandler = () => {
 			if (main.scrollTop >= 0 && main.scrollTop < 135) {
 				header.current.style.height = `${200 - main.scrollTop}px`;
-				header.current.style.marginTop = `${main.scrollTop}px`;
+				header.current.style.paddingTop = `${main.scrollTop}px`;
 				header.current.style.position = 'relative';
 
 				header.current.nextSibling.style.height = '0px';
 			} else {
 				header.current.style.height = '65px';
-				header.current.style.marginTop = '0px';
+				header.current.style.paddingTop = '0px';
 				header.current.style.position = 'fixed';
 
 				header.current.nextSibling.style.height = '200px';
@@ -65,6 +65,7 @@ export const PageHeader = ({ name, version }) => {
 						position: 'absolute',
 						zIndex: -1,
 						right: 0,
+						bottom: 0,
 						top: 0,
 					}}
 				>
@@ -74,6 +75,7 @@ export const PageHeader = ({ name, version }) => {
 					css={{
 						position: 'absolute',
 						left: 0,
+						bottom: 0,
 						top: 0,
 						zIndex: -1,
 					}}
