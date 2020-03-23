@@ -30,6 +30,7 @@ const slateRenderer = item =>
 			if (node.object !== 'mark') {
 				return;
 			}
+
 			switch (node.type) {
 				case 'bold':
 					return <Bold key={path}>{serializeChildren(node.nodes)}</Bold>;
