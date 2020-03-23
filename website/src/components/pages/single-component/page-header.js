@@ -3,31 +3,136 @@ import React, { useEffect, useState, useRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon } from '@westpac/icon';
-import HeaderImageRight from '../../symbols/HeaderImageRight';
-import HeaderImageLeft from '../../symbols/HeaderImageLeft';
+import HeaderImageRight from '../../symbols/WbcBackgroundRightSvg';
+import HeaderImageLeft from '../../symbols/WbcBackgroundLeftSvg';
+import StgHeaderBackground from '../../symbols/StgBackgroundSvg';
+import BsaHeaderBackgroundSvg from '../../symbols/BsaBackgroundSvg';
 
 import { useSidebar } from '../../providers/sidebar';
+
+const MenuIcon = () => {
+	const { setIsOpen } = useSidebar();
+	const { COLORS, SPACING } = useBrand();
+	return (
+		<button
+			css={{
+				margin: SPACING(2),
+				background: 'none',
+				border: 'none',
+				cursor: 'pointer',
+				'@media only screen and (min-width: 840px)': {
+					display: 'none',
+				},
+			}}
+			onClick={() => setIsOpen(status => !status)}
+		>
+			<HamburgerMenuIcon color={COLORS.light} />
+		</button>
+	);
+};
+
+const WestpacImage = () => (
+	<>
+		<div
+			css={{
+				position: 'absolute',
+				left: 0,
+				bottom: 0,
+				top: 50,
+				zIndex: -1,
+			}}
+		>
+			<HeaderImageLeft height={'200px'} />
+		</div>
+
+		<div
+			css={{
+				position: 'absolute',
+				zIndex: -1,
+				right: 0,
+				bottom: 0,
+				top: 50,
+			}}
+		>
+			<HeaderImageRight height={'200px'} />
+		</div>
+	</>
+);
+
+const StGeorgeImage = () => (
+	<div
+		css={{
+			position: 'absolute',
+			left: 0,
+			bottom: 0,
+			top: -80,
+			zIndex: -1,
+		}}
+	>
+		<StgHeaderBackground height={'600px'} />
+	</div>
+);
+
+const BankSaImage = () => (
+	<div
+		css={{
+			position: 'absolute',
+			zIndex: -1,
+			right: 0,
+			bottom: 0,
+			top: -45,
+		}}
+	>
+		<BsaHeaderBackgroundSvg height={'400px'} />
+	</div>
+);
+
+const BRAND_HEADERS = {
+	WBC: {
+		HeaderImage: WestpacImage,
+		backgroundColor: COLORS => COLORS.primary,
+	},
+	WBG: {
+		HeaderImage: WestpacImage,
+		backgroundColor: COLORS => COLORS.primary,
+	},
+	STG: {
+		HeaderImage: StGeorgeImage,
+		backgroundColor: COLORS => COLORS.hero,
+	},
+	BSA: {
+		HeaderImage: BankSaImage,
+		backgroundColor: COLORS =>
+			`linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
+	},
+	BOM: {
+		HeaderImage: null,
+		backgroundColor: COLORS => COLORS.hero,
+	},
+	BTFG: {
+		HeaderImage: null,
+		backgroundColor: COLORS => COLORS.hero,
+	},
+};
 
 export const PageHeader = ({ name, version }) => {
 	const { COLORS, SPACING, BRAND } = useBrand();
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
+	const HeaderImage = BRAND_HEADERS[BRAND].HeaderImage;
 
 	useEffect(() => {
 		const main = header.current.parentElement;
-
 		const scrollHandler = () => {
 			if (main.scrollTop >= 0 && main.scrollTop < 135) {
 				header.current.style.height = `${200 - main.scrollTop}px`;
 				header.current.style.marginTop = `${-50 + main.scrollTop}px`;
 				header.current.style.position = 'relative';
-
 				header.current.nextSibling.style.height = '0px';
 			} else {
 				header.current.style.height = '65px';
 				header.current.style.marginTop = '-50px';
 				header.current.style.position = 'fixed';
-
 				header.current.nextSibling.style.height = '200px';
 			}
 			if (main.scrollTop >= 65) {
@@ -48,7 +153,7 @@ export const PageHeader = ({ name, version }) => {
 			<div
 				ref={header}
 				css={{
-					background: COLORS.primary,
+					background: BRAND_HEADERS[BRAND].backgroundColor(COLORS),
 					color: COLORS.light,
 					height: '200px',
 					marginTop: '-50px',
@@ -62,28 +167,7 @@ export const PageHeader = ({ name, version }) => {
 					overflow: 'hidden',
 				}}
 			>
-				<div
-					css={{
-						position: 'absolute',
-						zIndex: -1,
-						right: 0,
-						bottom: 0,
-						top: 50,
-					}}
-				>
-					<HeaderImageRight height={'200px'} />
-				</div>
-				<div
-					css={{
-						position: 'absolute',
-						left: 0,
-						bottom: 0,
-						top: 50,
-						zIndex: -1,
-					}}
-				>
-					<HeaderImageLeft height={'200px'} />
-				</div>
+				{HeaderImage && <HeaderImage />}
 				<div>
 					<MenuIcon />
 				</div>
@@ -109,26 +193,5 @@ export const PageHeader = ({ name, version }) => {
 			</div>
 			<div />
 		</>
-	);
-};
-
-const MenuIcon = () => {
-	const { setIsOpen } = useSidebar();
-	const { COLORS, SPACING } = useBrand();
-	return (
-		<button
-			css={{
-				margin: SPACING(2),
-				background: 'none',
-				border: 'none',
-				cursor: 'pointer',
-				'@media only screen and (min-width: 840px)': {
-					display: 'none',
-				},
-			}}
-			onClick={() => setIsOpen(status => !status)}
-		>
-			<HamburgerMenuIcon color={COLORS.light} />
-		</button>
 	);
 };
