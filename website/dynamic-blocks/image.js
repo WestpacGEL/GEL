@@ -12,11 +12,7 @@ const UPLOAD_IMAGE = gql`
 		createImage(data: $data) {
 			id
 			image {
-				id
-				filename
-				publicUrl
-				encoding
-				path
+				src
 			}
 			caption
 		}
@@ -50,7 +46,7 @@ export const Image = {
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
 								});
-								setImage(data.createImage.image.publicUrl);
+								setImage(data.createImage.image.src);
 							}}
 						/>
 					</FieldInput>

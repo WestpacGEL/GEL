@@ -1,34 +1,34 @@
-const { Text, File } = require('@keystonejs/fields');
-const { CloudinaryAdapter } = require('@keystonejs/file-adapters');
+const { Text } = require('@keystonejs/fields');
+const { ImageService, Image } = require('@keystonejs/images');
 
-const fileAdapter = new CloudinaryAdapter({
-	cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-	apiKey: process.env.CLOUDINARY_KEY,
-	apiSecret: process.env.CLOUDINARY_SECRET,
+const imageService = new ImageService({
+	path: './images',
+	port: 4008,
+	host: 'localhost',
 });
 
 const imageSchema = {
 	fields: {
 		image: {
-			type: File,
-			adapter: fileAdapter,
-			hooks: {
-				beforeChange: async ({ existingItem }) => {
-					if (existingItem && existingItem.image) {
-						await fileAdapter.delete(existingItem.image);
-					}
-				},
-			},
+			type: Image,
+			service: imageService,
+			// hooks: {
+			// 	beforeChange: async ({ existingItem }) => {
+			// 		if (existingItem && existingItem.image) {
+			// 			await fileAdapter.delete(existingItem.image);
+			// 		}
+			// 	},
+			// },
 		},
 		caption: { type: Text },
 	},
-	hooks: {
-		afterDelete: async ({ existingItem }) => {
-			if (existingItem.image) {
-				await fileAdapter.delete(existingItem.image);
-			}
-		},
-	},
+	// hooks: {
+	// 	// afterDelete: async ({ existingItem }) => {
+	// 	// 	if (existingItem.image) {
+	// 	// 		await fileAdapter.delete(existingItem.image);
+	// 	// 	}
+	// 	// },
+	// },
 };
 
 module.exports = { imageSchema };

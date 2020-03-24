@@ -12,11 +12,7 @@ const UPLOAD_IMAGE = gql`
 		createImage(data: $data) {
 			id
 			image {
-				id
-				filename
-				publicUrl
-				encoding
-				path
+				src
 			}
 			caption
 		}
@@ -54,7 +50,7 @@ export const DoAndAvoid = {
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
 								});
-								setDoImage(data.createImage.image.publicUrl);
+								setDoImage(data.createImage.image.src);
 							}}
 						/>
 					</FieldInput>
@@ -84,7 +80,7 @@ export const DoAndAvoid = {
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
 								});
-								setDontImage(data.createImage.image.publicUrl);
+								setDontImage(data.createImage.image.src);
 							}}
 						/>
 					</FieldInput>

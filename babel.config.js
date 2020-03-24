@@ -11,7 +11,7 @@ module.exports = {
 
 	overrides: [
 		{
-			test: x => x && x.includes('field-content'),
+			test: x => x && (x.includes('website/field-content') || x.includes('website/images')),
 			presets: [
 				[
 					'@babel/preset-env',
