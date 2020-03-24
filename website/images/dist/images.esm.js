@@ -1,1 +1,1 @@
-/Users/mitchell/projects/WestpacGEL/GEL/website/images/src/index.js
+/Users/mike/Development/GEL/website/images/src/index.js

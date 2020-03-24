@@ -1,14 +1,14 @@
 const { Text } = require('@keystonejs/fields');
 const { LocalImageService, RemoteImageService, Image } = require('@keystonejs/images');
 
-let imageService = new RemoteImageService({ url: 'http://localhost:4008' });
-//: new LocalImageService({ path: './image-storage' });
+let remoteImageService = new RemoteImageService({ url: 'http://localhost:4008' });
+let localImageService = new LocalImageService({ path: './image-storage' });
 
 const imageSchema = {
 	fields: {
 		image: {
 			type: Image,
-			service: imageService,
+			service: remoteImageService,
 			// hooks: {
 			// 	beforeChange: async ({ existingItem }) => {
 			// 		if (existingItem && existingItem.image) {

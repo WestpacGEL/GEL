@@ -3,9 +3,10 @@ import fs from 'fs-extra';
 import nodePath from 'path';
 import crypto from 'crypto';
 import FormData from 'form-data';
-import fetch from 'node-fetch';
 import mimeTypes from 'mime-types';
 import uuid from 'uuid/v4';
+var concat = require('concat-stream');
+import fetch from 'node-fetch';
 
 export class RemoteImageService {
 	constructor({ url }) {
@@ -29,16 +30,27 @@ export class RemoteImageService {
 		return fetch(`${this.url}/image/${id}/meta`).then(x => x.json());
 	}
 	async uploadImage({ stream, originalname }) {
-		// let result = await streamToPromise(stream);
-		// console.log(result);
-		let form = new FormData();
+		let filepath = nodePath.join(require('os').tmpdir(), originalname);
+		let fsStream = fs.createWriteStream(filepath);
+		stream.pipe(fsStream);
 
-		form.append('image', stream, { contentType: 'image/jpeg', filename: originalname });
+		return new Promise((resolve, reject) => {
+			stream.on('end', () => {
+				let form = new FormData();
+				form.append('image', fs.createReadStream(filepath));
+				return fetch(`${this.url}/upload`, {
+					method: 'POST',
+					body: form,
+				})
+					.then(x => x.json())
+					.then(resolve)
+					.catch(e => {
+						console.error(e);
+						reject(e);
+					});
+			});
 
-		return fetch(`${this.url}/upload`, {
-			method: 'POST',
-			body: form,
-			headers: form.getHeaders(),
-		}).then(x => x.json());
+			stream.on('error', reject);
+		});
 	}
 }

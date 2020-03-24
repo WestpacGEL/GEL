@@ -1,7 +1,7 @@
 "use strict";
 
-let unregister = require("/Users/mitchell/projects/WestpacGEL/GEL/node_modules/@preconstruct/hook/dist/hook.cjs.js").___internalHook("/Users/mitchell/projects/WestpacGEL/GEL");
+let unregister = require("/Users/mike/Development/GEL/node_modules/@preconstruct/hook/dist/hook.cjs.js").___internalHook("/Users/mike/Development/GEL");
 
-module.exports = require("/Users/mitchell/projects/WestpacGEL/GEL/website/images/src/index.js");
+module.exports = require("/Users/mike/Development/GEL/website/images/src/index.js");
 
 unregister();

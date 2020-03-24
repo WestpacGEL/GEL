@@ -58,7 +58,7 @@ const processResizeOptions = ({ width, height, fit = 'cover' }) => {
 };
 
 export class LocalImageService {
-	constructor({ port = 4001, url = 'http://localhost:4008', path = './images' }) {
+	constructor({ port = 4008, url = 'http://localhost:4008', path = './images' }) {
 		this.path = nodePath.resolve(path);
 		this.url = url;
 		this.database = new DataStore({ path: this.path });
@@ -71,10 +71,8 @@ export class LocalImageService {
 
 		this.app = express();
 
-		this.app.post('/upload', upload.single('image'), async (req, res) => {
-			console.log(req);
+		this.app.post('/upload', upload.single('image'), (req, res) => {
 			const { originalname, path } = req.file;
-
 			res.status(201).json(this.storeImageInDatabase({ path, originalname }));
 		});
 
@@ -168,7 +166,10 @@ export class LocalImageService {
 		const path = nodePath.join(this.sourcePath, id);
 		const writeStream = fs.createWriteStream(path);
 		stream.pipe(writeStream);
-		await new Promise(resolve => stream.on('end', resolve));
+		await new Promise(resolve => {
+			stream.on('end', resolve);
+			stream.on('error', reject);
+		});
 		return this.storeImageInDatabase({ path, originalname });
 	}
 	async storeImageInDatabase({ path, originalname }) {

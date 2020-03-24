@@ -129,7 +129,6 @@ export class Image extends Implementation {
 			// null. To do that we... return `null`
 			return null;
 		}
-
 		const { createReadStream, filename: originalFilename, mimetype, encoding } = await uploadData;
 		const stream = createReadStream();
 
