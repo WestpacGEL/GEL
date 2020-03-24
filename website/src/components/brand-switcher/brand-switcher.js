@@ -17,7 +17,7 @@ import {
 	BTFGStackedLogo,
 	STGDragonLogo,
 } from '@westpac/symbol';
-import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/Icon';
+import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 
 import { useBrandSwitcher } from '../providers/brand-switcher';
 
