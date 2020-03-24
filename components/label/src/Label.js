@@ -32,7 +32,7 @@ export const Label = ({ look, value, overrides: componentOverrides, ...rest }) =
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Label {...rest} state={state} {...labelAttributes(state)} css={labelStyles(state)}>
+		<Label {...rest} state={state} {...labelAttributes(state)} css={{ '&&': labelStyles(state) }}>
 			{value}
 		</Label>
 	);

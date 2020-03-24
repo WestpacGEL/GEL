@@ -98,7 +98,7 @@ export const InputGroup = ({
 				key="textinput1"
 				{...rest}
 				state={state}
-				css={textStyles({ ...state, left: !!left, right: !!right })}
+				css={{ '&&': textStyles({ ...state, left: !!left, right: !!right }) }}
 				{...textAttributes({ ...state, left: !!left, right: !!right })}
 			/>
 		);
@@ -125,7 +125,7 @@ export const InputGroup = ({
 						key="textinput1"
 						{...rest}
 						state={state}
-						css={textStyles({ ...state, left: true, right: length > 1 })}
+						css={{ '&&': textStyles({ ...state, left: true, right: length > 1 }) }}
 						{...textAttributes({ ...state, left: true, right: length > 1 })}
 					/>
 				);
@@ -136,7 +136,7 @@ export const InputGroup = ({
 						key="textinput2"
 						state={state}
 						{...rest}
-						css={textStyles({ ...state, left: false, right: true })}
+						css={{ '&&': textStyles({ ...state, left: false, right: true }) }}
 						{...textAttributes({ ...state, left: false, right: true })}
 					/>
 				);

@@ -39,7 +39,14 @@ export const Select = ({ position, size, data, overrides, ...rest }) => {
 		Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	return <Select {...rest} state={state} {...selectAttributes(state)} css={selectStyles(state)} />;
+	return (
+		<Select
+			{...rest}
+			state={state}
+			{...selectAttributes(state)}
+			css={{ '&&': selectStyles(state) }}
+		/>
+	);
 };
 
 // ==============================
