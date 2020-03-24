@@ -6,7 +6,7 @@ import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './component-page-header-image';
 
 import { useSidebar } from '../../providers/sidebar';
-import { getBrandHeaderColor } from './_utils';
+import { brandHeaderColors } from './_utils';
 
 const MenuIcon = () => {
 	const { setIsOpen } = useSidebar();
@@ -61,7 +61,7 @@ export const PageHeader = ({ name, version }) => {
 		};
 	});
 
-	const backgroundColor = getBrandHeaderColor(BRAND, COLORS);
+	const backgroundColor = brandHeaderColors[BRAND](COLORS);
 
 	return (
 		<>

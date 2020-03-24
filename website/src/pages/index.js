@@ -4,13 +4,13 @@ import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon, LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
 import HeaderImage from '../components/pages/single-component/home-page-header-image';
-import { getBrandHeaderColor } from '../components/pages/single-component/_utils';
+import { brandHeaderColors } from '../components/pages/single-component/_utils';
 
 import { useSidebar } from '../components/providers/sidebar';
 
 const Homepage = () => {
 	const { COLORS, SPACING, BRAND } = useBrand();
-	const backgroundColor = getBrandHeaderColor(BRAND, COLORS);
+	const backgroundColor = brandHeaderColors[BRAND](COLORS);
 
 	return (
 		<div css={{ textAlign: 'center' }}>

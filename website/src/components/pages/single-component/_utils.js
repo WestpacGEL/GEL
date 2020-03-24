@@ -140,26 +140,11 @@ const IconTitle = ({ icon: Icon, children }) => {
 	);
 };
 
-export const getBrandHeaderColor = (brand, colors) => {
-	let backgroundColor;
-	switch (brand) {
-		case 'WBC':
-			backgroundColor = colors.primary;
-			break;
-		case 'WBG':
-			backgroundColor = colors.primary;
-			break;
-		case 'STG':
-			backgroundColor = colors.hero;
-			break;
-		case 'BSA':
-			backgroundColor = `linear-gradient(to right, ${colors.hero} 0%, #00468e 50%, #00adbd 100%)`;
-			break;
-		case 'BOM':
-			backgroundColor = colors.hero;
-			break;
-		case 'BTFG':
-			backgroundColor = colors.hero;
-	}
-	return backgroundColor;
+export const brandHeaderColors = {
+	WBC: COLORS => COLORS.primary,
+	WBG: COLORS => COLORS.primary,
+	STG: COLORS => COLORS.hero,
+	BSA: COLORS => `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
+	BOM: COLORS => COLORS.hero,
+	BTFG: COLORS => COLORS.hero,
 };
