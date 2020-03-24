@@ -24,3 +24,7 @@ fit=cover|contain|fill|inside|outside
 width={width}
 height={height}
 ```
+
+```
+GET /image/{imageid}.jpg
+```

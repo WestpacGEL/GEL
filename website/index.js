@@ -34,7 +34,7 @@ const apps = [
 		adminPath: '/admin',
 		hooks: require.resolve('./admin'),
 	}),
-	new NextApp({ dir: 'src' }),
+	// new NextApp({ dir: 'src' }),
 ];
 
 module.exports = {

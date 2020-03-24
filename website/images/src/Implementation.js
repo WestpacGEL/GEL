@@ -46,30 +46,31 @@ export class Image extends Implementation {
 	}
 	getGqlAuxTypes() {
 		return [
-			/* See TODO at top of file
-      `enum ImageFill {
-        cover
-        contain
-        fill
-        inside
-        outside
-      }`,
-      `enum ImageFormat {
+			//   `enum ImageFill {
+			//     cover
+			//     contain
+			//     fill
+			//     inside
+			//     outside
+			//   }`,
+			`enum ImageFormat {
         jpeg
         png
         gif
         webp
         svg
       }`,
-      `input ImageResizeOptions {
-        width: String
-        height: String
-        fill: ImageFill
-      }`,
-      */
+			//   `input ImageResizeOptions {
+			//     width: String
+			//     height: String
+			//     fill: ImageFill
+			//   }`,
+
 			`
       type ${this.graphQLOutputType} {
-        src: String
+		id: ID!
+		src: String
+		format: String
         width: Int
         height: Int
       }
@@ -79,17 +80,18 @@ export class Image extends Implementation {
 	// Called on `User.avatar` for example
 	gqlOutputFieldResolvers() {
 		return {
-			[this.path]: (item /*, args */) => {
+			[this.path]: async (item /*, args */) => {
 				const itemValues = item[this.path];
 				if (!itemValues) {
 					return null;
 				}
 
-				let meta = this.service.database.getImage(itemValues.id);
-
+				let meta = await this.service.getImage(itemValues.id);
 				return {
 					// See TODO at top of file for why we'd pass args here
 					src: this.service.getSrc(itemValues.id, { format: meta.format /*, ...args */ }),
+					id: itemValues.id,
+					format: meta.format,
 					height: meta.height,
 					width: meta.width,
 				};
@@ -140,7 +142,7 @@ export class Image extends Implementation {
 
 		const { id, meta } = await this.service.uploadImage({
 			stream,
-			originalfilename: originalFilename,
+			originalname: originalFilename,
 		});
 
 		return { id, meta };

@@ -1,11 +1,8 @@
 const { Text } = require('@keystonejs/fields');
-const { ImageService, Image } = require('@keystonejs/images');
+const { LocalImageService, RemoteImageService, Image } = require('@keystonejs/images');
 
-const imageService = new ImageService({
-	path: './images',
-	port: 4008,
-	host: 'localhost',
-});
+let imageService = new RemoteImageService({ url: 'http://localhost:4008' });
+//: new LocalImageService({ path: './image-storage' });
 
 const imageSchema = {
 	fields: {
