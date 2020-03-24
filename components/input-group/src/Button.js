@@ -38,7 +38,12 @@ export const Button = ({ position, size, data, overrides, ...rest }) => {
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Button {...rest} state={state} {...buttonAttributes(state)} css={buttonStyles(state)}>
+		<Button
+			{...rest}
+			state={state}
+			{...buttonAttributes(state)}
+			css={{ '&&': buttonStyles(state) }}
+		>
 			{data}
 		</Button>
 	);

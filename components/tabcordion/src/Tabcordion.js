@@ -115,7 +115,7 @@ export const Tabcordion = ({
 							selected,
 							last,
 						})}
-						css={tabButtonStyles({ ...state, selected, last })}
+						css={{ '&&': tabButtonStyles({ ...state, selected, last }) }}
 					>
 						{child.props.text}
 					</TabButton>
