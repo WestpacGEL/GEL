@@ -6,7 +6,7 @@ import HeaderImageLeft from '../../symbols/WbcBackgroundLeftSvg';
 import StgHeaderBackground from '../../symbols/StgBackgroundSvg';
 import BsaHeaderBackgroundSvg from '../../symbols/BsaBackgroundSvg';
 
-const HomePageHeaderImage = ({ brand, size }) => {
+const HomePageHeaderImage = ({ brand }) => {
 	const WestpacImage = () => (
 		<div
 			css={{
