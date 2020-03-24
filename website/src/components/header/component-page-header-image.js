@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 import React from 'react';
-import HeaderImageRight from '../../symbols/WbcBackgroundRightSvg';
-import HeaderImageLeft from '../../symbols/WbcBackgroundLeftSvg';
-import StgHeaderBackground from '../../symbols/StgBackgroundSvg';
-import BsaHeaderBackgroundSvg from '../../symbols/BsaBackgroundSvg';
+import WbcBackgroundRightSvg from './symbols/WbcBackgroundRightSvg';
+import WbcBackgroundLeftSvg from './symbols/WbcBackgroundLeftSvg';
+import StgBackgroundSvg from './symbols/StgBackgroundSvg';
+import BsaBackgroundSvg from './symbols/BsaBackgroundSvg';
 
 const ComponentPageHeaderImage = ({ brand }) => {
 	const WestpacImage = () => (
@@ -18,7 +18,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 					zIndex: -1,
 				}}
 			>
-				<HeaderImageLeft height={'200px'} />
+				<WbcBackgroundLeftSvg height={'200px'} />
 			</div>
 
 			<div
@@ -30,7 +30,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 					top: 50,
 				}}
 			>
-				<HeaderImageRight height={'200px'} />
+				<WbcBackgroundRightSvg height={'200px'} />
 			</div>
 		</>
 	);
@@ -45,7 +45,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 				zIndex: -1,
 			}}
 		>
-			<StgHeaderBackground height={'600px'} />
+			<StgBackgroundSvg height={'600px'} />
 		</div>
 	);
 
@@ -59,7 +59,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 				top: -45,
 			}}
 		>
-			<BsaHeaderBackgroundSvg height={'400px'} />
+			<BsaBackgroundSvg height={'400px'} />
 		</div>
 	);
 

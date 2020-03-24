@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 import React from 'react';
-import HeaderImageRight from '../../symbols/WbcBackgroundRightSvg';
-import HeaderImageLeft from '../../symbols/WbcBackgroundLeftSvg';
-import StgHeaderBackground from '../../symbols/StgBackgroundSvg';
-import BsaHeaderBackgroundSvg from '../../symbols/BsaBackgroundSvg';
+import HeaderImageRight from './symbols/WbcBackgroundRightSvg';
+import HeaderImageLeft from './symbols/WbcBackgroundLeftSvg';
+import StgHeaderBackground from './symbols/StgBackgroundSvg';
+import BsaHeaderBackgroundSvg from './symbols/BsaBackgroundSvg';
 
 const HomePageHeaderImage = ({ brand }) => {
 	const WestpacImage = () => (

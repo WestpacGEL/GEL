@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon } from '@westpac/icon';
-import HeaderImage from './component-page-header-image';
+import HeaderImage from '../../header/component-page-header-image';
 
 import { useSidebar } from '../../providers/sidebar';
 import { brandHeaderColors } from './_utils';
