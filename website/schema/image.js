@@ -1,8 +1,10 @@
 const { Text } = require('@keystonejs/fields');
 const { LocalImageService, RemoteImageService, Image } = require('@keystonejs/images');
 
-let remoteImageService = new RemoteImageService({ url: 'http://localhost:4008' });
-let localImageService = new LocalImageService({ path: './image-storage' });
+let imageService =
+	process.env.NODE_ENV === 'production'
+		? new RemoteImageService({ url: 'http://localhost:4008' })
+		: new LocalImageService({ path: './image-storage' });
 
 const imageSchema = {
 	fields: {

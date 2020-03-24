@@ -73,7 +73,14 @@ export class LocalImageService {
 
 		this.app.post('/upload', upload.single('image'), (req, res) => {
 			const { originalname, path } = req.file;
-			res.status(201).json(this.storeImageInDatabase({ path, originalname }));
+			let json = this.storeImageInDatabase({ path, originalname })
+				.then(json => {
+					res.status(201).json(json);
+				})
+				.catch(err => {
+					console.error(err);
+					res.status(500).json({ error: 'an error occurred' });
+				});
 		});
 
 		this.app.get('/image/:filename', async (req, res) => {
