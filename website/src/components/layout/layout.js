@@ -102,6 +102,7 @@ const SidebarContainer = ({ children, ...props }) => {
 				height: '100vh',
 				'@media only screen and (max-width: 839px)': {
 					position: 'absolute',
+					zIndex: 10,
 					top: 0,
 					left: 0,
 					width: 270,
