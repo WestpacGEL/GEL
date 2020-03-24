@@ -3,36 +3,29 @@ import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon, LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
-import HeaderImageRight from '../components/symbols/HeaderImageRight';
+import HeaderImage from '../components/pages/single-component/home-page-header-image';
+import { getBrandHeaderColor } from '../components/pages/single-component/_utils';
 
 import { useSidebar } from '../components/providers/sidebar';
 
 const Homepage = () => {
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, BRAND } = useBrand();
+	const backgroundColor = getBrandHeaderColor(BRAND, COLORS);
 
 	return (
 		<div css={{ textAlign: 'center' }}>
 			<section
 				css={{
-					background: COLORS.primary,
+					background: backgroundColor,
 					color: COLORS.light,
 					paddingBottom: SPACING(12),
 					position: 'relative',
+					overflow: 'hidden',
 				}}
 			>
+				<HeaderImage brand={BRAND} />
 				<Header />
 				<HeroIntro />
-
-				<div
-					css={{
-						position: 'absolute',
-						right: 0,
-						top: 0,
-						bottom: 0,
-					}}
-				>
-					<HeaderImageRight height="100%" />
-				</div>
 			</section>
 
 			<section css={{ padding: `${SPACING(12)} 0` }}>
@@ -153,9 +146,10 @@ const HeroIntro = () => {
 	return (
 		<Container css={{ zIndex: 3, position: 'relative' }}>
 			<Heading
-				size={1}
+				size={2}
 				css={{
 					paddingTop: SPACING(12),
+					paddingBottom: SPACING(4),
 					fontFamily: TYPE.brandFont.fontFamily,
 					maxWidth: 600,
 					fontWeight: 500,

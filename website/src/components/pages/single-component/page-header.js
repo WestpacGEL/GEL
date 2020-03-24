@@ -3,12 +3,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon } from '@westpac/icon';
-import HeaderImageRight from '../../symbols/WbcBackgroundRightSvg';
-import HeaderImageLeft from '../../symbols/WbcBackgroundLeftSvg';
-import StgHeaderBackground from '../../symbols/StgBackgroundSvg';
-import BsaHeaderBackgroundSvg from '../../symbols/BsaBackgroundSvg';
+import HeaderImage from './component-page-header-image';
 
 import { useSidebar } from '../../providers/sidebar';
+import { getBrandHeaderColor } from './_utils';
 
 const MenuIcon = () => {
 	const { setIsOpen } = useSidebar();
@@ -31,95 +29,10 @@ const MenuIcon = () => {
 	);
 };
 
-const WestpacImage = () => (
-	<>
-		<div
-			css={{
-				position: 'absolute',
-				left: 0,
-				bottom: 0,
-				top: 50,
-				zIndex: -1,
-			}}
-		>
-			<HeaderImageLeft height={'200px'} />
-		</div>
-
-		<div
-			css={{
-				position: 'absolute',
-				zIndex: -1,
-				right: 0,
-				bottom: 0,
-				top: 50,
-			}}
-		>
-			<HeaderImageRight height={'200px'} />
-		</div>
-	</>
-);
-
-const StGeorgeImage = () => (
-	<div
-		css={{
-			position: 'absolute',
-			left: 0,
-			bottom: 0,
-			top: -80,
-			zIndex: -1,
-		}}
-	>
-		<StgHeaderBackground height={'600px'} />
-	</div>
-);
-
-const BankSaImage = () => (
-	<div
-		css={{
-			position: 'absolute',
-			zIndex: -1,
-			right: 0,
-			bottom: 0,
-			top: -45,
-		}}
-	>
-		<BsaHeaderBackgroundSvg height={'400px'} />
-	</div>
-);
-
-const BRAND_HEADERS = {
-	WBC: {
-		HeaderImage: WestpacImage,
-		backgroundColor: COLORS => COLORS.primary,
-	},
-	WBG: {
-		HeaderImage: WestpacImage,
-		backgroundColor: COLORS => COLORS.primary,
-	},
-	STG: {
-		HeaderImage: StGeorgeImage,
-		backgroundColor: COLORS => COLORS.hero,
-	},
-	BSA: {
-		HeaderImage: BankSaImage,
-		backgroundColor: COLORS =>
-			`linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
-	},
-	BOM: {
-		HeaderImage: null,
-		backgroundColor: COLORS => COLORS.hero,
-	},
-	BTFG: {
-		HeaderImage: null,
-		backgroundColor: COLORS => COLORS.hero,
-	},
-};
-
 export const PageHeader = ({ name, version }) => {
 	const { COLORS, SPACING, BRAND } = useBrand();
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
-	const HeaderImage = BRAND_HEADERS[BRAND].HeaderImage;
 
 	useEffect(() => {
 		const main = header.current.parentElement;
@@ -148,12 +61,14 @@ export const PageHeader = ({ name, version }) => {
 		};
 	});
 
+	const backgroundColor = getBrandHeaderColor(BRAND, COLORS);
+
 	return (
 		<>
 			<div
 				ref={header}
 				css={{
-					background: BRAND_HEADERS[BRAND].backgroundColor(COLORS),
+					background: backgroundColor,
 					color: COLORS.light,
 					height: '200px',
 					marginTop: '-50px',
@@ -167,7 +82,7 @@ export const PageHeader = ({ name, version }) => {
 					overflow: 'hidden',
 				}}
 			>
-				{HeaderImage && <HeaderImage />}
+				<HeaderImage brand={BRAND} />
 				<div>
 					<MenuIcon />
 				</div>
