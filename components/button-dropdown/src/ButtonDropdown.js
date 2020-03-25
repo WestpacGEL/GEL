@@ -142,6 +142,11 @@ export const ButtonDropdown = ({
 
 ButtonDropdown.propTypes = {
 	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
 	 * Button text
 	 */
 	text: PropTypes.string.isRequired,

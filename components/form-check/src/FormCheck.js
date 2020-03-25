@@ -214,6 +214,11 @@ FormCheck.propTypes = {
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
 
 	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
 	 * A function called on change
 	 */
 	onChange: PropTypes.func,

@@ -186,6 +186,11 @@ Popover.propTypes = {
 	dismissible: PropTypes.bool,
 
 	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
 	 * Trigger element to open the popover
 	 */
 	children: PropTypes.node,

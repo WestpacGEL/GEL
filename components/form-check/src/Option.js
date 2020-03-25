@@ -114,6 +114,11 @@ Option.propTypes = {
 	disabled: PropTypes.bool.isRequired,
 
 	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
 	 * Form check type.
 	 */
 	type: PropTypes.oneOf(['checkbox', 'radio']),
