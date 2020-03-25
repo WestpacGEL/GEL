@@ -9,6 +9,8 @@ website/field-content/Block/dist/*
 website/field-content/block-components/dist/*
 website/field-content/blocks/dist/*
 website/field-content/slate-serializer/dist/*
+website/images/dist/*
+website/images/react/dist/*
 
 # Logs
 logs

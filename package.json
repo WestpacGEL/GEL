@@ -47,11 +47,13 @@
 		"brands/*",
 		"components/*",
 		"website",
-		"website/field-content"
+		"website/field-content",
+		"website/images"
 	],
 	"field-types": {
 		"packages": [
-			"website/field-content"
+			"website/field-content",
+			"website/images"
 		]
 	},
 	"preconstruct": {

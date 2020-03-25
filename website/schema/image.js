@@ -1,34 +1,33 @@
-const { Text, File } = require('@keystonejs/fields');
-const { CloudinaryAdapter } = require('@keystonejs/file-adapters');
+const { Text } = require('@keystonejs/fields');
+const { LocalImageService, RemoteImageService, Image } = require('@keystonejs/images');
 
-const fileAdapter = new CloudinaryAdapter({
-	cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-	apiKey: process.env.CLOUDINARY_KEY,
-	apiSecret: process.env.CLOUDINARY_SECRET,
-});
+let imageService =
+	process.env.NODE_ENV === 'production'
+		? new RemoteImageService({ url: 'http://localhost:4008' })
+		: new LocalImageService({ path: './image-storage' });
 
 const imageSchema = {
 	fields: {
 		image: {
-			type: File,
-			adapter: fileAdapter,
-			hooks: {
-				beforeChange: async ({ existingItem }) => {
-					if (existingItem && existingItem.image) {
-						await fileAdapter.delete(existingItem.image);
-					}
-				},
-			},
+			type: Image,
+			service: remoteImageService,
+			// hooks: {
+			// 	beforeChange: async ({ existingItem }) => {
+			// 		if (existingItem && existingItem.image) {
+			// 			await fileAdapter.delete(existingItem.image);
+			// 		}
+			// 	},
+			// },
 		},
 		caption: { type: Text },
 	},
-	hooks: {
-		afterDelete: async ({ existingItem }) => {
-			if (existingItem.image) {
-				await fileAdapter.delete(existingItem.image);
-			}
-		},
-	},
+	// hooks: {
+	// 	// afterDelete: async ({ existingItem }) => {
+	// 	// 	if (existingItem.image) {
+	// 	// 		await fileAdapter.delete(existingItem.image);
+	// 	// 	}
+	// 	// },
+	// },
 };
 
 module.exports = { imageSchema };
