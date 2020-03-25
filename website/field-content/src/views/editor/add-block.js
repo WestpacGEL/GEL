@@ -162,6 +162,7 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 							padding: 0,
 							margin: 0,
 							border: 'solid 1px #eaeaea',
+							zIndex: '9999999999999',
 						}}
 					>
 						<li

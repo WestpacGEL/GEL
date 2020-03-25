@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import { useMemo } from 'react';
 import { Editor } from 'slate-react';
+
 import { Block, Document } from 'slate';
 import { plugins as markPlugins } from './marks';
 import { type as defaultType } from './blocks/paragraph';
@@ -49,6 +50,48 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 			let block = blocks[props.node.type];
 			if (!block) return null;
 
+			if (block.CurrentlyEditingBlocksContext) {
+				let { Consumer } = block.CurrentlyEditingBlocksContext;
+				return (
+					<Consumer>
+						{({ currentlyEditingBlocks }) => {
+							let isEditing = currentlyEditingBlocks[props.node.key];
+							return (
+								<div css={{ display: 'flex' }}>
+									<div
+										css={{
+											width: 30,
+											borderBottom: 'solid 1px #eee',
+											borderRight: 'solid 1px #eee',
+											flexGrow: 0,
+											flexShrink: 0,
+											background:
+												focusBlock && props.node && focusBlock.key === props.node.key
+													? isEditing
+														? '#ffe2dd'
+														: '#eaeaea'
+													: 'white',
+										}}
+										onMouseDown={e => {
+											e.stopPropagation();
+											e.preventDefault();
+										}}
+										onMouseUp={e => {
+											e.stopPropagation();
+											e.preventDefault();
+										}}
+										onClick={e => {
+											props.editor.moveToStartOfNode(props.node);
+										}}
+									/>
+									<div css={{ padding: 5, flexGrow: 1 }}>{renderNode(props)}</div>
+								</div>
+							);
+						}}
+					</Consumer>
+				);
+			}
+
 			return props.parent instanceof Document ? (
 				<div css={{ display: 'flex' }}>
 					<div
@@ -60,6 +103,17 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 							flexShrink: 0,
 							background:
 								focusBlock && props.node && focusBlock.key === props.node.key ? '#eaeaea' : 'white',
+						}}
+						onMouseDown={e => {
+							e.stopPropagation();
+							e.preventDefault();
+						}}
+						onMouseUp={e => {
+							e.stopPropagation();
+							e.preventDefault();
+						}}
+						onClick={e => {
+							props.editor.moveToStartOfNode(props.node);
 						}}
 					/>
 					<div css={{ padding: 5, flexGrow: 1 }}>{renderNode(props)}</div>
