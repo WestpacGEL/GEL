@@ -108,7 +108,7 @@ const VisionFilter = ({ children }) => {
 			<SVGFilters />
 
 			<Select
-				css={{ zIndex: 99999 }}
+				css={{ zIndex: 4 }}
 				placeholder={'Select a vision filter...'}
 				styles={{
 					dropdownIndicator: base => ({ ...base, color: COLORS.primary }),
@@ -118,7 +118,7 @@ const VisionFilter = ({ children }) => {
 				}}
 				options={filters.map(f => ({ label: f, value: f }))}
 			/>
-			<div css={{ filter: filter ? `url(#${filter})` : 'none' }}>{children}</div>
+			<div css={{ zIndex: 0, filter: filter ? `url(#${filter})` : 'none' }}>{children}</div>
 		</>
 	);
 };
