@@ -12,7 +12,7 @@ export let type = 'dynamic-components';
 
 let Context = createContext(null);
 
-let CurrentlyEditingBlocksContext = createContext({
+export let CurrentlyEditingBlocksContext = createContext({
 	currentlyEditingBlocks: {},
 	setCurrentlyEditingBlocks: () => {},
 });
