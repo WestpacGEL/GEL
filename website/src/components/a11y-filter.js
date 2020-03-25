@@ -4,7 +4,12 @@ import { jsx, useBrand } from '@westpac/core';
 import Select from 'react-select';
 
 const SVGFilters = () => (
-	<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" version="1.1">
+	<svg
+		aria-hidden="true"
+		style={{ display: 'none' }}
+		xmlns="http://www.w3.org/2000/svg"
+		version="1.1"
+	>
 		<defs>
 			<filter id="filter-protanopia" colorInterpolationFilters="sRGB">
 				<feColorMatrix values="0.152286 1.052583 -0.204868 0 0     0.114503 0.786281 0.099216 0 0     -0.003882 -0.048116 1.051998 0 0     0 0 0 1 0"></feColorMatrix>

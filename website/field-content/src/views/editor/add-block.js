@@ -69,7 +69,7 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 				setIsOpen(false);
 			}
 		}
-	}, [focusBlock, iconRef.current, menuRef.current]);
+	}, [focusBlock, iconRef.current, menuRef.current, isOpen]);
 	useLayoutEffect(layout);
 
 	const ItemActions =
@@ -153,7 +153,7 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 				<MoveUp node={focusBlock} />
 				<MoveDown node={focusBlock} />
 			</div>
-			<div ref={menuRef} css={{ position: 'absolute', zIndex: 10, top: -99999, left: -9999 }}>
+			<div ref={menuRef} css={{ position: 'absolute', zIndex: 99999, top: -99999, left: -9999 }}>
 				{isOpen && (
 					<ul
 						css={{

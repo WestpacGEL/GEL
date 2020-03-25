@@ -88,31 +88,35 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 	let [editor, setEditor] = useStateWithEqualityCheck(null);
 
 	return (
-		<div
-			className={className}
-			id={id}
-			css={{
-				...inputStyles({ isMultiline: true }),
-				padding: 0,
-				position: 'relative',
-				overflow: 'scroll',
-			}}
-		>
-			<Editor
-				schema={schema}
-				ref={setEditor}
-				plugins={plugins}
-				value={editorState}
-				tabIndex={0}
+		<div css={{ overflow: 'hidden' }}>
+			<div
+				className={className}
+				id={id}
 				css={{
-					minHeight: 250,
+					...inputStyles({ isMultiline: true }),
+					padding: 0,
+					position: 'relative',
+					overflow: 'scroll',
+					zIndex: 0,
 				}}
-				onChange={({ value }) => {
-					onChange(value);
-				}}
-			/>
-			<AddBlock editor={editor} editorState={editorState} blocks={blocks} />
-			<Toolbar {...{ editorState, editor, blocks }} />
+			>
+				<Editor
+					schema={schema}
+					ref={setEditor}
+					plugins={plugins}
+					value={editorState}
+					tabIndex={0}
+					css={{
+						width: '100%',
+						minHeight: 250,
+					}}
+					onChange={({ value }) => {
+						onChange(value);
+					}}
+				/>
+				<AddBlock editor={editor} editorState={editorState} blocks={blocks} />
+				<Toolbar {...{ editorState, editor, blocks }} />
+			</div>
 		</div>
 	);
 }
