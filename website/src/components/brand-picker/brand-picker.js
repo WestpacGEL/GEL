@@ -26,6 +26,7 @@ export const BrandPicker = () => {
 			</p>
 			<ul
 				css={{
+					boxSizing: 'border-box',
 					margin: '0 auto',
 					padding: '2.5rem 1.25rem',
 					maxWidth: '67.5rem',
@@ -34,8 +35,8 @@ export const BrandPicker = () => {
 					display: 'flex',
 					flexWrap: 'wrap',
 					alignItems: 'center',
-					'@media (max-width: 800px)': {
-						justifyContent: 'space-around',
+					'@media (min-width: 800px)': {
+						justifyContent: 'space-between',
 					},
 				}}
 			>
@@ -44,10 +45,13 @@ export const BrandPicker = () => {
 						<li
 							key={i}
 							css={{
+								boxSizing: 'border-box',
 								flexBasis: '100%',
-								'@media min-width(600px)': {
-									flexBasis: '100%',
-									maxWidth: 250,
+								flexGrow: 1,
+								maxWidth: 200,
+								'@media (min-width: 600px)': {
+									flexBasis: '30%',
+									maxWidth: 'none',
 								},
 								margin: '0.625rem',
 								background: 'white',
