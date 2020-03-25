@@ -118,7 +118,7 @@ const VisionFilter = ({ children }) => {
 				}}
 				options={filters.map(f => ({ label: f, value: f }))}
 			/>
-			<div css={{ zIndex: 0, filter: filter ? `url(#${filter})` : 'none' }}>{children}</div>
+			<div css={{ filter: filter ? `url(#${filter})` : 'none' }}>{children}</div>
 		</>
 	);
 };
