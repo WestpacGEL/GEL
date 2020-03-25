@@ -139,3 +139,12 @@ const IconTitle = ({ icon: Icon, children }) => {
 		</div>
 	);
 };
+
+export const brandHeaderColors = {
+	WBC: COLORS => COLORS.primary,
+	WBG: COLORS => COLORS.primary,
+	STG: COLORS => COLORS.hero,
+	BSA: COLORS => `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
+	BOM: COLORS => COLORS.hero,
+	BTFG: COLORS => COLORS.hero,
+};

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand } from '@westpac/core';
 import shortid from 'shortid';
@@ -12,12 +12,12 @@ import { AlertIcon } from '@westpac/icon';
 // ==============================
 
 export const ErrorMessageContent = ({ icon: Icon, children }) => (
-	<>
+	<Fragment>
 		{Icon && (
 			<Icon css={{ verticalAlign: 'top', marginRight: '0.25em' }} size="small" color="inherit" />
 		)}
 		{children}
-	</>
+	</Fragment>
 );
 
 // ==============================

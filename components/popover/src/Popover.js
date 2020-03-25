@@ -135,7 +135,7 @@ export const Popover = ({
 			</Trigger>
 			<Panel ref={popoverRef} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
 				{heading && (
-					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
+					<Heading state={state} {...headingAttributes(state)} css={{ '&&': headingStyles(state) }}>
 						{heading}
 					</Heading>
 				)}
@@ -146,7 +146,7 @@ export const Popover = ({
 					onClick={() => handleOpen()}
 					state={state}
 					{...closeBtnAttributes(state)}
-					css={closeBtnStyles(state)}
+					css={{ '&&': closeBtnStyles(state) }}
 				/>
 			</Panel>
 		</Popover>

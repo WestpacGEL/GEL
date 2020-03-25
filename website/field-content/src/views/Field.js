@@ -28,8 +28,8 @@ let ContentField = ({ field, value, onChange, autoFocus, errors, item }) => {
 	return (
 		<FieldContainer>
 			<FieldLabel htmlFor={htmlID} field={field} errors={errors} />
-			<FieldInput
-				css={{ cursor: 'text', tabIndex: 0 }}
+			<div
+				css={{ cursor: 'text', tabIndex: 0, width: '100%' }}
 				onClick={() => {
 					const elm = document.getElementById(htmlID).querySelector('[data-slate-editor]');
 					if (elm) {
@@ -59,7 +59,7 @@ let ContentField = ({ field, value, onChange, autoFocus, errors, item }) => {
 							/>
 						)}
 				</ErrorBoundary>
-			</FieldInput>
+			</div>
 		</FieldContainer>
 	);
 };

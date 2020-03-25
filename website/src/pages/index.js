@@ -3,21 +3,27 @@ import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon, LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
+import HeaderImage from '../components/header/home-page-header-image';
+import { brandHeaderColors } from '../components/pages/single-component/_utils';
 
 import { useSidebar } from '../components/providers/sidebar';
 
 const Homepage = () => {
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, BRAND } = useBrand();
+	const backgroundColor = brandHeaderColors[BRAND](COLORS);
 
 	return (
 		<div css={{ textAlign: 'center' }}>
 			<section
 				css={{
-					background: COLORS.primary,
+					background: backgroundColor,
 					color: COLORS.light,
 					paddingBottom: SPACING(12),
+					position: 'relative',
+					overflow: 'hidden',
 				}}
 			>
+				<HeaderImage brand={BRAND} />
 				<Header />
 				<HeroIntro />
 			</section>
@@ -104,6 +110,8 @@ const Header = () => {
 				display: 'flex',
 				alignItems: 'center',
 				padding: SPACING(2),
+				zIndex: 3,
+				position: 'relative',
 			}}
 		>
 			<button
@@ -136,14 +144,17 @@ const Header = () => {
 const HeroIntro = () => {
 	const { SPACING, TYPE } = useBrand();
 	return (
-		<Container>
+		<Container css={{ zIndex: 3, position: 'relative' }}>
 			<Heading
-				size={1}
+				size={2}
 				css={{
 					paddingTop: SPACING(12),
+					paddingBottom: SPACING(4),
 					fontFamily: TYPE.brandFont.fontFamily,
 					maxWidth: 600,
-					margin: '0 auto',
+					fontWeight: 500,
+					margin: '0 auto !important',
+					zIndex: 3,
 				}}
 			>
 				Design to scale with confidence
@@ -154,16 +165,21 @@ const HeroIntro = () => {
 			<Grid css={{ marginTop: SPACING(8) }}>
 				<Cell width={4}>
 					<IconText icon={UmbrellaIcon}>
-						Get to market faster by leveraging our knowledge and tools
+						Get to market faster by leveraging <br />
+						our knowledge and tools
 					</IconText>
 				</Cell>
 				<Cell width={4}>
 					<IconText icon={LightBulbIcon}>
-						Design, build and ship consistent, quality, branded solutions
+						Design, build and ship consistent, quality, <br />
+						branded solutions
 					</IconText>
 				</Cell>
 				<Cell width={4}>
-					<IconText icon={MapIcon}>Be more accessible and inclusive with our assets</IconText>
+					<IconText icon={MapIcon}>
+						Be more accessible and inclusive with our <br />
+						assets
+					</IconText>
 				</Cell>
 			</Grid>
 		</Container>

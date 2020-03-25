@@ -75,8 +75,10 @@ GELApp.getInitialProps = async appContext => {
 			}
 		} else {
 			if (res) {
-				res.writeHead(302, { Location: `${router.asPath.split('?')[0]}` });
-				res.end();
+				if (router.query.b) {
+					res.writeHead(302, { Location: `${router.asPath.split('?')[0]}` });
+					res.end();
+				}
 			} else {
 				router.push(`${router.asPath.split('?')[0]}`);
 			}

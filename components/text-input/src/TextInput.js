@@ -46,7 +46,7 @@ export const TextInput = ({
 			{...rest}
 			state={state}
 			{...textInputAttributes(state)}
-			css={textInputStyles(state)}
+			css={{ '&&': textInputStyles(state) }}
 		/>
 	);
 };

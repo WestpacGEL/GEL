@@ -1,5 +1,4 @@
 require('dotenv').config();
-const express = require('express');
 const { Keystone } = require('@keystonejs/keystone');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
@@ -7,6 +6,8 @@ const { NextApp } = require('@keystonejs/app-next');
 const { KnexAdapter } = require('@keystonejs/adapter-knex');
 const { resolveComponents } = require('./extend-schema');
 const { getComponentSchema } = require('./schema/component');
+const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
+
 const { userSchema } = require('./schema/user');
 const { imageSchema } = require('./schema/image');
 const { settingSchema } = require('./schema/setting');
@@ -28,10 +29,20 @@ keystone.createList('User', userSchema);
 keystone.createList('Setting', settingSchema);
 keystone.createList('Image', imageSchema);
 
+const authStrategy = keystone.createAuthStrategy({
+	type: PasswordAuthStrategy,
+	list: 'User',
+	config: {
+		identityField: 'email',
+		secretField: 'password',
+	},
+});
+
 const apps = [
 	new GraphQLApp(),
 	new AdminUIApp({
 		adminPath: '/admin',
+		authStrategy,
 		hooks: require.resolve('./admin'),
 	}),
 	// new NextApp({ dir: 'src' }),
