@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import { defaultOption } from './overrides/option';
 import { defaultLabel } from './overrides/label';
@@ -15,6 +14,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const Option = ({
+	index,
 	value,
 	checked,
 	handleChange,
@@ -23,6 +23,7 @@ export const Option = ({
 	size,
 	inline,
 	disabled,
+	instanceIdPrefix,
 	children,
 	overrides,
 	...rest
@@ -33,7 +34,8 @@ export const Option = ({
 	} = useBrand();
 
 	const context = useFormCheckContext();
-	const [formCheckId] = useState(`form-check-option-${name.replace(/ /g, '-')}-${useInstanceId()}`);
+
+	const optionId = `${instanceIdPrefix}-option-${index + 1}`;
 
 	const defaultOverrides = {
 		Option: defaultOption,
@@ -43,7 +45,7 @@ export const Option = ({
 	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
-		formCheckId,
+		optionId,
 		value,
 		checked,
 		handleChange,
@@ -66,7 +68,7 @@ export const Option = ({
 		<Option {...rest} state={state} {...optionAttributes(state)} css={optionStyles(state)}>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
-				id={formCheckId}
+				id={optionId}
 				onChange={disabled ? null : event => handleChange(event, value, checked)}
 				value={value}
 				checked={checked}
@@ -91,6 +93,11 @@ export const Option = ({
 // ==============================
 
 Option.propTypes = {
+	/**
+	 * Form check id
+	 */
+	id: PropTypes.string,
+
 	/**
 	 * Form check option value
 	 */

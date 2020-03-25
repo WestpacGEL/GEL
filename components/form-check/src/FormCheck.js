@@ -5,10 +5,11 @@ import {
 	useBrand,
 	overrideReconciler,
 	wrapHandlers,
+	useInstanceId,
 	devWarning,
 	asArray,
 } from '@westpac/core';
-import { cloneElement, Children, useState, useContext, createContext } from 'react';
+import { cloneElement, Children, useState, useEffect, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
@@ -43,6 +44,7 @@ export const FormCheck = ({
 	inline,
 	disabled,
 	defaultValue,
+	instanceIdPrefix,
 	data,
 	children,
 	onChange = () => {},
@@ -62,19 +64,28 @@ export const FormCheck = ({
 	);
 
 	const [checked, setChecked] = useState(defaultValueAsArray);
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+
+	// create the prefix for internal IDs
+	useEffect(() => {
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-form-check-${useInstanceId()}`);
+		}
+	}, [instanceIdPrefix]);
 
 	const defaultOverrides = {
 		FormCheck: defaultFormCheck,
 	};
 
 	const state = {
+		instanceId,
 		type,
 		name,
 		size,
 		inline,
 		disabled,
-		data,
 		defaultValue,
+		data,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -106,22 +117,26 @@ export const FormCheck = ({
 			allChildren.push(
 				<Option
 					key={index}
+					index={index}
 					value={props.value}
 					checked={props.checked || checked.includes(props.value)}
 					handleChange={handleChange}
 					type={type}
 					name={name}
+					name={name}
 					size={size}
 					inline={inline}
 					disabled={props.disabled || disabled}
+					instanceIdPrefix={instanceId}
 				>
 					{props.text}
 				</Option>
 			);
 		});
 	} else {
-		allChildren = Children.map(children, child =>
+		allChildren = Children.map(children, (child, index) =>
 			cloneElement(child, {
+				index,
 				checked: child.props.checked || checked.includes(child.props.value),
 				handleChange,
 				type,
@@ -129,6 +144,7 @@ export const FormCheck = ({
 				size,
 				inline,
 				disabled: child.props.disabled || disabled,
+				instanceIdPrefix: instanceId,
 			})
 		);
 	}
