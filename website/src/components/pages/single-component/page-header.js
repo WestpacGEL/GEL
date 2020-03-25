@@ -97,13 +97,13 @@ export const PageHeader = ({ name, version }) => {
 						marginBottom: hasScrolled ? 0 : SPACING(3),
 					}}
 				>
-					<Heading
-						size={hasScrolled ? 7 : 1}
-						css={{ textTransform: 'capitalize', marginRight: SPACING(1) }}
-					>
+					<Heading size={hasScrolled ? 7 : 1} css={{ textTransform: 'capitalize' }}>
 						{name}
 					</Heading>
-					<span css={{ fontSize: '16px' }}> Version {version}</span>
+					<span css={{ fontSize: '16px', marginLeft: hasScrolled ? SPACING(1) : 0 }}>
+						{' '}
+						Version {version}
+					</span>
 				</div>
 			</div>
 			<div />
