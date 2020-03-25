@@ -26,8 +26,7 @@ const HomePageHeaderImage = ({ brand }) => {
 			css={{
 				position: 'absolute',
 				left: 0,
-				bottom: 0,
-				top: -80,
+				bottom: -10,
 				zIndex: 1,
 			}}
 		>
