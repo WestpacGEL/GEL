@@ -106,7 +106,7 @@ const VisionFilter = ({ children }) => {
 	return (
 		<>
 			<Select
-				css={{ zIndex: 99999 }}
+				css={{ zIndex: 4 }}
 				placeholder={'Select a vision filter...'}
 				styles={{
 					dropdownIndicator: base => ({ ...base, color: COLORS.primary }),

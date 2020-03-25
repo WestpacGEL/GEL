@@ -153,7 +153,7 @@ const HeroIntro = () => {
 					fontFamily: TYPE.brandFont.fontFamily,
 					maxWidth: 600,
 					fontWeight: 500,
-					margin: '0 auto',
+					margin: '0 auto !important',
 					zIndex: 3,
 				}}
 			>
