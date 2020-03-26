@@ -71,17 +71,36 @@ const Tabs = ({ component }) => {
 			}),
 		},
 	};
-	return (
-		<Tabcordion mode="tabs" overrides={tabOverrides}>
-			<Tab overrides={overrides} text="Design">
-				<DesignTab description={component.description} blocks={component.design} item={component} />
-			</Tab>
+
+	// No tabs
+	if (component.hideAccessibilityTab && component.hideCodeTab) {
+		return (
+			<DesignTab description={component.description} blocks={component.design} item={component} />
+		);
+	}
+	const tabs = [];
+	tabs.push(
+		<Tab overrides={overrides} text="Design">
+			<DesignTab description={component.description} blocks={component.design} item={component} />
+		</Tab>
+	);
+	if (component.hideAccessibilityTab) {
+		tabs.push(
 			<Tab overrides={overrides} text="Accessibility">
 				<AccessibilityTab blocks={component.accessibility} item={component} />
 			</Tab>
+		);
+	}
+	if (component.hideCodeTab) {
+		tabs.push(
 			<Tab overrides={overrides} text="Code">
 				<CodeTab blocks={component.code} item={component} />
 			</Tab>
+		);
+	}
+	return (
+		<Tabcordion mode="tabs" overrides={tabOverrides}>
+			{tabs}
 		</Tabcordion>
 	);
 };
