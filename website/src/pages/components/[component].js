@@ -22,7 +22,7 @@ const ComponentWrapper = () => {
 	if (!data) return 'loading...';
 
 	const currentComponent =
-		data.allPages.filter(component => component.name === componentParam)[0] || '';
+		data.allPages.filter(component => component.name === componentParam.replace('-', '_'))[0] || '';
 
 	return currentComponent ? (
 		<Component component={currentComponent} />

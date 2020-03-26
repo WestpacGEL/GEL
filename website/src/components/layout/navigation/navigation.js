@@ -38,7 +38,12 @@ export const Navigation = ({ components }) => {
 				);
 			}
 			return (
-				<LinkItem key={item.title + item.path} name={item.title} as={item.path} href={item.path} />
+				<LinkItem
+					key={item.title + item.path}
+					name={item.title}
+					as={item.path}
+					href={item.path.replace('_', '-')}
+				/>
 			);
 		});
 
