@@ -100,6 +100,7 @@ const VisionFilter = ({ children }) => {
 	if (!document.getElementById('vision-filters')) {
 		const filterContainer = document.createElement('div');
 		filterContainer.innerHTML = FILTER_HTML.trim();
+		filterContainer.style.height = 0;
 		document.body.append(filterContainer);
 	}
 
