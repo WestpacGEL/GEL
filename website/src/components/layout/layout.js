@@ -143,14 +143,16 @@ const CloseButton = () => {
 const MainContainer = props => {
 	return (
 		<main
+			{...props}
 			css={{
+				display: 'flex !important',
+				flexDirection: 'column',
 				overflowY: 'scroll',
 				'@media only screen and (min-width: 840px)': {
 					gridColumnStart: 2,
 					gridColumnEnd: 3,
 				},
 			}}
-			{...props}
 		/>
 	);
 };

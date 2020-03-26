@@ -5,7 +5,15 @@ import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
 export const Footer = () => {
 	const { COLORS, SPACING } = useBrand();
 	return (
-		<div css={{ display: 'flex', justifyContent: 'space-between', padding: SPACING(3) }}>
+		<div
+			css={{
+				display: 'flex',
+				flexGrow: 0,
+				flexShrink: 0,
+				justifyContent: 'space-between',
+				padding: SPACING(3),
+			}}
+		>
 			<div>
 				<span>Talk to us</span>
 				<FooterIcon icon={EmailIcon} href="mailto:info@westpac.com" />

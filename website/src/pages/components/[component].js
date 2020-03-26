@@ -45,6 +45,19 @@ const Tabs = ({ component }) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const tabOverrides = {
+		Tabcordion: {
+			styles: styles => ({
+				...styles,
+				flexGrow: 1,
+				backgroundColor: COLORS.background,
+			}),
+		},
+		TabRow: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: '#fff',
+			}),
+		},
 		TabButton: {
 			styles: (styles, { selected }) =>
 				mq({
@@ -67,7 +80,6 @@ const Tabs = ({ component }) => {
 			styles: styles => ({
 				...styles,
 				padding: `${SPACING(4)} 0 0`,
-				backgroundColor: COLORS.background,
 			}),
 		},
 	};

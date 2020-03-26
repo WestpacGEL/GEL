@@ -78,6 +78,8 @@ export const PageHeader = ({ name, version }) => {
 					width: hasScrolled ? '100%' : 'auto',
 					alignItems: hasScrolled ? 'center' : 'unset',
 					display: 'flex',
+					flexGrow: 0,
+					flexShrink: 0,
 					zIndex: 5,
 					overflow: 'hidden',
 				}}
