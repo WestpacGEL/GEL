@@ -12,7 +12,7 @@
 			"autorestart": true,
 			"instances": 1,
 
-			"env": { "NODE_ENV": "production" },
+			"env": { "NODE_ENV": "production" }
 		},
 		{
 			"name": "gel3-migrations",
@@ -37,7 +37,7 @@
 			"path": "/srv/pm2-apps/gel3-website",
 			"ref": "origin/staging",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
-			"post-deploy": "./pm2-post-deploy.sh",
+			"post-deploy": "./pm2-post-deploy.sh"
 		},
 		"live": {
 			"user": "deploy",
@@ -45,7 +45,7 @@
 			"path": "/srv/pm2-apps/gel3-website",
 			"ref": "origin/master",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
-			"post-deploy": "./pm2-post-deploy.sh",
-		},
-	},
+			"post-deploy": "./pm2-post-deploy.sh"
+		}
+	}
 }

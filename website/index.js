@@ -18,7 +18,7 @@ const { categorySchema } = require('./schema/category');
 const keystone = new Keystone({
 	name: 'GEL3 Website',
 	adapter: new KnexAdapter({
-		dropDatabase: (process.env.NODE_ENV === 'development' && process.env.DATABASE_RECREATE_TABLES),
+		dropDatabase: process.env.NODE_ENV === 'development' && process.env.DATABASE_RECREATE_TABLES,
 		knexOptions: {
 			client: 'pg',
 			connection: process.env.DATABASE_URL,
