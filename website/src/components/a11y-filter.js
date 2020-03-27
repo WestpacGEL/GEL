@@ -105,7 +105,7 @@ const VisionFilter = ({ children }) => {
 	}
 
 	return (
-		<>
+		<React.Fragment>
 			<Select
 				css={{ zIndex: 4 }}
 				placeholder={'Select a vision filter...'}
@@ -118,7 +118,7 @@ const VisionFilter = ({ children }) => {
 				options={filters.map(f => ({ label: f, value: f }))}
 			/>
 			<div css={{ filter: filter ? `url(#${filter})` : 'none' }}>{children}</div>
-		</>
+		</React.Fragment>
 	);
 };
 

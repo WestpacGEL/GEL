@@ -64,7 +64,7 @@ export const PageHeader = ({ name, version }) => {
 	const backgroundColor = brandHeaderColors[BRAND](COLORS);
 
 	return (
-		<>
+		<React.Fragment>
 			<div
 				ref={header}
 				css={{
@@ -109,6 +109,6 @@ export const PageHeader = ({ name, version }) => {
 				</div>
 			</div>
 			<div />
-		</>
+		</React.Fragment>
 	);
 };

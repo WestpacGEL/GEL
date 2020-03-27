@@ -36,7 +36,7 @@ export const Heading = {
 		const selectedOption = options.find(o => o.value === level);
 
 		return (
-			<>
+			<React.Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'heading-text'} field={{ label: 'Heading', config: {} }} />
 					<FieldInput>
@@ -58,7 +58,7 @@ export const Heading = {
 						onChange={({ value }) => setLevel(value)}
 					/>
 				</FieldContainer>
-			</>
+			</React.Fragment>
 		);
 	},
 

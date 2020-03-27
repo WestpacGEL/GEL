@@ -8,7 +8,7 @@ import BsaBackgroundSvg from './symbols/BsaBackgroundSvg';
 
 const ComponentPageHeaderImage = ({ brand }) => {
 	const WestpacImage = () => (
-		<>
+		<React.Fragment>
 			<div
 				css={{
 					position: 'absolute',
@@ -32,7 +32,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 			>
 				<WbcBackgroundRightSvg height={'200px'} />
 			</div>
-		</>
+		</React.Fragment>
 	);
 
 	const StGeorgeImage = () => (

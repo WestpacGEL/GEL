@@ -38,7 +38,7 @@ export const Image = {
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
 		return (
-			<>
+			<React.Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'image'} field={{ label: 'Image', config: {} }} />
 					<FieldInput>
@@ -69,7 +69,7 @@ export const Image = {
 						/>
 					</FieldInput>
 				</FieldContainer>
-			</>
+			</React.Fragment>
 		);
 	},
 	component: ({ caption, image }) => {

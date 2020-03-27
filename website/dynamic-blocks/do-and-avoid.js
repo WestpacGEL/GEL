@@ -42,7 +42,7 @@ export const DoAndAvoid = {
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
 		return (
-			<>
+			<React.Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'do-image'} field={{ label: 'Do Image', config: {} }} />
 					<FieldInput>
@@ -103,7 +103,7 @@ export const DoAndAvoid = {
 						/>
 					</FieldInput>
 				</FieldContainer>
-			</>
+			</React.Fragment>
 		);
 	},
 	component: ({ dontImage, dontText, doImage, doText }) => {

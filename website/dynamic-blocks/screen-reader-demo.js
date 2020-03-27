@@ -24,7 +24,7 @@ export const ScreenReaderText = {
 		}, [text]);
 
 		return (
-			<>
+			<React.Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'a11y-text'} field={{ label: 'Screen reader text', config: {} }} />
 					<FieldInput>
@@ -39,7 +39,7 @@ export const ScreenReaderText = {
 						/>
 					</FieldInput>
 				</FieldContainer>
-			</>
+			</React.Fragment>
 		);
 	},
 	component: ({ text }) => {
