@@ -42,7 +42,7 @@ const apps = [
 	new GraphQLApp(),
 	new AdminUIApp({
 		adminPath: '/admin',
-		authStrategy,
+		// authStrategy,
 		hooks: require.resolve('./admin'),
 	}),
 	new NextApp({ dir: 'src' }),

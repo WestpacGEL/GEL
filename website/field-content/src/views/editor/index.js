@@ -1,15 +1,17 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { useMemo } from 'react';
-import { Editor } from 'slate-react';
 
+import { Fragment, useMemo } from 'react';
 import { Block, Document } from 'slate';
-import { plugins as markPlugins } from './marks';
-import { type as defaultType } from './blocks/paragraph';
+import { Editor } from 'slate-react';
+import { jsx } from '@emotion/core';
+
+import { colors } from '@arch-ui/theme';
+
 import AddBlock from './add-block';
+import { type as defaultType } from './blocks/paragraph';
 import { useStateWithEqualityCheck } from './hooks';
+import { plugins as markPlugins } from './marks';
 import Toolbar from './toolbar';
-import { inputStyles } from '@arch-ui/input';
 
 function getSchema(blocks) {
 	const schema = {
@@ -39,6 +41,7 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 		return getSchema(blocks);
 	}, [blocks]);
 	let { focusBlock } = editorState;
+
 	let plugins = useMemo(() => {
 		const renderNode = props => {
 			let block = blocks[props.node.type];
@@ -46,46 +49,31 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 				return <block.Node {...props} blocks={blocks} item={item} />;
 			}
 		};
+
 		const renderBlock = props => {
 			let block = blocks[props.node.type];
+			let isFocused = focusBlock && props.node && focusBlock.key === props.node.key;
+
 			if (!block) return null;
 
 			if (block.CurrentlyEditingBlocksContext) {
 				let { Consumer } = block.CurrentlyEditingBlocksContext;
+
 				return (
 					<Consumer>
-						{({ currentlyEditingBlocks }) => {
+						{({ currentlyEditingBlocks, ...rest }) => {
 							let isEditing = currentlyEditingBlocks[props.node.key];
+
 							return (
-								<div css={{ display: 'flex' }}>
-									<div
-										css={{
-											width: 30,
-											borderBottom: 'solid 1px #eee',
-											borderRight: 'solid 1px #eee',
-											flexGrow: 0,
-											flexShrink: 0,
-											background:
-												focusBlock && props.node && focusBlock.key === props.node.key
-													? isEditing
-														? '#ffe2dd'
-														: '#eaeaea'
-													: 'white',
-										}}
-										onMouseDown={e => {
-											e.stopPropagation();
-											e.preventDefault();
-										}}
-										onMouseUp={e => {
-											e.stopPropagation();
-											e.preventDefault();
-										}}
-										onClick={e => {
-											props.editor.moveToStartOfNode(props.node);
-										}}
-									/>
-									<div css={{ padding: 5, flexGrow: 1 }}>{renderNode(props)}</div>
-								</div>
+								<BlockLayout
+									isEditing={isEditing}
+									isFocused={isFocused}
+									onClickDisclosureArea={e => {
+										props.editor.moveToStartOfNode(props.node);
+									}}
+								>
+									{renderNode(props)}
+								</BlockLayout>
 							);
 						}}
 					</Consumer>
@@ -93,35 +81,19 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 			}
 
 			return props.parent instanceof Document ? (
-				<div css={{ display: 'flex' }}>
-					<div
-						css={{
-							width: 30,
-							borderBottom: 'solid 1px #eee',
-							borderRight: 'solid 1px #eee',
-							flexGrow: 0,
-							flexShrink: 0,
-							background:
-								focusBlock && props.node && focusBlock.key === props.node.key ? '#eaeaea' : 'white',
-						}}
-						onMouseDown={e => {
-							e.stopPropagation();
-							e.preventDefault();
-						}}
-						onMouseUp={e => {
-							e.stopPropagation();
-							e.preventDefault();
-						}}
-						onClick={e => {
-							props.editor.moveToStartOfNode(props.node);
-						}}
-					/>
-					<div css={{ padding: 5, flexGrow: 1 }}>{renderNode(props)}</div>
-				</div>
+				<BlockLayout
+					isFocused={isFocused}
+					onClickDisclosureArea={e => {
+						props.editor.moveToStartOfNode(props.node);
+					}}
+				>
+					{renderNode(props)}
+				</BlockLayout>
 			) : (
 				renderNode(props)
 			);
 		};
+
 		return Object.values(blocks).reduce(
 			(combinedPlugins, block) => {
 				if (typeof block.getPlugins !== 'function') {
@@ -142,15 +114,15 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 	let [editor, setEditor] = useStateWithEqualityCheck(null);
 
 	return (
-		<div css={{ overflow: 'hidden' }}>
+		<Fragment>
 			<div
 				className={className}
 				id={id}
 				css={{
-					...inputStyles({ isMultiline: true }),
+					// ...inputStyles({ isMultiline: true }),
 					padding: 0,
 					position: 'relative',
-					overflow: 'scroll',
+					// overflow: 'scroll',
 					zIndex: 0,
 				}}
 			>
@@ -168,11 +140,42 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 						onChange(value);
 					}}
 				/>
-				<AddBlock editor={editor} editorState={editorState} blocks={blocks} />
 				<Toolbar {...{ editorState, editor, blocks }} />
+				<AddBlock editor={editor} editorState={editorState} blocks={blocks} />
 			</div>
-		</div>
+		</Fragment>
 	);
 }
+
+// Styled Components
+// ------------------------------
+
+const cancelEvent = event => {
+	e.stopPropagation();
+	e.preventDefault();
+};
+
+// This is the disclosure indicator (rounded-line) to the left of the block
+// Plus the block node itself
+const BlockLayout = ({ children, isEditing = false, isFocused = false, onClickDisclosureArea }) => {
+	return (
+		<div css={{ display: 'flex' }}>
+			<div
+				css={{
+					background: isFocused ? (isEditing ? colors.B.base : colors.N20) : colors.N05,
+					borderRadius: 4,
+					flexGrow: 0,
+					flexShrink: 0,
+					marginLeft: -10,
+					width: 4,
+				}}
+				onMouseDown={cancelEvent}
+				onMouseUp={cancelEvent}
+				onClick={onClickDisclosureArea}
+			/>
+			<div css={{ padding: 8, flexGrow: 1 }}>{children}</div>
+		</div>
+	);
+};
 
 export default Stories;

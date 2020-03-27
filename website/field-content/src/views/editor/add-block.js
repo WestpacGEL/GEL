@@ -1,9 +1,19 @@
 /** @jsx jsx */
+
 import { jsx } from '@emotion/core';
 import { useState, useRef, useCallback, useLayoutEffect, Fragment } from 'react';
+
 import { PlusIcon, ArrowUpIcon, ArrowDownIcon } from '@arch-ui/icons';
+import { gridSize } from '@arch-ui/theme';
+
 import { type as defaultBlockType } from './blocks/paragraph';
-import { BlockIcon } from './block-icon';
+import {
+	BLOCKBAR_BUTTON_GUTTER,
+	BLOCKBAR_BUTTON_SIZE,
+	BlockDisclosureMenu,
+	BlockDisclosureMenuButton,
+	BlockInsertMenu,
+} from './block-disclosure-menu';
 
 const isChildOf = (parent, child) => {
 	if (!child.parentElement) {
@@ -61,9 +71,9 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 		if (elm && editor && editor.el.contains(elm)) {
 			const constBlockEl = isChildOf(editor.el, elm);
 			iconEle.style.top = `${calculateOffset(editor.el, constBlockEl)}px`;
-			iconEle.style.left = 0;
+			iconEle.style.left = `-${BLOCKBAR_BUTTON_SIZE + BLOCKBAR_BUTTON_GUTTER * 2 + gridSize * 2}px`; // we want to "pull" the widget away from the content area, over the page chrome
 			menuEle.style.top = `${calculateOffset(editor.el, constBlockEl)}px`;
-			menuEle.style.left = `42px`;
+			menuEle.style.left = 0;
 		} else {
 			if (isOpen) {
 				setIsOpen(false);
@@ -83,7 +93,7 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 		if (node.text !== '') return null;
 		if (node.type !== defaultBlockType) return null;
 		return (
-			<BlockIcon
+			<BlockDisclosureMenuButton
 				onClick={() => {
 					setIsOpen(x => !x);
 				}}
@@ -96,7 +106,7 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 					}}
 					title={isOpen ? 'Close' : 'Open'}
 				/>
-			</BlockIcon>
+			</BlockDisclosureMenuButton>
 		);
 	};
 
@@ -105,15 +115,15 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 		const index = editorState.document.nodes.findIndex(o => node.key === o.key);
 		if (index === 0) return null;
 		return (
-			<BlockIcon
+			<BlockDisclosureMenuButton
 				onClick={() => {
 					const index = editorState.document.nodes.findIndex(o => node.key === o.key);
 					editor.moveNodeByKey(node.key, editorState.document.key, index - 1);
 				}}
 				title={'Move Up'}
 			>
-				<ArrowUpIcon title={'Move Up'} />
-			</BlockIcon>
+				<ArrowUpIcon title={'Move up'} />
+			</BlockDisclosureMenuButton>
 		);
 	};
 	const MoveDown = ({ node }) => {
@@ -121,89 +131,40 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 		const index = editorState.document.nodes.findIndex(o => node.key === o.key);
 		if (index === editorState.document.nodes.size - 1) return null;
 		return (
-			<BlockIcon
+			<BlockDisclosureMenuButton
 				onClick={() => {
 					const index = editorState.document.nodes.findIndex(o => node.key === o.key);
 					editor.moveNodeByKey(node.key, editorState.document.key, index + 1);
 				}}
 				title="Move Down"
 			>
-				<ArrowDownIcon title={'Move Down'} />
-			</BlockIcon>
+				<ArrowDownIcon title={'Move down'} />
+			</BlockDisclosureMenuButton>
 		);
 	};
+
 	return (
 		<Fragment>
-			<div
-				css={{
-					position: 'absolute',
-					zIndex: 10,
-					top: -99999,
-					left: -99999,
-					width: 30,
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					justifyContent: 'center',
-				}}
-				ref={iconRef}
-			>
+			{/* This is the widget displayed to the left of the block, when focused */}
+			<BlockDisclosureMenu ref={iconRef}>
 				<InsertBlock node={focusBlock} />
 				<ItemActions node={focusBlock} />
 				<MoveUp node={focusBlock} />
 				<MoveDown node={focusBlock} />
-			</div>
-			<div ref={menuRef} css={{ position: 'absolute', zIndex: 99999, top: -99999, left: -9999 }}>
-				{isOpen && (
-					<ul
-						css={{
-							background: 'white',
-							listStyle: 'none',
-							padding: 0,
-							margin: 0,
-							border: 'solid 1px #eaeaea',
-							zIndex: '9999999999999',
-						}}
-					>
-						<li
-							css={{
-								display: 'flex',
-								justifyContent: 'left',
-								alignItems: 'center',
-							}}
-						>
-							<strong
-								css={{
-									textTransform: 'uppercase',
-									color: '#999',
-									fontSize: '.8rem',
-									padding: '5px 15px',
-								}}
-							>
-								Insert Block
-							</strong>
-						</li>
-						{Object.keys(blocks).map(key => {
-							let { Sidebar } = blocks[key];
-							if (!blocks[key].withChrome || Sidebar === undefined) {
-								return null;
-							}
-							return (
-								<li
-									key={`sidebar-${key}`}
-									css={{
-										display: 'flex',
-										justifyContent: 'left',
-										alignItems: 'center',
-									}}
-								>
-									<Sidebar key={key} editor={editor} blocks={blocks} />
-								</li>
-							);
-						})}
-					</ul>
-				)}
-			</div>
+			</BlockDisclosureMenu>
+
+			{/* This is the dropdown menu shown when a user clicks `InsertBlock` */}
+			<BlockInsertMenu isOpen={isOpen} ref={menuRef}>
+				{Object.keys(blocks).map(key => {
+					let { Sidebar } = blocks[key];
+
+					if (!blocks[key].withChrome || Sidebar === undefined) {
+						return null;
+					}
+
+					return <Sidebar key={key} editor={editor} blocks={blocks} />;
+				})}
+			</BlockInsertMenu>
 		</Fragment>
 	);
 };
