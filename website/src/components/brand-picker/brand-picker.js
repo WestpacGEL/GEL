@@ -3,10 +3,12 @@ import { useState } from 'react';
 import { Heading } from '@westpac/heading';
 import { jsx } from '@westpac/core';
 import { useBrandSwitcher } from '../providers/brand-switcher';
+import { useRouter } from 'next/router';
 
 export const BrandPicker = () => {
 	const { brands } = useBrandSwitcher();
 	const [hovered, setHovered] = useState(false);
+	const currentPath = useRouter().asPath;
 
 	return (
 		<div
@@ -81,7 +83,7 @@ export const BrandPicker = () => {
 						>
 							{/* This is not a Next Link as I want the server to re-render and set a cookie */}
 							<a
-								href={`/?b=${brandName}`}
+								href={`${currentPath}?b=${brandName}`}
 								css={{ textDecoration: 'unset', color: 'rgb(0, 116, 196)' }}
 							>
 								<img
