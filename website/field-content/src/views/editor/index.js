@@ -5,7 +5,7 @@ import { Block, Document } from 'slate';
 import { Editor } from 'slate-react';
 import { jsx } from '@emotion/core';
 
-import { colors } from '@arch-ui/theme';
+import { colors, gridSize } from '@arch-ui/theme';
 
 import AddBlock from './add-block';
 import { type as defaultType } from './blocks/paragraph';
@@ -115,6 +115,7 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 
 	return (
 		<Fragment>
+			<Toolbar {...{ editorState, editor, blocks }} />
 			<div
 				className={className}
 				id={id}
@@ -140,7 +141,6 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 						onChange(value);
 					}}
 				/>
-				<Toolbar {...{ editorState, editor, blocks }} />
 				<AddBlock editor={editor} editorState={editorState} blocks={blocks} />
 			</div>
 		</Fragment>
@@ -162,18 +162,18 @@ const BlockLayout = ({ children, isEditing = false, isFocused = false, onClickDi
 		<div css={{ display: 'flex' }}>
 			<div
 				css={{
-					background: isFocused ? (isEditing ? colors.B.base : colors.N20) : colors.N05,
-					borderRadius: 4,
-					flexGrow: 0,
+					borderLeft: '4px solid transparent',
+					borderLeftColor: isFocused ? (isEditing ? colors.B.base : colors.N20) : colors.N05,
+					boxSizing: 'border-box',
 					flexShrink: 0,
-					marginLeft: -10,
-					width: 4,
+					marginLeft: -gridSize * 2,
+					width: gridSize * 2,
 				}}
 				onMouseDown={cancelEvent}
 				onMouseUp={cancelEvent}
 				onClick={onClickDisclosureArea}
 			/>
-			<div css={{ padding: 8, flexGrow: 1 }}>{children}</div>
+			<div css={{ paddingBottom: 8, flexGrow: 1 }}>{children}</div>
 		</div>
 	);
 };

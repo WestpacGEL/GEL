@@ -34,8 +34,19 @@ const getSelectedElement = () => {
 	}
 };
 
-const calculateOffset = (container, elm) =>
-	elm.getBoundingClientRect().top - container.getBoundingClientRect().top;
+const calculateOffset = el => {
+	if (!el) {
+		console.warn('No element passed to `calculateOffset`.');
+		return { offsetLeft: 0, offsetTop: 0 };
+	}
+
+	let { left, top } = el.getBoundingClientRect();
+
+	return {
+		offsetLeft: left + window.pageXOffset,
+		offsetTop: top + window.pageYOffset,
+	};
+};
 
 let AddBlock = ({ editorState, editor, blocks }) => {
 	let [isOpen, setIsOpen] = useState(false);
@@ -69,11 +80,13 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 		if (!blocks || !Object.keys(blocks).length) return;
 
 		if (elm && editor && editor.el.contains(elm)) {
-			const constBlockEl = isChildOf(editor.el, elm);
-			iconEle.style.top = `${calculateOffset(editor.el, constBlockEl)}px`;
-			iconEle.style.left = `-${BLOCKBAR_BUTTON_SIZE + BLOCKBAR_BUTTON_GUTTER * 2 + gridSize * 2}px`; // we want to "pull" the widget away from the content area, over the page chrome
-			menuEle.style.top = `${calculateOffset(editor.el, constBlockEl)}px`;
-			menuEle.style.left = 0;
+			const blockEl = isChildOf(editor.el, elm);
+			const { offsetLeft, offsetTop } = calculateOffset(blockEl);
+			// minor offset-adjustments are made within the styled-components
+			iconEle.style.top = `${offsetTop}px`;
+			iconEle.style.left = `${offsetLeft}px`;
+			menuEle.style.top = `${offsetTop}px`;
+			menuEle.style.left = `${offsetLeft}px`;
 		} else {
 			if (isOpen) {
 				setIsOpen(false);

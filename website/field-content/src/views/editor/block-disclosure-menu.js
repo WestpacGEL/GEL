@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
+import { createPortal } from 'react-dom';
 import { jsx } from '@emotion/core';
 
 import { colors, gridSize } from '@arch-ui/theme';
@@ -16,6 +17,14 @@ const cancelEvent = event => {
 	event.preventDefault();
 };
 
+const Portal = ({ children }) => {
+	if (typeof window === 'undefined') {
+		return null;
+	}
+
+	return createPortal(children, document.body);
+};
+
 // Disclosure Menu
 // ------------------------------
 
@@ -27,29 +36,33 @@ const cancelEvent = event => {
 // Menu Wrapper
 
 export const BlockDisclosureMenu = forwardRef((props, ref) => (
-	<div
-		css={{
-			alignItems: 'center',
-			backgroundColor: 'white',
-			borderRadius: 3,
-			boxShadow: `rgba(9, 30, 66, 0.31) 0px 0px 1px, rgba(9, 30, 66, 0.25) 0px 4px 8px -2px`,
-			display: 'flex',
-			flexDirection: 'column',
-			justifyContent: 'center',
-			left: -99999,
-			padding: BLOCKBAR_BUTTON_GUTTER,
-			position: 'absolute',
-			top: -99999,
-			zIndex: 10,
+	<Portal>
+		<div
+			css={{
+				alignItems: 'center',
+				backgroundColor: 'white',
+				borderRadius: 3,
+				boxShadow: `rgba(9, 30, 66, 0.31) 0px 0px 1px, rgba(9, 30, 66, 0.25) 0px 4px 8px -2px`,
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+				left: -99999,
+				marginLeft: -gridSize * 2, // we want to "pull" the widget away from the content area, over the page chrome
+				padding: BLOCKBAR_BUTTON_GUTTER,
+				position: 'absolute',
+				top: -99999,
+				transform: 'translateX(-100%)',
+				zIndex: 10,
 
-			// bail when no children
-			':empty': {
-				display: 'none',
-			},
-		}}
-		ref={ref}
-		{...props}
-	/>
+				// bail when no children
+				':empty': {
+					display: 'none',
+				},
+			}}
+			ref={ref}
+			{...props}
+		/>
+	</Portal>
 ));
 
 // Button
@@ -118,24 +131,27 @@ export const BlockDisclosureMenuButton = ({
 */
 
 export const BlockInsertMenu = forwardRef(({ isOpen, ...props }, ref) => (
-	<div
-		css={{
-			background: 'white',
-			borderRadius: 3,
-			boxShadow: `rgba(9, 30, 66, 0.31) 0px 0px 1px, rgba(9, 30, 66, 0.25) 0px 4px 8px -2px`,
-			display: isOpen ? 'block' : 'none',
-			left: -9999,
-			maxHeight: 400,
-			paddingBottom: 4,
-			paddingTop: 4,
-			overflowY: 'auto',
-			position: 'absolute',
-			top: -99999,
-			zIndex: 500,
-		}}
-		ref={ref}
-		{...props}
-	/>
+	<Portal>
+		<div
+			css={{
+				background: 'white',
+				borderRadius: 3,
+				boxShadow: `rgba(9, 30, 66, 0.31) 0px 0px 1px, rgba(9, 30, 66, 0.25) 0px 4px 8px -2px`,
+				display: isOpen ? 'block' : 'none',
+				left: -9999,
+				marginLeft: -12, // align with the block disclosure line
+				maxHeight: 400,
+				paddingBottom: 4,
+				paddingTop: 4,
+				overflowY: 'auto',
+				position: 'absolute',
+				top: -99999,
+				zIndex: 10,
+			}}
+			ref={ref}
+			{...props}
+		/>
+	</Portal>
 ));
 
 export const BlockInsertMenuItem = ({ icon, text, insertBlock }) => (

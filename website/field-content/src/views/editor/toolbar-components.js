@@ -17,23 +17,34 @@ export let ToolbarButton = ({
 		<Tooltip placement={tooltipPlacement} css={{ margin: gridSize * 2 }} content={label}>
 			{ref => (
 				<Tag
+					data-state-active={isActive}
 					{...(Tag === 'button' ? { type: 'button' } : null)}
 					css={{
-						display: 'flex',
-						justifyContent: 'center',
 						alignItems: 'center',
-						backgroundColor: 'transparent',
+						background: 0,
 						border: 0,
+						borderRadius: 3,
+						color: colors.N60,
 						cursor: 'pointer',
-						color: isActive ? colors.primary : 'white',
+						display: 'flex',
+						fontSize: 16, // fixes some weirdness with CSS reset on buttons
+						justifyContent: 'center',
+						marginRight: 2,
+						outline: 0,
+
 						':hover,:focus': {
-							color: isActive ? darken(colors.primary, 10) : lighten(colors.primary, 40),
+							background: colors.N05,
+							color: colors.N80,
 						},
 						':active': {
-							color: isActive ? darken(colors.primary, 25) : lighten(colors.primary, 10),
+							background: colors.B.L90,
+							color: colors.B.base,
 						},
-						fontSize: 16,
-						outline: 'none',
+
+						'[data-state-active="true"]&': {
+							background: colors.N80,
+							color: 'white',
+						},
 					}}
 					ref={ref}
 					{...props}

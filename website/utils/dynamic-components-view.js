@@ -90,7 +90,7 @@ export function Actions({ node }) {
 				onClick={() => {
 					setCurrentlyEditingBlocks(x => ({ ...x, [node.key]: !x[node.key] }));
 				}}
-				title={isEditing ? 'Show rendered component' : 'Edit component'}
+				title={isEditing ? 'Done editing' : 'Edit component'}
 			>
 				{isEditing ? <CheckIcon /> : <PencilIcon />}
 			</BlockDisclosureMenuButton>
