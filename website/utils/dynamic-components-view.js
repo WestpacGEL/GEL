@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { Component, Fragment } from 'react';
-import { useMemo, createContext, useContext, useState } from 'react';
+import { Component, Fragment, useMemo, createContext, useContext, useState } from 'react';
 import { Block } from 'slate';
-
 import { PencilIcon, CheckIcon, TrashcanIcon } from '@arch-ui/icons';
+
 import {
 	BlockInsertMenuItem,
 	BlockDisclosureMenuButton,
@@ -48,7 +47,14 @@ export function Sidebar({ editor }) {
 		.map(compName => {
 			let svgPath = svgPathMap[compName];
 			let icon = (
-				<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+				<svg
+					aria-hidden="true"
+					fill="currentColor"
+					focusable="false"
+					height="16"
+					viewBox="0 0 16 16"
+					width="16"
+				>
 					<path d={svgPath} fillRule="evenodd" />
 				</svg>
 			);

@@ -2,10 +2,12 @@
 
 import { jsx } from '@emotion/core';
 import { Fragment } from 'react';
-import { marks, markTypes } from './marks';
-import { ToolbarButton } from './toolbar-components';
-import { CircleSlashIcon } from '@arch-ui/icons';
+
 import { colors, gridSize } from '@arch-ui/theme';
+
+import { marks, markTypes } from './marks';
+import { ToolbarButton, ToolbarDivider } from './toolbar-components';
+import { ClearFormattingIcon } from './toolbar-icons';
 
 export default function Toolbar({ blocks, editor, editorState }) {
 	return (
@@ -34,6 +36,7 @@ export default function Toolbar({ blocks, editor, editorState }) {
 						);
 					},
 					<Fragment>
+						{/* Inline "marks", that wrap text */}
 						{Object.keys(marks).map(name => {
 							let Icon = marks[name].icon;
 							return (
@@ -49,9 +52,12 @@ export default function Toolbar({ blocks, editor, editorState }) {
 								/>
 							);
 						})}
+
+						<ToolbarDivider />
+
 						<ToolbarButton
-							label="Remove Formatting"
-							icon={<CircleSlashIcon />}
+							label="Clear formatting"
+							icon={<ClearFormattingIcon />}
 							onClick={() => {
 								markTypes.forEach(mark => {
 									editor.removeMark(mark);
@@ -60,11 +66,17 @@ export default function Toolbar({ blocks, editor, editorState }) {
 							}}
 						/>
 
+						<ToolbarDivider />
+
+						{/* Block elements, that are injected */}
 						{Object.keys(blocks).map(type => {
 							let ToolbarElement = blocks[type].ToolbarElement;
+
+							// the `withChrome` flag identifies blocks that represent "dynamic-components"
 							if (!blocks[type].withChrome || ToolbarElement === undefined) {
 								return null;
 							}
+
 							return <ToolbarElement key={type} editor={editor} editorState={editorState} />;
 						})}
 					</Fragment>

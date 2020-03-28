@@ -1,11 +1,14 @@
 /** @jsx jsx */
+
 import { jsx } from '@emotion/core';
-import React, { useContext, useState, Fragment, useEffect } from 'react';
-import { LinkIcon, CheckIcon, CircleSlashIcon, LinkExternalIcon } from '@arch-ui/icons';
-import { colors, gridSize } from '@arch-ui/theme';
+import { createContext, useContext, useState, Fragment, useEffect } from 'react';
 import { Popper } from 'react-popper';
 import { createPortal } from 'react-dom';
+import { CheckIcon, CircleSlashIcon, LinkExternalIcon } from '@arch-ui/icons';
+import { colors, gridSize } from '@arch-ui/theme';
+
 import { ToolbarButton } from '../toolbar-components';
+import { LinkIcon } from '../toolbar-icons';
 
 export let type = 'link';
 
@@ -66,7 +69,7 @@ export function Node({ node, attributes, children, isSelected, editor }) {
 											target="_blank"
 											rel="noopener"
 											label="Open Link"
-											css={{ marginLeft: gridSize }}
+											css={{ color: 'white', marginLeft: gridSize }}
 											href={href}
 										/>
 									</div>
@@ -84,13 +87,13 @@ function LinkInput(props) {
 	return (
 		<input
 			placeholder="Link..."
-			css={{ border: 0, outline: 'none', background: 'transparent', color: 'white' }}
+			css={{ border: 0, outline: 'none', background: 'transparent', color: 'inherit' }}
 			{...props}
 		/>
 	);
 }
 
-let SetLinkRange = React.createContext(() => {});
+let SetLinkRange = createContext(() => {});
 
 let LinkMenu = props => {
 	let [value, setValue] = useState('');

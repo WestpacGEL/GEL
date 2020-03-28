@@ -1,8 +1,10 @@
 /** @jsx jsx */
+
 import { jsx } from '@emotion/core';
-import { hasAncestorBlock } from '../utils';
-import { QuoteIcon } from '@arch-ui/icons';
+
 import { ToolbarButton } from '../toolbar-components';
+import { BlockQuoteIcon } from '../toolbar-icons';
+import { hasAncestorBlock } from '../utils';
 
 export let type = 'blockquote';
 
@@ -12,7 +14,7 @@ export function ToolbarElement({ editor, editorState }) {
 	return (
 		<ToolbarButton
 			isActive={hasBlockquote}
-			icon={<QuoteIcon />}
+			icon={<BlockQuoteIcon />}
 			label="Blockquote"
 			onClick={() => {
 				if (hasBlockquote) {

@@ -115,7 +115,7 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 
 	return (
 		<Fragment>
-			<Toolbar {...{ editorState, editor, blocks }} />
+			<Toolbar blocks={blocks} editor={editor} editorState={editorState} />
 			<div
 				className={className}
 				id={id}

@@ -4,12 +4,9 @@ import { jsx } from '@emotion/core';
 import { useState, useRef, useCallback, useLayoutEffect, Fragment } from 'react';
 
 import { PlusIcon, ArrowUpIcon, ArrowDownIcon } from '@arch-ui/icons';
-import { gridSize } from '@arch-ui/theme';
 
 import { type as defaultBlockType } from './blocks/paragraph';
 import {
-	BLOCKBAR_BUTTON_GUTTER,
-	BLOCKBAR_BUTTON_SIZE,
 	BlockDisclosureMenu,
 	BlockDisclosureMenuButton,
 	BlockInsertMenu,
