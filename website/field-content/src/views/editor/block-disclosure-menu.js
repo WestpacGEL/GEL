@@ -52,7 +52,7 @@ export const BlockDisclosureMenu = forwardRef((props, ref) => (
 				position: 'absolute',
 				top: -99999,
 				transform: 'translateX(-100%)',
-				zIndex: 10,
+				zIndex: 2,
 
 				// bail when no children
 				':empty': {
@@ -146,7 +146,7 @@ export const BlockInsertMenu = forwardRef(({ isOpen, ...props }, ref) => (
 				overflowY: 'auto',
 				position: 'absolute',
 				top: -99999,
-				zIndex: 10,
+				zIndex: 2,
 			}}
 			ref={ref}
 			{...props}

@@ -19,7 +19,7 @@ export default function Toolbar({ blocks, editor, editorState }) {
 				padding: `${gridSize * 2}px 0`,
 				position: 'sticky',
 				top: 0,
-				zIndex: 5,
+				zIndex: 1,
 			}}
 		>
 			{Object.keys(blocks)
