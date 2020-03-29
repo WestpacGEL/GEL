@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useSpring, animated, config } from 'react-spring';
 import { Children, cloneElement, useState, useEffect } from 'react';
+import { useSpring, animated, config } from 'react-spring';
+import useMeasure from 'react-use-measure';
 import PropTypes from 'prop-types';
 
 import { defaultGroup } from './overrides/group';
@@ -11,7 +12,6 @@ import { defaultGroupButton } from './overrides/groupButton';
 import { defaultGroupList } from './overrides/groupList';
 
 import { useProgressRopeContext } from './ProgressRope';
-import { useMeasure } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
@@ -33,7 +33,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 	const complete = ropeGraph[index + 1][0] === 'visited';
 
 	const [hidden, setHidden] = useState(true);
-	const [bind, { height }] = useMeasure();
+	const [measureRef, { height }] = useMeasure();
 	const [initial, setInitial] = useState(true);
 
 	const animate = useSpring({
@@ -122,7 +122,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 				</GroupButton>
 			</GroupButtonWrapper>
 			<animated.div style={animate}>
-				<div ref={bind.ref}>
+				<div ref={measureRef}>
 					<GroupList state={state} {...groupListAttributes(state)} css={groupListStyles(state)}>
 						{Children.map(children, (child, idx) =>
 							cloneElement(child, { index: idx, groupIndex: index })

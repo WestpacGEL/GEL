@@ -22,7 +22,7 @@ const ComponentWrapper = () => {
 	if (!data) return 'loading...';
 
 	const currentComponent =
-		data.allPages.filter(component => component.name === componentParam)[0] || '';
+		data.allPages.filter(component => component.name === componentParam.replace('-', '_'))[0] || '';
 
 	return currentComponent ? (
 		<Component component={currentComponent} />
@@ -45,6 +45,19 @@ const Tabs = ({ component }) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const tabOverrides = {
+		Tabcordion: {
+			styles: styles => ({
+				...styles,
+				flexGrow: 1,
+				backgroundColor: COLORS.background,
+			}),
+		},
+		TabRow: {
+			styles: styles => ({
+				...styles,
+				backgroundColor: '#fff',
+			}),
+		},
 		TabButton: {
 			styles: (styles, { selected }) =>
 				mq({
@@ -67,21 +80,39 @@ const Tabs = ({ component }) => {
 			styles: styles => ({
 				...styles,
 				padding: `${SPACING(4)} 0 0`,
-				backgroundColor: COLORS.background,
 			}),
 		},
 	};
-	return (
-		<Tabcordion mode="tabs" overrides={tabOverrides}>
-			<Tab overrides={overrides} text="Design">
-				<DesignTab description={component.description} blocks={component.design} item={component} />
-			</Tab>
+
+	// No tabs
+	if (component.hideAccessibilityTab && component.hideCodeTab) {
+		return (
+			<DesignTab description={component.description} blocks={component.design} item={component} />
+		);
+	}
+	const tabs = [];
+	tabs.push(
+		<Tab overrides={overrides} text="Design">
+			<DesignTab description={component.description} blocks={component.design} item={component} />
+		</Tab>
+	);
+	if (component.hideAccessibilityTab) {
+		tabs.push(
 			<Tab overrides={overrides} text="Accessibility">
 				<AccessibilityTab blocks={component.accessibility} item={component} />
 			</Tab>
+		);
+	}
+	if (component.hideCodeTab) {
+		tabs.push(
 			<Tab overrides={overrides} text="Code">
 				<CodeTab blocks={component.code} item={component} />
 			</Tab>
+		);
+	}
+	return (
+		<Tabcordion mode="tabs" overrides={tabOverrides}>
+			{tabs}
 		</Tabcordion>
 	);
 };

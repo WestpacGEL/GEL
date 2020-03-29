@@ -18,7 +18,7 @@ const getInitialPageData = pages => {
 		const key = d.pageTitle ? d.pageTitle : d._label_;
 		return {
 			title: key,
-			path: `/components/${d.name}`,
+			path: `/components/${d.name.replace('_', '-')}`,
 		};
 	});
 	return [

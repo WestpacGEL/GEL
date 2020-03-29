@@ -72,6 +72,9 @@ const LinkList = props => {
 				'> li a, > div button': {
 					fontWeight: 500,
 					color: 'rgba(0, 0, 0, 0.75)',
+					margin: `${SPACING(3)} 0`,
+					padding: 0,
+					cursor: 'pointer',
 				},
 				'ul > li a': {
 					fontWeight: 400,
@@ -94,7 +97,7 @@ const LinkItem = ({ name, href, as, tag: Tag = 'li', children }) => {
 						cursor: 'pointer',
 						display: 'block',
 						textDecoration: 'none',
-						padding: `${SPACING(3)} 0`,
+						margin: `${SPACING(3)} 0`,
 					}}
 				>
 					{name}
