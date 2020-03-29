@@ -123,7 +123,6 @@ export const FormCheck = ({
 					handleChange={handleChange}
 					type={type}
 					name={name}
-					name={name}
 					size={size}
 					inline={inline}
 					disabled={props.disabled || disabled}
