@@ -9,6 +9,9 @@ import { marks, markTypes } from './marks';
 import { ToolbarButton, ToolbarDivider } from './toolbar-components';
 import { ClearFormattingIcon } from './toolbar-icons';
 
+// NOTE: reduce is used below to allow blocks to replace the toolbar by exposing
+// its own `Toolbar`, this was the case for the `link` block.
+
 export default function Toolbar({ blocks, editor, editorState }) {
 	return (
 		<div

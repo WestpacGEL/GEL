@@ -3,8 +3,9 @@
 import { forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 import { jsx } from '@emotion/core';
-
 import { colors, gridSize } from '@arch-ui/theme';
+
+import { Dialog } from './dialog';
 
 // Constants & Helpers
 // ------------------------------
@@ -36,33 +37,24 @@ const Portal = ({ children }) => {
 // Menu Wrapper
 
 export const BlockDisclosureMenu = forwardRef((props, ref) => (
-	<Portal>
-		<div
-			css={{
-				alignItems: 'center',
-				backgroundColor: 'white',
-				borderRadius: 3,
-				boxShadow: `rgba(9, 30, 66, 0.31) 0px 0px 1px, rgba(9, 30, 66, 0.25) 0px 4px 8px -2px`,
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'center',
-				left: -99999,
-				marginLeft: -gridSize * 2, // we want to "pull" the widget away from the content area, over the page chrome
-				padding: BLOCKBAR_BUTTON_GUTTER,
-				position: 'absolute',
-				top: -99999,
-				transform: 'translateX(-100%)',
-				zIndex: 2,
+	<Dialog
+		css={{
+			alignItems: 'center',
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'center',
+			marginLeft: -gridSize * 2, // we want to "pull" the widget away from the content area, over the page chrome
+			padding: BLOCKBAR_BUTTON_GUTTER,
+			transform: 'translateX(-100%)',
 
-				// bail when no children
-				':empty': {
-					display: 'none',
-				},
-			}}
-			ref={ref}
-			{...props}
-		/>
-	</Portal>
+			// bail when no children
+			':empty': {
+				display: 'none',
+			},
+		}}
+		ref={ref}
+		{...props}
+	/>
 ));
 
 // Button
@@ -131,27 +123,18 @@ export const BlockDisclosureMenuButton = ({
 */
 
 export const BlockInsertMenu = forwardRef(({ isOpen, ...props }, ref) => (
-	<Portal>
-		<div
-			css={{
-				background: 'white',
-				borderRadius: 3,
-				boxShadow: `rgba(9, 30, 66, 0.31) 0px 0px 1px, rgba(9, 30, 66, 0.25) 0px 4px 8px -2px`,
-				display: isOpen ? 'block' : 'none',
-				left: -9999,
-				marginLeft: -12, // align with the block disclosure line
-				maxHeight: 400,
-				paddingBottom: 4,
-				paddingTop: 4,
-				overflowY: 'auto',
-				position: 'absolute',
-				top: -99999,
-				zIndex: 2,
-			}}
-			ref={ref}
-			{...props}
-		/>
-	</Portal>
+	<Dialog
+		css={{
+			display: isOpen ? 'block' : 'none',
+			marginLeft: -12, // align with the block disclosure line
+			maxHeight: 400,
+			paddingBottom: 4,
+			paddingTop: 4,
+			overflowY: 'auto',
+		}}
+		ref={ref}
+		{...props}
+	/>
 ));
 
 export const BlockInsertMenuItem = ({ icon, text, insertBlock }) => (
