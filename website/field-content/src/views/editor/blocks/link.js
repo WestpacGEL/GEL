@@ -8,6 +8,7 @@ import { gridSize } from '@arch-ui/theme';
 import { ToolbarButton } from '../toolbar-components';
 import { CrossIcon, ExternalIcon, LinkIcon, TickIcon } from '../toolbar-icons';
 import { Dialog } from '../dialog';
+import { useKeyPress } from '../hooks';
 import { getSelectionReference } from '../utils';
 
 export let type = 'link';
@@ -57,10 +58,17 @@ export function Node({ node, attributes, children, isSelected, editor }) {
 										css={{ marginLeft: gridSize }}
 										href={href}
 										icon={<ExternalIcon />}
-										label="Open Link"
+										label="Open"
 										rel="noopener"
 										target="_blank"
 										tooltipPlacement="bottom"
+									/>
+									<ToolbarButton
+										label="Unlink"
+										icon={<CrossIcon />}
+										onClick={() => {
+											editor.unwrapInline(type);
+										}}
 									/>
 								</div>
 							</Dialog>
@@ -96,6 +104,17 @@ export function ToolbarElement({ editor, editorState }) {
 			});
 		}
 	}, [dialogVisible]);
+
+	// let users bail on `esc` press
+	useKeyPress({
+		targetKey: 'Escape',
+		downHandler: () => {
+			setLinkRange(null);
+			setDialogVisible(false);
+			setInputValue('');
+		},
+		listenWhen: dialogVisible,
+	});
 
 	return (
 		<Fragment>
