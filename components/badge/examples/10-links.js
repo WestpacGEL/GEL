@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Badge } from '@westpac/badge';
-import { Body } from '@westpac/body';
+import { Body } from '@westpac/body-text';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -11,7 +11,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<Body>
+			<BodyText>
 				<p>
 					<a href="#0">
 						Default <Badge value="42" />
@@ -59,7 +59,7 @@ function Example({ brand }) {
 						Danger <Badge look="danger" value="71" />
 					</a>
 				</p>
-			</Body>
+			</BodyText>
 		</GEL>
 	);
 }

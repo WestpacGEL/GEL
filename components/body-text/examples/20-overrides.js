@@ -1,14 +1,14 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Body } from '@westpac/body';
+import { BodyText } from '@westpac/body-text';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
-	overridesWithTokens['@westpac/body'] = {
-		Body: {
+	overridesWithTokens['@westpac/body-text'] = {
+		BodyText: {
 			styles: styles => ({
 				...styles,
 				border: '1px solid red',
@@ -20,7 +20,7 @@ function Example({ brand }) {
 		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
 
-			<Body>
+			<BodyText>
 				<h2>Headings</h2>
 				<h1>This is a h1 heading</h1>
 				<h2>This is a h2 heading</h2>
@@ -122,12 +122,12 @@ function Example({ brand }) {
 
 				<h2>Label</h2>
 				<label>This is a default label</label>
-			</Body>
+			</BodyText>
 
 			<h2>With overrides and component overrides</h2>
-			<Body
+			<BodyText
 				overrides={{
-					Body: {
+					BodyText: {
 						styles: styles => ({
 							...styles,
 							outline: '3px dotted green',
@@ -136,7 +136,7 @@ function Example({ brand }) {
 				}}
 			>
 				This is a default alert. <a href="#">Link</a>
-			</Body>
+			</BodyText>
 		</GEL>
 	);
 }

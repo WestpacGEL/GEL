@@ -13,11 +13,11 @@ function Example({ brand }) {
 
 			<h2>Panel with body and table</h2>
 			<Panel heading="Panel title">
-				<Body>
+				<BodyText>
 					Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia
 					bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
 					venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
-				</Body>
+				</BodyText>
 				<Table bordered>
 					<Caption>
 						Table caption this table width is: <em>(100%)</em>

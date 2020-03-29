@@ -19,12 +19,12 @@ function Example({ brand }) {
 
 			<h2>Default heading</h2>
 			<Panel heading="Panel title">
-				<Body>
+				<BodyText>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 					eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit
 					amet, consectetur adipisicing elit.
-				</Body>
+				</BodyText>
 			</Panel>
 
 			<hr />
@@ -35,24 +35,24 @@ function Example({ brand }) {
 				Tag as <code>&lt;h3&gt;</code>
 			</h3>
 			<Panel heading="Panel title" headingTag="h3">
-				<Body>
+				<BodyText>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 					eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit
 					amet, consectetur adipisicing elit.
-				</Body>
+				</BodyText>
 			</Panel>
 
 			<h3>
 				Tag as <code>&lt;h2&gt;</code> with child <code>&lt;span&gt;</code>, passed as a component
 			</h3>
 			<Panel heading="Panel title" headingTag={PanelHeadingTag}>
-				<Body>
+				<BodyText>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 					eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit
 					amet, consectetur adipisicing elit.
-				</Body>
+				</BodyText>
 			</Panel>
 		</GEL>
 	);

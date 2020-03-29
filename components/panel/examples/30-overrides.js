@@ -55,12 +55,12 @@ function Example({ brand }) {
 			<h2>With overrides applied</h2>
 
 			<Panel heading="Panel title">
-				<Body>
+				<BodyText>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 					eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit
 					amet, consectetur adipisicing elit.
-				</Body>
+				</BodyText>
 				<Footer>Panel footer</Footer>
 			</Panel>
 
@@ -79,12 +79,12 @@ function Example({ brand }) {
 					},
 				}}
 			>
-				<Body>
+				<BodyText>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
 					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
 					eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit
 					amet, consectetur adipisicing elit.
-				</Body>
+				</BodyText>
 				<Footer>Panel footer</Footer>
 			</Panel>
 		</GEL>

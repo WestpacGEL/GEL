@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const Body = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
+const BodyText = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
-const bodyStyles = (_, props) => {
+const bodyTextStyles = (_, props) => {
 	const { COLORS, TYPE } = useBrand();
 
 	let key;
@@ -59,7 +59,7 @@ const bodyStyles = (_, props) => {
 		},
 		...(props[key]
 			? {
-					'&:after': {
+					'::after': {
 						content: '""',
 						background:
 							'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHZpZXdCb3g9IjAgMCA4MjUgMTgiPjx0ZXh0IHg9IjEzIiB5PSIxMyIgZm9udC1zaXplPSIxNiI+RG9taW5payBXaWxrb3dza2ksIEp1c3RpbiBTcGVuY2VyLCBKb25ueSBTdGVuaW5nLCBLYXRlIFQgTWFjRG9uYWxkLCBNYXJpdGEgQ2F0aGVyaW5lIFB1cmlucywgSmVyZW15IE9ydGl6LCBGbG9yZSBMYWZvcmdlPC90ZXh0Pjwvc3ZnPg==") no-repeat',
@@ -71,10 +71,10 @@ const bodyStyles = (_, props) => {
 	};
 };
 
-const bodyAttributes = () => null;
+const bodyTextAttributes = () => null;
 
-export const defaultBody = {
-	component: Body,
-	styles: bodyStyles,
-	attributes: bodyAttributes,
+export const defaultBodyText = {
+	component: BodyText,
+	styles: bodyTextStyles,
+	attributes: bodyTextAttributes,
 };

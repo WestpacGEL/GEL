@@ -3,7 +3,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { TextInput, Textarea, Select } from '@westpac/text-input';
-import { Body } from '@westpac/body';
+import { Body } from '@westpac/body-text';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -14,7 +14,7 @@ function Example({ brand }) {
 
 			<h2>Focus test</h2>
 
-			<Body>
+			<BodyText>
 				<h3>Expected behaviour</h3>
 				<p>
 					Keyboard users will see a visible outline when tabbing to focusable elements. <br />
@@ -31,15 +31,15 @@ function Example({ brand }) {
 					</a>
 					.
 				</p>
-			</Body>
+			</BodyText>
 
 			<hr />
 
-			<Body>
+			<BodyText>
 				<p>
 					<a href="#0">This is a link</a>
 				</p>
-			</Body>
+			</BodyText>
 
 			<Button>Button as a &lt;button&gt;</Button>
 			<br />
@@ -47,12 +47,12 @@ function Example({ brand }) {
 			<Button href="#0">Button as an &lt;a&gt;</Button>
 			<br />
 			<br />
-			<Body>
+			<BodyText>
 				<Button>Button as a &lt;button&gt; and child of Body</Button>
 				<br />
 				<br />
 				<Button href="#0">Button as an &lt;a&gt; and child of Body</Button>
-			</Body>
+			</BodyText>
 
 			<hr />
 
@@ -67,7 +67,7 @@ function Example({ brand }) {
 
 			<hr />
 
-			<Body>
+			<BodyText>
 				<p>Note: The following headings should show focus outline styling when keyboard tabbing.</p>
 				<h1 tabIndex="0">This is a h1 heading</h1>
 				<h2 tabIndex="0">This is a h2 heading</h2>
@@ -75,7 +75,7 @@ function Example({ brand }) {
 				<h4 tabIndex="0">This is a h4 heading</h4>
 				<h5 tabIndex="0">This is a h5 heading</h5>
 				<h6 tabIndex="0">This is a h6 heading</h6>
-			</Body>
+			</BodyText>
 		</GEL>
 	);
 }

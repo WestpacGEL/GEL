@@ -17,7 +17,7 @@
 	"module": "dist/popover.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.8.4",
-		"@westpac/body": "^1.0.0",
+		"@westpac/body-text": "^1.0.0",
 		"@westpac/button": "^1.0.0",
 		"@westpac/core": "^1.0.0",
 		"@westpac/heading": "^1.0.0",

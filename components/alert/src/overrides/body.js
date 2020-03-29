@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useMediaQuery } from '@westpac/core';
-import { Body } from '@westpac/body';
+import { Body } from '@westpac/body-text';
 
-const AlertBody = ({ state, ...rest }) => <Body {...rest} />;
+const AlertBody = ({ state, ...rest }) => <BodyText {...rest} />;
 
 const bodyStyles = (_, { icon: Icon }) => {
 	const mq = useMediaQuery();

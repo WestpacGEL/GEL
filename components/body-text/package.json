@@ -1,7 +1,7 @@
 {
-	"name": "@westpac/body",
+	"name": "@westpac/body-text",
 	"version": "1.0.0",
-	"description": "Body component in charge of body text",
+	"description": "BodyText component in charge of body text",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/body",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
@@ -13,15 +13,15 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=body webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=body-text webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/body.cjs.js",
-	"module": "dist/body.esm.js",
+	"main": "dist/body-text.cjs.js",
+	"module": "dist/body-text.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.8.4",
 		"@westpac/core": "^1.0.0",

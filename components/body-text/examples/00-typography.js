@@ -1,19 +1,19 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Body } from '@westpac/body';
+import { BodyText } from '@westpac/body-text';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-// Body tag as a component example
-const BodyTag = ({ children, ...props }) => {
+// BodyText tag as a component example
+const BodyTextTag = ({ children, ...props }) => {
 	let num = 0;
 	return (
 		<section
 			css={{ cursor: 'pointer' }}
 			role="button" //please don't ever actually do this
 			onClick={() => {
-				console.log(`<Body /> clicked ${++num} ${num !== 1 ? `times` : `time`}`);
+				console.log(`<BodyText /> clicked ${++num} ${num !== 1 ? `times` : `time`}`);
 			}}
 			{...props}
 		>
@@ -27,22 +27,22 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<Body>
-				<h2>Body</h2>
-				<p>Body with default tag</p>
-			</Body>
+			<BodyText>
+				<h2>BodyText</h2>
+				<p>BodyText with default tag</p>
+			</BodyText>
 
-			<Body tag="section">
+			<BodyText tag="section">
 				<p>
-					Body with a <code>&lt;section&gt;</code> tag
+					BodyText with a <code>&lt;section&gt;</code> tag
 				</p>
-			</Body>
+			</BodyText>
 
-			<Body tag={BodyTag}>
-				<p>Body with a component tag (illustrating nested elements and an onClick event)</p>
-			</Body>
+			<BodyText tag={BodyTextTag}>
+				<p>BodyText with a component tag (illustrating nested elements and an onClick event)</p>
+			</BodyText>
 
-			<Body>
+			<BodyText>
 				<h2>Headings</h2>
 				<h1>This is a h1 heading</h1>
 				<h2>This is a h2 heading</h2>
@@ -144,7 +144,7 @@ function Example({ brand }) {
 
 				<h2>Label</h2>
 				<label>This is a default label</label>
-			</Body>
+			</BodyText>
 		</GEL>
 	);
 }

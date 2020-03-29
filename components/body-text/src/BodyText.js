@@ -3,21 +3,21 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { defaultBody } from './overrides/body';
+import { defaultBodyText } from './overrides/bodyText';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) => {
+export const BodyText = ({ tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		Body: defaultBody,
+		BodyText: defaultBodyText,
 	};
 
 	const state = {
@@ -28,13 +28,13 @@ export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) 
 	};
 
 	const {
-		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
+		BodyText: { component: BodyText, styles: bodyTextStyles, attributes: bodyTextAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Body {...rest} state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
+		<BodyText {...rest} state={state} {...bodyTextAttributes(state)} css={bodyTextStyles(state)}>
 			{children}
-		</Body>
+		</BodyText>
 	);
 };
 
@@ -42,14 +42,14 @@ export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) 
 // Types
 // ==============================
 
-Body.propTypes = {
+BodyText.propTypes = {
 	/**
-	 * Body tag
+	 * BodyText tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
 
 	/**
-	 * Body children
+	 * BodyText children
 	 */
 	children: PropTypes.node.isRequired,
 
@@ -57,7 +57,7 @@ Body.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Body: PropTypes.shape({
+		BodyText: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -65,6 +65,6 @@ Body.propTypes = {
 	}),
 };
 
-Body.defaultProps = {
+BodyText.defaultProps = {
 	tag: 'div',
 };

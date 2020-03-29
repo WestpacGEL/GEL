@@ -39,14 +39,14 @@ function Example({ brand }) {
 				open={state.default.open}
 				onClose={() => updateModal('default', false)}
 			>
-				<Body>
+				<BodyText>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
 					gone down that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort
 					of life! I do wonder what can have happened to me! When I used to read fairy-tales, I
 					fancied that kind of thing never happened, and now here I am in the middle of one! There
 					ought to be a book written about me, that there ought!’
-				</Body>
+				</BodyText>
 				<Footer>
 					<Button look="faint" onClick={() => updateModal('default', false)}>
 						Close
@@ -63,7 +63,7 @@ function Example({ brand }) {
 				onClose={() => updateModal('small', false)}
 				size="small"
 			>
-				<Body>
+				<BodyText>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
 					gone down that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort
@@ -81,7 +81,7 @@ function Example({ brand }) {
 					you know, this sort of life! I do wonder what can have happened to me! When I used to read
 					fairy-tales, I fancied that kind of thing never happened, and now here I am in the middle
 					of one! There ought to be a book written about me, that there ought!’
-				</Body>
+				</BodyText>
 				<Footer>
 					<Button look="faint" onClick={() => updateModal('small', false)}>
 						Close
@@ -98,14 +98,14 @@ function Example({ brand }) {
 				onClose={() => updateModal('large', false)}
 				size="large"
 			>
-				<Body>
+				<BodyText>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
 					gone down that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort
 					of life! I do wonder what can have happened to me! When I used to read fairy-tales, I
 					fancied that kind of thing never happened, and now here I am in the middle of one! There
 					ought to be a book written about me, that there ought!’
-				</Body>
+				</BodyText>
 				<Footer>
 					<Button look="faint" onClick={() => updateModal('large', false)}>
 						Close

@@ -37,9 +37,9 @@ export const PanelBody = ({ children, overrides, ...rest }) => {
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Body {...rest} state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
+		<BodyText {...rest} state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 			{children}
-		</Body>
+		</BodyText>
 	);
 };
 

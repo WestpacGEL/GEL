@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Body } from '@westpac/body';
+import { BodyText } from '@westpac/body-text';
 import { Button } from '@westpac/button';
 import { List, Item } from '@westpac/list';
 import { AndroidIcon, GithubIcon } from '@westpac/icon';
@@ -13,7 +13,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<Body>
+			<BodyText>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias porro, laboriosam
 					recusandae ex ipsum harum unde illum neque, dolorem eaque quam vero aliquam fuga commodi,
@@ -131,7 +131,7 @@ function Example({ brand }) {
 					earum ipsam maxime, temporibus possimus veritatis doloribus consectetur repudiandae
 					beatae, exercitationem autem magnam qui quod provident repellat aliquam.
 				</p>
-			</Body>
+			</BodyText>
 		</GEL>
 	);
 }

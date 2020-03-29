@@ -139,9 +139,9 @@ export const Popover = ({
 						{heading}
 					</Heading>
 				)}
-				<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
+				<BodyText state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 					{content}
-				</Body>
+				</BodyText>
 				<CloseBtn
 					onClick={() => handleOpen()}
 					state={state}

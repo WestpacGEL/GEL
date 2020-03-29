@@ -100,10 +100,10 @@ export const Alert = ({
 	const AlertJSX = () => (
 		<Alert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
 			{Icon && <IconJSX />}
-			<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
+			<BodyText state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 				{heading && <HeadingJSX />}
 				{children}
-			</Body>
+			</BodyText>
 			{dismissible && <CloseBtnJSX />}
 		</Alert>
 	);

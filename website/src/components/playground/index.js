@@ -87,9 +87,9 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 			</Well>
 			{showCode && codeIsOpen ? <LiveEditor style={{ fontSize: '1rem' }} /> : null}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-				<Body>
+				<BodyText>
 					<LivePreview />
-				</Body>
+				</BodyText>
 			</Modal>
 		</div>
 	);
