@@ -9,17 +9,13 @@ const toggleStyles = (_, { size, checked }) => {
 	const mq = useMediaQuery();
 	const { COLORS, PACKS } = useBrand();
 	const sizing = sizeMap(size);
-	const sizeCalcArr = sizing.height.map((height, i) =>
-		height ? `calc(${height} - ${sizing.borderWidth[i]} - ${sizing.borderWidth[i]})` : null
-	);
+	const sizeArr = sizing.height.map(h => h || null);
+	const borderWidthArr = sizeArr.map(w => w && `${parseFloat(w) / 2}rem`);
 
 	return mq({
-		boxSizing: 'border-box',
 		display: 'block',
 		position: 'relative',
-		borderWidth: sizing.borderWidth,
-		borderStyle: 'solid',
-		borderColor: checked ? COLORS.hero : COLORS.border,
+		border: `2px solid ${checked ? COLORS.hero : COLORS.border}`,
 		borderRadius: sizing.borderRadius,
 		backgroundColor: checked ? COLORS.hero : '#fff',
 		height: sizing.height,
@@ -29,23 +25,39 @@ const toggleStyles = (_, { size, checked }) => {
 		transition: 'border .3s ease,background .3s ease',
 		userSelect: 'none',
 
-		// the thumb/dot
-		'::after': {
+		// Toggle thumb/dot and high contrast mode 'on' fill
+		'::after, ::before': {
 			boxSizing: 'border-box',
 			content: '""',
-			height: sizeCalcArr,
-			width: sizeCalcArr,
-			display: 'block',
 			position: 'absolute',
+		},
+
+		// Toggle thumb/dot
+		'::after': {
+			height: sizeArr,
+			width: sizeArr,
+			display: 'block',
 			left: checked ? '100%' : 0,
 			transform: checked ? 'translateX(-100%)' : null,
 			top: 0,
 			borderRadius: '50%',
 			backgroundColor: '#fff',
-			border: '1px solid transparent', //for high contrast mode
+			border: '1px solid transparent', //a11Y: for high contrast mode
 			boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
 			transition: 'all .3s ease',
 		},
+
+		// a11y: high contrast mode 'on' fill
+		'::before': {
+			display: !checked && 'none',
+			left: 0,
+			right: 0,
+			top: 0,
+			bottom: 0,
+			border: 'solid transparent',
+			borderWidth: borderWidthArr,
+		},
+
 		'body:not(.isMouseMode) input:focus ~ &': {
 			...PACKS.focus,
 		},
