@@ -30,12 +30,12 @@ export const progressBarStyles = (_, { look }) => {
 	};
 };
 
-const progressBarAttributes = (_, { roundedValue }) => ({
+const progressBarAttributes = (_, { value }) => ({
 	role: 'progressbar',
 	'aria-valuemin': '0',
 	'aria-valuemax': '100',
-	'aria-valuenow': roundedValue,
-	'aria-valuetext': `${roundedValue}% complete`,
+	'aria-valuenow': value,
+	'aria-valuetext': `${value}% complete`,
 	'aria-live': 'polite',
 });
 
