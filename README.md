@@ -49,31 +49,59 @@ yarn start
 ```
 
 To run the website locally you'll need [postgres](https://www.keystonejs.com/quick-start/adapters#installing-postgresql) and a `.env` file.
-The `.env` file requires the following items:
+
+Create the database via:
+
+```sh
+psql -c 'create database "gel3_website";'
+```
+
+The `website/.env` file requires the following items:
 
 ```
+NODE_ENV=development
+
 CLOUDINARY_CLOUD_NAME="FILLME"
 CLOUDINARY_KEY="FILLME"
 CLOUDINARY_SECRET="FILLME"
+
+DATABASE_URL="postgres://localhost/gel3_website"
 ```
+
+#### Website deployment
+
+Everything for staging is added to the `staging` branch. So make sure you've merged everything you need into that branch and check it out:
+
+```sh
+git checkout staging
+```
+
+Then you can run the deploy script which will deploy the website with [pm2](https://github.com/Unitech/pm2):
+
+```sh
+yarn website:deploy-staging
+```
+
+_(💡 This requires your ssh key be installed on the server)_
 
 ## npm scripts
 
 ### root level
 
-| script                    | description                                       |
-| ------------------------- | ------------------------------------------------- |
-| `yarn`                    | install all dependencies                          |
-| `yarn nuke`               | removes all `node_modules` for fresh start        |
-| `yarn fresh`              | removes all `node_modules` and reinstalls them    |
-| `yarn build`              | build all dist folders                            |
-| `yarn build:dev`          | build all dist for local consumption              |
-| `yarn docs`               | build docs for all components and open server     |
-| `yarn docs:build`         | build docs for all components to `./docs/` folder |
-| `yarn new [package-name]` | create a specified empty component                |
-| `yarn dev [package-name]` | start the example server of a component           |
-| `yarn test`               | runs test                                         |
-| `yarn format`             | runs prettier to format all code                  |
+| script                        | description                                           |
+| ----------------------------- | ----------------------------------------------------- |
+| `yarn`                        | install all dependencies                              |
+| `yarn nuke`                   | removes all `node_modules` for fresh start            |
+| `yarn fresh`                  | removes all `node_modules` and reinstalls them        |
+| `yarn build`                  | build all dist folders                                |
+| `yarn build:dev`              | build all dist for local consumption                  |
+| `yarn docs`                   | build docs for all components and open server         |
+| `yarn docs:build`             | build docs for all components to `./docs/` folder     |
+| `yarn new [package-name]`     | create a specified empty component                    |
+| `yarn dev [package-name]`     | start the example server of a component               |
+| `yarn test`                   | runs test                                             |
+| `yarn format`                 | runs prettier to format all code                      |
+| `yarn website:deploy-staging` | deploys the site to staging from the `staging` branch |
 
 ### component level
 

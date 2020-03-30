@@ -1,4 +1,6 @@
 /** @jsx jsx */
+
+import { Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import React, { Fragment } from 'react';
 import WbcBackgroundRightSvg from './symbols/WbcBackgroundRightSvg';
