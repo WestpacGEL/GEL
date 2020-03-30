@@ -57,11 +57,15 @@ export const ToolbarButton = forwardRef(
 								marginRight: 2,
 							},
 
-							':hover,:focus': {
+							':hover:enabled,:focus:enabled': {
 								background: colors.N10,
 							},
-							':active': {
+							':active:enabled': {
 								background: colors.N15,
+							},
+
+							':disabled': {
+								cursor: 'default',
 							},
 
 							'[data-state-active="true"]&': {

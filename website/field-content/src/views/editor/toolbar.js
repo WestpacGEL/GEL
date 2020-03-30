@@ -63,6 +63,7 @@ export default function Toolbar({ blocks, editor, editorHasFocus, editorState })
 								<ToolbarButton
 									label={marks[name].label}
 									icon={<Icon />}
+									isDisabled={editorState?.focusBlock?.type === 'dynamic-components'}
 									isActive={editorState.activeMarks.some(mark => mark.type === name)}
 									onClick={() => {
 										editor.toggleMark(name);
