@@ -59,9 +59,6 @@ const TableOfContents = () => {
 						</a>
 					</li>
 				);
-
-				// const headerElement = document.getElementById(htmlID);
-				// headerElement.insertBefore();
 			});
 		}
 		setToc(headings);
