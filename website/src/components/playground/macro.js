@@ -77,7 +77,7 @@ function transformPlayground({ path, identifierName, babel, state }) {
 
 			if (path.node.children.length > 1) {
 				//Add children to a fragment
-				code = `<React.Fragment>${code}</React.Fragment>`;
+				code = `<Fragment>${code}</Fragment>`;
 			}
 
 			code = prettier.format(code, { parser: 'babel' });
