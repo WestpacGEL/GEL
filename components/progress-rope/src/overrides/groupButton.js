@@ -1,8 +1,23 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
+import { VisuallyHidden } from '@westpac/a11y';
 
-const GroupButton = ({ state, ...rest }) => <button type="button" {...rest} />;
+const GroupButton = ({ state: { complete, active }, children, ...rest }) => {
+	let stateText = ', not started';
+	if (complete) {
+		stateText = ', complete';
+	} else if (active) {
+		stateText = ', in progress';
+	}
+
+	return (
+		<button type="button" {...rest}>
+			{children}
+			<VisuallyHidden>{stateText}</VisuallyHidden>
+		</button>
+	);
+};
 
 const groupButtonStyles = (_, { complete, active }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();

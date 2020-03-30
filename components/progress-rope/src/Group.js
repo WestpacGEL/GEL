@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement, useState, useEffect } from 'react';
-import { useSpring, animated, config } from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 import { ResizeObserver } from '@juggle/resize-observer';
 import useMeasure from 'react-use-measure';
 import PropTypes from 'prop-types';
