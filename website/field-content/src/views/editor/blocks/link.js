@@ -31,14 +31,20 @@ export function Node({ node, attributes, children, isSelected, editor }) {
 
 	return (
 		<Fragment>
-			<a {...attributes} ref={setAnchorRef} css={{ color: 'blue' }} href={href}>
+			<a {...attributes} ref={setAnchorRef} href={href}>
 				{children}
 			</a>
 			{isSelected && (
-				<Popper placement="bottom" referenceElement={anchorRef}>
-					{({ style, ref }) => {
+				<Popper
+					placement="bottom"
+					modifiers={{
+						offset: { enabled: true, offset: gridSize },
+					}}
+					referenceElement={anchorRef}
+				>
+					{({ style, ref, placement }) => {
 						return (
-							<Dialog style={style} ref={ref}>
+							<Dialog portal style={style} ref={ref} data-placement={placement}>
 								<div css={wrapperStyles}>
 									<Input
 										value={inputValue}
@@ -61,7 +67,6 @@ export function Node({ node, attributes, children, isSelected, editor }) {
 										label="Open"
 										rel="noopener"
 										target="_blank"
-										tooltipPlacement="bottom"
 									/>
 									<ToolbarButton
 										label="Unlink"
@@ -133,6 +138,9 @@ export function ToolbarElement({ editor, editorState }) {
 			/>
 			<Popper
 				placement="bottom"
+				modifiers={{
+					offset: { enabled: true, offset: gridSize },
+				}}
 				referenceElement={
 					// the reason we do this rather than having the selection reference be
 					// constant is because the selection reference has some internal state
@@ -146,7 +154,7 @@ export function ToolbarElement({ editor, editorState }) {
 					}
 
 					return (
-						<Dialog style={style} ref={ref}>
+						<Dialog portal style={style} ref={ref}>
 							<form
 								onSubmit={e => {
 									e.stopPropagation();
@@ -200,7 +208,7 @@ const wrapperStyles = {
 const Input = forwardRef((props, ref) => (
 	<input
 		ref={ref}
-		placeholder="Link..."
+		placeholder="http://some.url"
 		onClick={e => {
 			e.stopPropagation(); // stop propagation here so that focus works
 		}}

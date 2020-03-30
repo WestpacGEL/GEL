@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { createPortal } from 'react-dom';
 import { jsx } from '@emotion/core';
 import { colors, gridSize } from '@arch-ui/theme';
 
@@ -18,14 +17,6 @@ const cancelEvent = event => {
 	event.preventDefault();
 };
 
-const Portal = ({ children }) => {
-	if (typeof window === 'undefined') {
-		return null;
-	}
-
-	return createPortal(children, document.body);
-};
-
 // Disclosure Menu
 // ------------------------------
 
@@ -38,6 +29,7 @@ const Portal = ({ children }) => {
 
 export const BlockDisclosureMenu = forwardRef((props, ref) => (
 	<Dialog
+		portal
 		css={{
 			alignItems: 'center',
 			display: 'flex',
@@ -124,6 +116,7 @@ export const BlockDisclosureMenuButton = ({
 
 export const BlockInsertMenu = forwardRef(({ isOpen, ...props }, ref) => (
 	<Dialog
+		portal
 		css={{
 			display: isOpen ? 'block' : 'none',
 			marginLeft: -12, // align with the block disclosure line
@@ -131,6 +124,11 @@ export const BlockInsertMenu = forwardRef(({ isOpen, ...props }, ref) => (
 			paddingBottom: 4,
 			paddingTop: 4,
 			overflowY: 'auto',
+
+			// bail when no children
+			':empty': {
+				display: 'none',
+			},
 		}}
 		ref={ref}
 		{...props}
@@ -143,12 +141,13 @@ export const BlockInsertMenuItem = ({ icon, text, insertBlock }) => (
 			alignItems: 'center',
 			background: 'none',
 			border: 'none',
-			color: colors.N60,
+			color: colors.N70,
 			cursor: 'pointer',
 			display: 'flex',
 			fontWeight: 500,
 			margin: 0,
 			padding: `${gridSize}px ${gridSize * 2}px`,
+			whiteSpace: 'nowrap',
 			width: '100%',
 
 			// fix some weirdness with content-field "reset", by increasing specificity to avoid `!important`
@@ -164,7 +163,7 @@ export const BlockInsertMenuItem = ({ icon, text, insertBlock }) => (
 		type="button"
 		onClick={insertBlock}
 	>
-		<span css={{ color: colors.N40 }}>{icon}</span>
+		<span>{icon}</span>
 		<span css={{ paddingLeft: gridSize * 2 }}>{text}</span>
 	</button>
 );

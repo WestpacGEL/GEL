@@ -4,6 +4,7 @@ import { jsx } from '@emotion/core';
 import { Component, Fragment, useMemo, createContext, useContext, useState } from 'react';
 import { Block } from 'slate';
 import { PencilIcon, CheckIcon, TrashcanIcon } from '@arch-ui/icons';
+import { colors, gridSize } from '@arch-ui/theme';
 
 import { type as defaultType } from '../field-content/src/views/editor/blocks/paragraph';
 
@@ -96,7 +97,7 @@ export function Actions({ editor, node }) {
 				onClick={() => {
 					setCurrentlyEditingBlocks(x => ({ ...x, [node.key]: !x[node.key] }));
 				}}
-				title={isEditing ? 'Done editing' : 'Edit component'}
+				title={isEditing ? 'Done editing' : 'Edit block'}
 			>
 				{isEditing ? <CheckIcon /> : <PencilIcon />}
 			</BlockDisclosureMenuButton>
@@ -106,7 +107,7 @@ export function Actions({ editor, node }) {
 				onClick={() => {
 					editor.removeNodeByKey(node.key);
 				}}
-				title="Remove component"
+				title="Remove block"
 			>
 				<TrashcanIcon />
 			</BlockDisclosureMenuButton>
@@ -153,6 +154,7 @@ export function Node({ node, attributes, editor, item }) {
 	}
 	let Component = view[componentName].component;
 	let Editor = view[componentName].editor;
+	let isFocused = editor.value.focusBlock.key === node.key;
 
 	return (
 		<div
@@ -163,19 +165,21 @@ export function Node({ node, attributes, editor, item }) {
 			}}
 		>
 			<ErrorBoundary>
-				{!!Editor && isEditing ? (
-					<Editor
-						item={item}
-						value={node.get('data').get('props')}
-						onChange={dynamicComponentProps => {
-							editor.setNodeByKey(node.key, {
-								data: node.data.set('props', { ...dynamicComponentProps }),
-							});
-						}}
-					/>
-				) : (
-					<Component {...node.get('data').get('props')} context={'admin'} item={item} />
-				)}
+				<BlockLayout isEditing={isEditing} isFocused={isFocused}>
+					{!!Editor && isEditing ? (
+						<Editor
+							item={item}
+							value={node.get('data').get('props')}
+							onChange={dynamicComponentProps => {
+								editor.setNodeByKey(node.key, {
+									data: node.data.set('props', { ...dynamicComponentProps }),
+								});
+							}}
+						/>
+					) : (
+						<Component {...node.get('data').get('props')} context={'admin'} item={item} />
+					)}
+				</BlockLayout>
 			</ErrorBoundary>
 		</div>
 	);
@@ -197,6 +201,33 @@ export let getPlugins = () => [
 		},
 	},
 ];
+
+// Styled Components
+// ------------------------------
+
+// This is the disclosure indicator line to the left of the block
+// Plus the block node itself
+const BlockLayout = ({ children, isEditing = false, isFocused = false }) => {
+	let lineColor = 'transparent';
+	if (isFocused) lineColor = colors.N20;
+	if (isEditing) lineColor = isFocused ? colors.B.base : colors.Y.base;
+
+	return (
+		<span css={{ display: 'flex' }}>
+			<span
+				css={{
+					borderLeft: '4px solid transparent',
+					borderLeftColor: lineColor,
+					boxSizing: 'border-box',
+					flexShrink: 0,
+					marginLeft: -gridSize * 2,
+					width: gridSize * 2,
+				}}
+			/>
+			<span css={{ paddingBottom: 8, flexGrow: 1 }}>{children}</span>
+		</span>
+	);
+};
 
 // Icons for the insert menu
 
