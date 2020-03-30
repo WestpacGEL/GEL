@@ -38,9 +38,6 @@ export const PageHeader = ({ name, version }) => {
 	useEffect(() => {
 		const main = header.current.parentElement;
 		const scrollHandler = () => {
-			console.log('main.scrollTop', main.scrollTop);
-			console.log('headerPaddingElement.current.style', headerPaddingElement.current.style.height);
-
 			if (main.scrollTop >= 0 && main.scrollTop < 135) {
 				header.current.style.height = `${200 - main.scrollTop}px`;
 				header.current.style.marginTop = `${-50 + main.scrollTop}px`;

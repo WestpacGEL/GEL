@@ -19,9 +19,18 @@ const TableOfContents = () => {
 		const headings = [];
 		if (containerRef && containerRef.current) {
 			const container = containerRef.current.closest('.slate-container') || document;
+
 			container.querySelectorAll('h2:not(.toc-ignore)').forEach((h, i) => {
+				console.log(h.style);
 				const htmlID = h.id || 'toc-heading-' + i;
-				h.id = htmlID;
+				h.style.position = 'relative';
+				const anchor = document.createElement('div');
+				anchor.style.position = 'absolute';
+				anchor.style.height = '75px';
+				anchor.style.top = 0;
+				anchor.style.marginTop = '-75px';
+				anchor.id = htmlID;
+				h.appendChild(anchor);
 				headings[i] = (
 					<li key={`nav-${i}`} css={{ listStyle: 'none', paddingBottom: SPACING(2, true) }}>
 						<svg
@@ -35,22 +44,24 @@ const TableOfContents = () => {
 								d="M8 5.5l-3 3-.71-.71L6.085 6H0V0h1v5h5.085L4.29 3.21 5 2.5z"
 							/>
 						</svg>
-						<Link href={`#${htmlID}`}>
-							<a
-								css={{
-									padding: SPACING(4, true),
-									color: COLORS.text,
-									cursor: 'pointer',
-									'&:hover, &:focus': {
-										textDecoration: 'underline',
-									},
-								}}
-							>
-								{h.innerText}
-							</a>
-						</Link>
+						<a
+							href={`#${htmlID}`}
+							css={{
+								margin: SPACING(4, true),
+								color: COLORS.text,
+								cursor: 'pointer',
+								'&:hover, &:focus': {
+									textDecoration: 'underline',
+								},
+							}}
+						>
+							{h.innerText}
+						</a>
 					</li>
 				);
+
+				// const headerElement = document.getElementById(htmlID);
+				// headerElement.insertBefore();
 			});
 		}
 		setToc(headings);
