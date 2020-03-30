@@ -40,7 +40,7 @@ export const ToolbarButton = forwardRef(
 							border: 0,
 							borderRadius: 3,
 							boxSizing: 'border-box',
-							color: isDisabled ? colors.N40 : colors.N70,
+							color: colors.N70,
 							cursor: 'pointer',
 							display: 'flex',
 							justifyContent: 'center',
@@ -57,14 +57,16 @@ export const ToolbarButton = forwardRef(
 								marginRight: 2,
 							},
 
-							':hover:enabled,:focus:enabled': {
+							':hover,:focus': {
 								background: colors.N10,
 							},
-							':active:enabled': {
+							':active': {
 								background: colors.N15,
 							},
 
 							':disabled': {
+								background: 0,
+								color: colors.N40,
 								cursor: 'default',
 							},
 
