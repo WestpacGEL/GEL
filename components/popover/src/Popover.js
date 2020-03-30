@@ -80,9 +80,12 @@ export const Popover = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const handleOpen = () => {
+	const handleOpen = e => {
 		if (open) {
 			setOpen(false);
+			if (popoverRef.current.contains(e.target)) {
+				triggerRef.current.focus();
+			}
 		} else {
 			setOpen(true);
 		}
@@ -90,7 +93,7 @@ export const Popover = ({
 
 	const handleOutsideClick = e => {
 		if (dismissible && open && popoverRef.current && !popoverRef.current.contains(e.target)) {
-			handleOpen();
+			handleOpen(e);
 		}
 	};
 
@@ -105,8 +108,10 @@ export const Popover = ({
 	}, [open]);
 
 	// on escape close should also check if focused
-	const keyHandler = event => {
-		if (open && event.keyCode === 27) handleOpen();
+	const keyHandler = e => {
+		if (open && e.keyCode === 27 && popoverRef.current.contains(e.target)) {
+			handleOpen(event);
+		}
 	};
 
 	// bind key events
@@ -118,13 +123,9 @@ export const Popover = ({
 	});
 
 	return (
-		<Popover
-			ref={triggerRef}
-			state={state}
-			{...popoverAttributes(state)}
-			css={popoverStyles(state)}
-		>
+		<Popover state={state} {...popoverAttributes(state)} css={popoverStyles(state)}>
 			<Trigger
+				ref={triggerRef}
 				onClick={handleOpen}
 				{...rest}
 				state={state}
@@ -143,7 +144,7 @@ export const Popover = ({
 					{content}
 				</Body>
 				<CloseBtn
-					onClick={() => handleOpen()}
+					onClick={e => handleOpen(e)}
 					state={state}
 					{...closeBtnAttributes(state)}
 					css={{ '&&': closeBtnStyles(state) }}
