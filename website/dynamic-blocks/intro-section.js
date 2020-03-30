@@ -20,7 +20,6 @@ const TableOfContents = () => {
 		const headings = [];
 		if (containerRef && containerRef.current) {
 			const container = containerRef.current.closest('.slate-container') || document;
-
 			container.querySelectorAll('h2:not(.toc-ignore)').forEach((h, i) => {
 				const htmlID = h.id || 'toc-heading-' + i;
 				h.style.position = 'relative';
