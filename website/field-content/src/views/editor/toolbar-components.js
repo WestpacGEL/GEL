@@ -39,16 +39,17 @@ export const ToolbarButton = forwardRef(
 							background: 0,
 							border: 0,
 							borderRadius: 3,
+							boxSizing: 'border-box',
 							color: isDisabled ? colors.N40 : colors.N70,
 							cursor: 'pointer',
 							display: 'flex',
 							justifyContent: 'center',
 							outline: 0,
-							padding: 0,
+							padding: `0 ${gridSize / 2}px`,
 
 							// might not work in the future with alternative icons etc.
 							height: ITEM_HEIGHT,
-							width: ITEM_WIDTH,
+							minWidth: ITEM_WIDTH,
 
 							// fix some weirdness with content-field "reset", by increasing specificity to avoid `!important`
 							'button&': {

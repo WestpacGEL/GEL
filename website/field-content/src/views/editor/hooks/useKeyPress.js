@@ -14,6 +14,7 @@ import { useCallback, useEffect, useState } from 'react';
  * @param {boolean} options.listenWhen - When to add/remove event listeners
  * @param {KeyboardHandler} options.downHandler - (optional) Handle the key down event
  * @param {KeyboardHandler} options.upHandler - (optional) Handle the key up event
+ * @return {boolean} Whether the target key is down.
  */
 export const useKeyPress = ({ targetKey, downHandler, upHandler, listenWhen }) => {
 	// Keep track of whether the target key is pressed

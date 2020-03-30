@@ -11,12 +11,15 @@ export const ListUnorderedIcon = props => <Svg path={svgPathMap['listUnordered']
 export const StrikethroughIcon = props => <Svg path={svgPathMap['strikeThrough']} {...props} />;
 export const UnderlineIcon = props => <Svg path={svgPathMap['underline']} {...props} />;
 
+export const ArrowDownIcon = props => <Svg path={svgPathMap['arrowDown']} {...props} />;
 export const ExternalIcon = props => <Svg path={svgPathMap['external']} {...props} />;
 export const CrossIcon = props => <Svg path={svgPathMap['cross']} {...props} />;
+export const MoreIcon = props => <Svg path={svgPathMap['more']} {...props} />;
+export const PlusIcon = props => <Svg path={svgPathMap['plus']} {...props} />;
 export const TickIcon = props => <Svg path={svgPathMap['tick']} {...props} />;
 
 const svgPathMap = {
-	// Toolbar Specific
+	// Core
 	// ------------------------------
 
 	// bold B
@@ -58,6 +61,15 @@ const svgPathMap = {
 	// box with arrow pointing out, diagonally up-and-right
 	external:
 		'M10.99 13.99h-9v-9h4.76l2-2H.99c-.55 0-1 .45-1 1v11c0 .55.45 1 1 1h11c.55 0 1-.45 1-1V7.24l-2 2v4.75zm4-14h-5c-.55 0-1 .45-1 1s.45 1 1 1h2.59L7.29 7.28a1 1 0 00-.3.71 1.003 1.003 0 001.71.71l5.29-5.29V6c0 .55.45 1 1 1s1-.45 1-1V1c0-.56-.45-1.01-1-1.01z',
+	// three dots "disclosure"
+	more:
+		'M2 6.03a2 2 0 100 4 2 2 0 100-4zM14 6.03a2 2 0 100 4 2 2 0 100-4zM8 6.03a2 2 0 100 4 2 2 0 100-4z',
+	// arrow down
+	arrowDown:
+		'M12 6.5c0-.28-.22-.5-.5-.5h-7a.495.495 0 00-.37.83l3.5 4c.09.1.22.17.37.17s.28-.07.37-.17l3.5-4c.08-.09.13-.2.13-.33z',
+	// plus or "add"
+	plus:
+		'M13 7H9V3c0-.55-.45-1-1-1s-1 .45-1 1v4H3c-.55 0-1 .45-1 1s.45 1 1 1h4v4c0 .55.45 1 1 1s1-.45 1-1V9h4c.55 0 1-.45 1-1s-.45-1-1-1z',
 	// a tick or "checkmark"
 	tick:
 		'M14 3c-.28 0-.53.11-.71.29L6 10.59l-3.29-3.3a1.003 1.003 0 00-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l8-8A1.003 1.003 0 0014 3z',
