@@ -10,7 +10,7 @@ const CloseBtn = ({ onClose, state, ...rest }) => (
 		iconAfter={CloseIcon}
 		look="link"
 		size="medium"
-		assistiveText={'Close'}
+		assistiveText="Close"
 		{...rest}
 	/>
 );
