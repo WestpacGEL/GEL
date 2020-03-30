@@ -3,7 +3,11 @@ const { LocalImageService, RemoteImageService, Image } = require('@keystonejs/im
 
 let imageService =
 	process.env.NODE_ENV === 'production'
-		? new RemoteImageService({ url: 'http://localhost:4008' })
+		? new RemoteImageService({
+				url: 'http://localhost:4008/dev',
+				apiKey: process.env.IMAGE_API_KEY,
+				clientKey: process.env.IMAGE_CLIENT_KEY,
+		  })
 		: new LocalImageService({ path: './image-storage' });
 
 const imageSchema = {

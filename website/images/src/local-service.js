@@ -175,7 +175,7 @@ export class LocalImageService {
 		const path = nodePath.join(this.sourcePath, id);
 		const writeStream = fs.createWriteStream(path);
 		stream.pipe(writeStream);
-		await new Promise(resolve => {
+		await new Promise((resolve, reject) => {
 			stream.on('end', resolve);
 			stream.on('error', reject);
 		});
@@ -186,7 +186,7 @@ export class LocalImageService {
 		const image = sharp(path);
 		const sharpMeta = await image.metadata();
 		const id = filename;
-		await fs.rename(path, path + '.' + meta.format);
+		await fs.rename(path, path + '.' + sharpMeta.format);
 
 		let meta = {
 			bytes: sharpMeta.size,

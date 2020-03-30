@@ -9,7 +9,7 @@ var concat = require('concat-stream');
 import fetch from 'node-fetch';
 import streamToArray from 'stream-to-array';
 
-export class CloudImageService {
+export class RemoteImageService {
 	constructor({ url, apiKey, clientKey }) {
 		this.url = url;
 		if (clientKey) {
