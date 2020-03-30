@@ -1,16 +1,21 @@
 import express from 'express';
 import fs from 'fs-extra';
 import nodePath from 'path';
-import crypto from 'crypto';
+import crypto, { timingSafeEqual } from 'crypto';
 import FormData from 'form-data';
 import mimeTypes from 'mime-types';
 import uuid from 'uuid/v4';
 var concat = require('concat-stream');
 import fetch from 'node-fetch';
+import streamToArray from 'stream-to-array';
 
-export class RemoteImageService {
-	constructor({ url }) {
+export class CloudImageService {
+	constructor({ url, apiKey, clientKey }) {
 		this.url = url;
+		if (clientKey) {
+			this.url += `/${clientKey}`;
+		}
+		this.apiKey = apiKey;
 	}
 	getSrc(id, { format, resize = {} }) {
 		let url = `${this.url}/image/${id}.${format}`;
@@ -37,8 +42,12 @@ export class RemoteImageService {
 		return new Promise((resolve, reject) => {
 			stream.on('end', () => {
 				let form = new FormData();
-				form.append('image', fs.createReadStream(filepath));
-				return fetch(`${this.url}/upload`, {
+				form.append('image', fs.readFileSync(filepath));
+				let url = `${this.url}/upload`;
+				if (this.apiKey) {
+					url += `?api-key=${this.apiKey}`;
+				}
+				return fetch(url, {
 					method: 'POST',
 					body: form,
 				})

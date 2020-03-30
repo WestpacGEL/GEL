@@ -682,12 +682,44 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
+"@babel/core@^7.9.0":
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.9.0.tgz#ac977b538b77e132ff706f3b8a4dbad09c03c56e"
+  integrity sha512-kWc7L0fw1xwvI0zi8OKVBuxRVefwGOrKSQMvrQ3dW+bIIavBY3/NpXmpjMy7bQnLgwgzWQZ8TlM57YHpHNHz4w==
+  dependencies:
+    "@babel/code-frame" "^7.8.3"
+    "@babel/generator" "^7.9.0"
+    "@babel/helper-module-transforms" "^7.9.0"
+    "@babel/helpers" "^7.9.0"
+    "@babel/parser" "^7.9.0"
+    "@babel/template" "^7.8.6"
+    "@babel/traverse" "^7.9.0"
+    "@babel/types" "^7.9.0"
+    convert-source-map "^1.7.0"
+    debug "^4.1.0"
+    gensync "^1.0.0-beta.1"
+    json5 "^2.1.2"
+    lodash "^4.17.13"
+    resolve "^1.3.2"
+    semver "^5.4.1"
+    source-map "^0.5.0"
+
 "@babel/generator@^7.7.2", "@babel/generator@^7.8.4", "@babel/generator@^7.8.6", "@babel/generator@^7.8.7":
   version "7.8.8"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.8.8.tgz#cdcd58caab730834cee9eeadb729e833b625da3e"
   integrity sha512-HKyUVu69cZoclptr8t8U5b6sx6zoWjh8jiUhnuj3MpZuKT2dJ8zPTuiy31luq32swhI0SpwItCIlU8XW7BZeJg==
   dependencies:
     "@babel/types" "^7.8.7"
+    jsesc "^2.5.1"
+    lodash "^4.17.13"
+    source-map "^0.5.0"
+
+"@babel/generator@^7.9.0":
+  version "7.9.4"
+  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.9.4.tgz#12441e90c3b3c4159cdecf312075bf1a8ce2dbce"
+  integrity sha512-rjP8ahaDy/ouhrvCoU1E5mqaitWrxwuNGU+dy1EpaoK48jZay4MdkskKGIMHLZNewg8sAsqpGSREJwP0zH3YQA==
+  dependencies:
+    "@babel/types" "^7.9.0"
     jsesc "^2.5.1"
     lodash "^4.17.13"
     source-map "^0.5.0"
@@ -823,6 +855,19 @@
     "@babel/types" "^7.8.6"
     lodash "^4.17.13"
 
+"@babel/helper-module-transforms@^7.9.0":
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/@babel/helper-module-transforms/-/helper-module-transforms-7.9.0.tgz#43b34dfe15961918707d247327431388e9fe96e5"
+  integrity sha512-0FvKyu0gpPfIQ8EkxlrAydOWROdHpBmiCiRwLkUiBGhCUPRRbVD2/tm3sFr/c/GWFrQ/ffutGUAnx7V0FzT2wA==
+  dependencies:
+    "@babel/helper-module-imports" "^7.8.3"
+    "@babel/helper-replace-supers" "^7.8.6"
+    "@babel/helper-simple-access" "^7.8.3"
+    "@babel/helper-split-export-declaration" "^7.8.3"
+    "@babel/template" "^7.8.6"
+    "@babel/types" "^7.9.0"
+    lodash "^4.17.13"
+
 "@babel/helper-optimise-call-expression@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/helper-optimise-call-expression/-/helper-optimise-call-expression-7.8.3.tgz#7ed071813d09c75298ef4f208956006b6111ecb9"
@@ -878,6 +923,11 @@
   dependencies:
     "@babel/types" "^7.8.3"
 
+"@babel/helper-validator-identifier@^7.9.0":
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.9.0.tgz#ad53562a7fc29b3b9a91bbf7d10397fd146346ed"
+  integrity sha512-6G8bQKjOh+of4PV/ThDm/rRqlU7+IGoJuofpagU5GlEl29Vv0RGqqt86ZGRV8ZuSOY3o+8yXl5y782SMcG7SHw==
+
 "@babel/helper-wrap-function@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/helper-wrap-function/-/helper-wrap-function-7.8.3.tgz#9dbdb2bb55ef14aaa01fe8c99b629bd5352d8610"
@@ -897,6 +947,15 @@
     "@babel/traverse" "^7.8.4"
     "@babel/types" "^7.8.3"
 
+"@babel/helpers@^7.9.0":
+  version "7.9.2"
+  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.9.2.tgz#b42a81a811f1e7313b88cba8adc66b3d9ae6c09f"
+  integrity sha512-JwLvzlXVPjO8eU9c/wF9/zOIN7X6h8DYf7mG4CiFRZRvZNKEF5dQ3H3V+ASkHoIB3mWhatgl5ONhyqHRI6MppA==
+  dependencies:
+    "@babel/template" "^7.8.3"
+    "@babel/traverse" "^7.9.0"
+    "@babel/types" "^7.9.0"
+
 "@babel/highlight@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/highlight/-/highlight-7.8.3.tgz#28f173d04223eaaa59bc1d439a3836e6d1265797"
@@ -910,6 +969,11 @@
   version "7.8.8"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.8.8.tgz#4c3b7ce36db37e0629be1f0d50a571d2f86f6cd4"
   integrity sha512-mO5GWzBPsPf6865iIbzNE0AvkKF3NE+2S3eRUpE+FE07BOAkXh6G+GW/Pj01hhXjve1WScbaIO4UlY1JKeqCcA==
+
+"@babel/parser@^7.9.0":
+  version "7.9.4"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.9.4.tgz#68a35e6b0319bbc014465be43828300113f2f2e8"
+  integrity sha512-bC49otXX6N0/VYhgOMh4gnP26E9xnDZK3TmbNpxYzzz9BQLBosQwfyOe9/cXUU3txYhTzLCbcqd5c8y/OmCjHA==
 
 "@babel/plugin-proposal-async-generator-functions@^7.7.0", "@babel/plugin-proposal-async-generator-functions@^7.8.3":
   version "7.8.3"
@@ -1758,6 +1822,21 @@
     globals "^11.1.0"
     lodash "^4.17.13"
 
+"@babel/traverse@^7.9.0":
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.9.0.tgz#d3882c2830e513f4fe4cec9fe76ea1cc78747892"
+  integrity sha512-jAZQj0+kn4WTHO5dUZkZKhbFrqZE7K5LAQ5JysMnmvGij+wOdr+8lWqPeW0BcF4wFwrEXXtdGO7wcV6YPJcf3w==
+  dependencies:
+    "@babel/code-frame" "^7.8.3"
+    "@babel/generator" "^7.9.0"
+    "@babel/helper-function-name" "^7.8.3"
+    "@babel/helper-split-export-declaration" "^7.8.3"
+    "@babel/parser" "^7.9.0"
+    "@babel/types" "^7.9.0"
+    debug "^4.1.0"
+    globals "^11.1.0"
+    lodash "^4.17.13"
+
 "@babel/types@7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.7.4.tgz#516570d539e44ddf308c07569c258ff94fde9193"
@@ -1773,6 +1852,15 @@
   integrity sha512-k2TreEHxFA4CjGkL+GYjRyx35W0Mr7DP5+9q6WMkyKXB+904bYmG40syjMFV0oLlhhFCwWl0vA0DyzTDkwAiJw==
   dependencies:
     esutils "^2.0.2"
+    lodash "^4.17.13"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.9.0":
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.9.0.tgz#00b064c3df83ad32b2dbf5ff07312b15c7f1efb5"
+  integrity sha512-BS9JKfXkzzJl8RluW4JGknzpiUV7ZrvTayM6yfqLTVBEnFtyowVIOu6rqxRd5cVO6yGoWf4T8u8dgK9oB+GCng==
+  dependencies:
+    "@babel/helper-validator-identifier" "^7.9.0"
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
@@ -2362,6 +2450,20 @@
     p-settle "^3.1.0"
     pg "^7.17.0"
 
+"@keystonejs/adapter-knex@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@keystonejs/adapter-knex/-/adapter-knex-7.0.0.tgz#6e7ef9db155cd7ed292484e7fe9bdbcc5f4403c4"
+  integrity sha512-D243Hecv+598ozxjXU4huBQ5uapsHJJgBDqUDFaW4oQVUERzgLyUaqQNTptzy04QKPHX0mOryCh/Mooj8XdeQw==
+  dependencies:
+    "@keystonejs/fields-auto-increment" "^5.1.4"
+    "@keystonejs/keystone" "^7.0.0"
+    "@keystonejs/logger" "^5.1.1"
+    "@keystonejs/utils" "^5.4.0"
+    "@sindresorhus/slugify" "^0.6.0"
+    knex "^0.20.6"
+    p-settle "^3.1.0"
+    pg "^7.17.0"
+
 "@keystonejs/adapter-mongoose@^5.2.1":
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/@keystonejs/adapter-mongoose/-/adapter-mongoose-5.2.1.tgz#3bde4965080d262a8345002e16ee560bb03ffffd"
@@ -2387,6 +2489,21 @@
     "@keystonejs/logger" "^5.1.1"
     "@keystonejs/mongo-join-builder" "^6.1.3"
     "@keystonejs/utils" "^5.3.0"
+    "@sindresorhus/slugify" "^0.6.0"
+    mongoose "^5.9.5"
+    p-settle "^3.1.0"
+    pluralize "^7.0.0"
+
+"@keystonejs/adapter-mongoose@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@keystonejs/adapter-mongoose/-/adapter-mongoose-6.0.0.tgz#1459e546e5932f2bf03992c24671112af12676c8"
+  integrity sha512-ykg3wHWmySlo5E+aqu3ajn9zJOzrwkdC5s7OULo96rMVzomKtvPkjObI9tglRuMN7CnP8RrBRbQnuP4jNU8TrQ==
+  dependencies:
+    "@keystonejs/fields-mongoid" "^5.1.4"
+    "@keystonejs/keystone" "^7.0.0"
+    "@keystonejs/logger" "^5.1.1"
+    "@keystonejs/mongo-join-builder" "^6.1.3"
+    "@keystonejs/utils" "^5.4.0"
     "@sindresorhus/slugify" "^0.6.0"
     mongoose "^5.9.5"
     p-settle "^3.1.0"
@@ -2475,6 +2592,89 @@
     webpack-dev-middleware "^3.7.2"
     webpack-hot-middleware "^2.25.0"
 
+"@keystonejs/app-admin-ui@^5.9.3":
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/@keystonejs/app-admin-ui/-/app-admin-ui-5.9.3.tgz#3a55ee58a944a848e3a867d4012bc26edc3dd198"
+  integrity sha512-KYZOZ0GQNMDWuuGdKowx7MIiW++gJl7gMoQdayQJnIsjMoQGAAuEt2/xkDDgJUl/DSJkRAW38sruMhOGWrG1rg==
+  dependencies:
+    "@apollo/react-hooks" "^3.1.3"
+    "@arch-ui/alert" "^0.0.15"
+    "@arch-ui/badge" "^0.0.14"
+    "@arch-ui/button" "^0.0.16"
+    "@arch-ui/card" "^0.0.12"
+    "@arch-ui/color-utils" "^0.0.2"
+    "@arch-ui/common" "^0.0.11"
+    "@arch-ui/confirm" "^0.0.17"
+    "@arch-ui/controls" "^0.1.6"
+    "@arch-ui/dialog" "^0.0.18"
+    "@arch-ui/drawer" "^0.0.19"
+    "@arch-ui/dropdown" "^0.0.16"
+    "@arch-ui/fields" "^2.1.4"
+    "@arch-ui/hooks" "^0.0.9"
+    "@arch-ui/icons" "^0.0.10"
+    "@arch-ui/input" "^0.1.7"
+    "@arch-ui/layout" "^0.2.11"
+    "@arch-ui/loading" "^0.0.15"
+    "@arch-ui/lozenge" "^0.0.14"
+    "@arch-ui/navbar" "^0.1.8"
+    "@arch-ui/options" "^0.0.16"
+    "@arch-ui/pagination" "^0.0.16"
+    "@arch-ui/pill" "^0.1.13"
+    "@arch-ui/popout" "^0.0.17"
+    "@arch-ui/select" "^0.1.6"
+    "@arch-ui/theme" "^0.0.10"
+    "@arch-ui/tooltip" "^0.1.9"
+    "@arch-ui/typography" "^0.0.15"
+    "@babel/core" "^7.9.0"
+    "@babel/runtime" "^7.8.4"
+    "@emotion/core" "^10.0.27"
+    "@emotion/styled" "^10.0.27"
+    "@keystonejs/build-field-types" "^5.2.4"
+    "@keystonejs/field-views-loader" "^5.2.1"
+    "@keystonejs/fields" "^7.0.2"
+    "@keystonejs/session" "^6.0.0"
+    "@keystonejs/utils" "^5.4.0"
+    apollo-cache-inmemory "^1.6.5"
+    apollo-client "^2.6.8"
+    apollo-link "^1.2.13"
+    apollo-link-error "^1.1.12"
+    apollo-link-state "^0.4.2"
+    apollo-upload-client "^12.1.0"
+    apply-ref "^0.2.0"
+    babel-loader "^8.0.5"
+    babel-plugin-emotion "^10.0.27"
+    babel-preset-react-app "^9.0.2"
+    clipboard-copy "^3.0.0"
+    compression "^1.7.4"
+    cross-fetch "^2.2.0"
+    css-loader "^3.2.0"
+    express "^4.17.1"
+    express-history-api-fallback "^2.2.1"
+    "falsey" "^1.0.0"
+    file-loader "^3.0.1"
+    graphql "^14.6.0"
+    graphql-tag "^2.10.1"
+    html-webpack-plugin "^3.2.0"
+    lodash.debounce "^4.0.8"
+    lodash.set "^4.3.2"
+    memoize-one "^5.1.1"
+    prop-types "^15.7.2"
+    raf-schd "^4.0.0"
+    react "^16.13.0"
+    react-dom "^16.13.0"
+    react-prop-toggle "^1.0.2"
+    react-pseudo-state "^2.2.2"
+    react-router-dom "5.1.2"
+    react-select "^3.0.8"
+    react-toast-notifications "^2.3.0"
+    react-transition-group "^4.3.0"
+    react-uid "^2.2.0"
+    resize-observer-polyfill "^1.5.1"
+    style-loader "^1.0.0"
+    webpack "4.41.6"
+    webpack-dev-middleware "^3.7.2"
+    webpack-hot-middleware "^2.25.0"
+
 "@keystonejs/app-graphql-playground@^5.1.1":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@keystonejs/app-graphql-playground/-/app-graphql-playground-5.1.1.tgz#83a579cec9de2694e7c373429686d41da73885aa"
@@ -2485,6 +2685,23 @@
     "@keystonejs/logger" "^5.1.1"
     "@keystonejs/session" "^5.1.1"
     "@keystonejs/utils" "^5.2.2"
+    body-parser "^1.18.2"
+    chalk "^2.4.2"
+    "falsey" "^1.0.0"
+    graphql-tag "^2.10.1"
+    object-hash "^1.3.1"
+    terminal-link "^1.3.0"
+
+"@keystonejs/app-graphql-playground@^5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@keystonejs/app-graphql-playground/-/app-graphql-playground-5.1.2.tgz#82857ce30dce1fe3bcd77c99d5fa47542452c0fd"
+  integrity sha512-A35xncQf9SlNvMCfbQI7IhzTOiFD/IcVb7SyrSUhaAL0oth9HffvyJUOakqyxpFo/GMbYX0WtPpS73gyZqkpyg==
+  dependencies:
+    "@apollographql/graphql-playground-html" "^1.6.24"
+    "@apollographql/graphql-playground-react" "^1.7.32"
+    "@keystonejs/logger" "^5.1.1"
+    "@keystonejs/session" "^6.0.0"
+    "@keystonejs/utils" "^5.4.0"
     body-parser "^1.18.2"
     chalk "^2.4.2"
     "falsey" "^1.0.0"
@@ -2528,6 +2745,24 @@
     serialize-error "^3.0.0"
     stack-utils "^1.0.2"
 
+"@keystonejs/app-graphql@^5.1.4":
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/@keystonejs/app-graphql/-/app-graphql-5.1.4.tgz#51aab31d80121a239ec78c939d2294282db4d0fd"
+  integrity sha512-27eED5g841TTuMQKUPtYIhhdf9JuBkOa1EQYNyQuILJpSSsLZhJQDdR/fu+xGS4Zcw4rYYSPwg33VQt4qjlAIQ==
+  dependencies:
+    "@keystonejs/app-graphql-playground" "^5.1.2"
+    "@keystonejs/logger" "^5.1.1"
+    "@keystonejs/session" "^6.0.0"
+    "@keystonejs/utils" "^5.4.0"
+    apollo-errors "^1.9.0"
+    apollo-server-express "^2.10.1"
+    cuid "^2.1.6"
+    ensure-error "^1.0.0"
+    graphql "^14.6.0"
+    nanoassert "^2.0.0"
+    serialize-error "^3.0.0"
+    stack-utils "^1.0.2"
+
 "@keystonejs/app-next@^5.1.1":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@keystonejs/app-next/-/app-next-5.1.1.tgz#99a64d6486bbe2b3706b504a3d2348a25c4e3292"
@@ -2541,6 +2776,14 @@
   integrity sha512-W0I0ybpz/aCULhYIFolLK8b2kYzFmLuYUlZFcBP87iLIxV2skCXU4GJfE5RmYiflOpvmS5ZSSOC9lGsrxsfVbQ==
   dependencies:
     "@keystonejs/access-control" "^5.2.0"
+
+"@keystonejs/auth-password@^5.1.3":
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@keystonejs/auth-password/-/auth-password-5.1.3.tgz#b39785804f82d0260daadbe754b894be32f67938"
+  integrity sha512-8hz+dMO8Uxmmscif9FmsZ/EzSRNboafbQchoqT+0CsTCYiO2cW7y5qvPFam0Qr1oudh4cx9PPi5ct9MkeTy0Xw==
+  dependencies:
+    "@keystonejs/fields" "^7.0.2"
+    "@keystonejs/session" "^6.0.0"
 
 "@keystonejs/build-field-types@^5.2.2":
   version "5.2.2"
@@ -2585,6 +2828,43 @@
   integrity sha512-TjxddTUFdyUxyTlT8hdtCs0pV71gnJVL3nAI75YidyeMK6agW1VVEY/n/dJ+DKqnqpX3lUFyNPYzXsYk0BY/Eg==
   dependencies:
     "@babel/core" "^7.8.4"
+    "@babel/helper-module-imports" "^7.8.3"
+    "@babel/plugin-proposal-class-properties" "^7.8.3"
+    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
+    "@babel/plugin-transform-flow-strip-types" "^7.8.3"
+    "@babel/plugin-transform-modules-commonjs" "^7.8.3"
+    "@babel/plugin-transform-runtime" "^7.8.3"
+    "@emotion/hash" "^0.7.4"
+    "@preconstruct/hook" "0.1.0"
+    "@rollup/plugin-node-resolve" "^7.1.1"
+    "@rollup/plugin-replace" "^2.2.0"
+    "@rollup/pluginutils" "^3.0.8"
+    builtin-modules "^3.0.0"
+    chalk "^2.4.2"
+    dataloader "^1.4.0"
+    fs-extra "^7.0.0"
+    globby "^11.0.0"
+    inquirer "^6.2.0"
+    jest-worker "^25.1.0"
+    lodash.isempty "^4.4.0"
+    meow "^5.0.0"
+    ms "^2.1.1"
+    p-limit "^2.2.0"
+    parent-module "^2.0.0"
+    pirates "^4.0.1"
+    resolve "^1.10.0"
+    resolve-from "^4.0.0"
+    rollup "^1.32.0"
+    sarcastic "^1.5.0"
+    source-map-support "^0.5.12"
+    terser "^3.14.1"
+
+"@keystonejs/build-field-types@^5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@keystonejs/build-field-types/-/build-field-types-5.2.4.tgz#59d897396cc3a672efd10de4329b862bdbcad0e9"
+  integrity sha512-rVgFwY4hpa4XI2AW4Mq09lntClgZqxhmRMa5YkeBSeeCM3UEwnm2ufSiA5vws075TQU9DdgjUsT5fIJ83yz4Ng==
+  dependencies:
+    "@babel/core" "^7.9.0"
     "@babel/helper-module-imports" "^7.8.3"
     "@babel/plugin-proposal-class-properties" "^7.8.3"
     "@babel/plugin-syntax-dynamic-import" "^7.8.3"
@@ -2666,6 +2946,15 @@
     "@keystonejs/adapter-knex" "^6.3.2"
     "@keystonejs/fields" "^7.0.0"
 
+"@keystonejs/fields-auto-increment@^5.1.4":
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/@keystonejs/fields-auto-increment/-/fields-auto-increment-5.1.4.tgz#9135ee6e021e540d1b558a25a6a8905432067e15"
+  integrity sha512-FkGqzKgsOtIl/KT9oNR/wt3JISsggLJnd6+7WA8rIo0rkosm4cwpLwBfj7zXxOYv0EGj9K59/S4geTPHSNg4bg==
+  dependencies:
+    "@babel/runtime" "^7.8.4"
+    "@keystonejs/adapter-knex" "^7.0.0"
+    "@keystonejs/fields" "^7.0.2"
+
 "@keystonejs/fields-mongoid@^5.1.2":
   version "5.1.3"
   resolved "https://registry.yarnpkg.com/@keystonejs/fields-mongoid/-/fields-mongoid-5.1.3.tgz#5d4035fbdde97c0e8c6f347d25b8f92cc07afa4c"
@@ -2677,6 +2966,19 @@
     "@keystonejs/adapter-mongoose" "^5.2.1"
     "@keystonejs/build-field-types" "^5.2.2"
     "@keystonejs/fields" "^7.0.0"
+    react "^16.13.0"
+
+"@keystonejs/fields-mongoid@^5.1.4":
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/@keystonejs/fields-mongoid/-/fields-mongoid-5.1.4.tgz#33382c25587e0a5ce6307350fd1b4cd91474e304"
+  integrity sha512-q6Zd6tF2bE7Hkuc2rQKJRBhiPJIYFSZ9VtbZiphYwYyhKxJGX5ke2VNGEyttO0HtrObDCn6yGIGEmuhbbMfGYA==
+  dependencies:
+    "@arch-ui/input" "^0.1.7"
+    "@babel/runtime" "^7.8.4"
+    "@keystonejs/adapter-knex" "^7.0.0"
+    "@keystonejs/adapter-mongoose" "^6.0.0"
+    "@keystonejs/build-field-types" "^5.2.4"
+    "@keystonejs/fields" "^7.0.2"
     react "^16.13.0"
 
 "@keystonejs/fields@^7.0.0":
@@ -2812,6 +3114,73 @@
     slate-react "^0.22.4"
     unsplash-js "^6.0.0"
 
+"@keystonejs/fields@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@keystonejs/fields/-/fields-7.0.2.tgz#b1852b6b11ea5c7a01c49049f5dc0b3b673e5760"
+  integrity sha512-EbLKefviD66yj1sbBCEn4gjl9gmKmUHLbg1mkDXvovVQm3O9Aal6risDpaH244mrYQpXnbcUnl9guPjDM9yepQ==
+  dependencies:
+    "@apollo/react-hooks" "^3.1.3"
+    "@arch-ui/alert" "^0.0.15"
+    "@arch-ui/button" "^0.0.16"
+    "@arch-ui/controls" "^0.1.6"
+    "@arch-ui/day-picker" "^0.0.21"
+    "@arch-ui/drawer" "^0.0.19"
+    "@arch-ui/fields" "^2.1.4"
+    "@arch-ui/filters" "^0.0.18"
+    "@arch-ui/icons" "^0.0.10"
+    "@arch-ui/input" "^0.1.7"
+    "@arch-ui/layout" "^0.2.11"
+    "@arch-ui/loading" "^0.0.15"
+    "@arch-ui/lozenge" "^0.0.14"
+    "@arch-ui/options" "^0.0.16"
+    "@arch-ui/popout" "^0.0.17"
+    "@arch-ui/select" "^0.1.6"
+    "@arch-ui/theme" "^0.0.10"
+    "@arch-ui/tooltip" "^0.1.9"
+    "@arch-ui/typography" "^0.0.15"
+    "@babel/runtime" "^7.8.4"
+    "@emotion/core" "^10.0.27"
+    "@keystonejs/access-control" "^5.2.0"
+    "@keystonejs/adapter-knex" "^7.0.0"
+    "@keystonejs/adapter-mongoose" "^6.0.0"
+    "@keystonejs/app-admin-ui" "^5.9.3"
+    "@keystonejs/build-field-types" "^5.2.4"
+    "@keystonejs/field-content" "^5.4.3"
+    "@keystonejs/test-utils" "^6.0.1"
+    "@keystonejs/utils" "^5.4.0"
+    "@sindresorhus/slugify" "^0.6.0"
+    apollo-errors "^1.9.0"
+    bcryptjs "^2.4.3"
+    cuid "^2.1.6"
+    date-fns "^1.30.1"
+    dumb-passwords "^0.2.1"
+    google-maps-react "^2.0.2"
+    graphql "^14.6.0"
+    graphql-tag "^2.10.1"
+    image-extensions "^1.1.0"
+    inflection "^1.12.0"
+    intersection-observer "^0.5.1"
+    lodash.groupby "^4.6.0"
+    lodash.isequal "^4.5.0"
+    luxon "^1.11.4"
+    mongoose "^5.9.5"
+    node-fetch "^2.3.0"
+    p-settle "^3.1.0"
+    pluralize "^7.0.0"
+    prop-types "^15.7.2"
+    query-string "^6.8.1"
+    react "^16.13.0"
+    react-color "^2.17.3"
+    react-dom "^16.13.0"
+    react-popper "^1.3.6"
+    react-popper-tooltip "^2.10.0"
+    react-select "^3.0.8"
+    react-toast-notifications "^2.3.0"
+    slate "^0.47.4"
+    slate-drop-or-paste-images "^0.9.1"
+    slate-react "^0.22.4"
+    unsplash-js "^6.0.0"
+
 "@keystonejs/file-adapters@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@keystonejs/file-adapters/-/file-adapters-6.0.0.tgz#32d486308c21b9290d63e4c72226af325b5093b3"
@@ -2887,6 +3256,39 @@
     pluralize "^7.0.0"
     terminal-link "^1.3.0"
 
+"@keystonejs/keystone@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@keystonejs/keystone/-/keystone-7.0.0.tgz#75d307391b07145465be501e0bae6c416b548573"
+  integrity sha512-JopK4XvMyTSiL9JEiBrx4J+I/g1tBLX3yXJyeJb6LeEHgvUrWk3X9aA0o+QltPxtMYbRkp9AMKKk8n7MnFqWpg==
+  dependencies:
+    "@keystonejs/access-control" "^5.2.0"
+    "@keystonejs/app-version" "^1.0.0"
+    "@keystonejs/fields" "^7.0.2"
+    "@keystonejs/logger" "^5.1.1"
+    "@keystonejs/session" "^6.0.0"
+    "@keystonejs/utils" "^5.4.0"
+    apollo-errors "^1.9.0"
+    arg "^4.1.1"
+    chalk "^2.4.2"
+    ci-info "^2.0.0"
+    cors "^2.8.4"
+    dev-null "^0.1.1"
+    endent "^1.3.0"
+    express "^4.17.1"
+    express-pino-logger "^4.0.0"
+    "falsey" "^1.0.0"
+    fast-memoize "^2.4.0"
+    fs-extra "^7.0.0"
+    globby "^11.0.0"
+    graphql "^14.6.0"
+    graphql-tag "^2.10.1"
+    graphql-type-json "^0.3.1"
+    lodash.flattendeep "^4.4.0"
+    ora "^3.4.0"
+    p-waterfall "^2.1.0"
+    pluralize "^7.0.0"
+    terminal-link "^1.3.0"
+
 "@keystonejs/logger@^5.1.1":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@keystonejs/logger/-/logger-5.1.1.tgz#c2ba29f44394ca4e64fc1d3116fd5c83d8e4726c"
@@ -2923,6 +3325,17 @@
     express "^4.17.1"
     express-session "^1.16.2"
 
+"@keystonejs/session@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@keystonejs/session/-/session-6.0.0.tgz#46d9774ddbd2536c20b482eb7d36b0f529938208"
+  integrity sha512-no/aonkTwo217u5PkW67SO3CfH/mNpco4P1ymRZivplLOsDY1PWzUDJbakvFGHef6uU6l4TjH+E3mNg8TK5Wjg==
+  dependencies:
+    body-parser "^1.18.2"
+    cookie "^0.3.1"
+    cookie-signature "^1.1.0"
+    express "^4.17.1"
+    express-session "^1.16.2"
+
 "@keystonejs/test-utils@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@keystonejs/test-utils/-/test-utils-6.0.0.tgz#175a0d75e131a4c6ef8f747ab22e545712c2cb6a"
@@ -2932,6 +3345,20 @@
     "@keystonejs/adapter-mongoose" "^5.2.2"
     "@keystonejs/app-graphql" "^5.1.3"
     "@keystonejs/keystone" "^6.0.2"
+    express "^4.17.1"
+    mongodb-memory-server "^6.3.3"
+    p-finally "^2.0.1"
+    supertest-light "^1.0.2"
+
+"@keystonejs/test-utils@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@keystonejs/test-utils/-/test-utils-6.0.1.tgz#d7cda86afc9c0b9359402d0c80a2ca8e59de9770"
+  integrity sha512-kRD8s8LVKxoghFQWLm4s/rmYHLQAPFCEBsNBKY61fL7OTkI7O6fJ3L55CAcaJQu3aGvpo5OfZlr5Rq8HKWntZQ==
+  dependencies:
+    "@keystonejs/adapter-knex" "^7.0.0"
+    "@keystonejs/adapter-mongoose" "^6.0.0"
+    "@keystonejs/app-graphql" "^5.1.4"
+    "@keystonejs/keystone" "^7.0.0"
     express "^4.17.1"
     mongodb-memory-server "^6.3.3"
     p-finally "^2.0.1"
@@ -2952,6 +3379,17 @@
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@keystonejs/utils/-/utils-5.3.0.tgz#0a75b573d3ecfe71bc9334325bbe910611abc375"
   integrity sha512-Y0sxleKzMQwQbods2CvK1U5V1uyVFHdEN95WHKI16ItoPsnfsdEXhKmzEqGnEX+Bc49oVS7uJalByYTFBocdUA==
+  dependencies:
+    "@babel/runtime" "^7.8.4"
+    p-is-promise "^3.0.0"
+    p-lazy "^3.0.0"
+    p-reflect "^2.1.0"
+    semver "^5.7.1"
+
+"@keystonejs/utils@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@keystonejs/utils/-/utils-5.4.0.tgz#b2727182b4c2d11575b908a5c52372888c51adb4"
+  integrity sha512-sufALufMGN+f/jWz2R6JcxhqNIMuR2BAsiallfTV6IjJ6k8o8JDB5wCAO7Snu9Z2He+D/XmhC/GFbQIbACE9Nw==
   dependencies:
     "@babel/runtime" "^7.8.4"
     p-is-promise "^3.0.0"
@@ -3934,6 +4372,11 @@ any-observable@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/any-observable/-/any-observable-0.3.0.tgz#af933475e5806a67d0d7df090dd5e8bef65d119b"
   integrity sha512-/FQM1EDkTsf63Ub2C6O7GuYFDsSXUwsaZDurV0np41ocwq0jthUAYCmhBX9f+KwlaCgIuWyr/4WlUQUBfKfZog==
+
+any-promise@^1.1.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
+  integrity sha1-q8av7tzqUugJzcA3au0845Y10X8=
 
 anymatch@^2.0.0:
   version "2.0.0"
@@ -10034,6 +10477,13 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
+json5@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-2.1.2.tgz#43ef1f0af9835dd624751a6b7fa48874fb2d608e"
+  integrity sha512-MoUOQ4WdiN3yxhm7NEVJSJrieAo5hNSLQ5sj05OTRHPL9HOBy8u4Bu88jsC1jvqAdN+E1bJmsUcZH+1HQxliqQ==
+  dependencies:
+    minimist "^1.2.5"
+
 jsonfile@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
@@ -10953,7 +11403,7 @@ minimist@1.2.0:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
   integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
 
-minimist@^1.1.1, minimist@^1.2.0:
+minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
@@ -11210,7 +11660,7 @@ nanoassert@^2.0.0:
   resolved "https://registry.yarnpkg.com/nanoassert/-/nanoassert-2.0.0.tgz#a05f86de6c7a51618038a620f88878ed1e490c09"
   integrity sha512-7vO7n28+aYO4J+8w96AzhmU8G+Y/xpPDJz/se19ICsqj/momRbb9mh9ZUtkoJ5X3nTnPdhEJyc0qnM6yAsHBaA==
 
-nanoid@^2.0.3, nanoid@^2.1.0:
+nanoid@^2.1.0:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
   integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
@@ -11383,15 +11833,6 @@ node-addon-api@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-2.0.0.tgz#f9afb8d777a91525244b01775ea0ddbe1125483b"
   integrity sha512-ASCL5U13as7HhOExbT6OlWJJUV/lLzL2voOSP1UVehpRD8FbSrSDjfScK/KwAvVTI5AS6r4VwbOMlIqtvRidnA==
-
-node-fetch-har@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/node-fetch-har/-/node-fetch-har-1.0.1.tgz#bc665ec72c86619c91152ad3c9d4c53cae98cec3"
-  integrity sha512-XpTlblmwxdmVHtg6tDB5kXvEziXl8SlNI1Sc9DaKeWJDqreZhHrhijgWdxW84xh2zmYCiiAU9oLriCLu1oyTbg==
-  dependencies:
-    cookie "^0.4.0"
-    nanoid "^2.0.3"
-    set-cookie-parser "^2.3.5"
 
 node-fetch@2.1.2:
   version "2.1.2"
@@ -14459,11 +14900,6 @@ set-blocking@^2.0.0, set-blocking@~2.0.0:
   resolved "https://registry.yarnpkg.com/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
   integrity sha1-BF+XgtARrppoA93TgrJDkrPYkPc=
 
-set-cookie-parser@^2.3.5:
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/set-cookie-parser/-/set-cookie-parser-2.4.3.tgz#9c917e75698a5633511c3c6a3435f334faabc240"
-  integrity sha512-+Eovq+TUyhqwUe+Ac9EaPlfEZOcQyy7uUPhcbEXEIsH73x/gOU56RO8wZDZW98fu3vSxhcPjuKDo1mIrmM7ixw==
-
 set-value@^2.0.0, set-value@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/set-value/-/set-value-2.0.1.tgz#a18d40530e6f07de4228c7defe4227af8cad005b"
@@ -15037,6 +15473,13 @@ stream-shift@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.1.tgz#d7088281559ab2778424279b0877da3c392d5a3d"
   integrity sha512-AiisoFqQ0vbGcZgQPY1cdP2I76glaVA/RauYR4G4thNFgkTqr90yXTo4LYX60Jl+sIlPNHHdGSwo01AvbKUSVQ==
+
+stream-to-array@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/stream-to-array/-/stream-to-array-2.3.0.tgz#bbf6b39f5f43ec30bc71babcb37557acecf34353"
+  integrity sha1-u/azn19D7DC8cbq8s3VXrOzzQ1M=
+  dependencies:
+    any-promise "^1.1.0"
 
 stream-transform@^2.0.1:
   version "2.0.1"

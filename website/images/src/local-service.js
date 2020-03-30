@@ -144,7 +144,9 @@ export class LocalImageService {
 				return res.status(404).json({ error: 'not found' });
 			}
 
-			res.json(data);
+			let { filename, ...otherData } = data;
+
+			res.json(otherData);
 		});
 
 		this.app.listen(port, () => {
@@ -182,18 +184,20 @@ export class LocalImageService {
 	async storeImageInDatabase({ path, originalname }) {
 		const filename = nodePath.basename(path);
 		const image = sharp(path);
-		const meta = await image.metadata();
+		const sharpMeta = await image.metadata();
 		const id = filename;
-		const { size } = await fs.stat(path);
 		await fs.rename(path, path + '.' + meta.format);
-		this.database.storeImage(id, {
-			size,
-			originalname,
-			...meta,
-		});
+
+		let meta = {
+			bytes: sharpMeta.size,
+			filename: originalname,
+			height: sharpMeta.height,
+			width: sharpMeta.width,
+			format: sharpMeta.format,
+		};
+		this.database.storeImage(id, meta);
 
 		return {
-			success: true,
 			id,
 			meta,
 		};

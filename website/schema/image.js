@@ -10,7 +10,7 @@ const imageSchema = {
 	fields: {
 		image: {
 			type: Image,
-			service: remoteImageService,
+			service: imageService,
 			// hooks: {
 			// 	beforeChange: async ({ existingItem }) => {
 			// 		if (existingItem && existingItem.image) {

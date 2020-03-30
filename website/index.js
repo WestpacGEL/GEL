@@ -45,7 +45,7 @@ const apps = [
 		authStrategy,
 		hooks: require.resolve('./admin'),
 	}),
-	// new NextApp({ dir: 'src' }),
+	new NextApp({ dir: 'src' }),
 ];
 
 module.exports = {
