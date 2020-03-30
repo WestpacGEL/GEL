@@ -158,7 +158,7 @@ export const IntroSection = {
 		}, [description, showTableOfContents, showPackageInfo]);
 
 		return (
-			<>
+			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'description'} field={{ label: 'Description', config: {} }} />
 					<FieldInput>
@@ -191,7 +191,7 @@ export const IntroSection = {
 						<span>Show Package Information</span>
 					</label>
 				</FieldContainer>
-			</>
+			</Fragment>
 		);
 	},
 	component: Component,
