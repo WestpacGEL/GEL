@@ -5,6 +5,8 @@ import { Component, Fragment, useMemo, createContext, useContext, useState } fro
 import { Block } from 'slate';
 import { PencilIcon, CheckIcon, TrashcanIcon } from '@arch-ui/icons';
 
+import { type as defaultType } from '../field-content/src/views/editor/blocks/paragraph';
+
 import {
 	BlockInsertMenuItem,
 	BlockDisclosureMenuButton,
@@ -65,8 +67,6 @@ export function Sidebar({ editor }) {
 					icon={icon}
 					text={`${compName.replace(/([A-Z])/g, ' $1')}`}
 					insertBlock={() => {
-						console.log({ compName });
-
 						let block = Block.create({
 							type,
 							data: {
@@ -82,7 +82,7 @@ export function Sidebar({ editor }) {
 		});
 }
 
-export function Actions({ node }) {
+export function Actions({ editor, node }) {
 	const { currentlyEditingBlocks, setCurrentlyEditingBlocks } = useContext(
 		CurrentlyEditingBlocksContext
 	);
@@ -104,10 +104,7 @@ export function Actions({ node }) {
 			<BlockDisclosureMenuButton
 				variant="danger"
 				onClick={() => {
-					if (window.confirm('Are you sure?')) {
-						console.log('confirmed');
-						// TODO
-					}
+					editor.removeNodeByKey(node.key);
 				}}
 				title="Remove component"
 			>
@@ -187,6 +184,19 @@ export function Node({ node, attributes, editor, item }) {
 export let getSchema = () => ({
 	isVoid: true,
 });
+
+export let getPlugins = () => [
+	{
+		onKeyDown(event, editor, next) {
+			// inject a new paragraph on "Enter"
+			if (event.keyCode === 13 && editor.value.blocks.every(block => block.type === type)) {
+				editor.insertBlock({ type: defaultType });
+			} else {
+				return next();
+			}
+		},
+	},
+];
 
 // Icons for the insert menu
 

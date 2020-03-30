@@ -45,7 +45,7 @@ const calculateOffset = el => {
 	};
 };
 
-let AddBlock = ({ editorState, editor, blocks }) => {
+let AddBlock = ({ blocks, editor, editorHasFocus, editorState }) => {
 	let [isOpen, setIsOpen] = useState(false);
 	let focusBlock = editorState.focusBlock;
 	let iconRef = useRef(null);
@@ -98,7 +98,7 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 			: () => null;
 
 	const InsertBlock = ({ node }) => {
-		if (!node) return null;
+		if (!node || !editorHasFocus) return null;
 		if (!Object.keys(blocks).filter(key => blocks[key].Sidebar).length) return null;
 		if (node.text !== '') return null;
 		if (node.type !== defaultBlockType) return null;
@@ -121,7 +121,7 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 	};
 
 	const MoveUp = ({ node }) => {
-		if (!node) return null;
+		if (!node || !editorHasFocus) return null;
 		const index = editorState.document.nodes.findIndex(o => node.key === o.key);
 		if (index === 0) return null;
 		return (
@@ -137,7 +137,7 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 		);
 	};
 	const MoveDown = ({ node }) => {
-		if (!node) return null;
+		if (!node || !editorHasFocus) return null;
 		const index = editorState.document.nodes.findIndex(o => node.key === o.key);
 		if (index === editorState.document.nodes.size - 1) return null;
 		return (
@@ -157,14 +157,14 @@ let AddBlock = ({ editorState, editor, blocks }) => {
 		<Fragment>
 			{/* This is the widget displayed to the left of the block, when focused */}
 			<BlockDisclosureMenu ref={iconRef}>
-				<InsertBlock node={focusBlock} />
-				<ItemActions node={focusBlock} />
-				<MoveUp node={focusBlock} />
-				<MoveDown node={focusBlock} />
+				<InsertBlock node={focusBlock} editor={editor} />
+				<ItemActions node={focusBlock} editor={editor} />
+				<MoveUp node={focusBlock} editor={editor} />
+				<MoveDown node={focusBlock} editor={editor} />
 			</BlockDisclosureMenu>
 
 			{/* This is the dropdown menu shown when a user clicks `InsertBlock` */}
-			<BlockInsertMenu isOpen={isOpen} ref={menuRef}>
+			<BlockInsertMenu isOpen={editorHasFocus && isOpen} ref={menuRef}>
 				{Object.keys(blocks).map(key => {
 					let { Sidebar } = blocks[key];
 

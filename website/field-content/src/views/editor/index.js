@@ -113,20 +113,12 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 
 	let [editor, setEditor] = useStateWithEqualityCheck(null);
 
+	let hasFocus = editor?.el?.contains(document.activeElement);
+
 	return (
 		<Fragment>
 			<Toolbar blocks={blocks} editor={editor} editorState={editorState} />
-			<div
-				className={className}
-				id={id}
-				css={{
-					// ...inputStyles({ isMultiline: true }),
-					padding: 0,
-					position: 'relative',
-					// overflow: 'scroll',
-					zIndex: 0,
-				}}
-			>
+			<div className={className} id={id}>
 				<Editor
 					schema={schema}
 					ref={setEditor}
@@ -141,7 +133,12 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 						onChange(value);
 					}}
 				/>
-				<AddBlock editor={editor} editorState={editorState} blocks={blocks} />
+				<AddBlock
+					editor={editor}
+					editorState={editorState}
+					editorHasFocus={hasFocus}
+					blocks={blocks}
+				/>
 			</div>
 		</Fragment>
 	);
@@ -151,19 +148,23 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 // ------------------------------
 
 const cancelEvent = event => {
-	e.stopPropagation();
-	e.preventDefault();
+	event.stopPropagation();
+	event.preventDefault();
 };
 
 // This is the disclosure indicator (rounded-line) to the left of the block
 // Plus the block node itself
 const BlockLayout = ({ children, isEditing = false, isFocused = false, onClickDisclosureArea }) => {
+	let lineColor = colors.N05;
+	if (isFocused) lineColor = colors.N20;
+	if (isEditing) lineColor = isFocused ? colors.B.base : colors.Y.base;
+
 	return (
 		<div css={{ display: 'flex' }}>
 			<div
 				css={{
 					borderLeft: '4px solid transparent',
-					borderLeftColor: isFocused ? (isEditing ? colors.B.base : colors.N20) : colors.N05,
+					borderLeftColor: lineColor,
 					boxSizing: 'border-box',
 					flexShrink: 0,
 					marginLeft: -gridSize * 2,
