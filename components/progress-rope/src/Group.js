@@ -3,6 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement, useState, useEffect } from 'react';
 import { useSpring, animated, config } from 'react-spring';
+import { ResizeObserver } from '@juggle/resize-observer';
 import useMeasure from 'react-use-measure';
 import PropTypes from 'prop-types';
 
@@ -33,7 +34,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 	const complete = ropeGraph[index + 1][0] === 'visited';
 
 	const [hidden, setHidden] = useState(true);
-	const [measureRef, { height }] = useMeasure();
+	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 	const [initial, setInitial] = useState(true);
 
 	const animate = useSpring({
