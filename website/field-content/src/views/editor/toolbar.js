@@ -86,8 +86,6 @@ export default function Toolbar({ blocks, editor, editorHasFocus, editorState })
 							}}
 						/>
 
-						<ToolbarDivider />
-
 						<InsertMenu
 							blocks={blocks}
 							editor={editor}
@@ -104,7 +102,10 @@ export default function Toolbar({ blocks, editor, editorHasFocus, editorState })
 // ------------------------------
 
 /* This is the dropdown menu shown when a user clicks `InsertBlock` */
-const InsertMenu = ({ blocks, editor, editorState }) => {
+const InsertMenu = ({ blocks, editor }) => {
+	// bail if there aren't any "insertable" blocks
+	if (!Object.keys(blocks).filter(key => blocks[key].Sidebar).length) return null;
+
 	let targetRef = useRef();
 	let menuRef = useRef();
 	let [isOpen, setIsOpen] = useState(false);
@@ -126,47 +127,50 @@ const InsertMenu = ({ blocks, editor, editorState }) => {
 	});
 
 	return (
-		<div css={{ position: 'relative' }}>
-			<ToolbarButton
-				isActive={isOpen}
-				ref={targetRef}
-				label="Insert"
-				icon={
-					<div css={{ display: 'flex' }}>
-						<PlusIcon />
-						<ArrowDownIcon />
-					</div>
-				}
-				onClick={() => {
-					setIsOpen(s => !s);
-				}}
-			/>
-			<Dialog
-				css={{
-					display: isOpen ? 'block' : 'none',
-					maxHeight: 400,
-					paddingBottom: 4,
-					paddingTop: 4,
-					overflowY: 'auto',
-					top: '100%',
-					marginTop: gridSize,
-				}}
-				ref={menuRef}
-				onClick={() => {
-					setIsOpen(false);
-				}}
-			>
-				{Object.keys(blocks).map(key => {
-					let { Sidebar } = blocks[key];
-
-					// only interested in "dynamic-components"
-					if (!blocks[key].withChrome || Sidebar === undefined) {
-						return null;
+		<Fragment>
+			<ToolbarDivider />
+			<div css={{ position: 'relative' }}>
+				<ToolbarButton
+					isActive={isOpen}
+					ref={targetRef}
+					label="Insert"
+					icon={
+						<div css={{ display: 'flex' }}>
+							<PlusIcon />
+							<ArrowDownIcon />
+						</div>
 					}
+					onClick={() => {
+						setIsOpen(s => !s);
+					}}
+				/>
+				<Dialog
+					css={{
+						display: isOpen ? 'block' : 'none',
+						maxHeight: 400,
+						paddingBottom: 4,
+						paddingTop: 4,
+						overflowY: 'auto',
+						top: '100%',
+						marginTop: gridSize,
+					}}
+					ref={menuRef}
+					onClick={() => {
+						setIsOpen(false);
+					}}
+				>
+					{Object.keys(blocks).map(key => {
+						let { Sidebar } = blocks[key];
 
-					return <Sidebar key={key} editor={editor} blocks={blocks} />;
-				})}
-			</Dialog>
-		</div>
+						// only interested in "dynamic-components"
+						if (!blocks[key].withChrome || Sidebar === undefined) {
+							return null;
+						}
+
+						return <Sidebar key={key} editor={editor} blocks={blocks} />;
+					})}
+				</Dialog>
+			</div>
+		</Fragment>
 	);
 };
