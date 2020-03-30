@@ -1,4 +1,5 @@
 /** @jsx jsx */
+
 import React, { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
@@ -158,7 +159,7 @@ export const IntroSection = {
 		}, [description, showTableOfContents, showPackageInfo]);
 
 		return (
-			<React.Fragment>
+			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'description'} field={{ label: 'Description', config: {} }} />
 					<FieldInput>
@@ -191,7 +192,7 @@ export const IntroSection = {
 						<span>Show Package Information</span>
 					</label>
 				</FieldContainer>
-			</React.Fragment>
+			</Fragment>
 		);
 	},
 	component: Component,

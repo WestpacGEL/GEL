@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'; // Needed for within Keystone
+
+import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
@@ -38,7 +39,7 @@ export const Image = {
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
 		return (
-			<React.Fragment>
+			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'image'} field={{ label: 'Image', config: {} }} />
 					<FieldInput>
@@ -69,7 +70,7 @@ export const Image = {
 						/>
 					</FieldInput>
 				</FieldContainer>
-			</React.Fragment>
+			</Fragment>
 		);
 	},
 	component: ({ caption, image }) => {

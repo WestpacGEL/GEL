@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'; // Needed for within Keystone
+
+import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
@@ -42,7 +43,7 @@ export const DoAndAvoid = {
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
 		return (
-			<React.Fragment>
+			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'do-image'} field={{ label: 'Do Image', config: {} }} />
 					<FieldInput>
@@ -103,7 +104,7 @@ export const DoAndAvoid = {
 						/>
 					</FieldInput>
 				</FieldContainer>
-			</React.Fragment>
+			</Fragment>
 		);
 	},
 	component: ({ dontImage, dontText, doImage, doText }) => {

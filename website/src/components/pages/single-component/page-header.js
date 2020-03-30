@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import React, { useEffect, useState, useRef } from 'react';
+
+import { Fragment, useEffect, useState, useRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon } from '@westpac/icon';
@@ -64,7 +65,7 @@ export const PageHeader = ({ name, version }) => {
 	const backgroundColor = brandHeaderColors[BRAND](COLORS);
 
 	return (
-		<React.Fragment>
+		<Fragment>
 			<div
 				ref={header}
 				css={{
@@ -109,6 +110,6 @@ export const PageHeader = ({ name, version }) => {
 				</div>
 			</div>
 			<div />
-		</React.Fragment>
+		</Fragment>
 	);
 };
