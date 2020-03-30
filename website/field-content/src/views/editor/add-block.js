@@ -1,16 +1,12 @@
 /** @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { useState, useRef, useCallback, useLayoutEffect, Fragment } from 'react';
+import { useRef, useCallback, useLayoutEffect } from 'react';
 
-import { PlusIcon, ArrowUpIcon, ArrowDownIcon } from '@arch-ui/icons';
+import { ArrowUpIcon, ArrowDownIcon } from '@arch-ui/icons';
 
 import { type as defaultBlockType } from './blocks/paragraph';
-import {
-	BlockDisclosureMenu,
-	BlockDisclosureMenuButton,
-	BlockInsertMenu,
-} from './block-disclosure-menu';
+import { BlockDisclosureMenu, BlockDisclosureMenuButton } from './block-disclosure-menu';
 
 const isChildOf = (parent, child) => {
 	if (!child.parentElement) {
@@ -46,32 +42,21 @@ const calculateOffset = el => {
 };
 
 let AddBlock = ({ blocks, editor, editorHasFocus, editorState }) => {
-	let [isOpen, setIsOpen] = useState(false);
 	let focusBlock = editorState.focusBlock;
 	let iconRef = useRef(null);
-	let menuRef = useRef(null);
 
 	let layout = useCallback(() => {
 		let iconEle = iconRef.current;
-		let menuEle = menuRef.current;
-		const elm = getSelectedElement();
-		if (focusBlock === null) {
-			iconEle.style.top = `-9999px`;
-			iconEle.style.left = `-9999px`;
-			menuEle.style.top = `-9999px`;
-			menuEle.style.left = `-9999px`;
-			if (isOpen) {
-				setIsOpen(false);
-			}
+		if (!iconEle) {
 			return;
 		}
 
-		if (focusBlock.text !== '' || focusBlock.type !== defaultBlockType) {
-			menuEle.style.top = `-9999px`;
-			menuEle.style.left = `-9999px`;
-			if (isOpen) {
-				setIsOpen(false);
-			}
+		const elm = getSelectedElement();
+
+		if (focusBlock === null) {
+			iconEle.style.top = `-9999px`;
+			iconEle.style.left = `-9999px`;
+			return;
 		}
 
 		if (!blocks || !Object.keys(blocks).length) return;
@@ -82,43 +67,12 @@ let AddBlock = ({ blocks, editor, editorHasFocus, editorState }) => {
 			// minor offset-adjustments are made within the styled-components
 			iconEle.style.top = `${offsetTop}px`;
 			iconEle.style.left = `${offsetLeft}px`;
-			menuEle.style.top = `${offsetTop}px`;
-			menuEle.style.left = `${offsetLeft}px`;
-		} else {
-			if (isOpen) {
-				setIsOpen(false);
-			}
 		}
-	}, [focusBlock, iconRef.current, menuRef.current, isOpen]);
+	}, [focusBlock]);
+
 	useLayoutEffect(layout);
 
-	const ItemActions =
-		focusBlock && blocks[focusBlock.type] && blocks[focusBlock.type].Actions
-			? blocks[focusBlock.type].Actions
-			: () => null;
-
-	const InsertBlock = ({ node }) => {
-		if (!node || !editorHasFocus) return null;
-		if (!Object.keys(blocks).filter(key => blocks[key].Sidebar).length) return null;
-		if (node.text !== '') return null;
-		if (node.type !== defaultBlockType) return null;
-		return (
-			<BlockDisclosureMenuButton
-				onClick={() => {
-					setIsOpen(x => !x);
-				}}
-				title="Insert block"
-			>
-				<PlusIcon
-					css={{
-						transition: '50ms transform',
-						transform: isOpen ? 'rotateZ(45deg)' : 'rotateZ(0deg)',
-					}}
-					title={isOpen ? 'Close' : 'Open'}
-				/>
-			</BlockDisclosureMenuButton>
-		);
-	};
+	const ItemActions = blocks[focusBlock?.type]?.Actions;
 
 	const MoveUp = ({ node }) => {
 		if (!node || !editorHasFocus) return null;
@@ -153,29 +107,18 @@ let AddBlock = ({ blocks, editor, editorHasFocus, editorState }) => {
 		);
 	};
 
+	// move up/down only make sense for dynamic types (i think)
+	if (!ItemActions) {
+		return null;
+	}
+
+	/* This is the widget displayed to the left of the block, when focused */
 	return (
-		<Fragment>
-			{/* This is the widget displayed to the left of the block, when focused */}
-			<BlockDisclosureMenu ref={iconRef}>
-				<InsertBlock node={focusBlock} editor={editor} />
-				<ItemActions node={focusBlock} editor={editor} />
-				<MoveUp node={focusBlock} editor={editor} />
-				<MoveDown node={focusBlock} editor={editor} />
-			</BlockDisclosureMenu>
-
-			{/* This is the dropdown menu shown when a user clicks `InsertBlock` */}
-			<BlockInsertMenu isOpen={editorHasFocus && isOpen} ref={menuRef}>
-				{Object.keys(blocks).map(key => {
-					let { Sidebar } = blocks[key];
-
-					if (!blocks[key].withChrome || Sidebar === undefined) {
-						return null;
-					}
-
-					return <Sidebar key={key} editor={editor} blocks={blocks} />;
-				})}
-			</BlockInsertMenu>
-		</Fragment>
+		<BlockDisclosureMenu ref={iconRef}>
+			<ItemActions node={focusBlock} editor={editor} />
+			<MoveUp node={focusBlock} editor={editor} />
+			<MoveDown node={focusBlock} editor={editor} />
+		</BlockDisclosureMenu>
 	);
 };
 

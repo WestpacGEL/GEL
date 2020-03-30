@@ -1,11 +1,9 @@
 /** @jsx jsx */
 
 import { Fragment, useMemo } from 'react';
-import { Block, Document } from 'slate';
+import { Block } from 'slate';
 import { Editor } from 'slate-react';
 import { jsx } from '@emotion/core';
-
-import { colors, gridSize } from '@arch-ui/theme';
 
 import AddBlock from './add-block';
 import { type as defaultType } from './blocks/paragraph';
@@ -50,50 +48,6 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 			}
 		};
 
-		const renderBlock = props => {
-			let block = blocks[props.node.type];
-			let isFocused = focusBlock && props.node && focusBlock.key === props.node.key;
-
-			if (!block) return null;
-
-			if (block.CurrentlyEditingBlocksContext) {
-				let { Consumer } = block.CurrentlyEditingBlocksContext;
-
-				return (
-					<Consumer>
-						{({ currentlyEditingBlocks, ...rest }) => {
-							let isEditing = currentlyEditingBlocks[props.node.key];
-
-							return (
-								<BlockLayout
-									isEditing={isEditing}
-									isFocused={isFocused}
-									onClickDisclosureArea={e => {
-										props.editor.moveToStartOfNode(props.node);
-									}}
-								>
-									{renderNode(props)}
-								</BlockLayout>
-							);
-						}}
-					</Consumer>
-				);
-			}
-
-			return props.parent instanceof Document ? (
-				<BlockLayout
-					isFocused={isFocused}
-					onClickDisclosureArea={e => {
-						props.editor.moveToStartOfNode(props.node);
-					}}
-				>
-					{renderNode(props)}
-				</BlockLayout>
-			) : (
-				renderNode(props)
-			);
-		};
-
 		return Object.values(blocks).reduce(
 			(combinedPlugins, block) => {
 				if (typeof block.getPlugins !== 'function') {
@@ -104,7 +58,7 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 			[
 				...markPlugins,
 				{
-					renderBlock: renderBlock,
+					renderBlock: renderNode,
 					renderInline: renderNode,
 				},
 			]
@@ -117,17 +71,25 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 
 	return (
 		<Fragment>
-			<Toolbar blocks={blocks} editor={editor} editorState={editorState} />
+			<Toolbar
+				blocks={blocks}
+				editor={editor}
+				editorHasFocus={hasFocus}
+				editorState={editorState}
+			/>
 			<div className={className} id={id}>
 				<Editor
 					schema={schema}
 					ref={setEditor}
 					plugins={plugins}
+					placeholder="Start writing..."
 					value={editorState}
 					tabIndex={0}
 					css={{
+						boxShadow: '0px 2px 0px rgba(23,43,77,0.1)',
+						minHeight: 220,
+						paddingBottom: '1em',
 						width: '100%',
-						minHeight: 250,
 					}}
 					onChange={({ value }) => {
 						onChange(value);
@@ -143,40 +105,5 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 		</Fragment>
 	);
 }
-
-// Styled Components
-// ------------------------------
-
-const cancelEvent = event => {
-	event.stopPropagation();
-	event.preventDefault();
-};
-
-// This is the disclosure indicator (rounded-line) to the left of the block
-// Plus the block node itself
-const BlockLayout = ({ children, isEditing = false, isFocused = false, onClickDisclosureArea }) => {
-	let lineColor = colors.N05;
-	if (isFocused) lineColor = colors.N20;
-	if (isEditing) lineColor = isFocused ? colors.B.base : colors.Y.base;
-
-	return (
-		<div css={{ display: 'flex' }}>
-			<div
-				css={{
-					borderLeft: '4px solid transparent',
-					borderLeftColor: lineColor,
-					boxSizing: 'border-box',
-					flexShrink: 0,
-					marginLeft: -gridSize * 2,
-					width: gridSize * 2,
-				}}
-				onMouseDown={cancelEvent}
-				onMouseUp={cancelEvent}
-				onClick={onClickDisclosureArea}
-			/>
-			<div css={{ paddingBottom: 8, flexGrow: 1 }}>{children}</div>
-		</div>
-	);
-};
 
 export default Stories;
