@@ -19,8 +19,8 @@ const buttonStyles = (_, { checked }) => {
 	const mq = useMediaQuery();
 
 	return mq({
-		borderTop: checked && '6px solid red !important', //a11y: for high contrast mode
-		borderBottom: checked && '6px solid red !important', //a11y: for high contrast mode
+		borderTop: checked && '6px solid transparent !important', //a11y: for high contrast mode
+		borderBottom: checked && '6px solid transparent !important', //a11y: for high contrast mode
 
 		'label:not(:last-of-type) &': {
 			borderTopRightRadius: 0,
