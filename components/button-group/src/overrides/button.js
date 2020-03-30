@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery, useBrand } from '@westpac/core';
 import { Button } from '@westpac/button';
 
 const ButtonGroupButton = ({ state: { checked, look, size, block, disabled }, ...rest }) => (
@@ -16,6 +16,7 @@ const ButtonGroupButton = ({ state: { checked, look, size, block, disabled }, ..
 );
 
 const buttonStyles = (_, { checked }) => {
+	const { PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	return mq({
@@ -30,6 +31,11 @@ const buttonStyles = (_, { checked }) => {
 		'label:not(:first-of-type) &': {
 			borderTopLeftRadius: 0,
 			borderBottomLeftRadius: 0,
+		},
+
+		// Focus state
+		'body:not(.isMouseMode) input:focus + &': {
+			...PACKS.focus,
 		},
 	})[0];
 };
