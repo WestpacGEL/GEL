@@ -1,23 +1,32 @@
 /** @jsx jsx */
+
 import { jsx } from '@emotion/core';
-import { useRef, Fragment, useLayoutEffect, forwardRef, useMemo } from 'react';
-import { createPortal } from 'react-dom';
-import { Popper } from 'react-popper';
-import { marks, markTypes } from './marks';
-import { ToolbarButton } from './toolbar-components';
-import { CircleSlashIcon } from '@arch-ui/icons';
+import { Fragment } from 'react';
+
 import { colors, gridSize } from '@arch-ui/theme';
-import { useMeasure } from '@arch-ui/hooks';
-import { getSelectionReference } from './utils';
-import applyRef from 'apply-ref';
 
-let stopPropagation = e => {
-	e.stopPropagation();
-};
+import { marks, markTypes } from './marks';
+import { ToolbarButton, ToolbarDivider } from './toolbar-components';
+import { ClearFormattingIcon } from './toolbar-icons';
 
-function InnerToolbar({ blocks, editor, editorState }) {
+// NOTE: reduce is used below to allow blocks to replace the toolbar by exposing
+// its own `Toolbar`, this was the case for the `link` block.
+
+export default function Toolbar({ blocks, editor, editorState }) {
 	return (
-		<div css={{ display: 'flex' }}>
+		<div
+			css={{
+				backgroundColor: 'white',
+				boxShadow: '0px 2px 0px rgba(23,43,77,0.1)',
+				color: colors.N90,
+				display: 'flex',
+				marginBottom: gridSize * 2,
+				padding: `${gridSize * 2}px 0`,
+				position: 'sticky',
+				top: 0,
+				zIndex: 1,
+			}}
+		>
 			{Object.keys(blocks)
 				.map(x => blocks[x].withChrome && blocks[x].Toolbar)
 				.filter(x => x)
@@ -30,6 +39,7 @@ function InnerToolbar({ blocks, editor, editorState }) {
 						);
 					},
 					<Fragment>
+						{/* Inline "marks", that wrap text */}
 						{Object.keys(marks).map(name => {
 							let Icon = marks[name].icon;
 							return (
@@ -45,9 +55,12 @@ function InnerToolbar({ blocks, editor, editorState }) {
 								/>
 							);
 						})}
+
+						<ToolbarDivider />
+
 						<ToolbarButton
-							label="Remove Formatting"
-							icon={<CircleSlashIcon />}
+							label="Clear formatting"
+							icon={<ClearFormattingIcon />}
 							onClick={() => {
 								markTypes.forEach(mark => {
 									editor.removeMark(mark);
@@ -56,11 +69,17 @@ function InnerToolbar({ blocks, editor, editorState }) {
 							}}
 						/>
 
+						<ToolbarDivider />
+
+						{/* Block elements, that are injected */}
 						{Object.keys(blocks).map(type => {
 							let ToolbarElement = blocks[type].ToolbarElement;
+
+							// the `withChrome` flag identifies blocks that represent "dynamic-components"
 							if (!blocks[type].withChrome || ToolbarElement === undefined) {
 								return null;
 							}
+
 							return <ToolbarElement key={type} editor={editor} editorState={editorState} />;
 						})}
 					</Fragment>
@@ -68,80 +87,3 @@ function InnerToolbar({ blocks, editor, editorState }) {
 		</div>
 	);
 }
-
-const PopperRender = forwardRef(({ scheduleUpdate, editorState, style, children }, ref) => {
-	let { fragment } = editorState;
-	let shouldShowToolbar = fragment.text !== '';
-	let containerRef = useRef(null);
-
-	let snapshot = useMeasure(containerRef);
-
-	useLayoutEffect(() => {
-		if (shouldShowToolbar) {
-			scheduleUpdate();
-		}
-	}, [scheduleUpdate, editorState, snapshot, shouldShowToolbar]);
-
-	return createPortal(
-		<div
-			onMouseDown={stopPropagation}
-			ref={node => {
-				applyRef(ref, node);
-				applyRef(containerRef, node);
-			}}
-			style={style}
-			css={{
-				// this isn't as nice of a transition as i'd like since the time is fixed
-				// i think it would better if it was physics based but that would probably
-				// be a lot of work for little gain
-				// maybe base the transition time on the previous value?
-				transition: 'transform 100ms, opacity 100ms',
-			}}
-		>
-			<div
-				css={{
-					backgroundColor: colors.N90,
-					padding: 8,
-					borderRadius: 6,
-					margin: gridSize,
-					display: shouldShowToolbar ? 'flex' : 'none',
-				}}
-			>
-				{shouldShowToolbar && children}
-			</div>
-		</div>,
-		document.body
-	);
-});
-
-export default ({ editorState, blocks, editor }) => {
-	// this element is created here so that when the popper rerenders
-	// the inner toolbar won't have to update
-	let children = <InnerToolbar blocks={blocks} editor={editor} editorState={editorState} />;
-	return (
-		<Popper
-			placement="top"
-			referenceElement={
-				// the reason we do this rather than having the selection reference
-				// be constant is because the selection reference
-				// has some internal state and it shouldn't persist between different
-				// editor references
-				useMemo(getSelectionReference, [])
-			}
-		>
-			{({ style, ref, scheduleUpdate }) => (
-				<PopperRender
-					{...{
-						scheduleUpdate,
-						editorState,
-						style: { ...style, zIndex: 10 },
-						blocks,
-						editor,
-						ref,
-						children,
-					}}
-				/>
-			)}
-		</Popper>
-	);
-};

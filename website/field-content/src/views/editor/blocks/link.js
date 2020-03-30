@@ -1,167 +1,218 @@
 /** @jsx jsx */
+
 import { jsx } from '@emotion/core';
-import React, { useContext, useState, Fragment, useEffect } from 'react';
-import { LinkIcon, CheckIcon, CircleSlashIcon, LinkExternalIcon } from '@arch-ui/icons';
-import { colors, gridSize } from '@arch-ui/theme';
+import { Fragment, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import { Popper } from 'react-popper';
-import { createPortal } from 'react-dom';
+import { gridSize } from '@arch-ui/theme';
+
 import { ToolbarButton } from '../toolbar-components';
+import { CrossIcon, ExternalIcon, LinkIcon, TickIcon } from '../toolbar-icons';
+import { Dialog } from '../dialog';
+import { useKeyPress } from '../hooks';
+import { getSelectionReference } from '../utils';
 
 export let type = 'link';
+
+// The anchor and dialog to EDIT a link
+// ----------------------------------------
 
 export function Node({ node, attributes, children, isSelected, editor }) {
 	let { data } = node;
 	const href = data.get('href');
-	let [aElement, setAElement] = useState(null);
+	let [anchorRef, setAnchorRef] = useState(null);
+	let [inputValue, setInputValue] = useState(href);
 
-	let [linkInputValue, setLinkInputValue] = useState(href);
-
-	// this is terrible
-	// but probably necessary
-	// because if we just do editor.setNodeByKey in the input onChange
-	// and let that change propagate the cursor position breaks
+	// this is terrible, but probably necessary because if we just do
+	// `editor.setNodeByKey` in the input `onChange` and let that change
+	// propagate, the cursor position breaks
 	useEffect(() => {
-		setLinkInputValue(href);
+		setInputValue(href);
 	}, [href]);
 
 	return (
 		<Fragment>
-			<a
-				{...attributes}
-				ref={setAElement}
-				css={{ color: 'blue', ':visited': { color: 'purple' } }}
-				href={href}
-			>
+			<a {...attributes} ref={setAnchorRef} css={{ color: 'blue' }} href={href}>
 				{children}
 			</a>
-			{isSelected &&
-				createPortal(
-					<Popper placement="bottom" referenceElement={aElement}>
-						{({ style, ref }) => {
-							return (
-								<div style={style} css={{ margin: gridSize, display: 'flex' }}>
-									<div
-										ref={ref}
-										css={{
-											backgroundColor: colors.N90,
-											color: 'white',
-											padding: 8,
-											borderRadius: 6,
-											display: 'flex',
+			{isSelected && (
+				<Popper placement="bottom" referenceElement={anchorRef}>
+					{({ style, ref }) => {
+						return (
+							<Dialog style={style} ref={ref}>
+								<div css={wrapperStyles}>
+									<Input
+										value={inputValue}
+										onClick={e => {
+											// we want to stop stopPropagation here so that focussing works
+											e.stopPropagation();
 										}}
-									>
-										<LinkInput
-											value={linkInputValue}
-											onChange={event => {
-												setLinkInputValue(event.target.value);
-												editor.setNodeByKey(node.key, {
-													data: data.set('href', event.target.value),
-												});
-											}}
-										/>
-										<ToolbarButton
-											as="a"
-											tooltipPlacement="bottom"
-											icon={<LinkExternalIcon />}
-											target="_blank"
-											rel="noopener"
-											label="Open Link"
-											css={{ marginLeft: gridSize }}
-											href={href}
-										/>
-									</div>
+										onChange={event => {
+											setInputValue(event.target.value);
+											editor.setNodeByKey(node.key, {
+												data: data.set('href', event.target.value),
+											});
+										}}
+									/>
+									<ToolbarButton
+										as="a"
+										css={{ marginLeft: gridSize }}
+										href={href}
+										icon={<ExternalIcon />}
+										label="Open"
+										rel="noopener"
+										target="_blank"
+										tooltipPlacement="bottom"
+									/>
+									<ToolbarButton
+										label="Unlink"
+										icon={<CrossIcon />}
+										onClick={() => {
+											editor.unwrapInline(type);
+										}}
+									/>
 								</div>
-							);
-						}}
-					</Popper>,
-					document.body
-				)}
+							</Dialog>
+						);
+					}}
+				</Popper>
+			)}
 		</Fragment>
 	);
 }
 
-function LinkInput(props) {
-	return (
-		<input
-			placeholder="Link..."
-			css={{ border: 0, outline: 'none', background: 'transparent', color: 'white' }}
-			{...props}
-		/>
-	);
-}
+// The button and dialog to CREATE a link
+// ----------------------------------------
 
-let SetLinkRange = React.createContext(() => {});
+// It'd be nice if we could wrap the selected text in a span with a bg-color to
+// fake the selection when the input is focused, you sort of lose your place
+// with it there.
 
-let LinkMenu = props => {
-	let [value, setValue] = useState('');
-	return (
-		<form
-			onSubmit={e => {
-				e.stopPropagation();
-				e.preventDefault();
-				props.onSubmit(value);
-			}}
-			css={{ display: 'flex' }}
-		>
-			<LinkInput
-				autoFocus
-				value={value}
-				onChange={e => {
-					setValue(e.target.value);
-				}}
-			/>
-			<ToolbarButton label="Submit" icon={<CheckIcon />} type="submit" />
-			<ToolbarButton
-				label="Cancel"
-				icon={<CircleSlashIcon />}
-				onClick={() => {
-					props.onCancel();
-				}}
-			/>
-		</form>
-	);
-};
-
-export function Toolbar({ children, editor }) {
-	let [linkRange, setLinkRange] = useState(null);
-
-	return (
-		<SetLinkRange.Provider value={setLinkRange}>
-			{linkRange === null ? (
-				children
-			) : (
-				<LinkMenu
-					onSubmit={value => {
-						editor.wrapInlineAtRange(linkRange, {
-							type: type,
-							data: { href: value },
-						});
-						editor.deselect();
-					}}
-					onCancel={() => {
-						setLinkRange(null);
-					}}
-				/>
-			)}
-		</SetLinkRange.Provider>
-	);
-}
 export function ToolbarElement({ editor, editorState }) {
+	let [dialogVisible, setDialogVisible] = useState(false);
+	let [linkRange, setLinkRange] = useState(null);
+	let [inputValue, setInputValue] = useState('');
+	let inputRef = useRef();
 	let hasLinks = editorState.inlines.some(inline => inline.type === type);
 
-	let setLinkRange = useContext(SetLinkRange);
+	// focus the input when the dialog opens
+	useEffect(() => {
+		if (dialogVisible) {
+			// popper freaks out if you do this synchronously. i think its fighting
+			// with the browser trying to bring the focused element into view...
+			setTimeout(() => {
+				inputRef.current.focus();
+			});
+		}
+	}, [dialogVisible]);
+
+	// let users bail on `esc` press
+	useKeyPress({
+		targetKey: 'Escape',
+		downHandler: () => {
+			setLinkRange(null);
+			setDialogVisible(false);
+			setInputValue('');
+		},
+		listenWhen: dialogVisible,
+	});
+
 	return (
-		<ToolbarButton
-			isActive={hasLinks}
-			label={hasLinks ? 'Remove Link' : 'Link'}
-			icon={<LinkIcon />}
-			onClick={() => {
-				if (hasLinks) {
-					editor.unwrapInline(type);
-				} else {
-					setLinkRange(editorState.selection);
+		<Fragment>
+			<ToolbarButton
+				isActive={hasLinks}
+				label={hasLinks ? 'Remove Link' : 'Link'}
+				icon={<LinkIcon />}
+				onClick={() => {
+					if (hasLinks) {
+						editor.unwrapInline(type);
+					} else {
+						setDialogVisible(true);
+						setLinkRange(editorState.selection);
+					}
+				}}
+			/>
+			<Popper
+				placement="bottom"
+				referenceElement={
+					// the reason we do this rather than having the selection reference be
+					// constant is because the selection reference has some internal state
+					// and it shouldn't persist between different editor references
+					useMemo(getSelectionReference, [])
 				}
-			}}
-		/>
+			>
+				{({ style, ref }) => {
+					if (!dialogVisible) {
+						return null;
+					}
+
+					return (
+						<Dialog style={style} ref={ref}>
+							<form
+								onSubmit={e => {
+									e.stopPropagation();
+									e.preventDefault();
+
+									editor.wrapInlineAtRange(linkRange, {
+										type: type,
+										data: { href: inputValue },
+									});
+
+									editor.deselect();
+									setDialogVisible(false);
+									setInputValue('');
+								}}
+								css={wrapperStyles}
+							>
+								<Input
+									ref={inputRef}
+									value={inputValue}
+									onChange={e => {
+										setInputValue(e.target.value);
+									}}
+								/>
+								<ToolbarButton label="Confirm" icon={<TickIcon />} type="submit" />
+								<ToolbarButton
+									label="Cancel"
+									icon={<CrossIcon />}
+									onClick={() => {
+										setLinkRange(null);
+										setDialogVisible(false);
+										setInputValue('');
+									}}
+								/>
+							</form>
+						</Dialog>
+					);
+				}}
+			</Popper>
+		</Fragment>
 	);
 }
+
+// Styled Components
+// ------------------------------
+
+const wrapperStyles = {
+	display: 'flex',
+	padding: gridSize,
+};
+
+const Input = forwardRef((props, ref) => (
+	<input
+		ref={ref}
+		placeholder="Link..."
+		onClick={e => {
+			e.stopPropagation(); // stop propagation here so that focus works
+		}}
+		css={{
+			background: 0,
+			border: 0,
+			color: 'inherit',
+			fontSize: '0.9rem',
+			paddingLeft: gridSize,
+			outline: 0,
+			width: 200,
+		}}
+		{...props}
+	/>
+));

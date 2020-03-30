@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import React, { useState } from 'react';
+
+import { Fragment, useState } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import Select from 'react-select';
 
@@ -105,7 +106,7 @@ const VisionFilter = ({ children }) => {
 	}
 
 	return (
-		<>
+		<Fragment>
 			<Select
 				css={{ zIndex: 4 }}
 				placeholder={'Select a vision filter...'}
@@ -118,7 +119,7 @@ const VisionFilter = ({ children }) => {
 				options={filters.map(f => ({ label: f, value: f }))}
 			/>
 			<div css={{ filter: filter ? `url(#${filter})` : 'none' }}>{children}</div>
-		</>
+		</Fragment>
 	);
 };
 

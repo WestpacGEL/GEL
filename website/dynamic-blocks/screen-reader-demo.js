@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'; // Needed for within Keystone
+
+import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
@@ -24,7 +25,7 @@ export const ScreenReaderText = {
 		}, [text]);
 
 		return (
-			<>
+			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'a11y-text'} field={{ label: 'Screen reader text', config: {} }} />
 					<FieldInput>
@@ -39,7 +40,7 @@ export const ScreenReaderText = {
 						/>
 					</FieldInput>
 				</FieldContainer>
-			</>
+			</Fragment>
 		);
 	},
 	component: ({ text }) => {
