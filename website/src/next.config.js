@@ -17,5 +17,9 @@ const config = {
 
 		return config;
 	},
+
+	env: {
+		APOLLO_CLIENT_GRAPHQL_URI: process.env.APOLLO_CLIENT_GRAPHQL_URI,
+	},
 };
 module.exports = withPreconstruct(config);

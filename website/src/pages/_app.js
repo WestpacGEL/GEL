@@ -12,7 +12,7 @@ const getApolloClient = initialState =>
 	new ApolloClient({
 		link: new HttpLink({
 			fetch,
-			uri: `${process.env.KEYSTONE_URI || 'http://localhost:3000'}/admin/api`,
+			uri: `${process.env.APOLLO_CLIENT_GRAPHQL_URI || 'http://localhost:3000/admin/api'}`,
 		}),
 		cache: new InMemoryCache().restore(initialState || {}),
 	});
