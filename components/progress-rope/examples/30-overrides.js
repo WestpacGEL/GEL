@@ -24,7 +24,17 @@ function Example({ brand }) {
 
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-rope'] = {
-		GroupButton: {
+		/* List: {
+			styles: (styles, {}) => ({
+				...styles,
+
+				'::after': {
+					...styles['::after'],
+					borderLeftStyle: 'dotted',
+				},
+			}),
+		}, */
+		/* GroupButton: {
 			styles: (styles, { active }) => ({
 				...styles,
 
@@ -55,16 +65,16 @@ function Example({ brand }) {
 				...styles,
 				color: active ? 'navy' : visited ? 'black' : 'cornflowerblue',
 			}),
-		},
+		}, */
 	};
 
 	return (
 		<GEL brand={overridesWithTokens}>
 			<Intopia ignore />
+			<h2>Default</h2>
 			<Grid>
 				<Cell width={6}>
 					<Wrapper>
-						<h2>With overrides applied</h2>
 						<ProgressRope current={state.index}>
 							<Step onClick={handleClick(0)}>Step 1</Step>
 							<Step onClick={handleClick(1)}>Step 2</Step>
@@ -83,9 +93,91 @@ function Example({ brand }) {
 					<Button onClick={() => dispatch({ type: 'prev' })}>prev</Button>{' '}
 					<Button onClick={() => dispatch({ type: 'next' })}>next</Button>
 				</Cell>
+
 				<Cell width={6}>
 					<Wrapper>
-						<h2>Data driven with overrides and component overrides</h2>
+						<ProgressRope
+							current={state.index}
+							overrides={{
+								List: {
+									styles: (styles, {}) => ({
+										...styles,
+
+										'::after': {
+											...styles['::after'],
+											borderLeftStyle: 'dotted',
+										},
+									}),
+								},
+							}}
+						>
+							<Step onClick={handleClick(0)}>Step 1</Step>
+							<Step onClick={handleClick(1)}>Step 2</Step>
+							<Step onClick={handleClick(2)}>Step 3</Step>
+							<Step onClick={handleClick(3)}>Step 4</Step>
+							<Step onClick={handleClick(4)}>Step 5</Step>
+							<Step end onClick={handleClick(5)}>
+								Review and Submit
+							</Step>
+						</ProgressRope>
+					</Wrapper>
+				</Cell>
+				<Cell top={2} width={6}>
+					<h3>Helper Controls</h3>
+					<h4>Current: {state.index}</h4>
+					<Button onClick={() => dispatch({ type: 'prev' })}>prev</Button>{' '}
+					<Button onClick={() => dispatch({ type: 'next' })}>next</Button>
+				</Cell>
+			</Grid>
+
+			<hr />
+
+			<h2>Group</h2>
+			<Grid>
+				<Cell width={6}>
+					<Wrapper>
+						<ProgressRope
+							current={state2.index}
+							data={[
+								{
+									type: 'group',
+									text: 'Group 1',
+									steps: [
+										{ text: 'Step 1', onClick: handleClick2(0) },
+										{ text: 'Step 2', onClick: handleClick2(1) },
+									],
+								},
+								{
+									type: 'group',
+									text: 'Group 2',
+									steps: [
+										{ text: 'Step 3', onClick: handleClick2(2) },
+										{ text: 'Step 4', onClick: handleClick2(3) },
+									],
+								},
+								{
+									type: 'group',
+									text: 'Group 3',
+									steps: [
+										{ text: 'Step 5', onClick: handleClick2(4) },
+										{ text: 'Step 6', onClick: handleClick2(5) },
+										{ text: 'Step 7', onClick: handleClick2(6) },
+									],
+								},
+								{ type: 'end', text: 'Review and Submit', onClick: handleClick2(7) },
+							]}
+						/>
+					</Wrapper>
+				</Cell>
+				<Cell top={2} width={6}>
+					<h3>Helper Controls</h3>
+					<h4>Current: {state2.index}</h4>
+					<Button onClick={() => dispatch2({ type: 'prev' })}>prev</Button>{' '}
+					<Button onClick={() => dispatch2({ type: 'next' })}>next</Button>
+				</Cell>
+
+				<Cell width={6}>
+					<Wrapper>
 						<ProgressRope
 							current={state2.index}
 							data={[
@@ -117,41 +209,14 @@ function Example({ brand }) {
 								{ type: 'end', text: 'Review and Submit', onClick: handleClick2(7) },
 							]}
 							overrides={{
-								GroupText: {
-									styles: (styles, { active }) => ({
+								List: {
+									styles: (styles, {}) => ({
 										...styles,
-
-										'::before': {
-											...styles['::before'],
-											borderLeft: `2px solid ${active ? 'darkmagenta' : 'plum'}`,
-										},
 
 										'::after': {
 											...styles['::after'],
-											border: `2px solid ${active ? 'darkmagenta' : 'plum'}`,
+											borderLeftStyle: 'dotted',
 										},
-									}),
-								},
-								Step: {
-									styles: (styles, { grouped, end, visited, furthest }) => ({
-										...styles,
-
-										'::before': {
-											...styles['::before'],
-											borderLeft: `2px solid ${visited && !furthest ? 'darkmagenta' : 'plum'}`,
-										},
-
-										'::after': {
-											...styles['::after'],
-											border: `2px solid ${visited ? 'darkmagenta' : 'plum'}`,
-											backgroundColor: grouped || end ? (visited ? 'darkmagenta' : 'plum') : '#fff',
-										},
-									}),
-								},
-								StepText: {
-									styles: (styles, { active, visited }) => ({
-										...styles,
-										color: active ? 'darkmagenta' : visited ? 'black' : 'plum',
 									}),
 								},
 							}}
