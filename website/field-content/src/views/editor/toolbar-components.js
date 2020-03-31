@@ -28,7 +28,12 @@ export const ToolbarButton = forwardRef(
 		consumerRef
 	) => {
 		return (
-			<Tooltip placement={tooltipPlacement} css={{ margin: gridSize }} content={label}>
+			<Tooltip
+				placement={tooltipPlacement}
+				css={{ margin: gridSize }}
+				content={label}
+				hideOnMouseDown
+			>
 				{tooltipRef => (
 					<Tag
 						data-state-active={isActive}

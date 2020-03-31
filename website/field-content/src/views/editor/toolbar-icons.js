@@ -2,6 +2,7 @@ import React from 'react';
 
 export const BlockQuoteIcon = props => <Svg path={svgPathMap['blockquote']} {...props} />;
 export const BoldIcon = props => <Svg path={svgPathMap['bold']} {...props} />;
+export const CodeIcon = props => <Svg path={svgPathMap['code']} {...props} />;
 export const ClearFormattingIcon = props => <Svg path={svgPathMap['clearFormatting']} {...props} />;
 export const HeadingIcon = props => <Svg path={svgPathMap['heading']} {...props} />;
 export const ItalicIcon = props => <Svg path={svgPathMap['italic']} {...props} />;
@@ -31,6 +32,9 @@ const svgPathMap = {
 	// eraser
 	clearFormatting:
 		'M8.06 13.91l7.63-7.44c.41-.4.41-1.05 0-1.45L10.86.3c-.41-.4-1.08-.4-1.49 0L.31 9.13c-.41.4-.41 1.05 0 1.45l5.58 5.44h8.12v-.01c.55 0 1-.45 1-1s-.45-1-1-1H7.96l.1-.1zm-2.17.06L1.67 9.85l4.22-4.11 4.22 4.11-4.22 4.12z',
+	// </>
+	code:
+		'M15.71 7.29l-3-3a1.003 1.003 0 00-1.42 1.42L13.59 8l-2.29 2.29c-.19.18-.3.43-.3.71a1.003 1.003 0 001.71.71l3-3c.18-.18.29-.43.29-.71 0-.28-.11-.53-.29-.71zM5 5a1.003 1.003 0 00-1.71-.71l-3 3C.11 7.47 0 7.72 0 8c0 .28.11.53.29.71l3 3a1.003 1.003 0 001.42-1.42L2.41 8 4.7 5.71c.19-.18.3-.43.3-.71zm4-3c-.48 0-.87.35-.96.81l-2 10c-.01.06-.04.12-.04.19 0 .55.45 1 1 1 .48 0 .87-.35.96-.81l2-10c.01-.06.04-.12.04-.19 0-.55-.45-1-1-1z',
 	// H
 	heading:
 		'M13 1c-.55 0-1 .45-1 1v5H4V2c0-.55-.45-1-1-1s-1 .45-1 1v12c0 .55.45 1 1 1s1-.45 1-1V9h8v5c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1z',

@@ -46,7 +46,7 @@ export function Sidebar({ blocks, editor }) {
 		<BlockInsertMenuItem
 			icon={icon}
 			text="Image"
-			insertBlock={() => {
+			onClick={() => {
 				getFiles().then(files => {
 					files.forEach(file => insertImageBlockFromFile(blocks, editor, file));
 				});
