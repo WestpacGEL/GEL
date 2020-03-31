@@ -5,7 +5,6 @@ import { useRef, useCallback, useLayoutEffect } from 'react';
 
 import { ArrowUpIcon, ArrowDownIcon } from '@arch-ui/icons';
 
-import { type as defaultBlockType } from './blocks/paragraph';
 import { BlockDisclosureMenu, BlockDisclosureMenuButton } from './block-disclosure-menu';
 
 const isChildOf = (parent, child) => {

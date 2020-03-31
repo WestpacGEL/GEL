@@ -135,7 +135,7 @@ export const BlockInsertMenu = forwardRef(({ isOpen, ...props }, ref) => (
 	/>
 ));
 
-export const BlockInsertMenuItem = ({ icon, text, insertBlock }) => (
+export const BlockInsertMenuItem = ({ kbd, icon, text, onClick }) => (
 	<button
 		css={{
 			alignItems: 'center',
@@ -147,6 +147,7 @@ export const BlockInsertMenuItem = ({ icon, text, insertBlock }) => (
 			fontWeight: 500,
 			margin: 0,
 			padding: `${gridSize}px ${gridSize * 2}px`,
+			textAlign: 'start',
 			whiteSpace: 'nowrap',
 			width: '100%',
 
@@ -161,9 +162,24 @@ export const BlockInsertMenuItem = ({ icon, text, insertBlock }) => (
 			},
 		}}
 		type="button"
-		onClick={insertBlock}
+		onClick={onClick}
 	>
-		<span>{icon}</span>
-		<span css={{ paddingLeft: gridSize * 2 }}>{text}</span>
+		{icon && <span css={{ paddingRight: gridSize * 2 }}>{icon}</span>}
+		<span css={{ flex: 1 }}>{text}</span>
+		{kbd && (
+			<span
+				css={{
+					backgroundColor: colors.N10,
+					borderRadius: 3,
+					color: colors.N50,
+					fontSize: '0.8em',
+					fontWeight: 500,
+					marginLeft: gridSize * 2,
+					padding: '2px 4px',
+				}}
+			>
+				{kbd}
+			</span>
+		)}
 	</button>
 );

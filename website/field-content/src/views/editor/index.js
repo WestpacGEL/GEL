@@ -67,14 +67,14 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 
 	let [editor, setEditor] = useStateWithEqualityCheck(null);
 
-	let hasFocus = editor?.el?.contains(document.activeElement);
+	let editorHasFocus = editorState?.selection?.isFocused;
 
 	return (
 		<Fragment>
 			<Toolbar
 				blocks={blocks}
 				editor={editor}
-				editorHasFocus={hasFocus}
+				editorHasFocus={editorHasFocus}
 				editorState={editorState}
 			/>
 			<div className={className} id={id}>
@@ -98,7 +98,7 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 				<AddBlock
 					editor={editor}
 					editorState={editorState}
-					editorHasFocus={hasFocus}
+					editorHasFocus={editorHasFocus}
 					blocks={blocks}
 				/>
 			</div>
