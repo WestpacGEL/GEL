@@ -15,7 +15,7 @@ const toggleStyles = (_, { size, checked }) => {
 	return mq({
 		display: 'block',
 		position: 'relative',
-		border: `2px solid ${checked ? COLORS.hero : COLORS.border}`,
+		border: `1px solid ${checked ? COLORS.hero : COLORS.borderDark}`,
 		borderRadius: sizing.borderRadius,
 		backgroundColor: checked ? COLORS.hero : '#fff',
 		height: sizing.height,
