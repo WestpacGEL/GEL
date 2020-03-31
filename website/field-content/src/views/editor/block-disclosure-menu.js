@@ -135,8 +135,9 @@ export const BlockInsertMenu = forwardRef(({ isOpen, ...props }, ref) => (
 	/>
 ));
 
-export const BlockInsertMenuItem = ({ kbd, icon, text, onClick }) => (
+export const BlockInsertMenuItem = ({ kbd, icon, isActive, text, onClick }) => (
 	<button
+		data-state-active={isActive}
 		css={{
 			alignItems: 'center',
 			background: 'none',
@@ -159,6 +160,11 @@ export const BlockInsertMenuItem = ({ kbd, icon, text, onClick }) => (
 			':focus,:hover': {
 				background: colors.N05,
 				color: colors.N80,
+			},
+
+			'[data-state-active="true"]&': {
+				background: colors.N60,
+				color: 'white',
 			},
 		}}
 		type="button"
