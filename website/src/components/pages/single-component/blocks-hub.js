@@ -69,7 +69,11 @@ const slateRenderer = item =>
 					);
 
 				case 'heading':
-					return <Heading key={path}>{serializeChildren(node.nodes)}</Heading>;
+					return (
+						<Heading key={path} size={node.data.size}>
+							{serializeChildren(node.nodes)}
+						</Heading>
+					);
 
 				case 'list-item':
 					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;
