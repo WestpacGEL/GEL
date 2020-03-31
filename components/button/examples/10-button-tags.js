@@ -2,12 +2,11 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
+import { Link } from 'react-router-dom';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
-	const Link = ({ children, ...rest }) => <span {...rest}>{children}</span>;
-
 	return (
 		<GEL brand={brand}>
 			<Intopia />
@@ -35,7 +34,7 @@ function Example({ brand }) {
 			<h2>
 				Button with an <code>&lt;Link&gt;</code> tag
 			</h2>
-			<Button tag={Link} to="path/to/thing" value="Button">
+			<Button tag={Link} to="path/to/thing">
 				Nav
 			</Button>
 		</GEL>
