@@ -88,6 +88,6 @@ function keyComboText(key) {
 			return `⌘${key.toUpperCase()}`;
 		}
 
-		return `ctrl+${key.toUpperCase()}`;
+		return `Ctrl+${key.toUpperCase()}`;
 	};
 }
