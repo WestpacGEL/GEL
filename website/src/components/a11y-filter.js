@@ -1,6 +1,5 @@
 /** @jsx jsx */
-
-import { Fragment, useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import Select from 'react-select';
 

@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 const pageFragment = `
 id
 pageTitle
+url
 design {
 	id
 	document

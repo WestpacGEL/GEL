@@ -42,7 +42,7 @@
 		"postinstall": "yarn dep:test && preconstruct dev && yarn propTypes && build-field-types dev",
 		"publish-packages": "yarn build && yarn propTypes && yarn changeset publish",
 		"version-packages": "yarn changeset version",
-		"website:deploy": "pm2 deploy pm2-ecosystem.json staging"
+		"website:deploy-staging": "pm2 deploy pm2-ecosystem.json staging"
 	},
 	"workspaces": [
 		"brands/*",

@@ -1,7 +1,7 @@
 import React from 'react';
 import isHotkey from 'is-hotkey';
 
-import { BoldIcon, ItalicIcon, StrikethroughIcon, UnderlineIcon } from './toolbar-icons';
+import { BoldIcon, CodeIcon, ItalicIcon, StrikethroughIcon, UnderlineIcon } from './toolbar-icons';
 
 function markPlugin(type, options) {
 	return {
@@ -22,31 +22,49 @@ function markPlugin(type, options) {
 	};
 }
 
+// NOTE: `level` determines whether the mark should be displayed at all times in
+// the toolbar or be pushed into a dropdown menu
+
 export let marks = {
 	bold: {
 		test: isHotkey('mod+b'),
+		keyboard: keyComboText('b'),
 		label: 'Bold',
-
 		icon: BoldIcon,
+		level: 'primary',
 		render: props => <strong {...props.attributes}>{props.children}</strong>,
 	},
 	italic: {
 		test: isHotkey('mod+i'),
+		keyboard: keyComboText('i'),
 		label: 'Italic',
 		icon: ItalicIcon,
+		level: 'primary',
 		render: props => <em {...props.attributes}>{props.children}</em>,
 	},
 	strikethrough: {
 		test: isHotkey('mod+~'),
+		keyboard: keyComboText('~'),
 		label: 'Strikethrough',
 		icon: StrikethroughIcon,
+		level: 'secondary',
 		render: props => <s {...props.attributes}>{props.children}</s>,
 	},
 	underline: {
 		test: isHotkey('mod+u'),
+		keyboard: keyComboText('u'),
 		label: 'Underline',
 		icon: UnderlineIcon,
+		level: 'secondary',
 		render: props => <u {...props.attributes}>{props.children}</u>,
+	},
+	code: {
+		test: noop,
+		keyboard: noop,
+		label: 'Code',
+		icon: CodeIcon,
+		level: 'secondary',
+		render: props => <code {...props.attributes}>{props.children}</code>,
 	},
 };
 
@@ -55,3 +73,21 @@ export let markTypes = Object.keys(marks);
 export let plugins = Object.entries(marks).map(([type, options]) => {
 	return markPlugin(type, options);
 });
+
+// Utils
+// ------------------------------
+
+function noop() {}
+
+const IS_MAC =
+	typeof window != 'undefined' && /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
+
+function keyComboText(key) {
+	return function getKbdKey() {
+		if (IS_MAC) {
+			return `⌘${key.toUpperCase()}`;
+		}
+
+		return `Ctrl+${key.toUpperCase()}`;
+	};
+}

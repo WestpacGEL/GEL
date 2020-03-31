@@ -145,6 +145,7 @@ const MainContainer = props => {
 		<main
 			{...props}
 			css={{
+				scrollBehavior: 'smooth',
 				display: 'flex !important',
 				flexDirection: 'column',
 				overflowY: 'scroll',

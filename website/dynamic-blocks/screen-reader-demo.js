@@ -1,6 +1,5 @@
 /** @jsx jsx */
-
-import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
+import React, { useState, useEffect, Fragment } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
