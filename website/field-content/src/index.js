@@ -7,9 +7,7 @@ import {
 } from './Implementation';
 import {
 	blockquote,
-	heading2,
-	heading3,
-	heading4,
+	heading,
 	imageContainer as image,
 	link,
 	orderedList,
@@ -31,9 +29,7 @@ export const Content = {
 	},
 	blocks: {
 		blockquote,
-		heading2,
-		heading3,
-		heading4,
+		heading,
 		image,
 		link,
 		orderedList,

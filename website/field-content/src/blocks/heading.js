@@ -4,9 +4,9 @@ import { paragraph } from '.';
 
 export default class HeadingBlock extends Block {
 	get type() {
-		return 'heading-3';
+		return 'heading';
 	}
 	getAdminViews() {
-		return [importView('../views/editor/blocks/heading-3'), ...new paragraph().getAdminViews()];
+		return [importView('../views/editor/blocks/heading'), ...new paragraph().getAdminViews()];
 	}
 }

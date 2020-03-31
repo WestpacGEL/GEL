@@ -2,43 +2,15 @@
 
 import { jsx } from '@emotion/core';
 import isHotkey from 'is-hotkey';
+import { Heading as WestpacHeading } from '@westpac/heading';
 
+import { Node, sizes, toggleHeadingBlock, type } from './blocks/heading';
 import { type as defaultType } from './blocks/paragraph';
+import { BlockInsertMenuItem } from './block-disclosure-menu';
+import { DropdownMenu } from './dialog';
 import { ToolbarButton } from './toolbar-components';
 import { HeadingIcon, ArrowDownIcon } from './toolbar-icons';
-import { DropdownMenu } from './dialog';
-import { BlockInsertMenuItem } from './block-disclosure-menu';
 import { hasBlock } from './utils';
-
-export function Heading({ level, attributes, children }) {
-	let Tag = `h${level}`;
-	return <Tag {...attributes}>{children}</Tag>;
-}
-
-export let plugins = type => () => [
-	{
-		onKeyDown(event, editor, next) {
-			// make it so when you press enter after typing a heading,
-			// the block type will change to a paragraph
-			if (event.keyCode === 13 && editor.value.blocks.every(block => block.type === type)) {
-				editor.splitBlock().setBlocks(defaultType);
-				return;
-			}
-
-			// Insert block with hot key -- type e.g. 'heading-2'
-			let level = type.slice(-1);
-			if (isHotkey(`mod+opt+${level}`, event)) {
-				// Prevent the default characters from being inserted.
-				event.preventDefault();
-				// Toggle the heading block
-				toggleHeading({ editor, editorState: editor.value, type });
-				return;
-			}
-
-			next();
-		},
-	},
-];
 
 export const HeadingsMenu = ({ editor, editorState }) => {
 	return (
@@ -58,16 +30,21 @@ export const HeadingsMenu = ({ editor, editorState }) => {
 				/>
 			)}
 		>
-			{levels.map(h => {
-				let Tag = `h${h.level}`;
+			{sizes.map(size => {
+				let isActive =
+					editorState?.focusBlock?.type === type &&
+					editorState?.focusBlock?.data.get('size') === size;
+
+				let fontSize = `${0.75 + (1 - size / 10)}rem`; // create an approximate scale to improve affordance
+
 				return (
 					<BlockInsertMenuItem
-						key={h.type}
-						kbd={keyComboText(h.level)}
-						isActive={editorState?.focusBlock?.type === h.type}
-						text={<Tag css={{ margin: 0 }}>{h.label}</Tag>}
+						key={size}
+						kbd={keyComboText(size)}
+						isActive={isActive}
+						text={<strong style={{ fontSize, lineHeight: 1 }}>Heading {size}</strong>}
 						onClick={() => {
-							toggleHeading({ editor, editorState, type: h.type });
+							toggleHeadingBlock({ editor, size });
 						}}
 					/>
 				);
@@ -75,12 +52,6 @@ export const HeadingsMenu = ({ editor, editorState }) => {
 		</DropdownMenu>
 	);
 };
-
-let levels = [
-	{ label: 'Heading 2', type: 'heading-2', level: 2 },
-	{ label: 'Heading 3', type: 'heading-3', level: 3 },
-	{ label: 'Heading 4', type: 'heading-4', level: 4 },
-];
 
 // Utils
 // ------------------------------
@@ -94,13 +65,4 @@ function keyComboText(key) {
 	}
 
 	return `Ctrl+Opt+${key}`;
-}
-
-function toggleHeading({ editor, editorState, type }) {
-	if (hasBlock(editorState, type)) {
-		editor.setBlocks({ type: defaultType });
-	} else {
-		editor.setBlocks({ type });
-	}
-	editor.focus();
 }
