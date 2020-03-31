@@ -107,9 +107,8 @@ export const Popover = ({
 		};
 	}, [open]);
 
-	// on escape close should also check if focused
 	const keyHandler = e => {
-		if (open && e.keyCode === 27 && popoverRef.current.contains(e.target)) {
+		if (open && e.keyCode === 27) {
 			handleOpen(event);
 		}
 	};
