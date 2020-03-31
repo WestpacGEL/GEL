@@ -66,8 +66,8 @@ export function Sidebar({ editor }) {
 				<BlockInsertMenuItem
 					key={compName}
 					icon={icon}
-					text={`${compName.replace(/([A-Z])/g, ' $1')}`}
-					insertBlock={() => {
+					text={componentNameToLabel(compName)}
+					onClick={() => {
 						let block = Block.create({
 							type,
 							data: {
@@ -81,6 +81,11 @@ export function Sidebar({ editor }) {
 				/>
 			);
 		});
+}
+
+function componentNameToLabel(name) {
+	let str = `${name.replace(/([A-Z])/g, ' $1')}`.trim();
+	return str.charAt(0) + str.slice(1).toLowerCase();
 }
 
 export function Actions({ editor, node }) {

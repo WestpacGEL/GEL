@@ -2,8 +2,9 @@
 import { Component } from 'react';
 import { jsx } from '@emotion/core';
 import { colors } from '@arch-ui/theme';
+import { FieldContainer, FieldLabel } from '@arch-ui/fields';
+
 import Editor from './editor';
-import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 
 class ErrorBoundary extends Component {
 	state = {
