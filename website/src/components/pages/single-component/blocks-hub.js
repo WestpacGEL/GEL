@@ -68,26 +68,8 @@ const slateRenderer = item =>
 						</p>
 					);
 
-				case 'heading2':
-					return (
-						<Heading tag="h2" key={path}>
-							{serializeChildren(node.nodes)}
-						</Heading>
-					);
-
-				case 'heading3':
-					return (
-						<Heading tag="h3" key={path}>
-							{serializeChildren(node.nodes)}
-						</Heading>
-					);
-
-				case 'heading4':
-					return (
-						<Heading tag="h4" key={path}>
-							{serializeChildren(node.nodes)}
-						</Heading>
-					);
+				case 'heading':
+					return <Heading key={path}>{serializeChildren(node.nodes)}</Heading>;
 
 				case 'list-item':
 					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;

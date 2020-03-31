@@ -1,8 +1,6 @@
 import blockquote from './blockquote';
 import caption from './caption';
-import heading2 from './heading-2';
-import heading3 from './heading-3';
-import heading4 from './heading-4';
+import heading from './heading';
 import imageContainer from './image-container';
 import image from './image';
 import link from './link';
@@ -14,9 +12,7 @@ import unorderedList from './unordered-list';
 export {
 	blockquote,
 	caption,
-	heading2,
-	heading3,
-	heading4,
+	heading,
 	imageContainer,
 	image,
 	link,
