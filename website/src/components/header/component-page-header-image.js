@@ -1,6 +1,8 @@
 /** @jsx jsx */
+
+import { Fragment } from 'react';
 import { jsx } from '@westpac/core';
-import React from 'react';
+
 import WbcBackgroundRightSvg from './symbols/WbcBackgroundRightSvg';
 import WbcBackgroundLeftSvg from './symbols/WbcBackgroundLeftSvg';
 import StgBackgroundSvg from './symbols/StgBackgroundSvg';
@@ -8,7 +10,7 @@ import BsaBackgroundSvg from './symbols/BsaBackgroundSvg';
 
 const ComponentPageHeaderImage = ({ brand }) => {
 	const WestpacImage = () => (
-		<>
+		<Fragment>
 			<div
 				css={{
 					position: 'absolute',
@@ -32,7 +34,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 			>
 				<WbcBackgroundRightSvg height={'200px'} />
 			</div>
-		</>
+		</Fragment>
 	);
 
 	const StGeorgeImage = () => (

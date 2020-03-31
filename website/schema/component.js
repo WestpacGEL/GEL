@@ -7,11 +7,11 @@ const slugify = require('slugify');
 slugify.extend({ _: '-' });
 
 const BLOCKS_CONFIG = [
-	Content.blocks.blockquote,
+	Content.blocks.heading,
 	Content.blocks.orderedList,
 	Content.blocks.unorderedList,
+	Content.blocks.blockquote,
 	Content.blocks.link,
-	Content.blocks.heading,
 	[DynamicComponentsBlock, { components: DYNAMIC_BLOCKS_DIR }],
 ];
 

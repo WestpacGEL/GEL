@@ -1,14 +1,17 @@
 import * as React from 'react';
-import { hasBlock } from '../utils';
-import { type as defaultType } from './paragraph';
+
 import { ToolbarButton } from '../toolbar-components';
+import { HeadingIcon } from '../toolbar-icons';
+import { hasBlock } from '../utils';
+
+import { type as defaultType } from './paragraph';
 
 export let type = 'heading';
 
 export function ToolbarElement({ editor, editorState }) {
 	return (
 		<ToolbarButton
-			icon={<span aria-hidden>H</span>}
+			icon={<HeadingIcon />}
 			label="Heading"
 			isActive={hasBlock(editorState, type)}
 			onClick={() => {

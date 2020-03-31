@@ -1,23 +1,35 @@
 /** @jsx jsx */
+
 import { jsx } from '@emotion/core';
-import { useRef, Fragment, useLayoutEffect, forwardRef, useMemo } from 'react';
-import { createPortal } from 'react-dom';
-import { Popper } from 'react-popper';
-import { marks, markTypes } from './marks';
-import { ToolbarButton } from './toolbar-components';
-import { CircleSlashIcon } from '@arch-ui/icons';
+import { Fragment, useRef, useState } from 'react';
+
 import { colors, gridSize } from '@arch-ui/theme';
-import { useMeasure } from '@arch-ui/hooks';
-import { getSelectionReference } from './utils';
-import applyRef from 'apply-ref';
 
-let stopPropagation = e => {
-	e.stopPropagation();
-};
+import { Dialog } from './dialog';
+import { marks, markTypes } from './marks';
+import { ToolbarButton, ToolbarDivider } from './toolbar-components';
+import { ClearFormattingIcon, PlusIcon, ArrowDownIcon } from './toolbar-icons';
+import { useClickOutside } from './hooks/useClickOutside';
+import { useKeyPress } from './hooks';
 
-function InnerToolbar({ blocks, editor, editorState }) {
+// NOTE: reduce is used below to allow blocks to replace the toolbar by exposing
+// its own `Toolbar`, this was the case for the `link` block.
+
+export default function Toolbar({ blocks, editor, editorHasFocus, editorState }) {
 	return (
-		<div css={{ display: 'flex' }}>
+		<div
+			css={{
+				backgroundColor: 'white',
+				boxShadow: '0px 2px 0px rgba(23,43,77,0.1)',
+				color: colors.N90,
+				display: 'flex',
+				marginBottom: gridSize * 2,
+				padding: `${gridSize * 2}px 0`,
+				position: 'sticky',
+				top: 0,
+				zIndex: 2,
+			}}
+		>
 			{Object.keys(blocks)
 				.map(x => blocks[x].withChrome && blocks[x].Toolbar)
 				.filter(x => x)
@@ -30,12 +42,28 @@ function InnerToolbar({ blocks, editor, editorState }) {
 						);
 					},
 					<Fragment>
+						{/* Block elements, that are injected */}
+						{Object.keys(blocks).map(type => {
+							let ToolbarElement = blocks[type].ToolbarElement;
+
+							// the `withChrome` flag identifies blocks that represent "dynamic-components"
+							if (!blocks[type].withChrome || ToolbarElement === undefined) {
+								return null;
+							}
+
+							return <ToolbarElement key={type} editor={editor} editorState={editorState} />;
+						})}
+
+						<ToolbarDivider />
+
+						{/* Inline "marks", that wrap text */}
 						{Object.keys(marks).map(name => {
 							let Icon = marks[name].icon;
 							return (
 								<ToolbarButton
 									label={marks[name].label}
 									icon={<Icon />}
+									isDisabled={editorState?.focusBlock?.type === 'dynamic-components'}
 									isActive={editorState.activeMarks.some(mark => mark.type === name)}
 									onClick={() => {
 										editor.toggleMark(name);
@@ -45,9 +73,12 @@ function InnerToolbar({ blocks, editor, editorState }) {
 								/>
 							);
 						})}
+
+						<ToolbarDivider />
+
 						<ToolbarButton
-							label="Remove Formatting"
-							icon={<CircleSlashIcon />}
+							label="Clear formatting"
+							icon={<ClearFormattingIcon />}
 							onClick={() => {
 								markTypes.forEach(mark => {
 									editor.removeMark(mark);
@@ -56,92 +87,91 @@ function InnerToolbar({ blocks, editor, editorState }) {
 							}}
 						/>
 
-						{Object.keys(blocks).map(type => {
-							let ToolbarElement = blocks[type].ToolbarElement;
-							if (!blocks[type].withChrome || ToolbarElement === undefined) {
-								return null;
-							}
-							return <ToolbarElement key={type} editor={editor} editorState={editorState} />;
-						})}
+						<InsertMenu
+							blocks={blocks}
+							editor={editor}
+							editorHasFocus={editorHasFocus}
+							editorState={editorState}
+						/>
 					</Fragment>
 				)}
 		</div>
 	);
 }
 
-const PopperRender = forwardRef(({ scheduleUpdate, editorState, style, children }, ref) => {
-	let { fragment } = editorState;
-	let shouldShowToolbar = fragment.text !== '';
-	let containerRef = useRef(null);
+// Insert Menu
+// ------------------------------
 
-	let snapshot = useMeasure(containerRef);
+/* This is the dropdown menu shown when a user clicks `InsertBlock` */
+const InsertMenu = ({ blocks, editor }) => {
+	// bail if there aren't any "insertable" blocks
+	if (!Object.keys(blocks).filter(key => blocks[key].Sidebar).length) return null;
 
-	useLayoutEffect(() => {
-		if (shouldShowToolbar) {
-			scheduleUpdate();
-		}
-	}, [scheduleUpdate, editorState, snapshot, shouldShowToolbar]);
+	let targetRef = useRef();
+	let menuRef = useRef();
+	let [isOpen, setIsOpen] = useState(false);
 
-	return createPortal(
-		<div
-			onMouseDown={stopPropagation}
-			ref={node => {
-				applyRef(ref, node);
-				applyRef(containerRef, node);
-			}}
-			style={style}
-			css={{
-				// this isn't as nice of a transition as i'd like since the time is fixed
-				// i think it would better if it was physics based but that would probably
-				// be a lot of work for little gain
-				// maybe base the transition time on the previous value?
-				transition: 'transform 100ms, opacity 100ms',
-			}}
-		>
-			<div
-				css={{
-					backgroundColor: colors.N90,
-					padding: 8,
-					borderRadius: 6,
-					margin: gridSize,
-					display: shouldShowToolbar ? 'flex' : 'none',
-				}}
-			>
-				{shouldShowToolbar && children}
-			</div>
-		</div>,
-		document.body
-	);
-});
+	// close the menu on `Esc` press, and click outside either the target or menu
+	useKeyPress({
+		downHandler: () => {
+			setIsOpen(false);
+		},
+		targetKey: 'Escape',
+		listenWhen: isOpen,
+	});
+	useClickOutside({
+		handler: () => {
+			setIsOpen(false);
+		},
+		refs: [targetRef, menuRef],
+		listenWhen: isOpen,
+	});
 
-export default ({ editorState, blocks, editor }) => {
-	// this element is created here so that when the popper rerenders
-	// the inner toolbar won't have to update
-	let children = <InnerToolbar blocks={blocks} editor={editor} editorState={editorState} />;
 	return (
-		<Popper
-			placement="top"
-			referenceElement={
-				// the reason we do this rather than having the selection reference
-				// be constant is because the selection reference
-				// has some internal state and it shouldn't persist between different
-				// editor references
-				useMemo(getSelectionReference, [])
-			}
-		>
-			{({ style, ref, scheduleUpdate }) => (
-				<PopperRender
-					{...{
-						scheduleUpdate,
-						editorState,
-						style: { ...style, zIndex: 10 },
-						blocks,
-						editor,
-						ref,
-						children,
+		<Fragment>
+			<ToolbarDivider />
+			<div css={{ position: 'relative' }}>
+				<ToolbarButton
+					isActive={isOpen}
+					ref={targetRef}
+					label="Insert"
+					icon={
+						<div css={{ display: 'flex' }}>
+							<PlusIcon />
+							<ArrowDownIcon />
+						</div>
+					}
+					onClick={() => {
+						setIsOpen(s => !s);
 					}}
 				/>
-			)}
-		</Popper>
+				<Dialog
+					css={{
+						display: isOpen ? 'block' : 'none',
+						maxHeight: 400,
+						paddingBottom: 4,
+						paddingTop: 4,
+						overflowY: 'auto',
+						top: '100%',
+						marginTop: gridSize,
+					}}
+					ref={menuRef}
+					onClick={() => {
+						setIsOpen(false);
+					}}
+				>
+					{Object.keys(blocks).map(key => {
+						let { Sidebar } = blocks[key];
+
+						// only interested in "dynamic-components"
+						if (!blocks[key].withChrome || Sidebar === undefined) {
+							return null;
+						}
+
+						return <Sidebar key={key} editor={editor} blocks={blocks} />;
+					})}
+				</Dialog>
+			</div>
+		</Fragment>
 	);
 };

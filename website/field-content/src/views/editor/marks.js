@@ -1,6 +1,8 @@
 import React from 'react';
 import isHotkey from 'is-hotkey';
 
+import { BoldIcon, ItalicIcon, StrikethroughIcon, UnderlineIcon } from './toolbar-icons';
+
 function markPlugin(type, options) {
 	return {
 		onKeyDown(event, editor, next) {
@@ -25,49 +27,25 @@ export let marks = {
 		test: isHotkey('mod+b'),
 		label: 'Bold',
 
-		icon: props => {
-			return (
-				<strong {...props} aria-hidden>
-					B
-				</strong>
-			);
-		},
+		icon: BoldIcon,
 		render: props => <strong {...props.attributes}>{props.children}</strong>,
 	},
 	italic: {
 		test: isHotkey('mod+i'),
 		label: 'Italic',
-		icon: props => {
-			return (
-				<em {...props} aria-hidden>
-					I
-				</em>
-			);
-		},
+		icon: ItalicIcon,
 		render: props => <em {...props.attributes}>{props.children}</em>,
 	},
 	strikethrough: {
 		test: isHotkey('mod+~'),
 		label: 'Strikethrough',
-		icon: props => {
-			return (
-				<s {...props} aria-hidden>
-					S
-				</s>
-			);
-		},
+		icon: StrikethroughIcon,
 		render: props => <s {...props.attributes}>{props.children}</s>,
 	},
 	underline: {
 		test: isHotkey('mod+u'),
 		label: 'Underline',
-		icon: props => {
-			return (
-				<u {...props} aria-hidden>
-					U
-				</u>
-			);
-		},
+		icon: UnderlineIcon,
 		render: props => <u {...props.attributes}>{props.children}</u>,
 	},
 };
