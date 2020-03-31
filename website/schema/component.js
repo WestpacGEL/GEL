@@ -12,6 +12,9 @@ const BLOCKS_CONFIG = [
 	Content.blocks.unorderedList,
 	Content.blocks.blockquote,
 	Content.blocks.link,
+	Content.blocks.heading2,
+	Content.blocks.heading3,
+	Content.blocks.heading4,
 	[DynamicComponentsBlock, { components: DYNAMIC_BLOCKS_DIR }],
 ];
 
@@ -118,7 +121,7 @@ const getComponentSchema = options => ({
 			blocks: BLOCKS_CONFIG,
 		},
 		categories: { type: Relationship, ref: 'Category', many: true },
-		relatedInfo: { type: Content, blocks: [Content.blocks.link, Content.blocks.heading] },
+		relatedInfo: { type: Content, blocks: [Content.blocks.link, Content.blocks.heading2] },
 	},
 });
 
