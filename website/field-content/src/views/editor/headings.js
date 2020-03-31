@@ -1,8 +1,12 @@
-import * as React from 'react';
+/** @jsx jsx */
+
+import { jsx } from '@emotion/core';
 
 import { type as defaultType } from './blocks/paragraph';
 import { ToolbarButton } from './toolbar-components';
-import { HeadingIcon } from './toolbar-icons';
+import { HeadingIcon, ArrowDownIcon } from './toolbar-icons';
+import { DropdownMenu } from './dialog';
+import { BlockInsertMenuItem } from './block-disclosure-menu';
 import { hasBlock } from './utils';
 
 export function Heading({ level, attributes, children }) {
@@ -29,30 +33,48 @@ export let plugins = type => () => [
 	},
 ];
 
-export const toolbarElement = type => ({ editor, editorState }) => {
-	let icon = 'H2';
-	let label = 'Heading 2';
-	if (type === 'heading-3') {
-		icon = 'H3';
-		label = 'Heading 3';
-	}
-	if (type === 'heading-4') {
-		icon = 'H4';
-		label = 'Heading 4';
-	}
+export const HeadingsMenu = ({ editor, editorState }) => {
+	// let headingIsSelected = levels.map(l => l.value).includes(editorState?.focusBlock?.type); // TODO
+
 	return (
-		<ToolbarButton
-			icon={<span aria-hidden>{icon}</span>}
-			label="Heading"
-			isActive={hasBlock(editorState, type)}
-			onClick={() => {
-				if (hasBlock(editorState, type)) {
-					editor.setBlocks({ type: defaultType });
-				} else {
-					editor.setBlocks({ type: type });
-				}
-				editor.focus();
-			}}
-		/>
+		<DropdownMenu
+			target={({ ref, isOpen, toggleOpen }) => (
+				<ToolbarButton
+					ref={ref}
+					label="Headings"
+					icon={
+						<div css={{ display: 'flex' }}>
+							<HeadingIcon />
+							<ArrowDownIcon />
+						</div>
+					}
+					isActive={isOpen}
+					onClick={toggleOpen}
+				/>
+			)}
+		>
+			{levels.map(h => {
+				return (
+					<BlockInsertMenuItem
+						key={h.type}
+						text={h.label}
+						onClick={() => {
+							if (hasBlock(editorState, h.type)) {
+								editor.setBlocks({ type: defaultType });
+							} else {
+								editor.setBlocks({ type: h.type });
+							}
+							editor.focus();
+						}}
+					/>
+				);
+			})}
+		</DropdownMenu>
 	);
 };
+
+let levels = [
+	{ label: 'Heading 2', type: 'heading-2' },
+	{ label: 'Heading 3', type: 'heading-3' },
+	{ label: 'Heading 4', type: 'heading-4' },
+];

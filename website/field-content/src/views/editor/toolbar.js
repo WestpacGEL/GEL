@@ -10,6 +10,7 @@ import { marks, markTypes } from './marks';
 import { BlockInsertMenuItem } from './block-disclosure-menu';
 import { ToolbarButton, ToolbarDivider } from './toolbar-components';
 import { ClearFormattingIcon, PlusIcon, ArrowDownIcon, MoreIcon } from './toolbar-icons';
+import { HeadingsMenu } from './headings';
 
 export default function Toolbar({ blocks, editor, editorHasFocus, editorState }) {
 	let primaryMarks = Object.keys(marks).filter(key => marks[key].level === 'primary');
@@ -28,6 +29,8 @@ export default function Toolbar({ blocks, editor, editorHasFocus, editorState })
 				zIndex: 2,
 			}}
 		>
+			<HeadingsMenu editor={editor} editorState={editorState} />
+
 			{/* Block elements, that are injected */}
 			{Object.keys(blocks).map(type => {
 				let ToolbarElement = blocks[type].ToolbarElement;
