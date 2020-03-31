@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx } from '@emotion/core';
+import isHotkey from 'is-hotkey';
 
 import { type as defaultType } from './blocks/paragraph';
 import { ToolbarButton } from './toolbar-components';
@@ -10,13 +11,8 @@ import { BlockInsertMenuItem } from './block-disclosure-menu';
 import { hasBlock } from './utils';
 
 export function Heading({ level, attributes, children }) {
-	if (level === 3) {
-		return <h3 {...attributes}>{children}</h3>;
-	}
-	if (level === 4) {
-		return <h4 {...attributes}>{children}</h4>;
-	}
-	return <h2 {...attributes}>{children}</h2>;
+	let Tag = `h${level}`;
+	return <Tag {...attributes}>{children}</Tag>;
 }
 
 export let plugins = type => () => [
@@ -28,14 +24,23 @@ export let plugins = type => () => [
 				editor.splitBlock().setBlocks(defaultType);
 				return;
 			}
+
+			// Insert block with hot key -- type e.g. 'heading-2'
+			let level = type.slice(-1);
+			if (isHotkey(`mod+opt+${level}`, event)) {
+				// Prevent the default characters from being inserted.
+				event.preventDefault();
+				// Toggle the heading block
+				toggleHeading({ editor, editorState: editor.value, type });
+				return;
+			}
+
 			next();
 		},
 	},
 ];
 
 export const HeadingsMenu = ({ editor, editorState }) => {
-	// let headingIsSelected = levels.map(l => l.value).includes(editorState?.focusBlock?.type); // TODO
-
 	return (
 		<DropdownMenu
 			target={({ ref, isOpen, toggleOpen }) => (
@@ -54,17 +59,15 @@ export const HeadingsMenu = ({ editor, editorState }) => {
 			)}
 		>
 			{levels.map(h => {
+				let Tag = `h${h.level}`;
 				return (
 					<BlockInsertMenuItem
 						key={h.type}
-						text={h.label}
+						kbd={keyComboText(h.level)}
+						isActive={editorState?.focusBlock?.type === h.type}
+						text={<Tag css={{ margin: 0 }}>{h.label}</Tag>}
 						onClick={() => {
-							if (hasBlock(editorState, h.type)) {
-								editor.setBlocks({ type: defaultType });
-							} else {
-								editor.setBlocks({ type: h.type });
-							}
-							editor.focus();
+							toggleHeading({ editor, editorState, type: h.type });
 						}}
 					/>
 				);
@@ -74,7 +77,30 @@ export const HeadingsMenu = ({ editor, editorState }) => {
 };
 
 let levels = [
-	{ label: 'Heading 2', type: 'heading-2' },
-	{ label: 'Heading 3', type: 'heading-3' },
-	{ label: 'Heading 4', type: 'heading-4' },
+	{ label: 'Heading 2', type: 'heading-2', level: 2 },
+	{ label: 'Heading 3', type: 'heading-3', level: 3 },
+	{ label: 'Heading 4', type: 'heading-4', level: 4 },
 ];
+
+// Utils
+// ------------------------------
+
+const IS_MAC =
+	typeof window != 'undefined' && /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
+
+function keyComboText(key) {
+	if (IS_MAC) {
+		return `⌘⌥${key}`;
+	}
+
+	return `Ctrl+Opt+${key}`;
+}
+
+function toggleHeading({ editor, editorState, type }) {
+	if (hasBlock(editorState, type)) {
+		editor.setBlocks({ type: defaultType });
+	} else {
+		editor.setBlocks({ type });
+	}
+	editor.focus();
+}
