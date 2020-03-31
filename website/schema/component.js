@@ -7,7 +7,9 @@ const slugify = require('slugify');
 slugify.extend({ _: '-' });
 
 const BLOCKS_CONFIG = [
-	Content.blocks.heading,
+	Content.blocks.heading2,
+	Content.blocks.heading3,
+	Content.blocks.heading4,
 	Content.blocks.orderedList,
 	Content.blocks.unorderedList,
 	Content.blocks.blockquote,
@@ -118,7 +120,7 @@ const getComponentSchema = options => ({
 			blocks: BLOCKS_CONFIG,
 		},
 		categories: { type: Relationship, ref: 'Category', many: true },
-		relatedInfo: { type: Content, blocks: [Content.blocks.link, Content.blocks.heading] },
+		relatedInfo: { type: Content, blocks: [Content.blocks.link, Content.blocks.heading2] },
 	},
 });
 
