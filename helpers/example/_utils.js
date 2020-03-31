@@ -11,6 +11,8 @@ const fs = require('fs');
 const slugFromFilename = filename => {
 	if (filename.match(/^[0-9][0-9]-/)) {
 		return filename.slice(3, -3);
+	} else if (filename.match(/.js$/)) {
+		return filename.slice(0, -3);
 	} else {
 		return filename;
 	}
@@ -64,10 +66,56 @@ const findExampleFiles = (component, parent = '') => {
 				relativePath: path.relative(__dirname, `${exampleDir}/${filename}`),
 				absolutePath: `${exampleDir}/${filename}`,
 				path: exampleDir,
+				type: 'example',
 			};
 		});
 	} else {
 		console.error(`Package doesn't exist: ${exampleDir}`);
+	}
+};
+
+/**
+ * Find all demo files in a given directory
+ *
+ * @param  {string} component - The component path
+ * @param  {string} parent    - The parent slug, optional
+ *
+ * @return {array}            - An array of objects with information about the example file
+ */
+const DEMO_FOLDER = 'demos';
+
+const findDemoFiles = (component, parent = '') => {
+	const demoDir = path.resolve(`${__dirname}/../../components/${component}/${DEMO_FOLDER}`);
+
+	if (fs.existsSync(demoDir)) {
+		const files = fs
+			.readdirSync(demoDir)
+			.filter(file => !file.startsWith('.') && !file.startsWith('_') && file.endsWith('.js'));
+
+		const { version } = require(path.normalize(
+			`${__dirname}/../../components/${component}/package.json`
+		));
+
+		return files.map(filename => {
+			const slug = `${component}/${slugFromFilename(filename)}`;
+			const label = labelFromSlug(slug);
+
+			return {
+				component,
+				version,
+				filename,
+				slug,
+				label,
+				parent,
+				landing: parent.length > 0 ? false : true,
+				relativePath: path.relative(__dirname, `${demoDir}/${filename}`),
+				absolutePath: `${demoDir}/${filename}`,
+				path: demoDir,
+				type: 'demo',
+			};
+		});
+	} else {
+		console.error(`Package doesn't exist: ${demoDir}`);
 	}
 };
 
@@ -105,5 +153,6 @@ module.exports = {
 	slugFromFilename,
 	labelFromSlug,
 	findExampleFiles,
+	findDemoFiles,
 	makeCode,
 };
