@@ -34,38 +34,6 @@ function Example({ brand }) {
 				},
 			}),
 		}, */
-		/* GroupButton: {
-			styles: (styles, { active }) => ({
-				...styles,
-
-				'::before': {
-					...styles['::before'],
-					borderLeft: active && `2px solid navy`,
-				},
-			}),
-		},
-		Step: {
-			styles: (styles, { end, grouped, visited, furthest }) => ({
-				...styles,
-
-				'::before': {
-					...styles['::before'],
-					borderLeft: `2px solid ${visited && !furthest ? 'navy' : 'cornflowerblue'}`,
-				},
-
-				'::after': {
-					...styles['::after'],
-					border: `2px solid ${visited ? 'navy' : 'cornflowerblue'}`,
-					backgroundColor: grouped || end ? (visited ? 'navy' : 'cornflowerblue') : '#fff',
-				},
-			}),
-		},
-		StepButton: {
-			styles: (styles, { active, visited }) => ({
-				...styles,
-				color: active ? 'navy' : visited ? 'black' : 'cornflowerblue',
-			}),
-		}, */
 	};
 
 	return (
