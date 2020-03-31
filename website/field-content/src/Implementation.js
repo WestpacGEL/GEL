@@ -101,10 +101,8 @@ export class Content extends Relationship.implementation {
 		);
 
 		blocks.push(...DEFAULT_BLOCKS);
-		console.log({ blocks });
 
 		const blockInstances = blocks.map(([block, blockConfig]) => {
-			console.log({ block });
 			return new block(blockConfig, {
 				fromList: listConfig.listKey,
 				joinList: type,
