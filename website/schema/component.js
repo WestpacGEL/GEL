@@ -7,13 +7,13 @@ const slugify = require('slugify');
 slugify.extend({ _: '-' });
 
 const BLOCKS_CONFIG = [
+	Content.blocks.heading2,
+	Content.blocks.heading3,
+	Content.blocks.heading4,
 	Content.blocks.orderedList,
 	Content.blocks.unorderedList,
 	Content.blocks.blockquote,
 	Content.blocks.link,
-	Content.blocks.heading2,
-	Content.blocks.heading3,
-	Content.blocks.heading4,
 	[DynamicComponentsBlock, { components: DYNAMIC_BLOCKS_DIR }],
 ];
 

@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { hasBlock } from './utils';
 import { type as defaultType } from './blocks/paragraph';
 import { ToolbarButton } from './toolbar-components';
+import { HeadingIcon } from './toolbar-icons';
+import { hasBlock } from './utils';
 
 export function Heading({ level, attributes, children }) {
 	if (level === 3) {
