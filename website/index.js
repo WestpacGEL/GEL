@@ -1,4 +1,6 @@
-require('dotenv').config();
+require('./loadenv.js');
+
+const express = require('express');
 const { Keystone } = require('@keystonejs/keystone');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
@@ -15,7 +17,13 @@ const { categorySchema } = require('./schema/category');
 
 const keystone = new Keystone({
 	name: 'GEL3 Website',
-	adapter: new KnexAdapter(),
+	adapter: new KnexAdapter({
+		dropDatabase: process.env.NODE_ENV === 'development' && process.env.DATABASE_RECREATE_TABLES,
+		knexOptions: {
+			client: 'pg',
+			connection: process.env.DATABASE_URL,
+		},
+	}),
 });
 
 const options = resolveComponents();
@@ -29,20 +37,22 @@ keystone.createList('User', userSchema);
 keystone.createList('Setting', settingSchema);
 keystone.createList('Image', imageSchema);
 
-const authStrategy = keystone.createAuthStrategy({
-	type: PasswordAuthStrategy,
-	list: 'User',
-	config: {
-		identityField: 'email',
-		secretField: 'password',
-	},
-});
+// JM 200330: Temporarily disable auth
+// const authStrategy = keystone.createAuthStrategy({
+// 	type: PasswordAuthStrategy,
+// 	list: 'User',
+// 	config: {
+// 		identityField: 'email',
+// 		secretField: 'password',
+// 	},
+// });
 
 const apps = [
 	new GraphQLApp(),
 	new AdminUIApp({
 		adminPath: '/admin',
-		authStrategy,
+		// JM 200330: Temporarily disable auth
+		// authStrategy,
 		hooks: require.resolve('./admin'),
 	}),
 	new NextApp({ dir: 'src' }),

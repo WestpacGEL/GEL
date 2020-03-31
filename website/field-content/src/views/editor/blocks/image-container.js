@@ -5,7 +5,8 @@ import insertImages from 'slate-drop-or-paste-images';
 import imageExtensions from 'image-extensions';
 import { findNode } from 'slate-react';
 import { Block } from 'slate';
-import { BlockMenuItem } from '../block-menu-item';
+
+import { BlockInsertMenuItem } from '../block-disclosure-menu';
 
 export let type = 'image-container';
 
@@ -42,10 +43,10 @@ export function Sidebar({ blocks, editor }) {
 		</svg>
 	);
 	return (
-		<BlockMenuItem
+		<BlockInsertMenuItem
 			icon={icon}
 			text="Image"
-			insertBlock={() => {
+			onClick={() => {
 				getFiles().then(files => {
 					files.forEach(file => insertImageBlockFromFile(blocks, editor, file));
 				});

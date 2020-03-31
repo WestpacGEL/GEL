@@ -2,6 +2,7 @@
 import { Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
@@ -11,24 +12,25 @@ import {
 	CodeTab,
 	DesignTab,
 	PageHeader,
-} from '../../components/pages/single-component';
-import { ALL_PAGES } from '../../../graphql';
+} from '../components/pages/single-component';
+import { ALL_PAGES } from '../../graphql';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
 	const router = useRouter();
-	const componentParam = router.query.component;
+	const path = router.query.page.join('/');
 	if (error) return 'error!';
 	if (!data) return 'loading...';
+	let currentComponent =
+		data.allPages.find(component => {
+			return component.url === `/${path}`;
+		}) || '';
 
-	const currentComponent =
-		data.allPages.filter(component => component.name === componentParam.replace('-', '_'))[0] || '';
-
-	return currentComponent ? (
-		<Component component={currentComponent} />
-	) : (
-		'Sorry, no component matching!'
-	);
+	if (currentComponent) {
+		return <Component component={currentComponent} />;
+	} else {
+		return <Error statusCode={404} />;
+	}
 };
 
 const Component = ({ component }) => {

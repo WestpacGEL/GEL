@@ -1,3 +1,5 @@
+export { useClickOutside } from './useClickOutside';
+export { useKeyPress } from './useKeyPress';
 export { default as useScrollListener } from './useScrollListener';
 export { default as useWindowSize } from './useWindowSize';
 import { useState, useCallback } from 'react';

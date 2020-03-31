@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon } from '@westpac/icon';
@@ -33,6 +33,7 @@ export const PageHeader = ({ name, version }) => {
 	const { COLORS, SPACING, BRAND } = useBrand();
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
+	const headerPaddingElement = useRef(null);
 
 	useEffect(() => {
 		const main = header.current.parentElement;
@@ -41,12 +42,12 @@ export const PageHeader = ({ name, version }) => {
 				header.current.style.height = `${200 - main.scrollTop}px`;
 				header.current.style.marginTop = `${-50 + main.scrollTop}px`;
 				header.current.style.position = 'relative';
-				header.current.nextSibling.style.height = '0px';
+				headerPaddingElement.current.style.height = '0px';
 			} else {
+				headerPaddingElement.current.style.height = '200px';
 				header.current.style.height = '65px';
 				header.current.style.marginTop = '-50px';
 				header.current.style.position = 'fixed';
-				header.current.nextSibling.style.height = '200px';
 			}
 			if (main.scrollTop >= 65) {
 				setHasScrolled(true);
@@ -64,7 +65,7 @@ export const PageHeader = ({ name, version }) => {
 	const backgroundColor = brandHeaderColors[BRAND](COLORS);
 
 	return (
-		<>
+		<Fragment>
 			<div
 				ref={header}
 				css={{
@@ -78,8 +79,7 @@ export const PageHeader = ({ name, version }) => {
 					width: hasScrolled ? '100%' : 'auto',
 					alignItems: hasScrolled ? 'center' : 'unset',
 					display: 'flex',
-					flexGrow: 0,
-					flexShrink: 0,
+					flex: 'none',
 					zIndex: 5,
 					overflow: 'hidden',
 				}}
@@ -108,7 +108,7 @@ export const PageHeader = ({ name, version }) => {
 					</span>
 				</div>
 			</div>
-			<div />
-		</>
+			<div css={{ flex: 'none' }} ref={headerPaddingElement} />
+		</Fragment>
 	);
 };
