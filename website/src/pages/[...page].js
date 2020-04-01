@@ -34,10 +34,11 @@ const ComponentWrapper = () => {
 };
 
 const Component = ({ component }) => {
-	const { name, version } = component;
+	const { pageTitle, version } = component;
+	
 	return (
 		<Fragment>
-			<PageHeader name={name} version={version} />
+			<PageHeader name={pageTitle} version={version} />
 			<Tabs component={component} />
 		</Fragment>
 	);
