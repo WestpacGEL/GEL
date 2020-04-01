@@ -7,10 +7,9 @@ import { Playground } from '../../../website/src/components/playground/macro';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<ButtonGroup name="example-composed">
-				<Item value="left">Left</Item>
-				<Item value="middle">Middle</Item>
-				<Item value="right">Right</Item>
+			<ButtonGroup name="example-1" block>
+				<Item value="left">Item 1</Item>
+				<Item value="right">Item 2</Item>
 			</ButtonGroup>
 		</Playground>
 	);
