@@ -35,7 +35,7 @@ const ComponentWrapper = () => {
 
 const Component = ({ component }) => {
 	const { pageTitle, version } = component;
-	
+
 	return (
 		<Fragment>
 			<PageHeader name={pageTitle} version={version} />
