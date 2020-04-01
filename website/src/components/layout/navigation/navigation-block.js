@@ -1,11 +1,10 @@
 /** @jsx jsx */
 import { useState } from 'react';
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
-export const NavigationBlock = ({ title, tag: Tag = 'div', children }) => {
-	const { SPACING } = useBrand();
-	const [isOpen, setIsOpen] = useState(false);
+export const NavigationBlock = ({ title, tag: Tag = 'div', isBlockOpen, children }) => {
+	const [isOpen, setIsOpen] = useState(isBlockOpen);
 
 	const toggleBlock = () => {
 		setIsOpen(currentState => !currentState);

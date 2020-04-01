@@ -28,19 +28,45 @@ export const Navigation = ({ components }) => {
 	if (!data || !data.allSettings) return <p>Loading...</p>;
 	const navigation = data.allSettings[0] ? JSON.parse(data.allSettings[0].value) : [];
 
-	const renderNavigationItems = items =>
-		items.map(item => {
+	const renderNavigationItems = items => {
+		const router = useRouter();
+		return items.map(item => {
 			if (item.children) {
+				let isCurrentBlock;
+				item.children.map(i => {
+					if (router.asPath.includes(i.path)) {
+						isCurrentBlock = true;
+					}
+				});
+
 				return (
-					<NavigationBlock key={item.title} title={item.title} tag="li">
+					<NavigationBlock
+						isBlockOpen={isCurrentBlock}
+						key={item.title}
+						title={item.title}
+						tag="li"
+					>
 						<LinkList>{renderNavigationItems(item.children)}</LinkList>
 					</NavigationBlock>
 				);
 			}
+
+			let isCurrentChild = false;
+			isCurrentChild = router.asPath.includes(item.path);
+			if (item.path === '/' && router.route !== '/') {
+				isCurrentChild = false;
+			}
 			return (
-				<LinkItem key={item.title + item.path} name={item.title} as={item.path} href={item.path} />
+				<LinkItem
+					isCurrent={isCurrentChild}
+					key={item.title + item.path}
+					name={item.title}
+					as={item.path}
+					href={item.path}
+				/>
 			);
 		});
+	};
 
 	return (
 		<Fragment>
@@ -86,23 +112,24 @@ const LinkList = props => {
 	);
 };
 
-const LinkItem = ({ name, href, as, tag: Tag = 'li', children }) => {
-	const { SPACING } = useBrand();
+const LinkItem = ({ isCurrent, name, href, as, tag: Tag = 'li', children }) => {
+	const { SPACING, COLORS } = useBrand();
 	const brandName = useRouter().query.b || '';
 	return (
 		<Tag>
-			<Link href={`${href}?b=${brandName}`} as={`${as}?b=${brandName}`}>
-				<a
-					css={{
-						cursor: 'pointer',
-						display: 'block',
-						textDecoration: 'none',
-						margin: `${SPACING(3)} 0`,
-					}}
-				>
-					{name}
-				</a>
-			</Link>
+			<a
+				as={`${as}?b=${brandName}`}
+				href={`${href}?b=${brandName}`}
+				style={{
+					cursor: 'pointer',
+					display: 'block',
+					textDecoration: 'none',
+					margin: `${SPACING(3)} 0`,
+					color: isCurrent && COLORS.info,
+				}}
+			>
+				{name}
+			</a>
 			{children}
 		</Tag>
 	);
