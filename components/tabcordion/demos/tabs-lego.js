@@ -9,8 +9,8 @@ import { Title } from './_utils.js';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Title>Default tabcordion</Title>
-			<Tabcordion>
+			<Title>Lego tabs</Title>
+			<Tabcordion look="lego" mode="tabs">
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -55,8 +55,8 @@ export default ({ context, showCode, showDemo }) => {
 				</Tab>
 			</Tabcordion>
 			<br />
-			<Title>Lego tabcordion</Title>
-			<Tabcordion look="lego">
+			<Title>Lego tabs - justified</Title>
+			<Tabcordion look="lego" mode="tabs" justify>
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
