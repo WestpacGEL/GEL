@@ -50,7 +50,7 @@ const groupButtonStyles = (_, { complete, active }) => {
 			width: '0.875rem',
 			height: '0.875rem',
 			left: '1.875rem',
-			border: `solid ${active ? COLORS.primary : COLORS.border}`,
+			border: `solid ${active ? COLORS.primary : COLORS.borderDark}`,
 			borderWidth: complete ? '0.4375rem' : active ? '3px' : '2px', //a11y: filling with border for HCM support
 			backgroundColor: '#fff',
 			boxSizing: 'border-box',
