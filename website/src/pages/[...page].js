@@ -34,10 +34,11 @@ const ComponentWrapper = () => {
 };
 
 const Component = ({ component }) => {
-	const { name, version } = component;
+	const { pageTitle, version } = component;
+
 	return (
 		<Fragment>
-			<PageHeader name={name} version={version} />
+			<PageHeader name={pageTitle} version={version} />
 			<Tabs component={component} />
 		</Fragment>
 	);
@@ -98,14 +99,14 @@ const Tabs = ({ component }) => {
 			<DesignTab description={component.description} blocks={component.design} item={component} />
 		</Tab>
 	);
-	if (component.hideAccessibilityTab) {
+	if (!component.hideAccessibilityTab) {
 		tabs.push(
 			<Tab overrides={overrides} text="Accessibility">
 				<AccessibilityTab blocks={component.accessibility} item={component} />
 			</Tab>
 		);
 	}
-	if (component.hideCodeTab) {
+	if (!component.hideCodeTab) {
 		tabs.push(
 			<Tab overrides={overrides} text="Code">
 				<CodeTab blocks={component.code} item={component} />

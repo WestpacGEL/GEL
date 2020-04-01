@@ -228,7 +228,7 @@ _(💡 This requires your ssh key be installed on the server)_
 
   ```jsx
   import { GEL } from '@westpac/core';
-  import brand from '@westpac/WBC';
+  import brand from '@westpac/wbc';
 
   brand['@westpac/tabcordion'].TabItem.styles = ( styles, state ) => { ...styles, border: 'red solid 2px' };
   brand['@westpac/tabcordion'].TabRow.component = <TabRow />;
