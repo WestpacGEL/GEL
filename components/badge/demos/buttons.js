@@ -9,24 +9,24 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<p>
-				<Button>
+				<Button size="large">
 					Primary <Badge value="15" look="faint" />
 				</Button>{' '}
-				<Button look="hero">
+				<Button look="hero" size="large">
 					Hero <Badge value="15" look="faint" />
 				</Button>{' '}
-				<Button look="faint">
+				<Button look="faint" size="large">
 					Faint <Badge value="15" look="neutral" />
 				</Button>
 			</p>
 			<p>
-				<Button soft>
+				<Button soft size="large">
 					Primary Soft <Badge value="15" look="neutral" />
 				</Button>{' '}
-				<Button look="hero" soft>
+				<Button look="hero" size="large" soft>
 					Hero Soft <Badge value="15" look="neutral" />
 				</Button>{' '}
-				<Button look="faint" soft>
+				<Button look="faint" size="large" soft>
 					Faint Soft <Badge value="15" look="neutral" />
 				</Button>
 			</p>
