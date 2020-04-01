@@ -7,7 +7,8 @@ import { Playground } from '../../../website/src/components/playground/macro';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<ProgressBar value={20} />
+			<ProgressBar value={45} />
+			<ProgressBar value={70} look="skinny" />
 		</Playground>
 	);
 };
