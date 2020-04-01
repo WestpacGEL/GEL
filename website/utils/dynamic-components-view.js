@@ -44,9 +44,9 @@ export function Sidebar({ editor }) {
 	let { adminMeta, components } = useContext(Context);
 	let [view] = adminMeta.readViews([components]);
 	const { setCurrentlyEditingBlocks } = useContext(CurrentlyEditingBlocksContext);
-
 	return Object.keys(view)
 		.sort()
+		.filter(compName => !view[compName].archived)
 		.map(compName => {
 			let svgPath = svgPathMap[compName];
 			let icon = (
