@@ -9,6 +9,13 @@ export default ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Breadcrumb>
 				<Crumb href="#/" text="Home" />
+			</Breadcrumb>
+			<Breadcrumb>
+				<Crumb href="#/" text="Home" />
+				<Crumb href="#/personal-banking/" text="Personal" />
+			</Breadcrumb>
+			<Breadcrumb>
+				<Crumb href="#/" text="Home" />
 				<Crumb href="#/personal-banking/" text="Personal" />
 				<Crumb href="#/credit-cards/" text="Credit cards" />
 			</Breadcrumb>
