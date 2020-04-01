@@ -7,7 +7,7 @@ import { Playground } from '../../../website/src/components/playground/macro';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Table>
+			<Table striped>
 				<Caption>
 					Table caption this table width is: <em>(100%)</em>
 				</Caption>
@@ -25,9 +25,9 @@ export default ({ context, showCode, showDemo }) => {
 						<Td>Cell 13</Td>
 					</Tr>
 					<Tr>
-						<Td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</Td>
-						<Td>Odit eligendi quasi quo nihil quia reiciendis obcaecati nosTrum.</Td>
-						<Td>Rem saepe eos, modi perferendis.</Td>
+						<Td>Cell 2</Td>
+						<Td>Cell 8</Td>
+						<Td>Cell 14</Td>
 					</Tr>
 					<Tr>
 						<Td>Cell 3</Td>
@@ -43,6 +43,11 @@ export default ({ context, showCode, showDemo }) => {
 						<Td>Cell 5</Td>
 						<Td>Cell 11</Td>
 						<Td>Cell 17</Td>
+					</Tr>
+					<Tr>
+						<Td>Cell 6</Td>
+						<Td>Cell 12</Td>
+						<Td>Cell 18</Td>
 					</Tr>
 				</Tbody>
 				<Tfoot>
