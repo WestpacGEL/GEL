@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 import { jsx } from '@westpac/core';
 
-export const NavigationBlock = ({ title, tag: Tag = 'div', isCurrentBlock, children }) => {
-	const [isOpen, setIsOpen] = useState(isCurrentBlock);
+export const NavigationBlock = ({ title, tag: Tag = 'div', isBlockOpen, children }) => {
+	const [isOpen, setIsOpen] = useState(isBlockOpen);
 
 	const toggleBlock = () => {
 		setIsOpen(currentState => !currentState);

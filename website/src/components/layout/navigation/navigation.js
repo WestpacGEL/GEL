@@ -29,17 +29,19 @@ export const Navigation = ({ components }) => {
 	const navigation = data.allSettings[0] ? JSON.parse(data.allSettings[0].value) : [];
 
 	const renderNavigationItems = items => {
+		const router = useRouter();
 		return items.map(item => {
-			const router = useRouter();
-
 			if (item.children) {
-				const currentRoute = router.query && router.query.page && router.query.page[0];
-				const currentBlock = item.children[0] && item.children[0].path;
-				const isCurrentBlock = currentBlock && currentRoute && currentBlock.includes(currentRoute);
+				let isCurrentBlock;
+				item.children.map(i => {
+					if (router.asPath.includes(i.path)) {
+						isCurrentBlock = true;
+					}
+				});
 
 				return (
 					<NavigationBlock
-						isCurrentBlock={isCurrentBlock}
+						isBlockOpen={isCurrentBlock}
 						key={item.title}
 						title={item.title}
 						tag="li"
@@ -48,8 +50,12 @@ export const Navigation = ({ components }) => {
 					</NavigationBlock>
 				);
 			}
-			const currentChildRoute = router.query && router.query.page && router.query.page[1];
-			const isCurrentChild = item.path.includes(currentChildRoute);
+
+			let isCurrentChild = false;
+			isCurrentChild = router.asPath.includes(item.path);
+			if (item.path === '/' && router.route !== '/') {
+				isCurrentChild = false;
+			}
 			return (
 				<LinkItem
 					isCurrent={isCurrentChild}
