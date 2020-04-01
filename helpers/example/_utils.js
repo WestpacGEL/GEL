@@ -97,7 +97,7 @@ const findDemoFiles = (component, parent = '') => {
 		));
 
 		return files.map(filename => {
-			const slug = `${component}/${slugFromFilename(filename)}`;
+			const slug = `${component}/demos/${slugFromFilename(filename)}`;
 			const label = labelFromSlug(slug);
 
 			return {
