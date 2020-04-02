@@ -10,6 +10,7 @@ import { NavigationBlock } from './navigation-block';
 
 export const Navigation = ({ items }) => {
 	const { SPACING } = useBrand();
+	console.log('items', items);
 
 	const renderNavigationItems = items => {
 		const router = useRouter();
@@ -45,7 +46,7 @@ export const Navigation = ({ items }) => {
 					key={item.title + item.path}
 					name={item.title}
 					as={item.path}
-					href={item.path}
+					item={item}
 				/>
 			);
 		});
@@ -94,12 +95,12 @@ const LinkList = props => {
 	);
 };
 
-const LinkItem = ({ isCurrent, name, href, as, tag: Tag = 'li', children }) => {
+const LinkItem = ({ isCurrent, name, href, as, tag: Tag = 'li', children, item }) => {
 	const { SPACING, COLORS } = useBrand();
 	const brandName = useRouter().query.b || '';
 	return (
 		<Tag>
-			<Link as={`${as}?b=${brandName}`} href={`${href}?b=${brandName}`} passHref={true}>
+			<Link as={`${as}?b=${brandName}`} href={`${item.component}?b=${brandName}`} passHref>
 				<a
 					style={{
 						cursor: 'pointer',
