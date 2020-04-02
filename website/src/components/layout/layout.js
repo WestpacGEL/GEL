@@ -39,8 +39,7 @@ const Wrapper = props => {
 					value
 				}
 			}
-		`,
-		{ fetchPolicy: 'cache-and-network' }
+		`
 	);
 
 	// Handle async state...
