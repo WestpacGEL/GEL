@@ -2,31 +2,14 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import gql from 'graphql-tag';
 
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { useQuery } from '@apollo/react-hooks';
 import { NavigationBlock } from './navigation-block';
 
-export const Navigation = ({ components }) => {
+export const Navigation = ({ items }) => {
 	const { SPACING } = useBrand();
-
-	let { data, error } = useQuery(
-		gql`
-			query AllSettings {
-				allSettings(where: { name: "navigation" }) {
-					id
-					name
-					value
-				}
-			}
-		`,
-		{ fetchPolicy: 'cache-and-network' }
-	);
-	if (error) return <p>There was an error fetching data for the navigation.</p>;
-	if (!data || !data.allSettings) return <p>Loading...</p>;
-	const navigation = data.allSettings[0] ? JSON.parse(data.allSettings[0].value) : [];
 
 	const renderNavigationItems = items => {
 		const router = useRouter();
@@ -67,7 +50,6 @@ export const Navigation = ({ components }) => {
 			);
 		});
 	};
-
 	return (
 		<Fragment>
 			<Heading
@@ -82,7 +64,7 @@ export const Navigation = ({ components }) => {
 			>
 				GEL
 			</Heading>
-			<LinkList>{renderNavigationItems(navigation)}</LinkList>
+			<LinkList>{renderNavigationItems(items)}</LinkList>
 		</Fragment>
 	);
 };
@@ -117,19 +99,20 @@ const LinkItem = ({ isCurrent, name, href, as, tag: Tag = 'li', children }) => {
 	const brandName = useRouter().query.b || '';
 	return (
 		<Tag>
-			<a
-				as={`${as}?b=${brandName}`}
-				href={`${href}?b=${brandName}`}
-				style={{
-					cursor: 'pointer',
-					display: 'block',
-					textDecoration: 'none',
-					margin: `${SPACING(3)} 0`,
-					color: isCurrent && COLORS.info,
-				}}
-			>
-				{name}
-			</a>
+			<Link as={`${as}?b=${brandName}`} href={`${href}?b=${brandName}`} passHref={true}>
+				<a
+					style={{
+						cursor: 'pointer',
+						display: 'block',
+						textDecoration: 'none',
+						margin: `${SPACING(3)} 0`,
+						color: isCurrent && COLORS.info,
+					}}
+				>
+					{name}
+				</a>
+			</Link>
+
 			{children}
 		</Tag>
 	);
