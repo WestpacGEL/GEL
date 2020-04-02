@@ -12,7 +12,6 @@ const PATHS = ['/', '/tokens'];
 
 export const Navigation = ({ items }) => {
 	const { SPACING } = useBrand();
-	console.log('items', items);
 
 	const renderNavigationItems = items => {
 		const router = useRouter();
