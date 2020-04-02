@@ -6,9 +6,7 @@ import { useRouter } from 'next/router';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { NavigationBlock } from './navigation-block';
-
-// root paths that don't need to be dynamic
-const PATHS = ['/', '/tokens'];
+import ROOT_PAGE_PATHS from '../../../root-pages.json';
 
 export const Navigation = ({ items }) => {
 	const { SPACING } = useBrand();
@@ -101,7 +99,7 @@ const LinkItem = ({ isCurrent, name, path, as, tag: Tag = 'li', children }) => {
 	const { SPACING, COLORS } = useBrand();
 	const brandName = useRouter().query.b || '';
 	let href = '[...page]';
-	if (path.indexOf('://') !== -1 || PATHS.indexOf(path) !== -1) {
+	if (path.indexOf('://') !== -1 || ROOT_PAGE_PATHS.indexOf(path) !== -1) {
 		href = path;
 	}
 	return (
