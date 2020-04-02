@@ -5,8 +5,10 @@ import { useRouter } from 'next/router';
 
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
-import { useQuery } from '@apollo/react-hooks';
 import { NavigationBlock } from './navigation-block';
+
+// root paths that don't need to be dynamic
+const PATHS = ['/', '/tokens'];
 
 export const Navigation = ({ items }) => {
 	const { SPACING } = useBrand();
@@ -40,13 +42,14 @@ export const Navigation = ({ items }) => {
 			if (item.path === '/' && router.route !== '/') {
 				isCurrentChild = false;
 			}
+
 			return (
 				<LinkItem
 					isCurrent={isCurrentChild}
 					key={item.title + item.path}
 					name={item.title}
 					as={item.path}
-					item={item}
+					path={item.path}
 				/>
 			);
 		});
@@ -95,12 +98,16 @@ const LinkList = props => {
 	);
 };
 
-const LinkItem = ({ isCurrent, name, href, as, tag: Tag = 'li', children, item }) => {
+const LinkItem = ({ isCurrent, name, path, as, tag: Tag = 'li', children }) => {
 	const { SPACING, COLORS } = useBrand();
 	const brandName = useRouter().query.b || '';
+	let route = '[...page]';
+	if (path.indexOf('://') !== -1 || PATHS.indexOf(path) !== -1) {
+		route = path;
+	}
 	return (
 		<Tag>
-			<Link as={`${as}?b=${brandName}`} href={`${item.component}?b=${brandName}`} passHref>
+			<Link as={`${as}?b=${brandName}`} href={`${route}?b=${brandName}`} passHref>
 				<a
 					style={{
 						cursor: 'pointer',
