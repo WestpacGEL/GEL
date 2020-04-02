@@ -9,22 +9,7 @@ import { BrandPicker } from '../brand-picker';
 import { Footer, Normalize, Sidebar } from './';
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
 import { SidebarProvider, useSidebar } from '../providers/sidebar';
-
-import { ALL_PAGES } from '../../../graphql';
-
-const LayoutView = ({ components, children }) => {
-	return (
-		<GridContainer>
-			<SidebarContainer>
-				<Sidebar components={components} />
-			</SidebarContainer>
-			<MainContainer>
-				{children}
-				<Footer />
-			</MainContainer>
-		</GridContainer>
-	);
-};
+import gql from 'graphql-tag';
 
 /*
   Wrapper with logic
@@ -35,7 +20,6 @@ const Wrapper = props => {
 	const brandParam = router.query.b || '';
 
 	const { brands, brand } = useBrandSwitcher();
-	const { data, error, ...rest } = useQuery(ALL_PAGES);
 
 	const brandNames = Object.keys(brands);
 	const isMatch = brandNames.filter(name => name === brandParam).length > 0;
@@ -45,18 +29,35 @@ const Wrapper = props => {
 		// show brand selector
 		return <BrandPicker />;
 	}
-	// Handle async state...
-	if (!data) return 'loading...';
-	if (error) return 'error!!';
 
-	// We can now assume we have our components data...
-	const components = data.allPages;
+	let { data, error } = useQuery(
+		gql`
+			query AllSettings {
+				allSettings(where: { name: "navigation" }) {
+					id
+					name
+					value
+				}
+			}
+		`
+	);
+
+	// Handle async state...
+	if (error) return <p>There was an error fetching data for the navigation.</p>;
+	if (!data || !data.allSettings) return null;
+
+	const navigation = data.allSettings[0] ? JSON.parse(data.allSettings[0].value) : [];
 
 	return (
 		<GEL brand={brands[brand]}>
 			<Normalize />
 			<SidebarProvider>
-				<LayoutView components={components} {...props} />
+				<GridContainer>
+					<SidebarContainer>
+						<Sidebar items={navigation} />
+					</SidebarContainer>
+					<MainContainer>{props.children}</MainContainer>
+				</GridContainer>
 			</SidebarProvider>
 		</GEL>
 	);

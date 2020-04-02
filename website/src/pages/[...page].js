@@ -6,6 +6,7 @@ import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
+import { Footer } from '../components/layout';
 
 import {
 	AccessibilityTab,
@@ -20,7 +21,7 @@ const ComponentWrapper = () => {
 	const router = useRouter();
 	const path = router.query.page.join('/');
 	if (error) return 'error!';
-	if (!data) return 'loading...';
+	if (!data) return null;
 	let currentComponent =
 		data.allPages.find(component => {
 			return component.url === `/${path}`;
@@ -40,6 +41,7 @@ const Component = ({ component }) => {
 		<Fragment>
 			<PageHeader name={pageTitle} version={version} />
 			<Tabs component={component} />
+			<Footer />
 		</Fragment>
 	);
 };

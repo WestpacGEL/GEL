@@ -6,13 +6,13 @@ import { jsx, useBrand } from '@westpac/core';
 import { BrandSwitcher } from '../brand-switcher';
 import { Navigation } from '.';
 
-export const Sidebar = ({ components }) => {
+export const Sidebar = ({ items }) => {
 	return (
 		<Fragment>
 			<BrandSwitcher />
 			<Separator />
 			<PaddingContainer>
-				<Navigation components={components} />
+				<Navigation items={items} />
 			</PaddingContainer>
 		</Fragment>
 	);
@@ -24,6 +24,6 @@ const PaddingContainer = props => {
 };
 
 const Separator = () => {
-	const { COLORS, SPACING } = useBrand();
+	const { SPACING } = useBrand();
 	return <hr css={{ border: 'none', marginTop: SPACING(3) }} />;
 };
