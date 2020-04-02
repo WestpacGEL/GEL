@@ -2,28 +2,28 @@ import { asArray } from '@westpac/core';
 
 const sizeMapping = {
 	small: {
-		width: '2.9375rem',
-		height: '1.625rem',
-		borderRadius: '1.625rem',
-		fontSize: '0.875rem',
+		width: '49px',
+		height: '28px',
+		borderRadius: '28px',
+		fontSize: '14px',
 	},
 	medium: {
-		width: '3.625rem',
-		height: '2rem',
-		borderRadius: '2rem',
-		fontSize: '1rem',
+		width: '60px',
+		height: '34px',
+		borderRadius: '34px',
+		fontSize: '16px',
 	},
 	large: {
-		width: '4.3125rem',
-		height: '2.375rem',
-		borderRadius: '2.375rem',
-		fontSize: '1rem',
+		width: '71px',
+		height: '40px',
+		borderRadius: '40px',
+		fontSize: '16px',
 	},
 	xlarge: {
-		width: '5rem',
-		height: '2.75rem',
-		borderRadius: '2.75rem',
-		fontSize: '1.125rem',
+		width: '82px',
+		height: '46px',
+		borderRadius: '46px',
+		fontSize: '18px',
 	},
 };
 
