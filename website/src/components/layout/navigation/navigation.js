@@ -101,13 +101,13 @@ const LinkList = props => {
 const LinkItem = ({ isCurrent, name, path, as, tag: Tag = 'li', children }) => {
 	const { SPACING, COLORS } = useBrand();
 	const brandName = useRouter().query.b || '';
-	let route = '[...page]';
+	let href = '[...page]';
 	if (path.indexOf('://') !== -1 || PATHS.indexOf(path) !== -1) {
-		route = path;
+		href = path;
 	}
 	return (
 		<Tag>
-			<Link as={`${as}?b=${brandName}`} href={`${route}?b=${brandName}`} passHref>
+			<Link as={`${as}?b=${brandName}`} href={`${href}?b=${brandName}`} passHref>
 				<a
 					style={{
 						cursor: 'pointer',
