@@ -19,7 +19,7 @@ const listStyles = () => {
 			display: 'block',
 			position: 'absolute',
 			zIndex: 0,
-			borderLeft: `2px dashed ${COLORS.border}`,
+			borderLeft: `2px dotted ${COLORS.borderDark}`,
 			top: '1.0625rem',
 			bottom: '1.5rem',
 			left: '2.25rem',
