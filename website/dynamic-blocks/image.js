@@ -5,6 +5,7 @@ import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
 import { useMutation } from '@apollo/react-hooks';
+import { LoadingIndicator } from '@arch-ui/loading';
 
 import gql from 'graphql-tag';
 
@@ -26,6 +27,7 @@ const UPLOAD_IMAGE = gql`
 
 export const Image = {
 	editor: ({ value, onChange }) => {
+		const [uploadState, setUploadState] = useState(null);
 		const [image, setImage] = useState(value.image);
 		const [caption, setCaption] = useState(value.caption);
 
@@ -42,16 +44,25 @@ export const Image = {
 			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'image'} field={{ label: 'Image', config: {} }} />
+					{uploadState && (
+						<p css={inputStyles}>
+							<LoadingIndicator />
+						</p>
+					)}
 					<FieldInput>
 						<input
+							disabled={uploadState !== null}
 							css={inputStyles}
+							style={{ display: uploadState ? 'none' : undefined }}
 							type="file"
 							id="image"
 							onChange={async e => {
+								setUploadState('uploading');
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
 								});
 								setImage(data.createImage.image.publicUrl);
+								setUploadState(null);
 							}}
 						/>
 					</FieldInput>
