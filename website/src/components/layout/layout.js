@@ -16,8 +16,6 @@ import gql from 'graphql-tag';
 */
 
 const Wrapper = props => {
-	console.log('props', props);
-
 	const router = useRouter();
 	const brandParam = router.query.b || '';
 
@@ -44,10 +42,12 @@ const Wrapper = props => {
 		`,
 		{ fetchPolicy: 'cache-and-network' }
 	);
+
+	// Handle async state...
 	if (error) return <p>There was an error fetching data for the navigation.</p>;
 	if (!data || !data.allSettings) return null;
+
 	const navigation = data.allSettings[0] ? JSON.parse(data.allSettings[0].value) : [];
-	console.log('nav', navigation);
 
 	return (
 		<GEL brand={brands[brand]}>
