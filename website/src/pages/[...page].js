@@ -61,6 +61,7 @@ const Tabs = ({ component }) => {
 			styles: styles => ({
 				...styles,
 				backgroundColor: '#fff',
+				borderBottom: `solid 1px ${COLORS.border}`,
 			}),
 		},
 		TabButton: {
@@ -85,6 +86,9 @@ const Tabs = ({ component }) => {
 			styles: styles => ({
 				...styles,
 				padding: `${SPACING(4)} 0 0`,
+				maxWidth: '60rem',
+				margin: '0 auto',
+				border: 'none',
 			}),
 		},
 	};
@@ -97,8 +101,10 @@ const Tabs = ({ component }) => {
 	}
 	const tabs = [];
 	tabs.push(
-		<Tab overrides={overrides} text="Design">
-			<DesignTab description={component.description} blocks={component.design} item={component} />
+		<Tab css={{ maxWidth: '60rem', margin: '0 auto' }} overrides={overrides} text="Design">
+			<div>
+				<DesignTab description={component.description} blocks={component.design} item={component} />
+			</div>
 		</Tab>
 	);
 	if (!component.hideAccessibilityTab) {
