@@ -34,10 +34,21 @@ export const Navigation = ({ items }) => {
 				);
 			}
 
+			const page = router.query && router.query.page;
+
 			let isCurrentChild = false;
-			isCurrentChild = router.asPath.includes(item.path);
-			if (item.path === '/' && router.route !== '/') {
-				isCurrentChild = false;
+			// For non-dynamic paths we can check if the pathname matches item.path.
+			if (!page) {
+				isCurrentChild = router.pathname === item.path;
+				console.log('here? 1', router.pathname, item.path, isCurrentChild);
+			}
+			// For dynamic routes we check if the page route matches item.path.
+			if (page && page[0]) {
+				isCurrentChild = `/${page[0]}` === item.path;
+			}
+			// For dynamic routes with children we check if the combined page route matches item.path.
+			if (page && page[1]) {
+				isCurrentChild = `/${page.join('/')}` === item.path;
 			}
 
 			let href = '[...page]';
