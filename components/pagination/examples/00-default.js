@@ -47,13 +47,13 @@ function Example({ brand }) {
 					visible: true,
 					text: 'Go back',
 					onClick: (event, page) => console.log(`Go to ${page}`, event),
-					assistiveText: page => `Go to previous page which is ${page + 1}`,
+					assistiveText: page => `Go back to previous page which is ${page + 1}`,
 				}}
 				next={{
 					visible: true,
 					text: 'Go forth',
 					onClick: (event, page) => console.log(`Go to ${page}`, event),
-					assistiveText: page => `Go to next page which is ${page + 1}`,
+					assistiveText: page => `Go forth to next page which is ${page + 1}`,
 				}}
 			>
 				<Page text="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
