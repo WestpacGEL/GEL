@@ -15,7 +15,7 @@ export const Navigation = ({ items }) => {
 		const router = useRouter();
 		return items.map(item => {
 			if (item.children) {
-				let isCurrentBlock;
+				let isCurrentBlock = false;
 				item.children.map(i => {
 					if (router.asPath.includes(i.path)) {
 						isCurrentBlock = true;
@@ -40,13 +40,18 @@ export const Navigation = ({ items }) => {
 				isCurrentChild = false;
 			}
 
+			let href = '[...page]';
+			if (item.path.indexOf('://') !== -1 || ROOT_PAGE_PATHS.indexOf(item.path) !== -1) {
+				href = item.path;
+			}
+
 			return (
 				<LinkItem
 					isCurrent={isCurrentChild}
 					key={item.title + item.path}
 					name={item.title}
 					as={item.path}
-					path={item.path}
+					path={href}
 				/>
 			);
 		});
@@ -95,13 +100,9 @@ const LinkList = props => {
 	);
 };
 
-const LinkItem = ({ isCurrent, name, path, as, tag: Tag = 'li', children }) => {
+const LinkItem = ({ isCurrent, name, as, tag: Tag = 'li', children, href }) => {
 	const { SPACING, COLORS } = useBrand();
 	const brandName = useRouter().query.b || '';
-	let href = '[...page]';
-	if (path.indexOf('://') !== -1 || ROOT_PAGE_PATHS.indexOf(path) !== -1) {
-		href = path;
-	}
 	return (
 		<Tag>
 			<Link as={`${as}?b=${brandName}`} href={`${href}?b=${brandName}`} passHref>
