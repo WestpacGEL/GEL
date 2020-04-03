@@ -101,7 +101,7 @@ const Tabs = ({ component }) => {
 	}
 	const tabs = [];
 	tabs.push(
-		<Tab css={{ maxWidth: '60rem', margin: '0 auto' }} overrides={overrides} text="Design">
+		<Tab overrides={overrides} text="Design">
 			<div>
 				<DesignTab description={component.description} blocks={component.design} item={component} />
 			</div>
