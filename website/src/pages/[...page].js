@@ -102,9 +102,7 @@ const Tabs = ({ component }) => {
 	const tabs = [];
 	tabs.push(
 		<Tab overrides={overrides} text="Design">
-			<div>
-				<DesignTab description={component.description} blocks={component.design} item={component} />
-			</div>
+			<DesignTab description={component.description} blocks={component.design} item={component} />
 		</Tab>
 	);
 	if (!component.hideAccessibilityTab) {
