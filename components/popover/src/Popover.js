@@ -22,7 +22,6 @@ export const Popover = ({
 	heading,
 	headingTag,
 	content,
-	dismissible,
 	instanceIdPrefix,
 	children,
 	overrides: componentOverrides,
@@ -60,7 +59,6 @@ export const Popover = ({
 		heading,
 		headingTag,
 		content,
-		dismissible,
 		position,
 		instanceId,
 		overrides: componentOverrides,
@@ -80,36 +78,28 @@ export const Popover = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const handleOpen = e => {
+	const handleOpen = () => {
 		if (open) {
 			setOpen(false);
-			if (popoverRef.current.contains(e.target)) {
-				triggerRef.current.focus();
-			}
+			triggerRef.current.focus();
 		} else {
 			setOpen(true);
-		}
-	};
-
-	const handleOutsideClick = e => {
-		if (dismissible && open && popoverRef.current && !popoverRef.current.contains(e.target)) {
-			handleOpen(e);
 		}
 	};
 
 	useEffect(() => {
 		if (open) {
 			setPosition(usePopoverPosition(triggerRef, popoverRef));
-			document.addEventListener('click', handleOutsideClick);
 		}
-		return () => {
-			document.removeEventListener('click', handleOutsideClick);
-		};
 	}, [open]);
 
 	const keyHandler = e => {
-		if (open && e.keyCode === 27) {
-			handleOpen(event);
+		if (
+			open &&
+			e.keyCode === 27 &&
+			(popoverRef.current.contains(e.target) || triggerRef.current.contains(e.target))
+		) {
+			handleOpen();
 		}
 	};
 
@@ -143,7 +133,7 @@ export const Popover = ({
 					{content}
 				</Body>
 				<CloseBtn
-					onClick={e => handleOpen(e)}
+					onClick={() => handleOpen()}
 					state={state}
 					{...closeBtnAttributes(state)}
 					css={{ '&&': closeBtnStyles(state) }}
@@ -177,13 +167,6 @@ Popover.propTypes = {
 	 * The body of the popover
 	 */
 	content: PropTypes.string.isRequired,
-
-	/**
-	 * Enable dismissible mode.
-	 *
-	 * Allows popover close via background click.
-	 */
-	dismissible: PropTypes.bool,
 
 	/**
 	 * Trigger element to open the popover
@@ -224,6 +207,5 @@ Popover.propTypes = {
 
 Popover.defaultProps = {
 	open: false,
-	dismissible: false,
 	headingTag: 'h4',
 };
