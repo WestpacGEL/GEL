@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
-import { Children, cloneElement, useContext, createContext } from 'react';
+import { jsx, useBrand, overrideReconciler, useInstanceId, devWarning } from '@westpac/core';
+import { Children, cloneElement, useState, useEffect, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultInputGroup } from './overrides/inputGroup';
-import { defaultText } from './overrides/text';
+import { defaultLabel } from './overrides/label';
+import { defaultTextInput } from './overrides/textInput';
 
 import { Right } from './Right';
 import { Left } from './Left';
@@ -33,12 +34,14 @@ export const useInputGroupContext = () => {
 
 export const InputGroup = ({
 	name,
+	label,
 	size,
 	data,
 	invalid,
 	disabled,
 	readOnly,
 	look,
+	instanceIdPrefix,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -50,17 +53,28 @@ export const InputGroup = ({
 
 	const defaultOverrides = {
 		InputGroup: defaultInputGroup,
-		Text: defaultText,
+		Label: defaultLabel,
+		TextInput: defaultTextInput,
 	};
+
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+
+	useEffect(() => {
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-input-group-${useInstanceId()}`);
+		}
+	}, [instanceIdPrefix]);
 
 	const state = {
 		name,
+		label,
 		size,
 		data,
 		invalid,
 		disabled,
 		readOnly,
 		look,
+		instanceId,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -71,10 +85,11 @@ export const InputGroup = ({
 			styles: inputGroupStyles,
 			attributes: inputGroupAttributes,
 		},
-		Text: { component: Text, styles: textStyles, attributes: textAttributes },
+		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+		TextInput: { component: TextInput, styles: textInputStyles, attributes: textInputAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	let textFieldAdded = false;
+	let textInputAdded = false;
 	const childrenWithProps = [];
 	const length = Children.count(children);
 
@@ -94,12 +109,20 @@ export const InputGroup = ({
 			);
 		}
 		childrenWithProps.push(
-			<Text
+			<Label key="label1" state={state} css={labelStyles(state)} {...labelAttributes(state)}>
+				{label}
+			</Label>,
+			<TextInput
 				key="textinput1"
 				{...rest}
 				state={state}
-				css={{ '&&': textStyles({ ...state, left: !!left, right: !!right }) }}
-				{...textAttributes({ ...state, left: !!left, right: !!right })}
+				css={{ '&&': textInputStyles({ ...state, left: !!left, right: !!right }) }}
+				{...textInputAttributes({
+					...state,
+					id: `${instanceId}-textinput`,
+					left: !!left,
+					right: !!right,
+				})}
 			/>
 		);
 		if (right) {
@@ -116,34 +139,60 @@ export const InputGroup = ({
 		}
 	} else {
 		Children.map(children, child => {
-			if (child.type.displayName === 'Left' && !textFieldAdded) {
+			if (child.type.displayName === 'Left' && !textInputAdded) {
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'left' })
 				);
 				childrenWithProps.push(
-					<Text
+					<Label
+						key="label1"
+						state={state}
+						css={labelStyles(state)}
+						{...labelAttributes({ ...state, htmlFor: `${instanceId}-textinput` })}
+					>
+						{label}
+					</Label>,
+					<TextInput
 						key="textinput1"
 						{...rest}
 						state={state}
-						css={{ '&&': textStyles({ ...state, left: true, right: length > 1 }) }}
-						{...textAttributes({ ...state, left: true, right: length > 1 })}
+						css={{ '&&': textInputStyles({ ...state, left: true, right: length > 1 }) }}
+						{...textInputAttributes({
+							...state,
+							id: `${instanceId}-textinput`,
+							left: true,
+							right: length > 1,
+						})}
 					/>
 				);
-				textFieldAdded = true;
-			} else if (child.type.displayName === 'Right' && !textFieldAdded) {
+				textInputAdded = true;
+			} else if (child.type.displayName === 'Right' && !textInputAdded) {
 				childrenWithProps.push(
-					<Text
+					<Label
+						key="label2"
+						state={state}
+						css={labelStyles(state)}
+						{...labelAttributes({ ...state, htmlFor: `${instanceId}-textinput` })}
+					>
+						{label}
+					</Label>,
+					<TextInput
 						key="textinput2"
 						state={state}
 						{...rest}
-						css={{ '&&': textStyles({ ...state, left: false, right: true }) }}
-						{...textAttributes({ ...state, left: false, right: true })}
+						css={{ '&&': textInputStyles({ ...state, left: false, right: true }) }}
+						{...textInputAttributes({
+							...state,
+							id: `${instanceId}-textinput`,
+							left: false,
+							right: true,
+						})}
 					/>
 				);
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'right' })
 				);
-				textFieldAdded = true;
+				textInputAdded = true;
 			} else if (child.type.displayName === 'Right' || child.type.displayName === 'Left') {
 				childrenWithProps.push(
 					cloneElement(child, { look, size, disabled, overrides: componentOverrides, key: 'other' })
@@ -151,8 +200,8 @@ export const InputGroup = ({
 			} else {
 				devWarning(
 					true,
-					`The input-group only accepts a Left or Right component as children. But found "<${child
-						.type.name || child.type}/>"`
+					`<InputGroup /> only accepts <Left /> or <Right /> as children. But found "<${child.type
+						.name || child.type}/>"`
 				);
 			}
 		});
@@ -178,6 +227,11 @@ InputGroup.propTypes = {
 	name: PropTypes.string,
 
 	/**
+	 * The label text for the input field
+	 */
+	label: PropTypes.string.isRequired,
+
+	/**
 	 * InputGroup size
 	 */
 	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
@@ -187,12 +241,12 @@ InputGroup.propTypes = {
 	 */
 	data: PropTypes.shape({
 		left: PropTypes.shape({
-			type: PropTypes.oneOf(['label', 'button', 'select']).isRequired,
+			type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
 			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
 			onClick: PropTypes.func,
 		}),
 		right: PropTypes.shape({
-			type: PropTypes.oneOf(['label', 'button', 'select']).isRequired,
+			type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
 			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
 			onClick: PropTypes.func,
 		}),

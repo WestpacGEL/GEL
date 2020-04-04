@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { defaultLabel } from './overrides/label';
+import { defaultText } from './overrides/text';
 
 import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Label = ({ position, size, data, overrides, ...rest }) => {
+export const Text = ({ position, size, data, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -21,7 +21,7 @@ export const Label = ({ position, size, data, overrides, ...rest }) => {
 	const context = useInputGroupContext();
 
 	const defaultOverrides = {
-		Label: defaultLabel,
+		Text: defaultText,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
@@ -36,13 +36,13 @@ export const Label = ({ position, size, data, overrides, ...rest }) => {
 	};
 
 	const {
-		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+		Text: { component: Text, styles: textStyles, attributes: textAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Label {...rest} state={state} {...labelAttributes(state)} css={{ '&&': labelStyles(state) }}>
+		<Text {...rest} state={state} {...textAttributes(state)} css={{ '&&': textStyles(state) }}>
 			{data}
-		</Label>
+		</Text>
 	);
 };
 
@@ -50,7 +50,7 @@ export const Label = ({ position, size, data, overrides, ...rest }) => {
 // Types
 // ==============================
 
-Label.propTypes = {
+Text.propTypes = {
 	/**
 	 * What position this component is at
 	 */
@@ -70,7 +70,7 @@ Label.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Label: PropTypes.shape({
+		Text: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -78,6 +78,6 @@ Label.propTypes = {
 	}),
 };
 
-Label.defaultProps = {
+Text.defaultProps = {
 	size: 'medium',
 };

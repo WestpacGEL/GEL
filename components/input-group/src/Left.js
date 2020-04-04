@@ -5,14 +5,15 @@ import PropTypes from 'prop-types';
 
 import { Button } from './Button';
 import { Select } from './Select';
-import { Label } from './Label';
+import { Text } from './Text';
 
 // ==============================
 // Component
 // ==============================
-export const Left = ({ type, overrides: componentOverrides, ...rest }) => {
+
+export const Left = ({ type, label, overrides: componentOverrides, ...rest }) => {
 	const componentMap = {
-		label: Label,
+		text: Text,
 		button: Button,
 		select: Select,
 	};
@@ -29,7 +30,7 @@ Left.propTypes = {
 	/**
 	 * What type this component is
 	 */
-	type: PropTypes.oneOf(['label', 'button', 'select']).isRequired,
+	type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
 
 	/**
 	 * What size the button-group is
