@@ -15,7 +15,7 @@ export const trStyles = (_, { striped, highlighted }) => {
 				? `2px solid ${COLORS.primary}`
 				: `1px solid ${COLORS.border}`,
 
-		// a11y: high contrast mode (thicken the hightlight border to make it noticeably different)
+		// a11y: high contrast mode (thicken highlight border to make it more noticeable)
 		...(typeof highlighted === 'boolean' &&
 			highlighted && {
 				'> td, > th': {

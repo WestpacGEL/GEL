@@ -14,7 +14,7 @@ const tdStyles = (_, { highlighted, highlightStart, bordered }) => {
 		borderLeft: highlightStart && `6px solid ${COLORS.primary}`,
 		borderBottom: highlighted && `2px solid ${COLORS.primary}`,
 
-		// a11y: high contrast mode (thicken the hightlight border to make it noticeably different)
+		// a11y: high contrast mode (thicken highlight border to make it more noticeable)
 		...(highlighted && {
 			position: 'relative',
 
