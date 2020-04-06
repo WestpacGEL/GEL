@@ -10,7 +10,7 @@ import { brandHeaderColors } from './_utils';
 
 const MenuIcon = () => {
 	const { setIsOpen } = useSidebar();
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, LAYOUT } = useBrand();
 	return (
 		<button
 			css={{
@@ -21,6 +21,10 @@ const MenuIcon = () => {
 				'@media only screen and (min-width: 840px)': {
 					display: 'none',
 				},
+
+				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+					padding: SPACING(2),
+				},
 			}}
 			onClick={() => setIsOpen(status => !status)}
 		>
@@ -30,7 +34,7 @@ const MenuIcon = () => {
 };
 
 export const PageHeader = ({ name, version }) => {
-	const { COLORS, SPACING, BRAND } = useBrand();
+	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
 	const headerPaddingElement = useRef(null);
@@ -82,6 +86,11 @@ export const PageHeader = ({ name, version }) => {
 					flex: 'none',
 					zIndex: 5,
 					overflow: 'hidden',
+					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+						flexDirection: 'row',
+						width: '100%',
+						alignItems: 'start',
+					},
 				}}
 			>
 				<HeaderImage brand={BRAND} />
@@ -97,9 +106,22 @@ export const PageHeader = ({ name, version }) => {
 						justifyContent: hasScrolled ? 'flex-start' : 'center',
 						marginLeft: SPACING(6),
 						marginBottom: hasScrolled ? 0 : SPACING(3),
+						[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+							marginLeft: SPACING(2),
+							marginBottom: 0,
+							flexDirection: 'column',
+						},
 					}}
 				>
-					<Heading size={hasScrolled ? 7 : 1} css={{ textTransform: 'capitalize' }}>
+					<Heading
+						size={hasScrolled ? 7 : 1}
+						css={{
+							textTransform: 'capitalize',
+							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+								fontSize: '18px !important',
+							},
+						}}
+					>
 						{name}
 					</Heading>
 					<span css={{ fontSize: '16px', marginLeft: hasScrolled ? SPACING(1) : 0 }}>
