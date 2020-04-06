@@ -132,15 +132,15 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item }) 
 	return (
 		<Fragment>
 			<Grid>
-				<Cell width={7}>
+				<Cell width={[12, 12, 12, 7]}>
 					{description && description !== '' ? (
 						<p css={{ ...PACKS.lead, marginTop: 0 }}>{description}</p>
 					) : null}
 					{showPackageInfo && <PackageInfoTable item={item} />}
 				</Cell>
-				<Cell width={1} />
+				<Cell width={[0, 0, 0, 1]} />
 				{showTableOfContents && (
-					<Cell width={4}>
+					<Cell width={[12, 12, 12, 4]}>
 						<TableOfContents />
 					</Cell>
 				)}
