@@ -69,8 +69,12 @@ const slateRenderer = item =>
 					);
 
 				case 'heading':
+					const headersToOverride = [2, 3, 4];
+					const headingSize = headersToOverride.includes(node.data.size)
+						? { fontSize: '30px' }
+						: null;
 					return (
-						<Heading key={path} size={node.data.size}>
+						<Heading key={path} size={node.data.size} style={headingSize}>
 							{serializeChildren(node.nodes)}
 						</Heading>
 					);
