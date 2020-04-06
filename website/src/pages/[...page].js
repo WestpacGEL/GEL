@@ -61,6 +61,7 @@ const Tabs = ({ component }) => {
 			styles: styles => ({
 				...styles,
 				backgroundColor: '#fff',
+				borderBottom: `solid 1px ${COLORS.border}`,
 			}),
 		},
 		TabButton: {
@@ -85,6 +86,9 @@ const Tabs = ({ component }) => {
 			styles: styles => ({
 				...styles,
 				padding: `${SPACING(4)} 0 0`,
+				maxWidth: '60rem',
+				margin: '0 auto',
+				border: 'none',
 			}),
 		},
 	};

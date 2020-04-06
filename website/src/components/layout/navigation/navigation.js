@@ -15,7 +15,7 @@ export const Navigation = ({ items }) => {
 		const router = useRouter();
 		return items.map(item => {
 			if (item.children) {
-				let isCurrentBlock;
+				let isCurrentBlock = false;
 				item.children.map(i => {
 					if (router.asPath.includes(i.path)) {
 						isCurrentBlock = true;
@@ -34,10 +34,26 @@ export const Navigation = ({ items }) => {
 				);
 			}
 
+			const page = router.query && router.query.page;
+
 			let isCurrentChild = false;
-			isCurrentChild = router.asPath.includes(item.path);
-			if (item.path === '/' && router.route !== '/') {
-				isCurrentChild = false;
+			// For non-dynamic paths we can check if the pathname matches item.path.
+			if (!page) {
+				isCurrentChild = router.pathname === item.path;
+				console.log('here? 1', router.pathname, item.path, isCurrentChild);
+			}
+			// For dynamic routes we check if the page route matches item.path.
+			if (page && page[0]) {
+				isCurrentChild = `/${page[0]}` === item.path;
+			}
+			// For dynamic routes with children we check if the combined page route matches item.path.
+			if (page && page[1]) {
+				isCurrentChild = `/${page.join('/')}` === item.path;
+			}
+
+			let href = '[...page]';
+			if (item.path.indexOf('://') !== -1 || ROOT_PAGE_PATHS.indexOf(item.path) !== -1) {
+				href = item.path;
 			}
 
 			return (
@@ -46,7 +62,7 @@ export const Navigation = ({ items }) => {
 					key={item.title + item.path}
 					name={item.title}
 					as={item.path}
-					path={item.path}
+					path={href}
 				/>
 			);
 		});
@@ -95,13 +111,9 @@ const LinkList = props => {
 	);
 };
 
-const LinkItem = ({ isCurrent, name, path, as, tag: Tag = 'li', children }) => {
+const LinkItem = ({ isCurrent, name, as, tag: Tag = 'li', children, href }) => {
 	const { SPACING, COLORS } = useBrand();
 	const brandName = useRouter().query.b || '';
-	let href = '[...page]';
-	if (path.indexOf('://') !== -1 || ROOT_PAGE_PATHS.indexOf(path) !== -1) {
-		href = path;
-	}
 	return (
 		<Tag>
 			<Link as={`${as}?b=${brandName}`} href={`${href}?b=${brandName}`} passHref>
