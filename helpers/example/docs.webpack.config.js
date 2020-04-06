@@ -1,5 +1,11 @@
 const babelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except');
-const { slugFromFilename, labelFromSlug, findExampleFiles, makeCode } = require('./_utils.js');
+const {
+	slugFromFilename,
+	labelFromSlug,
+	findExampleFiles,
+	findDemoFiles,
+	makeCode,
+} = require('./_utils.js');
 const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -26,7 +32,11 @@ const findComponents = () => {
 				filename: component,
 				landing: true,
 			});
-			components = [...components, ...findExampleFiles(component, slug)];
+			components = [
+				...components,
+				...findExampleFiles(component, slug),
+				...findDemoFiles(component, slug),
+			];
 		});
 
 	return components;
