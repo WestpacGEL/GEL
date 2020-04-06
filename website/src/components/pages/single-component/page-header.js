@@ -14,7 +14,7 @@ const MenuIcon = () => {
 	return (
 		<button
 			css={{
-				margin: SPACING(2),
+				padding: SPACING(4),
 				background: 'none',
 				border: 'none',
 				cursor: 'pointer',
@@ -95,7 +95,7 @@ export const PageHeader = ({ name, version }) => {
 						alignItems: hasScrolled ? 'baseline' : 'initial',
 						flexGrow: 1,
 						justifyContent: hasScrolled ? 'flex-start' : 'center',
-						marginLeft: SPACING(3),
+						marginLeft: SPACING(6),
 						marginBottom: hasScrolled ? 0 : SPACING(3),
 					}}
 				>
