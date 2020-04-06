@@ -38,6 +38,10 @@ export const Tabcordion = ({
 	justify,
 	initialTabIndex,
 	instanceIdPrefix,
+	onOpening = () => {},
+	onOpened = () => {},
+	onClosing = () => {},
+	onClosed = () => {},
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -64,8 +68,6 @@ export const Tabcordion = ({
 	const mode =
 		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
 
-	const setActive = idx => () => setActiveTabIndex(idx);
-
 	// create the prefix for internal IDs
 	useEffect(() => {
 		if (!instanceIdPrefix) {
@@ -75,6 +77,17 @@ export const Tabcordion = ({
 
 	const getId = (type, index) => `${instanceId}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
+
+	const handleClick = idx => () => {
+		if (idx !== activeTabIndex) {
+			onClosing();
+			setActiveTabIndex(idx);
+			onClosed();
+			onOpening();
+		}
+	};
+
+	useEffect(onOpened, [activeTabIndex]);
 
 	const state = {
 		mode,
@@ -106,7 +119,7 @@ export const Tabcordion = ({
 				return (
 					<TabButton
 						key={child.props.text}
-						onClick={setActive(idx)}
+						onClick={handleClick(idx)}
 						state={state}
 						{...tabButtonAttributes({
 							...state,
@@ -148,7 +161,7 @@ export const Tabcordion = ({
 							mode={mode}
 							panelId={getId('panel', idx)}
 							tabId={getId('tab', idx)}
-							onClick={setActive(idx)}
+							onClick={handleClick(idx)}
 						/>
 					);
 				})}
