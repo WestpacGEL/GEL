@@ -46,7 +46,12 @@ export const ScreenReaderText = {
 		const { SPACING, COLORS } = useBrand();
 		const iconSize = SPACING(5, true);
 		return (
-			<div css={{ display: 'flex' }}>
+			<div
+				css={{
+					display: 'flex',
+					flexDirection: 'column',
+				}}
+			>
 				<p
 					css={{
 						flexBasis: '50%',
@@ -62,6 +67,9 @@ export const ScreenReaderText = {
 						paddingRight: SPACING(3),
 						paddingLeft: SPACING(6, true),
 						display: 'inline-block',
+						'@media (max-width: 800px)': {
+							padding: '0px',
+						},
 						'&::before': {
 							content: "''",
 							display: 'block',
@@ -73,6 +81,9 @@ export const ScreenReaderText = {
 							backgroundSize: 'iconSize ${iconSize}',
 							top: 0,
 							left: 0,
+							'@media (max-width: 800px)': {
+								left: '-2rem',
+							},
 						},
 						'&::after': {
 							content: "''",
@@ -83,8 +94,11 @@ export const ScreenReaderText = {
 							backgroundImage: `url("${closeQuote(COLORS.primary.replace('#', '%23'))}")`,
 							backgroundRepeat: 'no-repeat',
 							backgroundSize: `${iconSize} ${iconSize}`,
-							top: '100%',
+							top: '90%',
 							left: '100%',
+							'@media (max-width: 800px)': {
+								top: '95%',
+							},
 						},
 					}}
 				>
