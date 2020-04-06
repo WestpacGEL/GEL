@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, forwardRef, useEffect } from 'react';
+import { Fragment, useState, useRef, forwardRef, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import useMeasure from 'react-use-measure';
 import PropTypes from 'prop-types';
@@ -19,7 +19,21 @@ import pkg from '../package.json';
 
 export const Tab = forwardRef(
 	(
-		{ look, last, selected, text, mode, panelId, tabId, onClick, children, overrides, ...rest },
+		{
+			look,
+			last,
+			selected,
+			text,
+			mode,
+			panelId,
+			tabId,
+			onClick,
+			onOpen,
+			onClose,
+			children,
+			overrides,
+			...rest
+		},
 		ref
 	) => {
 		const {
@@ -28,6 +42,8 @@ export const Tab = forwardRef(
 		} = useBrand();
 
 		const context = useTabcordionContext();
+
+		const initialRender = useRef(true);
 		const [hidden, setHidden] = useState(!selected);
 		const [measureRef, { height }] = useMeasure();
 		const [initial, setInitial] = useState(true);
@@ -86,6 +102,18 @@ export const Tab = forwardRef(
 		useEffect(() => {
 			setHidden(!selected);
 		}, [mode]);
+
+		useEffect(() => {
+			if (!initialRender.current) {
+				if (selected) {
+					onOpen();
+				} else {
+					onClose();
+				}
+			} else {
+				initialRender.current = false;
+			}
+		}, [selected]);
 
 		return (
 			<Fragment>

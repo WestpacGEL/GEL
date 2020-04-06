@@ -4,26 +4,15 @@ import { GEL, jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 function Example({ brand }) {
-	const onOpening = () => {
-		console.log('opening');
+	const onOpen = () => {
+		console.log('This function is run when a tab is opened');
 	};
-	const onOpened = () => {
-		console.log('opened');
-	};
-	const onClosing = () => {
-		console.log('closing');
-	};
-	const onClosed = () => {
-		console.log('closed');
+	const onClose = () => {
+		console.log('This function is run when a tab is closed');
 	};
 	return (
 		<GEL brand={brand}>
-			<Tabcordion
-				onOpening={onOpening}
-				onOpened={onOpened}
-				onClosing={onClosing}
-				onClosed={onClosed}
-			>
+			<Tabcordion onOpen={onOpen} onClose={onClose}>
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
