@@ -108,7 +108,11 @@ export const SlateContent = ({ content, item, ...props }) => {
 		<div
 			{...props}
 			className="slate-container"
-			css={{ display: 'flex', flexDirection: 'column', '> *': { marginBottom: '20px !important' } }}
+			css={{
+				display: 'flex',
+				flexDirection: 'column',
+				'> *': { marginBottom: '20px !important', paddingLeft: 0 },
+			}}
 		>
 			{slateRenderer(item)(content)}
 		</div>

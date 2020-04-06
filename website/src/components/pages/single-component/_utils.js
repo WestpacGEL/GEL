@@ -66,11 +66,6 @@ export const RelatedInformation = ({ item }) => {
 				>
 					<Cell width={10} left={2}>
 						<Grid columns={10}>
-							<Cell width={5}>
-								<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
-								<SlateContent content={item.relatedInfo} item={item} />
-							</Cell>
-							<Cell width={1} />
 							<Cell width={4}>
 								<IconTitle icon={CubeIcon}>Components</IconTitle>
 								<ul css={{ margin: 0, padding: 0 }}>
@@ -84,6 +79,11 @@ export const RelatedInformation = ({ item }) => {
 											);
 										})}
 								</ul>
+							</Cell>
+							<Cell width={1} />
+							<Cell width={5}>
+								<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
+								<SlateContent content={item.relatedInfo} item={item} />
 							</Cell>
 						</Grid>
 					</Cell>
