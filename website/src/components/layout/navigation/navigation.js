@@ -40,7 +40,6 @@ export const Navigation = ({ items }) => {
 			// For non-dynamic paths we can check if the pathname matches item.path.
 			if (!page) {
 				isCurrentChild = router.pathname === item.path;
-				console.log('here? 1', router.pathname, item.path, isCurrentChild);
 			}
 			// For dynamic routes we check if the page route matches item.path.
 			if (page && page[0]) {
