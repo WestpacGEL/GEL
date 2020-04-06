@@ -14,6 +14,23 @@ export const trStyles = (_, { striped, highlighted }) => {
 			typeof highlighted === 'boolean' && highlighted
 				? `2px solid ${COLORS.primary}`
 				: `1px solid ${COLORS.border}`,
+
+		// a11y: high contrast mode (thicken the hightlight border to make it noticeably different)
+		...(typeof highlighted === 'boolean' &&
+			highlighted && {
+				'> td, > th': {
+					position: 'relative',
+				},
+				'> td::after, > th::after': {
+					content: '""',
+					borderBottom: '4px solid transparent',
+					position: 'absolute',
+					left: 0,
+					right: 0,
+					bottom: 0,
+				},
+			}),
+
 		// Hovered row
 		'tbody > &:hover': {
 			backgroundColor: !striped && COLORS.background,
