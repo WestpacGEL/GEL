@@ -90,6 +90,9 @@ export const PageHeader = ({ name, version }) => {
 						flexDirection: 'row',
 						width: '100%',
 						alignItems: 'start',
+						height: '65px !important',
+						marginTop: '-50px !important',
+						position: 'fixed !important',
 					},
 				}}
 			>
@@ -109,6 +112,7 @@ export const PageHeader = ({ name, version }) => {
 						[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
 							marginLeft: SPACING(2),
 							marginBottom: 0,
+							paddingTop: SPACING(2),
 							flexDirection: 'column',
 						},
 					}}
@@ -119,18 +123,35 @@ export const PageHeader = ({ name, version }) => {
 							textTransform: 'capitalize',
 							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
 								fontSize: '18px !important',
+								PaddingTop: SPACING(2),
 							},
 						}}
 					>
 						{name}
 					</Heading>
-					<span css={{ fontSize: '16px', marginLeft: hasScrolled ? SPACING(1) : 0 }}>
+					<span
+						css={{
+							fontSize: '16px',
+							marginLeft: hasScrolled ? SPACING(1) : 0,
+							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+								marginLeft: 0,
+							},
+						}}
+					>
 						{' '}
 						Version {version}
 					</span>
 				</div>
 			</div>
-			<div css={{ flex: 'none' }} ref={headerPaddingElement} />
+			<div
+				css={{
+					flex: 'none',
+					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+						height: '65px !important',
+					},
+				}}
+				ref={headerPaddingElement}
+			/>
 		</Fragment>
 	);
 };
