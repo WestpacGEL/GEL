@@ -10,16 +10,20 @@ import { brandHeaderColors } from './_utils';
 
 const MenuIcon = () => {
 	const { setIsOpen } = useSidebar();
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, LAYOUT } = useBrand();
 	return (
 		<button
 			css={{
-				margin: SPACING(2),
+				padding: SPACING(4),
 				background: 'none',
 				border: 'none',
 				cursor: 'pointer',
 				'@media only screen and (min-width: 840px)': {
 					display: 'none',
+				},
+
+				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+					padding: SPACING(2),
 				},
 			}}
 			onClick={() => setIsOpen(status => !status)}
@@ -30,7 +34,7 @@ const MenuIcon = () => {
 };
 
 export const PageHeader = ({ name, version }) => {
-	const { COLORS, SPACING, BRAND } = useBrand();
+	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
 	const headerPaddingElement = useRef(null);
@@ -70,7 +74,7 @@ export const PageHeader = ({ name, version }) => {
 				ref={header}
 				css={{
 					background: backgroundColor,
-					color: COLORS.light,
+					color: BRAND === 'STG' ? COLORS.text : COLORS.light,
 					height: '200px',
 					marginTop: '-50px',
 					paddingTop: '50px',
@@ -82,6 +86,14 @@ export const PageHeader = ({ name, version }) => {
 					flex: 'none',
 					zIndex: 5,
 					overflow: 'hidden',
+					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+						flexDirection: 'row',
+						width: '100%',
+						alignItems: 'start',
+						height: '65px !important',
+						marginTop: '-50px !important',
+						position: 'fixed !important',
+					},
 				}}
 			>
 				<HeaderImage brand={BRAND} />
@@ -95,20 +107,53 @@ export const PageHeader = ({ name, version }) => {
 						alignItems: hasScrolled ? 'baseline' : 'initial',
 						flexGrow: 1,
 						justifyContent: hasScrolled ? 'flex-start' : 'center',
-						marginLeft: SPACING(3),
+						marginLeft: SPACING(6),
 						marginBottom: hasScrolled ? 0 : SPACING(3),
+						[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+							marginLeft: SPACING(2),
+							marginBottom: 0,
+							paddingTop: SPACING(2),
+							flexDirection: 'column',
+						},
 					}}
 				>
-					<Heading size={hasScrolled ? 7 : 1} css={{ textTransform: 'capitalize' }}>
+					<Heading
+						size={hasScrolled ? 7 : 1}
+						css={{
+							textTransform: 'capitalize',
+							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+								fontSize: '18px !important',
+								PaddingTop: SPACING(2),
+							},
+						}}
+					>
 						{name}
 					</Heading>
-					<span css={{ fontSize: '16px', marginLeft: hasScrolled ? SPACING(1) : 0 }}>
-						{' '}
-						Version {version}
-					</span>
+					{version && (
+						<span
+							css={{
+								fontSize: '16px',
+								marginLeft: hasScrolled ? SPACING(1) : 0,
+								[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+									marginLeft: 0,
+								},
+							}}
+						>
+							{' '}
+							Version {version}
+						</span>
+					)}
 				</div>
 			</div>
-			<div css={{ flex: 'none' }} ref={headerPaddingElement} />
+			<div
+				css={{
+					flex: 'none',
+					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+						height: '65px !important',
+					},
+				}}
+				ref={headerPaddingElement}
+			/>
 		</Fragment>
 	);
 };

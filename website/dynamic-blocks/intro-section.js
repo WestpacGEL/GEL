@@ -32,7 +32,7 @@ const TableOfContents = () => {
 				anchor.id = htmlID;
 				h.appendChild(anchor);
 				headings[i] = (
-					<li key={`nav-${i}`} css={{ listStyle: 'none', paddingBottom: SPACING(2, true) }}>
+					<li key={`nav-${i}`} css={{ listStyle: 'none', paddingBottom: SPACING(4, true) }}>
 						<svg
 							css={{ width: SPACING(2, true) }}
 							xmlns="http://www.w3.org/2000/svg"
@@ -47,12 +47,11 @@ const TableOfContents = () => {
 						<a
 							href={`#${htmlID}`}
 							css={{
-								margin: SPACING(4, true),
+								margin: SPACING(2, true),
 								color: COLORS.text,
 								cursor: 'pointer',
-								'&:hover, &:focus': {
-									textDecoration: 'underline',
-								},
+								textDecoration: 'none',
+								'&:hover, &:focus': { color: COLORS.info },
 							}}
 						>
 							{h.innerText}
@@ -66,7 +65,7 @@ const TableOfContents = () => {
 
 	return (
 		<div ref={containerRef}>
-			<Heading tag="h2" className="toc-ignore" size={6}>
+			<Heading tag="h2" className="toc-ignore" size={7} style={{ fontWeight: '500' }}>
 				{'Page content'}
 			</Heading>
 
