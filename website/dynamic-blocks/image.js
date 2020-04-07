@@ -86,7 +86,6 @@ export const Image = {
 	},
 	component: ({ caption, image, context }) => {
 		const { SPACING } = useBrand();
-		console.log(context);
 
 		const figureStyles = {
 			margin: 0,
