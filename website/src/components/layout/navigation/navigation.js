@@ -4,13 +4,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { jsx, useBrand } from '@westpac/core';
-import { Heading } from '@westpac/heading';
 import { NavigationBlock } from './navigation-block';
 import ROOT_PAGE_PATHS from '../../../root-pages.json';
+import BackToGelSvg from './BackToGelSvg';
 
 export const Navigation = ({ items }) => {
-	const { SPACING } = useBrand();
-
 	const renderNavigationItems = items => {
 		const router = useRouter();
 		return items.map(item => {
@@ -40,7 +38,6 @@ export const Navigation = ({ items }) => {
 			// For non-dynamic paths we can check if the pathname matches item.path.
 			if (!page) {
 				isCurrentChild = router.pathname === item.path;
-				console.log('here? 1', router.pathname, item.path, isCurrentChild);
 			}
 			// For dynamic routes we check if the page route matches item.path.
 			if (page && page[0]) {
@@ -69,18 +66,12 @@ export const Navigation = ({ items }) => {
 	};
 	return (
 		<Fragment>
-			<Heading
-				tag="h2"
-				size={6}
-				css={{
-					paddingLeft: SPACING(3),
-					marginTop: SPACING(1),
-					marginBottom: SPACING(5),
-					color: 'rgba(0, 0, 0, 0.75)',
-				}}
-			>
-				GEL
-			</Heading>
+			<Link href="https://gel.westpacgroup.com.au/">
+				<a>
+					<BackToGelSvg />
+				</a>
+			</Link>
+
 			<LinkList>{renderNavigationItems(items)}</LinkList>
 		</Fragment>
 	);
@@ -92,12 +83,13 @@ const LinkList = props => {
 		<ul
 			css={{
 				listStyle: 'none',
-				paddingLeft: SPACING(3),
+				paddingLeft: SPACING(6),
+				paddingRight: SPACING(5),
 				margin: 0,
 				'> li a, > div button': {
 					fontWeight: 500,
 					color: 'rgba(0, 0, 0, 0.75)',
-					margin: `${SPACING(3)} 0`,
+					marginBottom: SPACING(3),
 					padding: 0,
 					cursor: 'pointer',
 				},
@@ -112,7 +104,7 @@ const LinkList = props => {
 };
 
 const LinkItem = ({ isCurrent, name, as, tag: Tag = 'li', children, href }) => {
-	const { SPACING, COLORS } = useBrand();
+	const { COLORS } = useBrand();
 	const brandName = useRouter().query.b || '';
 	return (
 		<Tag>
@@ -122,7 +114,6 @@ const LinkItem = ({ isCurrent, name, as, tag: Tag = 'li', children, href }) => {
 						cursor: 'pointer',
 						display: 'block',
 						textDecoration: 'none',
-						margin: `${SPACING(3)} 0`,
 						color: isCurrent && COLORS.info,
 					}}
 				>

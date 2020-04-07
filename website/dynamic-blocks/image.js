@@ -84,7 +84,7 @@ export const Image = {
 			</Fragment>
 		);
 	},
-	component: ({ caption, image }) => {
+	component: ({ caption, image, context }) => {
 		const { SPACING } = useBrand();
 
 		const figureStyles = {
@@ -102,7 +102,13 @@ export const Image = {
 		};
 
 		return (
-			<figure css={{ ...figureStyles, paddingRight: SPACING(3) }}>
+			<figure
+				css={{
+					...figureStyles,
+					paddingRight: SPACING(3),
+					pointerEvents: context === 'admin' ? 'none' : undefined,
+				}}
+			>
 				<img css={imageStyles} src={image} />
 				<figcaption css={captionStyle}>{caption}</figcaption>
 			</figure>

@@ -21,6 +21,7 @@ const TableOfContents = () => {
 		if (containerRef && containerRef.current) {
 			const container = containerRef.current.closest('.slate-container') || document;
 			container.querySelectorAll('h2:not(.toc-ignore)').forEach((h, i) => {
+				if (!h.innerText) return;
 				const htmlID = h.id || 'toc-heading-' + i;
 				h.style.position = 'relative';
 				const anchor = document.createElement('div');
@@ -31,7 +32,7 @@ const TableOfContents = () => {
 				anchor.id = htmlID;
 				h.appendChild(anchor);
 				headings[i] = (
-					<li key={`nav-${i}`} css={{ listStyle: 'none', paddingBottom: SPACING(2, true) }}>
+					<li key={`nav-${i}`} css={{ listStyle: 'none', paddingBottom: SPACING(4, true) }}>
 						<svg
 							css={{ width: SPACING(2, true) }}
 							xmlns="http://www.w3.org/2000/svg"
@@ -46,12 +47,11 @@ const TableOfContents = () => {
 						<a
 							href={`#${htmlID}`}
 							css={{
-								margin: SPACING(4, true),
+								margin: SPACING(2, true),
 								color: COLORS.text,
 								cursor: 'pointer',
-								'&:hover, &:focus': {
-									textDecoration: 'underline',
-								},
+								textDecoration: 'none',
+								'&:hover, &:focus': { color: COLORS.info },
 							}}
 						>
 							{h.innerText}
@@ -65,7 +65,7 @@ const TableOfContents = () => {
 
 	return (
 		<div ref={containerRef}>
-			<Heading tag="h2" className="toc-ignore" size={6}>
+			<Heading tag="h2" className="toc-ignore" size={7} style={{ fontWeight: '500' }}>
 				{'Page content'}
 			</Heading>
 
@@ -132,15 +132,15 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item }) 
 	return (
 		<Fragment>
 			<Grid>
-				<Cell width={7}>
+				<Cell width={[12, 12, 12, 7]}>
 					{description && description !== '' ? (
 						<p css={{ ...PACKS.lead, marginTop: 0 }}>{description}</p>
 					) : null}
 					{showPackageInfo && <PackageInfoTable item={item} />}
 				</Cell>
-				<Cell width={1} />
+				<Cell width={[0, 0, 0, 1]} />
 				{showTableOfContents && (
-					<Cell width={4}>
+					<Cell width={[12, 12, 12, 4]}>
 						<TableOfContents />
 					</Cell>
 				)}
