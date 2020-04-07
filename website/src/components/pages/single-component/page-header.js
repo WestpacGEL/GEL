@@ -129,18 +129,20 @@ export const PageHeader = ({ name, version }) => {
 					>
 						{name}
 					</Heading>
-					<span
-						css={{
-							fontSize: '16px',
-							marginLeft: hasScrolled ? SPACING(1) : 0,
-							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-								marginLeft: 0,
-							},
-						}}
-					>
-						{' '}
-						Version {version}
-					</span>
+					{version && (
+						<span
+							css={{
+								fontSize: '16px',
+								marginLeft: hasScrolled ? SPACING(1) : 0,
+								[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+									marginLeft: 0,
+								},
+							}}
+						>
+							{' '}
+							Version {version}
+						</span>
+					)}
 				</div>
 			</div>
 			<div
