@@ -21,6 +21,7 @@ const TableOfContents = () => {
 		if (containerRef && containerRef.current) {
 			const container = containerRef.current.closest('.slate-container') || document;
 			container.querySelectorAll('h2:not(.toc-ignore)').forEach((h, i) => {
+				if (!h.innerText) return;
 				const htmlID = h.id || 'toc-heading-' + i;
 				h.style.position = 'relative';
 				const anchor = document.createElement('div');

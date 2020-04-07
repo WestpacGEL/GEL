@@ -69,8 +69,12 @@ const slateRenderer = item =>
 					);
 
 				case 'heading':
+					const headersToOverride = [2, 3, 4];
+					const headingSize = headersToOverride.includes(node.data.size)
+						? { fontSize: '30px' }
+						: null;
 					return (
-						<Heading key={path} size={node.data.size}>
+						<Heading key={path} size={node.data.size} style={headingSize}>
 							{serializeChildren(node.nodes)}
 						</Heading>
 					);
@@ -103,12 +107,17 @@ const slateRenderer = item =>
 		},
 	]);
 
-export const SlateContent = ({ content, item, ...props }) => {
+export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
 		<div
 			{...props}
 			className="slate-container"
-			css={{ display: 'flex', flexDirection: 'column', '> *': { marginBottom: '20px !important' } }}
+			css={{
+				display: 'flex',
+				flexDirection: 'column',
+				'> *': { marginBottom: '20px !important' },
+				...cssOverrides,
+			}}
 		>
 			{slateRenderer(item)(content)}
 		</div>
