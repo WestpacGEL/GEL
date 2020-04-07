@@ -83,7 +83,11 @@ export const RelatedInformation = ({ item }) => {
 							<Cell width={1} />
 							<Cell width={5}>
 								<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
-								<SlateContent content={item.relatedInfo} item={item} />
+								<SlateContent
+									content={item.relatedInfo}
+									item={item}
+									cssOverrides={{ p: { paddingLeft: 0 } }}
+								/>
 							</Cell>
 						</Grid>
 					</Cell>

@@ -103,7 +103,7 @@ const slateRenderer = item =>
 		},
 	]);
 
-export const SlateContent = ({ content, item, ...props }) => {
+export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
 		<div
 			{...props}
@@ -111,7 +111,8 @@ export const SlateContent = ({ content, item, ...props }) => {
 			css={{
 				display: 'flex',
 				flexDirection: 'column',
-				'> *': { marginBottom: '20px !important', paddingLeft: 0 },
+				'> *': { marginBottom: '20px !important' },
+				...cssOverrides,
 			}}
 		>
 			{slateRenderer(item)(content)}
