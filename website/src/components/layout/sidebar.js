@@ -11,16 +11,9 @@ export const Sidebar = ({ items }) => {
 		<Fragment>
 			<BrandSwitcher />
 			<Separator />
-			<PaddingContainer>
-				<Navigation items={items} />
-			</PaddingContainer>
+			<Navigation items={items} />
 		</Fragment>
 	);
-};
-
-const PaddingContainer = props => {
-	const { SPACING } = useBrand();
-	return <div css={{ padding: SPACING(2) }} {...props} />;
 };
 
 const Separator = () => {
