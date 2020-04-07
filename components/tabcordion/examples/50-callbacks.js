@@ -4,11 +4,11 @@ import { GEL, jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 function Example({ brand }) {
-	const onOpen = () => {
-		console.log('This function is run when a tab is opened');
+	const onOpen = tabId => {
+		console.log(`${tabId} has opened`);
 	};
-	const onClose = () => {
-		console.log('This function is run when a tab is closed');
+	const onClose = tabId => {
+		console.log(`${tabId} has closed`);
 	};
 	return (
 		<GEL brand={brand}>

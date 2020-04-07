@@ -106,9 +106,9 @@ export const Tab = forwardRef(
 		useEffect(() => {
 			if (!initialRender.current) {
 				if (selected) {
-					onOpen();
+					onOpen(tabId);
 				} else {
-					onClose();
+					onClose(tabId);
 				}
 			} else {
 				initialRender.current = false;
