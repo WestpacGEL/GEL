@@ -33,21 +33,27 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 };
 
 export const RelatedInformation = ({ item }) => {
-	const { COLORS, SPACING } = useBrand();
+	const { SPACING } = useBrand();
 
-	const { categories } = item;
-	if (!categories || !categories.length) return null;
-	const categoryWhere = `{ categories_some: { id_in: [${categories.map(c => c.id).join(', ')}] } }`;
-	let { data, error } = useQuery(RELATED_INFORMATION(categoryWhere), {
-		fetchPolicy: 'cache-and-network',
-	});
-	if (!data) return '';
+	const { categories, relatedInfo } = item;
+	if ((!categories || categories.length === 0) && !relatedInfo) return null;
+	const categoryWhere =
+		categories &&
+		categories.length &&
+		`{ categories_some: { id_in: [${categories.map(c => c.id).join(', ')}] } }`;
+	const { data, error } =
+		categoryWhere &&
+		useQuery(RELATED_INFORMATION(categoryWhere), {
+			fetchPolicy: 'cache-and-network',
+		});
+
 	return (
 		<div
 			css={{
 				background: 'white',
 				paddingTop: SPACING(8),
 				paddingBottom: SPACING(12),
+				marginBottom: SPACING(3),
 			}}
 		>
 			<Container>
@@ -66,29 +72,34 @@ export const RelatedInformation = ({ item }) => {
 				>
 					<Cell width={10} left={2}>
 						<Grid columns={10}>
-							<Cell width={4}>
-								<IconTitle icon={CubeIcon}>Components</IconTitle>
-								<ul css={{ margin: 0, padding: 0 }}>
-									{data.allPages
-										.filter(d => d.id !== item.id)
-										.map(d => {
-											return (
-												<ComponentLink key={d.id} link={`components/${d.name}`}>
-													{d.pageTitle}
-												</ComponentLink>
-											);
-										})}
-								</ul>
-							</Cell>
+							{data && (
+								<Cell width={relatedInfo ? 4 : 12}>
+									<IconTitle icon={CubeIcon}>Components</IconTitle>
+									<ul css={{ margin: 0, padding: 0 }}>
+										{data.allPages
+											.filter(d => d.id !== item.id)
+											.map(d => {
+												return (
+													<ComponentLink key={d.id} link={`components/${d.name}`}>
+														{d.pageTitle}
+													</ComponentLink>
+												);
+											})}
+									</ul>
+								</Cell>
+							)}
+							{relatedInfo && data && <Cell width={1} />}
+							{relatedInfo && (
+								<Cell width={data ? 5 : 10}>
+									<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
+									<SlateContent
+										content={relatedInfo}
+										item={item}
+										cssOverrides={{ p: { paddingLeft: 0 } }}
+									/>
+								</Cell>
+							)}
 							<Cell width={1} />
-							<Cell width={5}>
-								<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
-								<SlateContent
-									content={item.relatedInfo}
-									item={item}
-									cssOverrides={{ p: { paddingLeft: 0 } }}
-								/>
-							</Cell>
 						</Grid>
 					</Cell>
 				</Grid>
