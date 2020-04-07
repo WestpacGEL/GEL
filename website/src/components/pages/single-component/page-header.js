@@ -74,7 +74,7 @@ export const PageHeader = ({ name, version }) => {
 				ref={header}
 				css={{
 					background: backgroundColor,
-					color: COLORS.light,
+					color: BRAND === 'STG' ? COLORS.text : COLORS.light,
 					height: '200px',
 					marginTop: '-50px',
 					paddingTop: '50px',
