@@ -39,7 +39,9 @@ export const Tabcordion = ({
 	initialTabIndex,
 	instanceIdPrefix,
 	onOpen = () => {},
+	onOpening = () => {},
 	onClose = () => {},
+	onClosing = () => {},
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -84,6 +86,10 @@ export const Tabcordion = ({
 		justify,
 		initialTabIndex: activeTabIndex,
 		instanceId,
+		onOpen,
+		onOpening,
+		onClose,
+		onClosing,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -152,7 +158,9 @@ export const Tabcordion = ({
 							tabId={getId('tab', idx)}
 							onClick={setActive(idx)}
 							onOpen={onOpen}
+							onOpening={onOpening}
 							onClose={onClose}
+							onClosing={onClosing}
 						/>
 					);
 				})}
@@ -190,6 +198,26 @@ Tabcordion.propTypes = {
 	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
 	 */
 	instanceIdPrefix: PropTypes.string,
+
+	/**
+	 * Callback function run when a tab/panel is open.
+	 */
+	onOpen: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is opening.
+	 */
+	onOpening: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is closed.
+	 */
+	onClose: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is closing.
+	 */
+	onClosing: PropTypes.func,
 
 	/**
 	 * An array of Tab components that can be navigated through

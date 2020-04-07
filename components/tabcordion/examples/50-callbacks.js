@@ -5,14 +5,24 @@ import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 function Example({ brand }) {
 	const onOpen = tabId => {
-		console.log(`${tabId} has opened`);
+		console.log(`${tabId} has opened.`);
 	};
+
+	const onOpening = tabId => {
+		console.log(`${tabId} is opening...`);
+	};
+
 	const onClose = tabId => {
-		console.log(`${tabId} has closed`);
+		console.log(`${tabId} has closed.`);
 	};
+
+	const onClosing = tabId => {
+		console.log(`${tabId} is closing...`);
+	};
+
 	return (
 		<GEL brand={brand}>
-			<Tabcordion onOpen={onOpen} onClose={onClose}>
+			<Tabcordion onOpen={onOpen} onOpening={onOpening} onClose={onClose} onClosing={onClosing}>
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t

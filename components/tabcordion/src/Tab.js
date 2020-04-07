@@ -11,6 +11,7 @@ import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
 import { defaultPanel } from './overrides/panel';
 
 import { useTabcordionContext } from './Tabcordion';
+import { usePrevious } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
@@ -29,7 +30,9 @@ export const Tab = forwardRef(
 			tabId,
 			onClick,
 			onOpen,
+			onOpening,
 			onClose,
+			onClosing,
 			children,
 			overrides,
 			...rest
@@ -43,10 +46,11 @@ export const Tab = forwardRef(
 
 		const context = useTabcordionContext();
 
-		const initialRender = useRef(true);
 		const [hidden, setHidden] = useState(!selected);
 		const [measureRef, { height }] = useMeasure();
 		const [initial, setInitial] = useState(true);
+		const prevSelected = usePrevious(selected);
+		const prevHidden = usePrevious(hidden);
 
 		const animate = useSpring({
 			to: {
@@ -54,6 +58,21 @@ export const Tab = forwardRef(
 				overflow: 'hidden',
 			},
 			immediate: initial,
+			onStart: () => {
+				if (mode === 'tabs') {
+					if (selected && !prevSelected) {
+						onOpening(tabId);
+					} else if (!selected && prevSelected) {
+						onClosing(tabId);
+					}
+				} else if (mode === 'accordion') {
+					if (!hidden && prevHidden) {
+						onOpening(tabId);
+					} else if (hidden && !prevHidden) {
+						onClosing(tabId);
+					}
+				}
+			},
 		});
 
 		const defaultOverrides = {
@@ -104,16 +123,24 @@ export const Tab = forwardRef(
 		}, [mode]);
 
 		useEffect(() => {
-			if (!initialRender.current) {
+			if (mode === 'accordion') {
+				if (!hidden) {
+					onOpen(tabId);
+				} else {
+					onClose(tabId);
+				}
+			}
+		}, [hidden, tabId]);
+
+		useEffect(() => {
+			if (mode === 'tabs') {
 				if (selected) {
 					onOpen(tabId);
 				} else {
 					onClose(tabId);
 				}
-			} else {
-				initialRender.current = false;
 			}
-		}, [selected]);
+		}, [selected, tabId]);
 
 		return (
 			<Fragment>
@@ -189,6 +216,26 @@ Tab.propTypes = {
 	 * The onClick handler for the accordion button
 	 */
 	onClick: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is open.
+	 */
+	onOpen: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is opening.
+	 */
+	onOpening: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is closed.
+	 */
+	onClose: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is closing.
+	 */
+	onClosing: PropTypes.func,
 
 	/**
 	 * The panel content for this tab
