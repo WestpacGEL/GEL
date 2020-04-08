@@ -3,10 +3,10 @@ import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon } from '@westpac/icon';
-import HeaderImage from '../../header/component-page-header-image';
+import HeaderImage from './component-page-header-image';
 
-import { useSidebar } from '../../providers/sidebar';
-import { brandHeaderColors } from './_utils';
+import { useSidebar } from '../providers/sidebar';
+import { brandHeaderColors } from '../pages/single-component/_utils';
 
 const MenuIcon = () => {
 	const { setIsOpen } = useSidebar();
@@ -18,7 +18,7 @@ const MenuIcon = () => {
 				background: 'none',
 				border: 'none',
 				cursor: 'pointer',
-				'@media only screen and (min-width: 840px)': {
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
 					display: 'none',
 				},
 
@@ -33,7 +33,7 @@ const MenuIcon = () => {
 	);
 };
 
-export const PageHeader = ({ name, version }) => {
+const PageHeader = ({ name, version }) => {
 	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
@@ -157,3 +157,5 @@ export const PageHeader = ({ name, version }) => {
 		</Fragment>
 	);
 };
+
+export default PageHeader;

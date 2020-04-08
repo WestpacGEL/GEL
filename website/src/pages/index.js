@@ -2,12 +2,12 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
-import { HamburgerMenuIcon, LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
+import { Body } from '@westpac/body';
+import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from '../components/header/home-page-header-image';
 import { brandHeaderColors } from '../components/pages/single-component/_utils';
-
-import { useSidebar } from '../components/providers/sidebar';
 import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../components/header/symbols';
+import { useSidebar } from '../components/providers/sidebar';
 
 const Homepage = () => {
 	const { COLORS, SPACING, BRAND } = useBrand();
@@ -31,7 +31,7 @@ const Homepage = () => {
 
 			<section css={{ padding: `${SPACING(12)} 0` }}>
 				<Container>
-					<Heading tag="h2" size={4}>
+					<Heading tag="h2" size={5}>
 						Accessibility is in everything we do
 					</Heading>
 					<p>
@@ -88,25 +88,6 @@ const Homepage = () => {
 	);
 };
 
-/* 
-  Styled components
-*/
-
-const IconText = ({ icon: Icon, children, highlightColor = 'none' }) => {
-	const { COLORS } = useBrand();
-	return (
-		<div css={{ textAlign: 'center' }}>
-			<Icon
-				size="90px"
-				outlineColor={COLORS.light}
-				highlightOutlineColor={COLORS.light}
-				highlightColor={highlightColor}
-			/>
-			<p>{children}</p>
-		</div>
-	);
-};
-
 const Header = () => {
 	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
 	const { isOpen, setIsOpen } = useSidebar();
@@ -159,6 +140,21 @@ const Header = () => {
 	);
 };
 
+const IconText = ({ icon: Icon, children, iconHighlightColor = 'none' }) => {
+	const { COLORS } = useBrand();
+	return (
+		<div css={{ textAlign: 'center' }}>
+			<Icon
+				size="90px"
+				outlineColor={COLORS.light}
+				highlightOutlineColor={COLORS.light}
+				highlightColor={iconHighlightColor}
+			/>
+			<p>{children}</p>
+		</div>
+	);
+};
+
 const HeroIntro = () => {
 	const { SPACING, TYPE, COLORS, BRAND } = useBrand();
 	return (
@@ -182,7 +178,7 @@ const HeroIntro = () => {
 
 			<Grid css={{ marginTop: SPACING(8) }}>
 				<Cell width={4}>
-					<IconText icon={StopwatchSvg} highlightColor={COLORS.light}>
+					<IconText icon={StopwatchSvg} iconHighlightColor={COLORS.light}>
 						Get to market faster by leveraging <br />
 						our knowledge and tools
 					</IconText>
