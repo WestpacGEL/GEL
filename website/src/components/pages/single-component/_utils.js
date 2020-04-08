@@ -157,7 +157,7 @@ const IconTitle = ({ icon: Icon, children }) => {
 
 export const brandHeaderColors = {
 	WBC: COLORS => COLORS.primary,
-	WBG: COLORS => COLORS.primary,
+	WBG: COLORS => COLORS.hero,
 	STG: COLORS => COLORS.hero,
 	BSA: COLORS => `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
 	BOM: COLORS => COLORS.hero,

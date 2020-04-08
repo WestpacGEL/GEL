@@ -69,7 +69,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 			headerImage: WestpacImage,
 		},
 		WBG: {
-			headerImage: WestpacImage,
+			headerImage: null,
 		},
 		STG: {
 			headerImage: StGeorgeImage,
