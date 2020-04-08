@@ -31,12 +31,11 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 			<a
 				href={`#${headingId}`}
 				css={{
-					margin: SPACING(4, true),
+					margin: SPACING(2, true),
 					color: COLORS.text,
 					cursor: 'pointer',
-					'&:hover, &:focus': {
-						textDecoration: 'underline',
-					},
+					textDecoration: 'none',
+					'&:hover, &:focus': { color: COLORS.info },
 				}}
 			>
 				{headingText}
@@ -64,7 +63,7 @@ const TableOfContents = () => {
 
 	return (
 		<div ref={containerRef}>
-			<Heading tag="h2" size={6}>
+			<Heading tag="h2" size={6} style={{ fontWeight: '500' }}>
 				{'Page content'}
 			</Heading>
 
