@@ -1,17 +1,21 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from './symbols';
 
 const HomePageHeaderImage = ({ brand }) => {
+	const { LAYOUT } = useBrand();
 	const WestpacImage = () => (
 		<div
 			css={{
 				position: 'absolute',
-				zIndex: -1,
-				right: '150px',
-				bottom: '-72px',
-				top: '-72px',
+				zIndex: 0,
+				right: 0,
+				bottom: 0,
+				top: 0,
+				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+					display: 'none',
+				},
 			}}
 		>
 			<WbcBackgroundRightSvg height={'100%'} />
@@ -23,8 +27,11 @@ const HomePageHeaderImage = ({ brand }) => {
 			css={{
 				position: 'absolute',
 				left: 0,
-				bottom: -80,
-				zIndex: -1,
+				bottom: -5,
+				zIndex: 0,
+				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+					display: 'none',
+				},
 			}}
 		>
 			<StgBackgroundSvg height={'600px'} />
@@ -38,6 +45,9 @@ const HomePageHeaderImage = ({ brand }) => {
 				zIndex: 1,
 				right: 0,
 				bottom: -100,
+				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+					display: 'none',
+				},
 			}}
 		>
 			<BsaBackgroundSvg height={'400px'} />
