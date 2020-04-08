@@ -17,8 +17,8 @@ const textInputStyles = (_, { left, right }) => ({
 	}),
 });
 
-const textInputAttributes = (_, { id, name, invalid, disabled, readOnly }) => ({
-	id,
+const textInputAttributes = (_, { instanceId, name, invalid, disabled, readOnly }) => ({
+	id: instanceId,
 	name,
 	invalid,
 	disabled,

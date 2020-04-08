@@ -12,7 +12,7 @@ function Example({ brand }) {
 
 			<h2>Default</h2>
 
-			<InputGroup name="example-default-label" label="Total amount">
+			<InputGroup name="example-default-text" label="Total amount">
 				<Left type="text" data="AUS $" />
 			</InputGroup>
 			<br />
@@ -22,7 +22,7 @@ function Example({ brand }) {
 			</InputGroup>
 			<br />
 
-			<InputGroup name="example-default-label-button" label="Total amount">
+			<InputGroup name="example-default-text-button" label="Total amount">
 				<Left type="text" data="AUS $" />
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
@@ -42,7 +42,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Small</h2>
-			<InputGroup name="example-small-label" label="Total amount" size="small">
+			<InputGroup name="example-small-text" label="Total amount" size="small">
 				<Left type="text" data="AUS $" />
 			</InputGroup>
 			<br />
@@ -52,7 +52,7 @@ function Example({ brand }) {
 			</InputGroup>
 			<br />
 
-			<InputGroup name="example-small-label-button" label="Total amount" size="small">
+			<InputGroup name="example-small-text-button" label="Total amount" size="small">
 				<Left type="text" data="AUS $" />
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
@@ -72,7 +72,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Medium</h2>
-			<InputGroup name="example-medium-label" label="Total amount" size="medium">
+			<InputGroup name="example-medium-text" label="Total amount" size="medium">
 				<Left type="text" data="AUS $" />
 			</InputGroup>
 			<br />
@@ -82,7 +82,7 @@ function Example({ brand }) {
 			</InputGroup>
 			<br />
 
-			<InputGroup name="example-medium-label-button" label="Total amount" size="medium">
+			<InputGroup name="example-medium-text-button" label="Total amount" size="medium">
 				<Left type="text" data="AUS $" />
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
@@ -102,7 +102,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Large</h2>
-			<InputGroup name="example-large-label" label="Total amount" size="large">
+			<InputGroup name="example-large-text" label="Total amount" size="large">
 				<Left type="text" data="AUS $" />
 			</InputGroup>
 			<br />
@@ -112,7 +112,7 @@ function Example({ brand }) {
 			</InputGroup>
 			<br />
 
-			<InputGroup name="example-large-label-button" label="Total amount" size="large">
+			<InputGroup name="example-large-text-button" label="Total amount" size="large">
 				<Left type="text" data="AUS $" />
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
@@ -132,7 +132,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>XLarge</h2>
-			<InputGroup name="example-xlarge-label" label="Total amount" size="xlarge">
+			<InputGroup name="example-xlarge-text" label="Total amount" size="xlarge">
 				<Left type="text" data="AUS $" />
 			</InputGroup>
 			<br />
@@ -142,7 +142,7 @@ function Example({ brand }) {
 			</InputGroup>
 			<br />
 
-			<InputGroup name="example-xlarge-label-button" label="Total amount" size="xlarge">
+			<InputGroup name="example-xlarge-text-button" label="Total amount" size="xlarge">
 				<Left type="text" data="AUS $" />
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>

@@ -11,7 +11,7 @@ const Label = ({ state, children, ...rest }) => (
 
 const labelStyles = () => {};
 
-const labelAttributes = (_, { htmlFor }) => ({ htmlFor });
+const labelAttributes = (_, { instanceId }) => ({ htmlFor: instanceId });
 
 export const defaultLabel = {
 	component: Label,

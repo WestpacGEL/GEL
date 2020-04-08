@@ -12,15 +12,15 @@ function Example({ brand }) {
 
 			<h2>Label</h2>
 
-			<InputGroup name="example-label-1" label="Total amount">
+			<InputGroup name="example-text-1" label="Total amount">
 				<Left type="text" data="$" />
 			</InputGroup>
 			<br />
-			<InputGroup name="example-label-2" label="Total amount">
+			<InputGroup name="example-text-2" label="Total amount">
 				<Right type="text" data=".00" />
 			</InputGroup>
 			<br />
-			<InputGroup name="example-label-3" label="Total amount">
+			<InputGroup name="example-text-3" label="Total amount">
 				<Left type="text" data="$" />
 				<Right type="text" data=".00" />
 			</InputGroup>

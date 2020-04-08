@@ -13,7 +13,7 @@ function Example({ brand }) {
 			<h2>Invalid</h2>
 
 			<InputGroup
-				name="example-invalid-label"
+				name="example-invalid-text"
 				label="Total amount"
 				invalid
 				defaultValue="Text that can be edited"
@@ -23,7 +23,7 @@ function Example({ brand }) {
 			<br />
 
 			<InputGroup
-				name="example-invalid-label-datadriven"
+				name="example-invalid-text-datadriven"
 				label="Total amount"
 				invalid
 				defaultValue="Text that can be edited"
@@ -38,7 +38,7 @@ function Example({ brand }) {
 			<h2>Disabled</h2>
 
 			<InputGroup
-				name="example-disabled-label"
+				name="example-disabled-text"
 				label="Total amount"
 				disabled
 				defaultValue="This input is disabled and contains a value"
@@ -48,7 +48,7 @@ function Example({ brand }) {
 			<br />
 
 			<InputGroup
-				name="example-disabled-label-datadriven"
+				name="example-disabled-text-datadriven"
 				label="Total amount"
 				disabled
 				defaultValue="This input is disabled and contains a value"
@@ -63,7 +63,7 @@ function Example({ brand }) {
 			<h2>Read only</h2>
 
 			<InputGroup
-				name="example-readonly-label"
+				name="example-readonly-text"
 				label="Total amount"
 				readOnly
 				defaultValue="This input is read only and contains a value"
@@ -73,7 +73,7 @@ function Example({ brand }) {
 			<br />
 
 			<InputGroup
-				name="example-readonly-label-datadriven"
+				name="example-readonly-text-datadriven"
 				label="Total amount"
 				readOnly
 				defaultValue="This input is read only and contains a value"

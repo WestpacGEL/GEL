@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Text = ({ position, size, data, overrides, ...rest }) => {
+export const Text = ({ instanceId, name, position, size, data, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,

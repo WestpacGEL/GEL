@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-const InputGroup = ({ state: { instanceId }, ...rest }) => <div id={instanceId} {...rest} />;
+const InputGroup = ({ state, ...rest }) => <div {...rest} />;
 
 const inputGroupStyles = () => ({
 	display: 'flex',
