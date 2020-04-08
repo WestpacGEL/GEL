@@ -102,7 +102,7 @@ const IconText = ({ icon: Icon, children }) => {
 };
 
 const Header = () => {
-	const { COLORS, SPACING, BRAND } = useBrand();
+	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
 	const { isOpen, setIsOpen } = useSidebar();
 	return (
 		<div
@@ -115,38 +115,39 @@ const Header = () => {
 		>
 			<button
 				css={{
-					margin: SPACING(4),
+					display: 'block',
+					margin: `${SPACING(4)} !important`,
+					padding: 0,
 					background: 'none',
 					border: 'none',
 					cursor: 'pointer',
-					'@media only screen and (min-width: 840px)': {
-						display: 'none',
+					[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 						margin: SPACING(2),
 					},
-					'@media only screen and (min-width: 840px)': {
+					[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
 						display: 'none',
-						margin: SPACING(2),
 					},
 				}}
 				onClick={() => setIsOpen(status => !status)}
 			>
-				<HamburgerMenuIcon color={COLORS.light} />
+				<HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : COLORS.light} />
 			</button>
 			<p
 				css={{
 					textAlign: 'left',
 					margin: 0,
 					padding: `${SPACING(3)} 0`,
-					marginLeft: SPACING(7),
+					borderBottom: 0,
 					width: '100%',
-					borderBottom: `1px solid ${BRAND === 'STG' ? COLORS.text : COLORS.light}`,
-					'@media (max-width: 840px)': {
-						marginleft: SPACING(2),
-						borderBottom: 0,
+					[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+						borderBottom: `1px solid ${COLORS.light}`,
+					},
+					[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+						marginLeft: SPACING(7),
 					},
 				}}
 			>
-				UI Framework
+				<strong>UI</strong> Framework
 			</p>
 		</div>
 	);
