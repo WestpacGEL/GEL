@@ -7,6 +7,9 @@ import HeaderImage from '../components/header/home-page-header-image';
 import { brandHeaderColors } from '../components/pages/single-component/_utils';
 
 import { useSidebar } from '../components/providers/sidebar';
+import AccessibilitySvg from '../components/header/symbols/AccessibilitySvg';
+import StopwatchSvg from '../components/header/symbols/StopwatchSvg';
+import TruckSvg from '../components/header/symbols/TruckSvg';
 
 const Homepage = () => {
 	const { COLORS, SPACING, BRAND } = useBrand();
@@ -91,11 +94,16 @@ const Homepage = () => {
   Styled components
 */
 
-const IconText = ({ icon: Icon, children }) => {
+const IconText = ({ icon: Icon, children, highlightColor = 'none' }) => {
 	const { COLORS } = useBrand();
 	return (
 		<div css={{ textAlign: 'center' }}>
-			<Icon size="xlarge" color={COLORS.light} />
+			<Icon
+				size="90px"
+				outlineColor={COLORS.light}
+				highlightOutlineColor={COLORS.light}
+				highlightColor={highlightColor}
+			/>
 			<p>{children}</p>
 		</div>
 	);
@@ -154,7 +162,7 @@ const Header = () => {
 };
 
 const HeroIntro = () => {
-	const { SPACING, TYPE } = useBrand();
+	const { SPACING, TYPE, COLORS, BRAND } = useBrand();
 	return (
 		<Container css={{ zIndex: 3, position: 'relative' }}>
 			<Heading
@@ -176,19 +184,19 @@ const HeroIntro = () => {
 
 			<Grid css={{ marginTop: SPACING(8) }}>
 				<Cell width={4}>
-					<IconText icon={UmbrellaIcon}>
+					<IconText icon={StopwatchSvg} highlightColor={COLORS.light}>
 						Get to market faster by leveraging <br />
 						our knowledge and tools
 					</IconText>
 				</Cell>
 				<Cell width={4}>
-					<IconText icon={LightBulbIcon}>
+					<IconText icon={TruckSvg}>
 						Design, build and ship consistent, quality, <br />
 						branded solutions
 					</IconText>
 				</Cell>
 				<Cell width={4}>
-					<IconText icon={MapIcon}>
+					<IconText icon={AccessibilitySvg}>
 						Be more accessible and inclusive with our <br />
 						assets
 					</IconText>
