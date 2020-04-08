@@ -68,18 +68,19 @@ const Wrapper = props => {
 */
 
 const GridContainer = props => {
+	const { LAYOUT } = useBrand();
 	return (
 		<div
 			css={{
 				display: 'grid',
-				gridTemplateColumns: '1fr',
+				gridTemplateColumns: '300px auto',
 				width: '100vw',
 				height: '100vh',
 				fontFamily:
 					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 
-				'@media only screen and (min-width: 840px)': {
-					gridTemplateColumns: '270px auto',
+				[`@media only screen and (max-width: ${LAYOUT.breakpoints.xl}px)`]: {
+					gridTemplateColumns: '1fr',
 				},
 			}}
 			{...props}
@@ -89,7 +90,7 @@ const GridContainer = props => {
 
 const SidebarContainer = ({ children, ...props }) => {
 	const { isOpen } = useSidebar();
-	const { COLORS } = useBrand();
+	const { COLORS, LAYOUT } = useBrand();
 	return (
 		<aside
 			css={{
@@ -101,13 +102,13 @@ const SidebarContainer = ({ children, ...props }) => {
 				zIndex: 2,
 				overflowY: 'scroll',
 				height: '100vh',
-				'@media only screen and (max-width: 839px)': {
+				[`@media only screen and (max-width: ${LAYOUT.breakpoints.xl}px)`]: {
 					position: 'absolute',
 					zIndex: 10,
 					top: 0,
 					left: 0,
-					width: 270,
-					transform: isOpen ? 'translateX(0px)' : 'translateX(-270px)',
+					width: 300,
+					transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
 				},
 			}}
 			{...props}

@@ -17,7 +17,7 @@ const Homepage = () => {
 			<section
 				css={{
 					background: backgroundColor,
-					color: COLORS.light,
+					color: BRAND === 'STG' ? COLORS.text : COLORS.light,
 					paddingBottom: SPACING(12),
 					position: 'relative',
 					overflow: 'hidden',
@@ -102,26 +102,30 @@ const IconText = ({ icon: Icon, children }) => {
 };
 
 const Header = () => {
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, BRAND } = useBrand();
 	const { isOpen, setIsOpen } = useSidebar();
 	return (
 		<div
 			css={{
 				display: 'flex',
 				alignItems: 'center',
-				padding: SPACING(2),
 				zIndex: 3,
 				position: 'relative',
 			}}
 		>
 			<button
 				css={{
-					marginRight: SPACING(2),
+					margin: SPACING(4),
 					background: 'none',
 					border: 'none',
 					cursor: 'pointer',
 					'@media only screen and (min-width: 840px)': {
 						display: 'none',
+						margin: SPACING(2),
+					},
+					'@media only screen and (min-width: 840px)': {
+						display: 'none',
+						margin: SPACING(2),
 					},
 				}}
 				onClick={() => setIsOpen(status => !status)}
@@ -132,7 +136,14 @@ const Header = () => {
 				css={{
 					textAlign: 'left',
 					margin: 0,
-					padding: 0,
+					padding: `${SPACING(3)} 0`,
+					marginLeft: SPACING(7),
+					width: '100%',
+					borderBottom: `1px solid ${BRAND === 'STG' ? COLORS.text : COLORS.light}`,
+					'@media (max-width: 840px)': {
+						marginleft: SPACING(2),
+						borderBottom: 0,
+					},
 				}}
 			>
 				UI Framework
