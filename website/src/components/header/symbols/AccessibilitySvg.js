@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-const AccessibilitySvg = ({
+export const AccessibilitySvg = ({
 	size = 90,
 	highlightColor = '#D5002B',
 	highlightOutlineColor = '#2D373E',
@@ -42,5 +42,3 @@ const AccessibilitySvg = ({
 		</svg>
 	);
 };
-
-export default AccessibilitySvg;

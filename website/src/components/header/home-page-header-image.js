@@ -1,10 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 import React from 'react';
-import HeaderImageRight from './symbols/WbcBackgroundRightSvg';
-import HeaderImageLeft from './symbols/WbcBackgroundLeftSvg';
-import StgHeaderBackground from './symbols/StgBackgroundSvg';
-import BsaHeaderBackgroundSvg from './symbols/BsaBackgroundSvg';
+import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from './symbols';
 
 const HomePageHeaderImage = ({ brand }) => {
 	const WestpacImage = () => (
@@ -17,7 +14,7 @@ const HomePageHeaderImage = ({ brand }) => {
 				top: 0,
 			}}
 		>
-			<HeaderImageRight height={'100%'} />
+			<WbcBackgroundRightSvg height={'100%'} />
 		</div>
 	);
 
@@ -30,7 +27,7 @@ const HomePageHeaderImage = ({ brand }) => {
 				zIndex: 1,
 			}}
 		>
-			<StgHeaderBackground height={'600px'} />
+			<StgBackgroundSvg height={'600px'} />
 		</div>
 	);
 
@@ -43,7 +40,7 @@ const HomePageHeaderImage = ({ brand }) => {
 				bottom: -100,
 			}}
 		>
-			<BsaHeaderBackgroundSvg height={'400px'} />
+			<BsaBackgroundSvg height={'400px'} />
 		</div>
 	);
 

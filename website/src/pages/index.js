@@ -7,9 +7,7 @@ import HeaderImage from '../components/header/home-page-header-image';
 import { brandHeaderColors } from '../components/pages/single-component/_utils';
 
 import { useSidebar } from '../components/providers/sidebar';
-import AccessibilitySvg from '../components/header/symbols/AccessibilitySvg';
-import StopwatchSvg from '../components/header/symbols/StopwatchSvg';
-import TruckSvg from '../components/header/symbols/TruckSvg';
+import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../components/header/symbols';
 
 const Homepage = () => {
 	const { COLORS, SPACING, BRAND } = useBrand();

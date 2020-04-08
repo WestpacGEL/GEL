@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-const StopwatchSvg = ({
+export const StopwatchSvg = ({
 	size = 90,
 	highlightColor = '#D5002B',
 	highlightOutlineColor = '#2D373E',
@@ -41,5 +41,3 @@ const StopwatchSvg = ({
 		</svg>
 	);
 };
-
-export default StopwatchSvg;

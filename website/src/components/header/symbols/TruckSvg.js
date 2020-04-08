@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-const TruckSvg = ({
+export const TruckSvg = ({
 	size = 90,
 	highlightColor = '#D5002B',
 	highlightOutlineColor = '#2D373E',
@@ -46,5 +46,3 @@ const TruckSvg = ({
 		</svg>
 	);
 };
-
-export default TruckSvg;
