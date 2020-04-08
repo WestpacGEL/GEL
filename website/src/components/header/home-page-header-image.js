@@ -8,10 +8,10 @@ const HomePageHeaderImage = ({ brand }) => {
 		<div
 			css={{
 				position: 'absolute',
-				zIndex: 1,
-				right: 0,
-				bottom: 0,
-				top: 0,
+				zIndex: -1,
+				right: '150px',
+				bottom: '-72px',
+				top: '-72px',
 			}}
 		>
 			<WbcBackgroundRightSvg height={'100%'} />
@@ -23,8 +23,8 @@ const HomePageHeaderImage = ({ brand }) => {
 			css={{
 				position: 'absolute',
 				left: 0,
-				bottom: -10,
-				zIndex: 1,
+				bottom: -80,
+				zIndex: -1,
 			}}
 		>
 			<StgBackgroundSvg height={'600px'} />
