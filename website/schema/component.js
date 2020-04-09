@@ -121,10 +121,6 @@ const getComponentSchema = options => ({
 			ref: 'Page',
 			many: true,
 		},
-		relatedImages: {
-			type: Relationship,
-			ref: 'Image',
-		},
 		relatedInfo: { type: Content, blocks: [Content.blocks.link, Content.blocks.heading] },
 	},
 });
