@@ -13,12 +13,11 @@ const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { userSchema } = require('./schema/user');
 const { imageSchema } = require('./schema/image');
 const { settingSchema } = require('./schema/setting');
-const { categorySchema } = require('./schema/category');
 
 const keystone = new Keystone({
 	name: 'GEL3 Website',
 	adapter: new KnexAdapter({
-		dropDatabase: process.env.NODE_ENV === 'development' && process.env.DATABASE_RECREATE_TABLES,
+		dropDatabase: true, // process.env.NODE_ENV === 'development' && process.env.DATABASE_RECREATE_TABLES,
 		knexOptions: {
 			client: 'pg',
 			connection: process.env.DATABASE_URL,
@@ -32,7 +31,6 @@ keystone.createList(
 	'Page',
 	getComponentSchema(options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name })))
 );
-keystone.createList('Category', categorySchema);
 keystone.createList('User', userSchema);
 keystone.createList('Setting', settingSchema);
 keystone.createList('Image', imageSchema);

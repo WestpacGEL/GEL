@@ -3,8 +3,6 @@ import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
-import { useQuery } from '@apollo/react-hooks';
-import { RELATED_INFORMATION } from '../../../../graphql';
 import { SlateContent } from './blocks-hub';
 import Link from 'next/link';
 
@@ -32,20 +30,22 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 	);
 };
 
+const getURL = d => {
+	if (d.url) {
+		return d.url;
+	}
+	if (d.packageName) {
+		return `/components/${slugify(resolvedData.packageName).toLowerCase()}`;
+	}
+	if (d.pageTitle) {
+		return `/${slugify(resolvedData.pageTitle).toLowerCase()}`;
+	}
+	return '';
+};
+
 export const RelatedInformation = ({ item }) => {
 	const { SPACING } = useBrand();
-
-	const { categories, relatedInfo } = item;
-	if ((!categories || categories.length === 0) && !relatedInfo) return null;
-	const categoryWhere =
-		categories &&
-		categories.length &&
-		`{ categories_some: { id_in: [${categories.map(c => c.id).join(', ')}] } }`;
-	const { data, error } =
-		categoryWhere &&
-		useQuery(RELATED_INFORMATION(categoryWhere), {
-			fetchPolicy: 'cache-and-network',
-		});
+	const { relatedPages, relatedInfo } = item;
 
 	return (
 		<div
@@ -72,19 +72,17 @@ export const RelatedInformation = ({ item }) => {
 				>
 					<Cell width={10} left={2}>
 						<Grid columns={10}>
-							{data && (
+							{item.relatedPages && (
 								<Cell width={relatedInfo ? 4 : 12}>
 									<IconTitle icon={CubeIcon}>Components</IconTitle>
 									<ul css={{ margin: 0, padding: 0 }}>
-										{data.allPages
-											.filter(d => d.id !== item.id)
-											.map(d => {
-												return (
-													<ComponentLink key={d.id} link={`components/${d.name}`}>
-														{d.pageTitle}
-													</ComponentLink>
-												);
-											})}
+										{item.relatedPages.map(d => {
+											return (
+												<ComponentLink key={d.id} link={getURL(d)}>
+													{d.pageTitle}
+												</ComponentLink>
+											);
+										})}
 									</ul>
 								</Cell>
 							)}

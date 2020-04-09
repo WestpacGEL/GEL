@@ -20,13 +20,16 @@ code {
 }
 packageName
 isOrphaned
-name
 version
 description
 author
 requires
-categories {
+relatedPages {
 	id
+	pageTitle
+	url
+	packageName
+	version
 }
 relatedInfo {
 	id
@@ -37,15 +40,6 @@ relatedInfo {
 export const ALL_PAGES = gql`
 	query AllPages {
 		allPages {
-			${pageFragment}
-		}
-	}
-`;
-
-// { categories_some: { id_in: ["..."] } }
-export const RELATED_INFORMATION = where => gql`
-	query AllPages {
-		allPages(where: ${where}) {
 			${pageFragment}
 		}
 	}
