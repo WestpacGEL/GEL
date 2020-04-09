@@ -189,7 +189,7 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
 	columns: 12,
-	gap: ['1.2rem', '2.4rem'],
+	gap: ['0.75rem', '1.5rem'],
 	flow: 'row',
 	height: 'auto',
 	minRowHeight: '2rem',
