@@ -163,3 +163,12 @@ export const brandHeaderColors = {
 	BOM: COLORS => COLORS.hero,
 	BTFG: COLORS => COLORS.hero,
 };
+
+export const brandIconHighlightColors = {
+	WBC: COLORS => COLORS.primary,
+	WBG: COLORS => COLORS.primary,
+	STG: COLORS => COLORS.hero,
+	BSA: () => '#00adbd',
+	BOM: COLORS => COLORS.hero,
+	BTFG: () => '#00afd7',
+};

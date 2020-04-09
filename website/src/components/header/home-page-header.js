@@ -2,7 +2,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './home-page-header-image';
-import { brandHeaderColors } from '../pages/single-component/_utils';
+import { brandHeaderColors, brandIconHighlightColors } from '../pages/single-component/_utils';
 import { AccessibilitySvg, StopwatchSvg, TruckSvg } from './symbols';
 import { useSidebar } from '../providers/sidebar';
 import { Cell, Container, Grid } from '@westpac/grid';
@@ -166,7 +166,7 @@ const HeroIntro = () => {
 							<StopwatchSvg
 								outlineColor={COLORS.borderDark}
 								highlightOutlineColor={COLORS.text}
-								highlightColor={COLORS.hero}
+								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
 							/>
 						}
 					>
@@ -187,7 +187,7 @@ const HeroIntro = () => {
 							<TruckSvg
 								outlineColor={COLORS.borderDark}
 								highlightOutlineColor={COLORS.text}
-								highlightColor={COLORS.hero}
+								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
 							/>
 						}
 					>
@@ -208,7 +208,7 @@ const HeroIntro = () => {
 							<AccessibilitySvg
 								outlineColor={COLORS.borderDark}
 								highlightOutlineColor={COLORS.text}
-								highlightColor={COLORS.hero}
+								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
 							/>
 						}
 					>
