@@ -23,7 +23,7 @@ const selectStyles = (_, { position }) => ({
 	}),
 });
 
-const selectAttributes = (_, { instanceId, name }) => ({ id: instanceId, name });
+const selectAttributes = (_, { instanceId }) => ({ id: instanceId });
 
 export const defaultSelect = {
 	component: Select,

@@ -12,21 +12,22 @@ function Example({ brand }) {
 
 			<h2>Invalid</h2>
 
+			<h3>Composed</h3>
 			<InputGroup
 				name="example-invalid-text"
 				label="Total amount"
 				invalid
-				defaultValue="Text that can be edited"
+				defaultValue="This value is marked invalid"
 			>
 				<Left type="text" data="AUS $" />
 			</InputGroup>
-			<br />
 
+			<h3>Data-driven</h3>
 			<InputGroup
 				name="example-invalid-text-datadriven"
 				label="Total amount"
 				invalid
-				defaultValue="Text that can be edited"
+				defaultValue="This value is marked invalid"
 				data={{
 					left: { type: 'text', data: 'AUS $' },
 				}}
@@ -37,6 +38,7 @@ function Example({ brand }) {
 
 			<h2>Disabled</h2>
 
+			<h3>Composed</h3>
 			<InputGroup
 				name="example-disabled-text"
 				label="Total amount"
@@ -45,8 +47,8 @@ function Example({ brand }) {
 			>
 				<Left type="text" data="AUS $" />
 			</InputGroup>
-			<br />
 
+			<h3>Data-driven</h3>
 			<InputGroup
 				name="example-disabled-text-datadriven"
 				label="Total amount"
@@ -62,6 +64,7 @@ function Example({ brand }) {
 
 			<h2>Read only</h2>
 
+			<h3>Composed</h3>
 			<InputGroup
 				name="example-readonly-text"
 				label="Total amount"
@@ -70,8 +73,8 @@ function Example({ brand }) {
 			>
 				<Left type="text" data="AUS $" />
 			</InputGroup>
-			<br />
 
+			<h3>Data-driven</h3>
 			<InputGroup
 				name="example-readonly-text-datadriven"
 				label="Total amount"

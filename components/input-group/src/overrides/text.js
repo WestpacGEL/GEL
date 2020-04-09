@@ -36,20 +36,16 @@ const textStyles = (_, { size, position }) => {
 		backgroundColor: COLORS.light,
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
-		borderTopRightRadius: 0,
-		borderBottomRightRadius: 0,
 		whiteSpace: 'nowrap',
 		boxSizing: 'border-box',
-		borderRight: position === 'left' && 0,
 
 		...(position === 'right' && {
-			borderTopRightRadius: '0.1875rem',
-			borderBottomRightRadius: '0.1875rem',
 			borderLeft: 0,
-		}),
-		...(!(position === 'left') && {
 			borderTopLeftRadius: 0,
 			borderBottomLeftRadius: 0,
+		}),
+		...(position === 'left' && {
+			borderRight: 0,
 			borderTopRightRadius: 0,
 			borderBottomRightRadius: 0,
 		}),

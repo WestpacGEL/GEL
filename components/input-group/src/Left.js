@@ -11,7 +11,7 @@ import { Text } from './Text';
 // Component
 // ==============================
 
-export const Left = ({ type, instanceId, overrides: componentOverrides, ...rest }) => {
+export const Left = ({ type, overrides: componentOverrides, ...rest }) => {
 	const componentMap = {
 		text: Text,
 		button: Button,
@@ -19,9 +19,7 @@ export const Left = ({ type, instanceId, overrides: componentOverrides, ...rest 
 	};
 	const Component = componentMap[type];
 
-	return (
-		<Component instanceId={instanceId} position="left" overrides={componentOverrides} {...rest} />
-	);
+	return <Component position="left" overrides={componentOverrides} {...rest} />;
 };
 
 // ==============================
@@ -33,11 +31,6 @@ Left.propTypes = {
 	 * What type this component is
 	 */
 	type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
-
-	/**
-	 * The instance ID for the label and add-on
-	 */
-	instanceId: PropTypes.string.isRequired,
 
 	/**
 	 * What size the button-group is

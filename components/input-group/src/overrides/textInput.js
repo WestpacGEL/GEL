@@ -17,12 +17,8 @@ const textInputStyles = (_, { left, right }) => ({
 	}),
 });
 
-const textInputAttributes = (_, { instanceId, name, invalid, disabled, readOnly }) => ({
+const textInputAttributes = (_, { instanceId }) => ({
 	id: instanceId,
-	name,
-	invalid,
-	disabled,
-	readOnly,
 });
 
 export const defaultTextInput = {

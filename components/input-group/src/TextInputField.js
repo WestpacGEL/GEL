@@ -4,8 +4,9 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultLabel } from './overrides/label';
 import { defaultTextInput } from './overrides/textInput';
+
+import { VisuallyHidden } from '@westpac/a11y';
 
 import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
@@ -14,7 +15,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const TextInputField = ({ instanceId, label, size, left, right, overrides, ...rest }) => {
+export const TextInputField = ({ instanceId, label, left, right, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -23,7 +24,6 @@ export const TextInputField = ({ instanceId, label, size, left, right, overrides
 	const context = useInputGroupContext();
 
 	const defaultOverrides = {
-		Label: defaultLabel,
 		TextInput: defaultTextInput,
 	};
 
@@ -32,7 +32,6 @@ export const TextInputField = ({ instanceId, label, size, left, right, overrides
 	const state = {
 		instanceId,
 		label,
-		size,
 		left,
 		right,
 		context: context.state,
@@ -41,15 +40,14 @@ export const TextInputField = ({ instanceId, label, size, left, right, overrides
 	};
 
 	const {
-		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
 		TextInput: { component: TextInput, styles: textInputStyles, attributes: textInputAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
 		<>
-			<Label state={state} {...labelAttributes(state)} css={{ '&&': labelStyles(state) }}>
+			<VisuallyHidden tag="label" htmlFor={instanceId}>
 				{label}
-			</Label>
+			</VisuallyHidden>
 			<TextInput
 				{...rest}
 				state={state}
@@ -69,16 +67,6 @@ TextInputField.propTypes = {
 	 * The instance ID for the label and text input
 	 */
 	instanceId: PropTypes.string.isRequired,
-
-	/**
-	 * The label text for the text input
-	 */
-	label: PropTypes.string.isRequired,
-
-	/**
-	 * What size the button-group is
-	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
 
 	/**
 	 * The override API

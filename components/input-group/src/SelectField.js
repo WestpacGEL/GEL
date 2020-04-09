@@ -4,7 +4,8 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultLabel } from './overrides/label';
+import { VisuallyHidden } from '@westpac/a11y';
+
 import { defaultSelect } from './overrides/select';
 
 import { useInputGroupContext } from './InputGroup';
@@ -14,7 +15,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const SelectField = ({ instanceId, position, size, label, data, overrides, ...rest }) => {
+export const SelectField = ({ instanceId, position, label, data, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -23,7 +24,6 @@ export const SelectField = ({ instanceId, position, size, label, data, overrides
 	const context = useInputGroupContext();
 
 	const defaultOverrides = {
-		Label: defaultLabel,
 		Select: defaultSelect,
 	};
 
@@ -32,7 +32,6 @@ export const SelectField = ({ instanceId, position, size, label, data, overrides
 	const state = {
 		instanceId,
 		position,
-		size,
 		label,
 		data,
 		context: context.state,
@@ -41,15 +40,14 @@ export const SelectField = ({ instanceId, position, size, label, data, overrides
 	};
 
 	const {
-		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
 		Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
 		<>
-			<Label state={state} {...labelAttributes(state)} css={{ '&&': labelStyles(state) }}>
+			<VisuallyHidden tag="label" htmlFor={instanceId}>
 				{label}
-			</Label>
+			</VisuallyHidden>
 			<Select
 				{...rest}
 				state={state}
@@ -71,19 +69,9 @@ SelectField.propTypes = {
 	instanceId: PropTypes.string.isRequired,
 
 	/**
-	 * The label text for the select
-	 */
-	label: PropTypes.string.isRequired,
-
-	/**
 	 * What position this component is at
 	 */
 	position: PropTypes.oneOf(['left', 'right']).isRequired,
-
-	/**
-	 * What size the button-group is
-	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
 
 	/**
 	 * The content of the component

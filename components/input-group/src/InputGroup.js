@@ -32,15 +32,15 @@ export const useInputGroupContext = () => {
 // ==============================
 
 export const InputGroup = ({
+	instanceIdPrefix,
 	name,
 	label,
 	size,
 	look,
-	data,
 	invalid,
 	disabled,
 	readOnly,
-	instanceIdPrefix,
+	data,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -68,10 +68,10 @@ export const InputGroup = ({
 		label,
 		size,
 		look,
-		data,
 		invalid,
 		disabled,
 		readOnly,
+		data,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -107,13 +107,16 @@ export const InputGroup = ({
 		childrenWithProps.push(
 			<TextInputField
 				key="textinput1"
-				{...rest}
 				instanceId={`${instanceId}-textinput`}
 				name={name}
 				label={label}
 				size={size}
+				invalid={invalid}
+				disabled={disabled}
+				readOnly={readOnly}
 				left={!!left}
 				right={!!right}
+				{...rest}
 			/>
 		);
 		if (right) {
@@ -145,13 +148,16 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					<TextInputField
 						key="textinput1"
-						{...rest}
 						instanceId={`${instanceId}-textinput`}
 						name={name}
 						label={label}
 						size={size}
+						invalid={invalid}
+						disabled={disabled}
+						readOnly={readOnly}
 						left={true}
 						right={length > 1}
+						{...rest}
 					/>
 				);
 				textInputFieldAdded = true;
@@ -159,14 +165,16 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					<TextInputField
 						key="textinput2"
-						{...rest}
 						instanceId={`${instanceId}-textinput`}
 						name={name}
 						label={label}
 						size={size}
+						invalid={invalid}
+						disabled={disabled}
+						readOnly={readOnly}
 						left={false}
 						right={true}
-						state={{ ...state }}
+						{...rest}
 					/>
 				);
 				childrenWithProps.push(
@@ -281,11 +289,6 @@ InputGroup.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Text: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Label: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
