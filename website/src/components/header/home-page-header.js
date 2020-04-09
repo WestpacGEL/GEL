@@ -2,8 +2,8 @@
 import { jsx, useBrand } from '@westpac/core';
 import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './home-page-header-image';
-import { brandHeaderColors, brandIconHighlightColors } from '../pages/single-component/_utils';
-import { AccessibilitySvg, StopwatchSvg, TruckSvg } from './symbols';
+import { brandHeaderColors, brandIconHighlightColors } from '../_utils';
+import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../symbols';
 import { useSidebar } from '../providers/sidebar';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';

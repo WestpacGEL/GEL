@@ -4,8 +4,8 @@ import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { useQuery } from '@apollo/react-hooks';
-import { RELATED_INFORMATION } from '../../../../graphql';
-import { SlateContent } from './blocks-hub';
+import { RELATED_INFORMATION } from '../../graphql';
+import { SlateContent } from './pages/single-component/blocks-hub';
 import Link from 'next/link';
 
 export const BlocksDocs = ({ title, blocks, item }) => {

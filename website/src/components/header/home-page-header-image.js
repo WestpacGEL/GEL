@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
-import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from './symbols';
+import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
 
 const HomePageHeaderImage = ({ brand }) => {
 	const { LAYOUT } = useBrand();

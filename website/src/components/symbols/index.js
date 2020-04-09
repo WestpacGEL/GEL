@@ -1,0 +1,16 @@
+export { AccessibilitySvg } from './AccessibilitySvg';
+export { AtlassianLogo } from './AtlassianLogo';
+export { BsaBackgroundSvg } from './BsaBackgroundSvg';
+export { FacebookLogo } from './FacebookLogo';
+export { GovLogo } from './GovLogo';
+export { IbmLogo } from './IbmLogo';
+export { MicrosoftLogo } from './MicrosoftLogo';
+export { MyobLogo } from './MyobLogo';
+export { ReactLogo } from './ReactLogo';
+export { ShopifyLogo } from './ShopifyLogo';
+export { StgBackgroundSvg } from './StgBackgroundSvg';
+export { StopwatchSvg } from './StopwatchSvg';
+export { TruckSvg } from './TruckSvg';
+export { TwitterLogo } from './TwitterLogo';
+export { WbcBackgroundLeftSvg } from './WbcBackgroundLeftSvg';
+export { WbcBackgroundRightSvg } from './WbcBackgroundRightSvg';

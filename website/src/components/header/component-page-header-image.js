@@ -7,7 +7,7 @@ import {
 	WbcBackgroundLeftSvg,
 	StgBackgroundSvg,
 	BsaBackgroundSvg,
-} from './symbols';
+} from '../symbols';
 
 const ComponentPageHeaderImage = ({ brand }) => {
 	const WestpacImage = () => (

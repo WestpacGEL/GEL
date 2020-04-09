@@ -6,7 +6,7 @@ import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './component-page-header-image';
 
 import { useSidebar } from '../providers/sidebar';
-import { brandHeaderColors } from '../pages/single-component/_utils';
+import { brandHeaderColors } from '../_utils';
 
 const MenuIcon = () => {
 	const { setIsOpen } = useSidebar();

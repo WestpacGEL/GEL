@@ -3,6 +3,17 @@ import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import HomePageHeader from '../components/header/home-page-header';
+import {
+	ReactLogo,
+	AtlassianLogo,
+	FacebookLogo,
+	GovLogo,
+	IbmLogo,
+	MyobLogo,
+	ShopifyLogo,
+	MicrosoftLogo,
+	TwitterLogo,
+} from '../components/symbols';
 
 const Homepage = () => {
 	const { COLORS, SPACING, BRAND } = useBrand();
@@ -35,37 +46,76 @@ const Homepage = () => {
 
 			<section css={{ background: COLORS.background, padding: `${SPACING(14)} 0` }}>
 				<Container>
-					<Heading tag="h2" size={4}>
+					<ReactLogo size={'100px'} />
+					<Heading tag="h2" size={5} css={{ padding: `${SPACING(3)} 0` }}>
 						Built on React
 					</Heading>
-					<p>
+					<p css={{ margin: `${SPACING(3)} 0` }}>
 						We're moving with the times. With React we can showcase so much more and deliver higher
 						quality, more accessible code.
 					</p>
 
-					<Heading tag="h3" size={5}>
+					<Heading
+						tag="h3"
+						size={7}
+						css={{
+							borderBottom: `1px solid ${COLORS.text}`,
+							paddingBottom: SPACING(3),
+							paddingTop: SPACING(6),
+						}}
+					>
 						Who else is using React?
 					</Heading>
+				</Container>
+				<Container>
+					<Grid css={{ marginTop: SPACING(4) }}>
+						<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+							<GovLogo size={'113px'} />
+						</Cell>
+						<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+							<MicrosoftLogo size={'127px'} />
+						</Cell>
+						<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+							<MyobLogo size={'90px'} />
+						</Cell>
+						<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+							<IbmLogo size={'77px'} />
+						</Cell>
+					</Grid>
+					<Grid>
+						<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+							<AtlassianLogo size={'159px'} />
+						</Cell>
+						<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+							<FacebookLogo size={'39px'} />
+						</Cell>
+						<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+							<TwitterLogo size={'50px'} />
+						</Cell>
+						<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+							<ShopifyLogo size={'138px'} />
+						</Cell>
+					</Grid>
 				</Container>
 			</section>
 
 			<section css={{ padding: `${SPACING(14)} 0` }}>
 				<Container>
-					<Heading tag="h2" size={4}>
-						Subscribe to our update
+					<Heading tag="h2" size={5}>
+						Subscribe to our updates
 					</Heading>
-					<p>Get news about components, code chages, new resources, and helpful tips</p>
+					<p>Get news about components, code chages, new resources, and helpful tips.</p>
 				</Container>
 			</section>
 
-			<section css={{ background: COLORS.background, padding: `${SPACING(8)} 0` }}>
+			<section css={{ background: COLORS.background, padding: `${SPACING(12)} 0` }}>
 				<Container>
-					<Heading tag="h2" size={4}>
+					<Heading tag="h2" size={5}>
 						Downloads & links
 					</Heading>
 					<p>
 						Get the Sketch UI or Axure kit to start designing. Visit Git to get the latest code and
-						development framework
+						development framework.
 					</p>
 				</Container>
 			</section>
@@ -74,7 +124,3 @@ const Homepage = () => {
 };
 
 export default Homepage;
-
-const SectionHeading = () => {
-	<section>{PropsTable.children}</section>;
-};
