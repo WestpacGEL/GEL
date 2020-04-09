@@ -6,11 +6,14 @@ import HomePageHeader from '../components/header/home-page-header';
 import {
 	ReactLogo,
 	AtlassianLogo,
+	AxureLogo,
 	FacebookLogo,
+	GithubLogo,
 	GovLogo,
 	IbmLogo,
 	MyobLogo,
 	ShopifyLogo,
+	SketchLogo,
 	MicrosoftLogo,
 	TwitterLogo,
 } from '../components/symbols';
@@ -21,9 +24,13 @@ const Homepage = () => {
 	return (
 		<div css={{ textAlign: 'center', lineHeight: 2 }}>
 			<HomePageHeader />
-
 			<section css={{ padding: `${SPACING(14)} 0` }}>
-				<Container>
+				<Container
+					css={{
+						maxWidth: '60rem',
+						margin: '0 auto',
+					}}
+				>
 					<Heading tag="h2" size={5}>
 						Accessibility is in everything we do
 					</Heading>
@@ -44,8 +51,18 @@ const Homepage = () => {
 				</Container>
 			</section>
 
-			<section css={{ background: COLORS.background, padding: `${SPACING(14)} 0` }}>
-				<Container>
+			<section
+				css={{
+					background: COLORS.background,
+					padding: `${SPACING(14)} 0`,
+				}}
+			>
+				<Container
+					css={{
+						maxWidth: '60rem',
+						margin: '0 auto',
+					}}
+				>
 					<ReactLogo size={'100px'} />
 					<Heading tag="h2" size={5} css={{ padding: `${SPACING(3)} 0` }}>
 						Built on React
@@ -60,14 +77,13 @@ const Homepage = () => {
 						size={7}
 						css={{
 							borderBottom: `1px solid ${COLORS.text}`,
-							paddingBottom: SPACING(3),
+							paddingBottom: SPACING(4),
 							paddingTop: SPACING(6),
 						}}
 					>
 						Who else is using React?
 					</Heading>
-				</Container>
-				<Container>
+
 					<Grid css={{ marginTop: SPACING(4) }}>
 						<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
 							<GovLogo size={'113px'} />
@@ -100,16 +116,31 @@ const Homepage = () => {
 			</section>
 
 			<section css={{ padding: `${SPACING(14)} 0` }}>
-				<Container>
-					<Heading tag="h2" size={5}>
+				<Container
+					css={{
+						maxWidth: '60rem',
+						margin: '0 auto',
+					}}
+				>
+					<Heading tag="h2" size={5} css={{ padding: `${SPACING(3)} 0` }}>
 						Subscribe to our updates
 					</Heading>
 					<p>Get news about components, code chages, new resources, and helpful tips.</p>
 				</Container>
 			</section>
 
-			<section css={{ background: COLORS.background, padding: `${SPACING(12)} 0` }}>
-				<Container>
+			<section
+				css={{
+					background: COLORS.background,
+					padding: `${SPACING(12)} 0`,
+				}}
+			>
+				<Container
+					css={{
+						maxWidth: '60rem',
+						margin: '0 auto',
+					}}
+				>
 					<Heading tag="h2" size={5}>
 						Downloads & links
 					</Heading>
@@ -117,6 +148,7 @@ const Homepage = () => {
 						Get the Sketch UI or Axure kit to start designing. Visit Git to get the latest code and
 						development framework.
 					</p>
+					<DownloadAndLinksSection />
 				</Container>
 			</section>
 		</div>
@@ -124,3 +156,80 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
+const DownloadAndLinksSection = ({ item }) => {
+	const { SPACING, COLORS } = useBrand();
+
+	return (
+		<div
+			css={{
+				paddingBottom: SPACING(12),
+				marginBottom: SPACING(3),
+				textAlign: 'left',
+			}}
+		>
+			<Grid columns={13}>
+				<Cell width={[13, 6]}>
+					<Heading
+						tag="h3"
+						size={7}
+						css={{
+							borderBottom: `1px solid ${COLORS.text}`,
+							paddingBottom: SPACING(3),
+							paddingTop: SPACING(6),
+						}}
+					>
+						Downloads
+					</Heading>
+					<div
+						css={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'space-between',
+							padding: `${SPACING(3)} 0`,
+							borderBottom: `1px solid ${COLORS.border}`,
+						}}
+					>
+						Sketch UI Kit Download <SketchLogo size="50px" />
+					</div>
+					<div
+						css={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'space-between',
+							padding: `${SPACING(3)} 0`,
+							borderBottom: `1px solid ${COLORS.border}`,
+						}}
+					>
+						Axure UI Kit Download <AxureLogo size="70px" />
+					</div>
+				</Cell>
+				<Cell width={[0, 1]} />
+				<Cell width={[13, 6]}>
+					<Heading
+						tag="h3"
+						size={7}
+						css={{
+							borderBottom: `1px solid ${COLORS.text}`,
+							paddingBottom: SPACING(3),
+							paddingTop: SPACING(6),
+						}}
+					>
+						Links
+					</Heading>
+					<div
+						css={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'space-between',
+							padding: `${SPACING(3)} 0`,
+							borderBottom: `1px solid ${COLORS.border}`,
+						}}
+					>
+						Go to GitHub <GithubLogo size="50px" />
+					</div>
+				</Cell>
+			</Grid>
+		</div>
+	);
+};
