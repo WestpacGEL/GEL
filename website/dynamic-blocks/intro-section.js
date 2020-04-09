@@ -54,11 +54,13 @@ const TableOfContents = () => {
 		const headings = [];
 		if (containerRef && containerRef.current) {
 			const container = containerRef.current.closest('.slate-container') || document;
-			container.querySelectorAll('[data-toc]').forEach((h, i) => {
-				headings[i] = <TableLink key={`nav-${i}`} headingId={h.id} headingText={h.innerText} />;
-			});
+			setTimeout(() => {
+				container.querySelectorAll('[data-toc]').forEach((h, i) => {
+					headings.push(<TableLink key={`nav-${i}`} headingId={h.id} headingText={h.innerText} />);
+				});
+				setToc(headings);
+			}, 100);
 		}
-		setToc(headings);
 	}, [containerRef]);
 
 	return (
