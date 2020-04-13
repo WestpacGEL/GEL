@@ -1,4 +1,3 @@
-const cfonts = require('cfonts');
 const path = require('path');
 const fs = require('fs');
 
@@ -107,13 +106,6 @@ function build(BRAND) {
 
 	// packs
 	const PACKS = packs;
-
-	console.log();
-	cfonts.say(`${BRAND} TOKENS`, {
-		font: 'chrome',
-		colors: [COLORS.primary, COLORS.hero, COLORS.borderDark],
-		space: false,
-	});
 
 	return `
 		import { OVERRIDES as _OVERRIDES } from '../overrides/index';

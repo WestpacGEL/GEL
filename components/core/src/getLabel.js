@@ -1,4 +1,4 @@
-export function getLabel(name, props) {
+export function getLabel(name, props = {}) {
 	let label = name;
 
 	Object.entries(props).map(([name, value]) => {
