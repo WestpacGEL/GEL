@@ -4,6 +4,11 @@
 	"description": "Core components for the westpac GEL design language",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"blender": {
+		"recipe": "blender/recipe.js",
+		"js": "blender/jquery.js",
+		"isCore": true
+	},
 	"contributors": [
 		{
 			"name": "Dominik Wilkowski",
