@@ -36,7 +36,7 @@ export const Tabcordion = ({
 	mode: tabcordionMode,
 	look,
 	justify,
-	initialTabIndex,
+	openTab,
 	instanceIdPrefix,
 	onOpen = () => {},
 	onOpening = () => {},
@@ -57,7 +57,7 @@ export const Tabcordion = ({
 		TabRow: defaultTabRow,
 	};
 
-	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
+	const [activeTabIndex, setActiveTabIndex] = useState(openTab);
 	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 
 	const containerRef = useRef();
@@ -77,14 +77,22 @@ export const Tabcordion = ({
 		}
 	}, [instanceIdPrefix]);
 
+	useEffect(() => setActiveTabIndex(openTab), [openTab]);
+
 	const getId = (type, index) => `${instanceId}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
+
+	useEffect(() => {
+		if (open < tabCount && open >= 0) {
+			setActiveTabIndex(open);
+		}
+	}, [open]);
 
 	const state = {
 		mode,
 		look,
 		justify,
-		initialTabIndex: activeTabIndex,
+		openTab: activeTabIndex,
 		instanceId,
 		onOpen,
 		onOpening,
@@ -190,9 +198,9 @@ Tabcordion.propTypes = {
 	justify: PropTypes.bool,
 
 	/**
-	 * The tab index to mount this component with
+	 * Current open tab (zero-indexed)
 	 */
-	initialTabIndex: PropTypes.number,
+	openTab: PropTypes.number,
 
 	/**
 	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
@@ -263,7 +271,7 @@ Tabcordion.propTypes = {
 
 Tabcordion.defaultProps = {
 	look: 'soft',
-	initialTabIndex: 0,
+	openTab: 0,
 	justify: false,
 	mode: 'responsive',
 };
