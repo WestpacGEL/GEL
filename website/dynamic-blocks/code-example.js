@@ -68,7 +68,7 @@ export const CodeExample = {
 	editor: ({ value, onChange }) => {
 		const currentValue = {
 			codeExample: null,
-			showCode: true,
+			showCode: false,
 			showDemo: false,
 			...(value || {}),
 		};

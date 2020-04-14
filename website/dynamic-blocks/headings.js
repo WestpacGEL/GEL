@@ -37,8 +37,8 @@ const Component = ({ heading, size, level, addTableContent, text }) => {
 export const Heading = {
 	editor: ({ value, onChange }) => {
 		const currentValue = {
-			level: null,
-			size: null,
+			level: 'h2',
+			size: 5,
 			heading: '',
 			addTableContent: true,
 			text: '',
