@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, wrapHandlers, getLabel } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -80,27 +80,55 @@ export const Alert = ({
 		)(event);
 	};
 
+	const labelObj = {
+		open,
+		look,
+		dismissible,
+		icon,
+		heading,
+		headingTag,
+	};
+
 	const HeadingJSX = () => (
-		<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
+		<Heading
+			state={state}
+			{...headingAttributes(state)}
+			css={{ ...headingStyles(state), label: getLabel('Alert-heading', labelObj) }}
+		>
 			{heading}
 		</Heading>
 	);
 
-	const IconJSX = () => <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />;
+	const IconJSX = () => (
+		<Icon
+			state={state}
+			{...iconAttributes(state)}
+			css={{ ...iconStyles(state), label: getLabel('Alert-icon', labelObj) }}
+		/>
+	);
 
 	const CloseBtnJSX = () => (
 		<CloseBtn
 			onClose={event => handleClose(event)}
 			state={state}
 			{...closeBtnAttributes(state)}
-			css={{ '&&': closeBtnStyles(state) }}
+			css={{ '&&': closeBtnStyles(state), label: getLabel('Alert-closebtn', labelObj) }}
 		/>
 	);
 
 	const AlertJSX = () => (
-		<Alert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
+		<Alert
+			state={state}
+			{...rest}
+			{...alertAttributes(state)}
+			css={{ ...alertStyles(state), label: getLabel('Alert', labelObj) }}
+		>
 			{Icon && <IconJSX />}
-			<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
+			<Body
+				state={state}
+				{...bodyAttributes(state)}
+				css={{ ...bodyStyles(state), label: getLabel('Alert-body', labelObj) }}
+			>
 				{heading && <HeadingJSX />}
 				{children}
 			</Body>

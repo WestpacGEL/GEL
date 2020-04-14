@@ -37,13 +37,13 @@
 		"resize-observer-polyfill": "^1.5.1"
 	},
 	"peerDependencies": {
-		"react": "^16.11.0",
+		"react": "^16.13.1",
 		"react-spring": "^8.0.27"
 	},
 	"devDependencies": {
-		"@westpac/form-check": "^1.0.0",
+		"@westpac/form-check": "*",
 		"cypress": "^4.1.0",
-		"react": "^16.13.0",
+		"react": "^16.13.1",
 		"react-spring": "^8.0.27",
 		"start-server-and-test": "^1.10.10"
 	}

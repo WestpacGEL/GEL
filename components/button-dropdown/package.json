@@ -29,7 +29,7 @@
 	"devDependencies": {
 		"@westpac/icon": "*",
 		"cypress": "^4.1.0",
-		"react": "^16.13.0",
+		"react": "^16.13.1",
 		"start-server-and-test": "^1.10.10"
 	}
 }
