@@ -59,18 +59,16 @@ export const Navigation = ({ items }) => {
 					key={item.title + item.path}
 					name={item.title}
 					as={item.path}
-					path={href}
+					href={href}
 				/>
 			);
 		});
 	};
 	return (
 		<Fragment>
-			<Link href="https://gel.westpacgroup.com.au/">
-				<a>
-					<BackToGelSvg />
-				</a>
-			</Link>
+			<a href="https://gel.westpacgroup.com.au/">
+				<BackToGelSvg />
+			</a>
 
 			<LinkList>{renderNavigationItems(items)}</LinkList>
 		</Fragment>
