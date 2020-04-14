@@ -119,7 +119,7 @@ const labelStyles = (_, { checked, disabled, type, size }) => {
 	};
 };
 
-const labelAttributes = (_, { formCheckId }) => ({ htmlFor: formCheckId });
+const labelAttributes = (_, { optionId }) => ({ htmlFor: optionId });
 
 export const defaultLabel = {
 	component: Label,
