@@ -75,6 +75,41 @@ const findExampleFiles = (component, parent = '') => {
 };
 
 /**
+ * Find all demo files recursively
+ *
+ * @param {*} dir 		- The directory to search
+ * @param {*} data 		- Component data
+ * @param {*} fileList 	- Array of demo files
+ */
+const recurseFindFiles = (dir, data, fileList = []) => {
+	fs.readdirSync(dir).forEach(file => {
+		const fullPath = path.join(dir, file);
+		if (fs.lstatSync(fullPath).isDirectory()) {
+			recurseFindFiles(fullPath, data, fileList);
+		} else if (
+			fs.lstatSync(fullPath).isFile() &&
+			path.extname(fullPath) === '.js' &&
+			!file.startsWith('.') &&
+			!file.startsWith('_')
+		) {
+			const slug = fullPath.match(/components\/(.+).js$/)[1];
+			const label = labelFromSlug(slug);
+
+			fileList.push({
+				...data,
+				filename: file,
+				slug,
+				label,
+				relativePath: path.relative(__dirname, fullPath),
+				absolutePath: fullPath,
+			});
+		}
+	});
+
+	return fileList;
+};
+
+/**
  * Find all demo files in a given directory
  *
  * @param  {string} component - The component path
@@ -88,32 +123,20 @@ const findDemoFiles = (component, parent = '') => {
 	const demoDir = path.resolve(`${__dirname}/../../components/${component}/${DEMO_FOLDER}`);
 
 	if (fs.existsSync(demoDir)) {
-		const files = fs
-			.readdirSync(demoDir)
-			.filter(file => !file.startsWith('.') && !file.startsWith('_') && file.endsWith('.js'));
-
 		const { version } = require(path.normalize(
 			`${__dirname}/../../components/${component}/package.json`
 		));
 
-		return files.map(filename => {
-			const slug = `${component}/demos/${slugFromFilename(filename)}`;
-			const label = labelFromSlug(slug);
+		const data = {
+			component,
+			version,
+			parent,
+			landing: parent.length > 0 ? false : true,
+			path: demoDir,
+			type: 'demo',
+		};
 
-			return {
-				component,
-				version,
-				filename,
-				slug,
-				label,
-				parent,
-				landing: parent.length > 0 ? false : true,
-				relativePath: path.relative(__dirname, `${demoDir}/${filename}`),
-				absolutePath: `${demoDir}/${filename}`,
-				path: demoDir,
-				type: 'demo',
-			};
-		});
+		return recurseFindFiles(demoDir, data);
 	} else {
 		console.error(`Package doesn't exist: ${demoDir}`);
 	}

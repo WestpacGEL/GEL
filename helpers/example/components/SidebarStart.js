@@ -41,7 +41,7 @@ const SubMenu = ({ hidden, ...rest }) => (
 
 const MenuItem = ({ slug, label, ...rest }) => {
 	const { COLORS } = useBrand();
-
+	const shortLabel = label.match(/([^\/]+)$/)[1];
 	return (
 		<li data-test-nav key={slug} {...rest}>
 			<NavLink
@@ -70,9 +70,10 @@ const MenuItem = ({ slug, label, ...rest }) => {
 						borderLeftColor: COLORS.primary,
 						color: 'inherit',
 					},
+					textTransform: 'capitalize',
 				}}
 			>
-				{label}
+				{shortLabel}
 			</NavLink>
 		</li>
 	);
