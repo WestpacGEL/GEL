@@ -1,9 +1,11 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'; // Needed for within Keystone
+
+import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
 import { useMutation } from '@apollo/react-hooks';
+import { LoadingIndicator } from '@arch-ui/loading';
 
 import gql from 'graphql-tag';
 
@@ -25,6 +27,7 @@ const UPLOAD_IMAGE = gql`
 
 export const Image = {
 	editor: ({ value, onChange }) => {
+		const [uploadState, setUploadState] = useState(null);
 		const [image, setImage] = useState(value.image);
 		const [caption, setCaption] = useState(value.caption);
 
@@ -38,19 +41,28 @@ export const Image = {
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
 		return (
-			<>
+			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'image'} field={{ label: 'Image', config: {} }} />
+					{uploadState && (
+						<p css={inputStyles}>
+							<LoadingIndicator />
+						</p>
+					)}
 					<FieldInput>
 						<input
+							disabled={uploadState !== null}
 							css={inputStyles}
+							style={{ display: uploadState ? 'none' : undefined }}
 							type="file"
 							id="image"
 							onChange={async e => {
+								setUploadState('uploading');
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
 								});
 								setImage(data.createImage.image.publicUrl);
+								setUploadState(null);
 							}}
 						/>
 					</FieldInput>
@@ -69,10 +81,10 @@ export const Image = {
 						/>
 					</FieldInput>
 				</FieldContainer>
-			</>
+			</Fragment>
 		);
 	},
-	component: ({ caption, image }) => {
+	component: ({ caption, image, context }) => {
 		const { SPACING } = useBrand();
 
 		const figureStyles = {
@@ -90,7 +102,13 @@ export const Image = {
 		};
 
 		return (
-			<figure css={{ ...figureStyles, paddingRight: SPACING(3) }}>
+			<figure
+				css={{
+					...figureStyles,
+					paddingRight: SPACING(3),
+					pointerEvents: context === 'admin' ? 'none' : undefined,
+				}}
+			>
 				<img css={imageStyles} src={image} />
 				<figcaption css={captionStyle}>{caption}</figcaption>
 			</figure>

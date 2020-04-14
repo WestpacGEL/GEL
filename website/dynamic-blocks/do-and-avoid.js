@@ -1,9 +1,11 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'; // Needed for within Keystone
+
+import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
 import { useMutation } from '@apollo/react-hooks';
+import { LoadingIndicator } from '@arch-ui/loading';
 
 import gql from 'graphql-tag';
 
@@ -25,6 +27,9 @@ const UPLOAD_IMAGE = gql`
 
 export const DoAndAvoid = {
 	editor: ({ value, onChange }) => {
+		const [doImageUploadState, setDoImageUploadState] = useState(null);
+		const [dontImageUploadState, setDontImageUploadState] = useState(null);
+
 		const [doImage, setDoImage] = useState(value.doImage);
 		const [dontImage, setDontImage] = useState(value.dontImage);
 		const [doText, setDoText] = useState(value.doText);
@@ -42,19 +47,28 @@ export const DoAndAvoid = {
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
 		return (
-			<>
+			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'do-image'} field={{ label: 'Do Image', config: {} }} />
+					{doImageUploadState && (
+						<p css={inputStyles}>
+							<LoadingIndicator />
+						</p>
+					)}
 					<FieldInput>
 						<input
+							disabled={doImageUploadState !== null || dontImageUploadState !== null}
 							css={inputStyles}
+							style={{ display: doImageUploadState ? 'none' : undefined }}
 							type="file"
 							id="do-image"
 							onChange={async e => {
+								setDoImageUploadState('uploading');
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
 								});
 								setDoImage(data.createImage.image.publicUrl);
+								setDoImageUploadState(null);
 							}}
 						/>
 					</FieldInput>
@@ -75,16 +89,25 @@ export const DoAndAvoid = {
 				</FieldContainer>
 				<FieldContainer>
 					<FieldLabel htmlFor={'avoid-image'} field={{ label: 'Avoid Image', config: {} }} />
+					{dontImageUploadState && (
+						<p css={inputStyles}>
+							<LoadingIndicator />
+						</p>
+					)}
 					<FieldInput>
 						<input
+							disabled={doImageUploadState !== null || dontImageUploadState !== null}
 							css={inputStyles}
+							style={{ display: dontImageUploadState ? 'none' : undefined }}
 							type="file"
 							id="avoid-image"
 							onChange={async e => {
+								setDontImageUploadState('uploading');
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
 								});
 								setDontImage(data.createImage.image.publicUrl);
+								setDontImageUploadState(null);
 							}}
 						/>
 					</FieldInput>
@@ -103,7 +126,7 @@ export const DoAndAvoid = {
 						/>
 					</FieldInput>
 				</FieldContainer>
-			</>
+			</Fragment>
 		);
 	},
 	component: ({ dontImage, dontText, doImage, doText }) => {

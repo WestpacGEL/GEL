@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'; // Needed for within Keystone
+import React, { useState, useEffect, Fragment } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
@@ -24,7 +24,7 @@ export const ScreenReaderText = {
 		}, [text]);
 
 		return (
-			<>
+			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'a11y-text'} field={{ label: 'Screen reader text', config: {} }} />
 					<FieldInput>
@@ -39,14 +39,19 @@ export const ScreenReaderText = {
 						/>
 					</FieldInput>
 				</FieldContainer>
-			</>
+			</Fragment>
 		);
 	},
 	component: ({ text }) => {
 		const { SPACING, COLORS } = useBrand();
 		const iconSize = SPACING(5, true);
 		return (
-			<div css={{ display: 'flex' }}>
+			<div
+				css={{
+					display: 'flex',
+					flexDirection: 'column',
+				}}
+			>
 				<p
 					css={{
 						flexBasis: '50%',
@@ -62,6 +67,9 @@ export const ScreenReaderText = {
 						paddingRight: SPACING(3),
 						paddingLeft: SPACING(6, true),
 						display: 'inline-block',
+						'@media (max-width: 800px)': {
+							padding: '0px',
+						},
 						'&::before': {
 							content: "''",
 							display: 'block',
@@ -73,6 +81,9 @@ export const ScreenReaderText = {
 							backgroundSize: 'iconSize ${iconSize}',
 							top: 0,
 							left: 0,
+							'@media (max-width: 800px)': {
+								left: '-2rem',
+							},
 						},
 						'&::after': {
 							content: "''",
@@ -83,8 +94,11 @@ export const ScreenReaderText = {
 							backgroundImage: `url("${closeQuote(COLORS.primary.replace('#', '%23'))}")`,
 							backgroundRepeat: 'no-repeat',
 							backgroundSize: `${iconSize} ${iconSize}`,
-							top: '100%',
+							top: '90%',
 							left: '100%',
+							'@media (max-width: 800px)': {
+								top: '95%',
+							},
 						},
 					}}
 				>

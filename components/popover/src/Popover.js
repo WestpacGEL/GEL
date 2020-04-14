@@ -169,6 +169,11 @@ Popover.propTypes = {
 	content: PropTypes.string.isRequired,
 
 	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
 	 * Trigger element to open the popover
 	 */
 	children: PropTypes.node,

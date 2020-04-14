@@ -38,7 +38,7 @@ const renderIcons = search => {
 							padding: 5,
 						}}
 					/>
-					<code css={{ fontSize: '0.75rem', marginTop: 5 }}>{icon.name}</code>
+					<span css={{ fontSize: '0.75rem', marginTop: 5 }}>{icon.name}</span>
 				</div>
 			);
 		});

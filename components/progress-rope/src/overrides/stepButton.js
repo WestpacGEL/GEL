@@ -63,7 +63,7 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 			width: grouped && !end ? '0.625rem' : '0.875rem',
 			height: grouped && !end ? '0.625rem' : '0.875rem',
 			left: grouped && !end ? '2rem' : '1.875rem',
-			border: `solid ${visited ? COLORS.primary : COLORS.border}`,
+			border: `solid ${visited ? COLORS.primary : COLORS.borderDark}`,
 			borderWidth:
 				visited && !furthest
 					? grouped && !end

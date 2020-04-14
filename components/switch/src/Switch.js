@@ -139,9 +139,9 @@ Switch.propTypes = {
 	disabled: PropTypes.bool,
 
 	/**
-	 * Text to use as the `aria-label` for the switch input
+	 * Define an id prefix for internal elements
 	 */
-	assistiveText: PropTypes.string,
+	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * The override API

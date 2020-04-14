@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import React, { useEffect, useState } from 'react';
+
+import { Fragment, useEffect, useState } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading as WestpacHeading } from '@westpac/heading';
 import Select from '@arch-ui/select';
@@ -36,7 +37,7 @@ export const Heading = {
 		const selectedOption = options.find(o => o.value === level);
 
 		return (
-			<>
+			<Fragment>
 				<FieldContainer>
 					<FieldLabel htmlFor={'heading-text'} field={{ label: 'Heading', config: {} }} />
 					<FieldInput>
@@ -58,7 +59,7 @@ export const Heading = {
 						onChange={({ value }) => setLevel(value)}
 					/>
 				</FieldContainer>
-			</>
+			</Fragment>
 		);
 	},
 

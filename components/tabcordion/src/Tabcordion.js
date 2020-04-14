@@ -36,8 +36,12 @@ export const Tabcordion = ({
 	mode: tabcordionMode,
 	look,
 	justify,
-	initialTabIndex,
+	openTab,
 	instanceIdPrefix,
+	onOpen = () => {},
+	onOpening = () => {},
+	onClose = () => {},
+	onClosing = () => {},
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -53,7 +57,7 @@ export const Tabcordion = ({
 		TabRow: defaultTabRow,
 	};
 
-	const [activeTabIndex, setActiveTabIndex] = useState(initialTabIndex);
+	const [activeTabIndex, setActiveTabIndex] = useState(openTab);
 	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 
 	const containerRef = useRef();
@@ -73,15 +77,27 @@ export const Tabcordion = ({
 		}
 	}, [instanceIdPrefix]);
 
+	useEffect(() => setActiveTabIndex(openTab), [openTab]);
+
 	const getId = (type, index) => `${instanceId}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
+
+	useEffect(() => {
+		if (open < tabCount && open >= 0) {
+			setActiveTabIndex(open);
+		}
+	}, [open]);
 
 	const state = {
 		mode,
 		look,
 		justify,
-		initialTabIndex: activeTabIndex,
+		openTab: activeTabIndex,
 		instanceId,
+		onOpen,
+		onOpening,
+		onClose,
+		onClosing,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -149,6 +165,10 @@ export const Tabcordion = ({
 							panelId={getId('panel', idx)}
 							tabId={getId('tab', idx)}
 							onClick={setActive(idx)}
+							onOpen={onOpen}
+							onOpening={onOpening}
+							onClose={onClose}
+							onClosing={onClosing}
 						/>
 					);
 				})}
@@ -178,14 +198,34 @@ Tabcordion.propTypes = {
 	justify: PropTypes.bool,
 
 	/**
-	 * The tab index to mount this component with
+	 * Current open tab (zero-indexed)
 	 */
-	initialTabIndex: PropTypes.number,
+	openTab: PropTypes.number,
 
 	/**
 	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
 	 */
 	instanceIdPrefix: PropTypes.string,
+
+	/**
+	 * Callback function run when a tab/panel is open.
+	 */
+	onOpen: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is opening.
+	 */
+	onOpening: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is closed.
+	 */
+	onClose: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is closing.
+	 */
+	onClosing: PropTypes.func,
 
 	/**
 	 * An array of Tab components that can be navigated through
@@ -231,7 +271,7 @@ Tabcordion.propTypes = {
 
 Tabcordion.defaultProps = {
 	look: 'soft',
-	initialTabIndex: 0,
+	openTab: 0,
 	justify: false,
 	mode: 'responsive',
 };

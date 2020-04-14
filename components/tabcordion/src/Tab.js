@@ -2,7 +2,6 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Fragment, useState, forwardRef, useEffect } from 'react';
-import { ResizeObserver } from '@juggle/resize-observer';
 import { useSpring, animated } from 'react-spring';
 import useMeasure from 'react-use-measure';
 import PropTypes from 'prop-types';
@@ -12,6 +11,7 @@ import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
 import { defaultPanel } from './overrides/panel';
 
 import { useTabcordionContext } from './Tabcordion';
+import { usePrevious } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
@@ -20,7 +20,23 @@ import pkg from '../package.json';
 
 export const Tab = forwardRef(
 	(
-		{ look, last, selected, text, mode, panelId, tabId, onClick, children, overrides, ...rest },
+		{
+			look,
+			last,
+			selected,
+			text,
+			mode,
+			panelId,
+			tabId,
+			onClick,
+			onOpen,
+			onOpening,
+			onClose,
+			onClosing,
+			children,
+			overrides,
+			...rest
+		},
 		ref
 	) => {
 		const {
@@ -29,9 +45,12 @@ export const Tab = forwardRef(
 		} = useBrand();
 
 		const context = useTabcordionContext();
+
 		const [hidden, setHidden] = useState(!selected);
 		const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 		const [initial, setInitial] = useState(true);
+		const prevSelected = usePrevious(selected);
+		const prevHidden = usePrevious(hidden);
 
 		const animate = useSpring({
 			to: {
@@ -39,6 +58,21 @@ export const Tab = forwardRef(
 				overflow: 'hidden',
 			},
 			immediate: initial,
+			onStart: () => {
+				if (mode === 'tabs') {
+					if (selected && !prevSelected) {
+						onOpening(tabId);
+					} else if (!selected && prevSelected) {
+						onClosing(tabId);
+					}
+				} else if (mode === 'accordion') {
+					if (!hidden && prevHidden) {
+						onOpening(tabId);
+					} else if (hidden && !prevHidden) {
+						onClosing(tabId);
+					}
+				}
+			},
 		});
 
 		const defaultOverrides = {
@@ -87,6 +121,26 @@ export const Tab = forwardRef(
 		useEffect(() => {
 			setHidden(!selected);
 		}, [mode]);
+
+		useEffect(() => {
+			if (mode === 'accordion') {
+				if (!hidden) {
+					onOpen(tabId);
+				} else {
+					onClose(tabId);
+				}
+			}
+		}, [hidden, tabId]);
+
+		useEffect(() => {
+			if (mode === 'tabs') {
+				if (selected) {
+					onOpen(tabId);
+				} else {
+					onClose(tabId);
+				}
+			}
+		}, [selected, tabId]);
 
 		return (
 			<Fragment>
@@ -162,6 +216,26 @@ Tab.propTypes = {
 	 * The onClick handler for the accordion button
 	 */
 	onClick: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is open.
+	 */
+	onOpen: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is opening.
+	 */
+	onOpening: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is closed.
+	 */
+	onClose: PropTypes.func,
+
+	/**
+	 * Callback function run when a tab/panel is closing.
+	 */
+	onClosing: PropTypes.func,
 
 	/**
 	 * The panel content for this tab

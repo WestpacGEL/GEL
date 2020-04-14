@@ -21,7 +21,7 @@ import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 
 import { useBrandSwitcher } from '../providers/brand-switcher';
 
-const brandsMap = {
+export const brandsMap = {
 	BOM: {
 		logo: BOMLogo,
 		label: 'Bank of Melbourne',

@@ -147,8 +147,8 @@ function PTable({ data, caption }) {
 }
 
 const Component = ({ item }) => {
-	const tableData = Object.keys(PropTypes[item.packageName]).map(key => {
-		const { overrides, ...normalProps } = PropTypes[item.packageName][key];
+	const tableData = Object.keys(PropTypes.components[item.packageName]).map(key => {
+		const { overrides, ...normalProps } = PropTypes.components[item.packageName][key];
 		return {
 			name: key,
 			overrideProps: { overrides },

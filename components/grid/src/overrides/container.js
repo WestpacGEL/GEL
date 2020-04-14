@@ -13,7 +13,7 @@ const containerStyles = () => {
 	return mq({
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		maxWidth: SPACING(352),
+		maxWidth: SPACING(220),
 		paddingLeft: padding,
 		paddingRight: padding,
 	})[0];
