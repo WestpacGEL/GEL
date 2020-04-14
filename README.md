@@ -425,6 +425,14 @@ So `getLabel('Component')` on the root component and `getLabel('Component-subcom
 </div>
 ```
 
+### Js fallback
+
+Since the blender just SSR each component it won't provide the functionality of react and any interactivity.
+For this you have to provide a `js` file for fallback.
+In the GEL3 we use jQuery for this.
+Each jQuery file should target elements via the `data-js` attribute since classes can vary depending on your blend settings.
+So things like `data-js="body"` or `data-js="component-closebtn"` should work well and you target this via `$('[data-js="component-closebtn"]')` in jQuery.
+
 ### Core components
 
 Inside the `package.json`
