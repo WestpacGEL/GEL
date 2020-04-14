@@ -20,7 +20,7 @@ function findDemos(dir, packageName) {
 	  const fullPath = path.join(dir, file);
 	  if (fs.lstatSync(fullPath).isDirectory()) {
 		findDemos(fullPath, packageName);
-	  } else if (fs.lstatSync(fullPath).isFile() && path.extname(fullPath) === '.js') {
+	  } else if (fs.lstatSync(fullPath).isFile() && path.extname(fullPath) === '.js' && !file.startsWith('.') && !file.startsWith('_')) {
 		const trimPath = fullPath.match(/(demos.*)/)[1];
 		examples.push(path.join(packageName, trimPath));
 	  }
@@ -68,7 +68,7 @@ export const CodeExample = {
 	editor: ({ value, onChange }) => {
 		const currentValue = {
 			codeExample: null,
-			showCode: true,
+			showCode: false,
 			showDemo: false,
 			...(value || {}),
 		};
