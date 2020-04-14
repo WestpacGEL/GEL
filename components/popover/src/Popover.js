@@ -33,7 +33,7 @@ export const Popover = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [open, setOpen] = useState(open);
+	const [open, setOpen] = useState(isOpen);
 	const [position, setPosition] = useState({ placement: 'top', empty: true });
 	const triggerRef = useRef();
 	const popoverRef = useRef();
@@ -184,6 +184,11 @@ Popover.propTypes = {
 	 * Allows popover close via background click.
 	 */
 	dismissible: PropTypes.bool,
+
+	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * Trigger element to open the popover
