@@ -1,4 +1,10 @@
-const { slugFromFilename, labelFromSlug, findExampleFiles, makeCode } = require('./_utils.js');
+const {
+	slugFromFilename,
+	labelFromSlug,
+	findExampleFiles,
+	findDemoFiles,
+	makeCode,
+} = require('./_utils.js');
 const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -17,7 +23,7 @@ const { version } = require(path.normalize(
 tmp.setGracefulCleanup();
 const tmpObj = tmp.fileSync();
 const code = makeCode(
-	findExampleFiles(PACKAGE_NAME, PACKAGE_NAME),
+	[...findExampleFiles(PACKAGE_NAME, PACKAGE_NAME), ...findDemoFiles(PACKAGE_NAME, PACKAGE_NAME)],
 	'start.js',
 	PACKAGE_NAME,
 	version

@@ -6,7 +6,7 @@ import { Fragment, useState, StrictMode } from 'react';
 import { jsx, css, GEL, Global } from '@westpac/core';
 
 import { BRANDS } from './brands';
-import { Sidebar } from './Sidebar';
+import { Sidebar } from './SidebarDocs';
 import { HomeDocs } from './HomeDocs';
 import { Page } from './Page';
 
