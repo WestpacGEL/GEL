@@ -31,6 +31,7 @@ export const useButtonDropdownContext = () => {
 // ==============================
 
 export const ButtonDropdown = ({
+	open: isOpen,
 	instanceIdPrefix,
 	text,
 	dropdownSize,
@@ -44,7 +45,7 @@ export const ButtonDropdown = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(isOpen);
 	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 	const panelRef = useRef();
 	const buttonRef = useRef();
@@ -79,6 +80,10 @@ export const ButtonDropdown = ({
 		},
 		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
+	useEffect(() => {
+		setOpen(isOpen);
+	}, [isOpen]);
 
 	const handleOpen = () => {
 		if (open) {
@@ -142,6 +147,11 @@ export const ButtonDropdown = ({
 
 ButtonDropdown.propTypes = {
 	/**
+	 * State of whether the Popover is open
+	 */
+	open: PropTypes.bool,
+
+  /**
 	 * Define an id prefix for internal elements
 	 */
 	instanceIdPrefix: PropTypes.string,
@@ -189,5 +199,6 @@ ButtonDropdown.propTypes = {
 };
 
 ButtonDropdown.defaultProps = {
+	open: false,
 	dropdownSize: 'medium',
 };
