@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, wrapHandlers, getLabel } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -80,55 +80,27 @@ export const Alert = ({
 		)(event);
 	};
 
-	const labelObj = {
-		open,
-		look,
-		dismissible,
-		icon,
-		heading,
-		headingTag,
-	};
-
 	const HeadingJSX = () => (
-		<Heading
-			state={state}
-			{...headingAttributes(state)}
-			css={{ ...headingStyles(state), label: getLabel('Alert-heading', labelObj) }}
-		>
+		<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
 			{heading}
 		</Heading>
 	);
 
-	const IconJSX = () => (
-		<Icon
-			state={state}
-			{...iconAttributes(state)}
-			css={{ ...iconStyles(state), label: getLabel('Alert-icon', labelObj) }}
-		/>
-	);
+	const IconJSX = () => <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />;
 
 	const CloseBtnJSX = () => (
 		<CloseBtn
 			onClose={event => handleClose(event)}
 			state={state}
 			{...closeBtnAttributes(state)}
-			css={{ '&&': closeBtnStyles(state), label: getLabel('Alert-closebtn', labelObj) }}
+			css={{ '&&': closeBtnStyles(state) }}
 		/>
 	);
 
 	const AlertJSX = () => (
-		<Alert
-			state={state}
-			{...rest}
-			{...alertAttributes(state)}
-			css={{ ...alertStyles(state), label: getLabel('Alert', labelObj) }}
-		>
+		<Alert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
 			{Icon && <IconJSX />}
-			<Body
-				state={state}
-				{...bodyAttributes(state)}
-				css={{ ...bodyStyles(state), label: getLabel('Alert-body', labelObj) }}
-			>
+			<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 				{heading && <HeadingJSX />}
 				{children}
 			</Body>
@@ -139,7 +111,7 @@ export const Alert = ({
 	return transition.map(
 		({ item, key, props }) =>
 			item && (
-				<animated.div key={key} style={props}>
+				<animated.div key={key} style={props} data-js="alert">
 					<AlertJSX />
 				</animated.div>
 			)

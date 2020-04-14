@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 const AlertBody = ({ state, ...rest }) => <Body {...rest} />;
@@ -9,6 +9,7 @@ const bodyStyles = (_, { icon: Icon }) => {
 	const mq = useMediaQuery();
 
 	return mq({
+		label: getLabel('Alert-body', { icon: Icon }),
 		position: 'relative',
 		flex: 1,
 		top: [null, Icon && '0.125rem'],
