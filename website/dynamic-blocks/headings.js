@@ -8,7 +8,7 @@ import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
 
-const Component = ({ heading, size, level, addTableContent, text }) => {
+const Component = ({ heading, size, level, addTableContent, subText, text }) => {
 	const id = heading.replace(/ /g, '-').toLowerCase();
 	return (
 		<Fragment>
@@ -29,7 +29,7 @@ const Component = ({ heading, size, level, addTableContent, text }) => {
 			>
 				{heading}
 			</WestpacHeading>
-			<p>{text}</p>
+			{subText && text && <p>{text}</p>}
 		</Fragment>
 	);
 };
@@ -41,6 +41,7 @@ export const Heading = {
 			size: 5,
 			heading: '',
 			addTableContent: true,
+			subText: false,
 			text: '',
 			...(value || {}),
 		};
@@ -115,14 +116,26 @@ export const Heading = {
 					</label>
 				</FieldContainer>
 				<FieldContainer>
-					<FieldLabel htmlFor={'heading-subtext'} field={{ label: 'Sub Text', config: {} }} />
-					<Input
-						id={'heading-subtext'}
-						isMultiline
-						value={currentValue.text}
-						onChange={e => update({ text: e.target.value })}
-					/>
+					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+						<CheckboxPrimitive
+							checked={currentValue.subText}
+							tabIndex="0"
+							onChange={({ target }) => update({ subText: target.checked })}
+						/>
+						<span>Add sub text</span>
+					</label>
 				</FieldContainer>
+				{currentValue.subText && (
+					<FieldContainer>
+						<FieldLabel htmlFor={'heading-subtext'} field={{ label: 'Sub Text', config: {} }} />
+						<Input
+							id={'heading-subtext'}
+							isMultiline
+							value={currentValue.text}
+							onChange={e => update({ text: e.target.value })}
+						/>
+					</FieldContainer>
+				)}
 			</Fragment>
 		);
 	},
