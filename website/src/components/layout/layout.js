@@ -134,7 +134,7 @@ const CloseButton = () => {
 				background: 'none',
 				border: 'none',
 				cursor: 'pointer',
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl})`]: { display: 'none' },
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: { display: 'none' },
 			}}
 		>
 			<CloseIcon color={COLORS.neutral} size="small" />

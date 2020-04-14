@@ -21,12 +21,12 @@ const HomePageHeader = () => {
 			ref={main}
 			css={{
 				color: BRAND === 'STG' ? COLORS.text : COLORS.light,
-				paddingBottom: SPACING(12),
 				position: 'relative',
 				overflow: 'hidden',
 				background: 'unset',
 				[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 					background: backgroundColor,
+					paddingBottom: SPACING(12),
 				},
 			}}
 		>
@@ -43,24 +43,10 @@ const StickyHeader = () => {
 	const backgroundColor = brandHeaderColors[BRAND](COLORS);
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
-	const headerPaddingElement = useRef(null);
 	useEffect(() => {
 		const main = header.current.closest('main');
 		const section = header.current.closest('section');
 		const scrollHandler = () => {
-			if (main.scrollTop >= 0 && main.scrollTop < 135) {
-				// header.current.style.height = `${200 - main.scrollTop}px`;
-				// header.current.style.marginTop = `${-50 + main.scrollTop}px`;
-				// header.current.style.position = 'relative';
-				// headerPaddingElement.current.style.height = '0px';
-			} else {
-				// headerPaddingElement.current.style.height = '200px';
-				// header.current.style.height = '65px';
-				// header.current.style.marginTop = '-50px';
-				// header.current.style.position = 'fixed';
-			}
-			console.log(section.clientHeight, main.scrollTop);
-
 			if (section.clientHeight - main.scrollTop <= 65) {
 				setHasScrolled(true);
 			} else {
@@ -73,7 +59,6 @@ const StickyHeader = () => {
 			main.removeEventListener('scroll', scrollHandler);
 		};
 	});
-	console.log('hasScrolled', hasScrolled);
 
 	return (
 		<Fragment>
@@ -129,25 +114,12 @@ const StickyHeader = () => {
 						[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 							borderBottom: hasScrolled ? 'none' : `1px solid ${COLORS.light}`,
 						},
-						[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
-							marginLeft: SPACING(7),
-						},
 					}}
 				>
 					<strong>UI</strong> Framework
 				</p>
 				<StickyHeaderImage brand={BRAND} hide={!hasScrolled} />
 			</div>
-
-			<div
-				css={{
-					flex: 'none',
-					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-						height: '65px !important',
-					},
-				}}
-				ref={headerPaddingElement}
-			/>
 		</Fragment>
 	);
 };
@@ -193,6 +165,7 @@ const HeroIntro = () => {
 				marginTop: '81px',
 				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
 					color: COLORS.text,
+					paddingBottom: SPACING(7),
 				},
 			}}
 		>
