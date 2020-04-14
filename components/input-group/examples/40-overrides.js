@@ -30,6 +30,18 @@ function Example({ brand }) {
 				outline: '4px dotted green',
 			}),
 		},
+		Select: {
+			styles: styles => ({
+				...styles,
+				outline: '4px dotted purple',
+			}),
+		},
+		Button: {
+			styles: styles => ({
+				...styles,
+				outline: '4px dotted blue',
+			}),
+		},
 	};
 
 	return (
@@ -95,7 +107,7 @@ function Example({ brand }) {
 					Button: {
 						styles: styles => ({
 							...styles,
-							outline: '3px dotted blue',
+							outline: '4px solid blue',
 						}),
 					},
 				}}
@@ -111,7 +123,7 @@ function Example({ brand }) {
 					Select: {
 						styles: styles => ({
 							...styles,
-							outline: '3px dotted blue',
+							outline: '4px solid purple',
 						}),
 					},
 				}}
