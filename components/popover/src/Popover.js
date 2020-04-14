@@ -33,7 +33,7 @@ export const Popover = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [open, setOpen] = useState(open);
+	const [open, setOpen] = useState(isOpen);
 	const [position, setPosition] = useState({ placement: 'top', empty: true });
 	const triggerRef = useRef();
 	const popoverRef = useRef();
