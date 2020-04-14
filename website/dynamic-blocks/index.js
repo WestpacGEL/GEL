@@ -8,6 +8,7 @@ import { IntroSection } from './intro-section';
 import { VisionFilters } from './vision-filters';
 import { ScreenReaderText } from './screen-reader-demo';
 import { Image } from './image';
+import { Heading } from './headings';
 
 export default {
 	DoAndAvoid,
@@ -20,4 +21,5 @@ export default {
 	VisionFilters,
 	ScreenReaderText,
 	Image,
+	Heading,
 };

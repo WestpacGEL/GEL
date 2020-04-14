@@ -3,12 +3,46 @@
 import React, { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
-import { List } from '@westpac/list';
+import { List, Item } from '@westpac/list';
 import Link from 'next/link';
 import { Cell, Grid } from '@westpac/grid';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { CheckboxPrimitive } from '@arch-ui/controls';
+
+const ArrowIcon = () => {
+	const { COLORS, SPACING } = useBrand();
+	return (
+		<svg css={{ width: SPACING(2, true) }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 9">
+			<path
+				fill={COLORS.primary}
+				fillRule="evenodd"
+				d="M8 5.5l-3 3-.71-.71L6.085 6H0V0h1v5h5.085L4.29 3.21 5 2.5z"
+			/>
+		</svg>
+	);
+};
+
+const TableLink = ({ headingId, headingText, ...rest }) => {
+	const { COLORS, SPACING } = useBrand();
+
+	return (
+		<Item {...rest}>
+			<a
+				href={`#${headingId}`}
+				css={{
+					margin: SPACING(2, true),
+					color: COLORS.text,
+					cursor: 'pointer',
+					textDecoration: 'none',
+					'&:hover, &:focus': { color: COLORS.info },
+				}}
+			>
+				{headingText}
+			</a>
+		</Item>
+	);
+};
 
 // Intro section
 const TableOfContents = () => {
@@ -20,44 +54,8 @@ const TableOfContents = () => {
 		const headings = [];
 		if (containerRef && containerRef.current) {
 			const container = containerRef.current.closest('.slate-container') || document;
-			container.querySelectorAll('h2:not(.toc-ignore)').forEach((h, i) => {
-				const htmlID = h.id || 'toc-heading-' + i;
-				h.style.position = 'relative';
-				const anchor = document.createElement('div');
-				anchor.style.position = 'absolute';
-				anchor.style.height = '75px';
-				anchor.style.top = 0;
-				anchor.style.marginTop = '-75px';
-				anchor.id = htmlID;
-				h.appendChild(anchor);
-				headings[i] = (
-					<li key={`nav-${i}`} css={{ listStyle: 'none', paddingBottom: SPACING(2, true) }}>
-						<svg
-							css={{ width: SPACING(2, true) }}
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 8 9"
-						>
-							<path
-								fill="#D5002B"
-								fillRule="evenodd"
-								d="M8 5.5l-3 3-.71-.71L6.085 6H0V0h1v5h5.085L4.29 3.21 5 2.5z"
-							/>
-						</svg>
-						<a
-							href={`#${htmlID}`}
-							css={{
-								margin: SPACING(4, true),
-								color: COLORS.text,
-								cursor: 'pointer',
-								'&:hover, &:focus': {
-									textDecoration: 'underline',
-								},
-							}}
-						>
-							{h.innerText}
-						</a>
-					</li>
-				);
+			container.querySelectorAll('[data-toc]').forEach((h, i) => {
+				headings[i] = <TableLink key={`nav-${i}`} headingId={h.id} headingText={h.innerText} />;
 			});
 		}
 		setToc(headings);
@@ -65,7 +63,7 @@ const TableOfContents = () => {
 
 	return (
 		<div ref={containerRef}>
-			<Heading tag="h2" className="toc-ignore" size={6}>
+			<Heading tag="h2" size={6} style={{ fontWeight: '500' }}>
 				{'Page content'}
 			</Heading>
 
@@ -75,7 +73,20 @@ const TableOfContents = () => {
 
 			{toc.length ? (
 				<nav>
-					<List>{toc}</List>
+					<List
+						type="icon"
+						icon={ArrowIcon}
+						overrides={{
+							Item: {
+								styles: styles => ({
+									...styles,
+									paddingLeft: 0,
+								}),
+							},
+						}}
+					>
+						{toc}
+					</List>
 				</nav>
 			) : null}
 		</div>
@@ -132,15 +143,15 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item }) 
 	return (
 		<Fragment>
 			<Grid>
-				<Cell width={7}>
+				<Cell width={[12, 12, 12, 7]}>
 					{description && description !== '' ? (
 						<p css={{ ...PACKS.lead, marginTop: 0 }}>{description}</p>
 					) : null}
 					{showPackageInfo && <PackageInfoTable item={item} />}
 				</Cell>
-				<Cell width={1} />
+				<Cell width={[0, 0, 0, 1]} />
 				{showTableOfContents && (
-					<Cell width={4}>
+					<Cell width={[12, 12, 12, 4]}>
 						<TableOfContents />
 					</Cell>
 				)}

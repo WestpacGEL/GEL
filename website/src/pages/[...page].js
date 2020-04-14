@@ -6,6 +6,7 @@ import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
+import { Footer } from '../components/layout';
 
 import {
 	AccessibilityTab,
@@ -20,7 +21,7 @@ const ComponentWrapper = () => {
 	const router = useRouter();
 	const path = router.query.page.join('/');
 	if (error) return 'error!';
-	if (!data) return 'loading...';
+	if (!data) return null;
 	let currentComponent =
 		data.allPages.find(component => {
 			return component.url === `/${path}`;
@@ -34,11 +35,13 @@ const ComponentWrapper = () => {
 };
 
 const Component = ({ component }) => {
-	const { name, version } = component;
+	const { pageTitle, version } = component;
+
 	return (
 		<Fragment>
-			<PageHeader name={name} version={version} />
+			<PageHeader name={pageTitle} version={version} />
 			<Tabs component={component} />
+			<Footer />
 		</Fragment>
 	);
 };
@@ -58,6 +61,7 @@ const Tabs = ({ component }) => {
 			styles: styles => ({
 				...styles,
 				backgroundColor: '#fff',
+				borderBottom: `solid 1px ${COLORS.border}`,
 			}),
 		},
 		TabButton: {
@@ -82,6 +86,9 @@ const Tabs = ({ component }) => {
 			styles: styles => ({
 				...styles,
 				padding: `${SPACING(4)} 0 0`,
+				maxWidth: '60rem',
+				margin: '0 auto',
+				border: 'none',
 			}),
 		},
 	};
@@ -98,14 +105,14 @@ const Tabs = ({ component }) => {
 			<DesignTab description={component.description} blocks={component.design} item={component} />
 		</Tab>
 	);
-	if (component.hideAccessibilityTab) {
+	if (!component.hideAccessibilityTab) {
 		tabs.push(
 			<Tab overrides={overrides} text="Accessibility">
 				<AccessibilityTab blocks={component.accessibility} item={component} />
 			</Tab>
 		);
 	}
-	if (component.hideCodeTab) {
+	if (!component.hideCodeTab) {
 		tabs.push(
 			<Tab overrides={overrides} text="Code">
 				<CodeTab blocks={component.code} item={component} />

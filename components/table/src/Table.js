@@ -62,7 +62,7 @@ export const Table = ({ striped, bordered, children, overrides: componentOverrid
 				state,
 			}}
 		>
-			<Wrapper state={state} {...tableAttributes(state)} css={tableStyles(state)}>
+			<Wrapper state={state} {...wrapperAttributes(state)} css={wrapperStyles(state)}>
 				<Table {...rest} state={state} {...tableAttributes(state)} css={tableStyles(state)}>
 					{children}
 				</Table>
