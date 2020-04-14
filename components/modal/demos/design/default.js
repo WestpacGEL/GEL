@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 import { useState } from 'react';
-import { Modal, Body } from '@westpac/modal';
+import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
@@ -20,6 +20,14 @@ export default ({ context, showCode, showDemo }) => {
 					fancied that kind of thing never happened, and now here I am in the middle of one! There
 					ought to be a book written about me, that there ought!’
 				</Body>
+				<Footer>
+					<Button look="faint" onClick={() => setOpen(false)}>
+						Close
+					</Button>
+					<Button look="primary" onClick={() => setOpen(false)}>
+						Save changes
+					</Button>
+				</Footer>
 			</Modal>
 		</Playground>
 	);
