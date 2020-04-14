@@ -151,7 +151,7 @@ ButtonDropdown.propTypes = {
 	 */
 	open: PropTypes.bool,
 
-  /**
+	/**
 	 * Define an id prefix for internal elements
 	 */
 	instanceIdPrefix: PropTypes.string,
