@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
+import { Button } from '@westpac/button';
 import { Heading } from '@westpac/heading';
+import { TextInput } from '@westpac/text-input';
 import HomePageHeader from '../components/header/home-page-header';
 import {
 	ReactLogo,
@@ -126,6 +128,29 @@ const Homepage = () => {
 						Subscribe to our updates
 					</Heading>
 					<p>Get news about components, code chages, new resources, and helpful tips.</p>
+					<form
+						action="//westpac.us11.list-manage.com/subscribe/post?u=d3cf7e940bf311ace99e397b7&amp;id=c78955f1b4"
+						method="post"
+						id="mc-embedded-subscribe-form"
+						name="mc-embedded-subscribe-form"
+						target="_blank"
+						novalidate=""
+					>
+						<Grid
+							columns={12}
+							style={{ maxWidth: '25rem', margin: '2rem auto', textAlign: 'start' }}
+						>
+							<Cell width={[12, 8]}>
+								<label htmlFor="mce-EMAIL">Enter your e-mail address</label>
+								<TextInput type="text" name="EMAIL" id="mce-EMAIL" />
+							</Cell>
+							<Cell width={[12, 4]} style={{ display: 'flex', alignItems: 'flex-end' }}>
+								<Button type="submit" name="subscribe" id="mc-embedded-subscribe">
+									Subscribe
+								</Button>
+							</Cell>
+						</Grid>
+					</form>
 				</Container>
 			</section>
 
