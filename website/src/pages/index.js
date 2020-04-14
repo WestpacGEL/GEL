@@ -21,7 +21,7 @@ import {
 } from '../components/symbols';
 
 const Homepage = () => {
-	const { COLORS, SPACING, BRAND } = useBrand();
+	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
 
 	return (
 		<div css={{ textAlign: 'center', lineHeight: 2 }}>
@@ -138,14 +138,26 @@ const Homepage = () => {
 					>
 						<Grid
 							columns={12}
-							style={{ maxWidth: '25rem', margin: '2rem auto', textAlign: 'start' }}
+							style={{
+								maxWidth: '30rem',
+								margin: '2rem auto',
+								textAlign: 'start',
+								padding: '0rem 2rem',
+							}}
 						>
-							<Cell width={[12, 8]}>
+							<Cell width={[12, 8]} left={1}>
 								<label htmlFor="mce-EMAIL">Enter your e-mail address</label>
 								<TextInput type="text" name="EMAIL" id="mce-EMAIL" />
 							</Cell>
 							<Cell width={[12, 4]} style={{ display: 'flex', alignItems: 'flex-end' }}>
-								<Button type="submit" name="subscribe" id="mc-embedded-subscribe">
+								<Button
+									type="submit"
+									name="subscribe"
+									id="mc-embedded-subscribe"
+									style={{
+										width: '100%',
+									}}
+								>
 									Subscribe
 								</Button>
 							</Cell>
