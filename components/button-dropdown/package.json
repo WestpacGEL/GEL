@@ -27,7 +27,11 @@
 		"react": "^16.10.1"
 	},
 	"devDependencies": {
+		"@westpac/button-group": "*",
+		"@westpac/form-check": "*",
 		"@westpac/icon": "*",
+		"@westpac/list": "*",
+		"@westpac/switch": "*",
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
 		"start-server-and-test": "^1.10.10"
