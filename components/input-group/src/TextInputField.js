@@ -1,51 +1,60 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useInputGroupContext } from './InputGroup';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultButton } from './overrides/button';
+import { defaultTextInput } from './overrides/textInput';
+
+import { VisuallyHidden } from '@westpac/a11y';
+
+import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Button = ({ instanceId, position, size, data, overrides, ...rest }) => {
+export const TextInputField = ({ instanceId, label, left, right, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const context = useInputGroupContext();
 
 	const defaultOverrides = {
-		Button: defaultButton,
+		TextInput: defaultTextInput,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
-		position,
-		size,
-		data,
+		instanceId,
+		label,
+		left,
+		right,
 		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
 	const {
-		Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
+		TextInput: { component: TextInput, styles: textInputStyles, attributes: textInputAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Button
-			{...rest}
-			state={state}
-			{...buttonAttributes(state)}
-			css={{ '&&': buttonStyles(state) }}
-		>
-			{data}
-		</Button>
+		<>
+			<VisuallyHidden tag="label" htmlFor={instanceId}>
+				{label}
+			</VisuallyHidden>
+			<TextInput
+				{...rest}
+				state={state}
+				{...textInputAttributes(state)}
+				css={{ '&&': textInputStyles(state) }}
+			/>
+		</>
 	);
 };
 
@@ -53,27 +62,17 @@ export const Button = ({ instanceId, position, size, data, overrides, ...rest })
 // Types
 // ==============================
 
-Button.propTypes = {
+TextInputField.propTypes = {
 	/**
-	 * What position this component is at
+	 * The instance ID for the label and text input
 	 */
-	position: PropTypes.oneOf(['left', 'right']).isRequired,
-
-	/**
-	 * What size the button-group is
-	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
-
-	/**
-	 * The content of the component
-	 */
-	data: PropTypes.string.isRequired,
+	instanceId: PropTypes.string.isRequired,
 
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Button: PropTypes.shape({
+		TextInputField: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -81,7 +80,6 @@ Button.propTypes = {
 	}),
 };
 
-Button.defaultProps = {
-	look: 'hero', // button look to be spread to Button
+TextInputField.defaultProps = {
 	size: 'medium',
 };
