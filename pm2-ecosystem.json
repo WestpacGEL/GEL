@@ -1,0 +1,51 @@
+{
+	"apps": [
+		{
+			"name": "gel3-website",
+			"cwd": "website",
+			"script": "yarn",
+			"args": "start:prod",
+			"exec_interpreter": "bash",
+			"watch": false,
+			"combine_logs": true,
+			"log_date_format": "YYYY-MM-DD HH:mm:ss.SSS Z",
+			"autorestart": true,
+			"instances": 1,
+
+			"env": { "NODE_ENV": "production" }
+		},
+		{
+			"name": "gel3-migrations",
+			"cwd": "website",
+			"script": "yarn",
+			"args": "knex migrate:latest",
+			"exec_interpreter": "bash",
+			"watch": false,
+			"combine_logs": true,
+			"log_date_format": "YYYY-MM-DD HH:mm:ss.SSS Z",
+			"autorestart": false,
+			"instances": 1,
+
+			"env": { "NODE_ENV": "production" }
+		}
+	],
+
+	"deploy": {
+		"staging": {
+			"user": "deploy",
+			"host": "gel.test.do.westpac.thinkmill.cloud",
+			"path": "/srv/pm2-apps/gel3-website",
+			"ref": "origin/staging",
+			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
+			"post-deploy": "./pm2-post-deploy.sh"
+		},
+		"live": {
+			"user": "deploy",
+			"host": "gel.live.do.westpac.thinkmill.cloud",
+			"path": "/srv/pm2-apps/gel3-website",
+			"ref": "origin/master",
+			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
+			"post-deploy": "./pm2-post-deploy.sh"
+		}
+	}
+}

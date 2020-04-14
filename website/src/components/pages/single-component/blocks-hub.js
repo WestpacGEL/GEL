@@ -5,6 +5,7 @@ import createReactRenderer from './react-renderer';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
 import dynamic from 'next/dynamic';
+import { getShortCodes } from '../../../shortcodes';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
@@ -13,6 +14,15 @@ const Italic = props => <em css={{ fontStyle: 'italic' }} {...props} />;
 const Strike = props => <span css={{ textDecoration: 'strike-through' }} {...props} />;
 const Under = props => <span css={{ textDecoration: 'underline' }} {...props} />;
 
+const ApplyShortCodes = ({ text }) => {
+	const { BRAND } = useBrand();
+	const shortcodes = getShortCodes(BRAND);
+	return text.replace(/\[\[([A-Za-z0-9]*)\]\]/g, (match, capture, offset, string) => {
+		console.log({ match, capture, offset, string });
+		return shortcodes[capture] || capture;
+	});
+};
+
 const slateRenderer = item =>
 	createReactRenderer([
 		// special serialiser for text
@@ -20,7 +30,7 @@ const slateRenderer = item =>
 			if (node.object === 'text') {
 				return node.text.split('\n').reduce((array, text, i) => {
 					if (i !== 0) array.push(<br key={`${path}_${i}`} />);
-					array.push(text);
+					array.push(<ApplyShortCodes text={text} />);
 					return array;
 				}, []);
 			}
@@ -69,8 +79,12 @@ const slateRenderer = item =>
 					);
 
 				case 'heading':
+					const headersToOverride = [2, 3, 4];
+					const headingSize = headersToOverride.includes(node.data.size)
+						? { fontSize: '30px' }
+						: null;
 					return (
-						<Heading tag="h2" key={path}>
+						<Heading key={path} size={node.data.size} style={headingSize}>
 							{serializeChildren(node.nodes)}
 						</Heading>
 					);
@@ -103,12 +117,17 @@ const slateRenderer = item =>
 		},
 	]);
 
-export const SlateContent = ({ content, item, ...props }) => {
+export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
 		<div
 			{...props}
 			className="slate-container"
-			css={{ display: 'flex', flexDirection: 'column', '> *': { marginBottom: '20px !important' } }}
+			css={{
+				display: 'flex',
+				flexDirection: 'column',
+				'> *': { marginBottom: '20px !important' },
+				...cssOverrides,
+			}}
 		>
 			{slateRenderer(item)(content)}
 		</div>

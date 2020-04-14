@@ -1,147 +1,187 @@
 /** @jsx jsx */
+
 import { jsx } from '@emotion/core';
-import { useRef, Fragment, useLayoutEffect, forwardRef, useMemo } from 'react';
-import { createPortal } from 'react-dom';
-import { Popper } from 'react-popper';
-import { marks, markTypes } from './marks';
-import { ToolbarButton } from './toolbar-components';
-import { CircleSlashIcon } from '@arch-ui/icons';
+import { Fragment } from 'react';
+
 import { colors, gridSize } from '@arch-ui/theme';
-import { useMeasure } from '@arch-ui/hooks';
-import { getSelectionReference } from './utils';
-import applyRef from 'apply-ref';
 
-let stopPropagation = e => {
-	e.stopPropagation();
-};
+import { DropdownMenu } from './dialog';
+import { marks, markTypes } from './marks';
+import { BlockInsertMenuItem } from './block-disclosure-menu';
+import { ToolbarButton, ToolbarDivider } from './toolbar-components';
+import { ClearFormattingIcon, PlusIcon, ArrowDownIcon, MoreIcon } from './toolbar-icons';
+import { HeadingsMenu } from './headings';
 
-function InnerToolbar({ blocks, editor, editorState }) {
+export default function Toolbar({ blocks, editor, editorHasFocus, editorState }) {
+	let primaryMarks = Object.keys(marks).filter(key => marks[key].level === 'primary');
+
 	return (
-		<div css={{ display: 'flex' }}>
-			{Object.keys(blocks)
-				.map(x => blocks[x].withChrome && blocks[x].Toolbar)
-				.filter(x => x)
-				.reduce(
-					(children, Toolbar) => {
-						return (
-							<Toolbar editor={editor} editorState={editorState}>
-								{children}
-							</Toolbar>
-						);
-					},
-					<Fragment>
-						{Object.keys(marks).map(name => {
-							let Icon = marks[name].icon;
-							return (
-								<ToolbarButton
-									label={marks[name].label}
-									icon={<Icon />}
-									isActive={editorState.activeMarks.some(mark => mark.type === name)}
-									onClick={() => {
-										editor.toggleMark(name);
-										editor.focus();
-									}}
-									key={name}
-								/>
-							);
-						})}
-						<ToolbarButton
-							label="Remove Formatting"
-							icon={<CircleSlashIcon />}
-							onClick={() => {
-								markTypes.forEach(mark => {
-									editor.removeMark(mark);
-								});
-								editor.focus();
-							}}
-						/>
+		<div
+			css={{
+				backgroundColor: 'white',
+				boxShadow: '0px 2px 0px rgba(23,43,77,0.1)',
+				color: colors.N90,
+				display: 'flex',
+				marginBottom: gridSize * 2,
+				padding: `${gridSize * 2}px 0`,
+				position: 'sticky',
+				top: 0,
+				zIndex: 2,
+			}}
+		>
+			<HeadingsMenu editor={editor} editorState={editorState} />
 
-						{Object.keys(blocks).map(type => {
-							let ToolbarElement = blocks[type].ToolbarElement;
-							if (!blocks[type].withChrome || ToolbarElement === undefined) {
-								return null;
-							}
-							return <ToolbarElement key={type} editor={editor} editorState={editorState} />;
-						})}
+			{/* Block elements, that are injected */}
+			{Object.keys(blocks).map(type => {
+				let ToolbarElement = blocks[type].ToolbarElement;
+
+				if (!blocks[type].withChrome || ToolbarElement === undefined) {
+					return null;
+				}
+
+				return <ToolbarElement key={type} editor={editor} editorState={editorState} />;
+			})}
+
+			<ToolbarDivider />
+
+			{/* Inline "marks", that wrap text */}
+			{primaryMarks.map(name => {
+				let Icon = marks[name].icon;
+				let label = (
+					<Fragment>
+						{marks[name].label}{' '}
+						<span
+							css={{
+								backgroundColor: colors.N70,
+								borderRadius: 2,
+								paddingLeft: 2,
+								paddingRight: 2,
+							}}
+						>
+							{marks[name].keyboard()}
+						</span>
 					</Fragment>
-				)}
+				);
+
+				return (
+					<ToolbarButton
+						label={label}
+						icon={<Icon />}
+						isDisabled={editorState?.focusBlock?.type === 'dynamic-components'}
+						isActive={editorState.activeMarks.some(mark => mark.type === name)}
+						onClick={() => {
+							editor.toggleMark(name);
+							editor.focus();
+						}}
+						key={name}
+					/>
+				);
+			})}
+
+			<FormattingMenu editor={editor} editorState={editorState} />
+
+			<ToolbarDivider />
+
+			<ToolbarButton
+				label="Clear formatting"
+				icon={<ClearFormattingIcon />}
+				isDisabled={editorState?.selection?.isCollapsed}
+				onClick={() => {
+					markTypes.forEach(mark => {
+						editor.removeMark(mark);
+					});
+					editor.focus();
+				}}
+			/>
+
+			<InsertMenu
+				blocks={blocks}
+				editor={editor}
+				editorHasFocus={editorHasFocus}
+				editorState={editorState}
+			/>
 		</div>
 	);
 }
 
-const PopperRender = forwardRef(({ scheduleUpdate, editorState, style, children }, ref) => {
-	let { fragment } = editorState;
-	let shouldShowToolbar = fragment.text !== '';
-	let containerRef = useRef(null);
+// Insert Menu
+// ------------------------------
 
-	let snapshot = useMeasure(containerRef);
+/* This is the dropdown menu shown when a user clicks `InsertBlock` */
+const InsertMenu = ({ blocks, editor }) => {
+	// bail if there aren't any "insertable" blocks
+	if (!Object.keys(blocks).filter(key => blocks[key].Sidebar).length) return null;
 
-	useLayoutEffect(() => {
-		if (shouldShowToolbar) {
-			scheduleUpdate();
-		}
-	}, [scheduleUpdate, editorState, snapshot, shouldShowToolbar]);
-
-	return createPortal(
-		<div
-			onMouseDown={stopPropagation}
-			ref={node => {
-				applyRef(ref, node);
-				applyRef(containerRef, node);
-			}}
-			style={style}
-			css={{
-				// this isn't as nice of a transition as i'd like since the time is fixed
-				// i think it would better if it was physics based but that would probably
-				// be a lot of work for little gain
-				// maybe base the transition time on the previous value?
-				transition: 'transform 100ms, opacity 100ms',
-			}}
-		>
-			<div
-				css={{
-					backgroundColor: colors.N90,
-					padding: 8,
-					borderRadius: 6,
-					margin: gridSize,
-					display: shouldShowToolbar ? 'flex' : 'none',
-				}}
-			>
-				{shouldShowToolbar && children}
-			</div>
-		</div>,
-		document.body
-	);
-});
-
-export default ({ editorState, blocks, editor }) => {
-	// this element is created here so that when the popper rerenders
-	// the inner toolbar won't have to update
-	let children = <InnerToolbar blocks={blocks} editor={editor} editorState={editorState} />;
 	return (
-		<Popper
-			placement="top"
-			referenceElement={
-				// the reason we do this rather than having the selection reference
-				// be constant is because the selection reference
-				// has some internal state and it shouldn't persist between different
-				// editor references
-				useMemo(getSelectionReference, [])
-			}
-		>
-			{({ style, ref, scheduleUpdate }) => (
-				<PopperRender
-					{...{
-						scheduleUpdate,
-						editorState,
-						style: { ...style, zIndex: 10 },
-						blocks,
-						editor,
-						ref,
-						children,
-					}}
+		<Fragment>
+			<ToolbarDivider />
+			<DropdownMenu
+				target={({ ref, isOpen, toggleOpen }) => (
+					<ToolbarButton
+						ref={ref}
+						label="Insert"
+						icon={
+							<div css={{ display: 'flex' }}>
+								<PlusIcon />
+								<ArrowDownIcon />
+							</div>
+						}
+						isActive={isOpen}
+						onClick={toggleOpen}
+					/>
+				)}
+			>
+				{Object.keys(blocks).map(key => {
+					let { Sidebar } = blocks[key];
+
+					// only interested in "dynamic-components"
+					if (!blocks[key].withChrome || Sidebar === undefined) {
+						return null;
+					}
+
+					return <Sidebar key={key} editor={editor} blocks={blocks} />;
+				})}
+			</DropdownMenu>
+		</Fragment>
+	);
+};
+
+// Formatting Menu
+// ------------------------------
+
+/* This is the dropdown menu shown when there's "secondary" marks available */
+const FormattingMenu = ({ editor, editorState }) => {
+	let secondaryMarks = Object.keys(marks).filter(key => marks[key].level === 'secondary');
+
+	// bail if there aren't any marks
+	if (!secondaryMarks.length) return null;
+
+	return (
+		<DropdownMenu
+			target={({ ref, isOpen, toggleOpen }) => (
+				<ToolbarButton
+					ref={ref}
+					label="More formatting"
+					icon={<MoreIcon />}
+					isDisabled={editorState?.focusBlock?.type === 'dynamic-components'}
+					isActive={isOpen}
+					onClick={toggleOpen}
 				/>
 			)}
-		</Popper>
+		>
+			{secondaryMarks.map(name => {
+				return (
+					<BlockInsertMenuItem
+						key={name}
+						kbd={marks[name].keyboard()}
+						text={marks[name].label}
+						onClick={() => {
+							editor.toggleMark(name);
+							editor.focus();
+						}}
+					/>
+				);
+			})}
+		</DropdownMenu>
 	);
 };

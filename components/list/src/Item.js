@@ -61,7 +61,13 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const allChildren = Children.map(children, child => {
-		if (child && child.props && child.props.href && /^#.+/.test(child.props.href)) {
+		if (
+			type === 'link' &&
+			child &&
+			child.props &&
+			child.props.href &&
+			/^#.+/.test(child.props.href)
+		) {
 			return cloneElement(child, {
 				onClick: () => document.getElementById(child.props.href.slice(1)).focus(), // auto-focus anchor tags in link-lists
 			});

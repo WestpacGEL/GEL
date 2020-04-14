@@ -102,14 +102,13 @@ export class Content extends Relationship.implementation {
 
 		blocks.push(...DEFAULT_BLOCKS);
 
-		const blockInstances = blocks.map(
-			([block, blockConfig]) =>
-				new block(blockConfig, {
-					fromList: listConfig.listKey,
-					joinList: type,
-					...listConfig,
-				})
-		);
+		const blockInstances = blocks.map(([block, blockConfig]) => {
+			return new block(blockConfig, {
+				fromList: listConfig.listKey,
+				joinList: type,
+				...listConfig,
+			});
+		});
 
 		// Checking for duplicate block types
 		for (let currentIndex = 0; currentIndex < blockInstances.length; currentIndex++) {
