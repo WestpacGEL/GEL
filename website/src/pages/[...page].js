@@ -97,20 +97,20 @@ const Tabs = ({ component }) => {
 	}
 	const tabs = [];
 	tabs.push(
-		<Tab overrides={overrides} text="Design">
+		<Tab key={'design-tab'} overrides={overrides} text="Design">
 			<DesignTab description={component.description} blocks={component.design} item={component} />
 		</Tab>
 	);
 	if (!component.hideAccessibilityTab) {
 		tabs.push(
-			<Tab overrides={overrides} text="Accessibility">
+			<Tab key={'accessibility-tab'} overrides={overrides} text="Accessibility">
 				<AccessibilityTab blocks={component.accessibility} item={component} />
 			</Tab>
 		);
 	}
 	if (!component.hideCodeTab) {
 		tabs.push(
-			<Tab overrides={overrides} text="Code">
+			<Tab key={'code-tab'} overrides={overrides} text="Code">
 				<CodeTab blocks={component.code} item={component} />
 			</Tab>
 		);
