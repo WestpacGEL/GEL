@@ -66,11 +66,9 @@ export const Navigation = ({ items }) => {
 	};
 	return (
 		<Fragment>
-			<Link href="https://gel.westpacgroup.com.au/">
-				<a>
-					<BackToGelSvg />
-				</a>
-			</Link>
+			<a href="https://gel.westpacgroup.com.au/">
+				<BackToGelSvg />
+			</a>
 
 			<LinkList>{renderNavigationItems(items)}</LinkList>
 		</Fragment>

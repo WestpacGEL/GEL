@@ -143,6 +143,7 @@ class ErrorBoundary extends Component {
 }
 
 export function Node({ node, attributes, editor, item }) {
+	console.log({ node, attributes, editor, item });
 	let { adminMeta, components } = useContext(Context);
 	let [view] = adminMeta.readViews([components]);
 	const { currentlyEditingBlocks } = useContext(CurrentlyEditingBlocksContext);

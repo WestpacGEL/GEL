@@ -9,8 +9,6 @@ import { Cell, Grid } from '@westpac/grid';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { CheckboxPrimitive } from '@arch-ui/controls';
-const slugify = require('slugify');
-slugify.extend({ _: '-' });
 
 const ArrowIcon = () => {
 	const { COLORS, SPACING } = useBrand();
@@ -55,7 +53,7 @@ const parseHeadings = content =>
 			return (
 				<TableLink
 					key={`nav-${i}`}
-					headingId={slugify(props.heading)}
+					headingId={props.heading.replace(/ /g, '-').toLowerCase()}
 					headingText={props.heading}
 				/>
 			);
@@ -143,7 +141,6 @@ const PackageInfoTable = ({ item }) => {
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
 	const { PACKS } = useBrand();
-
 	return (
 		<Fragment>
 			<Grid>
