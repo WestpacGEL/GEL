@@ -6,13 +6,12 @@ import { Fragment, useState, StrictMode } from 'react';
 import { jsx, css, GEL, Global } from '@westpac/core';
 
 import { BRANDS } from './brands';
-import { Sidebar } from './Sidebar';
+import { Sidebar } from './SidebarStart';
 import { HomeStart } from './HomeStart';
 import { Page } from './Page';
 
 export function AppStart({ components, packageName, pkg, version }) {
 	const [brand, setBrand] = useState('WBC');
-
 	return (
 		<Router>
 			<StrictMode>

@@ -1,23 +1,24 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
-import HeaderImageRight from './symbols/WbcBackgroundRightSvg';
-import HeaderImageLeft from './symbols/WbcBackgroundLeftSvg';
-import StgHeaderBackground from './symbols/StgBackgroundSvg';
-import BsaHeaderBackgroundSvg from './symbols/BsaBackgroundSvg';
+import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
 
 const HomePageHeaderImage = ({ brand }) => {
+	const { LAYOUT } = useBrand();
 	const WestpacImage = () => (
 		<div
 			css={{
 				position: 'absolute',
-				zIndex: 1,
+				zIndex: 0,
 				right: 0,
 				bottom: 0,
 				top: 0,
+				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+					display: 'none',
+				},
 			}}
 		>
-			<HeaderImageRight height={'100%'} />
+			<WbcBackgroundRightSvg height={'100%'} />
 		</div>
 	);
 
@@ -26,11 +27,14 @@ const HomePageHeaderImage = ({ brand }) => {
 			css={{
 				position: 'absolute',
 				left: 0,
-				bottom: -10,
-				zIndex: 1,
+				bottom: -5,
+				zIndex: 0,
+				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+					display: 'none',
+				},
 			}}
 		>
-			<StgHeaderBackground height={'600px'} />
+			<StgBackgroundSvg height={'600px'} />
 		</div>
 	);
 
@@ -41,9 +45,12 @@ const HomePageHeaderImage = ({ brand }) => {
 				zIndex: 1,
 				right: 0,
 				bottom: -100,
+				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+					display: 'none',
+				},
 			}}
 		>
-			<BsaHeaderBackgroundSvg height={'400px'} />
+			<BsaBackgroundSvg height={'400px'} />
 		</div>
 	);
 
@@ -52,7 +59,7 @@ const HomePageHeaderImage = ({ brand }) => {
 			headerImage: WestpacImage,
 		},
 		WBG: {
-			headerImage: WestpacImage,
+			headerImage: null,
 		},
 		STG: {
 			headerImage: StGeorgeImage,
