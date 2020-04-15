@@ -24,7 +24,6 @@ const ComponentWrapper = () => {
 	if (!data) return null;
 	let currentComponent =
 		data.allPages.find(component => {
-			console.log({ page: router.query.page, component, path });
 			return component.url === `/${path}`;
 		}) || '';
 

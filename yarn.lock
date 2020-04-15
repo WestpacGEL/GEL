@@ -313,6 +313,25 @@
     moment "^2.24.0"
     react-window "^1.7.0"
 
+"@arch-ui/day-picker@^0.0.23":
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/@arch-ui/day-picker/-/day-picker-0.0.23.tgz#be5c9cf58b7d09f621b359ffbf5984d185da543d"
+  integrity sha512-OkhvHReRV2ece/frYxLNBoCpJuRgfDaT9DeEL06S9ZiZvLQQOXTjxe4kom1OfyUP5dzGKfmo85tGDtkYlHt9kA==
+  dependencies:
+    "@arch-ui/icons" "^0.0.10"
+    "@arch-ui/input" "^0.1.7"
+    "@arch-ui/select" "^0.1.6"
+    "@arch-ui/theme" "^0.0.10"
+    "@arch-ui/typography" "^0.0.16"
+    "@babel/runtime" "^7.8.4"
+    "@emotion/core" "^10.0.27"
+    "@emotion/styled" "^10.0.27"
+    chrono-node "^1.3.5"
+    date-fns "^1.30.1"
+    intersection-observer "^0.5.1"
+    moment "^2.24.0"
+    react-window "^1.7.0"
+
 "@arch-ui/dialog@^0.0.18":
   version "0.0.18"
   resolved "https://registry.yarnpkg.com/@arch-ui/dialog/-/dialog-0.0.18.tgz#e85b6a2eecf6926c00c678a6b0602ba844398fb3"
@@ -2728,6 +2747,89 @@
     webpack-dev-middleware "^3.7.2"
     webpack-hot-middleware "^2.25.0"
 
+"@keystonejs/app-admin-ui@^5.9.6":
+  version "5.9.6"
+  resolved "https://registry.yarnpkg.com/@keystonejs/app-admin-ui/-/app-admin-ui-5.9.6.tgz#bcb9921b4cd4147d7e7345b7ef34d51c58694361"
+  integrity sha512-wnx/3NmQqRwjxQ3yh8nfx/4hIr5mvOc+nfSfjSAjAhm9DFCQuvSb26tPj5I0Q5uSYFeN6o3xt0r6JCvY+WQn3w==
+  dependencies:
+    "@apollo/react-hooks" "^3.1.3"
+    "@arch-ui/alert" "^0.0.16"
+    "@arch-ui/badge" "^0.0.14"
+    "@arch-ui/button" "^0.0.17"
+    "@arch-ui/card" "^0.0.13"
+    "@arch-ui/color-utils" "^0.0.2"
+    "@arch-ui/common" "^0.0.11"
+    "@arch-ui/confirm" "^0.0.17"
+    "@arch-ui/controls" "^0.1.6"
+    "@arch-ui/dialog" "^0.0.19"
+    "@arch-ui/drawer" "^0.0.20"
+    "@arch-ui/dropdown" "^0.0.16"
+    "@arch-ui/fields" "^2.1.5"
+    "@arch-ui/hooks" "^0.0.9"
+    "@arch-ui/icons" "^0.0.10"
+    "@arch-ui/input" "^0.1.7"
+    "@arch-ui/layout" "^0.2.11"
+    "@arch-ui/loading" "^0.0.16"
+    "@arch-ui/lozenge" "^0.0.15"
+    "@arch-ui/navbar" "^0.1.8"
+    "@arch-ui/options" "^0.0.17"
+    "@arch-ui/pagination" "^0.0.17"
+    "@arch-ui/pill" "^0.1.13"
+    "@arch-ui/popout" "^0.0.17"
+    "@arch-ui/select" "^0.1.6"
+    "@arch-ui/theme" "^0.0.10"
+    "@arch-ui/tooltip" "^0.1.10"
+    "@arch-ui/typography" "^0.0.16"
+    "@babel/core" "^7.9.0"
+    "@babel/runtime" "^7.8.4"
+    "@emotion/core" "^10.0.27"
+    "@emotion/styled" "^10.0.27"
+    "@keystonejs/build-field-types" "^5.2.4"
+    "@keystonejs/field-views-loader" "^5.2.1"
+    "@keystonejs/fields" "^9.0.1"
+    "@keystonejs/session" "^6.0.1"
+    "@keystonejs/utils" "^5.4.0"
+    apollo-cache-inmemory "^1.6.5"
+    apollo-client "^2.6.8"
+    apollo-link "^1.2.13"
+    apollo-link-error "^1.1.12"
+    apollo-link-state "^0.4.2"
+    apollo-upload-client "^12.1.0"
+    apply-ref "^0.2.0"
+    babel-loader "^8.0.5"
+    babel-plugin-emotion "^10.0.27"
+    babel-preset-react-app "^9.0.2"
+    clipboard-copy "^3.0.0"
+    compression "^1.7.4"
+    cross-fetch "^2.2.0"
+    css-loader "^3.2.0"
+    express "^4.17.1"
+    express-history-api-fallback "^2.2.1"
+    "falsey" "^1.0.0"
+    file-loader "^3.0.1"
+    graphql "^14.6.0"
+    graphql-tag "^2.10.1"
+    html-webpack-plugin "^3.2.0"
+    lodash.debounce "^4.0.8"
+    lodash.set "^4.3.2"
+    memoize-one "^5.1.1"
+    prop-types "^15.7.2"
+    raf-schd "^4.0.0"
+    react "^16.13.0"
+    react-dom "^16.13.0"
+    react-prop-toggle "^1.0.2"
+    react-pseudo-state "^2.2.2"
+    react-router-dom "5.1.2"
+    react-select "^3.0.8"
+    react-toast-notifications "^2.3.0"
+    react-transition-group "^4.3.0"
+    react-uid "^2.2.0"
+    resize-observer-polyfill "^1.5.1"
+    style-loader "^1.0.0"
+    webpack "4.41.6"
+    webpack-dev-middleware "^3.7.2"
+    webpack-hot-middleware "^2.25.0"
+
 "@keystonejs/app-graphql-playground@^5.1.2":
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/@keystonejs/app-graphql-playground/-/app-graphql-playground-5.1.2.tgz#82857ce30dce1fe3bcd77c99d5fa47542452c0fd"
@@ -2781,7 +2883,7 @@
     serialize-error "^3.0.0"
     stack-utils "^1.0.2"
 
-"@keystonejs/app-next@^5.1.1":
+"@keystonejs/app-next@^5.1.2":
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/@keystonejs/app-next/-/app-next-5.1.2.tgz#cce38f42cc793cb0842f996ab74d0fc575569efc"
   integrity sha512-2lzvA/77ahIJ9oDODIQGvG9uy6qNrjl/sTvM5Idqd+Cy0I/mT90o5LJIcwtUymzPt144wzmL9RYvRdyFx1PDPQ==
@@ -2802,12 +2904,12 @@
   dependencies:
     "@keystonejs/access-control" "^5.2.0"
 
-"@keystonejs/auth-password@^5.1.5":
-  version "5.1.5"
-  resolved "https://registry.yarnpkg.com/@keystonejs/auth-password/-/auth-password-5.1.5.tgz#0d774d78525b31581a9c3cc61bee0eca2c24333b"
-  integrity sha512-yKzz+/zvovxfsQrQV20vwhhwBPf5UFJ9hqiX+FJVR1cGv7OOamvw5z8GRZ0islJtmb5ujOtNooj9X5mI7xC8fQ==
+"@keystonejs/auth-password@^5.1.6":
+  version "5.1.6"
+  resolved "https://registry.yarnpkg.com/@keystonejs/auth-password/-/auth-password-5.1.6.tgz#d4c525ffffff52c8efec62c613d3864cb98a4d4a"
+  integrity sha512-UJtcYkbM0eSb6aFLoiXl6pz6qV7n/oT0/dWGu+KV/WrTYWozSCib8RfVL5mYf/KITtOUkybT0Va11mpxvovhnw==
   dependencies:
-    "@keystonejs/fields" "^9.0.0"
+    "@keystonejs/fields" "^9.0.1"
     "@keystonejs/session" "^6.0.1"
 
 "@keystonejs/build-field-types@^5.2.2", "@keystonejs/build-field-types@^5.2.4":
@@ -3100,6 +3202,73 @@
     slate-react "^0.22.4"
     unsplash-js "^6.0.0"
 
+"@keystonejs/fields@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@keystonejs/fields/-/fields-9.0.1.tgz#1a6e27cea2c215d1ba8542685e84ee109ce97732"
+  integrity sha512-ccbIbxUeyafOqhhfmYH1T4B8YoGPIWIpRv/KQwXsjiM0eW52loLCuKzX6Nej9ykkcFy7749tmRW2pX2qE+xC3w==
+  dependencies:
+    "@apollo/react-hooks" "^3.1.3"
+    "@arch-ui/alert" "^0.0.16"
+    "@arch-ui/button" "^0.0.17"
+    "@arch-ui/controls" "^0.1.6"
+    "@arch-ui/day-picker" "^0.0.23"
+    "@arch-ui/drawer" "^0.0.20"
+    "@arch-ui/fields" "^2.1.5"
+    "@arch-ui/filters" "^0.0.18"
+    "@arch-ui/icons" "^0.0.10"
+    "@arch-ui/input" "^0.1.7"
+    "@arch-ui/layout" "^0.2.11"
+    "@arch-ui/loading" "^0.0.16"
+    "@arch-ui/lozenge" "^0.0.15"
+    "@arch-ui/options" "^0.0.17"
+    "@arch-ui/popout" "^0.0.17"
+    "@arch-ui/select" "^0.1.6"
+    "@arch-ui/theme" "^0.0.10"
+    "@arch-ui/tooltip" "^0.1.10"
+    "@arch-ui/typography" "^0.0.16"
+    "@babel/runtime" "^7.8.4"
+    "@emotion/core" "^10.0.27"
+    "@keystonejs/access-control" "^5.2.0"
+    "@keystonejs/adapter-knex" "^9.0.0"
+    "@keystonejs/adapter-mongoose" "^8.0.0"
+    "@keystonejs/app-admin-ui" "^5.9.6"
+    "@keystonejs/build-field-types" "^5.2.4"
+    "@keystonejs/field-content" "^5.4.5"
+    "@keystonejs/test-utils" "^6.0.3"
+    "@keystonejs/utils" "^5.4.0"
+    "@sindresorhus/slugify" "^0.11.0"
+    apollo-errors "^1.9.0"
+    bcryptjs "^2.4.3"
+    cuid "^2.1.6"
+    date-fns "^1.30.1"
+    dumb-passwords "^0.2.1"
+    google-maps-react "^2.0.2"
+    graphql "^14.6.0"
+    graphql-tag "^2.10.1"
+    image-extensions "^1.1.0"
+    inflection "^1.12.0"
+    intersection-observer "^0.5.1"
+    lodash.groupby "^4.6.0"
+    lodash.isequal "^4.5.0"
+    luxon "^1.11.4"
+    mongoose "^5.9.5"
+    node-fetch "^2.3.0"
+    p-settle "^3.1.0"
+    pluralize "^7.0.0"
+    prop-types "^15.7.2"
+    query-string "^6.8.1"
+    react "^16.13.0"
+    react-color "^2.17.3"
+    react-dom "^16.13.0"
+    react-popper "^1.3.6"
+    react-popper-tooltip "^2.10.0"
+    react-select "^3.0.8"
+    react-toast-notifications "^2.3.0"
+    slate "^0.47.4"
+    slate-drop-or-paste-images "^0.9.1"
+    slate-react "^0.22.4"
+    unsplash-js "^6.0.0"
+
 "@keystonejs/file-adapters@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@keystonejs/file-adapters/-/file-adapters-6.0.1.tgz#07f2500437c0b3cfb9735aec51323bfea44fa962"
@@ -3143,10 +3312,43 @@
     pluralize "^7.0.0"
     terminal-link "^1.3.0"
 
-"@keystonejs/keystone@^8.0.0", "@keystonejs/keystone@^8.1.0":
+"@keystonejs/keystone@^8.0.0":
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/@keystonejs/keystone/-/keystone-8.1.0.tgz#590d53934d6a2318f793d25dc0f7acdf90bfb4bf"
   integrity sha512-ZdwsfVXhMogtgDE5RrtH+ftSpO9oPRsTntXqTtcav0pIwTiwMxcBPpqqCYjJxzMbXezAIj3OAbxBVvp2ley1eA==
+  dependencies:
+    "@keystonejs/access-control" "^5.2.0"
+    "@keystonejs/app-version" "^1.0.1"
+    "@keystonejs/fields" "^9.0.0"
+    "@keystonejs/logger" "^5.1.1"
+    "@keystonejs/session" "^6.0.1"
+    "@keystonejs/utils" "^5.4.0"
+    apollo-errors "^1.9.0"
+    arg "^4.1.1"
+    chalk "^2.4.2"
+    ci-info "^2.0.0"
+    cors "^2.8.4"
+    dev-null "^0.1.1"
+    endent "^1.3.0"
+    express "^4.17.1"
+    express-pino-logger "^4.0.0"
+    "falsey" "^1.0.0"
+    fast-memoize "^2.4.0"
+    fs-extra "^7.0.0"
+    globby "^11.0.0"
+    graphql "^14.6.0"
+    graphql-tag "^2.10.1"
+    graphql-type-json "^0.3.1"
+    lodash.flattendeep "^4.4.0"
+    ora "^3.4.0"
+    p-waterfall "^2.1.0"
+    pluralize "^7.0.0"
+    terminal-link "^1.3.0"
+
+"@keystonejs/keystone@^8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@keystonejs/keystone/-/keystone-8.1.1.tgz#e5053dd62b94fc84e4c89877a526bad65d97e2a4"
+  integrity sha512-Qe/c4zuw3YPz+Q7fAuS9E1RFNjYalg5JuO7o1hlCnRlGTY82/OoAJ9zuXG4uf/0l9eoUiD67sVIlccwOba/pXg==
   dependencies:
     "@keystonejs/access-control" "^5.2.0"
     "@keystonejs/app-version" "^1.0.1"
@@ -3708,6 +3910,11 @@
   version "4.2.7"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.2.7.tgz#1c8c25cbf6e59ffa7d6b9652c78e547d9a41692d"
   integrity sha512-luq8meHGYwvky0O7u0eQZdA7B4Wd9owUCqvbw2m3XCrCU8mplYOujMBbvyS547AxJkC+pGnd0Cm15eNxEUNU8g==
+
+"@types/color-name@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
+  integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
 "@types/connect@*":
   version "3.4.33"
@@ -4599,12 +4806,25 @@ ansi-regex@^5.0.0:
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.0.tgz#388539f55179bf39339c81af30a654d69f87cb75"
   integrity sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==
 
-ansi-styles@^2.2.1, ansi-styles@^3.2.0, ansi-styles@^3.2.1, ansi-styles@^4.0.0, ansi-styles@^4.1.0:
+ansi-styles@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
+  integrity sha1-tDLdM1i2NM914eRmQ2gkBTPB3b4=
+
+ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
   integrity sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==
   dependencies:
     color-convert "^1.9.0"
+
+ansi-styles@^4.0.0, ansi-styles@^4.1.0:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-4.2.1.tgz#90ae75c424d008d2624c5bf29ead3177ebfcf359"
+  integrity sha512-9VGjrMsG1vePxcSweQsN20KY/c4zN0h9fLjqAbwbPfahM3t+NL+M9HC8xeXG2I8pX5NoamTGNuomEUFI7fcUjA==
+  dependencies:
+    "@types/color-name" "^1.1.1"
+    color-convert "^2.0.1"
 
 any-observable@^0.3.0:
   version "0.3.0"
@@ -6294,12 +6514,19 @@ color-convert@^1.9.0, color-convert@^1.9.1:
   dependencies:
     color-name "1.1.3"
 
+color-convert@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-2.0.1.tgz#72d3a68d598c9bdb3af2ad1e84f21d896abd4de3"
+  integrity sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==
+  dependencies:
+    color-name "~1.1.4"
+
 color-name@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
   integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
 
-color-name@^1.0.0:
+color-name@^1.0.0, color-name@~1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
