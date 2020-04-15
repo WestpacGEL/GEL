@@ -3,7 +3,7 @@ import { jsx, useBrand } from '@westpac/core';
 import React from 'react';
 import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
 
-const HomePageHeaderImage = ({ brand }) => {
+const StickyHeaderImage = ({ brand, hide }) => {
 	const { LAYOUT } = useBrand();
 	const WestpacImage = () => (
 		<div
@@ -11,14 +11,17 @@ const HomePageHeaderImage = ({ brand }) => {
 				position: 'absolute',
 				zIndex: 0,
 				right: 0,
-				bottom: 0,
 				top: 0,
+				display: hide ? 'none' : 'block',
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					display: 'none',
+					display: 'block',
+				},
+				[`@media (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+					right: '300px',
 				},
 			}}
 		>
-			<WbcBackgroundRightSvg height={'100%'} />
+			<WbcBackgroundRightSvg height={'400px'} />
 		</div>
 	);
 
@@ -27,14 +30,18 @@ const HomePageHeaderImage = ({ brand }) => {
 			css={{
 				position: 'absolute',
 				left: 0,
-				bottom: -5,
-				zIndex: 0,
+				bottom: -10,
+				zIndex: -1,
+				display: hide ? 'none' : 'block',
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					display: 'none',
+					display: 'block',
+				},
+				[`@media (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+					right: '300px',
 				},
 			}}
 		>
-			<StgBackgroundSvg height={'600px'} />
+			<StgBackgroundSvg height={'1000px'} />
 		</div>
 	);
 
@@ -44,9 +51,13 @@ const HomePageHeaderImage = ({ brand }) => {
 				position: 'absolute',
 				zIndex: 1,
 				right: 0,
-				bottom: -100,
+				bottom: -120,
+				display: hide ? 'none' : 'block',
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					display: 'none',
+					display: 'block',
+				},
+				[`@media (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+					right: '300px',
 				},
 			}}
 		>
@@ -79,4 +90,4 @@ const HomePageHeaderImage = ({ brand }) => {
 	return HeaderImage ? <HeaderImage /> : null;
 };
 
-export default HomePageHeaderImage;
+export default StickyHeaderImage;

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-function BsaBackgroundSvg({ width, height }) {
+export const BsaBackgroundSvg = ({ width, height }) => {
 	return (
 		<svg aria-labelledby="banksa-header-image" width={width} height={height} viewBox="0 0 699 448">
 			<path
@@ -21,6 +21,4 @@ function BsaBackgroundSvg({ width, height }) {
 			/>
 		</svg>
 	);
-}
-
-export default BsaBackgroundSvg;
+};
