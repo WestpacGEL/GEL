@@ -4,6 +4,7 @@ import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { SlateContent } from './blocks-hub';
+import { BASE_URL } from '../../../config';
 import Link from 'next/link';
 
 export const BlocksDocs = ({ title, blocks, item }) => {
@@ -35,10 +36,10 @@ const getURL = d => {
 		return d.url;
 	}
 	if (d.packageName) {
-		return `/design-system/components/${slugify(resolvedData.packageName).toLowerCase()}`;
+		return `${BASE_URL}/components/${slugify(resolvedData.packageName).toLowerCase()}`;
 	}
 	if (d.pageTitle) {
-		return `/design-system/${slugify(resolvedData.pageTitle).toLowerCase()}`;
+		return `${BASE_URL}/${slugify(resolvedData.pageTitle).toLowerCase()}`;
 	}
 	return '';
 };

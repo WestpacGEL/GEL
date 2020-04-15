@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 import { jsx, useBrand } from '@westpac/core';
 import { NavigationBlock } from './navigation-block';
-import ROOT_PAGE_PATHS from '../../../root-pages.json';
+import { ROOT_PAGES } from '../../../config';
 import BackToGelSvg from './BackToGelSvg';
 
 export const Navigation = ({ items }) => {
@@ -49,7 +49,7 @@ export const Navigation = ({ items }) => {
 			}
 
 			let href = '[...page]';
-			if (item.path.indexOf('://') !== -1 || ROOT_PAGE_PATHS.indexOf(item.path) !== -1) {
+			if (item.path.indexOf('://') !== -1 || ROOT_PAGES.indexOf(item.path) !== -1) {
 				href = item.path;
 			}
 
