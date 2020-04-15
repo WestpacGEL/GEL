@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-function StgBackgroundSvg({ width, height }) {
+export const StgBackgroundSvg = ({ width, height }) => {
 	return (
 		<svg
 			aria-labelledby="stgeorge-header-image"
@@ -576,6 +576,4 @@ function StgBackgroundSvg({ width, height }) {
 			</g>
 		</svg>
 	);
-}
-
-export default StgBackgroundSvg;
+};

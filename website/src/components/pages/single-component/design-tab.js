@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { BlocksDocs, RelatedInformation } from './_utils';
+import { BlocksDocs, RelatedInformation } from '../../_utils';
 
 export const DesignTab = ({ blocks, item }) => {
 	return (
