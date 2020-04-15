@@ -3,10 +3,9 @@ import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { HamburgerMenuIcon, LightBulbIcon, MapIcon, UmbrellaIcon } from '@westpac/icon';
-import HeaderImage from '../components/header/home-page-header-image';
-import { brandHeaderColors } from '../components/pages/single-component/_utils';
-
-import { useSidebar } from '../components/providers/sidebar';
+import HeaderImage from '../../../components/header/home-page-header-image';
+import { brandHeaderColors } from '../../../components/pages/single-component/_utils';
+import { useSidebar } from '../../../components/providers/sidebar';
 
 const Homepage = () => {
 	const { COLORS, SPACING, BRAND } = useBrand();
@@ -87,7 +86,7 @@ const Homepage = () => {
 	);
 };
 
-/* 
+/*
   Styled components
 */
 

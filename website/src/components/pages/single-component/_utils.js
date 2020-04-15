@@ -35,10 +35,10 @@ const getURL = d => {
 		return d.url;
 	}
 	if (d.packageName) {
-		return `/components/${slugify(resolvedData.packageName).toLowerCase()}`;
+		return `/design-system/components/${slugify(resolvedData.packageName).toLowerCase()}`;
 	}
 	if (d.pageTitle) {
-		return `/${slugify(resolvedData.pageTitle).toLowerCase()}`;
+		return `/design-system/${slugify(resolvedData.pageTitle).toLowerCase()}`;
 	}
 	return '';
 };
@@ -72,11 +72,11 @@ export const RelatedInformation = ({ item }) => {
 				>
 					<Cell width={10} left={2}>
 						<Grid columns={10}>
-							{item.relatedPages && (
+							{relatedPages && (
 								<Cell width={relatedInfo ? 4 : 12}>
 									<IconTitle icon={CubeIcon}>Components</IconTitle>
 									<ul css={{ margin: 0, padding: 0 }}>
-										{item.relatedPages.map(d => {
+										{relatedPages.map(d => {
 											return (
 												<ComponentLink key={d.id} link={getURL(d)}>
 													{d.pageTitle}

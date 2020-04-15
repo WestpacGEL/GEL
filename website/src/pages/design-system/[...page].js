@@ -6,15 +6,15 @@ import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
-import { Footer } from '../components/layout';
+import { Footer } from '../../components/layout';
 
 import {
 	AccessibilityTab,
 	CodeTab,
 	DesignTab,
 	PageHeader,
-} from '../components/pages/single-component';
-import { ALL_PAGES } from '../../graphql';
+} from '../../components/pages/single-component';
+import { ALL_PAGES } from '../../../graphql';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
@@ -24,6 +24,7 @@ const ComponentWrapper = () => {
 	if (!data) return null;
 	let currentComponent =
 		data.allPages.find(component => {
+			console.log({ page: router.query.page, component, path });
 			return component.url === `/${path}`;
 		}) || '';
 

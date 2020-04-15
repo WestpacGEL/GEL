@@ -66,7 +66,7 @@ const getComponentSchema = options => ({
 					return `/components/${slugify(resolvedData.packageName).toLowerCase()}`;
 				}
 				if (resolvedData.pageTitle) {
-					return `/${slugify(resolvedData.pageTitle).toLowerCase()}`;
+					return `/components/${slugify(resolvedData.pageTitle).toLowerCase()}`;
 				}
 				return '';
 			},
