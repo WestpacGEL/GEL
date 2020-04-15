@@ -174,6 +174,7 @@ export function Node({ node, attributes, editor, item }) {
 					{!!Editor && isEditing ? (
 						<Editor
 							item={item}
+							_editorValue={JSON.parse(JSON.stringify(editor.value.document))}
 							value={node.get('data').get('props')}
 							onChange={dynamicComponentProps => {
 								editor.setNodeByKey(node.key, {
@@ -182,7 +183,12 @@ export function Node({ node, attributes, editor, item }) {
 							}}
 						/>
 					) : (
-						<Component {...node.get('data').get('props')} context={'admin'} item={item} />
+						<Component
+							{...node.get('data').get('props')}
+							context={'admin'}
+							item={item}
+							_editorValue={JSON.parse(JSON.stringify(editor.value.document))}
+						/>
 					)}
 				</BlockLayout>
 			</ErrorBoundary>

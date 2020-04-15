@@ -18,21 +18,34 @@ const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
 	const shortcodes = getShortCodes(BRAND);
 	return text.replace(/\[\[([A-Za-z0-9]*)\]\]/g, (match, capture, offset, string) => {
-		console.log({ match, capture, offset, string });
 		return shortcodes[capture] || capture;
 	});
 };
 
-const slateRenderer = item =>
-	createReactRenderer([
+const slateRenderer = (item, _editorValue) => {
+	return createReactRenderer([
 		// special serialiser for text
 		({ node, path }) => {
 			if (node.object === 'text') {
 				return node.text.split('\n').reduce((array, text, i) => {
 					if (i !== 0) array.push(<br key={`${path}_${i}`} />);
-					array.push(<ApplyShortCodes text={text} />);
+					array.push(<ApplyShortCodes key={`sc-${path}_${i}`} text={text} />);
 					return array;
 				}, []);
+			}
+		},
+		// serialiser for links
+		({ node, path, serializeChildren }) => {
+			if (node.object === 'inline') {
+				switch (node.type) {
+					case 'link':
+						return (
+							<a href={node.data.href} key={path} target="_blank">
+								{' '}
+								{serializeChildren(node.nodes)}
+							</a>
+						);
+				}
 			}
 		},
 		// serialisers for all the marks
@@ -107,7 +120,14 @@ const slateRenderer = item =>
 					);
 
 				case 'dynamic-components': {
-					return <DynamicComponents key={path} data={node.data} item={item} />;
+					return (
+						<DynamicComponents
+							key={path}
+							data={node.data}
+							item={item}
+							content={JSON.parse(_editorValue)}
+						/>
+					);
 				}
 
 				default: {
@@ -116,6 +136,7 @@ const slateRenderer = item =>
 			}
 		},
 	]);
+};
 
 export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
@@ -129,7 +150,7 @@ export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 				...cssOverrides,
 			}}
 		>
-			{slateRenderer(item)(content)}
+			{slateRenderer(item, content.document)(content)}
 		</div>
 	);
 };
