@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Label as LabelWrapper, labelStyles } from './overrides/label';
+import { defaultLabel } from './overrides/label';
 import pkg from '../package.json';
 
 // ==============================
@@ -17,11 +17,7 @@ export const Label = ({ look, value, overrides: componentOverrides, ...rest }) =
 	} = useBrand();
 
 	const defaultOverrides = {
-		Label: {
-			styles: labelStyles,
-			component: LabelWrapper,
-			attributes: (_, a) => a,
-		},
+		Label: defaultLabel,
 	};
 
 	const state = {
@@ -31,20 +27,14 @@ export const Label = ({ look, value, overrides: componentOverrides, ...rest }) =
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Label.component
-			{...overrides.Label.attributes(state)}
-			css={overrides.Label.styles(state)}
-		>
+		<Label {...rest} state={state} {...labelAttributes(state)} css={{ '&&': labelStyles(state) }}>
 			{value}
-		</overrides.Label.component>
+		</Label>
 	);
 };
 

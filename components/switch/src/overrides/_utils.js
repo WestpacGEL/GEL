@@ -2,32 +2,28 @@ import { asArray } from '@westpac/core';
 
 const sizeMapping = {
 	small: {
-		width: '4.375rem',
-		height: '1.875rem',
-		borderRadius: '1.875rem',
-		borderWidth: '2px',
-		fontSize: '0.875rem',
+		width: '49px',
+		height: '28px',
+		borderRadius: '28px',
+		fontSize: '14px',
 	},
 	medium: {
-		width: '5rem',
-		height: '2.25rem',
-		borderRadius: '2.25rem',
-		borderWidth: '2px',
-		fontSize: '1rem',
+		width: '60px',
+		height: '34px',
+		borderRadius: '34px',
+		fontSize: '16px',
 	},
 	large: {
-		width: '5.5625rem',
-		height: '2.625rem',
-		borderRadius: '2.625rem',
-		borderWidth: '2px',
-		fontSize: '1rem',
+		width: '71px',
+		height: '40px',
+		borderRadius: '40px',
+		fontSize: '16px',
 	},
 	xlarge: {
-		width: '6rem',
-		height: '3rem',
-		borderRadius: '3rem',
-		borderWidth: '2px',
-		fontSize: '1.125rem',
+		width: '82px',
+		height: '46px',
+		borderRadius: '46px',
+		fontSize: '18px',
 	},
 };
 
@@ -35,7 +31,6 @@ const responsiveMap = size => ({
 	width: size.map(s => s && sizeMapping[s].width),
 	height: size.map(s => s && sizeMapping[s].height),
 	borderRadius: size.map(s => s && sizeMapping[s].borderRadius),
-	borderWidth: size.map(s => s && sizeMapping[s].borderWidth),
 	fontSize: size.map(s => s && sizeMapping[s].fontSize),
 });
 

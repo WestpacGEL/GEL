@@ -3,45 +3,49 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { TableBody, tbodyStyles } from './overrides/tbody';
+import { defaultTBody } from './overrides/tbody';
+
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const Tbody = ({ overrides: componentOverrides, ...rest }) => {
+
+export const Tbody = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+
 	const defaultOverrides = {
-		Tbody: {
-			styles: tbodyStyles,
-			component: TableBody,
-			attributes: (_, a) => a,
-		},
+		Tbody: defaultTBody,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Tbody: { component: Tbody, styles: tbodyStyles, attributes: tbodyAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Tbody.component
-			{...overrides.Tbody.attributes(state)}
-			css={overrides.Tbody.styles(state)}
-		/>
+		<Tbody {...rest} state={state} {...tbodyAttributes(state)} css={tbodyStyles(state)}>
+			{children}
+		</Tbody>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Tbody.propTypes = {
 	/**

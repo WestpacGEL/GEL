@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Badge = ({ look, value, ...rest }) => <span {...rest} />;
+const Badge = ({ state, ...rest }) => <span {...rest} />;
 
-export const badgeStyles = (_, { look }) => {
+const badgeStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	const styleMap = {
@@ -70,4 +70,12 @@ export const badgeStyles = (_, { look }) => {
 			border: '1px solid #000',
 		},
 	};
+};
+
+const badgeAttributes = () => null;
+
+export const defaultBadge = {
+	component: Badge,
+	styles: badgeStyles,
+	attributes: badgeAttributes,
 };

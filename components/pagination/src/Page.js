@@ -3,8 +3,9 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Page as PageWrapper, pageStyles } from './overrides/page';
-import { Link, linkStyles } from './overrides/link';
+import { defaultPage } from './overrides/page';
+import { defaultLink } from './overrides/link';
+
 import { usePaginationContext } from './Pagination';
 import pkg from '../package.json';
 
@@ -18,9 +19,10 @@ export const Page = ({
 	text,
 	first,
 	last,
-	onClick,
 	disabled,
 	assistiveText,
+	onClick,
+	overrides,
 	...rest
 }) => {
 	const {
@@ -28,21 +30,15 @@ export const Page = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const { current, ...context } = usePaginationContext();
+	const active = index === current;
+
 	const defaultOverrides = {
-		Page: {
-			styles: pageStyles,
-			component: PageWrapper,
-			attributes: (_, a) => a,
-		},
-		Link: {
-			styles: linkStyles,
-			component: Link,
-			attributes: (_, a) => a,
-		},
+		Page: defaultPage,
+		Link: defaultLink,
 	};
 
-	const { current, overrides: componentOverrides } = usePaginationContext();
-	const active = index === current;
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		index,
@@ -52,34 +48,30 @@ export const Page = ({
 		last,
 		disabled,
 		assistiveText,
+		onClick,
 		current,
 		active,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Page: { component: Page, styles: pageStyles, attributes: pageAttributes },
+		Link: { component: Link, styles: linkStyles, attributes: linkAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Page.component
-			{...overrides.Page.attributes(state)}
-			css={overrides.Page.styles(state)}
-		>
-			<overrides.Link.component
-				aria-label={assistiveText ? assistiveText : `Go to page ${text}`}
-				disabled={disabled}
+		<Page {...rest} state={state} {...pageAttributes(state)} css={pageStyles(state)}>
+			<Link
 				onClick={onClick}
-				{...overrides.Link.attributes(state)}
-				css={overrides.Link.styles(state)}
+				state={state}
+				{...linkAttributes(state)}
+				css={{ '&&': linkStyles(state) }}
 			>
 				{text}
-			</overrides.Link.component>
-		</overrides.Page.component>
+			</Link>
+		</Page>
 	);
 };
 
@@ -94,9 +86,24 @@ Page.propTypes = {
 	index: PropTypes.number,
 
 	/**
+	 * Index of next page
+	 */
+	nextIndex: PropTypes.number,
+
+	/**
 	 * Page text
 	 */
 	text: PropTypes.string,
+
+	/**
+	 * Indicates first item in list which is the back button
+	 */
+	first: PropTypes.bool,
+
+	/**
+	 * Indicates first item in list which is the next button
+	 */
+	last: PropTypes.bool,
 
 	/**
 	 * If page is disabled
@@ -107,6 +114,11 @@ Page.propTypes = {
 	 * Text to use as the `aria-label` for the page
 	 */
 	assistiveText: PropTypes.string,
+
+	/**
+	 * An on click function
+	 */
+	onClick: PropTypes.func,
 
 	/**
 	 * The override API

@@ -1,10 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Option as OptionWrapper, optionStyles } from './overrides/option';
-import { Label, labelStyles } from './overrides/label';
+import { defaultOption } from './overrides/option';
+import { defaultLabel } from './overrides/label';
+
+import { useFormCheckContext } from './FormCheck';
 import pkg from '../package.json';
 
 // ==============================
@@ -12,83 +14,77 @@ import pkg from '../package.json';
 // ==============================
 
 export const Option = ({
+	index,
 	value,
-	selected,
+	checked,
 	handleChange,
-	disabled,
-	children,
 	type,
 	name,
 	size,
 	inline,
-	flipped,
-	className,
-	overrides: componentOverrides,
+	disabled,
+	instanceIdPrefix,
+	children,
+	overrides,
 	...rest
 }) => {
-	const formCheckId = `form-check-${name.replace(/ /g, '-')}-${useInstanceId()}`;
-
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useFormCheckContext();
+
+	const optionId = `${instanceIdPrefix}-option-${index + 1}`;
+
 	const defaultOverrides = {
-		Option: {
-			styles: optionStyles,
-			component: OptionWrapper,
-			attributes: (_, a) => a,
-		},
-		Label: {
-			styles: labelStyles,
-			component: Label,
-			attributes: (_, a) => a,
-		},
+		Option: defaultOption,
+		Label: defaultLabel,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
+		optionId,
 		value,
-		selected,
-		disabled,
+		checked,
+		handleChange,
 		type,
 		name,
 		size,
 		inline,
-		flipped,
+		disabled,
+		context: { ...context.state },
+		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Option: { component: Option, styles: optionStyles, attributes: optionAttributes },
+		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Option.component
-			className={className}
-			{...overrides.Option.attributes(state)}
-			css={overrides.Option.styles(state)}
-		>
+		<Option {...rest} state={state} {...optionAttributes(state)} css={optionStyles(state)}>
+			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
+				id={optionId}
+				onChange={disabled ? null : event => handleChange(event, value, checked)}
+				value={value}
+				checked={checked}
+				disabled={disabled}
 				type={type}
-				selected={selected}
-				id={formCheckId}
-				onClick={disabled ? null : event => handleChange(event, value, selected)}
+				name={name}
 				css={{
-					position: 'absolute', // just to hide the input element needed for a11y
-					opacity: 0, // we decided to not expose this as an override
-				}} // as it contains logic and is important for the component to work
+					position: 'absolute',
+					zIndex: '-1',
+					opacity: 0,
+				}}
 			/>
-			<overrides.Label.component
-				htmlFor={formCheckId}
-				{...overrides.Label.attributes(state)}
-				css={overrides.Label.styles(state)}
-			>
+			<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
 				{children}
-			</overrides.Label.component>
-		</overrides.Option.component>
+			</Label>
+		</Option>
 	);
 };
 
@@ -97,6 +93,31 @@ export const Option = ({
 // ==============================
 
 Option.propTypes = {
+	/**
+	 * Form check id
+	 */
+	id: PropTypes.string,
+
+	/**
+	 * Form check option value
+	 */
+	value: PropTypes.string,
+
+	/**
+	 * Check the Form check option
+	 */
+	checked: PropTypes.bool.isRequired,
+
+	/**
+	 * Disable the Form check option
+	 */
+	disabled: PropTypes.bool.isRequired,
+
+	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceIdPrefix: PropTypes.string,
+
 	/**
 	 * Form check type.
 	 */
@@ -118,29 +139,9 @@ Option.propTypes = {
 	inline: PropTypes.bool,
 
 	/**
-	 * Form check orientation (control on the right).
-	 */
-	flipped: PropTypes.bool,
-
-	/**
-	 * Form check option value
-	 */
-	value: PropTypes.string,
-
-	/**
-	 * Check the Form check option
-	 */
-	selected: PropTypes.bool.isRequired,
-
-	/**
 	 * A function called on change
 	 */
 	handleChange: PropTypes.func,
-
-	/**
-	 * Disable the Form check option
-	 */
-	disabled: PropTypes.bool.isRequired,
 
 	/**
 	 * Form check option label text
@@ -165,6 +166,6 @@ Option.propTypes = {
 };
 
 Option.defaultProps = {
-	selected: false,
+	checked: false,
 	disabled: false,
 };

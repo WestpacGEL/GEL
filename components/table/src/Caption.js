@@ -3,46 +3,49 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { CaptionComponent, captionStyles } from './overrides/caption';
+import { defaultCaption } from './overrides/caption';
+
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Caption = ({ overrides: componentOverrides, ...rest }) => {
+export const Caption = ({ children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+
 	const defaultOverrides = {
-		Caption: {
-			styles: captionStyles,
-			component: CaptionComponent,
-			attributes: (_, a) => a,
-		},
+		Caption: defaultCaption,
 	};
 
+	const componentOverrides = overrides || context.state.overrides;
+
 	const state = {
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Caption: { component: Caption, styles: CaptionStyles, attributes: CaptionAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Caption.component
-			{...overrides.Caption.attributes(state)}
-			css={overrides.Caption.styles(state)}
-		/>
+		<Caption {...rest} state={state} {...CaptionAttributes(state)} css={CaptionStyles(state)}>
+			{children}
+		</Caption>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Caption.propTypes = {
 	/**

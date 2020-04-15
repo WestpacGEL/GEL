@@ -45,6 +45,8 @@ function Example({ brand }) {
 			<br />
 			<Textarea />
 
+			<hr />
+
 			<h2>With overrides and component overrides</h2>
 			<TextInput
 				overrides={{

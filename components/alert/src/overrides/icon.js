@@ -2,20 +2,8 @@
 
 import { jsx, useMediaQuery } from '@westpac/core';
 import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
-import React from 'react';
 
-export const Icon = ({
-	size,
-	color,
-	look,
-	dismissible,
-	icon,
-	heading,
-	headingTag,
-	open,
-	overrides,
-	...rest
-}) => {
+const Icon = ({ state: { look, icon }, ...rest }) => {
 	const iconMap = {
 		success: TickIcon,
 		info: InfoIcon,
@@ -29,10 +17,18 @@ export const Icon = ({
 		return null;
 	}
 
-	return <Tag size={size} color={color} {...rest} />;
+	return (
+		<Tag
+			size={['small', 'medium']}
+			color="inherit"
+			assistiveText={null}
+			aria-hidden="true"
+			{...rest}
+		/>
+	);
 };
 
-export const iconStyles = () => {
+const iconStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
@@ -40,4 +36,14 @@ export const iconStyles = () => {
 		marginRight: ['0.375rem', '0.75rem'],
 		flex: 'none',
 	})[0];
+};
+
+const iconAttributes = () => ({
+	'aria-hidden': 'true',
+});
+
+export const defaultIcon = {
+	component: Icon,
+	styles: iconStyles,
+	attributes: iconAttributes,
 };

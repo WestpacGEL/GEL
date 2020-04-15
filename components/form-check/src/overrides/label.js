@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const Label = ({ flipped, inline, ...rest }) => <label {...rest} />;
+const Label = ({ state, ...rest }) => <label {...rest} />;
 
-export const labelStyles = (_, { type, size, flipped, selected, disabled }) => {
+const labelStyles = (_, { checked, disabled, type, size }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	const sizeMap = {
@@ -56,7 +55,7 @@ export const labelStyles = (_, { type, size, flipped, selected, disabled }) => {
 		display: 'inline-block',
 		paddingTop: sizeMap[size].paddingTop,
 		paddingBottom: sizeMap[size].paddingBottom,
-		[flipped ? 'paddingRight' : 'paddingLeft']: sizeMap[size].gap,
+		paddingLeft: sizeMap[size].gap,
 		marginBottom: 0,
 		cursor: 'pointer',
 		touchAction: 'manipulation', // remove 300ms pause on mobile
@@ -67,7 +66,7 @@ export const labelStyles = (_, { type, size, flipped, selected, disabled }) => {
 			boxSizing: 'border-box',
 			position: 'absolute',
 			top: 0,
-			[flipped ? 'right' : 'left']: 0,
+			left: 0,
 			width: sizeMap[size].width,
 			height: sizeMap[size].height,
 			border: `1px solid ${disabled ? COLORS.border : COLORS.hero}`,
@@ -87,14 +86,14 @@ export const labelStyles = (_, { type, size, flipped, selected, disabled }) => {
 		},
 
 		// Control 'check' (tick or dot)
-		...(selected && {
+		...(checked && {
 			'::after': {
 				content: '""',
 				boxSizing: 'border-box',
 				position: 'absolute',
 				border: `solid ${disabled ? COLORS.border : COLORS.hero}`,
 				top: `calc(((${sizeMap[size].height} - ${checkHeight}) / 2) + ${checkTweak})`,
-				[flipped ? 'right' : 'left']: `calc((${sizeMap[size].width} - ${checkWidth}) / 2)`,
+				left: `calc((${sizeMap[size].width} - ${checkWidth}) / 2)`,
 				width: type === 'radio' ? 0 : checkWidth,
 				height: type === 'radio' ? 0 : checkHeight,
 				borderWidth:
@@ -118,4 +117,12 @@ export const labelStyles = (_, { type, size, flipped, selected, disabled }) => {
 			color: COLORS.muted,
 		},
 	};
+};
+
+const labelAttributes = (_, { optionId }) => ({ htmlFor: optionId });
+
+export const defaultLabel = {
+	component: Label,
+	styles: labelStyles,
+	attributes: labelAttributes,
 };

@@ -2,24 +2,19 @@
 
 import { jsx } from '@westpac/core';
 
-export const Label = ({
-	name,
-	label,
-	toggleText,
-	flipped,
-	block,
-	disabled,
-	assistiveText,
-	...props
-}) => <span {...props} />;
+const Label = ({ state, ...rest }) => <span {...rest} />;
 
-export const labelStyles = (_, { block, flipped }) => {
+const labelStyles = (_, { block }) => {
 	return {
 		flex: block && 1,
 		display: 'flex',
 		alignItems: 'center',
 		whiteSpace: 'normal',
 		position: 'relative',
-		[flipped ? 'paddingLeft' : 'paddingRight']: '0.375rem',
+		paddingRight: '0.375rem',
 	};
 };
+
+const labelAttributes = () => null;
+
+export const defaultLabel = { component: Label, styles: labelStyles, attributes: labelAttributes };

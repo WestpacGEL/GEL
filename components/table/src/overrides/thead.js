@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Tablehead = ({ bordered, ...props }) => <thead {...props} />;
+const Thead = ({ state, ...rest }) => <thead {...rest} />;
 
-export const theadStyles = (_, { bordered }) => {
+const theadStyles = (_, { bordered }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
@@ -17,4 +17,12 @@ export const theadStyles = (_, { bordered }) => {
 			...TYPE.bodyFont[700],
 		},
 	};
+};
+
+const theadAttributes = () => null;
+
+export const defaultThead = {
+	component: Thead,
+	styles: theadStyles,
+	attributes: theadAttributes,
 };

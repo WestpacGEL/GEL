@@ -1,19 +1,18 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
-import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { ProgressBar as ProgressBarWrapper, progressBarStyles } from './overrides/progressBar';
-import { Text, textStyles } from './overrides/text';
-import { Bar, barStyles } from './overrides/bar';
+import { defaultProgressBar } from './overrides/progressBar';
+import { defaultText } from './overrides/text';
+import { defaultBar } from './overrides/bar';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-export const ProgressBar = ({ value, look, className, overrides: componentOverrides, ...rest }) => {
+
+export const ProgressBar = ({ value, look, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -22,68 +21,43 @@ export const ProgressBar = ({ value, look, className, overrides: componentOverri
 	const roundedValue = Math.round(value);
 
 	const defaultOverrides = {
-		ProgressBar: {
-			styles: progressBarStyles,
-			component: ProgressBarWrapper,
-			attributes: (_, a) => a,
-		},
-		Bar: {
-			styles: barStyles,
-			component: Bar,
-			attributes: (_, a) => a,
-		},
-		Text: {
-			styles: textStyles,
-			component: Text,
-			attributes: (_, a) => a,
-		},
+		ProgressBar: defaultProgressBar,
+		Bar: defaultBar,
+		Text: defaultText,
 	};
 
 	const state = {
-		look,
 		value: roundedValue,
+		look,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		ProgressBar: {
+			component: ProgressBar,
+			styles: progressBarStyles,
+			attributes: progressBarAttributes,
+		},
+		Bar: { component: Bar, styles: barStyles, attributes: barAttributes },
+		Text: { component: Text, styles: textStyles, attributes: textAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.ProgressBar.component
-			className={className}
-			{...overrides.ProgressBar.attributes(state)}
-			css={overrides.ProgressBar.styles(state)}
+		<ProgressBar
+			{...rest}
+			state={state}
+			{...progressBarAttributes(state)}
+			css={progressBarStyles(state)}
 		>
-			<overrides.Bar.component
-				role="progressbar"
-				aria-valuemin="0"
-				aria-valuemax="100"
-				aria-valuenow={roundedValue}
-				aria-live="polite"
-				{...overrides.Bar.attributes(state)}
-				css={overrides.Bar.styles(state)}
-			>
-				{look !== 'skinny' ? (
-					<Fragment>
-						<overrides.Text.component
-							role="text"
-							{...overrides.Text.attributes(state)}
-							css={overrides.Text.styles(state)}
-						>
-							{roundedValue}%
-						</overrides.Text.component>
-						<VisuallyHidden>Complete</VisuallyHidden>
-					</Fragment>
-				) : (
-					<VisuallyHidden>{roundedValue}% Complete</VisuallyHidden>
+			<Bar state={state} {...barAttributes(state)} css={barStyles(state)}>
+				{look !== 'skinny' && (
+					<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
+						{`${roundedValue}%`}
+					</Text>
 				)}
-			</overrides.Bar.component>
-		</overrides.ProgressBar.component>
+			</Bar>
+		</ProgressBar>
 	);
 };
 
@@ -95,12 +69,12 @@ ProgressBar.propTypes = {
 	/**
 	 * The progress bar value as a percentage. Decimal numbers are rounded.
 	 */
-	value: PropTypes.number,
+	value: PropTypes.number.isRequired,
 
 	/**
 	 * Enable skinny mode
 	 */
-	look: PropTypes.oneOf(['default', 'skinny']),
+	look: PropTypes.oneOf(['default', 'skinny']).isRequired,
 
 	/**
 	 * The override API

@@ -1,12 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import pkg from '../package.json';
 import { Button } from './Button';
-import { Select } from './Select';
-import { Label } from './Label';
+import { SelectField } from './SelectField';
+import { Text } from './Text';
 
 // ==============================
 // Component
@@ -14,9 +13,9 @@ import { Label } from './Label';
 
 export const Right = ({ type, overrides: componentOverrides, ...rest }) => {
 	const componentMap = {
-		label: Label,
+		text: Text,
 		button: Button,
-		select: Select,
+		select: SelectField,
 	};
 	const Component = componentMap[type];
 
@@ -31,7 +30,7 @@ Right.propTypes = {
 	/**
 	 * What type this component is
 	 */
-	type: PropTypes.oneOf(['label', 'button', 'select']).isRequired,
+	type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
 
 	/**
 	 * What size the button-group is
@@ -42,3 +41,5 @@ Right.propTypes = {
 Right.defaultProps = {
 	size: 'medium',
 };
+
+Right.displayName = 'Right';

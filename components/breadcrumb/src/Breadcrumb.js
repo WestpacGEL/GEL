@@ -1,29 +1,39 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { cloneElement, Children } from 'react';
+import { createContext, useContext, cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 
-import { AssistiveText, assistiveTextStyles } from './overrides/assistivetext';
-import { Breadcrumb as BreadcrumbWrapper, breadcrumbStyles } from './overrides/breadcrumb';
-import { List, listStyles } from './overrides/list';
-import pkg from '../package.json';
+import { defaultBreadcrumb } from './overrides/breadcrumb';
+import { defaultList } from './overrides/list';
+
 import { Crumb } from './Crumb';
+import pkg from '../package.json';
+
+// ==============================
+// Context and Consumer Hook
+// ==============================
+
+const BreadcrumbContext = createContext();
+
+export const useBreadcrumbContext = () => {
+	const context = useContext(BreadcrumbContext);
+
+	if (!context) {
+		throw new Error('<Crumb/> components should be wrapped in a <Breadcrumb>.');
+	}
+
+	return context;
+};
 
 // ==============================
 // Component
 // ==============================
 
-/**
- * Breadcrumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
- */
 export const Breadcrumb = ({
-	children,
 	data,
-	current,
 	assistiveText,
-	currentAssistiveText,
-	className,
+	children,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -33,38 +43,25 @@ export const Breadcrumb = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Breadcrumb: {
-			styles: breadcrumbStyles,
-			component: BreadcrumbWrapper,
-			attributes: (_, a) => a,
-		},
-		AssistiveText: {
-			styles: assistiveTextStyles,
-			component: AssistiveText,
-			attributes: (_, a) => a,
-		},
-		List: {
-			styles: listStyles,
-			component: List,
-			attributes: (_, a) => a,
-		},
+		Breadcrumb: defaultBreadcrumb,
+		List: defaultList,
 	};
 
 	const state = {
 		data,
-		current,
 		assistiveText,
-		currentAssistiveText,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Breadcrumb: {
+			component: Breadcrumb,
+			styles: breadcrumbStyles,
+			attributes: breadcrumbAttributes,
+		},
+		List: { component: List, styles: listStyles, attributes: listAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	let allChildren = [];
 	if (data) {
@@ -73,11 +70,9 @@ export const Breadcrumb = ({
 				<Crumb
 					key={index}
 					current={index === data.length - 1}
-					assistiveText={currentAssistiveText}
 					href={href}
 					text={text}
 					onClick={onClick}
-					overrides={componentOverrides}
 				/>
 			);
 		});
@@ -86,31 +81,22 @@ export const Breadcrumb = ({
 		allChildren = Children.map(children, (child, index) => {
 			return cloneElement(
 				child,
-				{ current: index === length - 1, overrides: componentOverrides },
+				{
+					current: index === length - 1,
+				},
 				index
 			);
 		});
 	}
 
 	return (
-		<overrides.Breadcrumb.component
-			className={className}
-			{...overrides.Breadcrumb.attributes(state)}
-			css={overrides.Breadcrumb.styles(state)}
-		>
-			<overrides.AssistiveText.component
-				{...overrides.AssistiveText.attributes(state)}
-				css={overrides.AssistiveText.styles(state)}
-			>
-				{assistiveText}
-			</overrides.AssistiveText.component>
-			<overrides.List.component
-				{...overrides.List.attributes(state)}
-				css={overrides.List.styles(state)}
-			>
-				{allChildren}
-			</overrides.List.component>
-		</overrides.Breadcrumb.component>
+		<BreadcrumbContext.Provider value={{ state }}>
+			<Breadcrumb state={state} {...breadcrumbAttributes(state)} css={breadcrumbStyles(state)}>
+				<List {...rest} state={state} {...listAttributes(state)} css={listStyles(state)}>
+					{allChildren}
+				</List>
+			</Breadcrumb>
+		</BreadcrumbContext.Provider>
 	);
 };
 
@@ -119,11 +105,6 @@ export const Breadcrumb = ({
 // ==============================
 
 Breadcrumb.propTypes = {
-	/**
-	 * Any renderable child
-	 */
-	children: PropTypes.node,
-
 	/**
 	 * Data for the crumbs
 	 */
@@ -136,25 +117,15 @@ Breadcrumb.propTypes = {
 	),
 
 	/**
-	 * Visually hidden text to use for the breadcrumb
+	 * Text to use as the `aria-label` for the breadcrumb
 	 */
 	assistiveText: PropTypes.string.isRequired,
-
-	/**
-	 * Visually hidden text to use for the current page crumb
-	 */
-	currentAssistiveText: PropTypes.string,
 
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Breadcrumb: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		AssistiveText: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -183,5 +154,5 @@ Breadcrumb.propTypes = {
 };
 
 Breadcrumb.defaultProps = {
-	assistiveText: 'Page navigation:',
+	assistiveText: 'Breadcrumb',
 };

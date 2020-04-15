@@ -3,16 +3,11 @@
 import { jsx, useBrand, asArray, useMediaQuery } from '@westpac/core';
 import { forwardRef } from 'react';
 
-export const Button = forwardRef(
-	(
-		{ look, soft, block, justify, iconAfter, iconBefore, assistiveText, tag: Tag, ...rest },
-		ref
-	) => <Tag ref={ref} {...rest} />
-);
+const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
 
-export const buttonStyles = (_, { look, size, soft, block, justify }) => {
+const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const mq = useMediaQuery();
-	const { BRAND, COLORS, TYPE } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 
 	const bg = {
 		background:
@@ -109,6 +104,7 @@ export const buttonStyles = (_, { look, size, soft, block, justify }) => {
 				color: COLORS.primary,
 				backgroundColor: 'transparent',
 				borderColor: 'transparent',
+				textDecoration: 'underline', //a11y
 			},
 		},
 		[key]: {
@@ -172,6 +168,10 @@ export const buttonStyles = (_, { look, size, soft, block, justify }) => {
 			opacity: '0.5',
 			pointerEvents: 'none',
 		},
+
+		// for non input tags
+		...(disabled && { opacity: '0.5', pointerEvents: 'none' }),
+
 		padding: sizeArr.map(s => {
 			if (!s) return null;
 			let p = [...sizeMap[s].padding];
@@ -184,4 +184,12 @@ export const buttonStyles = (_, { look, size, soft, block, justify }) => {
 		width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 	})[0];
+};
+
+const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
+
+export const defaultButton = {
+	component: Button,
+	styles: buttonStyles,
+	attributes: buttonAttributes,
 };

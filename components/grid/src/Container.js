@@ -3,45 +3,46 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Container as ContainerWrapper, containerStyles } from './overrides/container';
+import { defaultContainer } from './overrides/container';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Container = ({ overrides: componentOverrides, ...rest }) => {
+export const Container = ({ children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		Container: {
-			styles: containerStyles,
-			component: ContainerWrapper,
-			attributes: (_, a) => a,
-		},
+		Container: defaultContainer,
 	};
 
 	const state = {
+		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Container: { component: Container, styles: containerStyles, attributes: containerAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Container.component
-			{...overrides.Container.attributes(state)}
-			css={overrides.Container.styles(state)}
+		<Container
+			{...rest}
+			state={state}
+			{...containerAttributes(state)}
+			css={containerStyles(state)}
+			children={children}
 		/>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
 
 Container.propTypes = {
 	/**

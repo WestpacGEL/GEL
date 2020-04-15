@@ -3,8 +3,8 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { Icon as IconWrapper, iconStyles } from './overrides/icon';
-import { Svg, svgStyles } from './overrides/svg';
+import { defaultIcon } from './overrides/icon';
+import { defaultSvg } from './overrides/svg';
 import pkg from '../package.json';
 
 // ==============================
@@ -15,28 +15,19 @@ export const Icon = ({
 	color,
 	size,
 	assistiveText,
+	icon,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
 	const {
-		COLORS,
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		Icon: {
-			styles: iconStyles,
-			component: IconWrapper,
-			attributes: (_, a) => a,
-		},
-		Svg: {
-			styles: svgStyles,
-			component: Svg,
-			attributes: (_, a) => a,
-		},
+		Icon: defaultIcon,
+		Svg: defaultSvg,
 	};
 
 	const state = {
@@ -47,31 +38,17 @@ export const Icon = ({
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
+		Svg: { component: Svg, styles: svgStyles, attributes: svgAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<overrides.Icon.component
-			className={className}
-			{...overrides.Icon.attributes(state)}
-			css={overrides.Icon.styles(state)}
-		>
-			<overrides.Svg.component
-				aria-label={assistiveText}
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 24 24"
-				role="img"
-				focusable="false"
-				css={overrides.Svg.styles(state)}
-				{...overrides.Svg.attributes(state)}
-			>
+		<Icon {...rest} state={state} {...iconAttributes(state)} css={iconStyles(state)}>
+			<Svg state={state} css={svgStyles(state)} {...svgAttributes(state)}>
 				{children}
-			</overrides.Svg.component>
-		</overrides.Icon.component>
+			</Svg>
+		</Icon>
 	);
 };
 

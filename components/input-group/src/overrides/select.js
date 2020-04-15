@@ -1,12 +1,13 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Select as SelectInput } from '@westpac/text-input';
-import React from 'react';
 
-export const Select = ({ position, overrides, ...rest }) => <SelectInput {...rest} />;
+const Select = ({ state: { size, data }, ...rest }) => (
+	<SelectInput size={size} data={data} {...rest} />
+);
 
-export const selectStyles = (_, { position }) => ({
+const selectStyles = (_, { position }) => ({
 	boxSizing: 'border-box',
 	width: 'auto',
 	marginLeft: position === 'right' && '-1px',
@@ -21,3 +22,11 @@ export const selectStyles = (_, { position }) => ({
 		borderBottomRightRadius: 0,
 	}),
 });
+
+const selectAttributes = (_, { instanceId }) => ({ id: instanceId });
+
+export const defaultSelect = {
+	component: Select,
+	styles: selectStyles,
+	attributes: selectAttributes,
+};

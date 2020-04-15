@@ -4,12 +4,15 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
-import { TableRow, trStyles } from './overrides/tr';
+import { defaultTr } from './overrides/tr';
+
+import { useTableContext } from './Table';
 import pkg from '../package.json';
 
 // ==============================
 // Utils
 // ==============================
+
 const generateHighlightMap = (highlighted, tdCount) => {
 	const map = Array(tdCount).fill(false);
 
@@ -28,33 +31,32 @@ const generateHighlightMap = (highlighted, tdCount) => {
 // Component
 // ==============================
 
-export const Tr = ({ striped, highlighted, children, overrides: componentOverrides, ...rest }) => {
+export const Tr = ({ striped, highlighted, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const context = useTableContext();
+	striped = (context && context.striped) || striped;
+
 	const defaultOverrides = {
-		Tr: {
-			styles: trStyles,
-			component: TableRow,
-			attributes: (_, a) => a,
-		},
+		Tr: defaultTr,
 	};
+
+	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
 		striped,
 		highlighted,
+		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Tr: { component: Tr, styles: trStyles, attributes: trAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	let highlightedChildren;
 
@@ -75,9 +77,9 @@ export const Tr = ({ striped, highlighted, children, overrides: componentOverrid
 	}
 
 	return (
-		<overrides.Tr.component {...overrides.Tr.attributes(state)} css={overrides.Tr.styles(state)}>
+		<Tr {...rest} state={state} {...trAttributes(state)} css={trStyles(state)}>
 			{highlightedChildren || children}
-		</overrides.Tr.component>
+		</Tr>
 	);
 };
 

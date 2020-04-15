@@ -1,14 +1,16 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, devWarning, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { Panel as PanelWrapper, panelStyles } from './overrides/panel';
+import { defaultPanel } from './overrides/panel';
+import { defaultHeader } from './overrides/header';
+import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
 
 // ==============================
-// Context and consumer hook
+// Context and Consumer Hook
 // ==============================
 
 const PanelContext = createContext();
@@ -16,7 +18,10 @@ const PanelContext = createContext();
 export const usePanelContext = () => {
 	const context = useContext(PanelContext);
 
-	devWarning(!context, 'Panel children should be wrapped in a <Panel>.');
+	if (!context) {
+		throw new Error('<Body/> and <Footer/> components should be wrapped in a <Panel>.');
+	}
+
 	return context;
 };
 
@@ -24,40 +29,49 @@ export const usePanelContext = () => {
 // Component
 // ==============================
 
-export const Panel = ({ look, className, overrides: componentOverrides, ...rest }) => {
+export const Panel = ({
+	look,
+	heading,
+	headingTag,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const defaultOverrides = {
-		Panel: {
-			styles: panelStyles,
-			component: PanelWrapper,
-			attributes: (_, a) => a,
-		},
+		Panel: defaultPanel,
+		Header: defaultHeader,
+		Heading: defaultHeading,
 	};
 
 	const state = {
 		look,
+		heading,
+		headingTag,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
+		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<PanelContext.Provider value={{ look, overrides: componentOverrides }}>
-			<overrides.Panel.component
-				className={className}
-				{...overrides.Panel.attributes(state)}
-				css={overrides.Panel.styles(state)}
-			/>
+		<PanelContext.Provider value={{ state }}>
+			<Panel {...rest} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+				<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
+					<Heading state={state} {...headingAttributes(state)} css={{ '&&': headingStyles(state) }}>
+						{heading}
+					</Heading>
+				</Header>
+				{children}
+			</Panel>
 		</PanelContext.Provider>
 	);
 };
@@ -73,9 +87,14 @@ Panel.propTypes = {
 	look: PropTypes.oneOf(['hero', 'faint']).isRequired,
 
 	/**
-	 * Panel content
+	 * Panel heading text
 	 */
-	children: PropTypes.node,
+	heading: PropTypes.string.isRequired,
+
+	/**
+	 * Panel heading tag
+	 */
+	headingTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
 
 	/**
 	 * The override API
@@ -91,12 +110,7 @@ Panel.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Body: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Footer: PropTypes.shape({
+		Heading: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -106,4 +120,5 @@ Panel.propTypes = {
 
 Panel.defaultProps = {
 	look: 'hero',
+	headingTag: 'h1',
 };

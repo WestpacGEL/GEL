@@ -3,9 +3,9 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { round, sizeMap } from '../_utils';
 
-export const TextInput = ({ inline, invalid, ...props }) => <input {...props} />;
+const TextInput = ({ state, ...rest }) => <input {...rest} />;
 
-export const textInputStyles = (_, { size, width, inline, invalid, ...props }) => {
+const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
@@ -27,7 +27,7 @@ export const textInputStyles = (_, { size, width, inline, invalid, ...props }) =
 		color: COLORS.text,
 		backgroundColor: '#fff',
 		border: `${borderWidth}px solid ${
-			invalid || props.ariaInvalid ? COLORS.danger : COLORS.borderDark
+			invalid || rest.ariaInvalid ? COLORS.danger : COLORS.borderDark
 		}`,
 		borderRadius: '0.1875rem',
 		transition: 'border 0.2s ease',
@@ -39,7 +39,7 @@ export const textInputStyles = (_, { size, width, inline, invalid, ...props }) =
 		)} + ${2 * borderWidth}px)`,
 		...TYPE.bodyFont[400],
 
-		'&::placeholder': {
+		'::placeholder': {
 			opacity: 1, // Override Firefox's unusual default opacity
 			color: COLORS.tints.text50,
 			...TYPE.bodyFont[300],
@@ -54,15 +54,24 @@ export const textInputStyles = (_, { size, width, inline, invalid, ...props }) =
 		':disabled, &[readonly]': {
 			cursor: 'not-allowed',
 			opacity: 1, // iOS fix for unreadable disabled content
-			backgroundColor: COLORS.light,
+			backgroundColor: COLORS.background,
+			borderStyle: 'dashed',
 			color: COLORS.muted,
 		},
 
 		// Disable number input spinners/steppers
-		'&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+		'::-webkit-outer-spin-button, ::-webkit-inner-spin-button': {
 			margin: 0,
 			appearance: 'none',
 		},
 		maxWidth: width && `calc(${extras} + ${round(width * 1.81)}ex)`,
 	})[0];
+};
+
+const textInputAttributes = () => null;
+
+export const defaultTextInput = {
+	component: TextInput,
+	styles: textInputStyles,
+	attributes: textInputAttributes,
 };

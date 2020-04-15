@@ -4,13 +4,15 @@ import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
 import { createContext, useContext, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 
-import { List as ListWrapper, listStyles } from './overrides/list';
-import pkg from '../package.json';
+import { defaultList } from './overrides/list';
+
 import { Item } from './Item';
+import pkg from '../package.json';
 
 // ==============================
 // Context and Consumer Hook
 // ==============================
+
 const ListContext = createContext();
 
 export const useListContext = () => useContext(ListContext);
@@ -84,9 +86,9 @@ export const List = ({
 	nested,
 	spacing,
 	icon,
+	assistiveText,
 	data,
 	children,
-	className,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -100,18 +102,16 @@ export const List = ({
 	devWarning(data && !Array.isArray(data), 'The data prop must be an array');
 
 	const defaultOverrides = {
-		List: {
-			styles: listStyles,
-			component: ListWrapper,
-			attributes: (_, a) => a,
-		},
+		List: defaultList,
 	};
 
 	const context = useListContext();
+
 	look = look || (context && context.look) || 'primary';
 	type = type || (context && context.type) || 'bullet';
 	spacing = spacing || (context && context.spacing) || 'medium';
 	icon = icon || (context && context.icon);
+
 	if (typeof nested !== 'number') {
 		nested = (context && context.nested + 1) || 0;
 	}
@@ -122,17 +122,15 @@ export const List = ({
 		nested,
 		spacing,
 		icon,
+		assistiveText,
 		data,
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	const overrides = overrideReconciler(
-		defaultOverrides,
-		tokenOverrides,
-		brandOverrides,
-		componentOverrides
-	);
+	const {
+		List: { component: List, styles: listStyles, attributes: listAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	if (data) {
 		children = makeItems(data);
@@ -145,17 +143,14 @@ export const List = ({
 				type,
 				spacing,
 				icon,
+				assistiveText,
 				nested,
 				overrides: componentOverrides,
 			}}
 		>
-			<overrides.List.component
-				className={className}
-				{...overrides.List.attributes(state)}
-				css={overrides.List.styles(state)}
-			>
+			<List {...rest} state={state} {...listAttributes(state)} css={listStyles(state)}>
 				{children}
-			</overrides.List.component>
+			</List>
 		</ListContext.Provider>
 	);
 };
@@ -163,6 +158,7 @@ export const List = ({
 // ==============================
 // Types
 // ==============================
+
 List.propTypes = {
 	/**
 	 * The look of the bullet list
@@ -190,6 +186,13 @@ List.propTypes = {
 	icon: PropTypes.func,
 
 	/**
+	 * Visually hidden text to use for the list.
+	 *
+	 * Tick list default value: "The following items are ticked"
+	 */
+	assistiveText: PropTypes.string,
+
+	/**
 	 * Any renderable child
 	 */
 	children: PropTypes.node,
@@ -200,6 +203,11 @@ List.propTypes = {
 	data: PropTypes.arrayOf(
 		PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object, PropTypes.array])
 	),
+
+	/**
+	 * Any renderable child
+	 */
+	children: PropTypes.node,
 
 	/**
 	 * The override API

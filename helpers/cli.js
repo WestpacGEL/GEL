@@ -1,11 +1,11 @@
 'use strict';
 
 const shell = require('child_process').execSync;
-const fs = require('fs');
-const path = require('path');
 const readline = require('readline');
-const chalk = require('chalk');
 const cfonts = require('cfonts');
+const chalk = require('chalk');
+const path = require('path');
+const fs = require('fs');
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -14,7 +14,7 @@ const rl = readline.createInterface({
 
 const qName = () => {
 	return new Promise((resolve, reject) => {
-		rl.question(chalk.blue('Enter component name: '), answer => {
+		rl.question('Enter component name: ', answer => {
 			if (answer) {
 				resolve(answer);
 			} else {
@@ -26,7 +26,7 @@ const qName = () => {
 
 const qDescription = () => {
 	return new Promise((resolve, reject) => {
-		rl.question(chalk.blue('Enter component description: '), answer => {
+		rl.question('Enter component description: ', answer => {
 			if (answer) {
 				resolve(answer);
 			} else {
@@ -41,7 +41,7 @@ const qConfirm = (name, description) => {
 		console.log(chalk.green.underline('\nCOMPONENT DETAILS'));
 		console.log(chalk.cyan('Component Name: ') + name);
 		console.log(chalk.cyan('Component Description: ') + description);
-		rl.question(chalk.blue('\nConfirm creation (y/N)? '), answer => {
+		rl.question('\nConfirm creation (y/N)? ', answer => {
 			resolve(answer);
 		});
 	});
@@ -86,7 +86,7 @@ const createComponent = component => {
 const main = async () => {
 	cfonts.say('Create GEL Component', {
 		font: 'chrome',
-		colors: ['redBright', 'redBright', 'redBright'],
+		gradient: ['red', 'blue'],
 		space: false,
 	});
 

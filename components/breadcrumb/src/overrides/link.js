@@ -1,18 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import React from 'react';
 
-export const Link = ({ current, assistiveText, text, href, ...props }) => {
-	const Tag = href ? 'a' : 'button';
-	if (!href) {
-		props.type = 'button';
-	}
+const Link = ({ state, ...rest }) => <a {...rest} />;
 
-	return <Tag href={href} {...props} />;
-};
-
-export const linkStyles = (_, { current }) => {
+const linkStyles = (_, { current }) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -32,4 +24,15 @@ export const linkStyles = (_, { current }) => {
 			textDecoration: current ? 'none' : 'underline',
 		},
 	};
+};
+
+const linkAttributes = (_, { current, href }) => ({
+	href: href || '#0',
+	'aria-current': current ? 'page' : undefined,
+});
+
+export const defaultLink = {
+	component: Link,
+	styles: linkStyles,
+	attributes: linkAttributes,
 };

@@ -2,9 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Table = ({ striped, bordered, ...props }) => <table {...props} />;
+const Table = ({ state, ...rest }) => <table {...rest} />;
 
-export const tableStyles = (_, { striped }) => {
+const tableStyles = (_, { striped }) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -24,4 +24,12 @@ export const tableStyles = (_, { striped }) => {
 			borderTop: `2px solid ${COLORS.hero}`,
 		},
 	};
+};
+
+const tableAttributes = () => null;
+
+export const defaultTable = {
+	component: Table,
+	styles: tableStyles,
+	attributes: tableAttributes,
 };
