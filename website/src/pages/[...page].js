@@ -8,12 +8,8 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { Footer } from '../components/layout';
 
-import {
-	AccessibilityTab,
-	CodeTab,
-	DesignTab,
-	PageHeader,
-} from '../components/pages/single-component';
+import { AccessibilityTab, CodeTab, DesignTab } from '../components/pages/single-component';
+import PageHeader from '../components/header/page-header';
 import { ALL_PAGES } from '../../graphql';
 
 const ComponentWrapper = () => {

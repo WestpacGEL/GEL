@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-const WbcBackgroundLeftSvg = ({ width, height }) => {
+export const WbcBackgroundLeftSvg = ({ width, height }) => {
 	return (
 		<svg
 			aria-labelledby="westpac-header-image-left"
@@ -23,5 +23,3 @@ const WbcBackgroundLeftSvg = ({ width, height }) => {
 		</svg>
 	);
 };
-
-export default WbcBackgroundLeftSvg;

@@ -4,8 +4,8 @@ import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { useQuery } from '@apollo/react-hooks';
-import { RELATED_INFORMATION } from '../../../../graphql';
-import { SlateContent } from './blocks-hub';
+import { RELATED_INFORMATION } from '../../graphql';
+import { SlateContent } from './pages/single-component/blocks-hub';
 import Link from 'next/link';
 
 export const BlocksDocs = ({ title, blocks, item }) => {
@@ -157,9 +157,18 @@ const IconTitle = ({ icon: Icon, children }) => {
 
 export const brandHeaderColors = {
 	WBC: COLORS => COLORS.primary,
-	WBG: COLORS => COLORS.primary,
+	WBG: COLORS => COLORS.hero,
 	STG: COLORS => COLORS.hero,
 	BSA: COLORS => `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
 	BOM: COLORS => COLORS.hero,
 	BTFG: COLORS => COLORS.hero,
+};
+
+export const brandIconHighlightColors = {
+	WBC: COLORS => COLORS.primary,
+	WBG: COLORS => COLORS.primary,
+	STG: COLORS => COLORS.hero,
+	BSA: () => '#00adbd',
+	BOM: COLORS => COLORS.hero,
+	BTFG: () => '#00afd7',
 };
