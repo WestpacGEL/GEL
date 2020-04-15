@@ -6,10 +6,12 @@ import { Heading as WestpacHeading } from '@westpac/heading';
 import Select from '@arch-ui/select';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
+const slugify = require('slugify');
+slugify.extend({ _: '-' });
 
 const Component = ({ text, level }) => {
 	return (
-		<WestpacHeading tag={level} size={6}>
+		<WestpacHeading tag={level} size={6} id={slugify(text)}>
 			{text}
 		</WestpacHeading>
 	);

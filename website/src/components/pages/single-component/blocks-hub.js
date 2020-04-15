@@ -18,7 +18,6 @@ const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
 	const shortcodes = getShortCodes(BRAND);
 	return text.replace(/\[\[([A-Za-z0-9]*)\]\]/g, (match, capture, offset, string) => {
-		console.log({ match, capture, offset, string });
 		return shortcodes[capture] || capture;
 	});
 };

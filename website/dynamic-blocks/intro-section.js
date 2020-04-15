@@ -9,6 +9,8 @@ import { Cell, Grid } from '@westpac/grid';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { CheckboxPrimitive } from '@arch-ui/controls';
+const slugify = require('slugify');
+slugify.extend({ _: '-' });
 
 const ArrowIcon = () => {
 	const { COLORS, SPACING } = useBrand();
@@ -44,25 +46,27 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 	);
 };
 
+const parseHeadings = content =>
+	content.nodes
+		.filter(item => item.data.component && item.data.component === 'Heading')
+		.filter(item => item.data.props && item.data.props.addTableContent)
+		.map((item, i) => {
+			const { props } = item.data;
+			return (
+				<TableLink
+					key={`nav-${i}`}
+					headingId={slugify(props.heading)}
+					headingText={props.heading}
+				/>
+			);
+		});
+
 // Intro section
-const TableOfContents = () => {
+const TableOfContents = ({ content }) => {
+	const toc = parseHeadings(content);
 	const { COLORS, SPACING } = useBrand();
-	const containerRef = useRef();
-	const [toc, setToc] = useState([]);
-
-	useEffect(() => {
-		const headings = [];
-		if (containerRef && containerRef.current) {
-			const container = containerRef.current.closest('.slate-container') || document;
-			container.querySelectorAll('[data-toc]').forEach((h, i) => {
-				headings[i] = <TableLink key={`nav-${i}`} headingId={h.id} headingText={h.innerText} />;
-			});
-		}
-		setToc(headings);
-	}, [containerRef]);
-
 	return (
-		<div ref={containerRef}>
+		<div>
 			<Heading tag="h2" size={6} style={{ fontWeight: '500' }}>
 				{'Page content'}
 			</Heading>
@@ -137,7 +141,7 @@ const PackageInfoTable = ({ item }) => {
 	);
 };
 
-const Component = ({ description, showTableOfContents, showPackageInfo, item }) => {
+const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
 	const { PACKS } = useBrand();
 
 	return (
@@ -152,7 +156,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item }) 
 				<Cell width={[0, 0, 0, 1]} />
 				{showTableOfContents && (
 					<Cell width={[12, 12, 12, 4]}>
-						<TableOfContents />
+						<TableOfContents content={_editorValue} />
 					</Cell>
 				)}
 			</Grid>
