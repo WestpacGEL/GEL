@@ -80,7 +80,7 @@ export const RelatedInformation = ({ item }) => {
 											.filter(d => d.id !== item.id)
 											.map(d => {
 												return (
-													<ComponentLink key={d.id} link={`components/${d.name}`}>
+													<ComponentLink key={d.id} link={`${d.name}`}>
 														{d.pageTitle}
 													</ComponentLink>
 												);
@@ -122,7 +122,7 @@ const ComponentLink = ({ children, link }) => {
 				<a
 					css={{
 						cursor: 'pointer',
-						isplay: 'flex',
+						display: 'flex',
 						justifyContent: 'space-between',
 						alignItems: 'center',
 					}}

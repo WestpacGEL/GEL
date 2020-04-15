@@ -34,6 +34,20 @@ const slateRenderer = (item, _editorValue) => {
 				}, []);
 			}
 		},
+		// serialiser for links
+		({ node, path, serializeChildren }) => {
+			if (node.object === 'inline') {
+				switch (node.type) {
+					case 'link':
+						return (
+							<a href={node.data.href} key={path} target="_blank">
+								{' '}
+								{serializeChildren(node.nodes)}
+							</a>
+						);
+				}
+			}
+		},
 		// serialisers for all the marks
 		({ node, path, serializeChildren }) => {
 			if (node.object !== 'mark') {
