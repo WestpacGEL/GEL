@@ -12,73 +12,67 @@ function Example({ brand }) {
 
 			<h2>Single add-on</h2>
 
-			<InputGroup>
-				<Left type="label" data="AUS $" />
+			<h3>Composed</h3>
+
+			<InputGroup name="example-text" label="Total amount">
+				<Left type="text" data="AUS $" />
 			</InputGroup>
 			<br />
 
-			<hr />
-			<br />
-
-			<InputGroup placeholder="Fill me out">
+			<InputGroup name="example-button" label="Filter by name">
 				<Right type="button" data="Go" />
 			</InputGroup>
 			<br />
 
-			<hr />
-			<br />
-
-			<InputGroup>
+			<InputGroup name="example-select" label="Total amount">
 				<Right
 					type="select"
+					name="example-select-select"
+					label="Currency"
 					onChange={event => console.log(`Selected ${event.target.value}`)}
 					data={[
 						{ text: 'Select', value: '' },
-						{ text: '1', value: '1' },
-						{ text: '2', value: '2' },
-						{ text: '3', value: '3' },
+						{ text: 'AUD $', value: 'AUD $' },
+						{ text: 'USD $', value: 'USD $' },
+						{ text: 'GBP £', value: 'GBP £' },
 					]}
 				/>
 			</InputGroup>
 			<br />
 
-			<hr />
-			<br />
-
-			<h2>Single add-on data-driven</h2>
+			<h3>Data-driven</h3>
 			<InputGroup
-				name="input name"
+				name="example-text-datadriven"
+				label="Total amount"
 				data={{
-					right: { type: 'label', data: 'EUR €' },
+					right: { type: 'text', data: '.00' },
 				}}
 			/>
 			<br />
 
-			<hr />
-			<br />
-
 			<InputGroup
-				name="input name"
+				name="example-button-datadriven"
+				label="Filter by name"
 				data={{
-					left: { type: 'button', data: 'Submit' },
+					right: { type: 'button', data: 'Submit' },
 				}}
 			/>
 			<br />
 
-			<hr />
-			<br />
-
 			<InputGroup
-				name="input name"
+				name="example-select-datadriven"
+				label="Total amount"
 				data={{
 					left: {
 						type: 'select',
+						name: 'example-select-datadriven-select',
+						label: 'Total amount',
 						onChange: event => console.log(`Selected ${event.target.value}`),
 						data: [
 							{ text: 'Select', value: '' },
-							{ text: '1', value: '1' },
-							{ text: '2', value: '2' },
-							{ text: '3', value: '3' },
+							{ text: 'AUD $', value: 'AUD $' },
+							{ text: 'USD $', value: 'USD $' },
+							{ text: 'GBP £', value: 'GBP £' },
 						],
 					},
 				}}
@@ -86,21 +80,21 @@ function Example({ brand }) {
 			<br />
 
 			<hr />
-			<br />
 
 			<h2>Combination</h2>
-			<InputGroup>
-				<Left type="label" data="AUS $" />
+
+			<h3>Composed</h3>
+			<InputGroup name="example-text-button" label="Total amount">
+				<Left type="text" data="AUS $" />
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
 			<br />
 
-			<hr />
-			<br />
-
-			<InputGroup>
+			<InputGroup name="example-select-button" label="Total amount">
 				<Left
 					type="select"
+					name="example-select-button-select"
+					label="Currency"
 					onChange={event => console.log(`Selected ${event.target.value}`)}
 					data={[
 						{ text: 'AUD $', value: 'AUD' },
@@ -110,32 +104,39 @@ function Example({ brand }) {
 				/>
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
-			<br />
 
-			<hr />
-			<br />
-
-			<h2>Combination data-driven</h2>
+			<h3>Data-driven</h3>
 			<InputGroup
+				name="example-text-button-datadriven"
+				label="Total amount"
 				data={{
-					left: { type: 'label', data: 'AUS $' },
-					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
+					left: { type: 'text', data: 'AUS $' },
+					right: {
+						type: 'button',
+						data: 'Go',
+						onClick: () => console.log('Go clicked'),
+					},
 				}}
 			/>
 			<br />
 
-			<hr />
-			<br />
-
 			<InputGroup
+				name="example-select-button-datadriven"
+				label="Total amount"
 				look="primary"
 				data={{
 					left: {
 						type: 'select',
+						name: 'example-select-button-datadriven-select',
+						label: 'Currency',
 						onChange: event => console.log(`Selected ${event.target.value}`),
 						data: [{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }],
 					},
-					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
+					right: {
+						type: 'button',
+						data: 'Go',
+						onClick: () => console.log('Go clicked'),
+					},
 				}}
 			/>
 		</GEL>

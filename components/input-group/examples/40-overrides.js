@@ -6,7 +6,7 @@ import { InputGroup, Left, Right } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const Label = ({ data, overrides, ...rest }) => (
+const Text = ({ data, overrides, ...rest }) => (
 	<span {...rest}>
 		<HouseIcon size="small" /> {data}
 	</span>
@@ -21,13 +21,25 @@ function Example({ brand }) {
 				outline: '1px solid red',
 			}),
 		},
-		Label: {
-			component: Label,
-		},
 		Text: {
+			component: Text,
+		},
+		TextInput: {
 			styles: styles => ({
 				...styles,
 				outline: '4px dotted green',
+			}),
+		},
+		Select: {
+			styles: styles => ({
+				...styles,
+				outline: '4px dotted purple',
+			}),
+		},
+		Button: {
+			styles: styles => ({
+				...styles,
+				outline: '4px dotted blue',
 			}),
 		},
 	};
@@ -37,30 +49,25 @@ function Example({ brand }) {
 			<Intopia ignore />
 
 			<h2>With overrides applied</h2>
-			<InputGroup>
-				<Left type="label" data="AUS $" />
+			<InputGroup name="example-overrides-l">
+				<Left type="text" data="AUS $" />
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
-
-			<br />
-			<hr />
 			<br />
 
 			<InputGroup
+				name="example-overrides-2"
 				data={{
 					left: {
-						type: 'label',
+						type: 'text',
 						data: 'AUS $',
 					},
 					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
 				}}
 			/>
-
-			<br />
-			<hr />
 			<br />
 
-			<InputGroup>
+			<InputGroup name="example-overrides-3">
 				<Left
 					type="select"
 					onChange={event => console.log(`Select ${event.target.value}`)}
@@ -73,12 +80,10 @@ function Example({ brand }) {
 				/>
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
-
-			<br />
-			<hr />
 			<br />
 
 			<InputGroup
+				name="example-overrides-4"
 				data={{
 					left: {
 						type: 'select',
@@ -93,31 +98,32 @@ function Example({ brand }) {
 				}}
 			/>
 
+			<hr />
+
 			<h2>With overrides and component overrides</h2>
 			<InputGroup
+				name="example-overrides-component-1"
 				overrides={{
 					Button: {
 						styles: styles => ({
 							...styles,
-							outline: '3px dotted blue',
+							outline: '4px solid blue',
 						}),
 					},
 				}}
 			>
-				<Left type="label" data="AUS $" />
+				<Left type="text" data="AUS $" />
 				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
-
-			<br />
-			<hr />
 			<br />
 
 			<InputGroup
+				name="example-overrides-component-2"
 				overrides={{
 					Select: {
 						styles: styles => ({
 							...styles,
-							outline: '3px dotted blue',
+							outline: '4px solid purple',
 						}),
 					},
 				}}
