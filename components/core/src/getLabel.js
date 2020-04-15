@@ -6,7 +6,7 @@ export function getLabel(name, props = {}) {
 		} else if (typeof value === 'boolean') {
 			label += value ? `-${cleanClassName(name)}` : '';
 		} else if (typeof value === 'string') {
-			label += value === '' ? '' : `-${cleanClassName(value)}`;
+			label += value === '' ? '' : `-${cleanClassName(name)}_${cleanClassName(value)}`;
 		} else if (typeof value === 'function') {
 			label += `-${cleanClassName(value.displayName || value.name || name)}`;
 		}
