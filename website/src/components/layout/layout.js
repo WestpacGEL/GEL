@@ -17,6 +17,8 @@ import gql from 'graphql-tag';
 
 const Wrapper = props => {
 	const router = useRouter();
+	if (!router) return null;
+
 	const brandParam = router.query.b || '';
 
 	const { brands, brand } = useBrandSwitcher();
