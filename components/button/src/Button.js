@@ -226,7 +226,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-	look: 'primary',
+	look: 'hero',
 	size: 'medium',
 	tag: 'button',
 	soft: false,

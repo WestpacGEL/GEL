@@ -11,6 +11,7 @@ import BackToGelSvg from './BackToGelSvg';
 export const Navigation = ({ items }) => {
 	const renderNavigationItems = items => {
 		const router = useRouter();
+
 		return items.map(item => {
 			if (item.children) {
 				let isCurrentBlock = false;
@@ -48,7 +49,7 @@ export const Navigation = ({ items }) => {
 				isCurrentChild = `/${page.join('/')}` === item.path;
 			}
 
-			let href = '[...page]';
+			let href = item.dynamicRoute;
 			if (item.path.indexOf('://') !== -1 || ROOT_PAGE_PATHS.indexOf(item.path) !== -1) {
 				href = item.path;
 			}
@@ -59,7 +60,7 @@ export const Navigation = ({ items }) => {
 					key={item.title + item.path}
 					name={item.title}
 					as={item.path}
-					href={href}
+					path={href}
 				/>
 			);
 		});
