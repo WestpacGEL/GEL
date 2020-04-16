@@ -147,7 +147,6 @@ export const Tabcordion = ({
 
 				{Children.map(children, (child, idx) => {
 					const selected = activeTabIndex === idx;
-
 					return (
 						<Tab
 							{...child.props}
