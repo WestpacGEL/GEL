@@ -44,7 +44,7 @@ export const TextInputField = ({ instanceId, label, left, right, overrides, ...r
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<>
+		<React.Fragment>
 			<VisuallyHidden tag="label" htmlFor={instanceId}>
 				{label}
 			</VisuallyHidden>
@@ -54,7 +54,7 @@ export const TextInputField = ({ instanceId, label, left, right, overrides, ...r
 				{...textInputAttributes(state)}
 				css={{ '&&': textInputStyles(state) }}
 			/>
-		</>
+		</React.Fragment>
 	);
 };
 
