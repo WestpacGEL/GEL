@@ -1,9 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultLabel } from './overrides/label';
+import { defaultTextInput } from './overrides/textInput';
+
+import { VisuallyHidden } from '@westpac/a11y';
 
 import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
@@ -12,7 +15,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Label = ({ position, size, data, overrides, ...rest }) => {
+export const TextInputField = ({ instanceId, label, left, right, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -21,28 +24,37 @@ export const Label = ({ position, size, data, overrides, ...rest }) => {
 	const context = useInputGroupContext();
 
 	const defaultOverrides = {
-		Label: defaultLabel,
+		TextInput: defaultTextInput,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
-		position,
-		size,
-		data,
+		instanceId,
+		label,
+		left,
+		right,
 		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
 
 	const {
-		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+		TextInput: { component: TextInput, styles: textInputStyles, attributes: textInputAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Label {...rest} state={state} {...labelAttributes(state)} css={{ '&&': labelStyles(state) }}>
-			{data}
-		</Label>
+		<React.Fragment>
+			<VisuallyHidden tag="label" htmlFor={instanceId}>
+				{label}
+			</VisuallyHidden>
+			<TextInput
+				{...rest}
+				state={state}
+				{...textInputAttributes(state)}
+				css={{ '&&': textInputStyles(state) }}
+			/>
+		</React.Fragment>
 	);
 };
 
@@ -50,27 +62,17 @@ export const Label = ({ position, size, data, overrides, ...rest }) => {
 // Types
 // ==============================
 
-Label.propTypes = {
+TextInputField.propTypes = {
 	/**
-	 * What position this component is at
+	 * The instance ID for the label and text input
 	 */
-	position: PropTypes.oneOf(['left', 'right']).isRequired,
-
-	/**
-	 * What size the button-group is
-	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
-
-	/**
-	 * The content of the component
-	 */
-	data: PropTypes.string.isRequired,
+	instanceId: PropTypes.string.isRequired,
 
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Label: PropTypes.shape({
+		TextInputField: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -78,6 +80,6 @@ Label.propTypes = {
 	}),
 };
 
-Label.defaultProps = {
+TextInputField.defaultProps = {
 	size: 'medium',
 };

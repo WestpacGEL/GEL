@@ -12,7 +12,7 @@ const barStyles = (_, { look, value }) => {
 		float: 'left',
 		width: `${value}%`,
 		borderRadius: look === 'skinny' ? '0.625rem' : '1.5rem',
-		border: value > 0 && '1px solid transparent', //for high contrast mode
+		border: value > 0 && `${look === 'skinny' ? '3px' : '1px'} solid transparent`, //a11y: for high contrast mode
 		height: '100%',
 		fontSize: '0.875rem',
 		lineHeight: value > 0 ? '1.125rem' : '1.25rem',

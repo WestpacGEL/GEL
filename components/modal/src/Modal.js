@@ -137,7 +137,7 @@ export const Modal = ({
 									onClick={() => handleClose()}
 									state={state}
 									{...closeBtnAttributes(state)}
-									css={closeBtnStyles(state)}
+									css={{ '&&': closeBtnStyles(state) }}
 								/>
 							)}
 						</Header>

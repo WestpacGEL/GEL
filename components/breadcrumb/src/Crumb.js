@@ -67,7 +67,9 @@ Crumb.propTypes = {
 	current: PropTypes.bool,
 
 	/**
-	 * An href for a link
+	 * The crumb link href value.
+	 *
+	 * Defaults to '#0'.
 	 */
 	href: PropTypes.string,
 

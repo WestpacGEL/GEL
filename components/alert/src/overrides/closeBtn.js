@@ -10,6 +10,7 @@ const CloseBtn = ({ onClose, state, ...rest }) => (
 		iconAfter={CloseIcon}
 		look="link"
 		size="medium"
+		assistiveText="Close"
 		{...rest}
 	/>
 );
@@ -34,7 +35,6 @@ const closeBtnStyles = () => {
 };
 
 const closeBtnAttributes = () => ({
-	'aria-label': 'Close',
 	'data-js': 'alert-closebtn',
 });
 
