@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
@@ -20,6 +20,7 @@ const closeBtnStyles = () => {
 	const { SPACING } = useBrand();
 
 	return mq({
+		label: getLabel('Alert-closebtn'),
 		color: 'inherit',
 		position: 'absolute',
 		zIndex: 1,
@@ -33,7 +34,9 @@ const closeBtnStyles = () => {
 	})[0];
 };
 
-const closeBtnAttributes = () => null;
+const closeBtnAttributes = () => ({
+	'data-js': 'alert-closebtn',
+});
 
 export const defaultCloseBtn = {
 	component: CloseBtn,

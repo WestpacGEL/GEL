@@ -111,7 +111,7 @@ export const Alert = ({
 	return transition.map(
 		({ item, key, props }) =>
 			item && (
-				<animated.div key={key} style={props}>
+				<animated.div key={key} style={props} data-js="alert">
 					<AlertJSX />
 				</animated.div>
 			)
