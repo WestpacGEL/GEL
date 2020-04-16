@@ -47,7 +47,7 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 
 const linkAttributes = (_, { active, assistiveText, disabled }) => ({
 	'aria-current': active ? 'page' : undefined,
-	'aria-label': assistiveText,
+	'aria-label': disabled ? undefined : assistiveText,
 	'aria-disabled': disabled, //a11y: required to aid VoiceOver/Talkback UX
 });
 
