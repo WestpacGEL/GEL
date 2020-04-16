@@ -2,6 +2,7 @@
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers, mergeWith } from '@westpac/core';
 import { useEffect, Children, createContext, useContext } from 'react';
+import { VisuallyHidden } from '@westpac/a11y';
 import PropTypes from 'prop-types';
 
 import { defaultPagination } from './overrides/pagination';
@@ -163,6 +164,7 @@ export const Pagination = ({
 						/>
 					)}
 				</PageList>
+				<VisuallyHidden role="status">{`Page ${pageLogic.current + 1}`}</VisuallyHidden>
 			</Pagination>
 		</PaginationContext.Provider>
 	);

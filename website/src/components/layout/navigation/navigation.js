@@ -11,6 +11,7 @@ import BackToGelSvg from './BackToGelSvg';
 export const Navigation = ({ items }) => {
 	const renderNavigationItems = items => {
 		const router = useRouter();
+
 		return items.map(item => {
 			if (item.children) {
 				let isCurrentBlock = false;
@@ -48,7 +49,7 @@ export const Navigation = ({ items }) => {
 				isCurrentChild = `/${page.join('/')}` === item.path;
 			}
 
-			let href = '[...page]';
+			let href = item.dynamicRoute;
 			if (item.path.indexOf('://') !== -1 || ROOT_PAGES.indexOf(item.path) !== -1) {
 				href = item.path;
 			}
@@ -66,11 +67,9 @@ export const Navigation = ({ items }) => {
 	};
 	return (
 		<Fragment>
-			<Link href="https://gel.westpacgroup.com.au/">
-				<a>
-					<BackToGelSvg />
-				</a>
-			</Link>
+			<a href="https://gel.westpacgroup.com.au/">
+				<BackToGelSvg />
+			</a>
 
 			<LinkList>{renderNavigationItems(items)}</LinkList>
 		</Fragment>

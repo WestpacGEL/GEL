@@ -11,7 +11,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Button = ({ position, size, data, overrides, ...rest }) => {
+export const Button = ({ instanceId, position, size, data, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,

@@ -29,6 +29,7 @@
 	"module": "dist/tabcordion.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.8.4",
+		"@juggle/resize-observer": "^3.1.2",
 		"@westpac/core": "^1.0.0",
 		"@westpac/hooks": "^1.0.0",
 		"@westpac/icon": "^1.0.0",
@@ -41,6 +42,7 @@
 		"react-spring": "^8.0.27"
 	},
 	"devDependencies": {
+		"@westpac/form-check": "*",
 		"cypress": "^4.1.0",
 		"react": "^16.13.0",
 		"react-spring": "^8.0.27",

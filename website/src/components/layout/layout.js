@@ -70,6 +70,7 @@ const Wrapper = props => {
 */
 
 const GridContainer = props => {
+	const { LAYOUT } = useBrand();
 	return (
 		<div
 			css={{
@@ -80,8 +81,8 @@ const GridContainer = props => {
 				fontFamily:
 					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 
-				'@media only screen and (min-width: 840px)': {
-					gridTemplateColumns: '270px auto',
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+					gridTemplateColumns: '300px auto',
 				},
 			}}
 			{...props}
@@ -91,7 +92,7 @@ const GridContainer = props => {
 
 const SidebarContainer = ({ children, ...props }) => {
 	const { isOpen } = useSidebar();
-	const { COLORS } = useBrand();
+	const { COLORS, LAYOUT } = useBrand();
 	return (
 		<aside
 			css={{
@@ -103,13 +104,13 @@ const SidebarContainer = ({ children, ...props }) => {
 				zIndex: 2,
 				overflowY: 'scroll',
 				height: '100vh',
-				'@media only screen and (max-width: 839px)': {
+				[`@media only screen and (max-width: ${LAYOUT.breakpoints.xl - 1}px)`]: {
 					position: 'absolute',
 					zIndex: 10,
 					top: 0,
 					left: 0,
-					width: 270,
-					transform: isOpen ? 'translateX(0px)' : 'translateX(-270px)',
+					width: 300,
+					transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
 				},
 			}}
 			{...props}
@@ -122,7 +123,7 @@ const SidebarContainer = ({ children, ...props }) => {
 
 const CloseButton = () => {
 	const { setIsOpen } = useSidebar();
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, LAYOUT } = useBrand();
 	return (
 		<button
 			onClick={() => setIsOpen(false)}
@@ -130,12 +131,12 @@ const CloseButton = () => {
 				position: 'absolute',
 				top: 0,
 				right: 0,
-				margin: SPACING(2),
+				margin: `${SPACING(2)} !important`,
 				padding: 0,
 				background: 'none',
 				border: 'none',
 				cursor: 'pointer',
-				'@media only screen and (min-width: 840px)': { display: 'none' },
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: { display: 'none' },
 			}}
 		>
 			<CloseIcon color={COLORS.neutral} size="small" />
@@ -144,6 +145,7 @@ const CloseButton = () => {
 };
 
 const MainContainer = props => {
+	const { LAYOUT } = useBrand();
 	return (
 		<main
 			{...props}
@@ -152,7 +154,7 @@ const MainContainer = props => {
 				display: 'flex !important',
 				flexDirection: 'column',
 				overflowY: 'scroll',
-				'@media only screen and (min-width: 840px)': {
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
 					gridColumnStart: 2,
 					gridColumnEnd: 3,
 				},

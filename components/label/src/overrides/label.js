@@ -2,20 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const Label = ({ state, ...rest }) => {
-	let Tag = 'span';
+const Label = ({ state, ...rest }) => <span {...rest} />;
 
-	if (rest.href) {
-		Tag = 'a';
-	}
-	if (rest.onClick) {
-		Tag = 'button';
-	}
-
-	return <Tag type={Tag === 'button' ? 'button' : undefined} {...rest} />;
-};
-
-const labelStyles = (_, { look, href, onClick }) => {
+const labelStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	let color = '#fff';
@@ -25,91 +14,44 @@ const labelStyles = (_, { look, href, onClick }) => {
 
 	const styleMap = {
 		primary: {
-			css: {
-				color,
-				backgroundColor: COLORS[look],
-				border: `1px solid ${COLORS[look]}`,
-			},
-			hoverCSS: {
-				backgroundColor: COLORS.tints[`${look}50`],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			color,
+			backgroundColor: COLORS[look],
+			border: `1px solid ${COLORS[look]}`,
 		},
 		hero: {
-			css: {
-				color,
-				backgroundColor: COLORS[look],
-				border: `1px solid ${COLORS[look]}`,
-			},
-			hoverCSS: {
-				backgroundColor: COLORS.tints[`${look}50`],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			color,
+			backgroundColor: COLORS[look],
+			border: `1px solid ${COLORS[look]}`,
 		},
 		neutral: {
-			css: {
-				color,
-				backgroundColor: COLORS[look],
-				border: `1px solid ${COLORS[look]}`,
-			},
-			hoverCSS: {
-				backgroundColor: COLORS.tints[`${look}50`],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			color,
+			backgroundColor: COLORS[look],
+			border: `1px solid ${COLORS[look]}`,
 		},
 		faint: {
-			css: {
-				color,
-				backgroundColor: COLORS.light,
-				border: `1px solid ${COLORS.border}`,
-			},
-			hoverCSS: {
-				backgroundColor: '#fff',
-			},
+			color,
+			backgroundColor: COLORS.light,
+			border: `1px solid ${COLORS.border}`,
 		},
 		success: {
-			css: {
-				color,
-				backgroundColor: COLORS[look],
-				border: `1px solid ${COLORS[look]}`,
-			},
-			hoverCSS: {
-				backgroundColor: COLORS.tints[`${look}50`],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			color,
+			backgroundColor: COLORS[look],
+			border: `1px solid ${COLORS[look]}`,
 		},
 		info: {
-			css: {
-				color,
-				backgroundColor: COLORS[look],
-				border: `1px solid ${COLORS[look]}`,
-			},
-			hoverCSS: {
-				backgroundColor: COLORS.tints[`${look}50`],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			color,
+			backgroundColor: COLORS[look],
+			border: `1px solid ${COLORS[look]}`,
 		},
 		warning: {
-			css: {
-				color,
-				backgroundColor: COLORS[look],
-				border: `1px solid ${COLORS[look]}`,
-			},
-			hoverCSS: {
-				backgroundColor: COLORS.tints[`${look}50`],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			color,
+			backgroundColor: COLORS[look],
+			border: `1px solid ${COLORS[look]}`,
 		},
 		danger: {
-			css: {
-				color,
-				backgroundColor: COLORS[look],
-				border: `1px solid ${COLORS[look]}`,
-			},
-			hoverCSS: {
-				backgroundColor: COLORS.tints[`${look}50`],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			color,
+			backgroundColor: COLORS[look],
+			border: `1px solid ${COLORS[look]}`,
 		},
 	};
 
@@ -123,23 +65,12 @@ const labelStyles = (_, { look, href, onClick }) => {
 		textAlign: 'center',
 		verticalAlign: 'baseline',
 		whiteSpace: 'nowrap',
-		...styleMap[look].css,
+		...styleMap[look],
 		...TYPE.bodyFont[400],
 
 		':empty': {
 			display: 'none',
 		},
-
-		// Link/button Label styling
-		...(href || onClick
-			? {
-					textDecoration: 'none',
-					':hover': {
-						cursor: 'pointer',
-						...styleMap[look].hoverCSS,
-					},
-			  }
-			: {}),
 
 		'@media print': {
 			color: '#000',

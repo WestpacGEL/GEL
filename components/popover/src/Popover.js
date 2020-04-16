@@ -22,7 +22,6 @@ export const Popover = ({
 	heading,
 	headingTag,
 	content,
-	dismissible,
 	instanceIdPrefix,
 	children,
 	overrides: componentOverrides,
@@ -33,7 +32,7 @@ export const Popover = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [open, setOpen] = useState(open);
+	const [open, setOpen] = useState(isOpen);
 	const [position, setPosition] = useState({ placement: 'top', empty: true });
 	const triggerRef = useRef();
 	const popoverRef = useRef();
@@ -60,7 +59,6 @@ export const Popover = ({
 		heading,
 		headingTag,
 		content,
-		dismissible,
 		position,
 		instanceId,
 		overrides: componentOverrides,
@@ -83,30 +81,26 @@ export const Popover = ({
 	const handleOpen = () => {
 		if (open) {
 			setOpen(false);
+			triggerRef.current.focus();
 		} else {
 			setOpen(true);
-		}
-	};
-
-	const handleOutsideClick = e => {
-		if (dismissible && open && popoverRef.current && !popoverRef.current.contains(e.target)) {
-			handleOpen();
 		}
 	};
 
 	useEffect(() => {
 		if (open) {
 			setPosition(usePopoverPosition(triggerRef, popoverRef));
-			document.addEventListener('click', handleOutsideClick);
 		}
-		return () => {
-			document.removeEventListener('click', handleOutsideClick);
-		};
 	}, [open]);
 
-	// on escape close should also check if focused
-	const keyHandler = event => {
-		if (open && event.keyCode === 27) handleOpen();
+	const keyHandler = e => {
+		if (
+			open &&
+			e.keyCode === 27 &&
+			(popoverRef.current.contains(e.target) || triggerRef.current.contains(e.target))
+		) {
+			handleOpen();
+		}
 	};
 
 	// bind key events
@@ -118,13 +112,9 @@ export const Popover = ({
 	});
 
 	return (
-		<Popover
-			ref={triggerRef}
-			state={state}
-			{...popoverAttributes(state)}
-			css={popoverStyles(state)}
-		>
+		<Popover state={state} {...popoverAttributes(state)} css={popoverStyles(state)}>
 			<Trigger
+				ref={triggerRef}
 				onClick={handleOpen}
 				{...rest}
 				state={state}
@@ -179,11 +169,9 @@ Popover.propTypes = {
 	content: PropTypes.string.isRequired,
 
 	/**
-	 * Enable dismissible mode.
-	 *
-	 * Allows popover close via background click.
+	 * Define an id prefix for internal elements
 	 */
-	dismissible: PropTypes.bool,
+	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * Trigger element to open the popover
@@ -224,6 +212,5 @@ Popover.propTypes = {
 
 Popover.defaultProps = {
 	open: false,
-	dismissible: false,
 	headingTag: 'h4',
 };

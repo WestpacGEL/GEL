@@ -72,7 +72,7 @@ export const Switch = ({
 	const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
 
 	return (
-		<Switch state={state} {...rest} {...switchAttributes(state)} css={switchStyles(state)}>
+		<Switch {...rest} state={state} {...switchAttributes(state)} css={switchStyles(state)}>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
 				type="checkbox"
@@ -139,9 +139,9 @@ Switch.propTypes = {
 	disabled: PropTypes.bool,
 
 	/**
-	 * Text to use as the `aria-label` for the switch input
+	 * Define an id prefix for internal elements
 	 */
-	assistiveText: PropTypes.string,
+	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * The override API

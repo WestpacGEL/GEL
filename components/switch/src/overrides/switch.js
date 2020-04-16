@@ -17,7 +17,6 @@ const switchStyles = (_, { block, disabled, size }) => {
 		alignItems: 'center',
 		position: 'relative',
 		marginRight: !block && '1.125rem',
-		height: !block && sizeMap(size).height,
 		marginBottom: '0.375rem',
 		cursor: disabled ? 'not-allowed' : 'pointer',
 	})[0];

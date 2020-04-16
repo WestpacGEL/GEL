@@ -7,31 +7,38 @@ import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
 import { VisionFilter } from '../src/components/a11y-filter';
 
 let data = preval`
-const DEMO_FOLDER = 'demos';
 const fs = require('fs');
 const path = require('path');
+const DEMO_FOLDER = 'demos';
 
 let componentsDir = path.join(__dirname, '..', '..', 'components');
 let packageDirectories = fs.readdirSync(componentsDir);
 let examples = [];
 
+function findDemos(dir, packageName) {
+	fs.readdirSync(dir).forEach((file) => {
+	  const fullPath = path.join(dir, file);
+	  if (fs.lstatSync(fullPath).isDirectory()) {
+		findDemos(fullPath, packageName);
+	  } else if (fs.lstatSync(fullPath).isFile() && path.extname(fullPath) === '.js' && !file.startsWith('.') && !file.startsWith('_')) {
+		const trimPath = fullPath.match(/(demos.*)/)[1];
+		examples.push(path.join(packageName, trimPath));
+	  }
+	});
+}
+
 packageDirectories.forEach(pkg => {
 	const pkgFile = path.join(componentsDir, pkg, 'package.json');
-	const packageExists = fs.existsSync(pkgFile);
-	if (packageExists) {
+	if (fs.existsSync(pkgFile)) {
 		const packageJSON = require(pkgFile);
-		const demoPath = path.join(componentsDir, pkg, DEMO_FOLDER)
+		const packageName = packageJSON.name;
+		const demoPath = path.join(componentsDir, pkg, DEMO_FOLDER);
 		if(fs.existsSync(demoPath) && fs.lstatSync(demoPath).isDirectory()) {
-			fs.readdirSync(demoPath).forEach(example => {
-				const fullPath = path.join(componentsDir, pkg, DEMO_FOLDER, example);
-				if (fs.lstatSync(fullPath).isFile() && path.extname(fullPath) === '.js') {
-					const packageName = packageJSON.name;
-					examples.push(path.join(packageName, DEMO_FOLDER, example));
-				}
-			});
-			}
+			findDemos(demoPath, packageName);
+		}
 	}
 });
+
 module.exports = examples;
 `;
 

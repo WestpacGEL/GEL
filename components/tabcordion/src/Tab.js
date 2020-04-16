@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, useRef, forwardRef, useEffect } from 'react';
+import { Fragment, useState, forwardRef, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import useMeasure from 'react-use-measure';
 import PropTypes from 'prop-types';
@@ -47,7 +47,7 @@ export const Tab = forwardRef(
 		const context = useTabcordionContext();
 
 		const [hidden, setHidden] = useState(!selected);
-		const [measureRef, { height }] = useMeasure();
+		const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 		const [initial, setInitial] = useState(true);
 		const prevSelected = usePrevious(selected);
 		const prevHidden = usePrevious(hidden);

@@ -1,0 +1,47 @@
+/** @jsx jsx */
+
+import { jsx } from '@westpac/core';
+import { ButtonDropdown, Heading } from '@westpac/button-dropdown';
+import { List, Item } from '@westpac/list';
+import { Playground } from '../../../../website/src/components/playground/macro';
+
+export default ({ context, showCode, showDemo }) => {
+	return (
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+			<ButtonDropdown text="Default Dropdown" open>
+				<Heading>List</Heading>
+				<List
+					type="link"
+					overrides={{
+						List: {
+							styles: styles => ({
+								...styles,
+								margin: '1rem 0',
+							}),
+						},
+					}}
+				>
+					<Item>Link 1</Item>
+					<Item>Link 2</Item>
+					<Item>Link 3</Item>
+				</List>
+				<Heading>Another list</Heading>
+				<List
+					type="link"
+					overrides={{
+						List: {
+							styles: styles => ({
+								...styles,
+								margin: '1rem 0',
+							}),
+						},
+					}}
+				>
+					<Item>Link 1</Item>
+					<Item>Link 2</Item>
+					<Item>Link 3</Item>
+				</List>
+			</ButtonDropdown>
+		</Playground>
+	);
+};
