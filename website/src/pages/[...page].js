@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Fragment } from 'react';
+import { Fragment, useCallback } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
@@ -15,6 +15,7 @@ import { ALL_PAGES } from '../../graphql';
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
 	const router = useRouter();
+	const tabIndex = router.query.tab;
 	const path = router.query.page.join('/');
 	if (error) return 'error!';
 	if (!data) return null;
@@ -24,27 +25,33 @@ const ComponentWrapper = () => {
 		}) || '';
 
 	if (currentComponent) {
-		return <Component component={currentComponent} />;
+		return <Component component={currentComponent} tabIndex={tabIndex} />;
 	} else {
 		return <Error statusCode={404} />;
 	}
 };
 
-const Component = ({ component }) => {
+const Component = ({ component, tabIndex }) => {
 	const { pageTitle, version } = component;
 
 	return (
 		<Fragment>
 			<PageHeader name={pageTitle} version={version} />
-			<Tabs component={component} />
+			<Tabs component={component} tabIndex={tabIndex} />
 			<Footer />
 		</Fragment>
 	);
 };
 
-const Tabs = ({ component }) => {
+const Tabs = ({ component, tabIndex }) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
+	const router = useRouter();
+
+	const onOpen = useCallback(tabIdx => {
+		if (tabIdx === tabIndex) return;
+		window.history.pushState(null, '', `${router.asPath.split('?')[0]}?b=BSA&tab=${tabIdx}`);
+	});
 	const tabOverrides = {
 		Tabcordion: {
 			styles: styles => ({
@@ -97,26 +104,26 @@ const Tabs = ({ component }) => {
 	}
 	const tabs = [];
 	tabs.push(
-		<Tab key={'design-tab'} overrides={overrides} text="Design">
+		<Tab id={'design-tab'} overrides={overrides} text="Design">
 			<DesignTab description={component.description} blocks={component.design} item={component} />
 		</Tab>
 	);
 	if (!component.hideAccessibilityTab) {
 		tabs.push(
-			<Tab key={'accessibility-tab'} overrides={overrides} text="Accessibility">
+			<Tab id={'accessibility-tab'} overrides={overrides} text="Accessibility">
 				<AccessibilityTab blocks={component.accessibility} item={component} />
 			</Tab>
 		);
 	}
 	if (!component.hideCodeTab) {
 		tabs.push(
-			<Tab key={'code-tab'} overrides={overrides} text="Code">
+			<Tab id={'code-tab'} overrides={overrides} text="Code">
 				<CodeTab blocks={component.code} item={component} />
 			</Tab>
 		);
 	}
 	return (
-		<Tabcordion mode="tabs" overrides={tabOverrides}>
+		<Tabcordion mode="tabs" openTab={+tabIndex} onOpen={onOpen} overrides={tabOverrides}>
 			{tabs}
 		</Tabcordion>
 	);

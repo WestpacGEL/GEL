@@ -82,12 +82,6 @@ export const Tabcordion = ({
 	const getId = (type, index) => `${instanceId}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
 
-	useEffect(() => {
-		if (open < tabCount && open >= 0) {
-			setActiveTabIndex(open);
-		}
-	}, [open]);
-
 	const state = {
 		mode,
 		look,
@@ -153,6 +147,7 @@ export const Tabcordion = ({
 
 				{Children.map(children, (child, idx) => {
 					const selected = activeTabIndex === idx;
+
 					return (
 						<Tab
 							{...child.props}
@@ -169,6 +164,7 @@ export const Tabcordion = ({
 							onOpening={onOpening}
 							onClose={onClose}
 							onClosing={onClosing}
+							idx={idx}
 						/>
 					);
 				})}

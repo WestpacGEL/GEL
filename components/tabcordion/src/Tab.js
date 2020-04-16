@@ -35,6 +35,7 @@ export const Tab = forwardRef(
 			onClosing,
 			children,
 			overrides,
+			idx,
 			...rest
 		},
 		ref
@@ -95,6 +96,7 @@ export const Tab = forwardRef(
 			tabId,
 			context: context.state,
 			overrides: componentOverrides,
+			idx,
 			...rest,
 		};
 
@@ -135,7 +137,7 @@ export const Tab = forwardRef(
 		useEffect(() => {
 			if (mode === 'tabs') {
 				if (selected) {
-					onOpen(tabId);
+					onOpen(idx);
 				} else {
 					onClose(tabId);
 				}
