@@ -33,14 +33,14 @@
 		"react-focus-on": "^3.3.0"
 	},
 	"peerDependencies": {
-		"react": "^16.11.0",
+		"react": "^16.13.1",
 		"react-dom": "^16.11.0",
 		"react-spring": "^8.0.27"
 	},
 	"devDependencies": {
 		"cypress": "^4.1.0",
-		"react": "^16.13.0",
-		"react-dom": "^16.13.0",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
 		"react-spring": "^8.0.27",
 		"start-server-and-test": "^1.10.10"
 	}

@@ -84,7 +84,6 @@ GELApp.getInitialProps = async appContext => {
 			}
 		}
 	}
-
 	return { ...appProps, brand: brandMatch || brandCookieMatch };
 };
 
