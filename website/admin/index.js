@@ -14,9 +14,6 @@ export default {
 			listKey: 'Image',
 		},
 		{
-			listKey: 'Category',
-		},
-		{
 			listKey: 'User',
 		},
 		{

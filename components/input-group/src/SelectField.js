@@ -44,7 +44,7 @@ export const SelectField = ({ instanceId, position, label, data, overrides, ...r
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<>
+		<React.Fragment>
 			<VisuallyHidden tag="label" htmlFor={instanceId}>
 				{label}
 			</VisuallyHidden>
@@ -54,7 +54,7 @@ export const SelectField = ({ instanceId, position, label, data, overrides, ...r
 				{...selectAttributes(state)}
 				css={{ '&&': selectStyles(state) }}
 			/>
-		</>
+		</React.Fragment>
 	);
 };
 
