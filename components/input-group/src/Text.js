@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { defaultSelect } from './overrides/select';
+import { defaultText } from './overrides/text';
 
 import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Select = ({ position, size, data, overrides, ...rest }) => {
+export const Text = ({ instanceId, position, size, data, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -21,7 +21,7 @@ export const Select = ({ position, size, data, overrides, ...rest }) => {
 	const context = useInputGroupContext();
 
 	const defaultOverrides = {
-		Select: defaultSelect,
+		Text: defaultText,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
@@ -36,16 +36,13 @@ export const Select = ({ position, size, data, overrides, ...rest }) => {
 	};
 
 	const {
-		Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
+		Text: { component: Text, styles: textStyles, attributes: textAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Select
-			{...rest}
-			state={state}
-			{...selectAttributes(state)}
-			css={{ '&&': selectStyles(state) }}
-		/>
+		<Text {...rest} state={state} {...textAttributes(state)} css={{ '&&': textStyles(state) }}>
+			{data}
+		</Text>
 	);
 };
 
@@ -53,7 +50,7 @@ export const Select = ({ position, size, data, overrides, ...rest }) => {
 // Types
 // ==============================
 
-Select.propTypes = {
+Text.propTypes = {
 	/**
 	 * What position this component is at
 	 */
@@ -67,13 +64,13 @@ Select.propTypes = {
 	/**
 	 * The content of the component
 	 */
-	data: PropTypes.array.isRequired,
+	data: PropTypes.string.isRequired,
 
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Select: PropTypes.shape({
+		Text: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -81,6 +78,6 @@ Select.propTypes = {
 	}),
 };
 
-Select.defaultProps = {
+Text.defaultProps = {
 	size: 'medium',
 };
