@@ -1,7 +1,10 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+
+import { VisuallyHidden } from '@westpac/a11y';
 
 import { defaultSelect } from './overrides/select';
 
@@ -12,7 +15,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Select = ({ position, size, data, overrides, ...rest }) => {
+export const SelectField = ({ instanceId, position, label, data, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -27,8 +30,9 @@ export const Select = ({ position, size, data, overrides, ...rest }) => {
 	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
+		instanceId,
 		position,
-		size,
+		label,
 		data,
 		context: context.state,
 		overrides: componentOverrides,
@@ -40,12 +44,17 @@ export const Select = ({ position, size, data, overrides, ...rest }) => {
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Select
-			{...rest}
-			state={state}
-			{...selectAttributes(state)}
-			css={{ '&&': selectStyles(state) }}
-		/>
+		<>
+			<VisuallyHidden tag="label" htmlFor={instanceId}>
+				{label}
+			</VisuallyHidden>
+			<Select
+				{...rest}
+				state={state}
+				{...selectAttributes(state)}
+				css={{ '&&': selectStyles(state) }}
+			/>
+		</>
 	);
 };
 
@@ -53,16 +62,21 @@ export const Select = ({ position, size, data, overrides, ...rest }) => {
 // Types
 // ==============================
 
-Select.propTypes = {
+SelectField.propTypes = {
+	/**
+	 * The instance ID for the label and select
+	 */
+	instanceId: PropTypes.string.isRequired,
+
 	/**
 	 * What position this component is at
 	 */
 	position: PropTypes.oneOf(['left', 'right']).isRequired,
 
 	/**
-	 * What size the button-group is
+	 * The content of the component
 	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
+	label: PropTypes.string.isRequired,
 
 	/**
 	 * The content of the component
@@ -73,7 +87,7 @@ Select.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Select: PropTypes.shape({
+		SelectField: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -81,6 +95,6 @@ Select.propTypes = {
 	}),
 };
 
-Select.defaultProps = {
+SelectField.defaultProps = {
 	size: 'medium',
 };

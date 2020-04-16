@@ -9,8 +9,8 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia />
-			<h2>Default instance (no styling props)</h2>
-			<Button>Default</Button>
+			<h2>Default</h2>
+			<Button>Default standard</Button> <Button soft>Default soft</Button>
 			<hr />
 			<h2>Standard</h2>
 			<Button look="primary">Primary standard</Button> <Button look="hero">Hero standard</Button>{' '}

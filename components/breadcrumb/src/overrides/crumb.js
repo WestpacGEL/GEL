@@ -16,7 +16,7 @@ const crumbStyles = () => {
 	};
 };
 
-const crumbAttributes = (_, { current }) => ({ 'aria-current': current ? 'page' : undefined });
+const crumbAttributes = () => null;
 
 export const defaultCrumb = {
 	component: Crumb,

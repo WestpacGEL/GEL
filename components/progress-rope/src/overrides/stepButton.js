@@ -1,10 +1,23 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
+import { VisuallyHidden } from '@westpac/a11y';
 
-const StepButton = ({ state: { visited }, ...rest }) => (
-	<button type="button" disabled={!visited} {...rest} />
-);
+const StepButton = ({ state: { visited, active }, children, ...rest }) => {
+	let stateText = ', not started';
+	if (active) {
+		stateText = ', in progress';
+	} else if (visited) {
+		stateText = ', complete';
+	}
+
+	return (
+		<button type="button" disabled={!visited} {...rest}>
+			{children}
+			<VisuallyHidden>{stateText}</VisuallyHidden>
+		</button>
+	);
+};
 
 const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 	const { COLORS, PACKS } = useBrand();

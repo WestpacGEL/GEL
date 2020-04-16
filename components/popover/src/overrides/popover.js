@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { forwardRef } from 'react';
 
-const Popover = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
+const Popover = ({ state, ...rest }) => <div {...rest} />;
 
 const popoverStyles = () => ({
 	position: 'relative',
