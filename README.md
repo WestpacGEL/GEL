@@ -360,3 +360,185 @@ overrides = {
 | `assistiveText`                            | For labeling things for assistive technology (generally renders using `VisuallyHidden` or `aria-label` depending on use case) |
 | `xsmall` `small` `medium` `large` `xlarge` | For t-shirt sizing                                                                                                            |
 | `data`                                     | A prop to drive a component-group from data alone                                                                             |
+
+## Blender support
+
+[The blender](https://github.com/WestpacGEL/blender) can generate human readable html and css from react and emotion components.
+For this to work we require `label` attributes in our `css` prop and a couple files to blend and the `blender` key inside your `package.json`.
+
+### getLabel
+
+We have to add labels for every variations for props.
+To archive this we have the `getLabel` function that you can import from `@westpac/core`.
+Make sure you only add variations that will change CSS.
+Adding more means more css classes and more html.
+The best way to do this I found was to add the labels to the overrides files:
+
+- look at the `[something]Styles` function
+- copy all props from there that are being constructed
+- go to the css props and insert `getLabel` with an appropriate prefix
+
+```jsx
+/** @jsx jsx */
+import { jsx, getLabel } from '@westpac/core';
+
+const Component = ({ state, ...rest }) => <div {...rest} />;
+
+const componentStyles = (_, { dismissible, look }) => {
+	//     There are two props here ----^
+
+	const styleMap = {}; // more code here
+	return {
+		// The `Component-prefix` is also important to name what (sub)component this is
+		label: getLabel('Component-prefix', { dismissible, look }),
+		//                          ----^
+		// So we add those two into the getLabel function
+		padding: dismissible ? '1.125rem 1.875rem 1.125rem 1.125rem' : '1.125rem',
+		// you can see here --^ how the prop changes css dynamically
+		transition: 'opacity 300ms ease-in-out',
+		opacity: 1,
+		borderTop: '1px solid',
+		borderBottom: '1px solid',
+		...styleMap[look].css,
+		// here too we change css dynamically with props
+	};
+};
+
+const componentAttributes = () => null;
+
+export const defaultComponent = {
+	component: Component,
+	styles: componentStyles,
+	attributes: componentAttributes,
+};
+```
+
+For the prefixes try to name so it's visible what is a parent of what.
+
+So `getLabel('Component')` on the root component and `getLabel('Component-subcomponent')` on the sub-component will become:
+
+```html
+<div class="GEL-Component-v1_0_0-props">
+	<div class="GEL-Component-v1_0_0-subcomponent-props">
+		Your sub-component
+	</div>
+</div>
+```
+
+### Js fallback
+
+Since the blender just SSR each component it won't provide the functionality of react and any interactivity.
+For this you have to provide a `js` file for fallback.
+In the GEL3 we use jQuery for this.
+Each jQuery file should target elements via the `data-js` attribute since classes can vary depending on your blend settings.
+So things like `data-js="body"` or `data-js="component-closebtn"` should work well and you target this via `$('[data-js="component-closebtn"]')` in jQuery.
+
+### Core components
+
+Inside the `package.json`
+
+```json
+"blender": {
+	"recipe": "path/to/recipe.js",
+	"js": "path/to/jquery-lib.js",
+	"isCore": true
+},
+```
+
+The `js` file should contain any framework other component rely on.
+In our case that's jQuery.
+
+The `recipe` file must export two named components `AllStyles` and `Docs`:
+
+```jsx
+import React from 'react';
+import { Component } from '../src/index.js';
+
+export function AllStyles({ brand, children }) {
+	return <Component brand={brand}>{children}</Component>;
+}
+
+export function Docs({ brand }) {
+	return [
+		{
+			heading: 'The Core Component',
+			component: () => (
+				<Component brand={brand}>Add your GEL components inside the Core component</Component>
+			),
+		},
+	];
+}
+```
+
+Both of these function get the `brand` object passed in and only in core `AllStyles` also get's `children` so we can remove core from the other components later.
+The `Docs` component returns an array with a `heading` and a `component` key.
+
+In short:
+
+- The `AllStyles` component should contain all possible variations for a component
+- The `Docs` component should contain everything we want to show in the documentation.
+
+### Other components
+
+Inside the `package.json`
+
+```json
+"blender": {
+	"recipe": "blender/recipe.js",
+	"js": "blender/script.js"
+},
+```
+
+The `js` file is optional and only required if you have js functionality.
+
+The `recipe` file must export two named components `AllStyles` and `Docs`:
+
+```jsx
+import { GEL } from '@westpac/core';
+import React from 'react';
+
+import { Component } from '@westpac/alert';
+
+export function AllStyles({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Component look="success" />
+			<Component look="info" />
+			<Component look="warning" />
+			<Component heading="Your alert heading" />
+			<Component dismissible />
+		</GEL>
+	);
+}
+
+export function Docs({ brand }) {
+	return [
+		{
+			heading: 'A success alert',
+			component: () => (
+				<GEL brand={brand}>
+					<Component look="success">Your alert body</Component>
+				</GEL>
+			),
+		},
+		{
+			heading: 'A info alert',
+			component: () => (
+				<GEL brand={brand}>
+					<Component look="info">Your alert body</Component>
+				</GEL>
+			),
+		},
+		{
+			heading: 'A warning alert',
+			component: () => (
+				<GEL brand={brand}>
+					<Component look="warning">Your alert body</Component>
+				</GEL>
+			),
+		},
+	];
+}
+```
+
+Same as the core component.

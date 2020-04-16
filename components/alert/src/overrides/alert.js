@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 
 const Alert = ({ state, ...rest }) => <div {...rest} />;
 
@@ -53,6 +53,7 @@ const alertStyles = (_, { dismissible, look }) => {
 	};
 
 	return mq({
+		label: getLabel('Alert', { dismissible, look }),
 		marginBottom: '1.3125rem',
 		padding: dismissible ? '1.125rem 1.875rem 1.125rem 1.125rem' : '1.125rem',
 		position: 'relative',

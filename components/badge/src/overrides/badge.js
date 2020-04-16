@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Badge = ({ state, ...rest }) => <span {...rest} />;
 
@@ -51,6 +51,7 @@ const badgeStyles = (_, { look }) => {
 	};
 
 	return {
+		label: getLabel('Badge', { look }),
 		border: `1px solid transparent`,
 		borderRadius: '0.75rem',
 		display: 'inline-block',
