@@ -18,7 +18,7 @@ function Example({ brand }) {
 			<h2>usePagination</h2>
 			<div css={{ display: 'flex', justifyContent: 'space-between', width: '300px' }}>
 				<Button look="link" size="xlarge" iconAfter={ArrowLeftIcon} onClick={paginate.previous} />
-				<p>{content[paginate.current]}</p>
+				<p role="status">{content[paginate.current]}</p>
 				<Button look="link" size="xlarge" iconAfter={ArrowRightIcon} onClick={paginate.next} />
 			</div>
 		</GEL>

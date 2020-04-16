@@ -37,7 +37,7 @@ function Example({ brand }) {
 				</Option>
 			</FormCheck>
 
-			<FormCheck type="radio" name="example-radio-medium-disabled" defaultValue="2">
+			<FormCheck type="radio" name="example-radio-medium-disabled">
 				<Option value="1">Option 1</Option>
 				<Option value="2" disabled>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
@@ -65,7 +65,7 @@ function Example({ brand }) {
 				</Option>
 			</FormCheck>
 
-			<FormCheck type="radio" name="example-radio-large-disabled" size="large" defaultValue="2">
+			<FormCheck type="radio" name="example-radio-large-disabled" size="large">
 				<Option value="1">Option 1</Option>
 				<Option value="2" disabled>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
@@ -97,13 +97,7 @@ function Example({ brand }) {
 				</Option>
 			</FormCheck>
 
-			<FormCheck
-				type="radio"
-				name="example-checkbox-large-inline-disabled"
-				size="large"
-				inline
-				defaultValue="2"
-			>
+			<FormCheck type="radio" name="example-checkbox-large-inline-disabled" size="large" inline>
 				<Option value="1">Option 1</Option>
 				<Option value="2" disabled>
 					Option 2

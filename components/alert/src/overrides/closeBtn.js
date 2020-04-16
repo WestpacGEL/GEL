@@ -10,6 +10,7 @@ const CloseBtn = ({ onClose, state, ...rest }) => (
 		iconAfter={CloseIcon}
 		look="link"
 		size="medium"
+		assistiveText="Close"
 		{...rest}
 	/>
 );
@@ -32,7 +33,7 @@ const closeBtnStyles = () => {
 	})[0];
 };
 
-const closeBtnAttributes = () => ({ 'aria-label': 'Close' });
+const closeBtnAttributes = () => null;
 
 export const defaultCloseBtn = {
 	component: CloseBtn,

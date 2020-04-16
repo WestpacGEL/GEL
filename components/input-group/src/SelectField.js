@@ -1,32 +1,38 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useInputGroupContext } from './InputGroup';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultButton } from './overrides/button';
+import { VisuallyHidden } from '@westpac/a11y';
+
+import { defaultSelect } from './overrides/select';
+
+import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Button = ({ instanceId, position, size, data, overrides, ...rest }) => {
+export const SelectField = ({ instanceId, position, label, data, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const context = useInputGroupContext();
 
 	const defaultOverrides = {
-		Button: defaultButton,
+		Select: defaultSelect,
 	};
 
 	const componentOverrides = overrides || context.state.overrides;
 
 	const state = {
+		instanceId,
 		position,
-		size,
+		label,
 		data,
 		context: context.state,
 		overrides: componentOverrides,
@@ -34,18 +40,21 @@ export const Button = ({ instanceId, position, size, data, overrides, ...rest })
 	};
 
 	const {
-		Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
+		Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Button
-			{...rest}
-			state={state}
-			{...buttonAttributes(state)}
-			css={{ '&&': buttonStyles(state) }}
-		>
-			{data}
-		</Button>
+		<React.Fragment>
+			<VisuallyHidden tag="label" htmlFor={instanceId}>
+				{label}
+			</VisuallyHidden>
+			<Select
+				{...rest}
+				state={state}
+				{...selectAttributes(state)}
+				css={{ '&&': selectStyles(state) }}
+			/>
+		</React.Fragment>
 	);
 };
 
@@ -53,27 +62,32 @@ export const Button = ({ instanceId, position, size, data, overrides, ...rest })
 // Types
 // ==============================
 
-Button.propTypes = {
+SelectField.propTypes = {
+	/**
+	 * The instance ID for the label and select
+	 */
+	instanceId: PropTypes.string.isRequired,
+
 	/**
 	 * What position this component is at
 	 */
 	position: PropTypes.oneOf(['left', 'right']).isRequired,
 
 	/**
-	 * What size the button-group is
+	 * The content of the component
 	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
+	label: PropTypes.string.isRequired,
 
 	/**
 	 * The content of the component
 	 */
-	data: PropTypes.string.isRequired,
+	data: PropTypes.array.isRequired,
 
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Button: PropTypes.shape({
+		SelectField: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -81,7 +95,6 @@ Button.propTypes = {
 	}),
 };
 
-Button.defaultProps = {
-	look: 'hero', // button look to be spread to Button
+SelectField.defaultProps = {
 	size: 'medium',
 };
