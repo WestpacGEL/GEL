@@ -46,7 +46,11 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 
 const parseHeadings = content =>
 	content.nodes
-		.filter(item => item.data.component && item.data.component === 'Heading')
+		.filter(
+			item =>
+				item.data.component &&
+				(item.data.component === 'Heading' || item.data.component === 'VisionFilters')
+		)
 		.filter(item => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
 			const { props } = item.data;
