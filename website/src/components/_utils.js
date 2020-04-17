@@ -11,13 +11,15 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
 	return (
 		<Container>
-			<Grid css={{ marginBottom: SPACING(2) }}>
-				<Cell width={10} left={2}>
-					<Heading tag="h2" size={5}>
-						{title}
-					</Heading>
-				</Cell>
-			</Grid>
+			{title && (
+				<Grid css={{ marginBottom: SPACING(2) }}>
+					<Cell width={10} left={2}>
+						<Heading tag="h2" size={5}>
+							{title}
+						</Heading>
+					</Cell>
+				</Grid>
+			)}
 			{blocks ? (
 				<SlateContent content={blocks} item={item} />
 			) : (
@@ -87,7 +89,7 @@ export const RelatedInformation = ({ item }) => {
 									</ul>
 								</Cell>
 							)}
-							{relatedInfo && <Cell width={1} />}
+							{relatedInfo && relatedPages && <Cell width={1} />}
 							{relatedInfo && (
 								<Cell width={relatedInfo ? 5 : 10}>
 									<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
