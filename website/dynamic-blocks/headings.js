@@ -3,6 +3,7 @@
 import { Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import { Heading as WestpacHeading } from '@westpac/heading';
+import { Cell, Grid } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
@@ -27,9 +28,18 @@ const Component = ({ heading, size, level, addTableContent, subText, text }) => 
 					},
 				}}
 			>
-				{heading}
+				<Grid columns={12}>
+					<Cell width={10} left={[1, 1, 2, 2]}>
+						{heading}
+					</Cell>
+				</Grid>
 			</WestpacHeading>
-			{subText && text && <p>{text}</p>}
+
+			<Grid columns={12}>
+				<Cell width={10} left={[1, 1, 2, 2]}>
+					{subText && text && <p css={{ lineHeight: 2 }}>{text}</p>}
+				</Cell>
+			</Grid>
 		</Fragment>
 	);
 };
