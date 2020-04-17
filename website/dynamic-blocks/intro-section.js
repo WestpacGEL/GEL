@@ -145,10 +145,10 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS, LAYOUT } = useBrand();
+	const { PACKS, LAYOUT, SPACING } = useBrand();
 	return (
 		<Fragment>
-			<Grid>
+			<Grid css={{ marginTop: SPACING(12) }}>
 				<Cell width={[12, 12, 12, 7]}>
 					{description && description !== '' ? (
 						<p
@@ -181,7 +181,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 					margin: `40px -1000px`,
 					paddingBottom: '40px',
 				}}
-			></hr>
+			/>
 		</Fragment>
 	);
 };
