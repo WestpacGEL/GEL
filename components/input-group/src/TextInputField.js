@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultTextInput } from './overrides/textInput';
@@ -44,7 +44,7 @@ export const TextInputField = ({ instanceId, label, left, right, overrides, ...r
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<>
+		<Fragment>
 			<VisuallyHidden tag="label" htmlFor={instanceId}>
 				{label}
 			</VisuallyHidden>
@@ -54,7 +54,7 @@ export const TextInputField = ({ instanceId, label, left, right, overrides, ...r
 				{...textInputAttributes(state)}
 				css={{ '&&': textInputStyles(state) }}
 			/>
-		</>
+		</Fragment>
 	);
 };
 

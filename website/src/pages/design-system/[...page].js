@@ -6,11 +6,11 @@ import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
-import { Footer } from '../components/layout';
+import { Footer } from '../../components/layout';
 
-import { AccessibilityTab, CodeTab, DesignTab } from '../components/pages/single-component';
-import PageHeader from '../components/header/page-header';
-import { ALL_PAGES } from '../../graphql';
+import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
+import PageHeader from '../../components/header/page-header';
+import { ALL_PAGES } from '../../../graphql';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
