@@ -104,7 +104,14 @@ const Tabs = ({ component, tabIndex }) => {
 	// No tabs
 	if (component.hideAccessibilityTab && component.hideCodeTab) {
 		return (
-			<DesignTab description={component.description} blocks={component.design} item={component} />
+			<div
+				css={{
+					flexGrow: 1,
+					backgroundColor: COLORS.background,
+				}}
+			>
+				<DesignTab description={component.description} blocks={component.design} item={component} />
+			</div>
 		);
 	}
 	const tabs = [];
