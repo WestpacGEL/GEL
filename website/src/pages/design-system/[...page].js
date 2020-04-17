@@ -128,7 +128,7 @@ const Tabs = ({ component, tabIndex }) => {
 		);
 	}
 	return (
-		<Tabcordion mode="tabs" openTab={+tabIndex} onOpen={onOpen} overrides={tabOverrides}>
+		<Tabcordion mode="tabs" openTab={+tabIndex || 0} onOpen={onOpen} overrides={tabOverrides}>
 			{tabs}
 		</Tabcordion>
 	);
