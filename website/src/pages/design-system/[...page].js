@@ -48,7 +48,7 @@ const Tabs = ({ component, tabIndex }) => {
 	const mq = useMediaQuery();
 	const router = useRouter();
 
-	const onOpen = useCallback(tabIdx => {
+	const onOpen = useCallback(({ idx: tabIdx }) => {
 		if (tabIdx === tabIndex) return;
 		window.history.pushState(null, '', `${router.asPath.split('?')[0]}?b=BSA&tab=${tabIdx}`);
 	});

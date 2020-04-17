@@ -137,7 +137,7 @@ export const Tab = forwardRef(
 		useEffect(() => {
 			if (mode === 'tabs') {
 				if (selected) {
-					onOpen(idx);
+					onOpen({ idx, tabId });
 				} else {
 					onClose(tabId);
 				}
