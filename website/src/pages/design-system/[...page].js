@@ -47,10 +47,15 @@ const Tabs = ({ component, tabIndex }) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const router = useRouter();
+	const brandName = router.query.b || '';
 
 	const onOpen = useCallback(({ idx: tabIdx }) => {
 		if (tabIdx === tabIndex) return;
-		window.history.pushState(null, '', `${router.asPath.split('?')[0]}?b=BSA&tab=${tabIdx}`);
+		window.history.pushState(
+			null,
+			'',
+			`${router.asPath.split('?')[0]}?b=${brandName}&tab=${tabIdx}`
+		);
 	});
 	const tabOverrides = {
 		Tabcordion: {
