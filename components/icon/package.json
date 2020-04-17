@@ -4,6 +4,9 @@
 	"description": "Grid component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/icon",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"blender": {
+		"recipe": "blender/recipe.js"
+	},
 	"contributors": [
 		{
 			"name": "Dominik Wilkowski",
