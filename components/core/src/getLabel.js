@@ -1,16 +1,18 @@
 export function getLabel(name, props = {}) {
 	let label = name;
 
-	Object.entries(props).map(([name, value]) => {
-		if (typeof value === 'undefined') {
-		} else if (typeof value === 'boolean') {
-			label += value ? `-${cleanClassName(name)}` : '';
-		} else if (typeof value === 'string') {
-			label += value === '' ? '' : `-${cleanClassName(name)}_${cleanClassName(value)}`;
-		} else if (typeof value === 'function') {
-			label += `-${cleanClassName(value.displayName || value.name || name)}`;
-		}
-	});
+	Object.entries(props)
+		.sort(([a], [b]) => (a.toLowerCase() < b.toLowerCase() ? -1 : 1))
+		.map(([name, value]) => {
+			if (typeof value === 'undefined') {
+			} else if (typeof value === 'boolean') {
+				label += value ? `-${cleanClassName(name)}` : '';
+			} else if (typeof value === 'string') {
+				label += value === '' ? '' : `-${cleanClassName(name)}_${cleanClassName(value)}`;
+			} else if (typeof value === 'function') {
+				label += `-${cleanClassName(value.displayName || value.name || name)}`;
+			}
+		});
 
 	return label;
 }
