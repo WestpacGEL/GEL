@@ -62,15 +62,15 @@ export const Tab = forwardRef(
 			onStart: () => {
 				if (mode === 'tabs') {
 					if (selected && !prevSelected) {
-						onOpening(tabId);
+						onOpening({ idx, tabId });
 					} else if (!selected && prevSelected) {
-						onClosing(tabId);
+						onClosing({ idx, tabId });
 					}
 				} else if (mode === 'accordion') {
 					if (!hidden && prevHidden) {
-						onOpening(tabId);
+						onOpening({ idx, tabId });
 					} else if (hidden && !prevHidden) {
-						onClosing(tabId);
+						onClosing({ idx, tabId });
 					}
 				}
 			},
@@ -127,9 +127,9 @@ export const Tab = forwardRef(
 		useEffect(() => {
 			if (mode === 'accordion') {
 				if (!hidden) {
-					onOpen(tabId);
+					onOpen({ idx, tabId });
 				} else {
-					onClose(tabId);
+					onClose({ idx, tabId });
 				}
 			}
 		}, [hidden, tabId]);
@@ -139,7 +139,7 @@ export const Tab = forwardRef(
 				if (selected) {
 					onOpen({ idx, tabId });
 				} else {
-					onClose(tabId);
+					onClose({ idx, tabId });
 				}
 			}
 		}, [selected, tabId]);
