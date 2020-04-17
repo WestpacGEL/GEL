@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { useState, Fragment } from 'react';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useInstanceId } from '@westpac/core';
 import Select from 'react-select';
 
 const FILTER_HTML = `
@@ -82,19 +82,20 @@ const FILTER_HTML = `
 </svg>`;
 
 const filters = [
-	'protanopia',
-	'protanomaly',
-	'deuteranopia',
-	'deuteranomaly',
-	'tritanopia',
-	'tritanomaly',
-	'achromatopsia',
-	'achromatomaly',
-	'low-contrast',
+	{ label: 'Protanopia', value: 'protanopia' },
+	{ label: 'Protanomaly', value: 'protanomaly' },
+	{ label: 'Deuteranopia', value: 'deuteranopia' },
+	{ label: 'Deuteranomaly', value: 'deuteranomaly' },
+	{ label: 'Tritanopia', value: 'tritanopia' },
+	{ label: 'Tritanomaly', value: 'tritanomaly' },
+	{ label: 'Achromatopsia', value: 'achromatopsia' },
+	{ label: 'Achromatomaly', value: 'achromatopsia' },
+	{ label: 'Low contrast', value: 'low-contrast' },
 ];
 
 const VisionFilter = ({ children }) => {
 	const [filter, setFilter] = useState();
+	const [id] = useState(`vision-filter-${useInstanceId()}`);
 	const { COLORS } = useBrand();
 
 	if (!document.getElementById('vision-filters')) {
@@ -106,17 +107,25 @@ const VisionFilter = ({ children }) => {
 
 	return (
 		<Fragment>
-			<Select
-				css={{ zIndex: 4 }}
-				placeholder={'Select a vision filter...'}
-				styles={{
-					dropdownIndicator: base => ({ ...base, color: COLORS.primary }),
-				}}
-				onChange={data => {
-					setFilter(`filter-${data.value}`);
-				}}
-				options={filters.map(f => ({ label: f, value: f }))}
-			/>
+			<div css={{ display: 'flex', alignItems: 'center' }}>
+				<label htmlFor={id} css={{ marginRight: '1rem' }}>
+					Select filter
+				</label>
+				<div css={{ display: 'inline-block', width: '30%' }}>
+					<Select
+						inputId={id}
+						css={{ zIndex: 4 }}
+						placeholder={'Select'}
+						styles={{
+							dropdownIndicator: base => ({ ...base, color: COLORS.primary }),
+						}}
+						onChange={data => {
+							setFilter(`filter-${data.value}`);
+						}}
+						options={filters}
+					/>
+				</div>
+			</div>
 			<div css={{ filter: filter ? `url(#${filter})` : 'none' }}>{children}</div>
 		</Fragment>
 	);
