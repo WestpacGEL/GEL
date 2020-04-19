@@ -38,9 +38,9 @@
 		"test": "yarn test:format && yarn test:unit && yarn test:integration",
 		"dep:test": "manypkg check && preconstruct build || preconstruct dev",
 		"dep:fix": "manypkg fix",
-		"propTypes": "node helpers/propTypes.js",
-		"postinstall": "yarn dep:test && preconstruct dev && yarn propTypes && build-field-types dev",
-		"publish-packages": "yarn build && yarn propTypes && yarn changeset publish",
+		"GELjson": "node helpers/ds-info.js",
+		"postinstall": "yarn dep:test && preconstruct dev && yarn GELjson && build-field-types dev",
+		"publish-packages": "yarn build && yarn GELjson && yarn changeset publish",
 		"version-packages": "yarn changeset version",
 		"website:deploy-staging": "pm2 deploy pm2-ecosystem.json staging"
 	},
