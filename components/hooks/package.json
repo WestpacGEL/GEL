@@ -34,12 +34,12 @@
 		"resize-observer-polyfill": "^1.5.1"
 	},
 	"peerDependencies": {
-		"react": "^16.11.0"
+		"react": "^16.13.1"
 	},
 	"devDependencies": {
 		"@westpac/button": "*",
 		"cypress": "^4.1.0",
-		"react": "^16.13.0",
+		"react": "^16.13.1",
 		"start-server-and-test": "^1.10.10"
 	}
 }

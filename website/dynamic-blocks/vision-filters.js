@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React, { Suspense, Fragment } from 'react';
 import { jsx } from '@westpac/core';
+import { Body } from '@westpac/body';
 import { Heading } from '@westpac/heading';
 import { useRouter } from 'next/router';
 import Select from '@arch-ui/select';
@@ -231,13 +232,13 @@ export const VisionFilters = {
 				>
 					{heading}
 				</Heading>
-				<p>
+				<Body>
 					{subText} Read more about these vision impairments on our{' '}
 					<a href={href} onClick={handleClick}>
 						Accessibility
 					</a>{' '}
 					page.
-				</p>
+				</Body>
 				<Suspense fallback={<p>Loading...</p>}>
 					{loadCodeBlock && typeof window !== 'undefined' ? (
 						<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />

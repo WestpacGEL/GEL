@@ -6,3 +6,4 @@ components/**/cypress/
 .docz/
 docs/
 prop-types.json
+components/core/blender/jquery.js

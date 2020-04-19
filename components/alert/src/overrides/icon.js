@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 
 const Icon = ({ state: { look, icon }, ...rest }) => {
@@ -32,6 +32,7 @@ const iconStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
+		label: getLabel('Alert-icon'),
 		float: ['left', 'none'],
 		marginRight: ['0.375rem', '0.75rem'],
 		flex: 'none',
