@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
 import { Heading } from '@westpac/heading';
-import PropTypes from '../../prop-types.json';
+import PropTypes from '../../GEL.json';
 
 /**
  * A small helper component for inline code blocks
@@ -148,7 +148,7 @@ function PTable({ data, caption }) {
 
 const Component = ({ item }) => {
 	const tableData = Object.keys(PropTypes.components[item.packageName]).map(key => {
-		const { overrides, ...normalProps } = PropTypes.components[item.packageName][key];
+		const { overrides, ...normalProps } = PropTypes.components[item.packageName][key].propTypes;
 		return {
 			name: key,
 			overrideProps: { overrides },
