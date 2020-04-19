@@ -15,6 +15,7 @@ const SeparatorComponent = props => {
 					cursor: 'pointer',
 					textAlign: 'right',
 					width: '100%',
+					paddingTop: '20px',
 				}}
 				onClick={e => {
 					e.preventDefault();
@@ -28,7 +29,7 @@ const SeparatorComponent = props => {
 			>
 				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
 			</button>
-			<hr {...props} css={{ border: 'none', borderTop: `solid 1px #999`, margin: `20px 0` }} />
+			<hr {...props} css={{ border: 'none', borderTop: `solid 1px #999`, margin: `0 0` }} />
 		</Fragment>
 	);
 };

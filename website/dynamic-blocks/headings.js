@@ -34,12 +34,13 @@ const Component = ({ heading, size, level, addTableContent, subText, text }) => 
 					</Cell>
 				</Grid>
 			</WestpacHeading>
-
-			<Grid columns={12}>
-				<Cell width={10} left={[1, 1, 2, 2]}>
-					{subText && text && <p css={{ lineHeight: 2 }}>{text}</p>}
-				</Cell>
-			</Grid>
+			{subText && text && (
+				<Grid columns={12}>
+					<Cell width={10} left={[1, 1, 2, 2]}>
+						<p css={{ lineHeight: 2 }}>{text}</p>
+					</Cell>
+				</Grid>
+			)}
 		</Fragment>
 	);
 };
