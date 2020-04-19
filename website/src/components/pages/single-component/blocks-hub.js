@@ -78,6 +78,14 @@ const slateRenderer = (item, _editorValue) => {
 				width: '100%',
 				lineHeight: 2,
 			};
+
+			const leftIndent = {
+				paddingLeft: SPACING(11),
+				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+					paddingLeft: 0,
+				},
+			};
+
 			if (node.object !== 'block') {
 				return;
 			}
