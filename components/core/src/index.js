@@ -7,5 +7,6 @@ export { wrapHandlers } from './wrapHandlers';
 export { devWarning } from './devWarning';
 export { mergeWith } from './mergeWith';
 export { useFonts } from './useFonts';
+export { getLabel } from './getLabel';
 export { asArray } from './asArray';
 export { GEL } from './GEL';

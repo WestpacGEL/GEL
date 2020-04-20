@@ -4,7 +4,7 @@ import { Cell, Container, Grid } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { Heading } from '@westpac/heading';
 import { TextInput } from '@westpac/text-input';
-import HomePageHeader from '../components/header/home-page-header';
+import HomePageHeader from '../../components/header/home-page-header';
 import {
 	ReactLogo,
 	AtlassianLogo,
@@ -18,7 +18,7 @@ import {
 	SketchLogo,
 	MicrosoftLogo,
 	TwitterLogo,
-} from '../components/symbols';
+} from '../../components/symbols';
 
 const Homepage = () => {
 	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();

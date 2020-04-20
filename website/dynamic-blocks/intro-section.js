@@ -46,7 +46,11 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 
 const parseHeadings = content =>
 	content.nodes
-		.filter(item => item.data.component && item.data.component === 'Heading')
+		.filter(
+			item =>
+				item.data.component &&
+				(item.data.component === 'Heading' || item.data.component === 'VisionFilters')
+		)
 		.filter(item => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
 			const { props } = item.data;
@@ -83,6 +87,7 @@ const TableOfContents = ({ content }) => {
 								styles: styles => ({
 									...styles,
 									paddingLeft: 0,
+									paddingTop: SPACING(2),
 								}),
 							},
 						}}
@@ -140,13 +145,25 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS } = useBrand();
+	const { PACKS, LAYOUT, SPACING } = useBrand();
 	return (
 		<Fragment>
-			<Grid>
+			<Grid css={{ marginTop: SPACING(12) }}>
 				<Cell width={[12, 12, 12, 7]}>
 					{description && description !== '' ? (
-						<p css={{ ...PACKS.lead, marginTop: 0 }}>{description}</p>
+						<p
+							css={{
+								...PACKS.lead,
+								marginTop: 0,
+								lineHeight: 2,
+								fontSize: '24px',
+								[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+									fontSize: '18px',
+								},
+							}}
+						>
+							{description}
+						</p>
 					) : null}
 					{showPackageInfo && <PackageInfoTable item={item} />}
 				</Cell>
@@ -157,6 +174,14 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 					</Cell>
 				)}
 			</Grid>
+			<hr
+				css={{
+					border: 'none',
+					borderTop: `solid 1px #D7D2CB`,
+					margin: `40px -1000px`,
+					paddingBottom: '40px',
+				}}
+			/>
 		</Fragment>
 	);
 };

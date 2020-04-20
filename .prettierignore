@@ -5,4 +5,5 @@ website/**/.next/
 components/**/cypress/
 .docz/
 docs/
-prop-types.json
+GEL.json
+components/core/blender/jquery.js

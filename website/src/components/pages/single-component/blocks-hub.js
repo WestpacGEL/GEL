@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
+import { Cell, Grid } from '@westpac/grid';
 import React from 'react';
 import createReactRenderer from './react-renderer';
 import { Heading } from '@westpac/heading';
@@ -71,13 +72,9 @@ const slateRenderer = (item, _editorValue) => {
 
 		// serialiser for all the blocks
 		({ node, path, serializeChildren, value }) => {
-			const { SPACING, LAYOUT } = useBrand();
-
-			const leftIndent = {
-				paddingLeft: SPACING(11),
-				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-					paddingLeft: 0,
-				},
+			const textStyle = {
+				width: '100%',
+				lineHeight: 2,
 			};
 			if (node.object !== 'block') {
 				return;
@@ -86,9 +83,13 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<p css={leftIndent} key={path}>
-							{serializeChildren(node.nodes)}
-						</p>
+						<Grid columns={12}>
+							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
+								<p css={textStyle} key={path}>
+									{serializeChildren(node.nodes)}
+								</p>
+							</Cell>
+						</Grid>
 					);
 
 				case 'heading':
@@ -102,22 +103,30 @@ const slateRenderer = (item, _editorValue) => {
 						</Heading>
 					);
 
-				case 'list-item':
-					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;
-
 				case 'unordered-list':
 					return (
-						<List type="bullet" key={path} css={leftIndent}>
-							{serializeChildren(node.nodes)}
-						</List>
+						<Grid columns={12}>
+							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
+								<List css={textStyle} type="bullet" key={path}>
+									{serializeChildren(node.nodes)}
+								</List>
+							</Cell>
+						</Grid>
 					);
 
 				case 'ordered-list':
 					return (
-						<List type="ordered" key={path} css={leftIndent}>
-							{serializeChildren(node.nodes)}
-						</List>
+						<Grid columns={12}>
+							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
+								<List css={textStyle} type="ordered" key={path}>
+									{serializeChildren(node.nodes)}
+								</List>
+							</Cell>
+						</Grid>
 					);
+
+				case 'list-item':
+					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;
 
 				case 'dynamic-components': {
 					return (

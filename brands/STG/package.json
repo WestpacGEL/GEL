@@ -4,6 +4,9 @@
 	"description": "STG brand component for the Westpac GEL design language",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/brands/STG",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"blender": {
+		"tokens": true
+	},
 	"contributors": [
 		{
 			"name": "Dominik Wilkowski",
