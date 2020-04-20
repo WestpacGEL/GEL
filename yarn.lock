@@ -2582,7 +2582,7 @@
     p-settle "^3.1.0"
     pg "^7.17.0"
 
-"@keystonejs/adapter-knex@^9.0.0":
+"@keystonejs/adapter-knex@^9.0.0", "@keystonejs/adapter-knex@^9.0.1":
   version "9.0.1"
   resolved "https://registry.npmjs.org/@keystonejs/adapter-knex/-/adapter-knex-9.0.1.tgz#c2262bbb1c98d12957f01209a76edec52ce9212b"
   integrity sha512-py+xFw7XTO+SCcX12hGo1U+vuMxTwPzNF3RRi3cj3uY9wSWy2ojfwr2HeC6iWN5Ry/bgPnBRMajjKPuOnIP3ag==
@@ -2741,7 +2741,7 @@
     object-hash "^1.3.1"
     terminal-link "^1.3.0"
 
-"@keystonejs/app-graphql@^5.1.2", "@keystonejs/app-graphql@^5.1.5":
+"@keystonejs/app-graphql@^5.1.5":
   version "5.1.5"
   resolved "https://registry.npmjs.org/@keystonejs/app-graphql/-/app-graphql-5.1.5.tgz#0df4d69be0685cc9f702da82dc2bcceb96d72690"
   integrity sha512-SHz3l5kpVIV1DFDoutrz6CdskNvQ3hctfiOjJDR8JFtEygTa9NRvkwWtl1Uj/glwt5Qm6d4a7GJpqgTCVQN8gw==
@@ -2759,14 +2759,14 @@
     serialize-error "^3.0.0"
     stack-utils "^1.0.2"
 
-"@keystonejs/app-next@^5.1.1":
+"@keystonejs/app-next@^5.1.2":
   version "5.1.2"
   resolved "https://registry.npmjs.org/@keystonejs/app-next/-/app-next-5.1.2.tgz#cce38f42cc793cb0842f996ab74d0fc575569efc"
   integrity sha512-2lzvA/77ahIJ9oDODIQGvG9uy6qNrjl/sTvM5Idqd+Cy0I/mT90o5LJIcwtUymzPt144wzmL9RYvRdyFx1PDPQ==
   dependencies:
     next "^9.3.2"
 
-"@keystonejs/app-version@^1.0.0", "@keystonejs/app-version@^1.0.1":
+"@keystonejs/app-version@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@keystonejs/app-version/-/app-version-1.0.1.tgz#7a9d487e782517d33ecfd1a34715cb43f6aa7003"
   integrity sha512-QSsLN7bkWbVLWKXk/hPAL6znqJOb7XIq9nKNDS4CtIn7JjEqJ2W7NNM9I3jpRRqkKlWI2L1clADer/CH8D+/eQ==
@@ -2859,7 +2859,7 @@
   dependencies:
     loader-utils "^1.2.3"
 
-"@keystonejs/fields-auto-increment@^5.1.2", "@keystonejs/fields-auto-increment@^5.1.4", "@keystonejs/fields-auto-increment@^5.1.5", "@keystonejs/fields-auto-increment@^5.1.6":
+"@keystonejs/fields-auto-increment@^5.1.4", "@keystonejs/fields-auto-increment@^5.1.5", "@keystonejs/fields-auto-increment@^5.1.6":
   version "5.1.6"
   resolved "https://registry.npmjs.org/@keystonejs/fields-auto-increment/-/fields-auto-increment-5.1.6.tgz#2f1573247da32091b3a3cd395439f918a9421eef"
   integrity sha512-w7s+ICjxq+db8xPohaGxuRUbNgVaSBnnxiA2Ay8xkzjASgvVzXBLpQpNqt9IWzHo9rh2WCg7zHF0atascyRXgQ==
@@ -2881,7 +2881,7 @@
     "@keystonejs/fields" "^9.0.0"
     react "^16.13.0"
 
-"@keystonejs/fields@^7.0.0", "@keystonejs/fields@^7.0.1":
+"@keystonejs/fields@^7.0.0":
   version "7.0.2"
   resolved "https://registry.npmjs.org/@keystonejs/fields/-/fields-7.0.2.tgz#b1852b6b11ea5c7a01c49049f5dc0b3b673e5760"
   integrity sha512-EbLKefviD66yj1sbBCEn4gjl9gmKmUHLbg1mkDXvovVQm3O9Aal6risDpaH244mrYQpXnbcUnl9guPjDM9yepQ==
@@ -3082,7 +3082,7 @@
     slate-react "^0.22.4"
     unsplash-js "^6.0.0"
 
-"@keystonejs/file-adapters@^6.0.0":
+"@keystonejs/file-adapters@^6.0.1":
   version "6.0.1"
   resolved "https://registry.npmjs.org/@keystonejs/file-adapters/-/file-adapters-6.0.1.tgz#07f2500437c0b3cfb9735aec51323bfea44fa962"
   integrity sha512-Hfm4LFs3afnZoS+vSdKC2dd02BpCQT5QeFaZiBX1Rfi5vn8IN2w352BuEviaMtuG2pMm/8ROWZIgk9creb4abA==
@@ -3158,7 +3158,7 @@
     pluralize "^7.0.0"
     terminal-link "^1.3.0"
 
-"@keystonejs/keystone@^8.0.0":
+"@keystonejs/keystone@^8.0.0", "@keystonejs/keystone@^8.1.1":
   version "8.1.1"
   resolved "https://registry.npmjs.org/@keystonejs/keystone/-/keystone-8.1.1.tgz#e5053dd62b94fc84e4c89877a526bad65d97e2a4"
   integrity sha512-Qe/c4zuw3YPz+Q7fAuS9E1RFNjYalg5JuO7o1hlCnRlGTY82/OoAJ9zuXG4uf/0l9eoUiD67sVIlccwOba/pXg==

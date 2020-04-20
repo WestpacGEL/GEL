@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import React, { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
+import { Fragment, useEffect, useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
-import Link from 'next/link';
 import { Cell, Grid } from '@westpac/grid';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
@@ -178,7 +177,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 				css={{
 					border: 'none',
 					borderTop: `solid 1px #D7D2CB`,
-					margin: `40px -1000px`,
+					margin: `40px -1000px`, // full-bleed
 					paddingBottom: '40px',
 				}}
 			/>
