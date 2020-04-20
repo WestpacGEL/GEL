@@ -194,7 +194,7 @@ const Homepage = () => {
 
 export default Homepage;
 
-const DownloadAndLinksSection = ({ item }) => {
+const DownloadAndLinksSection = () => {
 	const { SPACING, COLORS } = useBrand();
 
 	return (
