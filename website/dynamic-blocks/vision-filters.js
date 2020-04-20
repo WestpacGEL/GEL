@@ -53,6 +53,27 @@ const codeExamples = importCodeExamples(data);
 let valueCache = new Map();
 let promiseCache = new Map();
 
+const levelOptions = [
+	{ label: 'H1', value: 'h1' },
+	{ label: 'H2', value: 'h2' },
+	{ label: 'H3', value: 'h3' },
+	{ label: 'H4', value: 'h4' },
+	{ label: 'H5', value: 'h5' },
+	{ label: 'H6', value: 'h6' },
+];
+
+const sizeOptions = [
+	{ label: '1', value: 1 },
+	{ label: '2', value: 2 },
+	{ label: '3', value: 3 },
+	{ label: '4', value: 4 },
+	{ label: '5', value: 5 },
+	{ label: '6', value: 6 },
+	{ label: '7', value: 7 },
+	{ label: '8', value: 8 },
+	{ label: '9', value: 9 },
+];
+
 function ShowCodeBlock({ loadCodeBlock, context }) {
 	let promise = promiseCache.get(loadCodeBlock);
 	if (!promise) {
@@ -95,27 +116,6 @@ export const VisionFilters = {
 				...currentValue,
 				...changes,
 			});
-
-		const levelOptions = [
-			{ label: 'H1', value: 'h1' },
-			{ label: 'H2', value: 'h2' },
-			{ label: 'H3', value: 'h3' },
-			{ label: 'H4', value: 'h4' },
-			{ label: 'H5', value: 'h5' },
-			{ label: 'H6', value: 'h6' },
-		];
-
-		const sizeOptions = [
-			{ label: '1', value: 1 },
-			{ label: '2', value: 2 },
-			{ label: '3', value: 3 },
-			{ label: '4', value: 4 },
-			{ label: '5', value: 5 },
-			{ label: '6', value: 6 },
-			{ label: '7', value: 7 },
-			{ label: '8', value: 8 },
-			{ label: '9', value: 9 },
-		];
 
 		return (
 			<Fragment>
@@ -197,7 +197,15 @@ export const VisionFilters = {
 			</Fragment>
 		);
 	},
-	component: ({ codeExample, context, heading, size, level, addTableContent, subText }) => {
+	component: ({
+		codeExample,
+		context,
+		heading = '',
+		size = 5,
+		level = 'h2',
+		addTableContent = true,
+		subText = '',
+	}) => {
 		if (typeof window === 'undefined') {
 			return <p>Loading...</p>;
 		}

@@ -72,7 +72,7 @@ export const BrandSwitcher = () => {
 	return (
 		<Fragment>
 			<div css={{ height: 35, padding: SPACING(2) }}>
-				<Link href={`/?b=${brandName}`}>
+				<Link href={`/`} as={`/?b=${brandName}`}>
 					<a>
 						<Logo />
 					</a>
