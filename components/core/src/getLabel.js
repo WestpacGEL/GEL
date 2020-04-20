@@ -6,15 +6,15 @@ export function getLabel(name, props = {}) {
 		.map(([name, value]) => {
 			if (typeof value === 'undefined') {
 			} else if (typeof value === 'boolean') {
-				label += value ? `-${cleanClassName(name)}` : '';
+				label += value ? `-${name}` : '';
 			} else if (typeof value === 'string') {
-				label += value === '' ? '' : `-${cleanClassName(name)}_${cleanClassName(value)}`;
+				label += value === '' ? '' : `-${name}_${value}`;
 			} else if (typeof value === 'function') {
-				label += `-${cleanClassName(value.displayName || value.name || name)}`;
+				label += `-${value.displayName || value.name || name}`;
 			}
 		});
 
-	return label;
+	return cleanClassName(label);
 }
 
 function cleanClassName(name) {
