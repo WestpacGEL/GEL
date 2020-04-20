@@ -72,9 +72,7 @@ const slateRenderer = (item, _editorValue) => {
 
 		// serialiser for all the blocks
 		({ node, path, serializeChildren, value }) => {
-			const { SPACING, LAYOUT } = useBrand();
-
-			const paragraphStyle = {
+			const textStyle = {
 				width: '100%',
 				lineHeight: 2,
 			};
@@ -87,7 +85,7 @@ const slateRenderer = (item, _editorValue) => {
 					return (
 						<Grid columns={12}>
 							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
-								<p css={paragraphStyle} key={path}>
+								<p css={textStyle} key={path}>
 									{serializeChildren(node.nodes)}
 								</p>
 							</Cell>
@@ -105,22 +103,30 @@ const slateRenderer = (item, _editorValue) => {
 						</Heading>
 					);
 
-				case 'list-item':
-					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;
-
 				case 'unordered-list':
 					return (
-						<List type="bullet" key={path} css={leftIndent}>
-							{serializeChildren(node.nodes)}
-						</List>
+						<Grid columns={12}>
+							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
+								<List css={textStyle} type="bullet" key={path}>
+									{serializeChildren(node.nodes)}
+								</List>
+							</Cell>
+						</Grid>
 					);
 
 				case 'ordered-list':
 					return (
-						<List type="ordered" key={path} css={leftIndent}>
-							{serializeChildren(node.nodes)}
-						</List>
+						<Grid columns={12}>
+							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
+								<List css={textStyle} type="ordered" key={path}>
+									{serializeChildren(node.nodes)}
+								</List>
+							</Cell>
+						</Grid>
 					);
+
+				case 'list-item':
+					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;
 
 				case 'dynamic-components': {
 					return (
