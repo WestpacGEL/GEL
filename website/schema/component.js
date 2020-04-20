@@ -66,7 +66,7 @@ const getComponentSchema = options => ({
 					return `/components/${slugify(resolvedData.packageName).toLowerCase()}`;
 				}
 				if (resolvedData.pageTitle) {
-					return `/${slugify(resolvedData.pageTitle).toLowerCase()}`;
+					return `/components/${slugify(resolvedData.pageTitle).toLowerCase()}`;
 				}
 				return '';
 			},
@@ -87,7 +87,6 @@ const getComponentSchema = options => ({
 			},
 		},
 		packageName: { type: Select, options },
-		name: { type: Virtual, resolver: getResolver('name') },
 		version: { type: Virtual, resolver: getResolver('version') },
 		description: { type: Virtual, resolver: getResolver('description') },
 		isOrphaned: {
@@ -117,7 +116,11 @@ const getComponentSchema = options => ({
 			type: Content,
 			blocks: BLOCKS_CONFIG,
 		},
-		categories: { type: Relationship, ref: 'Category', many: true },
+		relatedPages: {
+			type: Relationship,
+			ref: 'Page',
+			many: true,
+		},
 		relatedInfo: { type: Content, blocks: [Content.blocks.link, Content.blocks.heading] },
 	},
 });

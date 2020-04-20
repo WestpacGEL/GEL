@@ -3,7 +3,8 @@ import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
-import { BASE_URL } from '../config';
+import { BASE_URL, BASE_PAGE } from '../config';
+
 import { SlateContent } from './pages/single-component/blocks-hub';
 import Link from 'next/link';
 
@@ -35,7 +36,10 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 
 const getURL = d => {
 	if (d.url) {
-		return d.url;
+		if (d.url.charAt(0) !== '/') {
+			return `${BASE_URL}/${d.url}`;
+		}
+		return `${BASE_URL}${d.url}`;
 	}
 	if (d.packageName) {
 		return `${BASE_URL}/components/${slugify(resolvedData.packageName).toLowerCase()}`;
@@ -119,7 +123,7 @@ const ComponentLink = ({ children, link }) => {
 				borderBottom: `solid 1px ${COLORS.border}`,
 			}}
 		>
-			<Link href={link}>
+			<Link href={BASE_PAGE} as={link}>
 				<a
 					css={{
 						cursor: 'pointer',
