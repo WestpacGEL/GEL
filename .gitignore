@@ -86,3 +86,4 @@ bundle.js
 cypress/
 docs/
 GEL.json
+prop-types.json
