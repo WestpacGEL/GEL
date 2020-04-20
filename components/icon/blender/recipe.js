@@ -61,7 +61,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A small xsmall',
+			heading: 'A xsmall icon',
 			component: () => (
 				<GEL brand={brand}>
 					<components.HouseIcon size="xsmall" />
@@ -69,7 +69,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A small small',
+			heading: 'A small icon',
 			component: () => (
 				<GEL brand={brand}>
 					<components.HouseIcon size="small" />
@@ -77,7 +77,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A small medium',
+			heading: 'A medium icon',
 			component: () => (
 				<GEL brand={brand}>
 					<components.HouseIcon size="medium" />
@@ -85,7 +85,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A small large',
+			heading: 'A large icon',
 			component: () => (
 				<GEL brand={brand}>
 					<components.HouseIcon size="large" />
@@ -93,7 +93,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A small xlarge',
+			heading: 'A xlarge icon',
 			component: () => (
 				<GEL brand={brand}>
 					<components.HouseIcon size="xlarge" />
