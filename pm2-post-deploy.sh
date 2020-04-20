@@ -4,7 +4,9 @@
 set -eu
 
 # Install any missing npm packages
-yarn
+# The `--frozen-lockfile` option is important here; it prevents "optimisations" of the lock file that break future deploys
+# See.. https://github.com/yarnpkg/yarn/issues/4379
+yarn install --frozen-lockfile
 
 # Production build
 yarn --cwd website build
