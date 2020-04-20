@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
 import { Heading } from '@westpac/heading';
-import PropTypes from '../../prop-types.json';
+import PropTypes from '../../GEL.json';
 
 /**
  * A small helper component for inline code blocks
@@ -81,10 +81,21 @@ function PTableRow({ name, data, level = 0 }) {
 	const subValues = [];
 	let value = null;
 	level++;
-	if (type === 'oneOfType' || type === 'shape' || type === 'exact') {
+	if (type === 'shape' || type === 'exact') {
 		subValues.push(
 			Object.entries(data.type.value).map(([name, data], i) => (
 				<PTableRow key={i} name={name} data={data} level={level} />
+			))
+		);
+	} else if (type === 'oneOfType') {
+		subValues.push(
+			data.type.value.map((item, i) => (
+				<PTableRow
+					key={i}
+					name=""
+					data={{ type: { name: item.name }, required: false, defaultValue: item.defaultValue }}
+					level={level}
+				/>
 			))
 		);
 	} else {
@@ -114,7 +125,7 @@ function PTableRow({ name, data, level = 0 }) {
 /**
  * The props table component
  *
- * @param {object} options.data    - The data object coming from the prop-types.json
+ * @param {object} options.data    - The data object coming from the GEL.json
  * @param {string} options.caption - A caption for the table
  */
 function PTable({ data, caption }) {
@@ -148,10 +159,10 @@ function PTable({ data, caption }) {
 
 const Component = ({ item }) => {
 	const tableData = Object.keys(PropTypes.components[item.packageName]).map(key => {
-		const { overrides, ...normalProps } = PropTypes.components[item.packageName][key];
+		const { overrides, ...normalProps } = PropTypes.components[item.packageName][key].propTypes;
 		return {
 			name: key,
-			overrideProps: { overrides },
+			overrideProps: { overrides: overrides },
 			normalProps,
 		};
 	});
