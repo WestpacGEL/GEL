@@ -16,7 +16,10 @@ slugify.extend({ _: '-' });
 
 const getURL = d => {
 	if (d.url) {
-		return d.url;
+		if (d.url.charAt(0) !== '/') {
+			return `${BASE_URL}/${d.url}`;
+		}
+		return `${BASE_URL}${d.url}`;
 	}
 	if (d.packageName) {
 		return `/components/${slugify(resolvedData.packageName).toLowerCase()}`;
@@ -73,7 +76,6 @@ export default function Index() {
 				}
 				allPages {
 					id
-
 					_label_
 					pageTitle
 				}
