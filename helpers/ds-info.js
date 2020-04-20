@@ -25,11 +25,20 @@ for (const component of components) {
 
 	if (component.isDirectory()) {
 		const requiredComponent = require(`@westpac/${component.name}`);
+		const pkg = require(path.normalize(
+			`${__dirname}/../components/${component.name}/package.json`
+		));
 		propTypes.components[component.name] = {};
 		for (const key in requiredComponent) {
+			propTypes.components[component.name][key] = {
+				name: pkg.name,
+				version: pkg.version,
+				blender: pkg.blender,
+				propTypes: {},
+			};
 			const exportedComponent = requiredComponent[key];
 			if (exportedComponent && exportedComponent.propTypes) {
-				propTypes.components[component.name][key] = parsePropTypes(exportedComponent);
+				propTypes.components[component.name][key].propTypes = parsePropTypes(exportedComponent);
 			}
 		}
 	}
@@ -44,12 +53,13 @@ for (const brand of brands) {
 		propTypes.brands[brand.name] = {
 			name: brandPkg.name,
 			version: brandPkg.version,
+			blender: brandPkg.blender,
 		};
 	}
 }
 process.stdout.write(`\x1b[2K\x1b[0G`);
 
-propTypeJson = path.normalize(`${__dirname}/../prop-types.json`);
+propTypeJson = path.normalize(`${__dirname}/../GEL.json`);
 try {
 	fs.writeFileSync(propTypeJson, JSON.stringify(propTypes, null, '\t'));
 	console.log(
