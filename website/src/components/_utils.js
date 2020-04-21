@@ -80,7 +80,7 @@ export const RelatedInformation = ({ item }) => {
 					<Cell width={10} left={2}>
 						<Grid columns={10}>
 							{relatedPages && (
-								<Cell width={relatedInfo ? 4 : 12}>
+								<Cell width={[12, 12, relatedInfo ? 4 : 12]}>
 									<IconTitle icon={CubeIcon}>Components</IconTitle>
 									<ul css={{ margin: 0, padding: 0 }}>
 										{relatedPages.map(d => {
@@ -93,9 +93,9 @@ export const RelatedInformation = ({ item }) => {
 									</ul>
 								</Cell>
 							)}
-							{relatedInfo && relatedPages && <Cell width={1} />}
+							{relatedInfo && relatedPages && <Cell width={[0, 0, 1]} />}
 							{relatedInfo && (
-								<Cell width={relatedInfo ? 5 : 10}>
+								<Cell width={[12, 12, relatedInfo ? 5 : 10]}>
 									<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
 									<SlateContent
 										content={relatedInfo}
@@ -104,7 +104,6 @@ export const RelatedInformation = ({ item }) => {
 									/>
 								</Cell>
 							)}
-							<Cell width={1} />
 						</Grid>
 					</Cell>
 				</Grid>
