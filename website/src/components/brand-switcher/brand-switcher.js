@@ -1,12 +1,11 @@
 /** @jsx jsx */
-import { Fragment, useState, useRef, useEffect } from 'react';
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Select, { components } from 'react-select';
-import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
-import { BASE_URL, BASE_PAGE } from '../../config';
-
+import { BASE_URL } from '../../config';
 import { jsx, useBrand } from '@westpac/core';
+import { useBrandSwitcher } from '../providers/brand-switcher';
 import {
 	BOMLogo,
 	BSALogo,
@@ -19,8 +18,6 @@ import {
 	BTFGStackedLogo,
 	STGDragonLogo,
 } from '@westpac/symbol';
-
-import { useBrandSwitcher } from '../providers/brand-switcher';
 
 export const brandsMap = {
 	BOM: {
