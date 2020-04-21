@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
+import { Body } from '@westpac/body';
 import { List, Item } from '@westpac/list';
 import { Cell, Grid } from '@westpac/grid';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
@@ -101,6 +102,8 @@ const TableOfContents = ({ content }) => {
 
 const PackageInfoTable = ({ item }) => {
 	if (!item) return null;
+	console.log(item);
+
 	return (
 		<table
 			css={{
@@ -128,7 +131,16 @@ const PackageInfoTable = ({ item }) => {
 				</tr>
 				<tr>
 					<th>History</th>
-					<td>View Changes</td>
+					<td>
+						<Body>
+							<a
+								href={`https://github.com/WestpacGEL/GEL/blob/master/components/${item.packageName}/CHANGELOG.md`}
+								target="_blank"
+							>
+								View Changes
+							</a>
+						</Body>
+					</td>
 				</tr>
 				<tr>
 					<th>Install</th>
