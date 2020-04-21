@@ -89,12 +89,12 @@ const Tabs = ({ component, tabIndex }) => {
 				}),
 		},
 	};
+
 	const overrides = {
 		Panel: {
 			styles: styles => ({
 				...styles,
 				padding: `${SPACING(4)} 0 0`,
-				maxWidth: '60rem',
 				margin: '0 auto',
 				border: 'none',
 			}),
