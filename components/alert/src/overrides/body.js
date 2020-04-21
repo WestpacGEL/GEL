@@ -9,7 +9,7 @@ const bodyStyles = (_, { icon: Icon }) => {
 	const mq = useMediaQuery();
 
 	return mq({
-		label: getLabel('Alert-body', { icon: Icon }),
+		label: getLabel('alert-body', { icon: Icon }),
 		position: 'relative',
 		flex: 1,
 		top: [null, Icon && '0.125rem'],

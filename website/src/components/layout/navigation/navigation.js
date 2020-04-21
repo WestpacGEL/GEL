@@ -82,12 +82,12 @@ const LinkList = props => {
 			css={{
 				listStyle: 'none',
 				paddingLeft: SPACING(6),
-				paddingRight: SPACING(5),
+				paddingRight: SPACING(6),
 				margin: 0,
+				fontSize: '14px',
 				'> li a, > div button': {
 					fontWeight: 500,
 					color: 'rgba(0, 0, 0, 0.75)',
-					marginBottom: SPACING(3),
 					padding: 0,
 					cursor: 'pointer',
 				},
@@ -110,7 +110,9 @@ const LinkItem = ({ isCurrent, name, as, tag: Tag = 'li', children, href }) => {
 				<a
 					style={{
 						cursor: 'pointer',
-						display: 'block',
+						display: 'flex',
+						alignItems: 'center',
+						height: '48px',
 						textDecoration: 'none',
 						color: isCurrent && COLORS.info,
 					}}

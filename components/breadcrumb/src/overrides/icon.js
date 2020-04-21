@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
 
 const Icon = ({ state, ...rest }) => {
@@ -10,6 +10,7 @@ const Icon = ({ state, ...rest }) => {
 };
 
 const iconStyles = () => ({
+	label: getLabel('breadcrumb-icon'),
 	marginLeft: '0.1875rem',
 	marginRight: '0.1875rem',
 	verticalAlign: 'middle',

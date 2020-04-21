@@ -134,7 +134,7 @@ const Homepage = () => {
 						id="mc-embedded-subscribe-form"
 						name="mc-embedded-subscribe-form"
 						target="_blank"
-						novalidate=""
+						noValidate=""
 					>
 						<Grid
 							columns={12}

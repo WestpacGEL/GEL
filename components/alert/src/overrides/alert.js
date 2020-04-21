@@ -53,7 +53,7 @@ const alertStyles = (_, { dismissible, look }) => {
 	};
 
 	return mq({
-		label: getLabel('Alert', { dismissible, look }),
+		label: getLabel('alert', { dismissible, look }),
 		marginBottom: '1.3125rem',
 		padding: dismissible ? '1.125rem 1.875rem 1.125rem 1.125rem' : '1.125rem',
 		position: 'relative',
