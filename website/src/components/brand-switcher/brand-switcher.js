@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Select, { components } from 'react-select';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
-import { BASE_URL, BASE_PAGE } from '../config';
+import { BASE_URL, BASE_PAGE } from '../../config';
 
 import { jsx, useBrand } from '@westpac/core';
 import {
@@ -73,7 +73,7 @@ export const BrandSwitcher = () => {
 	return (
 		<Fragment>
 			<div css={{ height: 35, padding: `${SPACING(6)} ${SPACING(4)}` }}>
-				<Link href={BASE_PAGE} as={`${BASE_URL}?b=${brandName}`}>
+				<Link href={'/'} as={`${BASE_URL}`}>
 					<a>
 						<Logo />
 					</a>
