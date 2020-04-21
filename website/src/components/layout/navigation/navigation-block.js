@@ -27,7 +27,7 @@ export const NavigationBlock = ({ title, tag: Tag = 'div', isBlockOpen, children
 				}}
 			>
 				<span>{title}</span>
-				{isOpen ? <AddIcon size="small" /> : <RemoveIcon size="small" />}
+				{isOpen ? <RemoveIcon size="small" /> : <AddIcon size="small" />}
 			</button>
 			{isOpen && <div>{children}</div>}
 		</div>
