@@ -3,6 +3,7 @@ import React, { Suspense, Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 import { Heading } from '@westpac/heading';
+import { Cell, Grid } from '@westpac/grid';
 import { useRouter } from 'next/router';
 import Select from '@arch-ui/select';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
@@ -214,39 +215,43 @@ export const VisionFilters = {
 		};
 
 		return (
-			<Fragment>
-				<Heading
-					id={id}
-					tabIndex="-1"
-					tag={level}
-					size={size}
-					{...(addTableContent && { 'data-toc': true })}
-					overrides={{
-						Heading: {
-							styles: styles => ({
-								...styles,
-								scrollMarginTop: '75px',
-							}),
-						},
-					}}
-				>
-					{heading}
-				</Heading>
-				<Body>
-					{subText} Read more about these vision impairments on our{' '}
-					<a href={href} onClick={handleClick}>
-						Accessibility
-					</a>{' '}
-					page.
-				</Body>
-				<Suspense fallback={<p>Loading...</p>}>
-					{loadCodeBlock && typeof window !== 'undefined' ? (
-						<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
-					) : (
-						'Example not found.'
-					)}
-				</Suspense>
-			</Fragment>
+			<Grid columns={12}>
+				<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+					<Heading
+						id={id}
+						tabIndex="-1"
+						tag={level}
+						size={size}
+						{...(addTableContent && { 'data-toc': true })}
+						overrides={{
+							Heading: {
+								styles: styles => ({
+									...styles,
+									scrollMarginTop: '75px',
+								}),
+							},
+						}}
+					>
+						{heading}
+					</Heading>
+					<Body>
+						<p>
+							{subText} Read more about these vision impairments on our{' '}
+							<a href={href} onClick={handleClick}>
+								Accessibility
+							</a>{' '}
+							page.
+						</p>
+					</Body>
+					<Suspense fallback={<p>Loading...</p>}>
+						{loadCodeBlock && typeof window !== 'undefined' ? (
+							<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
+						) : (
+							'Example not found.'
+						)}
+					</Suspense>
+				</Cell>
+			</Grid>
 		);
 	},
 };
