@@ -20,10 +20,13 @@ export const NavigationBlock = ({ title, tag: Tag = 'div', isBlockOpen, children
 					width: '100%',
 					background: 'none',
 					border: 'none',
+					display: 'flex',
+					height: '48px',
+					alignItems: 'center',
 				}}
 			>
 				<span>{title}</span>
-				<span css={{ fontSize: 16, lineHeight: 1 }}>{isOpen ? '-' : '+'}</span>
+				<span css={{ fontSize: 20, lineHeight: 1 }}>{isOpen ? '-' : '+'}</span>
 			</button>
 			{isOpen && <div>{children}</div>}
 		</div>
