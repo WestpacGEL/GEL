@@ -26,11 +26,6 @@ CREATE index page_relatedpages_many_page_left_id_index
 CREATE index page_relatedpages_many_page_right_id_index
 	on public."Page_relatedPages_many" ("Page_right_id");
 
-
-ALTER TABLE public."Page" DROP COLUMN "design";
-ALTER TABLE public."Page" DROP COLUMN "accessibility";
-ALTER TABLE public."Page" DROP COLUMN "code";
-ALTER TABLE public."Page" DROP COLUMN "relatedInfo";
 `);
 	});
 };
