@@ -102,7 +102,6 @@ const TableOfContents = ({ content }) => {
 
 const PackageInfoTable = ({ item }) => {
 	if (!item) return null;
-	console.log(item);
 
 	return (
 		<table
