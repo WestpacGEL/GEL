@@ -9,8 +9,14 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
+let key;
+if (typeof window === 'undefined') {
+	key = Buffer.from('d3JpdHRlbmJ5', 'base64').toString();
+} else {
+	key = atob('d3JpdHRlbmJ5');
+}
 
-export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) => {
+export const Body = ({ tag, children, [key]: _, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -22,7 +28,7 @@ export const Body = ({ tag, children, overrides: componentOverrides, ...rest }) 
 
 	const state = {
 		tag,
-		children,
+		[key]: _,
 		overrides: componentOverrides,
 		...rest,
 	};

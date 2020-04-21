@@ -51,7 +51,7 @@ const badgeStyles = (_, { look }) => {
 	};
 
 	return {
-		label: getLabel('Badge', { look }),
+		label: getLabel('badge', { look }),
 		border: `1px solid transparent`,
 		borderRadius: '0.75rem',
 		display: 'inline-block',

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
 
 const Icon = ({ state, ...rest }) => <span {...rest} />;
 
@@ -24,6 +24,7 @@ const iconStyles = (_, { color, size }) => {
 	};
 
 	return mq({
+		label: getLabel('icon', { color, size }),
 		display: 'inline-block',
 		flexShrink: 0,
 		lineHeight: 1,
