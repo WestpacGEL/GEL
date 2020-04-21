@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { useState } from 'react';
+import { AddIcon, RemoveIcon } from '@westpac/icon';
 
 import { jsx } from '@westpac/core';
 
@@ -26,7 +27,7 @@ export const NavigationBlock = ({ title, tag: Tag = 'div', isBlockOpen, children
 				}}
 			>
 				<span>{title}</span>
-				<span css={{ fontSize: 20, lineHeight: 1 }}>{isOpen ? '-' : '+'}</span>
+				{isOpen ? <AddIcon size="small" /> : <RemoveIcon size="small" />}
 			</button>
 			{isOpen && <div>{children}</div>}
 		</div>
