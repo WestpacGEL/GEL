@@ -9,39 +9,34 @@ import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
 
-const Component = ({ heading, size, level, addTableContent, subText, text }) => {
+const Component = ({ heading, size, level, addTableContent, indent = true, subText, text }) => {
 	const id = heading.replace(/ /g, '-').toLowerCase();
+	const indentWidth = indent ? 10 : 12;
+	const indentLeft = indent ? [1, 1, 1, 2, 2] : 0;
+
 	return (
-		<Fragment>
-			<WestpacHeading
-				id={id}
-				tabIndex="-1"
-				tag={level}
-				size={size}
-				{...(addTableContent && { 'data-toc': true })}
-				overrides={{
-					Heading: {
-						styles: styles => ({
-							...styles,
-							scrollMarginTop: '75px',
-						}),
-					},
-				}}
-			>
-				<Grid columns={12}>
-					<Cell width={10} left={[1, 1, 2, 2]}>
-						{heading}
-					</Cell>
-				</Grid>
-			</WestpacHeading>
-			{subText && text && (
-				<Grid columns={12}>
-					<Cell width={10} left={[1, 1, 2, 2]}>
-						<p css={{ lineHeight: 2 }}>{text}</p>
-					</Cell>
-				</Grid>
-			)}
-		</Fragment>
+		<Grid columns={12}>
+			<Cell width={indentWidth} left={indentLeft}>
+				<WestpacHeading
+					id={id}
+					tabIndex="-1"
+					tag={level}
+					size={size}
+					{...(addTableContent && { 'data-toc': true })}
+					overrides={{
+						Heading: {
+							styles: styles => ({
+								...styles,
+								scrollMarginTop: '75px',
+							}),
+						},
+					}}
+				>
+					{heading}
+				</WestpacHeading>
+				{subText && text && <p css={{ lineHeight: 2 }}>{text}</p>}
+			</Cell>
+		</Grid>
 	);
 };
 
@@ -52,6 +47,7 @@ export const Heading = {
 			size: 5,
 			heading: '',
 			addTableContent: true,
+			indent: true,
 			subText: false,
 			text: '',
 			...(value || {}),
@@ -124,6 +120,16 @@ export const Heading = {
 							onChange={({ target }) => update({ addTableContent: target.checked })}
 						/>
 						<span>Include in table of contents</span>
+					</label>
+				</FieldContainer>
+				<FieldContainer>
+					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+						<CheckboxPrimitive
+							checked={currentValue.indent}
+							tabIndex="0"
+							onChange={({ target }) => update({ indent: target.checked })}
+						/>
+						<span>Indent heading & subtext</span>
 					</label>
 				</FieldContainer>
 				<FieldContainer>
