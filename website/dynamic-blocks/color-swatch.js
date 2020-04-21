@@ -12,9 +12,20 @@ const Swatch = ({ color, name }) => {
 	const [r, g, b] = chroma(color).rgb();
 	return (
 		<div css={{ margin: SPACING(1) }}>
-			<div css={{ background: color, width: SPACING(40), height: SPACING(15) }}></div>
 			<div
-				css={{ padding: SPACING(1), display: 'flex', flexDirection: 'column', background: 'white' }}
+				css={{
+					background: color,
+					width: SPACING(40),
+					height: SPACING(15),
+				}}
+			/>
+			<div
+				css={{
+					padding: SPACING(1),
+					display: 'flex',
+					flexDirection: 'column',
+					background: 'white',
+				}}
 			>
 				<strong css={{ marginTop: SPACING(2) }}>{name}</strong>
 				<span css={{ marginTop: SPACING(1) }}>{color}</span>
@@ -24,20 +35,15 @@ const Swatch = ({ color, name }) => {
 	);
 };
 
-const Component = ({ colors }) => {
-	const { COLORS } = useBrand();
-	return (
-		<Fragment>
-			<div css={{ display: 'flex', flexWrap: 'wrap' }}>
-				{colors
-					.filter(color => typeof COLORS[color.value] === 'string')
-					.map(color => (
-						<Swatch key={color.value} color={COLORS[color.value]} name={color.label} />
-					))}
-			</div>
-		</Fragment>
-	);
-};
+const Component = ({ colors }) => (
+	<Fragment>
+		<div css={{ display: 'flex', flexWrap: 'wrap' }}>
+			{colors.map(color => (
+				<Swatch key={color.value} color={color.value} name={color.label} />
+			))}
+		</div>
+	</Fragment>
+);
 
 // Separator
 export const ColorSwatch = {
@@ -87,12 +93,11 @@ export const ColorSwatch = {
 			},
 		};
 
-		const swatches = [];
-		for (const key in { ...COLORS, ...sillyColors[BRAND] }) {
-			if (typeof COLORS[key] === 'string') {
-				swatches.push({ value: key, label: key });
+		const swatches = Object.entries({ ...COLORS, ...sillyColors[BRAND] }).map(([key, value]) => {
+			if (typeof value === 'string') {
+				return { value: value, label: key.charAt(0).toUpperCase() + key.slice(1) };
 			}
-		}
+		});
 
 		return (
 			<Select
