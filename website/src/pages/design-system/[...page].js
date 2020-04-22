@@ -21,7 +21,6 @@ const ComponentWrapper = () => {
 	if (!data) return null;
 	let currentComponent =
 		data.allPages.find(component => {
-			console.log({ c: component.url, p: `/${path}` });
 			return component.url === `/${path}`;
 		}) || '';
 
@@ -73,6 +72,7 @@ const Tabs = ({ component, tabIndex }) => {
 				borderBottom: `solid 1px ${COLORS.border}`,
 				position: 'sticky',
 				top: '65px',
+				zIndex: 1,
 			}),
 		},
 		TabButton: {
