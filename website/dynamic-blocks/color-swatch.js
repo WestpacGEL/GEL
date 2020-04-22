@@ -1,8 +1,10 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
-import chroma from 'chroma-js';
 import Select from '@arch-ui/select';
+import chroma from 'chroma-js';
+
+import { secondaryColors } from '../src/secondary-colors.js';
 
 // Recursively render swatches
 const Swatch = ({ color, name }) => {
@@ -12,9 +14,20 @@ const Swatch = ({ color, name }) => {
 	const [r, g, b] = chroma(color).rgb();
 	return (
 		<div css={{ margin: SPACING(1) }}>
-			<div css={{ background: color, width: SPACING(40), height: SPACING(15) }}></div>
 			<div
-				css={{ padding: SPACING(1), display: 'flex', flexDirection: 'column', background: 'white' }}
+				css={{
+					background: color,
+					width: SPACING(40),
+					height: SPACING(15),
+				}}
+			/>
+			<div
+				css={{
+					padding: SPACING(1),
+					display: 'flex',
+					flexDirection: 'column',
+					background: 'white',
+				}}
 			>
 				<strong css={{ marginTop: SPACING(2) }}>{name}</strong>
 				<span css={{ marginTop: SPACING(1) }}>{color}</span>
@@ -24,31 +37,26 @@ const Swatch = ({ color, name }) => {
 	);
 };
 
-const Component = ({ colors }) => {
-	const { COLORS } = useBrand();
-	return (
-		<Fragment>
-			<div css={{ display: 'flex', flexWrap: 'wrap' }}>
-				{colors
-					.filter(color => typeof COLORS[color.value] === 'string')
-					.map(color => (
-						<Swatch key={color.value} color={COLORS[color.value]} name={color.label} />
-					))}
-			</div>
-		</Fragment>
-	);
-};
+const Component = ({ colors }) => (
+	<Fragment>
+		<div css={{ display: 'flex', flexWrap: 'wrap' }}>
+			{colors.map(color => (
+				<Swatch key={color.value} color={color.value} name={color.label} />
+			))}
+		</div>
+	</Fragment>
+);
 
 // Separator
 export const ColorSwatch = {
 	editor: ({ value, onChange }) => {
-		const { COLORS } = useBrand();
-		const swatches = [];
-		for (const key in COLORS) {
-			if (typeof COLORS[key] === 'string') {
-				swatches.push({ value: key, label: key });
-			}
-		}
+		const { COLORS, BRAND } = useBrand();
+
+		const swatches = Object.entries({ ...COLORS, ...secondaryColors[BRAND] })
+			.filter(([key, value]) => typeof value === 'string')
+			.map(([key, value]) => {
+				return { value: value, label: key.charAt(0).toUpperCase() + key.slice(1) };
+			});
 
 		return (
 			<Select
