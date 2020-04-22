@@ -23,6 +23,18 @@ const ApplyShortCodes = ({ text }) => {
 	});
 };
 
+const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
+	if (data.props) {
+		Object.keys(data.props).forEach(key => {
+			if (typeof data.props[key] === 'string') {
+				data.props[key] = ApplyShortCodes({ text: data.props[key] });
+			}
+		});
+	}
+
+	return <DynamicComponents data={data} {...rest} />;
+};
+
 const slateRenderer = (item, _editorValue) => {
 	return createReactRenderer([
 		// special serialiser for text
@@ -128,7 +140,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'dynamic-components': {
 					return (
-						<DynamicComponents
+						<DynamicComponentsWithShortCode
 							key={path}
 							data={node.data}
 							item={item}
