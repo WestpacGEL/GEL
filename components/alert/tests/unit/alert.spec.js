@@ -1,6 +1,7 @@
 import React from 'react';
 import chroma from 'chroma-js';
-import { render, fireEvent } from '@testing-library/react';
+import cloneDeep from 'lodash.clonedeep';
+import { render, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 
 import { ErrorBoundary } from '../../../../helpers/tests/error-boundary.js';
 import { Alert } from '@westpac/alert';
@@ -197,9 +198,7 @@ describe('Alert', () => {
 		expect(container).toContainHTML('svg');
 	});
 
-	test('Dismissible alerts can be ... dismissed', () => {
-		const sleep = wait => new Promise(resolve => setTimeout(resolve, wait));
-
+	test('Dismissible alerts can be ... dismissed', async () => {
 		const withOverrides = { ...wbc };
 		withOverrides['@westpac/alert'] = {
 			CloseBtn: {
@@ -218,12 +217,136 @@ describe('Alert', () => {
 		const { container, getByTestId } = render(<SimpleAlert />);
 
 		expect(getByTestId('alert')).toBeVisible();
+		fireEvent.click(await getByTestId('alert-btn'));
+		await waitForElementToBeRemoved(getByTestId('alert'));
+	});
 
-		fireEvent.click(getByTestId('alert-btn'));
+	// We test every single override in sequence to make sure the overrides cascade correctly
+	['Alert', 'Body', 'CloseBtn', 'Icon', 'Heading'].map(override => {
+		let tokenOverrides;
+		let brandOverrides;
 
-		// we wait 100ms longer than the animation takes just to make sure
-		sleep(500).then(() => {
-			expect(getByTestId('alert')).not.toBeVisible();
+		// 1. we test the token overrides
+		test(`Token overrides ${override} applies styles, attributes and components correctly`, () => {
+			const styleText = 'token overrides added style';
+			const attributeText = 'token overrides added style';
+
+			const withOverrides = cloneDeep(wbc);
+			tokenOverrides = {
+				[override]: {
+					styles: styles => ({ ...styles, content: styleText }),
+					attributes: () => ({ 'data-attribute': attributeText }),
+					component: ({ state, ...rest }) => (
+						<div data-testid="token overrides alert-wrapper1">
+							<div data-testid="token overrides alert-wrapper2" {...rest} />
+						</div>
+					),
+				},
+			};
+			withOverrides.OVERRIDES['@westpac/alert'] = tokenOverrides;
+
+			const SimpleAlert = () => (
+				<GEL brand={withOverrides}>
+					<Alert dismissible heading="heading">
+						Our alert content
+					</Alert>
+				</GEL>
+			);
+
+			const { container, getByTestId } = render(<SimpleAlert />);
+
+			const content = window
+				.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
+				.getPropertyValue('content')
+				.toLowerCase();
+
+			// We just need to check if the items exist; toBeVisible works fine for that
+			expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
+			expect(getByTestId('token overrides alert-wrapper1')).toBeVisible();
+			expect(getByTestId('token overrides alert-wrapper2')).toBeVisible();
+			expect(content).toBe(attributeText);
+		});
+
+		// 2. we test the brand overrides
+		test(`Brand overrides ${override} applies styles, attributes and components correctly`, () => {
+			const styleText = 'brand overrides added style';
+			const attributeText = 'brand overrides added style';
+
+			const withOverrides = cloneDeep(wbc);
+			withOverrides.OVERRIDES['@westpac/alert'] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
+			brandOverrides = {
+				[override]: {
+					styles: styles => ({ ...styles, content: styleText }),
+					attributes: () => ({ 'data-attribute': attributeText }),
+					component: ({ state, ...rest }) => (
+						<div data-testid="brand overrides alert-wrapper1">
+							<div data-testid="brand overrides alert-wrapper2" {...rest} />
+						</div>
+					),
+				},
+			};
+			withOverrides['@westpac/alert'] = brandOverrides;
+
+			const SimpleAlert = () => (
+				<GEL brand={withOverrides}>
+					<Alert dismissible heading="heading">
+						Our alert content
+					</Alert>
+				</GEL>
+			);
+
+			const { container, getByTestId } = render(<SimpleAlert />);
+
+			const content = window
+				.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
+				.getPropertyValue('content')
+				.toLowerCase();
+
+			expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
+			expect(getByTestId('brand overrides alert-wrapper1')).toBeVisible();
+			expect(getByTestId('brand overrides alert-wrapper2')).toBeVisible();
+			expect(content).toBe(attributeText);
+		});
+
+		// 3. we test the component overrides
+		test(`Component overrides ${override} applies styles, attributes and components correctly`, () => {
+			const styleText = 'component overrides added style';
+			const attributeText = 'component overrides added style';
+
+			const withOverrides = cloneDeep(wbc);
+			withOverrides.OVERRIDES['@westpac/alert'] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
+			withOverrides['@westpac/alert'] = brandOverrides; // we apply the brand overrides which should be overridden by the component overrides
+			const overrides = {
+				[override]: {
+					styles: styles => ({ ...styles, content: styleText }),
+					attributes: () => ({ 'data-attribute': attributeText }),
+					component: ({ state, ...rest }) => (
+						<div data-testid="component overrides alert-wrapper1">
+							<div data-testid="component overrides alert-wrapper2" {...rest} />
+						</div>
+					),
+				},
+			};
+
+			const SimpleAlert = () => (
+				<GEL brand={withOverrides}>
+					<Alert dismissible heading="heading" overrides={overrides}>
+						Our alert content
+					</Alert>
+				</GEL>
+			);
+
+			const { container, getByTestId } = render(<SimpleAlert />);
+
+			const content = window
+				.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
+				.getPropertyValue('content')
+				.toLowerCase();
+
+			expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
+			expect(getByTestId('component overrides alert-wrapper1')).toBeVisible();
+			expect(getByTestId('component overrides alert-wrapper2')).toBeVisible();
+			expect(content).toBe(attributeText);
 		});
 	});
 });
