@@ -11,7 +11,7 @@ const headingStyles = () => {
 	const { SPACING } = useBrand();
 
 	return {
-		label: getLabel('Alert-heading'),
+		label: getLabel('alert-heading'),
 		marginBottom: SPACING(2),
 	};
 };

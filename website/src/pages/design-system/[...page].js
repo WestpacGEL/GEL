@@ -17,11 +17,10 @@ const ComponentWrapper = () => {
 	const router = useRouter();
 	const tabIndex = router.query.tab;
 	const path = router.query.page.join('/');
-	if (error) return 'error!';
+	if (error) return <Error statusCode={400} />;
 	if (!data) return null;
 	let currentComponent =
 		data.allPages.find(component => {
-			console.log({ c: component.url, p: `/${path}` });
 			return component.url === `/${path}`;
 		}) || '';
 
@@ -71,6 +70,9 @@ const Tabs = ({ component, tabIndex }) => {
 				...styles,
 				backgroundColor: '#fff',
 				borderBottom: `solid 1px ${COLORS.border}`,
+				position: 'sticky',
+				top: '65px',
+				zIndex: 1,
 			}),
 		},
 		TabButton: {
