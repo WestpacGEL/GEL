@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React, { Suspense, Fragment } from 'react';
 import { jsx } from '@westpac/core';
+import { Cell, Grid } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import preval from 'preval.macro';
@@ -101,16 +102,6 @@ export const CodeExample = {
 						/>
 						<span>Show code</span>
 					</label>
-					{/* <label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
-						<CheckboxPrimitive
-							checked={currentValue.showDemo}
-							tabIndex="0"
-							onChange={({ target }) => {
-								update({ showDemo: target.checked });
-							}}
-						/>
-						<span>Show demo</span>
-					</label> */}
 				</div>
 			</Fragment>
 		);
@@ -122,18 +113,22 @@ export const CodeExample = {
 		const loadCodeBlock = codeExamples[codeExample];
 
 		return (
-			<Suspense fallback={<p>Loading...</p>}>
-				{loadCodeBlock && typeof window !== 'undefined' ? (
-					<ShowCodeBlock
-						loadCodeBlock={loadCodeBlock}
-						context={context}
-						showCode={showCode}
-						showDemo={showDemo}
-					/>
-				) : (
-					'Example not found.'
-				)}
-			</Suspense>
+			<Grid columns={12}>
+				<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+					<Suspense fallback={<p>Loading...</p>}>
+						{loadCodeBlock && typeof window !== 'undefined' ? (
+							<ShowCodeBlock
+								loadCodeBlock={loadCodeBlock}
+								context={context}
+								showCode={showCode}
+								showDemo={showDemo}
+							/>
+						) : (
+							'Example not found.'
+						)}
+					</Suspense>
+				</Cell>
+			</Grid>
 		);
 	},
 };
