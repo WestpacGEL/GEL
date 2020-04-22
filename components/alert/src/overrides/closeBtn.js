@@ -20,7 +20,7 @@ const closeBtnStyles = () => {
 	const { SPACING } = useBrand();
 
 	return mq({
-		label: getLabel('Alert-closebtn'),
+		label: getLabel('alert-closebtn'),
 		color: 'inherit',
 		position: 'absolute',
 		zIndex: 1,

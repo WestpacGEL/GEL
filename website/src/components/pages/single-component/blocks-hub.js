@@ -23,6 +23,18 @@ const ApplyShortCodes = ({ text }) => {
 	});
 };
 
+const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
+	if (data.props) {
+		Object.keys(data.props).forEach(key => {
+			if (typeof data.props[key] === 'string') {
+				data.props[key] = ApplyShortCodes({ text: data.props[key] });
+			}
+		});
+	}
+
+	return <DynamicComponents data={data} {...rest} />;
+};
+
 const slateRenderer = (item, _editorValue) => {
 	return createReactRenderer([
 		// special serialiser for text
@@ -83,11 +95,9 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<Grid columns={12}>
+						<Grid columns={12} key={path}>
 							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
-								<p css={textStyle} key={path}>
-									{serializeChildren(node.nodes)}
-								</p>
+								<p css={textStyle}>{serializeChildren(node.nodes)}</p>
 							</Cell>
 						</Grid>
 					);
@@ -105,9 +115,9 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'unordered-list':
 					return (
-						<Grid columns={12}>
+						<Grid columns={12} key={path}>
 							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
-								<List css={textStyle} type="bullet" key={path}>
+								<List css={textStyle} type="bullet">
 									{serializeChildren(node.nodes)}
 								</List>
 							</Cell>
@@ -116,9 +126,9 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'ordered-list':
 					return (
-						<Grid columns={12}>
+						<Grid columns={12} key={path}>
 							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
-								<List css={textStyle} type="ordered" key={path}>
+								<List css={textStyle} type="ordered">
 									{serializeChildren(node.nodes)}
 								</List>
 							</Cell>
@@ -130,7 +140,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'dynamic-components': {
 					return (
-						<DynamicComponents
+						<DynamicComponentsWithShortCode
 							key={path}
 							data={node.data}
 							item={item}

@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import React, { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
+import { Fragment, useEffect, useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
+import { Body } from '@westpac/body';
 import { List, Item } from '@westpac/list';
-import Link from 'next/link';
 import { Cell, Grid } from '@westpac/grid';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
@@ -102,6 +102,7 @@ const TableOfContents = ({ content }) => {
 
 const PackageInfoTable = ({ item }) => {
 	if (!item) return null;
+
 	return (
 		<table
 			css={{
@@ -129,7 +130,16 @@ const PackageInfoTable = ({ item }) => {
 				</tr>
 				<tr>
 					<th>History</th>
-					<td>View Changes</td>
+					<td>
+						<Body>
+							<a
+								href={`https://github.com/WestpacGEL/GEL/blob/master/components/${item.packageName}/CHANGELOG.md`}
+								target="_blank"
+							>
+								View Changes
+							</a>
+						</Body>
+					</td>
 				</tr>
 				<tr>
 					<th>Install</th>
@@ -148,38 +158,36 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 	const { PACKS, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	return (
-		<Fragment>
-			<Grid
-				css={mq({
-					marginTop: ['2.625rem', '2.625rem', '5.625rem'],
-					paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
-					marginBottom: '3.75rem !important',
-					borderBottom: `1px solid ${COLORS.border}`,
-				})}
-			>
-				<Cell width={[12, 12, 7]}>
-					{description && description !== '' ? (
-						<p
-							css={mq({
-								...PACKS.lead,
-								marginTop: 0,
-								marginBottom: 0,
-								lineHeight: 2,
-								fontSize: ['1.125rem', '1.125rem', '1.5rem'],
-							})}
-						>
-							{description}
-						</p>
-					) : null}
-					{showPackageInfo && <PackageInfoTable item={item} />}
+		<Grid
+			css={mq({
+				marginTop: ['2.625rem', '2.625rem', '5.625rem'],
+				paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
+				marginBottom: '3.75rem !important',
+				borderBottom: `1px solid ${COLORS.border}`,
+			})}
+		>
+			<Cell width={[12, 12, 7]}>
+				{description && description !== '' ? (
+					<p
+						css={mq({
+							...PACKS.lead,
+							marginTop: 0,
+							marginBottom: 0,
+							lineHeight: 2,
+							fontSize: ['1.125rem', '1.125rem', '1.5rem'],
+						})}
+					>
+						{description}
+					</p>
+				) : null}
+				{showPackageInfo && <PackageInfoTable item={item} />}
+			</Cell>
+			{showTableOfContents && (
+				<Cell width={[12, 12, 4]} left={[1, 1, 9]}>
+					<TableOfContents content={_editorValue} />
 				</Cell>
-				{showTableOfContents && (
-					<Cell width={[12, 12, 4]} left={[1, 1, 9]}>
-						<TableOfContents content={_editorValue} />
-					</Cell>
-				)}
-			</Grid>
-		</Fragment>
+			)}
+		</Grid>
 	);
 };
 

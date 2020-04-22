@@ -14,6 +14,4 @@ const settings = {
 		},
 	},
 };
-console.log({ settings });
-
 module.exports = settings;

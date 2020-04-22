@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Crumb = ({ state, ...rest }) => <li {...rest} />;
 
@@ -8,6 +8,7 @@ const crumbStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('breadcrumb-crumb'),
 		boxSizing: 'border-box',
 		display: 'inline-block',
 		position: 'relative',

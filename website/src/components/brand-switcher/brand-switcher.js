@@ -1,10 +1,11 @@
 /** @jsx jsx */
-import { Fragment, useState, useRef, useEffect } from 'react';
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Select, { components } from 'react-select';
-
+import { BASE_URL } from '../../config';
 import { jsx, useBrand } from '@westpac/core';
+import { useBrandSwitcher } from '../providers/brand-switcher';
 import {
 	BOMLogo,
 	BSALogo,
@@ -17,9 +18,6 @@ import {
 	BTFGStackedLogo,
 	STGDragonLogo,
 } from '@westpac/symbol';
-import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
-
-import { useBrandSwitcher } from '../providers/brand-switcher';
 
 export const brandsMap = {
 	BOM: {
@@ -58,8 +56,8 @@ const Option = props => {
 	const Logo = brandsMap[props.data.value].smallLogo;
 	return (
 		<components.Option {...props}>
-			<Logo css={{ width: 30, height: 30, marginRight: 10 }} />
 			<div css={{ display: 'flex', alignItem: 'center' }}>{props.data.label}</div>
+			<Logo css={{ width: 30, height: 30, marginRight: 10 }} />
 		</components.Option>
 	);
 };
@@ -71,8 +69,8 @@ export const BrandSwitcher = () => {
 
 	return (
 		<Fragment>
-			<div css={{ height: 35, padding: SPACING(2) }}>
-				<Link href={`/?b=${brandName}`}>
+			<div css={{ height: 35, padding: `${SPACING(6)} ${SPACING(4)}` }}>
+				<Link href={'/'} as={`${BASE_URL}`}>
 					<a>
 						<Logo />
 					</a>
@@ -87,18 +85,49 @@ export const BrandSwitcher = () => {
 						...base,
 						display: 'flex',
 						alignItems: 'center',
-						justifyContent: 'start',
-						height: '100%',
+						justifyContent: 'space-between',
+						height: '60px',
 						padding: `${SPACING(2, true)} ${SPACING(4, true)}`,
+						borderBottom: `solid 1px ${COLORS.tints.muted30}`,
+						cursor: 'pointer',
 					}),
 					control: base => ({
 						...base,
 						borderRadius: 0,
 						border: 0,
 						borderBottom: `solid 1px ${COLORS.tints.muted30}`,
-						margin: `${SPACING(4, true)} ${SPACING(3, true)} 0 ${SPACING(3, true)}`,
+						height: '66px',
+						':hover': {
+							borderBottom: `solid 1px ${COLORS.tints.muted30}`,
+						},
 					}),
-					dropdownIndicator: base => ({ ...base, color: COLORS.primary }),
+					valueContainer: base => ({
+						...base,
+						display: 'flex',
+						alignItems: 'center',
+						paddingLeft: SPACING(4),
+					}),
+					placeholder: base => ({
+						...base,
+						color: COLORS.text,
+					}),
+					indicatorSeparator: base => ({
+						...base,
+						margin: '0',
+					}),
+					dropdownIndicator: base => ({
+						...base,
+						color: COLORS.primary,
+						width: '66px',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+						cursor: 'pointer',
+						svg: {
+							height: '24px',
+							width: 'auto',
+						},
+					}),
 				}}
 				onChange={data => {
 					setBrand(data.value);

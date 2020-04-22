@@ -11,14 +11,34 @@ import { LoadingIndicator } from '@arch-ui/loading';
 import { Container } from '@arch-ui/layout';
 import { Button } from '@arch-ui/button';
 import { FieldContainer, FieldLabel } from '@arch-ui/fields';
+const slugify = require('slugify');
+slugify.extend({ _: '-' });
+
+const getURL = d => {
+	if (d.url) {
+		if (d.url.charAt(0) !== '/') {
+			return `${BASE_URL}/${d.url}`;
+		}
+		return `${BASE_URL}${d.url}`;
+	}
+	if (d.packageName) {
+		return `/components/${slugify(resolvedData.packageName).toLowerCase()}`;
+	}
+	if (d.pageTitle) {
+		return `/${slugify(resolvedData.pageTitle).toLowerCase()}`;
+	}
+	return '';
+};
 
 const getInitialPageData = pages => {
 	if (!pages) return {};
+
 	const components = pages.map(d => {
 		const key = d.pageTitle ? d.pageTitle : d._label_;
+		let url = getURL(d);
 		return {
 			title: key,
-			path: `/components/${d.name.replace('_', '-')}`,
+			path: url,
 		};
 	});
 	return [
@@ -56,7 +76,6 @@ export default function Index() {
 				}
 				allPages {
 					id
-					name
 					_label_
 					pageTitle
 				}

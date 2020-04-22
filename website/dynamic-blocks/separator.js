@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
-const SeparatorComponent = props => {
+const SeparatorComponent = () => {
 	const { COLORS } = useBrand();
 
 	return (
@@ -32,7 +32,7 @@ const SeparatorComponent = props => {
 			<hr
 				css={{
 					border: 'none',
-					borderTop: `solid 1px #999`,
+					borderTop: `solid 1px ${COLORS.border}`,
 					margin: `0.75rem 0 0 !important`,
 				}}
 			/>

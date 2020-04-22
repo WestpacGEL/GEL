@@ -5,13 +5,12 @@ import { useRouter } from 'next/router';
 
 import { jsx, useBrand } from '@westpac/core';
 import { NavigationBlock } from './navigation-block';
-import { ROOT_PAGES } from '../../../config';
+import { ROOT_PAGES, BASE_PAGE } from '../../../config';
 import BackToGelSvg from './BackToGelSvg';
 
 export const Navigation = ({ items }) => {
 	const renderNavigationItems = items => {
 		const router = useRouter();
-
 		return items.map(item => {
 			if (item.children) {
 				let isCurrentBlock = false;
@@ -49,7 +48,7 @@ export const Navigation = ({ items }) => {
 				isCurrentChild = `/${page.join('/')}` === item.path;
 			}
 
-			let href = item.dynamicRoute;
+			let href = BASE_PAGE;
 			if (item.path.indexOf('://') !== -1 || ROOT_PAGES.indexOf(item.path) !== -1) {
 				href = item.path;
 			}
@@ -83,12 +82,12 @@ const LinkList = props => {
 			css={{
 				listStyle: 'none',
 				paddingLeft: SPACING(6),
-				paddingRight: SPACING(5),
+				paddingRight: SPACING(6),
 				margin: 0,
+				fontSize: '14px',
 				'> li a, > div button': {
 					fontWeight: 500,
 					color: 'rgba(0, 0, 0, 0.75)',
-					marginBottom: SPACING(3),
 					padding: 0,
 					cursor: 'pointer',
 				},
@@ -107,11 +106,13 @@ const LinkItem = ({ isCurrent, name, as, tag: Tag = 'li', children, href }) => {
 	const brandName = useRouter().query.b || '';
 	return (
 		<Tag>
-			<Link as={`${as}?b=${brandName}`} href={`${href}?b=${brandName}`} passHref>
+			<Link as={`${as}?b=${brandName}`} href={`${href}?b=${brandName}`}>
 				<a
 					style={{
 						cursor: 'pointer',
-						display: 'block',
+						display: 'flex',
+						alignItems: 'center',
+						height: '48px',
 						textDecoration: 'none',
 						color: isCurrent && COLORS.info,
 					}}

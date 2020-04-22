@@ -3,7 +3,8 @@ import { jsx, useBrand } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
-import { BASE_URL } from '../config';
+import { BASE_URL, BASE_PAGE } from '../config';
+
 import { SlateContent } from './pages/single-component/blocks-hub';
 import Link from 'next/link';
 
@@ -35,7 +36,10 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 
 const getURL = d => {
 	if (d.url) {
-		return d.url;
+		if (d.url.charAt(0) !== '/') {
+			return `${BASE_URL}/${d.url}`;
+		}
+		return `${BASE_URL}${d.url}`;
 	}
 	if (d.packageName) {
 		return `${BASE_URL}/components/${slugify(resolvedData.packageName).toLowerCase()}`;
@@ -76,7 +80,7 @@ export const RelatedInformation = ({ item }) => {
 					<Cell width={10} left={2}>
 						<Grid columns={10}>
 							{relatedPages && (
-								<Cell width={relatedInfo ? 4 : 12}>
+								<Cell width={[12, 12, relatedInfo ? 4 : 12]}>
 									<IconTitle icon={CubeIcon}>Components</IconTitle>
 									<ul css={{ margin: 0, padding: 0 }}>
 										{relatedPages.map(d => {
@@ -89,9 +93,9 @@ export const RelatedInformation = ({ item }) => {
 									</ul>
 								</Cell>
 							)}
-							{relatedInfo && relatedPages && <Cell width={1} />}
+							{relatedInfo && relatedPages && <Cell width={[0, 0, 1]} />}
 							{relatedInfo && (
-								<Cell width={relatedInfo ? 5 : 10}>
+								<Cell width={[12, 12, relatedInfo ? 5 : 10]}>
 									<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
 									<SlateContent
 										content={relatedInfo}
@@ -100,7 +104,6 @@ export const RelatedInformation = ({ item }) => {
 									/>
 								</Cell>
 							)}
-							<Cell width={1} />
 						</Grid>
 					</Cell>
 				</Grid>
@@ -119,7 +122,7 @@ const ComponentLink = ({ children, link }) => {
 				borderBottom: `solid 1px ${COLORS.border}`,
 			}}
 		>
-			<Link href={link}>
+			<Link href={BASE_PAGE} as={link}>
 				<a
 					css={{
 						cursor: 'pointer',

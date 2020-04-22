@@ -134,7 +134,7 @@ const Homepage = () => {
 						id="mc-embedded-subscribe-form"
 						name="mc-embedded-subscribe-form"
 						target="_blank"
-						novalidate=""
+						noValidate=""
 					>
 						<Grid
 							columns={12}
@@ -194,7 +194,7 @@ const Homepage = () => {
 
 export default Homepage;
 
-const DownloadAndLinksSection = ({ item }) => {
+const DownloadAndLinksSection = () => {
 	const { SPACING, COLORS } = useBrand();
 
 	return (
