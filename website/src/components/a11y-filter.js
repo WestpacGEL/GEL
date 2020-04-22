@@ -107,7 +107,7 @@ const VisionFilter = ({ children }) => {
 
 	return (
 		<Fragment>
-			<div css={{ display: 'flex', alignItems: 'center' }}>
+			<div css={{ display: 'flex', alignItems: 'center', margin: '1.5rem 0 0.75rem' }}>
 				<label htmlFor={id} css={{ marginRight: '1rem' }}>
 					Select filter
 				</label>
