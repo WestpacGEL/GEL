@@ -52,13 +52,11 @@ export const ColorSwatch = {
 	editor: ({ value, onChange }) => {
 		const { COLORS, BRAND } = useBrand();
 
-		const swatches = Object.entries({ ...COLORS, ...secondaryColors[BRAND] }).map(
-			([key, value]) => {
-				if (typeof value === 'string') {
-					return { value: value, label: key.charAt(0).toUpperCase() + key.slice(1) };
-				}
-			}
-		);
+		const swatches = Object.entries({ ...COLORS, ...secondaryColors[BRAND] })
+			.filter(([key, value]) => typeof value === 'string')
+			.map(([key, value]) => {
+				return { value: value, label: key.charAt(0).toUpperCase() + key.slice(1) };
+			});
 
 		return (
 			<Select
