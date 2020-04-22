@@ -54,6 +54,19 @@ describe('Alert', () => {
 		expect(container).not.toContainHTML('svg');
 	});
 
+	test('Can replace SVG icon', () => {
+		const ourIcon = () => <span data-testid="our icon">Our icon</span>;
+		const SimpleAlert = () => (
+			<GEL brand={wbc}>
+				<Alert icon={ourIcon}>Alert content</Alert>
+			</GEL>
+		);
+
+		const { container, getByTestId } = render(<SimpleAlert />);
+
+		expect(getByTestId('our icon')).toContainHTML('Our icon');
+	});
+
 	test('Adds the body content', () => {
 		const text = 'Our alert content';
 		const SimpleAlert = () => (
