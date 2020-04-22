@@ -17,7 +17,10 @@ const ComponentWrapper = () => {
 	const router = useRouter();
 	const tabIndex = router.query.tab;
 	const path = router.query.page.join('/');
-	if (error) return <Error statusCode={400} />;
+
+	if (error) {
+		return <Error statusCode={500} />;
+	}
 	if (!data) return null;
 	let currentComponent =
 		data.allPages.find(component => {
