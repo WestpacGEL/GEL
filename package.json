@@ -63,9 +63,13 @@
 		]
 	},
 	"jest": {
+		"displayName": "GEL3",
 		"testRegex": "\\.spec.js$",
 		"collectCoverageFrom": [
 			"components/*/src/*.js"
+		],
+		"setupFilesAfterEnv": [
+			"./helpers/tests/jest-extended.js"
 		],
 		"transformIgnorePatterns": [
 			"/node_modules/(?!@westpac/*).+\\.js$"
@@ -83,6 +87,8 @@
 		"@emotion/weak-memoize": "^0.2.5",
 		"@manypkg/cli": "^0.11.1",
 		"@preconstruct/cli": "^1.1.8",
+		"@testing-library/jest-dom": "^5.5.0",
+		"@testing-library/react": "^10.0.3",
 		"babel-core": "^7.0.0-bridge.0",
 		"babel-jest": "^25.1.0",
 		"babel-loader": "^8.0.6",
