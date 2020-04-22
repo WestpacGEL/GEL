@@ -10,13 +10,17 @@ import wbc from '@westpac/wbc';
 describe('Alert', () => {
 	beforeEach(() => {
 		jest.resetModules();
+
+		// we mock the error console so it doesn't mess up the output
 		console.error = jest.fn();
 	});
 
 	afterEach(() => {
+		// we reset the mock so we can count the calls in each tests
 		console.error.mockClear();
 	});
 
+	// This test is likely required in every single component
 	test('Errors when the component is rendered outside of <GEL/>', () => {
 		const text = 'Our alert content';
 		const LoneAlert = () => <Alert>{text}</Alert>;
@@ -38,7 +42,7 @@ describe('Alert', () => {
 		);
 
 		const { container } = render(<SimpleAlert />);
-
+		// we are just testing that svg exists and not what kind as that would be too specific
 		expect(container).toContainHTML('svg');
 	});
 
@@ -73,14 +77,14 @@ describe('Alert', () => {
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
 				<Alert>
-					Our <strong data-testid="stronger">{text}</strong> content
+					Our <strong>{text}</strong> content
 				</Alert>
 			</GEL>
 		);
 
 		const { container, getByTestId } = render(<SimpleAlert />);
-
-		expect(getByTestId('stronger')).toHaveTextContent(text);
+		// we're testing both, that strong is added and that it has children (and parsed correctly via DOM)
+		expect(container.querySelector('strong')).toHaveTextContent(text);
 	});
 
 	test('Adds a headline', () => {
@@ -112,6 +116,7 @@ describe('Alert', () => {
 		expect(container.querySelector('h6')).toHaveTextContent(text);
 	});
 
+	// here we test a bunch of things in a loop. This is a good way to automate tests easily and DRY
 	['success', 'info', 'warning', 'danger'].map(look => {
 		test(`${look.charAt(0).toUpperCase() + look.slice(1)} alert uses ${look} color`, () => {
 			const { COLORS } = wbc;
@@ -126,11 +131,19 @@ describe('Alert', () => {
 
 			const { container, getByTestId } = render(<SimpleAlert />);
 
+			// We test only that the right category of colors is used.
+			// We do not test exactly what color we use as that would be too noise and fail too often when designs change
+			// We also convert all colors with chroma so that colors that use shortcuts like #ff0 are converted to #ffff00 to make comparison easier
 			const allowedColors = [
 				...Object.entries(COLORS).filter(([name]) => name.includes(look)),
 				...Object.entries(COLORS.tints).filter(([name]) => name.includes(look)),
-			].map(([_, color]) => color.toLowerCase());
+			].map(([_, color]) =>
+				chroma(color)
+					.hex()
+					.toLowerCase()
+			);
 
+			// testing with testing id is saver than looking for html elements
 			const color = window
 				.getComputedStyle(getByTestId('alert'))
 				.getPropertyValue('color')
@@ -144,6 +157,7 @@ describe('Alert', () => {
 				.getPropertyValue('background-color')
 				.toLowerCase();
 
+			// We have to convert colors to hex as some colors are converted to rgb by the browser
 			expect(allowedColors.includes(chroma(color).hex())).toBe(true);
 			expect(allowedColors.includes(chroma(borderColor).hex())).toBe(true);
 			expect(allowedColors.includes(chroma(backgroundColor).hex())).toBe(true);
@@ -151,6 +165,7 @@ describe('Alert', () => {
 		});
 	});
 
+	// We test system separately as border color and text color is different
 	test('System alert uses system color', () => {
 		const { COLORS } = wbc;
 
@@ -206,6 +221,7 @@ describe('Alert', () => {
 
 		fireEvent.click(getByTestId('alert-btn'));
 
+		// we wait 100ms longer than the animation takes just to make sure
 		sleep(500).then(() => {
 			expect(getByTestId('alert')).not.toBeVisible();
 		});
