@@ -160,7 +160,8 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 	return (
 		<Grid
 			css={mq({
-				marginTop: ['2.625rem', '2.625rem', '5.625rem'],
+				gridGap: '1.5rem',
+				marginTop: ['1.875rem', '1.875rem', '5.625rem'],
 				paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
 				marginBottom: '3.75rem !important',
 				borderBottom: `1px solid ${COLORS.border}`,
