@@ -17,7 +17,7 @@ function overridesTest({ name, overrides, Component }) {
 			let brandOverrides;
 
 			// 1. we test the token overrides
-			test(`Token overrides ${override} applies styles, attributes and components correctly`, () => {
+			test(`${override} - Token overrides applies styles, attributes and components correctly`, () => {
 				const styleText = '"token overrides added style"';
 				const attributeText = 'token overrides added attributes';
 				const wrapper1 = 'token overrides wrapper 1';
@@ -58,7 +58,7 @@ function overridesTest({ name, overrides, Component }) {
 			});
 
 			// 2. we test the brand overrides
-			test(`Brand overrides ${override} applies styles, attributes and components correctly`, () => {
+			test(`${override} - Brand overrides applies styles, attributes and components correctly`, () => {
 				const styleText = '"brand overrides added style"';
 				const attributeText = 'brand overrides added attributes';
 				const wrapper1 = 'brand overrides wrapper 1';
@@ -98,7 +98,7 @@ function overridesTest({ name, overrides, Component }) {
 			});
 
 			// 3.
-			test(`Brand overrides ${override} override token-overrides`, () => {
+			test(`${override} - Brand overrides override token-overrides`, () => {
 				const styleText = '"brand overrides added style"';
 				const attributeText = 'brand overrides added attributes';
 				const wrapper1 = 'brand overrides wrapper 1';
@@ -139,7 +139,7 @@ function overridesTest({ name, overrides, Component }) {
 			});
 
 			// 4. we test the component overrides
-			test(`Component overrides ${override} applies styles, attributes and components correctly`, () => {
+			test(`${override} - Component overrides applies styles, attributes and components correctly`, () => {
 				const styleText = '"component overrides added style"';
 				const attributeText = 'component overrides added attributes';
 				const wrapper1 = 'component overrides wrapper 1';
@@ -178,7 +178,7 @@ function overridesTest({ name, overrides, Component }) {
 			});
 
 			// 5.
-			test(`Component overrides ${override} override token-overrides`, () => {
+			test(`${override} - Component overrides override token-overrides`, () => {
 				const styleText = '"component overrides added style"';
 				const attributeText = 'component overrides added attributes';
 				const wrapper1 = 'component overrides wrapper 1';
@@ -218,7 +218,7 @@ function overridesTest({ name, overrides, Component }) {
 			});
 
 			// 6.
-			test(`Component overrides ${override} override token-overrides and brand-override`, () => {
+			test(`${override} - Component overrides override token-overrides and brand-override`, () => {
 				const styleText = '"component overrides added style"';
 				const attributeText = 'component overrides added attributes';
 				const wrapper1 = 'component overrides wrapper 1';
