@@ -95,7 +95,7 @@ const Tabs = ({ component, tabIndex }) => {
 		Panel: {
 			styles: styles => ({
 				...styles,
-				padding: `${SPACING(4)} 0 0`,
+				padding: 0,
 				margin: '0 auto',
 				border: 'none',
 			}),

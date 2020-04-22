@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import React, { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
 import Link from 'next/link';
@@ -145,43 +145,40 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS, LAYOUT, SPACING } = useBrand();
+	const { PACKS, COLORS } = useBrand();
+	const mq = useMediaQuery();
 	return (
 		<Fragment>
-			<Grid css={{ marginTop: SPACING(12) }}>
-				<Cell width={[12, 12, 12, 7]}>
+			<Grid
+				css={mq({
+					marginTop: ['2.625rem', '2.625rem', '5.625rem'],
+					paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
+					marginBottom: '3.75rem !important',
+					borderBottom: `1px solid ${COLORS.border}`,
+				})}
+			>
+				<Cell width={[12, 12, 7]}>
 					{description && description !== '' ? (
 						<p
-							css={{
+							css={mq({
 								...PACKS.lead,
 								marginTop: 0,
+								marginBottom: 0,
 								lineHeight: 2,
-								fontSize: '24px',
-								[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-									fontSize: '18px',
-								},
-							}}
+								fontSize: ['1.125rem', '1.125rem', '1.5rem'],
+							})}
 						>
 							{description}
 						</p>
 					) : null}
 					{showPackageInfo && <PackageInfoTable item={item} />}
 				</Cell>
-				<Cell width={[0, 0, 0, 1]} />
 				{showTableOfContents && (
-					<Cell width={[12, 12, 12, 4]}>
+					<Cell width={[12, 12, 4]} left={[1, 1, 9]}>
 						<TableOfContents content={_editorValue} />
 					</Cell>
 				)}
 			</Grid>
-			<hr
-				css={{
-					border: 'none',
-					borderTop: `solid 1px #D7D2CB`,
-					margin: `40px -1000px`,
-					paddingBottom: '40px',
-				}}
-			/>
 		</Fragment>
 	);
 };
