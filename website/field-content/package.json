@@ -1,6 +1,7 @@
 {
 	"name": "@westpac/field-content",
 	"description": "A block-based content field for KeystoneJS",
+	"private": true,
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/website/field-content",
 	"version": "5.4.3",
 	"author": "The KeystoneJS Development Team",
