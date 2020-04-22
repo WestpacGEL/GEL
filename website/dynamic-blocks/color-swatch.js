@@ -50,9 +50,9 @@ const Component = ({ colors }) => (
 // Separator
 export const ColorSwatch = {
 	editor: ({ value, onChange }) => {
-		const { COLORS, BRAND } = useBrand();
+		const { COLORS } = useBrand();
 
-		const swatches = Object.entries({ ...COLORS, ...secondaryColors[BRAND] })
+		const swatches = Object.entries({ ...COLORS, ...secondaryColors })
 			.filter(([key, value]) => typeof value === 'string')
 			.map(([key, value]) => {
 				return { value: value, label: key.charAt(0).toUpperCase() + key.slice(1) };
