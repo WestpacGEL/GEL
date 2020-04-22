@@ -3,37 +3,31 @@ import chroma from 'chroma-js';
 import cloneDeep from 'lodash.clonedeep';
 import { render, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 
-import { ErrorBoundary } from '../../../../helpers/tests/error-boundary.js';
+import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
+import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import { Alert } from '@westpac/alert';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 
+// The default tests every component should run
+overridesTest({
+	name: 'alert', // the name has to be the package name without '@westpac/' scope
+	overrides: ['Alert', 'Body', 'CloseBtn', 'Icon', 'Heading'], // every single override root key
+	Component: props => (
+		<Alert dismissible heading="heading" {...props}>
+			Alert content
+		</Alert>
+	), // the component with all components rendered
+});
+
+// another default test to check that the component errors when outside of GEL and renders when inside
+nestingTest({
+	name: 'alert',
+	Component: props => <Alert {...props} />,
+});
+
+// Component specific tests
 describe('Alert', () => {
-	beforeEach(() => {
-		jest.resetModules();
-
-		// we mock the error console so it doesn't mess up the output
-		console.error = jest.fn();
-	});
-
-	afterEach(() => {
-		// we reset the mock so we can count the calls in each tests
-		console.error.mockClear();
-	});
-
-	// This test is likely required in every single component
-	test('Errors when the component is rendered outside of <GEL/>', () => {
-		const text = 'Our alert content';
-		const LoneAlert = () => <Alert>{text}</Alert>;
-
-		const { container } = render(<LoneAlert />, { wrapper: ErrorBoundary });
-
-		expect(container).toHaveTextContent(
-			/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
-		);
-		expect(console.error).toHaveBeenCalledTimes(2);
-	});
-
 	test('Comes with an SVG icon', () => {
 		const text = 'Our alert content';
 		const SimpleAlert = () => (
@@ -219,134 +213,5 @@ describe('Alert', () => {
 		expect(getByTestId('alert')).toBeVisible();
 		fireEvent.click(await getByTestId('alert-btn'));
 		await waitForElementToBeRemoved(getByTestId('alert'));
-	});
-
-	// We test every single override in sequence to make sure the overrides cascade correctly
-	['Alert', 'Body', 'CloseBtn', 'Icon', 'Heading'].map(override => {
-		let tokenOverrides;
-		let brandOverrides;
-
-		// 1. we test the token overrides
-		test(`Token overrides ${override} applies styles, attributes and components correctly`, () => {
-			const styleText = 'token overrides added style';
-			const attributeText = 'token overrides added style';
-
-			const withOverrides = cloneDeep(wbc);
-			tokenOverrides = {
-				[override]: {
-					styles: styles => ({ ...styles, content: styleText }),
-					attributes: () => ({ 'data-attribute': attributeText }),
-					component: ({ state, ...rest }) => (
-						<div data-testid="token overrides alert-wrapper1">
-							<div data-testid="token overrides alert-wrapper2" {...rest} />
-						</div>
-					),
-				},
-			};
-			withOverrides.OVERRIDES['@westpac/alert'] = tokenOverrides;
-
-			const SimpleAlert = () => (
-				<GEL brand={withOverrides}>
-					<Alert dismissible heading="heading">
-						Our alert content
-					</Alert>
-				</GEL>
-			);
-
-			const { container, getByTestId } = render(<SimpleAlert />);
-
-			const content = window
-				.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
-				.getPropertyValue('content')
-				.toLowerCase();
-
-			// We just need to check if the items exist; toBeVisible works fine for that
-			expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
-			expect(getByTestId('token overrides alert-wrapper1')).toBeVisible();
-			expect(getByTestId('token overrides alert-wrapper2')).toBeVisible();
-			expect(content).toBe(attributeText);
-		});
-
-		// 2. we test the brand overrides
-		test(`Brand overrides ${override} applies styles, attributes and components correctly`, () => {
-			const styleText = 'brand overrides added style';
-			const attributeText = 'brand overrides added style';
-
-			const withOverrides = cloneDeep(wbc);
-			withOverrides.OVERRIDES['@westpac/alert'] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
-			brandOverrides = {
-				[override]: {
-					styles: styles => ({ ...styles, content: styleText }),
-					attributes: () => ({ 'data-attribute': attributeText }),
-					component: ({ state, ...rest }) => (
-						<div data-testid="brand overrides alert-wrapper1">
-							<div data-testid="brand overrides alert-wrapper2" {...rest} />
-						</div>
-					),
-				},
-			};
-			withOverrides['@westpac/alert'] = brandOverrides;
-
-			const SimpleAlert = () => (
-				<GEL brand={withOverrides}>
-					<Alert dismissible heading="heading">
-						Our alert content
-					</Alert>
-				</GEL>
-			);
-
-			const { container, getByTestId } = render(<SimpleAlert />);
-
-			const content = window
-				.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
-				.getPropertyValue('content')
-				.toLowerCase();
-
-			expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
-			expect(getByTestId('brand overrides alert-wrapper1')).toBeVisible();
-			expect(getByTestId('brand overrides alert-wrapper2')).toBeVisible();
-			expect(content).toBe(attributeText);
-		});
-
-		// 3. we test the component overrides
-		test(`Component overrides ${override} applies styles, attributes and components correctly`, () => {
-			const styleText = 'component overrides added style';
-			const attributeText = 'component overrides added style';
-
-			const withOverrides = cloneDeep(wbc);
-			withOverrides.OVERRIDES['@westpac/alert'] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
-			withOverrides['@westpac/alert'] = brandOverrides; // we apply the brand overrides which should be overridden by the component overrides
-			const overrides = {
-				[override]: {
-					styles: styles => ({ ...styles, content: styleText }),
-					attributes: () => ({ 'data-attribute': attributeText }),
-					component: ({ state, ...rest }) => (
-						<div data-testid="component overrides alert-wrapper1">
-							<div data-testid="component overrides alert-wrapper2" {...rest} />
-						</div>
-					),
-				},
-			};
-
-			const SimpleAlert = () => (
-				<GEL brand={withOverrides}>
-					<Alert dismissible heading="heading" overrides={overrides}>
-						Our alert content
-					</Alert>
-				</GEL>
-			);
-
-			const { container, getByTestId } = render(<SimpleAlert />);
-
-			const content = window
-				.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
-				.getPropertyValue('content')
-				.toLowerCase();
-
-			expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
-			expect(getByTestId('component overrides alert-wrapper1')).toBeVisible();
-			expect(getByTestId('component overrides alert-wrapper2')).toBeVisible();
-			expect(content).toBe(attributeText);
-		});
 	});
 });
