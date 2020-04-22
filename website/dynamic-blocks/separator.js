@@ -6,7 +6,7 @@ const SeparatorComponent = () => {
 	const { COLORS } = useBrand();
 
 	return (
-		<Fragment>
+		<div css={{ margin: '3.75rem 0 !important' }}>
 			<button
 				css={{
 					display: 'block',
@@ -15,7 +15,7 @@ const SeparatorComponent = () => {
 					cursor: 'pointer',
 					textAlign: 'right',
 					width: '100%',
-					paddingTop: '20px',
+					marginBottom: '0 !important',
 				}}
 				onClick={e => {
 					e.preventDefault();
@@ -29,8 +29,14 @@ const SeparatorComponent = () => {
 			>
 				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
 			</button>
-			<hr css={{ border: 'none', borderTop: `solid 1px #999`, margin: 0 }} />
-		</Fragment>
+			<hr
+				css={{
+					border: 'none',
+					borderTop: `solid 1px ${COLORS.border}`,
+					margin: `0.75rem 0 0 !important`,
+				}}
+			/>
+		</div>
 	);
 };
 

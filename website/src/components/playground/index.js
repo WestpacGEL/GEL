@@ -45,6 +45,8 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 					border: 'none',
 					borderRadius: 0,
 					margin: 0,
+					backgroundColor: '#fff',
+					...(showCode && { paddingBottom: '0 !important' }),
 				}}
 			>
 				<div
@@ -77,9 +79,9 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 						>
 							<span css={{ marginRight: SPACING(1) }}>Code</span>{' '}
 							{codeIsOpen ? (
-								<ExpandMoreIcon size="small" color={COLORS.primary} />
+								<ExpandMoreIcon size="medium" color={COLORS.primary} />
 							) : (
-								<ExpandLessIcon size="small" color={COLORS.primary} />
+								<ExpandLessIcon size="medium" color={COLORS.primary} />
 							)}
 						</Button>
 					) : null}
