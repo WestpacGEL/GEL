@@ -27,7 +27,7 @@ nestingTest({
 });
 
 // Component specific tests
-describe('Alert', () => {
+describe('Alert specific tests', () => {
 	test('Comes with an SVG icon', () => {
 		const text = 'Our alert content';
 		const SimpleAlert = () => (
