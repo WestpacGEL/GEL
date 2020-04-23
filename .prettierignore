@@ -7,3 +7,4 @@ components/**/cypress/
 docs/
 GEL.json
 components/core/blender/jquery.js
+coverage/*

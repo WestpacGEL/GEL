@@ -15,7 +15,7 @@ import { ALL_PAGES } from '../../../graphql';
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
 	const router = useRouter();
-	const tabIndex = router.query.tab;
+	const tabName = router.query.tab;
 	const path = router.query.page.join('/');
 
 	if (error) {
@@ -28,38 +28,39 @@ const ComponentWrapper = () => {
 		}) || '';
 
 	if (currentComponent) {
-		return <Component component={currentComponent} tabIndex={tabIndex} />;
+		return <Component component={currentComponent} tabName={tabName} />;
 	} else {
 		return <Error statusCode={404} />;
 	}
 };
 
-const Component = ({ component, tabIndex }) => {
+const Component = ({ component, tabName }) => {
 	const { pageTitle, version } = component;
 
 	return (
 		<Fragment>
 			<PageHeader name={pageTitle} version={version} />
-			<Tabs component={component} tabIndex={tabIndex} />
+			<Tabs component={component} tabName={tabName} />
 			<Footer />
 		</Fragment>
 	);
 };
 
-const Tabs = ({ component, tabIndex }) => {
+const Tabs = ({ component, tabName }) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const router = useRouter();
 	const brandName = router.query.b || '';
+	const tabMap = ['design', 'accessibility', 'code'];
 
 	const onOpen = useCallback(({ idx: tabIdx }) => {
-		if (tabIdx === tabIndex) return;
 		window.history.pushState(
 			null,
 			'',
-			`${router.asPath.split('?')[0]}?b=${brandName}&tab=${tabIdx}`
+			`${router.asPath.split('?')[0]}?b=${brandName}&tab=${tabMap[tabIdx]}`
 		);
 	});
+
 	const tabOverrides = {
 		Tabcordion: {
 			styles: styles => ({
@@ -73,9 +74,10 @@ const Tabs = ({ component, tabIndex }) => {
 				...styles,
 				backgroundColor: '#fff',
 				borderBottom: `solid 1px ${COLORS.border}`,
+				borderLeft: `solid 1px ${COLORS.border}`,
 				position: 'sticky',
 				top: '65px',
-				zIndex: 1,
+				zIndex: 5,
 			}),
 		},
 		TabButton: {
@@ -140,8 +142,14 @@ const Tabs = ({ component, tabIndex }) => {
 			</Tab>
 		);
 	}
+
 	return (
-		<Tabcordion mode="tabs" openTab={+tabIndex || 0} onOpen={onOpen} overrides={tabOverrides}>
+		<Tabcordion
+			mode="tabs"
+			openTab={tabName ? tabMap.indexOf(tabName) : 0}
+			onOpen={onOpen}
+			overrides={tabOverrides}
+		>
 			{tabs}
 		</Tabcordion>
 	);

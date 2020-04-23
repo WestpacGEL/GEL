@@ -1,10 +1,11 @@
 /** @jsx jsx */
-import React, { Fragment } from 'react'; // Needed for within Keystone
+import React from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
 import Select from '@arch-ui/select';
 import chroma from 'chroma-js';
-
 import { secondaryColors } from '../src/secondary-colors.js';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 // Recursively render swatches
 const Swatch = ({ color, name }) => {
@@ -13,14 +14,8 @@ const Swatch = ({ color, name }) => {
 
 	const [r, g, b] = chroma(color).rgb();
 	return (
-		<div css={{ margin: SPACING(1) }}>
-			<div
-				css={{
-					background: color,
-					width: SPACING(40),
-					height: SPACING(15),
-				}}
-			/>
+		<div>
+			<div css={{ background: color, height: SPACING(15) }} />
 			<div
 				css={{
 					padding: SPACING(1),
@@ -36,16 +31,6 @@ const Swatch = ({ color, name }) => {
 		</div>
 	);
 };
-
-const Component = ({ colors }) => (
-	<Fragment>
-		<div css={{ display: 'flex', flexWrap: 'wrap' }}>
-			{colors.map(color => (
-				<Swatch key={color.value} color={color.value} name={color.label} />
-			))}
-		</div>
-	</Fragment>
-);
 
 // Separator
 export const ColorSwatch = {
@@ -70,5 +55,18 @@ export const ColorSwatch = {
 			/>
 		);
 	},
-	component: Component,
+	component: ({ colors }) => {
+		const { COLORS } = useBrand();
+		return (
+			<Container css={blocksContainerStyle}>
+				<Grid columns={12} css={blocksGridStyle}>
+					{colors.map(color => (
+						<Cell width={[6, 4, 4, 3]}>
+							<Swatch key={color.value} color={color.value} name={color.label} />
+						</Cell>
+					))}
+				</Grid>
+			</Container>
+		);
+	},
 };
