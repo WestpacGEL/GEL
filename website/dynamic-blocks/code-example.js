@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import React, { Suspense, Fragment } from 'react';
 import { jsx } from '@westpac/core';
-import { Cell, Grid } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import preval from 'preval.macro';
 import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 let data = preval`
 const fs = require('fs');
@@ -113,22 +114,24 @@ export const CodeExample = {
 		const loadCodeBlock = codeExamples[codeExample];
 
 		return (
-			<Grid columns={12}>
-				<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-					<Suspense fallback={<p>Loading...</p>}>
-						{loadCodeBlock && typeof window !== 'undefined' ? (
-							<ShowCodeBlock
-								loadCodeBlock={loadCodeBlock}
-								context={context}
-								showCode={showCode}
-								showDemo={showDemo}
-							/>
-						) : (
-							'Example not found.'
-						)}
-					</Suspense>
-				</Cell>
-			</Grid>
+			<Container css={blocksContainerStyle}>
+				<Grid columns={12} css={blocksGridStyle}>
+					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+						<Suspense fallback={<p>Loading...</p>}>
+							{loadCodeBlock && typeof window !== 'undefined' ? (
+								<ShowCodeBlock
+									loadCodeBlock={loadCodeBlock}
+									context={context}
+									showCode={showCode}
+									showDemo={showDemo}
+								/>
+							) : (
+								'Example not found.'
+							)}
+						</Suspense>
+					</Cell>
+				</Grid>
+			</Container>
 		);
 	},
 };

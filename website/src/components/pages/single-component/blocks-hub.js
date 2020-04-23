@@ -1,12 +1,14 @@
 /** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
-import { Cell, Grid } from '@westpac/grid';
+import { Cell, Grid, Container } from '@westpac/grid';
+import { Body } from '@westpac/body';
 import React from 'react';
 import createReactRenderer from './react-renderer';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
 import dynamic from 'next/dynamic';
 import { getShortCodes } from '../../../shortcodes';
+import { blocksGridStyle, blocksContainerStyle } from '../../_utils';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
@@ -53,10 +55,12 @@ const slateRenderer = (item, _editorValue) => {
 				switch (node.type) {
 					case 'link':
 						return (
-							<a href={node.data.href} key={path} target="_blank">
-								{' '}
-								{serializeChildren(node.nodes)}
-							</a>
+							<Body>
+								<a href={node.data.href} key={path} target="_blank">
+									{' '}
+									{serializeChildren(node.nodes)}
+								</a>
+							</Body>
 						);
 				}
 			}
@@ -95,13 +99,18 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<Grid columns={12} key={path}>
-							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
-								<p css={textStyle}>{serializeChildren(node.nodes)}</p>
-							</Cell>
-						</Grid>
+						<Container css={blocksContainerStyle}>
+							<Grid columns={12} key={path} css={blocksGridStyle}>
+								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
+									<Body>
+										<p css={textStyle}>{serializeChildren(node.nodes)}</p>
+									</Body>
+								</Cell>
+							</Grid>
+						</Container>
 					);
 
+				// the below heading has been replaced with a dynamic block for headings.
 				case 'heading':
 					const headersToOverride = [2, 3, 4];
 					const headingSize = headersToOverride.includes(node.data.size)
@@ -115,24 +124,28 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'unordered-list':
 					return (
-						<Grid columns={12} key={path}>
-							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
-								<List css={textStyle} type="bullet">
-									{serializeChildren(node.nodes)}
-								</List>
-							</Cell>
-						</Grid>
+						<Container css={blocksContainerStyle}>
+							<Grid columns={12} key={path} css={blocksGridStyle}>
+								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
+									<List css={textStyle} type="bullet">
+										{serializeChildren(node.nodes)}
+									</List>
+								</Cell>
+							</Grid>
+						</Container>
 					);
 
 				case 'ordered-list':
 					return (
-						<Grid columns={12} key={path}>
-							<Cell width={[12, 10, 10, 8]} left={[1, 2, 2, 3]}>
-								<List css={textStyle} type="ordered">
-									{serializeChildren(node.nodes)}
-								</List>
-							</Cell>
-						</Grid>
+						<Container css={blocksContainerStyle}>
+							<Grid columns={12} key={path} css={blocksGridStyle}>
+								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
+									<List css={textStyle} type="ordered">
+										{serializeChildren(node.nodes)}
+									</List>
+								</Cell>
+							</Grid>
+						</Container>
 					);
 
 				case 'list-item':
