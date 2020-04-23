@@ -61,7 +61,7 @@ function TokensPage() {
 								<Option>Select all</Option>
 							</FormCheck>
 
-							<FormCheck type="checkbox" name="packages[]">
+							<ul>
 								{Object.keys(GEL.components)
 									.filter(name => GEL.components[name].blender)
 									.map((name, i) => {
@@ -69,31 +69,33 @@ function TokensPage() {
 										const niceName = justName.charAt(0).toUpperCase() + justName.slice(1);
 
 										return (
-											<Fragment key={i}>
-												<Option value={GEL.components[name].name}>
-													<Fragment>
-														<span
-															css={{
-																...TYPE.bodyFont[700],
-																fontSize: '1.1428571429rem',
-															}}
-														>
-															{niceName}
-														</span>
-														<p
-															css={{
-																margin: 0,
-															}}
-														>
-															{GEL.components[name].description}
-														</p>
-													</Fragment>
-												</Option>
+											<li key={i}>
+												<FormCheck type="checkbox" name="packages[]">
+													<Option value={GEL.components[name].name}>
+														<Fragment>
+															<span
+																css={{
+																	...TYPE.bodyFont[700],
+																	fontSize: '1.1428571429rem',
+																}}
+															>
+																{niceName}
+															</span>
+															<p
+																css={{
+																	margin: 0,
+																}}
+															>
+																{GEL.components[name].description}
+															</p>
+														</Fragment>
+													</Option>
+												</FormCheck>
 												<a href={`${BASE_URL}/components/${niceName}`}>View {niceName}</a>
-											</Fragment>
+											</li>
 										);
 									})}
-							</FormCheck>
+							</ul>
 						</fieldset>
 
 						<fieldset>
