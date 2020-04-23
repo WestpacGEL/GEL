@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react'; // Needed for within Keystone
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
 import { Heading } from '@westpac/heading';
 import PropTypes from '../../GEL.json';
@@ -169,6 +169,8 @@ function PTable({ data, caption }) {
 }
 
 const Component = ({ item }) => {
+	const mq = useMediaQuery();
+	const { SPACING } = useBrand();
 	const tableData = Object.keys(PropTypes.components[item.packageName]).map(key => {
 		const { overrides, ...normalProps } = PropTypes.components[item.packageName][key].propTypes;
 		return {
@@ -180,7 +182,26 @@ const Component = ({ item }) => {
 
 	return (
 		<Container css={{ backgroundColor: '#fff', ...blocksContainerStyle }}>
-			<Grid columns={12} css={blocksGridStyle}>
+			<Grid
+				css={mq({
+					...blocksGridStyle,
+					marginTop: [SPACING(6), SPACING(6), SPACING(10)],
+				})}
+				columns={12}
+			>
+				<Cell width={12}>
+					<Heading tag="h2" size={5}>
+						Props
+					</Heading>
+				</Cell>
+			</Grid>
+			<Grid
+				columns={12}
+				css={mq({
+					...blocksGridStyle,
+					marginTop: [SPACING(3), SPACING(3), SPACING(6)],
+				})}
+			>
 				<Cell width={12}>
 					{tableData.map(({ overrideProps, normalProps, name }) => {
 						return (
