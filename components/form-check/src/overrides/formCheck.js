@@ -2,9 +2,13 @@
 
 import { jsx } from '@westpac/core';
 
-const FormCheck = ({ state, ...rest }) => <div {...rest} />;
+const FormCheck = ({ state, ...rest }) => <ul {...rest} />;
 
-const formCheckStyles = () => ({});
+const formCheckStyles = () => ({
+	listStyle: 'none',
+	padding: 0,
+	margin: 0,
+});
 
 const formCheckAttributes = () => null;
 
