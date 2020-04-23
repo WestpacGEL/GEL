@@ -10,10 +10,10 @@ import Link from 'next/link';
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
 	return (
-		<div>
+		<Container css={blocksContainerStyle}>
 			{title && (
-				<Grid css={{ marginBottom: SPACING(2) }}>
-					<Cell width={10} left={2}>
+				<Grid columns={12} css={{ ...blocksContainerStyle, marginBottom: SPACING(2) }}>
+					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 						<Heading tag="h2" size={5}>
 							{title}
 						</Heading>
@@ -23,15 +23,13 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 			{blocks ? (
 				<SlateContent content={blocks} item={item} />
 			) : (
-				<Container css={blocksContainerStyle}>
-					<Grid columns={12} css={blocksGridStyle}>
-						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-							<p>No documentation specified for this section.</p>
-						</Cell>
-					</Grid>
-				</Container>
+				<Grid columns={12} css={blocksGridStyle}>
+					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+						<p>No documentation specified for this section.</p>
+					</Cell>
+				</Grid>
 			)}
-		</div>
+		</Container>
 	);
 };
 
