@@ -36,11 +36,20 @@ function Example({ brand }) {
 			</Alert>
 
 			<h2>Visibility Controlled via props and onClose</h2>
-			<Button onClick={() => setOpen(!open)} data-testing="toggle">{open ? 'Hide' : 'Show'}</Button>
+			<Button onClick={() => setOpen(!open)} data-testing="toggle">
+				{open ? 'Hide' : 'Show'}
+			</Button>
 			<br />
 			<br />
-			<Alert open={open} look="success" dismissible onClose={() => setOpen(false)} data-testing="alert-state">
-				<strong>Well done!</strong> This alert is controlled by state and has a <a href="#">Link</a>.
+			<Alert
+				open={open}
+				look="success"
+				dismissible
+				onClose={() => setOpen(false)}
+				data-testing="alert-state"
+			>
+				<strong>Well done!</strong> This alert is controlled by state and has a <a href="#">Link</a>
+				.
 			</Alert>
 		</GEL>
 	);
