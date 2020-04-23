@@ -35,7 +35,8 @@ const closeBtnStyles = () => {
 };
 
 const closeBtnAttributes = () => ({
-	'data-js': 'alert-closebtn',
+	'data-js': 'alert-closeBtn',
+	'data-testing': 'alert-closeBtn',
 });
 
 export const defaultCloseBtn = {

@@ -3,12 +3,13 @@
 import { Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import { Heading as WestpacHeading } from '@westpac/heading';
-import { Cell, Grid } from '@westpac/grid';
 import { Body } from '@westpac/body';
+import { Cell, Grid, Container } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
+import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils';
 
 const Component = ({ heading, size, level, addTableContent, indent = true, subText, text }) => {
 	const id = heading.replace(/ /g, '-').toLowerCase();
@@ -16,28 +17,34 @@ const Component = ({ heading, size, level, addTableContent, indent = true, subTe
 	const indentLeft = indent ? [1, 1, 1, 2, 2] : 0;
 
 	return (
-		<Grid columns={12}>
-			<Cell width={indentWidth} left={indentLeft}>
-				<WestpacHeading
-					id={id}
-					tabIndex="-1"
-					tag={level}
-					size={size}
-					{...(addTableContent && { 'data-toc': true })}
-					overrides={{
-						Heading: {
-							styles: styles => ({
-								...styles,
-								scrollMarginTop: '75px',
-							}),
-						},
-					}}
-				>
-					{heading}
-				</WestpacHeading>
-				<Body>{subText && text && <p css={{ lineHeight: 2 }}>{text}</p>}</Body>
-			</Cell>
-		</Grid>
+		<Container css={blocksContainerStyle}>
+			<Grid columns={12} css={blocksGridStyle}>
+				<Cell width={indentWidth} left={indentLeft}>
+					<WestpacHeading
+						id={id}
+						tabIndex="-1"
+						tag={level}
+						size={size}
+						{...(addTableContent && { 'data-toc': true })}
+						overrides={{
+							Heading: {
+								styles: styles => ({
+									...styles,
+									scrollMarginTop: '75px',
+								}),
+							},
+						}}
+					>
+						{heading}
+					</WestpacHeading>
+					{subText && text && (
+						<Body>
+							<p css={{ lineHeight: 2 }}>{text}</p>
+						</Body>
+					)}
+				</Cell>
+			</Grid>
+		</Container>
 	);
 };
 
