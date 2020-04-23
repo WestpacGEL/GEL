@@ -34,7 +34,7 @@ function Loading() {
 }
 
 function TokensPage() {
-	const { BRAND } = useBrand();
+	const { BRAND, TYPE } = useBrand();
 	const [isLoading, setLoading] = useState(false);
 
 	function displayLoading() {
@@ -57,15 +57,40 @@ function TokensPage() {
 						<fieldset>
 							<legend>Choose components</legend>
 
+							<FormCheck type="checkbox">
+								<Option>Select all</Option>
+							</FormCheck>
+
 							<FormCheck type="checkbox" name="packages[]">
 								{Object.keys(GEL.components)
 									.filter(name => GEL.components[name].blender)
 									.map((name, i) => {
-										const niceName = GEL.components[name].name.replace('@westpac/', '');
+										const justName = GEL.components[name].name.replace('@westpac/', '');
+										const niceName = justName.charAt(0).toUpperCase() + justName.slice(1);
+
 										return (
-											<Option key={i} value={GEL.components[name].name}>
-												{niceName.charAt(0).toUpperCase() + niceName.slice(1)}
-											</Option>
+											<Fragment key={i}>
+												<Option value={GEL.components[name].name}>
+													<Fragment>
+														<span
+															css={{
+																...TYPE.bodyFont[700],
+																fontSize: '1.1428571429rem',
+															}}
+														>
+															{niceName}
+														</span>
+														<p
+															css={{
+																margin: 0,
+															}}
+														>
+															{GEL.components[name].description}
+														</p>
+													</Fragment>
+												</Option>
+												<a href={`${BASE_URL}/components/${niceName}`}>View {niceName}</a>
+											</Fragment>
 										);
 									})}
 							</FormCheck>
