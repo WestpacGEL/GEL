@@ -6,6 +6,8 @@ import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
 import { useMutation } from '@apollo/react-hooks';
 import { LoadingIndicator } from '@arch-ui/loading';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils';
 
 import gql from 'graphql-tag';
 
@@ -162,34 +164,40 @@ export const DoAndAvoid = {
 		};
 
 		return (
-			<div
-				css={{
-					display: 'flex',
-					alignItems: 'stretch',
-					width: '100%',
-					justifyContent: 'space-between',
-					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-						flexDirection: 'column',
-					},
-				}}
-			>
-				<figure css={{ ...dodontFigure, paddingRight: SPACING(3) }}>
-					<div>
-						<img css={dodontImage} src={doImage} />
-					</div>
-					<figcaption css={captionStyle}>
-						<span css={doStyle}>Do</span> - {doText}
-					</figcaption>
-				</figure>
-				<figure css={dodontFigure}>
-					<div>
-						<img css={dodontImage} src={dontImage} />
-					</div>
-					<figcaption css={captionStyle}>
-						<span css={dontStyle}>Avoid</span> - {dontText}
-					</figcaption>
-				</figure>
-			</div>
+			<Container css={blocksContainerStyle}>
+				<Grid columns={12} css={blocksGridStyle}>
+					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+						<div
+							css={{
+								display: 'flex',
+								alignItems: 'stretch',
+								width: '100%',
+								justifyContent: 'space-between',
+								[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+									flexDirection: 'column',
+								},
+							}}
+						>
+							<figure css={{ ...dodontFigure, paddingRight: SPACING(3) }}>
+								<div>
+									<img css={dodontImage} src={doImage} />
+								</div>
+								<figcaption css={captionStyle}>
+									<span css={doStyle}>Do</span> - {doText}
+								</figcaption>
+							</figure>
+							<figure css={dodontFigure}>
+								<div>
+									<img css={dodontImage} src={dontImage} />
+								</div>
+								<figcaption css={captionStyle}>
+									<span css={dontStyle}>Avoid</span> - {dontText}
+								</figcaption>
+							</figure>
+						</div>
+					</Cell>
+				</Grid>
+			</Container>
 		);
 	},
 };

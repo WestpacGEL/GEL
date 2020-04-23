@@ -5,10 +5,11 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { Body } from '@westpac/body';
 import { List, Item } from '@westpac/list';
-import { Cell, Grid } from '@westpac/grid';
+import { Cell, Grid, Container } from '@westpac/grid';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { CheckboxPrimitive } from '@arch-ui/controls';
+import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 const ArrowIcon = () => {
 	const { COLORS, SPACING } = useBrand();
@@ -158,37 +159,48 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 	const { PACKS, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	return (
-		<Grid
-			css={mq({
-				gridGap: '1.5rem',
-				marginTop: ['1.875rem', '1.875rem', '5.625rem'],
-				paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
-				marginBottom: '3.75rem !important',
-				borderBottom: `1px solid ${COLORS.border}`,
-			})}
-		>
-			<Cell width={[12, 12, 7]}>
-				{description && description !== '' ? (
-					<p
-						css={mq({
-							...PACKS.lead,
-							marginTop: 0,
-							marginBottom: 0,
-							lineHeight: 2,
-							fontSize: ['1.125rem', '1.125rem', '1.5rem'],
-						})}
-					>
-						{description}
-					</p>
-				) : null}
-				{showPackageInfo && <PackageInfoTable item={item} />}
-			</Cell>
-			{showTableOfContents && (
-				<Cell width={[12, 12, 4]} left={[1, 1, 9]}>
-					<TableOfContents content={_editorValue} />
-				</Cell>
-			)}
-		</Grid>
+		<Fragment>
+			<Container css={blocksContainerStyle}>
+				<Grid
+					css={mq({
+						gridGap: '1.5rem',
+						marginTop: ['1.875rem', '1.875rem', '5.625rem'],
+						paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
+						...blocksGridStyle,
+					})}
+				>
+					<Cell width={[12, 7, 7, 7, 7]}>
+						{description && description !== '' ? (
+							<p
+								css={mq({
+									...PACKS.lead,
+									marginTop: 0,
+									marginBottom: ['1.875rem', '1.875rem', '3.75rem'],
+									lineHeight: 1.4,
+									fontSize: ['1.125rem', '1.125rem', '1.5rem'],
+								})}
+							>
+								{description}
+							</p>
+						) : null}
+						{showPackageInfo && <PackageInfoTable item={item} />}
+					</Cell>
+					{showTableOfContents && (
+						<Cell width={[12, 4, 4, 4, 4]} left={[1, 9, 9, 9, 9]}>
+							<TableOfContents content={_editorValue} />
+						</Cell>
+					)}
+				</Grid>
+			</Container>
+			<hr
+				css={{
+					border: 'none',
+					borderTop: `solid 1px ${COLORS.border}`,
+					margin: `0px 0`,
+					paddingBottom: '40px',
+				}}
+			/>
+		</Fragment>
 	);
 };
 

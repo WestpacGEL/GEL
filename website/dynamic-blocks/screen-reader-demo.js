@@ -3,6 +3,8 @@ import React, { useState, useEffect, Fragment } from 'react'; // Needed for with
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
+import { Grid, Cell, Container } from '@westpac/grid';
+import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils';
 
 const openQuote = fill =>
 	"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 31 22'%3E%3Cpath fill='" +
@@ -46,67 +48,73 @@ export const ScreenReaderText = {
 		const { SPACING, COLORS } = useBrand();
 		const iconSize = SPACING(5, true);
 		return (
-			<div
-				css={{
-					display: 'flex',
-					flexDirection: 'column',
-				}}
-			>
-				<p
-					css={{
-						flexBasis: '50%',
-					}}
-				>
-					How the example is described by assistive technology. As read with macOS High Sierra
-					VoiceOver.
-				</p>
-				<blockquote
-					css={{
-						flexGrow: 0,
-						position: 'relative',
-						paddingRight: SPACING(3),
-						paddingLeft: SPACING(6, true),
-						display: 'inline-block',
-						'@media (max-width: 800px)': {
-							padding: '0px',
-						},
-						'&::before': {
-							content: "''",
-							display: 'block',
-							width: `${iconSize}`,
-							height: `${iconSize}`,
-							position: 'absolute',
-							backgroundImage: `url("${openQuote(COLORS.primary.replace('#', '%23'))}")`,
-							backgroundRepeat: 'no-repeat',
-							backgroundSize: 'iconSize ${iconSize}',
-							top: 0,
-							left: 0,
-							'@media (max-width: 800px)': {
-								left: '-2rem',
-							},
-						},
-						'&::after': {
-							content: "''",
-							display: 'block',
-							width: `${iconSize}`,
-							height: `${iconSize}`,
-							position: 'absolute',
-							backgroundImage: `url("${closeQuote(COLORS.primary.replace('#', '%23'))}")`,
-							backgroundRepeat: 'no-repeat',
-							backgroundSize: `${iconSize} ${iconSize}`,
-							top: '90%',
-							left: '100%',
-							'@media (max-width: 800px)': {
-								top: '95%',
-							},
-						},
-					}}
-				>
-					{text.split('\n').map(p => (
-						<p>{p}</p>
-					))}
-				</blockquote>
-			</div>
+			<Container css={blocksContainerStyle}>
+				<Grid columns={12} css={blocksGridStyle}>
+					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+						<div
+							css={{
+								display: 'flex',
+								flexDirection: 'column',
+							}}
+						>
+							<p
+								css={{
+									flexBasis: '50%',
+								}}
+							>
+								How the example is described by assistive technology. As read with macOS High Sierra
+								VoiceOver.
+							</p>
+							<blockquote
+								css={{
+									flexGrow: 0,
+									position: 'relative',
+									paddingRight: SPACING(3),
+									paddingLeft: SPACING(6, true),
+									display: 'inline-block',
+									'@media (max-width: 800px)': {
+										padding: '0px',
+									},
+									'&::before': {
+										content: "''",
+										display: 'block',
+										width: `${iconSize}`,
+										height: `${iconSize}`,
+										position: 'absolute',
+										backgroundImage: `url("${openQuote(COLORS.primary.replace('#', '%23'))}")`,
+										backgroundRepeat: 'no-repeat',
+										backgroundSize: 'iconSize ${iconSize}',
+										top: 0,
+										left: 0,
+										'@media (max-width: 800px)': {
+											left: '-2rem',
+										},
+									},
+									'&::after': {
+										content: "''",
+										display: 'block',
+										width: `${iconSize}`,
+										height: `${iconSize}`,
+										position: 'absolute',
+										backgroundImage: `url("${closeQuote(COLORS.primary.replace('#', '%23'))}")`,
+										backgroundRepeat: 'no-repeat',
+										backgroundSize: `${iconSize} ${iconSize}`,
+										top: '90%',
+										left: '100%',
+										'@media (max-width: 800px)': {
+											top: '95%',
+										},
+									},
+								}}
+							>
+								{text.split('\n').map(p => (
+									<p>{p}</p>
+								))}
+							</blockquote>
+						</div>
+					</Cell>
+				</Grid>
+			</Container>
 		);
 	},
 };

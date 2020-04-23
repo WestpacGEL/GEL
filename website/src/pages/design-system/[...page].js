@@ -73,9 +73,10 @@ const Tabs = ({ component, tabIndex }) => {
 				...styles,
 				backgroundColor: '#fff',
 				borderBottom: `solid 1px ${COLORS.border}`,
+				borderLeft: `solid 1px ${COLORS.border}`,
 				position: 'sticky',
 				top: '65px',
-				zIndex: 1,
+				zIndex: 5,
 			}),
 		},
 		TabButton: {

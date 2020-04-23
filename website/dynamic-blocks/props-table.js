@@ -4,6 +4,8 @@ import { jsx, useBrand } from '@westpac/core';
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
 import { Heading } from '@westpac/heading';
 import PropTypes from '../../GEL.json';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 /**
  * A small helper component for inline code blocks
@@ -73,10 +75,8 @@ function Indent({ level }) {
  */
 function PTableRow({ name, data, level = 0 }) {
 	const type = data.type.name;
-	const required = <Code>{formatValue(data.required)}</Code>;
-	const defaultValue = data.defaultValue ? (
-		<Code>{formatValue(data.defaultValue.value)}</Code>
-	) : null;
+	const required = <div>{formatValue(data.required)}</div>;
+	const defaultValue = data.defaultValue ? <div>{formatValue(data.defaultValue.value)}</div> : null;
 	const indent = level > 0 ? <Indent level={level} /> : '';
 	const subValues = [];
 	let value = null;
@@ -99,9 +99,9 @@ function PTableRow({ name, data, level = 0 }) {
 			))
 		);
 	} else {
-		value = data.type.value
-			? data.type.value.map((val, i) => <Code key={i}>{formatValue(val)}</Code>)
-			: null;
+		let valueArray = [];
+		data.type.value && data.type.value.map(val => valueArray.push(formatValue(val)));
+		value = valueArray && valueArray.length ? valueArray.join(', ') : null;
 	}
 	return (
 		<Fragment>
@@ -110,9 +110,7 @@ function PTableRow({ name, data, level = 0 }) {
 					{indent}
 					{name}
 				</Td>
-				<Td>
-					<Code>{type}</Code>
-				</Td>
+				<Td>{type}</Td>
 				<Td>{value}</Td>
 				<Td>{defaultValue}</Td>
 				<Td>{required}</Td>
@@ -130,8 +128,21 @@ function PTableRow({ name, data, level = 0 }) {
  */
 function PTable({ data, caption }) {
 	const { SPACING } = useBrand();
+	const overrides = {
+		Th: {
+			styles: styles => ({
+				...styles,
+				fontWeight: '500 !important',
+				border: 'none',
+			}),
+		},
+	};
 	return (
-		<Table css={{ marginBottom: SPACING(4, true) }} bordered striped>
+		<Table
+			css={{ marginBottom: SPACING(4, true), borderColor: 'white' }}
+			bordered
+			overrides={overrides}
+		>
 			{caption && (
 				<Caption
 					css={{ fontWeight: 'bold', margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}
@@ -168,16 +179,20 @@ const Component = ({ item }) => {
 	});
 
 	return (
-		<Fragment>
-			{tableData.map(({ overrideProps, normalProps, name }) => {
-				return (
-					<Fragment key={`table-${name}`}>
-						<PTable caption={`${name} Props`} data={normalProps} />
-						<PTable caption={`${name} Overrides`} data={overrideProps} />
-					</Fragment>
-				);
-			})}
-		</Fragment>
+		<Container css={{ backgroundColor: '#fff', ...blocksContainerStyle }}>
+			<Grid columns={12} css={blocksGridStyle}>
+				<Cell width={12}>
+					{tableData.map(({ overrideProps, normalProps, name }) => {
+						return (
+							<Fragment key={`table-${name}`}>
+								<PTable caption={`${name} Props`} data={normalProps} />
+								<PTable caption={`${name} Overrides`} data={overrideProps} />
+							</Fragment>
+						);
+					})}
+				</Cell>
+			</Grid>
+		</Container>
 	);
 };
 

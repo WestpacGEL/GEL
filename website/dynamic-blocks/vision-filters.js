@@ -3,7 +3,6 @@ import React, { Suspense, Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 import { Heading } from '@westpac/heading';
-import { Cell, Grid } from '@westpac/grid';
 import { useRouter } from 'next/router';
 import Select from '@arch-ui/select';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
@@ -12,6 +11,8 @@ import { Input } from '@arch-ui/input';
 import preval from 'preval.macro';
 import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
 import { VisionFilter } from '../src/components/a11y-filter';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 let data = preval`
 const fs = require('fs');
@@ -223,43 +224,45 @@ export const VisionFilters = {
 		};
 
 		return (
-			<Grid columns={12}>
-				<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-					<Heading
-						id={id}
-						tabIndex="-1"
-						tag={level}
-						size={size}
-						{...(addTableContent && { 'data-toc': true })}
-						overrides={{
-							Heading: {
-								styles: styles => ({
-									...styles,
-									scrollMarginTop: '75px',
-								}),
-							},
-						}}
-					>
-						{heading}
-					</Heading>
-					<Body>
-						<p>
-							{subText} Read more about these vision impairments on our{' '}
-							<a href={href} onClick={handleClick}>
-								Accessibility
-							</a>{' '}
-							page.
-						</p>
-					</Body>
-					<Suspense fallback={<p>Loading...</p>}>
-						{loadCodeBlock && typeof window !== 'undefined' ? (
-							<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
-						) : (
-							'Example not found.'
-						)}
-					</Suspense>
-				</Cell>
-			</Grid>
+			<Container css={blocksContainerStyle}>
+				<Grid columns={12} css={blocksGridStyle}>
+					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+						<Heading
+							id={id}
+							tabIndex="-1"
+							tag={level}
+							size={size}
+							{...(addTableContent && { 'data-toc': true })}
+							overrides={{
+								Heading: {
+									styles: styles => ({
+										...styles,
+										scrollMarginTop: '75px',
+									}),
+								},
+							}}
+						>
+							{heading}
+						</Heading>
+						<Body>
+							<p>
+								{subText} Read more about these vision impairments on our{' '}
+								<a href={href} onClick={handleClick}>
+									Accessibility
+								</a>{' '}
+								page.
+							</p>
+						</Body>
+						<Suspense fallback={<p>Loading...</p>}>
+							{loadCodeBlock && typeof window !== 'undefined' ? (
+								<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
+							) : (
+								'Example not found.'
+							)}
+						</Suspense>
+					</Cell>
+				</Grid>
+			</Container>
 		);
 	},
 };
