@@ -30,11 +30,13 @@ for (const component of components) {
 		));
 		propTypes.components[component.name] = {};
 		for (const key in requiredComponent) {
-			propTypes.components[component.name][key] = {
+			propTypes.components[component.name] = {
 				name: pkg.name,
 				version: pkg.version,
 				blender: pkg.blender,
-				propTypes: {},
+				[key]: {
+					propTypes: {},
+				},
 			};
 			const exportedComponent = requiredComponent[key];
 			if (exportedComponent && exportedComponent.propTypes) {
