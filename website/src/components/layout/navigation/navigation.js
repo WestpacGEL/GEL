@@ -114,7 +114,7 @@ const LinkItem = ({ isCurrent, name, as, tag: Tag = 'li', children, href }) => {
 						alignItems: 'center',
 						height: '48px',
 						textDecoration: 'none',
-						color: isCurrent && COLORS.info,
+						color: isCurrent && COLORS.primary,
 					}}
 				>
 					{name}
