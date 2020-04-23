@@ -1,102 +1,132 @@
 /** @jsx jsx */
-import { useState } from 'react';
+
 import { Heading } from '@westpac/heading';
 import { jsx } from '@westpac/core';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 import { useRouter } from 'next/router';
+import { Container, Grid, Cell } from '@westpac/grid';
 
 export const BrandPicker = () => {
 	const { brands } = useBrandSwitcher();
-	const [hovered, setHovered] = useState(false);
-	const currentPath = useRouter().asPath;
 
 	return (
-		<div
-			css={{
-				padding: '6.25rem',
-				'@media (max-width: 800px)': {
-					padding: '0px',
-				},
-				textAlign: 'center',
-				fontFamily:
-					'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-			}}
-		>
-			<h1>Select your default brand</h1>
-			<p css={{ fontSize: '20px', color: 'rgb(45, 55, 62)' }}>
-				Once you've made this selection you can change it at any time.
-			</p>
-			<ul
+		<div css={{ height: '100%' }}>
+			<Container
 				css={{
-					boxSizing: 'border-box',
-					margin: '0 auto',
-					padding: '2.5rem 1.25rem',
-					maxWidth: '67.5rem',
-					background: '#e7ecee',
-					listStyle: 'none',
+					backgroundColor: '#C80038',
+					margin: 0,
+					maxWidth: 'unset',
 					display: 'flex',
-					flexWrap: 'wrap',
-					alignItems: 'center',
-					'@media (min-width: 800px)': {
-						justifyContent: 'space-between',
+					alignItems: 'flex-end',
+					height: '250px',
+					fontSize: '56px',
+					paddingBottom: '56px',
+					'@media (max-width: 576px)': {
+						height: '66px',
+						paddingBottom: '20px',
 					},
 				}}
 			>
-				{Object.entries(brands).map(([brandName, { name }], i) => {
-					return (
-						<li
-							key={i}
+				<Grid
+					columns={12}
+					css={{
+						maxWidth: '70rem',
+						margin: '0 auto',
+						width: '100%',
+					}}
+				>
+					<Cell width={12}>
+						<h1
 							css={{
-								boxSizing: 'border-box',
-								flexBasis: '100%',
-								flexGrow: 1,
-								maxWidth: 200,
-								'@media (min-width: 600px)': {
-									flexBasis: '30%',
-									maxWidth: 'none',
+								margin: '0 !important',
+								color: 'white',
+								fontSize: '56px !important',
+								'@media (max-width: 576px)': {
+									fontSize: '34px !important',
 								},
-								margin: '0.625rem',
-								background: 'white',
-								position: 'relative',
-								':hover': {
-									outline: 'solid 1px rgba(0,0,0,0.2)',
-								},
-								'&::before': {
-									content: '""',
-									display: 'block',
-									position: 'absolute',
-									transition: 'background 0.5s',
-									background: !hovered || hovered === brandName ? 'transparent' : 'rgba(0,0,0,0.2)',
-									width: '100%',
-									top: 0,
-									left: 0,
-									bottom: 0,
-									pointerEvents: 'none',
-								},
-							}}
-							onMouseEnter={() => {
-								setHovered(brandName);
-							}}
-							onMouseLeave={() => {
-								setHovered(false);
 							}}
 						>
-							{/* This is not a Next Link as I want the server to re-render and set a cookie */}
-							<a
-								href={`${currentPath}?b=${brandName}`}
-								css={{ textDecoration: 'unset', color: 'rgb(0, 116, 196)' }}
+							Brand{' '}
+							<i
+								css={{ fontWeight: 200, fontFamily: '"guardian","Times New Roman","Times",serif' }}
 							>
-								<img
-									css={{ maxWidth: '100%', margin: 0, display: 'block' }}
-									src={`/images/${brandName.toLowerCase()}-gui.png`}
-									alt={`An abstract brand image for ${name}.`}
-								/>
-								<span css={{ margin: '20px', display: 'block' }}>{name}</span>
-							</a>
-						</li>
-					);
-				})}
-			</ul>
+								picker
+							</i>
+						</h1>
+					</Cell>
+				</Grid>
+			</Container>
+			<Container
+				css={{
+					backgroundColor: '#f4f3f0',
+					margin: 0,
+					height: '100%',
+					maxWidth: 'unset',
+					paddingTop: '66px',
+					paddingBottom: '18rem',
+					'@media (max-width: 576px)': {
+						paddingTop: '2rem',
+					},
+				}}
+			>
+				<Grid
+					columns={12}
+					css={{
+						maxWidth: '70rem',
+						margin: '0 auto',
+						width: '100%',
+					}}
+				>
+					<Cell width={[12, 12, 12, 3, 3]}>
+						<h1 css={{ fontSize: '42px', lineHeight: 1.2, marginTop: '0 !important' }}>
+							Select your brand
+						</h1>
+						<p css={{ fontSize: '20px', color: 'rgb(45, 55, 62)' }}>
+							This selection will determine which GUI you’ll see. Don’t worry, you’ll be able to
+							change the brand you’ve selected at any time.
+						</p>
+					</Cell>
+					<BrandCard brand={brands.WBC} />
+					<BrandCard brand={brands.STG} />
+					<BrandCard brand={brands.BOM} />
+					<BrandCard brand={brands.BSA} left={[0, 0, 0, 4, 4]} />
+					<BrandCard brand={brands.BTFG} />
+					<BrandCard brand={brands.WBG} />
+				</Grid>
+			</Container>
 		</div>
+	);
+};
+
+const BrandCard = ({ brand, left }) => {
+	const currentPath = useRouter().asPath;
+	return (
+		<Cell
+			left={left && left}
+			width={[6, 4, 4, 3, 3]}
+			css={{
+				boxSizing: 'border-box',
+				backgroundColor: 'white',
+				position: 'relative',
+				padding: '0.5rem',
+				':hover': {
+					boxShadow: '0px 0px 13px rgba(46,46,46,0.51)',
+					transition: 'box-shadow 0.3s ease-in-out',
+				},
+			}}
+		>
+			{/* This is not a Next Link as I want the server to re-render and set a cookie */}
+			<a
+				href={`${currentPath}?b=${brand.BRAND}`}
+				css={{ backGroundColor: 'white', textDecoration: 'unset', color: 'rgb(0, 116, 196)' }}
+			>
+				<img
+					css={{ maxWidth: '100%', display: 'block' }}
+					src={`/images/${brand.BRAND.toLowerCase()}-gui.png`}
+					alt={`An abstract brand image for ${brand.name}.`}
+				/>
+				<span css={{ margin: '0.5rem', marginTop: '1.5rem', display: 'block' }}>{brand.name}</span>
+			</a>
+		</Cell>
 	);
 };
