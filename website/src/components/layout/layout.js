@@ -1,14 +1,12 @@
 /** @jsx jsx */
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
-
 import { GEL, jsx, useBrand } from '@westpac/core';
-import { CloseIcon } from '@westpac/icon';
 
 import { BrandPicker } from '../brand-picker';
 import { Footer, Normalize, Sidebar } from './';
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
-import { SidebarProvider, useSidebar } from '../providers/sidebar';
+import { SidebarProvider } from '../providers/sidebar';
 import gql from 'graphql-tag';
 
 /*
@@ -29,7 +27,12 @@ const Wrapper = props => {
 	// If no brand is detected, show the brand picker...
 	if (!isMatch) {
 		// show brand selector
-		return <BrandPicker />;
+		return (
+			<GEL brand={brands['WBC']}>
+				<Normalize />
+				<BrandPicker />
+			</GEL>
+		);
 	}
 
 	let { data, error } = useQuery(
@@ -55,9 +58,7 @@ const Wrapper = props => {
 			<Normalize />
 			<SidebarProvider>
 				<GridContainer>
-					<SidebarContainer>
-						<Sidebar items={navigation} />
-					</SidebarContainer>
+					<Sidebar items={navigation} />
 					<MainContainer>{props.children}</MainContainer>
 				</GridContainer>
 			</SidebarProvider>
@@ -87,60 +88,6 @@ const GridContainer = props => {
 			}}
 			{...props}
 		/>
-	);
-};
-
-const SidebarContainer = ({ children, ...props }) => {
-	const { isOpen } = useSidebar();
-	const { COLORS, LAYOUT } = useBrand();
-	return (
-		<aside
-			css={{
-				background: 'white',
-				gridColumnStart: 1,
-				gridColumnEnd: 2,
-				transition: 'transform 0.15s',
-				boxShadow: `1px 0 1px ${COLORS.border}`,
-				zIndex: 2,
-				overflowY: 'scroll',
-				height: '100vh',
-				[`@media only screen and (max-width: ${LAYOUT.breakpoints.xl - 1}px)`]: {
-					position: 'absolute',
-					zIndex: 10,
-					top: 0,
-					left: 0,
-					width: 300,
-					transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
-				},
-			}}
-			{...props}
-		>
-			<CloseButton />
-			{children}
-		</aside>
-	);
-};
-
-const CloseButton = () => {
-	const { setIsOpen } = useSidebar();
-	const { COLORS, SPACING, LAYOUT } = useBrand();
-	return (
-		<button
-			onClick={() => setIsOpen(false)}
-			css={{
-				position: 'absolute',
-				top: 0,
-				right: 0,
-				margin: `${SPACING(2)} !important`,
-				padding: 0,
-				background: 'none',
-				border: 'none',
-				cursor: 'pointer',
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: { display: 'none' },
-			}}
-		>
-			<CloseIcon color={COLORS.neutral} size="small" />
-		</button>
 	);
 };
 

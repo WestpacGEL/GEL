@@ -75,8 +75,10 @@ function Indent({ level }) {
  */
 function PTableRow({ name, data, level = 0 }) {
 	const type = data.type.name;
-	const required = <div>{formatValue(data.required)}</div>;
-	const defaultValue = data.defaultValue ? <div>{formatValue(data.defaultValue.value)}</div> : null;
+	const required = <Code>{formatValue(data.required)}</Code>;
+	const defaultValue = data.defaultValue ? (
+		<Code>{formatValue(data.defaultValue.value)}</Code>
+	) : null;
 	const indent = level > 0 ? <Indent level={level} /> : '';
 	const subValues = [];
 	let value = null;
@@ -99,9 +101,7 @@ function PTableRow({ name, data, level = 0 }) {
 			))
 		);
 	} else {
-		let valueArray = [];
-		data.type.value && data.type.value.map(val => valueArray.push(formatValue(val)));
-		value = valueArray && valueArray.length ? valueArray.join(', ') : null;
+		value = data.type.value ? data.type.value.map((val, i) => <Code key={i}>{val}</Code>) : null;
 	}
 	return (
 		<Fragment>
@@ -110,7 +110,9 @@ function PTableRow({ name, data, level = 0 }) {
 					{indent}
 					{name}
 				</Td>
-				<Td>{type}</Td>
+				<Td>
+					<Code>{type}</Code>
+				</Td>
 				<Td>{value}</Td>
 				<Td>{defaultValue}</Td>
 				<Td>{required}</Td>
@@ -128,25 +130,10 @@ function PTableRow({ name, data, level = 0 }) {
  */
 function PTable({ data, caption }) {
 	const { SPACING } = useBrand();
-	const overrides = {
-		Th: {
-			styles: styles => ({
-				...styles,
-				fontWeight: '500 !important',
-				border: 'none',
-			}),
-		},
-	};
 	return (
-		<Table
-			css={{ marginBottom: SPACING(4, true), borderColor: 'white' }}
-			bordered
-			overrides={overrides}
-		>
+		<Table css={{ marginBottom: SPACING(4, true), borderColor: 'white' }} bordered striped>
 			{caption && (
-				<Caption
-					css={{ fontWeight: 'bold', margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}
-				>
+				<Caption css={{ margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}>
 					{caption}
 				</Caption>
 			)}

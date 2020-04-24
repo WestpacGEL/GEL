@@ -1,11 +1,13 @@
 /** @jsx jsx */
-import { Fragment } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Select, { components } from 'react-select';
-import { BASE_URL } from '../../config';
+
 import { jsx, useBrand } from '@westpac/core';
+import Select, { components } from 'react-select';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+
+import { BASE_URL } from '../../config';
 import { useBrandSwitcher } from '../providers/brand-switcher';
+import { useSidebar } from '../providers/sidebar';
 import {
 	BOMLogo,
 	BSALogo,
@@ -61,15 +63,17 @@ const Option = props => {
 		</components.Option>
 	);
 };
+
 export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
+	const { isScrolled } = useSidebar();
 	const { SPACING, COLORS } = useBrand();
 	const Logo = brandsMap[brand].logo;
 
 	return (
-		<Fragment>
-			<div css={{ height: 35, padding: `${SPACING(6)} ${SPACING(4)}` }}>
+		<div css={{ position: 'sticky', top: 0 }}>
+			<div css={{ height: 35, padding: `${SPACING(6)} ${SPACING(4)}`, background: '#fff' }}>
 				<Link href={'/'} as={`${BASE_URL}`}>
 					<a>
 						<Logo />
@@ -77,10 +81,24 @@ export const BrandSwitcher = () => {
 				</Link>
 			</div>
 			<Select
-				closeMenuOnSelect={false}
+				closeMenuOnSlect={false}
 				components={{ Option }}
 				placeholder={'Change brand'}
 				styles={{
+					container: (base, { selectProps: { menuIsOpen } }) => ({
+						...base,
+						...(isScrolled && !menuIsOpen && { boxShadow: '0 4px 4px rgba(0, 0, 0, 0.3)' }),
+					}),
+					menu: base => ({
+						...base,
+						margin: 0,
+						boxShadow: '0 4px 4px rgba(0, 0, 0, 0.3)',
+					}),
+					menuList: base => ({
+						...base,
+						maxHeight: '100%',
+						padding: 0,
+					}),
 					option: base => ({
 						...base,
 						display: 'flex',
@@ -115,7 +133,7 @@ export const BrandSwitcher = () => {
 						...base,
 						margin: '0',
 					}),
-					dropdownIndicator: base => ({
+					dropdownIndicator: (base, { selectProps: { menuIsOpen } }) => ({
 						...base,
 						color: COLORS.primary,
 						width: '66px',
@@ -126,6 +144,8 @@ export const BrandSwitcher = () => {
 						svg: {
 							height: '24px',
 							width: 'auto',
+							transform: `rotate(${menuIsOpen ? 180 : 0}deg)`,
+							transition: 'transform 0.2s linear',
 						},
 					}),
 				}}
@@ -134,6 +154,6 @@ export const BrandSwitcher = () => {
 				}}
 				options={Object.keys(brandsMap).map(k => ({ value: k, label: brandsMap[k].label }))}
 			/>
-		</Fragment>
+		</div>
 	);
 };

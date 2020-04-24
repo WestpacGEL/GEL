@@ -9,7 +9,7 @@ import {
 	BsaBackgroundSvg,
 } from '../symbols';
 
-const ComponentPageHeaderImage = ({ brand }) => {
+const ComponentPageHeaderImage = ({ brand, scrolled }) => {
 	const WestpacImage = () => (
 		<Fragment>
 			<div
@@ -28,7 +28,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 				css={{
 					position: 'absolute',
 					zIndex: -1,
-					right: 0,
+					right: scrolled ? '300px' : 0,
 					bottom: 0,
 					top: 50,
 				}}
@@ -57,7 +57,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 			css={{
 				position: 'absolute',
 				zIndex: -1,
-				right: 0,
+				right: scrolled ? '300px' : 0,
 				bottom: 0,
 				top: -45,
 			}}
