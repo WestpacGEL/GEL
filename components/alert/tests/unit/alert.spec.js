@@ -1,6 +1,5 @@
 import React from 'react';
 import chroma from 'chroma-js';
-import cloneDeep from 'lodash.clonedeep';
 import { render, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
