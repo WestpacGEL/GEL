@@ -56,6 +56,7 @@ export const RelatedInformation = ({ item }) => {
 	const { SPACING } = useBrand();
 	const { relatedPages, relatedInfo } = item;
 	const mq = useMediaQuery();
+	if (!relatedPages && !relatedInfo) return null;
 
 	return (
 		<div
@@ -101,8 +102,8 @@ export const RelatedInformation = ({ item }) => {
 					)}
 					{relatedInfo && (
 						<Cell
-							width={[12, 12, relatedInfo ? 5 : 10, relatedInfo ? 5 : 10, relatedInfo ? 5 : 10]}
-							left={[1, 1, relatedInfo ? 7 : 2, relatedInfo ? 7 : 2, relatedInfo ? 7 : 2]}
+							width={[12, 12, relatedPages ? 5 : 10, relatedPages ? 5 : 10, relatedPages ? 5 : 10]}
+							left={[1, 1, relatedPages ? 7 : 2, relatedPages ? 7 : 2, relatedPages ? 7 : 2]}
 						>
 							<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
 							<TextOnlySlateContent
