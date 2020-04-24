@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 
 const Label = ({ state, ...rest }) => <label {...rest} />;
 
-const labelStyles = (_, { checked, disabled, type, size }) => {
+const labelStyles = (_, { disabled, type, size }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	const sizeMap = {
@@ -86,30 +86,29 @@ const labelStyles = (_, { checked, disabled, type, size }) => {
 		},
 
 		// Control 'check' (tick or dot)
-		...(checked && {
-			'::after': {
-				content: '""',
-				boxSizing: 'border-box',
-				position: 'absolute',
-				border: `solid ${disabled ? COLORS.border : COLORS.hero}`,
-				top: `calc(((${sizeMap[size].height} - ${checkHeight}) / 2) + ${checkTweak})`,
-				left: `calc((${sizeMap[size].width} - ${checkWidth}) / 2)`,
-				width: type === 'radio' ? 0 : checkWidth,
-				height: type === 'radio' ? 0 : checkHeight,
-				borderWidth:
-					type === 'radio' ? `calc(${checkWidth} / 2)` : `0 0 ${checkboxStroke} ${checkboxStroke}`,
-				borderRadius: type === 'radio' && '50%',
-				background: type === 'radio' && COLORS.hero,
-				transform: type === 'checkbox' && 'rotate(-54deg)',
 
-				// Fix bug in IE11 caused by transform rotate (-54deg)
-				borderTopColor: type === 'checkbox' && 'transparent',
+		'input:checked + &::after': {
+			content: '""',
+			boxSizing: 'border-box',
+			position: 'absolute',
+			border: `solid ${disabled ? COLORS.border : COLORS.hero}`,
+			top: `calc(((${sizeMap[size].height} - ${checkHeight}) / 2) + ${checkTweak})`,
+			left: `calc((${sizeMap[size].width} - ${checkWidth}) / 2)`,
+			width: type === 'radio' ? 0 : checkWidth,
+			height: type === 'radio' ? 0 : checkHeight,
+			borderWidth:
+				type === 'radio' ? `calc(${checkWidth} / 2)` : `0 0 ${checkboxStroke} ${checkboxStroke}`,
+			borderRadius: type === 'radio' && '50%',
+			background: type === 'radio' && COLORS.hero,
+			transform: type === 'checkbox' && 'rotate(-54deg)',
 
-				'input:disabled + &, fieldset:disabled &': {
-					borderColor: COLORS.border,
-				},
+			// Fix bug in IE11 caused by transform rotate (-54deg)
+			borderTopColor: type === 'checkbox' && 'transparent',
+
+			'input:disabled + &, fieldset:disabled &': {
+				borderColor: COLORS.border,
 			},
-		}),
+		},
 
 		// Disabled state
 		'input:disabled + &, fieldset:disabled &': {
