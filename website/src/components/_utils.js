@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { useRouter } from 'next/router';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { BASE_URL, BASE_PAGE } from '../config';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { SlateContent } from './pages/single-component/blocks-hub';
+import { SlateContent, TextOnlySlateContent } from './pages/single-component/blocks-hub';
 import Link from 'next/link';
 
 export const BlocksDocs = ({ title, blocks, item }) => {
@@ -104,7 +105,7 @@ export const RelatedInformation = ({ item }) => {
 							left={[1, 1, relatedInfo ? 7 : 2, relatedInfo ? 7 : 2, relatedInfo ? 7 : 2]}
 						>
 							<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
-							<SlateContent
+							<TextOnlySlateContent
 								content={relatedInfo}
 								item={item}
 								cssOverrides={{ p: { paddingLeft: 0 } }}
@@ -119,6 +120,7 @@ export const RelatedInformation = ({ item }) => {
 
 const ComponentLink = ({ children, link }) => {
 	const { COLORS, SPACING } = useBrand();
+	const brandName = useRouter().query.b || '';
 	return (
 		<li
 			css={{
@@ -127,7 +129,7 @@ const ComponentLink = ({ children, link }) => {
 				borderBottom: `solid 1px ${COLORS.border}`,
 			}}
 		>
-			<Link href={BASE_PAGE} as={link}>
+			<Link href={`${BASE_PAGE}?b=${brandName}`} as={link}>
 				<a
 					css={{
 						cursor: 'pointer',

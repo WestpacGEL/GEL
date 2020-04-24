@@ -104,13 +104,12 @@ export const Image = {
 		};
 
 		return (
-			<Container css={{ blocksContainerStyle }}>
+			<Container css={blocksContainerStyle}>
 				<Grid columns={12} css={blocksGridStyle}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 						<figure
 							css={{
 								...figureStyles,
-								paddingRight: SPACING(3),
 								pointerEvents: context === 'admin' ? 'none' : undefined,
 							}}
 						>
