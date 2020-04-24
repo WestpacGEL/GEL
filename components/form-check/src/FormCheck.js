@@ -4,12 +4,12 @@ import {
 	jsx,
 	useBrand,
 	overrideReconciler,
-	wrapHandlers,
 	useInstanceId,
 	devWarning,
 	asArray,
+	useManagedState,
 } from '@westpac/core';
-import { cloneElement, Children, useState, useEffect, useContext, createContext } from 'react';
+import { useState, useEffect, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
@@ -24,12 +24,7 @@ import pkg from '../package.json';
 const FormCheckContext = createContext();
 
 export const useFormCheckContext = () => {
-	const context = useContext(FormCheckContext);
-
-	if (!context) {
-		throw new Error('<Option/> components should be wrapped in a <FormCheck>.');
-	}
-
+	const context = useContext(FormCheckContext) || {};
 	return context;
 };
 
@@ -41,6 +36,7 @@ export const FormCheck = ({
 	type,
 	name,
 	size,
+	value,
 	inline,
 	disabled,
 	defaultValue,
@@ -56,6 +52,7 @@ export const FormCheck = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const valueAsArray = value ? asArray(value) : undefined;
 	const defaultValueAsArray = defaultValue ? asArray(defaultValue) : [];
 
 	devWarning(
@@ -63,7 +60,7 @@ export const FormCheck = ({
 		'The form-check as radio may only have one "current" item set.'
 	);
 
-	const [checked, setChecked] = useState(defaultValueAsArray);
+	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
 	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 
 	// create the prefix for internal IDs
@@ -77,6 +74,18 @@ export const FormCheck = ({
 		FormCheck: defaultFormCheck,
 	};
 
+	const handleChange = (event, value, wasChecked) => {
+		if (type === 'radio') {
+			setChecked(asArray(value));
+		} else {
+			if (wasChecked) {
+				setChecked(checked.filter(item => item !== value));
+			} else {
+				setChecked([...checked, value]);
+			}
+		}
+	};
+
 	const state = {
 		instanceId,
 		type,
@@ -86,6 +95,8 @@ export const FormCheck = ({
 		disabled,
 		defaultValue,
 		data,
+		checked,
+		onChange: handleChange,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -94,69 +105,26 @@ export const FormCheck = ({
 		FormCheck: { component: FormCheck, styles: formCheckStyles, attributes: formCheckAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const handleChange = (event, value, wasChecked) => {
-		wrapHandlers(
-			() => onChange(event, value, wasChecked),
-			() => {
-				if (type === 'radio') {
-					setChecked(asArray(value));
-				} else {
-					if (wasChecked) {
-						setChecked(checked.filter(item => item !== value));
-					} else {
-						setChecked([...checked, value]);
-					}
-				}
-			}
-		)(event);
-	};
-
 	let allChildren = [];
 	if (data) {
-		data.map((props, index) => {
+		data.map(({ text, ...rest }, index) => {
 			allChildren.push(
-				<Option
-					key={index}
-					index={index}
-					value={props.value}
-					checked={props.checked || checked.includes(props.value)}
-					handleChange={handleChange}
-					type={type}
-					name={name}
-					size={size}
-					inline={inline}
-					disabled={props.disabled || disabled}
-					instanceIdPrefix={instanceId}
-				>
-					{props.text}
+				<Option key={index} {...rest}>
+					{text}
 				</Option>
 			);
 		});
-	} else {
-		allChildren = Children.map(children, (child, index) =>
-			cloneElement(child, {
-				index,
-				checked: child.props.checked || checked.includes(child.props.value),
-				handleChange,
-				type,
-				name,
-				size,
-				inline,
-				disabled: child.props.disabled || disabled,
-				instanceIdPrefix: instanceId,
-			})
-		);
 	}
 
 	return (
-		<FormCheckContext.Provider value={{ state }}>
+		<FormCheckContext.Provider value={state}>
 			<FormCheck
 				{...rest}
 				state={state}
 				{...formCheckAttributes(state)}
 				css={formCheckStyles(state)}
 			>
-				{allChildren}
+				{data ? allChildren : children}
 			</FormCheck>
 		</FormCheckContext.Provider>
 	);
