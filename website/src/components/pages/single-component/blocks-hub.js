@@ -54,13 +54,16 @@ const slateRenderer = (item, _editorValue) => {
 			if (node.object === 'inline') {
 				switch (node.type) {
 					case 'link':
+						let target = '_self';
+						if (node.data.href.indexOf('://') !== -1) {
+							target = '_blank';
+						}
+
 						return (
-							<Body>
-								<a href={node.data.href} key={path} target="_blank">
-									{' '}
-									{serializeChildren(node.nodes)}
-								</a>
-							</Body>
+							<a href={node.data.href} key={path} target={target}>
+								{' '}
+								{serializeChildren(node.nodes)}
+							</a>
 						);
 				}
 			}
@@ -183,6 +186,95 @@ export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 			}}
 		>
 			{slateRenderer(item, content.document)(content)}
+		</div>
+	);
+};
+
+const textOnlySlateRenderer = _editorValue => {
+	return createReactRenderer([
+		// special serialiser for text
+		({ node, path }) => {
+			if (node.object === 'text') {
+				return node.text.split('\n').reduce((array, text, i) => {
+					if (i !== 0) array.push(<br key={`${path}_${i}`} />);
+					array.push(<ApplyShortCodes key={`sc-${path}_${i}`} text={text} />);
+					return array;
+				}, []);
+			}
+		},
+		// serialiser for links
+		({ node, path, serializeChildren }) => {
+			if (node.object === 'inline') {
+				switch (node.type) {
+					case 'link':
+						let target = '_self';
+						if (node.data.href.indexOf('://') !== -1) {
+							target = '_blank';
+						}
+
+						return (
+							<a href={node.data.href} key={path} target={target}>
+								{' '}
+								{serializeChildren(node.nodes)}
+							</a>
+						);
+				}
+			}
+		},
+		// serialisers for all the marks
+		({ node, path, serializeChildren }) => {
+			if (node.object !== 'mark') {
+				return;
+			}
+
+			switch (node.type) {
+				case 'bold':
+					return <Bold key={path}>{serializeChildren(node.nodes)}</Bold>;
+				case 'italic':
+					return <Italic key={path}>{serializeChildren(node.nodes)}</Italic>;
+				case 'strikethrough':
+					return <Strike key={path}>{serializeChildren(node.nodes)}</Strike>;
+				case 'underline':
+					return <Under key={path}>{serializeChildren(node.nodes)}</Under>;
+				default: {
+					console.error(`Unexpected mark '${node.type}' at ${path}`);
+				}
+			}
+		},
+
+		// serialiser for all the blocks
+		({ node, path, serializeChildren, value }) => {
+			const textStyle = {
+				width: '100%',
+			};
+			if (node.object !== 'block') {
+				return;
+			}
+
+			switch (node.type) {
+				case 'paragraph':
+					return <p css={textStyle}>{serializeChildren(node.nodes)}</p>;
+				default: {
+					console.error(`Unexpected block '${node.type}' at ${path}`);
+				}
+			}
+		},
+	]);
+};
+
+export const TextOnlySlateContent = ({ content, cssOverrides, ...props }) => {
+	return (
+		<div
+			{...props}
+			className="slate-container"
+			css={{
+				display: 'flex',
+				flexDirection: 'column',
+				'> *': { marginBottom: '20px !important' },
+				...cssOverrides,
+			}}
+		>
+			<Body>{textOnlySlateRenderer(content.document)(content)}</Body>
 		</div>
 	);
 };
