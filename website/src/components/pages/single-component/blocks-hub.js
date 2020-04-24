@@ -54,13 +54,16 @@ const slateRenderer = (item, _editorValue) => {
 			if (node.object === 'inline') {
 				switch (node.type) {
 					case 'link':
+						let target = '_self';
+						if (node.data.href.indexOf('://') !== -1) {
+							target = '_blank';
+						}
+
 						return (
-							<Body>
-								<a href={node.data.href} key={path} target="_blank">
-									{' '}
-									{serializeChildren(node.nodes)}
-								</a>
-							</Body>
+							<a href={node.data.href} key={path} target={target}>
+								{' '}
+								{serializeChildren(node.nodes)}
+							</a>
 						);
 				}
 			}
