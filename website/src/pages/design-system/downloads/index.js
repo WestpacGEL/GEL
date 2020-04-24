@@ -7,6 +7,7 @@ import { FormCheck, Option } from '@westpac/form-check';
 import { Select } from '@westpac/text-input';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
+import { Body } from '@westpac/body';
 
 import PageHeader from '../../../components/header/page-header';
 import { Footer } from '../../../components/layout';
@@ -37,6 +38,19 @@ function TokensPage() {
 	const { BRAND, TYPE } = useBrand();
 	const [isLoading, setLoading] = useState(false);
 
+	const supportedPkgs = Object.keys(GEL.components).filter(name => GEL.components[name].blender);
+	const checkState = {};
+	supportedPkgs.map(name => (checkState[name] = false));
+	const [selected, setSelected] = useState([]);
+
+	function checkAll() {
+		if (selected.length === supportedPkgs.length) {
+			setSelected([]);
+		} else {
+			setSelected(supportedPkgs);
+		}
+	}
+
 	function displayLoading() {
 		setLoading(true);
 		setTimeout(() => setLoading(false), 2000);
@@ -57,45 +71,55 @@ function TokensPage() {
 						<fieldset>
 							<legend>Choose components</legend>
 
-							<FormCheck type="checkbox">
-								<Option>Select all</Option>
+							<FormCheck
+								type="checkbox"
+								checked={selected.length === supportedPkgs.length ? ['all'] : []}
+								onChange={checkAll}
+							>
+								<Option value="all">Select all</Option>
 							</FormCheck>
 
-							<ul>
-								{Object.keys(GEL.components)
-									.filter(name => GEL.components[name].blender)
-									.map((name, i) => {
-										const justName = GEL.components[name].name.replace('@westpac/', '');
-										const niceName = justName.charAt(0).toUpperCase() + justName.slice(1);
+							<FormCheck
+								type="checkbox"
+								name="packages[]"
+								value={selected}
+								onChange={value => setSelected(value)}
+							>
+								{supportedPkgs.map((name, i) => {
+									const niceName = name.charAt(0).toUpperCase() + name.slice(1);
 
-										return (
-											<li key={i}>
-												<FormCheck type="checkbox" name="packages[]">
-													<Option value={GEL.components[name].name}>
-														<Fragment>
-															<span
-																css={{
-																	...TYPE.bodyFont[700],
-																	fontSize: '1.1428571429rem',
-																}}
-															>
-																{niceName}
-															</span>
-															<p
-																css={{
-																	margin: 0,
-																}}
-															>
-																{GEL.components[name].description}
-															</p>
-														</Fragment>
-													</Option>
-												</FormCheck>
+									return (
+										<div
+											key={i}
+											css={{
+												display: 'grid',
+												gridTemplateColumns: '3fr auto',
+											}}
+										>
+											<Option value={name}>
+												<span
+													css={{
+														...TYPE.bodyFont[700],
+														fontSize: '1.1428571429rem',
+													}}
+												>
+													{niceName}
+												</span>
+												<p
+													css={{
+														margin: 0,
+													}}
+												>
+													{GEL.components[name].description}
+												</p>
+											</Option>
+											<Body>
 												<a href={`${BASE_URL}/components/${niceName}`}>View {niceName}</a>
-											</li>
-										);
-									})}
-							</ul>
+											</Body>
+										</div>
+									);
+								})}
+							</FormCheck>
 						</fieldset>
 
 						<fieldset>
@@ -120,7 +144,7 @@ function TokensPage() {
 								}}
 							>
 								Tokens format
-								<Select name="tokensFormat">
+								<Select name="tokensFormat" inline>
 									<option value="json">JSON</option>
 									<option value="less">LESS</option>
 									<option value="css">CSS</option>
