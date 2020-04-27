@@ -29,7 +29,7 @@ export const brandsMap = {
 	},
 	BSA: {
 		logo: BSALogo,
-		label: 'Bank of South Australia',
+		label: 'BankSA',
 		smallLogo: BSAStackedLogo,
 	},
 	BTFG: {
@@ -68,12 +68,20 @@ export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
 	const { isScrolled } = useSidebar();
-	const { SPACING, COLORS } = useBrand();
+	const { SPACING, COLORS, PACKS } = useBrand();
 	const Logo = brandsMap[brand].logo;
 
 	return (
 		<div css={{ position: 'sticky', top: 0 }}>
-			<div css={{ height: 35, padding: `${SPACING(6)} ${SPACING(4)}`, background: '#fff' }}>
+			<div
+				css={{
+					display: 'flex',
+					alignItems: 'center',
+					height: 90,
+					padding: `0 ${SPACING(3)}`,
+					background: '#fff',
+				}}
+			>
 				<Link href={'/'} as={`${BASE_URL}`}>
 					<a>
 						<Logo />
@@ -92,6 +100,7 @@ export const BrandSwitcher = () => {
 					menu: base => ({
 						...base,
 						margin: 0,
+						borderRadius: 0,
 						boxShadow: '0 4px 4px rgba(0, 0, 0, 0.3)',
 					}),
 					menuList: base => ({
@@ -99,15 +108,16 @@ export const BrandSwitcher = () => {
 						maxHeight: '100%',
 						padding: 0,
 					}),
-					option: base => ({
+					option: (base, { isFocused }) => ({
 						...base,
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'space-between',
 						height: '60px',
-						padding: `${SPACING(2, true)} ${SPACING(4, true)}`,
+						padding: `0 ${SPACING(3)}`,
 						borderBottom: `solid 1px ${COLORS.tints.muted30}`,
 						cursor: 'pointer',
+						...(isFocused && { backgroundColor: COLORS.background }),
 					}),
 					control: base => ({
 						...base,
@@ -115,6 +125,8 @@ export const BrandSwitcher = () => {
 						border: 0,
 						borderBottom: `solid 1px ${COLORS.tints.muted30}`,
 						height: '66px',
+						boxShadow: 'none',
+
 						':hover': {
 							borderBottom: `solid 1px ${COLORS.tints.muted30}`,
 						},
