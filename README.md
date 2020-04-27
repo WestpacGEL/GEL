@@ -1,7 +1,7 @@
 # GEL [![CircleCI](https://circleci.com/gh/WestpacGEL/GEL/tree/master.svg?style=svg)](https://circleci.com/gh/WestpacGEL/GEL/tree/master)
 
-## <p align="center">For the docs for the design system please go to</p>
-## <p align="center">https://gel.westpacgroup.com.au/design-system</p>
+**<p align="center">For the docs for the design system please go to</p>**
+**<p align="center">https://gel.westpacgroup.com.au/design-system</p>**
 
 This repo consists of the following parts:
 
