@@ -94,16 +94,23 @@ const PageHeader = ({ name, version }) => {
 				<MenuIcon hasScrolled={hasScrolled} />
 				<Heading
 					size={hasScrolled ? 7 : 1}
-					css={mq({
-						alignSelf: 'center',
-						gridRowStart: hasScrolled ? 1 : [1, null, 2],
-						textTransform: 'capitalize',
-						[`@media (max-width: ${LAYOUT.breakpoints.md}px)`]: {
-							// need to re-check font sizes in design
-							fontSize: '18px !important',
+					overrides={{
+						Heading: {
+							styles: styles => ({
+								...styles,
+								alignSelf: 'center',
+								textTransform: 'capitalize',
+								[`@media (max-width: ${LAYOUT.breakpoints.md}px)`]: {
+									fontSize: '18px !important',
+								},
+								fontWeight: 500,
+								transition: 'font-size, 0.2s ease',
+								...mq({
+									gridRowStart: hasScrolled ? 1 : [1, null, 2],
+								})[0],
+							}),
 						},
-						transition: 'font-size, 0.2s ease',
-					})}
+					}}
 				>
 					{name}
 				</Heading>
@@ -116,7 +123,17 @@ const PageHeader = ({ name, version }) => {
 							marginLeft: hasScrolled ? '0.375rem' : ['0.375rem', null, 0],
 						})}
 					>
-						{` Version ${version}`}
+						<span
+							css={mq({
+								textTransform: hasScrolled ? 'lowercase' : ['lowercase', null, 'capitalize'],
+							})}
+						>
+							v
+						</span>
+						<span css={mq({ display: hasScrolled ? 'none' : ['none', null, 'inline'] })}>
+							ersion{' '}
+						</span>
+						{version}
 					</span>
 				)}
 			</div>
