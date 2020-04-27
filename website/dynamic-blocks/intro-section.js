@@ -196,8 +196,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 				css={{
 					border: 'none',
 					borderTop: `solid 1px ${COLORS.border}`,
-					margin: `0px 0`,
-					paddingBottom: '40px',
+					margin: 0,
 				}}
 			/>
 		</Fragment>
