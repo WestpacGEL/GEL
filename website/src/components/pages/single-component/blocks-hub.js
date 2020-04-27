@@ -130,7 +130,15 @@ const slateRenderer = (item, _editorValue) => {
 						<Container css={blocksContainerStyle}>
 							<Grid columns={12} key={path} css={blocksGridStyle}>
 								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
-									<List css={textStyle} type="bullet">
+									<List
+										css={{
+											...textStyle,
+											'& > li::before': {
+												marginTop: '6px',
+											},
+										}}
+										type="bullet"
+									>
 										{serializeChildren(node.nodes)}
 									</List>
 								</Cell>
