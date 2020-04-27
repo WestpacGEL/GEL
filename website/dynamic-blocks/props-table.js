@@ -101,7 +101,7 @@ function PTableRow({ name, data, level = 0 }) {
 			))
 		);
 	} else {
-		value = data.type.value ? data.type.value.map((val, i) => <Code key={i}>{val}</Code>) : null;
+		value = data.type.value ? data.type.value.map((val, i) => <Code key={i}>"{val}"</Code>) : null;
 	}
 	return (
 		<Fragment>
