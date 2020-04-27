@@ -10,9 +10,11 @@ import { useSidebar } from '../providers/sidebar';
 import { brandHeaderColors } from '../_utils';
 
 const MenuIcon = ({ hasScrolled }) => {
-	const { setIsOpen } = useSidebar();
+	const { BRAND, COLORS } = useBrand();
 	const mq = useMediaQuery();
-	const Icon = () => <HamburgerMenuIcon color="#fff" />;
+	const { setIsOpen } = useSidebar();
+
+	const Icon = () => <HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : '#fff'} />;
 
 	return (
 		<Button
@@ -74,6 +76,7 @@ const PageHeader = ({ name, version }) => {
 				display: 'flex',
 				height: ['66px', null, '228px'],
 				background: backgroundColor,
+				overflow: 'hidden',
 			})}
 		>
 			<HeaderImage brand={BRAND} />
@@ -85,7 +88,7 @@ const PageHeader = ({ name, version }) => {
 					height: hasScrolled ? '66px' : ['66px', null, '228px'],
 					padding: hasScrolled ? '0 1.3125rem' : ['0 1.3125rem', null, '0 2.25rem'],
 					color: BRAND === 'STG' ? COLORS.text : '#fff',
-					// transition: 'height 0s',
+					transition: 'height 0s',
 				})}
 			>
 				<MenuIcon hasScrolled={hasScrolled} />

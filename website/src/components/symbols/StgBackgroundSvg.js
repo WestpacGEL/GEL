@@ -1,13 +1,15 @@
 /** @jsx jsx */
+
 import { jsx } from '@westpac/core';
+import { Svg } from './Svg';
 
 export const StgBackgroundSvg = ({ width, height }) => {
 	return (
-		<svg
-			aria-labelledby="stgeorge-header-image"
+		<Svg
+			aria-label="stgeorge-header-image"
+			viewBox="0 32.545 595.279 255.545"
 			width={width}
 			height={height}
-			viewBox="0 32.545 595.279 255.545"
 		>
 			<g opacity={0.4}>
 				<path
@@ -574,6 +576,6 @@ export const StgBackgroundSvg = ({ width, height }) => {
 				<path opacity={0.8} fill="#8AC439" d="M440.836 252.44l17.028-6.765-12.567-12.421z" />
 				<path opacity={0.4} fill="#8AC439" d="M473.678 241.381l14.222 4.021-8.713-29.826z" />
 			</g>
-		</svg>
+		</Svg>
 	);
 };
