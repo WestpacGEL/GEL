@@ -1,13 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
+import { Svg } from './Svg';
 
 export const WbcBackgroundRightSvg = ({ height, width }) => {
 	return (
-		<svg
-			aria-labelledby="westpac-header-image-right"
-			width={width}
-			height={height}
+		<Svg
+			aria-label="westpac-header-image-right"
 			viewBox="0 0 268 228"
+			height={height}
+			width={width}
 		>
 			<title>Westpac background image</title>
 			<path fill="#DD3A46" d="M104 0h124v96H104z" />
@@ -20,6 +21,6 @@ export const WbcBackgroundRightSvg = ({ height, width }) => {
 				fill="#C30019"
 				d="M126.6 203.9l34-107.9-20-62.6C133 7.4 120.1 0 100.3 0H0c7.9 3.3 13.1 24 13.1 24l48.4 171.2c5.6 21.5 23 32.8 42.8 32.8h6.3c7.6-1.4 16-24.1 16-24.1z"
 			/>
-		</svg>
+		</Svg>
 	);
 };

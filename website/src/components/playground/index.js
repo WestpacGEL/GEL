@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useState } from 'react';
 import wbc from '@westpac/wbc';
-import { jsx, GEL, useBrand } from '@westpac/core';
+import { jsx, GEL, useBrand, useMediaQuery } from '@westpac/core';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Modal, Body } from '@westpac/modal';
 import { Well } from '@westpac/well';
@@ -16,18 +16,20 @@ export const ExampleBlock = dynamic(() => Promise.resolve(UnSafeExampleBlock), {
 
 const Button = ({ onClick, children }) => {
 	const { COLORS, SPACING } = useBrand();
+	const mq = useMediaQuery();
 	return (
 		<button
 			onClick={onClick}
-			css={{
+			css={mq({
 				background: 'none',
 				border: 'none',
 				borderLeft: `solid 1px ${COLORS.border}`,
-				paddingLeft: SPACING(4),
-				paddingRight: SPACING(4),
-				paddingTop: SPACING(2),
-				paddingBottom: SPACING(2),
-			}}
+				paddingLeft: SPACING(3),
+				paddingRight: SPACING(3),
+				paddingTop: '1rem',
+				paddingBottom: '1rem',
+				marginRight: ['-1.875rem !important', '-2.25rem !important'],
+			})}
 		>
 			{children}
 		</button>
@@ -37,16 +39,26 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 	const [codeIsOpen, setCodeOpen] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const { COLORS, SPACING } = useBrand();
+	const mq = useMediaQuery();
+
 	return (
 		<div css={{ marginBottom: SPACING(6) }}>
 			<Well
-				css={{
-					position: 'relative',
-					border: 'none',
-					borderRadius: 0,
-					margin: 0,
-					backgroundColor: '#fff',
-					...(showCode && { paddingBottom: '0 !important' }),
+				overrides={{
+					Well: {
+						styles: styles => ({
+							...styles,
+							...mq({
+								position: 'relative',
+								border: 'none',
+								borderRadius: 0,
+								margin: 0,
+								backgroundColor: '#fff',
+								padding: ['1.875rem', '2.25rem'],
+								...(showCode && { paddingBottom: '0 !important' }),
+							})[0],
+						}),
+					},
 				}}
 			>
 				<div
@@ -87,7 +99,11 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 					) : null}
 				</div>
 			</Well>
-			{showCode && codeIsOpen ? <LiveEditor style={{ fontSize: '1rem' }} /> : null}
+			{showCode && codeIsOpen ? (
+				<LiveEditor
+					css={mq({ fontSize: '1rem', padding: ['1.5rem !important', '2.25rem !important'] })}
+				/>
+			) : null}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
 				<Body>
 					<LivePreview />

@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
+import { Svg } from './Svg';
 
 export const BsaBackgroundSvg = ({ width, height }) => {
 	return (
-		<svg aria-labelledby="banksa-header-image" width={width} height={height} viewBox="0 0 699 448">
+		<Svg aria-label="banksa-header-image" width={width} height={height} viewBox="0 0 699 448">
 			<path
 				fill="#ABE2EC"
 				d="M651.4 0C546.6 1.4 442 40.8 360.1 118.8S233.8 299.3 227.3 403.9c104.8-1.4 209.4-40.7 291.3-118.7 81.8-78 126.3-180.5 132.8-285.2"
@@ -19,6 +20,6 @@ export const BsaBackgroundSvg = ({ width, height }) => {
 				d="M401.4 447.3c73.4-1 146.6-28.5 203.9-83.1a300.68 300.68 0 0093-199.5c-73.4.9-146.5 28.5-203.8 83.1-57.5 54.5-88.6 126.2-93.1 199.5"
 				opacity={0.05}
 			/>
-		</svg>
+		</Svg>
 	);
 };
