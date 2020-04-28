@@ -2,6 +2,7 @@
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Fragment, useState, forwardRef, useEffect } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from 'react-spring';
 import useMeasure from 'react-use-measure';
 import PropTypes from 'prop-types';
