@@ -1,5 +1,8 @@
-import 'raf/polyfill';
 import 'core-js/es';
+import 'raf/polyfill';
+
+import ResizeObserver from 'resize-observer-polyfill';
+window.ResizeObserver = ResizeObserver;
 
 import React from 'react';
 import ReactDOM from 'react-dom';
