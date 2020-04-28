@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { Fragment, useCallback } from 'react';
+import { Fragment, useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import debounce from 'lodash.debounce';
 import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
@@ -48,10 +49,29 @@ const Component = ({ component, tabName }) => {
 
 const Tabs = ({ component, tabName }) => {
 	const { SPACING, COLORS } = useBrand();
+	const [scrolled, setScrolled] = useState(false);
+
 	const mq = useMediaQuery();
 	const router = useRouter();
 	const brandName = router.query.b || '';
 	const tabMap = ['design', 'accessibility', 'code'];
+
+	useEffect(() => {
+		const main = document.querySelector('main') || window;
+
+		const scrollHandler = debounce(() => {
+			if (main.scrollTop === 0) {
+				setScrolled(false);
+			} else {
+				setScrolled(true);
+			}
+		}, 100);
+
+		main.addEventListener('scroll', scrollHandler);
+		return () => {
+			main.removeEventListener('scroll', scrollHandler);
+		};
+	}, []);
 
 	const onOpen = useCallback(({ idx: tabIdx }) => {
 		window.history.pushState(
@@ -78,6 +98,7 @@ const Tabs = ({ component, tabName }) => {
 				position: 'sticky',
 				top: '66px',
 				zIndex: 5,
+				boxShadow: scrolled && '0 4px 4px rgba(0, 0, 0, 0.3)',
 				...mq({
 					height: ['66px', null, '90px'],
 				})[0],

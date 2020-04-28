@@ -1,11 +1,12 @@
 /** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { useState, useEffect } from 'react';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
 import debounce from 'lodash.debounce';
 
 export const Footer = () => {
 	const { COLORS, SPACING, LAYOUT } = useBrand();
+	const mq = useMediaQuery();
 	const [visible, setVisible] = useState(true);
 
 	const el = document.querySelector('main') || window;
@@ -59,7 +60,7 @@ export const Footer = () => {
 			}}
 		>
 			<div>
-				<span>Talk to us</span>
+				<span css={mq({ display: ['none', null, 'inline'] })}>Talk to us</span>
 				<FooterIcon icon={EmailIcon} href="mailto:gel@westpac.com.au" />
 				<FooterIcon icon={SlackIcon} href="//westpac-digital.slack.com" />
 				<FooterIcon icon={GithubIcon} href="//github.com/WestpacGEL" />
