@@ -140,6 +140,7 @@ export const BrandSwitcher = () => {
 					placeholder: base => ({
 						...base,
 						color: COLORS.text,
+						fontSize: '0.875rem',
 					}),
 					indicatorSeparator: base => ({
 						...base,
