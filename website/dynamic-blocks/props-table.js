@@ -158,14 +158,18 @@ function PTable({ data, caption }) {
 const Component = ({ item }) => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
-	const tableData = Object.keys(PropTypes.components[item.packageName]).map(key => {
-		const { overrides, ...normalProps } = PropTypes.components[item.packageName][key].propTypes;
-		return {
-			name: key,
-			overrideProps: { overrides: overrides },
-			normalProps,
-		};
-	});
+	const tableData = Object.keys(PropTypes.components[item.packageName])
+		.filter(
+			key => typeof PropTypes.components[item.packageName][key] === 'object' && key !== 'blender'
+		)
+		.map(key => {
+			const { overrides, ...normalProps } = PropTypes.components[item.packageName][key].propTypes;
+			return {
+				name: key,
+				overrideProps: { overrides: overrides },
+				normalProps,
+			};
+		});
 
 	return (
 		<Container css={{ backgroundColor: '#fff', ...blocksContainerStyle }}>
