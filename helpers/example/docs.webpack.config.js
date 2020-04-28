@@ -65,7 +65,7 @@ module.exports = () => ({
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: babelLoaderExcludeNodeModulesExcept(['react-spring']),
+				exclude: babelLoaderExcludeNodeModulesExcept(['react-spring', 'react-use-measure']),
 				loader: 'babel-loader',
 				options: {
 					rootMode: 'upward',
