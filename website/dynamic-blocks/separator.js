@@ -1,12 +1,12 @@
 /** @jsx jsx */
-import React, { Fragment } from 'react';
+import React from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
-const SeparatorComponent = props => {
-	const { COLORS } = useBrand();
+const SeparatorComponent = () => {
+	const { COLORS, SPACING } = useBrand();
 
 	return (
-		<Fragment>
+		<div css={{ marginTop: `${SPACING(4)} !important`, marginBottom: `${SPACING(7)} !important` }}>
 			<button
 				css={{
 					display: 'block',
@@ -28,8 +28,10 @@ const SeparatorComponent = props => {
 			>
 				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
 			</button>
-			<hr {...props} css={{ border: 'none', borderTop: `solid 1px #999`, margin: `20px 0` }} />
-		</Fragment>
+			<hr
+				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
+			/>
+		</div>
 	);
 };
 

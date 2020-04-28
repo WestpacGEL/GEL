@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { VisuallyHidden } from '@westpac/a11y';
@@ -44,7 +44,7 @@ export const SelectField = ({ instanceId, position, label, data, overrides, ...r
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<React.Fragment>
+		<Fragment>
 			<VisuallyHidden tag="label" htmlFor={instanceId}>
 				{label}
 			</VisuallyHidden>
@@ -54,7 +54,7 @@ export const SelectField = ({ instanceId, position, label, data, overrides, ...r
 				{...selectAttributes(state)}
 				css={{ '&&': selectStyles(state) }}
 			/>
-		</React.Fragment>
+		</Fragment>
 	);
 };
 

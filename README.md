@@ -1,118 +1,36 @@
 # GEL [![CircleCI](https://circleci.com/gh/WestpacGEL/GEL/tree/master.svg?style=svg)](https://circleci.com/gh/WestpacGEL/GEL/tree/master)
 
-The design system for Westpac GEL
+**<p align="center">For the docs for the design system please go to</p>**
+**<p align="center">https://gel.westpacgroup.com.au/design-system</p>**
 
-## Builds
+This repo consists of the following parts:
 
-There are three different builds that exist in this repo:
+- `/brands/*` and `/components/*` The react design system components publish to npm
+- `/website/*` The website CMS and template
+- `/helpers/*` Some helper scripts
+- `/nginx/*` The nginx config for the server
 
-1. [Component build](#component-build)
-1. [Docs build](#docs-build)
-1. [Website build](#website-build)
+## Content
 
-### Component build
+- [Development](#development)
+- [Design System](#design-system)
+- [Website](#website)
 
-This build is running all the components examples directly and nothing else.
-It's for development of a component and for testing it.
+## Development
 
-You run it via:
-
-```sh
-yarn dev [component name]
-```
-
-### Docs build
-
-This build is for the developer documentation site that puts all the examples of all components together with a navigation.
-It's for the docs that are published to below:
-
-| Purpose    | branch    | url                                    |
-| ---------- | --------- | -------------------------------------- |
-| Production | `master`  | https://westpacgel.netlify.com         |
-| Staging    | `develop` | https://westpacgel-staging.netlify.com |
-
-You run it via:
+To run this repo locally please use [yarn](https://yarnpkg.com/).
+This repo is a monorepo.
+Learn more about monorepos at https://monorepo.guide/.
 
 ```sh
-yarn docs
+cd path/to/repo
+yarn
 ```
 
-### Website build
+This will install all dependencies for all packages in this monorepo.
 
-This build is for the website and keystone process.
-It's for the public documentation site and the admin UI.
-
-You run it via:
-
-```sh
-yarn start
-```
-
-To run the website locally you'll need [postgres](https://www.keystonejs.com/quick-start/adapters#installing-postgresql) and a `.env` file.
-
-Create the database via:
-
-```sh
-psql -c 'create database "gel3_website";'
-```
-
-The `website/.env` file requires the following items:
-
-```
-NODE_ENV=development
-
-CLOUDINARY_CLOUD_NAME="FILLME"
-CLOUDINARY_KEY="FILLME"
-CLOUDINARY_SECRET="FILLME"
-
-DATABASE_URL="postgres://localhost/gel3_website"
-```
-
-#### Website deployment
-
-Everything for staging is added to the `staging` branch. So make sure you've merged everything you need into that branch and check it out:
-
-```sh
-git checkout staging
-```
-
-Then you can run the deploy script which will deploy the website with [pm2](https://github.com/Unitech/pm2):
-
-```sh
-yarn website:deploy-staging
-```
-
-_(💡 This requires your ssh key be installed on the server)_
-
-## npm scripts
-
-### root level
-
-| script                        | description                                           |
-| ----------------------------- | ----------------------------------------------------- |
-| `yarn`                        | install all dependencies                              |
-| `yarn nuke`                   | removes all `node_modules` for fresh start            |
-| `yarn fresh`                  | removes all `node_modules` and reinstalls them        |
-| `yarn build`                  | build all dist folders                                |
-| `yarn build:dev`              | build all dist for local consumption                  |
-| `yarn docs`                   | build docs for all components and open server         |
-| `yarn docs:build`             | build docs for all components to `./docs/` folder     |
-| `yarn new [package-name]`     | create a specified empty component                    |
-| `yarn dev [package-name]`     | start the example server of a component               |
-| `yarn test`                   | runs test                                             |
-| `yarn format`                 | runs prettier to format all code                      |
-| `yarn website:deploy-staging` | deploys the site to staging from the `staging` branch |
-
-### component level
-
-| script                  | description                      |
-| ----------------------- | -------------------------------- |
-| `yarn start`            | start the example server         |
-| `yarn test`             | runs test headless               |
-| `yarn test:dev`         | runs test by opening cypress app |
-| `yarn test:integration` | runs integration tests           |
-
-## Monorepo
+<details>
+<summary>👉 The file structure of this monorepo</summary>
 
 ```sh
 .
@@ -129,10 +47,13 @@ _(💡 This requires your ssh key be installed on the server)_
 │   │   ├── _utils.js               # shared logic
 │   │   ├── docs.js                 # entry file for `yarn docs` task
 │   │   ├── docs.webpack.config.js  # dynamic webpack config to run the `yarn docs` task
+│   │   ├── index.html              # the index.html file as entry point
 │   │   ├── start.js                # entry file for `yarn start` task
 │   │   └── start.webpack.config.js # dynamic webpack config to run the `yarn start` task
 │   │
-│   ├── public/                     # file in this folder will be moved into the docs/ folder
+│   ├── public/                     # files in this folder will be moved into the docs/ folder
+│   │
+│   ├── tests/                      # test specific files for reuse between component tests
 │   │
 │   ├── transformer/                # the transfomer files to convert tokens into platform data
 │   │   ├── _utils.js               # shared logic
@@ -140,6 +61,7 @@ _(💡 This requires your ssh key be installed on the server)_
 │   │
 │   ├── buildExports.js             # helps cypress testing of each component
 │   ├── cli.js                      # helper file for cli like adding a new module
+│   ├── ds-info.js                  # helper file to generate the GEL.json
 │   └── tester.js                   # helps cypress testing of each component
 │
 ├── components/                     # all ds components that are published
@@ -150,23 +72,72 @@ _(💡 This requires your ssh key be installed on the server)_
 ├── brands/                         # all brand components
 │   ├── BOM/
 │   │   ├── dist/                   # distribution files (build artifact)
-│   │   ├── src/                    # to automatically create the dist
+│   │   ├── overrides/              # all overrides files specific to this brand
+│   │   ├── src/                    # our source files
 │   │   ├── tokens/                 # token files
+│   │   ├── CHANGELOG.md
 │   │   ├── LICENSE
 │   │   ├── package.json
 │   │   └── README.md
-│   ├── STG/
+│   ├── BSA/
 │   │   └── etc
 │   └── WBC/
 │       └── etc
 │
+├── website/                        # all files related to the CMS and website
+│
 └── docs/                           # the static files for the documentation (build artifact)
 ```
 
-## Component
+</details>
+<details>
+<summary>👉 npm scripts</summary>
+
+| script                        | description                                           |
+| ----------------------------- | ----------------------------------------------------- |
+| `yarn`                        | install all dependencies                              |
+| `yarn nuke`                   | removes all `node_modules` for fresh start            |
+| `yarn fresh`                  | removes all `node_modules` and reinstalls them        |
+| `yarn build`                  | build all dist folders for production                 |
+| `yarn build:dev`              | build all dist for local consumption                  |
+| `yarn docs`                   | build docs for all components and run server          |
+| `yarn docs:build`             | build docs for all components to `./docs/` folder     |
+| `yarn new [package-name]`     | create a new specified empty component                |
+| `yarn dev [package-name]`     | start the example server of a component               |
+| `yarn test`                   | runs tests                                            |
+| `yarn format`                 | runs prettier to format all code                      |
+| `yarn website:deploy-staging` | deploys the site to staging from the `staging` branch |
+
+</details>
+
+## Design System
+
+The design system components are spread between two folders:
+
+```
+.
+├── brands/     # The brand components
+└── components/ # The design system components including core
+```
+
+There are two different ways you can run the components locally:
+
+1. [Component build](#component-build)
+1. [Docs build](#docs-build)
+
+### Some high level decisions
+
+- All components use named exports as the default, no default exports
+- All brands components will have a default export containing the "tokens" objects in addition to the named exports of each.
+- Fonts can't be shipped with npm so the tokens only define the css declarations for the fonts
+- For css-in-js we use `jsx` imported from `@westpac/core` and never depend on `emotion` directly other than inside core itself
+
+<details>
+<summary>👉 The file structure of components</summary>
 
 ```sh
 .
+├── CHANGELOG.md
 ├── README.md
 ├── LICENSE
 ├── package.json            # scope: `@westpac/`
@@ -195,57 +166,120 @@ _(💡 This requires your ssh key be installed on the server)_
         └── unit.spec.js    # jest test file for unit tests
 ```
 
-## Decisions
+</details>
+<details>
+<summary>👉 npm scripts</summary>
 
-- All scripts are run through the `yarn` command
-- The `helpers/` folder includes all helpers for builds, docs, testing etc
-- We have two different example / doc concerns:
-  1. Examples: they are for building components locally and to explain code per component
-  1. Docs: this is a website that includes all components and be published to https://westpacgel.github.io/GEL/
-- Multi-brand will be achieved by added a brand package that will be passed to the `<GEL/>` component
+| script                  | description                      |
+| ----------------------- | -------------------------------- |
+| `yarn start`            | start the example server         |
+| `yarn test`             | runs test headless               |
+| `yarn test:dev`         | runs test by opening cypress app |
+| `yarn test:integration` | runs integration tests           |
 
-  ```jsx
-  import { GEL } from '@westpac/core';
-  import brand from '@westpac/WBC';
+</details>
 
-  export const App = () => <GEL brand={brand}>Your app</GEL>;
-  ```
+### Theming / Multi-brand
 
-- Tokens and overrides (everything regarding consistent branding) will be contained in the brand packages in `brands/*`
-- Tokens will include these four categories:
-  - `colors`
-  - `layout`
-  - `packs`
-  - `spacing`
-  - `type`
-- All components use named exports as the default, no default exports
-- All brands components will have a default export containing the "tokens" objects in addition to the named exports of each.
-- Each component has overrides that can be overridden by:
+Multi-brand will be achieved by added a brand package that will be passed to the `<GEL/>` component
 
-  1. overrides contained in the brand object
-  2. overrides passed into `<GEL/>` wrapper
-  3. overrides passed to the component directly via the `overrides` prop
+```jsx
+import { GEL } from '@westpac/core';
+import brand from '@westpac/WBC';
 
-  ```jsx
-  import { GEL } from '@westpac/core';
-  import brand from '@westpac/wbc';
+export const App = () => <GEL brand={brand}>Your app</GEL>;
+```
 
-  brand['@westpac/tabcordion'].TabItem.styles = ( styles, state ) => { ...styles, border: 'red solid 2px' };
-  brand['@westpac/tabcordion'].TabRow.component = <TabRow />;
+The brand package includes tokens and overrides and will be available to all packages inside the `<GEL/>` wrapper via context.
+This allows us to be as consistent as can be within the same app.
+It also separates out all things theming to a single package.
+The brand package does not need to know anything about it's components.
+But it can opt in.
 
-  export const App = () => <GEL brand={brand}>Your app</GEL>;
-  ```
+<details>
+<summary>👉 Tokens</summary>
 
-- These overrides are pre-defined in the component them-self and will be reconciled as a cascade
-- Each package can be addressed by its name as the key in the tokens
-- The `example/` folder is for documenting composition of several components together e.g. templates
-- Fonts can't be shipped with npm so the tokens only define the css declarations for the fonts
-- css-in-js [emotion](https://emotion.sh/docs/introduction) is used with the `jsx` pragma and babel plugin
-- For css-in-js we use `jsx` imported from `@westpac/core` and never depend on `emotion` directly other than inside core itself
-- All components that are made up of a group of other components like `list`, `breadcrumb`, `button-group`, `input-group` etc can be driven solely by the
-  `data` prop
-- If children have to be altered inside a component we use the `cloneElement` function when we know it's a shallow depth.
-  We use context when we don't know how deep the children are going to be.
+| name      | purpose                                                  |
+| --------- | -------------------------------------------------------- |
+| `COLORS`  | Our colors including tints                               |
+| `LAYOUT`  | Only breakpoints so far                                  |
+| `PACKS`   | Mostly typography packs for reuse and consistency        |
+| `SPACING` | A function with minor scale to allow you to hit the grid |
+| `TYPE`    | Font files and definitions                               |
+| `BRAND`   | The current brand string                                 |
+
+</details>
+
+### Overrides
+
+A consumer may choose to override a component in it's build.
+This can happen by adding the overrides into the same name-space as the component you wish to override.
+
+```jsx
+import { Tabcordion } from '@westpac/tabcordion';
+import { GEL } from '@westpac/core';
+import brand from '@westpac/wbc';
+
+brand['@westpac/tabcordion'].TabItem.styles = ( styles, state ) => { ...styles, border: 'red solid 2px' };
+brand['@westpac/tabcordion'].TabRow.component = <TabRow />;
+
+export const App = () => (
+	<GEL brand={brand}>
+		All instances of the <Tabcordion/> now include the override specified above.
+		No matter how many there are.
+	</GEL>
+);
+```
+
+There may also a need to add an override only to a single instance of the component.
+In that case you may add the override to the component directly via the `override` prop each component has.
+
+```jsx
+import { Tabcordion } from '@westpac/tabcordion';
+import { GEL } from '@westpac/core';
+import brand from '@westpac/wbc';
+
+brand['@westpac/tabcordion'].Tabcordion.styles = ( styles, state ) => { ...styles, border: 'red solid 2px' };
+
+const override = {
+	Tabcordion: {
+		styles: ( styles, state ) => { ...styles, border: 'blue solid 2px' },
+	},
+};
+
+export const App = () => (
+	<GEL brand={brand}>
+		<Tabcordion/> with red border
+		<Tabcordion override={override} /> with blue border
+		<Tabcordion/> with red border
+	</GEL>
+);
+```
+
+_(💡 Overrides will be reconciled as a cascade from less-specific to most-specific.)_
+
+Every single component (including root component) have three items in their override object:
+
+```
+overrides = {
+	[name]: {
+		styles: (base-styles, state-props) => styles,
+		component: <React.Component/>
+		attributes: (base-attributes, state-props) => Object,
+	}
+}
+```
+
+<details>
+<summary>👉 Overrides</summary>
+
+| Key          | Type                 | Description                                                                            | Function arguments                                                                                                                                                                  |
+| ------------ | -------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `styles`     | `function` => Object | A function that returns an object of css properties for emotion                        | (`base-styles`,`state/props`) `base-styles` = the styles that would have been applied to the component, `state/props` = all props and all known state (without setters)             |
+| `attributes` | `function` => Object | A function that returns an object of attributes that will be spread onto the component | (`base-attributes`,`state/props`) `base-attributes` = the attributes that would have been applied to the component, `state/props` = all props and all known state (without setters) |
+| `component`  | `react component`    | A react component which will receive all props                                         | -                                                                                                                                                                                   |
+
+</details>
 
 ### Data driven API
 
@@ -300,40 +334,8 @@ focus.outline += ' !important'; // adding `!important` will make sure the focus 
 />;
 ```
 
-### TOKENS
-
-| name      | purpose                                                  |
-| --------- | -------------------------------------------------------- |
-| `COLORS`  | Our colors including tints                               |
-| `LAYOUT`  | Only breakpoints so far                                  |
-| `PACKS`   | Mostly typography packs for reuse and consistency        |
-| `SPACING` | A function with minor scale to allow you to hit the grid |
-| `TYPE`    | Font files and definitions                               |
-| `BRAND`   | The current brand string                                 |
-
-## Overrides naming convention
-
-Every single component (including root component) have three items in their override object:
-
-```
-overrides = {
-	ComponentName : {
-		[name]: {
-			styles: (base-styles, state-props) => styles,
-			component: <React.Component/>
-			attributes: (base-attributes, state-props) => Object,
-		}
-	}
-}
-```
-
-| Key          | Type                 | Description                                                                            | Function arguments                                                                                                                                                                  |
-| ------------ | -------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `styles`     | `function` => Object | A function that returns an object of css properties for emotion                        | (`base-styles`,`state/props`) `base-styles` = the styles that would have been applied to the component, `state/props` = all props and all known state (without setters)             |
-| `attributes` | `function` => Object | A function that returns an object of attributes that will be spread onto the component | (`base-attributes`,`state/props`) `base-attributes` = the attributes that would have been applied to the component, `state/props` = all props and all known state (without setters) |
-| `component`  | `react component`    | A react component which will receive all props                                         | -                                                                                                                                                                                   |
-
-### Naming convention for files inside components
+<details>
+<summary>👉 Naming convention for files inside components</summary>
 
 | name            | purpose                                                                     |
 | --------------- | --------------------------------------------------------------------------- |
@@ -344,7 +346,9 @@ overrides = {
 | `*.js`          | All jsx files are postfixed with `.js`                                      |
 | `*.spec.js`     | All (jest) unit tests are postfixed with `.spec.js`                         |
 
-## Props API vocabulary
+</details>
+<details>
+<summary>👉 Props API vocabulary</summary>
 
 | Prop                                       | Description                                                                                                                   |
 | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -361,12 +365,43 @@ overrides = {
 | `xsmall` `small` `medium` `large` `xlarge` | For t-shirt sizing                                                                                                            |
 | `data`                                     | A prop to drive a component-group from data alone                                                                             |
 
-## Blender support
+</details>
+
+### Component build
+
+This build is running all the components examples/demos directly and nothing else.
+It's for development of a component and for testing it.
+
+You run it via:
+
+```sh
+cd path/to/root/of/repo
+yarn dev [component name]
+```
+
+### Docs build
+
+This build is for the developer documentation site that puts all the examples of all components together with a navigation.
+It's for the docs that are automatically published to:
+
+| Purpose    | branch    | url                                    |
+| ---------- | --------- | -------------------------------------- |
+| Production | `master`  | https://westpacgel.netlify.com         |
+| Staging    | `develop` | https://westpacgel-staging.netlify.com |
+
+You run it via:
+
+```sh
+cd path/to/root/of/repo
+yarn docs
+```
+
+### Blender support
 
 [The blender](https://github.com/WestpacGEL/blender) can generate human readable html and css from react and emotion components.
 For this to work we require `label` attributes in our `css` prop and a couple files to blend and the `blender` key inside your `package.json`.
 
-### getLabel
+#### getLabel
 
 We have to add labels for every variations for props.
 To archive this we have the `getLabel` function that you can import from `@westpac/core`.
@@ -425,7 +460,7 @@ So `getLabel('Component')` on the root component and `getLabel('Component-subcom
 </div>
 ```
 
-### Js fallback
+#### Js fallback
 
 Since the blender just SSR each component it won't provide the functionality of react and any interactivity.
 For this you have to provide a `js` file for fallback.
@@ -433,7 +468,7 @@ In the GEL3 we use jQuery for this.
 Each jQuery file should target elements via the `data-js` attribute since classes can vary depending on your blend settings.
 So things like `data-js="body"` or `data-js="component-closebtn"` should work well and you target this via `$('[data-js="component-closebtn"]')` in jQuery.
 
-### Core components
+#### Core components
 
 Inside the `package.json`
 
@@ -478,7 +513,7 @@ In short:
 - The `AllStyles` component should contain all possible variations for a component
 - The `Docs` component should contain everything we want to show in the documentation.
 
-### Other components
+#### Other components
 
 Inside the `package.json`
 
@@ -542,3 +577,49 @@ export function Docs({ brand }) {
 ```
 
 Same as the core component.
+
+## Website
+
+The website runs [Keystone](https://www.keystonejs.com/) as CMS.
+You run it via:
+
+```sh
+yarn start
+```
+
+To run the website locally you'll need [postgres](https://www.keystonejs.com/quick-start/adapters#installing-postgresql) and a `.env` file.
+
+Create the database via:
+
+```sh
+psql -c 'create database "gel3_website";'
+```
+
+The `website/.env` file requires the following items:
+
+```
+NODE_ENV=development
+
+CLOUDINARY_CLOUD_NAME="FILLME"
+CLOUDINARY_KEY="FILLME"
+CLOUDINARY_SECRET="FILLME"
+
+DATABASE_URL="postgres://localhost/gel3_website"
+```
+
+#### Website deployment
+
+Everything for staging is added to the `staging` branch.
+So make sure you've merged everything you need into that branch and check it out:
+
+```sh
+git checkout staging
+```
+
+Then you can run the deploy script which will deploy the website with [pm2](https://github.com/Unitech/pm2):
+
+```sh
+yarn website:deploy-staging
+```
+
+_(💡 This requires your ssh key be installed on the server)_

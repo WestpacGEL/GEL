@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React, { Suspense, Fragment } from 'react';
 import { jsx } from '@westpac/core';
+import { Body } from '@westpac/body';
 import { Heading } from '@westpac/heading';
 import { useRouter } from 'next/router';
 import Select from '@arch-ui/select';
@@ -10,6 +11,8 @@ import { Input } from '@arch-ui/input';
 import preval from 'preval.macro';
 import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
 import { VisionFilter } from '../src/components/a11y-filter';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 let data = preval`
 const fs = require('fs');
@@ -51,6 +54,27 @@ const options = data.map(o => ({ label: o, value: o }));
 const codeExamples = importCodeExamples(data);
 let valueCache = new Map();
 let promiseCache = new Map();
+
+const levelOptions = [
+	{ label: 'H1', value: 'h1' },
+	{ label: 'H2', value: 'h2' },
+	{ label: 'H3', value: 'h3' },
+	{ label: 'H4', value: 'h4' },
+	{ label: 'H5', value: 'h5' },
+	{ label: 'H6', value: 'h6' },
+];
+
+const sizeOptions = [
+	{ label: '1', value: 1 },
+	{ label: '2', value: 2 },
+	{ label: '3', value: 3 },
+	{ label: '4', value: 4 },
+	{ label: '5', value: 5 },
+	{ label: '6', value: 6 },
+	{ label: '7', value: 7 },
+	{ label: '8', value: 8 },
+	{ label: '9', value: 9 },
+];
 
 function ShowCodeBlock({ loadCodeBlock, context }) {
 	let promise = promiseCache.get(loadCodeBlock);
@@ -94,27 +118,6 @@ export const VisionFilters = {
 				...currentValue,
 				...changes,
 			});
-
-		const levelOptions = [
-			{ label: 'H1', value: 'h1' },
-			{ label: 'H2', value: 'h2' },
-			{ label: 'H3', value: 'h3' },
-			{ label: 'H4', value: 'h4' },
-			{ label: 'H5', value: 'h5' },
-			{ label: 'H6', value: 'h6' },
-		];
-
-		const sizeOptions = [
-			{ label: '1', value: 1 },
-			{ label: '2', value: 2 },
-			{ label: '3', value: 3 },
-			{ label: '4', value: 4 },
-			{ label: '5', value: 5 },
-			{ label: '6', value: 6 },
-			{ label: '7', value: 7 },
-			{ label: '8', value: 8 },
-			{ label: '9', value: 9 },
-		];
 
 		return (
 			<Fragment>
@@ -196,7 +199,15 @@ export const VisionFilters = {
 			</Fragment>
 		);
 	},
-	component: ({ codeExample, context, heading, size, level, addTableContent, subText }) => {
+	component: ({
+		codeExample,
+		context,
+		heading = '',
+		size = 5,
+		level = 'h2',
+		addTableContent = true,
+		subText = '',
+	}) => {
 		if (typeof window === 'undefined') {
 			return <p>Loading...</p>;
 		}
@@ -213,39 +224,45 @@ export const VisionFilters = {
 		};
 
 		return (
-			<Fragment>
-				<Heading
-					id={id}
-					tabIndex="-1"
-					tag={level}
-					size={size}
-					{...(addTableContent && { 'data-toc': true })}
-					overrides={{
-						Heading: {
-							styles: styles => ({
-								...styles,
-								scrollMarginTop: '75px',
-							}),
-						},
-					}}
-				>
-					{heading}
-				</Heading>
-				<p>
-					{subText} Read more about these vision impairments on our{' '}
-					<a href={href} onClick={handleClick}>
-						Accessibility
-					</a>{' '}
-					page.
-				</p>
-				<Suspense fallback={<p>Loading...</p>}>
-					{loadCodeBlock && typeof window !== 'undefined' ? (
-						<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
-					) : (
-						'Example not found.'
-					)}
-				</Suspense>
-			</Fragment>
+			<Container css={blocksContainerStyle}>
+				<Grid columns={12} css={blocksGridStyle}>
+					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+						<Heading
+							id={id}
+							tabIndex="-1"
+							tag={level}
+							size={size}
+							{...(addTableContent && { 'data-toc': true })}
+							overrides={{
+								Heading: {
+									styles: styles => ({
+										...styles,
+										scrollMarginTop: '75px',
+									}),
+								},
+							}}
+						>
+							{heading}
+						</Heading>
+						<Body>
+							<p>
+								{subText} Read more about these vision impairments on our{' '}
+								<a href={href} onClick={handleClick}>
+									Accessibility
+								</a>{' '}
+								page.
+							</p>
+						</Body>
+						<Suspense fallback={<p>Loading...</p>}>
+							{loadCodeBlock && typeof window !== 'undefined' ? (
+								<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
+							) : (
+								'Example not found.'
+							)}
+						</Suspense>
+					</Cell>
+				</Grid>
+			</Container>
 		);
 	},
 };

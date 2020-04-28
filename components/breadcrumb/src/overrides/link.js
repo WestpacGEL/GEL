@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Link = ({ state, ...rest }) => <a {...rest} />;
 
@@ -8,6 +8,7 @@ const linkStyles = (_, { current }) => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('breadcrumb-link', { current }),
 		color: COLORS.text,
 		boxSizing: 'border-box',
 		textDecoration: 'none',

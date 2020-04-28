@@ -5,6 +5,8 @@ import Select from '@arch-ui/select';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import preval from 'preval.macro';
 import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 let data = preval`
 const fs = require('fs');
@@ -101,16 +103,6 @@ export const CodeExample = {
 						/>
 						<span>Show code</span>
 					</label>
-					{/* <label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
-						<CheckboxPrimitive
-							checked={currentValue.showDemo}
-							tabIndex="0"
-							onChange={({ target }) => {
-								update({ showDemo: target.checked });
-							}}
-						/>
-						<span>Show demo</span>
-					</label> */}
 				</div>
 			</Fragment>
 		);
@@ -122,18 +114,24 @@ export const CodeExample = {
 		const loadCodeBlock = codeExamples[codeExample];
 
 		return (
-			<Suspense fallback={<p>Loading...</p>}>
-				{loadCodeBlock && typeof window !== 'undefined' ? (
-					<ShowCodeBlock
-						loadCodeBlock={loadCodeBlock}
-						context={context}
-						showCode={showCode}
-						showDemo={showDemo}
-					/>
-				) : (
-					'Example not found.'
-				)}
-			</Suspense>
+			<Container css={blocksContainerStyle}>
+				<Grid columns={12} css={blocksGridStyle}>
+					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+						<Suspense fallback={<p>Loading...</p>}>
+							{loadCodeBlock && typeof window !== 'undefined' ? (
+								<ShowCodeBlock
+									loadCodeBlock={loadCodeBlock}
+									context={context}
+									showCode={showCode}
+									showDemo={showDemo}
+								/>
+							) : (
+								'Example not found.'
+							)}
+						</Suspense>
+					</Cell>
+				</Grid>
+			</Container>
 		);
 	},
 };

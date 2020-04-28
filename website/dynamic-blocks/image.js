@@ -6,6 +6,8 @@ import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
 import { useMutation } from '@apollo/react-hooks';
 import { LoadingIndicator } from '@arch-ui/loading';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 import gql from 'graphql-tag';
 
@@ -102,16 +104,21 @@ export const Image = {
 		};
 
 		return (
-			<figure
-				css={{
-					...figureStyles,
-					paddingRight: SPACING(3),
-					pointerEvents: context === 'admin' ? 'none' : undefined,
-				}}
-			>
-				<img css={imageStyles} src={image} />
-				<figcaption css={captionStyle}>{caption}</figcaption>
-			</figure>
+			<Container css={blocksContainerStyle}>
+				<Grid columns={12} css={blocksGridStyle}>
+					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+						<figure
+							css={{
+								...figureStyles,
+								pointerEvents: context === 'admin' ? 'none' : undefined,
+							}}
+						>
+							<img css={imageStyles} src={image} />
+							<figcaption css={captionStyle}>{caption}</figcaption>
+						</figure>
+					</Cell>
+				</Grid>
+			</Container>
 		);
 	},
 };

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Svg = ({ state: { assistiveText }, ...rest }) => (
 	<svg
@@ -13,7 +13,9 @@ const Svg = ({ state: { assistiveText }, ...rest }) => (
 	/>
 );
 
-const svgStyles = () => ({});
+const svgStyles = () => ({
+	label: getLabel('icon-svg'),
+});
 
 const svgAttributes = () => null;
 

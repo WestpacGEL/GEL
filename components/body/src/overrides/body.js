@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Body = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
@@ -15,6 +15,7 @@ const bodyStyles = (_, props) => {
 	}
 
 	return {
+		label: getLabel('body', { [key]: props[key] }),
 		'h1, h2, h3, h4, h5, h6': {
 			color: COLORS.heading,
 		},

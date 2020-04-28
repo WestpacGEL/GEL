@@ -3,34 +3,48 @@
 import { Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import { Heading as WestpacHeading } from '@westpac/heading';
+import { Body } from '@westpac/body';
+import { Cell, Grid, Container } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
+import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils';
 
-const Component = ({ heading, size, level, addTableContent, subText, text }) => {
+const Component = ({ heading, size, level, addTableContent, indent = true, subText, text }) => {
 	const id = heading.replace(/ /g, '-').toLowerCase();
+	const indentWidth = indent ? [12, 12, 12, 10, 10] : 12;
+	const indentLeft = indent ? [1, 1, 1, 2, 2] : 0;
+
 	return (
-		<Fragment>
-			<WestpacHeading
-				id={id}
-				tabIndex="-1"
-				tag={level}
-				size={size}
-				{...(addTableContent && { 'data-toc': true })}
-				overrides={{
-					Heading: {
-						styles: styles => ({
-							...styles,
-							scrollMarginTop: '75px',
-						}),
-					},
-				}}
-			>
-				{heading}
-			</WestpacHeading>
-			{subText && text && <p>{text}</p>}
-		</Fragment>
+		<Container css={blocksContainerStyle}>
+			<Grid columns={12} css={blocksGridStyle}>
+				<Cell width={indentWidth} left={indentLeft}>
+					<WestpacHeading
+						id={id}
+						tabIndex="-1"
+						tag={level}
+						size={size}
+						{...(addTableContent && { 'data-toc': true })}
+						overrides={{
+							Heading: {
+								styles: styles => ({
+									...styles,
+									scrollMarginTop: '75px',
+								}),
+							},
+						}}
+					>
+						{heading}
+					</WestpacHeading>
+					{subText && text && (
+						<Body>
+							<p css={{ lineHeight: 2 }}>{text}</p>
+						</Body>
+					)}
+				</Cell>
+			</Grid>
+		</Container>
 	);
 };
 
@@ -41,6 +55,7 @@ export const Heading = {
 			size: 5,
 			heading: '',
 			addTableContent: true,
+			indent: true,
 			subText: false,
 			text: '',
 			...(value || {}),
@@ -113,6 +128,16 @@ export const Heading = {
 							onChange={({ target }) => update({ addTableContent: target.checked })}
 						/>
 						<span>Include in table of contents</span>
+					</label>
+				</FieldContainer>
+				<FieldContainer>
+					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+						<CheckboxPrimitive
+							checked={currentValue.indent}
+							tabIndex="0"
+							onChange={({ target }) => update({ indent: target.checked })}
+						/>
+						<span>Indent heading & subtext</span>
 					</label>
 				</FieldContainer>
 				<FieldContainer>

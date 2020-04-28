@@ -4,6 +4,9 @@
 	"description": "Body component in charge of body text",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/body",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"blender": {
+		"recipe": "blender/recipe.js"
+	},
 	"contributors": [
 		{
 			"name": "Dominik Wilkowski",

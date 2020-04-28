@@ -1,10 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Breadcrumb = ({ state, ...rest }) => <nav {...rest} />;
 
-const breadcrumbStyles = () => ({});
+const breadcrumbStyles = () => ({
+	label: getLabel('breadcrumb'),
+});
 
 const breadcrumbAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
 

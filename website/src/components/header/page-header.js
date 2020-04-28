@@ -36,18 +36,22 @@ const MenuIcon = () => {
 const PageHeader = ({ name, version }) => {
 	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
 	const [hasScrolled, setHasScrolled] = useState(false);
+	const [hasScrolled65, setHasScrolled65] = useState(false);
 	const header = useRef(null);
 	const headerPaddingElement = useRef(null);
 
 	useEffect(() => {
 		const main = header.current.parentElement;
+
 		const scrollHandler = () => {
 			if (main.scrollTop >= 0 && main.scrollTop < 135) {
+				setHasScrolled65(false);
 				header.current.style.height = `${200 - main.scrollTop}px`;
 				header.current.style.marginTop = `${-50 + main.scrollTop}px`;
 				header.current.style.position = 'relative';
 				headerPaddingElement.current.style.height = '0px';
 			} else {
+				setHasScrolled65(true);
 				headerPaddingElement.current.style.height = '200px';
 				header.current.style.height = '65px';
 				header.current.style.marginTop = '-50px';
@@ -96,7 +100,7 @@ const PageHeader = ({ name, version }) => {
 					},
 				}}
 			>
-				<HeaderImage brand={BRAND} />
+				<HeaderImage brand={BRAND} scrolled={hasScrolled65} />
 				<div>
 					<MenuIcon />
 				</div>

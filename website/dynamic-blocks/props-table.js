@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react'; // Needed for within Keystone
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
 import { Heading } from '@westpac/heading';
-import PropTypes from '../../prop-types.json';
+import PropTypes from '../../GEL.json';
+import { Container, Grid, Cell } from '@westpac/grid';
+import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 /**
  * A small helper component for inline code blocks
@@ -16,8 +18,8 @@ const Code = ({ children, ...rest }) => {
 				display: 'inline-block',
 				overflow: 'auto',
 				background: COLORS.background,
-				padding: `${SPACING(0.5, true)} ${SPACING(0.5)}`,
-				margin: `0 ${SPACING(1, true)}`,
+				padding: `0 ${SPACING(0.5)}`,
+				margin: `${SPACING(1, true)}`,
 				border: `1px solid ${COLORS.border}`,
 				color: COLORS.muted,
 				fontSize: '0.9em',
@@ -81,16 +83,25 @@ function PTableRow({ name, data, level = 0 }) {
 	const subValues = [];
 	let value = null;
 	level++;
-	if (type === 'oneOfType' || type === 'shape' || type === 'exact') {
+	if (type === 'shape' || type === 'exact') {
 		subValues.push(
 			Object.entries(data.type.value).map(([name, data], i) => (
 				<PTableRow key={i} name={name} data={data} level={level} />
 			))
 		);
+	} else if (type === 'oneOfType') {
+		subValues.push(
+			data.type.value.map((item, i) => (
+				<PTableRow
+					key={i}
+					name=""
+					data={{ type: { name: item.name }, required: false, defaultValue: item.defaultValue }}
+					level={level}
+				/>
+			))
+		);
 	} else {
-		value = data.type.value
-			? data.type.value.map((val, i) => <Code key={i}>{formatValue(val)}</Code>)
-			: null;
+		value = data.type.value ? data.type.value.map((val, i) => <Code key={i}>"{val}"</Code>) : null;
 	}
 	return (
 		<Fragment>
@@ -114,17 +125,15 @@ function PTableRow({ name, data, level = 0 }) {
 /**
  * The props table component
  *
- * @param {object} options.data    - The data object coming from the prop-types.json
+ * @param {object} options.data    - The data object coming from the GEL.json
  * @param {string} options.caption - A caption for the table
  */
 function PTable({ data, caption }) {
 	const { SPACING } = useBrand();
 	return (
-		<Table css={{ marginBottom: SPACING(4, true) }} bordered striped>
+		<Table css={{ marginBottom: SPACING(4, true), borderColor: 'white' }} bordered striped>
 			{caption && (
-				<Caption
-					css={{ fontWeight: 'bold', margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}
-				>
+				<Caption css={{ margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}>
 					{caption}
 				</Caption>
 			)}
@@ -147,26 +156,55 @@ function PTable({ data, caption }) {
 }
 
 const Component = ({ item }) => {
-	const tableData = Object.keys(PropTypes.components[item.packageName]).map(key => {
-		const { overrides, ...normalProps } = PropTypes.components[item.packageName][key];
-		return {
-			name: key,
-			overrideProps: { overrides },
-			normalProps,
-		};
-	});
+	const mq = useMediaQuery();
+	const { SPACING } = useBrand();
+	const tableData = Object.keys(PropTypes.components[item.packageName])
+		.filter(
+			key => typeof PropTypes.components[item.packageName][key] === 'object' && key !== 'blender'
+		)
+		.map(key => {
+			const { overrides, ...normalProps } = PropTypes.components[item.packageName][key].propTypes;
+			return {
+				name: key,
+				overrideProps: { overrides: overrides },
+				normalProps,
+			};
+		});
 
 	return (
-		<Fragment>
-			{tableData.map(({ overrideProps, normalProps, name }) => {
-				return (
-					<Fragment key={`table-${name}`}>
-						<PTable caption={`${name} Props`} data={normalProps} />
-						<PTable caption={`${name} Overrides`} data={overrideProps} />
-					</Fragment>
-				);
-			})}
-		</Fragment>
+		<Container css={{ backgroundColor: '#fff', ...blocksContainerStyle }}>
+			<Grid
+				css={mq({
+					...blocksGridStyle,
+					marginTop: [SPACING(6), SPACING(6), SPACING(10)],
+				})}
+				columns={12}
+			>
+				<Cell width={12}>
+					<Heading tag="h2" size={5}>
+						Props
+					</Heading>
+				</Cell>
+			</Grid>
+			<Grid
+				columns={12}
+				css={mq({
+					...blocksGridStyle,
+					marginTop: [SPACING(3), SPACING(3), SPACING(6)],
+				})}
+			>
+				<Cell width={12}>
+					{tableData.map(({ overrideProps, normalProps, name }) => {
+						return (
+							<Fragment key={`table-${name}`}>
+								<PTable caption={`${name} Props`} data={normalProps} />
+								<PTable caption={`${name} Overrides`} data={overrideProps} />
+							</Fragment>
+						);
+					})}
+				</Cell>
+			</Grid>
+		</Container>
 	);
 };
 
