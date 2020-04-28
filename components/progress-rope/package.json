@@ -24,7 +24,6 @@
 	"module": "dist/progress-rope.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.8.4",
-		"@juggle/resize-observer": "^3.1.2",
 		"@westpac/a11y": "^1.0.0",
 		"@westpac/core": "^1.0.0",
 		"prop-types": "^15.7.2",
