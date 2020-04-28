@@ -27,7 +27,12 @@ const Wrapper = props => {
 	// If no brand is detected, show the brand picker...
 	if (!isMatch) {
 		// show brand selector
-		return <BrandPicker />;
+		return (
+			<GEL brand={brands['WBC']}>
+				<Normalize />
+				<BrandPicker />
+			</GEL>
+		);
 	}
 
 	let { data, error } = useQuery(

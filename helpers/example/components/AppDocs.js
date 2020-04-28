@@ -26,6 +26,9 @@ export function AppDocs({ components, packageName, pkg }) {
 					>
 						<Global
 							styles={css`
+								body {
+									margin: 0;
+								}
 								code {
 									font-family: Monaco, monospace;
 									font-size: 0.85em;

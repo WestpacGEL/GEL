@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react'; // Needed for within Keystone
+import React, { Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand } from '@westpac/core';
 import Select from '@arch-ui/select';
 import chroma from 'chroma-js';
@@ -37,7 +37,10 @@ export const ColorSwatch = {
 	editor: ({ value, onChange }) => {
 		const { COLORS } = useBrand();
 
-		const swatches = Object.entries({ ...COLORS, ...secondaryColors })
+		const swatches = Object.entries({
+			...COLORS,
+			...{ 'Secondary Colors': '--secondary-colors--' },
+		})
 			.filter(([key, value]) => typeof value === 'string')
 			.map(([key, value]) => {
 				return { value: value, label: key.charAt(0).toUpperCase() + key.slice(1) };
@@ -55,16 +58,32 @@ export const ColorSwatch = {
 			/>
 		);
 	},
+
 	component: ({ colors }) => {
-		const { COLORS } = useBrand();
+		const { COLORS, BRAND } = useBrand();
+
 		return (
 			<Container css={blocksContainerStyle}>
 				<Grid columns={12} css={blocksGridStyle}>
-					{colors.map(color => (
-						<Cell width={[6, 4, 4, 3]}>
-							<Swatch key={color.value} color={color.value} name={color.label} />
-						</Cell>
-					))}
+					{colors.map(color => {
+						if (color.value === '--secondary-colors--') {
+							return (
+								<Fragment key={color.value}>
+									{Object.entries(secondaryColors[BRAND]).map(secondaryColor => (
+										<Cell key={secondaryColor[1]} width={[6, 4, 4, 3]}>
+											<Swatch color={secondaryColor[1]} name={secondaryColor[0]} />
+										</Cell>
+									))}
+								</Fragment>
+							);
+						} else {
+							return (
+								<Cell key={color.value} width={[6, 4, 4, 3]}>
+									<Swatch color={color.value} name={color.label} />
+								</Cell>
+							);
+						}
+					})}
 				</Grid>
 			</Container>
 		);
