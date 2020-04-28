@@ -45,7 +45,6 @@ const PageHeader = ({ name, version }) => {
 	const { COLORS, BRAND, LAYOUT } = useBrand();
 	const mq = useMediaQuery();
 	const [hasScrolled, setHasScrolled] = useState(false);
-	const [hasScrolled65, setHasScrolled65] = useState(false);
 	const header = useRef(null);
 
 	useEffect(() => {
