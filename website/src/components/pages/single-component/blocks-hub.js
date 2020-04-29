@@ -203,11 +203,15 @@ const textOnlySlateRenderer = _editorValue => {
 		// special serialiser for text
 		({ node, path }) => {
 			if (node.object === 'text') {
-				return node.text.split('\n').reduce((array, text, i) => {
+				if (!node.text) {
+					return [<br />];
+				}
+				const x = node.text.split('\n').reduce((array, text, i) => {
 					if (i !== 0) array.push(<br key={`${path}_${i}`} />);
 					array.push(<ApplyShortCodes key={`sc-${path}_${i}`} text={text} />);
 					return array;
 				}, []);
+				return x;
 			}
 		},
 		// serialiser for links
@@ -261,7 +265,11 @@ const textOnlySlateRenderer = _editorValue => {
 
 			switch (node.type) {
 				case 'paragraph':
-					return <p css={textStyle}>{serializeChildren(node.nodes)}</p>;
+					return (
+						<p key={path} css={{ ...textStyle, margin: '0 !important' }}>
+							{serializeChildren(node.nodes)}
+						</p>
+					);
 				default: {
 					console.error(`Unexpected block '${node.type}' at ${path}`);
 				}
