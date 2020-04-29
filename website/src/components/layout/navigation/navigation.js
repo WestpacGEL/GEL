@@ -66,6 +66,7 @@ export const Navigation = ({ items }) => {
 							level={level}
 							css={{
 								color: isCurrentChild && COLORS.primary,
+								fontWeight: isCurrentChild && 500,
 							}}
 						>
 							{item.title}
@@ -78,10 +79,15 @@ export const Navigation = ({ items }) => {
 
 	return (
 		<Fragment>
-			<a href="https://gel.westpacgroup.com.au/" css={{ display: 'inline-flex' }}>
+			<a
+				href="https://gel.westpacgroup.com.au/"
+				css={{ display: 'block !important', overflow: 'hidden' }}
+			>
 				<BackToGelSvg />
 			</a>
-			<List type="unstyled">{renderNavigationItems(items)}</List>
+			<List type="unstyled" css={{ paddingBottom: '1.5rem' }}>
+				{renderNavigationItems(items)}
+			</List>
 		</Fragment>
 	);
 };
