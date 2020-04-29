@@ -65,7 +65,7 @@ const Tabs = ({ component, tabName }) => {
 			} else {
 				setScrolled(true);
 			}
-		}, 100);
+		}, 50);
 
 		main.addEventListener('scroll', scrollHandler);
 		return () => {
@@ -93,7 +93,6 @@ const Tabs = ({ component, tabName }) => {
 			styles: styles => ({
 				...styles,
 				backgroundColor: '#fff',
-				borderBottom: `solid 1px ${COLORS.border}`,
 				borderLeft: `solid 1px ${COLORS.border}`,
 				position: 'sticky',
 				top: '66px',
@@ -115,7 +114,7 @@ const Tabs = ({ component, tabName }) => {
 					marginTop: SPACING(2),
 					borderRight: `solid 1px ${COLORS.border}`,
 					padding: [`${SPACING(2)} ${SPACING(4)}`, `${SPACING(3)} ${SPACING(10)}`],
-					boxShadow: selected ? `inset 0 -2px 0 ${COLORS.primary}` : 'none',
+					boxShadow: selected ? `inset 0 -3px 0 ${COLORS.primary}` : 'none',
 					fontWeight: 600,
 					color: selected ? COLORS.text : COLORS.muted,
 				}),
