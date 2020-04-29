@@ -48,7 +48,11 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 
 const parseHeadings = content =>
 	content.nodes
-		.filter(item => item.data.component)
+		.filter(
+			item =>
+				item.data.component &&
+				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaders'].includes(item.data.component)
+		)
 		.filter(item => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
 			const { props } = item.data;
@@ -85,7 +89,7 @@ const TableOfContents = ({ content }) => {
 				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
 			/>
 
-			{((toc && toc.length) || relatedContent) && (
+			{(toc && toc.length) || relatedContent ? (
 				<nav>
 					<List
 						type="icon"
@@ -110,7 +114,7 @@ const TableOfContents = ({ content }) => {
 						)}
 					</List>
 				</nav>
-			)}
+			) : null}
 		</div>
 	);
 };
