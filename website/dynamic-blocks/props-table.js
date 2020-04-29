@@ -74,7 +74,7 @@ function Indent({ level }) {
  * @param {number} options.level - The level, will be incremented with each recursive call
  */
 function PTableRow({ name, data, level = 0 }) {
-	const type = data.type.name;
+	const type = data.type ? data.type.name : undefined;
 	const required = <Code>{formatValue(data.required)}</Code>;
 	const defaultValue = data.defaultValue ? (
 		<Code>{formatValue(data.defaultValue.value)}</Code>
@@ -100,9 +100,23 @@ function PTableRow({ name, data, level = 0 }) {
 				/>
 			))
 		);
+	} else if (type === 'arrayOf') {
+		subValues.push(
+			<PTableRow
+				key={`arrayOf-${name}-${level}`}
+				name=""
+				data={{
+					type: { name: data.type.value.name, value: data.type.value.value },
+					required: false,
+					defaultValue: data.type.defaultValue,
+				}}
+				level={level}
+			/>
+		);
 	} else {
 		value = data.type.value ? data.type.value.map((val, i) => <Code key={i}>"{val}"</Code>) : null;
 	}
+
 	return (
 		<Fragment>
 			<Tr>
