@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-const Option = ({ state, ...rest }) => <li {...rest} />;
+const Option = ({ state, ...rest }) => <div {...rest} />;
 
 const optionStyles = (_, { size, inline }) => {
 	const sizeMap = {

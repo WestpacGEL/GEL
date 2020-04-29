@@ -2,10 +2,16 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
+import { useState } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
+	const [formCheckValue, setFormCheckValue] = useState(['1', '3']);
+
+	const [loneRanger1, setLoneRanger1] = useState(false);
+	const [loneRanger2, setLoneRanger2] = useState(true);
+
 	return (
 		<GEL brand={brand}>
 			<Intopia />
@@ -51,25 +57,59 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h2>With checked</h2>
-			<FormCheck type="checkbox" name="example-checkbox-checked">
+			<h2>With managed state</h2>
+			<h3>Checkbox</h3>
+			<p>{formCheckValue.toString()}</p>
+			<FormCheck
+				type="checkbox"
+				name="example-checkbox-defaultvalue"
+				value={formCheckValue}
+				onChange={(value, event) => setFormCheckValue(value)}
+			>
 				<Option value="1">Option 1</Option>
-				<Option value="2" checked>
-					Option 2
-				</Option>
-				<Option value="3" checked>
-					Option 3
-				</Option>
-			</FormCheck>
-
-			<h3>Radio</h3>
-			<FormCheck type="radio" name="example-radio-checked">
-				<Option value="1">Option 1</Option>
-				<Option value="2" checked>
-					Option 2
-				</Option>
+				<Option value="2">Option 2</Option>
 				<Option value="3">Option 3</Option>
 			</FormCheck>
+
+			<hr />
+
+			<h2>Option alone with defaultChecked</h2>
+			<Option value="1">Option 1</Option>
+			<Option value="2" defaultChecked>
+				Option 2
+			</Option>
+			<Option value="3" defaultChecked>
+				Option 3
+			</Option>
+
+			<h3>Radio</h3>
+			<Option type="radio" name="example-lone-radio" value="1">
+				Option 1
+			</Option>
+			<Option type="radio" name="example-lone-radio" value="2" defaultChecked>
+				Option 2
+			</Option>
+			<Option type="radio" name="example-lone-radio" value="3">
+				Option 3
+			</Option>
+
+			<hr />
+
+			<h2>Option alone state managed</h2>
+			<Option
+				value="1"
+				checked={loneRanger1}
+				onChange={event => setLoneRanger1(event.target.checked)}
+			>
+				Option 1
+			</Option>
+			<Option
+				value="2"
+				checked={loneRanger2}
+				onChange={event => setLoneRanger2(event.target.checked)}
+			>
+				Option 2
+			</Option>
 
 			<hr />
 
