@@ -8,16 +8,23 @@ export function getLabel(name, props = {}) {
 			} else if (typeof value === 'boolean') {
 				label += value ? `-${name}` : '';
 			} else if (typeof value === 'string') {
-				label += value === '' ? '' : `-${name}_${value}`;
+				label += value === '' ? '' : `-${name}_${value.replace(/-/g, '_')}`;
+			} else if (typeof value === 'number') {
+				label += `-${name}_${String(value).replace(/-/g, '_')}`;
 			} else if (typeof value === 'function') {
-				label += `-${value.displayName || value.name || name}`;
+				label += `-${value.displayName || value.name}`;
+			} else {
+				label += `-${name}_${JSON.stringify(value)
+					.replace(/-/g, '_')
+					.replace(/,/g, '_')
+					.replace(/:/g, '_')}`;
 			}
 		});
 
 	return cleanClassName(label);
 }
 
-function cleanClassName(name) {
+export function cleanClassName(name) {
 	return name
 		.replace(/ /g, '_') // we transform spaces into underscores
 		.replace(/\./g, '_') // we transform dots into underscores
