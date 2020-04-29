@@ -65,7 +65,7 @@ export const RelatedInformation = ({ item }) => {
 	try {
 		hasRelatedInfo = checkNode(JSON.parse(relatedInfo.document));
 	} catch (e) {
-		console.info('Could not parse document data searching for Related Info');
+		console.warn('Could not parse document data searching for Related Info');
 	}
 
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
