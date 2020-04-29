@@ -56,8 +56,14 @@ export const RelatedInformation = ({ item }) => {
 	const { SPACING } = useBrand();
 	const { relatedPages, relatedInfo } = item;
 	const mq = useMediaQuery();
-	if (!relatedPages && !relatedInfo) return null;
+	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
 
+	function checkNode(node) {
+		return node.text || (node.nodes && node.nodes.some(checkNode));
+	}
+	const hasRelatedInfo = checkNode(JSON.parse(relatedInfo.document));
+
+	if (!hasRelatedPages && !hasRelatedInfo) return null;
 	return (
 		<div
 			css={{
@@ -90,9 +96,15 @@ export const RelatedInformation = ({ item }) => {
 						marginTop: [SPACING(6), SPACING(10), SPACING(10)],
 					})}
 				>
-					{relatedPages && (
+					{hasRelatedPages && (
 						<Cell
-							width={[12, 12, relatedInfo ? 4 : 10, relatedInfo ? 4 : 10, relatedInfo ? 4 : 10]}
+							width={[
+								12,
+								12,
+								hasRelatedInfo ? 4 : 10,
+								hasRelatedInfo ? 4 : 10,
+								hasRelatedInfo ? 4 : 10,
+							]}
 							left={[1, 1, 2, 2, 2]}
 						>
 							<IconTitle icon={CubeIcon}>Components</IconTitle>
@@ -107,10 +119,22 @@ export const RelatedInformation = ({ item }) => {
 							</ul>
 						</Cell>
 					)}
-					{relatedInfo && (
+					{hasRelatedInfo && (
 						<Cell
-							width={[12, 12, relatedPages ? 5 : 10, relatedPages ? 5 : 10, relatedPages ? 5 : 10]}
-							left={[1, 1, relatedPages ? 7 : 2, relatedPages ? 7 : 2, relatedPages ? 7 : 2]}
+							width={[
+								12,
+								12,
+								hasRelatedPages ? 5 : 10,
+								hasRelatedPages ? 5 : 10,
+								hasRelatedPages ? 5 : 10,
+							]}
+							left={[
+								1,
+								1,
+								hasRelatedPages ? 7 : 2,
+								hasRelatedPages ? 7 : 2,
+								hasRelatedPages ? 7 : 2,
+							]}
 						>
 							<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
 							<TextOnlySlateContent
