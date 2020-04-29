@@ -46,12 +46,14 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 	);
 };
 
-const parseHeadings = content =>
-	content.nodes
+const parseHeadings = content => {
+	console.log(content.nodes);
+
+	return content.nodes
 		.filter(
 			item =>
 				item.data.component &&
-				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaders'].includes(item.data.component)
+				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText'].includes(item.data.component)
 		)
 		.filter(item => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
@@ -64,6 +66,7 @@ const parseHeadings = content =>
 				/>
 			);
 		});
+};
 
 // Intro section
 const TableOfContents = ({ content }) => {
