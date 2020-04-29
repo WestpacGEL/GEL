@@ -72,7 +72,7 @@ export const BrandSwitcher = () => {
 	const Logo = brandsMap[brand].logo;
 
 	return (
-		<div css={{ position: 'sticky', top: 0 }}>
+		<div css={{ position: 'sticky', top: 0, zIndex: 1 }}>
 			<div
 				css={{
 					display: 'flex',
