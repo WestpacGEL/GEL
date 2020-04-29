@@ -1,11 +1,12 @@
 /** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { useState, useEffect } from 'react';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
 import debounce from 'lodash.debounce';
 
 export const Footer = () => {
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, LAYOUT } = useBrand();
+	const mq = useMediaQuery();
 	const [visible, setVisible] = useState(true);
 
 	const el = document.querySelector('main') || window;
@@ -40,7 +41,8 @@ export const Footer = () => {
 			css={{
 				position: 'fixed',
 				bottom: visible ? 0 : '-65px',
-				width: '100%',
+				right: 0,
+				left: 0,
 				backgroundColor: '#fff',
 				transition: 'bottom 0.4s',
 				borderTop: `1px solid ${COLORS.border}`,
@@ -51,13 +53,17 @@ export const Footer = () => {
 				justifyContent: 'space-between',
 				padding: SPACING(3),
 				zIndex: 5,
+
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+					left: '300px',
+				},
 			}}
 		>
 			<div>
-				<span>Talk to us</span>
-				<FooterIcon icon={EmailIcon} href="mailto:info@westpac.com" />
-				<FooterIcon icon={SlackIcon} href="//westpac.slack.com" />
-				<FooterIcon icon={GithubIcon} href="//github.com/westpacgel" />
+				<span css={mq({ display: ['none', null, 'inline'] })}>Talk to us</span>
+				<FooterIcon icon={EmailIcon} href="mailto:gel@westpac.com.au" />
+				<FooterIcon icon={SlackIcon} href="//westpac-digital.slack.com" />
+				<FooterIcon icon={GithubIcon} href="//github.com/WestpacGEL" />
 			</div>
 
 			<button
@@ -87,7 +93,7 @@ export const Footer = () => {
 const FooterIcon = ({ icon: Icon, href }) => {
 	const { SPACING } = useBrand();
 	return (
-		<a href={href}>
+		<a href={href} target="_blank">
 			<Icon css={{ marginLeft: SPACING(2) }} />
 		</a>
 	);

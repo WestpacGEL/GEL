@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { Suspense, Fragment } from 'react';
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Body } from '@westpac/body';
 import { Heading } from '@westpac/heading';
 import { useRouter } from 'next/router';
@@ -216,6 +216,7 @@ export const VisionFilters = {
 		const loadCodeBlock = codeExamples[codeExample];
 		const router = useRouter();
 		const href = '/accessibility';
+		const { SPACING } = useBrand();
 
 		const handleClick = e => {
 			e.preventDefault();
@@ -245,7 +246,7 @@ export const VisionFilters = {
 							{heading}
 						</Heading>
 						<Body>
-							<p>
+							<p css={{ margin: `${SPACING(4)} 0 !important` }}>
 								{subText} Read more about these vision impairments on our{' '}
 								<a href={href} onClick={handleClick}>
 									Accessibility
