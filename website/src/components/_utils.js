@@ -61,7 +61,12 @@ export const RelatedInformation = ({ item }) => {
 	function checkNode(node) {
 		return node.text || (node.nodes && node.nodes.some(checkNode));
 	}
-	const hasRelatedInfo = checkNode(JSON.parse(relatedInfo.document));
+	let hasRelatedInfo = false;
+	try {
+		hasRelatedInfo = checkNode(JSON.parse(relatedInfo.document));
+	} catch (e) {
+		console.info('Could not parse document data searching for Related Info');
+	}
 
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
 	return (
