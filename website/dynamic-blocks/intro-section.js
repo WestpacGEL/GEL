@@ -48,7 +48,11 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 
 const parseHeadings = content =>
 	content.nodes
-		.filter(item => item.data.component)
+		.filter(
+			item =>
+				item.data.component &&
+				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText'].includes(item.data.component)
+		)
 		.filter(item => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
 			const { props } = item.data;
@@ -64,14 +68,16 @@ const parseHeadings = content =>
 // Intro section
 const TableOfContents = ({ content }) => {
 	const toc = parseHeadings(content);
-
 	const { COLORS, SPACING } = useBrand();
 	const [relatedContent, setRelatedContent] = useState(false);
 	const introRef = useRef();
 	useEffect(() => {
 		if (introRef) {
 			const design = introRef.current.closest('#design-tab');
-			setRelatedContent(!!design);
+			const relatedContentElement = document && document.getElementById('related-information');
+			if (relatedContentElement) {
+				setRelatedContent(!!design);
+			}
 		}
 	}, [introRef]);
 
@@ -85,7 +91,7 @@ const TableOfContents = ({ content }) => {
 				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
 			/>
 
-			{((toc && toc.length) || (currentTab === 'design' && relatedContent)) && (
+			{(toc && toc.length) || relatedContent ? (
 				<nav>
 					<List
 						type="icon"
@@ -100,7 +106,7 @@ const TableOfContents = ({ content }) => {
 							},
 						}}
 					>
-						{toc && toc.length && toc}
+						{toc && toc.length !== 0 && toc}
 						{relatedContent && (
 							<TableLink
 								key={`related-information`}
@@ -110,7 +116,7 @@ const TableOfContents = ({ content }) => {
 						)}
 					</List>
 				</nav>
-			)}
+			) : null}
 		</div>
 	);
 };
