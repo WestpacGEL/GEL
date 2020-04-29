@@ -85,7 +85,9 @@ export const Navigation = ({ items }) => {
 			>
 				<BackToGelSvg />
 			</a>
-			<List type="unstyled">{renderNavigationItems(items)}</List>
+			<List type="unstyled" css={{ paddingBottom: '1.5rem' }}>
+				{renderNavigationItems(items)}
+			</List>
 		</Fragment>
 	);
 };
