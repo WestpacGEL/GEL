@@ -110,7 +110,7 @@ const TableOfContents = ({ content }) => {
 							},
 						}}
 					>
-						{toc && toc.length && toc}
+						{toc && toc.length !== 0 && toc}
 						{relatedContent && (
 							<TableLink
 								key={`related-information`}
