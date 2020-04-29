@@ -89,7 +89,6 @@ const TableOfContents = ({ content }) => {
 				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
 			/>
 
-
 			{(toc && toc.length) || relatedContent ? (
 				<nav>
 					<List
