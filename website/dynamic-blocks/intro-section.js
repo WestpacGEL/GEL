@@ -46,10 +46,8 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 	);
 };
 
-const parseHeadings = content => {
-	console.log(content.nodes);
-
-	return content.nodes
+const parseHeadings = content =>
+	content.nodes
 		.filter(
 			item =>
 				item.data.component &&
@@ -66,12 +64,10 @@ const parseHeadings = content => {
 				/>
 			);
 		});
-};
 
 // Intro section
 const TableOfContents = ({ content }) => {
 	const toc = parseHeadings(content);
-
 	const { COLORS, SPACING } = useBrand();
 	const [relatedContent, setRelatedContent] = useState(false);
 	const introRef = useRef();
