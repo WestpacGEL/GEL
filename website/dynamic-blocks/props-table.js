@@ -6,6 +6,8 @@ import { Heading } from '@westpac/heading';
 import PropTypes from '../../GEL.json';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
+import { FieldContainer } from '@arch-ui/fields';
+import { CheckboxPrimitive } from '@arch-ui/controls';
 
 /**
  * A small helper component for inline code blocks
@@ -169,7 +171,7 @@ function PTable({ data, caption }) {
 	);
 }
 
-const Component = ({ item }) => {
+const Component = ({ item, addTableContent }) => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 	const tableData = Object.keys(PropTypes.components[item.packageName])
@@ -195,7 +197,13 @@ const Component = ({ item }) => {
 				columns={12}
 			>
 				<Cell width={12}>
-					<Heading tag="h2" size={5}>
+					<Heading
+						tag="h2"
+						size={5}
+						id="props"
+						tabIndex="-1"
+						{...(addTableContent && { 'data-toc': true })}
+					>
 						Props
 					</Heading>
 				</Cell>
@@ -224,5 +232,32 @@ const Component = ({ item }) => {
 
 // Separator
 export const PropsTable = {
+	editor: ({ value, onChange }) => {
+		const currentValue = {
+			addTableContent: false,
+			heading: 'Props',
+			...(value || {}),
+		};
+
+		const update = changes =>
+			onChange({
+				...currentValue,
+				...changes,
+			});
+		return (
+			<Fragment>
+				<FieldContainer>
+					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+						<CheckboxPrimitive
+							checked={currentValue.addTableContent}
+							tabIndex="0"
+							onChange={({ target }) => update({ addTableContent: target.checked })}
+						/>
+						<span>Include Props Table in table of contents?</span>
+					</label>
+				</FieldContainer>
+			</Fragment>
+		);
+	},
 	component: Component,
 };
