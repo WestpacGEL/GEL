@@ -189,7 +189,7 @@ export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 			css={{
 				display: 'flex',
 				flexDirection: 'column',
-				'> *': { marginBottom: '20px !important' },
+				'> *': { marginBottom: '20px' },
 				...cssOverrides,
 			}}
 		>
@@ -286,7 +286,7 @@ export const TextOnlySlateContent = ({ content, cssOverrides, ...props }) => {
 			css={{
 				display: 'flex',
 				flexDirection: 'column',
-				'> *': { marginBottom: '20px !important' },
+				'> *': { marginBottom: '20px' },
 				...cssOverrides,
 			}}
 		>

@@ -73,6 +73,7 @@ export const Footer = () => {
 					background: 'transparent',
 					cursor: 'pointer',
 					textAlign: 'right',
+					padding: '0 !important',
 				}}
 				onClick={e => {
 					e.preventDefault();
