@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 import React, { Fragment } from 'react';
 import {
 	WbcBackgroundRightSvg,
@@ -10,30 +10,27 @@ import {
 } from '../symbols';
 
 const ComponentPageHeaderImage = ({ brand }) => {
+	const mq = useMediaQuery();
 	const WestpacImage = () => (
 		<Fragment>
 			<div
 				css={{
 					position: 'absolute',
 					left: 0,
-					bottom: 0,
-					top: 50,
 					zIndex: -1,
 				}}
 			>
-				<WbcBackgroundLeftSvg height={'200px'} />
+				<WbcBackgroundLeftSvg height={['66px', '66px', '228px']} />
 			</div>
-
 			<div
-				css={{
+				css={mq({
 					position: 'absolute',
 					zIndex: -1,
 					right: 0,
-					bottom: 0,
-					top: 50,
-				}}
+					display: ['none', 'none', 'block'],
+				})}
 			>
-				<WbcBackgroundRightSvg height={'200px'} />
+				<WbcBackgroundRightSvg height={'228px'} />
 			</div>
 		</Fragment>
 	);

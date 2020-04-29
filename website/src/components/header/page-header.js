@@ -1,58 +1,56 @@
 /** @jsx jsx */
-import React, { useEffect, useState, useRef, Fragment } from 'react';
-import { jsx, useBrand } from '@westpac/core';
+import React, { useEffect, useState, useRef } from 'react';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
+import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './component-page-header-image';
 
 import { useSidebar } from '../providers/sidebar';
 import { brandHeaderColors } from '../_utils';
 
-const MenuIcon = () => {
+const MenuIcon = ({ hasScrolled }) => {
+	const { BRAND, COLORS } = useBrand();
+	const mq = useMediaQuery();
 	const { setIsOpen } = useSidebar();
-	const { COLORS, SPACING, LAYOUT } = useBrand();
-	return (
-		<button
-			css={{
-				padding: SPACING(4),
-				background: 'none',
-				border: 'none',
-				cursor: 'pointer',
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
-					display: 'none',
-				},
 
-				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-					padding: SPACING(2),
+	const Icon = () => <HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : '#fff'} />;
+
+	return (
+		<Button
+			onClick={() => setIsOpen(status => !status)}
+			look="link"
+			iconBefore={Icon}
+			overrides={{
+				Button: {
+					styles: styles => ({
+						...styles,
+						justifySelf: 'start',
+						gridRowStart: 1,
+						marginRight: '0.75rem',
+						...mq({
+							alignSelf: hasScrolled ? 'center' : ['center', null, 'auto'],
+							marginTop: hasScrolled ? 0 : [0, null, '1.3125rem'],
+							marginLeft: hasScrolled ? 0 : [0, null, '-0.75rem'],
+							display: ['inline-flex', null, null, null, 'none'],
+						})[0],
+					}),
 				},
 			}}
-			onClick={() => setIsOpen(status => !status)}
-		>
-			<HamburgerMenuIcon color={COLORS.light} />
-		</button>
+		/>
 	);
 };
 
 const PageHeader = ({ name, version }) => {
-	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
+	const { COLORS, BRAND, LAYOUT } = useBrand();
+	const mq = useMediaQuery();
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
-	const headerPaddingElement = useRef(null);
 
 	useEffect(() => {
 		const main = header.current.parentElement;
+
 		const scrollHandler = () => {
-			if (main.scrollTop >= 0 && main.scrollTop < 135) {
-				header.current.style.height = `${200 - main.scrollTop}px`;
-				header.current.style.marginTop = `${-50 + main.scrollTop}px`;
-				header.current.style.position = 'relative';
-				headerPaddingElement.current.style.height = '0px';
-			} else {
-				headerPaddingElement.current.style.height = '200px';
-				header.current.style.height = '65px';
-				header.current.style.marginTop = '-50px';
-				header.current.style.position = 'fixed';
-			}
 			if (main.scrollTop >= 65) {
 				setHasScrolled(true);
 			} else {
@@ -69,92 +67,78 @@ const PageHeader = ({ name, version }) => {
 	const backgroundColor = brandHeaderColors[BRAND](COLORS);
 
 	return (
-		<Fragment>
+		<div
+			ref={header}
+			css={mq({
+				flex: 'none',
+				position: 'sticky',
+				top: ['0px', null, '-162px'], // 228 - 66 = height to stick
+				zIndex: 5,
+				display: 'flex',
+				height: ['66px', null, '228px'],
+				background: backgroundColor,
+				overflow: 'hidden',
+			})}
+		>
+			<HeaderImage brand={BRAND} />
 			<div
-				ref={header}
-				css={{
-					background: backgroundColor,
-					color: BRAND === 'STG' ? COLORS.text : COLORS.light,
-					height: '200px',
-					marginTop: '-50px',
-					paddingTop: '50px',
-					position: 'relative',
-					flexDirection: hasScrolled ? 'row' : 'column',
-					width: hasScrolled ? '100%' : 'auto',
-					alignItems: hasScrolled ? 'center' : 'unset',
-					display: 'flex',
-					flex: 'none',
-					zIndex: 5,
-					overflow: 'hidden',
-					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-						flexDirection: 'row',
-						width: '100%',
-						alignItems: 'start',
-						height: '65px !important',
-						marginTop: '-50px !important',
-						position: 'fixed !important',
-					},
-				}}
+				css={mq({
+					alignSelf: 'flex-end',
+					display: 'grid',
+					gridTemplateRows: hasScrolled ? '1fr' : ['1fr', null, '1fr 1fr 1fr'],
+					height: hasScrolled ? '66px' : ['66px', null, '228px'],
+					padding: hasScrolled ? '0 1.3125rem' : ['0 1.3125rem', null, '0 2.25rem'],
+					color: BRAND === 'STG' ? COLORS.text : '#fff',
+					transition: 'height 0s',
+				})}
 			>
-				<HeaderImage brand={BRAND} />
-				<div>
-					<MenuIcon />
-				</div>
-				<div
-					css={{
-						display: 'flex',
-						flexDirection: hasScrolled ? 'row' : 'column',
-						alignItems: hasScrolled ? 'baseline' : 'initial',
-						flexGrow: 1,
-						justifyContent: hasScrolled ? 'flex-start' : 'center',
-						marginLeft: SPACING(6),
-						marginBottom: hasScrolled ? 0 : SPACING(3),
-						[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-							marginLeft: SPACING(2),
-							marginBottom: 0,
-							paddingTop: SPACING(2),
-							flexDirection: 'column',
+				<MenuIcon hasScrolled={hasScrolled} />
+				<Heading
+					size={hasScrolled ? 7 : 1}
+					overrides={{
+						Heading: {
+							styles: styles => ({
+								...styles,
+								alignSelf: 'center',
+								textTransform: 'capitalize',
+								[`@media (max-width: ${LAYOUT.breakpoints.md}px)`]: {
+									fontSize: '18px !important',
+								},
+								fontWeight: 500,
+								transition: 'font-size, 0.2s ease',
+								...mq({
+									gridRowStart: hasScrolled ? 1 : [1, null, 2],
+								})[0],
+							}),
 						},
 					}}
 				>
-					<Heading
-						size={hasScrolled ? 7 : 1}
-						css={{
-							textTransform: 'capitalize',
-							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-								fontSize: '18px !important',
-								PaddingTop: SPACING(2),
-							},
-						}}
+					{name}
+				</Heading>
+				{version && (
+					<span
+						css={mq({
+							alignSelf: hasScrolled ? 'center' : ['center', null, 'start'],
+							fontSize: '16px',
+							gridRowStart: hasScrolled ? 1 : [1, null, 3],
+							marginLeft: hasScrolled ? '0.375rem' : ['0.375rem', null, 0],
+						})}
 					>
-						{name}
-					</Heading>
-					{version && (
 						<span
-							css={{
-								fontSize: '16px',
-								marginLeft: hasScrolled ? SPACING(1) : 0,
-								[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-									marginLeft: 0,
-								},
-							}}
+							css={mq({
+								textTransform: hasScrolled ? 'lowercase' : ['lowercase', null, 'capitalize'],
+							})}
 						>
-							{' '}
-							Version {version}
+							v
 						</span>
-					)}
-				</div>
+						<span css={mq({ display: hasScrolled ? 'none' : ['none', null, 'inline'] })}>
+							ersion{' '}
+						</span>
+						{version}
+					</span>
+				)}
 			</div>
-			<div
-				css={{
-					flex: 'none',
-					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-						height: '65px !important',
-					},
-				}}
-				ref={headerPaddingElement}
-			/>
-		</Fragment>
+		</div>
 	);
 };
 

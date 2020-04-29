@@ -1,16 +1,17 @@
 /** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { useRouter } from 'next/router';
 import { Heading } from '@westpac/heading';
 import { ArrowRightIcon, CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { BASE_URL, BASE_PAGE } from '../config';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { SlateContent } from './pages/single-component/blocks-hub';
+import { SlateContent, TextOnlySlateContent } from './pages/single-component/blocks-hub';
 import Link from 'next/link';
 
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
 	return (
-		<Container css={blocksContainerStyle}>
+		<div>
 			{title && (
 				<Grid columns={12} css={{ ...blocksContainerStyle, marginBottom: SPACING(2) }}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
@@ -23,13 +24,15 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 			{blocks ? (
 				<SlateContent content={blocks} item={item} />
 			) : (
-				<Grid columns={12} css={blocksGridStyle}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<p>No documentation specified for this section.</p>
-					</Cell>
-				</Grid>
+				<Container css={blocksContainerStyle}>
+					<Grid columns={12} css={blocksGridStyle}>
+						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+							<p>No documentation specified for this section.</p>
+						</Cell>
+					</Grid>
+				</Container>
 			)}
-		</Container>
+		</div>
 	);
 };
 
@@ -53,7 +56,14 @@ export const RelatedInformation = ({ item }) => {
 	const { SPACING } = useBrand();
 	const { relatedPages, relatedInfo } = item;
 	const mq = useMediaQuery();
+	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
 
+	function checkNode(node) {
+		return node.text || (node.nodes && node.nodes.some(checkNode));
+	}
+	const hasRelatedInfo = checkNode(JSON.parse(relatedInfo.document));
+
+	if (!hasRelatedPages && !hasRelatedInfo) return null;
 	return (
 		<div
 			css={{
@@ -66,7 +76,14 @@ export const RelatedInformation = ({ item }) => {
 			<Container css={blocksContainerStyle}>
 				<Grid css={blocksGridStyle} columns={12}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<Heading tag="h2" size={5}>
+						<Heading
+							tag="h2"
+							size={5}
+							addtableContent
+							{...{ 'data-toc': true }}
+							id="related-information"
+							tabIndex="-1"
+						>
 							Related information
 						</Heading>
 					</Cell>
@@ -76,16 +93,22 @@ export const RelatedInformation = ({ item }) => {
 					columns={12}
 					css={mq({
 						...blocksGridStyle,
-						marginTop: ['1.875rem', '1.875rem', '5.625rem'],
+						marginTop: [SPACING(6), SPACING(10), SPACING(10)],
 					})}
 				>
-					{relatedPages && (
+					{hasRelatedPages && (
 						<Cell
-							width={[12, 12, relatedInfo ? 4 : 10, relatedInfo ? 4 : 10, relatedInfo ? 4 : 10]}
+							width={[
+								12,
+								12,
+								hasRelatedInfo ? 4 : 10,
+								hasRelatedInfo ? 4 : 10,
+								hasRelatedInfo ? 4 : 10,
+							]}
 							left={[1, 1, 2, 2, 2]}
 						>
 							<IconTitle icon={CubeIcon}>Components</IconTitle>
-							<ul css={{ marginBottom: SPACING(4), padding: 0 }}>
+							<ul css={{ margin: 0, marginBottom: SPACING(3), padding: 0 }}>
 								{relatedPages.map(d => {
 									return (
 										<ComponentLink key={d.id} link={getURL(d)}>
@@ -96,16 +119,31 @@ export const RelatedInformation = ({ item }) => {
 							</ul>
 						</Cell>
 					)}
-					{relatedInfo && (
+					{hasRelatedInfo && (
 						<Cell
-							width={[12, 12, relatedInfo ? 5 : 10, relatedInfo ? 5 : 10, relatedInfo ? 5 : 10]}
-							left={[1, 1, relatedInfo ? 7 : 2, relatedInfo ? 7 : 2, relatedInfo ? 7 : 2]}
+							width={[
+								12,
+								12,
+								hasRelatedPages ? 5 : 10,
+								hasRelatedPages ? 5 : 10,
+								hasRelatedPages ? 5 : 10,
+							]}
+							left={[
+								1,
+								1,
+								hasRelatedPages ? 7 : 2,
+								hasRelatedPages ? 7 : 2,
+								hasRelatedPages ? 7 : 2,
+							]}
 						>
 							<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
-							<SlateContent
+							<TextOnlySlateContent
 								content={relatedInfo}
 								item={item}
-								cssOverrides={{ p: { paddingLeft: 0 } }}
+								cssOverrides={{
+									p: { fontSize: '14px' },
+									div: { marginTop: SPACING(3) },
+								}}
 							/>
 						</Cell>
 					)}
@@ -117,24 +155,31 @@ export const RelatedInformation = ({ item }) => {
 
 const ComponentLink = ({ children, link }) => {
 	const { COLORS, SPACING } = useBrand();
+	const brandName = useRouter().query.b || '';
 	return (
 		<li
 			css={{
 				listStyle: 'none',
-				padding: `${SPACING(3)} 0`,
 				borderBottom: `solid 1px ${COLORS.border}`,
 			}}
 		>
-			<Link href={BASE_PAGE} as={link}>
+			<Link href={`${BASE_PAGE}?b=${brandName}`} as={link}>
 				<a
 					css={{
 						cursor: 'pointer',
 						display: 'flex',
 						justifyContent: 'space-between',
 						alignItems: 'center',
+						fontSize: '14px',
 					}}
 				>
-					<span>{children}</span>
+					<span
+						css={{
+							margin: `${SPACING(3)} 0`,
+						}}
+					>
+						{children}
+					</span>
 					<ArrowRightIcon color={COLORS.primary} />
 				</a>
 			</Link>
@@ -154,10 +199,10 @@ const IconTitle = ({ icon: Icon, children }) => {
 				borderBottom: `solid 1px ${COLORS.neutral}`,
 			}}
 		>
-			<Heading tag="h3" size={6}>
+			<Heading tag="h3" size={7} css={{ fontWeight: 500 }}>
 				{children}
 			</Heading>
-			<Icon size="small" />
+			<Icon size="medium" />
 		</div>
 	);
 };

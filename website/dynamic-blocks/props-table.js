@@ -6,6 +6,8 @@ import { Heading } from '@westpac/heading';
 import PropTypes from '../../GEL.json';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
+import { FieldContainer } from '@arch-ui/fields';
+import { CheckboxPrimitive } from '@arch-ui/controls';
 
 /**
  * A small helper component for inline code blocks
@@ -18,8 +20,8 @@ const Code = ({ children, ...rest }) => {
 				display: 'inline-block',
 				overflow: 'auto',
 				background: COLORS.background,
-				padding: `${SPACING(0.5, true)} ${SPACING(0.5)}`,
-				margin: `0 ${SPACING(1, true)}`,
+				padding: `0 ${SPACING(0.5)}`,
+				margin: `${SPACING(1, true)}`,
 				border: `1px solid ${COLORS.border}`,
 				color: COLORS.muted,
 				fontSize: '0.9em',
@@ -74,9 +76,11 @@ function Indent({ level }) {
  * @param {number} options.level - The level, will be incremented with each recursive call
  */
 function PTableRow({ name, data, level = 0 }) {
-	const type = data.type.name;
-	const required = <div>{formatValue(data.required)}</div>;
-	const defaultValue = data.defaultValue ? <div>{formatValue(data.defaultValue.value)}</div> : null;
+	const type = data.type ? data.type.name : undefined;
+	const required = <Code>{formatValue(data.required)}</Code>;
+	const defaultValue = data.defaultValue ? (
+		<Code>{formatValue(data.defaultValue.value)}</Code>
+	) : null;
 	const indent = level > 0 ? <Indent level={level} /> : '';
 	const subValues = [];
 	let value = null;
@@ -98,11 +102,23 @@ function PTableRow({ name, data, level = 0 }) {
 				/>
 			))
 		);
+	} else if (type === 'arrayOf') {
+		subValues.push(
+			<PTableRow
+				key={`arrayOf-${name}-${level}`}
+				name=""
+				data={{
+					type: { name: data.type.value.name, value: data.type.value.value },
+					required: false,
+					defaultValue: data.type.defaultValue,
+				}}
+				level={level}
+			/>
+		);
 	} else {
-		let valueArray = [];
-		data.type.value && data.type.value.map(val => valueArray.push(formatValue(val)));
-		value = valueArray && valueArray.length ? valueArray.join(', ') : null;
+		value = data.type.value ? data.type.value.map((val, i) => <Code key={i}>"{val}"</Code>) : null;
 	}
+
 	return (
 		<Fragment>
 			<Tr>
@@ -110,7 +126,9 @@ function PTableRow({ name, data, level = 0 }) {
 					{indent}
 					{name}
 				</Td>
-				<Td>{type}</Td>
+				<Td>
+					<Code>{type}</Code>
+				</Td>
 				<Td>{value}</Td>
 				<Td>{defaultValue}</Td>
 				<Td>{required}</Td>
@@ -128,25 +146,10 @@ function PTableRow({ name, data, level = 0 }) {
  */
 function PTable({ data, caption }) {
 	const { SPACING } = useBrand();
-	const overrides = {
-		Th: {
-			styles: styles => ({
-				...styles,
-				fontWeight: '500 !important',
-				border: 'none',
-			}),
-		},
-	};
 	return (
-		<Table
-			css={{ marginBottom: SPACING(4, true), borderColor: 'white' }}
-			bordered
-			overrides={overrides}
-		>
+		<Table css={{ marginBottom: SPACING(4, true), borderColor: 'white' }} bordered striped>
 			{caption && (
-				<Caption
-					css={{ fontWeight: 'bold', margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}
-				>
+				<Caption css={{ margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}>
 					{caption}
 				</Caption>
 			)}
@@ -168,17 +171,21 @@ function PTable({ data, caption }) {
 	);
 }
 
-const Component = ({ item }) => {
+const Component = ({ item, addTableContent }) => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
-	const tableData = Object.keys(PropTypes.components[item.packageName]).map(key => {
-		const { overrides, ...normalProps } = PropTypes.components[item.packageName][key].propTypes;
-		return {
-			name: key,
-			overrideProps: { overrides: overrides },
-			normalProps,
-		};
-	});
+	const tableData = Object.keys(PropTypes.components[item.packageName])
+		.filter(
+			key => typeof PropTypes.components[item.packageName][key] === 'object' && key !== 'blender'
+		)
+		.map(key => {
+			const { overrides, ...normalProps } = PropTypes.components[item.packageName][key].propTypes;
+			return {
+				name: key,
+				overrideProps: { overrides: overrides },
+				normalProps,
+			};
+		});
 
 	return (
 		<Container css={{ backgroundColor: '#fff', ...blocksContainerStyle }}>
@@ -190,7 +197,13 @@ const Component = ({ item }) => {
 				columns={12}
 			>
 				<Cell width={12}>
-					<Heading tag="h2" size={5}>
+					<Heading
+						tag="h2"
+						size={5}
+						id="props"
+						tabIndex="-1"
+						{...(addTableContent && { 'data-toc': true })}
+					>
 						Props
 					</Heading>
 				</Cell>
@@ -219,5 +232,32 @@ const Component = ({ item }) => {
 
 // Separator
 export const PropsTable = {
+	editor: ({ value, onChange }) => {
+		const currentValue = {
+			addTableContent: false,
+			heading: 'Props',
+			...(value || {}),
+		};
+
+		const update = changes =>
+			onChange({
+				...currentValue,
+				...changes,
+			});
+		return (
+			<Fragment>
+				<FieldContainer>
+					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+						<CheckboxPrimitive
+							checked={currentValue.addTableContent}
+							tabIndex="0"
+							onChange={({ target }) => update({ addTableContent: target.checked })}
+						/>
+						<span>Include Props Table in table of contents?</span>
+					</label>
+				</FieldContainer>
+			</Fragment>
+		);
+	},
 	component: Component,
 };

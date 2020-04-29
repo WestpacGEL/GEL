@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
-import { Fragment, useEffect, useState } from 'react'; // Needed for within Keystone
+import { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { useRouter } from 'next/router';
 import { Heading } from '@westpac/heading';
 import { Body } from '@westpac/body';
 import { List, Item } from '@westpac/list';
@@ -47,11 +48,7 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 
 const parseHeadings = content =>
 	content.nodes
-		.filter(
-			item =>
-				item.data.component &&
-				(item.data.component === 'Heading' || item.data.component === 'VisionFilters')
-		)
+		.filter(item => item.data.component)
 		.filter(item => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
 			const { props } = item.data;
@@ -67,9 +64,19 @@ const parseHeadings = content =>
 // Intro section
 const TableOfContents = ({ content }) => {
 	const toc = parseHeadings(content);
+
 	const { COLORS, SPACING } = useBrand();
+	const [relatedContent, setRelatedContent] = useState(false);
+	const introRef = useRef();
+	useEffect(() => {
+		if (introRef) {
+			const design = introRef.current.closest('#design-tab');
+			setRelatedContent(!!design);
+		}
+	}, [introRef]);
+
 	return (
-		<div>
+		<div ref={introRef}>
 			<Heading tag="h2" size={6} style={{ fontWeight: '500' }}>
 				{'Page content'}
 			</Heading>
@@ -78,7 +85,7 @@ const TableOfContents = ({ content }) => {
 				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
 			/>
 
-			{toc.length ? (
+			{((toc && toc.length) || (currentTab === 'design' && relatedContent)) && (
 				<nav>
 					<List
 						type="icon"
@@ -93,10 +100,17 @@ const TableOfContents = ({ content }) => {
 							},
 						}}
 					>
-						{toc}
+						{toc && toc.length && toc}
+						{relatedContent && (
+							<TableLink
+								key={`related-information`}
+								headingId={'related-information'}
+								headingText={'Related information'}
+							/>
+						)}
 					</List>
 				</nav>
-			) : null}
+			)}
 		</div>
 	);
 };
@@ -196,8 +210,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 				css={{
 					border: 'none',
 					borderTop: `solid 1px ${COLORS.border}`,
-					margin: `0px 0`,
-					paddingBottom: '40px',
+					margin: 0,
 				}}
 			/>
 		</Fragment>
