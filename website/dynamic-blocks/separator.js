@@ -15,6 +15,7 @@ const SeparatorComponent = () => {
 					cursor: 'pointer',
 					textAlign: 'right',
 					width: '100%',
+					paddingRight: '18px !important',
 				}}
 				onClick={e => {
 					e.preventDefault();
