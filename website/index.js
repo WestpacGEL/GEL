@@ -35,22 +35,20 @@ keystone.createList('User', userSchema);
 keystone.createList('Setting', settingSchema);
 keystone.createList('Image', imageSchema);
 
-// JM 200330: Temporarily disable auth
-// const authStrategy = keystone.createAuthStrategy({
-// 	type: PasswordAuthStrategy,
-// 	list: 'User',
-// 	config: {
-// 		identityField: 'email',
-// 		secretField: 'password',
-// 	},
-// });
+const authStrategy = keystone.createAuthStrategy({
+	type: PasswordAuthStrategy,
+	list: 'User',
+	config: {
+		identityField: 'email',
+		secretField: 'password',
+	},
+});
 
 const apps = [
 	new GraphQLApp(),
 	new AdminUIApp({
 		adminPath: '/admin',
-		// JM 200330: Temporarily disable auth
-		// authStrategy,
+		authStrategy,
 		hooks: require.resolve('./admin'),
 	}),
 	new NextApp({ dir: 'src' }),
