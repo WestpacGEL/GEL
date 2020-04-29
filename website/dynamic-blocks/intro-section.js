@@ -78,7 +78,10 @@ const TableOfContents = ({ content }) => {
 	useEffect(() => {
 		if (introRef) {
 			const design = introRef.current.closest('#design-tab');
-			setRelatedContent(!!design);
+			const relatedContentElement = document && document.getElementById('related-information');
+			if (relatedContentElement) {
+				setRelatedContent(!!design);
+			}
 		}
 	}, [introRef]);
 
