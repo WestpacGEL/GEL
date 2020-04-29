@@ -51,7 +51,7 @@ const parseHeadings = content =>
 		.filter(
 			item =>
 				item.data.component &&
-				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaders'].includes(item.data.component)
+				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText'].includes(item.data.component)
 		)
 		.filter(item => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
@@ -68,14 +68,16 @@ const parseHeadings = content =>
 // Intro section
 const TableOfContents = ({ content }) => {
 	const toc = parseHeadings(content);
-
 	const { COLORS, SPACING } = useBrand();
 	const [relatedContent, setRelatedContent] = useState(false);
 	const introRef = useRef();
 	useEffect(() => {
 		if (introRef) {
 			const design = introRef.current.closest('#design-tab');
-			setRelatedContent(!!design);
+			const relatedContentElement = document && document.getElementById('related-information');
+			if (relatedContentElement) {
+				setRelatedContent(!!design);
+			}
 		}
 	}, [introRef]);
 
@@ -104,7 +106,7 @@ const TableOfContents = ({ content }) => {
 							},
 						}}
 					>
-						{toc && toc.length && toc}
+						{toc && toc.length !== 0 && toc}
 						{relatedContent && (
 							<TableLink
 								key={`related-information`}

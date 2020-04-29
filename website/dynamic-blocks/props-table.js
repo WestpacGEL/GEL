@@ -108,7 +108,10 @@ function PTableRow({ name, data, level = 0 }) {
 				key={`arrayOf-${name}-${level}`}
 				name=""
 				data={{
-					type: { name: data.type.value.name, value: data.type.value.value },
+					type: {
+						name: data.type && data.type.value && data.type.value.name,
+						value: data.type && data.type.value && data.type.value.value,
+					},
 					required: false,
 					defaultValue: data.type.defaultValue,
 				}}
@@ -171,9 +174,50 @@ function PTable({ data, caption }) {
 	);
 }
 
+const SeparatorComponent = () => {
+	const { COLORS, SPACING } = useBrand();
+	return (
+		<div
+			css={{
+				marginBottom: '0 !important',
+			}}
+		>
+			<button
+				css={{
+					display: 'block',
+					border: 0,
+					background: 'transparent',
+					cursor: 'pointer',
+					textAlign: 'right',
+					width: '100%',
+					paddingRight: '18px !important',
+				}}
+				onClick={e => {
+					e.preventDefault();
+					const el = document.querySelector('main') || window;
+					el.scroll({
+						top: 0,
+						left: 0,
+						behavior: 'smooth',
+					});
+				}}
+			>
+				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
+			</button>
+			<hr
+				css={{
+					border: 'none',
+					borderTop: `solid 1px ${COLORS.border}`,
+					margin: `${SPACING(2)} 0 0 0`,
+				}}
+			/>
+		</div>
+	);
+};
+
 const Component = ({ item, addTableContent }) => {
 	const mq = useMediaQuery();
-	const { SPACING } = useBrand();
+	const { SPACING, COLORS } = useBrand();
 	const tableData = Object.keys(PropTypes.components[item.packageName])
 		.filter(
 			key => typeof PropTypes.components[item.packageName][key] === 'object' && key !== 'blender'
@@ -188,45 +232,54 @@ const Component = ({ item, addTableContent }) => {
 		});
 
 	return (
-		<Container css={{ backgroundColor: '#fff', ...blocksContainerStyle }}>
-			<Grid
-				css={mq({
-					...blocksGridStyle,
-					marginTop: [SPACING(6), SPACING(6), SPACING(10)],
-				})}
-				columns={12}
+		<Fragment>
+			<SeparatorComponent />
+			<Container
+				css={{
+					backgroundColor: '#fff',
+					...blocksContainerStyle,
+					paddingBottom: SPACING(5),
+				}}
 			>
-				<Cell width={12}>
-					<Heading
-						tag="h2"
-						size={5}
-						id="props"
-						tabIndex="-1"
-						{...(addTableContent && { 'data-toc': true })}
-					>
-						Props
-					</Heading>
-				</Cell>
-			</Grid>
-			<Grid
-				columns={12}
-				css={mq({
-					...blocksGridStyle,
-					marginTop: [SPACING(3), SPACING(3), SPACING(6)],
-				})}
-			>
-				<Cell width={12}>
-					{tableData.map(({ overrideProps, normalProps, name }) => {
-						return (
-							<Fragment key={`table-${name}`}>
-								<PTable caption={`${name} Props`} data={normalProps} />
-								<PTable caption={`${name} Overrides`} data={overrideProps} />
-							</Fragment>
-						);
+				<Grid
+					css={mq({
+						...blocksGridStyle,
+						marginTop: [SPACING(6), SPACING(6), SPACING(10)],
 					})}
-				</Cell>
-			</Grid>
-		</Container>
+					columns={12}
+				>
+					<Cell width={12}>
+						<Heading
+							tag="h2"
+							size={5}
+							id="props"
+							tabIndex="-1"
+							{...(addTableContent && { 'data-toc': true })}
+						>
+							Props
+						</Heading>
+					</Cell>
+				</Grid>
+				<Grid
+					columns={12}
+					css={mq({
+						...blocksGridStyle,
+						marginTop: [SPACING(3), SPACING(3), SPACING(6)],
+					})}
+				>
+					<Cell width={12}>
+						{tableData.map(({ overrideProps, normalProps, name }) => {
+							return (
+								<Fragment key={`table-${name}`}>
+									<PTable caption={`${name} Props`} data={normalProps} />
+									<PTable caption={`${name} Overrides`} data={overrideProps} />
+								</Fragment>
+							);
+						})}
+					</Cell>
+				</Grid>
+			</Container>
+		</Fragment>
 	);
 };
 
