@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { Fragment, useCallback } from 'react';
+import { Fragment, useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import debounce from 'lodash.debounce';
 import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
@@ -48,10 +49,29 @@ const Component = ({ component, tabName }) => {
 
 const Tabs = ({ component, tabName }) => {
 	const { SPACING, COLORS } = useBrand();
+	const [scrolled, setScrolled] = useState(false);
+
 	const mq = useMediaQuery();
 	const router = useRouter();
 	const brandName = router.query.b || '';
 	const tabMap = ['design', 'accessibility', 'code'];
+
+	useEffect(() => {
+		const main = document.querySelector('main') || window;
+
+		const scrollHandler = debounce(() => {
+			if (main.scrollTop === 0) {
+				setScrolled(false);
+			} else {
+				setScrolled(true);
+			}
+		}, 100);
+
+		main.addEventListener('scroll', scrollHandler);
+		return () => {
+			main.removeEventListener('scroll', scrollHandler);
+		};
+	}, []);
 
 	const onOpen = useCallback(({ idx: tabIdx }) => {
 		window.history.pushState(
@@ -76,8 +96,12 @@ const Tabs = ({ component, tabName }) => {
 				borderBottom: `solid 1px ${COLORS.border}`,
 				borderLeft: `solid 1px ${COLORS.border}`,
 				position: 'sticky',
-				top: '65px',
+				top: '66px',
 				zIndex: 5,
+				boxShadow: scrolled && '0 4px 4px rgba(0, 0, 0, 0.3)',
+				...mq({
+					height: ['66px', null, '90px'],
+				})[0],
 			}),
 		},
 		TabButton: {
@@ -122,26 +146,6 @@ const Tabs = ({ component, tabName }) => {
 			</div>
 		);
 	}
-	const tabs = [];
-	tabs.push(
-		<Tab key={'design-tab'} overrides={overrides} text="Design">
-			<DesignTab description={component.description} blocks={component.design} item={component} />
-		</Tab>
-	);
-	if (!component.hideAccessibilityTab) {
-		tabs.push(
-			<Tab key={'accessibility-tab'} overrides={overrides} text="Accessibility">
-				<AccessibilityTab blocks={component.accessibility} item={component} />
-			</Tab>
-		);
-	}
-	if (!component.hideCodeTab) {
-		tabs.push(
-			<Tab key={'code-tab'} overrides={overrides} text="Code">
-				<CodeTab blocks={component.code} item={component} />
-			</Tab>
-		);
-	}
 
 	return (
 		<Tabcordion
@@ -150,7 +154,19 @@ const Tabs = ({ component, tabName }) => {
 			onOpen={onOpen}
 			overrides={tabOverrides}
 		>
-			{tabs}
+			<Tab key={'design-tab'} overrides={overrides} text="Design">
+				<DesignTab description={component.description} blocks={component.design} item={component} />
+			</Tab>
+			{!component.hideAccessibilityTab && (
+				<Tab key={'accessibility-tab'} overrides={overrides} text="Accessibility">
+					<AccessibilityTab blocks={component.accessibility} item={component} />
+				</Tab>
+			)}
+			{!component.hideCodeTab && (
+				<Tab key={'code-tab'} overrides={overrides} text="Code">
+					<CodeTab blocks={component.code} item={component} />
+				</Tab>
+			)}
 		</Tabcordion>
 	);
 };
