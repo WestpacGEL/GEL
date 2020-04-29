@@ -147,6 +147,27 @@ const Tabs = ({ component, tabName }) => {
 		);
 	}
 
+	const tabs = [];
+	tabs.push(
+		<Tab key={'design-tab'} overrides={overrides} text="Design">
+			<DesignTab description={component.description} blocks={component.design} item={component} />
+		</Tab>
+	);
+	if (!component.hideAccessibilityTab) {
+		tabs.push(
+			<Tab key={'accessibility-tab'} overrides={overrides} text="Accessibility">
+				<AccessibilityTab blocks={component.accessibility} item={component} />
+			</Tab>
+		);
+	}
+	if (!component.hideCodeTab) {
+		tabs.push(
+			<Tab key={'code-tab'} overrides={overrides} text="Code">
+				<CodeTab blocks={component.code} item={component} />
+			</Tab>
+		);
+	}
+
 	return (
 		<Tabcordion
 			mode="tabs"
@@ -154,19 +175,7 @@ const Tabs = ({ component, tabName }) => {
 			onOpen={onOpen}
 			overrides={tabOverrides}
 		>
-			<Tab key={'design-tab'} overrides={overrides} text="Design">
-				<DesignTab description={component.description} blocks={component.design} item={component} />
-			</Tab>
-			{!component.hideAccessibilityTab && (
-				<Tab key={'accessibility-tab'} overrides={overrides} text="Accessibility">
-					<AccessibilityTab blocks={component.accessibility} item={component} />
-				</Tab>
-			)}
-			{!component.hideCodeTab && (
-				<Tab key={'code-tab'} overrides={overrides} text="Code">
-					<CodeTab blocks={component.code} item={component} />
-				</Tab>
-			)}
+			{tabs}
 		</Tabcordion>
 	);
 };
