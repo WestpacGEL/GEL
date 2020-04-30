@@ -152,6 +152,58 @@ Deployment of the GEL website is (mostly) handled by [PM2](https://pm2.keymetric
 The environments above and the processes started are described by [`pm2-ecosystem.json`](../pm2-ecosystem.json) in the repo root.
 To run a deployment you'll need the `pm2` package installed and ssh access to the relevant server.
 
+### git flow
+
+Try to stay uni-direction with your git-merges.
+
+1. Develop new features or even bug fixes inside `develop`.
+1. The `develop` branch allows you to deploy the docs pages to netlify and browser-test etc.
+1. Once you're happy with features in `develop` merge the branch into `staging` and deploy.
+1. Test things in the staging environment and make sure everything works.
+1. If there are bugs or missing things continue to develop inside the `develop` branch and merge into `staging`
+1. Once you're happy with staging, merge the `staging` branch into `master` and deploy
+
+Please avoid merging the other direction!
+
+- You should never need to merge `master` into anything.
+- You should never need to merge `staging` into anything but `master`
+- You should never need to merge `develop` into anything but `staging`
+
+```
+┌───────────┐
+│  Master   │
+└───────────┘
+      │      ┌───────────┐
+      │      │  Staging  │
+      │      └───────────┘
+      │            │      ┌───────────┐
+      │            │      │  Develop  │
+      │            │      └───────────┘
+      │            │            │
+      │            │            │   ┌──── New Feature
+      │            │   Staging  │   │
+      │            │   Release  │◀──┘
+      │            │      ┌─────┤   ┌──── Bug fixes
+      │            │◀─────┘     │   │
+      │            │            │◀──┘
+      │            │            │
+      │            │   Staging  │   ┌──── New Feature
+      │            │   Release  │◀──┘
+      │    Live    │      ┌─────┤
+      │   Release  │◀─────┘     │
+      │      ┌─────┤            │
+      │◀─────┘     │            │   ┌──── Bug fixes
+      │            │            │◀──┘
+      │            │            │   ┌──── Bug fixes
+      │            │            │◀──┘
+      │            │   Staging  │   ┌──── New Feature
+      │    Live    │   Release  │◀──┘
+      │   Release  │      ┌─────┤
+      │      ┌─────┤◀─────┘     │
+      │◀─────┘     │            │
+      ▼            ▼            ▼
+```
+
 ### Running a Deploy
 
 #### Deploy to staging
@@ -196,7 +248,7 @@ Once completed you should receive a `successfully deployed` message.
 `pm2` can be finicky.
 Some issues to be aware of:
 
-- Make sure you only ever make changes in the `develop` branch. When ready to deploy to staging merge `develop` into `staging`. When ready to deploy live merge `develop` into `master`. The `develop` branch should be where things happen while `master` and `staging` are branches merged into.
+- Make sure you only ever make changes in the `develop` branch. When ready to deploy to staging merge `develop` into `staging`. When ready to deploy live merge `staging` into `master`. The `develop` branch should be where things happen while `master` and `staging` are branches you merge into.
 - Multiple steps in the process reference the [`pm2-ecosystem.json`](../pm2-ecosystem.json) config but, potentially, different version of it.
   This can cause unexpected behaviour if overlooked.
 - Code is pulled from the `staging` or `master` branch on GitHub; local changes to these branches are not considered.
