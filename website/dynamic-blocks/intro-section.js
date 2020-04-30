@@ -176,10 +176,10 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS, COLORS } = useBrand();
+	const { PACKS, COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
-		<Fragment>
+		<div css={{ marginBottom: SPACING(5) }}>
 			<Container css={blocksContainerStyle}>
 				<Grid
 					css={mq({
@@ -219,7 +219,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 					margin: 0,
 				}}
 			/>
-		</Fragment>
+		</div>
 	);
 };
 
