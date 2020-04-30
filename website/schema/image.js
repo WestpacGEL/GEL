@@ -31,10 +31,9 @@ const imageSchema = {
 		},
 	},
 	adminConfig: {
-		defaultColumns: '',
+		defaultColumns: 'image,caption',
 		defaultSort: 'image',
 	},
-	labelField: 'image',
 };
 
 module.exports = { imageSchema };
