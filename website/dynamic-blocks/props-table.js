@@ -229,15 +229,15 @@ const SeparatorComponent = () => {
 const Component = ({ item, addTableContent }) => {
 	const mq = useMediaQuery();
 	const { SPACING, COLORS } = useBrand();
-	const tableData = Object.keys(PropTypes.components[item.packageName])
-		.filter(
-			key => typeof PropTypes.components[item.packageName][key] === 'object' && key !== 'blender'
-		)
+	const packageName = item.packageName.replace(/_/g, '-'); // removing underscores from graphql queries
+
+	const tableData = Object.keys(PropTypes.components[packageName])
+		.filter(key => typeof PropTypes.components[packageName][key] === 'object' && key !== 'blender')
 		.map(key => {
-			const { overrides, ...normalProps } = PropTypes.components[item.packageName][key].propTypes;
+			const { overrides, ...normalProps } = PropTypes.components[packageName][key].propTypes;
 			return {
 				name: key,
-				overrideProps: { overrides: overrides },
+				overrideProps: overrides ? { overrides: overrides } : {},
 				normalProps,
 			};
 		});

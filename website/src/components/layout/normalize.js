@@ -1,5 +1,6 @@
 import React from 'react';
 import { css, Global, useFonts } from '@westpac/core';
+import { BASE_URL } from '../../config.js';
 
 export const Normalize = () => {
 	return (
@@ -175,7 +176,7 @@ export const Normalize = () => {
 						display: none;
 					}
 				`,
-				useFonts({ path: '/fonts/' })[''],
+				useFonts({ path: `${BASE_URL}/fonts/` })[''],
 			]}
 		/>
 	);
