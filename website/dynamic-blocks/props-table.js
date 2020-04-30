@@ -236,9 +236,11 @@ const Component = ({ item, addTableContent }) => {
 			<SeparatorComponent />
 			<Container
 				css={{
-					backgroundColor: '#fff',
 					...blocksContainerStyle,
+					backgroundColor: '#fff',
 					paddingBottom: SPACING(5),
+					marginTop: '0 !important',
+					marginBottom: '-20px !important',
 				}}
 			>
 				<Grid

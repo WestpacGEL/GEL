@@ -113,7 +113,7 @@ export const RelatedInformation = ({ item }) => {
 			<div
 				css={{
 					background: 'white',
-					paddingTop: SPACING(8),
+					paddingTop: SPACING(5),
 					paddingBottom: SPACING(12),
 					marginBottom: SPACING(3),
 				}}
@@ -277,6 +277,9 @@ export const blocksGridStyle = {
 	width: '100%',
 };
 export const blocksContainerStyle = {
-	margin: 0,
+	margin: '30px 0',
 	maxWidth: 'unset',
+	'@media (max-width: 768px)': {
+		margin: '18px 0',
+	},
 };

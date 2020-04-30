@@ -11,43 +11,6 @@ import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
 import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils';
 
-const Component = ({ heading, size, level, addTableContent, indent = true, subText, text }) => {
-	const id = heading.replace(/ /g, '-').toLowerCase();
-	const indentWidth = indent ? [12, 12, 12, 10, 10] : 12;
-	const indentLeft = indent ? [1, 1, 1, 2, 2] : 0;
-
-	return (
-		<Container css={blocksContainerStyle}>
-			<Grid columns={12} css={blocksGridStyle}>
-				<Cell width={indentWidth} left={indentLeft}>
-					<WestpacHeading
-						id={id}
-						tabIndex="-1"
-						tag={level}
-						size={size}
-						{...(addTableContent && { 'data-toc': true })}
-						overrides={{
-							Heading: {
-								styles: styles => ({
-									...styles,
-									scrollMarginTop: '75px',
-								}),
-							},
-						}}
-					>
-						{heading}
-					</WestpacHeading>
-					{subText && text && (
-						<Body>
-							<p css={{ lineHeight: 2 }}>{text}</p>
-						</Body>
-					)}
-				</Cell>
-			</Grid>
-		</Container>
-	);
-};
-
 export const Heading = {
 	editor: ({ value, onChange }) => {
 		const currentValue = {
@@ -165,5 +128,40 @@ export const Heading = {
 		);
 	},
 
-	component: Component,
+	component: ({ heading, size, level, addTableContent, indent = true, subText, text }) => {
+		const id = heading.replace(/ /g, '-').toLowerCase();
+		const indentWidth = indent ? [12, 12, 12, 10, 10] : 12;
+		const indentLeft = indent ? [1, 1, 1, 2, 2] : 0;
+
+		return (
+			<Container css={blocksContainerStyle}>
+				<Grid columns={12} css={blocksGridStyle}>
+					<Cell width={indentWidth} left={indentLeft}>
+						<WestpacHeading
+							id={id}
+							tabIndex="-1"
+							tag={level}
+							size={size}
+							{...(addTableContent && { 'data-toc': true })}
+							overrides={{
+								Heading: {
+									styles: styles => ({
+										...styles,
+										scrollMarginTop: '75px',
+									}),
+								},
+							}}
+						>
+							{heading}
+						</WestpacHeading>
+						{subText && text && (
+							<Body>
+								<p css={{ lineHeight: 2 }}>{text}</p>
+							</Body>
+						)}
+					</Cell>
+				</Grid>
+			</Container>
+		);
+	},
 };
