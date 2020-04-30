@@ -237,7 +237,7 @@ const Component = ({ item, addTableContent }) => {
 			const { overrides, ...normalProps } = PropTypes.components[packageName][key].propTypes;
 			return {
 				name: key,
-				overrideProps: { overrides: overrides },
+				overrideProps: overrides ? { overrides: overrides } : {},
 				normalProps,
 			};
 		});
