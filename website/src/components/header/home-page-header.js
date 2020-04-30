@@ -174,7 +174,7 @@ const HeroIntro = () => {
 				css={{
 					paddingTop: SPACING(12),
 					paddingBottom: SPACING(4),
-					fontFamily: TYPE.brandFont.fontFamily,
+					fontFamily: `${TYPE.brandFont.fontFamily} !important`,
 					maxWidth: 600,
 					fontWeight: 500,
 					margin: '0 auto !important',

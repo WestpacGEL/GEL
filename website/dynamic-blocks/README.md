@@ -18,7 +18,7 @@ In short, we reduced the vast API for blocks down to a React component with an i
 
 To create a dynamic block create a component in the `website/dynamic-blocks` folder. From this, export an object with a key `component`. This should be the a valid React component. For example:
 
-```javascript
+```jsx
 export const Hello = {
 	component: () => 'Hello world',
 };
@@ -30,7 +30,7 @@ For a simple block that it! Note: This is the simplest set-up where no props edi
 
 If we want to include editable props, we need to export an editor component as well. The editor component will receive a `value` prop that contains the current data as well an `onChange` function for saving data. The saved data will also be provided to the original component:
 
-```javascript
+```jsx
 export const Hello = {
 	component: ({ text }) => `Hello ${text}`,
 	editor: ({ value, onChange }) => (

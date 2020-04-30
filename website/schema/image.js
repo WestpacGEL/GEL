@@ -8,6 +8,7 @@ const fileAdapter = new CloudinaryAdapter({
 });
 
 const imageSchema = {
+	adminDoc: 'See below all images uploaded and hosted for you.',
 	fields: {
 		image: {
 			type: File,
@@ -29,6 +30,11 @@ const imageSchema = {
 			}
 		},
 	},
+	adminConfig: {
+		defaultColumns: '',
+		defaultSort: 'image',
+	},
+	labelField: 'image',
 };
 
 module.exports = { imageSchema };
