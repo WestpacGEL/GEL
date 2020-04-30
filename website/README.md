@@ -261,6 +261,8 @@ Some issues to be aware of:
 
 ### `nginx` Config
 
+Find the main nginx config here: https://github.com/WestpacGEL/server-config
+
 Changes to the `nginx` config have the potential to break, not only Keystone and the GEL Website, but the other services running in the environment.
 Deploying such changes also requires `root` access to the relevant server.
 
