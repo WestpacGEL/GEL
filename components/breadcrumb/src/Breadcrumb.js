@@ -65,13 +65,14 @@ export const Breadcrumb = ({
 
 	let allChildren = [];
 	if (data) {
-		data.map(({ href, text, onClick }, index) => {
+		data.map(({ href, text, tag, onClick }, index) => {
 			allChildren.push(
 				<Crumb
 					key={index}
 					current={index === data.length - 1}
 					href={href}
 					text={text}
+					tag={tag}
 					onClick={onClick}
 				/>
 			);

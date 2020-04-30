@@ -2,18 +2,18 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Link = ({ state, ...rest }) => <a {...rest} />;
+const Link = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
-const linkStyles = (_, { current }) => {
+const linkStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
-		label: getLabel('breadcrumb-link', { current }),
+		label: getLabel('breadcrumb-link'),
 		color: COLORS.text,
 		boxSizing: 'border-box',
 		textDecoration: 'none',
 		verticalAlign: 'middle',
-		cursor: current ? 'auto' : 'pointer',
+		cursor: 'pointer',
 		appearance: 'none',
 		background: 'none',
 		border: 'none',
@@ -22,13 +22,12 @@ const linkStyles = (_, { current }) => {
 		display: 'inline',
 
 		':focus, :hover': {
-			textDecoration: current ? 'none' : 'underline',
+			textDecoration: 'underline',
 		},
 	};
 };
 
 const linkAttributes = (_, { current, href }) => ({
-	href: href || '#0',
 	'aria-current': current ? 'page' : undefined,
 });
 
