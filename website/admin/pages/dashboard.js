@@ -92,7 +92,13 @@ function OrphanPages({ items, refetch }) {
 		<Fragment>
 			Pages below relate to packages that have been deleted or renamed. Please decide what should
 			happen to the pages.
-			<Grid columns={3} css={{ marginTop: gridSize * 2 }} gap={gridSize * 2}>
+			<Grid
+				css={{
+					gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+					marginTop: gridSize * 2,
+				}}
+				gap={gridSize * 2}
+			>
 				{items.map(item => {
 					return <Package items={items} key={item.id} refetch={refetch} item={item} />;
 				})}
@@ -122,10 +128,16 @@ function PagesWithoutDocs({ items }) {
 	return (
 		<Route>
 			{({ history }) => (
-				<Grid columns={3} css={{ marginTop: gridSize * 2 }} gap={gridSize * 2}>
+				<Grid
+					css={{
+						gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+						marginTop: gridSize * 2,
+					}}
+					gap={gridSize * 2}
+				>
 					{packagesWithoutDocs.map(({ value }) => {
 						return (
-							<Card key={value} css={{ width: 320 }}>
+							<Card key={value}>
 								<Title css={{ marginBottom: gridSize * 2 }}>{value}</Title>
 								<Button
 									onClick={async () => {
@@ -149,17 +161,21 @@ function Pages({ items }) {
 	let adminMeta = useAdminMeta();
 	return (
 		<Fragment>
-			<Grid columns={3} css={{ marginTop: gridSize * 2 }} gap={gridSize * 2}>
+			<Grid
+				css={{
+					gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+					marginTop: gridSize * 2,
+				}}
+				gap={gridSize * 2}
+			>
 				{items.map(item => {
 					return (
-						<Card key={item.id} css={{ width: 320 }}>
+						<Card key={item.id}>
 							<div css={{ marginBottom: gridSize * 2 }}>
 								<Title css={{ marginBottom: 2 }}>{item.pageTitle || item.packageName}</Title>
-								{item.packageName && (
-									<p css={{ fontSize: 'small', marginTop: 0, marginBottom: 0 }}>
-										Package: {item.packageName}
-									</p>
-								)}
+								<p css={{ fontSize: 'small', marginTop: 0, marginBottom: 0 }}>
+									{item.packageName ? `Package: ${item.packageName}` : '\u00a0'}
+								</p>
 							</div>
 
 							<Button
