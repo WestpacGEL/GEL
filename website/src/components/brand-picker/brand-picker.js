@@ -122,7 +122,7 @@ const BrandCard = ({ brand, left }) => {
 			>
 				<img
 					css={{ maxWidth: '100%', display: 'block' }}
-					src={`/images/${brand.BRAND.toLowerCase()}-gui.png`}
+					src={`/design-system/images/${brand.BRAND.toLowerCase()}-gui.png`}
 					alt={`An abstract brand image for ${brand.name}.`}
 				/>
 				<span css={{ margin: '0.5rem', marginTop: '1.5rem', display: 'block' }}>{brand.name}</span>
