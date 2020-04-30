@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const ButtonDropdownHeading = ({ tag, children, overrides, ...rest }) => {
+export const Heading = ({ tag, children, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -49,7 +49,7 @@ export const ButtonDropdownHeading = ({ tag, children, overrides, ...rest }) => 
 // Types
 // ==============================
 
-ButtonDropdownHeading.propTypes = {
+Heading.propTypes = {
 	/**
 	 * The tag of the heading element for semantic reasons
 	 */
@@ -67,6 +67,6 @@ ButtonDropdownHeading.propTypes = {
 	}),
 };
 
-ButtonDropdownHeading.defaultProps = {
+Heading.defaultProps = {
 	tag: 'h3',
 };
