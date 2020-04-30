@@ -121,7 +121,9 @@ export default function Index() {
 	if (!navigation) return <LoadingIndicator />;
 	return (
 		<Container>
-			<PageTitle>Settings</PageTitle>
+			<PageTitle>
+				The navigation object. It allows us to manage the navigation of the site.
+			</PageTitle>
 			<FieldContainer>
 				<FieldLabel htmlFor={'navigation'} field={{ label: 'Navigation', config: {} }} />
 				<textarea
