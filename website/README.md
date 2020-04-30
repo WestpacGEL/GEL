@@ -12,8 +12,8 @@ The GEL Website runs [Keystone](https://www.keystonejs.com/) as CMS.
 
 To setup a development environment you'll need:
 
-- PostgreSQL (tested on v12)
-- Node.js, with `yarn` (tested on v12 and v1.12, respectively)
+- [PostgreSQL](https://www.postgresql.org/) (tested on v12)
+- [Node.js](https://nodejs.org/), with [`yarn`](https://yarnpkg.com/) (tested on v12 and v1.12, respectively)
 
 First thing, double check you install the dependencies for the monorepo.
 Do this by running `yarn` at the root of the repo or, from the website dir:
@@ -22,7 +22,7 @@ Do this by running `yarn` at the root of the repo or, from the website dir:
 yarn --cwd ..
 ```
 
-All commands below are given relative to the `website` directory (not the root).
+_(💡 All commands below are given relative to the `website` directory (not the root))_
 
 ### Environment Variables
 
@@ -57,7 +57,6 @@ No other content will be created.
 ### Live Dump
 
 You may prefer to restore a copy of the DB from the live environment.
-This will require ssh access to the live server.
 
 ```sh
 # If you have an existing DB you may need to drop it first
@@ -73,6 +72,8 @@ TARGET='postgres://localhost/gel3_website_dev'
 # Dump the source DB and pipe to psql to restore locally
 ssh gel.live.do.westpac.thinkmill.cloud pg_dump --no-owner ${SOURCE} | psql ${TARGET}
 ```
+
+_(💡 This will require ssh access to the live server)_
 
 ### App
 
@@ -113,14 +114,16 @@ See the [`knex` migration docs](http://knexjs.org/#Migrations) for more info.
 
 ## Production
 
-The websites production environments (live and staging) are hosted at Digital Ocean.
+The websites production environments (live and staging) are hosted at [Digital Ocean](https://www.digitalocean.com/).
 
 ### App Tier
 
 The environments are deployed to unmanaged `Ubuntu 18.04.4 LTS` servers (droplets):
 
-- Live: `128.199.200.220` (`gel.live.do.westpac.thinkmill.cloud`, `gel.westpacgroup.com.au`)
-- Staging: `165.22.110.244` (`gel.test.do.westpac.thinkmill.cloud`)
+| Purpose | IP                | url                                         |
+| ------- | ----------------- | ------------------------------------------- |
+| Live    | `128.199.200.220` | https://gel.westpacgroup.com.au             |
+| Staging | `165.22.110.244`  | https://gel.test.do.westpac.thinkmill.cloud |
 
 ### DB Tier
 
@@ -136,8 +139,9 @@ In both environments, the app servers host several resources:
 
 - The GEL Keystone instance (port 3000)
 - The primary GEL website (static html)
-- Blender (port 1337)
+- Blender - old version (port 1337)
 - A server status page (port 1338)
+- Blender - new version (port 1339)
 
 Routed between these resources is performed by nginx.
 nginx is also performs TLS termination, sets many response headers and provides fail over error pages, request logging and other responsibilities.
@@ -150,14 +154,20 @@ To run a deployment you'll need the `pm2` package installed and ssh access to th
 
 ### Running a Deploy
 
-Deploy to staging:
+#### Deploy to staging
+
+Create a PR and merge it to the `staging` branch.
+Only files inside the `staging` branch are deployed for the staging command below.
 
 ```sh
 # From the repo root
 yarn website:deploy-staging
 ```
 
-Deploy to live:
+#### Deploy to live
+
+Create a PR and merge it into the `master` branch.
+Only files inside the `master` branch are deployed for the deploy command below.
 
 ```sh
 # From the repo root
@@ -186,11 +196,12 @@ Once completed you should receive a `successfully deployed` message.
 `pm2` can be finicky.
 Some issues to be aware of:
 
+- Make sure you only ever make changes in the `develop` branch. When ready to deploy to staging merge `develop` into `staging`. When ready to deploy live merge `develop` into `master`. The `develop` branch should be where things happen while `master` and `staging` are branches merged into.
 - Multiple steps in the process reference the [`pm2-ecosystem.json`](../pm2-ecosystem.json) config but, potentially, different version of it.
   This can cause unexpected behaviour if overlooked.
 - Code is pulled from the `staging` or `master` branch on GitHub; local changes to these branches are not considered.
 - Likewise, these branches are used regardless of which branch is active on the development machine when the deploy is triggered.
-- Changes to the nginx config found in this repo (`/nginx/*.conf`) are not automatically deployed.
+- Changes to the nginx config found in this repo (`/nginx/*.conf`) **are not** automatically deployed.
   If changes have been made to these files, follow the steps below to roll the changes out.
 
 ### `nginx` Config

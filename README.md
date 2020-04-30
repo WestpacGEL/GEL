@@ -14,6 +14,7 @@ This repo consists of the following parts:
 
 - [Development](#development)
 - [Design System](#design-system)
+- [Blender support](#blender-support)
 
 See also the [Website README](./website/README.md).
 
@@ -399,12 +400,12 @@ cd path/to/root/of/repo
 yarn docs
 ```
 
-### Blender support
+## Blender support
 
 [The blender](https://github.com/WestpacGEL/blender) can generate human readable html and css from react and emotion components.
-For this to work we require `label` attributes in our `css` prop and a couple files to blend and the `blender` key inside your `package.json`.
+For this to work we require `label` attributes in our `css` prop, a couple files to blend and the `blender` key inside your `package.json`.
 
-#### `getLabel`
+### `getLabel`
 
 We have to add labels for every variations for props.
 To archive this we have the `getLabel` function that you can import from `@westpac/core`.
@@ -463,7 +464,7 @@ So `getLabel('Component')` on the root component and `getLabel('Component-subcom
 </div>
 ```
 
-#### Js fallback
+### Js fallback
 
 Since the blender just SSR each component it won't provide the functionality of react and any interactivity.
 For this you have to provide a `js` file for fallback.
@@ -471,7 +472,7 @@ In the GEL3 we use jQuery for this.
 Each jQuery file should target elements via the `data-js` attribute since classes can vary depending on your blend settings.
 So things like `data-js="body"` or `data-js="component-closebtn"` should work well and you target this via `$('[data-js="component-closebtn"]')` in jQuery.
 
-#### Core components
+### Core components
 
 Inside the `package.json`
 
@@ -516,7 +517,7 @@ In short:
 - The `AllStyles` component should contain all possible variations for a component
 - The `Docs` component should contain everything we want to show in the documentation.
 
-#### Other components
+### Other components
 
 Inside the `package.json`
 
