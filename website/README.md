@@ -165,7 +165,7 @@ Try to stay uni-direction with your git-merges.
 
 Please avoid merging the other direction!
 
-You should never PR (or commit into) directly against `master` or `staging`.
+You should never PR directly against (or commit into) `master` or `staging`.
 Because of that:
 
 - You should never need to merge `master` into anything.
