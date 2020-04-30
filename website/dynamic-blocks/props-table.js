@@ -85,6 +85,7 @@ function PTableRow({ name, data, level = 0 }) {
 	const subValues = [];
 	let value = null;
 	level++;
+
 	if (type === 'shape' || type === 'exact') {
 		subValues.push(
 			Object.entries(data.type.value).map(([name, data], i) => (
@@ -97,7 +98,11 @@ function PTableRow({ name, data, level = 0 }) {
 				<PTableRow
 					key={i}
 					name=""
-					data={{ type: { name: item.name }, required: false, defaultValue: item.defaultValue }}
+					data={{
+						type: { name: item.name, value: item.value },
+						required: false,
+						defaultValue: item.defaultValue,
+					}}
 					level={level}
 				/>
 			))
@@ -119,7 +124,9 @@ function PTableRow({ name, data, level = 0 }) {
 			/>
 		);
 	} else {
-		value = data.type.value ? data.type.value.map((val, i) => <Code key={i}>"{val}"</Code>) : null;
+		value = Array.isArray(data.type.value)
+			? data.type.value.map((val, i) => <Code key={i}>"{val}"</Code>)
+			: null;
 	}
 
 	return (
@@ -148,6 +155,10 @@ function PTableRow({ name, data, level = 0 }) {
  * @param {string} options.caption - A caption for the table
  */
 function PTable({ data, caption }) {
+	if (Object.keys(data).length === 0) {
+		return null;
+	}
+
 	const { SPACING } = useBrand();
 	return (
 		<Table css={{ marginBottom: SPACING(4, true), borderColor: 'white' }} bordered striped>
