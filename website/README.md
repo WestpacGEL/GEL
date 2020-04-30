@@ -4,16 +4,16 @@ The GEL Website runs [Keystone](https://www.keystonejs.com/) as CMS.
 
 ## Contents
 
-* [Development](#development) -- How to setup your local development environment
-* [Production](#production) -- A high-level overview of the production environments (`staging` and `live`)
-* [Deployment](#deployment) -- How to deploy changes to the app
+- [Development](#development) -- How to setup your local development environment
+- [Production](#production) -- A high-level overview of the production environments (`staging` and `live`)
+- [Deployment](#deployment) -- How to deploy changes to the app
 
 ## Development
 
 To setup a development environment you'll need:
 
-* PostgreSQL (tested on v12)
-* Node.js, with `yarn` (tested on v12 and v1.12, respectively)
+- PostgreSQL (tested on v12)
+- Node.js, with `yarn` (tested on v12 and v1.12, respectively)
 
 First thing, double check you install the dependencies for the monorepo.
 Do this by running `yarn` at the root of the repo or, from the website dir:
@@ -119,14 +119,14 @@ The websites production environments (live and staging) are hosted at Digital Oc
 
 The environments are deployed to unmanaged `Ubuntu 18.04.4 LTS` servers (droplets):
 
-* Live: `128.199.200.220` (`gel.live.do.westpac.thinkmill.cloud`, `gel.westpacgroup.com.au`)
-* Staging: `165.22.110.244` (`gel.test.do.westpac.thinkmill.cloud`)
+- Live: `128.199.200.220` (`gel.live.do.westpac.thinkmill.cloud`, `gel.westpacgroup.com.au`)
+- Staging: `165.22.110.244` (`gel.test.do.westpac.thinkmill.cloud`)
 
 ### DB Tier
 
 Both environments share a single managed Postgres DB instance:
 
-* `westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com` (not accessible externally)
+- `westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com` (not accessible externally)
 
 This instance hosts the `gel3_website_live` and `gel3_website_staging` databases.
 
@@ -134,10 +134,10 @@ This instance hosts the `gel3_website_live` and `gel3_website_staging` databases
 
 In both environments, the app servers host several resources:
 
-* The GEL Keystone instance (port 3000)
-* The primary GEL website (static html)
-* Blender (port 1337)
-* A server status page (port 1338)
+- The GEL Keystone instance (port 3000)
+- The primary GEL website (static html)
+- Blender (port 1337)
+- A server status page (port 1338)
 
 Routed between these resources is performed by nginx.
 nginx is also performs TLS termination, sets many response headers and provides fail over error pages, request logging and other responsibilities.
@@ -168,22 +168,15 @@ yarn website:deploy
 
 Regardless of the environment being update, the deployment process runs though several steps:
 
-* A deployment is explicitly triggered in a development environment (eg. `yarn website:deploy` is run)
-* `pm2` looks up the environment details in [`pm2-ecosystem.json`](../pm2-ecosystem.json) file _in the current branch_.
-	This tells it:
-	- Which server (and user) to connect to
-	- Which branch to deploy (either `staging` or `master` for live)
-* `pm2` connects to the relevant server using your local ssh config.
-	(Your `~/.ssh/config` file may need an entry to configure the correct key.)
-* `pm2` pulls the latest code from the relevant branch onto the server
-* It then executes the post deploy hook -- [`pm2-post-deploy.sh`](../pm2-post-deploy.sh).
-	This script is responsible for..
-	- Installing any recently added or updated packages (according to `yarn.lock`)
-	- Running the websites build process (ie. `yarn build`)
-	- Restarting the websites processes (according to the `pm2-ecosystem.json` file now deployed on the server):
-		+ The website itself (ie. `yarn start:prod`)
-		+ The migration process (ie. `yarn knex migrate:latest`)
-* When the migration process has applied any outstanding migrations it exits
+- A deployment is explicitly triggered in a development environment (eg. `yarn website:deploy` is run)
+- `pm2` looks up the environment details in [`pm2-ecosystem.json`](../pm2-ecosystem.json) file _in the current branch_.
+  This tells it: - Which server (and user) to connect to - Which branch to deploy (either `staging` or `master` for live)
+- `pm2` connects to the relevant server using your local ssh config.
+  (Your `~/.ssh/config` file may need an entry to configure the correct key.)
+- `pm2` pulls the latest code from the relevant branch onto the server
+- It then executes the post deploy hook -- [`pm2-post-deploy.sh`](../pm2-post-deploy.sh).
+  This script is responsible for.. - Installing any recently added or updated packages (according to `yarn.lock`) - Running the websites build process (ie. `yarn build`) - Restarting the websites processes (according to the `pm2-ecosystem.json` file now deployed on the server): + The website itself (ie. `yarn start:prod`) + The migration process (ie. `yarn knex migrate:latest`)
+- When the migration process has applied any outstanding migrations it exits
 
 When you run a deployment, output from these steps will be logged to your console.
 Once completed you should receive a `successfully deployed` message.
@@ -193,12 +186,12 @@ Once completed you should receive a `successfully deployed` message.
 `pm2` can be finicky.
 Some issues to be aware of:
 
-* Multiple steps in the process reference the [`pm2-ecosystem.json`](../pm2-ecosystem.json) config but, potentially, different version of it.
-	This can cause unexpected behaviour if overlooked.
-* Code is pulled from the `staging` or `master` branch on GitHub; local changes to these branches are not considered.
-* Likewise, these branches are used regardless of which branch is active on the development machine when the deploy is triggered.
-* Changes to the nginx config found in this repo (`/nginx/*.conf`) are not automatically deployed.
-	If changes have been made to these files, follow the steps below to roll the changes out.
+- Multiple steps in the process reference the [`pm2-ecosystem.json`](../pm2-ecosystem.json) config but, potentially, different version of it.
+  This can cause unexpected behaviour if overlooked.
+- Code is pulled from the `staging` or `master` branch on GitHub; local changes to these branches are not considered.
+- Likewise, these branches are used regardless of which branch is active on the development machine when the deploy is triggered.
+- Changes to the nginx config found in this repo (`/nginx/*.conf`) are not automatically deployed.
+  If changes have been made to these files, follow the steps below to roll the changes out.
 
 ### `nginx` Config
 
@@ -211,7 +204,7 @@ Steps:
 2. Deploy to the relevant environment as usual, eg. `yarn website:deploy-staging`
 3. When the app deploy has completed, ssh to the relevant server, eg. `ssh gel.test.do.westpac.thinkmill.cloud`
 4. The new config will be in the app repo at `/srv/pm2-apps/gel3-website/current/nginx/..`.
-	Copy it into the `/etc/nginx/snippets` dir as `gel3-website-routes.conf`, eg. 
-	`sudo cp /srv/pm2-apps/gel3-website/current/nginx/staging.conf /etc/nginx/snippets/gel3-website-routes.conf`
+   Copy it into the `/etc/nginx/snippets` dir as `gel3-website-routes.conf`, eg.
+   `sudo cp /srv/pm2-apps/gel3-website/current/nginx/staging.conf /etc/nginx/snippets/gel3-website-routes.conf`
 5. Verify the new config is valid with `sudo nginx -t`
 6. If successful, reload the nginx config for the server with `sudo services nginx reload`
