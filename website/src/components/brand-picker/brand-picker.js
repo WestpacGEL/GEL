@@ -5,6 +5,7 @@ import { jsx } from '@westpac/core';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 import { useRouter } from 'next/router';
 import { Container, Grid, Cell } from '@westpac/grid';
+import { BASE_URL } from '../../config.js';
 
 export const BrandPicker = () => {
 	const { brands } = useBrandSwitcher();
@@ -122,7 +123,7 @@ const BrandCard = ({ brand, left }) => {
 			>
 				<img
 					css={{ maxWidth: '100%', display: 'block' }}
-					src={`/design-system/images/${brand.BRAND.toLowerCase()}-gui.png`}
+					src={`${BASE_URL}/images/${brand.BRAND.toLowerCase()}-gui.png`}
 					alt={`An abstract brand image for ${brand.name}.`}
 				/>
 				<span css={{ margin: '0.5rem', marginTop: '1.5rem', display: 'block' }}>{brand.name}</span>
