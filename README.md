@@ -6,7 +6,7 @@
 This repo consists of the following parts:
 
 - `/brands/*` and `/components/*` The react design system components publish to npm
-- `/website/*` The website CMS and template
+- `/website/*` The website CMS and template (see the [Website README](./website/README.md) for details)
 - `/helpers/*` Some helper scripts
 - `/nginx/*` The nginx config for the server
 
@@ -14,7 +14,9 @@ This repo consists of the following parts:
 
 - [Development](#development)
 - [Design System](#design-system)
-- [Website](#website)
+- [Blender support](#blender-support)
+
+See also the [Website README](./website/README.md).
 
 ## Development
 
@@ -107,6 +109,8 @@ This will install all dependencies for all packages in this monorepo.
 | `yarn test`                   | runs tests                                            |
 | `yarn format`                 | runs prettier to format all code                      |
 | `yarn website:deploy-staging` | deploys the site to staging from the `staging` branch |
+
+See the [Website README](./website/README.md#deployment) for details on it's deployment.
 
 </details>
 
@@ -313,7 +317,7 @@ You can [read about the focus hook on medium](https://medium.com/@wilkowskidom/h
 The `GEL` also adds the global focus styling from our `PACKS.focus` token pack.
 If you need to add it to something use:
 
-```js
+```jsx
 ':focus': {
 	...PACKS.focus,
 },
@@ -396,12 +400,12 @@ cd path/to/root/of/repo
 yarn docs
 ```
 
-### Blender support
+## Blender support
 
 [The blender](https://github.com/WestpacGEL/blender) can generate human readable html and css from react and emotion components.
-For this to work we require `label` attributes in our `css` prop and a couple files to blend and the `blender` key inside your `package.json`.
+For this to work we require `label` attributes in our `css` prop, a couple files to blend and the `blender` key inside your `package.json`.
 
-#### getLabel
+### `getLabel`
 
 We have to add labels for every variations for props.
 To archive this we have the `getLabel` function that you can import from `@westpac/core`.
@@ -460,7 +464,7 @@ So `getLabel('Component')` on the root component and `getLabel('Component-subcom
 </div>
 ```
 
-#### Js fallback
+### Js fallback
 
 Since the blender just SSR each component it won't provide the functionality of react and any interactivity.
 For this you have to provide a `js` file for fallback.
@@ -468,7 +472,7 @@ In the GEL3 we use jQuery for this.
 Each jQuery file should target elements via the `data-js` attribute since classes can vary depending on your blend settings.
 So things like `data-js="body"` or `data-js="component-closebtn"` should work well and you target this via `$('[data-js="component-closebtn"]')` in jQuery.
 
-#### Core components
+### Core components
 
 Inside the `package.json`
 
@@ -513,7 +517,7 @@ In short:
 - The `AllStyles` component should contain all possible variations for a component
 - The `Docs` component should contain everything we want to show in the documentation.
 
-#### Other components
+### Other components
 
 Inside the `package.json`
 
@@ -577,49 +581,3 @@ export function Docs({ brand }) {
 ```
 
 Same as the core component.
-
-## Website
-
-The website runs [Keystone](https://www.keystonejs.com/) as CMS.
-You run it via:
-
-```sh
-yarn start
-```
-
-To run the website locally you'll need [postgres](https://www.keystonejs.com/quick-start/adapters#installing-postgresql) and a `.env` file.
-
-Create the database via:
-
-```sh
-psql -c 'create database "gel3_website";'
-```
-
-The `website/.env` file requires the following items:
-
-```
-NODE_ENV=development
-
-CLOUDINARY_CLOUD_NAME="FILLME"
-CLOUDINARY_KEY="FILLME"
-CLOUDINARY_SECRET="FILLME"
-
-DATABASE_URL="postgres://localhost/gel3_website"
-```
-
-#### Website deployment
-
-Everything for staging is added to the `staging` branch.
-So make sure you've merged everything you need into that branch and check it out:
-
-```sh
-git checkout staging
-```
-
-Then you can run the deploy script which will deploy the website with [pm2](https://github.com/Unitech/pm2):
-
-```sh
-yarn website:deploy-staging
-```
-
-_(💡 This requires your ssh key be installed on the server)_
