@@ -239,8 +239,8 @@ const Component = ({ item, addTableContent }) => {
 					...blocksContainerStyle,
 					backgroundColor: '#fff',
 					paddingBottom: SPACING(5),
-					marginTop: '0 !important',
-					marginBottom: '-20px !important',
+					marginTop: '0',
+					marginBottom: '-20px',
 				}}
 			>
 				<Grid
