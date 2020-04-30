@@ -88,6 +88,29 @@ Then, the app can be started with:
 yarn start
 ```
 
+### Migrations
+
+As touched on above, the website uses the [`knex` migration framework](http://knexjs.org/#Migrations).
+It's functionality is available via `yarn knex` (or just `knex` if you have it installed globally).
+
+If you've pulled code from git and have migrations to apply, you can run them using:
+
+```sh
+yarn knex migrate:latest
+```
+
+To create a new migration of your own, run the `yarn knex migrate:make` command with a short description of the change:
+
+```sh
+yarn knex migrate:make 'adding something'
+```
+
+This will create a new migration file in the `/website/migrations` director (`20200430191814_adding something.js` in this case)
+with code blocks for the `up` and `down` steps.
+You can run/test these using `yarn knex migrate:up` and `yarn knex migrate:down`.
+
+See the [`knex` migration docs](http://knexjs.org/#Migrations) for more info.
+
 ## Production
 
 The websites production environments (live and staging) are hosted at Digital Ocean.
@@ -127,15 +150,17 @@ To run a deployment you'll need the `pm2` package installed and ssh access to th
 
 ### Running a Deploy
 
-Deploy to staging
+Deploy to staging:
 
 ```sh
+# From the repo root
 yarn website:deploy-staging
 ```
 
 Deploy to live:
 
 ```sh
+# From the repo root
 yarn website:deploy
 ```
 
