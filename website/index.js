@@ -27,10 +27,18 @@ const keystone = new Keystone({
 
 const options = resolveComponents();
 
-keystone.createList(
-	'Page',
-	getComponentSchema(options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name })))
-);
+keystone.createList('Page', {
+	adminDoc:
+		'This is the list of all pages for the site. Make sure to include the pages into your navigation (under settings) for them to show up on the live site.',
+	...getComponentSchema(
+		options.map(pkg => ({ value: pkg.name.replace('-', '_'), label: pkg.name }))
+	),
+	adminConfig: {
+		defaultColumns: 'packageName,url',
+		defaultSort: 'email',
+	},
+	labelField: 'pageTitle',
+});
 keystone.createList('User', userSchema);
 keystone.createList('Setting', settingSchema);
 keystone.createList('Image', imageSchema);
