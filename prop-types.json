@@ -148,13 +148,7 @@
 				},
 				"look": {
 					"type": {
-						"value": [
-							"success",
-							"info",
-							"warning",
-							"danger",
-							"system"
-						],
+						"value": ["success", "info", "warning", "danger", "system"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -191,14 +185,7 @@
 				},
 				"headingTag": {
 					"type": {
-						"value": [
-							"h1",
-							"h2",
-							"h3",
-							"h4",
-							"h5",
-							"h6"
-						],
+						"value": ["h1", "h2", "h3", "h4", "h5", "h6"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -778,12 +765,7 @@
 			"Button": {
 				"look": {
 					"type": {
-						"value": [
-							"primary",
-							"hero",
-							"faint",
-							"link"
-						],
+						"value": ["primary", "hero", "faint", "link"],
 						"name": "oneOf"
 					},
 					"required": false,
@@ -795,22 +777,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -1044,20 +1016,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"small",
-									"medium",
-									"large"
-								],
+								"value": ["small", "medium", "large"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"small",
-										"medium",
-										"large"
-									],
+									"value": ["small", "medium", "large"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -1284,11 +1248,7 @@
 				},
 				"look": {
 					"type": {
-						"value": [
-							"primary",
-							"hero",
-							"faint"
-						],
+						"value": ["primary", "hero", "faint"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -1300,22 +1260,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -1876,12 +1826,7 @@
 			"Form": {
 				"size": {
 					"type": {
-						"value": [
-							"small",
-							"medium",
-							"large",
-							"xlarge"
-						],
+						"value": ["small", "medium", "large", "xlarge"],
 						"name": "oneOf"
 					},
 					"required": false,
@@ -1891,10 +1836,7 @@
 				},
 				"spacing": {
 					"type": {
-						"value": [
-							"medium",
-							"large"
-						],
+						"value": ["medium", "large"],
 						"name": "oneOf"
 					},
 					"required": false,
@@ -1964,10 +1906,7 @@
 				},
 				"tag": {
 					"type": {
-						"value": [
-							"label",
-							"legend"
-						],
+						"value": ["label", "legend"],
 						"name": "oneOf"
 					},
 					"required": false,
@@ -2074,10 +2013,7 @@
 			"FormCheck": {
 				"type": {
 					"type": {
-						"value": [
-							"checkbox",
-							"radio"
-						],
+						"value": ["checkbox", "radio"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -2093,10 +2029,7 @@
 				},
 				"size": {
 					"type": {
-						"value": [
-							"medium",
-							"large"
-						],
+						"value": ["medium", "large"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -2300,10 +2233,7 @@
 				},
 				"type": {
 					"type": {
-						"value": [
-							"checkbox",
-							"radio"
-						],
+						"value": ["checkbox", "radio"],
 						"name": "oneOf"
 					},
 					"required": false
@@ -2316,10 +2246,7 @@
 				},
 				"size": {
 					"type": {
-						"value": [
-							"medium",
-							"large"
-						],
+						"value": ["medium", "large"],
 						"name": "oneOf"
 					},
 					"required": false
@@ -2739,13 +2666,7 @@
 				},
 				"flow": {
 					"type": {
-						"value": [
-							"column dense",
-							"column",
-							"dense",
-							"row dense",
-							"row"
-						],
+						"value": ["column dense", "column", "dense", "row dense", "row"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -2779,10 +2700,7 @@
 					},
 					"required": true,
 					"defaultValue": {
-						"value": [
-							"0.75rem",
-							"1.5rem"
-						]
+						"value": ["0.75rem", "1.5rem"]
 					}
 				},
 				"height": {
@@ -3006,14 +2924,7 @@
 								"name": "func"
 							},
 							{
-								"value": [
-									"h1",
-									"h2",
-									"h3",
-									"h4",
-									"h5",
-									"h6"
-								],
+								"value": ["h1", "h2", "h3", "h4", "h5", "h6"],
 								"name": "oneOf"
 							}
 						],
@@ -3023,17 +2934,7 @@
 				},
 				"size": {
 					"type": {
-						"value": [
-							1,
-							2,
-							3,
-							4,
-							5,
-							6,
-							7,
-							8,
-							9
-						],
+						"value": [1, 2, 3, 4, 5, 6, 7, 8, 9],
 						"name": "oneOf"
 					},
 					"required": true
@@ -3096,24 +2997,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -3207,24 +3096,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -3318,24 +3195,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -3429,24 +3294,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -3540,24 +3393,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -3651,24 +3492,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -3762,24 +3591,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -3873,24 +3690,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -3984,24 +3789,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -4095,24 +3888,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -4206,24 +3987,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -4317,24 +4086,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -4428,24 +4185,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -4539,24 +4284,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -4650,24 +4383,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -4761,24 +4482,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -4872,24 +4581,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -4983,24 +4680,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -5094,24 +4779,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -5205,24 +4878,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -5316,24 +4977,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -5427,24 +5076,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -5538,24 +5175,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -5649,24 +5274,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -5760,24 +5373,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -5871,24 +5472,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -5982,24 +5571,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -6093,24 +5670,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -6204,24 +5769,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -6315,24 +5868,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -6426,24 +5967,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -6537,24 +6066,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -6648,24 +6165,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -6759,24 +6264,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -6870,24 +6363,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -6981,24 +6462,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -7092,24 +6561,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -7203,24 +6660,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -7314,24 +6759,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -7425,24 +6858,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -7536,24 +6957,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -7647,24 +7056,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -7758,24 +7155,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -7869,24 +7254,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -7980,24 +7353,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -8091,24 +7452,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -8202,24 +7551,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -8313,24 +7650,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -8424,24 +7749,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -8535,24 +7848,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -8646,24 +7947,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -8757,24 +8046,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -8868,24 +8145,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -8979,24 +8244,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -9090,24 +8343,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -9201,24 +8442,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -9312,24 +8541,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -9423,24 +8640,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -9534,24 +8739,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -9645,24 +8838,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -9756,24 +8937,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -9867,24 +9036,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -9978,24 +9135,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -10089,24 +9234,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -10200,24 +9333,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -10311,24 +9432,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -10422,24 +9531,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -10533,24 +9630,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -10644,24 +9729,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -10755,24 +9828,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -10866,24 +9927,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -10977,24 +10026,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -11088,24 +10125,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -11199,24 +10224,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -11310,24 +10323,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -11421,24 +10422,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -11532,24 +10521,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -11643,24 +10620,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -11754,24 +10719,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -11865,24 +10818,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -11976,24 +10917,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -12087,24 +11016,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -12198,24 +11115,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -12309,24 +11214,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -12420,24 +11313,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -12531,24 +11412,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -12642,24 +11511,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -12753,24 +11610,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -12864,24 +11709,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -12975,24 +11808,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -13086,24 +11907,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -13197,24 +12006,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -13308,24 +12105,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -13419,24 +12204,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -13530,24 +12303,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -13641,24 +12402,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -13752,24 +12501,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -13863,24 +12600,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -13974,24 +12699,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -14085,24 +12798,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -14196,24 +12897,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -14307,24 +12996,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -14418,24 +13095,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -14529,24 +13194,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -14640,24 +13293,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -14751,24 +13392,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -14862,24 +13491,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -14973,24 +13590,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -15084,24 +13689,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -15195,24 +13788,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -15306,24 +13887,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -15417,24 +13986,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -15528,24 +14085,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -15639,24 +14184,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -15750,24 +14283,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -15861,24 +14382,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -15972,24 +14481,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -16083,24 +14580,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -16194,24 +14679,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -16305,24 +14778,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -16416,24 +14877,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -16527,24 +14976,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -16638,24 +15075,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -16749,24 +15174,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -16860,24 +15273,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -16971,24 +15372,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -17082,24 +15471,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -17193,24 +15570,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -17304,24 +15669,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -17415,24 +15768,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -17526,24 +15867,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -17637,24 +15966,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -17748,24 +16065,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -17859,24 +16164,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -17970,24 +16263,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -18081,24 +16362,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -18192,24 +16461,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -18303,24 +16560,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -18414,24 +16659,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -18525,24 +16758,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -18636,24 +16857,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -18747,24 +16956,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -18858,24 +17055,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -18969,24 +17154,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -19080,24 +17253,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -19191,24 +17352,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -19302,24 +17451,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -19413,24 +17550,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -19524,24 +17649,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -19635,24 +17748,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -19746,24 +17847,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -19857,24 +17946,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -19968,24 +18045,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -20079,24 +18144,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -20190,24 +18243,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -20301,24 +18342,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -20412,24 +18441,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -20523,24 +18540,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -20634,24 +18639,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -20745,24 +18738,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -20856,24 +18837,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"xsmall",
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["xsmall", "small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"xsmall",
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["xsmall", "small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -20964,12 +18933,7 @@
 				},
 				"size": {
 					"type": {
-						"value": [
-							"small",
-							"medium",
-							"large",
-							"xlarge"
-						],
+						"value": ["small", "medium", "large", "xlarge"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -20979,11 +18943,7 @@
 				},
 				"look": {
 					"type": {
-						"value": [
-							"primary",
-							"hero",
-							"faint"
-						],
+						"value": ["primary", "hero", "faint"],
 						"name": "oneOf"
 					},
 					"required": false
@@ -20996,11 +18956,7 @@
 									"value": {
 										"type": {
 											"type": {
-												"value": [
-													"text",
-													"button",
-													"select"
-												],
+												"value": ["text", "button", "select"],
 												"name": "oneOf"
 											},
 											"required": true
@@ -21035,11 +18991,7 @@
 									"value": {
 										"type": {
 											"type": {
-												"value": [
-													"text",
-													"button",
-													"select"
-												],
+												"value": ["text", "button", "select"],
 												"name": "oneOf"
 											},
 											"required": true
@@ -21246,23 +19198,14 @@
 			"Left": {
 				"type": {
 					"type": {
-						"value": [
-							"text",
-							"button",
-							"select"
-						],
+						"value": ["text", "button", "select"],
 						"name": "oneOf"
 					},
 					"required": true
 				},
 				"size": {
 					"type": {
-						"value": [
-							"small",
-							"medium",
-							"large",
-							"xlarge"
-						],
+						"value": ["small", "medium", "large", "xlarge"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -21274,23 +19217,14 @@
 			"Right": {
 				"type": {
 					"type": {
-						"value": [
-							"text",
-							"button",
-							"select"
-						],
+						"value": ["text", "button", "select"],
 						"name": "oneOf"
 					},
 					"required": true
 				},
 				"size": {
 					"type": {
-						"value": [
-							"small",
-							"medium",
-							"large",
-							"xlarge"
-						],
+						"value": ["small", "medium", "large", "xlarge"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -21367,35 +19301,21 @@
 			"List": {
 				"look": {
 					"type": {
-						"value": [
-							"primary",
-							"hero",
-							"neutral"
-						],
+						"value": ["primary", "hero", "neutral"],
 						"name": "oneOf"
 					},
 					"required": false
 				},
 				"type": {
 					"type": {
-						"value": [
-							"bullet",
-							"link",
-							"tick",
-							"unstyled",
-							"icon",
-							"ordered"
-						],
+						"value": ["bullet", "link", "tick", "unstyled", "icon", "ordered"],
 						"name": "oneOf"
 					},
 					"required": false
 				},
 				"spacing": {
 					"type": {
-						"value": [
-							"medium",
-							"large"
-						],
+						"value": ["medium", "large"],
 						"name": "oneOf"
 					},
 					"required": false
@@ -21537,25 +19457,14 @@
 			"Item": {
 				"look": {
 					"type": {
-						"value": [
-							"primary",
-							"hero",
-							"neutral"
-						],
+						"value": ["primary", "hero", "neutral"],
 						"name": "oneOf"
 					},
 					"required": false
 				},
 				"type": {
 					"type": {
-						"value": [
-							"bullet",
-							"link",
-							"tick",
-							"unstyled",
-							"icon",
-							"ordered"
-						],
+						"value": ["bullet", "link", "tick", "unstyled", "icon", "ordered"],
 						"name": "oneOf"
 					},
 					"required": false
@@ -21568,10 +19477,7 @@
 				},
 				"spacing": {
 					"type": {
-						"value": [
-							"medium",
-							"large"
-						],
+						"value": ["medium", "large"],
 						"name": "oneOf"
 					},
 					"required": false
@@ -21804,11 +19710,7 @@
 				},
 				"size": {
 					"type": {
-						"value": [
-							"small",
-							"medium",
-							"large"
-						],
+						"value": ["small", "medium", "large"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -22422,10 +20324,7 @@
 			"Panel": {
 				"look": {
 					"type": {
-						"value": [
-							"hero",
-							"faint"
-						],
+						"value": ["hero", "faint"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -22647,14 +20546,7 @@
 				},
 				"headingTag": {
 					"type": {
-						"value": [
-							"h1",
-							"h2",
-							"h3",
-							"h4",
-							"h5",
-							"h6"
-						],
+						"value": ["h1", "h2", "h3", "h4", "h5", "h6"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -22833,10 +20725,7 @@
 				},
 				"look": {
 					"type": {
-						"value": [
-							"default",
-							"skinny"
-						],
+						"value": ["default", "skinny"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -22951,14 +20840,7 @@
 				},
 				"headingsTag": {
 					"type": {
-						"value": [
-							"h1",
-							"h2",
-							"h3",
-							"h4",
-							"h5",
-							"h6"
-						],
+						"value": ["h1", "h2", "h3", "h4", "h5", "h6"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -23369,22 +21251,12 @@
 					"type": {
 						"value": [
 							{
-								"value": [
-									"small",
-									"medium",
-									"large",
-									"xlarge"
-								],
+								"value": ["small", "medium", "large", "xlarge"],
 								"name": "oneOf"
 							},
 							{
 								"value": {
-									"value": [
-										"small",
-										"medium",
-										"large",
-										"xlarge"
-									],
+									"value": ["small", "medium", "large", "xlarge"],
 									"name": "oneOf"
 								},
 								"name": "arrayOf"
@@ -27289,10 +25161,7 @@
 			"Tab": {
 				"look": {
 					"type": {
-						"value": [
-							"soft",
-							"lego"
-						],
+						"value": ["soft", "lego"],
 						"name": "oneOf"
 					},
 					"required": false
@@ -27317,10 +25186,7 @@
 				},
 				"mode": {
 					"type": {
-						"value": [
-							"accordion",
-							"tabs"
-						],
+						"value": ["accordion", "tabs"],
 						"name": "oneOf"
 					},
 					"required": false
@@ -27463,11 +25329,7 @@
 			"Tabcordion": {
 				"mode": {
 					"type": {
-						"value": [
-							"responsive",
-							"accordion",
-							"tabs"
-						],
+						"value": ["responsive", "accordion", "tabs"],
 						"name": "oneOf"
 					},
 					"required": false,
@@ -27477,10 +25339,7 @@
 				},
 				"look": {
 					"type": {
-						"value": [
-							"soft",
-							"lego"
-						],
+						"value": ["soft", "lego"],
 						"name": "oneOf"
 					},
 					"required": false,
@@ -28261,12 +26120,7 @@
 			"Textarea": {
 				"size": {
 					"type": {
-						"value": [
-							"small",
-							"medium",
-							"large",
-							"xlarge"
-						],
+						"value": ["small", "medium", "large", "xlarge"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -28276,15 +26130,7 @@
 				},
 				"width": {
 					"type": {
-						"value": [
-							2,
-							3,
-							4,
-							5,
-							10,
-							20,
-							30
-						],
+						"value": [2, 3, 4, 5, 10, 20, 30],
 						"name": "oneOf"
 					},
 					"required": false
@@ -28345,12 +26191,7 @@
 			"Select": {
 				"size": {
 					"type": {
-						"value": [
-							"small",
-							"medium",
-							"large",
-							"xlarge"
-						],
+						"value": ["small", "medium", "large", "xlarge"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -28360,15 +26201,7 @@
 				},
 				"width": {
 					"type": {
-						"value": [
-							2,
-							3,
-							4,
-							5,
-							10,
-							20,
-							30
-						],
+						"value": [2, 3, 4, 5, 10, 20, 30],
 						"name": "oneOf"
 					},
 					"required": false
@@ -28452,12 +26285,7 @@
 			"TextInput": {
 				"size": {
 					"type": {
-						"value": [
-							"small",
-							"medium",
-							"large",
-							"xlarge"
-						],
+						"value": ["small", "medium", "large", "xlarge"],
 						"name": "oneOf"
 					},
 					"required": true,
@@ -28467,15 +26295,7 @@
 				},
 				"width": {
 					"type": {
-						"value": [
-							2,
-							3,
-							4,
-							5,
-							10,
-							20,
-							30
-						],
+						"value": [2, 3, 4, 5, 10, 20, 30],
 						"name": "oneOf"
 					},
 					"required": false
