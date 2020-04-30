@@ -6,7 +6,7 @@ const SeparatorComponent = () => {
 	const { COLORS, SPACING } = useBrand();
 
 	return (
-		<div css={{ marginTop: `${SPACING(4)} !important`, marginBottom: `${SPACING(7)} !important` }}>
+		<div css={{ marginTop: `${SPACING(2)}`, marginBottom: `${SPACING(4)}` }}>
 			<button
 				css={{
 					display: 'block',

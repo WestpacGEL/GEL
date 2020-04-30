@@ -45,13 +45,7 @@ export const ScreenReaderText = {
 		const mq = useMediaQuery();
 		return (
 			<Container css={blocksContainerStyle}>
-				<Grid
-					css={mq({
-						...blocksGridStyle,
-						marginTop: [SPACING(6), SPACING(6), SPACING(10)],
-					})}
-					columns={12}
-				>
+				<Grid css={blocksGridStyle} columns={12}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 						<Heading
 							tag="h2"
