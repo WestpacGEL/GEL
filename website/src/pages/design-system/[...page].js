@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { Fragment, useCallback } from 'react';
+import { Fragment, useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import debounce from 'lodash.debounce';
 import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
@@ -48,10 +49,29 @@ const Component = ({ component, tabName }) => {
 
 const Tabs = ({ component, tabName }) => {
 	const { SPACING, COLORS } = useBrand();
+	const [scrolled, setScrolled] = useState(false);
+
 	const mq = useMediaQuery();
 	const router = useRouter();
 	const brandName = router.query.b || '';
 	const tabMap = ['design', 'accessibility', 'code'];
+
+	useEffect(() => {
+		const main = document.querySelector('main') || window;
+
+		const scrollHandler = debounce(() => {
+			if (main.scrollTop === 0) {
+				setScrolled(false);
+			} else {
+				setScrolled(true);
+			}
+		}, 50);
+
+		main.addEventListener('scroll', scrollHandler);
+		return () => {
+			main.removeEventListener('scroll', scrollHandler);
+		};
+	}, []);
 
 	const onOpen = useCallback(({ idx: tabIdx }) => {
 		window.history.pushState(
@@ -73,11 +93,14 @@ const Tabs = ({ component, tabName }) => {
 			styles: styles => ({
 				...styles,
 				backgroundColor: '#fff',
-				borderBottom: `solid 1px ${COLORS.border}`,
 				borderLeft: `solid 1px ${COLORS.border}`,
 				position: 'sticky',
-				top: '65px',
+				top: '66px',
 				zIndex: 5,
+				boxShadow: scrolled && '0 4px 4px rgba(0, 0, 0, 0.3)',
+				...mq({
+					height: ['66px', null, '90px'],
+				})[0],
 			}),
 		},
 		TabButton: {
@@ -91,7 +114,7 @@ const Tabs = ({ component, tabName }) => {
 					marginTop: SPACING(2),
 					borderRight: `solid 1px ${COLORS.border}`,
 					padding: [`${SPACING(2)} ${SPACING(4)}`, `${SPACING(3)} ${SPACING(10)}`],
-					boxShadow: selected ? `inset 0 -2px 0 ${COLORS.primary}` : 'none',
+					boxShadow: selected ? `inset 0 -3px 0 ${COLORS.primary}` : 'none',
 					fontWeight: 600,
 					color: selected ? COLORS.text : COLORS.muted,
 				}),
@@ -122,6 +145,7 @@ const Tabs = ({ component, tabName }) => {
 			</div>
 		);
 	}
+
 	const tabs = [];
 	tabs.push(
 		<Tab key={'design-tab'} overrides={overrides} text="Design">

@@ -35,22 +35,20 @@ keystone.createList('User', userSchema);
 keystone.createList('Setting', settingSchema);
 keystone.createList('Image', imageSchema);
 
-// JM 200330: Temporarily disable auth
-// const authStrategy = keystone.createAuthStrategy({
-// 	type: PasswordAuthStrategy,
-// 	list: 'User',
-// 	config: {
-// 		identityField: 'email',
-// 		secretField: 'password',
-// 	},
-// });
+const authStrategy = keystone.createAuthStrategy({
+	type: PasswordAuthStrategy,
+	list: 'User',
+	config: {
+		identityField: 'email',
+		secretField: 'password',
+	},
+});
 
 const apps = [
 	new GraphQLApp(),
 	new AdminUIApp({
 		adminPath: '/admin',
-		// JM 200330: Temporarily disable auth
-		// authStrategy,
+		authStrategy,
 		hooks: require.resolve('./admin'),
 	}),
 	new NextApp({ dir: 'src' }),
@@ -59,4 +57,10 @@ const apps = [
 module.exports = {
 	keystone,
 	apps,
+	// Tell Express to trust the proxy when it says the connection is secure
+	// Otherwise Express won't send `Set-Cookie` headers when secure cookies are enabled
+	// See.. https://gist.github.com/molomby/6fa22c165e0025f0f83d55195f3c6e37
+	configureExpress: app => {
+		app.set('trust proxy', true);
+	},
 };

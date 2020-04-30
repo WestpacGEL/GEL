@@ -1,16 +1,21 @@
 /** @jsx jsx */
+import { jsx, useBrand } from '@westpac/core';
+import { List, Item } from '@westpac/list';
+import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
-import { jsx, useBrand } from '@westpac/core';
-import { NavigationBlock } from './navigation-block';
+import { NavigationGroup } from './navigation-group';
+import { NavigationItem, StyledItem } from './navigation-item';
 import { ROOT_PAGES, BASE_PAGE } from '../../../config';
 import BackToGelSvg from './BackToGelSvg';
 
 export const Navigation = ({ items }) => {
-	const renderNavigationItems = items => {
+	const renderNavigationItems = (items, level = 0) => {
 		const router = useRouter();
+		const { COLORS } = useBrand();
+		const brandName = router.query.b || '';
+
 		return items.map(item => {
 			if (item.children) {
 				let isCurrentBlock = false;
@@ -21,14 +26,14 @@ export const Navigation = ({ items }) => {
 				});
 
 				return (
-					<NavigationBlock
-						isBlockOpen={isCurrentBlock}
+					<NavigationGroup
 						key={item.title}
+						isBlockOpen={isCurrentBlock}
 						title={item.title}
-						tag="li"
+						level={level}
 					>
-						<LinkList>{renderNavigationItems(item.children)}</LinkList>
-					</NavigationBlock>
+						<List type="unstyled">{renderNavigationItems(item.children, level + 1)}</List>
+					</NavigationGroup>
 				);
 			}
 
@@ -54,74 +59,35 @@ export const Navigation = ({ items }) => {
 			}
 
 			return (
-				<LinkItem
-					isCurrent={isCurrentChild}
-					key={item.title + item.path}
-					name={item.title}
-					as={item.path}
-					path={href}
-				/>
+				<NavigationItem key={item.title}>
+					<Link as={`${item.path}?b=${brandName}`} href={`${href}?b=${brandName}`} passHref>
+						<StyledItem
+							tag="a"
+							level={level}
+							css={{
+								color: isCurrentChild && COLORS.primary,
+								fontWeight: isCurrentChild && 500,
+							}}
+						>
+							{item.title}
+						</StyledItem>
+					</Link>
+				</NavigationItem>
 			);
 		});
 	};
+
 	return (
 		<Fragment>
-			<a href="https://gel.westpacgroup.com.au/">
+			<a
+				href="https://gel.westpacgroup.com.au/"
+				css={{ display: 'block !important', overflow: 'hidden' }}
+			>
 				<BackToGelSvg />
 			</a>
-
-			<LinkList>{renderNavigationItems(items)}</LinkList>
+			<List type="unstyled" css={{ paddingBottom: '1.5rem' }}>
+				{renderNavigationItems(items)}
+			</List>
 		</Fragment>
-	);
-};
-
-const LinkList = props => {
-	const { SPACING } = useBrand();
-	return (
-		<ul
-			css={{
-				listStyle: 'none',
-				paddingLeft: SPACING(6),
-				paddingRight: SPACING(6),
-				margin: 0,
-				fontSize: '14px',
-				'> li a, > div button': {
-					fontWeight: 500,
-					color: 'rgba(0, 0, 0, 0.75)',
-					padding: 0,
-					cursor: 'pointer',
-				},
-				'ul > li a': {
-					fontWeight: 400,
-					color: 'rgba(0, 0, 0, 0.55)',
-				},
-			}}
-			{...props}
-		/>
-	);
-};
-
-const LinkItem = ({ isCurrent, name, as, tag: Tag = 'li', children, href }) => {
-	const { COLORS } = useBrand();
-	const brandName = useRouter().query.b || '';
-	return (
-		<Tag>
-			<Link as={`${as}?b=${brandName}`} href={`${href}?b=${brandName}`}>
-				<a
-					style={{
-						cursor: 'pointer',
-						display: 'flex',
-						alignItems: 'center',
-						height: '48px',
-						textDecoration: 'none',
-						color: isCurrent && COLORS.primary,
-					}}
-				>
-					{name}
-				</a>
-			</Link>
-
-			{children}
-		</Tag>
 	);
 };

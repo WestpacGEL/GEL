@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
-import { Fragment, useEffect, useState } from 'react'; // Needed for within Keystone
+import { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { useRouter } from 'next/router';
 import { Heading } from '@westpac/heading';
 import { Body } from '@westpac/body';
 import { List, Item } from '@westpac/list';
@@ -50,7 +51,7 @@ const parseHeadings = content =>
 		.filter(
 			item =>
 				item.data.component &&
-				(item.data.component === 'Heading' || item.data.component === 'VisionFilters')
+				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText'].includes(item.data.component)
 		)
 		.filter(item => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
@@ -68,8 +69,20 @@ const parseHeadings = content =>
 const TableOfContents = ({ content }) => {
 	const toc = parseHeadings(content);
 	const { COLORS, SPACING } = useBrand();
+	const [relatedContent, setRelatedContent] = useState(false);
+	const introRef = useRef();
+	useEffect(() => {
+		if (introRef) {
+			const design = introRef.current.closest('#design-tab');
+			const relatedContentElement = document && document.getElementById('related-information');
+			if (relatedContentElement) {
+				setRelatedContent(!!design);
+			}
+		}
+	}, [introRef]);
+
 	return (
-		<div>
+		<div ref={introRef}>
 			<Heading tag="h2" size={6} style={{ fontWeight: '500' }}>
 				{'Page content'}
 			</Heading>
@@ -78,7 +91,7 @@ const TableOfContents = ({ content }) => {
 				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
 			/>
 
-			{toc.length ? (
+			{(toc && toc.length) || relatedContent ? (
 				<nav>
 					<List
 						type="icon"
@@ -93,7 +106,14 @@ const TableOfContents = ({ content }) => {
 							},
 						}}
 					>
-						{toc}
+						{toc && toc.length !== 0 && toc}
+						{relatedContent && (
+							<TableLink
+								key={`related-information`}
+								headingId={'related-information'}
+								headingText={'Related information'}
+							/>
+						)}
 					</List>
 				</nav>
 			) : null}
@@ -156,10 +176,10 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS, COLORS } = useBrand();
+	const { PACKS, COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
-		<Fragment>
+		<div css={{ marginBottom: SPACING(5) }}>
 			<Container css={blocksContainerStyle}>
 				<Grid
 					css={mq({
@@ -199,7 +219,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 					margin: 0,
 				}}
 			/>
-		</Fragment>
+		</div>
 	);
 };
 

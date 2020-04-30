@@ -4,9 +4,9 @@ import { BlocksDocs, RelatedInformation } from '../../_utils';
 
 export const DesignTab = ({ blocks, item }) => {
 	return (
-		<Fragment>
+		<div id="design-tab">
 			<BlocksDocs blocks={blocks} item={item} />
 			<RelatedInformation item={item} />
-		</Fragment>
+		</div>
 	);
 };

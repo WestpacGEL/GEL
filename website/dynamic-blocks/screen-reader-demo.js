@@ -10,13 +10,18 @@ import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils'
 
 export const ScreenReaderText = {
 	editor: ({ value, onChange }) => {
-		const [text, setText] = useState(value.text);
+		const currentValue = {
+			text: value.text,
+			addTableContent: true,
+			heading: 'Screen readers',
+			...(value || {}),
+		};
 
-		useEffect(() => {
+		const update = changes =>
 			onChange({
-				text,
+				...currentValue,
+				...changes,
 			});
-		}, [text]);
 
 		return (
 			<Fragment>
@@ -27,30 +32,28 @@ export const ScreenReaderText = {
 							css={inputStyles}
 							type="text"
 							id="a11y-text"
-							value={text}
-							onChange={async e => {
-								setText(e.target.value);
-							}}
+							value={currentValue.text}
+							onChange={e => update({ text: e.target.value })}
 						/>
 					</FieldInput>
 				</FieldContainer>
 			</Fragment>
 		);
 	},
-	component: ({ text }) => {
+	component: ({ text, addTableContent }) => {
 		const { SPACING, COLORS } = useBrand();
 		const mq = useMediaQuery();
 		return (
 			<Container css={blocksContainerStyle}>
-				<Grid
-					css={mq({
-						...blocksGridStyle,
-						marginTop: [SPACING(6), SPACING(6), SPACING(10)],
-					})}
-					columns={12}
-				>
+				<Grid css={blocksGridStyle} columns={12}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<Heading tag="h2" size={5}>
+						<Heading
+							tag="h2"
+							size={5}
+							id="screen-readers"
+							tabIndex="-1"
+							{...(addTableContent && { 'data-toc': true })}
+						>
 							Screen readers
 						</Heading>
 					</Cell>

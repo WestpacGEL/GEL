@@ -6,7 +6,7 @@ const SeparatorComponent = () => {
 	const { COLORS, SPACING } = useBrand();
 
 	return (
-		<div css={{ marginTop: `${SPACING(4)} !important`, marginBottom: `${SPACING(7)} !important` }}>
+		<div css={{ marginTop: `${SPACING(2)}`, marginBottom: `${SPACING(4)}` }}>
 			<button
 				css={{
 					display: 'block',
@@ -15,6 +15,7 @@ const SeparatorComponent = () => {
 					cursor: 'pointer',
 					textAlign: 'right',
 					width: '100%',
+					paddingRight: '18px !important',
 				}}
 				onClick={e => {
 					e.preventDefault();

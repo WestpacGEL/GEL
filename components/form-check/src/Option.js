@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 
 import { defaultOption } from './overrides/option';
 import { defaultLabel } from './overrides/label';
@@ -14,16 +15,9 @@ import pkg from '../package.json';
 // ==============================
 
 export const Option = ({
-	index,
 	value,
-	checked,
-	handleChange,
-	type,
-	name,
-	size,
-	inline,
-	disabled,
-	instanceIdPrefix,
+	checked: checkedProp,
+	className,
 	children,
 	overrides,
 	...rest
@@ -33,28 +27,43 @@ export const Option = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const context = useFormCheckContext();
+	const {
+		instanceId,
+		size = 'medium',
+		inline,
+		data,
+		checked: ctxChecked,
+		overrides: ctxOverrides,
+		defaultValue: _,
+		type = 'checkbox',
+		name,
+		disabled,
+		onChange,
+		toggleCheck,
+		...restCtx
+	} = useFormCheckContext();
 
-	const optionId = `${instanceIdPrefix}-option-${index + 1}`;
+	const optionId = `${instanceId}-option-${useInstanceId()}`;
 
 	const defaultOverrides = {
 		Option: defaultOption,
 		Label: defaultLabel,
 	};
 
-	const componentOverrides = overrides || context.state.overrides;
+	const componentOverrides = overrides || ctxOverrides;
+	const checked = ctxChecked ? ctxChecked.includes(value) : checkedProp;
 
 	const state = {
 		optionId,
 		value,
+		ctxChecked,
 		checked,
-		handleChange,
+		onChange,
 		type,
 		name,
 		size,
 		inline,
 		disabled,
-		context: { ...context.state },
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -65,16 +74,29 @@ export const Option = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Option {...rest} state={state} {...optionAttributes(state)} css={optionStyles(state)}>
+		<Option
+			className={className}
+			state={state}
+			{...optionAttributes(state)}
+			css={optionStyles(state)}
+		>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
 				id={optionId}
-				onChange={disabled ? null : event => handleChange(event, value, checked)}
+				onChange={
+					disabled
+						? null
+						: typeof onChange === 'undefined'
+						? null
+						: event => onChange(event, value, checked)
+				}
 				value={value}
 				checked={checked}
 				disabled={disabled}
 				type={type}
 				name={name}
+				{...restCtx}
+				{...rest}
 				css={{
 					position: 'absolute',
 					zIndex: '-1',
@@ -106,12 +128,12 @@ Option.propTypes = {
 	/**
 	 * Check the Form check option
 	 */
-	checked: PropTypes.bool.isRequired,
+	checked: PropTypes.bool,
 
 	/**
 	 * Disable the Form check option
 	 */
-	disabled: PropTypes.bool.isRequired,
+	disabled: PropTypes.bool,
 
 	/**
 	 * Define an id prefix for internal elements
@@ -141,12 +163,12 @@ Option.propTypes = {
 	/**
 	 * A function called on change
 	 */
-	handleChange: PropTypes.func,
+	onChange: PropTypes.func,
 
 	/**
 	 * Form check option label text
 	 */
-	children: PropTypes.string.isRequired,
+	children: PropTypes.node.isRequired,
 
 	/**
 	 * The override API
@@ -165,7 +187,4 @@ Option.propTypes = {
 	}),
 };
 
-Option.defaultProps = {
-	checked: false,
-	disabled: false,
-};
+Option.defaultProps = {};

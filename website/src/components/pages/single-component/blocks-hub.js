@@ -102,7 +102,7 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<Container css={blocksContainerStyle}>
+						<Container css={{ ...blocksContainerStyle, margin: 0 }}>
 							<Grid columns={12} key={path} css={blocksGridStyle}>
 								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
 									<Body>
@@ -127,7 +127,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'unordered-list':
 					return (
-						<Container css={blocksContainerStyle}>
+						<Container css={{ ...blocksContainerStyle, margin: 0 }}>
 							<Grid columns={12} key={path} css={blocksGridStyle}>
 								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
 									<List
@@ -148,7 +148,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'ordered-list':
 					return (
-						<Container css={blocksContainerStyle}>
+						<Container css={{ ...blocksContainerStyle, margin: 0 }}>
 							<Grid columns={12} key={path} css={blocksGridStyle}>
 								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
 									<List css={textStyle} type="ordered">
@@ -189,7 +189,6 @@ export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 			css={{
 				display: 'flex',
 				flexDirection: 'column',
-				'> *': { marginBottom: '20px !important' },
 				...cssOverrides,
 			}}
 		>
@@ -203,11 +202,15 @@ const textOnlySlateRenderer = _editorValue => {
 		// special serialiser for text
 		({ node, path }) => {
 			if (node.object === 'text') {
-				return node.text.split('\n').reduce((array, text, i) => {
+				if (!node.text) {
+					return [<br />];
+				}
+				const x = node.text.split('\n').reduce((array, text, i) => {
 					if (i !== 0) array.push(<br key={`${path}_${i}`} />);
 					array.push(<ApplyShortCodes key={`sc-${path}_${i}`} text={text} />);
 					return array;
 				}, []);
+				return x;
 			}
 		},
 		// serialiser for links
@@ -261,7 +264,11 @@ const textOnlySlateRenderer = _editorValue => {
 
 			switch (node.type) {
 				case 'paragraph':
-					return <p css={textStyle}>{serializeChildren(node.nodes)}</p>;
+					return (
+						<p key={path} css={{ ...textStyle, margin: '0 !important' }}>
+							{serializeChildren(node.nodes)}
+						</p>
+					);
 				default: {
 					console.error(`Unexpected block '${node.type}' at ${path}`);
 				}
@@ -278,7 +285,6 @@ export const TextOnlySlateContent = ({ content, cssOverrides, ...props }) => {
 			css={{
 				display: 'flex',
 				flexDirection: 'column',
-				'> *': { marginBottom: '20px !important' },
 				...cssOverrides,
 			}}
 		>
