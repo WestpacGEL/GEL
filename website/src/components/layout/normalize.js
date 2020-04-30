@@ -175,7 +175,7 @@ export const Normalize = () => {
 						display: none;
 					}
 				`,
-				useFonts({ path: '/fonts/' }),
+				useFonts({ path: '/fonts/' })[''],
 			]}
 		/>
 	);
