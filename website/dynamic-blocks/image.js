@@ -91,12 +91,10 @@ export const Image = {
 
 		const figureStyles = {
 			margin: 0,
-			marginBottom: SPACING(2),
 		};
 
 		const imageStyles = {
 			maxWidth: '100%',
-			marginBottom: SPACING(2),
 		};
 
 		const captionStyle = {

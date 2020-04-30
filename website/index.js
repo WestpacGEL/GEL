@@ -57,4 +57,10 @@ const apps = [
 module.exports = {
 	keystone,
 	apps,
+	// Tell Express to trust the proxy when it says the connection is secure
+	// Otherwise Express won't send `Set-Cookie` headers when secure cookies are enabled
+	// See.. https://gist.github.com/molomby/6fa22c165e0025f0f83d55195f3c6e37
+	configureExpress: app => {
+		app.set('trust proxy', true);
+	},
 };
