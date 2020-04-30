@@ -71,7 +71,7 @@ module.exports = () => ({
 		new CopyPlugin([
 			{
 				from: '*',
-				to: 'assets/',
+				to: `${PACKAGE_NAME}/assets/`,
 				context: path.normalize(`${__dirname}/../../components/${PACKAGE_NAME}/examples/assets/`),
 			},
 		]),
