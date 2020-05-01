@@ -169,13 +169,13 @@ const Homepage = () => {
 										textAlign: 'start',
 									}}
 								>
-									<Cell width={[12, 9]} left={1}>
+									<Cell width={[12, 8]} left={1}>
 										<label css={{ marginTop: SPACING(1) }} htmlFor="mce-EMAIL">
 											Enter your e-mail address
 										</label>
 										<TextInput type="text" name="EMAIL" id="mce-EMAIL" />
 									</Cell>
-									<Cell width={[12, 3]} style={{ display: 'flex', alignItems: 'flex-end' }}>
+									<Cell width={[12, 4]} style={{ display: 'flex', alignItems: 'flex-end' }}>
 										<Button
 											type="submit"
 											look="primary"
