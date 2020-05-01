@@ -274,5 +274,5 @@ Steps:
 1. The new config will be in the app repo at `/srv/pm2-apps/gel3-website/current/nginx/..`
 1. Copy it into the `/etc/nginx/snippets` dir via:
    `sudo cp /srv/pm2-apps/gel3-website/current/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf`
-1. Verify the new config is valid with `sudo nginx -T`
+1. Verify the new config is valid with `sudo nginx -t`
 1. If successful, reload the nginx config for the server with `sudo nginx -s reload`
