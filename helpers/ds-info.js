@@ -65,7 +65,7 @@ process.stdout.write(`\x1b[2K\x1b[0G`);
 
 const GELJson = path.normalize(`${__dirname}/../GEL.json`);
 try {
-	fs.writeFileSync(GELJson, JSON.stringify(GEL, null, '\t'));
+	fs.writeFileSync(GELJson, JSON.stringify(GEL));
 	console.log(`🎁  ${chalk.green('success')} GEL.json written to "${chalk.green(GELJson)}"\n`);
 } catch (error) {
 	console.error(`🛑  ${chalk.red('failed')} GEL.json not writen to "${chalk.green(GELJson)}"\n`);
