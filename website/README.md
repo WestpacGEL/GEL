@@ -269,10 +269,10 @@ Deploying such changes also requires `root` access to the relevant server.
 Steps:
 
 1. Make your changes as usual, PR and merge them into the relevant branch, eg. `staging`
-2. Deploy to the relevant environment as usual, eg. `yarn website:deploy-staging`
-3. When the app deploy has completed, ssh to the relevant server, eg. `ssh gel.test.do.westpac.thinkmill.cloud`
-4. The new config will be in the app repo at `/srv/pm2-apps/gel3-website/current/nginx/..`.
-   Copy it into the `/etc/nginx/snippets` dir as `gel3-website-routes.conf`, eg.
-   `sudo cp /srv/pm2-apps/gel3-website/current/nginx/staging.conf /etc/nginx/snippets/gel3-website-routes.conf`
-5. Verify the new config is valid with `sudo nginx -t`
-6. If successful, reload the nginx config for the server with `sudo services nginx reload`
+1. Deploy to the relevant environment as usual, eg. `yarn website:deploy-staging` or `yarn website:deploy`
+1. When the app deploy has completed, ssh to the relevant server, eg. `ssh deploy@128.199.200.220` or `ssh deploy@165.22.110.244`
+1. The new config will be in the app repo at `/srv/pm2-apps/gel3-website/current/nginx/..`
+1. Copy it into the `/etc/nginx/snippets` dir via:
+   `sudo cp /srv/pm2-apps/gel3-website/current/nginx/gel3-website-routes.conf /etc/nginx/snippets/gel3-website-routes.conf`
+1. Verify the new config is valid with `sudo nginx -T`
+1. If successful, reload the nginx config for the server with `sudo nginx -s reload`
