@@ -98,7 +98,7 @@ function ShowCodeBlock({ loadCodeBlock, context }) {
 }
 
 const content =
-	'This tool allows you to see as others do. Select a filter from the list to see this component as it would appear to someone with a vision impairment.';
+	'Select a filter from the list to see this component as it would appear to someone with a colour vision impairment.';
 
 export const VisionFilters = {
 	editor: ({ value, onChange }) => {
