@@ -273,6 +273,6 @@ Steps:
 1. When the app deploy has completed, ssh to the relevant server, eg. `ssh deploy@128.199.200.220` or `ssh deploy@165.22.110.244`
 1. The new config will be in the app repo at `/srv/pm2-apps/gel3-website/current/nginx/..`
 1. Copy it into the `/etc/nginx/snippets` dir via:
-   `sudo cp /srv/pm2-apps/gel3-website/current/nginx/gel3-website-routes.conf /etc/nginx/snippets/gel3-website-routes.conf`
+   `sudo cp /srv/pm2-apps/gel3-website/current/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf`
 1. Verify the new config is valid with `sudo nginx -T`
 1. If successful, reload the nginx config for the server with `sudo nginx -s reload`
