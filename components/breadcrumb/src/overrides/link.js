@@ -27,7 +27,7 @@ const linkStyles = () => {
 	};
 };
 
-const linkAttributes = (_, { current, href }) => ({
+const linkAttributes = (_, { current }) => ({
 	'aria-current': current ? 'page' : undefined,
 });
 

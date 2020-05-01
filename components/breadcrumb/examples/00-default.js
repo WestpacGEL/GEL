@@ -5,6 +5,9 @@ import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
+// Crumb tag as a component example
+const CrumbTag = props => <a {...props} onClick={() => console.log(`Clicked crumb link`)} />;
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
@@ -30,9 +33,9 @@ function Example({ brand }) {
 
 			<h3>As router</h3>
 			<Breadcrumb assistiveText="Page transitions and the such">
-				<Crumb text="Home" onClick={() => console.log('Clicked Home')} />
-				<Crumb text="Personal" onClick={() => console.log('Clicked Personal')} />
-				<Crumb text="Credit cards" onClick={() => console.log('Clicked Credit cards')} />
+				<Crumb text="Home" tag={CrumbTag} />
+				<Crumb text="Personal" tag={CrumbTag} />
+				<Crumb text="Credit cards" tag={CrumbTag} />
 			</Breadcrumb>
 
 			<hr />
@@ -52,9 +55,9 @@ function Example({ brand }) {
 			<Breadcrumb
 				assistiveText="Page transitions and the such"
 				data={[
-					{ text: 'Home', onClick: () => console.log('Clicked Home') },
-					{ text: 'Personal', onClick: () => console.log('Clicked Personal') },
-					{ text: 'Credit cards', onClick: () => console.log('Clicked Credit cards') },
+					{ text: 'Home', tag: CrumbTag },
+					{ text: 'Personal', tag: CrumbTag },
+					{ text: 'Credit cards', tag: CrumbTag },
 				]}
 			/>
 		</GEL>
