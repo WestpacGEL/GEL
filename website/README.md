@@ -216,7 +216,7 @@ Only files inside the `staging` branch are deployed for the staging command belo
 
 ```sh
 # From the repo root
-yarn website:deploy-staging
+yarn deploy:staging
 ```
 
 #### Deploy to live
@@ -226,16 +226,18 @@ Only files inside the `master` branch are deployed for the deploy command below.
 
 ```sh
 # From the repo root
-yarn website:deploy
+yarn deploy:live
 ```
 
 ### Process Overview
 
 Regardless of the environment being update, the deployment process runs though several steps:
 
-- A deployment is explicitly triggered in a development environment (eg. `yarn website:deploy` is run)
+- A deployment is explicitly triggered in a development environment (eg. `yarn deploy:staging` is run)
 - `pm2` looks up the environment details in [`pm2-ecosystem.json`](../pm2-ecosystem.json) file _in the current branch_.
-  This tells it: - Which server (and user) to connect to - Which branch to deploy (either `staging` or `master` for live)
+  This tells it:
+  - Which server (and user) to connect to
+  - Which branch to deploy (either `staging` or `master` for live)
 - `pm2` connects to the relevant server using your local ssh config.
   (Your `~/.ssh/config` file may need an entry to configure the correct key.)
 - `pm2` pulls the latest code from the relevant branch onto the server
@@ -269,10 +271,10 @@ Deploying such changes also requires `root` access to the relevant server.
 Steps:
 
 1. Make your changes as usual, PR and merge them into the relevant branch, eg. `staging`
-1. Deploy to the relevant environment as usual, eg. `yarn website:deploy-staging` or `yarn website:deploy`
+1. Deploy to the relevant environment as usual, eg. `yarn deploy:staging` or `yarn deploy:live`
 1. When the app deploy has completed, ssh to the relevant server, eg. `ssh deploy@128.199.200.220` or `ssh deploy@165.22.110.244`
 1. The new config will be in the app repo at `/srv/pm2-apps/gel3-website/current/nginx/..`
 1. Copy it into the `/etc/nginx/snippets` dir via:
-   `sudo cp /srv/pm2-apps/gel3-website/current/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf`
-1. Verify the new config is valid with `sudo nginx -T`
+   `sudo cp /srv/pm2-apps/gel3-website/source/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf`
+1. Verify the new config is valid with `sudo nginx -t`
 1. If successful, reload the nginx config for the server with `sudo nginx -s reload`
