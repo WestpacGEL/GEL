@@ -41,17 +41,17 @@ const Homepage = () => {
 							<Heading tag="h2" size={5}>
 								Accessibility is in everything we do
 							</Heading>
-							<p css={{ marginBottom: SPACING(3), marginTop: SPACING(4) }}>
+							<Body css={{ marginBottom: SPACING(3), marginTop: SPACING(4) }}>
 								Accessibility and inclusive design is a strong part of how we design in the Design
 								Quality team.
-							</p>
+							</Body>
 
-							<p css={{ margin: `${SPACING(3)} 0` }}>
+							<Body css={{ margin: `${SPACING(3)} 0` }}>
 								We delve into the detail and pressure test solutions against the latest WCAG
 								requirements, delivering the most accessible components and patterns possible. We
 								then guide teams further along the path of accessibility. Read more about our
 								commitment to accessibility.
-							</p>
+							</Body>
 							<a href="" css={{ margin: `${SPACING(3)} 0`, color: COLORS.primary }}>
 								Read more about our commitment to accessibility
 							</a>
@@ -82,10 +82,10 @@ const Homepage = () => {
 							<Heading tag="h2" size={5} css={{ padding: `${SPACING(3)} 0` }}>
 								Built on React
 							</Heading>
-							<p css={{ marginTop: SPACING(1), marginBottom: 0 }}>
+							<Body css={{ marginTop: SPACING(1), marginBottom: 0 }}>
 								We're moving with the times. With React we can showcase so much more and deliver
 								higher quality, more accessible code.
-							</p>
+							</Body>
 
 							<Heading
 								tag="h3"
@@ -144,13 +144,13 @@ const Homepage = () => {
 							<Heading tag="h2" size={5}>
 								Subscribe to our updates
 							</Heading>
-							<p
+							<Body
 								css={mq({
 									margin: [`${SPACING(3)} 0 ${SPACING(2)} 0`, `${SPACING(4)} 0`],
 								})}
 							>
 								Get news about components, code chages, new resources, and helpful tips.
-							</p>
+							</Body>
 						</Cell>
 						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
 							<form
