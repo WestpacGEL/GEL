@@ -122,6 +122,7 @@ export default function Index() {
 	return (
 		<Container>
 			<PageTitle>Settings</PageTitle>
+			<p>The navigation object. It allows us to manage the navigation of the site.</p>
 			<FieldContainer>
 				<FieldLabel htmlFor={'navigation'} field={{ label: 'Navigation', config: {} }} />
 				<textarea

@@ -8,6 +8,9 @@ set -eu
 # See.. https://github.com/yarnpkg/yarn/issues/4379
 yarn install --frozen-lockfile
 
+# Building design system components for blender digestion
+yarn build
+
 # Production build
 yarn --cwd website build
 

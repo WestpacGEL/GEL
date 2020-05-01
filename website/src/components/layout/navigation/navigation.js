@@ -80,7 +80,7 @@ export const Navigation = ({ items }) => {
 	return (
 		<Fragment>
 			<a
-				href="https://gel.westpacgroup.com.au/"
+				href="/"
 				css={{ display: 'block !important', overflow: 'hidden' }}
 			>
 				<BackToGelSvg />

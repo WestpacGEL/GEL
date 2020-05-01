@@ -8,6 +8,7 @@ const fileAdapter = new CloudinaryAdapter({
 });
 
 const imageSchema = {
+	adminDoc: 'See below all images uploaded and hosted for you.',
 	fields: {
 		image: {
 			type: File,
@@ -28,6 +29,10 @@ const imageSchema = {
 				await fileAdapter.delete(existingItem.image);
 			}
 		},
+	},
+	adminConfig: {
+		defaultColumns: 'image,caption',
+		defaultSort: 'image',
 	},
 };
 
