@@ -35,7 +35,7 @@ function Loading() {
 }
 
 function TokensPage() {
-	const { BRAND, TYPE } = useBrand();
+	const { BRAND, TYPE, SPACING } = useBrand();
 	const [isLoading, setLoading] = useState(false);
 
 	const supportedPkgs = Object.keys(GEL.components).filter(name => GEL.components[name].blender);
@@ -60,10 +60,10 @@ function TokensPage() {
 		<Fragment>
 			<PageHeader name="The Blender" />
 
-			<Grid>
+			<Grid css={{ marginBottom: SPACING(20) }}>
 				<Cell width={10} left={2}>
 					<form
-						action={`${BASE_URL}/api/blender2`}
+						action="/api/blender2"
 						method="POST"
 						css={{ margin: '2rem' }}
 						onSubmit={displayLoading}
@@ -114,7 +114,9 @@ function TokensPage() {
 												</p>
 											</Option>
 											<Body>
-												<a href={`${BASE_URL}/components/${niceName}`}>View {niceName}</a>
+												<a href={`${BASE_URL}/components/${niceName.toLowerCase()}`}>
+													View {niceName}
+												</a>
 											</Body>
 										</div>
 									);
