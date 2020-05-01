@@ -63,7 +63,7 @@ function TokensPage() {
 			<Grid>
 				<Cell width={10} left={2}>
 					<form
-						action={`${BASE_URL}/api/blender`}
+						action={`${BASE_URL}/api/blender2`}
 						method="POST"
 						css={{ margin: '2rem' }}
 						onSubmit={displayLoading}
