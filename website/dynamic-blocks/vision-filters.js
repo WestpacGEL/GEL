@@ -246,7 +246,7 @@ export const VisionFilters = {
 							{heading}
 						</Heading>
 						<Body>
-							<p css={{ margin: `${SPACING(4)} 0 !important` }}>
+							<p css={{ margin: `${SPACING(4)} 0 !important`, lineHeight: 2 }}>
 								{subText} Read more about these vision impairments on our{' '}
 								<a href={href} onClick={handleClick}>
 									Accessibility
