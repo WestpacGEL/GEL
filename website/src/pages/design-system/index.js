@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { Heading } from '@westpac/heading';
+import { Body } from '@westpac/body';
 import { TextInput } from '@westpac/text-input';
 import HomePageHeader from '../../components/header/home-page-header';
 import { Footer } from '../../components/layout/footer';
@@ -22,7 +23,8 @@ import {
 } from '../../components/symbols';
 
 const Homepage = () => {
-	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
+	const { COLORS, SPACING } = useBrand();
+	const mq = useMediaQuery();
 
 	return (
 		<div css={{ textAlign: 'center', lineHeight: 2 }}>
@@ -34,7 +36,7 @@ const Homepage = () => {
 						margin: '0 auto',
 					}}
 				>
-					<Grid columns={12} css={{ padding: `${SPACING(15)} 0` }}>
+					<Grid columns={12} css={mq({ padding: [`${SPACING(7)} 0`, `${SPACING(15)} 0`] })}>
 						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
 							<Heading tag="h2" size={5}>
 								Accessibility is in everything we do
@@ -68,7 +70,13 @@ const Homepage = () => {
 						margin: '0 auto',
 					}}
 				>
-					<Grid columns={12} css={{ paddingTop: SPACING(10), paddingBottom: SPACING(15) }}>
+					<Grid
+						columns={12}
+						css={mq({
+							paddingTop: [SPACING(5), SPACING(10)],
+							paddingBottom: [SPACING(7), SPACING(15)],
+						})}
+					>
 						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
 							<ReactLogo size={'60px'} />
 							<Heading tag="h2" size={5} css={{ padding: `${SPACING(3)} 0` }}>
@@ -82,11 +90,11 @@ const Homepage = () => {
 							<Heading
 								tag="h3"
 								size={7}
-								css={{
+								css={mq({
 									borderBottom: `1px solid ${COLORS.text}`,
 									paddingBottom: SPACING(3),
-									paddingTop: SPACING(7),
-								}}
+									paddingTop: [SPACING(5), SPACING(7)],
+								})}
 							>
 								Who else is using React?
 							</Heading>
@@ -124,7 +132,6 @@ const Homepage = () => {
 					</Grid>
 				</Container>
 			</section>
-
 			<section>
 				<Container
 					css={{
@@ -132,12 +139,16 @@ const Homepage = () => {
 						margin: '0 auto',
 					}}
 				>
-					<Grid columns={12} css={{ padding: `${SPACING(15)} 0` }}>
+					<Grid columns={12} css={mq({ padding: [`${SPACING(7)} 0`, `${SPACING(15)} 0`] })}>
 						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
 							<Heading tag="h2" size={5}>
 								Subscribe to our updates
 							</Heading>
-							<p css={{ margin: `${SPACING(4)} 0` }}>
+							<p
+								css={mq({
+									margin: [`${SPACING(3)} 0 ${SPACING(2)} 0`, `${SPACING(4)} 0`],
+								})}
+							>
 								Get news about components, code chages, new resources, and helpful tips.
 							</p>
 						</Cell>
@@ -153,18 +164,18 @@ const Homepage = () => {
 								<Grid
 									columns={12}
 									style={{
-										maxWidth: '30rem',
+										maxWidth: '25rem',
 										margin: '0 auto',
 										textAlign: 'start',
 									}}
 								>
-									<Cell width={[12, 8]} left={1}>
+									<Cell width={[12, 9]} left={1}>
 										<label css={{ marginTop: SPACING(1) }} htmlFor="mce-EMAIL">
 											Enter your e-mail address
 										</label>
 										<TextInput type="text" name="EMAIL" id="mce-EMAIL" />
 									</Cell>
-									<Cell width={[12, 4]} style={{ display: 'flex', alignItems: 'flex-end' }}>
+									<Cell width={[12, 3]} style={{ display: 'flex', alignItems: 'flex-end' }}>
 										<Button
 											type="submit"
 											look="primary"
@@ -195,15 +206,19 @@ const Homepage = () => {
 						margin: '0 auto',
 					}}
 				>
-					<Grid columns={12} css={{ padding: `${SPACING(15)} 0` }}>
+					<Grid columns={12} css={mq({ padding: [`${SPACING(7)} 0`, `${SPACING(15)} 0`] })}>
 						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
 							<Heading tag="h2" size={5}>
 								Downloads & links
 							</Heading>
-							<p>
+							<Body
+								css={mq({
+									margin: [`${SPACING(3)} 0 ${SPACING(5)} 0`, `${SPACING(4)} 0 ${SPACING(7)} 0`],
+								})}
+							>
 								Get the Sketch UI or Axure kit to start designing. Visit Git to get the latest code
 								and development framework.
-							</p>
+							</Body>
 							<DownloadAndLinksSection />
 						</Cell>
 					</Grid>
@@ -218,6 +233,7 @@ export default Homepage;
 
 const DownloadAndLinksSection = () => {
 	const { SPACING, COLORS } = useBrand();
+	const mq = useMediaQuery();
 
 	return (
 		<div
@@ -235,7 +251,7 @@ const DownloadAndLinksSection = () => {
 						css={{
 							borderBottom: `1px solid ${COLORS.text}`,
 							paddingBottom: SPACING(3),
-							paddingTop: SPACING(6),
+							marginBottom: SPACING(2),
 						}}
 					>
 						Downloads
@@ -245,8 +261,9 @@ const DownloadAndLinksSection = () => {
 							display: 'flex',
 							alignItems: 'center',
 							justifyContent: 'space-between',
-							padding: `${SPACING(3)} 0`,
+							height: '72px',
 							borderBottom: `1px solid ${COLORS.border}`,
+							marginTop: SPACING(2),
 						}}
 					>
 						Sketch UI Kit Download <SketchLogo size="50px" />
@@ -256,7 +273,7 @@ const DownloadAndLinksSection = () => {
 							display: 'flex',
 							alignItems: 'center',
 							justifyContent: 'space-between',
-							padding: `${SPACING(3)} 0`,
+							height: '72px',
 							borderBottom: `1px solid ${COLORS.border}`,
 						}}
 					>
@@ -268,11 +285,12 @@ const DownloadAndLinksSection = () => {
 					<Heading
 						tag="h3"
 						size={7}
-						css={{
+						css={mq({
 							borderBottom: `1px solid ${COLORS.text}`,
 							paddingBottom: SPACING(3),
-							paddingTop: SPACING(6),
-						}}
+							paddingTop: [SPACING(4), 0],
+							marginBottom: SPACING(2),
+						})}
 					>
 						Links
 					</Heading>
@@ -281,8 +299,9 @@ const DownloadAndLinksSection = () => {
 							display: 'flex',
 							alignItems: 'center',
 							justifyContent: 'space-between',
-							padding: `${SPACING(3)} 0`,
+							height: '72px',
 							borderBottom: `1px solid ${COLORS.border}`,
+							marginTop: SPACING(2),
 						}}
 					>
 						Go to GitHub <GithubLogo size="50px" />
