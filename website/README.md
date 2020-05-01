@@ -152,6 +152,61 @@ Deployment of the GEL website is (mostly) handled by [PM2](https://pm2.keymetric
 The environments above and the processes started are described by [`pm2-ecosystem.json`](../pm2-ecosystem.json) in the repo root.
 To run a deployment you'll need the `pm2` package installed and ssh access to the relevant server.
 
+### git flow
+
+Try to stay uni-direction with your git-merges.
+
+1. Develop new features or even bug fixes inside `develop`.
+1. The `develop` branch allows you to deploy the docs pages to netlify and browser-test etc.
+1. Once you're happy with features in `develop` merge the branch into `staging` and deploy.
+1. Test things in the staging environment and make sure everything works.
+1. If there are bugs or missing things continue to develop inside the `develop` branch and merge into `staging`
+1. Once you're happy with staging, merge the `staging` branch into `master` and deploy
+
+Please avoid merging the other direction!
+
+You should never PR directly against (or commit into) `master` or `staging`.
+Because of that:
+
+- You should never need to merge `master` into anything.
+- You should never need to merge `staging` into anything but `master`
+- You should never need to merge `develop` into anything but `staging`
+
+```
+┌───────────┐
+│  Master   │
+└───────────┘
+      │      ┌───────────┐
+      │      │  Staging  │
+      │      └───────────┘
+      │            │      ┌───────────┐
+      │            │      │  Develop  │
+      │            │      └───────────┘
+      │            │            │
+      │            │            │   ┌──── New Feature
+      │            │   Staging  │   │
+      │            │   Release  │◀──┘
+      │            │      ┌─────┤   ┌──── Bug fixes
+      │            │◀─────┘     │   │
+      │            │            │◀──┘
+      │            │            │
+      │            │   Staging  │   ┌──── New Feature
+      │            │   Release  │◀──┘
+      │    Live    │      ┌─────┤
+      │   Release  │◀─────┘     │
+      │      ┌─────┤            │
+      │◀─────┘     │            │   ┌──── Bug fixes
+      │            │            │◀──┘
+      │            │            │   ┌──── Bug fixes
+      │            │            │◀──┘
+      │            │   Staging  │   ┌──── New Feature
+      │    Live    │   Release  │◀──┘
+      │   Release  │      ┌─────┤
+      │      ┌─────┤◀─────┘     │
+      │◀─────┘     │            │
+      ▼            ▼            ▼
+```
+
 ### Running a Deploy
 
 #### Deploy to staging
@@ -196,7 +251,7 @@ Once completed you should receive a `successfully deployed` message.
 `pm2` can be finicky.
 Some issues to be aware of:
 
-- Make sure you only ever make changes in the `develop` branch. When ready to deploy to staging merge `develop` into `staging`. When ready to deploy live merge `develop` into `master`. The `develop` branch should be where things happen while `master` and `staging` are branches merged into.
+- Make sure you only ever make changes in the `develop` branch. When ready to deploy to staging merge `develop` into `staging`. When ready to deploy live merge `staging` into `master`. The `develop` branch should be where things happen while `master` and `staging` are branches you merge into.
 - Multiple steps in the process reference the [`pm2-ecosystem.json`](../pm2-ecosystem.json) config but, potentially, different version of it.
   This can cause unexpected behaviour if overlooked.
 - Code is pulled from the `staging` or `master` branch on GitHub; local changes to these branches are not considered.
@@ -206,16 +261,18 @@ Some issues to be aware of:
 
 ### `nginx` Config
 
+Find the main nginx config here: https://github.com/WestpacGEL/server-config
+
 Changes to the `nginx` config have the potential to break, not only Keystone and the GEL Website, but the other services running in the environment.
 Deploying such changes also requires `root` access to the relevant server.
 
 Steps:
 
 1. Make your changes as usual, PR and merge them into the relevant branch, eg. `staging`
-2. Deploy to the relevant environment as usual, eg. `yarn website:deploy-staging`
-3. When the app deploy has completed, ssh to the relevant server, eg. `ssh gel.test.do.westpac.thinkmill.cloud`
-4. The new config will be in the app repo at `/srv/pm2-apps/gel3-website/current/nginx/..`.
-   Copy it into the `/etc/nginx/snippets` dir as `gel3-website-routes.conf`, eg.
-   `sudo cp /srv/pm2-apps/gel3-website/current/nginx/staging.conf /etc/nginx/snippets/gel3-website-routes.conf`
-5. Verify the new config is valid with `sudo nginx -t`
-6. If successful, reload the nginx config for the server with `sudo services nginx reload`
+1. Deploy to the relevant environment as usual, eg. `yarn website:deploy-staging` or `yarn website:deploy`
+1. When the app deploy has completed, ssh to the relevant server, eg. `ssh deploy@128.199.200.220` or `ssh deploy@165.22.110.244`
+1. The new config will be in the app repo at `/srv/pm2-apps/gel3-website/current/nginx/..`
+1. Copy it into the `/etc/nginx/snippets` dir via:
+   `sudo cp /srv/pm2-apps/gel3-website/current/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf`
+1. Verify the new config is valid with `sudo nginx -T`
+1. If successful, reload the nginx config for the server with `sudo nginx -s reload`
