@@ -13,7 +13,7 @@ const brands = fs.readdirSync(path.normalize(`${__dirname}/../brands`), {
 
 const total = components.length + brands.length;
 
-const propTypes = {
+const GEL = {
 	brands: {},
 	components: {},
 };
@@ -28,17 +28,20 @@ for (const component of components) {
 		const pkg = require(path.normalize(
 			`${__dirname}/../components/${component.name}/package.json`
 		));
-		propTypes.components[component.name] = {};
+		GEL.components[component.name] = {};
 		for (const key in requiredComponent) {
-			propTypes.components[component.name][key] = {
+			GEL.components[component.name] = {
 				name: pkg.name,
 				version: pkg.version,
+				description: pkg.description,
 				blender: pkg.blender,
-				propTypes: {},
+				[key]: {
+					propTypes: {},
+				},
 			};
 			const exportedComponent = requiredComponent[key];
 			if (exportedComponent && exportedComponent.propTypes) {
-				propTypes.components[component.name][key].propTypes = parsePropTypes(exportedComponent);
+				GEL.components[component.name][key].propTypes = parsePropTypes(exportedComponent);
 			}
 		}
 	}
@@ -50,24 +53,21 @@ for (const brand of brands) {
 
 	if (brand.isDirectory()) {
 		const brandPkg = require(path.normalize(`${__dirname}/../brands/${brand.name}/package.json`));
-		propTypes.brands[brand.name] = {
+		GEL.brands[brand.name] = {
 			name: brandPkg.name,
 			version: brandPkg.version,
+			description: brandPkg.description,
 			blender: brandPkg.blender,
 		};
 	}
 }
 process.stdout.write(`\x1b[2K\x1b[0G`);
 
-propTypeJson = path.normalize(`${__dirname}/../GEL.json`);
+const GELJson = path.normalize(`${__dirname}/../GEL.json`);
 try {
-	fs.writeFileSync(propTypeJson, JSON.stringify(propTypes, null, '\t'));
-	console.log(
-		`🎁  ${chalk.green('success')} PropTypes json file written to "${chalk.green(propTypeJson)}"\n`
-	);
+	fs.writeFileSync(GELJson, JSON.stringify(GEL, null, '\t'));
+	console.log(`🎁  ${chalk.green('success')} GEL.json written to "${chalk.green(GELJson)}"\n`);
 } catch (error) {
-	console.error(
-		`🛑  ${chalk.red('failed')} PropTypes json file not writen to "${chalk.green(propTypeJson)}"\n`
-	);
+	console.error(`🛑  ${chalk.red('failed')} GEL.json not writen to "${chalk.green(GELJson)}"\n`);
 	console.error(error);
 }
