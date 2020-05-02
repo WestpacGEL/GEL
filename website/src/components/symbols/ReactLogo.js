@@ -3,7 +3,7 @@ import { jsx } from '@westpac/core';
 
 export const ReactLogo = ({ size }) => {
 	return (
-		<svg width={size} height={'auto'} viewBox="0 0 2486 2235">
+		<svg width={size} height={size} viewBox="0 0 2486 2235">
 			<title>{'react-logo'}</title>
 			<g fillRule="nonzero" fill="none">
 				<path
