@@ -40,7 +40,7 @@ export const ScreenReaderText = {
 			</Fragment>
 		);
 	},
-	component: ({ text, addTableContent }) => {
+	component: ({ text, addTableContent = true }) => {
 		const { SPACING, COLORS } = useBrand();
 		const mq = useMediaQuery();
 		return (
