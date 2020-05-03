@@ -65,7 +65,7 @@ const Tabs = ({ component, tabName }) => {
 			} else {
 				setScrolled(true);
 			}
-		}, 50);
+		}, 10);
 
 		main.addEventListener('scroll', scrollHandler);
 		return () => {
@@ -92,12 +92,14 @@ const Tabs = ({ component, tabName }) => {
 		TabRow: {
 			styles: styles => ({
 				...styles,
+				alignItems: 'flex-end',
 				backgroundColor: '#fff',
 				borderLeft: `solid 1px ${COLORS.border}`,
 				position: 'sticky',
 				top: '66px',
 				zIndex: 5,
 				boxShadow: scrolled && '0 4px 4px rgba(0, 0, 0, 0.3)',
+				transition: 'box-shadow 0.2s ease',
 				...mq({
 					height: ['66px', null, '90px'],
 				})[0],
@@ -107,16 +109,23 @@ const Tabs = ({ component, tabName }) => {
 			styles: (styles, { selected }) =>
 				mq({
 					...styles,
+					flexGrow: [1, null, 0],
+					display: 'flex',
+					justifyContent: 'center',
+					height: ['54px', null, '66px'],
 					borderRadius: 0,
 					backgroundColor: 'white',
 					border: 'none',
 					margin: 0,
-					marginTop: SPACING(2),
 					borderRight: `solid 1px ${COLORS.border}`,
-					padding: [`${SPACING(2)} ${SPACING(4)}`, `${SPACING(3)} ${SPACING(10)}`],
+					padding: [0, null, `0 ${SPACING(10)}`],
 					boxShadow: selected ? `inset 0 -3px 0 ${COLORS.primary}` : 'none',
 					fontWeight: 600,
 					color: selected ? COLORS.text : COLORS.muted,
+
+					':last-child': {
+						borderRightColor: ['#fff', null, `${COLORS.border}`],
+					},
 				}),
 		},
 	};
