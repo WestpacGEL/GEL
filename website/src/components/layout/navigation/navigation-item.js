@@ -26,8 +26,9 @@ export const StyledItem = forwardRef(({ tag: Tag, level, ...rest }, ref) => {
 				fontSize: '0.875rem !important',
 				fontWeight: level === 0 && 500,
 				color: level === 0 ? COLORS.text : COLORS.muted,
+				transition: 'background 0.2s ease',
 
-				':hover': { backgroundColor: COLORS.background },
+				':hover': { background: COLORS.background },
 			}}
 			{...rest}
 		/>

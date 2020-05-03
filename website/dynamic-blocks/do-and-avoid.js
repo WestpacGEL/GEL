@@ -3,7 +3,7 @@
 import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { useMutation } from '@apollo/react-hooks';
 import { LoadingIndicator } from '@arch-ui/loading';
 import { Container, Grid, Cell } from '@westpac/grid';
@@ -133,6 +133,7 @@ export const DoAndAvoid = {
 	},
 	component: ({ dontImage, dontText, doImage, doText }) => {
 		const { COLORS, SPACING, LAYOUT } = useBrand();
+		const mq = useMediaQuery();
 
 		const dodontFigure = {
 			margin: 0,
@@ -140,7 +141,7 @@ export const DoAndAvoid = {
 			display: 'flex',
 			flexDirection: 'column',
 			alignItems: 'start',
-			justifyContent: 'flex-end',
+			justifyContent: 'flex-start',
 			marginBottom: SPACING(2),
 		};
 		const dodontImage = {
@@ -178,7 +179,7 @@ export const DoAndAvoid = {
 								},
 							}}
 						>
-							<figure css={{ ...dodontFigure, paddingRight: SPACING(3) }}>
+							<figure css={mq({ ...dodontFigure, paddingRight: [null, null, SPACING(3)] })}>
 								<div>
 									<img css={dodontImage} src={doImage} />
 								</div>

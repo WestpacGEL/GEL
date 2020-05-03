@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
+import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import Select, { components } from 'react-select';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -59,11 +60,26 @@ const Option = props => {
 	return (
 		<components.Option {...props}>
 			<div css={{ display: 'flex', alignItem: 'center' }}>{props.data.label}</div>
-			<Logo css={{ width: 30, height: 30, marginRight: 10 }} />
+			<Logo css={{ width: 30, height: 30 }} />
 		</components.Option>
 	);
 };
 
+const DropdownIndicator = props => {
+	const { COLORS } = useBrand();
+	const {
+		selectProps: { menuIsOpen },
+	} = props;
+	return (
+		<components.DropdownIndicator {...props}>
+			{menuIsOpen ? (
+				<ExpandLessIcon color={COLORS.primary} />
+			) : (
+				<ExpandMoreIcon color={COLORS.primary} />
+			)}
+		</components.DropdownIndicator>
+	);
+};
 export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
@@ -89,8 +105,9 @@ export const BrandSwitcher = () => {
 				</Link>
 			</div>
 			<Select
+				// menuIsOpen
 				closeMenuOnSlect={false}
-				components={{ Option }}
+				components={{ Option, DropdownIndicator }}
 				placeholder={'Change brand'}
 				styles={{
 					container: (base, { selectProps: { menuIsOpen } }) => ({
@@ -114,16 +131,17 @@ export const BrandSwitcher = () => {
 						alignItems: 'center',
 						justifyContent: 'space-between',
 						height: '60px',
-						padding: `0 ${SPACING(3)}`,
+						padding: `0 0.875rem 0 ${SPACING(3)}`,
 						borderBottom: `solid 1px ${COLORS.tints.muted30}`,
 						cursor: 'pointer',
+						fontSize: '0.875rem',
 						...(isFocused && { backgroundColor: COLORS.background }),
 					}),
 					control: base => ({
 						...base,
 						borderRadius: 0,
 						border: 0,
-						borderBottom: `solid 1px ${COLORS.tints.muted30}`,
+						borderBottom: !isScrolled && `solid 1px ${COLORS.tints.muted30}`,
 						height: '66px',
 						boxShadow: 'none',
 
@@ -135,37 +153,37 @@ export const BrandSwitcher = () => {
 						...base,
 						display: 'flex',
 						alignItems: 'center',
-						paddingLeft: SPACING(4),
+						paddingLeft: SPACING(3),
 					}),
 					placeholder: base => ({
 						...base,
 						color: COLORS.text,
 						fontSize: '0.875rem',
 					}),
+					indicatorsContainer: base => ({
+						...base,
+						width: '72px',
+					}),
 					indicatorSeparator: base => ({
 						...base,
 						margin: '0',
 					}),
-					dropdownIndicator: (base, { selectProps: { menuIsOpen } }) => ({
+					dropdownIndicator: base => ({
 						...base,
+						margin: 'auto',
 						color: COLORS.primary,
-						width: '66px',
 						display: 'flex',
 						justifyContent: 'center',
 						alignItems: 'center',
 						cursor: 'pointer',
-						svg: {
-							height: '24px',
-							width: 'auto',
-							transform: `rotate(${menuIsOpen ? 180 : 0}deg)`,
-							transition: 'transform 0.2s linear',
-						},
 					}),
 				}}
 				onChange={data => {
 					setBrand(data.value);
 				}}
-				options={Object.keys(brandsMap).map(k => ({ value: k, label: brandsMap[k].label }))}
+				options={Object.keys(brandsMap)
+					.map(k => ({ value: k, label: brandsMap[k].label }))
+					.filter(brand => brand.value !== brandName)}
 			/>
 		</div>
 	);
