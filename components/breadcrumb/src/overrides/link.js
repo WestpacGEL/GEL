@@ -3,7 +3,7 @@
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Link = ({ state: { tag: Tag }, ...rest }) => {
-	return (typeof Tag === 'function' && <Tag {...rest} />) || <a {...rest} />;
+	return (Tag && <Tag {...rest} />) || <a {...rest} />;
 };
 
 const linkStyles = () => {

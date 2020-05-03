@@ -88,7 +88,7 @@ Crumb.propTypes = {
 	 *
 	 * Defaults to <a>.
 	 */
-	tag: PropTypes.func,
+	tag: PropTypes.elementType,
 
 	/**
 	 * A function for the onClick event
