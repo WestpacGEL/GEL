@@ -2,7 +2,9 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Link = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
+const Link = ({ state: { tag: Tag }, ...rest }) => {
+	return (typeof Tag === 'function' && <Tag {...rest} />) || <a {...rest} />;
+};
 
 const linkStyles = () => {
 	const { COLORS } = useBrand();

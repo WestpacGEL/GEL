@@ -84,9 +84,11 @@ Crumb.propTypes = {
 	text: PropTypes.string.isRequired,
 
 	/**
-	 * Component tag, may receive a react-router Link
+	 * Component tag, may receive a react-router Link.
+	 *
+	 * Defaults to <a>.
 	 */
-	tag: PropTypes.node,
+	tag: PropTypes.func,
 
 	/**
 	 * A function for the onClick event
@@ -120,7 +122,8 @@ Crumb.propTypes = {
 	}),
 };
 
+const Anchor = props => <a {...props} />;
+
 Crumb.defaultProps = {
 	href: '#0',
-	tag: 'a',
 };
