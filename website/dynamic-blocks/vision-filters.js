@@ -98,7 +98,7 @@ function ShowCodeBlock({ loadCodeBlock, context }) {
 }
 
 const content =
-	'This tool allows you to see as others do. Select a filter from the list to see this component as it would appear to someone with a vision impairment.';
+	'Select a filter from the list to see this component as it would appear to someone with a colour vision impairment.';
 
 export const VisionFilters = {
 	editor: ({ value, onChange }) => {
@@ -246,7 +246,7 @@ export const VisionFilters = {
 							{heading}
 						</Heading>
 						<Body>
-							<p css={{ margin: `${SPACING(4)} 0 !important` }}>
+							<p css={{ margin: `${SPACING(4)} 0 !important`, lineHeight: 2 }}>
 								{subText} Read more about these vision impairments on our{' '}
 								<a href={href} onClick={handleClick}>
 									Accessibility
