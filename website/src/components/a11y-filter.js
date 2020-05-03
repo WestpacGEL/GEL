@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { useState, Fragment } from 'react';
-import { jsx, useBrand, useInstanceId } from '@westpac/core';
-import Select from 'react-select';
+import { jsx, useInstanceId } from '@westpac/core';
+import { Select } from '@westpac/text-input';
 
 const FILTER_HTML = `
 <svg id="vision-filters" style="opacity:0; width:0; height:0;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -82,21 +82,21 @@ const FILTER_HTML = `
 </svg>`;
 
 const filters = [
-	{ label: 'Protanopia', value: 'protanopia' },
-	{ label: 'Protanomaly', value: 'protanomaly' },
-	{ label: 'Deuteranopia', value: 'deuteranopia' },
-	{ label: 'Deuteranomaly', value: 'deuteranomaly' },
-	{ label: 'Tritanopia', value: 'tritanopia' },
-	{ label: 'Tritanomaly', value: 'tritanomaly' },
-	{ label: 'Achromatopsia', value: 'achromatopsia' },
-	{ label: 'Achromatomaly', value: 'achromatopsia' },
-	{ label: 'Low contrast', value: 'low-contrast' },
+	{ text: 'Select', value: '' },
+	{ text: 'Protanopia', value: 'protanopia' },
+	{ text: 'Deuteranopia', value: 'deuteranopia' },
+	{ text: 'Protanomaly', value: 'protanomaly' },
+	{ text: 'Deuteranomaly', value: 'deuteranomaly' },
+	{ text: 'Tritanopia', value: 'tritanopia' },
+	{ text: 'Tritanomaly', value: 'tritanomaly' },
+	{ text: 'Achromatopsia', value: 'achromatopsia' },
+	{ text: 'Achromatomaly', value: 'achromatomaly' },
+	{ text: 'Low contrast', value: 'low-contrast' },
 ];
 
 const VisionFilter = ({ children }) => {
 	const [filter, setFilter] = useState();
 	const [id] = useState(`vision-filter-${useInstanceId()}`);
-	const { COLORS } = useBrand();
 
 	if (!document.getElementById('vision-filters')) {
 		const filterContainer = document.createElement('div');
@@ -111,22 +111,17 @@ const VisionFilter = ({ children }) => {
 				<label htmlFor={id} css={{ marginRight: '1rem' }}>
 					Select filter
 				</label>
-				<div css={{ display: 'inline-block', width: '30%' }}>
-					<Select
-						inputId={id}
-						css={{ zIndex: 4 }}
-						placeholder={'Select'}
-						styles={{
-							dropdownIndicator: base => ({ ...base, color: COLORS.primary }),
-						}}
-						onChange={data => {
-							setFilter(`filter-${data.value}`);
-						}}
-						options={filters}
-					/>
-				</div>
+				{/* <div css={{ display: 'inline-block', width: '30%' }}> */}
+				<Select
+					id={id}
+					width={10}
+					value={filter}
+					onChange={event => setFilter(event.target.value)}
+					data={filters}
+				/>
+				{/* </div> */}
 			</div>
-			<div css={{ filter: filter ? `url(#${filter})` : 'none' }}>{children}</div>
+			<div css={{ filter: filter ? `url(#filter-${filter})` : 'none' }}>{children}</div>
 		</Fragment>
 	);
 };
