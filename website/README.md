@@ -75,6 +75,27 @@ ssh gel.live.do.westpac.thinkmill.cloud pg_dump --no-owner ${SOURCE} | psql ${TA
 
 _(💡 This will require ssh access to the live server)_
 
+## Move db from staging to live
+
+You may want to move the contents of your database to the live server.
+
+❗️ All data in live will be deleted
+
+```sh
+# Get the live DB password
+sudo DB_PASS=$(egrep gel3_website_live ~/.pgpass | cut -f5 -d':')
+# Recreate a blank 'live' db
+sudo /srv/pm2-apps/gel3-website/current/website/recreate-db.sh \
+  "postgresql://doadmin@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/defaultdb?sslmode=require" \
+  gel3_website_live \
+  gel3_website_live \
+  ${DB_PASS}
+# Copy data from staging to live
+sudo SOURCE_DB_URL='postgres://gel3_website_staging@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_staging?ssl=true'
+sudo TARGET_DB_URL='postgres://gel3_website_live@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_live?ssl=true'
+sudo pg_dump --no-owner ${SOURCE_DB_URL} | psql ${TARGET_DB_URL}
+```
+
 ### App
 
 If you're updated your working copy, you should run any outstanding migrations before starting the app:

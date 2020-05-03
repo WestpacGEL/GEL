@@ -38,7 +38,9 @@ function TokensPage() {
 	const { BRAND, TYPE, SPACING } = useBrand();
 	const [isLoading, setLoading] = useState(false);
 
-	const supportedPkgs = Object.keys(GEL.components).filter(name => GEL.components[name].blender);
+	const supportedPkgs = Object.keys(GEL.components).filter(
+		name => GEL.components[name].blender && !GEL.components[name].blender.isCore
+	);
 	const checkState = {};
 	supportedPkgs.map(name => (checkState[name] = false));
 	const [selected, setSelected] = useState([]);
@@ -60,13 +62,13 @@ function TokensPage() {
 		<Fragment>
 			<PageHeader name="The Blender" />
 
-			<div css={{ marginBottom: SPACING(20) }}>
+			<div>
 				<Grid>
 					<Cell width={10} left={2}>
 						<form
 							action="/api/blender2/"
 							method="POST"
-							css={{ margin: '2rem' }}
+							css={{ margin: `2rem 2rem ${SPACING(20)} 2rem` }}
 							onSubmit={displayLoading}
 						>
 							<fieldset>
