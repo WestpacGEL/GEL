@@ -3,6 +3,9 @@
 	"version": "1.0.0",
 	"description": "Button component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button",
+	"blender": {
+		"recipe": "blender/recipe.js"
+	},
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

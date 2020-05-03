@@ -64,8 +64,8 @@ export const Content = ({
 		<Content {...rest} state={state} {...contentAttributes(state)} css={contentStyles(state)}>
 			{IconBefore && (
 				<IconBefore
-					size={iconSizeMap[size]}
 					css={{ marginRight: children && '0.4em' }}
+					size={iconSizeMap[size]}
 					color="inherit"
 				/>
 			)}

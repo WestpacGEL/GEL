@@ -3,11 +3,11 @@
 	"version": "1.0.0",
 	"description": "Alert component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/alert",
-	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"blender": {
 		"recipe": "blender/recipe.js",
 		"js": "blender/script.js"
 	},
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
 			"name": "Dominik Wilkowski",

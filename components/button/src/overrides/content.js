@@ -1,11 +1,13 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 import { Fragment } from 'react';
 
 const Content = ({ state, children }) => <Fragment>{children}</Fragment>;
 
-const contentStyles = () => ({});
+const contentStyles = () => ({
+	label: getLabel('button-content'),
+});
 
 const contentAttributes = () => null;
 
