@@ -15,7 +15,11 @@ import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils'
 const ArrowIcon = () => {
 	const { COLORS, SPACING } = useBrand();
 	return (
-		<svg css={{ width: SPACING(2, true) }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 9">
+		<svg
+			css={{ width: '0.75rem', height: '0.75rem' }}
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 8 9"
+		>
 			<path
 				fill={COLORS.primary}
 				fillRule="evenodd"
@@ -33,10 +37,11 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 			<a
 				href={`#${headingId}`}
 				css={{
-					margin: SPACING(2, true),
+					marginLeft: SPACING(1),
 					color: COLORS.text,
 					cursor: 'pointer',
 					textDecoration: 'none',
+					fontSize: '0.875rem',
 					'&:hover, &:focus': { color: COLORS.info },
 				}}
 			>
@@ -83,7 +88,18 @@ const TableOfContents = ({ content }) => {
 
 	return (
 		<div ref={introRef}>
-			<Heading tag="h2" size={6} style={{ fontWeight: '500' }}>
+			<Heading
+				tag="h2"
+				size={8}
+				overrides={{
+					Heading: {
+						styles: styles => ({
+							...styles,
+							fontWeight: 500,
+						}),
+					},
+				}}
+			>
 				{'Page content'}
 			</Heading>
 
@@ -101,7 +117,10 @@ const TableOfContents = ({ content }) => {
 								styles: styles => ({
 									...styles,
 									paddingLeft: 0,
-									paddingTop: SPACING(2),
+									margin: 0,
+									height: '2.25rem',
+									display: 'flex',
+									alignItems: 'center',
 								}),
 							},
 						}}
@@ -123,17 +142,18 @@ const TableOfContents = ({ content }) => {
 
 const PackageInfoTable = ({ item }) => {
 	if (!item) return null;
-
+	const mq = useMediaQuery();
 	return (
 		<table
-			css={{
+			css={mq({
+				marginTop: ['1.875rem', null, '2.625rem'],
 				borderTop: 'solid 1px #2585ca',
 				borderCollapse: 'collapse',
 				background: '#f2f8fc',
 				color: '#2585ca',
 				width: '100%',
 				textAlign: 'left',
-			}}
+			})}
 		>
 			<tbody
 				css={{
@@ -180,22 +200,21 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 	const mq = useMediaQuery();
 	return (
 		<div css={{ marginBottom: SPACING(5) }}>
-			<Container css={blocksContainerStyle}>
+			<Container>
 				<Grid
 					css={mq({
 						gridGap: '1.5rem',
 						marginTop: ['1.875rem', '1.875rem', '5.625rem'],
 						paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
-						...blocksGridStyle,
 					})}
 				>
-					<Cell width={[12, 7, 7, 7, 7]}>
+					<Cell width={showTableOfContents ? [12, 7, 7, 7, 7] : 12}>
 						{description && description !== '' ? (
 							<p
 								css={mq({
 									...PACKS.lead,
 									marginTop: 0,
-									marginBottom: ['1.875rem', '1.875rem', '3.75rem'],
+									marginBottom: 0,
 									lineHeight: 1.4,
 									fontSize: ['1.125rem', '1.125rem', '1.5rem'],
 								})}

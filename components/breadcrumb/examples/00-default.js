@@ -5,30 +5,44 @@ import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
+// Crumb tag as a component example
+const CrumbTag = props => <a {...props} onClick={() => console.log(`Clicked crumb link`)} />;
+
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Intopia />
 
-			<h2>Declarative as links</h2>
+			<h2>Default</h2>
+			<Breadcrumb>
+				<Crumb text="Home" />
+				<Crumb text="Personal" />
+				<Crumb text="Credit cards" />
+			</Breadcrumb>
+
+			<hr />
+
+			<h2>Declarative</h2>
+
+			<h3>As links</h3>
 			<Breadcrumb>
 				<Crumb href="#/" text="Home" />
 				<Crumb href="#/personal-banking/" text="Personal" />
 				<Crumb href="#/credit-cards/" text="Credit cards" />
 			</Breadcrumb>
 
-			<hr />
-
-			<h2>Declarative as router</h2>
+			<h3>As router</h3>
 			<Breadcrumb assistiveText="Page transitions and the such">
-				<Crumb text="Home" onClick={() => console.log('Clicked Home')} />
-				<Crumb text="Personal" onClick={() => console.log('Clicked Personal')} />
-				<Crumb text="Credit cards" onClick={() => console.log('Clicked Credit cards')} />
+				<Crumb text="Home" tag={CrumbTag} />
+				<Crumb text="Personal" tag={CrumbTag} />
+				<Crumb text="Credit cards" tag={CrumbTag} />
 			</Breadcrumb>
 
 			<hr />
 
-			<h2>Data driven as links</h2>
+			<h2>Data driven</h2>
+
+			<h3>As links</h3>
 			<Breadcrumb
 				data={[
 					{ href: '#/', text: 'Home' },
@@ -37,13 +51,13 @@ function Example({ brand }) {
 				]}
 			/>
 
-			<h2>Data driven as router</h2>
+			<h3>As router</h3>
 			<Breadcrumb
 				assistiveText="Page transitions and the such"
 				data={[
-					{ text: 'Home', onClick: () => console.log('Clicked Home') },
-					{ text: 'Personal', onClick: () => console.log('Clicked Personal') },
-					{ text: 'Credit cards', onClick: () => console.log('Clicked Credit cards') },
+					{ text: 'Home', tag: CrumbTag },
+					{ text: 'Personal', tag: CrumbTag },
+					{ text: 'Credit cards', tag: CrumbTag },
 				]}
 			/>
 		</GEL>
