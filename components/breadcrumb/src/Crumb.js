@@ -14,7 +14,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
+export const Crumb = ({ current, href, text, tag, onClick, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -34,6 +34,7 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 		current,
 		href,
 		text,
+		tag,
 		onClick,
 		context: context.state,
 		overrides,
@@ -48,7 +49,13 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 
 	return (
 		<Crumb {...rest} state={state} {...crumbAttributes(state)} css={crumbStyles(state)}>
-			<Link onClick={onClick} state={state} {...linkAttributes(state)} css={linkStyles(state)}>
+			<Link
+				href={href}
+				onClick={onClick}
+				state={state}
+				{...linkAttributes(state)}
+				css={linkStyles(state)}
+			>
 				{text}
 			</Link>
 			{!current && <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />}
@@ -62,21 +69,26 @@ export const Crumb = ({ current, href, text, onClick, overrides, ...rest }) => {
 
 Crumb.propTypes = {
 	/**
-	 * The text of the crumb
+	 * Set as the final crumb, linking to the current page
 	 */
 	current: PropTypes.bool,
 
 	/**
-	 * The crumb link href value.
-	 *
-	 * Defaults to '#0'.
+	 * The crumb link href value
 	 */
-	href: PropTypes.string,
+	href: PropTypes.string.isRequired,
 
 	/**
 	 * The text of the crumb
 	 */
 	text: PropTypes.string.isRequired,
+
+	/**
+	 * Component tag, may receive a react-router Link.
+	 *
+	 * Defaults to <a>.
+	 */
+	tag: PropTypes.elementType,
 
 	/**
 	 * A function for the onClick event
@@ -110,4 +122,8 @@ Crumb.propTypes = {
 	}),
 };
 
-Crumb.defaultProps = {};
+const Anchor = props => <a {...props} />;
+
+Crumb.defaultProps = {
+	href: '#0',
+};
