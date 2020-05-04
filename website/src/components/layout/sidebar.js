@@ -66,7 +66,7 @@ const CloseButton = () => {
 				background: 'none',
 				border: 'none',
 				cursor: 'pointer',
-				zIndex: 1,
+				zIndex: 2,
 				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: { display: 'none' },
 			}}
 		>

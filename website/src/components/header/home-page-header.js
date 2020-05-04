@@ -1,34 +1,34 @@
 /** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { HamburgerMenuIcon } from '@westpac/icon';
+import { Body } from '@westpac/body';
+import { Cell, Container, Grid } from '@westpac/grid';
+import { Heading } from '@westpac/heading';
 import HeaderImage from './home-page-header-image';
 import StickyHeaderImage from './sticky-header-image';
 import { brandHeaderColors, brandIconHighlightColors } from '../_utils';
 import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../symbols';
 import { useSidebar } from '../providers/sidebar';
-import { Cell, Container, Grid } from '@westpac/grid';
-import { Heading } from '@westpac/heading';
 
 const HomePageHeader = () => {
 	const { BRAND, COLORS, SPACING, LAYOUT } = useBrand();
 	const backgroundColor = brandHeaderColors[BRAND](COLORS);
-
+	const mq = useMediaQuery();
 	const main = useRef(null);
 
 	return (
 		<section
 			ref={main}
-			css={{
+			css={mq({
 				color: BRAND === 'STG' ? COLORS.text : COLORS.light,
 				position: 'relative',
 				overflow: 'hidden',
 				background: 'unset',
 				[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 					background: backgroundColor,
-					paddingBottom: SPACING(12),
 				},
-			}}
+			})}
 		>
 			<HeaderImage brand={BRAND} />
 			<StickyHeader mainRef={main} />
@@ -84,13 +84,19 @@ const StickyHeader = () => {
 				<button
 					css={{
 						display: 'block',
-						margin: `${SPACING(4)} ${SPACING(4)} ${SPACING(4)} -${SPACING(8)} !important`,
 						padding: 0,
+						left: 0,
 						background: 'none',
 						border: 'none',
 						cursor: 'pointer',
 						zIndex: 3,
 						position: 'fixed',
+						height: '66px',
+						width: '66px',
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+						paddingBottom: '5px',
 						top: 0,
 						[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 							margin: SPACING(2),
@@ -103,21 +109,26 @@ const StickyHeader = () => {
 				>
 					<HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : COLORS.light} />
 				</button>
-				<p
+				<div
 					css={{
-						textAlign: 'left',
+						height: '66px',
+						display: 'flex',
+						alignItems: 'center',
+						width: '100%',
 						margin: 0,
 						marginTop: '-2px',
-						padding: `${SPACING(4)} 0`,
 						borderBottom: 0,
-						width: '100%',
+						zIndex: 6,
 						[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 							borderBottom: hasScrolled ? 'none' : `1px solid ${COLORS.light}`,
 						},
 					}}
 				>
-					<strong>UI</strong> Framework
-				</p>
+					<p>
+						<strong>UI</strong> Framework
+					</p>
+				</div>
+
 				<StickyHeaderImage brand={BRAND} hide={!hasScrolled} />
 			</div>
 		</Fragment>
@@ -154,104 +165,107 @@ const IconText = ({ icon, iconMobile, children }) => {
 
 const HeroIntro = () => {
 	const { SPACING, TYPE, COLORS, BRAND, LAYOUT } = useBrand();
+	const mq = useMediaQuery();
 
 	return (
 		<Container
-			css={{
+			css={mq({
 				zIndex: 3,
 				position: 'relative',
-				paddingBottom: SPACING(10),
 				overflow: 'hidden',
-				marginTop: '81px',
+				margin: '0 auto',
+				maxWidth: '60rem',
+				marginTop: '66px',
+				marginBottom: [SPACING(7), SPACING(11)],
 				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
 					color: COLORS.text,
-					paddingBottom: SPACING(7),
 				},
-			}}
+			})}
 		>
-			<Heading
-				size={2}
-				css={{
-					paddingTop: SPACING(12),
-					paddingBottom: SPACING(4),
-					fontFamily: `${TYPE.brandFont.fontFamily} !important`,
-					maxWidth: 600,
-					fontWeight: 500,
-					margin: '0 auto !important',
-					zIndex: 3,
-					[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-						color: COLORS.hero,
-					},
-				}}
-			>
-				Design to scale with confidence
-			</Heading>
+			<Grid columns={12}>
+				<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
+					<Heading
+						size={1}
+						css={mq({
+							paddingTop: [SPACING(4), SPACING(7)],
+							paddingBottom: [SPACING(4), SPACING(6)],
+							fontFamily: `${TYPE.brandFont.fontFamily} !important`,
+							maxWidth: 600,
+							fontWeight: 500,
+							margin: '0 auto !important',
+							zIndex: 3,
+							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+								color: COLORS.hero,
+							},
+						})}
+					>
+						Design to scale with confidence
+					</Heading>
 
-			<p>Assemble enterprise solutions with our components and patterns</p>
+					<Body>Assemble enterprise solutions with our components and patterns</Body>
 
-			<Grid css={{ marginTop: SPACING(8) }}>
-				<Cell width={[12, 4]}>
-					<IconText
-						icon={
-							<StopwatchSvg
-								outlineColor={COLORS.light}
-								highlightOutlineColor={COLORS.light}
-								highlightColor={COLORS.light}
-							/>
-						}
-						iconMobile={
-							<StopwatchSvg
-								outlineColor={COLORS.borderDark}
-								highlightOutlineColor={COLORS.text}
-								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-							/>
-						}
-					>
-						Get to market faster by leveraging <br />
-						our knowledge and tools
-					</IconText>
-				</Cell>
-				<Cell width={[12, 4]}>
-					<IconText
-						icon={
-							<TruckSvg
-								outlineColor={COLORS.light}
-								highlightOutlineColor={COLORS.light}
-								highlightColor="none"
-							/>
-						}
-						iconMobile={
-							<TruckSvg
-								outlineColor={COLORS.borderDark}
-								highlightOutlineColor={COLORS.text}
-								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-							/>
-						}
-					>
-						Design, build and ship consistent, quality, <br />
-						branded solutions
-					</IconText>
-				</Cell>
-				<Cell width={[12, 4]}>
-					<IconText
-						icon={
-							<AccessibilitySvg
-								outlineColor={COLORS.light}
-								highlightOutlineColor={COLORS.light}
-								highlightColor="none"
-							/>
-						}
-						iconMobile={
-							<AccessibilitySvg
-								outlineColor={COLORS.borderDark}
-								highlightOutlineColor={COLORS.text}
-								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-							/>
-						}
-					>
-						Be more accessible and inclusive with our <br />
-						assets
-					</IconText>
+					<Grid css={mq({ marginTop: [SPACING(4), SPACING(10)] })}>
+						<Cell width={[12, 4]}>
+							<IconText
+								icon={
+									<StopwatchSvg
+										outlineColor={COLORS.light}
+										highlightOutlineColor={COLORS.light}
+										highlightColor={COLORS.light}
+									/>
+								}
+								iconMobile={
+									<StopwatchSvg
+										outlineColor={COLORS.borderDark}
+										highlightOutlineColor={COLORS.text}
+										highlightColor={brandIconHighlightColors[BRAND](COLORS)}
+									/>
+								}
+							>
+								Get to market faster by leveraging our knowledge and tools
+							</IconText>
+						</Cell>
+						<Cell width={[12, 4]}>
+							<IconText
+								icon={
+									<TruckSvg
+										outlineColor={COLORS.light}
+										highlightOutlineColor={COLORS.light}
+										highlightColor="none"
+									/>
+								}
+								iconMobile={
+									<TruckSvg
+										outlineColor={COLORS.borderDark}
+										highlightOutlineColor={COLORS.text}
+										highlightColor={brandIconHighlightColors[BRAND](COLORS)}
+									/>
+								}
+							>
+								Design, build and ship consistent, quality, branded solutions
+							</IconText>
+						</Cell>
+						<Cell width={[12, 4]}>
+							<IconText
+								icon={
+									<AccessibilitySvg
+										outlineColor={COLORS.light}
+										highlightOutlineColor={COLORS.light}
+										highlightColor="none"
+									/>
+								}
+								iconMobile={
+									<AccessibilitySvg
+										outlineColor={COLORS.borderDark}
+										highlightOutlineColor={COLORS.text}
+										highlightColor={brandIconHighlightColors[BRAND](COLORS)}
+									/>
+								}
+							>
+								Be more accessible and inclusive with our assets
+							</IconText>
+						</Cell>
+					</Grid>
 				</Cell>
 			</Grid>
 		</Container>

@@ -21,7 +21,6 @@ const toggleStyles = (_, { size, checked }) => {
 		height: sizing.height,
 		width: sizing.width,
 		overflow: 'hidden',
-		lineHeight: 1.5,
 		transition: 'border .3s ease,background .3s ease',
 		userSelect: 'none',
 
@@ -42,8 +41,7 @@ const toggleStyles = (_, { size, checked }) => {
 			top: 0,
 			borderRadius: '50%',
 			backgroundColor: '#fff',
-			border: '1px solid transparent', //a11Y: for high contrast mode
-			boxShadow: '3px 0 6px 0 rgba(0,0,0,0.3)',
+			boxShadow: '0.1875rem 0 0.375rem 0 rgba(0,0,0,0.53)',
 			transition: 'all .3s ease',
 		},
 

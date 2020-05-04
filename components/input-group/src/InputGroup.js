@@ -231,7 +231,7 @@ InputGroup.propTypes = {
 	/**
 	 * The label text for the input field
 	 */
-	label: PropTypes.string.isRequired,
+	label: PropTypes.string,
 
 	/**
 	 * InputGroup size

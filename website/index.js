@@ -23,6 +23,10 @@ const keystone = new Keystone({
 			connection: process.env.DATABASE_URL,
 		},
 	}),
+	// Add COOKIE_SECRET to your .env or sessions will be reset when the app restarts
+	cookieSecret:
+		process.env.COOKIE_SECRET ||
+		[...Array(30)].map(i => ((Math.random() * 36) | 0).toString(36)).join(''),
 });
 
 const options = resolveComponents();
