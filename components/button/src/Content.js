@@ -42,6 +42,7 @@ export const Content = ({
 		iconAfter: IconAfter,
 		iconBefore: IconBefore,
 		dropdown,
+		hasChildren: !!children,
 		context: context.state,
 		overrides: componentOverrides,
 		...rest,
