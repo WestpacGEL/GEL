@@ -5,6 +5,7 @@ import { DropDownIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
 
 import { defaultContent } from './overrides/content';
+import { defaultIcon } from './overrides/icon';
 
 import { useButtonContext } from './Button';
 import { Text } from './Text';
@@ -32,6 +33,7 @@ export const Content = ({
 
 	const defaultOverrides = {
 		Content: defaultContent,
+		Icon: defaultIcon,
 	};
 
 	const componentOverrides = context.state.overrides;
@@ -39,8 +41,8 @@ export const Content = ({
 	const state = {
 		size,
 		block,
-		iconAfter: IconAfter,
 		iconBefore: IconBefore,
+		iconAfter: IconAfter,
 		dropdown,
 		hasChildren: !!children,
 		context: context.state,
@@ -50,6 +52,7 @@ export const Content = ({
 
 	const {
 		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
+		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	// Map button size to icon size
@@ -64,29 +67,31 @@ export const Content = ({
 	return (
 		<Content {...rest} state={state} {...contentAttributes(state)} css={contentStyles(state)}>
 			{IconBefore && (
-				<IconBefore
-					css={{ marginRight: children && '0.4em' }}
+				<Icon
 					size={iconSizeMap[size]}
-					color="inherit"
+					icon={IconBefore}
+					state={state}
+					{...iconAttributes(state)}
+					css={iconStyles({ ...state, left: true })}
 				/>
 			)}
 			{children && <Text block={block}>{children}</Text>}
 			{IconAfter && (
-				<IconAfter
-					css={{ marginLeft: children && '0.4em' }}
+				<Icon
 					size={iconSizeMap[size]}
-					color="inherit"
-					aria-hidden="true"
-					assistiveText={null}
+					icon={IconAfter}
+					state={state}
+					{...iconAttributes(state)}
+					css={iconStyles({ ...state, right: true })}
 				/>
 			)}
 			{dropdown && (
-				<DropDownIcon
-					css={{ marginLeft: block ? 'auto' : '0.4em' }}
+				<Icon
 					size={iconSizeMap[size]}
-					color="inherit"
-					aria-hidden="true"
-					assistiveText={null}
+					icon={DropDownIcon}
+					state={state}
+					{...iconAttributes(state)}
+					css={iconStyles({ ...state, dropdown: true })}
 				/>
 			)}
 		</Content>
@@ -138,6 +143,11 @@ Content.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		Content: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Icon: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
