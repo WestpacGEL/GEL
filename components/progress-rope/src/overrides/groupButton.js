@@ -24,7 +24,7 @@ const groupButtonStyles = (_, { complete, active }) => {
 
 	return {
 		position: 'relative',
-		padding: '6px 30px 26px 56px',
+		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		fontSize: '1rem',
 		lineHeight: '1.428571429', //`<body>` line-height
 		textAlign: 'left',

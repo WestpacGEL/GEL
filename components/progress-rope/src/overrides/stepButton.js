@@ -27,7 +27,7 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 		fontSize: '0.875rem',
 		lineHeight: 1.428571429, //`<body>` line-height
 		textAlign: 'left',
-		padding: `8px 30px 14px ${grouped && !end ? '68px' : '56px'}`,
+		padding: `0.5rem 1.875rem 0.875rem ${grouped && !end ? '4.25rem' : '3.5rem'}`,
 		border: 0,
 		background: 'none',
 		display: 'block',

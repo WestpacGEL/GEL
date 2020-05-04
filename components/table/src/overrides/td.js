@@ -12,21 +12,7 @@ const tdStyles = (_, { highlighted, highlightStart, bordered }) => {
 		verticalAlign: 'top',
 		border: bordered && `1px solid ${COLORS.border}`,
 		borderLeft: highlightStart && `6px solid ${COLORS.primary}`,
-		borderBottom: highlighted && `2px solid ${COLORS.primary}`,
-
-		// a11y: high contrast mode (thicken highlight border to make it more noticeable)
-		...(highlighted && {
-			position: 'relative',
-
-			'::after': {
-				content: '""',
-				borderBottom: '4px solid transparent',
-				position: 'absolute',
-				left: 0,
-				right: 0,
-				bottom: 0,
-			},
-		}),
+		borderBottom: highlighted && `3px solid ${COLORS.primary}`, //a11y: highlighted border must be noticeably thicker than non-highlighted
 
 		// bold scope
 		'&[scope=row]': {
