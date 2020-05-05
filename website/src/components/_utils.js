@@ -278,7 +278,6 @@ export const blocksGridStyle = {
 };
 export const blocksContainerStyle = {
 	margin: '30px 0',
-	maxWidth: 'unset',
 	'@media (max-width: 768px)': {
 		margin: '18px 0',
 	},
