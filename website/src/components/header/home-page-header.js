@@ -74,6 +74,7 @@ const StickyHeader = () => {
 					position: 'fixed',
 					background: backgroundColor,
 					boxShadow: `0px 5px 11px -2px ${COLORS.borderDark}`,
+					transition: 'box-shadow 0.3s ease-in-out',
 					[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 						background: hasScrolled ? backgroundColor : 'unset',
 						position: hasScrolled ? 'fixed' : 'absolute',
@@ -158,7 +159,7 @@ const IconText = ({ icon, iconMobile, children }) => {
 				{iconMobile}
 			</div>
 
-			<p>{children}</p>
+			<p css={{ fontSize: '18px', lineHeight: 1.2 }}>{children}</p>
 		</div>
 	);
 };
@@ -191,7 +192,7 @@ const HeroIntro = () => {
 							paddingBottom: [SPACING(4), SPACING(6)],
 							fontFamily: `${TYPE.brandFont.fontFamily} !important`,
 							maxWidth: 600,
-							fontWeight: 500,
+							fontWeight: '500 !important',
 							margin: '0 auto !important',
 							zIndex: 3,
 							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {

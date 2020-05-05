@@ -18,7 +18,7 @@ const HomePageHeaderImage = ({ brand }) => {
 				},
 			}}
 		>
-			<WbcBackgroundRightSvg height={'100%'} />
+			<WbcBackgroundRightSvg height={'629px'} />
 		</div>
 	);
 
@@ -26,15 +26,15 @@ const HomePageHeaderImage = ({ brand }) => {
 		<div
 			css={{
 				position: 'absolute',
-				left: 0,
-				bottom: -5,
+				left: -3200,
+				bottom: -120,
 				zIndex: 0,
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 					display: 'none',
 				},
 			}}
 		>
-			<StgBackgroundSvg height={'600px'} />
+			<StgBackgroundSvg height={'2000px'} />
 		</div>
 	);
 
@@ -44,13 +44,13 @@ const HomePageHeaderImage = ({ brand }) => {
 				position: 'absolute',
 				zIndex: 1,
 				right: 0,
-				bottom: -100,
+				bottom: -130,
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 					display: 'none',
 				},
 			}}
 		>
-			<BsaBackgroundSvg height={'400px'} />
+			<BsaBackgroundSvg height={'720px'} />
 		</div>
 	);
 

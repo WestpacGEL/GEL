@@ -31,7 +31,7 @@ export const Sidebar = ({ items }) => {
 				gridColumnEnd: 2,
 				transition: 'transform 0.15s',
 				boxShadow: `1px 0 1px ${COLORS.border}`,
-				zIndex: 2,
+				zIndex: 10,
 				overflow: 'auto',
 				height: '100vh',
 				[`@media only screen and (max-width: ${LAYOUT.breakpoints.xl - 1}px)`]: {

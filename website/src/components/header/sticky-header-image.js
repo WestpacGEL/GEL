@@ -21,7 +21,7 @@ const StickyHeaderImage = ({ brand, hide }) => {
 				},
 			}}
 		>
-			<WbcBackgroundRightSvg height={'400px'} />
+			<WbcBackgroundRightSvg height={'629px'} />
 		</div>
 	);
 
@@ -29,19 +29,19 @@ const StickyHeaderImage = ({ brand, hide }) => {
 		<div
 			css={{
 				position: 'absolute',
-				left: 0,
-				bottom: -10,
+				left: -3200,
+				bottom: -120,
 				zIndex: -1,
 				display: hide ? 'none' : 'block',
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 					display: 'block',
 				},
 				[`@media (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
-					right: '300px',
+					right: '483px',
 				},
 			}}
 		>
-			<StgBackgroundSvg height={'1000px'} />
+			<StgBackgroundSvg height={'2000px'} />
 		</div>
 	);
 
@@ -51,17 +51,17 @@ const StickyHeaderImage = ({ brand, hide }) => {
 				position: 'absolute',
 				zIndex: 1,
 				right: 0,
-				bottom: -120,
+				bottom: -130,
 				display: hide ? 'none' : 'block',
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 					display: 'block',
 				},
 				[`@media (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
-					right: '300px',
+					right: '373px',
 				},
 			}}
 		>
-			<BsaBackgroundSvg height={'400px'} />
+			<BsaBackgroundSvg height={'720px'} />
 		</div>
 	);
 
