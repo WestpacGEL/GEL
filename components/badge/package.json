@@ -3,10 +3,10 @@
 	"version": "1.0.0",
 	"description": "Badge component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/badge",
-	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
 			"name": "Dominik Wilkowski",

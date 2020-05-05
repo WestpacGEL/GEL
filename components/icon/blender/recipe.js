@@ -15,6 +15,7 @@ export function AllStyles({ brand }) {
 			<components.HouseIcon size="medium" />
 			<components.HouseIcon size="large" />
 			<components.HouseIcon size="xlarge" />
+			<components.HouseIcon color="inherit" />
 			<components.HouseIcon color={COLORS.primary.toLowerCase()} />
 			<components.HouseIcon color={COLORS.borderDark.toLowerCase()} />
 			<components.HouseIcon color={COLORS.heading.toLowerCase()} />
@@ -97,6 +98,14 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={brand}>
 					<components.HouseIcon size="xlarge" />
+				</GEL>
+			),
+		},
+		{
+			heading: 'An icon with the inherit color',
+			component: () => (
+				<GEL brand={brand}>
+					<components.HouseIcon color="inherit" />
 				</GEL>
 			),
 		},
