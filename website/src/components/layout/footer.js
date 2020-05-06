@@ -21,7 +21,7 @@ export const Footer = () => {
 		}
 
 		prev = el.scrollTop;
-	}, 100);
+	}, 10);
 
 	useEffect(() => {
 		if (el.scrollHeight > el.clientHeight) {
