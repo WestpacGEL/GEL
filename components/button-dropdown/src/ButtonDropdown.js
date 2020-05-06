@@ -128,6 +128,7 @@ export const ButtonDropdown = ({
 					onClick={handleOpen}
 					dropdown={true}
 					block={block}
+					data-js="buttonDropdown-btn__version__"
 					overrides={componentOverrides}
 					{...rest}
 				>
