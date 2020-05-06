@@ -88,7 +88,7 @@ export const BrandSwitcher = () => {
 	const Logo = brandsMap[brand].logo;
 
 	return (
-		<div css={{ position: 'sticky', top: 0, zIndex: 1 }}>
+		<div css={{ position: 'sticky', top: 0, zIndex: 1, width: '300px' }}>
 			<div
 				css={{
 					display: 'flex',
@@ -131,7 +131,7 @@ export const BrandSwitcher = () => {
 						justifyContent: 'space-between',
 						height: '60px',
 						padding: `0 0.875rem 0 ${SPACING(3)}`,
-						borderBottom: `solid 1px ${COLORS.tints.muted30}`,
+						borderBottom: `solid 1px ${COLORS.border}`,
 						cursor: 'pointer',
 						fontSize: '0.875rem',
 						...(isFocused && { backgroundColor: COLORS.background }),
@@ -140,12 +140,12 @@ export const BrandSwitcher = () => {
 						...base,
 						borderRadius: 0,
 						border: 0,
-						borderBottom: !isScrolled && `solid 1px ${COLORS.tints.muted30}`,
+						borderBottom: !isScrolled && `solid 1px ${COLORS.border}`,
 						height: '66px',
 						boxShadow: 'none',
 
 						':hover': {
-							borderBottom: `solid 1px ${COLORS.tints.muted30}`,
+							borderBottom: `solid 1px ${COLORS.border}`,
 						},
 					}),
 					valueContainer: base => ({

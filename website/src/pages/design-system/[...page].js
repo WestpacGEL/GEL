@@ -94,7 +94,6 @@ const Tabs = ({ component, tabName }) => {
 				...styles,
 				alignItems: 'flex-end',
 				backgroundColor: '#fff',
-				borderLeft: `solid 1px ${COLORS.border}`,
 				position: 'sticky',
 				top: '66px',
 				zIndex: 5,

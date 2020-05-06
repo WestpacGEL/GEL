@@ -46,7 +46,6 @@ export const Footer = () => {
 				backgroundColor: '#fff',
 				transition: 'bottom 0.4s',
 				borderTop: `1px solid ${COLORS.border}`,
-				borderLeft: `1px solid ${COLORS.border}`,
 				display: 'flex',
 				flexGrow: 0,
 				flexShrink: 0,
