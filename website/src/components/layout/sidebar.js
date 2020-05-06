@@ -30,10 +30,12 @@ export const Sidebar = ({ items }) => {
 				gridColumnStart: 1,
 				gridColumnEnd: 2,
 				transition: 'transform 0.15s',
-				boxShadow: `1px 0 1px ${COLORS.border}`,
+				borderRight: `1px solid ${COLORS.border}`,
 				zIndex: 2,
 				overflow: 'auto',
 				height: '100vh',
+				boxSizing: 'border-box',
+
 				[`@media only screen and (max-width: ${LAYOUT.breakpoints.xl - 1}px)`]: {
 					position: 'absolute',
 					zIndex: 10,
