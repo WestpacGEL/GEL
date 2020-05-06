@@ -35,7 +35,7 @@ const closeBtnStyles = () => {
 };
 
 const closeBtnAttributes = () => ({
-	'data-js': 'alert-closeBtn',
+	'data-js': 'alert-closeBtn__version__',
 	'data-testing': 'alert-closeBtn',
 });
 
