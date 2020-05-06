@@ -23,6 +23,16 @@ import {
 } from '@westpac/symbol';
 
 export const brandsMap = {
+	WBC: {
+		logo: WBCLogo,
+		label: 'Westpac',
+		smallLogo: WBCLogo,
+	},
+	STG: {
+		logo: STGLogo,
+		label: 'St. George',
+		smallLogo: STGDragonLogo,
+	},
 	BOM: {
 		logo: BOMLogo,
 		label: 'Bank of Melbourne',
@@ -33,25 +43,15 @@ export const brandsMap = {
 		label: 'BankSA',
 		smallLogo: BSAStackedLogo,
 	},
-	BTFG: {
-		logo: BTFGLogo,
-		label: 'BT Financial Group',
-		smallLogo: BTFGStackedLogo,
-	},
-	STG: {
-		logo: STGLogo,
-		label: 'St. George',
-		smallLogo: STGDragonLogo,
-	},
-	WBC: {
-		logo: WBCLogo,
-		label: 'Westpac',
-		smallLogo: WBCLogo,
-	},
 	WBG: {
 		logo: WBGLogo,
 		label: 'Westpac Group',
 		smallLogo: WBCLogo,
+	},
+	BTFG: {
+		logo: BTFGLogo,
+		label: 'BT Financial Group',
+		smallLogo: BTFGStackedLogo,
 	},
 };
 
@@ -84,11 +84,11 @@ export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
 	const { isScrolled } = useSidebar();
-	const { SPACING, COLORS, PACKS } = useBrand();
+	const { SPACING, COLORS, TYPE } = useBrand();
 	const Logo = brandsMap[brand].logo;
 
 	return (
-		<div css={{ position: 'sticky', top: 0, zIndex: 1 }}>
+		<div css={{ position: 'sticky', top: 0, zIndex: 1, width: '300px' }}>
 			<div
 				css={{
 					display: 'flex',
@@ -98,14 +98,13 @@ export const BrandSwitcher = () => {
 					background: '#fff',
 				}}
 			>
-				<Link href={'/'} as={`${BASE_URL}`}>
+				<Link href={'/'} as={`${BASE_URL}?b=${brandName}`}>
 					<a>
 						<Logo />
 					</a>
 				</Link>
 			</div>
 			<Select
-				// menuIsOpen
 				closeMenuOnSlect={false}
 				components={{ Option, DropdownIndicator }}
 				placeholder={'Change brand'}
@@ -132,7 +131,7 @@ export const BrandSwitcher = () => {
 						justifyContent: 'space-between',
 						height: '60px',
 						padding: `0 0.875rem 0 ${SPACING(3)}`,
-						borderBottom: `solid 1px ${COLORS.tints.muted30}`,
+						borderBottom: `solid 1px ${COLORS.border}`,
 						cursor: 'pointer',
 						fontSize: '0.875rem',
 						...(isFocused && { backgroundColor: COLORS.background }),
@@ -141,12 +140,12 @@ export const BrandSwitcher = () => {
 						...base,
 						borderRadius: 0,
 						border: 0,
-						borderBottom: !isScrolled && `solid 1px ${COLORS.tints.muted30}`,
+						borderBottom: !isScrolled && `solid 1px ${COLORS.border}`,
 						height: '66px',
 						boxShadow: 'none',
 
 						':hover': {
-							borderBottom: `solid 1px ${COLORS.tints.muted30}`,
+							borderBottom: `solid 1px ${COLORS.border}`,
 						},
 					}),
 					valueContainer: base => ({
@@ -157,6 +156,7 @@ export const BrandSwitcher = () => {
 					}),
 					placeholder: base => ({
 						...base,
+						...TYPE.bodyFont[400],
 						color: COLORS.text,
 						fontSize: '0.875rem',
 					}),
@@ -181,9 +181,7 @@ export const BrandSwitcher = () => {
 				onChange={data => {
 					setBrand(data.value);
 				}}
-				options={Object.keys(brandsMap)
-					.map(k => ({ value: k, label: brandsMap[k].label }))
-					.filter(brand => brand.value !== brandName)}
+				options={Object.keys(brandsMap).map(k => ({ value: k, label: brandsMap[k].label }))}
 			/>
 		</div>
 	);
