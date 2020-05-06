@@ -9,11 +9,11 @@ const Title = forwardRef(({ state, ...rest }, ref) => (
 ));
 
 const titleStyles = () => {
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 
 	return {
 		color: COLORS.text,
-		fontWeight: 700,
+		...TYPE.bodyFont[700],
 	};
 };
 
