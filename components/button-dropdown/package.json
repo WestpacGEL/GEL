@@ -1,8 +1,12 @@
 {
 	"name": "@westpac/button-dropdown",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Westpac GEL button-dropdown component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-dropdown",
+	"blender": {
+		"recipe": "blender/recipe.js",
+		"js": "blender/script.js"
+	},
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {

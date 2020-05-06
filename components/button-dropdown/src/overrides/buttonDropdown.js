@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const ButtonDropdown = ({ state, ...rest }) => <div {...rest} />;
 
-const buttonDropdownStyles = (_, { block }) => {
-	return {
-		position: 'relative',
-		display: block ? 'block' : 'inline-block',
-		verticalAlign: 'middle',
-	};
-};
+const buttonDropdownStyles = (_, { block }) => ({
+	label: getLabel('buttonDropdown', { block }),
+	position: 'relative',
+	display: block ? 'block' : 'inline-block',
+	verticalAlign: 'middle',
+});
 
 const buttonDropdownAttributes = () => null;
 
