@@ -15,12 +15,12 @@ jobs:
             - v5-dependencies-{{ .Branch }}
             - v5-dependencies
 
-      - run:
-          name: Install tree
-          command: apt-get install tree
-      - run:
-          name: 'DEBUG: Run tree'
-          command: tree -C -I "node_modules*"
+      # - run:
+      #     name: Install tree
+      #     command: apt-get install tree
+      # - run:
+      #     name: 'DEBUG: Run tree'
+      #     command: tree -C -I "node_modules*"
       - run:
           name: 'DEBUG: node version'
           command: node -v
