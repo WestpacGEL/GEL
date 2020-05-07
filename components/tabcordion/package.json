@@ -28,7 +28,7 @@
 	"main": "dist/tabcordion.cjs.js",
 	"module": "dist/tabcordion.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.8.4",
+		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^1.0.0",
 		"@westpac/hooks": "^1.0.0",
 		"@westpac/icon": "^1.0.0",
@@ -42,9 +42,9 @@
 	},
 	"devDependencies": {
 		"@westpac/form-check": "*",
-		"cypress": "^4.1.0",
+		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"react-spring": "^8.0.27",
-		"start-server-and-test": "^1.10.10"
+		"start-server-and-test": "^1.11.0"
 	}
 }
