@@ -11,9 +11,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - v4-dependencies-{{ .Branch }}
-            - v4-dependencies
+            - v5-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v5-dependencies-{{ .Branch }}
+            - v5-dependencies
 
       - run:
           name: Install tree
@@ -39,7 +39,7 @@ jobs:
             - node_modules
             - ~/.npm
             - ~/.cache
-          key: v4-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: v5-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
 
       - run:
           name: Run build
