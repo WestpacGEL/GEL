@@ -11,7 +11,7 @@ export const itemStyles = (_, { block }) => {
 
 	return mq({
 		label: getLabel('buttonGroup-item', { block }),
-		flex: blockArr.map(b => b !== null && (b ? 1 : null)),
+		flex: blockArr.map((b) => b !== null && (b ? 1 : null)),
 	})[0];
 };
 

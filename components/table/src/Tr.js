@@ -16,7 +16,7 @@ import pkg from '../package.json';
 const generateHighlightMap = (highlighted, tdCount) => {
 	const map = Array(tdCount).fill(false);
 
-	highlighted.forEach(highlight => {
+	highlighted.forEach((highlight) => {
 		if (typeof highlight === 'number') {
 			map[highlight] = true;
 		} else if (Array.isArray(highlight)) {

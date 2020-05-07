@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/heading'] = {
 		Heading: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '1px solid red',
 			}),
@@ -38,7 +38,7 @@ function Example({ brand }) {
 				size={1}
 				overrides={{
 					Heading: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted green',
 						}),

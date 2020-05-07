@@ -11,7 +11,7 @@ const LabelWithEdit = ({ state, look, value, children, ...rest }) => {
 			{children}
 			<button
 				type="button"
-				onClick={e => console.log('Edit button clicked')}
+				onClick={(e) => console.log('Edit button clicked')}
 				css={{
 					'&&': {
 						marginLeft: '0.5em',
@@ -77,7 +77,7 @@ function Example({ brand }) {
 				value="Default overridden"
 				overrides={{
 					Label: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '6px dotted green',
 						}),

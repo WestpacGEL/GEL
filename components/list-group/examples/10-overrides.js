@@ -16,13 +16,13 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/list-group'] = {
 		ListGroup: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '4px solid hotpink',
 			}),
 		},
 		Item: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '2px dotted blue',
 			}),
@@ -32,7 +32,7 @@ function Example({ brand }) {
 	// to test that list styles don't spill over
 	overridesWithTokens['@westpac/list'] = {
 		Item: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				background: 'rgba(255,0,0,0.2)',
 			}),
@@ -120,7 +120,7 @@ function Example({ brand }) {
 			<ListGroup
 				overrides={{
 					Item: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted green',
 						}),

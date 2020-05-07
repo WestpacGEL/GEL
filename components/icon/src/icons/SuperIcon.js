@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const SuperIcon = props => (
+export const SuperIcon = (props) => (
 	<Icon icon="SuperIcon" {...props}>
 		<path
 			fill="currentColor"

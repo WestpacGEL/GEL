@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const NotificationActiveIcon = props => (
+export const NotificationActiveIcon = (props) => (
 	<Icon icon="NotificationActiveIcon" {...props}>
 		<path
 			fill="currentColor"

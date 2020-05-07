@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const SdStorageIcon = props => (
+export const SdStorageIcon = (props) => (
 	<Icon icon="SdStorageIcon" {...props}>
 		<path
 			fill="currentColor"

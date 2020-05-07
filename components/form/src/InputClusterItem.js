@@ -10,7 +10,7 @@ import { useInputClusterContext } from './InputCluster';
 // Component
 // ==============================
 
-export const InputClusterItem = props => {
+export const InputClusterItem = (props) => {
 	const { horizontal } = useInputClusterContext();
 
 	return (

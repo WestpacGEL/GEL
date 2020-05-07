@@ -11,7 +11,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 function Example({ brand }) {
 	const [value, setValue] = useState();
 
-	const handleChange = event => {
+	const handleChange = (event) => {
 		setValue(event.target.value);
 	};
 

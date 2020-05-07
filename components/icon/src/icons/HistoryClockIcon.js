@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const HistoryClockIcon = props => (
+export const HistoryClockIcon = (props) => (
 	<Icon icon="HistoryClockIcon" {...props}>
 		<path
 			fill="currentColor"

@@ -7,7 +7,7 @@ import { useProgress } from '../../examples/_utils';
 
 export default ({ context, showCode, showDemo }) => {
 	const [state, dispatch] = useProgress();
-	const handleClick = index => e => {
+	const handleClick = (index) => (e) => {
 		e.preventDefault();
 		dispatch({ type: 'goto', index });
 	};

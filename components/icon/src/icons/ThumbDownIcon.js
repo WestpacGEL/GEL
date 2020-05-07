@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const ThumbDownIcon = props => (
+export const ThumbDownIcon = (props) => (
 	<Icon icon="ThumbDownIcon" {...props}>
 		<path
 			fill="currentColor"

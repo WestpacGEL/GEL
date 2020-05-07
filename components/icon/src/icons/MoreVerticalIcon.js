@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const MoreVerticalIcon = props => (
+export const MoreVerticalIcon = (props) => (
 	<Icon icon="MoreVerticalIcon" {...props}>
 		<path
 			fill="currentColor"

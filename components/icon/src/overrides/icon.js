@@ -19,8 +19,8 @@ const iconStyles = (_, { color, size }) => {
 	// Size styling (responsive)
 	const sizeArr = asArray(size);
 	const styleSize = {
-		height: sizeArr.map(s => s && sizeMap[s]),
-		width: sizeArr.map(s => s && sizeMap[s]),
+		height: sizeArr.map((s) => s && sizeMap[s]),
+		width: sizeArr.map((s) => s && sizeMap[s]),
 	};
 
 	return mq({

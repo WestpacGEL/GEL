@@ -1,9 +1,9 @@
 const path = require('path');
 const migrationName = path.basename(__filename);
 
-exports.up = async knex => {
+exports.up = async (knex) => {
 	console.log('Applying migration', migrationName);
-	return knex.transaction(async function(tx) {
+	return knex.transaction(async function (tx) {
 		await tx.raw(`
 DROP TABLE public."Page_categories";
 DROP TABLE public."Category";
@@ -35,9 +35,9 @@ ALTER TABLE public."Page" DROP COLUMN "relatedInfo";
 	});
 };
 
-exports.down = async knex => {
+exports.down = async (knex) => {
 	console.log('Reverting migration', migrationName);
-	return knex.transaction(async function(tx) {
+	return knex.transaction(async function (tx) {
 		console.log('Cannot revert Arcade migration.');
 	});
 };

@@ -14,7 +14,7 @@ function convertFonts(fonts) {
 	const output = {};
 	output[''] = [];
 
-	fonts.map(font => {
+	fonts.map((font) => {
 		output[''].push({
 			'@font-face': {
 				fontFamily: font.name,
@@ -53,7 +53,7 @@ function build(BRAND) {
 
 	// colors
 	let tints = {};
-	Object.keys(colors).map(color => (tints = { ...tints, ...makeTints(colors[color], color) }));
+	Object.keys(colors).map((color) => (tints = { ...tints, ...makeTints(colors[color], color) }));
 	const COLORS = {
 		tints,
 		...colors,

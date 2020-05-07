@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const PendingIcon = props => (
+export const PendingIcon = (props) => (
 	<Icon icon="PendingIcon" {...props}>
 		<path
 			fill="currentColor"

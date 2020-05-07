@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const ExcelFileIcon = props => (
+export const ExcelFileIcon = (props) => (
 	<Icon icon="ExcelFileIcon" {...props}>
 		<path
 			fill="currentColor"

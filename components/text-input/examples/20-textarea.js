@@ -13,7 +13,7 @@ const widths = [2, 3, 4, 5, 10, 20, 30];
 function Example({ brand }) {
 	const [value, setValue] = useState('default text');
 
-	const handleChange = event => {
+	const handleChange = (event) => {
 		setValue(event.target.value);
 	};
 

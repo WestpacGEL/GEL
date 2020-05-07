@@ -110,7 +110,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
-		...['primary', 'hero', 'faint'].map(look => ({
+		...['primary', 'hero', 'faint'].map((look) => ({
 			heading: `A ${look} button-dropdown`,
 			component: () => (
 				<GEL brand={brand}>
@@ -120,7 +120,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint'].map(look => ({
+		...['primary', 'hero', 'faint'].map((look) => ({
 			heading: `A ${look} soft button-dropdown`,
 			component: () => (
 				<GEL brand={brand}>
@@ -130,7 +130,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint'].map(look => ({
+		...['primary', 'hero', 'faint'].map((look) => ({
 			heading: `A ${look} block button-dropdown`,
 			component: () => (
 				<GEL brand={brand}>
@@ -140,7 +140,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['small', 'medium', 'large', 'xlarge'].map(size => ({
+		...['small', 'medium', 'large', 'xlarge'].map((size) => ({
 			heading: `A primary ${size} button-dropdown`,
 			component: () => (
 				<GEL brand={brand}>
@@ -150,7 +150,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['small', 'medium', 'large'].map(size => ({
+		...['small', 'medium', 'large'].map((size) => ({
 			heading: `A button-dropdown with a ${size} dropdown`,
 			component: () => (
 				<GEL brand={brand}>

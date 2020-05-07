@@ -30,37 +30,37 @@ export function overrideReconciler(
 	for (let [key] of Object.entries(overrides)) {
 		defaultOverrides[key] = defaultOverrides[key] || {};
 		if (typeof defaultOverrides[key].styles !== 'function') {
-			defaultOverrides[key].styles = s => s;
+			defaultOverrides[key].styles = (s) => s;
 		}
 		if (typeof defaultOverrides[key].attributes !== 'function') {
-			defaultOverrides[key].attributes = a => a;
+			defaultOverrides[key].attributes = (a) => a;
 		}
 
 		tokenOverrides[key] = tokenOverrides[key] || {};
 		if (typeof tokenOverrides[key].styles !== 'function') {
-			tokenOverrides[key].styles = s => s;
+			tokenOverrides[key].styles = (s) => s;
 		}
 		if (typeof tokenOverrides[key].attributes !== 'function') {
-			tokenOverrides[key].attributes = a => a;
+			tokenOverrides[key].attributes = (a) => a;
 		}
 
 		brandOverrides[key] = brandOverrides[key] || {};
 		if (typeof brandOverrides[key].styles !== 'function') {
-			brandOverrides[key].styles = s => s;
+			brandOverrides[key].styles = (s) => s;
 		}
 		if (typeof brandOverrides[key].attributes !== 'function') {
-			brandOverrides[key].attributes = a => a;
+			brandOverrides[key].attributes = (a) => a;
 		}
 
 		componentOverrides[key] = componentOverrides[key] || {};
 		if (typeof componentOverrides[key].styles !== 'function') {
-			componentOverrides[key].styles = s => s;
+			componentOverrides[key].styles = (s) => s;
 		}
 		if (typeof componentOverrides[key].attributes !== 'function') {
-			componentOverrides[key].attributes = a => a;
+			componentOverrides[key].attributes = (a) => a;
 		}
 
-		overrides[key].styles = state =>
+		overrides[key].styles = (state) =>
 			componentOverrides[key].styles(
 				brandOverrides[key].styles(
 					tokenOverrides[key].styles(defaultOverrides[key].styles(null, state), state),
@@ -69,7 +69,7 @@ export function overrideReconciler(
 				state
 			);
 
-		overrides[key].attributes = state =>
+		overrides[key].attributes = (state) =>
 			componentOverrides[key].attributes(
 				brandOverrides[key].attributes(
 					tokenOverrides[key].attributes(defaultOverrides[key].attributes(null, state), state),

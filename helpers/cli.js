@@ -14,7 +14,7 @@ const rl = readline.createInterface({
 
 const qName = () => {
 	return new Promise((resolve, reject) => {
-		rl.question('Enter component name: ', answer => {
+		rl.question('Enter component name: ', (answer) => {
 			if (answer) {
 				resolve(answer);
 			} else {
@@ -26,7 +26,7 @@ const qName = () => {
 
 const qDescription = () => {
 	return new Promise((resolve, reject) => {
-		rl.question('Enter component description: ', answer => {
+		rl.question('Enter component description: ', (answer) => {
 			if (answer) {
 				resolve(answer);
 			} else {
@@ -41,14 +41,14 @@ const qConfirm = (name, description) => {
 		console.log(chalk.green.underline('\nCOMPONENT DETAILS'));
 		console.log(chalk.cyan('Component Name: ') + name);
 		console.log(chalk.cyan('Component Description: ') + description);
-		rl.question('\nConfirm creation (y/N)? ', answer => {
+		rl.question('\nConfirm creation (y/N)? ', (answer) => {
 			resolve(answer);
 		});
 	});
 };
 
 const updateReferences = (dir, component) => {
-	fs.readdirSync(dir).forEach(file => {
+	fs.readdirSync(dir).forEach((file) => {
 		let fullPath = path.join(dir, file);
 		if (fs.lstatSync(fullPath).isDirectory()) {
 			updateReferences(fullPath, component);
@@ -71,7 +71,7 @@ const updateReferences = (dir, component) => {
 	});
 };
 
-const createComponent = component => {
+const createComponent = (component) => {
 	const src = `./helpers/.component-template`;
 	const dest = `./components/${component.folderName}`;
 
@@ -95,19 +95,19 @@ const main = async () => {
 
 	if (!packageName) {
 		do {
-			packageName = await qName().catch(e => console.log(chalk.red(e)));
+			packageName = await qName().catch((e) => console.log(chalk.red(e)));
 		} while (!packageName);
 	}
 
 	do {
-		description = await qDescription().catch(e => console.log(chalk.red(e)));
+		description = await qDescription().catch((e) => console.log(chalk.red(e)));
 	} while (!description);
 
 	const folderName = packageName.toLowerCase();
 
 	const componentTitle = packageName
 		.split('-')
-		.map(part => part[0].toUpperCase() + part.slice(1))
+		.map((part) => part[0].toUpperCase() + part.slice(1))
 		.join(' ');
 
 	const componentName = componentTitle.replace(' ', '');

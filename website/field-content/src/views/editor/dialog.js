@@ -56,7 +56,7 @@ export const DropdownMenu = ({ children, target }) => {
 	let targetRef = useRef();
 	let menuRef = useRef();
 	let [isOpen, setIsOpen] = useState(false);
-	let toggleOpen = () => setIsOpen(s => !s);
+	let toggleOpen = () => setIsOpen((s) => !s);
 
 	// close the menu on `Esc` press, and click outside either the target or menu
 	useKeyPress({

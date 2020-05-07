@@ -46,8 +46,8 @@ export function Sidebar({ editor }) {
 	const { setCurrentlyEditingBlocks } = useContext(CurrentlyEditingBlocksContext);
 	return Object.keys(view)
 		.sort()
-		.filter(compName => !view[compName].archived)
-		.map(compName => {
+		.filter((compName) => !view[compName].archived)
+		.map((compName) => {
 			let svgPath = svgPathMap[compName];
 			let icon = (
 				<svg
@@ -75,7 +75,7 @@ export function Sidebar({ editor }) {
 								props: {},
 							},
 						});
-						setCurrentlyEditingBlocks(x => ({ ...x, [block.get('key')]: true }));
+						setCurrentlyEditingBlocks((x) => ({ ...x, [block.get('key')]: true }));
 						editor.insertBlock(block);
 					}}
 				/>
@@ -100,7 +100,7 @@ export function Actions({ editor, node }) {
 			<BlockDisclosureMenuButton
 				variant="primary"
 				onClick={() => {
-					setCurrentlyEditingBlocks(x => ({ ...x, [node.key]: !x[node.key] }));
+					setCurrentlyEditingBlocks((x) => ({ ...x, [node.key]: !x[node.key] }));
 				}}
 				title={isEditing ? 'Done editing' : 'Edit block'}
 			>
@@ -164,7 +164,7 @@ export function Node({ node, attributes, editor, item }) {
 	return (
 		<div
 			{...attributes}
-			onClick={e => {
+			onClick={(e) => {
 				// we want to stop stopPropagation here so that focussing works
 				e.stopPropagation();
 			}}
@@ -176,7 +176,7 @@ export function Node({ node, attributes, editor, item }) {
 							item={item}
 							_editorValue={JSON.parse(JSON.stringify(editor.value.document))}
 							value={node.get('data').get('props')}
-							onChange={dynamicComponentProps => {
+							onChange={(dynamicComponentProps) => {
 								editor.setNodeByKey(node.key, {
 									data: node.data.set('props', { ...dynamicComponentProps }),
 								});
@@ -204,7 +204,7 @@ export let getPlugins = () => [
 	{
 		onKeyDown(event, editor, next) {
 			// inject a new paragraph on "Enter"
-			if (event.keyCode === 13 && editor.value.blocks.every(block => block.type === type)) {
+			if (event.keyCode === 13 && editor.value.blocks.every((block) => block.type === type)) {
 				editor.insertBlock({ type: defaultType });
 			} else {
 				return next();

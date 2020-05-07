@@ -15,22 +15,22 @@ function Example({ brand }) {
 
 	overridesWithTokens['@westpac/modal'] = {
 		Modal: {
-			styles: styles => ({ ...styles, border: '2px solid palevioletred' }),
+			styles: (styles) => ({ ...styles, border: '2px solid palevioletred' }),
 		},
 		Header: {
-			styles: styles => ({ ...styles, borderBottom: `2px solid palevioletred` }),
+			styles: (styles) => ({ ...styles, borderBottom: `2px solid palevioletred` }),
 		},
 		Title: {
-			styles: styles => ({ ...styles, color: 'darkmagenta' }),
+			styles: (styles) => ({ ...styles, color: 'darkmagenta' }),
 		},
 		Backdrop: {
-			styles: styles => ({ ...styles, backgroundColor: 'rgba(153,0,0,0.6)' }),
+			styles: (styles) => ({ ...styles, backgroundColor: 'rgba(153,0,0,0.6)' }),
 		},
 		Body: {
-			styles: styles => ({ ...styles, color: 'lightcoral' }),
+			styles: (styles) => ({ ...styles, color: 'lightcoral' }),
 		},
 		Footer: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				borderTop: '2px solid palevioletred',
 				backgroundColor: 'lavenderblush',
@@ -68,20 +68,20 @@ function Example({ brand }) {
 				onClose={() => setOpen2(false)}
 				overrides={{
 					Header: {
-						styles: styles => ({ ...styles, borderBottom: `2px solid black` }),
+						styles: (styles) => ({ ...styles, borderBottom: `2px solid black` }),
 					},
 					Title: {
-						styles: styles => ({ ...styles, color: 'black' }),
+						styles: (styles) => ({ ...styles, color: 'black' }),
 					},
 					Backdrop: {
-						styles: styles => ({ ...styles, backgroundColor: 'rgba(153,0,0,0.6)' }),
+						styles: (styles) => ({ ...styles, backgroundColor: 'rgba(153,0,0,0.6)' }),
 					},
 				}}
 			>
 				<Body
 					overrides={{
 						Body: {
-							styles: styles => ({ ...styles, color: 'black' }),
+							styles: (styles) => ({ ...styles, color: 'black' }),
 						},
 					}}
 				>
@@ -95,7 +95,7 @@ function Example({ brand }) {
 				<Footer
 					overrides={{
 						Footer: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								borderTop: '2px solid black',
 								backgroundColor: 'white',

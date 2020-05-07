@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const VisaBlueSymbol = props => (
+export const VisaBlueSymbol = (props) => (
 	<Symbol symbol="VisaBlueSymbol" {...props}>
 		<g fill="none">
 			<path fill="#1A1F71" d="M0 37h80V0H0" />

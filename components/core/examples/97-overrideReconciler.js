@@ -40,9 +40,9 @@ function Example({ brand }) {
 				{JSON.stringify(
 					overrideReconciler(
 						{ a: { styles: () => ({ a: 1, b: 1 }) } },
-						{ a: { styles: style => ({ a: 2 + '' + style.a, b: 2 + '' + style.b }) } },
-						{ a: { styles: style => ({ a: 3 + '' + style.a, b: 3 + '' + style.b }) } },
-						{ a: { styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) } }
+						{ a: { styles: (style) => ({ a: 2 + '' + style.a, b: 2 + '' + style.b }) } },
+						{ a: { styles: (style) => ({ a: 3 + '' + style.a, b: 3 + '' + style.b }) } },
+						{ a: { styles: (style) => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) } }
 					).a.styles()
 				)}
 			</Code>
@@ -57,7 +57,7 @@ function Example({ brand }) {
 			<Code>
 				{JSON.stringify(
 					overrideReconciler({ a: { styles: () => ({ a: 1, b: 1 }) } }, undefined, undefined, {
-						a: { styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
+						a: { styles: (style) => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) },
 					}).a.styles()
 				)}
 			</Code>
@@ -75,10 +75,10 @@ function Example({ brand }) {
 			<Code>
 				{JSON.stringify(
 					overrideReconciler(
-						{ Test: { styles: styles => ({ ...styles, a: 1 }) } },
-						{ Test: { styles: styles => ({ ...styles, b: 1 }) } },
-						{ Test: { styles: styles => ({ ...styles, c: 1 }) } },
-						{ Test: { styles: styles => ({ ...styles, d: 1 }) } }
+						{ Test: { styles: (styles) => ({ ...styles, a: 1 }) } },
+						{ Test: { styles: (styles) => ({ ...styles, b: 1 }) } },
+						{ Test: { styles: (styles) => ({ ...styles, c: 1 }) } },
+						{ Test: { styles: (styles) => ({ ...styles, d: 1 }) } }
 					).Test.styles()
 				)}
 			</Code>

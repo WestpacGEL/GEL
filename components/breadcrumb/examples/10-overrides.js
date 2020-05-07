@@ -12,7 +12,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/breadcrumb'] = {
 		Breadcrumb: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '1px solid red',
 			}),
@@ -47,7 +47,7 @@ function Example({ brand }) {
 			<Breadcrumb
 				overrides={{
 					Crumb: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted green',
 						}),
@@ -59,7 +59,7 @@ function Example({ brand }) {
 				<Crumb
 					overrides={{
 						Crumb: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								outline: '3px dotted blue',
 							}),
@@ -75,7 +75,7 @@ function Example({ brand }) {
 			<Breadcrumb
 				overrides={{
 					Crumb: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted green',
 						}),

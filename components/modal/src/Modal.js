@@ -93,7 +93,7 @@ export const Modal = ({
 	};
 
 	// on escape close modal
-	const keyHandler = event => {
+	const keyHandler = (event) => {
 		if (dismissible && open && event.keyCode === 27) handleClose();
 	};
 

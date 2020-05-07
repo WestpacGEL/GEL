@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const RowPrimitive = props => (
+export const RowPrimitive = (props) => (
 	<div
 		css={{
 			alignItems: 'end',
@@ -14,7 +14,7 @@ export const RowPrimitive = props => (
 		{...props}
 	/>
 );
-export const RowWrap = props => (
+export const RowWrap = (props) => (
 	<div
 		css={{
 			marginTop: '1em',
@@ -26,7 +26,7 @@ export const RowWrap = props => (
 		{...props}
 	/>
 );
-export const RowLabel = props => (
+export const RowLabel = (props) => (
 	<h4
 		css={{
 			color: '#6B778C',
@@ -50,7 +50,7 @@ export const Row = ({ children, label, ...props }) =>
 		<RowPrimitive {...props}>{children}</RowPrimitive>
 	);
 
-export const Grid = props => (
+export const Grid = (props) => (
 	<div
 		css={{
 			display: 'grid',
@@ -63,7 +63,7 @@ export const Grid = props => (
 	/>
 );
 
-export const Cell = props => (
+export const Cell = (props) => (
 	<div
 		css={{
 			alignItems: 'center',
@@ -75,7 +75,7 @@ export const Cell = props => (
 	/>
 );
 
-export const Name = props => (
+export const Name = (props) => (
 	<div
 		css={{
 			color: '#6B778C',

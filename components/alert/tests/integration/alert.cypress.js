@@ -3,9 +3,7 @@ describe('Alert', () => {
 		// First we have to visit our testing site
 		cy.visit(`http://localhost:8080/`);
 		// then we navigate to the dismissible example
-		cy.get('[data-test-nav-link]')
-			.contains('dismissible')
-			.click();
+		cy.get('[data-test-nav-link]').contains('dismissible').click();
 	});
 
 	it('Alert should be dismissable', () => {
@@ -28,9 +26,7 @@ describe('Alert', () => {
 		cy.get('[data-testing="alert-state"]').should('not.be.visible');
 
 		// action
-		cy.get('[data-testing="toggle"]')
-			.click()
-			.wait(500); // same as above, waiting for the dismissable transition
+		cy.get('[data-testing="toggle"]').click().wait(500); // same as above, waiting for the dismissable transition
 
 		// assertion
 		cy.get('[data-testing="alert-state"]').should('be.visible');

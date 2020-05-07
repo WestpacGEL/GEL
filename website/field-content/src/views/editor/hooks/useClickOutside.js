@@ -15,9 +15,9 @@ import { RefObject, useCallback, useLayoutEffect } from 'react';
  */
 export const useClickOutside = ({ handler, refs, listenWhen }) => {
 	const handleMouseDown = useCallback(
-		event => {
+		(event) => {
 			// bail on mouse down "inside" any of the provided refs
-			if (refs.some(ref => ref.current && ref.current.contains(event.target))) {
+			if (refs.some((ref) => ref.current && ref.current.contains(event.target))) {
 				return;
 			}
 

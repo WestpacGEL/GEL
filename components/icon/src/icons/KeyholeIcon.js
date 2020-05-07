@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const KeyholeIcon = props => (
+export const KeyholeIcon = (props) => (
 	<Icon icon="KeyholeIcon" {...props}>
 		<path
 			fill="currentColor"

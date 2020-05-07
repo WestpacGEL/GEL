@@ -46,7 +46,7 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 			<Well
 				overrides={{
 					Well: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							...mq({
 								position: 'relative',

@@ -7,7 +7,9 @@ const tinting = (color, amount) =>
 
 const makeTints = (color, name) => {
 	const tints = {};
-	[5, 10, 20, 30, 40, 50, 60, 70, 80, 90].map(tint => (tints[name + tint] = tinting(color, tint)));
+	[5, 10, 20, 30, 40, 50, 60, 70, 80, 90].map(
+		(tint) => (tints[name + tint] = tinting(color, tint))
+	);
 	return tints;
 };
 

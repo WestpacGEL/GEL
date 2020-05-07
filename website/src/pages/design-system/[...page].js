@@ -24,7 +24,7 @@ const ComponentWrapper = () => {
 	}
 	if (!data) return null;
 	let currentComponent =
-		data.allPages.find(component => {
+		data.allPages.find((component) => {
 			return component.url === `/${path}`;
 		}) || '';
 
@@ -83,14 +83,14 @@ const Tabs = ({ component, tabName }) => {
 
 	const tabOverrides = {
 		Tabcordion: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				flexGrow: 1,
 				backgroundColor: COLORS.background,
 			}),
 		},
 		TabRow: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				alignItems: 'flex-end',
 				backgroundColor: '#fff',
@@ -131,7 +131,7 @@ const Tabs = ({ component, tabName }) => {
 
 	const overrides = {
 		Panel: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				padding: 0,
 				margin: '0 auto',

@@ -27,11 +27,11 @@ const sizeMapping = {
 	},
 };
 
-const responsiveMap = size => ({
-	width: size.map(s => s && sizeMapping[s].width),
-	height: size.map(s => s && sizeMapping[s].height),
-	borderRadius: size.map(s => s && sizeMapping[s].borderRadius),
-	fontSize: size.map(s => s && sizeMapping[s].fontSize),
+const responsiveMap = (size) => ({
+	width: size.map((s) => s && sizeMapping[s].width),
+	height: size.map((s) => s && sizeMapping[s].height),
+	borderRadius: size.map((s) => s && sizeMapping[s].borderRadius),
+	fontSize: size.map((s) => s && sizeMapping[s].fontSize),
 });
 
-export const sizeMap = size => responsiveMap(asArray(size));
+export const sizeMap = (size) => responsiveMap(asArray(size));

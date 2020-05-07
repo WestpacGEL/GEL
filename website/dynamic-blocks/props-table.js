@@ -203,7 +203,7 @@ const SeparatorComponent = () => {
 					width: '100%',
 					paddingRight: '18px !important',
 				}}
-				onClick={e => {
+				onClick={(e) => {
 					e.preventDefault();
 					const el = document.querySelector('main') || window;
 					el.scroll({
@@ -232,8 +232,10 @@ const Component = ({ item, addTableContent }) => {
 	const packageName = item.packageName.replace(/_/g, '-'); // removing underscores from graphql queries
 
 	const tableData = Object.keys(PropTypes.components[packageName])
-		.filter(key => typeof PropTypes.components[packageName][key] === 'object' && key !== 'blender')
-		.map(key => {
+		.filter(
+			(key) => typeof PropTypes.components[packageName][key] === 'object' && key !== 'blender'
+		)
+		.map((key) => {
 			const { overrides, ...normalProps } = PropTypes.components[packageName][key].propTypes;
 			return {
 				name: key,
@@ -304,7 +306,7 @@ export const PropsTable = {
 			...(value || {}),
 		};
 
-		const update = changes =>
+		const update = (changes) =>
 			onChange({
 				...currentValue,
 				...changes,

@@ -15,7 +15,7 @@ export default ({ context, showCode, showDemo }) => {
 					name="example-default"
 					overrides={{
 						FormCheck: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								margin: '1rem 0 0',
 							}),

@@ -16,7 +16,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/input-group'] = {
 		InputGroup: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '1px solid red',
 			}),
@@ -25,19 +25,19 @@ function Example({ brand }) {
 			component: Text,
 		},
 		TextInput: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '4px dotted green',
 			}),
 		},
 		Select: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '4px dotted purple',
 			}),
 		},
 		Button: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '4px dotted blue',
 			}),
@@ -70,7 +70,7 @@ function Example({ brand }) {
 			<InputGroup name="example-overrides-3">
 				<Left
 					type="select"
-					onChange={event => console.log(`Select ${event.target.value}`)}
+					onChange={(event) => console.log(`Select ${event.target.value}`)}
 					data={[
 						{ text: 'Select', value: '' },
 						{ text: '1', value: '1' },
@@ -87,7 +87,7 @@ function Example({ brand }) {
 				data={{
 					left: {
 						type: 'select',
-						onChange: event => console.log(`Select ${event.target.value}`),
+						onChange: (event) => console.log(`Select ${event.target.value}`),
 						data: [
 							{ text: 'AUD $', value: 'AUD' },
 							{ text: 'USD $', value: 'USD' },
@@ -105,7 +105,7 @@ function Example({ brand }) {
 				name="example-overrides-component-1"
 				overrides={{
 					Button: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '4px solid blue',
 						}),
@@ -121,7 +121,7 @@ function Example({ brand }) {
 				name="example-overrides-component-2"
 				overrides={{
 					Select: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '4px solid purple',
 						}),
@@ -130,7 +130,7 @@ function Example({ brand }) {
 				data={{
 					left: {
 						type: 'select',
-						onChange: event => console.log(`Select ${event.target.value}`),
+						onChange: (event) => console.log(`Select ${event.target.value}`),
 						data: [
 							{ text: 'AUD $', value: 'AUD' },
 							{ text: 'USD $', value: 'USD' },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const YammerIcon = props => (
+export const YammerIcon = (props) => (
 	<Icon icon="YammerIcon" {...props}>
 		<path
 			fill="currentColor"

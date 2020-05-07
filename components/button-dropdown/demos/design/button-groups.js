@@ -6,7 +6,7 @@ import { ButtonGroup, Item } from '@westpac/button-group';
 import { Hr } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-const Wrapper = props => (
+const Wrapper = (props) => (
 	<div
 		css={{
 			marginTop: '1rem',

@@ -45,7 +45,7 @@ export const ErrorMessage = ({ message, icon, tag: Tag, ...props }) => {
 			{...props}
 		>
 			{isMessages ? (
-				message.map(msg => (
+				message.map((msg) => (
 					<li css={{ marginBottom: '0.375rem' }} key={shortid.generate()}>
 						<ErrorMessageContent icon={icon}>{msg}</ErrorMessageContent>
 					</li>

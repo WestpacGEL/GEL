@@ -6,9 +6,9 @@ import { Button } from '@westpac/button';
 import { Body } from '@westpac/body';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-const Link = props => <a href="#" css={{ marginRight: '1rem' }} {...props} />;
+const Link = (props) => <a href="#" css={{ marginRight: '1rem' }} {...props} />;
 
-const Title = props => <p css={{ fontStyle: 'italic' }} {...props} />;
+const Title = (props) => <p css={{ fontStyle: 'italic' }} {...props} />;
 
 export default ({ context, showCode, showDemo }) => {
 	return (

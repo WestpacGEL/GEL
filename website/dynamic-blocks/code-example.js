@@ -44,7 +44,7 @@ packageDirectories.forEach(pkg => {
 module.exports = examples;
 `;
 
-const options = data.map(o => ({ label: o, value: o }));
+const options = data.map((o) => ({ label: o, value: o }));
 const codeExamples = importCodeExamples(data);
 let valueCache = new Map();
 let promiseCache = new Map();
@@ -52,7 +52,7 @@ let promiseCache = new Map();
 function ShowCodeBlock({ showCode, showDemo, loadCodeBlock, context }) {
 	let promise = promiseCache.get(loadCodeBlock);
 	if (!promise) {
-		promise = loadCodeBlock().then(mod => {
+		promise = loadCodeBlock().then((mod) => {
 			valueCache.set(loadCodeBlock, mod.default);
 		});
 
@@ -75,7 +75,7 @@ export const CodeExample = {
 			...(value || {}),
 		};
 
-		const update = changes =>
+		const update = (changes) =>
 			onChange({
 				...currentValue,
 				...changes,
@@ -87,7 +87,7 @@ export const CodeExample = {
 					isSearchable={true}
 					placeholder="Select a code example"
 					options={options}
-					value={options.find(o => o.value === currentValue.codeExample)}
+					value={options.find((o) => o.value === currentValue.codeExample)}
 					onChange={({ value }) => {
 						update({ codeExample: value });
 					}}

@@ -54,7 +54,7 @@ export const ColorSwatch = {
 				isSearchable={true}
 				options={swatches}
 				value={value.colors}
-				onChange={values => {
+				onChange={(values) => {
 					onChange({ colors: values });
 				}}
 			/>
@@ -68,11 +68,11 @@ export const ColorSwatch = {
 			<div>
 				<Container css={blocksContainerStyle}>
 					<Grid columns={12} css={mq({ gridGap: [SPACING(3), SPACING(3), SPACING(4)] })}>
-						{colors.map(color => {
+						{colors.map((color) => {
 							if (color.value === '--secondary-colors--') {
 								return (
 									<Fragment key={color.value}>
-										{Object.entries(secondaryColors[BRAND]).map(secondaryColor => (
+										{Object.entries(secondaryColors[BRAND]).map((secondaryColor) => (
 											<Cell key={secondaryColor[1]} width={[10, 10, 4, 3]} left={[2, 2, 'auto']}>
 												<Swatch color={secondaryColor[1]} name={secondaryColor[0]} />
 											</Cell>

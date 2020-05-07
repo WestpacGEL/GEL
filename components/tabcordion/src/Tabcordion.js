@@ -68,7 +68,7 @@ export const Tabcordion = ({
 	const mode =
 		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
 
-	const setActive = idx => () => setActiveTabIndex(idx);
+	const setActive = (idx) => () => setActiveTabIndex(idx);
 
 	// create the prefix for internal IDs
 	useEffect(() => {

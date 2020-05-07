@@ -60,7 +60,7 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const allChildren = Children.map(children, child => {
+	const allChildren = Children.map(children, (child) => {
 		if (
 			type === 'link' &&
 			child &&

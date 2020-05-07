@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const MastercardAcceptedSymbol = props => (
+export const MastercardAcceptedSymbol = (props) => (
 	<Symbol symbol="MastercardAcceptedSymbol" {...props}>
 		<g fill="none">
 			<path fill="#000" d="M0 50h80V0H0" />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const CalendarIcon = props => (
+export const CalendarIcon = (props) => (
 	<Icon icon="CalendarIcon" {...props}>
 		<path
 			fill="currentColor"

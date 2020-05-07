@@ -13,9 +13,9 @@ const users = [
 	},
 ];
 
-exports.up = async knex => {
+exports.up = async (knex) => {
 	console.log('Applying migration', migrationName);
-	return knex.transaction(async function(tx) {
+	return knex.transaction(async function (tx) {
 		for (let u of users) {
 			await tx.raw(
 				`insert into public."User" (email, password) values ('${u.email}', '${u.hash}');`
@@ -24,9 +24,9 @@ exports.up = async knex => {
 	});
 };
 
-exports.down = async knex => {
+exports.down = async (knex) => {
 	console.log('Reverting migration', migrationName);
-	return knex.transaction(async function(tx) {
+	return knex.transaction(async function (tx) {
 		for (let u of users) {
 			await tx.raw(
 				`delete from public."User" where email = '${u.email}' and password = '${u.hash}';`

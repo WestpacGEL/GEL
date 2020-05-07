@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const FutureClockIcon = props => (
+export const FutureClockIcon = (props) => (
 	<Icon icon="FutureClockIcon" {...props}>
 		<path
 			fill="currentColor"

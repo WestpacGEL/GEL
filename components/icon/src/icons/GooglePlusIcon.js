@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const GooglePlusIcon = props => (
+export const GooglePlusIcon = (props) => (
 	<Icon icon="GooglePlusIcon" {...props}>
 		<path
 			fill="currentColor"

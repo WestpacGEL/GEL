@@ -8,7 +8,7 @@ export function useStateWithEqualityCheck(initialValue) {
 	let [value, _setValue] = useState(initialValue);
 
 	let setValue = useCallback(
-		newValue => {
+		(newValue) => {
 			if (newValue !== value) {
 				_setValue(newValue);
 			}

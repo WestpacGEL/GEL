@@ -1,23 +1,25 @@
 import React from 'react';
 
-export const BlockQuoteIcon = props => <Svg path={svgPathMap['blockquote']} {...props} />;
-export const BoldIcon = props => <Svg path={svgPathMap['bold']} {...props} />;
-export const CodeIcon = props => <Svg path={svgPathMap['code']} {...props} />;
-export const ClearFormattingIcon = props => <Svg path={svgPathMap['clearFormatting']} {...props} />;
-export const HeadingIcon = props => <Svg path={svgPathMap['heading']} {...props} />;
-export const ItalicIcon = props => <Svg path={svgPathMap['italic']} {...props} />;
-export const LinkIcon = props => <Svg path={svgPathMap['link']} {...props} />;
-export const ListOrderedIcon = props => <Svg path={svgPathMap['listOrdered']} {...props} />;
-export const ListUnorderedIcon = props => <Svg path={svgPathMap['listUnordered']} {...props} />;
-export const StrikethroughIcon = props => <Svg path={svgPathMap['strikeThrough']} {...props} />;
-export const UnderlineIcon = props => <Svg path={svgPathMap['underline']} {...props} />;
+export const BlockQuoteIcon = (props) => <Svg path={svgPathMap['blockquote']} {...props} />;
+export const BoldIcon = (props) => <Svg path={svgPathMap['bold']} {...props} />;
+export const CodeIcon = (props) => <Svg path={svgPathMap['code']} {...props} />;
+export const ClearFormattingIcon = (props) => (
+	<Svg path={svgPathMap['clearFormatting']} {...props} />
+);
+export const HeadingIcon = (props) => <Svg path={svgPathMap['heading']} {...props} />;
+export const ItalicIcon = (props) => <Svg path={svgPathMap['italic']} {...props} />;
+export const LinkIcon = (props) => <Svg path={svgPathMap['link']} {...props} />;
+export const ListOrderedIcon = (props) => <Svg path={svgPathMap['listOrdered']} {...props} />;
+export const ListUnorderedIcon = (props) => <Svg path={svgPathMap['listUnordered']} {...props} />;
+export const StrikethroughIcon = (props) => <Svg path={svgPathMap['strikeThrough']} {...props} />;
+export const UnderlineIcon = (props) => <Svg path={svgPathMap['underline']} {...props} />;
 
-export const ArrowDownIcon = props => <Svg path={svgPathMap['arrowDown']} {...props} />;
-export const ExternalIcon = props => <Svg path={svgPathMap['external']} {...props} />;
-export const CrossIcon = props => <Svg path={svgPathMap['cross']} {...props} />;
-export const MoreIcon = props => <Svg path={svgPathMap['more']} {...props} />;
-export const PlusIcon = props => <Svg path={svgPathMap['plus']} {...props} />;
-export const TickIcon = props => <Svg path={svgPathMap['tick']} {...props} />;
+export const ArrowDownIcon = (props) => <Svg path={svgPathMap['arrowDown']} {...props} />;
+export const ExternalIcon = (props) => <Svg path={svgPathMap['external']} {...props} />;
+export const CrossIcon = (props) => <Svg path={svgPathMap['cross']} {...props} />;
+export const MoreIcon = (props) => <Svg path={svgPathMap['more']} {...props} />;
+export const PlusIcon = (props) => <Svg path={svgPathMap['plus']} {...props} />;
+export const TickIcon = (props) => <Svg path={svgPathMap['tick']} {...props} />;
 
 const svgPathMap = {
 	// Core

@@ -22,7 +22,7 @@ export const useKeyPress = ({ targetKey, downHandler, upHandler, listenWhen }) =
 
 	// handle key down
 	const onDown = useCallback(
-		event => {
+		(event) => {
 			if (event.key === targetKey) {
 				setKeyPressed(true);
 
@@ -36,7 +36,7 @@ export const useKeyPress = ({ targetKey, downHandler, upHandler, listenWhen }) =
 
 	// handle key up
 	const onUp = useCallback(
-		event => {
+		(event) => {
 			if (event.key === targetKey) {
 				setKeyPressed(false);
 

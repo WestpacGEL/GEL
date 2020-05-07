@@ -50,7 +50,7 @@ packageDirectories.forEach(pkg => {
 module.exports = examples;
 `;
 
-const options = data.map(o => ({ label: o, value: o }));
+const options = data.map((o) => ({ label: o, value: o }));
 const codeExamples = importCodeExamples(data);
 let valueCache = new Map();
 let promiseCache = new Map();
@@ -79,7 +79,7 @@ const sizeOptions = [
 function ShowCodeBlock({ loadCodeBlock, context }) {
 	let promise = promiseCache.get(loadCodeBlock);
 	if (!promise) {
-		promise = loadCodeBlock().then(mod => {
+		promise = loadCodeBlock().then((mod) => {
 			valueCache.set(loadCodeBlock, mod.default);
 		});
 
@@ -113,7 +113,7 @@ export const VisionFilters = {
 			...(value || {}),
 		};
 
-		const update = changes =>
+		const update = (changes) =>
 			onChange({
 				...currentValue,
 				...changes,
@@ -139,7 +139,7 @@ export const VisionFilters = {
 								<Input
 									id="heading-text"
 									value={currentValue.heading}
-									onChange={e => update({ heading: e.target.value })}
+									onChange={(e) => update({ heading: e.target.value })}
 								/>
 							</FieldInput>
 						</FieldContainer>
@@ -152,7 +152,7 @@ export const VisionFilters = {
 								id="heading-level"
 								placeholder="Select a heading level"
 								options={levelOptions}
-								value={levelOptions.find(o => o.value === currentValue.level)}
+								value={levelOptions.find((o) => o.value === currentValue.level)}
 								onChange={({ value }) => update({ level: value })}
 							/>
 						</FieldContainer>
@@ -162,7 +162,7 @@ export const VisionFilters = {
 								id="heading-size"
 								placeholder="Select a heading size"
 								options={sizeOptions}
-								value={sizeOptions.find(o => o.value === currentValue.size)}
+								value={sizeOptions.find((o) => o.value === currentValue.size)}
 								onChange={({ value }) => update({ size: value })}
 							/>
 						</FieldContainer>
@@ -182,7 +182,7 @@ export const VisionFilters = {
 								id={'heading-subtext'}
 								isMultiline
 								value={currentValue.subText}
-								onChange={e => update({ subText: e.target.value })}
+								onChange={(e) => update({ subText: e.target.value })}
 							/>
 						</FieldContainer>
 					</Fragment>
@@ -191,7 +191,7 @@ export const VisionFilters = {
 					isSearchable={true}
 					placeholder="Select a code example"
 					options={options}
-					value={options.find(o => o.value === currentValue.codeExample)}
+					value={options.find((o) => o.value === currentValue.codeExample)}
 					onChange={({ value }) => {
 						update({ codeExample: value });
 					}}
@@ -218,7 +218,7 @@ export const VisionFilters = {
 		const href = '/accessibility';
 		const { SPACING } = useBrand();
 
-		const handleClick = e => {
+		const handleClick = (e) => {
 			e.preventDefault();
 			const brandName = router.query.b || '';
 			router.push(`${href}?b=${brandName}`);
@@ -236,7 +236,7 @@ export const VisionFilters = {
 							{...(addTableContent && { 'data-toc': true })}
 							overrides={{
 								Heading: {
-									styles: styles => ({
+									styles: (styles) => ({
 										...styles,
 										scrollMarginTop: '75px',
 									}),

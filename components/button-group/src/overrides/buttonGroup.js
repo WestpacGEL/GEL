@@ -12,7 +12,7 @@ const buttonGroupStyles = (_, { block }) => {
 	return mq({
 		label: getLabel('buttonGroup', { block }),
 		alignItems: 'center',
-		display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
+		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		verticalAlign: 'middle',
 	})[0];
 };
