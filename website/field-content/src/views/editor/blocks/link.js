@@ -48,11 +48,11 @@ export function Node({ node, attributes, children, isSelected, editor }) {
 								<div css={wrapperStyles}>
 									<Input
 										value={inputValue}
-										onClick={e => {
+										onClick={(e) => {
 											// we want to stop stopPropagation here so that focussing works
 											e.stopPropagation();
 										}}
-										onChange={event => {
+										onChange={(event) => {
 											setInputValue(event.target.value);
 											editor.setNodeByKey(node.key, {
 												data: data.set('href', event.target.value),
@@ -97,7 +97,7 @@ export function ToolbarElement({ editor, editorState }) {
 	let [linkRange, setLinkRange] = useState(null);
 	let [inputValue, setInputValue] = useState('');
 	let inputRef = useRef();
-	let hasLinks = editorState.inlines.some(inline => inline.type === type);
+	let hasLinks = editorState.inlines.some((inline) => inline.type === type);
 
 	// focus the input when the dialog opens
 	useEffect(() => {
@@ -156,7 +156,7 @@ export function ToolbarElement({ editor, editorState }) {
 					return (
 						<Dialog portal style={style} ref={ref}>
 							<form
-								onSubmit={e => {
+								onSubmit={(e) => {
 									e.stopPropagation();
 									e.preventDefault();
 
@@ -174,7 +174,7 @@ export function ToolbarElement({ editor, editorState }) {
 								<Input
 									ref={inputRef}
 									value={inputValue}
-									onChange={e => {
+									onChange={(e) => {
 										setInputValue(e.target.value);
 									}}
 								/>
@@ -209,7 +209,7 @@ const Input = forwardRef((props, ref) => (
 	<input
 		ref={ref}
 		placeholder="http://some.url"
-		onClick={e => {
+		onClick={(e) => {
 			e.stopPropagation(); // stop propagation here so that focus works
 		}}
 		css={{

@@ -9,8 +9,8 @@ const toggleStyles = (_, { size, checked }) => {
 	const mq = useMediaQuery();
 	const { COLORS, PACKS } = useBrand();
 	const sizing = sizeMap(size);
-	const sizeArr = sizing.height.map(h => h || null);
-	const borderWidthArr = sizeArr.map(w => w && `${parseFloat(w) / 2}rem`);
+	const sizeArr = sizing.height.map((h) => h || null);
+	const borderWidthArr = sizeArr.map((w) => w && `${parseFloat(w) / 2}rem`);
 
 	return mq({
 		display: 'block',

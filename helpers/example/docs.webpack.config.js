@@ -16,8 +16,8 @@ const findComponents = () => {
 	let components = [];
 
 	fs.readdirSync(path.normalize(`${__dirname}/../../components/`))
-		.filter(file => !file.startsWith('.'))
-		.map(component => {
+		.filter((file) => !file.startsWith('.'))
+		.map((component) => {
 			const slug = slugFromFilename(component);
 
 			components.push({
@@ -83,8 +83,8 @@ module.exports = () => ({
 		new HtmlWebpackRootPlugin(),
 		new CopyPlugin(
 			components
-				.filter(component => component.landing)
-				.map(component => ({
+				.filter((component) => component.landing)
+				.map((component) => ({
 					from: '*',
 					to: `${component.slug}/assets/`,
 					context: path.normalize(

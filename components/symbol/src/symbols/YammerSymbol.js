@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const YammerSymbol = props => (
+export const YammerSymbol = (props) => (
 	<Symbol symbol="YammerSymbol" {...props}>
 		<g fill="none" fillRule="evenodd">
 			<rect fill="#0072C6" width="32" height="32" rx="2" />

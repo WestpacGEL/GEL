@@ -17,12 +17,12 @@ let PopperRender = forwardRef(
 				}}
 				style={style}
 			>
-				{['left', 'center', 'right'].map(align => {
+				{['left', 'center', 'right'].map((align) => {
 					return (
 						<button
 							type="button"
 							key={align}
-							onMouseDown={event => {
+							onMouseDown={(event) => {
 								// so that the image block doesn't get deselected
 								event.preventDefault();
 							}}

@@ -53,7 +53,7 @@ async function processSerialised(document, blocks, graphQlArgs) {
 					throw new Error(`Received mutation for ${node.type}, but no block types can handle it.`);
 				}
 
-				const _joinIds = node.data._mutationPaths.map(mutationPath => {
+				const _joinIds = node.data._mutationPaths.map((mutationPath) => {
 					const joinId = getByPath(resolvedMutations, mutationPath);
 					if (!joinId) {
 						throw new Error(`Slate document refers to unknown mutation '${mutationPath}'.`);
@@ -72,7 +72,7 @@ async function processSerialised(document, blocks, graphQlArgs) {
 			defaultVisitor(node, visitNode) {
 				if (node.nodes) {
 					// Recurse into the child nodes array
-					node.nodes = node.nodes.map(childNode => visitNode(childNode));
+					node.nodes = node.nodes.map((childNode) => visitNode(childNode));
 				}
 
 				return node;
@@ -96,7 +96,7 @@ export class Content extends Relationship.implementation {
 		const type = `${GQL_TYPE_PREFIX}_${itemQueryName}_${path}`;
 
 		// Normalise blocks to always be a tuple with a config object
-		let blocks = (Array.isArray(inputBlocks) ? inputBlocks : []).map(block =>
+		let blocks = (Array.isArray(inputBlocks) ? inputBlocks : []).map((block) =>
 			Array.isArray(block) ? block : [block, {}]
 		);
 
@@ -142,7 +142,7 @@ export class Content extends Relationship.implementation {
 
 					// Gather up all the fields which blocks want to specify
 					// (note: They may be Relationships to Aux Lists themselves!)
-					...objMerge(blockInstances.map(block => block.getFieldDefinitions())),
+					...objMerge(blockInstances.map((block) => block.getFieldDefinitions())),
 				},
 				hooks: {
 					async resolveInput({ resolvedData, ...args }) {
@@ -195,7 +195,7 @@ export class Content extends Relationship.implementation {
 			blockTypes: this.blocks.map(({ type }) => type),
 
 			blockOptions: this.blocks
-				.map(block => [block, block.getViewOptions()])
+				.map((block) => [block, block.getViewOptions()])
 				// Don't bother sending any configs that are empty
 				.filter(([, blockConfig]) => blockConfig && Object.keys(blockConfig).length)
 				// Key the block options by type to be serialised and passed to the
@@ -215,7 +215,7 @@ export class Content extends Relationship.implementation {
 	extendAdminViews(views) {
 		return {
 			...views,
-			blocks: unique(flatMap(this.blocks, block => block.getAdminViews())),
+			blocks: unique(flatMap(this.blocks, (block) => block.getAdminViews())),
 		};
 	}
 

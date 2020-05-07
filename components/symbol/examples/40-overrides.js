@@ -26,7 +26,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/symbol'] = {
 		Symbol: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '1px solid red',
 			}),
@@ -61,7 +61,7 @@ function Example({ brand }) {
 			<MastercardAcceptedSymbol
 				overrides={{
 					Svg: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted green',
 						}),

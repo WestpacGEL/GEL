@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Cell, Grid } from '../src';
 
-export const Box = props => {
+export const Box = (props) => {
 	const { COLORS } = useBrand();
 
 	return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const AndroidIcon = props => (
+export const AndroidIcon = (props) => (
 	<Icon icon="AndroidIcon" {...props}>
 		<path
 			fill="currentColor"

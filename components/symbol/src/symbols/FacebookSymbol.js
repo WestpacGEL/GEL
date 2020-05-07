@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const FacebookSymbol = props => (
+export const FacebookSymbol = (props) => (
 	<Symbol symbol="FacebookSymbol" {...props}>
 		<g fillRule="nonzero" fill="none">
 			<rect fill="#3C619D" width="32" height="32" rx="2" />

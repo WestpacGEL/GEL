@@ -49,7 +49,7 @@ function Example({ brand }) {
 			<h2>Size</h2>
 			{sizes.map((s, i) => (
 				<Fragment key={i}>
-					<h3>[{s.map(v => String(v)).join(', ')}]</h3>
+					<h3>[{s.map((v) => String(v)).join(', ')}]</h3>
 					<Row style={{ gridGap: (i + 1) * 4, marginBottom: '2em' }}>
 						{icons.map((I, x) => (
 							<I key={x} size={s} />

@@ -26,7 +26,7 @@ function getSchema(blocks) {
 		},
 		blocks: {},
 	};
-	Object.keys(blocks).forEach(type => {
+	Object.keys(blocks).forEach((type) => {
 		if (typeof blocks[type].getSchema === 'function') {
 			schema.blocks[type] = blocks[type].getSchema({ blocks });
 		}
@@ -41,7 +41,7 @@ function Stories({ value: editorState, onChange, blocks, id, item, className }) 
 	let { focusBlock } = editorState;
 
 	let plugins = useMemo(() => {
-		const renderNode = props => {
+		const renderNode = (props) => {
 			let block = blocks[props.node.type];
 			if (block) {
 				return <block.Node {...props} blocks={blocks} item={item} />;

@@ -24,6 +24,6 @@
 	"main": "dist/wbg.cjs.js",
 	"module": "dist/wbg.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.8.4"
+		"@babel/runtime": "^7.9.6"
 	}
 }

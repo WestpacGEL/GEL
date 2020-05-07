@@ -11,19 +11,19 @@ function Example({ brand }) {
 
 	overridesWithTokens['@westpac/pagination'] = {
 		Pagination: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				border: '3px solid blue',
 			}),
 		},
 		PageList: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				border: '3px solid red',
 			}),
 		},
 		Page: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '3px solid red',
 			}),
@@ -63,7 +63,7 @@ function Example({ brand }) {
 			<Pagination
 				overrides={{
 					Link: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							background: 'rgba(0,255,0,0.3)',
 						}),
@@ -78,7 +78,7 @@ function Example({ brand }) {
 			<Pagination
 				overrides={{
 					Link: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							background: 'rgba(0,255,0,0.3)',
 						}),

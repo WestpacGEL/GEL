@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const SecurityIcon = props => (
+export const SecurityIcon = (props) => (
 	<Icon icon="SecurityIcon" {...props}>
 		<path
 			fill="currentColor"

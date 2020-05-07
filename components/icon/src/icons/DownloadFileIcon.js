@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const DownloadFileIcon = props => (
+export const DownloadFileIcon = (props) => (
 	<Icon icon="DownloadFileIcon" {...props}>
 		<path
 			fill="currentColor"

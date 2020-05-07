@@ -39,10 +39,10 @@ function TokensPage() {
 	const [isLoading, setLoading] = useState(false);
 
 	const supportedPkgs = Object.keys(GEL.components).filter(
-		name => GEL.components[name].blender && !GEL.components[name].blender.isCore
+		(name) => GEL.components[name].blender && !GEL.components[name].blender.isCore
 	);
 	const checkState = {};
-	supportedPkgs.map(name => (checkState[name] = false));
+	supportedPkgs.map((name) => (checkState[name] = false));
 	const [selected, setSelected] = useState([]);
 
 	function checkAll() {
@@ -86,7 +86,7 @@ function TokensPage() {
 									type="checkbox"
 									name="packages[]"
 									value={selected}
-									onChange={value => setSelected(value)}
+									onChange={(value) => setSelected(value)}
 								>
 									{supportedPkgs.map((name, i) => {
 										const niceName = name.charAt(0).toUpperCase() + name.slice(1);

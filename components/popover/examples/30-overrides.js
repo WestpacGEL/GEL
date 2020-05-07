@@ -29,7 +29,7 @@ function Example({ brand }) {
 			}),
 		},
 		Heading: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				backgroundColor: 'palevioletred',
 			}),
@@ -53,7 +53,7 @@ function Example({ brand }) {
 				heading="Example heading"
 				content={content}
 				overrides={{
-					Panel: { styles: styles => ({ ...styles, border: '2px dotted red' }) },
+					Panel: { styles: (styles) => ({ ...styles, border: '2px dotted red' }) },
 				}}
 			>
 				Click Me

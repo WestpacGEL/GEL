@@ -9,7 +9,7 @@ import { LogList } from './log-list';
 export const Changelog = ({ data }) => {
 	const [range, updateRange] = useState('');
 
-	const handleChange = event => {
+	const handleChange = (event) => {
 		updateRange(event.target.value);
 	};
 

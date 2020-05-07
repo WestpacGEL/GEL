@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/well'] = {
 		Well: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '1px solid red',
 			}),
@@ -34,7 +34,7 @@ function Example({ brand }) {
 			<Well
 				overrides={{
 					Well: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '1px solid blue',
 						}),

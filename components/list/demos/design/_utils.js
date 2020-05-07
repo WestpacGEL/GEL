@@ -2,4 +2,4 @@
 
 import { jsx } from '@westpac/core';
 
-export const Title = props => <p css={{ fontStyle: 'italic' }} {...props} />;
+export const Title = (props) => <p css={{ fontStyle: 'italic' }} {...props} />;

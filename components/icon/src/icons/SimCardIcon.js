@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const SimCardIcon = props => (
+export const SimCardIcon = (props) => (
 	<Icon icon="SimCardIcon" {...props}>
 		<path
 			fill="currentColor"

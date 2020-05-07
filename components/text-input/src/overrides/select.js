@@ -18,7 +18,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
 	const caretGap = '0.5rem';
 	const caretWidth = '14px';
-	const sub = `${(p => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${(b => `${b} + ${b}`)(
+	const sub = `${((p) => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${((b) => `${b} + ${b}`)(
 		`${borderWidth}px`
 	)}`;
 	const extras = `${sub} + ${caretWidth} + ${caretGap}`; // Add width for caret if a select
@@ -40,7 +40,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		verticalAlign: inline && 'middle',
 		padding: sizeMap[size].padding.join(' '),
 		fontSize: sizeMap[size].fontSize,
-		height: `calc(${lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
+		height: `calc(${lineHeight}em + ${((p) => `${p[0]} + ${p[2] || p[0]}`)(
 			sizeMap[size].padding
 		)} + ${2 * borderWidth}px)`,
 		maxWidth: width && `calc(${extras} + ${caretWidth} + ${caretGap} + ${round(width * 1.81)}ex)`,

@@ -17,7 +17,7 @@ const SeparatorComponent = () => {
 					width: '100%',
 					paddingRight: '18px !important',
 				}}
-				onClick={e => {
+				onClick={(e) => {
 					e.preventDefault();
 					const el = document.querySelector('main') || window;
 					el.scroll({

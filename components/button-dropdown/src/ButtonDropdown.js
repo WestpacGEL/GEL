@@ -102,7 +102,7 @@ export const ButtonDropdown = ({
 	});
 
 	// on escape close
-	const keyHandler = event => {
+	const keyHandler = (event) => {
 		if (open && event.keyCode === 27) handleOpen();
 	};
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const GenericFileIcon = props => (
+export const GenericFileIcon = (props) => (
 	<Icon icon="GenericFileIcon" {...props}>
 		<path
 			fill="currentColor"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const EditIcon = props => (
+export const EditIcon = (props) => (
 	<Icon icon="EditIcon" {...props}>
 		<path
 			fill="currentColor"

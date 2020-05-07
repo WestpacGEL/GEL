@@ -30,7 +30,7 @@ const BrandSwitcherProvider = ({ children, brand: initialBrand }) => {
 			value={{
 				brands: BRANDS,
 				brand,
-				setBrand: brand => {
+				setBrand: (brand) => {
 					document.cookie = `gel_selected_brand=${brand}`;
 					router.push({
 						pathname: window.location.pathname,

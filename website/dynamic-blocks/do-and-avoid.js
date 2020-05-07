@@ -64,7 +64,7 @@ export const DoAndAvoid = {
 							style={{ display: doImageUploadState ? 'none' : undefined }}
 							type="file"
 							id="do-image"
-							onChange={async e => {
+							onChange={async (e) => {
 								setDoImageUploadState('uploading');
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
@@ -83,7 +83,7 @@ export const DoAndAvoid = {
 							type="text"
 							id="do-text"
 							value={doText}
-							onChange={async e => {
+							onChange={async (e) => {
 								setDoText(e.target.value);
 							}}
 						/>
@@ -103,7 +103,7 @@ export const DoAndAvoid = {
 							style={{ display: dontImageUploadState ? 'none' : undefined }}
 							type="file"
 							id="avoid-image"
-							onChange={async e => {
+							onChange={async (e) => {
 								setDontImageUploadState('uploading');
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
@@ -122,7 +122,7 @@ export const DoAndAvoid = {
 							type="text"
 							id="avoid-text"
 							value={dontText}
-							onChange={e => {
+							onChange={(e) => {
 								setDontText(e.target.value);
 							}}
 						/>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const RemoveCircleIcon = props => (
+export const RemoveCircleIcon = (props) => (
 	<Icon icon="RemoveCircleIcon" {...props}>
 		<path
 			fill="currentColor"

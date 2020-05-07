@@ -8,7 +8,7 @@ import { jsx, useMediaQuery } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormSectionImg = props => {
+export const FormSectionImg = (props) => {
 	const mq = useMediaQuery();
 
 	return (

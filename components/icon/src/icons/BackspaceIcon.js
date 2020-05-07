@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const BackspaceIcon = props => (
+export const BackspaceIcon = (props) => (
 	<Icon icon="BackspaceIcon" {...props}>
 		<path
 			fill="currentColor"

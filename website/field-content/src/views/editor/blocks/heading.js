@@ -18,7 +18,7 @@ export function Node({ attributes, children, node }) {
 	);
 }
 
-export let getPlugins = () => sizes.map(size => headingPlugin(size));
+export let getPlugins = () => sizes.map((size) => headingPlugin(size));
 
 // Utils
 // ------------------------------
@@ -35,7 +35,7 @@ export function toggleHeadingBlock({ editor, size }) {
 
 // a custom helper, that deviates from the './utils' variant with the `size` argument
 function hasBlock(editor, type, size) {
-	return editor.value.blocks.some(node => {
+	return editor.value.blocks.some((node) => {
 		return node.type === type && node.data.get('size') === size;
 	});
 }
@@ -45,7 +45,7 @@ function headingPlugin(size) {
 		onKeyDown(event, editor, next) {
 			// make it so when you press enter after typing a heading,
 			// the block type will change to a paragraph
-			if (event.keyCode === 13 && editor.value.blocks.every(block => block.type === type)) {
+			if (event.keyCode === 13 && editor.value.blocks.every((block) => block.type === type)) {
 				editor.splitBlock().setBlocks(defaultType);
 				return;
 			}

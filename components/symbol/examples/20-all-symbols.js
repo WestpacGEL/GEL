@@ -6,7 +6,7 @@ import { Cell, Grid, Name } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const symbols = Object.keys(components).filter(s => s.includes('Symbol'));
+const symbols = Object.keys(components).filter((s) => s.includes('Symbol'));
 
 function Example({ brand }) {
 	return (
@@ -14,7 +14,7 @@ function Example({ brand }) {
 			<Intopia />
 
 			<Grid>
-				{symbols.map(s => {
+				{symbols.map((s) => {
 					const Symbol = components[s];
 					return (
 						<Cell key={s}>

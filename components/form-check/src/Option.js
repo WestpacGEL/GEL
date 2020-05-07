@@ -88,7 +88,7 @@ export const Option = ({
 						? null
 						: typeof onChange === 'undefined'
 						? null
-						: event => onChange(event, value, checked)
+						: (event) => onChange(event, value, checked)
 				}
 				value={value}
 				checked={checked}

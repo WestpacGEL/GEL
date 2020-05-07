@@ -14,7 +14,7 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	focus.outline += ' !important';
 	const borderWidth = 1; //px
 	const lineHeight = 1.5;
-	const extras = `${(p => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${(b => `${b} + ${b}`)(
+	const extras = `${((p) => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${((b) => `${b} + ${b}`)(
 		`${borderWidth}px`
 	)}`;
 
@@ -34,7 +34,7 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		verticalAlign: inline && 'middle',
 		padding: sizeMap[size].padding.join(' '),
 		fontSize: sizeMap[size].fontSize,
-		height: `calc(${lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
+		height: `calc(${lineHeight}em + ${((p) => `${p[0]} + ${p[2] || p[0]}`)(
 			sizeMap[size].padding
 		)} + ${2 * borderWidth}px)`,
 		...TYPE.bodyFont[400],

@@ -45,7 +45,7 @@ const createRopeGraph = (data, children) => {
 
 	if (data) {
 		// generate graph from data
-		data.forEach(progress => {
+		data.forEach((progress) => {
 			if (progress.type && progress.type === 'group') {
 				grouped = true;
 				ropeGraph.push(Array(progress.steps.length).fill('unvisited'));
@@ -54,7 +54,7 @@ const createRopeGraph = (data, children) => {
 			}
 		});
 	} else {
-		Children.forEach(children, child => {
+		Children.forEach(children, (child) => {
 			if (child.type === Group) {
 				grouped = true;
 				ropeGraph.push(Array(Children.count(child.props.children)).fill('unvisited'));
@@ -147,7 +147,7 @@ export const ProgressRope = ({
 
 	useEffect(() => {
 		let stepCount = 0;
-		const updatedGraph = progState.ropeGraph.map(group => [...group]); // deep copy
+		const updatedGraph = progState.ropeGraph.map((group) => [...group]); // deep copy
 
 		if (progState.grouped) {
 			progState.ropeGraph.forEach((group, i) => {
@@ -175,7 +175,7 @@ export const ProgressRope = ({
 		}
 	}, [current]);
 
-	const handleClick = index => {
+	const handleClick = (index) => {
 		dispatch({ type: 'UPDATE_OPEN_GROUP', payload: index !== progState.openGroup ? index : null });
 	};
 

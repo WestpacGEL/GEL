@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const EftposIcon = props => (
+export const EftposIcon = (props) => (
 	<Icon icon="EftposIcon" {...props}>
 		<path
 			fill="currentColor"

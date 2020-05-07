@@ -25,7 +25,7 @@ export const Heading = {
 			{ label: 'H4', value: 'h4' },
 		];
 
-		const selectedOption = options.find(o => o.value === level);
+		const selectedOption = options.find((o) => o.value === level);
 
 		return (
 			<Fragment>
@@ -37,7 +37,7 @@ export const Heading = {
 							type="text"
 							id="heading-text"
 							value={text}
-							onChange={e => setText(e.target.value)}
+							onChange={(e) => setText(e.target.value)}
 						/>
 					</FieldInput>
 				</FieldContainer>

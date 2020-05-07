@@ -11,7 +11,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/grid'] = {
 		Grid: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '5px dotted green',
 			}),

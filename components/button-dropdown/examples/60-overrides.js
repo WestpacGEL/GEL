@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button-dropdown'] = {
 		Panel: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				backgroundColor: 'palevioletred',
 				color: 'white',
@@ -30,7 +30,7 @@ function Example({ brand }) {
 				text="Primary Dropdown"
 				overrides={{
 					Panel: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							backgroundColor: 'darkred',
 						}),

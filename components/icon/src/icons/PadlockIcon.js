@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const PadlockIcon = props => (
+export const PadlockIcon = (props) => (
 	<Icon icon="PadlockIcon" {...props}>
 		<path
 			fill="currentColor"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const FingerprintIcon = props => (
+export const FingerprintIcon = (props) => (
 	<Icon icon="FingerprintIcon" {...props}>
 		<path
 			fill="currentColor"

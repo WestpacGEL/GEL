@@ -29,7 +29,7 @@ function Example({ brand }) {
 					type="select"
 					name="example-select-select"
 					label="Currency"
-					onChange={event => console.log(`Selected ${event.target.value}`)}
+					onChange={(event) => console.log(`Selected ${event.target.value}`)}
 					data={[
 						{ text: 'Select', value: '' },
 						{ text: 'AUD $', value: 'AUD $' },
@@ -67,7 +67,7 @@ function Example({ brand }) {
 						type: 'select',
 						name: 'example-select-datadriven-select',
 						label: 'Total amount',
-						onChange: event => console.log(`Selected ${event.target.value}`),
+						onChange: (event) => console.log(`Selected ${event.target.value}`),
 						data: [
 							{ text: 'Select', value: '' },
 							{ text: 'AUD $', value: 'AUD $' },
@@ -95,7 +95,7 @@ function Example({ brand }) {
 					type="select"
 					name="example-select-button-select"
 					label="Currency"
-					onChange={event => console.log(`Selected ${event.target.value}`)}
+					onChange={(event) => console.log(`Selected ${event.target.value}`)}
 					data={[
 						{ text: 'AUD $', value: 'AUD' },
 						{ text: 'USD $', value: 'USD' },
@@ -129,7 +129,7 @@ function Example({ brand }) {
 						type: 'select',
 						name: 'example-select-button-datadriven-select',
 						label: 'Currency',
-						onChange: event => console.log(`Selected ${event.target.value}`),
+						onChange: (event) => console.log(`Selected ${event.target.value}`),
 						data: [{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }],
 					},
 					right: {

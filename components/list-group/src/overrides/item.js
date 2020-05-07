@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Item as ListItem } from '@westpac/list';
 
-const Item = props => <ListItem {...props} />;
+const Item = (props) => <ListItem {...props} />;
 
 const itemStyles = () => ({});
 

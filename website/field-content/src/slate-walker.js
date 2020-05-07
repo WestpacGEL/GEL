@@ -3,7 +3,7 @@ const noop = () => {};
 
 // A depth-first, top-down tree walking algorithm.
 function visitNode(node, visitors) {
-	const recurse = childNode => visitNode(childNode, visitors);
+	const recurse = (childNode) => visitNode(childNode, visitors);
 	let visitedNode = null;
 
 	// Registered visitors might serialise a node.

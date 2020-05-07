@@ -74,7 +74,7 @@ export const Footer = () => {
 					textAlign: 'right',
 					padding: '0 !important',
 				}}
-				onClick={e => {
+				onClick={(e) => {
 					e.preventDefault();
 					const el = document.querySelector('main') || window;
 					el.scroll({

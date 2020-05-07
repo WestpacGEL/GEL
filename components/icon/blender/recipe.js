@@ -32,7 +32,7 @@ export function AllStyles({ brand }) {
 export function Docs({ brand }) {
 	const { COLORS } = brand;
 
-	const allIcons = Object.keys(components).map(icon => {
+	const allIcons = Object.keys(components).map((icon) => {
 		const Icon = components[icon];
 		return {
 			heading: `${icon} icon`,

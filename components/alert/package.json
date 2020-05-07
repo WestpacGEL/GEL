@@ -32,7 +32,7 @@
 	"main": "dist/alert.cjs.js",
 	"module": "dist/alert.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.8.4",
+		"@babel/runtime": "^7.9.6",
 		"@westpac/body": "^1.0.0",
 		"@westpac/button": "^1.0.0",
 		"@westpac/core": "^1.0.0",
@@ -45,9 +45,9 @@
 		"react-spring": "^8.0.27"
 	},
 	"devDependencies": {
-		"cypress": "^4.1.0",
+		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"react-spring": "^8.0.27",
-		"start-server-and-test": "^1.10.10"
+		"start-server-and-test": "^1.11.0"
 	}
 }

@@ -22,9 +22,9 @@ const gridStyles = (
 ) => {
 	const mq = useMediaQuery();
 
-	const stringVal = v => (typeof v === 'number' ? `${v}px` : v);
-	const repeatNumeric = v => (typeof v === 'number' ? `repeat(${v}, 1fr)` : v);
-	const formatAreas = areas => areas.map(area => `"${area}"`).join(' ');
+	const stringVal = (v) => (typeof v === 'number' ? `${v}px` : v);
+	const repeatNumeric = (v) => (typeof v === 'number' ? `repeat(${v}, 1fr)` : v);
+	const formatAreas = (areas) => areas.map((area) => `"${area}"`).join(' ');
 
 	return mq({
 		alignContent: alignContent,

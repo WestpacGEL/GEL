@@ -74,7 +74,7 @@ export const ButtonGroupItem = ({
 				id={buttonGroupItemId}
 				name={name}
 				value={value}
-				onChange={event => onChange(event, value)}
+				onChange={(event) => onChange(event, value)}
 				checked={checked}
 				disabled={disabled}
 				data-js="buttonGroup-input__version__"

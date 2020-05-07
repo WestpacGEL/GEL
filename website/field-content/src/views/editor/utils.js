@@ -1,10 +1,10 @@
 export let hasBlock = (editorState, type) => {
-	return editorState.blocks.some(node => node.type === type);
+	return editorState.blocks.some((node) => node.type === type);
 };
 
 export let hasAncestorBlock = (editorState, type) => {
-	return editorState.blocks.some(block => {
-		return editorState.document.getClosest(block.key, parent => parent.type === type);
+	return editorState.blocks.some((block) => {
+		return editorState.document.getClosest(block.key, (parent) => parent.type === type);
 	});
 };
 
@@ -71,7 +71,7 @@ const isChrome =
 	/Chrome/.test(navigator.userAgent) &&
 	/Google Inc/.test(navigator.vendor);
 
-const getRangeClientRectsChrome = range => {
+const getRangeClientRectsChrome = (range) => {
 	var tempRange = range.cloneRange();
 	var clientRects = [];
 
@@ -96,11 +96,11 @@ const getRangeClientRectsChrome = range => {
 
 const getRangeClientRects = isChrome
 	? getRangeClientRectsChrome
-	: function(range) {
+	: function (range) {
 			return Array.from(range.getClientRects());
 	  };
 
-const getRangeBoundingClientRect = range => {
+const getRangeBoundingClientRect = (range) => {
 	var rects = getRangeClientRects(range);
 	var top = 0;
 	var right = 0;

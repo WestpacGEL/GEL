@@ -55,7 +55,7 @@ function Example({ brand }) {
 				value="Default overridden"
 				overrides={{
 					Badge: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted green',
 						}),

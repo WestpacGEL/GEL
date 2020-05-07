@@ -20,7 +20,7 @@
 	"main": "dist/button-dropdown.cjs.js",
 	"module": "dist/button-dropdown.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.8.4",
+		"@babel/runtime": "^7.9.6",
 		"@westpac/button": "^1.0.0",
 		"@westpac/core": "^1.0.0",
 		"@westpac/heading": "^1.0.0",
@@ -36,8 +36,8 @@
 		"@westpac/icon": "*",
 		"@westpac/list": "*",
 		"@westpac/switch": "*",
-		"cypress": "^4.1.0",
+		"cypress": "^4.5.0",
 		"react": "^16.13.1",
-		"start-server-and-test": "^1.10.10"
+		"start-server-and-test": "^1.11.0"
 	}
 }

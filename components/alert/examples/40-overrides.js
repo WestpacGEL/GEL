@@ -44,7 +44,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/alert'] = {
 		Alert: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '1px solid red',
 			}),
@@ -107,7 +107,7 @@ function Example({ brand }) {
 			<Alert
 				overrides={{
 					Icon: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted green',
 						}),
