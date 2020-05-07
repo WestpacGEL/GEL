@@ -23,13 +23,32 @@ const iconStyles = (_, { color, size }) => {
 		width: sizeArr.map(s => s && sizeMap[s]),
 	};
 
+	const colorMap = {
+		primary: COLORS.primary,
+		hero: COLORS.hero,
+		neutral: COLORS.neutral,
+		muted: COLORS.muted,
+		background: COLORS.background,
+		borderDark: COLORS.borderDark,
+		border: COLORS.border,
+		focus: COLORS.focus,
+		heading: COLORS.heading,
+		light: COLORS.light,
+		text: COLORS.text,
+		info: COLORS.info,
+		success: COLORS.success,
+		warning: COLORS.warning,
+		danger: COLORS.danger,
+		system: COLORS.system,
+	};
+
 	return mq({
 		label: getLabel('icon', { color, size }),
 		display: 'inline-block',
 		flexShrink: 0,
 		lineHeight: 1,
 		verticalAlign: 'middle',
-		color: color ? color : COLORS.muted,
+		color: colorMap[color] || color || COLORS.muted,
 		...styleSize,
 	})[0];
 };

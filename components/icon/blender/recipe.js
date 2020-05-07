@@ -16,15 +16,15 @@ export function AllStyles({ brand }) {
 			<components.HouseIcon size="large" />
 			<components.HouseIcon size="xlarge" />
 			<components.HouseIcon color="inherit" />
-			<components.HouseIcon color={COLORS.primary.toLowerCase()} />
-			<components.HouseIcon color={COLORS.borderDark.toLowerCase()} />
-			<components.HouseIcon color={COLORS.heading.toLowerCase()} />
-			<components.HouseIcon color={COLORS.hero.toLowerCase()} />
-			<components.HouseIcon color={COLORS.light.toLowerCase()} />
-			<components.HouseIcon color={COLORS.muted.toLowerCase()} />
-			<components.HouseIcon color={COLORS.neutral.toLowerCase()} />
-			<components.HouseIcon color={COLORS.primary.toLowerCase()} />
-			<components.HouseIcon color={COLORS.text.toLowerCase()} />
+			<components.HouseIcon color="primary" />
+			<components.HouseIcon color="borderDark" />
+			<components.HouseIcon color="heading" />
+			<components.HouseIcon color="hero" />
+			<components.HouseIcon color="light" />
+			<components.HouseIcon color="muted" />
+			<components.HouseIcon color="neutral" />
+			<components.HouseIcon color="primary" />
+			<components.HouseIcon color="text" />
 		</GEL>
 	);
 }
@@ -101,86 +101,25 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
-		{
-			heading: 'An icon with the inherit color',
+		...[
+			'inherit',
+			'primary',
+			'borderDark',
+			'heading',
+			'hero',
+			'light',
+			'muted',
+			'neutral',
+			'primary',
+			'text',
+		].map((color, i) => ({
+			heading: `An icon with the ${color} color`,
 			component: () => (
 				<GEL brand={brand}>
-					<components.HouseIcon color="inherit" />
+					<components.HouseIcon color={color} />
 				</GEL>
 			),
-		},
-		{
-			heading: 'An icon with the primary color',
-			component: () => (
-				<GEL brand={brand}>
-					<components.HouseIcon color={COLORS.primary.toLowerCase()} />
-				</GEL>
-			),
-		},
-		{
-			heading: 'An icon with the borderDark color',
-			component: () => (
-				<GEL brand={brand}>
-					<components.HouseIcon color={COLORS.borderDark.toLowerCase()} />
-				</GEL>
-			),
-		},
-		{
-			heading: 'An icon with the heading color',
-			component: () => (
-				<GEL brand={brand}>
-					<components.HouseIcon color={COLORS.heading.toLowerCase()} />
-				</GEL>
-			),
-		},
-		{
-			heading: 'An icon with the hero color',
-			component: () => (
-				<GEL brand={brand}>
-					<components.HouseIcon color={COLORS.hero.toLowerCase()} />
-				</GEL>
-			),
-		},
-		{
-			heading: 'An icon with the light color',
-			component: () => (
-				<GEL brand={brand}>
-					<components.HouseIcon color={COLORS.light.toLowerCase()} />
-				</GEL>
-			),
-		},
-		{
-			heading: 'An icon with the muted color',
-			component: () => (
-				<GEL brand={brand}>
-					<components.HouseIcon color={COLORS.muted.toLowerCase()} />
-				</GEL>
-			),
-		},
-		{
-			heading: 'An icon with the neutral color',
-			component: () => (
-				<GEL brand={brand}>
-					<components.HouseIcon color={COLORS.neutral.toLowerCase()} />
-				</GEL>
-			),
-		},
-		{
-			heading: 'An icon with the primary color',
-			component: () => (
-				<GEL brand={brand}>
-					<components.HouseIcon color={COLORS.primary.toLowerCase()} />
-				</GEL>
-			),
-		},
-		{
-			heading: 'An icon with the text color',
-			component: () => (
-				<GEL brand={brand}>
-					<components.HouseIcon color={COLORS.text.toLowerCase()} />
-				</GEL>
-			),
-		},
+		})),
 		...allIcons,
 	];
 }
