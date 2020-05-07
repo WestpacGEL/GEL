@@ -14,7 +14,7 @@ import { FieldContainer, FieldLabel } from '@arch-ui/fields';
 const slugify = require('slugify');
 slugify.extend({ _: '-' });
 
-const getURL = d => {
+const getURL = (d) => {
 	if (d.url) {
 		if (d.url.charAt(0) !== '/') {
 			return `${BASE_URL}/${d.url}`;
@@ -30,10 +30,10 @@ const getURL = d => {
 	return '';
 };
 
-const getInitialPageData = pages => {
+const getInitialPageData = (pages) => {
 	if (!pages) return {};
 
-	const components = pages.map(d => {
+	const components = pages.map((d) => {
 		const key = d.pageTitle ? d.pageTitle : d._label_;
 		let url = getURL(d);
 		return {
@@ -138,7 +138,7 @@ export default function Index() {
 					}}
 					name="navigation"
 					value={navigation}
-					onChange={e => {
+					onChange={(e) => {
 						setNavigation(e.target.value);
 					}}
 				/>

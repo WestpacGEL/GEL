@@ -115,7 +115,7 @@ const VisionFilter = ({ children }) => {
 					id={id}
 					width={10}
 					value={filter}
-					onChange={event => setFilter(event.target.value)}
+					onChange={(event) => setFilter(event.target.value)}
 					data={filters}
 				/>
 			</div>

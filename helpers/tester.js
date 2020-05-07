@@ -25,8 +25,8 @@ function convertHrtime(elapsedTime) {
 		1;
 
 	packages
-		.filter(pkg => pkg.packageJson.name !== '@westpac/website')
-		.map(workspace => {
+		.filter((pkg) => pkg.packageJson.name !== '@westpac/website')
+		.map((workspace) => {
 			const time = process.hrtime();
 
 			process.stdout.write(

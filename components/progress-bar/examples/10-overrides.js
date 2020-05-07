@@ -13,13 +13,13 @@ function Example({ brand }) {
 
 	overridesWithTokens['@westpac/progress-bar'] = {
 		ProgressBar: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				borderColor: 'mediumaquamarine',
 			}),
 		},
 		Bar: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				backgroundColor: 'darkcyan',
 			}),
@@ -53,13 +53,13 @@ function Example({ brand }) {
 				value={progress}
 				overrides={{
 					ProgressBar: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							borderColor: 'skyblue',
 						}),
 					},
 					Bar: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							backgroundColor: 'cornflowerblue',
 						}),

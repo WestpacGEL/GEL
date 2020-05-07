@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Body } from '@westpac/body';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-const Hr = props => {
+const Hr = (props) => {
 	const { COLORS } = useBrand();
 	return (
 		<hr

@@ -11,7 +11,7 @@ import { BlockInsertMenuItem } from '../block-disclosure-menu';
 export let type = 'image-container';
 
 let getFiles = () =>
-	new Promise(resolve => {
+	new Promise((resolve) => {
 		let input = document.createElement('input');
 		input.type = 'file';
 		input.onchange = () => resolve([...input.files]);
@@ -20,7 +20,7 @@ let getFiles = () =>
 
 const insertImageBlockFromFile = (blocks, editor, file) => {
 	const reader = new FileReader();
-	reader.onload = event => insertImageBlock(blocks, editor, file, event.target.result);
+	reader.onload = (event) => insertImageBlock(blocks, editor, file, event.target.result);
 	reader.readAsDataURL(file);
 };
 
@@ -47,8 +47,8 @@ export function Sidebar({ blocks, editor }) {
 			icon={icon}
 			text="Image"
 			onClick={() => {
-				getFiles().then(files => {
-					files.forEach(file => insertImageBlockFromFile(blocks, editor, file));
+				getFiles().then((files) => {
+					files.forEach((file) => insertImageBlockFromFile(blocks, editor, file));
 				});
 			}}
 		/>

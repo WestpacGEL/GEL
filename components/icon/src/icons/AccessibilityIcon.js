@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const AccessibilityIcon = props => (
+export const AccessibilityIcon = (props) => (
 	<Icon icon="AccessibilityIcon" {...props}>
 		<path
 			fill="currentColor"

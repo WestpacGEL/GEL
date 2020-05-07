@@ -7,7 +7,7 @@ import { jsx, useMediaQuery } from '@westpac/core';
 // Component
 // ==============================
 
-export const FormPodActionsText = props => {
+export const FormPodActionsText = (props) => {
 	const mq = useMediaQuery();
 
 	return (

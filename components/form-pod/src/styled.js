@@ -94,7 +94,7 @@ export const FormPodHeading = ({ tag: Tag, ...props }) => {
 /**
  * FormPodActionsPrimary
  */
-export const FormPodActionsPrimary = props => {
+export const FormPodActionsPrimary = (props) => {
 	const mq = useMediaQuery();
 
 	return (
@@ -113,7 +113,7 @@ export const FormPodActionsPrimary = props => {
 /**
  * FormPodActionsSecondary
  */
-export const FormPodActionsSecondary = props => {
+export const FormPodActionsSecondary = (props) => {
 	const mq = useMediaQuery();
 
 	return (

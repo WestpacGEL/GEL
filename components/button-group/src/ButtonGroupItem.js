@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId, getLabel } from '@westpac/core';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -74,10 +74,12 @@ export const ButtonGroupItem = ({
 				id={buttonGroupItemId}
 				name={name}
 				value={value}
-				onChange={event => onChange(event, value)}
+				onChange={(event) => onChange(event, value)}
 				checked={checked}
 				disabled={disabled}
+				data-js="buttonGroup-input__version__"
 				css={{
+					label: getLabel('buttonGroup-input'),
 					position: 'absolute',
 					zIndex: '-1',
 					opacity: 0,

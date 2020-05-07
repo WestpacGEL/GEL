@@ -79,7 +79,7 @@ export const FormCheck = ({
 			setChecked(asArray(value));
 		} else {
 			if (wasChecked) {
-				setChecked(checked.filter(item => item !== value));
+				setChecked(checked.filter((item) => item !== value));
 			} else {
 				setChecked([...checked, value]);
 			}

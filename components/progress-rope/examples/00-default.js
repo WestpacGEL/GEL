@@ -12,12 +12,12 @@ function Example({ brand }) {
 	const [state, dispatch] = useProgress();
 	const [state2, dispatch2] = useProgress();
 
-	const handleClick = index => e => {
+	const handleClick = (index) => (e) => {
 		e.preventDefault();
 		dispatch({ type: 'goto', index });
 	};
 
-	const handleClick2 = index => e => {
+	const handleClick2 = (index) => (e) => {
 		e.preventDefault();
 		dispatch2({ type: 'goto', index });
 	};

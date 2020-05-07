@@ -26,7 +26,7 @@ const getSelectedElement = () => {
 	}
 };
 
-const calculateOffset = el => {
+const calculateOffset = (el) => {
 	if (!el) {
 		console.warn('No element passed to `calculateOffset`.');
 		return { offsetLeft: 0, offsetTop: 0 };
@@ -75,12 +75,12 @@ let AddBlock = ({ blocks, editor, editorHasFocus, editorState }) => {
 
 	const MoveUp = ({ node }) => {
 		if (!node || !editorHasFocus) return null;
-		const index = editorState.document.nodes.findIndex(o => node.key === o.key);
+		const index = editorState.document.nodes.findIndex((o) => node.key === o.key);
 		if (index === 0) return null;
 		return (
 			<BlockDisclosureMenuButton
 				onClick={() => {
-					const index = editorState.document.nodes.findIndex(o => node.key === o.key);
+					const index = editorState.document.nodes.findIndex((o) => node.key === o.key);
 					editor.moveNodeByKey(node.key, editorState.document.key, index - 1);
 				}}
 				title={'Move Up'}
@@ -91,12 +91,12 @@ let AddBlock = ({ blocks, editor, editorHasFocus, editorState }) => {
 	};
 	const MoveDown = ({ node }) => {
 		if (!node || !editorHasFocus) return null;
-		const index = editorState.document.nodes.findIndex(o => node.key === o.key);
+		const index = editorState.document.nodes.findIndex((o) => node.key === o.key);
 		if (index === editorState.document.nodes.size - 1) return null;
 		return (
 			<BlockDisclosureMenuButton
 				onClick={() => {
-					const index = editorState.document.nodes.findIndex(o => node.key === o.key);
+					const index = editorState.document.nodes.findIndex((o) => node.key === o.key);
 					editor.moveNodeByKey(node.key, editorState.document.key, index + 1);
 				}}
 				title="Move Down"

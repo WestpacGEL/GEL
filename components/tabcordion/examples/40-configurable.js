@@ -14,9 +14,9 @@ const Control = ({ children, ...props }) => (
 		{children}
 	</label>
 );
-const Radio = p => <Control {...p} />;
+const Radio = (p) => <Control {...p} />;
 Radio.defaultProps = { type: 'radio' };
-const Checkbox = p => <Control {...p} />;
+const Checkbox = (p) => <Control {...p} />;
 Checkbox.defaultProps = { type: 'checkbox' };
 
 function Example({ brand }) {
@@ -25,14 +25,14 @@ function Example({ brand }) {
 	const [justify, setJustify] = useState(false);
 
 	const changeJustify = () => setJustify(!justify);
-	const changeLook = v => () => setLook(v);
-	const changeMode = v => () => setMode(v);
+	const changeLook = (v) => () => setLook(v);
+	const changeMode = (v) => () => setMode(v);
 
 	return (
 		<GEL brand={brand}>
 			<Row>
 				Look:
-				{looks.map(v => (
+				{looks.map((v) => (
 					<Radio key={v} value={v} name="look" checked={v === look} onChange={changeLook(v)}>
 						{v}
 					</Radio>
@@ -40,7 +40,7 @@ function Example({ brand }) {
 			</Row>
 			<Row>
 				Mode:
-				{modes.map(v => (
+				{modes.map((v) => (
 					<Radio key={v} value={v} name="mode" checked={v === mode} onChange={changeMode(v)}>
 						{v}
 					</Radio>

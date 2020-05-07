@@ -17,7 +17,7 @@ export const ScreenReaderText = {
 			...(value || {}),
 		};
 
-		const update = changes =>
+		const update = (changes) =>
 			onChange({
 				...currentValue,
 				...changes,
@@ -33,7 +33,7 @@ export const ScreenReaderText = {
 							type="text"
 							id="a11y-text"
 							value={currentValue.text}
-							onChange={e => update({ text: e.target.value })}
+							onChange={(e) => update({ text: e.target.value })}
 						/>
 					</FieldInput>
 				</FieldContainer>
@@ -100,7 +100,7 @@ export const ScreenReaderText = {
 								>
 									<AccessibilityIcon color="#b6d6ed" css={{ paddingRight: SPACING(2) }} />
 								</div>
-								{text.split('\n').map(p => (
+								{text.split('\n').map((p) => (
 									<p
 										css={{
 											margin: `0 ${SPACING(6)} ${SPACING(6)} ${SPACING(6)}`,

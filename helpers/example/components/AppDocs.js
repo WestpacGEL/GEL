@@ -46,7 +46,7 @@ export function AppDocs({ components, packageName, pkg }) {
 							<Route
 								exact
 								path="/"
-								render={route => (
+								render={(route) => (
 									<Fragment>
 										<Sidebar components={components} brand={brand} setBrand={setBrand} />
 										<HomeDocs {...route} />
@@ -58,7 +58,7 @@ export function AppDocs({ components, packageName, pkg }) {
 									key={slug}
 									exact
 									path={`/${slug}`}
-									render={route => (
+									render={(route) => (
 										<Fragment>
 											<Sidebar
 												components={components}
@@ -72,7 +72,7 @@ export function AppDocs({ components, packageName, pkg }) {
 								/>
 							))}
 							<Route
-								render={route => (
+								render={(route) => (
 									<Fragment>
 										<Sidebar components={components} brand={brand} setBrand={setBrand} />
 										<HomeDocs {...route} />

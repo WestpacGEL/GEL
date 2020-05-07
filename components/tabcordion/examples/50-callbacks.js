@@ -4,19 +4,19 @@ import { GEL, jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 function Example({ brand }) {
-	const onOpen = tabId => {
+	const onOpen = (tabId) => {
 		console.log(`${tabId} has opened.`);
 	};
 
-	const onOpening = tabId => {
+	const onOpening = (tabId) => {
 		console.log(`${tabId} is opening...`);
 	};
 
-	const onClose = tabId => {
+	const onClose = (tabId) => {
 		console.log(`${tabId} has closed.`);
 	};
 
-	const onClosing = tabId => {
+	const onClosing = (tabId) => {
 		console.log(`${tabId} is closing...`);
 	};
 

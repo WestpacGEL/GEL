@@ -5,7 +5,7 @@ module.exports = createMacro(prevalMacros);
 
 function prevalMacros({ references, babel, state }) {
 	if (references.Playground)
-		references.Playground.forEach(referencePath => {
+		references.Playground.forEach((referencePath) => {
 			if (referencePath.parentPath.type === 'JSXOpeningElement') {
 				transformPlayground({
 					identifierName: referencePath.node.name,
@@ -31,16 +31,16 @@ function transformPlayground({ path, identifierName, babel, state }) {
 	);
 	let attributes = path.node.openingElement.attributes;
 
-	if (attributes.length && attributes.find(t => t.name.name === 'code')) {
+	if (attributes.length && attributes.find((t) => t.name.name === 'code')) {
 		// If we have a code attribute just use this and ignore the inner content
-		if (attributes.length && !attributes.find(t => t.name.name === 'inline')) {
+		if (attributes.length && !attributes.find((t) => t.name.name === 'inline')) {
 			// If we have an inline attribute, ues this, if not assume code attribute implies inline
 			attributes.push(
 				t.jsxAttribute(t.jsxIdentifier('inline'), t.jsxExpressionContainer(t.booleanLiteral(true)))
 			);
 		}
 
-		let codeAttr = attributes.find(t => t.name.name === 'code');
+		let codeAttr = attributes.find((t) => t.name.name === 'code');
 		let value = codeAttr.value.expression ? codeAttr.value.expression : codeAttr.value;
 
 		// Warn if code is not string
@@ -87,18 +87,18 @@ function transformPlayground({ path, identifierName, babel, state }) {
 			path.traverse({
 				ReferencedIdentifier(path) {
 					let binding = path.scope.getBinding(path.node.name);
-					if (binding && !binding.path.findParent(x => x.node === jsxElementNode)) {
+					if (binding && !binding.path.findParent((x) => x.node === jsxElementNode)) {
 						identifiers.add(path.node.name);
 					}
 				},
 			});
 			if (identifiers.size) {
-				let objectProperties = [...identifiers].map(x =>
+				let objectProperties = [...identifiers].map((x) =>
 					t.objectProperty(t.identifier(x), t.identifier(x))
 				);
 
 				let maybeScopeAttribute = path.node.openingElement.attributes.find(
-					x =>
+					(x) =>
 						x.type === 'JSXAttribute' &&
 						x.name.name === 'scope' &&
 						x.value.type === 'JSXExpressionContainer'

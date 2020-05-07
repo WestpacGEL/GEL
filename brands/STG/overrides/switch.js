@@ -1,6 +1,6 @@
 export const switchStyle = ({ COLORS }) => ({
 	ToggleText: {
-		styles: styles => {
+		styles: (styles) => {
 			return {
 				...styles,
 				color: COLORS.text,

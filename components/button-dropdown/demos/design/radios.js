@@ -16,7 +16,7 @@ export default ({ context, showCode, showDemo }) => {
 					type="radio"
 					overrides={{
 						FormCheck: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								margin: '1rem 0 0',
 							}),

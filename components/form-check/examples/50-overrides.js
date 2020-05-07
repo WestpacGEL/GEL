@@ -11,20 +11,20 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/form-check'] = {
 		FormCheck: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '5px solid red',
 			}),
 			component: Wrapper,
 		},
 		Option: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '2px dotted green',
 			}),
 		},
 		Label: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '2px dashed blue',
 			}),
@@ -77,7 +77,7 @@ function Example({ brand }) {
 				defaultValue="2"
 				overrides={{
 					Label: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted hotpink',
 						}),
@@ -100,7 +100,7 @@ function Example({ brand }) {
 				]}
 				overrides={{
 					Label: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted hotpink',
 						}),

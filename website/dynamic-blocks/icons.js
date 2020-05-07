@@ -6,7 +6,7 @@ import * as icons from '@westpac/icon';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
-const renderIcons = search => {
+const renderIcons = (search) => {
 	const iconDetails = [];
 	for (let key in icons) {
 		iconDetails.push({ name: key, icon: icons[key] });
@@ -14,10 +14,10 @@ const renderIcons = search => {
 	const { COLORS, SPACING } = useBrand();
 
 	return iconDetails
-		.filter(icon =>
+		.filter((icon) =>
 			search.trim() === '' ? true : icon.name.toLowerCase().includes(search.toLowerCase())
 		)
-		.map(icon => {
+		.map((icon) => {
 			const Icon = icon.icon;
 			return (
 				<Cell width={[12, 12, 3, 3, 2]}>
@@ -65,7 +65,7 @@ const Icon = () => {
 							<label
 								htmlFor={'filter-icons'}
 								value={search}
-								onChange={e => setSearch(e.target.value)}
+								onChange={(e) => setSearch(e.target.value)}
 								css={mq({
 									marginRight: '1rem',
 									marginBottom: ['0.75rem', null, 0],

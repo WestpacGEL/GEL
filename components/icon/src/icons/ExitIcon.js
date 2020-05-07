@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const ExitIcon = props => (
+export const ExitIcon = (props) => (
 	<Icon icon="ExitIcon" {...props}>
 		<path
 			fill="currentColor"

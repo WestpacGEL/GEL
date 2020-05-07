@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const UmbrellaIcon = props => (
+export const UmbrellaIcon = (props) => (
 	<Icon icon="UmbrellaIcon" {...props}>
 		<path
 			fill="currentColor"

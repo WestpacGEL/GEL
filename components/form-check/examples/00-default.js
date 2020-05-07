@@ -99,14 +99,14 @@ function Example({ brand }) {
 			<Option
 				value="1"
 				checked={loneRanger1}
-				onChange={event => setLoneRanger1(event.target.checked)}
+				onChange={(event) => setLoneRanger1(event.target.checked)}
 			>
 				Option 1
 			</Option>
 			<Option
 				value="2"
 				checked={loneRanger2}
-				onChange={event => setLoneRanger2(event.target.checked)}
+				onChange={(event) => setLoneRanger2(event.target.checked)}
 			>
 				Option 2
 			</Option>
@@ -146,7 +146,7 @@ function Example({ brand }) {
 			<FormCheck
 				type="checkbox"
 				name="example-checkbox-preventdefault"
-				onChange={event => {
+				onChange={(event) => {
 					event.preventDefault();
 					console.log('I have to do all the logic myself now');
 				}}
@@ -160,7 +160,7 @@ function Example({ brand }) {
 			<FormCheck
 				type="radio"
 				name="example-radio-preventdefault"
-				onChange={event => {
+				onChange={(event) => {
 					event.preventDefault();
 					console.log('I have to do all the logic myself now');
 				}}

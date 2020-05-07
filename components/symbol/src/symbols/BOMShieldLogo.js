@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const BOMShieldLogo = props => (
+export const BOMShieldLogo = (props) => (
 	<Symbol symbol="BOMShieldLogo" {...props}>
 		<polygon points="0 0 0 13 6.5 6.5 " fill="#685AC0" />
 		<polygon points="13 0 0 0 6.5 6.5 " fill="#A094FC" />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const ZipFileIcon = props => (
+export const ZipFileIcon = (props) => (
 	<Icon icon="ZipFileIcon" {...props}>
 		<path
 			fill="currentColor"

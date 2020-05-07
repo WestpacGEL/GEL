@@ -9,7 +9,7 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 	const { COLORS } = useBrand();
 	const [isOpen, setIsOpen] = useState(isBlockOpen);
 	const toggleBlock = () => {
-		setIsOpen(currentState => !currentState);
+		setIsOpen((currentState) => !currentState);
 	};
 
 	return (

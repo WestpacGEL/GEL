@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const BPayPortSymbol = props => (
+export const BPayPortSymbol = (props) => (
 	<Symbol symbol="BPayPortSymbol" {...props}>
 		<g fill="none" fillRule="evenodd">
 			<rect width="52" height="80" x="4" y="4" fill="#0A2652" />

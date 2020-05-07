@@ -113,7 +113,9 @@ export class LogList extends React.Component {
 									escapeHtml
 									source={v.md}
 									renderers={{
-										Heading: props => <Heading packageName={packageName} href={href} {...props} />,
+										Heading: (props) => (
+											<Heading packageName={packageName} href={href} {...props} />
+										),
 									}}
 								/>
 							</div>

@@ -32,7 +32,7 @@ export const FormGroup = ({ primary, ...props }) => {
 				display: isInline && [null, 'inline-block'],
 				verticalAlign: isInline && [null, 'middle'],
 				marginBottom: isInline
-					? [(mb => (Array.isArray(mb) ? mb[0] : mb))(mapSpacing[spacing].marginBottom), 0]
+					? [((mb) => (Array.isArray(mb) ? mb[0] : mb))(mapSpacing[spacing].marginBottom), 0]
 					: mapSpacing[spacing].marginBottom,
 				textAlign: primary && 'center',
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const PieChartIcon = props => (
+export const PieChartIcon = (props) => (
 	<Icon icon="PieChartIcon" {...props}>
 		<path
 			fill="currentColor"

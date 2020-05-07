@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cypress/base:10
+      - image: cypress/base:12
         environment:
           TERM: xterm
     working_directory: ~/repo
@@ -11,16 +11,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v4-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - v4-dependencies-{{ .Branch }}
-            - v4-dependencies
+            - v5-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v5-dependencies-{{ .Branch }}
+            - v5-dependencies
 
-      - run:
-          name: Install tree
-          command: apt-get install tree
-      - run:
-          name: 'DEBUG: Run tree'
-          command: tree -C -I "node_modules*"
+      # - run:
+      #     name: Install tree
+      #     command: apt-get install tree
+      # - run:
+      #     name: 'DEBUG: Run tree'
+      #     command: tree -C -I "node_modules*"
       - run:
           name: 'DEBUG: node version'
           command: node -v
@@ -39,7 +39,7 @@ jobs:
             - node_modules
             - ~/.npm
             - ~/.cache
-          key: v4-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: v5-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
 
       - run:
           name: Run build

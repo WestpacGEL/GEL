@@ -191,7 +191,7 @@ export function AllStyles({ brand }) {
 
 export function Docs({ brand }) {
 	return [
-		...['primary', 'hero', 'faint', 'link'].map(look => ({
+		...['primary', 'hero', 'faint', 'link'].map((look) => ({
 			heading: `A ${look} button`,
 			component: () => (
 				<GEL brand={brand}>
@@ -199,7 +199,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map(look => ({
+		...['primary', 'hero', 'faint', 'link'].map((look) => ({
 			heading: `A ${look} soft button`,
 			component: () => (
 				<GEL brand={brand}>
@@ -209,7 +209,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map(look => ({
+		...['primary', 'hero', 'faint', 'link'].map((look) => ({
 			heading: `A ${look} small button`,
 			component: () => (
 				<GEL brand={brand}>
@@ -219,7 +219,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map(look => ({
+		...['primary', 'hero', 'faint', 'link'].map((look) => ({
 			heading: `A ${look} large button`,
 			component: () => (
 				<GEL brand={brand}>
@@ -229,7 +229,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map(look => ({
+		...['primary', 'hero', 'faint', 'link'].map((look) => ({
 			heading: `A ${look} xlarge button`,
 			component: () => (
 				<GEL brand={brand}>
@@ -239,7 +239,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map(look => ({
+		...['primary', 'hero', 'faint', 'link'].map((look) => ({
 			heading: `A ${look} block button`,
 			component: () => (
 				<GEL brand={brand}>
@@ -249,7 +249,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map(look => ({
+		...['primary', 'hero', 'faint', 'link'].map((look) => ({
 			heading: `A ${look} button with icon before`,
 			component: () => (
 				<GEL brand={brand}>
@@ -259,7 +259,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map(look => ({
+		...['primary', 'hero', 'faint', 'link'].map((look) => ({
 			heading: `A ${look} button with icon after`,
 			component: () => (
 				<GEL brand={brand}>
@@ -269,7 +269,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map(look => ({
+		...['primary', 'hero', 'faint', 'link'].map((look) => ({
 			heading: `A ${look} block justified button with icon after`,
 			component: () => (
 				<GEL brand={brand}>

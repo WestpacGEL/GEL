@@ -14,7 +14,7 @@ export const usePagination = ({ pages = [], current = 0, infinite = false } = {}
 		setCurr(curr);
 	};
 
-	const next = event => {
+	const next = (event) => {
 		// https://reactjs.org/docs/events.html#event-pooling
 		event.persist();
 
@@ -30,7 +30,7 @@ export const usePagination = ({ pages = [], current = 0, infinite = false } = {}
 		}
 	};
 
-	const previous = event => {
+	const previous = (event) => {
 		event.persist();
 
 		if (curr === 0) {

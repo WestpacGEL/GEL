@@ -122,7 +122,7 @@ Crumb.propTypes = {
 	}),
 };
 
-const Anchor = props => <a {...props} />;
+const Anchor = (props) => <a {...props} />;
 
 Crumb.defaultProps = {
 	href: '#0',

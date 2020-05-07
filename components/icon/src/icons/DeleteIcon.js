@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const DeleteIcon = props => (
+export const DeleteIcon = (props) => (
 	<Icon icon="DeleteIcon" {...props}>
 		<path
 			fill="currentColor"

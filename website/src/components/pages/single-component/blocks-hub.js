@@ -12,10 +12,10 @@ import { blocksGridStyle, blocksContainerStyle } from '../../_utils';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
-const Bold = props => <strong css={{ fontWeight: 'bold' }} {...props} />;
-const Italic = props => <em css={{ fontStyle: 'italic' }} {...props} />;
-const Strike = props => <span css={{ textDecoration: 'strike-through' }} {...props} />;
-const Under = props => <span css={{ textDecoration: 'underline' }} {...props} />;
+const Bold = (props) => <strong css={{ fontWeight: 'bold' }} {...props} />;
+const Italic = (props) => <em css={{ fontStyle: 'italic' }} {...props} />;
+const Strike = (props) => <span css={{ textDecoration: 'strike-through' }} {...props} />;
+const Under = (props) => <span css={{ textDecoration: 'underline' }} {...props} />;
 
 const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
@@ -27,7 +27,7 @@ const ApplyShortCodes = ({ text }) => {
 
 const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
 	if (data.props) {
-		Object.keys(data.props).forEach(key => {
+		Object.keys(data.props).forEach((key) => {
 			if (typeof data.props[key] === 'string') {
 				data.props[key] = ApplyShortCodes({ text: data.props[key] });
 			}
@@ -197,7 +197,7 @@ export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	);
 };
 
-const textOnlySlateRenderer = _editorValue => {
+const textOnlySlateRenderer = (_editorValue) => {
 	return createReactRenderer([
 		// special serialiser for text
 		({ node, path }) => {

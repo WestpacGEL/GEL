@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const GithubIcon = props => (
+export const GithubIcon = (props) => (
 	<Icon icon="GithubIcon" {...props}>
 		<path
 			fill="currentColor"

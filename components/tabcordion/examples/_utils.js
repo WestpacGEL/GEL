@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-export const Row = props => (
+export const Row = (props) => (
 	<div
 		css={{
 			alignItems: 'start',

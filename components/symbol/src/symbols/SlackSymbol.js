@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const SlackSymbol = props => (
+export const SlackSymbol = (props) => (
 	<Symbol symbol="SlackSymbol" {...props}>
 		<g fill="none" fillRule="evenodd">
 			<rect width="32" height="32" fill="#611F69" rx="2" />

@@ -21,7 +21,7 @@ export const useListContext = () => useContext(ListContext);
 // Utilities - makeItems
 // ==============================
 
-const makeItems = data => {
+const makeItems = (data) => {
 	if (!Array.isArray(data)) {
 		return null;
 	}

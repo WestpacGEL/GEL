@@ -12,7 +12,7 @@ import { ToolbarButton, ToolbarDivider } from './toolbar-components';
 import { ClearFormattingIcon, PlusIcon, ArrowDownIcon, MoreIcon } from './toolbar-icons';
 
 export default function Toolbar({ blocks, editor, editorHasFocus, editorState }) {
-	let primaryMarks = Object.keys(marks).filter(key => marks[key].level === 'primary');
+	let primaryMarks = Object.keys(marks).filter((key) => marks[key].level === 'primary');
 
 	return (
 		<div
@@ -29,7 +29,7 @@ export default function Toolbar({ blocks, editor, editorHasFocus, editorState })
 			}}
 		>
 			{/* Block elements, that are injected */}
-			{Object.keys(blocks).map(type => {
+			{Object.keys(blocks).map((type) => {
 				let ToolbarElement = blocks[type].ToolbarElement;
 
 				if (!blocks[type].withChrome || ToolbarElement === undefined) {
@@ -42,7 +42,7 @@ export default function Toolbar({ blocks, editor, editorHasFocus, editorState })
 			<ToolbarDivider />
 
 			{/* Inline "marks", that wrap text */}
-			{primaryMarks.map(name => {
+			{primaryMarks.map((name) => {
 				let Icon = marks[name].icon;
 				let label = (
 					<Fragment>
@@ -65,7 +65,7 @@ export default function Toolbar({ blocks, editor, editorHasFocus, editorState })
 						label={label}
 						icon={<Icon />}
 						isDisabled={editorState?.focusBlock?.type === 'dynamic-components'}
-						isActive={editorState.activeMarks.some(mark => mark.type === name)}
+						isActive={editorState.activeMarks.some((mark) => mark.type === name)}
 						onClick={() => {
 							editor.toggleMark(name);
 							editor.focus();
@@ -84,7 +84,7 @@ export default function Toolbar({ blocks, editor, editorHasFocus, editorState })
 				icon={<ClearFormattingIcon />}
 				isDisabled={editorState?.selection?.isCollapsed}
 				onClick={() => {
-					markTypes.forEach(mark => {
+					markTypes.forEach((mark) => {
 						editor.removeMark(mark);
 					});
 					editor.focus();
@@ -107,7 +107,7 @@ export default function Toolbar({ blocks, editor, editorHasFocus, editorState })
 /* This is the dropdown menu shown when a user clicks `InsertBlock` */
 const InsertMenu = ({ blocks, editor }) => {
 	// bail if there aren't any "insertable" blocks
-	if (!Object.keys(blocks).filter(key => blocks[key].Sidebar).length) return null;
+	if (!Object.keys(blocks).filter((key) => blocks[key].Sidebar).length) return null;
 
 	return (
 		<Fragment>
@@ -128,7 +128,7 @@ const InsertMenu = ({ blocks, editor }) => {
 					/>
 				)}
 			>
-				{Object.keys(blocks).map(key => {
+				{Object.keys(blocks).map((key) => {
 					let { Sidebar } = blocks[key];
 
 					// only interested in "dynamic-components"
@@ -148,7 +148,7 @@ const InsertMenu = ({ blocks, editor }) => {
 
 /* This is the dropdown menu shown when there's "secondary" marks available */
 const FormattingMenu = ({ editor, editorState }) => {
-	let secondaryMarks = Object.keys(marks).filter(key => marks[key].level === 'secondary');
+	let secondaryMarks = Object.keys(marks).filter((key) => marks[key].level === 'secondary');
 
 	// bail if there aren't any marks
 	if (!secondaryMarks.length) return null;
@@ -166,7 +166,7 @@ const FormattingMenu = ({ editor, editorState }) => {
 				/>
 			)}
 		>
-			{secondaryMarks.map(name => {
+			{secondaryMarks.map((name) => {
 				return (
 					<BlockInsertMenuItem
 						key={name}

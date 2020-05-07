@@ -129,7 +129,7 @@ export function serialize(value, blocks) {
 
 					mutationData = Array.isArray(mutationData) ? mutationData : [mutationData];
 
-					mutationData.forEach(mutation => {
+					mutationData.forEach((mutation) => {
 						const insertedBefore = allMutations[block.path][action].push(mutation);
 
 						const mutationPath = `${block.path}.${action}[${insertedBefore - 1}]`;
@@ -149,7 +149,7 @@ export function serialize(value, blocks) {
 
 			if (node.nodes) {
 				// Now we recurse into the child nodes array
-				visitedNode.nodes = node.nodes.map(childNode => visitNode(childNode)).toJSON();
+				visitedNode.nodes = node.nodes.map((childNode) => visitNode(childNode)).toJSON();
 			}
 
 			return visitedNode;
@@ -207,9 +207,10 @@ export function deserialize({ document, ...serializations }, blocks) {
 
 				const nodeData = node.get('data');
 
-				const joins = ((nodeData && nodeData.size && nodeData.get('_joinIds')) || []).map(joinId =>
-					data.find(({ id }) => joinId === id)
-				);
+				const joins = (
+					(nodeData && nodeData.size && nodeData.get('_joinIds')) ||
+					[]
+				).map((joinId) => data.find(({ id }) => joinId === id));
 
 				// NOTE: deserialize _may_ return null. It will then fall into the
 				// `defaultVisitor` handler below.

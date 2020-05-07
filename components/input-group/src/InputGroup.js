@@ -133,7 +133,7 @@ export const InputGroup = ({
 			);
 		}
 	} else {
-		Children.map(children, child => {
+		Children.map(children, (child) => {
 			if (child.type.displayName === 'Left' && !textInputFieldAdded) {
 				childrenWithProps.push(
 					cloneElement(child, {
@@ -202,8 +202,9 @@ export const InputGroup = ({
 			} else {
 				devWarning(
 					true,
-					`<InputGroup /> only accepts <Left /> or <Right /> as children. But found "<${child.type
-						.name || child.type}/>"`
+					`<InputGroup /> only accepts <Left /> or <Right /> as children. But found "<${
+						child.type.name || child.type
+					}/>"`
 				);
 			}
 		});

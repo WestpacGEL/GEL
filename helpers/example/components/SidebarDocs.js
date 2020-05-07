@@ -15,18 +15,18 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 	const length = (location.pathname.match(/\//g) || []).length;
 
 	if (location.pathname !== '/' && length === 1) {
-		navItems = navItems.filter(component => location.pathname === `/${component.parent}`);
+		navItems = navItems.filter((component) => location.pathname === `/${component.parent}`);
 	} else if (length > 1) {
-		navItems = navItems.filter(component => location.pathname.split('/')[1] === component.parent);
+		navItems = navItems.filter((component) => location.pathname.split('/')[1] === component.parent);
 	} else {
-		navItems = navItems.filter(component => component.landing);
+		navItems = navItems.filter((component) => component.landing);
 	}
 	if (navItems.length === 0) {
 		navItems = components;
 	}
 
 	if (searchValue.length) {
-		navItems = navItems.filter(p => p.label.toLowerCase().includes(searchValue.toLowerCase()));
+		navItems = navItems.filter((p) => p.label.toLowerCase().includes(searchValue.toLowerCase()));
 	}
 
 	return (
@@ -63,7 +63,7 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 				GEL
 			</NavLink>
 			<input
-				onChange={e => setSearchValue(e.target.value)}
+				onChange={(e) => setSearchValue(e.target.value)}
 				placeholder="Search..."
 				type="search"
 				value={searchValue}
@@ -140,7 +140,7 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 					fontSize: '0.8125rem',
 				}}
 			>
-				{Object.keys(BRANDS).map(b => {
+				{Object.keys(BRANDS).map((b) => {
 					const isChecked = brand === b;
 					return (
 						<label
@@ -170,7 +170,7 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 							<input
 								name="brand"
 								type="radio"
-								onChange={e => setBrand(b)}
+								onChange={(e) => setBrand(b)}
 								value={b}
 								checked={isChecked}
 							/>

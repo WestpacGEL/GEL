@@ -16,7 +16,7 @@ export default ({ context, showCode, showDemo }) => {
 					label="Enable notification"
 					overrides={{
 						Switch: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								marginTop: '1rem',
 							}),

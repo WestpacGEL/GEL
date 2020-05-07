@@ -35,7 +35,7 @@ function Example({ brand }) {
 				<input
 					type="number"
 					value={count}
-					onChange={e => setCount(parseInt(e.target.value))}
+					onChange={(e) => setCount(parseInt(e.target.value))}
 					css={{
 						marginLeft: SPACING(1),
 						width: '3em',

@@ -16,10 +16,10 @@ export const Navigation = ({ items }) => {
 		const { COLORS } = useBrand();
 		const brandName = router.query.b || '';
 
-		return items.map(item => {
+		return items.map((item) => {
 			if (item.children) {
 				let isCurrentBlock = false;
-				item.children.map(i => {
+				item.children.map((i) => {
 					if (router.asPath.includes(i.path)) {
 						isCurrentBlock = true;
 					}

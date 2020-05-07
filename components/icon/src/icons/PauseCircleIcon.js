@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const PauseCircleIcon = props => (
+export const PauseCircleIcon = (props) => (
 	<Icon icon="PauseCircleIcon" {...props}>
 		<path
 			fill="currentColor"

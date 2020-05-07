@@ -214,7 +214,7 @@ function Example({ brand }) {
 					text="Rabbit hole"
 					overrides={{
 						AccordionButton: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								borderLeft: '1px solid mediumblue',
 								borderRight: '1px solid mediumblue',
@@ -235,7 +235,7 @@ function Example({ brand }) {
 							},
 						},
 						Panel: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								backgroundColor: 'mediumblue',
 							}),
@@ -253,7 +253,7 @@ function Example({ brand }) {
 					text="Flamingo"
 					overrides={{
 						AccordionButton: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								borderLeft: '1px solid mediumblue',
 								borderRight: '1px solid mediumblue',
@@ -274,7 +274,7 @@ function Example({ brand }) {
 							},
 						},
 						Panel: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								backgroundColor: 'mediumblue',
 							}),
@@ -297,7 +297,7 @@ function Example({ brand }) {
 					text="Caterpillar"
 					overrides={{
 						AccordionButton: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								borderLeft: '1px solid mediumblue',
 								borderRight: '1px solid mediumblue',
@@ -318,7 +318,7 @@ function Example({ brand }) {
 							},
 						},
 						Panel: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								backgroundColor: 'mediumblue',
 							}),
@@ -366,7 +366,7 @@ function Example({ brand }) {
 					text="Rabbit hole"
 					overrides={{
 						Panel: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								backgroundColor: 'darkred',
 								borderColor: 'darkred',
@@ -385,7 +385,7 @@ function Example({ brand }) {
 					text="Flamingo"
 					overrides={{
 						Panel: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								backgroundColor: 'darkred',
 								borderColor: 'darkred',
@@ -409,7 +409,7 @@ function Example({ brand }) {
 					text="Caterpillar"
 					overrides={{
 						Panel: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								backgroundColor: 'darkred',
 								borderColor: 'darkred',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const PayIDSymbol = props => (
+export const PayIDSymbol = (props) => (
 	<Symbol symbol="PayIDSymbol" {...props}>
 		<path
 			fillRule="evenodd"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const RedAvatarLogo = props => (
+export const RedAvatarLogo = (props) => (
 	<Symbol symbol="RedAvatarLogo" {...props}>
 		<g fill="none" fillRule="evenodd">
 			<path

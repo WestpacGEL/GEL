@@ -14,7 +14,7 @@ const fs = require('fs');
 function getSvgs(svgPath, component) {
 	const svgs = fs
 		.readdirSync(path.normalize(`${process.cwd()}/${svgPath}`))
-		.map(item => item.replace('.js', ''));
+		.map((item) => item.replace('.js', ''));
 
 	console.info(chalk.green(`✅ Got all ${component} successfully`));
 	return svgs;
@@ -29,7 +29,7 @@ function getSvgs(svgPath, component) {
  */
 function insertIndex(svgs, indexPath, component) {
 	const index =
-		svgs.map(svg => `export { ${svg} } from './${component}/${svg}';`).join('\n') + '\n';
+		svgs.map((svg) => `export { ${svg} } from './${component}/${svg}';`).join('\n') + '\n';
 
 	try {
 		fs.writeFileSync(path.normalize(`${process.cwd()}/${indexPath}`), index, { encoding: 'utf8' });
@@ -87,7 +87,7 @@ function insertPkg(svgs, pkgPath) {
  * @param  {array} svgs  - An array of all component svgs
  */
 function fixSource(svgs, component) {
-	svgs.map(svg => {
+	svgs.map((svg) => {
 		const pkgPath = path.normalize(`${process.cwd()}/${svg}/package.json`);
 		const pkg = require(pkgPath);
 

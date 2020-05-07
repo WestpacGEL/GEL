@@ -12,7 +12,7 @@ function Example({ brand }) {
 
 	overridesWithTokens['@westpac/panel'] = {
 		Panel: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				borderColor: 'palevioletred',
 				outline: '1px solid red',
@@ -20,26 +20,26 @@ function Example({ brand }) {
 			component: Wrapper,
 		},
 		Header: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				backgroundColor: 'palevioletred',
 				borderColor: 'palevioletred',
 			}),
 		},
 		Heading: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				color: 'darkmagenta',
 			}),
 		},
 		Body: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				color: 'darkmagenta',
 			}),
 		},
 		Footer: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				backgroundColor: 'lightpink',
 				border: 'pink',
@@ -72,7 +72,7 @@ function Example({ brand }) {
 				heading="Panel title"
 				overrides={{
 					Header: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted green',
 						}),

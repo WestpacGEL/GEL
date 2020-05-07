@@ -58,7 +58,7 @@ export const Image = {
 							style={{ display: uploadState ? 'none' : undefined }}
 							type="file"
 							id="image"
-							onChange={async e => {
+							onChange={async (e) => {
 								setUploadState('uploading');
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
@@ -77,7 +77,7 @@ export const Image = {
 							type="text"
 							id="image-caption"
 							value={caption}
-							onChange={e => {
+							onChange={(e) => {
 								setCaption(e.target.value);
 							}}
 						/>

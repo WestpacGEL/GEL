@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, useBrand } from '@westpac/core';
+import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 
 const ButtonGroupButton = ({ state: { checked, look, size, block, disabled }, ...rest }) => (
@@ -20,6 +20,7 @@ const buttonStyles = (_, { checked }) => {
 	const mq = useMediaQuery();
 
 	return mq({
+		label: getLabel('buttonGroup-btn', { checked }),
 		borderTop: checked && '6px solid transparent !important', //a11y: for high contrast mode
 		borderBottom: checked && '6px solid transparent !important', //a11y: for high contrast mode
 
@@ -40,7 +41,9 @@ const buttonStyles = (_, { checked }) => {
 	})[0];
 };
 
-const buttonAttributes = () => null;
+const buttonAttributes = () => ({
+	'data-js': 'buttonGroup-btn__version__',
+});
 
 export const defaultButton = {
 	component: ButtonGroupButton,

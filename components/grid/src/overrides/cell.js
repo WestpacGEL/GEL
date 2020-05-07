@@ -8,8 +8,8 @@ const cellStyles = (_, { area, height, left, top, width }) => {
 	const mq = useMediaQuery();
 
 	// allow string or array values for height/width
-	const span = n => `span ${n}`;
-	const getEndSpan = c => (Array.isArray(c) ? c.map(span) : span(c));
+	const span = (n) => `span ${n}`;
+	const getEndSpan = (c) => (Array.isArray(c) ? c.map(span) : span(c));
 
 	return mq({
 		gridArea: area,

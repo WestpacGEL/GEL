@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-const BackToGelSvg = props => {
+const BackToGelSvg = (props) => {
 	return (
 		<svg width={299} height={90} {...props}>
 			<g fill="none" fillRule="evenodd">

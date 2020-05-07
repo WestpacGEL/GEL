@@ -1,4 +1,4 @@
-export const divideChangelog = changelog => {
+export const divideChangelog = (changelog) => {
 	const splitToken = `__CHANGELOG_SPLIT_${Date.now()}__`;
 	return changelog
 		.replace(/[\n\r\s]## /g, `${splitToken}## `)

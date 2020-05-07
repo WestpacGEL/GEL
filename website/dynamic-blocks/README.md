@@ -37,7 +37,7 @@ export const Hello = {
 		<input
 			type="text"
 			value={value.text}
-			onChange={e => {
+			onChange={(e) => {
 				onChange({ text: e.target.value });
 			}}
 		/>

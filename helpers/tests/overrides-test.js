@@ -12,7 +12,7 @@ function overridesTest({ name, overrides, Component }) {
 		});
 
 		// We test every single override in sequence to make sure the overrides cascade correctly
-		overrides.map(override => {
+		overrides.map((override) => {
 			let tokenOverrides;
 			let brandOverrides;
 
@@ -26,7 +26,7 @@ function overridesTest({ name, overrides, Component }) {
 				const withOverrides = cloneDeep(wbc);
 				tokenOverrides = {
 					[override]: {
-						styles: styles => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						component: ({ state, ...rest }) => (
 							<div data-testid={wrapper1}>
@@ -67,7 +67,7 @@ function overridesTest({ name, overrides, Component }) {
 				const withOverrides = cloneDeep(wbc);
 				brandOverrides = {
 					[override]: {
-						styles: styles => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						component: ({ state, ...rest }) => (
 							<div data-testid={wrapper1}>
@@ -108,7 +108,7 @@ function overridesTest({ name, overrides, Component }) {
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
 				brandOverrides = {
 					[override]: {
-						styles: styles => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						component: ({ state, ...rest }) => (
 							<div data-testid={wrapper1}>
@@ -148,7 +148,7 @@ function overridesTest({ name, overrides, Component }) {
 				const withOverrides = cloneDeep(wbc);
 				const overridesObj = {
 					[override]: {
-						styles: styles => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						component: ({ state, ...rest }) => (
 							<div data-testid={wrapper1}>
@@ -188,7 +188,7 @@ function overridesTest({ name, overrides, Component }) {
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
 				const overridesObj = {
 					[override]: {
-						styles: styles => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						component: ({ state, ...rest }) => (
 							<div data-testid={wrapper1}>
@@ -229,7 +229,7 @@ function overridesTest({ name, overrides, Component }) {
 				withOverrides[`@westpac/${name}`] = brandOverrides; // we apply the brand overrides which should be overridden by the component overrides
 				const overridesObj = {
 					[override]: {
-						styles: styles => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						component: ({ state, ...rest }) => (
 							<div data-testid={wrapper1}>

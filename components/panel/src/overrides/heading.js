@@ -8,7 +8,7 @@ const PanelHeading = ({ state: { headingTag }, ...rest }) => (
 );
 
 const headingStyles = (_, { look }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE } = useBrand();
 
 	const styleMap = {
 		hero: {
@@ -21,7 +21,7 @@ const headingStyles = (_, { look }) => {
 
 	return {
 		color: styleMap[look].color,
-		fontWeight: 'normal',
+		...TYPE.bodyFont[400],
 	};
 };
 
