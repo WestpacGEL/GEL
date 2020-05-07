@@ -105,7 +105,7 @@ export function Docs({ brand }) {
 			heading: 'A primary button group',
 			component: () => (
 				<GEL brand={brand}>
-					<ButtonGroup name="item-name1">
+					<ButtonGroup name="item-name1" look="primary">
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
 						<Item value="value3">Your text</Item>
