@@ -59,8 +59,8 @@ const Option = (props) => {
 	const Logo = brandsMap[props.data.value].smallLogo;
 	return (
 		<components.Option {...props}>
-			<div css={{ display: 'flex', alignItem: 'center' }}>{props.data.label}</div>
-			<Logo css={{ width: 30, height: 30 }} />
+			{props.data.label}
+			<Logo css={{ width: 50, height: 39 }} />
 		</components.Option>
 	);
 };
@@ -105,7 +105,6 @@ export const BrandSwitcher = () => {
 				</Link>
 			</div>
 			<Select
-				closeMenuOnSlect={false}
 				components={{ Option, DropdownIndicator }}
 				placeholder={'Change brand'}
 				styles={{
@@ -130,7 +129,7 @@ export const BrandSwitcher = () => {
 						alignItems: 'center',
 						justifyContent: 'space-between',
 						height: '60px',
-						padding: `0 0.875rem 0 ${SPACING(3)}`,
+						padding: `0 ${SPACING(3)}`,
 						borderBottom: `solid 1px ${COLORS.border}`,
 						cursor: 'pointer',
 						fontSize: '0.875rem',
@@ -162,11 +161,12 @@ export const BrandSwitcher = () => {
 					}),
 					indicatorsContainer: (base) => ({
 						...base,
-						width: '72px',
+						width: 72,
 					}),
 					indicatorSeparator: (base) => ({
 						...base,
-						margin: '0',
+						margin: 0,
+						backgroundColor: COLORS.border,
 					}),
 					dropdownIndicator: (base) => ({
 						...base,
