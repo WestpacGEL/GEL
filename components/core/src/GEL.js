@@ -8,17 +8,19 @@ import { BrandContext } from './Brand';
 import { useFocus } from './useFocus';
 import { Core } from './Core';
 
-export const GEL = ({ brand, children, ...props }) => {
+export const GEL = ({ brand, noReset, children, ...props }) => {
 	useFocus();
 
 	return (
 		<BrandContext.Provider value={brand} {...props}>
-			<Core>{children}</Core>
+			<Core noReset={noReset}>{children}</Core>
 		</BrandContext.Provider>
 	);
 };
 
 GEL.propTypes = {
+	noReset: PropTypes.bool,
+
 	// TODO `object` --> `shape`
 	brand: PropTypes.oneOfType([
 		PropTypes.shape({
