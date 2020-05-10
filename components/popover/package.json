@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/popover",
-	"version": "1.0.0",
+	"version": "1.0.0-beta.1",
 	"description": "GEL popover component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/popover",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

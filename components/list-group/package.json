@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/list-group",
-	"version": "1.0.0",
+	"version": "1.0.0-beta.1",
 	"description": "List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content. Ideal for settings pages or preferences.",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/list-group",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

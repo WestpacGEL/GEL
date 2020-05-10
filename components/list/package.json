@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/list",
-	"version": "1.0.0",
+	"version": "1.0.0-beta.1",
 	"description": "List component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/list",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
