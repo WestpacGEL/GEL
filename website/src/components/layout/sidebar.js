@@ -26,23 +26,30 @@ export const Sidebar = ({ items }) => {
 			ref={ref}
 			onScroll={handleScroll}
 			css={{
+				display: 'flex',
+				flexDirection: 'column',
 				background: 'white',
 				gridColumnStart: 1,
 				gridColumnEnd: 2,
-				transition: 'transform 0.15s',
 				borderRight: `1px solid ${COLORS.border}`,
-				zIndex: 2,
-				overflow: 'auto',
 				height: '100vh',
 				boxSizing: 'border-box',
 
-				[`@media only screen and (max-width: ${LAYOUT.breakpoints.lg - 1}px)`]: {
-					position: 'absolute',
-					zIndex: 10,
-					top: 0,
-					left: 0,
-					width: 300,
-					transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
+				position: 'absolute',
+				zIndex: 10,
+				top: 0,
+				bottom: 0,
+				left: 0,
+				transition: 'transform 0.15s',
+				transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
+
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+					position: 'static',
+					zIndex: 'auto',
+					top: 'auto',
+					bottom: 'auto',
+					left: 'auto',
+					transform: 'none',
 				},
 			}}
 		>

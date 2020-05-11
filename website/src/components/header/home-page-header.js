@@ -195,7 +195,7 @@ const HeroIntro = () => {
 							margin: '0 auto !important',
 							zIndex: 3,
 							[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-								color: COLORS.hero,
+								color: BRAND === 'STG' ? COLORS.text : COLORS.hero,
 							},
 						})}
 					>

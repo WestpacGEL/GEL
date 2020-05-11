@@ -79,8 +79,6 @@ const GridContainer = (props) => {
 				gridTemplateColumns: '1fr',
 				width: '100vw',
 				height: '100vh',
-				fontFamily:
-					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 
 				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					gridTemplateColumns: '300px auto',
