@@ -194,9 +194,9 @@ const HeroIntro = () => {
 							fontWeight: 500,
 							margin: '0 auto !important',
 							zIndex: 3,
-							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-								color: COLORS.hero,
-							},
+							[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+								color: BRAND === 'STG' ? COLORS.text : COLORS.hero,
+							],
 						})}
 					>
 						Design to scale with confidence
