@@ -18,12 +18,12 @@ const MenuIcon = ({ hasScrolled }) => {
 
 	return (
 		<Button
-			onClick={() => setIsOpen((status) => !status)}
+			onClick={() => setIsOpen(status => !status)}
 			look="link"
 			iconBefore={Icon}
 			overrides={{
 				Button: {
-					styles: (styles) => ({
+					styles: styles => ({
 						...styles,
 						justifySelf: 'start',
 						gridRowStart: 1,
@@ -97,11 +97,11 @@ const PageHeader = ({ name, version }) => {
 					size={hasScrolled ? 7 : 1}
 					overrides={{
 						Heading: {
-							styles: (styles) => ({
+							styles: styles => ({
 								...styles,
 								alignSelf: 'center',
 								textTransform: 'capitalize',
-								[`@media (max-width: ${LAYOUT.breakpoints.md}px)`]: {
+								[`@media (max-width: ${LAYOUT.breakpoints.md - 1}px)`]: {
 									fontSize: '18px !important',
 								},
 								fontWeight: 500,
