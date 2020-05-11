@@ -36,8 +36,8 @@
 	"devDependencies": {
 		"@westpac/button": "*",
 		"@westpac/icon": "*",
-		"@westpac/list": "*",
-		"@westpac/text-input": "*",
+		"@westpac/list": ">1.0.0-alpha",
+		"@westpac/text-input": ">1.0.0-alpha",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

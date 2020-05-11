@@ -30,14 +30,14 @@
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^1.0.0",
-		"@westpac/heading": "^1.0.0",
+		"@westpac/heading": "^1.0.0-beta.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/table": "*",
+		"@westpac/table": ">1.0.0-alpha",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"
