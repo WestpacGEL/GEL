@@ -11,7 +11,7 @@ const containerStyles = (_, { fluid }) => {
 	return mq({
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		maxWidth: (fluid ? '75rem' : [null, '33.75rem', '43.5rem', '56rem', '67.5rem']),
+		maxWidth: fluid ? '75rem' : [null, '33.75rem', '43.5rem', '56rem', '67.5rem'],
 		paddingLeft: padding,
 		paddingRight: padding,
 	})[0];

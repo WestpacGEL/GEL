@@ -11,13 +11,15 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia ignore />
 
-			<Wrapper css={{
-				position: 'absolute',
-				zIndex: 9,
-				left: 0,
-				right: 0,
-				pointerEvents: 'none',
-			}}>
+			<Wrapper
+				css={{
+					position: 'absolute',
+					zIndex: 9,
+					left: 0,
+					right: 0,
+					pointerEvents: 'none',
+				}}
+			>
 				<Container>
 					<Grid>
 						<Cell width={[12, 6]}>

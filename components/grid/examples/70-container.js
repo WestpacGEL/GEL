@@ -33,13 +33,15 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<div css={{
-				position: 'absolute',
-				zIndex: 9,
-				left: 0,
-				right: 0,
-				pointerEvents: 'none',
-			}}>
+			<div
+				css={{
+					position: 'absolute',
+					zIndex: 9,
+					left: 0,
+					right: 0,
+					pointerEvents: 'none',
+				}}
+			>
 				<div
 					ref={containerRef}
 					css={{
@@ -56,7 +58,7 @@ function Example({ brand }) {
 					</Box>
 				</Container>
 
-				<hr/>
+				<hr />
 
 				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }} fluid>
 					<Box css={{ backgroundColor: 'rgba(255,255,255,0.7)' }}>

@@ -30,7 +30,8 @@ const Homepage = () => {
 		<div css={{ textAlign: 'center', lineHeight: 2 }}>
 			<HomePageHeader />
 			<section>
-				<Container fluid
+				<Container
+					fluid
 					css={{
 						maxWidth: '60rem',
 						margin: '0 auto',
@@ -64,7 +65,8 @@ const Homepage = () => {
 					background: COLORS.background,
 				}}
 			>
-				<Container fluid
+				<Container
+					fluid
 					css={{
 						maxWidth: '60rem',
 						margin: '0 auto',
@@ -133,7 +135,8 @@ const Homepage = () => {
 				</Container>
 			</section>
 			<section>
-				<Container fluid
+				<Container
+					fluid
 					css={{
 						maxWidth: '60rem',
 						margin: '0 auto',
@@ -200,7 +203,8 @@ const Homepage = () => {
 					background: COLORS.background,
 				}}
 			>
-				<Container fluid
+				<Container
+					fluid
 					css={{
 						maxWidth: '60rem',
 						margin: '0 auto',

@@ -21,10 +21,13 @@ export const Box = (props) => {
 };
 
 export const Wrapper = (props) => (
-	<div {...props} css={{
-		'& div[class$="-Cell"]': {
-			backgroundColor: 'rgba(86,61,124,.15)',
-			border: '1px solid rgba(86,61,124,.2)',
-		}
-	}} />
+	<div
+		{...props}
+		css={{
+			'& div[class$="-Cell"]': {
+				backgroundColor: 'rgba(86,61,124,.15)',
+				border: '1px solid rgba(86,61,124,.2)',
+			},
+		}}
+	/>
 );
