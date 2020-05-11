@@ -12,7 +12,7 @@ export const BrandPicker = () => {
 
 	return (
 		<div css={{ height: '100%' }}>
-			<Container
+			<Container fluid
 				css={{
 					backgroundColor: '#C80038',
 					margin: 0,
@@ -57,7 +57,7 @@ export const BrandPicker = () => {
 					</Cell>
 				</Grid>
 			</Container>
-			<Container
+			<Container fluid
 				css={{
 					backgroundColor: '#f4f3f0',
 					margin: 0,

@@ -168,7 +168,7 @@ const HeroIntro = () => {
 	const mq = useMediaQuery();
 
 	return (
-		<Container
+		<Container fluid
 			css={mq({
 				zIndex: 3,
 				position: 'relative',

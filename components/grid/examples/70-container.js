@@ -10,7 +10,6 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	const {
-		COLORS,
 		LAYOUT: { breakpoints },
 	} = brand;
 
@@ -34,21 +33,37 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<div
-				ref={containerRef}
-				css={{
-					position: 'fixed',
-					left: 0,
-					right: 0,
-					height: 1,
-					top: -4,
-				}}
-			/>
-			<Container css={{ backgroundColor: COLORS.primary }}>
-				<Box>
-					{containerWidth}px = {breakpoint}
-				</Box>
-			</Container>
+			<div css={{
+				position: 'absolute',
+				zIndex: 9,
+				left: 0,
+				right: 0,
+				pointerEvents: 'none',
+			}}>
+				<div
+					ref={containerRef}
+					css={{
+						position: 'fixed',
+						left: 0,
+						right: 0,
+						height: 1,
+						top: -4,
+					}}
+				/>
+				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }}>
+					<Box css={{ backgroundColor: 'rgba(255,255,255,0.7)' }}>
+						{containerWidth}px = {breakpoint}
+					</Box>
+				</Container>
+
+				<hr/>
+
+				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }} fluid>
+					<Box css={{ backgroundColor: 'rgba(255,255,255,0.7)' }}>
+						{containerWidth}px = {breakpoint}
+					</Box>
+				</Container>
+			</div>
 		</GEL>
 	);
 }
