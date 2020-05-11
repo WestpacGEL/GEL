@@ -16,6 +16,7 @@ export const Grid = ({
 	columnGap,
 	columns,
 	flow,
+	gridColumnGap,
 	gap,
 	height,
 	justifyContent,
@@ -41,6 +42,7 @@ export const Grid = ({
 		columnGap,
 		columns,
 		flow,
+		gridColumnGap,
 		gap,
 		height,
 		justifyContent,
@@ -112,6 +114,16 @@ Grid.propTypes = {
 	flow: PropTypes.oneOf(['column dense', 'column', 'dense', 'row dense', 'row']).isRequired,
 
 	/**
+	 * The `grid-column-gap` CSS property.
+	 */
+	gridColumnGap: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.number),
+		PropTypes.arrayOf(PropTypes.string),
+	]).isRequired,
+
+	/**
 	 * The `grid-gap` CSS property.
 	 */
 	gap: PropTypes.oneOfType([
@@ -119,7 +131,7 @@ Grid.propTypes = {
 		PropTypes.string,
 		PropTypes.arrayOf(PropTypes.number),
 		PropTypes.arrayOf(PropTypes.string),
-	]).isRequired,
+	]),
 
 	/**
 	 * The `height` CSS property
@@ -189,7 +201,7 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
 	columns: 12,
-	gap: ['0.75rem', '1.5rem'],
+	gridColumnGap: ['0.75rem', '1.5rem'],
 	flow: 'row',
 	height: 'auto',
 	minRowHeight: '2rem',
