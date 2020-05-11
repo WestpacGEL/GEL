@@ -196,7 +196,7 @@ const HeroIntro = () => {
 							zIndex: 3,
 							[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 								color: BRAND === 'STG' ? COLORS.text : COLORS.hero,
-							],
+							},
 						})}
 					>
 						Design to scale with confidence
