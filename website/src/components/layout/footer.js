@@ -53,7 +53,7 @@ export const Footer = () => {
 				padding: SPACING(3),
 				zIndex: 5,
 
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					left: '300px',
 				},
 			}}
@@ -74,7 +74,7 @@ export const Footer = () => {
 					textAlign: 'right',
 					padding: '0 !important',
 				}}
-				onClick={(e) => {
+				onClick={e => {
 					e.preventDefault();
 					const el = document.querySelector('main') || window;
 					el.scroll({

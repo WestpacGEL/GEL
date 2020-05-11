@@ -36,7 +36,7 @@ export const Sidebar = ({ items }) => {
 				height: '100vh',
 				boxSizing: 'border-box',
 
-				[`@media only screen and (max-width: ${LAYOUT.breakpoints.xl - 1}px)`]: {
+				[`@media only screen and (max-width: ${LAYOUT.breakpoints.lg - 1}px)`]: {
 					position: 'absolute',
 					zIndex: 10,
 					top: 0,
@@ -69,7 +69,7 @@ const CloseButton = () => {
 				border: 'none',
 				cursor: 'pointer',
 				zIndex: 2,
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: { display: 'none' },
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: { display: 'none' },
 			}}
 		>
 			<CloseIcon color={COLORS.neutral} size="small" />

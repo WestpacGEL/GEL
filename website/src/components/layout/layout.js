@@ -13,7 +13,7 @@ import gql from 'graphql-tag';
   Wrapper with logic
 */
 
-const Wrapper = (props) => {
+const Wrapper = props => {
 	const router = useRouter();
 	if (!router) return null;
 
@@ -22,7 +22,7 @@ const Wrapper = (props) => {
 	const { brands, brand } = useBrandSwitcher();
 
 	const brandNames = Object.keys(brands);
-	const isMatch = brandNames.filter((name) => name === brandParam).length > 0;
+	const isMatch = brandNames.filter(name => name === brandParam).length > 0;
 
 	// If no brand is detected, show the brand picker...
 	if (!isMatch) {
@@ -70,7 +70,7 @@ const Wrapper = (props) => {
   Styled components
 */
 
-const GridContainer = (props) => {
+const GridContainer = props => {
 	const { LAYOUT } = useBrand();
 	return (
 		<div
@@ -82,7 +82,7 @@ const GridContainer = (props) => {
 				fontFamily:
 					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					gridTemplateColumns: '300px auto',
 				},
 			}}
@@ -91,7 +91,7 @@ const GridContainer = (props) => {
 	);
 };
 
-const MainContainer = (props) => {
+const MainContainer = props => {
 	const { LAYOUT } = useBrand();
 	return (
 		<main
@@ -101,7 +101,7 @@ const MainContainer = (props) => {
 				display: 'flex !important',
 				flexDirection: 'column',
 				overflowY: 'scroll',
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					gridColumnStart: 2,
 					gridColumnEnd: 3,
 				},
@@ -110,7 +110,7 @@ const MainContainer = (props) => {
 	);
 };
 
-export const Layout = (props) => {
+export const Layout = props => {
 	return (
 		<BrandSwitcherProvider brand={props.brand}>
 			<Wrapper {...props} />
