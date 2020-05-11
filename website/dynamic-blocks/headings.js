@@ -24,7 +24,7 @@ export const Heading = {
 			...(value || {}),
 		};
 
-		const update = (changes) =>
+		const update = changes =>
 			onChange({
 				...currentValue,
 				...changes,
@@ -59,7 +59,7 @@ export const Heading = {
 						<Input
 							id="heading-text"
 							value={currentValue.heading}
-							onChange={(e) => update({ heading: e.target.value })}
+							onChange={e => update({ heading: e.target.value })}
 						/>
 					</FieldInput>
 				</FieldContainer>
@@ -69,7 +69,7 @@ export const Heading = {
 						id="heading-level"
 						placeholder="Select a heading level"
 						options={levelOptions}
-						value={levelOptions.find((o) => o.value === currentValue.level)}
+						value={levelOptions.find(o => o.value === currentValue.level)}
 						onChange={({ value }) => update({ level: value })}
 					/>
 				</FieldContainer>
@@ -79,7 +79,7 @@ export const Heading = {
 						id="heading-size"
 						placeholder="Select a heading size"
 						options={sizeOptions}
-						value={sizeOptions.find((o) => o.value === currentValue.size)}
+						value={sizeOptions.find(o => o.value === currentValue.size)}
 						onChange={({ value }) => update({ size: value })}
 					/>
 				</FieldContainer>
@@ -120,7 +120,7 @@ export const Heading = {
 							id={'heading-subtext'}
 							isMultiline
 							value={currentValue.text}
-							onChange={(e) => update({ text: e.target.value })}
+							onChange={e => update({ text: e.target.value })}
 						/>
 					</FieldContainer>
 				)}
@@ -135,7 +135,7 @@ export const Heading = {
 
 		return (
 			<Container css={blocksContainerStyle}>
-				<Grid columns={12} css={blocksGridStyle}>
+				<Grid columns={12}>
 					<Cell width={indentWidth} left={indentLeft}>
 						<WestpacHeading
 							id={id}
@@ -145,7 +145,7 @@ export const Heading = {
 							{...(addTableContent && { 'data-toc': true })}
 							overrides={{
 								Heading: {
-									styles: (styles) => ({
+									styles: styles => ({
 										...styles,
 										scrollMarginTop: '75px',
 									}),

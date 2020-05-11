@@ -12,10 +12,10 @@ import { blocksGridStyle, blocksContainerStyle } from '../../_utils';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
-const Bold = (props) => <strong css={{ fontWeight: 'bold' }} {...props} />;
-const Italic = (props) => <em css={{ fontStyle: 'italic' }} {...props} />;
-const Strike = (props) => <span css={{ textDecoration: 'strike-through' }} {...props} />;
-const Under = (props) => <span css={{ textDecoration: 'underline' }} {...props} />;
+const Bold = props => <strong css={{ fontWeight: 'bold' }} {...props} />;
+const Italic = props => <em css={{ fontStyle: 'italic' }} {...props} />;
+const Strike = props => <span css={{ textDecoration: 'strike-through' }} {...props} />;
+const Under = props => <span css={{ textDecoration: 'underline' }} {...props} />;
 
 const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
@@ -27,7 +27,7 @@ const ApplyShortCodes = ({ text }) => {
 
 const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
 	if (data.props) {
-		Object.keys(data.props).forEach((key) => {
+		Object.keys(data.props).forEach(key => {
 			if (typeof data.props[key] === 'string') {
 				data.props[key] = ApplyShortCodes({ text: data.props[key] });
 			}
@@ -102,8 +102,8 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<Container css={{ ...blocksContainerStyle, margin: 0 }}>
-							<Grid columns={12} key={path} css={blocksGridStyle}>
+						<Container css={{ ...blocksContainerStyle, margin: '0 auto' }}>
+							<Grid columns={12} key={path}>
 								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
 									<Body>
 										<p css={textStyle}>{serializeChildren(node.nodes)}</p>
@@ -127,8 +127,8 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'unordered-list':
 					return (
-						<Container css={{ ...blocksContainerStyle, margin: 0 }}>
-							<Grid columns={12} key={path} css={blocksGridStyle}>
+						<Container css={{ ...blocksContainerStyle, margin: '0 auto' }}>
+							<Grid columns={12} key={path}>
 								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
 									<List
 										css={{
@@ -148,8 +148,8 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'ordered-list':
 					return (
-						<Container css={{ ...blocksContainerStyle, margin: 0 }}>
-							<Grid columns={12} key={path} css={blocksGridStyle}>
+						<Container css={{ ...blocksContainerStyle, margin: '0 auto' }}>
+							<Grid columns={12} key={path}>
 								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
 									<List css={textStyle} type="ordered">
 										{serializeChildren(node.nodes)}
@@ -186,18 +186,19 @@ export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 		<div
 			{...props}
 			className="slate-container"
-			css={{
-				display: 'flex',
-				flexDirection: 'column',
-				...cssOverrides,
-			}}
+			// css={{
+			// 	display: 'flex',
+			// 	flexDirection: 'column',
+			// 	...cssOverrides,
+			// }}
+			css={cssOverrides}
 		>
 			{slateRenderer(item, content.document)(content)}
 		</div>
 	);
 };
 
-const textOnlySlateRenderer = (_editorValue) => {
+const textOnlySlateRenderer = _editorValue => {
 	return createReactRenderer([
 		// special serialiser for text
 		({ node, path }) => {

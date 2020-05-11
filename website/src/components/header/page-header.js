@@ -6,7 +6,9 @@ import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './component-page-header-image';
 
+// should really consolidate these two
 import { useSidebar } from '../providers/sidebar';
+import { usePageContext } from '../../providers/pageContext';
 import { brandHeaderColors } from '../_utils';
 
 const MenuIcon = ({ hasScrolled }) => {
@@ -18,12 +20,12 @@ const MenuIcon = ({ hasScrolled }) => {
 
 	return (
 		<Button
-			onClick={() => setIsOpen((status) => !status)}
+			onClick={() => setIsOpen(status => !status)}
 			look="link"
 			iconBefore={Icon}
 			overrides={{
 				Button: {
-					styles: (styles) => ({
+					styles: styles => ({
 						...styles,
 						justifySelf: 'start',
 						gridRowStart: 1,
@@ -44,6 +46,7 @@ const MenuIcon = ({ hasScrolled }) => {
 const PageHeader = ({ name, version }) => {
 	const { COLORS, BRAND, LAYOUT } = useBrand();
 	const mq = useMediaQuery();
+	const { showGrid, setShowGrid } = usePageContext();
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
 
@@ -97,7 +100,7 @@ const PageHeader = ({ name, version }) => {
 					size={hasScrolled ? 7 : 1}
 					overrides={{
 						Heading: {
-							styles: (styles) => ({
+							styles: styles => ({
 								...styles,
 								alignSelf: 'center',
 								textTransform: 'capitalize',
@@ -138,6 +141,11 @@ const PageHeader = ({ name, version }) => {
 					</span>
 				)}
 			</div>
+			{/* <div>
+				<button onClick={() => setShowGrid(!showGrid)} css={{ color: 'white' }}>
+					Grid
+				</button>
+			</div> */}
 		</div>
 	);
 };
