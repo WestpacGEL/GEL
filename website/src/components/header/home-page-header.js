@@ -141,8 +141,9 @@ const IconText = ({ icon, iconMobile, children }) => {
 		<div css={{ textAlign: 'center' }}>
 			<div
 				css={{
-					[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-						display: 'none',
+					display: 'none',
+					[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+						display: 'inline-block',
 					},
 				}}
 			>
@@ -150,6 +151,7 @@ const IconText = ({ icon, iconMobile, children }) => {
 			</div>
 			<div
 				css={{
+					display: 'inline-block',
 					[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 						display: 'none',
 					},
