@@ -6,9 +6,8 @@ import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './component-page-header-image';
 
-// should really consolidate these two
 import { useSidebar } from '../providers/sidebar';
-import { usePageContext } from '../../providers/pageContext';
+import { usePageContext } from '../providers/pageContext';
 import { brandHeaderColors, gridlyIconColors } from '../_utils';
 
 const MenuIcon = ({ hasScrolled }) => {

@@ -11,7 +11,7 @@ import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Footer } from '../../components/layout';
 
-import { PageContext, usePageContext } from '../../providers/pageContext';
+import { PageContext, usePageContext } from '../../components/providers/pageContext';
 import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
 import PageHeader from '../../components/header/page-header';
 import { ALL_PAGES } from '../../../graphql';
