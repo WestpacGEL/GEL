@@ -9,7 +9,7 @@ import Select from '@arch-ui/select';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
-import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils';
+import { blocksContainerStyle } from '../src/components/_utils';
 
 export const Heading = {
 	editor: ({ value, onChange }) => {
@@ -135,7 +135,7 @@ export const Heading = {
 
 		return (
 			<Container fluid css={blocksContainerStyle}>
-				<Grid columns={12} css={blocksGridStyle}>
+				<Grid columns={12}>
 					<Cell width={indentWidth} left={indentLeft}>
 						<WestpacHeading
 							id={id}
@@ -147,7 +147,7 @@ export const Heading = {
 								Heading: {
 									styles: (styles) => ({
 										...styles,
-										scrollMarginTop: '75px',
+										scrollMarginTop: '166px',
 									}),
 								},
 							}}

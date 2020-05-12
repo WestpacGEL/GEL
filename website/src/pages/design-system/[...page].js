@@ -27,7 +27,7 @@ const ComponentWrapper = () => {
 	}
 	if (!data) return null;
 	let currentComponent =
-		data.allPages.find(component => {
+		data.allPages.find((component) => {
 			return component.url === `/${path}`;
 		}) || '';
 
@@ -87,14 +87,14 @@ const Tabs = ({ component, tabName }) => {
 
 	const tabOverrides = {
 		Tabcordion: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				flexGrow: 1,
 				backgroundColor: COLORS.background,
 			}),
 		},
 		TabRow: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				alignItems: 'flex-end',
 				backgroundColor: '#fff',
@@ -145,7 +145,7 @@ const Tabs = ({ component, tabName }) => {
 
 	const overrides = {
 		Panel: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				position: 'relative',
 				padding: 0,
@@ -215,6 +215,7 @@ const Gridly = ({ show }) => {
 			item && (
 				<animated.div key={key} style={props}>
 					<Container
+						fluid
 						css={{
 							position: 'absolute',
 							top: 0,

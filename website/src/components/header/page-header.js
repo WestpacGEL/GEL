@@ -9,7 +9,7 @@ import HeaderImage from './component-page-header-image';
 // should really consolidate these two
 import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../../providers/pageContext';
-import { brandHeaderColors } from '../_utils';
+import { brandHeaderColors, gridlyIconColors } from '../_utils';
 
 const MenuIcon = ({ hasScrolled }) => {
 	const { BRAND, COLORS } = useBrand();
@@ -20,12 +20,12 @@ const MenuIcon = ({ hasScrolled }) => {
 
 	return (
 		<Button
-			onClick={() => setIsOpen(status => !status)}
+			onClick={() => setIsOpen((status) => !status)}
 			look="link"
 			iconBefore={Icon}
 			overrides={{
 				Button: {
-					styles: styles => ({
+					styles: (styles) => ({
 						...styles,
 						justifySelf: 'start',
 						gridRowStart: 1,
@@ -100,7 +100,7 @@ const PageHeader = ({ name, version }) => {
 					size={hasScrolled ? 7 : 1}
 					overrides={{
 						Heading: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								alignSelf: 'center',
 								textTransform: 'capitalize',
@@ -141,11 +141,40 @@ const PageHeader = ({ name, version }) => {
 					</span>
 				)}
 			</div>
-			{/* <div>
-				<button onClick={() => setShowGrid(!showGrid)} css={{ color: 'white' }}>
-					Grid
+			<div
+				css={{
+					position: 'fixed',
+					display: 'flex',
+					alignItems: 'center',
+					top: 0,
+					right: '1.5rem',
+					height: '4.125rem',
+					color: '#fff',
+				}}
+			>
+				<span css={mq({ display: ['inline', 'none'] })}>xs</span>
+				<span css={mq({ display: ['none', 'inline', 'none'] })}>sm</span>
+				<span css={mq({ display: ['none', null, 'inline', 'none'] })}>md</span>
+				<span css={mq({ display: ['none', null, null, 'inline', 'none'] })}>lg</span>
+				<span css={mq({ display: ['none', null, null, null, 'inline'] })}>xl</span>
+				<button
+					onClick={() => setShowGrid(!showGrid)}
+					css={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
+				>
+					{[...new Array(4)].map((item, index) => (
+						<span
+							key={index}
+							css={{
+								display: 'inline-block',
+								height: 24,
+								width: 4,
+								marginRight: 2,
+								backgroundColor: gridlyIconColors[BRAND],
+							}}
+						/>
+					))}
 				</button>
-			</div> */}
+			</div>
 		</div>
 	);
 };
