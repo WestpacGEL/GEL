@@ -51,7 +51,7 @@ const Icon = () => {
 	const mq = useMediaQuery();
 	return (
 		<div>
-			<Container css={blocksContainerStyle}>
+			<Container fluid css={blocksContainerStyle}>
 				<Grid columns={12}>
 					<Cell width={[12, 12, 6]}>
 						<div

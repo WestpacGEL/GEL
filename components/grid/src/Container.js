@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Container = ({ children, overrides: componentOverrides, ...rest }) => {
+export const Container = ({ fluid, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -21,6 +21,7 @@ export const Container = ({ children, overrides: componentOverrides, ...rest }) 
 	};
 
 	const state = {
+		fluid,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -45,6 +46,8 @@ export const Container = ({ children, overrides: componentOverrides, ...rest }) 
 // ==============================
 
 Container.propTypes = {
+	fluid: PropTypes.bool,
+
 	/**
 	 * The override API
 	 */
