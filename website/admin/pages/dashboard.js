@@ -211,7 +211,7 @@ export default function Index() {
 	if (!data) return <LoadingIndicator />;
 	let orphanPages = data.allPages.filter((x) => x.isOrphaned === 'true'); // ... yes, it's a string true
 	return (
-		<Container css={{}}>
+		<Container fluid>
 			<PageTitle>Pages</PageTitle>
 			<Pages items={data.allPages} />
 			{orphanPages.length ? (

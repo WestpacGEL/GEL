@@ -165,7 +165,7 @@ export const DoAndAvoid = {
 		};
 
 		return (
-			<Container css={blocksContainerStyle}>
+			<Container fluid css={blocksContainerStyle}>
 				<Grid columns={12}>
 					<Cell width={[12, 12, 6, 5]} left={[1, 1, 1, 2]}>
 						<figure css={dodontFigure}>

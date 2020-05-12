@@ -29,7 +29,7 @@
 	"module": "dist/form.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/a11y": "^1.0.0",
+		"@westpac/a11y": "^1.0.0-beta.1",
 		"@westpac/core": "^1.0.0",
 		"@westpac/icon": "^1.0.0",
 		"prop-types": "^15.7.2",
@@ -41,7 +41,7 @@
 	"devDependencies": {
 		"@westpac/alert": "*",
 		"@westpac/button": "*",
-		"@westpac/text-input": "*",
+		"@westpac/text-input": ">1.0.0-alpha",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

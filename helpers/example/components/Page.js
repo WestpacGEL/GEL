@@ -24,7 +24,7 @@ export class Page extends React.Component {
 
 			return (
 				<Article>
-					<Container>
+					<Container fluid>
 						<h1>{errorLabel}</h1>
 						<h2 css={{ color: '#BF2600' }}>
 							<code>{error.message}</code>
@@ -50,7 +50,7 @@ export class Page extends React.Component {
 
 		return (
 			<Article>
-				<Container css={{ marginBottom: '3rem' }}>
+				<Container fluid css={{ marginBottom: '3rem' }}>
 					<h1>
 						{label}
 						<span
