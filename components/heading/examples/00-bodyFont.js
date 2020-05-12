@@ -22,6 +22,7 @@ function Example({ brand }) {
 			<Heading size={7}>Size: 7</Heading>
 			<Heading size={8}>Size: 8</Heading>
 			<Heading size={9}>Size: 9</Heading>
+			<Heading size={10}>Size: 10</Heading>
 
 			<hr />
 
@@ -54,6 +55,9 @@ function Example({ brand }) {
 			</Heading>
 			<Heading tag="h1" size={9}>
 				Tag: h1 size: 9
+			</Heading>
+			<Heading tag="h1" size={10}>
+				Tag: h1 size: 10
 			</Heading>
 			<hr />
 
@@ -117,12 +121,18 @@ function Example({ brand }) {
 				reprehenderit, nostrum debitis natus quo provident aliquid, temporibus enim rem id ab
 				delectus fugiat, cum odit. Voluptatibus.
 			</p>
+			<Heading size={10}>Size: 10</Heading>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut voluptates a vel porro
+				reprehenderit, nostrum debitis natus quo provident aliquid, temporibus enim rem id ab
+				delectus fugiat, cum odit. Voluptatibus.
+			</p>
 
 			<hr />
 
 			<h2>Invalid props</h2>
 			<Heading size={0}>Size too small</Heading>
-			<Heading size={10}>Size too large</Heading>
+			<Heading size={11}>Size too large</Heading>
 			<Heading tag="span" size={5}>
 				Tag not heading tag
 			</Heading>
