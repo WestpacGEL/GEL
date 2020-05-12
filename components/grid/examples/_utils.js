@@ -9,13 +9,10 @@ export const Box = (props) => {
 	return (
 		<div
 			css={{
+				display: 'grid',
 				alignItems: 'center',
-				backgroundColor: COLORS.tints.hero10,
-				borderRadius: 1,
+				textAlign: 'center',
 				color: COLORS.hero,
-				display: 'flex',
-				height: '100%',
-				justifyContent: 'center',
 				minHeight: 60,
 			}}
 			{...props}
@@ -23,31 +20,14 @@ export const Box = (props) => {
 	);
 };
 
-export const GridOverlay = ({ children, columns = 12, gap }) => (
-	<div css={{ height: '100%', position: 'relative' }}>
-		<Grid
-			columns={columns}
-			gap={gap}
-			css={{
-				bottom: '-1.5em',
-				height: 'auto',
-				left: 0,
-				opacity: 0.1,
-				pointerEvents: 'none',
-				position: 'absolute',
-				right: 0,
-				top: '-1.5em',
-
-				'@media (min-width: 420px)': {
-					bottom: '-2em',
-					top: '-2em',
-				},
-			}}
-		>
-			{new Array(columns).fill(1).map((c, i) => (
-				<Cell key={i} css={{ backgroundColor: 'rgba(0, 116, 196, 0.3)' }} />
-			))}
-		</Grid>
-		{children}
-	</div>
+export const Wrapper = (props) => (
+	<div
+		{...props}
+		css={{
+			'& div[class$="-Cell"]': {
+				backgroundColor: 'rgba(86,61,124,.15)',
+				border: '1px solid rgba(86,61,124,.2)',
+			},
+		}}
+	/>
 );

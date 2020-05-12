@@ -25,7 +25,7 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 			{blocks ? (
 				<SlateContent content={blocks} item={item} />
 			) : (
-				<Container css={blocksContainerStyle}>
+				<Container fluid css={blocksContainerStyle}>
 					<Grid columns={12} css={blocksGridStyle}>
 						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 							<p>No documentation specified for this section.</p>
@@ -118,7 +118,7 @@ export const RelatedInformation = ({ item }) => {
 					marginBottom: SPACING(3),
 				}}
 			>
-				<Container css={blocksContainerStyle}>
+				<Container fluid css={blocksContainerStyle}>
 					<Grid css={blocksGridStyle} columns={12}>
 						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 							<Heading
