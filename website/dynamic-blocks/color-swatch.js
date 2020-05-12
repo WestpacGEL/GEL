@@ -73,7 +73,12 @@ export const ColorSwatch = {
 								return (
 									<Fragment key={color.value}>
 										{Object.entries(secondaryColors[BRAND]).map((secondaryColor) => (
-											<Cell key={secondaryColor[1]} width={[10, 10, 4, 3]} left={[2, 2, 'auto']}>
+											<Cell
+												key={secondaryColor[1]}
+												width={[10, 10, 4, 3]}
+												left={[2, 2, 'auto']}
+												css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
+											>
 												<Swatch color={secondaryColor[1]} name={secondaryColor[0]} />
 											</Cell>
 										))}
@@ -81,7 +86,12 @@ export const ColorSwatch = {
 								);
 							} else {
 								return (
-									<Cell key={color.value} width={[10, 10, 4, 3]} left={[2, 2, 'auto']}>
+									<Cell
+										key={color.value}
+										width={[10, 10, 4, 3]}
+										left={[2, 2, 'auto']}
+										css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
+									>
 										<Swatch color={color.value} name={color.label} />
 									</Cell>
 								);
