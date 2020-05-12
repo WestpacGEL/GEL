@@ -161,8 +161,7 @@ const IconText = ({ icon, iconMobile, children }) => {
 			>
 				{iconMobile}
 			</div>
-
-			<p>{children}</p>
+			<p css={{ margin: '1.5rem 0 0', fontSize: '1.125rem', lineHeight: 1.33 }}>{children}</p>
 		</div>
 	);
 };
@@ -191,13 +190,13 @@ const HeroIntro = () => {
 					<Heading
 						size={1}
 						css={mq({
-							paddingTop: [SPACING(4), SPACING(7)],
-							paddingBottom: [SPACING(4), SPACING(6)],
 							fontFamily: `${TYPE.brandFont.fontFamily} !important`,
-							maxWidth: 600,
-							fontWeight: 500,
-							margin: '0 auto !important',
-							zIndex: 3,
+							fontWeight: '700 !important',
+							marginTop: [`${SPACING(4)} !important`, `${SPACING(7)} !important`],
+							marginBottom: [`${SPACING(4)} !important`, `${SPACING(6)} !important`],
+							marginLeft: 'auto !important',
+							marginRight: 'auto !important',
+							maxWidth: '37.5rem',
 							[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 								color: BRAND === 'STG' ? COLORS.text : COLORS.hero,
 							},
@@ -206,7 +205,11 @@ const HeroIntro = () => {
 						Design to scale with confidence
 					</Heading>
 
-					<Body>Assemble enterprise solutions with our components and patterns</Body>
+					<Body>
+						<p css={{ fontSize: '1.125rem', lineHeight: 1.67 }}>
+							Assemble enterprise solutions with our components and patterns
+						</p>
+					</Body>
 
 					<Grid css={mq({ marginTop: [SPACING(4), SPACING(10)] })}>
 						<Cell width={[12, 4]}>
