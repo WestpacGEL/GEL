@@ -23,12 +23,12 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	return <Tag ref={ref} {...rest} />;
 });
 
-const headingStyles = (_, { size }) => {
-	const { PACKS } = useBrand();
+const headingStyles = (_, { size, fontType }) => {
+	const { PACKS, TYPE } = useBrand();
 
 	return {
 		margin: 0,
-		...PACKS.heading[size],
+		...PACKS.typeScale[fontType][size],
 	};
 };
 

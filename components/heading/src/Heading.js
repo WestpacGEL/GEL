@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const Heading = forwardRef(
-	({ tag, size, children, overrides: componentOverrides, ...rest }, ref) => {
+	({ tag, size, fontType, children, overrides: componentOverrides, ...rest }, ref) => {
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
 			[pkg.name]: brandOverrides,
@@ -25,6 +25,7 @@ export const Heading = forwardRef(
 		const state = {
 			tag,
 			size,
+			fontType,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -60,7 +61,12 @@ Heading.propTypes = {
 	/**
 	 * The visual size of the heading
 	 */
-	size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9]).isRequired,
+	size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).isRequired,
+
+	/**
+	 * The heading font type
+	 */
+	fontType: PropTypes.oneOf(['bodyFont', 'brandFont']).isRequired,
 
 	/**
 	 * The override API
@@ -74,4 +80,6 @@ Heading.propTypes = {
 	}),
 };
 
-Heading.defaultProps = {};
+Heading.defaultProps = {
+	fontType: 'bodyFont',
+};
