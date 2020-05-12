@@ -3,7 +3,7 @@ import { jsx, useBrand } from '@westpac/core';
 
 export const Packs = () => {
 	const TOKENS = useBrand();
-	return Object.entries(TOKENS.PACKS.heading).map((pack, i) => {
+	return Object.entries(TOKENS.PACKS.typeScale.bodyFont).map((pack, i) => {
 		return <Heading pack={pack} key={i} />;
 	});
 };
