@@ -28,6 +28,7 @@ const headingStyles = (_, { size, fontType }) => {
 
 	return {
 		margin: 0,
+		fontWeight: TYPE[fontType].headingWeight,
 		...PACKS.typeScale[fontType][size],
 	};
 };

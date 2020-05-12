@@ -70,6 +70,7 @@ function build(BRAND) {
 		files: ${JSON.stringify(convertFonts(files))},
 		bodyFont: {
 			fontFamily: bodyFontFamily,
+			headingWeight: bodyHeadingWeight,
 			${weights.map((weight, i) => {
 				if (typeof bodyFont.weights[i] !== 'string' || !weights.includes(bodyFont.weights[i])) {
 					errors.push(
@@ -85,6 +86,7 @@ function build(BRAND) {
 		},
 		brandFont: {
 			fontFamily: brandFontFamily,
+			headingWeight: brandHeadingWeight,
 			${weights.map((weight, i) => {
 				if (typeof brandFont.weights[i] !== 'string' || !weights.includes(brandFont.weights[i])) {
 					errors.push(
@@ -111,7 +113,9 @@ function build(BRAND) {
 		import { OVERRIDES as _OVERRIDES } from '../overrides/index';
 
 		const bodyFontFamily = ${JSON.stringify(bodyFont.fontFamily)};
+		const bodyHeadingWeight = ${JSON.stringify(bodyFont.headingWeight)};
 		const brandFontFamily = ${JSON.stringify(brandFont.fontFamily)};
+		const brandHeadingWeight = ${JSON.stringify(brandFont.headingWeight)};
 		export const SPACING = ( i, minor, unit = 'rem' ) => {
 			return ( i * 6 - (minor && i !== 0 ? 3 : 0) ) / 16 + (unit ? (i > 0 ? unit : 0) : 0);
 		};
