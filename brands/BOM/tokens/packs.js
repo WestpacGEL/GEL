@@ -5,7 +5,7 @@ const focusOutlineWidth = '2px';
 
 module.exports = {
 	PACKS: {
-		headline: {
+		heading: {
 			1: {
 				fontWeight: 700,
 				fontSize: '3.375rem',

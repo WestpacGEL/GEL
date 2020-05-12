@@ -124,7 +124,7 @@ function Example({ brand }) {
 			<Heading size={0}>Size too small</Heading>
 			<Heading size={10}>Size too large</Heading>
 			<Heading tag="span" size={5}>
-				Tag not headline tag
+				Tag not heading tag
 			</Heading>
 		</GEL>
 	);

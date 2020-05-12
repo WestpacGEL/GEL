@@ -28,7 +28,7 @@ const headingStyles = (_, { size }) => {
 
 	return {
 		margin: 0,
-		...PACKS.headline[size],
+		...PACKS.heading[size],
 	};
 };
 

@@ -12,11 +12,11 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia ignore />
 
-			<h2>Headlines</h2>
+			<h2>Headings</h2>
 			{Array(9)
 				.fill()
 				.map((_, i) => (
-					<Code key={i}>{JSON.stringify(PACKS.headline[i + 1], null, 2)}</Code>
+					<Code key={i}>{JSON.stringify(PACKS.heading[i + 1], null, 2)}</Code>
 				))}
 
 			<h2>Lead</h2>
