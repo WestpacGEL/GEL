@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand, useFonts } from '@westpac/core';
 import { Fragment } from 'react';
 import { Code } from './_utils';
 
@@ -10,11 +10,11 @@ function Example({ brand }) {
 	const { COLORS, PACKS, SPACING } = useBrand();
 
 	return (
-		<GEL brand={brand}>
+		<GEL brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
 			<Intopia ignore />
 
-			<h2>Headings</h2>
-			{Array(9)
+			<h2>Brand type scale</h2>
+			{Array(7)
 				.fill()
 				.map((_, i) => (
 					<Fragment>
@@ -22,12 +22,30 @@ function Example({ brand }) {
 							css={{
 								display: 'block',
 								margin: '0 0 1rem',
-								...PACKS.heading[i + 1],
+								...PACKS.typeScale.brandFont[i + 1],
 							}}
 						>
 							{i + 1}
 						</span>
-						<Code key={i}>{JSON.stringify(PACKS.heading[i + 1], null, 2)}</Code>
+						<Code key={i}>{JSON.stringify(PACKS.typeScale.brandFont[i + 1], null, 2)}</Code>
+					</Fragment>
+				))}
+
+			<h2>Body type scale</h2>
+			{Array(10)
+				.fill()
+				.map((_, i) => (
+					<Fragment>
+						<span
+							css={{
+								display: 'block',
+								margin: '0 0 1rem',
+								...PACKS.typeScale.bodyFont[i + 1],
+							}}
+						>
+							{i + 1}
+						</span>
+						<Code key={i}>{JSON.stringify(PACKS.typeScale.bodyFont[i + 1], null, 2)}</Code>
 					</Fragment>
 				))}
 
