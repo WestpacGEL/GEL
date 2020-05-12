@@ -186,14 +186,12 @@ const HeroIntro = () => {
 				<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
 					<Heading
 						size={1}
+						fontType="brandFont"
 						css={mq({
 							paddingTop: [SPACING(4), SPACING(7)],
 							paddingBottom: [SPACING(4), SPACING(6)],
-							fontFamily: `${TYPE.brandFont.fontFamily} !important`,
 							maxWidth: 600,
-							fontWeight: 500,
 							margin: '0 auto !important',
-							zIndex: 3,
 							[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 								color: BRAND === 'STG' ? COLORS.text : COLORS.hero,
 							},
