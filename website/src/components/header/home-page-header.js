@@ -178,7 +178,7 @@ const HeroIntro = () => {
 				maxWidth: '60rem',
 				marginTop: '66px',
 				marginBottom: [SPACING(7), SPACING(11)],
-				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 					color: COLORS.text,
 				},
 			})}
@@ -195,8 +195,8 @@ const HeroIntro = () => {
 							fontWeight: 500,
 							margin: '0 auto !important',
 							zIndex: 3,
-							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-								color: COLORS.hero,
+							[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+								color: BRAND === 'STG' ? COLORS.text : COLORS.hero,
 							},
 						})}
 					>
