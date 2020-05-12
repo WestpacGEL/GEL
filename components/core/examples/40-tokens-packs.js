@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx, useBrand } from '@westpac/core';
+import { Fragment } from 'react';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -16,7 +17,18 @@ function Example({ brand }) {
 			{Array(9)
 				.fill()
 				.map((_, i) => (
-					<Code key={i}>{JSON.stringify(PACKS.heading[i + 1], null, 2)}</Code>
+					<Fragment>
+						<span
+							css={{
+								display: 'block',
+								margin: '0 0 1rem',
+								...PACKS.heading[i + 1],
+							}}
+						>
+							{i + 1}
+						</span>
+						<Code key={i}>{JSON.stringify(PACKS.heading[i + 1], null, 2)}</Code>
+					</Fragment>
 				))}
 
 			<h2>Lead</h2>
