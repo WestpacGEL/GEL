@@ -146,6 +146,7 @@ const IconText = ({ icon, iconMobile, children }) => {
 						display: 'inline-block',
 					},
 				}}
+				aria-hidden="true"
 			>
 				{icon}
 			</div>
@@ -156,6 +157,7 @@ const IconText = ({ icon, iconMobile, children }) => {
 						display: 'none',
 					},
 				}}
+				aria-hidden="true"
 			>
 				{iconMobile}
 			</div>

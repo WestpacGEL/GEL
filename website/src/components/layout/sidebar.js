@@ -65,6 +65,7 @@ const CloseButton = () => {
 	const { COLORS, SPACING, LAYOUT } = useBrand();
 	return (
 		<button
+			type="button"
 			onClick={() => setIsOpen(false)}
 			css={{
 				position: 'absolute',
@@ -78,6 +79,7 @@ const CloseButton = () => {
 				zIndex: 2,
 				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: { display: 'none' },
 			}}
+			aria-label="Close sidebar"
 		>
 			<CloseIcon color={COLORS.neutral} size="small" />
 		</button>
