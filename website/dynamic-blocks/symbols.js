@@ -1,32 +1,31 @@
 /** @jsx jsx */
+
 import React, { useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
-import * as icons from '@westpac/icon';
+import * as symbols from '@westpac/symbol';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
+import { blocksContainerStyle } from '../src/components/_utils';
 
-const renderIcons = (search) => {
-	const iconDetails = [];
-	for (let key in icons) {
-		iconDetails.push({ name: key, icon: icons[key] });
+const renderSymbols = (search) => {
+	const symbolDetails = [];
+	for (let key in symbols) {
+		symbolDetails.push({ name: key, symbol: symbols[key] });
 	}
 	const { COLORS, SPACING } = useBrand();
 
-	return iconDetails
-		.filter((icon) =>
-			search.trim() === '' ? true : icon.name.toLowerCase().includes(search.toLowerCase())
+	return symbolDetails
+		.filter((symbol) =>
+			search.trim() === '' ? true : symbol.name.toLowerCase().includes(search.toLowerCase())
 		)
-		.map((icon) => {
-			const Icon = icon.icon;
+		.map((symbol) => {
+			const Symbol = symbol.symbol;
 			return (
-				<Cell
-					width={[12, 12, 3, 3]}
-					css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
-				>
+				<Cell width={[12, 12, 3, 3]} css={{ display: 'flex' }}>
 					<div
-						key={icon.name}
+						key={symbol.name}
 						css={{
+							flexGrow: 1,
 							alignItems: 'center',
 							justifyContent: 'center',
 							display: 'flex',
@@ -36,20 +35,20 @@ const renderIcons = (search) => {
 							padding: `${(SPACING(3), SPACING(2))}`,
 						}}
 					>
-						<Icon
+						<Symbol
 							css={{
-								padding: SPACING(6),
+								flexGrow: 1,
+								padding: SPACING(4),
 							}}
 						/>
-						<span css={{ fontSize: '0.6875rem' }}>{icon.name}</span>
+						<span css={{ fontSize: '0.6875rem' }}>{symbol.name}</span>
 					</div>
 				</Cell>
 			);
 		});
 };
 
-// ToDo: Elevate the brand in the AdminUI so it doesn't override website
-const Icon = () => {
+const Symbol = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
 	return (
@@ -66,7 +65,7 @@ const Icon = () => {
 							})}
 						>
 							<label
-								htmlFor={'filter-icons'}
+								htmlFor={'filter-symbols'}
 								value={search}
 								onChange={(e) => setSearch(e.target.value)}
 								css={mq({
@@ -77,16 +76,18 @@ const Icon = () => {
 							>
 								Filter by name
 							</label>
-							<TextInput id="filter-icons" />
+							<TextInput id={'filter-symbols'} />
 						</div>
 					</Cell>
 				</Grid>
-				<Grid columns={12}>{renderIcons(search)}</Grid>
+				<Grid columns={12} css={{ gridAutoRows: '1fr' }}>
+					{renderSymbols(search)}
+				</Grid>
 			</Container>
 		</div>
 	);
 };
 
-export const Icons = {
-	component: Icon,
+export const Symbols = {
+	component: Symbol,
 };
