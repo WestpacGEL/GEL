@@ -115,7 +115,7 @@ export const CodeExample = {
 
 		return (
 			<Container fluid css={blocksContainerStyle}>
-				<Grid columns={12} css={blocksGridStyle}>
+				<Grid columns={12}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 						<Suspense fallback={<p>Loading...</p>}>
 							{loadCodeBlock && typeof window !== 'undefined' ? (

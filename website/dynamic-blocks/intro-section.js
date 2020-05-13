@@ -204,7 +204,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 				<Grid
 					css={mq({
 						gridGap: '1.5rem',
-						marginTop: ['1.875rem', '1.875rem', '5.625rem'],
+						paddingTop: ['1.875rem', '1.875rem', '5.625rem'],
 						paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
 					})}
 				>
