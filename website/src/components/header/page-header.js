@@ -53,7 +53,7 @@ const PageHeader = ({ name, version }) => {
 		const main = header.current.parentElement;
 
 		const scrollHandler = () => {
-			if (main.scrollTop >= 65) {
+			if (main.scrollTop >= 66) {
 				setHasScrolled(true);
 			} else {
 				setHasScrolled(false);

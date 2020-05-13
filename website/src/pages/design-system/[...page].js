@@ -66,7 +66,7 @@ const Tabs = ({ component, tabName }) => {
 		const scrollHandler = debounce(() => {
 			if (main.scrollTop === 0) {
 				setScrolled(false);
-			} else {
+			} else if (main.scrollTop >= 162) {
 				setScrolled(true);
 			}
 		}, 10);
@@ -115,6 +115,7 @@ const Tabs = ({ component, tabName }) => {
 					flexGrow: [1, null, 0],
 					display: 'flex',
 					justifyContent: 'center',
+					alignItems: 'center',
 					height: ['54px', null, '66px'],
 					borderRadius: 0,
 					backgroundColor: 'white',

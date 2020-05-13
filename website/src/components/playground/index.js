@@ -101,7 +101,10 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 			</Well>
 			{showCode && codeIsOpen ? (
 				<LiveEditor
-					css={mq({ fontSize: '1rem', padding: ['1.5rem !important', '2.25rem !important'] })}
+					css={mq({
+						fontSize: '14px',
+					})}
+					padding={24}
 				/>
 			) : null}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
