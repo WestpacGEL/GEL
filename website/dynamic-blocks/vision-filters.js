@@ -226,7 +226,7 @@ export const VisionFilters = {
 
 		return (
 			<Container fluid css={blocksContainerStyle}>
-				<Grid columns={12} css={blocksGridStyle}>
+				<Grid columns={12}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 						<Heading
 							id={id}
@@ -238,7 +238,7 @@ export const VisionFilters = {
 								Heading: {
 									styles: (styles) => ({
 										...styles,
-										scrollMarginTop: '75px',
+										scrollMarginTop: '10.375rem',
 									}),
 								},
 							}}
