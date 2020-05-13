@@ -238,7 +238,7 @@ export const VisionFilters = {
 								Heading: {
 									styles: (styles) => ({
 										...styles,
-										scrollMarginTop: '166px',
+										scrollMarginTop: '10.375rem',
 									}),
 								},
 							}}
