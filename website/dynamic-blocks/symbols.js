@@ -21,7 +21,7 @@ const renderSymbols = (search) => {
 		.map((symbol) => {
 			const Symbol = symbol.symbol;
 			return (
-				<Cell width={[12, 12, 3, 3]} css={{ display: 'flex' }}>
+				<Cell width={[12, 12, 6, 4, 3]} css={{ display: 'flex' }}>
 					<div
 						key={symbol.name}
 						css={{
