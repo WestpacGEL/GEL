@@ -201,6 +201,7 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
 	columns: 12,
+	gap: ['0.75rem', '1.5rem'],
 	gridColumnGap: ['0.75rem', '1.5rem'],
 	flow: 'row',
 	height: 'auto',
