@@ -25,8 +25,8 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 			{blocks ? (
 				<SlateContent content={blocks} item={item} />
 			) : (
-				<Container css={blocksContainerStyle}>
-					<Grid columns={12} css={blocksGridStyle}>
+				<Container fluid css={blocksContainerStyle}>
+					<Grid columns={12}>
 						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 							<p>No documentation specified for this section.</p>
 						</Cell>
@@ -118,8 +118,8 @@ export const RelatedInformation = ({ item }) => {
 					marginBottom: SPACING(3),
 				}}
 			>
-				<Container css={blocksContainerStyle}>
-					<Grid css={blocksGridStyle} columns={12}>
+				<Container fluid css={blocksContainerStyle}>
+					<Grid columns={12}>
 						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 							<Heading
 								tag="h2"
@@ -271,6 +271,14 @@ export const brandIconHighlightColors = {
 	BTFG: () => '#00afd7',
 };
 
+export const gridlyIconColors = {
+	WBC: '#b6000b',
+	WBG: '#808990',
+	STG: '#a1d263',
+	BSA: 'rgba(255, 255, 255, 0.3)',
+	BOM: 'rgba(255, 255, 255, 0.3)',
+	BTFG: '#669ec3',
+};
 export const blocksGridStyle = {
 	maxWidth: '60rem',
 	margin: '0 auto',

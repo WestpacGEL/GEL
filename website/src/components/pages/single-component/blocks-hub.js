@@ -8,7 +8,7 @@ import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
 import dynamic from 'next/dynamic';
 import { getShortCodes } from '../../../shortcodes';
-import { blocksGridStyle, blocksContainerStyle } from '../../_utils';
+import { blocksContainerStyle } from '../../_utils';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
@@ -102,9 +102,9 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<Container css={{ ...blocksContainerStyle, margin: 0 }}>
-							<Grid columns={12} key={path} css={blocksGridStyle}>
-								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
+						<Container fluid css={{ ...blocksContainerStyle }}>
+							<Grid columns={12} key={path}>
+								<Cell width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
 									<Body>
 										<p css={textStyle}>{serializeChildren(node.nodes)}</p>
 									</Body>
@@ -127,9 +127,9 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'unordered-list':
 					return (
-						<Container css={{ ...blocksContainerStyle, margin: 0 }}>
-							<Grid columns={12} key={path} css={blocksGridStyle}>
-								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
+						<Container fluid css={{ ...blocksContainerStyle }}>
+							<Grid columns={12} key={path}>
+								<Cell width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
 									<List
 										css={{
 											...textStyle,
@@ -148,9 +148,9 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'ordered-list':
 					return (
-						<Container css={{ ...blocksContainerStyle, margin: 0 }}>
-							<Grid columns={12} key={path} css={blocksGridStyle}>
-								<Cell width={[12, 10, 8, 8]} left={[1, 2, 3, 3]}>
+						<Container fluid css={{ ...blocksContainerStyle }}>
+							<Grid columns={12} key={path}>
+								<Cell width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
 									<List css={textStyle} type="ordered">
 										{serializeChildren(node.nodes)}
 									</List>
@@ -183,15 +183,7 @@ const slateRenderer = (item, _editorValue) => {
 
 export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
-		<div
-			{...props}
-			className="slate-container"
-			css={{
-				display: 'flex',
-				flexDirection: 'column',
-				...cssOverrides,
-			}}
-		>
+		<div {...props} className="slate-container" css={cssOverrides}>
 			{slateRenderer(item, content.document)(content)}
 		</div>
 	);

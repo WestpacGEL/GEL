@@ -23,7 +23,7 @@
 		"@babel/runtime": "^7.9.6",
 		"@westpac/button": "^1.0.0",
 		"@westpac/core": "^1.0.0",
-		"@westpac/heading": "^1.0.0",
+		"@westpac/heading": "^1.0.0-beta.1",
 		"@westpac/hooks": "^1.0.0",
 		"prop-types": "^15.7.2"
 	},
@@ -34,8 +34,8 @@
 		"@westpac/button-group": "*",
 		"@westpac/form-check": "*",
 		"@westpac/icon": "*",
-		"@westpac/list": "*",
-		"@westpac/switch": "*",
+		"@westpac/list": ">1.0.0-alpha",
+		"@westpac/switch": ">1.0.0-alpha",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

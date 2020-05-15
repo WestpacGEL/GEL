@@ -9,6 +9,7 @@ import { VisionFilters } from './vision-filters';
 import { ScreenReaderText } from './screen-reader-demo';
 import { Image } from './image';
 import { Heading } from './headings';
+import { Symbols } from './symbols';
 
 export default {
 	DoAndAvoid,
@@ -22,4 +23,5 @@ export default {
 	ScreenReaderText,
 	Image,
 	Heading,
+	Symbols,
 };

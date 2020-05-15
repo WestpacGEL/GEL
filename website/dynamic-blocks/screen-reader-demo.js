@@ -44,7 +44,7 @@ export const ScreenReaderText = {
 		const { SPACING, COLORS } = useBrand();
 		const mq = useMediaQuery();
 		return (
-			<Container css={blocksContainerStyle}>
+			<Container fluid css={blocksContainerStyle}>
 				<Grid css={blocksGridStyle} columns={12}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 						<Heading
