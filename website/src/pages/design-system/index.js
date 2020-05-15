@@ -3,9 +3,10 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { Heading } from '@westpac/heading';
-import { Body } from '@westpac/body';
 import { TextInput } from '@westpac/text-input';
 import HomePageHeader from '../../components/header/home-page-header';
+import { Section } from '../../components/layout/section';
+import { RichText } from '../../components/rich-text/rich-text';
 import { Footer } from '../../components/layout/footer';
 import {
 	ReactLogo,
@@ -26,133 +27,105 @@ const Homepage = () => {
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 
+	const sectionPadding = {
+		paddingTop: [SPACING(7), '5.625rem'],
+		paddingBottom: [SPACING(7), '5.625rem'],
+	};
+
 	return (
-		<div css={{ textAlign: 'center', lineHeight: 2 }}>
+		<div css={{ textAlign: 'center' }}>
 			<HomePageHeader />
-			<section>
-				<Container
-					css={{
-						maxWidth: '60rem',
-						margin: '0 auto',
-					}}
-				>
-					<Grid columns={12} css={mq({ padding: [`${SPACING(7)} 0`, `${SPACING(15)} 0`] })}>
-						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
-							<Heading tag="h2" size={5}>
-								Accessibility is in everything we do
-							</Heading>
-							<Body css={{ marginBottom: SPACING(3), marginTop: SPACING(4) }}>
-								Accessibility and inclusive design is a strong part of how we design in the Design
-								Quality team.
-							</Body>
-
-							<Body css={{ margin: `${SPACING(3)} 0` }}>
-								We delve into the detail and pressure test solutions against the latest WCAG
-								requirements, delivering the most accessible components and patterns possible. We
-								then guide teams further along the path of accessibility. Read more about our
-								commitment to accessibility.
-							</Body>
-							<a href="" css={{ margin: `${SPACING(3)} 0`, color: COLORS.primary }}>
-								Read more about our commitment to accessibility
-							</a>
+			<Section>
+				<Container>
+					<Grid>
+						<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
+							<RichText>
+								<h2>Accessibility is in everything we do</h2>
+								<p>
+									Accessibility and inclusive design is a strong part of how we design in the Design
+									Quality team.
+								</p>
+								<p>
+									We delve into the detail and pressure test solutions against the latest WCAG
+									requirements, delivering the most accessible components and patterns possible. We
+									then guide teams further along the path of accessibility. Read more about our
+									commitment to accessibility.
+								</p>
+								<p>
+									Read more about{' '}
+									<a href="#0" css={{ margin: `${SPACING(3)} 0`, color: COLORS.primary }}>
+										our commitment to accessibility
+									</a>
+								</p>
+							</RichText>
 						</Cell>
 					</Grid>
 				</Container>
-			</section>
-			<section
-				css={{
-					background: COLORS.background,
-				}}
-			>
-				<Container
-					css={{
-						maxWidth: '60rem',
-						margin: '0 auto',
-					}}
-				>
-					<Grid
-						columns={12}
-						css={mq({
-							paddingTop: [SPACING(5), SPACING(10)],
-							paddingBottom: [SPACING(7), SPACING(15)],
-						})}
-					>
-						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
-							<ReactLogo size={'60px'} />
-							<Heading tag="h2" size={5} css={{ padding: `${SPACING(3)} 0` }}>
-								Built on React
-							</Heading>
-							<Body css={{ marginTop: SPACING(1), marginBottom: 0 }}>
-								We're moving with the times. With React we can showcase so much more and deliver
-								higher quality, more accessible code.
-							</Body>
+			</Section>
 
-							<Heading
-								tag="h3"
-								size={7}
-								css={mq({
-									borderBottom: `1px solid ${COLORS.text}`,
-									paddingBottom: SPACING(3),
-									paddingTop: [SPACING(5), SPACING(7)],
-								})}
+			<Section bgFill>
+				<Container>
+					<Grid>
+						<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
+							<RichText>
+								<ReactLogo size={'60px'} aria-hidden="true" css={{ marginBottom: '12px' }} />
+								<h2>Built on React</h2>
+								<p>
+									We're moving with the times. With React we can showcase so much more and deliver
+									higher quality, more accessible code.
+								</p>
+								<h3>Who else is using React?</h3>
+							</RichText>
+
+							<div
+								css={{
+									borderTop: `1px solid ${COLORS.neutral}`,
+									paddingBottom: SPACING(5),
+								}}
 							>
-								Who else is using React?
-							</Heading>
-						</Cell>
-						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
-							<Grid columns={12}>
-								<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-									<GovLogo size={'113px'} />
-								</Cell>
-								<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-									<MicrosoftLogo size={'127px'} />
-								</Cell>
-								<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-									<MyobLogo size={'90px'} />
-								</Cell>
-								<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-									<IbmLogo size={'77px'} />
-								</Cell>
-							</Grid>
-							<Grid css={{ marginTop: SPACING(3) }} columns={12}>
-								<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-									<AtlassianLogo size={'159px'} />
-								</Cell>
-								<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-									<FacebookLogo size={'39px'} />
-								</Cell>
-								<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-									<TwitterLogo size={'50px'} />
-								</Cell>
-								<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-									<ShopifyLogo size={'138px'} />
-								</Cell>
-							</Grid>
+								<Grid>
+									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+										<GovLogo size={'113px'} />
+									</Cell>
+									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+										<MicrosoftLogo size={'127px'} />
+									</Cell>
+									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+										<MyobLogo size={'90px'} />
+									</Cell>
+									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+										<IbmLogo size={'77px'} />
+									</Cell>
+								</Grid>
+								<Grid css={{ marginTop: SPACING(3) }}>
+									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+										<AtlassianLogo size={'159px'} />
+									</Cell>
+									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+										<FacebookLogo size={'39px'} />
+									</Cell>
+									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+										<TwitterLogo size={'50px'} />
+									</Cell>
+									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+										<ShopifyLogo size={'138px'} />
+									</Cell>
+								</Grid>
+							</div>
 						</Cell>
 					</Grid>
 				</Container>
-			</section>
-			<section>
-				<Container
-					css={{
-						maxWidth: '60rem',
-						margin: '0 auto',
-					}}
-				>
-					<Grid columns={12} css={mq({ padding: [`${SPACING(7)} 0`, `${SPACING(15)} 0`] })}>
-						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
-							<Heading tag="h2" size={5}>
-								Subscribe to our updates
-							</Heading>
-							<Body
-								css={mq({
-									margin: [`${SPACING(3)} 0 ${SPACING(2)} 0`, `${SPACING(4)} 0`],
-								})}
-							>
-								Get news about components, code chages, new resources, and helpful tips.
-							</Body>
-						</Cell>
-						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
+			</Section>
+
+			<Section>
+				<Container>
+					<Grid>
+						<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
+							<RichText>
+								<h2>Subscribe to our updates</h2>
+								<p>Get news about components, code chages, new resources, and helpful tips.</p>
+							</RichText>
+
 							<form
 								action="//westpac.us11.list-manage.com/subscribe/post?u=d3cf7e940bf311ace99e397b7&amp;id=c78955f1b4"
 								method="post"
@@ -162,7 +135,6 @@ const Homepage = () => {
 								noValidate=""
 							>
 								<Grid
-									columns={12}
 									style={{
 										maxWidth: '25rem',
 										margin: '0 auto',
@@ -193,37 +165,24 @@ const Homepage = () => {
 						</Cell>
 					</Grid>
 				</Container>
-			</section>
+			</Section>
 
-			<section
-				css={{
-					background: COLORS.background,
-				}}
-			>
-				<Container
-					css={{
-						maxWidth: '60rem',
-						margin: '0 auto',
-					}}
-				>
-					<Grid columns={12} css={mq({ padding: [`${SPACING(7)} 0`, `${SPACING(15)} 0`] })}>
-						<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
-							<Heading tag="h2" size={5}>
-								Downloads & links
-							</Heading>
-							<Body
-								css={mq({
-									margin: [`${SPACING(3)} 0 ${SPACING(5)} 0`, `${SPACING(4)} 0 ${SPACING(7)} 0`],
-								})}
-							>
-								Get the Sketch UI or Axure kit to start designing. Visit Git to get the latest code
-								and development framework.
-							</Body>
-							<DownloadAndLinksSection />
+			<Section bgFill>
+				<Container>
+					<Grid>
+						<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
+							<RichText>
+								<h2>Downloads & links</h2>
+								<p>
+									Get the Sketch UI or Axure kit to start designing. Visit Git to get the latest
+									code and development framework.
+								</p>
+							</RichText>
+							<DownloadAndLinksSection css={{ marginTop: '42px' }} />
 						</Cell>
 					</Grid>
 				</Container>
-			</section>
+			</Section>
 			<Footer />
 		</div>
 	);
@@ -231,17 +190,16 @@ const Homepage = () => {
 
 export default Homepage;
 
-const DownloadAndLinksSection = () => {
+const DownloadAndLinksSection = (props) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
 		<div
 			css={{
-				paddingBottom: SPACING(12),
-				marginBottom: SPACING(3),
 				textAlign: 'left',
 			}}
+			{...props}
 		>
 			<Grid columns={13}>
 				<Cell width={[13, 6]}>
@@ -280,8 +238,7 @@ const DownloadAndLinksSection = () => {
 						Axure UI Kit Download <AxureLogo size="70px" />
 					</div>
 				</Cell>
-				<Cell width={[0, 1]} />
-				<Cell width={[13, 6]}>
+				<Cell width={[13, 6]} left={[0, 8]} css={mq({ marginTop: ['24px', 0] })}>
 					<Heading
 						tag="h3"
 						size={7}
