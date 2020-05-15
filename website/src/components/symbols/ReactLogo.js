@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-export const ReactLogo = ({ size }) => {
+export const ReactLogo = ({ size, ...rest }) => {
 	return (
-		<svg width={size} height={size} viewBox="0 0 2486 2235" role="img" focusable="false">
+		<svg width={size} height={size} viewBox="0 0 2486 2235" role="img" focusable="false" {...rest}>
 			<title>React logo</title>
 			<g fillRule="nonzero" fill="none">
 				<path
