@@ -17,7 +17,7 @@ function Example({ brand }) {
 			{Array(7)
 				.fill()
 				.map((_, i) => (
-					<Fragment>
+					<Fragment key={i}>
 						<span
 							css={{
 								display: 'block',
@@ -27,7 +27,7 @@ function Example({ brand }) {
 						>
 							{i + 1}
 						</span>
-						<Code key={i}>{JSON.stringify(PACKS.typeScale.brandFont[i + 1], null, 2)}</Code>
+						<Code>{JSON.stringify(PACKS.typeScale.brandFont[i + 1], null, 2)}</Code>
 					</Fragment>
 				))}
 
@@ -35,7 +35,7 @@ function Example({ brand }) {
 			{Array(10)
 				.fill()
 				.map((_, i) => (
-					<Fragment>
+					<Fragment key={i}>
 						<span
 							css={{
 								display: 'block',
@@ -45,7 +45,7 @@ function Example({ brand }) {
 						>
 							{i + 1}
 						</span>
-						<Code key={i}>{JSON.stringify(PACKS.typeScale.bodyFont[i + 1], null, 2)}</Code>
+						<Code>{JSON.stringify(PACKS.typeScale.bodyFont[i + 1], null, 2)}</Code>
 					</Fragment>
 				))}
 
@@ -72,7 +72,7 @@ function Example({ brand }) {
 			<h2>Link</h2>
 			<p>
 				The GUI Framework is a front-end development framework designed for{' '}
-				<a href="?" css={{ ...PACKS.link }}>
+				<a href="#0" css={{ ...PACKS.link }}>
 					multi-brand
 				</a>
 				, accessible, responsive, mobile first projects.
@@ -88,7 +88,7 @@ function Example({ brand }) {
 					background: COLORS.background,
 				}}
 			>
-				This box has focus!
+				This box has focus styling!
 			</div>
 			<Code>{JSON.stringify(PACKS.focus, null, 2)}</Code>
 		</GEL>
