@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { forwardRef } from 'react';
 
-const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
+const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	// ignore all non h1-h6 tags
 	if (Tag && typeof Tag !== 'function' && !Tag.startsWith('h') && !(Tag.length === 2)) {
 		Tag = null;
@@ -23,20 +23,20 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	return <Tag ref={ref} {...rest} />;
 });
 
-const headingStyles = (_, { size }) => {
+const brandHeadingStyles = (_, { size }) => {
 	const { PACKS, TYPE } = useBrand();
 
 	return {
 		margin: 0,
-		fontWeight: TYPE.bodyFont.headingWeight,
-		...PACKS.typeScale.bodyFont[size],
+		fontWeight: TYPE.brandFont.headingWeight,
+		...PACKS.typeScale.brandFont[size],
 	};
 };
 
-const headingAttributes = () => null;
+const brandHeadingAttributes = () => null;
 
-export const defaultHeading = {
-	component: Heading,
-	styles: headingStyles,
-	attributes: headingAttributes,
+export const defaultBrandHeading = {
+	component: BrandHeading,
+	styles: brandHeadingStyles,
+	attributes: brandHeadingAttributes,
 };

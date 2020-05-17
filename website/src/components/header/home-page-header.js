@@ -191,13 +191,10 @@ const HeroIntro = () => {
 					<Heading
 						size={1}
 						css={mq({
-							fontFamily: `${TYPE.brandFont.fontFamily} !important`,
-							fontWeight: '700 !important',
-							marginTop: [`${SPACING(4)} !important`, `${SPACING(7)} !important`],
-							marginBottom: [`${SPACING(4)} !important`, `${SPACING(6)} !important`],
-							marginLeft: 'auto !important',
-							marginRight: 'auto !important',
-							maxWidth: '37.5rem',
+							paddingTop: [SPACING(4), SPACING(7)],
+							paddingBottom: [SPACING(4), SPACING(6)],
+							maxWidth: 600,
+							margin: '0 auto !important',
 							[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 								color: BRAND === 'STG' ? COLORS.text : COLORS.hero,
 							},
