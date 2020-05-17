@@ -12,15 +12,15 @@ export const RichText = (props) => {
 					styles: (styles) => ({
 						...styles,
 						h2: {
-							...PACKS.headline[5],
+							...PACKS.typeScale.bodyFont[5],
 							margin: '0 0 1.125rem',
 						},
 						h3: {
-							...PACKS.headline[7],
+							...PACKS.typeScale.bodyFont[7],
 							margin: '0 0 1.125rem',
 						},
 						p: {
-							...PACKS.headline[8],
+							...PACKS.typeScale.bodyFont[8],
 							margin: '0 0 0.75rem !important',
 							lineHeight: 2,
 						},
