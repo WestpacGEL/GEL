@@ -94,8 +94,8 @@ describe('Alert specific tests', () => {
 		expect(container.querySelector('strong')).toHaveTextContent(text);
 	});
 
-	test('Adds a headline', () => {
-		const text = 'headline text';
+	test('Adds a heading', () => {
+		const text = 'heading text';
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
 				<Alert heading={text}>Our alert content</Alert>
@@ -107,8 +107,8 @@ describe('Alert specific tests', () => {
 		expect(container.querySelector('h2')).toHaveTextContent(text);
 	});
 
-	test('Adds a headline with a different tag', () => {
-		const text = 'headline text';
+	test('Adds a heading with a different tag', () => {
+		const text = 'heading text';
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
 				<Alert heading={text} headingTag="h6">

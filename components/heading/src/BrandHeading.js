@@ -4,14 +4,14 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultHeading } from './overrides/heading';
+import { defaultBrandHeading } from './overrides/brandHeading';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Heading = forwardRef(
+export const BrandHeading = forwardRef(
 	({ tag, size, children, overrides: componentOverrides, ...rest }, ref) => {
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -19,7 +19,7 @@ export const Heading = forwardRef(
 		} = useBrand();
 
 		const defaultOverrides = {
-			Heading: defaultHeading,
+			BrandHeading: defaultBrandHeading,
 		};
 
 		const state = {
@@ -30,19 +30,23 @@ export const Heading = forwardRef(
 		};
 
 		const {
-			Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
+			BrandHeading: {
+				component: BrandHeading,
+				styles: brandHeadingStyles,
+				attributes: brandHeadingAttributes,
+			},
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		return (
-			<Heading
+			<BrandHeading
 				ref={ref}
 				{...rest}
 				state={state}
-				{...headingAttributes(state)}
-				css={{ '&&': headingStyles(state) }}
+				{...brandHeadingAttributes(state)}
+				css={{ '&&': brandHeadingStyles(state) }}
 			>
 				{children}
-			</Heading>
+			</BrandHeading>
 		);
 	}
 );
@@ -51,7 +55,7 @@ export const Heading = forwardRef(
 // Types
 // ==============================
 
-Heading.propTypes = {
+BrandHeading.propTypes = {
 	/**
 	 * Component tag
 	 */
@@ -60,13 +64,13 @@ Heading.propTypes = {
 	/**
 	 * The visual size of the heading
 	 */
-	size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).isRequired,
+	size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7]).isRequired,
 
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Heading: PropTypes.shape({
+		BrandHeading: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
