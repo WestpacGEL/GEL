@@ -9,7 +9,7 @@ const footerStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
-		padding: ['0.625rem 0.75rem', '0.625rem 1.5rem'],
+		padding: ['0.625rem 0.75rem', null, '0.625rem 1.5rem'],
 		backgroundColor: COLORS.light,
 		borderTop: `1px solid ${COLORS.border}`,
 		borderBottomRightRadius: `calc(0.1875rem - 1px)`,

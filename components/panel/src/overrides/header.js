@@ -20,7 +20,7 @@ const headerStyles = (_, { look }) => {
 	};
 
 	return mq({
-		padding: ['0.625rem 0.75rem', '0.625rem 1.5rem'],
+		padding: ['0.625rem 0.75rem', null, '0.625rem 1.5rem'],
 		backgroundColor: styleMap[look].backgroundColor,
 		borderBottom: `1px solid ${styleMap[look].borderColor}`,
 		borderTopRightRadius: `calc(0.1875rem - 1px)`,
