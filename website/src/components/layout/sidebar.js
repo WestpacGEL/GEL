@@ -43,7 +43,7 @@ export const Sidebar = ({ items }) => {
 				transition: 'transform 0.15s',
 				transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
 
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					position: 'static',
 					zIndex: 'auto',
 					top: 'auto',
@@ -76,7 +76,7 @@ const CloseButton = () => {
 				border: 'none',
 				cursor: 'pointer',
 				zIndex: 2,
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: { display: 'none' },
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: { display: 'none' },
 			}}
 		>
 			<CloseIcon color={COLORS.neutral} size="small" />

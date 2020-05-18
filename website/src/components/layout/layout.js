@@ -80,7 +80,7 @@ const GridContainer = (props) => {
 				width: '100vw',
 				height: '100vh',
 
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					gridTemplateColumns: '300px auto',
 				},
 			}}
@@ -99,7 +99,7 @@ const MainContainer = (props) => {
 				display: 'flex !important',
 				flexDirection: 'column',
 				overflowY: 'scroll',
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					gridColumnStart: 2,
 					gridColumnEnd: 3,
 				},
