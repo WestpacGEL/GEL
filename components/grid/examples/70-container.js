@@ -17,16 +17,16 @@ function Example({ brand }) {
 	const { width: containerWidth } = useContainerQuery(containerRef);
 
 	let breakpoint;
-	if (containerWidth > breakpoints.xl) {
-		breakpoint = 'xl';
-	} else if (containerWidth > breakpoints.lg) {
+	if (containerWidth >= breakpoints.lg) {
 		breakpoint = 'lg';
-	} else if (containerWidth > breakpoints.md) {
+	} else if (containerWidth >= breakpoints.md) {
 		breakpoint = 'md';
-	} else if (containerWidth > breakpoints.sm) {
+	} else if (containerWidth >= breakpoints.sm) {
 		breakpoint = 'sm';
+	} else if (containerWidth >= breakpoints.xsl) {
+		breakpoint = 'xsl';
 	} else {
-		breakpoint = 'mobile';
+		breakpoint = 'xs';
 	}
 
 	return (
