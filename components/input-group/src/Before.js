@@ -11,7 +11,7 @@ import { Text } from './Text';
 // Component
 // ==============================
 
-export const Right = ({ type, overrides: componentOverrides, ...rest }) => {
+export const Before = ({ type, overrides: componentOverrides, ...rest }) => {
 	const componentMap = {
 		text: Text,
 		button: Button,
@@ -19,14 +19,14 @@ export const Right = ({ type, overrides: componentOverrides, ...rest }) => {
 	};
 	const Component = componentMap[type];
 
-	return <Component position="right" overrides={componentOverrides} {...rest} />;
+	return <Component position="before" overrides={componentOverrides} {...rest} />;
 };
 
 // ==============================
 // Types
 // ==============================
 
-Right.propTypes = {
+Before.propTypes = {
 	/**
 	 * What type this component is
 	 */
@@ -38,8 +38,8 @@ Right.propTypes = {
 	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
 };
 
-Right.defaultProps = {
+Before.defaultProps = {
 	size: 'medium',
 };
 
-Right.displayName = 'Right';
+Before.displayName = 'Before';

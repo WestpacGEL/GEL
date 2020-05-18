@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
-import { InputGroup, Left, Right } from '@westpac/input-group';
+import { InputGroup, Before, After } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -50,25 +50,25 @@ function Example({ brand }) {
 
 			<h2>With overrides applied</h2>
 			<InputGroup name="example-overrides-l">
-				<Left type="text" data="AUS $" />
-				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
+				<Before type="text" data="AUS $" />
+				<After type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
 			<br />
 
 			<InputGroup
 				name="example-overrides-2"
 				data={{
-					left: {
+					before: {
 						type: 'text',
 						data: 'AUS $',
 					},
-					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
+					after: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
 				}}
 			/>
 			<br />
 
 			<InputGroup name="example-overrides-3">
-				<Left
+				<Before
 					type="select"
 					onChange={(event) => console.log(`Select ${event.target.value}`)}
 					data={[
@@ -78,14 +78,14 @@ function Example({ brand }) {
 						{ text: '3', value: '3' },
 					]}
 				/>
-				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
+				<After type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
 			<br />
 
 			<InputGroup
 				name="example-overrides-4"
 				data={{
-					left: {
+					before: {
 						type: 'select',
 						onChange: (event) => console.log(`Select ${event.target.value}`),
 						data: [
@@ -94,7 +94,7 @@ function Example({ brand }) {
 							{ text: 'EUR €', value: 'EUR' },
 						],
 					},
-					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
+					after: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
 				}}
 			/>
 
@@ -112,8 +112,8 @@ function Example({ brand }) {
 					},
 				}}
 			>
-				<Left type="text" data="AUS $" />
-				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
+				<Before type="text" data="AUS $" />
+				<After type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
 			<br />
 
@@ -128,7 +128,7 @@ function Example({ brand }) {
 					},
 				}}
 				data={{
-					left: {
+					before: {
 						type: 'select',
 						onChange: (event) => console.log(`Select ${event.target.value}`),
 						data: [
@@ -137,7 +137,7 @@ function Example({ brand }) {
 							{ text: 'EUR €', value: 'EUR' },
 						],
 					},
-					right: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
+					after: { type: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
 				}}
 			/>
 		</GEL>

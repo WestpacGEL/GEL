@@ -57,7 +57,7 @@ Button.propTypes = {
 	/**
 	 * What position this component is at
 	 */
-	position: PropTypes.oneOf(['left', 'right']).isRequired,
+	position: PropTypes.oneOf(['before', 'after']).isRequired,
 
 	/**
 	 * What size the button-group is

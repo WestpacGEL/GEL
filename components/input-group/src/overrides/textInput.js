@@ -5,13 +5,13 @@ import { TextInput as Input } from '@westpac/text-input';
 
 const TextInput = ({ state: { size }, ...rest }) => <Input size={size} {...rest} />;
 
-const textInputStyles = (_, { left, right }) => ({
+const textInputStyles = (_, { before, after }) => ({
 	boxSizing: 'border-box',
-	...(left && {
+	...(before && {
 		borderTopLeftRadius: 0,
 		borderBottomLeftRadius: 0,
 	}),
-	...(right && {
+	...(after && {
 		borderTopRightRadius: 0,
 		borderBottomRightRadius: 0,
 	}),

@@ -11,7 +11,7 @@ import { Text } from './Text';
 // Component
 // ==============================
 
-export const Left = ({ type, overrides: componentOverrides, ...rest }) => {
+export const After = ({ type, overrides: componentOverrides, ...rest }) => {
 	const componentMap = {
 		text: Text,
 		button: Button,
@@ -19,14 +19,14 @@ export const Left = ({ type, overrides: componentOverrides, ...rest }) => {
 	};
 	const Component = componentMap[type];
 
-	return <Component position="left" overrides={componentOverrides} {...rest} />;
+	return <Component position="after" overrides={componentOverrides} {...rest} />;
 };
 
 // ==============================
 // Types
 // ==============================
 
-Left.propTypes = {
+After.propTypes = {
 	/**
 	 * What type this component is
 	 */
@@ -38,8 +38,8 @@ Left.propTypes = {
 	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
 };
 
-Left.defaultProps = {
+After.defaultProps = {
 	size: 'medium',
 };
 
-Left.displayName = 'Left';
+After.displayName = 'After';

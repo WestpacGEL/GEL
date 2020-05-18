@@ -10,14 +10,14 @@ const Select = ({ state: { size, data }, ...rest }) => (
 const selectStyles = (_, { position }) => ({
 	boxSizing: 'border-box',
 	width: 'auto',
-	marginLeft: position === 'right' && '-1px',
-	marginRight: position === 'left' && '-1px',
+	marginLeft: position === 'after' && '-1px',
+	marginRight: position === 'before' && '-1px',
 
-	...(position === 'right' && {
+	...(position === 'after' && {
 		borderTopLeftRadius: 0,
 		borderBottomLeftRadius: 0,
 	}),
-	...(position === 'left' && {
+	...(position === 'before' && {
 		borderTopRightRadius: 0,
 		borderBottomRightRadius: 0,
 	}),

@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import { defaultInputGroup } from './overrides/inputGroup';
 
 import { TextInputField } from './TextInputField';
-import { Right } from './Right';
-import { Left } from './Left';
+import { After } from './After';
+import { Before } from './Before';
 import pkg from '../package.json';
 
 // ==============================
@@ -21,7 +21,7 @@ export const useInputGroupContext = () => {
 	const context = useContext(InputGroupContext);
 
 	if (!context) {
-		throw new Error('<Left/> and <Right/> components should be wrapped in <InputGroup>.');
+		throw new Error('<Before/> and <After/> components should be wrapped in <InputGroup>.');
 	}
 
 	return context;
@@ -89,18 +89,18 @@ export const InputGroup = ({
 	const length = Children.count(children);
 
 	if (data) {
-		const { left, right } = data;
+		const { before, after } = data;
 
-		if (left) {
+		if (before) {
 			childrenWithProps.push(
-				<Left
-					key="left"
-					instanceId={`${instanceId}-left`}
+				<Before
+					key="before"
+					instanceId={`${instanceId}-before`}
 					size={size}
 					look={look}
 					disabled={disabled}
 					overrides={componentOverrides}
-					{...left}
+					{...before}
 				/>
 			);
 		}
@@ -114,35 +114,35 @@ export const InputGroup = ({
 				invalid={invalid}
 				disabled={disabled}
 				readOnly={readOnly}
-				left={!!left}
-				right={!!right}
+				before={!!before}
+				after={!!after}
 				{...rest}
 			/>
 		);
-		if (right) {
+		if (after) {
 			childrenWithProps.push(
-				<Right
-					key="right"
-					instanceId={`${instanceId}-right`}
+				<After
+					key="after"
+					instanceId={`${instanceId}-after`}
 					size={size}
 					look={look}
 					disabled={disabled}
 					overrides={componentOverrides}
-					{...right}
+					{...after}
 				/>
 			);
 		}
 	} else {
 		Children.map(children, (child) => {
-			if (child.type.displayName === 'Left' && !textInputFieldAdded) {
+			if (child.type.displayName === 'Before' && !textInputFieldAdded) {
 				childrenWithProps.push(
 					cloneElement(child, {
-						instanceId: `${instanceId}-left`,
+						instanceId: `${instanceId}-before`,
 						size,
 						look,
 						disabled,
 						overrides: componentOverrides,
-						key: 'left',
+						key: 'before',
 					})
 				);
 				childrenWithProps.push(
@@ -155,13 +155,13 @@ export const InputGroup = ({
 						invalid={invalid}
 						disabled={disabled}
 						readOnly={readOnly}
-						left={true}
-						right={length > 1}
+						before={true}
+						after={length > 1}
 						{...rest}
 					/>
 				);
 				textInputFieldAdded = true;
-			} else if (child.type.displayName === 'Right' && !textInputFieldAdded) {
+			} else if (child.type.displayName === 'After' && !textInputFieldAdded) {
 				childrenWithProps.push(
 					<TextInputField
 						key="textinput2"
@@ -172,23 +172,23 @@ export const InputGroup = ({
 						invalid={invalid}
 						disabled={disabled}
 						readOnly={readOnly}
-						left={false}
-						right={true}
+						before={false}
+						after={true}
 						{...rest}
 					/>
 				);
 				childrenWithProps.push(
 					cloneElement(child, {
-						instanceId: `${instanceId}-right`,
+						instanceId: `${instanceId}-after`,
 						size,
 						look,
 						disabled,
 						overrides: componentOverrides,
-						key: 'right',
+						key: 'after',
 					})
 				);
 				textInputFieldAdded = true;
-			} else if (child.type.displayName === 'Right' || child.type.displayName === 'Left') {
+			} else if (child.type.displayName === 'After' || child.type.displayName === 'Before') {
 				childrenWithProps.push(
 					cloneElement(child, {
 						instanceId: `${instanceId}-other`,
@@ -202,7 +202,7 @@ export const InputGroup = ({
 			} else {
 				devWarning(
 					true,
-					`<InputGroup /> only accepts <Left /> or <Right /> as children. But found "<${
+					`<InputGroup /> only accepts <Before /> or <After /> as children. But found "<${
 						child.type.name || child.type
 					}/>"`
 				);
@@ -248,12 +248,12 @@ InputGroup.propTypes = {
 	 * Data driven
 	 */
 	data: PropTypes.shape({
-		left: PropTypes.shape({
+		before: PropTypes.shape({
 			type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
 			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
 			onClick: PropTypes.func,
 		}),
-		right: PropTypes.shape({
+		after: PropTypes.shape({
 			type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
 			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
 			onClick: PropTypes.func,

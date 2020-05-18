@@ -15,7 +15,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const TextInputField = ({ instanceId, label, left, right, overrides, ...rest }) => {
+export const TextInputField = ({ instanceId, label, before, after, overrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -32,8 +32,8 @@ export const TextInputField = ({ instanceId, label, left, right, overrides, ...r
 	const state = {
 		instanceId,
 		label,
-		left,
-		right,
+		before,
+		after,
 		context: context.state,
 		overrides: componentOverrides,
 		...rest,

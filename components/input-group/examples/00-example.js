@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { InputGroup, Left, Right } from '@westpac/input-group';
+import { InputGroup, Before, After } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -15,17 +15,17 @@ function Example({ brand }) {
 			<h3>Composed</h3>
 
 			<InputGroup name="example-text" label="Total amount">
-				<Left type="text" data="AUS $" />
+				<Before type="text" data="AUS $" />
 			</InputGroup>
 			<br />
 
 			<InputGroup name="example-button" label="Filter by name">
-				<Right type="button" data="Go" />
+				<After type="button" data="Go" />
 			</InputGroup>
 			<br />
 
 			<InputGroup name="example-select" label="Total amount">
-				<Right
+				<After
 					type="select"
 					name="example-select-select"
 					label="Currency"
@@ -45,7 +45,7 @@ function Example({ brand }) {
 				name="example-text-datadriven"
 				label="Total amount"
 				data={{
-					right: { type: 'text', data: '.00' },
+					after: { type: 'text', data: '.00' },
 				}}
 			/>
 			<br />
@@ -54,7 +54,7 @@ function Example({ brand }) {
 				name="example-button-datadriven"
 				label="Filter by name"
 				data={{
-					right: { type: 'button', data: 'Submit' },
+					after: { type: 'button', data: 'Submit' },
 				}}
 			/>
 			<br />
@@ -63,7 +63,7 @@ function Example({ brand }) {
 				name="example-select-datadriven"
 				label="Total amount"
 				data={{
-					left: {
+					before: {
 						type: 'select',
 						name: 'example-select-datadriven-select',
 						label: 'Total amount',
@@ -85,13 +85,13 @@ function Example({ brand }) {
 
 			<h3>Composed</h3>
 			<InputGroup name="example-text-button" label="Total amount">
-				<Left type="text" data="AUS $" />
-				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
+				<Before type="text" data="AUS $" />
+				<After type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
 			<br />
 
 			<InputGroup name="example-select-button" label="Total amount">
-				<Left
+				<Before
 					type="select"
 					name="example-select-button-select"
 					label="Currency"
@@ -102,7 +102,7 @@ function Example({ brand }) {
 						{ text: 'EUR €', value: 'EUR' },
 					]}
 				/>
-				<Right type="button" data="Go" onClick={() => console.log('Go clicked')} />
+				<After type="button" data="Go" onClick={() => console.log('Go clicked')} />
 			</InputGroup>
 
 			<h3>Data-driven</h3>
@@ -110,8 +110,8 @@ function Example({ brand }) {
 				name="example-text-button-datadriven"
 				label="Total amount"
 				data={{
-					left: { type: 'text', data: 'AUS $' },
-					right: {
+					before: { type: 'text', data: 'AUS $' },
+					after: {
 						type: 'button',
 						data: 'Go',
 						onClick: () => console.log('Go clicked'),
@@ -125,14 +125,14 @@ function Example({ brand }) {
 				label="Total amount"
 				look="primary"
 				data={{
-					left: {
+					before: {
 						type: 'select',
 						name: 'example-select-button-datadriven-select',
 						label: 'Currency',
 						onChange: (event) => console.log(`Selected ${event.target.value}`),
 						data: [{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }],
 					},
-					right: {
+					after: {
 						type: 'button',
 						data: 'Go',
 						onClick: () => console.log('Go clicked'),
