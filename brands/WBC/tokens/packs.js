@@ -96,7 +96,7 @@ module.exports = {
 		},
 		lead: {
 			marginBottom: '1.3125rem',
-			fontSize: ['1rem', '1.125rem'],
+			fontSize: ['1rem', null, '1.125rem'],
 			fontWeight: 300,
 			lineHeight: 1.4,
 		},
