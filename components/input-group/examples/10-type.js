@@ -56,8 +56,8 @@ function Example({ brand }) {
 
 			<h3>Before &amp; After</h3>
 			<InputGroup name="example-faint-buttons" label="Quantity">
-				<Before type="button" data="-" />
-				<After type="button" data="+" />
+				<Before type="button" iconAfter={RemoveIcon} assistiveText="Decrement value" />
+				<After type="button" iconAfter={AddIcon} assistiveText="Increment value" />
 			</InputGroup>
 
 			<hr />
