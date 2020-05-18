@@ -67,7 +67,7 @@ Button.propTypes = {
 	/**
 	 * The content of the component
 	 */
-	data: PropTypes.string.isRequired,
+	data: PropTypes.string,
 
 	/**
 	 * The override API

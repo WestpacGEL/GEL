@@ -45,9 +45,11 @@ export const SelectField = ({ instanceId, position, label, data, overrides, ...r
 
 	return (
 		<Fragment>
-			<VisuallyHidden tag="label" htmlFor={instanceId}>
-				{label}
-			</VisuallyHidden>
+			{label && (
+				<VisuallyHidden tag="label" htmlFor={instanceId}>
+					{label}
+				</VisuallyHidden>
+			)}
 			<Select
 				{...rest}
 				state={state}
@@ -74,7 +76,7 @@ SelectField.propTypes = {
 	position: PropTypes.oneOf(['before', 'after']).isRequired,
 
 	/**
-	 * The content of the component
+	 * The visually hidden label text for the select
 	 */
 	label: PropTypes.string.isRequired,
 

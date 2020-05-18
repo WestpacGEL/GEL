@@ -8,7 +8,7 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<InputGroup>
-				<Before type="label" data="AUS $" />
+				<Before inputType="label" data="AUS $" />
 			</InputGroup>
 		</Playground>
 	);

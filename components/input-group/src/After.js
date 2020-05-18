@@ -11,13 +11,13 @@ import { Text } from './Text';
 // Component
 // ==============================
 
-export const After = ({ type, overrides: componentOverrides, ...rest }) => {
+export const After = ({ inputType, overrides: componentOverrides, ...rest }) => {
 	const componentMap = {
 		text: Text,
 		button: Button,
 		select: SelectField,
 	};
-	const Component = componentMap[type];
+	const Component = componentMap[inputType];
 
 	return <Component position="after" overrides={componentOverrides} {...rest} />;
 };
@@ -28,9 +28,9 @@ export const After = ({ type, overrides: componentOverrides, ...rest }) => {
 
 After.propTypes = {
 	/**
-	 * What type this component is
+	 * What input type this component is
 	 */
-	type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
+	inputType: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
 
 	/**
 	 * What size the button-group is

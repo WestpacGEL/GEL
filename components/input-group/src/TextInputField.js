@@ -45,9 +45,11 @@ export const TextInputField = ({ instanceId, label, before, after, overrides, ..
 
 	return (
 		<Fragment>
-			<VisuallyHidden tag="label" htmlFor={instanceId}>
-				{label}
-			</VisuallyHidden>
+			{label && (
+				<VisuallyHidden tag="label" htmlFor={instanceId}>
+					{label}
+				</VisuallyHidden>
+			)}
 			<TextInput
 				{...rest}
 				state={state}

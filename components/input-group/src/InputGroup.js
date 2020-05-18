@@ -249,13 +249,13 @@ InputGroup.propTypes = {
 	 */
 	data: PropTypes.shape({
 		before: PropTypes.shape({
-			type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
-			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
+			inputType: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
+			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 			onClick: PropTypes.func,
 		}),
 		after: PropTypes.shape({
-			type: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
-			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
+			inputType: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
+			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 			onClick: PropTypes.func,
 		}),
 	}),
