@@ -28,7 +28,7 @@ const gridStyles = (
 	const formatAreas = (areas) => areas.map((area) => `"${area}"`).join(' ');
 
 	return mq({
-		alignContent: alignContent,
+		alignContent,
 		columnGap,
 		display: 'grid',
 		gridAutoFlow: flow,
