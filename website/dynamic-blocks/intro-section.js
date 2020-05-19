@@ -19,6 +19,8 @@ const ArrowIcon = () => {
 			css={{ width: '0.75rem', height: '0.75rem' }}
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 8 9"
+			focusable="false"
+			aria-hidden="true"
 		>
 			<path
 				fill={COLORS.primary}
