@@ -47,7 +47,12 @@ const modalStyles = (_, { size }) => {
 		backgroundColor: '#fff',
 		borderRadius: '0.1875rem',
 		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
-		width: ['auto', size === 'small' ? '18.75rem' : '37.5rem', size === 'large' && '56.25rem'],
+		width: [
+			'auto',
+			null,
+			size === 'small' ? '18.75rem' : '37.5rem',
+			size === 'large' && '56.25rem',
+		],
 	})[0];
 };
 

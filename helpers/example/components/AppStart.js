@@ -42,7 +42,6 @@ export function AppStart({ components, packageName, pkg, version }) {
 							`}
 						/>
 						<Sidebar components={components} brand={brand} setBrand={setBrand} />
-						<p>{version}</p>
 						<Switch>
 							<Route
 								exact
