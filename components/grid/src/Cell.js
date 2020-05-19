@@ -72,7 +72,11 @@ Cell.propTypes = {
 	/**
 	 * The `grid-column-start` CSS property.
 	 */
-	left: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+	left: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+	]),
 
 	/**
 	 * The `grid-row-start` CSS property.
