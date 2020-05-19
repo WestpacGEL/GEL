@@ -103,7 +103,7 @@ const PageHeader = ({ name, version }) => {
 								...styles,
 								alignSelf: 'center',
 								textTransform: 'capitalize',
-								[`@media (max-width: ${LAYOUT.breakpoints.md - 1}px)`]: {
+								[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 									fontSize: '18px !important',
 								},
 								fontWeight: 500,
