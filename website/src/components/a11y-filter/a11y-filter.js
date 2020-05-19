@@ -94,7 +94,7 @@ const filters = [
 	{ text: 'Low contrast', value: 'low-contrast' },
 ];
 
-const VisionFilter = ({ children }) => {
+export const VisionFilter = ({ children }) => {
 	const [filter, setFilter] = useState();
 	const [id] = useState(`vision-filter-${useInstanceId()}`);
 
@@ -123,5 +123,3 @@ const VisionFilter = ({ children }) => {
 		</Fragment>
 	);
 };
-
-export { VisionFilter };

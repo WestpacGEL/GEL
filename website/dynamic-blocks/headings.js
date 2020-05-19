@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { Fragment } from 'react';
-import { jsx } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 import { Heading as WestpacHeading } from '@westpac/heading';
 import { Body } from '@westpac/body';
 import { Cell, Grid, Container } from '@westpac/grid';
@@ -132,36 +132,38 @@ export const Heading = {
 		const id = heading.replace(/ /g, '-').toLowerCase();
 		const indentWidth = indent ? [12, 12, 12, 10, 10] : 12;
 		const indentLeft = indent ? [1, 1, 1, 2, 2] : 0;
+		const mq = useMediaQuery();
 
 		return (
-			<Container fluid css={blocksContainerStyle}>
-				<Grid columns={12}>
-					<Cell width={indentWidth} left={indentLeft}>
-						<WestpacHeading
-							id={id}
-							tabIndex="-1"
-							tag={level}
-							size={size}
-							{...(addTableContent && { 'data-toc': true })}
-							overrides={{
-								Heading: {
-									styles: (styles) => ({
-										...styles,
-										scrollMarginTop: '10.375rem',
-									}),
-								},
-							}}
-						>
-							{heading}
-						</WestpacHeading>
-						{subText && text && (
-							<Body>
-								<p css={{ lineHeight: 2 }}>{text}</p>
-							</Body>
-						)}
-					</Cell>
-				</Grid>
-			</Container>
+			<Cell width={indentWidth} left={indentLeft}>
+				<WestpacHeading
+					id={id}
+					tabIndex="-1"
+					tag={level}
+					size={size}
+					{...(addTableContent && { 'data-toc': true })}
+					overrides={{
+						Heading: {
+							styles: (styles) =>
+								mq({
+									...styles,
+									scrollMarginTop: '10.375rem',
+									marginBottom:
+										size < 7
+											? ['24px', null, null, null, '42px']
+											: ['12px', null, null, null, '18px'],
+								}),
+						},
+					}}
+				>
+					{heading}
+				</WestpacHeading>
+				{subText && text && (
+					<Body css={{ p: { marginTop: 0 } }}>
+						<p css={{ lineHeight: 2 }}>{text}</p>
+					</Body>
+				)}
+			</Cell>
 		);
 	},
 };

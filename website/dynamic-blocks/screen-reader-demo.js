@@ -5,7 +5,7 @@ import { inputStyles } from '@arch-ui/input';
 import { Heading } from '@westpac/heading';
 import { AccessibilityIcon } from '@westpac/icon';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Grid, Cell, Container } from '@westpac/grid';
+import { Cell } from '@westpac/grid';
 import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils';
 
 export const ScreenReaderText = {
@@ -44,76 +44,72 @@ export const ScreenReaderText = {
 		const { SPACING, COLORS } = useBrand();
 		const mq = useMediaQuery();
 		return (
-			<Container fluid css={blocksContainerStyle}>
-				<Grid css={blocksGridStyle} columns={12}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<Heading
-							tag="h2"
-							size={5}
-							id="screen-readers"
-							tabIndex="-1"
-							{...(addTableContent && { 'data-toc': true })}
-						>
-							Screen readers
-						</Heading>
-					</Cell>
-				</Grid>
-				<Grid columns={12} css={blocksGridStyle}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<div
+			<Fragment>
+				<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+					<Heading
+						tag="h2"
+						size={5}
+						id="screen-readers"
+						tabIndex="-1"
+						{...(addTableContent && { 'data-toc': true })}
+					>
+						Screen readers
+					</Heading>
+				</Cell>
+				<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+					<div
+						css={{
+							display: 'flex',
+							flexDirection: 'column',
+						}}
+					>
+						<p
 							css={{
-								display: 'flex',
-								flexDirection: 'column',
+								flexBasis: '50%',
+								margin: `${SPACING(4)} 0`,
 							}}
 						>
-							<p
+							How the example is described by assistive technology. As read with macOS High Sierra
+							VoiceOver.
+						</p>
+						<blockquote
+							css={{
+								flexGrow: 0,
+								margin: 0,
+								backgroundColor: 'white',
+								fontSize: '1.5rem',
+								lineHeight: 1.5,
+								color: COLORS.info,
+								position: 'relative',
+								display: 'inline-block',
+								'@media (max-width: 800px)': {
+									padding: '0px',
+								},
+							}}
+						>
+							<div
 								css={{
-									flexBasis: '50%',
-									margin: `${SPACING(4)} 0`,
+									display: 'flex',
+									justifyContent: 'flex-end',
+									width: '100%',
+									paddingTop: SPACING(2),
 								}}
 							>
-								How the example is described by assistive technology. As read with macOS High Sierra
-								VoiceOver.
-							</p>
-							<blockquote
-								css={{
-									flexGrow: 0,
-									margin: 0,
-									backgroundColor: 'white',
-									fontSize: '1.5rem',
-									lineHeight: 1.5,
-									color: COLORS.info,
-									position: 'relative',
-									display: 'inline-block',
-									'@media (max-width: 800px)': {
-										padding: '0px',
-									},
-								}}
-							>
-								<div
+								<AccessibilityIcon color="#b6d6ed" css={{ paddingRight: SPACING(2) }} />
+							</div>
+							{text.split('\n').map((p) => (
+								<p
 									css={{
-										display: 'flex',
-										justifyContent: 'flex-end',
-										width: '100%',
-										paddingTop: SPACING(2),
+										margin: `0 ${SPACING(6)} ${SPACING(6)} ${SPACING(6)}`,
 									}}
 								>
-									<AccessibilityIcon color="#b6d6ed" css={{ paddingRight: SPACING(2) }} />
-								</div>
-								{text.split('\n').map((p) => (
-									<p
-										css={{
-											margin: `0 ${SPACING(6)} ${SPACING(6)} ${SPACING(6)}`,
-										}}
-									>
-										" {p} "
-									</p>
-								))}
-							</blockquote>
-						</div>
-					</Cell>
-				</Grid>
-			</Container>
+									" {p} "
+								</p>
+							))}
+						</blockquote>
+					</div>
+				</Cell>
+			</Fragment>
 		);
 	},
 };

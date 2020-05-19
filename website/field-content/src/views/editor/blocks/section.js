@@ -1,24 +1,24 @@
 /** @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { Body } from '@westpac/body';
 
 import { ToolbarButton } from '../toolbar-components';
-import { BlockQuoteIcon } from '../toolbar-icons';
+import { CodeIcon } from '../toolbar-icons';
 import { hasAncestorBlock } from '../utils';
+import { Separator } from '../../../../../src/components/separator';
 
-export let type = 'blockquote';
+export let type = 'section';
 
 export function ToolbarElement({ editor, editorState }) {
-	let hasBlockquote = hasAncestorBlock(editorState, type);
+	let hasSection = hasAncestorBlock(editorState, type);
 
 	return (
 		<ToolbarButton
-			isActive={hasBlockquote}
-			icon={<BlockQuoteIcon />}
-			label="Blockquote"
+			isActive={hasSection}
+			icon={<CodeIcon />}
+			label="Section"
 			onClick={() => {
-				if (hasBlockquote) {
+				if (hasSection) {
 					editor.unwrapBlock(type);
 				} else {
 					editor.wrapBlock(type);
@@ -31,8 +31,9 @@ export function ToolbarElement({ editor, editorState }) {
 
 export function Node({ attributes, children }) {
 	return (
-		<Body>
-			<blockquote {...attributes}>{children}</blockquote>
-		</Body>
+		<section css={{ borderRight: '2px solid #2684FF', paddingTop: '24px' }} {...attributes}>
+			{children}
+			<Separator />
+		</section>
 	);
 }

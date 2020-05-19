@@ -53,10 +53,16 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 
 const parseHeadings = (content) =>
 	content.nodes
+		.reduce(
+			(nodes, node) => (node.type === 'section' ? nodes.concat(node.nodes) : nodes.concat(node)),
+			[]
+		)
 		.filter(
 			(item) =>
 				item.data.component &&
-				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText'].includes(item.data.component)
+				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText', 'CodeExample'].includes(
+					item.data.component
+				)
 		)
 		.filter((item) => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
@@ -199,7 +205,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 	const { PACKS, COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
-		<div css={{ marginBottom: SPACING(5) }}>
+		<Fragment>
 			<Container fluid>
 				<Grid
 					css={mq({
@@ -238,7 +244,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 					margin: 0,
 				}}
 			/>
-		</div>
+		</Fragment>
 	);
 };
 

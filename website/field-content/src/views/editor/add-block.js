@@ -33,7 +33,6 @@ const calculateOffset = (el) => {
 	}
 
 	let { left, top } = el.getBoundingClientRect();
-
 	return {
 		offsetLeft: left + window.pageXOffset,
 		offsetTop: top + window.pageYOffset,
@@ -61,7 +60,18 @@ let AddBlock = ({ blocks, editor, editorHasFocus, editorState }) => {
 		if (!blocks || !Object.keys(blocks).length) return;
 
 		if (elm && editor && editor.el.contains(elm)) {
-			const blockEl = isChildOf(editor.el, elm);
+			console.log(elm);
+
+			/**
+			 * TO FIX
+			 *
+			 * Hack for now to fix the edit dialogue appearing at the top of a section instead of next to the nested dynamic block.
+			 * Need to fix since the block editor items will receieve focus and a dialogue box next to them instead of staying on the "parent" dynamic block
+			 *
+			 */
+			// const blockEl = isChildOf(editor.el, elm);
+			const blockEl = elm;
+
 			const { offsetLeft, offsetTop } = calculateOffset(blockEl);
 			// minor offset-adjustments are made within the styled-components
 			iconEle.style.top = `${offsetTop}px`;

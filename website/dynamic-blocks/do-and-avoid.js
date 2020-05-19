@@ -1,14 +1,14 @@
 /** @jsx jsx */
 
 import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
-import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
-import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { useMutation } from '@apollo/react-hooks';
-import { LoadingIndicator } from '@arch-ui/loading';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils';
+import { Cell } from '@westpac/grid';
 
+import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
+import { LoadingIndicator } from '@arch-ui/loading';
+import { inputStyles } from '@arch-ui/input';
+
+import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 const UPLOAD_IMAGE = gql`
@@ -26,6 +26,34 @@ const UPLOAD_IMAGE = gql`
 		}
 	}
 `;
+
+const Figure = (props) => (
+	<figure
+		css={{
+			margin: 0,
+			flexBasis: '50%',
+			display: 'flex',
+			flexDirection: 'column',
+			alignItems: 'start',
+			justifyContent: 'flex-start',
+		}}
+		{...props}
+	/>
+);
+
+const Image = (props) => {
+	const mq = useMediaQuery();
+	return (
+		<img
+			css={mq({
+				maxWidth: '100%',
+				width: '100%',
+				marginBottom: ['12px', null, null, null, '18px'],
+			})}
+			{...props}
+		/>
+	);
+};
 
 export const DoAndAvoid = {
 	editor: ({ value, onChange }) => {
@@ -132,59 +160,41 @@ export const DoAndAvoid = {
 		);
 	},
 	component: ({ dontImage, dontText, doImage, doText }) => {
-		const { COLORS, SPACING, LAYOUT } = useBrand();
+		const { COLORS } = useBrand();
 		const mq = useMediaQuery();
 
-		const dodontFigure = {
-			margin: 0,
-			flexBasis: '50%',
-			display: 'flex',
-			flexDirection: 'column',
-			alignItems: 'start',
-			justifyContent: 'flex-start',
-			marginBottom: SPACING(2),
-		};
-		const dodontImage = {
-			maxWidth: '100%',
-			width: '100%',
-			marginBottom: SPACING(2),
-		};
-
-		const captionStyle = {
-			padding: `${SPACING(2)} 0`,
-		};
-
-		const dontStyle = {
-			color: COLORS.danger,
-			fontWeight: 'bold',
-		};
-
-		const doStyle = {
-			color: COLORS.success,
-			fontWeight: 'bold',
-		};
-
 		return (
-			<Container fluid css={blocksContainerStyle}>
-				<Grid columns={12}>
-					<Cell width={[12, 12, 6, 5]} left={[1, 1, 1, 2]}>
-						<figure css={dodontFigure}>
-							<img css={dodontImage} src={doImage} />
-							<figcaption css={captionStyle}>
-								<span css={doStyle}>Do</span> - {doText}
-							</figcaption>
-						</figure>
-					</Cell>
-					<Cell width={[12, 12, 6, 5]}>
-						<figure css={dodontFigure}>
-							<img css={dodontImage} src={dontImage} />
-							<figcaption css={captionStyle}>
-								<span css={dontStyle}>Avoid</span> - {dontText}
-							</figcaption>
-						</figure>
-					</Cell>
-				</Grid>
-			</Container>
+			<Fragment>
+				<Cell
+					width={[12, 12, 6, 5]}
+					left={[1, 1, 1, 2]}
+					css={mq({ marginTop: ['24px', null, null, null, '42px'], height: 'auto' })}
+				>
+					<Figure>
+						<div css={{ height: 200, width: 200, border: '1px solid' }} />
+						<Image src={doImage} />
+						<figcaption>
+							<span css={{ color: COLORS.success, fontWeight: 'bold' }}>Do</span> - {doText}
+						</figcaption>
+					</Figure>
+				</Cell>
+				<Cell
+					width={[12, 12, 6, 5]}
+					css={mq({
+						marginTop: ['24px', null, null, null, '42px'],
+						marginBottom: ['24px', null, null, null, '42px'],
+						height: 'auto',
+					})}
+				>
+					<Figure>
+						<div css={{ height: 200, width: 200, border: '1px solid' }} />
+						<Image src={dontImage} />
+						<figcaption>
+							<span css={{ color: COLORS.danger, fontWeight: 'bold' }}>Avoid</span> - {dontText}
+						</figcaption>
+					</Figure>
+				</Cell>
+			</Fragment>
 		);
 	},
 };

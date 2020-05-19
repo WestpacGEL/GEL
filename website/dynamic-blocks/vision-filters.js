@@ -1,18 +1,21 @@
 /** @jsx jsx */
 import React, { Suspense, Fragment } from 'react';
-import { jsx, useBrand } from '@westpac/core';
-import { Body } from '@westpac/body';
+
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
-import { useRouter } from 'next/router';
-import Select from '@arch-ui/select';
+import { Body } from '@westpac/body';
+import { Cell } from '@westpac/grid';
+
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
+import Select from '@arch-ui/select';
+
+import { useRouter } from 'next/router';
 import preval from 'preval.macro';
+
 import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
 import { VisionFilter } from '../src/components/a11y-filter';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 let data = preval`
 const fs = require('fs');
@@ -217,6 +220,7 @@ export const VisionFilters = {
 		const router = useRouter();
 		const href = '/accessibility';
 		const { SPACING } = useBrand();
+		const mq = useMediaQuery();
 
 		const handleClick = (e) => {
 			e.preventDefault();
@@ -225,45 +229,44 @@ export const VisionFilters = {
 		};
 
 		return (
-			<Container fluid css={blocksContainerStyle}>
-				<Grid columns={12}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<Heading
-							id={id}
-							tabIndex="-1"
-							tag={level}
-							size={size}
-							{...(addTableContent && { 'data-toc': true })}
-							overrides={{
-								Heading: {
-									styles: (styles) => ({
-										...styles,
-										scrollMarginTop: '10.375rem',
-									}),
-								},
-							}}
-						>
-							{heading}
-						</Heading>
-						<Body>
-							<p css={{ margin: `${SPACING(4)} 0 !important`, lineHeight: 2 }}>
-								{subText} Read more about these vision impairments on our{' '}
-								<a href={href} onClick={handleClick}>
-									Accessibility
-								</a>{' '}
-								page.
-							</p>
-						</Body>
-						<Suspense fallback={<p>Loading...</p>}>
-							{loadCodeBlock && typeof window !== 'undefined' ? (
-								<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
-							) : (
-								'Example not found.'
-							)}
-						</Suspense>
-					</Cell>
-				</Grid>
-			</Container>
+			<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+				<Heading
+					id={id}
+					tabIndex="-1"
+					tag={level}
+					size={size}
+					{...(addTableContent && { 'data-toc': true })}
+					overrides={{
+						Heading: {
+							styles: (styles) =>
+								mq({
+									...styles,
+									scrollMarginTop: '10.375rem',
+									marginBottom: ['12px', null, null, null, '18px'],
+									// TO DO: dynamic font size
+								}),
+						},
+					}}
+				>
+					{heading}
+				</Heading>
+				<Body css={mq({ p: { margin: ['0 0 18px', null, null, null, '0 0 24px'] } })}>
+					<p>
+						{subText} Read more about these vision impairments on our{' '}
+						<a href={href} onClick={handleClick}>
+							Accessibility
+						</a>{' '}
+						page.
+					</p>
+				</Body>
+				<Suspense fallback={<p>Loading...</p>}>
+					{loadCodeBlock && typeof window !== 'undefined' ? (
+						<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
+					) : (
+						'Example not found.'
+					)}
+				</Suspense>
+			</Cell>
 		);
 	},
 };

@@ -185,47 +185,6 @@ function PTable({ data, caption }) {
 	);
 }
 
-const SeparatorComponent = () => {
-	const { COLORS, SPACING } = useBrand();
-	return (
-		<div
-			css={{
-				marginBottom: '0 !important',
-			}}
-		>
-			<button
-				css={{
-					display: 'block',
-					border: 0,
-					background: 'transparent',
-					cursor: 'pointer',
-					textAlign: 'right',
-					width: '100%',
-					paddingRight: '18px !important',
-				}}
-				onClick={(e) => {
-					e.preventDefault();
-					const el = document.querySelector('main') || window;
-					el.scroll({
-						top: 0,
-						left: 0,
-						behavior: 'smooth',
-					});
-				}}
-			>
-				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
-			</button>
-			<hr
-				css={{
-					border: 'none',
-					borderTop: `solid 1px ${COLORS.border}`,
-					margin: `${SPACING(2)} 0 0 0`,
-				}}
-			/>
-		</div>
-	);
-};
-
 const Component = ({ item, addTableContent }) => {
 	const mq = useMediaQuery();
 	const { SPACING, COLORS } = useBrand();
@@ -245,56 +204,54 @@ const Component = ({ item, addTableContent }) => {
 		});
 
 	return (
-		<Fragment>
-			<SeparatorComponent />
-			<div css={{ backgroundColor: '#fff' }}>
-				<Container
-					fluid
-					css={{
-						...blocksContainerStyle,
-						paddingBottom: SPACING(5),
-						marginTop: 0,
-						marginBottom: 0,
-					}}
-				>
-					<Grid
-						css={mq({
-							paddingTop: [SPACING(6), SPACING(6), SPACING(10)],
-						})}
-						columns={12}
+		// <div css={{ backgroundColor: '#fff' }}>
+		<Container
+			fluid
+			css={{
+				...blocksContainerStyle,
+				backgroundColor: '#fff',
+				paddingBottom: '120px',
+				marginTop: 0,
+				marginBottom: 0,
+			}}
+		>
+			<Grid
+				css={mq({
+					paddingTop: [SPACING(6), SPACING(6), SPACING(10)],
+				})}
+				columns={12}
+			>
+				<Cell width={12}>
+					<Heading
+						tag="h2"
+						size={5}
+						id="props"
+						tabIndex="-1"
+						{...(addTableContent && { 'data-toc': true })}
 					>
-						<Cell width={12}>
-							<Heading
-								tag="h2"
-								size={5}
-								id="props"
-								tabIndex="-1"
-								{...(addTableContent && { 'data-toc': true })}
-							>
-								Props
-							</Heading>
-						</Cell>
-					</Grid>
-					<Grid
-						columns={12}
-						css={mq({
-							marginTop: [SPACING(3), SPACING(3), SPACING(6)],
-						})}
-					>
-						<Cell width={12}>
-							{tableData.map(({ overrideProps, normalProps, name }) => {
-								return (
-									<Fragment key={`table-${name}`}>
-										<PTable caption={`${name} Props`} data={normalProps} />
-										<PTable caption={`${name} Overrides`} data={overrideProps} />
-									</Fragment>
-								);
-							})}
-						</Cell>
-					</Grid>
-				</Container>
-			</div>
-		</Fragment>
+						Props
+					</Heading>
+				</Cell>
+			</Grid>
+			<Grid
+				columns={12}
+				css={mq({
+					marginTop: [SPACING(3), SPACING(3), SPACING(6)],
+				})}
+			>
+				<Cell width={12}>
+					{tableData.map(({ overrideProps, normalProps, name }) => {
+						return (
+							<Fragment key={`table-${name}`}>
+								<PTable caption={`${name} Props`} data={normalProps} />
+								<PTable caption={`${name} Overrides`} data={overrideProps} />
+							</Fragment>
+						);
+					})}
+				</Cell>
+			</Grid>
+		</Container>
+		// </div>
 	);
 };
 

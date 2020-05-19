@@ -42,7 +42,7 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 	const mq = useMediaQuery();
 
 	return (
-		<div css={{ marginBottom: SPACING(6) }}>
+		<div>
 			<Well
 				overrides={{
 					Well: {

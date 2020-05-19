@@ -53,37 +53,33 @@ const Icon = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
 	return (
-		<div>
-			<Container fluid css={blocksContainerStyle}>
-				<Grid columns={12}>
-					<Cell width={[12, 12, 6]}>
-						<div
-							css={mq({
-								display: 'flex',
-								flexDirection: ['column', null, 'row'],
-								alignItems: ['start', null, 'center'],
-								margin: '1.5rem 0 0.75rem',
-							})}
-						>
-							<label
-								htmlFor={'filter-icons'}
-								value={search}
-								onChange={(e) => setSearch(e.target.value)}
-								css={mq({
-									marginRight: '1rem',
-									marginBottom: ['0.75rem', null, 0],
-									whiteSpace: 'nowrap',
-								})}
-							>
-								Filter by name
-							</label>
-							<TextInput />
-						</div>
-					</Cell>
-				</Grid>
-				<Grid columns={12}>{renderIcons(search)}</Grid>
-			</Container>
-		</div>
+		<Fragment>
+			<Cell width={[12, 12, 6]}>
+				<div
+					css={mq({
+						display: 'flex',
+						flexDirection: ['column', null, 'row'],
+						alignItems: ['start', null, 'center'],
+						margin: '1.5rem 0 0.75rem',
+					})}
+				>
+					<label
+						htmlFor={'filter-icons'}
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+						css={mq({
+							marginRight: '1rem',
+							marginBottom: ['0.75rem', null, 0],
+							whiteSpace: 'nowrap',
+						})}
+					>
+						Filter by name
+					</label>
+					<TextInput />
+				</div>
+			</Cell>
+			{renderIcons(search)}
+		</Fragment>
 	);
 };
 
