@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { InputGroup, Left, Right } from '@westpac/input-group';
+import { InputGroup, Before, After } from '@westpac/input-group';
+import { AddIcon, RemoveIcon } from '@westpac/icon';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -12,20 +13,20 @@ function Example({ brand }) {
 
 			<h2>Text add-on</h2>
 
-			<h3>Left</h3>
+			<h3>Before</h3>
 			<InputGroup name="example-text-1" label="Total amount">
-				<Left type="text" data="$" />
+				<Before inputType="text" data="$" />
 			</InputGroup>
 
-			<h3>Right</h3>
+			<h3>After</h3>
 			<InputGroup name="example-text-2" label="Total amount">
-				<Right type="text" data=".00" />
+				<After inputType="text" data=".00" />
 			</InputGroup>
 
-			<h3>Left &amp; Right</h3>
+			<h3>Before &amp; After</h3>
 			<InputGroup name="example-text-3" label="Total amount">
-				<Left type="text" data="$" />
-				<Right type="text" data=".00" />
+				<Before inputType="text" data="$" />
+				<After inputType="text" data=".00" />
 			</InputGroup>
 			<br />
 
@@ -35,39 +36,39 @@ function Example({ brand }) {
 
 			<h3>Default</h3>
 			<InputGroup name="example-default-button" label="Search">
-				<Right type="button" data="Submit" />
+				<After inputType="button" data="Submit" />
 			</InputGroup>
 
 			<h3>Primary</h3>
 			<InputGroup name="example-primary-button" label="Search" look="primary">
-				<Right type="button" data="Submit" />
+				<After inputType="button" data="Submit" />
 			</InputGroup>
 
 			<h3>Hero</h3>
 			<InputGroup name="example-hero-button" label="Search" look="hero">
-				<Right type="button" data="Submit" />
+				<After inputType="button" data="Submit" />
 			</InputGroup>
 
 			<h3>Faint</h3>
 			<InputGroup name="example-faint-button" label="Search" look="faint">
-				<Right type="button" data="Submit" />
+				<After inputType="button" data="Submit" />
 			</InputGroup>
 
-			<h3>Left &amp; Right</h3>
+			<h3>Before &amp; After</h3>
 			<InputGroup name="example-faint-buttons" label="Quantity">
-				<Left type="button" data="-" />
-				<Right type="button" data="+" />
+				<Before inputType="button" iconAfter={RemoveIcon} assistiveText="Decrement value" />
+				<After inputType="button" iconAfter={AddIcon} assistiveText="Increment value" />
 			</InputGroup>
 
 			<hr />
 
 			<h2>Select add-on</h2>
 
-			<h3>Left</h3>
-			<InputGroup name="example-select-left" label="Total amount">
-				<Left
-					type="select"
-					name="example-select-left-select"
+			<h3>Before</h3>
+			<InputGroup name="example-select-before" label="Total amount">
+				<Before
+					inputType="select"
+					name="example-select-before-select"
 					label="Currency"
 					data={[
 						{ text: 'Select', value: '' },
@@ -78,11 +79,11 @@ function Example({ brand }) {
 				/>
 			</InputGroup>
 
-			<h3>Right</h3>
-			<InputGroup name="example-select-right" label="Total amount">
-				<Right
-					type="select"
-					name="example-select-right-select"
+			<h3>After</h3>
+			<InputGroup name="example-select-after" label="Total amount">
+				<After
+					inputType="select"
+					name="example-select-after-select"
 					label="Frequency"
 					data={[
 						{ text: 'Select', value: '' },
@@ -93,11 +94,11 @@ function Example({ brand }) {
 				/>
 			</InputGroup>
 
-			<h3>Left &amp; Right</h3>
+			<h3>Before &amp; After</h3>
 			<InputGroup name="example-select-both" label="Total amount">
-				<Left
-					type="select"
-					name="example-select-both-left"
+				<Before
+					inputType="select"
+					name="example-select-both-before"
 					label="Currency"
 					data={[
 						{ text: 'Select', value: '' },
@@ -106,9 +107,9 @@ function Example({ brand }) {
 						{ text: 'USD $', value: 'USD $' },
 					]}
 				/>
-				<Right
-					type="select"
-					name="example-select-both-right"
+				<After
+					inputType="select"
+					name="example-select-both-after"
 					label="Frequency"
 					data={[
 						{ text: 'Select', value: '' },

@@ -16,7 +16,7 @@ const StickyHeaderImage = ({ brand, hide }) => {
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 					display: 'block',
 				},
-				[`@media (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					right: '300px',
 				},
 			}}
@@ -36,7 +36,7 @@ const StickyHeaderImage = ({ brand, hide }) => {
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 					display: 'block',
 				},
-				[`@media (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					right: '300px',
 				},
 			}}
@@ -56,7 +56,7 @@ const StickyHeaderImage = ({ brand, hide }) => {
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 					display: 'block',
 				},
-				[`@media (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					right: '300px',
 				},
 			}}

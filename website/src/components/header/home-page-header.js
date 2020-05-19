@@ -102,7 +102,7 @@ const StickyHeader = () => {
 						[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 							margin: SPACING(2),
 						},
-						[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+						[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 							display: 'none',
 						},
 					}}
