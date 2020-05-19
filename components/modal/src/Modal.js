@@ -114,8 +114,8 @@ export const Modal = ({
 
 	if (typeof window !== 'undefined') {
 		return ReactDOM.createPortal(
-			<ModalContext.Provider value={{ state }}>
-				<GEL brand={brand}>
+			<GEL brand={brand}>
+				<ModalContext.Provider value={{ state }}>
 					<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
 					<FocusOn enabled={open} onActivation={() => titleRef.current.focus()}>
 						<Modal
@@ -146,8 +146,8 @@ export const Modal = ({
 							{children}
 						</Modal>
 					</FocusOn>
-				</GEL>
-			</ModalContext.Provider>,
+				</ModalContext.Provider>
+			</GEL>,
 			document.body
 		);
 	} else {
