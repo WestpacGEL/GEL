@@ -214,6 +214,7 @@ const HeroIntro = () => {
 							tag="h1"
 							size={1}
 							css={mq({
+								color: 'inherit !important',
 								[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 									color: BRAND === 'STG' ? COLORS.text : COLORS.hero,
 									fontSize: `${PACKS.typeScale.brandFont[4].fontSize} !important`,
