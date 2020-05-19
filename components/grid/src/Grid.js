@@ -164,7 +164,11 @@ Grid.propTypes = {
 	/**
 	 * The `row-gap` CSS property.
 	 */
-	rowGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	rowGap: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+	]),
 
 	/**
 	 * The `grid-template-rows` CSS property. When a number is passed it is a
