@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { GEL, jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { FocusOn } from 'react-focus-on';
@@ -44,10 +44,11 @@ export const Modal = ({
 	overrides: componentOverrides,
 	...rest
 }) => {
+	const brand = useBrand();
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
-	} = useBrand();
+	} = brand;
 
 	const [open, setOpen] = useState(isOpen);
 
@@ -113,38 +114,40 @@ export const Modal = ({
 
 	if (typeof window !== 'undefined') {
 		return ReactDOM.createPortal(
-			<ModalContext.Provider value={{ state }}>
-				<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
-				<FocusOn enabled={open} onActivation={() => titleRef.current.focus()}>
-					<Modal
-						ref={modalRef}
-						state={state}
-						{...rest}
-						{...modalAttributes(state)}
-						css={modalStyles(state)}
-					>
-						<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
-							<Title
-								ref={titleRef}
-								state={state}
-								{...titleAttributes(state)}
-								css={titleStyles(state)}
-							>
-								{heading}
-							</Title>
-							{dismissible && (
-								<CloseBtn
-									onClick={() => handleClose()}
+			<GEL brand={brand}>
+				<ModalContext.Provider value={{ state }}>
+					<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
+					<FocusOn enabled={open} onActivation={() => titleRef.current.focus()}>
+						<Modal
+							ref={modalRef}
+							state={state}
+							{...rest}
+							{...modalAttributes(state)}
+							css={modalStyles(state)}
+						>
+							<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
+								<Title
+									ref={titleRef}
 									state={state}
-									{...closeBtnAttributes(state)}
-									css={{ '&&': closeBtnStyles(state) }}
-								/>
-							)}
-						</Header>
-						{children}
-					</Modal>
-				</FocusOn>
-			</ModalContext.Provider>,
+									{...titleAttributes(state)}
+									css={titleStyles(state)}
+								>
+									{heading}
+								</Title>
+								{dismissible && (
+									<CloseBtn
+										onClick={() => handleClose()}
+										state={state}
+										{...closeBtnAttributes(state)}
+										css={{ '&&': closeBtnStyles(state) }}
+									/>
+								)}
+							</Header>
+							{children}
+						</Modal>
+					</FocusOn>
+				</ModalContext.Provider>
+			</GEL>,
 			document.body
 		);
 	} else {

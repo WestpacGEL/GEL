@@ -2,7 +2,6 @@
 
 import { jsx } from '@emotion/core';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 
 import { BrandContext } from './Brand';
 import { useFocus } from './useFocus';
