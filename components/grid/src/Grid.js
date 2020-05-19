@@ -167,8 +167,7 @@ Grid.propTypes = {
 	rowGap: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string,
-		PropTypes.arrayOf(PropTypes.number),
-		PropTypes.arrayOf(PropTypes.string),
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
 	]),
 
 	/**
