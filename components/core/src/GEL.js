@@ -19,5 +19,5 @@ export const GEL = ({ brand, noReset, children, ...props }) => {
 
 GEL.propTypes = {
 	noReset: PropTypes.bool,
-	brand: PropTypes.func,
+	brand: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
