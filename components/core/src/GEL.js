@@ -2,7 +2,6 @@
 
 import { jsx } from '@emotion/core';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 
 import { BrandContext } from './Brand';
 import { useFocus } from './useFocus';
@@ -20,5 +19,5 @@ export const GEL = ({ brand, noReset, children, ...props }) => {
 
 GEL.propTypes = {
 	noReset: PropTypes.bool,
-	brand: PropTypes.func,
+	brand: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };

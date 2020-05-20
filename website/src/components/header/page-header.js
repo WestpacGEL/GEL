@@ -152,11 +152,12 @@ const PageHeader = ({ name, version }) => {
 				}}
 			>
 				<span css={mq({ display: ['inline', 'none'] })}>xs</span>
-				<span css={mq({ display: ['none', 'inline', 'none'] })}>sm</span>
-				<span css={mq({ display: ['none', null, 'inline', 'none'] })}>md</span>
-				<span css={mq({ display: ['none', null, null, 'inline', 'none'] })}>lg</span>
-				<span css={mq({ display: ['none', null, null, null, 'inline'] })}>xl</span>
+				<span css={mq({ display: ['none', 'inline', 'none'] })}>xsl</span>
+				<span css={mq({ display: ['none', null, 'inline', 'none'] })}>sm</span>
+				<span css={mq({ display: ['none', null, null, 'inline', 'none'] })}>md</span>
+				<span css={mq({ display: ['none', null, null, null, 'inline'] })}>lg</span>
 				<button
+					type="button"
 					onClick={() => setShowGrid(!showGrid)}
 					css={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
 				>
