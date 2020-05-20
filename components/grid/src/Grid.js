@@ -114,23 +114,21 @@ Grid.propTypes = {
 	flow: PropTypes.oneOf(['column dense', 'column', 'dense', 'row dense', 'row']).isRequired,
 
 	/**
-	 * The `grid-column-gap` CSS property.
+	 * The `grid-column-gap` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
 	gridColumnGap: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string,
-		PropTypes.arrayOf(PropTypes.number),
-		PropTypes.arrayOf(PropTypes.string),
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
 	]).isRequired,
 
 	/**
-	 * The `grid-gap` CSS property.
+	 * The `grid-gap` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
 	gap: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.string,
-		PropTypes.arrayOf(PropTypes.number),
-		PropTypes.arrayOf(PropTypes.string),
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
 	]),
 
 	/**
@@ -162,7 +160,7 @@ Grid.propTypes = {
 	minRowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 
 	/**
-	 * The `row-gap` CSS property.
+	 * The `row-gap` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
 	rowGap: PropTypes.oneOfType([
 		PropTypes.number,
