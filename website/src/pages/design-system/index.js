@@ -74,6 +74,8 @@ const Homepage = () => {
 									We're moving with the times. With React we can showcase so much more and deliver
 									higher quality, more accessible code.
 								</p>
+							</RichText>
+							<RichText css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })}>
 								<h3>Who else is using React?</h3>
 							</RichText>
 
@@ -133,29 +135,33 @@ const Homepage = () => {
 								name="mc-embedded-subscribe-form"
 								target="_blank"
 								noValidate=""
+								css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })}
 							>
 								<Grid
-									style={{
-										maxWidth: '25rem',
-										margin: '0 auto',
-										textAlign: 'start',
-									}}
+									rowGap={[`${SPACING(3)} !important`, null, 'unset !important']}
+									css={{ textAlign: 'left' }}
 								>
-									<Cell width={[12, 8]} left={1}>
-										<label css={{ marginTop: SPACING(1) }} htmlFor="mce-EMAIL">
+									<Cell width={[10, null, 5, 4]} left={[2, null, 3, 4]}>
+										<label
+											htmlFor="mce-EMAIL"
+											css={{ display: 'inline-block', width: '100%', marginBottom: SPACING(2) }}
+										>
 											Enter your e-mail address
 										</label>
-										<TextInput type="text" name="EMAIL" id="mce-EMAIL" />
+										<TextInput type="text" size="large" name="EMAIL" id="mce-EMAIL" />
 									</Cell>
-									<Cell width={[12, 4]} style={{ display: 'flex', alignItems: 'flex-end' }}>
+									<Cell
+										width={[10, null, 2]}
+										left={[2, null, 'auto']}
+										css={{ display: 'flex', alignItems: 'flex-end' }}
+									>
 										<Button
 											type="submit"
 											look="primary"
+											size="large"
+											block={[true, null, false]}
 											name="subscribe"
 											id="mc-embedded-subscribe"
-											style={{
-												width: '100%',
-											}}
 										>
 											Subscribe
 										</Button>
@@ -178,7 +184,7 @@ const Homepage = () => {
 									code and development framework.
 								</p>
 							</RichText>
-							<DownloadAndLinksSection css={{ marginTop: '42px' }} />
+							<DownloadAndLinksSection css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })} />
 						</Cell>
 					</Grid>
 				</Container>

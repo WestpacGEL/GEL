@@ -3,7 +3,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 export const RichText = (props) => {
-	const { PACKS } = useBrand();
+	const { PACKS, TYPE } = useBrand();
 
 	return (
 		<Body
@@ -13,10 +13,12 @@ export const RichText = (props) => {
 						...styles,
 						h2: {
 							...PACKS.typeScale.bodyFont[6],
+							fontWeight: TYPE.bodyFont.headingWeight,
 							margin: '0 0 1.125rem',
 						},
 						h3: {
 							...PACKS.typeScale.bodyFont[8],
+							fontWeight: TYPE.bodyFont.headingWeight,
 							margin: '0 0 1.125rem',
 						},
 						p: {
