@@ -28,7 +28,7 @@ const gridStyles = (
 	const formatAreas = (areas) => areas.map((area) => `"${area}"`).join(' ');
 
 	return mq({
-		alignContent: alignContent,
+		alignContent,
 		columnGap,
 		display: 'grid',
 		gridAutoFlow: flow,
@@ -39,7 +39,7 @@ const gridStyles = (
 		gridTemplateColumns: repeatNumeric(columns),
 		gridTemplateRows: rows ? repeatNumeric(rows) : null,
 		height,
-		justifyContent: justifyContent,
+		justifyContent,
 		rowGap,
 	})[0];
 };

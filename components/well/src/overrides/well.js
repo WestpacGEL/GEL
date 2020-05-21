@@ -9,7 +9,7 @@ const wellStyles = () => {
 	const { COLORS } = useBrand();
 
 	return mq({
-		padding: ['0.75rem', '1.5rem'],
+		padding: ['0.75rem', null, '1.5rem'],
 		marginBottom: '1.125rem',
 		backgroundColor: COLORS.light,
 		border: `1px solid ${COLORS.border}`,

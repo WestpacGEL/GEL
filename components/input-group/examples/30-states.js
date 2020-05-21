@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { InputGroup, Left, Right } from '@westpac/input-group';
+import { InputGroup, Before, After } from '@westpac/input-group';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -19,7 +19,7 @@ function Example({ brand }) {
 				invalid
 				defaultValue="This value is marked invalid"
 			>
-				<Left type="text" data="AUS $" />
+				<Before inputType="text" data="AUS $" />
 			</InputGroup>
 
 			<h3>Data-driven</h3>
@@ -29,7 +29,7 @@ function Example({ brand }) {
 				invalid
 				defaultValue="This value is marked invalid"
 				data={{
-					left: { type: 'text', data: 'AUS $' },
+					before: { inputType: 'text', data: 'AUS $' },
 				}}
 			/>
 			<br />
@@ -45,7 +45,7 @@ function Example({ brand }) {
 				disabled
 				defaultValue="This input is disabled and contains a value"
 			>
-				<Left type="text" data="AUS $" />
+				<Before inputType="text" data="AUS $" />
 			</InputGroup>
 
 			<h3>Data-driven</h3>
@@ -55,7 +55,7 @@ function Example({ brand }) {
 				disabled
 				defaultValue="This input is disabled and contains a value"
 				data={{
-					left: { type: 'text', data: 'AUS $' },
+					before: { inputType: 'text', data: 'AUS $' },
 				}}
 			/>
 			<br />
@@ -71,7 +71,7 @@ function Example({ brand }) {
 				readOnly
 				defaultValue="This input is read only and contains a value"
 			>
-				<Left type="text" data="AUS $" />
+				<Before inputType="text" data="AUS $" />
 			</InputGroup>
 
 			<h3>Data-driven</h3>
@@ -81,7 +81,7 @@ function Example({ brand }) {
 				readOnly
 				defaultValue="This input is read only and contains a value"
 				data={{
-					left: { type: 'text', data: 'AUS $' },
+					before: { inputType: 'text', data: 'AUS $' },
 				}}
 			/>
 		</GEL>

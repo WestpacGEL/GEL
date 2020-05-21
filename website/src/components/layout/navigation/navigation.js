@@ -78,13 +78,13 @@ export const Navigation = ({ items }) => {
 	};
 
 	return (
-		<div css={{ flex: 1, overflowY: 'scroll', webkitOverflowScrolling: 'touch' }}>
-			<a href="/" css={{ display: 'block !important', overflow: 'hidden' }}>
+		<nav css={{ flex: 1, overflowY: 'scroll', webkitOverflowScrolling: 'touch' }} role="navigation">
+			<a href="/" css={{ display: 'block', overflow: 'hidden' }} aria-label="Back to GEL">
 				<BackToGelSvg />
 			</a>
 			<List type="unstyled" css={{ paddingBottom: '1.5rem' }}>
 				{renderNavigationItems(items)}
 			</List>
-		</div>
+		</nav>
 	);
 };

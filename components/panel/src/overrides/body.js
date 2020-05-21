@@ -8,7 +8,7 @@ const bodyStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
-		padding: ['0.75rem', '1.5rem'],
+		padding: ['0.75rem', null, '1.5rem'],
 	})[0];
 };
 

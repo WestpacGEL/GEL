@@ -1,10 +1,10 @@
 module.exports = {
 	LAYOUT: {
 		breakpoints: {
-			sm: 576,
-			md: 768,
-			lg: 992,
-			xl: 1200,
+			xsl: 576,
+			sm: 768,
+			md: 992,
+			lg: 1200,
 		},
 	},
 };

@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/heading",
 	"version": "1.0.0-beta.1",
-	"description": "Headlines for your page needs",
+	"description": "Headings for your page needs",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/heading",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",

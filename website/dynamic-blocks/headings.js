@@ -134,7 +134,7 @@ export const Heading = {
 		const indentLeft = indent ? [1, 1, 1, 2, 2] : 0;
 
 		return (
-			<Container fluid css={blocksContainerStyle}>
+			<Container css={blocksContainerStyle}>
 				<Grid columns={12}>
 					<Cell width={indentWidth} left={indentLeft}>
 						<WestpacHeading

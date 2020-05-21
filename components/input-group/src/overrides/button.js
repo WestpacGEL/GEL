@@ -7,14 +7,14 @@ const Button = ({ state: { size }, ...rest }) => <ButtonInput size={size} {...re
 
 const buttonStyles = (_, { position }) => ({
 	boxSizing: 'border-box',
-	borderRight: position === 'left' && 0,
-	borderLeft: position === 'right' && 0,
+	borderRight: position === 'before' && 0,
+	borderLeft: position === 'after' && 0,
 
-	...(!(position === 'left') && {
+	...(!(position === 'before') && {
 		borderTopLeftRadius: 0,
 		borderBottomLeftRadius: 0,
 	}),
-	...(!(position === 'right') && {
+	...(!(position === 'after') && {
 		borderTopRightRadius: 0,
 		borderBottomRightRadius: 0,
 	}),

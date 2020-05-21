@@ -39,12 +39,12 @@ const textStyles = (_, { size, position }) => {
 		whiteSpace: 'nowrap',
 		boxSizing: 'border-box',
 
-		...(position === 'right' && {
+		...(position === 'after' && {
 			borderLeft: 0,
 			borderTopLeftRadius: 0,
 			borderBottomLeftRadius: 0,
 		}),
-		...(position === 'left' && {
+		...(position === 'before' && {
 			borderRight: 0,
 			borderTopRightRadius: 0,
 			borderBottomRightRadius: 0,
