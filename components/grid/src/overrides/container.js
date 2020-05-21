@@ -6,9 +6,9 @@ const Container = ({ state, ...rest }) => <div {...rest} />;
 
 const containerStyles = (_, { fixed }) => {
 	const mq = useMediaQuery();
-	const paddingHoriz = [12, 30, 36, 48, 60];
+	const paddingHorizontal = [12, 30, 36, 48, 60];
 	const fixedWidth = [null, null, 768, 992, 1200];
-	const fluidMaxWidth = 1320; //1200 (lg) + 60 (paddingHoriz) + 60 (paddingHoriz)
+	const fluidMaxWidth = 1320; //1200 (lg) + 60 (paddingHorizontal) + 60 (paddingHorizontal)
 
 	return mq({
 		boxSizing: 'border-box',
@@ -16,8 +16,8 @@ const containerStyles = (_, { fixed }) => {
 		marginRight: 'auto',
 		width: fixed && fixedWidth,
 		maxWidth: !fixed && fluidMaxWidth,
-		paddingLeft: paddingHoriz,
-		paddingRight: paddingHoriz,
+		paddingLeft: paddingHorizontal,
+		paddingRight: paddingHorizontal,
 	})[0];
 };
 
