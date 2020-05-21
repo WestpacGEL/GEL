@@ -169,7 +169,6 @@ const HeroIntro = () => {
 
 	return (
 		<Container
-			fluid
 			css={mq({
 				zIndex: 3,
 				position: 'relative',

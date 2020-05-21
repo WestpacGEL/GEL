@@ -31,7 +31,6 @@ const Homepage = () => {
 			<HomePageHeader />
 			<section>
 				<Container
-					fluid
 					css={{
 						maxWidth: '60rem',
 						margin: '0 auto',
@@ -66,7 +65,6 @@ const Homepage = () => {
 				}}
 			>
 				<Container
-					fluid
 					css={{
 						maxWidth: '60rem',
 						margin: '0 auto',
@@ -136,7 +134,6 @@ const Homepage = () => {
 			</section>
 			<section>
 				<Container
-					fluid
 					css={{
 						maxWidth: '60rem',
 						margin: '0 auto',
@@ -204,7 +201,6 @@ const Homepage = () => {
 				}}
 			>
 				<Container
-					fluid
 					css={{
 						maxWidth: '60rem',
 						margin: '0 auto',
