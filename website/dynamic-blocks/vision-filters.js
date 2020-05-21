@@ -225,7 +225,7 @@ export const VisionFilters = {
 		};
 
 		return (
-			<Container fluid css={blocksContainerStyle}>
+			<Container css={blocksContainerStyle}>
 				<Grid columns={12}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 						<Heading

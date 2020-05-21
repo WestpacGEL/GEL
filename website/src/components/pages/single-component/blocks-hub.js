@@ -102,7 +102,7 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<Container fluid css={{ ...blocksContainerStyle }}>
+						<Container css={{ ...blocksContainerStyle }}>
 							<Grid columns={12} key={path}>
 								<Cell width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
 									<Body>
@@ -127,7 +127,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'unordered-list':
 					return (
-						<Container fluid css={{ ...blocksContainerStyle }}>
+						<Container css={{ ...blocksContainerStyle }}>
 							<Grid columns={12} key={path}>
 								<Cell width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
 									<List
@@ -148,7 +148,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'ordered-list':
 					return (
-						<Container fluid css={{ ...blocksContainerStyle }}>
+						<Container css={{ ...blocksContainerStyle }}>
 							<Grid columns={12} key={path}>
 								<Cell width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
 									<List css={textStyle} type="ordered">

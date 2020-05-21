@@ -120,7 +120,7 @@ export default function Index() {
 
 	if (!navigation) return <LoadingIndicator />;
 	return (
-		<Container fluid>
+		<Container>
 			<PageTitle>Settings</PageTitle>
 			<p>The navigation object. It allows us to manage the navigation of the site.</p>
 			<FieldContainer>

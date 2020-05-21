@@ -9,7 +9,7 @@ import { Code } from './Code';
 export function HomeStart({ packageName, pkg, version }) {
 	return (
 		<Article>
-			<Container fluid>
+			<Container>
 				<h1>
 					{packageName} Examples
 					{version && (
