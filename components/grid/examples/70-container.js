@@ -54,15 +54,15 @@ function Example({ brand }) {
 				/>
 				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }}>
 					<Box css={{ backgroundColor: 'rgba(255,255,255,0.7)' }}>
-						{containerWidth}px = {breakpoint}
+						Fluid (default): {containerWidth}px = {breakpoint}
 					</Box>
 				</Container>
 
 				<hr />
 
-				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }} fluid>
+				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }} fixed>
 					<Box css={{ backgroundColor: 'rgba(255,255,255,0.7)' }}>
-						{containerWidth}px = {breakpoint}
+						Fixed: {containerWidth}px = {breakpoint}
 					</Box>
 				</Container>
 			</div>

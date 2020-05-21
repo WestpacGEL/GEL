@@ -4,16 +4,20 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 const Container = ({ state, ...rest }) => <div {...rest} />;
 
-const containerStyles = (_, { fluid }) => {
+const containerStyles = (_, { fixed }) => {
 	const mq = useMediaQuery();
-	const padding = ['0.75rem', '1.125rem', '2.25rem', '3rem', '3.75rem'];
+	const paddingHoriz = [12, 30, 36, 48, 60];
+	const fixedWidth = [null, null, 768, 992, 1200];
+	const fluidMaxWidth = 1320; //1200 (lg) + 60 (paddingHoriz) + 60 (paddingHoriz)
 
 	return mq({
+		boxSizing: 'border-box',
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		maxWidth: fluid ? '75rem' : [null, '33.75rem', '43.5rem', '56rem', '67.5rem'],
-		paddingLeft: padding,
-		paddingRight: padding,
+		width: fixed && fixedWidth,
+		maxWidth: !fixed && fluidMaxWidth,
+		paddingLeft: paddingHoriz,
+		paddingRight: paddingHoriz,
 	})[0];
 };
 
