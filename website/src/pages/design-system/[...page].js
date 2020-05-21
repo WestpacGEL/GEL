@@ -215,7 +215,6 @@ const Gridly = ({ show }) => {
 			item && (
 				<animated.div key={key} style={props}>
 					<Container
-						fluid
 						css={{
 							position: 'absolute',
 							top: 0,

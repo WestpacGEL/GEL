@@ -66,7 +66,7 @@ export const ColorSwatch = {
 		const mq = useMediaQuery();
 		return (
 			<div>
-				<Container fluid css={blocksContainerStyle}>
+				<Container css={blocksContainerStyle}>
 					<Grid columns={12} css={mq({ gridGap: [SPACING(3), SPACING(3), SPACING(4)] })}>
 						{colors.map((color) => {
 							if (color.value === '--secondary-colors--') {

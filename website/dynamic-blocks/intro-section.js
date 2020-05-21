@@ -202,7 +202,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 	const mq = useMediaQuery();
 	return (
 		<div css={{ marginBottom: SPACING(5) }}>
-			<Container fluid>
+			<Container>
 				<Grid
 					css={mq({
 						gridGap: '1.5rem',

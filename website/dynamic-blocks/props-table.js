@@ -249,7 +249,6 @@ const Component = ({ item, addTableContent }) => {
 			<SeparatorComponent />
 			<div css={{ backgroundColor: '#fff' }}>
 				<Container
-					fluid
 					css={{
 						...blocksContainerStyle,
 						paddingBottom: SPACING(5),
