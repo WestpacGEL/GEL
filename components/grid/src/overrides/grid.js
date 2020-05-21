@@ -39,7 +39,7 @@ const gridStyles = (
 		gridTemplateColumns: repeatNumeric(columns),
 		gridTemplateRows: rows ? repeatNumeric(rows) : null,
 		height,
-		justifyContent: justifyContent,
+		justifyContent,
 		rowGap,
 	})[0];
 };

@@ -13,8 +13,9 @@ const HomePageHeaderImage = ({ brand }) => {
 				right: 0,
 				bottom: 0,
 				top: 0,
-				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					display: 'none',
+				display: 'none',
+				[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+					display: 'inline-block',
 				},
 			}}
 		>
@@ -29,8 +30,9 @@ const HomePageHeaderImage = ({ brand }) => {
 				left: 0,
 				bottom: -5,
 				zIndex: 0,
-				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					display: 'none',
+				display: 'none',
+				[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+					display: 'inline-block',
 				},
 			}}
 		>
@@ -45,8 +47,9 @@ const HomePageHeaderImage = ({ brand }) => {
 				zIndex: 1,
 				right: 0,
 				bottom: -100,
-				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					display: 'none',
+				display: 'none',
+				[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+					display: 'inline-block',
 				},
 			}}
 		>

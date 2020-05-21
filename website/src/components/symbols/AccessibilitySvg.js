@@ -8,7 +8,8 @@ export const AccessibilitySvg = ({
 	outlineColor = '#8C9296',
 }) => {
 	return (
-		<svg width={size} height={size} viewBox="0 0 90 90">
+		<svg width={size} height={size} viewBox="0 0 90 90" role="img" focusable="false">
+			<title>Accessibility</title>
 			<g fill="none" fillRule="evenodd">
 				<path
 					d="M75.975 23.502a5 5 0 01-4.478 5.473L55 30.625V48.29L63.8 78.606l.06.223a5.005 5.005 0 01-3.467 5.973l-.224.059-.217.046a5.004 5.004 0 01-5.755-3.513L46.246 54 45 54l-1.246-.001-7.952 27.395a5.004 5.004 0 01-5.755 3.513l-.218-.046-.223-.06a5.005 5.005 0 01-3.467-5.972l.06-.223 8.8-30.318V30.625l-16.497-1.65a5 5 0 01-4.494-5.256l.017-.217a5 5 0 015.224-4.496l.248.019L39.208 21h11.584l19.71-1.975.248-.019a5 5 0 015.225 4.496z"
