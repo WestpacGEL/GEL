@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/core",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Core components for the westpac GEL design language",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
 	"blender": {

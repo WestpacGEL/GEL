@@ -1,4 +1,5 @@
 brands/**/dist/
+brands/**/CHANGELOG.md
 components/**/dist/
 website/**/dist/
 website/**/.next/

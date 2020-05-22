@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/heading",
-	"version": "1.0.0-beta.1",
+	"version": "1.0.0-beta.2",
 	"description": "Headings for your page needs",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/heading",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -17,7 +17,7 @@
 	"module": "dist/heading.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.0",
+		"@westpac/core": "^1.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
