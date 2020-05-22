@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/grid",
-	"version": "1.0.0-beta.2",
+	"version": "1.0.0-beta.3",
 	"description": "Grid component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/grid",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -29,7 +29,7 @@
 	"module": "dist/grid.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.0",
+		"@westpac/core": "^1.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
