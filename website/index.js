@@ -21,6 +21,7 @@ const keystone = new Keystone({
 		knexOptions: {
 			client: 'pg',
 			connection: process.env.DATABASE_URL,
+			ssl: { rejectUnauthorized: false },
 		},
 	}),
 	// Add COOKIE_SECRET to your .env or sessions will be reset when the app restarts
