@@ -70,7 +70,7 @@ SOURCE='postgres://gel3_website_live@westpacgel3-do-user-1058923-0.a.db.ondigita
 TARGET='postgres://localhost/gel3_website_dev'
 
 # Dump the source DB and pipe to psql to restore locally
-ssh gel.live.do.westpac.thinkmill.cloud pg_dump --no-owner ${SOURCE} | psql ${TARGET}
+ssh deploy@gel.live.do.westpac.thinkmill.cloud pg_dump --no-owner ${SOURCE} | psql ${TARGET}
 ```
 
 _(💡 This will require ssh access to the live server)_
