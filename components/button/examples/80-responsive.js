@@ -26,7 +26,7 @@ function Example({ brand }) {
 			{sizes.map((s, i) => (
 				<p key={i}>
 					<Button look="primary" size={s}>
-						[{s.map(v => String(v)).join(', ')}]
+						[{s.map((v) => String(v)).join(', ')}]
 					</Button>
 				</p>
 			))}
@@ -37,7 +37,7 @@ function Example({ brand }) {
 			{blocks.map((b, i) => (
 				<p key={i}>
 					<Button look="primary" size="xlarge" block={b}>
-						[{b.map(v => String(v)).join(', ')}]
+						[{b.map((v) => String(v)).join(', ')}]
 					</Button>
 				</p>
 			))}

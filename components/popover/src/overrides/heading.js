@@ -8,11 +8,12 @@ const PopoverHeading = ({ state: { headingTag }, ...rest }) => (
 );
 
 const headingStyles = () => {
-	const { SPACING, COLORS } = useBrand();
+	const { SPACING, COLORS, TYPE } = useBrand();
+
 	return {
 		marginBottom: SPACING(2),
 		color: COLORS.neutral,
-		fontWeight: 500,
+		...TYPE.bodyFont[500],
 	};
 };
 

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/popover",
-	"version": "1.0.0",
+	"version": "1.0.0-beta.1",
 	"description": "GEL popover component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/popover",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -16,11 +16,11 @@
 	"main": "dist/popover.cjs.js",
 	"module": "dist/popover.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.8.4",
+		"@babel/runtime": "^7.9.6",
 		"@westpac/body": "^1.0.0",
 		"@westpac/button": "^1.0.0",
 		"@westpac/core": "^1.0.0",
-		"@westpac/heading": "^1.0.0",
+		"@westpac/heading": "^1.0.0-beta.1",
 		"@westpac/hooks": "^1.0.0",
 		"@westpac/icon": "^1.0.0",
 		"prop-types": "^15.7.2"
@@ -30,9 +30,9 @@
 		"react-dom": "^16.11.0"
 	},
 	"devDependencies": {
-		"cypress": "^4.1.0",
+		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
-		"start-server-and-test": "^1.10.10"
+		"start-server-and-test": "^1.11.0"
 	}
 }

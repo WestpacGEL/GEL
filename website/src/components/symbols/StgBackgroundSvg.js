@@ -6,11 +6,13 @@ import { Svg } from './Svg';
 export const StgBackgroundSvg = ({ width, height }) => {
 	return (
 		<Svg
-			aria-label="stgeorge-header-image"
 			viewBox="0 32.545 595.279 255.545"
 			width={width}
 			height={height}
+			role="img"
+			focusable="false"
 		>
+			<title>St.George background image</title>
 			<g opacity={0.4}>
 				<path
 					opacity={0.6}

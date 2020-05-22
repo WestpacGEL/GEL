@@ -28,7 +28,7 @@ const panelStyles = (_, { look }) => {
 			borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
 		},
 		'table caption': {
-			padding: ['0.75rem 0.75rem 0 0.75rem', '1.5rem 1.5rem 0 1.5rem'],
+			padding: ['0.75rem 0.75rem 0 0.75rem', null, '1.5rem 1.5rem 0 1.5rem'],
 		},
 	};
 };

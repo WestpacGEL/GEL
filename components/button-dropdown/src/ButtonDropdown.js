@@ -102,7 +102,7 @@ export const ButtonDropdown = ({
 	});
 
 	// on escape close
-	const keyHandler = event => {
+	const keyHandler = (event) => {
 		if (open && event.keyCode === 27) handleOpen();
 	};
 
@@ -128,6 +128,7 @@ export const ButtonDropdown = ({
 					onClick={handleOpen}
 					dropdown={true}
 					block={block}
+					data-js="buttonDropdown-btn__version__"
 					overrides={componentOverrides}
 					{...rest}
 				>

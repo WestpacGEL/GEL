@@ -203,7 +203,7 @@ const SeparatorComponent = () => {
 					width: '100%',
 					paddingRight: '18px !important',
 				}}
-				onClick={e => {
+				onClick={(e) => {
 					e.preventDefault();
 					const el = document.querySelector('main') || window;
 					el.scroll({
@@ -232,8 +232,10 @@ const Component = ({ item, addTableContent }) => {
 	const packageName = item.packageName.replace(/_/g, '-'); // removing underscores from graphql queries
 
 	const tableData = Object.keys(PropTypes.components[packageName])
-		.filter(key => typeof PropTypes.components[packageName][key] === 'object' && key !== 'blender')
-		.map(key => {
+		.filter(
+			(key) => typeof PropTypes.components[packageName][key] === 'object' && key !== 'blender'
+		)
+		.map((key) => {
 			const { overrides, ...normalProps } = PropTypes.components[packageName][key].propTypes;
 			return {
 				name: key,
@@ -245,53 +247,52 @@ const Component = ({ item, addTableContent }) => {
 	return (
 		<Fragment>
 			<SeparatorComponent />
-			<Container
-				css={{
-					...blocksContainerStyle,
-					backgroundColor: '#fff',
-					paddingBottom: SPACING(5),
-					marginTop: 0,
-					marginBottom: 0,
-				}}
-			>
-				<Grid
-					css={mq({
-						...blocksGridStyle,
-						marginTop: [SPACING(6), SPACING(6), SPACING(10)],
-					})}
-					columns={12}
+			<div css={{ backgroundColor: '#fff' }}>
+				<Container
+					css={{
+						...blocksContainerStyle,
+						paddingBottom: SPACING(5),
+						marginTop: 0,
+						marginBottom: 0,
+					}}
 				>
-					<Cell width={12}>
-						<Heading
-							tag="h2"
-							size={5}
-							id="props"
-							tabIndex="-1"
-							{...(addTableContent && { 'data-toc': true })}
-						>
-							Props
-						</Heading>
-					</Cell>
-				</Grid>
-				<Grid
-					columns={12}
-					css={mq({
-						...blocksGridStyle,
-						marginTop: [SPACING(3), SPACING(3), SPACING(6)],
-					})}
-				>
-					<Cell width={12}>
-						{tableData.map(({ overrideProps, normalProps, name }) => {
-							return (
-								<Fragment key={`table-${name}`}>
-									<PTable caption={`${name} Props`} data={normalProps} />
-									<PTable caption={`${name} Overrides`} data={overrideProps} />
-								</Fragment>
-							);
+					<Grid
+						css={mq({
+							paddingTop: [SPACING(6), SPACING(6), SPACING(10)],
 						})}
-					</Cell>
-				</Grid>
-			</Container>
+						columns={12}
+					>
+						<Cell width={12}>
+							<Heading
+								tag="h2"
+								size={5}
+								id="props"
+								tabIndex="-1"
+								{...(addTableContent && { 'data-toc': true })}
+							>
+								Props
+							</Heading>
+						</Cell>
+					</Grid>
+					<Grid
+						columns={12}
+						css={mq({
+							marginTop: [SPACING(3), SPACING(3), SPACING(6)],
+						})}
+					>
+						<Cell width={12}>
+							{tableData.map(({ overrideProps, normalProps, name }) => {
+								return (
+									<Fragment key={`table-${name}`}>
+										<PTable caption={`${name} Props`} data={normalProps} />
+										<PTable caption={`${name} Overrides`} data={overrideProps} />
+									</Fragment>
+								);
+							})}
+						</Cell>
+					</Grid>
+				</Container>
+			</div>
 		</Fragment>
 	);
 };
@@ -305,7 +306,7 @@ export const PropsTable = {
 			...(value || {}),
 		};
 
-		const update = changes =>
+		const update = (changes) =>
 			onChange({
 				...currentValue,
 				...changes,

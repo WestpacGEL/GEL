@@ -111,15 +111,13 @@ const VisionFilter = ({ children }) => {
 				<label htmlFor={id} css={{ marginRight: '1rem' }}>
 					Select filter
 				</label>
-				{/* <div css={{ display: 'inline-block', width: '30%' }}> */}
 				<Select
 					id={id}
 					width={10}
 					value={filter}
-					onChange={event => setFilter(event.target.value)}
+					onChange={(event) => setFilter(event.target.value)}
 					data={filters}
 				/>
-				{/* </div> */}
 			</div>
 			<div css={{ filter: filter ? `url(#filter-${filter})` : 'none' }}>{children}</div>
 		</Fragment>

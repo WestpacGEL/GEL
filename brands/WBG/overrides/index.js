@@ -1,1 +1,1 @@
-export const OVERRIDES = TOKENS => ({});
+export const OVERRIDES = (TOKENS) => ({});

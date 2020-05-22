@@ -15,7 +15,7 @@ const BLOCKS_CONFIG = [
 	[DynamicComponentsBlock, { components: DYNAMIC_BLOCKS_DIR }],
 ];
 
-const getResolver = key => async args => {
+const getResolver = (key) => async (args) => {
 	if (!args.packageName) {
 		return null;
 	}
@@ -28,15 +28,12 @@ const getResolver = key => async args => {
 		return component.name;
 	}
 	if (key === 'name') {
-		return component.name
-			.split('/')
-			.slice(-1)
-			.pop();
+		return component.name.split('/').slice(-1).pop();
 	}
 	return component[key];
 };
 
-const resolveRequiredPackages = async args => {
+const resolveRequiredPackages = async (args) => {
 	if (!args.packageName) {
 		return null;
 	}
@@ -47,13 +44,13 @@ const resolveRequiredPackages = async args => {
 	}
 	return (
 		Object.keys(component.dependencies)
-			.filter(key => key.includes('@westpac/'))
+			.filter((key) => key.includes('@westpac/'))
 			.join(', ') || ''
 	);
 };
 
-const getComponentSchema = options => ({
-	labelResolver: x => x.pageTitle || x.packageName,
+const getComponentSchema = (options) => ({
+	labelResolver: (x) => x.pageTitle || x.packageName,
 	fields: {
 		pageTitle: { type: Text },
 		url: {
@@ -75,7 +72,7 @@ const getComponentSchema = options => ({
 					if (resolvedData.url) {
 						let result = resolvedData.url
 							.split('/')
-							.map(d => slugify(d))
+							.map((d) => slugify(d))
 							.join('/');
 						if (result.charAt(0) !== '/') {
 							result = `/${result}`;
@@ -92,7 +89,7 @@ const getComponentSchema = options => ({
 		isOrphaned: {
 			adminDoc: 'This page relates to a package that has been removed.',
 			type: Virtual,
-			resolver: async args => {
+			resolver: async (args) => {
 				if (!args.packageName) {
 					return false;
 				}

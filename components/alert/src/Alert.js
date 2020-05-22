@@ -73,7 +73,7 @@ export const Alert = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const handleClose = event => {
+	const handleClose = (event) => {
 		wrapHandlers(
 			() => onClose(),
 			() => setOpen(false)
@@ -90,7 +90,7 @@ export const Alert = ({
 
 	const CloseBtnJSX = () => (
 		<CloseBtn
-			onClose={event => handleClose(event)}
+			onClose={(event) => handleClose(event)}
 			state={state}
 			{...closeBtnAttributes(state)}
 			css={{ '&&': closeBtnStyles(state) }}
@@ -111,7 +111,7 @@ export const Alert = ({
 	return transition.map(
 		({ item, key, props }) =>
 			item && (
-				<animated.div key={key} style={props} data-js="alert">
+				<animated.div key={key} style={props} data-js="alert__version__">
 					<AlertJSX />
 				</animated.div>
 			)

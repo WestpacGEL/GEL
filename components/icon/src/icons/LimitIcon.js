@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const LimitIcon = props => (
+export const LimitIcon = (props) => (
 	<Icon icon="LimitIcon" {...props}>
 		<path
 			fill="currentColor"

@@ -7,7 +7,7 @@ import { panel } from './panel';
 import { progressBar } from './progress-bar';
 import { switchStyle } from './switch';
 
-export const OVERRIDES = TOKENS => ({
+export const OVERRIDES = (TOKENS) => ({
 	'@westpac/badge': badge(TOKENS),
 	'@westpac/button': button(TOKENS),
 	'@westpac/form-check': formCheck(TOKENS),

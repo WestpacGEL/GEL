@@ -3,12 +3,12 @@
 	"version": "1.0.0",
 	"description": "Core components for the westpac GEL design language",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
-	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"blender": {
 		"recipe": "blender/recipe.js",
 		"js": "blender/jquery.js",
 		"isCore": true
 	},
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
 			"name": "Dominik Wilkowski",
@@ -37,7 +37,7 @@
 		"./dist/core.esm.js": "./dist/core.browser.esm.js"
 	},
 	"dependencies": {
-		"@babel/runtime": "^7.8.4",
+		"@babel/runtime": "^7.9.6",
 		"@emotion/core": "^10.0.28",
 		"@emotion/weak-memoize": "^0.2.5",
 		"color": "^3.1.2",
@@ -51,9 +51,9 @@
 	},
 	"devDependencies": {
 		"@westpac/button": "*",
-		"@westpac/text-input": "*",
-		"cypress": "^4.1.0",
+		"@westpac/text-input": ">1.0.0-alpha",
+		"cypress": "^4.5.0",
 		"react": "^16.13.1",
-		"start-server-and-test": "^1.10.10"
+		"start-server-and-test": "^1.11.0"
 	}
 }

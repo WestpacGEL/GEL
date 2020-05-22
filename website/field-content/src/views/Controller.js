@@ -7,7 +7,7 @@ import Controller from '@keystonejs/fields/Controller';
 import { serialize, deserialize } from '../slate-serializer';
 import { initialValue } from './editor/constants';
 
-const flattenBlocks = inputBlocks =>
+const flattenBlocks = (inputBlocks) =>
 	inputBlocks.reduce((outputBlocks, block) => {
 		if (!block.type) {
 			// Some blocks may pull in other views which aren't themselves blocks, so
@@ -50,7 +50,7 @@ export default class ContentController extends Controller {
 			// Loads all configured blocks and their dependencies
 			const blocksModules = this.adminMeta.readViews(this.views.blocks);
 
-			const customBlocks = blocksModules.map(block => ({
+			const customBlocks = blocksModules.map((block) => ({
 				...block,
 				options: {
 					...this.config.blockOptions[block.type],
@@ -114,7 +114,7 @@ export default class ContentController extends Controller {
 		}
 	};
 
-	serialize = data => {
+	serialize = (data) => {
 		const { path } = this;
 		if (!data[path] || !data[path].document) {
 			// Forcibly return null if empty string
@@ -134,7 +134,7 @@ export default class ContentController extends Controller {
 		};
 	};
 
-	deserialize = data => {
+	deserialize = (data) => {
 		const { path } = this;
 		if (!data[path] || !data[path].document) {
 			// Forcibly return a default value if nothing set
@@ -151,7 +151,7 @@ export default class ContentController extends Controller {
 		};
 
 		// Filter out oEmbeds from parsedData.document that missing from parsedData.oEmbeds
-		parsedData.document.nodes = parsedData.document.nodes.filter(node => {
+		parsedData.document.nodes = parsedData.document.nodes.filter((node) => {
 			if (node.type !== 'oEmbed') {
 				return true;
 			}
@@ -160,7 +160,7 @@ export default class ContentController extends Controller {
 				return false;
 			}
 
-			return parsedData.oEmbeds.find(embed => embed.id === node.data._joinIds[0]);
+			return parsedData.oEmbeds.find((embed) => embed.id === node.data._joinIds[0]);
 		});
 
 		return deserialize(parsedData, blocks);

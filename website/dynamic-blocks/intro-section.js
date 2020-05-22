@@ -19,6 +19,8 @@ const ArrowIcon = () => {
 			css={{ width: '0.75rem', height: '0.75rem' }}
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 8 9"
+			focusable="false"
+			aria-hidden="true"
 		>
 			<path
 				fill={COLORS.primary}
@@ -51,14 +53,14 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 	);
 };
 
-const parseHeadings = content =>
+const parseHeadings = (content) =>
 	content.nodes
 		.filter(
-			item =>
+			(item) =>
 				item.data.component &&
 				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText'].includes(item.data.component)
 		)
-		.filter(item => item.data.props && item.data.props.addTableContent)
+		.filter((item) => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
 			const { props } = item.data;
 			return (
@@ -93,7 +95,7 @@ const TableOfContents = ({ content }) => {
 				size={8}
 				overrides={{
 					Heading: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							fontWeight: 500,
 						}),
@@ -114,7 +116,7 @@ const TableOfContents = ({ content }) => {
 						icon={ArrowIcon}
 						overrides={{
 							Item: {
-								styles: styles => ({
+								styles: (styles) => ({
 									...styles,
 									paddingLeft: 0,
 									margin: 0,
@@ -204,7 +206,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 				<Grid
 					css={mq({
 						gridGap: '1.5rem',
-						marginTop: ['1.875rem', '1.875rem', '5.625rem'],
+						paddingTop: ['1.875rem', '1.875rem', '5.625rem'],
 						paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
 					})}
 				>

@@ -1,14 +1,17 @@
 /** @jsx jsx */
-import { Fragment, useState, useCallback, useEffect } from 'react';
+import { Fragment, useState, useCallback, useEffect, forwardRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { useTransition, animated } from 'react-spring';
 import { useRouter } from 'next/router';
 import debounce from 'lodash.debounce';
 import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
+import { Container, Grid, Cell } from '@westpac/grid';
 import { Footer } from '../../components/layout';
 
+import { PageContext, usePageContext } from '../../components/providers/pageContext';
 import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
 import PageHeader from '../../components/header/page-header';
 import { ALL_PAGES } from '../../../graphql';
@@ -24,7 +27,7 @@ const ComponentWrapper = () => {
 	}
 	if (!data) return null;
 	let currentComponent =
-		data.allPages.find(component => {
+		data.allPages.find((component) => {
 			return component.url === `/${path}`;
 		}) || '';
 
@@ -37,13 +40,14 @@ const ComponentWrapper = () => {
 
 const Component = ({ component, tabName }) => {
 	const { pageTitle, version } = component;
+	const [showGrid, setShowGrid] = useState(false);
 
 	return (
-		<Fragment>
+		<PageContext.Provider value={{ showGrid, setShowGrid }}>
 			<PageHeader name={pageTitle} version={version} />
 			<Tabs component={component} tabName={tabName} />
 			<Footer />
-		</Fragment>
+		</PageContext.Provider>
 	);
 };
 
@@ -83,18 +87,17 @@ const Tabs = ({ component, tabName }) => {
 
 	const tabOverrides = {
 		Tabcordion: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				flexGrow: 1,
 				backgroundColor: COLORS.background,
 			}),
 		},
 		TabRow: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				alignItems: 'flex-end',
 				backgroundColor: '#fff',
-				borderLeft: `solid 1px ${COLORS.border}`,
 				position: 'sticky',
 				top: '66px',
 				zIndex: 5,
@@ -130,14 +133,26 @@ const Tabs = ({ component, tabName }) => {
 		},
 	};
 
+	const Panel = forwardRef(({ state, children, ...rest }, ref) => {
+		const { showGrid } = usePageContext();
+		return (
+			<div ref={ref} {...rest}>
+				<Gridly show={showGrid} />
+				{children}
+			</div>
+		);
+	});
+
 	const overrides = {
 		Panel: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
+				position: 'relative',
 				padding: 0,
 				margin: '0 auto',
 				border: 'none',
 			}),
+			component: Panel,
 		},
 	};
 
@@ -185,6 +200,37 @@ const Tabs = ({ component, tabName }) => {
 		>
 			{tabs}
 		</Tabcordion>
+	);
+};
+
+const Gridly = ({ show }) => {
+	const transitions = useTransition(show, null, {
+		from: { opacity: 0 },
+		enter: { opacity: 0.6 },
+		leave: { opacity: 0 },
+	});
+
+	return transitions.map(
+		({ item, key, props }) =>
+			item && (
+				<animated.div key={key} style={props}>
+					<Container
+						css={{
+							position: 'absolute',
+							top: 0,
+							bottom: 0,
+							right: 0,
+							left: 0,
+						}}
+					>
+						<Grid css={{ height: '100%' }}>
+							{[...new Array(12)].map((item, index) => (
+								<Cell key={index} css={{ backgroundColor: '#fff' }} />
+							))}
+						</Grid>
+					</Container>
+				</animated.div>
+			)
 	);
 };
 

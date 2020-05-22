@@ -33,7 +33,7 @@ describe('getLabel', () => {
 	});
 
 	test('Generate a label from a anonymous function prop', () => {
-		const result = getLabel('prefix', { a: function() {}, b: () => {} });
+		const result = getLabel('prefix', { a: function () {}, b: () => {} });
 		expect(result).toBe('prefix-a-b');
 	});
 

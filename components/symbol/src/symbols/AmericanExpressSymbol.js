@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const AmericanExpressSymbol = props => (
+export const AmericanExpressSymbol = (props) => (
 	<Symbol symbol="AmericanExpressSymbol" {...props}>
 		<g>
 			<path

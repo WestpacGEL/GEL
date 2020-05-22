@@ -21,7 +21,7 @@ export const Footer = () => {
 		}
 
 		prev = el.scrollTop;
-	}, 100);
+	}, 10);
 
 	useEffect(() => {
 		if (el.scrollHeight > el.clientHeight) {
@@ -46,7 +46,6 @@ export const Footer = () => {
 				backgroundColor: '#fff',
 				transition: 'bottom 0.4s',
 				borderTop: `1px solid ${COLORS.border}`,
-				borderLeft: `1px solid ${COLORS.border}`,
 				display: 'flex',
 				flexGrow: 0,
 				flexShrink: 0,
@@ -54,7 +53,7 @@ export const Footer = () => {
 				padding: SPACING(3),
 				zIndex: 5,
 
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 					left: '300px',
 				},
 			}}
@@ -75,7 +74,7 @@ export const Footer = () => {
 					textAlign: 'right',
 					padding: '0 !important',
 				}}
-				onClick={e => {
+				onClick={(e) => {
 					e.preventDefault();
 					const el = document.querySelector('main') || window;
 					el.scroll({

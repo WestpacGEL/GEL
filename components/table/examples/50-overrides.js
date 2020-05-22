@@ -9,50 +9,50 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/table'] = {
 		Table: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				backgroundColor: '#efe8ed',
 			}),
 		},
 		Tbody: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				fontWeight: 700,
 			}),
 		},
 		Td: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				color: 'DarkSlateBlue',
 			}),
 		},
 		Tfoot: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				backgroundColor: 'PowderBlue',
 			}),
 		},
 		Th: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				paddingTop: 30,
 				paddingBottom: 30,
 			}),
 		},
 		Thead: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				backgroundColor: 'Moccasin',
 			}),
 		},
 		Tr: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				borderBottom: '2px dashed Tomato',
 			}),
 		},
 		Caption: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				color: 'DodgerBlue',
 			}),

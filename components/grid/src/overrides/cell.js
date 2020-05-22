@@ -1,22 +1,23 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery, asArray } from '@westpac/core';
 
 const Cell = ({ state, ...rest }) => <div {...rest} />;
 
 const cellStyles = (_, { area, height, left, top, width }) => {
 	const mq = useMediaQuery();
+	const widthArr = asArray(width);
+	const heightArr = asArray(height);
 
 	// allow string or array values for height/width
-	const span = n => `span ${n}`;
-	const getEndSpan = c => (Array.isArray(c) ? c.map(span) : span(c));
+	const getEndSpan = (n) => n.map((v) => v && `span ${v}`);
 
 	return mq({
 		gridArea: area,
-		gridColumnEnd: !area && getEndSpan(width),
-		gridColumnStart: left,
-		gridRowEnd: !area && getEndSpan(height),
-		gridRowStart: top,
+		gridColumnEnd: !area && getEndSpan(widthArr),
+		gridColumnStart: asArray(left),
+		gridRowEnd: !area && getEndSpan(heightArr),
+		gridRowStart: asArray(top),
 		height: '100%',
 		minWidth: 0,
 	})[0];

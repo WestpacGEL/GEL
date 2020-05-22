@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Hr = props => {
+export const Hr = (props) => {
 	const { COLORS } = useBrand();
 	return (
 		<hr

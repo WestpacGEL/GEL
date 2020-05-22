@@ -28,7 +28,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/icon'] = {
 		Icon: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '1px solid red',
 			}),
@@ -54,7 +54,7 @@ function Example({ brand }) {
 			<AddIcon
 				overrides={{
 					Svg: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '3px dotted green',
 						}),

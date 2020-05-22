@@ -8,7 +8,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button-group'] = {
 		ButtonGroup: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				padding: 5,
 				outline: `2px solid palevioletred`,
@@ -48,7 +48,7 @@ function Example({ brand }) {
 				name="example-overrides"
 				overrides={{
 					ButtonGroup: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							padding: 5,
 							outline: `2px solid blue`,
@@ -70,7 +70,7 @@ function Example({ brand }) {
 				]}
 				overrides={{
 					ButtonGroup: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							padding: 5,
 							outline: `2px solid red`,

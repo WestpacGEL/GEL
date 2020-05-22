@@ -47,13 +47,13 @@ function Example({ brand }) {
 					visible: true,
 					text: 'Go back',
 					onClick: (event, page) => console.log(`Go to ${page}`, event),
-					assistiveText: page => `Go back to previous page which is ${page + 1}`,
+					assistiveText: (page) => `Go back to previous page which is ${page + 1}`,
 				}}
 				next={{
 					visible: true,
 					text: 'Go forth',
 					onClick: (event, page) => console.log(`Go to ${page}`, event),
-					assistiveText: page => `Go forth to next page which is ${page + 1}`,
+					assistiveText: (page) => `Go forth to next page which is ${page + 1}`,
 				}}
 			>
 				<Page text="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
@@ -69,7 +69,7 @@ function Example({ brand }) {
 					onClick: () => console.log('this event will run in addition to the normal logic'),
 				}}
 				next={{
-					onClick: event => {
+					onClick: (event) => {
 						event.preventDefault();
 						console.log('this event will only run without any logic disabling the default');
 					},
@@ -79,7 +79,7 @@ function Example({ brand }) {
 				<Page text="2" onClick={() => console.log('this page will run the normal code')} />
 				<Page
 					text="3"
-					onClick={event => {
+					onClick={(event) => {
 						event.preventDefault();
 						console.log('this page will only run our code');
 					}}

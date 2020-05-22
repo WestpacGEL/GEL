@@ -14,7 +14,7 @@ export default ({ context, showCode, showDemo }) => {
 					type="link"
 					overrides={{
 						List: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								margin: '1rem 0',
 							}),
@@ -30,7 +30,7 @@ export default ({ context, showCode, showDemo }) => {
 					type="link"
 					overrides={{
 						List: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								margin: '1rem 0',
 							}),

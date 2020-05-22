@@ -26,7 +26,7 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 				<SlateContent content={blocks} item={item} />
 			) : (
 				<Container css={blocksContainerStyle}>
-					<Grid columns={12} css={blocksGridStyle}>
+					<Grid columns={12}>
 						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 							<p>No documentation specified for this section.</p>
 						</Cell>
@@ -37,7 +37,7 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 	);
 };
 
-const getURL = d => {
+const getURL = (d) => {
 	if (d.url) {
 		if (d.url.charAt(0) !== '/') {
 			return `${BASE_URL}/${d.url}`;
@@ -67,7 +67,7 @@ const SeparatorComponent = () => {
 					width: '100%',
 					paddingRight: '18px !important',
 				}}
-				onClick={e => {
+				onClick={(e) => {
 					e.preventDefault();
 					const el = document.querySelector('main') || window;
 					el.scroll({
@@ -119,7 +119,7 @@ export const RelatedInformation = ({ item }) => {
 				}}
 			>
 				<Container css={blocksContainerStyle}>
-					<Grid css={blocksGridStyle} columns={12}>
+					<Grid columns={12}>
 						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 							<Heading
 								tag="h2"
@@ -154,7 +154,7 @@ export const RelatedInformation = ({ item }) => {
 							>
 								<IconTitle icon={CubeIcon}>Components</IconTitle>
 								<ul css={{ margin: 0, marginBottom: SPACING(3), padding: 0 }}>
-									{relatedPages.map(d => {
+									{relatedPages.map((d) => {
 										return (
 											<ComponentLink key={d.id} link={getURL(d)}>
 												{d.pageTitle}
@@ -254,31 +254,38 @@ const IconTitle = ({ icon: Icon, children }) => {
 };
 
 export const brandHeaderColors = {
-	WBC: COLORS => COLORS.primary,
-	WBG: COLORS => COLORS.hero,
-	STG: COLORS => COLORS.hero,
-	BSA: COLORS => `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
-	BOM: COLORS => COLORS.hero,
-	BTFG: COLORS => COLORS.hero,
+	WBC: (COLORS) => COLORS.primary,
+	WBG: (COLORS) => COLORS.hero,
+	STG: (COLORS) => COLORS.hero,
+	BSA: (COLORS) => `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
+	BOM: (COLORS) => COLORS.hero,
+	BTFG: (COLORS) => COLORS.hero,
 };
 
 export const brandIconHighlightColors = {
-	WBC: COLORS => COLORS.primary,
-	WBG: COLORS => COLORS.primary,
-	STG: COLORS => COLORS.hero,
+	WBC: (COLORS) => COLORS.primary,
+	WBG: (COLORS) => COLORS.primary,
+	STG: (COLORS) => COLORS.hero,
 	BSA: () => '#00adbd',
-	BOM: COLORS => COLORS.hero,
+	BOM: (COLORS) => COLORS.hero,
 	BTFG: () => '#00afd7',
 };
 
+export const gridlyIconColors = {
+	WBC: '#b6000b',
+	WBG: '#808990',
+	STG: '#a1d263',
+	BSA: 'rgba(255, 255, 255, 0.3)',
+	BOM: 'rgba(255, 255, 255, 0.3)',
+	BTFG: '#669ec3',
+};
 export const blocksGridStyle = {
 	maxWidth: '60rem',
 	margin: '0 auto',
 	width: '100%',
 };
 export const blocksContainerStyle = {
-	margin: '30px 0',
-	maxWidth: 'unset',
+	margin: '30px auto',
 	'@media (max-width: 768px)': {
 		margin: '18px 0',
 	},

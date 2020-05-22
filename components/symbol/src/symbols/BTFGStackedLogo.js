@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const BTFGStackedLogo = props => (
+export const BTFGStackedLogo = (props) => (
 	<Symbol symbol="BTFGStackedLogo" {...props}>
 		<path
 			d="M10 15.9c-0.6 0-1.1-0.5-1.1-1.1 0-0.6 0.5-1.1 1.1-1.1h16c-0.2-1.8-1-3.6-2.4-4.9 0 0 0 0-0.1-0.1l-2-2c0 0 0 0-0.1-0.1L14.8 0 0 14.8l14.8 14.8 6.6-6.6c0 0 0.1-0.1 0.1-0.1l2-2c0 0 0.1-0.1 0.1-0.1 1.3-1.4 2.1-3.1 2.4-4.9H10z"

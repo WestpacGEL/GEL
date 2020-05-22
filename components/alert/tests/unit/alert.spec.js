@@ -12,7 +12,7 @@ import wbc from '@westpac/wbc';
 overridesTest({
 	name: 'alert', // the name has to be the package name without '@westpac/' scope
 	overrides: ['Alert', 'Body', 'CloseBtn', 'Icon', 'Heading'], // every single override root key
-	Component: props => (
+	Component: (props) => (
 		<Alert dismissible heading="heading" {...props}>
 			Alert content
 		</Alert>
@@ -22,7 +22,7 @@ overridesTest({
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
 	name: 'alert',
-	Component: props => <Alert {...props} />,
+	Component: (props) => <Alert {...props} />,
 });
 
 // Component specific tests
@@ -94,8 +94,8 @@ describe('Alert specific tests', () => {
 		expect(container.querySelector('strong')).toHaveTextContent(text);
 	});
 
-	test('Adds a headline', () => {
-		const text = 'headline text';
+	test('Adds a heading', () => {
+		const text = 'heading text';
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
 				<Alert heading={text}>Our alert content</Alert>
@@ -107,8 +107,8 @@ describe('Alert specific tests', () => {
 		expect(container.querySelector('h2')).toHaveTextContent(text);
 	});
 
-	test('Adds a headline with a different tag', () => {
-		const text = 'headline text';
+	test('Adds a heading with a different tag', () => {
+		const text = 'heading text';
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
 				<Alert heading={text} headingTag="h6">
@@ -124,7 +124,7 @@ describe('Alert specific tests', () => {
 	});
 
 	// here we test a bunch of things in a loop. This is a good way to automate tests easily and DRY
-	['success', 'info', 'warning', 'danger'].map(look => {
+	['success', 'info', 'warning', 'danger'].map((look) => {
 		test(`${look.charAt(0).toUpperCase() + look.slice(1)} alert uses ${look} color`, () => {
 			const { COLORS } = wbc;
 
@@ -144,11 +144,7 @@ describe('Alert specific tests', () => {
 			const allowedColors = [
 				...Object.entries(COLORS).filter(([name]) => name.includes(look)),
 				...Object.entries(COLORS.tints).filter(([name]) => name.includes(look)),
-			].map(([_, color]) =>
-				chroma(color)
-					.hex()
-					.toLowerCase()
-			);
+			].map(([_, color]) => chroma(color).hex().toLowerCase());
 
 			// testing with testing id is saver than looking for html elements
 			const color = window
@@ -189,11 +185,7 @@ describe('Alert specific tests', () => {
 		const allowedColors = [
 			...Object.entries(COLORS).filter(([name]) => name.includes('system')),
 			...Object.entries(COLORS.tints).filter(([name]) => name.includes('system')),
-		].map(([_, color]) =>
-			chroma(color)
-				.hex()
-				.toLowerCase()
-		);
+		].map(([_, color]) => chroma(color).hex().toLowerCase());
 
 		const backgroundColor = window
 			.getComputedStyle(getByTestId('alert'))

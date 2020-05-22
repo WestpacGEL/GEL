@@ -46,8 +46,8 @@ export function Sidebar({ editor }) {
 	const { setCurrentlyEditingBlocks } = useContext(CurrentlyEditingBlocksContext);
 	return Object.keys(view)
 		.sort()
-		.filter(compName => !view[compName].archived)
-		.map(compName => {
+		.filter((compName) => !view[compName].archived)
+		.map((compName) => {
 			let svgPath = svgPathMap[compName];
 			let icon = (
 				<svg
@@ -75,7 +75,7 @@ export function Sidebar({ editor }) {
 								props: {},
 							},
 						});
-						setCurrentlyEditingBlocks(x => ({ ...x, [block.get('key')]: true }));
+						setCurrentlyEditingBlocks((x) => ({ ...x, [block.get('key')]: true }));
 						editor.insertBlock(block);
 					}}
 				/>
@@ -100,7 +100,7 @@ export function Actions({ editor, node }) {
 			<BlockDisclosureMenuButton
 				variant="primary"
 				onClick={() => {
-					setCurrentlyEditingBlocks(x => ({ ...x, [node.key]: !x[node.key] }));
+					setCurrentlyEditingBlocks((x) => ({ ...x, [node.key]: !x[node.key] }));
 				}}
 				title={isEditing ? 'Done editing' : 'Edit block'}
 			>
@@ -164,7 +164,7 @@ export function Node({ node, attributes, editor, item }) {
 	return (
 		<div
 			{...attributes}
-			onClick={e => {
+			onClick={(e) => {
 				// we want to stop stopPropagation here so that focussing works
 				e.stopPropagation();
 			}}
@@ -176,7 +176,7 @@ export function Node({ node, attributes, editor, item }) {
 							item={item}
 							_editorValue={JSON.parse(JSON.stringify(editor.value.document))}
 							value={node.get('data').get('props')}
-							onChange={dynamicComponentProps => {
+							onChange={(dynamicComponentProps) => {
 								editor.setNodeByKey(node.key, {
 									data: node.data.set('props', { ...dynamicComponentProps }),
 								});
@@ -204,7 +204,7 @@ export let getPlugins = () => [
 	{
 		onKeyDown(event, editor, next) {
 			// inject a new paragraph on "Enter"
-			if (event.keyCode === 13 && editor.value.blocks.every(block => block.type === type)) {
+			if (event.keyCode === 13 && editor.value.blocks.every((block) => block.type === type)) {
 				editor.insertBlock({ type: defaultType });
 			} else {
 				return next();
@@ -264,4 +264,6 @@ const svgPathMap = {
 	Separator: 'M13 7H3c-.55 0-1 .45-1 1s.45 1 1 1h10c.55 0 1-.45 1-1s-.45-1-1-1z',
 	VisionFilters:
 		'M16 7.97v-.02-.01-.02-.02a.672.672 0 00-.17-.36c-.49-.63-1.07-1.2-1.65-1.72l-3.16 2.26a2.978 2.978 0 01-2.98 2.9c-.31 0-.6-.06-.88-.15L5.09 12.3c.44.19.9.36 1.37.47.97.23 1.94.24 2.92.05.88-.17 1.74-.54 2.53-.98 1.25-.7 2.39-1.67 3.38-2.75.18-.2.37-.41.53-.62.09-.1.15-.22.17-.36v-.02-.02-.01-.02-.03c.01-.02.01-.03.01-.04zm-.43-4.17c.25-.18.43-.46.43-.8 0-.55-.45-1-1-1-.22 0-.41.08-.57.2l-.01-.01-2.67 1.91c-.69-.38-1.41-.69-2.17-.87a6.8 6.8 0 00-2.91-.05c-.88.18-1.74.54-2.53.99-1.25.7-2.39 1.67-3.38 2.75-.18.2-.37.41-.53.62-.23.29-.23.63-.01.92.51.66 1.11 1.25 1.73 1.79.18.16.38.29.56.44l-2.09 1.5.01.01c-.25.18-.43.46-.43.8 0 .55.45 1 1 1 .22 0 .41-.08.57-.2l.01.01 14-10-.01-.01zm-10.41 5a3.03 3.03 0 01-.11-.8 2.99 2.99 0 012.99-2.98c.62 0 1.19.21 1.66.53L5.16 8.8z',
+	Symbols:
+		'M2 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6C.9 6 0 6.9 0 8s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6C.9 0 0 .9 0 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM8 0C6.9 0 6 .9 6 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM8 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z',
 };

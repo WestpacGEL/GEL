@@ -1,13 +1,12 @@
-import React, { Fragment } from 'react';
+/** @jsx jsx */
 
-import { Badge } from '@westpac/badge';
-
+import { jsx } from '@westpac/core';
 import { BlocksDocs } from '../../_utils';
 
 export const AccessibilityTab = ({ blocks, item }) => {
 	return (
-		<Fragment>
+		<div css={{ position: 'relative' }}>
 			<BlocksDocs blocks={blocks} item={item} />
-		</Fragment>
+		</div>
 	);
 };

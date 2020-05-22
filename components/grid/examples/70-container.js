@@ -10,7 +10,6 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	const {
-		COLORS,
 		LAYOUT: { breakpoints },
 	} = brand;
 
@@ -18,16 +17,16 @@ function Example({ brand }) {
 	const { width: containerWidth } = useContainerQuery(containerRef);
 
 	let breakpoint;
-	if (containerWidth > breakpoints.xl) {
-		breakpoint = 'xl';
-	} else if (containerWidth > breakpoints.lg) {
+	if (containerWidth >= breakpoints.lg) {
 		breakpoint = 'lg';
-	} else if (containerWidth > breakpoints.md) {
+	} else if (containerWidth >= breakpoints.md) {
 		breakpoint = 'md';
-	} else if (containerWidth > breakpoints.sm) {
+	} else if (containerWidth >= breakpoints.sm) {
 		breakpoint = 'sm';
+	} else if (containerWidth >= breakpoints.xsl) {
+		breakpoint = 'xsl';
 	} else {
-		breakpoint = 'mobile';
+		breakpoint = 'xs';
 	}
 
 	return (
@@ -35,20 +34,38 @@ function Example({ brand }) {
 			<Intopia />
 
 			<div
-				ref={containerRef}
 				css={{
-					position: 'fixed',
+					position: 'absolute',
+					zIndex: 9,
 					left: 0,
 					right: 0,
-					height: 1,
-					top: -4,
+					pointerEvents: 'none',
 				}}
-			/>
-			<Container css={{ backgroundColor: COLORS.primary }}>
-				<Box>
-					{containerWidth}px = {breakpoint}
-				</Box>
-			</Container>
+			>
+				<div
+					ref={containerRef}
+					css={{
+						position: 'fixed',
+						left: 0,
+						right: 0,
+						height: 1,
+						top: -4,
+					}}
+				/>
+				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }}>
+					<Box css={{ backgroundColor: 'rgba(255,255,255,0.7)' }}>
+						Fluid (default): {containerWidth}px = {breakpoint}
+					</Box>
+				</Container>
+
+				<hr />
+
+				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }} fixed>
+					<Box css={{ backgroundColor: 'rgba(255,255,255,0.7)' }}>
+						Fixed: {containerWidth}px = {breakpoint}
+					</Box>
+				</Container>
+			</div>
 		</GEL>
 	);
 }

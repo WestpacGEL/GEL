@@ -18,7 +18,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button'] = {
 		Button: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				outline: '1px dotted blue',
 			}),
@@ -39,7 +39,7 @@ function Example({ brand }) {
 			<Button
 				overrides={{
 					Button: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '2px dotted black',
 						}),

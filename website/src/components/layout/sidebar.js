@@ -26,21 +26,30 @@ export const Sidebar = ({ items }) => {
 			ref={ref}
 			onScroll={handleScroll}
 			css={{
+				display: 'flex',
+				flexDirection: 'column',
 				background: 'white',
 				gridColumnStart: 1,
 				gridColumnEnd: 2,
-				transition: 'transform 0.15s',
-				boxShadow: `1px 0 1px ${COLORS.border}`,
-				zIndex: 2,
-				overflow: 'auto',
+				borderRight: `1px solid ${COLORS.border}`,
+				width: '300px',
 				height: '100vh',
-				[`@media only screen and (max-width: ${LAYOUT.breakpoints.xl - 1}px)`]: {
-					position: 'absolute',
-					zIndex: 10,
-					top: 0,
-					left: 0,
-					width: 300,
-					transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
+				boxSizing: 'border-box',
+				position: 'absolute',
+				zIndex: 10,
+				top: 0,
+				bottom: 0,
+				left: 0,
+				transition: 'transform 0.15s',
+				transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
+
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
+					position: 'static',
+					zIndex: 'auto',
+					top: 'auto',
+					bottom: 'auto',
+					left: 'auto',
+					transform: 'none',
 				},
 			}}
 		>
@@ -56,6 +65,7 @@ const CloseButton = () => {
 	const { COLORS, SPACING, LAYOUT } = useBrand();
 	return (
 		<button
+			type="button"
 			onClick={() => setIsOpen(false)}
 			css={{
 				position: 'absolute',
@@ -67,8 +77,9 @@ const CloseButton = () => {
 				border: 'none',
 				cursor: 'pointer',
 				zIndex: 2,
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: { display: 'none' },
+				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: { display: 'none' },
 			}}
+			aria-label="Close sidebar"
 		>
 			<CloseIcon color={COLORS.neutral} size="small" />
 		</button>

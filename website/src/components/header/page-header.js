@@ -7,7 +7,8 @@ import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './component-page-header-image';
 
 import { useSidebar } from '../providers/sidebar';
-import { brandHeaderColors } from '../_utils';
+import { usePageContext } from '../providers/pageContext';
+import { brandHeaderColors, gridlyIconColors } from '../_utils';
 
 const MenuIcon = ({ hasScrolled }) => {
 	const { BRAND, COLORS } = useBrand();
@@ -18,12 +19,12 @@ const MenuIcon = ({ hasScrolled }) => {
 
 	return (
 		<Button
-			onClick={() => setIsOpen(status => !status)}
+			onClick={() => setIsOpen((status) => !status)}
 			look="link"
 			iconBefore={Icon}
 			overrides={{
 				Button: {
-					styles: styles => ({
+					styles: (styles) => ({
 						...styles,
 						justifySelf: 'start',
 						gridRowStart: 1,
@@ -44,6 +45,7 @@ const MenuIcon = ({ hasScrolled }) => {
 const PageHeader = ({ name, version }) => {
 	const { COLORS, BRAND, LAYOUT } = useBrand();
 	const mq = useMediaQuery();
+	const { showGrid, setShowGrid } = usePageContext();
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
 
@@ -97,11 +99,11 @@ const PageHeader = ({ name, version }) => {
 					size={hasScrolled ? 7 : 1}
 					overrides={{
 						Heading: {
-							styles: styles => ({
+							styles: (styles) => ({
 								...styles,
 								alignSelf: 'center',
 								textTransform: 'capitalize',
-								[`@media (max-width: ${LAYOUT.breakpoints.md}px)`]: {
+								[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 									fontSize: '18px !important',
 								},
 								fontWeight: 500,
@@ -137,6 +139,41 @@ const PageHeader = ({ name, version }) => {
 						{version}
 					</span>
 				)}
+			</div>
+			<div
+				css={{
+					position: 'fixed',
+					display: 'flex',
+					alignItems: 'center',
+					top: 0,
+					right: '1.5rem',
+					height: '4.125rem',
+					color: '#fff',
+				}}
+			>
+				<span css={mq({ display: ['inline', 'none'] })}>xs</span>
+				<span css={mq({ display: ['none', 'inline', 'none'] })}>xsl</span>
+				<span css={mq({ display: ['none', null, 'inline', 'none'] })}>sm</span>
+				<span css={mq({ display: ['none', null, null, 'inline', 'none'] })}>md</span>
+				<span css={mq({ display: ['none', null, null, null, 'inline'] })}>lg</span>
+				<button
+					type="button"
+					onClick={() => setShowGrid(!showGrid)}
+					css={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
+				>
+					{[...new Array(4)].map((item, index) => (
+						<span
+							key={index}
+							css={{
+								display: 'inline-block',
+								height: 24,
+								width: 4,
+								marginRight: 2,
+								backgroundColor: gridlyIconColors[BRAND],
+							}}
+						/>
+					))}
+				</button>
 			</div>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const InstagramSymbol = props => (
+export const InstagramSymbol = (props) => (
 	<Symbol symbol="InstagramSymbol" {...props}>
 		<defs>
 			<radialGradient

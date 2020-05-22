@@ -14,7 +14,7 @@ function Example({ brand }) {
 	overridesWithTokens['@westpac/switch'] = {
 		Label: {
 			component: Label,
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				color: 'palevioletred',
 				paddingRight: '2rem',

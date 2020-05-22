@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const ShareIcon = props => (
+export const ShareIcon = (props) => (
 	<Icon icon="ShareIcon" {...props}>
 		<path
 			fill="currentColor"

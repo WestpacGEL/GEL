@@ -8,7 +8,7 @@ const fs = require('fs');
  *
  * @return {string}          - A name without the slashes
  */
-const slugFromFilename = filename => {
+const slugFromFilename = (filename) => {
 	if (filename.match(/^[0-9][0-9]-/)) {
 		return filename.slice(3, -3);
 	} else if (filename.match(/.js$/)) {
@@ -25,7 +25,7 @@ const slugFromFilename = filename => {
  *
  * @return {string}      - Uppercased with spaces
  */
-const labelFromSlug = slug => {
+const labelFromSlug = (slug) => {
 	return slug.replace(/-/g, ' ').replace(slug[0], slug[0].toUpperCase());
 };
 
@@ -45,13 +45,13 @@ const findExampleFiles = (component, parent = '') => {
 	if (fs.existsSync(exampleDir)) {
 		const files = fs
 			.readdirSync(exampleDir)
-			.filter(file => !file.startsWith('.') && !file.startsWith('_') && file.endsWith('.js'));
+			.filter((file) => !file.startsWith('.') && !file.startsWith('_') && file.endsWith('.js'));
 
 		const { version } = require(path.normalize(
 			`${__dirname}/../../components/${component}/package.json`
 		));
 
-		return files.map(filename => {
+		return files.map((filename) => {
 			const slug = `${component}/${slugFromFilename(filename)}`;
 			const label = labelFromSlug(slug);
 
@@ -82,7 +82,7 @@ const findExampleFiles = (component, parent = '') => {
  * @param {*} fileList 	- Array of demo files
  */
 const recurseFindFiles = (dir, data, fileList = []) => {
-	fs.readdirSync(dir).forEach(file => {
+	fs.readdirSync(dir).forEach((file) => {
 		const fullPath = path.join(dir, file);
 		if (fs.lstatSync(fullPath).isDirectory()) {
 			recurseFindFiles(fullPath, data, fileList);
@@ -158,7 +158,7 @@ function makeCode(components, entry, name = ' ', version = '') {
 		const components = [
 			${components
 				.map(
-					example => `{
+					(example) => `{
 					${Object.entries(example)
 						.map(([key, value]) => `"${key}": ${JSON.stringify(value)}`)
 						.join(',\n')},

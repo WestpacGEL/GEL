@@ -3,7 +3,7 @@ const { createMacro } = require('babel-plugin-macros');
 module.exports = createMacro(prevalMacros);
 
 function prevalMacros({ references, babel }) {
-	references.default.forEach(referencePath => {
+	references.default.forEach((referencePath) => {
 		if (referencePath.parentPath.type === 'CallExpression') {
 			importAllDeferred({ referencePath, babel });
 		} else {
@@ -20,7 +20,7 @@ function importAllDeferred({ referencePath, babel }) {
 	const { types: t } = babel;
 	const importSources = referencePath.parentPath.get('arguments')[0].evaluate().value;
 
-	const objectProperties = importSources.map(source => {
+	const objectProperties = importSources.map((source) => {
 		return t.objectProperty(
 			t.stringLiteral(source),
 			t.functionExpression(

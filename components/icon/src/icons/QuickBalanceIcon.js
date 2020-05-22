@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const QuickBalanceIcon = props => (
+export const QuickBalanceIcon = (props) => (
 	<Icon icon="QuickBalanceIcon" {...props}>
 		<path
 			fill="currentColor"

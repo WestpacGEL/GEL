@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Item } from '@westpac/list';
 import { forwardRef } from 'react';
 
-export const NavigationItem = props => {
+export const NavigationItem = (props) => {
 	return <Item css={{ margin: 0, paddingLeft: '0 !important' }} {...props} />;
 };
 

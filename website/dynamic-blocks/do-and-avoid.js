@@ -64,7 +64,7 @@ export const DoAndAvoid = {
 							style={{ display: doImageUploadState ? 'none' : undefined }}
 							type="file"
 							id="do-image"
-							onChange={async e => {
+							onChange={async (e) => {
 								setDoImageUploadState('uploading');
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
@@ -83,7 +83,7 @@ export const DoAndAvoid = {
 							type="text"
 							id="do-text"
 							value={doText}
-							onChange={async e => {
+							onChange={async (e) => {
 								setDoText(e.target.value);
 							}}
 						/>
@@ -103,7 +103,7 @@ export const DoAndAvoid = {
 							style={{ display: dontImageUploadState ? 'none' : undefined }}
 							type="file"
 							id="avoid-image"
-							onChange={async e => {
+							onChange={async (e) => {
 								setDontImageUploadState('uploading');
 								const { data } = await uploadImage({
 									variables: { data: { image: e.target.files[0] } },
@@ -122,7 +122,7 @@ export const DoAndAvoid = {
 							type="text"
 							id="avoid-text"
 							value={dontText}
-							onChange={e => {
+							onChange={(e) => {
 								setDontText(e.target.value);
 							}}
 						/>
@@ -166,36 +166,22 @@ export const DoAndAvoid = {
 
 		return (
 			<Container css={blocksContainerStyle}>
-				<Grid columns={12} css={blocksGridStyle}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<div
-							css={{
-								display: 'flex',
-								alignItems: 'stretch',
-								width: '100%',
-								justifyContent: 'space-between',
-								[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-									flexDirection: 'column',
-								},
-							}}
-						>
-							<figure css={mq({ ...dodontFigure, paddingRight: [null, null, SPACING(3)] })}>
-								<div>
-									<img css={dodontImage} src={doImage} />
-								</div>
-								<figcaption css={captionStyle}>
-									<span css={doStyle}>Do</span> - {doText}
-								</figcaption>
-							</figure>
-							<figure css={dodontFigure}>
-								<div>
-									<img css={dodontImage} src={dontImage} />
-								</div>
-								<figcaption css={captionStyle}>
-									<span css={dontStyle}>Avoid</span> - {dontText}
-								</figcaption>
-							</figure>
-						</div>
+				<Grid columns={12}>
+					<Cell width={[12, 12, 6, 5]} left={[1, 1, 1, 2]}>
+						<figure css={dodontFigure}>
+							<img css={dodontImage} src={doImage} />
+							<figcaption css={captionStyle}>
+								<span css={doStyle}>Do</span> - {doText}
+							</figcaption>
+						</figure>
+					</Cell>
+					<Cell width={[12, 12, 6, 5]}>
+						<figure css={dodontFigure}>
+							<img css={dodontImage} src={dontImage} />
+							<figcaption css={captionStyle}>
+								<span css={dontStyle}>Avoid</span> - {dontText}
+							</figcaption>
+						</figure>
 					</Cell>
 				</Grid>
 			</Container>

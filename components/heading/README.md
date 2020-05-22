@@ -1,3 +1,3 @@
 # @westpac/heading
 
-Headlines for your page needs
+Headings for your page needs

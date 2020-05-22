@@ -32,7 +32,7 @@ export let marks = {
 		label: 'Bold',
 		icon: BoldIcon,
 		level: 'primary',
-		render: props => <strong {...props.attributes}>{props.children}</strong>,
+		render: (props) => <strong {...props.attributes}>{props.children}</strong>,
 	},
 	italic: {
 		test: isHotkey('mod+i'),
@@ -40,7 +40,7 @@ export let marks = {
 		label: 'Italic',
 		icon: ItalicIcon,
 		level: 'primary',
-		render: props => <em {...props.attributes}>{props.children}</em>,
+		render: (props) => <em {...props.attributes}>{props.children}</em>,
 	},
 	strikethrough: {
 		test: isHotkey('mod+~'),
@@ -48,7 +48,7 @@ export let marks = {
 		label: 'Strikethrough',
 		icon: StrikethroughIcon,
 		level: 'secondary',
-		render: props => <s {...props.attributes}>{props.children}</s>,
+		render: (props) => <s {...props.attributes}>{props.children}</s>,
 	},
 	underline: {
 		test: isHotkey('mod+u'),
@@ -56,7 +56,7 @@ export let marks = {
 		label: 'Underline',
 		icon: UnderlineIcon,
 		level: 'secondary',
-		render: props => <u {...props.attributes}>{props.children}</u>,
+		render: (props) => <u {...props.attributes}>{props.children}</u>,
 	},
 	code: {
 		test: noop,
@@ -64,7 +64,7 @@ export let marks = {
 		label: 'Code',
 		icon: CodeIcon,
 		level: 'secondary',
-		render: props => <code {...props.attributes}>{props.children}</code>,
+		render: (props) => <code {...props.attributes}>{props.children}</code>,
 	},
 };
 

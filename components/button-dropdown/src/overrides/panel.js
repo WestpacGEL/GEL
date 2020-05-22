@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, asArray, useBrand } from '@westpac/core';
+import { jsx, useMediaQuery, asArray, useBrand, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 
 const Panel = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
@@ -24,6 +24,7 @@ const panelStyles = (_, { open, dropdownSize }) => {
 	const dropdownSizeArr = asArray(dropdownSize);
 
 	return mq({
+		label: getLabel('buttonDropdown-panel', { open, dropdownSize }),
 		visibility: open ? 'visible' : 'hidden',
 		height: open ? null : '0px',
 		overflow: 'hidden',
@@ -35,13 +36,16 @@ const panelStyles = (_, { open, dropdownSize }) => {
 		border: `1px solid ${COLORS.border}`,
 		borderRadius: '0.1875rem',
 		padding: '0.75rem',
-		minWidth: dropdownSizeArr.map(s => s && sizeMap[s].minWidth),
+		minWidth: dropdownSizeArr.map((s) => s && sizeMap[s].minWidth),
 		backgroundColor: '#fff',
 		zIndex: 100,
 	})[0];
 };
 
-const panelAttributes = (_, { instanceId }) => ({ id: instanceId });
+const panelAttributes = (_, { instanceId }) => ({
+	id: instanceId,
+	'data-js': 'buttonDropdown-panel__version__',
+});
 
 export const defaultPanel = {
 	component: Panel,

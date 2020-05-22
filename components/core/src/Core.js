@@ -5,7 +5,7 @@ import { jsx } from '@emotion/core';
 import { useBrand } from './Brand';
 import { reset } from './reset';
 
-export const Core = ({ children }) => {
+export const Core = ({ noReset, children }) => {
 	const { COLORS, TYPE, PACKS } = useBrand();
 
 	return (
@@ -27,7 +27,7 @@ export const Core = ({ children }) => {
 					backgroundColor: COLORS.tints.primary20,
 				},
 				'&': {
-					...reset,
+					...(noReset ? null : reset),
 				},
 			}}
 		>

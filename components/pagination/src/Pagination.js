@@ -74,13 +74,13 @@ export const Pagination = ({
 	const backDefault = {
 		text: 'Back',
 		visible: true,
-		assistiveText: page => null,
+		assistiveText: (page) => null,
 	};
 
 	const nextDefault = {
 		text: 'Next',
 		visible: true,
-		assistiveText: page => null,
+		assistiveText: (page) => null,
 	};
 
 	const back = mergeWith(backDefault, backProps);
@@ -89,7 +89,7 @@ export const Pagination = ({
 	let allChildren = data;
 
 	if (!data) {
-		allChildren = Children.map(children, child => ({
+		allChildren = Children.map(children, (child) => ({
 			...child.props,
 		}));
 	}
@@ -137,8 +137,8 @@ export const Pagination = ({
 							disabled={pageLogic.current === 0 && !infinite}
 							assistiveText={back.assistiveText(backIndex)}
 							onClick={wrapHandlers(
-								event => back.onClick && back.onClick(event, backIndex),
-								event => pageLogic.previous(event)
+								(event) => back.onClick && back.onClick(event, backIndex),
+								(event) => pageLogic.previous(event)
 							)}
 						/>
 					)}
@@ -147,7 +147,7 @@ export const Pagination = ({
 							key={index}
 							index={index}
 							text={page.text}
-							onClick={event => pageLogic.setPage(event, allChildren, index)}
+							onClick={(event) => pageLogic.setPage(event, allChildren, index)}
 						/>
 					))}
 					{next.visible && (
@@ -158,8 +158,8 @@ export const Pagination = ({
 							disabled={pageLogic.current === pageCount - 1 && !infinite}
 							assistiveText={next.assistiveText(nextIndex)}
 							onClick={wrapHandlers(
-								event => next.onClick && next.onClick(event, nextIndex),
-								event => pageLogic.next(event)
+								(event) => next.onClick && next.onClick(event, nextIndex),
+								(event) => pageLogic.next(event)
 							)}
 						/>
 					)}

@@ -34,7 +34,7 @@ export const ToolbarButton = forwardRef(
 				content={label}
 				hideOnMouseDown
 			>
-				{tooltipRef => (
+				{(tooltipRef) => (
 					<Tag
 						data-state-active={isActive}
 						{...(Tag === 'button' ? { type: 'button' } : null)}

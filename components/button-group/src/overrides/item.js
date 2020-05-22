@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, asArray, useMediaQuery } from '@westpac/core';
+import { jsx, asArray, useMediaQuery, getLabel } from '@westpac/core';
 
 const Item = ({ state, ...rest }) => <label {...rest} />;
 
@@ -10,11 +10,14 @@ export const itemStyles = (_, { block }) => {
 	const blockArr = asArray(block);
 
 	return mq({
-		flex: blockArr.map(b => b !== null && (b ? 1 : null)),
+		label: getLabel('buttonGroup-item', { block }),
+		flex: blockArr.map((b) => b !== null && (b ? 1 : null)),
 	})[0];
 };
 
-const itemAttributes = (_, { buttonGroupItemId }) => ({ htmlFor: buttonGroupItemId }); //a11y: use explicit association
+const itemAttributes = (_, { buttonGroupItemId }) => ({
+	htmlFor: buttonGroupItemId, //a11y: use explicit association
+});
 
 export const defaultItem = {
 	component: Item,

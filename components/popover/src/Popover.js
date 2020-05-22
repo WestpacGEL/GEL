@@ -93,7 +93,7 @@ export const Popover = ({
 		}
 	}, [open]);
 
-	const keyHandler = e => {
+	const keyHandler = (e) => {
 		if (
 			open &&
 			e.keyCode === 27 &&

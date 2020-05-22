@@ -4,9 +4,10 @@ import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { HamburgerMenuIcon } from '@westpac/icon';
 import { Body } from '@westpac/body';
 import { Cell, Container, Grid } from '@westpac/grid';
-import { Heading } from '@westpac/heading';
+import { BrandHeading } from '@westpac/heading';
 import HeaderImage from './home-page-header-image';
 import StickyHeaderImage from './sticky-header-image';
+import { RichText } from '../rich-text';
 import { brandHeaderColors, brandIconHighlightColors } from '../_utils';
 import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../symbols';
 import { useSidebar } from '../providers/sidebar';
@@ -101,7 +102,7 @@ const StickyHeader = () => {
 						[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 							margin: SPACING(2),
 						},
-						[`@media only screen and (min-width: ${LAYOUT.breakpoints.xl}px)`]: {
+						[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 							display: 'none',
 						},
 					}}
@@ -136,35 +137,58 @@ const StickyHeader = () => {
 };
 
 const IconText = ({ icon, iconMobile, children }) => {
-	const { LAYOUT } = useBrand();
+	const mq = useMediaQuery();
+	const { LAYOUT, SPACING, PACKS } = useBrand();
 	return (
-		<div css={{ textAlign: 'center' }}>
+		<Body
+			css={{ textAlign: 'center' }}
+			overrides={{
+				Body: {
+					styles: (styles) => ({
+						...styles,
+						p: {
+							margin: 0,
+							...PACKS.typeScale.bodyFont[8],
+						},
+					}),
+				},
+			}}
+		>
 			<div
 				css={{
-					[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-						display: 'none',
+					display: 'none',
+					[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+						display: 'inline-block',
 					},
 				}}
+				aria-hidden="true"
 			>
 				{icon}
 			</div>
 			<div
 				css={{
+					display: 'inline-block',
 					[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 						display: 'none',
 					},
 				}}
+				aria-hidden="true"
 			>
 				{iconMobile}
 			</div>
-
-			<p>{children}</p>
-		</div>
+			<p
+				css={mq({
+					marginTop: [`${SPACING(3)} !important`, `${SPACING(4)} !important`],
+				})}
+			>
+				{children}
+			</p>
+		</Body>
 	);
 };
 
 const HeroIntro = () => {
-	const { SPACING, TYPE, COLORS, BRAND, LAYOUT } = useBrand();
+	const { SPACING, COLORS, BRAND, LAYOUT, PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -177,34 +201,38 @@ const HeroIntro = () => {
 				maxWidth: '60rem',
 				marginTop: '66px',
 				marginBottom: [SPACING(7), SPACING(11)],
-				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
+				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 					color: COLORS.text,
 				},
 			})}
 		>
-			<Grid columns={12}>
+			<Grid css={mq({ marginTop: [`${SPACING(4)}`, `${SPACING(7)}`] })}>
 				<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
-					<Heading
-						size={1}
-						css={mq({
-							paddingTop: [SPACING(4), SPACING(7)],
-							paddingBottom: [SPACING(4), SPACING(6)],
-							fontFamily: `${TYPE.brandFont.fontFamily} !important`,
-							maxWidth: 600,
-							fontWeight: 500,
-							margin: '0 auto !important',
-							zIndex: 3,
-							[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: {
-								color: COLORS.hero,
-							},
-						})}
-					>
-						Design to scale with confidence
-					</Heading>
+					<Body>
+						<BrandHeading
+							tag="h1"
+							size={1}
+							css={mq({
+								color: 'inherit !important',
+								[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+									color: BRAND === 'STG' ? COLORS.text : COLORS.hero,
+									fontSize: `${PACKS.typeScale.brandFont[4].fontSize} !important`,
+								},
+							})}
+						>
+							Design to scale with confidence
+						</BrandHeading>
+						<p
+							css={mq({
+								margin: [`${SPACING(4)} 0 0 !important`, `${SPACING(6)} 0 0 !important`],
+								...PACKS.typeScale.bodyFont[8],
+							})}
+						>
+							Assemble enterprise solutions with our components and patterns
+						</p>
+					</Body>
 
-					<Body>Assemble enterprise solutions with our components and patterns</Body>
-
-					<Grid css={mq({ marginTop: [SPACING(4), SPACING(10)] })}>
+					<Grid rowGap={[24, 'normal']} css={mq({ marginTop: [SPACING(4), SPACING(10)] })}>
 						<Cell width={[12, 4]}>
 							<IconText
 								icon={

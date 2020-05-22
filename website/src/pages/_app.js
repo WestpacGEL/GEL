@@ -8,7 +8,7 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 
-const getApolloClient = initialState =>
+const getApolloClient = (initialState) =>
 	new ApolloClient({
 		link: new HttpLink({
 			fetch,
@@ -29,7 +29,7 @@ const GELApp = ({ Component, pageProps, apollo, brand }) => {
 	);
 };
 
-GELApp.getInitialProps = async appContext => {
+GELApp.getInitialProps = async (appContext) => {
 	const appProps = await App.getInitialProps(appContext);
 	const {
 		router,
@@ -40,7 +40,7 @@ GELApp.getInitialProps = async appContext => {
 	const brandsList = ['BOM', 'BSA', 'BTFG', 'STG', 'WBC', 'WBG'];
 
 	// 1. Check url param for desired brand
-	const brandMatch = brandsList.find(b => b === brandParam);
+	const brandMatch = brandsList.find((b) => b === brandParam);
 	if (brandMatch) {
 		// Set/update the cookie
 		res
@@ -63,7 +63,7 @@ GELApp.getInitialProps = async appContext => {
 			'gel_selected_brand'
 		];
 
-		const brandCookieMatch = brandsList.find(b => b === brandCookie);
+		const brandCookieMatch = brandsList.find((b) => b === brandCookie);
 		// 3. If found, update URL param
 
 		if (brandCookieMatch) {

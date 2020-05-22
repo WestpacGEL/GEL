@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, asArray, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, asArray, useMediaQuery, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 
 const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
@@ -141,6 +141,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const blockArr = asArray(block);
 
 	return mq({
+		label: getLabel('button', { look, size, soft, block, justify, disabled }),
 		alignItems: 'center', //vertical
 		appearance: 'none',
 		border: '1px solid transparent',
@@ -172,16 +173,16 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		// for non input tags
 		...(disabled && { opacity: '0.5', pointerEvents: 'none' }),
 
-		padding: sizeArr.map(s => {
+		padding: sizeArr.map((s) => {
 			if (!s) return null;
 			let p = [...sizeMap[s].padding];
 			if (look === 'link') p[1] = '0';
 			return p.join(' ');
 		}),
-		fontSize: sizeArr.map(s => s && sizeMap[s].fontSize),
-		height: sizeArr.map(s => s && sizeMap[s].height),
-		display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
-		width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
+		fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
+		height: sizeArr.map((s) => s && sizeMap[s].height),
+		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
+		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 	})[0];
 };

@@ -1,9 +1,13 @@
 {
 	"name": "@westpac/button-group",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Westpac GEL button group component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-group",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"blender": {
+		"recipe": "blender/recipe.js",
+		"js": "blender/script.js"
+	},
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=button-group webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
@@ -16,7 +20,7 @@
 	"main": "dist/button-group.cjs.js",
 	"module": "dist/button-group.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.8.4",
+		"@babel/runtime": "^7.9.6",
 		"@westpac/button": "1.0.0",
 		"@westpac/core": "1.0.0",
 		"prop-types": "^15.7.2"
@@ -25,8 +29,8 @@
 		"react": "^16.10.1"
 	},
 	"devDependencies": {
-		"cypress": "^4.1.0",
+		"cypress": "^4.5.0",
 		"react": "^16.13.1",
-		"start-server-and-test": "^1.10.10"
+		"start-server-and-test": "^1.11.0"
 	}
 }

@@ -3,12 +3,12 @@ import { jsx, useBrand } from '@westpac/core';
 
 export const Packs = () => {
 	const TOKENS = useBrand();
-	return Object.entries(TOKENS.PACKS.headline).map((pack, i) => {
-		return <Headline pack={pack} key={i} />;
+	return Object.entries(TOKENS.PACKS.typeScale.bodyFont).map((pack, i) => {
+		return <Heading pack={pack} key={i} />;
 	});
 };
 
-const Headline = ({ pack: [name, styles] }) => (
+const Heading = ({ pack: [name, styles] }) => (
 	<div>
 		<span
 			css={{
@@ -18,7 +18,7 @@ const Headline = ({ pack: [name, styles] }) => (
 				letterSpacing: 2,
 			}}
 		>
-			Headline {name}
+			Heading {name}
 		</span>
 		<p css={[styles, { marginTop: 0 }]}>The quick brown fox jumps over the lazy dog</p>
 	</div>

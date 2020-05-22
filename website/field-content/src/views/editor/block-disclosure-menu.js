@@ -12,7 +12,7 @@ import { Dialog } from './dialog';
 export const BLOCKBAR_BUTTON_SIZE = 32;
 export const BLOCKBAR_BUTTON_GUTTER = 4;
 
-const cancelEvent = event => {
+const cancelEvent = (event) => {
 	event.stopPropagation();
 	event.preventDefault();
 };

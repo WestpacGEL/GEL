@@ -6,7 +6,7 @@ import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 // Crumb tag as a component example
-const CrumbTag = props => <a {...props} onClick={() => console.log(`Clicked crumb link`)} />;
+const CrumbTag = (props) => <a {...props} onClick={() => console.log(`Clicked crumb link`)} />;
 
 function Example({ brand }) {
 	return (

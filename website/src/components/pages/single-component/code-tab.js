@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
-import { Cell, Container, Grid } from '@westpac/grid';
-import { Heading } from '@westpac/heading';
+/** @jsx jsx */
+
+import { jsx } from '@westpac/core';
 import { BlocksDocs } from '../../_utils';
 
 export const CodeTab = ({ blocks, item }) => {
 	return (
-		<Fragment>
+		<div css={{ position: 'relative' }}>
 			<BlocksDocs blocks={blocks} item={item} />
-		</Fragment>
+		</div>
 	);
 };

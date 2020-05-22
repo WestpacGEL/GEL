@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand, useFonts } from '@westpac/core';
+import { Fragment } from 'react';
 import { Code } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
@@ -9,14 +10,43 @@ function Example({ brand }) {
 	const { COLORS, PACKS, SPACING } = useBrand();
 
 	return (
-		<GEL brand={brand}>
+		<GEL brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
 			<Intopia ignore />
 
-			<h2>Headlines</h2>
-			{Array(9)
+			<h2>Brand type scale</h2>
+			{Array(7)
 				.fill()
 				.map((_, i) => (
-					<Code key={i}>{JSON.stringify(PACKS.headline[i + 1], null, 2)}</Code>
+					<Fragment key={i}>
+						<span
+							css={{
+								display: 'block',
+								margin: '0 0 1rem',
+								...PACKS.typeScale.brandFont[i + 1],
+							}}
+						>
+							{i + 1}
+						</span>
+						<Code>{JSON.stringify(PACKS.typeScale.brandFont[i + 1], null, 2)}</Code>
+					</Fragment>
+				))}
+
+			<h2>Body type scale</h2>
+			{Array(10)
+				.fill()
+				.map((_, i) => (
+					<Fragment key={i}>
+						<span
+							css={{
+								display: 'block',
+								margin: '0 0 1rem',
+								...PACKS.typeScale.bodyFont[i + 1],
+							}}
+						>
+							{i + 1}
+						</span>
+						<Code>{JSON.stringify(PACKS.typeScale.bodyFont[i + 1], null, 2)}</Code>
+					</Fragment>
 				))}
 
 			<h2>Lead</h2>
@@ -42,7 +72,7 @@ function Example({ brand }) {
 			<h2>Link</h2>
 			<p>
 				The GUI Framework is a front-end development framework designed for{' '}
-				<a href="?" css={{ ...PACKS.link }}>
+				<a href="#0" css={{ ...PACKS.link }}>
 					multi-brand
 				</a>
 				, accessible, responsive, mobile first projects.
@@ -58,7 +88,7 @@ function Example({ brand }) {
 					background: COLORS.background,
 				}}
 			>
-				This box has focus!
+				This box has focus styling!
 			</div>
 			<Code>{JSON.stringify(PACKS.focus, null, 2)}</Code>
 		</GEL>

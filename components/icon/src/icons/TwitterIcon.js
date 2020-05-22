@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const TwitterIcon = props => (
+export const TwitterIcon = (props) => (
 	<Icon icon="TwitterIcon" {...props}>
 		<path
 			fill="currentColor"

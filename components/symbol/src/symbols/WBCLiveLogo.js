@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const WBCLiveLogo = props => (
+export const WBCLiveLogo = (props) => (
 	<Symbol symbol="WBCLiveLogo" {...props}>
 		<path
 			fill="#D5002B"

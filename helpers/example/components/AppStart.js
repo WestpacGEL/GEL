@@ -42,12 +42,11 @@ export function AppStart({ components, packageName, pkg, version }) {
 							`}
 						/>
 						<Sidebar components={components} brand={brand} setBrand={setBrand} />
-						<p>{version}</p>
 						<Switch>
 							<Route
 								exact
 								path="/"
-								render={route => (
+								render={(route) => (
 									<HomeStart {...route} packageName={packageName} pkg={pkg} version={version} />
 								)}
 							/>
@@ -55,13 +54,13 @@ export function AppStart({ components, packageName, pkg, version }) {
 								<Route
 									key={slug}
 									path={`/${slug}`}
-									render={route => (
+									render={(route) => (
 										<Page {...route} {...props} brand={BRANDS[brand]} pkgVersion={version} />
 									)}
 								/>
 							))}
 							<Route
-								render={route => (
+								render={(route) => (
 									<HomeStart {...route} packageName={packageName} pkg={pkg} version={version} />
 								)}
 							/>

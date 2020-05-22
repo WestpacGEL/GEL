@@ -20,7 +20,7 @@ const StepButton = ({ state: { visited, active }, children, ...rest }) => {
 };
 
 const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
-	const { COLORS, PACKS } = useBrand();
+	const { COLORS, PACKS, TYPE } = useBrand();
 
 	return {
 		position: 'relative',
@@ -33,7 +33,7 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 		display: 'block',
 		width: '100%',
 		color: active ? COLORS.primary : visited ? COLORS.neutral : COLORS.tints.muted90,
-		fontWeight: active && 'bold',
+		...(active ? TYPE.bodyFont[700] : null),
 		appearance: 'none',
 		cursor: 'pointer',
 		touchAction: 'manipulation',

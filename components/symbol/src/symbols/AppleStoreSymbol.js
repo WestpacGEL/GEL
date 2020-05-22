@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const AppleStoreSymbol = props => (
+export const AppleStoreSymbol = (props) => (
 	<Symbol symbol="AppleStoreSymbol" {...props}>
 		<g fill="none" fillRule="evenodd">
 			<path

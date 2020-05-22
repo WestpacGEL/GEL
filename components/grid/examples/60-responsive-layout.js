@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Cell, Grid } from '@westpac/grid';
-import { Box } from './_utils';
+import { Wrapper, Box } from './_utils';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
@@ -11,27 +11,29 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Intopia />
 
-			<Grid>
-				<Cell width={[12, 6, 3, 4]}>
-					<Box>[12, 6, 3, 4]</Box>
-				</Cell>
-			</Grid>
+			<Wrapper>
+				<Grid>
+					<Cell width={[12, 6, 4, 3, 2]}>
+						<Box>[12, 6, 4, 3, 2]</Box>
+					</Cell>
+				</Grid>
 
-			<hr />
+				<hr />
 
-			<Grid>
-				<Cell width={[12, 10, 10, 12]}>
-					<Box>[12, 10, 10, 12]</Box>
-				</Cell>
-			</Grid>
+				<Grid>
+					<Cell width={[12, 10, 6, 10, 12]}>
+						<Box>[12, 10, 6, 10, 12]</Box>
+					</Cell>
+				</Grid>
 
-			<hr />
+				<hr />
 
-			<Grid>
-				<Cell width={[12, 8, 3, 6]}>
-					<Box>[12, 8, 3, 6]</Box>
-				</Cell>
-			</Grid>
+				<Grid>
+					<Cell width={[12, 8, 3, 6, 4]}>
+						<Box>[12, 8, 3, 6, 4]</Box>
+					</Cell>
+				</Grid>
+			</Wrapper>
 		</GEL>
 	);
 }

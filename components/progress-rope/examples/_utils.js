@@ -26,7 +26,7 @@ export const useProgress = () => {
 export const Link = ({ index, dispatch, ...props }) => (
 	<a
 		href="#"
-		onClick={e => {
+		onClick={(e) => {
 			e.preventDefault();
 			dispatch({ type: 'goto', index });
 		}}
@@ -34,4 +34,4 @@ export const Link = ({ index, dispatch, ...props }) => (
 	/>
 );
 
-export const Wrapper = props => <div css={{ width: '300px' }} {...props} />;
+export const Wrapper = (props) => <div css={{ width: '300px' }} {...props} />;

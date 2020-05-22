@@ -130,7 +130,7 @@ function Example({ brand }) {
 				assistiveText="The following items are included"
 				overrides={{
 					Item: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '1px dashed rebeccapurple',
 						}),
@@ -176,7 +176,7 @@ function Example({ brand }) {
 				assistiveText="The following items are included"
 				overrides={{
 					Item: {
-						styles: styles => ({
+						styles: (styles) => ({
 							...styles,
 							outline: '1px dashed rebeccapurple',
 						}),

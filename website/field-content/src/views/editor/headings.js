@@ -30,7 +30,7 @@ export const HeadingsMenu = ({ editor, editorState }) => {
 				/>
 			)}
 		>
-			{sizes.map(size => {
+			{sizes.map((size) => {
 				let isActive =
 					editorState?.focusBlock?.type === type &&
 					editorState?.focusBlock?.data.get('size') === size;

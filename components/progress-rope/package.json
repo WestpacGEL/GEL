@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/progress-rope",
-	"version": "1.0.0",
+	"version": "1.0.0-beta.1",
 	"description": "Progress rope component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-rope",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -23,8 +23,8 @@
 	"main": "dist/progress-rope.cjs.js",
 	"module": "dist/progress-rope.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.8.4",
-		"@westpac/a11y": "^1.0.0",
+		"@babel/runtime": "^7.9.6",
+		"@westpac/a11y": "^1.0.0-beta.1",
 		"@westpac/core": "^1.0.0",
 		"prop-types": "^15.7.2",
 		"react-use-measure": "^2.0.0",
@@ -36,10 +36,10 @@
 	},
 	"devDependencies": {
 		"@westpac/button": "*",
-		"@westpac/grid": "*",
-		"cypress": "^4.1.0",
+		"@westpac/grid": ">1.0.0-alpha",
+		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"react-spring": "^8.0.27",
-		"start-server-and-test": "^1.10.10"
+		"start-server-and-test": "^1.11.0"
 	}
 }

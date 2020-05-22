@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { List } from '@westpac/list';
 
-const ListGroup = props => <List type="unstyled" {...props} />;
+const ListGroup = (props) => <List type="unstyled" {...props} />;
 
 const listGroupStyles = () => {
 	const { COLORS } = useBrand();
@@ -26,7 +26,7 @@ const listGroupAttributes = () => {
 	return {
 		overrides: {
 			Item: {
-				styles: styles => ({
+				styles: (styles) => ({
 					...styles,
 					margin: 0,
 					borderBottom: `1px solid ${COLORS.border}`,

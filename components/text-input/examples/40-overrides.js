@@ -10,19 +10,19 @@ function Example({ brand }) {
 
 	overridesWithTokens['@westpac/text-input'] = {
 		TextInput: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				borderColor: 'palevioletred',
 			}),
 		},
 		Select: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				borderColor: 'forestgreen',
 			}),
 		},
 		Textarea: {
-			styles: styles => ({
+			styles: (styles) => ({
 				...styles,
 				borderColor: 'royalblue',
 			}),
@@ -51,7 +51,7 @@ function Example({ brand }) {
 			<TextInput
 				overrides={{
 					TextInput: {
-						styles: styles => ({ ...styles, borderWidth: '3px' }),
+						styles: (styles) => ({ ...styles, borderWidth: '3px' }),
 					},
 				}}
 			/>
@@ -60,7 +60,7 @@ function Example({ brand }) {
 				name="thing"
 				overrides={{
 					Select: {
-						styles: styles => ({ ...styles, borderWidth: '3px' }),
+						styles: (styles) => ({ ...styles, borderWidth: '3px' }),
 					},
 				}}
 			>
@@ -73,7 +73,7 @@ function Example({ brand }) {
 			<Textarea
 				overrides={{
 					Textarea: {
-						styles: styles => ({ ...styles, borderWidth: '3px' }),
+						styles: (styles) => ({ ...styles, borderWidth: '3px' }),
 					},
 				}}
 			/>

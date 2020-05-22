@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const WearableIcon = props => (
+export const WearableIcon = (props) => (
 	<Icon icon="WearableIcon" {...props}>
 		<path
 			fill="currentColor"

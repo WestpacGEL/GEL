@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Alert } from '@westpac/alert';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-const Title = props => {
+const Title = (props) => {
 	const { COLORS } = useBrand();
 	return <p css={{ fontStyle: 'italic', color: COLORS.muted }} {...props} />;
 };

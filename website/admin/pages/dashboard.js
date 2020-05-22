@@ -18,7 +18,7 @@ import { LoadingIndicator } from '@arch-ui/loading';
 function Package({ item, refetch, items }) {
 	let adminMeta = useAdminMeta();
 	let list = adminMeta.getListByKey('Page');
-	let options = list.fields.find(x => x.path === 'packageName').options;
+	let options = list.fields.find((x) => x.path === 'packageName').options;
 	let [isDeleteOpen, setIsDeleteOpen] = useState(false);
 	let [isWorkingOnNewPkgThing, setIsWorkingOnNewPkgThing] = useState(false);
 	let [deletePage] = useMutation(gql`
@@ -48,7 +48,7 @@ function Package({ item, refetch, items }) {
 						isDisabled={isWorkingOnNewPkgThing}
 						onChange={async ({ value }) => {
 							setIsWorkingOnNewPkgThing(true);
-							let existingItem = items.find(x => x.packageName === value);
+							let existingItem = items.find((x) => x.packageName === value);
 							if (existingItem !== undefined) {
 								await deletePage({ variables: { id: existingItem.id } });
 							}
@@ -73,7 +73,7 @@ function Package({ item, refetch, items }) {
 						onClose={() => {
 							setIsDeleteOpen(false);
 						}}
-						onDelete={async promise => {
+						onDelete={async (promise) => {
 							setIsDeleteOpen(false);
 							await promise;
 							refetch();
@@ -99,7 +99,7 @@ function OrphanPages({ items, refetch }) {
 				}}
 				gap={gridSize * 2}
 			>
-				{items.map(item => {
+				{items.map((item) => {
 					return <Package items={items} key={item.id} refetch={refetch} item={item} />;
 				})}
 			</Grid>
@@ -110,12 +110,12 @@ function OrphanPages({ items, refetch }) {
 function PagesWithoutDocs({ items }) {
 	let adminMeta = useAdminMeta();
 	let list = adminMeta.getListByKey('Page');
-	let options = list.fields.find(x => x.path === 'packageName').options;
+	let options = list.fields.find((x) => x.path === 'packageName').options;
 	const packagesWithoutDocs = options.filter(
-		o =>
+		(o) =>
 			!items
-				.filter(i => i.packageName)
-				.map(i => i.packageName)
+				.filter((i) => i.packageName)
+				.map((i) => i.packageName)
 				.includes(o.value)
 	);
 	let [createPage] = useMutation(gql`
@@ -168,7 +168,7 @@ function Pages({ items }) {
 				}}
 				gap={gridSize * 2}
 			>
-				{items.map(item => {
+				{items.map((item) => {
 					return (
 						<Card key={item.id}>
 							<div css={{ marginBottom: gridSize * 2 }}>
@@ -209,9 +209,9 @@ export default function Index() {
 	);
 	if (error) return <p>There was an error fetching data for the dashboard.</p>;
 	if (!data) return <LoadingIndicator />;
-	let orphanPages = data.allPages.filter(x => x.isOrphaned === 'true'); // ... yes, it's a string true
+	let orphanPages = data.allPages.filter((x) => x.isOrphaned === 'true'); // ... yes, it's a string true
 	return (
-		<Container css={{}}>
+		<Container>
 			<PageTitle>Pages</PageTitle>
 			<Pages items={data.allPages} />
 			{orphanPages.length ? (

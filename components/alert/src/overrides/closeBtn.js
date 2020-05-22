@@ -6,7 +6,7 @@ import { CloseIcon } from '@westpac/icon';
 
 const CloseBtn = ({ onClose, state, ...rest }) => (
 	<Button
-		onClick={event => onClose(event)}
+		onClick={(event) => onClose(event)}
 		iconAfter={CloseIcon}
 		look="link"
 		size="medium"
@@ -35,7 +35,7 @@ const closeBtnStyles = () => {
 };
 
 const closeBtnAttributes = () => ({
-	'data-js': 'alert-closeBtn',
+	'data-js': 'alert-closeBtn__version__',
 	'data-testing': 'alert-closeBtn',
 });
 

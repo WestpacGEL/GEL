@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const ArrowRightIcon = props => (
+export const ArrowRightIcon = (props) => (
 	<Icon icon="ArrowRightIcon" {...props}>
 		<polygon
 			fill="currentColor"

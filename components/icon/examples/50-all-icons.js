@@ -10,7 +10,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 // can't believe this works...
 const icons = Object.keys(components);
 
-const Search = props => (
+const Search = (props) => (
 	<input
 		css={{
 			border: 0,
@@ -34,7 +34,7 @@ const Search = props => (
 function Example({ brand }) {
 	const [inputValue, setInputValue] = useState('');
 	const filteredIcons = inputValue.length
-		? icons.filter(p =>
+		? icons.filter((p) =>
 				p
 					.slice(0, p.length - 4)
 					.toLowerCase()
@@ -48,13 +48,13 @@ function Example({ brand }) {
 
 			<Search
 				autoFocus
-				onChange={e => setInputValue(e.target.value)}
+				onChange={(e) => setInputValue(e.target.value)}
 				placeholder="Search..."
 				type="search"
 				value={inputValue}
 			/>
 			<Grid>
-				{filteredIcons.map(icon => {
+				{filteredIcons.map((icon) => {
 					const Icon = components[icon];
 					return (
 						<Cell key={icon}>

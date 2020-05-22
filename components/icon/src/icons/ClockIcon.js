@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Icon } from '../Icon';
 
-export const ClockIcon = props => (
+export const ClockIcon = (props) => (
 	<Icon icon="ClockIcon" {...props}>
 		<path
 			fill="currentColor"

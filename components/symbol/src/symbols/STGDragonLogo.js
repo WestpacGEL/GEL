@@ -1,7 +1,7 @@
 import React from 'react';
 import { propTypes, defaultProps, Symbol } from '../Symbol';
 
-export const STGDragonLogo = props => (
+export const STGDragonLogo = (props) => (
 	<Symbol symbol="STGDragonLogo" {...props}>
 		<path
 			d="M30 29.3c1.4 2.2 3.8 3.8 6.3 4.1 4.4 0.6 8.5-1.6 12.9 0.1 2 0.7 3.8 2 4.8 3.7 -0.9-0.4-1.5-0.7-2.6-1 -1.9-0.6-3.5-0.4-5.5-0.1 -3.7 0.5-7.4 1.7-10.9 0C32.3 34.8 30.7 32.1 30 29.3"
