@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/button-dropdown",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Westpac GEL button-dropdown component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-dropdown",
 	"blender": {
@@ -21,10 +21,10 @@
 	"module": "dist/button-dropdown.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/button": "^1.0.0",
-		"@westpac/core": "^1.0.0",
-		"@westpac/heading": "^1.0.0-beta.1",
-		"@westpac/hooks": "^1.0.0",
+		"@westpac/button": "^1.0.1",
+		"@westpac/core": "^1.0.1",
+		"@westpac/heading": "^1.0.0-beta.2",
+		"@westpac/hooks": "^1.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
