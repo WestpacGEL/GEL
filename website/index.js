@@ -20,10 +20,7 @@ const keystone = new Keystone({
 		dropDatabase: process.env.NODE_ENV === 'development' && process.env.DATABASE_RECREATE_TABLES,
 		knexOptions: {
 			client: 'pg',
-			connection: {
-				host: process.env.DATABASE_URL,
-				ssl: { rejectUnauthorized: false },
-			},
+			connection: process.env.DATABASE_URL,
 		},
 	}),
 	// Add COOKIE_SECRET to your .env or sessions will be reset when the app restarts
