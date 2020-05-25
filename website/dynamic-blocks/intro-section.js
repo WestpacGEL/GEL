@@ -2,15 +2,14 @@
 
 import { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { useRouter } from 'next/router';
+import { Cell, Grid, Container } from '@westpac/grid';
+import { List, Item } from '@westpac/list';
 import { Heading } from '@westpac/heading';
 import { Body } from '@westpac/body';
-import { List, Item } from '@westpac/list';
-import { Cell, Grid, Container } from '@westpac/grid';
+
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
-import { inputStyles } from '@arch-ui/input';
 import { CheckboxPrimitive } from '@arch-ui/controls';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
+import { inputStyles } from '@arch-ui/input';
 
 const ArrowIcon = () => {
 	const { COLORS, SPACING } = useBrand();

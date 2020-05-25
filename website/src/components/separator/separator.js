@@ -40,13 +40,6 @@ export const Separator = (props) => {
 			>
 				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
 			</button>
-			{/* <hr
-				css={{
-					margin: `${SPACING(2)} 0 0`,
-					border: 'none',
-					borderTop: `solid 1px ${COLORS.border}`,
-				}}
-			/> */}
 		</div>
 	);
 };

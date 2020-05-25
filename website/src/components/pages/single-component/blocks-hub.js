@@ -204,7 +204,11 @@ const slateRenderer = (item, _editorValue) => {
 
 export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
-		<div {...props} className="slate-container" css={cssOverrides}>
+		<div
+			{...props}
+			className="slate-container"
+			css={{ ...cssOverrides, '> :last-child': { display: 'none' } }}
+		>
 			{slateRenderer(item, content.document)(content)}
 		</div>
 	);

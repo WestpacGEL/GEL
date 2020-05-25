@@ -18,3 +18,14 @@ export const sizeOptions = [
 	{ label: '8', value: 8 },
 	{ label: '9', value: 9 },
 ];
+
+// Strict values for examples with headings
+export const exampleLevelOptions = [
+	{ label: 'H2', value: 'h2' },
+	{ label: 'H3', value: 'h3' },
+];
+
+export const exampleSizeOptions = [
+	{ label: '5', value: 5 },
+	{ label: '6', value: 6 },
+];

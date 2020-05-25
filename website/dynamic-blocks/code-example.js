@@ -2,7 +2,7 @@
 
 import React, { Suspense, Fragment } from 'react';
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { Body } from '@westpac/body';
 import { Cell } from '@westpac/grid';
@@ -15,7 +15,7 @@ import Select from '@arch-ui/select';
 import preval from 'preval.macro';
 
 import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
-import { levelOptions, sizeOptions } from './_utils';
+import { exampleLevelOptions, exampleSizeOptions } from './_utils';
 
 let data = preval`
 const fs = require('fs');
@@ -84,6 +84,7 @@ export const CodeExample = {
 			level: 'h2',
 			size: 5,
 			heading: '',
+			addSubText: false,
 			subText: '',
 			addTableContent: false,
 			editHeader: false,
@@ -120,50 +121,78 @@ export const CodeExample = {
 								/>
 							</FieldInput>
 						</FieldContainer>
-						<FieldContainer>
-							<FieldLabel
-								htmlFor={'heading-level'}
-								field={{ label: 'Heading Level', config: {} }}
-							/>
-							<Select
-								id="heading-level"
-								placeholder="Select a heading level"
-								options={levelOptions}
-								value={levelOptions.find((o) => o.value === currentValue.level)}
-								onChange={({ value }) => update({ level: value })}
-							/>
-						</FieldContainer>
-						<FieldContainer>
-							<FieldLabel htmlFor={'heading-size'} field={{ label: 'Heading Size', config: {} }} />
-							<Select
-								id="heading-size"
-								placeholder="Select a heading size"
-								options={sizeOptions}
-								value={sizeOptions.find((o) => o.value === currentValue.size)}
-								onChange={({ value }) => update({ size: value })}
-							/>
-						</FieldContainer>
-						<FieldContainer>
-							<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
-								<CheckboxPrimitive
-									checked={currentValue.addTableContent}
-									tabIndex="0"
-									onChange={({ target }) => update({ addTableContent: target.checked })}
+						<div css={{ display: 'flex' }}>
+							<FieldContainer css={{ flexGrow: 1, marginRight: 30 }}>
+								<FieldLabel
+									htmlFor={'heading-level'}
+									field={{ label: 'Heading Level', config: {} }}
 								/>
-								<span>Include in table of contents</span>
-							</label>
-						</FieldContainer>
-						<FieldContainer>
-							<FieldLabel htmlFor={'heading-subtext'} field={{ label: 'Sub Text', config: {} }} />
-							<Input
-								id={'heading-subtext'}
-								isMultiline
-								value={currentValue.subText}
-								onChange={(e) => update({ subText: e.target.value })}
-							/>
-						</FieldContainer>
+								<Select
+									id="heading-level"
+									placeholder="Select a heading level"
+									options={exampleLevelOptions}
+									value={exampleLevelOptions.find((o) => o.value === currentValue.level)}
+									onChange={({ value }) => update({ level: value })}
+								/>
+							</FieldContainer>
+							<FieldContainer css={{ flexGrow: 1 }}>
+								<FieldLabel
+									htmlFor={'heading-size'}
+									field={{ label: 'Heading Size', config: {} }}
+								/>
+								<Select
+									id="heading-size"
+									placeholder="Select a heading size"
+									options={exampleSizeOptions}
+									value={exampleSizeOptions.find((o) => o.value === currentValue.size)}
+									onChange={({ value }) => update({ size: value })}
+								/>
+							</FieldContainer>
+						</div>
+						<div css={{ display: 'flex' }}>
+							<FieldContainer css={{ marginRight: 42 }}>
+								<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+									<CheckboxPrimitive
+										checked={currentValue.addSubText}
+										tabIndex="0"
+										onChange={({ target }) => update({ addSubText: target.checked })}
+									/>
+									<span>Add sub text</span>
+								</label>
+							</FieldContainer>
+							<FieldContainer>
+								<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+									<CheckboxPrimitive
+										checked={currentValue.addTableContent}
+										tabIndex="0"
+										onChange={({ target }) => update({ addTableContent: target.checked })}
+									/>
+									<span>Include in table of contents</span>
+								</label>
+							</FieldContainer>
+						</div>
+						{currentValue.addSubText && (
+							<FieldContainer>
+								<FieldLabel htmlFor={'heading-subtext'} field={{ label: 'Sub Text', config: {} }} />
+								<Input
+									id={'heading-subtext'}
+									isMultiline
+									value={currentValue.subText}
+									onChange={(e) => update({ subText: e.target.value })}
+								/>
+							</FieldContainer>
+						)}
 					</Fragment>
 				)}
+				<Select
+					isSearchable={true}
+					placeholder="Select a code example"
+					options={options}
+					value={options.find((o) => o.value === currentValue.codeExample)}
+					onChange={({ value }) => {
+						update({ codeExample: value });
+					}}
+				/>
 				<div css={{ display: 'flex' }}>
 					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
 						<CheckboxPrimitive
@@ -176,15 +205,6 @@ export const CodeExample = {
 						<span>Show code</span>
 					</label>
 				</div>
-				<Select
-					isSearchable={true}
-					placeholder="Select a code example"
-					options={options}
-					value={options.find((o) => o.value === currentValue.codeExample)}
-					onChange={({ value }) => {
-						update({ codeExample: value });
-					}}
-				/>
 			</Fragment>
 		);
 	},
@@ -203,7 +223,6 @@ export const CodeExample = {
 			return <p>Loading...</p>;
 		}
 
-		const { SPACING } = useBrand();
 		const mq = useMediaQuery();
 		const id = heading.replace(/ /g, '-').toLowerCase();
 		const loadCodeBlock = codeExamples[codeExample];
@@ -232,7 +251,6 @@ export const CodeExample = {
 										...styles,
 										scrollMarginTop: '10.375rem',
 										marginBottom: ['12px', null, null, null, '18px'],
-										// TO DO: dynamic font size
 									}),
 							},
 						}}

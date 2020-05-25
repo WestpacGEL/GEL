@@ -243,7 +243,6 @@ export const VisionFilters = {
 									...styles,
 									scrollMarginTop: '10.375rem',
 									marginBottom: ['12px', null, null, null, '18px'],
-									// TO DO: dynamic font size
 								}),
 						},
 					}}

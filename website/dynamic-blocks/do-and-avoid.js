@@ -171,7 +171,6 @@ export const DoAndAvoid = {
 					css={mq({ marginTop: ['24px', null, null, null, '42px'], height: 'auto' })}
 				>
 					<Figure>
-						<div css={{ height: 200, width: 200, border: '1px solid' }} />
 						<Image src={doImage} />
 						<figcaption>
 							<span css={{ color: COLORS.success, fontWeight: 'bold' }}>Do</span> - {doText}
@@ -187,7 +186,6 @@ export const DoAndAvoid = {
 					})}
 				>
 					<Figure>
-						<div css={{ height: 200, width: 200, border: '1px solid' }} />
 						<Image src={dontImage} />
 						<figcaption>
 							<span css={{ color: COLORS.danger, fontWeight: 'bold' }}>Avoid</span> - {dontText}

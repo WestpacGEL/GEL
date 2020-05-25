@@ -162,11 +162,7 @@ function PTable({ data, caption }) {
 	const { SPACING } = useBrand();
 	return (
 		<Table css={{ marginBottom: SPACING(4, true), borderColor: 'white' }} bordered striped>
-			{caption && (
-				<Caption css={{ margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}>
-					{caption}
-				</Caption>
-			)}
+			{caption && <Caption>{caption}</Caption>}
 			<Thead>
 				<Tr>
 					<Th scope="col">Property</Th>
@@ -187,7 +183,6 @@ function PTable({ data, caption }) {
 
 const Component = ({ item, addTableContent }) => {
 	const mq = useMediaQuery();
-	const { SPACING, COLORS } = useBrand();
 	const packageName = item.packageName.replace(/_/g, '-'); // removing underscores from graphql queries
 
 	const tableData = Object.keys(PropTypes.components[packageName])
@@ -204,54 +199,38 @@ const Component = ({ item, addTableContent }) => {
 		});
 
 	return (
-		// <div css={{ backgroundColor: '#fff' }}>
-		<Container
-			fluid
-			css={{
-				...blocksContainerStyle,
+		<div
+			css={mq({
+				padding: ['36px 0 98px', null, null, null, '60px 0 122px'],
 				backgroundColor: '#fff',
-				paddingBottom: '120px',
-				marginTop: 0,
-				marginBottom: 0,
-			}}
+			})}
 		>
-			<Grid
-				css={mq({
-					paddingTop: [SPACING(6), SPACING(6), SPACING(10)],
-				})}
-				columns={12}
-			>
-				<Cell width={12}>
-					<Heading
-						tag="h2"
-						size={5}
-						id="props"
-						tabIndex="-1"
-						{...(addTableContent && { 'data-toc': true })}
-					>
-						Props
-					</Heading>
-				</Cell>
-			</Grid>
-			<Grid
-				columns={12}
-				css={mq({
-					marginTop: [SPACING(3), SPACING(3), SPACING(6)],
-				})}
-			>
-				<Cell width={12}>
-					{tableData.map(({ overrideProps, normalProps, name }) => {
-						return (
-							<Fragment key={`table-${name}`}>
-								<PTable caption={`${name} Props`} data={normalProps} />
-								<PTable caption={`${name} Overrides`} data={overrideProps} />
-							</Fragment>
-						);
-					})}
-				</Cell>
-			</Grid>
-		</Container>
-		// </div>
+			<Container fluid>
+				<Grid rowGap={['36px', '36px', '36px', '36px', '42px']}>
+					<Cell width={12}>
+						<Heading
+							tag="h2"
+							size={5}
+							id="props"
+							tabIndex="-1"
+							{...(addTableContent && { 'data-toc': true })}
+						>
+							Props
+						</Heading>
+					</Cell>
+					<Cell width={12}>
+						{tableData.map(({ overrideProps, normalProps, name }) => {
+							return (
+								<Fragment key={`table-${name}`}>
+									<PTable caption={`${name} Props`} data={normalProps} />
+									<PTable caption={`${name} Overrides`} data={overrideProps} />
+								</Fragment>
+							);
+						})}
+					</Cell>
+				</Grid>
+			</Container>
+		</div>
 	);
 };
 
