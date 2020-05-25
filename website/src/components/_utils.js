@@ -25,7 +25,7 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 					<SlateContent content={blocks} item={item} />
 				</Fragment>
 			) : (
-				<Container fluid css={blocksContainerStyle}>
+				<Container css={blocksContainerStyle}>
 					<Grid columns={12}>
 						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 							<p>No documentation specified for this section.</p>

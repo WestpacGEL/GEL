@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Container = ({ fluid, children, overrides: componentOverrides, ...rest }) => {
+export const Container = ({ fixed, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -21,7 +21,7 @@ export const Container = ({ fluid, children, overrides: componentOverrides, ...r
 	};
 
 	const state = {
-		fluid,
+		fixed,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -46,7 +46,10 @@ export const Container = ({ fluid, children, overrides: componentOverrides, ...r
 // ==============================
 
 Container.propTypes = {
-	fluid: PropTypes.bool,
+	/**
+	 * Enable fixed width container mode. In this mode the container width is fixed at each breakpoint.
+	 */
+	fixed: PropTypes.bool.isRequired,
 
 	/**
 	 * The override API
@@ -60,4 +63,6 @@ Container.propTypes = {
 	}),
 };
 
-Container.defaultProps = {};
+Container.defaultProps = {
+	fixed: false,
+};

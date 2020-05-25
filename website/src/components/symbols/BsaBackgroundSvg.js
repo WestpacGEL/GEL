@@ -4,7 +4,8 @@ import { Svg } from './Svg';
 
 export const BsaBackgroundSvg = ({ width, height }) => {
 	return (
-		<Svg aria-label="banksa-header-image" width={width} height={height} viewBox="0 0 699 448">
+		<Svg width={width} height={height} viewBox="0 0 300 400" role="img" focusable="false">
+			<title>BankSA background image</title>
 			<path
 				fill="#ABE2EC"
 				d="M651.4 0C546.6 1.4 442 40.8 360.1 118.8S233.8 299.3 227.3 403.9c104.8-1.4 209.4-40.7 291.3-118.7 81.8-78 126.3-180.5 132.8-285.2"

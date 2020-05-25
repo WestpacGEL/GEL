@@ -96,13 +96,13 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={brand}>
 					<ButtonDropdown text="Your text">
-						<Heading>First headline</Heading>
+						<Heading>First heading</Heading>
 						<p>Example dropdown content...</p>
 						<p>Example dropdown content...</p>
 						<p>Example dropdown content...</p>
 						<p>Example dropdown content...</p>
 						<p>Example dropdown content...</p>
-						<Heading>Second headline</Heading>
+						<Heading>Second heading</Heading>
 						<p>Example dropdown content...</p>
 						<p>Example dropdown content...</p>
 						<p>Example dropdown content...</p>

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/table",
-	"version": "1.0.0-beta.1",
+	"version": "1.0.0-beta.2",
 	"description": "Table component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/table",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -29,7 +29,7 @@
 	"module": "dist/table.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.0",
+		"@westpac/core": "^1.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

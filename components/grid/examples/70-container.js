@@ -17,16 +17,16 @@ function Example({ brand }) {
 	const { width: containerWidth } = useContainerQuery(containerRef);
 
 	let breakpoint;
-	if (containerWidth > breakpoints.xl) {
-		breakpoint = 'xl';
-	} else if (containerWidth > breakpoints.lg) {
+	if (containerWidth >= breakpoints.lg) {
 		breakpoint = 'lg';
-	} else if (containerWidth > breakpoints.md) {
+	} else if (containerWidth >= breakpoints.md) {
 		breakpoint = 'md';
-	} else if (containerWidth > breakpoints.sm) {
+	} else if (containerWidth >= breakpoints.sm) {
 		breakpoint = 'sm';
+	} else if (containerWidth >= breakpoints.xsl) {
+		breakpoint = 'xsl';
 	} else {
-		breakpoint = 'mobile';
+		breakpoint = 'xs';
 	}
 
 	return (
@@ -54,15 +54,15 @@ function Example({ brand }) {
 				/>
 				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }}>
 					<Box css={{ backgroundColor: 'rgba(255,255,255,0.7)' }}>
-						{containerWidth}px = {breakpoint}
+						Fluid (default): {containerWidth}px = {breakpoint}
 					</Box>
 				</Container>
 
 				<hr />
 
-				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }} fluid>
+				<Container css={{ backgroundColor: 'rgba(255,0,0,0.2)' }} fixed>
 					<Box css={{ backgroundColor: 'rgba(255,255,255,0.7)' }}>
-						{containerWidth}px = {breakpoint}
+						Fixed: {containerWidth}px = {breakpoint}
 					</Box>
 				</Container>
 			</div>

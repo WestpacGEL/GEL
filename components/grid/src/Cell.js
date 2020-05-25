@@ -65,24 +65,40 @@ Cell.propTypes = {
 	area: PropTypes.string,
 
 	/**
-	 * The cell height in units. When using an array the units are applied to the applicable breakpoints.
+	 * The cell height in units. When using an array the values are applied to the applicable breakpoints.
 	 */
-	height: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).isRequired,
+	height: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+	]).isRequired,
 
 	/**
-	 * The `grid-column-start` CSS property.
+	 * The `grid-column-start` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
-	left: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+	left: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+	]),
 
 	/**
-	 * The `grid-row-start` CSS property.
+	 * The `grid-row-start` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
-	top: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+	top: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+	]),
 
 	/**
-	 * The cell width in units. When using an array the units are applied to the applicable breakpoints.
+	 * The cell width in units. When using an array the values are applied to the applicable breakpoints.
 	 */
-	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).isRequired,
+	width: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+	]).isRequired,
 
 	/**
 	 * Children

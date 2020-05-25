@@ -108,12 +108,7 @@ const slateRenderer = (item, _editorValue) => {
 					return nested ? (
 						<p key={path}>{serializeChildren(node.nodes)}</p>
 					) : (
-						<Cell
-							key={path}
-							width={[12, 12, 10, 8, 8]}
-							left={[1, 1, 2, 3, 3]}
-							// css={{ ':last-child': { display: 'none' } }} // removing empty p tag at end of every section, hack for now
-						>
+						<Cell key={path} width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
 							<Body css={{ p: { marginTop: 0 } }}>
 								<p css={textStyle}>{serializeChildren(node.nodes)}</p>
 							</Body>
@@ -177,7 +172,7 @@ const slateRenderer = (item, _editorValue) => {
 								paddingTop: ['30px', null, null, null, '60px'],
 							})}
 						>
-							<Container fluid>
+							<Container>
 								<Grid rowGap="0 !important">{serializeChildren(node.nodes)}</Grid>
 							</Container>
 							<Separator css={mq({ marginTop: ['30px', null, null, null, '60px'] })} />

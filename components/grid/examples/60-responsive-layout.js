@@ -13,24 +13,24 @@ function Example({ brand }) {
 
 			<Wrapper>
 				<Grid>
-					<Cell width={[12, 6, 3, 4]}>
-						<Box>[12, 6, 3, 4]</Box>
+					<Cell width={[12, 6, 4, 3, 2]}>
+						<Box>[12, 6, 4, 3, 2]</Box>
 					</Cell>
 				</Grid>
 
 				<hr />
 
 				<Grid>
-					<Cell width={[12, 10, 10, 12]}>
-						<Box>[12, 10, 10, 12]</Box>
+					<Cell width={[12, 10, 6, 10, 12]}>
+						<Box>[12, 10, 6, 10, 12]</Box>
 					</Cell>
 				</Grid>
 
 				<hr />
 
 				<Grid>
-					<Cell width={[12, 8, 3, 6]}>
-						<Box>[12, 8, 3, 6]</Box>
+					<Cell width={[12, 8, 3, 6, 4]}>
+						<Box>[12, 8, 3, 6, 4]</Box>
 					</Cell>
 				</Grid>
 			</Wrapper>

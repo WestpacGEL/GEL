@@ -205,7 +205,7 @@ const Component = ({ item, addTableContent }) => {
 				backgroundColor: '#fff',
 			})}
 		>
-			<Container fluid>
+			<Container>
 				<Grid rowGap={['36px', '36px', '36px', '36px', '42px']}>
 					<Cell width={12}>
 						<Heading

@@ -1,3 +1,3 @@
 export { InputGroup } from './InputGroup';
-export { Left } from './Left';
-export { Right } from './Right';
+export { Before } from './Before';
+export { After } from './After';

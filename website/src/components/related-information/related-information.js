@@ -36,7 +36,7 @@ export const RelatedInformation = ({ item }) => {
 				padding: ['36px 0 98px', null, null, null, '60px 0 122px'],
 			})}
 		>
-			<Container fluid>
+			<Container>
 				<Grid rowGap={['30px', '30px', '30px', '30px', '60px']}>
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 						<Heading
