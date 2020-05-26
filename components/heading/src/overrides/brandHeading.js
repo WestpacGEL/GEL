@@ -30,11 +30,11 @@ const brandHeadingStyles = (_, { size }) => {
 	const mq = useMediaQuery();
 
 	const tokens = PACKS.typeScale.brandFont;
-	const sizeMax = Object.keys(tokens).reduce((a, b) => (tokens[a] > tokens[b] ? a : b));
+	const sizeMax = Math.max(...Object.keys(tokens));
 	let sizeArr = asArray(size);
 
 	// check for invalid sizes
-	sizeArr = sizeArr.map(function (s) {
+	sizeArr = sizeArr.map((s) => {
 		if (s > sizeMax) {
 			return sizeMax;
 		} else if (s < 1) {
