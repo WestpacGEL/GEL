@@ -29,7 +29,19 @@ const brandHeadingStyles = (_, { size }) => {
 	const { PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
-	const sizeArr = asArray(size);
+	const tokens = PACKS.typeScale.brandFont;
+	const sizeMax = Object.keys(tokens).reduce((a, b) => (tokens[a] > tokens[b] ? a : b));
+	let sizeArr = asArray(size);
+
+	// check for invalid sizes
+	sizeArr = sizeArr.map(function (s) {
+		if (s > sizeMax) {
+			return sizeMax;
+		} else if (s < 1) {
+			return 1;
+		}
+		return s;
+	});
 
 	return mq({
 		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontFamily),
