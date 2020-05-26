@@ -1,0 +1,30 @@
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { Heading } from '@westpac/heading';
+
+import { Intopia } from '../../../helpers/example/components/Intopia.js';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<Intopia />
+
+			<h2>
+				Without <code>tag</code> prop
+			</h2>
+			<Heading size={[1, 6, 3, 7, 2]}>Heading size: [1, 6, 3, 7, 2]</Heading>
+
+			<hr />
+
+			<h2>
+				With <code>tag</code> prop
+			</h2>
+			<Heading tag="h2" size={[1, 6, 3, 7, 2]}>
+				Heading tag: h2 size: [1, 6, 3, 7, 2]
+			</Heading>
+		</GEL>
+	);
+}
+
+export default Example;

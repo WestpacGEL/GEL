@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
 import { forwardRef } from 'react';
 
 const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
@@ -9,14 +9,16 @@ const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) =>
 		Tag = null;
 	}
 
+	const sizeArr = asArray(size);
+
 	// fall back to size = semantic if no tag is given
 	if (!Tag) {
-		if (size > 6) {
+		if (sizeArr[0] > 6) {
 			Tag = 'h6';
-		} else if (size < 1) {
+		} else if (sizeArr[0] < 1) {
 			Tag = 'h1';
 		} else {
-			Tag = `h${size}`;
+			Tag = `h${sizeArr[0]}`;
 		}
 	}
 
@@ -26,11 +28,15 @@ const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) =>
 const brandHeadingStyles = (_, { size }) => {
 	const { PACKS, TYPE } = useBrand();
 
-	return {
-		margin: 0,
+	const sizeArr = asArray(size);
+
+	return mq({
+		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontFamily),
+		fontSize: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontSize),
+		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].lineHeight),
 		fontWeight: TYPE.brandFont.headingWeight,
-		...PACKS.typeScale.brandFont[size],
-	};
+		margin: 0,
+	})[0];
 };
 
 const brandHeadingAttributes = () => null;
