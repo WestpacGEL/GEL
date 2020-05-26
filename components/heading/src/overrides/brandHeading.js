@@ -27,6 +27,7 @@ const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) =>
 
 const brandHeadingStyles = (_, { size }) => {
 	const { PACKS, TYPE } = useBrand();
+	const mq = useMediaQuery();
 
 	const sizeArr = asArray(size);
 
