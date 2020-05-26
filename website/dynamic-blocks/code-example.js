@@ -237,32 +237,34 @@ export const CodeExample = {
 					':last-child': { marginBottom: 0 },
 				})}
 			>
-				{heading && (
-					<Heading
-						id={id}
-						tabIndex="-1"
-						tag={level}
-						size={size}
-						{...(addTableContent && { 'data-toc': true })}
-						overrides={{
-							Heading: {
-								styles: (styles) =>
-									mq({
-										...styles,
-										scrollMarginTop: '10.375rem',
-										marginBottom: ['12px', null, null, null, '18px'],
-									}),
-							},
-						}}
-					>
-						{heading}
-					</Heading>
-				)}
-				{subText && (
-					<Body css={mq({ p: { margin: ['0 0 18px', null, null, null, '0 0 24px'] } })}>
-						<p>{subText}</p>
-					</Body>
-				)}
+				<div css={mq({ marginBottom: ['18px', null, null, null, '24px'] })}>
+					{heading && (
+						<Heading
+							id={id}
+							tabIndex="-1"
+							tag={level}
+							size={size}
+							{...(addTableContent && { 'data-toc': true })}
+							overrides={{
+								Heading: {
+									styles: (styles) =>
+										mq({
+											...styles,
+											scrollMarginTop: '10.375rem',
+											marginBottom: ['12px', null, null, null, '18px'],
+										}),
+								},
+							}}
+						>
+							{heading}
+						</Heading>
+					)}
+					{subText && (
+						<Body css={{ p: { margin: 0 } }}>
+							<p>{subText}</p>
+						</Body>
+					)}
+				</div>
 				<Suspense fallback={<p>Loading...</p>}>
 					{loadCodeBlock && typeof window !== 'undefined' ? (
 						<ShowCodeBlock
