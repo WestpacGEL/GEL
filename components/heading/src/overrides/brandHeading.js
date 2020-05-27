@@ -35,10 +35,12 @@ const brandHeadingStyles = (_, { size }) => {
 
 	// check for invalid sizes
 	sizeArr = sizeArr.map((s) => {
-		if (s > sizeMax) {
-			return sizeMax;
-		} else if (s < 1) {
-			return 1;
+		if (s) {
+			if (s > sizeMax) {
+				return sizeMax;
+			} else if (s < 1) {
+				return 1;
+			}
 		}
 		return s;
 	});
