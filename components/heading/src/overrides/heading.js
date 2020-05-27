@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
 import { forwardRef } from 'react';
 
 const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
@@ -9,14 +9,16 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 		Tag = null;
 	}
 
+	const sizeArr = asArray(size);
+
 	// fall back to size = semantic if no tag is given
 	if (!Tag) {
-		if (size > 6) {
+		if (sizeArr[0] > 6) {
 			Tag = 'h6';
-		} else if (size < 1) {
+		} else if (sizeArr[0] < 1) {
 			Tag = 'h1';
 		} else {
-			Tag = `h${size}`;
+			Tag = `h${sizeArr[0]}`;
 		}
 	}
 
@@ -25,12 +27,29 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 
 const headingStyles = (_, { size }) => {
 	const { PACKS, TYPE } = useBrand();
+	const mq = useMediaQuery();
 
-	return {
-		margin: 0,
+	const tokens = PACKS.typeScale.bodyFont;
+	const sizeMax = Math.max(...Object.keys(tokens));
+	let sizeArr = asArray(size);
+
+	// check for invalid sizes
+	sizeArr = sizeArr.map((s) => {
+		if (s > sizeMax) {
+			return sizeMax;
+		} else if (s < 1) {
+			return 1;
+		}
+		return s;
+	});
+
+	return mq({
+		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].fontFamily),
+		fontSize: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].fontSize),
+		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].lineHeight),
 		fontWeight: TYPE.bodyFont.headingWeight,
-		...PACKS.typeScale.bodyFont[size],
-	};
+		margin: 0,
+	})[0];
 };
 
 const headingAttributes = () => null;
