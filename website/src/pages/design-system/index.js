@@ -180,7 +180,7 @@ const Homepage = () => {
 									Design System project.
 								</p>
 							</RichText>
-							<DownloadAndLinksSection css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })} />
+							<DownloadsAndLinks css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })} />
 						</Cell>
 					</Grid>
 				</Container>
@@ -192,7 +192,7 @@ const Homepage = () => {
 
 export default Homepage;
 
-const DownloadAndLinksSection = (props) => {
+const DownloadsAndLinks = (props) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -211,12 +211,15 @@ const DownloadAndLinksSection = (props) => {
 						css={{
 							paddingBottom: SPACING(3),
 							borderBottom: `1px solid ${COLORS.neutral}`,
-							marginBottom: SPACING(2),
 						}}
 					>
 						Downloads
 					</Heading>
-					<BlockList>
+					<BlockList
+						css={mq({
+							marginTop: [null, null, SPACING(2)],
+						})}
+					>
 						<Item target="_blank" logo={SketchLogo}>
 							Sketch UI Kit Download
 						</Item>
@@ -232,12 +235,15 @@ const DownloadAndLinksSection = (props) => {
 						css={mq({
 							paddingBottom: SPACING(3),
 							borderBottom: `1px solid ${COLORS.neutral}`,
-							marginBottom: SPACING(2),
 						})}
 					>
 						Links
 					</Heading>
-					<BlockList>
+					<BlockList
+						css={mq({
+							marginTop: [null, null, SPACING(2)],
+						})}
+					>
 						<Item href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
 							Go to GitHub
 						</Item>
