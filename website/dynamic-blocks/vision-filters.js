@@ -108,8 +108,8 @@ export const VisionFilters = {
 		const currentValue = {
 			codeExample: null,
 			level: 'h2',
-			size: 5,
-			heading: 'Colour impairments',
+			size: 6,
+			heading: 'Vision impairment demonstration',
 			subText: content,
 			addTableContent: true,
 			editHeader: false,
@@ -206,7 +206,7 @@ export const VisionFilters = {
 		codeExample,
 		context,
 		heading = '',
-		size = 5,
+		size = 6,
 		level = 'h2',
 		addTableContent = true,
 		subText = '',
@@ -234,7 +234,7 @@ export const VisionFilters = {
 					id={id}
 					tabIndex="-1"
 					tag={level}
-					size={size}
+					size={[7, 7, 7, 7, size]}
 					{...(addTableContent && { 'data-toc': true })}
 					overrides={{
 						Heading: {

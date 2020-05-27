@@ -41,7 +41,7 @@ export const RelatedInformation = ({ item }) => {
 					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 						<Heading
 							tag="h2"
-							size={5}
+							size={[7, 7, 7, 7, 6]}
 							addTableContent
 							{...{ 'data-toc': true }}
 							id="related-information"

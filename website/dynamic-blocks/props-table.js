@@ -210,7 +210,7 @@ const Component = ({ item, addTableContent }) => {
 					<Cell width={12}>
 						<Heading
 							tag="h2"
-							size={5}
+							size={[7, 7, 7, 7, 6]}
 							id="props"
 							tabIndex="-1"
 							{...(addTableContent && { 'data-toc': true })}

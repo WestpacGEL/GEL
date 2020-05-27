@@ -82,7 +82,7 @@ export const CodeExample = {
 			showCode: false,
 			showDemo: false,
 			level: 'h2',
-			size: 5,
+			size: 6,
 			heading: '',
 			addSubText: false,
 			subText: '',
@@ -214,7 +214,7 @@ export const CodeExample = {
 		showDemo = false,
 		context,
 		heading = '',
-		size = 5,
+		size = 6,
 		level = 'h2',
 		addTableContent = false,
 		subText = '',
@@ -243,7 +243,7 @@ export const CodeExample = {
 							id={id}
 							tabIndex="-1"
 							tag={level}
-							size={size}
+							size={[7, 7, 7, 7, size]}
 							{...(addTableContent && { 'data-toc': true })}
 							overrides={{
 								Heading: {

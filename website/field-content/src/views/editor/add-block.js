@@ -60,8 +60,6 @@ let AddBlock = ({ blocks, editor, editorHasFocus, editorState }) => {
 		if (!blocks || !Object.keys(blocks).length) return;
 
 		if (elm && editor && editor.el.contains(elm)) {
-			console.log(elm);
-
 			/**
 			 * TO FIX
 			 *

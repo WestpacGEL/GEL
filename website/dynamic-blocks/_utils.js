@@ -26,6 +26,6 @@ export const exampleLevelOptions = [
 ];
 
 export const exampleSizeOptions = [
-	{ label: '5', value: 5 },
 	{ label: '6', value: 6 },
+	{ label: '7', value: 7 },
 ];

@@ -125,7 +125,7 @@ export const Heading = {
 					id={id}
 					tabIndex="-1"
 					tag={level}
-					size={size}
+					size={[7, 7, 7, 7, size]}
 					{...(addTableContent && { 'data-toc': true })}
 					overrides={{
 						Heading: {

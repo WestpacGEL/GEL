@@ -1,12 +1,12 @@
 /** @jsx jsx */
-import React, { useState, useEffect, Fragment } from 'react'; // Needed for within Keystone
+import React, { Fragment } from 'react'; // Needed for within Keystone
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { AccessibilityIcon } from '@westpac/icon';
+import { Cell } from '@westpac/grid';
+
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { inputStyles } from '@arch-ui/input';
 import { Heading } from '@westpac/heading';
-import { AccessibilityIcon } from '@westpac/icon';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Cell } from '@westpac/grid';
-import { blocksGridStyle, blocksContainerStyle } from '../src/components/_utils';
 
 export const ScreenReaderText = {
 	editor: ({ value, onChange }) => {
@@ -48,7 +48,7 @@ export const ScreenReaderText = {
 				<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
 					<Heading
 						tag="h2"
-						size={5}
+						size={[7, 7, 7, 7, 6]}
 						id="screen-readers"
 						tabIndex="-1"
 						{...(addTableContent && { 'data-toc': true })}
