@@ -1,5 +1,11 @@
 # @westpac/grid
 
+## 1.0.0
+
+### Major Changes
+
+- fe7b6d38: fix Cell `left` prop, allow 0 value
+
 ## 1.0.0-beta.3
 
 ### Patch Changes
