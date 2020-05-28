@@ -83,6 +83,7 @@ const StickyHeader = () => {
 				}}
 			>
 				<button
+					type="button"
 					css={{
 						display: 'block',
 						padding: 0,
@@ -126,7 +127,7 @@ const StickyHeader = () => {
 					}}
 				>
 					<p>
-						<strong>UI</strong> Framework
+						Design<strong>System</strong>
 					</p>
 				</div>
 
