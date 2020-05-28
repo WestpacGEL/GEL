@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-export const SketchLogo = ({ size }) => {
+export const SketchLogo = (props) => {
 	return (
-		<svg width={size} height="auto" viewBox="0 0 160 144" role="img" focusable="false">
+		<svg viewBox="0 0 160 144" role="img" focusable="false" {...props}>
 			<title>Sketch logo</title>
 			<g fillRule="nonzero" fill="none">
 				<path fill="#FDB300" d="M34.839 4.72l45-4.72 45 4.72 34.838 46.39-79.838 92.223L0 51.11z" />

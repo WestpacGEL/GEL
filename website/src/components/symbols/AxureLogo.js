@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
 
-export const AxureLogo = ({ size }) => {
+export const AxureLogo = (props) => {
 	return (
-		<svg width={size} height="auto" viewBox="0 0 183 44" role="img" focusable="false">
+		<svg viewBox="0 0 183 44" role="img" focusable="false" {...props}>
 			<title>Axure logo</title>
 			<g fill="none" fillRule="evenodd">
 				<path
