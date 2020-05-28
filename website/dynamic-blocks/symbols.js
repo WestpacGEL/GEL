@@ -20,7 +20,7 @@ const renderSymbols = (search) => {
 		.map((symbol) => {
 			const Symbol = symbol.symbol;
 			return (
-				<Cell width={[12, 12, 6, 4, 3]} css={{ display: 'flex' }}>
+				<Cell width={[12, null, 6, 4, 3]} css={{ display: 'flex' }}>
 					<div
 						key={symbol.name}
 						css={{
@@ -54,7 +54,7 @@ const Symbol = () => {
 		<Fragment>
 			<Cell width={12}>
 				<Grid>
-					<Cell width={[12, 12, 6]}>
+					<Cell width={[12, null, 6]}>
 						<div
 							css={mq({
 								display: 'flex',

@@ -46,8 +46,8 @@ const Image = (props) => {
 	return (
 		<img
 			css={mq({
-				maxWidth: '100%',
 				width: '100%',
+				height: '100%',
 				marginBottom: ['12px', null, null, null, '18px'],
 			})}
 			{...props}
@@ -166,8 +166,8 @@ export const DoAndAvoid = {
 		return (
 			<Fragment>
 				<Cell
-					width={[12, 12, 6, 5]}
-					left={[1, 1, 1, 2]}
+					width={[12, null, 6, 5]}
+					left={[1, null, null, 2]}
 					css={mq({ marginTop: ['24px', null, null, null, '42px'], height: 'auto' })}
 				>
 					<Figure>
@@ -178,7 +178,7 @@ export const DoAndAvoid = {
 					</Figure>
 				</Cell>
 				<Cell
-					width={[12, 12, 6, 5]}
+					width={[12, null, 6, 5]}
 					css={mq({
 						marginTop: ['24px', null, null, null, '42px'],
 						marginBottom: ['24px', null, null, null, '42px'],

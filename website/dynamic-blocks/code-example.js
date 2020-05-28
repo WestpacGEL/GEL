@@ -229,8 +229,8 @@ export const CodeExample = {
 
 		return (
 			<Cell
-				width={[12, 12, 12, 10, 10]}
-				left={[1, 1, 1, 2, 2]}
+				width={[12, null, null, 10]}
+				left={[1, null, null, 2]}
 				css={mq({
 					marginBottom: ['30px', null, null, null, '48px'],
 					height: 'auto',

@@ -115,8 +115,8 @@ export const Heading = {
 
 	component: ({ heading, size, level, addTableContent, indent = true, subText, text }) => {
 		const id = heading.replace(/ /g, '-').toLowerCase();
-		const indentWidth = indent ? [12, 12, 12, 10, 10] : 12;
-		const indentLeft = indent ? [1, 1, 1, 2, 2] : 0;
+		const indentWidth = indent ? [12, null, null, 10] : 12;
+		const indentLeft = indent ? [1, null, null, 2] : 0;
 		const mq = useMediaQuery();
 
 		return (

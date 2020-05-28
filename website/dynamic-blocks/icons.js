@@ -21,7 +21,7 @@ const renderIcons = (search) => {
 			const Icon = icon.icon;
 			return (
 				<Cell
-					width={[12, 12, 3, 3]}
+					width={[12, null, 3]}
 					css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
 				>
 					<div
@@ -56,7 +56,7 @@ const Icon = () => {
 		<Fragment>
 			<Cell width={12}>
 				<Grid>
-					<Cell width={[12, 12, 6]}>
+					<Cell width={[12, null, 6]}>
 						<div
 							css={mq({
 								display: 'flex',

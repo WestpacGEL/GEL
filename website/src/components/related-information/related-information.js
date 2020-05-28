@@ -37,8 +37,8 @@ export const RelatedInformation = ({ item }) => {
 			})}
 		>
 			<Container>
-				<Grid rowGap={['30px', '30px', '30px', '30px', '60px']}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+				<Grid rowGap={['30px', null, null, null, '60px']}>
+					<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
 						<Heading
 							tag="h2"
 							size={[7, 7, 7, 7, 6]}
@@ -60,7 +60,7 @@ export const RelatedInformation = ({ item }) => {
 								hasRelatedInfo ? 4 : 10,
 								hasRelatedInfo ? 4 : 10,
 							]}
-							left={[1, 1, 2, 2, 2]}
+							left={[1, null, 2]}
 						>
 							<IconTitle icon={CubeIcon}>Components</IconTitle>
 							<List

@@ -17,6 +17,7 @@ export const sizeOptions = [
 	{ label: '7', value: 7 },
 	{ label: '8', value: 8 },
 	{ label: '9', value: 9 },
+	{ label: '10', value: 10 },
 ];
 
 // Strict values for examples with headings

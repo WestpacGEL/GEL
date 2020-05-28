@@ -90,7 +90,7 @@ export const BrandPicker = () => {
 					<BrandCard brand={brands.WBC} />
 					<BrandCard brand={brands.STG} />
 					<BrandCard brand={brands.BOM} />
-					<BrandCard brand={brands.BSA} left={[0, 0, 0, 4, 4]} />
+					<BrandCard brand={brands.BSA} left={[1, null, null, 4]} />
 					<BrandCard brand={brands.WBG} />
 				</Grid>
 			</Container>

@@ -229,7 +229,7 @@ export const VisionFilters = {
 		};
 
 		return (
-			<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+			<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
 				<Heading
 					id={id}
 					tabIndex="-1"
