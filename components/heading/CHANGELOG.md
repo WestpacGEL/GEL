@@ -1,6 +1,6 @@
 # @westpac/heading
 
-## 1.0.0
+## 1.0.0-beta.3
 
 ### Major Changes
 
