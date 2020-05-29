@@ -8,7 +8,7 @@
 
 ## 1.0.0-beta.3
 
-### Patch Changes
+### Major Changes
 
 - 520c2fc4: fix distribution files
 - Updated dependencies [520c2fc4]
@@ -16,7 +16,7 @@
 
 ## 1.0.0-beta.2
 
-### Minor Changes
+### Major Changes
 
 - 8500392e: - Removed the fluid prop (fluid layout is now the default)
   - Added fixed prop and styling

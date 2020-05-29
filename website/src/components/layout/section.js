@@ -13,8 +13,8 @@ export const Section = ({ bgFill, ...rest }) => {
 	return (
 		<section
 			css={mq({
-				paddingTop: [SPACING(7), '5.625rem'],
-				paddingBottom: [SPACING(7), '5.625rem'],
+				paddingTop: [SPACING(7), null, SPACING(15)],
+				paddingBottom: [SPACING(7), null, SPACING(15)],
 				backgroundColor: bgFill && COLORS.background,
 			})}
 			{...rest}

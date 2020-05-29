@@ -36,7 +36,7 @@ const HomePageHeaderImage = ({ brand }) => {
 				},
 			}}
 		>
-			<StgBackgroundSvg height={'600px'} />
+			<StgBackgroundSvg height={600} />
 		</div>
 	);
 
@@ -53,7 +53,7 @@ const HomePageHeaderImage = ({ brand }) => {
 				},
 			}}
 		>
-			<BsaBackgroundSvg height={'400px'} />
+			<BsaBackgroundSvg height={400} />
 		</div>
 	);
 

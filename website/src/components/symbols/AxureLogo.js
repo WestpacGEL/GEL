@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
+import { Svg } from './Svg';
 
-export const AxureLogo = (props) => {
+export const AxureLogo = ({ width, height, ...props }) => {
 	return (
-		<svg viewBox="0 0 183 44" role="img" focusable="false" {...props}>
+		<Svg viewBox="0 0 183 44" width={width} height={height} focusable="false" {...props}>
 			<title>Axure logo</title>
 			<g fill="none" fillRule="evenodd">
 				<path
@@ -27,6 +28,6 @@ export const AxureLogo = (props) => {
 					fill="#212220"
 				/>
 			</g>
-		</svg>
+		</Svg>
 	);
 };
