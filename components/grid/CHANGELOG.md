@@ -1,8 +1,15 @@
 # @westpac/grid
 
+## 1.0.0-beta.4
+
+### Major Changes
+
+- fe7b6d38: fix Cell `left` prop, allow 0 value
+- 081f9d47: remove Cell css `height: 100%` setting
+
 ## 1.0.0-beta.3
 
-### Patch Changes
+### Major Changes
 
 - 520c2fc4: fix distribution files
 - Updated dependencies [520c2fc4]
@@ -10,7 +17,7 @@
 
 ## 1.0.0-beta.2
 
-### Minor Changes
+### Major Changes
 
 - 8500392e: - Removed the fluid prop (fluid layout is now the default)
   - Added fixed prop and styling
