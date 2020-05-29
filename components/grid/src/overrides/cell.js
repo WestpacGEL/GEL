@@ -23,7 +23,6 @@ const cellStyles = (_, { area, height, left, top, width }) => {
 		gridColumnStart: asArray(left),
 		gridRowEnd: !area && getEndSpan(heightArr),
 		gridRowStart: asArray(top),
-		height: '100%',
 		minWidth: 0,
 	})[0];
 };
