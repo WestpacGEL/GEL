@@ -22,16 +22,13 @@ const HomePageHeader = () => {
 		<section
 			ref={main}
 			css={mq({
-				color: BRAND === 'STG' ? COLORS.text : COLORS.light,
+				color: BRAND === 'STG' ? COLORS.text : '#fff',
 				position: 'relative',
 				overflow: 'hidden',
-				background: 'unset',
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
-					background: backgroundColor,
-				},
+				background: [null, null, backgroundColor],
 			})}
 		>
-			<HeaderImage brand={BRAND} />
+			<HeaderImage brand={BRAND} aria-hidden="true" />
 			<StickyHeader mainRef={main} />
 			<HeroIntro />
 		</section>
@@ -40,6 +37,7 @@ const HomePageHeader = () => {
 
 const StickyHeader = () => {
 	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
+	const mq = useMediaQuery();
 	const { isOpen, setIsOpen } = useSidebar();
 	const backgroundColor = brandHeaderColors[BRAND](COLORS);
 	const [hasScrolled, setHasScrolled] = useState(false);
@@ -65,22 +63,21 @@ const StickyHeader = () => {
 		<Fragment>
 			<div
 				ref={header}
-				css={{
-					overflow: 'hidden',
+				css={mq({
+					boxSizing: 'border-box',
+					position: ['fixed', null, !hasScrolled && 'absolute'],
+					zIndex: 9,
+					left: 0,
+					right: 0,
+					marginLeft: [null, null, null, null, hasScrolled && 300],
 					display: 'flex',
 					alignItems: 'center',
+					height: 66,
 					paddingLeft: SPACING(12),
-					width: '100%',
-					zIndex: 9,
-					position: 'fixed',
-					background: backgroundColor,
-					boxShadow: `0px 5px 11px -2px ${COLORS.borderDark}`,
-					[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
-						background: hasScrolled ? backgroundColor : 'unset',
-						position: hasScrolled ? 'fixed' : 'absolute',
-						boxShadow: hasScrolled ? `0px 5px 11px -2px ${COLORS.borderDark}` : 'none',
-					},
-				}}
+					background: [backgroundColor, null, !hasScrolled && 'unset'],
+					boxShadow: [`0 5px 11px -2px ${COLORS.borderDark}`, null, !hasScrolled && 'none'],
+					overflow: 'hidden',
+				})}
 			>
 				<button
 					type="button"
@@ -112,26 +109,23 @@ const StickyHeader = () => {
 					<HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : COLORS.light} />
 				</button>
 				<div
-					css={{
+					css={mq({
 						height: '66px',
 						display: 'flex',
 						alignItems: 'center',
 						width: '100%',
 						margin: 0,
 						marginTop: '-2px',
-						borderBottom: 0,
+						borderBottom: [0, null, hasScrolled ? 0 : '1px solid rgba(255,255,255,0.7)'],
 						zIndex: 6,
-						[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
-							borderBottom: hasScrolled ? 'none' : `1px solid ${COLORS.light}`,
-						},
-					}}
+					})}
 				>
 					<p>
 						Design<strong>System</strong>
 					</p>
 				</div>
 
-				<StickyHeaderImage brand={BRAND} hide={!hasScrolled} />
+				<StickyHeaderImage brand={BRAND} hide={!hasScrolled} aria-hidden="true" />
 			</div>
 		</Fragment>
 	);
