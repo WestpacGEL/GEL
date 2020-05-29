@@ -2,9 +2,9 @@
 import { jsx } from '@westpac/core';
 import { Svg } from './Svg';
 
-export const WbcBackgroundRightSvg = ({ height, width }) => {
+export const WbcBackgroundRightSvg = ({ width, height, ...rest }) => {
 	return (
-		<Svg height={height} width={width} viewBox="0 0 268 228" role="img" focusable="false">
+		<Svg viewBox="0 0 268 228" width={width} height={height} {...rest}>
 			<title>Westpac background image</title>
 			<path fill="#DD3A46" d="M104 0h124v96H104z" />
 			<path fill="#B6000B" d="M110 96h118v132H110z" />

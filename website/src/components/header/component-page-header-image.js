@@ -20,7 +20,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 					zIndex: -1,
 				}}
 			>
-				<WbcBackgroundLeftSvg height={['66px', '66px', '228px']} />
+				<WbcBackgroundLeftSvg height={[66, 66, 228]} />
 			</div>
 			<div
 				css={mq({
@@ -30,7 +30,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 					display: ['none', 'none', 'block'],
 				})}
 			>
-				<WbcBackgroundRightSvg height={'228px'} />
+				<WbcBackgroundRightSvg height={228} />
 			</div>
 		</Fragment>
 	);
@@ -45,7 +45,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 				zIndex: -1,
 			}}
 		>
-			<StgBackgroundSvg height={'600px'} />
+			<StgBackgroundSvg height={600} />
 		</div>
 	);
 
@@ -59,7 +59,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 				top: -45,
 			}}
 		>
-			<BsaBackgroundSvg height={'400px'} />
+			<BsaBackgroundSvg height={400} />
 		</div>
 	);
 

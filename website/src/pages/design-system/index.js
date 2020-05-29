@@ -7,13 +7,14 @@ import { TextInput } from '@westpac/text-input';
 import HomePageHeader from '../../components/header/home-page-header';
 import { Section } from '../../components/layout/section';
 import { RichText } from '../../components/rich-text/rich-text';
+import { BlockList, BlockListItem as Item } from '../../components/layout/block-list';
 import { Footer } from '../../components/layout/footer';
 import {
 	ReactLogo,
 	AtlassianLogo,
 	AxureLogo,
 	FacebookLogo,
-	GithubLogo,
+	GitHubLogo,
 	GovLogo,
 	IbmLogo,
 	MyobLogo,
@@ -26,11 +27,6 @@ import {
 const Homepage = () => {
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
-
-	const sectionPadding = {
-		paddingTop: [SPACING(7), '5.625rem'],
-		paddingBottom: [SPACING(7), '5.625rem'],
-	};
 
 	return (
 		<div css={{ textAlign: 'center' }}>
@@ -68,7 +64,7 @@ const Homepage = () => {
 					<Grid>
 						<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 							<RichText>
-								<ReactLogo size={'60px'} aria-hidden="true" css={{ marginBottom: '12px' }} />
+								<ReactLogo width={60} aria-hidden="true" css={{ marginBottom: '12px' }} />
 								<h2>Built on React</h2>
 								<p>
 									We're moving with the times. With React we can showcase so much more and deliver
@@ -82,35 +78,33 @@ const Homepage = () => {
 							<div
 								css={{
 									borderTop: `1px solid ${COLORS.neutral}`,
-									paddingBottom: SPACING(5),
+									paddingTop: SPACING(5),
 								}}
 							>
-								<Grid>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<GovLogo size={'113px'} />
+								<Grid rowGap={[SPACING(4), null, SPACING(7)]} css={{ alignItems: 'center' }}>
+									<Cell width={[12, 6, 3]}>
+										<GovLogo width={113} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<MicrosoftLogo size={'127px'} />
+									<Cell width={[12, 6, 3]}>
+										<MicrosoftLogo width={127} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<MyobLogo size={'90px'} />
+									<Cell width={[12, 6, 3]}>
+										<MyobLogo width={90} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<IbmLogo size={'77px'} />
+									<Cell width={[12, 6, 3]}>
+										<IbmLogo width={77} />
 									</Cell>
-								</Grid>
-								<Grid css={{ marginTop: SPACING(3) }}>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<AtlassianLogo size={'159px'} />
+									<Cell width={[12, 6, 3]}>
+										<AtlassianLogo width={159} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<FacebookLogo size={'39px'} />
+									<Cell width={[12, 6, 3]}>
+										<FacebookLogo width={39} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<TwitterLogo size={'50px'} />
+									<Cell width={[12, 6, 3]}>
+										<TwitterLogo width={50} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<ShopifyLogo size={'138px'} />
+									<Cell width={[12, 6, 3]}>
+										<ShopifyLogo width={138} />
 									</Cell>
 								</Grid>
 							</div>
@@ -180,11 +174,11 @@ const Homepage = () => {
 							<RichText>
 								<h2>Downloads & links</h2>
 								<p>
-									Get the Sketch UI or Axure kit to start designing. Visit Git to get the latest
-									code and development framework.
+									Get the Sketch or Axure UI Kit to start designing. Visit GitHub to follow the GEL
+									Design System project.
 								</p>
 							</RichText>
-							<DownloadAndLinksSection css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })} />
+							<DownloadsAndLinks css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })} />
 						</Cell>
 					</Grid>
 				</Container>
@@ -196,7 +190,7 @@ const Homepage = () => {
 
 export default Homepage;
 
-const DownloadAndLinksSection = (props) => {
+const DownloadsAndLinks = (props) => {
 	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -211,64 +205,47 @@ const DownloadAndLinksSection = (props) => {
 				<Cell width={[13, 6]}>
 					<Heading
 						tag="h3"
-						size={7}
+						size={8}
 						css={{
-							borderBottom: `1px solid ${COLORS.text}`,
 							paddingBottom: SPACING(3),
-							marginBottom: SPACING(2),
+							borderBottom: `1px solid ${COLORS.neutral}`,
 						}}
 					>
 						Downloads
 					</Heading>
-					<div
-						css={{
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'space-between',
-							height: '72px',
-							borderBottom: `1px solid ${COLORS.border}`,
-							marginTop: SPACING(2),
-						}}
+					<BlockList
+						css={mq({
+							marginTop: [null, null, SPACING(2)],
+						})}
 					>
-						Sketch UI Kit Download <SketchLogo size="50px" />
-					</div>
-					<div
-						css={{
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'space-between',
-							height: '72px',
-							borderBottom: `1px solid ${COLORS.border}`,
-						}}
-					>
-						Axure UI Kit Download <AxureLogo size="70px" />
-					</div>
+						<Item target="_blank" logo={SketchLogo}>
+							Sketch UI Kit Download
+						</Item>
+						<Item target="_blank" logo={AxureLogo}>
+							Axure UI Kit Download
+						</Item>
+					</BlockList>
 				</Cell>
-				<Cell width={[13, 6]} left={[0, 8]} css={mq({ marginTop: ['24px', 0] })}>
+				<Cell width={[13, 6]} left={[null, 8]} css={mq({ marginTop: ['24px', 0] })}>
 					<Heading
 						tag="h3"
-						size={7}
+						size={8}
 						css={mq({
-							borderBottom: `1px solid ${COLORS.text}`,
 							paddingBottom: SPACING(3),
-							paddingTop: [SPACING(4), 0],
-							marginBottom: SPACING(2),
+							borderBottom: `1px solid ${COLORS.neutral}`,
 						})}
 					>
 						Links
 					</Heading>
-					<div
-						css={{
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'space-between',
-							height: '72px',
-							borderBottom: `1px solid ${COLORS.border}`,
-							marginTop: SPACING(2),
-						}}
+					<BlockList
+						css={mq({
+							marginTop: [null, null, SPACING(2)],
+						})}
 					>
-						Go to GitHub <GithubLogo size="50px" />
-					</div>
+						<Item href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
+							Go to GitHub
+						</Item>
+					</BlockList>
 				</Cell>
 			</Grid>
 		</div>

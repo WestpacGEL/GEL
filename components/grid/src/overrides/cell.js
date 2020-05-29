@@ -9,6 +9,11 @@ const cellStyles = (_, { area, height, left, top, width }) => {
 	const widthArr = asArray(width);
 	const heightArr = asArray(height);
 
+	// an <integer> value of 0 is invalid
+	if (left === 0) {
+		left = 'auto';
+	}
+
 	// allow string or array values for height/width
 	const getEndSpan = (n) => n.map((v) => v && `span ${v}`);
 
@@ -18,7 +23,6 @@ const cellStyles = (_, { area, height, left, top, width }) => {
 		gridColumnStart: asArray(left),
 		gridRowEnd: !area && getEndSpan(heightArr),
 		gridRowStart: asArray(top),
-		height: '100%',
 		minWidth: 0,
 	})[0];
 };
