@@ -3,9 +3,15 @@
 import { jsx } from '@westpac/core';
 import { Svg } from './Svg';
 
-export const StgBackgroundSvg = ({ width, height }) => {
+export const StgBackgroundSvg = ({ width, height, ...rest }) => {
 	return (
-		<Svg viewBox="0 32.545 595.279 255.545" width={width} height={height} focusable="false">
+		<Svg
+			viewBox="0 32.545 595.279 255.545"
+			width={width}
+			height={height}
+			focusable="false"
+			{...rest}
+		>
 			<title>St.George background image</title>
 			<g opacity={0.4}>
 				<path
