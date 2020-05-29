@@ -78,34 +78,32 @@ const Homepage = () => {
 							<div
 								css={{
 									borderTop: `1px solid ${COLORS.neutral}`,
-									paddingBottom: SPACING(5),
+									paddingTop: SPACING(5),
 								}}
 							>
-								<Grid>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+								<Grid rowGap={[SPACING(4), null, SPACING(7)]}>
+									<Cell width={[12, 6, 3]}>
 										<GovLogo width={113} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+									<Cell width={[12, 6, 3]}>
 										<MicrosoftLogo width={127} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+									<Cell width={[12, 6, 3]}>
 										<MyobLogo width={90} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+									<Cell width={[12, 6, 3]}>
 										<IbmLogo width={77} />
 									</Cell>
-								</Grid>
-								<Grid css={{ marginTop: SPACING(3) }}>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+									<Cell width={[12, 6, 3]}>
 										<AtlassianLogo width={159} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+									<Cell width={[12, 6, 3]}>
 										<FacebookLogo width={39} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+									<Cell width={[12, 6, 3]}>
 										<TwitterLogo width={50} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
+									<Cell width={[12, 6, 3]}>
 										<ShopifyLogo width={138} />
 									</Cell>
 								</Grid>
