@@ -81,7 +81,7 @@ const Homepage = () => {
 									paddingTop: SPACING(5),
 								}}
 							>
-								<Grid rowGap={[SPACING(4), null, SPACING(7)]}>
+								<Grid rowGap={[SPACING(4), null, SPACING(7)]} css={{ alignItems: 'center' }}>
 									<Cell width={[12, 6, 3]}>
 										<GovLogo width={113} />
 									</Cell>
