@@ -64,7 +64,7 @@ const Homepage = () => {
 					<Grid>
 						<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 							<RichText>
-								<ReactLogo size={'60px'} aria-hidden="true" css={{ marginBottom: '12px' }} />
+								<ReactLogo width={60} aria-hidden="true" css={{ marginBottom: '12px' }} />
 								<h2>Built on React</h2>
 								<p>
 									We're moving with the times. With React we can showcase so much more and deliver
@@ -78,35 +78,33 @@ const Homepage = () => {
 							<div
 								css={{
 									borderTop: `1px solid ${COLORS.neutral}`,
-									paddingBottom: SPACING(5),
+									paddingTop: SPACING(5),
 								}}
 							>
-								<Grid>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<GovLogo size={'113px'} />
+								<Grid rowGap={[SPACING(4), null, SPACING(7)]} css={{ alignItems: 'center' }}>
+									<Cell width={[12, 6, 3]}>
+										<GovLogo width={113} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<MicrosoftLogo size={'127px'} />
+									<Cell width={[12, 6, 3]}>
+										<MicrosoftLogo width={127} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<MyobLogo size={'90px'} />
+									<Cell width={[12, 6, 3]}>
+										<MyobLogo width={90} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<IbmLogo size={'77px'} />
+									<Cell width={[12, 6, 3]}>
+										<IbmLogo width={77} />
 									</Cell>
-								</Grid>
-								<Grid css={{ marginTop: SPACING(3) }}>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<AtlassianLogo size={'159px'} />
+									<Cell width={[12, 6, 3]}>
+										<AtlassianLogo width={159} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<FacebookLogo size={'39px'} />
+									<Cell width={[12, 6, 3]}>
+										<FacebookLogo width={39} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<TwitterLogo size={'50px'} />
+									<Cell width={[12, 6, 3]}>
+										<TwitterLogo width={50} />
 									</Cell>
-									<Cell css={{ paddingTop: SPACING(2) }} width={[12, 3]}>
-										<ShopifyLogo size={'138px'} />
+									<Cell width={[12, 6, 3]}>
+										<ShopifyLogo width={138} />
 									</Cell>
 								</Grid>
 							</div>

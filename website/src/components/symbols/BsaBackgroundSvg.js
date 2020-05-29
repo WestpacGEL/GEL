@@ -2,9 +2,9 @@
 import { jsx } from '@westpac/core';
 import { Svg } from './Svg';
 
-export const BsaBackgroundSvg = ({ width, height }) => {
+export const BsaBackgroundSvg = ({ width, height, ...rest }) => {
 	return (
-		<Svg width={width} height={height} viewBox="0 0 300 400" focusable="false">
+		<Svg viewBox="0 0 300 400" width={width} height={height} {...rest}>
 			<title>BankSA background image</title>
 			<path
 				fill="#ABE2EC"
