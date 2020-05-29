@@ -5,6 +5,7 @@
 ### Major Changes
 
 - fe7b6d38: fix Cell `left` prop, allow 0 value
+- 081f9d47: remove Cell css height setting
 
 ## 1.0.0-beta.3
 
