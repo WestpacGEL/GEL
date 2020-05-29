@@ -2,9 +2,9 @@
 import { jsx } from '@westpac/core';
 import { Svg } from './Svg';
 
-export const TwitterLogo = ({ width, height, color = '#2D373E', ...rest }) => {
+export const TwitterLogo = ({ width, height = 'auto', color = '#2D373E', ...rest }) => {
 	return (
-		<Svg viewBox="0 0 50 40" width={width} height={height} {...rest}>
+		<Svg viewBox="0 0 50 40" width="50" height="40" css={{ width, height }} {...rest}>
 			<title>Twitter logo</title>
 			<g opacity={0.7}>
 				<path
