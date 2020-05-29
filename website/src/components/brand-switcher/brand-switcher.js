@@ -30,7 +30,7 @@ export const brandsMap = {
 	},
 	STG: {
 		logo: STGLogo,
-		label: 'St. George',
+		label: 'St.George',
 		smallLogo: STGDragonLogo,
 	},
 	BOM: {
