@@ -8,7 +8,7 @@ export const TruckSvg = ({
 	outlineColor = '#8C9296',
 }) => {
 	return (
-		<svg width={size} height={size} viewBox="0 0 90 90" role="img" focusable="false">
+		<svg width={size} height={size} viewBox="0 0 90 90" focusable="false">
 			<title>Truck</title>
 			<g fill="none" fillRule="evenodd">
 				<path

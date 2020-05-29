@@ -5,13 +5,7 @@ import { Svg } from './Svg';
 
 export const StgBackgroundSvg = ({ width, height }) => {
 	return (
-		<Svg
-			viewBox="0 32.545 595.279 255.545"
-			width={width}
-			height={height}
-			role="img"
-			focusable="false"
-		>
+		<Svg viewBox="0 32.545 595.279 255.545" width={width} height={height} focusable="false">
 			<title>St.George background image</title>
 			<g opacity={0.4}>
 				<path

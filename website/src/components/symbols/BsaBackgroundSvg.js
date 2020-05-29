@@ -4,7 +4,7 @@ import { Svg } from './Svg';
 
 export const BsaBackgroundSvg = ({ width, height }) => {
 	return (
-		<Svg width={width} height={height} viewBox="0 0 300 400" role="img" focusable="false">
+		<Svg width={width} height={height} viewBox="0 0 300 400" focusable="false">
 			<title>BankSA background image</title>
 			<path
 				fill="#ABE2EC"

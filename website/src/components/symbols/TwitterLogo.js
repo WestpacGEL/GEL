@@ -3,7 +3,7 @@ import { jsx } from '@westpac/core';
 
 export const TwitterLogo = ({ size, color = '#2D373E' }) => {
 	return (
-		<svg width={size} height="auto" viewBox="0 0 50 40" role="img" focusable="false">
+		<svg width={size} height="auto" viewBox="0 0 50 40" focusable="false">
 			<title>Twitter logo</title>
 			<g opacity={0.7}>
 				<path
