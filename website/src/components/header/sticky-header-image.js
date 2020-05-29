@@ -21,7 +21,7 @@ const StickyHeaderImage = ({ brand, hide }) => {
 				},
 			}}
 		>
-			<WbcBackgroundRightSvg height={'400px'} />
+			<WbcBackgroundRightSvg height={400} />
 		</div>
 	);
 
@@ -41,7 +41,7 @@ const StickyHeaderImage = ({ brand, hide }) => {
 				},
 			}}
 		>
-			<StgBackgroundSvg height={'1000px'} />
+			<StgBackgroundSvg height={1000} />
 		</div>
 	);
 
@@ -61,7 +61,7 @@ const StickyHeaderImage = ({ brand, hide }) => {
 				},
 			}}
 		>
-			<BsaBackgroundSvg height={'400px'} />
+			<BsaBackgroundSvg height={400} />
 		</div>
 	);
 

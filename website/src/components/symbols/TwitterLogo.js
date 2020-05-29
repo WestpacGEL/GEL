@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
+import { Svg } from './Svg';
 
-export const TwitterLogo = ({ size, color = '#2D373E' }) => {
+export const TwitterLogo = ({ width, height, color = '#2D373E', ...rest }) => {
 	return (
-		<svg width={size} height="auto" viewBox="0 0 50 40" role="img" focusable="false">
+		<Svg viewBox="0 0 50 40" width={width} height={height} {...rest}>
 			<title>Twitter logo</title>
 			<g opacity={0.7}>
 				<path
@@ -13,6 +14,6 @@ export const TwitterLogo = ({ size, color = '#2D373E' }) => {
 					fillRule="evenodd"
 				/>
 			</g>
-		</svg>
+		</Svg>
 	);
 };
