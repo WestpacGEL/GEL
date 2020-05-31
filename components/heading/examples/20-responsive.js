@@ -14,6 +14,7 @@ function Example({ brand }) {
 				Without <code>tag</code> prop
 			</h2>
 			<Heading size={[10, 8, 6, 4, 2]}>Heading size: [10, 8, 6, 4, 2]</Heading>
+			<Heading size={[10, null, null, null, 2]}>Heading size: [10, null, null, null, 2]</Heading>
 
 			<hr />
 
@@ -22,6 +23,9 @@ function Example({ brand }) {
 			</h2>
 			<Heading tag="h2" size={[10, 8, 6, 4, 2]}>
 				Heading tag: h2 size: [10, 8, 6, 4, 2]
+			</Heading>
+			<Heading tag="h2" size={[10, null, null, null, 2]}>
+				Heading tag: h2 size: [10, null, null, null, 2]
 			</Heading>
 		</GEL>
 	);
