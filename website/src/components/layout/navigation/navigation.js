@@ -39,6 +39,10 @@ export const Navigation = ({ items }) => {
 
 			const page = router.query && router.query.page;
 
+			// TO DO: Remove later, using for debugging
+			console.log('page', page);
+			console.log('item', item);
+
 			let isCurrentChild = false;
 			// For non-dynamic paths we can check if the pathname matches item.path.
 			if (!page) {
