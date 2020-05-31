@@ -48,7 +48,7 @@ export const ScreenReaderText = {
 				<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
 					<Heading
 						tag="h2"
-						size={[7, 7, 7, 7, 6]}
+						size={[7, null, null, null, 6]}
 						id="screen-readers"
 						tabIndex="-1"
 						{...(addTableContent && { 'data-toc': true })}

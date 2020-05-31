@@ -243,7 +243,7 @@ export const CodeExample = {
 							id={id}
 							tabIndex="-1"
 							tag={level}
-							size={[7, 7, 7, 7, size]}
+							size={[7, null, null, null, size]}
 							{...(addTableContent && { 'data-toc': true })}
 							overrides={{
 								Heading: {
