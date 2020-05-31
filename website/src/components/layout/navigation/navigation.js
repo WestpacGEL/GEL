@@ -39,6 +39,10 @@ export const Navigation = ({ items }) => {
 
 			const page = router.query && router.query.page;
 
+			// TO DO: Remove later, using for debugging
+			console.log('page', page);
+			console.log('item', item);
+
 			let isCurrentChild = false;
 			// For non-dynamic paths we can check if the pathname matches item.path.
 			if (!page) {
@@ -79,7 +83,11 @@ export const Navigation = ({ items }) => {
 
 	return (
 		<nav css={{ flex: 1, overflowY: 'scroll', webkitOverflowScrolling: 'touch' }} role="navigation">
-			<a href="/" css={{ display: 'block', overflow: 'hidden' }} aria-label="Back to GEL">
+			<a
+				href="/"
+				css={{ display: 'block !important', overflow: 'hidden', height: '90px' }}
+				aria-label="Back to GEL"
+			>
 				<BackToGelSvg />
 			</a>
 			<List type="unstyled" css={{ paddingBottom: '1.5rem' }}>

@@ -2,15 +2,14 @@
 
 import { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { useRouter } from 'next/router';
+import { Cell, Grid, Container } from '@westpac/grid';
+import { List, Item } from '@westpac/list';
 import { Heading } from '@westpac/heading';
 import { Body } from '@westpac/body';
-import { List, Item } from '@westpac/list';
-import { Cell, Grid, Container } from '@westpac/grid';
+
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
-import { inputStyles } from '@arch-ui/input';
 import { CheckboxPrimitive } from '@arch-ui/controls';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
+import { inputStyles } from '@arch-ui/input';
 
 const ArrowIcon = () => {
 	const { COLORS, SPACING } = useBrand();
@@ -55,10 +54,16 @@ const TableLink = ({ headingId, headingText, ...rest }) => {
 
 const parseHeadings = (content) =>
 	content.nodes
+		.reduce(
+			(nodes, node) => (node.type === 'section' ? nodes.concat(node.nodes) : nodes.concat(node)),
+			[]
+		)
 		.filter(
 			(item) =>
 				item.data.component &&
-				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText'].includes(item.data.component)
+				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText', 'CodeExample'].includes(
+					item.data.component
+				)
 		)
 		.filter((item) => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {
@@ -198,10 +203,10 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS, COLORS, SPACING } = useBrand();
+	const { PACKS, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	return (
-		<div css={{ marginBottom: SPACING(5) }}>
+		<Fragment>
 			<Container>
 				<Grid
 					css={mq({
@@ -240,7 +245,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 					margin: 0,
 				}}
 			/>
-		</div>
+		</Fragment>
 	);
 };
 

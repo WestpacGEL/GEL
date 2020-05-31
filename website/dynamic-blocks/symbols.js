@@ -1,18 +1,17 @@
 /** @jsx jsx */
 
-import React, { useState } from 'react'; // Needed for within Keystone
+import React, { useState, Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
+import { Grid, Cell } from '@westpac/grid';
 import * as symbols from '@westpac/symbol';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle } from '../src/components/_utils';
 
 const renderSymbols = (search) => {
 	const symbolDetails = [];
 	for (let key in symbols) {
 		symbolDetails.push({ name: key, symbol: symbols[key] });
 	}
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS } = useBrand();
 
 	return symbolDetails
 		.filter((symbol) =>
@@ -21,7 +20,7 @@ const renderSymbols = (search) => {
 		.map((symbol) => {
 			const Symbol = symbol.symbol;
 			return (
-				<Cell width={[12, 12, 6, 4, 3]} css={{ display: 'flex' }}>
+				<Cell width={[12, null, 6, 4, 3]} css={{ display: 'flex' }}>
 					<div
 						key={symbol.name}
 						css={{
@@ -31,17 +30,17 @@ const renderSymbols = (search) => {
 							display: 'flex',
 							flexDirection: 'column',
 							background: '#fff',
-							border: `solid 1px ${COLORS.background}`,
-							padding: `${(SPACING(3), SPACING(2))}`,
+							padding: '36px 0 18px',
+							marginBottom: ['12px', '24px'],
 						}}
 					>
 						<Symbol
 							css={{
 								flexGrow: 1,
-								padding: SPACING(4),
+								paddingBottom: '36px',
 							}}
 						/>
-						<span css={{ fontSize: '0.6875rem' }}>{symbol.name}</span>
+						<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{symbol.name}</span>
 					</div>
 				</Cell>
 			);
@@ -52,10 +51,10 @@ const Symbol = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
 	return (
-		<div>
-			<Container css={blocksContainerStyle}>
-				<Grid columns={12}>
-					<Cell width={[12, 12, 6]}>
+		<Fragment>
+			<Cell width={12}>
+				<Grid>
+					<Cell width={[12, null, 6]}>
 						<div
 							css={mq({
 								display: 'flex',
@@ -80,11 +79,9 @@ const Symbol = () => {
 						</div>
 					</Cell>
 				</Grid>
-				<Grid columns={12} css={{ gridAutoRows: '1fr' }}>
-					{renderSymbols(search)}
-				</Grid>
-			</Container>
-		</div>
+			</Cell>
+			{renderSymbols(search)}
+		</Fragment>
 	);
 };
 
