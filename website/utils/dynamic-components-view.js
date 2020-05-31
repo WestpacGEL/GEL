@@ -235,7 +235,16 @@ const BlockLayout = ({ children, isEditing = false, isFocused = false }) => {
 					width: gridSize * 2,
 				}}
 			/>
-			<span css={{ paddingBottom: 8, flexGrow: 1 }}>{children}</span>
+			<span
+				css={{
+					paddingBottom: 8,
+					flexGrow: 1,
+					display: 'grid',
+					gridAutoFlow: 'row',
+				}}
+			>
+				{children}
+			</span>
 		</span>
 	);
 };

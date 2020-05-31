@@ -1,17 +1,17 @@
 /** @jsx jsx */
-import React, { useState } from 'react'; // Needed for within Keystone
+import React, { useState, Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
+import { Grid, Cell } from '@westpac/grid';
 import * as icons from '@westpac/icon';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 const renderIcons = (search) => {
 	const iconDetails = [];
 	for (let key in icons) {
 		iconDetails.push({ name: key, icon: icons[key] });
 	}
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS } = useBrand();
+	const mq = useMediaQuery();
 
 	return iconDetails
 		.filter((icon) =>
@@ -21,27 +21,27 @@ const renderIcons = (search) => {
 			const Icon = icon.icon;
 			return (
 				<Cell
-					width={[12, 12, 3, 3]}
+					width={[12, null, 3]}
 					css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
 				>
 					<div
 						key={icon.name}
-						css={{
+						css={mq({
 							alignItems: 'center',
 							justifyContent: 'center',
 							display: 'flex',
 							flexDirection: 'column',
 							background: '#fff',
-							border: `solid 1px ${COLORS.background}`,
-							padding: `${(SPACING(3), SPACING(2))}`,
-						}}
+							padding: '36px 12px 18px',
+							marginBottom: ['12px', '24px'],
+						})}
 					>
 						<Icon
 							css={{
-								padding: SPACING(6),
+								paddingBottom: '36px',
 							}}
 						/>
-						<span css={{ fontSize: '0.6875rem' }}>{icon.name}</span>
+						<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{icon.name}</span>
 					</div>
 				</Cell>
 			);
@@ -53,10 +53,10 @@ const Icon = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
 	return (
-		<div>
-			<Container css={blocksContainerStyle}>
-				<Grid columns={12}>
-					<Cell width={[12, 12, 6]}>
+		<Fragment>
+			<Cell width={12}>
+				<Grid>
+					<Cell width={[12, null, 6]}>
 						<div
 							css={mq({
 								display: 'flex',
@@ -77,13 +77,13 @@ const Icon = () => {
 							>
 								Filter by name
 							</label>
-							<TextInput id="filter-icons" />
+							<TextInput />
 						</div>
 					</Cell>
 				</Grid>
-				<Grid columns={12}>{renderIcons(search)}</Grid>
-			</Container>
-		</div>
+			</Cell>
+			{renderIcons(search)}
+		</Fragment>
 	);
 };
 

@@ -2,7 +2,8 @@
 
 import { jsx } from '@westpac/core';
 
-import { BlocksDocs, RelatedInformation } from '../../_utils';
+import { BlocksDocs } from '../../_utils';
+import { RelatedInformation } from '../../related-information';
 
 export const DesignTab = ({ blocks, item }) => {
 	return (
