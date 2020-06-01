@@ -1,93 +1,78 @@
 /** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React from 'react';
 import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
 
-const StickyHeaderImage = ({ brand, hide }) => {
+const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 	const { LAYOUT } = useBrand();
-	const WestpacImage = () => (
+	const mq = useMediaQuery();
+
+	const WestpacImage = (props) => (
 		<div
-			css={{
-				position: 'absolute',
-				zIndex: 0,
-				right: 0,
+			css={mq({
 				top: 0,
-				display: hide ? 'none' : 'block',
-				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					display: 'block',
-				},
-				[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-					right: '300px',
-				},
-			}}
-		>
-			<WbcBackgroundRightSvg height={400} />
-		</div>
-	);
-
-	const StGeorgeImage = () => (
-		<div
-			css={{
-				position: 'absolute',
-				left: 0,
-				bottom: -10,
-				zIndex: -1,
-				display: hide ? 'none' : 'block',
-				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					display: 'block',
-				},
-				[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-					right: '300px',
-				},
-			}}
-		>
-			<StgBackgroundSvg height={1000} />
-		</div>
-	);
-
-	const BankSaImage = () => (
-		<div
-			css={{
-				position: 'absolute',
-				zIndex: 1,
+				bottom: [0, null, 'auto'],
 				right: 0,
-				bottom: -120,
-				display: hide ? 'none' : 'block',
-				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					display: 'block',
-				},
-				[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-					right: '300px',
-				},
-			}}
+				height: [null, null, 658, 633],
+			})}
+			{...props}
 		>
-			<BsaBackgroundSvg height={400} />
+			<WbcBackgroundRightSvg
+				css={mq({
+					display: 'block',
+					width: ['auto', null, 'auto'],
+					height: ['100%', null, '100%'],
+				})}
+			/>
+		</div>
+	);
+
+	const StGeorgeImage = (props) => (
+		<div
+			css={mq({
+				bottom: 0,
+				left: 0,
+				width: [601, 1202],
+			})}
+			{...props}
+		>
+			<StgBackgroundSvg css={mq({ display: 'block', width: '100%', height: 'auto' })} />
+		</div>
+	);
+
+	const BankSaImage = (props) => (
+		<div
+			css={mq({
+				bottom: 0,
+				right: 0,
+				width: [508, 1016],
+			})}
+			{...props}
+		>
+			<BsaBackgroundSvg css={mq({ display: 'block', width: '100%', height: 'auto' })} />
 		</div>
 	);
 
 	const BRAND_HEADERS = {
-		WBC: {
-			headerImage: WestpacImage,
-		},
-		WBG: {
-			headerImage: null,
-		},
-		STG: {
-			headerImage: StGeorgeImage,
-		},
-		BSA: {
-			headerImage: BankSaImage,
-		},
-		BOM: {
-			headerImage: null,
-		},
-		BTFG: {
-			headerImage: null,
-		},
+		WBC: WestpacImage,
+		WBG: null,
+		STG: StGeorgeImage,
+		BSA: BankSaImage,
+		BOM: null,
+		BTFG: null,
 	};
-	const HeaderImage = BRAND_HEADERS[brand].headerImage;
+	const HeaderImage = BRAND_HEADERS[brand];
 
-	return HeaderImage ? <HeaderImage /> : null;
+	return HeaderImage ? (
+		<HeaderImage
+			css={mq({
+				position: 'absolute',
+				zIndex: 0,
+				display: [null, null, hide && 'none'],
+			})}
+			{...rest}
+		/>
+	) : null;
 };
 
 export default StickyHeaderImage;
