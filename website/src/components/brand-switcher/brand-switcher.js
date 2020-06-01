@@ -12,7 +12,6 @@ import { useSidebar } from '../providers/sidebar';
 import {
 	BOMLogo,
 	BSALogo,
-	BTFGLogo,
 	STGLogo,
 	WBCLogo,
 	WBGLogo,
@@ -47,11 +46,6 @@ export const brandsMap = {
 		logo: WBGLogo,
 		label: 'Westpac Group',
 		smallLogo: WBCLogo,
-	},
-	BTFG: {
-		logo: BTFGLogo,
-		label: 'BT Financial Group',
-		smallLogo: BTFGStackedLogo,
 	},
 };
 

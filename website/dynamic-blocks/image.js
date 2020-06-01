@@ -102,21 +102,17 @@ export const Image = {
 		};
 
 		return (
-			<Container css={blocksContainerStyle}>
-				<Grid columns={12} css={blocksGridStyle}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<figure
-							css={{
-								...figureStyles,
-								pointerEvents: context === 'admin' ? 'none' : undefined,
-							}}
-						>
-							<img css={imageStyles} src={image} />
-							<figcaption css={captionStyle}>{caption}</figcaption>
-						</figure>
-					</Cell>
-				</Grid>
-			</Container>
+			<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
+				<figure
+					css={{
+						...figureStyles,
+						pointerEvents: context === 'admin' ? 'none' : undefined,
+					}}
+				>
+					<img css={imageStyles} src={image} />
+					<figcaption css={captionStyle}>{caption}</figcaption>
+				</figure>
+			</Cell>
 		);
 	},
 };
