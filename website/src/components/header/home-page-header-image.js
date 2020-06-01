@@ -29,7 +29,7 @@ const HomePageHeaderImage = ({ brand, ...rest }) => {
 			css={{
 				bottom: 0,
 				left: 0,
-				width: 1200,
+				width: 1202,
 			}}
 			{...props}
 		>
@@ -47,7 +47,7 @@ const HomePageHeaderImage = ({ brand, ...rest }) => {
 			css={mq({
 				bottom: 0,
 				right: 0,
-				width: [420, null, 890, 1115, 1014],
+				width: 1016,
 			})}
 			{...props}
 		>

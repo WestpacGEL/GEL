@@ -11,17 +11,17 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 		<div
 			css={mq({
 				top: 0,
+				bottom: [0, null, 'auto'],
 				right: 0,
-				width: ['auto', null, 728],
-				height: 'auto',
+				height: [null, null, 658, 633],
 			})}
 			{...props}
 		>
 			<WbcBackgroundRightSvg
 				css={mq({
 					display: 'block',
-					width: ['auto', null, '100%'],
-					height: ['100%', null, 'auto'],
+					width: ['auto', null, 'auto'],
+					height: ['100%', null, '100%'],
 				})}
 			/>
 		</div>
@@ -29,13 +29,14 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 
 	const StGeorgeImage = (props) => (
 		<div
-			css={{
+			css={mq({
 				bottom: 0,
 				left: 0,
-			}}
+				width: [601, 1202],
+			})}
 			{...props}
 		>
-			<StgBackgroundSvg css={mq({ display: 'block', width: [600, null, 1200], height: 'auto' })} />
+			<StgBackgroundSvg css={mq({ display: 'block', width: '100%', height: 'auto' })} />
 		</div>
 	);
 
@@ -44,7 +45,7 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 			css={mq({
 				bottom: 0,
 				right: 0,
-				width: [420, null, 890, 1115, 1014],
+				width: [508, 1016],
 			})}
 			{...props}
 		>

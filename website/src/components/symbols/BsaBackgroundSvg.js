@@ -6,7 +6,7 @@ export const BsaBackgroundSvg = (props) => {
 	return (
 		<Svg viewBox="0 0 1016 621" width="1016" height="621" {...props}>
 			<title>BankSA background image</title>
-			<g fillRule="evenodd" fill-opacity=".06">
+			<g fillRule="evenodd" fillOpacity=".06">
 				<path
 					fill="#ABE2EC"
 					d="M1016 351.256V620H761.273c27.913-64.566 68.975-124.693 123.09-176.26 40.098-38.21 84.536-69.024 131.637-92.484z"
