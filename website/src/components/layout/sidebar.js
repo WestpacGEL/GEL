@@ -32,7 +32,7 @@ export const Sidebar = ({ items }) => {
 				gridColumnStart: 1,
 				gridColumnEnd: 2,
 				borderRight: `1px solid ${COLORS.border}`,
-				width: '300px',
+				width: 300,
 				height: '100vh',
 				boxSizing: 'border-box',
 				position: 'absolute',
