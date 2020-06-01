@@ -64,7 +64,7 @@ const Homepage = () => {
 					<Grid>
 						<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 							<RichText>
-								<ReactLogo width={60} aria-hidden="true" css={{ marginBottom: '12px' }} />
+								<ReactLogo width={60} css={{ marginBottom: SPACING(2) }} />
 								<h2>Built on React</h2>
 								<p>
 									We're moving with the times. With React we can showcase so much more and deliver
