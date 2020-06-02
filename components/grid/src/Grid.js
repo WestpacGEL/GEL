@@ -102,7 +102,7 @@ Grid.propTypes = {
 		PropTypes.number,
 		PropTypes.string,
 		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-	]).isRequired,
+	]),
 
 	/**
 	 * The `grid-template-columns` CSS property. When a number is passed it is a
@@ -122,7 +122,7 @@ Grid.propTypes = {
 		PropTypes.number,
 		PropTypes.string,
 		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-	]),
+	]).isRequired,
 
 	/**
 	 * The `height` CSS property
