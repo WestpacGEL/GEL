@@ -10,8 +10,8 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 	const WestpacImage = (props) => (
 		<div
 			css={mq({
-				top: 0,
-				bottom: [0, null, 'auto'],
+				top: [0, null, 'auto'],
+				bottom: 0,
 				right: 0,
 				height: [null, null, 658, 633],
 			})}
