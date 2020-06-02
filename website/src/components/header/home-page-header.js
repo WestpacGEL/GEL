@@ -27,6 +27,7 @@ const HomePageHeader = () => {
 				paddingBottom: [SPACING(7), SPACING(11)],
 				background: [null, null, headerStyling.background],
 				color: [null, null, headerStyling.color],
+				...headerStyling.antialiasing,
 			})}
 		>
 			<HeaderImage brand={BRAND} aria-hidden="true" />
@@ -37,7 +38,7 @@ const HomePageHeader = () => {
 };
 
 const StickyHeader = () => {
-	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
+	const { COLORS, SPACING, BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const { isOpen, setIsOpen } = useSidebar();
 	const headerStyling = brandHeaderStyling[BRAND](COLORS);
@@ -78,7 +79,6 @@ const StickyHeader = () => {
 					paddingLeft: [72, null, null, null, 60], //66px (button) + 6px (gap),
 					background: [headerStyling.background, null, !hasScrolled && 'unset'],
 					color: headerStyling.color,
-					fontSmooth: 'always',
 					boxShadow: ['0 2px 5px rgba(0,0,0,0.3)', null, !hasScrolled && 'none'],
 					overflow: 'hidden',
 				})}
