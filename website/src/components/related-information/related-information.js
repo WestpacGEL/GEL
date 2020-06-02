@@ -39,14 +39,7 @@ export const RelatedInformation = ({ item }) => {
 			<Container>
 				<Grid rowGap={['30px', null, null, null, '60px']}>
 					<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
-						<Heading
-							tag="h2"
-							size={[7, 7, 7, 7, 6]}
-							addTableContent
-							{...{ 'data-toc': true }}
-							id="related-information"
-							tabIndex="-1"
-						>
+						<Heading tag="h2" size={[7, 7, 7, 7, 6]} id="related-information" tabIndex="-1">
 							Related information
 						</Heading>
 					</Cell>

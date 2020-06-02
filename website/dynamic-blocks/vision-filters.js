@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import preval from 'preval.macro';
 
 import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
+import { levelOptions, sizeOptions, indentOptions } from './_utils';
 import { VisionFilter } from '../src/components/a11y-filter';
 
 let data = preval`
@@ -57,27 +58,6 @@ const options = data.map((o) => ({ label: o, value: o }));
 const codeExamples = importCodeExamples(data);
 let valueCache = new Map();
 let promiseCache = new Map();
-
-const levelOptions = [
-	{ label: 'H1', value: 'h1' },
-	{ label: 'H2', value: 'h2' },
-	{ label: 'H3', value: 'h3' },
-	{ label: 'H4', value: 'h4' },
-	{ label: 'H5', value: 'h5' },
-	{ label: 'H6', value: 'h6' },
-];
-
-const sizeOptions = [
-	{ label: '1', value: 1 },
-	{ label: '2', value: 2 },
-	{ label: '3', value: 3 },
-	{ label: '4', value: 4 },
-	{ label: '5', value: 5 },
-	{ label: '6', value: 6 },
-	{ label: '7', value: 7 },
-	{ label: '8', value: 8 },
-	{ label: '9', value: 9 },
-];
 
 function ShowCodeBlock({ loadCodeBlock, context }) {
 	let promise = promiseCache.get(loadCodeBlock);
@@ -146,29 +126,34 @@ export const VisionFilters = {
 								/>
 							</FieldInput>
 						</FieldContainer>
-						<FieldContainer>
-							<FieldLabel
-								htmlFor={'heading-level'}
-								field={{ label: 'Heading Level', config: {} }}
-							/>
-							<Select
-								id="heading-level"
-								placeholder="Select a heading level"
-								options={levelOptions}
-								value={levelOptions.find((o) => o.value === currentValue.level)}
-								onChange={({ value }) => update({ level: value })}
-							/>
-						</FieldContainer>
-						<FieldContainer>
-							<FieldLabel htmlFor={'heading-size'} field={{ label: 'Heading Size', config: {} }} />
-							<Select
-								id="heading-size"
-								placeholder="Select a heading size"
-								options={sizeOptions}
-								value={sizeOptions.find((o) => o.value === currentValue.size)}
-								onChange={({ value }) => update({ size: value })}
-							/>
-						</FieldContainer>
+						<div css={{ display: 'flex' }}>
+							<FieldContainer css={{ flexGrow: 1, marginRight: 30 }}>
+								<FieldLabel
+									htmlFor={'heading-level'}
+									field={{ label: 'Heading Level', config: {} }}
+								/>
+								<Select
+									id="heading-level"
+									placeholder="Select a heading level"
+									options={levelOptions}
+									value={levelOptions.find((o) => o.value === currentValue.level)}
+									onChange={({ value }) => update({ level: value })}
+								/>
+							</FieldContainer>
+							<FieldContainer css={{ flexGrow: 1 }}>
+								<FieldLabel
+									htmlFor={'heading-size'}
+									field={{ label: 'Heading Size', config: {} }}
+								/>
+								<Select
+									id="heading-size"
+									placeholder="Select a heading size"
+									options={sizeOptions}
+									value={sizeOptions.find((o) => o.value === currentValue.size)}
+									onChange={({ value }) => update({ size: value })}
+								/>
+							</FieldContainer>
+						</div>
 						<FieldContainer>
 							<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
 								<CheckboxPrimitive
@@ -219,7 +204,6 @@ export const VisionFilters = {
 		const loadCodeBlock = codeExamples[codeExample];
 		const router = useRouter();
 		const href = '/accessibility';
-		const { SPACING } = useBrand();
 		const mq = useMediaQuery();
 
 		const handleClick = (e) => {
