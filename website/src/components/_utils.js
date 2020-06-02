@@ -53,13 +53,31 @@ export const getURL = (d) => {
 	return '';
 };
 
-export const brandHeaderColors = {
-	WBC: (COLORS) => COLORS.primary,
-	WBG: (COLORS) => COLORS.hero,
-	STG: (COLORS) => COLORS.hero,
-	BSA: (COLORS) => `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
-	BOM: (COLORS) => COLORS.hero,
-	BTFG: (COLORS) => COLORS.hero,
+export const brandHeaderStyling = {
+	WBC: (COLORS) => ({
+		background: COLORS.primary,
+		color: '#fff',
+	}),
+	WBG: (COLORS) => ({
+		background: COLORS.hero,
+		color: '#fff',
+	}),
+	STG: (COLORS) => ({
+		background: COLORS.hero,
+		color: COLORS.text,
+	}),
+	BSA: (COLORS) => ({
+		background: `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
+		color: '#fff',
+	}),
+	BOM: (COLORS) => ({
+		background: COLORS.hero,
+		color: '#fff',
+	}),
+	BTFG: (COLORS) => ({
+		background: COLORS.hero,
+		color: '#fff',
+	}),
 };
 
 export const brandIconHighlightColors = {

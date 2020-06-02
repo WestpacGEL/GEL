@@ -8,7 +8,7 @@ import HeaderImage from './component-page-header-image';
 
 import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../providers/pageContext';
-import { brandHeaderColors, gridlyIconColors } from '../_utils';
+import { brandHeaderStyling, gridlyIconColors } from '../_utils';
 
 const MenuIcon = ({ hasScrolled }) => {
 	const { BRAND, COLORS } = useBrand();
@@ -66,7 +66,7 @@ const PageHeader = ({ name, version }) => {
 		};
 	});
 
-	const backgroundColor = brandHeaderColors[BRAND](COLORS);
+	const backgroundColor = brandHeaderStyling[BRAND](COLORS);
 
 	return (
 		<div
