@@ -11,17 +11,20 @@ import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
 import Select from '@arch-ui/select';
 
-import { levelOptions, sizeOptions } from './_utils';
+import merge from 'lodash.merge';
+import { levelOptions, sizeOptions, indentOptions } from './_utils';
 
 export const Heading = {
 	editor: ({ value, onChange }) => {
 		const currentValue = {
 			level: 'h2',
-			size: 5,
+			size: 6,
 			heading: '',
 			addTableContent: true,
 			indent: true,
+			indentLevel: 2,
 			subText: false,
+			codeStyles: false,
 			text: '',
 			...(value || {}),
 		};
@@ -35,7 +38,7 @@ export const Heading = {
 		return (
 			<Fragment>
 				<FieldContainer>
-					<FieldLabel htmlFor={'heading-text'} field={{ label: 'Heading Text', config: {} }} />
+					<FieldLabel htmlFor={'heading-text'} field={{ label: 'Heading text', config: {} }} />
 					<FieldInput>
 						<Input
 							id="heading-text"
@@ -46,7 +49,7 @@ export const Heading = {
 				</FieldContainer>
 				<div css={{ display: 'flex' }}>
 					<FieldContainer css={{ flexGrow: 1, marginRight: 30 }}>
-						<FieldLabel htmlFor={'heading-level'} field={{ label: 'Heading Level', config: {} }} />
+						<FieldLabel htmlFor={'heading-level'} field={{ label: 'Heading level', config: {} }} />
 						<Select
 							id="heading-level"
 							placeholder="Select a heading level"
@@ -55,14 +58,24 @@ export const Heading = {
 							onChange={({ value }) => update({ level: value })}
 						/>
 					</FieldContainer>
-					<FieldContainer css={{ flexGrow: 1 }}>
-						<FieldLabel htmlFor={'heading-size'} field={{ label: 'Heading Size', config: {} }} />
+					<FieldContainer css={{ flexGrow: 1, marginRight: 30 }}>
+						<FieldLabel htmlFor={'heading-size'} field={{ label: 'Heading size', config: {} }} />
 						<Select
 							id="heading-size"
 							placeholder="Select a heading size"
 							options={sizeOptions}
 							value={sizeOptions.find((o) => o.value === currentValue.size)}
 							onChange={({ value }) => update({ size: value })}
+						/>
+					</FieldContainer>
+					<FieldContainer css={{ flexGrow: 1 }}>
+						<FieldLabel htmlFor={'heading-indent'} field={{ label: 'Indent level', config: {} }} />
+						<Select
+							id="heading-indent"
+							placeholder="Select a heading size"
+							options={indentOptions}
+							value={indentOptions.find((o) => o.value === currentValue.indentLevel)}
+							onChange={({ value }) => update({ indentLevel: value })}
 						/>
 					</FieldContainer>
 				</div>
@@ -87,14 +100,14 @@ export const Heading = {
 							<span>Include in table of contents</span>
 						</label>
 					</FieldContainer>
-					<FieldContainer>
+					<FieldContainer css={{ marginRight: 42 }}>
 						<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
 							<CheckboxPrimitive
-								checked={currentValue.indent}
+								checked={currentValue.codeStyles}
 								tabIndex="0"
-								onChange={({ target }) => update({ indent: target.checked })}
+								onChange={({ target }) => update({ codeStyles: target.checked })}
 							/>
-							<span>Indent heading & subtext</span>
+							<span>Use code example styles</span>
 						</label>
 					</FieldContainer>
 				</div>
@@ -113,30 +126,44 @@ export const Heading = {
 		);
 	},
 
-	component: ({ heading, size, level, addTableContent, indent = true, subText, text }) => {
-		const id = heading.replace(/ /g, '-').toLowerCase();
-		const indentWidth = indent ? [12, null, null, 10] : 12;
-		const indentLeft = indent ? [1, null, null, 2] : 0;
+	component: ({
+		heading,
+		size,
+		level,
+		addTableContent,
+		indent = true,
+		indentLevel = 2,
+		codeStyles = false,
+		subText,
+		text,
+	}) => {
 		const mq = useMediaQuery();
+		const id = heading.replace(/ /g, '-').toLowerCase();
+		const widthMap = {
+			1: 12,
+			2: [12, null, null, 10],
+			3: [12, null, null, 9],
+		};
 
 		return (
-			<Cell width={indentWidth} left={indentLeft}>
+			<Cell width={widthMap[indentLevel]} left={[1, null, null, indentLevel]}>
 				<WestpacHeading
 					id={id}
 					tabIndex="-1"
 					tag={level}
-					size={[7, 7, 7, 7, size]}
-					{...(addTableContent && { 'data-toc': true })}
+					size={size <= 6 ? [7, null, null, null, size] : size}
 					overrides={{
 						Heading: {
 							styles: (styles) =>
-								mq({
-									...styles,
-									scrollMarginTop: '10.375rem',
-									marginBottom:
-										size < 7
-											? ['24px', null, null, null, '42px']
-											: ['12px', null, null, null, '18px'],
+								merge({}, styles, {
+									...mq({
+										scrollMarginTop: '10.375rem',
+										marginBottom: ['24px', null, null, null, '42px'],
+										...((codeStyles || size > 6) && {
+											marginBottom: ['12px', null, null, null, '18px'],
+										}),
+										...(size >= 9 && { marginBottom: '9px', textTransform: 'uppercase' }),
+									})[0],
 								}),
 						},
 					}}
@@ -144,8 +171,8 @@ export const Heading = {
 					{heading}
 				</WestpacHeading>
 				{subText && text && (
-					<Body css={{ p: { marginTop: 0 } }}>
-						<p css={{ lineHeight: 2 }}>{text}</p>
+					<Body css={mq({ p: { margin: ['0 0 18px', null, null, null, '0 0 24px'] } })}>
+						<p>{text}</p>
 					</Body>
 				)}
 			</Cell>

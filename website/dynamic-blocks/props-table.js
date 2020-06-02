@@ -208,13 +208,7 @@ const Component = ({ item, addTableContent }) => {
 			<Container>
 				<Grid rowGap={['36px', '36px', '36px', '36px', '42px']}>
 					<Cell width={12}>
-						<Heading
-							tag="h2"
-							size={[7, null, null, null, 6]}
-							id="props"
-							tabIndex="-1"
-							{...(addTableContent && { 'data-toc': true })}
-						>
+						<Heading tag="h2" size={[7, null, null, null, 6]} id="props" tabIndex="-1">
 							Props
 						</Heading>
 					</Cell>

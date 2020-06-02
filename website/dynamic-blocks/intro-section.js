@@ -61,9 +61,7 @@ const parseHeadings = (content) =>
 		.filter(
 			(item) =>
 				item.data.component &&
-				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText', 'CodeExample'].includes(
-					item.data.component
-				)
+				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText'].includes(item.data.component)
 		)
 		.filter((item) => item.data.props && item.data.props.addTableContent)
 		.map((item, i) => {

@@ -39,22 +39,15 @@ export const Navigation = ({ items }) => {
 
 			const page = router.query && router.query.page;
 
-			// TO DO: Remove later, using for debugging
-			console.log('page', page);
-			console.log('item', item);
-
 			let isCurrentChild = false;
 			// For non-dynamic paths we can check if the pathname matches item.path.
 			if (!page) {
 				isCurrentChild = router.pathname === item.path;
 			}
 			// For dynamic routes we check if the page route matches item.path.
-			if (page && page[0]) {
-				isCurrentChild = `/${page[0]}` === item.path;
-			}
-			// For dynamic routes with children we check if the combined page route matches item.path.
-			if (page && page[1]) {
-				isCurrentChild = `/${page.join('/')}` === item.path;
+			if (page) {
+				const regex = new RegExp(page.join('/'));
+				isCurrentChild = regex.test(item.path);
 			}
 
 			let href = BASE_PAGE;
