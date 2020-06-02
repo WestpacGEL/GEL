@@ -75,7 +75,10 @@ export const Navigation = ({ items }) => {
 	};
 
 	return (
-		<nav css={{ flex: 1, overflowY: 'scroll', webkitOverflowScrolling: 'touch' }} role="navigation">
+		<nav
+			role="navigation"
+			css={{ flex: 1, overflowY: 'scroll', '-webkitOverflowScrolling': 'touch' }}
+		>
 			<a
 				href="/"
 				css={{ display: 'block !important', overflow: 'hidden', height: '90px' }}
