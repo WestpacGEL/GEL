@@ -15,7 +15,15 @@ export const IconTitle = ({ icon: Icon, children }) => {
 				borderBottom: `solid 1px ${COLORS.neutral}`,
 			}}
 		>
-			<Heading tag="h3" size={7} css={{ fontWeight: 500 }}>
+			<Heading
+				tag="h3"
+				size={8}
+				overrides={{
+					Heading: {
+						styles: (styles) => ({ ...styles, fontWeight: 600 }),
+					},
+				}}
+			>
 				{children}
 			</Heading>
 			<Icon size="medium" />

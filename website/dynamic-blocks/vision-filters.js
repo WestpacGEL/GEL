@@ -218,7 +218,7 @@ export const VisionFilters = {
 					id={id}
 					tabIndex="-1"
 					tag={level}
-					size={[7, null, null, null, size]}
+					size={[7, null, size]}
 					{...(addTableContent && { 'data-toc': true })}
 					overrides={{
 						Heading: {
@@ -226,14 +226,14 @@ export const VisionFilters = {
 								mq({
 									...styles,
 									scrollMarginTop: '10.375rem',
-									marginBottom: ['12px', null, null, null, '18px'],
+									marginBottom: ['12px', null, '18px'],
 								}),
 						},
 					}}
 				>
 					{heading}
 				</Heading>
-				<Body css={mq({ p: { margin: ['0 0 18px', null, null, null, '0 0 24px'] } })}>
+				<Body css={mq({ p: { margin: ['0 0 18px', null, '0 0 24px'] } })}>
 					<p>
 						{subText} Read more about these vision impairments on our{' '}
 						<a href={href} onClick={handleClick}>

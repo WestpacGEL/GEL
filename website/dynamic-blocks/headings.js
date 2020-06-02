@@ -145,22 +145,28 @@ export const Heading = {
 			3: [12, null, null, 9],
 		};
 
+		const indentMap = {
+			1: 1,
+			2: [1, null, null, 2],
+			3: [1, null, 2, 3],
+		};
+
 		return (
-			<Cell width={widthMap[indentLevel]} left={[1, null, null, indentLevel]}>
+			<Cell width={widthMap[indentLevel]} left={indentMap[indentLevel]}>
 				<WestpacHeading
 					id={id}
 					tabIndex="-1"
 					tag={level}
-					size={size <= 6 ? [7, null, null, null, size] : size}
+					size={size <= 6 ? [7, null, size] : size}
 					overrides={{
 						Heading: {
 							styles: (styles) =>
 								merge({}, styles, {
 									...mq({
 										scrollMarginTop: '10.375rem',
-										marginBottom: ['24px', null, null, null, '42px'],
+										marginBottom: ['24px', null, '42px'],
 										...((codeStyles || size > 6) && {
-											marginBottom: ['12px', null, null, null, '18px'],
+											marginBottom: ['12px', null, '18px'],
 										}),
 										...(size >= 9 && { marginBottom: '9px', textTransform: 'uppercase' }),
 									})[0],
@@ -171,7 +177,7 @@ export const Heading = {
 					{heading}
 				</WestpacHeading>
 				{subText && text && (
-					<Body css={mq({ p: { margin: ['0 0 18px', null, null, null, '0 0 24px'] } })}>
+					<Body css={mq({ p: { margin: ['0 0 18px', null, '0 0 24px'] } })}>
 						<p>{text}</p>
 					</Body>
 				)}

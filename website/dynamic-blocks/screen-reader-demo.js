@@ -46,7 +46,7 @@ export const ScreenReaderText = {
 		return (
 			<Fragment>
 				<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
-					<Heading tag="h2" size={[7, null, null, null, 6]} id="screen-readers" tabIndex="-1">
+					<Heading tag="h2" size={[7, null, 6]} id="screen-readers" tabIndex="-1">
 						Screen readers
 					</Heading>
 				</Cell>
