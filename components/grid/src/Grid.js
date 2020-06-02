@@ -16,7 +16,6 @@ export const Grid = ({
 	columnGap,
 	columns,
 	flow,
-	gridColumnGap,
 	gap,
 	height,
 	justifyContent,
@@ -42,7 +41,6 @@ export const Grid = ({
 		columnGap,
 		columns,
 		flow,
-		gridColumnGap,
 		gap,
 		height,
 		justifyContent,
@@ -98,9 +96,13 @@ Grid.propTypes = {
 	areas: PropTypes.arrayOf(PropTypes.string),
 
 	/**
-	 * The `column-gap` CSS property.
+	 * The `column-gap` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
-	columnGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	columnGap: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+	]).isRequired,
 
 	/**
 	 * The `grid-template-columns` CSS property. When a number is passed it is a
@@ -114,16 +116,7 @@ Grid.propTypes = {
 	flow: PropTypes.oneOf(['column dense', 'column', 'dense', 'row dense', 'row']).isRequired,
 
 	/**
-	 * The `grid-column-gap` CSS property. When using an array the values are applied to the applicable breakpoints.
-	 */
-	gridColumnGap: PropTypes.oneOfType([
-		PropTypes.number,
-		PropTypes.string,
-		PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-	]).isRequired,
-
-	/**
-	 * The `grid-gap` CSS property. When using an array the values are applied to the applicable breakpoints.
+	 * The `gap` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
 	gap: PropTypes.oneOfType([
 		PropTypes.number,
@@ -204,7 +197,6 @@ Grid.propTypes = {
 Grid.defaultProps = {
 	columns: 12,
 	gap: [12, 24],
-	gridColumnGap: [12, 24],
 	flow: 'row',
 	height: 'auto',
 	minRowHeight: 32,
