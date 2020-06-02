@@ -101,7 +101,7 @@ const Tabs = ({ component, tabName }) => {
 				position: 'sticky',
 				top: '66px',
 				zIndex: 5,
-				boxShadow: scrolled && '0 4px 4px rgba(0, 0, 0, 0.3)',
+				boxShadow: scrolled && '0 2px 5px rgba(0,0,0,0.3)',
 				transition: 'box-shadow 0.2s ease',
 				...mq({
 					height: ['66px', null, '90px'],
