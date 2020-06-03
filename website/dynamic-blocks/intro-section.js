@@ -95,7 +95,7 @@ const TableOfContents = ({ content }) => {
 		<div ref={introRef}>
 			<Heading
 				tag="h2"
-				size={8}
+				size={9}
 				overrides={{
 					Heading: {
 						styles: (styles) => ({
