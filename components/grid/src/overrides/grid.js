@@ -12,7 +12,6 @@ const gridStyles = (
 		columnGap,
 		columns,
 		flow,
-		gridColumnGap,
 		gap,
 		height,
 		justifyContent,
@@ -29,17 +28,18 @@ const gridStyles = (
 
 	return mq({
 		alignContent,
-		columnGap,
 		display: 'grid',
+		gap,
 		gridAutoFlow: flow,
 		gridAutoRows: `minmax(${stringVal(minRowHeight)}, auto)`,
-		gridColumnGap,
-		gridGap: gap,
 		gridTemplateAreas: areas ? formatAreas(areas) : null,
 		gridTemplateColumns: repeatNumeric(columns),
 		gridTemplateRows: rows ? repeatNumeric(rows) : null,
 		height,
 		justifyContent,
+
+		// must come after `gap` property
+		columnGap,
 		rowGap,
 	})[0];
 };

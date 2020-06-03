@@ -1,17 +1,16 @@
 /** @jsx jsx */
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 import React from 'react';
 import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
 
 const StickyHeaderImage = ({ brand, hide, ...rest }) => {
-	const { LAYOUT } = useBrand();
 	const mq = useMediaQuery();
 
 	const WestpacImage = (props) => (
 		<div
 			css={mq({
-				top: 0,
-				bottom: [0, null, 'auto'],
+				top: [0, null, 'auto'],
+				bottom: 0,
 				right: 0,
 				height: [null, null, 658, 633],
 			})}
