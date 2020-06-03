@@ -136,6 +136,7 @@ const slateRenderer = (item, _editorValue) => {
 									'& > li::before': {
 										marginTop: '6px',
 									},
+									marginBottom: '12px',
 								}}
 								type="bullet"
 							>
@@ -147,7 +148,7 @@ const slateRenderer = (item, _editorValue) => {
 				case 'ordered-list':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List css={textStyle} type="ordered">
+							<List css={{ ...textStyle, marginBottom: '12px' }} type="ordered">
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>

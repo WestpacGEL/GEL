@@ -25,6 +25,7 @@ export const Heading = {
 			indentLevel: 2,
 			subText: false,
 			codeStyles: false,
+			removeTopMargin: false,
 			text: '',
 			...(value || {}),
 		};
@@ -110,6 +111,16 @@ export const Heading = {
 							<span>Use code example styles</span>
 						</label>
 					</FieldContainer>
+					<FieldContainer css={{ marginRight: 42 }}>
+						<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+							<CheckboxPrimitive
+								checked={currentValue.removeTopMargin}
+								tabIndex="0"
+								onChange={({ target }) => update({ removeTopMargin: target.checked })}
+							/>
+							<span>Remove top margin</span>
+						</label>
+					</FieldContainer>
 				</div>
 				{currentValue.subText && (
 					<FieldContainer>
@@ -134,6 +145,7 @@ export const Heading = {
 		indent = true,
 		indentLevel = 2,
 		codeStyles = false,
+		removeTopMargin = false,
 		subText,
 		text,
 	}) => {
@@ -151,6 +163,12 @@ export const Heading = {
 			3: [1, null, 2, 3],
 		};
 
+		const marginMap = {
+			6: ['24px', null, '42px'],
+			8: ['12px', null, '18px'],
+			10: '12px',
+		};
+
 		return (
 			<Cell width={widthMap[indentLevel]} left={indentMap[indentLevel]}>
 				<WestpacHeading
@@ -164,11 +182,9 @@ export const Heading = {
 								merge({}, styles, {
 									...mq({
 										scrollMarginTop: '10.375rem',
-										marginBottom: ['24px', null, '42px'],
-										...((codeStyles || size > 6) && {
-											marginBottom: ['12px', null, '18px'],
-										}),
-										...(size >= 9 && { marginBottom: '9px', textTransform: 'uppercase' }),
+										marginTop: !removeTopMargin && size > 6 && '12px',
+										marginBottom: codeStyles ? ['12px', null, '18px'] : marginMap[size],
+										textTransform: size === 10 && 'uppercase',
 									})[0],
 								}),
 						},
