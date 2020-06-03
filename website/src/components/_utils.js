@@ -53,13 +53,42 @@ export const getURL = (d) => {
 	return '';
 };
 
-export const brandHeaderColors = {
-	WBC: (COLORS) => COLORS.primary,
-	WBG: (COLORS) => COLORS.hero,
-	STG: (COLORS) => COLORS.hero,
-	BSA: (COLORS) => `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
-	BOM: (COLORS) => COLORS.hero,
-	BTFG: (COLORS) => COLORS.hero,
+export const antialiasingStyling = {
+	'-webkitFontSmoothing': 'antialiased',
+	'-mozOsxFontSmoothing': 'grayscale',
+};
+
+export const brandHeaderStyling = {
+	WBC: (COLORS) => ({
+		background: COLORS.primary,
+		color: '#fff',
+		antialiasing: antialiasingStyling,
+	}),
+	WBG: (COLORS) => ({
+		background: COLORS.hero,
+		color: '#fff',
+		antialiasing: antialiasingStyling,
+	}),
+	STG: (COLORS) => ({
+		background: COLORS.hero,
+		color: COLORS.text,
+		antialiasing: null,
+	}),
+	BSA: (COLORS) => ({
+		background: `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
+		color: '#fff',
+		antialiasing: antialiasingStyling,
+	}),
+	BOM: (COLORS) => ({
+		background: COLORS.hero,
+		color: '#fff',
+		antialiasing: antialiasingStyling,
+	}),
+	BTFG: (COLORS) => ({
+		background: COLORS.hero,
+		color: '#fff',
+		antialiasing: antialiasingStyling,
+	}),
 };
 
 export const brandIconHighlightColors = {

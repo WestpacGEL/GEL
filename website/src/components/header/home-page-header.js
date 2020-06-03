@@ -7,14 +7,13 @@ import { Cell, Container, Grid } from '@westpac/grid';
 import { BrandHeading } from '@westpac/heading';
 import HeaderImage from './home-page-header-image';
 import StickyHeaderImage from './sticky-header-image';
-import { RichText } from '../rich-text';
-import { brandHeaderColors, brandIconHighlightColors } from '../_utils';
+import { brandHeaderStyling, brandIconHighlightColors } from '../_utils';
 import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../symbols';
 import { useSidebar } from '../providers/sidebar';
 
 const HomePageHeader = () => {
-	const { BRAND, COLORS, SPACING, LAYOUT } = useBrand();
-	const backgroundColor = brandHeaderColors[BRAND](COLORS);
+	const { BRAND, COLORS, SPACING } = useBrand();
+	const headerStyling = brandHeaderStyling[BRAND](COLORS);
 	const mq = useMediaQuery();
 	const main = useRef(null);
 
@@ -22,10 +21,13 @@ const HomePageHeader = () => {
 		<section
 			ref={main}
 			css={mq({
-				color: BRAND === 'STG' ? COLORS.text : '#fff',
 				position: 'relative',
 				overflow: 'hidden',
-				background: [null, null, backgroundColor],
+				paddingTop: [SPACING(14), SPACING(18)],
+				paddingBottom: [SPACING(7), SPACING(11)],
+				background: [null, null, headerStyling.background],
+				color: [null, null, headerStyling.color],
+				...headerStyling.antialiasing,
 			})}
 		>
 			<HeaderImage brand={BRAND} aria-hidden="true" />
@@ -36,10 +38,10 @@ const HomePageHeader = () => {
 };
 
 const StickyHeader = () => {
-	const { COLORS, SPACING, BRAND, LAYOUT } = useBrand();
+	const { COLORS, SPACING, BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const { isOpen, setIsOpen } = useSidebar();
-	const backgroundColor = brandHeaderColors[BRAND](COLORS);
+	const headerStyling = brandHeaderStyling[BRAND](COLORS);
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
 	useEffect(() => {
@@ -65,65 +67,60 @@ const StickyHeader = () => {
 				ref={header}
 				css={mq({
 					boxSizing: 'border-box',
-					position: ['fixed', null, !hasScrolled && 'absolute'],
-					zIndex: 9,
-					left: 0,
-					right: 0,
-					marginLeft: [null, null, null, null, hasScrolled && 300],
 					display: 'flex',
 					alignItems: 'center',
+					position: ['fixed', null, !hasScrolled && 'absolute'],
+					zIndex: 9,
+					top: 0,
+					left: 0,
+					right: 0,
 					height: 66,
-					paddingLeft: SPACING(12),
-					background: [backgroundColor, null, !hasScrolled && 'unset'],
-					boxShadow: [`0 5px 11px -2px ${COLORS.borderDark}`, null, !hasScrolled && 'none'],
+					marginLeft: [null, null, null, null, hasScrolled && 300],
+					paddingLeft: [72, null, null, null, 60], //66px (button) + 6px (gap),
+					background: [headerStyling.background, null, !hasScrolled && 'unset'],
+					color: headerStyling.color,
+					boxShadow: ['0 2px 5px rgba(0,0,0,0.3)', null, !hasScrolled && 'none'],
 					overflow: 'hidden',
 				})}
 			>
 				<button
 					type="button"
-					css={{
-						display: 'block',
-						padding: 0,
-						left: 0,
+					css={mq({
+						display: ['flex', null, null, null, 'none'],
+						alignItems: 'center',
+						justifyContent: 'center',
+
 						background: 'none',
 						border: 'none',
 						cursor: 'pointer',
-						zIndex: 3,
+
 						position: 'fixed',
-						height: '66px',
-						width: '66px',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						paddingBottom: '5px',
+						zIndex: 3,
 						top: 0,
-						[`@media only screen and (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
-							margin: SPACING(2),
-						},
-						[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-							display: 'none',
-						},
-					}}
+						left: 0,
+						height: 66,
+						width: 66,
+						margin: [null, null, SPACING(2)],
+						padding: 0,
+					})}
 					onClick={() => setIsOpen(!isOpen)}
 				>
-					<HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : COLORS.light} />
+					<HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : '#fff'} />
 				</button>
-				<div
+				<p
 					css={mq({
-						height: '66px',
+						boxSizing: 'border-box',
 						display: 'flex',
 						alignItems: 'center',
-						width: '100%',
-						margin: 0,
-						marginTop: '-2px',
-						borderBottom: [0, null, hasScrolled ? 0 : '1px solid rgba(255,255,255,0.7)'],
+						borderBottom: [null, null, hasScrolled ? 0 : '1px solid rgba(255,255,255,0.7)'],
 						zIndex: 6,
+						height: '100%',
+						flex: 1,
+						margin: 0,
 					})}
 				>
-					<p>
-						Design<strong>System</strong>
-					</p>
-				</div>
+					Design<strong>System</strong>
+				</p>
 
 				<StickyHeaderImage brand={BRAND} hide={!hasScrolled} aria-hidden="true" />
 			</div>
@@ -183,7 +180,7 @@ const IconText = ({ icon, iconMobile, children }) => {
 };
 
 const HeroIntro = () => {
-	const { SPACING, COLORS, BRAND, LAYOUT, PACKS } = useBrand();
+	const { SPACING, COLORS, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -191,104 +188,99 @@ const HeroIntro = () => {
 			css={mq({
 				zIndex: 3,
 				position: 'relative',
-				overflow: 'hidden',
-				margin: '0 auto',
-				maxWidth: '60rem',
-				marginTop: '66px',
-				marginBottom: [SPACING(7), SPACING(11)],
-				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-					color: COLORS.text,
-				},
 			})}
 		>
-			<Grid css={mq({ marginTop: [`${SPACING(4)}`, `${SPACING(7)}`] })}>
-				<Cell width={[10, 12, 10, 10]} left={[2, 1, 2, 2]}>
+			<Grid>
+				<Cell width={[10, 12, 8]} left={[2, 1, 3]}>
 					<Body>
 						<BrandHeading
 							tag="h1"
 							size={[4, null, 1]}
 							css={mq({
-								color: [
-									null,
-									null,
-									BRAND === 'STG' ? `${COLORS.text} !important` : `#fff !important`,
-								],
+								color: [null, null, `inherit !important`],
 							})}
 						>
 							Design to scale with confidence
 						</BrandHeading>
-						<p
-							css={mq({
-								margin: [`${SPACING(4)} 0 0 !important`, `${SPACING(6)} 0 0 !important`],
-								...PACKS.typeScale.bodyFont[8],
-							})}
-						>
-							Assemble enterprise solutions with our components and patterns
-						</p>
 					</Body>
-
-					<Grid rowGap={[24, 'normal']} css={mq({ marginTop: [SPACING(4), SPACING(10)] })}>
-						<Cell width={[12, 4]}>
-							<IconText
-								icon={
-									<StopwatchSvg
-										outlineColor={COLORS.light}
-										highlightOutlineColor={COLORS.light}
-										highlightColor={COLORS.light}
-									/>
-								}
-								iconMobile={
-									<StopwatchSvg
-										outlineColor={COLORS.borderDark}
-										highlightOutlineColor={COLORS.text}
-										highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-									/>
-								}
-							>
-								Get to market faster by leveraging our knowledge and tools
-							</IconText>
-						</Cell>
-						<Cell width={[12, 4]}>
-							<IconText
-								icon={
-									<TruckSvg
-										outlineColor={COLORS.light}
-										highlightOutlineColor={COLORS.light}
-										highlightColor="none"
-									/>
-								}
-								iconMobile={
-									<TruckSvg
-										outlineColor={COLORS.borderDark}
-										highlightOutlineColor={COLORS.text}
-										highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-									/>
-								}
-							>
-								Design, build and ship consistent, quality, branded solutions
-							</IconText>
-						</Cell>
-						<Cell width={[12, 4]}>
-							<IconText
-								icon={
-									<AccessibilitySvg
-										outlineColor={COLORS.light}
-										highlightOutlineColor={COLORS.light}
-										highlightColor="none"
-									/>
-								}
-								iconMobile={
-									<AccessibilitySvg
-										outlineColor={COLORS.borderDark}
-										highlightOutlineColor={COLORS.text}
-										highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-									/>
-								}
-							>
-								Be more accessible and inclusive with our assets
-							</IconText>
-						</Cell>
-					</Grid>
+				</Cell>
+			</Grid>
+			<Grid css={mq({ marginTop: [SPACING(4), SPACING(6)] })}>
+				<Cell width={10} left={2}>
+					<p
+						css={mq({
+							margin: 0,
+							...PACKS.typeScale.bodyFont[8],
+						})}
+					>
+						Assemble enterprise solutions with our components and patterns
+					</p>
+				</Cell>
+			</Grid>
+			<Grid
+				rowGap={[24, 'normal']}
+				columnGap={[null, 30]}
+				css={mq({ marginTop: [SPACING(4), SPACING(10)] })}
+			>
+				<Cell width={[12, 4]}>
+					<IconText
+						icon={
+							<StopwatchSvg
+								outlineColor={COLORS.light}
+								highlightOutlineColor={COLORS.light}
+								highlightColor={COLORS.light}
+							/>
+						}
+						iconMobile={
+							<StopwatchSvg
+								outlineColor={COLORS.borderDark}
+								highlightOutlineColor={COLORS.text}
+								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
+							/>
+						}
+					>
+						Get to market faster by leveraging our knowledge and tools
+					</IconText>
+				</Cell>
+				<Cell width={[12, 4]}>
+					<IconText
+						icon={
+							<TruckSvg
+								outlineColor={COLORS.light}
+								highlightOutlineColor={COLORS.light}
+								highlightColor="none"
+							/>
+						}
+						iconMobile={
+							<TruckSvg
+								outlineColor={COLORS.borderDark}
+								highlightOutlineColor={COLORS.text}
+								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
+							/>
+						}
+					>
+						Design, build and ship consistent, quality, branded solutions
+					</IconText>
+				</Cell>
+				<Cell width={[12, 4]}>
+					<IconText
+						icon={
+							<AccessibilitySvg
+								outlineColor={COLORS.light}
+								highlightOutlineColor={COLORS.light}
+								highlightColor="none"
+							/>
+						}
+						iconMobile={
+							<AccessibilitySvg
+								outlineColor={COLORS.borderDark}
+								highlightOutlineColor={COLORS.text}
+								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
+							/>
+						}
+					>
+						Be more accessible and inclusive with our assets
+					</IconText>
 				</Cell>
 			</Grid>
 		</Container>
