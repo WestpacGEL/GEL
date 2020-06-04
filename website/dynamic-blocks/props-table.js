@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react'; // Needed for within Keystone
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
-import { Heading } from '@westpac/heading';
-import PropTypes from '../../GEL.json';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
+import { Heading } from '@westpac/heading';
+
 import { FieldContainer } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 
+import PropTypes from '../../GEL.json';
 /**
  * A small helper component for inline code blocks
  */
@@ -201,14 +201,14 @@ const Component = ({ item, addTableContent }) => {
 	return (
 		<div
 			css={mq({
-				padding: ['36px 0 98px', null, null, null, '60px 0 122px'],
+				padding: ['36px 0 98px', null, '60px 0 122px'],
 				backgroundColor: '#fff',
 			})}
 		>
 			<Container>
-				<Grid rowGap={['36px', '36px', '36px', '36px', '42px']}>
+				<Grid rowGap={['36px', null, '42px']}>
 					<Cell width={12}>
-						<Heading tag="h2" size={[7, null, null, null, 6]} id="props" tabIndex="-1">
+						<Heading tag="h2" size={[7, null, 6]} id="props" tabIndex="-1">
 							Props
 						</Heading>
 					</Cell>

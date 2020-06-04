@@ -11,7 +11,7 @@ import { defaultModal } from './overrides/modal';
 import { defaultBackdrop } from './overrides/backdrop';
 import { defaultCloseBtn } from './overrides/closeBtn';
 import { defaultHeader } from './overrides/header';
-import { defaultTitle } from './overrides/title';
+import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
 
 // ==============================
@@ -56,7 +56,7 @@ export const Modal = ({
 		Modal: defaultModal,
 		Backdrop: defaultBackdrop,
 		Header: defaultHeader,
-		Title: defaultTitle,
+		Heading: defaultHeading,
 		CloseBtn: defaultCloseBtn,
 	};
 
@@ -74,12 +74,12 @@ export const Modal = ({
 		Modal: { component: Modal, styles: modalStyles, attributes: modalAttributes },
 		Backdrop: { component: Backdrop, styles: backdropStyles, attributes: backdropAttributes },
 		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
-		Title: { component: Title, styles: titleStyles, attributes: titleAttributes },
+		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
 		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const modalRef = useRef();
-	const titleRef = useRef();
+	const headingRef = useRef();
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -117,7 +117,7 @@ export const Modal = ({
 			<GEL brand={brand}>
 				<ModalContext.Provider value={{ state }}>
 					<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
-					<FocusOn enabled={open} onActivation={() => titleRef.current.focus()}>
+					<FocusOn enabled={open} onActivation={() => headingRef.current.focus()}>
 						<Modal
 							ref={modalRef}
 							state={state}
@@ -126,14 +126,14 @@ export const Modal = ({
 							css={modalStyles(state)}
 						>
 							<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
-								<Title
-									ref={titleRef}
+								<Heading
+									ref={headingRef}
 									state={state}
-									{...titleAttributes(state)}
-									css={titleStyles(state)}
+									{...headingAttributes(state)}
+									css={headingStyles(state)}
 								>
 									{heading}
-								</Title>
+								</Heading>
 								{dismissible && (
 									<CloseBtn
 										onClick={() => handleClose()}
@@ -211,7 +211,7 @@ Modal.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Title: PropTypes.shape({
+		Heading: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

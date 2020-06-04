@@ -136,6 +136,7 @@ const slateRenderer = (item, _editorValue) => {
 									'& > li::before': {
 										marginTop: '6px',
 									},
+									marginBottom: '12px',
 								}}
 								type="bullet"
 							>
@@ -147,7 +148,7 @@ const slateRenderer = (item, _editorValue) => {
 				case 'ordered-list':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List css={textStyle} type="ordered">
+							<List css={{ ...textStyle, marginBottom: '12px' }} type="ordered">
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>
@@ -169,13 +170,13 @@ const slateRenderer = (item, _editorValue) => {
 						<section
 							key={path}
 							css={mq({
-								paddingTop: ['30px', null, null, null, '60px'],
+								paddingTop: ['30px', null, '60px'],
 							})}
 						>
 							<Container>
 								<Grid rowGap="0 !important">{serializeChildren(node.nodes)}</Grid>
 							</Container>
-							<Separator css={mq({ marginTop: ['30px', null, null, null, '60px'] })} />
+							<Separator css={mq({ marginTop: ['30px', null, '60px'] })} />
 						</section>
 					);
 				case 'dynamic-components': {

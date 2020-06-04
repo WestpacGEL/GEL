@@ -35,7 +35,7 @@ function Example({ brand }) {
 				<Button onClick={() => updateModal('default', true)}>Open default modal</Button>
 			</p>
 			<Modal
-				heading="Modal title"
+				heading="Modal heading"
 				open={state.default.open}
 				onClose={() => updateModal('default', false)}
 			>
@@ -58,7 +58,7 @@ function Example({ brand }) {
 				<Button onClick={() => updateModal('small', true)}>Open small modal</Button>
 			</p>
 			<Modal
-				heading="Modal title Modal title Modal title Modal title Modal title Modal title"
+				heading="Modal heading Modal heading Modal heading Modal heading Modal heading Modal heading"
 				open={state.small.open}
 				onClose={() => updateModal('small', false)}
 				size="small"
@@ -93,7 +93,7 @@ function Example({ brand }) {
 				<Button onClick={() => updateModal('large', true)}>Open large modal</Button>
 			</p>
 			<Modal
-				heading="Modal title"
+				heading="Modal heading"
 				open={state.large.open}
 				onClose={() => updateModal('large', false)}
 				size="large"

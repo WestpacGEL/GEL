@@ -1,15 +1,13 @@
 /** @jsx jsx */
 import { Fragment, useState, useCallback, useEffect, forwardRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { useTransition, animated } from 'react-spring';
 import { useRouter } from 'next/router';
 import debounce from 'lodash.debounce';
 import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { Footer } from '../../components/layout';
+import { Gridly, Footer } from '../../components/layout';
 
 import { PageContext, usePageContext } from '../../components/providers/pageContext';
 import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
@@ -201,37 +199,6 @@ const Tabs = ({ component, tabName }) => {
 		>
 			{tabs}
 		</Tabcordion>
-	);
-};
-
-const Gridly = ({ show }) => {
-	const transitions = useTransition(show, null, {
-		from: { opacity: 0 },
-		enter: { opacity: 0.6 },
-		leave: { opacity: 0 },
-	});
-
-	return transitions.map(
-		({ item, key, props }) =>
-			item && (
-				<animated.div key={key} style={props}>
-					<Container
-						css={{
-							position: 'absolute',
-							top: 0,
-							bottom: 0,
-							right: 0,
-							left: 0,
-						}}
-					>
-						<Grid css={{ height: '100%' }}>
-							{[...new Array(12)].map((item, index) => (
-								<Cell key={index} css={{ backgroundColor: '#fff' }} />
-							))}
-						</Grid>
-					</Container>
-				</animated.div>
-			)
 	);
 };
 

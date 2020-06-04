@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 
 const PopoverHeading = ({ state: { headingTag }, ...rest }) => (
-	<Heading size={8} tag={headingTag} {...rest} />
+	<Heading size={9} tag={headingTag} {...rest} />
 );
 
 const headingStyles = () => {

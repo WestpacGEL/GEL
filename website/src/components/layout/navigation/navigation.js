@@ -46,7 +46,7 @@ export const Navigation = ({ items }) => {
 			}
 			// For dynamic routes we check if the page route matches item.path.
 			if (page) {
-				const regex = new RegExp(page.join('/'));
+				const regex = new RegExp(`${page.join('/')}$`);
 				isCurrentChild = regex.test(item.path);
 			}
 
