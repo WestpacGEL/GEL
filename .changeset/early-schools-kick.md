@@ -3,4 +3,4 @@
 ---
 
 - remove `gridColumnGap` prop (retain existing `columnGap` prop)
-- `gap` prop CSS renders as `gap` (rather than `grid-gap`)
+- update gap styling, render as CSS `gap` (rather than `grid-gap`)
