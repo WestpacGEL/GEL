@@ -11,7 +11,7 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Button onClick={() => setOpen(true)}>Open</Button>
-			<Modal heading="Modal title" open={open} onClose={() => setOpen(false)}>
+			<Modal heading="Modal heading" open={open} onClose={() => setOpen(false)}>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
