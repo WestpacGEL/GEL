@@ -4,7 +4,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 
 const AlertHeading = ({ state: { headingTag }, ...rest }) => (
-	<Heading size={7} tag={headingTag} {...rest} />
+	<Heading size={9} tag={headingTag} {...rest} />
 );
 
 const headingStyles = () => {

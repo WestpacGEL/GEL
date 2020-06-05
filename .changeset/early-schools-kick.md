@@ -2,5 +2,5 @@
 '@westpac/grid': major
 ---
 
-- remove `gridColumnGap` prop (retain existing `columnGap` prop)
-- `gap` prop CSS renders as `gap` (rather than `grid-gap`)
+- Remove `gridColumnGap` prop (retain existing `columnGap` prop)
+- Update gap styling, render as CSS `gap` (rather than `grid-gap`)
