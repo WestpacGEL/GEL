@@ -1,30 +1,32 @@
 /** @jsx jsx */
+
 import React, { Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Cell } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import chroma from 'chroma-js';
+
 import { secondaryColors } from '../src/secondary-colors.js';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 // Recursively render swatches
 const Swatch = ({ color, name }) => {
 	if (!chroma.valid(color)) return null;
 	const { SPACING } = useBrand();
-
+	const mq = useMediaQuery();
 	const [r, g, b] = chroma(color).rgb();
 	return (
 		<Fragment>
 			<div css={{ background: color, height: SPACING(12) }} />
 			<div
-				css={{
+				css={mq({
 					padding: SPACING(2),
 					display: 'flex',
 					flexDirection: 'column',
 					background: 'white',
 					fontSize: '0.875rem',
 					lineHeight: 1.2,
-				}}
+					marginBottom: ['18px', '24px'],
+				})}
 			>
 				<strong css={{ marginBottom: SPACING(1, true) }}>{name}</strong>
 				<span css={{ marginBottom: SPACING(1, true) }}>{color}</span>
@@ -70,12 +72,7 @@ export const ColorSwatch = {
 						return (
 							<Fragment key={color.value}>
 								{Object.entries(secondaryColors[BRAND]).map((secondaryColor) => (
-									<Cell
-										key={secondaryColor[1]}
-										width={[10, 10, 4, 3]}
-										left={[2, 2, 'auto']}
-										css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
-									>
+									<Cell key={secondaryColor[1]} width={[10, 6, 4, 3]} left={[2, 'auto']}>
 										<Swatch color={secondaryColor[1]} name={secondaryColor[0]} />
 									</Cell>
 								))}
@@ -83,12 +80,7 @@ export const ColorSwatch = {
 						);
 					} else {
 						return (
-							<Cell
-								key={color.value}
-								width={[10, 10, 4, 3]}
-								left={[2, 2, 'auto']}
-								css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
-							>
+							<Cell key={color.value} width={[10, 6, 4, 3]} left={[2, 'auto']}>
 								<Swatch color={color.value} name={color.label} />
 							</Cell>
 						);

@@ -67,8 +67,6 @@ const Icon = () => {
 						>
 							<label
 								htmlFor={'filter-icons'}
-								value={search}
-								onChange={(e) => setSearch(e.target.value)}
 								css={mq({
 									marginRight: '1rem',
 									marginBottom: ['0.75rem', null, 0],
@@ -77,7 +75,11 @@ const Icon = () => {
 							>
 								Filter by name
 							</label>
-							<TextInput />
+							<TextInput
+								id={'filter-icons'}
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
+							/>
 						</div>
 					</Cell>
 				</Grid>
