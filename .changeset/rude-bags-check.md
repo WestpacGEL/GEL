@@ -2,4 +2,4 @@
 '@westpac/icon': patch
 ---
 
-update Slack icon
+Update Slack icon
