@@ -1,13 +1,15 @@
 /** @jsx jsx */
-import { useRouter } from 'next/router';
+import { GEL, jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { useContainerQuery } from '@westpac/hooks';
 import { useQuery } from '@apollo/react-hooks';
-import { GEL, jsx, useBrand } from '@westpac/core';
-
-import { BrandPicker } from '../brand-picker';
-import { Footer, Normalize, Sidebar } from './';
-import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
-import { SidebarProvider } from '../providers/sidebar';
+import { useRouter } from 'next/router';
+import { useRef, useEffect } from 'react';
 import gql from 'graphql-tag';
+
+import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
+import { SidebarProvider, useSidebar } from '../providers/sidebar';
+import { BrandPicker } from '../brand-picker';
+import { Normalize, Sidebar } from './';
 
 /*
   Wrapper with logic
@@ -71,19 +73,29 @@ const Wrapper = (props) => {
 */
 
 const GridContainer = (props) => {
+	const mq = useMediaQuery();
 	const { LAYOUT } = useBrand();
+	const ref = useRef();
+	const { width } = useContainerQuery(ref);
+	const { setIsOpen } = useSidebar();
+
+	useEffect(() => {
+		if (width >= LAYOUT.breakpoints.lg) {
+			setIsOpen(true);
+		} else {
+			setIsOpen(false);
+		}
+	}, [width]);
+
 	return (
 		<div
-			css={{
+			ref={ref}
+			css={mq({
 				display: 'grid',
-				gridTemplateColumns: '1fr',
+				gridTemplateColumns: ['1fr', null, null, null, '300px auto'],
 				width: '100vw',
 				height: '100vh',
-
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-					gridTemplateColumns: '300px auto',
-				},
-			}}
+			})}
 			{...props}
 		/>
 	);

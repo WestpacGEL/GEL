@@ -20,7 +20,10 @@ const renderSymbols = (search) => {
 		.map((symbol) => {
 			const Symbol = symbol.symbol;
 			return (
-				<Cell width={[12, null, 6, 4, 3]} css={{ display: 'flex' }}>
+				<Cell
+					width={[12, null, 6, 4]}
+					css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 3' }, display: 'flex' }}
+				>
 					<div
 						key={symbol.name}
 						css={{
@@ -65,8 +68,6 @@ const Symbol = () => {
 						>
 							<label
 								htmlFor={'filter-symbols'}
-								value={search}
-								onChange={(e) => setSearch(e.target.value)}
 								css={mq({
 									marginRight: '1rem',
 									marginBottom: ['0.75rem', null, 0],
@@ -75,7 +76,11 @@ const Symbol = () => {
 							>
 								Filter by name
 							</label>
-							<TextInput id={'filter-symbols'} />
+							<TextInput
+								id={'filter-symbols'}
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
+							/>
 						</div>
 					</Cell>
 				</Grid>
