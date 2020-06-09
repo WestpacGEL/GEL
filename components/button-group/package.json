@@ -4,6 +4,23 @@
 	"description": "Westpac GEL button group component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-group",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"contributors": [
+		{
+			"name": "Dominik Wilkowski",
+			"email": "Hi@Dominik-Wilkowski.com",
+			"url": "https://dominik-wilkowski.com"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
+		}
+	],
 	"blender": {
 		"recipe": "blender/recipe.js",
 		"js": "blender/script.js"
