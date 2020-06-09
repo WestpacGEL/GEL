@@ -1,14 +1,16 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Body } from '@westpac/body';
 
-const Body = ({ state, ...rest }) => <div {...rest} />;
+const PanelBody = ({ state, ...rest }) => <Body {...rest} />;
 
 const bodyStyles = () => {
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
 	return mq({
-		padding: ['0.75rem', null, '1.5rem'],
+		padding: [SPACING(2), null, SPACING(4)],
 	})[0];
 };
 

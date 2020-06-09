@@ -4,7 +4,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 
 const ButtonDropdownHeading = ({ state: { tag }, ...rest }) => (
-	<Heading size={8} tag={tag} {...rest} />
+	<Heading size={10} tag={tag} {...rest} />
 );
 
 const headingStyles = () => {
