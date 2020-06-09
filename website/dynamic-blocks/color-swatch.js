@@ -22,7 +22,7 @@ const Swatch = ({ color, name }) => {
 					padding: SPACING(2),
 					display: 'flex',
 					flexDirection: 'column',
-					background: 'white',
+					background: '#fff',
 					fontSize: '0.875rem',
 					lineHeight: 1.2,
 					marginBottom: ['18px', '24px'],

@@ -91,7 +91,7 @@ export const Navigation = ({ items }) => {
 		<nav
 			ref={ref}
 			onScroll={handleScroll}
-			css={{ flex: 1, overflowY: 'scroll', webkitOverflowScrolling: 'touch' }}
+			css={{ flex: 1, overflowY: 'scroll', '-webkitOverflowScrolling': 'touch' }}
 			role="navigation"
 		>
 			<a
