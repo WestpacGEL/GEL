@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body/src';
 
 const Well = ({ state: { tag }, state, ...rest }) => <Body tag={tag} {...rest} />;
@@ -10,6 +10,7 @@ const wellStyles = () => {
 	const { COLORS, SPACING } = useBrand();
 
 	return mq({
+		label: getLabel('well'),
 		padding: [SPACING(2), null, SPACING(4)],
 		marginBottom: SPACING(3),
 		backgroundColor: COLORS.light,
