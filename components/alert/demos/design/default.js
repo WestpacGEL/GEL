@@ -10,7 +10,6 @@ import { Title, Hr } from '../../../../helpers/demos';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Hr />
 			<Title>Success</Title>
 			<Alert look="success">
 				<strong>Thank you</strong> Your account has successfully been opened.
@@ -52,7 +51,6 @@ export default ({ context, showCode, showDemo }) => {
 				<strong>System Error</strong> The server is no responding. Please try again later. We are
 				orry for any inconvenience.
 			</Alert>
-			<Hr />
 		</Playground>
 	);
 };

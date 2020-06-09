@@ -10,7 +10,6 @@ import { Title, Hr } from '../../../../helpers/demos';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Hr />
 			<Title>Alert with dismiss button (info blue) </Title>
 			<Alert look="info" icon={PhoneIcon} dismissible>
 				<strong>Notifications</strong> You have notifications activated.
