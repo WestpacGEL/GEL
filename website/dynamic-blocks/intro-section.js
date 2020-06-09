@@ -12,14 +12,15 @@ import { CheckboxPrimitive } from '@arch-ui/controls';
 import { inputStyles } from '@arch-ui/input';
 
 const ArrowIcon = () => {
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS } = useBrand();
 	return (
 		<svg
-			css={{ width: '0.75rem', height: '0.75rem' }}
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 8 9"
 			focusable="false"
 			aria-hidden="true"
+			width="12"
+			height="12"
 		>
 			<path
 				fill={COLORS.primary}
