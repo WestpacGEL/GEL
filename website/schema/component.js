@@ -12,6 +12,7 @@ const BLOCKS_CONFIG = [
 	Content.blocks.unorderedList,
 	Content.blocks.blockquote,
 	Content.blocks.link,
+	Content.blocks.section,
 	[DynamicComponentsBlock, { components: DYNAMIC_BLOCKS_DIR }],
 ];
 

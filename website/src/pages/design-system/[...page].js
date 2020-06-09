@@ -1,15 +1,13 @@
 /** @jsx jsx */
 import { Fragment, useState, useCallback, useEffect, forwardRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { useTransition, animated } from 'react-spring';
 import { useRouter } from 'next/router';
 import debounce from 'lodash.debounce';
 import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { Footer } from '../../components/layout';
+import { Gridly, Footer } from '../../components/layout';
 
 import { PageContext, usePageContext } from '../../components/providers/pageContext';
 import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
@@ -66,7 +64,7 @@ const Tabs = ({ component, tabName }) => {
 		const scrollHandler = debounce(() => {
 			if (main.scrollTop === 0) {
 				setScrolled(false);
-			} else {
+			} else if (main.scrollTop >= 162) {
 				setScrolled(true);
 			}
 		}, 10);
@@ -115,6 +113,7 @@ const Tabs = ({ component, tabName }) => {
 					flexGrow: [1, null, 0],
 					display: 'flex',
 					justifyContent: 'center',
+					alignItems: 'center',
 					height: ['54px', null, '66px'],
 					borderRadius: 0,
 					backgroundColor: 'white',
@@ -200,37 +199,6 @@ const Tabs = ({ component, tabName }) => {
 		>
 			{tabs}
 		</Tabcordion>
-	);
-};
-
-const Gridly = ({ show }) => {
-	const transitions = useTransition(show, null, {
-		from: { opacity: 0 },
-		enter: { opacity: 0.6 },
-		leave: { opacity: 0 },
-	});
-
-	return transitions.map(
-		({ item, key, props }) =>
-			item && (
-				<animated.div key={key} style={props}>
-					<Container
-						css={{
-							position: 'absolute',
-							top: 0,
-							bottom: 0,
-							right: 0,
-							left: 0,
-						}}
-					>
-						<Grid css={{ height: '100%' }}>
-							{[...new Array(12)].map((item, index) => (
-								<Cell key={index} css={{ backgroundColor: '#fff' }} />
-							))}
-						</Grid>
-					</Container>
-				</animated.div>
-			)
 	);
 };
 

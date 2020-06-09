@@ -5,8 +5,8 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 const Header = ({ state, ...rest }) => <div {...rest} />;
 
 const headerStyles = (_, { look }) => {
-	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
+	const mq = useMediaQuery();
 
 	const styleMap = {
 		hero: {

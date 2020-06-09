@@ -1,12 +1,16 @@
 /** @jsx jsx */
+
 import React, { Suspense, Fragment } from 'react';
-import { jsx } from '@westpac/core';
-import Select from '@arch-ui/select';
+
+import { jsx, useMediaQuery } from '@westpac/core';
+import { Cell } from '@westpac/grid';
+
 import { CheckboxPrimitive } from '@arch-ui/controls';
+import Select from '@arch-ui/select';
+
 import preval from 'preval.macro';
+
 import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 let data = preval`
 const fs = require('fs');
@@ -72,6 +76,14 @@ export const CodeExample = {
 			codeExample: null,
 			showCode: false,
 			showDemo: false,
+			// below are depracated
+			level: 'h2',
+			size: 6,
+			heading: '',
+			addSubText: false,
+			subText: '',
+			addTableContent: false,
+			editHeader: false,
 			...(value || {}),
 		};
 
@@ -107,31 +119,47 @@ export const CodeExample = {
 			</Fragment>
 		);
 	},
-	component: ({ codeExample, showCode, showDemo = false, context }) => {
+	component: ({
+		codeExample,
+		showCode,
+		showDemo = false,
+		context,
+		heading = '',
+		size = 6,
+		level = 'h2',
+		addTableContent = false,
+		subText = '',
+	}) => {
 		if (typeof window === 'undefined') {
 			return <p>Loading...</p>;
 		}
+
+		const mq = useMediaQuery();
 		const loadCodeBlock = codeExamples[codeExample];
 
 		return (
-			<Container css={blocksContainerStyle}>
-				<Grid columns={12}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<Suspense fallback={<p>Loading...</p>}>
-							{loadCodeBlock && typeof window !== 'undefined' ? (
-								<ShowCodeBlock
-									loadCodeBlock={loadCodeBlock}
-									context={context}
-									showCode={showCode}
-									showDemo={showDemo}
-								/>
-							) : (
-								'Example not found.'
-							)}
-						</Suspense>
-					</Cell>
-				</Grid>
-			</Container>
+			<Cell
+				width={[12, null, null, 10]}
+				left={[1, null, null, 2]}
+				css={mq({
+					marginBottom: ['30px', null, null, null, '48px'],
+					height: 'auto',
+					':last-child': { marginBottom: 0 },
+				})}
+			>
+				<Suspense fallback={<p>Loading...</p>}>
+					{loadCodeBlock && typeof window !== 'undefined' ? (
+						<ShowCodeBlock
+							loadCodeBlock={loadCodeBlock}
+							context={context}
+							showCode={showCode}
+							showDemo={showDemo}
+						/>
+					) : (
+						'Example not found.'
+					)}
+				</Suspense>
+			</Cell>
 		);
 	},
 };

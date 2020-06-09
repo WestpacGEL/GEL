@@ -1,14 +1,16 @@
 /** @jsx jsx */
-import { jsx, useBrand } from '@westpac/core';
+
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
-import { Body } from '@westpac/body';
-import React from 'react';
-import createReactRenderer from './react-renderer';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
+import { Body } from '@westpac/body';
 import dynamic from 'next/dynamic';
+import React from 'react';
+
+import createReactRenderer from './react-renderer';
 import { getShortCodes } from '../../../shortcodes';
-import { blocksContainerStyle } from '../../_utils';
+import { Separator } from '../../separator';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
@@ -90,7 +92,7 @@ const slateRenderer = (item, _editorValue) => {
 		},
 
 		// serialiser for all the blocks
-		({ node, path, serializeChildren, value }) => {
+		({ node, parents, path, serializeChildren }) => {
 			const textStyle = {
 				width: '100%',
 				lineHeight: 2,
@@ -98,19 +100,19 @@ const slateRenderer = (item, _editorValue) => {
 			if (node.object !== 'block') {
 				return;
 			}
-
 			switch (node.type) {
 				case 'paragraph':
-					return (
-						<Container css={{ ...blocksContainerStyle }}>
-							<Grid columns={12} key={path}>
-								<Cell width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
-									<Body>
-										<p css={textStyle}>{serializeChildren(node.nodes)}</p>
-									</Body>
-								</Cell>
-							</Grid>
-						</Container>
+					const nested =
+						parents.findIndex((parent) => parent.type === 'blockquote') >= 0 ? true : false;
+
+					return nested ? (
+						<p key={path}>{serializeChildren(node.nodes)}</p>
+					) : (
+						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+							<Body css={{ p: { marginTop: 0 } }}>
+								<p css={textStyle}>{serializeChildren(node.nodes)}</p>
+							</Body>
+						</Cell>
 					);
 
 				// the below heading has been replaced with a dynamic block for headings.
@@ -127,41 +129,56 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'unordered-list':
 					return (
-						<Container css={{ ...blocksContainerStyle }}>
-							<Grid columns={12} key={path}>
-								<Cell width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
-									<List
-										css={{
-											...textStyle,
-											'& > li::before': {
-												marginTop: '6px',
-											},
-										}}
-										type="bullet"
-									>
-										{serializeChildren(node.nodes)}
-									</List>
-								</Cell>
-							</Grid>
-						</Container>
+						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+							<List
+								css={{
+									...textStyle,
+									'& > li::before': {
+										marginTop: '6px',
+									},
+									marginBottom: '12px',
+								}}
+								type="bullet"
+							>
+								{serializeChildren(node.nodes)}
+							</List>
+						</Cell>
 					);
 
 				case 'ordered-list':
 					return (
-						<Container css={{ ...blocksContainerStyle }}>
-							<Grid columns={12} key={path}>
-								<Cell width={[12, 12, 10, 8, 8]} left={[1, 1, 2, 3, 3]}>
-									<List css={textStyle} type="ordered">
-										{serializeChildren(node.nodes)}
-									</List>
-								</Cell>
-							</Grid>
-						</Container>
+						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+							<List css={{ ...textStyle, marginBottom: '12px' }} type="ordered">
+								{serializeChildren(node.nodes)}
+							</List>
+						</Cell>
 					);
 
 				case 'list-item':
 					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;
-
+				case 'blockquote':
+					return (
+						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+							<Body>
+								<blockquote>{serializeChildren(node.nodes)}</blockquote>
+							</Body>
+						</Cell>
+					);
+				case 'section':
+					const mq = useMediaQuery();
+					return (
+						<section
+							key={path}
+							css={mq({
+								paddingTop: ['30px', null, '60px'],
+							})}
+						>
+							<Container>
+								<Grid rowGap="0 !important">{serializeChildren(node.nodes)}</Grid>
+							</Container>
+							<Separator css={mq({ marginTop: ['30px', null, '60px'] })} />
+						</section>
+					);
 				case 'dynamic-components': {
 					return (
 						<DynamicComponentsWithShortCode
@@ -183,7 +200,11 @@ const slateRenderer = (item, _editorValue) => {
 
 export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
-		<div {...props} className="slate-container" css={cssOverrides}>
+		<div
+			{...props}
+			className="slate-container"
+			css={{ ...cssOverrides, '> :last-child': { display: 'none' } }}
+		>
 			{slateRenderer(item, content.document)(content)}
 		</div>
 	);

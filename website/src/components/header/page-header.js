@@ -8,7 +8,7 @@ import HeaderImage from './component-page-header-image';
 
 import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../providers/pageContext';
-import { brandHeaderColors, gridlyIconColors } from '../_utils';
+import { brandHeaderStyling, gridlyIconColors } from '../_utils';
 
 const MenuIcon = ({ hasScrolled }) => {
 	const { BRAND, COLORS } = useBrand();
@@ -53,7 +53,7 @@ const PageHeader = ({ name, version }) => {
 		const main = header.current.parentElement;
 
 		const scrollHandler = () => {
-			if (main.scrollTop >= 65) {
+			if (main.scrollTop >= 66) {
 				setHasScrolled(true);
 			} else {
 				setHasScrolled(false);
@@ -66,7 +66,7 @@ const PageHeader = ({ name, version }) => {
 		};
 	});
 
-	const backgroundColor = brandHeaderColors[BRAND](COLORS);
+	const backgroundColor = brandHeaderStyling[BRAND](COLORS);
 
 	return (
 		<div
@@ -74,10 +74,10 @@ const PageHeader = ({ name, version }) => {
 			css={mq({
 				flex: 'none',
 				position: 'sticky',
-				top: ['0px', null, '-162px'], // 228 - 66 = height to stick
+				top: [0, null, -162], // 228 - 66 = height to stick
 				zIndex: 5,
 				display: 'flex',
-				height: ['66px', null, '228px'],
+				height: [66, null, 228],
 				background: backgroundColor,
 				overflow: 'hidden',
 			})}
@@ -88,7 +88,7 @@ const PageHeader = ({ name, version }) => {
 					alignSelf: 'flex-end',
 					display: 'grid',
 					gridTemplateRows: hasScrolled ? '1fr' : ['1fr', null, '1fr 1fr 1fr'],
-					height: hasScrolled ? '66px' : ['66px', null, '228px'],
+					height: hasScrolled ? 66 : [66, null, 228],
 					padding: hasScrolled ? '0 1.3125rem' : ['0 1.3125rem', null, '0 2.25rem'],
 					color: BRAND === 'STG' ? COLORS.text : '#fff',
 					transition: 'height 0s',
@@ -104,7 +104,7 @@ const PageHeader = ({ name, version }) => {
 								alignSelf: 'center',
 								textTransform: 'capitalize',
 								[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-									fontSize: '18px !important',
+									fontSize: '1.125rem !important',
 								},
 								fontWeight: 500,
 								transition: 'font-size, 0.2s ease',
@@ -121,7 +121,7 @@ const PageHeader = ({ name, version }) => {
 					<span
 						css={mq({
 							alignSelf: hasScrolled ? 'center' : ['center', null, 'start'],
-							fontSize: '16px',
+							fontSize: '1rem',
 							gridRowStart: hasScrolled ? 1 : [1, null, 3],
 							marginLeft: hasScrolled ? '0.375rem' : ['0.375rem', null, 0],
 						})}

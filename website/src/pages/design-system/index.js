@@ -64,7 +64,7 @@ const Homepage = () => {
 					<Grid>
 						<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 							<RichText>
-								<ReactLogo width={60} aria-hidden="true" css={{ marginBottom: '12px' }} />
+								<ReactLogo width={60} css={{ marginBottom: SPACING(2) }} />
 								<h2>Built on React</h2>
 								<p>
 									We're moving with the times. With React we can showcase so much more and deliver
@@ -178,9 +178,9 @@ const Homepage = () => {
 									Design System project.
 								</p>
 							</RichText>
-							<DownloadsAndLinks css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })} />
 						</Cell>
 					</Grid>
+					<DownloadsAndLinks css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })} />
 				</Container>
 			</Section>
 			<Footer />
@@ -195,59 +195,57 @@ const DownloadsAndLinks = (props) => {
 	const mq = useMediaQuery();
 
 	return (
-		<div
-			css={{
-				textAlign: 'left',
-			}}
+		<Grid
+			rowGap={[24, 'normal']}
+			columnGap={[null, SPACING(5), SPACING(8), SPACING(10)]}
+			css={{ textAlign: 'left' }}
 			{...props}
 		>
-			<Grid columns={13}>
-				<Cell width={[13, 6]}>
-					<Heading
-						tag="h3"
-						size={8}
-						css={{
-							paddingBottom: SPACING(3),
-							borderBottom: `1px solid ${COLORS.neutral}`,
-						}}
-					>
-						Downloads
-					</Heading>
-					<BlockList
-						css={mq({
-							marginTop: [null, null, SPACING(2)],
-						})}
-					>
-						<Item target="_blank" logo={SketchLogo}>
-							Sketch UI Kit Download
-						</Item>
-						<Item target="_blank" logo={AxureLogo}>
-							Axure UI Kit Download
-						</Item>
-					</BlockList>
-				</Cell>
-				<Cell width={[13, 6]} left={[null, 8]} css={mq({ marginTop: ['24px', 0] })}>
-					<Heading
-						tag="h3"
-						size={8}
-						css={mq({
-							paddingBottom: SPACING(3),
-							borderBottom: `1px solid ${COLORS.neutral}`,
-						})}
-					>
-						Links
-					</Heading>
-					<BlockList
-						css={mq({
-							marginTop: [null, null, SPACING(2)],
-						})}
-					>
-						<Item href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
-							Go to GitHub
-						</Item>
-					</BlockList>
-				</Cell>
-			</Grid>
-		</div>
+			<Cell width={[10, 6, null, 5]} left={[2, 'auto', null, 2]}>
+				<Heading
+					tag="h3"
+					size={8}
+					css={{
+						paddingBottom: SPACING(3),
+						borderBottom: `1px solid ${COLORS.neutral}`,
+					}}
+				>
+					Downloads
+				</Heading>
+				<BlockList
+					css={mq({
+						marginTop: [null, null, SPACING(2)],
+					})}
+				>
+					<Item target="_blank" logo={SketchLogo}>
+						Sketch UI Kit Download
+					</Item>
+					<Item target="_blank" logo={AxureLogo}>
+						Axure UI Kit Download
+					</Item>
+				</BlockList>
+			</Cell>
+			<Cell width={[10, 6, null, 5]}>
+				<Heading
+					tag="h3"
+					size={8}
+					css={mq({
+						paddingBottom: SPACING(3),
+						borderBottom: `1px solid ${COLORS.neutral}`,
+					})}
+				>
+					Links
+				</Heading>
+				<BlockList
+					css={mq({
+						marginTop: [null, null, SPACING(2)],
+					})}
+				>
+					<Item href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
+						Go to GitHub
+					</Item>
+				</BlockList>
+			</Cell>
+		</Grid>
 	);
 };
