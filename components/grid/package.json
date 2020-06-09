@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/grid",
-	"version": "1.0.0-beta.4",
+	"version": "1.0.0",
 	"description": "Grid component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/grid",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
