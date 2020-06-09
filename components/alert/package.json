@@ -55,6 +55,7 @@
 		"react-spring": "^8.0.27"
 	},
 	"devDependencies": {
+		"@westpac/list": "*",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"react-spring": "^8.0.27",
