@@ -1,11 +1,12 @@
 # @westpac/modal
 
-## 1.0.0
+## 1.0.0-beta.3
 
 ### Major Changes
 
 - 36e8efb9: - Rename internal `<Title />` component for consistency (now `<Heading />`)
   - Use `<Body />` component for body text
+  - Update header padding
 
 ### Patch Changes
 
