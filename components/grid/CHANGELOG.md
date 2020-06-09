@@ -1,5 +1,12 @@
 # @westpac/grid
 
+## 1.0.0
+
+### Major Changes
+
+- 84f40636: - Remove `gridColumnGap` prop (retain existing `columnGap` prop)
+  - Update gap styling, render as CSS `gap` (rather than `grid-gap`)
+
 ## 1.0.0-beta.4
 
 ### Major Changes

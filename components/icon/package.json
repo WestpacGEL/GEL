@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/icon",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Grid component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/icon",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
