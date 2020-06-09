@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/body",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "Body component in charge of body text",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/body",
 	"blender": {
