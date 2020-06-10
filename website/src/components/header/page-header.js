@@ -76,7 +76,6 @@ const PageHeader = ({ name, version }) => {
 				zIndex: 5,
 				display: 'flex',
 				height: [66, null, 228],
-				background: backgroundColor,
 				overflow: 'hidden',
 				...brandHeaderStyling[BRAND](COLORS),
 			})}
