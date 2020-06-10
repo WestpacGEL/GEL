@@ -1,14 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
-import { sizeMap } from './_utils';
+import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 
 const Switch = ({ state, ...rest }) => <label {...rest} />;
 
-const switchStyles = (_, { block, disabled, size }) => {
+const switchStyles = (_, { block, disabled }) => {
 	const mq = useMediaQuery();
 
 	return mq({
+		label: getLabel('switch', { block, disabled }),
 		display: block ? 'flex' : 'inline-flex',
 		verticalAlign: 'top',
 		opacity: disabled && 0.5,

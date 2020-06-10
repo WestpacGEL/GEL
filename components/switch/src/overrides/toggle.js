@@ -2,6 +2,7 @@
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { sizeMap } from './_utils';
+import { getLabel } from '@westpac/core/src';
 
 const Toggle = ({ state, ...rest }) => <span {...rest} />;
 
@@ -13,6 +14,7 @@ const toggleStyles = (_, { size, checked }) => {
 	const borderWidthArr = sizeArr.map((w) => w && `${parseFloat(w) / 2}rem`);
 
 	return mq({
+		label: getLabel('switch-toggle', { size, checked }),
 		display: 'block',
 		position: 'relative',
 		border: `1px solid ${checked ? COLORS.hero : COLORS.borderDark}`,

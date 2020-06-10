@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Label = ({ state, ...rest }) => <span {...rest} />;
 
 const labelStyles = (_, { block }) => {
 	return {
+		label: getLabel('switch-label', { block }),
 		flex: block && 1,
 		display: 'flex',
 		alignItems: 'center',
