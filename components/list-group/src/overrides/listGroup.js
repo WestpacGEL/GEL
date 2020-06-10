@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { List } from '@westpac/list';
 
 const ListGroup = (props) => <List type="unstyled" {...props} />;
@@ -9,6 +9,7 @@ const listGroupStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('listGroup'),
 		display: 'inline-block',
 		border: `1px solid ${COLORS.border}`,
 		borderBottom: 0,
