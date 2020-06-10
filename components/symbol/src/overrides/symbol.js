@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, asArray } from '@westpac/core';
+import { jsx, useMediaQuery, asArray, getLabel } from '@westpac/core';
 
 const Symbol = ({ symbol, state, ...rest }) => <span {...rest} />;
 
@@ -19,6 +19,7 @@ const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
 	};
 
 	return mq({
+		label: getLabel('symbol', { width, height }),
 		display: 'inline-block',
 		flexShrink: 0,
 		lineHeight: 1,
