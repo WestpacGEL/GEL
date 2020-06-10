@@ -14,7 +14,7 @@ function Example({ brand }) {
 
 			<h2>Screen reader skip link</h2>
 			<p>Note: The example link below is visibility hidden until focussed.</p>
-			<SkipLink href="#content">This is screen reader only text (visible when foccused)</SkipLink>
+			<SkipLink href="#content">This is screen reader only text (visible when focussed)</SkipLink>
 			<p>
 				<a href="?">Links in this section</a> are skipped over
 			</p>
