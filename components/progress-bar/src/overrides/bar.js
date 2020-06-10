@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Bar = ({ state, ...rest }) => <div {...rest} />;
 
@@ -8,6 +8,7 @@ const barStyles = (_, { look, value }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
+		label: getLabel('progressbar-bar', { look }),
 		position: 'relative',
 		float: 'left',
 		width: `${value}%`,
@@ -21,7 +22,7 @@ const barStyles = (_, { look, value }) => {
 		backgroundColor: COLORS.hero,
 		zIndex: 2,
 		boxSizing: 'border-box',
-		transition: 'width .6s ease',
+		transition: 'width 0.6s ease',
 		...TYPE.bodyFont[700],
 
 		'@media print': {

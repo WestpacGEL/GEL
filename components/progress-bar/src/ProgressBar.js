@@ -72,7 +72,7 @@ ProgressBar.propTypes = {
 	value: PropTypes.number.isRequired,
 
 	/**
-	 * Enable skinny mode
+	 * Progress bar look
 	 */
 	look: PropTypes.oneOf(['default', 'skinny']).isRequired,
 
