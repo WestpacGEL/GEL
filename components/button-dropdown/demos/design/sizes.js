@@ -7,13 +7,13 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<ButtonDropdown text="Small Dropdown" dropdownSize="small" open>
+			<ButtonDropdown text="Small dropdown" dropdownSize="small">
 				<Heading>Small dropdown menu: 130px wide</Heading>
 			</ButtonDropdown>{' '}
-			<ButtonDropdown text="Medium Dropdown" dropdownSize="medium" open>
+			<ButtonDropdown text="Medium dropdown" dropdownSize="medium">
 				<Heading>Medium (default) dropdown menu: 190px wide</Heading>
 			</ButtonDropdown>{' '}
-			<ButtonDropdown text="Large Dropdown" dropdownSize="large" open>
+			<ButtonDropdown text="Large dropdown" dropdownSize="large">
 				<Heading>Large dropdown menu: 250px wide</Heading>
 			</ButtonDropdown>
 		</Playground>
