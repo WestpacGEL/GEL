@@ -19,7 +19,7 @@ export const progressBarStyles = (_, { look }) => {
 	};
 
 	return {
-		label: getLabel('progressbar', { look }),
+		label: getLabel('progressBar', { look }),
 		marginBottom: '1.3125rem',
 		overflow: 'hidden',
 		backgroundColor: '#fff',

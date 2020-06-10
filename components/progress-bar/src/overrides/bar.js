@@ -8,7 +8,7 @@ const barStyles = (_, { look, value }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
-		label: getLabel('progressbar-bar', { look }),
+		label: getLabel('progressBar-bar', { look }),
 		position: 'relative',
 		float: 'left',
 		width: `${value}%`,
