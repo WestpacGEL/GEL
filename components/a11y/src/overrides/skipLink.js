@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const SkipLink = ({ state: { href }, ...rest }) => <a href={href} {...rest} />;
 
 const skipLinkStyles = () => ({
+	label: getLabel('skiplink'),
 	position: 'absolute',
 	width: 1,
 	height: 1,
