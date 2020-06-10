@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 
 const PanelHeading = ({ state: { headingTag }, ...rest }) => (
@@ -20,6 +20,7 @@ const headingStyles = (_, { look }) => {
 	};
 
 	return {
+		label: getLabel('panel-heading', { look }),
 		color: styleMap[look].color,
 		...TYPE.bodyFont[400],
 	};

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 
 const Header = ({ state, ...rest }) => <div {...rest} />;
 
@@ -20,6 +20,7 @@ const headerStyles = (_, { look }) => {
 	};
 
 	return mq({
+		label: getLabel('panel-header', { look }),
 		padding: ['0.625rem 0.75rem', null, '0.625rem 1.5rem'],
 		backgroundColor: styleMap[look].backgroundColor,
 		borderBottom: `1px solid ${styleMap[look].borderColor}`,
