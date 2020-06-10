@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { ProgressRope, Step } from '@westpac/progress-rope';
+import { ProgressRope, Group, Step } from '@westpac/progress-rope';
 import { Button } from '@westpac/button';
 
 import { Playground } from '../../../../website/src/components/playground/macro';
@@ -20,11 +20,19 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<ProgressRope current={state.index}>
-				<Step onClick={handleClick(0)}>Step 1</Step>
-				<Step onClick={handleClick(1)}>Step 2</Step>
-				<Step onClick={handleClick(2)}>Step 3</Step>
-				<Step onClick={handleClick(3)}>Step 4</Step>
-				<Step onClick={handleClick(4)}>Step 5</Step>
+				<Group text={'Group 1'}>
+					<Step onClick={handleClick(0)}>Step 1</Step>
+					<Step onClick={handleClick(1)}>Step 2</Step>
+				</Group>
+				<Group text={'Group 2'}>
+					<Step onClick={handleClick(2)}>Step 3</Step>
+					<Step onClick={handleClick(3)}>Step 4</Step>
+				</Group>
+				<Group text={'Group 3'}>
+					<Step onClick={handleClick(4)}>Step 5</Step>
+					<Step onClick={handleClick(5)}>Step 6</Step>
+					<Step onClick={handleClick(6)}>Step 7</Step>
+				</Group>
 				<Step end onClick={handleClick(5)}>
 					Review and Submit
 				</Step>
