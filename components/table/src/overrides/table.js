@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Table = ({ state, ...rest }) => <table {...rest} />;
 
@@ -8,6 +8,7 @@ const tableStyles = (_, { striped }) => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('table', { striped }),
 		width: '100%',
 		maxWidth: '100%',
 		marginBottom: '1.3125rem',

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Thead = ({ state, ...rest }) => <thead {...rest} />;
 
@@ -8,6 +8,7 @@ const theadStyles = (_, { bordered }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
+		label: getLabel('thead', { bordered }),
 		'th, td': { borderTop: !bordered && 0 },
 		// `th` cells in the `thead`
 		th: {

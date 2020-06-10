@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Tbody = ({ state, ...rest }) => <tbody {...rest} />;
 
-const tbodyStyles = () => ({});
+const tbodyStyles = () => ({ label: getLabel('tbody') });
 
 const tbodyAttributes = () => null;
 

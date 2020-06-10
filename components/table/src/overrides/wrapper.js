@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Wrapper = ({ state, ...rest }) => <div {...rest} />;
 
@@ -8,6 +8,7 @@ const wrapperStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('tableWrapper'),
 		'@media screen and (max-width: 480px)': {
 			width: '100%',
 			marginBottom: '1.125rem',

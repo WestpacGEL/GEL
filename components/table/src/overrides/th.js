@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Th = ({ state, ...rest }) => <th {...rest} />;
 
@@ -8,6 +8,7 @@ const thStyles = (_, { bordered }) => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('th', { bordered }),
 		padding: '0.75rem',
 		verticalAlign: 'top',
 		border: `1px solid ${COLORS.border}`,
