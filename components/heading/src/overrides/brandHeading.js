@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 
 const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
@@ -46,6 +46,7 @@ const brandHeadingStyles = (_, { size }) => {
 	});
 
 	return mq({
+		label: getLabel('brandheading', { size }),
 		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontFamily),
 		fontSize: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontSize),
 		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].lineHeight),
