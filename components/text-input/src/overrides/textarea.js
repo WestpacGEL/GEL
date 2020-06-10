@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 import { round, sizeMap } from '../_utils';
 
 const Textarea = ({ state, ...rest }) => <textarea {...rest} />;
@@ -19,6 +19,7 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	)}`;
 
 	return mq({
+		label: getLabel('textarea', { size, width, inline, invalid }),
 		boxSizing: 'border-box',
 		display: inline ? ['block', 'inline-block'] : 'block',
 		width: inline ? ['100%', 'auto'] : '100%',

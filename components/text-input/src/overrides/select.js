@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { round, sizeMap } from '../_utils';
 
@@ -24,6 +24,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const extras = `${sub} + ${caretWidth} + ${caretGap}`; // Add width for caret if a select
 
 	return mq({
+		label: getLabel('select', { size, width, inline, invalid }),
 		boxSizing: 'border-box',
 		display: inline ? ['block', 'inline-block'] : 'block',
 		width: inline ? ['100%', 'auto'] : '100%',
