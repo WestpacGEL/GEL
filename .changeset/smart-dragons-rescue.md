@@ -2,4 +2,4 @@
 '@westpac/panel': major
 ---
 
-Fix heading colour for STG brand
+Fix heading text colour for STG brand
