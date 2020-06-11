@@ -6,7 +6,9 @@ import { ProgressBar } from '@westpac/progress-bar';
 export function AllStyles({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<ProgressBar value={0} />
 			<ProgressBar value={20} />
+			<ProgressBar value={100} />
 			<ProgressBar value={20} look="skinny" />
 		</GEL>
 	);
