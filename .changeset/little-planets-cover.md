@@ -2,4 +2,4 @@
 '@westpac/tabcordion': major
 ---
 
-Fix heading text colour for STG brand
+Fix lego tab text colour for STG brand
