@@ -8,7 +8,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<ButtonDropdown text="Default Dropdown" open block={[false]}>
+			<ButtonDropdown text="Block-level dropdown" block={[false]}>
 				<Heading>Dropdown header</Heading>
 				<List
 					type="link"

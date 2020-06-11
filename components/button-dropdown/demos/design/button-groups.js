@@ -3,8 +3,9 @@
 import { jsx } from '@westpac/core';
 import { ButtonDropdown, Heading } from '@westpac/button-dropdown';
 import { ButtonGroup, Item } from '@westpac/button-group';
-import { Hr } from './_utils';
+
 import { Playground } from '../../../../website/src/components/playground/macro';
+import { Hr } from '../../../../helpers/demos';
 
 const Wrapper = (props) => (
 	<div
@@ -21,7 +22,7 @@ const Wrapper = (props) => (
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<ButtonDropdown text="Default Dropdown" open dropdownSize="large">
+			<ButtonDropdown text="Dropdown with button groups" dropdownSize="large">
 				<Heading>Button Groups</Heading>
 				<Wrapper>
 					<label>

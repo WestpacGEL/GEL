@@ -8,7 +8,7 @@ const TabButton = forwardRef(({ state, ...rest }, ref) => {
 });
 
 const tabButtonStyles = (_, { look, justify, selected, last }) => {
-	const { COLORS } = useBrand();
+	const { BRAND, COLORS } = useBrand();
 
 	const styles = {
 		soft: {
@@ -24,7 +24,7 @@ const tabButtonStyles = (_, { look, justify, selected, last }) => {
 			backgroundColor: selected ? '#fff' : COLORS.hero,
 			border: `1px solid ${selected ? COLORS.border : 'transparent'}`,
 			borderBottom: 0,
-			color: selected ? COLORS.text : '#fff',
+			color: selected ? COLORS.text : BRAND === 'STG' ? COLORS.text : '#fff',
 			marginBottom: selected ? '-1px' : '0.125rem',
 		},
 	};
