@@ -7,12 +7,21 @@ const PanelHeading = ({ state: { headingTag }, ...rest }) => (
 	<Heading tag={headingTag} size={9} {...rest} />
 );
 
-const headingStyles = () => {
-	const { TYPE } = useBrand();
+const headingStyles = (_, { look }) => {
+	const { COLORS, TYPE } = useBrand();
+
+	const styleMap = {
+		hero: {
+			color: '#fff',
+		},
+		faint: {
+			color: COLORS.text,
+		},
+	};
 
 	return {
-		label: getLabel('panel-heading'),
-		color: 'inherit',
+		label: getLabel('panel-heading', { look }),
+		color: styleMap[look].color,
 		...TYPE.bodyFont[400],
 	};
 };

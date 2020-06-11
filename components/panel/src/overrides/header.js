@@ -5,19 +5,17 @@ import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 const Header = ({ state, ...rest }) => <div {...rest} />;
 
 const headerStyles = (_, { look }) => {
-	const { BRAND, COLORS } = useBrand();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	const styleMap = {
 		hero: {
 			backgroundColor: COLORS.hero,
 			borderColor: COLORS.hero,
-			color: BRAND === 'STG' ? COLORS.text : '#fff',
 		},
 		faint: {
 			backgroundColor: COLORS.background,
 			borderColor: COLORS.border,
-			color: COLORS.text,
 		},
 	};
 
@@ -28,7 +26,6 @@ const headerStyles = (_, { look }) => {
 		borderBottom: `1px solid ${styleMap[look].borderColor}`,
 		borderTopRightRadius: `calc(0.1875rem - 1px)`,
 		borderTopLeftRadius: `calc(0.1875rem - 1px)`,
-		color: styleMap[look].color,
 		'@media print': {
 			borderBottom: '1px solid #000',
 		},
