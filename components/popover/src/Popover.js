@@ -36,7 +36,7 @@ export const Popover = ({
 	const [open, setOpen] = useState(isOpen);
 	const [position, setPosition] = useState({
 		placement: placement ? placement : 'top',
-		empty: !!!placement,
+		empty: !placement,
 	});
 	const triggerRef = useRef();
 	const popoverRef = useRef();
