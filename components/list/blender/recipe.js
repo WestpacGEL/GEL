@@ -67,8 +67,10 @@ export function AllStyles({ brand }) {
 }
 
 export function Docs({ brand }) {
+	const spacings = ['medium', 'large'];
+
 	return [
-		...['medium', 'large'].map((spacing) => ({
+		...spacings.map((spacing) => ({
 			heading: `A primary bullet list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
@@ -80,7 +82,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['medium', 'large'].map((spacing) => ({
+		...spacings.map((spacing) => ({
 			heading: `A hero bullet list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
@@ -92,7 +94,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['medium', 'large'].map((spacing) => ({
+		...spacings.map((spacing) => ({
 			heading: `A neutral bullet list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
@@ -104,7 +106,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['medium', 'large'].map((spacing) => ({
+		...spacings.map((spacing) => ({
 			heading: `A link list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
@@ -122,7 +124,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['medium', 'large'].map((spacing) => ({
+		...spacings.map((spacing) => ({
 			heading: `A tick list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
@@ -134,7 +136,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['medium', 'large'].map((spacing) => ({
+		...spacings.map((spacing) => ({
 			heading: `An ordered list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
@@ -146,7 +148,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['medium', 'large'].map((spacing) => ({
+		...spacings.map((spacing) => ({
 			heading: `An unstyled list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
@@ -158,7 +160,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['medium', 'large'].map((spacing) => ({
+		...spacings.map((spacing) => ({
 			heading: `An icon list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
