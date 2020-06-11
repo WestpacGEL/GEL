@@ -4,23 +4,15 @@ import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 
 const PanelHeading = ({ state: { headingTag }, ...rest }) => (
-	<Heading tag={headingTag} size={8} {...rest} />
+	<Heading tag={headingTag} size={9} {...rest} />
 );
 
-const headingStyles = (_, { look }) => {
-	const { COLORS, TYPE } = useBrand();
-
-	const styleMap = {
-		hero: {
-			color: '#fff',
-		},
-		faint: {
-			color: COLORS.text,
-		},
-	};
+const headingStyles = () => {
+	const { TYPE } = useBrand();
 
 	return {
-		color: styleMap[look].color,
+		label: getLabel('panel-heading'),
+		color: 'inherit',
 		...TYPE.bodyFont[400],
 	};
 };

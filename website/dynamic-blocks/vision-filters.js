@@ -1,18 +1,22 @@
 /** @jsx jsx */
 import React, { Suspense, Fragment } from 'react';
-import { jsx, useBrand } from '@westpac/core';
-import { Body } from '@westpac/body';
+
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
-import { useRouter } from 'next/router';
-import Select from '@arch-ui/select';
+import { Body } from '@westpac/body';
+import { Cell } from '@westpac/grid';
+
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
+import Select from '@arch-ui/select';
+
+import { useRouter } from 'next/router';
 import preval from 'preval.macro';
+
 import importCodeExamples from '../utils/babel-dynamic-code-block-import.macro';
+import { levelOptions, sizeOptions, indentOptions } from './_utils';
 import { VisionFilter } from '../src/components/a11y-filter';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 let data = preval`
 const fs = require('fs');
@@ -55,27 +59,6 @@ const codeExamples = importCodeExamples(data);
 let valueCache = new Map();
 let promiseCache = new Map();
 
-const levelOptions = [
-	{ label: 'H1', value: 'h1' },
-	{ label: 'H2', value: 'h2' },
-	{ label: 'H3', value: 'h3' },
-	{ label: 'H4', value: 'h4' },
-	{ label: 'H5', value: 'h5' },
-	{ label: 'H6', value: 'h6' },
-];
-
-const sizeOptions = [
-	{ label: '1', value: 1 },
-	{ label: '2', value: 2 },
-	{ label: '3', value: 3 },
-	{ label: '4', value: 4 },
-	{ label: '5', value: 5 },
-	{ label: '6', value: 6 },
-	{ label: '7', value: 7 },
-	{ label: '8', value: 8 },
-	{ label: '9', value: 9 },
-];
-
 function ShowCodeBlock({ loadCodeBlock, context }) {
 	let promise = promiseCache.get(loadCodeBlock);
 	if (!promise) {
@@ -105,8 +88,8 @@ export const VisionFilters = {
 		const currentValue = {
 			codeExample: null,
 			level: 'h2',
-			size: 5,
-			heading: 'Colour impairments',
+			size: 6,
+			heading: 'Vision impairment demonstration',
 			subText: content,
 			addTableContent: true,
 			editHeader: false,
@@ -143,29 +126,34 @@ export const VisionFilters = {
 								/>
 							</FieldInput>
 						</FieldContainer>
-						<FieldContainer>
-							<FieldLabel
-								htmlFor={'heading-level'}
-								field={{ label: 'Heading Level', config: {} }}
-							/>
-							<Select
-								id="heading-level"
-								placeholder="Select a heading level"
-								options={levelOptions}
-								value={levelOptions.find((o) => o.value === currentValue.level)}
-								onChange={({ value }) => update({ level: value })}
-							/>
-						</FieldContainer>
-						<FieldContainer>
-							<FieldLabel htmlFor={'heading-size'} field={{ label: 'Heading Size', config: {} }} />
-							<Select
-								id="heading-size"
-								placeholder="Select a heading size"
-								options={sizeOptions}
-								value={sizeOptions.find((o) => o.value === currentValue.size)}
-								onChange={({ value }) => update({ size: value })}
-							/>
-						</FieldContainer>
+						<div css={{ display: 'flex' }}>
+							<FieldContainer css={{ flexGrow: 1, marginRight: 30 }}>
+								<FieldLabel
+									htmlFor={'heading-level'}
+									field={{ label: 'Heading Level', config: {} }}
+								/>
+								<Select
+									id="heading-level"
+									placeholder="Select a heading level"
+									options={levelOptions}
+									value={levelOptions.find((o) => o.value === currentValue.level)}
+									onChange={({ value }) => update({ level: value })}
+								/>
+							</FieldContainer>
+							<FieldContainer css={{ flexGrow: 1 }}>
+								<FieldLabel
+									htmlFor={'heading-size'}
+									field={{ label: 'Heading Size', config: {} }}
+								/>
+								<Select
+									id="heading-size"
+									placeholder="Select a heading size"
+									options={sizeOptions}
+									value={sizeOptions.find((o) => o.value === currentValue.size)}
+									onChange={({ value }) => update({ size: value })}
+								/>
+							</FieldContainer>
+						</div>
 						<FieldContainer>
 							<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
 								<CheckboxPrimitive
@@ -203,7 +191,7 @@ export const VisionFilters = {
 		codeExample,
 		context,
 		heading = '',
-		size = 5,
+		size = 6,
 		level = 'h2',
 		addTableContent = true,
 		subText = '',
@@ -216,7 +204,7 @@ export const VisionFilters = {
 		const loadCodeBlock = codeExamples[codeExample];
 		const router = useRouter();
 		const href = '/accessibility';
-		const { SPACING } = useBrand();
+		const mq = useMediaQuery();
 
 		const handleClick = (e) => {
 			e.preventDefault();
@@ -225,45 +213,43 @@ export const VisionFilters = {
 		};
 
 		return (
-			<Container css={blocksContainerStyle}>
-				<Grid columns={12}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<Heading
-							id={id}
-							tabIndex="-1"
-							tag={level}
-							size={size}
-							{...(addTableContent && { 'data-toc': true })}
-							overrides={{
-								Heading: {
-									styles: (styles) => ({
-										...styles,
-										scrollMarginTop: '10.375rem',
-									}),
-								},
-							}}
-						>
-							{heading}
-						</Heading>
-						<Body>
-							<p css={{ margin: `${SPACING(4)} 0 !important`, lineHeight: 2 }}>
-								{subText} Read more about these vision impairments on our{' '}
-								<a href={href} onClick={handleClick}>
-									Accessibility
-								</a>{' '}
-								page.
-							</p>
-						</Body>
-						<Suspense fallback={<p>Loading...</p>}>
-							{loadCodeBlock && typeof window !== 'undefined' ? (
-								<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
-							) : (
-								'Example not found.'
-							)}
-						</Suspense>
-					</Cell>
-				</Grid>
-			</Container>
+			<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
+				<Heading
+					id={id}
+					tabIndex="-1"
+					tag={level}
+					size={[7, null, size]}
+					{...(addTableContent && { 'data-toc': true })}
+					overrides={{
+						Heading: {
+							styles: (styles) =>
+								mq({
+									...styles,
+									scrollMarginTop: '10.375rem',
+									marginBottom: ['12px', null, '18px'],
+								}),
+						},
+					}}
+				>
+					{heading}
+				</Heading>
+				<Body css={mq({ p: { margin: ['0 0 18px', null, '0 0 24px'] } })}>
+					<p>
+						{subText} Read more about these vision impairments on our{' '}
+						<a href={href} onClick={handleClick}>
+							Accessibility
+						</a>{' '}
+						page.
+					</p>
+				</Body>
+				<Suspense fallback={<p>Loading...</p>}>
+					{loadCodeBlock && typeof window !== 'undefined' ? (
+						<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />
+					) : (
+						'Example not found.'
+					)}
+				</Suspense>
+			</Cell>
 		);
 	},
 };

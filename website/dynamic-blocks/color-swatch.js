@@ -1,30 +1,32 @@
 /** @jsx jsx */
+
 import React, { Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Cell } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import chroma from 'chroma-js';
+
 import { secondaryColors } from '../src/secondary-colors.js';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
 
 // Recursively render swatches
 const Swatch = ({ color, name }) => {
 	if (!chroma.valid(color)) return null;
 	const { SPACING } = useBrand();
-
+	const mq = useMediaQuery();
 	const [r, g, b] = chroma(color).rgb();
 	return (
 		<Fragment>
 			<div css={{ background: color, height: SPACING(12) }} />
 			<div
-				css={{
+				css={mq({
 					padding: SPACING(2),
 					display: 'flex',
 					flexDirection: 'column',
-					background: 'white',
+					background: '#fff',
 					fontSize: '0.875rem',
 					lineHeight: 1.2,
-				}}
+					marginBottom: ['18px', '24px'],
+				})}
 			>
 				<strong css={{ marginBottom: SPACING(1, true) }}>{name}</strong>
 				<span css={{ marginBottom: SPACING(1, true) }}>{color}</span>
@@ -62,44 +64,29 @@ export const ColorSwatch = {
 	},
 
 	component: ({ colors }) => {
-		const { SPACING, BRAND } = useBrand();
-		const mq = useMediaQuery();
+		const { BRAND } = useBrand();
 		return (
-			<div>
-				<Container css={blocksContainerStyle}>
-					<Grid columns={12} css={mq({ gridGap: [SPACING(3), SPACING(3), SPACING(4)] })}>
-						{colors.map((color) => {
-							if (color.value === '--secondary-colors--') {
-								return (
-									<Fragment key={color.value}>
-										{Object.entries(secondaryColors[BRAND]).map((secondaryColor) => (
-											<Cell
-												key={secondaryColor[1]}
-												width={[10, 10, 4, 3]}
-												left={[2, 2, 'auto']}
-												css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
-											>
-												<Swatch color={secondaryColor[1]} name={secondaryColor[0]} />
-											</Cell>
-										))}
-									</Fragment>
-								);
-							} else {
-								return (
-									<Cell
-										key={color.value}
-										width={[10, 10, 4, 3]}
-										left={[2, 2, 'auto']}
-										css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
-									>
-										<Swatch color={color.value} name={color.label} />
+			<Fragment>
+				{colors.map((color) => {
+					if (color.value === '--secondary-colors--') {
+						return (
+							<Fragment key={color.value}>
+								{Object.entries(secondaryColors[BRAND]).map((secondaryColor) => (
+									<Cell key={secondaryColor[1]} width={[10, 6, 4, 3]} left={[2, 'auto']}>
+										<Swatch color={secondaryColor[1]} name={secondaryColor[0]} />
 									</Cell>
-								);
-							}
-						})}
-					</Grid>
-				</Container>
-			</div>
+								))}
+							</Fragment>
+						);
+					} else {
+						return (
+							<Cell key={color.value} width={[10, 6, 4, 3]} left={[2, 'auto']}>
+								<Swatch color={color.value} name={color.label} />
+							</Cell>
+						);
+					}
+				})}
+			</Fragment>
 		);
 	},
 };

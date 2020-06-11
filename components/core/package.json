@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/core",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Core components for the westpac GEL design language",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
 	"blender": {
@@ -19,6 +19,21 @@
 			"name": "Joss Mackison",
 			"email": "joss@thinkmill.com.au",
 			"url": "http://jossmackison.me"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
+		},
+		{
+			"name": "Flore Laforge",
+			"email": "florelaforge@gmail.com",
+			"url": "http://florelaforge.com/"
 		}
 	],
 	"license": "GPL-3.0+",

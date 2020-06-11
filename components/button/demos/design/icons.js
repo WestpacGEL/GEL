@@ -19,19 +19,30 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<p>
-				<Button iconAfter={NewWindowIcon}>New window</Button>{' '}
-				<Button iconAfter={DropDownIcon}>Drop down</Button>{' '}
-				<Button iconAfter={PrintIcon}>Print</Button>{' '}
-				<Button iconAfter={RefreshIcon}>Refresh</Button>{' '}
-				<Button iconAfter={SearchIcon}>Search</Button>
+				<Button look="hero" soft iconAfter={NewWindowIcon}>
+					New window
+				</Button>{' '}
+				<Button look="primary" iconAfter={DropDownIcon}>
+					Drop down
+				</Button>{' '}
+				<Button look="hero" iconAfter={PrintIcon}>
+					Print
+				</Button>{' '}
+				<Button look="primary" soft iconAfter={RefreshIcon}>
+					Refresh
+				</Button>{' '}
+				<Button look="primary" iconAfter={SearchIcon}>
+					Search
+				</Button>
 			</p>
 			<p>
-				<Button iconBefore={SearchIcon} /> <Button iconBefore={PlayIcon} />{' '}
-				<Button iconBefore={PauseIcon} /> <Button iconBefore={CloseIcon} />{' '}
-				<Button iconBefore={AddCircleIcon} />
+				<Button look="faint" iconBefore={SearchIcon} />{' '}
+				<Button look="faint" iconBefore={PlayIcon} /> <Button look="faint" iconBefore={PauseIcon} />{' '}
+				<Button look="faint" iconBefore={CloseIcon} />{' '}
+				<Button look="faint" iconBefore={AddCircleIcon} />
 			</p>
 			<p>
-				<Button iconAfter={RefreshIcon} block>
+				<Button look="primary" iconAfter={RefreshIcon} block>
 					Refresh list
 				</Button>
 			</p>

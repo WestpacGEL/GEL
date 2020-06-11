@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react'; // Needed for within Keystone
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
-import { Heading } from '@westpac/heading';
-import PropTypes from '../../GEL.json';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
+import { Heading } from '@westpac/heading';
+
 import { FieldContainer } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 
+import PropTypes from '../../GEL.json';
 /**
  * A small helper component for inline code blocks
  */
@@ -162,11 +162,7 @@ function PTable({ data, caption }) {
 	const { SPACING } = useBrand();
 	return (
 		<Table css={{ marginBottom: SPACING(4, true), borderColor: 'white' }} bordered striped>
-			{caption && (
-				<Caption css={{ margin: `${SPACING(4, true)}  0 ${SPACING(3, true)} 0` }}>
-					{caption}
-				</Caption>
-			)}
+			{caption && <Caption>{caption}</Caption>}
 			<Thead>
 				<Tr>
 					<Th scope="col">Property</Th>
@@ -185,50 +181,8 @@ function PTable({ data, caption }) {
 	);
 }
 
-const SeparatorComponent = () => {
-	const { COLORS, SPACING } = useBrand();
-	return (
-		<div
-			css={{
-				marginBottom: '0 !important',
-			}}
-		>
-			<button
-				css={{
-					display: 'block',
-					border: 0,
-					background: 'transparent',
-					cursor: 'pointer',
-					textAlign: 'right',
-					width: '100%',
-					paddingRight: '18px !important',
-				}}
-				onClick={(e) => {
-					e.preventDefault();
-					const el = document.querySelector('main') || window;
-					el.scroll({
-						top: 0,
-						left: 0,
-						behavior: 'smooth',
-					});
-				}}
-			>
-				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
-			</button>
-			<hr
-				css={{
-					border: 'none',
-					borderTop: `solid 1px ${COLORS.border}`,
-					margin: `${SPACING(2)} 0 0 0`,
-				}}
-			/>
-		</div>
-	);
-};
-
 const Component = ({ item, addTableContent }) => {
 	const mq = useMediaQuery();
-	const { SPACING, COLORS } = useBrand();
 	const packageName = item.packageName.replace(/_/g, '-'); // removing underscores from graphql queries
 
 	const tableData = Object.keys(PropTypes.components[packageName])
@@ -245,55 +199,32 @@ const Component = ({ item, addTableContent }) => {
 		});
 
 	return (
-		<Fragment>
-			<SeparatorComponent />
-			<div css={{ backgroundColor: '#fff' }}>
-				<Container
-					css={{
-						...blocksContainerStyle,
-						paddingBottom: SPACING(5),
-						marginTop: 0,
-						marginBottom: 0,
-					}}
-				>
-					<Grid
-						css={mq({
-							paddingTop: [SPACING(6), SPACING(6), SPACING(10)],
+		<div
+			css={mq({
+				padding: ['36px 0 98px', null, '60px 0 122px'],
+				backgroundColor: '#fff',
+			})}
+		>
+			<Container>
+				<Grid rowGap={['36px', null, '42px']}>
+					<Cell width={12}>
+						<Heading tag="h2" size={[7, null, 6]} id="props" tabIndex="-1">
+							Props
+						</Heading>
+					</Cell>
+					<Cell width={12}>
+						{tableData.map(({ overrideProps, normalProps, name }) => {
+							return (
+								<Fragment key={`table-${name}`}>
+									<PTable caption={`${name} Props`} data={normalProps} />
+									<PTable caption={`${name} Overrides`} data={overrideProps} />
+								</Fragment>
+							);
 						})}
-						columns={12}
-					>
-						<Cell width={12}>
-							<Heading
-								tag="h2"
-								size={5}
-								id="props"
-								tabIndex="-1"
-								{...(addTableContent && { 'data-toc': true })}
-							>
-								Props
-							</Heading>
-						</Cell>
-					</Grid>
-					<Grid
-						columns={12}
-						css={mq({
-							marginTop: [SPACING(3), SPACING(3), SPACING(6)],
-						})}
-					>
-						<Cell width={12}>
-							{tableData.map(({ overrideProps, normalProps, name }) => {
-								return (
-									<Fragment key={`table-${name}`}>
-										<PTable caption={`${name} Props`} data={normalProps} />
-										<PTable caption={`${name} Overrides`} data={overrideProps} />
-									</Fragment>
-								);
-							})}
-						</Cell>
-					</Grid>
-				</Container>
-			</div>
-		</Fragment>
+					</Cell>
+				</Grid>
+			</Container>
+		</div>
 	);
 };
 

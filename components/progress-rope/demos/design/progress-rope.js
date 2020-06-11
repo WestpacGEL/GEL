@@ -2,11 +2,16 @@
 
 import { jsx } from '@westpac/core';
 import { ProgressRope, Step } from '@westpac/progress-rope';
+import { Button } from '@westpac/button';
+
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { useProgress } from '../../examples/_utils';
 
+const Wrapper = (props) => <div css={{ display: 'flex' }} {...props} />;
+
 export default ({ context, showCode, showDemo }) => {
 	const [state, dispatch] = useProgress();
+
 	const handleClick = (index) => (e) => {
 		e.preventDefault();
 		dispatch({ type: 'goto', index });
@@ -24,6 +29,25 @@ export default ({ context, showCode, showDemo }) => {
 					Review and Submit
 				</Step>
 			</ProgressRope>
+			<p>Use the Next/Previous buttons below to demonstrate how the progress rope moves.</p>
+			<Wrapper>
+				<Button
+					soft
+					onClick={() => dispatch({ type: 'prev' })}
+					overrides={{
+						Button: { styles: (styles) => ({ ...styles, width: '8rem', marginRight: '2rem' }) },
+					}}
+				>
+					Previous
+				</Button>
+				<Button
+					soft
+					onClick={() => dispatch({ type: 'next' })}
+					overrides={{ Button: { styles: (styles) => ({ ...styles, width: '8rem' }) } }}
+				>
+					Next
+				</Button>
+			</Wrapper>
 		</Playground>
 	);
 };

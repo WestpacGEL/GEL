@@ -42,7 +42,7 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 	const mq = useMediaQuery();
 
 	return (
-		<div css={{ marginBottom: SPACING(6) }}>
+		<div>
 			<Well
 				overrides={{
 					Well: {
@@ -101,7 +101,10 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 			</Well>
 			{showCode && codeIsOpen ? (
 				<LiveEditor
-					css={mq({ fontSize: '1rem', padding: ['1.5rem !important', '2.25rem !important'] })}
+					css={mq({
+						fontSize: '14px',
+					})}
+					padding={24}
 				/>
 			) : null}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx } from '@emotion/core';
+import { Body } from '@westpac/body';
 
 import { ToolbarButton } from '../toolbar-components';
 import { BlockQuoteIcon } from '../toolbar-icons';
@@ -30,18 +31,8 @@ export function ToolbarElement({ editor, editorState }) {
 
 export function Node({ attributes, children }) {
 	return (
-		<blockquote
-			{...attributes}
-			css={{
-				borderLeft: '4px solid #eee',
-				color: '#666',
-				fontStyle: 'italic',
-				margin: 0,
-				marginBottom: '1em',
-				paddingLeft: '1em',
-			}}
-		>
-			{children}
-		</blockquote>
+		<Body>
+			<blockquote {...attributes}>{children}</blockquote>
+		</Body>
 	);
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/body",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Body component in charge of body text",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/body",
 	"blender": {
@@ -12,6 +12,21 @@
 			"name": "Dominik Wilkowski",
 			"email": "Hi@Dominik-Wilkowski.com",
 			"url": "https://dominik-wilkowski.com"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
+		},
+		{
+			"name": "Flore Laforge",
+			"email": "florelaforge@gmail.com",
+			"url": "http://florelaforge.com/"
 		}
 	],
 	"license": "GPL-3.0+",
@@ -27,7 +42,7 @@
 	"module": "dist/body.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.0",
+		"@westpac/core": "^1.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

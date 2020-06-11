@@ -1,10 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
-export const Svg = ({ height, width, viewBox, ...rest }) => {
-	const mq = useMediaQuery();
-	return (
-		<svg viewBox={viewBox} css={mq({ height, width })} {...rest} role="img" focusable="false" />
-	);
-};
+export const Svg = ({ viewBox, width, height, ...rest }) => (
+	<svg
+		viewBox={viewBox}
+		width={width}
+		height={height}
+		css={{ display: 'inline-block' }}
+		focusable="false"
+		{...rest}
+	/>
+);

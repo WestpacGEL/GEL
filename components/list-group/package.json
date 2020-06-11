@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/list-group",
-	"version": "1.0.0-beta.1",
+	"version": "1.0.0-beta.2",
 	"description": "List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content. Ideal for settings pages or preferences.",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/list-group",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -9,6 +9,16 @@
 			"name": "Dominik Wilkowski",
 			"email": "Hi@Dominik-Wilkowski.com",
 			"url": "https://dominik-wilkowski.com"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
 		},
 		{
 			"name": "Flore Laforge",
@@ -29,8 +39,8 @@
 	"module": "dist/list-group.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.0",
-		"@westpac/list": "^1.0.0-beta.1",
+		"@westpac/core": "^1.0.1",
+		"@westpac/list": "^1.0.0-beta.2",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

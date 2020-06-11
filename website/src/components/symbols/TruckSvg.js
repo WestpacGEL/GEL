@@ -1,14 +1,17 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
+import { Svg } from './Svg';
 
 export const TruckSvg = ({
-	size = 90,
+	width,
+	height = 'auto',
 	highlightColor = '#D5002B',
 	highlightOutlineColor = '#2D373E',
 	outlineColor = '#8C9296',
+	...rest
 }) => {
 	return (
-		<svg width={size} height={size} viewBox="0 0 90 90" role="img" focusable="false">
+		<Svg viewBox="0 0 90 90" width="90" height="90" css={{ width, height }} {...rest}>
 			<title>Truck</title>
 			<g fill="none" fillRule="evenodd">
 				<path
@@ -44,6 +47,6 @@ export const TruckSvg = ({
 					strokeLinecap="round"
 				/>
 			</g>
-		</svg>
+		</Svg>
 	);
 };

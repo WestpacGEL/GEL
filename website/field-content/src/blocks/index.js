@@ -8,6 +8,7 @@ import listItem from './list-item';
 import orderedList from './ordered-list';
 import paragraph from './paragraph';
 import unorderedList from './unordered-list';
+import section from './section';
 
 export {
 	blockquote,
@@ -20,4 +21,5 @@ export {
 	orderedList,
 	paragraph,
 	unorderedList,
+	section,
 };

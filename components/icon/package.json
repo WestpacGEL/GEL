@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/icon",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "Grid component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/icon",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -17,6 +17,21 @@
 			"name": "Joss Mackison",
 			"email": "joss@thinkmill.com.au",
 			"url": "http://jossmackison.me"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
+		},
+		{
+			"name": "Flore Laforge",
+			"email": "florelaforge@gmail.com",
+			"url": "http://florelaforge.com/"
 		}
 	],
 	"license": "GPL-3.0+",
@@ -200,13 +215,14 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.0",
+		"@westpac/core": "^1.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
+		"@westpac/grid": "*",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

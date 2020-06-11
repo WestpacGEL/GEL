@@ -1,16 +1,29 @@
 /** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
-import { List, Item } from '@westpac/list';
+import { List } from '@westpac/list';
 import { useRouter } from 'next/router';
-import { Fragment } from 'react';
+import { useRef } from 'react';
 import Link from 'next/link';
 
-import { NavigationGroup } from './navigation-group';
 import { NavigationItem, StyledItem } from './navigation-item';
 import { ROOT_PAGES, BASE_PAGE } from '../../../config';
+import { NavigationGroup } from './navigation-group';
+import { useSidebar } from '../../providers/sidebar';
 import BackToGelSvg from './BackToGelSvg';
 
 export const Navigation = ({ items }) => {
+	const ref = useRef();
+	const { isScrolled, setIsScrolled } = useSidebar();
+
+	const handleScroll = () => {
+		const scrollTop = ref.current.scrollTop;
+		if (!isScrolled && scrollTop > 0) {
+			setIsScrolled(true);
+		} else if (scrollTop === 0) {
+			setIsScrolled(false);
+		}
+	};
+
 	const renderNavigationItems = (items, level = 0) => {
 		const router = useRouter();
 		const { COLORS } = useBrand();
@@ -45,12 +58,9 @@ export const Navigation = ({ items }) => {
 				isCurrentChild = router.pathname === item.path;
 			}
 			// For dynamic routes we check if the page route matches item.path.
-			if (page && page[0]) {
-				isCurrentChild = `/${page[0]}` === item.path;
-			}
-			// For dynamic routes with children we check if the combined page route matches item.path.
-			if (page && page[1]) {
-				isCurrentChild = `/${page.join('/')}` === item.path;
+			if (page) {
+				const regex = new RegExp(`${page.join('/')}$`);
+				isCurrentChild = regex.test(item.path);
 			}
 
 			let href = BASE_PAGE;
@@ -78,8 +88,17 @@ export const Navigation = ({ items }) => {
 	};
 
 	return (
-		<nav css={{ flex: 1, overflowY: 'scroll', webkitOverflowScrolling: 'touch' }} role="navigation">
-			<a href="/" css={{ display: 'block', overflow: 'hidden' }} aria-label="Back to GEL">
+		<nav
+			ref={ref}
+			onScroll={handleScroll}
+			css={{ flex: 1, overflowY: 'scroll', '-webkitOverflowScrolling': 'touch' }}
+			role="navigation"
+		>
+			<a
+				href="/"
+				css={{ display: 'block !important', overflow: 'hidden', height: '90px' }}
+				aria-label="Back to GEL"
+			>
 				<BackToGelSvg />
 			</a>
 			<List type="unstyled" css={{ paddingBottom: '1.5rem' }}>

@@ -1,24 +1,28 @@
 /** @jsx jsx */
 import { jsx } from '@westpac/core';
+import { Svg } from './Svg';
 
-export const SketchLogo = ({ size }) => {
+export const SketchLogo = ({ width, height = 'auto', ...rest }) => {
 	return (
-		<svg width={size} height="auto" viewBox="0 0 160 144" role="img" focusable="false">
+		<Svg viewBox="0 0 180 180" width="180" height="180" css={{ width, height }} {...rest}>
 			<title>Sketch logo</title>
-			<g fillRule="nonzero" fill="none">
-				<path fill="#FDB300" d="M34.839 4.72l45-4.72 45 4.72 34.838 46.39-79.838 92.223L0 51.11z" />
+			<g>
+				<path
+					fill="#FDB300"
+					d="M44.839 28.719l45-4.719 45 4.719 34.838 46.391-79.838 92.223L10 75.11z"
+				/>
 				<path
 					fill="#EA6C00"
-					d="M32.338 51.11l47.5 92.224L0 51.11zM127.34 51.11l-47.5 92.224 79.838-92.224z"
+					d="M42.338 75.11l47.5 92.223L10 75.11zM137.339 75.11l-47.5 92.223 79.839-92.223z"
 				/>
-				<path fill="#FDAD00" d="M32.338 51.11h95l-47.5 92.224z" />
-				<path fill="#FDD231" d="M79.838 0l-45 4.718-2.5 46.392zM79.84 0l45 4.718 2.5 46.392z" />
+				<path fill="#FDAD00" d="M42.338 75.11h95l-47.5 92.223z" />
+				<path fill="#FDD231" d="M89.838 24l-45 4.718-2.5 46.392zM89.839 24l45 4.718 2.5 46.392z" />
 				<path
 					fill="#FDAD00"
-					d="M159.678 51.11L124.839 4.718l2.5 46.392zM0 51.11L34.838 4.718l-2.5 46.392z"
+					d="M169.678 75.11l-34.839-46.392 2.5 46.392zM10 75.11l34.838-46.392-2.5 46.392z"
 				/>
-				<path fill="#FEEEB7" d="M79.838 0l-47.5 51.11h95z" />
+				<path fill="#FEEEB7" d="M89.838 24l-47.5 51.11h95z" />
 			</g>
-		</svg>
+		</Svg>
 	);
 };

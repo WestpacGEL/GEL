@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/tabcordion",
-	"version": "1.0.0-beta.1",
+	"version": "1.0.0-beta.2",
 	"description": "Tabcordion component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/tabcordion",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -11,9 +11,19 @@
 			"url": "https://dominik-wilkowski.com"
 		},
 		{
-			"name": "Joss Mackison",
-			"email": "joss@thinkmill.com.au",
-			"url": "http://jossmackison.me"
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
+		},
+		{
+			"name": "Flore Laforge",
+			"email": "florelaforge@gmail.com",
+			"url": "http://florelaforge.com/"
 		}
 	],
 	"license": "GPL-3.0+",
@@ -29,9 +39,9 @@
 	"module": "dist/tabcordion.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.0",
-		"@westpac/hooks": "^1.0.0",
-		"@westpac/icon": "^1.0.0",
+		"@westpac/core": "^1.0.1",
+		"@westpac/hooks": "^1.0.1",
+		"@westpac/icon": "^1.0.1",
 		"prop-types": "^15.7.2",
 		"react-use-measure": "^2.0.0",
 		"resize-observer-polyfill": "^1.5.1"

@@ -7,7 +7,6 @@ const Backdrop = ({ state: { open }, ...rest }) => {
 	const backdropTransition = useTransition(open, null, {
 		from: {
 			opacity: 0,
-			zIndex: '1001',
 		},
 		enter: { opacity: 1 },
 		leave: { opacity: 0 },
@@ -26,6 +25,7 @@ const Backdrop = ({ state: { open }, ...rest }) => {
 
 const backdropStyles = () => {
 	return {
+		zIndex: '1001',
 		position: 'fixed',
 		backgroundColor: 'rgba(0,0,0,0.5)',
 		top: 0,

@@ -2,12 +2,12 @@
 
 import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
+import { CheckboxPrimitive } from '@arch-ui/controls';
 import { inputStyles } from '@arch-ui/input';
 import { jsx, useBrand } from '@westpac/core';
 import { useMutation } from '@apollo/react-hooks';
 import { LoadingIndicator } from '@arch-ui/loading';
-import { Container, Grid, Cell } from '@westpac/grid';
-import { blocksContainerStyle, blocksGridStyle } from '../src/components/_utils';
+import { Cell } from '@westpac/grid';
 
 import gql from 'graphql-tag';
 
@@ -32,13 +32,15 @@ export const Image = {
 		const [uploadState, setUploadState] = useState(null);
 		const [image, setImage] = useState(value.image);
 		const [caption, setCaption] = useState(value.caption);
+		const [removeMargin, setRemoveMargin] = useState(value.removeMargin);
 
 		useEffect(() => {
 			onChange({
 				caption,
 				image,
+				removeMargin,
 			});
-		}, [caption, image]);
+		}, [caption, image, removeMargin]);
 
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
@@ -83,40 +85,34 @@ export const Image = {
 						/>
 					</FieldInput>
 				</FieldContainer>
+				<FieldContainer css={{ marginRight: 42 }}>
+					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
+						<CheckboxPrimitive
+							checked={removeMargin}
+							tabIndex="0"
+							onChange={(e) => setRemoveMargin(e.target.checked)}
+						/>
+						<span>Remove top margin</span>
+					</label>
+				</FieldContainer>
 			</Fragment>
 		);
 	},
-	component: ({ caption, image, context }) => {
+	component: ({ caption, image, removeMargin = false, context }) => {
 		const { SPACING } = useBrand();
 
-		const figureStyles = {
-			margin: 0,
-		};
-
-		const imageStyles = {
-			maxWidth: '100%',
-		};
-
-		const captionStyle = {
-			padding: `${SPACING(2)} 0`,
-		};
-
 		return (
-			<Container css={blocksContainerStyle}>
-				<Grid columns={12} css={blocksGridStyle}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
-						<figure
-							css={{
-								...figureStyles,
-								pointerEvents: context === 'admin' ? 'none' : undefined,
-							}}
-						>
-							<img css={imageStyles} src={image} />
-							<figcaption css={captionStyle}>{caption}</figcaption>
-						</figure>
-					</Cell>
-				</Grid>
-			</Container>
+			<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
+				<figure
+					css={{
+						margin: removeMargin ? '0 0 30px' : '30px 0',
+						pointerEvents: context === 'admin' ? 'none' : undefined,
+					}}
+				>
+					<img css={{ width: '100%', height: '100%' }} src={image} />
+					<figcaption css={{ padding: `${SPACING(2)} 0` }}>{caption}</figcaption>
+				</figure>
+			</Cell>
 		);
 	},
 };

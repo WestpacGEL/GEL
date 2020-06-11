@@ -197,8 +197,8 @@ export const App = () => <GEL brand={brand}>Your app</GEL>;
 
 The brand package includes tokens and overrides and will be available to all packages inside the `<GEL/>` wrapper via context.
 This allows us to be as consistent as can be within the same app.
-It also separates out all things theming to a single package.
-The brand package does not need to know anything about it's components.
+It also separates out all things to do with theming into a single package.
+The brand package does not need to know anything about its components.
 But it can opt in.
 
 <details>
@@ -217,8 +217,8 @@ But it can opt in.
 
 ### Overrides
 
-A consumer may choose to override a component in it's build.
-This can happen by adding the overrides into the same name-space as the component you wish to override.
+A consumer may choose to override a component in its build.
+This can happen by adding the overrides into the same namespace as the component you wish to override.
 
 ```jsx
 import { Tabcordion } from '@westpac/tabcordion';
@@ -237,7 +237,7 @@ export const App = () => (
 ```
 
 There may also a need to add an override only to a single instance of the component.
-In that case you may add the override to the component directly via the `override` prop each component has.
+In that case you may add the override to the component directly via the `overrides` prop each component has.
 
 ```jsx
 import { Tabcordion } from '@westpac/tabcordion';
@@ -246,7 +246,7 @@ import brand from '@westpac/wbc';
 
 brand['@westpac/tabcordion'].Tabcordion.styles = ( styles, state ) => { ...styles, border: 'red solid 2px' };
 
-const override = {
+const overrides = {
 	Tabcordion: {
 		styles: ( styles, state ) => { ...styles, border: 'blue solid 2px' },
 	},
@@ -255,7 +255,7 @@ const override = {
 export const App = () => (
 	<GEL brand={brand}>
 		<Tabcordion/> with red border
-		<Tabcordion override={override} /> with blue border
+		<Tabcordion overrides={overrides} /> with blue border
 		<Tabcordion/> with red border
 	</GEL>
 );

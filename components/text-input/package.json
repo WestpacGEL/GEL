@@ -1,9 +1,31 @@
 {
 	"name": "@westpac/text-input",
-	"version": "1.0.0-beta.1",
+	"version": "1.0.0-beta.2",
 	"description": "TextInput component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/text-input",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"contributors": [
+		{
+			"name": "Dominik Wilkowski",
+			"email": "Hi@Dominik-Wilkowski.com",
+			"url": "https://dominik-wilkowski.com"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
+		},
+		{
+			"name": "Flore Laforge",
+			"email": "florelaforge@gmail.com",
+			"url": "http://florelaforge.com/"
+		}
+	],
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=text-input webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
@@ -17,7 +39,7 @@
 	"module": "dist/text-input.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.0",
+		"@westpac/core": "^1.0.1",
 		"mini-svg-data-uri": "^1.2.3",
 		"prop-types": "^15.7.2"
 	},

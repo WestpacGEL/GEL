@@ -20,7 +20,7 @@ function Example({ brand }) {
 		Header: {
 			styles: (styles) => ({ ...styles, borderBottom: `2px solid palevioletred` }),
 		},
-		Title: {
+		Heading: {
 			styles: (styles) => ({ ...styles, color: 'darkmagenta' }),
 		},
 		Backdrop: {
@@ -44,7 +44,7 @@ function Example({ brand }) {
 
 			<h2>With overrides applied</h2>
 			<Button onClick={() => setOpen(true)}>Open</Button>
-			<Modal heading="Modal title" open={open} onClose={() => setOpen(false)}>
+			<Modal heading="Modal heading" open={open} onClose={() => setOpen(false)}>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -63,14 +63,14 @@ function Example({ brand }) {
 			<h2>With overrides and component overrides</h2>
 			<Button onClick={() => setOpen2(true)}>Open</Button>
 			<Modal
-				heading="Modal title"
+				heading="Modal heading"
 				open={open2}
 				onClose={() => setOpen2(false)}
 				overrides={{
 					Header: {
 						styles: (styles) => ({ ...styles, borderBottom: `2px solid black` }),
 					},
-					Title: {
+					Heading: {
 						styles: (styles) => ({ ...styles, color: 'black' }),
 					},
 					Backdrop: {

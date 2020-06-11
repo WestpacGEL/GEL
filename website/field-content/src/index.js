@@ -12,6 +12,7 @@ import {
 	link,
 	orderedList,
 	unorderedList,
+	section,
 } from './blocks';
 
 export const Content = {
@@ -34,6 +35,7 @@ export const Content = {
 		link,
 		orderedList,
 		unorderedList,
+		section,
 		// not exposing list-item since it's only used internally by the other blocks
 		// not exposing paragraph since it's included by default
 	},
