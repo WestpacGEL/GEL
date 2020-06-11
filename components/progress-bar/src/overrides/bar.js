@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Bar = ({ state, ...rest }) => <div {...rest} />;
+const Bar = ({ state: { value }, ...rest }) => <div style={{ width: `${value}%` }} {...rest} />;
 
 const barStyles = (_, { look, value }) => {
 	const { COLORS, TYPE } = useBrand();
@@ -11,7 +11,6 @@ const barStyles = (_, { look, value }) => {
 		label: getLabel('progressBar-bar', { look }),
 		position: 'relative',
 		float: 'left',
-		width: `${value}%`,
 		borderRadius: look === 'skinny' ? '0.625rem' : '1.5rem',
 		border: value > 0 && `${look === 'skinny' ? '3px' : '1px'} solid transparent`, //a11y: for high contrast mode
 		height: '100%',
