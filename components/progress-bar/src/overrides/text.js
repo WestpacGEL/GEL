@@ -6,6 +6,8 @@ const Text = ({ state, ...rest }) => <span {...rest} />;
 
 const textStyles = () => ({
 	label: getLabel('progressbar-text'),
+	position: 'relative',
+	zIndex: 1,
 	display: 'inline-block',
 	margin: '0 0.75rem',
 
