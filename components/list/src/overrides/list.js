@@ -2,7 +2,6 @@
 
 import { jsx, getLabel } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
-import { Body } from '@westpac/body';
 
 const List = ({ state: { type, assistiveText }, children, ...rest }) => {
 	const ListType = type === 'ordered' ? 'ol' : 'ul';
@@ -14,10 +13,10 @@ const List = ({ state: { type, assistiveText }, children, ...rest }) => {
 		) : null;
 
 	return (
-		<Body tag={ListType} {...rest}>
+		<ListType {...rest}>
 			{hiddenItem}
 			{children}
-		</Body>
+		</ListType>
 	);
 };
 
