@@ -1,7 +1,7 @@
-export const panel = ({ COLORS }) => ({
-	Heading: {
+export const tabcordion = ({ COLORS }) => ({
+	TabButton: {
 		styles: (styles, { look }) => {
-			if (look === 'hero') {
+			if (look === 'lego') {
 				return {
 					...styles,
 					color: COLORS.text,
