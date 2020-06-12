@@ -1,13 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 import { Select as SelectInput } from '@westpac/text-input';
 
 const Select = ({ state: { size, data }, ...rest }) => (
 	<SelectInput size={size} data={data} {...rest} />
 );
 
-const selectStyles = (_, { position }) => ({
+const selectStyles = (_, { position, size }) => ({
+	label: getLabel('inputGroup-select', { position, size }),
 	boxSizing: 'border-box',
 	width: 'auto',
 	marginLeft: position === 'after' && '-1px',
