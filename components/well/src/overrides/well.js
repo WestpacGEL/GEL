@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
-import { Body } from '@westpac/body/src';
+import { Body } from '@westpac/body';
 
 const Well = ({ state: { tag }, state, ...rest }) => <Body tag={tag} {...rest} />;
 

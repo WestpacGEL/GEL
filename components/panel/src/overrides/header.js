@@ -12,10 +12,12 @@ const headerStyles = (_, { look }) => {
 		hero: {
 			backgroundColor: COLORS.hero,
 			borderColor: COLORS.hero,
+			color: '#fff',
 		},
 		faint: {
 			backgroundColor: COLORS.background,
 			borderColor: COLORS.border,
+			color: COLORS.text,
 		},
 	};
 
@@ -25,6 +27,7 @@ const headerStyles = (_, { look }) => {
 		borderBottom: `1px solid ${styleMap[look].borderColor}`,
 		borderTopRightRadius: `calc(0.1875rem - 1px)`,
 		borderTopLeftRadius: `calc(0.1875rem - 1px)`,
+		color: styleMap[look].color,
 		'@media print': {
 			borderBottom: '1px solid #000',
 		},

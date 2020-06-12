@@ -6,6 +6,7 @@ import { pagination } from './pagination';
 import { panel } from './panel';
 import { progressBar } from './progress-bar';
 import { switchStyle } from './switch';
+import { tabcordion } from './tabcordion';
 
 export const OVERRIDES = (TOKENS) => ({
 	'@westpac/badge': badge(TOKENS),
@@ -16,4 +17,5 @@ export const OVERRIDES = (TOKENS) => ({
 	'@westpac/panel': panel(TOKENS),
 	'@westpac/progress-bar': progressBar(TOKENS),
 	'@westpac/switch': switchStyle(TOKENS),
+	'@westpac/tabcordion': tabcordion(TOKENS),
 });
