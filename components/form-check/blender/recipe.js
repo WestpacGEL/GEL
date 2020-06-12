@@ -105,7 +105,7 @@ export function Docs({ brand }) {
 			heading: 'Default checkboxes',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="checkbox" name="name1" instanceIdPrefix="GEL1">
+					<FormCheck type="checkbox" name="name1" instanceIdPrefix="GEL">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -117,7 +117,7 @@ export function Docs({ brand }) {
 			heading: 'Default radios',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="radio" name="name2" instanceIdPrefix="GEL2">
+					<FormCheck type="radio" name="name2" instanceIdPrefix="GEL">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -129,7 +129,7 @@ export function Docs({ brand }) {
 			heading: 'Large checkboxes',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="checkbox" name="name3" instanceIdPrefix="GEL3" size="large">
+					<FormCheck type="checkbox" name="name3" instanceIdPrefix="GEL" size="large">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -141,7 +141,7 @@ export function Docs({ brand }) {
 			heading: 'Large radios',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="radio" name="name4" instanceIdPrefix="GEL4" size="large">
+					<FormCheck type="radio" name="name4" instanceIdPrefix="GEL" size="large">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -153,7 +153,7 @@ export function Docs({ brand }) {
 			heading: 'Inline checkboxes',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="checkbox" name="name5" instanceIdPrefix="GEL5" inline>
+					<FormCheck type="checkbox" name="name5" instanceIdPrefix="GEL" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -165,7 +165,7 @@ export function Docs({ brand }) {
 			heading: 'Inline radios',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="radio" name="name6" instanceIdPrefix="GEL6" inline>
+					<FormCheck type="radio" name="name6" instanceIdPrefix="GEL" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -177,7 +177,7 @@ export function Docs({ brand }) {
 			heading: 'Inline large checkboxes',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="checkbox" name="name7" instanceIdPrefix="GEL7" size="large" inline>
+					<FormCheck type="checkbox" name="name7" instanceIdPrefix="GEL" size="large" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -189,7 +189,7 @@ export function Docs({ brand }) {
 			heading: 'Inline large radios',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="radio" name="name8" instanceIdPrefix="GEL8" size="large" inline>
+					<FormCheck type="radio" name="name8" instanceIdPrefix="GEL" size="large" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -201,7 +201,7 @@ export function Docs({ brand }) {
 			heading: 'Disabled checkboxes',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="checkbox" name="name9" instanceIdPrefix="GEL9" disabled defaultValue="2">
+					<FormCheck type="checkbox" name="name9" instanceIdPrefix="GEL" disabled defaultValue="2">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -213,7 +213,7 @@ export function Docs({ brand }) {
 			heading: 'Disabled radios',
 			component: () => (
 				<GEL brand={brand}>
-					<FormCheck type="radio" name="name10" instanceIdPrefix="GEL10" disabled defaultValue="2">
+					<FormCheck type="radio" name="name10" instanceIdPrefix="GEL" disabled defaultValue="2">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
