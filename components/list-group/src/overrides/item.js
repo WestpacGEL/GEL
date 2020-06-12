@@ -1,13 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Item as ListItem } from '@westpac/list';
 
 const Item = (props) => <ListItem {...props} />;
 
-const itemStyles = () => ({
-	label: getLabel('listGroup-item'),
-});
+const itemStyles = () => ({});
 
 const itemAttributes = () => null;
 
