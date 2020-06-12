@@ -64,7 +64,7 @@ const toggleStyles = (_, { size, checked }) => {
 	})[0];
 };
 
-const toggleAttributes = () => null;
+const toggleAttributes = () => ({ 'data-js': 'switch-toggle__version__' });
 
 export const defaultToggle = {
 	component: Toggle,

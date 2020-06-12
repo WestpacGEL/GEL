@@ -4,7 +4,8 @@
 	"description": "Switch component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/switch",
 	"blender": {
-		"recipe": "blender/recipe.js"
+		"recipe": "blender/recipe.js",
+		"js": "blender/script.js"
 	},
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
