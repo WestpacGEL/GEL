@@ -17,6 +17,6 @@ $(function () {
 	});
 
 	$('[data-js="popover-closeBtn__version__"]').on('click', function () {
-		GELtoggelPopover($(this).parents('[data-js="popover-panel__version__"]'));
+		GELtoggelPopover($(this).closest('[data-js="popover-panel__version__"]'));
 	});
 });
