@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import { Body } from '@westpac/body';
 
@@ -22,7 +22,6 @@ const List = ({ state: { type, assistiveText }, children, ...rest }) => {
 };
 
 const listStyles = (_, { type }) => ({
-	label: getLabel('list', { type }),
 	listStyle: type !== 'ordered' && 'none',
 	margin: 0,
 	padding: type === 'ordered' ? '0 0 0 1.25rem' : 0,

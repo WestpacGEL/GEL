@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 
 const Item = ({ state, ...rest }) => <li {...rest} />;
 
@@ -76,7 +76,6 @@ const itemStyles = (_, { type, look, spacing, nested }) => {
 	};
 
 	return {
-		label: getLabel('list-item', { type, look, spacing }),
 		margin: spacing === 'large' ? '0.75rem 0' : '0.375rem 0',
 		paddingLeft: '1.1875rem',
 		position: 'relative',
