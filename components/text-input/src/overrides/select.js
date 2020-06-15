@@ -27,7 +27,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		label: getLabel('select', { size, width, inline, invalid }),
 		boxSizing: 'border-box',
 		display: inline ? ['block', 'inline-block'] : 'block',
-		width: inline ? ['100%', 'auto'] : '100%',
+		width: inline && !width ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
 		lineHeight: lineHeight,
 		...TYPE.bodyFont[400],

@@ -1,78 +1,35 @@
 import { GEL } from '@westpac/core';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { TextInput, Select, Textarea } from '@westpac/text-input';
+
+const components = [TextInput, Select, Textarea];
+const sizes = ['small', 'medium', 'large', 'xlarge'];
+const widths = [2, 3, 4, 5, 10, 20, 30];
 
 export function AllStyles({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<TextInput />
-			<TextInput size="small" placeholder="small" />
-			<TextInput size="medium" placeholder="medium" />
-			<TextInput size="large" placeholder="large" />
-			<TextInput size="xlarge" placeholder="xlarge" />
-			<TextInput invalid />
-			<TextInput inline />
-			<TextInput width={2} placeholder={2} />
-			<TextInput width={3} placeholder={3} />
-			<TextInput width={4} placeholder={4} />
-			<TextInput width={5} placeholder={5} />
-			<TextInput width={10} placeholder={10} />
-			<TextInput width={20} placeholder={20} />
-			<TextInput width={30} placeholder={30} />
-			<Select>
-				<option>Select</option>
-			</Select>
-			<Select size="small">
-				<option>Select</option>
-			</Select>
-			<Select size="large">
-				<option>Large</option>
-			</Select>
-			<Select size="xlarge">
-				<option>XLarge</option>
-			</Select>
-			<Select invalid>
-				<option>Invalid</option>
-			</Select>
-			<Select inline>
-				<option>Select</option>
-			</Select>
-			<Select width={2}>
-				<option>Size 2</option>
-			</Select>
-			<Select width={3}>
-				<option>Size 3</option>
-			</Select>
-			<Select width={4}>
-				<option>Size 4</option>
-			</Select>
-			<Select width={5}>
-				<option>Size 5</option>
-			</Select>
-			<Select width={10}>
-				<option>Size 10</option>
-			</Select>
-			<Select width={20}>
-				<option>Size 20</option>
-			</Select>
-			<Select width={30}>
-				<option>Size 30</option>
-			</Select>
-			<Textarea />
-			<Textarea size="small" />
-			<Textarea size="medium" />
-			<Textarea size="large" />
-			<Textarea size="xlarge" />
-			<Textarea invalid />
-			<Textarea inline />
-			<Textarea width={2} />
-			<Textarea width={3} />
-			<Textarea width={4} />
-			<Textarea width={5} />
-			<Textarea width={10} />
-			<Textarea width={20} />
-			<Textarea width={30} />
+			{components.map((Component, i) => (
+				<Fragment key={i}>
+					{sizes.map((size) => (
+						<Fragment key={size}>
+							<Component size={size} />
+							<Component size={size} inline />
+							<Component size={size} invalid />
+							<Component size={size} inline invalid />
+							{widths.map((width) => (
+								<Fragment key={`${size}-${width}`}>
+									<Component size={size} width={width} />
+									<Component size={size} width={width} inline />
+									<Component size={size} width={width} invalid />
+									<Component size={size} width={width} inline invalid />
+								</Fragment>
+							))}
+						</Fragment>
+					))}
+				</Fragment>
+			))}
 		</GEL>
 	);
 }
@@ -111,6 +68,14 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
+		{
+			heading: 'An inline invalid text input',
+			component: () => (
+				<GEL brand={brand}>
+					<TextInput inline invalid />
+				</GEL>
+			),
+		},
 		...[2, 3, 4, 5, 10, 20, 30].map((width) => ({
 			heading: `A text input with width of ${width}`,
 			component: () => (
@@ -119,6 +84,14 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
+		{
+			heading: 'An inline invalid text input with width of 10',
+			component: () => (
+				<GEL brand={brand}>
+					<TextInput inline invalid width={10} />
+				</GEL>
+			),
+		},
 		{
 			heading: 'A default select',
 			component: () => (
@@ -171,6 +144,19 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
+		{
+			heading: 'An inline invalid select',
+			component: () => (
+				<GEL brand={brand}>
+					<Select inline invalid>
+						<option>Select</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</Select>
+				</GEL>
+			),
+		},
 		...[2, 3, 4, 5, 10, 20, 30].map((width) => ({
 			heading: `A select with width of ${width}`,
 			component: () => (
@@ -184,6 +170,19 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
+		{
+			heading: 'An inline invalid select with width of 10',
+			component: () => (
+				<GEL brand={brand}>
+					<Select inline invalid width={10}>
+						<option>Select</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</Select>
+				</GEL>
+			),
+		},
 		{
 			heading: 'A default textarea',
 			component: () => (
@@ -216,6 +215,14 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
+		{
+			heading: 'An inline invalid textarea',
+			component: () => (
+				<GEL brand={brand}>
+					<Textarea inline />
+				</GEL>
+			),
+		},
 		...[2, 3, 4, 5, 10, 20, 30].map((width) => ({
 			heading: `A textarea with width of ${width}`,
 			component: () => (
@@ -224,5 +231,13 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
+		{
+			heading: 'An inline invalid textarea with width of 10',
+			component: () => (
+				<GEL brand={brand}>
+					<Textarea inline invalid width={10} />
+				</GEL>
+			),
+		},
 	];
 }

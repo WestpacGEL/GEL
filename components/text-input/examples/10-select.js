@@ -170,6 +170,14 @@ function Example({ brand }) {
 				<option>2</option>
 				<option>3</option>
 			</Select>
+
+			<h2>Inline, invalid and fixed width</h2>
+			<Select width={10} inline invalid>
+				<option>Size 10</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</Select>
 		</GEL>
 	);
 }

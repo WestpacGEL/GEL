@@ -77,6 +77,9 @@ function Example({ brand }) {
 			<TextInput width={20} placeholder={20} />
 			<br />
 			<TextInput width={30} placeholder={30} />
+
+			<h2>Inline, invalid and fixed width</h2>
+			<TextInput width={10} inline invalid />
 		</GEL>
 	);
 }
