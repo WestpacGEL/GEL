@@ -8,7 +8,7 @@ const tfootStyles = (_, { bordered }) => {
 	const { COLORS } = useBrand();
 
 	return {
-		label: getLabel('tfoot', { bordered }),
+		label: getLabel('table-tfoot', { bordered }),
 		color: COLORS.muted,
 		'th, tr, td': { borderBottom: !bordered && 0 },
 	};

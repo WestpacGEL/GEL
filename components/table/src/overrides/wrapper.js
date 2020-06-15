@@ -8,7 +8,7 @@ const wrapperStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
-		label: getLabel('tableWrapper'),
+		label: getLabel('table-wrapper'),
 		'@media screen and (max-width: 480px)': {
 			width: '100%',
 			marginBottom: '1.125rem',

@@ -8,7 +8,7 @@ const captionStyles = () => {
 	const { TYPE } = useBrand();
 
 	return {
-		label: getLabel('caption'),
+		label: getLabel('table-caption'),
 		fontSize: '1.125rem',
 		textAlign: 'left',
 		marginBottom: '0.75rem',

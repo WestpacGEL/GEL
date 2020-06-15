@@ -8,7 +8,7 @@ const tdStyles = (_, { highlighted, highlightStart, bordered }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
-		label: getLabel('td', { highlighted, highlightStart, bordered }),
+		label: getLabel('table-td', { highlighted, highlightStart, bordered }),
 		padding: '0.75rem',
 		verticalAlign: 'top',
 		border: bordered && `1px solid ${COLORS.border}`,

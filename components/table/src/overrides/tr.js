@@ -8,7 +8,7 @@ export const trStyles = (_, { striped, highlighted }) => {
 	const { COLORS } = useBrand();
 
 	return {
-		label: getLabel('tr', { striped, highlighted }),
+		label: getLabel('table-tr', { striped, highlighted }),
 		transition: !striped && 'background 0.2s ease',
 		borderLeft: typeof highlighted === 'boolean' && highlighted ? `6px solid ${COLORS.primary}` : 0,
 		borderBottom:

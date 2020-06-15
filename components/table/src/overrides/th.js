@@ -8,7 +8,7 @@ const thStyles = (_, { bordered }) => {
 	const { COLORS } = useBrand();
 
 	return {
-		label: getLabel('th', { bordered }),
+		label: getLabel('table-th', { bordered }),
 		padding: '0.75rem',
 		verticalAlign: 'top',
 		border: `1px solid ${COLORS.border}`,

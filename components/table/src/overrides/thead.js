@@ -8,7 +8,7 @@ const theadStyles = (_, { bordered }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
-		label: getLabel('thead', { bordered }),
+		label: getLabel('table-thead', { bordered }),
 		'th, td': { borderTop: !bordered && 0 },
 		// `th` cells in the `thead`
 		th: {

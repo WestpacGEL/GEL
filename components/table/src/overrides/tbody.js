@@ -4,7 +4,7 @@ import { jsx, getLabel } from '@westpac/core';
 
 const Tbody = ({ state, ...rest }) => <tbody {...rest} />;
 
-const tbodyStyles = () => ({ label: getLabel('tbody') });
+const tbodyStyles = () => ({ label: getLabel('table-tbody') });
 
 const tbodyAttributes = () => null;
 
