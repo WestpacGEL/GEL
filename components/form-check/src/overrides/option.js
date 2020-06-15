@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Option = ({ state, ...rest }) => <div {...rest} />;
 
@@ -21,6 +21,7 @@ const optionStyles = (_, { size, inline }) => {
 	};
 
 	return {
+		label: getLabel('formCheck-option', { size, inline }),
 		position: 'relative',
 		display: inline ? 'inline-block' : 'block',
 		verticalAlign: inline && 'top',
