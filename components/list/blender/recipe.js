@@ -2,83 +2,59 @@ import { GEL } from '@westpac/core';
 import React from 'react';
 
 import { List, Item } from '@westpac/list';
-import { AndroidIcon, GithubIcon, AppleIcon } from '@westpac/icon';
+import { AndroidIcon } from '@westpac/icon';
+
+const types = ['bullet', 'link', 'tick', 'ordered', 'unstyled', 'icon'];
+const looks = ['primary', 'hero', 'neutral'];
+const spacings = ['medium', 'large'];
+
+const ExampleList = ({ depth = 1, ...rest }) => (
+	<List {...rest}>
+		<ExampleItem type={rest.type} />
+		<ExampleItem type={rest.type}>
+			{depth > 0 ? <ExampleList depth={depth - 1} {...rest} /> : null}
+		</ExampleItem>
+		<ExampleItem type={rest.type} />
+	</List>
+);
+
+const ExampleItem = ({ type, text = 'List item text', children, ...rest }) => (
+	<Item {...rest}>
+		{type === 'link' ? <a href="#">{text}</a> : text}
+		{children}
+	</Item>
+);
 
 export function AllStyles({ brand }) {
-	return (
-		<GEL brand={brand}>
-			<List look="primary">
-				<Item>Text</Item>
-			</List>
-			<List look="hero">
-				<Item>Text</Item>
-			</List>
-			<List look="neutral">
-				<Item>Text</Item>
-			</List>
-			<List look="primary" spacing="large">
-				<Item>Text</Item>
-			</List>
-			<List look="hero" spacing="large">
-				<Item>Text</Item>
-			</List>
-			<List look="neutral" spacing="large">
-				<Item>Text</Item>
-			</List>
+	const allCombinations = [];
 
-			<List type="bullet">
-				<Item>Text</Item>
-			</List>
-			<List type="link">
-				<Item>Text</Item>
-			</List>
-			<List type="tick">
-				<Item>Text</Item>
-			</List>
-			<List type="ordered">
-				<Item>Text</Item>
-			</List>
-			<List type="unstyled">
-				<Item>Text</Item>
-			</List>
-			<List type="icon" icon={AndroidIcon}>
-				<Item>Text</Item>
-			</List>
-			<List type="bullet" spacing="large">
-				<Item>Text</Item>
-			</List>
-			<List type="link" spacing="large">
-				<Item>Text</Item>
-			</List>
-			<List type="tick" spacing="large">
-				<Item>Text</Item>
-			</List>
-			<List type="ordered" spacing="large">
-				<Item>Text</Item>
-			</List>
-			<List type="unstyled" spacing="large">
-				<Item>Text</Item>
-			</List>
-			<List type="icon" icon={AndroidIcon} spacing="large">
-				<Item>Text</Item>
-			</List>
-		</GEL>
-	);
+	types.forEach((type) => {
+		looks.forEach((look) => {
+			spacings.forEach((spacing) =>
+				allCombinations.push(
+					<ExampleList
+						key={`${type}-${look}-${spacing}`}
+						depth={3}
+						type={type}
+						look={type === 'bullet' ? look : null}
+						icon={type === 'icon' ? AndroidIcon : null}
+						spacing={spacing}
+					/>
+				)
+			);
+		});
+	});
+
+	return <GEL brand={brand}>{allCombinations}</GEL>;
 }
 
 export function Docs({ brand }) {
-	const spacings = ['medium', 'large'];
-
 	return [
 		...spacings.map((spacing) => ({
 			heading: `A primary bullet list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
-					<List type="bullet" look="primary" spacing={spacing}>
-						<Item>Styled primary bullet list</Item>
-						<Item>Styled primary bullet list</Item>
-						<Item>Styled primary bullet list</Item>
-					</List>
+					<ExampleList type="bullet" look="primary" spacing={spacing} />
 				</GEL>
 			),
 		})),
@@ -86,11 +62,7 @@ export function Docs({ brand }) {
 			heading: `A hero bullet list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
-					<List type="bullet" look="hero" spacing={spacing}>
-						<Item>Styled hero bullet list</Item>
-						<Item>Styled hero bullet list</Item>
-						<Item>Styled hero bullet list</Item>
-					</List>
+					<ExampleList type="bullet" look="hero" spacing={spacing} />
 				</GEL>
 			),
 		})),
@@ -98,11 +70,7 @@ export function Docs({ brand }) {
 			heading: `A neutral bullet list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
-					<List type="bullet" look="neutral" spacing={spacing}>
-						<Item>Styled neutral bullet list</Item>
-						<Item>Styled neutral bullet list</Item>
-						<Item>Styled neutral bullet list</Item>
-					</List>
+					<ExampleList type="bullet" look="neutral" spacing={spacing} />
 				</GEL>
 			),
 		})),
@@ -110,17 +78,7 @@ export function Docs({ brand }) {
 			heading: `A link list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
-					<List type="link" spacing={spacing}>
-						<Item>
-							<a href="#">Styled link list</a>
-						</Item>
-						<Item>
-							<a href="#">Styled link list</a>
-						</Item>
-						<Item>
-							<a href="#">Styled link list</a>
-						</Item>
-					</List>
+					<ExampleList type="link" spacing={spacing} />
 				</GEL>
 			),
 		})),
@@ -128,11 +86,7 @@ export function Docs({ brand }) {
 			heading: `A tick list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
-					<List type="tick" spacing={spacing}>
-						<Item>Styled tick list</Item>
-						<Item>Styled tick list</Item>
-						<Item>Styled tick list</Item>
-					</List>
+					<ExampleList type="tick" spacing={spacing} />
 				</GEL>
 			),
 		})),
@@ -140,11 +94,7 @@ export function Docs({ brand }) {
 			heading: `An ordered list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
-					<List type="ordered" spacing={spacing}>
-						<Item>Styled ordered list</Item>
-						<Item>Styled ordered list</Item>
-						<Item>Styled ordered list</Item>
-					</List>
+					<ExampleList type="ordered" spacing={spacing} />
 				</GEL>
 			),
 		})),
@@ -152,11 +102,7 @@ export function Docs({ brand }) {
 			heading: `An unstyled list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
-					<List type="unstyled" spacing={spacing}>
-						<Item>Unstyled list</Item>
-						<Item>Unstyled list</Item>
-						<Item>Unstyled list</Item>
-					</List>
+					<ExampleList type="unstyled" spacing={spacing} />
 				</GEL>
 			),
 		})),
@@ -164,11 +110,7 @@ export function Docs({ brand }) {
 			heading: `An icon list - ${spacing} spacing`,
 			component: () => (
 				<GEL brand={brand}>
-					<List type="icon" icon={AndroidIcon} spacing={spacing}>
-						<Item>Styled icon list</Item>
-						<Item>Styled icon list</Item>
-						<Item>Styled icon list</Item>
-					</List>
+					<ExampleList type="icon" icon={AndroidIcon} spacing={spacing} />
 				</GEL>
 			),
 		})),

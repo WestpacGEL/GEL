@@ -76,7 +76,7 @@ const itemStyles = (_, { type, look, spacing, nested }) => {
 	};
 
 	return {
-		label: getLabel('list-item', { type, look, spacing }),
+		label: getLabel('list-item', { type, look, spacing, nested }),
 		margin: spacing === 'large' ? '0.75rem 0' : '0.375rem 0',
 		paddingLeft: '1.1875rem',
 		position: 'relative',
