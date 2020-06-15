@@ -3,3 +3,4 @@
 ---
 
 - add blender support
+- Refactor checked styling

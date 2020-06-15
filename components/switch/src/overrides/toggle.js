@@ -1,12 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 import { sizeMap } from './_utils';
-import { getLabel } from '@westpac/core/src';
 
 const Toggle = ({ state, ...rest }) => <span {...rest} />;
 
-const toggleStyles = (_, { size, checked }) => {
+const toggleStyles = (_, { size }) => {
 	const mq = useMediaQuery();
 	const { COLORS, PACKS } = useBrand();
 	const sizing = sizeMap(size);
@@ -14,12 +13,12 @@ const toggleStyles = (_, { size, checked }) => {
 	const borderWidthArr = sizeArr.map((w) => w && `${parseFloat(w) / 2}rem`);
 
 	return mq({
-		label: getLabel('switch-toggle', { size, checked }),
+		label: getLabel('switch-toggle', { size }),
 		display: 'block',
 		position: 'relative',
-		border: `1px solid ${checked ? COLORS.hero : COLORS.borderDark}`,
+		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: sizing.borderRadius,
-		backgroundColor: checked ? COLORS.hero : '#fff',
+		backgroundColor: '#fff',
 		height: sizing.height,
 		width: sizing.width,
 		overflow: 'hidden',
@@ -38,8 +37,7 @@ const toggleStyles = (_, { size, checked }) => {
 			height: sizeArr,
 			width: sizeArr,
 			display: 'block',
-			left: checked ? '100%' : 0,
-			transform: checked ? 'translateX(-100%)' : null,
+			left: 0,
 			top: 0,
 			borderRadius: '50%',
 			backgroundColor: '#fff',
@@ -47,15 +45,24 @@ const toggleStyles = (_, { size, checked }) => {
 			transition: 'all .3s ease',
 		},
 
-		// a11y: high contrast mode 'on' fill
-		'::before': {
-			display: !checked && 'none',
-			left: 0,
-			right: 0,
-			top: 0,
-			bottom: 0,
-			border: 'solid transparent',
-			borderWidth: borderWidthArr,
+		'input:checked ~ &': {
+			border: `1px solid ${COLORS.hero}`,
+			backgroundColor: COLORS.hero,
+
+			'&::after': {
+				left: '100%',
+				transform: 'translateX(-100%)',
+			},
+
+			// a11y: high contrast mode 'on' fill
+			'&::before': {
+				left: 0,
+				right: 0,
+				top: 0,
+				bottom: 0,
+				border: 'solid transparent',
+				borderWidth: borderWidthArr,
+			},
 		},
 
 		'body:not(.isMouseMode) input:focus ~ &': {
@@ -64,7 +71,7 @@ const toggleStyles = (_, { size, checked }) => {
 	})[0];
 };
 
-const toggleAttributes = () => ({ 'data-js': 'switch-toggle__version__' });
+const toggleAttributes = () => null;
 
 export const defaultToggle = {
 	component: Toggle,

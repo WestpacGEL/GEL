@@ -79,7 +79,6 @@ export const Switch = ({
 				id={instanceId}
 				onChange={handleChange(name)}
 				name={name}
-				data-js="switch__version__"
 				checked={checked}
 				disabled={disabled}
 				css={{
