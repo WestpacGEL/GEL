@@ -20,7 +20,7 @@ const ExampleList = ({ depth = 1, ...rest }) => (
 
 const ExampleItem = ({ type, text = 'List item text', children, ...rest }) => (
 	<Item {...rest}>
-		{type === 'link' ? <a href="#">{text}</a> : text}
+		{type === 'link' ? <a href="#content">{text}</a> : text}
 		{children}
 	</Item>
 );
@@ -79,6 +79,11 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={brand}>
 					<ExampleList type="link" spacing={spacing} />
+					{spacing === 'medium' && (
+						<div id="content" tabIndex="-1">
+							This is content
+						</div>
+					)}
 				</GEL>
 			),
 		})),

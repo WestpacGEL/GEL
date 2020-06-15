@@ -84,7 +84,12 @@ const itemStyles = (_, { type, look, spacing, nested }) => {
 	};
 };
 
-const itemAttributes = () => null;
+const itemAttributes = (_, { type }) => ({
+	...(type === 'link' && {
+		'data-js': 'list-link-item__version__',
+		'data-testing': 'list-link-item',
+	}),
+});
 
 export const defaultItem = {
 	component: Item,
