@@ -9,7 +9,10 @@ export function AllStyles({ brand }) {
 			<ProgressBar value={0} />
 			<ProgressBar value={20} />
 			<ProgressBar value={100} />
+
+			<ProgressBar value={0} look="skinny" />
 			<ProgressBar value={20} look="skinny" />
+			<ProgressBar value={100} look="skinny" />
 		</GEL>
 	);
 }
