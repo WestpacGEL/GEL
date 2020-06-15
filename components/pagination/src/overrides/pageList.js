@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const PageList = ({ state, ...rest }) => <ul {...rest} />;
 
 const pageListStyles = () => ({
+	label: getLabel('pagination-pageList'),
 	listStyle: 'none',
 	display: 'flex',
 	paddingLeft: 0,
