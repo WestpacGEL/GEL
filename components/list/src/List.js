@@ -107,7 +107,7 @@ export const List = ({
 
 	const context = useListContext();
 
-	look = look || (context && context.look) || 'primary';
+	look = look || (context && context.look) || (type === 'bullet' && 'hero');
 	type = type || (context && context.type) || 'bullet';
 	spacing = spacing || (context && context.spacing) || 'medium';
 	icon = icon || (context && context.icon);
