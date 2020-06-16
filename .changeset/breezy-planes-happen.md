@@ -1,5 +1,6 @@
 ---
-'@westpac/tabcordion': major
+'@westpac/pagination': major
 ---
 
-Added blender support
+- Added blender support
+- Renamed internal `List` component (was `pageList`)
