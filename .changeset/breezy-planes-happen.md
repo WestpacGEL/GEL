@@ -3,4 +3,4 @@
 ---
 
 - Added blender support
-- Renamed internal `List` component (was `pageList`)
+- Renamed internal `List` component (was `PageList`)
