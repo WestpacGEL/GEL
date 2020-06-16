@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const ProgressRope = ({ state, ...rest }) => <nav role="navigation" {...rest} />;
 
-const progressRopeStyles = () => ({});
+const progressRopeStyles = () => ({ label: getLabel('progressRope') });
 
 const progressRopeAttributes = (_, { assistiveText }) => ({
 	'aria-label': assistiveText,

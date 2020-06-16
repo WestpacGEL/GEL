@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Step = ({ state, ...rest }) => <li {...rest} />;
 
@@ -8,6 +8,7 @@ const stepStyles = (_, { end, visited, grouped, furthest }) => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('progressRope-step', { end, visited, grouped, furthest }),
 		position: 'relative',
 		marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
 		backgroundColor: '#fff',

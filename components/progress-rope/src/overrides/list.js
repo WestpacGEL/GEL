@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const List = ({ state, ...rest }) => <ol {...rest} />;
 
@@ -8,6 +8,7 @@ const listStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('progressRope-list'),
 		position: 'relative',
 		listStyle: 'none',
 		paddingLeft: 0,

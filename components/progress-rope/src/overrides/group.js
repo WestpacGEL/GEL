@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Group = ({ state, ...rest }) => <li {...rest} />;
 
-const groupStyles = () => ({});
+const groupStyles = () => ({ label: getLabel('progressRope-group') });
 
 const groupAttributes = () => null;
 

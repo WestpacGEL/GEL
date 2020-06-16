@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 
 const StepButton = ({ state: { visited, active }, children, ...rest }) => {
@@ -23,6 +23,7 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 
 	return {
+		label: getLabel('progressRope-stepBtn', { end, grouped, visited, active }),
 		position: 'relative',
 		fontSize: '0.875rem',
 		lineHeight: 1.428571429, //`<body>` line-height

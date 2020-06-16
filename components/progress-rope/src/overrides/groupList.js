@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const GroupList = ({ state, ...rest }) => <ol {...rest} />;
 
 const groupListStyles = () => ({
+	label: getLabel('progressRope-groupList'),
 	position: 'relative',
 	listStyle: 'none',
 	paddingLeft: 0,

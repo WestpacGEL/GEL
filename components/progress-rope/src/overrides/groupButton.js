@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 
 const GroupButton = ({ state: { complete, active }, children, ...rest }) => {
@@ -20,9 +20,10 @@ const GroupButton = ({ state: { complete, active }, children, ...rest }) => {
 };
 
 const groupButtonStyles = (_, { complete, active }) => {
-	const { COLORS, PACKS, TYPE } = useBrand();
+	const { COLORS, PACKS } = useBrand();
 
 	return {
+		label: getLabel('progressRope-groupBtn', { complete, active }),
 		position: 'relative',
 		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		fontSize: '1rem',

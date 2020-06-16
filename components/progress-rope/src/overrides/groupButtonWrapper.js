@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const GroupButtonWrapper = ({
 	state: {
@@ -10,6 +10,7 @@ const GroupButtonWrapper = ({
 }) => <Tag {...rest} />;
 
 const groupButtonWrapperStyles = () => ({
+	label: getLabel('progressRope-groupBtnWrapper'),
 	margin: 0,
 	fontSize: 'inherit',
 });
