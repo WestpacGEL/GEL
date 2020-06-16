@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Icon = ({ state: { icon: Icon }, ...rest }) => {
 	const { COLORS } = useBrand();
@@ -8,6 +8,7 @@ const Icon = ({ state: { icon: Icon }, ...rest }) => {
 };
 
 const iconStyles = () => ({
+	label: getLabel('list-icon'),
 	position: 'absolute',
 	top: 0,
 	left: 0,
