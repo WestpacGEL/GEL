@@ -19,7 +19,7 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	)}`;
 
 	return mq({
-		label: getLabel('textinput', { size, width, inline, invalid }),
+		label: getLabel('textInput', { size, width, inline, invalid }),
 		boxSizing: 'border-box',
 		display: inline ? ['block', 'inline-block'] : 'block',
 		width: inline && !width ? ['100%', 'auto'] : '100%',
