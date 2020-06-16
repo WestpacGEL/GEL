@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
@@ -11,6 +11,7 @@ const CloseBtn = ({ state, ...rest }) => (
 const closeBtnStyles = () => {
 	const { COLORS, SPACING } = useBrand();
 	return {
+		label: getLabel('modal-closeBtn'),
 		position: 'absolute',
 		zIndex: 1,
 		top: SPACING(1),

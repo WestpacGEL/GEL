@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 const ModalBody = ({ state, ...rest }) => <Body {...rest} />;
 
 const bodyStyles = () => {
-	const { TYPE, COLORS } = useBrand();
 	return {
+		label: getLabel('modal-body'),
 		padding: '1.125rem 1.5rem',
 	};
 };

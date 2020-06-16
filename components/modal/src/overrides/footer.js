@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Footer = ({ state, ...rest }) => <div {...rest} />;
 
@@ -8,6 +8,7 @@ const footerStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('modal-footer'),
 		backgroundColor: COLORS.background,
 		borderTop: `1px solid ${COLORS.border}`,
 		textAlign: 'right',

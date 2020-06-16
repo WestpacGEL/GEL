@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { forwardRef } from 'react';
 
@@ -12,6 +12,7 @@ const headingStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('modal-heading'),
 		color: COLORS.text,
 	};
 };

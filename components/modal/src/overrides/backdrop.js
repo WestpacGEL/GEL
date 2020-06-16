@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 
 const Backdrop = ({ state: { open }, ...rest }) => {
@@ -25,6 +25,7 @@ const Backdrop = ({ state: { open }, ...rest }) => {
 
 const backdropStyles = () => {
 	return {
+		label: getLabel('modal-backdrop'),
 		zIndex: '1001',
 		position: 'fixed',
 		backgroundColor: 'rgba(0,0,0,0.5)',

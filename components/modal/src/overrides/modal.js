@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, useBrand } from '@westpac/core';
+import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 import { forwardRef } from 'react';
 
@@ -40,6 +40,7 @@ const modalStyles = (_, { size }) => {
 	const mq = useMediaQuery();
 
 	return mq({
+		label: getLabel('modal', { size }),
 		position: 'relative',
 		overflow: 'auto',
 		maxHeight: '85%',
