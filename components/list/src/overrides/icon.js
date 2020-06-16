@@ -2,9 +2,16 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Icon = ({ state: { icon: Icon }, ...rest }) => {
+const Icon = ({ state: { icon: Icon, look }, ...rest }) => {
 	const { COLORS } = useBrand();
-	return <Icon size="small" color={COLORS.muted} {...rest} />;
+
+	const colorMap = {
+		primary: COLORS.primary,
+		hero: COLORS.hero,
+		neutral: COLORS.neutral,
+	};
+
+	return <Icon size="small" color={colorMap[look] || COLORS.muted} {...rest} />;
 };
 
 const iconStyles = () => ({
