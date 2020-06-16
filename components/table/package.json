@@ -39,6 +39,7 @@
 	"module": "dist/table.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
+		"@westpac/body": "^1.1.0",
 		"@westpac/core": "^1.0.1",
 		"prop-types": "^15.7.2"
 	},

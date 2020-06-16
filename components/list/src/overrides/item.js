@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 
 const Item = ({ state, ...rest }) => <li {...rest} />;
 
-const itemStyles = (_, {}) => ({});
+const itemStyles = (_, {}) => null;
 
 const itemAttributes = (_, { type }) => ({
 	...(type === 'link' && {
