@@ -76,8 +76,11 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 		}
 	});
 
+	// we conditionally apply the css so it doesn't generate a class in the blender (as it does even for an empty object)
+	const styles = itemStyles(state);
+
 	return (
-		<Item {...rest} state={state} {...itemAttributes(state)} css={itemStyles(state)}>
+		<Item {...rest} state={state} {...itemAttributes(state)} {...(styles ? { css: styles } : {})}>
 			{type === 'icon' && icon && (
 				<Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />
 			)}
