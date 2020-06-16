@@ -78,12 +78,12 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 
 Item.propTypes = {
 	/**
-	 * The look of the bullet list
+	 * The look of the bullet or icon list
 	 */
 	look: PropTypes.oneOf(['primary', 'hero', 'neutral']),
 
 	/**
-	 * The type of the bullet
+	 * The list style
 	 */
 	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
 
