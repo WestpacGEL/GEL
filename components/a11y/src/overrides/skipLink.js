@@ -5,7 +5,7 @@ import { jsx, getLabel } from '@westpac/core';
 const SkipLink = ({ state: { href }, ...rest }) => <a href={href} {...rest} />;
 
 const skipLinkStyles = () => ({
-	label: getLabel('skiplink'),
+	label: getLabel('skipLink'),
 	position: 'absolute',
 	width: 1,
 	height: 1,

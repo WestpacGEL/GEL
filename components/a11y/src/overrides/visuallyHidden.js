@@ -5,7 +5,7 @@ import { jsx, getLabel } from '@westpac/core';
 const VisuallyHidden = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
 const visuallyHiddenStyles = () => ({
-	label: getLabel('visuallyhidden'),
+	label: getLabel('visuallyHidden'),
 	position: 'absolute',
 	width: 1,
 	height: 1,

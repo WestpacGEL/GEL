@@ -5,7 +5,7 @@ import { jsx, getLabel } from '@westpac/core';
 const Text = ({ state, ...rest }) => <span {...rest} />;
 
 const textStyles = () => ({
-	label: getLabel('progressbar-text'),
+	label: getLabel('progressBar-text'),
 	position: 'relative',
 	zIndex: 1,
 	display: 'inline-block',

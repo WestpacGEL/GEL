@@ -46,7 +46,7 @@ const brandHeadingStyles = (_, { size }) => {
 	});
 
 	return mq({
-		label: getLabel('brandheading', { size }),
+		label: getLabel('brandHeading', { size }),
 		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontFamily),
 		fontSize: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontSize),
 		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].lineHeight),
