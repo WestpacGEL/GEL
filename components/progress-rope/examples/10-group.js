@@ -9,8 +9,8 @@ import { useProgress, Wrapper } from './_utils';
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
-	const [state, dispatch] = useProgress();
-	const [state2, dispatch2] = useProgress();
+	const [state, dispatch] = useProgress(0);
+	const [state2, dispatch2] = useProgress(3);
 
 	const handleClick = (index) => (e) => {
 		e.preventDefault();

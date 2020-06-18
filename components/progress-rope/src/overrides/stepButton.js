@@ -23,7 +23,7 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 
 	return {
-		label: getLabel('progressRope-stepBtn', { end, grouped, visited, active }),
+		label: getLabel('progressRope-stepBtn', { end, grouped, visited, active, furthest }),
 		position: 'relative',
 		fontSize: '0.875rem',
 		lineHeight: 1.428571429, //`<body>` line-height
@@ -45,9 +45,6 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 			color: COLORS.tints.muted90,
 			cursor: 'default',
 		},
-		/* ':disabled:active, :disabled:hover': {
-			cursor: 'not-allowed',
-		}, */
 
 		':focus': {
 			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
