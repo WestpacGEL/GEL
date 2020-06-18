@@ -3,6 +3,9 @@
 	"version": "1.0.0-beta.2",
 	"description": "A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-bar",
+	"blender": {
+		"recipe": "blender/recipe.js"
+	},
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
