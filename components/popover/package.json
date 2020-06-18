@@ -3,6 +3,10 @@
 	"version": "1.0.0-beta.3",
 	"description": "GEL popover component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/popover",
+	"blender": {
+		"recipe": "blender/recipe.js",
+		"js": "blender/script.js"
+	},
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
