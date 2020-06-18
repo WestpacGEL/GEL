@@ -1,10 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Pagination = ({ state, ...rest }) => <nav {...rest} />;
 
-const paginationStyles = () => ({});
+const paginationStyles = () => ({
+	label: getLabel('pagination'),
+});
 
 const paginationAttributes = () => ({ 'aria-label': 'Page number' });
 
