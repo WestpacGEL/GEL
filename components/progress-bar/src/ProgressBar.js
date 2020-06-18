@@ -50,7 +50,12 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...res
 			{...progressBarAttributes(state)}
 			css={progressBarStyles(state)}
 		>
-			<Bar state={state} {...barAttributes(state)} css={barStyles(state)}>
+			<Bar
+				state={state}
+				style={{ width: `${value}%` }}
+				{...barAttributes(state)}
+				css={barStyles(state)}
+			>
 				{look !== 'skinny' && (
 					<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
 						{`${roundedValue}%`}

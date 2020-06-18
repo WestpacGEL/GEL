@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Bar = ({ state: { value }, ...rest }) => <div style={{ width: `${value}%` }} {...rest} />;
+const Bar = ({ state, ...rest }) => <div {...rest} />;
 
 const barStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
