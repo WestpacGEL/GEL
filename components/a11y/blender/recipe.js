@@ -6,9 +6,8 @@ import { VisuallyHidden, SkipLink } from '@westpac/a11y';
 export function AllStyles({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<VisuallyHidden>This is screen reader only text</VisuallyHidden>
-
-			<SkipLink href="#content">This is screen reader only text (visible when focussed)</SkipLink>
+			<VisuallyHidden>TEXT</VisuallyHidden>
+			<SkipLink href="#TEXT">TEXT</SkipLink>
 		</GEL>
 	);
 }
