@@ -8,7 +8,7 @@ const Select = ({ state: { size, data }, ...rest }) => (
 );
 
 const selectStyles = (_, { position, size }) => ({
-	label: getLabel('inputGroup-select', { position, size }),
+	label: getLabel('inputGroup-select', { position, size }), // including size here because the size styles will change
 	boxSizing: 'border-box',
 	width: 'auto',
 	marginLeft: position === 'after' && '-1px',
