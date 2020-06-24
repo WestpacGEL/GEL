@@ -1,66 +1,14 @@
 import { GEL, Global, useBrand, useMediaQuery } from '@westpac/core';
 import React from 'react';
-
-import { containerMap } from '../src/_utils';
-import { rowMap, makeContainer, makeRow, makeColReady, makeGridColumns } from './_utils';
-
-const { paddingHorizontal, fluidMaxWidth, fixedWidth } = containerMap;
-const { columns, gap } = rowMap;
+import { bootstrapGrid } from './bootstrap/bootstrap-grid';
 
 const Grid = () => {
 	const mq = useMediaQuery();
 	const {
 		LAYOUT: { breakpoints },
-		SPACING,
 	} = useBrand();
 
-	// console.log(makeGridColumns(columns, gap, breakpoints));
-	// console.log(SPACING);
-
-	return (
-		<Global
-			styles={
-				mq({
-					// Container
-					'.container, .container-fixed': {
-						...makeContainer(paddingHorizontal),
-					},
-					'.container': {
-						maxWidth: fluidMaxWidth,
-					},
-					'.container-fixed': {
-						width: fixedWidth,
-					},
-
-					// Row
-					'.row': {
-						...makeRow(gap),
-
-						'> *': {
-							...makeColReady(gap),
-						},
-					},
-
-					// Columns
-					...makeGridColumns(columns, gap, breakpoints, SPACING),
-
-					// Offset
-
-					// Gutter
-
-					// Display
-
-					// Align
-
-					// Order
-
-					// Margin
-
-					// Padding
-				})[0]
-			}
-		/>
-	);
+	return <Global styles={mq(bootstrapGrid(breakpoints))[0]} />;
 };
 
 export function AllStyles({ brand }) {
