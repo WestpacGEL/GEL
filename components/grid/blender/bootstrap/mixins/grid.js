@@ -54,7 +54,7 @@ const makeColOffset = (size, columns) => {
 const rowCols = (count) => ({
 	'& > *': {
 		flex: '0 0 auto',
-		width: percentage(100 / count),
+		width: percentage(1 / count),
 	},
 });
 
