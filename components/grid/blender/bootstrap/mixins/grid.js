@@ -1,4 +1,5 @@
-import { px, percentage, breakpointInfix, mediaBreakpointUp } from '../_utils.js';
+import { px, round, percentage } from '../_utils';
+import { breakpointInfix, mediaBreakpointUp } from './breakpoints';
 
 /// Grid system
 //
