@@ -3,7 +3,7 @@ import { rowMap } from '../_utils';
 
 const { columns, gap } = rowMap;
 
-export const grid = (breakpoints) => ({
+export const grid = (breakpoints, spacing) => ({
 	// Row
 	//
 	// Rows contain your columns.
@@ -20,7 +20,7 @@ export const grid = (breakpoints) => ({
 	//
 	// Common styles for small and large grid columns
 
-	...makeGridColumns(columns, gap, breakpoints),
+	...makeGridColumns(columns, gap, breakpoints, spacing),
 
 	// Display
 

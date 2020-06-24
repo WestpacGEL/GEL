@@ -1,7 +1,7 @@
 import { containers } from './containers';
 import { grid } from './grid';
 
-export const bootstrapGrid = (breakpoints) => ({
+export const bootstrapGrid = (breakpoints, spacing) => ({
 	...containers,
-	...grid(breakpoints),
+	...grid(breakpoints, spacing),
 });

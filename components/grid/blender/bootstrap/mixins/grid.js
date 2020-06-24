@@ -64,7 +64,7 @@ const rowCols = (count) => ({
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
-export const makeGridColumns = (columns, gutters, breakpoints, gridRowColumns = 6) => {
+export const makeGridColumns = (columns, gutters, breakpoints, spacing, gridRowColumns = 6) => {
 	// Breakpoints with an XS added back in (we don't store this in our tokens)
 	const breakpointsExtended = Object.assign({ xs: 0 }, breakpoints);
 
@@ -118,19 +118,18 @@ export const makeGridColumns = (columns, gutters, breakpoints, gridRowColumns = 
 					// Gutters
 					//
 					// Make use of `.g-*`, `.gx-*` or `.gy-*` utilities to change spacing between the columns.
-					/* ...Object.assign(
+					...Object.assign(
 						{},
-
-						...Object.entries(spacing).map(([key, value]) => ({
+						...Object.entries(spacing).map(([key, val]) => ({
 							[`.g${infix}-${key}, .gx${infix}-${key}`]: {
-								'--bs-gutter-x': value,
+								'--bs-gutter-x': val,
 							},
 
 							[`.g${infix}-${key}, .gy${infix}-${key}`]: {
-								'--bs-gutter-y': value,
+								'--bs-gutter-y': val,
 							},
 						}))
-					), */
+					),
 				});
 			})
 		),
