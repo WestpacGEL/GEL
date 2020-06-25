@@ -65,13 +65,10 @@ const rowCols = (count) => ({
 // any value of `$grid-columns`.
 
 export const makeGridColumns = (columns, gutters, breakpoints, spacing, gridRowColumns = 6) => {
-	// Breakpoints with an XS added back in (we don't store this in our tokens)
-	const breakpointsExtended = Object.assign({ xs: 0 }, breakpoints);
-
 	return {
 		...Object.assign(
 			{},
-			...Object.entries(breakpointsExtended).map(([bp, val]) => {
+			...Object.entries(breakpoints).map(([bp, val]) => {
 				let infix = breakpointInfix(bp);
 
 				return mediaBreakpointUp(bp, val, {

@@ -21,14 +21,4 @@ export const grid = (breakpoints, spacing) => ({
 	// Common styles for small and large grid columns
 
 	...makeGridColumns(columns, gap, breakpoints, spacing),
-
-	// Display
-
-	// Align
-
-	// Order
-
-	// Margin
-
-	// Padding
 });

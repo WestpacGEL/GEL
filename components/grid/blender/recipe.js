@@ -9,15 +9,19 @@ const Grid = () => {
 		SPACING,
 	} = useBrand();
 
-	const gutters = 11; // Gutter steps (0 – 10)
+	// Breakpoints with an XS added back in (we don't store this in our tokens)
+	const allBreakpoints = Object.assign({ xs: 0 }, breakpoints);
+
+	// Create an array of spacing increment objects
+	const GUTTERS = 11; // Gutter increments (0 – 10)
 	const spacing = Object.assign(
 		{},
-		...Array.from({ length: gutters }, (_, i) => ({
+		...Array.from({ length: GUTTERS }, (_, i) => ({
 			[i]: SPACING(i),
 		}))
 	);
 
-	return <Global styles={mq(bootstrapGrid(breakpoints, spacing))[0]} />;
+	return <Global styles={mq(bootstrapGrid(allBreakpoints, spacing))[0]} />;
 };
 
 export function AllStyles({ brand }) {
