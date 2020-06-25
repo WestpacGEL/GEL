@@ -1,4 +1,4 @@
-import { px, round, percentage } from '../_utils';
+import { px, percentage } from '../_utils';
 import { breakpointInfix, mediaBreakpointUp } from './breakpoints';
 
 /// Grid system
@@ -64,71 +64,69 @@ const rowCols = (count) => ({
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
-export const makeGridColumns = (columns, gutters, breakpoints, spacing, gridRowColumns = 6) => {
-	return {
-		...Object.assign(
-			{},
-			...Object.entries(breakpoints).map(([bp, val]) => {
-				let infix = breakpointInfix(bp);
+export const makeGridColumns = (columns, gutters, breakpoints, spacing, gridRowColumns = 6) => ({
+	...Object.assign(
+		{},
+		...Object.entries(breakpoints).map(([bp, val]) => {
+			let infix = breakpointInfix(bp);
 
-				return mediaBreakpointUp(bp, val, {
-					// Provide basic `.col-{bp}` classes for equal-width flexbox columns
-					[`.col${infix}`]: {
-						flex: '1 0 0%', // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
-					},
+			return mediaBreakpointUp(bp, val, {
+				// Provide basic `.col-{bp}` classes for equal-width flexbox columns
+				[`.col${infix}`]: {
+					flex: '1 0 0%', // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+				},
 
-					[`.row-cols${infix}-auto > *`]: {
-						...makeColAuto(),
-					},
+				[`.row-cols${infix}-auto > *`]: {
+					...makeColAuto(),
+				},
 
-					...(gridRowColumns > 0 &&
-						Object.assign(
-							{},
-							...Array.from({ length: gridRowColumns }, (_, i) => ({
-								[`.row-cols${infix}-${i + 1}`]: {
-									...rowCols(i + 1),
-								},
-							}))
-						)),
-
-					[`.col${infix}-auto`]: {
-						...makeColAuto(),
-					},
-
-					...(columns > 0 &&
-						Object.assign(
-							{},
-							...Array.from({ length: columns }, (_, i) => ({
-								[`.col${infix}-${i + 1}`]: {
-									...makeCol(i + 1, columns),
-								},
-							})),
-
-							// `$columns - 1` because offsetting by the width of an entire row isn't possible
-							...Array.from({ length: columns }, (_, i) => ({
-								[`.offset${infix}-${i}`]: {
-									...(i > 0 && makeColOffset(i, columns)),
-								},
-							}))
-						)),
-
-					// Gutters
-					//
-					// Make use of `.g-*`, `.gx-*` or `.gy-*` utilities to change spacing between the columns.
-					...Object.assign(
+				...(gridRowColumns > 0 &&
+					Object.assign(
 						{},
-						...Object.entries(spacing).map(([key, val]) => ({
-							[`.g${infix}-${key}, .gx${infix}-${key}`]: {
-								'--bs-gutter-x': val,
-							},
-
-							[`.g${infix}-${key}, .gy${infix}-${key}`]: {
-								'--bs-gutter-y': val,
+						...Array.from({ length: gridRowColumns }, (_, i) => ({
+							[`.row-cols${infix}-${i + 1}`]: {
+								...rowCols(i + 1),
 							},
 						}))
-					),
-				});
-			})
-		),
-	};
-};
+					)),
+
+				[`.col${infix}-auto`]: {
+					...makeColAuto(),
+				},
+
+				...(columns > 0 &&
+					Object.assign(
+						{},
+						...Array.from({ length: columns }, (_, i) => ({
+							[`.col${infix}-${i + 1}`]: {
+								...makeCol(i + 1, columns),
+							},
+						})),
+
+						// `$columns - 1` because offsetting by the width of an entire row isn't possible
+						...Array.from({ length: columns }, (_, i) => ({
+							[`.offset${infix}-${i}`]: {
+								...(i > 0 && makeColOffset(i, columns)),
+							},
+						}))
+					)),
+
+				// Gutters
+				//
+				// Make use of `.g-*`, `.gx-*` or `.gy-*` utilities to change spacing between the columns.
+				...Object.assign(
+					{},
+					...Object.entries(spacing).map(([key, val]) => ({
+						[`.g${infix}-${key}, .gx${infix}-${key}`]: {
+							'--bs-gutter-x': val,
+						},
+
+						[`.g${infix}-${key}, .gy${infix}-${key}`]: {
+							'--bs-gutter-y': val,
+						},
+					}))
+				),
+			});
+		})
+	),
+});
