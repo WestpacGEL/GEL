@@ -16,5 +16,5 @@ export const containers = {
 	},
 
 	// Responsive containers that are 100% wide until a breakpoint
-	// TODO
+	// Note: Not implemented as we're providing Bootstrap's `.container-fluid` styling as our default container (via `.container`)
 };
