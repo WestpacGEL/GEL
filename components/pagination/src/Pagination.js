@@ -6,7 +6,7 @@ import { VisuallyHidden } from '@westpac/a11y';
 import PropTypes from 'prop-types';
 
 import { defaultPagination } from './overrides/pagination';
-import { defaultPageList } from './overrides/pageList';
+import { defaultList } from './overrides/list';
 
 import { usePagination } from './usePagination';
 import { Page } from './Page';
@@ -49,7 +49,7 @@ export const Pagination = ({
 
 	const defaultOverrides = {
 		Pagination: defaultPagination,
-		PageList: defaultPageList,
+		List: defaultList,
 	};
 
 	const state = {
@@ -68,7 +68,7 @@ export const Pagination = ({
 			styles: paginationStyles,
 			attributes: paginationAttributes,
 		},
-		PageList: { component: PageList, styles: pageListStyles, attributes: pageListAttributes },
+		List: { component: List, styles: listStyles, attributes: listAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const backDefault = {
@@ -128,7 +128,7 @@ export const Pagination = ({
 				{...paginationAttributes(state)}
 				css={paginationStyles(state)}
 			>
-				<PageList state={state} {...pageListAttributes(state)} css={pageListStyles(state)}>
+				<List state={state} {...listAttributes(state)} css={listStyles(state)}>
 					{back.visible && (
 						<Page
 							first
@@ -163,7 +163,7 @@ export const Pagination = ({
 							)}
 						/>
 					)}
-				</PageList>
+				</List>
 				<VisuallyHidden role="status">{`Page ${pageLogic.current + 1}`}</VisuallyHidden>
 			</Pagination>
 		</PaginationContext.Provider>
@@ -229,7 +229,7 @@ Pagination.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		PageList: PropTypes.shape({
+		List: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

@@ -3,6 +3,9 @@
 	"version": "1.0.0-beta.3",
 	"description": "Headings for your page needs",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/heading",
+	"blender": {
+		"recipe": "blender/recipe.js"
+	},
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
