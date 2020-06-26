@@ -35,7 +35,8 @@ export function AllStyles({ brand }) {
 export function Docs({ brand }) {
 	return [
 		{
-			heading: 'A default (fluid width) grid container',
+			heading: 'Container',
+			subheading: 'A default (fluid width) grid container',
 			component: () => (
 				<GEL brand={brand}>
 					<div className="container">Your container content</div>

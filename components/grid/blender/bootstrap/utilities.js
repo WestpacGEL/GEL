@@ -1,335 +1,287 @@
 import { objectify, asArray, camelize } from './_utils';
 import { breakpointInfix, mediaBreakpointUp } from './mixins/breakpoints';
 
-const utilitiesMap = (spacing) => [
-	{
-		display: {
-			property: 'display',
-			className: 'd',
-			values: [
-				'none',
-				'inline',
-				'inline-block',
-				'block',
-				'table',
-				'table-row',
-				'table-cell',
-				'flex',
-				'inline-flex',
-			],
-			print: true,
-		},
-	},
-	{
-		order: {
-			property: 'order',
-			values: {
-				first: -1,
-				0: 0,
-				1: 1,
-				2: 2,
-				3: 3,
-				4: 4,
-				5: 5,
-				last: 6,
+const enableNegativeMargins = true;
+
+const utilitiesMap = (spacing) => {
+	// Create a new negative margins object, if necessary
+	const spacingNegative =
+		enableNegativeMargins &&
+		objectify(Object.entries(spacing).map(([key, val]) => val !== 0 && { [`n${key}`]: `-${val}` }));
+
+	return [
+		{
+			display: {
+				property: 'display',
+				className: 'd',
+				values: [
+					'none',
+					'inline',
+					'inline-block',
+					'block',
+					'table',
+					'table-row',
+					'table-cell',
+					'flex',
+					'inline-flex',
+				],
+				print: true,
 			},
 		},
-	},
-	{
-		flex: {
-			property: 'flex',
-			values: {
-				fill: '1 1 auto',
+		{
+			order: {
+				property: 'order',
+				values: {
+					first: -1,
+					0: 0,
+					1: 1,
+					2: 2,
+					3: 3,
+					4: 4,
+					5: 5,
+					last: 6,
+				},
 			},
 		},
-	},
-	{
-		'flex-direction': {
-			property: 'flex-direction',
-			className: 'flex',
-			values: ['row', 'column', 'row-reverse', 'column-reverse'],
-		},
-	},
-	{
-		'flex-grow': {
-			property: 'flex-grow',
-			className: 'flex',
-			values: {
-				'grow-0': 0,
-				'grow-1': 1,
+		{
+			flex: {
+				property: 'flex',
+				values: {
+					fill: '1 1 auto',
+				},
 			},
 		},
-	},
-	{
-		'flex-shrink': {
-			property: 'flex-shrink',
-			className: 'flex',
-			values: { 'shrink-0': 0, 'shrink-1': 1 },
-		},
-	},
-	{
-		'flex-wrap': {
-			property: 'flex-wrap',
-			className: 'flex',
-			values: ['wrap', 'nowrap', 'wrap-reverse'],
-		},
-	},
-	{
-		'justify-content': {
-			property: 'justify-content',
-			values: {
-				start: 'flex-start',
-				end: 'flex-end',
-				center: 'center',
-				between: 'space-between',
-				around: 'space-around',
-				evenly: 'space-evenly',
+		{
+			'flex-direction': {
+				property: 'flex-direction',
+				className: 'flex',
+				values: ['row', 'column', 'row-reverse', 'column-reverse'],
 			},
 		},
-	},
-	{
-		'align-items': {
-			property: 'align-items',
-			values: {
-				start: 'flex-start',
-				end: 'flex-end',
-				center: 'center',
-				baseline: 'baseline',
-				stretch: 'stretch',
+		{
+			'flex-grow': {
+				property: 'flex-grow',
+				className: 'flex',
+				values: {
+					'grow-0': 0,
+					'grow-1': 1,
+				},
 			},
 		},
-	},
-	{
-		'align-content': {
-			property: 'align-content',
-			values: {
-				start: 'flex-start',
-				end: 'flex-end',
-				center: 'center',
-				between: 'space-between',
-				around: 'space-around',
-				stretch: 'stretch',
+		{
+			'flex-shrink': {
+				property: 'flex-shrink',
+				className: 'flex',
+				values: { 'shrink-0': 0, 'shrink-1': 1 },
 			},
 		},
-	},
-	{
-		'align-self': {
-			property: 'align-self',
-			values: {
-				auto: 'auto',
-				start: 'flex-start',
-				end: 'flex-end',
-				center: 'center',
-				baseline: 'baseline',
-				stretch: 'stretch',
+		{
+			'flex-wrap': {
+				property: 'flex-wrap',
+				className: 'flex',
+				values: ['wrap', 'nowrap', 'wrap-reverse'],
 			},
 		},
-	},
-	{
-		margin: {
-			property: 'margin',
-			className: 'm',
-			values: spacing,
-			// values:
-			//   map-merge(
-			//     $spacers,
-			//     (
-			//       auto: auto,
-			//     )
-			//   ),
+		{
+			'justify-content': {
+				property: 'justify-content',
+				values: {
+					start: 'flex-start',
+					end: 'flex-end',
+					center: 'center',
+					between: 'space-between',
+					around: 'space-around',
+					evenly: 'space-evenly',
+				},
+			},
 		},
-	},
-	{
-		'margin-x': {
-			property: ['margin-right', 'margin-left'],
-			className: 'mx',
-			values: spacing,
-			// values:
-			// map-merge(
-			//   $spacers,
-			//   (
-			//     auto: auto,
-			//   )
-			// ),
+		{
+			'align-items': {
+				property: 'align-items',
+				values: {
+					start: 'flex-start',
+					end: 'flex-end',
+					center: 'center',
+					baseline: 'baseline',
+					stretch: 'stretch',
+				},
+			},
 		},
-	},
-	{
-		'margin-y': {
-			property: ['margin-top', 'margin-bottom'],
-			className: 'my',
-			values: spacing,
-			// values:
-			// map-merge(
-			//   $spacers,
-			//   (
-			//     auto: auto,
-			//   )
-			// ),
+		{
+			'align-content': {
+				property: 'align-content',
+				values: {
+					start: 'flex-start',
+					end: 'flex-end',
+					center: 'center',
+					between: 'space-between',
+					around: 'space-around',
+					stretch: 'stretch',
+				},
+			},
 		},
-	},
-	{
-		'margin-top': {
-			property: 'margin-top',
-			className: 'mt',
-			values: spacing,
-			// values:
-			// map-merge(
-			//   $spacers,
-			//   (
-			//     auto: auto,
-			//   )
-			// ),
+		{
+			'align-self': {
+				property: 'align-self',
+				values: {
+					auto: 'auto',
+					start: 'flex-start',
+					end: 'flex-end',
+					center: 'center',
+					baseline: 'baseline',
+					stretch: 'stretch',
+				},
+			},
 		},
-	},
-	{
-		'margin-right': {
-			property: 'margin-right',
-			className: 'mr',
-			values: spacing,
-			// values:
-			// map-merge(
-			//   $spacers,
-			//   (
-			//     auto: auto,
-			//   )
-			// ),
+		{
+			margin: {
+				property: 'margin',
+				className: 'm',
+				values: spacing,
+			},
 		},
-	},
-	{
-		'margin-bottom': {
-			property: 'margin-bottom',
-			className: 'mb',
-			values: spacing,
-			// values:
-			// map-merge(
-			//   $spacers,
-			//   (
-			//     auto: auto,
-			//   )
-			// ),
+		{
+			'margin-x': {
+				property: ['margin-right', 'margin-left'],
+				className: 'mx',
+				values: spacing,
+			},
 		},
-	},
-	{
-		'margin-left': {
-			property: 'margin-left',
-			className: 'ml',
-			values: spacing,
-			// values:
-			// map-merge(
-			//   $spacers,
-			//   (
-			//     auto: auto,
-			//   )
-			// ),
+		{
+			'margin-y': {
+				property: ['margin-top', 'margin-bottom'],
+				className: 'my',
+				values: spacing,
+			},
 		},
-	},
-	{
-		'negative-margin': {
-			property: 'margin',
-			className: 'm',
-			// values: Object.entries(spacing).map(([key, val]) => ({}))
-			// values: $negative-spacers,
+		{
+			'margin-top': {
+				property: 'margin-top',
+				className: 'mt',
+				values: spacing,
+			},
 		},
-	},
-	{
-		'negative-margin-x': {
-			property: ['margin-right', 'margin-left'],
-			className: 'mx',
-			// values: $negative-spacers,
+		{
+			'margin-right': {
+				property: 'margin-right',
+				className: 'mr',
+				values: spacing,
+			},
 		},
-	},
-	{
-		'negative-margin-y': {
-			property: ['margin-top', 'margin-bottom'],
-			className: 'my',
-			// values: $negative-spacers,
+		{
+			'margin-bottom': {
+				property: 'margin-bottom',
+				className: 'mb',
+				values: spacing,
+			},
 		},
-	},
-	{
-		'negative-margin-top': {
-			property: 'margin-top',
-			className: 'mt',
-			// values: $negative-spacers,
+		{
+			'margin-left': {
+				property: 'margin-left',
+				className: 'ml',
+				values: spacing,
+			},
 		},
-	},
-	{
-		'negative-margin-right': {
-			property: 'margin-right',
-			className: 'mr',
-			// values: $negative-spacers,
+		{
+			'negative-margin': {
+				property: 'margin',
+				className: 'm',
+				values: spacingNegative,
+			},
 		},
-	},
-	{
-		'negative-margin-bottom': {
-			property: 'margin-bottom',
-			className: 'mb',
-			// values: $negative-spacers,
+		{
+			'negative-margin-x': {
+				property: ['margin-right', 'margin-left'],
+				className: 'mx',
+				values: spacingNegative,
+			},
 		},
-	},
-	{
-		'negative-margin-left': {
-			property: 'margin-left',
-			className: 'ml',
-			// values: $negative-spacers,
+		{
+			'negative-margin-y': {
+				property: ['margin-top', 'margin-bottom'],
+				className: 'my',
+				values: spacingNegative,
+			},
 		},
-	},
-	{
-		padding: {
-			property: 'padding',
-			className: 'p',
-			values: spacing,
-			// values: $spacers,
+		{
+			'negative-margin-top': {
+				property: 'margin-top',
+				className: 'mt',
+				values: spacingNegative,
+			},
 		},
-	},
-	{
-		'padding-x': {
-			property: ['padding-right', 'padding-left'],
-			className: 'px',
-			values: spacing,
-			// values: $spacers,
+		{
+			'negative-margin-right': {
+				property: 'margin-right',
+				className: 'mr',
+				values: spacingNegative,
+			},
 		},
-	},
-	{
-		'padding-y': {
-			property: ['padding-top', 'padding-bottom'],
-			className: 'py',
-			values: spacing,
-			// values: $spacers,
+		{
+			'negative-margin-bottom': {
+				property: 'margin-bottom',
+				className: 'mb',
+				values: spacingNegative,
+			},
 		},
-	},
-	{
-		'padding-top': {
-			property: 'padding-top',
-			className: 'pt',
-			values: spacing,
-			// values: $spacers,
+		{
+			'negative-margin-left': {
+				property: 'margin-left',
+				className: 'ml',
+				values: spacingNegative,
+			},
 		},
-	},
-	{
-		'padding-right': {
-			property: 'padding-right',
-			className: 'pr',
-			values: spacing,
-			// values: $spacers,
+		{
+			padding: {
+				property: 'padding',
+				className: 'p',
+				values: spacing,
+			},
 		},
-	},
-	{
-		'padding-bottom': {
-			property: 'padding-bottom',
-			className: 'pb',
-			values: spacing,
-			// values: $spacers,
+		{
+			'padding-x': {
+				property: ['padding-right', 'padding-left'],
+				className: 'px',
+				values: spacing,
+			},
 		},
-	},
-	{
-		'padding-left': {
-			property: 'padding-left',
-			className: 'pl',
-			values: spacing,
-			// values: $spacers,
+		{
+			'padding-y': {
+				property: ['padding-top', 'padding-bottom'],
+				className: 'py',
+				values: spacing,
+			},
 		},
-	},
-];
+		{
+			'padding-top': {
+				property: 'padding-top',
+				className: 'pt',
+				values: spacing,
+			},
+		},
+		{
+			'padding-right': {
+				property: 'padding-right',
+				className: 'pr',
+				values: spacing,
+			},
+		},
+		{
+			'padding-bottom': {
+				property: 'padding-bottom',
+				className: 'pb',
+				values: spacing,
+			},
+		},
+		{
+			'padding-left': {
+				property: 'padding-left',
+				className: 'pl',
+				values: spacing,
+			},
+		},
+	];
+};
 
 export const utilities = (breakpoints, spacing) => ({
 	...objectify(
@@ -357,12 +309,14 @@ export const utilities = (breakpoints, spacing) => ({
 							values &&
 							objectify(
 								Array.isArray(values)
-									? values.map((val) => {
+									? // Iterate values (provided as array)
+									  values.map((val) => {
 											return {
 												[`.${className}${infix}-${val}`]: properties(val),
 											};
 									  })
-									: Object.entries(values).map(([key, val]) => ({
+									: // Iterate values (provided as object)
+									  Object.entries(values).map(([key, val]) => ({
 											[`.${className}${infix}-${key}`]: properties(val),
 									  }))
 							)
