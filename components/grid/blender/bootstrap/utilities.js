@@ -1,4 +1,4 @@
-import { objectify, asArray, camelize } from './_utils';
+import { asArray, camelize } from './_utils';
 import { breakpointInfix, mediaBreakpointUp } from './mixins/breakpoints';
 
 const enableNegativeMargins = true;
@@ -7,7 +7,10 @@ const utilitiesMap = (spacing) => {
 	// Create a new negative margins object, if necessary
 	const spacingNegative =
 		enableNegativeMargins &&
-		objectify(Object.entries(spacing).map(([key, val]) => val !== 0 && { [`n${key}`]: `-${val}` }));
+		Object.assign(
+			{},
+			...Object.entries(spacing).map(([key, val]) => val !== 0 && { [`n${key}`]: `-${val}` })
+		);
 
 	return [
 		{
@@ -284,31 +287,36 @@ const utilitiesMap = (spacing) => {
 };
 
 export const utilities = (breakpoints, spacing) => ({
-	...objectify(
+	...Object.assign(
+		{},
 		// Responsive classes (e.g. [{ xs: 0 }, { xsl: 576 }, { sm: 768 }, etc])
 		// Iterate breakpoints
-		Object.entries(breakpoints).map(([bp, val]) => {
+		...Object.entries(breakpoints).map(([bp, val]) => {
 			let infix = breakpointInfix(bp);
 
 			return mediaBreakpointUp(bp, val, {
-				...objectify(
+				...Object.assign(
+					{},
 					// Iterate utilities
-					utilitiesMap(spacing).map((utility) => {
+					...utilitiesMap(spacing).map((utility) => {
 						let { property, className, values } = Object.values(utility)[0];
 
+						// When desired className matches the property we provide a className
 						className = className || property;
 
 						let properties = (val) =>
-							objectify(
-								asArray(property).map((p) => ({
+							Object.assign(
+								{},
+								...asArray(property).map((p) => ({
 									[camelize(p)]: `${val} !important`,
 								}))
 							);
 
 						return (
 							values &&
-							objectify(
-								Array.isArray(values)
+							Object.assign(
+								{},
+								...(Array.isArray(values)
 									? // Iterate values (provided as array)
 									  values.map((val) => {
 											return {
@@ -318,7 +326,7 @@ export const utilities = (breakpoints, spacing) => ({
 									: // Iterate values (provided as object)
 									  Object.entries(values).map(([key, val]) => ({
 											[`.${className}${infix}-${key}`]: properties(val),
-									  }))
+									  })))
 							)
 						);
 					})
