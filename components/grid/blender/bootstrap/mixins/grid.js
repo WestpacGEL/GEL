@@ -106,7 +106,8 @@ export const makeGridColumns = (columns, gutters, breakpoints, spacing, gridRowC
 						// `$columns - 1` because offsetting by the width of an entire row isn't possible
 						...Array.from({ length: columns }, (_, i) => ({
 							[`.offset${infix}-${i}`]: {
-								...(i > 0 && makeColOffset(i, columns)),
+								// Avoid emitting useless `.offset-0`
+								...(!(infix === '' && i === 0) && makeColOffset(i, columns)),
 							},
 						}))
 					)),
