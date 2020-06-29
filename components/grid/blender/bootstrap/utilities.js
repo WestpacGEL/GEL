@@ -32,21 +32,6 @@ const utilitiesMap = (spacing) => {
 			},
 		},
 		{
-			order: {
-				property: 'order',
-				values: {
-					first: -1,
-					0: 0,
-					1: 1,
-					2: 2,
-					3: 3,
-					4: 4,
-					5: 5,
-					last: 6,
-				},
-			},
-		},
-		{
 			flex: {
 				property: 'flex',
 				values: {
@@ -134,6 +119,21 @@ const utilitiesMap = (spacing) => {
 					baseline: 'baseline',
 					stretch: 'stretch',
 				},
+			},
+		},
+		{
+			order: {
+				property: 'order',
+				values: [
+					{ first: -1 },
+					{ '0': 0 },
+					{ '1': 1 },
+					{ '2': 2 },
+					{ '3': 3 },
+					{ '4': 4 },
+					{ '5': 5 },
+					{ last: 6 },
+				],
 			},
 		},
 		{
@@ -319,11 +319,16 @@ export const utilities = (breakpoints, spacing) => ({
 								...(Array.isArray(values)
 									? // Iterate values (provided as array)
 									  values.map((val) => {
+											// Array values may be passed as strings or object literals
+											let isString = typeof val === 'string';
+											let key = `.${className}${infix}-${isString ? val : Object.keys(val)[0]}`;
+											let value = properties(isString ? val : Object.values(val)[0]);
+
 											return {
-												[`.${className}${infix}-${val}`]: properties(val),
+												[key]: value,
 											};
 									  })
-									: // Iterate values (provided as object)
+									: // Iterate values (assume provided as object literal)
 									  Object.entries(values).map(([key, val]) => ({
 											[`.${className}${infix}-${key}`]: properties(val),
 									  })))
