@@ -1,7 +1,7 @@
 import { asArray, camelize } from './_utils';
 import { breakpointInfix, mediaBreakpointUp } from './mixins/breakpoints';
 
-const enableNegativeMargins = true;
+const enableNegativeMargins = false;
 
 const utilitiesMap = (spacing) => {
 	// Create a new negative margins object, if necessary
