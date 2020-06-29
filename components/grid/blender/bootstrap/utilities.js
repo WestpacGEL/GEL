@@ -140,49 +140,49 @@ const utilitiesMap = (spacing) => {
 			margin: {
 				property: 'margin',
 				className: 'm',
-				values: spacing,
+				values: Object.assign(spacing, { auto: 'auto' }),
 			},
 		},
 		{
 			'margin-x': {
 				property: ['margin-right', 'margin-left'],
 				className: 'mx',
-				values: spacing,
+				values: Object.assign(spacing, { auto: 'auto' }),
 			},
 		},
 		{
 			'margin-y': {
 				property: ['margin-top', 'margin-bottom'],
 				className: 'my',
-				values: spacing,
+				values: Object.assign(spacing, { auto: 'auto' }),
 			},
 		},
 		{
 			'margin-top': {
 				property: 'margin-top',
 				className: 'mt',
-				values: spacing,
+				values: Object.assign(spacing, { auto: 'auto' }),
 			},
 		},
 		{
 			'margin-right': {
 				property: 'margin-right',
 				className: 'mr',
-				values: spacing,
+				values: Object.assign(spacing, { auto: 'auto' }),
 			},
 		},
 		{
 			'margin-bottom': {
 				property: 'margin-bottom',
 				className: 'mb',
-				values: spacing,
+				values: Object.assign(spacing, { auto: 'auto' }),
 			},
 		},
 		{
 			'margin-left': {
 				property: 'margin-left',
 				className: 'ml',
-				values: spacing,
+				values: Object.assign(spacing, { auto: 'auto' }),
 			},
 		},
 		{
