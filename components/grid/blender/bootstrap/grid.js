@@ -1,9 +1,6 @@
 import { makeRow, makeColReady, makeGridColumns } from './mixins/grid';
-import { rowMap } from '../_utils';
 
-const { columns, gap } = rowMap;
-
-export const grid = (breakpoints, spacing) => ({
+export const grid = (breakpoints, spacing, columns, gap) => ({
 	// Row
 	//
 	// Rows contain your columns.
