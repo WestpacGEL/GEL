@@ -2,4 +2,4 @@
 '@westpac/list': major
 ---
 
-Integrate with the Blender
+Added Blender support
