@@ -10,7 +10,7 @@ import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	const [state, dispatch] = useProgress();
-	const [state2, dispatch2] = useProgress();
+	const [state2, dispatch2] = useProgress(2);
 
 	const handleClick = (index) => (e) => {
 		e.preventDefault();

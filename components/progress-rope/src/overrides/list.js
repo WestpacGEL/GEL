@@ -2,7 +2,15 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
+// ==============================
+// Component
+// ==============================
+
 const List = ({ state, ...rest }) => <ol {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const listStyles = () => {
 	const { COLORS } = useBrand();
@@ -27,9 +35,23 @@ const listStyles = () => {
 	};
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const listAttributes = () => null;
 
+// ==============================
+// Exports
+// ==============================
+
 export const defaultList = {
+	component: List,
+	styles: listStyles,
+	attributes: listAttributes,
+};
+
+export const blenderList = {
 	component: List,
 	styles: listStyles,
 	attributes: listAttributes,
