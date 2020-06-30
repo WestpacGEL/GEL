@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 
 const AccordionButtonIcon = ({ state, ...rest }) => {
@@ -10,7 +10,9 @@ const AccordionButtonIcon = ({ state, ...rest }) => {
 	return <Icon color={COLORS.muted} size="small" assistiveText={null} {...rest} />;
 };
 
-const accordionButtonIconStyles = () => ({});
+const accordionButtonIconStyles = () => ({
+	label: getLabel('tabcordion-btn-icon'),
+});
 
 const accordionButtonIconAttributes = () => ({ 'aria-hidden': 'true' });
 

@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
+import { jsx, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
-import { jsx } from '@westpac/core';
 
 const TabRow = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
 const tabRowStyles = () => ({
+	label: getLabel('tabcordion-tabRow'),
 	display: 'flex',
 	whiteSpace: 'nowrap',
 	position: 'relative',

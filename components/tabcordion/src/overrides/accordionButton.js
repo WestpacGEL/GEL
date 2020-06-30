@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const AccordionButton = ({ state, ...rest }) => <button type="button" {...rest} />;
 
@@ -27,6 +27,7 @@ const accordionButtonStyles = (_, { look, last, hidden }) => {
 	};
 
 	return {
+		label: getLabel('tabcordion-btn', { look, last, hidden }),
 		display: 'flex',
 		position: 'relative',
 		width: '100%',

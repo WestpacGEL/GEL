@@ -1,11 +1,13 @@
 /** @jsx jsx */
 
+import { jsx, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
-import { jsx } from '@westpac/core';
 
 const Tabcordion = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
-const tabcordionStyles = () => ({});
+const tabcordionStyles = () => ({
+	label: getLabel('tabcordion'),
+});
 
 const tabcordionAttributes = () => null;
 

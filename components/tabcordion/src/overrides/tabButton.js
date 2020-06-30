@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
-import { jsx, useBrand } from '@westpac/core';
 
 const TabButton = forwardRef(({ state, ...rest }, ref) => {
 	return <button type="button" ref={ref} {...rest} />;
@@ -30,6 +30,7 @@ const tabButtonStyles = (_, { look, justify, selected, last }) => {
 	};
 
 	return {
+		label: getLabel('tabcordion-tabButton', { look, justify, selected, last }),
 		flex: justify ? 1 : 0,
 		fontSize: '1rem',
 		marginRight: !last && '0.125rem',

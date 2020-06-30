@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
-import { jsx, useBrand } from '@westpac/core';
 
 const Panel = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
@@ -24,6 +24,7 @@ const panelStyles = (_, { look, mode, last, selected }) => {
 			: {};
 
 	return {
+		label: getLabel('tabcordion-panel', { look, mode, last, selected }),
 		display: mode === 'tabs' && !selected ? 'none' : 'block',
 		borderTop: mode === 'tabs' && `1px solid ${COLORS.border}`,
 		borderBottom: `1px solid ${COLORS.border}`,
