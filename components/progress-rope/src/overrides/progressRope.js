@@ -12,7 +12,7 @@ const ProgressRope = ({ state, ...rest }) => <nav role="navigation" {...rest} />
 // Styles
 // ==============================
 
-const progressRopeStyles = () => ({});
+const progressRopeStyles = () => ({ label: 'progressRope' });
 
 // ==============================
 // Attributes

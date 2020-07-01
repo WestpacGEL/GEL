@@ -1,7 +1,10 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
 
-import { ProgressRope, Group, Step } from '../src/blender';
+import { ProgressRope } from '@westpac/progress-rope';
+
+// Created simplified version of these components for blender use
+import { Group, Step } from '../src/blender';
 
 export function AllStyles({ brand }) {
 	return (
@@ -146,17 +149,17 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={brand}>
 					<ProgressRope>
-						<Group active text={'Group 1'}>
+						<Group id={'progress-rope-group-1'} active text={'Group 1'}>
 							<Step active onClick={() => {}}>
 								Step 1
 							</Step>
 							<Step onClick={() => {}}>Step 2</Step>
 						</Group>
-						<Group text={'Group 2'}>
+						<Group id={'progress-rope-group-2'} text={'Group 2'}>
 							<Step onClick={() => {}}>Step 3</Step>
 							<Step onClick={() => {}}>Step 4</Step>
 						</Group>
-						<Group text={'Group 3'}>
+						<Group id={'progress-rope-group-3'} text={'Group 3'}>
 							<Step onClick={() => {}}>Step 5</Step>
 							<Step onClick={() => {}}>Step 6</Step>
 							<Step onClick={() => {}}>Step 7</Step>
@@ -173,7 +176,7 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={brand}>
 					<ProgressRope>
-						<Group visited text={'Group 1'}>
+						<Group id={'progress-rope-group-1'} visited text={'Group 1'}>
 							<Step visited onClick={() => {}}>
 								Step 1
 							</Step>
@@ -181,7 +184,7 @@ export function Docs({ brand }) {
 								Step 2
 							</Step>
 						</Group>
-						<Group active text={'Group 2'}>
+						<Group id={'progress-rope-group-2'} active text={'Group 2'}>
 							<Step visited onClick={() => {}}>
 								Step 3
 							</Step>
@@ -189,7 +192,7 @@ export function Docs({ brand }) {
 								Step 4
 							</Step>
 						</Group>
-						<Group text={'Group 3'}>
+						<Group id={'progress-rope-group-3'} text={'Group 3'}>
 							<Step onClick={() => {}}>Step 5</Step>
 							<Step onClick={() => {}}>Step 6</Step>
 							<Step onClick={() => {}}>Step 7</Step>
@@ -202,11 +205,11 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A progress rope group in progress',
+			heading: 'A progress rope group at the end step',
 			component: () => (
 				<GEL brand={brand}>
 					<ProgressRope>
-						<Group visited text={'Group 1'}>
+						<Group id={'progress-rope-group-1'} visited text={'Group 1'}>
 							<Step visited onClick={() => {}}>
 								Step 1
 							</Step>
@@ -214,7 +217,7 @@ export function Docs({ brand }) {
 								Step 2
 							</Step>
 						</Group>
-						<Group visited text={'Group 2'}>
+						<Group id={'progress-rope-group-2'} visited text={'Group 2'}>
 							<Step visited onClick={() => {}}>
 								Step 3
 							</Step>
@@ -222,7 +225,7 @@ export function Docs({ brand }) {
 								Step 4
 							</Step>
 						</Group>
-						<Group visited text={'Group 3'}>
+						<Group id={'progress-rope-group-3'} visited text={'Group 3'}>
 							<Step visited onClick={() => {}}>
 								Step 5
 							</Step>

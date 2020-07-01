@@ -4,8 +4,6 @@ import { jsx, useBrand } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import merge from 'lodash.merge';
 
-import { blenderReconciler } from './_utils';
-
 // ==============================
 // Component
 // ==============================
@@ -41,6 +39,7 @@ const BlenderStepButton = ({ state: { visited, active }, children, ...rest }) =>
 		</button>
 	);
 };
+
 // ==============================
 // Styles
 // ==============================
@@ -49,9 +48,9 @@ const baseStyles = () => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
-		label: 'step-button',
+		label: 'progressRope-step-btn',
 		position: 'relative',
-		fontSize: '0.875rem', //really need to fix specificity on this shit, being overriden by core
+		fontSize: '0.875rem', //really need to fix specificity on this, being overriden by core
 		lineHeight: 1.428571429, //`<body>` line-height
 		textAlign: 'left',
 		padding: '0.5rem 1.875rem 0.875rem 3.5rem',
@@ -94,10 +93,6 @@ const baseStyles = () => {
 	};
 };
 
-const blenderStyles = () => {
-	return blenderReconciler(baseStyles());
-};
-
 const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 	const { COLORS, TYPE } = useBrand();
 
@@ -125,6 +120,8 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 		},
 	});
 };
+
+const blenderStyles = () => baseStyles();
 
 // ==============================
 // Attributes

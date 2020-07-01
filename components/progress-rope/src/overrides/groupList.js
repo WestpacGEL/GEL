@@ -13,7 +13,7 @@ const GroupList = ({ state, ...rest }) => <ol {...rest} />;
 // ==============================
 
 const groupListStyles = () => ({
-	label: 'group-list',
+	label: 'progressRope-group-list',
 	position: 'relative',
 	listStyle: 'none',
 	paddingLeft: 0,
@@ -29,7 +29,11 @@ const groupListAttributes = (_, { hidden, groupListId }) => ({
 	id: groupListId,
 });
 
-const blenderGroupListAttributes = () => ({ 'data-js': 'group-list__version__' });
+const blenderGroupListAttributes = (_, { id }) => ({
+	'aria-hidden': 'TO DO',
+	id,
+	'data-js': 'progressRope-group-list__version__',
+});
 // ==============================
 // Exports
 // ==============================

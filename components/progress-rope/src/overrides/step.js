@@ -1,6 +1,8 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
+import classNames from 'classnames';
+
 import { blenderReconciler } from './_utils';
 
 // ==============================
@@ -13,12 +15,12 @@ const Step = ({ state, ...rest }) => <li {...rest} />;
 // Styles
 // ==============================
 // Blender specific styles
-// - visited, end and active are only for the blender
-// - need to figure out way to include it in react logic
+// - visited, end and active styles are only for the blender
 // ==============================
+
 const endStyles = () => {
 	return {
-		label: 'GEL-step-end',
+		label: 'GEL-progressRope-step-end',
 		marginTop: '0.125rem',
 	};
 };
@@ -26,8 +28,8 @@ const endStyles = () => {
 const activeStyles = () => {
 	const { COLORS, TYPE } = useBrand();
 	return {
-		label: 'GEL-step-active',
-		'.GEL-step-button': {
+		label: 'GEL-progressRope-step-active',
+		'.GEL-progressRope-step-btn': {
 			color: COLORS.primary,
 			...TYPE.bodyFont[700],
 
@@ -43,7 +45,7 @@ const visitedStyles = (blender = false) => {
 	const { COLORS } = useBrand();
 	const styles = {
 		default: {
-			label: 'GEL-step-visited',
+			label: 'GEL-progressRope-step-visited',
 			// the line
 			'::before': {
 				content: '""',
@@ -58,7 +60,7 @@ const visitedStyles = (blender = false) => {
 			},
 		},
 		blender: {
-			'.GEL-step-button': {
+			'.GEL-progressRope-step-btn': {
 				color: COLORS.neutral,
 
 				'&::after': {
@@ -76,13 +78,10 @@ const visitedStyles = (blender = false) => {
 
 const baseStyles = () => {
 	return {
+		label: 'progressRope-step',
 		position: 'relative',
 		backgroundColor: '#fff',
 	};
-};
-
-const blenderStyles = () => {
-	return blenderReconciler(baseStyles(), [visitedStyles(true), activeStyles(), endStyles()]);
 };
 
 const stepStyles = (_, { end, visited, grouped, furthest }) => {
@@ -90,12 +89,8 @@ const stepStyles = (_, { end, visited, grouped, furthest }) => {
 
 	return {
 		...baseStyles(),
-
-		// not sure of the best way to do below is
-		// there is logic that is only tied to the react way which makes it difficult to separate out
-
+		// there is logic that is only tied to the react way which makes it difficult to separate out so have left as is
 		marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
-		backgroundColor: '#fff',
 
 		':last-of-type': {
 			paddingBottom: grouped && !end && '1.875rem',
@@ -116,11 +111,23 @@ const stepStyles = (_, { end, visited, grouped, furthest }) => {
 	};
 };
 
+const blenderStyles = () => {
+	return blenderReconciler(baseStyles(), [visitedStyles(true), activeStyles(), endStyles()]);
+};
+
 // ==============================
 // Attributes
 // ==============================
 
 const stepAttributes = () => null;
+
+const blenderAttributes = (_, { active, visited, end }) => ({
+	className: classNames({
+		'GEL-progressRope-step-active': active,
+		'GEL-progressRope-step-visited': visited,
+		'GEL-progressRope-step-end': end,
+	}),
+});
 
 // ==============================
 // Exports
@@ -135,5 +142,5 @@ export const defaultStep = {
 export const blenderStep = {
 	component: Step,
 	styles: blenderStyles,
-	attributes: stepAttributes,
+	attributes: blenderAttributes,
 };

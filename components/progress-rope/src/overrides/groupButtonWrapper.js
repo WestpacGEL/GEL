@@ -13,7 +13,7 @@ const GroupButtonWrapper = ({ state, ...rest }) => <h3 {...rest} />;
 // ==============================
 
 const groupButtonWrapperStyles = () => ({
-	label: 'group-button-wrapper',
+	label: 'progressRope-group-btn-wrapper',
 	margin: 0,
 	fontSize: 'inherit',
 });

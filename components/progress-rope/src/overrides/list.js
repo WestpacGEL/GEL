@@ -16,6 +16,7 @@ const listStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: 'progress-rope-list',
 		position: 'relative',
 		listStyle: 'none',
 		paddingLeft: 0,

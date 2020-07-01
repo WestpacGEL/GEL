@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { blenderGroup } from '../overrides/group';
@@ -12,8 +11,8 @@ import { blenderGroupList } from '../overrides/groupList';
 // ==============================
 // Component
 // ==============================
-// visited or complete, need to look into this naming...
-export const Group = ({ text, active, visited, children, ...rest }) => {
+
+export const Group = ({ id, text, active, visited, children, ...rest }) => {
 	const { component: Group, styles: groupStyles, attributes: groupAttributes } = blenderGroup;
 	const {
 		component: GroupButtonWrapper,
@@ -32,25 +31,14 @@ export const Group = ({ text, active, visited, children, ...rest }) => {
 	} = blenderGroupList;
 
 	const state = {
+		id,
 		text,
 		active,
 		visited,
 	};
 
-	//should really look into classnames package
-	const groupClass = classNames({
-		'GEL-group-active': active,
-		'GEL-group-visited': visited,
-	});
-
 	return (
-		<Group
-			{...rest}
-			state={state}
-			{...groupAttributes(null, state)}
-			css={groupStyles()}
-			className={groupClass}
-		>
+		<Group {...rest} state={state} {...groupAttributes(null, state)} css={groupStyles()}>
 			<GroupButtonWrapper
 				state={state}
 				{...groupButtonWrapperAttributes(null, state)}
@@ -77,9 +65,32 @@ export const Group = ({ text, active, visited, children, ...rest }) => {
 
 Group.propTypes = {
 	/**
+	 * Group id
+	 */
+	id: PropTypes.string,
+
+	/**
+	 * Group text
+	 */
+	text: PropTypes.string,
+
+	/**
+	 * Is an active group
+	 */
+	active: PropTypes.bool.isRequired,
+
+	/**
+	 * If group is visited
+	 */
+	visited: PropTypes.bool.isRequired,
+
+	/**
 	 * Panel body content
 	 */
 	children: PropTypes.node,
 };
 
-Group.defaultProps = {};
+Group.defaultProps = {
+	active: false,
+	visited: false,
+};

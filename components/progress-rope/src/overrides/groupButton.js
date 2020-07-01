@@ -4,8 +4,6 @@ import { jsx, useBrand } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import merge from 'lodash.merge';
 
-import { blenderReconciler } from './_utils';
-
 // ==============================
 // Component
 // ==============================
@@ -33,7 +31,7 @@ const GroupButton = ({ state: { complete, active }, children, ...rest }) => {
 const baseStyles = () => {
 	const { COLORS, PACKS } = useBrand();
 	return {
-		label: 'group-button',
+		label: 'progressRope-group-btn',
 		position: 'relative',
 		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		fontSize: '1rem',
@@ -70,10 +68,6 @@ const baseStyles = () => {
 	};
 };
 
-const blenderStyles = () => {
-	return blenderReconciler(baseStyles());
-};
-
 const groupButtonStyles = (_, { complete, active }) => {
 	const { COLORS } = useBrand();
 	return merge({}, baseStyles(), {
@@ -101,6 +95,8 @@ const groupButtonStyles = (_, { complete, active }) => {
 	});
 };
 
+const blenderStyles = () => baseStyles();
+
 // ==============================
 // Attributes
 // ==============================
@@ -110,10 +106,10 @@ const groupButtonAttributes = (_, { hidden, groupListId }) => ({
 	'aria-controls': groupListId,
 });
 
-const blenderAttributes = (_, { hidden, groupListId }) => ({
+const blenderAttributes = (_, { hidden, id }) => ({
 	'aria-expanded': !hidden,
-	'aria-controls': groupListId,
-	'data-js': 'group-button__version__',
+	'aria-controls': id,
+	'data-js': 'progressRope-group-btn__version__',
 });
 
 // ==============================

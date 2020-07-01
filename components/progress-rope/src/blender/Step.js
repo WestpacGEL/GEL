@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { blenderStep } from '../overrides/step';
@@ -21,22 +20,11 @@ export const Step = ({ active, visited, end, children, ...rest }) => {
 	const state = {
 		active,
 		visited,
+		end,
 	};
 
-	const stepClass = classNames({
-		'GEL-step-active': active,
-		'GEL-step-visited': visited,
-		'GEL-step-end': end,
-	});
-
 	return (
-		<Step
-			{...rest}
-			state={state}
-			{...stepAttributes(null, state)}
-			css={stepStyles()}
-			className={stepClass}
-		>
+		<Step {...rest} state={state} {...stepAttributes(null, state)} css={stepStyles()}>
 			<StepButton
 				state={state}
 				{...stepButtonAttributes(null, state)}
