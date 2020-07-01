@@ -19,7 +19,9 @@ export function AllStyles({ brand }) {
 				<Step onClick={() => {}}>Step 3</Step>
 				<Step onClick={() => {}}>Step 4</Step>
 				<Step onClick={() => {}}>Step 5</Step>
-				<Step onClick={() => {}}>Review and Submit</Step>
+				<Step end onClick={() => {}}>
+					Review and Submit
+				</Step>
 			</ProgressRope>
 			<ProgressRope>
 				<Step visited onClick={() => {}}>
@@ -97,7 +99,9 @@ export function Docs({ brand }) {
 						<Step onClick={() => {}}>Step 3</Step>
 						<Step onClick={() => {}}>Step 4</Step>
 						<Step onClick={() => {}}>Step 5</Step>
-						<Step onClick={() => {}}>Review and Submit</Step>
+						<Step end onClick={() => {}}>
+							Review and Submit
+						</Step>
 					</ProgressRope>
 				</GEL>
 			),
@@ -118,7 +122,9 @@ export function Docs({ brand }) {
 						</Step>
 						<Step onClick={() => {}}>Step 4</Step>
 						<Step onClick={() => {}}>Step 5</Step>
-						<Step onClick={() => {}}>Review and Submit</Step>
+						<Step end onClick={() => {}}>
+							Review and Submit
+						</Step>
 					</ProgressRope>
 				</GEL>
 			),

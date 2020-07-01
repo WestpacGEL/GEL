@@ -42,6 +42,21 @@ export const Step = ({ active, visited, end, children, ...rest }) => {
 
 Step.propTypes = {
 	/**
+	 * Is an active group
+	 */
+	active: PropTypes.bool.isRequired,
+
+	/**
+	 * If group is visited
+	 */
+	visited: PropTypes.bool.isRequired,
+
+	/**
+	 * If an end step
+	 */
+	end: PropTypes.bool.isRequired,
+
+	/**
 	 * Panel body content
 	 */
 	children: PropTypes.node,
