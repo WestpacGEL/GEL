@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultItem } from './overrides/item';
@@ -60,28 +59,15 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const allChildren = Children.map(children, (child) => {
-		if (
-			type === 'link' &&
-			child &&
-			child.props &&
-			child.props.href &&
-			/^#.+/.test(child.props.href)
-		) {
-			return cloneElement(child, {
-				onClick: () => document.getElementById(child.props.href.slice(1)).focus(), // auto-focus anchor tags in link-lists
-			});
-		} else {
-			return child;
-		}
-	});
+	// we conditionally apply the css so it doesn't generate a class in the blender (as it does even for an empty object)
+	const styles = itemStyles(state);
 
 	return (
-		<Item {...rest} state={state} {...itemAttributes(state)} css={itemStyles(state)}>
+		<Item {...rest} state={state} {...itemAttributes(state)} {...(styles ? { css: styles } : {})}>
 			{type === 'icon' && icon && (
 				<Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />
 			)}
-			{allChildren}
+			{children}
 		</Item>
 	);
 };
@@ -92,12 +78,12 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 
 Item.propTypes = {
 	/**
-	 * The look of the bullet list
+	 * The look of the bullet or icon list
 	 */
 	look: PropTypes.oneOf(['primary', 'hero', 'neutral']),
 
 	/**
-	 * The type of the bullet
+	 * The list style
 	 */
 	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
 

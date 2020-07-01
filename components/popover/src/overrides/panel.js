@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 
 const Panel = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
@@ -9,6 +9,10 @@ const panelStyles = (_, { open, position }) => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('popover-panel', {
+			open: open && !position.empty,
+			placement: position.placement,
+		}),
 		visibility: open && !position.empty ? 'visible' : 'hidden',
 		position: 'absolute',
 		left: '50%',
@@ -50,7 +54,10 @@ const panelStyles = (_, { open, position }) => {
 	};
 };
 
-const panelAttributes = (_, { instanceId }) => ({ id: instanceId });
+const panelAttributes = (_, { instanceId }) => ({
+	'data-js': 'popover-panel__version__',
+	id: instanceId,
+});
 
 export const defaultPanel = {
 	component: Panel,

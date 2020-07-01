@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Panel = ({ state, ...rest }) => <div {...rest} />;
 
@@ -17,6 +17,7 @@ const panelStyles = (_, { look }) => {
 	};
 
 	return {
+		label: getLabel('panel', { look }),
 		marginBottom: '1.3125rem',
 		backgroundColor: '#fff',
 		border: `1px solid ${styleMap[look].borderColor}`,

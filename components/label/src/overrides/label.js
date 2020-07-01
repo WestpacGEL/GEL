@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Label = ({ state, ...rest }) => <span {...rest} />;
 
@@ -56,6 +56,7 @@ const labelStyles = (_, { look }) => {
 	};
 
 	return {
+		label: getLabel('label', { look }),
 		display: 'inline-block',
 		appearance: 'none',
 		borderRadius: '0.125rem',
