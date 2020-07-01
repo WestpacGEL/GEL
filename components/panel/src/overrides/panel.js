@@ -1,17 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
+
 import { blenderReconciler } from './_utils';
+import { headerStyleMap } from './header';
 
 // ==============================
 // Component
 // ==============================
 
-// Ideally I can use this for both?
 const Panel = ({ state, ...rest }) => <div {...rest} />;
-
-// or I might have to do it this way, probably only need to do this when we have components that additional logic in the component
-const BlenderPanel = (props) => <div {...props} />;
 
 // ==============================
 // Styles
@@ -41,17 +39,10 @@ const baseStyles = () => {
 // ==============================
 // Modifiers
 // ==============================
-// This file is probably going to get really big when we have a lot of different modifiers for a component
-// Probably going to have to add folder to overrides
-// overrides
-// 	-> Panel
-//		-> styles.js
-//		-> component.js	// this can contain the component and attributes since they are often very small compared to styles
-//		-> index.js		// would create the exports as similar to below
 
-// I hate the naming of this
 const lookHero = (blender = false) => {
 	const { COLORS } = useBrand();
+	const { label, hero: heroStyles } = headerStyleMap(); // import the blender styles from the component itself, single source
 
 	const styles = {
 		default: {
@@ -59,13 +50,7 @@ const lookHero = (blender = false) => {
 			borderColor: COLORS.hero,
 		},
 		blender: {
-			'.GEL-panel-header': {
-				backgroundColor: COLORS.hero,
-				borderColor: COLORS.hero,
-			},
-			'.GEL-panel-heading': {
-				color: '#fff',
-			},
+			[`.GEL-${label}`]: heroStyles,
 		},
 	};
 
@@ -76,7 +61,7 @@ const lookHero = (blender = false) => {
 
 const lookFaint = (blender = false) => {
 	const { COLORS } = useBrand();
-
+	const { label, faint: faintStyles } = headerStyleMap();
 	/**
 	 * default: the default modifier styles that is consumed by both the react and vanilla versions
 	 * blender: Extra class styling only used by the blender version. There is repetition of styles here as we are extracting out styles from the nested components and moving it to the top level, but this is the only way to do it.
@@ -87,13 +72,7 @@ const lookFaint = (blender = false) => {
 			borderColor: COLORS.border,
 		},
 		blender: {
-			'.GEL-panel-header': {
-				backgroundColor: COLORS.background,
-				borderColor: COLORS.border,
-			},
-			'.GEL-panel-heading': {
-				color: COLORS.text,
-			},
+			[`.GEL-${label}`]: faintStyles,
 		},
 	};
 
@@ -132,16 +111,17 @@ const panelStyles = (_, { look }) => {
 	return { ...baseStyles(), ...lookMap(look) };
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const panelAttributes = () => null;
 
-// I wonder if I can just combine these i.e.
-// export const defaultPanel = {
-// 	component: Panel,
-// 	styles: panelStyles,
-// 	blenderStyles,
-// 	attributes: panelAttributes,
-// };
-// really depends on if I have make a separate component...
+const blenderAttributes = (_, { look }) => ({ className: `GEL-panel-${look}` });
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultPanel = {
 	component: Panel,
@@ -152,5 +132,5 @@ export const defaultPanel = {
 export const blenderPanel = {
 	component: Panel,
 	styles: blenderStyles,
-	attributes: panelAttributes,
+	attributes: blenderAttributes,
 };

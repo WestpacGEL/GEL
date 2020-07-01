@@ -1,7 +1,37 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
 
-import { Panel, Body, Footer } from '../src/blender';
+import { Panel as OGPanel, Body, Footer } from '@westpac/panel';
+
+import { blenderPanel } from '../src/overrides/panel';
+import { blenderHeader } from '../src/overrides/header';
+import { blenderHeading } from '../src/overrides/heading';
+import { blenderBody } from '../src/overrides/body';
+import { blenderFooter } from '../src/overrides/footer';
+
+const Panel = (props) => (
+	<OGPanel
+		overrides={{
+			Panel: {
+				styles: () => blenderPanel.styles(),
+				attributes: blenderPanel.attributes,
+			},
+			Header: {
+				styles: () => blenderHeader.styles(),
+			},
+			Heading: {
+				styles: () => blenderHeading.styles(),
+			},
+			Body: {
+				styles: () => blenderBody.styles(),
+			},
+			Footer: {
+				styles: () => blenderFooter.styles(),
+			},
+		}}
+		{...props}
+	/>
+);
 
 export function AllStyles({ brand }) {
 	return (

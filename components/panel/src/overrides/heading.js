@@ -21,7 +21,7 @@ const PanelHeading = ({ state: { headingTag }, ...rest }) => (
 const baseStyles = () => {
 	const { TYPE } = useBrand();
 
-	return { label: 'panel-heading', ...TYPE.bodyFont[400] };
+	return { label: 'panel-heading', ...TYPE.bodyFont[400], color: 'inherit' };
 };
 
 // ==============================
@@ -33,22 +33,8 @@ const baseStyles = () => {
 // Style Reconciliation
 // ==============================
 
-const headingStyles = (_, { look }) => {
-	const { COLORS } = useBrand();
-
-	const styleMap = {
-		hero: {
-			color: '#fff',
-		},
-		faint: {
-			color: COLORS.text,
-		},
-	};
-
-	return {
-		...baseStyles(),
-		color: styleMap[look].color,
-	};
+const headingStyles = () => {
+	return baseStyles();
 };
 
 const blenderStyles = () => {
