@@ -2,6 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
+
 import { blenderReconciler } from './_utils';
 
 // ==============================
@@ -24,22 +25,9 @@ const baseStyles = () => {
 	return { label: 'panel-heading', ...TYPE.bodyFont[400], color: 'inherit' };
 };
 
-// ==============================
-// Modifiers
-// ==============================
-// if there are no blender modifiers then we dont have to separate them out as there is no point
+const headingStyles = () => baseStyles();
 
-// ==============================
-// Style Reconciliation
-// ==============================
-
-const headingStyles = () => {
-	return baseStyles();
-};
-
-const blenderStyles = () => {
-	return blenderReconciler(baseStyles());
-};
+const blenderStyles = () => blenderReconciler(baseStyles());
 
 // ==============================
 // Attributes

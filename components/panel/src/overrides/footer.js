@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+
 import { blenderReconciler } from './_utils';
 
 // ==============================
@@ -25,9 +26,7 @@ const baseStyles = () => {
 	};
 };
 
-const blenderStyles = () => {
-	return blenderReconciler(baseStyles());
-};
+const blenderStyles = () => blenderReconciler(baseStyles());
 
 const footerStyles = () => {
 	const mq = useMediaQuery();

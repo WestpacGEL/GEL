@@ -2,6 +2,7 @@
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Body } from '@westpac/body';
+
 import { blenderReconciler } from './_utils';
 
 // ==============================
@@ -21,9 +22,7 @@ const baseStyles = () => {
 	};
 };
 
-export const blenderStyles = () => {
-	return blenderReconciler(baseStyles());
-};
+export const blenderStyles = () => blenderReconciler(baseStyles());
 
 const bodyStyles = () => {
 	const mq = useMediaQuery();

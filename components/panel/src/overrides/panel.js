@@ -39,10 +39,13 @@ const baseStyles = () => {
 // ==============================
 // Modifiers
 // ==============================
+// - default: the default modifier styles that is consumed by both the react and vanilla versions
+// - blender: Extra class styling only used by the blender version. Creates more traditional css modifier classes
+// ==============================
 
 const lookHero = (blender = false) => {
 	const { COLORS } = useBrand();
-	const { label, hero: heroStyles } = headerStyleMap(); // import the blender styles from the component itself, single source
+	const { label, hero: heroStyles } = headerStyleMap(); // import the blender styles from the nested component
 
 	const styles = {
 		default: {
@@ -62,10 +65,7 @@ const lookHero = (blender = false) => {
 const lookFaint = (blender = false) => {
 	const { COLORS } = useBrand();
 	const { label, faint: faintStyles } = headerStyleMap();
-	/**
-	 * default: the default modifier styles that is consumed by both the react and vanilla versions
-	 * blender: Extra class styling only used by the blender version. There is repetition of styles here as we are extracting out styles from the nested components and moving it to the top level, but this is the only way to do it.
-	 */
+
 	const styles = {
 		default: {
 			label: 'GEL-panel-faint',
@@ -81,7 +81,6 @@ const lookFaint = (blender = false) => {
 	return { ...styles.default };
 };
 
-// I also hate this, I wonder if I can just generate the styles into an object rather than a function
 const lookMap = (look, blender = false) => {
 	switch (look) {
 		case 'hero':
@@ -96,13 +95,10 @@ const lookMap = (look, blender = false) => {
 // ==============================
 // Style Reconciliation
 // ==============================
+// Blender specific styles
+// - We reconcile all variations of a component and their blender specific styles to create a more traditional css style sheet
+// ==============================
 
-/**
- * Blender specific styles
- * - We reconcile all variations of a component and their blender specific styles to create a more traditional css style sheet
- * - Not dependent on any props since blender will generate a .panel styles and that needs to have everything in it
- * ^ Need to explain above better
- */
 export const blenderStyles = () => {
 	return blenderReconciler(baseStyles(), [lookHero(true), lookFaint(true)]);
 };

@@ -9,6 +9,7 @@ import { blenderHeading } from '../src/overrides/heading';
 import { blenderBody } from '../src/overrides/body';
 import { blenderFooter } from '../src/overrides/footer';
 
+// Using overrides to apply blender styles and attributes
 const Panel = (props) => (
 	<OGPanel
 		overrides={{

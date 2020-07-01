@@ -27,18 +27,19 @@ const baseStyles = () => {
 	};
 };
 
+// Shared styling to also be used by a parent component to create modifier classes
 export const headerStyleMap = () => {
 	const { COLORS } = useBrand();
 	return {
 		label: PANEL_HEADER,
 		hero: {
 			backgroundColor: COLORS.hero,
-			borderColor: COLORS.hero,
+			borderBottom: `1px solid ${COLORS.hero}`,
 			color: '#fff',
 		},
 		faint: {
 			backgroundColor: COLORS.background,
-			borderColor: COLORS.border,
+			borderBottom: `1px solid ${COLORS.border}`,
 			color: COLORS.text,
 		},
 	};
@@ -50,15 +51,11 @@ const headerStyles = (_, { look }) => {
 
 	return mq({
 		...baseStyles(),
-		backgroundColor: styleMap[look].backgroundColor,
-		borderBottom: `1px solid ${styleMap[look].borderColor}`,
-		color: styleMap[look].color,
+		...styleMap[look],
 	})[0];
 };
 
-export const blenderStyles = () => {
-	return blenderReconciler(baseStyles());
-};
+export const blenderStyles = () => blenderReconciler(baseStyles());
 
 // ==============================
 // Attributes
