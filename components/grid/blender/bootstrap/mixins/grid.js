@@ -67,10 +67,10 @@ const rowCols = (count) => ({
 export const makeGridColumns = (columns, gutters, breakpoints, spacing, gridRowColumns = 6) => ({
 	...Object.assign(
 		{},
-		...Object.entries(breakpoints).map(([bp, val]) => {
-			let infix = breakpointInfix(bp);
+		...Object.keys(breakpoints).map((bp) => {
+			let infix = breakpointInfix(bp, breakpoints);
 
-			return mediaBreakpointUp(bp, val, {
+			return mediaBreakpointUp(bp, breakpoints, {
 				// Provide basic `.col-{bp}` classes for equal-width flexbox columns
 				[`.col${infix}`]: {
 					flex: '1 0 0%', // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4

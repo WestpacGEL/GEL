@@ -1,10 +1,11 @@
 import { asArray, camelize } from './_utils';
 import { breakpointInfix, mediaBreakpointUp } from './mixins/breakpoints';
 
+// Flag to enable negative margin utility classes (disabled by default in Bootstrap)
 const enableNegativeMargins = false;
 
 const utilitiesMap = (spacing) => {
-	// Create a new negative margins object, if necessary
+	// Create a negative spacing margins object, if necessary
 	const spacingNegative =
 		enableNegativeMargins &&
 		Object.assign(
@@ -291,10 +292,10 @@ export const utilities = (breakpoints, spacing) => ({
 		{},
 		// Responsive classes (e.g. [{ xs: 0 }, { xsl: 576 }, { sm: 768 }, etc])
 		// Iterate breakpoints
-		...Object.entries(breakpoints).map(([bp, val]) => {
-			let infix = breakpointInfix(bp);
+		...Object.keys(breakpoints).map((bp) => {
+			let infix = breakpointInfix(bp, breakpoints);
 
-			return mediaBreakpointUp(bp, val, {
+			return mediaBreakpointUp(bp, breakpoints, {
 				...Object.assign(
 					{},
 					// Iterate utilities
