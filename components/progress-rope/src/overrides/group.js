@@ -2,6 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import classNames from 'classnames';
+import { blenderReconciler } from './_utils';
 
 // ==============================
 // Component
@@ -18,7 +19,7 @@ const groupStyles = () => ({ label: 'progressRope-group' });
 const blenderStyles = () => {
 	const { COLORS, TYPE, PACKS } = useBrand();
 
-	return {
+	return blenderReconciler({
 		label: 'progressRope-group',
 		'&.GEL-progressRope-group-active, &.GEL-progressRope-group-visited': {
 			'.GEL-progressRope-group-btn': {
@@ -76,7 +77,7 @@ const blenderStyles = () => {
 				borderWidth: '0.3125rem',
 			},
 		},
-	};
+	});
 };
 
 // ==============================

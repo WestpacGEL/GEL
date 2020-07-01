@@ -4,6 +4,8 @@ import { jsx, useBrand } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import merge from 'lodash.merge';
 
+import { blenderReconciler } from './_utils';
+
 // ==============================
 // Component
 // ==============================
@@ -95,7 +97,7 @@ const groupButtonStyles = (_, { complete, active }) => {
 	});
 };
 
-const blenderStyles = () => baseStyles();
+const blenderStyles = () => blenderReconciler(baseStyles());
 
 // ==============================
 // Attributes

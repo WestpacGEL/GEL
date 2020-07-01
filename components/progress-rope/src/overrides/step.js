@@ -76,13 +76,11 @@ const visitedStyles = (blender = false) => {
 	return { ...styles.default };
 };
 
-const baseStyles = () => {
-	return {
-		label: 'progressRope-step',
-		position: 'relative',
-		backgroundColor: '#fff',
-	};
-};
+const baseStyles = () => ({
+	label: 'progressRope-step',
+	position: 'relative',
+	backgroundColor: '#fff',
+});
 
 const stepStyles = (_, { end, visited, grouped, furthest }) => {
 	const { COLORS } = useBrand();
