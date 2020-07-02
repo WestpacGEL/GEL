@@ -4,17 +4,22 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import { Body } from '@westpac/body';
 
-const List = ({ state: { type, assistiveText }, children, ...rest }) => {
-	const ListType = type === 'ordered' ? 'ol' : 'ul';
-
+const List = ({ state: { type, nested, assistiveText }, children, ...rest }) => {
 	//a11y: tick bullet meaning must be conveyed; render a (configurable) VisuallyHidden first item
 	const hiddenItem =
-		type === 'tick' ? (
-			<VisuallyHidden tag="li">{assistiveText || 'The following items are ticked:'}</VisuallyHidden>
+		type === 'tick' && nested === 0 ? (
+			<VisuallyHidden
+				tag="li"
+				css={{
+					'::before': { display: 'none !important' },
+				}}
+			>
+				{assistiveText || 'The following items are ticked:'}
+			</VisuallyHidden>
 		) : null;
 
 	return (
-		<Body tag={ListType} {...rest}>
+		<Body tag={type === 'ordered' ? 'ol' : 'ul'} {...rest}>
 			{hiddenItem}
 			{children}
 		</Body>
