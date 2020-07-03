@@ -12,7 +12,7 @@ import { blenderGroupList } from '../overrides/groupList';
 // Component
 // ==============================
 
-export const Group = ({ id, text, active, visited, children, ...rest }) => {
+export const Group = ({ id, text, active, visited, open, children, ...rest }) => {
 	const { component: Group, styles: groupStyles, attributes: groupAttributes } = blenderGroup;
 	const {
 		component: GroupButtonWrapper,
@@ -35,6 +35,7 @@ export const Group = ({ id, text, active, visited, children, ...rest }) => {
 		text,
 		active,
 		visited,
+		open,
 	};
 
 	return (
@@ -85,6 +86,11 @@ Group.propTypes = {
 	visited: PropTypes.bool.isRequired,
 
 	/**
+	 * If group is open
+	 */
+	open: PropTypes.bool.isRequired,
+
+	/**
 	 * Panel body content
 	 */
 	children: PropTypes.node,
@@ -93,4 +99,5 @@ Group.propTypes = {
 Group.defaultProps = {
 	active: false,
 	visited: false,
+	open: false,
 };

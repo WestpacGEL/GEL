@@ -29,10 +29,11 @@ const groupListAttributes = (_, { hidden, groupListId }) => ({
 	id: groupListId,
 });
 
-const blenderGroupListAttributes = (_, { id }) => ({
-	'aria-hidden': 'TO DO',
+const blenderGroupListAttributes = (_, { id, open }) => ({
 	id,
+	'aria-hidden': !open,
 	'data-js': 'progressRope-group-list__version__',
+	...(open && { 'data-open': '' }),
 });
 // ==============================
 // Exports

@@ -1,10 +1,22 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
 
-import { ProgressRope } from '@westpac/progress-rope';
+import { ProgressRope as OGProgressRope } from '@westpac/progress-rope';
 
 // Created simplified version of these components for blender use
 import { Group, Step } from '../src/blender';
+import { blenderProgressRope } from '../src/overrides/progressRope';
+
+const ProgressRope = (props) => (
+	<OGProgressRope
+		overrides={{
+			ProgressRope: {
+				attributes: blenderProgressRope.attributes,
+			},
+		}}
+		{...props}
+	/>
+);
 
 export function AllStyles({ brand }) {
 	return (
@@ -155,7 +167,7 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={brand}>
 					<ProgressRope>
-						<Group id={'progress-rope-group-1'} active text={'Group 1'}>
+						<Group id={'progress-rope-group-1'} active open text={'Group 1'}>
 							<Step active onClick={() => {}}>
 								Step 1
 							</Step>
@@ -190,7 +202,7 @@ export function Docs({ brand }) {
 								Step 2
 							</Step>
 						</Group>
-						<Group id={'progress-rope-group-2'} active text={'Group 2'}>
+						<Group id={'progress-rope-group-2'} active open text={'Group 2'}>
 							<Step visited onClick={() => {}}>
 								Step 3
 							</Step>

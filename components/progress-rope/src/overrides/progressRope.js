@@ -22,6 +22,10 @@ const progressRopeAttributes = (_, { assistiveText }) => ({
 	'aria-label': assistiveText,
 });
 
+const blenderAttributes = (_, { assistiveText }) => ({
+	'aria-label': assistiveText,
+	'data-js': 'progressRope__version__',
+});
 // ==============================
 // Exports
 // ==============================
@@ -35,5 +39,5 @@ export const defaultProgressRope = {
 export const blenderProgressRope = {
 	component: ProgressRope,
 	styles: progressRopeStyles,
-	attributes: progressRopeAttributes,
+	attributes: blenderAttributes,
 };

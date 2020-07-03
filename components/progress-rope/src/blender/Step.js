@@ -62,4 +62,8 @@ Step.propTypes = {
 	children: PropTypes.node,
 };
 
-Step.defaultProps = {};
+Step.defaultProps = {
+	active: false,
+	visited: false,
+	end: false,
+};
