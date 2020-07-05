@@ -32,7 +32,7 @@ function Example({ brand }) {
 				css={{
 					marginTop: SPACING(80),
 				}}
-				tabindex="-1"
+				tabIndex="-1"
 			>
 				<p>
 					This is example content, linked to by the SkipLink component above. Sit sint irure do eu.
