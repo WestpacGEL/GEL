@@ -22,7 +22,7 @@ function Example({ brand }) {
 			styles: (styles) => ({
 				...styles,
 				':focus': {
-					background: COLORS.primary,
+					background: `${COLORS.primary} !important`,
 					color: '#fff',
 				},
 			}),
