@@ -16,6 +16,7 @@ const NavListOverride = (props) => <ul {...props} />;
 
 export const Navigation = ({ items }) => {
 	const ref = useRef();
+	const { COLORS, SPACING } = useBrand();
 	const { isScrolled, setIsScrolled } = useSidebar();
 
 	const handleScroll = () => {
@@ -29,7 +30,6 @@ export const Navigation = ({ items }) => {
 
 	const renderNavigationItems = (items, level = 0) => {
 		const router = useRouter();
-		const { COLORS, SPACING } = useBrand();
 		const brandName = router.query.b || '';
 
 		return items.map((item) => {
