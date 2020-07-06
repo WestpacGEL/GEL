@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const InputGroup = ({ state, ...rest }) => <div {...rest} />;
 
 const inputGroupStyles = () => ({
+	label: getLabel('inputGroup'),
 	display: 'flex',
 });
 
