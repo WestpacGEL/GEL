@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Label = ({ state, ...rest }) => <label {...rest} />;
 
-const labelStyles = (_, { disabled, type, size }) => {
+const labelStyles = (_, { type, size }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	const sizeMap = {
@@ -52,6 +52,7 @@ const labelStyles = (_, { disabled, type, size }) => {
 	const checkboxStroke = sizeMap[size]['checkbox'].stroke;
 
 	return {
+		label: getLabel('formCheck-label', { type, size }),
 		display: 'inline-block',
 		paddingTop: sizeMap[size].paddingTop,
 		paddingBottom: sizeMap[size].paddingBottom,
@@ -69,8 +70,8 @@ const labelStyles = (_, { disabled, type, size }) => {
 			left: 0,
 			width: sizeMap[size].width,
 			height: sizeMap[size].height,
-			border: `1px solid ${disabled ? COLORS.border : COLORS.hero}`,
-			background: disabled ? COLORS.light : 'transparent',
+			border: `1px solid ${COLORS.hero}`,
+			background: 'transparent',
 			borderRadius: type === 'radio' ? '50%' : 3,
 
 			// Focus state
@@ -91,7 +92,7 @@ const labelStyles = (_, { disabled, type, size }) => {
 			content: '""',
 			boxSizing: 'border-box',
 			position: 'absolute',
-			border: `solid ${disabled ? COLORS.border : COLORS.hero}`,
+			border: `solid ${COLORS.hero}`,
 			top: `calc(((${sizeMap[size].height} - ${checkHeight}) / 2) + ${checkTweak})`,
 			left: `calc((${sizeMap[size].width} - ${checkWidth}) / 2)`,
 			width: type === 'radio' ? 0 : checkWidth,
@@ -104,10 +105,10 @@ const labelStyles = (_, { disabled, type, size }) => {
 
 			// Fix bug in IE11 caused by transform rotate (-54deg)
 			borderTopColor: type === 'checkbox' && 'transparent',
+		},
 
-			'input:disabled + &, fieldset:disabled &': {
-				borderColor: COLORS.border,
-			},
+		'input:checked:disabled + &::after, fieldset:disabled input:checked &::after': {
+			borderColor: COLORS.border,
 		},
 
 		// Disabled state

@@ -1,10 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Page = ({ state, ...rest }) => <li {...rest} />;
 
-const pageStyles = () => ({});
+const pageStyles = () => ({
+	label: getLabel('pagination-page'),
+});
 
 const pageAttributes = () => null;
 

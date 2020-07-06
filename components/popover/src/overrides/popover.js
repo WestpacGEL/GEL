@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Popover = ({ state, ...rest }) => <div {...rest} />;
 
 const popoverStyles = () => ({
+	label: getLabel('popover'),
 	position: 'relative',
 	display: 'inline-block',
 });

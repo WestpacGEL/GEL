@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Link = ({ state: { disabled }, ...rest }) => (
 	<button type="button" disabled={disabled} {...rest} />
@@ -10,6 +10,7 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('pagination-link', { active, first, last, disabled }),
 		appearance: 'none',
 		marginLeft: -1,
 		lineHeight: 1.15,

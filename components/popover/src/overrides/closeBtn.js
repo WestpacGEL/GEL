@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
@@ -11,19 +11,24 @@ const CloseBtn = ({ state, ...rest }) => (
 const closeBtnStyles = (_, {}) => {
 	const { COLORS, SPACING } = useBrand();
 	return {
-		position: 'absolute',
-		zIndex: 1,
-		top: 0,
-		right: SPACING(1),
-		color: COLORS.text,
+		label: getLabel('popover-closebtn'),
+		'&&': {
+			position: 'absolute',
+			zIndex: 1,
+			top: 0,
+			right: SPACING(1),
+			color: COLORS.text,
 
-		':hover': {
-			opacity: 0.8,
+			':hover': {
+				opacity: 0.8,
+			},
 		},
 	};
 };
 
-const closeBtnAttributes = () => null;
+const closeBtnAttributes = () => ({
+	'data-js': 'popover-closeBtn__version__',
+});
 
 export const defaultCloseBtn = {
 	component: CloseBtn,
