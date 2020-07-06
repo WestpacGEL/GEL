@@ -38,6 +38,93 @@ export function AllStyles({ brand }) {
 export function Docs({ brand }) {
 	return [
 		{
+			heading: 'Introduction',
+			body: `
+				<p>
+					The GEL Design System Grid is based on Bootstrap Grid (v5) for Blender users. Please refer to Bootstrap’s docs to learn how to implement the system and its extensive features.
+				</p>
+				<p>
+					The following Bootstrap Grid features are implemented:
+				</p>
+				<ul>
+					<li>
+						<a href="https://v5.getbootstrap.com/docs/5.0/layout/containers/" target="_blank">Containers</a>
+					</li>
+					<li>
+						<a href="https://v5.getbootstrap.com/docs/5.0/layout/grid/" target="_blank">Grid System</a>
+						<ul>
+							<li>
+								<a href="https://v5.getbootstrap.com/docs/5.0/layout/grid/#auto-layout-columns" target="_blank">Auto-layout columns</a>
+							</li>
+							<li>
+								<a href="https://v5.getbootstrap.com/docs/5.0/layout/grid/#responsive-classes" target="_blank">Responsive classes</a>
+							</li>
+							<li>
+								<a href="https://v5.getbootstrap.com/docs/5.0/layout/grid/#nesting" target="_blank">Nesting</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="https://v5.getbootstrap.com/docs/5.0/layout/columns/" target="_blank">Columns</a>
+						<ul>
+							<li>
+								<a href="https://v5.getbootstrap.com/docs/5.0/layout/columns/#alignment" target="_blank">Alignment</a>
+							</li>
+							<li>
+								<a href="https://v5.getbootstrap.com/docs/5.0/layout/columns/#reordering" target="_blank">Reordering</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="https://v5.getbootstrap.com/docs/5.0/layout/gutters/" target="_blank">Gutters</a>
+					</li>
+					<li>
+						<a href="https://v5.getbootstrap.com/docs/5.0/layout/utilities/" target="_blank">Utilities</a>
+					</li>
+				</ul>
+
+				<h2>Differences</h2>
+				<p>
+					GEL Grid includes standard Boostrap Grid classes, however there are a small number of differences between the two systems:
+				</p>
+
+				<h3>Breakpoints</h3>
+				<p>
+					GEL Grid is built on <em>five</em> breakpoints: Extra small (xs), Extra small landscape (xsl), Medium (md), Large (lg), Extra large (xl). The breakpoint pixel values are consistent with Bootstrap Grid, however breakpoint names are slightly different.
+				</p>
+				<p>
+					The Extra extra large (xxl) ≥1400px breakpoint is not provided.
+				</p>
+
+				<h3>Fluid container</h3>
+				<p>
+					The GEL recommends use of a fluid (100% wide) container and as such GEL Grid <code>.container</code> width is fluid by default; Bootstrap Grid container width is fixed at each breakpoint. The GEL Grid provides a fixed option via <code>.container-fixed</code>, however its use is generally not recommended.
+				</p>
+				<p>
+					Bootstrap responsive containers <code>.container-{breakpoint}</code> are not provided.
+				</p>
+				
+				<h3>Container padding</h3>
+				<p>
+					GEL Grid utilises customised container styling. The <code>.container</code> and <code>.container-fixed</code> classes have increased horizontal padding required to meet our Brand design requirements.
+				</p>
+
+				<h3>Gutter width</h3>
+				<p>
+					While both systems are based on a 12 column grid, GEL Grid gutter widths are responsive; designed to maximise available space. A default gutter width is set at each breakpoint.
+				</p>
+
+				<h3>Spacing units</h3>
+				<p>
+					Spacing units differ between the two systems. GEL Grid is based on a 6px spacing unit, Bootstrap Grid uses 4px.
+				</p>
+				<p>
+					Gutter <code>.g-*</code>, margin <code>.m-*</code> and padding <code>.p-*</code> utility classes follow this 6px increment convention. 11 increments are provided (i.e. <code>.g-0</code> to <code>.g-10</code>).
+				</p>
+			`,
+			component: () => null,
+		},
+		{
 			heading: 'Containers',
 			subheading: 'Default (fluid width) container',
 			component: () => (
