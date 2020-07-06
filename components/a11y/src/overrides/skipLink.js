@@ -2,11 +2,11 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const SkipLink = ({ state: { href }, ...rest }) => <a href={href} {...rest} />;
+const SkipLink = ({ state, ...rest }) => <a {...rest} />;
 
 const skipLinkStyles = () => ({
 	label: getLabel('skipLink'),
-	position: 'fixed',
+	position: 'fixed !important',
 	top: 0,
 	left: 0,
 	right: 0,
@@ -30,7 +30,7 @@ const skipLinkStyles = () => ({
 	},
 });
 
-const skipLinkAttributes = () => null;
+const skipLinkAttributes = (_, { href }) => ({ href });
 
 export const defaultSkipLink = {
 	component: SkipLink,
