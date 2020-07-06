@@ -1,5 +1,5 @@
 export const panel = ({ COLORS }) => ({
-	Header: {
+	Heading: {
 		styles: (styles, { look }) => {
 			if (look === 'hero') {
 				return {

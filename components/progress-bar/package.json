@@ -3,7 +3,32 @@
 	"version": "1.0.0-beta.2",
 	"description": "A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-bar",
+	"blender": {
+		"recipe": "blender/recipe.js"
+	},
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"contributors": [
+		{
+			"name": "Dominik Wilkowski",
+			"email": "Hi@Dominik-Wilkowski.com",
+			"url": "https://dominik-wilkowski.com"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
+		},
+		{
+			"name": "Flore Laforge",
+			"email": "florelaforge@gmail.com",
+			"url": "http://florelaforge.com/"
+		}
+	],
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=progress-bar webpack-dev-server --config ../../helpers/example/start.webpack.config.js",

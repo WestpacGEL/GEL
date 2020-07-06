@@ -3,15 +3,16 @@
 import { jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 import { Grid, Cell } from '@westpac/grid';
-import { Title } from './_utils';
+
 import { Playground } from '../../../../website/src/components/playground/macro';
+import { Title } from '../../../../helpers/demos';
 
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Grid>
 				<Cell width={6}>
-					<Title>Default Size</Title>
+					<Title>Default</Title>
 					<FormCheck name="example-default">
 						<Option value="1">Option 1</Option>
 						<Option value="2">Option 2</Option>
@@ -19,7 +20,7 @@ export default ({ context, showCode, showDemo }) => {
 					</FormCheck>
 				</Cell>
 				<Cell width={6}>
-					<Title>Large Size</Title>
+					<Title>Large</Title>
 					<FormCheck name="example-default" size="large">
 						<Option value="1">Option 1</Option>
 						<Option value="2">Option 2</Option>

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 
 const Footer = ({ state, ...rest }) => <div {...rest} />;
 
@@ -9,6 +9,7 @@ const footerStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
+		label: getLabel('panel-footer'),
 		padding: ['0.625rem 0.75rem', null, '0.625rem 1.5rem'],
 		backgroundColor: COLORS.light,
 		borderTop: `1px solid ${COLORS.border}`,

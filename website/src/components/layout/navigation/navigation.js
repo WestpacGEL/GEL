@@ -11,6 +11,9 @@ import { NavigationGroup } from './navigation-group';
 import { useSidebar } from '../../providers/sidebar';
 import BackToGelSvg from './BackToGelSvg';
 
+// `<List />` uses `<Body />` and provides link styling we don't need
+const NavListOverride = (props) => <ul {...props} />;
+
 export const Navigation = ({ items }) => {
 	const ref = useRef();
 	const { isScrolled, setIsScrolled } = useSidebar();
@@ -45,7 +48,16 @@ export const Navigation = ({ items }) => {
 						title={item.title}
 						level={level}
 					>
-						<List type="unstyled">{renderNavigationItems(item.children, level + 1)}</List>
+						<List
+							type="unstyled"
+							overrides={{
+								List: {
+									component: NavListOverride,
+								},
+							}}
+						>
+							{renderNavigationItems(item.children, level + 1)}
+						</List>
 					</NavigationGroup>
 				);
 			}
@@ -101,7 +113,15 @@ export const Navigation = ({ items }) => {
 			>
 				<BackToGelSvg />
 			</a>
-			<List type="unstyled" css={{ paddingBottom: SPACING(4) }}>
+			<List
+				type="unstyled"
+				css={{ paddingBottom: SPACING(4) }}
+				overrides={{
+					List: {
+						component: NavListOverride,
+					},
+				}}
+			>
 				{renderNavigationItems(items)}
 			</List>
 		</nav>

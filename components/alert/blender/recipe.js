@@ -33,7 +33,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A info alert',
+			heading: 'An info alert',
 			component: () => (
 				<GEL brand={brand}>
 					<Alert look="info">Your alert body</Alert>
@@ -73,7 +73,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A alert with heading',
+			heading: 'An alert with heading',
 			component: () => (
 				<GEL brand={brand}>
 					<Alert heading="Your alert heading">Your alert body</Alert>
