@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 const Text = ({ state, ...rest }) => <span {...rest} />;
 
@@ -31,6 +31,7 @@ const textStyles = (_, { size, position }) => {
 	};
 
 	return {
+		label: getLabel('inputGroup-text', { size, position }),
 		...sizeMap[size],
 		lineHeight: 1.5,
 		backgroundColor: COLORS.light,

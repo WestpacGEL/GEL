@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 import { Button as ButtonInput } from '@westpac/button';
 
 const Button = ({ state: { size }, ...rest }) => <ButtonInput size={size} {...rest} />;
 
 const buttonStyles = (_, { position }) => ({
+	label: getLabel('inputGroup-button', { position }),
 	boxSizing: 'border-box',
 	borderRight: position === 'before' && 0,
 	borderLeft: position === 'after' && 0,
