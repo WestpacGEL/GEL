@@ -37,61 +37,85 @@ const Panel = (props) => (
 export function AllStyles({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Panel heading="Panel title">
-				<Body>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
-					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
-					eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit
-					amet, consectetur adipisicing elit.
-				</Body>
-				<Footer>I am a footer</Footer>
-			</Panel>
-			<Panel look="faint" heading="Panel title">
-				<Body>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia omnis
-					aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat, perferendis
-					eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem ipsum dolor sit
-					amet, consectetur adipisicing elit.
-				</Body>
-				<Footer>I am a footer</Footer>
-			</Panel>
+			{looks.map((look) => (
+				<Panel key={look} look={look} heading="Heading text">
+					<Body>Body text</Body>
+					<Footer>Footer text</Footer>
+				</Panel>
+			))}
 		</GEL>
 	);
 }
 
 export function Docs({ brand }) {
 	return [
-		{
-			heading: 'A basic panel',
+		...looks.map((look) => ({
+			heading: `A ${look} panel`,
 			component: () => (
 				<GEL brand={brand}>
-					<Panel heading="Panel title">
-						<Body>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia
-							omnis aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat,
-							perferendis eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem
-							ipsum dolor sit amet, consectetur adipisicing elit.
-						</Body>
-						<Footer>I am a footer</Footer>
+					<Panel look={look} heading={`Your ${look} panel heading`}>
+						<Body>Your {look} panel text</Body>
 					</Panel>
 				</GEL>
 			),
-		},
-		{
-			heading: 'A faint panel',
+		})),
+		...looks.map((look) => ({
+			heading: `A ${look} panel with footer`,
 			component: () => (
 				<GEL brand={brand}>
-					<Panel look="faint" heading="Panel title">
-						<Body>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora officiis officia
-							omnis aperiam voluptate suscipit, laudantium praesentium quas consequatur placeat,
-							perferendis eligendi saepe in unde sequi dolores excepturi doloremque autem! Lorem
-							ipsum dolor sit amet, consectetur adipisicing elit.
-						</Body>
-						<Footer>I am a footer</Footer>
+					<Panel look={look} heading={`Your ${look} panel heading`}>
+						<Body>Your {look} panel text</Body>
+						<Footer>Your {look} panel footer</Footer>
 					</Panel>
 				</GEL>
 			),
-		},
+		})),
+		...looks.map((look) => ({
+			heading: `A ${look} panel with table`,
+			component: () => (
+				<GEL brand={brand}>
+					<Panel look={look} heading={`Your ${look} panel heading`}>
+						<Body>Your {look} panel text</Body>
+						<Table bordered>
+							<Caption>Table caption</Caption>
+							<Thead>
+								<Tr>
+									<Th scope="col">Column 1</Th>
+									<Th scope="col">Column 2</Th>
+									<Th scope="col">Column 3</Th>
+								</Tr>
+							</Thead>
+							<Tbody>
+								<Tr>
+									<Td>Cell 1</Td>
+									<Td>Cell 2</Td>
+									<Td>Cell 3</Td>
+								</Tr>
+								<Tr>
+									<Td>Cell 4</Td>
+									<Td>Cell 5</Td>
+									<Td>Cell 6</Td>
+								</Tr>
+								<Tr>
+									<Td>Cell 7</Td>
+									<Td>Cell 8</Td>
+									<Td>Cell 9</Td>
+								</Tr>
+								<Tr>
+									<Td>Cell 10</Td>
+									<Td>Cell 11</Td>
+									<Td>Cell 12</Td>
+								</Tr>
+							</Tbody>
+							<Tfoot>
+								<Tr>
+									<Td colSpan="3">Footer goes here and should colSpan all columns</Td>
+								</Tr>
+							</Tfoot>
+						</Table>
+					</Panel>
+				</GEL>
+			),
+		})),
 	];
 }

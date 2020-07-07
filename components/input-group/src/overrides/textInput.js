@@ -1,11 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 import { TextInput as Input } from '@westpac/text-input';
 
 const TextInput = ({ state: { size }, ...rest }) => <Input size={size} {...rest} />;
 
-const textInputStyles = (_, { before, after }) => ({
+const textInputStyles = (_, { before, after, size }) => ({
+	label: getLabel('inputGroup-textInput', { before, after, size }),
 	boxSizing: 'border-box',
 	...(before && {
 		borderTopLeftRadius: 0,

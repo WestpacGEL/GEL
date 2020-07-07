@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 const PopoverBody = ({ state, ...rest }) => <Body {...rest} />;
@@ -8,6 +8,7 @@ const PopoverBody = ({ state, ...rest }) => <Body {...rest} />;
 const bodyStyles = (_, {}) => {
 	const { COLORS } = useBrand();
 	return {
+		label: getLabel('popover-body'),
 		color: COLORS.neutral,
 	};
 };

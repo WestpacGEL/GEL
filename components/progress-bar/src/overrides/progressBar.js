@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 export const ProgressBar = ({ state, ...rest }) => <div {...rest} />;
 
@@ -19,6 +19,7 @@ export const progressBarStyles = (_, { look }) => {
 	};
 
 	return {
+		label: getLabel('progressBar', { look }),
 		marginBottom: '1.3125rem',
 		overflow: 'hidden',
 		backgroundColor: '#fff',

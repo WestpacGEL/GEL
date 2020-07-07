@@ -11,7 +11,7 @@ function Example({ brand }) {
 			<Intopia />
 
 			<h2>Primary</h2>
-			<List>
+			<List look="primary">
 				<Item>Styled bullet list - primary</Item>
 				<Item>Styled bullet list - primary</Item>
 				<Item>Styled bullet list - primary</Item>
