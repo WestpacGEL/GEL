@@ -3,6 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
+import { rowMap } from './_utils';
 import { defaultGrid } from './overrides/grid';
 import pkg from '../package.json';
 
@@ -195,8 +196,7 @@ Grid.propTypes = {
 };
 
 Grid.defaultProps = {
-	columns: 12,
-	gap: [12, 24],
+	...rowMap,
 	flow: 'row',
 	height: 'auto',
 	minRowHeight: 32,
