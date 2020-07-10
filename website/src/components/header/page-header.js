@@ -148,8 +148,8 @@ const PageHeader = ({ name, version }) => {
 						display: 'flex',
 						flexDirection: [null, null, !hasScrolled && 'column'],
 						alignItems: ['baseline', null, !hasScrolled && 'normal'],
-						marginLeft: ['60px', null, !hasScrolled && '36px'],
-						marginBottom: ['20px', null, !hasScrolled && '54px'],
+						marginLeft: ['3.75rem', null, !hasScrolled && '2.25rem'],
+						marginBottom: ['1.25rem', null, !hasScrolled && '3.375rem'],
 						opacity: [null, null, hasScroll ? (hasScrolled ? 1 : 0) : 1],
 						transition: [null, null, 'opacity 0.2s ease'],
 					})}
