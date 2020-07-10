@@ -14,7 +14,7 @@ export const Sidebar = ({ items }) => {
 
 	return (
 		<Fragment>
-			<aside
+			<div
 				css={mq({
 					display: 'flex',
 					flexDirection: 'column',
@@ -33,7 +33,7 @@ export const Sidebar = ({ items }) => {
 				<CloseButton />
 				<BrandSwitcher />
 				<Navigation items={items} />
-			</aside>
+			</div>
 			{isOpen && (
 				<div
 					onClick={() => setIsOpen(false)}
