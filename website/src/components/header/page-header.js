@@ -10,7 +10,7 @@ import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../providers/pageContext';
 import { brandHeaderStyling, gridlyIconColors } from '../_utils';
 
-const MenuIcon = ({ hasScrolled }) => {
+const MenuButton = ({ hasScrolled }) => {
 	const { BRAND, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const { setIsOpen } = useSidebar();
@@ -19,22 +19,20 @@ const MenuIcon = ({ hasScrolled }) => {
 
 	return (
 		<Button
-			onClick={() => setIsOpen((status) => !status)}
 			look="link"
+			size="xlarge"
+			onClick={() => setIsOpen((status) => !status)}
 			iconBefore={Icon}
 			overrides={{
 				Button: {
 					styles: (styles) => ({
 						...styles,
-						justifySelf: 'start',
-						gridRowStart: 1,
-						marginRight: '0.75rem',
-						...mq({
-							alignSelf: hasScrolled ? 'center' : ['center', null, 'auto'],
-							marginTop: hasScrolled ? 0 : [0, null, '1.3125rem'],
-							marginLeft: hasScrolled ? 0 : [0, null, '-0.75rem'],
-							display: ['inline-flex', null, null, null, 'none'],
-						})[0],
+						position: 'fixed',
+						top: '0.625rem',
+						left: '0.875rem',
+						height: 'auto',
+						padding: '0.625rem',
+						...mq({ display: [null, null, null, null, 'none'] })[0],
 					}),
 				},
 			}}
@@ -42,10 +40,68 @@ const MenuIcon = ({ hasScrolled }) => {
 	);
 };
 
-const PageHeader = ({ name, version }) => {
-	const { COLORS, BRAND, LAYOUT } = useBrand();
+const GridIndicator = () => {
+	const { BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const { showGrid, setShowGrid } = usePageContext();
+
+	return (
+		<div
+			css={{
+				position: 'fixed',
+				display: 'flex',
+				alignItems: 'center',
+				top: '0.625rem',
+				right: '0.75rem',
+				color: '#fff',
+			}}
+		>
+			<span css={mq({ display: ['inline-block', 'none'] })}>xs</span>
+			<span css={mq({ display: ['none', 'inline-block', 'none'] })}>xsl</span>
+			<span css={mq({ display: ['none', null, 'inline-block', 'none'] })}>sm</span>
+			<span css={mq({ display: ['none', null, null, 'inline-block', 'none'] })}>md</span>
+			<span css={mq({ display: ['none', null, null, null, 'inline-block'] })}>lg</span>
+			<Button
+				look="link"
+				size="xlarge"
+				onClick={() => setShowGrid(!showGrid)}
+				overrides={{
+					Button: {
+						styles: (styles) => ({
+							...styles,
+							display: 'flex',
+							background: 'transparent',
+							border: 'none',
+							cursor: 'pointer',
+							padding: '0.6875rem',
+						}),
+					},
+				}}
+			>
+				{[...new Array(4)].map((_, index) => (
+					<span
+						key={index}
+						css={{
+							display: 'inline-block',
+							height: 24,
+							width: 4,
+							backgroundColor: gridlyIconColors[BRAND],
+
+							'& + &': {
+								marginLeft: 2,
+							},
+						}}
+					/>
+				))}
+			</Button>
+		</div>
+	);
+};
+
+const PageHeader = ({ name, version }) => {
+	const { COLORS, BRAND } = useBrand();
+	const mq = useMediaQuery();
+	const [hasScroll, setHasScroll] = useState(false);
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
 
@@ -53,11 +109,8 @@ const PageHeader = ({ name, version }) => {
 		const main = header.current.parentElement;
 
 		const scrollHandler = () => {
-			if (main.scrollTop >= 66) {
-				setHasScrolled(true);
-			} else {
-				setHasScrolled(false);
-			}
+			setHasScroll(main.scrollTop >= 6 ? true : false);
+			setHasScrolled(main.scrollTop >= 162 ? true : false);
 		};
 
 		main.addEventListener('scroll', scrollHandler);
@@ -83,96 +136,55 @@ const PageHeader = ({ name, version }) => {
 			<HeaderImage brand={BRAND} />
 			<div
 				css={mq({
-					alignSelf: 'flex-end',
-					display: 'grid',
-					gridTemplateRows: hasScrolled ? '1fr' : ['1fr', null, '1fr 1fr 1fr'],
-					height: hasScrolled ? 66 : [66, null, 228],
-					padding: hasScrolled ? '0 1.3125rem' : ['0 1.3125rem', null, '0 2.25rem'],
+					display: 'flex',
+					alignItems: 'flex-end', //align bottom
 					color: BRAND === 'STG' ? COLORS.text : '#fff',
-					transition: 'height 0s',
 				})}
 			>
-				<MenuIcon hasScrolled={hasScrolled} />
-				<Heading
-					size={hasScrolled ? 7 : 1}
-					overrides={{
-						Heading: {
-							styles: (styles) => ({
-								...styles,
-								alignSelf: 'center',
-								textTransform: 'capitalize',
-								[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-									fontSize: '1.125rem !important',
-								},
-								fontWeight: 500,
-								transition: 'font-size, 0.2s ease',
-								...mq({
-									gridRowStart: hasScrolled ? 1 : [1, null, 2],
-								})[0],
-							}),
-						},
-					}}
+				<MenuButton hasScrolled={hasScrolled} />
+				{/* TODO: ref https://vimeo.com/424713409/9846f61c26 */}
+				<div
+					css={mq({
+						display: 'flex',
+						flexDirection: [null, null, !hasScrolled && 'column'],
+						alignItems: ['baseline', null, !hasScrolled && 'normal'],
+						marginLeft: ['60px', null, !hasScrolled && '36px'],
+						marginBottom: ['20px', null, !hasScrolled && '54px'],
+						opacity: [null, null, hasScroll ? (hasScrolled ? 1 : 0) : 1],
+						transition: [null, null, 'opacity 0.2s ease'],
+					})}
 				>
-					{name}
-				</Heading>
-				{version && (
-					<span
-						css={mq({
-							alignSelf: hasScrolled ? 'center' : ['center', null, 'start'],
-							fontSize: '1rem',
-							gridRowStart: hasScrolled ? 1 : [1, null, 3],
-							marginLeft: hasScrolled ? '0.375rem' : ['0.375rem', null, 0],
-						})}
+					<Heading
+						tag="h1"
+						size={[8, null, !hasScrolled && 3]}
+						css={{ transition: 'font-size 0.2s ease' }}
 					>
+						{name}
+					</Heading>
+					{version && (
 						<span
 							css={mq({
-								textTransform: hasScrolled ? 'lowercase' : ['lowercase', null, 'capitalize'],
+								fontSize: '1rem',
+								marginLeft: ['0.375rem', null, !hasScrolled && 0],
+								marginTop: !hasScrolled && '0.75rem',
 							})}
 						>
-							v
+							<span
+								css={mq({
+									textTransform: hasScrolled ? 'lowercase' : ['lowercase', null, 'capitalize'],
+								})}
+							>
+								v
+							</span>
+							<span css={mq({ display: hasScrolled ? 'none' : ['none', null, 'inline'] })}>
+								ersion{' '}
+							</span>
+							{version}
 						</span>
-						<span css={mq({ display: hasScrolled ? 'none' : ['none', null, 'inline'] })}>
-							ersion{' '}
-						</span>
-						{version}
-					</span>
-				)}
+					)}
+				</div>
 			</div>
-			<div
-				css={{
-					position: 'fixed',
-					display: 'flex',
-					alignItems: 'center',
-					top: 0,
-					right: '1.5rem',
-					height: '4.125rem',
-					color: '#fff',
-				}}
-			>
-				<span css={mq({ display: ['inline', 'none'] })}>xs</span>
-				<span css={mq({ display: ['none', 'inline', 'none'] })}>xsl</span>
-				<span css={mq({ display: ['none', null, 'inline', 'none'] })}>sm</span>
-				<span css={mq({ display: ['none', null, null, 'inline', 'none'] })}>md</span>
-				<span css={mq({ display: ['none', null, null, null, 'inline'] })}>lg</span>
-				<button
-					type="button"
-					onClick={() => setShowGrid(!showGrid)}
-					css={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
-				>
-					{[...new Array(4)].map((item, index) => (
-						<span
-							key={index}
-							css={{
-								display: 'inline-block',
-								height: 24,
-								width: 4,
-								marginRight: 2,
-								backgroundColor: gridlyIconColors[BRAND],
-							}}
-						/>
-					))}
-				</button>
-			</div>
+			<GridIndicator />
 		</div>
 	);
 };
