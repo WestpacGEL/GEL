@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { Button } from '@westpac/button';
@@ -28,10 +28,8 @@ const MenuButton = ({ hasScrolled }) => {
 					styles: (styles) => ({
 						...styles,
 						position: 'fixed',
-						top: '0.625rem',
-						left: '0.875rem',
-						height: 'auto',
-						padding: '0.625rem',
+						top: '0.5625rem',
+						left: '1.5rem',
 						...mq({ display: [null, null, null, null, 'none'] })[0],
 					}),
 				},
@@ -45,14 +43,16 @@ const GridIndicator = () => {
 	const mq = useMediaQuery();
 	const { showGrid, setShowGrid } = usePageContext();
 
+	const ButtonContentWrapper = ({ children, ...rest }) => <Fragment>{children}</Fragment>;
+
 	return (
 		<div
 			css={{
 				position: 'fixed',
 				display: 'flex',
 				alignItems: 'center',
-				top: '0.625rem',
-				right: '0.75rem',
+				top: '0.5625rem',
+				right: '1.5rem',
 				color: '#fff',
 			}}
 		>
@@ -69,30 +69,30 @@ const GridIndicator = () => {
 					Button: {
 						styles: (styles) => ({
 							...styles,
-							display: 'flex',
-							background: 'transparent',
-							border: 'none',
-							cursor: 'pointer',
-							padding: '0.6875rem',
+							marginLeft: '0.375rem',
 						}),
+					},
+					Content: {
+						component: ButtonContentWrapper,
 					},
 				}}
 			>
-				{[...new Array(4)].map((_, index) => (
-					<span
-						key={index}
-						css={{
-							display: 'inline-block',
-							height: 24,
-							width: 4,
-							backgroundColor: gridlyIconColors[BRAND],
+				<div css={{ display: 'flex', justifyContent: 'center', height: 24, width: 24 }}>
+					{[...new Array(4)].map((_, index) => (
+						<div
+							key={index}
+							css={{
+								height: '100%',
+								width: 4,
+								backgroundColor: gridlyIconColors[BRAND],
 
-							'& + &': {
-								marginLeft: 2,
-							},
-						}}
-					/>
-				))}
+								'& + &': {
+									marginLeft: 2,
+								},
+							}}
+						/>
+					))}
+				</div>
 			</Button>
 		</div>
 	);
