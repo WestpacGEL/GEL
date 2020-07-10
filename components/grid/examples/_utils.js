@@ -24,7 +24,7 @@ export const Wrapper = (props) => (
 	<div
 		{...props}
 		css={{
-			'& div[class$="-Cell"]': {
+			'& div[class$="cell"]': {
 				backgroundColor: 'rgba(86,61,124,.15)',
 				border: '1px solid rgba(86,61,124,.2)',
 			},
