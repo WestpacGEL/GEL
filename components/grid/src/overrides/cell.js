@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, asArray } from '@westpac/core';
+import { jsx, useMediaQuery, asArray, getLabel } from '@westpac/core';
 
 const Cell = ({ state, ...rest }) => <div {...rest} />;
 
@@ -18,6 +18,7 @@ const cellStyles = (_, { area, height, left, top, width }) => {
 	const getEndSpan = (n) => n.map((v) => v && `span ${v}`);
 
 	return mq({
+		label: getLabel('cell'),
 		gridArea: area,
 		gridColumnEnd: !area && getEndSpan(widthArr),
 		gridColumnStart: asArray(left),
