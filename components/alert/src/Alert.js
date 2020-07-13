@@ -25,6 +25,7 @@ export const Alert = ({
 	heading,
 	headingTag,
 	children,
+	plainCSSProp,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -57,6 +58,7 @@ export const Alert = ({
 		icon,
 		heading,
 		headingTag,
+		plainCSSProp,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -131,7 +133,7 @@ Alert.propTypes = {
 	/**
 	 * Alert look
 	 */
-	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']).isRequired,
+	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system', null]),
 
 	/**
 	 * Enable dismissible mode
@@ -159,6 +161,11 @@ Alert.propTypes = {
 	 * The tag of the heading element for semantic reasons
 	 */
 	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
+
+	/**
+	 * Generate traditional CSS class for a prop, blender/legacy use
+	 */
+	plainCSSProp: PropTypes.string,
 
 	/**
 	 * Alert children

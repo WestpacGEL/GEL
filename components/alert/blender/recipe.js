@@ -1,29 +1,39 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
 
-import { Alert } from '@westpac/alert';
+import { Alert as OGAlert } from '@westpac/alert';
+import { blenderAlert } from '../src/overrides/alert';
+
+const Alert = (props) => (
+	<OGAlert overrides={{ Alert: { attributes: blenderAlert.attributes } }} {...props} />
+);
 
 export function AllStyles({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Alert look="success" />
-			<Alert look="info" />
-			<Alert look="warning" />
-			<Alert look="danger" />
-			<Alert look="system" />
-			<Alert look="success" icon={null} />
-			<Alert look="info" icon={null} />
-			<Alert look="warning" icon={null} />
-			<Alert look="danger" icon={null} />
-			<Alert look="system" icon={null} />
-			<Alert heading="Your alert heading" />
-			<Alert dismissible />
+			<Alert look={null} icon={null} heading="heading" />
+			<Alert look={null} icon={null} dismissible plainCSSProp="dismissible" />
+			<Alert look="success" plainCSSProp="look" />
+			<Alert look="info" plainCSSProp="look" />
+			<Alert look="warning" plainCSSProp="look" />
+			<Alert look="danger" plainCSSProp="look" />
+			<Alert look="system" plainCSSProp="look" />
 		</GEL>
 	);
 }
 
 export function Docs({ brand }) {
 	return [
+		{
+			heading: 'A base alert',
+			component: () => (
+				<GEL brand={brand}>
+					<Alert heading="heading" look={null} icon={null}>
+						Your alert body
+					</Alert>
+				</GEL>
+			),
+		},
 		{
 			heading: 'A success alert',
 			component: () => (
