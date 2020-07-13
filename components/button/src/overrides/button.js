@@ -1,11 +1,19 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, asArray, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, asArray, useMediaQuery, classNames } from '@westpac/core';
 import { forwardRef } from 'react';
+
+// ==============================
+// Component
+// ==============================
 
 const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
 
-const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
+// ==============================
+// Styles
+// ==============================
+
+const buttonStyles = (_, { look, size, soft, block, justify, disabled, plainCSSProp }) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
 
@@ -140,8 +148,30 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 	const blockArr = asArray(block);
 
+	// need to add icon styles here
+	let label = 'button';
+	switch (plainCSSProp) {
+		case 'justify':
+			label = 'button-justify';
+			break;
+		case 'soft':
+			label = `button-${look}-soft`;
+			break;
+		case 'look':
+			label = `button-${look}`;
+			break;
+		case 'block':
+			label = 'button-block';
+			break;
+		case 'size':
+			label = `button-${size}`;
+			break;
+		default:
+			break;
+	}
+
 	return mq({
-		label: getLabel('button', { look, size, soft, block, justify, disabled }),
+		label: label,
 		alignItems: 'center', //vertical
 		appearance: 'none',
 		border: '1px solid transparent',
@@ -183,14 +213,39 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		height: sizeArr.map((s) => s && sizeMap[s].height),
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
-		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
+
+		...(look && styleMap[look][soft ? 'softCSS' : 'standardCSS']),
 	})[0];
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
+
+const blenderAttributes = (_, { look, soft, size, block, justify }) => ({
+	className: classNames({
+		[`GEL-button-${look}`]: look && !soft,
+		[`GEL-button-${look}-soft`]: soft,
+		[`GEL-button-${size}`]: size,
+		[`GEL-button-block`]: block,
+		[`GEL-button-justify`]: justify,
+	}),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultButton = {
 	component: Button,
 	styles: buttonStyles,
 	attributes: buttonAttributes,
+};
+
+export const blenderButton = {
+	component: Button,
+	styles: buttonStyles,
+	attributes: blenderAttributes,
 };

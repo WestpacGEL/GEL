@@ -11,3 +11,6 @@ export { mergeWith } from './mergeWith';
 export { useFonts } from './useFonts';
 export { asArray } from './asArray';
 export { GEL } from './GEL';
+
+import classNames from 'classnames';
+export { classNames };
