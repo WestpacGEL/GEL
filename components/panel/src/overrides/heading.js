@@ -1,9 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
-
-import { blenderReconciler } from './_utils';
 
 // ==============================
 // Component
@@ -19,15 +17,11 @@ const PanelHeading = ({ state: { headingTag }, ...rest }) => (
 // Base
 // ==============================
 
-const baseStyles = () => {
+const headingStyles = () => {
 	const { TYPE } = useBrand();
 
 	return { label: 'panel-heading', ...TYPE.bodyFont[400], color: 'inherit' };
 };
-
-const headingStyles = () => baseStyles();
-
-const blenderStyles = () => blenderReconciler(baseStyles());
 
 // ==============================
 // Attributes
@@ -42,11 +36,5 @@ const headingAttributes = () => null;
 export const defaultHeading = {
 	component: PanelHeading,
 	styles: headingStyles,
-	attributes: headingAttributes,
-};
-
-export const blenderHeading = {
-	component: PanelHeading,
-	styles: blenderStyles,
 	attributes: headingAttributes,
 };
