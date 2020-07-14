@@ -7,7 +7,7 @@ import { Fragment } from 'react';
 
 import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
-const TextWrapper = ({ children, ...rest }) => (
+const ContentWrapper = ({ children, ...rest }) => (
 	<Fragment>
 		{children}
 		<HouseIcon size="small" color="currentColor" css={{ marginLeft: '0.5em' }} />
@@ -23,8 +23,8 @@ function Example({ brand }) {
 				outline: '1px dotted blue',
 			}),
 		},
-		TextWrapper: {
-			component: TextWrapper,
+		Content: {
+			component: ContentWrapper,
 		},
 	};
 
@@ -37,6 +37,7 @@ function Example({ brand }) {
 			<Button look="link">Link</Button>
 			<h2>With overrides and component overrides</h2>
 			<Button
+				block
 				overrides={{
 					Button: {
 						styles: (styles) => ({
