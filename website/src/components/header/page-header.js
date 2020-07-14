@@ -10,7 +10,7 @@ import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../providers/pageContext';
 import { brandHeaderStyling, gridlyIconColors } from '../_utils';
 
-const MenuButton = ({ hasScrolled }) => {
+const MenuButton = () => {
 	const { BRAND, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const { setIsOpen } = useSidebar();
@@ -102,15 +102,17 @@ const PageHeader = ({ name, version }) => {
 	const { COLORS, BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const [hasScroll, setHasScroll] = useState(false);
-	const [hasScrolled, setHasScrolled] = useState(false);
+	const [hasScrolledSmall, setHasScrolledSmall] = useState(false);
+	const [hasScrolledLarge, setHasScrolledLarge] = useState(false);
 	const header = useRef(null);
 
 	useEffect(() => {
 		const main = header.current.parentElement;
 
 		const scrollHandler = () => {
-			setHasScroll(main.scrollTop >= 6 ? true : false);
-			setHasScrolled(main.scrollTop >= 162 ? true : false);
+			setHasScroll(main.scrollTop > 5 ? true : false);
+			setHasScrolledSmall(main.scrollTop > 46 ? true : false);
+			setHasScrolledLarge(main.scrollTop >= 162 ? true : false);
 		};
 
 		main.addEventListener('scroll', scrollHandler);
@@ -141,46 +143,54 @@ const PageHeader = ({ name, version }) => {
 					color: BRAND === 'STG' ? COLORS.text : '#fff',
 				})}
 			>
-				<MenuButton hasScrolled={hasScrolled} />
+				<MenuButton />
 				{/* TODO: ref https://vimeo.com/424713409/9846f61c26 */}
 				<div
 					css={mq({
+						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
+						marginLeft: ['3.75rem', null, !hasScrolledLarge && '2.25rem', null, '2.25rem'],
+						marginBottom: ['1.25rem', null, !hasScrolledLarge && '3.375rem'],
 						display: 'flex',
-						flexDirection: [null, null, !hasScrolled && 'column'],
-						alignItems: ['baseline', null, !hasScrolled && 'normal'],
-						marginLeft: ['3.75rem', null, !hasScrolled && '2.25rem'],
-						marginBottom: ['1.25rem', null, !hasScrolled && '3.375rem'],
-						opacity: [null, null, hasScroll ? (hasScrolled ? 1 : 0) : 1],
-						transition: [null, null, 'opacity 0.2s ease'],
+						flexDirection: [null, null, !hasScrolledLarge && 'column'],
+						alignItems: 'baseline',
+						transition: [
+							null,
+							null,
+							!(hasScrolledSmall && !hasScrolledLarge) && 'opacity 0.2s ease',
+						],
+						willChange: 'opacity',
 					})}
 				>
-					<Heading
-						tag="h1"
-						size={[8, null, !hasScrolled && 3]}
-						css={{ transition: 'font-size 0.2s ease' }}
-					>
+					<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
 						{name}
 					</Heading>
 					{version && (
-						<span
-							css={mq({
-								fontSize: '1rem',
-								marginLeft: ['0.375rem', null, !hasScrolled && 0],
-								marginTop: !hasScrolled && '0.75rem',
-							})}
+						<Heading
+							tag="h2"
+							size={9}
+							overrides={{
+								Heading: {
+									styles: (styles) => ({
+										...styles,
+										fontWeight: 'normal',
+										marginTop: !hasScrolledLarge && '0.75rem',
+										...mq({
+											marginLeft: ['0.375rem', null, !hasScrolledLarge && 0],
+										})[0],
+									}),
+								},
+							}}
 						>
 							<span
-								css={mq({
-									textTransform: hasScrolled ? 'lowercase' : ['lowercase', null, 'capitalize'],
-								})}
+								css={mq({ textTransform: ['lowercase', null, !hasScrolledLarge && 'capitalize'] })}
 							>
-								v
+								V
 							</span>
-							<span css={mq({ display: hasScrolled ? 'none' : ['none', null, 'inline'] })}>
+							<span css={mq({ display: ['none', null, !hasScrolledLarge && 'inline'] })}>
 								ersion{' '}
 							</span>
 							{version}
-						</span>
+						</Heading>
 					)}
 				</div>
 			</div>
