@@ -150,9 +150,6 @@ const PageHeader = ({ name, version }) => {
 						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
 						marginLeft: ['3.75rem', null, !hasScrolledLarge && '2.25rem', null, '2.25rem'],
 						marginBottom: ['1.25rem', null, !hasScrolledLarge && '3.375rem'],
-						display: 'flex',
-						flexDirection: [null, null, !hasScrolledLarge && 'column'],
-						alignItems: 'baseline',
 						transition: [
 							null,
 							null,
@@ -163,35 +160,30 @@ const PageHeader = ({ name, version }) => {
 				>
 					<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
 						{name}
-					</Heading>
-					{version && (
-						<Heading
-							tag="h2"
-							size={9}
-							overrides={{
-								Heading: {
-									styles: (styles) => ({
-										...styles,
-										fontWeight: 'normal',
-										marginTop: !hasScrolledLarge && '0.75rem',
-										...mq({
-											marginLeft: ['0.375rem', null, !hasScrolledLarge && 0],
-										})[0],
-									}),
-								},
-							}}
-						>
+						{version && (
 							<span
-								css={mq({ textTransform: ['lowercase', null, !hasScrolledLarge && 'capitalize'] })}
+								css={mq({
+									fontSize: '1rem',
+									fontWeight: 'normal',
+									marginTop: !hasScrolledLarge && '0.75rem',
+									marginLeft: ['0.375rem', null, !hasScrolledLarge && 0],
+									display: [null, null, !hasScrolledLarge && 'block'],
+								})}
 							>
-								V
+								<span
+									css={mq({
+										textTransform: ['lowercase', null, !hasScrolledLarge && 'capitalize'],
+									})}
+								>
+									V
+								</span>
+								<span css={mq({ display: ['none', null, !hasScrolledLarge && 'inline'] })}>
+									ersion{' '}
+								</span>
+								{version}
 							</span>
-							<span css={mq({ display: ['none', null, !hasScrolledLarge && 'inline'] })}>
-								ersion{' '}
-							</span>
-							{version}
-						</Heading>
-					)}
+						)}
+					</Heading>
 				</div>
 			</div>
 			<GridIndicator />
