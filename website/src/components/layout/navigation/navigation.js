@@ -16,6 +16,7 @@ const NavListOverride = (props) => <ul {...props} />;
 
 export const Navigation = ({ items }) => {
 	const ref = useRef();
+	const { COLORS, SPACING } = useBrand();
 	const { isScrolled, setIsScrolled } = useSidebar();
 
 	const handleScroll = () => {
@@ -29,7 +30,6 @@ export const Navigation = ({ items }) => {
 
 	const renderNavigationItems = (items, level = 0) => {
 		const router = useRouter();
-		const { COLORS } = useBrand();
 		const brandName = router.query.b || '';
 
 		return items.map((item) => {
@@ -108,14 +108,14 @@ export const Navigation = ({ items }) => {
 		>
 			<a
 				href="/"
-				css={{ display: 'block !important', overflow: 'hidden', height: '90px' }}
+				css={{ display: 'block !important', overflow: 'hidden', height: 90 }}
 				aria-label="Back to GEL"
 			>
 				<BackToGelSvg />
 			</a>
 			<List
 				type="unstyled"
-				css={{ paddingBottom: '1.5rem' }}
+				css={{ paddingBottom: SPACING(4) }}
 				overrides={{
 					List: {
 						component: NavListOverride,

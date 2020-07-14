@@ -34,6 +34,7 @@ export const Icon = ({
 		color,
 		size,
 		assistiveText,
+		icon,
 		overrides: componentOverrides,
 		...rest,
 	};
