@@ -20,7 +20,7 @@ const ComponentPageHeaderImage = ({ brand }) => {
 					zIndex: -1,
 				}}
 			>
-				<WbcBackgroundLeftSvg height={[66, 66, 228]} />
+				<WbcBackgroundLeftSvg height={228} />
 			</div>
 			<div
 				css={mq({

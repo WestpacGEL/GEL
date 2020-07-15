@@ -102,28 +102,28 @@ const GridContainer = (props) => {
 };
 
 const MainContainer = (props) => {
-	const { LAYOUT } = useBrand();
+	const mq = useMediaQuery();
 	return (
-		<main
-			{...props}
-			css={{
+		<div
+			className="main"
+			css={mq({
 				scrollBehavior: 'smooth',
+				'-webkitOverflowScrolling': 'touch',
 				display: 'flex !important',
 				flexDirection: 'column',
-				overflowY: 'scroll',
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-					gridColumnStart: 2,
-					gridColumnEnd: 3,
-				},
-			}}
+				overflowY: 'auto',
+				gridColumnStart: [null, null, null, null, 2],
+				gridColumnEnd: [null, null, null, null, 3],
+				position: 'relative',
+				zIndex: 0, //scrollbar on top of fixed elements
+			})}
+			{...props}
 		/>
 	);
 };
 
-export const Layout = (props) => {
-	return (
-		<BrandSwitcherProvider brand={props.brand}>
-			<Wrapper {...props} />
-		</BrandSwitcherProvider>
-	);
-};
+export const Layout = (props) => (
+	<BrandSwitcherProvider brand={props.brand}>
+		<Wrapper {...props} />
+	</BrandSwitcherProvider>
+);

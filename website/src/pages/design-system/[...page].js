@@ -2,7 +2,7 @@
 import { Fragment, useState, useCallback, useEffect, forwardRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
-import debounce from 'lodash.debounce';
+import throttle from 'lodash.throttle';
 import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
@@ -59,15 +59,16 @@ const Tabs = ({ component, tabName }) => {
 	const tabMap = ['design', 'accessibility', 'code'];
 
 	useEffect(() => {
-		const main = document.querySelector('main') || window;
+		const main = document.querySelector('.main') || window;
 
-		const scrollHandler = debounce(() => {
-			if (main.scrollTop === 0) {
-				setScrolled(false);
-			} else if (main.scrollTop >= 162) {
-				setScrolled(true);
-			}
-		}, 10);
+		const setTabs = () => {
+			const scroll = main.scrollTop;
+
+			setScrolled(scroll > 156);
+		};
+		setTabs();
+
+		const scrollHandler = throttle(setTabs, 200);
 
 		main.addEventListener('scroll', scrollHandler);
 		return () => {
@@ -88,7 +89,6 @@ const Tabs = ({ component, tabName }) => {
 			styles: (styles) => ({
 				...styles,
 				flexGrow: 1,
-				backgroundColor: COLORS.background,
 			}),
 		},
 		TabRow: {
@@ -191,14 +191,22 @@ const Tabs = ({ component, tabName }) => {
 	}
 
 	return (
-		<Tabcordion
-			mode="tabs"
-			openTab={tabName ? tabMap.indexOf(tabName) : 0}
-			onOpen={onOpen}
-			overrides={tabOverrides}
+		<main
+			id="content"
+			css={{
+				backgroundColor: COLORS.background,
+				paddingBottom: '3.0625rem', //space for fixed footer
+			}}
 		>
-			{tabs}
-		</Tabcordion>
+			<Tabcordion
+				mode="tabs"
+				openTab={tabName ? tabMap.indexOf(tabName) : 0}
+				onOpen={onOpen}
+				overrides={tabOverrides}
+			>
+				{tabs}
+			</Tabcordion>
+		</main>
 	);
 };
 
