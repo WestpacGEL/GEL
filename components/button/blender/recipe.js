@@ -6,63 +6,66 @@ import { Button as OGButton } from '@westpac/button';
 
 import { blenderButton } from '../src/overrides/button';
 
-const Button = (props) => (
-	<OGButton
-		overrides={{
-			Button: {
-				attributes: blenderButton.attributes,
-			},
-		}}
-		{...props}
-	/>
-);
-
-const looks = ['primary', 'hero', 'faint', 'link'];
-const sizes = ['small', 'medium', 'large', 'xlarge'];
+const looks = ['primary', 'faint', 'link'];
+const sizes = ['small', 'large', 'xlarge'];
 
 export function AllStyles({ brand }) {
+	const Button = (props) => (
+		<OGButton
+			overrides={{
+				Button: {
+					attributes: blenderButton.attributes,
+					styles: blenderButton.styles,
+				},
+			}}
+			{...props}
+		/>
+	);
+
 	return (
 		<GEL brand={brand}>
-			{/* base no props */}
-			<Button look={null}>Text</Button>
+			<Button>Text</Button>
 			{looks.map((look) => (
-				<Button key={look} look={look} plainCSSProp="look">
+				<Button key={look} look={look}>
 					Text
 				</Button>
 			))}
+			<Button soft>Text</Button>
 			{looks.map((look) => (
-				<Button key={`${look}-soft`} look={look} soft size={null} plainCSSProp="soft">
+				<Button key={`${look}-soft`} look={look} soft>
 					Text
 				</Button>
 			))}
 			{sizes.map((size) => (
-				<Button key={size} look={null} size={size} soft plainCSSProp="size">
+				<Button key={size} size={size}>
 					Text
 				</Button>
 			))}
-			<Button look={null} block plainCSSProp="block">
-				Text
-			</Button>
-			<Button look={null} iconBefore={HouseIcon}>
-				Text
-			</Button>
-			<Button look={null} iconAfter={HouseIcon}>
-				Text
-			</Button>
-			<Button look={null} justify plainCSSProp="justify">
-				Text
-			</Button>
+			<Button block>Text</Button>
+			<Button iconBefore={HouseIcon}>Text</Button>
+			<Button iconAfter={HouseIcon}>Text</Button>
+			<Button justify>Text</Button>
 		</GEL>
 	);
 }
 
 export function Docs({ brand }) {
+	const Button = (props) => (
+		<OGButton
+			overrides={{
+				Button: {
+					attributes: blenderButton.attributes,
+				},
+			}}
+			{...props}
+		/>
+	);
 	return [
 		{
-			heading: 'A plain button with no props (DELETE ME LATER)',
+			heading: `A default button`,
 			component: () => (
 				<GEL brand={brand}>
-					<Button look={null}>Your plain button text</Button>
+					<Button>Your default button text</Button>
 				</GEL>
 			),
 		},
@@ -74,6 +77,14 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
+		{
+			heading: `A default soft`,
+			component: () => (
+				<GEL brand={brand}>
+					<Button soft>Your default soft button text</Button>
+				</GEL>
+			),
+		},
 		...['primary', 'hero', 'faint'].map((look) => ({
 			heading: `A ${look} soft button`,
 			component: () => (
@@ -89,16 +100,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={brand}>
 					<Button look={look} size="small">
-						Your {look} small button text
-					</Button>
-				</GEL>
-			),
-		})),
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
-			heading: `A ${look} small button`,
-			component: () => (
-				<GEL brand={brand}>
-					<Button look={look} size="medium">
 						Your {look} small button text
 					</Button>
 				</GEL>

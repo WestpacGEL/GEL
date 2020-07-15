@@ -12,6 +12,63 @@ const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={r
 // ==============================
 // Styles
 // ==============================
+const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
+	const defaultProps = {
+		look: 'hero',
+		size: 'medium',
+		soft: false,
+		block: false,
+		justify: false,
+		disabled: false,
+	};
+
+	const props = { look, size, soft, block, justify, disabled };
+	const baseStyles = buttonStyles(_, defaultProps);
+
+	// find the prop that is different from default
+	let modifiers = Object.keys(defaultProps).filter((m) => defaultProps[m] !== props[m]);
+
+	if (!modifiers.length) return baseStyles;
+
+	const modifiedStyles = buttonStyles(_, props);
+
+	// find all different
+	// we need to go deeper...for nested styles?
+	const diff = Object.keys(modifiedStyles).filter((m) => baseStyles[m] !== modifiedStyles[m]);
+
+	let modifier,
+		label = baseStyles.label;
+
+	// is there a better way to do this?
+	// have to do this when there a multiple props used at the same time i.e. look + soft
+	if (modifiers.length > 1 && modifiers.includes('soft')) {
+		modifier = 'soft';
+	} else {
+		modifier = modifiers[0];
+	}
+
+	switch (modifier) {
+		case 'soft':
+			label = `button-${look}-soft`; // this becomes awkward with hero-soft since there is no btn-hero,
+			break;
+		case 'look':
+			label = `button-${look}`;
+			break;
+		case 'size':
+			label = `button-${size}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	const diffStyles = {
+		label,
+		...Object.assign({}, ...diff.map((d) => ({ [d]: modifiedStyles[d] }))),
+	};
+
+	return diffStyles;
+};
 
 const buttonStyles = (_, { look, size, soft, block, justify, disabled, plainCSSProp }) => {
 	const mq = useMediaQuery();
@@ -148,30 +205,8 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled, plainCSSP
 
 	const blockArr = asArray(block);
 
-	// need to add icon styles here
-	let label = 'button';
-	switch (plainCSSProp) {
-		case 'justify':
-			label = 'button-justify';
-			break;
-		case 'soft':
-			label = `button-${look}-soft`;
-			break;
-		case 'look':
-			label = `button-${look}`;
-			break;
-		case 'block':
-			label = 'button-block';
-			break;
-		case 'size':
-			label = `button-${size}`;
-			break;
-		default:
-			break;
-	}
-
 	return mq({
-		label: label,
+		label: 'button',
 		alignItems: 'center', //vertical
 		appearance: 'none',
 		border: '1px solid transparent',
@@ -214,7 +249,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled, plainCSSP
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
 
-		...(look && styleMap[look][soft ? 'softCSS' : 'standardCSS']),
+		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 	})[0];
 };
 
@@ -226,9 +261,9 @@ const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveTex
 
 const blenderAttributes = (_, { look, soft, size, block, justify }) => ({
 	className: classNames({
-		[`GEL-button-${look}`]: look && !soft,
+		[`GEL-button-${look}`]: look && look !== 'hero' && !soft,
 		[`GEL-button-${look}-soft`]: soft,
-		[`GEL-button-${size}`]: size,
+		[`GEL-button-${size}`]: size && size !== 'medium',
 		[`GEL-button-block`]: block,
 		[`GEL-button-justify`]: justify,
 	}),
@@ -246,6 +281,6 @@ export const defaultButton = {
 
 export const blenderButton = {
 	component: Button,
-	styles: buttonStyles,
+	styles: blenderStyles,
 	attributes: blenderAttributes,
 };
