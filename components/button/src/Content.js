@@ -109,7 +109,7 @@ Content.propTypes = {
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
-	]),
+	]).isRequired,
 
 	/**
 	 * Block mode.

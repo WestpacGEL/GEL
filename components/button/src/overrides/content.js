@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 
 const Content = ({ state, children }) => <Fragment>{children}</Fragment>;
 
-const contentStyles = (_, { hasChildren }) => ({
+const contentStyles = () => ({
 	label: getLabel('button-content'),
 });
 

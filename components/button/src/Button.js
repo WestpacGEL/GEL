@@ -45,7 +45,6 @@ export const Button = forwardRef(
 			type,
 			dropdown,
 			onClick,
-			plainCSSProp,
 			children,
 			overrides: componentOverrides,
 			...rest
@@ -82,7 +81,6 @@ export const Button = forwardRef(
 			type,
 			dropdown,
 			onClick,
-			plainCSSProp,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -129,7 +127,7 @@ Button.propTypes = {
 	/**
 	 * Button look
 	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link', null]),
+	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link']).isRequired,
 
 	/**
 	 * Button size
@@ -137,7 +135,7 @@ Button.propTypes = {
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
-	]),
+	]).isRequired,
 
 	/**
 	 * Button tag
