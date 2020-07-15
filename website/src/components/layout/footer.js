@@ -39,30 +39,39 @@ export const Footer = () => {
 	return (
 		<footer
 			css={{
+				boxSizing: 'border-box',
 				position: 'fixed',
-				bottom: visible ? 0 : '-65px',
+				zIndex: 5,
+				height: '3.0625rem',
+				lineHeight: 1,
+				bottom: visible ? 0 : '-3.0625rem',
 				right: 0,
 				left: 0,
 				backgroundColor: '#fff',
-				transition: 'bottom 0.4s',
 				borderTop: `1px solid ${COLORS.border}`,
 				display: 'flex',
-				flexGrow: 0,
-				flexShrink: 0,
+				flex: '0 0 auto',
 				justifyContent: 'space-between',
-				padding: SPACING(3),
-				zIndex: 5,
+				padding: '0.6875rem 1.125rem 0.8125rem 1.5rem',
+				transition: 'bottom 0.4s ease',
 
 				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-					left: '300px',
+					left: 300,
 				},
 			}}
 		>
-			<div>
-				<span css={mq({ display: ['none', null, 'inline'] })}>Talk to us</span>
-				<FooterIcon icon={EmailIcon} href="mailto:gel@westpac.com.au" />
-				<FooterIcon icon={SlackIcon} href="//westpac-digital.slack.com" />
-				<FooterIcon icon={GithubIcon} href="//github.com/WestpacGEL" />
+			<div css={{ display: 'flex', alignItems: 'center' }}>
+				<span
+					css={mq({
+						display: ['none', null, 'inline-block'],
+						marginRight: [null, null, '1.125rem'],
+					})}
+				>
+					Talk to us
+				</span>
+				<ContactIconLink icon={EmailIcon} href="mailto:gel@westpac.com.au" />
+				<ContactIconLink icon={SlackIcon} href="//westpac-digital.slack.com" />
+				<ContactIconLink icon={GithubIcon} href="//github.com/WestpacGEL" />
 			</div>
 
 			<button
@@ -90,11 +99,18 @@ export const Footer = () => {
 	);
 };
 
-const FooterIcon = ({ icon: Icon, href }) => {
-	const { SPACING } = useBrand();
-	return (
-		<a href={href} target="_blank">
-			<Icon css={{ marginLeft: SPACING(2) }} />
-		</a>
-	);
-};
+const ContactIconLink = ({ icon: Icon, href }) => (
+	<a
+		href={href}
+		target="_blank"
+		css={{
+			display: 'inline-block',
+			lineHeight: 1,
+			'& + &': {
+				marginLeft: '0.75rem',
+			},
+		}}
+	>
+		<Icon />
+	</a>
+);
