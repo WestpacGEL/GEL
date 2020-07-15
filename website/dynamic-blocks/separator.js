@@ -19,7 +19,7 @@ const SeparatorComponent = () => {
 				}}
 				onClick={(e) => {
 					e.preventDefault();
-					const el = document.querySelector('main') || window;
+					const el = document.querySelector('.main') || window;
 					el.scroll({
 						top: 0,
 						left: 0,

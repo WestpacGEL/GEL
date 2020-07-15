@@ -2,43 +2,40 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { useState, useEffect } from 'react';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
-import debounce from 'lodash.debounce';
+import throttle from 'lodash.throttle';
 
 export const Footer = () => {
-	const { COLORS, SPACING, LAYOUT } = useBrand();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
-	const [visible, setVisible] = useState(true);
-
-	const el = document.querySelector('main') || window;
-	let prev = el.scrollTop;
-
-	const scrollHandler = debounce(() => {
-		const documentHeight = el.scrollHeight;
-		if (el.scrollTop > prev && el.scrollTop + el.clientHeight > documentHeight / 2) {
-			setVisible(true);
-		} else if (el.scrollTop < prev && el.scrollTop < documentHeight / 2) {
-			setVisible(false);
-		}
-
-		prev = el.scrollTop;
-	}, 10);
+	const [visible, setVisible] = useState(false);
 
 	useEffect(() => {
-		if (el.scrollHeight > el.clientHeight) {
-			setVisible(false);
-		}
-	}, []);
+		const main = document.querySelector('.main') || window;
 
-	useEffect(() => {
-		el.addEventListener('scroll', scrollHandler);
+		const setFooter = () => {
+			const windowHeight = main.clientHeight;
+			const documentHeight = main.scrollHeight;
+			const scroll = main.scrollTop;
+
+			setVisible(
+				windowHeight >= documentHeight ||
+					scroll > 600 ||
+					scroll + windowHeight > documentHeight - 100
+			);
+		};
+		setFooter();
+
+		const scrollHandler = throttle(setFooter, 200);
+
+		main.addEventListener('scroll', scrollHandler);
 		return () => {
-			el.removeEventListener('scroll', scrollHandler);
+			main.removeEventListener('scroll', scrollHandler);
 		};
 	}, []);
 
 	return (
 		<footer
-			css={{
+			css={mq({
 				boxSizing: 'border-box',
 				position: 'fixed',
 				zIndex: 5,
@@ -46,7 +43,7 @@ export const Footer = () => {
 				lineHeight: 1,
 				bottom: visible ? 0 : '-3.0625rem',
 				right: 0,
-				left: 0,
+				left: [0, null, null, null, 300],
 				backgroundColor: '#fff',
 				borderTop: `1px solid ${COLORS.border}`,
 				display: 'flex',
@@ -54,11 +51,7 @@ export const Footer = () => {
 				justifyContent: 'space-between',
 				padding: '0.6875rem 1.125rem 0.8125rem 1.5rem',
 				transition: 'bottom 0.4s ease',
-
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-					left: 300,
-				},
-			}}
+			})}
 		>
 			<div css={{ display: 'flex', alignItems: 'center' }}>
 				<span
@@ -85,7 +78,7 @@ export const Footer = () => {
 				}}
 				onClick={(e) => {
 					e.preventDefault();
-					const el = document.querySelector('main') || window;
+					const el = document.querySelector('.main') || window;
 					el.scroll({
 						top: 0,
 						left: 0,
