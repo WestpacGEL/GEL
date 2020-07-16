@@ -107,7 +107,7 @@ const PageHeader = ({ name, version }) => {
 	const header = useRef(null);
 
 	useEffect(() => {
-		const main = header.current.parentElement;
+		const main = document.querySelector('.main') || window;
 
 		const scrollHandler = () => {
 			setHasScroll(main.scrollTop > 5 ? true : false);
@@ -122,7 +122,7 @@ const PageHeader = ({ name, version }) => {
 	});
 
 	return (
-		<div
+		<header
 			ref={header}
 			css={mq({
 				flex: 'none',
@@ -187,7 +187,7 @@ const PageHeader = ({ name, version }) => {
 				</div>
 			</div>
 			<GridIndicator />
-		</div>
+		</header>
 	);
 };
 

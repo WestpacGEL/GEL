@@ -44,9 +44,12 @@ const StickyHeader = () => {
 	const headerStyling = brandHeaderStyling[BRAND](COLORS);
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const header = useRef(null);
+
 	useEffect(() => {
-		const main = header.current.closest('main');
+		// const main = header.current.closest('.main');
+		const main = document.querySelector('.main') || window;
 		const section = header.current.closest('section');
+
 		const scrollHandler = () => {
 			if (section.clientHeight - main.scrollTop <= 65) {
 				setHasScrolled(true);
@@ -63,7 +66,7 @@ const StickyHeader = () => {
 
 	return (
 		<Fragment>
-			<div
+			<header
 				ref={header}
 				css={mq({
 					boxSizing: 'border-box',
@@ -123,7 +126,7 @@ const StickyHeader = () => {
 				</p>
 
 				<StickyHeaderImage brand={BRAND} hide={!hasScrolled} aria-hidden="true" />
-			</div>
+			</header>
 		</Fragment>
 	);
 };
