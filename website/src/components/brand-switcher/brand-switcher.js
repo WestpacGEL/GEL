@@ -2,7 +2,6 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
-// import { ButtonDropdown } from '@westpac/button-dropdown';
 import Select, { components } from 'react-select';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -106,16 +105,6 @@ export const BrandSwitcher = () => {
 					</a>
 				</Link>
 			</div>
-			{/* <ButtonDropdown
-				look="link"
-				text="Change brand"
-				overrides={{
-					ButtonDropdown: {},
-					Panel: {},
-				}}
-			>
-				<p>Example dropdown content...</p>
-			</ButtonDropdown> */}
 			<Select
 				components={{ Option, DropdownIndicator }}
 				placeholder={'Change brand'}
@@ -185,7 +174,6 @@ export const BrandSwitcher = () => {
 				onChange={(data) => {
 					setBrand(data.value);
 				}}
-				defaultMenuIsOpen={true}
 				options={Object.keys(brandsMap).map((k) => ({ value: k, label: brandsMap[k].label }))}
 			/>
 		</div>
