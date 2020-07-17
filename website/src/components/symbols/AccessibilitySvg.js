@@ -11,7 +11,7 @@ export const AccessibilitySvg = ({
 	...rest
 }) => {
 	return (
-		<Svg viewBox="0 0 90 90" width="90" height="90" css={{ width, height }} {...rest}>
+		<Svg viewBox="0 0 90 90" width={90} height={90} css={{ width, height }} {...rest}>
 			<title>Accessibility</title>
 			<g fill="none" fillRule="evenodd">
 				<path

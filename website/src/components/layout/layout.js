@@ -80,11 +80,7 @@ const GridContainer = (props) => {
 	const { setIsOpen } = useSidebar();
 
 	useEffect(() => {
-		if (width >= LAYOUT.breakpoints.lg) {
-			setIsOpen(true);
-		} else {
-			setIsOpen(false);
-		}
+		setIsOpen(width >= LAYOUT.breakpoints.lg);
 	}, [width]);
 
 	return (
@@ -105,7 +101,7 @@ const MainContainer = (props) => {
 	const mq = useMediaQuery();
 	return (
 		<div
-			className="main"
+			className="main" //scroll event listening on '.main'
 			css={mq({
 				scrollBehavior: 'smooth',
 				'-webkitOverflowScrolling': 'touch',
