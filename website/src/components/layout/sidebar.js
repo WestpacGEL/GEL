@@ -16,18 +16,17 @@ export const Sidebar = ({ items }) => {
 		<Fragment>
 			<div
 				css={mq({
-					display: 'flex',
-					flexDirection: 'column',
-					background: 'white',
-					position: 'relative',
-					borderRight: `1px solid ${COLORS.border}`,
-					width: 300,
-					height: '100vh',
 					boxSizing: 'border-box',
 					position: 'absolute',
 					zIndex: [11, null, null, null, 'auto'],
-					transition: 'transform 0.15s',
+					display: 'flex',
+					flexDirection: 'column',
+					background: '#fff',
+					borderRight: `1px solid ${COLORS.border}`,
+					width: 300,
+					height: '100vh',
 					transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
+					transition: 'transform 0.15s',
 				})}
 			>
 				<CloseButton />
@@ -40,12 +39,12 @@ export const Sidebar = ({ items }) => {
 					css={mq({
 						display: ['block', null, null, null, 'none'],
 						position: 'fixed',
+						zIndex: 10,
 						top: 0,
 						left: 0,
 						right: 0,
 						bottom: 0,
 						backgroundColor: 'rgba(0,0,0,0.4)',
-						zIndex: 10,
 					})}
 				/>
 			)}

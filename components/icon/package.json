@@ -222,7 +222,7 @@
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/grid": "*",
+		"@westpac/grid": ">1.0.0-alpha",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

@@ -4,7 +4,7 @@ import { Svg } from './Svg';
 
 export const WbcBackgroundRightSvg = (props) => {
 	return (
-		<Svg viewBox="0 0 268 228" width="268" height="228" {...props}>
+		<Svg viewBox="0 0 268 228" width={268} height={228} {...props}>
 			<title>Westpac background image</title>
 			<path fill="#DD3A46" d="M104 0h124v96H104z" />
 			<path fill="#B6000B" d="M110 96h118v132H110z" />
