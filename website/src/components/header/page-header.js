@@ -9,6 +9,7 @@ import HeaderImage from './component-page-header-image';
 import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../providers/pageContext';
 import { brandHeaderStyling, gridlyIconColors } from '../_utils';
+import throttle from 'lodash.throttle';
 
 const MenuButton = () => {
 	const { BRAND, COLORS } = useBrand();
@@ -109,11 +110,16 @@ const PageHeader = ({ name, version }) => {
 	useEffect(() => {
 		const main = document.querySelector('.main') || window;
 
-		const scrollHandler = () => {
-			setHasScroll(main.scrollTop > 5 ? true : false);
-			setHasScrolledSmall(main.scrollTop > 46 ? true : false);
-			setHasScrolledLarge(main.scrollTop >= 162 ? true : false);
+		const setHeader = () => {
+			const scroll = main.scrollTop;
+
+			setHasScroll(scroll > 5);
+			setHasScrolledSmall(scroll > 46);
+			setHasScrolledLarge(scroll >= 162);
 		};
+		setHeader();
+
+		const scrollHandler = throttle(setHeader, 10);
 
 		main.addEventListener('scroll', scrollHandler);
 		return () => {

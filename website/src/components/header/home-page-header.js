@@ -10,6 +10,7 @@ import StickyHeaderImage from './sticky-header-image';
 import { brandHeaderStyling, brandIconHighlightColors } from '../_utils';
 import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../symbols';
 import { useSidebar } from '../providers/sidebar';
+import throttle from 'lodash.throttle';
 
 const HomePageHeader = () => {
 	const { BRAND, COLORS, SPACING } = useBrand();
@@ -42,20 +43,23 @@ const StickyHeader = () => {
 	const mq = useMediaQuery();
 	const { isOpen, setIsOpen } = useSidebar();
 	const headerStyling = brandHeaderStyling[BRAND](COLORS);
-	const [hasScrolled, setHasScrolled] = useState(false);
+	const [hasScroll, setHasScroll] = useState(false);
+	const [hasScrolledPageHeader, setHasScrolledPageHeader] = useState(false);
 	const header = useRef(null);
 
 	useEffect(() => {
 		const main = document.querySelector('.main') || window;
 		const section = header.current.closest('section');
 
-		const scrollHandler = () => {
-			if (section.clientHeight - main.scrollTop <= 65) {
-				setHasScrolled(true);
-			} else {
-				setHasScrolled(false);
-			}
+		const setHeader = () => {
+			const scroll = main.scrollTop;
+
+			setHasScroll(scroll > 5);
+			setHasScrolledPageHeader(section.clientHeight - main.scrollTop <= 65);
 		};
+		setHeader();
+
+		const scrollHandler = throttle(setHeader, 10);
 
 		main.addEventListener('scroll', scrollHandler);
 		return () => {
@@ -71,18 +75,23 @@ const StickyHeader = () => {
 					boxSizing: 'border-box',
 					display: 'flex',
 					alignItems: 'center',
-					position: ['fixed', null, !hasScrolled && 'absolute'],
+					position: ['fixed', null, !hasScrolledPageHeader && 'absolute'],
 					zIndex: 9,
 					top: 0,
 					left: 0,
 					right: 0,
 					height: 66,
-					marginLeft: [null, null, null, null, hasScrolled && 300],
+					marginLeft: [null, null, null, null, hasScrolledPageHeader && 300],
 					paddingLeft: [72, null, null, null, 60], //66px (button) + 6px (gap),
-					background: [headerStyling.background, null, !hasScrolled && 'unset'],
+					background: [headerStyling.background, null, !hasScrolledPageHeader && 'unset'],
 					color: headerStyling.color,
-					boxShadow: ['0 2px 5px rgba(0,0,0,0.3)', null, !hasScrolled && 'none'],
 					overflow: 'hidden',
+					boxShadow: [
+						hasScroll && '0 2px 5px rgba(0,0,0,0.4)',
+						null,
+						hasScrolledPageHeader ? '0 2px 5px rgba(0,0,0,0.3)' : 'none',
+					],
+					transition: 'box-shadow 0.2s',
 				})}
 			>
 				<button
@@ -114,7 +123,11 @@ const StickyHeader = () => {
 						boxSizing: 'border-box',
 						display: 'flex',
 						alignItems: 'center',
-						borderBottom: [null, null, hasScrolled ? 0 : '1px solid rgba(255,255,255,0.7)'],
+						borderBottom: [
+							null,
+							null,
+							hasScrolledPageHeader ? 0 : '1px solid rgba(255,255,255,0.7)',
+						],
 						zIndex: 6,
 						height: '100%',
 						flex: 1,
@@ -124,7 +137,7 @@ const StickyHeader = () => {
 					Design<strong>System</strong>
 				</p>
 
-				<StickyHeaderImage brand={BRAND} hide={!hasScrolled} aria-hidden="true" />
+				<StickyHeaderImage brand={BRAND} hide={!hasScrolledPageHeader} aria-hidden="true" />
 			</header>
 		</Fragment>
 	);
