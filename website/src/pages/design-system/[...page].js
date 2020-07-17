@@ -51,7 +51,7 @@ const Component = ({ component, tabName }) => {
 
 const Tabs = ({ component, tabName }) => {
 	const { SPACING, COLORS } = useBrand();
-	const [scrolled, setScrolled] = useState(false);
+	const [hasScrolled, setHasScrolled] = useState(false);
 
 	const mq = useMediaQuery();
 	const router = useRouter();
@@ -64,11 +64,11 @@ const Tabs = ({ component, tabName }) => {
 		const setTabs = () => {
 			const scroll = main.scrollTop;
 
-			setScrolled(scroll > 156);
+			setHasScrolled(scroll > 156);
 		};
 		setTabs();
 
-		const scrollHandler = throttle(setTabs, 200);
+		const scrollHandler = throttle(setTabs, 10);
 
 		main.addEventListener('scroll', scrollHandler);
 		return () => {
@@ -97,12 +97,12 @@ const Tabs = ({ component, tabName }) => {
 				alignItems: 'flex-end',
 				backgroundColor: '#fff',
 				position: 'sticky',
-				top: '66px',
+				top: 66,
 				zIndex: 5,
-				boxShadow: scrolled && '0 2px 5px rgba(0,0,0,0.3)',
-				transition: 'box-shadow 0.2s ease',
+				boxShadow: hasScrolled && '0 2px 5px rgba(0,0,0,0.3)',
+				transition: 'box-shadow 0.2s',
 				...mq({
-					height: ['66px', null, '90px'],
+					height: [66, null, 90],
 				})[0],
 			}),
 		},
@@ -114,7 +114,7 @@ const Tabs = ({ component, tabName }) => {
 					display: 'flex',
 					justifyContent: 'center',
 					alignItems: 'center',
-					height: ['54px', null, '66px'],
+					height: [54, null, 66],
 					borderRadius: 0,
 					backgroundColor: 'white',
 					border: 'none',
