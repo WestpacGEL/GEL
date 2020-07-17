@@ -46,7 +46,6 @@ const StickyHeader = () => {
 	const header = useRef(null);
 
 	useEffect(() => {
-		// const main = header.current.closest('.main');
 		const main = document.querySelector('.main') || window;
 		const section = header.current.closest('section');
 

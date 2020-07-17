@@ -9,83 +9,105 @@ import {
 	BsaBackgroundSvg,
 } from '../symbols';
 
-const ComponentPageHeaderImage = ({ brand }) => {
+const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 	const mq = useMediaQuery();
-	const WestpacImage = () => (
+
+	const WestpacImage = (props) => (
 		<Fragment>
 			<div
-				css={{
-					position: 'absolute',
+				css={mq({
+					top: [null, null, 0],
+					bottom: 0,
 					left: 0,
-					zIndex: -1,
-				}}
+					width: [360, null, 'auto'],
+				})}
+				{...props}
 			>
-				<WbcBackgroundLeftSvg height={228} />
+				<WbcBackgroundLeftSvg
+					css={{
+						display: 'block',
+						width: 'auto',
+						height: '100%',
+					}}
+				/>
 			</div>
 			<div
 				css={mq({
-					position: 'absolute',
-					zIndex: -1,
+					top: [null, null, 0],
+					bottom: 0,
 					right: 0,
-					display: ['none', 'none', 'block'],
+					width: [268, null, 'auto'],
 				})}
+				{...props}
 			>
-				<WbcBackgroundRightSvg height={228} />
+				<WbcBackgroundRightSvg
+					css={{
+						display: 'block',
+						width: 'auto',
+						height: '100%',
+					}}
+				/>
 			</div>
 		</Fragment>
 	);
 
-	const StGeorgeImage = () => (
+	const StGeorgeImage = (props) => (
 		<div
-			css={{
-				position: 'absolute',
-				left: 0,
+			css={mq({
 				bottom: 0,
-				top: -80,
-				zIndex: -1,
-			}}
+				left: 0,
+				width: [601, 1202],
+			})}
+			{...props}
 		>
-			<StgBackgroundSvg height={600} />
+			<StgBackgroundSvg
+				css={{
+					display: 'block',
+					width: 'auto',
+					height: '100%',
+				}}
+			/>
 		</div>
 	);
 
-	const BankSaImage = () => (
+	const BankSaImage = (props) => (
 		<div
 			css={{
-				position: 'absolute',
-				zIndex: -1,
-				right: 0,
 				bottom: 0,
-				top: -45,
+				right: 0,
+				width: [508, 1016],
 			}}
+			{...props}
 		>
-			<BsaBackgroundSvg height={400} />
+			<BsaBackgroundSvg
+				css={{
+					display: 'block',
+					width: 'auto',
+					height: '100%',
+				}}
+			/>
 		</div>
 	);
 
 	const BRAND_HEADERS = {
-		WBC: {
-			headerImage: WestpacImage,
-		},
-		WBG: {
-			headerImage: null,
-		},
-		STG: {
-			headerImage: StGeorgeImage,
-		},
-		BSA: {
-			headerImage: BankSaImage,
-		},
-		BOM: {
-			headerImage: null,
-		},
-		BTFG: {
-			headerImage: null,
-		},
+		WBC: WestpacImage,
+		WBG: null,
+		STG: StGeorgeImage,
+		BSA: BankSaImage,
+		BOM: null,
+		BTFG: null,
 	};
-	const HeaderImage = BRAND_HEADERS[brand].headerImage;
+	const HeaderImage = BRAND_HEADERS[brand];
 
-	return HeaderImage ? <HeaderImage /> : null;
+	return HeaderImage ? (
+		<HeaderImage
+			css={{
+				position: 'absolute',
+				zIndex: -1,
+			}}
+			{...rest}
+		/>
+	) : null;
 };
 
 export default ComponentPageHeaderImage;
