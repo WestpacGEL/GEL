@@ -82,13 +82,20 @@ export const BrandSwitcher = () => {
 	const Logo = brandsMap[brand].logo;
 
 	return (
-		<div>
+		<div
+			css={{
+				borderBottom: !isScrolled && `1px solid ${COLORS.border}`,
+				boxShadow: isScrolled && '0 2px 5px rgba(0,0,0,0.26)',
+				transition: 'box-shadow 0.2s',
+			}}
+		>
 			<div
 				css={{
 					display: 'flex',
 					alignItems: 'center',
 					height: 90,
-					padding: `0 ${SPACING(3)}`,
+					paddingLeft: SPACING(3),
+					paddingRight: SPACING(3),
 					background: '#fff',
 				}}
 			>
@@ -102,51 +109,12 @@ export const BrandSwitcher = () => {
 				components={{ Option, DropdownIndicator }}
 				placeholder={'Change brand'}
 				styles={{
-					container: (base, { selectProps: { menuIsOpen } }) => ({
-						...base,
-						...(isScrolled && !menuIsOpen && { boxShadow: '0 4px 4px rgba(0, 0, 0, 0.3)' }),
-					}),
-					menu: (base) => ({
-						...base,
-						margin: 0,
-						borderRadius: 0,
-						boxShadow: '0 4px 4px rgba(0, 0, 0, 0.3)',
-					}),
-					menuList: (base) => ({
-						...base,
-						maxHeight: '100%',
-						padding: 0,
-					}),
-					option: (base, { value, isFocused }) => ({
-						...base,
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'space-between',
-						height: '60px',
-						padding: `0 ${SPACING(3)}`,
-						borderBottom: `solid 1px ${COLORS.border}`,
-						cursor: 'pointer',
-						fontSize: '0.875rem',
-						...(brandName === value && TYPE.bodyFont[700]),
-						...(isFocused && { backgroundColor: COLORS.background }),
-					}),
 					control: (base) => ({
 						...base,
 						borderRadius: 0,
 						border: 0,
-						borderBottom: !isScrolled && `solid 1px ${COLORS.border}`,
-						height: '66px',
+						height: 66,
 						boxShadow: 'none',
-
-						':hover': {
-							borderBottom: `solid 1px ${COLORS.border}`,
-						},
-					}),
-					valueContainer: (base) => ({
-						...base,
-						display: 'flex',
-						alignItems: 'center',
-						paddingLeft: SPACING(3),
 					}),
 					placeholder: (base) => ({
 						...base,
@@ -171,6 +139,36 @@ export const BrandSwitcher = () => {
 						justifyContent: 'center',
 						alignItems: 'center',
 						cursor: 'pointer',
+					}),
+					menu: (base) => ({
+						...base,
+						margin: 0,
+						borderRadius: 0,
+						boxShadow: '0 2px 5px rgba(0,0,0,0.26)',
+					}),
+					menuList: (base) => ({
+						...base,
+						maxHeight: '100%',
+						padding: 0,
+					}),
+					option: (base, { value, isFocused }) => ({
+						...base,
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-between',
+						height: '60px',
+						padding: `0 ${SPACING(3)}`,
+						borderTop: `1px solid ${COLORS.border}`,
+						cursor: 'pointer',
+						fontSize: '0.875rem',
+						...(brandName === value && TYPE.bodyFont[700]),
+						...(isFocused && { backgroundColor: COLORS.background }),
+					}),
+					valueContainer: (base) => ({
+						...base,
+						display: 'flex',
+						alignItems: 'center',
+						paddingLeft: SPACING(3),
 					}),
 				}}
 				onChange={(data) => {
