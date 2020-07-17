@@ -1,54 +1,30 @@
 /** @jsx jsx */
 
 import { jsx, useMediaQuery } from '@westpac/core';
-import React, { Fragment } from 'react';
-import {
-	WbcBackgroundRightSvg,
-	WbcBackgroundLeftSvg,
-	StgBackgroundSvg,
-	BsaBackgroundSvg,
-} from '../symbols';
+import React from 'react';
+import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
 
 const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 	const mq = useMediaQuery();
 
 	const WestpacImage = (props) => (
-		<Fragment>
-			<div
-				css={mq({
-					top: [null, null, 0],
-					bottom: 0,
-					left: 0,
-					width: [360, null, 'auto'],
-				})}
-				{...props}
-			>
-				<WbcBackgroundLeftSvg
-					css={{
-						display: 'block',
-						width: 'auto',
-						height: '100%',
-					}}
-				/>
-			</div>
-			<div
-				css={mq({
-					top: [null, null, 0],
-					bottom: 0,
-					right: 0,
-					width: [268, null, 'auto'],
-				})}
-				{...props}
-			>
-				<WbcBackgroundRightSvg
-					css={{
-						display: 'block',
-						width: 'auto',
-						height: '100%',
-					}}
-				/>
-			</div>
-		</Fragment>
+		<div
+			css={mq({
+				top: [null, null, 0],
+				bottom: 0,
+				right: 0,
+				width: [268, null, 'auto'],
+			})}
+			{...props}
+		>
+			<WbcBackgroundRightSvg
+				css={{
+					display: 'block',
+					width: 'auto',
+					height: '100%',
+				}}
+			/>
+		</div>
 	);
 
 	const StGeorgeImage = (props) => (
@@ -72,11 +48,11 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 
 	const BankSaImage = (props) => (
 		<div
-			css={{
+			css={mq({
 				bottom: 0,
 				right: 0,
 				width: [508, 1016],
-			}}
+			})}
 			{...props}
 		>
 			<BsaBackgroundSvg
