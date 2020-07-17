@@ -17,11 +17,11 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 			{...props}
 		>
 			<WbcBackgroundRightSvg
-				css={mq({
+				css={{
 					display: 'block',
-					width: ['auto', null, 'auto'],
-					height: ['100%', null, '100%'],
-				})}
+					width: 'auto',
+					height: '100%',
+				}}
 			/>
 		</div>
 	);
@@ -35,7 +35,13 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 			})}
 			{...props}
 		>
-			<StgBackgroundSvg css={mq({ display: 'block', width: '100%', height: 'auto' })} />
+			<StgBackgroundSvg
+				css={{
+					display: 'block',
+					width: '100%',
+					height: 'auto',
+				}}
+			/>
 		</div>
 	);
 
@@ -48,7 +54,13 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 			})}
 			{...props}
 		>
-			<BsaBackgroundSvg css={mq({ display: 'block', width: '100%', height: 'auto' })} />
+			<BsaBackgroundSvg
+				css={{
+					display: 'block',
+					width: '100%',
+					height: 'auto',
+				}}
+			/>
 		</div>
 	);
 
