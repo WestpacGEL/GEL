@@ -11,7 +11,7 @@ export const StopwatchSvg = ({
 	...rest
 }) => {
 	return (
-		<Svg viewBox="0 0 90 90" width="90" height="90" {...rest}>
+		<Svg viewBox="0 0 90 90" width={90} height={90} {...rest}>
 			<title>Stopwatch</title>
 			<g fill="none" fillRule="evenodd">
 				<path
