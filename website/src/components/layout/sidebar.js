@@ -25,8 +25,8 @@ export const Sidebar = ({ items }) => {
 					borderRight: `1px solid ${COLORS.border}`,
 					width: 300,
 					height: '100vh',
-					transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
-					transition: 'transform 0.15s',
+					transform: [isOpen ? 'translateX(0)' : 'translateX(-300px)', null, null, null, 'none'],
+					transition: ['transform 0.15s', null, null, null, 'none'],
 				})}
 			>
 				<CloseButton />
