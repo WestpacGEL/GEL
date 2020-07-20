@@ -88,7 +88,7 @@ export const Navigation = ({ items }) => {
 							level={level}
 							css={{
 								color: isCurrentChild && COLORS.primary,
-								fontWeight: isCurrentChild && 500,
+								fontWeight: isCurrentChild && 700,
 							}}
 						>
 							{item.title}
