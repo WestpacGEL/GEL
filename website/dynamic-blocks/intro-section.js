@@ -10,48 +10,25 @@ import { Body } from '@westpac/body';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { inputStyles } from '@arch-ui/input';
+import { Icon } from '../../components/icon/src/Icon';
 
-const ArrowIcon = () => {
-	const { COLORS } = useBrand();
+const ArrowIcon = (props) => {
 	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 8 9"
-			focusable="false"
-			aria-hidden="true"
-			width="12"
-			height="12"
-		>
+		<Icon assistiveText="Link arrow" {...props}>
 			<path
-				fill={COLORS.primary}
+				fill="currentColor"
 				fillRule="evenodd"
-				d="M8 5.5l-3 3-.71-.71L6.085 6H0V0h1v5h5.085L4.29 3.21 5 2.5z"
+				d="M20 15l-6 6-1.42-1.42L16.17 16H4V4h2v10h10.17l-3.59-3.58L14 9z"
 			/>
-		</svg>
+		</Icon>
 	);
 };
 
-const TableLink = ({ headingId, headingText, ...rest }) => {
-	const { COLORS, SPACING } = useBrand();
-
-	return (
-		<Item {...rest}>
-			<a
-				href={`#${headingId}`}
-				css={{
-					marginLeft: SPACING(1),
-					color: COLORS.text,
-					cursor: 'pointer',
-					textDecoration: 'none',
-					fontSize: '0.875rem',
-					'&:hover, &:focus': { color: COLORS.info },
-				}}
-			>
-				{headingText}
-			</a>
-		</Item>
-	);
-};
+const TableLink = ({ headingId, headingText, ...rest }) => (
+	<Item {...rest}>
+		<a href={`#${headingId}`}>{headingText}</a>
+	</Item>
+);
 
 const parseHeadings = (content) =>
 	content.nodes
@@ -93,7 +70,7 @@ const TableOfContents = ({ content }) => {
 	}, [introRef]);
 
 	return (
-		<div ref={introRef}>
+		<nav ref={introRef}>
 			<Heading
 				tag="h2"
 				size={9}
@@ -101,7 +78,9 @@ const TableOfContents = ({ content }) => {
 					Heading: {
 						styles: (styles) => ({
 							...styles,
-							fontWeight: 500,
+							fontWeight: '500',
+							paddingBottom: SPACING(2),
+							borderBottom: `1px solid ${COLORS.border}`,
 						}),
 					},
 				}}
@@ -109,40 +88,40 @@ const TableOfContents = ({ content }) => {
 				{'Page content'}
 			</Heading>
 
-			<hr
-				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
-			/>
-
 			{(toc && toc.length) || relatedContent ? (
-				<nav>
-					<List
-						type="icon"
-						icon={ArrowIcon}
-						overrides={{
-							Item: {
-								styles: (styles) => ({
-									...styles,
-									paddingLeft: 0,
-									margin: 0,
-									height: '2.25rem',
-									display: 'flex',
-									alignItems: 'center',
-								}),
-							},
-						}}
-					>
-						{toc && toc.length !== 0 && toc}
-						{relatedContent && (
-							<TableLink
-								key={`related-information`}
-								headingId={'related-information'}
-								headingText={'Related information'}
-							/>
-						)}
-					</List>
-				</nav>
+				<List
+					look="primary"
+					type="icon"
+					icon={ArrowIcon}
+					spacing="large"
+					overrides={{
+						List: {
+							styles: (styles) => ({
+								...styles,
+								marginTop: SPACING(3),
+								a: {
+									color: COLORS.text,
+									textDecoration: 'none',
+									':hover, :focus': {
+										color: COLORS.info,
+										textDecoration: 'underline',
+									},
+								},
+							}),
+						},
+					}}
+				>
+					{toc && toc.length !== 0 && toc}
+					{relatedContent && (
+						<TableLink
+							key={`related-information`}
+							headingId={'related-information'}
+							headingText={'Related information'}
+						/>
+					)}
+				</List>
 			) : null}
-		</div>
+		</nav>
 	);
 };
 
@@ -163,6 +142,9 @@ const PackageInfoTable = ({ item }) => {
 		>
 			<tbody
 				css={{
+					th: {
+						fontWeight: 500,
+					},
 					'> tr': {
 						borderBottom: 'solid 1px #2585ca',
 						textAlign: 'left',
@@ -190,7 +172,9 @@ const PackageInfoTable = ({ item }) => {
 				</tr>
 				<tr>
 					<th>Install</th>
-					<td>npm i @westpac/{item.packageName}</td>
+					<td>
+						<code>npm i @westpac/{item.packageName}</code>
+					</td>
 				</tr>
 				<tr>
 					<th>Requires</th>
@@ -212,23 +196,26 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 						gridGap: '1.5rem',
 						paddingTop: ['1.875rem', '1.875rem', '5.625rem'],
 						paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
+						borderBottom: `1px solid ${COLORS.border}`,
 					})}
 				>
 					<Cell width={showTableOfContents ? [12, 7, 7, 7, 7] : 12}>
-						{description && description !== '' ? (
-							<p
-								css={mq({
-									...PACKS.lead,
-									marginTop: 0,
-									marginBottom: 0,
-									lineHeight: 1.4,
-									fontSize: ['1.125rem', '1.125rem', '1.5rem'],
-								})}
-							>
-								{description}
-							</p>
-						) : null}
-						{showPackageInfo && <PackageInfoTable item={item} />}
+						<Body>
+							{description && description !== '' ? (
+								<p
+									css={mq({
+										...PACKS.lead,
+										marginTop: 0,
+										marginBottom: 0,
+										lineHeight: 1.4,
+										fontSize: ['1.125rem', '1.125rem', '1.5rem'],
+									})}
+								>
+									{description}
+								</p>
+							) : null}
+							{showPackageInfo && <PackageInfoTable item={item} />}
+						</Body>
 					</Cell>
 					{showTableOfContents && (
 						<Cell width={[12, 4, 4, 4, 4]} left={[1, 9, 9, 9, 9]}>
@@ -237,13 +224,6 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 					)}
 				</Grid>
 			</Container>
-			<hr
-				css={{
-					border: 'none',
-					borderTop: `solid 1px ${COLORS.border}`,
-					margin: 0,
-				}}
-			/>
 		</Fragment>
 	);
 };
