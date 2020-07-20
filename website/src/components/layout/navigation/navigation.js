@@ -12,11 +12,41 @@ import { useSidebar } from '../../providers/sidebar';
 import BackToGelSvg from './BackToGelSvg';
 
 // `<List />` uses `<Body />` and provides link styling we don't need
-const NavListOverride = (props) => <ul {...props} />;
+const ListOverride = ({ state, ...props }) => <ul {...props} />;
+
+const NavigationList = (props) => {
+	const { SPACING, PACKS } = useBrand();
+	return (
+		<List
+			type="unstyled"
+			overrides={{
+				List: {
+					component: ListOverride,
+					styles: (styles) => ({
+						...styles,
+						paddingBottom: SPACING(4),
+						'> li': {
+							margin: 0,
+						},
+					}),
+				},
+				Item: {
+					styles: (styles) => ({
+						...styles,
+						'a:focus': {
+							outlineOffset: `-${PACKS.focus.outlineWidth}`,
+						},
+					}),
+				},
+			}}
+			{...props}
+		/>
+	);
+};
 
 export const Navigation = ({ items }) => {
 	const ref = useRef();
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, PACKS } = useBrand();
 	const { isScrolled, setIsScrolled } = useSidebar();
 
 	const handleScroll = () => {
@@ -48,16 +78,7 @@ export const Navigation = ({ items }) => {
 						title={item.title}
 						level={level}
 					>
-						<List
-							type="unstyled"
-							overrides={{
-								List: {
-									component: NavListOverride,
-								},
-							}}
-						>
-							{renderNavigationItems(item.children, level + 1)}
-						</List>
+						<NavigationList>{renderNavigationItems(item.children, level + 1)}</NavigationList>
 					</NavigationGroup>
 				);
 			}
@@ -88,7 +109,7 @@ export const Navigation = ({ items }) => {
 							level={level}
 							css={{
 								color: isCurrentChild && COLORS.primary,
-								fontWeight: isCurrentChild && 500,
+								fontWeight: isCurrentChild && 700,
 							}}
 						>
 							{item.title}
@@ -107,27 +128,25 @@ export const Navigation = ({ items }) => {
 				flex: 1,
 				overflowY: 'auto',
 				'-webkitOverflowScrolling': 'touch',
+				paddingBottom: SPACING(4),
 			}}
 			role="navigation"
 		>
 			<a
 				href="/"
-				css={{ display: 'block !important', overflow: 'hidden', height: 90 }}
+				css={{
+					display: 'block !important',
+					overflow: 'hidden',
+					height: 90,
+					':focus': {
+						outlineOffset: `-${PACKS.focus.outlineWidth}`,
+					},
+				}}
 				aria-label="Back to GEL"
 			>
 				<BackToGelSvg />
 			</a>
-			<List
-				type="unstyled"
-				css={{ paddingBottom: SPACING(4) }}
-				overrides={{
-					List: {
-						component: NavListOverride,
-					},
-				}}
-			>
-				{renderNavigationItems(items)}
-			</List>
+			<NavigationList>{renderNavigationItems(items)}</NavigationList>
 		</nav>
 	);
 };

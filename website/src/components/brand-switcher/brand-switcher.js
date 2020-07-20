@@ -78,7 +78,7 @@ export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
 	const { isScrolled } = useSidebar();
-	const { SPACING, COLORS, TYPE } = useBrand();
+	const { SPACING, COLORS, TYPE, PACKS } = useBrand();
 	const Logo = brandsMap[brand].logo;
 
 	return (
@@ -89,22 +89,23 @@ export const BrandSwitcher = () => {
 				transition: 'box-shadow 0.2s',
 			}}
 		>
-			<div
-				css={{
-					display: 'flex',
-					alignItems: 'center',
-					height: 90,
-					paddingLeft: SPACING(3),
-					paddingRight: SPACING(3),
-					background: '#fff',
-				}}
-			>
-				<Link href={'/'} as={`${BASE_URL}?b=${brandName}`}>
-					<a>
-						<Logo />
-					</a>
-				</Link>
-			</div>
+			<Link href={'/'} as={`${BASE_URL}?b=${brandName}`} passHref>
+				<a
+					css={{
+						display: 'flex',
+						alignItems: 'center',
+						height: 90,
+						paddingLeft: SPACING(3),
+						paddingRight: SPACING(3),
+						background: '#fff',
+						':focus': {
+							outlineOffset: `-${PACKS.focus.outlineWidth}`,
+						},
+					}}
+				>
+					<Logo />
+				</a>
+			</Link>
 			<Select
 				components={{ Option, DropdownIndicator }}
 				placeholder={'Change brand'}
