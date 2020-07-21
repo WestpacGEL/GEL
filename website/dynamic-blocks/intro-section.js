@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { List, Item } from '@westpac/list';
 import { Heading } from '@westpac/heading';
@@ -70,58 +70,61 @@ const TableOfContents = ({ content }) => {
 	}, [introRef]);
 
 	return (
-		<nav ref={introRef}>
-			<Heading
-				tag="h2"
-				size={9}
-				overrides={{
-					Heading: {
-						styles: (styles) => ({
-							...styles,
-							fontWeight: '500',
-							paddingBottom: SPACING(2),
-							borderBottom: `1px solid ${COLORS.border}`,
-						}),
-					},
-				}}
-			>
-				{'Page content'}
-			</Heading>
-
-			{(toc && toc.length) || relatedContent ? (
-				<List
-					look="primary"
-					type="icon"
-					icon={ArrowIcon}
-					spacing="large"
+		<Fragment>
+			<Global styles={{ html: { scrollBehavior: 'smooth' } }} />
+			<nav ref={introRef}>
+				<Heading
+					tag="h2"
+					size={9}
 					overrides={{
-						List: {
+						Heading: {
 							styles: (styles) => ({
 								...styles,
-								marginTop: SPACING(3),
-								a: {
-									color: COLORS.text,
-									textDecoration: 'none',
-									':hover, :focus': {
-										color: COLORS.info,
-										textDecoration: 'underline',
-									},
-								},
+								fontWeight: '500',
+								paddingBottom: SPACING(2),
+								borderBottom: `1px solid ${COLORS.border}`,
 							}),
 						},
 					}}
 				>
-					{toc && toc.length !== 0 && toc}
-					{relatedContent && (
-						<TableLink
-							key={`related-information`}
-							headingId={'related-information'}
-							headingText={'Related information'}
-						/>
-					)}
-				</List>
-			) : null}
-		</nav>
+					{'Page content'}
+				</Heading>
+
+				{(toc && toc.length) || relatedContent ? (
+					<List
+						look="primary"
+						type="icon"
+						icon={ArrowIcon}
+						spacing="large"
+						overrides={{
+							List: {
+								styles: (styles) => ({
+									...styles,
+									marginTop: SPACING(3),
+									a: {
+										color: COLORS.text,
+										textDecoration: 'none',
+										':hover, :focus': {
+											color: COLORS.info,
+											textDecoration: 'underline',
+										},
+									},
+								}),
+							},
+						}}
+					>
+						{toc && toc.length !== 0 && toc}
+						{relatedContent && (
+							<TableLink
+								key={`related-information`}
+								headingId={'related-information'}
+								headingText={'Related information'}
+							/>
+						)}
+					</List>
+				) : null}
+			</nav>
+		</Fragment>
 	);
 };
 
