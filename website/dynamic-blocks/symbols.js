@@ -23,9 +23,9 @@ const renderSymbols = (search) => {
 				<Cell
 					width={[12, null, 6, 4]}
 					css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 3' }, display: 'flex' }}
+					key={symbol.name}
 				>
 					<div
-						key={symbol.name}
 						css={{
 							flexGrow: 1,
 							alignItems: 'center',
