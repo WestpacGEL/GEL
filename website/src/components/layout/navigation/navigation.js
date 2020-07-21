@@ -10,6 +10,7 @@ import { ROOT_PAGES, BASE_PAGE } from '../../../config';
 import { NavigationGroup } from './navigation-group';
 import { useSidebar } from '../../providers/sidebar';
 import BackToGelSvg from './BackToGelSvg';
+import throttle from 'lodash.throttle';
 
 // `<List />` uses `<Body />` and provides link styling we don't need
 const ListOverride = ({ state, ...props }) => <ul {...props} />;
@@ -24,7 +25,6 @@ const NavigationList = (props) => {
 					component: ListOverride,
 					styles: (styles) => ({
 						...styles,
-						paddingBottom: SPACING(4),
 						'> li': {
 							margin: 0,
 						},
@@ -49,14 +49,12 @@ export const Navigation = ({ items }) => {
 	const { COLORS, SPACING, PACKS } = useBrand();
 	const { isScrolled, setIsScrolled } = useSidebar();
 
-	const handleScroll = () => {
-		const scrollTop = ref.current.scrollTop;
-		if (!isScrolled && scrollTop > 0) {
-			setIsScrolled(true);
-		} else if (scrollTop === 0) {
-			setIsScrolled(false);
-		}
+	const setNavigation = () => {
+		const scroll = ref.current.scrollTop;
+		setIsScrolled(scroll > 0);
 	};
+
+	const handleScroll = throttle(setNavigation, 10);
 
 	const renderNavigationItems = (items, level = 0) => {
 		const router = useRouter();

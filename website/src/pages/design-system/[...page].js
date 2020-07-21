@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Fragment, useState, useCallback, useEffect, forwardRef } from 'react';
+import { useState, useCallback, useEffect, forwardRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import throttle from 'lodash.throttle';
@@ -59,10 +59,8 @@ const Tabs = ({ component, tabName }) => {
 	const tabMap = ['design', 'accessibility', 'code'];
 
 	useEffect(() => {
-		const main = document.querySelector('.main') || window;
-
 		const setTabs = () => {
-			const scroll = main.scrollTop;
+			const scroll = window.scrollY;
 
 			setHasScrolled(scroll > 156);
 		};
@@ -70,9 +68,9 @@ const Tabs = ({ component, tabName }) => {
 
 		const scrollHandler = throttle(setTabs, 10);
 
-		main.addEventListener('scroll', scrollHandler);
+		window.addEventListener('scroll', scrollHandler);
 		return () => {
-			main.removeEventListener('scroll', scrollHandler);
+			window.removeEventListener('scroll', scrollHandler);
 		};
 	}, []);
 

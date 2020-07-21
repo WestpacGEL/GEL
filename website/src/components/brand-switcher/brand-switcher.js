@@ -86,6 +86,8 @@ export const BrandSwitcher = () => {
 			css={{
 				borderBottom: !isScrolled && `1px solid ${COLORS.border}`,
 				boxShadow: isScrolled && '0 2px 5px rgba(0,0,0,0.26)',
+				position: 'relative',
+				zIndex: 1, //ensure shadow is above nav list item with :hover bg effect
 				transition: 'box-shadow 0.2s',
 			}}
 		>

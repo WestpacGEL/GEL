@@ -10,12 +10,10 @@ export const Footer = () => {
 	const [visible, setVisible] = useState(false);
 
 	useEffect(() => {
-		const main = document.querySelector('.main') || window;
-
 		const setFooter = () => {
-			const windowHeight = main.clientHeight;
-			const documentHeight = main.scrollHeight;
-			const scroll = main.scrollTop;
+			const windowHeight = window.clientHeight;
+			const documentHeight = window.scrollHeight;
+			const scroll = window.scrollY;
 
 			setVisible(
 				windowHeight >= documentHeight ||
@@ -27,9 +25,9 @@ export const Footer = () => {
 
 		const scrollHandler = throttle(setFooter, 200);
 
-		main.addEventListener('scroll', scrollHandler);
+		window.addEventListener('scroll', scrollHandler);
 		return () => {
-			main.removeEventListener('scroll', scrollHandler);
+			window.removeEventListener('scroll', scrollHandler);
 		};
 	}, []);
 
@@ -68,6 +66,7 @@ export const Footer = () => {
 			</div>
 
 			<button
+				type="button"
 				css={{
 					display: 'block',
 					border: 0,
@@ -78,8 +77,7 @@ export const Footer = () => {
 				}}
 				onClick={(e) => {
 					e.preventDefault();
-					const el = document.querySelector('.main') || window;
-					el.scroll({
+					window.scroll({
 						top: 0,
 						left: 0,
 						behavior: 'smooth',
