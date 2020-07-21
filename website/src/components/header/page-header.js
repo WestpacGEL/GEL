@@ -108,10 +108,8 @@ const PageHeader = ({ name, version }) => {
 	const header = useRef(null);
 
 	useEffect(() => {
-		const main = document.querySelector('.main') || window;
-
 		const setHeader = () => {
-			const scroll = main.scrollTop;
+			const scroll = window.scrollY;
 
 			setHasScroll(scroll > 5);
 			setHasScrolledSmall(scroll > 46);
@@ -121,9 +119,9 @@ const PageHeader = ({ name, version }) => {
 
 		const scrollHandler = throttle(setHeader, 10);
 
-		main.addEventListener('scroll', scrollHandler);
+		window.addEventListener('scroll', scrollHandler);
 		return () => {
-			main.removeEventListener('scroll', scrollHandler);
+			window.removeEventListener('scroll', scrollHandler);
 		};
 	});
 

@@ -19,6 +19,7 @@ export const Separator = (props) => {
 			{...props}
 		>
 			<button
+				type="button"
 				css={{
 					display: 'block',
 					border: 0,
@@ -30,8 +31,7 @@ export const Separator = (props) => {
 				}}
 				onClick={(e) => {
 					e.preventDefault();
-					const el = document.querySelector('.main') || window;
-					el.scroll({
+					window.scroll({
 						top: 0,
 						left: 0,
 						behavior: 'smooth',
