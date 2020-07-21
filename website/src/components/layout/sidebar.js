@@ -17,7 +17,9 @@ export const Sidebar = ({ items }) => {
 			<div
 				css={mq({
 					boxSizing: 'border-box',
-					position: 'absolute',
+					position: ['absolute', null, null, null, 'initial'],
+					gridColumnStart: [null, null, null, null, 1],
+					gridColumnEnd: [null, null, null, null, 2],
 					zIndex: [11, null, null, null, 'auto'],
 					display: 'flex',
 					flexDirection: 'column',

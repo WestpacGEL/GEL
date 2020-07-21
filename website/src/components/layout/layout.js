@@ -105,7 +105,7 @@ const MainContainer = (props) => {
 			css={mq({
 				scrollBehavior: 'smooth',
 				'-webkitOverflowScrolling': 'touch',
-				display: 'flex !important',
+				display: 'flex',
 				flexDirection: 'column',
 				overflowY: 'auto',
 				gridColumnStart: [null, null, null, null, 2],
