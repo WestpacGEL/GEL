@@ -48,22 +48,21 @@ const StickyHeader = () => {
 	const header = useRef(null);
 
 	useEffect(() => {
-		const main = document.querySelector('.main') || window;
 		const section = header.current.closest('section');
 
 		const setHeader = () => {
-			const scroll = main.scrollTop;
+			const scroll = window.scrollY;
 
 			setHasScroll(scroll > 5);
-			setHasScrolledPageHeader(section.clientHeight - main.scrollTop <= 65);
+			setHasScrolledPageHeader(section.clientHeight - window.scrollY <= 66);
 		};
 		setHeader();
 
 		const scrollHandler = throttle(setHeader, 10);
 
-		main.addEventListener('scroll', scrollHandler);
+		window.addEventListener('scroll', scrollHandler);
 		return () => {
-			main.removeEventListener('scroll', scrollHandler);
+			window.removeEventListener('scroll', scrollHandler);
 		};
 	});
 
@@ -91,7 +90,7 @@ const StickyHeader = () => {
 						null,
 						hasScrolledPageHeader ? '0 2px 5px rgba(0,0,0,0.3)' : 'none',
 					],
-					transition: 'box-shadow 0.2s',
+					transition: ['box-shadow 0.2s', null, 'none'],
 				})}
 			>
 				<button

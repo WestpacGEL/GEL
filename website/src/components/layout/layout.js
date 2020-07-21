@@ -89,8 +89,6 @@ const GridContainer = (props) => {
 			css={mq({
 				display: 'grid',
 				gridTemplateColumns: ['1fr', null, null, null, '300px auto'],
-				width: '100vw',
-				height: '100vh',
 			})}
 			{...props}
 		/>
@@ -103,11 +101,8 @@ const MainContainer = (props) => {
 		<div
 			className="main" //scroll event listening on '.main'
 			css={mq({
-				scrollBehavior: 'smooth',
-				'-webkitOverflowScrolling': 'touch',
 				display: 'flex',
 				flexDirection: 'column',
-				overflowY: 'auto',
 				gridColumnStart: [null, null, null, null, 2],
 				gridColumnEnd: [null, null, null, null, 3],
 				position: 'relative',
