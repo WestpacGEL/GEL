@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
 import { Body } from '../../../components/body';
+import { Section } from '../../../components/layout';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
@@ -165,19 +166,12 @@ const slateRenderer = (item, _editorValue) => {
 						</Cell>
 					);
 				case 'section':
-					const mq = useMediaQuery();
 					return (
-						<section
-							key={path}
-							css={mq({
-								paddingTop: ['30px', null, '60px'],
-							})}
-						>
+						<Section>
 							<Container>
 								<Grid rowGap="0 !important">{serializeChildren(node.nodes)}</Grid>
 							</Container>
-							<Separator css={mq({ marginTop: ['30px', null, '60px'] })} />
-						</section>
+						</Section>
 					);
 				case 'dynamic-components': {
 					return (
