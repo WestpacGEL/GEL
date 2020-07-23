@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
-import { Body } from '@westpac/body';
+import { Body as GELBody } from '@westpac/body';
 
-export const RichText = (props) => {
+export const Body = (props) => {
 	const { PACKS, TYPE } = useBrand();
 
 	return (
-		<Body
+		<GELBody
 			overrides={{
 				Body: {
 					styles: (styles) => ({
