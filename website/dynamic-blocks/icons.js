@@ -23,9 +23,9 @@ const renderIcons = (search) => {
 				<Cell
 					width={[12, null, 3]}
 					css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 2' } }}
+					key={icon.name}
 				>
 					<div
-						key={icon.name}
 						css={mq({
 							alignItems: 'center',
 							justifyContent: 'center',
