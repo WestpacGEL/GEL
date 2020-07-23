@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { useState } from 'react';
-import wbc from '@westpac/wbc';
-import { jsx, GEL, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Modal, Body } from '@westpac/modal';
 import { Well } from '@westpac/well';
@@ -117,7 +116,6 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 };
 
 export const Playground = ({
-	brand = wbc,
 	context = null,
 	code,
 	showCode,
@@ -133,39 +131,29 @@ export const Playground = ({
 			'Playground code has not been compiled by the babel plugin. Please check configuration.'
 		);
 	}
+	const brand = useBrand();
 	if (!context) {
 		return (
-			<GEL brand={brand}>
-				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-					<LivePreview />
-				</LiveProvider>
-			</GEL>
+			<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
+				<LivePreview />
+			</LiveProvider>
 		);
 	}
 	if (context === 'website') {
 		return (
-			<GEL brand={brand}>
-				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-					<ExampleBlock
-						code={code}
-						showCode={showCode}
-						showDemo={showDemo}
-						showError={showErrors}
-					/>
-					{/* TODO: make code and demo button options passed through editor */}
-				</LiveProvider>
-			</GEL>
+			<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
+				<ExampleBlock code={code} showCode={showCode} showDemo={showDemo} showError={showErrors} />
+				{/* TODO: make code and demo button options passed through editor */}
+			</LiveProvider>
 		);
 	}
 	if (context === 'admin') {
 		return (
-			<GEL brand={brand}>
-				<div css={{ transformZ: 0, pointerEvents: 'none', zIndex: 0, cursor: 'not-allowed' }}>
-					<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-						<ExampleBlock code={showCode} demo={showDemo} />
-					</LiveProvider>
-				</div>
-			</GEL>
+			<div css={{ transformZ: 0, pointerEvents: 'none', zIndex: 0, cursor: 'not-allowed' }}>
+				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
+					<ExampleBlock code={showCode} demo={showDemo} />
+				</LiveProvider>
+			</div>
 		);
 	}
 };
