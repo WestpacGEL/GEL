@@ -11,6 +11,7 @@ import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { inputStyles } from '@arch-ui/input';
 import { Icon } from '../../components/icon/src/Icon';
+import { Section } from '../src/components/layout/section';
 
 const ArrowIcon = (props) => {
 	return (
@@ -189,44 +190,39 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS, COLORS } = useBrand();
+	const { PACKS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<Fragment>
-			<Container>
-				<Grid
-					css={mq({
-						gridGap: '1.5rem',
-						paddingTop: ['1.875rem', '1.875rem', '5.625rem'],
-						paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
-						borderBottom: `1px solid ${COLORS.border}`,
-					})}
-				>
-					<Cell width={showTableOfContents ? [12, 7, 7, 7, 7] : 12}>
-						<Body>
-							{description && description !== '' ? (
-								<p
-									css={mq({
-										...PACKS.lead,
-										marginTop: 0,
-										marginBottom: 0,
-										lineHeight: 1.4,
-										fontSize: ['1.125rem', '1.125rem', '1.5rem'],
-									})}
-								>
-									{description}
-								</p>
-							) : null}
-							{showPackageInfo && <PackageInfoTable item={item} />}
-						</Body>
-					</Cell>
-					{showTableOfContents && (
-						<Cell width={[12, 4, 4, 4, 4]} left={[1, 9, 9, 9, 9]}>
-							<TableOfContents content={_editorValue} />
+			<Section>
+				<Container>
+					<Grid gap={SPACING(4)}>
+						<Cell width={showTableOfContents ? [12, 7, 7, 7, 7] : 12}>
+							<Body>
+								{description && description !== '' ? (
+									<p
+										css={mq({
+											...PACKS.lead,
+											marginTop: 0,
+											marginBottom: 0,
+											lineHeight: 1.4,
+											fontSize: ['1.125rem', '1.125rem', '1.5rem'],
+										})}
+									>
+										{description}
+									</p>
+								) : null}
+								{showPackageInfo && <PackageInfoTable item={item} />}
+							</Body>
 						</Cell>
-					)}
-				</Grid>
-			</Container>
+						{showTableOfContents && (
+							<Cell width={[12, 4, 4, 4, 4]} left={[1, 9, 9, 9, 9]}>
+								<TableOfContents content={_editorValue} />
+							</Cell>
+						)}
+					</Grid>
+				</Container>
+			</Section>
 		</Fragment>
 	);
 };
