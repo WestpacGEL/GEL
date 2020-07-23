@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 import { ButtonDropdown } from '@westpac/button-dropdown';
-import { useButtonDropdownContext } from '../../../../components/button-dropdown/src/ButtonDropdown';
+// import { useButtonDropdownContext } from '../../../../components/button-dropdown/src/ButtonDropdown';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -69,15 +69,16 @@ const ButtonIconOverride = ({ state, icon: Icon, left, right, color, ...rest }) 
 };
 
 const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
-	const {
+	/* const {
 		state: { open },
-	} = useButtonDropdownContext();
+	} = useButtonDropdownContext(); */
 	return (
 		<Button
 			ref={ref}
 			look="link"
 			size="xlarge"
-			iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
+			// iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
+			iconAfter={ExpandMoreIcon}
 			block
 			justify
 			overrides={{
