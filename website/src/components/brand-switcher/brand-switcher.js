@@ -103,15 +103,13 @@ export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
 	const { isScrolled } = useSidebar();
-	const { SPACING, COLORS, TYPE, PACKS } = useBrand();
+	const { SPACING, COLORS, PACKS, TYPE } = useBrand();
 	const Logo = brandsMap[brand].logo;
 
 	const OptionButton = ({ brand, active, ...rest }) => {
-		const { COLORS, TYPE } = useBrand();
 		return (
 			<button
 				type="button"
-				look="link"
 				onClick={() => setBrand(brand)}
 				css={{
 					appearance: 'none',
@@ -123,7 +121,7 @@ export const BrandSwitcher = () => {
 					boxSizing: 'border-box',
 					backgroundColor: 'transparent',
 					border: 0,
-					fontSize: '0.875rem',
+					fontSize: '0.875rem !important',
 					color: active ? COLORS.primary : COLORS.text,
 					display: 'flex',
 					width: '100%',
@@ -151,8 +149,8 @@ export const BrandSwitcher = () => {
 				{Object.entries(brandsMap).map(([key, val]) => (
 					<li key={key} css={{ borderTop: `1px solid ${COLORS.border}` }}>
 						<OptionButton brand={key} active={brandName === key}>
-							{val.label}
-							<val.smallLogo css={{ width: 50, height: 39 }} />
+							<span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{val.label}</span>
+							<val.smallLogo css={{ width: 50, height: 39, marginLeft: '0.4em' }} />
 						</OptionButton>
 					</li>
 				))}
