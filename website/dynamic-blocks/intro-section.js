@@ -165,14 +165,12 @@ const PackageInfoTable = ({ item }) => {
 				<tr>
 					<th>History</th>
 					<td>
-						<Body>
-							<a
-								href={`https://github.com/WestpacGEL/GEL/blob/master/components/${item.packageName}/CHANGELOG.md`}
-								target="_blank"
-							>
-								View Changes
-							</a>
-						</Body>
+						<a
+							href={`https://github.com/WestpacGEL/GEL/blob/master/components/${item.packageName}/CHANGELOG.md`}
+							target="_blank"
+						>
+							View Changes
+						</a>
 					</td>
 				</tr>
 				<tr>
