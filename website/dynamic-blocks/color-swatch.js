@@ -11,7 +11,7 @@ import { secondaryColors } from '../src/secondary-colors.js';
 // Recursively render swatches
 const Swatch = ({ color, name }) => {
 	if (!chroma.valid(color)) return null;
-	const { SPACING } = useBrand();
+	const { SPACING, PACKS } = useBrand();
 	const mq = useMediaQuery();
 	const [r, g, b] = chroma(color).rgb();
 	return (
@@ -19,18 +19,17 @@ const Swatch = ({ color, name }) => {
 			<div css={{ background: color, height: SPACING(12) }} />
 			<div
 				css={mq({
-					padding: SPACING(2),
 					display: 'flex',
 					flexDirection: 'column',
 					background: '#fff',
-					fontSize: '0.875rem',
-					lineHeight: 1.2,
-					marginBottom: ['18px', '24px'],
+					...PACKS.typeScale.bodyFont(9),
+					padding: SPACING(2),
+					marginBottom: [SPACING(3), SPACING(4)],
 				})}
 			>
-				<strong css={{ marginBottom: SPACING(1, true) }}>{name}</strong>
-				<span css={{ marginBottom: SPACING(1, true) }}>{color}</span>
-				<span css={{ marginBottom: SPACING(1, true) }}>{`R:${r} G:${g} B:${b}`}</span>
+				<strong>{name}</strong>
+				<span css={{ marginTop: SPACING(1, true) }}>{color}</span>
+				<span css={{ marginTop: SPACING(1, true) }}>{`R:${r} G:${g} B:${b}`}</span>
 			</div>
 		</Fragment>
 	);
