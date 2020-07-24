@@ -11,6 +11,10 @@ export const Body = (props) => {
 				Body: {
 					styles: (styles) => ({
 						...styles,
+
+						fontSize: '1rem',
+						lineHeight: 2,
+
 						h2: {
 							...PACKS.typeScale.bodyFont[6],
 							fontWeight: TYPE.bodyFont.headingWeight,
@@ -22,9 +26,7 @@ export const Body = (props) => {
 							margin: '0 0 1.125rem',
 						},
 						p: {
-							...PACKS.typeScale.bodyFont[9],
 							margin: '0 0 0.75rem !important',
-							lineHeight: 2,
 						},
 					}),
 				},
