@@ -6,8 +6,8 @@ import { Button } from '@westpac/button';
 import { Heading } from '@westpac/heading';
 import { TextInput } from '@westpac/text-input';
 import HomePageHeader from '../../components/header/home-page-header';
-import { Section } from '../../components/layout/section';
-import { RichText } from '../../components/rich-text/rich-text';
+import { Section } from '../../components/layout';
+import { Body } from '../../components/body';
 import { BlockList, BlockListItem as Item } from '../../components/layout/block-list';
 import { Footer } from '../../components/layout/footer';
 import {
@@ -43,7 +43,7 @@ const Homepage = () => {
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
-								<RichText>
+								<Body>
 									<h2>Accessibility is in everything we do</h2>
 									<p>
 										Accessibility and inclusive design is a strong part of how we design in the
@@ -61,7 +61,7 @@ const Homepage = () => {
 											our commitment to accessibility
 										</a>
 									</p>
-								</RichText>
+								</Body>
 							</Cell>
 						</Grid>
 					</Container>
@@ -71,17 +71,17 @@ const Homepage = () => {
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
-								<RichText>
+								<Body>
 									<ReactLogo width={60} css={{ marginBottom: SPACING(2) }} />
 									<h2>Built on React</h2>
 									<p>
-										We're moving with the times. With React we can showcase so much more and deliver
+										We’re moving with the times. With React we can showcase so much more and deliver
 										higher quality, more accessible code.
 									</p>
-								</RichText>
-								<RichText css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })}>
+								</Body>
+								<Body css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })}>
 									<h3>Who else is using React?</h3>
-								</RichText>
+								</Body>
 
 								<div
 									css={{
@@ -125,10 +125,10 @@ const Homepage = () => {
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
-								<RichText>
+								<Body>
 									<h2>Subscribe to our updates</h2>
 									<p>Get news about components, code chages, new resources, and helpful tips.</p>
-								</RichText>
+								</Body>
 
 								<form
 									action="//westpac.us11.list-manage.com/subscribe/post?u=d3cf7e940bf311ace99e397b7&amp;id=c78955f1b4"
@@ -179,13 +179,13 @@ const Homepage = () => {
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
-								<RichText>
+								<Body>
 									<h2>Downloads & links</h2>
 									<p>
 										Get the Sketch or Axure UI Kit to start designing. Visit GitHub to follow the
 										GEL Design System project.
 									</p>
-								</RichText>
+								</Body>
 							</Cell>
 						</Grid>
 						<DownloadsAndLinks css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })} />
