@@ -3,7 +3,7 @@ import React, { Suspense, Fragment } from 'react';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
-import { Body } from '@westpac/body';
+import { Body } from '../../components/body';
 import { Cell } from '@westpac/grid';
 
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
