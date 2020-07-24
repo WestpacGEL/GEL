@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
-import { Body } from '@westpac/body';
+import { Body } from '../../../components/body';
+import { Section } from '../../../components/layout';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
@@ -109,7 +110,7 @@ const slateRenderer = (item, _editorValue) => {
 						<p key={path}>{serializeChildren(node.nodes)}</p>
 					) : (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<Body css={{ p: { marginTop: 0 } }}>
+							<Body>
 								<p css={textStyle}>{serializeChildren(node.nodes)}</p>
 							</Body>
 						</Cell>
@@ -148,7 +149,7 @@ const slateRenderer = (item, _editorValue) => {
 				case 'ordered-list':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List css={{ ...textStyle, marginBottom: '12px' }} type="ordered">
+							<List type="ordered" css={{ ...textStyle, marginBottom: '0.75rem' }}>
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>
@@ -165,19 +166,12 @@ const slateRenderer = (item, _editorValue) => {
 						</Cell>
 					);
 				case 'section':
-					const mq = useMediaQuery();
 					return (
-						<section
-							key={path}
-							css={mq({
-								paddingTop: ['30px', null, '60px'],
-							})}
-						>
+						<Section>
 							<Container>
 								<Grid rowGap="0 !important">{serializeChildren(node.nodes)}</Grid>
 							</Container>
-							<Separator css={mq({ marginTop: ['30px', null, '60px'] })} />
-						</section>
+						</Section>
 					);
 				case 'dynamic-components': {
 					return (

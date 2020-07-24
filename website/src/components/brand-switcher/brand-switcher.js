@@ -5,7 +5,6 @@ import { forwardRef } from 'react';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 import { ButtonDropdown } from '@westpac/button-dropdown';
-// import { useButtonDropdownContext } from '../../../../components/button-dropdown/src/ButtonDropdown';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -69,16 +68,17 @@ const ButtonIconOverride = ({ state, icon: Icon, left, right, color, ...rest }) 
 };
 
 const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
+	const { COLORS, PACKS } = useBrand();
 	/* const {
 		state: { open },
 	} = useButtonDropdownContext(); */
+	const open = false;
 	return (
 		<Button
 			ref={ref}
 			look="link"
 			size="xlarge"
-			// iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
-			iconAfter={ExpandMoreIcon}
+			iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
 			block
 			justify
 			overrides={{
@@ -96,23 +96,18 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 		</Button>
 	);
 });
-const ButtonDropdownPanelOverride = forwardRef(({ state, ...rest }, ref) => (
-	<div ref={ref} {...rest} />
-));
 
 export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
 	const { isScrolled } = useSidebar();
-	const { SPACING, COLORS, TYPE, PACKS } = useBrand();
+	const { SPACING, COLORS, PACKS, TYPE } = useBrand();
 	const Logo = brandsMap[brand].logo;
 
 	const OptionButton = ({ brand, active, ...rest }) => {
-		const { COLORS, TYPE } = useBrand();
 		return (
 			<button
 				type="button"
-				look="link"
 				onClick={() => setBrand(brand)}
 				css={{
 					appearance: 'none',
@@ -124,7 +119,7 @@ export const BrandSwitcher = () => {
 					boxSizing: 'border-box',
 					backgroundColor: 'transparent',
 					border: 0,
-					fontSize: '0.875rem',
+					fontSize: '0.875rem !important',
 					color: active ? COLORS.primary : COLORS.text,
 					display: 'flex',
 					width: '100%',
@@ -145,15 +140,15 @@ export const BrandSwitcher = () => {
 		);
 	};
 
-	const BrandList = ({ ...props }) => {
+	const BrandList = (props) => {
 		return (
 			//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
-			<ul role="list" css={{ paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+			<ul role="list" css={{ paddingLeft: 0, listStyle: 'none', margin: 0 }} {...props}>
 				{Object.entries(brandsMap).map(([key, val]) => (
 					<li key={key} css={{ borderTop: `1px solid ${COLORS.border}` }}>
 						<OptionButton brand={key} active={brandName === key}>
-							{val.label}
-							<val.smallLogo css={{ width: 50, height: 39 }} />
+							<span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{val.label}</span>
+							<val.smallLogo css={{ width: 50, height: 39, marginLeft: '0.4em' }} />
 						</OptionButton>
 					</li>
 				))}
@@ -213,7 +208,6 @@ export const BrandSwitcher = () => {
 						}),
 					},
 					Panel: {
-						component: ButtonDropdownPanelOverride,
 						styles: (styles) => ({
 							...styles,
 							borderRadius: 0,
