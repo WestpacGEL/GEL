@@ -5,6 +5,7 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import chroma from 'chroma-js';
+import { Body } from '../src/components/body';
 
 import { secondaryColors } from '../src/secondary-colors.js';
 
@@ -17,20 +18,27 @@ const Swatch = ({ color, name }) => {
 	return (
 		<Fragment>
 			<div css={{ background: color, height: SPACING(12) }} />
-			<div
+			<Body
 				css={mq({
 					display: 'flex',
 					flexDirection: 'column',
 					background: '#fff',
-					...PACKS.typeScale.bodyFont[9],
 					padding: SPACING(2),
 					marginBottom: [SPACING(3), SPACING(4)],
 				})}
+				overrides={{
+					Body: {
+						styles: (styles) => ({
+							...styles,
+							...PACKS.typeScale.bodyFont[10],
+						}),
+					},
+				}}
 			>
 				<strong>{name}</strong>
 				<span css={{ marginTop: SPACING(1, true) }}>{color}</span>
 				<span css={{ marginTop: SPACING(1, true) }}>{`R:${r} G:${g} B:${b}`}</span>
-			</div>
+			</Body>
 		</Fragment>
 	);
 };
