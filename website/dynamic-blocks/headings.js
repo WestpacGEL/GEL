@@ -3,7 +3,7 @@
 import { Fragment } from 'react';
 import { Heading as WestpacHeading } from '@westpac/heading';
 import { jsx, useMediaQuery } from '@westpac/core';
-import { Body } from '../../components/body';
+import { Body } from '../src/components/body';
 import { Cell } from '@westpac/grid';
 
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
