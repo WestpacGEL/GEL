@@ -94,10 +94,6 @@ const slateRenderer = (item, _editorValue) => {
 
 		// serialiser for all the blocks
 		({ node, parents, path, serializeChildren }) => {
-			const textStyle = {
-				width: '100%',
-				lineHeight: 2,
-			};
 			if (node.object !== 'block') {
 				return;
 			}
@@ -111,7 +107,7 @@ const slateRenderer = (item, _editorValue) => {
 					) : (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
 							<Body>
-								<p css={textStyle}>{serializeChildren(node.nodes)}</p>
+								<p>{serializeChildren(node.nodes)}</p>
 							</Body>
 						</Cell>
 					);
@@ -120,7 +116,7 @@ const slateRenderer = (item, _editorValue) => {
 				case 'heading':
 					const headersToOverride = [2, 3, 4];
 					const headingSize = headersToOverride.includes(node.data.size)
-						? { fontSize: '30px' }
+						? { fontSize: '1.875rem' }
 						: null;
 					return (
 						<Heading key={path} size={node.data.size} style={headingSize}>
@@ -133,11 +129,10 @@ const slateRenderer = (item, _editorValue) => {
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
 							<List
 								css={{
-									...textStyle,
 									'& > li::before': {
-										marginTop: '6px',
+										marginTop: '0.375rem',
 									},
-									marginBottom: '12px',
+									marginBottom: '0.75rem',
 								}}
 								type="bullet"
 							>
@@ -149,7 +144,7 @@ const slateRenderer = (item, _editorValue) => {
 				case 'ordered-list':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List type="ordered" css={{ ...textStyle, marginBottom: '0.75rem' }}>
+							<List type="ordered" css={{ marginBottom: '0.75rem' }}>
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>
@@ -262,9 +257,6 @@ const textOnlySlateRenderer = (_editorValue) => {
 
 		// serialiser for all the blocks
 		({ node, path, serializeChildren, value }) => {
-			const textStyle = {
-				width: '100%',
-			};
 			if (node.object !== 'block') {
 				return;
 			}
@@ -272,7 +264,7 @@ const textOnlySlateRenderer = (_editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<p key={path} css={{ ...textStyle, margin: '0 !important' }}>
+						<p key={path} css={{ margin: '0 !important' }}>
 							{serializeChildren(node.nodes)}
 						</p>
 					);
