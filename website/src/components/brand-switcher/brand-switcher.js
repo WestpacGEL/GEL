@@ -5,7 +5,6 @@ import { forwardRef } from 'react';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 import { ButtonDropdown } from '@westpac/button-dropdown';
-import { useButtonDropdownContext } from '../../../../components/button-dropdown/src/ButtonDropdown';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -69,9 +68,11 @@ const ButtonIconOverride = ({ state, icon: Icon, left, right, color, ...rest }) 
 };
 
 const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
-	const {
+	const { COLORS, PACKS } = useBrand();
+	/* const {
 		state: { open },
-	} = useButtonDropdownContext();
+	} = useButtonDropdownContext(); */
+	const open = false;
 	return (
 		<Button
 			ref={ref}
@@ -95,9 +96,6 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 		</Button>
 	);
 });
-const ButtonDropdownPanelOverride = forwardRef(({ state, ...rest }, ref) => (
-	<div ref={ref} {...rest} />
-));
 
 export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
@@ -142,10 +140,10 @@ export const BrandSwitcher = () => {
 		);
 	};
 
-	const BrandList = ({ ...props }) => {
+	const BrandList = (props) => {
 		return (
 			//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
-			<ul role="list" css={{ paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+			<ul role="list" css={{ paddingLeft: 0, listStyle: 'none', margin: 0 }} {...props}>
 				{Object.entries(brandsMap).map(([key, val]) => (
 					<li key={key} css={{ borderTop: `1px solid ${COLORS.border}` }}>
 						<OptionButton brand={key} active={brandName === key}>
@@ -210,7 +208,6 @@ export const BrandSwitcher = () => {
 						}),
 					},
 					Panel: {
-						component: ButtonDropdownPanelOverride,
 						styles: (styles) => ({
 							...styles,
 							borderRadius: 0,
