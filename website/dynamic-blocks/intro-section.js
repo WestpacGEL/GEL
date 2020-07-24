@@ -142,7 +142,7 @@ const PackageInfoTable = ({ item }) => {
 				color: '#2585ca',
 				width: '100%',
 				textAlign: 'left',
-				fontSize: '0.875rem',
+				...PACKS.typeScale.brandFont[10],
 			})}
 		>
 			<tbody
