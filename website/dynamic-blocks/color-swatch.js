@@ -91,7 +91,7 @@ export const ColorSwatch = {
 					} else {
 						return (
 							<Cell key={color.value} width={[10, 6, 4, 3]} left={[2, 'auto']}>
-								<Swatch color={color.value} name={color.value} />
+								<Swatch color={color.value} />
 							</Cell>
 						);
 					}
