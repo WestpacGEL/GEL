@@ -1,14 +1,21 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
 
-import { Badge } from '@westpac/badge';
+import { Badge as OGBadge } from '@westpac/badge';
+import { blenderBadge } from '../src/overrides/badge';
 
 export function AllStyles({ brand }) {
+	const Badge = (props) => (
+		<OGBadge
+			overrides={{ Badge: { attributes: blenderBadge.attributes, styles: blenderBadge.styles } }}
+			{...props}
+		/>
+	);
 	return (
 		<GEL brand={brand}>
+			<Badge look="neutral" value="Neutral" />
 			<Badge look="primary" value="Primary" />
 			<Badge look="hero" value="Hero" />
-			<Badge look="neutral" value="Neutral" />
 			<Badge look="faint" value="Faint" />
 			<Badge look="success" value="Success" />
 			<Badge look="info" value="Info" />
@@ -19,7 +26,18 @@ export function AllStyles({ brand }) {
 }
 
 export function Docs({ brand }) {
+	const Badge = (props) => (
+		<OGBadge overrides={{ Badge: { attributes: blenderBadge.attributes } }} {...props} />
+	);
 	return [
+		{
+			heading: 'A default badge',
+			component: () => (
+				<GEL brand={brand}>
+					<Badge value="Neutral" />
+				</GEL>
+			),
+		},
 		{
 			heading: 'A primary badge',
 			component: () => (
@@ -33,14 +51,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={brand}>
 					<Badge look="hero" value="Hero" />
-				</GEL>
-			),
-		},
-		{
-			heading: 'A neutral badge',
-			component: () => (
-				<GEL brand={brand}>
-					<Badge look="neutral" value="Neutral" />
 				</GEL>
 			),
 		},
