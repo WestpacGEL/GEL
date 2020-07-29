@@ -1,7 +1,17 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, asArray, useMediaQuery, classNames } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	asArray,
+	useMediaQuery,
+	classNames,
+	getModifier,
+	styleReconciler,
+} from '@westpac/core';
 import { forwardRef } from 'react';
+
+import { defaultProps } from '../Button';
 
 // ==============================
 // Component
@@ -12,35 +22,20 @@ const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={r
 // ==============================
 // Styles
 // ==============================
-const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
-	const defaultProps = {
-		look: 'hero',
-		size: 'medium',
-		soft: false,
-		block: false,
-		justify: false,
-		disabled: false,
-	};
 
+const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const props = { look, size, soft, block, justify, disabled };
 	const baseStyles = buttonStyles(_, defaultProps);
 
-	// find the prop that is different from default
-	let modifiers = Object.keys(defaultProps).filter((m) => defaultProps[m] !== props[m]);
-
+	let modifiers = getModifier(defaultProps, props);
 	if (!modifiers.length) return baseStyles;
 
-	const modifiedStyles = buttonStyles(_, props);
+	const modifierStyles = buttonStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
 
-	// find all different
-	// we need to go deeper...for nested styles?
-	const diff = Object.keys(modifiedStyles).filter((m) => baseStyles[m] !== modifiedStyles[m]);
+	let label = baseStyles.label;
+	let modifier;
 
-	let modifier,
-		label = baseStyles.label;
-
-	// is there a better way to do this?
-	// have to do this when there a multiple props used at the same time i.e. look + soft
 	if (modifiers.length > 1 && modifiers.includes('soft')) {
 		modifier = 'soft';
 	} else {
@@ -49,28 +44,23 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 	switch (modifier) {
 		case 'soft':
-			label = `button-${look}-soft`; // this becomes awkward with hero-soft since there is no btn-hero,
+			label = look === defaultProps.look ? `${label}-soft` : `${label}-${look}-soft`;
 			break;
 		case 'look':
-			label = `button-${look}`;
+			label = `${label}-${look}`;
 			break;
 		case 'size':
-			label = `button-${size}`;
+			label = `${label}-${size}`;
 			break;
 		default:
 			label = `${label}-${modifier}`;
 			break;
 	}
 
-	const diffStyles = {
-		label,
-		...Object.assign({}, ...diff.map((d) => ({ [d]: modifiedStyles[d] }))),
-	};
-
-	return diffStyles;
+	return { label, ...reconciledStyles };
 };
 
-const buttonStyles = (_, { look, size, soft, block, justify, disabled, plainCSSProp }) => {
+const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
 
@@ -170,6 +160,10 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled, plainCSSP
 				backgroundColor: 'transparent',
 				borderColor: 'transparent',
 				textDecoration: 'underline', //a11y
+
+				':hover, :active, &.active': {
+					backgroundColor: 'transparent',
+				},
 			},
 		},
 		[key]: {
@@ -261,9 +255,9 @@ const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveTex
 
 const blenderAttributes = (_, { look, soft, size, block, justify }) => ({
 	className: classNames({
-		[`GEL-button-${look}`]: look && look !== 'hero' && !soft,
-		[`GEL-button-${look}-soft`]: soft,
-		[`GEL-button-${size}`]: size && size !== 'medium',
+		[`GEL-button-${look}`]: look && look !== defaultProps.look && !soft,
+		[`GEL-button${look === defaultProps.look ? '' : `-${look}`}-soft`]: soft,
+		[`GEL-button-${size}`]: size && size !== defaultProps.size,
 		[`GEL-button-block`]: block,
 		[`GEL-button-justify`]: justify,
 	}),

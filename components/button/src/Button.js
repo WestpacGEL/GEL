@@ -230,7 +230,7 @@ Button.propTypes = {
 	}),
 };
 
-Button.defaultProps = {
+export const defaultProps = {
 	look: 'hero',
 	size: 'medium',
 	tag: 'button',
@@ -239,3 +239,5 @@ Button.defaultProps = {
 	justify: false,
 	disabled: false,
 };
+
+Button.defaultProps = defaultProps;

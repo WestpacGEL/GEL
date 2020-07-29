@@ -38,15 +38,15 @@ function recurseStyles(base, modified, diff = []) {
 /**
  * Generate prop styles
  *
- * @param {object} baseStyles 		- default component styles
- * @param {object} modifiedStyles 	- passed prop styles
+ * @param {object} base 		- default component styles
+ * @param {object} modified 	- passed prop styles
  *
  * @return {object}					- style object
  */
-export function styleReconciler(baseStyles, modifiedStyles) {
-	const diff = recurseStyles(baseStyles, modifiedStyles);
+export function styleReconciler(base, modified) {
+	const diff = recurseStyles(base, modified);
 	const styles = diff.reduce((acc, curr) => {
-		set(acc, curr, get(modifiedStyles, curr));
+		set(acc, curr, get(modified, curr));
 		return acc;
 	}, {});
 
@@ -62,5 +62,5 @@ export function styleReconciler(baseStyles, modifiedStyles) {
  * @return {array}					- unique passed props
  */
 export function getModifier(defaultProps, props) {
-	return Object.keys(defaultProps).filter((m) => defaultProps[m] !== props[m]);
+	return Object.keys(props).filter((m) => props[m] !== defaultProps[m]);
 }
