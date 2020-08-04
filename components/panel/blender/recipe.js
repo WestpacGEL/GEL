@@ -7,35 +7,30 @@ import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table'
 import { blenderPanel } from '../src/overrides/panel';
 import { blenderHeader } from '../src/overrides/header';
 
-// Using overrides to apply blender styles and attributes
-const Panel = (props) => (
-	<OGPanel
-		overrides={{
-			Panel: {
-				attributes: blenderPanel.attributes,
-			},
-			Header: {
-				styles: () => blenderHeader.styles(),
-			},
-		}}
-		{...props}
-	/>
-);
-
 const looks = ['hero', 'faint'];
 
 export function AllStyles({ brand }) {
+	const Panel = (props) => (
+		<OGPanel
+			overrides={{
+				Panel: {
+					styles: blenderPanel.styles,
+					attributes: blenderPanel.attributes,
+				},
+				Header: {
+					styles: blenderHeader.styles,
+				},
+			}}
+			{...props}
+		/>
+	);
 	return (
 		<GEL brand={brand}>
-			<Panel look={null} heading="Heading text">
+			<Panel look="hero" heading="Heading text">
 				<Body>Body text</Body>
 				<Footer>Footer text</Footer>
 			</Panel>
-			<Panel look="hero" heading="Heading text" plainCSSProp="look">
-				<Body>Body text</Body>
-				<Footer>Footer text</Footer>
-			</Panel>
-			<Panel look="faint" heading="Heading text" plainCSSProp="look">
+			<Panel look="faint" heading="Heading text">
 				<Body>Body text</Body>
 				<Footer>Footer text</Footer>
 			</Panel>
@@ -44,6 +39,16 @@ export function AllStyles({ brand }) {
 }
 
 export function Docs({ brand }) {
+	const Panel = (props) => (
+		<OGPanel
+			overrides={{
+				Panel: {
+					attributes: blenderPanel.attributes,
+				},
+			}}
+			{...props}
+		/>
+	);
 	return [
 		...looks.map((look) => ({
 			heading: `A ${look} panel`,

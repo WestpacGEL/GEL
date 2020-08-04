@@ -14,8 +14,6 @@ const PanelHeading = ({ state: { headingTag }, ...rest }) => (
 // ==============================
 // Styles
 // ==============================
-// Base
-// ==============================
 
 const headingStyles = () => {
 	const { TYPE } = useBrand();

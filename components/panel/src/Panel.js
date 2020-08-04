@@ -34,7 +34,6 @@ export const Panel = ({
 	heading,
 	headingTag,
 	children,
-	plainCSSProp,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -53,7 +52,6 @@ export const Panel = ({
 		look,
 		heading,
 		headingTag,
-		plainCSSProp,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -86,7 +84,7 @@ Panel.propTypes = {
 	/**
 	 * Panel look
 	 */
-	look: PropTypes.oneOf(['hero', 'faint', null]),
+	look: PropTypes.oneOf(['hero', 'faint']).isRequired,
 
 	/**
 	 * Panel heading text
@@ -97,11 +95,6 @@ Panel.propTypes = {
 	 * Panel heading tag
 	 */
 	headingTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
-
-	/**
-	 * Generate traditional CSS class for a prop, blender/legacy use
-	 */
-	plainCSSProp: PropTypes.string,
 
 	/**
 	 * The override API
@@ -125,7 +118,9 @@ Panel.propTypes = {
 	}),
 };
 
-Panel.defaultProps = {
+export const defaultProps = {
 	look: 'hero',
 	headingTag: 'h1',
 };
+
+Panel.defaultProps = defaultProps;

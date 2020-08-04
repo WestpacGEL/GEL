@@ -1,9 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, classNames, getModifier, styleReconciler } from '@westpac/core';
 
 // import { blenderReconciler } from './_utils';
-import { headerStyleMap } from './header';
+import { defaultProps } from '../Panel';
+import { nestedStyles } from './header';
 
 // ==============================
 // Component
@@ -15,27 +16,32 @@ const Panel = ({ state, ...rest }) => <div {...rest} />;
 // Styles
 // ==============================
 
-// const propStyleMapShape = {
-// 	prop: [{label, propValue: 'styles', propValue2: 'styles'} ],
-//  prop2: [{label, propValue: 'styles', propValue2: 'styles'} ],
-// }
+const blenderStyles = (_, { look }) => {
+	const props = { look };
+	const baseStyles = panelStyles(_, defaultProps);
 
-const generateNestedCSS = (propName, propValue, nestedStyles = []) => {
-	let styles = {};
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
 
-	const propStyles = nestedStyles[propName];
+	const modifierStyles = panelStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
 
-	// I can probably make this better...
-	if (propStyles) {
-		propStyles.forEach((p) => {
-			styles[`.GEL-${p.label}`] = p[propValue];
-		});
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'look':
+			label = `${label}-${look}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
 	}
 
-	return styles;
+	return { label, ...reconciledStyles, ...nestedStyles(props) };
 };
 
-const panelStyles = (_, { look, plainCSSProp }) => {
+const panelStyles = (_, { look }) => {
 	const { COLORS } = useBrand();
 
 	const styleMap = {
@@ -47,28 +53,11 @@ const panelStyles = (_, { look, plainCSSProp }) => {
 		},
 	};
 
-	// Blender specific stuff
-	let label = 'panel';
-
-	const propStyleMap = {
-		look: [headerStyleMap()],
-	};
-
-	switch (plainCSSProp) {
-		case 'look':
-			label = `${label}-${look}`;
-			break;
-		default:
-			break;
-	}
-
-	const nestedCSS = generateNestedCSS(plainCSSProp, look, propStyleMap);
-
 	return {
-		label,
+		label: 'panel',
 		marginBottom: '1.3125rem',
 		backgroundColor: '#fff',
-		border: `1px solid ${look ? styleMap[look].borderColor : ''}`, // like this to generate a base style...
+		border: `1px solid ${styleMap[look].borderColor}`,
 		borderRadius: '0.1875rem',
 
 		table: {
@@ -81,9 +70,6 @@ const panelStyles = (_, { look, plainCSSProp }) => {
 		'table caption': {
 			padding: ['0.75rem 0.75rem 0 0.75rem', null, '1.5rem 1.5rem 0 1.5rem'],
 		},
-
-		// these styles are only applied when generating styles for the blender
-		...nestedCSS,
 	};
 };
 
@@ -93,8 +79,9 @@ const panelStyles = (_, { look, plainCSSProp }) => {
 
 const panelAttributes = () => null;
 
-const blenderAttributes = (_, { look }) => ({ className: `GEL-panel-${look}` });
-
+const blenderAttributes = (_, { look }) => ({
+	className: classNames({ [`GEL-panel-${look}`]: look !== defaultProps.look }),
+});
 // ==============================
 // Exports
 // ==============================
@@ -107,6 +94,6 @@ export const defaultPanel = {
 
 export const blenderPanel = {
 	component: Panel,
-	styles: panelStyles,
+	styles: blenderStyles,
 	attributes: blenderAttributes,
 };
