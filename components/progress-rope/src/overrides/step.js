@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
-import classNames from 'classnames';
-
-import { blenderReconciler } from './_utils';
+import { jsx, useBrand, classNames, getModifier } from '@westpac/core';
+import { stepButtonStyles } from './stepButton';
+import { defaultProps } from '../blender/Step';
+import { getStyles } from './_utils';
 
 // ==============================
 // Component
@@ -14,80 +14,17 @@ const Step = ({ state, ...rest }) => <li {...rest} />;
 // ==============================
 // Styles
 // ==============================
-// Blender specific styles
-// - visited, end and active styles are only for the blender
-// ==============================
 
-const endStyles = () => {
-	return {
-		label: 'GEL-progressRope-step-end',
-		marginTop: '0.125rem',
-	};
-};
+const STEP_LABEL = 'progressRope-step';
 
-const activeStyles = () => {
-	const { COLORS, TYPE } = useBrand();
-	return {
-		label: 'GEL-progressRope-step-active',
-		'.GEL-progressRope-step-btn': {
-			color: COLORS.primary,
-			...TYPE.bodyFont[700],
-
-			'&::after': {
-				borderColor: COLORS.primary,
-				borderWidth: '3px',
-			},
-		},
-	};
-};
-
-const visitedStyles = (blender = false) => {
-	const { COLORS } = useBrand();
-	const styles = {
-		default: {
-			label: 'GEL-progressRope-step-visited',
-			// the line
-			'::before': {
-				content: '""',
-				display: 'block',
-				position: 'absolute',
-				zIndex: 1,
-				top: 0,
-				bottom: 0,
-				left: '2.25rem',
-				borderLeft: `2px solid ${COLORS.primary}`,
-				transform: 'translateY(0.625rem)',
-			},
-		},
-		blender: {
-			'.GEL-progressRope-step-btn': {
-				color: COLORS.neutral,
-
-				'&::after': {
-					borderColor: COLORS.primary,
-					borderWidth: '0.4375rem',
-				},
-			},
-		},
-	};
-
-	if (blender) return { ...styles.default, ...styles.blender };
-
-	return { ...styles.default };
-};
-
-const baseStyles = () => ({
-	label: 'progressRope-step',
-	position: 'relative',
-	backgroundColor: '#fff',
-});
-
-const stepStyles = (_, { end, visited, grouped, furthest }) => {
+export const stepStyles = (_, { end, visited, grouped, furthest }) => {
 	const { COLORS } = useBrand();
 
 	return {
-		...baseStyles(),
-		// there is logic that is only tied to the react way which makes it difficult to separate out so have left as is
+		label: STEP_LABEL,
+		position: 'relative',
+		backgroundColor: '#fff',
+
 		marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
 
 		':last-of-type': {
@@ -109,8 +46,48 @@ const stepStyles = (_, { end, visited, grouped, furthest }) => {
 	};
 };
 
-const blenderStyles = () => {
-	return blenderReconciler(baseStyles(), [visitedStyles(true), activeStyles(), endStyles()]);
+const blenderStyles = (_, { active, visited, end }) => {
+	const { COLORS } = useBrand();
+	const props = { active, visited, end };
+	const baseStyles = {
+		label: STEP_LABEL,
+		position: 'relative',
+		backgroundColor: '#fff',
+	};
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifier = modifiers[0];
+
+	const activeStyles = getStyles(stepButtonStyles, { active: true, visited: true, furthest: true });
+	const visitedStyles = getStyles(stepButtonStyles, { visited: true });
+	const endStyles = getStyles(stepButtonStyles, { end: true });
+
+	const styleMap = {
+		active: {
+			[`.GEL-${activeStyles.label}`]: activeStyles.styles,
+		},
+		visited: {
+			// the visited line, copied from above
+			'::before': {
+				content: '""',
+				display: 'block',
+				position: 'absolute',
+				zIndex: 1,
+				top: 0,
+				bottom: 0,
+				left: '2.25rem',
+				borderLeft: `2px solid ${COLORS.primary}`,
+				transform: 'translateY(0.625rem)',
+			},
+			[`.GEL-${visitedStyles.label}`]: visitedStyles.styles,
+		},
+		end: {
+			...endStyles.styles,
+		},
+	};
+	return { label: `${baseStyles.label}-${modifier}`, ...styleMap[modifier] };
 };
 
 // ==============================
@@ -121,9 +98,7 @@ const stepAttributes = () => null;
 
 const blenderAttributes = (_, { active, visited, end }) => ({
 	className: classNames({
-		'GEL-progressRope-step-active': active,
-		'GEL-progressRope-step-visited': visited,
-		'GEL-progressRope-step-end': end,
+		'GEL-progressRope-step': active || visited || end,
 	}),
 });
 

@@ -2,9 +2,6 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
-import merge from 'lodash.merge';
-
-import { blenderReconciler } from './_utils';
 
 // ==============================
 // Component
@@ -30,8 +27,9 @@ const GroupButton = ({ state: { complete, active }, children, ...rest }) => {
 // Styles
 // ==============================
 
-const baseStyles = () => {
+export const groupButtonStyles = (_, { complete, active }) => {
 	const { COLORS, PACKS } = useBrand();
+
 	return {
 		label: 'progressRope-group-btn',
 		position: 'relative',
@@ -45,35 +43,11 @@ const baseStyles = () => {
 		background: 'none',
 		touchAction: 'manipulation',
 		cursor: 'pointer',
-		color: COLORS.tints.muted70,
+		color: active ? COLORS.neutral : COLORS.tints.muted70,
 
 		':focus': {
 			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
 		},
-
-		// circle
-		'::after': {
-			content: '""',
-			zIndex: 1,
-			display: 'block',
-			borderRadius: '50%',
-			position: 'absolute',
-			top: '0.625rem',
-			width: '0.875rem',
-			height: '0.875rem',
-			left: '1.875rem',
-			border: `solid ${COLORS.borderDark}`,
-			borderWidth: '2px', //a11y: filling with border for HCM support
-			backgroundColor: '#fff',
-			boxSizing: 'border-box',
-		},
-	};
-};
-
-const groupButtonStyles = (_, { complete, active }) => {
-	const { COLORS } = useBrand();
-	return merge({}, baseStyles(), {
-		color: active ? COLORS.neutral : COLORS.tints.muted70,
 
 		// visited line
 		'::before': {
@@ -91,13 +65,24 @@ const groupButtonStyles = (_, { complete, active }) => {
 
 		// circle
 		'::after': {
+			content: '""',
+			zIndex: 1,
+			display: 'block',
+			borderRadius: '50%',
+			position: 'absolute',
+			top: '0.625rem',
+			width: '0.875rem',
+			height: '0.875rem',
+			left: '1.875rem',
 			border: `solid ${active ? COLORS.primary : COLORS.borderDark}`,
 			borderWidth: complete ? '0.4375rem' : active ? '3px' : '2px', //a11y: filling with border for HCM support
+			backgroundColor: '#fff',
+			boxSizing: 'border-box',
 		},
-	});
+	};
 };
 
-const blenderStyles = () => blenderReconciler(baseStyles());
+const blenderStyles = () => groupButtonStyles(null, {});
 
 // ==============================
 // Attributes

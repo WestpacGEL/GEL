@@ -1,15 +1,9 @@
-import { useMediaQuery } from '@westpac/core';
+import { styleReconciler } from '@westpac/core';
 
-export const blenderReconciler = (base, modifiers = []) => {
-	const mq = useMediaQuery();
-	return mq(
-		Object.assign(
-			{},
-			base,
-			...modifiers.map((m) => {
-				const { label: modifierClass, ...modifierStyles } = m;
-				return { [`&.${modifierClass}`]: modifierStyles };
-			})
-		)
-	)[0];
+export const getStyles = (styleFunction, state) => {
+	const baseStyles = styleFunction(null, {});
+	const modifiedStyles = styleFunction(null, state);
+	const reconciledStyles = styleReconciler(baseStyles, modifiedStyles);
+
+	return { label: baseStyles.label, styles: reconciledStyles };
 };

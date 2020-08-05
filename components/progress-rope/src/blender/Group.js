@@ -39,7 +39,7 @@ export const Group = ({ id, text, active, visited, open, children, ...rest }) =>
 	};
 
 	return (
-		<Group {...rest} state={state} {...groupAttributes(null, state)} css={groupStyles()}>
+		<Group {...rest} state={state} {...groupAttributes(null, state)} css={groupStyles(null, state)}>
 			<GroupButtonWrapper
 				state={state}
 				{...groupButtonWrapperAttributes(null, state)}
@@ -96,8 +96,10 @@ Group.propTypes = {
 	children: PropTypes.node,
 };
 
-Group.defaultProps = {
+export const defaultProps = {
 	active: false,
 	visited: false,
 	open: false,
 };
+
+Group.defaultProps = defaultProps;

@@ -24,11 +24,11 @@ export const Step = ({ active, visited, end, children, ...rest }) => {
 	};
 
 	return (
-		<Step {...rest} state={state} {...stepAttributes(null, state)} css={stepStyles()}>
+		<Step {...rest} state={state} {...stepAttributes(null, state)} css={stepStyles(null, state)}>
 			<StepButton
 				state={state}
 				{...stepButtonAttributes(null, state)}
-				css={stepButtonStyles(state)}
+				css={stepButtonStyles(null, state)}
 			>
 				{children}
 			</StepButton>
@@ -62,8 +62,10 @@ Step.propTypes = {
 	children: PropTypes.node,
 };
 
-Step.defaultProps = {
+export const defaultProps = {
 	active: false,
 	visited: false,
 	end: false,
 };
+
+Step.defaultProps = defaultProps;

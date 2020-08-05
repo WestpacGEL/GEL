@@ -1,8 +1,13 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
-import classNames from 'classnames';
-import { blenderReconciler } from './_utils';
+import { jsx, classNames, getModifier, styleReconciler } from '@westpac/core';
+import { defaultProps } from '../blender/Group';
+import { getStyles } from './_utils';
+
+// sub-component style functions
+import { groupButtonStyles } from './groupButton';
+import { stepButtonStyles } from './stepButton';
+import { stepStyles } from './step';
 
 // ==============================
 // Component
@@ -14,71 +19,55 @@ const Group = ({ state, ...rest }) => <li {...rest} />;
 // Styles
 // ==============================
 
-const groupStyles = () => ({ label: 'progressRope-group' });
+const GROUP_LABEL = 'progressRope-group';
 
-const blenderStyles = () => {
-	const { COLORS, TYPE, PACKS } = useBrand();
+const groupStyles = () => ({ label: GROUP_LABEL });
 
-	return blenderReconciler({
-		label: 'progressRope-group',
-		'&.GEL-progressRope-group-active, &.GEL-progressRope-group-visited': {
-			'.GEL-progressRope-group-btn': {
-				color: COLORS.neutral,
+// ==============================
+// Blender
+// ==============================
 
-				// visited line
-				'::before': {
-					content: '""',
-					display: 'block',
-					position: 'absolute',
-					zIndex: 1,
-					borderLeft: `2px solid ${COLORS.primary}`,
-					top: 0,
-					left: '2.25rem',
-					bottom: 0,
-					height: 'auto',
-					transform: 'translateY(0.875rem)',
-				},
-			},
-		},
+const blenderStyles = (_, { active, visited }) => {
+	const props = { active, visited };
+	const base = baseStyles();
 
-		'&.GEL-progressRope-group-active .GEL-progressRope-group-btn::after': {
-			borderColor: COLORS.primary,
-			borderWidth: '3px',
-		},
+	const modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return base;
 
-		'&.GEL-progressRope-group-visited .GEL-progressRope-group-btn::after': {
-			borderColor: COLORS.primary,
-			borderWidth: '0.4375rem',
-		},
+	const modifier = modifiers[0];
+	const activeStyle = activeStyles();
+	const visitedStyle = visitedStyles();
 
-		// need to figure out casing
-		'.GEL-progressRope-step': {
-			'::before': {
-				transform: 'translateY(0.875rem)',
-			},
-
-			':last-of-type': {
-				paddingBottom: '1.875rem',
-			},
-
-			'.GEL-progressRope-step-btn': {
-				...TYPE.bodyFont[400], // need to double check this
-				...PACKS.typeScale.bodyFont[10],
-
-				'::after': {
-					top: '0.875rem',
-					width: '0.625rem',
-					height: '0.625rem',
-					left: '2rem',
-				},
-			},
-
-			'&.GEL-progressRope-step-visited .GEL-progressRope-step-btn::after': {
-				borderWidth: '0.3125rem',
-			},
-		},
-	});
+	return {
+		label: `${base.label}-${modifier}`,
+		...(active && { [`.GEL-${activeStyle.label}`]: activeStyle.styles }),
+		...(visited && { [`.GEL-${visitedStyle.label}`]: visitedStyle.styles }),
+	};
 };
+
+const baseStyles = () => {
+	const step = getStyles(stepStyles, { grouped: true });
+	const stepBtn = getStyles(stepButtonStyles, { grouped: true });
+	const stepBtnVisited = getStyles(stepButtonStyles, { grouped: true, visited: true });
+
+	const stepBtnReconciled = styleReconciler(stepBtn.styles, stepBtnVisited.styles);
+
+	return {
+		label: GROUP_LABEL,
+		[`.GEL-${step.label}`]: {
+			...step.styles,
+			[`.GEL-${stepBtn.label}`]: stepBtn.styles,
+		},
+		[`.GEL-${step.label}-visited`]: {
+			[`.GEL-${stepBtn.label}`]: {
+				...stepBtnReconciled,
+			},
+		},
+	};
+};
+
+const activeStyles = () => getStyles(groupButtonStyles, { active: true });
+const visitedStyles = () => getStyles(groupButtonStyles, { complete: true, active: true });
 
 // ==============================
 // Attributes
@@ -88,8 +77,7 @@ const groupAttributes = () => null;
 
 const blenderAttributes = (_, { active, visited }) => ({
 	className: classNames({
-		'GEL-progressRope-group-active': active,
-		'GEL-progressRope-group-visited': visited,
+		'GEL-progressRope-group': !active || !visited,
 	}),
 	'data-js': 'progressRope-group__version__',
 });

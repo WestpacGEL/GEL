@@ -321,12 +321,17 @@ ProgressRope.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
+		List: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 		Step: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		StepText: PropTypes.shape({
+		StepButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

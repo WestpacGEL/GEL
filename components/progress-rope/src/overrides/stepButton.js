@@ -2,8 +2,6 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
-import merge from 'lodash.merge';
-import { blenderReconciler } from './_utils';
 
 // ==============================
 // Component
@@ -17,22 +15,7 @@ const StepButton = ({ state: { visited, active }, children, ...rest }) => {
 		stateText = ', complete';
 	}
 
-	return (
-		<button type="button" disabled={!visited} {...rest}>
-			{children}
-			<VisuallyHidden>{stateText}</VisuallyHidden>
-		</button>
-	);
-};
-
-const BlenderStepButton = ({ state: { visited, active }, children, ...rest }) => {
-	let stateText = ', not started';
-	if (active) {
-		stateText = ', in progress';
-	} else if (visited) {
-		stateText = ', complete';
-	}
-
+	// disabled attribute is spread to work with the blender
 	return (
 		<button type="button" {...(!(active || visited) && { disabled: true })} {...rest}>
 			{children}
@@ -45,26 +28,27 @@ const BlenderStepButton = ({ state: { visited, active }, children, ...rest }) =>
 // Styles
 // ==============================
 
-const baseStyles = () => {
-	const { COLORS, PACKS } = useBrand();
+export const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
+	const { COLORS, PACKS, TYPE } = useBrand();
 
 	return {
 		label: 'progressRope-step-btn',
 		position: 'relative',
-		fontSize: '0.875rem', //really need to fix specificity on this, being overriden by core
+		fontSize: '0.875rem',
 		lineHeight: 1.428571429, //`<body>` line-height
 		textAlign: 'left',
-		padding: '0.5rem 1.875rem 0.875rem 3.5rem',
+		padding: `0.5rem 1.875rem 0.875rem ${grouped && !end ? '4.25rem' : '3.5rem'}`,
 		border: 0,
 		background: 'none',
 		display: 'block',
 		width: '100%',
+		color: active ? COLORS.primary : visited ? COLORS.neutral : COLORS.tints.muted90,
+		...(active ? TYPE.bodyFont[700] : null),
 		appearance: 'none',
 		cursor: 'pointer',
 		touchAction: 'manipulation',
 		userSelect: 'none',
 		boxSizing: 'border-box',
-		color: COLORS.tints.muted90,
 
 		':disabled': {
 			color: COLORS.tints.muted90,
@@ -76,35 +60,12 @@ const baseStyles = () => {
 		},
 
 		// circle
-		'::after': {
+		':after': {
 			content: '""',
 			zIndex: 2,
 			display: 'block',
 			borderRadius: '50%',
 			position: 'absolute',
-			top: '0.625rem',
-			width: '0.875rem',
-			height: '0.875rem',
-			left: '1.875rem',
-			border: `solid ${COLORS.borderDark}`,
-			borderWidth: '2px',
-			backgroundColor: '#fff',
-			boxSizing: 'border-box',
-		},
-	};
-};
-
-const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
-	const { COLORS, TYPE } = useBrand();
-
-	return merge({}, baseStyles(), {
-		// merge here because of the double '::after'
-		padding: `0.5rem 1.875rem 0.875rem ${grouped && !end ? '4.25rem' : '3.5rem'}`,
-		color: active ? COLORS.primary : visited ? COLORS.neutral : COLORS.tints.muted90,
-		...(active ? TYPE.bodyFont[700] : null),
-
-		// circle
-		'::after': {
 			top: grouped && !end ? '0.875rem' : '0.625rem',
 			width: grouped && !end ? '0.625rem' : '0.875rem',
 			height: grouped && !end ? '0.625rem' : '0.875rem',
@@ -118,11 +79,13 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 					: visited
 					? '3px'
 					: '2px', //a11y: filling with border for HCM support
+			backgroundColor: '#fff',
+			boxSizing: 'border-box',
 		},
-	});
+	};
 };
 
-const blenderStyles = () => blenderReconciler(baseStyles());
+const blenderStyles = () => stepButtonStyles(null, {});
 
 // ==============================
 // Attributes
@@ -143,7 +106,7 @@ export const defaultStepButton = {
 };
 
 export const blenderStepButton = {
-	component: BlenderStepButton,
+	component: StepButton,
 	styles: blenderStyles,
 	attributes: stepButtonAttributes,
 };
