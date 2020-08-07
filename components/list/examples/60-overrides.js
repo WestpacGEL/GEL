@@ -4,8 +4,6 @@ import { GEL, jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
 import { HouseIcon } from '@westpac/icon';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/list'] = {
@@ -28,8 +26,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<List type="icon" icon={HouseIcon}>
 				<Item>List item</Item>

@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 // Body tag as a component example
 const BodyTag = ({ children, ...props }) => {
 	let num = 0;
@@ -25,8 +23,6 @@ const BodyTag = ({ children, ...props }) => {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<Body>
 				<h2>Body</h2>
 				<p>Body with default tag</p>

@@ -4,8 +4,6 @@ import { GEL, jsx, useBrand } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { SkipLink, VisuallyHidden } from '@westpac/a11y';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const SkipLinkWrapper = ({ children, ...rest }) => (
 	<div {...rest} tabIndex={1}>
 		<HouseIcon color="#fff" css={{ marginRight: '1rem' }} />
@@ -40,8 +38,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>Screen reader only text </h2>
 			<p>
 				Note: The examples below the following headings are visibility hidden. Best you inspect what
