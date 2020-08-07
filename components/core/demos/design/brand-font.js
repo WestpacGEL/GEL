@@ -16,9 +16,9 @@ export default ({ context, showCode, showDemo }) => {
 	const brandFontMap = {
 		WBC: 'Chronicle Semibold',
 		STG: 'Dragon Bold',
-		BOM: 'Brown Bold',
-		BSA: 'Aller Bold',
-		WBG: 'Times New Roman',
+		BOM: 'Brown',
+		BSA: 'Aller',
+		WBG: 'Montserrat',
 	};
 
 	return (
