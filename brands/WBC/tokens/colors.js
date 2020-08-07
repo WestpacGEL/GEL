@@ -16,7 +16,7 @@ const COLORS = {
 	info: '#0074C4',
 	warning: '#C53B00',
 	danger: '#C40000',
-	system: '#ff0',
+	system: '#FF0',
 };
 
 module.exports = {

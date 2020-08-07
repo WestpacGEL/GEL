@@ -2,4 +2,4 @@
 '@westpac/label': major
 ---
 
-Added Blender support
+Add Blender support
