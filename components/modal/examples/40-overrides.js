@@ -5,8 +5,6 @@ import { useState } from 'react';
 import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 	const [open2, setOpen2] = useState(false);
@@ -40,8 +38,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<Button onClick={() => setOpen(true)}>Open</Button>
 			<Modal heading="Modal heading" open={open} onClose={() => setOpen(false)}>

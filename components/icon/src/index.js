@@ -21,6 +21,8 @@ export { CalendarIcon } from './icons/CalendarIcon';
 export { CameraIcon } from './icons/CameraIcon';
 export { CarIcon } from './icons/CarIcon';
 export { ChatIcon } from './icons/ChatIcon';
+export { ClearCircleIcon } from './icons/ClearCircleIcon';
+export { ClearIcon } from './icons/ClearIcon';
 export { ClockIcon } from './icons/ClockIcon';
 export { CloseIcon } from './icons/CloseIcon';
 export { CompassIcon } from './icons/CompassIcon';

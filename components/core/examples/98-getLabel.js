@@ -4,12 +4,9 @@ import { GEL, jsx, getLabel } from '@westpac/core';
 import { createElement } from 'react';
 import { Code } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia ignore />
 			<h2>Labels with strings</h2>
 			<Code>{`getLabel('prefix', { look: 'primary', label: 'new label' })`}</Code>
 			=>

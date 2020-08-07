@@ -4,13 +4,9 @@ import { GEL, jsx } from '@westpac/core';
 import { InputGroup, Before, After } from '@westpac/input-group';
 import { AddIcon, RemoveIcon } from '@westpac/icon';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Text add-on</h2>
 
 			<h3>Before</h3>

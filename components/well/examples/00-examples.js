@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Well } from '@westpac/well';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 // Well tag as a component example
 const WellTag = ({ children, ...rest }) => (
 	<aside {...rest}>
@@ -15,8 +13,6 @@ const WellTag = ({ children, ...rest }) => (
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Default</h2>
 
 			<h3>Default</h3>

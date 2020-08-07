@@ -2,4 +2,4 @@
 '@westpac/heading': major
 ---
 
-Added Blender support
+Add Blender support

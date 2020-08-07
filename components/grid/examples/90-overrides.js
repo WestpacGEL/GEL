@@ -4,8 +4,6 @@ import { GEL, jsx, useBrand } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { Box } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const { COLORS } = useBrand();
 	const overridesWithTokens = { ...brand };
@@ -32,8 +30,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<Container css={{ backgroundColor: COLORS.primary }}>
 				<Grid columns={'10rem 1fr 10rem'} rows={'minmax(4.5rem,auto) 1fr minmax(4.5rem,auto)'}>

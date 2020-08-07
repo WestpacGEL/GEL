@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Label } from '@westpac/label';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const LabelWithEdit = ({ state, look, value, children, ...rest }) => {
 	return (
 		<span {...rest}>
@@ -54,7 +52,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
 			<h2>With overrides applied</h2>
 			<h3>Default</h3>
 			<p>

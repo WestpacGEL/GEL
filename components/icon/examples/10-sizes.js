@@ -18,8 +18,6 @@ import {
 } from '@westpac/icon';
 import { Row } from './_util';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const sizes = ['xsmall', 'small', 'medium', 'large', 'xlarge'];
 const icons = [
 	AddIcon,
@@ -66,8 +64,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<Row>
 				{sizes.map((s, i) => (
 					<Button key={s} onClick={() => setSize(i)} isActive={i === activeSize}>

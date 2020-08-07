@@ -4,8 +4,6 @@ import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Pagination, Page } from '@westpac/pagination';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const content = ['Page One', 'Page Two', 'Page Three'];
 	const [current, setCurrent] = useState(0);
@@ -13,8 +11,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Declarative</h2>
 			<Pagination>
 				<Page text="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />

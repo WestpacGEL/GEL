@@ -6,8 +6,6 @@ import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
 import { useState } from 'react';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const [value, setValue] = useState('default text');
 
@@ -17,8 +15,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Default</h2>
 			<TextInput />
 

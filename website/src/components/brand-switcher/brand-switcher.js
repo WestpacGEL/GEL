@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 import { ButtonDropdown } from '@westpac/button-dropdown';
@@ -100,15 +100,21 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
+	const [open, setOpen] = useState(false);
 	const { isScrolled } = useSidebar();
 	const { SPACING, COLORS, PACKS, TYPE } = useBrand();
 	const Logo = brandsMap[brand].logo;
+
+	const handleClick = (brand) => {
+		setOpen(false);
+		setBrand(brand);
+	};
 
 	const OptionButton = ({ brand, active, ...rest }) => {
 		return (
 			<button
 				type="button"
-				onClick={() => setBrand(brand)}
+				onClick={() => handleClick(brand)}
 				css={{
 					appearance: 'none',
 					whiteSpace: 'nowrap',
@@ -184,6 +190,7 @@ export const BrandSwitcher = () => {
 				</a>
 			</Link>
 			<ButtonDropdown
+				open={open}
 				block
 				text="Change brand"
 				dropdown={false}

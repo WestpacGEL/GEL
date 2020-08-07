@@ -131,6 +131,7 @@ const TableOfContents = ({ content }) => {
 
 const PackageInfoTable = ({ item }) => {
 	if (!item) return null;
+	const { PACKS } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<table
