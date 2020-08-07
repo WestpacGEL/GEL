@@ -5,8 +5,6 @@ import { ListGroup, Item } from '@westpac/list-group';
 import { ButtonGroup, Item as BtnGroupItem } from '@westpac/button-group';
 import { Fragment } from 'react';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const styleExample = {
 	marginLeft: '0.75rem',
 };
@@ -14,8 +12,6 @@ const styleExample = {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Simple</h2>
 			<ListGroup>
 				<Item>List item 1</Item>

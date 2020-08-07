@@ -6,13 +6,9 @@ import { Button } from '@westpac/button';
 import { List, Item } from '@westpac/list';
 import { AndroidIcon, GithubIcon } from '@westpac/icon';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<Body>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias porro, laboriosam

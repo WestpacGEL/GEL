@@ -6,8 +6,6 @@ import { useContainerQuery } from '@westpac/hooks';
 import { useRef } from 'react';
 import { Box } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const {
 		LAYOUT: { breakpoints },
@@ -31,8 +29,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<div
 				css={{
 					position: 'absolute',

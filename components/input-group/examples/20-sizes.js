@@ -3,13 +3,9 @@
 import { GEL, jsx } from '@westpac/core';
 import { InputGroup, Before, After } from '@westpac/input-group';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Default</h2>
 
 			<InputGroup name="example-default-text" label="Total amount">

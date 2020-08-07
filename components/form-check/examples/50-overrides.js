@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const Wrapper = ({ inline, flipped, ...rest }) => <div {...rest} />;
 
 function Example({ brand }) {
@@ -33,8 +31,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>Checkbox</h2>
 			<FormCheck name="default">
 				<Option value="1">Option 1</Option>

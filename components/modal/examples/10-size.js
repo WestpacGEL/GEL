@@ -5,8 +5,6 @@ import { useReducer } from 'react';
 import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const initialState = { default: { open: false }, small: { open: false }, large: { open: false } };
 
@@ -29,8 +27,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<p>
 				<Button onClick={() => updateModal('default', true)}>Open default modal</Button>
 			</p>

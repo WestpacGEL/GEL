@@ -18,8 +18,6 @@ import {
 } from '@westpac/icon';
 import { Row } from './_util';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const sizes = [
 	['small', 'medium', 'large', 'xlarge'],
 	['large', 'medium'],
@@ -44,8 +42,6 @@ const icons = [
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Size</h2>
 			{sizes.map((s, i) => (
 				<Fragment key={i}>

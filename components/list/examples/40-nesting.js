@@ -4,13 +4,9 @@ import { GEL, jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
 import { listGenerator } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Reset nesting level</h2>
 			<List type="ordered">
 				<Item>Styled ordered list</Item>
