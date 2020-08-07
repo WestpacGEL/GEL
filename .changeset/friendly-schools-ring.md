@@ -2,5 +2,5 @@
 '@westpac/symbol': minor
 ---
 
-- update WBG logo
-- add new WBG internal logo
+- Update WBG logo
+- Add new WBG internal logo

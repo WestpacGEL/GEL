@@ -7,4 +7,4 @@
 '@westpac/wbg': minor
 ---
 
-update color tokens
+Update color tokens

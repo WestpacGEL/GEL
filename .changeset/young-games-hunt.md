@@ -2,4 +2,4 @@
 '@westpac/progress-bar': major
 ---
 
-Added Blender support
+Add Blender support

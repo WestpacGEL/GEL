@@ -2,4 +2,4 @@
 '@westpac/wbg': minor
 ---
 
-update type token, new brand font
+Update type token, new brand font

@@ -2,4 +2,4 @@
 '@westpac/form-check': major
 ---
 
-Added blender support
+Add Blender support

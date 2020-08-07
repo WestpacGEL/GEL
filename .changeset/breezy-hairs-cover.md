@@ -2,4 +2,4 @@
 '@westpac/grid': major
 ---
 
-Added blender support (powered by Bootstrap Grid)
+Add Blender support (powered by Bootstrap Grid)
