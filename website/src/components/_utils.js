@@ -71,7 +71,7 @@ export const brandHeaderStyling = {
 	}),
 	STG: (COLORS) => ({
 		background: COLORS.hero,
-		color: COLORS.text,
+		color: '#fff',
 		antialiasing: null,
 	}),
 	BSA: (COLORS) => ({

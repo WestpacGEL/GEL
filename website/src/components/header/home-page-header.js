@@ -115,7 +115,7 @@ const StickyHeader = () => {
 					})}
 					onClick={() => setIsOpen(!isOpen)}
 				>
-					<HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : '#fff'} />
+					<HamburgerMenuIcon color="#fff" />
 				</button>
 				<p
 					css={mq({
