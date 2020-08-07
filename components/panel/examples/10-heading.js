@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Panel, Header, Body, Footer } from '@westpac/panel';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 // Heading tag as a component example
 const PanelHeadingTag = ({ children, ...rest }) => (
 	<h2 {...rest}>
@@ -15,8 +13,6 @@ const PanelHeadingTag = ({ children, ...rest }) => (
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Default heading</h2>
 			<Panel heading="Panel title">
 				<Body>

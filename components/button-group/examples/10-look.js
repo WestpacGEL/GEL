@@ -2,12 +2,10 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { ButtonGroup, Item } from '@westpac/button-group';
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
 			<h2>Look</h2>
 			<h3>Default</h3>
 			<ButtonGroup name="example-default">

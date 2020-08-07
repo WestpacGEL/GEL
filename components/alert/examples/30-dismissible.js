@@ -5,15 +5,11 @@ import { Alert } from '@westpac/alert';
 import { Button } from '@westpac/button';
 import { useState } from 'react';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const [open, setOpen] = useState(false);
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<Alert look="success" dismissible data-testing="alert0">
 				<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I
 				can be closed. <a href="#">Link</a>

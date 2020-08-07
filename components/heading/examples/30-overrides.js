@@ -3,8 +3,6 @@
 import { GEL, jsx, useFonts } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/heading'] = {
@@ -24,8 +22,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens} css={{ ...useFonts({ path: 'assets/' }) }}>
-			<Intopia ignore />
-
 			<h2>
 				Without <code>tag</code> prop
 			</h2>

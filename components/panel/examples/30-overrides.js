@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Panel, Body, Footer } from '@westpac/panel';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const Wrapper = ({ look, heading, headingTag, overrides, ...rest }) => <aside {...rest} />;
 
 function Example({ brand }) {
@@ -50,8 +48,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 
 			<Panel heading="Panel title">

@@ -5,13 +5,9 @@ import { Button } from '@westpac/button';
 import { TextInput, Textarea, Select } from '@westpac/text-input';
 import { Body } from '@westpac/body';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Focus test</h2>
 
 			<Body>

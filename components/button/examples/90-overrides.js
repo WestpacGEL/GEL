@@ -5,8 +5,6 @@ import { Button } from '@westpac/button';
 import { HouseIcon } from '@westpac/icon';
 import { Fragment } from 'react';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const ContentWrapper = ({ children, ...rest }) => (
 	<Fragment>
 		{children}
@@ -30,7 +28,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
 			<h2>With overrides applied</h2>
 			<Button>Default standard</Button> <Button look="primary">Primary standard</Button>{' '}
 			<Button look="hero">Hero standard</Button> <Button look="faint">Faint standard</Button>{' '}
