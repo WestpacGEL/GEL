@@ -6,8 +6,6 @@ import { ButtonGroup, Item as BtnGroupItem } from '@westpac/button-group';
 import { ListGroup, Item } from '@westpac/list-group';
 import { Fragment } from 'react';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const styleExample = {
 	marginLeft: '0.75rem',
 };
@@ -41,8 +39,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia />
-
 			<ListGroup>
 				<Item>List item 1</Item>
 				<Item>List item 2</Item>

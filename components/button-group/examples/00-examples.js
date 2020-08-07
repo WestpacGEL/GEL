@@ -4,8 +4,6 @@ import { GEL, jsx } from '@westpac/core';
 import { ButtonGroup, Item } from '@westpac/button-group';
 import { useState } from 'react';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const [controlled, setControlled] = useState();
 	const [value, setValue] = useState('');
@@ -13,7 +11,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
 			<h2>Composition</h2>
 			<h3>Composed</h3>
 			<ButtonGroup name="example-composed">

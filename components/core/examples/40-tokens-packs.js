@@ -4,15 +4,11 @@ import { GEL, jsx, useBrand, useFonts } from '@westpac/core';
 import { Fragment } from 'react';
 import { Code } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const { COLORS, PACKS, SPACING } = useBrand();
 
 	return (
 		<GEL brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
-			<Intopia ignore />
-
 			<h2>Brand type scale</h2>
 			{Array(7)
 				.fill()

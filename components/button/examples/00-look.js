@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 import {
 	HouseIcon,
 	AlertIcon,
@@ -18,7 +16,6 @@ import {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
 			<h2>Default</h2>
 			<Button>Default standard</Button> <Button soft>Default soft</Button>
 			<hr />
