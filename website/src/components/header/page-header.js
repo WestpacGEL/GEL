@@ -148,7 +148,6 @@ const PageHeader = ({ name, version }) => {
 				})}
 			>
 				<MenuButton />
-				{/* TODO: ref https://vimeo.com/424713409/9846f61c26 */}
 				<div
 					css={mq({
 						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
