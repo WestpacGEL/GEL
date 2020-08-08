@@ -76,9 +76,21 @@ export const Footer = () => {
 				>
 					Talk to us
 				</span>
-				<ContactIconLink icon={EmailIcon} href="mailto:gel@westpac.com.au" />
-				<ContactIconLink icon={SlackIcon} href="//westpac-digital.slack.com" />
-				<ContactIconLink icon={GithubIcon} href="//github.com/WestpacGEL" />
+				<ContactIconLink
+					icon={EmailIcon}
+					href="mailto:gel@westpac.com.au"
+					assistiveText="Talk to us via email"
+				/>
+				<ContactIconLink
+					icon={SlackIcon}
+					href="//westpac-digital.slack.com"
+					assistiveText="Talk to us on Slack"
+				/>
+				<ContactIconLink
+					icon={GithubIcon}
+					href="//github.com/WestpacGEL"
+					assistiveText="Talk to us on GitHub"
+				/>
 			</div>
 
 			<Button
@@ -109,7 +121,7 @@ export const Footer = () => {
 	);
 };
 
-const ContactIconLink = ({ icon: Icon, href }) => (
+const ContactIconLink = ({ icon: Icon, href, assistiveText }) => (
 	<a
 		href={href}
 		target="_blank"
@@ -121,6 +133,6 @@ const ContactIconLink = ({ icon: Icon, href }) => (
 			},
 		}}
 	>
-		<Icon />
+		<Icon assistiveText={assistiveText} />
 	</a>
 );
