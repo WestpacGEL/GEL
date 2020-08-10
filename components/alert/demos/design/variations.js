@@ -5,23 +5,21 @@ import { PhoneIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
 
 import { Playground } from '../../../../website/src/components/playground/macro';
-import { Title, Hr } from '../../../../helpers/demos';
+import { Title } from '../../../../helpers/demos';
 
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Title>Alert with dismiss button (info blue) </Title>
+			<Title>Alert with dismiss button</Title>
 			<Alert look="info" icon={PhoneIcon} dismissible>
 				<strong>Notifications</strong> You have notifications activated.
 			</Alert>
-			<Hr />
-			<Title>Alert with no icon (info style)</Title>
+			<Title>Alert with no icon</Title>
 			<Alert look="info" icon={null}>
 				<strong>Please note</strong> These products are no longer available. If you are looking for
 				service and support of an existing poroduct please contact our <a href="#">support team</a>.
 			</Alert>
-			<Hr />
-			<Title>Long alert (warning style)</Title>
+			<Title>Long alert</Title>
 			<Alert look="warning">
 				<strong>Scam alert</strong> We have been made aware of an email scam currently circulating.
 				<p>

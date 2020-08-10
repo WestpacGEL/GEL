@@ -8,20 +8,26 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<ButtonGroup name="example-small" size="small">
-				<Item value="left">Item 1</Item>
-				<Item value="right">Item 2</Item>
-			</ButtonGroup>{' '}
-			<ButtonGroup name="example-small" size="medium">
-				<Item value="left">Item 1</Item>
-				<Item value="right">Item 2</Item>
-			</ButtonGroup>{' '}
-			<ButtonGroup name="example-small" size="large">
-				<Item value="left">Item 1</Item>
-				<Item value="right">Item 2</Item>
-			</ButtonGroup>{' '}
-			<ButtonGroup name="example-small" size="xlarge">
-				<Item value="left">Item 1</Item>
-				<Item value="right">Item 2</Item>
+				<Item value="left">Sm - 30px</Item>
+				<Item value="right">Label</Item>
+			</ButtonGroup>
+			<br />
+			<br />
+			<ButtonGroup name="example-medium" size="medium">
+				<Item value="left">Md - 36px</Item>
+				<Item value="right">Label</Item>
+			</ButtonGroup>
+			<br />
+			<br />
+			<ButtonGroup name="example-large" size="large">
+				<Item value="left">Lg - 42px</Item>
+				<Item value="right">Label</Item>
+			</ButtonGroup>
+			<br />
+			<br />
+			<ButtonGroup name="example-xlarge" size="xlarge">
+				<Item value="left">Xl - 48px</Item>
+				<Item value="right">Label</Item>
 			</ButtonGroup>
 		</Playground>
 	);
