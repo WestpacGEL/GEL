@@ -2,4 +2,4 @@
 '@westpac/icon': patch
 ---
 
-Fix state so that icon now is passed into it
+Fix state so that icon is now passed into it

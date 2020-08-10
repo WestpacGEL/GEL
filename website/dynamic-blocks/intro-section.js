@@ -143,7 +143,7 @@ const PackageInfoTable = ({ item }) => {
 				color: '#2585ca',
 				width: '100%',
 				textAlign: 'left',
-				...PACKS.typeScale.brandFont[10],
+				...PACKS.typeScale.bodyFont[10],
 			})}
 		>
 			<tbody
@@ -182,7 +182,7 @@ const PackageInfoTable = ({ item }) => {
 				</tr>
 				<tr>
 					<th>Requires</th>
-					<td>{item.requires}</td>
+					<td>{item.requires || 'None'}</td>
 				</tr>
 			</tbody>
 		</table>

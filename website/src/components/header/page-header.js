@@ -16,7 +16,7 @@ const MenuButton = () => {
 	const mq = useMediaQuery();
 	const { setIsOpen } = useSidebar();
 
-	const Icon = () => <HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : '#fff'} />;
+	const Icon = () => <HamburgerMenuIcon color="#fff" />;
 
 	return (
 		<Button
@@ -144,7 +144,7 @@ const PageHeader = ({ name, version }) => {
 				css={mq({
 					display: 'flex',
 					alignItems: 'flex-end', //align bottom
-					color: BRAND === 'STG' ? COLORS.text : '#fff',
+					color: '#fff',
 				})}
 			>
 				<MenuButton />
