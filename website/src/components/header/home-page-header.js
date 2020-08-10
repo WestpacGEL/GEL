@@ -39,7 +39,7 @@ const HomePageHeader = () => {
 };
 
 const StickyHeader = () => {
-	const { COLORS, SPACING, BRAND } = useBrand();
+	const { COLORS, SPACING, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
 	const { isOpen, setIsOpen } = useSidebar();
 	const headerStyling = brandHeaderStyling[BRAND](COLORS);
@@ -117,7 +117,7 @@ const StickyHeader = () => {
 				>
 					<HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : '#fff'} />
 				</button>
-				<p
+				<div
 					css={mq({
 						boxSizing: 'border-box',
 						display: 'flex',
@@ -133,8 +133,10 @@ const StickyHeader = () => {
 						margin: 0,
 					})}
 				>
-					Design<strong>System</strong>
-				</p>
+					<h1 css={{ '&&': { margin: 0, ...PACKS.typeScale.bodyFont[9], fontWeight: 'normal' } }}>
+						<strong>GEL</strong> Design System
+					</h1>
+				</div>
 
 				<StickyHeaderImage brand={BRAND} hide={!hasScrolledPageHeader} aria-hidden="true" />
 			</header>
@@ -142,57 +144,106 @@ const StickyHeader = () => {
 	);
 };
 
-const IconText = ({ icon, iconMobile, children }) => {
+const HeroFeaturesItem = ({ icon, iconMobile, children }) => {
 	const mq = useMediaQuery();
-	const { LAYOUT, SPACING, PACKS } = useBrand();
+	const { PACKS, SPACING } = useBrand();
 	return (
-		<Body
-			css={{ textAlign: 'center' }}
-			overrides={{
-				Body: {
-					styles: (styles) => ({
-						...styles,
-						p: {
-							margin: 0,
-							...PACKS.typeScale.bodyFont[8],
-						},
-					}),
-				},
-			}}
-		>
-			<div
-				css={{
-					display: 'none',
-					[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
-						display: 'inline-block',
-					},
-				}}
-				aria-hidden="true"
-			>
+		<Cell tag="li" width={[12, 4]}>
+			<div css={mq({ display: ['none', null, 'inline-block'] })} aria-hidden="true">
 				{icon}
 			</div>
-			<div
-				css={{
-					display: 'inline-block',
-					[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
-						display: 'none',
-					},
-				}}
-				aria-hidden="true"
-			>
+			<div css={mq({ display: ['inline-block', null, 'none'] })} aria-hidden="true">
 				{iconMobile}
 			</div>
-			<p
-				css={mq({
-					marginTop: [`${SPACING(3)} !important`, `${SPACING(4)} !important`],
-				})}
+			<Body
+				css={mq({ marginTop: [SPACING(3), SPACING(4)], textAlign: 'center' })}
+				overrides={{
+					Body: {
+						styles: (styles) => ({
+							...styles,
+							...PACKS.typeScale.bodyFont[8],
+						}),
+					},
+				}}
 			>
 				{children}
-			</p>
-		</Body>
+			</Body>
+		</Cell>
 	);
 };
 
+const HeroFeatures = () => {
+	const { BRAND, SPACING, COLORS } = useBrand();
+	const mq = useMediaQuery();
+	return (
+		<Grid
+			tag="ul"
+			role="list"
+			rowGap={[24, 'normal']}
+			columnGap={[null, 30]}
+			css={mq({
+				paddingLeft: 0,
+				listStyle: 'none',
+				marginTop: [SPACING(4), SPACING(10)],
+			})}
+		>
+			<HeroFeaturesItem
+				icon={
+					<StopwatchSvg
+						outlineColor={COLORS.light}
+						highlightOutlineColor={COLORS.light}
+						highlightColor={COLORS.light}
+					/>
+				}
+				iconMobile={
+					<StopwatchSvg
+						outlineColor={COLORS.borderDark}
+						highlightOutlineColor={COLORS.text}
+						highlightColor={brandIconHighlightColors[BRAND](COLORS)}
+					/>
+				}
+			>
+				Get to market faster by leveraging our knowledge and tools
+			</HeroFeaturesItem>
+			<HeroFeaturesItem
+				icon={
+					<TruckSvg
+						outlineColor={COLORS.light}
+						highlightOutlineColor={COLORS.light}
+						highlightColor="none"
+					/>
+				}
+				iconMobile={
+					<TruckSvg
+						outlineColor={COLORS.borderDark}
+						highlightOutlineColor={COLORS.text}
+						highlightColor={brandIconHighlightColors[BRAND](COLORS)}
+					/>
+				}
+			>
+				Design, build and ship consistent, quality, branded solutions
+			</HeroFeaturesItem>
+			<HeroFeaturesItem
+				icon={
+					<AccessibilitySvg
+						outlineColor={COLORS.light}
+						highlightOutlineColor={COLORS.light}
+						highlightColor="none"
+					/>
+				}
+				iconMobile={
+					<AccessibilitySvg
+						outlineColor={COLORS.borderDark}
+						highlightOutlineColor={COLORS.text}
+						highlightColor={brandIconHighlightColors[BRAND](COLORS)}
+					/>
+				}
+			>
+				Be more accessible and inclusive with our assets
+			</HeroFeaturesItem>
+		</Grid>
+	);
+};
 const HeroIntro = () => {
 	const { SPACING, COLORS, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
@@ -208,7 +259,7 @@ const HeroIntro = () => {
 				<Cell width={[10, 12, 8]} left={[2, 1, 3]}>
 					<Body>
 						<BrandHeading
-							tag="h1"
+							tag="h2"
 							size={[4, null, 1]}
 							css={mq({
 								color: [null, null, `inherit !important`],
@@ -231,72 +282,7 @@ const HeroIntro = () => {
 					</p>
 				</Cell>
 			</Grid>
-			<Grid
-				rowGap={[24, 'normal']}
-				columnGap={[null, 30]}
-				css={mq({ marginTop: [SPACING(4), SPACING(10)] })}
-			>
-				<Cell width={[12, 4]}>
-					<IconText
-						icon={
-							<StopwatchSvg
-								outlineColor={COLORS.light}
-								highlightOutlineColor={COLORS.light}
-								highlightColor={COLORS.light}
-							/>
-						}
-						iconMobile={
-							<StopwatchSvg
-								outlineColor={COLORS.borderDark}
-								highlightOutlineColor={COLORS.text}
-								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-							/>
-						}
-					>
-						Get to market faster by leveraging our knowledge and tools
-					</IconText>
-				</Cell>
-				<Cell width={[12, 4]}>
-					<IconText
-						icon={
-							<TruckSvg
-								outlineColor={COLORS.light}
-								highlightOutlineColor={COLORS.light}
-								highlightColor="none"
-							/>
-						}
-						iconMobile={
-							<TruckSvg
-								outlineColor={COLORS.borderDark}
-								highlightOutlineColor={COLORS.text}
-								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-							/>
-						}
-					>
-						Design, build and ship consistent, quality, branded solutions
-					</IconText>
-				</Cell>
-				<Cell width={[12, 4]}>
-					<IconText
-						icon={
-							<AccessibilitySvg
-								outlineColor={COLORS.light}
-								highlightOutlineColor={COLORS.light}
-								highlightColor="none"
-							/>
-						}
-						iconMobile={
-							<AccessibilitySvg
-								outlineColor={COLORS.borderDark}
-								highlightOutlineColor={COLORS.text}
-								highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-							/>
-						}
-					>
-						Be more accessible and inclusive with our assets
-					</IconText>
-				</Cell>
-			</Grid>
+			<HeroFeatures />
 		</Container>
 	);
 };
