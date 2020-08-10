@@ -14,6 +14,7 @@ export const Cell = ({
 	area,
 	height,
 	left,
+	tag,
 	top,
 	width,
 	children,
@@ -33,6 +34,7 @@ export const Cell = ({
 		area,
 		height,
 		left,
+		tag,
 		top,
 		width,
 		overrides: componentOverrides,
@@ -83,6 +85,11 @@ Cell.propTypes = {
 	]),
 
 	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+
+	/**
 	 * The `grid-row-start` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
 	top: PropTypes.oneOfType([
@@ -119,5 +126,6 @@ Cell.propTypes = {
 
 Cell.defaultProps = {
 	height: 1,
+	tag: 'div',
 	width: 1,
 };
