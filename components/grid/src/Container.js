@@ -10,7 +10,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Container = ({ fixed, children, overrides: componentOverrides, ...rest }) => {
+export const Container = ({ fixed, tag, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -22,6 +22,7 @@ export const Container = ({ fixed, children, overrides: componentOverrides, ...r
 
 	const state = {
 		fixed,
+		tag,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -52,6 +53,11 @@ Container.propTypes = {
 	fixed: PropTypes.bool.isRequired,
 
 	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
@@ -65,4 +71,5 @@ Container.propTypes = {
 
 Container.defaultProps = {
 	fixed: false,
+	tag: 'div',
 };

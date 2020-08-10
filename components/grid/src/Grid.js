@@ -23,6 +23,7 @@ export const Grid = ({
 	minRowHeight,
 	rowGap,
 	rows,
+	tag,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -48,6 +49,7 @@ export const Grid = ({
 		minRowHeight,
 		rowGap,
 		rows,
+		tag,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -169,6 +171,11 @@ Grid.propTypes = {
 	rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
 	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+
+	/**
 	 * Alert children
 	 */
 	children: PropTypes.node,
@@ -200,4 +207,5 @@ Grid.defaultProps = {
 	flow: 'row',
 	height: 'auto',
 	minRowHeight: 32,
+	tag: 'div',
 };
