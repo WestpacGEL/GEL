@@ -71,8 +71,8 @@ export const brandHeaderStyling = {
 	}),
 	STG: (COLORS) => ({
 		background: COLORS.hero,
-		color: COLORS.text,
-		antialiasing: null,
+		color: '#fff',
+		antialiasing: antialiasingStyling,
 	}),
 	BSA: (COLORS) => ({
 		background: `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,

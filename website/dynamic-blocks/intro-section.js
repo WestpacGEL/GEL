@@ -13,17 +13,15 @@ import { inputStyles } from '@arch-ui/input';
 import { Icon } from '../../components/icon/src/Icon';
 import { Section } from '../src/components/layout/section';
 
-const ArrowIcon = (props) => {
-	return (
-		<Icon assistiveText="Link arrow" {...props}>
-			<path
-				fill="currentColor"
-				fillRule="evenodd"
-				d="M20 15l-6 6-1.42-1.42L16.17 16H4V4h2v10h10.17l-3.59-3.58L14 9z"
-			/>
-		</Icon>
-	);
-};
+const ArrowIcon = (props) => (
+	<Icon assistiveText="Link arrow" {...props}>
+		<path
+			fill="currentColor"
+			fillRule="evenodd"
+			d="M20 15l-6 6-1.42-1.42L16.17 16H4V4h2v10h10.17l-3.59-3.58L14 9z"
+		/>
+	</Icon>
+);
 
 const TableLink = ({ headingId, headingText, ...rest }) => (
 	<Item {...rest}>
@@ -143,7 +141,7 @@ const PackageInfoTable = ({ item }) => {
 				color: '#2585ca',
 				width: '100%',
 				textAlign: 'left',
-				...PACKS.typeScale.brandFont[10],
+				...PACKS.typeScale.bodyFont[10],
 			})}
 		>
 			<tbody
@@ -182,7 +180,7 @@ const PackageInfoTable = ({ item }) => {
 				</tr>
 				<tr>
 					<th>Requires</th>
-					<td>{item.requires}</td>
+					<td>{item.requires || 'None'}</td>
 				</tr>
 			</tbody>
 		</table>

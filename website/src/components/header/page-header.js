@@ -16,7 +16,7 @@ const MenuButton = () => {
 	const mq = useMediaQuery();
 	const { setIsOpen } = useSidebar();
 
-	const Icon = () => <HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : '#fff'} />;
+	const Icon = () => <HamburgerMenuIcon color="#fff" />;
 
 	return (
 		<Button
@@ -144,11 +144,10 @@ const PageHeader = ({ name, version }) => {
 				css={mq({
 					display: 'flex',
 					alignItems: 'flex-end', //align bottom
-					color: BRAND === 'STG' ? COLORS.text : '#fff',
+					color: '#fff',
 				})}
 			>
 				<MenuButton />
-				{/* TODO: ref https://vimeo.com/424713409/9846f61c26 */}
 				<div
 					css={mq({
 						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],

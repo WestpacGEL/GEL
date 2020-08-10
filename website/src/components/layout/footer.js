@@ -1,9 +1,24 @@
 /** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Button } from '@westpac/button';
+import { Icon } from '../../../../components/icon/src/Icon';
+
 import { useState, useEffect } from 'react';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
 import throttle from 'lodash.throttle';
 
+const UpIcon = (props) => {
+	const { COLORS } = useBrand();
+	return (
+		<Icon assistiveText="Up arrow" {...props}>
+			<path
+				fill={COLORS.primary}
+				fillRule="evenodd"
+				d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8z"
+			/>
+		</Icon>
+	);
+};
 export const Footer = () => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
@@ -45,9 +60,10 @@ export const Footer = () => {
 				backgroundColor: '#fff',
 				borderTop: `1px solid ${COLORS.border}`,
 				display: 'flex',
-				flex: '0 0 auto',
+				alignItems: 'center',
 				justifyContent: 'space-between',
-				padding: '0.6875rem 1.125rem 0.8125rem 1.5rem',
+				flex: '0 0 auto',
+				padding: '0.375rem 1.125rem 0.4375rem 1.5rem',
 				transition: 'bottom 0.4s ease',
 			})}
 		>
@@ -60,37 +76,52 @@ export const Footer = () => {
 				>
 					Talk to us
 				</span>
-				<ContactIconLink icon={EmailIcon} href="mailto:gel@westpac.com.au" />
-				<ContactIconLink icon={SlackIcon} href="//westpac-digital.slack.com" />
-				<ContactIconLink icon={GithubIcon} href="//github.com/WestpacGEL" />
+				<ContactIconLink
+					icon={EmailIcon}
+					href="mailto:gel@westpac.com.au"
+					assistiveText="Talk to us via email"
+				/>
+				<ContactIconLink
+					icon={SlackIcon}
+					href="//westpac-digital.slack.com"
+					assistiveText="Talk to us on Slack"
+				/>
+				<ContactIconLink
+					icon={GithubIcon}
+					href="//github.com/WestpacGEL"
+					assistiveText="Talk to us on GitHub"
+				/>
 			</div>
 
-			<button
-				type="button"
-				css={{
-					display: 'block',
-					border: 0,
-					background: 'transparent',
-					cursor: 'pointer',
-					textAlign: 'right',
-					padding: '0 !important',
-				}}
+			<Button
+				look="link"
+				size="large"
+				iconAfter={UpIcon}
 				onClick={(e) => {
-					e.preventDefault();
 					window.scroll({
 						top: 0,
 						left: 0,
 						behavior: 'smooth',
 					});
 				}}
+				assistiveText="Go to top"
+				overrides={{
+					Button: {
+						styles: (styles) => ({
+							...styles,
+							color: COLORS.text,
+							textDecoration: 'none',
+						}),
+					},
+				}}
 			>
-				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
-			</button>
+				Top
+			</Button>
 		</footer>
 	);
 };
 
-const ContactIconLink = ({ icon: Icon, href }) => (
+const ContactIconLink = ({ icon: Icon, href, assistiveText }) => (
 	<a
 		href={href}
 		target="_blank"
@@ -102,6 +133,6 @@ const ContactIconLink = ({ icon: Icon, href }) => (
 			},
 		}}
 	>
-		<Icon />
+		<Icon assistiveText={assistiveText} />
 	</a>
 );

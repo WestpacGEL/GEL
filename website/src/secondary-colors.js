@@ -15,7 +15,7 @@ export const secondaryColors = {
 		Plum: '#502d79',
 		Amber: '#ff7f29',
 		'St.George Yellow': '#ffcd00',
-		'Access Green': '#048938',
+		'St.George Green': '#78be20',
 	},
 	BTFG: {
 		'BT Blue': '#00afd7',

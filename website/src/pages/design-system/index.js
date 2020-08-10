@@ -8,7 +8,7 @@ import { TextInput } from '@westpac/text-input';
 import HomePageHeader from '../../components/header/home-page-header';
 import { Section } from '../../components/layout';
 import { Body } from '../../components/body';
-import { BlockList, BlockListItem as Item } from '../../components/layout/block-list';
+import { BlockList, BlockListItem as Item } from '../../components/block-list';
 import { Footer } from '../../components/layout/footer';
 import {
 	ReactLogo,

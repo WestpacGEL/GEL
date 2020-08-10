@@ -5,7 +5,7 @@ import { containerMap } from '../_utils';
 
 const { paddingHorizontal, fixedWidth, fluidMaxWidth } = containerMap;
 
-const Container = ({ state, ...rest }) => <div {...rest} />;
+const Container = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
 const containerStyles = (_, { fixed }) => {
 	const mq = useMediaQuery();
