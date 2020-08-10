@@ -64,7 +64,7 @@ function TokensPage() {
 		<Fragment>
 			<PageContext.Provider value={{ showGrid, setShowGrid }}>
 				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
-					<PageHeader name="The Blender" />
+					<PageHeader name="Downloads" />
 					<Gridly show={showGrid} />
 					<Container css={{ position: 'relative' }}>
 						<Grid>
