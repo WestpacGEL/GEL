@@ -257,17 +257,9 @@ const HeroIntro = () => {
 		>
 			<Grid>
 				<Cell width={[10, 12, 8]} left={[2, 1, 3]}>
-					<Body>
-						<BrandHeading
-							tag="h2"
-							size={[4, null, 1]}
-							css={mq({
-								color: [null, null, `inherit !important`],
-							})}
-						>
-							Design to scale with confidence
-						</BrandHeading>
-					</Body>
+					<BrandHeading tag="h2" size={[4, null, 1]}>
+						Design to scale with confidence
+					</BrandHeading>
 				</Cell>
 			</Grid>
 			<Grid css={mq({ marginTop: [SPACING(4), SPACING(6)] })}>
