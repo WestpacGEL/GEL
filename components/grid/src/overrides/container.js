@@ -3,7 +3,7 @@
 import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 import { containerMap } from '../_utils';
 
-const { paddingHorizontal, fixedMaxWidth, fluidMaxWidth } = containerMap;
+const { paddingHorizontal, maxWidthFixed, maxWidthFluid } = containerMap;
 
 const Container = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
