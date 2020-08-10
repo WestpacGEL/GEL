@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { rowMap } from './_utils';
+import { gridMap } from './_utils';
 import { defaultGrid } from './overrides/grid';
 import pkg from '../package.json';
 
@@ -203,7 +203,7 @@ Grid.propTypes = {
 };
 
 Grid.defaultProps = {
-	...rowMap,
+	...gridMap,
 	flow: 'row',
 	height: 'auto',
 	minRowHeight: 32,

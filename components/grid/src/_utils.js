@@ -4,7 +4,7 @@ export const containerMap = {
 	maxWidthFluid: 1320, //1200 (lg) + 60 (paddingHorizontal) + 60 (paddingHorizontal)
 };
 
-export const rowMap = {
+export const gridMap = {
 	columns: 12,
 	gap: [12, 24],
 };
