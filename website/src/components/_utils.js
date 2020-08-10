@@ -62,32 +62,32 @@ export const brandHeaderStyling = {
 	WBC: (COLORS) => ({
 		background: COLORS.primary,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 	WBG: (COLORS) => ({
 		background: COLORS.hero,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 	STG: (COLORS) => ({
 		background: COLORS.hero,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 	BSA: (COLORS) => ({
 		background: `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 	BOM: (COLORS) => ({
 		background: COLORS.hero,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 	BTFG: (COLORS) => ({
 		background: COLORS.hero,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 };
 

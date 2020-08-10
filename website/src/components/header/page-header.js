@@ -12,7 +12,6 @@ import { brandHeaderStyling, gridlyIconColors } from '../_utils';
 import throttle from 'lodash.throttle';
 
 const MenuButton = () => {
-	const { BRAND, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const { setIsOpen } = useSidebar();
 
@@ -144,7 +143,6 @@ const PageHeader = ({ name, version }) => {
 				css={mq({
 					display: 'flex',
 					alignItems: 'flex-end', //align bottom
-					color: '#fff',
 				})}
 			>
 				<MenuButton />
