@@ -65,6 +65,9 @@ function ShowCodeBlock({ showCode, showDemo, loadCodeBlock, context }) {
 
 	let CodeBlock = valueCache.get(loadCodeBlock);
 
+	console.log('CodeBlock');
+	console.log(CodeBlock);
+
 	if (!CodeBlock) {
 		throw promise;
 	}
@@ -137,7 +140,9 @@ export const CodeExample = {
 
 		const mq = useMediaQuery();
 		const loadCodeBlock = codeExamples[codeExample];
-
+		console.log('loadCodeBlock');
+		console.log(loadCodeBlock);
+		console.log('window', typeof window !== 'undefined');
 		return (
 			<Cell
 				width={[12, null, null, 10]}
