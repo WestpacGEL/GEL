@@ -1,17 +1,18 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { ButtonGroup, Item } from '@westpac/button-group';
+import { ListGroup, Item } from '@westpac/list-group';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<ButtonGroup name="example-block" block>
-				<Item value="left">Email</Item>
-				<Item value="middle">Phone</Item>
-				<Item value="right">Label</Item>
-			</ButtonGroup>
+			<ListGroup>
+				<Item>List item 1</Item>
+				<Item>List item 2</Item>
+				<Item>List item 3</Item>
+				<Item>List item 4</Item>
+			</ListGroup>
 		</Playground>
 	);
 };
