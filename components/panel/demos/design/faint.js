@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { Panel, Body, Footer } from '@westpac/panel';
+import { Panel, Body } from '@westpac/panel';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Panel heading="Panel title">
+			<Panel look="faint" heading="Panel title">
 				<Body>
 					They found themselves standing on the very edge of the Wild Wood. Rocks and brambles and
 					tree-roots behind them, confusedly heaped and tangled; in front, a great space of quiet
@@ -20,7 +20,6 @@ export default ({ context, showCode, showDemo }) => {
 					for the voice, sounding cheerily outside their window, of the river that they knew and
 					trusted in all its moods, that never made them afraid with any amazement.
 				</Body>
-				<Footer>Panel footer</Footer>
 			</Panel>
 		</Playground>
 	);
