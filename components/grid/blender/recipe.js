@@ -1,7 +1,7 @@
 import { GEL, Global, useBrand, useMediaQuery } from '@westpac/core';
 import React from 'react';
 import { bootstrapGrid } from './bootstrap/bootstrap-grid';
-import { rowMap } from '../src/_utils';
+import { gridMap } from '../src/_utils';
 
 const Grid = () => {
 	const mq = useMediaQuery();
@@ -10,7 +10,7 @@ const Grid = () => {
 		SPACING,
 	} = useBrand();
 
-	const { columns, gap } = rowMap;
+	const { columns, gap } = gridMap;
 
 	// Breakpoints with an XS added back in (we don't store this in our tokens)
 	const allBreakpoints = Object.assign({ xs: 0 }, breakpoints);
