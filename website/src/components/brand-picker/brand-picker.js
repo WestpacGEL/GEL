@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
+import { Fragment } from 'react';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 import { useRouter } from 'next/router';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { Heading } from '@westpac/heading';
 import { Section } from '../../components/layout/section';
 import { Body } from '../../components/body';
 import { BASE_URL } from '../../config.js';
@@ -12,50 +12,85 @@ import { findByDisplayValue } from '@testing-library/react';
 
 export const BrandPicker = () => {
 	const { brands } = useBrandSwitcher();
-	const { PACKS } = useBrand();
+	const { COLORS, TYPE, PACKS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
-		<div css={{ height: '100%' }}>
+		<Fragment>
+			<Global styles={{ body: { backgroundColor: COLORS.background } }} />
 			<header
 				css={mq({
 					backgroundColor: '#C80038',
-					height: ['66px', null, '294px'],
-					paddingBottom: [null, null, '63px'],
+					height: ['4.125rem', null, '18.375rem'],
+					paddingBottom: [null, null, SPACING(10)],
 					display: 'flex',
 					alignItems: ['center', null, 'flex-end'],
 					color: 'white',
 				})}
 			>
 				<Container>
-					<Heading size={[7, null, 2]} css={mq({})}>
+					<h1
+						css={mq({
+							'&&': {
+								fontSize: [
+									PACKS.typeScale.bodyFont[7].fontSize,
+									null,
+									PACKS.typeScale.bodyFont[2].fontSize,
+								],
+								lineHeight: [
+									PACKS.typeScale.bodyFont[7].lineHeight,
+									null,
+									PACKS.typeScale.bodyFont[2].lineHeight,
+								],
+								fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
+								fontWeight: 700,
+								margin: 0,
+							},
+						})}
+					>
 						Brand{' '}
-						<em css={{ fontWeight: 200, fontFamily: '"guardian","Times New Roman","Times",serif' }}>
+						<em
+							css={{
+								fontFamily: '"guardian","Times New Roman","Times",serif',
+								fontStyle: 'italic',
+								fontWeight: 300,
+							}}
+						>
 							picker
 						</em>
-					</Heading>
+					</h1>
 				</Container>
 			</header>
-			<Section bgFill>
+			<Section>
 				<Container>
 					<Grid>
 						<Cell width={[12, null, null, 3]}>
+							<h2
+								size={[6, null, 4]}
+								css={mq({
+									'&&': {
+										fontSize: [
+											PACKS.typeScale.bodyFont[6].fontSize,
+											null,
+											PACKS.typeScale.bodyFont[5].fontSize,
+										],
+										lineHeight: [
+											PACKS.typeScale.bodyFont[6].lineHeight,
+											null,
+											PACKS.typeScale.bodyFont[5].lineHeight,
+										],
+										fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
+										fontWeight: 700,
+										marginTop: 0,
+										marginBottom: ['1.125rem', null, '1.5rem'],
+									},
+								})}
+							>
+								Select your brand
+							</h2>
 							<Body>
-								<Heading
-									tag="h1"
-									size={[6, null, 4]}
-									css={mq({
-										'&&': {
-											color: 'unset',
-											marginTop: '0',
-											marginBottom: ['1.125rem', null, '1.5rem'],
-										},
-									})}
-								>
-									Select your brand
-								</Heading>
 								<p css={{ ...PACKS.typeScale.bodyFont[8] }}>
-									This selection will determine which GUI you’ll see. Don’t worry, you’ll be able to
+									This selection will determine the brand you’ll see. Don’t worry, you’ll be able to
 									change the brand you’ve selected at any time.
 								</p>
 							</Body>
@@ -81,7 +116,7 @@ export const BrandPicker = () => {
 					</Grid>
 				</Container>
 			</Section>
-		</div>
+		</Fragment>
 	);
 };
 
