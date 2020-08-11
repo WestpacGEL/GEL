@@ -130,6 +130,7 @@ const BrandCard = ({ brand }) => {
 				href={`${currentPath}?b=${brand.BRAND}`}
 				css={{
 					display: 'block',
+					height: '100%',
 					backgroundColor: 'white !important',
 					textDecoration: 'unset',
 					color: '#1976D2',
