@@ -4,12 +4,11 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { List, Item } from '@westpac/list';
-import { Heading } from '@westpac/heading';
 import { Section, SectionHeading } from '../section';
 
 import { TextOnlySlateContent } from '../pages/single-component/blocks-hub';
 import { ComponentLink } from './component-link';
-import { IconTitle } from './icon-title';
+import { BlockHeading } from '../block-heading';
 import { getURL } from '../_utils';
 
 export const RelatedInformation = ({ item }) => {
@@ -42,7 +41,6 @@ export const RelatedInformation = ({ item }) => {
 
 					{hasRelatedPages && (
 						<Cell width={[12, null, hasRelatedInfo ? 4 : 10]} left={[1, null, 2]}>
-							<IconTitle icon={CubeIcon}>Components</IconTitle>
 							<List
 								type="unstyled"
 								overrides={{
@@ -63,6 +61,7 @@ export const RelatedInformation = ({ item }) => {
 									);
 								})}
 							</List>
+							<BlockHeading icon={CubeIcon}>Components</BlockHeading>
 						</Cell>
 					)}
 					{hasRelatedInfo && (
@@ -70,7 +69,7 @@ export const RelatedInformation = ({ item }) => {
 							width={[12, null, hasRelatedPages ? 5 : 10]}
 							left={[1, null, hasRelatedPages ? 7 : 2]}
 						>
-							<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
+							<BlockHeading icon={GenericFileIcon}>Articles</BlockHeading>
 							<TextOnlySlateContent
 								content={relatedInfo}
 								item={item}

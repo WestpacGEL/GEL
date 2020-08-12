@@ -3,12 +3,12 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Button } from '@westpac/button';
-import { Heading } from '@westpac/heading';
 import { TextInput } from '@westpac/text-input';
 import HomePageHeader from '../../components/header/home-page-header';
 import { Section } from '../../components/section';
 import { Body } from '../../components/body';
 import { BlockList, BlockListItem as Item } from '../../components/block-list';
+import { BlockHeading } from '../../components/block-heading';
 import { Footer } from '../../components/layout/footer';
 import {
 	ReactLogo,
@@ -211,16 +211,7 @@ const DownloadsAndLinks = (props) => {
 			{...props}
 		>
 			<Cell width={[10, 6, null, 5]} left={[2, 'auto', null, 2]}>
-				<Heading
-					tag="h3"
-					size={8}
-					css={{
-						paddingBottom: SPACING(3),
-						borderBottom: `1px solid ${COLORS.neutral}`,
-					}}
-				>
-					Downloads
-				</Heading>
+				<BlockHeading>Downloads</BlockHeading>
 				<BlockList
 					css={mq({
 						marginTop: [null, null, SPACING(2)],
@@ -235,16 +226,7 @@ const DownloadsAndLinks = (props) => {
 				</BlockList>
 			</Cell>
 			<Cell width={[10, 6, null, 5]}>
-				<Heading
-					tag="h3"
-					size={8}
-					css={mq({
-						paddingBottom: SPACING(3),
-						borderBottom: `1px solid ${COLORS.neutral}`,
-					})}
-				>
-					Links
-				</Heading>
+				<BlockHeading>Links</BlockHeading>
 				<BlockList
 					css={mq({
 						marginTop: [null, null, SPACING(2)],
