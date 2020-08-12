@@ -11,7 +11,7 @@ import { BlockHeading } from '../block-heading';
 import { getURL } from '../_utils';
 
 export const RelatedInformation = ({ item }) => {
-	const { SPACING, COLORS } = useBrand();
+	const { SPACING, COLORS, PACKS } = useBrand();
 	const { relatedPages, relatedInfo } = item;
 	const mq = useMediaQuery();
 	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
@@ -31,13 +31,11 @@ export const RelatedInformation = ({ item }) => {
 	return (
 		<Section css={{ backgroundColor: 'white', borderTop: `1px solid ${COLORS.border}` }}>
 			<Container>
-				<Grid rowGap={['30px', null, null, null, '60px']}>
-					<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
-						<Heading tag="h2" size={[7, null, 6]} id="related-information" tabIndex="-1">
-							Related information
-						</Heading>
-					</Cell>
+				<SectionHeading id="related-information" tabIndex="-1">
+					Related information
+				</SectionHeading>
 
+				<Grid>
 					{hasRelatedPages && (
 						<Cell width={[12, null, hasRelatedInfo ? 4 : 10]} left={[1, null, 2]}>
 							<BlockHeading icon={CubeIcon}>Components</BlockHeading>
@@ -59,9 +57,16 @@ export const RelatedInformation = ({ item }) => {
 							<TextOnlySlateContent
 								content={relatedInfo}
 								item={item}
-								cssOverrides={{
-									p: { fontSize: '14px' },
-									div: { marginTop: SPACING(3) },
+								css={{
+									marginTop: SPACING(3),
+								}}
+								overrides={{
+									Body: {
+										styles: (styles) => ({
+											...styles,
+											...PACKS.typeScale.bodyFont[10],
+										}),
+									},
 								}}
 							/>
 						</Cell>

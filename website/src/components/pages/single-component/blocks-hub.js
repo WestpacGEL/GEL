@@ -276,18 +276,10 @@ const textOnlySlateRenderer = (_editorValue) => {
 	]);
 };
 
-export const TextOnlySlateContent = ({ content, cssOverrides, ...props }) => {
+export const TextOnlySlateContent = ({ item, content, ...rest }) => {
 	return (
-		<div
-			{...props}
-			className="slate-container"
-			css={{
-				display: 'flex',
-				flexDirection: 'column',
-				...cssOverrides,
-			}}
-		>
-			<Body>{textOnlySlateRenderer(content.document)(content)}</Body>
-		</div>
+		<Body className="slate-container" {...rest}>
+			{textOnlySlateRenderer(content.document)(content)}
+		</Body>
 	);
 };

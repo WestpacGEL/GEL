@@ -6,14 +6,22 @@ import { ArrowRightIcon } from '@westpac/icon';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { BASE_PAGE } from '../../config';
+import { PACKS } from '@westpac/bom/tokens/packs';
 
 // ==============================
 // Component
 // ==============================
 
-export const BlockList = (props) => (
-	<ul role="list" css={{ listStyle: 'none', paddingLeft: 0, margin: 0 }} {...props} />
-);
+export const BlockList = (props) => {
+	const { PACKS } = useBrand();
+	return (
+		<ul
+			role="list"
+			css={{ listStyle: 'none', paddingLeft: 0, margin: 0, ...PACKS.typeScale.bodyFont[10] }}
+			{...props}
+		/>
+	);
+};
 
 const BlockListLink = ({ link, children }) => {
 	const brandName = useRouter().query.b || '';
