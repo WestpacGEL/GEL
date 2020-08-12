@@ -7,7 +7,7 @@ import { TextInput } from '@westpac/text-input';
 import HomePageHeader from '../../components/header/home-page-header';
 import { Section } from '../../components/section';
 import { Body } from '../../components/body';
-import { BlockList, BlockListItem as Item } from '../../components/block-list';
+import { BlockList, BlockListItem } from '../../components/block-list';
 import { BlockHeading } from '../../components/block-heading';
 import { Footer } from '../../components/layout/footer';
 import {
@@ -217,12 +217,12 @@ const DownloadsAndLinks = (props) => {
 						marginTop: [null, null, SPACING(2)],
 					})}
 				>
-					<Item target="_blank" logo={SketchLogo}>
+					<BlockListItem target="_blank" logo={SketchLogo}>
 						Sketch UI Kit Download
-					</Item>
-					<Item target="_blank" logo={AxureLogo}>
+					</BlockListItem>
+					<BlockListItem target="_blank" logo={AxureLogo}>
 						Axure UI Kit Download
-					</Item>
+					</BlockListItem>
 				</BlockList>
 			</Cell>
 			<Cell width={[10, 6, null, 5]}>
@@ -232,9 +232,9 @@ const DownloadsAndLinks = (props) => {
 						marginTop: [null, null, SPACING(2)],
 					})}
 				>
-					<Item href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
+					<BlockListItem href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
 						Go to GitHub
-					</Item>
+					</BlockListItem>
 				</BlockList>
 			</Cell>
 		</Grid>
