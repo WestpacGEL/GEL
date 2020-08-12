@@ -5,6 +5,7 @@ import { CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { List, Item } from '@westpac/list';
 import { Heading } from '@westpac/heading';
+import { Section } from '../layout/section';
 
 import { TextOnlySlateContent } from '../pages/single-component/blocks-hub';
 import { ComponentLink } from './component-link';
@@ -30,12 +31,7 @@ export const RelatedInformation = ({ item }) => {
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
 
 	return (
-		<div
-			css={mq({
-				background: '#fff',
-				padding: ['36px 0 98px', null, null, null, '60px 0 122px'],
-			})}
-		>
+		<Section css={{ backgroundColor: 'white', borderTop: `1px solid ${COLORS.border}` }}>
 			<Container>
 				<Grid rowGap={['30px', null, null, null, '60px']}>
 					<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
@@ -45,16 +41,7 @@ export const RelatedInformation = ({ item }) => {
 					</Cell>
 
 					{hasRelatedPages && (
-						<Cell
-							width={[
-								12,
-								12,
-								hasRelatedInfo ? 4 : 10,
-								hasRelatedInfo ? 4 : 10,
-								hasRelatedInfo ? 4 : 10,
-							]}
-							left={[1, null, 2]}
-						>
+						<Cell width={[12, null, hasRelatedInfo ? 4 : 10]} left={[1, null, 2]}>
 							<IconTitle icon={CubeIcon}>Components</IconTitle>
 							<List
 								type="unstyled"
@@ -80,20 +67,8 @@ export const RelatedInformation = ({ item }) => {
 					)}
 					{hasRelatedInfo && (
 						<Cell
-							width={[
-								12,
-								12,
-								hasRelatedPages ? 5 : 10,
-								hasRelatedPages ? 5 : 10,
-								hasRelatedPages ? 5 : 10,
-							]}
-							left={[
-								1,
-								1,
-								hasRelatedPages ? 7 : 2,
-								hasRelatedPages ? 7 : 2,
-								hasRelatedPages ? 7 : 2,
-							]}
+							width={[12, null, hasRelatedPages ? 5 : 10]}
+							left={[1, null, hasRelatedPages ? 7 : 2]}
 						>
 							<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
 							<TextOnlySlateContent
@@ -108,6 +83,6 @@ export const RelatedInformation = ({ item }) => {
 					)}
 				</Grid>
 			</Container>
-		</div>
+		</Section>
 	);
 };
