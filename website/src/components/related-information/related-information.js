@@ -7,7 +7,6 @@ import { List, Item } from '@westpac/list';
 import { Section, SectionHeading } from '../section';
 
 import { TextOnlySlateContent } from '../pages/single-component/blocks-hub';
-import { ComponentLink } from './component-link';
 import { BlockHeading } from '../block-heading';
 import { getURL } from '../_utils';
 
