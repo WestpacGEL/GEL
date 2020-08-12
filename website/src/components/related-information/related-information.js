@@ -3,10 +3,10 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { List, Item } from '@westpac/list';
 import { Section, SectionHeading } from '../section';
 
 import { TextOnlySlateContent } from '../pages/single-component/blocks-hub';
+import { BlockList, BlockListItem } from '../block-list';
 import { BlockHeading } from '../block-heading';
 import { getURL } from '../_utils';
 
@@ -40,27 +40,14 @@ export const RelatedInformation = ({ item }) => {
 
 					{hasRelatedPages && (
 						<Cell width={[12, null, hasRelatedInfo ? 4 : 10]} left={[1, null, 2]}>
-							<List
-								type="unstyled"
-								overrides={{
-									Item: {
-										styles: (styles) => ({
-											...styles,
-											margin: 0,
-											borderBottom: `solid 1px ${COLORS.border}`,
-										}),
-									},
-								}}
-							>
-								{relatedPages.map((d) => {
-									return (
-										<Item key={d.id}>
-											<ComponentLink link={getURL(d)}>{d.pageTitle}</ComponentLink>
-										</Item>
-									);
-								})}
-							</List>
 							<BlockHeading icon={CubeIcon}>Components</BlockHeading>
+							<BlockList>
+								{relatedPages.map((d) => (
+									<BlockListItem key={d.id} link={getURL(d)}>
+										{d.pageTitle}
+									</BlockListItem>
+								))}
+							</BlockList>
 						</Cell>
 					)}
 					{hasRelatedInfo && (
