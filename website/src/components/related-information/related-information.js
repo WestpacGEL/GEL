@@ -5,7 +5,7 @@ import { CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { List, Item } from '@westpac/list';
 import { Heading } from '@westpac/heading';
-import { Section } from '../layout/section';
+import { Section, SectionHeading } from '../section';
 
 import { TextOnlySlateContent } from '../pages/single-component/blocks-hub';
 import { ComponentLink } from './component-link';

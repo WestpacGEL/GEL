@@ -5,7 +5,7 @@ import { Cell, Grid, Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
 import { Body } from '../../../components/body';
-import { Section } from '../../../components/layout';
+import { Section } from '../../../components/section';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
