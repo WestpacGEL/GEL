@@ -66,6 +66,7 @@ const GridIndicator = () => {
 				look="link"
 				size="xlarge"
 				onClick={() => setShowGrid(!showGrid)}
+				aria-pressed={showGrid}
 				overrides={{
 					Button: {
 						styles: (styles) => ({
