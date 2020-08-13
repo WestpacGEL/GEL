@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
-import { Body } from '../../../components/body';
+import { Body } from '@westpac/body';
 import { Section } from '../../../components/section';
 import dynamic from 'next/dynamic';
 import React from 'react';

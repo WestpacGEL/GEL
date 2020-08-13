@@ -6,7 +6,7 @@ import { useBrandSwitcher } from '../providers/brand-switcher';
 import { useRouter } from 'next/router';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Section } from '../../components/section';
-import { Body } from '../../components/body';
+import { Body } from '@westpac/body';
 import { BASE_URL } from '../../config.js';
 import { findByDisplayValue } from '@testing-library/react';
 
