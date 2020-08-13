@@ -5,7 +5,7 @@ import { Cell, Grid, Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '@westpac/list';
 import { Body } from '../../../components/body';
-import { Section } from '../../../components/layout';
+import { Section } from '../../../components/section';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
@@ -276,18 +276,10 @@ const textOnlySlateRenderer = (_editorValue) => {
 	]);
 };
 
-export const TextOnlySlateContent = ({ content, cssOverrides, ...props }) => {
+export const TextOnlySlateContent = ({ item, content, ...rest }) => {
 	return (
-		<div
-			{...props}
-			className="slate-container"
-			css={{
-				display: 'flex',
-				flexDirection: 'column',
-				...cssOverrides,
-			}}
-		>
-			<Body>{textOnlySlateRenderer(content.document)(content)}</Body>
-		</div>
+		<Body className="slate-container" {...rest}>
+			{textOnlySlateRenderer(content.document)(content)}
+		</Body>
 	);
 };

@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 import { useRouter } from 'next/router';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { Section } from '../../components/layout/section';
+import { Section } from '../../components/section';
 import { Body } from '../../components/body';
 import { BASE_URL } from '../../config.js';
 import { findByDisplayValue } from '@testing-library/react';
@@ -130,6 +130,7 @@ const BrandCard = ({ brand }) => {
 				href={`${currentPath}?b=${brand.BRAND}`}
 				css={{
 					display: 'block',
+					height: '100%',
 					backgroundColor: 'white !important',
 					textDecoration: 'unset',
 					color: '#1976D2',
