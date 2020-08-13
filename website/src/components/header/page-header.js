@@ -54,13 +54,14 @@ const GridIndicator = () => {
 				top: '0.5625rem',
 				right: '1.5rem',
 				color: '#fff',
+				fontWeight: 'bold',
 			}}
 		>
-			<span css={mq({ display: ['inline-block', 'none'] })}>xs</span>
-			<span css={mq({ display: ['none', 'inline-block', 'none'] })}>xsl</span>
-			<span css={mq({ display: ['none', null, 'inline-block', 'none'] })}>sm</span>
-			<span css={mq({ display: ['none', null, null, 'inline-block', 'none'] })}>md</span>
-			<span css={mq({ display: ['none', null, null, null, 'inline-block'] })}>lg</span>
+			<span css={mq({ display: ['inline-block', 'none'] })}>XS</span>
+			<span css={mq({ display: ['none', 'inline-block', 'none'] })}>XSL</span>
+			<span css={mq({ display: ['none', null, 'inline-block', 'none'] })}>SM</span>
+			<span css={mq({ display: ['none', null, null, 'inline-block', 'none'] })}>MD</span>
+			<span css={mq({ display: ['none', null, null, null, 'inline-block'] })}>LG</span>
 			<Button
 				look="link"
 				size="xlarge"
