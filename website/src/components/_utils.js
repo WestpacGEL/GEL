@@ -10,10 +10,10 @@ import { SlateContent } from './pages/single-component/blocks-hub';
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
 	return (
-		<div>
+		<Fragment>
 			{title && (
-				<Grid columns={12} css={{ ...blocksContainerStyle, marginBottom: SPACING(2) }}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+				<Grid css={{ ...blocksContainerStyle, marginBottom: SPACING(2) }}>
+					<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
 						<Heading tag="h2" size={5}>
 							{title}
 						</Heading>
@@ -26,14 +26,14 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 				</Fragment>
 			) : (
 				<Container css={blocksContainerStyle}>
-					<Grid columns={12}>
-						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+					<Grid>
+						<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
 							<p>No documentation specified for this section.</p>
 						</Cell>
 					</Grid>
 				</Container>
 			)}
-		</div>
+		</Fragment>
 	);
 };
 
