@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { Playground } from '../../../../website/src/components/playground/macro';
-import { Body } from '../../../../website/src/components/body';
+import { Body } from '@westpac/body';
 
 const StyledText = (props) => {
 	const { PACKS } = useBrand();
