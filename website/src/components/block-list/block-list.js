@@ -86,9 +86,6 @@ BlockList.propTypes = {};
 
 BlockListItem.propTypes = {
 	href: PropTypes.string,
-	target: PropTypes.string.isRequired,
+	target: PropTypes.string,
 	logo: PropTypes.func,
-};
-BlockListItem.defaultProps = {
-	target: null,
 };

@@ -104,7 +104,7 @@ const listStyles = (_, { type, look, spacing, nested }) => {
 		padding: type === 'ordered' ? '0 0 0 1.25rem' : 0,
 
 		// The styles for the li are here so we have cleaner markup in the blender output
-		'& > li': {
+		'> li': {
 			margin: spacing === 'large' ? '0.75rem 0' : '0.375rem 0',
 			paddingLeft: '1.1875rem',
 			position: 'relative',
