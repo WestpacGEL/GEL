@@ -12,6 +12,7 @@ import { CheckboxPrimitive } from '@arch-ui/controls';
 import { inputStyles } from '@arch-ui/input';
 import { Icon } from '../../components/icon/src/Icon';
 import { Section } from '../src/components/section';
+import merge from 'lodash.merge';
 
 const ArrowIcon = (props) => (
 	<Icon assistiveText="Link arrow" {...props}>
@@ -55,7 +56,7 @@ const parseHeadings = (content) =>
 // Intro section
 const TableOfContents = ({ content }) => {
 	const toc = parseHeadings(content);
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, PACKS } = useBrand();
 	const [relatedContent, setRelatedContent] = useState(false);
 	const introRef = useRef();
 	useEffect(() => {
@@ -97,18 +98,22 @@ const TableOfContents = ({ content }) => {
 						spacing="large"
 						overrides={{
 							List: {
-								styles: (styles) => ({
-									...styles,
-									marginTop: SPACING(3),
-									a: {
-										color: COLORS.text,
-										textDecoration: 'none',
-										':hover, :focus': {
-											color: COLORS.info,
-											textDecoration: 'underline',
+								styles: (styles) =>
+									merge({}, styles, {
+										...PACKS.typeScale.bodyFont[10],
+										marginTop: SPACING(3),
+										'> li': {
+											margin: '0.5rem 0 0.5625rem',
 										},
-									},
-								}),
+										a: {
+											color: COLORS.text,
+											textDecoration: 'none',
+											':hover, :focus': {
+												color: COLORS.info,
+												textDecoration: 'underline',
+											},
+										},
+									}),
 							},
 						}}
 					>
