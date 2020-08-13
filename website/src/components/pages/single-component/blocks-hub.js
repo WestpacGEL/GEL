@@ -128,13 +128,10 @@ const slateRenderer = (item, _editorValue) => {
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
 							<List
+								type="bullet"
 								css={{
-									'& > li::before': {
-										marginTop: '0.375rem',
-									},
 									marginBottom: '0.75rem',
 								}}
-								type="bullet"
 							>
 								{serializeChildren(node.nodes)}
 							</List>

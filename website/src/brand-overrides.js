@@ -1,3 +1,5 @@
+import merge from 'lodash.merge';
+
 export const brandOverrides = (brand) => {
 	const { PACKS, TYPE } = brand;
 	const overridesWithTokens = { ...brand };
@@ -28,6 +30,36 @@ export const brandOverrides = (brand) => {
 					margin: '0 0 0.75rem !important',
 				},
 			}),
+		},
+	};
+
+	// List overrides
+	const listStyleMap = {
+		bullet: {
+			'::before': {
+				top: '0.75rem',
+			},
+		},
+		link: {
+			'::before': {
+				top: '0.75rem',
+			},
+		},
+		tick: {
+			'::before': {
+				top: '0.625rem',
+			},
+		},
+	};
+	overridesWithTokens['@westpac/list'] = {
+		List: {
+			styles: (styles, { type }) =>
+				merge({}, styles, {
+					'> li': {
+						// Reposition bullets/ticks etc
+						...listStyleMap[type],
+					},
+				}),
 		},
 	};
 
