@@ -3,16 +3,15 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { Container, Grid, Cell } from '@westpac/grid';
-import { List, Item } from '@westpac/list';
-import { Heading } from '@westpac/heading';
+import { Section, SectionHeading } from '../section';
 
 import { TextOnlySlateContent } from '../pages/single-component/blocks-hub';
-import { ComponentLink } from './component-link';
-import { IconTitle } from './icon-title';
+import { BlockList, BlockListItem } from '../block-list';
+import { BlockHeading } from '../block-heading';
 import { getURL } from '../_utils';
 
 export const RelatedInformation = ({ item }) => {
-	const { SPACING, COLORS } = useBrand();
+	const { SPACING, COLORS, PACKS } = useBrand();
 	const { relatedPages, relatedInfo } = item;
 	const mq = useMediaQuery();
 	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
@@ -30,84 +29,50 @@ export const RelatedInformation = ({ item }) => {
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
 
 	return (
-		<div
-			css={mq({
-				background: '#fff',
-				padding: ['36px 0 98px', null, null, null, '60px 0 122px'],
-			})}
-		>
+		<Section css={{ backgroundColor: 'white', borderTop: `1px solid ${COLORS.border}` }}>
 			<Container>
-				<Grid rowGap={['30px', null, null, null, '60px']}>
-					<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
-						<Heading tag="h2" size={[7, null, 6]} id="related-information" tabIndex="-1">
-							Related information
-						</Heading>
-					</Cell>
+				<SectionHeading id="related-information" tabIndex="-1">
+					Related information
+				</SectionHeading>
 
+				<Grid>
 					{hasRelatedPages && (
-						<Cell
-							width={[
-								12,
-								12,
-								hasRelatedInfo ? 4 : 10,
-								hasRelatedInfo ? 4 : 10,
-								hasRelatedInfo ? 4 : 10,
-							]}
-							left={[1, null, 2]}
-						>
-							<IconTitle icon={CubeIcon}>Components</IconTitle>
-							<List
-								type="unstyled"
-								overrides={{
-									Item: {
-										styles: (styles) => ({
-											...styles,
-											margin: 0,
-											borderBottom: `solid 1px ${COLORS.border}`,
-										}),
-									},
-								}}
-							>
-								{relatedPages.map((d) => {
-									return (
-										<Item key={d.id}>
-											<ComponentLink link={getURL(d)}>{d.pageTitle}</ComponentLink>
-										</Item>
-									);
-								})}
-							</List>
+						<Cell width={[12, null, hasRelatedInfo ? 4 : 10]} left={[1, null, 2]}>
+							<BlockHeading icon={CubeIcon}>Components</BlockHeading>
+							<BlockList>
+								{relatedPages.map((d) => (
+									<BlockListItem key={d.id} link={getURL(d)}>
+										{d.pageTitle}
+									</BlockListItem>
+								))}
+							</BlockList>
 						</Cell>
 					)}
 					{hasRelatedInfo && (
 						<Cell
-							width={[
-								12,
-								12,
-								hasRelatedPages ? 5 : 10,
-								hasRelatedPages ? 5 : 10,
-								hasRelatedPages ? 5 : 10,
-							]}
-							left={[
-								1,
-								1,
-								hasRelatedPages ? 7 : 2,
-								hasRelatedPages ? 7 : 2,
-								hasRelatedPages ? 7 : 2,
-							]}
+							width={[12, null, hasRelatedPages ? 5 : 10]}
+							left={[1, null, hasRelatedPages ? 7 : 2]}
 						>
-							<IconTitle icon={GenericFileIcon}>Articles</IconTitle>
+							<BlockHeading icon={GenericFileIcon}>Articles</BlockHeading>
 							<TextOnlySlateContent
 								content={relatedInfo}
 								item={item}
-								cssOverrides={{
-									p: { fontSize: '14px' },
-									div: { marginTop: SPACING(3) },
+								css={{
+									marginTop: SPACING(3),
+								}}
+								overrides={{
+									Body: {
+										styles: (styles) => ({
+											...styles,
+											...PACKS.typeScale.bodyFont[10],
+										}),
+									},
 								}}
 							/>
 						</Cell>
 					)}
 				</Grid>
 			</Container>
-		</div>
+		</Section>
 	);
 };

@@ -15,6 +15,9 @@ export const Body = (props) => {
 						fontSize: '1rem',
 						lineHeight: 2,
 
+						'h1, h2, h3, h4, h5, h6': {
+							color: 'inherit',
+						},
 						h2: {
 							...PACKS.typeScale.bodyFont[6],
 							fontWeight: TYPE.bodyFont.headingWeight,

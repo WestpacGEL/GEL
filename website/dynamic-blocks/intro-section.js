@@ -11,7 +11,7 @@ import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { inputStyles } from '@arch-ui/input';
 import { Icon } from '../../components/icon/src/Icon';
-import { Section } from '../src/components/layout/section';
+import { Section } from '../src/components/section';
 
 const ArrowIcon = (props) => (
 	<Icon assistiveText="Link arrow" {...props}>
