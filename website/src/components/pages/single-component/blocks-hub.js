@@ -155,7 +155,7 @@ const slateRenderer = (item, _editorValue) => {
 					);
 				case 'section':
 					return (
-						<Section>
+						<Section key={path}>
 							<Container>
 								<Grid rowGap="0 !important">{serializeChildren(node.nodes)}</Grid>
 							</Container>
