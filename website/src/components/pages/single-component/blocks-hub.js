@@ -114,12 +114,8 @@ const slateRenderer = (item, _editorValue) => {
 
 				// the below heading has been replaced with a dynamic block for headings.
 				case 'heading':
-					const headersToOverride = [2, 3, 4];
-					const headingSize = headersToOverride.includes(node.data.size)
-						? { fontSize: '1.875rem' }
-						: null;
 					return (
-						<Heading key={path} size={node.data.size} style={headingSize}>
+						<Heading key={path} size={node.data.size || 6}>
 							{serializeChildren(node.nodes)}
 						</Heading>
 					);
