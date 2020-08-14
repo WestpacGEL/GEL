@@ -123,12 +123,7 @@ const slateRenderer = (item, _editorValue) => {
 				case 'unordered-list':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List
-								type="bullet"
-								css={{
-									marginBottom: '0.75rem',
-								}}
-							>
+							<List type="bullet" css={{ marginBottom: '0.75rem' }}>
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>
@@ -145,6 +140,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'list-item':
 					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;
+
 				case 'blockquote':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
@@ -153,6 +149,7 @@ const slateRenderer = (item, _editorValue) => {
 							</Body>
 						</Cell>
 					);
+
 				case 'section':
 					return (
 						<Section key={path}>
