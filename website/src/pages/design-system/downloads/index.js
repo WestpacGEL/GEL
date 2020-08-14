@@ -7,7 +7,7 @@ import { FormCheck, Option } from '@westpac/form-check';
 import { Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
-import { Body } from '../../../components/body';
+import { Body } from '@westpac/body';
 
 import PageHeader from '../../../components/header/page-header';
 import { PageContext } from '../../../components/providers/pageContext';

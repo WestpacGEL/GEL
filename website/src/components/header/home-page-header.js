@@ -2,7 +2,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { HamburgerMenuIcon } from '@westpac/icon';
-import { Body } from '../../components/body';
+import { Body } from '@westpac/body';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { BrandHeading } from '@westpac/heading';
 import HeaderImage from './home-page-header-image';

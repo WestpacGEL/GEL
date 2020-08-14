@@ -10,6 +10,7 @@ import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-swit
 import { SidebarProvider, useSidebar } from '../providers/sidebar';
 import { BrandPicker } from '../brand-picker';
 import { BASE_URL } from '../../config.js';
+import { brandOverrides } from '../../brand-overrides';
 import { Normalize, Sidebar } from './';
 
 /*
@@ -54,7 +55,7 @@ const Wrapper = (props) => {
 	if (!isMatch) {
 		// show brand selector
 		return (
-			<GEL brand={brands['WBC']}>
+			<GEL brand={brandOverrides(brands['WBC'])}>
 				<Global styles={gelFonts} />
 				<Normalize />
 				<BrandPicker />
@@ -81,7 +82,7 @@ const Wrapper = (props) => {
 	const navigation = data.allSettings[0] ? JSON.parse(data.allSettings[0].value) : [];
 
 	return (
-		<GEL brand={brands[brand]}>
+		<GEL brand={brandOverrides(brands[brand])}>
 			<Normalize />
 			<SidebarProvider>
 				<GridContainer>
