@@ -114,12 +114,8 @@ const slateRenderer = (item, _editorValue) => {
 
 				// the below heading has been replaced with a dynamic block for headings.
 				case 'heading':
-					const headersToOverride = [2, 3, 4];
-					const headingSize = headersToOverride.includes(node.data.size)
-						? { fontSize: '1.875rem' }
-						: null;
 					return (
-						<Heading key={path} size={node.data.size} style={headingSize}>
+						<Heading key={path} size={node.data.size || 6}>
 							{serializeChildren(node.nodes)}
 						</Heading>
 					);
@@ -127,12 +123,7 @@ const slateRenderer = (item, _editorValue) => {
 				case 'unordered-list':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List
-								type="bullet"
-								css={{
-									marginBottom: '0.75rem',
-								}}
-							>
+							<List type="bullet" css={{ marginBottom: '0.75rem' }}>
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>
@@ -149,6 +140,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'list-item':
 					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;
+
 				case 'blockquote':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
@@ -157,9 +149,10 @@ const slateRenderer = (item, _editorValue) => {
 							</Body>
 						</Cell>
 					);
+
 				case 'section':
 					return (
-						<Section>
+						<Section key={path}>
 							<Container>
 								<Grid rowGap="0 !important">{serializeChildren(node.nodes)}</Grid>
 							</Container>

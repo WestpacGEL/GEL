@@ -21,9 +21,7 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 				</Grid>
 			)}
 			{blocks ? (
-				<Fragment>
-					<SlateContent content={blocks} item={item} />
-				</Fragment>
+				<SlateContent content={blocks} item={item} />
 			) : (
 				<Container css={blocksContainerStyle}>
 					<Grid>
