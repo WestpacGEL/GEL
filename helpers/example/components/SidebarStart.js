@@ -79,12 +79,11 @@ const MenuItem = ({ slug, label, ...rest }) => {
 	);
 };
 
-export function Sidebar({ components, brand, setBrand, parent = '' }) {
+export function Sidebar({ components, brandName, setBrandName, parent = '' }) {
 	const [searchValue, setSearchValue] = useState('');
 	const [examplesHidden, setExamplesHidden] = useState(false);
 	const [demosHidden, setDemosHidden] = useState(false);
 	const location = useLocation();
-	const { COLORS } = useBrand();
 
 	let navItems = components;
 	const length = (location.pathname.match(/\//g) || []).length;
@@ -198,7 +197,7 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 				}}
 			>
 				{Object.keys(BRANDS).map((b) => {
-					const isChecked = brand === b;
+					const isChecked = brandName === b;
 					return (
 						<label
 							key={b}
@@ -227,7 +226,7 @@ export function Sidebar({ components, brand, setBrand, parent = '' }) {
 							<input
 								name="brand"
 								type="radio"
-								onChange={(e) => setBrand(b)}
+								onChange={(e) => setBrandName(b)}
 								value={b}
 								checked={isChecked}
 							/>

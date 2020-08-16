@@ -11,7 +11,10 @@ import { HomeStart } from './HomeStart';
 import { Page } from './Page';
 
 export function AppStart({ components, packageName, pkg, version }) {
-	const [brand, setBrand] = useState('WBC');
+	const [brandName, setBrandName] = useState('WBC');
+
+	const brand = BRANDS[brandName];
+
 	return (
 		<Router>
 			<StrictMode>
@@ -41,7 +44,7 @@ export function AppStart({ components, packageName, pkg, version }) {
 								}
 							`}
 						/>
-						<Sidebar components={components} brand={brand} setBrand={setBrand} />
+						<Sidebar components={components} brandName={brandName} setBrandName={setBrandName} />
 						<Switch>
 							<Route
 								exact
@@ -55,7 +58,7 @@ export function AppStart({ components, packageName, pkg, version }) {
 									key={slug}
 									path={`/${slug}`}
 									render={(route) => (
-										<Page {...route} {...props} brand={BRANDS[brand]} pkgVersion={version} />
+										<Page {...route} {...props} brand={brand} pkgVersion={version} />
 									)}
 								/>
 							))}
