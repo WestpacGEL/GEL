@@ -66,7 +66,7 @@ export const Panel = ({
 		<PanelContext.Provider value={{ state }}>
 			<Panel {...rest} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
 				<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
-					<Heading state={state} {...headingAttributes(state)} css={{ '&&': headingStyles(state) }}>
+					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
 						{heading}
 					</Heading>
 				</Header>
