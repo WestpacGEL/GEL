@@ -9,6 +9,11 @@ function Example({ brand }) {
 			<h2>
 				Without <code>tag</code> prop
 			</h2>
+
+			<GEL brand={brand}>
+				<Heading size={1}>Heading size: 1</Heading>
+			</GEL>
+
 			<Heading size={1}>Heading size: 1</Heading>
 			<Heading size={2}>Heading size: 2</Heading>
 			<Heading size={3}>Heading size: 3</Heading>
