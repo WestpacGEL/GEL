@@ -18,6 +18,24 @@ export function AppDocs({ components, packageName, pkg }) {
 	return (
 		<Router>
 			<StrictMode>
+				<Global
+					styles={css`
+						body {
+							margin: 0;
+						}
+						code {
+							font-family: Monaco, monospace;
+							font-size: 0.85em;
+						}
+						p > code {
+							background-color: #ffebe6;
+							color: #bf2600;
+							border-radius: '0.3rem';
+							display: inline-block;
+							padding: '0.1rem 0.3rem';
+						}
+					`}
+				/>
 				<GEL brand={brand}>
 					<div
 						css={{
@@ -26,24 +44,6 @@ export function AppDocs({ components, packageName, pkg }) {
 							minHeight: '100vh',
 						}}
 					>
-						<Global
-							styles={css`
-								body {
-									margin: 0;
-								}
-								code {
-									font-family: Monaco, monospace;
-									font-size: 0.85em;
-								}
-								p > code {
-									background-color: #ffebe6;
-									color: #bf2600;
-									border-radius: '0.3rem';
-									display: inline-block;
-									padding: '0.1rem 0.3rem';
-								}
-							`}
-						/>
 						<Switch>
 							<Route
 								exact
