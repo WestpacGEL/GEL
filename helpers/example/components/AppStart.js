@@ -18,7 +18,7 @@ export function AppStart({ components, packageName, pkg, version }) {
 	return (
 		<Router>
 			<StrictMode>
-				<GEL brand={BRANDS[brand]}>
+				<GEL brand={brand}>
 					<div
 						css={{
 							alignItems: 'stretch',
