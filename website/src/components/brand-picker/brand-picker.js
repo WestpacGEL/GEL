@@ -23,43 +23,43 @@ export const BrandPicker = () => {
 					backgroundColor: '#C80038',
 					height: ['4.125rem', null, '18.375rem'],
 					paddingBottom: [null, null, SPACING(10)],
+					paddingLeft: [SPACING(2), SPACING(6)],
+					paddingRight: [SPACING(2), SPACING(6)],
 					display: 'flex',
 					alignItems: ['center', null, 'flex-end'],
 					color: 'white',
 				})}
 			>
-				<Container>
-					<h1
-						css={mq({
-							'&&': {
-								fontSize: [
-									PACKS.typeScale.bodyFont[7].fontSize,
-									null,
-									PACKS.typeScale.bodyFont[2].fontSize,
-								],
-								lineHeight: [
-									PACKS.typeScale.bodyFont[7].lineHeight,
-									null,
-									PACKS.typeScale.bodyFont[2].lineHeight,
-								],
-								fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-								fontWeight: 700,
-								margin: 0,
-							},
-						})}
+				<h1
+					css={mq({
+						'&&': {
+							fontSize: [
+								PACKS.typeScale.bodyFont[7].fontSize,
+								null,
+								PACKS.typeScale.bodyFont[2].fontSize,
+							],
+							lineHeight: [
+								PACKS.typeScale.bodyFont[7].lineHeight,
+								null,
+								PACKS.typeScale.bodyFont[2].lineHeight,
+							],
+							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
+							fontWeight: 700,
+							margin: 0,
+						},
+					})}
+				>
+					Brand{' '}
+					<em
+						css={{
+							fontFamily: '"guardian","Times New Roman","Times",serif',
+							fontStyle: 'italic',
+							fontWeight: 300,
+						}}
 					>
-						Brand{' '}
-						<em
-							css={{
-								fontFamily: '"guardian","Times New Roman","Times",serif',
-								fontStyle: 'italic',
-								fontWeight: 300,
-							}}
-						>
-							picker
-						</em>
-					</h1>
-				</Container>
+						picker
+					</em>
+				</h1>
 			</header>
 			<Section>
 				<Container>
