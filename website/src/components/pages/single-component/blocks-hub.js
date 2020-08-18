@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
-import { List, Item } from '@westpac/list';
+import { List, Item } from '../../list';
 import { Body } from '../../body';
 import { Section } from '../../section';
 import dynamic from 'next/dynamic';
@@ -41,6 +41,8 @@ const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
 };
 
 const slateRenderer = (item, _editorValue) => {
+	const { SPACING } = useBrand();
+
 	return createReactRenderer([
 		// special serialiser for text
 		({ node, path }) => {
@@ -123,7 +125,7 @@ const slateRenderer = (item, _editorValue) => {
 				case 'unordered-list':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List type="bullet" css={{ marginBottom: '0.75rem' }}>
+							<List type="bullet" css={{ marginBottom: SPACING(2) }}>
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>
@@ -132,7 +134,7 @@ const slateRenderer = (item, _editorValue) => {
 				case 'ordered-list':
 					return (
 						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List type="ordered" css={{ marginBottom: '0.75rem' }}>
+							<List type="ordered" css={{ marginBottom: SPACING(2) }}>
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>
