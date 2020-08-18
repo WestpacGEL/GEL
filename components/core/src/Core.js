@@ -14,7 +14,12 @@ const AddRootClass = ({ children }) => {
 		return createCache({
 			stylisPlugins: [
 				(context, content, selectors, parent, line, column, length) => {
-					if (context === -1 && selectors.length && !content.includes(`label:${label}`)) {
+					if (
+						context === -1 &&
+						selectors.length &&
+						selectors[0] !== '' && // exclude <Global /> styles
+						!content.includes(`label:${label}`) // exclude <GEL /> (Core) styles
+					) {
 						selectors[0] = `.GEL ${selectors[0]}`;
 					}
 					return content;
