@@ -3,7 +3,7 @@
 import { Fragment } from 'react';
 import { Heading as WestpacHeading } from '@westpac/heading';
 import { jsx, useMediaQuery } from '@westpac/core';
-import { Body } from '@westpac/body';
+import { Body } from '../src/components/body';
 import { Cell } from '@westpac/grid';
 
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
@@ -193,7 +193,7 @@ export const Heading = {
 					{heading}
 				</WestpacHeading>
 				{subText && text && (
-					<Body css={mq({ p: { margin: ['0 0 18px', null, '0 0 24px'] } })}>
+					<Body>
 						<p>{text}</p>
 					</Body>
 				)}
