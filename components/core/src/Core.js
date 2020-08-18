@@ -18,7 +18,7 @@ const AddRootClass = ({ children }) => {
 						context === -1 &&
 						selectors.length &&
 						selectors[0] !== '' && // exclude <Global /> styles
-						!content.includes(`label:${label}`) // exclude <GEL /> (Core) styles
+						!content.includes(`label:${label}`) // exclude nested <GEL /> (Core) styles
 					) {
 						selectors[0] = `.GEL ${selectors[0]}`;
 					}
