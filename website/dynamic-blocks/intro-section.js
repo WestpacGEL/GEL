@@ -205,11 +205,10 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 								{description && description !== '' ? (
 									<p
 										css={mq({
-											...PACKS.lead,
-											marginTop: 0,
-											marginBottom: 0,
-											lineHeight: 1.4,
-											fontSize: ['1.125rem', '1.125rem', '1.5rem'],
+											margin: 0,
+											fontSize: ['1.125rem', null, '1.5rem'],
+											lineHeight: 1.5,
+											fontWeight: 300,
 										})}
 									>
 										{description}
