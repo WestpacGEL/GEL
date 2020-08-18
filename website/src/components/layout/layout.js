@@ -57,7 +57,6 @@ const Wrapper = (props) => {
 		return (
 			<GEL brand={brandOverrides(brands['WBC'])}>
 				<Global styles={gelFonts} />
-				{/* <Normalize /> */}
 				<BrandPicker />
 			</GEL>
 		);
@@ -83,7 +82,6 @@ const Wrapper = (props) => {
 
 	return (
 		<GEL brand={brandOverrides(brands[brand])}>
-			{/* <Normalize /> */}
 			<SidebarProvider>
 				<GridContainer>
 					<Sidebar items={navigation} />
