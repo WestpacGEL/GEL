@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { Body } from '@westpac/body';
+import { Body } from '../../../../../src/components/body';
 
 import { ToolbarButton } from '../toolbar-components';
 import { BlockQuoteIcon } from '../toolbar-icons';

@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
 import { Fragment } from 'react';
-import { Heading as WestpacHeading } from '@westpac/heading';
+import { Heading as GELHeading } from '@westpac/heading';
 import { jsx, useMediaQuery } from '@westpac/core';
-import { Body } from '@westpac/body';
+import { Body } from '../src/components/body';
 import { Cell } from '@westpac/grid';
 
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
@@ -171,7 +171,7 @@ export const Heading = {
 
 		return (
 			<Cell width={widthMap[indentLevel]} left={indentMap[indentLevel]}>
-				<WestpacHeading
+				<GELHeading
 					id={id}
 					tabIndex="-1"
 					tag={level}
@@ -182,8 +182,8 @@ export const Heading = {
 								merge({}, styles, {
 									...mq({
 										scrollMarginTop: '10.375rem',
-										marginTop: !removeTopMargin && size > 6 && '12px',
-										marginBottom: codeStyles ? ['12px', null, '18px'] : marginMap[size],
+										marginTop: !removeTopMargin && size > 6 && '0.75rem',
+										marginBottom: codeStyles ? ['0.75rem', null, '1.125rem'] : marginMap[size],
 										textTransform: size === 10 && 'uppercase',
 									})[0],
 								}),
@@ -191,9 +191,9 @@ export const Heading = {
 					}}
 				>
 					{heading}
-				</WestpacHeading>
+				</GELHeading>
 				{subText && text && (
-					<Body css={mq({ p: { margin: ['0 0 18px', null, '0 0 24px'] } })}>
+					<Body>
 						<p>{text}</p>
 					</Body>
 				)}

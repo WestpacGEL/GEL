@@ -5,7 +5,7 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import chroma from 'chroma-js';
-import { Body } from '@westpac/body';
+import { Body } from '../src/components/body';
 
 import { secondaryColors } from '../src/secondary-colors.js';
 
