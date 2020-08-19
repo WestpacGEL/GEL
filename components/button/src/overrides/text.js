@@ -1,16 +1,32 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx } from '@westpac/core';
+
+// ==============================
+// Component
+// ==============================
 
 const Text = ({ state, ...rest }) => <span {...rest} />;
 
+// ==============================
+// Styles
+// ==============================
+
 const textStyles = () => ({
-	label: getLabel('button-text'),
+	label: 'button-text',
 	overflow: 'hidden',
 	textOverflow: 'ellipsis',
 });
 
+// ==============================
+// Attributes
+// ==============================
+
 const textAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultText = {
 	component: Text,

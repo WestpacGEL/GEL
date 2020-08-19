@@ -1,8 +1,16 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx } from '@westpac/core';
+
+// ==============================
+// Component
+// ==============================
 
 const Icon = ({ state, icon: Icon, left, right, ...rest }) => <Icon {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const iconStyles = (_, { left, right, dropdown, block, hasChildren }) => {
 	let label = 'button-icon';
@@ -18,11 +26,19 @@ const iconStyles = (_, { left, right, dropdown, block, hasChildren }) => {
 	};
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const iconAttributes = () => ({
 	color: 'inherit',
 	'aria-hidden': 'true',
 	assistiveText: null,
 });
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultIcon = {
 	component: Icon,

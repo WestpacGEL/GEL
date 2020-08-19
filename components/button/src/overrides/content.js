@@ -1,15 +1,31 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx } from '@westpac/core';
 import { Fragment } from 'react';
+
+// ==============================
+// Component
+// ==============================
 
 const Content = ({ state, children }) => <Fragment>{children}</Fragment>;
 
+// ==============================
+// Styles
+// ==============================
+
 const contentStyles = () => ({
-	label: getLabel('button-content'),
+	label: 'button-content',
 });
 
+// ==============================
+// Attributes
+// ==============================
+
 const contentAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultContent = {
 	component: Content,

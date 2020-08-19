@@ -23,43 +23,6 @@ const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={r
 // Styles
 // ==============================
 
-const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
-	const props = { look, size, soft, block, justify, disabled };
-	const baseStyles = buttonStyles(_, defaultProps);
-
-	let modifiers = getModifier(defaultProps, props);
-	if (!modifiers.length) return baseStyles;
-
-	const modifierStyles = buttonStyles(_, props);
-	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
-
-	let label = baseStyles.label;
-	let modifier;
-
-	if (modifiers.length > 1 && modifiers.includes('soft')) {
-		modifier = 'soft';
-	} else {
-		modifier = modifiers[0];
-	}
-
-	switch (modifier) {
-		case 'soft':
-			label = look === defaultProps.look ? `${label}-soft` : `${label}-${look}-soft`;
-			break;
-		case 'look':
-			label = `${label}-${look}`;
-			break;
-		case 'size':
-			label = `${label}-${size}`;
-			break;
-		default:
-			label = `${label}-${modifier}`;
-			break;
-	}
-
-	return { label, ...reconciledStyles };
-};
-
 const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
@@ -248,6 +211,47 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 };
 
 // ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
+	const props = { look, size, soft, block, justify, disabled };
+	const baseStyles = buttonStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = buttonStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	let modifier;
+
+	if (modifiers.length > 1 && modifiers.includes('soft')) {
+		modifier = 'soft';
+	} else {
+		modifier = modifiers[0];
+	}
+
+	switch (modifier) {
+		case 'soft':
+			label = look === defaultProps.look ? `${label}-soft` : `${label}-${look}-soft`;
+			break;
+		case 'look':
+			label = `${label}-${look}`;
+			break;
+		case 'size':
+			label = `${label}-${size}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
 // Attributes
 // ==============================
 
@@ -255,11 +259,11 @@ const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveTex
 
 const blenderAttributes = (_, { look, soft, size, block, justify }) => ({
 	className: classNames({
-		[`GEL-button-${look}`]: look && look !== defaultProps.look && !soft,
-		[`GEL-button${look === defaultProps.look ? '' : `-${look}`}-soft`]: soft,
-		[`GEL-button-${size}`]: size && size !== defaultProps.size,
-		[`GEL-button-block`]: block,
-		[`GEL-button-justify`]: justify,
+		[`__convert__button-${look}`]: look && look !== defaultProps.look && !soft,
+		[`__convert__button${look === defaultProps.look ? '' : `-${look}`}-soft`]: soft,
+		[`__convert__button-${size}`]: size && size !== defaultProps.size,
+		[`__convert__button-block`]: block,
+		[`__convert__button-justify`]: justify,
 	}),
 });
 
