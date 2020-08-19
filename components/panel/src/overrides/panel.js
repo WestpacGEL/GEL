@@ -1,8 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, classNames, getModifier, styleReconciler } from '@westpac/core';
-
-// import { blenderReconciler } from './_utils';
 import { defaultProps } from '../Panel';
 import { nestedStyles } from './header';
 
@@ -15,31 +13,6 @@ const Panel = ({ state, ...rest }) => <div {...rest} />;
 // ==============================
 // Styles
 // ==============================
-
-const blenderStyles = (_, { look }) => {
-	const props = { look };
-	const baseStyles = panelStyles(_, defaultProps);
-
-	let modifiers = getModifier(defaultProps, props);
-	if (!modifiers.length) return baseStyles;
-
-	const modifierStyles = panelStyles(_, props);
-	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
-
-	let label = baseStyles.label;
-	const modifier = modifiers[0];
-
-	switch (modifier) {
-		case 'look':
-			label = `${label}-${look}`;
-			break;
-		default:
-			label = `${label}-${modifier}`;
-			break;
-	}
-
-	return { label, ...reconciledStyles, ...nestedStyles(props) };
-};
 
 const panelStyles = (_, { look }) => {
 	const { COLORS } = useBrand();
@@ -74,14 +47,44 @@ const panelStyles = (_, { look }) => {
 };
 
 // ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { look }) => {
+	const props = { look };
+	const baseStyles = panelStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = panelStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'look':
+			label = `${label}-${look}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles, ...nestedStyles(props) };
+};
+
+// ==============================
 // Attributes
 // ==============================
 
 const panelAttributes = () => null;
 
 const blenderAttributes = (_, { look }) => ({
-	className: classNames({ [`GEL-panel-${look}`]: look !== defaultProps.look }),
+	className: classNames({ [`__convert__panel-${look}`]: look !== defaultProps.look }),
 });
+
 // ==============================
 // Exports
 // ==============================

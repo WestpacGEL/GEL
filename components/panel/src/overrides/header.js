@@ -13,24 +13,6 @@ const Header = ({ state, ...rest }) => <div {...rest} />;
 // Styles
 // ==============================
 
-export const nestedStyles = (props) => {
-	let modifiers = getModifier(defaultProps, props);
-	if (!modifiers.length) return {};
-
-	const baseStyles = headerStyles(null, defaultProps);
-	const modifierStyles = headerStyles(null, props);
-
-	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
-
-	return { [`.GEL-${baseStyles.label}`]: reconciledStyles };
-};
-
-const blenderStyles = (_, props) => {
-	const baseStyles = headerStyles(_, defaultProps);
-
-	return baseStyles;
-};
-
 const headerStyles = (_, { look }) => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
@@ -60,6 +42,28 @@ const headerStyles = (_, { look }) => {
 			borderBottom: '1px solid #000',
 		},
 	})[0];
+};
+
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, props) => {
+	const baseStyles = headerStyles(_, defaultProps);
+
+	return baseStyles;
+};
+
+export const nestedStyles = (props) => {
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return {};
+
+	const baseStyles = headerStyles(null, defaultProps);
+	const modifierStyles = headerStyles(null, props);
+
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	return { [`.__convert__${baseStyles.label}`]: reconciledStyles };
 };
 
 // ==============================
