@@ -185,6 +185,11 @@ ButtonDropdown.propTypes = {
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
 	/**
+	 * A function for the onClick event
+	 */
+	onClick: PropTypes.func,
+
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
