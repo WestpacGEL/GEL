@@ -41,17 +41,8 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 
 	return (
 		<div>
-			<div
-				css={mq({
-					position: 'relative',
-					backgroundColor: '#fff',
-				})}
-			>
-				<div
-					css={mq({
-						padding: [SPACING(5), null, SPACING(6)],
-					})}
-				>
+			<div css={{ position: 'relative', backgroundColor: '#fff' }}>
+				<div css={mq({ padding: [SPACING(5), null, SPACING(6)] })}>
 					<LivePreview />
 					{showError ? <LiveError /> : null}
 				</div>
