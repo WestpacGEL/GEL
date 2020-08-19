@@ -3,7 +3,7 @@
 import { jsx, css } from '@emotion/core';
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-/* Note: The following styles were not included as they apply to the document specifically...
+/* Note: The following Normalize styles were not included, they would apply at a document level (outside of our GEL wrapper)...
 html {
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
@@ -12,7 +12,6 @@ body {
 	margin: 0;
 } 
 */
-// TODO: consider moving to <Global />, but note will apply to document (outside of <GEL /> wrapper)
 export const reset = css`
 	main {
 		display: block;
