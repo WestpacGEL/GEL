@@ -5,7 +5,7 @@ import { jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { List, Item } from '@westpac/list';
 import { Heading } from '@westpac/heading';
-import { Body } from '@westpac/body';
+import { Body } from '../src/components/body';
 
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
@@ -205,11 +205,10 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 								{description && description !== '' ? (
 									<p
 										css={mq({
-											...PACKS.lead,
-											marginTop: 0,
-											marginBottom: 0,
-											lineHeight: 1.4,
-											fontSize: ['1.125rem', '1.125rem', '1.5rem'],
+											margin: 0,
+											fontSize: ['1.125rem', null, '1.5rem'],
+											lineHeight: 1.5,
+											fontWeight: 300,
 										})}
 									>
 										{description}

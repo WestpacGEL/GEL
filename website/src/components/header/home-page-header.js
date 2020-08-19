@@ -2,7 +2,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { HamburgerMenuIcon } from '@westpac/icon';
-import { Body } from '@westpac/body';
+import { Body } from '../body';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { BrandHeading } from '@westpac/heading';
 import HeaderImage from './home-page-header-image';
@@ -264,14 +264,16 @@ const HeroIntro = () => {
 			</Grid>
 			<Grid css={mq({ marginTop: [SPACING(4), SPACING(6)] })}>
 				<Cell width={10} left={2}>
-					<p
-						css={mq({
-							margin: 0,
-							...PACKS.typeScale.bodyFont[8],
-						})}
-					>
-						Assemble enterprise solutions with our components and patterns
-					</p>
+					<Body>
+						<p
+							css={mq({
+								margin: 0,
+								...PACKS.typeScale.bodyFont[8],
+							})}
+						>
+							Assemble enterprise solutions with our components and patterns
+						</p>
+					</Body>
 				</Cell>
 			</Grid>
 			<HeroFeatures />
