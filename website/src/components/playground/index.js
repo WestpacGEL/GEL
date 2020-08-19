@@ -2,8 +2,7 @@
 import { useState } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
-import { Modal, Body } from '@westpac/modal';
-import { Well } from '@westpac/well';
+import { Modal, Body as ModalBody } from '@westpac/modal';
 import dynamic from 'next/dynamic';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import editorTheme from './theme';
@@ -42,28 +41,16 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 
 	return (
 		<div>
-			<Well
-				overrides={{
-					Well: {
-						styles: (styles) => ({
-							...styles,
-							...mq({
-								position: 'relative',
-								border: 'none',
-								borderRadius: 0,
-								margin: 0,
-								backgroundColor: '#fff',
-								padding: ['1.875rem', '2.25rem'],
-								...(showCode && { paddingBottom: '0 !important' }),
-							})[0],
-						}),
-					},
-				}}
+			<div
+				css={mq({
+					position: 'relative',
+					backgroundColor: '#fff',
+				})}
 			>
 				<div
-					css={{
-						marginBottom: SPACING(8),
-					}}
+					css={mq({
+						padding: [SPACING(5), null, SPACING(6)],
+					})}
 				>
 					<LivePreview />
 					{showError ? <LiveError /> : null}
@@ -97,19 +84,19 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 						</Button>
 					) : null}
 				</div>
-			</Well>
+			</div>
 			{showCode && codeIsOpen ? (
 				<LiveEditor
 					css={mq({
-						fontSize: '14px',
+						fontSize: '0.875rem',
 					})}
 					padding={24}
 				/>
 			) : null}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-				<Body>
+				<ModalBody>
 					<LivePreview />
-				</Body>
+				</ModalBody>
 			</Modal>
 		</div>
 	);
