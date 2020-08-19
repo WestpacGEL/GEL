@@ -46,6 +46,10 @@ export const stepStyles = (_, { end, visited, grouped, furthest }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
 const blenderStyles = (_, { active, visited, end }) => {
 	const { COLORS } = useBrand();
 	const props = { active, visited, end };
@@ -66,7 +70,7 @@ const blenderStyles = (_, { active, visited, end }) => {
 
 	const styleMap = {
 		active: {
-			[`.GEL-${activeStyles.label}`]: activeStyles.styles,
+			[`.__convert__${activeStyles.label}`]: activeStyles.styles,
 		},
 		visited: {
 			// the visited line, copied from above
@@ -81,7 +85,7 @@ const blenderStyles = (_, { active, visited, end }) => {
 				borderLeft: `2px solid ${COLORS.primary}`,
 				transform: 'translateY(0.625rem)',
 			},
-			[`.GEL-${visitedStyles.label}`]: visitedStyles.styles,
+			[`.__convert__${visitedStyles.label}`]: visitedStyles.styles,
 		},
 		end: {
 			...endStyles.styles,
@@ -98,7 +102,7 @@ const stepAttributes = () => null;
 
 const blenderAttributes = (_, { active, visited, end }) => ({
 	className: classNames({
-		'GEL-progressRope-step': active || visited || end,
+		'__convert__progressRope-step': active || visited || end,
 	}),
 });
 

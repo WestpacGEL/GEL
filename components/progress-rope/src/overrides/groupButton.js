@@ -82,6 +82,10 @@ export const groupButtonStyles = (_, { complete, active }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
 const blenderStyles = () => groupButtonStyles(null, {});
 
 // ==============================

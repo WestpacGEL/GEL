@@ -24,7 +24,7 @@ const GROUP_LABEL = 'progressRope-group';
 const groupStyles = () => ({ label: GROUP_LABEL });
 
 // ==============================
-// Blender
+// Blender Styles
 // ==============================
 
 const blenderStyles = (_, { active, visited }) => {
@@ -40,8 +40,8 @@ const blenderStyles = (_, { active, visited }) => {
 
 	return {
 		label: `${base.label}-${modifier}`,
-		...(active && { [`.GEL-${activeStyle.label}`]: activeStyle.styles }),
-		...(visited && { [`.GEL-${visitedStyle.label}`]: visitedStyle.styles }),
+		...(active && { [`.__convert__${activeStyle.label}`]: activeStyle.styles }),
+		...(visited && { [`.__convert__${visitedStyle.label}`]: visitedStyle.styles }),
 	};
 };
 
@@ -54,12 +54,12 @@ const baseStyles = () => {
 
 	return {
 		label: GROUP_LABEL,
-		[`.GEL-${step.label}`]: {
+		[`.__convert__${step.label}`]: {
 			...step.styles,
-			[`.GEL-${stepBtn.label}`]: stepBtn.styles,
+			[`.__convert__${stepBtn.label}`]: stepBtn.styles,
 		},
-		[`.GEL-${step.label}-visited`]: {
-			[`.GEL-${stepBtn.label}`]: {
+		[`.__convert__${step.label}-visited`]: {
+			[`.__convert__${stepBtn.label}`]: {
 				...stepBtnReconciled,
 			},
 		},
@@ -77,7 +77,7 @@ const groupAttributes = () => null;
 
 const blenderAttributes = (_, { active, visited }) => ({
 	className: classNames({
-		'GEL-progressRope-group': !active || !visited,
+		'__convert__progressRope-group': !active || !visited,
 	}),
 	'data-js': 'progressRope-group__version__',
 });

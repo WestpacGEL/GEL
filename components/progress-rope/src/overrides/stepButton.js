@@ -85,6 +85,10 @@ export const stepButtonStyles = (_, { end, grouped, visited, active, furthest })
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
 const blenderStyles = () => stepButtonStyles(null, {});
 
 // ==============================
