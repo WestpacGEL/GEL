@@ -13,31 +13,6 @@ const Badge = ({ state, ...rest }) => <span {...rest} />;
 // Styles
 // ==============================
 
-const blenderStyles = (_, { look }) => {
-	const props = { look };
-	const baseStyles = badgeStyles(_, defaultProps);
-
-	let modifiers = getModifier(defaultProps, props);
-	if (!modifiers.length) return baseStyles;
-
-	const modifierStyles = badgeStyles(_, props);
-	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
-
-	let label = baseStyles.label;
-	const modifier = modifiers[0];
-
-	switch (modifier) {
-		case 'look':
-			label = `${label}-${look}`;
-			break;
-		default:
-			label = `${label}-${modifier}`;
-			break;
-	}
-
-	return { label, ...reconciledStyles };
-};
-
 const badgeStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
 
@@ -108,13 +83,42 @@ const badgeStyles = (_, { look }) => {
 };
 
 // ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { look }) => {
+	const props = { look };
+	const baseStyles = badgeStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = badgeStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'look':
+			label = `${label}-${look}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
 // Attributes
 // ==============================
 
 const badgeAttributes = () => null;
 
 const blenderAttributes = (_, { look }) => ({
-	className: classNames({ [`GEL-badge-${look}`]: look !== defaultProps.look }),
+	className: classNames({ [`__convert__badge-${look}`]: look !== defaultProps.look }),
 });
 
 // ==============================
