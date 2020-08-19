@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
 import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { Button } from '@westpac/button';
@@ -36,6 +36,7 @@ export const ButtonDropdown = ({
 	text,
 	dropdownSize,
 	block,
+	onClick = () => {},
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -68,6 +69,7 @@ export const ButtonDropdown = ({
 		text,
 		dropdownSize,
 		block,
+		onClick,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -85,14 +87,19 @@ export const ButtonDropdown = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const handleOpen = () => {
-		if (open) {
-			setOpen(false);
-			setTimeout(() => buttonRef.current.focus(), 1);
-		} else {
-			setOpen(true);
-			setTimeout(() => panelRef.current.focus(), 1);
-		}
+	const handleOpen = (event) => {
+		wrapHandlers(
+			() => onClick(),
+			() => {
+				if (open) {
+					setOpen(false);
+					setTimeout(() => buttonRef.current.focus(), 1);
+				} else {
+					setOpen(true);
+					setTimeout(() => panelRef.current.focus(), 1);
+				}
+			}
+		)(event);
 	};
 
 	useOutsideClick(panelRef, () => {
@@ -176,6 +183,11 @@ ButtonDropdown.propTypes = {
 	 * Fit button width to its parent width.
 	 */
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+
+	/**
+	 * A function for the onClick event
+	 */
+	onClick: PropTypes.func,
 
 	/**
 	 * The override API

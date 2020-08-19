@@ -4,7 +4,7 @@ import { jsx, GEL, useBrand } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	const brand = { ...useBrand() };
 	brand['@westpac/switch'] = {
 		Label: {
@@ -33,3 +33,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;
