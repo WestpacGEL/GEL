@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { forwardRef, useState } from 'react';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
-import { ButtonDropdown } from '@westpac/button-dropdown';
+import { ButtonDropdown, useButtonDropdownContext } from '@westpac/button-dropdown';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -68,11 +68,10 @@ const ButtonIconOverride = ({ state, icon: Icon, left, right, color, ...rest }) 
 };
 
 const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
-	const { COLORS, PACKS } = useBrand();
-	/* const {
+	const {
 		state: { open },
-	} = useButtonDropdownContext(); */
-	const open = false;
+	} = useButtonDropdownContext();
+
 	return (
 		<Button
 			ref={ref}
@@ -105,12 +104,14 @@ export const BrandSwitcher = () => {
 	const { SPACING, COLORS, PACKS, TYPE } = useBrand();
 	const Logo = brandsMap[brand].logo;
 
-	const handleClick = (brand) => {
-		setOpen(false);
-		setBrand(brand);
-	};
-
 	const OptionButton = ({ brand, active, ...rest }) => {
+		const context = useButtonDropdownContext();
+
+		const handleClick = (brand) => {
+			setOpen(false);
+			setBrand(brand);
+		};
+
 		return (
 			<button
 				type="button"
@@ -162,6 +163,10 @@ export const BrandSwitcher = () => {
 		);
 	};
 
+	const handleClick = () => {
+		setOpen(!open);
+	};
+
 	return (
 		<div
 			css={{
@@ -194,6 +199,7 @@ export const BrandSwitcher = () => {
 				block
 				text="Change brand"
 				dropdown={false}
+				onClick={handleClick}
 				overrides={{
 					Button: {
 						component: ButtonOverride,

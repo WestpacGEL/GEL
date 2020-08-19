@@ -9,7 +9,7 @@ const StyledText = ({ weight, ...rest }) => {
 	return <p css={{ ...PACKS.typeScale.brandFont[4], ...TYPE.bodyFont[weight] }} {...rest} />;
 };
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	const { BRAND } = useBrand();
 
 	const brandFontMap = {
@@ -49,3 +49,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;
