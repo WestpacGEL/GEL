@@ -1,0 +1,4 @@
+{
+	"main": "dist/pictogram.cjs.js",
+	"module": "dist/pictogram.esm.js"
+}
