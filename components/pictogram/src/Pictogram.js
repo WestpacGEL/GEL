@@ -15,7 +15,7 @@ export { colorMap } from './_utils';
 export { useBrand };
 
 export const Pictogram = ({
-	mode,
+	type,
 	assistiveText,
 	pictogram,
 	children,
@@ -33,7 +33,7 @@ export const Pictogram = ({
 	};
 
 	const state = {
-		mode,
+		type,
 		assistiveText,
 		pictogram,
 		overrides: componentOverrides,
@@ -62,7 +62,7 @@ export const propTypes = {
 	/**
 	 *  The visual style of the pictogram
 	 */
-	mode: PropTypes.oneOf(['colour', 'transparent', 'dark', 'light']).isRequired,
+	type: PropTypes.oneOf(['colour-filled', 'colour', 'dark', 'light']).isRequired,
 
 	/**
 	 * String to use as the `aria-label` for the pictogram. Set to an empty string if you
@@ -91,7 +91,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
-	mode: 'colour',
+	type: 'colour',
 };
 
 Pictogram.propTypes = propTypes;

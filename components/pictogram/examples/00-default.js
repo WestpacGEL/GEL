@@ -2,7 +2,6 @@
 
 import { GEL, jsx } from '@westpac/core';
 import * as components from '@westpac/pictogram';
-// import { Grid, Cell } from '@westpac/grid';
 import { Grid, Cell, Name } from './_util';
 
 const pictograms = Object.keys(components);
