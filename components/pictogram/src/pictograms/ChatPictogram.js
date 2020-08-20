@@ -1,9 +1,8 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, useBrand, colorMap } from '../Pictogram';
+import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
 
 export const ChatPictogram = ({ type, ...rest }) => {
-	const { COLORS } = useBrand();
-	const { outline, background, highlight } = colorMap(COLORS)[type];
+	const { outline, background, highlight } = colorMap()[type];
 
 	return (
 		<Pictogram pictogram="ChatPictogram" type={type} {...rest}>
