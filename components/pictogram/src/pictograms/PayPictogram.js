@@ -1,8 +1,10 @@
 import React from 'react';
 import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
+import { useBrand } from '@westpac/core';
 
 export const PayPictogram = ({ type, ...rest }) => {
-	const { outline, background, highlight } = colorMap()[type];
+	const { COLORS } = useBrand();
+	const { outline, background, highlight } = colorMap(COLORS)[type];
 
 	return (
 		<Pictogram pictogram="PayPictogram" type={type} {...rest}>
