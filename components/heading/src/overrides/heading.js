@@ -1,7 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
 import { forwardRef } from 'react';
+
+// ==============================
+// Component
+// ==============================
 
 const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	// ignore all non h1-h6 tags
@@ -25,6 +29,10 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	return <Tag ref={ref} {...rest} />;
 });
 
+// ==============================
+// Styles
+// ==============================
+
 const headingStyles = (_, { size }) => {
 	const { PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
@@ -46,7 +54,7 @@ const headingStyles = (_, { size }) => {
 	});
 
 	return mq({
-		label: getLabel('heading', { size }),
+		label: `heading-size-${size}`,
 		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].fontFamily),
 		fontSize: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].fontSize),
 		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].lineHeight),
@@ -55,7 +63,15 @@ const headingStyles = (_, { size }) => {
 	})[0];
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const headingAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultHeading = {
 	component: Heading,

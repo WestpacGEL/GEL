@@ -6,6 +6,7 @@ import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table'
 
 import { blenderPanel } from '../src/overrides/panel';
 import { blenderHeader } from '../src/overrides/header';
+import { blenderHeading } from '../src/overrides/heading';
 
 const looks = ['hero', 'faint'];
 
@@ -19,6 +20,9 @@ export function AllStyles({ brand }) {
 				},
 				Header: {
 					styles: blenderHeader.styles,
+				},
+				Heading: {
+					component: blenderHeading.component,
 				},
 			}}
 			{...props}
@@ -44,6 +48,9 @@ export function Docs({ brand }) {
 			overrides={{
 				Panel: {
 					attributes: blenderPanel.attributes,
+				},
+				Heading: {
+					component: blenderHeading.component,
 				},
 			}}
 			{...props}
