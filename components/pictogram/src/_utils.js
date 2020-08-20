@@ -1,4 +1,8 @@
-export const colorMap = (COLORS) => {
+import { useBrand } from '@westpac/core';
+
+export const colorMap = () => {
+	const { COLORS } = useBrand();
+
 	return {
 		'colour-filled': {
 			outline: COLORS.hero,
