@@ -5,14 +5,12 @@ import PropTypes from 'prop-types';
 
 import { defaultPictogram } from './overrides/pictogram';
 import { defaultSvg } from './overrides/svg';
+export { colorMap } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-
-export { colorMap } from './_utils';
-export { useBrand };
 
 export const Pictogram = ({
 	type,
