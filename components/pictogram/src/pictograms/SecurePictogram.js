@@ -1,12 +1,12 @@
 import React from 'react';
 import { propTypes, defaultProps, Pictogram, useBrand, colorMap } from '../Pictogram';
 
-export const SecurePictogram = ({ mode = 'color', ...rest }) => {
+export const SecurePictogram = ({ type, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, background, highlight } = colorMap(COLORS)[mode];
+	const { outline, background, highlight } = colorMap(COLORS)[type];
 
 	return (
-		<Pictogram pictogram="SecurePictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="SecurePictogram" type={type} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={background} fillRule="nonzero" points="62 31 16 31 16 74 62 74" />
 				<path

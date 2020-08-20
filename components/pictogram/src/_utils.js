@@ -1,18 +1,18 @@
 export const colorMap = (COLORS) => {
 	return {
-		colour: {
+		'colour-filled': {
 			outline: COLORS.hero,
 			background: '#fff',
 			highlight: COLORS.primary,
 		},
-		transparent: {
+		colour: {
 			outline: COLORS.hero,
 			background: 'transparent',
 			highlight: COLORS.primary,
 		},
 		dark: {
 			outline: COLORS.text,
-			background: '#fff',
+			background: 'transparent',
 			highlight: COLORS.text,
 		},
 		light: {
