@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { Fragment, useState, useCallback, useEffect, forwardRef } from 'react';
+import { useState, useCallback, useEffect, forwardRef } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
-import debounce from 'lodash.debounce';
+import throttle from 'lodash.throttle';
 import Error from 'next/error';
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
@@ -51,7 +51,7 @@ const Component = ({ component, tabName }) => {
 
 const Tabs = ({ component, tabName }) => {
 	const { SPACING, COLORS } = useBrand();
-	const [scrolled, setScrolled] = useState(false);
+	const [hasScrolled, setHasScrolled] = useState(false);
 
 	const mq = useMediaQuery();
 	const router = useRouter();
@@ -59,19 +59,18 @@ const Tabs = ({ component, tabName }) => {
 	const tabMap = ['design', 'accessibility', 'code'];
 
 	useEffect(() => {
-		const main = document.querySelector('main') || window;
+		const setTabs = () => {
+			const scroll = window.scrollY;
 
-		const scrollHandler = debounce(() => {
-			if (main.scrollTop === 0) {
-				setScrolled(false);
-			} else if (main.scrollTop >= 162) {
-				setScrolled(true);
-			}
-		}, 10);
+			setHasScrolled(scroll > 156);
+		};
+		setTabs();
 
-		main.addEventListener('scroll', scrollHandler);
+		const scrollHandler = throttle(setTabs, 10);
+
+		window.addEventListener('scroll', scrollHandler);
 		return () => {
-			main.removeEventListener('scroll', scrollHandler);
+			window.removeEventListener('scroll', scrollHandler);
 		};
 	}, []);
 
@@ -88,7 +87,6 @@ const Tabs = ({ component, tabName }) => {
 			styles: (styles) => ({
 				...styles,
 				flexGrow: 1,
-				backgroundColor: COLORS.background,
 			}),
 		},
 		TabRow: {
@@ -97,12 +95,12 @@ const Tabs = ({ component, tabName }) => {
 				alignItems: 'flex-end',
 				backgroundColor: '#fff',
 				position: 'sticky',
-				top: '66px',
+				top: 66,
 				zIndex: 5,
-				boxShadow: scrolled && '0 4px 4px rgba(0, 0, 0, 0.3)',
-				transition: 'box-shadow 0.2s ease',
+				boxShadow: hasScrolled && '0 2px 5px rgba(0,0,0,0.3)',
+				transition: 'box-shadow 0.2s',
 				...mq({
-					height: ['66px', null, '90px'],
+					height: [66, null, 90],
 				})[0],
 			}),
 		},
@@ -114,7 +112,7 @@ const Tabs = ({ component, tabName }) => {
 					display: 'flex',
 					justifyContent: 'center',
 					alignItems: 'center',
-					height: ['54px', null, '66px'],
+					height: [54, null, 66],
 					borderRadius: 0,
 					backgroundColor: 'white',
 					border: 'none',
@@ -191,14 +189,22 @@ const Tabs = ({ component, tabName }) => {
 	}
 
 	return (
-		<Tabcordion
-			mode="tabs"
-			openTab={tabName ? tabMap.indexOf(tabName) : 0}
-			onOpen={onOpen}
-			overrides={tabOverrides}
+		<main
+			id="content"
+			css={{
+				backgroundColor: COLORS.background,
+				paddingBottom: '3.0625rem', //space for fixed footer
+			}}
 		>
-			{tabs}
-		</Tabcordion>
+			<Tabcordion
+				mode="tabs"
+				openTab={tabName ? tabMap.indexOf(tabName) : 0}
+				onOpen={onOpen}
+				overrides={tabOverrides}
+			>
+				{tabs}
+			</Tabcordion>
+		</main>
 	);
 };
 

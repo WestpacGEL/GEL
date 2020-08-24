@@ -7,9 +7,10 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<ButtonGroup name="example-1" block>
-				<Item value="left">Item 1</Item>
-				<Item value="right">Item 2</Item>
+			<ButtonGroup name="example-block" block>
+				<Item value="left">Email</Item>
+				<Item value="middle">Phone</Item>
+				<Item value="right">Label</Item>
 			</ButtonGroup>
 		</Playground>
 	);

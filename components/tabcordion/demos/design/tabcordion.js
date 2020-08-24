@@ -11,93 +11,83 @@ export default ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>Default tabcordion</Title>
 			<Tabcordion>
-				<Tab text="Rabbit hole">
-					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
-					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
-					gone down that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort
-					of life! I do wonder what can have happened to me! When I used to read fairy-tales, I
-					fancied that kind of thing never happened, and now here I am in the middle of one! There
-					ought to be a book written about me, that there ought! And when I grow up, I’ll write one.
+				<Tab text="Mole">
+					The Mole had been working very hard all the morning, spring-cleaning his little home.
+					First with brooms, then with dusters; then on ladders and steps and chairs, with a brush
+					and a pail of whitewash; till he had dust in his throat and eyes, and splashes of
+					whitewash all over his black fur, and an aching back and weary arms. Spring was moving in
+					the air above and in the earth below and around him, penetrating even his dark and lowly
+					little house with its spirit of divine discontent and longing. It was small wonder, then,
+					that he suddenly flung down his brush on the floor, said ‘Bother!’ and ‘O blow!’ and also
+					‘Hang spring-cleaning!’ and bolted out of the house without even waiting to put on his
+					coat.
 				</Tab>
-				<Tab text="Flamingo">
-					The chief difficulty Alice found at first was in managing her flamingo: she succeeded in
-					getting its body tucked away, comfortably enough, under her arm, with its legs hanging
-					down, but generally, just as she had got its neck nicely straightened out, and was going
-					to give the hedgehog a blow with its head, it would twist itself round and look up in her
-					face, with such a puzzled expression that she could not help bursting out laughing: and
-					when she had got its head down, and was going to begin again, it was very provoking to
-					find that the hedgehog had unrolled itself, and was in the act of crawling away: besides
-					all this, there was generally a ridge or furrow in the way wherever she wanted to send the
-					hedgehog to, and, as the doubled-up soldiers were always getting up and walking off to
-					other parts of the ground, Alice soon came to the conclusion that it was a very difficult
-					game indeed.
+				<Tab text="Rat">
+					The Rat said nothing, but stooped and unfastened a rope and hauled on it; then lightly
+					stepped into a little boat which the Mole had not observed. It was painted blue outside
+					and white within, and was just the size for two animals; and the Mole’s whole heart went
+					out to it at once, even though he did not yet fully understand its uses. The Rat sculled
+					smartly across and made fast. Then he held up his forepaw as the Mole stepped gingerly
+					down. ‘Lean on that!’ he said. ‘Now then, step lively!’ and the Mole to his surprise and
+					rapture found himself actually seated in the stern of a real boat.
 				</Tab>
-				<Tab text="Caterpillar">
-					The Caterpillar and Alice looked at each other for some time in silence: at last the
-					Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy
-					voice.
-					<br />
-					‘Who are you?’ said the Caterpillar.
-					<br />
-					This was not an encouraging opening for a conversation. Alice replied, rather shyly, ‘I —
-					I hardly know, sir, just at present — at least I know who I was when I got up this
-					morning, but I think I must have been changed several times since then.’
-					<br />
-					‘What do you mean by that?’ said the Caterpillar sternly. ‘Explain yourself!’
-					<br />
-					‘I can’t explain myself, I’m afraid, sir’ said Alice, ’because I’m not myself, you see.’
-					<br />
-					‘I don’t see,’ said the Caterpillar.
-					<br />
-					‘I’m afraid I can’t put it more clearly,’ Alice replied very politely, ‘for I can’t
-					understand it myself to begin with; and being so many different sizes in a day is very
-					confusing.’
+				<Tab text="Toad">
+					‘Toad’s out, for one,’ replied the Otter. ‘In his brand-new wager-boat; new togs, new
+					everything!’ The two animals looked at each other and laughed. ‘Once, it was nothing but
+					sailing,’ said the Rat, ‘Then he tired of that and took to punting. Nothing would please
+					him but to punt all day and every day, and a nice mess he made of it. Last year it was
+					house-boating, and we all had to go and stay with him in his house-boat, and pretend we
+					liked it. He was going to spend the rest of his life in a house-boat. It’s all the same,
+					whatever he takes up; he gets tired of it, and starts on something fresh.’
+				</Tab>
+				<Tab text="Badger">
+					The Badger, who wore a long dressing-gown, and whose slippers were indeed very down at
+					heel, carried a flat candlestick in his paw and had probably been on his way to bed when
+					their summons sounded. He looked kindly down on them and patted both their heads. ‘This is
+					not the sort of night for small animals to be out,’ he said paternally. ‘I’m afraid you’ve
+					been up to some of your pranks again, Ratty. But come along; come into the kitchen.
+					There’s a first-rate fire there, and supper and everything.’
 				</Tab>
 			</Tabcordion>
 			<br />
 			<Title>Lego tabcordion</Title>
 			<Tabcordion look="lego">
-				<Tab text="Rabbit hole">
-					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
-					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
-					gone down that rabbit-hole — and yet — and yet — it’s rather curious, you know, this sort
-					of life! I do wonder what can have happened to me! When I used to read fairy-tales, I
-					fancied that kind of thing never happened, and now here I am in the middle of one! There
-					ought to be a book written about me, that there ought! And when I grow up, I’ll write one.
+				<Tab text="Mole">
+					The Mole had been working very hard all the morning, spring-cleaning his little home.
+					First with brooms, then with dusters; then on ladders and steps and chairs, with a brush
+					and a pail of whitewash; till he had dust in his throat and eyes, and splashes of
+					whitewash all over his black fur, and an aching back and weary arms. Spring was moving in
+					the air above and in the earth below and around him, penetrating even his dark and lowly
+					little house with its spirit of divine discontent and longing. It was small wonder, then,
+					that he suddenly flung down his brush on the floor, said ‘Bother!’ and ‘O blow!’ and also
+					‘Hang spring-cleaning!’ and bolted out of the house without even waiting to put on his
+					coat.
 				</Tab>
-				<Tab text="Flamingo">
-					The chief difficulty Alice found at first was in managing her flamingo: she succeeded in
-					getting its body tucked away, comfortably enough, under her arm, with its legs hanging
-					down, but generally, just as she had got its neck nicely straightened out, and was going
-					to give the hedgehog a blow with its head, it would twist itself round and look up in her
-					face, with such a puzzled expression that she could not help bursting out laughing: and
-					when she had got its head down, and was going to begin again, it was very provoking to
-					find that the hedgehog had unrolled itself, and was in the act of crawling away: besides
-					all this, there was generally a ridge or furrow in the way wherever she wanted to send the
-					hedgehog to, and, as the doubled-up soldiers were always getting up and walking off to
-					other parts of the ground, Alice soon came to the conclusion that it was a very difficult
-					game indeed.
+				<Tab text="Rat">
+					The Rat said nothing, but stooped and unfastened a rope and hauled on it; then lightly
+					stepped into a little boat which the Mole had not observed. It was painted blue outside
+					and white within, and was just the size for two animals; and the Mole’s whole heart went
+					out to it at once, even though he did not yet fully understand its uses. The Rat sculled
+					smartly across and made fast. Then he held up his forepaw as the Mole stepped gingerly
+					down. ‘Lean on that!’ he said. ‘Now then, step lively!’ and the Mole to his surprise and
+					rapture found himself actually seated in the stern of a real boat.
 				</Tab>
-				<Tab text="Caterpillar">
-					The Caterpillar and Alice looked at each other for some time in silence: at last the
-					Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy
-					voice.
-					<br />
-					‘Who are you?’ said the Caterpillar.
-					<br />
-					This was not an encouraging opening for a conversation. Alice replied, rather shyly, ‘I —
-					I hardly know, sir, just at present — at least I know who I was when I got up this
-					morning, but I think I must have been changed several times since then.’
-					<br />
-					‘What do you mean by that?’ said the Caterpillar sternly. ‘Explain yourself!’
-					<br />
-					‘I can’t explain myself, I’m afraid, sir’ said Alice, ’because I’m not myself, you see.’
-					<br />
-					‘I don’t see,’ said the Caterpillar.
-					<br />
-					‘I’m afraid I can’t put it more clearly,’ Alice replied very politely, ‘for I can’t
-					understand it myself to begin with; and being so many different sizes in a day is very
-					confusing.’
+				<Tab text="Toad">
+					‘Toad’s out, for one,’ replied the Otter. ‘In his brand-new wager-boat; new togs, new
+					everything!’ The two animals looked at each other and laughed. ‘Once, it was nothing but
+					sailing,’ said the Rat, ‘Then he tired of that and took to punting. Nothing would please
+					him but to punt all day and every day, and a nice mess he made of it. Last year it was
+					house-boating, and we all had to go and stay with him in his house-boat, and pretend we
+					liked it. He was going to spend the rest of his life in a house-boat. It’s all the same,
+					whatever he takes up; he gets tired of it, and starts on something fresh.’
+				</Tab>
+				<Tab text="Badger">
+					The Badger, who wore a long dressing-gown, and whose slippers were indeed very down at
+					heel, carried a flat candlestick in his paw and had probably been on his way to bed when
+					their summons sounded. He looked kindly down on them and patted both their heads. ‘This is
+					not the sort of night for small animals to be out,’ he said paternally. ‘I’m afraid you’ve
+					been up to some of your pranks again, Ratty. But come along; come into the kitchen.
+					There’s a first-rate fire there, and supper and everything.’
 				</Tab>
 			</Tabcordion>
 		</Playground>

@@ -6,8 +6,6 @@ import { useProgress, Wrapper } from './_utils';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const [state, dispatch] = useProgress();
 	const [state2, dispatch2] = useProgress();
@@ -60,7 +58,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
 			<Grid>
 				<Cell width={6}>
 					<Wrapper>

@@ -31,12 +31,30 @@ const BrandSwitcherProvider = ({ children, brand: initialBrand }) => {
 				brands: BRANDS,
 				brand,
 				setBrand: (brand) => {
-					document.cookie = `gel_selected_brand=${brand}`;
-					router.push({
-						pathname: window.location.pathname,
-						query: { b: brand },
-					});
 					setBrand(brand);
+					document.cookie = `gel_selected_brand=${brand}`;
+					const { query } = router;
+					const as = `${router.asPath.split('?')[0]}?b=${brand}&tab=${query.tab}`;
+					query.b = brand;
+					let params = new URLSearchParams();
+
+					Object.keys(query).forEach((key) => {
+						if (Array.isArray(query[key])) {
+							query[key].forEach((val) => params.append(key, val));
+						} else {
+							params.append(key, query[key]);
+						}
+					});
+
+					window.history.replaceState(
+						{
+							as,
+							url: `/design-system/[...page]?${params}`,
+							options: { shallow: true },
+						},
+						'',
+						as
+					);
 				},
 			}}
 		>

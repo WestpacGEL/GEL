@@ -10,26 +10,54 @@ import { ROOT_PAGES, BASE_PAGE } from '../../../config';
 import { NavigationGroup } from './navigation-group';
 import { useSidebar } from '../../providers/sidebar';
 import BackToGelSvg from './BackToGelSvg';
+import throttle from 'lodash.throttle';
 
 // `<List />` uses `<Body />` and provides link styling we don't need
-const NavListOverride = (props) => <ul {...props} />;
+const ListOverride = ({ state, ...props }) => <ul {...props} />;
+
+const NavigationList = (props) => {
+	const { SPACING, PACKS } = useBrand();
+	return (
+		<List
+			type="unstyled"
+			overrides={{
+				List: {
+					component: ListOverride,
+					styles: (styles) => ({
+						...styles,
+						'> li': {
+							margin: 0,
+						},
+					}),
+				},
+				Item: {
+					styles: (styles) => ({
+						...styles,
+						'a:focus': {
+							outlineOffset: `-${PACKS.focus.outlineWidth}`,
+						},
+					}),
+				},
+			}}
+			{...props}
+		/>
+	);
+};
 
 export const Navigation = ({ items }) => {
 	const ref = useRef();
+	const { COLORS, SPACING, PACKS } = useBrand();
 	const { isScrolled, setIsScrolled } = useSidebar();
 
-	const handleScroll = () => {
-		const scrollTop = ref.current.scrollTop;
-		if (!isScrolled && scrollTop > 0) {
-			setIsScrolled(true);
-		} else if (scrollTop === 0) {
-			setIsScrolled(false);
-		}
+	const setNavigation = () => {
+		const scroll = ref.current.scrollTop;
+		setIsScrolled(scroll > 0);
 	};
+
+	const handleScroll = throttle(setNavigation, 10);
 
 	const renderNavigationItems = (items, level = 0) => {
 		const router = useRouter();
-		const { COLORS } = useBrand();
 		const brandName = router.query.b || '';
 
 		return items.map((item) => {
@@ -48,16 +76,7 @@ export const Navigation = ({ items }) => {
 						title={item.title}
 						level={level}
 					>
-						<List
-							type="unstyled"
-							overrides={{
-								List: {
-									component: NavListOverride,
-								},
-							}}
-						>
-							{renderNavigationItems(item.children, level + 1)}
-						</List>
+						<NavigationList>{renderNavigationItems(item.children, level + 1)}</NavigationList>
 					</NavigationGroup>
 				);
 			}
@@ -88,7 +107,7 @@ export const Navigation = ({ items }) => {
 							level={level}
 							css={{
 								color: isCurrentChild && COLORS.primary,
-								fontWeight: isCurrentChild && 500,
+								fontWeight: isCurrentChild && 700,
 							}}
 						>
 							{item.title}
@@ -103,27 +122,29 @@ export const Navigation = ({ items }) => {
 		<nav
 			ref={ref}
 			onScroll={handleScroll}
-			css={{ flex: 1, overflowY: 'scroll', '-webkitOverflowScrolling': 'touch' }}
+			css={{
+				flex: 1,
+				overflowY: 'auto',
+				'-webkitOverflowScrolling': 'touch',
+				paddingBottom: SPACING(4),
+			}}
 			role="navigation"
 		>
 			<a
 				href="/"
-				css={{ display: 'block !important', overflow: 'hidden', height: '90px' }}
+				css={{
+					display: 'block !important',
+					overflow: 'hidden',
+					height: 90,
+					':focus': {
+						outlineOffset: `-${PACKS.focus.outlineWidth}`,
+					},
+				}}
 				aria-label="Back to GEL"
 			>
 				<BackToGelSvg />
 			</a>
-			<List
-				type="unstyled"
-				css={{ paddingBottom: '1.5rem' }}
-				overrides={{
-					List: {
-						component: NavListOverride,
-					},
-				}}
-			>
-				{renderNavigationItems(items)}
-			</List>
+			<NavigationList>{renderNavigationItems(items)}</NavigationList>
 		</nav>
 	);
 };

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
+import PropTypes from 'prop-types';
 
 export const Svg = ({ viewBox, width, height, ...rest }) => (
 	<svg
@@ -12,3 +13,9 @@ export const Svg = ({ viewBox, width, height, ...rest }) => (
 		{...rest}
 	/>
 );
+
+Svg.propTypes = {
+	viewBox: PropTypes.string.isRequired,
+	width: PropTypes.number.isRequired,
+	height: PropTypes.number.isRequired,
+};

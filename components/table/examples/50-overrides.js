@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/table'] = {
@@ -61,7 +59,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
 			<h2>Overrides on caption, table, thead, tbody, tfoot, th, tr, td</h2>
 			<Table>
 				<Caption>

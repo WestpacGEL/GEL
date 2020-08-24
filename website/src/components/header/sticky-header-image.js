@@ -9,19 +9,19 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 	const WestpacImage = (props) => (
 		<div
 			css={mq({
-				top: [0, null, 'auto'],
+				top: [null, null, 'auto'],
 				bottom: 0,
 				right: 0,
-				height: [null, null, 658, 633],
+				height: [268, null, 658, 633],
 			})}
 			{...props}
 		>
 			<WbcBackgroundRightSvg
-				css={mq({
+				css={{
 					display: 'block',
-					width: ['auto', null, 'auto'],
-					height: ['100%', null, '100%'],
-				})}
+					width: 'auto',
+					height: '100%',
+				}}
 			/>
 		</div>
 	);
@@ -35,7 +35,13 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 			})}
 			{...props}
 		>
-			<StgBackgroundSvg css={mq({ display: 'block', width: '100%', height: 'auto' })} />
+			<StgBackgroundSvg
+				css={{
+					display: 'block',
+					width: '100%',
+					height: 'auto',
+				}}
+			/>
 		</div>
 	);
 
@@ -48,7 +54,13 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 			})}
 			{...props}
 		>
-			<BsaBackgroundSvg css={mq({ display: 'block', width: '100%', height: 'auto' })} />
+			<BsaBackgroundSvg
+				css={{
+					display: 'block',
+					width: '100%',
+					height: 'auto',
+				}}
+			/>
 		</div>
 	);
 

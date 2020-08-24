@@ -14,17 +14,10 @@ export const StyledItem = forwardRef(({ tag: Tag, level, ...rest }, ref) => {
 		<Tag
 			ref={ref}
 			css={{
-				cursor: 'pointer',
-				height: '48px',
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'space-between',
-				border: 'none',
-				background: 'none',
-				padding: `0 30px 0 ${36 + level * 20}px`,
+				display: 'block',
+				padding: `14px 30px 14px ${36 + level * 20}px`,
 				textDecoration: 'none',
 				fontSize: '0.875rem !important',
-				fontWeight: level === 0 && 500,
 				color: level === 0 ? COLORS.text : COLORS.muted,
 				transition: 'background 0.2s ease',
 

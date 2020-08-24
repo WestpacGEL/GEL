@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { GEL, jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { GEL, jsx, css, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
@@ -9,6 +9,8 @@ import gql from 'graphql-tag';
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
 import { SidebarProvider, useSidebar } from '../providers/sidebar';
 import { BrandPicker } from '../brand-picker';
+import { BASE_URL } from '../../config.js';
+import { brandOverrides } from '../../brand-overrides';
 import { Normalize, Sidebar } from './';
 
 /*
@@ -26,11 +28,35 @@ const Wrapper = (props) => {
 	const brandNames = Object.keys(brands);
 	const isMatch = brandNames.filter((name) => name === brandParam).length > 0;
 
+	const gelFonts = css`
+		@font-face {
+			font-family: "graphik";
+			src: url("${BASE_URL}/fonts/Graphik-Bold-Web.eot");
+			src: url("${BASE_URL}/fonts/Graphik-Bold-Web.eot?#iefix") format("embedded-opentype"),
+				url("${BASE_URL}/fonts/Graphik-Bold-Web.woff") format("woff"),
+				url("${BASE_URL}/fonts/Graphik-Bold-Web.ttf") format("truetype"),
+				url("${BASE_URL}/fonts/Graphik-Bold-Web.svg#Graphik-Bold") format("svg");
+			font-weight: 700;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: "guardian";
+			src: url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot");
+			src: url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot?#iefix") format("embedded-opentype"),
+				url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.woff") format("woff"),
+				url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.ttf") format("truetype"),
+				url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.svg#Guardian Egyptian Web") format("svg");
+			font-weight: 300;
+			font-style: italic;
+		}
+	`;
+
 	// If no brand is detected, show the brand picker...
 	if (!isMatch) {
 		// show brand selector
 		return (
-			<GEL brand={brands['WBC']}>
+			<GEL brand={brandOverrides(brands['WBC'])}>
+				<Global styles={gelFonts} />
 				<Normalize />
 				<BrandPicker />
 			</GEL>
@@ -56,7 +82,7 @@ const Wrapper = (props) => {
 	const navigation = data.allSettings[0] ? JSON.parse(data.allSettings[0].value) : [];
 
 	return (
-		<GEL brand={brands[brand]}>
+		<GEL brand={brandOverrides(brands[brand])}>
 			<Normalize />
 			<SidebarProvider>
 				<GridContainer>
@@ -80,11 +106,7 @@ const GridContainer = (props) => {
 	const { setIsOpen } = useSidebar();
 
 	useEffect(() => {
-		if (width >= LAYOUT.breakpoints.lg) {
-			setIsOpen(true);
-		} else {
-			setIsOpen(false);
-		}
+		setIsOpen(width >= LAYOUT.breakpoints.lg);
 	}, [width]);
 
 	return (
@@ -93,8 +115,6 @@ const GridContainer = (props) => {
 			css={mq({
 				display: 'grid',
 				gridTemplateColumns: ['1fr', null, null, null, '300px auto'],
-				width: '100vw',
-				height: '100vh',
 			})}
 			{...props}
 		/>
@@ -102,28 +122,25 @@ const GridContainer = (props) => {
 };
 
 const MainContainer = (props) => {
-	const { LAYOUT } = useBrand();
+	const mq = useMediaQuery();
 	return (
-		<main
-			{...props}
-			css={{
-				scrollBehavior: 'smooth',
-				display: 'flex !important',
+		<div
+			className="main" //scroll event listening on '.main'
+			css={mq({
+				display: 'flex',
 				flexDirection: 'column',
-				overflowY: 'scroll',
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-					gridColumnStart: 2,
-					gridColumnEnd: 3,
-				},
-			}}
+				gridColumnStart: [null, null, null, null, 2],
+				gridColumnEnd: [null, null, null, null, 3],
+				position: 'relative',
+				zIndex: 0, //scrollbar on top of fixed elements
+			})}
+			{...props}
 		/>
 	);
 };
 
-export const Layout = (props) => {
-	return (
-		<BrandSwitcherProvider brand={props.brand}>
-			<Wrapper {...props} />
-		</BrandSwitcherProvider>
-	);
-};
+export const Layout = (props) => (
+	<BrandSwitcherProvider brand={props.brand}>
+		<Wrapper {...props} />
+	</BrandSwitcherProvider>
+);

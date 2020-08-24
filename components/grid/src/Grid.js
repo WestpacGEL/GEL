@@ -3,7 +3,7 @@
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { rowMap } from './_utils';
+import { gridMap } from './_utils';
 import { defaultGrid } from './overrides/grid';
 import pkg from '../package.json';
 
@@ -23,6 +23,7 @@ export const Grid = ({
 	minRowHeight,
 	rowGap,
 	rows,
+	tag,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -48,6 +49,7 @@ export const Grid = ({
 		minRowHeight,
 		rowGap,
 		rows,
+		tag,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -169,6 +171,11 @@ Grid.propTypes = {
 	rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
 	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+
+	/**
 	 * Alert children
 	 */
 	children: PropTypes.node,
@@ -196,8 +203,9 @@ Grid.propTypes = {
 };
 
 Grid.defaultProps = {
-	...rowMap,
+	...gridMap,
 	flow: 'row',
 	height: 'auto',
 	minRowHeight: 32,
+	tag: 'div',
 };

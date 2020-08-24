@@ -3,9 +3,9 @@
 import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 import { containerMap } from '../_utils';
 
-const { paddingHorizontal, fixedWidth, fluidMaxWidth } = containerMap;
+const { paddingHorizontal, maxWidthFixed, maxWidthFluid } = containerMap;
 
-const Container = ({ state, ...rest }) => <div {...rest} />;
+const Container = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
 const containerStyles = (_, { fixed }) => {
 	const mq = useMediaQuery();
@@ -13,12 +13,12 @@ const containerStyles = (_, { fixed }) => {
 	return mq({
 		label: getLabel('container'),
 		boxSizing: 'border-box',
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		width: fixed && fixedWidth,
-		maxWidth: !fixed && fluidMaxWidth,
+		width: '100%',
+		maxWidth: fixed ? maxWidthFixed : maxWidthFluid,
 		paddingLeft: paddingHorizontal,
 		paddingRight: paddingHorizontal,
+		marginLeft: 'auto',
+		marginRight: 'auto',
 	})[0];
 };
 

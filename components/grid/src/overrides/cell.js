@@ -2,7 +2,7 @@
 
 import { jsx, useMediaQuery, asArray, getLabel } from '@westpac/core';
 
-const Cell = ({ state, ...rest }) => <div {...rest} />;
+const Cell = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
 const cellStyles = (_, { area, height, left, top, width }) => {
 	const mq = useMediaQuery();

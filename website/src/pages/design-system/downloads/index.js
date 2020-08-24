@@ -7,7 +7,7 @@ import { FormCheck, Option } from '@westpac/form-check';
 import { Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
-import { Body } from '@westpac/body';
+import { Body } from '../../../components/body';
 
 import PageHeader from '../../../components/header/page-header';
 import { PageContext } from '../../../components/providers/pageContext';
@@ -64,7 +64,7 @@ function TokensPage() {
 		<Fragment>
 			<PageContext.Provider value={{ showGrid, setShowGrid }}>
 				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
-					<PageHeader name="The Blender" />
+					<PageHeader name="Downloads" />
 					<Gridly show={showGrid} />
 					<Container css={{ position: 'relative' }}>
 						<Grid>

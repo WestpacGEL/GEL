@@ -14,38 +14,40 @@ export const Sidebar = ({ items }) => {
 
 	return (
 		<Fragment>
-			<aside
+			<div
 				css={mq({
+					boxSizing: 'border-box',
+					position: 'fixed',
+					top: 0,
+					bottom: 0,
+					zIndex: 11,
 					display: 'flex',
 					flexDirection: 'column',
-					background: 'white',
-					position: 'relative',
+					overflow: 'hidden', //trim nav shadow
+					background: '#fff',
 					borderRight: `1px solid ${COLORS.border}`,
 					width: 300,
-					height: '100vh',
-					boxSizing: 'border-box',
-					position: 'absolute',
-					zIndex: [11, null, null, null, 'auto'],
-					transition: 'transform 0.15s',
-					transform: isOpen ? 'translateX(0px)' : 'translateX(-300px)',
+					transform: [isOpen ? 'translateX(0)' : 'translateX(-300px)', null, null, null, 'none'],
+					transition: ['transform 0.15s', null, null, null, 'none'],
 				})}
 			>
 				<CloseButton />
 				<BrandSwitcher />
 				<Navigation items={items} />
-			</aside>
+			</div>
 			{isOpen && (
 				<div
 					onClick={() => setIsOpen(false)}
 					css={mq({
 						display: ['block', null, null, null, 'none'],
 						position: 'fixed',
+						zIndex: 10,
 						top: 0,
 						left: 0,
 						right: 0,
 						bottom: 0,
 						backgroundColor: 'rgba(0,0,0,0.4)',
-						zIndex: 10,
+						cursor: 'pointer',
 					})}
 				/>
 			)}
@@ -56,11 +58,13 @@ export const Sidebar = ({ items }) => {
 const CloseButton = () => {
 	const { setIsOpen } = useSidebar();
 	const { COLORS, SPACING, LAYOUT } = useBrand();
+	const mq = useMediaQuery();
 	return (
 		<button
 			type="button"
 			onClick={() => setIsOpen(false)}
-			css={{
+			css={mq({
+				display: [null, null, null, null, 'none'],
 				position: 'absolute',
 				top: 0,
 				right: 0,
@@ -70,8 +74,7 @@ const CloseButton = () => {
 				border: 'none',
 				cursor: 'pointer',
 				zIndex: 2,
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: { display: 'none' },
-			}}
+			})}
 			aria-label="Close sidebar"
 		>
 			<CloseIcon color={COLORS.neutral} size="small" />

@@ -8,6 +8,7 @@ const SeparatorComponent = () => {
 	return (
 		<div css={{ marginTop: `${SPACING(2)}`, marginBottom: `${SPACING(4)}` }}>
 			<button
+				type="button"
 				css={{
 					display: 'block',
 					border: 0,
@@ -19,8 +20,7 @@ const SeparatorComponent = () => {
 				}}
 				onClick={(e) => {
 					e.preventDefault();
-					const el = document.querySelector('main') || window;
-					el.scroll({
+					window.scroll({
 						top: 0,
 						left: 0,
 						behavior: 'smooth',

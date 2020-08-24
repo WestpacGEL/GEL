@@ -3,13 +3,9 @@
 import { GEL, jsx } from '@westpac/core';
 import { Panel, Body } from '@westpac/panel';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Default</h2>
 			<Panel heading="Panel title">
 				<Body>

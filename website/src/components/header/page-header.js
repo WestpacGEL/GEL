@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { Button } from '@westpac/button';
@@ -9,32 +9,28 @@ import HeaderImage from './component-page-header-image';
 import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../providers/pageContext';
 import { brandHeaderStyling, gridlyIconColors } from '../_utils';
+import throttle from 'lodash.throttle';
 
-const MenuIcon = ({ hasScrolled }) => {
-	const { BRAND, COLORS } = useBrand();
+const MenuButton = () => {
 	const mq = useMediaQuery();
 	const { setIsOpen } = useSidebar();
 
-	const Icon = () => <HamburgerMenuIcon color={BRAND === 'STG' ? COLORS.text : '#fff'} />;
+	const Icon = () => <HamburgerMenuIcon color="#fff" />;
 
 	return (
 		<Button
-			onClick={() => setIsOpen((status) => !status)}
 			look="link"
+			size="xlarge"
+			onClick={() => setIsOpen((status) => !status)}
 			iconBefore={Icon}
 			overrides={{
 				Button: {
 					styles: (styles) => ({
 						...styles,
-						justifySelf: 'start',
-						gridRowStart: 1,
-						marginRight: '0.75rem',
-						...mq({
-							alignSelf: hasScrolled ? 'center' : ['center', null, 'auto'],
-							marginTop: hasScrolled ? 0 : [0, null, '1.3125rem'],
-							marginLeft: hasScrolled ? 0 : [0, null, '-0.75rem'],
-							display: ['inline-flex', null, null, null, 'none'],
-						})[0],
+						position: 'fixed',
+						top: '0.5625rem',
+						left: '1.5rem',
+						...mq({ display: [null, null, null, null, 'none'] })[0],
 					}),
 				},
 			}}
@@ -42,32 +38,96 @@ const MenuIcon = ({ hasScrolled }) => {
 	);
 };
 
-const PageHeader = ({ name, version }) => {
-	const { COLORS, BRAND, LAYOUT } = useBrand();
+const GridIndicator = () => {
+	const { BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const { showGrid, setShowGrid } = usePageContext();
-	const [hasScrolled, setHasScrolled] = useState(false);
+
+	const ButtonContentWrapper = ({ children, ...rest }) => <Fragment>{children}</Fragment>;
+
+	return (
+		<div
+			css={{
+				position: 'fixed',
+				display: 'flex',
+				alignItems: 'center',
+				top: '0.5625rem',
+				right: '1.5rem',
+				color: '#fff',
+				fontWeight: 'bold',
+			}}
+		>
+			<span css={mq({ display: ['inline-block', 'none'] })}>XS</span>
+			<span css={mq({ display: ['none', 'inline-block', 'none'] })}>XSL</span>
+			<span css={mq({ display: ['none', null, 'inline-block', 'none'] })}>SM</span>
+			<span css={mq({ display: ['none', null, null, 'inline-block', 'none'] })}>MD</span>
+			<span css={mq({ display: ['none', null, null, null, 'inline-block'] })}>LG</span>
+			<Button
+				look="link"
+				size="xlarge"
+				onClick={() => setShowGrid(!showGrid)}
+				aria-pressed={showGrid}
+				overrides={{
+					Button: {
+						styles: (styles) => ({
+							...styles,
+							marginLeft: '0.375rem',
+						}),
+					},
+					Content: {
+						component: ButtonContentWrapper,
+					},
+				}}
+			>
+				<div css={{ display: 'flex', justifyContent: 'center', height: 24, width: 24 }}>
+					{[...new Array(4)].map((_, index) => (
+						<div
+							key={index}
+							css={{
+								height: '100%',
+								width: 4,
+								backgroundColor: gridlyIconColors[BRAND],
+
+								'& + &': {
+									marginLeft: 2,
+								},
+							}}
+						/>
+					))}
+				</div>
+			</Button>
+		</div>
+	);
+};
+
+const PageHeader = ({ name, version }) => {
+	const { COLORS, BRAND } = useBrand();
+	const mq = useMediaQuery();
+	const [hasScroll, setHasScroll] = useState(false);
+	const [hasScrolledSmall, setHasScrolledSmall] = useState(false);
+	const [hasScrolledLarge, setHasScrolledLarge] = useState(false);
 	const header = useRef(null);
 
 	useEffect(() => {
-		const main = header.current.parentElement;
+		const setHeader = () => {
+			const scroll = window.scrollY;
 
-		const scrollHandler = () => {
-			if (main.scrollTop >= 66) {
-				setHasScrolled(true);
-			} else {
-				setHasScrolled(false);
-			}
+			setHasScroll(scroll > 5);
+			setHasScrolledSmall(scroll > 46);
+			setHasScrolledLarge(scroll >= 162);
 		};
+		setHeader();
 
-		main.addEventListener('scroll', scrollHandler);
+		const scrollHandler = throttle(setHeader, 10);
+
+		window.addEventListener('scroll', scrollHandler);
 		return () => {
-			main.removeEventListener('scroll', scrollHandler);
+			window.removeEventListener('scroll', scrollHandler);
 		};
 	});
 
 	return (
-		<div
+		<header
 			ref={header}
 			css={mq({
 				flex: 'none',
@@ -83,97 +143,54 @@ const PageHeader = ({ name, version }) => {
 			<HeaderImage brand={BRAND} />
 			<div
 				css={mq({
-					alignSelf: 'flex-end',
-					display: 'grid',
-					gridTemplateRows: hasScrolled ? '1fr' : ['1fr', null, '1fr 1fr 1fr'],
-					height: hasScrolled ? 66 : [66, null, 228],
-					padding: hasScrolled ? '0 1.3125rem' : ['0 1.3125rem', null, '0 2.25rem'],
-					color: BRAND === 'STG' ? COLORS.text : '#fff',
-					transition: 'height 0s',
+					display: 'flex',
+					alignItems: 'flex-end', //align bottom
 				})}
 			>
-				<MenuIcon hasScrolled={hasScrolled} />
-				<Heading
-					size={hasScrolled ? 7 : 1}
-					overrides={{
-						Heading: {
-							styles: (styles) => ({
-								...styles,
-								alignSelf: 'center',
-								textTransform: 'capitalize',
-								[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-									fontSize: '1.125rem !important',
-								},
-								fontWeight: 500,
-								transition: 'font-size, 0.2s ease',
-								...mq({
-									gridRowStart: hasScrolled ? 1 : [1, null, 2],
-								})[0],
-							}),
-						},
-					}}
+				<MenuButton />
+				<div
+					css={mq({
+						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
+						marginLeft: ['3.75rem', null, !hasScrolledLarge && '2.25rem', null, '2.25rem'],
+						marginBottom: ['1.25rem', null, !hasScrolledLarge && '3.375rem'],
+						transition: [
+							null,
+							null,
+							!(hasScrolledSmall && !hasScrolledLarge) && 'opacity 0.2s ease',
+						],
+						willChange: 'opacity',
+					})}
 				>
-					{name}
-				</Heading>
-				{version && (
-					<span
-						css={mq({
-							alignSelf: hasScrolled ? 'center' : ['center', null, 'start'],
-							fontSize: '1rem',
-							gridRowStart: hasScrolled ? 1 : [1, null, 3],
-							marginLeft: hasScrolled ? '0.375rem' : ['0.375rem', null, 0],
-						})}
-					>
-						<span
-							css={mq({
-								textTransform: hasScrolled ? 'lowercase' : ['lowercase', null, 'capitalize'],
-							})}
-						>
-							v
-						</span>
-						<span css={mq({ display: hasScrolled ? 'none' : ['none', null, 'inline'] })}>
-							ersion{' '}
-						</span>
-						{version}
-					</span>
-				)}
+					<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
+						{name}
+						{version && (
+							<span
+								css={mq({
+									fontSize: '1rem',
+									fontWeight: 'normal',
+									marginTop: !hasScrolledLarge && '0.75rem',
+									marginLeft: ['0.375rem', null, !hasScrolledLarge && 0],
+									display: [null, null, !hasScrolledLarge && 'block'],
+								})}
+							>
+								<span
+									css={mq({
+										textTransform: ['lowercase', null, !hasScrolledLarge && 'capitalize'],
+									})}
+								>
+									V
+								</span>
+								<span css={mq({ display: ['none', null, !hasScrolledLarge && 'inline'] })}>
+									ersion{' '}
+								</span>
+								{version}
+							</span>
+						)}
+					</Heading>
+				</div>
 			</div>
-			<div
-				css={{
-					position: 'fixed',
-					display: 'flex',
-					alignItems: 'center',
-					top: 0,
-					right: '1.5rem',
-					height: '4.125rem',
-					color: '#fff',
-				}}
-			>
-				<span css={mq({ display: ['inline', 'none'] })}>xs</span>
-				<span css={mq({ display: ['none', 'inline', 'none'] })}>xsl</span>
-				<span css={mq({ display: ['none', null, 'inline', 'none'] })}>sm</span>
-				<span css={mq({ display: ['none', null, null, 'inline', 'none'] })}>md</span>
-				<span css={mq({ display: ['none', null, null, null, 'inline'] })}>lg</span>
-				<button
-					type="button"
-					onClick={() => setShowGrid(!showGrid)}
-					css={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
-				>
-					{[...new Array(4)].map((item, index) => (
-						<span
-							key={index}
-							css={{
-								display: 'inline-block',
-								height: 24,
-								width: 4,
-								marginRight: 2,
-								backgroundColor: gridlyIconColors[BRAND],
-							}}
-						/>
-					))}
-				</button>
-			</div>
-		</div>
+			<GridIndicator />
+		</header>
 	);
 };
 

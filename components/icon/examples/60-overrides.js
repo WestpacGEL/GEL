@@ -14,8 +14,6 @@ import {
 } from '@westpac/icon';
 import { Fragment } from 'react';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 const Wrapper = ({ children, state: { icon }, ...rest }) => (
 	<Fragment>
 		<div {...rest}>{children}</div>
@@ -55,8 +53,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<AddIcon />
 			<CalendarIcon />

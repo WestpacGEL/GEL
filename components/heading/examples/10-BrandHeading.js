@@ -3,13 +3,9 @@
 import { GEL, jsx, useFonts } from '@westpac/core';
 import { BrandHeading } from '@westpac/heading';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
-			<Intopia />
-
 			<h2>
 				Without <code>tag</code> prop
 			</h2>

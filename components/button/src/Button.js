@@ -140,7 +140,7 @@ Button.propTypes = {
 	/**
 	 * Button tag
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
 
 	/**
 	 * Button type.

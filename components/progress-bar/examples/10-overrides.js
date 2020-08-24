@@ -5,8 +5,6 @@ import { GEL, jsx } from '@westpac/core';
 import { ProgressBar } from '@westpac/progress-bar';
 import { StyledButton as Button } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const [progress, setProgress] = useState(10);
 	const overridesWithTokens = { ...brand };
@@ -42,8 +40,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<ProgressBar value={progress} />
 			<br />

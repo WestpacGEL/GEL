@@ -1,10 +1,8 @@
 /** @jsx jsx */
 import { useState } from 'react';
-import wbc from '@westpac/wbc';
-import { jsx, GEL, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
-import { Modal, Body } from '@westpac/modal';
-import { Well } from '@westpac/well';
+import { Modal, Body as ModalBody } from '@westpac/modal';
 import dynamic from 'next/dynamic';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import editorTheme from './theme';
@@ -43,29 +41,8 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 
 	return (
 		<div>
-			<Well
-				overrides={{
-					Well: {
-						styles: (styles) => ({
-							...styles,
-							...mq({
-								position: 'relative',
-								border: 'none',
-								borderRadius: 0,
-								margin: 0,
-								backgroundColor: '#fff',
-								padding: ['1.875rem', '2.25rem'],
-								...(showCode && { paddingBottom: '0 !important' }),
-							})[0],
-						}),
-					},
-				}}
-			>
-				<div
-					css={{
-						marginBottom: SPACING(8),
-					}}
-				>
+			<div css={{ position: 'relative', backgroundColor: '#fff' }}>
+				<div css={mq({ padding: [SPACING(5), null, SPACING(6)] })}>
 					<LivePreview />
 					{showError ? <LiveError /> : null}
 				</div>
@@ -98,26 +75,25 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 						</Button>
 					) : null}
 				</div>
-			</Well>
+			</div>
 			{showCode && codeIsOpen ? (
 				<LiveEditor
 					css={mq({
-						fontSize: '14px',
+						fontSize: '0.875rem',
 					})}
 					padding={24}
 				/>
 			) : null}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-				<Body>
+				<ModalBody>
 					<LivePreview />
-				</Body>
+				</ModalBody>
 			</Modal>
 		</div>
 	);
 };
 
 export const Playground = ({
-	brand = wbc,
 	context = null,
 	code,
 	showCode,
@@ -133,39 +109,29 @@ export const Playground = ({
 			'Playground code has not been compiled by the babel plugin. Please check configuration.'
 		);
 	}
+	const brand = useBrand();
 	if (!context) {
 		return (
-			<GEL brand={brand}>
-				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-					<LivePreview />
-				</LiveProvider>
-			</GEL>
+			<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
+				<LivePreview />
+			</LiveProvider>
 		);
 	}
 	if (context === 'website') {
 		return (
-			<GEL brand={brand}>
-				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-					<ExampleBlock
-						code={code}
-						showCode={showCode}
-						showDemo={showDemo}
-						showError={showErrors}
-					/>
-					{/* TODO: make code and demo button options passed through editor */}
-				</LiveProvider>
-			</GEL>
+			<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
+				<ExampleBlock code={code} showCode={showCode} showDemo={showDemo} showError={showErrors} />
+				{/* TODO: make code and demo button options passed through editor */}
+			</LiveProvider>
 		);
 	}
 	if (context === 'admin') {
 		return (
-			<GEL brand={brand}>
-				<div css={{ transformZ: 0, pointerEvents: 'none', zIndex: 0, cursor: 'not-allowed' }}>
-					<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-						<ExampleBlock code={showCode} demo={showDemo} />
-					</LiveProvider>
-				</div>
-			</GEL>
+			<div css={{ transformZ: 0, pointerEvents: 'none', zIndex: 0, cursor: 'not-allowed' }}>
+				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
+					<ExampleBlock code={showCode} demo={showDemo} />
+				</LiveProvider>
+			</div>
 		);
 	}
 };

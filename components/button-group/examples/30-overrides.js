@@ -2,7 +2,6 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { ButtonGroup, Item } from '@westpac/button-group';
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -27,7 +26,6 @@ function Example({ brand }) {
 	};
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
 			<h2>With overrides applied</h2>
 			<ButtonGroup name="example-overrides">
 				<Item value="left">Left</Item>

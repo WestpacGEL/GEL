@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { TextInput, Textarea, Select } from '@westpac/text-input';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
@@ -31,8 +29,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<TextInput />
 			<br />

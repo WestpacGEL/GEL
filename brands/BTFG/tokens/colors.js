@@ -7,7 +7,7 @@ const COLORS = {
 	hero: '#2574A9',
 	light: '#FCFCFC',
 	muted: '#666666',
-	neutral: '#637b98',
+	neutral: '#637B98',
 	primary: '#9E005D',
 	text: '#333',
 
@@ -16,7 +16,7 @@ const COLORS = {
 	info: '#0074C4',
 	warning: '#C53B00',
 	danger: '#C40000',
-	system: '#ff0',
+	system: '#FF0',
 };
 
 module.exports = {
