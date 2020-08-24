@@ -2,196 +2,74 @@ import { GEL } from '@westpac/core';
 import React from 'react';
 
 import { HouseIcon, ArrowRightIcon } from '@westpac/icon';
-import { Button } from '@westpac/button';
+import { Button as OGButton } from '@westpac/button';
+
+import { blenderButton } from '../src/overrides/button';
+
+const looks = ['primary', 'faint', 'link'];
+const sizes = ['small', 'large', 'xlarge'];
 
 export function AllStyles({ brand }) {
+	const Button = (props) => (
+		<OGButton
+			overrides={{
+				Button: {
+					attributes: blenderButton.attributes,
+					styles: blenderButton.styles,
+				},
+			}}
+			{...props}
+		/>
+	);
+
 	return (
 		<GEL brand={brand}>
-			<Button look="primary">Text</Button>
-			<Button look="hero">Text</Button>
-			<Button look="faint">Text</Button>
-			<Button look="link">Text</Button>
-			<Button look="primary" soft>
-				Text
-			</Button>
-			<Button look="hero" soft>
-				Text
-			</Button>
-			<Button look="faint" soft>
-				Text
-			</Button>
-			<Button look="link" soft>
-				Text
-			</Button>
-			<Button look="primary" disabled>
-				Text
-			</Button>
-			<Button look="hero" disabled>
-				Text
-			</Button>
-			<Button look="faint" disabled>
-				Text
-			</Button>
-			<Button look="link" disabled>
-				Text
-			</Button>
-
-			<Button look="primary" size="small">
-				Text
-			</Button>
-			<Button look="hero" size="small">
-				Text
-			</Button>
-			<Button look="faint" size="small">
-				Text
-			</Button>
-			<Button look="link" size="small">
-				Text
-			</Button>
-			<Button look="primary" size="small" soft>
-				Text
-			</Button>
-			<Button look="hero" size="small" soft>
-				Text
-			</Button>
-			<Button look="faint" size="small" soft>
-				Text
-			</Button>
-			<Button look="link" size="small" soft>
-				Text
-			</Button>
-
-			<Button look="primary" size="large">
-				Text
-			</Button>
-			<Button look="hero" size="large">
-				Text
-			</Button>
-			<Button look="faint" size="large">
-				Text
-			</Button>
-			<Button look="link" size="large">
-				Text
-			</Button>
-			<Button look="primary" size="large" soft>
-				Text
-			</Button>
-			<Button look="hero" size="large" soft>
-				Text
-			</Button>
-			<Button look="faint" size="large" soft>
-				Text
-			</Button>
-			<Button look="link" size="large" soft>
-				Text
-			</Button>
-
-			<Button look="primary" size="xlarge">
-				Text
-			</Button>
-			<Button look="hero" size="xlarge">
-				Text
-			</Button>
-			<Button look="faint" size="xlarge">
-				Text
-			</Button>
-			<Button look="link" size="xlarge">
-				Text
-			</Button>
-			<Button look="primary" size="xlarge" soft>
-				Text
-			</Button>
-			<Button look="hero" size="xlarge" soft>
-				Text
-			</Button>
-			<Button look="faint" size="xlarge" soft>
-				Text
-			</Button>
-			<Button look="link" size="xlarge" soft>
-				Text
-			</Button>
-
-			<Button look="primary" block>
-				Text
-			</Button>
-			<Button look="hero" block>
-				Text
-			</Button>
-			<Button look="faint" block>
-				Text
-			</Button>
-			<Button look="link" block>
-				Text
-			</Button>
-			<Button look="primary" block soft>
-				Text
-			</Button>
-			<Button look="hero" block soft>
-				Text
-			</Button>
-			<Button look="faint" block soft>
-				Text
-			</Button>
-			<Button look="link" block soft>
-				Text
-			</Button>
-
-			<Button look="primary" iconBefore={HouseIcon}>
-				Text
-			</Button>
-			<Button look="hero" iconBefore={HouseIcon}>
-				Text
-			</Button>
-			<Button look="faint" iconBefore={HouseIcon}>
-				Text
-			</Button>
-			<Button look="link" iconBefore={HouseIcon}>
-				Text
-			</Button>
-			<Button look="primary" iconBefore={HouseIcon} block justify>
-				Text
-			</Button>
-			<Button look="hero" iconBefore={HouseIcon} block justify>
-				Text
-			</Button>
-			<Button look="faint" iconBefore={HouseIcon} block justify>
-				Text
-			</Button>
-			<Button look="link" iconBefore={HouseIcon} block justify>
-				Text
-			</Button>
-
-			<Button look="primary" iconAfter={HouseIcon}>
-				Text
-			</Button>
-			<Button look="hero" iconAfter={HouseIcon}>
-				Text
-			</Button>
-			<Button look="faint" iconAfter={HouseIcon}>
-				Text
-			</Button>
-			<Button look="link" iconAfter={HouseIcon}>
-				Text
-			</Button>
-			<Button look="primary" iconAfter={HouseIcon} block justify>
-				Text
-			</Button>
-			<Button look="hero" iconAfter={HouseIcon} block justify>
-				Text
-			</Button>
-			<Button look="faint" iconAfter={HouseIcon} block justify>
-				Text
-			</Button>
-			<Button look="link" iconAfter={HouseIcon} block justify>
-				Text
-			</Button>
+			<Button>Text</Button>
+			{looks.map((look) => (
+				<Button key={look} look={look}>
+					Text
+				</Button>
+			))}
+			<Button soft>Text</Button>
+			{looks.map((look) => (
+				<Button key={`${look}-soft`} look={look} soft>
+					Text
+				</Button>
+			))}
+			{sizes.map((size) => (
+				<Button key={size} size={size}>
+					Text
+				</Button>
+			))}
+			<Button block>Text</Button>
+			<Button iconBefore={HouseIcon}>Text</Button>
+			<Button iconAfter={HouseIcon}>Text</Button>
+			<Button justify>Text</Button>
 		</GEL>
 	);
 }
 
 export function Docs({ brand }) {
+	const Button = (props) => (
+		<OGButton
+			overrides={{
+				Button: {
+					attributes: blenderButton.attributes,
+				},
+			}}
+			{...props}
+		/>
+	);
 	return [
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
+		{
+			heading: `A default button`,
+			component: () => (
+				<GEL brand={brand}>
+					<Button>Your default button text</Button>
+				</GEL>
+			),
+		},
+		...looks.map((look) => ({
 			heading: `A ${look} button`,
 			component: () => (
 				<GEL brand={brand}>
@@ -199,7 +77,15 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
+		{
+			heading: `A default soft`,
+			component: () => (
+				<GEL brand={brand}>
+					<Button soft>Your default soft button text</Button>
+				</GEL>
+			),
+		},
+		...['primary', 'hero', 'faint'].map((look) => ({
 			heading: `A ${look} soft button`,
 			component: () => (
 				<GEL brand={brand}>

@@ -21,10 +21,6 @@
 			"url": "https://www.jeremyortiz.io/"
 		}
 	],
-	"blender": {
-		"recipe": "blender/recipe.js",
-		"js": "blender/script.js"
-	},
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=button-group webpack-dev-server --config ../../helpers/example/start.webpack.config.js",

@@ -3,6 +3,10 @@
 import { jsx, useBrand } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 
+// ==============================
+// Component
+// ==============================
+
 const GroupButton = ({ state: { complete, active }, children, ...rest }) => {
 	let stateText = ', not started';
 	if (complete) {
@@ -19,10 +23,15 @@ const GroupButton = ({ state: { complete, active }, children, ...rest }) => {
 	);
 };
 
-const groupButtonStyles = (_, { complete, active }) => {
-	const { COLORS, PACKS, TYPE } = useBrand();
+// ==============================
+// Styles
+// ==============================
+
+export const groupButtonStyles = (_, { complete, active }) => {
+	const { COLORS, PACKS } = useBrand();
 
 	return {
+		label: 'progressRope-group-btn',
 		position: 'relative',
 		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		fontSize: '1rem',
@@ -73,13 +82,39 @@ const groupButtonStyles = (_, { complete, active }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = () => groupButtonStyles(null, {});
+
+// ==============================
+// Attributes
+// ==============================
+
 const groupButtonAttributes = (_, { hidden, groupListId }) => ({
 	'aria-expanded': !hidden,
 	'aria-controls': groupListId,
 });
 
+const blenderAttributes = (_, { id, open }) => ({
+	'aria-expanded': open,
+	'aria-controls': id,
+	'data-js': 'progressRope-group-btn__version__',
+});
+
+// ==============================
+// Exports
+// ==============================
+
 export const defaultGroupButton = {
 	component: GroupButton,
 	styles: groupButtonStyles,
 	attributes: groupButtonAttributes,
+};
+
+export const blenderGroupButton = {
+	component: GroupButton,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };
