@@ -16,7 +16,8 @@ const AddRootClass = ({ children }) => {
 				(context, content, selectors, parent, line, column, length) => {
 					if (
 						selectors.length &&
-						selectors[0] !== '' // exclude <Global /> styles
+						selectors[0] !== '' && // exclude <Global /> styles
+						!content.includes(`label:${label}`) // exclude nested <GEL /> (Core) styles
 					) {
 						if (context === -1) {
 							// Prepend with `.GEL` class selector
