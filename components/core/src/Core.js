@@ -84,11 +84,11 @@ export const Core = ({ noReset, children }) => {
 				'& *:focus': {
 					...PACKS.focus,
 				},
-				'& [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring, button:-moz-focusring': {
+				'& button:-moz-focusring, & [type="button"]:-moz-focusring, & [type="reset"]:-moz-focusring, & [type="submit"]:-moz-focusring': {
 					// button:focus because of normalize reset (needs higher specificity)
 					...PACKS.focus,
 				},
-				'& *::selection': {
+				'& ::selection': {
 					backgroundColor: COLORS.tints.primary20,
 				},
 				'&': {
