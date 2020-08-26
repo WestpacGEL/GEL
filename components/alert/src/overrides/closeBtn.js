@@ -1,8 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
+
+// ==============================
+// Component
+// ==============================
 
 const CloseBtn = ({ onClose, state, ...rest }) => (
 	<Button
@@ -15,12 +19,31 @@ const CloseBtn = ({ onClose, state, ...rest }) => (
 	/>
 );
 
+const BlenderCloseBtn = (props) => (
+	<CloseBtn
+		overrides={{
+			Button: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+
+// ==============================
+// Styles
+// ==============================
+
 const closeBtnStyles = () => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 
 	return mq({
-		label: getLabel('alert-closebtn'),
+		label: 'alert-closebtn',
 		color: 'inherit',
 		position: 'absolute',
 		zIndex: 1,
@@ -34,13 +57,30 @@ const closeBtnStyles = () => {
 	})[0];
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const closeBtnAttributes = () => ({
-	'data-js': 'alert-closeBtn__version__',
 	'data-testing': 'alert-closeBtn',
 });
+
+const blenderAttributes = () => ({
+	'data-js': 'alert-closeBtn__version__',
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultCloseBtn = {
 	component: CloseBtn,
 	styles: closeBtnStyles,
 	attributes: closeBtnAttributes,
+};
+
+export const blenderCloseBtn = {
+	component: BlenderCloseBtn,
+	styles: closeBtnStyles,
+	attributes: blenderAttributes,
 };

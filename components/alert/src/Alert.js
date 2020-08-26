@@ -197,9 +197,11 @@ Alert.propTypes = {
 	}),
 };
 
-Alert.defaultProps = {
+export const defaultProps = {
 	open: true,
 	look: 'info',
 	dismissible: false,
 	headingTag: 'h2',
 };
+
+Alert.defaultProps = defaultProps;
