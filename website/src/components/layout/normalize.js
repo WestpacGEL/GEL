@@ -176,7 +176,6 @@ export const Normalize = () => {
 						display: none;
 					}
 				`,
-				useFonts({ path: `${BASE_URL}/fonts/` })[''],
 			]}
 		/>
 	);
