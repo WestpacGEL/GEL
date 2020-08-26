@@ -61,6 +61,11 @@ function Example({ brand }) {
 			>
 				['red', 'green', 'blue', 'purple', 'orange']
 			</p>
+			<div>
+				<p css={mq({ 'div &': { color: [null, 'green', 'blue', 'purple', 'orange'] } })}>
+					div & ([null, 'green', 'blue', 'purple', 'orange'])
+				</p>
+			</div>
 		</GEL>
 	);
 }
