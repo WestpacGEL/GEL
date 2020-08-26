@@ -1,8 +1,25 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	asArray,
+	getModifier,
+	styleReconciler,
+	classNames,
+} from '@westpac/core';
+import { defaultProps } from '../Icon';
+
+// ==============================
+// Component
+// ==============================
 
 const Icon = ({ state, ...rest }) => <span {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const iconStyles = (_, { color, size }) => {
 	const mq = useMediaQuery();
@@ -43,7 +60,7 @@ const iconStyles = (_, { color, size }) => {
 	};
 
 	return mq({
-		label: getLabel('icon', { color, size }),
+		label: 'icon',
 		display: 'inline-block',
 		flexShrink: 0,
 		lineHeight: 1,
@@ -53,10 +70,56 @@ const iconStyles = (_, { color, size }) => {
 	})[0];
 };
 
+const blenderStyles = (_, { color, size }) => {
+	const props = { color, size };
+	const baseStyles = iconStyles(_, defaultProps);
+
+	const modifiers = getModifier(defaultProps, props); // not sure how this will work with color'
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = iconStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'color':
+			label = `${label}-${color}`;
+			break;
+		case 'size':
+			label = `${label}-${size}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+	}
+
+	return { label, ...reconciledStyles };
+};
+// ==============================
+// Attributes
+// ==============================
+
 const iconAttributes = () => null;
+
+const blenderAttributes = (_, { color, size }) => ({
+	className: classNames({
+		[`__convert__icon-${color}`]: color,
+		[`__convert__icon-${size}`]: size && size !== defaultProps.size,
+	}),
+});
+// ==============================
+// Exports
+// ==============================
 
 export const defaultIcon = {
 	component: Icon,
 	styles: iconStyles,
 	attributes: iconAttributes,
+};
+
+export const blenderIcon = {
+	component: Icon,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };

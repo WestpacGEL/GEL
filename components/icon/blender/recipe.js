@@ -2,17 +2,20 @@ import { GEL } from '@westpac/core';
 import React from 'react';
 
 import * as components from '@westpac/icon';
+import { blenderIcon } from '../src/overrides/icon';
 
 export function AllStyles({ brand }) {
-	const { COLORS } = brand;
-
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/icon'] = {
+		Icon: {
+			styles: blenderIcon.styles,
+		},
+	};
 	return (
-		<GEL brand={brand}>
+		<GEL brand={overridesWithTokens}>
 			<components.HouseIcon />
-			<components.HouseIcon assistiveText="text" />
 			<components.HouseIcon size="xsmall" />
 			<components.HouseIcon size="small" />
-			<components.HouseIcon size="medium" />
 			<components.HouseIcon size="large" />
 			<components.HouseIcon size="xlarge" />
 			<components.HouseIcon color="inherit" />
@@ -30,14 +33,19 @@ export function AllStyles({ brand }) {
 }
 
 export function Docs({ brand }) {
-	const { COLORS } = brand;
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/icon'] = {
+		Icon: {
+			attributes: blenderIcon.attributes,
+		},
+	};
 
 	const allIcons = Object.keys(components).map((icon) => {
 		const Icon = components[icon];
 		return {
 			heading: `${icon} icon`,
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens}>
 					<Icon />
 				</GEL>
 			),
@@ -48,7 +56,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Default icon',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon />
 				</GEL>
 			),
@@ -56,7 +64,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Icon with assistive text',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon assistiveText="Text for assistive technologies" />
 				</GEL>
 			),
@@ -64,7 +72,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A xsmall icon',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon size="xsmall" />
 				</GEL>
 			),
@@ -72,7 +80,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A small icon',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon size="small" />
 				</GEL>
 			),
@@ -80,7 +88,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A medium icon',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon size="medium" />
 				</GEL>
 			),
@@ -88,7 +96,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A large icon',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon size="large" />
 				</GEL>
 			),
@@ -96,7 +104,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A xlarge icon',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon size="xlarge" />
 				</GEL>
 			),
@@ -108,14 +116,13 @@ export function Docs({ brand }) {
 			'heading',
 			'hero',
 			'light',
-			'muted',
 			'neutral',
 			'primary',
 			'text',
 		].map((color, i) => ({
 			heading: `An icon with the ${color} color`,
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon color={color} />
 				</GEL>
 			),
