@@ -11,7 +11,7 @@ import { SidebarProvider, useSidebar } from '../providers/sidebar';
 import { BrandPicker } from '../brand-picker';
 import { BASE_URL } from '../../config.js';
 import { brandOverrides } from '../../brand-overrides';
-import { Normalize, Sidebar } from './';
+import { Sidebar } from './';
 
 /*
   Wrapper with logic

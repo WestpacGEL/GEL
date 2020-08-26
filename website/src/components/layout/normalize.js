@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, Global, useFonts } from '@westpac/core';
+import { css, Global } from '@westpac/core';
 import { BASE_URL } from '../../config.js';
 
 export const Normalize = () => {
@@ -7,6 +7,7 @@ export const Normalize = () => {
 		<Global
 			styles={[
 				css`
+					/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 					html {
 						line-height: 1.15; /* 1 */
 						-webkit-text-size-adjust: 100%; /* 2 */
