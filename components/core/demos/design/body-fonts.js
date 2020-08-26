@@ -9,7 +9,7 @@ const StyledText = (props) => {
 	return <p css={{ ...PACKS.typeScale.bodyFont[4] }} {...props} />;
 };
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Body>
@@ -24,3 +24,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

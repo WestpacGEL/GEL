@@ -118,7 +118,9 @@ Panel.propTypes = {
 	}),
 };
 
-Panel.defaultProps = {
+export const defaultProps = {
 	look: 'hero',
 	headingTag: 'h1',
 };
+
+Panel.defaultProps = defaultProps;

@@ -74,6 +74,8 @@ Badge.propTypes = {
 	}),
 };
 
-Badge.defaultProps = {
+export const defaultProps = {
 	look: 'neutral',
 };
+
+Badge.defaultProps = defaultProps;

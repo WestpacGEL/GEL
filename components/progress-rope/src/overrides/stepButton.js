@@ -3,6 +3,10 @@
 import { jsx, useBrand } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 
+// ==============================
+// Component
+// ==============================
+
 const StepButton = ({ state: { visited, active }, children, ...rest }) => {
 	let stateText = ', not started';
 	if (active) {
@@ -11,18 +15,24 @@ const StepButton = ({ state: { visited, active }, children, ...rest }) => {
 		stateText = ', complete';
 	}
 
+	// disabled attribute is spread to work with the blender
 	return (
-		<button type="button" disabled={!visited} {...rest}>
+		<button type="button" {...(!(active || visited) && { disabled: true })} {...rest}>
 			{children}
 			<VisuallyHidden>{stateText}</VisuallyHidden>
 		</button>
 	);
 };
 
-const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
+// ==============================
+// Styles
+// ==============================
+
+export const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 
 	return {
+		label: 'progressRope-step-btn',
 		position: 'relative',
 		fontSize: '0.875rem',
 		lineHeight: 1.428571429, //`<body>` line-height
@@ -44,9 +54,6 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 			color: COLORS.tints.muted90,
 			cursor: 'default',
 		},
-		/* ':disabled:active, :disabled:hover': {
-			cursor: 'not-allowed',
-		}, */
 
 		':focus': {
 			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
@@ -78,10 +85,32 @@ const stepButtonStyles = (_, { end, grouped, visited, active, furthest }) => {
 	};
 };
 
-const stepButtonAttributes = (_, { active }) => ({ 'aria-current': active ? 'step' : undefined });
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = () => stepButtonStyles(null, {});
+
+// ==============================
+// Attributes
+// ==============================
+
+const stepButtonAttributes = (_, { active }) => ({
+	'aria-current': active ? 'step' : undefined,
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultStepButton = {
 	component: StepButton,
 	styles: stepButtonStyles,
+	attributes: stepButtonAttributes,
+};
+
+export const blenderStepButton = {
+	component: StepButton,
+	styles: blenderStyles,
 	attributes: stepButtonAttributes,
 };

@@ -3,8 +3,8 @@
 import { jsx } from '@westpac/core';
 import { useReducer } from 'react';
 
-export const useProgress = () => {
-	const initialState = { index: 0 };
+export const useProgress = (startIndex = 0) => {
+	const initialState = { index: startIndex };
 
 	const progressReducer = (state, action) => {
 		switch (action.type) {

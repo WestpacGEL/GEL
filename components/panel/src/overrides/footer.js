@@ -1,15 +1,23 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+
+// ==============================
+// Component
+// ==============================
 
 const Footer = ({ state, ...rest }) => <div {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const footerStyles = () => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	return mq({
-		label: getLabel('panel-footer'),
+		label: 'panel-footer',
 		padding: ['0.625rem 0.75rem', null, '0.625rem 1.5rem'],
 		backgroundColor: COLORS.light,
 		borderTop: `1px solid ${COLORS.border}`,
@@ -18,7 +26,15 @@ const footerStyles = () => {
 	})[0];
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const footerAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultFooter = {
 	component: Footer,

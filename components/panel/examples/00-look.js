@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Panel, Header, Body, Footer } from '@westpac/panel';
+import { Panel, Body } from '@westpac/panel';
 
 function Example({ brand }) {
 	return (

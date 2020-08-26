@@ -1,9 +1,27 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, asArray, useMediaQuery, getLabel } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	asArray,
+	useMediaQuery,
+	classNames,
+	getModifier,
+	styleReconciler,
+} from '@westpac/core';
 import { forwardRef } from 'react';
 
+import { defaultProps } from '../Button';
+
+// ==============================
+// Component
+// ==============================
+
 const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
+
+// ==============================
+// Styles
+// ==============================
 
 const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const mq = useMediaQuery();
@@ -105,6 +123,10 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 				backgroundColor: 'transparent',
 				borderColor: 'transparent',
 				textDecoration: 'underline', //a11y
+
+				':hover, :active, &.active': {
+					backgroundColor: 'transparent',
+				},
 			},
 		},
 		[key]: {
@@ -141,7 +163,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const blockArr = asArray(block);
 
 	return mq({
-		label: getLabel('button', { look, size, soft, block, justify, disabled }),
+		label: 'button',
 		alignItems: 'center', //vertical
 		appearance: 'none',
 		border: '1px solid transparent',
@@ -183,14 +205,80 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		height: sizeArr.map((s) => s && sizeMap[s].height),
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
+
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 	})[0];
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
+	const props = { look, size, soft, block, justify, disabled };
+	const baseStyles = buttonStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = buttonStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	let modifier;
+
+	if (modifiers.length > 1 && modifiers.includes('soft')) {
+		modifier = 'soft';
+	} else {
+		modifier = modifiers[0];
+	}
+
+	switch (modifier) {
+		case 'soft':
+			label = look === defaultProps.look ? `${label}-soft` : `${label}-${look}-soft`;
+			break;
+		case 'look':
+			label = `${label}-${look}`;
+			break;
+		case 'size':
+			label = `${label}-${size}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
+
+const blenderAttributes = (_, { look, soft, size, block, justify }) => ({
+	className: classNames({
+		[`__convert__button-${look}`]: look && look !== defaultProps.look && !soft,
+		[`__convert__button${look === defaultProps.look ? '' : `-${look}`}-soft`]: soft,
+		[`__convert__button-${size}`]: size && size !== defaultProps.size,
+		[`__convert__button-block`]: block,
+		[`__convert__button-justify`]: justify,
+	}),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultButton = {
 	component: Button,
 	styles: buttonStyles,
 	attributes: buttonAttributes,
+};
+
+export const blenderButton = {
+	component: Button,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };
