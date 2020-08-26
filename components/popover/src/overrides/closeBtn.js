@@ -12,16 +12,14 @@ const closeBtnStyles = (_, {}) => {
 	const { COLORS, SPACING } = useBrand();
 	return {
 		label: getLabel('popover-closebtn'),
-		'&&': {
-			position: 'absolute',
-			zIndex: 1,
-			top: 0,
-			right: SPACING(1),
-			color: COLORS.text,
+		position: 'absolute',
+		zIndex: 1,
+		top: 0,
+		right: SPACING(1),
+		color: COLORS.text,
 
-			':hover': {
-				opacity: 0.8,
-			},
+		':hover': {
+			opacity: 0.8,
 		},
 	};
 };
