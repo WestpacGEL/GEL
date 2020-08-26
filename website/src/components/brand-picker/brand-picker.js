@@ -32,21 +32,19 @@ export const BrandPicker = () => {
 			>
 				<h1
 					css={mq({
-						'&&': {
-							fontSize: [
-								PACKS.typeScale.bodyFont[7].fontSize,
-								null,
-								PACKS.typeScale.bodyFont[2].fontSize,
-							],
-							lineHeight: [
-								PACKS.typeScale.bodyFont[7].lineHeight,
-								null,
-								PACKS.typeScale.bodyFont[2].lineHeight,
-							],
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							fontWeight: 700,
-							margin: 0,
-						},
+						fontSize: [
+							PACKS.typeScale.bodyFont[7].fontSize,
+							null,
+							PACKS.typeScale.bodyFont[2].fontSize,
+						],
+						lineHeight: [
+							PACKS.typeScale.bodyFont[7].lineHeight,
+							null,
+							PACKS.typeScale.bodyFont[2].lineHeight,
+						],
+						fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
+						fontWeight: 700,
+						margin: 0,
 					})}
 				>
 					Brand{' '}
@@ -68,22 +66,20 @@ export const BrandPicker = () => {
 							<h2
 								size={[6, null, 4]}
 								css={mq({
-									'&&': {
-										fontSize: [
-											PACKS.typeScale.bodyFont[6].fontSize,
-											null,
-											PACKS.typeScale.bodyFont[5].fontSize,
-										],
-										lineHeight: [
-											PACKS.typeScale.bodyFont[6].lineHeight,
-											null,
-											PACKS.typeScale.bodyFont[5].lineHeight,
-										],
-										fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-										fontWeight: 700,
-										marginTop: 0,
-										marginBottom: ['1.125rem', null, '1.5rem'],
-									},
+									fontSize: [
+										PACKS.typeScale.bodyFont[6].fontSize,
+										null,
+										PACKS.typeScale.bodyFont[5].fontSize,
+									],
+									lineHeight: [
+										PACKS.typeScale.bodyFont[6].lineHeight,
+										null,
+										PACKS.typeScale.bodyFont[5].lineHeight,
+									],
+									fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
+									fontWeight: 700,
+									marginTop: 0,
+									marginBottom: ['1.125rem', null, '1.5rem'],
 								})}
 							>
 								Select your brand
