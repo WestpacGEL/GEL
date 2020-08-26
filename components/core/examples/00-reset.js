@@ -46,7 +46,7 @@ function Example({ brand }) {
 			<button type="submit">&lt;button type="submit"&gt;</button>
 			<br />
 			<br />
-			<input value="&lt;input&gt;" />
+			<input defaultValue="&lt;input&gt;" />
 			<br />
 			<br />
 			<select>
