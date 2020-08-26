@@ -15,52 +15,22 @@ const AddRootClass = ({ children }) => {
 			stylisPlugins: [
 				(context, content, selectors, parent, line, column, length) => {
 					if (
+						context === -2 &&
 						selectors.length &&
 						selectors[0] !== '' && // exclude <Global /> styles
-						!content.includes(`label:${label}`) // exclude nested <GEL /> (Core) styles
+						!selectors[0].includes(`-${label}`) // exclude nested <GEL /> (Core) styles
 					) {
-						if (context === -1) {
-							// Prepend with `.GEL` class selector
-							selectors[0] = `.GEL ${selectors[0]}`;
-						}
-						if (context === -2) {
-							/**
-							 * Amend selectors
-							 * ---
-							 * We need to remove any unnecessary internal '.GEL ' strings injected
-							 * during context -1.
-							 *
-							 * Tested examples:
-							 *
-							 * Stacked selectors (&&)
-							 * .GEL .css-hash.GEL .css-hash {} ==> .GEL .css-hash.css-hash {}
-							 *
-							 * Descendant selectors (& &)
-							 * .GEL .css-hash .GEL .css-hash {} ==> .GEL .css-hash .css-hash {}
-							 *
-							 * Child selectors (&>& and & > &)
-							 * .GEL .css-hash>.GEL .css-hash {} ==> .GEL .css-hash>.css-hash {}
-							 * .GEL .css-hash > .GEL .css-hash {} ==> .GEL .css-hash > .css-hash {}
-							 *
-							 * Adjacent sibling selectors (&+& and & + &)
-							 * .GEL .css-hash+.GEL .css-hash {} ==> .GEL .css-hash+.css-hash {}
-							 * .GEL .css-hash + .GEL .css-hash {} ==> .GEL .css-hash + .css-hash {}
-							 *
-							 * General sibling selectors (&~& and & ~ &)
-							 * .GEL .css-hash~.GEL .css-hash {} ==> .GEL .css-hash~.css-hash {}
-							 * .GEL .css-hash ~ .GEL .css-hash {} ==> .GEL .css-hash ~ .css-hash {}
-							 *
-							 * Note: We also have to consider media queries provided to Emotion as
-							 * array values. These are filtered out, identified as `}.GEL `.
-							 *
-							 * Regex explanation
-							 * - (?<=.) Positive lookback (. Dot. Matches any character except line breaks)
-							 * - (?<!{) Negative lookback ({ Character. Matches a "{" character)
-							 * - (\.GEL ) Capturing group #1 matches '.GEL '
-							 * - /g Global search
-							 */
-							content = content.replace(/(?<=.)(?<!{)(\.GEL )/g, '');
-						}
+						// Add to beginning of content string, if not beginning with @ (catches `@media` and `@font-face` queries etc)
+						// - ^ Beginning of string
+						// - [^@] Negated set (not `@` symbol)
+						// - .* Any character except new line, match 0 or more
+						// - /g Global search
+						content = content.replace(/^[^@].*/g, (s) => `.GEL ${s}`);
+
+						// Additionally, insert within @media queries
+						// - (\){) Match `){`
+						// - /g Global search
+						content = content.replace(/(\){)/g, (s) => `${s}.GEL `);
 					}
 					return content;
 				},
