@@ -4,7 +4,7 @@ import { GEL, jsx, useBrand } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { SkipLink, VisuallyHidden } from '@westpac/a11y';
 
-const SkipLinkWrapper = ({ children, ...rest }) => (
+const SkipLinkOverride = ({ state, children, ...rest }) => (
 	<div {...rest} tabIndex={1}>
 		<HouseIcon color="#fff" css={{ marginRight: '1rem' }} />
 		{children}
@@ -20,11 +20,11 @@ function Example({ brand }) {
 			styles: (styles) => ({
 				...styles,
 				':focus': {
-					background: `${COLORS.primary} !important`,
+					background: COLORS.primary,
 					color: '#fff',
 				},
 			}),
-			component: SkipLinkWrapper,
+			component: SkipLinkOverride,
 		},
 		VisuallyHidden: {
 			styles: (styles) => ({
