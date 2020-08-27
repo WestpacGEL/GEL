@@ -20,16 +20,25 @@ const AddRootClass = ({ children }) => {
 						selectors[0] !== '' && // exclude <Global /> styles
 						!selectors[0].includes(`-${label}`) // exclude nested <GEL /> (Core) styles
 					) {
-						// Add to beginning of content string, if not beginning with @ (catches `@media` and `@font-face` queries etc)
-						// - ^ Beginning of string
-						// - [^@] Negated set (not `@` symbol)
-						// - .* Any character except new line, match 0 or more
-						// - /g Global search
+						/**
+						 * Add to beginning of `content` string, if not beginning with `@`
+						 * (catches `@media` and `@font-face` queries etc)
+						 *
+						 * Regex explanation:
+						 * - ^ Beginning of string
+						 * - [^@] Negated set (not `@` symbol)
+						 * - .* Any character except new line, match 0 or more
+						 * - /g Global search
+						 */
 						content = content.replace(/^[^@].*/g, (s) => `.GEL ${s}`);
 
-						// Additionally, insert within @media queries
-						// - (\){) Match `){`
-						// - /g Global search
+						/**
+						 * Additionally, insert within @media queries
+						 *
+						 * Regex explanation:
+						 * - (\){) Match `){`
+						 * - /g Global search
+						 */
 						content = content.replace(/(\){)/g, (s) => `${s}.GEL `);
 					}
 					return content;
