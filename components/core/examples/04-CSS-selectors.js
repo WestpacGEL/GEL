@@ -4,6 +4,9 @@ import { GEL, jsx, useMediaQuery } from '@westpac/core';
 
 function Example({ brand }) {
 	const mq = useMediaQuery();
+	const {
+		LAYOUT: { breakpoints },
+	} = brand;
 
 	return (
 		<GEL brand={brand}>
@@ -52,7 +55,9 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h2>Array values</h2>
+			<h2>Responsive</h2>
+
+			<h3>Array values</h3>
 			<p
 				css={mq({
 					fontWeight: 'bold',
@@ -63,6 +68,46 @@ function Example({ brand }) {
 			</p>
 			<div>
 				<p css={mq({ 'div &': { color: [null, 'green', 'blue', 'purple', 'orange'] } })}>
+					div & ([null, 'green', 'blue', 'purple', 'orange'])
+				</p>
+			</div>
+
+			<h3>@media queries</h3>
+			<p
+				css={{
+					fontWeight: 'bold',
+					color: 'red',
+					[`@media (min-width: ${breakpoints.xsl}px)`]: { color: 'green' },
+					[`@media (min-width: ${breakpoints.sm}px)`]: { color: 'blue' },
+					[`@media (min-width: ${breakpoints.md}px)`]: { color: 'purple' },
+					[`@media (min-width: ${breakpoints.lg}px)`]: { color: 'orange' },
+				}}
+			>
+				['red', 'green', 'blue', 'purple', 'orange']
+			</p>
+			<div>
+				<p
+					css={{
+						'div &': {
+							[`@media (min-width: ${breakpoints.xsl}px)`]: { color: 'green' },
+							[`@media (min-width: ${breakpoints.sm}px)`]: { color: 'blue' },
+							[`@media (min-width: ${breakpoints.md}px)`]: { color: 'purple' },
+							[`@media (min-width: ${breakpoints.lg}px)`]: { color: 'orange' },
+						},
+					}}
+				>
+					div & ([null, 'green', 'blue', 'purple', 'orange'])
+				</p>
+			</div>
+			<div>
+				<p
+					css={{
+						[`@media (min-width: ${breakpoints.xsl}px)`]: { 'div &': { color: 'green' } },
+						[`@media (min-width: ${breakpoints.sm}px)`]: { 'div &': { color: 'blue' } },
+						[`@media (min-width: ${breakpoints.md}px)`]: { 'div &': { color: 'purple' } },
+						[`@media (min-width: ${breakpoints.lg}px)`]: { 'div &': { color: 'orange' } },
+					}}
+				>
 					div & ([null, 'green', 'blue', 'purple', 'orange'])
 				</p>
 			</div>
