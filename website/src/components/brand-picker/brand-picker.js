@@ -127,7 +127,7 @@ const BrandCard = ({ brand }) => {
 				css={{
 					display: 'block',
 					height: '100%',
-					backgroundColor: 'white !important',
+					backgroundColor: '#fff',
 					textDecoration: 'unset',
 					color: '#1976D2',
 					':hover': {
