@@ -2,6 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { forwardRef, useState } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
+import { useSpring, animated } from 'react-spring';
+import useMeasure from 'react-use-measure';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 import { ButtonDropdown, useButtonDropdownContext } from '@westpac/button-dropdown';
@@ -96,6 +99,39 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 	);
 });
 
+const PanelOverride = forwardRef(({ state: { open }, children, ...rest }, ref) => {
+	const { COLORS } = useBrand();
+	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
+
+	const animate = useSpring({
+		to: {
+			height: !open ? 0 : height,
+		},
+	});
+
+	return (
+		<animated.div
+			style={animate}
+			css={{
+				position: 'absolute',
+				zIndex: 1,
+				left: 0,
+				right: 0,
+				overflow: 'hidden',
+				backgroundColor: '#fff',
+				boxShadow: '0 2px 5px rgba(0,0,0,0.26)',
+			}}
+			aria-hidden={!open}
+		>
+			<div ref={measureRef}>
+				<div ref={ref} {...rest}>
+					{children}
+				</div>
+			</div>
+		</animated.div>
+	);
+});
+
 export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
@@ -105,8 +141,6 @@ export const BrandSwitcher = () => {
 	const Logo = brandsMap[brand].logo;
 
 	const OptionButton = ({ brand, active, ...rest }) => {
-		const context = useButtonDropdownContext();
-
 		const handleClick = (brand) => {
 			setOpen(false);
 			setBrand(brand);
@@ -207,6 +241,7 @@ export const BrandSwitcher = () => {
 							textDecoration: 'none',
 							color: COLORS.text,
 							backgroundColor: '#fff',
+							border: 0,
 							fontSize: '0.875rem',
 							padding: '0 1.5rem 0 1.125rem',
 							height: '4.125rem',
@@ -221,14 +256,9 @@ export const BrandSwitcher = () => {
 						}),
 					},
 					Panel: {
-						styles: (styles) => ({
-							...styles,
-							borderRadius: 0,
-							border: 0,
-							boxShadow: '0 2px 5px rgba(0,0,0,0.26)',
-							margin: 0,
-							padding: 0,
-							zIndex: 1,
+						component: PanelOverride,
+						styles: () => ({
+							backgroundColor: '#fff',
 						}),
 					},
 				}}
