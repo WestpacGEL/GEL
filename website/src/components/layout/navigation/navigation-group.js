@@ -44,7 +44,7 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 					<AddIcon size="small" color={COLORS.muted} />
 				)}
 			</StyledItem>
-			<div id={instanceId} css={{ display: !isOpen && 'none' }}>
+			<div id={instanceId} css={{ display: !isOpen && 'none' }} aria-hidden={!isOpen}>
 				{children}
 			</div>
 		</NavigationItem>
