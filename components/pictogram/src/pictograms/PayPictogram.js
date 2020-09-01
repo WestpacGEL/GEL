@@ -4,7 +4,7 @@ import { useBrand } from '@westpac/core';
 
 export const PayPictogram = ({ type, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, background, highlight } = colorMap(COLORS)[type];
+	const { outline, highlight } = colorMap(COLORS)[type];
 
 	return (
 		<Pictogram pictogram="PayPictogram" type={type} {...rest}>
@@ -12,10 +12,6 @@ export const PayPictogram = ({ type, ...rest }) => {
 				<path
 					fill={outline}
 					d="M56.974359,5 L56.974359,17.2 L75,17.2 L75,73 L8.6,73 C4.4026359,73 1,69.5973641 1,65.4 L1,12.6 C1,8.4026359 4.4026359,5 8.6,5 L56.974359,5 Z M5,19 L5,63.25 C5,65.8733526 7.12664744,68 9.75,68 L9.75,68 L71,68 L71,21.7318252 L9.17702866,21.7318252 C6.39234289,21.6060665 5,20.6954581 5,19 L5,19 Z"
-				/>
-				<path
-					fill={background}
-					d="M5,19 C5,20.6954581 6.39234289,21.6060665 9.17702866,21.7318252 L71,21.7318252 L71,68 L9.75,68 C7.12664744,68 5,65.8733526 5,63.25 C5,48.5 5,33.75 5,19 Z"
 				/>
 				<path
 					fill={highlight}
