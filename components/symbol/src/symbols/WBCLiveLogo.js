@@ -4,16 +4,16 @@ import { propTypes, defaultProps, Symbol } from '../Symbol';
 export const WBCLiveLogo = (props) => (
 	<Symbol symbol="WBCLiveLogo" {...props}>
 		<path
-			fill="#D5002B"
+			fill="#DA1710"
 			d="M18.5,39.8l-5.1-15.7c-0.7-2.4-2-3.1-3.8-3.1H0c0.7,0.3,1.2,2.2,1.2,2.2L5.8,39c0.5,2,2.2,3,4.1,3H20
 		C19.3,41.9,18.5,39.8,18.5,39.8"
 		/>
 		<path
-			fill="#D5002B"
+			fill="#DA1710"
 			d="M33.5,39.8l5.1-15.7c0.7-2.4,2-3.1,3.8-3.1H52c-0.7,0.3-1.2,2.2-1.2,2.2L46.2,39c-0.5,2-2.2,3-4.1,3H32
 		C32.7,41.9,33.5,39.8,33.5,39.8"
 		/>
-		<rect x="20.5" y="21" fill="#D5002B" width="11" height="21" />
+		<rect x="20.5" y="21" fill="#DA1710" width="11" height="21" />
 		<linearGradient
 			id="WBCLiveLogo-a"
 			gradientUnits="userSpaceOnUse"
