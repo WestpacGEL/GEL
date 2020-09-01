@@ -13,6 +13,7 @@ export const StyledItem = forwardRef(({ tag: Tag, level, ...rest }, ref) => {
 	return (
 		<Tag
 			ref={ref}
+			type={Tag === 'button' ? 'button' : undefined}
 			css={{
 				display: 'block',
 				padding: `14px 30px 14px ${36 + level * 20}px`,

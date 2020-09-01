@@ -1,8 +1,17 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getModifier, styleReconciler } from '@westpac/core';
+import { defaultProps } from '../Panel';
+
+// ==============================
+// Component
+// ==============================
 
 const Header = ({ state, ...rest }) => <div {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const headerStyles = (_, { look }) => {
 	const { COLORS } = useBrand();
@@ -22,7 +31,7 @@ const headerStyles = (_, { look }) => {
 	};
 
 	return mq({
-		label: getLabel('panel-header', { look }),
+		label: 'panel-header',
 		padding: ['0.625rem 0.75rem', null, '0.625rem 1.5rem'],
 		backgroundColor: styleMap[look].backgroundColor,
 		borderBottom: `1px solid ${styleMap[look].borderColor}`,
@@ -35,10 +44,46 @@ const headerStyles = (_, { look }) => {
 	})[0];
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, props) => {
+	const baseStyles = headerStyles(_, defaultProps);
+
+	return baseStyles;
+};
+
+export const nestedStyles = (props) => {
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return {};
+
+	const baseStyles = headerStyles(null, defaultProps);
+	const modifierStyles = headerStyles(null, props);
+
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	return { [`.__convert__${baseStyles.label}`]: reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const headerAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultHeader = {
 	component: Header,
 	styles: headerStyles,
+	attributes: headerAttributes,
+};
+
+export const blenderHeader = {
+	component: Header,
+	styles: blenderStyles,
 	attributes: headerAttributes,
 };

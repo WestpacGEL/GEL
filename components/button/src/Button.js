@@ -127,7 +127,7 @@ Button.propTypes = {
 	/**
 	 * Button look
 	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link']),
+	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link']).isRequired,
 
 	/**
 	 * Button size
@@ -135,7 +135,7 @@ Button.propTypes = {
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
-	]),
+	]).isRequired,
 
 	/**
 	 * Button tag
@@ -230,7 +230,7 @@ Button.propTypes = {
 	}),
 };
 
-Button.defaultProps = {
+export const defaultProps = {
 	look: 'hero',
 	size: 'medium',
 	tag: 'button',
@@ -239,3 +239,5 @@ Button.defaultProps = {
 	justify: false,
 	disabled: false,
 };
+
+Button.defaultProps = defaultProps;

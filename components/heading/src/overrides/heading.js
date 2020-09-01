@@ -3,6 +3,10 @@
 import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 
+// ==============================
+// Component
+// ==============================
+
 const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	// ignore all non h1-h6 tags
 	if (Tag && typeof Tag !== 'function' && !Tag.startsWith('h') && !(Tag.length === 2)) {
@@ -24,6 +28,10 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 
 	return <Tag ref={ref} {...rest} />;
 });
+
+// ==============================
+// Styles
+// ==============================
 
 const headingStyles = (_, { size }) => {
 	const { PACKS, TYPE } = useBrand();
@@ -55,7 +63,15 @@ const headingStyles = (_, { size }) => {
 	})[0];
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const headingAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultHeading = {
 	component: Heading,
