@@ -1,8 +1,12 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Svg } from './Svg';
 
-export const AtlassianLogo = ({ width, height = 'auto', color = '#2D373E', ...rest }) => {
+export const AtlassianLogo = ({ width, height = 'auto', color, ...rest }) => {
+	const { COLORS } = useBrand();
+
+	color = color || COLORS.neutral;
+
 	return (
 		<Svg viewBox="0 0 159 20" width={159} height={20} css={{ width, height }} {...rest}>
 			<title>Atlassian logo</title>
