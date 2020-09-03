@@ -29,7 +29,6 @@ export { TwitterSymbol } from './symbols/TwitterSymbol';
 export { VisaBlueSymbol } from './symbols/VisaBlueSymbol';
 export { VisaSymbol } from './symbols/VisaSymbol';
 export { VisaWhiteSymbol } from './symbols/VisaWhiteSymbol';
-export { WBCLiveLogo } from './symbols/WBCLiveLogo';
 export { WBCLogo } from './symbols/WBCLogo';
 export { WBGInternalLogo } from './symbols/WBGInternalLogo';
 export { WBGLogo } from './symbols/WBGLogo';
