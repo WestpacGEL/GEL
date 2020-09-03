@@ -1,6 +1,11 @@
 /** @jsx jsx */
 import { GEL, jsx, css, Global, useBrand, useMediaQuery, useFonts } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
+import bomBrand from '@westpac/bom';
+import bsaBrand from '@westpac/bsa';
+import stgBrand from '@westpac/stg';
+import wbcBrand from '@westpac/wbc';
+import wbgBrand from '@westpac/wbg';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import { useRef, useEffect } from 'react';
@@ -17,29 +22,43 @@ const LoadGELFonts = () => (
 	<Global
 		styles={css`
 			@font-face {
-				font-family: "graphik";
-				src: url("${BASE_URL}/fonts/Graphik-Bold-Web.eot");
-				src: url("${BASE_URL}/fonts/Graphik-Bold-Web.eot?#iefix") format("embedded-opentype"),
-					url("${BASE_URL}/fonts/Graphik-Bold-Web.woff") format("woff"),
-					url("${BASE_URL}/fonts/Graphik-Bold-Web.ttf") format("truetype"),
-					url("${BASE_URL}/fonts/Graphik-Bold-Web.svg#Graphik-Bold") format("svg");
+				font-family: 'graphik';
+				src: url('${BASE_URL}/fonts/Graphik-Bold-Web.eot');
+				src: url('${BASE_URL}/fonts/Graphik-Bold-Web.eot?#iefix') format('embedded-opentype'),
+					url('${BASE_URL}/fonts/Graphik-Bold-Web.woff') format('woff'),
+					url('${BASE_URL}/fonts/Graphik-Bold-Web.ttf') format('truetype'),
+					url('${BASE_URL}/fonts/Graphik-Bold-Web.svg#Graphik-Bold') format('svg');
 				font-weight: 700;
 				font-style: normal;
 			}
 			@font-face {
-				font-family: "guardian";
-				src: url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot");
-				src: url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot?#iefix") format("embedded-opentype"),
-					url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.woff") format("woff"),
-					url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.ttf") format("truetype"),
-					url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.svg#Guardian Egyptian Web") format("svg");
+				font-family: 'guardian';
+				src: url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot');
+				src: url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot?#iefix')
+						format('embedded-opentype'),
+					url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.woff') format('woff'),
+					url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.ttf') format('truetype'),
+					url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.svg#Guardian Egyptian Web') format('svg');
 				font-weight: 300;
 				font-style: italic;
 			}
 		`}
 	/>
 );
-const LoadBrandFonts = () => <Global styles={useFonts({ path: `${BASE_URL}/fonts/` })['']} />;
+
+const useAllFonts = ({ path }) => {
+	const BRANDS = [wbcBrand, stgBrand, bomBrand, bsaBrand, wbgBrand];
+
+	return BRANDS.map((brand) =>
+		brand.TYPE.files[''].map((file) => {
+			const { src, ...rest } = file['@font-face'];
+			return {
+				'@font-face': { src: src.replace(/_PATH_/g, path), ...rest },
+			};
+		})
+	);
+};
+const LoadAllBrandFonts = () => <Global styles={useAllFonts({ path: `${BASE_URL}/fonts/` })} />;
 
 const GlobalReset = () => (
 	<Global
@@ -101,7 +120,7 @@ const Wrapper = (props) => {
 
 	return (
 		<GEL brand={brandOverrides(brands[brand])}>
-			<LoadBrandFonts />
+			<LoadAllBrandFonts />
 			<GlobalReset />
 			<SidebarProvider>
 				<GridContainer>
