@@ -4,7 +4,7 @@ import { GEL, jsx } from '@westpac/core';
 import { TickIcon, InfoIcon, AlertIcon, HouseIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
 
-const CloseBtn = ({ onClose, state: _, ...rest }) => (
+const CloseBtnOverride = ({ onClose, state: _, ...rest }) => (
 	<button onClick={() => onClose()} {...rest}>
 		Close <HouseIcon />
 	</button>
@@ -14,7 +14,7 @@ const HeadingOverride = ({ children }) => (
 	<h3
 		css={{
 			margin: '0 0 0.5rem 0',
-			color: 'red !important',
+			color: 'red',
 		}}
 	>
 		{children}
@@ -48,7 +48,7 @@ function Example({ brand }) {
 			}),
 		},
 		Icon: {
-			component: Icon,
+			component: IconOverride,
 			styles: (styles, { look }) => ({
 				...styles,
 				outline: `2px solid ${look === 'info' ? 'red' : 'black'}`,

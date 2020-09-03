@@ -139,10 +139,7 @@ const Homepage = () => {
 									noValidate=""
 									css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })}
 								>
-									<Grid
-										rowGap={[`${SPACING(3)} !important`, null, 'unset !important']}
-										css={{ textAlign: 'left' }}
-									>
+									<Grid rowGap={[SPACING(3), null, 'unset']} css={{ textAlign: 'left' }}>
 										<Cell width={[10, null, 5, 4]} left={[2, null, 3, 4]}>
 											<label
 												htmlFor="mce-EMAIL"

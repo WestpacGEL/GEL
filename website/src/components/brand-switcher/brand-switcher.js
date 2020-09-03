@@ -160,7 +160,7 @@ export const BrandSwitcher = () => {
 					boxSizing: 'border-box',
 					backgroundColor: 'transparent',
 					border: 0,
-					fontSize: '0.875rem !important',
+					fontSize: '0.875rem',
 					color: active ? COLORS.primary : COLORS.text,
 					display: 'flex',
 					width: '100%',

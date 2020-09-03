@@ -12,11 +12,9 @@ const headingStyles = () => {
 
 	return {
 		label: getLabel('popover-heading'),
-		'&&': {
-			marginBottom: SPACING(2),
-			color: COLORS.neutral,
-			...TYPE.bodyFont[500],
-		},
+		marginBottom: SPACING(2),
+		color: COLORS.neutral,
+		...TYPE.bodyFont[500],
 	};
 };
 
