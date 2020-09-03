@@ -4,14 +4,14 @@ import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 
-const Label = ({ state: _, ...rest }) => <strong {...rest} />;
+const LabelOverride = ({ state: _, ...rest }) => <strong {...rest} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/switch'] = {
 		Label: {
-			component: Label,
+			component: LabelOverride,
 			styles: (styles) => ({
 				...styles,
 				color: 'palevioletred',

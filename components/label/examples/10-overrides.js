@@ -3,7 +3,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { Label } from '@westpac/label';
 
-const LabelWithEdit = ({ look, value, state: _, children, ...rest }) => {
+const LabelOverride = ({ look, value, state: _, children, ...rest }) => {
 	return (
 		<span {...rest}>
 			{children}
@@ -46,7 +46,7 @@ function Example({ brand }) {
 				backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
 				outline: '3px solid blue',
 			}),
-			component: LabelWithEdit,
+			component: LabelOverride,
 		},
 	};
 

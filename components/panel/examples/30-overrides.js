@@ -3,7 +3,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { Panel, Body, Footer } from '@westpac/panel';
 
-const Wrapper = ({ state: _, ...rest }) => <aside {...rest} />;
+const PanelOverride = ({ state: _, ...rest }) => <aside {...rest} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -15,7 +15,7 @@ function Example({ brand }) {
 				borderColor: 'palevioletred',
 				outline: '1px solid red',
 			}),
-			component: Wrapper,
+			component: PanelOverride,
 		},
 		Header: {
 			styles: (styles) => ({
