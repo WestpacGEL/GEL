@@ -3,7 +3,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { Panel, Body, Footer } from '@westpac/panel';
 
-const Wrapper = ({ look, heading, headingTag, overrides, ...rest }) => <aside {...rest} />;
+const Wrapper = ({ state: _, ...rest }) => <aside {...rest} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };

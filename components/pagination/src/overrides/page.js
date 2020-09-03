@@ -2,7 +2,7 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const Page = ({ state, ...rest }) => <li {...rest} />;
+const Page = ({ state: _, ...rest }) => <li {...rest} />;
 
 const pageStyles = () => ({
 	label: getLabel('pagination-page'),

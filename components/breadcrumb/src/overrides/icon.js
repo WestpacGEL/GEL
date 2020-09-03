@@ -3,7 +3,7 @@
 import { jsx, useBrand, getLabel } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
 
-const Icon = ({ state, ...rest }) => {
+const Icon = ({ state: _, ...rest }) => {
 	const { COLORS } = useBrand();
 
 	return <ArrowRightIcon size="small" color={COLORS.primary} assistiveText={null} {...rest} />;

@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { forwardRef } from 'react';
 
-const Trigger = forwardRef(({ state, ...rest }, ref) => <Button ref={ref} {...rest} />);
+const Trigger = forwardRef(({ state: _, ...rest }, ref) => <Button ref={ref} {...rest} />);
 
 const triggerStyles = () => ({});
 

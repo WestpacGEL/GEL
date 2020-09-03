@@ -7,7 +7,7 @@ import { defaultProps } from '../Panel';
 // Component
 // ==============================
 
-const Header = ({ state, ...rest }) => <div {...rest} />;
+const Header = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Switch } from '@westpac/switch';
 
-const Label = ({ state, ...rest }) => <strong {...rest} />;
+const Label = ({ state: _, ...rest }) => <strong {...rest} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };

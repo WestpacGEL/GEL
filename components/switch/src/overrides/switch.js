@@ -3,7 +3,7 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { sizeMap } from './_utils';
 
-const Switch = ({ state, ...rest }) => <label {...rest} />;
+const Switch = ({ state: _, ...rest }) => <label {...rest} />;
 
 const switchStyles = (_, { block, disabled, size }) => {
 	const mq = useMediaQuery();

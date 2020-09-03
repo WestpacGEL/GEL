@@ -4,7 +4,7 @@ import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
-const CloseBtn = ({ onClose, state, ...rest }) => (
+const CloseBtn = ({ onClose, state: _, ...rest }) => (
 	<Button
 		onClick={(event) => onClose(event)}
 		iconAfter={CloseIcon}

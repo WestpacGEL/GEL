@@ -4,7 +4,7 @@ import { GEL, jsx } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { InputGroup, Before, After } from '@westpac/input-group';
 
-const Text = ({ data, overrides, ...rest }) => (
+const Text = ({ data, state: _, ...rest }) => (
 	<span {...rest}>
 		<HouseIcon size="small" /> {data}
 	</span>

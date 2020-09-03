@@ -11,7 +11,7 @@ import {
 import { Cell, Grid, Name } from './_utils';
 import { Fragment } from 'react';
 
-const Wrapper = ({ children, symbol, state, ...rest }) => (
+const Wrapper = ({ symbol, state: _, children, ...rest }) => (
 	<Fragment>
 		<div {...rest}>{children}</div>
 		<div css={{ marginBottom: '1rem' }}>

@@ -3,7 +3,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { Label } from '@westpac/label';
 
-const LabelWithEdit = ({ state, look, value, children, ...rest }) => {
+const LabelWithEdit = ({ look, value, state: _, children, ...rest }) => {
 	return (
 		<span {...rest}>
 			{children}
