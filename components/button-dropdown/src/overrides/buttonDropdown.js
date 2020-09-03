@@ -2,7 +2,7 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const ButtonDropdown = ({ state, ...rest }) => <div {...rest} />;
+const ButtonDropdown = ({ state: _, ...rest }) => <div {...rest} />;
 
 const buttonDropdownStyles = (_, { block }) => ({
 	label: getLabel('buttonDropdown', { block }),

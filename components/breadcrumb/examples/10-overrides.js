@@ -4,7 +4,7 @@ import { GEL, jsx } from '@westpac/core';
 import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
 import { HouseIcon } from '@westpac/icon';
 
-const Icon = ({ state, ...props }) => <HouseIcon color="red" {...props} />;
+const Icon = ({ state: _, ...props }) => <HouseIcon color="red" {...props} />;
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
