@@ -4,7 +4,7 @@ import { GEL, jsx } from '@westpac/core';
 import { TickIcon, InfoIcon, AlertIcon, HouseIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';
 
-const CloseBtnOverride = ({ onClose, state, ...rest }) => (
+const CloseBtnOverride = ({ onClose, state: _, ...rest }) => (
 	<button onClick={() => onClose()} {...rest}>
 		Close <HouseIcon />
 	</button>

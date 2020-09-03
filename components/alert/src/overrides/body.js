@@ -3,7 +3,7 @@
 import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-const AlertBody = ({ state, ...rest }) => <Body {...rest} />;
+const AlertBody = ({ state: _, ...rest }) => <Body {...rest} />;
 
 const bodyStyles = (_, { icon: Icon }) => {
 	const mq = useMediaQuery();

@@ -4,7 +4,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
-const CloseBtn = ({ state, ...rest }) => (
+const CloseBtn = ({ state: _, ...rest }) => (
 	<Button iconAfter={CloseIcon} look="link" size="medium" assistiveText="Close popover" {...rest} />
 );
 

@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const Wrapper = ({ state, ...rest }) => <div {...rest} />;
+const Wrapper = ({ state: _, ...rest }) => <div {...rest} />;
 
 const wrapperStyles = () => {
 	const { COLORS } = useBrand();

@@ -1,8 +1,12 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Svg } from './Svg';
 
-export const MyobLogo = ({ width, height = 'auto', color = '#2D373E', ...rest }) => {
+export const MyobLogo = ({ width, height = 'auto', color, ...rest }) => {
+	const { COLORS } = useBrand();
+
+	color = color || COLORS.neutral;
+
 	return (
 		<Svg viewBox="0 0 90 38" width={90} height={38} css={{ width, height }} {...rest}>
 			<title>MYOB logo</title>
