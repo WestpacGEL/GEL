@@ -15,7 +15,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	focus.outline += ' !important';
 	const borderWidth = 1; //px
 	const lineHeight = 1.5;
-	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
+	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fillRule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
 	const caretGap = '0.5rem';
 	const caretWidth = '14px';
 	const sub = `${((p) => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${((b) => `${b} + ${b}`)(
