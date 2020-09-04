@@ -17,6 +17,7 @@ const iconStyles = (_, { left, right, dropdown, block, hasChildren }) => {
 
 	if (left) label = `button-icon-left`;
 	if (right) label = `button-icon-right`;
+	if (dropdown) label = `button-icon-dropdown`;
 
 	return {
 		label,

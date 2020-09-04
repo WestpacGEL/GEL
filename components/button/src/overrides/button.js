@@ -257,13 +257,14 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
 
-const blenderAttributes = (_, { look, soft, size, block, justify }) => ({
+const blenderAttributes = (_, { look, soft, size, block, justify, disabled }) => ({
 	className: classNames({
 		[`__convert__button-${look}`]: look && look !== defaultProps.look && !soft,
 		[`__convert__button${look === defaultProps.look ? '' : `-${look}`}-soft`]: soft,
 		[`__convert__button-${size}`]: size && size !== defaultProps.size,
 		[`__convert__button-block`]: block,
 		[`__convert__button-justify`]: justify,
+		[`__convert__button-disabled`]: disabled,
 	}),
 });
 
