@@ -68,8 +68,8 @@ export function AppDocs({ components, packageName, pkg }) {
 										<Fragment>
 											<Sidebar
 												components={components}
-												brand={brand}
-												setBrand={setBrand}
+												brandName={brandName}
+												setBrandName={setBrandName}
 												parent={slug}
 											/>
 											<Page {...route} {...props} brand={brand} />
@@ -82,8 +82,8 @@ export function AppDocs({ components, packageName, pkg }) {
 									<Fragment>
 										<Sidebar
 											components={components}
-											brandname={brandname}
-											setBrandname={setBrandName}
+											brandName={brandName}
+											setBrandName={setBrandName}
 										/>
 										<HomeDocs {...route} />
 									</Fragment>
