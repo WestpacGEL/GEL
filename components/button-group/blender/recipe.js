@@ -2,12 +2,25 @@ import { GEL } from '@westpac/core';
 import React from 'react';
 
 import { ButtonGroup, Item } from '@westpac/button-group';
+import { blenderButton } from '@westpac/button';
+
+import { blenderButtonGroup } from '../src/overrides/buttonGroup';
+import { blenderButton as blenderBtnGroupBtn } from '../src/overrides/button';
 
 export function AllStyles({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/button-group'] = {
+		ButtonGroup: {
+			styles: blenderButtonGroup.styles,
+		},
+		Button: {
+			component: (props) => <span {...props} />,
+			styles: blenderBtnGroupBtn.styles,
+		},
+	};
 	return (
-		<GEL brand={brand}>
+		<GEL brand={overridesWithTokens}>
 			<ButtonGroup
-				defaultValue="y"
 				name="x"
 				data={[
 					{ text: 'Text', value: 'x' },
@@ -16,79 +29,8 @@ export function AllStyles({ brand }) {
 				]}
 			/>
 			<ButtonGroup
-				defaultValue="y"
-				look="primary"
-				name="x"
-				data={[
-					{ text: 'Text', value: 'x' },
-					{ text: 'Text', value: 'y' },
-					{ text: 'Text', value: 'z' },
-				]}
-			/>
-			<ButtonGroup
-				defaultValue="y"
-				look="hero"
-				name="x"
-				data={[
-					{ text: 'Text', value: 'x' },
-					{ text: 'Text', value: 'y' },
-					{ text: 'Text', value: 'z' },
-				]}
-			/>
-			<ButtonGroup
-				defaultValue="y"
+				name="y"
 				block
-				name="x"
-				data={[
-					{ text: 'Text', value: 'x' },
-					{ text: 'Text', value: 'y' },
-					{ text: 'Text', value: 'z' },
-				]}
-			/>
-			<ButtonGroup
-				defaultValue="y"
-				disabled
-				name="x"
-				data={[
-					{ text: 'Text', value: 'x' },
-					{ text: 'Text', value: 'y' },
-					{ text: 'Text', value: 'z' },
-				]}
-			/>
-			<ButtonGroup
-				defaultValue="y"
-				size="small"
-				name="x"
-				data={[
-					{ text: 'Text', value: 'x' },
-					{ text: 'Text', value: 'y' },
-					{ text: 'Text', value: 'z' },
-				]}
-			/>
-			<ButtonGroup
-				defaultValue="y"
-				size="medium"
-				name="x"
-				data={[
-					{ text: 'Text', value: 'x' },
-					{ text: 'Text', value: 'y' },
-					{ text: 'Text', value: 'z' },
-				]}
-			/>
-			<ButtonGroup
-				defaultValue="y"
-				size="large"
-				name="x"
-				data={[
-					{ text: 'Text', value: 'x' },
-					{ text: 'Text', value: 'y' },
-					{ text: 'Text', value: 'z' },
-				]}
-			/>
-			<ButtonGroup
-				defaultValue="y"
-				size="xlarge"
-				name="x"
 				data={[
 					{ text: 'Text', value: 'x' },
 					{ text: 'Text', value: 'y' },
@@ -100,12 +42,40 @@ export function AllStyles({ brand }) {
 }
 
 export function Docs({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/button-group'] = {
+		ButtonGroup: {
+			attributes: blenderButtonGroup.attributes,
+		},
+		Button: {
+			component: blenderBtnGroupBtn.component,
+			attributes: blenderBtnGroupBtn.attributes,
+		},
+	};
+	overridesWithTokens['@westpac/button'] = {
+		Button: {
+			attributes: blenderButton.attributes,
+		},
+	};
+
 	return [
+		{
+			heading: 'A default button group',
+			component: () => (
+				<GEL brand={overridesWithTokens}>
+					<ButtonGroup name="item-name1" look="hero">
+						<Item value="value1">Your text</Item>
+						<Item value="value2">Your text</Item>
+						<Item value="value3">Your text</Item>
+					</ButtonGroup>
+				</GEL>
+			),
+		},
 		{
 			heading: 'A primary button group',
 			component: () => (
-				<GEL brand={brand}>
-					<ButtonGroup name="item-name1" look="primary">
+				<GEL brand={overridesWithTokens}>
+					<ButtonGroup name="item-name2" look="primary">
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
 						<Item value="value3">Your text</Item>
@@ -114,34 +84,10 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A hero button group',
+			heading: 'A faint button group',
 			component: () => (
-				<GEL brand={brand}>
-					<ButtonGroup name="item-name2" look="hero">
-						<Item value="value1">Your text</Item>
-						<Item value="value2">Your text</Item>
-						<Item value="value3">Your text</Item>
-					</ButtonGroup>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A button group with a selected field',
-			component: () => (
-				<GEL brand={brand}>
-					<ButtonGroup name="item-name3" defaultValue="value2">
-						<Item value="value1">Your text</Item>
-						<Item value="value2">Your selected text</Item>
-						<Item value="value3">Your text</Item>
-					</ButtonGroup>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A disabled button group',
-			component: () => (
-				<GEL brand={brand}>
-					<ButtonGroup name="item-name4" disabled>
+				<GEL brand={overridesWithTokens}>
+					<ButtonGroup name="item-name3" look="faint">
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
 						<Item value="value3">Your text</Item>
@@ -152,8 +98,8 @@ export function Docs({ brand }) {
 		{
 			heading: 'A block button group',
 			component: () => (
-				<GEL brand={brand}>
-					<ButtonGroup name="item-name5" block>
+				<GEL brand={overridesWithTokens}>
+					<ButtonGroup name="item-name4" block>
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
 						<Item value="value3">Your text</Item>
@@ -161,17 +107,17 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
-		...['small', 'medium', 'large', 'xlarge'].map((size, i) => ({
-			heading: `A ${size} button group`,
+		{
+			heading: 'A disabled button group',
 			component: () => (
-				<GEL brand={brand}>
-					<ButtonGroup name={`item-name${5 + i}`} size={size}>
+				<GEL brand={overridesWithTokens}>
+					<ButtonGroup name="item-name3" disabled>
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
 						<Item value="value3">Your text</Item>
 					</ButtonGroup>
 				</GEL>
 			),
-		})),
+		},
 	];
 }
