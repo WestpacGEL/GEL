@@ -4,7 +4,7 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { round, sizeMap } from '../_utils';
 
-const Select = ({ state, ...rest }) => <select {...rest} />;
+const Select = ({ state: _, ...rest }) => <select {...rest} />;
 
 const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();

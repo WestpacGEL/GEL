@@ -3,7 +3,7 @@
 import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-const AlertBody = ({ state, ...rest }) => <Body {...rest} />;
+const AlertBody = ({ state: _, ...rest }) => <Body {...rest} />;
 
 const bodyStyles = (_, { icon: Icon }) => {
 	const mq = useMediaQuery();
@@ -14,7 +14,7 @@ const bodyStyles = (_, { icon: Icon }) => {
 		flex: 1,
 		top: [null, Icon && '0.125rem'],
 		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
-			color: 'inherit !important',
+			color: 'inherit',
 		},
 	})[0];
 };

@@ -13,7 +13,7 @@ import { stepStyles } from './step';
 // Component
 // ==============================
 
-const Group = ({ state, ...rest }) => <li {...rest} />;
+const Group = ({ state: _, ...rest }) => <li {...rest} />;
 
 // ==============================
 // Styles

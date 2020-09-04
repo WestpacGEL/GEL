@@ -2,7 +2,7 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const Breadcrumb = ({ state, ...rest }) => <nav {...rest} />;
+const Breadcrumb = ({ state: _, ...rest }) => <nav {...rest} />;
 
 const breadcrumbStyles = () => ({
 	label: getLabel('breadcrumb'),

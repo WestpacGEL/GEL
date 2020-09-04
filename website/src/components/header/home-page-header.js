@@ -133,7 +133,13 @@ const StickyHeader = () => {
 						margin: 0,
 					})}
 				>
-					<h1 css={{ '&&': { margin: 0, ...PACKS.typeScale.bodyFont[9], fontWeight: 'normal' } }}>
+					<h1
+						css={{
+							margin: 0,
+							...PACKS.typeScale.bodyFont[9],
+							fontWeight: 'normal',
+						}}
+					>
 						<strong>GEL</strong> Design System
 					</h1>
 				</div>

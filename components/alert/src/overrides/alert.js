@@ -3,7 +3,7 @@
 import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 
-const Alert = ({ state, ...rest }) => <div {...rest} />;
+const Alert = ({ state: _, ...rest }) => <div {...rest} />;
 
 const alertStyles = (_, { dismissible, look }) => {
 	const mq = useMediaQuery();

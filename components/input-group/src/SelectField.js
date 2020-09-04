@@ -50,12 +50,7 @@ export const SelectField = ({ instanceId, position, label, data, overrides, ...r
 					{label}
 				</VisuallyHidden>
 			)}
-			<Select
-				{...rest}
-				state={state}
-				{...selectAttributes(state)}
-				css={{ '&&': selectStyles(state) }}
-			/>
+			<Select {...rest} state={state} {...selectAttributes(state)} css={selectStyles(state)} />
 		</Fragment>
 	);
 };

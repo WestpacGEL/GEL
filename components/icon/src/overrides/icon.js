@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
 
-const Icon = ({ state, ...rest }) => <span {...rest} />;
+const Icon = ({ state: _, ...rest }) => <span {...rest} />;
 
 const iconStyles = (_, { color, size }) => {
 	const mq = useMediaQuery();

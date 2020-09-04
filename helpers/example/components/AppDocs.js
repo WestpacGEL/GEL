@@ -11,12 +11,32 @@ import { HomeDocs } from './HomeDocs';
 import { Page } from './Page';
 
 export function AppDocs({ components, packageName, pkg }) {
-	const [brand, setBrand] = useState('WBC');
+	const [brandName, setBrandName] = useState('WBC');
+
+	const brand = BRANDS[brandName];
 
 	return (
 		<Router>
 			<StrictMode>
-				<GEL brand={BRANDS[brand]}>
+				<Global
+					styles={css`
+						body {
+							margin: 0;
+						}
+						code {
+							font-family: Monaco, monospace;
+							font-size: 0.85em;
+						}
+						p > code {
+							background-color: #ffebe6;
+							color: #bf2600;
+							border-radius: '0.3rem';
+							display: inline-block;
+							padding: '0.1rem 0.3rem';
+						}
+					`}
+				/>
+				<GEL brand={brand}>
 					<div
 						css={{
 							alignItems: 'stretch',
@@ -24,31 +44,17 @@ export function AppDocs({ components, packageName, pkg }) {
 							minHeight: '100vh',
 						}}
 					>
-						<Global
-							styles={css`
-								body {
-									margin: 0;
-								}
-								code {
-									font-family: Monaco, monospace;
-									font-size: 0.85em;
-								}
-								p > code {
-									background-color: #ffebe6;
-									color: #bf2600;
-									border-radius: '0.3rem';
-									display: inline-block;
-									padding: '0.1rem 0.3rem';
-								}
-							`}
-						/>
 						<Switch>
 							<Route
 								exact
 								path="/"
 								render={(route) => (
 									<Fragment>
-										<Sidebar components={components} brand={brand} setBrand={setBrand} />
+										<Sidebar
+											components={components}
+											brandName={brandName}
+											setBrandName={setBrandName}
+										/>
 										<HomeDocs {...route} />
 									</Fragment>
 								)}
@@ -66,7 +72,7 @@ export function AppDocs({ components, packageName, pkg }) {
 												setBrand={setBrand}
 												parent={slug}
 											/>
-											<Page {...route} {...props} brand={BRANDS[brand]} />
+											<Page {...route} {...props} brand={brand} />
 										</Fragment>
 									)}
 								/>
@@ -74,7 +80,11 @@ export function AppDocs({ components, packageName, pkg }) {
 							<Route
 								render={(route) => (
 									<Fragment>
-										<Sidebar components={components} brand={brand} setBrand={setBrand} />
+										<Sidebar
+											components={components}
+											brandname={brandname}
+											setBrandname={setBrandName}
+										/>
 										<HomeDocs {...route} />
 									</Fragment>
 								)}

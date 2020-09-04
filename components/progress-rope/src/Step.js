@@ -91,7 +91,7 @@ export const Step = ({ index, groupIndex, end, onClick, children, overrides, ...
 				onClick={onClick}
 				state={state}
 				{...stepButtonAttributes(state)}
-				css={{ '&&': stepButtonStyles(state) }}
+				css={stepButtonStyles(state)}
 			>
 				{children}
 			</StepButton>

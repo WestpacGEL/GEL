@@ -93,7 +93,7 @@ export const Alert = ({
 			onClose={(event) => handleClose(event)}
 			state={state}
 			{...closeBtnAttributes(state)}
-			css={{ '&&': closeBtnStyles(state) }}
+			css={closeBtnStyles(state)}
 		/>
 	);
 

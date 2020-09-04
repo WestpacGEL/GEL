@@ -43,7 +43,7 @@ export const BrandHeading = forwardRef(
 				{...rest}
 				state={state}
 				{...brandHeadingAttributes(state)}
-				css={{ '&&': brandHeadingStyles(state) }}
+				css={brandHeadingStyles(state)}
 			>
 				{children}
 			</BrandHeading>
