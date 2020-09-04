@@ -202,14 +202,14 @@ export function Sidebar({ components, brandName, setBrandName, parent = '' }) {
 						<label
 							key={b}
 							css={{
+								boxSizing: 'border-box',
 								alignItems: 'center',
 								borderTop: '1px solid',
 								borderTopColor: isChecked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
-								boxSizing: 'border-box',
 								color: isChecked ? 'inherit' : '#1F252C',
+								fontWeight: isChecked && 'bold',
 								cursor: 'pointer',
 								flex: 1,
-								fontWeight: 500,
 								justifyContent: 'center',
 								paddingBottom: '0.75rem',
 								paddingTop: '0.75rem',
