@@ -57,7 +57,7 @@ export const Grid = (props) => (
 			gridAutoFlow: 'row',
 			gridAutoRows: 'minmax(120px,auto)',
 			gridGap: 12,
-			gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+			gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
 		}}
 		{...props}
 	/>
@@ -69,7 +69,6 @@ export const Cell = (props) => (
 			alignItems: 'center',
 			display: 'flex',
 			flexDirection: 'column',
-			justifyContent: 'center',
 		}}
 		{...props}
 	/>
@@ -81,6 +80,7 @@ export const Name = (props) => (
 			color: '#6B778C',
 			fontSize: '0.75rem',
 			marginTop: '1em',
+			textAlign: 'center',
 		}}
 		{...props}
 	/>
