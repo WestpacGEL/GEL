@@ -56,7 +56,7 @@ export const Grid = (props) => (
 			display: 'grid',
 			gridAutoFlow: 'row',
 			gridAutoRows: 'minmax(120px,auto)',
-			gridGap: 12,
+			gridGap: '24px 12px',
 			gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
 		}}
 		{...props}
@@ -69,6 +69,7 @@ export const Cell = (props) => (
 			alignItems: 'center',
 			display: 'flex',
 			flexDirection: 'column',
+			justifyContent: 'center',
 		}}
 		{...props}
 	/>
