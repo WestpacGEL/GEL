@@ -2,7 +2,7 @@
 
 import { jsx, useMediaQuery, asArray } from '@westpac/core';
 
-const Symbol = ({ symbol, state: _, ...rest }) => <span {...rest} />;
+const Symbol = ({ symbol: _, state: __, ...rest }) => <span {...rest} />;
 
 const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
 	const mq = useMediaQuery();

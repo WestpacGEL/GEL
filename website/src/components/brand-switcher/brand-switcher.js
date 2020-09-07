@@ -15,41 +15,43 @@ import { BASE_URL } from '../../config';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 import { useSidebar } from '../providers/sidebar';
 import {
-	BOMLogo,
-	BSALogo,
-	STGLogo,
-	WBCLogo,
-	WBGLogo,
+	BOMMultibrandLargeLogo,
 	BOMShieldLogo,
+	BSAMultibrandLargeLogo,
 	BSAStackedLogo,
+	STGMultibrandLargeLogo,
 	STGDragonLogo,
+	WBCMultibrandLargeLogo,
+	WBCLogo,
+	WBGMultibrandLargeLogo,
+	WBGLogo,
 } from '@westpac/symbol';
 
 export const brandsMap = {
 	WBC: {
-		logo: WBCLogo,
-		label: 'Westpac',
+		logo: WBCMultibrandLargeLogo,
 		smallLogo: WBCLogo,
+		label: 'Westpac',
 	},
 	STG: {
-		logo: STGLogo,
-		label: 'St.George',
+		logo: STGMultibrandLargeLogo,
 		smallLogo: STGDragonLogo,
+		label: 'St.George',
 	},
 	BOM: {
-		logo: BOMLogo,
-		label: 'Bank of Melbourne',
+		logo: BOMMultibrandLargeLogo,
 		smallLogo: BOMShieldLogo,
+		label: 'Bank of Melbourne',
 	},
 	BSA: {
-		logo: BSALogo,
-		label: 'BankSA',
+		logo: BSAMultibrandLargeLogo,
 		smallLogo: BSAStackedLogo,
+		label: 'BankSA',
 	},
 	WBG: {
-		logo: WBGLogo,
+		logo: WBGMultibrandLargeLogo,
+		smallLogo: WBGLogo,
 		label: 'Westpac Group',
-		smallLogo: WBCLogo,
 	},
 };
 
@@ -100,7 +102,6 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 });
 
 const PanelOverride = forwardRef(({ state: { open }, children, ...rest }, ref) => {
-	const { COLORS } = useBrand();
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 
 	const animate = useSpring({
