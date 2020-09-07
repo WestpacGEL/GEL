@@ -17,22 +17,23 @@ const LoadGELFonts = () => (
 	<Global
 		styles={css`
 			@font-face {
-				font-family: "graphik";
-				src: url("${BASE_URL}/fonts/Graphik-Bold-Web.eot");
-				src: url("${BASE_URL}/fonts/Graphik-Bold-Web.eot?#iefix") format("embedded-opentype"),
-					url("${BASE_URL}/fonts/Graphik-Bold-Web.woff") format("woff"),
-					url("${BASE_URL}/fonts/Graphik-Bold-Web.ttf") format("truetype"),
-					url("${BASE_URL}/fonts/Graphik-Bold-Web.svg#Graphik-Bold") format("svg");
+				font-family: 'graphik';
+				src: url('${BASE_URL}/fonts/Graphik-Bold-Web.eot');
+				src: url('${BASE_URL}/fonts/Graphik-Bold-Web.eot?#iefix') format('embedded-opentype'),
+					url('${BASE_URL}/fonts/Graphik-Bold-Web.woff') format('woff'),
+					url('${BASE_URL}/fonts/Graphik-Bold-Web.ttf') format('truetype'),
+					url('${BASE_URL}/fonts/Graphik-Bold-Web.svg#Graphik-Bold') format('svg');
 				font-weight: 700;
 				font-style: normal;
 			}
 			@font-face {
-				font-family: "guardian";
-				src: url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot");
-				src: url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot?#iefix") format("embedded-opentype"),
-					url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.woff") format("woff"),
-					url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.ttf") format("truetype"),
-					url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.svg#Guardian Egyptian Web") format("svg");
+				font-family: 'guardian';
+				src: url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot');
+				src: url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot?#iefix')
+						format('embedded-opentype'),
+					url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.woff') format('woff'),
+					url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.ttf') format('truetype'),
+					url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.svg#Guardian Egyptian Web') format('svg');
 				font-weight: 300;
 				font-style: italic;
 			}
