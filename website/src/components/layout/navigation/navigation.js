@@ -136,6 +136,7 @@ export const Navigation = ({ items }) => {
 					display: 'block',
 					overflow: 'hidden',
 					height: 90,
+					color: COLORS.text,
 					':focus': {
 						outlineOffset: `-${PACKS.focus.outlineWidth}`,
 					},
