@@ -74,6 +74,8 @@ Label.propTypes = {
 	}),
 };
 
-Label.defaultProps = {
+export const defaultProps = {
 	look: 'primary',
 };
+
+Label.defaultProps = defaultProps;
