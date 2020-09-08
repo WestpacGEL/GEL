@@ -1,16 +1,25 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+
+// ==============================
+// Component
+// ==============================
 
 const Link = ({ state: { disabled }, ...rest }) => (
 	<button type="button" disabled={disabled} {...rest} />
 );
 
+// ==============================
+// Styles
+// ==============================
+
 const linkStyles = (_, { active, first, last, disabled }) => {
 	const { COLORS } = useBrand();
 
 	return {
-		label: getLabel('pagination-link', { active, first, last, disabled }),
+		// label: getLabel('pagination-link', { active, first, last, disabled }),
+		label: getLabel('pagination-link'),
 		appearance: 'none',
 		marginLeft: -1,
 		lineHeight: 1.15,
@@ -46,14 +55,66 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+// lets try going down the progress-rope route and doing one without the pagination logic, I feel like its messing this up...
+const blenderStyles = (_, { active = false, first = false, last = false, disabled = false }) => {
+	const defaultProps = { active: false, first: false, last: false, disabled: false }; // defining defaultProps here since they are all calculated within Pagination
+	const props = { active, first, last, disabled };
+	console.log(props);
+	const baseStyles = linkStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = linkStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const linkAttributes = (_, { active, assistiveText, disabled }) => ({
 	'aria-current': active ? 'page' : undefined,
 	'aria-label': disabled ? undefined : assistiveText,
 	'aria-disabled': disabled, //a11y: required to aid VoiceOver/Talkback UX
 });
 
+const blenderAttributes = (_, { active, first, last, assistiveText, disabled }) => ({
+	// ...linkAttributes(_, active, assistiveText, disabled),
+	className: classNames({
+		[`__convert__pagination-link-active`]: active,
+		[`__convert__pagination-link-first`]: first,
+		[`__convert__pagination-link-last`]: last,
+		[`__convert__pagination-link-disabled`]: disabled,
+	}),
+});
+
+// ==============================
+// Exports
+// ==============================
+
 export const defaultLink = {
 	component: Link,
 	styles: linkStyles,
 	attributes: linkAttributes,
+};
+
+export const blenderLink = {
+	component: Link,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };

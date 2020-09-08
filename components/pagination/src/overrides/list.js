@@ -2,7 +2,15 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
+// ==============================
+// Component
+// ==============================
+
 const List = ({ state, ...rest }) => <ul {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const listStyles = () => ({
 	label: getLabel('pagination-list'),
@@ -14,7 +22,15 @@ const listStyles = () => ({
 	alignItems: 'center',
 });
 
+// ==============================
+// Attributes
+// ==============================
+
 const listAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultList = {
 	component: List,
