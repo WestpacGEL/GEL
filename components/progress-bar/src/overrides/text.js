@@ -2,7 +2,15 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
+// ==============================
+// Component
+// ==============================
+
 const Text = ({ state, ...rest }) => <span {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const textStyles = () => ({
 	label: getLabel('progressBar-text'),
@@ -17,7 +25,15 @@ const textStyles = () => ({
 	},
 });
 
+// ==============================
+// Attributes
+// ==============================
+
 const textAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultText = {
 	component: Text,
