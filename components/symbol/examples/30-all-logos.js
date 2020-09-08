@@ -41,7 +41,7 @@ function Example({ brand }) {
 					alignments.map((align) => {
 						const Symbol = components[component];
 						return (
-							<Cell key={align}>
+							<Cell key={align} css={{ justifyContent: 'flex-start' }}>
 								<Symbol align={align} css={{ border: `1px dashed ${COLORS.border}` }} />
 								<Name>
 									<code>
@@ -61,7 +61,7 @@ function Example({ brand }) {
 					alignments.map((align) => {
 						const Symbol = components[component];
 						return (
-							<Cell key={align}>
+							<Cell key={align} css={{ justifyContent: 'flex-start' }}>
 								<Symbol align={align} css={{ border: `1px dashed ${COLORS.border}` }} />
 								<Name>
 									<code>
