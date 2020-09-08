@@ -100,7 +100,7 @@ const GridIndicator = () => {
 	);
 };
 
-const PageHeader = ({ name, version }) => {
+const PageHeader = ({ name }) => {
 	const { COLORS, BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const [hasScroll, setHasScroll] = useState(false);
@@ -163,29 +163,6 @@ const PageHeader = ({ name, version }) => {
 				>
 					<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
 						{name}
-						{version && (
-							<span
-								css={mq({
-									fontSize: '1rem',
-									fontWeight: 'normal',
-									marginTop: !hasScrolledLarge && '0.75rem',
-									marginLeft: ['0.375rem', null, !hasScrolledLarge && 0],
-									display: [null, null, !hasScrolledLarge && 'block'],
-								})}
-							>
-								<span
-									css={mq({
-										textTransform: ['lowercase', null, !hasScrolledLarge && 'capitalize'],
-									})}
-								>
-									V
-								</span>
-								<span css={mq({ display: ['none', null, !hasScrolledLarge && 'inline'] })}>
-									ersion{' '}
-								</span>
-								{version}
-							</span>
-						)}
 					</Heading>
 				</div>
 			</div>
