@@ -1,13 +1,22 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
+
+// ==============================
+// Component
+// ==============================
 
 const Wrapper = ({ state, ...rest }) => <div {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const wrapperStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('table-wrapper'),
 		'@media screen and (max-width: 480px)': {
 			width: '100%',
 			marginBottom: '1.125rem',
@@ -18,7 +27,15 @@ const wrapperStyles = () => {
 	};
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const wrapperAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultWrapper = {
 	component: Wrapper,

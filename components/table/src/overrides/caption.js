@@ -1,13 +1,22 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
+
+// ==============================
+// Component
+// ==============================
 
 const Caption = ({ state, ...rest }) => <caption {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const captionStyles = () => {
 	const { TYPE } = useBrand();
 
 	return {
+		label: getLabel('table-caption'),
 		fontSize: '1.125rem',
 		textAlign: 'left',
 		marginBottom: '0.75rem',
@@ -15,7 +24,15 @@ const captionStyles = () => {
 	};
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const captionAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultCaption = {
 	component: Caption,
