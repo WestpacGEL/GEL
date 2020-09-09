@@ -90,8 +90,10 @@ Textarea.propTypes = {
 	}),
 };
 
-Textarea.defaultProps = {
+export const defaultProps = {
 	size: 'medium',
 	inline: false,
 	invalid: false,
 };
+
+Textarea.defaultProps = defaultProps;
