@@ -61,15 +61,6 @@ const textInputStyles = (_, { before, after }) => {
 // ==============================
 // Blender Styles
 // ==============================
-// button and select only take a position prop which so we only need button/select-before/after
-// textInput is similar but takes before and after as props directly but still only needs to generate textInput-before/after
-// for these components we have to pass className of before/after only we dont need the base one since there is no base one
-
-// text takes size and position prop is most like other components
-// classes should be .text, text-before, text-after, text-size
-// I can't generate .text
-// actually I can, Im just going to pass position: null to override the one already there
-// problem here is generating before/after classes? on the component nah I can just use regular attributes here
 
 const blenderStyles = (_, { before, after }) => {
 	const { label, ...styles } = textInputStyles(_, { before, after });
