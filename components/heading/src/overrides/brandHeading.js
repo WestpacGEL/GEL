@@ -68,7 +68,7 @@ const brandHeadingStyles = (_, { size }) => {
 // ==============================
 
 const blenderStyles = (_, { size }) => {
-	const styles = headingStyles(_, { size });
+	const styles = brandHeadingStyles(_, { size });
 	return { ...styles, label: `${styles.label}-size-${size}` };
 };
 
@@ -92,8 +92,8 @@ export const defaultBrandHeading = {
 	attributes: brandHeadingAttributes,
 };
 
-export const blenderHeading = {
-	component: Heading,
+export const blenderBrandHeading = {
+	component: BrandHeading,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };
