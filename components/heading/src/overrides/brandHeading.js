@@ -3,6 +3,10 @@
 import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 
+// ==============================
+// Component
+// ==============================
+
 const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	// ignore all non h1-h6 tags
 	if (Tag && typeof Tag !== 'function' && !Tag.startsWith('h') && !(Tag.length === 2)) {
@@ -25,6 +29,10 @@ const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) =>
 	return <Tag ref={ref} {...rest} />;
 });
 
+// ==============================
+// Styles
+// ==============================
+
 const brandHeadingStyles = (_, { size }) => {
 	const { PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
@@ -46,7 +54,7 @@ const brandHeadingStyles = (_, { size }) => {
 	});
 
 	return mq({
-		label: getLabel('brandHeading', { size }),
+		label: getLabel('brandHeading'),
 		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontFamily),
 		fontSize: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontSize),
 		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].lineHeight),
@@ -55,10 +63,37 @@ const brandHeadingStyles = (_, { size }) => {
 	})[0];
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { size }) => {
+	const styles = headingStyles(_, { size });
+	return { ...styles, label: `${styles.label}-size-${size}` };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const brandHeadingAttributes = () => null;
+
+const blenderAttributes = (_, { size }) => ({
+	className: classNames({ [`__convert__brandHeading-${size}`]: size }),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultBrandHeading = {
 	component: BrandHeading,
 	styles: brandHeadingStyles,
 	attributes: brandHeadingAttributes,
+};
+
+export const blenderHeading = {
+	component: Heading,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };
