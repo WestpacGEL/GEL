@@ -4,115 +4,250 @@ import React from 'react';
 import { List, Item } from '@westpac/list';
 import { AndroidIcon } from '@westpac/icon';
 
-const types = ['bullet', 'link', 'tick', 'ordered', 'unstyled', 'icon'];
-const looks = ['primary', 'hero', 'neutral'];
-const spacings = ['medium', 'large'];
-
-const ExampleList = ({ depth = 1, ...rest }) => (
-	<List {...rest}>
-		<ExampleItem type={rest.type} />
-		<ExampleItem type={rest.type}>
-			{depth > 0 ? <ExampleList depth={depth - 1} {...rest} /> : null}
-		</ExampleItem>
-		<ExampleItem type={rest.type} />
-	</List>
-);
-
-const ExampleItem = ({ type, text = 'List item text', children, ...rest }) => (
-	<Item {...rest}>
-		{type === 'link' ? <a href="#">{text}</a> : text}
-		{children}
-	</Item>
-);
+import { blenderIcon } from '../src/overrides/icon';
+import { blenderList } from '../src/overrides/list';
 
 export function AllStyles({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/list'] = {
+		List: {
+			styles: blenderList.styles,
+			component: blenderList.component,
+		},
+		// Icon: {
+		// 	component: blenderIcon.component,
+		// },
+	};
 	const allCombinations = [];
 
-	types.forEach((type) => {
-		looks.forEach((look) => {
-			spacings.forEach((spacing) =>
-				allCombinations.push(
-					<ExampleList
-						key={`${type}-${look}-${spacing}`}
-						depth={3}
-						type={type}
-						look={type === 'bullet' ? look : null}
-						icon={type === 'icon' ? AndroidIcon : null}
-						spacing={spacing}
-					/>
-				)
-			);
-		});
-	});
-
-	return <GEL brand={brand}>{allCombinations}</GEL>;
+	return (
+		<GEL brand={overridesWithTokens}>
+			<List type="none">
+				<Item>List item</Item>
+			</List>
+			<List type="bullet">
+				<Item>List item</Item>
+			</List>
+			<List type="bullet" look="primary">
+				<Item>List item</Item>
+			</List>
+			<List type="bullet" look="neutral">
+				<Item>List item</Item>
+			</List>
+			<List type="link">
+				<Item>List item</Item>
+			</List>
+			<List type="tick">
+				<Item>List item</Item>
+			</List>
+			<List type="unstyled">
+				<Item>List item</Item>
+			</List>
+			<List type="ordered">
+				<Item>List item</Item>
+			</List>
+			<List type="icon" icon={AndroidIcon}>
+				<Item>List item</Item>
+			</List>
+			<List type="none" spacing="large">
+				<Item>List item</Item>
+			</List>
+		</GEL>
+	);
 }
 
 export function Docs({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/list'] = {
+		List: {
+			component: blenderList.component,
+			attributes: blenderList.attributes,
+		},
+		// Icon: {
+		// 	component: blenderIcon.component,
+		// },
+	};
 	return [
-		...spacings.map((spacing) => ({
-			heading: `A primary bullet list - ${spacing} spacing`,
+		{
+			heading: `A default bullet list`,
 			component: () => (
-				<GEL brand={brand}>
-					<ExampleList type="bullet" look="primary" spacing={spacing} />
+				<GEL brand={overridesWithTokens}>
+					<List type="bullet">
+						<Item>List item</Item>
+						<Item>
+							List item
+							<List>
+								<Item>List item</Item>
+								<Item>List item</Item>
+								<Item>List item</Item>
+							</List>
+						</Item>
+						<Item>List item</Item>
+					</List>
 				</GEL>
 			),
-		})),
-		...spacings.map((spacing) => ({
-			heading: `A hero bullet list - ${spacing} spacing`,
+		},
+		{
+			heading: `A primary bullet list`,
 			component: () => (
-				<GEL brand={brand}>
-					<ExampleList type="bullet" look="hero" spacing={spacing} />
+				<GEL brand={overridesWithTokens}>
+					<List type="bullet" look="primary">
+						<Item>List item</Item>
+						<Item>
+							List
+							<List>
+								<Item>List item</Item>
+								<Item>List item</Item>
+								<Item>List item</Item>
+							</List>
+						</Item>
+						<Item>List item</Item>
+					</List>
 				</GEL>
 			),
-		})),
-		...spacings.map((spacing) => ({
-			heading: `A neutral bullet list - ${spacing} spacing`,
+		},
+		{
+			heading: `A neutral bullet list`,
 			component: () => (
-				<GEL brand={brand}>
-					<ExampleList type="bullet" look="neutral" spacing={spacing} />
+				<GEL brand={overridesWithTokens}>
+					<List type="bullet" look="neutral">
+						<Item>List item</Item>
+						<Item>
+							List item
+							<List>
+								<Item>List item</Item>
+								<Item>List item</Item>
+								<Item>List item</Item>
+							</List>
+						</Item>
+						<Item>List item</Item>
+					</List>
 				</GEL>
 			),
-		})),
-		...spacings.map((spacing) => ({
-			heading: `A link list - ${spacing} spacing`,
+		},
+		{
+			heading: `An link list`,
 			component: () => (
-				<GEL brand={brand}>
-					<ExampleList type="link" spacing={spacing} />
+				<GEL brand={overridesWithTokens}>
+					<List type="link">
+						<Item>
+							<a href="#">List item</a>
+						</Item>
+						<Item>
+							<a href="#">List item</a>
+							<List>
+								<Item>
+									<a href="#">List item</a>
+								</Item>
+								<Item>
+									<a href="#">List item</a>
+								</Item>
+								<Item>
+									<a href="#">List item</a>
+								</Item>
+							</List>
+						</Item>
+						<Item>
+							<a href="#">List item</a>
+						</Item>
+					</List>
 				</GEL>
 			),
-		})),
-		...spacings.map((spacing) => ({
-			heading: `A tick list - ${spacing} spacing`,
+		},
+		{
+			heading: `An tick list`,
 			component: () => (
-				<GEL brand={brand}>
-					<ExampleList type="tick" spacing={spacing} />
+				<GEL brand={overridesWithTokens}>
+					<List type="tick">
+						<Item>List item</Item>
+						<Item>
+							List item
+							<List>
+								<Item>List item</Item>
+								<Item>List item</Item>
+								<Item>List item</Item>
+							</List>
+						</Item>
+						<Item>List item</Item>
+					</List>
 				</GEL>
 			),
-		})),
-		...spacings.map((spacing) => ({
-			heading: `An ordered list - ${spacing} spacing`,
+		},
+		{
+			heading: `An icon list`,
 			component: () => (
-				<GEL brand={brand}>
-					<ExampleList type="ordered" spacing={spacing} />
+				<GEL brand={overridesWithTokens}>
+					<List type="icon" icon={AndroidIcon}>
+						<Item>List item</Item>
+						<Item>
+							List item
+							<List>
+								<Item>List item</Item>
+								<Item>List item</Item>
+								<Item>List item</Item>
+							</List>
+						</Item>
+						<Item>List item</Item>
+					</List>
 				</GEL>
 			),
-		})),
-		...spacings.map((spacing) => ({
-			heading: `An unstyled list - ${spacing} spacing`,
+		},
+		{
+			heading: `An unstyled list`,
 			component: () => (
-				<GEL brand={brand}>
-					<ExampleList type="unstyled" spacing={spacing} />
+				<GEL brand={overridesWithTokens}>
+					<List type="unstyled">
+						<Item>List item</Item>
+						<Item>
+							List item
+							<List>
+								<Item>List item</Item>
+								<Item>List item</Item>
+								<Item>List item</Item>
+							</List>
+						</Item>
+						<Item>List item</Item>
+					</List>
 				</GEL>
 			),
-		})),
-		...spacings.map((spacing) => ({
-			heading: `An icon list - ${spacing} spacing`,
+		},
+		{
+			heading: `An ordered list`,
 			component: () => (
-				<GEL brand={brand}>
-					<ExampleList type="icon" icon={AndroidIcon} spacing={spacing} />
+				<GEL brand={overridesWithTokens}>
+					<List type="ordered">
+						<Item>List item</Item>
+						<Item>
+							List item
+							<List>
+								<Item>List item</Item>
+								<Item>List item</Item>
+								<Item>List item</Item>
+							</List>
+						</Item>
+						<Item>List item</Item>
+					</List>
 				</GEL>
 			),
-		})),
+		},
+		{
+			heading: `An large list`,
+			component: () => (
+				<GEL brand={overridesWithTokens}>
+					<List type="bullet" spacing="large">
+						<Item>List item</Item>
+						<Item>
+							List item
+							<List>
+								<Item>List item</Item>
+								<Item>List item</Item>
+								<Item>List item</Item>
+							</List>
+						</Item>
+						<Item>List item</Item>
+					</List>
+				</GEL>
+			),
+		},
 	];
 }
