@@ -24,7 +24,7 @@
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open",
-		"build": "node ../../helpers/buildExports.js export pictograms"
+		"build": "node ../../helpers/buildExports.js export informative decorative"
 	},
 	"main": "dist/pictogram.cjs.js",
 	"module": "dist/pictogram.esm.js",
@@ -32,12 +32,13 @@
 	"preconstruct": {
 		"entrypoints": [
 			".",
-			"BirthCertificatePictogram",
-			"CoinsPictogram",
-			"DriversLicencePictogram",
-			"MedicareCardPictogram",
-			"PassportPictogram",
-			"WalletPictogram"
+			"informative/BirthCertificatePictogram",
+			"informative/CoinsPictogram",
+			"informative/DriversLicencePictogram",
+			"informative/MedicareCardPictogram",
+			"informative/PassportPictogram",
+			"informative/WalletPictogram",
+			"decorative/WBCBankCardPictogram"
 		]
 	},
 	"dependencies": {

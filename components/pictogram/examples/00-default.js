@@ -4,24 +4,39 @@ import { GEL, jsx } from '@westpac/core';
 import * as components from '@westpac/pictogram';
 import { Grid, Cell, Name } from './_util';
 
-const pictograms = Object.keys(components);
+const informative = Object.keys(components).filter((s) => !s.startsWith('WBC'));
+const decorative = Object.keys(components).filter((s) => s.startsWith('WBC'));
 
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<div>
-				<Grid>
-					{pictograms.map((pictogram) => {
-						const Pictogram = components[pictogram];
-						return (
-							<Cell key={pictogram}>
-								<Pictogram />
-								<Name>&lt;{pictogram}&nbsp;/&gt;</Name>
-							</Cell>
-						);
-					})}
-				</Grid>
-			</div>
+			<h2>Informative pictograms</h2>
+			<Grid>
+				{informative.map((pictogram) => {
+					const Pictogram = components[pictogram];
+					return (
+						<Cell key={pictogram}>
+							<Pictogram />
+							<Name>{`<${pictogram}\u00A0/>`}</Name>
+						</Cell>
+					);
+				})}
+			</Grid>
+
+			<hr />
+
+			<h2>Decorative pictograms</h2>
+			<Grid>
+				{decorative.map((pictogram) => {
+					const Pictogram = components[pictogram];
+					return (
+						<Cell key={pictogram}>
+							<Pictogram />
+							<Name>{`<${pictogram}\u00A0/>`}</Name>
+						</Cell>
+					);
+				})}
+			</Grid>
 		</GEL>
 	);
 }

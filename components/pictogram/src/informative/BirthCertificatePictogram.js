@@ -1,13 +1,13 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
+import { propTypes, defaultProps, Pictogram, colourMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const BirthCertificatePictogram = ({ type, ...rest }) => {
+export const BirthCertificatePictogram = ({ mode, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[type];
+	const { outline, highlight } = colourMap(COLORS)[mode];
 
 	return (
-		<Pictogram pictogram="BirthCertificatePictogram" type={type} {...rest}>
+		<Pictogram pictogram="BirthCertificatePictogram" mode={mode} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<circle fill={highlight} cx="28.5" cy="53.5" r="7.5" />
 				<path
@@ -21,6 +21,8 @@ export const BirthCertificatePictogram = ({ type, ...rest }) => {
 
 BirthCertificatePictogram.defaultProps = {
 	...defaultProps,
+	viewBoxWidth: 78,
+	viewBoxHeight: 78,
 	assistiveText: 'Birth certificate',
 };
 BirthCertificatePictogram.propTypes = propTypes;

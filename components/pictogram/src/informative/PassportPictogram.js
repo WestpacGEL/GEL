@@ -1,13 +1,13 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
+import { propTypes, defaultProps, Pictogram, colourMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const PassportPictogram = ({ type, ...rest }) => {
+export const PassportPictogram = ({ mode, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[type];
+	const { outline, highlight } = colourMap(COLORS)[mode];
 
 	return (
-		<Pictogram pictogram="PassportPictogram" type={type} {...rest}>
+		<Pictogram pictogram="PassportPictogram" mode={mode} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -26,6 +26,8 @@ export const PassportPictogram = ({ type, ...rest }) => {
 
 PassportPictogram.defaultProps = {
 	...defaultProps,
+	viewBoxWidth: 78,
+	viewBoxHeight: 78,
 	assistiveText: 'Passport',
 };
 PassportPictogram.propTypes = propTypes;

@@ -1,13 +1,13 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
+import { propTypes, defaultProps, Pictogram, colourMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const WalletPictogram = ({ type, ...rest }) => {
+export const WalletPictogram = ({ mode, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[type];
+	const { outline, highlight } = colourMap(COLORS)[mode];
 
 	return (
-		<Pictogram pictogram="WalletPictogram" type={type} {...rest}>
+		<Pictogram pictogram="WalletPictogram" mode={mode} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -25,6 +25,8 @@ export const WalletPictogram = ({ type, ...rest }) => {
 
 WalletPictogram.defaultProps = {
 	...defaultProps,
+	viewBoxWidth: 78,
+	viewBoxHeight: 78,
 	assistiveText: 'Wallet',
 };
 WalletPictogram.propTypes = propTypes;

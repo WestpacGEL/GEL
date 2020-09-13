@@ -1,13 +1,13 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
+import { propTypes, defaultProps, Pictogram, colourMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const MedicareCardPictogram = ({ type, ...rest }) => {
+export const MedicareCardPictogram = ({ mode, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[type];
+	const { outline, highlight } = colourMap(COLORS)[mode];
 
 	return (
-		<Pictogram pictogram="MedicareCardPictogram" type={type} {...rest}>
+		<Pictogram pictogram="MedicareCardPictogram" mode={mode} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -25,6 +25,8 @@ export const MedicareCardPictogram = ({ type, ...rest }) => {
 
 MedicareCardPictogram.defaultProps = {
 	...defaultProps,
+	viewBoxWidth: 78,
+	viewBoxHeight: 78,
 	assistiveText: 'Medicare card',
 };
 MedicareCardPictogram.propTypes = propTypes;
