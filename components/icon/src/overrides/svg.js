@@ -2,22 +2,19 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const Svg = ({ state: { assistiveText }, ...rest }) => (
-	<svg
-		aria-label={assistiveText}
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="0 0 24 24"
-		role="img"
-		focusable="false"
-		{...rest}
-	/>
-);
+const Svg = ({ state: _, ...rest }) => <svg {...rest} />;
 
 const svgStyles = () => ({
 	label: getLabel('icon-svg'),
 });
 
-const svgAttributes = () => null;
+const svgAttributes = (_, { assistiveText }) => ({
+	'aria-label': assistiveText,
+	xmlns: 'http://www.w3.org/2000/svg',
+	viewBox: '0 0 24 24',
+	role: 'img',
+	focusable: 'false',
+});
 
 export const defaultSvg = {
 	component: Svg,

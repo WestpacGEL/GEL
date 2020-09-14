@@ -45,8 +45,7 @@ const iconStyles = (_, { color, size }) => {
 	return mq({
 		label: getLabel('icon', { color, size }),
 		display: 'inline-block',
-		flexShrink: 0,
-		lineHeight: 1,
+		lineHeight: 0,
 		verticalAlign: 'middle',
 		color: colorMap[color] || color || COLORS.muted,
 		...styleSize,
