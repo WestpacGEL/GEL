@@ -1,13 +1,22 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
+
+// ==============================
+// Component
+// ==============================
 
 const Footer = ({ state, ...rest }) => <div {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const footerStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: getLabel('modal-footer'),
 		backgroundColor: COLORS.background,
 		borderTop: `1px solid ${COLORS.border}`,
 		textAlign: 'right',
@@ -19,7 +28,15 @@ const footerStyles = () => {
 	};
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const footerAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultFooter = {
 	component: Footer,
