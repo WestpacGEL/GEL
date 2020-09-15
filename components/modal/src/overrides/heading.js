@@ -12,8 +12,9 @@ const ModalHeading = forwardRef(({ state, ...rest }, ref) => (
 	<Heading ref={ref} tag="h1" size={8} {...rest} />
 ));
 
-const BlenderModalHeading = (props) => (
+const BlenderModalHeading = forwardRef((props, ref) => (
 	<ModalHeading
+		ref={ref}
 		overrides={{
 			Heading: {
 				styles: (styles) => {
@@ -25,7 +26,7 @@ const BlenderModalHeading = (props) => (
 		}}
 		{...props}
 	/>
-);
+));
 
 // ==============================
 // Styles

@@ -53,6 +53,8 @@ const closeBtnStyles = () => {
 
 const closeBtnAttributes = () => null;
 
+const blenderAttributes = () => ({ 'data-js': 'modal-closeBtn__version__' });
+
 // ==============================
 // Exports
 // ==============================
@@ -66,5 +68,5 @@ export const defaultCloseBtn = {
 export const blenderCloseBtn = {
 	component: BlenderCloseBtn,
 	styles: closeBtnStyles,
-	attributes: closeBtnAttributes,
+	attributes: blenderAttributes,
 };

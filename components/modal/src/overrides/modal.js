@@ -50,9 +50,7 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 	);
 });
 
-// I need to make a new component to do this and use @keyframes
-
-const BlenderModal = (props) => <div {...props} />;
+const BlenderModal = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
 
 // ==============================
 // Styles
@@ -83,7 +81,7 @@ const modalStyles = (_, { size }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { size, open }) => {
+const blenderStyles = (_, { size }) => {
 	const props = { size };
 	const baseStyles = modalStyles(_, defaultProps);
 
@@ -105,8 +103,6 @@ const blenderStyles = (_, { size, open }) => {
 			break;
 	}
 
-	// Im going to have to write some custom css for when it opens
-
 	return { label, ...reconciledStyles };
 };
 
@@ -117,6 +113,7 @@ const blenderStyles = (_, { size, open }) => {
 const modalAttributes = () => ({ role: 'dialog', 'aria-modal': 'true' });
 
 const blenderAttributes = (_, { size }) => ({
+	...modalAttributes(),
 	className: classNames({ [`__convert__modal-${size}`]: size !== defaultProps.size }),
 });
 
