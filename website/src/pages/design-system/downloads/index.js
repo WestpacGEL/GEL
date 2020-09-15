@@ -45,14 +45,25 @@ function TokensPage() {
 	);
 	const checkState = {};
 	supportedPkgs.map((name) => (checkState[name] = false));
+	const [selectAllToggle, setSelectAllToggle] = useState([]);
 	const [selected, setSelected] = useState([]);
 
-	function checkAll() {
-		if (selected.length === supportedPkgs.length) {
+	function handleToggleChange() {
+		if (selected.length === supportedPkgs.length || selected.length > 0) {
+			setSelectAllToggle([]);
 			setSelected([]);
 		} else {
+			setSelectAllToggle(['all']);
 			setSelected(supportedPkgs);
 		}
+	}
+	function handleClearAllClick() {
+		setSelectAllToggle([]);
+		setSelected([]);
+	}
+	function handleSelectPkgChange(value) {
+		setSelectAllToggle(['all']);
+		setSelected(value);
 	}
 
 	function displayLoading() {
@@ -78,19 +89,49 @@ function TokensPage() {
 									<fieldset>
 										<legend>Choose components</legend>
 
-										<FormCheck
-											type="checkbox"
-											checked={selected.length === supportedPkgs.length ? ['all'] : []}
-											onChange={checkAll}
+										<div
+											css={{ display: 'flex', alignItems: 'baseline', marginBottom: SPACING(3) }}
 										>
-											<Option value="all">Select all</Option>
-										</FormCheck>
+											<FormCheck
+												type="checkbox"
+												checked={selectAllToggle}
+												onChange={() => handleToggleChange()}
+												css={{ marginTop: '0.3125rem', marginBottom: '0.3125rem' }}
+												overrides={{
+													Option: {
+														styles: (styles) => ({
+															...styles,
+															marginBottom: 0,
+														}),
+													},
+												}}
+											>
+												<Option value="all">
+													{selected.length === 0
+														? 'Select all packages'
+														: selected.length === supportedPkgs.length
+														? `All packages are selected`
+														: `${selected.length} package${
+																selected.length === 1 ? ' is' : 's are'
+														  } selected`}
+												</Option>
+											</FormCheck>
+											{selected.length > 0 && (
+												<Button
+													look="link"
+													onClick={() => handleClearAllClick()}
+													css={{ marginLeft: SPACING(2) }}
+												>
+													Clear selection
+												</Button>
+											)}
+										</div>
 
 										<FormCheck
 											type="checkbox"
 											name="packages[]"
 											value={selected}
-											onChange={(value) => setSelected(value)}
+											onChange={(value) => handleSelectPkgChange(value)}
 										>
 											{supportedPkgs.map((name, i) => {
 												const niceName = name.charAt(0).toUpperCase() + name.slice(1);
@@ -122,7 +163,7 @@ function TokensPage() {
 														</Option>
 														<Body>
 															<a href={`${BASE_URL}/components/${niceName.toLowerCase()}`}>
-																View {niceName}
+																Documentation
 															</a>
 														</Body>
 													</div>
