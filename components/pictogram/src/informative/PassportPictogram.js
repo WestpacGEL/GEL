@@ -1,10 +1,10 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, colourMap } from '../Pictogram';
+import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
 export const PassportPictogram = ({ mode, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, highlight } = colourMap(COLORS)[mode];
+	const { outline, highlight } = colorMap(COLORS)[mode];
 
 	return (
 		<Pictogram pictogram="PassportPictogram" mode={mode} {...rest}>

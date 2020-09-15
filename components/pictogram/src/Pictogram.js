@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { defaultPictogram } from './overrides/pictogram';
 import { defaultSvg } from './overrides/svg';
-export { colourMap } from './_utils';
+export { colorMap } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
