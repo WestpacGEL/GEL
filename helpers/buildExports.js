@@ -23,7 +23,7 @@ function getSvgs(svgPath, component) {
 /**
  * Insert an array of component svgs into a js export file
  *
- * @param  {object}  svgs     - An object of folder keys with svg component array values
+ * @param  {object} svgs      - An object of folder keys with svg component array values
  * @param  {string} indexPath - The path to the export file
  */
 function insertIndex(svgs, indexPath) {
@@ -68,7 +68,7 @@ function writePkg(pkgPath, content) {
 /**
  * Insert an array of component svgs into the preconstruct entrypoint array of a package.json
  *
- * @param  {object}  svgs    - An object of folder keys with svg component array values
+ * @param  {object} svgs    - An object of folder keys with svg component array values
  * @param  {string} pkgPath - The path to the package.json file
  */
 function insertPkg(svgs, pkgPath) {
