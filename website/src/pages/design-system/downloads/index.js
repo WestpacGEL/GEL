@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { DownloadIcon, RefreshIcon } from '@westpac/icon';
 import { jsx, useBrand, keyframes } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
@@ -45,24 +45,20 @@ function TokensPage() {
 	);
 	const checkState = {};
 	supportedPkgs.map((name) => (checkState[name] = false));
-	const [selectAllToggle, setSelectAllToggle] = useState([]);
 	const [selected, setSelected] = useState([]);
+	const [selectAllToggle, setSelectAllToggle] = useState([]);
+
+	useEffect(() => {
+		setSelectAllToggle(selected.length === supportedPkgs.length ? ['all'] : []);
+	}, [selected]);
 
 	function handleToggleChange() {
-		if (selected.length === supportedPkgs.length || selected.length > 0) {
-			setSelectAllToggle([]);
-			setSelected([]);
-		} else {
-			setSelectAllToggle(['all']);
-			setSelected(supportedPkgs);
-		}
+		setSelected(selected.length === supportedPkgs.length ? [] : supportedPkgs);
 	}
 	function handleClearAllClick() {
-		setSelectAllToggle([]);
 		setSelected([]);
 	}
 	function handleSelectPkgChange(value) {
-		setSelectAllToggle(['all']);
 		setSelected(value);
 	}
 
@@ -106,15 +102,7 @@ function TokensPage() {
 													},
 												}}
 											>
-												<Option value="all">
-													{selected.length === 0
-														? 'Select all packages'
-														: selected.length === supportedPkgs.length
-														? `All packages are selected`
-														: `${selected.length} package${
-																selected.length === 1 ? ' is' : 's are'
-														  } selected`}
-												</Option>
+												<Option value="all">Select all</Option>
 											</FormCheck>
 											{selected.length > 0 && (
 												<Button
@@ -122,7 +110,11 @@ function TokensPage() {
 													onClick={() => handleClearAllClick()}
 													css={{ marginLeft: SPACING(2) }}
 												>
-													Clear selection
+													{selected.length === supportedPkgs.length
+														? `Clear all`
+														: `Clear ${selected.length} ${
+																selected.length === 1 ? 'component' : 'components'
+														  }`}
 												</Button>
 											)}
 										</div>
