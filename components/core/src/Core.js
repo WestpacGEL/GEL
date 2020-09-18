@@ -1,53 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, CacheProvider } from '@emotion/core';
-import { Fragment, useState } from 'react';
-import createCache from '@emotion/cache';
+import { jsx } from '@emotion/core';
 
 import { useBrand } from './Brand';
 import { reset } from './reset';
-
-const label = 'Core'; // for use in stylis plugin and the css label
-
-const AddRootClass = ({ children }) => {
-	let [cache] = useState(() => {
-		return createCache({
-			stylisPlugins: [
-				(context, content, selectors, parent, line, column, length) => {
-					if (
-						context === -2 &&
-						selectors.length &&
-						selectors[0] !== '' && // exclude <Global /> styles
-						!selectors[0].includes(`-${label}`) // exclude nested <GEL /> (Core) styles
-					) {
-						/**
-						 * Add to beginning of `content` string, if not beginning with `@`
-						 * (catches `@media` and `@font-face` queries etc)
-						 *
-						 * Regex explanation:
-						 * - ^ Beginning of string
-						 * - [^@] Negated set (not `@` symbol)
-						 * - .* Any character except new line, match 0 or more
-						 * - /g Global search
-						 */
-						content = content.replace(/^[^@].*/g, (s) => `.GEL ${s}`);
-
-						/**
-						 * Additionally, insert within @media queries
-						 *
-						 * Regex explanation:
-						 * - (\){) Match `){`
-						 * - /g Global search
-						 */
-						content = content.replace(/(\){)/g, (s) => `${s}.GEL `);
-					}
-					return content;
-				},
-			],
-		});
-	});
-	return <CacheProvider value={cache}>{children}</CacheProvider>;
-};
 
 export const Core = ({ noReset, children }) => {
 	const { COLORS, TYPE, PACKS } = useBrand();
@@ -56,7 +12,7 @@ export const Core = ({ noReset, children }) => {
 		<div
 			className="GEL"
 			css={{
-				label,
+				label: 'GELCore', // This label is being tested for in the blender. Have to change in both places
 				lineHeight: 1.428571429,
 				color: COLORS.text,
 				fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
@@ -76,7 +32,7 @@ export const Core = ({ noReset, children }) => {
 				},
 			}}
 		>
-			<AddRootClass>{children}</AddRootClass>
+			{children}
 		</div>
 	);
 };
