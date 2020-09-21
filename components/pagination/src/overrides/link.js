@@ -18,7 +18,6 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 	const { COLORS } = useBrand();
 
 	return {
-		// label: getLabel('pagination-link', { active, first, last, disabled }),
 		label: getLabel('pagination-link'),
 		appearance: 'none',
 		marginLeft: -1,
@@ -34,7 +33,7 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 		transition: 'background .2s ease, border .2s ease',
 
 		':hover': {
-			backgroundColor: !active && COLORS.background,
+			backgroundColor: active ? COLORS.hero : COLORS.background,
 		},
 
 		...(first && {
@@ -58,11 +57,10 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 // ==============================
 // Blender Styles
 // ==============================
-// lets try going down the progress-rope route and doing one without the pagination logic, I feel like its messing this up...
+
 const blenderStyles = (_, { active = false, first = false, last = false, disabled = false }) => {
 	const defaultProps = { active: false, first: false, last: false, disabled: false }; // defining defaultProps here since they are all calculated within Pagination
 	const props = { active, first, last, disabled };
-	console.log(props);
 	const baseStyles = linkStyles(_, defaultProps);
 
 	let modifiers = getModifier(defaultProps, props);
@@ -72,7 +70,13 @@ const blenderStyles = (_, { active = false, first = false, last = false, disable
 	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
 
 	let label = baseStyles.label;
-	const modifier = modifiers[0];
+	let modifier;
+
+	if (modifiers.length > 1 && modifiers.includes('disabled')) {
+		modifier = 'disabled';
+	} else {
+		modifier = modifiers[0];
+	}
 
 	switch (modifier) {
 		default:
@@ -94,7 +98,7 @@ const linkAttributes = (_, { active, assistiveText, disabled }) => ({
 });
 
 const blenderAttributes = (_, { active, first, last, assistiveText, disabled }) => ({
-	// ...linkAttributes(_, active, assistiveText, disabled),
+	...linkAttributes(_, active, assistiveText, disabled),
 	className: classNames({
 		[`__convert__pagination-link-active`]: active,
 		[`__convert__pagination-link-first`]: first,
