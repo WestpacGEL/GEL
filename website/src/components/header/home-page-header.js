@@ -263,6 +263,7 @@ const HeroIntro = () => {
 					<BrandHeading
 						tag="h2"
 						size={[4, null, 1]}
+						uppercase={BRAND === 'WBC'}
 						css={mq({
 							...(BRAND === 'WBC' && {
 								fontSize: ['3rem', null, '4.5rem'],

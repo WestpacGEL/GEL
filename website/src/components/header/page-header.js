@@ -165,7 +165,11 @@ const PageHeader = ({ name }) => {
 					})}
 				>
 					{BRAND === 'WBC' ? (
-						<BrandHeading tag="h1" size={[7, null, !hasScrolledLarge ? 2 : null]}>
+						<BrandHeading
+							tag="h1"
+							size={[7, null, !hasScrolledLarge ? 2 : null]}
+							uppercase={BRAND === 'WBC'}
+						>
 							{name}
 						</BrandHeading>
 					) : (
