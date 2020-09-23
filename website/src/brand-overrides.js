@@ -19,6 +19,7 @@ export const brandOverrides = (brand) => {
 			styles: (styles) => ({
 				...styles,
 				textTransform: BRAND == 'WBC' && 'uppercase',
+				lineHeight: BRAND == 'WBC' && '1 !important',
 			}),
 		},
 	};
