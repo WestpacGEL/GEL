@@ -1,5 +1,5 @@
 export const brandOverrides = (brand) => {
-	const { PACKS, TYPE } = brand;
+	const { BRAND } = brand;
 	const overridesWithTokens = { ...brand };
 
 	// Example
@@ -13,6 +13,15 @@ export const brandOverrides = (brand) => {
 			attributes: () => null,
 		},
 	}; */
+
+	overridesWithTokens['@westpac/heading'] = {
+		BrandHeading: {
+			styles: (styles) => ({
+				...styles,
+				textTransform: BRAND == 'WBC' && 'uppercase',
+			}),
+		},
+	};
 
 	return overridesWithTokens;
 };
