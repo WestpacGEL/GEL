@@ -150,9 +150,12 @@ const PageHeader = ({ name }) => {
 				<MenuButton />
 				<div
 					css={mq({
+						display: ['flex', null],
+						alignItems: ['center', null],
 						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
 						marginLeft: ['3.75rem', null, !hasScrolledLarge && '2.25rem', null, '2.25rem'],
-						marginBottom: ['1.25rem', null, !hasScrolledLarge && '3.375rem'],
+						marginBottom: [null, null, !hasScrolledLarge && '2.875rem'],
+						height: [66, null],
 						transition: [
 							null,
 							null,
