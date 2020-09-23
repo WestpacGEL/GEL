@@ -260,7 +260,15 @@ const HeroIntro = () => {
 		>
 			<Grid>
 				<Cell width={[10, 12, 8]} left={[2, 1, 3]}>
-					<BrandHeading tag="h2" size={[4, null, 1]}>
+					<BrandHeading
+						tag="h2"
+						size={[4, null, 1]}
+						css={mq({
+							...(BRAND === 'WBC' && {
+								fontSize: ['3rem', null, '4.5rem'],
+							}),
+						})}
+					>
 						Design to scale with confidence
 					</BrandHeading>
 				</Cell>
