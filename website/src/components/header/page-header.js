@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Heading } from '@westpac/heading';
+import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './component-page-header-image';
@@ -164,9 +164,15 @@ const PageHeader = ({ name }) => {
 						willChange: 'opacity',
 					})}
 				>
-					<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
-						{name}
-					</Heading>
+					{BRAND === 'WBC' ? (
+						<BrandHeading tag="h1" size={[7, null, !hasScrolledLarge ? 2 : null]}>
+							{name}
+						</BrandHeading>
+					) : (
+						<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
+							{name}
+						</Heading>
+					)}
 				</div>
 			</div>
 			<GridIndicator />
