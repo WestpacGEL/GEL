@@ -89,7 +89,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 				':hover': {
 					color: '#fff',
-					backgroundColor: COLORS.tints.hero70,
+					backgroundColor: `${COLORS.tints.hero70} !important`,
 				},
 				':active, &.active': {
 					color: '#fff',
