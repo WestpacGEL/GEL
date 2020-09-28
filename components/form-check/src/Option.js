@@ -2,7 +2,6 @@
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 
 import { defaultOption } from './overrides/option';
 import { defaultLabel } from './overrides/label';
