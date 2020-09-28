@@ -12,7 +12,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<components.HouseIcon />
 			<components.HouseIcon size="xsmall" />
 			<components.HouseIcon size="small" />
@@ -45,7 +45,7 @@ export function Docs({ brand }) {
 		return {
 			heading: `${icon} icon`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Icon />
 				</GEL>
 			),
@@ -56,7 +56,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Default icon',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon />
 				</GEL>
 			),
@@ -64,7 +64,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Icon with assistive text',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon assistiveText="Text for assistive technologies" />
 				</GEL>
 			),
@@ -72,7 +72,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A xsmall icon',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon size="xsmall" />
 				</GEL>
 			),
@@ -80,7 +80,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A small icon',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon size="small" />
 				</GEL>
 			),
@@ -88,7 +88,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A medium icon',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon size="medium" />
 				</GEL>
 			),
@@ -96,7 +96,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A large icon',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon size="large" />
 				</GEL>
 			),
@@ -104,7 +104,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A xlarge icon',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon size="xlarge" />
 				</GEL>
 			),
@@ -122,7 +122,7 @@ export function Docs({ brand }) {
 		].map((color, i) => ({
 			heading: `An icon with the ${color} color`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon color={color} />
 				</GEL>
 			),
