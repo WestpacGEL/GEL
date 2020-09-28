@@ -19,7 +19,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<ButtonGroup
 				name="x"
 				data={[
@@ -62,7 +62,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A default button group',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ButtonGroup name="item-name1" look="hero">
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
@@ -74,7 +74,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A primary button group',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ButtonGroup name="item-name2" look="primary">
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
@@ -86,7 +86,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A faint button group',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ButtonGroup name="item-name3" look="faint">
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
@@ -98,7 +98,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A block button group',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ButtonGroup name="item-name4" block>
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
@@ -110,7 +110,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A disabled button group',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ButtonGroup name="item-name3" disabled>
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
