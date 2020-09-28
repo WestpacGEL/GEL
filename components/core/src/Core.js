@@ -49,7 +49,7 @@ const AddRootClass = ({ children }) => {
 	return <CacheProvider value={cache}>{children}</CacheProvider>;
 };
 
-export const Core = ({ noReset, children }) => {
+export const Core = ({ noReset, noPrefix, children }) => {
 	const { COLORS, TYPE, PACKS } = useBrand();
 
 	return (
@@ -76,7 +76,7 @@ export const Core = ({ noReset, children }) => {
 				},
 			}}
 		>
-			<AddRootClass>{children}</AddRootClass>
+			{noPrefix ? children : <AddRootClass>{children}</AddRootClass>}
 		</div>
 	);
 };
