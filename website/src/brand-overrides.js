@@ -14,15 +14,5 @@ export const brandOverrides = (brand) => {
 		},
 	}; */
 
-	overridesWithTokens['@westpac/heading'] = {
-		BrandHeading: {
-			styles: (styles) => ({
-				...styles,
-				textTransform: BRAND == 'WBC' && 'uppercase',
-				lineHeight: BRAND == 'WBC' && '1 !important',
-			}),
-		},
-	};
-
 	return overridesWithTokens;
 };
