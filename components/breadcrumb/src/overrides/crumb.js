@@ -6,7 +6,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Crumb = ({ state, ...rest }) => <li {...rest} />;
+const Crumb = ({ state: _, ...rest }) => <li {...rest} />;
 
 // ==============================
 // Styles

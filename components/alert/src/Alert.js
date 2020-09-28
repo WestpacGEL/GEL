@@ -93,7 +93,7 @@ export const Alert = ({
 			onClose={(event) => handleClose(event)}
 			state={state}
 			{...closeBtnAttributes(state)}
-			css={{ '&&': closeBtnStyles(state) }}
+			css={closeBtnStyles(state)}
 		/>
 	);
 
@@ -197,9 +197,11 @@ Alert.propTypes = {
 	}),
 };
 
-Alert.defaultProps = {
+export const defaultProps = {
 	open: true,
 	look: 'info',
 	dismissible: false,
 	headingTag: 'h2',
 };
+
+Alert.defaultProps = defaultProps;

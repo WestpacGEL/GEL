@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const Footer = ({ state, ...rest }) => <div {...rest} />;
+const Footer = ({ state: _, ...rest }) => <div {...rest} />;
 
 const footerStyles = () => {
 	const { COLORS } = useBrand();

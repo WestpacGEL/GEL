@@ -68,7 +68,7 @@ const CloseButton = () => {
 				position: 'absolute',
 				top: 0,
 				right: 0,
-				margin: `${SPACING(2)} !important`,
+				margin: SPACING(2),
 				padding: 0,
 				background: 'none',
 				border: 'none',

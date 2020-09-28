@@ -7,7 +7,7 @@ import { ArrowRightIcon } from '@westpac/icon';
 // Component
 // ==============================
 
-const Icon = ({ state, ...rest }) => {
+const Icon = ({ state: _, ...rest }) => {
 	const { COLORS } = useBrand();
 
 	return <ArrowRightIcon size="small" color={COLORS.primary} assistiveText={null} {...rest} />;

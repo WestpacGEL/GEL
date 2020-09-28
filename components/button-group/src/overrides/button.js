@@ -1,7 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
+import { jsx, useMediaQuery, useBrand, getLabel, mergeWith } from '@westpac/core';
 import { Button } from '@westpac/button';
+
+// ==============================
+// Component
+// ==============================
 
 const ButtonGroupButton = ({ state: { checked, look, size, block, disabled }, ...rest }) => (
 	<Button
@@ -15,14 +19,37 @@ const ButtonGroupButton = ({ state: { checked, look, size, block, disabled }, ..
 	/>
 );
 
-const buttonStyles = (_, { checked }) => {
+const BlenderButton = (props) => (
+	<ButtonGroupButton
+		overrides={{
+			Button: {
+				attributes: (attributes) => {
+					if (attributes.className) {
+						attributes.className = attributes.className.concat(' ', `__convert__buttonGroup-btn`); // unable to use attributes below since there is already a className being passed as part of the blender button
+					}
+					return attributes;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+
+// ==============================
+// Styles
+// ==============================
+
+const buttonStyles = () => {
 	const { PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	return mq({
-		label: getLabel('buttonGroup-btn', { checked }),
-		borderTop: checked && '6px solid transparent !important', //a11y: for high contrast mode
-		borderBottom: checked && '6px solid transparent !important', //a11y: for high contrast mode
+		label: getLabel('buttonGroup-btn'),
+
+		'input:checked + &': {
+			borderTop: '6px solid transparent !important', //a11y: for high contrast mode
+			borderBottom: '6px solid transparent !important', //a11y: for high contrast mode
+		},
 
 		'label:not(:last-of-type) &': {
 			borderTopRightRadius: 0,
@@ -41,12 +68,78 @@ const buttonStyles = (_, { checked }) => {
 	})[0];
 };
 
-const buttonAttributes = () => ({
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = () => {
+	const { COLORS } = useBrand();
+	const baseStyles = buttonStyles();
+
+	// Hard-coded and copied for now...
+	const nestedStyles = {
+		'input:checked + &': {
+			'&.__convert__button-soft': {
+				color: '#fff',
+				backgroundColor: COLORS.hero,
+				borderColor: COLORS.hero,
+
+				':hover': {
+					backgroundColor: COLORS.tints.hero70,
+				},
+				':active, &.active': {
+					backgroundColor: COLORS.tints.hero50,
+				},
+			},
+			'&.__convert__button-primary-soft': {
+				color: '#fff',
+				backgroundColor: COLORS.primary,
+				borderColor: COLORS.primary,
+
+				':hover': {
+					backgroundColor: COLORS.tints.primary70,
+				},
+				':active, &.active': {
+					backgroundColor: COLORS.tints.primary50,
+				},
+			},
+			'&.__convert__button-faint-soft': {
+				color: COLORS.muted,
+				backgroundColor: COLORS.light,
+				borderColor: COLORS.border,
+
+				':hover, :active, &.active': {
+					backgroundColor: '#fff',
+				},
+			},
+		},
+	};
+
+	return mergeWith(baseStyles, nestedStyles);
+};
+
+// ==============================
+// Attributes
+// ==============================
+
+const buttonAttributes = () => null;
+
+const blenderAttributes = () => ({
 	'data-js': 'buttonGroup-btn__version__',
 });
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultButton = {
 	component: ButtonGroupButton,
 	styles: buttonStyles,
 	attributes: buttonAttributes,
+};
+
+export const blenderButton = {
+	component: BlenderButton,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };
