@@ -30,7 +30,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<Alert look="info" />
 			<Alert look="success" />
 			<Alert look="warning" />
@@ -67,7 +67,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A success alert',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Alert look="success">Your alert body</Alert>
 				</GEL>
 			),
@@ -75,7 +75,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An info alert',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Alert look="info">Your alert body</Alert>
 				</GEL>
 			),
@@ -83,7 +83,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A warning alert',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Alert look="warning">Your alert body</Alert>
 				</GEL>
 			),
@@ -91,7 +91,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A danger alert',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Alert look="danger">Your alert body</Alert>
 				</GEL>
 			),
@@ -99,7 +99,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A system alert',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Alert look="system">Your alert body</Alert>
 				</GEL>
 			),
@@ -107,7 +107,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A dismissible alert',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Alert dismissible>Your alert body</Alert>
 				</GEL>
 			),
@@ -115,7 +115,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An alert with heading',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Alert heading="Your alert heading">Your alert body</Alert>
 				</GEL>
 			),
@@ -123,7 +123,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A success alert without icon',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Alert look="success" icon={null}>
 						Your alert body
 					</Alert>
