@@ -13,7 +13,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<Breadcrumb>
 				<Crumb href="#link" text="text" />
 				<Crumb href="#link" text="text" />
@@ -39,7 +39,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Default breadcrumbs',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Breadcrumb>
 						<Crumb href="#/" text="Home" />
 						<Crumb href="#/personal-banking/" text="Personal" />
@@ -51,7 +51,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Breadcrumbs with assistive text',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Breadcrumb assistiveText="Text for assistive technology">
 						<Crumb href="#/" text="Home" />
 						<Crumb href="#/personal-banking/" text="Personal" />
