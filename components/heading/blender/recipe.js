@@ -20,7 +20,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			{headingSizes.map((size) => (
 				<Heading key={size} size={size}>
 					Text
@@ -32,6 +32,9 @@ export function AllStyles({ brand }) {
 					Text
 				</BrandHeading>
 			))}
+			<BrandHeading size={1} uppercase>
+				Text
+			</BrandHeading>
 		</GEL>
 	);
 }
@@ -44,13 +47,14 @@ export function Docs({ brand }) {
 		},
 		BrandHeading: {
 			styles: blenderBrandHeading.styles,
+			attributes: blenderBrandHeading.attributes,
 		},
 	};
 	return [
 		...headingSizes.map((size) => ({
 			heading: `A heading - size:${size}`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Heading size={size}>Heading size {size}</Heading>
 				</GEL>
 			),
@@ -58,10 +62,20 @@ export function Docs({ brand }) {
 		...brandHeadingSizes.map((size) => ({
 			heading: `A brand heading - size:${size}`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<BrandHeading size={size}>Brand heading size {size}</BrandHeading>
 				</GEL>
 			),
 		})),
+		{
+			heading: `An uppercase brand heading`,
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<BrandHeading size={1} uppercase>
+						Uppercase brand heading
+					</BrandHeading>
+				</GEL>
+			),
+		},
 	];
 }

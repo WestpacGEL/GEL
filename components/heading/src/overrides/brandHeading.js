@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	asArray,
+	getLabel,
+	classNames,
+	styleReconciler,
+} from '@westpac/core';
 import { forwardRef } from 'react';
 
 // ==============================
@@ -68,9 +76,17 @@ const brandHeadingStyles = (_, { size, uppercase }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { size }) => {
-	const styles = brandHeadingStyles(_, { size });
-	return { ...styles, label: `${styles.label}-size-${size}` };
+const blenderStyles = (_, { size, uppercase }) => {
+	if (!uppercase) {
+		const styles = brandHeadingStyles(_, { size });
+		return { ...styles, label: `${styles.label}-size-${size}` };
+	} else {
+		const baseStyles = brandHeadingStyles(_, { size });
+		const modifierStyles = brandHeadingStyles(_, { size, uppercase });
+		const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+		return { label: `${baseStyles.label}-uppercase`, ...reconciledStyles };
+	}
 };
 
 // ==============================
@@ -79,8 +95,10 @@ const blenderStyles = (_, { size }) => {
 
 const brandHeadingAttributes = () => null;
 
-const blenderAttributes = (_, { size }) => ({
-	className: classNames({ [`__convert__brandHeading-${size}`]: size }),
+const blenderAttributes = (_, { size, uppercase }) => ({
+	className: classNames({
+		[`__convert__brandHeading-size-${size}`]: uppercase,
+	}),
 });
 
 // ==============================

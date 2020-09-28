@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray, getLabel, classNames } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 
 // ==============================
@@ -78,10 +78,6 @@ const blenderStyles = (_, { size }) => {
 
 const headingAttributes = () => null;
 
-const blenderAttributes = (_, { size }) => ({
-	className: classNames({ [`__convert__heading-${size}`]: size }),
-});
-
 // ==============================
 // Exports
 // ==============================
@@ -95,5 +91,5 @@ export const defaultHeading = {
 export const blenderHeading = {
 	component: Heading,
 	styles: blenderStyles,
-	attributes: blenderAttributes,
+	attributes: headingAttributes,
 };
