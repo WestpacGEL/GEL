@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-const ModalBody = ({ state, ...rest }) => <Body {...rest} />;
+const ModalBody = ({ state: _, ...rest }) => <Body {...rest} />;
 
 const bodyStyles = () => {
 	const { TYPE, COLORS } = useBrand();

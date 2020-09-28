@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const AccordionButton = ({ state, ...rest }) => <button type="button" {...rest} />;
+const AccordionButton = ({ state: _, ...rest }) => <button type="button" {...rest} />;
 
 const accordionButtonStyles = (_, { look, last, hidden }) => {
 	const { COLORS } = useBrand();

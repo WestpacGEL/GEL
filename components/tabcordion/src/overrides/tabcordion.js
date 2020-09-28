@@ -3,7 +3,7 @@
 import { forwardRef } from 'react';
 import { jsx } from '@westpac/core';
 
-const Tabcordion = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
+const Tabcordion = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
 
 const tabcordionStyles = () => ({});
 

@@ -16,6 +16,8 @@ export const Symbol = ({
 	assistiveText,
 	viewBoxWidth,
 	viewBoxHeight,
+	align,
+	offset,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -35,6 +37,8 @@ export const Symbol = ({
 		assistiveText,
 		viewBoxWidth,
 		viewBoxHeight,
+		align,
+		offset,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -44,10 +48,21 @@ export const Symbol = ({
 		Svg: { component: Svg, styles: svgStyles, attributes: svgAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
+	const getTransform = () => {
+		const alignMap = {
+			left: offset[0],
+			center: offset[1],
+			right: offset[2],
+		};
+		const translate = alignMap[align];
+
+		return translate ? `translate(${translate})` : undefined;
+	};
+
 	return (
 		<Symbol {...rest} state={state} {...symbolAttributes(state)} css={symbolStyles(state)}>
 			<Svg state={state} {...svgAttributes(state)} css={svgStyles(state)}>
-				{children}
+				{align && offset ? <g transform={getTransform()}>{children}</g> : children}
 			</Svg>
 		</Symbol>
 	);
@@ -58,13 +73,6 @@ export const Symbol = ({
 // ==============================
 
 export const propTypes = {
-	/**
-	 * String to use as the `aria-label` for the symbol. Set to an empty string if you
-	 * are rendering the symbol with visible text to prevent accessibility label
-	 * duplication.
-	 */
-	assistiveText: PropTypes.string,
-
 	/**
 	 * Set a symbol width in pixels.
 	 *
@@ -78,6 +86,35 @@ export const propTypes = {
 	 * Symbol will scale to fit (width will be set automatically). Note: If both "width" and "height" props are provided "height" will be ignored.
 	 */
 	height: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+
+	/**
+	 * The symbol SVG viewBox (artboard) width
+	 */
+	viewBoxWidth: PropTypes.number,
+
+	/**
+	 * The symbol SVG viewBox (artboard) height
+	 */
+	viewBoxHeight: PropTypes.number,
+
+	/**
+	 * Set horizontal alignment
+	 */
+	align: PropTypes.oneOf(['left', 'center', 'right']),
+
+	/**
+	 * Set horizontal alignment positioning.
+	 *
+	 * Offset takes an array of alignment offset values e.g. `[<left-offset>, <center-offset>, <right-offset>]`
+	 */
+	offset: PropTypes.array,
+
+	/**
+	 * String to use as the `aria-label` for the symbol. Set to an empty string if you
+	 * are rendering the symbol with visible text to prevent accessibility label
+	 * duplication.
+	 */
+	assistiveText: PropTypes.string,
 
 	/**
 	 * The override API
@@ -96,7 +133,9 @@ export const propTypes = {
 	}),
 };
 
-export const defaultProps = {};
+export const defaultProps = {
+	align: 'left',
+};
 
 Symbol.propTypes = propTypes;
 

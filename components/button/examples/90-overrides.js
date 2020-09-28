@@ -5,7 +5,7 @@ import { Button } from '@westpac/button';
 import { HouseIcon } from '@westpac/icon';
 import { Fragment } from 'react';
 
-const ContentWrapper = ({ children, ...rest }) => (
+const ContentOverride = ({ children, ...rest }) => (
 	<Fragment>
 		{children}
 		<HouseIcon size="small" color="currentColor" css={{ marginLeft: '0.5em' }} />
@@ -22,7 +22,7 @@ function Example({ brand }) {
 			}),
 		},
 		Content: {
-			component: ContentWrapper,
+			component: ContentOverride,
 		},
 	};
 

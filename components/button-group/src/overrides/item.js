@@ -2,7 +2,7 @@
 
 import { jsx, asArray, useMediaQuery, getLabel } from '@westpac/core';
 
-const Item = ({ state, ...rest }) => <label {...rest} />;
+const Item = ({ state: _, ...rest }) => <label {...rest} />;
 
 export const itemStyles = (_, { block }) => {
 	const mq = useMediaQuery();

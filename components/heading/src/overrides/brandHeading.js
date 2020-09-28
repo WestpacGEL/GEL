@@ -33,7 +33,7 @@ const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) =>
 // Styles
 // ==============================
 
-const brandHeadingStyles = (_, { size }) => {
+const brandHeadingStyles = (_, { size, uppercase }) => {
 	const { PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
@@ -57,8 +57,9 @@ const brandHeadingStyles = (_, { size }) => {
 		label: getLabel('brandHeading'),
 		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontFamily),
 		fontSize: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontSize),
-		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].lineHeight),
+		lineHeight: uppercase ? 1 : sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].lineHeight),
 		fontWeight: TYPE.brandFont.headingWeight,
+		textTransform: uppercase && 'uppercase',
 		margin: 0,
 	})[0];
 };
