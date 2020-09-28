@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-const Label = ({ state, ...rest }) => <span {...rest} />;
+const Label = ({ state: _, ...rest }) => <span {...rest} />;
 
 const labelStyles = (_, { block }) => {
 	return {

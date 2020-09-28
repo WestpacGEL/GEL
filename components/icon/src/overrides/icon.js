@@ -15,7 +15,7 @@ import { defaultProps } from '../Icon';
 // Component
 // ==============================
 
-const Icon = ({ state, ...rest }) => <span {...rest} />;
+const Icon = ({ state: _, ...rest }) => <span {...rest} />;
 
 // ==============================
 // Styles

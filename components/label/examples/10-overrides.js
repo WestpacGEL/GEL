@@ -3,7 +3,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { Label } from '@westpac/label';
 
-const LabelWithEdit = ({ state, look, value, children, ...rest }) => {
+const LabelOverride = ({ look, value, state: _, children, ...rest }) => {
 	return (
 		<span {...rest}>
 			{children}
@@ -11,24 +11,22 @@ const LabelWithEdit = ({ state, look, value, children, ...rest }) => {
 				type="button"
 				onClick={(e) => console.log('Edit button clicked')}
 				css={{
-					'&&': {
-						marginLeft: '0.5em',
-						fontWeight: '900',
-						textDecoration: 'underline',
-						color: 'inherit',
-						alignItems: 'center',
-						appearance: 'none',
-						cursor: 'pointer',
-						border: 0,
-						background: 'none',
-						lineHeight: 1.5,
-						textAlign: 'center',
-						touchAction: 'manipulation',
-						userSelect: 'none',
-						verticalAlign: 'middle',
-						whiteSpace: 'nowrap',
-						padding: 0,
-					},
+					marginLeft: '0.5em',
+					fontWeight: '900',
+					textDecoration: 'underline',
+					color: 'inherit',
+					alignItems: 'center',
+					appearance: 'none',
+					cursor: 'pointer',
+					border: 0,
+					background: 'none',
+					lineHeight: 1.5,
+					textAlign: 'center',
+					touchAction: 'manipulation',
+					userSelect: 'none',
+					verticalAlign: 'middle',
+					whiteSpace: 'nowrap',
+					padding: 0,
 				}}
 			>
 				Edit
@@ -46,7 +44,7 @@ function Example({ brand }) {
 				backgroundColor: look === 'neutral' ? 'rebeccapurple' : styles.backgroundColor,
 				outline: '3px solid blue',
 			}),
-			component: LabelWithEdit,
+			component: LabelOverride,
 		},
 	};
 

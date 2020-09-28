@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const List = ({ state, ...props }) => <ol {...props} />;
+const List = ({ state: _, ...props }) => <ol {...props} />;
 
 const listStyles = () => {
 	const { SPACING } = useBrand();

@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
+import { Body } from '@westpac/body';
 
-const Label = ({ state, ...rest }) => <label {...rest} />;
+const Label = ({ state: _, ...rest }) => <Body tag="label" {...rest} />;
 
 const labelStyles = (_, { type, size }) => {
 	const { COLORS, PACKS } = useBrand();

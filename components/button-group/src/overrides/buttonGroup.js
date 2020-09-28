@@ -2,7 +2,7 @@
 
 import { jsx, asArray, useMediaQuery, getLabel } from '@westpac/core';
 
-const ButtonGroup = ({ state, ...rest }) => <div {...rest} />;
+const ButtonGroup = ({ state: _, ...rest }) => <div {...rest} />;
 
 const buttonGroupStyles = (_, { block }) => {
 	const mq = useMediaQuery();

@@ -1,8 +1,12 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Svg } from './Svg';
 
-export const IbmLogo = ({ width, height = 'auto', color = '#2D373E', ...rest }) => {
+export const IbmLogo = ({ width, height = 'auto', color, ...rest }) => {
+	const { COLORS } = useBrand();
+
+	color = color || COLORS.neutral;
+
 	return (
 		<Svg viewBox="0 0 77 32" width={77} height={32} css={{ width, height }} {...rest}>
 			<title>IBM logo</title>

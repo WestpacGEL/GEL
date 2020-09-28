@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Label = ({ state, ...rest }) => <span {...rest} />;
+const Label = ({ state: _, ...rest }) => <span {...rest} />;
 
 const labelStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();

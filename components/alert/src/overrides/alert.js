@@ -16,7 +16,7 @@ import { defaultProps } from '../Alert';
 // Component
 // ==============================
 
-const Alert = ({ state, ...rest }) => <div {...rest} />;
+const Alert = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

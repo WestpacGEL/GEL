@@ -2,7 +2,7 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const Option = ({ state, ...rest }) => <div {...rest} />;
+const Option = ({ state: _, ...rest }) => <div {...rest} />;
 
 const optionStyles = (_, { size, inline }) => {
 	const sizeMap = {

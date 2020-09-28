@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Heading } from '@westpac/heading';
+import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
 import HeaderImage from './component-page-header-image';
@@ -100,7 +100,7 @@ const GridIndicator = () => {
 	);
 };
 
-const PageHeader = ({ name, version }) => {
+const PageHeader = ({ name }) => {
 	const { COLORS, BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const [hasScroll, setHasScroll] = useState(false);
@@ -150,9 +150,12 @@ const PageHeader = ({ name, version }) => {
 				<MenuButton />
 				<div
 					css={mq({
+						display: ['flex', null],
+						alignItems: ['center', null],
 						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
 						marginLeft: ['3.75rem', null, !hasScrolledLarge && '2.25rem', null, '2.25rem'],
-						marginBottom: ['1.25rem', null, !hasScrolledLarge && '3.375rem'],
+						marginBottom: [null, null, !hasScrolledLarge && '2.875rem'],
+						height: [66, null],
 						transition: [
 							null,
 							null,
@@ -161,32 +164,16 @@ const PageHeader = ({ name, version }) => {
 						willChange: 'opacity',
 					})}
 				>
-					<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
+					<BrandHeading
+						tag="h1"
+						size={[
+							BRAND === 'WBC' ? 7 : 8,
+							null,
+							!hasScrolledLarge ? (BRAND === 'WBC' ? 2 : 3) : null,
+						]}
+					>
 						{name}
-						{version && (
-							<span
-								css={mq({
-									fontSize: '1rem',
-									fontWeight: 'normal',
-									marginTop: !hasScrolledLarge && '0.75rem',
-									marginLeft: ['0.375rem', null, !hasScrolledLarge && 0],
-									display: [null, null, !hasScrolledLarge && 'block'],
-								})}
-							>
-								<span
-									css={mq({
-										textTransform: ['lowercase', null, !hasScrolledLarge && 'capitalize'],
-									})}
-								>
-									V
-								</span>
-								<span css={mq({ display: ['none', null, !hasScrolledLarge && 'inline'] })}>
-									ersion{' '}
-								</span>
-								{version}
-							</span>
-						)}
-					</Heading>
+					</BrandHeading>
 				</div>
 			</div>
 			<GridIndicator />

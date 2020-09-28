@@ -6,7 +6,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const Icon = ({ state, icon: Icon, left, right, ...rest }) => <Icon {...rest} />;
+const Icon = ({ icon: Icon, left, right, state: _, ...rest }) => <Icon {...rest} />;
 
 // ==============================
 // Styles

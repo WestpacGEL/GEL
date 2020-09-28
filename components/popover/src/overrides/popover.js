@@ -2,7 +2,7 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const Popover = ({ state, ...rest }) => <div {...rest} />;
+const Popover = ({ state: _, ...rest }) => <div {...rest} />;
 
 const popoverStyles = () => ({
 	label: getLabel('popover'),

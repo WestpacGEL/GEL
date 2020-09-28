@@ -1,3 +1,6 @@
-export { ChatPictogram } from './pictograms/ChatPictogram';
-export { PayPictogram } from './pictograms/PayPictogram';
-export { SecurePictogram } from './pictograms/SecurePictogram';
+export { BirthCertificatePictogram } from './pictograms/BirthCertificatePictogram';
+export { CoinsPictogram } from './pictograms/CoinsPictogram';
+export { DriversLicencePictogram } from './pictograms/DriversLicencePictogram';
+export { MedicareCardPictogram } from './pictograms/MedicareCardPictogram';
+export { PassportPictogram } from './pictograms/PassportPictogram';
+export { WalletPictogram } from './pictograms/WalletPictogram';

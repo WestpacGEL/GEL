@@ -7,7 +7,7 @@ import { Body } from '@westpac/body';
 // Component
 // ==============================
 
-const AlertBody = ({ state, ...rest }) => <Body {...rest} />;
+const AlertBody = ({ state: _, ...rest }) => <Body {...rest} />;
 
 const BlenderAlertBody = (props) => (
 	<AlertBody
@@ -37,7 +37,7 @@ const bodyStyles = () => {
 		flex: 1,
 		top: [null, '0.125rem'],
 		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
-			color: 'inherit !important',
+			color: 'inherit',
 		},
 	})[0];
 };

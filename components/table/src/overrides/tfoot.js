@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const TFoot = ({ state, ...rest }) => <tfoot {...rest} />;
+const TFoot = ({ state: _, ...rest }) => <tfoot {...rest} />;
 
 const tfootStyles = (_, { bordered }) => {
 	const { COLORS } = useBrand();
