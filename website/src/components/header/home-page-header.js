@@ -99,18 +99,15 @@ const StickyHeader = () => {
 						display: ['flex', null, null, null, 'none'],
 						alignItems: 'center',
 						justifyContent: 'center',
-
 						background: 'none',
 						border: 'none',
 						cursor: 'pointer',
-
 						position: 'fixed',
 						zIndex: 3,
 						top: 0,
 						left: 0,
 						height: 66,
 						width: 66,
-						margin: [null, null, SPACING(2)],
 						padding: 0,
 					})}
 					onClick={() => setIsOpen(!isOpen)}
@@ -133,7 +130,13 @@ const StickyHeader = () => {
 						margin: 0,
 					})}
 				>
-					<h1 css={{ '&&': { margin: 0, ...PACKS.typeScale.bodyFont[9], fontWeight: 'normal' } }}>
+					<h1
+						css={{
+							margin: 0,
+							...PACKS.typeScale.bodyFont[9],
+							fontWeight: 'normal',
+						}}
+					>
 						<strong>GEL</strong> Design System
 					</h1>
 				</div>
@@ -257,7 +260,16 @@ const HeroIntro = () => {
 		>
 			<Grid>
 				<Cell width={[10, 12, 8]} left={[2, 1, 3]}>
-					<BrandHeading tag="h2" size={[4, null, 1]}>
+					<BrandHeading
+						tag="h2"
+						size={[4, null, 1]}
+						uppercase={BRAND === 'WBC'}
+						css={mq({
+							...(BRAND === 'WBC' && {
+								fontSize: ['3rem', null, '4.5rem'],
+							}),
+						})}
+					>
 						Design to scale with confidence
 					</BrandHeading>
 				</Cell>

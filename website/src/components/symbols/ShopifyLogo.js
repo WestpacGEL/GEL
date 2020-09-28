@@ -1,8 +1,12 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Svg } from './Svg';
 
-export const ShopifyLogo = ({ width, height = 'auto', color = '#2D373E', ...rest }) => {
+export const ShopifyLogo = ({ width, height = 'auto', color, ...rest }) => {
+	const { COLORS } = useBrand();
+
+	color = color || COLORS.neutral;
+
 	return (
 		<Svg viewBox="0 0 138 40" width={138} height={40} css={{ width, height }} {...rest}>
 			<title>Shopify logo</title>

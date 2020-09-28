@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Crumb = ({ state, ...rest }) => <li {...rest} />;
+const Crumb = ({ state: _, ...rest }) => <li {...rest} />;
 
 const crumbStyles = () => {
 	const { COLORS } = useBrand();

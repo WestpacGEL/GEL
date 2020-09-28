@@ -6,7 +6,7 @@ import { jsx, asArray, useMediaQuery, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Item = ({ state, ...rest }) => <label {...rest} />;
+const Item = ({ state: _, ...rest }) => <label {...rest} />;
 
 // ==============================
 // Styles

@@ -7,7 +7,7 @@ import { defaultProps } from '../ButtonDropdown';
 // Component
 // ==============================
 
-const ButtonDropdown = ({ state, ...rest }) => <div {...rest} />;
+const ButtonDropdown = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

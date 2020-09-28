@@ -6,7 +6,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const ProgressRope = ({ state, ...rest }) => <nav role="navigation" {...rest} />;
+const ProgressRope = ({ state: _, ...rest }) => <nav role="navigation" {...rest} />;
 
 // ==============================
 // Styles

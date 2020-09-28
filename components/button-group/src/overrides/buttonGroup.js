@@ -14,7 +14,7 @@ import { defaultProps } from '../ButtonGroup';
 // Component
 // ==============================
 
-const ButtonGroup = ({ state, ...rest }) => <div {...rest} />;
+const ButtonGroup = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

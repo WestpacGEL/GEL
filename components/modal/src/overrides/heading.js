@@ -4,7 +4,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { forwardRef } from 'react';
 
-const ModalHeading = forwardRef(({ state, ...rest }, ref) => (
+const ModalHeading = forwardRef(({ state: _, ...rest }, ref) => (
 	<Heading ref={ref} tag="h1" size={8} {...rest} />
 ));
 

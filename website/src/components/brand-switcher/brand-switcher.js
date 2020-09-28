@@ -2,6 +2,9 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { forwardRef, useState } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
+import { useSpring, animated } from 'react-spring';
+import useMeasure from 'react-use-measure';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
 import { ButtonDropdown, useButtonDropdownContext } from '@westpac/button-dropdown';
@@ -12,41 +15,43 @@ import { BASE_URL } from '../../config';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 import { useSidebar } from '../providers/sidebar';
 import {
-	BOMLogo,
-	BSALogo,
-	STGLogo,
-	WBCLogo,
-	WBGLogo,
+	BOMMultibrandLargeLogo,
 	BOMShieldLogo,
+	BSAMultibrandLargeLogo,
 	BSAStackedLogo,
+	STGMultibrandLargeLogo,
 	STGDragonLogo,
+	WBCMultibrandLargeLogo,
+	WBCLogo,
+	WBGMultibrandLargeLogo,
+	WBGLogo,
 } from '@westpac/symbol';
 
 export const brandsMap = {
 	WBC: {
-		logo: WBCLogo,
+		logo: <WBCMultibrandLargeLogo />,
+		smallLogo: <WBCLogo height={18} />,
 		label: 'Westpac',
-		smallLogo: WBCLogo,
 	},
 	STG: {
-		logo: STGLogo,
+		logo: <STGMultibrandLargeLogo />,
+		smallLogo: <STGDragonLogo height={38} css={{ marginRight: -12 }} />,
 		label: 'St.George',
-		smallLogo: STGDragonLogo,
 	},
 	BOM: {
-		logo: BOMLogo,
+		logo: <BOMMultibrandLargeLogo />,
+		smallLogo: <BOMShieldLogo height={39} css={{ marginRight: 9 }} />,
 		label: 'Bank of Melbourne',
-		smallLogo: BOMShieldLogo,
 	},
 	BSA: {
-		logo: BSALogo,
+		logo: <BSAMultibrandLargeLogo />,
+		smallLogo: <BSAStackedLogo height={46} css={{ marginRight: 8 }} />,
 		label: 'BankSA',
-		smallLogo: BSAStackedLogo,
 	},
 	WBG: {
-		logo: WBGLogo,
+		logo: <WBGMultibrandLargeLogo />,
+		smallLogo: <WBGLogo width={70} css={{ marginRight: -8 }} />,
 		label: 'Westpac Group',
-		smallLogo: WBCLogo,
 	},
 };
 
@@ -96,17 +101,47 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 	);
 });
 
+const PanelOverride = forwardRef(({ state: { open }, children, ...rest }, ref) => {
+	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
+
+	const animate = useSpring({
+		to: {
+			height: !open ? 0 : height,
+		},
+	});
+
+	return (
+		<animated.div
+			style={animate}
+			css={{
+				position: 'absolute',
+				zIndex: 1,
+				left: 0,
+				right: 0,
+				overflow: 'hidden',
+				backgroundColor: '#fff',
+				boxShadow: '0 2px 5px rgba(0,0,0,0.26)',
+			}}
+			aria-hidden={!open}
+		>
+			<div ref={measureRef}>
+				<div ref={ref} {...rest}>
+					{children}
+				</div>
+			</div>
+		</animated.div>
+	);
+});
+
 export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brand, setBrand } = useBrandSwitcher();
 	const [open, setOpen] = useState(false);
 	const { isScrolled } = useSidebar();
 	const { SPACING, COLORS, PACKS, TYPE } = useBrand();
-	const Logo = brandsMap[brand].logo;
+	const logo = brandsMap[brand].logo;
 
 	const OptionButton = ({ brand, active, ...rest }) => {
-		const context = useButtonDropdownContext();
-
 		const handleClick = (brand) => {
 			setOpen(false);
 			setBrand(brand);
@@ -126,7 +161,7 @@ export const BrandSwitcher = () => {
 					boxSizing: 'border-box',
 					backgroundColor: 'transparent',
 					border: 0,
-					fontSize: '0.875rem !important',
+					fontSize: '0.875rem',
 					color: active ? COLORS.primary : COLORS.text,
 					display: 'flex',
 					width: '100%',
@@ -155,7 +190,7 @@ export const BrandSwitcher = () => {
 					<li key={key} css={{ borderTop: `1px solid ${COLORS.border}` }}>
 						<OptionButton brand={key} active={brandName === key}>
 							<span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{val.label}</span>
-							<val.smallLogo css={{ width: 50, height: 39, marginLeft: '0.4em' }} />
+							<div css={{ marginLeft: '0.4em' }}>{val.smallLogo}</div>
 						</OptionButton>
 					</li>
 				))}
@@ -191,7 +226,7 @@ export const BrandSwitcher = () => {
 						},
 					}}
 				>
-					<Logo />
+					{logo}
 				</a>
 			</Link>
 			<ButtonDropdown
@@ -207,6 +242,7 @@ export const BrandSwitcher = () => {
 							textDecoration: 'none',
 							color: COLORS.text,
 							backgroundColor: '#fff',
+							border: 0,
 							fontSize: '0.875rem',
 							padding: '0 1.5rem 0 1.125rem',
 							height: '4.125rem',
@@ -221,14 +257,9 @@ export const BrandSwitcher = () => {
 						}),
 					},
 					Panel: {
-						styles: (styles) => ({
-							...styles,
-							borderRadius: 0,
-							border: 0,
-							boxShadow: '0 2px 5px rgba(0,0,0,0.26)',
-							margin: 0,
-							padding: 0,
-							zIndex: 1,
+						component: PanelOverride,
+						styles: () => ({
+							backgroundColor: '#fff',
 						}),
 					},
 				}}

@@ -27,6 +27,7 @@ export { ClockIcon } from './icons/ClockIcon';
 export { CloseIcon } from './icons/CloseIcon';
 export { CompassIcon } from './icons/CompassIcon';
 export { ContactIcon } from './icons/ContactIcon';
+export { CopyContentIcon } from './icons/CopyContentIcon';
 export { CreditCardIcon } from './icons/CreditCardIcon';
 export { CubeIcon } from './icons/CubeIcon';
 export { DeleteIcon } from './icons/DeleteIcon';

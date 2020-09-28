@@ -39,7 +39,7 @@ export const Heading = forwardRef(
 				{...rest}
 				state={state}
 				{...headingAttributes(state)}
-				css={{ '&&': headingStyles(state) }}
+				css={headingStyles(state)}
 			>
 				{children}
 			</Heading>

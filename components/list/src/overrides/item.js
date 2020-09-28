@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-const Item = ({ state, ...rest }) => <li {...rest} />;
+const Item = ({ state: _, ...rest }) => <li {...rest} />;
 
 const itemStyles = (_, {}) => null;
 

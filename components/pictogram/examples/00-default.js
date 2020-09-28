@@ -16,7 +16,7 @@ function Example({ brand }) {
 						return (
 							<Cell key={pictogram}>
 								<Pictogram />
-								<Name>&lt;{pictogram} /&gt;</Name>
+								<Name>&lt;{pictogram}&nbsp;/&gt;</Name>
 							</Cell>
 						);
 					})}

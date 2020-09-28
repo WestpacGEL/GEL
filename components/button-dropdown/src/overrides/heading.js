@@ -34,17 +34,15 @@ const headingStyles = () => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
-		'&&&': {
-			label: getLabel('buttonDropdown-heading'),
-			margin: '1.5rem -0.375rem 1.125rem -0.375rem',
-			padding: '0.4375rem',
-			backgroundColor: COLORS.background,
-			color: COLORS.hero,
-			...TYPE.bodyFont[500],
+		label: getLabel('buttonDropdown-heading'),
+		margin: '1.5rem -0.375rem 1.125rem -0.375rem',
+		padding: '0.4375rem',
+		backgroundColor: COLORS.background,
+		color: COLORS.hero,
+		...TYPE.bodyFont[500],
 
-			':first-of-type': {
-				marginTop: '-0.375rem',
-			},
+		':first-of-type': {
+			marginTop: '-0.375rem',
 		},
 	};
 };

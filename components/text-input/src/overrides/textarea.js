@@ -3,7 +3,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { round, sizeMap } from '../_utils';
 
-const Textarea = ({ state, ...rest }) => <textarea {...rest} />;
+const Textarea = ({ state: _, ...rest }) => <textarea {...rest} />;
 
 const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();

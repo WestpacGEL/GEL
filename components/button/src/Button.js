@@ -99,7 +99,6 @@ export const Button = forwardRef(
 					{...rest}
 					state={state}
 					{...buttonAttributes(state)}
-					// css={{ '&&': buttonStyles(state) }}
 					css={buttonStyles(state)}
 				>
 					{/* `<input>` elements cannot have children; they would use a `value` prop) */}
