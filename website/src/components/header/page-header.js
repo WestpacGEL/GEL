@@ -164,19 +164,16 @@ const PageHeader = ({ name }) => {
 						willChange: 'opacity',
 					})}
 				>
-					{BRAND === 'WBC' ? (
-						<BrandHeading
-							tag="h1"
-							size={[7, null, !hasScrolledLarge ? 2 : null]}
-							uppercase={BRAND === 'WBC'}
-						>
-							{name}
-						</BrandHeading>
-					) : (
-						<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
-							{name}
-						</Heading>
-					)}
+					<BrandHeading
+						tag="h1"
+						size={[
+							BRAND === 'WBC' ? 7 : 8,
+							null,
+							!hasScrolledLarge ? (BRAND === 'WBC' ? 2 : 3) : null,
+						]}
+					>
+						{name}
+					</BrandHeading>
 				</div>
 			</div>
 			<GridIndicator />
