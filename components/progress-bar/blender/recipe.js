@@ -16,7 +16,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<ProgressBar value={0} />
 			<ProgressBar value={0} look="skinny" />
 		</GEL>
@@ -34,7 +34,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A default progress bar',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressBar value={20} />
 				</GEL>
 			),
@@ -42,7 +42,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A skinny progress bar',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressBar value={20} look="skinny" />
 				</GEL>
 			),
