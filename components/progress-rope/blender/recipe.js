@@ -1,26 +1,15 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
 
-import { ProgressRope as OGProgressRope } from '@westpac/progress-rope';
+import { ProgressRope } from '@westpac/progress-rope';
 
 // Created simplified version of these components for blender use
 import { Group, Step } from '../src/blender';
 import { blenderProgressRope } from '../src/overrides/progressRope';
 
-const ProgressRope = (props) => (
-	<OGProgressRope
-		overrides={{
-			ProgressRope: {
-				attributes: blenderProgressRope.attributes,
-			},
-		}}
-		{...props}
-	/>
-);
-
 export function AllStyles({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<GEL brand={brand} noPrefix>
 			<ProgressRope>
 				<Step visited onClick={() => {}}>
 					Step 1
@@ -98,11 +87,17 @@ export function AllStyles({ brand }) {
 }
 
 export function Docs({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/progress-rope'] = {
+		ProgressRope: {
+			attributes: blenderProgressRope.attributes,
+		},
+	};
 	return [
 		{
 			heading: 'A progress rope',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressRope>
 						<Step active onClick={() => {}}>
 							Step 1
@@ -121,7 +116,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A progress rope in progress',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressRope>
 						<Step visited onClick={() => {}}>
 							Step 1
@@ -144,7 +139,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A progress rope at the end step',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressRope>
 						<Step visited onClick={() => {}}>
 							Step 1
@@ -165,7 +160,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A progress rope group',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressRope>
 						<Group id={'progress-rope-group-1'} active open text={'Group 1'}>
 							<Step active onClick={() => {}}>
@@ -192,7 +187,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A progress rope group in progress',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressRope>
 						<Group id={'progress-rope-group-1'} visited text={'Group 1'}>
 							<Step visited onClick={() => {}}>
@@ -225,7 +220,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A progress rope group at the end step',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressRope>
 						<Group id={'progress-rope-group-1'} visited text={'Group 1'}>
 							<Step visited onClick={() => {}}>

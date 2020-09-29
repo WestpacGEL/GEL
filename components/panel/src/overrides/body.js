@@ -9,6 +9,20 @@ import { Body } from '@westpac/body';
 
 const PanelBody = ({ state: _, ...rest }) => <Body {...rest} />;
 
+const BlenderBody = (props) => (
+	<PanelBody
+		overrides={{
+			Body: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
 // ==============================
 // Styles
 // ==============================
@@ -32,6 +46,12 @@ const bodyAttributes = () => null;
 
 export const defaultBody = {
 	component: PanelBody,
+	styles: bodyStyles,
+	attributes: bodyAttributes,
+};
+
+export const blenderBody = {
+	component: BlenderBody,
 	styles: bodyStyles,
 	attributes: bodyAttributes,
 };
