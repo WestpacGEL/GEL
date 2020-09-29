@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx, getLabel, classNames } from '@westpac/core';
 import { Button as ButtonInput } from '@westpac/button';
 
 // ==============================
@@ -11,7 +11,7 @@ const Button = ({ state: { size }, ...rest }) => <ButtonInput size={size} {...re
 
 const BlenderButton = (props) => {
 	const {
-		state: { before, after },
+		state: { position },
 	} = props;
 
 	return (
@@ -23,8 +23,8 @@ const BlenderButton = (props) => {
 							attributes.className = attributes.className.concat(
 								' ',
 								classNames({
-									[`__convert__inputGroup-button-before`]: before,
-									[`__convert__inputGroup-button-after`]: after,
+									[`__convert__inputGroup-button-before`]: position === 'before',
+									[`__convert__inputGroup-button-after`]: position === 'after',
 								})
 							); // unable to use attributes below since there is already a className being passed as part of the blender button
 						}
@@ -60,9 +60,9 @@ const buttonStyles = (_, { position }) => ({
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { before, after }) => {
-	const { label, ...styles } = buttonStyles(_, { before, after });
-	return { label, 'input&': styles }; // need to increase specificity
+const blenderStyles = (_, { position }) => {
+	const { label, ...styles } = buttonStyles(_, { position });
+	return { label, 'button&': styles }; // need to increase specificity
 };
 
 // ==============================
