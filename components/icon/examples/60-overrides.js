@@ -14,7 +14,7 @@ import {
 } from '@westpac/icon';
 import { Fragment } from 'react';
 
-const Wrapper = ({ children, state: { icon }, ...rest }) => (
+const Wrapper = ({ state: { icon }, children, ...rest }) => (
 	<Fragment>
 		<div {...rest}>{children}</div>
 		<div css={{ marginBottom: '1rem' }}>

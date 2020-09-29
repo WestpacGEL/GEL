@@ -1,5 +1,5 @@
 export const brandOverrides = (brand) => {
-	const { PACKS, TYPE } = brand;
+	const { BRAND } = brand;
 	const overridesWithTokens = { ...brand };
 
 	// Example

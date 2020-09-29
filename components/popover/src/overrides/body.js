@@ -3,7 +3,7 @@
 import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-const PopoverBody = ({ state, ...rest }) => <Body {...rest} />;
+const PopoverBody = ({ state: _, ...rest }) => <Body {...rest} />;
 
 const bodyStyles = (_, {}) => {
 	const { COLORS } = useBrand();

@@ -3,7 +3,7 @@
 import { forwardRef } from 'react';
 import { jsx } from '@westpac/core';
 
-const TabRow = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
+const TabRow = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
 
 const tabRowStyles = () => ({
 	display: 'flex',

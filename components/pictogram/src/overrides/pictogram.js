@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
 
-const Pictogram = ({ state, ...rest }) => <span {...rest} />;
+const Pictogram = ({ state: _, ...rest }) => <span {...rest} />;
 
 const pictogramStyles = () => {
 	const mq = useMediaQuery();

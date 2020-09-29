@@ -7,7 +7,7 @@ import { defaultProps } from '../Label';
 // Component
 // ==============================
 
-const Label = ({ state, ...rest }) => <span {...rest} />;
+const Label = ({ state: _, ...rest }) => <span {...rest} />;
 
 // ==============================
 // Styles

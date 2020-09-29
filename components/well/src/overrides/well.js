@@ -3,7 +3,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-const Well = ({ state: { tag }, state, ...rest }) => <Body tag={tag} {...rest} />;
+const Well = ({ state: { tag }, ...rest }) => <Body tag={tag} {...rest} />;
 
 const wellStyles = () => {
 	const mq = useMediaQuery();

@@ -1,9 +1,28 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, asArray, useBrand, getLabel } from '@westpac/core';
+import {
+	jsx,
+	useMediaQuery,
+	asArray,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+} from '@westpac/core';
 import { forwardRef } from 'react';
 
-const Panel = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
+import { defaultProps } from '../ButtonDropdown';
+
+// ==============================
+// Component
+// ==============================
+
+const Panel = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+
+// ==============================
+// Styles
+// ==============================
 
 const panelStyles = (_, { open, dropdownSize }) => {
 	const mq = useMediaQuery();
@@ -24,9 +43,9 @@ const panelStyles = (_, { open, dropdownSize }) => {
 	const dropdownSizeArr = asArray(dropdownSize);
 
 	return mq({
-		label: getLabel('buttonDropdown-panel', { open, dropdownSize }),
+		label: getLabel('buttonDropdown-panel'),
 		visibility: open ? 'visible' : 'hidden',
-		height: open ? null : '0px',
+		height: open ? 'auto' : '0px',
 		overflow: 'hidden',
 		position: 'absolute',
 		left: 0,
@@ -42,13 +61,63 @@ const panelStyles = (_, { open, dropdownSize }) => {
 	})[0];
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { open, dropdownSize }) => {
+	const props = { open, dropdownSize };
+	const baseStyles = panelStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = panelStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'dropdownSize':
+			label = `${label}-${dropdownSize}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+// ==============================
+// Attributes
+// ==============================
+
 const panelAttributes = (_, { instanceId }) => ({
 	id: instanceId,
-	'data-js': 'buttonDropdown-panel__version__',
 });
+
+const blenderAttributes = (_, { instanceId, dropdownSize }) => ({
+	id: instanceId,
+	'data-js': 'buttonDropdown-panel__version__',
+	className: classNames({
+		[`__convert__buttonDropdown-panel-${dropdownSize}`]:
+			dropdownSize && dropdownSize !== defaultProps.dropdownSize,
+	}),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultPanel = {
 	component: Panel,
 	styles: panelStyles,
 	attributes: panelAttributes,
+};
+
+export const blenderPanel = {
+	component: Panel,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };

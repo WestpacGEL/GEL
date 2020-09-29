@@ -2,7 +2,15 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const List = ({ state, ...props }) => <ol {...props} />;
+// ==============================
+// Component
+// ==============================
+
+const List = ({ state: _, ...props }) => <ol {...props} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const listStyles = () => {
 	const { SPACING } = useBrand();
@@ -16,7 +24,15 @@ const listStyles = () => {
 	};
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const listAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultList = {
 	component: List,

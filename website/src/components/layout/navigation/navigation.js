@@ -133,9 +133,10 @@ export const Navigation = ({ items }) => {
 			<a
 				href="/"
 				css={{
-					display: 'block !important',
+					display: 'block',
 					overflow: 'hidden',
 					height: 90,
+					color: COLORS.text,
 					':focus': {
 						outlineOffset: `-${PACKS.focus.outlineWidth}`,
 					},

@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const Th = ({ state, ...rest }) => <th {...rest} />;
+const Th = ({ state: _, ...rest }) => <th {...rest} />;
 
 const thStyles = (_, { bordered }) => {
 	const { COLORS } = useBrand();
