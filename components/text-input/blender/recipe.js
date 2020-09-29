@@ -25,7 +25,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			{components.map((Component, i) => (
 				<Fragment key={i}>
 					<Component />
@@ -60,7 +60,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A default text input',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<TextInput />
 				</GEL>
 			),
@@ -68,7 +68,7 @@ export function Docs({ brand }) {
 		...['small', 'medium', 'large', 'xlarge'].map((size) => ({
 			heading: `A ${size} text input`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<TextInput size={size} placeholder={size} />
 				</GEL>
 			),
@@ -76,7 +76,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An invalid text input',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<TextInput invalid />
 				</GEL>
 			),
@@ -84,7 +84,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An inline text input',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<TextInput inline />
 				</GEL>
 			),
@@ -92,7 +92,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An inline invalid text input',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<TextInput inline invalid />
 				</GEL>
 			),
@@ -100,7 +100,7 @@ export function Docs({ brand }) {
 		...[2, 3, 4, 5, 10, 20, 30].map((width) => ({
 			heading: `A text input with width of ${width}`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<TextInput width={width} placeholder={width} />
 				</GEL>
 			),
@@ -108,7 +108,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An inline invalid text input with width of 10',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<TextInput inline invalid width={10} />
 				</GEL>
 			),
@@ -116,7 +116,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A default select',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Select name="select">
 						<option>Select</option>
 						<option>1</option>
@@ -129,7 +129,7 @@ export function Docs({ brand }) {
 		...['small', 'medium', 'large', 'xlarge'].map((size) => ({
 			heading: `A ${size} select`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Select name={size} size={size}>
 						<option>Select</option>
 						<option>1</option>
@@ -142,7 +142,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An invalid select',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Select invalid>
 						<option>Invalid</option>
 						<option>1</option>
@@ -155,7 +155,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An inline select',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Select inline>
 						<option>Select</option>
 						<option>1</option>
@@ -168,7 +168,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An inline invalid select',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Select inline invalid>
 						<option>Select</option>
 						<option>1</option>
@@ -181,7 +181,7 @@ export function Docs({ brand }) {
 		...[2, 3, 4, 5, 10, 20, 30].map((width) => ({
 			heading: `A select with width of ${width}`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Select name={`width-${width}`} width={width}>
 						<option>Select</option>
 						<option>1</option>
@@ -194,7 +194,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An inline invalid select with width of 10',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Select inline invalid width={10}>
 						<option>Select</option>
 						<option>1</option>
@@ -207,7 +207,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A default textarea',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Textarea />
 				</GEL>
 			),
@@ -215,7 +215,7 @@ export function Docs({ brand }) {
 		...['small', 'medium', 'large', 'xlarge'].map((size) => ({
 			heading: `A ${size} textarea`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Textarea size={size} placeholder={size} />
 				</GEL>
 			),
@@ -223,7 +223,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An invalid textarea',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Textarea placeholder="invalid" invalid />
 				</GEL>
 			),
@@ -231,7 +231,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An inline textarea',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Textarea inline />
 				</GEL>
 			),
@@ -239,7 +239,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An inline invalid textarea',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Textarea inline />
 				</GEL>
 			),
@@ -247,7 +247,7 @@ export function Docs({ brand }) {
 		...[2, 3, 4, 5, 10, 20, 30].map((width) => ({
 			heading: `A textarea with width of ${width}`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Textarea width={width} placeholder={'W'.repeat(width)} />
 				</GEL>
 			),
@@ -255,7 +255,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'An inline invalid textarea with width of 10',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Textarea inline invalid width={10} />
 				</GEL>
 			),
