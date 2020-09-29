@@ -19,6 +19,20 @@ import { defaultProps } from '../FormCheck';
 
 const Label = ({ state: _, ...rest }) => <Body tag="label" {...rest} />;
 
+const BlenderLabel = (props) => (
+	<Label
+		overrides={{
+			Body: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
 // ==============================
 // Styles
 // ==============================
@@ -189,7 +203,7 @@ export const defaultLabel = {
 };
 
 export const blenderLabel = {
-	component: Label,
+	component: BlenderLabel,
 	styles: blenderStyles,
 	attributes: labelAttributes,
 };
