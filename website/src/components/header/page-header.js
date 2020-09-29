@@ -100,6 +100,16 @@ const GridIndicator = () => {
 	);
 };
 
+const PageHeaderHeading = ({ hasScrolledLarge, ...rest }) => {
+	const { BRAND } = useBrand();
+
+	return BRAND === 'WBC' ? (
+		<BrandHeading tag="h1" size={[7, null, !hasScrolledLarge ? 2 : null]} uppercase {...rest} />
+	) : (
+		<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]} {...rest} />
+	);
+};
+
 const PageHeader = ({ name }) => {
 	const { COLORS, BRAND } = useBrand();
 	const mq = useMediaQuery();
@@ -164,17 +174,7 @@ const PageHeader = ({ name }) => {
 						willChange: 'opacity',
 					})}
 				>
-					<BrandHeading
-						tag="h1"
-						size={[
-							BRAND === 'WBC' ? 7 : 8,
-							null,
-							!hasScrolledLarge ? (BRAND === 'WBC' ? 2 : 3) : null,
-						]}
-						uppercase={BRAND === 'WBC'}
-					>
-						{name}
-					</BrandHeading>
+					<PageHeaderHeading hasScrolledLarge={hasScrolledLarge}>{name}</PageHeaderHeading>
 				</div>
 			</div>
 			<GridIndicator />
