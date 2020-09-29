@@ -2,7 +2,15 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Crumb = ({ state, ...rest }) => <li {...rest} />;
+// ==============================
+// Component
+// ==============================
+
+const Crumb = ({ state: _, ...rest }) => <li {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const crumbStyles = () => {
 	const { COLORS } = useBrand();
@@ -17,7 +25,15 @@ const crumbStyles = () => {
 	};
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const crumbAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultCrumb = {
 	component: Crumb,

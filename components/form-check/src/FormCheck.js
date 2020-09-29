@@ -217,8 +217,10 @@ FormCheck.propTypes = {
 	}),
 };
 
-FormCheck.defaultProps = {
+export const defaultProps = {
 	type: 'checkbox',
 	inline: false,
 	size: 'medium',
 };
+
+FormCheck.defaultProps = defaultProps;

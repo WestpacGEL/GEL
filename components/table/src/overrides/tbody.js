@@ -1,12 +1,28 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
-const Tbody = ({ state, ...rest }) => <tbody {...rest} />;
+// ==============================
+// Component
+// ==============================
 
-const tbodyStyles = () => ({});
+const Tbody = ({ state: _, ...rest }) => <tbody {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
+
+const tbodyStyles = () => ({ label: getLabel('table-tbody') });
+
+// ==============================
+// Attributes
+// ==============================
 
 const tbodyAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultTBody = {
 	component: Tbody,

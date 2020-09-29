@@ -79,7 +79,9 @@ Td.propTypes = {
 	}),
 };
 
-Td.defaultProps = {
+export const defaultProps = {
 	highlighted: false,
 	highlightStart: false,
 };
+
+Td.defaultProps = defaultProps;

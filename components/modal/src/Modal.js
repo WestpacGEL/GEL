@@ -139,7 +139,7 @@ export const Modal = ({
 										onClick={() => handleClose()}
 										state={state}
 										{...closeBtnAttributes(state)}
-										css={{ '&&': closeBtnStyles(state) }}
+										css={closeBtnStyles(state)}
 									/>
 								)}
 							</Header>
@@ -224,8 +224,10 @@ Modal.propTypes = {
 	}),
 };
 
-Modal.defaultProps = {
+export const defaultProps = {
 	open: false,
 	size: 'medium',
 	dismissible: true,
 };
+
+Modal.defaultProps = defaultProps;

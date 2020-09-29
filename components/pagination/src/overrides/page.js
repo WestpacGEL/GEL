@@ -6,7 +6,7 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Page = ({ state, ...rest }) => <li {...rest} />;
+const Page = ({ state: _, ...rest }) => <li {...rest} />;
 
 // ==============================
 // Styles

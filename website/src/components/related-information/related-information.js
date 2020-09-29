@@ -13,7 +13,6 @@ import { getURL } from '../_utils';
 export const RelatedInformation = ({ item }) => {
 	const { SPACING, COLORS, PACKS } = useBrand();
 	const { relatedPages, relatedInfo } = item;
-	const mq = useMediaQuery();
 	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
 
 	function checkNode(node) {

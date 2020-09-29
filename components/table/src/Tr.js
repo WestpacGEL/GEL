@@ -105,6 +105,8 @@ Tr.propTypes = {
 	}),
 };
 
-Tr.defaultProps = {
+export const defaultProps = {
 	highlighted: false,
 };
+
+Tr.defaultProps = defaultProps;

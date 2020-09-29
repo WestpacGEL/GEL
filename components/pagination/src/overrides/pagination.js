@@ -6,7 +6,7 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Pagination = ({ state, ...rest }) => <nav {...rest} />;
+const Pagination = ({ state: _, ...rest }) => <nav {...rest} />;
 
 // ==============================
 // Styles

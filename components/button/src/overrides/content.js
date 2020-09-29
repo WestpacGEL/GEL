@@ -7,7 +7,7 @@ import { Fragment } from 'react';
 // Component
 // ==============================
 
-const Content = ({ state, children }) => <Fragment>{children}</Fragment>;
+const Content = ({ state: _, children }) => <Fragment>{children}</Fragment>;
 
 // ==============================
 // Styles
