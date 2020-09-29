@@ -7,7 +7,7 @@ import { defaultProps } from '../Table';
 // Component
 // ==============================
 
-const TFoot = ({ state, ...rest }) => <tfoot {...rest} />;
+const TFoot = ({ state: _, ...rest }) => <tfoot {...rest} />;
 
 // ==============================
 // Styles

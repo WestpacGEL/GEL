@@ -7,7 +7,7 @@ import { defaultProps } from '../Table';
 // Component
 // ==============================
 
-const Th = ({ state, ...rest }) => <th {...rest} />;
+const Th = ({ state: _, ...rest }) => <th {...rest} />;
 
 // ==============================
 // Styles

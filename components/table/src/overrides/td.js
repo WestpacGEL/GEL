@@ -7,7 +7,7 @@ import { defaultProps } from '../Td';
 // Component
 // ==============================
 
-const Td = ({ state, ...rest }) => <td {...rest} />;
+const Td = ({ state: _, ...rest }) => <td {...rest} />;
 
 // ==============================
 // Styles

@@ -6,7 +6,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const GroupButtonWrapper = ({ state, ...rest }) => <h3 {...rest} />;
+const GroupButtonWrapper = ({ state: _, ...rest }) => <h3 {...rest} />;
 
 // ==============================
 // Styles

@@ -7,7 +7,7 @@ import { Body } from '@westpac/body';
 // Component
 // ==============================
 
-const PanelBody = ({ state, ...rest }) => <Body {...rest} />;
+const PanelBody = ({ state: _, ...rest }) => <Body {...rest} />;
 
 // ==============================
 // Styles

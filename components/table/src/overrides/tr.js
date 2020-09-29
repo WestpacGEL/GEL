@@ -7,7 +7,7 @@ import { defaultProps } from '../Tr';
 // Component
 // ==============================
 
-export const Tr = ({ state, ...rest }) => <tr {...rest} />;
+export const Tr = ({ state: _, ...rest }) => <tr {...rest} />;
 
 // ==============================
 // Styles

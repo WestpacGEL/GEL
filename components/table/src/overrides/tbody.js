@@ -6,7 +6,7 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Tbody = ({ state, ...rest }) => <tbody {...rest} />;
+const Tbody = ({ state: _, ...rest }) => <tbody {...rest} />;
 
 // ==============================
 // Styles

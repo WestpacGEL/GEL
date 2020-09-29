@@ -103,7 +103,9 @@ ProgressBar.propTypes = {
 	}),
 };
 
-ProgressBar.defaultProps = {
+export const defaultProps = {
 	value: 0,
 	look: 'default',
 };
+
+ProgressBar.defaultProps = defaultProps;

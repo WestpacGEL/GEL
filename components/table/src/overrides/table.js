@@ -13,7 +13,7 @@ import { nestedTheadStyles } from './thead';
 // Component
 // ==============================
 
-const Table = ({ state, ...rest }) => <Body tag="table" {...rest} />;
+const Table = ({ state: _, ...rest }) => <Body tag="table" {...rest} />;
 
 const BlenderTable = (props) => (
 	<Table

@@ -6,7 +6,7 @@ import { defaultProps } from '../Table';
 // Component
 // ==============================
 
-const Thead = ({ state, ...rest }) => <thead {...rest} />;
+const Thead = ({ state: _, ...rest }) => <thead {...rest} />;
 
 // ==============================
 // Styles

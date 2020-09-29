@@ -6,7 +6,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Wrapper = ({ state, ...rest }) => <div {...rest} />;
+const Wrapper = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles
