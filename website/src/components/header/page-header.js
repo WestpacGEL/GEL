@@ -171,6 +171,7 @@ const PageHeader = ({ name }) => {
 							null,
 							!hasScrolledLarge ? (BRAND === 'WBC' ? 2 : 3) : null,
 						]}
+						uppercase={BRAND === 'WBC'}
 					>
 						{name}
 					</BrandHeading>
