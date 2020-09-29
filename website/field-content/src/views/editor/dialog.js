@@ -4,6 +4,8 @@ import { forwardRef, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { jsx } from '@emotion/core';
 import { gridSize } from '@arch-ui/theme';
+import wbc from '@westpac/wbc';
+import { GEL } from '@westpac/core';
 
 import { useClickOutside, useKeyPress } from './hooks';
 
@@ -18,7 +20,9 @@ export const Dialog = forwardRef(({ portal = false, ...props }, ref) => {
 	if (portal) {
 		return (
 			<Portal>
-				<DialogElement ref={ref} {...props} />
+				<GEL brand={wbc}>
+					<DialogElement ref={ref} {...props} />
+				</GEL>
 			</Portal>
 		);
 	}

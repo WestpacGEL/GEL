@@ -7,7 +7,7 @@ import { Body } from '@westpac/body';
 // Component
 // ==============================
 
-const Well = ({ state: { tag }, state, ...rest }) => <Body tag={tag} {...rest} />;
+const Well = ({ state: { tag }, ...rest }) => <Body tag={tag} {...rest} />;
 
 const BlenderWell = (props) => (
 	<Well

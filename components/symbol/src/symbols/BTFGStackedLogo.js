@@ -30,6 +30,6 @@ BTFGStackedLogo.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 73,
 	viewBoxHeight: 65,
-	assistiveText: 'BT',
+	assistiveText: 'BT Financial Group',
 };
 BTFGStackedLogo.propTypes = propTypes;

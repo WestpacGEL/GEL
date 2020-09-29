@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { GEL, jsx, css, Global, useBrand, useMediaQuery } from '@westpac/core';
+import { GEL, jsx, css, Global, useBrand, useMediaQuery, useFonts } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
@@ -11,12 +11,54 @@ import { SidebarProvider, useSidebar } from '../providers/sidebar';
 import { BrandPicker } from '../brand-picker';
 import { BASE_URL } from '../../config.js';
 import { brandOverrides } from '../../brand-overrides';
-import { Normalize, Sidebar } from './';
+import { Sidebar } from './';
+
+const LoadGELFonts = () => (
+	<Global
+		styles={css`
+			@font-face {
+				font-family: 'graphik';
+				src: url('${BASE_URL}/fonts/Graphik-Bold-Web.eot');
+				src: url('${BASE_URL}/fonts/Graphik-Bold-Web.eot?#iefix') format('embedded-opentype'),
+					url('${BASE_URL}/fonts/Graphik-Bold-Web.woff') format('woff'),
+					url('${BASE_URL}/fonts/Graphik-Bold-Web.ttf') format('truetype'),
+					url('${BASE_URL}/fonts/Graphik-Bold-Web.svg#Graphik-Bold') format('svg');
+				font-weight: 700;
+				font-style: normal;
+			}
+			@font-face {
+				font-family: 'guardian';
+				src: url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot');
+				src: url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot?#iefix')
+						format('embedded-opentype'),
+					url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.woff') format('woff'),
+					url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.ttf') format('truetype'),
+					url('${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.svg#Guardian Egyptian Web') format('svg');
+				font-weight: 300;
+				font-style: italic;
+			}
+		`}
+	/>
+);
+const LoadBrandFonts = () => <Global styles={useFonts({ path: `${BASE_URL}/fonts/` })['']} />;
+
+const GlobalReset = () => (
+	<Global
+		styles={css`
+			html {
+				line-height: 1.15;
+				-webkit-text-size-adjust: 100%;
+			}
+			body {
+				margin: 0;
+			}
+		`}
+	/>
+);
 
 /*
   Wrapper with logic
 */
-
 const Wrapper = (props) => {
 	const router = useRouter();
 	if (!router) return null;
@@ -28,36 +70,13 @@ const Wrapper = (props) => {
 	const brandNames = Object.keys(brands);
 	const isMatch = brandNames.filter((name) => name === brandParam).length > 0;
 
-	const gelFonts = css`
-		@font-face {
-			font-family: "graphik";
-			src: url("${BASE_URL}/fonts/Graphik-Bold-Web.eot");
-			src: url("${BASE_URL}/fonts/Graphik-Bold-Web.eot?#iefix") format("embedded-opentype"),
-				url("${BASE_URL}/fonts/Graphik-Bold-Web.woff") format("woff"),
-				url("${BASE_URL}/fonts/Graphik-Bold-Web.ttf") format("truetype"),
-				url("${BASE_URL}/fonts/Graphik-Bold-Web.svg#Graphik-Bold") format("svg");
-			font-weight: 700;
-			font-style: normal;
-		}
-		@font-face {
-			font-family: "guardian";
-			src: url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot");
-			src: url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.eot?#iefix") format("embedded-opentype"),
-				url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.woff") format("woff"),
-				url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.ttf") format("truetype"),
-				url("${BASE_URL}/fonts/GuardianEgyp-LightIt-Web.svg#Guardian Egyptian Web") format("svg");
-			font-weight: 300;
-			font-style: italic;
-		}
-	`;
-
 	// If no brand is detected, show the brand picker...
 	if (!isMatch) {
 		// show brand selector
 		return (
 			<GEL brand={brandOverrides(brands['WBC'])}>
-				<Global styles={gelFonts} />
-				<Normalize />
+				<LoadGELFonts />
+				<GlobalReset />
 				<BrandPicker />
 			</GEL>
 		);
@@ -83,7 +102,8 @@ const Wrapper = (props) => {
 
 	return (
 		<GEL brand={brandOverrides(brands[brand])}>
-			<Normalize />
+			<LoadBrandFonts />
+			<GlobalReset />
 			<SidebarProvider>
 				<GridContainer>
 					<Sidebar items={navigation} />

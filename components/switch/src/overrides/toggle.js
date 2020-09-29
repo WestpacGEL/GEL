@@ -3,7 +3,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { sizeMap } from './_utils';
 
-const Toggle = ({ state, ...rest }) => <span {...rest} />;
+const Toggle = ({ state: _, ...rest }) => <span {...rest} />;
 
 const toggleStyles = (_, { size, checked }) => {
 	const mq = useMediaQuery();
