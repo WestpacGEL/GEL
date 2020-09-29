@@ -54,7 +54,7 @@ export const TextInputField = ({ instanceId, label, before, after, overrides, ..
 				{...rest}
 				state={state}
 				{...textInputAttributes(state)}
-				css={{ '&&': textInputStyles(state) }}
+				css={textInputStyles(state)}
 			/>
 		</Fragment>
 	);

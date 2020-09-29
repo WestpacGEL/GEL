@@ -6,7 +6,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const Item = ({ state, ...rest }) => <li {...rest} />;
+const Item = ({ state: _, ...rest }) => <li {...rest} />;
 
 // ==============================
 // Styles

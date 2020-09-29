@@ -215,7 +215,9 @@ Popover.propTypes = {
 	}),
 };
 
-Popover.defaultProps = {
+export const defaultProps = {
 	open: false,
 	headingTag: 'h4',
 };
+
+Popover.defaultProps = defaultProps;

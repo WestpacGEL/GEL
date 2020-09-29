@@ -132,7 +132,9 @@ Table.propTypes = {
 	}),
 };
 
-Table.defaultProps = {
+export const defaultProps = {
 	bordered: false,
 	striped: false,
 };
+
+Table.defaultProps = defaultProps;

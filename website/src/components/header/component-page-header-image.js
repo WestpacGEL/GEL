@@ -2,22 +2,22 @@
 
 import { jsx, useMediaQuery } from '@westpac/core';
 import React from 'react';
-import { WbcBackgroundRightSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
+import { WbcBackgroundSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
 
 const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 	const mq = useMediaQuery();
 
-	const WestpacImage = (props) => (
+	const WBCImage = (props) => (
 		<div
 			css={mq({
-				top: [null, null, 0],
+				top: 0,
 				bottom: 0,
 				right: 0,
-				width: [268, null, 'auto'],
+				width: 'auto',
 			})}
 			{...props}
 		>
-			<WbcBackgroundRightSvg
+			<WbcBackgroundSvg
 				css={{
 					display: 'block',
 					width: 'auto',
@@ -45,8 +45,7 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 			/>
 		</div>
 	);
-
-	const BankSaImage = (props) => (
+	const BankSAImage = (props) => (
 		<div
 			css={mq({
 				bottom: 0,
@@ -66,10 +65,10 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 	);
 
 	const BRAND_HEADERS = {
-		WBC: WestpacImage,
+		WBC: WBCImage,
 		WBG: null,
 		STG: StGeorgeImage,
-		BSA: BankSaImage,
+		BSA: BankSAImage,
 		BOM: null,
 		BTFG: null,
 	};

@@ -211,7 +211,10 @@ ButtonDropdown.propTypes = {
 	}),
 };
 
-ButtonDropdown.defaultProps = {
+export const defaultProps = {
 	open: false,
 	dropdownSize: 'medium',
+	block: false,
 };
+
+ButtonDropdown.defaultProps = defaultProps;

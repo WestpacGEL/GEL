@@ -57,12 +57,7 @@ export const Select = ({
 	}
 
 	return (
-		<Select
-			{...rest}
-			state={state}
-			{...selectAttributes(state)}
-			css={{ '&&': selectStyles(state) }}
-		>
+		<Select {...rest} state={state} {...selectAttributes(state)} css={selectStyles(state)}>
 			{allChildren}
 		</Select>
 	);
@@ -123,8 +118,10 @@ Select.propTypes = {
 	}),
 };
 
-Select.defaultProps = {
+export const defaultProps = {
 	size: 'medium',
 	inline: false,
 	invalid: false,
 };
+
+Select.defaultProps = defaultProps;

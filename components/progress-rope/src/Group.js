@@ -117,7 +117,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 					onClick={handleGroupClick}
 					state={state}
 					{...groupButtonAttributes(state)}
-					css={{ '&&': groupButtonStyles(state) }}
+					css={groupButtonStyles(state)}
 				>
 					{text}
 				</GroupButton>

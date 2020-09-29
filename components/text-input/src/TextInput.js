@@ -46,7 +46,7 @@ export const TextInput = ({
 			{...rest}
 			state={state}
 			{...textInputAttributes(state)}
-			css={{ '&&': textInputStyles(state) }}
+			css={textInputStyles(state)}
 		/>
 	);
 };
@@ -90,9 +90,11 @@ TextInput.propTypes = {
 	}),
 };
 
-TextInput.defaultProps = {
+export const defaultProps = {
 	size: 'medium',
 	inline: false,
 	invalid: false,
 	type: 'text',
 };
+
+TextInput.defaultProps = defaultProps;
