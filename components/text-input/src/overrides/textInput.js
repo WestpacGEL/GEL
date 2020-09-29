@@ -3,7 +3,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { round, sizeMap } from '../_utils';
 
-const TextInput = ({ state, ...rest }) => <input {...rest} />;
+const TextInput = ({ state: _, ...rest }) => <input {...rest} />;
 
 const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();

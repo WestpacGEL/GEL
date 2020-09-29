@@ -7,7 +7,7 @@ import { defaultProps } from '../FormCheck';
 // Component
 // ==============================
 
-const Option = ({ state, ...rest }) => <div {...rest} />;
+const Option = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

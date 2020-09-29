@@ -10,7 +10,7 @@ import { nestedLabelStyles } from './label';
 // Component
 // ==============================
 
-const FormCheck = ({ state, ...rest }) => <div {...rest} />;
+const FormCheck = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

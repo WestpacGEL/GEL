@@ -9,13 +9,15 @@ import {
 	mergeWith,
 	css,
 } from '@westpac/core';
+import { Body } from '@westpac/body';
+
 import { defaultProps } from '../FormCheck';
 
 // ==============================
 // Component
 // ==============================
 
-const Label = ({ state, ...rest }) => <label {...rest} />;
+const Label = ({ state: _, ...rest }) => <Body tag="label" {...rest} />;
 
 // ==============================
 // Styles

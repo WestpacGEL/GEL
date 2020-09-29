@@ -57,12 +57,7 @@ export const Select = ({
 	}
 
 	return (
-		<Select
-			{...rest}
-			state={state}
-			{...selectAttributes(state)}
-			css={{ '&&': selectStyles(state) }}
-		>
+		<Select {...rest} state={state} {...selectAttributes(state)} css={selectStyles(state)}>
 			{allChildren}
 		</Select>
 	);

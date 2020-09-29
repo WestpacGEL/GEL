@@ -30,7 +30,7 @@ export const Body = (props) => {
 							margin: `0 0 ${SPACING(3)}`,
 						},
 						p: {
-							margin: `0 0 ${SPACING(2)} !important`,
+							margin: `0 0 ${SPACING(2)}`,
 						},
 					}),
 				},

@@ -6,7 +6,7 @@ import { jsx, useBrand } from '@westpac/core';
 // Component
 // ==============================
 
-const List = ({ state, ...rest }) => <ol {...rest} />;
+const List = ({ state: _, ...rest }) => <ol {...rest} />;
 
 // ==============================
 // Styles

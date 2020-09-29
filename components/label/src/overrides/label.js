@@ -1,8 +1,17 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import { defaultProps } from '../Label';
 
-const Label = ({ state, ...rest }) => <span {...rest} />;
+// ==============================
+// Component
+// ==============================
+
+const Label = ({ state: _, ...rest }) => <span {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const labelStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
@@ -56,7 +65,7 @@ const labelStyles = (_, { look }) => {
 	};
 
 	return {
-		label: getLabel('label', { look }),
+		label: getLabel('label'),
 		display: 'inline-block',
 		appearance: 'none',
 		borderRadius: '0.125rem',
@@ -81,10 +90,56 @@ const labelStyles = (_, { look }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+const blenderStyles = (_, { look }) => {
+	const props = { look };
+	const baseStyles = labelStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = labelStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'look':
+			label = `${label}-${look}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const labelAttributes = () => null;
+
+const blenderAttributes = (_, { look }) => ({
+	className: classNames({ [`__convert__label-${look}`]: look !== defaultProps.look }),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultLabel = {
 	component: Label,
 	styles: labelStyles,
 	attributes: labelAttributes,
+};
+
+export const blenderLabel = {
+	component: Label,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };
