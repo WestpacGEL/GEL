@@ -1,8 +1,24 @@
 /** @jsx jsx */
 
-import { jsx, asArray, useMediaQuery, getLabel } from '@westpac/core';
+import {
+	jsx,
+	asArray,
+	useMediaQuery,
+	getLabel,
+	getModifier,
+	styleReconciler,
+	classNames,
+} from '@westpac/core';
+import { defaultProps } from '../ButtonGroup';
+// ==============================
+// Component
+// ==============================
 
 const ButtonGroup = ({ state: _, ...rest }) => <div {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const buttonGroupStyles = (_, { block }) => {
 	const mq = useMediaQuery();
@@ -10,19 +26,58 @@ const buttonGroupStyles = (_, { block }) => {
 	const blockArr = asArray(block);
 
 	return mq({
-		label: getLabel('buttonGroup', { block }),
+		label: getLabel('buttonGroup'),
 		alignItems: 'center',
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		verticalAlign: 'middle',
 	})[0];
 };
 
-const buttonGroupAttributes = () => ({
+const blenderStyles = (_, { block }) => {
+	const props = { block };
+	const baseStyles = buttonGroupStyles(_, defaultProps);
+
+	const modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = buttonGroupStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
+const buttonGroupAttributes = () => null;
+
+const blenderAttributes = (_, { block }) => ({
+	className: classNames({ [`__convert__buttonGroup-block`]: block }),
 	'data-js': 'buttonGroup__version__',
 });
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultButtonGroup = {
 	component: ButtonGroup,
 	styles: buttonGroupStyles,
 	attributes: buttonGroupAttributes,
+};
+
+export const blenderButtonGroup = {
+	component: ButtonGroup,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };
