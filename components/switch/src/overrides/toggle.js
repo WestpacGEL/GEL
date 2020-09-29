@@ -1,11 +1,29 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import {
+	jsx,
+	css,
+	useBrand,
+	useMediaQuery,
+	getLabel,
+	getModifier,
+	styleReconciler,
+	mergeWith,
+} from '@westpac/core';
 import { sizeMap } from './_utils';
+import { defaultProps } from '../Switch';
+
+// ==============================
+// Component
+// ==============================
 
 const Toggle = ({ state: _, ...rest }) => <span {...rest} />;
 
-const toggleStyles = (_, { size, checked }) => {
+// ==============================
+// Styles
+// ==============================
+
+const toggleStyles = (_, { size }) => {
 	const mq = useMediaQuery();
 	const { COLORS, PACKS } = useBrand();
 	const sizing = sizeMap(size);
@@ -13,11 +31,12 @@ const toggleStyles = (_, { size, checked }) => {
 	const borderWidthArr = sizeArr.map((w) => w && `${parseFloat(w) / 2}rem`);
 
 	return mq({
+		label: getLabel('switch-toggle'),
 		display: 'block',
 		position: 'relative',
-		border: `1px solid ${checked ? COLORS.hero : COLORS.borderDark}`,
+		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: sizing.borderRadius,
-		backgroundColor: checked ? COLORS.hero : '#fff',
+		backgroundColor: '#fff',
 		height: sizing.height,
 		width: sizing.width,
 		overflow: 'hidden',
@@ -36,8 +55,7 @@ const toggleStyles = (_, { size, checked }) => {
 			height: sizeArr,
 			width: sizeArr,
 			display: 'block',
-			left: checked ? '100%' : 0,
-			transform: checked ? 'translateX(-100%)' : null,
+			left: 0,
 			top: 0,
 			borderRadius: '50%',
 			backgroundColor: '#fff',
@@ -45,15 +63,24 @@ const toggleStyles = (_, { size, checked }) => {
 			transition: 'all .3s ease',
 		},
 
-		// a11y: high contrast mode 'on' fill
-		'::before': {
-			display: !checked && 'none',
-			left: 0,
-			right: 0,
-			top: 0,
-			bottom: 0,
-			border: 'solid transparent',
-			borderWidth: borderWidthArr,
+		'input:checked ~ &': {
+			border: `1px solid ${COLORS.hero}`,
+			backgroundColor: COLORS.hero,
+
+			'::after': {
+				left: '100%',
+				transform: 'translateX(-100%)',
+			},
+
+			// a11y: high contrast mode 'on' fill
+			'::before': {
+				left: 0,
+				right: 0,
+				top: 0,
+				bottom: 0,
+				border: 'solid transparent',
+				borderWidth: borderWidthArr,
+			},
 		},
 
 		'body:not(.isMouseMode) input:focus ~ &': {
@@ -62,10 +89,58 @@ const toggleStyles = (_, { size, checked }) => {
 	})[0];
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_) => toggleStyles(_, defaultProps);
+
+export const nestedToggleStyles = ({ size }) => {
+	const props = { size };
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return {};
+
+	const baseStyles = toggleStyles(null, defaultProps);
+
+	const modifierStyles = toggleStyles(null, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	// have to remove any 'input' dependent styles from being nested within .switch-toggle otherwise it doesnt work
+	const formattedStyles = Object.entries(reconciledStyles).reduce((styles, [key, value]) => {
+		if (key.startsWith('input')) {
+			return { ...styles, [key]: value };
+		} else {
+			return mergeWith(styles, { [`.__convert__${baseStyles.label}`]: { [key]: value } });
+		}
+	}, {});
+
+	// Need & to resolve as immediate parent instead of all parents
+	const resolvedStyles = css(formattedStyles).styles.replace(
+		'&',
+		`.__convert__${baseStyles.label}`
+	);
+
+	return resolvedStyles;
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const toggleAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultToggle = {
 	component: Toggle,
 	styles: toggleStyles,
+	attributes: toggleAttributes,
+};
+
+export const blenderToggle = {
+	component: Toggle,
+	styles: blenderStyles,
 	attributes: toggleAttributes,
 };
