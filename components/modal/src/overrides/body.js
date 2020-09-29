@@ -9,6 +9,21 @@ import { Body } from '@westpac/body';
 
 const ModalBody = ({ state: _, ...rest }) => <Body {...rest} />;
 
+const BlenderBody = (props) => (
+	<ModalBody
+		overrides={{
+			Body: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+
 // ==============================
 // Styles
 // ==============================
@@ -32,6 +47,12 @@ const bodyAttributes = () => null;
 
 export const defaultBody = {
 	component: ModalBody,
+	styles: bodyStyles,
+	attributes: bodyAttributes,
+};
+
+export const blenderBody = {
+	component: BlenderBody,
 	styles: bodyStyles,
 	attributes: bodyAttributes,
 };
