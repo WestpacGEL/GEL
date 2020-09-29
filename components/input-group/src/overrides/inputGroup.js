@@ -2,7 +2,7 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const InputGroup = ({ state, ...rest }) => <div {...rest} />;
+const InputGroup = ({ state: _, ...rest }) => <div {...rest} />;
 
 const inputGroupStyles = () => ({
 	label: getLabel('inputGroup'),

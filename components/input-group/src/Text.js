@@ -40,7 +40,7 @@ export const Text = ({ instanceId, position, size, data, overrides, ...rest }) =
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Text {...rest} state={state} {...textAttributes(state)} css={{ '&&': textStyles(state) }}>
+		<Text {...rest} state={state} {...textAttributes(state)} css={textStyles(state)}>
 			{data}
 		</Text>
 	);

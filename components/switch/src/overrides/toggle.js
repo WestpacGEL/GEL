@@ -17,7 +17,7 @@ import { defaultProps } from '../Switch';
 // Component
 // ==============================
 
-const Toggle = ({ state, ...rest }) => <span {...rest} />;
+const Toggle = ({ state: _, ...rest }) => <span {...rest} />;
 
 // ==============================
 // Styles

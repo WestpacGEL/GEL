@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 
-const Svg = ({ state, ...rest }) => <svg {...rest} />;
+const Svg = ({ state: _, ...rest }) => <svg {...rest} />;
 
 const svgStyles = () => ({
 	width: '100%',

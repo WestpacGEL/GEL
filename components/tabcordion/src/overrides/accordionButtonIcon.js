@@ -3,9 +3,9 @@
 import { jsx, useBrand } from '@westpac/core';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 
-const AccordionButtonIcon = ({ state, ...rest }) => {
+const AccordionButtonIcon = ({ state: { hidden }, ...rest }) => {
 	const { COLORS } = useBrand();
-	const Icon = state.hidden ? ExpandMoreIcon : ExpandLessIcon;
+	const Icon = hidden ? ExpandMoreIcon : ExpandLessIcon;
 
 	return <Icon color={COLORS.muted} size="small" assistiveText={null} {...rest} />;
 };

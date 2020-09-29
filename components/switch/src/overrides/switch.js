@@ -17,7 +17,7 @@ import { nestedLabelStyles } from './label';
 // Component
 // ==============================
 
-const Switch = ({ state, ...rest }) => <label {...rest} />;
+const Switch = ({ state: _, ...rest }) => <label {...rest} />;
 
 // ==============================
 // Styles
