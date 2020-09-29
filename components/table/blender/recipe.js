@@ -33,7 +33,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<Table>
 				<Caption>Table caption</Caption>
 				<Thead>
@@ -210,20 +210,10 @@ export function Docs({ brand }) {
 		Table: {
 			component: blenderTable.component,
 			attributes: blenderTable.attributes,
-			// styles: blenderTable.styles,
 		},
 		Td: {
 			attributes: blenderTd.attributes,
 		},
-		// Tfoot: {
-		// 	styles: blenderTfoot.styles,
-		// },
-		// Th: {
-		// 	styles: blenderTh.styles,
-		// },
-		// Thead: {
-		// 	styles: blenderThead.styles,
-		// },
 		Tr: {
 			attributes: blenderTr.attributes,
 		},
@@ -232,7 +222,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A table',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Table>
 						<Caption>Table caption</Caption>
 						<Thead>
@@ -281,7 +271,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A striped table',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Table striped>
 						<Caption>Table caption</Caption>
 						<Thead>
@@ -330,7 +320,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A bordered table',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Table bordered>
 						<Caption>Table caption</Caption>
 						<Thead>
@@ -379,7 +369,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A bordered and striped table',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Table bordered striped>
 						<Caption>Table caption</Caption>
 						<Thead>
@@ -428,7 +418,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A table with highlights',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Table>
 						<Caption>
 							Table caption this table width is: <em>(100%)</em>
@@ -497,7 +487,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A bordered table with highlights',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Table bordered>
 						<Caption>
 							Table caption this table width is: <em>(100%)</em>
@@ -566,7 +556,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A bordered and striped table with highlights',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Table bordered striped>
 						<Caption>
 							Table caption this table width is: <em>(100%)</em>
