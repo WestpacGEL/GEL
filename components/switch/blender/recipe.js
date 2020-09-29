@@ -21,7 +21,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<Switch name="text" label="example" />
 			<Switch name="text" label="example" size="small" />
 			<Switch name="text" label="example" size="large" />
@@ -44,7 +44,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A default switch',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Switch name="example-default" label="example" />
 				</GEL>
 			),
@@ -52,7 +52,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A checked switch',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Switch name="example-checked" label="example" checked />
 				</GEL>
 			),
@@ -60,7 +60,7 @@ export function Docs({ brand }) {
 		...['small', 'medium', 'large', 'xlarge'].map((size) => ({
 			heading: `A ${size} switch`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Switch name={`example-${size}`} size={size} label={`${size} switch`} />
 				</GEL>
 			),
@@ -68,7 +68,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A block switch',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Switch name="example-block" label="example" block />
 				</GEL>
 			),
@@ -76,7 +76,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A disabled switch',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Switch name="example-disabled" label="example" disabled />
 				</GEL>
 			),
@@ -84,7 +84,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A block disabled switch',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Switch name="example-block-disabled" label="example" block disabled />
 				</GEL>
 			),
@@ -92,7 +92,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A block checked switch',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Switch name="example-block-checked" label="example" block checked />
 				</GEL>
 			),
@@ -100,7 +100,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A disabled checked switch',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Switch name="example-disabled-checked" label="example" disabled checked />
 				</GEL>
 			),
@@ -108,7 +108,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A checked block disabled switch',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Switch name="example-block-disabled-switch" label="example" checked block disabled />
 				</GEL>
 			),
