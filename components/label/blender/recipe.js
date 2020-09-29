@@ -15,7 +15,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			{looks.map((look) => (
 				<Label key={look} look={look} value="Text" />
 			))}
@@ -35,7 +35,7 @@ export function Docs({ brand }) {
 		...looks.map((look) => ({
 			heading: `${look === 'info' ? 'An' : 'A'} ${look} label`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Label look={look} value={`Your ${look} label text`} />
 				</GEL>
 			),
