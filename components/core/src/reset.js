@@ -2,15 +2,17 @@
 
 import { jsx, css } from '@emotion/core';
 
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Note: The following Normalize styles were not included, they would apply at a document level (outside of our GEL wrapper)...
+html {
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+}
+body {
+	margin: 0;
+} 
+*/
 export const reset = css`
-	/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-	html {
-		line-height: 1.15;
-		-webkit-text-size-adjust: 100%;
-	}
-	body {
-		margin: 0;
-	}
 	main {
 		display: block;
 	}
@@ -82,23 +84,23 @@ export const reset = css`
 	select {
 		text-transform: none;
 	}
+	button,
 	[type='button'],
 	[type='reset'],
-	[type='submit'],
-	button {
+	[type='submit'] {
 		-webkit-appearance: button;
 	}
+	button::-moz-focus-inner,
 	[type='button']::-moz-focus-inner,
 	[type='reset']::-moz-focus-inner,
-	[type='submit']::-moz-focus-inner,
-	button::-moz-focus-inner {
+	[type='submit']::-moz-focus-inner {
 		border-style: none;
 		padding: 0;
 	}
+	button:-moz-focusring,
 	[type='button']:-moz-focusring,
 	[type='reset']:-moz-focusring,
-	[type='submit']:-moz-focusring,
-	button:-moz-focusring {
+	[type='submit']:-moz-focusring {
 		outline: 1px dotted ButtonText;
 	}
 	fieldset {

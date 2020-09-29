@@ -1,14 +1,15 @@
 /** @jsx jsx */
 import React, { Fragment, useEffect, useState, useRef } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Heading } from '@westpac/heading';
+import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
+import { VisuallyHidden } from '@westpac/a11y';
 import HeaderImage from './component-page-header-image';
 
 import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../providers/pageContext';
-import { brandHeaderStyling, gridlyIconColors } from '../_utils';
+import { brandHeaderStyling } from '../_utils';
 import throttle from 'lodash.throttle';
 
 const MenuButton = () => {
@@ -39,7 +40,6 @@ const MenuButton = () => {
 };
 
 const GridIndicator = () => {
-	const { BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const { showGrid, setShowGrid } = usePageContext();
 
@@ -57,8 +57,7 @@ const GridIndicator = () => {
 				fontWeight: 'bold',
 			}}
 		>
-			<span css={mq({ display: ['inline-block', 'none'] })}>XS</span>
-			<span css={mq({ display: ['none', 'inline-block', 'none'] })}>XSL</span>
+			<VisuallyHidden>Breakpoint:</VisuallyHidden>
 			<span css={mq({ display: ['none', null, 'inline-block', 'none'] })}>SM</span>
 			<span css={mq({ display: ['none', null, null, 'inline-block', 'none'] })}>MD</span>
 			<span css={mq({ display: ['none', null, null, null, 'inline-block'] })}>LG</span>
@@ -66,7 +65,8 @@ const GridIndicator = () => {
 				look="link"
 				size="xlarge"
 				onClick={() => setShowGrid(!showGrid)}
-				aria-pressed={showGrid}
+				aria-hidden="true"
+				css={mq({ display: ['none', null, 'inline-block'] })}
 				overrides={{
 					Button: {
 						styles: (styles) => ({
@@ -86,7 +86,7 @@ const GridIndicator = () => {
 							css={{
 								height: '100%',
 								width: 4,
-								backgroundColor: gridlyIconColors[BRAND],
+								backgroundColor: 'rgba(255, 255, 255, 0.3)',
 
 								'& + &': {
 									marginLeft: 2,
@@ -100,7 +100,17 @@ const GridIndicator = () => {
 	);
 };
 
-const PageHeader = ({ name, version }) => {
+const PageHeaderHeading = ({ hasScrolledLarge, ...rest }) => {
+	const { BRAND } = useBrand();
+
+	return BRAND === 'WBC' ? (
+		<BrandHeading tag="h1" size={[7, null, !hasScrolledLarge ? 2 : null]} uppercase {...rest} />
+	) : (
+		<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]} {...rest} />
+	);
+};
+
+const PageHeader = ({ name }) => {
 	const { COLORS, BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const [hasScroll, setHasScroll] = useState(false);
@@ -150,9 +160,12 @@ const PageHeader = ({ name, version }) => {
 				<MenuButton />
 				<div
 					css={mq({
+						display: ['flex', null],
+						alignItems: ['center', null],
 						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
 						marginLeft: ['3.75rem', null, !hasScrolledLarge && '2.25rem', null, '2.25rem'],
-						marginBottom: ['1.25rem', null, !hasScrolledLarge && '3.375rem'],
+						marginBottom: [null, null, !hasScrolledLarge && '2.875rem'],
+						height: [66, null],
 						transition: [
 							null,
 							null,
@@ -161,32 +174,7 @@ const PageHeader = ({ name, version }) => {
 						willChange: 'opacity',
 					})}
 				>
-					<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
-						{name}
-						{version && (
-							<span
-								css={mq({
-									fontSize: '1rem',
-									fontWeight: 'normal',
-									marginTop: !hasScrolledLarge && '0.75rem',
-									marginLeft: ['0.375rem', null, !hasScrolledLarge && 0],
-									display: [null, null, !hasScrolledLarge && 'block'],
-								})}
-							>
-								<span
-									css={mq({
-										textTransform: ['lowercase', null, !hasScrolledLarge && 'capitalize'],
-									})}
-								>
-									V
-								</span>
-								<span css={mq({ display: ['none', null, !hasScrolledLarge && 'inline'] })}>
-									ersion{' '}
-								</span>
-								{version}
-							</span>
-						)}
-					</Heading>
+					<PageHeaderHeading hasScrolledLarge={hasScrolledLarge}>{name}</PageHeaderHeading>
 				</div>
 			</div>
 			<GridIndicator />

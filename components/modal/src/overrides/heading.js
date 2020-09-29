@@ -8,7 +8,7 @@ import { forwardRef } from 'react';
 // Component
 // ==============================
 
-const ModalHeading = forwardRef(({ state, ...rest }, ref) => (
+const ModalHeading = forwardRef(({ state: _, ...rest }, ref) => (
 	<Heading ref={ref} tag="h1" size={8} {...rest} />
 ));
 

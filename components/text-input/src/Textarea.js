@@ -42,12 +42,7 @@ export const Textarea = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Textarea
-			{...rest}
-			state={state}
-			{...textareaAttributes(state)}
-			css={{ '&&': textareaStyles(state) }}
-		/>
+		<Textarea {...rest} state={state} {...textareaAttributes(state)} css={textareaStyles(state)} />
 	);
 };
 
@@ -90,8 +85,10 @@ Textarea.propTypes = {
 	}),
 };
 
-Textarea.defaultProps = {
+export const defaultProps = {
 	size: 'medium',
 	inline: false,
 	invalid: false,
 };
+
+Textarea.defaultProps = defaultProps;

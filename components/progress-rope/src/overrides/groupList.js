@@ -6,7 +6,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const GroupList = ({ state, ...rest }) => <ol {...rest} />;
+const GroupList = ({ state: _, ...rest }) => <ol {...rest} />;
 
 // ==============================
 // Styles

@@ -4,7 +4,7 @@ import { GEL, jsx } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { InputGroup, Before, After } from '@westpac/input-group';
 
-const Text = ({ data, overrides, ...rest }) => (
+const TextOverride = ({ data, state: _, ...rest }) => (
 	<span {...rest}>
 		<HouseIcon size="small" /> {data}
 	</span>
@@ -20,7 +20,7 @@ function Example({ brand }) {
 			}),
 		},
 		Text: {
-			component: Text,
+			component: TextOverride,
 		},
 		TextInput: {
 			styles: (styles) => ({

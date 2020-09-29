@@ -6,7 +6,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Header = ({ state, ...rest }) => <div {...rest} />;
+const Header = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

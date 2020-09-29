@@ -8,7 +8,7 @@ import { CloseIcon } from '@westpac/icon';
 // Component
 // ==============================
 
-const CloseBtn = ({ state, ...rest }) => (
+const CloseBtn = ({ state: _, ...rest }) => (
 	<Button iconAfter={CloseIcon} look="link" size="medium" assistiveText="Close modal" {...rest} />
 );
 

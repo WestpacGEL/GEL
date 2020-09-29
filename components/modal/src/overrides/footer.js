@@ -6,7 +6,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Footer = ({ state, ...rest }) => <div {...rest} />;
+const Footer = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

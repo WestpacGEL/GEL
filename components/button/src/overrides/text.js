@@ -6,7 +6,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const Text = ({ state, ...rest }) => <span {...rest} />;
+const Text = ({ state: _, ...rest }) => <span {...rest} />;
 
 // ==============================
 // Styles

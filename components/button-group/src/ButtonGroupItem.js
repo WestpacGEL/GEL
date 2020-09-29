@@ -111,4 +111,8 @@ ButtonGroupItem.propTypes = {
 	}),
 };
 
-ButtonGroupItem.defaultProps = {};
+export const defaultProps = {
+	checked: false,
+};
+
+ButtonGroupItem.defaultProps = defaultProps;

@@ -98,14 +98,6 @@ export const brandIconHighlightColors = {
 	BTFG: () => '#00afd7',
 };
 
-export const gridlyIconColors = {
-	WBC: '#b6000b',
-	WBG: '#808990',
-	STG: '#a1d263',
-	BSA: 'rgba(255, 255, 255, 0.3)',
-	BOM: 'rgba(255, 255, 255, 0.3)',
-	BTFG: '#669ec3',
-};
 export const blocksGridStyle = {
 	maxWidth: '60rem',
 	margin: '0 auto',
