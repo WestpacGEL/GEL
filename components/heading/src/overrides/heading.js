@@ -1,12 +1,12 @@
 /** @jsx jsx */
 
-import { 
-	jsx, 
-	useBrand, 
-	useMediaQuery, 
-	asArray, 
-	getLabel, 
-	classNames, 
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	asArray,
+	getLabel,
+	classNames,
 	styleReconciler,
 } from '@westpac/core';
 import { forwardRef } from 'react';
@@ -41,7 +41,7 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 // Styles
 // ==============================
 
-const headingStyles = (_, { size, uppercase}) => {
+const headingStyles = (_, { size, uppercase }) => {
 	const { PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
