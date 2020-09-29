@@ -13,7 +13,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<Well>Text</Well>
 		</GEL>
 	);
@@ -31,7 +31,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A well',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Well>Text</Well>
 				</GEL>
 			),
@@ -39,7 +39,7 @@ export function Docs({ brand }) {
 		{
 			heading: "Nested well's",
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Well>
 						Text<Well>Nested</Well>
 					</Well>
