@@ -1,8 +1,22 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, useBrand } from '@westpac/core';
+import {
+	jsx,
+	useMediaQuery,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+} from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 import { forwardRef } from 'react';
+
+import { defaultProps } from '../Modal';
+
+// ==============================
+// Component
+// ==============================
 
 const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 	const { SPACING } = useBrand();
@@ -36,10 +50,17 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 	);
 });
 
+const BlenderModal = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
+
+// ==============================
+// Styles
+// ==============================
+
 const modalStyles = (_, { size }) => {
 	const mq = useMediaQuery();
 
 	return mq({
+		label: getLabel('modal'),
 		position: 'relative',
 		overflow: 'auto',
 		maxHeight: '85%',
@@ -56,10 +77,58 @@ const modalStyles = (_, { size }) => {
 	})[0];
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { size }) => {
+	const props = { size };
+	const baseStyles = modalStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = modalStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'size':
+			label = `${label}-${size}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const modalAttributes = () => ({ role: 'dialog', 'aria-modal': 'true' });
+
+const blenderAttributes = (_, { size }) => ({
+	...modalAttributes(),
+	className: classNames({ [`__convert__modal-${size}`]: size !== defaultProps.size }),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultModal = {
 	component: Modal,
 	styles: modalStyles,
 	attributes: modalAttributes,
+};
+
+export const blenderModal = {
+	component: BlenderModal,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };

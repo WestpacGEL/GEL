@@ -1,7 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
+
+// ==============================
+// Component
+// ==============================
 
 const Backdrop = ({ state: { open }, ...rest }) => {
 	const backdropTransition = useTransition(open, null, {
@@ -23,8 +27,15 @@ const Backdrop = ({ state: { open }, ...rest }) => {
 	);
 };
 
+const BlenderBackdrop = (props) => <div {...props} />;
+
+// ==============================
+// Styles
+// ==============================
+
 const backdropStyles = () => {
 	return {
+		label: getLabel('modal-backdrop'),
 		zIndex: '1001',
 		position: 'fixed',
 		backgroundColor: 'rgba(0,0,0,0.5)',
@@ -38,10 +49,28 @@ const backdropStyles = () => {
 	};
 };
 
+const blenderStyles = (_, { open }) => {
+	// need to make opacity 0 for base and opacity 1 when open
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const backdropAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultBackdrop = {
 	component: Backdrop,
+	styles: backdropStyles,
+	attributes: backdropAttributes,
+};
+
+export const blenderBackdrop = {
+	component: BlenderBackdrop,
 	styles: backdropStyles,
 	attributes: backdropAttributes,
 };
