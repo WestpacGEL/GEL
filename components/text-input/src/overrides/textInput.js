@@ -1,9 +1,26 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+} from '@westpac/core';
+import { defaultProps } from '../TextInput';
 import { round, sizeMap } from '../_utils';
 
+// ==============================
+// Component
+// ==============================
+
 const TextInput = ({ state: _, ...rest }) => <input {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
@@ -19,6 +36,7 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	)}`;
 
 	return mq({
+		label: getLabel('textInput'),
 		boxSizing: 'border-box',
 		display: inline ? ['block', 'inline-block'] : 'block',
 		width: inline ? ['100%', 'auto'] : '100%',
@@ -68,10 +86,65 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	})[0];
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { size, width, inline, invalid, ariaInvalid }) => {
+	const props = { size, width, inline, invalid, ariaInvalid };
+	const baseStyles = textInputStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = textInputStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'size':
+			label = `${label}-${size}`;
+			break;
+		case 'width':
+			label = `${label}-width-${width}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const textInputAttributes = () => null;
+
+const blenderAttributes = (_, { size, width, inline, invalid }) => ({
+	className: classNames({
+		[`__convert__textInput-${size}`]: size !== defaultProps.size,
+		[`__convert__textInput-width-${width}`]: width,
+		[`__convert__textInput-inline`]: inline,
+		[`__convert__textInput-invalid`]: invalid,
+	}),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultTextInput = {
 	component: TextInput,
 	styles: textInputStyles,
 	attributes: textInputAttributes,
+};
+
+export const blenderTextInput = {
+	component: TextInput,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };

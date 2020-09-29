@@ -1,8 +1,17 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx, getLabel, getModifier, styleReconciler } from '@westpac/core';
+import { defaultProps } from '../FormCheck';
+
+// ==============================
+// Component
+// ==============================
 
 const Option = ({ state: _, ...rest }) => <div {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const optionStyles = (_, { size, inline }) => {
 	const sizeMap = {
@@ -21,7 +30,7 @@ const optionStyles = (_, { size, inline }) => {
 	};
 
 	return {
-		label: getLabel('formCheck-option', { size, inline }),
+		label: getLabel('formCheck-option'),
 		position: 'relative',
 		display: inline ? 'inline-block' : 'block',
 		verticalAlign: inline && 'top',
@@ -32,10 +41,40 @@ const optionStyles = (_, { size, inline }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+const blenderStyles = () => optionStyles(null, defaultProps);
+
+export const nestedOptionStyles = ({ size, inline }) => {
+	const props = { size, inline };
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return {};
+
+	const baseStyles = optionStyles(null, defaultProps);
+	const modifierStyles = optionStyles(null, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	return { [`.__convert__${baseStyles.label}`]: reconciledStyles };
+};
+// ==============================
+// Attributes
+// ==============================
+
 const optionAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultOption = {
 	component: Option,
 	styles: optionStyles,
+	attributes: optionAttributes,
+};
+
+export const blenderOption = {
+	component: Option,
+	styles: blenderStyles,
 	attributes: optionAttributes,
 };
