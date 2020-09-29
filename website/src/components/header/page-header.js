@@ -4,11 +4,12 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
+import { VisuallyHidden } from '@westpac/a11y';
 import HeaderImage from './component-page-header-image';
 
 import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../providers/pageContext';
-import { brandHeaderStyling, gridlyIconColors } from '../_utils';
+import { brandHeaderStyling } from '../_utils';
 import throttle from 'lodash.throttle';
 
 const MenuButton = () => {
@@ -39,7 +40,6 @@ const MenuButton = () => {
 };
 
 const GridIndicator = () => {
-	const { BRAND } = useBrand();
 	const mq = useMediaQuery();
 	const { showGrid, setShowGrid } = usePageContext();
 
@@ -57,8 +57,7 @@ const GridIndicator = () => {
 				fontWeight: 'bold',
 			}}
 		>
-			<span css={mq({ display: ['inline-block', 'none'] })}>XS</span>
-			<span css={mq({ display: ['none', 'inline-block', 'none'] })}>XSL</span>
+			<VisuallyHidden>Breakpoint:</VisuallyHidden>
 			<span css={mq({ display: ['none', null, 'inline-block', 'none'] })}>SM</span>
 			<span css={mq({ display: ['none', null, null, 'inline-block', 'none'] })}>MD</span>
 			<span css={mq({ display: ['none', null, null, null, 'inline-block'] })}>LG</span>
@@ -66,7 +65,8 @@ const GridIndicator = () => {
 				look="link"
 				size="xlarge"
 				onClick={() => setShowGrid(!showGrid)}
-				aria-pressed={showGrid}
+				aria-hidden="true"
+				css={mq({ display: ['none', null, 'inline-block'] })}
 				overrides={{
 					Button: {
 						styles: (styles) => ({
