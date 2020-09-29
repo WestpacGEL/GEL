@@ -7,7 +7,7 @@ import { Body } from '@westpac/body';
 // Component
 // ==============================
 
-const PopoverBody = ({ state, ...rest }) => <Body {...rest} />;
+const PopoverBody = ({ state: _, ...rest }) => <Body {...rest} />;
 
 const BlenderPopoverBody = (props) => (
 	<PopoverBody

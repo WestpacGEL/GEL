@@ -8,7 +8,7 @@ import { forwardRef } from 'react';
 // Component
 // ==============================
 
-const Trigger = forwardRef(({ state, ...rest }, ref) => <Button ref={ref} {...rest} />);
+const Trigger = forwardRef(({ state: _, ...rest }, ref) => <Button ref={ref} {...rest} />);
 
 // ==============================
 // Styles

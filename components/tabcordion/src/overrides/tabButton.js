@@ -3,7 +3,7 @@
 import { forwardRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
-const TabButton = forwardRef(({ state, ...rest }, ref) => {
+const TabButton = forwardRef(({ state: _, ...rest }, ref) => {
 	return <button type="button" ref={ref} {...rest} />;
 });
 

@@ -2,7 +2,7 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const SkipLink = ({ state, ...rest }) => <a {...rest} />;
+const SkipLink = ({ state: _, ...rest }) => <a {...rest} />;
 
 const skipLinkStyles = () => ({
 	label: getLabel('skipLink'),
@@ -14,7 +14,7 @@ const skipLinkStyles = () => ({
 	fontSize: '1.3125rem',
 	padding: '1em',
 	textAlign: 'center',
-	backgroundColor: '#fff !important',
+	backgroundColor: '#fff',
 	outlineOffset: '-2px !important', // override to be inside
 
 	'&:not(:focus)': {

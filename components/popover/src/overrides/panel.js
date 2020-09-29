@@ -8,7 +8,7 @@ import { defaultProps } from '../Popover';
 // Component
 // ==============================
 
-const Panel = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
+const Panel = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
 
 // ==============================
 // Styles

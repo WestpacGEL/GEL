@@ -1,8 +1,41 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	getModifier,
+	styleReconciler,
+	mergeWith,
+	css,
+} from '@westpac/core';
+import { Body } from '@westpac/body';
 
-const Label = ({ state, ...rest }) => <label {...rest} />;
+import { defaultProps } from '../FormCheck';
+
+// ==============================
+// Component
+// ==============================
+
+const Label = ({ state: _, ...rest }) => <Body tag="label" {...rest} />;
+
+const BlenderLabel = (props) => (
+	<Label
+		overrides={{
+			Body: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+// ==============================
+// Styles
+// ==============================
 
 const labelStyles = (_, { type, size }) => {
 	const { COLORS, PACKS } = useBrand();
@@ -52,7 +85,7 @@ const labelStyles = (_, { type, size }) => {
 	const checkboxStroke = sizeMap[size]['checkbox'].stroke;
 
 	return {
-		label: getLabel('formCheck-label', { type, size }),
+		label: getLabel('formCheck-label'),
 		display: 'inline-block',
 		paddingTop: sizeMap[size].paddingTop,
 		paddingBottom: sizeMap[size].paddingBottom,
@@ -119,10 +152,58 @@ const labelStyles = (_, { type, size }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = () => labelStyles(null, defaultProps);
+
+export const nestedLabelStyles = ({ type, size }) => {
+	const props = { type, size };
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return {};
+
+	const baseStyles = labelStyles(null, defaultProps);
+
+	const modifierStyles = labelStyles(null, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	// have to remove any 'input' dependent styles from being nested within .formCheck-label otherwise it doesnt work
+	const formattedStyles = Object.entries(reconciledStyles).reduce((styles, [key, value]) => {
+		if (key.startsWith('input')) {
+			return { ...styles, [key]: value };
+		} else {
+			return mergeWith(styles, { [`.__convert__${baseStyles.label}`]: { [key]: value } });
+		}
+	}, {});
+
+	// Need & to resolve as immediate parent instead of all parents
+	const resolvedStyles = css(formattedStyles).styles.replace(
+		'&',
+		`.__convert__${baseStyles.label}`
+	);
+
+	return resolvedStyles;
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const labelAttributes = (_, { optionId }) => ({ htmlFor: optionId });
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultLabel = {
 	component: Label,
 	styles: labelStyles,
+	attributes: labelAttributes,
+};
+
+export const blenderLabel = {
+	component: BlenderLabel,
+	styles: blenderStyles,
 	attributes: labelAttributes,
 };

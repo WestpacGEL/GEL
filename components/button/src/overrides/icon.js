@@ -6,7 +6,22 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const Icon = ({ state, icon: Icon, left, right, ...rest }) => <Icon {...rest} />;
+const Icon = ({ icon: Icon, left, right, state: _, ...rest }) => <Icon {...rest} />;
+
+const BlenderIcon = (props) => (
+	<Icon
+		overrides={{
+			Icon: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
 
 // ==============================
 // Styles
@@ -17,6 +32,7 @@ const iconStyles = (_, { left, right, dropdown, block, hasChildren }) => {
 
 	if (left) label = `button-icon-left`;
 	if (right) label = `button-icon-right`;
+	if (dropdown) label = `button-icon-dropdown`;
 
 	return {
 		label,
@@ -42,6 +58,12 @@ const iconAttributes = () => ({
 
 export const defaultIcon = {
 	component: Icon,
+	styles: iconStyles,
+	attributes: iconAttributes,
+};
+
+export const blenderIcon = {
+	component: BlenderIcon,
 	styles: iconStyles,
 	attributes: iconAttributes,
 };

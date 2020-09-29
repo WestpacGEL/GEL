@@ -6,7 +6,7 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Popover = ({ state, ...rest }) => <div {...rest} />;
+const Popover = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

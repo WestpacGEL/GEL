@@ -3,6 +3,10 @@
 	"version": "1.0.2",
 	"description": "Westpac GEL button-dropdown component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-dropdown",
+	"blender": {
+		"recipe": "blender/recipe.js",
+		"js": "blender/script.js"
+	},
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
