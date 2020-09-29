@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	asArray,
+	getLabel,
+	classNames,
+	styleReconciler,
+} from '@westpac/core';
 import { forwardRef } from 'react';
 
 // ==============================
@@ -33,7 +41,7 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 // Styles
 // ==============================
 
-const headingStyles = (_, { size }) => {
+const headingStyles = (_, { size, uppercase }) => {
 	const { PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
@@ -57,8 +65,9 @@ const headingStyles = (_, { size }) => {
 		label: getLabel('heading'),
 		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].fontFamily),
 		fontSize: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].fontSize),
-		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].lineHeight),
+		lineHeight: uppercase ? 1 : sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].lineHeight),
 		fontWeight: TYPE.bodyFont.headingWeight,
+		textTransform: uppercase && 'uppercase',
 		margin: 0,
 	})[0];
 };
@@ -67,9 +76,17 @@ const headingStyles = (_, { size }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { size }) => {
-	const styles = headingStyles(_, { size });
-	return { ...styles, label: `${styles.label}-size-${size}` };
+const blenderStyles = (_, { size, uppercase }) => {
+	if (!uppercase) {
+		const styles = headingStyles(_, { size });
+		return { ...styles, label: `${styles.label}-size-${size}` };
+	} else {
+		const baseStyles = headingStyles(_, { size });
+		const modifierStyles = headingStyles(_, { size, uppercase });
+		const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+		return { label: `${baseStyles.label}-uppercase`, ...reconciledStyles };
+	}
 };
 
 // ==============================
@@ -77,6 +94,12 @@ const blenderStyles = (_, { size }) => {
 // ==============================
 
 const headingAttributes = () => null;
+
+const blenderAttributes = (_, { size, uppercase }) => ({
+	className: classNames({
+		[`__convert__heading-size-${size}`]: uppercase,
+	}),
+});
 
 // ==============================
 // Exports
