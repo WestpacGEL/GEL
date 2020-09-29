@@ -14,14 +14,13 @@ export function AllStyles({ brand }) {
 			styles: blenderList.styles,
 			component: blenderList.component,
 		},
-		// Icon: {
-		// 	component: blenderIcon.component,
-		// },
+		Icon: {
+			component: blenderIcon.component,
+		},
 	};
-	const allCombinations = [];
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<List type="none">
 				<Item>List item</Item>
 			</List>
@@ -63,15 +62,15 @@ export function Docs({ brand }) {
 			component: blenderList.component,
 			attributes: blenderList.attributes,
 		},
-		// Icon: {
-		// 	component: blenderIcon.component,
-		// },
+		Icon: {
+			component: blenderIcon.component,
+		},
 	};
 	return [
 		{
 			heading: `A default bullet list`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<List type="bullet">
 						<Item>List item</Item>
 						<Item>
@@ -90,7 +89,7 @@ export function Docs({ brand }) {
 		{
 			heading: `A primary bullet list`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<List type="bullet" look="primary">
 						<Item>List item</Item>
 						<Item>
@@ -109,7 +108,7 @@ export function Docs({ brand }) {
 		{
 			heading: `A neutral bullet list`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<List type="bullet" look="neutral">
 						<Item>List item</Item>
 						<Item>
@@ -128,7 +127,7 @@ export function Docs({ brand }) {
 		{
 			heading: `An link list`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<List type="link">
 						<Item>
 							<a href="#">List item</a>
@@ -157,7 +156,7 @@ export function Docs({ brand }) {
 		{
 			heading: `An tick list`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<List type="tick">
 						<Item>List item</Item>
 						<Item>
@@ -176,7 +175,7 @@ export function Docs({ brand }) {
 		{
 			heading: `An icon list`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<List type="icon" icon={AndroidIcon}>
 						<Item>List item</Item>
 						<Item>
@@ -195,7 +194,7 @@ export function Docs({ brand }) {
 		{
 			heading: `An unstyled list`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<List type="unstyled">
 						<Item>List item</Item>
 						<Item>
@@ -214,7 +213,7 @@ export function Docs({ brand }) {
 		{
 			heading: `An ordered list`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<List type="ordered">
 						<Item>List item</Item>
 						<Item>
@@ -233,7 +232,7 @@ export function Docs({ brand }) {
 		{
 			heading: `An large list`,
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<List type="bullet" spacing="large">
 						<Item>List item</Item>
 						<Item>

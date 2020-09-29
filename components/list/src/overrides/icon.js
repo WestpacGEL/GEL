@@ -37,7 +37,7 @@ const BlenderIcon = (props) => (
 // ==============================
 
 const iconStyles = () => ({
-	label: getLabel('list-icon'),
+	label: getLabel('list-item-icon'),
 	position: 'absolute',
 	top: 0,
 	left: 0,
