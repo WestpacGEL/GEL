@@ -2,7 +2,7 @@
 
 import { jsx, getLabel } from '@westpac/core';
 
-const FormCheck = ({ state, ...rest }) => <div {...rest} />;
+const FormCheck = ({ state: _, ...rest }) => <div {...rest} />;
 
 const formCheckStyles = () => ({
 	label: getLabel('formCheck'),

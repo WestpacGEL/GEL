@@ -7,7 +7,7 @@ import { defaultProps } from '../ProgressBar';
 // Component
 // ==============================
 
-const Bar = ({ state, ...rest }) => <div {...rest} />;
+const Bar = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

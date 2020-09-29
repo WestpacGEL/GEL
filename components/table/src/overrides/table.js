@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-const Table = ({ state, ...rest }) => <Body tag="table" {...rest} />;
+const Table = ({ state: _, ...rest }) => <Body tag="table" {...rest} />;
 
 const tableStyles = (_, { striped }) => {
 	const { COLORS } = useBrand();

@@ -8,7 +8,7 @@ import { nestedStyles } from './header';
 // Component
 // ==============================
 
-const Panel = ({ state, ...rest }) => <div {...rest} />;
+const Panel = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

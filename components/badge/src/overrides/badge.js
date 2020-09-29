@@ -7,7 +7,7 @@ import { defaultProps } from '../Badge';
 // Component
 // ==============================
 
-const Badge = ({ state, ...rest }) => <span {...rest} />;
+const Badge = ({ state: _, ...rest }) => <span {...rest} />;
 
 // ==============================
 // Styles

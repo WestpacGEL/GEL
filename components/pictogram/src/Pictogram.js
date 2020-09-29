@@ -60,7 +60,7 @@ export const propTypes = {
 	/**
 	 *  The visual style of the pictogram
 	 */
-	type: PropTypes.oneOf(['colour-filled', 'colour', 'dark', 'light']).isRequired,
+	type: PropTypes.oneOf(['colour', 'dark', 'light']).isRequired,
 
 	/**
 	 * String to use as the `aria-label` for the pictogram. Set to an empty string if you

@@ -95,6 +95,10 @@ function Example({ brand }) {
 			</p>
 
 			<hr />
+			<h2>Uppercase</h2>
+			<BrandHeading size={1} uppercase>
+				Uppercase
+			</BrandHeading>
 
 			<h2>Invalid props</h2>
 			<BrandHeading size={0}>Heading size too small</BrandHeading>

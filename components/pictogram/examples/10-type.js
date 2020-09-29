@@ -5,7 +5,7 @@ import * as components from '@westpac/pictogram';
 import { Cell, Grid, Name } from './_util';
 
 const pictograms = Object.keys(components);
-const types = ['colour-filled', 'colour', 'dark', 'light'];
+const types = ['colour', 'dark', 'light'];
 
 function Example({ brand }) {
 	const { COLORS } = useBrand();

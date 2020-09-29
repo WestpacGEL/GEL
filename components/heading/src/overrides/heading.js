@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 
 // ==============================
@@ -54,13 +54,22 @@ const headingStyles = (_, { size }) => {
 	});
 
 	return mq({
-		label: `heading-size-${size}`,
+		label: getLabel('heading'),
 		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].fontFamily),
 		fontSize: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].fontSize),
 		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.bodyFont[s].lineHeight),
 		fontWeight: TYPE.bodyFont.headingWeight,
 		margin: 0,
 	})[0];
+};
+
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { size }) => {
+	const styles = headingStyles(_, { size });
+	return { ...styles, label: `${styles.label}-size-${size}` };
 };
 
 // ==============================
@@ -76,5 +85,11 @@ const headingAttributes = () => null;
 export const defaultHeading = {
 	component: Heading,
 	styles: headingStyles,
+	attributes: headingAttributes,
+};
+
+export const blenderHeading = {
+	component: Heading,
+	styles: blenderStyles,
 	attributes: headingAttributes,
 };

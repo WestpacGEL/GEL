@@ -9,7 +9,7 @@ import { getStyles } from './_utils';
 // Component
 // ==============================
 
-const Step = ({ state, ...rest }) => <li {...rest} />;
+const Step = ({ state: _, ...rest }) => <li {...rest} />;
 
 // ==============================
 // Styles

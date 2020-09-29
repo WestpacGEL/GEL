@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const Thead = ({ state, ...rest }) => <thead {...rest} />;
+const Thead = ({ state: _, ...rest }) => <thead {...rest} />;
 
 const theadStyles = (_, { bordered }) => {
 	const { COLORS, TYPE } = useBrand();

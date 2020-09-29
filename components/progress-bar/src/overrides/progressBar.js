@@ -9,7 +9,7 @@ import { nestedBarStyles } from './bar';
 // Component
 // ==============================
 
-export const ProgressBar = ({ state, ...rest }) => <div {...rest} />;
+export const ProgressBar = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

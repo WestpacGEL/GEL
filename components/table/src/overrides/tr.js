@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-export const Tr = ({ state, ...rest }) => <tr {...rest} />;
+export const Tr = ({ state: _, ...rest }) => <tr {...rest} />;
 
 export const trStyles = (_, { striped, highlighted }) => {
 	const { COLORS } = useBrand();
