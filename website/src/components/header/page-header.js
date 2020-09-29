@@ -86,7 +86,7 @@ const GridIndicator = () => {
 							css={{
 								height: '100%',
 								width: 4,
-								backgroundColor: gridlyIconColors[BRAND],
+								backgroundColor: 'rgba(255, 255, 255, 0.3)',
 
 								'& + &': {
 									marginLeft: 2,
