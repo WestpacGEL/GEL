@@ -1,12 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 const Svg = ({ state: _, ...rest }) => <svg {...rest} />;
 
 const svgStyles = () => ({
-	width: '100%',
-	height: '100%',
+	label: getLabel('symbol-svg'),
 });
 
 const svgAttributes = (_, { assistiveText, viewBoxWidth, viewBoxHeight }) => ({

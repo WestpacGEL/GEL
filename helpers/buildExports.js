@@ -23,13 +23,18 @@ function getSvgs(svgPath, component) {
 /**
  * Insert an array of component svgs into a js export file
  *
- * @param  {array}  svgs      - An array of component svgs
+ * @param  {object}  svgs     - An object of folder keys with svg component array values
  * @param  {string} indexPath - The path to the export file
- * @param  {string} component - The component name
  */
-function insertIndex(svgs, indexPath, component) {
+function insertIndex(svgs, indexPath) {
 	const index =
-		svgs.map((svg) => `export { ${svg} } from './${component}/${svg}';`).join('\n') + '\n';
+		Object.entries(svgs)
+			.map(([folder, components]) =>
+				components
+					.map((component) => `export { ${component} } from './${folder}/${component}';`)
+					.join('\n')
+			)
+			.join('\n') + '\n';
 
 	try {
 		fs.writeFileSync(path.normalize(`${process.cwd()}/${indexPath}`), index, { encoding: 'utf8' });
@@ -63,7 +68,7 @@ function writePkg(pkgPath, content) {
 /**
  * Insert an array of component svgs into the preconstruct entrypoint array of a package.json
  *
- * @param  {array}  svgs    - An array of component svgs
+ * @param  {object}  svgs    - An object of folder keys with svg component array values
  * @param  {string} pkgPath - The path to the package.json file
  */
 function insertPkg(svgs, pkgPath) {
@@ -74,31 +79,43 @@ function insertPkg(svgs, pkgPath) {
 		pkg.preconstruct = {};
 	}
 
-	pkg.preconstruct.entrypoints = ['.', ...svgs];
+	const svgList = Object.entries(svgs);
+	const entrypoints = [];
+	svgList.map(([folder, components]) => {
+		components.forEach((component) => {
+			entrypoints.push(svgList.length > 1 ? `${folder}/${component}` : component);
+		});
+	});
+
+	pkg.preconstruct.entrypoints = ['.', ...entrypoints];
 
 	writePkg(pkgPath, pkg);
-
 	console.info(chalk.green('✅ package.json file written successfully'));
 }
 
 /**
  * Fix the source key inside each svgs package.json file
  *
- * @param  {array} svgs  - An array of all component svgs
+ * @param  {object} svgs  - An object of folder keys with svg component array values
  */
-function fixSource(svgs, component) {
-	svgs.map((svg) => {
-		const pkgPath = path.normalize(`${process.cwd()}/${svg}/package.json`);
-		const pkg = require(pkgPath);
+function fixSource(svgs) {
+	const svgList = Object.entries(svgs);
+	svgList.map(([folder, components]) =>
+		components.map((component) => {
+			const pkgPath = path.normalize(
+				`${process.cwd()}/${svgList.length > 1 ? `${folder}/${component}` : component}/package.json`
+			);
+			const pkg = require(pkgPath);
 
-		if (!pkg.preconstruct) {
-			pkg.preconstruct = {};
-		}
+			if (!pkg.preconstruct) {
+				pkg.preconstruct = {};
+			}
 
-		pkg.preconstruct.source = `../src/${component}/${svg}`;
+			pkg.preconstruct.source = `${svgList.length > 1 ? '../..' : '..'}/src/${folder}/${component}`;
 
-		writePkg(pkgPath, pkg);
-	});
+			writePkg(pkgPath, pkg);
+		})
+	);
 
 	console.info(chalk.green('✅ "source" inside all package.json files written successfully'));
 }
@@ -106,18 +123,23 @@ function fixSource(svgs, component) {
 /**
  * Only run this with flags so we can test the functions above
  */
-const component = process.argv[3]; // icons or symbols
+const components = process.argv.slice(3); // icons, symbols or pictograms
 
 if (process.argv.includes('export')) {
-	cfonts.say(`Building ${component} exports`, {
+	cfonts.say(`Building svg exports`, {
 		font: 'chrome',
 		colors: ['red', 'green', 'white'],
 	});
 
-	const svgs = getSvgs(`./src/${component}/`, component);
-	insertIndex(svgs, 'src/index.js', component);
+	// Create an object containing all svgs
+	const svgs = {};
+	components.forEach((component) => {
+		svgs[component] = getSvgs(`./src/${component}/`, component);
+	});
+
+	insertIndex(svgs, 'src/index.js');
 	insertPkg(svgs, 'package.json');
-	fixSource(svgs, component);
+	fixSource(svgs);
 
 	console.info();
 }
