@@ -26,6 +26,9 @@ export function AllStyles({ brand }) {
 					Text
 				</Heading>
 			))}
+			<Heading size={1} uppercase>
+				Text
+			</Heading>
 
 			{brandHeadingSizes.map((size) => (
 				<BrandHeading key={size} size={size}>
@@ -68,7 +71,17 @@ export function Docs({ brand }) {
 			),
 		})),
 		{
-			heading: `An uppercase brand heading`,
+			heading: `An upper case heading`,
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<Heading size={1} uppercase>
+						Uppercase brand heading
+					</Heading>
+				</GEL>
+			),
+		},
+		{
+			heading: `An upper case brand heading`,
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<BrandHeading size={1} uppercase>
