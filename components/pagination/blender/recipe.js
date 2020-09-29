@@ -13,7 +13,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<Pagination current={1}>
 				<Page text="1" />
 				<Page text="2" />
@@ -39,7 +39,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A default pagination - Page 1',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Pagination current={0}>
 						<Page text="1" />
 						<Page text="2" />
@@ -51,7 +51,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A default pagination - Page 2',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Pagination current={1}>
 						<Page text="1" />
 						<Page text="2" />
@@ -63,7 +63,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A default pagination - Page 3',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Pagination current={2}>
 						<Page text="1" />
 						<Page text="2" />
