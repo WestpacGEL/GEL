@@ -13,7 +13,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 	const { BRAND } = useBrand();
 
 	const brandFontMap = {
-		WBC: [{ name: 'Chronicle Semibold', weight: 400 }],
+		WBC: [{ name: 'Westpac Bold', weight: 400 }],
 		STG: [{ name: 'Dragon Bold', weight: 400 }],
 		BOM: [
 			{ name: 'Brown Light', weight: 300 },
