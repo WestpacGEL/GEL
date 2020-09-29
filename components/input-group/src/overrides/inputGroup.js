@@ -6,7 +6,7 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const InputGroup = ({ state, ...rest }) => <div {...rest} />;
+const InputGroup = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

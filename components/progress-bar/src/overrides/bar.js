@@ -1,14 +1,23 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, getModifier, styleReconciler } from '@westpac/core';
+import { defaultProps } from '../ProgressBar';
 
-const Bar = ({ state, ...rest }) => <div {...rest} />;
+// ==============================
+// Component
+// ==============================
+
+const Bar = ({ state: _, ...rest }) => <div {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const barStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
-		label: getLabel('progressBar-bar', { look }),
+		label: getLabel('progressBar-bar'),
 		position: 'relative',
 		zIndex: 0,
 		float: 'left',
@@ -43,10 +52,42 @@ const barStyles = (_, { look }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_) => barStyles(_, defaultProps);
+
+export const nestedBarStyles = (props) => {
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return {};
+
+	const baseStyles = barStyles(null, defaultProps);
+	const modifierStyles = barStyles(null, props);
+
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	return { [`.__convert__${baseStyles.label}`]: reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const barAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultBar = {
 	component: Bar,
 	styles: barStyles,
+	attributes: barAttributes,
+};
+
+export const blenderBar = {
+	component: Bar,
+	styles: blenderStyles,
 	attributes: barAttributes,
 };

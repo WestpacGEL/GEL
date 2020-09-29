@@ -42,12 +42,7 @@ export const Textarea = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Textarea
-			{...rest}
-			state={state}
-			{...textareaAttributes(state)}
-			css={{ '&&': textareaStyles(state) }}
-		/>
+		<Textarea {...rest} state={state} {...textareaAttributes(state)} css={textareaStyles(state)} />
 	);
 };
 

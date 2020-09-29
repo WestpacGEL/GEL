@@ -16,7 +16,7 @@ import { defaultProps } from '../Textarea';
 // Component
 // ==============================
 
-const Textarea = ({ state, ...rest }) => <textarea {...rest} />;
+const Textarea = ({ state: _, ...rest }) => <textarea {...rest} />;
 
 // ==============================
 // Styles

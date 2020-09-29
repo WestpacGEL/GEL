@@ -221,10 +221,12 @@ ButtonGroup.propTypes = {
 	}),
 };
 
-ButtonGroup.defaultProps = {
+export const defaultProps = {
 	defaultValue: -1,
 	look: 'hero',
 	size: 'medium',
 	block: false,
 	disabled: false,
 };
+
+ButtonGroup.defaultProps = defaultProps;

@@ -9,14 +9,14 @@ import {
 	getModifier,
 	styleReconciler,
 } from '@westpac/core';
+import { defaultProps } from '../TextInput';
 import { round, sizeMap } from '../_utils';
 
-import { defaultProps } from '../TextInput';
 // ==============================
 // Component
 // ==============================
 
-const TextInput = ({ state, ...rest }) => <input {...rest} />;
+const TextInput = ({ state: _, ...rest }) => <input {...rest} />;
 
 // ==============================
 // Styles

@@ -2,7 +2,7 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const Caption = ({ state, ...rest }) => <caption {...rest} />;
+const Caption = ({ state: _, ...rest }) => <caption {...rest} />;
 
 const captionStyles = () => {
 	const { TYPE } = useBrand();

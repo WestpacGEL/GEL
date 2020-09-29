@@ -8,7 +8,7 @@ import { defaultProps } from '../Text';
 // Component
 // ==============================
 
-const Text = ({ state, ...rest }) => <span {...rest} />;
+const Text = ({ state: _, ...rest }) => <span {...rest} />;
 
 // ==============================
 // Styles

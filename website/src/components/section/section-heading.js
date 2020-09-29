@@ -20,9 +20,7 @@ export const SectionHeading = (props) => {
 					id="related-information"
 					tabIndex="-1"
 					css={mq({
-						'&&': {
-							marginBottom: [SPACING(6), null, SPACING(10)],
-						},
+						marginBottom: [SPACING(6), null, SPACING(10)],
 					})}
 				>
 					Related information
