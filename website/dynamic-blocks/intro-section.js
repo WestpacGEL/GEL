@@ -139,7 +139,6 @@ const PackageInfoTable = ({ item }) => {
 	return (
 		<table
 			css={mq({
-				marginTop: ['1.875rem', null, '2.625rem'],
 				borderTop: 'solid 1px #2585ca',
 				borderCollapse: 'collapse',
 				background: '#f2f8fc',
