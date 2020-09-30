@@ -74,7 +74,8 @@ export const ColorSwatch = {
 	},
 
 	component: ({ colors }) => {
-		const { BRAND } = useBrand();
+		const mq = useMediaQuery();
+		const { BRAND, SPACING } = useBrand();
 		return (
 			<Fragment>
 				{colors.map((color) => {
@@ -82,7 +83,7 @@ export const ColorSwatch = {
 						return (
 							<Fragment key={color.value}>
 								{Object.keys(secondaryColors[BRAND]).map((secondaryColor) => (
-									<Cell key={secondaryColor} width={[10, 6, 4, 3]} left={[2, 'auto']}>
+									<Cell key={secondaryColor} width={[12, 6, 4, 3]}>
 										<Swatch color={secondaryColor} secondary />
 									</Cell>
 								))}
@@ -90,7 +91,7 @@ export const ColorSwatch = {
 						);
 					} else {
 						return (
-							<Cell key={color.value} width={[10, 6, 4, 3]} left={[2, 'auto']}>
+							<Cell key={color.value} width={[12, 6, 4, 3]}>
 								<Swatch color={color.value} />
 							</Cell>
 						);

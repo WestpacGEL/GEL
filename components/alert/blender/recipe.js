@@ -1,6 +1,7 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
 import { Alert } from '@westpac/alert';
+import { blenderIcon as blenderButtonIcon } from '@westpac/button';
 
 import { blenderAlert } from '../src/overrides/alert';
 import { blenderHeading } from '../src/overrides/heading';
@@ -29,6 +30,12 @@ export function AllStyles({ brand }) {
 			component: blenderBody.component,
 		},
 	};
+	overridesWithTokens['@westpac/button'] = {
+		Icon: {
+			component: blenderButtonIcon.component,
+		},
+	};
+
 	return (
 		<GEL brand={overridesWithTokens} noPrefix>
 			<Alert look="info" />
@@ -60,6 +67,11 @@ export function Docs({ brand }) {
 		},
 		Body: {
 			component: blenderBody.component,
+		},
+	};
+	overridesWithTokens['@westpac/button'] = {
+		Icon: {
+			component: blenderButtonIcon.component,
 		},
 	};
 

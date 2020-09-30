@@ -12,7 +12,7 @@ export function AllStyles({ brand }) {
 	}
 
 	return (
-		<GEL brand={brand}>
+		<GEL brand={brand} noPrefix>
 			<Body>.</Body>
 			<Body {...{ [key]: true }}>.</Body>
 		</GEL>
@@ -24,7 +24,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'The body component',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={brand} noPrefix>
 					<Body>Your body text</Body>
 				</GEL>
 			),

@@ -1,8 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import { Body } from '@westpac/body';
+
+// ==============================
+// Component
+// ==============================
 
 const List = ({ state: { type, nested, assistiveText }, children, ...rest }) => {
 	//a11y: tick bullet meaning must be conveyed; render a (configurable) VisuallyHidden first item
@@ -25,6 +29,25 @@ const List = ({ state: { type, nested, assistiveText }, children, ...rest }) => 
 		</Body>
 	);
 };
+
+const BlenderList = (props) => (
+	<List
+		overrides={{
+			Body: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+
+// ==============================
+// Styles
+// ==============================
 
 const listStyles = (_, { type, look, spacing, nested }) => {
 	const { COLORS } = useBrand();
@@ -98,8 +121,8 @@ const listStyles = (_, { type, look, spacing, nested }) => {
 	};
 
 	return {
-		label: getLabel('list', { type, look, spacing, nested }),
-		listStyle: type !== 'ordered' && 'none',
+		label: getLabel('list'),
+		listStyle: type !== 'ordered' ? 'none' : 'decimal',
 		margin: 0,
 		padding: type === 'ordered' ? '0 0 0 1.25rem' : 0,
 
@@ -113,13 +136,90 @@ const listStyles = (_, { type, look, spacing, nested }) => {
 	};
 };
 
-const listAttributes = (_, { type, assistiveText }) => ({
+// ==============================
+// Blender Styles
+// ==============================
+
+const defaultProps = { type: 'none', look: false, spacing: 'medium' };
+
+const blenderStyles = (_, { type, look, spacing }) => {
+	const props = { type, look, spacing };
+	const baseStyles = listStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = listStyles(_, props);
+	let reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	let modifier;
+
+	if (modifiers.length > 1 && modifiers.includes('type') && modifiers.includes('look')) {
+		if (type === 'bullet' && look === 'hero') {
+			modifier = 'type';
+		} else {
+			modifier = 'look';
+			const bulletBase = listStyles(_, { type: 'bullet', look: 'hero', spacing: 'medium' });
+			const lookStyles = listStyles(_, props);
+			reconciledStyles = styleReconciler(bulletBase, lookStyles);
+		}
+	} else {
+		modifier = modifiers[0];
+	}
+
+	switch (modifier) {
+		case 'type':
+			if (type === 'bullet' && look === 'hero') {
+				reconciledStyles[`.__convert__${baseStyles.label} > li::before`] = {
+					backgroundColor: 'transparent',
+				};
+			}
+			label = `${label}-${type}`;
+			break;
+		case 'look':
+			label = `${label}-${look}`;
+			break;
+		case 'spacing':
+			label = `${label}-${spacing}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
+const listAttributes = (_, { type }) => ({
 	//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
 	role: type !== 'ordered' ? 'list' : undefined,
 });
+
+const blenderAttributes = (_, { type, look, spacing }) => ({
+	className: classNames({
+		[`__convert__list-${type}`]: type !== defaultProps.type,
+		[`__convert__list-${look}`]: type === 'bullet' && look !== 'hero',
+		[`__convert__list-${spacing}`]: spacing !== defaultProps.spacing,
+	}),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultList = {
 	component: List,
 	styles: listStyles,
 	attributes: listAttributes,
+};
+
+export const blenderList = {
+	component: BlenderList,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };

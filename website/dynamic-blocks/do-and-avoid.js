@@ -167,7 +167,6 @@ export const DoAndAvoid = {
 			<Fragment>
 				<Cell
 					width={[12, null, 6, 5]}
-					left={[1, null, null, 2]}
 					css={mq({ marginTop: ['24px', null, null, null, '42px'], height: 'auto' })}
 				>
 					<Figure>

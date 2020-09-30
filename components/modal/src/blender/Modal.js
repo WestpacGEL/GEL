@@ -3,16 +3,17 @@
 import { GEL, jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
-import { FocusOn } from 'react-focus-on';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 
-import { defaultModal } from './overrides/modal';
-import { defaultBackdrop } from './overrides/backdrop';
-import { defaultCloseBtn } from './overrides/closeBtn';
-import { defaultHeader } from './overrides/header';
-import { defaultHeading } from './overrides/heading';
-import pkg from '../package.json';
+import { defaultModalWrapper } from './modalWrapper';
+import { defaultModal } from '../overrides/modal';
+import { defaultCloseBtn } from '../overrides/closeBtn';
+import { defaultHeader } from '../overrides/header';
+import { defaultHeading } from '../overrides/heading';
+import pkg from '../../package.json';
+
+// Non-Portal version of Modal for the blender
+// Also adding an extra wrapper component to handle transition to replace react-spring
 
 // ==============================
 // Context and Consumer Hook
@@ -53,8 +54,8 @@ export const Modal = ({
 	const [open, setOpen] = useState(isOpen);
 
 	const defaultOverrides = {
+		ModalWrapper: defaultModalWrapper,
 		Modal: defaultModal,
-		Backdrop: defaultBackdrop,
 		Header: defaultHeader,
 		Heading: defaultHeading,
 		CloseBtn: defaultCloseBtn,
@@ -71,8 +72,12 @@ export const Modal = ({
 	};
 
 	const {
+		ModalWrapper: {
+			component: ModalWrapper,
+			styles: modalWrapperStyles,
+			attributes: modalWrapperAttributes,
+		},
 		Modal: { component: Modal, styles: modalStyles, attributes: modalAttributes },
-		Backdrop: { component: Backdrop, styles: backdropStyles, attributes: backdropAttributes },
 		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
 		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
 		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
@@ -112,47 +117,43 @@ export const Modal = ({
 		}
 	});
 
-	if (typeof window !== 'undefined') {
-		return ReactDOM.createPortal(
-			<GEL brand={brand}>
-				<ModalContext.Provider value={{ state }}>
-					<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
-					<FocusOn enabled={open} onActivation={() => headingRef.current.focus()}>
-						<Modal
-							ref={modalRef}
+	return (
+		<ModalContext.Provider value={{ state }}>
+			<ModalWrapper
+				state={state}
+				{...modalWrapperAttributes(state)}
+				css={modalWrapperStyles(state)}
+			>
+				<Modal
+					ref={modalRef}
+					state={state}
+					{...rest}
+					{...modalAttributes(state)}
+					css={modalStyles(state)}
+				>
+					<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
+						<Heading
+							ref={headingRef}
 							state={state}
-							{...rest}
-							{...modalAttributes(state)}
-							css={modalStyles(state)}
+							{...headingAttributes(state)}
+							css={headingStyles(state)}
 						>
-							<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
-								<Heading
-									ref={headingRef}
-									state={state}
-									{...headingAttributes(state)}
-									css={headingStyles(state)}
-								>
-									{heading}
-								</Heading>
-								{dismissible && (
-									<CloseBtn
-										onClick={() => handleClose()}
-										state={state}
-										{...closeBtnAttributes(state)}
-										css={closeBtnStyles(state)}
-									/>
-								)}
-							</Header>
-							{children}
-						</Modal>
-					</FocusOn>
-				</ModalContext.Provider>
-			</GEL>,
-			document.body
-		);
-	} else {
-		return null;
-	}
+							{heading}
+						</Heading>
+						{dismissible && (
+							<CloseBtn
+								onClick={() => handleClose()}
+								state={state}
+								{...closeBtnAttributes(state)}
+								css={{ '&&': closeBtnStyles(state) }}
+							/>
+						)}
+					</Header>
+					{children}
+				</Modal>
+			</ModalWrapper>
+		</ModalContext.Provider>
+	);
 };
 
 // ==============================
@@ -197,6 +198,11 @@ Modal.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		Modal: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ModalWrapper: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

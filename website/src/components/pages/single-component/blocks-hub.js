@@ -107,7 +107,7 @@ const slateRenderer = (item, _editorValue) => {
 					return nested ? (
 						<p key={path}>{serializeChildren(node.nodes)}</p>
 					) : (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
 							<Body>
 								<p>{serializeChildren(node.nodes)}</p>
 							</Body>
@@ -124,7 +124,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'unordered-list':
 					return (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
 							<List type="bullet" css={{ marginBottom: SPACING(2) }}>
 								{serializeChildren(node.nodes)}
 							</List>
@@ -133,7 +133,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'ordered-list':
 					return (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
 							<List type="ordered" css={{ marginBottom: SPACING(2) }}>
 								{serializeChildren(node.nodes)}
 							</List>
@@ -145,7 +145,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'blockquote':
 					return (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
 							<Body>
 								<blockquote>{serializeChildren(node.nodes)}</blockquote>
 							</Body>
