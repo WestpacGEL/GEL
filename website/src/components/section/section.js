@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // Component
 // ==============================
 
-export const Section = ({ size = 'medium', bgFill, ...rest }) => {
+export const Section = ({ size = 'medium', light, ...rest }) => {
 	const mq = useMediaQuery();
 	const { SPACING, COLORS } = useBrand();
 
@@ -20,9 +20,9 @@ export const Section = ({ size = 'medium', bgFill, ...rest }) => {
 			css={mq({
 				paddingTop: paddingMap[size],
 				paddingBottom: paddingMap[size],
-				backgroundColor: bgFill && COLORS.background,
+				backgroundColor: light && '#fff',
 				'& + &': {
-					borderTop: !bgFill && `1px solid ${COLORS.border}`,
+					borderTop: `1px solid ${COLORS.border}`,
 				},
 			})}
 			{...rest}
