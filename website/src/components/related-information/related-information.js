@@ -28,7 +28,7 @@ export const RelatedInformation = ({ item }) => {
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
 
 	return (
-		<Section css={{ backgroundColor: 'white', borderTop: `1px solid ${COLORS.border}` }}>
+		<Section css={{ borderTop: `1px solid ${COLORS.border}` }} light>
 			<Container>
 				<SectionHeading id="related-information" tabIndex="-1">
 					Related information
