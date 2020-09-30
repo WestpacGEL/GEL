@@ -13,7 +13,7 @@ export const SectionHeading = (props) => {
 
 	return (
 		<Grid>
-			<Cell width={[12, null, null, 10]} left={[null, null, null, 2]}>
+			<Cell width={[12, null, null, 11]}>
 				<Heading
 					tag="h2"
 					size={[7, null, 6]}
