@@ -192,11 +192,11 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS, SPACING } = useBrand();
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<Fragment>
-			<Section>
+			<Section paddingTop="large">
 				<Container>
 					<Grid gap={SPACING(4)}>
 						<Cell width={[12, null, 7]}>
