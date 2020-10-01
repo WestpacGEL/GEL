@@ -199,7 +199,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 			<Section>
 				<Container>
 					<Grid gap={SPACING(4)}>
-						<Cell width={showTableOfContents ? [12, null, 7] : 12}>
+						<Cell width={[12, null, 7]}>
 							<Body>
 								{description && description !== '' ? (
 									<p
