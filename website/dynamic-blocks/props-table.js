@@ -184,7 +184,6 @@ function PTable({ data, caption }) {
 
 const Component = ({ item, addTableContent }) => {
 	const mq = useMediaQuery();
-	const { COLORS } = useBrand();
 	const packageName = item.packageName.replace(/_/g, '-'); // removing underscores from graphql queries
 
 	const tableData = Object.keys(PropTypes.components[packageName])
@@ -201,7 +200,7 @@ const Component = ({ item, addTableContent }) => {
 		});
 
 	return (
-		<Section css={{ borderTop: `1px solid ${COLORS.border}` }} light>
+		<Section light>
 			<Container>
 				<SectionHeading id="props" tabIndex="-1">
 					Props

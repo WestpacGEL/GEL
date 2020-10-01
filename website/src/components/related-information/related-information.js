@@ -11,7 +11,7 @@ import { BlockHeading } from '../block-heading';
 import { getURL } from '../_utils';
 
 export const RelatedInformation = ({ item }) => {
-	const { SPACING, COLORS, PACKS } = useBrand();
+	const { SPACING, PACKS } = useBrand();
 	const { relatedPages, relatedInfo } = item;
 	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
 
@@ -28,7 +28,7 @@ export const RelatedInformation = ({ item }) => {
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
 
 	return (
-		<Section css={{ borderTop: `1px solid ${COLORS.border}` }} light>
+		<Section light>
 			<Container>
 				<SectionHeading id="related-information" tabIndex="-1">
 					Related information

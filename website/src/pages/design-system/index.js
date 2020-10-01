@@ -39,7 +39,7 @@ const Homepage = () => {
 				}}
 			>
 				<HomePageHeader />
-				<Section size="large" light>
+				<Section paddingTop="large" paddingBottom="large" light>
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
@@ -67,7 +67,7 @@ const Homepage = () => {
 					</Container>
 				</Section>
 
-				<Section size="large">
+				<Section paddingTop="large" paddingBottom="large">
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
@@ -121,7 +121,7 @@ const Homepage = () => {
 					</Container>
 				</Section>
 
-				<Section size="large" light>
+				<Section paddingTop="large" paddingBottom="large" light>
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
@@ -172,7 +172,7 @@ const Homepage = () => {
 					</Container>
 				</Section>
 
-				<Section size="large">
+				<Section paddingTop="large" paddingBottom="large">
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
