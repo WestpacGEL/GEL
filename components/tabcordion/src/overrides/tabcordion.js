@@ -128,6 +128,7 @@ const blenderStyles = (_, { mode, look }) => {
 const tabcordionAttributes = () => null;
 
 const blenderAttributes = (_, { mode, look }) => ({
+	'data-mode': mode,
 	className: classNames({
 		[`__convert__tabcordion-${look}`]: look !== defaultProps.look,
 		[`__convert__tabcordion-tabs`]: mode === 'tabs',
