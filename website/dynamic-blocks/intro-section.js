@@ -139,7 +139,6 @@ const PackageInfoTable = ({ item }) => {
 	return (
 		<table
 			css={mq({
-				marginTop: ['1.875rem', null, '2.625rem'],
 				borderTop: 'solid 1px #2585ca',
 				borderCollapse: 'collapse',
 				background: '#f2f8fc',
@@ -193,14 +192,14 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS, SPACING } = useBrand();
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<Fragment>
-			<Section>
+			<Section paddingTop="large">
 				<Container>
 					<Grid gap={SPACING(4)}>
-						<Cell width={showTableOfContents ? [12, 7, 7, 7, 7] : 12}>
+						<Cell width={[12, null, 7]}>
 							<Body>
 								{description && description !== '' ? (
 									<p
@@ -218,7 +217,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 							</Body>
 						</Cell>
 						{showTableOfContents && (
-							<Cell width={[12, 4, 4, 4, 4]} left={[1, 9, 9, 9, 9]}>
+							<Cell width={[12, null, 4]} left={[null, null, 9]}>
 								<TableOfContents content={_editorValue} />
 							</Cell>
 						)}

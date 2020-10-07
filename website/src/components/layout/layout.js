@@ -42,19 +42,24 @@ const LoadGELFonts = () => (
 );
 const LoadBrandFonts = () => <Global styles={useFonts({ path: `${BASE_URL}/fonts/` })['']} />;
 
-const GlobalReset = () => (
-	<Global
-		styles={css`
-			html {
-				line-height: 1.15;
-				-webkit-text-size-adjust: 100%;
-			}
-			body {
-				margin: 0;
-			}
-		`}
-	/>
-);
+const GlobalReset = () => {
+	const { COLORS } = useBrand();
+
+	return (
+		<Global
+			styles={css`
+				html {
+					line-height: 1.15;
+					-webkit-text-size-adjust: 100%;
+				}
+				body {
+					margin: 0;
+					background-color: ${COLORS.background};
+				}
+			`}
+		/>
+	);
+};
 
 /*
   Wrapper with logic

@@ -11,7 +11,7 @@ import { BlockHeading } from '../block-heading';
 import { getURL } from '../_utils';
 
 export const RelatedInformation = ({ item }) => {
-	const { SPACING, COLORS, PACKS } = useBrand();
+	const { SPACING, PACKS } = useBrand();
 	const { relatedPages, relatedInfo } = item;
 	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
 
@@ -28,7 +28,7 @@ export const RelatedInformation = ({ item }) => {
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
 
 	return (
-		<Section css={{ backgroundColor: 'white', borderTop: `1px solid ${COLORS.border}` }}>
+		<Section light>
 			<Container>
 				<SectionHeading id="related-information" tabIndex="-1">
 					Related information
@@ -36,7 +36,7 @@ export const RelatedInformation = ({ item }) => {
 
 				<Grid rowGap={30}>
 					{hasRelatedPages && (
-						<Cell width={[12, hasRelatedInfo && 6, hasRelatedInfo ? 4 : 12]}>
+						<Cell width={[12, hasRelatedInfo && 6, 4]}>
 							<BlockHeading icon={CubeIcon}>Components</BlockHeading>
 							<BlockList>
 								{relatedPages.map((d) => (
@@ -49,7 +49,7 @@ export const RelatedInformation = ({ item }) => {
 					)}
 					{hasRelatedInfo && (
 						<Cell
-							width={[12, hasRelatedPages && 6, hasRelatedPages ? 5 : 12]}
+							width={[12, hasRelatedPages && 6, hasRelatedPages ? 7 : 12]}
 							left={[null, null, hasRelatedPages && 6]}
 						>
 							<BlockHeading icon={GenericFileIcon}>Articles</BlockHeading>
