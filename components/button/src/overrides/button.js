@@ -139,22 +139,22 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 	const sizeMap = {
 		small: {
-			padding: ['0.1875rem', '0.5625rem', '0.25rem'],
+			padding: '0.1875rem 0.5625rem 0.25rem',
 			fontSize: '0.875rem',
 			height: '1.875rem',
 		},
 		medium: {
-			padding: ['0.3125rem', '0.75rem'],
+			padding: '0.3125rem 0.75rem',
 			fontSize: '1rem',
 			height: '2.25rem',
 		},
 		large: {
-			padding: ['0.5rem', '0.9375rem'],
+			padding: '0.5rem 0.9375rem',
 			fontSize: '1rem',
 			height: '2.625rem',
 		},
 		xlarge: {
-			padding: ['0.5625rem', '1.125rem', '0.625rem'],
+			padding: '0.5625rem 1.125rem 0.625rem',
 			fontSize: '1.125rem',
 			height: '3rem',
 		},
@@ -195,11 +195,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		// for non input tags
 		...(disabled && { opacity: '0.5', pointerEvents: 'none' }),
 
-		padding: sizeArr.map((s) => {
-			if (!s) return null;
-			let p = [...sizeMap[s].padding];
-			return p.join(' ');
-		}),
+		padding: sizeArr.map((s) => s && sizeMap[s].padding),
 		fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
 		height: sizeArr.map((s) => s && sizeMap[s].height),
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
