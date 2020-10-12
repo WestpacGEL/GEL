@@ -45,6 +45,7 @@ export const Option = ({
 	} = useFormCheckContext();
 
 	const optionId = `${instanceId}-option-${useInstanceId()}`;
+	const hintId = `${optionId}-hint`;
 
 	const defaultOverrides = {
 		Option: defaultOption,
@@ -67,6 +68,7 @@ export const Option = ({
 		inline,
 		disabled,
 		hint,
+		hintId,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -87,6 +89,7 @@ export const Option = ({
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
 				id={optionId}
+				aria-describedby={hint && hintId}
 				onChange={
 					disabled
 						? null
