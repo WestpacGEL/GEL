@@ -21,7 +21,8 @@ function Example({ brand }) {
 			<hr />
 			<h2>Standard</h2>
 			<Button look="primary">Primary standard</Button> <Button look="hero">Hero standard</Button>{' '}
-			<Button look="faint">Faint standard</Button> <Button look="link">Link</Button>
+			<Button look="faint">Faint standard</Button> <Button look="link">Link</Button>{' '}
+			<Button look="unstyled">Unstyled</Button>
 			<hr />
 			<h2>Soft</h2>
 			<Button look="primary" soft>

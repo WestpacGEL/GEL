@@ -129,6 +129,11 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 				},
 			},
 		},
+		unstyled: {
+			standardCSS: {
+				border: 0,
+			},
+		},
 		[key]: {
 			standardCSS: { ...bg },
 			soft: { ...bg },
@@ -166,20 +171,22 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		label: 'button',
 		alignItems: 'center', //vertical
 		appearance: 'none',
-		border: '1px solid transparent',
-		borderRadius: '0.1875rem',
 		cursor: 'pointer',
 		justifyContent: justify ? 'space-between' : 'center', //horizontal
 		lineHeight: 1.5,
 		textAlign: 'center',
 		textDecoration: 'none',
 		touchAction: 'manipulation',
-		transition: 'background 0.2s ease, color 0.2s ease',
 		userSelect: 'none',
 		verticalAlign: 'middle',
 		whiteSpace: 'nowrap',
 		boxSizing: 'border-box',
 		...TYPE.bodyFont[400],
+		...(look !== 'unstyled' && {
+			border: '1px solid transparent',
+			borderRadius: '0.1875rem',
+			transition: 'background 0.2s ease, color 0.2s ease',
+		}),
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)
 		':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
