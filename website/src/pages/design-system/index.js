@@ -35,7 +35,6 @@ const Homepage = () => {
 				id="content"
 				css={{
 					textAlign: 'center',
-					paddingBottom: '3.0625rem', //space for fixed footer
 				}}
 			>
 				<HomePageHeader />
