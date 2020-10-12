@@ -136,7 +136,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		},
 		[key]: {
 			standardCSS: { ...bg },
-			soft: { ...bg },
+			softCSS: { ...bg },
 		},
 	};
 
