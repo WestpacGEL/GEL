@@ -158,6 +158,7 @@ const MainContainer = (props) => {
 				gridColumnEnd: [null, null, null, null, 3],
 				position: 'relative',
 				zIndex: 0, //scrollbar on top of fixed elements
+				paddingBottom: '3.0625rem', //space for fixed footer
 			})}
 			{...props}
 		/>
