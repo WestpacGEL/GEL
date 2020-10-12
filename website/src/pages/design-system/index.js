@@ -221,7 +221,7 @@ const DownloadsAndLinks = (props) => {
 					</BlockListItem>
 				</BlockList>
 			</Cell>
-			<Cell width={[10, 6, null, 5]}>
+			<Cell width={[10, 6, null, 5]} left={[2, 'auto']}>
 				<BlockHeading>Links</BlockHeading>
 				<BlockList
 					css={mq({
