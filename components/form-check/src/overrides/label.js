@@ -82,7 +82,6 @@ const labelStyles = (_, { type, size }) => {
 		},
 
 		// Control 'check' (tick or dot)
-
 		'input:checked + &::after': {
 			content: '""',
 			boxSizing: 'border-box',
