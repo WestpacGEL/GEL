@@ -35,11 +35,10 @@ const Homepage = () => {
 				id="content"
 				css={{
 					textAlign: 'center',
-					paddingBottom: '3.0625rem', //space for fixed footer
 				}}
 			>
 				<HomePageHeader />
-				<Section size="large">
+				<Section paddingTop="large" paddingBottom="large" light>
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
@@ -67,7 +66,7 @@ const Homepage = () => {
 					</Container>
 				</Section>
 
-				<Section size="large" bgFill>
+				<Section paddingTop="large" paddingBottom="large">
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
@@ -121,7 +120,7 @@ const Homepage = () => {
 					</Container>
 				</Section>
 
-				<Section size="large">
+				<Section paddingTop="large" paddingBottom="large" light>
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
@@ -172,7 +171,7 @@ const Homepage = () => {
 					</Container>
 				</Section>
 
-				<Section size="large" bgFill>
+				<Section paddingTop="large" paddingBottom="large">
 					<Container>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
@@ -222,7 +221,7 @@ const DownloadsAndLinks = (props) => {
 					</BlockListItem>
 				</BlockList>
 			</Cell>
-			<Cell width={[10, 6, null, 5]}>
+			<Cell width={[10, 6, null, 5]} left={[2, 'auto']}>
 				<BlockHeading>Links</BlockHeading>
 				<BlockList
 					css={mq({

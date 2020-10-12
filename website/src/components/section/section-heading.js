@@ -7,23 +7,22 @@ import { Heading } from '@westpac/heading';
 // Component
 // ==============================
 
-export const SectionHeading = (props) => {
+export const SectionHeading = ({ children, ...rest }) => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 
 	return (
 		<Grid>
-			<Cell width={[12, null, null, 10]} left={[null, null, null, 2]}>
+			<Cell width={[12, null, null, 11]}>
 				<Heading
 					tag="h2"
 					size={[7, null, 6]}
-					id="related-information"
-					tabIndex="-1"
 					css={mq({
 						marginBottom: [SPACING(6), null, SPACING(10)],
 					})}
+					{...rest}
 				>
-					Related information
+					{children}
 				</Heading>
 			</Cell>
 		</Grid>

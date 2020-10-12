@@ -90,9 +90,11 @@ TextInput.propTypes = {
 	}),
 };
 
-TextInput.defaultProps = {
+export const defaultProps = {
 	size: 'medium',
 	inline: false,
 	invalid: false,
 	type: 'text',
 };
+
+TextInput.defaultProps = defaultProps;

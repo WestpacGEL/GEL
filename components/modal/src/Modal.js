@@ -224,8 +224,10 @@ Modal.propTypes = {
 	}),
 };
 
-Modal.defaultProps = {
+export const defaultProps = {
 	open: false,
 	size: 'medium',
 	dismissible: true,
 };
+
+Modal.defaultProps = defaultProps;

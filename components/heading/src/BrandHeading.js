@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const BrandHeading = forwardRef(
-	({ tag, size, children, overrides: componentOverrides, ...rest }, ref) => {
+	({ tag, size, uppercase, children, overrides: componentOverrides, ...rest }, ref) => {
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
 			[pkg.name]: brandOverrides,
@@ -25,6 +25,7 @@ export const BrandHeading = forwardRef(
 		const state = {
 			tag,
 			size,
+			uppercase,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -68,6 +69,13 @@ BrandHeading.propTypes = {
 		PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7]),
 		PropTypes.arrayOf(PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7])),
 	]).isRequired,
+
+	/**
+	 * Use upper case.
+	 *
+	 * This mode will also adjust line-height to suit.
+	 */
+	uppercase: PropTypes.bool,
 
 	/**
 	 * The override API

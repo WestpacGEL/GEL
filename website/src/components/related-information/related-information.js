@@ -11,9 +11,8 @@ import { BlockHeading } from '../block-heading';
 import { getURL } from '../_utils';
 
 export const RelatedInformation = ({ item }) => {
-	const { SPACING, COLORS, PACKS } = useBrand();
+	const { SPACING, PACKS } = useBrand();
 	const { relatedPages, relatedInfo } = item;
-	const mq = useMediaQuery();
 	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
 
 	function checkNode(node) {
@@ -29,15 +28,15 @@ export const RelatedInformation = ({ item }) => {
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
 
 	return (
-		<Section css={{ backgroundColor: 'white', borderTop: `1px solid ${COLORS.border}` }}>
+		<Section light>
 			<Container>
 				<SectionHeading id="related-information" tabIndex="-1">
 					Related information
 				</SectionHeading>
 
-				<Grid>
+				<Grid rowGap={30}>
 					{hasRelatedPages && (
-						<Cell width={[12, null, hasRelatedInfo ? 4 : 10]} left={[1, null, 2]}>
+						<Cell width={[12, hasRelatedInfo && 6, 4]}>
 							<BlockHeading icon={CubeIcon}>Components</BlockHeading>
 							<BlockList>
 								{relatedPages.map((d) => (
@@ -50,8 +49,8 @@ export const RelatedInformation = ({ item }) => {
 					)}
 					{hasRelatedInfo && (
 						<Cell
-							width={[12, null, hasRelatedPages ? 5 : 10]}
-							left={[1, null, hasRelatedPages ? 7 : 2]}
+							width={[12, hasRelatedPages && 6, hasRelatedPages ? 7 : 12]}
+							left={[null, null, hasRelatedPages && 6]}
 						>
 							<BlockHeading icon={GenericFileIcon}>Articles</BlockHeading>
 							<TextOnlySlateContent

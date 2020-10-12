@@ -2,9 +2,17 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
+// ==============================
+// Component
+// ==============================
+
 const Link = ({ state: { tag: Tag }, ...rest }) => {
 	return (Tag && <Tag {...rest} />) || <a {...rest} />;
 };
+
+// ==============================
+// Styles
+// ==============================
 
 const linkStyles = () => {
 	const { COLORS } = useBrand();
@@ -29,9 +37,17 @@ const linkStyles = () => {
 	};
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const linkAttributes = (_, { current }) => ({
 	'aria-current': current ? 'page' : undefined,
 });
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultLink = {
 	component: Link,

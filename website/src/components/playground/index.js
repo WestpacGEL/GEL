@@ -1,4 +1,5 @@
 /** @jsx jsx */
+
 import { useState } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
@@ -76,14 +77,7 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 					) : null}
 				</div>
 			</div>
-			{showCode && codeIsOpen ? (
-				<LiveEditor
-					css={mq({
-						fontSize: '0.875rem',
-					})}
-					padding={24}
-				/>
-			) : null}
+			{showCode && codeIsOpen ? <LiveEditor css={{ fontSize: '16px' }} padding={24} /> : null}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
 				<ModalBody>
 					<LivePreview />

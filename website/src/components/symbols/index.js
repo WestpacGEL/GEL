@@ -16,3 +16,4 @@ export { StgBackgroundSvg } from './StgBackgroundSvg';
 export { StopwatchSvg } from './StopwatchSvg';
 export { TruckSvg } from './TruckSvg';
 export { TwitterLogo } from './TwitterLogo';
+export { WbcBackgroundSvg } from './WbcBackgroundSvg';

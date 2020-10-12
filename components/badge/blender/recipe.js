@@ -1,18 +1,19 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
 
-import { Badge as OGBadge } from '@westpac/badge';
+import { Badge } from '@westpac/badge';
 import { blenderBadge } from '../src/overrides/badge';
 
 export function AllStyles({ brand }) {
-	const Badge = (props) => (
-		<OGBadge
-			overrides={{ Badge: { attributes: blenderBadge.attributes, styles: blenderBadge.styles } }}
-			{...props}
-		/>
-	);
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/badge'] = {
+		Badge: {
+			styles: blenderBadge.styles,
+		},
+	};
+
 	return (
-		<GEL brand={brand}>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<Badge look="neutral" value="Neutral" />
 			<Badge look="primary" value="Primary" />
 			<Badge look="hero" value="Hero" />
@@ -26,14 +27,18 @@ export function AllStyles({ brand }) {
 }
 
 export function Docs({ brand }) {
-	const Badge = (props) => (
-		<OGBadge overrides={{ Badge: { attributes: blenderBadge.attributes } }} {...props} />
-	);
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/badge'] = {
+		Badge: {
+			attributes: blenderBadge.attributes,
+		},
+	};
+
 	return [
 		{
 			heading: 'A default badge',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Badge value="Neutral" />
 				</GEL>
 			),
@@ -41,7 +46,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A primary badge',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Badge look="primary" value="Primary" />
 				</GEL>
 			),
@@ -49,7 +54,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A hero badge',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Badge look="hero" value="Hero" />
 				</GEL>
 			),
@@ -57,7 +62,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A faint badge',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Badge look="faint" value="Faint" />
 				</GEL>
 			),
@@ -65,7 +70,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A success badge',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Badge look="success" value="Success" />
 				</GEL>
 			),
@@ -73,7 +78,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A info badge',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Badge look="info" value="Info" />
 				</GEL>
 			),
@@ -81,7 +86,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A warning badge',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Badge look="warning" value="Warning" />
 				</GEL>
 			),
@@ -89,7 +94,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'A danger badge',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<Badge look="danger" value="Danger" />
 				</GEL>
 			),

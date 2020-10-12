@@ -102,7 +102,7 @@ export const Image = {
 		const { SPACING } = useBrand();
 
 		return (
-			<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
+			<Cell width={12}>
 				<figure
 					css={{
 						margin: removeMargin ? '0 0 30px' : '30px 0',

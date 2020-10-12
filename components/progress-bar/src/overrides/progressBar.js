@@ -1,8 +1,19 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+
+import { defaultProps } from '../ProgressBar';
+import { nestedBarStyles } from './bar';
+
+// ==============================
+// Component
+// ==============================
 
 export const ProgressBar = ({ state: _, ...rest }) => <div {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 export const progressBarStyles = (_, { look }) => {
 	const { COLORS } = useBrand();
@@ -19,7 +30,7 @@ export const progressBarStyles = (_, { look }) => {
 	};
 
 	return {
-		label: getLabel('progressBar', { look }),
+		label: getLabel('progressBar'),
 		marginBottom: '1.3125rem',
 		overflow: 'hidden',
 		backgroundColor: '#fff',
@@ -31,6 +42,39 @@ export const progressBarStyles = (_, { look }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { look }) => {
+	const props = { look };
+	const baseStyles = progressBarStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = progressBarStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'look':
+			label = `${label}-${look}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles, ...nestedBarStyles(props) };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const progressBarAttributes = (_, { value }) => ({
 	role: 'progressbar',
 	'aria-valuemin': '0',
@@ -40,8 +84,22 @@ const progressBarAttributes = (_, { value }) => ({
 	'aria-live': 'polite',
 });
 
+const blenderAttributes = (_, { look, value }) => ({
+	...progressBarAttributes(_, { value }),
+	className: classNames({ [`__convert__progressBar-${look}`]: look !== defaultProps.look }),
+});
+// ==============================
+// Exports
+// ==============================
+
 export const defaultProgressBar = {
 	component: ProgressBar,
 	styles: progressBarStyles,
 	attributes: progressBarAttributes,
+};
+
+export const blenderProgressBar = {
+	component: ProgressBar,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };
