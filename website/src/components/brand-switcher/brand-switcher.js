@@ -80,8 +80,8 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 	return (
 		<Button
 			ref={ref}
-			look="link"
-			size="xlarge"
+			look="unstyled"
+			size="large"
 			iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
 			block
 			justify
@@ -239,18 +239,13 @@ export const BrandSwitcher = () => {
 					Button: {
 						component: ButtonOverride,
 						styles: () => ({
-							textDecoration: 'none',
-							color: COLORS.text,
-							backgroundColor: '#fff',
-							border: 0,
-							fontSize: '0.875rem',
-							padding: '0 1.5rem 0 1.125rem',
-							height: '4.125rem',
 							position: 'relative',
 							zIndex: 2,
-							':hover': {
-								textDecoration: 'none !important',
-							},
+							padding: '0 1.5rem 0 1.125rem',
+							height: '4.125rem',
+							fontSize: '0.875rem',
+							backgroundColor: '#fff',
+
 							':focus': {
 								outlineOffset: `-${PACKS.focus.outlineWidth}`,
 							},
