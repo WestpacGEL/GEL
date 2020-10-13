@@ -9,13 +9,7 @@ import { CloseIcon } from '@westpac/icon';
 // ==============================
 
 const CloseBtn = ({ state: _, ...rest }) => (
-	<Button
-		iconAfter={CloseIcon}
-		look="unstyled"
-		size="small"
-		assistiveText="Close modal"
-		{...rest}
-	/>
+	<Button iconAfter={CloseIcon} look="unstyled" assistiveText="Close modal" {...rest} />
 );
 
 const BlenderCloseBtn = (props) => (
@@ -38,13 +32,14 @@ const BlenderCloseBtn = (props) => (
 // ==============================
 
 const closeBtnStyles = () => {
-	const { COLORS, PACKS } = useBrand();
+	const { COLORS, SPACING, PACKS } = useBrand();
 	return {
 		label: getLabel('modal-closeBtn'),
 		position: 'absolute',
 		zIndex: 1,
-		top: '3px',
-		right: 0,
+		top: SPACING(1),
+		right: SPACING(1),
+		padding: SPACING(1),
 		color: COLORS.muted,
 		backgroundColor: 'transparent',
 
