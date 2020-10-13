@@ -21,6 +21,7 @@ export function AllStyles({ brand }) {
 			styles: blenderLabel.styles,
 		},
 		Hint: {
+			component: blenderHint.component,
 			styles: blenderHint.styles,
 		},
 	};
@@ -67,6 +68,9 @@ export function Docs({ brand }) {
 		Label: {
 			component: blenderLabel.component,
 			attributes: blenderLabel.attributes,
+		},
+		Hint: {
+			component: blenderHint.component,
 		},
 	};
 

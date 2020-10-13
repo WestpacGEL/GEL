@@ -12,6 +12,21 @@ import { defaultProps } from '../FormCheck';
 
 const Hint = ({ state: _, ...rest }) => <Body {...rest} />;
 
+const BlenderHint = (props) => (
+	<Hint
+		overrides={{
+			Body: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+
 // ==============================
 // Styles
 // ==============================
@@ -61,7 +76,7 @@ export const defaultHint = {
 };
 
 export const blenderHint = {
-	component: Hint,
+	component: BlenderHint,
 	styles: blenderStyles,
 	attributes: hintAttributes,
 };
