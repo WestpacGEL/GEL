@@ -40,7 +40,7 @@ const BlenderCloseBtn = (props) => (
 
 const closeBtnStyles = () => {
 	const mq = useMediaQuery();
-	const { SPACING } = useBrand();
+	const { PACKS } = useBrand();
 
 	return mq({
 		label: 'alert-closebtn',
@@ -54,6 +54,9 @@ const closeBtnStyles = () => {
 
 		':hover': {
 			opacity: 0.8,
+		},
+		':focus': {
+			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
 		},
 	})[0];
 };
