@@ -12,8 +12,8 @@ const CloseBtn = ({ onClose, state: _, ...rest }) => (
 	<Button
 		onClick={(event) => onClose(event)}
 		iconAfter={CloseIcon}
-		look="link"
-		size="medium"
+		look="unstyled"
+		size="small"
 		assistiveText="Close alert"
 		{...rest}
 	/>
@@ -47,9 +47,10 @@ const closeBtnStyles = () => {
 		color: 'inherit',
 		position: 'absolute',
 		zIndex: 1,
-		top: 0,
-		right: SPACING(1),
+		top: '3px',
+		right: 0,
 		opacity: 1,
+		backgroundColor: 'transparent',
 
 		':hover': {
 			opacity: 0.8,

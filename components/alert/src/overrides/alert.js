@@ -24,7 +24,7 @@ const Alert = ({ state: _, ...rest }) => <div {...rest} />;
 
 const alertStyles = (_, { dismissible, look }) => {
 	const mq = useMediaQuery();
-	const { COLORS } = useBrand();
+	const { COLORS, SPACING } = useBrand();
 
 	const styleMap = {
 		success: {
@@ -71,8 +71,8 @@ const alertStyles = (_, { dismissible, look }) => {
 
 	return mq({
 		label: 'alert',
-		marginBottom: '1.3125rem',
-		padding: dismissible ? '1.125rem 1.875rem 1.125rem 1.125rem' : '1.125rem',
+		marginBottom: SPACING(7),
+		padding: dismissible ? `${SPACING(3)} ${SPACING(6)} ${SPACING(3)} ${SPACING(3)}` : SPACING(3),
 		position: 'relative',
 		display: [null, 'flex'],
 		zIndex: 1,
