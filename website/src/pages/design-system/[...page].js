@@ -193,7 +193,6 @@ const Tabs = ({ component, tabName }) => {
 			id="content"
 			css={{
 				backgroundColor: COLORS.background,
-				paddingBottom: '3.0625rem', //space for fixed footer
 			}}
 		>
 			<Tabcordion

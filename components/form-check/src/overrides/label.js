@@ -10,6 +10,7 @@ import {
 	css,
 } from '@westpac/core';
 import { Body } from '@westpac/body';
+import { sizeMap } from '../_utils';
 
 import { defaultProps } from '../FormCheck';
 
@@ -33,6 +34,7 @@ const BlenderLabel = (props) => (
 		{...props}
 	/>
 );
+
 // ==============================
 // Styles
 // ==============================
@@ -40,56 +42,17 @@ const BlenderLabel = (props) => (
 const labelStyles = (_, { type, size }) => {
 	const { COLORS, PACKS } = useBrand();
 
-	const sizeMap = {
-		medium: {
-			paddingTop: '0.125rem',
-			paddingBottom: '0.125rem',
-			gap: '0.375rem',
-			width: '1.5rem',
-			height: '1.5rem',
-			checkbox: {
-				width: '0.875rem',
-				height: '0.5rem',
-				stroke: '0.1875rem',
-				tweak: '-0.125rem',
-			},
-			radio: {
-				width: '0.75rem',
-				height: '0.75rem',
-				tweak: '0rem', //must state 'rem', used in calc()
-			},
-		},
-		large: {
-			paddingTop: '0.3125rem',
-			paddingBottom: '0.3125rem',
-			gap: '0.625rem',
-			width: '1.875rem',
-			height: '1.875rem',
-			checkbox: {
-				width: '1.125rem',
-				height: '0.625rem',
-				stroke: '0.25rem',
-				tweak: '-0.125rem',
-			},
-			radio: {
-				width: '1rem',
-				height: '1rem',
-				tweak: '0rem', //must state 'rem', used in calc()
-			},
-		},
-	};
-
-	const checkWidth = sizeMap[size][type].width;
-	const checkHeight = sizeMap[size][type].height;
-	const checkTweak = sizeMap[size][type].tweak;
-	const checkboxStroke = sizeMap[size]['checkbox'].stroke;
+	const checkWidth = sizeMap[size]['label'][type].width;
+	const checkHeight = sizeMap[size]['label'][type].height;
+	const checkTweak = sizeMap[size]['label'][type].tweak;
+	const checkboxStroke = sizeMap[size]['label']['checkbox'].stroke;
 
 	return {
 		label: getLabel('formCheck-label'),
 		display: 'inline-block',
-		paddingTop: sizeMap[size].paddingTop,
-		paddingBottom: sizeMap[size].paddingBottom,
-		paddingLeft: sizeMap[size].gap,
+		paddingTop: sizeMap[size]['label'].paddingTop,
+		paddingBottom: sizeMap[size]['label'].paddingBottom,
+		paddingLeft: sizeMap[size]['label'].gap,
 		marginBottom: 0,
 		cursor: 'pointer',
 		touchAction: 'manipulation', // remove 300ms pause on mobile
@@ -101,8 +64,8 @@ const labelStyles = (_, { type, size }) => {
 			position: 'absolute',
 			top: 0,
 			left: 0,
-			width: sizeMap[size].width,
-			height: sizeMap[size].height,
+			width: sizeMap[size]['label'].width,
+			height: sizeMap[size]['label'].height,
 			border: `1px solid ${COLORS.hero}`,
 			background: 'transparent',
 			borderRadius: type === 'radio' ? '50%' : 3,
@@ -120,14 +83,13 @@ const labelStyles = (_, { type, size }) => {
 		},
 
 		// Control 'check' (tick or dot)
-
 		'input:checked + &::after': {
 			content: '""',
 			boxSizing: 'border-box',
 			position: 'absolute',
 			border: `solid ${COLORS.hero}`,
-			top: `calc(((${sizeMap[size].height} - ${checkHeight}) / 2) + ${checkTweak})`,
-			left: `calc((${sizeMap[size].width} - ${checkWidth}) / 2)`,
+			top: `calc(((${sizeMap[size]['label'].height} - ${checkHeight}) / 2) + ${checkTweak})`,
+			left: `calc((${sizeMap[size]['label'].width} - ${checkWidth}) / 2)`,
 			width: type === 'radio' ? 0 : checkWidth,
 			height: type === 'radio' ? 0 : checkHeight,
 			borderWidth:

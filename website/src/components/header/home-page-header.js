@@ -29,6 +29,19 @@ const HomePageHeader = () => {
 				background: [null, null, headerStyling.background],
 				color: [null, null, headerStyling.color],
 				...antialiasingStyling,
+
+				...(BRAND === 'WBC' && {
+					'::before': {
+						content: '""',
+						display: 'block',
+						position: 'absolute',
+						zIndex: 0,
+						left: 0,
+						width: ['12px', null, '24px'],
+						height: '100%',
+						backgroundColor: '#FF3DDB',
+					},
+				}),
 			})}
 		>
 			<HeaderImage brand={BRAND} aria-hidden="true" />
@@ -39,7 +52,7 @@ const HomePageHeader = () => {
 };
 
 const StickyHeader = () => {
-	const { COLORS, SPACING, BRAND, PACKS } = useBrand();
+	const { COLORS, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
 	const { isOpen, setIsOpen } = useSidebar();
 	const headerStyling = brandHeaderStyling[BRAND](COLORS);
@@ -122,7 +135,7 @@ const StickyHeader = () => {
 						borderBottom: [
 							null,
 							null,
-							hasScrolledPageHeader ? 0 : '1px solid rgba(255,255,255,0.7)',
+							!hasScrolledPageHeader && BRAND !== 'WBC' && '1px solid rgba(255,255,255,0.7)',
 						],
 						zIndex: 6,
 						height: '100%',

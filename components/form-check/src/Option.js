@@ -2,10 +2,10 @@
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 
 import { defaultOption } from './overrides/option';
 import { defaultLabel } from './overrides/label';
+import { defaultHint } from './overrides/hint';
 
 import { useFormCheckContext } from './FormCheck';
 import pkg from '../package.json';
@@ -17,6 +17,7 @@ import pkg from '../package.json';
 export const Option = ({
 	value,
 	checked: checkedProp,
+	hint,
 	className,
 	children,
 	overrides,
@@ -44,10 +45,12 @@ export const Option = ({
 	} = useFormCheckContext();
 
 	const optionId = `${instanceId}-option-${useInstanceId()}`;
+	const hintId = `${optionId}-hint`;
 
 	const defaultOverrides = {
 		Option: defaultOption,
 		Label: defaultLabel,
+		Hint: defaultHint,
 	};
 
 	const componentOverrides = overrides || ctxOverrides;
@@ -64,6 +67,8 @@ export const Option = ({
 		size,
 		inline,
 		disabled,
+		hint,
+		hintId,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -71,6 +76,7 @@ export const Option = ({
 	const {
 		Option: { component: Option, styles: optionStyles, attributes: optionAttributes },
 		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+		Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
@@ -83,6 +89,7 @@ export const Option = ({
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
 				id={optionId}
+				aria-describedby={hint && hintId}
 				onChange={
 					disabled
 						? null
@@ -106,6 +113,11 @@ export const Option = ({
 			<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
 				{children}
 			</Label>
+			{hint && (
+				<Hint state={state} {...hintAttributes(state)} css={hintStyles(state)}>
+					{hint}
+				</Hint>
+			)}
 		</Option>
 	);
 };
@@ -159,6 +171,11 @@ Option.propTypes = {
 	 * To inline the element
 	 */
 	inline: PropTypes.bool,
+
+	/**
+	 * Hint text
+	 */
+	hint: PropTypes.string,
 
 	/**
 	 * A function called on change

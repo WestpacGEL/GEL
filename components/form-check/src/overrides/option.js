@@ -44,6 +44,7 @@ const optionStyles = (_, { size, inline }) => {
 // ==============================
 // Blender Styles
 // ==============================
+
 const blenderStyles = () => optionStyles(null, defaultProps);
 
 export const nestedOptionStyles = ({ size, inline }) => {
@@ -57,6 +58,7 @@ export const nestedOptionStyles = ({ size, inline }) => {
 
 	return { [`.__convert__${baseStyles.label}`]: reconciledStyles };
 };
+
 // ==============================
 // Attributes
 // ==============================
