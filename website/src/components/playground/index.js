@@ -14,36 +14,27 @@ export const ExampleBlock = dynamic(() => Promise.resolve(UnSafeExampleBlock), {
 	ssr: false,
 });
 
-const ButtonIconOverride = ({ icon: Icon, left, right, state: _, ...rest }) => {
+const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {
 	return <Icon color="primary" {...rest} />;
 };
 
 const ExampleButton = ({ onClick, children, ...rest }) => {
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
 		<Button
-			look="link"
-			size="xlarge"
+			look="unstyled"
+			size="large"
 			onClick={onClick}
 			css={mq({
 				borderLeft: `solid 1px ${COLORS.border}`,
+				padding: '1rem 1.125rem',
+				height: '3rem',
+				fontSize: '0.875rem',
+				backgroundColor: '#fff',
 			})}
 			overrides={{
-				Button: {
-					styles: (styles) => ({
-						...styles,
-						textDecoration: 'none',
-						color: COLORS.text,
-						backgroundColor: '#fff',
-						border: 0,
-						fontSize: '0.875rem',
-						':hover': {
-							textDecoration: 'none !important',
-						},
-					}),
-				},
 				Icon: {
 					component: ButtonIconOverride,
 				},
@@ -57,7 +48,7 @@ const ExampleButton = ({ onClick, children, ...rest }) => {
 const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 	const [codeIsOpen, setCodeOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const { COLORS, SPACING } = useBrand();
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -75,9 +66,9 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 								onClick={() => {
 									setIsModalOpen(true);
 								}}
+								iconAfter={NewWindowIcon}
 							>
-								<span css={{ marginRight: SPACING(1) }}>Demo</span>{' '}
-								<NewWindowIcon size="small" color={COLORS.primary} />
+								Demo
 							</ExampleButton>
 						</form>
 					) : null}
