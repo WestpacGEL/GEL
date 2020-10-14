@@ -19,10 +19,16 @@ function Example({ brand }) {
 			<Button look="link" size="small">
 				Link
 			</Button>
+			<Button look="unstyled" size="small">
+				Unstyled
+			</Button>
 			<hr />
 			<h2>Medium</h2>
 			<Button look="primary">Primary</Button> <Button look="hero">Hero</Button>{' '}
-			<Button look="faint">Faint</Button> <Button look="link">Link</Button>
+			<Button look="faint">Faint</Button> <Button look="link">Link</Button>{' '}
+			<Button look="unstyled" size="medium">
+				Unstyled
+			</Button>
 			<hr />
 			<h2>Large</h2>
 			<Button look="primary" size="large">
@@ -36,6 +42,9 @@ function Example({ brand }) {
 			</Button>{' '}
 			<Button look="link" size="large">
 				Link
+			</Button>
+			<Button look="unstyled" size="large">
+				Unstyled
 			</Button>
 			<hr />
 			<h2>Extra large</h2>
@@ -51,7 +60,9 @@ function Example({ brand }) {
 			<Button look="link" size="xlarge">
 				Link
 			</Button>
-			<p></p>
+			<Button look="unstyled" size="xlarge">
+				Unstyled
+			</Button>
 		</GEL>
 	);
 }

@@ -5,6 +5,7 @@ import { defaultProps } from '../FormCheck';
 
 import { nestedOptionStyles } from './option';
 import { nestedLabelStyles } from './label';
+import { nestedHintStyles } from './hint';
 
 // ==============================
 // Component
@@ -58,7 +59,10 @@ const blenderStyles = (_, { type, size, inline }) => {
 	}
 
 	// returning an array here as nestedLabelStyles returns a css string, so letting emotion handle the merge of these
-	return [{ label, ...nestedOptionStyles(props) }, nestedLabelStyles(props)];
+	return [
+		{ label, ...nestedOptionStyles(props), ...nestedHintStyles(props) },
+		nestedLabelStyles(props),
+	];
 };
 
 // ==============================

@@ -127,7 +127,7 @@ Button.propTypes = {
 	/**
 	 * Button look
 	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link']).isRequired,
+	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link', 'unstyled']).isRequired,
 
 	/**
 	 * Button size
