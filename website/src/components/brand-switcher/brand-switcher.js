@@ -55,7 +55,7 @@ export const brandsMap = {
 	},
 };
 
-const ButtonIconOverride = ({ state, icon: Icon, left, right, color, ...rest }) => {
+const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {
 	const { COLORS } = useBrand();
 	return (
 		<span
