@@ -22,7 +22,13 @@ export const Section = ({ paddingTop = 'medium', paddingBottom = 'medium', light
 				paddingBottom: paddingMap[paddingBottom],
 				backgroundColor: light && '#fff',
 				borderBottom: `1px solid ${COLORS.border}`,
-				':last-child': { borderBottom: 0 },
+
+				':last-child': {
+					borderBottom: 0,
+				},
+				'.slate-container &:first-of-type': {
+					paddingTop: paddingMap.large,
+				},
 			})}
 			{...rest}
 		/>
