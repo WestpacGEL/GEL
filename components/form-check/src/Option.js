@@ -175,7 +175,7 @@ Option.propTypes = {
 	/**
 	 * Hint text
 	 */
-	hint: PropTypes.string,
+	hint: PropTypes.node,
 
 	/**
 	 * A function called on change
