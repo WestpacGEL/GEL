@@ -7,6 +7,7 @@ import { FormCheck, Option } from '@westpac/form-check';
 import { Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
+import { Section, SectionHeading } from '../../../components/section';
 import { Body } from '../../../components/body';
 
 import PageHeader from '../../../components/header/page-header';
@@ -67,148 +68,207 @@ function TokensPage() {
 		setTimeout(() => setLoading(false), 2000);
 	}
 
+	const OptionOverride = ({ state: _, children, ...rest }) => {
+		return (
+			<div
+				css={{
+					backgroundColor: '#fff',
+					padding: SPACING(3),
+					marginBottom: SPACING(1),
+				}}
+			>
+				<div {...rest}>{children}</div>
+			</div>
+		);
+	};
+
+	const BlenderOption = ({ desc, link, ...rest }) => {
+		const { TYPE, PACKS, SPACING, COLORS } = useBrand();
+
+		const hint = (
+			<Fragment>
+				<div css={{ marginTop: SPACING(1) }}>{desc}</div>
+				<a href={link} css={{ display: 'inline-block', marginTop: SPACING(1) }}>
+					Documentation
+				</a>
+			</Fragment>
+		);
+
+		return (
+			<Option
+				hint={hint}
+				{...rest}
+				overrides={{
+					Option: {
+						component: OptionOverride,
+						styles: (styles) => ({
+							...styles,
+							marginBottom: 0,
+							paddingLeft: SPACING(9),
+							'::before': {
+								content: '""',
+								position: 'absolute',
+								zIndex: 1,
+								top: 0,
+								bottom: `-${SPACING(3)}`,
+								left: SPACING(7),
+								borderLeft: `1px solid ${COLORS.border}`,
+							},
+						}),
+					},
+					Label: {
+						styles: (styles) => ({
+							...styles,
+							...PACKS.typeScale.bodyFont[9],
+							...TYPE.bodyFont[700],
+						}),
+					},
+				}}
+			/>
+		);
+	};
+
 	return (
 		<Fragment>
 			<PageContext.Provider value={{ showGrid, setShowGrid }}>
 				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
 					<PageHeader name="Downloads" />
 					<Gridly show={showGrid} />
-					<Container css={{ position: 'relative' }}>
-						<Grid>
-							<Cell width={10} left={2}>
-								<form
-									action="/api/blender2/"
-									method="POST"
-									css={{ margin: `2rem 2rem ${SPACING(20)} 2rem` }}
-									onSubmit={displayLoading}
-								>
-									<fieldset>
-										<legend>Choose components</legend>
+					<Section paddingTop="large">
+						<Container>
+							<Grid>
+								<Cell width={7}>
+									<SectionHeading>Designers</SectionHeading>
+									<Body>
+										<p>
+											The links opposite provide access to all the design assets and informaiton
+											you’ll need to get started.
+										</p>
+									</Body>
+								</Cell>
+							</Grid>
+						</Container>
+					</Section>
+					<Section>
+						<Container>
+							<form action="/api/blender2/" method="POST" onSubmit={displayLoading}>
+								<Grid>
+									<Cell width={7}>
+										<SectionHeading>Developers</SectionHeading>
+										<Body>
+											<p>
+												Choose which components you want to add to your project. To minimise the
+												code bloat, your download will only contain the assets and their
+												dependencies that you add to the build.
+											</p>
+										</Body>
+										<fieldset>
+											<legend>Select components</legend>
 
-										<div
-											css={{ display: 'flex', alignItems: 'baseline', marginBottom: SPACING(3) }}
-										>
+											<div
+												css={{ display: 'flex', alignItems: 'baseline', marginBottom: SPACING(3) }}
+											>
+												<FormCheck
+													type="checkbox"
+													checked={selectAllToggle}
+													onChange={() => handleToggleChange()}
+													css={{ marginTop: '0.3125rem', marginBottom: '0.3125rem' }}
+													overrides={{
+														Option: {
+															styles: (styles) => ({
+																...styles,
+																marginBottom: 0,
+															}),
+														},
+													}}
+												>
+													<Option value="all">Select all</Option>
+												</FormCheck>
+												{selected.length > 0 && (
+													<Button
+														look="link"
+														onClick={() => handleClearAllClick()}
+														css={{ marginLeft: SPACING(2) }}
+													>
+														{selected.length === supportedPkgs.length
+															? `Clear all`
+															: `Clear ${selected.length} ${
+																	selected.length === 1 ? 'component' : 'components'
+															  }`}
+													</Button>
+												)}
+											</div>
+
 											<FormCheck
 												type="checkbox"
-												checked={selectAllToggle}
-												onChange={() => handleToggleChange()}
-												css={{ marginTop: '0.3125rem', marginBottom: '0.3125rem' }}
-												overrides={{
-													Option: {
-														styles: (styles) => ({
-															...styles,
-															marginBottom: 0,
-														}),
-													},
+												name="packages[]"
+												value={selected}
+												onChange={(value) => handleSelectPkgChange(value)}
+											>
+												{supportedPkgs.map((name, i) => {
+													const niceName = name.charAt(0).toUpperCase() + name.slice(1);
+
+													return (
+														<BlenderOption
+															key={i}
+															value={name}
+															desc={GEL.components[name].description}
+															link={`${BASE_URL}/components/${niceName.toLowerCase()}`}
+														>
+															{niceName}
+														</BlenderOption>
+													);
+												})}
+											</FormCheck>
+										</fieldset>
+									</Cell>
+									<Cell width={4} left={9}>
+										<fieldset>
+											<legend>Build options</legend>
+
+											<FormCheck type="checkbox" name="modules">
+												<Option value="true">Modules</Option>
+											</FormCheck>
+											<FormCheck type="checkbox" name="prettify">
+												<Option value="true">Prettify</Option>
+											</FormCheck>
+											<FormCheck type="checkbox" name="excludeJquery">
+												<Option value="true">Exclude jQuery</Option>
+											</FormCheck>
+											<FormCheck type="checkbox" name="noVersionInClass">
+												<Option value="true">Exclude versions in classes</Option>
+											</FormCheck>
+											<label
+												css={{
+													display: 'block',
+													margin: '0.5rem 0',
 												}}
 											>
-												<Option value="all">Select all</Option>
-											</FormCheck>
-											{selected.length > 0 && (
-												<Button
-													look="link"
-													onClick={() => handleClearAllClick()}
-													css={{ marginLeft: SPACING(2) }}
-												>
-													{selected.length === supportedPkgs.length
-														? `Clear all`
-														: `Clear ${selected.length} ${
-																selected.length === 1 ? 'component' : 'components'
-														  }`}
-												</Button>
-											)}
-										</div>
+												Token format
+												<Select name="tokensFormat" inline>
+													<option value="json">JSON</option>
+													<option value="less">LESS</option>
+													<option value="css">CSS</option>
+													<option value="sass">SCSS/SASS</option>
+												</Select>
+											</label>
+										</fieldset>
 
-										<FormCheck
-											type="checkbox"
-											name="packages[]"
-											value={selected}
-											onChange={(value) => handleSelectPkgChange(value)}
+										<input type="hidden" name="brand" value={BRAND} />
+
+										<Button
+											look="primary"
+											type="submit"
+											disabled={isLoading}
+											iconAfter={isLoading ? Loading : DownloadIcon}
 										>
-											{supportedPkgs.map((name, i) => {
-												const niceName = name.charAt(0).toUpperCase() + name.slice(1);
-
-												return (
-													<div
-														key={i}
-														css={{
-															display: 'grid',
-															gridTemplateColumns: '3fr auto',
-														}}
-													>
-														<Option value={name}>
-															<span
-																css={{
-																	...TYPE.bodyFont[700],
-																	fontSize: '1.1428571429rem',
-																}}
-															>
-																{niceName}
-															</span>
-															<p
-																css={{
-																	margin: 0,
-																}}
-															>
-																{GEL.components[name].description}
-															</p>
-														</Option>
-														<Body>
-															<a href={`${BASE_URL}/components/${niceName.toLowerCase()}`}>
-																Documentation
-															</a>
-														</Body>
-													</div>
-												);
-											})}
-										</FormCheck>
-									</fieldset>
-
-									<fieldset>
-										<legend>Choose options</legend>
-
-										<FormCheck type="checkbox" name="modules">
-											<Option value="true">Modules</Option>
-										</FormCheck>
-										<FormCheck type="checkbox" name="prettify">
-											<Option value="true">Prettify</Option>
-										</FormCheck>
-										<FormCheck type="checkbox" name="excludeJquery">
-											<Option value="true">Exclude jQuery</Option>
-										</FormCheck>
-										<FormCheck type="checkbox" name="noVersionInClass">
-											<Option value="true">Exclude versions in classes</Option>
-										</FormCheck>
-										<label
-											css={{
-												display: 'block',
-												margin: '0.5rem 0',
-											}}
-										>
-											Tokens format
-											<Select name="tokensFormat" inline>
-												<option value="json">JSON</option>
-												<option value="less">LESS</option>
-												<option value="css">CSS</option>
-												<option value="sass">SCSS/SASS</option>
-											</Select>
-										</label>
-									</fieldset>
-
-									<input type="hidden" name="brand" value={BRAND} />
-
-									<Button
-										look="primary"
-										type="submit"
-										disabled={isLoading}
-										iconAfter={isLoading ? Loading : DownloadIcon}
-									>
-										Download
-									</Button>
-								</form>
-							</Cell>
-						</Grid>
-					</Container>
+											Download
+										</Button>
+									</Cell>
+								</Grid>
+							</form>
+						</Container>
+					</Section>
 					<Footer />
 				</div>
 			</PageContext.Provider>
