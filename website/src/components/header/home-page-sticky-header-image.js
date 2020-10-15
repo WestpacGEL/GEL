@@ -1,12 +1,32 @@
 /** @jsx jsx */
 import { jsx, useMediaQuery } from '@westpac/core';
 import React from 'react';
-import { StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
+import { WbcBackgroundSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
 
-const StickyHeaderImage = ({ brand, hide, ...rest }) => {
+const HomePageStickyHeaderImage = ({ brand, hide, ...rest }) => {
 	const mq = useMediaQuery();
 
-	const StGeorgeImage = (props) => (
+	const WBCImage = (props) => (
+		<div
+			css={mq({
+				top: [0, null, 'auto'],
+				bottom: 0,
+				right: 0,
+				height: [null, null, 228],
+			})}
+			{...props}
+		>
+			<WbcBackgroundSvg
+				css={{
+					display: 'block',
+					width: 'auto',
+					height: '100%',
+				}}
+			/>
+		</div>
+	);
+
+	const STGImage = (props) => (
 		<div
 			css={mq({
 				bottom: 0,
@@ -24,7 +44,7 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 			/>
 		</div>
 	);
-	const BankSAImage = (props) => (
+	const BSAImage = (props) => (
 		<div
 			css={mq({
 				bottom: 0,
@@ -44,10 +64,10 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 	);
 
 	const BRAND_HEADERS = {
-		WBC: null,
+		WBC: WBCImage,
 		WBG: null,
-		STG: StGeorgeImage,
-		BSA: BankSAImage,
+		STG: STGImage,
+		BSA: BSAImage,
 		BOM: null,
 		BTFG: null,
 	};
@@ -65,4 +85,4 @@ const StickyHeaderImage = ({ brand, hide, ...rest }) => {
 	) : null;
 };
 
-export default StickyHeaderImage;
+export default HomePageStickyHeaderImage;

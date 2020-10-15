@@ -41,7 +41,7 @@ export const Section = ({ paddingTop = 'medium', paddingBottom = 'medium', light
 
 Section.propTypes = {
 	paddingTop: PropTypes.oneOf(['medium', 'large']).isRequired,
-	paddingMedium: PropTypes.oneOf(['medium', 'large']).isRequired,
+	paddingBottom: PropTypes.oneOf(['medium', 'large']).isRequired,
 	light: PropTypes.bool.isRequired,
 };
 
