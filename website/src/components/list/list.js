@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 import { List as GELList } from '@westpac/list';
-import { Body as ListOverride } from '../body';
+import { Body } from '../body';
 import merge from 'lodash.merge';
 
 const listStyleMap = {
@@ -22,6 +22,10 @@ const listStyleMap = {
 		},
 	},
 };
+
+const ListOverride = ({ state: { type }, ...rest }) => (
+	<Body tag={type === 'ordered' ? 'ol' : 'ul'} {...rest} />
+);
 
 export const List = (props) => {
 	return (
