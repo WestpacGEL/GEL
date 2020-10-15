@@ -13,7 +13,6 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 				top: 0,
 				bottom: 0,
 				right: 0,
-				width: 'auto',
 			})}
 			{...props}
 		>
@@ -27,7 +26,7 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 		</div>
 	);
 
-	const StGeorgeImage = (props) => (
+	const STGImage = (props) => (
 		<div
 			css={mq({
 				bottom: 0,
@@ -45,7 +44,7 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 			/>
 		</div>
 	);
-	const BankSAImage = (props) => (
+	const BSAImage = (props) => (
 		<div
 			css={mq({
 				bottom: 0,
@@ -67,8 +66,8 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 	const BRAND_HEADERS = {
 		WBC: WBCImage,
 		WBG: null,
-		STG: StGeorgeImage,
-		BSA: BankSAImage,
+		STG: STGImage,
+		BSA: BSAImage,
 		BOM: null,
 		BTFG: null,
 	};
