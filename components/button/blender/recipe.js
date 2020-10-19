@@ -1,5 +1,5 @@
 import { GEL } from '@westpac/core';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { HouseIcon, ArrowRightIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
@@ -7,8 +7,15 @@ import { Button } from '@westpac/button';
 import { blenderButton } from '../src/overrides/button';
 import { blenderIcon } from '../src/overrides/icon';
 
-const looks = ['primary', 'faint', 'link'];
+const looks = ['primary', 'hero', 'faint', 'link'];
 const sizes = ['small', 'large', 'xlarge'];
+
+const titleCase = (str) =>
+	str
+		.toLowerCase()
+		.split(' ')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(' ');
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -59,117 +66,166 @@ export function Docs({ brand }) {
 		},
 	};
 	return [
+		// Look
 		{
-			heading: `A default button`,
+			heading: 'Button looks',
+			subheading: 'Standard',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Button>Your default button text</Button>
-				</GEL>
-			),
-		},
-		...looks.map((look) => ({
-			heading: `A ${look} button`,
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Button look={look}>Your {look} button text</Button>
-				</GEL>
-			),
-		})),
-		{
-			heading: `A default soft`,
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Button soft>Your default soft button text</Button>
+					<Button>Default</Button>{' '}
+					{looks.map((look) => (
+						<Fragment key={look}>
+							<Button look={look}>{titleCase(look)}</Button>{' '}
+						</Fragment>
+					))}
 				</GEL>
 			),
 		},
 		{
-			heading: `A disabled button`,
+			subheading: 'Soft',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Button disabled>Your disabled text</Button>
+					<Button soft>Default</Button>{' '}
+					{looks
+						.filter((item) => item !== 'link')
+						.map((look) => (
+							<Fragment key={look}>
+								<Button look={look} soft>
+									{titleCase(look)}
+								</Button>{' '}
+							</Fragment>
+						))}
 				</GEL>
 			),
 		},
-		...['primary', 'hero', 'faint'].map((look) => ({
-			heading: `A ${look} soft button`,
+
+		// Disabled
+		{
+			heading: `Disabled buttons`,
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Button look={look} soft>
-						Your {look} soft button text
-					</Button>
+					<Button disabled>Default</Button>{' '}
+					{looks.map((look) => (
+						<Fragment key={look}>
+							<Button look={look} disabled>
+								{titleCase(look)}
+							</Button>{' '}
+						</Fragment>
+					))}
+				</GEL>
+			),
+		},
+
+		// Size
+		{
+			heading: 'Button sizes',
+			subheading: 'Small',
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<Button size="small">Default</Button>{' '}
+					{looks.map((look) => (
+						<Fragment key={look}>
+							<Button look={look} size="small">
+								{titleCase(look)}
+							</Button>{' '}
+						</Fragment>
+					))}
+				</GEL>
+			),
+		},
+		...['large', 'xlarge'].map((size) => ({
+			subheading: titleCase(size),
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<Button size={size}>Default</Button>{' '}
+					{looks.map((look) => (
+						<Fragment key={look}>
+							<Button look={look} size={size}>
+								{titleCase(look)}
+							</Button>{' '}
+						</Fragment>
+					))}
 				</GEL>
 			),
 		})),
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
-			heading: `A ${look} small button`,
+
+		// Block
+		{
+			heading: `Block buttons`,
+			subheading: 'Standard',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Button look={look} size="small">
-						Your {look} small button text
-					</Button>
+					<Button block>Default</Button>
+					{looks.map((look) => (
+						<Button key={look} look={look} block>
+							{titleCase(look)}
+						</Button>
+					))}
 				</GEL>
 			),
-		})),
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
-			heading: `A ${look} large button`,
+		},
+		{
+			subheading: 'Soft',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Button look={look} size="large">
-						Your {look} large button text
+					<Button soft block>
+						Default
 					</Button>
+					{looks.map((look) => (
+						<Button key={look} look={look} soft block>
+							{titleCase(look)}
+						</Button>
+					))}
 				</GEL>
 			),
-		})),
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
-			heading: `A ${look} xlarge button`,
+		},
+
+		// Icon
+		{
+			heading: 'Buttons with icons',
+			subheading: 'Icon before',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Button look={look} size="xlarge">
-						Your {look} xlarge button text
-					</Button>
+					<Button iconBefore={HouseIcon}>Default</Button>{' '}
+					{looks.map((look) => (
+						<Fragment key={look}>
+							<Button look={look} iconBefore={HouseIcon}>
+								{titleCase(look)}
+							</Button>{' '}
+						</Fragment>
+					))}
 				</GEL>
 			),
-		})),
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
-			heading: `A ${look} block button`,
+		},
+		{
+			subheading: 'Icon after',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Button look={look} block>
-						Your {look} block button text
-					</Button>
+					<Button iconAfter={HouseIcon}>Default</Button>{' '}
+					{looks.map((look) => (
+						<Fragment key={look}>
+							<Button look={look} iconAfter={HouseIcon}>
+								{titleCase(look)}
+							</Button>{' '}
+						</Fragment>
+					))}
 				</GEL>
 			),
-		})),
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
-			heading: `A ${look} button with icon before`,
+		},
+		{
+			subheading: 'Block buttons justified with icon after',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Button look={look} iconBefore={HouseIcon}>
-						Your {look} button text
+					<Button block justify iconAfter={ArrowRightIcon}>
+						Default
 					</Button>
+					{looks.map((look) => (
+						<Button key={look} look={look} block justify iconAfter={ArrowRightIcon}>
+							{titleCase(look)}
+						</Button>
+					))}
 				</GEL>
 			),
-		})),
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
-			heading: `A ${look} button with icon after`,
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Button look={look} iconAfter={HouseIcon}>
-						Your {look} button text
-					</Button>
-				</GEL>
-			),
-		})),
-		...['primary', 'hero', 'faint', 'link'].map((look) => ({
-			heading: `A ${look} block justified button with icon after`,
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Button look={look} block justify iconAfter={ArrowRightIcon}>
-						Your {look} block justified button text
-					</Button>
-				</GEL>
-			),
-		})),
+		},
 	];
 }
