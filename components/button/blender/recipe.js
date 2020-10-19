@@ -99,9 +99,20 @@ export function Docs({ brand }) {
 			),
 		},
 
+		// Assistive text
+		{
+			heading: 'Assistive text',
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<Button iconAfter={HouseIcon} assistiveText="Go to home" />{' '}
+					<Button assistiveText="Learn more about accessibility">Learn more</Button>
+				</GEL>
+			),
+		},
+
 		// Disabled
 		{
-			heading: `Disabled buttons`,
+			heading: 'Disabled buttons',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Button disabled>Default</Button>{' '}
@@ -151,7 +162,7 @@ export function Docs({ brand }) {
 
 		// Block
 		{
-			heading: `Block buttons`,
+			heading: 'Block buttons',
 			subheading: 'Standard',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
