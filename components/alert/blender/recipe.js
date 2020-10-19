@@ -128,7 +128,9 @@ export function Docs({ brand }) {
 			heading: 'An alert with heading',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Alert heading="Your alert heading">Your alert body</Alert>
+					<Alert heading="Your alert heading">
+						<p>Your alert body</p>
+					</Alert>
 				</GEL>
 			),
 		},
