@@ -7,6 +7,7 @@ import { FormCheck, Option } from '@westpac/form-check';
 import { Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
+import { Heading } from '@westpac/heading';
 import { Section, SectionHeading } from '../../../components/section';
 import { Body } from '../../../components/body';
 
@@ -35,6 +36,26 @@ function Loading() {
 		/>
 	);
 }
+
+const Fieldset = (props) => {
+	return <fieldset css={{ display: 'block', border: 0, padding: 0, margin: 0 }} {...props} />;
+};
+
+const Legend = (props) => {
+	return (
+		<legend
+			css={{
+				boxSizing: 'border-box',
+				color: 'inherit',
+				display: 'table',
+				maxWidth: '100%',
+				padding: 0,
+				whiteSpace: 'normal',
+			}}
+			{...props}
+		/>
+	);
+};
 
 function TokensPage() {
 	const { BRAND, TYPE, SPACING, COLORS } = useBrand();
@@ -162,8 +183,12 @@ function TokensPage() {
 												dependencies that you add to the build.
 											</p>
 										</Body>
-										<fieldset>
-											<legend>Select components</legend>
+										<Fieldset>
+											<legend>
+												<Body>
+													<h3>Select components</h3>
+												</Body>
+											</legend>
 
 											<div
 												css={{ display: 'flex', alignItems: 'baseline', marginBottom: SPACING(3) }}
@@ -187,8 +212,9 @@ function TokensPage() {
 												{selected.length > 0 && (
 													<Button
 														look="link"
+														size="small"
 														onClick={() => handleClearAllClick()}
-														css={{ marginLeft: SPACING(2) }}
+														css={{ marginLeft: SPACING(1) }}
 													>
 														{selected.length === supportedPkgs.length
 															? `Clear all`
@@ -220,11 +246,15 @@ function TokensPage() {
 													);
 												})}
 											</FormCheck>
-										</fieldset>
+										</Fieldset>
 									</Cell>
 									<Cell width={4} left={9}>
-										<fieldset>
-											<legend>Build options</legend>
+										<Fieldset>
+											<legend>
+												<Body>
+													<h3>Build options</h3>
+												</Body>
+											</legend>
 
 											<FormCheck type="checkbox" name="modules">
 												<Option value="true">Modules</Option>
@@ -252,7 +282,7 @@ function TokensPage() {
 													<option value="sass">SCSS/SASS</option>
 												</Select>
 											</label>
-										</fieldset>
+										</Fieldset>
 
 										<input type="hidden" name="brand" value={BRAND} />
 
