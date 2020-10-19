@@ -14,9 +14,10 @@ export function AllStyles({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens} noPrefix>
-			<Badge look="neutral" value="Neutral" />
+			<Badge value="Default" />
 			<Badge look="primary" value="Primary" />
 			<Badge look="hero" value="Hero" />
+			<Badge look="neutral" value="Neutral" />
 			<Badge look="faint" value="Faint" />
 			<Badge look="success" value="Success" />
 			<Badge look="info" value="Info" />
@@ -39,7 +40,7 @@ export function Docs({ brand }) {
 			heading: 'A default badge',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Badge value="Neutral" />
+					<Badge value="Default" />
 				</GEL>
 			),
 		},
@@ -60,6 +61,14 @@ export function Docs({ brand }) {
 			),
 		},
 		{
+			heading: 'A neutral badge',
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<Badge look="neutral" value="Neutral" />
+				</GEL>
+			),
+		},
+		{
 			heading: 'A faint badge',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
@@ -76,7 +85,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A info badge',
+			heading: 'An info badge',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Badge look="info" value="Info" />
