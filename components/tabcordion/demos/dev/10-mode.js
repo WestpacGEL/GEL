@@ -5,11 +5,11 @@ import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Title } from '../../../../helpers/demos';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Title>Default tabcordion</Title>
-			<Tabcordion>
+			<Title>Always accordion</Title>
+			<Tabcordion mode="accordion">
 				<Tab text="Mole">
 					The Mole had been working very hard all the morning, spring-cleaning his little home.
 					First with brooms, then with dusters; then on ladders and steps and chairs, with a brush
@@ -49,8 +49,8 @@ export default ({ context, showCode, showDemo }) => {
 				</Tab>
 			</Tabcordion>
 			<br />
-			<Title>Lego tabcordion</Title>
-			<Tabcordion look="lego">
+			<Title>Always tabs and justified</Title>
+			<Tabcordion mode="tabs" justify>
 				<Tab text="Mole">
 					The Mole had been working very hard all the morning, spring-cleaning his little home.
 					First with brooms, then with dusters; then on ladders and steps and chairs, with a brush
@@ -92,3 +92,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

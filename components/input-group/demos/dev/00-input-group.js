@@ -4,8 +4,9 @@ import { jsx } from '@westpac/core';
 import { useState } from 'react';
 import { InputGroup, Before, After } from '@westpac/input-group';
 import { Playground } from '../../../../website/src/components/playground/macro';
+import { Title } from '../../../../helpers/demos';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	const [value, setValue] = useState(0);
 
 	return (
@@ -57,6 +58,21 @@ export default ({ context, showCode, showDemo }) => {
 				<Before inputType="button" data="-" onClick={() => setValue((value) => value - 1)} />
 				<After inputType="button" data="+" onClick={() => setValue((value) => value + 1)} />
 			</InputGroup>
+			<Title>Data driven</Title>
+			<InputGroup
+				name="example-text-button-datadriven"
+				label="Total amount"
+				data={{
+					before: { inputType: 'text', data: 'AUS $' },
+					after: {
+						inputType: 'button',
+						data: 'Go',
+						onClick: () => console.log('Go clicked'),
+					},
+				}}
+			/>
 		</Playground>
 	);
 };
+
+export default Demo;
