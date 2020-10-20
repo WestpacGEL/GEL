@@ -71,7 +71,7 @@ const alertStyles = (_, { dismissible, look }) => {
 
 	return mq({
 		label: 'alert',
-		marginBottom: SPACING(7),
+		marginBottom: SPACING(4),
 		padding: dismissible ? `${SPACING(3)} ${SPACING(6)} ${SPACING(3)} ${SPACING(3)}` : SPACING(3),
 		position: 'relative',
 		display: [null, 'flex'],
