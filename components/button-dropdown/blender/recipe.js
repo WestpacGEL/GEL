@@ -92,7 +92,7 @@ export function Docs({ brand }) {
 	return [
 		// Looks
 		{
-			heading: 'Button-dropdown looks',
+			heading: 'Button looks',
 			subheading: 'Standard',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
@@ -129,7 +129,7 @@ export function Docs({ brand }) {
 
 		// Headings
 		{
-			heading: 'Dropdown with headings',
+			heading: 'Dropdown headings',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<ButtonDropdown text="Default with headings">
