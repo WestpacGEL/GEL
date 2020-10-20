@@ -1,4 +1,4 @@
-import { GEL } from '@westpac/core';
+import { GEL, titleCase } from '@westpac/core';
 import React from 'react';
 
 import { FormCheck, Option } from '@westpac/form-check';
@@ -75,12 +75,46 @@ export function Docs({ brand }) {
 	};
 
 	return [
+		// Checkboxes
 		{
-			heading: 'Default',
-			subheading: 'Checkboxes',
+			heading: 'Checkboxes',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="checkbox" name="name1" instanceIdPrefix="GEL">
+					<FormCheck type="checkbox" name="example-checkboxes" instanceIdPrefix="GEL">
+						<Option value="1">Your option 1</Option>
+						<Option value="2">Your option 2</Option>
+						<Option value="3">Your option 3</Option>
+					</FormCheck>
+				</GEL>
+			),
+		},
+
+		// Radios
+		{
+			heading: 'Radios',
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<FormCheck type="radio" name="example-radios" instanceIdPrefix="GEL">
+						<Option value="1">Your option 1</Option>
+						<Option value="2">Your option 2</Option>
+						<Option value="3">Your option 3</Option>
+					</FormCheck>
+				</GEL>
+			),
+		},
+
+		// Sizes
+		{
+			heading: 'Checkbox sizes',
+			subheading: 'Large',
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<FormCheck
+						type="checkbox"
+						name="example-large-checkboxes"
+						instanceIdPrefix="GEL"
+						size="large"
+					>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -89,10 +123,11 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			subheading: 'Radios',
+			heading: 'Radio sizes',
+			subheading: 'Large',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="radio" name="name2" instanceIdPrefix="GEL">
+					<FormCheck type="radio" name="example-large-radios" instanceIdPrefix="GEL" size="large">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -100,37 +135,14 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
+
+		// Hints
 		{
-			heading: 'Size',
-			subheading: 'Large checkboxes',
+			heading: 'Option hints',
+			subheading: 'Checkboxes with option hints',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="checkbox" name="name3" instanceIdPrefix="GEL" size="large">
-						<Option value="1">Your option 1</Option>
-						<Option value="2">Your option 2</Option>
-						<Option value="3">Your option 3</Option>
-					</FormCheck>
-				</GEL>
-			),
-		},
-		{
-			subheading: 'Large radios',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="radio" name="name4" instanceIdPrefix="GEL" size="large">
-						<Option value="1">Your option 1</Option>
-						<Option value="2">Your option 2</Option>
-						<Option value="3">Your option 3</Option>
-					</FormCheck>
-				</GEL>
-			),
-		},
-		{
-			heading: 'Hints',
-			subheading: 'Default checkboxes with option hints',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="checkbox" name="name5" instanceIdPrefix="GEL">
+					<FormCheck type="checkbox" name="example-checkboxes-hints" instanceIdPrefix="GEL">
 						<Option value="1" hint="Your option 1 hint">
 							Your option 1
 						</Option>
@@ -148,7 +160,12 @@ export function Docs({ brand }) {
 			subheading: 'Large checkboxes with option hints',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="checkbox" name="name5b" instanceIdPrefix="GEL" size="large">
+					<FormCheck
+						type="checkbox"
+						name="example-checkboxes-large-hints"
+						instanceIdPrefix="GEL"
+						size="large"
+					>
 						<Option value="1" hint="Your option 1 hint">
 							Your option 1
 						</Option>
@@ -162,12 +179,14 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
+
+		// Inline
 		{
-			heading: 'Inline',
-			subheading: 'Inline checkboxes',
+			heading: 'Inline form-checks',
+			subheading: 'Checkboxes',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="checkbox" name="name6" instanceIdPrefix="GEL" inline>
+					<FormCheck type="checkbox" name="example-inline-checkboxes" instanceIdPrefix="GEL" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -176,10 +195,10 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			subheading: 'Inline radios',
+			subheading: 'Radios',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="radio" name="name7" instanceIdPrefix="GEL" inline>
+					<FormCheck type="radio" name="example-inline-radios" instanceIdPrefix="GEL" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -188,10 +207,16 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			subheading: 'Large inline checkboxes',
+			subheading: 'Large checkboxes',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="checkbox" name="name8" instanceIdPrefix="GEL" size="large" inline>
+					<FormCheck
+						type="checkbox"
+						name="example-large-inline-checkboxes"
+						instanceIdPrefix="GEL"
+						size="large"
+						inline
+					>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -200,10 +225,37 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			subheading: 'Large inline radios',
+			subheading: 'Large radios',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="radio" name="name9" instanceIdPrefix="GEL" size="large" inline>
+					<FormCheck
+						type="radio"
+						name="example-large-inline-radios"
+						instanceIdPrefix="GEL"
+						size="large"
+						inline
+					>
+						<Option value="1">Your option 1</Option>
+						<Option value="2">Your option 2</Option>
+						<Option value="3">Your option 3</Option>
+					</FormCheck>
+				</GEL>
+			),
+		},
+
+		// Disabled
+		{
+			heading: 'Disabled form-checks',
+			subheading: 'Checkboxes',
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<FormCheck
+						type="checkbox"
+						name="example-disabled-checkboxes"
+						instanceIdPrefix="GEL"
+						disabled
+						defaultValue="2"
+					>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -212,23 +264,16 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'Disabled',
-			subheading: 'Disabled checkboxes',
+			subheading: 'Radios',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="checkbox" name="name10" instanceIdPrefix="GEL" disabled defaultValue="2">
-						<Option value="1">Your option 1</Option>
-						<Option value="2">Your option 2</Option>
-						<Option value="3">Your option 3</Option>
-					</FormCheck>
-				</GEL>
-			),
-		},
-		{
-			subheading: 'Disabled radios',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<FormCheck type="radio" name="name11" instanceIdPrefix="GEL" disabled defaultValue="2">
+					<FormCheck
+						type="radio"
+						name="example-disabled-radios"
+						instanceIdPrefix="GEL"
+						disabled
+						defaultValue="2"
+					>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
