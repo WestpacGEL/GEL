@@ -8,7 +8,7 @@ import { blenderButton } from '../src/overrides/button';
 import { blenderIcon } from '../src/overrides/icon';
 
 const looks = ['primary', 'hero', 'faint', 'link'];
-const sizes = ['small', 'large', 'xlarge'];
+const sizes = ['small', 'medium', 'large', 'xlarge'];
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -22,27 +22,38 @@ export function AllStyles({ brand }) {
 	};
 	return (
 		<GEL brand={overridesWithTokens} noPrefix>
+			{/* Default */}
 			<Button>Text</Button>
+			<Button soft>Text</Button>
+
+			{/* Looks */}
 			{looks.map((look) => (
 				<Button key={look} look={look}>
 					Text
 				</Button>
 			))}
-			<Button soft>Text</Button>
 			{looks.map((look) => (
 				<Button key={`${look}-soft`} look={look} soft>
 					Text
 				</Button>
 			))}
+
+			{/* Size */}
 			{sizes.map((size) => (
 				<Button key={size} size={size}>
 					Text
 				</Button>
 			))}
+
+			{/* Block */}
 			<Button block>Text</Button>
+
+			{/* Icon */}
 			<Button iconBefore={HouseIcon}>Text</Button>
 			<Button iconAfter={HouseIcon}>Text</Button>
 			<Button justify>Text</Button>
+
+			{/* Disabled */}
 			<Button disabled>Text</Button>
 		</GEL>
 	);
@@ -137,21 +148,23 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
-		...['large', 'xlarge'].map((size) => ({
-			subheading: titleCase(size),
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Button size={size}>Default</Button>{' '}
-					{looks.map((look) => (
-						<Fragment key={look}>
-							<Button look={look} size={size}>
-								{titleCase(look)}
-							</Button>{' '}
-						</Fragment>
-					))}
-				</GEL>
-			),
-		})),
+		...sizes
+			.filter((size) => size !== 'small')
+			.map((size) => ({
+				subheading: titleCase(size),
+				component: () => (
+					<GEL brand={overridesWithTokens} noPrefix>
+						<Button size={size}>Default</Button>{' '}
+						{looks.map((look) => (
+							<Fragment key={look}>
+								<Button look={look} size={size}>
+									{titleCase(look)}
+								</Button>{' '}
+							</Fragment>
+						))}
+					</GEL>
+				),
+			})),
 
 		// Block
 		{
