@@ -22,7 +22,7 @@ export function AllStyles({ brand }) {
 export function Docs({ brand }) {
 	return [
 		{
-			heading: 'The body component',
+			heading: 'Body component',
 			component: () => (
 				<GEL brand={brand} noPrefix>
 					<Body>Your body content</Body>
@@ -30,7 +30,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'Common typography elements',
+			heading: 'Body with typography elements',
 			component: () => (
 				<GEL brand={brand} noPrefix>
 					<Body>
