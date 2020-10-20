@@ -29,7 +29,7 @@ const Grid = () => {
 
 export function AllStyles({ brand }) {
 	return (
-		<GEL brand={brand}>
+		<GEL brand={brand} noPrefix>
 			<Grid />
 		</GEL>
 	);
