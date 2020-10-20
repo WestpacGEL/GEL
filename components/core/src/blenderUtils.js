@@ -64,3 +64,17 @@ export function styleReconciler(base, modified) {
 export function getModifier(defaultProps, props) {
 	return Object.keys(props).filter((m) => props[m] !== defaultProps[m]);
 }
+
+/**
+ * Transform given string to title case
+ *
+ * @param {string} str		- text to transform
+ *
+ * @return {string}			- text in title case
+ */
+export const titleCase = (str) =>
+	str
+		.toLowerCase()
+		.split(' ')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(' ');
