@@ -1,4 +1,4 @@
-import { GEL } from '@westpac/core';
+import { GEL, titleCase } from '@westpac/core';
 import React, { Fragment } from 'react';
 
 import { HouseIcon, ArrowRightIcon } from '@westpac/icon';
@@ -9,13 +9,6 @@ import { blenderIcon } from '../src/overrides/icon';
 
 const looks = ['primary', 'hero', 'faint', 'link'];
 const sizes = ['small', 'large', 'xlarge'];
-
-const titleCase = (str) =>
-	str
-		.toLowerCase()
-		.split(' ')
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(' ');
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
