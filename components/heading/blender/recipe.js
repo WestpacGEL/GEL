@@ -59,7 +59,6 @@ export function Docs({ brand }) {
 		// Heading
 		{
 			heading: 'Heading',
-			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					{headingSizes.map((size) => (
@@ -71,7 +70,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			subheading: 'Uppercase',
+			heading: 'Heading uppercase',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					{headingSizes.map((size) => (
@@ -86,7 +85,6 @@ export function Docs({ brand }) {
 		// Brand heading
 		{
 			heading: 'Brand heading',
-			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					{brandHeadingSizes.map((size) => (
@@ -98,7 +96,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			subheading: 'Uppercase',
+			heading: 'Brand heading uppercase',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					{brandHeadingSizes.map((size) => (
