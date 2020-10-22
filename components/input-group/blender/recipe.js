@@ -1,4 +1,4 @@
-import { GEL } from '@westpac/core';
+import { GEL, titleCase } from '@westpac/core';
 import React from 'react';
 import { InputGroup, Before, After } from '@westpac/input-group';
 import { blenderTextInput, blenderSelect } from '@westpac/text-input';
@@ -112,14 +112,16 @@ export function Docs({ brand }) {
 		},
 	};
 	return [
+		// Before
 		{
-			heading: 'Input group with text left',
+			heading: 'Add-on before',
+			subheading: 'Text',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
 						instanceIdPrefix="GEL"
-						name="inputgroup-left-text"
-						label="inputgroup-left-text"
+						name="inputgroup-before-text"
+						label="inputgroup-before-text"
 						data={{
 							before: { inputType: 'text', data: 'AUS $' },
 						}}
@@ -128,13 +130,13 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'Input group with button left',
+			subheading: 'Button',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
 						instanceIdPrefix="GEL"
-						name="inputgroup-left-button"
-						label="inputgroup-left-button"
+						name="inputgroup-before-button"
+						label="inputgroup-before-button"
 						data={{
 							before: { inputType: 'button', data: 'Search' },
 						}}
@@ -143,17 +145,17 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'Input group with select left',
+			subheading: 'Select',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
 						instanceIdPrefix="GEL"
-						name="inputgroup-left-select"
-						label="inputgroup-left-select"
+						name="inputgroup-before-select"
+						label="inputgroup-before-select"
 						data={{
 							before: {
 								inputType: 'select',
-								label: 'inputgroup-left-select-currency',
+								label: 'inputgroup-before-select-currency',
 								data: [
 									{ text: 'Select', value: '' },
 									{ text: 'AUD $', value: 'AUD $' },
@@ -166,14 +168,17 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
+
+		// After
 		{
-			heading: 'Input group with text right',
+			Heading: 'Add-on after',
+			subheading: 'Text',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
 						instanceIdPrefix="GEL"
-						name="inputgroup-right-text"
-						label="inputgroup-right-text"
+						name="inputgroup-after-text"
+						label="inputgroup-after-text"
 						data={{
 							after: { inputType: 'text', data: '.00' },
 						}}
@@ -182,13 +187,13 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'Input group with button right',
+			subheading: 'Button',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
 						instanceIdPrefix="GEL"
-						name="inputgroup-right-button"
-						label="inputgroup-right-button"
+						name="inputgroup-after-button"
+						label="inputgroup-after-button"
 						data={{
 							after: { inputType: 'button', data: 'Submit' },
 						}}
@@ -197,17 +202,17 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'Input group with select right',
+			subheading: 'Select',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
 						instanceIdPrefix="GEL"
-						name="inputgroup-right-select"
-						label="inputgroup-right-select"
+						name="inputgroup-after-select"
+						label="inputgroup-after-select"
 						data={{
 							after: {
 								inputType: 'select',
-								label: 'inputgroup-right-select-currency',
+								label: 'inputgroup-after-select-currency',
 								data: [
 									{ text: 'Yearly', value: 'Yearly' },
 									{ text: 'Monthly', value: 'Monthly' },
@@ -219,14 +224,17 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
+
+		// Before + after
 		{
-			heading: 'Input group with text left and button right',
+			heading: 'Add-on before and after',
+			subheading: 'Text and button add-ons',
 			component: () => (
 				<GEL brand={brand}>
 					<InputGroup
 						instanceIdPrefix="GEL"
-						name="inputgroup-left-text-right-button"
-						label="inputgroup-left-text-right-button"
+						name="inputgroup-before-text-after-button"
+						label="inputgroup-before-text-after-button"
 						data={{
 							before: { inputType: 'text', data: 'AUS $' },
 							after: { inputType: 'button', data: 'Submit' },
@@ -236,13 +244,13 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'Input group with text left and text right',
+			subheading: 'Text add-ons',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
-						name="inputgroup-left-text-right-text"
-						label="inputgroup-left-text-right-text"
+						name="inputgroup-before-text-after-text"
+						label="inputgroup-before-text-after-text"
 						data={{
 							before: { inputType: 'text', data: 'AUS $' },
 							after: { inputType: 'text', data: '.00' },
@@ -252,13 +260,13 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'Input group with button left and button right',
+			subheading: 'Button add-ons',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
 						instanceIdPrefix="GEL"
-						name="inputgroup-left-button-right-button"
-						label="inputgroup-left-button-right-button"
+						name="inputgroup-before-button-after-button"
+						label="inputgroup-before-button-after-button"
 						data={{
 							before: { inputType: 'button', data: '-' },
 							after: { inputType: 'button', data: '+' },
@@ -267,8 +275,11 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
-		...sizes.map((size) => ({
-			heading: `Input group size ${size}`,
+
+		// Sizes
+		...sizes.map((size, i) => ({
+			...(i === 0 && { heading: 'Input-group sizes' }),
+			subheading: titleCase(size),
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
