@@ -134,7 +134,7 @@ const TableOfContents = ({ content }) => {
 
 const PackageInfoTable = ({ item }) => {
 	if (!item) return null;
-	const { PACKS } = useBrand();
+	const { PACKS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<table
@@ -154,10 +154,9 @@ const PackageInfoTable = ({ item }) => {
 						fontWeight: 500,
 					},
 					'> tr': {
-						borderBottom: 'solid 1px #2585ca',
+						borderBottom: 'solid 1px #2585CA',
 						textAlign: 'left',
-						'> td': { textAlign: 'right' },
-						'> td, > th': { padding: 15 },
+						'> td, > th': { padding: SPACING(3) },
 					},
 				}}
 			>

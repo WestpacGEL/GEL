@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 import { Fragment } from 'react';
 
@@ -57,27 +58,25 @@ export const Sidebar = ({ items }) => {
 
 const CloseButton = () => {
 	const { setIsOpen } = useSidebar();
-	const { COLORS, SPACING, LAYOUT } = useBrand();
+	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
-		<button
-			type="button"
+		<Button
+			look="unstyled"
+			size="large"
+			iconAfter={CloseIcon}
+			aria-label="Close sidebar"
 			onClick={() => setIsOpen(false)}
 			css={mq({
 				display: [null, null, null, null, 'none'],
 				position: 'absolute',
-				top: 0,
-				right: 0,
-				margin: SPACING(2),
-				padding: 0,
-				background: 'none',
-				border: 'none',
-				cursor: 'pointer',
 				zIndex: 2,
+				top: SPACING(1),
+				right: SPACING(1),
+				padding: SPACING(1),
+				backgroundColor: 'transparent',
+				color: COLORS.muted,
 			})}
-			aria-label="Close sidebar"
-		>
-			<CloseIcon color={COLORS.neutral} size="small" />
-		</button>
+		/>
 	);
 };

@@ -9,7 +9,7 @@ import * as symbols from '@westpac/symbol';
 const renderSymbols = (search) => {
 	const symbolDetails = [];
 	for (let key in symbols) {
-		if (/symbol$/i.test(key)) {
+		if (/logo$/i.test(key)) {
 			symbolDetails.push({ name: key, symbol: symbols[key] });
 		}
 	}
@@ -52,49 +52,46 @@ const renderSymbols = (search) => {
 		});
 };
 
-const Symbol = () => {
+const Logo = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
-	const { COLORS, SPACING } = useBrand();
-
 	return (
 		<Fragment>
 			<Cell width={12}>
-				<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
-					<Grid>
-						<Cell width={[12, null, 6]}>
-							<div
+				<Grid>
+					<Cell width={[12, null, 6]}>
+						<div
+							css={mq({
+								display: 'flex',
+								flexDirection: ['column', null, 'row'],
+								alignItems: ['start', null, 'center'],
+								margin: '1.5rem 0 0.75rem',
+							})}
+						>
+							<label
+								htmlFor={'filter-logos'}
 								css={mq({
-									display: 'flex',
-									flexDirection: ['column', null, 'row'],
-									alignItems: ['start', null, 'center'],
+									marginRight: '1rem',
+									marginBottom: ['0.75rem', null, 0],
+									whiteSpace: 'nowrap',
 								})}
 							>
-								<label
-									htmlFor={'filter-symbols'}
-									css={mq({
-										marginRight: '1rem',
-										marginBottom: ['0.75rem', null, 0],
-										whiteSpace: 'nowrap',
-									})}
-								>
-									Filter by name
-								</label>
-								<TextInput
-									id={'filter-symbols'}
-									value={search}
-									onChange={(e) => setSearch(e.target.value)}
-								/>
-							</div>
-						</Cell>
-					</Grid>
-				</div>
+								Filter by name
+							</label>
+							<TextInput
+								id={'filter-logos'}
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
+							/>
+						</div>
+					</Cell>
+				</Grid>
 			</Cell>
 			{renderSymbols(search)}
 		</Fragment>
 	);
 };
 
-export const Symbols = {
-	component: Symbol,
+export const Logos = {
+	component: Logo,
 };
