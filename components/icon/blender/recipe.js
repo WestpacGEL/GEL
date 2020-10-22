@@ -8,13 +8,14 @@ const sizes = ['xsmall', 'small', 'medium', 'large', 'xlarge'];
 const colors = [
 	'inherit',
 	'primary',
-	'borderDark',
-	'heading',
 	'hero',
-	'light',
 	'neutral',
-	'primary',
+	'heading',
 	'text',
+	'muted',
+	'border',
+	'background',
+	'light',
 ];
 
 export function AllStyles({ brand }) {
@@ -103,7 +104,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
-		...colors.map((color, i) => ({
+		...colors.map((color) => ({
 			subheading: titleCase(color),
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
