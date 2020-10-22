@@ -206,7 +206,7 @@ const HeroFeatures = () => {
 					/>
 				}
 			>
-				Get to market faster by leveraging our knowledge and tools
+				Go to market faster leveraging tools to get you up and running instantly
 			</HeroFeaturesItem>
 			<HeroFeaturesItem
 				icon={
@@ -224,7 +224,7 @@ const HeroFeatures = () => {
 					/>
 				}
 			>
-				Design, build and ship consistent, quality, branded solutions
+				Design, build and ship consistent brand experiences
 			</HeroFeaturesItem>
 			<HeroFeaturesItem
 				icon={
@@ -242,7 +242,7 @@ const HeroFeatures = () => {
 					/>
 				}
 			>
-				Be more accessible and inclusive with our assets
+				Create more accessible solutions that are inclusive of all customers
 			</HeroFeaturesItem>
 		</Grid>
 	);
@@ -270,7 +270,7 @@ const HeroIntro = () => {
 							}),
 						})}
 					>
-						Design to scale with confidence
+						Deliver high-quality scalable user interfaces—fast!
 					</BrandHeading>
 				</Cell>
 			</Grid>
@@ -283,7 +283,7 @@ const HeroIntro = () => {
 								...PACKS.typeScale.bodyFont[8],
 							})}
 						>
-							Assemble enterprise solutions with our components and patterns
+							Simplify your projects with reusable components and patterns
 						</p>
 					</Body>
 				</Cell>
