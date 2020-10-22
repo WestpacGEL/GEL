@@ -1,6 +1,6 @@
 const COLORS = {
 	background: '#F3F4F6',
-	border: '#E8E8ED',
+	border: '#DEDEE1',
 	borderDark: '#9390A2',
 	focus: '#B978D9',
 	heading: '#1F1C4F',
