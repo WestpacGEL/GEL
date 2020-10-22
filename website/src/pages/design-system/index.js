@@ -188,7 +188,9 @@ const Homepage = () => {
 										Design on-brand with greater efficiency and accuracy using the Sketch or Axure
 										UI Kits.
 									</p>
-									<p>Visit GitHub to follow the Westpac GEL Design System project.</p>
+									<p>
+										Visit GitHub to follow Westpac GEL Design System code updates and log issues.
+									</p>
 								</Body>
 							</Cell>
 						</Grid>
