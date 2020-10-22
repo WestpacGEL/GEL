@@ -32,9 +32,13 @@ export default ({ context, showCode, showDemo }) => {
 			</List>
 			<br />
 			<Title>List colours</Title>
-			<List>
-				<Item look="primary">This is a primary list</Item>
+			<List look="primary">
+				<Item>This is a primary list</Item>
+			</List>
+			<List look="hero">
 				<Item look="hero">This is a hero list</Item>
+			</List>
+			<List look="neutral">
 				<Item look="neutral">This is a neutral list</Item>
 			</List>
 		</Playground>

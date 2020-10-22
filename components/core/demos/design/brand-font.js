@@ -6,7 +6,12 @@ import { Body } from '@westpac/body';
 
 const StyledText = ({ weight, ...rest }) => {
 	const { PACKS, TYPE } = useBrand();
-	return <p css={{ ...PACKS.typeScale.brandFont[4], ...TYPE.bodyFont[weight] }} {...rest} />;
+	return (
+		<p
+			css={{ ...PACKS.typeScale.brandFont[4], fontWeight: TYPE.bodyFont[weight].fontWeight }}
+			{...rest}
+		/>
+	);
 };
 
 const Demo = ({ context, showCode, showDemo }) => {
