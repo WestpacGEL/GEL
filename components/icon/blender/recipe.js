@@ -16,6 +16,11 @@ const colors = [
 	'border',
 	'background',
 	'light',
+	'info',
+	'success',
+	'warning',
+	'danger',
+	'system',
 ];
 
 export function AllStyles({ brand }) {
