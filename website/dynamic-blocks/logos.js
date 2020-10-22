@@ -9,7 +9,7 @@ import * as symbols from '@westpac/symbol';
 const renderSymbols = (search) => {
 	const symbolDetails = [];
 	for (let key in symbols) {
-		if (/symbol$/i.test(key)) {
+		if (/logo$/i.test(key)) {
 			symbolDetails.push({ name: key, symbol: symbols[key] });
 		}
 	}
@@ -52,7 +52,7 @@ const renderSymbols = (search) => {
 		});
 };
 
-const Symbol = () => {
+const Logo = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
 	return (
@@ -69,7 +69,7 @@ const Symbol = () => {
 							})}
 						>
 							<label
-								htmlFor={'filter-symbols'}
+								htmlFor={'filter-logos'}
 								css={mq({
 									marginRight: '1rem',
 									marginBottom: ['0.75rem', null, 0],
@@ -79,7 +79,7 @@ const Symbol = () => {
 								Filter by name
 							</label>
 							<TextInput
-								id={'filter-symbols'}
+								id={'filter-logos'}
 								value={search}
 								onChange={(e) => setSearch(e.target.value)}
 							/>
@@ -92,6 +92,6 @@ const Symbol = () => {
 	);
 };
 
-export const Symbols = {
-	component: Symbol,
+export const Logos = {
+	component: Logo,
 };
