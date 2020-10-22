@@ -121,7 +121,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-text"
-						label="inputgroup-before-text"
+						label="Your input label text"
 						data={{
 							before: { inputType: 'text', data: 'AUS $' },
 						}}
@@ -136,7 +136,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-button"
-						label="inputgroup-before-button"
+						label="Your input label text"
 						data={{
 							before: { inputType: 'button', data: 'Search' },
 						}}
@@ -151,7 +151,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-select"
-						label="inputgroup-before-select"
+						label="Your input label text"
 						data={{
 							before: {
 								inputType: 'select',
@@ -178,7 +178,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-after-text"
-						label="inputgroup-after-text"
+						label="Your input label text"
 						data={{
 							after: { inputType: 'text', data: '.00' },
 						}}
@@ -193,7 +193,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-after-button"
-						label="inputgroup-after-button"
+						label="Your input label text"
 						data={{
 							after: { inputType: 'button', data: 'Submit' },
 						}}
@@ -208,7 +208,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-after-select"
-						label="inputgroup-after-select"
+						label="Your input label text"
 						data={{
 							after: {
 								inputType: 'select',
@@ -234,7 +234,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-text-after-button"
-						label="inputgroup-before-text-after-button"
+						label="Your input label text"
 						data={{
 							before: { inputType: 'text', data: 'AUS $' },
 							after: { inputType: 'button', data: 'Submit' },
@@ -250,7 +250,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-text-after-text"
-						label="inputgroup-before-text-after-text"
+						label="Your input label text"
 						data={{
 							before: { inputType: 'text', data: 'AUS $' },
 							after: { inputType: 'text', data: '.00' },
@@ -266,7 +266,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-button-after-button"
-						label="inputgroup-before-button-after-button"
+						label="Your input label text"
 						data={{
 							before: { inputType: 'button', data: '-' },
 							after: { inputType: 'button', data: '+' },
@@ -286,7 +286,7 @@ export function Docs({ brand }) {
 						instanceIdPrefix="GEL"
 						size={size}
 						name={`inputgroup-size-${size}`}
-						label={`inputgroup-size-${size}`}
+						label="Your input label text"
 						data={{
 							before: {
 								inputType: 'select',
