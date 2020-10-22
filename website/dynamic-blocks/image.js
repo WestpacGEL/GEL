@@ -8,6 +8,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { useMutation } from '@apollo/react-hooks';
 import { LoadingIndicator } from '@arch-ui/loading';
 import { Cell } from '@westpac/grid';
+import { Body } from '../src/components/body';
 
 import gql from 'graphql-tag';
 
@@ -99,18 +100,34 @@ export const Image = {
 		);
 	},
 	component: ({ caption, image, removeMargin = false, context }) => {
-		const { SPACING } = useBrand();
+		const { SPACING, PACKS, COLORS } = useBrand();
 
 		return (
 			<Cell width={12}>
 				<figure
 					css={{
-						margin: removeMargin ? '0 0 30px' : '30px 0',
+						margin: removeMargin ? `0 0 ${SPACING(5)}` : `${SPACING(5)} 0`,
 						pointerEvents: context === 'admin' ? 'none' : undefined,
 					}}
 				>
-					<img css={{ width: '100%', height: '100%' }} src={image} />
-					<figcaption css={{ padding: `${SPACING(2)} 0` }}>{caption}</figcaption>
+					<img css={{ display: 'block', width: '100%', height: 'auto' }} src={image} />
+					<Body
+						tag="figcaption"
+						css={{
+							marginTop: SPACING(2),
+						}}
+						overrides={{
+							Body: {
+								styles: (styles) => ({
+									...styles,
+									...PACKS.typeScale.bodyFont[10],
+									color: COLORS.muted,
+								}),
+							},
+						}}
+					>
+						{caption}
+					</Body>
 				</figure>
 			</Cell>
 		);
