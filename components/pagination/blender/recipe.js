@@ -37,7 +37,8 @@ export function Docs({ brand }) {
 	};
 	return [
 		{
-			heading: 'A default pagination - Page 1',
+			heading: 'Pagination component',
+			subheading: 'Page 1',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Pagination current={0}>
@@ -49,7 +50,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A default pagination - Page 2',
+			subheading: 'Page 2',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Pagination current={1}>
@@ -61,7 +62,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A default pagination - Page 3',
+			subheading: 'Page 3',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Pagination current={2}>
