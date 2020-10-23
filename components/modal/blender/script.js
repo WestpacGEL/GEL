@@ -5,8 +5,8 @@ $(function () {
 		$modalWrapper.toggleClass(baseClass.concat('-open'));
 	}
 
-	$('[data-modal]').click(function (event) {
-		event.stopPropagation();
+	$('[data-modal]').click(function (e) {
+		e.stopPropagation();
 		const modalID = $(this).data('modal');
 		const $modal = $(`#${modalID}`);
 
@@ -14,13 +14,16 @@ $(function () {
 		toggleModalWrapper($modalWrapper);
 	});
 
-	$('[data-js="modal-closeBtn__version__"]').click(function (event) {
-		event.stopPropagation();
+	$('[data-js="modal-closeBtn__version__"]').click(function (e) {
+		e.stopPropagation();
 		const $modalWrapper = $(this).closest('[data-js="modal-wrapper__version__"]');
 		toggleModalWrapper($modalWrapper);
 	});
 
-	$('[data-js="modal-wrapper__version__"]').click(function () {
+	$('[data-js="modal-wrapper__version__"]').click(function (e) {
+		if (e.target != this) {
+			return false;
+		}
 		const $modalWrapper = $(this);
 		toggleModalWrapper($modalWrapper);
 	});
