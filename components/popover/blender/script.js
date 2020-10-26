@@ -7,18 +7,15 @@ function GELPopoverToggle($el, mode) {
 		return /panel$/.test(el);
 	})[0];
 	var openClass = baseClass + '-open';
+	var isOpen = $panel.hasClass(openClass);
 
-	if (mode === 'open') {
+	if (mode === 'open' || (mode === 'toggle' && !isOpen)) {
 		$el.attr('aria-expanded', 'true');
 		$panel.addClass(openClass);
-	} else if (mode === 'close') {
+	} else if (mode === 'close' || (mode === 'toggle' && isOpen)) {
 		$el.attr('aria-expanded', 'false');
 		$panel.removeClass(openClass);
-	} else {
-		$el.attr('aria-expanded', function (_, val) {
-			return val === 'true' ? 'false' : 'true';
-		});
-		$panel.toggleClass(openClass);
+		$el.trigger('focus');
 	}
 }
 
