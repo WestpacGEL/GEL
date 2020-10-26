@@ -10,10 +10,10 @@ import { SlateContent } from './pages/single-component/blocks-hub';
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
 	return (
-		<div>
+		<Fragment>
 			{title && (
-				<Grid columns={12} css={{ ...blocksContainerStyle, marginBottom: SPACING(2) }}>
-					<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+				<Grid css={{ ...blocksContainerStyle, marginBottom: SPACING(2) }}>
+					<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
 						<Heading tag="h2" size={5}>
 							{title}
 						</Heading>
@@ -21,19 +21,17 @@ export const BlocksDocs = ({ title, blocks, item }) => {
 				</Grid>
 			)}
 			{blocks ? (
-				<Fragment>
-					<SlateContent content={blocks} item={item} />
-				</Fragment>
+				<SlateContent content={blocks} item={item} />
 			) : (
 				<Container css={blocksContainerStyle}>
-					<Grid columns={12}>
-						<Cell width={[12, 12, 12, 10, 10]} left={[1, 1, 1, 2, 2]}>
+					<Grid>
+						<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
 							<p>No documentation specified for this section.</p>
 						</Cell>
 					</Grid>
 				</Container>
 			)}
-		</div>
+		</Fragment>
 	);
 };
 
@@ -62,32 +60,32 @@ export const brandHeaderStyling = {
 	WBC: (COLORS) => ({
 		background: COLORS.primary,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 	WBG: (COLORS) => ({
 		background: COLORS.hero,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 	STG: (COLORS) => ({
 		background: COLORS.hero,
-		color: COLORS.text,
-		antialiasing: null,
+		color: '#fff',
+		...antialiasingStyling,
 	}),
 	BSA: (COLORS) => ({
 		background: `linear-gradient(to right, ${COLORS.hero} 0%, #00468e 50%, #00adbd 100%)`,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 	BOM: (COLORS) => ({
 		background: COLORS.hero,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 	BTFG: (COLORS) => ({
 		background: COLORS.hero,
 		color: '#fff',
-		antialiasing: antialiasingStyling,
+		...antialiasingStyling,
 	}),
 };
 
@@ -100,14 +98,6 @@ export const brandIconHighlightColors = {
 	BTFG: () => '#00afd7',
 };
 
-export const gridlyIconColors = {
-	WBC: '#b6000b',
-	WBG: '#808990',
-	STG: '#a1d263',
-	BSA: 'rgba(255, 255, 255, 0.3)',
-	BOM: 'rgba(255, 255, 255, 0.3)',
-	BTFG: '#669ec3',
-};
 export const blocksGridStyle = {
 	maxWidth: '60rem',
 	margin: '0 auto',

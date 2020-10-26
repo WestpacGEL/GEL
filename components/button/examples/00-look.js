@@ -3,8 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 import {
 	HouseIcon,
 	AlertIcon,
@@ -18,71 +16,13 @@ import {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
 			<h2>Default</h2>
 			<Button>Default standard</Button> <Button soft>Default soft</Button>
 			<hr />
 			<h2>Standard</h2>
-			<Button look="primary">Primary standard</Button>{' '}
-			<Button look="primary" soft>
-				Primary soft
-			</Button>{' '}
-			<Button look="primary" size="small">
-				Primary small
-			</Button>{' '}
-			<Button look="primary" size="medium">
-				Primary medium
-			</Button>{' '}
-			<Button look="primary" size="large">
-				Primary large
-			</Button>{' '}
-			<div css={{ marginTop: '0.5rem' }}>
-				<Button look="primary" block iconAfter={ArrowRightIcon} justify>
-					Primary block
-				</Button>
-			</div>{' '}
-			<br />
-			<br />
-			<Button look="hero">Primary standard</Button>{' '}
-			<Button look="hero" soft>
-				Primary soft
-			</Button>{' '}
-			<Button look="hero" size="small">
-				Primary small
-			</Button>{' '}
-			<Button look="hero" size="medium">
-				Primary medium
-			</Button>{' '}
-			<Button look="hero" size="large">
-				Primary large
-			</Button>{' '}
-			<div css={{ marginTop: '0.5rem' }}>
-				<Button look="hero" block iconAfter={ArrowRightIcon} justify>
-					Primary block
-				</Button>
-			</div>{' '}
-			<br />
-			<br />
-			<Button look="faint">Primary standard</Button>{' '}
-			<Button look="faint" soft>
-				Primary soft
-			</Button>{' '}
-			<Button look="faint" size="small">
-				Primary small
-			</Button>{' '}
-			<Button look="faint" size="medium">
-				Primary medium
-			</Button>{' '}
-			<Button look="faint" size="large">
-				Primary large
-			</Button>{' '}
-			<div css={{ marginTop: '0.5rem' }}>
-				<Button look="faint" block iconAfter={ArrowRightIcon} justify>
-					Primary block
-				</Button>
-			</div>{' '}
-			<br />
-			<br />
+			<Button look="primary">Primary standard</Button> <Button look="hero">Hero standard</Button>{' '}
+			<Button look="faint">Faint standard</Button> <Button look="link">Link</Button>{' '}
+			<Button look="unstyled">Unstyled</Button>
 			<hr />
 			<h2>Soft</h2>
 			<Button look="primary" soft>

@@ -99,7 +99,7 @@ export const Button = forwardRef(
 					{...rest}
 					state={state}
 					{...buttonAttributes(state)}
-					css={{ '&&': buttonStyles(state) }}
+					css={buttonStyles(state)}
 				>
 					{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 					{tag !== 'input' ? (
@@ -127,7 +127,7 @@ Button.propTypes = {
 	/**
 	 * Button look
 	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link']),
+	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link', 'unstyled']).isRequired,
 
 	/**
 	 * Button size
@@ -135,12 +135,12 @@ Button.propTypes = {
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
-	]),
+	]).isRequired,
 
 	/**
 	 * Button tag
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
 
 	/**
 	 * Button type.
@@ -230,7 +230,7 @@ Button.propTypes = {
 	}),
 };
 
-Button.defaultProps = {
+export const defaultProps = {
 	look: 'hero',
 	size: 'medium',
 	tag: 'button',
@@ -239,3 +239,5 @@ Button.defaultProps = {
 	justify: false,
 	disabled: false,
 };
+
+Button.defaultProps = defaultProps;

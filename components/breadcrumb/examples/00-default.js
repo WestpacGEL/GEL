@@ -3,16 +3,12 @@
 import { GEL, jsx } from '@westpac/core';
 import { Breadcrumb, Crumb } from '@westpac/breadcrumb';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 // Crumb tag as a component example
 const CrumbTag = (props) => <a {...props} onClick={() => console.log(`Clicked crumb link`)} />;
 
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Default</h2>
 			<Breadcrumb>
 				<Crumb text="Home" />

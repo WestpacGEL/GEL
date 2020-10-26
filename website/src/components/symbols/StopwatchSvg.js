@@ -1,17 +1,23 @@
 /** @jsx jsx */
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Svg } from './Svg';
 
 export const StopwatchSvg = ({
 	width,
 	height = 'auto',
-	highlightColor = '#D5002B',
-	highlightOutlineColor = '#2D373E',
-	outlineColor = '#8C9296',
+	highlightColor,
+	highlightOutlineColor,
+	outlineColor,
 	...rest
 }) => {
+	const { COLORS } = useBrand();
+
+	highlightColor = highlightColor || COLORS.primary;
+	highlightOutlineColor = highlightOutlineColor || COLORS.text;
+	outlineColor = outlineColor || COLORS.borderDark;
+
 	return (
-		<Svg viewBox="0 0 90 90" width="90" height="90" {...rest}>
+		<Svg viewBox="0 0 90 90" width={90} height={90} css={{ width, height }} {...rest}>
 			<title>Stopwatch</title>
 			<g fill="none" fillRule="evenodd">
 				<path
@@ -19,13 +25,13 @@ export const StopwatchSvg = ({
 					fill={outlineColor}
 				/>
 				<circle
+					cx={45}
+					cy={52}
+					r={31}
 					stroke={outlineColor}
 					strokeWidth={2}
 					fill="none"
 					strokeLinejoin="round"
-					cx={45}
-					cy={52}
-					r={31}
 				/>
 				<path
 					d="M45 26v3m13 .483l-1.5 2.598M67.517 39l-2.598 1.5M71 52h-3m-.483 13l-2.598-1.5M58 74.517l-1.5-2.598M45 78v-3m-13-.483l1.5-2.598M22.483 65l2.598-1.5M19 52h3m.483-13l2.598 1.5M32 29.483l1.5 2.598"

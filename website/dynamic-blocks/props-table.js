@@ -3,6 +3,7 @@ import React, { Fragment } from 'react'; // Needed for within Keystone
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Container, Grid, Cell } from '@westpac/grid';
+import { Section, SectionHeading } from '../src/components/section';
 import { Heading } from '@westpac/heading';
 
 import { FieldContainer } from '@arch-ui/fields';
@@ -199,19 +200,12 @@ const Component = ({ item, addTableContent }) => {
 		});
 
 	return (
-		<div
-			css={mq({
-				padding: ['36px 0 98px', null, '60px 0 122px'],
-				backgroundColor: '#fff',
-			})}
-		>
+		<Section light>
 			<Container>
+				<SectionHeading id="props" tabIndex="-1">
+					Props
+				</SectionHeading>
 				<Grid rowGap={['36px', null, '42px']}>
-					<Cell width={12}>
-						<Heading tag="h2" size={[7, null, 6]} id="props" tabIndex="-1">
-							Props
-						</Heading>
-					</Cell>
 					<Cell width={12}>
 						{tableData.map(({ overrideProps, normalProps, name }) => {
 							return (
@@ -224,7 +218,7 @@ const Component = ({ item, addTableContent }) => {
 					</Cell>
 				</Grid>
 			</Container>
-		</div>
+		</Section>
 	);
 };
 

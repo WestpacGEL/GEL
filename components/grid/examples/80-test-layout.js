@@ -4,13 +4,9 @@ import { GEL, jsx } from '@westpac/core';
 import { Container, Cell, Grid } from '@westpac/grid';
 import { Wrapper, Box } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia ignore />
-
 			<Wrapper
 				css={{
 					position: 'absolute',

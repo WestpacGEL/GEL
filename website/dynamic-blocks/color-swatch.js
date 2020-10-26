@@ -2,37 +2,53 @@
 
 import React, { Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Cell } from '@westpac/grid';
+import { Grid, Cell } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import chroma from 'chroma-js';
+import { Body } from '../src/components/body';
 
 import { secondaryColors } from '../src/secondary-colors.js';
 
 // Recursively render swatches
-const Swatch = ({ color, name }) => {
-	if (!chroma.valid(color)) return null;
-	const { SPACING } = useBrand();
+const Swatch = ({ color, secondary }) => {
+	const { BRAND, SPACING, PACKS, COLORS } = useBrand();
+	const colorVal = secondary ? secondaryColors[BRAND][color] : COLORS[color];
+
+	if (!chroma.valid(colorVal)) return null;
+
 	const mq = useMediaQuery();
-	const [r, g, b] = chroma(color).rgb();
+	const [r, g, b] = chroma(colorVal).rgb();
+
 	return (
-		<Fragment>
-			<div css={{ background: color, height: SPACING(12) }} />
+		<div css={{ backgroundColor: '#fff', padding: SPACING(4) }}>
 			<div
+				css={{
+					background: colorVal,
+					width: 132,
+					height: 132,
+					borderRadius: '50%',
+				}}
+			/>
+			<Body
 				css={mq({
-					padding: SPACING(2),
 					display: 'flex',
 					flexDirection: 'column',
-					background: '#fff',
-					fontSize: '0.875rem',
-					lineHeight: 1.2,
-					marginBottom: ['18px', '24px'],
+					padding: `${SPACING(2)} ${SPACING(2)} 0`,
 				})}
+				overrides={{
+					Body: {
+						styles: (styles) => ({
+							...styles,
+							...PACKS.typeScale.bodyFont[10],
+						}),
+					},
+				}}
 			>
-				<strong css={{ marginBottom: SPACING(1, true) }}>{name}</strong>
-				<span css={{ marginBottom: SPACING(1, true) }}>{color}</span>
-				<span css={{ marginBottom: SPACING(1, true) }}>{`R:${r} G:${g} B:${b}`}</span>
-			</div>
-		</Fragment>
+				<strong>{color.charAt(0).toUpperCase() + color.slice(1)}</strong>
+				<span css={{ marginTop: SPACING(1, true) }}>{colorVal}</span>
+				<span css={{ marginTop: SPACING(1, true) }}>{`R:${r} G:${g} B:${b}`}</span>
+			</Body>
+		</div>
 	);
 };
 
@@ -40,14 +56,13 @@ const Swatch = ({ color, name }) => {
 export const ColorSwatch = {
 	editor: ({ value, onChange }) => {
 		const { COLORS } = useBrand();
-
 		const swatches = Object.entries({
 			...COLORS,
 			...{ 'Secondary Colors': '--secondary-colors--' },
 		})
 			.filter(([key, value]) => typeof value === 'string')
 			.map(([key, value]) => {
-				return { value: value, label: key.charAt(0).toUpperCase() + key.slice(1) };
+				return { value: key, label: key };
 			});
 
 		return (
@@ -64,29 +79,32 @@ export const ColorSwatch = {
 	},
 
 	component: ({ colors }) => {
-		const { BRAND } = useBrand();
+		const mq = useMediaQuery();
+		const { BRAND, SPACING } = useBrand();
 		return (
-			<Fragment>
-				{colors.map((color) => {
-					if (color.value === '--secondary-colors--') {
-						return (
-							<Fragment key={color.value}>
-								{Object.entries(secondaryColors[BRAND]).map((secondaryColor) => (
-									<Cell key={secondaryColor[1]} width={[10, 6, 4, 3]} left={[2, 'auto']}>
-										<Swatch color={secondaryColor[1]} name={secondaryColor[0]} />
-									</Cell>
-								))}
-							</Fragment>
-						);
-					} else {
-						return (
-							<Cell key={color.value} width={[10, 6, 4, 3]} left={[2, 'auto']}>
-								<Swatch color={color.value} name={color.label} />
-							</Cell>
-						);
-					}
-				})}
-			</Fragment>
+			<Cell width={12}>
+				<Grid css={{ marginTop: SPACING(2) }}>
+					{colors.map((color) => {
+						if (color.value === 'Secondary Colors') {
+							return (
+								<Fragment key={color.value}>
+									{Object.keys(secondaryColors[BRAND]).map((secondaryColor) => (
+										<Cell key={secondaryColor} width={[12, 6, 4, 3]}>
+											<Swatch color={secondaryColor} secondary />
+										</Cell>
+									))}
+								</Fragment>
+							);
+						} else {
+							return (
+								<Cell key={color.value} width={[12, 6, 4, 3]}>
+									<Swatch color={color.value} />
+								</Cell>
+							);
+						}
+					})}
+				</Grid>
+			</Cell>
 		);
 	},
 };

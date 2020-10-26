@@ -11,9 +11,7 @@ import {
 import { Cell, Grid, Name } from './_utils';
 import { Fragment } from 'react';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
-const Wrapper = ({ children, symbol, state, ...rest }) => (
+const SymbolOverride = ({ symbol, state: _, children, ...rest }) => (
 	<Fragment>
 		<div {...rest}>{children}</div>
 		<div css={{ marginBottom: '1rem' }}>
@@ -30,14 +28,12 @@ function Example({ brand }) {
 				...styles,
 				outline: '1px solid red',
 			}),
-			component: Wrapper,
+			component: SymbolOverride,
 		},
 	};
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<Grid>
 				<Cell>

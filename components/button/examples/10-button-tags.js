@@ -4,16 +4,22 @@ import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { Link } from 'react-router-dom';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
 			<h2>
 				Button with an <code>&lt;a&gt;</code> tag
 			</h2>
-			<Button href="#0">Link</Button>{' '}
+			<Button href="#0">Default</Button>{' '}
+			<Button href="#0" look="primary">
+				Primary
+			</Button>{' '}
+			<Button href="#0" look="hero">
+				Hero
+			</Button>{' '}
+			<Button href="#0" look="faint">
+				Faint
+			</Button>{' '}
 			<Button href="#0" look="link">
 				Link
 			</Button>

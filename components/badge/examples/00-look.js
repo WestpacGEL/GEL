@@ -3,13 +3,9 @@
 import { GEL, jsx } from '@westpac/core';
 import { Badge } from '@westpac/badge';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<p>
 				<Badge value="Default" />
 			</p>

@@ -1,23 +1,24 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery, getLabel } from '@westpac/core';
+import { containerMap } from '../_utils';
 
-const Container = ({ state, ...rest }) => <div {...rest} />;
+const { paddingHorizontal, maxWidthFixed, maxWidthFluid } = containerMap;
+
+const Container = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
 const containerStyles = (_, { fixed }) => {
 	const mq = useMediaQuery();
-	const paddingHorizontal = [12, 30, 36, 48, 60];
-	const fixedWidth = [null, null, 768, 992, 1200];
-	const fluidMaxWidth = 1320; //1200 (lg) + 60 (paddingHorizontal) + 60 (paddingHorizontal)
 
 	return mq({
+		label: getLabel('container'),
 		boxSizing: 'border-box',
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		width: fixed && fixedWidth,
-		maxWidth: !fixed && fluidMaxWidth,
+		width: '100%',
+		maxWidth: fixed ? maxWidthFixed : maxWidthFluid,
 		paddingLeft: paddingHorizontal,
 		paddingRight: paddingHorizontal,
+		marginLeft: 'auto',
+		marginRight: 'auto',
 	})[0];
 };
 

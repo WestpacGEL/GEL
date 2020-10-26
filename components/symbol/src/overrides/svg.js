@@ -1,13 +1,26 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
-const Svg = ({ state, ...rest }) => <svg {...rest} />;
+// ==============================
+// Component
+// ==============================
+
+const Svg = ({ state: _, ...rest }) => <svg {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const svgStyles = () => ({
+	label: getLabel('symbol-svg'),
 	width: '100%',
 	height: '100%',
 });
+
+// ==============================
+// Attributes
+// ==============================
 
 const svgAttributes = (_, { assistiveText, viewBoxWidth, viewBoxHeight }) => ({
 	'aria-label': assistiveText,
@@ -16,6 +29,10 @@ const svgAttributes = (_, { assistiveText, viewBoxWidth, viewBoxHeight }) => ({
 	role: 'img',
 	focusable: 'false',
 });
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultSvg = {
 	component: Svg,

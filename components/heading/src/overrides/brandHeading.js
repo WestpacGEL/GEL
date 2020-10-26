@@ -1,7 +1,19 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, asArray } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	asArray,
+	getLabel,
+	classNames,
+	styleReconciler,
+} from '@westpac/core';
 import { forwardRef } from 'react';
+
+// ==============================
+// Component
+// ==============================
 
 const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	// ignore all non h1-h6 tags
@@ -25,7 +37,11 @@ const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) =>
 	return <Tag ref={ref} {...rest} />;
 });
 
-const brandHeadingStyles = (_, { size }) => {
+// ==============================
+// Styles
+// ==============================
+
+const brandHeadingStyles = (_, { size, uppercase }) => {
 	const { PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
@@ -46,18 +62,57 @@ const brandHeadingStyles = (_, { size }) => {
 	});
 
 	return mq({
+		label: getLabel('brandHeading'),
 		fontFamily: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontFamily),
 		fontSize: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].fontSize),
-		lineHeight: sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].lineHeight),
+		lineHeight: uppercase ? 1 : sizeArr.map((s) => s && PACKS.typeScale.brandFont[s].lineHeight),
 		fontWeight: TYPE.brandFont.headingWeight,
+		textTransform: uppercase && 'uppercase',
 		margin: 0,
 	})[0];
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { size, uppercase }) => {
+	if (!uppercase) {
+		const styles = brandHeadingStyles(_, { size });
+		return { ...styles, label: `${styles.label}-size-${size}` };
+	} else {
+		const baseStyles = brandHeadingStyles(_, { size });
+		const modifierStyles = brandHeadingStyles(_, { size, uppercase });
+		const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+		return { label: `${baseStyles.label}-uppercase`, ...reconciledStyles };
+	}
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const brandHeadingAttributes = () => null;
+
+const blenderAttributes = (_, { size, uppercase }) => ({
+	className: classNames({
+		[`__convert__brandHeading-size-${size}`]: uppercase,
+	}),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultBrandHeading = {
 	component: BrandHeading,
 	styles: brandHeadingStyles,
 	attributes: brandHeadingAttributes,
+};
+
+export const blenderBrandHeading = {
+	component: BrandHeading,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };

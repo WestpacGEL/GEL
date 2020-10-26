@@ -1,12 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
-import { List, Item } from '@westpac/list';
-import { Body } from '@westpac/body';
+import { List, Item } from '../../list';
+import { Body } from '../../body';
+import { Section } from '../../section';
 import dynamic from 'next/dynamic';
 import React from 'react';
+import reactStringReplace from 'react-string-replace';
 
 import createReactRenderer from './react-renderer';
 import { getShortCodes } from '../../../shortcodes';
@@ -22,9 +24,22 @@ const Under = (props) => <span css={{ textDecoration: 'underline' }} {...props} 
 const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
 	const shortcodes = getShortCodes(BRAND);
-	return text.replace(/\[\[([A-Za-z0-9]*)\]\]/g, (match, capture, offset, string) => {
-		return shortcodes[capture] || capture;
+	const textCodes = [...text.matchAll(/\[\[[A-Za-z0-9]*\]\]/g)].map((m) => m[0]);
+	let shortCodedText = text;
+
+	textCodes.forEach((shortCode) => {
+		shortCodedText = reactStringReplace(shortCodedText, shortCode, (match, i) => {
+			const code = shortCode.slice(2, shortCode.length - 2);
+			if (typeof shortcodes[code] === 'function') {
+				const Component = shortcodes[code];
+				return <Component />;
+			} else {
+				return shortcodes[code] || code;
+			}
+		});
 	});
+
+	return shortCodedText;
 };
 
 const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
@@ -40,6 +55,8 @@ const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
 };
 
 const slateRenderer = (item, _editorValue) => {
+	const { SPACING } = useBrand();
+
 	return createReactRenderer([
 		// special serialiser for text
 		({ node, path }) => {
@@ -93,10 +110,6 @@ const slateRenderer = (item, _editorValue) => {
 
 		// serialiser for all the blocks
 		({ node, parents, path, serializeChildren }) => {
-			const textStyle = {
-				width: '100%',
-				lineHeight: 2,
-			};
 			if (node.object !== 'block') {
 				return;
 			}
@@ -108,38 +121,25 @@ const slateRenderer = (item, _editorValue) => {
 					return nested ? (
 						<p key={path}>{serializeChildren(node.nodes)}</p>
 					) : (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<Body css={{ p: { marginTop: 0 } }}>
-								<p css={textStyle}>{serializeChildren(node.nodes)}</p>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
+							<Body>
+								<p>{serializeChildren(node.nodes)}</p>
 							</Body>
 						</Cell>
 					);
 
 				// the below heading has been replaced with a dynamic block for headings.
 				case 'heading':
-					const headersToOverride = [2, 3, 4];
-					const headingSize = headersToOverride.includes(node.data.size)
-						? { fontSize: '30px' }
-						: null;
 					return (
-						<Heading key={path} size={node.data.size} style={headingSize}>
+						<Heading key={path} size={node.data.size || 6}>
 							{serializeChildren(node.nodes)}
 						</Heading>
 					);
 
 				case 'unordered-list':
 					return (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List
-								css={{
-									...textStyle,
-									'& > li::before': {
-										marginTop: '6px',
-									},
-									marginBottom: '12px',
-								}}
-								type="bullet"
-							>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
+							<List type="bullet" css={{ marginBottom: SPACING(2) }}>
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>
@@ -147,8 +147,8 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'ordered-list':
 					return (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
-							<List css={{ ...textStyle, marginBottom: '12px' }} type="ordered">
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
+							<List type="ordered" css={{ marginBottom: SPACING(2) }}>
 								{serializeChildren(node.nodes)}
 							</List>
 						</Cell>
@@ -156,28 +156,23 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'list-item':
 					return <Item key={path}>{serializeChildren(node.nodes)}</Item>;
+
 				case 'blockquote':
 					return (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
 							<Body>
 								<blockquote>{serializeChildren(node.nodes)}</blockquote>
 							</Body>
 						</Cell>
 					);
+
 				case 'section':
-					const mq = useMediaQuery();
 					return (
-						<section
-							key={path}
-							css={mq({
-								paddingTop: ['30px', null, '60px'],
-							})}
-						>
+						<Section key={path}>
 							<Container>
 								<Grid rowGap="0 !important">{serializeChildren(node.nodes)}</Grid>
 							</Container>
-							<Separator css={mq({ marginTop: ['30px', null, '60px'] })} />
-						</section>
+						</Section>
 					);
 				case 'dynamic-components': {
 					return (
@@ -268,9 +263,6 @@ const textOnlySlateRenderer = (_editorValue) => {
 
 		// serialiser for all the blocks
 		({ node, path, serializeChildren, value }) => {
-			const textStyle = {
-				width: '100%',
-			};
 			if (node.object !== 'block') {
 				return;
 			}
@@ -278,7 +270,7 @@ const textOnlySlateRenderer = (_editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<p key={path} css={{ ...textStyle, margin: '0 !important' }}>
+						<p key={path} css={{ margin: '0 !important' }}>
 							{serializeChildren(node.nodes)}
 						</p>
 					);
@@ -290,18 +282,10 @@ const textOnlySlateRenderer = (_editorValue) => {
 	]);
 };
 
-export const TextOnlySlateContent = ({ content, cssOverrides, ...props }) => {
+export const TextOnlySlateContent = ({ item, content, ...rest }) => {
 	return (
-		<div
-			{...props}
-			className="slate-container"
-			css={{
-				display: 'flex',
-				flexDirection: 'column',
-				...cssOverrides,
-			}}
-		>
-			<Body>{textOnlySlateRenderer(content.document)(content)}</Body>
-		</div>
+		<Body className="slate-container" {...rest}>
+			{textOnlySlateRenderer(content.document)(content)}
+		</Body>
 	);
 };

@@ -1,57 +1,34 @@
 /** @jsx jsx */
 
 import { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { List, Item } from '@westpac/list';
 import { Heading } from '@westpac/heading';
-import { Body } from '@westpac/body';
+import { Body } from '../src/components/body';
 
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { inputStyles } from '@arch-ui/input';
+import { Icon } from '../../components/icon/src/Icon';
+import { Section } from '../src/components/section';
+import merge from 'lodash.merge';
 
-const ArrowIcon = () => {
-	const { COLORS } = useBrand();
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 8 9"
-			focusable="false"
-			aria-hidden="true"
-			width="12"
-			height="12"
-		>
-			<path
-				fill={COLORS.primary}
-				fillRule="evenodd"
-				d="M8 5.5l-3 3-.71-.71L6.085 6H0V0h1v5h5.085L4.29 3.21 5 2.5z"
-			/>
-		</svg>
-	);
-};
+const ArrowIcon = (props) => (
+	<Icon assistiveText="Link arrow" {...props}>
+		<path
+			fill="currentColor"
+			fillRule="evenodd"
+			d="M20 15l-6 6-1.42-1.42L16.17 16H4V4h2v10h10.17l-3.59-3.58L14 9z"
+		/>
+	</Icon>
+);
 
-const TableLink = ({ headingId, headingText, ...rest }) => {
-	const { COLORS, SPACING } = useBrand();
-
-	return (
-		<Item {...rest}>
-			<a
-				href={`#${headingId}`}
-				css={{
-					marginLeft: SPACING(1),
-					color: COLORS.text,
-					cursor: 'pointer',
-					textDecoration: 'none',
-					fontSize: '0.875rem',
-					'&:hover, &:focus': { color: COLORS.info },
-				}}
-			>
-				{headingText}
-			</a>
-		</Item>
-	);
-};
+const TableLink = ({ headingId, headingText, ...rest }) => (
+	<Item {...rest}>
+		<a href={`#${headingId}`}>{headingText}</a>
+	</Item>
+);
 
 const parseHeadings = (content) =>
 	content.nodes
@@ -79,7 +56,7 @@ const parseHeadings = (content) =>
 // Intro section
 const TableOfContents = ({ content }) => {
 	const toc = parseHeadings(content);
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, PACKS } = useBrand();
 	const [relatedContent, setRelatedContent] = useState(false);
 	const introRef = useRef();
 	useEffect(() => {
@@ -93,41 +70,50 @@ const TableOfContents = ({ content }) => {
 	}, [introRef]);
 
 	return (
-		<div ref={introRef}>
-			<Heading
-				tag="h2"
-				size={9}
-				overrides={{
-					Heading: {
-						styles: (styles) => ({
-							...styles,
-							fontWeight: 500,
-						}),
-					},
-				}}
-			>
-				{'Page content'}
-			</Heading>
+		<Fragment>
+			<Global styles={{ html: { scrollBehavior: 'smooth' } }} />
+			<nav ref={introRef}>
+				<Heading
+					tag="h2"
+					size={9}
+					overrides={{
+						Heading: {
+							styles: (styles) => ({
+								...styles,
+								fontWeight: '500',
+								paddingBottom: SPACING(2),
+								borderBottom: `1px solid ${COLORS.border}`,
+							}),
+						},
+					}}
+				>
+					{'Page content'}
+				</Heading>
 
-			<hr
-				css={{ border: 'none', borderTop: `solid 1px ${COLORS.border}`, margin: `${SPACING(2)} 0` }}
-			/>
-
-			{(toc && toc.length) || relatedContent ? (
-				<nav>
+				{(toc && toc.length) || relatedContent ? (
 					<List
+						look="primary"
 						type="icon"
 						icon={ArrowIcon}
+						spacing="large"
 						overrides={{
-							Item: {
-								styles: (styles) => ({
-									...styles,
-									paddingLeft: 0,
-									margin: 0,
-									height: '2.25rem',
-									display: 'flex',
-									alignItems: 'center',
-								}),
+							List: {
+								styles: (styles) =>
+									merge({}, styles, {
+										...PACKS.typeScale.bodyFont[10],
+										marginTop: SPACING(3),
+										'> li': {
+											margin: '0.5rem 0 0.5625rem',
+										},
+										a: {
+											color: COLORS.text,
+											textDecoration: 'none',
+											':hover, :focus': {
+												color: COLORS.info,
+												textDecoration: 'underline',
+											},
+										},
+									}),
 							},
 						}}
 					>
@@ -140,34 +126,37 @@ const TableOfContents = ({ content }) => {
 							/>
 						)}
 					</List>
-				</nav>
-			) : null}
-		</div>
+				) : null}
+			</nav>
+		</Fragment>
 	);
 };
 
 const PackageInfoTable = ({ item }) => {
 	if (!item) return null;
+	const { PACKS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<table
 			css={mq({
-				marginTop: ['1.875rem', null, '2.625rem'],
 				borderTop: 'solid 1px #2585ca',
 				borderCollapse: 'collapse',
 				background: '#f2f8fc',
 				color: '#2585ca',
 				width: '100%',
 				textAlign: 'left',
+				...PACKS.typeScale.bodyFont[10],
 			})}
 		>
 			<tbody
 				css={{
+					th: {
+						fontWeight: 500,
+					},
 					'> tr': {
-						borderBottom: 'solid 1px #2585ca',
+						borderBottom: 'solid 1px #2585CA',
 						textAlign: 'left',
-						'> td': { textAlign: 'right' },
-						'> td, > th': { padding: 15 },
+						'> td, > th': { padding: SPACING(3) },
 					},
 				}}
 			>
@@ -178,23 +167,23 @@ const PackageInfoTable = ({ item }) => {
 				<tr>
 					<th>History</th>
 					<td>
-						<Body>
-							<a
-								href={`https://github.com/WestpacGEL/GEL/blob/master/components/${item.packageName}/CHANGELOG.md`}
-								target="_blank"
-							>
-								View Changes
-							</a>
-						</Body>
+						<a
+							href={`https://github.com/WestpacGEL/GEL/blob/master/components/${item.packageName}/CHANGELOG.md`}
+							target="_blank"
+						>
+							View Changes
+						</a>
 					</td>
 				</tr>
 				<tr>
 					<th>Install</th>
-					<td>npm i @westpac/{item.packageName}</td>
+					<td>
+						<code>npm i @westpac/{item.packageName}</code>
+					</td>
 				</tr>
 				<tr>
 					<th>Requires</th>
-					<td>{item.requires}</td>
+					<td>{item.requires || 'None'}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -202,48 +191,38 @@ const PackageInfoTable = ({ item }) => {
 };
 
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
-	const { PACKS, COLORS } = useBrand();
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<Fragment>
-			<Container>
-				<Grid
-					css={mq({
-						gridGap: '1.5rem',
-						paddingTop: ['1.875rem', '1.875rem', '5.625rem'],
-						paddingBottom: ['1.875rem', '1.875rem', '3.75rem'],
-					})}
-				>
-					<Cell width={showTableOfContents ? [12, 7, 7, 7, 7] : 12}>
-						{description && description !== '' ? (
-							<p
-								css={mq({
-									...PACKS.lead,
-									marginTop: 0,
-									marginBottom: 0,
-									lineHeight: 1.4,
-									fontSize: ['1.125rem', '1.125rem', '1.5rem'],
-								})}
-							>
-								{description}
-							</p>
-						) : null}
-						{showPackageInfo && <PackageInfoTable item={item} />}
-					</Cell>
-					{showTableOfContents && (
-						<Cell width={[12, 4, 4, 4, 4]} left={[1, 9, 9, 9, 9]}>
-							<TableOfContents content={_editorValue} />
+			<Section paddingTop="large">
+				<Container>
+					<Grid gap={SPACING(4)}>
+						<Cell width={[12, null, 7]}>
+							<Body>
+								{description && description !== '' ? (
+									<p
+										css={mq({
+											margin: 0,
+											fontSize: ['1.125rem', null, '1.5rem'],
+											lineHeight: 1.5,
+											fontWeight: 300,
+										})}
+									>
+										{description}
+									</p>
+								) : null}
+								{showPackageInfo && <PackageInfoTable item={item} />}
+							</Body>
 						</Cell>
-					)}
-				</Grid>
-			</Container>
-			<hr
-				css={{
-					border: 'none',
-					borderTop: `solid 1px ${COLORS.border}`,
-					margin: 0,
-				}}
-			/>
+						{showTableOfContents && (
+							<Cell width={[12, null, 4]} left={[null, null, 9]}>
+								<TableOfContents content={_editorValue} />
+							</Cell>
+						)}
+					</Grid>
+				</Container>
+			</Section>
 		</Fragment>
 	);
 };

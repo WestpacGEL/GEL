@@ -2,12 +2,21 @@
 
 import { jsx, useBrand } from '@westpac/core';
 
-const List = ({ state, ...rest }) => <ol {...rest} />;
+// ==============================
+// Component
+// ==============================
+
+const List = ({ state: _, ...rest }) => <ol {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const listStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: 'progressRope-list',
 		position: 'relative',
 		listStyle: 'none',
 		paddingLeft: 0,
@@ -27,9 +36,23 @@ const listStyles = () => {
 	};
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const listAttributes = () => null;
 
+// ==============================
+// Exports
+// ==============================
+
 export const defaultList = {
+	component: List,
+	styles: listStyles,
+	attributes: listAttributes,
+};
+
+export const blenderList = {
 	component: List,
 	styles: listStyles,
 	attributes: listAttributes,

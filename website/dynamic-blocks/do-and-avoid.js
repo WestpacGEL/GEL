@@ -3,6 +3,7 @@
 import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell } from '@westpac/grid';
+import { Body } from '../src/components/body';
 
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { LoadingIndicator } from '@arch-ui/loading';
@@ -41,14 +42,37 @@ const Figure = (props) => (
 	/>
 );
 
+const Figcaption = (props) => {
+	const { SPACING, PACKS, COLORS } = useBrand();
+	return (
+		<Body
+			tag="figcaption"
+			css={{
+				marginTop: SPACING(2),
+			}}
+			overrides={{
+				Body: {
+					styles: (styles) => ({
+						...styles,
+						...PACKS.typeScale.bodyFont[10],
+						color: COLORS.muted,
+					}),
+				},
+			}}
+			{...props}
+		/>
+	);
+};
+
 const Image = (props) => {
 	const mq = useMediaQuery();
+	const { SPACING } = useBrand();
 	return (
 		<img
 			css={mq({
 				width: '100%',
-				height: '100%',
-				marginBottom: ['12px', null, null, null, '18px'],
+				height: 'auto',
+				marginBottom: [SPACING(12), null, null, null, SPACING(3)],
 			})}
 			{...props}
 		/>
@@ -160,25 +184,24 @@ export const DoAndAvoid = {
 		);
 	},
 	component: ({ dontImage, dontText, doImage, doText }) => {
-		const { COLORS } = useBrand();
+		const { COLORS, TYPE } = useBrand();
 		const mq = useMediaQuery();
 
 		return (
 			<Fragment>
 				<Cell
-					width={[12, null, 6, 5]}
-					left={[1, null, null, 2]}
+					width={[12, null, 6]}
 					css={mq({ marginTop: ['24px', null, null, null, '42px'], height: 'auto' })}
 				>
 					<Figure>
 						<Image src={doImage} />
-						<figcaption>
-							<span css={{ color: COLORS.success, fontWeight: 'bold' }}>Do</span> - {doText}
-						</figcaption>
+						<Figcaption>
+							<span css={{ color: COLORS.success, ...TYPE.bodyFont[700] }}>Do</span> - {doText}
+						</Figcaption>
 					</Figure>
 				</Cell>
 				<Cell
-					width={[12, null, 6, 5]}
+					width={[12, null, 6]}
 					css={mq({
 						marginTop: ['24px', null, null, null, '42px'],
 						marginBottom: ['24px', null, null, null, '42px'],
@@ -187,9 +210,9 @@ export const DoAndAvoid = {
 				>
 					<Figure>
 						<Image src={dontImage} />
-						<figcaption>
-							<span css={{ color: COLORS.danger, fontWeight: 'bold' }}>Avoid</span> - {dontText}
-						</figcaption>
+						<Figcaption>
+							<span css={{ color: COLORS.danger, ...TYPE.bodyFont[700] }}>Avoid</span> - {dontText}
+						</Figcaption>
 					</Figure>
 				</Cell>
 			</Fragment>

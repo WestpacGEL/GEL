@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 
-const Grid = ({ state, ...rest }) => <div {...rest} />;
+const Grid = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
 const gridStyles = (
 	_,
@@ -27,6 +27,7 @@ const gridStyles = (
 	const formatAreas = (areas) => areas.map((area) => `"${area}"`).join(' ');
 
 	return mq({
+		label: getLabel('grid'),
 		alignContent,
 		display: 'grid',
 		gap,

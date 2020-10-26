@@ -1,10 +1,10 @@
 /** @jsx jsx */
+
 import { useState } from 'react';
-import wbc from '@westpac/wbc';
-import { jsx, GEL, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Button } from '@westpac/button';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
-import { Modal, Body } from '@westpac/modal';
-import { Well } from '@westpac/well';
+import { Modal, Body as ModalBody } from '@westpac/modal';
 import dynamic from 'next/dynamic';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import editorTheme from './theme';
@@ -14,58 +14,47 @@ export const ExampleBlock = dynamic(() => Promise.resolve(UnSafeExampleBlock), {
 	ssr: false,
 });
 
-const Button = ({ onClick, children }) => {
-	const { COLORS, SPACING } = useBrand();
+const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {
+	return <Icon color="primary" {...rest} />;
+};
+
+const ExampleButton = ({ onClick, children, ...rest }) => {
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
+
 	return (
-		<button
+		<Button
+			look="unstyled"
+			size="large"
 			onClick={onClick}
 			css={mq({
-				background: 'none',
-				border: 'none',
 				borderLeft: `solid 1px ${COLORS.border}`,
-				paddingLeft: SPACING(3),
-				paddingRight: SPACING(3),
-				paddingTop: '1rem',
-				paddingBottom: '1rem',
-				marginRight: ['-1.875rem !important', '-2.25rem !important'],
+				padding: '1rem 1.125rem',
+				height: '3rem',
+				fontSize: '0.875rem',
+				backgroundColor: '#fff',
 			})}
+			overrides={{
+				Icon: {
+					component: ButtonIconOverride,
+				},
+			}}
+			{...rest}
 		>
 			{children}
-		</button>
+		</Button>
 	);
 };
 const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
-	const [codeIsOpen, setCodeOpen] = useState(true);
+	const [codeIsOpen, setCodeOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const { COLORS, SPACING } = useBrand();
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
 		<div>
-			<Well
-				overrides={{
-					Well: {
-						styles: (styles) => ({
-							...styles,
-							...mq({
-								position: 'relative',
-								border: 'none',
-								borderRadius: 0,
-								margin: 0,
-								backgroundColor: '#fff',
-								padding: ['1.875rem', '2.25rem'],
-								...(showCode && { paddingBottom: '0 !important' }),
-							})[0],
-						}),
-					},
-				}}
-			>
-				<div
-					css={{
-						marginBottom: SPACING(8),
-					}}
-				>
+			<div css={{ position: 'relative', backgroundColor: '#fff' }}>
+				<div css={mq({ padding: [SPACING(5), null, SPACING(6)] })}>
 					<LivePreview />
 					{showError ? <LiveError /> : null}
 				</div>
@@ -73,51 +62,39 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 					{showDemo ? (
 						<form action={'/demo/'} target="_blank" method="GET">
 							<input type="hidden" name="code" value={code} />
-							<Button
+							<ExampleButton
 								onClick={() => {
 									setIsModalOpen(true);
 								}}
+								iconAfter={NewWindowIcon}
 							>
-								<span css={{ marginRight: SPACING(1) }}>Demo</span>{' '}
-								<NewWindowIcon size="small" color={COLORS.primary} />
-							</Button>
+								Demo
+							</ExampleButton>
 						</form>
 					) : null}
 					{showCode ? (
-						<Button
+						<ExampleButton
 							onClick={() => {
 								setCodeOpen(!codeIsOpen);
 							}}
+							iconAfter={codeIsOpen ? ExpandLessIcon : ExpandMoreIcon}
 						>
-							<span css={{ marginRight: SPACING(1) }}>Code</span>{' '}
-							{codeIsOpen ? (
-								<ExpandMoreIcon size="medium" color={COLORS.primary} />
-							) : (
-								<ExpandLessIcon size="medium" color={COLORS.primary} />
-							)}
-						</Button>
+							Code
+						</ExampleButton>
 					) : null}
 				</div>
-			</Well>
-			{showCode && codeIsOpen ? (
-				<LiveEditor
-					css={mq({
-						fontSize: '14px',
-					})}
-					padding={24}
-				/>
-			) : null}
+			</div>
+			{showCode && codeIsOpen && <LiveEditor css={{ fontSize: '16px' }} padding={24} />}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-				<Body>
+				<ModalBody>
 					<LivePreview />
-				</Body>
+				</ModalBody>
 			</Modal>
 		</div>
 	);
 };
 
 export const Playground = ({
-	brand = wbc,
 	context = null,
 	code,
 	showCode,
@@ -133,39 +110,29 @@ export const Playground = ({
 			'Playground code has not been compiled by the babel plugin. Please check configuration.'
 		);
 	}
+	const brand = useBrand();
 	if (!context) {
 		return (
-			<GEL brand={brand}>
-				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-					<LivePreview />
-				</LiveProvider>
-			</GEL>
+			<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
+				<LivePreview />
+			</LiveProvider>
 		);
 	}
 	if (context === 'website') {
 		return (
-			<GEL brand={brand}>
-				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-					<ExampleBlock
-						code={code}
-						showCode={showCode}
-						showDemo={showDemo}
-						showError={showErrors}
-					/>
-					{/* TODO: make code and demo button options passed through editor */}
-				</LiveProvider>
-			</GEL>
+			<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
+				<ExampleBlock code={code} showCode={showCode} showDemo={showDemo} showError={showErrors} />
+				{/* TODO: make code and demo button options passed through editor */}
+			</LiveProvider>
 		);
 	}
 	if (context === 'admin') {
 		return (
-			<GEL brand={brand}>
-				<div css={{ transformZ: 0, pointerEvents: 'none', zIndex: 0, cursor: 'not-allowed' }}>
-					<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
-						<ExampleBlock code={showCode} demo={showDemo} />
-					</LiveProvider>
-				</div>
-			</GEL>
+			<div css={{ transformZ: 0, pointerEvents: 'none', zIndex: 0, cursor: 'not-allowed' }}>
+				<LiveProvider code={code} scope={scope} noInline={inline} theme={theme}>
+					<ExampleBlock code={showCode} demo={showDemo} />
+				</LiveProvider>
+			</div>
 		);
 	}
 };

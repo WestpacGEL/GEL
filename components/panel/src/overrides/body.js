@@ -3,21 +3,55 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-const PanelBody = ({ state, ...rest }) => <Body {...rest} />;
+// ==============================
+// Component
+// ==============================
+
+const PanelBody = ({ state: _, ...rest }) => <Body {...rest} />;
+
+const BlenderBody = (props) => (
+	<PanelBody
+		overrides={{
+			Body: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+// ==============================
+// Styles
+// ==============================
 
 const bodyStyles = () => {
-	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
+	const { SPACING } = useBrand();
 
-	return mq({
-		padding: [SPACING(2), null, SPACING(4)],
-	})[0];
+	return mq({ label: 'panel-body', padding: [SPACING(2), null, SPACING(4)] })[0];
 };
+
+// ==============================
+// Attributes
+// ==============================
 
 const bodyAttributes = () => null;
 
+// ==============================
+// Exports
+// ==============================
+
 export const defaultBody = {
-	component: Body,
+	component: PanelBody,
+	styles: bodyStyles,
+	attributes: bodyAttributes,
+};
+
+export const blenderBody = {
+	component: BlenderBody,
 	styles: bodyStyles,
 	attributes: bodyAttributes,
 };

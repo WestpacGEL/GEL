@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
 import { Fragment } from 'react';
-import { Heading as WestpacHeading } from '@westpac/heading';
-import { jsx, useMediaQuery } from '@westpac/core';
-import { Body } from '@westpac/body';
+import { Heading as GELHeading } from '@westpac/heading';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Body } from '../src/components/body';
 import { Cell } from '@westpac/grid';
 
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
@@ -150,19 +150,8 @@ export const Heading = {
 		text,
 	}) => {
 		const mq = useMediaQuery();
+		const { SPACING } = useBrand();
 		const id = heading.replace(/ /g, '-').toLowerCase();
-		const widthMap = {
-			1: 12,
-			2: [12, null, null, 10],
-			3: [12, null, null, 9],
-		};
-
-		const indentMap = {
-			1: 1,
-			2: [1, null, null, 2],
-			3: [1, null, 2, 3],
-		};
-
 		const marginMap = {
 			6: ['24px', null, '42px'],
 			8: ['12px', null, '18px'],
@@ -170,34 +159,42 @@ export const Heading = {
 		};
 
 		return (
-			<Cell width={widthMap[indentLevel]} left={indentMap[indentLevel]}>
-				<WestpacHeading
-					id={id}
-					tabIndex="-1"
-					tag={level}
-					size={size <= 6 ? [7, null, size] : size}
-					overrides={{
-						Heading: {
-							styles: (styles) =>
-								merge({}, styles, {
-									...mq({
-										scrollMarginTop: '10.375rem',
-										marginTop: !removeTopMargin && size > 6 && '12px',
-										marginBottom: codeStyles ? ['12px', null, '18px'] : marginMap[size],
-										textTransform: size === 10 && 'uppercase',
-									})[0],
-								}),
-						},
-					}}
-				>
-					{heading}
-				</WestpacHeading>
+			<Fragment>
+				<Cell width={[12, null, null, 11]}>
+					<GELHeading
+						id={id}
+						tabIndex="-1"
+						tag={level}
+						size={size <= 6 ? [7, null, size] : size}
+						overrides={{
+							Heading: {
+								styles: (styles) =>
+									merge({}, styles, {
+										...mq({
+											scrollMarginTop: [
+												`calc(66px + 66px + ${SPACING(7)})`,
+												null,
+												`calc(66px + 90px + ${SPACING(10)})`,
+											],
+											marginTop: !removeTopMargin && size > 6 && '0.75rem',
+											marginBottom: codeStyles ? ['0.75rem', null, '1.125rem'] : marginMap[size],
+											textTransform: size === 10 && 'uppercase',
+										})[0],
+									}),
+							},
+						}}
+					>
+						{heading}
+					</GELHeading>
+				</Cell>
 				{subText && text && (
-					<Body css={mq({ p: { margin: ['0 0 18px', null, '0 0 24px'] } })}>
-						<p>{text}</p>
-					</Body>
+					<Cell width={[12, 11, 8, 7, 9]}>
+						<Body>
+							<p>{text}</p>
+						</Body>
+					</Cell>
 				)}
-			</Cell>
+			</Fragment>
 		);
 	},
 };

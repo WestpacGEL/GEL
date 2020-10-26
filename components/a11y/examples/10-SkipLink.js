@@ -3,18 +3,14 @@
 import { GEL, jsx, useBrand } from '@westpac/core';
 import { SkipLink } from '@westpac/a11y';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const { SPACING } = useBrand();
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Screen reader skip link</h2>
 			<p>Note: The example link below is visibility hidden until focussed.</p>
-			<SkipLink href="#content">This is screen reader only text (visible when foccused)</SkipLink>
+			<SkipLink href="#content">This is screen reader only text (visible when focussed)</SkipLink>
 			<p>
 				<a href="?">Links in this section</a> are skipped over
 			</p>
@@ -32,6 +28,7 @@ function Example({ brand }) {
 				css={{
 					marginTop: SPACING(80),
 				}}
+				tabIndex="-1"
 			>
 				<p>
 					This is example content, linked to by the SkipLink component above. Sit sint irure do eu.

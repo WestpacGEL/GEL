@@ -1,12 +1,30 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
-const Page = ({ state, ...rest }) => <li {...rest} />;
+// ==============================
+// Component
+// ==============================
 
-const pageStyles = () => ({});
+const Page = ({ state: _, ...rest }) => <li {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
+
+const pageStyles = () => ({
+	label: getLabel('pagination-page'),
+});
+
+// ==============================
+// Attributes
+// ==============================
 
 const pageAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultPage = {
 	component: Page,

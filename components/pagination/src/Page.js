@@ -63,12 +63,7 @@ export const Page = ({
 
 	return (
 		<Page {...rest} state={state} {...pageAttributes(state)} css={pageStyles(state)}>
-			<Link
-				onClick={onClick}
-				state={state}
-				{...linkAttributes(state)}
-				css={{ '&&': linkStyles(state) }}
-			>
+			<Link onClick={onClick} state={state} {...linkAttributes(state)} css={linkStyles(state)}>
 				{text}
 			</Link>
 		</Page>

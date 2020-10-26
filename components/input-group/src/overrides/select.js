@@ -1,32 +1,92 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel, classNames } from '@westpac/core';
 import { Select as SelectInput } from '@westpac/text-input';
+
+// ==============================
+// Component
+// ==============================
 
 const Select = ({ state: { size, data }, ...rest }) => (
 	<SelectInput size={size} data={data} {...rest} />
 );
 
-const selectStyles = (_, { position }) => ({
-	boxSizing: 'border-box',
-	width: 'auto',
-	marginLeft: position === 'after' && '-1px',
-	marginRight: position === 'before' && '-1px',
+const BlenderSelect = (props) => {
+	const {
+		state: { position },
+	} = props;
+	return (
+		<Select
+			overrides={{
+				Select: {
+					attributes: (attributes) => {
+						if (attributes) {
+							attributes.className = attributes.className.concat(
+								' ',
+								classNames({
+									[`__convert__inputGroup-select-before`]: position === 'before',
+									[`__convert__inputGroup-select-after`]: position === 'after',
+								})
+							); // unable to use attributes below since there is already a className being passed as part of the blender select
+						}
+						return attributes;
+					},
+				},
+			}}
+			{...props}
+		/>
+	);
+};
+// ==============================
+// Styles
+// ==============================
 
-	...(position === 'after' && {
-		borderTopLeftRadius: 0,
-		borderBottomLeftRadius: 0,
-	}),
-	...(position === 'before' && {
-		borderTopRightRadius: 0,
-		borderBottomRightRadius: 0,
-	}),
-});
+const selectStyles = (_, { position }) => {
+	return {
+		label: getLabel(`inputGroup-select-${position}`),
+		boxSizing: 'border-box',
+		width: 'auto',
+		marginLeft: position === 'after' && '-1px',
+		marginRight: position === 'before' && '-1px',
+
+		...(position === 'after' && {
+			borderTopLeftRadius: 0,
+			borderBottomLeftRadius: 0,
+		}),
+		...(position === 'before' && {
+			borderTopRightRadius: 0,
+			borderBottomRightRadius: 0,
+		}),
+	};
+};
+
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { position }) => {
+	const { label, ...styles } = selectStyles(_, { position });
+	return { label, 'select&': styles }; // need to increase specificity
+};
+
+// ==============================
+// Attributes
+// ==============================
 
 const selectAttributes = (_, { instanceId }) => ({ id: instanceId });
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultSelect = {
 	component: Select,
 	styles: selectStyles,
+	attributes: selectAttributes,
+};
+
+export const blenderSelect = {
+	component: BlenderSelect,
+	styles: blenderStyles,
 	attributes: selectAttributes,
 };

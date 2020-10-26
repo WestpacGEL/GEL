@@ -4,9 +4,7 @@ import { GEL, jsx } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
 import { InputGroup, Before, After } from '@westpac/input-group';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
-const Text = ({ data, overrides, ...rest }) => (
+const TextOverride = ({ data, state: _, ...rest }) => (
 	<span {...rest}>
 		<HouseIcon size="small" /> {data}
 	</span>
@@ -22,7 +20,7 @@ function Example({ brand }) {
 			}),
 		},
 		Text: {
-			component: Text,
+			component: TextOverride,
 		},
 		TextInput: {
 			styles: (styles) => ({
@@ -46,8 +44,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens}>
-			<Intopia ignore />
-
 			<h2>With overrides applied</h2>
 			<InputGroup name="example-overrides-l">
 				<Before inputType="text" data="AUS $" />

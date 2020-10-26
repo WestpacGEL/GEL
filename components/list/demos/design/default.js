@@ -3,8 +3,7 @@
 import { jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
 import { Playground } from '../../../../website/src/components/playground/macro';
-
-import { Title } from './_utils.js';
+import { Title } from '../../../../helpers/demos';
 
 export default ({ context, showCode, showDemo }) => {
 	return (
@@ -32,11 +31,14 @@ export default ({ context, showCode, showDemo }) => {
 				<Item>Styled bullet list - primary</Item>
 			</List>
 			<br />
-			<hr />
 			<Title>List colours</Title>
-			<List>
-				<Item look="primary">This is a primary list</Item>
+			<List look="primary">
+				<Item>This is a primary list</Item>
+			</List>
+			<List look="hero">
 				<Item look="hero">This is a hero list</Item>
+			</List>
+			<List look="neutral">
 				<Item look="neutral">This is a neutral list</Item>
 			</List>
 		</Playground>

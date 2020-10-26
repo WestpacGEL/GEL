@@ -50,7 +50,12 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...res
 			{...progressBarAttributes(state)}
 			css={progressBarStyles(state)}
 		>
-			<Bar state={state} {...barAttributes(state)} css={barStyles(state)}>
+			<Bar
+				state={state}
+				style={{ width: `${value}%` }}
+				{...barAttributes(state)}
+				css={barStyles(state)}
+			>
 				{look !== 'skinny' && (
 					<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
 						{`${roundedValue}%`}
@@ -72,7 +77,7 @@ ProgressBar.propTypes = {
 	value: PropTypes.number.isRequired,
 
 	/**
-	 * Enable skinny mode
+	 * Progress bar look
 	 */
 	look: PropTypes.oneOf(['default', 'skinny']).isRequired,
 
@@ -98,7 +103,9 @@ ProgressBar.propTypes = {
 	}),
 };
 
-ProgressBar.defaultProps = {
+export const defaultProps = {
 	value: 0,
 	look: 'default',
 };
+
+ProgressBar.defaultProps = defaultProps;

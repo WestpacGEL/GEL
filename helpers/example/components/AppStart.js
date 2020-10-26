@@ -11,11 +11,32 @@ import { HomeStart } from './HomeStart';
 import { Page } from './Page';
 
 export function AppStart({ components, packageName, pkg, version }) {
-	const [brand, setBrand] = useState('WBC');
+	const [brandName, setBrandName] = useState('WBC');
+
+	const brand = BRANDS[brandName];
+
 	return (
 		<Router>
 			<StrictMode>
-				<GEL brand={BRANDS[brand]}>
+				<Global
+					styles={css`
+						body {
+							margin: 0;
+						}
+						code {
+							font-family: Monaco, monospace;
+							font-size: 0.85em;
+						}
+						p > code {
+							background-color: #ffebe6;
+							color: #bf2600;
+							border-radius: '0.3rem';
+							display: inline-block;
+							padding: '0.1rem 0.3rem';
+						}
+					`}
+				/>
+				<GEL brand={brand}>
 					<div
 						css={{
 							alignItems: 'stretch',
@@ -23,25 +44,7 @@ export function AppStart({ components, packageName, pkg, version }) {
 							minHeight: '100vh',
 						}}
 					>
-						<Global
-							styles={css`
-								body {
-									margin: 0;
-								}
-								code {
-									font-family: Monaco, monospace;
-									font-size: 0.85em;
-								}
-								p > code {
-									background-color: #ffebe6;
-									color: #bf2600;
-									border-radius: '0.3rem';
-									display: inline-block;
-									padding: '0.1rem 0.3rem';
-								}
-							`}
-						/>
-						<Sidebar components={components} brand={brand} setBrand={setBrand} />
+						<Sidebar components={components} brandName={brandName} setBrandName={setBrandName} />
 						<Switch>
 							<Route
 								exact
@@ -55,7 +58,7 @@ export function AppStart({ components, packageName, pkg, version }) {
 									key={slug}
 									path={`/${slug}`}
 									render={(route) => (
-										<Page {...route} {...props} brand={BRANDS[brand]} pkgVersion={version} />
+										<Page {...route} {...props} brand={brand} pkgVersion={version} />
 									)}
 								/>
 							))}

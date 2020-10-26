@@ -3,13 +3,9 @@
 import { GEL, jsx } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Screen reader only text </h2>
 			<p>
 				Note: The examples below the following headings are visibility hidden. Best you inspect what

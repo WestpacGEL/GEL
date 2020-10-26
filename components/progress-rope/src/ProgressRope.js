@@ -39,27 +39,64 @@ export const useProgressRopeContext = () => {
 // Utils
 // ==============================
 
-const createRopeGraph = (data, children) => {
+const createRopeGraph = (current, data, children) => {
 	const ropeGraph = [];
 	let grouped = false;
+	let completed = current;
 
 	if (data) {
 		// generate graph from data
-		data.forEach((progress) => {
+		data.forEach((progress, i) => {
 			if (progress.type && progress.type === 'group') {
 				grouped = true;
-				ropeGraph.push(Array(progress.steps.length).fill('unvisited'));
+				const stepCount = progress.steps.length;
+
+				if (completed >= stepCount) {
+					ropeGraph.push(Array(stepCount).fill('visited'));
+					completed -= stepCount;
+				} else {
+					const steps = Array(stepCount).fill('unvisited');
+					steps.forEach((step, i) => {
+						if (completed > i) {
+							steps[i] = 'visited';
+							completed--;
+						}
+					});
+					ropeGraph.push(steps);
+				}
 			} else {
-				ropeGraph.push(['unvisited']);
+				if (current <= i) {
+					ropeGraph.push(['unvisited']);
+				} else {
+					ropeGraph.push(['visited']);
+				}
 			}
 		});
 	} else {
-		Children.forEach(children, (child) => {
+		Children.forEach(children, (child, i) => {
 			if (child.type === Group) {
 				grouped = true;
-				ropeGraph.push(Array(Children.count(child.props.children)).fill('unvisited'));
+				const stepCount = Children.count(child.props.children);
+
+				if (completed >= stepCount) {
+					ropeGraph.push(Array(stepCount).fill('visited'));
+					completed -= stepCount;
+				} else {
+					const steps = Array(stepCount).fill('unvisited');
+					steps.forEach((step, i) => {
+						if (completed > i) {
+							steps[i] = 'visited';
+							completed--;
+						}
+					});
+					ropeGraph.push(steps);
+				}
 			} else {
-				ropeGraph.push(['unvisited']);
+				if (current <= i) {
+					ropeGraph.push(['unvisited']);
+				} else {
+					ropeGraph.push(['visited']);
+				}
 			}
 		});
 	}
@@ -123,7 +160,7 @@ export const ProgressRope = ({
 		currStep: current,
 		currGroup: 0,
 		openGroup: 0,
-		...createRopeGraph(data, children),
+		...createRopeGraph(current, data, children),
 	};
 
 	const progressReducer = (state, action) => {
@@ -284,12 +321,17 @@ ProgressRope.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
+		List: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 		Step: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		StepText: PropTypes.shape({
+		StepButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

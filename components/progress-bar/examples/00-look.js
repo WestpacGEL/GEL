@@ -5,8 +5,6 @@ import { GEL, jsx } from '@westpac/core';
 import { ProgressBar } from '@westpac/progress-bar';
 import { StyledButton as Button } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const [progress, setProgress] = useState(5);
 
@@ -26,8 +24,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Default</h2>
 			<ProgressBar value={0} />
 			<ProgressBar value={20} />

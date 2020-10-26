@@ -3,12 +3,9 @@
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
 			<h2>Small</h2>
 			<Button look="primary" size="small">
 				Primary
@@ -54,7 +51,6 @@ function Example({ brand }) {
 			<Button look="link" size="xlarge">
 				Link
 			</Button>
-			<p></p>
 		</GEL>
 	);
 }

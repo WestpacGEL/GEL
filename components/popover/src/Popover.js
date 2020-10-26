@@ -23,6 +23,7 @@ export const Popover = ({
 	headingTag,
 	content,
 	instanceIdPrefix,
+	placement,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -33,7 +34,10 @@ export const Popover = ({
 	} = useBrand();
 
 	const [open, setOpen] = useState(isOpen);
-	const [position, setPosition] = useState({ placement: 'top', empty: true });
+	const [position, setPosition] = useState({
+		placement: placement ? placement : 'top',
+		empty: !placement,
+	});
 	const triggerRef = useRef();
 	const popoverRef = useRef();
 
@@ -59,6 +63,7 @@ export const Popover = ({
 		heading,
 		headingTag,
 		content,
+		placement,
 		position,
 		instanceId,
 		overrides: componentOverrides,
@@ -74,10 +79,6 @@ export const Popover = ({
 		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	useEffect(() => {
-		setOpen(isOpen);
-	}, [isOpen]);
-
 	const handleOpen = () => {
 		if (open) {
 			setOpen(false);
@@ -89,7 +90,11 @@ export const Popover = ({
 
 	useEffect(() => {
 		if (open) {
-			setPosition(usePopoverPosition(triggerRef, popoverRef));
+			if (placement) {
+				setPosition({ placement });
+			} else {
+				setPosition(usePopoverPosition(triggerRef, popoverRef));
+			}
 		}
 	}, [open]);
 
@@ -125,7 +130,7 @@ export const Popover = ({
 			</Trigger>
 			<Panel ref={popoverRef} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
 				{heading && (
-					<Heading state={state} {...headingAttributes(state)} css={{ '&&': headingStyles(state) }}>
+					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
 						{heading}
 					</Heading>
 				)}
@@ -136,7 +141,7 @@ export const Popover = ({
 					onClick={() => handleOpen()}
 					state={state}
 					{...closeBtnAttributes(state)}
-					css={{ '&&': closeBtnStyles(state) }}
+					css={closeBtnStyles(state)}
 				/>
 			</Panel>
 		</Popover>
@@ -210,7 +215,9 @@ Popover.propTypes = {
 	}),
 };
 
-Popover.defaultProps = {
+export const defaultProps = {
 	open: false,
 	headingTag: 'h4',
 };
+
+Popover.defaultProps = defaultProps;

@@ -1,13 +1,13 @@
 const COLORS = {
-	background: '#F0F1F1',
+	background: '#F3F4F4',
 	border: '#D3D4D5',
 	borderDark: '#909396',
 	focus: '#C26F9D',
 	heading: '#002F6C',
 	hero: '#002F6C',
-	light: '#F8F8F8',
-	muted: '#6C7074',
-	neutral: '#6C7074',
+	light: '#FAFAFA',
+	muted: '#6A6E72',
+	neutral: '#6A6E72',
 	primary: '#D81B2B',
 	text: '#333',
 
@@ -16,7 +16,7 @@ const COLORS = {
 	info: '#0074C4',
 	warning: '#C53B00',
 	danger: '#C40000',
-	system: '#ff0',
+	system: '#FF0',
 };
 
 module.exports = {

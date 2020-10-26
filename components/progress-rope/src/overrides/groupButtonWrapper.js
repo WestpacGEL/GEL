@@ -2,21 +2,39 @@
 
 import { jsx } from '@westpac/core';
 
-const GroupButtonWrapper = ({
-	state: {
-		context: { headingsTag: Tag },
-	},
-	...rest
-}) => <Tag {...rest} />;
+// ==============================
+// Component
+// ==============================
+
+const GroupButtonWrapper = ({ state: _, ...rest }) => <h3 {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const groupButtonWrapperStyles = () => ({
+	label: 'progressRope-group-btn-wrapper',
 	margin: 0,
 	fontSize: 'inherit',
 });
 
+// ==============================
+// Attributes
+// ==============================
+
 const groupButtonWrapperAttributes = () => null;
 
+// ==============================
+// Exports
+// ==============================
+
 export const defaultGroupButtonWrapper = {
+	component: GroupButtonWrapper,
+	styles: groupButtonWrapperStyles,
+	attributes: groupButtonWrapperAttributes,
+};
+
+export const blenderGroupButtonWrapper = {
 	component: GroupButtonWrapper,
 	styles: groupButtonWrapperStyles,
 	attributes: groupButtonWrapperAttributes,

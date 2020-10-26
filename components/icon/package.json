@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/icon",
 	"version": "1.0.2",
-	"description": "Grid component for the Westpac GEL",
+	"description": "Icon component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/icon",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"blender": {
@@ -77,6 +77,7 @@
 			"CloseIcon",
 			"CompassIcon",
 			"ContactIcon",
+			"CopyContentIcon",
 			"CreditCardIcon",
 			"CubeIcon",
 			"DeleteIcon",
@@ -222,6 +223,7 @@
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
+		"@westpac/grid": ">1.0.0-alpha",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

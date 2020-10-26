@@ -1,10 +1,27 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+} from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { round, sizeMap } from '../_utils';
+import { defaultProps } from '../Select';
 
-const Select = ({ state, ...rest }) => <select {...rest} />;
+// ==============================
+// Component
+// ==============================
+
+const Select = ({ state: _, ...rest }) => <select {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
@@ -15,7 +32,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	focus.outline += ' !important';
 	const borderWidth = 1; //px
 	const lineHeight = 1.5;
-	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fill-rule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
+	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fillRule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
 	const caretGap = '0.5rem';
 	const caretWidth = '14px';
 	const sub = `${((p) => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${((b) => `${b} + ${b}`)(
@@ -24,6 +41,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const extras = `${sub} + ${caretWidth} + ${caretGap}`; // Add width for caret if a select
 
 	return mq({
+		label: getLabel('select'),
 		boxSizing: 'border-box',
 		display: inline ? ['block', 'inline-block'] : 'block',
 		width: inline ? ['100%', 'auto'] : '100%',
@@ -90,10 +108,65 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	})[0];
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { size, width, inline, invalid, ariaInvalid }) => {
+	const props = { size, width, inline, invalid, ariaInvalid };
+	const baseStyles = selectStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = selectStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'size':
+			label = `${label}-${size}`;
+			break;
+		case 'width':
+			label = `${label}-width-${width}`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const selectAttributes = () => null;
+
+const blenderAttributes = (_, { size, width, inline, invalid }) => ({
+	className: classNames({
+		[`__convert__select-${size}`]: size !== defaultProps.size,
+		[`__convert__select-width-${width}`]: width,
+		[`__convert__select-inline`]: inline,
+		[`__convert__select-invalid`]: invalid,
+	}),
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultSelect = {
 	component: Select,
 	styles: selectStyles,
 	attributes: selectAttributes,
+};
+
+export const blenderSelect = {
+	component: Select,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };

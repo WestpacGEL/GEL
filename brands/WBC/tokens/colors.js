@@ -1,22 +1,22 @@
 const COLORS = {
-	background: '#F4F3F0',
-	border: '#D7D2CB',
-	borderDark: '#8C9296',
-	focus: '#9F4585',
-	heading: '#621A4B',
-	hero: '#621A4B',
-	light: '#F9F9F8',
-	muted: '#575F65',
-	neutral: '#2D373E',
-	primary: '#D5002B',
-	text: '#2D373E',
+	background: '#F3F4F6',
+	border: '#DEDEE1',
+	borderDark: '#9390A2',
+	focus: '#B978D9',
+	heading: '#1F1C4F',
+	hero: '#1F1C4F',
+	light: '#F9F9FB',
+	muted: '#595767',
+	neutral: '#2A2E42',
+	primary: '#DA1710',
+	text: '#181B25',
 
 	// reserved
 	success: '#008000',
 	info: '#0074C4',
 	warning: '#C53B00',
 	danger: '#C40000',
-	system: '#ff0',
+	system: '#FF0',
 };
 
 module.exports = {

@@ -1,100 +1,138 @@
 /** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Button } from '@westpac/button';
+import { Icon } from '../../../../components/icon/src/Icon';
+
 import { useState, useEffect } from 'react';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
-import debounce from 'lodash.debounce';
+import throttle from 'lodash.throttle';
 
+const UpIcon = (props) => {
+	const { COLORS } = useBrand();
+	return (
+		<Icon assistiveText="Up arrow" {...props}>
+			<path
+				fill={COLORS.primary}
+				fillRule="evenodd"
+				d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8z"
+			/>
+		</Icon>
+	);
+};
 export const Footer = () => {
-	const { COLORS, SPACING, LAYOUT } = useBrand();
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
-	const [visible, setVisible] = useState(true);
-
-	const el = document.querySelector('main') || window;
-	let prev = el.scrollTop;
-
-	const scrollHandler = debounce(() => {
-		const documentHeight = el.scrollHeight;
-		if (el.scrollTop > prev && el.scrollTop + el.clientHeight > documentHeight / 2) {
-			setVisible(true);
-		} else if (el.scrollTop < prev && el.scrollTop < documentHeight / 2) {
-			setVisible(false);
-		}
-
-		prev = el.scrollTop;
-	}, 10);
+	const [visible, setVisible] = useState(false);
 
 	useEffect(() => {
-		if (el.scrollHeight > el.clientHeight) {
-			setVisible(false);
-		}
-	}, []);
+		const setFooter = () => {
+			const windowHeight = window.clientHeight;
+			const documentHeight = window.scrollHeight;
+			const scroll = window.scrollY;
 
-	useEffect(() => {
-		el.addEventListener('scroll', scrollHandler);
+			setVisible(
+				windowHeight >= documentHeight ||
+					scroll > 600 ||
+					scroll + windowHeight > documentHeight - 100
+			);
+		};
+		setFooter();
+
+		const scrollHandler = throttle(setFooter, 200);
+
+		window.addEventListener('scroll', scrollHandler);
 		return () => {
-			el.removeEventListener('scroll', scrollHandler);
+			window.removeEventListener('scroll', scrollHandler);
 		};
 	}, []);
 
 	return (
 		<footer
-			css={{
+			css={mq({
+				boxSizing: 'border-box',
 				position: 'fixed',
-				bottom: visible ? 0 : '-65px',
+				zIndex: 5,
+				height: '3.0625rem',
+				lineHeight: 1,
+				bottom: visible ? 0 : '-3.0625rem',
 				right: 0,
-				left: 0,
+				left: [0, null, null, null, 300],
 				backgroundColor: '#fff',
-				transition: 'bottom 0.4s',
 				borderTop: `1px solid ${COLORS.border}`,
 				display: 'flex',
-				flexGrow: 0,
-				flexShrink: 0,
+				alignItems: 'center',
 				justifyContent: 'space-between',
-				padding: SPACING(3),
-				zIndex: 5,
-
-				[`@media only screen and (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
-					left: '300px',
-				},
-			}}
+				flex: '0 0 auto',
+				padding: '0.375rem 1.125rem 0.4375rem 1.5rem',
+				transition: 'bottom 0.4s ease',
+			})}
 		>
-			<div>
-				<span css={mq({ display: ['none', null, 'inline'] })}>Talk to us</span>
-				<FooterIcon icon={EmailIcon} href="mailto:gel@westpac.com.au" />
-				<FooterIcon icon={SlackIcon} href="//westpac-digital.slack.com" />
-				<FooterIcon icon={GithubIcon} href="//github.com/WestpacGEL" />
+			<div css={{ display: 'flex', alignItems: 'center' }}>
+				<span
+					css={mq({
+						display: ['none', null, 'inline-block'],
+						marginRight: [null, null, '1.125rem'],
+					})}
+				>
+					Talk to us
+				</span>
+				<ContactIconLink
+					icon={EmailIcon}
+					href="mailto:gel@westpac.com.au"
+					assistiveText="Talk to us via email"
+				/>
+				<ContactIconLink
+					icon={SlackIcon}
+					href="//westpac-digital.slack.com"
+					assistiveText="Talk to us on Slack"
+				/>
+				<ContactIconLink
+					icon={GithubIcon}
+					href="//github.com/WestpacGEL"
+					assistiveText="Talk to us on GitHub"
+				/>
 			</div>
 
-			<button
-				css={{
-					display: 'block',
-					border: 0,
-					background: 'transparent',
-					cursor: 'pointer',
-					textAlign: 'right',
-					padding: '0 !important',
-				}}
+			<Button
+				look="link"
+				size="large"
+				iconAfter={UpIcon}
 				onClick={(e) => {
-					e.preventDefault();
-					const el = document.querySelector('main') || window;
-					el.scroll({
+					window.scroll({
 						top: 0,
 						left: 0,
 						behavior: 'smooth',
 					});
 				}}
+				assistiveText="Go to top"
+				overrides={{
+					Button: {
+						styles: (styles) => ({
+							...styles,
+							color: COLORS.text,
+							textDecoration: 'none',
+						}),
+					},
+				}}
 			>
-				Top <span css={{ color: COLORS.primary }}>&uarr;</span>
-			</button>
+				Top
+			</Button>
 		</footer>
 	);
 };
 
-const FooterIcon = ({ icon: Icon, href }) => {
-	const { SPACING } = useBrand();
-	return (
-		<a href={href} target="_blank">
-			<Icon css={{ marginLeft: SPACING(2) }} />
-		</a>
-	);
-};
+const ContactIconLink = ({ icon: Icon, href, assistiveText }) => (
+	<a
+		href={href}
+		target="_blank"
+		css={{
+			display: 'inline-block',
+			lineHeight: 1,
+			'& + &': {
+				marginLeft: '0.75rem',
+			},
+		}}
+	>
+		<Icon assistiveText={assistiveText} />
+	</a>
+);

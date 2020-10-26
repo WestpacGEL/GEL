@@ -7,7 +7,10 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Switch name="example-default" label="I'm a switch" />
+			<Switch name="example-default" label="Switch" />
+			<br />
+			<br />
+			<Switch name="example-disabled" disabled label="Switch" />
 		</Playground>
 	);
 };

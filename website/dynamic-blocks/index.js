@@ -10,6 +10,8 @@ import { ScreenReaderText } from './screen-reader-demo';
 import { Image } from './image';
 import { Heading } from './headings';
 import { Symbols } from './symbols';
+import { Logos } from './logos';
+import { Pictograms } from './pictograms';
 
 export default {
 	DoAndAvoid,
@@ -24,4 +26,6 @@ export default {
 	Image,
 	Heading,
 	Symbols,
+	Logos,
+	Pictograms,
 };

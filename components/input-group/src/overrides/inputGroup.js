@@ -1,14 +1,31 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
-const InputGroup = ({ state, ...rest }) => <div {...rest} />;
+// ==============================
+// Component
+// ==============================
+
+const InputGroup = ({ state: _, ...rest }) => <div {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const inputGroupStyles = () => ({
+	label: getLabel('inputGroup'),
 	display: 'flex',
 });
 
+// ==============================
+// Attributes
+// ==============================
+
 const inputGroupAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultInputGroup = {
 	component: InputGroup,

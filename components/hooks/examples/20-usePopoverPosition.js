@@ -5,8 +5,6 @@ import { usePopoverPosition } from '@westpac/hooks';
 import { useRef, useState, useEffect } from 'react';
 import { Code } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const triggerRef1 = useRef();
 	const popoverRef1 = useRef();
@@ -33,8 +31,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia ignore />
-
 			<div
 				ref={triggerRef1}
 				css={{

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { useState, Fragment } from 'react';
-import { jsx, useInstanceId } from '@westpac/core';
+import { jsx, useInstanceId, useBrand } from '@westpac/core';
 import { Select } from '@westpac/text-input';
 
 const FILTER_HTML = `
@@ -98,6 +98,8 @@ export const VisionFilter = ({ children }) => {
 	const [filter, setFilter] = useState();
 	const [id] = useState(`vision-filter-${useInstanceId()}`);
 
+	const { SPACING, COLORS } = useBrand();
+
 	if (!document.getElementById('vision-filters')) {
 		const filterContainer = document.createElement('div');
 		filterContainer.innerHTML = FILTER_HTML.trim();
@@ -107,7 +109,15 @@ export const VisionFilter = ({ children }) => {
 
 	return (
 		<Fragment>
-			<div css={{ display: 'flex', alignItems: 'center', margin: '1.5rem 0 0.75rem' }}>
+			<div
+				css={{
+					display: 'flex',
+					alignItems: 'center',
+					padding: SPACING(4),
+					marginBottom: SPACING(4),
+					backgroundColor: COLORS.light,
+				}}
+			>
 				<label htmlFor={id} css={{ marginRight: '1rem' }}>
 					Select filter
 				</label>

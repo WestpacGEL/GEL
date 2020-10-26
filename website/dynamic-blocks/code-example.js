@@ -2,7 +2,7 @@
 
 import React, { Suspense, Fragment } from 'react';
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell } from '@westpac/grid';
 
 import { CheckboxPrimitive } from '@arch-ui/controls';
@@ -64,6 +64,7 @@ function ShowCodeBlock({ showCode, showDemo, loadCodeBlock, context }) {
 	}
 
 	let CodeBlock = valueCache.get(loadCodeBlock);
+
 	if (!CodeBlock) {
 		throw promise;
 	}
@@ -135,14 +136,14 @@ export const CodeExample = {
 		}
 
 		const mq = useMediaQuery();
+		const { SPACING } = useBrand();
 		const loadCodeBlock = codeExamples[codeExample];
-
 		return (
 			<Cell
-				width={[12, null, null, 10]}
-				left={[1, null, null, 2]}
+				width={12}
 				css={mq({
-					marginBottom: ['30px', null, null, null, '48px'],
+					marginTop: [SPACING(1), null, SPACING(2)],
+					marginBottom: [SPACING(5), null, null, null, SPACING(8)],
 					height: 'auto',
 					':last-child': { marginBottom: 0 },
 				})}

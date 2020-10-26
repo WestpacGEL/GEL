@@ -81,8 +81,8 @@ const makeItems = (data) => {
 // ==============================
 
 export const List = ({
-	look,
 	type,
+	look,
 	nested,
 	spacing,
 	icon,
@@ -107,8 +107,8 @@ export const List = ({
 
 	const context = useListContext();
 
-	look = look || (context && context.look) || 'primary';
 	type = type || (context && context.type) || 'bullet';
+	look = look || (context && context.look) || (type === 'bullet' && 'hero');
 	spacing = spacing || (context && context.spacing) || 'medium';
 	icon = icon || (context && context.icon);
 
@@ -117,8 +117,8 @@ export const List = ({
 	}
 
 	const state = {
-		look,
 		type,
+		look,
 		nested,
 		spacing,
 		icon,
@@ -139,8 +139,8 @@ export const List = ({
 	return (
 		<ListContext.Provider
 			value={{
-				look,
 				type,
+				look,
 				spacing,
 				icon,
 				assistiveText,
@@ -161,14 +161,15 @@ export const List = ({
 
 List.propTypes = {
 	/**
+	 * The type of the bullet
+	 * note: none is only used for blender
+	 */
+	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered', 'none']),
+
+	/**
 	 * The look of the bullet list
 	 */
 	look: PropTypes.oneOf(['primary', 'hero', 'neutral']),
-
-	/**
-	 * The type of the bullet
-	 */
-	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
 
 	/**
 	 * The size of space between list elements

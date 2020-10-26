@@ -1,46 +1,89 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
-const CloseBtn = ({ onClose, state, ...rest }) => (
+// ==============================
+// Component
+// ==============================
+
+const CloseBtn = ({ onClose, state: _, ...rest }) => (
 	<Button
 		onClick={(event) => onClose(event)}
 		iconAfter={CloseIcon}
-		look="link"
-		size="medium"
+		look="unstyled"
 		assistiveText="Close alert"
 		{...rest}
 	/>
 );
 
+const BlenderCloseBtn = (props) => (
+	<CloseBtn
+		overrides={{
+			Button: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+
+// ==============================
+// Styles
+// ==============================
+
 const closeBtnStyles = () => {
 	const mq = useMediaQuery();
-	const { SPACING } = useBrand();
+	const { SPACING, PACKS } = useBrand();
 
 	return mq({
-		label: getLabel('alert-closebtn'),
-		color: 'inherit',
+		label: 'alert-closebtn',
 		position: 'absolute',
 		zIndex: 1,
-		top: 0,
-		right: SPACING(1),
-		opacity: 1,
+		top: SPACING(1, 'minor'),
+		right: SPACING(1, 'minor'),
+		padding: SPACING(1),
+		color: 'inherit',
+		backgroundColor: 'transparent',
 
 		':hover': {
 			opacity: 0.8,
 		},
+		':focus': {
+			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
+		},
 	})[0];
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const closeBtnAttributes = () => ({
-	'data-js': 'alert-closeBtn__version__',
 	'data-testing': 'alert-closeBtn',
 });
+
+const blenderAttributes = () => ({
+	'data-js': 'alert-closeBtn__version__',
+});
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultCloseBtn = {
 	component: CloseBtn,
 	styles: closeBtnStyles,
 	attributes: closeBtnAttributes,
+};
+
+export const blenderCloseBtn = {
+	component: BlenderCloseBtn,
+	styles: closeBtnStyles,
+	attributes: blenderAttributes,
 };

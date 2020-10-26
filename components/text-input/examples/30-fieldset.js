@@ -3,13 +3,9 @@
 import { GEL, jsx } from '@westpac/core';
 import { TextInput, Textarea, Select } from '@westpac/text-input';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<h2>Default</h2>
 			<fieldset>
 				<legend>Legend</legend>

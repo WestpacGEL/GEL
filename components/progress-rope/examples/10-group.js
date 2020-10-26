@@ -6,11 +6,9 @@ import { Button } from '@westpac/button';
 import { ProgressRope, Group, Step } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';
 
-import { Intopia } from '../../../helpers/example/components/Intopia.js';
-
 function Example({ brand }) {
 	const [state, dispatch] = useProgress();
-	const [state2, dispatch2] = useProgress();
+	const [state2, dispatch2] = useProgress(1);
 
 	const handleClick = (index) => (e) => {
 		e.preventDefault();
@@ -24,8 +22,6 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<Intopia />
-
 			<Grid>
 				<Cell width={6}>
 					<Wrapper>

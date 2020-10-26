@@ -1,10 +1,18 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, asArray } from '@westpac/core';
+import { jsx, useMediaQuery, asArray, getLabel } from '@westpac/core';
 
-const Symbol = ({ symbol, state, ...rest }) => <span {...rest} />;
+// ==============================
+// Component
+// ==============================
 
-const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
+const Symbol = ({ symbol: _, state: __, ...rest }) => <span {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
+
+const symbolStyles = (_, { symbol, width, height, viewBoxWidth, viewBoxHeight }) => {
 	const mq = useMediaQuery();
 
 	const round = (f) => Math.round(f * 10) / 10; // 1DP
@@ -18,7 +26,10 @@ const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
 		height: width ? widthArr.map((w) => (w !== null ? round(w / ratio) : null)) : heightArr,
 	};
 
+	const symbolName = 'symbol-'.concat(symbol.replace('Symbol', ''));
+
 	return mq({
+		label: getLabel(symbolName),
 		display: 'inline-block',
 		flexShrink: 0,
 		lineHeight: 1,
@@ -27,7 +38,15 @@ const symbolStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
 	})[0];
 };
 
+// ==============================
+// Attributes
+// ==============================
+
 const symbolAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultSymbol = {
 	component: Symbol,
