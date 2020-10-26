@@ -84,7 +84,12 @@ export function Docs({ brand }) {
 			subheading: titleCase(placement),
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Popover heading="Your heading" content="Your popover content" placement={placement}>
+					<Popover
+						heading="Your heading"
+						content="Your popover content"
+						placement={placement}
+						instanceIdPrefix={`GEL-popover-${placement}`}
+					>
 						Your button text
 					</Popover>
 				</GEL>
@@ -96,7 +101,11 @@ export function Docs({ brand }) {
 			heading: 'Popover without heading',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Popover content="Your popover content" placement="top">
+					<Popover
+						content="Your popover content"
+						placement="top"
+						instanceIdPrefix="GEL-popover-noheading"
+					>
 						Your button text
 					</Popover>
 				</GEL>
