@@ -55,9 +55,12 @@ const renderSymbols = (search) => {
 const Logo = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
+	const { COLORS, SPACING } = useBrand();
+
 	return (
 		<Fragment>
 			<Cell width={12}>
+			<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
 				<Grid>
 					<Cell width={[12, null, 6]}>
 						<div
@@ -86,6 +89,7 @@ const Logo = () => {
 						</div>
 					</Cell>
 				</Grid>
+				</div>
 			</Cell>
 			{renderSymbols(search)}
 		</Fragment>
