@@ -97,12 +97,16 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<ButtonDropdown text="Default">
-						<p>Your default button-dropdown content</p>
+						<p>
+							Your default <a href="#">button-dropdown</a> content
+						</p>
 					</ButtonDropdown>{' '}
 					{looks.map((look) => (
 						<Fragment key={look}>
 							<ButtonDropdown look={look} text={titleCase(look)}>
-								<p>Your {look} button-dropdown content</p>
+								<p>
+									Your {look} <a href="#">button-dropdown</a> content
+								</p>
 							</ButtonDropdown>{' '}
 						</Fragment>
 					))}
@@ -114,12 +118,16 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<ButtonDropdown soft text="Default">
-						<p>Your default button-dropdown content</p>
+						<p>
+							Your default <a href="#">button-dropdown</a> content
+						</p>
 					</ButtonDropdown>{' '}
 					{looks.map((look) => (
 						<Fragment key={look}>
 							<ButtonDropdown look={look} soft text={titleCase(look)}>
-								<p>Your soft {look} button-dropdown content</p>
+								<p>
+									Your soft {look} <a href="#">button-dropdown</a> content
+								</p>
 							</ButtonDropdown>{' '}
 						</Fragment>
 					))}
