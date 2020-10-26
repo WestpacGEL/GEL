@@ -9,7 +9,7 @@ import * as pictograms from '@westpac/pictogram';
 const renderPictograms = (search) => {
 	const pictogramDetails = [];
 	for (let key in pictograms) {
-			pictogramDetails.push({ name: key, pictogram: pictograms[key] });
+		pictogramDetails.push({ name: key, pictogram: pictograms[key] });
 	}
 	const { COLORS } = useBrand();
 

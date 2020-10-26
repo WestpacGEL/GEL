@@ -60,35 +60,35 @@ const Logo = () => {
 	return (
 		<Fragment>
 			<Cell width={12}>
-			<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
-				<Grid>
-					<Cell width={[12, null, 6]}>
-						<div
-							css={mq({
-								display: 'flex',
-								flexDirection: ['column', null, 'row'],
-								alignItems: ['start', null, 'center'],
-								margin: '1.5rem 0 0.75rem',
-							})}
-						>
-							<label
-								htmlFor={'filter-logos'}
+				<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
+					<Grid>
+						<Cell width={[12, null, 6]}>
+							<div
 								css={mq({
-									marginRight: '1rem',
-									marginBottom: ['0.75rem', null, 0],
-									whiteSpace: 'nowrap',
+									display: 'flex',
+									flexDirection: ['column', null, 'row'],
+									alignItems: ['start', null, 'center'],
+									margin: '1.5rem 0 0.75rem',
 								})}
 							>
-								Filter by name
-							</label>
-							<TextInput
-								id={'filter-logos'}
-								value={search}
-								onChange={(e) => setSearch(e.target.value)}
-							/>
-						</div>
-					</Cell>
-				</Grid>
+								<label
+									htmlFor={'filter-logos'}
+									css={mq({
+										marginRight: '1rem',
+										marginBottom: ['0.75rem', null, 0],
+										whiteSpace: 'nowrap',
+									})}
+								>
+									Filter by name
+								</label>
+								<TextInput
+									id={'filter-logos'}
+									value={search}
+									onChange={(e) => setSearch(e.target.value)}
+								/>
+							</div>
+						</Cell>
+					</Grid>
 				</div>
 			</Cell>
 			{renderSymbols(search)}
