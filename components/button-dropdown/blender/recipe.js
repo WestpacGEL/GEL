@@ -96,14 +96,18 @@ export function Docs({ brand }) {
 			subheading: 'Standard',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<ButtonDropdown text="Default">
+					<ButtonDropdown text="Default" instanceIdPrefix="GEL-buttonDropdown-default">
 						<p>
 							Your default <a href="#">button-dropdown</a> content
 						</p>
 					</ButtonDropdown>{' '}
 					{looks.map((look) => (
 						<Fragment key={look}>
-							<ButtonDropdown look={look} text={titleCase(look)}>
+							<ButtonDropdown
+								look={look}
+								text={titleCase(look)}
+								instanceIdPrefix={`GEL-buttonDropdown-${look}`}
+							>
 								<p>
 									Your {look} <a href="#">button-dropdown</a> content
 								</p>
@@ -117,14 +121,19 @@ export function Docs({ brand }) {
 			subheading: 'Soft',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<ButtonDropdown soft text="Default">
+					<ButtonDropdown soft text="Default" instanceIdPrefix="GEL-buttonDropdown-default-soft">
 						<p>
 							Your default <a href="#">button-dropdown</a> content
 						</p>
 					</ButtonDropdown>{' '}
 					{looks.map((look) => (
 						<Fragment key={look}>
-							<ButtonDropdown look={look} soft text={titleCase(look)}>
+							<ButtonDropdown
+								look={look}
+								soft
+								text={titleCase(look)}
+								instanceIdPrefix={`GEL-buttonDropdown-${look}-soft`}
+							>
 								<p>
 									Your soft {look} <a href="#">button-dropdown</a> content
 								</p>
@@ -140,7 +149,10 @@ export function Docs({ brand }) {
 			heading: 'Dropdown headings',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<ButtonDropdown text="Default with headings">
+					<ButtonDropdown
+						text="Default with headings"
+						instanceIdPrefix="GEL-buttonDropdown-headings"
+					>
 						<Heading>First heading</Heading>
 						<p>Example dropdown content...</p>
 						<p>Example dropdown content...</p>
@@ -162,7 +174,11 @@ export function Docs({ brand }) {
 			subheading: 'Small',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<ButtonDropdown dropdownSize="small" text="Small dropdown">
+					<ButtonDropdown
+						dropdownSize="small"
+						text="Small dropdown"
+						instanceIdPrefix="GEL-buttonDropdown-small"
+					>
 						<p>Your small dropdown content</p>
 					</ButtonDropdown>
 				</GEL>
@@ -174,7 +190,11 @@ export function Docs({ brand }) {
 				subheading: titleCase(size),
 				component: () => (
 					<GEL brand={overridesWithTokens} noPrefix>
-						<ButtonDropdown dropdownSize={size} text={`${titleCase(size)} dropdown`}>
+						<ButtonDropdown
+							dropdownSize={size}
+							text={`${titleCase(size)} dropdown`}
+							instanceIdPrefix={`GEL-buttonDropdown-${size}`}
+						>
 							<p>Your {size} dropdown content</p>
 						</ButtonDropdown>
 					</GEL>
