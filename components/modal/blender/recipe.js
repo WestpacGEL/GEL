@@ -83,6 +83,7 @@ export function Docs({ brand }) {
 		},
 		Heading: {
 			component: blenderHeading.component,
+			attributes: blenderHeading.attributes,
 		},
 	};
 	overridesWithTokens['@westpac/button'] = {
