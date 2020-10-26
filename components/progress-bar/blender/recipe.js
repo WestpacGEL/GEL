@@ -31,8 +31,18 @@ export function Docs({ brand }) {
 		},
 	};
 	return [
+		// Default
 		{
-			heading: 'A default progress bar',
+			heading: 'Default progress bar',
+			subheading: '0% complete',
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<ProgressBar value={0} />
+				</GEL>
+			),
+		},
+		{
+			subheading: '20% complete',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressBar value={20} />
@@ -40,7 +50,17 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A skinny progress bar',
+			subheading: '100% complete',
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<ProgressBar value={100} />
+				</GEL>
+			),
+		},
+
+		// Skinny
+		{
+			heading: 'Skinny progress bar',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<ProgressBar value={20} look="skinny" />
