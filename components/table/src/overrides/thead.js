@@ -1,14 +1,23 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel, getModifier, styleReconciler } from '@westpac/core';
+import { defaultProps } from '../Table';
+// ==============================
+// Component
+// ==============================
 
 const Thead = ({ state: _, ...rest }) => <thead {...rest} />;
+
+// ==============================
+// Styles
+// ==============================
 
 const theadStyles = (_, { bordered }) => {
 	const { COLORS, TYPE } = useBrand();
 
 	return {
-		'th, td': { borderTop: !bordered && 0 },
+		label: getLabel('table-thead'),
+		'th, td': { borderTop: !bordered ? 0 : `1px solid ${COLORS.border}` },
 		// `th` cells in the `thead`
 		th: {
 			verticalAlign: 'bottom',
@@ -19,10 +28,42 @@ const theadStyles = (_, { bordered }) => {
 	};
 };
 
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_) => theadStyles(_, defaultProps);
+
+export const nestedTheadStyles = (props) => {
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return {};
+
+	const baseStyles = theadStyles(null, defaultProps);
+	const modifierStyles = theadStyles(null, props);
+
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	return { [`.__convert__${baseStyles.label}`]: reconciledStyles };
+};
+
+// ==============================
+// Attributes
+// ==============================
+
 const theadAttributes = () => null;
+
+// ==============================
+// Exports
+// ==============================
 
 export const defaultThead = {
 	component: Thead,
 	styles: theadStyles,
+	attributes: theadAttributes,
+};
+
+export const blenderThead = {
+	component: Thead,
+	styles: blenderStyles,
 	attributes: theadAttributes,
 };

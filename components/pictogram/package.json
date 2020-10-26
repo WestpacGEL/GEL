@@ -32,9 +32,12 @@
 	"preconstruct": {
 		"entrypoints": [
 			".",
-			"ChatPictogram",
-			"PayPictogram",
-			"SecurePictogram"
+			"BirthCertificatePictogram",
+			"CoinsPictogram",
+			"DriversLicencePictogram",
+			"MedicareCardPictogram",
+			"PassportPictogram",
+			"WalletPictogram"
 		]
 	},
 	"dependencies": {

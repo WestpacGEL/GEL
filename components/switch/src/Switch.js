@@ -165,7 +165,10 @@ Switch.propTypes = {
 	}),
 };
 
-Switch.defaultProps = {
+export const defaultProps = {
 	size: 'medium',
 	checked: false,
+	block: false,
 };
+
+Switch.defaultProps = defaultProps;

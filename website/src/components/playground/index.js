@@ -1,6 +1,8 @@
 /** @jsx jsx */
+
 import { useState } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { Button } from '@westpac/button';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Modal, Body as ModalBody } from '@westpac/modal';
 import dynamic from 'next/dynamic';
@@ -12,31 +14,41 @@ export const ExampleBlock = dynamic(() => Promise.resolve(UnSafeExampleBlock), {
 	ssr: false,
 });
 
-const Button = ({ onClick, children }) => {
-	const { COLORS, SPACING } = useBrand();
+const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {
+	return <Icon color="primary" {...rest} />;
+};
+
+const ExampleButton = ({ onClick, children, ...rest }) => {
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
+
 	return (
-		<button
+		<Button
+			look="unstyled"
+			size="large"
 			onClick={onClick}
 			css={mq({
-				background: 'none',
-				border: 'none',
 				borderLeft: `solid 1px ${COLORS.border}`,
-				paddingLeft: SPACING(3),
-				paddingRight: SPACING(3),
-				paddingTop: '1rem',
-				paddingBottom: '1rem',
-				marginRight: ['-1.875rem !important', '-2.25rem !important'],
+				padding: '1rem 1.125rem',
+				height: '3rem',
+				fontSize: '0.875rem',
+				backgroundColor: '#fff',
 			})}
+			overrides={{
+				Icon: {
+					component: ButtonIconOverride,
+				},
+			}}
+			{...rest}
 		>
 			{children}
-		</button>
+		</Button>
 	);
 };
 const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
-	const [codeIsOpen, setCodeOpen] = useState(true);
+	const [codeIsOpen, setCodeOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const { COLORS, SPACING } = useBrand();
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -50,40 +62,29 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 					{showDemo ? (
 						<form action={'/demo/'} target="_blank" method="GET">
 							<input type="hidden" name="code" value={code} />
-							<Button
+							<ExampleButton
 								onClick={() => {
 									setIsModalOpen(true);
 								}}
+								iconAfter={NewWindowIcon}
 							>
-								<span css={{ marginRight: SPACING(1) }}>Demo</span>{' '}
-								<NewWindowIcon size="small" color={COLORS.primary} />
-							</Button>
+								Demo
+							</ExampleButton>
 						</form>
 					) : null}
 					{showCode ? (
-						<Button
+						<ExampleButton
 							onClick={() => {
 								setCodeOpen(!codeIsOpen);
 							}}
+							iconAfter={codeIsOpen ? ExpandLessIcon : ExpandMoreIcon}
 						>
-							<span css={{ marginRight: SPACING(1) }}>Code</span>{' '}
-							{codeIsOpen ? (
-								<ExpandMoreIcon size="medium" color={COLORS.primary} />
-							) : (
-								<ExpandLessIcon size="medium" color={COLORS.primary} />
-							)}
-						</Button>
+							Code
+						</ExampleButton>
 					) : null}
 				</div>
 			</div>
-			{showCode && codeIsOpen ? (
-				<LiveEditor
-					css={mq({
-						fontSize: '0.875rem',
-					})}
-					padding={24}
-				/>
-			) : null}
+			{showCode && codeIsOpen && <LiveEditor css={{ fontSize: '16px' }} padding={24} />}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
 				<ModalBody>
 					<LivePreview />

@@ -37,12 +37,12 @@ const ComponentWrapper = () => {
 };
 
 const Component = ({ component, tabName }) => {
-	const { pageTitle, version } = component;
+	const { pageTitle } = component;
 	const [showGrid, setShowGrid] = useState(false);
 
 	return (
 		<PageContext.Provider value={{ showGrid, setShowGrid }}>
-			<PageHeader name={pageTitle} version={version} />
+			<PageHeader name={pageTitle} />
 			<Tabs component={component} tabName={tabName} />
 			<Footer />
 		</PageContext.Provider>
@@ -193,7 +193,6 @@ const Tabs = ({ component, tabName }) => {
 			id="content"
 			css={{
 				backgroundColor: COLORS.background,
-				paddingBottom: '3.0625rem', //space for fixed footer
 			}}
 		>
 			<Tabcordion

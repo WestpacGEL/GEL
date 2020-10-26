@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // Component
 // ==============================
 
-export const Section = ({ size = 'medium', bgFill, ...rest }) => {
+export const Section = ({ paddingTop = 'medium', paddingBottom = 'medium', light, ...rest }) => {
 	const mq = useMediaQuery();
 	const { SPACING, COLORS } = useBrand();
 
@@ -18,11 +18,16 @@ export const Section = ({ size = 'medium', bgFill, ...rest }) => {
 	return (
 		<section
 			css={mq({
-				paddingTop: paddingMap[size],
-				paddingBottom: paddingMap[size],
-				backgroundColor: bgFill && COLORS.background,
-				'& + &': {
-					borderTop: !bgFill && `1px solid ${COLORS.border}`,
+				paddingTop: paddingMap[paddingTop],
+				paddingBottom: paddingMap[paddingBottom],
+				backgroundColor: light && '#fff',
+				borderBottom: `1px solid ${COLORS.border}`,
+
+				':last-child': {
+					borderBottom: 0,
+				},
+				'.slate-container &:first-of-type': {
+					paddingTop: paddingMap.large,
 				},
 			})}
 			{...rest}
@@ -35,9 +40,13 @@ export const Section = ({ size = 'medium', bgFill, ...rest }) => {
 // ==============================
 
 Section.propTypes = {
-	bgFill: PropTypes.bool.isRequired,
+	paddingTop: PropTypes.oneOf(['medium', 'large']).isRequired,
+	paddingBottom: PropTypes.oneOf(['medium', 'large']).isRequired,
+	light: PropTypes.bool.isRequired,
 };
 
 Section.defaultProps = {
-	bgFill: false,
+	paddingTop: 'medium',
+	paddingBottom: 'medium',
+	light: false,
 };

@@ -6,7 +6,7 @@ import { StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
 const HomePageHeaderImage = ({ brand, ...rest }) => {
 	const mq = useMediaQuery();
 
-	const StGeorgeImage = (props) => (
+	const STGImage = (props) => (
 		<div
 			css={{
 				bottom: 0,
@@ -24,7 +24,7 @@ const HomePageHeaderImage = ({ brand, ...rest }) => {
 			/>
 		</div>
 	);
-	const BankSAImage = (props) => (
+	const BSAImage = (props) => (
 		<div
 			css={mq({
 				bottom: 0,
@@ -46,8 +46,8 @@ const HomePageHeaderImage = ({ brand, ...rest }) => {
 	const BRAND_HEADERS = {
 		WBC: null,
 		WBG: null,
-		STG: StGeorgeImage,
-		BSA: BankSAImage,
+		STG: STGImage,
+		BSA: BSAImage,
 		BOM: null,
 		BTFG: null,
 	};

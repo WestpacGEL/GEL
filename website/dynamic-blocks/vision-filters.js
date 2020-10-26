@@ -104,77 +104,6 @@ export const VisionFilters = {
 
 		return (
 			<Fragment>
-				<FieldContainer>
-					<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
-						<CheckboxPrimitive
-							checked={currentValue.editHeader}
-							tabIndex="0"
-							onChange={({ target }) => update({ editHeader: target.checked })}
-						/>
-						<span>Edit header</span>
-					</label>
-				</FieldContainer>
-				{currentValue.editHeader && (
-					<Fragment>
-						<FieldContainer>
-							<FieldLabel htmlFor={'heading-text'} field={{ label: 'Heading Text', config: {} }} />
-							<FieldInput>
-								<Input
-									id="heading-text"
-									value={currentValue.heading}
-									onChange={(e) => update({ heading: e.target.value })}
-								/>
-							</FieldInput>
-						</FieldContainer>
-						<div css={{ display: 'flex' }}>
-							<FieldContainer css={{ flexGrow: 1, marginRight: 30 }}>
-								<FieldLabel
-									htmlFor={'heading-level'}
-									field={{ label: 'Heading Level', config: {} }}
-								/>
-								<Select
-									id="heading-level"
-									placeholder="Select a heading level"
-									options={levelOptions}
-									value={levelOptions.find((o) => o.value === currentValue.level)}
-									onChange={({ value }) => update({ level: value })}
-								/>
-							</FieldContainer>
-							<FieldContainer css={{ flexGrow: 1 }}>
-								<FieldLabel
-									htmlFor={'heading-size'}
-									field={{ label: 'Heading Size', config: {} }}
-								/>
-								<Select
-									id="heading-size"
-									placeholder="Select a heading size"
-									options={sizeOptions}
-									value={sizeOptions.find((o) => o.value === currentValue.size)}
-									onChange={({ value }) => update({ size: value })}
-								/>
-							</FieldContainer>
-						</div>
-						<FieldContainer>
-							<label css={{ display: 'flex', margin: '10px 20px 0 0' }}>
-								<CheckboxPrimitive
-									checked={currentValue.addTableContent}
-									tabIndex="0"
-									onChange={({ target }) => update({ addTableContent: target.checked })}
-								/>
-								<span>Include in table of contents</span>
-							</label>
-						</FieldContainer>
-						<FieldContainer>
-							<FieldLabel htmlFor={'heading-subtext'} field={{ label: 'Sub Text', config: {} }} />
-							<Input
-								id={'heading-subtext'}
-								isMultiline
-								value={currentValue.subText}
-								onChange={(e) => update({ subText: e.target.value })}
-							/>
-						</FieldContainer>
-					</Fragment>
-				)}
 				<Select
 					isSearchable={true}
 					placeholder="Select a code example"
@@ -200,48 +129,9 @@ export const VisionFilters = {
 			return <p>Loading...</p>;
 		}
 
-		const id = heading.replace(/ /g, '-').toLowerCase();
 		const loadCodeBlock = codeExamples[codeExample];
-		const router = useRouter();
-		const href = '/accessibility';
-		const mq = useMediaQuery();
-
-		const handleClick = (e) => {
-			e.preventDefault();
-			const brandName = router.query.b || '';
-			router.push(`${href}?b=${brandName}`);
-		};
-
 		return (
-			<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
-				<Heading
-					id={id}
-					tabIndex="-1"
-					tag={level}
-					size={[7, null, size]}
-					{...(addTableContent && { 'data-toc': true })}
-					overrides={{
-						Heading: {
-							styles: (styles) =>
-								mq({
-									...styles,
-									scrollMarginTop: '10.375rem',
-									marginBottom: ['12px', null, '18px'],
-								}),
-						},
-					}}
-				>
-					{heading}
-				</Heading>
-				<Body css={mq({ p: { margin: ['0 0 18px', null, '0 0 24px'] } })}>
-					<p>
-						{subText} Read more about these vision impairments on our{' '}
-						<a href={href} onClick={handleClick}>
-							Accessibility
-						</a>{' '}
-						page.
-					</p>
-				</Body>
+			<Cell width={12}>
 				<Suspense fallback={<p>Loading...</p>}>
 					{loadCodeBlock && typeof window !== 'undefined' ? (
 						<ShowCodeBlock loadCodeBlock={loadCodeBlock} context={context} />

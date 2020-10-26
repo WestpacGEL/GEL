@@ -53,8 +53,9 @@ export const Text = ({ instanceId, position, size, data, overrides, ...rest }) =
 Text.propTypes = {
 	/**
 	 * What position this component is at
+	 * note: 'none' is only for blender use
 	 */
-	position: PropTypes.oneOf(['before', 'after']).isRequired,
+	position: PropTypes.oneOf(['before', 'after', 'none']).isRequired,
 
 	/**
 	 * What size the button-group is
@@ -78,6 +79,8 @@ Text.propTypes = {
 	}),
 };
 
-Text.defaultProps = {
+export const defaultProps = {
 	size: 'medium',
 };
+
+Text.defaultProps = defaultProps;

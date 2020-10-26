@@ -15,45 +15,47 @@ import { BASE_URL } from '../../config';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 import { useSidebar } from '../providers/sidebar';
 import {
-	BOMLogo,
-	BSALogo,
-	STGLogo,
-	WBCLogo,
-	WBGLogo,
+	BOMMultibrandLargeLogo,
 	BOMShieldLogo,
+	BSAMultibrandLargeLogo,
 	BSAStackedLogo,
+	STGMultibrandLargeLogo,
 	STGDragonLogo,
+	WBCMultibrandLargeLogo,
+	WBCLogo,
+	WBGMultibrandLargeLogo,
+	WBGLogo,
 } from '@westpac/symbol';
 
 export const brandsMap = {
 	WBC: {
-		logo: WBCLogo,
+		logo: <WBCMultibrandLargeLogo />,
+		smallLogo: <WBCLogo height={18} />,
 		label: 'Westpac',
-		smallLogo: WBCLogo,
 	},
 	STG: {
-		logo: STGLogo,
+		logo: <STGMultibrandLargeLogo />,
+		smallLogo: <STGDragonLogo height={38} css={{ marginRight: -12 }} />,
 		label: 'St.George',
-		smallLogo: STGDragonLogo,
 	},
 	BOM: {
-		logo: BOMLogo,
+		logo: <BOMMultibrandLargeLogo />,
+		smallLogo: <BOMShieldLogo height={39} css={{ marginRight: 9 }} />,
 		label: 'Bank of Melbourne',
-		smallLogo: BOMShieldLogo,
 	},
 	BSA: {
-		logo: BSALogo,
+		logo: <BSAMultibrandLargeLogo />,
+		smallLogo: <BSAStackedLogo height={46} css={{ marginRight: 8 }} />,
 		label: 'BankSA',
-		smallLogo: BSAStackedLogo,
 	},
 	WBG: {
-		logo: WBGLogo,
+		logo: <WBGMultibrandLargeLogo />,
+		smallLogo: <WBGLogo width={70} css={{ marginRight: -8 }} />,
 		label: 'Westpac Group',
-		smallLogo: WBCLogo,
 	},
 };
 
-const ButtonIconOverride = ({ state, icon: Icon, left, right, color, ...rest }) => {
+const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {
 	const { COLORS } = useBrand();
 	return (
 		<span
@@ -78,8 +80,8 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 	return (
 		<Button
 			ref={ref}
-			look="link"
-			size="xlarge"
+			look="unstyled"
+			size="large"
 			iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
 			block
 			justify
@@ -100,7 +102,6 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 });
 
 const PanelOverride = forwardRef(({ state: { open }, children, ...rest }, ref) => {
-	const { COLORS } = useBrand();
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 
 	const animate = useSpring({
@@ -138,7 +139,7 @@ export const BrandSwitcher = () => {
 	const [open, setOpen] = useState(false);
 	const { isScrolled } = useSidebar();
 	const { SPACING, COLORS, PACKS, TYPE } = useBrand();
-	const Logo = brandsMap[brand].logo;
+	const logo = brandsMap[brand].logo;
 
 	const OptionButton = ({ brand, active, ...rest }) => {
 		const handleClick = (brand) => {
@@ -189,7 +190,7 @@ export const BrandSwitcher = () => {
 					<li key={key} css={{ borderTop: `1px solid ${COLORS.border}` }}>
 						<OptionButton brand={key} active={brandName === key}>
 							<span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{val.label}</span>
-							<val.smallLogo css={{ width: 50, height: 39, marginLeft: '0.4em' }} />
+							<div css={{ marginLeft: '0.4em' }}>{val.smallLogo}</div>
 						</OptionButton>
 					</li>
 				))}
@@ -225,7 +226,7 @@ export const BrandSwitcher = () => {
 						},
 					}}
 				>
-					<Logo />
+					{logo}
 				</a>
 			</Link>
 			<ButtonDropdown
@@ -238,18 +239,13 @@ export const BrandSwitcher = () => {
 					Button: {
 						component: ButtonOverride,
 						styles: () => ({
-							textDecoration: 'none',
-							color: COLORS.text,
-							backgroundColor: '#fff',
-							border: 0,
-							fontSize: '0.875rem',
-							padding: '0 1.5rem 0 1.125rem',
-							height: '4.125rem',
 							position: 'relative',
 							zIndex: 2,
-							':hover': {
-								textDecoration: 'none !important',
-							},
+							padding: '0 1.5rem 0 1.125rem',
+							height: '4.125rem',
+							fontSize: '0.875rem',
+							backgroundColor: '#fff',
+
 							':focus': {
 								outlineOffset: `-${PACKS.focus.outlineWidth}`,
 							},

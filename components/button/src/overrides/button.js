@@ -89,7 +89,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 				':hover': {
 					color: '#fff',
-					backgroundColor: COLORS.tints.hero70,
+					backgroundColor: `${COLORS.tints.hero70} !important`,
 				},
 				':active, &.active': {
 					color: '#fff',
@@ -129,9 +129,14 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 				},
 			},
 		},
+		unstyled: {
+			standardCSS: {
+				border: 0,
+			},
+		},
 		[key]: {
 			standardCSS: { ...bg },
-			soft: { ...bg },
+			softCSS: { ...bg },
 		},
 	};
 
@@ -139,22 +144,22 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 	const sizeMap = {
 		small: {
-			padding: ['0.1875rem', '0.5625rem', '0.25rem'],
+			padding: '0.1875rem 0.5625rem 0.25rem',
 			fontSize: '0.875rem',
 			height: '1.875rem',
 		},
 		medium: {
-			padding: ['0.3125rem', '0.75rem'],
+			padding: '0.3125rem 0.75rem',
 			fontSize: '1rem',
 			height: '2.25rem',
 		},
 		large: {
-			padding: ['0.5rem', '0.9375rem'],
+			padding: '0.5rem 0.9375rem',
 			fontSize: '1rem',
 			height: '2.625rem',
 		},
 		xlarge: {
-			padding: ['0.5625rem', '1.125rem', '0.625rem'],
+			padding: '0.5625rem 1.125rem 0.625rem',
 			fontSize: '1.125rem',
 			height: '3rem',
 		},
@@ -166,20 +171,29 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		label: 'button',
 		alignItems: 'center', //vertical
 		appearance: 'none',
-		border: '1px solid transparent',
-		borderRadius: '0.1875rem',
 		cursor: 'pointer',
 		justifyContent: justify ? 'space-between' : 'center', //horizontal
 		lineHeight: 1.5,
 		textAlign: 'center',
 		textDecoration: 'none',
 		touchAction: 'manipulation',
-		transition: 'background 0.2s ease, color 0.2s ease',
 		userSelect: 'none',
 		verticalAlign: 'middle',
 		whiteSpace: 'nowrap',
 		boxSizing: 'border-box',
-		...TYPE.bodyFont[400],
+		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
+		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
+
+		...(look !== 'unstyled' && {
+			fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
+			...TYPE.bodyFont[400],
+			padding: sizeArr.map((s) => s && sizeMap[s].padding),
+			height: sizeArr.map((s) => s && sizeMap[s].height),
+			border: '1px solid transparent',
+			borderRadius: '0.1875rem',
+			transition: 'background 0.2s ease, color 0.2s ease',
+		}),
+		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)
 		':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
@@ -194,19 +208,6 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 		// for non input tags
 		...(disabled && { opacity: '0.5', pointerEvents: 'none' }),
-
-		padding: sizeArr.map((s) => {
-			if (!s) return null;
-			let p = [...sizeMap[s].padding];
-			if (look === 'link') p[1] = '0';
-			return p.join(' ');
-		}),
-		fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
-		height: sizeArr.map((s) => s && sizeMap[s].height),
-		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
-		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
-
-		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 	})[0];
 };
 
@@ -257,13 +258,14 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
 
-const blenderAttributes = (_, { look, soft, size, block, justify }) => ({
+const blenderAttributes = (_, { look, soft, size, block, justify, disabled }) => ({
 	className: classNames({
 		[`__convert__button-${look}`]: look && look !== defaultProps.look && !soft,
 		[`__convert__button${look === defaultProps.look ? '' : `-${look}`}-soft`]: soft,
 		[`__convert__button-${size}`]: size && size !== defaultProps.size,
 		[`__convert__button-block`]: block,
 		[`__convert__button-justify`]: justify,
+		[`__convert__button-disabled`]: disabled,
 	}),
 });
 
