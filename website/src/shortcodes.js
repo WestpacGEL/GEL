@@ -22,7 +22,7 @@ const A11yIntro = () => (
 	</Fragment>
 );
 
-export const getShortCodes = brand => ({
+export const getShortCodes = (brand) => ({
 	brandName: brandsMap[brand].label,
 	visionFilterIntro: VisionFilterIntro,
 	a11yIntro: A11yIntro,

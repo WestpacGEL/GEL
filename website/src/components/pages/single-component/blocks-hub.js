@@ -16,18 +16,18 @@ import { Separator } from '../../separator';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
-const Bold = props => <strong css={{ fontWeight: 'bold' }} {...props} />;
-const Italic = props => <em css={{ fontStyle: 'italic' }} {...props} />;
-const Strike = props => <span css={{ textDecoration: 'strike-through' }} {...props} />;
-const Under = props => <span css={{ textDecoration: 'underline' }} {...props} />;
+const Bold = (props) => <strong css={{ fontWeight: 'bold' }} {...props} />;
+const Italic = (props) => <em css={{ fontStyle: 'italic' }} {...props} />;
+const Strike = (props) => <span css={{ textDecoration: 'strike-through' }} {...props} />;
+const Under = (props) => <span css={{ textDecoration: 'underline' }} {...props} />;
 
 const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
 	const shortcodes = getShortCodes(BRAND);
-	const textCodes = [...text.matchAll(/\[\[[A-Za-z0-9]*\]\]/g)].map(m => m[0]);
+	const textCodes = [...text.matchAll(/\[\[[A-Za-z0-9]*\]\]/g)].map((m) => m[0]);
 	let shortCodedText = text;
 
-	textCodes.forEach(shortCode => {
+	textCodes.forEach((shortCode) => {
 		shortCodedText = reactStringReplace(shortCodedText, shortCode, (match, i) => {
 			const code = shortCode.slice(2, shortCode.length - 2);
 			if (typeof shortcodes[code] === 'function') {
@@ -44,7 +44,7 @@ const ApplyShortCodes = ({ text }) => {
 
 const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
 	if (data.props) {
-		Object.keys(data.props).forEach(key => {
+		Object.keys(data.props).forEach((key) => {
 			if (typeof data.props[key] === 'string') {
 				data.props[key] = ApplyShortCodes({ text: data.props[key] });
 			}
@@ -116,7 +116,7 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					const nested =
-						parents.findIndex(parent => parent.type === 'blockquote') >= 0 ? true : false;
+						parents.findIndex((parent) => parent.type === 'blockquote') >= 0 ? true : false;
 
 					return nested ? (
 						<p key={path}>{serializeChildren(node.nodes)}</p>
@@ -205,7 +205,7 @@ export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	);
 };
 
-const textOnlySlateRenderer = _editorValue => {
+const textOnlySlateRenderer = (_editorValue) => {
 	return createReactRenderer([
 		// special serialiser for text
 		({ node, path }) => {
