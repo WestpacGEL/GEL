@@ -20,11 +20,7 @@ const breadcrumbStyles = () => ({
 // Attributes
 // ==============================
 
-const breadcrumbAttributes = (_, { assistiveText }) => ({
-	//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
-	role: 'list',
-	'aria-label': assistiveText,
-});
+const breadcrumbAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
 
 // ==============================
 // Exports
