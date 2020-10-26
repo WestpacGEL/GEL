@@ -8,6 +8,7 @@ import { Body } from '../../body';
 import { Section } from '../../section';
 import dynamic from 'next/dynamic';
 import React from 'react';
+import reactStringReplace from 'react-string-replace';
 
 import createReactRenderer from './react-renderer';
 import { getShortCodes } from '../../../shortcodes';
@@ -15,22 +16,35 @@ import { Separator } from '../../separator';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
-const Bold = (props) => <strong css={{ fontWeight: 'bold' }} {...props} />;
-const Italic = (props) => <em css={{ fontStyle: 'italic' }} {...props} />;
-const Strike = (props) => <span css={{ textDecoration: 'strike-through' }} {...props} />;
-const Under = (props) => <span css={{ textDecoration: 'underline' }} {...props} />;
+const Bold = props => <strong css={{ fontWeight: 'bold' }} {...props} />;
+const Italic = props => <em css={{ fontStyle: 'italic' }} {...props} />;
+const Strike = props => <span css={{ textDecoration: 'strike-through' }} {...props} />;
+const Under = props => <span css={{ textDecoration: 'underline' }} {...props} />;
 
 const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
 	const shortcodes = getShortCodes(BRAND);
-	return text.replace(/\[\[([A-Za-z0-9]*)\]\]/g, (match, capture, offset, string) => {
-		return shortcodes[capture] || capture;
+	const textCodes = [...text.matchAll(/\[\[[A-Za-z0-9]*\]\]/g)].map(m => m[0]);
+	let shortCodedText = text;
+
+	textCodes.forEach(shortCode => {
+		shortCodedText = reactStringReplace(shortCodedText, shortCode, (match, i) => {
+			const code = shortCode.slice(2, shortCode.length - 2);
+			if (typeof shortcodes[code] === 'function') {
+				const Component = shortcodes[code];
+				return <Component />;
+			} else {
+				return shortcodes[code] || code;
+			}
+		});
 	});
+
+	return shortCodedText;
 };
 
 const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
 	if (data.props) {
-		Object.keys(data.props).forEach((key) => {
+		Object.keys(data.props).forEach(key => {
 			if (typeof data.props[key] === 'string') {
 				data.props[key] = ApplyShortCodes({ text: data.props[key] });
 			}
@@ -102,7 +116,7 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					const nested =
-						parents.findIndex((parent) => parent.type === 'blockquote') >= 0 ? true : false;
+						parents.findIndex(parent => parent.type === 'blockquote') >= 0 ? true : false;
 
 					return nested ? (
 						<p key={path}>{serializeChildren(node.nodes)}</p>
@@ -191,7 +205,7 @@ export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	);
 };
 
-const textOnlySlateRenderer = (_editorValue) => {
+const textOnlySlateRenderer = _editorValue => {
 	return createReactRenderer([
 		// special serialiser for text
 		({ node, path }) => {
