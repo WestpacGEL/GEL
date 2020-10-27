@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { Alert } from '@westpac/alert';
+import { Switch } from '@westpac/switch';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
 const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Alert>This is a default alert.</Alert>
+			<Switch name="example-default" label="I'm a block switch" block />
 		</Playground>
 	);
 };

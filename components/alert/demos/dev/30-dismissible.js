@@ -7,7 +7,10 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Alert>This is a default alert.</Alert>
+			<Alert look="success" dismissible>
+				<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I
+				can be closed. <a href="#">Link</a>
+			</Alert>
 		</Playground>
 	);
 };

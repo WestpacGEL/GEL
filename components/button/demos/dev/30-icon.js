@@ -1,13 +1,15 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { Alert } from '@westpac/alert';
+import { Button } from '@westpac/button';
+import { ArrowLeftIcon, ArrowRightIcon } from '@westpac/icon';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
 const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Alert>This is a default alert.</Alert>
+			<Button iconBefore={ArrowLeftIcon}>Icon before</Button>{' '}
+			<Button iconAfter={ArrowRightIcon}>Icon after</Button>
 		</Playground>
 	);
 };

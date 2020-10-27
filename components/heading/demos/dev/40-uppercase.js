@@ -1,13 +1,19 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { Alert } from '@westpac/alert';
+import { BrandHeading, Heading } from '@westpac/heading';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
 const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Alert>This is a default alert.</Alert>
+			<BrandHeading size={5} uppercase>
+				BrandHeading
+			</BrandHeading>
+			<br />
+			<Heading size={5} uppercase>
+				Heading
+			</Heading>
 		</Playground>
 	);
 };

@@ -1,13 +1,21 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { Alert } from '@westpac/alert';
+import { TextInput, Select, Textarea } from '@westpac/text-input';
 import { Playground } from '../../../../website/src/components/playground/macro';
+import { Title } from '../../../../helpers/demos';
 
 const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Alert>This is a default alert.</Alert>
+			<TextInput inline />{' '}
+			<Select name="thing" inline>
+				<option>Select</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</Select>{' '}
+			<Textarea inline />
 		</Playground>
 	);
 };
