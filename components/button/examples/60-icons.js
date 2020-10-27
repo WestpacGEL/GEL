@@ -10,12 +10,31 @@ import {
 	ArrowLeftIcon,
 	ArrowRightIcon,
 	StarIcon,
+	CloseIcon,
 } from '@westpac/icon';
 
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Icon after</h2>
+			<h3>Look</h3>
+			<Button iconAfter={HouseIcon}>Default</Button>{' '}
+			<Button look="primary" iconAfter={HouseIcon}>
+				Default
+			</Button>{' '}
+			<Button look="hero" iconAfter={HouseIcon}>
+				Hero
+			</Button>{' '}
+			<Button look="faint" iconAfter={HouseIcon}>
+				Faint
+			</Button>{' '}
+			<Button look="link" iconAfter={HouseIcon}>
+				Link
+			</Button>{' '}
+			<Button look="unstyled" iconAfter={HouseIcon}>
+				Unstyled
+			</Button>{' '}
+			<h3>Size</h3>
 			<Button size="small" iconAfter={HouseIcon}>
 				Small
 			</Button>{' '}
@@ -28,8 +47,7 @@ function Example({ brand }) {
 			<Button size="xlarge" iconAfter={AccessibilityIcon}>
 				Extra large
 			</Button>
-			<br />
-			<br />
+			<h3>Block</h3>
 			<Button size="xlarge" iconAfter={ArrowRightIcon} block>
 				Extra large block
 			</Button>
@@ -51,6 +69,24 @@ function Example({ brand }) {
 			</Button>
 			<hr />
 			<h2>Icon before</h2>
+			<h3>Look</h3>
+			<Button iconBefore={HouseIcon}>Default</Button>{' '}
+			<Button look="primary" iconBefore={HouseIcon}>
+				Default
+			</Button>{' '}
+			<Button look="hero" iconBefore={HouseIcon}>
+				Hero
+			</Button>{' '}
+			<Button look="faint" iconBefore={HouseIcon}>
+				Faint
+			</Button>{' '}
+			<Button look="link" iconBefore={HouseIcon}>
+				Link
+			</Button>{' '}
+			<Button look="unstyled" iconBefore={HouseIcon}>
+				Unstyled
+			</Button>{' '}
+			<h3>Size</h3>
 			<Button size="small" iconBefore={HouseIcon}>
 				Small
 			</Button>{' '}
@@ -63,8 +99,7 @@ function Example({ brand }) {
 			<Button size="xlarge" iconBefore={AccessibilityIcon}>
 				Extra large
 			</Button>
-			<br />
-			<br />
+			<h3>Block</h3>
 			<Button size="xlarge" iconBefore={ArrowLeftIcon} block>
 				Extra large block
 			</Button>
@@ -86,11 +121,18 @@ function Example({ brand }) {
 			</Button>
 			<hr />
 			<h2>Icon only (no text)</h2>
-			<Button size="small" iconBefore={StarIcon} /> <Button size="medium" iconBefore={StarIcon} />{' '}
-			<Button size="large" iconBefore={StarIcon} /> <Button size="xlarge" iconBefore={StarIcon} />
-			<br />
-			<br />
-			<Button size="xlarge" iconBefore={StarIcon} block />
+			<h3>Look</h3>
+			<Button look="primary" iconAfter={CloseIcon} assistiveText="Close" />{' '}
+			<Button look="hero" iconAfter={CloseIcon} assistiveText="Close" />{' '}
+			<Button look="faint" iconAfter={CloseIcon} assistiveText="Close" />{' '}
+			<Button look="link" iconAfter={CloseIcon} assistiveText="Close" />{' '}
+			<Button look="unstyled" iconAfter={CloseIcon} assistiveText="Close" />
+			<h3>Size</h3>
+			<Button size="small" iconBefore={StarIcon} assistiveText="Star" />{' '}
+			<Button size="medium" iconBefore={StarIcon} assistiveText="Star" />{' '}
+			<Button size="large" iconBefore={StarIcon} assistiveText="Star" />{' '}
+			<Button size="xlarge" iconBefore={StarIcon} assistiveText="Star" /> <h3>Block</h3>
+			<Button size="xlarge" iconBefore={StarIcon} block assistiveText="Star" />
 		</GEL>
 	);
 }

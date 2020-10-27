@@ -4,28 +4,26 @@ import React, { useState, Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
 import { Grid, Cell } from '@westpac/grid';
-import * as symbols from '@westpac/symbol';
+import * as pictograms from '@westpac/pictogram';
 
-const renderSymbols = (search) => {
-	const symbolDetails = [];
-	for (let key in symbols) {
-		if (/symbol$/i.test(key)) {
-			symbolDetails.push({ name: key, symbol: symbols[key] });
-		}
+const renderPictograms = (search) => {
+	const pictogramDetails = [];
+	for (let key in pictograms) {
+		pictogramDetails.push({ name: key, pictogram: pictograms[key] });
 	}
 	const { COLORS } = useBrand();
 
-	return symbolDetails
-		.filter((symbol) =>
-			search.trim() === '' ? true : symbol.name.toLowerCase().includes(search.toLowerCase())
+	return pictogramDetails
+		.filter((pictogram) =>
+			search.trim() === '' ? true : pictogram.name.toLowerCase().includes(search.toLowerCase())
 		)
-		.map((symbol) => {
-			const Symbol = symbol.symbol;
+		.map((pictogram) => {
+			const Pictogram = pictogram.pictogram;
 			return (
 				<Cell
 					width={[12, null, 6, 4]}
 					css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 3' }, display: 'flex' }}
-					key={symbol.name}
+					key={pictogram.name}
 				>
 					<div
 						css={{
@@ -39,20 +37,20 @@ const renderSymbols = (search) => {
 							marginBottom: ['12px', '24px'],
 						}}
 					>
-						<Symbol
+						<Pictogram
 							css={{
 								flexGrow: 1,
 								paddingBottom: '36px',
 							}}
 						/>
-						<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{symbol.name}</span>
+						<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{pictogram.name}</span>
 					</div>
 				</Cell>
 			);
 		});
 };
 
-const Symbol = () => {
+const Pictogram = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
 	const { COLORS, SPACING } = useBrand();
@@ -71,7 +69,7 @@ const Symbol = () => {
 								})}
 							>
 								<label
-									htmlFor={'filter-symbols'}
+									htmlFor={'filter-pictograms'}
 									css={mq({
 										marginRight: '1rem',
 										marginBottom: ['0.75rem', null, 0],
@@ -81,7 +79,7 @@ const Symbol = () => {
 									Filter by name
 								</label>
 								<TextInput
-									id={'filter-symbols'}
+									id={'filter-pictograms'}
 									value={search}
 									onChange={(e) => setSearch(e.target.value)}
 								/>
@@ -90,11 +88,11 @@ const Symbol = () => {
 					</Grid>
 				</div>
 			</Cell>
-			{renderSymbols(search)}
+			{renderPictograms(search)}
 		</Fragment>
 	);
 };
 
-export const Symbols = {
-	component: Symbol,
+export const Pictograms = {
+	component: Pictogram,
 };

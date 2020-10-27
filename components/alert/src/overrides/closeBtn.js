@@ -12,8 +12,7 @@ const CloseBtn = ({ onClose, state: _, ...rest }) => (
 	<Button
 		onClick={(event) => onClose(event)}
 		iconAfter={CloseIcon}
-		look="link"
-		size="medium"
+		look="unstyled"
 		assistiveText="Close alert"
 		{...rest}
 	/>
@@ -40,19 +39,23 @@ const BlenderCloseBtn = (props) => (
 
 const closeBtnStyles = () => {
 	const mq = useMediaQuery();
-	const { SPACING } = useBrand();
+	const { SPACING, PACKS } = useBrand();
 
 	return mq({
 		label: 'alert-closebtn',
-		color: 'inherit',
 		position: 'absolute',
 		zIndex: 1,
-		top: 0,
-		right: SPACING(1),
-		opacity: 1,
+		top: SPACING(1, 'minor'),
+		right: SPACING(1, 'minor'),
+		padding: SPACING(1),
+		color: 'inherit',
+		backgroundColor: 'transparent',
 
 		':hover': {
 			opacity: 0.8,
+		},
+		':focus': {
+			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside
 		},
 	})[0];
 };

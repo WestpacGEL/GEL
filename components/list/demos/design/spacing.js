@@ -8,9 +8,15 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<List type="link" spacing="large">
-				<Item>This is a large spaced link list</Item>
-				<Item>This is a large spaced link list</Item>
-				<Item>This is a large spaced link list</Item>
+				<Item>
+					<a href="#">This is a large spaced link list</a>
+				</Item>
+				<Item>
+					<a href="#">This is a large spaced link list</a>
+				</Item>
+				<Item>
+					<a href="#">This is a large spaced link list</a>
+				</Item>
 			</List>
 		</Playground>
 	);

@@ -181,12 +181,19 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		verticalAlign: 'middle',
 		whiteSpace: 'nowrap',
 		boxSizing: 'border-box',
-		...TYPE.bodyFont[400],
+		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
+		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
+
 		...(look !== 'unstyled' && {
+			fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
+			...TYPE.bodyFont[400],
+			padding: sizeArr.map((s) => s && sizeMap[s].padding),
+			height: sizeArr.map((s) => s && sizeMap[s].height),
 			border: '1px solid transparent',
 			borderRadius: '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
+		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)
 		':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
@@ -201,14 +208,6 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 		// for non input tags
 		...(disabled && { opacity: '0.5', pointerEvents: 'none' }),
-
-		padding: sizeArr.map((s) => s && sizeMap[s].padding),
-		fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
-		height: sizeArr.map((s) => s && sizeMap[s].height),
-		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
-		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
-
-		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 	})[0];
 };
 

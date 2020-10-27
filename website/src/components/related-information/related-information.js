@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { CubeIcon, GenericFileIcon } from '@westpac/icon';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Section, SectionHeading } from '../section';
