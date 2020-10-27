@@ -4,13 +4,14 @@ import { jsx } from '@westpac/core';
 import { useState } from 'react';
 import { InputGroup, Before, After } from '@westpac/input-group';
 import { Playground } from '../../../../website/src/components/playground/macro';
+import { Title } from '../../../../helpers/demos';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	const [value, setValue] = useState(0);
 
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<InputGroup name="example-text" label="Total amount">
+			<InputGroup name="example-text" label="Total amount" defaultValue="User input text">
 				<Before inputType="text" data="AUS $" />
 				<After inputType="text" data=".00" />
 			</InputGroup>
@@ -30,11 +31,11 @@ export default ({ context, showCode, showDemo }) => {
 				/>
 			</InputGroup>
 			<br />
-			<InputGroup name="example-button" label="Filter by name">
+			<InputGroup name="example-button" label="Filter by name" defaultValue="User input text">
 				<After inputType="button" data="Go" />
 			</InputGroup>
 			<br />
-			<InputGroup name="example-select" label="Total amount">
+			<InputGroup name="example-select" label="Total amount" placeholder="Placeholder text">
 				<Before
 					inputType="select"
 					name="example-select-select"
@@ -57,6 +58,21 @@ export default ({ context, showCode, showDemo }) => {
 				<Before inputType="button" data="-" onClick={() => setValue((value) => value - 1)} />
 				<After inputType="button" data="+" onClick={() => setValue((value) => value + 1)} />
 			</InputGroup>
+			<Title>Data driven</Title>
+			<InputGroup
+				name="example-text-button-datadriven"
+				label="Total amount"
+				data={{
+					before: { inputType: 'text', data: 'AUS $' },
+					after: {
+						inputType: 'button',
+						data: 'Go',
+						onClick: () => console.log('Go clicked'),
+					},
+				}}
+			/>
 		</Playground>
 	);
 };
+
+export default Demo;
