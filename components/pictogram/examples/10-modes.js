@@ -5,7 +5,7 @@ import * as components from '@westpac/pictogram';
 import { Cell, Grid, Name } from './_util';
 
 const informative = Object.keys(components).filter((s) => !s.startsWith('WBC'));
-const modes = ['colour', 'dark', 'light'];
+const modes = ['color', 'dark', 'light'];
 
 function Example({ brand }) {
 	const { COLORS } = useBrand();
