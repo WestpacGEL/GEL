@@ -2,12 +2,12 @@ import React from 'react';
 import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const MoneyOutPictogram = ({ mode, ...rest }) => {
+export const MoneyOutPictogram = ({ color, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[mode];
+	const { outline, highlight } = colorMap(color, COLORS);
 
 	return (
-		<Pictogram pictogram="MoneyOutPictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="MoneyOutPictogram" color={color} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill="#1F1C4F"

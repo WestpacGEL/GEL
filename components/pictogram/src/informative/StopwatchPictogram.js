@@ -2,12 +2,12 @@ import React from 'react';
 import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const StopwatchPictogram = ({ mode, ...rest }) => {
+export const StopwatchPictogram = ({ color, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[mode];
+	const { outline, highlight } = colorMap(color, COLORS);
 
 	return (
-		<Pictogram pictogram="StopwatchPictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="StopwatchPictogram" color={color} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<polygon
 					fill={outline}

@@ -13,7 +13,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const Pictogram = ({
-	mode,
+	color,
 	width,
 	height,
 	assistiveText,
@@ -35,7 +35,7 @@ export const Pictogram = ({
 	};
 
 	const state = {
-		mode,
+		color,
 		width,
 		height,
 		assistiveText,
@@ -66,9 +66,11 @@ export const Pictogram = ({
 
 export const propTypes = {
 	/**
-	 *  The visual style of the pictogram
+	 * The color for the pictogram.
+	 *
+	 * Defaults to 'hero/primary' color style.
 	 */
-	mode: PropTypes.oneOf(['color', 'dark', 'light']).isRequired,
+	color: PropTypes.string,
 
 	/**
 	 * Set pictogram width in pixels.
@@ -120,9 +122,7 @@ export const propTypes = {
 	}),
 };
 
-export const defaultProps = {
-	mode: 'color',
-};
+export const defaultProps = {};
 
 Pictogram.propTypes = propTypes;
 Pictogram.defaultProps = defaultProps;

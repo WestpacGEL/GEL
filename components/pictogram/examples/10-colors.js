@@ -5,7 +5,7 @@ import * as components from '@westpac/pictogram';
 import { Cell, Grid, Name } from './_util';
 
 const informative = Object.keys(components).filter((s) => !s.startsWith('WBC'));
-const modes = ['color', 'dark', 'light'];
+const colors = ['primary', 'hero', 'text', '#fff', 'pink'];
 
 function Example({ brand }) {
 	const { COLORS } = useBrand();
@@ -17,10 +17,10 @@ function Example({ brand }) {
 				const Pictogram = components[pictogram];
 				return (
 					<Grid key={pictogram} css={{ marginBottom: 6 }}>
-						{modes.map((mode) => (
-							<Cell key={mode} css={{ backgroundColor: COLORS.background, padding: 24 }}>
-								<Pictogram mode={mode} />
-								<Name>{`<${pictogram} mode="${mode}"\u00A0/>`}</Name>
+						{colors.map((color) => (
+							<Cell key={color} css={{ backgroundColor: COLORS.background, padding: 24 }}>
+								<Pictogram color={color} />
+								<Name>{`<${pictogram} color="${color}"\u00A0/>`}</Name>
 							</Cell>
 						))}
 					</Grid>

@@ -2,12 +2,12 @@ import React from 'react';
 import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const CreditCardPictogram = ({ mode, ...rest }) => {
+export const CreditCardPictogram = ({ color, ...rest }) => {
 	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[mode];
+	const { outline, highlight } = colorMap(color, COLORS);
 
 	return (
-		<Pictogram pictogram="CreditCardPictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="CreditCardPictogram" color={color} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="11.385 40.91 44.385 40.91 44.385 37.91 11.385 37.91" />
 				<polygon
