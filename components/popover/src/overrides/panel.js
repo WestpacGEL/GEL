@@ -20,9 +20,11 @@ const panelStyles = (_, { open, position, ...rest }) => {
 		label: getLabel('popover-panel'),
 		visibility: open && !position.empty ? 'visible' : 'hidden',
 		position: 'absolute',
-		left: '50%',
+		[!position.offset || position.offset === 'left' ? 'left' : 'right']: !position.offset
+			? '50%'
+			: 0,
 		bottom: position.placement === 'top' && '100%',
-		transform: 'translateX(-50%)',
+		transform: !position.offset ? 'translateX(-50%)' : 'none',
 		[position.placement === 'top' ? 'marginBottom' : 'marginTop']:
 			rest.placement !== 'none' && '0.9375rem',
 		boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
@@ -38,7 +40,9 @@ const panelStyles = (_, { open, position, ...rest }) => {
 		'::before, ::after': {
 			content: '""',
 			[position.placement === 'top' ? 'top' : 'bottom']: rest.placement !== 'none' && '100%',
-			left: '50%',
+			[!position.offset || position.offset === 'left' ? 'left' : 'right']: !position.offset
+				? '50%'
+				: `${position.center}rem`,
 			border: 'solid transparent',
 			position: 'absolute',
 			height: 0,
@@ -48,14 +52,16 @@ const panelStyles = (_, { open, position, ...rest }) => {
 		'::before': {
 			borderLeftWidth: '8px',
 			borderRightWidth: '8px',
-			marginLeft: '-8px',
+			[!position.offset || position.offset === 'left'
+				? 'marginLeft'
+				: 'marginRight']: !position.offset ? '-8px' : '-1px',
 			[position.placement === 'top' ? 'borderTop' : 'borderBottom']:
 				rest.placement !== 'none' && `12px solid ${COLORS.muted}`,
 		},
 		'::after': {
 			borderLeftWidth: '7px',
 			borderRightWidth: '7px',
-			marginLeft: '-7px',
+			marginLeft: !position.offset ? '-7px' : 0,
 			[position.placement === 'top' ? 'borderTop' : 'borderBottom']:
 				rest.placement !== 'none' && '11px solid #fff',
 		},

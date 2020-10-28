@@ -24,8 +24,8 @@ const HomePageHeader = () => {
 			css={mq({
 				position: 'relative',
 				overflow: 'hidden',
-				paddingTop: [SPACING(14), SPACING(18)],
-				paddingBottom: [SPACING(7), SPACING(11)],
+				paddingTop: [SPACING(15), null, SPACING(18)],
+				paddingBottom: [SPACING(7), null, SPACING(11)],
 				background: [null, null, headerStyling.background],
 				color: [null, null, headerStyling.color],
 				...antialiasingStyling,
@@ -36,9 +36,10 @@ const HomePageHeader = () => {
 						display: 'block',
 						position: 'absolute',
 						zIndex: 0,
+						top: SPACING(15),
+						bottom: 0,
 						left: 0,
 						width: ['12px', null, '24px'],
-						height: '100%',
 						backgroundColor: '#FF3DDB',
 					},
 				}),
@@ -137,7 +138,7 @@ const StickyHeader = () => {
 							fontWeight: 'normal',
 						}}
 					>
-						<strong>GEL</strong> Design System
+						<strong>GEL</strong> Design System (Beta)
 					</h1>
 				</div>
 
@@ -206,7 +207,7 @@ const HeroFeatures = () => {
 					/>
 				}
 			>
-				Get to market faster by leveraging our knowledge and tools
+				Go to market faster leveraging tools to get you up and running instantly
 			</HeroFeaturesItem>
 			<HeroFeaturesItem
 				icon={
@@ -224,7 +225,7 @@ const HeroFeatures = () => {
 					/>
 				}
 			>
-				Design, build and ship consistent, quality, branded solutions
+				Design, build and ship consistent brand experiences
 			</HeroFeaturesItem>
 			<HeroFeaturesItem
 				icon={
@@ -242,7 +243,7 @@ const HeroFeatures = () => {
 					/>
 				}
 			>
-				Be more accessible and inclusive with our assets
+				Create more accessible solutions that are inclusive of all customers
 			</HeroFeaturesItem>
 		</Grid>
 	);
@@ -270,7 +271,7 @@ const HeroIntro = () => {
 							}),
 						})}
 					>
-						Design to scale with confidence
+						Deliver quality user interfaces that scale—fast!
 					</BrandHeading>
 				</Cell>
 			</Grid>
@@ -283,7 +284,7 @@ const HeroIntro = () => {
 								...PACKS.typeScale.bodyFont[8],
 							})}
 						>
-							Assemble enterprise solutions with our components and patterns
+							Simplify your projects with reusable components and patterns
 						</p>
 					</Body>
 				</Cell>
