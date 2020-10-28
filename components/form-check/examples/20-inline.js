@@ -6,9 +6,7 @@ import { FormCheck, Option } from '@westpac/form-check';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<h2>Inline via component</h2>
-
-			<h3>Medium</h3>
+			<h2>Medium</h2>
 			<FormCheck type="checkbox" name="example-checkbox-medium-inline" inline>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
@@ -19,8 +17,6 @@ function Example({ brand }) {
 					aspernatur eveniet libero.
 				</Option>
 			</FormCheck>
-
-			<hr />
 
 			<FormCheck type="radio" name="example-radio-medium-inline" inline>
 				<Option value="1">Option 1</Option>
@@ -35,7 +31,7 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h3>Large</h3>
+			<h2>Large</h2>
 			<FormCheck type="checkbox" name="example-checkbox-large-inline" size="large" inline>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
@@ -46,8 +42,6 @@ function Example({ brand }) {
 					aspernatur eveniet libero.
 				</Option>
 			</FormCheck>
-
-			<hr />
 
 			<FormCheck type="radio" name="example-radio-large-inline" size="large" inline>
 				<Option value="1">Option 1</Option>

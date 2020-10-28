@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React, { useEffect, useState, useRef, Fragment } from 'react';
-import { HamburgerMenuIcon } from '@westpac/icon';
-import { Body } from '../body';
 import { Cell, Container, Grid } from '@westpac/grid';
+import { MenuButton } from './menu-button';
+import { Button } from '@westpac/button';
 import { BrandHeading } from '@westpac/heading';
 import HeaderImage from './home-page-header-image';
-import StickyHeaderImage from './sticky-header-image';
-import { antialiasingStyling, brandHeaderStyling, brandIconHighlightColors } from '../_utils';
+import HomePageStickyHeaderImage from './home-page-sticky-header-image';
+import { Body } from '../body';
 import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../symbols';
-import { useSidebar } from '../providers/sidebar';
+import { antialiasingStyling, brandHeaderStyling, brandIconHighlightColors } from '../_utils';
 import throttle from 'lodash.throttle';
 
 const HomePageHeader = () => {
@@ -24,11 +24,25 @@ const HomePageHeader = () => {
 			css={mq({
 				position: 'relative',
 				overflow: 'hidden',
-				paddingTop: [SPACING(14), SPACING(18)],
-				paddingBottom: [SPACING(7), SPACING(11)],
+				paddingTop: [SPACING(15), null, SPACING(18)],
+				paddingBottom: [SPACING(7), null, SPACING(11)],
 				background: [null, null, headerStyling.background],
 				color: [null, null, headerStyling.color],
 				...antialiasingStyling,
+
+				...(BRAND === 'WBC' && {
+					'::before': {
+						content: '""',
+						display: 'block',
+						position: 'absolute',
+						zIndex: 0,
+						top: SPACING(15),
+						bottom: 0,
+						left: 0,
+						width: ['12px', null, '24px'],
+						backgroundColor: '#FF3DDB',
+					},
+				}),
 			})}
 		>
 			<HeaderImage brand={BRAND} aria-hidden="true" />
@@ -39,9 +53,8 @@ const HomePageHeader = () => {
 };
 
 const StickyHeader = () => {
-	const { COLORS, SPACING, BRAND, PACKS } = useBrand();
+	const { COLORS, BRAND, SPACING, PACKS } = useBrand();
 	const mq = useMediaQuery();
-	const { isOpen, setIsOpen } = useSidebar();
 	const headerStyling = brandHeaderStyling[BRAND](COLORS);
 	const [hasScroll, setHasScroll] = useState(false);
 	const [hasScrolledPageHeader, setHasScrolledPageHeader] = useState(false);
@@ -81,7 +94,7 @@ const StickyHeader = () => {
 					right: 0,
 					height: 66,
 					marginLeft: [null, null, null, null, hasScrolledPageHeader && 300],
-					paddingLeft: [72, null, null, null, 60], //66px (button) + 6px (gap),
+					paddingLeft: [SPACING(8), null, SPACING(10), null, SPACING(5)], //66px (button) + 6px (gap),
 					background: [headerStyling.background, null, !hasScrolledPageHeader && 'unset'],
 					color: headerStyling.color,
 					overflow: 'hidden',
@@ -93,30 +106,15 @@ const StickyHeader = () => {
 					transition: ['box-shadow 0.2s', null, 'none'],
 				})}
 			>
-				<button
-					type="button"
+				<MenuButton
 					css={mq({
-						display: ['flex', null, null, null, 'none'],
-						alignItems: 'center',
-						justifyContent: 'center',
-
-						background: 'none',
-						border: 'none',
-						cursor: 'pointer',
-
 						position: 'fixed',
-						zIndex: 3,
+						zIndex: 1,
 						top: 0,
-						left: 0,
-						height: 66,
-						width: 66,
-						margin: [null, null, SPACING(2)],
-						padding: 0,
+						left: [0, null, SPACING(2)],
+						display: [null, null, null, null, 'none'],
 					})}
-					onClick={() => setIsOpen(!isOpen)}
-				>
-					<HamburgerMenuIcon color="#fff" />
-				</button>
+				/>
 				<div
 					css={mq({
 						boxSizing: 'border-box',
@@ -125,7 +123,7 @@ const StickyHeader = () => {
 						borderBottom: [
 							null,
 							null,
-							hasScrolledPageHeader ? 0 : '1px solid rgba(255,255,255,0.7)',
+							!hasScrolledPageHeader && BRAND !== 'WBC' && '1px solid rgba(255,255,255,0.7)',
 						],
 						zIndex: 6,
 						height: '100%',
@@ -140,11 +138,11 @@ const StickyHeader = () => {
 							fontWeight: 'normal',
 						}}
 					>
-						<strong>GEL</strong> Design System
+						<strong>GEL</strong> Design System (Beta)
 					</h1>
 				</div>
 
-				<StickyHeaderImage brand={BRAND} hide={!hasScrolledPageHeader} aria-hidden="true" />
+				<HomePageStickyHeaderImage brand={BRAND} hide={!hasScrolledPageHeader} aria-hidden="true" />
 			</header>
 		</Fragment>
 	);
@@ -209,7 +207,7 @@ const HeroFeatures = () => {
 					/>
 				}
 			>
-				Get to market faster by leveraging our knowledge and tools
+				Go to market faster leveraging tools to get you up and running instantly
 			</HeroFeaturesItem>
 			<HeroFeaturesItem
 				icon={
@@ -227,7 +225,7 @@ const HeroFeatures = () => {
 					/>
 				}
 			>
-				Design, build and ship consistent, quality, branded solutions
+				Design, build and ship consistent brand experiences
 			</HeroFeaturesItem>
 			<HeroFeaturesItem
 				icon={
@@ -245,7 +243,7 @@ const HeroFeatures = () => {
 					/>
 				}
 			>
-				Be more accessible and inclusive with our assets
+				Create more accessible solutions that are inclusive of all customers
 			</HeroFeaturesItem>
 		</Grid>
 	);
@@ -263,8 +261,17 @@ const HeroIntro = () => {
 		>
 			<Grid>
 				<Cell width={[10, 12, 8]} left={[2, 1, 3]}>
-					<BrandHeading tag="h2" size={[4, null, 1]}>
-						Design to scale with confidence
+					<BrandHeading
+						tag="h2"
+						size={[4, null, 1]}
+						uppercase={BRAND === 'WBC'}
+						css={mq({
+							...(BRAND === 'WBC' && {
+								fontSize: ['3rem', null, '4.5rem'],
+							}),
+						})}
+					>
+						Deliver quality user interfaces that scale—fast!
 					</BrandHeading>
 				</Cell>
 			</Grid>
@@ -277,7 +284,7 @@ const HeroIntro = () => {
 								...PACKS.typeScale.bodyFont[8],
 							})}
 						>
-							Assemble enterprise solutions with our components and patterns
+							Simplify your projects with reusable components and patterns
 						</p>
 					</Body>
 				</Cell>

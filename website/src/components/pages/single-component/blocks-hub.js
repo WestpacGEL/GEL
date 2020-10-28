@@ -8,6 +8,7 @@ import { Body } from '../../body';
 import { Section } from '../../section';
 import dynamic from 'next/dynamic';
 import React from 'react';
+import reactStringReplace from 'react-string-replace';
 
 import createReactRenderer from './react-renderer';
 import { getShortCodes } from '../../../shortcodes';
@@ -23,9 +24,22 @@ const Under = (props) => <span css={{ textDecoration: 'underline' }} {...props} 
 const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
 	const shortcodes = getShortCodes(BRAND);
-	return text.replace(/\[\[([A-Za-z0-9]*)\]\]/g, (match, capture, offset, string) => {
-		return shortcodes[capture] || capture;
+	const textCodes = [...text.matchAll(/\[\[[A-Za-z0-9]*\]\]/g)].map((m) => m[0]);
+	let shortCodedText = text;
+
+	textCodes.forEach((shortCode) => {
+		shortCodedText = reactStringReplace(shortCodedText, shortCode, (match, i) => {
+			const code = shortCode.slice(2, shortCode.length - 2);
+			if (typeof shortcodes[code] === 'function') {
+				const Component = shortcodes[code];
+				return <Component />;
+			} else {
+				return shortcodes[code] || code;
+			}
+		});
 	});
+
+	return shortCodedText;
 };
 
 const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
@@ -107,7 +121,7 @@ const slateRenderer = (item, _editorValue) => {
 					return nested ? (
 						<p key={path}>{serializeChildren(node.nodes)}</p>
 					) : (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
 							<Body>
 								<p>{serializeChildren(node.nodes)}</p>
 							</Body>
@@ -124,7 +138,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'unordered-list':
 					return (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
 							<List type="bullet" css={{ marginBottom: SPACING(2) }}>
 								{serializeChildren(node.nodes)}
 							</List>
@@ -133,7 +147,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'ordered-list':
 					return (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
 							<List type="ordered" css={{ marginBottom: SPACING(2) }}>
 								{serializeChildren(node.nodes)}
 							</List>
@@ -145,7 +159,7 @@ const slateRenderer = (item, _editorValue) => {
 
 				case 'blockquote':
 					return (
-						<Cell key={path} width={[12, null, 10, 8]} left={[1, null, 2, 3]}>
+						<Cell key={path} width={[12, 11, 8, 7, 9]}>
 							<Body>
 								<blockquote>{serializeChildren(node.nodes)}</blockquote>
 							</Body>

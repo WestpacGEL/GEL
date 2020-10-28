@@ -45,12 +45,12 @@ export const ScreenReaderText = {
 		const mq = useMediaQuery();
 		return (
 			<Fragment>
-				<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
+				<Cell width={[12, null, null, 10]}>
 					<Heading tag="h2" size={[7, null, 6]} id="screen-readers" tabIndex="-1">
 						Screen readers
 					</Heading>
 				</Cell>
-				<Cell width={[12, null, null, 10]} left={[1, null, null, 2]}>
+				<Cell width={[12, null, null, 10]}>
 					<div
 						css={{
 							display: 'flex',

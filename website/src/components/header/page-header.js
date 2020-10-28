@@ -1,49 +1,20 @@
 /** @jsx jsx */
-import React, { Fragment, useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Heading } from '@westpac/heading';
+import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
-import { HamburgerMenuIcon } from '@westpac/icon';
+import { VisuallyHidden } from '@westpac/a11y';
+import { MenuButton } from './menu-button';
 import HeaderImage from './component-page-header-image';
 
-import { useSidebar } from '../providers/sidebar';
 import { usePageContext } from '../providers/pageContext';
-import { brandHeaderStyling, gridlyIconColors } from '../_utils';
+import { brandHeaderStyling } from '../_utils';
 import throttle from 'lodash.throttle';
 
-const MenuButton = () => {
-	const mq = useMediaQuery();
-	const { setIsOpen } = useSidebar();
-
-	const Icon = () => <HamburgerMenuIcon color="#fff" />;
-
-	return (
-		<Button
-			look="link"
-			size="xlarge"
-			onClick={() => setIsOpen((status) => !status)}
-			iconBefore={Icon}
-			overrides={{
-				Button: {
-					styles: (styles) => ({
-						...styles,
-						position: 'fixed',
-						top: '0.5625rem',
-						left: '1.5rem',
-						...mq({ display: [null, null, null, null, 'none'] })[0],
-					}),
-				},
-			}}
-		/>
-	);
-};
-
 const GridIndicator = () => {
-	const { BRAND } = useBrand();
 	const mq = useMediaQuery();
+	const { SPACING } = useBrand();
 	const { showGrid, setShowGrid } = usePageContext();
-
-	const ButtonContentWrapper = ({ children, ...rest }) => <Fragment>{children}</Fragment>;
 
 	return (
 		<div
@@ -51,33 +22,26 @@ const GridIndicator = () => {
 				position: 'fixed',
 				display: 'flex',
 				alignItems: 'center',
-				top: '0.5625rem',
-				right: '1.5rem',
+				top: SPACING(2),
+				right: SPACING(2),
 				color: '#fff',
 				fontWeight: 'bold',
 			}}
 		>
-			<span css={mq({ display: ['inline-block', 'none'] })}>XS</span>
-			<span css={mq({ display: ['none', 'inline-block', 'none'] })}>XSL</span>
+			<VisuallyHidden>Breakpoint:</VisuallyHidden>
 			<span css={mq({ display: ['none', null, 'inline-block', 'none'] })}>SM</span>
 			<span css={mq({ display: ['none', null, null, 'inline-block', 'none'] })}>MD</span>
 			<span css={mq({ display: ['none', null, null, null, 'inline-block'] })}>LG</span>
 			<Button
-				look="link"
-				size="xlarge"
+				look="unstyled"
+				size="large"
 				onClick={() => setShowGrid(!showGrid)}
-				aria-pressed={showGrid}
-				overrides={{
-					Button: {
-						styles: (styles) => ({
-							...styles,
-							marginLeft: '0.375rem',
-						}),
-					},
-					Content: {
-						component: ButtonContentWrapper,
-					},
-				}}
+				aria-hidden="true"
+				css={mq({
+					display: ['none', null, 'inline-block'],
+					padding: SPACING(1),
+					backgroundColor: 'transparent',
+				})}
 			>
 				<div css={{ display: 'flex', justifyContent: 'center', height: 24, width: 24 }}>
 					{[...new Array(4)].map((_, index) => (
@@ -86,7 +50,7 @@ const GridIndicator = () => {
 							css={{
 								height: '100%',
 								width: 4,
-								backgroundColor: gridlyIconColors[BRAND],
+								backgroundColor: 'rgba(255, 255, 255, 0.3)',
 
 								'& + &': {
 									marginLeft: 2,
@@ -100,8 +64,18 @@ const GridIndicator = () => {
 	);
 };
 
+const PageHeaderHeading = ({ hasScrolledLarge, ...rest }) => {
+	const { BRAND } = useBrand();
+
+	return BRAND === 'WBC' ? (
+		<BrandHeading tag="h1" size={[7, null, !hasScrolledLarge ? 2 : null]} uppercase {...rest} />
+	) : (
+		<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]} {...rest} />
+	);
+};
+
 const PageHeader = ({ name }) => {
-	const { COLORS, BRAND } = useBrand();
+	const { COLORS, BRAND, SPACING } = useBrand();
 	const mq = useMediaQuery();
 	const [hasScroll, setHasScroll] = useState(false);
 	const [hasScrolledSmall, setHasScrolledSmall] = useState(false);
@@ -147,12 +121,29 @@ const PageHeader = ({ name }) => {
 					alignItems: 'flex-end', //align bottom
 				})}
 			>
-				<MenuButton />
+				<MenuButton
+					css={mq({
+						position: 'fixed',
+						zIndex: 1,
+						top: 0,
+						left: [0, null, SPACING(2)],
+						display: [null, null, null, null, 'none'],
+					})}
+				/>
 				<div
 					css={mq({
+						display: ['flex', null],
+						alignItems: ['center', null],
 						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
-						marginLeft: ['3.75rem', null, !hasScrolledLarge && '2.25rem', null, '2.25rem'],
-						marginBottom: ['1.25rem', null, !hasScrolledLarge && '3.375rem'],
+						marginLeft: [
+							SPACING(8),
+							null,
+							!hasScrolledLarge ? SPACING(6) : SPACING(10),
+							null,
+							!hasScrolledLarge ? SPACING(6) : SPACING(4),
+						],
+						marginBottom: [null, null, !hasScrolledLarge && SPACING(7)],
+						height: [66, null],
 						transition: [
 							null,
 							null,
@@ -161,9 +152,7 @@ const PageHeader = ({ name }) => {
 						willChange: 'opacity',
 					})}
 				>
-					<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]}>
-						{name}
-					</Heading>
+					<PageHeaderHeading hasScrolledLarge={hasScrolledLarge}>{name}</PageHeaderHeading>
 				</div>
 			</div>
 			<GridIndicator />

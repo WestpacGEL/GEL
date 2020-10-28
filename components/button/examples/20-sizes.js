@@ -51,7 +51,6 @@ function Example({ brand }) {
 			<Button look="link" size="xlarge">
 				Link
 			</Button>
-			<p></p>
 		</GEL>
 	);
 }

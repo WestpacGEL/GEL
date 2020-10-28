@@ -3,8 +3,7 @@
 import { jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { Playground } from '../../../../website/src/components/playground/macro';
-
-import { Title } from './_utils.js';
+import { Title } from '../../../../helpers/demos';
 
 export default ({ context, showCode, showDemo }) => {
 	return (

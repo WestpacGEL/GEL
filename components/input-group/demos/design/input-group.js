@@ -10,7 +10,7 @@ export default ({ context, showCode, showDemo }) => {
 
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<InputGroup name="example-text" label="Total amount" defaultValue="User input text">
+			<InputGroup name="example-text" label="Total amount">
 				<Before inputType="text" data="AUS $" />
 				<After inputType="text" data=".00" />
 			</InputGroup>
@@ -30,11 +30,11 @@ export default ({ context, showCode, showDemo }) => {
 				/>
 			</InputGroup>
 			<br />
-			<InputGroup name="example-button" label="Filter by name" defaultValue="User input text">
+			<InputGroup name="example-button" label="Filter by name">
 				<After inputType="button" data="Go" />
 			</InputGroup>
 			<br />
-			<InputGroup name="example-select" label="Total amount" placeholder="Placeholder text">
+			<InputGroup name="example-select" label="Total amount">
 				<Before
 					inputType="select"
 					name="example-select-select"
@@ -48,7 +48,12 @@ export default ({ context, showCode, showDemo }) => {
 				/>
 			</InputGroup>
 			<br />
-			<InputGroup name="example-button" label="Filter by name" value={value}>
+			<InputGroup
+				name="example-button"
+				label="Filter by name"
+				value={value}
+				onChange={(event) => setValue(event.target.value)}
+			>
 				<Before inputType="button" data="-" onClick={() => setValue((value) => value - 1)} />
 				<After inputType="button" data="+" onClick={() => setValue((value) => value + 1)} />
 			</InputGroup>

@@ -118,8 +118,10 @@ Select.propTypes = {
 	}),
 };
 
-Select.defaultProps = {
+export const defaultProps = {
 	size: 'medium',
 	inline: false,
 	invalid: false,
 };
+
+Select.defaultProps = defaultProps;

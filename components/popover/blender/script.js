@@ -1,14 +1,7 @@
 function GELtoggelPopover($panel) {
-	var className = $panel.attr('class');
-	var classBits = className.split('-open');
-
-	if (classBits.length > 1) {
-		$panel.attr('class', classBits.join(''));
-	} else {
-		var items = className.split('-');
-		items.splice(items.length - 1, 0, 'open');
-		$panel.attr('class', items.join('-'));
-	}
+	var classes = $panel.attr('class').split(/\s+/);
+	var baseClass = classes.find((el) => /panel$/.test(el));
+	$panel.toggleClass(`${baseClass}-open`);
 }
 
 $(function () {
