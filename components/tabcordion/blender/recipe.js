@@ -90,7 +90,7 @@ export function Docs({ brand }) {
 	return [
 		// Tabcordion
 		{
-			heading: 'Tabcordion',
+			heading: 'Tabcordion (responsive)',
 			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
