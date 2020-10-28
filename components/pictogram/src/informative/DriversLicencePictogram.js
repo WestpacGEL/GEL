@@ -27,6 +27,6 @@ DriversLicencePictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: "Driver's licence",
+	assistiveText: 'Drivers licence',
 };
 DriversLicencePictogram.propTypes = propTypes;
