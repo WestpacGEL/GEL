@@ -41,7 +41,7 @@
 			"informative/ChatPictogram",
 			"informative/CoinsPictogram",
 			"informative/CreditCardPictogram",
-			"informative/DesktopPictogram",
+			"informative/DesktopComputerPictogram",
 			"informative/DollarSignPictogram",
 			"informative/DriversLicencePictogram",
 			"informative/GenericDocumentPictogram",
@@ -67,7 +67,7 @@
 			"informative/TelephoneCallPictogram",
 			"informative/ThumbsUpPictogram",
 			"informative/TickPictogram",
-			"informative/TruckVanPictogram",
+			"informative/TruckPictogram",
 			"informative/WalletPictogram",
 			"decorative/WBCBankCardPictogram"
 		]

@@ -2,12 +2,12 @@ import React from 'react';
 import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const TruckVanPictogram = ({ mode, ...rest }) => {
+export const TruckPictogram = ({ mode, ...rest }) => {
 	const { COLORS } = useBrand();
 	const { outline, highlight } = colorMap(COLORS)[mode];
 
 	return (
-		<Pictogram pictogram="TruckVanPictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="TruckPictogram" mode={mode} {...rest}>
 			<g fill="none" fill-rule="evenodd">
 				<polygon fill={highlight} points="38 27 64 27 64 24 38 24" />
 				<polygon fill={highlight} points="46 34 63 34 63 31 46 31" />
@@ -20,10 +20,10 @@ export const TruckVanPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-TruckVanPictogram.defaultProps = {
+TruckPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Truck/van',
+	assistiveText: 'Truck',
 };
-TruckVanPictogram.propTypes = propTypes;
+TruckPictogram.propTypes = propTypes;

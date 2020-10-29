@@ -2,12 +2,12 @@ import React from 'react';
 import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const DesktopPictogram = ({ mode, ...rest }) => {
+export const DesktopComputerPictogram = ({ mode, ...rest }) => {
 	const { COLORS } = useBrand();
 	const { outline, highlight } = colorMap(COLORS)[mode];
 
 	return (
-		<Pictogram pictogram="DesktopPictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="DesktopComputerPictogram" mode={mode} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -26,10 +26,10 @@ export const DesktopPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-DesktopPictogram.defaultProps = {
+DesktopComputerPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Desktop',
+	assistiveText: 'Desktop computer',
 };
-DesktopPictogram.propTypes = propTypes;
+DesktopComputerPictogram.propTypes = propTypes;
