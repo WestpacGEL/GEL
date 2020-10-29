@@ -2,12 +2,12 @@ import React from 'react';
 import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
-export const LockedCardPictogram = ({ color, ...rest }) => {
+export const CardLockedPictogram = ({ color, ...rest }) => {
 	const { COLORS } = useBrand();
 	const { outline, highlight } = colorMap(color, COLORS);
 
 	return (
-		<Pictogram pictogram="LockedCardPictogram" color={color} {...rest}>
+		<Pictogram pictogram="CardLockedPictogram" color={color} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -30,10 +30,10 @@ export const LockedCardPictogram = ({ color, ...rest }) => {
 	);
 };
 
-LockedCardPictogram.defaultProps = {
+CardLockedPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Locked card',
 };
-LockedCardPictogram.propTypes = propTypes;
+CardLockedPictogram.propTypes = propTypes;
