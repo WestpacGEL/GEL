@@ -57,12 +57,6 @@ const Homepage = () => {
 										recommendations, delivering the most accessible components and patterns
 										possible. We then guide teams further along the path of accessibility.
 									</p>
-									<p>
-										Read more about{' '}
-										<a href="#0" css={{ margin: `${SPACING(3)} 0`, color: COLORS.primary }}>
-											our commitment to accessibility
-										</a>
-									</p>
 								</Body>
 							</Cell>
 						</Grid>
@@ -185,8 +179,7 @@ const Homepage = () => {
 								<Body>
 									<h2>Downloads &amp; links</h2>
 									<p>
-										Design on-brand with greater efficiency and accuracy using the Sketch or Axure
-										UI Kits.
+										Design on-brand with greater efficiency and accuracy using the Sketch UI Kit.
 									</p>
 									<p>
 										Visit GitHub to follow Westpac GEL Design System code updates and log issues.
@@ -223,11 +216,8 @@ const DownloadsAndLinks = (props) => {
 						marginTop: [null, null, SPACING(2)],
 					})}
 				>
-					<BlockListItem target="_blank" logo={SketchLogo}>
+					<BlockListItem href="/resources/design/sketch-ui-kit" logo={SketchLogo}>
 						Sketch UI Kit
-					</BlockListItem>
-					<BlockListItem target="_blank" logo={AxureLogo}>
-						Axure UI Kit
 					</BlockListItem>
 				</BlockList>
 			</Cell>
