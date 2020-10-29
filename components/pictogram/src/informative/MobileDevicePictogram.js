@@ -8,7 +8,7 @@ export const MobileDevicePictogram = ({ mode, ...rest }) => {
 
 	return (
 		<Pictogram pictogram="MobileDevicePictogram" mode={mode} {...rest}>
-			<g fill="none" fill-rule="evenodd">
+			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
 					d="M41.8564,62.8135 C41.8564,65.1335 39.9754,67.0155 37.6554,67.0155 C35.3354,67.0155 33.4544,65.1335 33.4544,62.8135 C33.4544,60.4935 35.3354,58.6125 37.6554,58.6125 C39.9754,58.6125 41.8564,60.4935 41.8564,62.8135"

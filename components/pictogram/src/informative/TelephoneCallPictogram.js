@@ -8,7 +8,7 @@ export const TelephoneCallPictogram = ({ mode, ...rest }) => {
 
 	return (
 		<Pictogram pictogram="TelephoneCallPictogram" mode={mode} {...rest}>
-			<g fill="none" fill-rule="evenodd">
+			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
 					d="M55.428,42.7505 L52.93,42.6635 C53.26,33.2185 45.844,25.2655 36.399,24.9345 L36.487,22.4365 C47.309,22.8145 55.806,31.9275 55.428,42.7505"

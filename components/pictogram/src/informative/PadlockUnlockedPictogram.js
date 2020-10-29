@@ -8,7 +8,7 @@ export const PadlockUnlockedPictogram = ({ mode, ...rest }) => {
 
 	return (
 		<Pictogram pictogram="PadlockUnlockedPictogram" mode={mode} {...rest}>
-			<g fill="none" fill-rule="evenodd">
+			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
 					d="M43.3735,45.9736 C43.3735,42.3836 40.4635,39.4736 36.8735,39.4736 C33.2835,39.4736 30.3735,42.3836 30.3735,45.9736 C30.3735,48.2736 31.5705,50.2896 33.3735,51.4446 L33.3735,56.9736 C33.3735,58.9066 34.9405,60.4736 36.8735,60.4736 C38.8065,60.4736 40.3735,58.9066 40.3735,56.9736 L40.3735,51.4446 C42.1755,50.2896 43.3735,48.2736 43.3735,45.9736"

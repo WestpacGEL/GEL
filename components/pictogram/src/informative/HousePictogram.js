@@ -8,7 +8,7 @@ export const HousePictogram = ({ mode, ...rest }) => {
 
 	return (
 		<Pictogram pictogram="HousePictogram" mode={mode} {...rest}>
-			<g fill="none" fill-rule="evenodd">
+			<g fill="none" fillRule="evenodd">
 				<polygon
 					fill={highlight}
 					points="26.843 67.963 41.563 73.985 41.563 51.654 26.829 45.602"

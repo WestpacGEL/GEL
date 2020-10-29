@@ -8,7 +8,7 @@ export const TruckPictogram = ({ mode, ...rest }) => {
 
 	return (
 		<Pictogram pictogram="TruckPictogram" mode={mode} {...rest}>
-			<g fill="none" fill-rule="evenodd">
+			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="38 27 64 27 64 24 38 24" />
 				<polygon fill={highlight} points="46 34 63 34 63 31 46 31" />
 				<path

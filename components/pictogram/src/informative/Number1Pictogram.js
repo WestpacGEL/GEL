@@ -8,7 +8,7 @@ export const Number1Pictogram = ({ mode, ...rest }) => {
 
 	return (
 		<Pictogram pictogram="Number1Pictogram" mode={mode} {...rest}>
-			<g fill="none" fill-rule="evenodd">
+			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
 					d="M42.7621,52.1602 L37.4111,52.1602 L37.4111,31.9942 C35.4561,33.8222 33.1521,35.1742 30.4981,36.0502 L30.4981,31.1932 C31.8951,30.7362 33.4121,29.8702 35.0501,28.5952 C36.6881,27.3182 37.8111,25.8302 38.4201,24.1292 L42.7621,24.1292 L42.7621,52.1602 Z"
