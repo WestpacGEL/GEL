@@ -271,7 +271,7 @@ const HeroIntro = () => {
 							}),
 						})}
 					>
-						Deliver quality user interfaces that scale – fast!
+						Deliver quality user interfaces that scale – <em>fast!</em>
 					</BrandHeading>
 				</Cell>
 			</Grid>
