@@ -13,8 +13,12 @@ import pkg from '../package.json';
 // ==============================
 
 export const Pictogram = ({
-	type,
+	mode,
+	width,
+	height,
 	assistiveText,
+	viewBoxWidth,
+	viewBoxHeight,
 	pictogram,
 	children,
 	overrides: componentOverrides,
@@ -31,8 +35,12 @@ export const Pictogram = ({
 	};
 
 	const state = {
-		type,
+		mode,
+		width,
+		height,
 		assistiveText,
+		viewBoxWidth,
+		viewBoxHeight,
 		pictogram,
 		overrides: componentOverrides,
 		...rest,
@@ -60,7 +68,31 @@ export const propTypes = {
 	/**
 	 *  The visual style of the pictogram
 	 */
-	type: PropTypes.oneOf(['colour', 'dark', 'light']).isRequired,
+	mode: PropTypes.oneOf(['color', 'dark', 'light']).isRequired,
+
+	/**
+	 * Set pictogram width in pixels.
+	 *
+	 * Pictogram will scale to fit (height will be set automatically). Note: If both "width" and "height" props are provided "height" will be ignored.
+	 */
+	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+
+	/**
+	 * Set a pictogram height in pixels.
+	 *
+	 * Pictogram will scale to fit (width will be set automatically). Note: If both "width" and "height" props are provided "height" will be ignored.
+	 */
+	height: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+
+	/**
+	 * The pictogram SVG viewBox (artboard) width
+	 */
+	viewBoxWidth: PropTypes.number,
+
+	/**
+	 * The pictogram SVG viewBox (artboard) height
+	 */
+	viewBoxHeight: PropTypes.number,
 
 	/**
 	 * String to use as the `aria-label` for the pictogram. Set to an empty string if you
@@ -89,7 +121,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
-	type: 'colour',
+	mode: 'color',
 };
 
 Pictogram.propTypes = propTypes;

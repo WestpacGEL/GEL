@@ -1,5 +1,5 @@
 export const colorMap = (COLORS) => ({
-	colour: {
+	color: {
 		outline: COLORS.hero,
 		highlight: COLORS.primary,
 	},
