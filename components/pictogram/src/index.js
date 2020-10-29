@@ -3,6 +3,7 @@ export { BirthCertificatePictogram } from './informative/BirthCertificatePictogr
 export { BusinessPersonPictogram } from './informative/BusinessPersonPictogram';
 export { CalculatorPictogram } from './informative/CalculatorPictogram';
 export { CalendarPictogram } from './informative/CalendarPictogram';
+export { CardLockedPictogram } from './informative/CardLockedPictogram';
 export { ChatPictogram } from './informative/ChatPictogram';
 export { CoinsPictogram } from './informative/CoinsPictogram';
 export { CreditCardPictogram } from './informative/CreditCardPictogram';
@@ -13,7 +14,6 @@ export { GenericDocumentPictogram } from './informative/GenericDocumentPictogram
 export { GiftPictogram } from './informative/GiftPictogram';
 export { HousePictogram } from './informative/HousePictogram';
 export { LocationPinPictogram } from './informative/LocationPinPictogram';
-export { LockedCardPictogram } from './informative/LockedCardPictogram';
 export { MedicareCardPictogram } from './informative/MedicareCardPictogram';
 export { MobileDevicePictogram } from './informative/MobileDevicePictogram';
 export { MoneyInPictogram } from './informative/MoneyInPictogram';
