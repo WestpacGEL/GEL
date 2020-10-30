@@ -1,1 +1,1 @@
-export { BlockHeading } from './block-heading';
+export { BlockListHeading } from './block-heading';

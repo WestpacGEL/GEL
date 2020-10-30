@@ -7,8 +7,7 @@ import { TextInput } from '@westpac/text-input';
 import HomePageHeader from '../../components/header/home-page-header';
 import { Section } from '../../components/section';
 import { Body } from '../../components/body';
-import { BlockList, BlockListItem } from '../../components/block-list';
-import { BlockHeading } from '../../components/block-heading';
+import { BlockList, BlockListItem, BlockListHeading } from '../../components/block-list';
 import { Footer } from '../../components/layout/footer';
 import {
 	ReactLogo,
@@ -207,7 +206,7 @@ const DownloadsAndLinks = (props) => {
 			{...props}
 		>
 			<Cell width={[10, 6, null, 5]} left={[2, 'auto', null, 2]}>
-				<BlockHeading>Downloads</BlockHeading>
+				<BlockListHeading>Downloads</BlockListHeading>
 				<BlockList
 					css={mq({
 						marginTop: [null, null, SPACING(2)],
@@ -222,7 +221,7 @@ const DownloadsAndLinks = (props) => {
 				</BlockList>
 			</Cell>
 			<Cell width={[10, 6, null, 5]} left={[2, 'auto']}>
-				<BlockHeading>Links</BlockHeading>
+				<BlockListHeading>Links</BlockListHeading>
 				<BlockList
 					css={mq({
 						marginTop: [null, null, SPACING(2)],
