@@ -296,6 +296,7 @@ const SectionDevelopers = () => {
 									</BlockListItem>
 									<BlockListItem>
 										<label
+											for="tokensFormat"
 											css={{
 												display: 'block',
 												marginBottom: SPACING(1),
@@ -303,7 +304,7 @@ const SectionDevelopers = () => {
 										>
 											Token format
 										</label>
-										<Select name="tokensFormat">
+										<Select name="tokensFormat" id="tokensFormat">
 											<option value="json">JSON</option>
 											<option value="less">LESS</option>
 											<option value="css">CSS</option>
