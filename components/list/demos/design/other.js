@@ -12,8 +12,12 @@ export default ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>Link list</Title>
 			<List type="link">
-				<Item>This is a link list</Item>
-				<Item>This is a link list</Item>
+				<Item>
+					<a href="#">This is a link list</a>
+				</Item>
+				<Item>
+					<a href="#">This is a link list</a>
+				</Item>
 			</List>
 			<br />
 			<Title>Tick list</Title>

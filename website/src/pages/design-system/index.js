@@ -44,20 +44,17 @@ const Homepage = () => {
 								<Body>
 									<h2>Accessibility is in everything we do</h2>
 									<p>
-										Accessibility and inclusive design is a strong part of how we design in the
-										Design Quality team.
+										Accessibility and inclusive design is a strong part of how we design for the GEL
+										Design System.
+									</p>
+									<p>
+										We support teams to deliver to the Group accessibility commitment, to provide
+										meaningful banking experiences to all customers.
 									</p>
 									<p>
 										We delve into the detail and pressure test solutions against the latest WCAG
-										requirements, delivering the most accessible components and patterns possible.
-										We then guide teams further along the path of accessibility. Read more about our
-										commitment to accessibility.
-									</p>
-									<p>
-										Read more about{' '}
-										<a href="#0" css={{ margin: `${SPACING(3)} 0`, color: COLORS.primary }}>
-											our commitment to accessibility
-										</a>
+										recommendations, delivering the most accessible components and patterns
+										possible. We then guide teams further along the path of accessibility.
 									</p>
 								</Body>
 							</Cell>
@@ -73,8 +70,9 @@ const Homepage = () => {
 									<ReactLogo width={60} css={{ marginBottom: SPACING(2) }} />
 									<h2>Built on React</h2>
 									<p>
-										We’re moving with the times. With React we can showcase so much more and deliver
-										higher quality, more accessible code.
+										The GEL Design System is now using React. You can still access vanilla HTML
+										&amp; CSS but with React at its core we can showcase so much more and deliver
+										even higher-quality, more accessible code.
 									</p>
 								</Body>
 								<Body css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })}>
@@ -125,7 +123,10 @@ const Homepage = () => {
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
 									<h2>Subscribe to our updates</h2>
-									<p>Get news about components, code chages, new resources, and helpful tips.</p>
+									<p>
+										Get the latest brand and component updates as well as access to new resources
+										and helpful tips.
+									</p>
 								</Body>
 
 								<form
@@ -175,10 +176,12 @@ const Homepage = () => {
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<h2>Downloads & links</h2>
+									<h2>Downloads &amp; links</h2>
 									<p>
-										Get the Sketch or Axure UI Kit to start designing. Visit GitHub to follow the
-										GEL Design System project.
+										Design on-brand with greater efficiency and accuracy using the Sketch UI Kit.
+									</p>
+									<p>
+										Visit GitHub to follow Westpac GEL Design System code updates and log issues.
 									</p>
 								</Body>
 							</Cell>
@@ -195,7 +198,7 @@ const Homepage = () => {
 export default Homepage;
 
 const DownloadsAndLinks = (props) => {
-	const { SPACING, COLORS } = useBrand();
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -212,11 +215,8 @@ const DownloadsAndLinks = (props) => {
 						marginTop: [null, null, SPACING(2)],
 					})}
 				>
-					<BlockListItem target="_blank" logo={SketchLogo}>
-						Sketch UI Kit Download
-					</BlockListItem>
-					<BlockListItem target="_blank" logo={AxureLogo}>
-						Axure UI Kit Download
+					<BlockListItem href="/resources/design/sketch-ui-kit" logo={SketchLogo}>
+						Sketch UI Kit
 					</BlockListItem>
 				</BlockList>
 			</Cell>
@@ -228,7 +228,7 @@ const DownloadsAndLinks = (props) => {
 					})}
 				>
 					<BlockListItem href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
-						Go to GitHub
+						Follow Westpac GEL on GitHub
 					</BlockListItem>
 				</BlockList>
 			</Cell>

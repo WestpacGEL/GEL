@@ -2,6 +2,9 @@ export const brandOverrides = (brand) => {
 	const { BRAND } = brand;
 	const overridesWithTokens = { ...brand };
 
+	// Add a custom XL breakpoint @ 1400px
+	overridesWithTokens.LAYOUT.breakpoints['xl'] = 1400;
+
 	// Example
 	/* const BodyOverride = (props) => <div {...props}/>;	 
 	overridesWithTokens['@westpac/body'] = {
@@ -13,6 +16,15 @@ export const brandOverrides = (brand) => {
 			attributes: () => null,
 		},
 	}; */
+
+	overridesWithTokens['@westpac/grid'] = {
+		Container: {
+			styles: (styles, { fixed }) => ({
+				...styles,
+				maxWidth: !fixed && 1144,
+			}),
+		},
+	};
 
 	return overridesWithTokens;
 };

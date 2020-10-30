@@ -58,8 +58,8 @@ export const Grid = (props) => (
 			display: 'grid',
 			gridAutoFlow: 'row',
 			gridAutoRows: 'minmax(80px,auto)',
-			gridGap: 6,
-			gridTemplateColumns: 'repeat(auto-fit, minmax(128px, 1fr))',
+			gridGap: 30,
+			gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
 		}}
 		{...props}
 	/>

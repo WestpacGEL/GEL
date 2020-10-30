@@ -25,6 +25,13 @@ USER_PASS=$4
 print_status "Connecting to '${CONNECTION_URL}'"
 print_status "Creating/recreating DB '${DB_NAME}' for user '${USER_NAME}', pass '${USER_PASS}'..\n"
 
+# Kill any existing connection
+psql "${CONNECTION_URL}" << EOF
+select pg_terminate_backend(pg_stat_activity.pid)
+from pg_stat_activity
+where pid <> pg_backend_pid() and pg_stat_activity.datname = '${DB_NAME}';
+EOF
+
 # ERROR:  DROP DATABASE cannot run inside a transaction block
 psql "${CONNECTION_URL}" -c "drop database if exists \"${DB_NAME}\";"
 
@@ -32,7 +39,7 @@ psql "${CONNECTION_URL}" << EOF
 -- Recreate the DB
 create database "${DB_NAME}";
 
--- reate the role
+-- Create the role
 drop role if exists "${USER_NAME}";
 create role "${USER_NAME}" with NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT LOGIN ENCRYPTED PASSWORD '${USER_PASS}';
 
