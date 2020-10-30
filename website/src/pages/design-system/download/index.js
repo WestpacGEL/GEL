@@ -4,6 +4,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { DownloadIcon, RefreshIcon } from '@westpac/icon';
 import { jsx, useBrand, keyframes, useMediaQuery } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
+import { Switch } from '@westpac/switch';
 import { Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
@@ -132,9 +133,15 @@ const SectionDesigners = () => {
 					<Cell left={9} width={4}>
 						<BlockListHeading>Design resources</BlockListHeading>
 						<BlockList>
-							<BlockListItem target="_blank">Sketch Cloud Libraries</BlockListItem>
-							<BlockListItem target="_blank">Sketch UI Kits</BlockListItem>
-							<BlockListItem target="_blank">Master Brand Guidelines</BlockListItem>
+							<BlockListItem href="#0" target="_blank">
+								Sketch Cloud Libraries
+							</BlockListItem>
+							<BlockListItem href="#0" target="_blank">
+								Sketch UI Kits
+							</BlockListItem>
+							<BlockListItem href="#0" target="_blank">
+								Master Brand Guidelines
+							</BlockListItem>
 						</BlockList>
 					</Cell>
 				</Grid>
@@ -226,11 +233,9 @@ const SectionDevelopers = () => {
 											onClick={() => handleClearAllClick()}
 											css={{ marginLeft: SPACING(1) }}
 										>
-											{selected.length === supportedPkgs.length
-												? `Clear all`
-												: `Clear ${selected.length} ${
-														selected.length === 1 ? 'component' : 'components'
-												  }`}
+											{`${selected.length === supportedPkgs.length ? 'Clear all' : 'Clear'} ${
+												selected.length
+											} ${selected.length === 1 ? 'component' : 'components'}`}
 										</Button>
 									)}
 								</div>
@@ -264,8 +269,48 @@ const SectionDevelopers = () => {
 									<BlockListHeading>Build options</BlockListHeading>
 								</Legend>
 
-								<div css={mq({ marginTop: [null, null, SPACING(2)] })}>
-									<FormCheck type="checkbox" name="modules">
+								<BlockList css={mq({ marginTop: [null, null, SPACING(2)] })}>
+									<BlockListItem>
+										<Switch name="modules" size="small" label="Modules" block />
+									</BlockListItem>
+									<BlockListItem>
+										<Switch name="prettify" size="small" label="Prettify" block />
+									</BlockListItem>
+									<BlockListItem>
+										<Switch
+											name="excludeJquery"
+											size="small"
+											label="Include jQuery"
+											block
+											checked
+										/>
+									</BlockListItem>
+									<BlockListItem>
+										<Switch
+											name="noVersionInClass"
+											size="small"
+											label="Include component versions in CSS classes"
+											block
+											checked
+										/>
+									</BlockListItem>
+									<BlockListItem>
+										<label
+											css={{
+												display: 'block',
+												marginBottom: SPACING(1),
+											}}
+										>
+											Token format
+										</label>
+										<Select name="tokensFormat">
+											<option value="json">JSON</option>
+											<option value="less">LESS</option>
+											<option value="css">CSS</option>
+											<option value="sass">SCSS/SASS</option>
+										</Select>
+									</BlockListItem>
+									{/* <FormCheck type="checkbox" name="modules">
 										<Option value="true">Modules</Option>
 									</FormCheck>
 									<FormCheck type="checkbox" name="prettify">
@@ -276,31 +321,21 @@ const SectionDevelopers = () => {
 									</FormCheck>
 									<FormCheck type="checkbox" name="noVersionInClass">
 										<Option value="true">Exclude versions in classes</Option>
-									</FormCheck>
-								</div>
-								<label
-									css={{
-										display: 'block',
-										margin: '0.5rem 0',
-									}}
-								>
-									Token format
-									<Select name="tokensFormat" inline>
-										<option value="json">JSON</option>
-										<option value="less">LESS</option>
-										<option value="css">CSS</option>
-										<option value="sass">SCSS/SASS</option>
-									</Select>
-								</label>
+									</FormCheck> */}
+								</BlockList>
 							</Fieldset>
 
 							<input type="hidden" name="brand" value={BRAND} />
 
 							<Button
 								look="primary"
+								size="large"
 								type="submit"
 								disabled={isLoading}
 								iconAfter={isLoading ? Loading : DownloadIcon}
+								block
+								justify
+								css={mq({ marginTop: SPACING(4) })}
 							>
 								Download
 							</Button>
