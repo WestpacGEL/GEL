@@ -116,9 +116,6 @@ const BlenderOption = ({ desc, link, ...rest }) => {
 };
 
 const SectionDesigners = () => {
-	const { SPACING } = useBrand();
-	const mq = useMediaQuery();
-
 	return (
 		<Section paddingTop="large">
 			<Container>
@@ -148,6 +145,8 @@ const SectionDesigners = () => {
 
 const SectionDevelopers = () => {
 	const { BRAND, SPACING } = useBrand();
+	const mq = useMediaQuery();
+
 	const [isLoading, setLoading] = useState(false);
 
 	const supportedPkgs = Object.keys(GEL.components).filter(
@@ -183,22 +182,27 @@ const SectionDevelopers = () => {
 				<form action="/api/blender2/" method="POST" onSubmit={displayLoading}>
 					<Grid>
 						<Cell width={7}>
-							<SectionHeading>Developers</SectionHeading>
-							<Body>
+							<SectionHeading tabindex="-1">Developers</SectionHeading>
+							<Body tabindex="-1">
 								<p>
-									Choose which components you want to add to your project. To minimise the code
-									bloat, your download will only contain the assets and their dependencies that you
-									add to the build.
+									Select the components you require for your project from the form below. To
+									minimise code bloat, your download will only contain the assets and their
+									dependencies that you add to the build.
 								</p>
 							</Body>
-							<Fieldset>
+							<Fieldset css={mq({ marginTop: SPACING(6) })}>
 								<Legend>
-									<Body>
-										<h3>Select components</h3>
-									</Body>
+									<BlockListHeading>Select components</BlockListHeading>
 								</Legend>
 
-								<div css={{ display: 'flex', alignItems: 'baseline', marginBottom: SPACING(3) }}>
+								<div
+									css={mq({
+										display: 'flex',
+										alignItems: 'baseline',
+										marginTop: [null, null, SPACING(2)],
+										marginBottom: SPACING(3),
+									})}
+								>
 									<FormCheck
 										type="checkbox"
 										checked={selectAllToggle}
@@ -260,18 +264,20 @@ const SectionDevelopers = () => {
 									<BlockListHeading>Build options</BlockListHeading>
 								</Legend>
 
-								<FormCheck type="checkbox" name="modules">
-									<Option value="true">Modules</Option>
-								</FormCheck>
-								<FormCheck type="checkbox" name="prettify">
-									<Option value="true">Prettify</Option>
-								</FormCheck>
-								<FormCheck type="checkbox" name="excludeJquery">
-									<Option value="true">Exclude jQuery</Option>
-								</FormCheck>
-								<FormCheck type="checkbox" name="noVersionInClass">
-									<Option value="true">Exclude versions in classes</Option>
-								</FormCheck>
+								<div css={mq({ marginTop: [null, null, SPACING(2)] })}>
+									<FormCheck type="checkbox" name="modules">
+										<Option value="true">Modules</Option>
+									</FormCheck>
+									<FormCheck type="checkbox" name="prettify">
+										<Option value="true">Prettify</Option>
+									</FormCheck>
+									<FormCheck type="checkbox" name="excludeJquery">
+										<Option value="true">Exclude jQuery</Option>
+									</FormCheck>
+									<FormCheck type="checkbox" name="noVersionInClass">
+										<Option value="true">Exclude versions in classes</Option>
+									</FormCheck>
+								</div>
 								<label
 									css={{
 										display: 'block',
