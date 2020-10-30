@@ -14,5 +14,14 @@ export const brandOverrides = (brand) => {
 		},
 	}; */
 
+	overridesWithTokens['@westpac/grid'] = {
+		Container: {
+			styles: (styles, { fixed }) => ({
+				...styles,
+				maxWidth: !fixed && 1144,
+			}),
+		},
+	};
+
 	return overridesWithTokens;
 };
