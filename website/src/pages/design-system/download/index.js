@@ -55,10 +55,23 @@ const Legend = (props) => {
 	);
 };
 
+const FormCheckOverride = ({ state: _, ...rest }) => <ul role="list" {...rest} />;
+const BlenderComponents = (props) => (
+	<FormCheck
+		type="checkbox"
+		overrides={{
+			FormCheck: {
+				component: FormCheckOverride,
+			},
+		}}
+		{...props}
+	/>
+);
+
 const OptionOverride = ({ state: _, children, ...rest }) => {
 	const { SPACING } = useBrand();
 	return (
-		<div
+		<li
 			css={{
 				backgroundColor: '#fff',
 				padding: SPACING(3),
@@ -66,11 +79,10 @@ const OptionOverride = ({ state: _, children, ...rest }) => {
 			}}
 		>
 			<div {...rest}>{children}</div>
-		</div>
+		</li>
 	);
 };
-
-const BlenderOption = ({ desc, link, ...rest }) => {
+const BlenderComponentOption = ({ desc, link, ...rest }) => {
 	const { TYPE, PACKS, SPACING, COLORS } = useBrand();
 
 	const hint = (
@@ -240,8 +252,7 @@ const SectionDevelopers = () => {
 									)}
 								</div>
 
-								<FormCheck
-									type="checkbox"
+								<BlenderComponents
 									name="packages[]"
 									value={selected}
 									onChange={(value) => handleSelectPkgChange(value)}
@@ -250,17 +261,17 @@ const SectionDevelopers = () => {
 										const niceName = name.charAt(0).toUpperCase() + name.slice(1);
 
 										return (
-											<BlenderOption
+											<BlenderComponentOption
 												key={i}
 												value={name}
 												desc={GEL.components[name].description}
 												link={`${BASE_URL}/components/${niceName.toLowerCase()}`}
 											>
 												{niceName}
-											</BlenderOption>
+											</BlenderComponentOption>
 										);
 									})}
-								</FormCheck>
+								</BlenderComponents>
 							</Fieldset>
 						</Cell>
 						<Cell left={9} width={4}>
@@ -311,18 +322,6 @@ const SectionDevelopers = () => {
 											<option value="sass">SCSS/SASS</option>
 										</Select>
 									</BlockListItem>
-									{/* <FormCheck type="checkbox" name="modules">
-										<Option value="true">Modules</Option>
-									</FormCheck>
-									<FormCheck type="checkbox" name="prettify">
-										<Option value="true">Prettify</Option>
-									</FormCheck>
-									<FormCheck type="checkbox" name="excludeJquery">
-										<Option value="true">Exclude jQuery</Option>
-									</FormCheck>
-									<FormCheck type="checkbox" name="noVersionInClass">
-										<Option value="true">Exclude versions in classes</Option>
-									</FormCheck> */}
 								</BlockList>
 							</Fieldset>
 
