@@ -133,16 +133,16 @@ const SectionDesigners = () => {
 		<Section paddingTop="large">
 			<Container>
 				<Grid>
-					<Cell width={7}>
+					<Cell width={[12, null, 7]}>
 						<SectionHeading>Designers</SectionHeading>
 						<Body>
 							<p>
-								The links opposite provide access to all the design assets and informaiton you’ll
-								need to get started.
+								The design resources list provides access to all the design assets and information
+								you’ll need to get started.
 							</p>
 						</Body>
 					</Cell>
-					<Cell left={9} width={4}>
+					<Cell left={[null, null, 9]} width={[12, null, 4]}>
 						<BlockListHeading>Design resources</BlockListHeading>
 						<BlockList>
 							<BlockListItem href="#0" target="_blank">
@@ -200,7 +200,7 @@ const SectionDevelopers = () => {
 			<Container>
 				<form action="/api/blender2/" method="POST" onSubmit={displayLoading}>
 					<Grid>
-						<Cell width={7}>
+						<Cell width={[12, null, 7]}>
 							<SectionHeading tabindex="-1">Developers</SectionHeading>
 							<Body tabindex="-1">
 								<p>
@@ -211,15 +211,15 @@ const SectionDevelopers = () => {
 							</Body>
 							<Fieldset css={mq({ marginTop: SPACING(6) })}>
 								<Legend>
-									<BlockListHeading>Select components</BlockListHeading>
+									<BlockListHeading>Step 1: Select components</BlockListHeading>
 								</Legend>
 
 								<div
 									css={mq({
 										display: 'flex',
 										alignItems: 'baseline',
-										marginTop: [null, null, SPACING(2)],
-										marginBottom: SPACING(3),
+										marginTop: [SPACING(1), null, SPACING(2)],
+										marginBottom: [SPACING(1), null, SPACING(2)],
 									})}
 								>
 									<FormCheck
@@ -274,10 +274,10 @@ const SectionDevelopers = () => {
 								</BlenderComponents>
 							</Fieldset>
 						</Cell>
-						<Cell left={9} width={4}>
+						<Cell left={[null, null, 9]} width={[12, null, 4]}>
 							<Fieldset>
 								<Legend>
-									<BlockListHeading>Build options</BlockListHeading>
+									<BlockListHeading>Step 2: Set build options</BlockListHeading>
 								</Legend>
 
 								<BlockList css={mq({ marginTop: [null, null, SPACING(2)] })}>
