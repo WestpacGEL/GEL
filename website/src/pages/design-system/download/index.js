@@ -307,7 +307,7 @@ const SectionDevelopers = () => {
 									</BlockListItem>
 									<BlockListItem>
 										<label
-											for="tokensFormat"
+											htmlFor="tokensFormat"
 											css={{
 												display: 'block',
 												marginBottom: SPACING(1),
