@@ -30,5 +30,6 @@ MastercardHorizontalSymbol.defaultProps = {
 	viewBoxWidth: 160,
 	viewBoxHeight: 28,
 	assistiveText: 'Mastercard',
+	copyrightYear: '',
 };
 MastercardHorizontalSymbol.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const HouseIcon = (props) => (
 HouseIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'House',
+	copyrightYear: '2020',
 };
 HouseIcon.propTypes = propTypes;

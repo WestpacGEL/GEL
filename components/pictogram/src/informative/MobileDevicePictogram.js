@@ -31,5 +31,6 @@ MobileDevicePictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Mobile device',
+	copyrightYear: '2020',
 };
 MobileDevicePictogram.propTypes = propTypes;

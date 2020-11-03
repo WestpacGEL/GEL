@@ -14,5 +14,6 @@ export const FilterIcon = (props) => (
 FilterIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Filter',
+	copyrightYear: '2020',
 };
 FilterIcon.propTypes = propTypes;

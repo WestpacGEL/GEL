@@ -14,5 +14,6 @@ export const OfficeIcon = (props) => (
 OfficeIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Office',
+	copyrightYear: '2020',
 };
 OfficeIcon.propTypes = propTypes;

@@ -27,5 +27,6 @@ Number2Pictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Number 2',
+	copyrightYear: '2020',
 };
 Number2Pictogram.propTypes = propTypes;

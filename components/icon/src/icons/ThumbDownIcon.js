@@ -14,5 +14,6 @@ export const ThumbDownIcon = (props) => (
 ThumbDownIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Thumb Down',
+	copyrightYear: '2020',
 };
 ThumbDownIcon.propTypes = propTypes;

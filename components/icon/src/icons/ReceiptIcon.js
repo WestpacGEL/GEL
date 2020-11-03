@@ -14,5 +14,6 @@ export const ReceiptIcon = (props) => (
 ReceiptIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Receipt',
+	copyrightYear: '2020',
 };
 ReceiptIcon.propTypes = propTypes;

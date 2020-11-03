@@ -14,5 +14,6 @@ export const LightBulbIcon = (props) => (
 LightBulbIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Light Bulb',
+	copyrightYear: '2020',
 };
 LightBulbIcon.propTypes = propTypes;

@@ -25,5 +25,6 @@ WBGInternalLogo.defaultProps = {
 	viewBoxWidth: 233,
 	viewBoxHeight: 48,
 	assistiveText: 'We Are Westpac Group',
+	copyrightYear: '2020',
 };
 WBGInternalLogo.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const ArrowRightIcon = (props) => (
 ArrowRightIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Arrow Right',
+	copyrightYear: '2020',
 };
 ArrowRightIcon.propTypes = propTypes;

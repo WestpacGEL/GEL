@@ -31,5 +31,6 @@ StopwatchPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Stopwatch',
+	copyrightYear: '2020',
 };
 StopwatchPictogram.propTypes = propTypes;

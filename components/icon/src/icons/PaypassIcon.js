@@ -14,5 +14,6 @@ export const PaypassIcon = (props) => (
 PaypassIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Paypass',
+	copyrightYear: '2020',
 };
 PaypassIcon.propTypes = propTypes;

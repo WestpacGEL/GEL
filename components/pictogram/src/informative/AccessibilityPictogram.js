@@ -27,5 +27,6 @@ AccessibilityPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Accessibility',
+	copyrightYear: '2020',
 };
 AccessibilityPictogram.propTypes = propTypes;

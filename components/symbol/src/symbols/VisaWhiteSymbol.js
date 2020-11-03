@@ -18,5 +18,6 @@ VisaWhiteSymbol.defaultProps = {
 	viewBoxWidth: 80,
 	viewBoxHeight: 37,
 	assistiveText: 'Visa',
+	copyrightYear: '',
 };
 VisaWhiteSymbol.propTypes = propTypes;

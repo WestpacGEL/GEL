@@ -31,5 +31,6 @@ DesktopComputerPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Desktop computer',
+	copyrightYear: '2020',
 };
 DesktopComputerPictogram.propTypes = propTypes;

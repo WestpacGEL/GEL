@@ -18,6 +18,7 @@ export const Symbol = ({
 	viewBoxHeight,
 	align,
 	offset,
+	copyrightYear,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -39,6 +40,7 @@ export const Symbol = ({
 		viewBoxHeight,
 		align,
 		offset,
+		copyrightYear,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -62,6 +64,11 @@ export const Symbol = ({
 	return (
 		<Symbol {...rest} state={state} {...symbolAttributes(state)} css={symbolStyles(state)}>
 			<Svg state={state} {...svgAttributes(state)} css={svgStyles(state)}>
+				{copyrightYear && (
+					<metadata>
+						{`Copyright © ${copyrightYear} by Westpac Banking Corporation. All rights reserved.`}
+					</metadata>
+				)}
 				{align && offset ? <g transform={getTransform()}>{children}</g> : children}
 			</Svg>
 		</Symbol>
@@ -115,6 +122,11 @@ export const propTypes = {
 	 * duplication.
 	 */
 	assistiveText: PropTypes.string,
+
+	/**
+	 * The symbol SVG metadata copyright year text
+	 */
+	copyrightYear: PropTypes.string.isRequired,
 
 	/**
 	 * The override API

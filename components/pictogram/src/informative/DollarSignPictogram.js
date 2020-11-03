@@ -27,5 +27,6 @@ DollarSignPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Dollar sign',
+	copyrightYear: '2020',
 };
 DollarSignPictogram.propTypes = propTypes;

@@ -27,5 +27,6 @@ PersonPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Person',
+	copyrightYear: '2020',
 };
 PersonPictogram.propTypes = propTypes;

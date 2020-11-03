@@ -14,5 +14,6 @@ export const SdStorageIcon = (props) => (
 SdStorageIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Sd Storage',
+	copyrightYear: '2020',
 };
 SdStorageIcon.propTypes = propTypes;

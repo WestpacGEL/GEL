@@ -14,5 +14,6 @@ export const OpenBrowserIcon = (props) => (
 OpenBrowserIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Open Browser',
+	copyrightYear: '2020',
 };
 OpenBrowserIcon.propTypes = propTypes;

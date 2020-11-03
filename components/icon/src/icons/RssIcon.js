@@ -14,5 +14,6 @@ export const RssIcon = (props) => (
 RssIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Rss',
+	copyrightYear: '2020',
 };
 RssIcon.propTypes = propTypes;

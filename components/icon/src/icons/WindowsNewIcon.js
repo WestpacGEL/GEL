@@ -14,5 +14,6 @@ export const WindowsNewIcon = (props) => (
 WindowsNewIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Windows New',
+	copyrightYear: '2020',
 };
 WindowsNewIcon.propTypes = propTypes;

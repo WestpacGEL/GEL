@@ -14,5 +14,6 @@ export const LinkedinIcon = (props) => (
 LinkedinIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Linkedin',
+	copyrightYear: '2020',
 };
 LinkedinIcon.propTypes = propTypes;

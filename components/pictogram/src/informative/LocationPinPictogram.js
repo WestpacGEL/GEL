@@ -27,5 +27,6 @@ LocationPinPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Location pin',
+	copyrightYear: '2020',
 };
 LocationPinPictogram.propTypes = propTypes;

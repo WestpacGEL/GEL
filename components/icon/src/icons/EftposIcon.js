@@ -14,5 +14,6 @@ export const EftposIcon = (props) => (
 EftposIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Eftpos',
+	copyrightYear: '2020',
 };
 EftposIcon.propTypes = propTypes;

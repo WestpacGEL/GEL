@@ -14,5 +14,6 @@ export const GridIcon = (props) => (
 GridIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Grid',
+	copyrightYear: '2020',
 };
 GridIcon.propTypes = propTypes;

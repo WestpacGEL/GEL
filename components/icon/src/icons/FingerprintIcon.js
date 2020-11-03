@@ -14,5 +14,6 @@ export const FingerprintIcon = (props) => (
 FingerprintIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Fingerprint',
+	copyrightYear: '2020',
 };
 FingerprintIcon.propTypes = propTypes;

@@ -45,5 +45,6 @@ CalculatorPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Calculator',
+	copyrightYear: '2020',
 };
 CalculatorPictogram.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const ErrorIcon = (props) => (
 ErrorIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Error',
+	copyrightYear: '2020',
 };
 ErrorIcon.propTypes = propTypes;

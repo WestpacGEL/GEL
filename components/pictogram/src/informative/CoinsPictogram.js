@@ -29,5 +29,6 @@ CoinsPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Coins',
+	copyrightYear: '2020',
 };
 CoinsPictogram.propTypes = propTypes;

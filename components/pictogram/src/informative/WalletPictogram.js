@@ -27,5 +27,6 @@ WalletPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Wallet',
+	copyrightYear: '2020',
 };
 WalletPictogram.propTypes = propTypes;

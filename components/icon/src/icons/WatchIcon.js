@@ -14,5 +14,6 @@ export const WatchIcon = (props) => (
 WatchIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Watch',
+	copyrightYear: '2020',
 };
 WatchIcon.propTypes = propTypes;
