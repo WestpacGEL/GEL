@@ -47,5 +47,6 @@ WBCBankCardPictogram.defaultProps = {
 	viewBoxWidth: 200,
 	viewBoxHeight: 200,
 	assistiveText: 'Bank card',
+	copyrightYear: '2020',
 };
 WBCBankCardPictogram.propTypes = propTypes;

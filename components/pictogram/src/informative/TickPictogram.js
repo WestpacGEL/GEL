@@ -27,5 +27,6 @@ TickPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Medicare card',
+	copyrightYear: '2020',
 };
 TickPictogram.propTypes = propTypes;

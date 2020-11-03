@@ -28,5 +28,6 @@ CreditCardPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Credit card',
+	copyrightYear: '2020',
 };
 CreditCardPictogram.propTypes = propTypes;

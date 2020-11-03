@@ -31,5 +31,6 @@ MoneyInPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Money in',
+	copyrightYear: '2020',
 };
 MoneyInPictogram.propTypes = propTypes;

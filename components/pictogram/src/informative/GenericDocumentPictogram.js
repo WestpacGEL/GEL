@@ -36,5 +36,6 @@ GenericDocumentPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Generic document',
+	copyrightYear: '2020',
 };
 GenericDocumentPictogram.propTypes = propTypes;
