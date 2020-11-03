@@ -27,5 +27,6 @@ GiftPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Gift',
+	copyrightYear: '2020',
 };
 GiftPictogram.propTypes = propTypes;

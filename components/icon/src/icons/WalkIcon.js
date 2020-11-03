@@ -14,5 +14,6 @@ export const WalkIcon = (props) => (
 WalkIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Walk',
+	copyrightYear: '2020',
 };
 WalkIcon.propTypes = propTypes;

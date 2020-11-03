@@ -14,5 +14,6 @@ export const CloseIcon = (props) => (
 CloseIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Close',
+	copyrightYear: '2020',
 };
 CloseIcon.propTypes = propTypes;

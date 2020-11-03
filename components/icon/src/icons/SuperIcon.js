@@ -14,5 +14,6 @@ export const SuperIcon = (props) => (
 SuperIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Super',
+	copyrightYear: '2020',
 };
 SuperIcon.propTypes = propTypes;

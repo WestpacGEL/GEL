@@ -14,5 +14,6 @@ export const AustraliaIcon = (props) => (
 AustraliaIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Australia',
+	copyrightYear: '2020',
 };
 AustraliaIcon.propTypes = propTypes;

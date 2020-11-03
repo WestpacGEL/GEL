@@ -14,5 +14,6 @@ export const DownloadIcon = (props) => (
 DownloadIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Download',
+	copyrightYear: '2020',
 };
 DownloadIcon.propTypes = propTypes;

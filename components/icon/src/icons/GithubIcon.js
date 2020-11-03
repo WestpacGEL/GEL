@@ -14,5 +14,6 @@ export const GithubIcon = (props) => (
 GithubIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Github',
+	copyrightYear: '2020',
 };
 GithubIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const BookIcon = (props) => (
 BookIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Book',
+	copyrightYear: '2020',
 };
 BookIcon.propTypes = propTypes;

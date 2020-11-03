@@ -14,5 +14,6 @@ export const AddIcon = (props) => (
 AddIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Add',
+	copyrightYear: '2020',
 };
 AddIcon.propTypes = propTypes;

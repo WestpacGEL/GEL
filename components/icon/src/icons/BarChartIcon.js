@@ -14,5 +14,6 @@ export const BarChartIcon = (props) => (
 BarChartIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Bar Chart',
+	copyrightYear: '2020',
 };
 BarChartIcon.propTypes = propTypes;

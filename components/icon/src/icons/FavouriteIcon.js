@@ -14,5 +14,6 @@ export const FavouriteIcon = (props) => (
 FavouriteIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Favourite',
+	copyrightYear: '2020',
 };
 FavouriteIcon.propTypes = propTypes;

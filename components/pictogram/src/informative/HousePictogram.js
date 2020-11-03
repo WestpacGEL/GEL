@@ -27,5 +27,6 @@ HousePictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'House',
+	copyrightYear: '2020',
 };
 HousePictogram.propTypes = propTypes;

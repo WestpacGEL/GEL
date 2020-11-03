@@ -14,5 +14,6 @@ export const BankIcon = (props) => (
 BankIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Bank',
+	copyrightYear: '2020',
 };
 BankIcon.propTypes = propTypes;

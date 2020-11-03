@@ -14,5 +14,6 @@ export const DragIcon = (props) => (
 DragIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Drag',
+	copyrightYear: '2020',
 };
 DragIcon.propTypes = propTypes;

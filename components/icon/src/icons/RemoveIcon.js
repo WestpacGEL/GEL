@@ -10,5 +10,6 @@ export const RemoveIcon = (props) => (
 RemoveIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Remove',
+	copyrightYear: '2020',
 };
 RemoveIcon.propTypes = propTypes;

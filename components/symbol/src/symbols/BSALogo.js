@@ -39,5 +39,6 @@ BSALogo.defaultProps = {
 	viewBoxWidth: 90,
 	viewBoxHeight: 41,
 	assistiveText: 'Bank SA',
+	copyrightYear: '2020',
 };
 BSALogo.propTypes = propTypes;

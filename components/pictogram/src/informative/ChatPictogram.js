@@ -30,5 +30,6 @@ ChatPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Chat',
+	copyrightYear: '2020',
 };
 ChatPictogram.propTypes = propTypes;

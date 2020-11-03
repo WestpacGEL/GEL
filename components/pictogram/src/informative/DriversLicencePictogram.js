@@ -31,5 +31,6 @@ DriversLicencePictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Drivers licence',
+	copyrightYear: '2020',
 };
 DriversLicencePictogram.propTypes = propTypes;

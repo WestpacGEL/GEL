@@ -14,5 +14,6 @@ export const PercentIcon = (props) => (
 PercentIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Percent',
+	copyrightYear: '2020',
 };
 PercentIcon.propTypes = propTypes;

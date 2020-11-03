@@ -14,5 +14,6 @@ export const TwitterIcon = (props) => (
 TwitterIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Twitter',
+	copyrightYear: '2020',
 };
 TwitterIcon.propTypes = propTypes;

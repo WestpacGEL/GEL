@@ -103,5 +103,6 @@ STGLogo.defaultProps = {
 	viewBoxWidth: 170,
 	viewBoxHeight: 51,
 	assistiveText: 'St.George',
+	copyrightYear: '2020',
 };
 STGLogo.propTypes = propTypes;

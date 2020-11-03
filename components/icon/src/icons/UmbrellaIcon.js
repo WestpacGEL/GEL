@@ -14,5 +14,6 @@ export const UmbrellaIcon = (props) => (
 UmbrellaIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Umbrella',
+	copyrightYear: '2020',
 };
 UmbrellaIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const HamburgerMenuIcon = (props) => (
 HamburgerMenuIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Hamburger Menu',
+	copyrightYear: '2020',
 };
 HamburgerMenuIcon.propTypes = propTypes;

@@ -24,5 +24,6 @@ BSAMultibrandSmallLogo.defaultProps = {
 	viewBoxHeight: 44,
 	offset: [null, 26, 52],
 	assistiveText: 'Bank SA',
+	copyrightYear: '2020',
 };
 BSAMultibrandSmallLogo.propTypes = propTypes;

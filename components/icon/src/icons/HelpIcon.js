@@ -14,5 +14,6 @@ export const HelpIcon = (props) => (
 HelpIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Help',
+	copyrightYear: '2020',
 };
 HelpIcon.propTypes = propTypes;

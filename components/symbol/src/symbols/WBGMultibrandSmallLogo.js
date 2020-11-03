@@ -20,5 +20,6 @@ WBGMultibrandSmallLogo.defaultProps = {
 	viewBoxHeight: 44,
 	offset: [null, null, 0.73],
 	assistiveText: 'Westpac Group',
+	copyrightYear: '2020',
 };
 WBGMultibrandSmallLogo.propTypes = propTypes;

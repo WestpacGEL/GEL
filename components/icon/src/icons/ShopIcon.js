@@ -14,5 +14,6 @@ export const ShopIcon = (props) => (
 ShopIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Shop',
+	copyrightYear: '2020',
 };
 ShopIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const CompassIcon = (props) => (
 CompassIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Compass',
+	copyrightYear: '2020',
 };
 CompassIcon.propTypes = propTypes;

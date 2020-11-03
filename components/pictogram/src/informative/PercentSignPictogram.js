@@ -27,5 +27,6 @@ PercentSignPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Percent sign',
+	copyrightYear: '2020',
 };
 PercentSignPictogram.propTypes = propTypes;

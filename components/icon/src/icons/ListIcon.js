@@ -14,5 +14,6 @@ export const ListIcon = (props) => (
 ListIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'List',
+	copyrightYear: '2020',
 };
 ListIcon.propTypes = propTypes;

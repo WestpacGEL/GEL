@@ -14,5 +14,6 @@ export const TelephoneIcon = (props) => (
 TelephoneIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Telephone',
+	copyrightYear: '2020',
 };
 TelephoneIcon.propTypes = propTypes;

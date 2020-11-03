@@ -14,5 +14,6 @@ export const BpayIcon = (props) => (
 BpayIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Bpay',
+	copyrightYear: '2020',
 };
 BpayIcon.propTypes = propTypes;

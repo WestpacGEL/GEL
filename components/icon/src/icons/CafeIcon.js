@@ -14,5 +14,6 @@ export const CafeIcon = (props) => (
 CafeIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Cafe',
+	copyrightYear: '2020',
 };
 CafeIcon.propTypes = propTypes;

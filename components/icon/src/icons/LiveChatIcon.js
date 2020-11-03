@@ -14,5 +14,6 @@ export const LiveChatIcon = (props) => (
 LiveChatIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Live Chat',
+	copyrightYear: '2020',
 };
 LiveChatIcon.propTypes = propTypes;

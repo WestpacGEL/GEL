@@ -21,5 +21,6 @@ LinkedInSymbol.defaultProps = {
 	viewBoxWidth: 32,
 	viewBoxHeight: 32,
 	assistiveText: 'LinkedIn',
+	copyrightYear: '',
 };
 LinkedInSymbol.propTypes = propTypes;

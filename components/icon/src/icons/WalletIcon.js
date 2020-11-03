@@ -14,5 +14,6 @@ export const WalletIcon = (props) => (
 WalletIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Wallet',
+	copyrightYear: '2020',
 };
 WalletIcon.propTypes = propTypes;

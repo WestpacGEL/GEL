@@ -14,5 +14,6 @@ export const ClearIcon = (props) => (
 ClearIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Clear',
+	copyrightYear: '2020',
 };
 ClearIcon.propTypes = propTypes;
