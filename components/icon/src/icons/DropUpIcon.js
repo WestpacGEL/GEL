@@ -15,5 +15,6 @@ export const DropUpIcon = (props) => (
 DropUpIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Drop Up',
+	copyrightYear: '2020',
 };
 DropUpIcon.propTypes = propTypes;

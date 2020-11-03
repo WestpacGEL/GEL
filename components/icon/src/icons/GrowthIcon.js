@@ -14,5 +14,6 @@ export const GrowthIcon = (props) => (
 GrowthIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Growth',
+	copyrightYear: '2020',
 };
 GrowthIcon.propTypes = propTypes;

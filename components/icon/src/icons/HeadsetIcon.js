@@ -14,5 +14,6 @@ export const HeadsetIcon = (props) => (
 HeadsetIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Headset',
+	copyrightYear: '2020',
 };
 HeadsetIcon.propTypes = propTypes;

@@ -10,5 +10,6 @@ export const PlayIcon = (props) => (
 PlayIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Play',
+	copyrightYear: '2020',
 };
 PlayIcon.propTypes = propTypes;

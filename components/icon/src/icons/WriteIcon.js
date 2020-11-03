@@ -14,5 +14,6 @@ export const WriteIcon = (props) => (
 WriteIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Write',
+	copyrightYear: '2020',
 };
 WriteIcon.propTypes = propTypes;

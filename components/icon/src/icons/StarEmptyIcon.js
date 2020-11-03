@@ -14,5 +14,6 @@ export const StarEmptyIcon = (props) => (
 StarEmptyIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Star Empty',
+	copyrightYear: '2020',
 };
 StarEmptyIcon.propTypes = propTypes;

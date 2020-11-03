@@ -14,5 +14,6 @@ export const KeyIcon = (props) => (
 KeyIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Key',
+	copyrightYear: '2020',
 };
 KeyIcon.propTypes = propTypes;

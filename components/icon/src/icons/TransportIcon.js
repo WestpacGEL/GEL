@@ -14,5 +14,6 @@ export const TransportIcon = (props) => (
 TransportIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Transport',
+	copyrightYear: '2020',
 };
 TransportIcon.propTypes = propTypes;

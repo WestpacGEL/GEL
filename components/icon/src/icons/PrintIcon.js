@@ -14,5 +14,6 @@ export const PrintIcon = (props) => (
 PrintIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Print',
+	copyrightYear: '2020',
 };
 PrintIcon.propTypes = propTypes;

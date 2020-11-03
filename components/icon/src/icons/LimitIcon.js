@@ -14,5 +14,6 @@ export const LimitIcon = (props) => (
 LimitIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Limit',
+	copyrightYear: '2020',
 };
 LimitIcon.propTypes = propTypes;

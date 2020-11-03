@@ -14,5 +14,6 @@ export const GlobalIcon = (props) => (
 GlobalIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Global',
+	copyrightYear: '2020',
 };
 GlobalIcon.propTypes = propTypes;

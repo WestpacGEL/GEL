@@ -14,5 +14,6 @@ export const BackspaceIcon = (props) => (
 BackspaceIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Backspace',
+	copyrightYear: '2020',
 };
 BackspaceIcon.propTypes = propTypes;

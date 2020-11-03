@@ -14,5 +14,6 @@ export const PauseCircleIcon = (props) => (
 PauseCircleIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Pause Circle',
+	copyrightYear: '2020',
 };
 PauseCircleIcon.propTypes = propTypes;

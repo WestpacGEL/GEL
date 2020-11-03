@@ -14,5 +14,6 @@ export const ChatIcon = (props) => (
 ChatIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Chat',
+	copyrightYear: '2020',
 };
 ChatIcon.propTypes = propTypes;

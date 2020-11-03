@@ -14,5 +14,6 @@ export const SettingsIcon = (props) => (
 SettingsIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Settings',
+	copyrightYear: '2020',
 };
 SettingsIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const MoneyInIcon = (props) => (
 MoneyInIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Money In',
+	copyrightYear: '2020',
 };
 MoneyInIcon.propTypes = propTypes;
