@@ -11,6 +11,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/form-check'] = {
 		FormCheck: {
+			component: blenderFormCheck.component,
 			styles: blenderFormCheck.styles,
 		},
 		Option: {
@@ -63,6 +64,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/form-check'] = {
 		FormCheck: {
+			component: blenderFormCheck.component,
 			attributes: blenderFormCheck.attributes,
 		},
 		Label: {

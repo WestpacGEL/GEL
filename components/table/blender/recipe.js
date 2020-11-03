@@ -17,6 +17,7 @@ export function AllStyles({ brand }) {
 			styles: blenderTable.styles,
 		},
 		Td: {
+			component: blenderTd.component,
 			styles: blenderTd.styles,
 		},
 		Tfoot: {
@@ -29,6 +30,7 @@ export function AllStyles({ brand }) {
 			styles: blenderThead.styles,
 		},
 		Tr: {
+			component: blenderTr.component,
 			styles: blenderTr.styles,
 		},
 	};
@@ -212,9 +214,11 @@ export function Docs({ brand }) {
 			attributes: blenderTable.attributes,
 		},
 		Td: {
+			component: blenderTd.component,
 			attributes: blenderTd.attributes,
 		},
 		Tr: {
+			component: blenderTr.component,
 			attributes: blenderTr.attributes,
 		},
 	};

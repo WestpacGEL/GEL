@@ -8,6 +8,7 @@ import {
 	classNames,
 	getModifier,
 	styleReconciler,
+	formatClassName,
 } from '@westpac/core';
 import { round, sizeMap } from '../_utils';
 import { defaultProps } from '../Textarea';
@@ -17,6 +18,10 @@ import { defaultProps } from '../Textarea';
 // ==============================
 
 const Textarea = ({ state: _, ...rest }) => <textarea {...rest} />;
+
+const BlenderTextarea = ({ className, ...rest }) => (
+	<Textarea className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -146,7 +151,7 @@ export const defaultTextarea = {
 };
 
 export const blenderTextarea = {
-	component: Textarea,
+	component: BlenderTextarea,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

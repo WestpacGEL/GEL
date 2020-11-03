@@ -8,6 +8,7 @@ import {
 	getModifier,
 	styleReconciler,
 	classNames,
+	formatClassName,
 } from '@westpac/core';
 import { defaultProps } from '../Icon';
 
@@ -17,6 +18,9 @@ import { defaultProps } from '../Icon';
 
 const Icon = ({ state: _, ...rest }) => <span {...rest} />;
 
+const BlenderIcon = ({ className, ...rest }) => (
+	<Icon className={formatClassName(className)} {...rest} />
+);
 // ==============================
 // Styles
 // ==============================
@@ -117,7 +121,7 @@ export const defaultIcon = {
 };
 
 export const blenderIcon = {
-	component: Icon,
+	component: BlenderIcon,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

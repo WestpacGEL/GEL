@@ -5,9 +5,11 @@ import {
 	jsx,
 	useBrand,
 	useMediaQuery,
+	getLabel,
 	getModifier,
 	styleReconciler,
 	classNames,
+	formatClassName,
 } from '@westpac/core';
 
 import { defaultProps } from '../Alert';
@@ -17,6 +19,10 @@ import { defaultProps } from '../Alert';
 // ==============================
 
 const Alert = ({ state: _, ...rest }) => <div {...rest} />;
+
+const BlenderAlert = ({ className, ...rest }) => (
+	<Alert className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -70,7 +76,7 @@ const alertStyles = (_, { dismissible, look }) => {
 	};
 
 	return mq({
-		label: 'alert',
+		label: getLabel('alert'),
 		marginBottom: SPACING(4),
 		padding: dismissible ? `${SPACING(3)} ${SPACING(6)} ${SPACING(3)} ${SPACING(3)}` : SPACING(3),
 		position: 'relative',
@@ -137,7 +143,7 @@ export const defaultAlert = {
 };
 
 export const blenderAlert = {
-	component: Alert,
+	component: BlenderAlert,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

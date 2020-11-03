@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 import { Body } from '@westpac/body';
 
 import { defaultProps } from '../Table';
@@ -24,6 +32,9 @@ const BlenderTable = (props) => (
 					delete blenderStyles.label;
 					return blenderStyles;
 				},
+				component: ({ state: { tag: Tag }, className, ...rest }) => (
+					<Tag className={formatClassName(className)} {...rest} />
+				),
 			},
 		}}
 		{...props}

@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 import { forwardRef } from 'react';
 import { defaultProps } from '../Popover';
 
@@ -9,6 +17,10 @@ import { defaultProps } from '../Popover';
 // ==============================
 
 const Panel = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+
+const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
+	<div ref={ref} className={formatClassName(className)} {...rest} />
+));
 
 // ==============================
 // Styles
@@ -133,7 +145,7 @@ export const defaultPanel = {
 };
 
 export const blenderPanel = {
-	component: Panel,
+	component: BlenderPanel,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

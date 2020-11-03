@@ -15,6 +15,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/input-group'] = {
 		Text: {
+			component: blenderText.component,
 			styles: blenderText.styles,
 		},
 		TextInput: {
@@ -86,6 +87,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/input-group'] = {
 		Text: {
+			component: blenderText.component,
 			attributes: blenderText.attributes,
 		},
 		TextInput: {
@@ -108,6 +110,7 @@ export function Docs({ brand }) {
 	};
 	overridesWithTokens['@westpac/button'] = {
 		Button: {
+			component: blenderButton.component,
 			attributes: blenderButton.attributes,
 		},
 	};
@@ -230,7 +233,7 @@ export function Docs({ brand }) {
 			heading: 'Add-on before and after',
 			subheading: 'Text and button add-ons',
 			component: () => (
-				<GEL brand={brand}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-text-after-button"
@@ -246,7 +249,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Text add-ons',
 			component: () => (
-				<GEL brand={overridesWithTokens}>
+				<GEL brand={overridesWithTokens} noPrefix>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-text-after-text"

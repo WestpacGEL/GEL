@@ -10,6 +10,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/badge'] = {
 		Badge: {
+			component: blenderBadge.component,
 			styles: blenderBadge.styles,
 		},
 	};
@@ -33,6 +34,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/badge'] = {
 		Badge: {
+			component: blenderBadge.component,
 			attributes: blenderBadge.attributes,
 		},
 	};

@@ -27,6 +27,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/icon'] = {
 		Icon: {
+			component: blenderIcon.component,
 			styles: blenderIcon.styles,
 		},
 	};
@@ -52,6 +53,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/icon'] = {
 		Icon: {
+			component: blenderIcon.component,
 			attributes: blenderIcon.attributes,
 		},
 	};

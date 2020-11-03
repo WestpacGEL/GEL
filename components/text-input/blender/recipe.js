@@ -14,12 +14,15 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/text-input'] = {
 		TextInput: {
+			component: blenderTextInput.component,
 			styles: blenderTextInput.styles,
 		},
 		Select: {
+			component: blenderSelect.component,
 			styles: blenderSelect.styles,
 		},
 		Textarea: {
+			component: blenderTextarea.component,
 			styles: blenderTextarea.styles,
 		},
 	};
@@ -47,12 +50,15 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/text-input'] = {
 		TextInput: {
+			component: blenderTextInput.component,
 			attributes: blenderTextInput.attributes,
 		},
 		Select: {
+			component: blenderSelect.component,
 			attributes: blenderSelect.attributes,
 		},
 		Textarea: {
+			component: blenderTextarea.component,
 			attributes: blenderTextarea.attributes,
 		},
 	};

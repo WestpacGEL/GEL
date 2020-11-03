@@ -9,9 +9,11 @@ function GELModalWrapperToggle($el, mode) {
 	var isOpen = $el.hasClass(openClass);
 
 	if (mode === 'open' || (mode === 'toggle' && !isOpen)) {
+		$('body').css('overflow', 'hidden');
 		$el.addClass(openClass);
 		$el.find('[data-js="modal-heading__version__"]').trigger('focus');
 	} else if (mode === 'close' || (mode === 'toggle' && isOpen)) {
+		$('body').css('overflow', 'auto');
 		$el.removeClass(openClass);
 		$el.prev('[data-modal]').trigger('focus');
 	}

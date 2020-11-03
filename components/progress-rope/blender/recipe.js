@@ -6,10 +6,17 @@ import { ProgressRope } from '@westpac/progress-rope';
 // Created simplified version of these components for blender use
 import { Group, Step } from '../src/blender';
 import { blenderProgressRope } from '../src/overrides/progressRope';
+import { blenderList } from '../src/overrides/list';
 
 export function AllStyles({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/progress-rope'] = {
+		List: {
+			styles: blenderList.styles,
+		},
+	};
 	return (
-		<GEL brand={brand} noPrefix>
+		<GEL brand={overridesWithTokens} noPrefix>
 			<ProgressRope>
 				<Step visited onClick={() => {}}>
 					Step 1

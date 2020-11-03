@@ -14,6 +14,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button-group'] = {
 		ButtonGroup: {
+			component: blenderButtonGroup.component,
 			styles: blenderButtonGroup.styles,
 		},
 		Button: {
@@ -77,6 +78,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button-group'] = {
 		ButtonGroup: {
+			component: blenderButtonGroup.component,
 			attributes: blenderButtonGroup.attributes,
 		},
 		Button: {
@@ -86,6 +88,7 @@ export function Docs({ brand }) {
 	};
 	overridesWithTokens['@westpac/button'] = {
 		Button: {
+			component: blenderButton.component,
 			attributes: blenderButton.attributes,
 		},
 	};

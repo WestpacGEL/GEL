@@ -14,18 +14,23 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/tabcordion'] = {
 		Tabcordion: {
+			component: blenderTabcordion.component,
 			styles: blenderTabcordion.styles,
 		},
 		TabRow: {
+			component: blenderTabRow.component,
 			styles: blenderTabRow.styles,
 		},
 		TabButton: {
+			component: blenderTabButton.component,
 			styles: blenderTabButton.styles,
 		},
 		Panel: {
+			component: blenderPanel.component,
 			styles: blenderPanel.styles,
 		},
 		AccordionButton: {
+			component: blenderAccordionButton.component,
 			styles: blenderAccordionButton.styles,
 		},
 		AccordionButtonIcon: {
@@ -68,18 +73,23 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/tabcordion'] = {
 		Tabcordion: {
+			component: blenderTabcordion.component,
 			attributes: blenderTabcordion.attributes,
 		},
 		TabRow: {
+			component: blenderTabRow.component,
 			attributes: blenderTabRow.attributes,
 		},
 		TabButton: {
+			component: blenderTabButton.component,
 			attributes: blenderTabButton.attributes,
 		},
 		Panel: {
+			component: blenderPanel.component,
 			attributes: blenderPanel.attributes,
 		},
 		AccordionButton: {
+			component: blenderAccordionButton.component,
 			attributes: blenderAccordionButton.attributes,
 		},
 		AccordionButtonIcon: {

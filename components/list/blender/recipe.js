@@ -32,8 +32,8 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/list'] = {
 		List: {
-			styles: blenderList.styles,
 			component: blenderList.component,
+			styles: blenderList.styles,
 		},
 		Icon: {
 			component: blenderIcon.component,

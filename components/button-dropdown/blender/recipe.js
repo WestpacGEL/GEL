@@ -15,17 +15,20 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button-dropdown'] = {
 		ButtonDropdown: {
+			component: blenderButtonDropdown.component,
 			styles: blenderButtonDropdown.styles,
 		},
 		Heading: {
 			component: blenderHeading.component,
 		},
 		Panel: {
+			component: blenderPanel.component,
 			styles: blenderPanel.styles,
 		},
 	};
 	overridesWithTokens['@westpac/button'] = {
 		Button: {
+			component: blenderButton.component,
 			styles: blenderButton.styles,
 		},
 		Icon: {
@@ -72,17 +75,20 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/button-dropdown'] = {
 		ButtonDropdown: {
+			component: blenderButtonDropdown.component,
 			attributes: blenderButtonDropdown.attributes,
 		},
 		Heading: {
 			component: blenderHeading.component,
 		},
 		Panel: {
+			component: blenderPanel.component,
 			attributes: blenderPanel.attributes,
 		},
 	};
 	overridesWithTokens['@westpac/button'] = {
 		Button: {
+			component: blenderButton.component,
 			attributes: blenderButton.attributes,
 		},
 		Icon: {

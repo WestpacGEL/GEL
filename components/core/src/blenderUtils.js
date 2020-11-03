@@ -66,6 +66,19 @@ export function getModifier(defaultProps, props) {
 }
 
 /**
+ * Format class name ordering for consistency i.e. className={baseClass modifierClasses}
+ *
+ * @param {string} className 	- className to format
+ *
+ * @return {string}				- formatted className
+ */
+export const formatClassName = (className) => {
+	const formattedName = className.split(' ');
+	formattedName.unshift(formattedName.pop());
+	return formattedName.join(' ').trim();
+};
+
+/**
  * Transform given string to title case
  *
  * @param {string} str		- text to transform

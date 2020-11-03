@@ -15,6 +15,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/panel'] = {
 		Panel: {
+			component: blenderPanel.component,
 			styles: blenderPanel.styles,
 		},
 		Header: {
@@ -86,6 +87,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/panel'] = {
 		Panel: {
+			component: blenderPanel.component,
 			attributes: blenderPanel.attributes,
 		},
 		Heading: {

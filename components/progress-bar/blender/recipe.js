@@ -9,6 +9,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-bar'] = {
 		ProgressBar: {
+			component: blenderProgressBar.component,
 			styles: blenderProgressBar.styles,
 		},
 		Bar: {
@@ -27,6 +28,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-bar'] = {
 		ProgressBar: {
+			component: blenderProgressBar.component,
 			attributes: blenderProgressBar.attributes,
 		},
 	};

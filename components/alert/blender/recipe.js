@@ -16,15 +16,14 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/alert'] = {
 		Alert: {
+			component: blenderAlert.component,
 			styles: blenderAlert.styles,
-			attributes: blenderAlert.attributes,
 		},
 		Heading: {
 			component: blenderHeading.component,
 		},
 		CloseBtn: {
 			component: blenderCloseBtn.component,
-			attributes: blenderCloseBtn.attributes,
 		},
 		Icon: {
 			component: blenderIcon.component,
@@ -56,6 +55,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/alert'] = {
 		Alert: {
+			component: blenderAlert.component,
 			attributes: blenderAlert.attributes,
 		},
 		Heading: {

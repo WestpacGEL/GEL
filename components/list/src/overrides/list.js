@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 import { Body } from '@westpac/body';
 
@@ -39,6 +47,9 @@ const BlenderList = (props) => (
 					delete blenderStyles.label;
 					return blenderStyles;
 				},
+				component: ({ state: { tag: Tag }, className, ...rest }) => (
+					<Tag className={formatClassName(className)} {...rest} />
+				),
 			},
 		}}
 		{...props}

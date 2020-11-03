@@ -1,7 +1,15 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 
 import { defaultProps } from '../blender/Tabcordion';
 
@@ -11,6 +19,10 @@ import { defaultProps } from '../blender/Tabcordion';
 
 const TabButton = forwardRef(({ state: _, ...rest }, ref) => {
 	return <button type="button" ref={ref} {...rest} />;
+});
+
+const BlenderTabButton = forwardRef(({ state: _, className, ...rest }, ref) => {
+	return <button type="button" ref={ref} className={formatClassName(className)} {...rest} />;
 });
 
 // ==============================
@@ -128,7 +140,7 @@ export const defaultTabButton = {
 };
 
 export const blenderTabButton = {
-	component: TabButton,
+	component: BlenderTabButton,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

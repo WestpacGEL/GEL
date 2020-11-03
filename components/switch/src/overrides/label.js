@@ -22,6 +22,11 @@ const labelStyles = (_, { block }) => {
 		whiteSpace: 'normal',
 		position: 'relative',
 		paddingRight: '0.375rem',
+
+		'input:disabled ~ &': {
+			opacity: 0.5,
+			cursor: 'not-allowed',
+		},
 	};
 };
 

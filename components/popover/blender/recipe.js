@@ -15,6 +15,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/popover'] = {
 		Panel: {
+			component: blenderPanel.component,
 			styles: blenderPanel.styles,
 		},
 		Heading: {
@@ -55,6 +56,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/popover'] = {
 		Panel: {
+			component: blenderPanel.component,
 			attributes: blenderPanel.attributes,
 		},
 		Heading: {

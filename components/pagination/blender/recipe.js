@@ -8,6 +8,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/pagination'] = {
 		Link: {
+			component: blenderLink.component,
 			styles: blenderLink.styles,
 		},
 	};
@@ -32,6 +33,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/pagination'] = {
 		Link: {
+			component: blenderLink.component,
 			attributes: blenderLink.attributes,
 		},
 	};

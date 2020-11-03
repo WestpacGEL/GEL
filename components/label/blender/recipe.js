@@ -10,6 +10,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/label'] = {
 		Label: {
+			component: blenderLabel.component,
 			styles: blenderLabel.styles,
 		},
 	};
@@ -27,6 +28,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/label'] = {
 		Label: {
+			component: blenderLabel.component,
 			attributes: blenderLabel.attributes,
 		},
 	};

@@ -1,4 +1,4 @@
-import { GEL, useFonts } from '@westpac/core';
+import { GEL, Global, useFonts } from '@westpac/core';
 import React from 'react';
 
 import { Heading, BrandHeading } from '@westpac/heading';
@@ -21,6 +21,7 @@ export function AllStyles({ brand }) {
 	};
 	return (
 		<GEL brand={overridesWithTokens} noPrefix>
+			{/* <Global css={{ ...useFonts({ path: 'assets/' }) }} /> */}
 			{/* Heading */}
 			{headingSizes.map((size) => (
 				<Heading key={size} size={size}>
@@ -49,6 +50,7 @@ export function Docs({ brand }) {
 	overridesWithTokens['@westpac/heading'] = {
 		Heading: {
 			styles: blenderHeading.styles,
+			attributes: blenderHeading.attributes,
 		},
 		BrandHeading: {
 			styles: blenderBrandHeading.styles,
