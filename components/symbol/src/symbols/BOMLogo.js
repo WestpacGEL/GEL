@@ -91,5 +91,6 @@ BOMLogo.defaultProps = {
 	viewBoxWidth: 150,
 	viewBoxHeight: 39,
 	assistiveText: 'Bank of Melbourne',
+	copyrightYear: '2020',
 };
 BOMLogo.propTypes = propTypes;

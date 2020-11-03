@@ -39,5 +39,6 @@ BSAStackedLogo.defaultProps = {
 	viewBoxWidth: 32,
 	viewBoxHeight: 54,
 	assistiveText: 'Bank SA',
+	copyrightYear: '2020',
 };
 BSAStackedLogo.propTypes = propTypes;
