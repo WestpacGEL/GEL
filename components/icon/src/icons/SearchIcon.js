@@ -14,5 +14,6 @@ export const SearchIcon = (props) => (
 SearchIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Search',
+	copyrightYear: '2020',
 };
 SearchIcon.propTypes = propTypes;

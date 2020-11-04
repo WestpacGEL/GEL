@@ -25,5 +25,6 @@ MicrosoftStoreSymbol.defaultProps = {
 	viewBoxWidth: 170,
 	viewBoxHeight: 62,
 	assistiveText: 'Microsoft Store',
+	copyrightYear: '',
 };
 MicrosoftStoreSymbol.propTypes = propTypes;

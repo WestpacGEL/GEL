@@ -14,5 +14,6 @@ export const SwitchIcon = (props) => (
 SwitchIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Switch',
+	copyrightYear: '2020',
 };
 SwitchIcon.propTypes = propTypes;

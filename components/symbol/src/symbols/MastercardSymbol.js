@@ -30,5 +30,6 @@ MastercardSymbol.defaultProps = {
 	viewBoxWidth: 80,
 	viewBoxHeight: 50,
 	assistiveText: 'Mastercard',
+	copyrightYear: '',
 };
 MastercardSymbol.propTypes = propTypes;

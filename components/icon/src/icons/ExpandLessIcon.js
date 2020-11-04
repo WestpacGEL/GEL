@@ -14,5 +14,6 @@ export const ExpandLessIcon = (props) => (
 ExpandLessIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Expand Less',
+	copyrightYear: '2020',
 };
 ExpandLessIcon.propTypes = propTypes;

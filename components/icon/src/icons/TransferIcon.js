@@ -14,5 +14,6 @@ export const TransferIcon = (props) => (
 TransferIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Transfer',
+	copyrightYear: '2020',
 };
 TransferIcon.propTypes = propTypes;

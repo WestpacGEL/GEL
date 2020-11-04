@@ -14,5 +14,6 @@ export const YoutubeIcon = (props) => (
 YoutubeIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Youtube',
+	copyrightYear: '2020',
 };
 YoutubeIcon.propTypes = propTypes;

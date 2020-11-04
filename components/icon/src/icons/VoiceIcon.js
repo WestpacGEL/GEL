@@ -14,5 +14,6 @@ export const VoiceIcon = (props) => (
 VoiceIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Voice',
+	copyrightYear: '2020',
 };
 VoiceIcon.propTypes = propTypes;

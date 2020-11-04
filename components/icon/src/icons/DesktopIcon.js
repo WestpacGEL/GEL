@@ -14,5 +14,6 @@ export const DesktopIcon = (props) => (
 DesktopIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Desktop',
+	copyrightYear: '2020',
 };
 DesktopIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const LinkIcon = (props) => (
 LinkIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Link',
+	copyrightYear: '2020',
 };
 LinkIcon.propTypes = propTypes;

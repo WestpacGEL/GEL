@@ -14,5 +14,6 @@ export const MapPinIcon = (props) => (
 MapPinIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Map Pin',
+	copyrightYear: '2020',
 };
 MapPinIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const ShareIcon = (props) => (
 ShareIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Share',
+	copyrightYear: '2020',
 };
 ShareIcon.propTypes = propTypes;

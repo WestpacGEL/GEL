@@ -14,5 +14,6 @@ export const ContactIcon = (props) => (
 ContactIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Contact',
+	copyrightYear: '2020',
 };
 ContactIcon.propTypes = propTypes;

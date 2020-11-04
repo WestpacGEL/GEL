@@ -32,5 +32,6 @@ BOMMultibrandSmallLogo.defaultProps = {
 	viewBoxHeight: 44,
 	offset: [null, 48, 96],
 	assistiveText: 'Bank of Melbourne',
+	copyrightYear: '2020',
 };
 BOMMultibrandSmallLogo.propTypes = propTypes;

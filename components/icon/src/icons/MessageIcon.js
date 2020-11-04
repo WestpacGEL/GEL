@@ -14,5 +14,6 @@ export const MessageIcon = (props) => (
 MessageIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Message',
+	copyrightYear: '2020',
 };
 MessageIcon.propTypes = propTypes;

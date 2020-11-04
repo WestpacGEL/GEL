@@ -14,5 +14,6 @@ export const ClearCircleIcon = (props) => (
 ClearCircleIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Clear',
+	copyrightYear: '2020',
 };
 ClearCircleIcon.propTypes = propTypes;

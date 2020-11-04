@@ -14,5 +14,6 @@ export const CalendarIcon = (props) => (
 CalendarIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Calendar',
+	copyrightYear: '2020',
 };
 CalendarIcon.propTypes = propTypes;

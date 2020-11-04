@@ -14,5 +14,6 @@ export const GooglePlusIcon = (props) => (
 GooglePlusIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Google Plus',
+	copyrightYear: '2020',
 };
 GooglePlusIcon.propTypes = propTypes;

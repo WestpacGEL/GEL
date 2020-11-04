@@ -14,5 +14,6 @@ export const RefreshIcon = (props) => (
 RefreshIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Refresh',
+	copyrightYear: '2020',
 };
 RefreshIcon.propTypes = propTypes;

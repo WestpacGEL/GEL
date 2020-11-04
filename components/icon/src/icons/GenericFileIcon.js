@@ -14,5 +14,6 @@ export const GenericFileIcon = (props) => (
 GenericFileIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Generic File',
+	copyrightYear: '2020',
 };
 GenericFileIcon.propTypes = propTypes;

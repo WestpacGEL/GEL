@@ -14,5 +14,6 @@ export const MobilePayIcon = (props) => (
 MobilePayIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Mobile Pay',
+	copyrightYear: '2020',
 };
 MobilePayIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const KeyholeIcon = (props) => (
 KeyholeIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Keyhole',
+	copyrightYear: '2020',
 };
 KeyholeIcon.propTypes = propTypes;

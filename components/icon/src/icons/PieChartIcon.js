@@ -14,5 +14,6 @@ export const PieChartIcon = (props) => (
 PieChartIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Pie Chart',
+	copyrightYear: '2020',
 };
 PieChartIcon.propTypes = propTypes;

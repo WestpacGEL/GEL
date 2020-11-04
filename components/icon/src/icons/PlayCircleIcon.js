@@ -14,5 +14,6 @@ export const PlayCircleIcon = (props) => (
 PlayCircleIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Play Circle',
+	copyrightYear: '2020',
 };
 PlayCircleIcon.propTypes = propTypes;

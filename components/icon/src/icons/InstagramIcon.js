@@ -14,5 +14,6 @@ export const InstagramIcon = (props) => (
 InstagramIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Instagram',
+	copyrightYear: '2020',
 };
 InstagramIcon.propTypes = propTypes;

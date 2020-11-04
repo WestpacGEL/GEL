@@ -14,5 +14,6 @@ export const DropboxIcon = (props) => (
 DropboxIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Dropbox',
+	copyrightYear: '2020',
 };
 DropboxIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const ExitIcon = (props) => (
 ExitIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Exit',
+	copyrightYear: '2020',
 };
 ExitIcon.propTypes = propTypes;

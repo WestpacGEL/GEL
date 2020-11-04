@@ -31,5 +31,6 @@ BOMShieldLogo.defaultProps = {
 	viewBoxWidth: 26,
 	viewBoxHeight: 39,
 	assistiveText: 'Bank of Melbourne',
+	copyrightYear: '2020',
 };
 BOMShieldLogo.propTypes = propTypes;

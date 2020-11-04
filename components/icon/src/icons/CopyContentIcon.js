@@ -14,5 +14,6 @@ export const CopyContentIcon = (props) => (
 CopyContentIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Copy',
+	copyrightYear: '2020',
 };
 CopyContentIcon.propTypes = propTypes;

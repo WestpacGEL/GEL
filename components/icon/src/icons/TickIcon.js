@@ -14,5 +14,6 @@ export const TickIcon = (props) => (
 TickIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Tick',
+	copyrightYear: '2020',
 };
 TickIcon.propTypes = propTypes;
