@@ -178,7 +178,7 @@ const PackageInfoTable = ({ item }) => {
 				<tr>
 					<th>Install</th>
 					<td>
-						<code>npm i @westpac/{item.packageName}</code>
+						<code>npm install @westpac/{item.packageName}</code>
 					</td>
 				</tr>
 				<tr>
