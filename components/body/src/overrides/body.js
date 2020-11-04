@@ -5,7 +5,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 const Body = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
 
 const bodyStyles = (_, props) => {
-	const { COLORS, PACKS, TYPE } = useBrand();
+	const { COLORS, PACKS, TYPE, SPACING } = useBrand();
 
 	let key;
 	if (typeof window === 'undefined') {
@@ -24,7 +24,7 @@ const bodyStyles = (_, props) => {
 		},
 
 		p: {
-			margin: '0.75rem 0',
+			margin: `${SPACING(2)} 0`,
 		},
 
 		dt: {

@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
 import React, { Fragment, useState, useEffect } from 'react';
-import { DownloadIcon, RefreshIcon } from '@westpac/icon';
+import { DownloadIcon, RefreshIcon, CopyContentIcon } from '@westpac/icon';
 import { jsx, useBrand, keyframes, useMediaQuery } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 import { Switch } from '@westpac/switch';
-import { Select } from '@westpac/text-input';
+import { Textarea, Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { Section, SectionHeading } from '../../../components/section';
@@ -128,6 +128,136 @@ const BlenderComponentOption = ({ desc, link, ...rest }) => {
 	);
 };
 
+const NpmBox = ({ selected, ...rest }) => {
+	const { SPACING } = useBrand();
+
+	const [copySuccess, setCopySuccess] = useState('');
+
+	const npmCommand = `npm install @westpac/core ${selected
+		.map((pkg) => `@westpac/${pkg}`)
+		.join(' ')}`;
+
+	const handleCopy = () => {
+		navigator.clipboard.writeText(npmCommand);
+		setCopySuccess('Copied!');
+	};
+
+	return (
+		<div {...rest}>
+			<div css={{ position: 'relative' }}>
+				<Textarea
+					css={{
+						fontFamily:
+							'"Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace',
+						fontSize: '14px',
+						lineHeight: 1.5,
+						paddingRight: '5rem',
+						height: '7.8125rem',
+					}}
+					value={npmCommand}
+					readOnly
+				/>
+				<Button
+					look="link"
+					size="small"
+					iconAfter={CopyContentIcon}
+					css={{ position: 'absolute', zIndex: 0, top: SPACING(1, 'minor'), right: 0 }}
+					onClick={(e) => handleCopy()}
+				>
+					Copy
+				</Button>
+			</div>
+			{/* <pre
+				css={{
+					position: 'relative',
+					textAlign: 'left',
+					whiteSpace: 'pre',
+					wordSpacing: 'normal',
+					wordBreak: 'normal',
+					wordWrap: 'normal',
+					hyphens: 'none',
+					margin: 0,
+				}}
+				{...rest}
+			>
+				<code
+					aria-live="polite"
+					tabIndex="-1"
+					css={{
+						display: 'block',
+						paddingRight: '5rem',
+						textAlign: 'left',
+						whiteSpace: 'pre-wrap',
+						wordSpacing: 'normal',
+						wordBreak: 'normal',
+						wordWrap: 'normal',
+						fontSize: '1rem',
+						lineHeight: 1.5,
+						hyphens: 'none',
+					}}
+				>
+					{npmCommand}
+				</code>
+				<Button
+					look="link"
+					size="small"
+					iconAfter={CopyContentIcon}
+					css={{ position: 'absolute', zIndex: 0, top: SPACING(1, 'minor'), right: 0 }}
+					onClick={(e) => copyToClipboard()}
+				>
+					Copy
+				</Button>
+			</pre> */}
+			<Status text={copySuccess} css={{ marginTop: SPACING(1) }} />
+		</div>
+	);
+};
+
+const InstructionalBody = (props) => {
+	const { PACKS } = useBrand();
+	return (
+		<Body
+			overrides={{
+				Body: {
+					styles: (styles) => ({
+						...styles,
+						...PACKS.typeScale.bodyFont[10],
+
+						p: {
+							marginTop: 0,
+						},
+					}),
+				},
+			}}
+			{...props}
+		/>
+	);
+};
+
+const Status = ({ text, ...rest }) => {
+	const { COLORS, PACKS } = useBrand();
+
+	return (
+		text && (
+			<Body
+				role="status"
+				overrides={{
+					Body: {
+						styles: (styles) => ({
+							...styles,
+							...PACKS.typeScale.bodyFont[10],
+							color: COLORS.success,
+						}),
+					},
+				}}
+				{...rest}
+			>
+				{text}
+			</Body>
+		)
+	);
+};
+
 const SectionDesigners = () => {
 	return (
 		<Section paddingTop="large">
@@ -163,7 +293,7 @@ const SectionDesigners = () => {
 };
 
 const SectionDevelopers = () => {
-	const { BRAND, SPACING } = useBrand();
+	const { BRAND, SPACING, PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	const [isLoading, setLoading] = useState(false);
@@ -201,8 +331,8 @@ const SectionDevelopers = () => {
 				<form action="/api/blender2/" method="POST" onSubmit={displayLoading}>
 					<Grid>
 						<Cell width={[12, null, 7]}>
-							<SectionHeading tabindex="-1">Developers</SectionHeading>
-							<Body tabindex="-1">
+							<SectionHeading tabIndex="-1">Developers</SectionHeading>
+							<Body tabIndex="-1">
 								<p>
 									Select the components you require for your project from the form below. To
 									minimise code bloat, your download will only contain the assets and their
@@ -277,68 +407,85 @@ const SectionDevelopers = () => {
 						<Cell left={[null, null, 9]} width={[12, null, 4]}>
 							<Fieldset>
 								<Legend>
-									<BlockListHeading>Step 2: Set build options</BlockListHeading>
+									<BlockListHeading>Step 2: Choose a codebase</BlockListHeading>
 								</Legend>
 
-								<BlockList css={mq({ marginTop: [null, null, SPACING(2)] })}>
-									<BlockListItem>
-										<Switch name="modules" size="small" label="Modules" block />
-									</BlockListItem>
-									<BlockListItem>
-										<Switch name="prettify" size="small" label="Prettify" block />
-									</BlockListItem>
-									<BlockListItem>
-										<Switch
-											name="excludeJquery"
-											size="small"
-											label="Include jQuery"
-											block
-											checked
-										/>
-									</BlockListItem>
-									<BlockListItem>
-										<Switch
-											name="noVersionInClass"
-											size="small"
-											label="Include component versions in CSS classes"
-											block
-											checked
-										/>
-									</BlockListItem>
-									<BlockListItem>
-										<label
-											htmlFor="tokensFormat"
-											css={{
-												display: 'block',
-												marginBottom: SPACING(1),
-											}}
-										>
-											Token format
-										</label>
-										<Select name="tokensFormat" id="tokensFormat">
-											<option value="json">JSON</option>
-											<option value="less">LESS</option>
-											<option value="css">CSS</option>
-											<option value="sass">SCSS/SASS</option>
-										</Select>
-									</BlockListItem>
-								</BlockList>
+								<div>
+									<h4 tabIndex="-1">Vanilla HTML/CSS</h4>
+									<InstructionalBody tabIndex="-1">
+										<p>Choose your build options and click the Download button below.</p>
+									</InstructionalBody>
+
+									<BlockList css={mq({ marginTop: [null, null, SPACING(2)] })}>
+										<BlockListItem>
+											<Switch name="modules" size="small" label="Modules" block />
+										</BlockListItem>
+										<BlockListItem>
+											<Switch name="prettify" size="small" label="Prettify" block />
+										</BlockListItem>
+										<BlockListItem>
+											<Switch
+												name="excludeJquery"
+												size="small"
+												label="Include jQuery"
+												block
+												checked
+											/>
+										</BlockListItem>
+										<BlockListItem>
+											<Switch
+												name="noVersionInClass"
+												size="small"
+												label="Component versions in CSS classes"
+												block
+												checked
+											/>
+										</BlockListItem>
+										<BlockListItem>
+											<label
+												htmlFor="tokensFormat"
+												css={{
+													display: 'block',
+													marginBottom: SPACING(1),
+												}}
+											>
+												Token format
+											</label>
+											<Select name="tokensFormat" id="tokensFormat">
+												<option value="json">JSON</option>
+												<option value="less">LESS</option>
+												<option value="css">CSS</option>
+												<option value="sass">SCSS/SASS</option>
+											</Select>
+										</BlockListItem>
+									</BlockList>
+
+									<input type="hidden" name="brand" value={BRAND} />
+
+									<Button
+										look="primary"
+										size="large"
+										type="submit"
+										disabled={isLoading}
+										iconAfter={isLoading ? Loading : DownloadIcon}
+										block
+										justify
+										css={mq({ marginTop: SPACING(4) })}
+									>
+										Download
+									</Button>
+								</div>
+
+								<div css={{ marginTop: SPACING(6) }}>
+									<h4 tabIndex="-1">React</h4>
+									<InstructionalBody tabIndex="-1">
+										<p>
+											Simply copy the npm command below and use it in your development environment.
+										</p>
+									</InstructionalBody>
+									<NpmBox selected={selected} />
+								</div>
 							</Fieldset>
-
-							<input type="hidden" name="brand" value={BRAND} />
-
-							<Button
-								look="primary"
-								size="large"
-								type="submit"
-								disabled={isLoading}
-								iconAfter={isLoading ? Loading : DownloadIcon}
-								block
-								justify
-								css={mq({ marginTop: SPACING(4) })}
-							>
-								Download
-							</Button>
 						</Cell>
 					</Grid>
 				</form>
