@@ -14,9 +14,6 @@ const AddRootClass = ({ children }) => {
 		return createCache({
 			stylisPlugins: [
 				(context, content, selectors) => {
-					if (context === -2 && selectors.length && selectors[0] !== '') {
-						console.log(`Original: ${content}`);
-					}
 					if (
 						context === -2 &&
 						selectors.length &&
@@ -61,7 +58,6 @@ const AddRootClass = ({ children }) => {
 						 */
 						content = content.replace(/@.+?\{/g, (s) => `${s}.GEL `);
 					}
-					console.log(`Edited: ${content}`);
 					return content;
 				},
 			],
