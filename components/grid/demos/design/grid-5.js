@@ -8,9 +8,9 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Wrapper>
-				<Cell width={12}>Column A</Cell>
-				<Cell width={12}>Column B</Cell>
-				<Cell width={12}>Column C</Cell>
+				<Cell left={2} width={11}>
+					Column A
+				</Cell>
 			</Wrapper>
 		</Playground>
 	);
