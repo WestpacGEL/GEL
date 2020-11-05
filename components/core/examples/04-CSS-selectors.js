@@ -26,6 +26,16 @@ function Example({ brand }) {
 			>
 				span: This is black, <span>and this is green</span>
 			</p>
+			<p
+				css={{
+					color: 'black',
+					'span, em': {
+						color: 'green',
+					},
+				}}
+			>
+				span, em: This is black, <span>this is green</span>, <em>as is this</em>
+			</p>
 
 			<hr />
 
