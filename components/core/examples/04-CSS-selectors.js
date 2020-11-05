@@ -15,43 +15,87 @@ function Example({ brand }) {
 
 			<hr />
 
+			<h2>Child selectors</h2>
+			<p
+				css={{
+					color: 'black',
+					span: {
+						color: 'green',
+					},
+				}}
+			>
+				span: This is black, <span>and this is green</span>
+			</p>
+
+			<hr />
+
+			<h2>Element selectors</h2>
+			<p
+				css={{
+					color: 'black',
+					'p&': {
+						color: 'green',
+					},
+				}}
+			>
+				p&: This is green
+			</p>
+
+			<hr />
+
+			<h2>Pseudo-class selectors</h2>
+			<span
+				css={{
+					color: 'black',
+					'*:not(p)': {
+						color: 'green',
+					},
+				}}
+			>
+				*:not(p): This is black, <span>and this is green</span>
+			</span>
+
+			<hr />
+
 			<h2>Stacked classes</h2>
-			<p css={{ '&': { color: 'green' } }}>&</p>
-			<p css={{ '&&': { color: 'green' } }}>&&</p>
-			<p css={{ '&&&': { color: 'green' } }}>&&&</p>
-			<p css={{ '&&&&': { color: 'green' } }}>&&&&</p>
+			<p css={{ '&': { color: 'green' } }}>&: This is green</p>
+			<p css={{ '&&': { color: 'green' } }}>&&: This is green</p>
+			<p css={{ '&&&': { color: 'green' } }}>&&&: This is green</p>
+			<p css={{ '&&&&': { color: 'green' } }}>&&&&: This is green</p>
 
 			<hr />
 
 			<h2>Combinator selectors</h2>
 
 			<h3>Descendant selector (space)</h3>
-			<p css={{ 'div &': { color: 'green' } }}>div &</p>
+			<div>
+				<p css={{ 'div &': { color: 'green' } }}>div &: This is green</p>
+			</div>
 
 			<h3>Child selector (>)</h3>
 			<div css={{ 'p > span': { color: 'green' } }}>
 				<p>
-					<span>p > span</span>
+					<span>p > span: This is green</span>
 				</p>
 			</div>
 			<div>
-				<p css={{ 'div > &': { color: 'green' } }}>div > &</p>
+				<p css={{ 'div > &': { color: 'green' } }}>div > &: This is green</p>
 			</div>
 			<div css={{ '& > &': { color: 'green' } }}>
-				<p css={{ '& > &': { color: 'green' } }}>& > &</p>
+				<p css={{ '& > &': { color: 'green' } }}>& > &: This is green</p>
 			</div>
 
 			<h3>Adjacent sibling selector (+)</h3>
-			<p css={{ '& + &': { color: 'green' } }}>& + &</p>
-			<p css={{ '& + &': { color: 'green' } }}>& + &</p>
-			<div>&lt;div&gt;</div>
-			<p css={{ '& + &': { color: 'green' } }}>& + &</p>
+			<p css={{ '& + &': { color: 'green' } }}>& + &: This is not green</p>
+			<p css={{ '& + &': { color: 'green' } }}>& + &: This is green</p>
+			<div>&lt;div&gt;: This is not green</div>
+			<p css={{ '& + &': { color: 'green' } }}>& + &: This is not green</p>
 
 			<h3>General sibling selector (~)</h3>
-			<p css={{ '& ~ &': { color: 'green' } }}>& ~ &</p>
-			<p css={{ '& ~ &': { color: 'green' } }}>& ~ &</p>
-			<div>&lt;div&gt;</div>
-			<p css={{ '& ~ &': { color: 'green' } }}>& ~ &</p>
+			<p css={{ '& ~ &': { color: 'green' } }}>& ~ &: This is not green</p>
+			<p css={{ '& ~ &': { color: 'green' } }}>& ~ &: This is green</p>
+			<div>&lt;div&gt;: This is not green</div>
+			<p css={{ '& ~ &': { color: 'green' } }}>& ~ &: This is green</p>
 
 			<hr />
 
@@ -68,7 +112,7 @@ function Example({ brand }) {
 			</p>
 			<div>
 				<p css={mq({ 'div &': { color: [null, 'green', 'blue', 'purple', 'orange'] } })}>
-					div & ([null, 'green', 'blue', 'purple', 'orange'])
+					div &: [null, 'green', 'blue', 'purple', 'orange']
 				</p>
 			</div>
 
@@ -96,7 +140,7 @@ function Example({ brand }) {
 						},
 					}}
 				>
-					div & ([null, 'green', 'blue', 'purple', 'orange'])
+					div &: [null, 'green', 'blue', 'purple', 'orange']
 				</p>
 			</div>
 			<div>
@@ -108,7 +152,7 @@ function Example({ brand }) {
 						[`@media (min-width: ${breakpoints.lg}px)`]: { 'div &': { color: 'orange' } },
 					}}
 				>
-					div & ([null, 'green', 'blue', 'purple', 'orange'])
+					div &: [null, 'green', 'blue', 'purple', 'orange']
 				</p>
 			</div>
 		</GEL>
