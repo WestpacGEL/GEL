@@ -14,5 +14,6 @@ export const WordFileIcon = (props) => (
 WordFileIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Word File',
+	copyrightYear: '2020',
 };
 WordFileIcon.propTypes = propTypes;

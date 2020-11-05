@@ -27,5 +27,6 @@ PadlockLockedPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Padlock locked',
+	copyrightYear: '2020',
 };
 PadlockLockedPictogram.propTypes = propTypes;

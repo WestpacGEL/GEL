@@ -14,5 +14,6 @@ export const DeleteIcon = (props) => (
 DeleteIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Delete',
+	copyrightYear: '2020',
 };
 DeleteIcon.propTypes = propTypes;

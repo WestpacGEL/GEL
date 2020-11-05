@@ -31,5 +31,6 @@ BirthCertificatePictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Birth certificate',
+	copyrightYear: '2020',
 };
 BirthCertificatePictogram.propTypes = propTypes;

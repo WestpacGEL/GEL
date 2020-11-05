@@ -14,5 +14,6 @@ export const ImageSquareIcon = (props) => (
 ImageSquareIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Image Square',
+	copyrightYear: '2020',
 };
 ImageSquareIcon.propTypes = propTypes;

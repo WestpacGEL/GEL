@@ -14,5 +14,6 @@ export const AndroidIcon = (props) => (
 AndroidIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Android',
+	copyrightYear: '2020',
 };
 AndroidIcon.propTypes = propTypes;

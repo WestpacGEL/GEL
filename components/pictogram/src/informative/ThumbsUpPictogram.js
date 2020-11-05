@@ -27,5 +27,6 @@ ThumbsUpPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Thumbs up',
+	copyrightYear: '2020',
 };
 ThumbsUpPictogram.propTypes = propTypes;

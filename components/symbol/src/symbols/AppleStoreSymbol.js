@@ -47,5 +47,6 @@ AppleStoreSymbol.defaultProps = {
 	viewBoxWidth: 170,
 	viewBoxHeight: 58,
 	assistiveText: 'Apple Store',
+	copyrightYear: '',
 };
 AppleStoreSymbol.propTypes = propTypes;

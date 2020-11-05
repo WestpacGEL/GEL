@@ -14,5 +14,6 @@ export const TakeOutIcon = (props) => (
 TakeOutIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Take Out',
+	copyrightYear: '2020',
 };
 TakeOutIcon.propTypes = propTypes;

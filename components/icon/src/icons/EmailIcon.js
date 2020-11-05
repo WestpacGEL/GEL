@@ -14,5 +14,6 @@ export const EmailIcon = (props) => (
 EmailIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Email',
+	copyrightYear: '2020',
 };
 EmailIcon.propTypes = propTypes;

@@ -6,7 +6,7 @@ import { Heading } from '@westpac/heading';
 // Component
 // ==============================
 
-export const BlockHeading = ({ icon: Icon, children, ...rest }) => {
+export const BlockListHeading = ({ icon: Icon, children, ...rest }) => {
 	const { SPACING, COLORS } = useBrand();
 	return (
 		<Heading

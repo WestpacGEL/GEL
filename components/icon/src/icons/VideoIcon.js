@@ -14,5 +14,6 @@ export const VideoIcon = (props) => (
 VideoIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Video',
+	copyrightYear: '2020',
 };
 VideoIcon.propTypes = propTypes;

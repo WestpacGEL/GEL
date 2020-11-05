@@ -14,5 +14,6 @@ export const InfoIcon = (props) => (
 InfoIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Info',
+	copyrightYear: '2020',
 };
 InfoIcon.propTypes = propTypes;

@@ -18,5 +18,6 @@ TwitterSymbol.defaultProps = {
 	viewBoxWidth: 32,
 	viewBoxHeight: 32,
 	assistiveText: 'Twitter',
+	copyrightYear: '',
 };
 TwitterSymbol.propTypes = propTypes;

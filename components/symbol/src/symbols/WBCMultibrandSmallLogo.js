@@ -17,5 +17,6 @@ WBCMultibrandSmallLogo.defaultProps = {
 	viewBoxHeight: 44,
 	offset: [null, 35, 70],
 	assistiveText: 'Westpac',
+	copyrightYear: '2020',
 };
 WBCMultibrandSmallLogo.propTypes = propTypes;

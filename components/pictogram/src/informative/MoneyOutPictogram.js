@@ -31,5 +31,6 @@ MoneyOutPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Money out',
+	copyrightYear: '2020',
 };
 MoneyOutPictogram.propTypes = propTypes;

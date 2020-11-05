@@ -14,5 +14,6 @@ export const PersonIcon = (props) => (
 PersonIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Person',
+	copyrightYear: '2020',
 };
 PersonIcon.propTypes = propTypes;

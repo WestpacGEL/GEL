@@ -14,5 +14,6 @@ export const PadlockOpenIcon = (props) => (
 PadlockOpenIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Padlock Open',
+	copyrightYear: '2020',
 };
 PadlockOpenIcon.propTypes = propTypes;

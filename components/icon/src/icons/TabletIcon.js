@@ -14,5 +14,6 @@ export const TabletIcon = (props) => (
 TabletIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Tablet',
+	copyrightYear: '2020',
 };
 TabletIcon.propTypes = propTypes;

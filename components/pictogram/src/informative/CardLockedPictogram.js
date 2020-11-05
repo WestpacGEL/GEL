@@ -35,5 +35,6 @@ CardLockedPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Locked card',
+	copyrightYear: '2020',
 };
 CardLockedPictogram.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const PauseIcon = (props) => (
 PauseIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Pause',
+	copyrightYear: '2020',
 };
 PauseIcon.propTypes = propTypes;

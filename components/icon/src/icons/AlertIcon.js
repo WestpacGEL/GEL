@@ -14,5 +14,6 @@ export const AlertIcon = (props) => (
 AlertIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Alert',
+	copyrightYear: '2020',
 };
 AlertIcon.propTypes = propTypes;

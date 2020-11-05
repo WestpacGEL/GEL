@@ -10,5 +10,6 @@ export const GeolocationIcon = (props) => (
 GeolocationIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Geolocation',
+	copyrightYear: '2020',
 };
 GeolocationIcon.propTypes = propTypes;

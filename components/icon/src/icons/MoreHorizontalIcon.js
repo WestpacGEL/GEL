@@ -14,5 +14,6 @@ export const MoreHorizontalIcon = (props) => (
 MoreHorizontalIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'More Horizontal',
+	copyrightYear: '2020',
 };
 MoreHorizontalIcon.propTypes = propTypes;

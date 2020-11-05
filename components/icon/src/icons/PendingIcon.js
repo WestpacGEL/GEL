@@ -14,5 +14,6 @@ export const PendingIcon = (props) => (
 PendingIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Pending',
+	copyrightYear: '2020',
 };
 PendingIcon.propTypes = propTypes;

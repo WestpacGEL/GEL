@@ -14,5 +14,6 @@ export const NotificationActiveIcon = (props) => (
 NotificationActiveIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Notification Active',
+	copyrightYear: '2020',
 };
 NotificationActiveIcon.propTypes = propTypes;

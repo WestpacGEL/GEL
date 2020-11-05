@@ -15,5 +15,6 @@ PayIDSymbol.defaultProps = {
 	viewBoxWidth: 90,
 	viewBoxHeight: 42,
 	assistiveText: 'PayID',
+	copyrightYear: '',
 };
 PayIDSymbol.propTypes = propTypes;

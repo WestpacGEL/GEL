@@ -19,6 +19,7 @@ export const Pictogram = ({
 	assistiveText,
 	viewBoxWidth,
 	viewBoxHeight,
+	copyrightYear,
 	pictogram,
 	children,
 	overrides: componentOverrides,
@@ -41,6 +42,7 @@ export const Pictogram = ({
 		assistiveText,
 		viewBoxWidth,
 		viewBoxHeight,
+		copyrightYear,
 		pictogram,
 		overrides: componentOverrides,
 		...rest,
@@ -54,6 +56,11 @@ export const Pictogram = ({
 	return (
 		<Pictogram {...rest} state={state} {...pictogramAttributes(state)} css={pictogramStyles(state)}>
 			<Svg state={state} css={svgStyles(state)} {...svgAttributes(state)}>
+				{copyrightYear && (
+					<metadata>
+						{`Copyright © ${copyrightYear} by Westpac Banking Corporation. All rights reserved.`}
+					</metadata>
+				)}
 				{children}
 			</Svg>
 		</Pictogram>
@@ -102,6 +109,11 @@ export const propTypes = {
 	 * Defaults to the pictogram name e.g. `WalletPictogram` --> "Wallet"
 	 */
 	assistiveText: PropTypes.string,
+
+	/**
+	 * The pictogram SVG metadata copyright year text
+	 */
+	copyrightYear: PropTypes.string.isRequired,
 
 	/**
 	 * The override API

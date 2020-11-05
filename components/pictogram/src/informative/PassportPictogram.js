@@ -29,5 +29,6 @@ PassportPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Passport',
+	copyrightYear: '2020',
 };
 PassportPictogram.propTypes = propTypes;

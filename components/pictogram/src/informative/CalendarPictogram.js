@@ -27,5 +27,6 @@ CalendarPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Calendar',
+	copyrightYear: '2020',
 };
 CalendarPictogram.propTypes = propTypes;

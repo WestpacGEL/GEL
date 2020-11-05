@@ -14,5 +14,6 @@ export const NewWindowIcon = (props) => (
 NewWindowIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'New Window',
+	copyrightYear: '2020',
 };
 NewWindowIcon.propTypes = propTypes;

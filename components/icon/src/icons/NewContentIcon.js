@@ -14,5 +14,6 @@ export const NewContentIcon = (props) => (
 NewContentIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'New Content',
+	copyrightYear: '2020',
 };
 NewContentIcon.propTypes = propTypes;

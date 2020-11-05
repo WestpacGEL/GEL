@@ -14,5 +14,6 @@ export const ClockIcon = (props) => (
 ClockIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Clock',
+	copyrightYear: '2020',
 };
 ClockIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const WearableIcon = (props) => (
 WearableIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Wearable',
+	copyrightYear: '2020',
 };
 WearableIcon.propTypes = propTypes;

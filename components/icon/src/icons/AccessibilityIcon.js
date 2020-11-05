@@ -14,5 +14,6 @@ export const AccessibilityIcon = (props) => (
 AccessibilityIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Accessibility',
+	copyrightYear: '2020',
 };
 AccessibilityIcon.propTypes = propTypes;

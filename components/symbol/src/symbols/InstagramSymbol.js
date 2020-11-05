@@ -38,5 +38,6 @@ InstagramSymbol.defaultProps = {
 	viewBoxWidth: 32,
 	viewBoxHeight: 32,
 	assistiveText: 'Instagram',
+	copyrightYear: '',
 };
 InstagramSymbol.propTypes = propTypes;

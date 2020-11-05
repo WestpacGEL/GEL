@@ -14,5 +14,6 @@ export const FaceHappyIcon = (props) => (
 FaceHappyIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Face Happy',
+	copyrightYear: '2020',
 };
 FaceHappyIcon.propTypes = propTypes;

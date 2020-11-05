@@ -14,5 +14,6 @@ export const VerifiedIcon = (props) => (
 VerifiedIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Verified',
+	copyrightYear: '2020',
 };
 VerifiedIcon.propTypes = propTypes;

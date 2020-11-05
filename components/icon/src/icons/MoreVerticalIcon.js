@@ -14,5 +14,6 @@ export const MoreVerticalIcon = (props) => (
 MoreVerticalIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'More Vertical',
+	copyrightYear: '2020',
 };
 MoreVerticalIcon.propTypes = propTypes;

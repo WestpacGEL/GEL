@@ -27,5 +27,6 @@ StarPictogram.defaultProps = {
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Star',
+	copyrightYear: '2020',
 };
 StarPictogram.propTypes = propTypes;
