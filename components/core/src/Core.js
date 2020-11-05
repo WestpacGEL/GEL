@@ -7,7 +7,7 @@ import createCache from '@emotion/cache';
 import { useBrand } from './Brand';
 import { reset } from './reset';
 
-const coreLabel = 'Core'; // for use in stylis plugin and the css label
+const coreLabel = 'core'; // for use in stylis plugin and the css label
 
 const AddRootClass = ({ children }) => {
 	let [cache] = useState(() => {
