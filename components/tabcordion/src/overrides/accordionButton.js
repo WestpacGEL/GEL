@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 
 import { defaultProps } from '../blender/Tabcordion';
 
@@ -9,6 +17,10 @@ import { defaultProps } from '../blender/Tabcordion';
 // ==============================
 
 const AccordionButton = ({ state: _, ...rest }) => <button type="button" {...rest} />;
+
+const BlenderAccordionButton = ({ className, ...rest }) => (
+	<AccordionButton className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -65,9 +77,6 @@ const accordionButtonStyles = (_, { look, hidden }) => {
 const blenderStyles = (_, { hidden }) => {
 	const props = { hidden };
 	const baseStyles = accordionButtonStyles(_, { ...defaultProps, hidden: true });
-	Object.assign(baseStyles, {
-		[`.__convert__tabcordion-accordion-btn-icon-less`]: { display: 'none !important' },
-	});
 
 	let modifiers = getModifier({ ...defaultProps, hidden: true }, props);
 	if (!modifiers.length) return baseStyles;
@@ -82,8 +91,7 @@ const blenderStyles = (_, { hidden }) => {
 		case 'hidden':
 			if (!hidden) label = `${label}-open`;
 			Object.assign(reconciledStyles, {
-				['.__convert__tabcordion-accordion-btn-icon-more']: { display: 'none' },
-				['.__convert__tabcordion-accordion-btn-icon-less']: { display: 'inline-block !important' },
+				['.__convert__tabcordion-accordion-btn-icon']: { transform: 'rotate(180deg)' },
 			});
 			break;
 		default:
@@ -141,7 +149,7 @@ export const defaultAccordionButton = {
 };
 
 export const blenderAccordionButton = {
-	component: AccordionButton,
+	component: BlenderAccordionButton,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

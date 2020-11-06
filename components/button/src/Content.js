@@ -72,7 +72,7 @@ export const Content = ({
 					icon={IconBefore}
 					state={state}
 					{...iconAttributes(state)}
-					css={iconStyles({ ...state, left: true })}
+					css={iconStyles({ ...state, before: true })}
 				/>
 			)}
 			{children && <Text block={block}>{children}</Text>}
@@ -82,7 +82,7 @@ export const Content = ({
 					icon={IconAfter}
 					state={state}
 					{...iconAttributes(state)}
-					css={iconStyles({ ...state, right: true })}
+					css={iconStyles({ ...state, after: true })}
 				/>
 			)}
 			{dropdown && (

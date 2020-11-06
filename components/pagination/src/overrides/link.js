@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 
 // ==============================
 // Component
@@ -8,6 +16,10 @@ import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } fro
 
 const Link = ({ state: { disabled }, ...rest }) => (
 	<button type="button" disabled={disabled} {...rest} />
+);
+
+const BlenderLink = ({ className, ...rest }) => (
+	<Link className={formatClassName(className)} {...rest} />
 );
 
 // ==============================
@@ -118,7 +130,7 @@ export const defaultLink = {
 };
 
 export const blenderLink = {
-	component: Link,
+	component: BlenderLink,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Heading } from '@westpac/heading';
-import { Alert } from '../Alert';
 
 // ==============================
 // Component
@@ -35,7 +34,7 @@ const headingStyles = () => {
 	const { SPACING } = useBrand();
 
 	return {
-		label: 'alert-heading',
+		label: getLabel('alert-heading'),
 		marginBottom: SPACING(2),
 	};
 };

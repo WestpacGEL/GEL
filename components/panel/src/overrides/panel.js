@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+	getLabel,
+} from '@westpac/core';
 import { defaultProps } from '../Panel';
 import { nestedStyles } from './header';
 
@@ -9,6 +17,10 @@ import { nestedStyles } from './header';
 // ==============================
 
 const Panel = ({ state: _, ...rest }) => <div {...rest} />;
+
+const BlenderPanel = ({ className, ...rest }) => (
+	<Panel className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -27,7 +39,7 @@ const panelStyles = (_, { look }) => {
 	};
 
 	return {
-		label: 'panel',
+		label: getLabel('panel'),
 		marginBottom: '1.3125rem',
 		backgroundColor: '#fff',
 		border: `1px solid ${styleMap[look].borderColor}`,
@@ -35,7 +47,7 @@ const panelStyles = (_, { look }) => {
 
 		table: {
 			overflow: 'hidden', //clip overflow for rounded corners
-			marginBottom: 0,
+			marginBottom: `0 !important`, //TO DO: Remove once GEL prefixing is fixed
 			borderBottomRightRadius: `calc(0.1875rem - 1px)`,
 			borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
 		},
@@ -96,7 +108,7 @@ export const defaultPanel = {
 };
 
 export const blenderPanel = {
-	component: Panel,
+	component: BlenderPanel,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

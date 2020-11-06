@@ -17,7 +17,7 @@ const listStyles = () => {
 
 	return {
 		label: getLabel('breadcrumb-list'),
-		padding: '0.375rem 1.125rem',
+		padding: `${SPACING(1)} ${SPACING(3)}`,
 		marginBottom: SPACING(4, 'minor'),
 		fontSize: '0.8125rem',
 		listStyle: 'none',
@@ -28,7 +28,9 @@ const listStyles = () => {
 // Attributes
 // ==============================
 
-const listAttributes = () => null;
+const listAttributes = () => ({
+	role: 'list',
+});
 
 // ==============================
 // Exports

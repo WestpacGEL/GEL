@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 
 import { defaultProps } from '../ProgressBar';
 import { nestedBarStyles } from './bar';
@@ -11,6 +19,9 @@ import { nestedBarStyles } from './bar';
 
 export const ProgressBar = ({ state: _, ...rest }) => <div {...rest} />;
 
+const BlenderProgressBar = ({ className, ...rest }) => (
+	<ProgressBar className={formatClassName(className)} {...rest} />
+);
 // ==============================
 // Styles
 // ==============================
@@ -99,7 +110,7 @@ export const defaultProgressBar = {
 };
 
 export const blenderProgressBar = {
-	component: ProgressBar,
+	component: BlenderProgressBar,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

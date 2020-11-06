@@ -55,7 +55,7 @@ const iconStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
-		label: 'alert-icon',
+		label: getLabel('alert-icon'),
 		float: ['left', 'none'],
 		marginRight: ['0.375rem', '0.75rem'],
 		flex: 'none',
