@@ -175,7 +175,6 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		justifyContent: justify ? 'space-between' : 'center', //horizontal
 		lineHeight: 1.5,
 		textAlign: 'center',
-		textDecoration: 'none',
 		touchAction: 'manipulation',
 		userSelect: 'none',
 		verticalAlign: 'middle',
@@ -193,7 +192,12 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			borderRadius: '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
-		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
+
+		// Ensure correct styling of `<a>` buttons within `<Body>` components 
+		'&, a&': {
+			textDecoration: 'none',
+			...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
+		},
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)
 		':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
