@@ -59,7 +59,7 @@ function Example({ brand }) {
 					Lorem <strong>incidunt harum</strong>, architecto similique magni ut officia, provident
 					repellendus.
 					<br />
-					Lorem <em>Look at me I've been emphasised</em> Lorem ipsum dolor sit amet.
+					Lorem <em>Look at me I’ve been emphasised</em> Lorem ipsum dolor sit amet.
 					<br />
 					Lorem <abbr title="Explained">Abbr element</abbr> consectetur adipisicing elit. Aperiam
 					reprehenderit, dolorum error perferendis. This element has been deleted and replaced with{' '}

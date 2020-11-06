@@ -8,6 +8,7 @@ import {
 	classNames,
 	getModifier,
 	styleReconciler,
+	formatClassName,
 } from '@westpac/core';
 import { forwardRef } from 'react';
 
@@ -18,6 +19,10 @@ import { defaultProps } from '../Button';
 // ==============================
 
 const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
+
+const BlenderButton = forwardRef(({ state: { tag: Tag }, className, ...rest }, ref) => (
+	<Tag ref={ref} className={formatClassName(className)} {...rest} />
+));
 
 // ==============================
 // Styles
@@ -175,7 +180,6 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		justifyContent: justify ? 'space-between' : 'center', //horizontal
 		lineHeight: 1.5,
 		textAlign: 'center',
-		textDecoration: 'none',
 		touchAction: 'manipulation',
 		userSelect: 'none',
 		verticalAlign: 'middle',
@@ -193,7 +197,12 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			borderRadius: '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
-		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
+
+		// Ensure correct styling of `<a>` buttons within `<Body>` components
+		'&, a&': {
+			textDecoration: 'none',
+			...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
+		},
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)
 		':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
@@ -249,7 +258,7 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			break;
 	}
 
-	return { label, ...reconciledStyles };
+	return { label, '.__convert__button&': reconciledStyles };
 };
 
 // ==============================
@@ -258,14 +267,14 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
 
-const blenderAttributes = (_, { look, soft, size, block, justify, disabled }) => ({
+const blenderAttributes = (_, { look, soft, size, block, justify, assistiveText }) => ({
+	...buttonAttributes(_, { assistiveText }),
 	className: classNames({
 		[`__convert__button-${look}`]: look && look !== defaultProps.look && !soft,
 		[`__convert__button${look === defaultProps.look ? '' : `-${look}`}-soft`]: soft,
 		[`__convert__button-${size}`]: size && size !== defaultProps.size,
 		[`__convert__button-block`]: block,
 		[`__convert__button-justify`]: justify,
-		[`__convert__button-disabled`]: disabled,
 	}),
 });
 
@@ -280,7 +289,7 @@ export const defaultButton = {
 };
 
 export const blenderButton = {
-	component: Button,
+	component: BlenderButton,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

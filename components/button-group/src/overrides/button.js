@@ -113,6 +113,10 @@ const blenderStyles = () => {
 				},
 			},
 		},
+		'input:disabled + &': {
+			opacity: '0.5',
+			pointerEvents: 'none',
+		},
 	};
 
 	return mergeWith(baseStyles, nestedStyles);

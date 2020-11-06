@@ -12,6 +12,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/switch'] = {
 		Switch: {
+			component: blenderSwitch.component,
 			styles: blenderSwitch.styles,
 		},
 		Label: {
@@ -38,6 +39,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/switch'] = {
 		Switch: {
+			component: blenderSwitch.component,
 			attributes: blenderSwitch.attributes,
 		},
 	};

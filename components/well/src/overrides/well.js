@@ -32,7 +32,7 @@ const wellStyles = () => {
 	const { COLORS, SPACING } = useBrand();
 
 	return mq({
-		label: getLabel('Well'),
+		label: getLabel('well'),
 		padding: [SPACING(2), null, SPACING(4)],
 		marginBottom: SPACING(3),
 		backgroundColor: COLORS.light,

@@ -1,17 +1,33 @@
+function GELButtonDropdownToggle($el, mode) {
+	mode = typeof mode !== 'undefined' ? mode : 'toggle';
+
+	var $panel = $el.next('[data-js="buttonDropdown-panel__version__"]');
+	var classes = $panel.attr('class').split(/\s+/);
+	var baseClass = classes.filter(function (el) {
+		return /panel$/.test(el);
+	})[0];
+	var openClass = baseClass + '-open';
+	var isOpen = $panel.hasClass(openClass);
+
+	if (mode === 'open' || (mode === 'toggle' && !isOpen)) {
+		$el.attr('aria-expanded', 'true');
+		$panel.addClass(openClass);
+	} else if (mode === 'close' || (mode === 'toggle' && isOpen)) {
+		$el.attr('aria-expanded', 'false');
+		$panel.removeClass(openClass);
+		$el.trigger('focus');
+	}
+}
+
 $(function () {
 	$('[data-js="buttonDropdown-btn__version__"]')
 		.on('click', function () {
-			var $panel = $(this).next('[data-js="buttonDropdown-panel__version__"]');
-			var classes = $panel.attr('class').split(/\s+/);
-			var baseClass = classes.find((el) => /panel$/.test(el));
-			$panel.toggleClass(`${baseClass}-open`);
+			GELButtonDropdownToggle($(this));
 		})
-		.keyup(function (event) {
-			if (event.keyCode === 27) {
-				var $panel = $(this).next('[data-js="buttonDropdown-panel__version__"]');
-				var classes = $panel.attr('class').split(/\s+/);
-				var baseClass = classes.find((el) => /panel$/.test(el));
-				$panel.removeClass(`${baseClass}-open`);
+		.parent()
+		.on('keyup', function (e) {
+			if (e.keyCode === 27) {
+				GELButtonDropdownToggle($(this).find('[data-js="buttonDropdown-btn__version__"]'), 'close');
 			}
 		});
 });

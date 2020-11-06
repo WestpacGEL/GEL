@@ -9,8 +9,8 @@ export function AllStyles({ brand, children }) {
 export function Docs({ brand }) {
 	return [
 		{
-			heading: 'The Core Component',
-			component: () => <GEL brand={brand}>Add your GEL components inside the Core component</GEL>,
+			heading: 'Core component',
+			component: () => <GEL brand={brand}>Add your GEL components inside the Core component.</GEL>,
 		},
 	];
 }
