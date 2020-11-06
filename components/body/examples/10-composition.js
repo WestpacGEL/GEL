@@ -22,8 +22,15 @@ function Example({ brand }) {
 					recusandae ex ipsum harum unde illum neque, dolorem eaque quam vero aliquam fuga commodi,
 					fugit odio. Incidunt, veritatis, quod.
 				</p>
-				<Button tag="a" look="primary">Primary</Button> <Button tag="a" look="hero">Hero</Button>{' '}
-				<Button tag="a" look="link">Link</Button>
+				<Button tag="a" look="primary">
+					Primary
+				</Button>{' '}
+				<Button tag="a" look="hero">
+					Hero
+				</Button>{' '}
+				<Button tag="a" look="link">
+					Link
+				</Button>
 				<List look="hero">
 					<Item>Styled bullet list - hero</Item>
 					<Item>Styled bullet list - hero</Item>
