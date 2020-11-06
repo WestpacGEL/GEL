@@ -14,5 +14,6 @@ export const HistoryClockIcon = (props) => (
 HistoryClockIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'History Clock',
+	copyrightYear: '2020',
 };
 HistoryClockIcon.propTypes = propTypes;

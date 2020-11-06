@@ -14,5 +14,6 @@ export const SlackIcon = (props) => (
 SlackIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Slack',
+	copyrightYear: '2020',
 };
 SlackIcon.propTypes = propTypes;

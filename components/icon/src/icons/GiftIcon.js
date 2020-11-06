@@ -14,5 +14,6 @@ export const GiftIcon = (props) => (
 GiftIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Gift',
+	copyrightYear: '2020',
 };
 GiftIcon.propTypes = propTypes;

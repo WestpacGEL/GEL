@@ -14,5 +14,6 @@ export const AtmIcon = (props) => (
 AtmIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Atm',
+	copyrightYear: '2020',
 };
 AtmIcon.propTypes = propTypes;

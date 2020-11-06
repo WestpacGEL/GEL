@@ -260,7 +260,7 @@ const HeroIntro = () => {
 			})}
 		>
 			<Grid>
-				<Cell width={[10, 12, 8]} left={[2, 1, 3]}>
+				<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 					<BrandHeading
 						tag="h2"
 						size={[4, null, 1]}
@@ -271,7 +271,7 @@ const HeroIntro = () => {
 							}),
 						})}
 					>
-						Deliver quality user interfaces that scale—fast!
+						Deliver quality user interfaces that scale – <em>fast!</em>
 					</BrandHeading>
 				</Cell>
 			</Grid>

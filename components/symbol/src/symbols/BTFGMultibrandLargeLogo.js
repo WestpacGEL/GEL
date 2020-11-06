@@ -37,5 +37,6 @@ BTFGMultibrandLargeLogo.defaultProps = {
 	viewBoxHeight: 65,
 	offset: [null, 0.245, 0.49],
 	assistiveText: 'BT Financial Group',
+	copyrightYear: '2020',
 };
 BTFGMultibrandLargeLogo.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const InvestIcon = (props) => (
 InvestIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Invest',
+	copyrightYear: '2020',
 };
 InvestIcon.propTypes = propTypes;

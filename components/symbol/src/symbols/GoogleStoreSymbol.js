@@ -118,5 +118,6 @@ GoogleStoreSymbol.defaultProps = {
 	viewBoxWidth: 170,
 	viewBoxHeight: 50,
 	assistiveText: 'Google Store',
+	copyrightYear: '',
 };
 GoogleStoreSymbol.propTypes = propTypes;

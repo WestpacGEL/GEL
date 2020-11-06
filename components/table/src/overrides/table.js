@@ -46,13 +46,13 @@ const BlenderTable = (props) => (
 // ==============================
 
 const tableStyles = (_, { striped }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, SPACING } = useBrand();
 
 	return {
 		label: getLabel('table'),
 		width: '100%',
 		maxWidth: '100%',
-		marginBottom: '1.3125rem',
+		marginBottom: SPACING(4),
 		backgroundColor: '#fff',
 		borderCollapse: 'collapse',
 

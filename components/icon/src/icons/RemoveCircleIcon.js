@@ -14,5 +14,6 @@ export const RemoveCircleIcon = (props) => (
 RemoveCircleIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Remove Circle',
+	copyrightYear: '2020',
 };
 RemoveCircleIcon.propTypes = propTypes;

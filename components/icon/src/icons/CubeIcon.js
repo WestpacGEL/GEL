@@ -14,5 +14,6 @@ export const CubeIcon = (props) => (
 CubeIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Cube',
+	copyrightYear: '2020',
 };
 CubeIcon.propTypes = propTypes;

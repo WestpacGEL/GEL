@@ -14,5 +14,6 @@ export const FacebookIcon = (props) => (
 FacebookIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Facebook',
+	copyrightYear: '2020',
 };
 FacebookIcon.propTypes = propTypes;

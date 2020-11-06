@@ -31,5 +31,6 @@ AmericanExpressSymbol.defaultProps = {
 	viewBoxWidth: 80,
 	viewBoxHeight: 70,
 	assistiveText: 'American Express',
+	copyrightYear: '',
 };
 AmericanExpressSymbol.propTypes = propTypes;

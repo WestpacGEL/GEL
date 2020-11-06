@@ -14,5 +14,6 @@ export const IdCardIcon = (props) => (
 IdCardIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Id Card',
+	copyrightYear: '2020',
 };
 IdCardIcon.propTypes = propTypes;

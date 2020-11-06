@@ -14,5 +14,6 @@ export const AppleIcon = (props) => (
 AppleIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Apple',
+	copyrightYear: '2020',
 };
 AppleIcon.propTypes = propTypes;

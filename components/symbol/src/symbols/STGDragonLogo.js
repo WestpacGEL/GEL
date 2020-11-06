@@ -67,5 +67,6 @@ STGDragonLogo.defaultProps = {
 	viewBoxWidth: 54,
 	viewBoxHeight: 38,
 	assistiveText: 'St.George',
+	copyrightYear: '2020',
 };
 STGDragonLogo.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const PayIcon = (props) => (
 PayIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Pay',
+	copyrightYear: '2020',
 };
 PayIcon.propTypes = propTypes;

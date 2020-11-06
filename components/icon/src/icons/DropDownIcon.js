@@ -10,5 +10,6 @@ export const DropDownIcon = (props) => (
 DropDownIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Drop Down',
+	copyrightYear: '2020',
 };
 DropDownIcon.propTypes = propTypes;

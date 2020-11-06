@@ -14,5 +14,6 @@ export const SimCardIcon = (props) => (
 SimCardIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Sim Card',
+	copyrightYear: '2020',
 };
 SimCardIcon.propTypes = propTypes;

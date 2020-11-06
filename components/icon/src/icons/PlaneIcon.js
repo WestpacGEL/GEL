@@ -14,5 +14,6 @@ export const PlaneIcon = (props) => (
 PlaneIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Plane',
+	copyrightYear: '2020',
 };
 PlaneIcon.propTypes = propTypes;

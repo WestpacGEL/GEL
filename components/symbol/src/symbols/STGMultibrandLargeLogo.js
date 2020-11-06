@@ -40,5 +40,6 @@ STGMultibrandLargeLogo.defaultProps = {
 	viewBoxHeight: 65,
 	offset: [null, 5, 10],
 	assistiveText: 'St.George',
+	copyrightYear: '2020',
 };
 STGMultibrandLargeLogo.propTypes = propTypes;
