@@ -22,6 +22,8 @@ const AddRootClass = ({ children }) => {
 						type === 107 ||
 						seen.has(selectors) ||
 						seen.has(parents) ||
+						!selectors.length ||
+						selectors[0] === '' ||
 						selectors[0].includes(`-${coreLabel}`)
 					) {
 						return;
