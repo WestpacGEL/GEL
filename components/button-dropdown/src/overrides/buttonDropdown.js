@@ -1,6 +1,13 @@
 /** @jsx jsx */
 
-import { jsx, getLabel, getModifier, styleReconciler, classNames } from '@westpac/core';
+import {
+	jsx,
+	getLabel,
+	getModifier,
+	styleReconciler,
+	classNames,
+	formatClassName,
+} from '@westpac/core';
 import { defaultProps } from '../ButtonDropdown';
 
 // ==============================
@@ -8,6 +15,10 @@ import { defaultProps } from '../ButtonDropdown';
 // ==============================
 
 const ButtonDropdown = ({ state: _, ...rest }) => <div {...rest} />;
+
+const BlenderButtonDropdown = ({ className, ...rest }) => (
+	<ButtonDropdown className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -69,7 +80,7 @@ export const defaultButtonDropdown = {
 };
 
 export const blenderButtonDropdown = {
-	component: ButtonDropdown,
+	component: BlenderButtonDropdown,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

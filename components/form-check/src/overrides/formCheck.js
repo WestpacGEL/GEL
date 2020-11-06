@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, getLabel, getModifier, classNames } from '@westpac/core';
+import { jsx, getLabel, getModifier, classNames, formatClassName } from '@westpac/core';
 import { defaultProps } from '../FormCheck';
 
 import { nestedOptionStyles } from './option';
@@ -12,6 +12,10 @@ import { nestedHintStyles } from './hint';
 // ==============================
 
 const FormCheck = ({ state: _, ...rest }) => <div {...rest} />;
+
+const BlenderFormCheck = ({ className, ...rest }) => (
+	<FormCheck className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -91,7 +95,7 @@ export const defaultFormCheck = {
 };
 
 export const blenderFormCheck = {
-	component: FormCheck,
+	component: BlenderFormCheck,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

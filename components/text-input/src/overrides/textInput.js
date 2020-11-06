@@ -8,6 +8,7 @@ import {
 	classNames,
 	getModifier,
 	styleReconciler,
+	formatClassName,
 } from '@westpac/core';
 import { defaultProps } from '../TextInput';
 import { round, sizeMap } from '../_utils';
@@ -17,6 +18,10 @@ import { round, sizeMap } from '../_utils';
 // ==============================
 
 const TextInput = ({ state: _, ...rest }) => <input {...rest} />;
+
+const BlenderTextInput = ({ className, ...rest }) => (
+	<TextInput className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -144,7 +149,7 @@ export const defaultTextInput = {
 };
 
 export const blenderTextInput = {
-	component: TextInput,
+	component: BlenderTextInput,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

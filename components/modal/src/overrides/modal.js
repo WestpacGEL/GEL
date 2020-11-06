@@ -8,6 +8,7 @@ import {
 	classNames,
 	getModifier,
 	styleReconciler,
+	formatClassName,
 } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
 import { forwardRef } from 'react';
@@ -50,7 +51,9 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 	);
 });
 
-const BlenderModal = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
+const BlenderModal = forwardRef(({ state, className, ...rest }, ref) => (
+	<div ref={ref} className={formatClassName(className)} {...rest} />
+));
 
 // ==============================
 // Styles

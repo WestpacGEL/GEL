@@ -37,22 +37,10 @@ export function Docs({ brand }) {
 	};
 	return [
 		{
-			heading: 'Default breadcrumbs',
+			heading: 'Breadcrumb component',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Breadcrumb>
-						<Crumb href="#/" text="Home" />
-						<Crumb href="#/personal-banking/" text="Personal" />
-						<Crumb href="#/credit-cards/" text="Credit cards" />
-					</Breadcrumb>
-				</GEL>
-			),
-		},
-		{
-			heading: 'Breadcrumbs with assistive text',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Breadcrumb assistiveText="Text for assistive technology">
 						<Crumb href="#/" text="Home" />
 						<Crumb href="#/personal-banking/" text="Personal" />
 						<Crumb href="#/credit-cards/" text="Credit cards" />

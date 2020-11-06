@@ -7,19 +7,19 @@ $(function () {
 		var $list = $group.find('[data-js="progressRope-group-list__version__"]');
 
 		if ($button.attr('aria-expanded') === 'true') {
-			$button.attr('aria-expanded', false);
-			$list.attr('aria-hidden', true).removeAttr('data-open').hide('fast');
+			$button.attr('aria-expanded', 'false');
+			$list.attr('aria-hidden', 'true').removeAttr('data-open').hide('fast');
 		} else {
 			var $rope = $group.closest('[data-js="progressRope__version__"]');
-			$rope.find('[data-js="progressRope-group-btn__version__"]').attr('aria-expanded', false);
+			$rope.find('[data-js="progressRope-group-btn__version__"]').attr('aria-expanded', 'false');
 			$rope
 				.find('[data-js="progressRope-group-list__version__"]')
-				.attr('aria-hidden', true)
+				.attr('aria-hidden', 'true')
 				.removeAttr('data-open')
 				.hide('fast');
 
-			$button.attr('aria-expanded', true);
-			$list.attr('aria-hidden', false).attr('data-open', '').show('fast');
+			$button.attr('aria-expanded', 'true');
+			$list.attr('aria-hidden', 'false').attr('data-open', '').show(200);
 		}
 	});
 });

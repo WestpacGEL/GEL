@@ -28,22 +28,7 @@ const BlenderAccordionButtonIcon = (props) => {
 					Icon: {
 						styles: (styles) => {
 							const blenderStyles = { ...styles };
-							blenderStyles.label = `tabcordion-accordion-btn-icon-more`;
-							return blenderStyles;
-						},
-					},
-				}}
-				{...props}
-			/>
-			<ExpandLessIcon
-				color={COLORS.muted}
-				size="small"
-				assistiveText={null}
-				overrides={{
-					Icon: {
-						styles: (styles) => {
-							const blenderStyles = { ...styles };
-							blenderStyles.label = `tabcordion-accordion-btn-icon-less`;
+							blenderStyles.label = `tabcordion-accordion-btn-icon`;
 							return blenderStyles;
 						},
 					},

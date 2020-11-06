@@ -1,27 +1,47 @@
-$(function () {
-	function toggleModalWrapper($modalWrapper) {
-		const classes = $modalWrapper.attr('class').split(/\s+/);
-		const baseClass = classes.find((el) => /wrapper$/.test(el));
-		$modalWrapper.toggleClass(baseClass.concat('-open'));
+function GELModalWrapperToggle($el, mode) {
+	mode = typeof mode !== 'undefined' ? mode : 'toggle';
+
+	var classes = $el.attr('class').split(/\s+/);
+	var baseClass = classes.filter(function (el) {
+		return /wrapper$/.test(el);
+	})[0];
+	var openClass = baseClass + '-open';
+	var isOpen = $el.hasClass(openClass);
+
+	if (mode === 'open' || (mode === 'toggle' && !isOpen)) {
+		$('body').css('overflow', 'hidden');
+		$el.addClass(openClass);
+		$el.find('[data-js="modal-heading__version__"]').trigger('focus');
+	} else if (mode === 'close' || (mode === 'toggle' && isOpen)) {
+		$('body').css('overflow', 'auto');
+		$el.removeClass(openClass);
+		$el.prev('[data-modal]').trigger('focus');
 	}
+}
 
-	$('[data-modal]').click(function (event) {
-		event.stopPropagation();
-		const modalID = $(this).data('modal');
-		const $modal = $(`#${modalID}`);
+$(function () {
+	$('[data-modal]').on('click', function () {
+		var modalID = $(this).data('modal');
+		var $modal = $('#' + modalID);
 
-		const $modalWrapper = $modal.closest('[data-js="modal-wrapper__version__"]');
-		toggleModalWrapper($modalWrapper);
+		GELModalWrapperToggle($modal.closest('[data-js="modal-wrapper__version__"]'));
 	});
 
-	$('[data-js="modal-closeBtn__version__"]').click(function (event) {
-		event.stopPropagation();
-		const $modalWrapper = $(this).closest('[data-js="modal-wrapper__version__"]');
-		toggleModalWrapper($modalWrapper);
+	$('[data-js="modal-closeBtn__version__"]').on('click', function () {
+		GELModalWrapperToggle($(this).closest('[data-js="modal-wrapper__version__"]'), 'close');
 	});
 
-	$('[data-js="modal-wrapper__version__"]').click(function () {
-		const $modalWrapper = $(this);
-		toggleModalWrapper($modalWrapper);
-	});
+	$('[data-js="modal-wrapper__version__"]')
+		.on('click', function (e) {
+			if (e.target != this) {
+				return false;
+			}
+			GELModalWrapperToggle($(this), 'close');
+		})
+		.on('keyup', function (e) {
+			if (e.keyCode === 27) {
+				console.log('esc', $(this));
+				GELModalWrapperToggle($(this), 'close');
+			}
+		});
 });

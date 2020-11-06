@@ -1,33 +1,50 @@
-import { GEL } from '@westpac/core';
+import { GEL, titleCase } from '@westpac/core';
 import React from 'react';
 
 import * as components from '@westpac/icon';
 import { blenderIcon } from '../src/overrides/icon';
 
+const sizes = ['xsmall', 'small', 'medium', 'large', 'xlarge'];
+const colors = [
+	'inherit',
+	'primary',
+	'hero',
+	'neutral',
+	'heading',
+	'text',
+	'muted',
+	'border',
+	'background',
+	'light',
+	'info',
+	'success',
+	'warning',
+	'danger',
+	'system',
+];
+
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/icon'] = {
 		Icon: {
+			component: blenderIcon.component,
 			styles: blenderIcon.styles,
 		},
 	};
 	return (
 		<GEL brand={overridesWithTokens} noPrefix>
+			{/* Default */}
 			<components.HouseIcon />
-			<components.HouseIcon size="xsmall" />
-			<components.HouseIcon size="small" />
-			<components.HouseIcon size="large" />
-			<components.HouseIcon size="xlarge" />
-			<components.HouseIcon color="inherit" />
-			<components.HouseIcon color="primary" />
-			<components.HouseIcon color="borderDark" />
-			<components.HouseIcon color="heading" />
-			<components.HouseIcon color="hero" />
-			<components.HouseIcon color="light" />
-			<components.HouseIcon color="muted" />
-			<components.HouseIcon color="neutral" />
-			<components.HouseIcon color="primary" />
-			<components.HouseIcon color="text" />
+
+			{/* Sizes */}
+			{sizes.map((size) => (
+				<components.HouseIcon key={size} size={size} />
+			))}
+
+			{/* Colors */}
+			{colors.map((color) => (
+				<components.HouseIcon key={color} color={color} />
+			))}
 		</GEL>
 	);
 }
@@ -36,14 +53,16 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/icon'] = {
 		Icon: {
+			component: blenderIcon.component,
 			attributes: blenderIcon.attributes,
 		},
 	};
 
-	const allIcons = Object.keys(components).map((icon) => {
+	const allIcons = Object.keys(components).map((icon, i) => {
 		const Icon = components[icon];
 		return {
-			heading: `${icon} icon`,
+			...(i === 0 && { heading: 'All icons' }),
+			subheading: icon,
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Icon />
@@ -53,80 +72,55 @@ export function Docs({ brand }) {
 	});
 
 	return [
+		// Sizes
 		{
-			heading: 'Default icon',
+			heading: 'Icon sizes',
+			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon />
 				</GEL>
 			),
 		},
+		...sizes.map((size) => ({
+			subheading: titleCase(size),
+			component: () => (
+				<GEL brand={overridesWithTokens} noPrefix>
+					<components.HouseIcon size={size} />
+				</GEL>
+			),
+		})),
+
+		// Assistive text
 		{
-			heading: 'Icon with assistive text',
+			heading: 'Icon with custom assistive text',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon assistiveText="Text for assistive technologies" />
 				</GEL>
 			),
 		},
+
+		// Colors
 		{
-			heading: 'A xsmall icon',
+			heading: 'Icon colours',
+			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<components.HouseIcon size="xsmall" />
+					<components.HouseIcon />
 				</GEL>
 			),
 		},
-		{
-			heading: 'A small icon',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<components.HouseIcon size="small" />
-				</GEL>
-			),
-		},
-		{
-			heading: 'A medium icon',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<components.HouseIcon size="medium" />
-				</GEL>
-			),
-		},
-		{
-			heading: 'A large icon',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<components.HouseIcon size="large" />
-				</GEL>
-			),
-		},
-		{
-			heading: 'A xlarge icon',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<components.HouseIcon size="xlarge" />
-				</GEL>
-			),
-		},
-		...[
-			'inherit',
-			'primary',
-			'borderDark',
-			'heading',
-			'hero',
-			'light',
-			'neutral',
-			'primary',
-			'text',
-		].map((color, i) => ({
-			heading: `An icon with the ${color} color`,
+		...colors.map((color) => ({
+			subheading: titleCase(color),
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<components.HouseIcon color={color} />
 				</GEL>
 			),
 		})),
+
+		// All icons
 		...allIcons,
 	];
 }

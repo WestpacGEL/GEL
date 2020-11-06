@@ -15,17 +15,35 @@ export function AllStyles({ brand }) {
 }
 
 export function Docs({ brand }) {
-	const allSymbols = Object.keys(components).map((symbol) => {
-		const Symbol = components[symbol];
-		return {
-			heading: `${symbol} symbol`,
-			component: () => (
-				<GEL brand={brand} noPrefix>
-					<Symbol />
-				</GEL>
-			),
-		};
-	});
+	const allLogos = Object.keys(components)
+		.filter((logo) => logo.indexOf('Logo') >= 0)
+		.map((logo, i) => {
+			const Logo = components[logo];
+			return {
+				...(i === 0 && { heading: 'Logos' }),
+				subheading: logo,
+				component: () => (
+					<GEL brand={brand} noPrefix>
+						<Logo />
+					</GEL>
+				),
+			};
+		});
 
-	return [...allSymbols];
+	const allSymbols = Object.keys(components)
+		.filter((symbol) => symbol.indexOf('Symbol') >= 0)
+		.map((symbol, i) => {
+			const Symbol = components[symbol];
+			return {
+				...(i === 0 && { heading: 'Symbols' }),
+				subheading: symbol,
+				component: () => (
+					<GEL brand={brand} noPrefix>
+						<Symbol />
+					</GEL>
+				),
+			};
+		});
+
+	return [...allLogos, ...allSymbols];
 }

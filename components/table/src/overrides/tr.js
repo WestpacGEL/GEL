@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 import { defaultProps } from '../Tr';
 
 // ==============================
@@ -8,6 +16,10 @@ import { defaultProps } from '../Tr';
 // ==============================
 
 export const Tr = ({ state: _, ...rest }) => <tr {...rest} />;
+
+const BlenderTr = ({ className, ...rest }) => (
+	<Tr className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -75,7 +87,7 @@ export const defaultTr = {
 };
 
 export const blenderTr = {
-	component: Tr,
+	component: BlenderTr,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

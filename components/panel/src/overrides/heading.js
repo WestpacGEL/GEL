@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 
 // ==============================
@@ -34,7 +34,7 @@ const BlenderHeading = ({ state: { headingTag }, ...rest }) => (
 
 const headingStyles = () => {
 	const { TYPE } = useBrand();
-	return { label: 'panel-heading', ...TYPE.bodyFont[400], color: 'inherit' };
+	return { label: getLabel('panel-heading'), ...TYPE.bodyFont[400], color: 'inherit' };
 };
 
 // ==============================

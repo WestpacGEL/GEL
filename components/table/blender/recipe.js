@@ -17,6 +17,7 @@ export function AllStyles({ brand }) {
 			styles: blenderTable.styles,
 		},
 		Td: {
+			component: blenderTd.component,
 			styles: blenderTd.styles,
 		},
 		Tfoot: {
@@ -29,6 +30,7 @@ export function AllStyles({ brand }) {
 			styles: blenderThead.styles,
 		},
 		Tr: {
+			component: blenderTr.component,
 			styles: blenderTr.styles,
 		},
 	};
@@ -72,7 +74,7 @@ export function AllStyles({ brand }) {
 				</Tbody>
 				<Tfoot>
 					<Tr>
-						<Td>Footer goes here and should colSpan all columns</Td>
+						<Td>Footer goes here and should colspan all columns</Td>
 					</Tr>
 				</Tfoot>
 			</Table>
@@ -104,7 +106,7 @@ export function AllStyles({ brand }) {
 				</Tbody>
 				<Tfoot>
 					<Tr>
-						<Td colSpan="3">Footer goes here and should colSpan all columns</Td>
+						<Td colSpan="3">Footer goes here and should colspan all columns</Td>
 					</Tr>
 				</Tfoot>
 			</Table>
@@ -136,7 +138,7 @@ export function AllStyles({ brand }) {
 				</Tbody>
 				<Tfoot>
 					<Tr>
-						<Td>Footer goes here and should colSpan all columns</Td>
+						<Td>Footer goes here and should colspan all columns</Td>
 					</Tr>
 				</Tfoot>
 			</Table>
@@ -196,7 +198,7 @@ export function AllStyles({ brand }) {
 				</Tbody>
 				<Tfoot>
 					<Tr>
-						<Td>Footer goes here and should colSpan all columns</Td>
+						<Td>Footer goes here and should colspan all columns</Td>
 					</Tr>
 				</Tfoot>
 			</Table>
@@ -212,15 +214,17 @@ export function Docs({ brand }) {
 			attributes: blenderTable.attributes,
 		},
 		Td: {
+			component: blenderTd.component,
 			attributes: blenderTd.attributes,
 		},
 		Tr: {
+			component: blenderTr.component,
 			attributes: blenderTr.attributes,
 		},
 	};
 	return [
 		{
-			heading: 'A table',
+			heading: 'Default table',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Table>
@@ -261,15 +265,17 @@ export function Docs({ brand }) {
 						</Tbody>
 						<Tfoot>
 							<Tr>
-								<Td colSpan="3">Footer goes here and should colSpan all columns</Td>
+								<Td colSpan="3">Footer goes here and should colspan all columns</Td>
 							</Tr>
 						</Tfoot>
 					</Table>
 				</GEL>
 			),
 		},
+
+		// Striped/Bordered
 		{
-			heading: 'A striped table',
+			heading: 'Striped table',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Table striped>
@@ -310,7 +316,7 @@ export function Docs({ brand }) {
 						</Tbody>
 						<Tfoot>
 							<Tr>
-								<Td colSpan="3">Footer goes here and should colSpan all columns</Td>
+								<Td colSpan="3">Footer goes here and should colspan all columns</Td>
 							</Tr>
 						</Tfoot>
 					</Table>
@@ -318,7 +324,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A bordered table',
+			heading: 'Bordered table',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Table bordered>
@@ -359,7 +365,7 @@ export function Docs({ brand }) {
 						</Tbody>
 						<Tfoot>
 							<Tr>
-								<Td colSpan="3">Footer goes here and should colSpan all columns</Td>
+								<Td colSpan="3">Footer goes here and should colspan all columns</Td>
 							</Tr>
 						</Tfoot>
 					</Table>
@@ -367,7 +373,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A bordered and striped table',
+			heading: 'Bordered and striped table',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Table bordered striped>
@@ -408,15 +414,17 @@ export function Docs({ brand }) {
 						</Tbody>
 						<Tfoot>
 							<Tr>
-								<Td colSpan="3">Footer goes here and should colSpan all columns</Td>
+								<Td colSpan="3">Footer goes here and should colspan all columns</Td>
 							</Tr>
 						</Tfoot>
 					</Table>
 				</GEL>
 			),
 		},
+
+		// Highlights
 		{
-			heading: 'A table with highlights',
+			heading: 'Table with highlights',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Table>
@@ -477,7 +485,7 @@ export function Docs({ brand }) {
 						</Tbody>
 						<Tfoot>
 							<Tr>
-								<Td colSpan="6">Footer goes here and should colSpan all columns</Td>
+								<Td colSpan="6">Footer goes here and should colspan all columns</Td>
 							</Tr>
 						</Tfoot>
 					</Table>
@@ -485,7 +493,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A bordered table with highlights',
+			heading: 'Bordered table with highlights',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Table bordered>
@@ -546,7 +554,7 @@ export function Docs({ brand }) {
 						</Tbody>
 						<Tfoot>
 							<Tr>
-								<Td colSpan="6">Footer goes here and should colSpan all columns</Td>
+								<Td colSpan="6">Footer goes here and should colspan all columns</Td>
 							</Tr>
 						</Tfoot>
 					</Table>
@@ -554,7 +562,7 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A bordered and striped table with highlights',
+			heading: 'Bordered and striped table with highlights',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Table bordered striped>
@@ -615,7 +623,7 @@ export function Docs({ brand }) {
 						</Tbody>
 						<Tfoot>
 							<Tr>
-								<Td colSpan="6">Footer goes here and should colSpan all columns</Td>
+								<Td colSpan="6">Footer goes here and should colspan all columns</Td>
 							</Tr>
 						</Tfoot>
 					</Table>
