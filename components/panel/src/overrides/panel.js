@@ -27,7 +27,7 @@ const BlenderPanel = ({ className, ...rest }) => (
 // ==============================
 
 const panelStyles = (_, { look }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, SPACING } = useBrand();
 
 	const styleMap = {
 		hero: {
@@ -40,20 +40,19 @@ const panelStyles = (_, { look }) => {
 
 	return {
 		label: getLabel('panel'),
-		marginBottom: '1.3125rem',
+		marginBottom: SPACING(4),
 		backgroundColor: '#fff',
 		border: `1px solid ${styleMap[look].borderColor}`,
 		borderRadius: '0.1875rem',
 
 		table: {
 			overflow: 'hidden', //clip overflow for rounded corners
-			marginBottom: `0 !important`, //TO DO: Remove once GEL prefixing is fixed
+			marginBottom: 0,
 			borderBottomRightRadius: `calc(0.1875rem - 1px)`,
 			borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
 		},
-
 		'table caption': {
-			padding: ['0.75rem 0.75rem 0 0.75rem', null, '1.5rem 1.5rem 0 1.5rem'],
+			padding: [`${SPACING(2)} ${SPACING(2)} 0 ${SPACING(2)}`, null, `${SPACING(4)} ${SPACING(4)} 0 ${SPACING(4)}`],
 		},
 	};
 };
