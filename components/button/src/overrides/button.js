@@ -193,7 +193,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
 
-		// Ensure correct styling of `<a>` buttons within `<Body>` components 
+		// Ensure correct styling of `<a>` buttons within `<Body>` components
 		'&, a&': {
 			textDecoration: 'none',
 			...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
