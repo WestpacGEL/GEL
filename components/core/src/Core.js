@@ -3,62 +3,35 @@
 import { jsx, CacheProvider } from '@emotion/core';
 import { Fragment, useState } from 'react';
 import createCache from '@emotion/cache';
+import 'core-js/features/weak-set';
 
 import { useBrand } from './Brand';
 import { reset } from './reset';
 
-const coreLabel = 'core'; // for use in stylis plugin and the css label
+const coreLabel = 'core';
+const seen = new WeakSet();
 
 const AddRootClass = ({ children }) => {
 	let [cache] = useState(() => {
 		return createCache({
 			stylisPlugins: [
-				(context, content, selectors) => {
+				// Prepend all CSS selectors that are children of the GEL wrapper (Core) with `.GEL` parent class to increase specificity
+				(context, content, selectors, parents, line, column, length, type) => {
 					if (
-						context === -2 &&
-						selectors.length &&
-						selectors[0] !== '' && // exclude <Global /> styles
-						!selectors[0].includes(`-${coreLabel}`) // exclude nested <GEL /> (Core) styles
+						context !== 2 ||
+						type === 107 ||
+						seen.has(selectors) ||
+						seen.has(parents) ||
+						selectors[0].includes(`-${coreLabel}`)
 					) {
-						/* 1. Strip any parsed CSS comments */
-						content = content.replace(/\/\*.*?\*\//g, '');
-
-						/**
-						 * 2. Add to beginning of `content` string, if not beginning with `@`
-						 * (catches `@media` and `@font-face` queries etc)
-						 *
-						 * Regex explanation:
-						 * - ^ Beginning of string
-						 * - [^@] Negated set (not `@` symbol)
-						 * - .* Any character except new line, match 0 or more
-						 * - /g Global search
-						 */
-						content = content.replace(/^[^@].*/g, (s) => `.GEL ${s}`);
-
-						/**
-						 * 3. Additionally, consider selectors found within the same string (e.g. child selectors)
-						 *
-						 * Regex explanation:
-						 * - (;}) Capture group #1 matching `;}`
-						 * - ([^@/}]) Capture group #2 matching negated set (not `@`, `/` or `}` symbol)
-						 * - /g Global search
-						 */
-						content = content.replace(/(;})([^@/}])/g, '$1.GEL $2');
-
-						/**
-						 * 4. Additionally, insert within all @media queries
-						 *
-						 * Regex explanation:
-						 * - @ Match `@` character
-						 * - .+ Any character except new line, match 1 or more
-						 * - ? Makes the preceding quantifier lazy, causing it to match as few characters as possible
-						 * - /g Global search
-						 *
-						 * - i.e. match `@media (min-width:576px){` and `@print {`
-						 */
-						content = content.replace(/@.+?\{/g, (s) => `${s}.GEL `);
+						return;
 					}
-					return content;
+
+					seen.add(selectors);
+
+					for (let i = 0; i < selectors.length; i++) {
+						selectors[i] = `.GEL ${selectors[i]}`;
+					}
 				},
 			],
 		});
