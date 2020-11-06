@@ -52,7 +52,11 @@ const panelStyles = (_, { look }) => {
 			borderBottomLeftRadius: `calc(0.1875rem - 1px)`,
 		},
 		'table caption': {
-			padding: [`${SPACING(2)} ${SPACING(2)} 0 ${SPACING(2)}`, null, `${SPACING(4)} ${SPACING(4)} 0 ${SPACING(4)}`],
+			padding: [
+				`${SPACING(2)} ${SPACING(2)} 0 ${SPACING(2)}`,
+				null,
+				`${SPACING(4)} ${SPACING(4)} 0 ${SPACING(4)}`,
+			],
 		},
 	};
 };
