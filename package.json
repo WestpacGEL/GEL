@@ -91,7 +91,7 @@
 		"@babel/preset-react": "^7.9.4",
 		"@changesets/cli": "^2.6.5",
 		"@emotion/cache": "^10.0.29",
-		"@emotion/core": "^10.0.28",
+		"@emotion/core": "^10.1.1",
 		"@emotion/weak-memoize": "^0.2.5",
 		"@manypkg/cli": "^0.13.0",
 		"@preconstruct/cli": "^1.1.14",
