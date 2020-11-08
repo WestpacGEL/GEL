@@ -32,7 +32,10 @@ const AddRootClass = ({ children }) => {
 					seen.add(selectors);
 
 					for (let i = 0; i < selectors.length; i++) {
-						selectors[i] = `.GEL ${selectors[i]}`;
+						// Prepend selector with `.GEL `, if not `html` or `body` selectors (possible if styles are passed to Emotion's `<Global />` component within the `<GEL>` wrapper... e.g. <GEL><Global styles={{ 'body': { margin: 0 } }} /></GEL>)
+						if (!['html', 'body'].includes(selectors[i])) {
+							selectors[i] = `.GEL ${selectors[i]}`;
+						}
 					}
 				},
 			],

@@ -10,6 +10,18 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<h2>Global styles</h2>
+			<Global
+				styles={{
+					'html, body': { content: '"Test \'html, body\'"' },
+					html: { content: '"Test \'html\'"' },
+					body: { content: '"Test \'body\'"' },
+				}}
+			/>
+			<p>
+				html, body: <em>Check DOM for html and body styling</em>
+			</p>
+
 			<h2>Standard styling</h2>
 			<p css={{ color: 'green' }}>This is green</p>
 
