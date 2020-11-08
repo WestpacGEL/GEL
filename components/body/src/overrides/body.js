@@ -53,14 +53,11 @@ const bodyStyles = (_, props) => {
 			backgroundColor: COLORS.tints.primary20,
 		},
 
-		a: {
+		'a:not([class*="-button"])': {
 			color: COLORS.primary,
 			textDecoration: 'underline',
-
-			':hover': {
-				textDecoration: 'underline',
-			},
 		},
+
 		...(props[key]
 			? {
 					'&::after': {
