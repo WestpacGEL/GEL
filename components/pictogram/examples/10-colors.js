@@ -17,15 +17,17 @@ function Example({ brand }) {
 				const Pictogram = components[pictogram];
 				return (
 					<Grid key={pictogram} css={{ marginBottom: 6 }}>
-						<Cell css={{ backgroundColor: COLORS.background }}>
+						<Cell>
 							<Pictogram />
 							<Name>{`<${pictogram}\u00A0/>`}</Name>
 						</Cell>
 
 						{colors.map((color) => (
-							<Cell key={color} css={{ backgroundColor: COLORS.background }}>
+							<Cell key={color} css={color === '#fff' && { backgroundColor: COLORS.hero }}>
 								<Pictogram color={color} />
-								<Name>{`<${pictogram} color="${color}"\u00A0/>`}</Name>
+								<Name
+									css={color === '#fff' && { color: '#fff' }}
+								>{`<${pictogram} color="${color}"\u00A0/>`}</Name>
 							</Cell>
 						))}
 					</Grid>
