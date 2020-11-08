@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useMediaQuery } from '@westpac/core';
+import { GEL, jsx, useMediaQuery, Global } from '@westpac/core';
 
 function Example({ brand }) {
 	const mq = useMediaQuery();
@@ -67,6 +67,16 @@ function Example({ brand }) {
 				}}
 			>
 				p&: This is green
+			</p>
+			<p
+				css={{
+					'&, p&': {
+						color: 'green',
+						':hover': { color: 'pink' },
+					},
+				}}
+			>
+				&, p&: This is green (hover pink)
 			</p>
 
 			<hr />
