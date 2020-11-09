@@ -12,7 +12,6 @@ import { Footer } from '../../components/layout/footer';
 import {
 	ReactLogo,
 	AtlassianLogo,
-	AxureLogo,
 	FacebookLogo,
 	GitHubLogo,
 	GovLogo,
@@ -42,19 +41,22 @@ const Homepage = () => {
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<h2>Accessibility is in everything we do</h2>
+									<h2>Accessible by design</h2>
 									<p>
-										Accessibility and inclusive design is a strong part of how we design for the GEL
-										Design System.
+										Accessibility and inclusive design is a strong part of the GEL Design System.
 									</p>
 									<p>
-										We support teams to deliver to the Group accessibility commitment, to provide
-										meaningful banking experiences to all customers.
+										The system supports teams to deliver to the Group accessibility commitment, to
+										provide meaningful banking experiences to all customers.
 									</p>
 									<p>
-										We delve into the detail and pressure test solutions against the latest WCAG
-										recommendations, delivering the most accessible components and patterns
-										possible. We then guide teams further along the path of accessibility.
+										Solutions have been thought about in detail and pressure tested against the
+										latest WCAG recommendations, delivering the most accessible components and
+										patterns possible.
+									</p>
+									<p>
+										The Design Quality team can then guide teams further along the path of
+										accessibility.
 									</p>
 								</Body>
 							</Cell>
@@ -197,7 +199,7 @@ const Homepage = () => {
 
 export default Homepage;
 
-const DownloadsAndLinks = (props) => {
+const DownloadsAndLinks = props => {
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
