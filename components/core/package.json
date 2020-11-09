@@ -54,7 +54,7 @@
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@emotion/cache": "^10.0.29",
-		"@emotion/core": "^10.1.1",
+		"@emotion/core": "^10.0.28",
 		"@emotion/weak-memoize": "^0.2.5",
 		"classnames": "^2.2.6",
 		"color": "^3.1.2",
