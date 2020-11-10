@@ -1,30 +1,33 @@
 /** @jsx jsx */
 
 import { jsx, getLabel } from '@westpac/core';
-import { useTransition, animated } from 'react-spring';
+import { useState } from 'react';
+import { useSpring, animated } from 'react-spring';
 
 // ==============================
 // Component
 // ==============================
 
 const Backdrop = ({ state: { open }, ...rest }) => {
-	const backdropTransition = useTransition(open, null, {
-		from: {
-			opacity: 0,
+	const [show, setShow] = useState(open);
+
+	const fade = useSpring({
+		config: { duration: 150 },
+		from: { position: 'relative', zIndex: 1001, opacity: 0 },
+		opacity: open ? 0.5 : 0,
+		onStart: () => {
+			if (open) {
+				setShow(true);
+			}
 		},
-		enter: { opacity: 1 },
-		leave: { opacity: 0 },
-		config: { duration: 400 },
+		onRest: () => {
+			if (!open) {
+				setShow(false);
+			}
+		},
 	});
 
-	return backdropTransition.map(
-		({ item, key, props }) =>
-			item && (
-				<animated.div key={key} style={props}>
-					<div {...rest} />
-				</animated.div>
-			)
-	);
+	return <animated.div style={fade}>{show && <div {...rest} />}</animated.div>;
 };
 
 const BlenderBackdrop = (props) => <div {...props} />;
@@ -36,16 +39,13 @@ const BlenderBackdrop = (props) => <div {...props} />;
 const backdropStyles = () => {
 	return {
 		label: getLabel('modal-backdrop'),
-		zIndex: '1001',
 		position: 'fixed',
-		backgroundColor: 'rgba(0,0,0,0.5)',
+		zIndex: 1001,
 		top: 0,
 		right: 0,
 		bottom: 0,
 		left: 0,
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'baseline',
+		backgroundColor: '#000',
 	};
 };
 

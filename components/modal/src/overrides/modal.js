@@ -3,14 +3,13 @@
 import {
 	jsx,
 	useMediaQuery,
-	useBrand,
 	getLabel,
 	classNames,
 	getModifier,
 	styleReconciler,
 	formatClassName,
 } from '@westpac/core';
-import { useTransition, animated } from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 import { forwardRef } from 'react';
 
 import { defaultProps } from '../Modal';
@@ -20,34 +19,22 @@ import { defaultProps } from '../Modal';
 // ==============================
 
 const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
-	const { SPACING } = useBrand();
-
-	const modalTransition = useTransition(open, null, {
-		from: {
-			position: 'fixed',
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'baseline',
-			left: 0,
-			right: 0,
-			top: SPACING(5),
-			bottom: 0,
-			opacity: 0,
-			transform: `translateY(-20px)`,
-			zIndex: '1002',
-		},
-		enter: { opacity: 1, transform: `translateY(0px)` },
-		leave: { opacity: 0, transform: `translateY(-40px)` },
-		config: { duration: 350 },
+	const fade = useSpring({
+		config: { duration: 150 },
+		from: { position: 'relative', zIndex: 1002, opacity: 0 },
+		_dspl: open ? 1 : 0,
+		opacity: open ? 1 : 0,
 	});
 
-	return modalTransition.map(
-		({ item, key, props }) =>
-			item && (
-				<animated.div key={key} style={props}>
-					<div ref={ref} {...rest} />
-				</animated.div>
-			)
+	return (
+		<animated.div
+			style={{
+				...fade,
+				display: fade._dspl.interpolate((d) => (d === 0 ? 'none' : 'block')),
+			}}
+		>
+			<div ref={ref} {...rest} />
+		</animated.div>
 	);
 });
 
@@ -59,26 +46,21 @@ const BlenderModal = forwardRef(({ state, className, ...rest }, ref) => (
 // Styles
 // ==============================
 
-const modalStyles = (_, { size }) => {
-	const mq = useMediaQuery();
+const modalStyles = (_, { open }) => ({
+	label: getLabel('modal'),
+	position: 'fixed',
+	zIndex: 1002,
+	top: 0,
+	bottom: 0,
+	left: 0,
+	right: 0,
+	overflow: 'hidden',
 
-	return mq({
-		label: getLabel('modal'),
-		position: 'relative',
-		overflow: 'auto',
-		maxHeight: '85%',
-		margin: '0 0.75rem',
-		backgroundColor: '#fff',
-		borderRadius: '0.1875rem',
-		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
-		width: [
-			'auto',
-			null,
-			size === 'small' ? '18.75rem' : '37.5rem',
-			size === 'large' && '56.25rem',
-		],
-	})[0];
-};
+	...(open && {
+		overflowX: 'hidden',
+		overflowY: 'auto',
+	}),
+});
 
 // ==============================
 // Blender Styles

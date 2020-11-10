@@ -2,12 +2,13 @@
 
 import { GEL, jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext, useState, useEffect, useRef } from 'react';
-import { useOutsideClick } from '@westpac/hooks';
 import { FocusOn } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import { defaultModal } from './overrides/modal';
+import { defaultModalDialog } from './overrides/modalDialog';
+import { defaultModalContent } from './overrides/modalContent';
 import { defaultBackdrop } from './overrides/backdrop';
 import { defaultCloseBtn } from './overrides/closeBtn';
 import { defaultHeader } from './overrides/header';
@@ -54,6 +55,8 @@ export const Modal = ({
 
 	const defaultOverrides = {
 		Modal: defaultModal,
+		ModalDialog: defaultModalDialog,
+		ModalContent: defaultModalContent,
 		Backdrop: defaultBackdrop,
 		Header: defaultHeader,
 		Heading: defaultHeading,
@@ -72,6 +75,16 @@ export const Modal = ({
 
 	const {
 		Modal: { component: Modal, styles: modalStyles, attributes: modalAttributes },
+		ModalDialog: {
+			component: ModalDialog,
+			styles: modalDialogStyles,
+			attributes: modalDialogAttributes,
+		},
+		ModalContent: {
+			component: ModalContent,
+			styles: modalContentStyles,
+			attributes: modalContentAttributes,
+		},
 		Backdrop: { component: Backdrop, styles: backdropStyles, attributes: backdropAttributes },
 		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
 		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
@@ -106,46 +119,58 @@ export const Modal = ({
 		};
 	});
 
-	useOutsideClick(modalRef, () => {
-		if (dismissible) {
-			handleClose();
-		}
-	});
-
 	if (typeof window !== 'undefined') {
 		return ReactDOM.createPortal(
 			<GEL brand={brand}>
 				<ModalContext.Provider value={{ state }}>
-					<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
-					<FocusOn enabled={open} onActivation={() => headingRef.current.focus()}>
+					<FocusOn enabled={open} autoFocus={false} onActivation={() => headingRef.current.focus()}>
 						<Modal
 							ref={modalRef}
+							onClick={(e) => {
+								if (e.target !== e.currentTarget) return;
+								if (dismissible) {
+									handleClose();
+								}
+							}}
 							state={state}
 							{...rest}
 							{...modalAttributes(state)}
 							css={modalStyles(state)}
 						>
-							<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
-								<Heading
-									ref={headingRef}
+							<ModalDialog
+								state={state}
+								{...modalDialogAttributes(state)}
+								css={modalDialogStyles(state)}
+							>
+								<ModalContent
 									state={state}
-									{...headingAttributes(state)}
-									css={headingStyles(state)}
+									{...modalContentAttributes(state)}
+									css={modalContentStyles(state)}
 								>
-									{heading}
-								</Heading>
-								{dismissible && (
-									<CloseBtn
-										onClick={() => handleClose()}
-										state={state}
-										{...closeBtnAttributes(state)}
-										css={closeBtnStyles(state)}
-									/>
-								)}
-							</Header>
-							{children}
+									<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
+										<Heading
+											ref={headingRef}
+											state={state}
+											{...headingAttributes(state)}
+											css={headingStyles(state)}
+										>
+											{heading}
+										</Heading>
+										{dismissible && (
+											<CloseBtn
+												onClick={() => handleClose()}
+												state={state}
+												{...closeBtnAttributes(state)}
+												css={closeBtnStyles(state)}
+											/>
+										)}
+									</Header>
+									{children}
+								</ModalContent>
+							</ModalDialog>
 						</Modal>
 					</FocusOn>
+					<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
 				</ModalContext.Provider>
 			</GEL>,
 			document.body
