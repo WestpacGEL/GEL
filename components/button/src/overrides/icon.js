@@ -30,9 +30,9 @@ const BlenderIcon = (props) => (
 const iconStyles = (_, { before, after, dropdown, block, hasChildren }) => {
 	let label = 'button-icon';
 
-	if (before) label = `button-icon-before`;
-	if (after) label = `button-icon-after`;
-	if (dropdown) label = `button-icon-dropdown`;
+	if (before && hasChildren) label = `button-icon-before`;
+	if (after && hasChildren) label = `button-icon-after`;
+	if (dropdown) label = block ? `button-icon-dropdown-block` : `button-icon-dropdown-block`;
 
 	return {
 		label,
