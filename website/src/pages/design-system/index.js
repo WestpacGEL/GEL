@@ -199,7 +199,7 @@ const Homepage = () => {
 
 export default Homepage;
 
-const DownloadsAndLinks = props => {
+const DownloadsAndLinks = (props) => {
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
