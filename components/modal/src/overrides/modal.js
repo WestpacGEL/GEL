@@ -9,8 +9,8 @@ import {
 	styleReconciler,
 	formatClassName,
 } from '@westpac/core';
-import { useSpring, animated } from 'react-spring';
 import { forwardRef } from 'react';
+import { useSpring, animated } from 'react-spring';
 
 import { defaultProps } from '../Modal';
 

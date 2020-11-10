@@ -2,7 +2,7 @@
 
 import { GEL, jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext, useState, useEffect, useRef } from 'react';
-import { FocusOn } from 'react-focus-on';
+import { FocusOn, AutoFocusInside } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
@@ -91,8 +91,8 @@ export const Modal = ({
 		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const modalRef = useRef();
-	const headingRef = useRef();
+	const modalRef = useRef(null);
+	const headingRef = useRef(null);
 
 	useEffect(() => {
 		setOpen(isOpen);
@@ -123,39 +123,41 @@ export const Modal = ({
 		return ReactDOM.createPortal(
 			<GEL brand={brand}>
 				<ModalContext.Provider value={{ state }}>
-					<FocusOn enabled={open} autoFocus={false} onActivation={() => headingRef.current.focus()}>
-						<Modal
-							ref={modalRef}
-							onClick={(e) => {
-								if (e.target !== e.currentTarget) return;
-								if (dismissible) {
-									handleClose();
-								}
-							}}
+					<Modal
+						ref={modalRef}
+						onClick={(e) => {
+							if (e.target !== e.currentTarget) return;
+							if (dismissible) {
+								handleClose();
+							}
+						}}
+						state={state}
+						{...rest}
+						{...modalAttributes(state)}
+						css={modalStyles(state)}
+					>
+						<ModalDialog
 							state={state}
-							{...rest}
-							{...modalAttributes(state)}
-							css={modalStyles(state)}
+							{...modalDialogAttributes(state)}
+							css={modalDialogStyles(state)}
 						>
-							<ModalDialog
-								state={state}
-								{...modalDialogAttributes(state)}
-								css={modalDialogStyles(state)}
-							>
+							<FocusOn enabled={open}>
 								<ModalContent
 									state={state}
 									{...modalContentAttributes(state)}
 									css={modalContentStyles(state)}
 								>
 									<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
-										<Heading
-											ref={headingRef}
-											state={state}
-											{...headingAttributes(state)}
-											css={headingStyles(state)}
-										>
-											{heading}
-										</Heading>
+										<AutoFocusInside>
+											<Heading
+												ref={headingRef}
+												state={state}
+												{...headingAttributes(state)}
+												css={headingStyles(state)}
+											>
+												{heading}
+											</Heading>
+										</AutoFocusInside>
 										{dismissible && (
 											<CloseBtn
 												onClick={() => handleClose()}
@@ -167,9 +169,9 @@ export const Modal = ({
 									</Header>
 									{children}
 								</ModalContent>
-							</ModalDialog>
-						</Modal>
-					</FocusOn>
+							</FocusOn>
+						</ModalDialog>
+					</Modal>
 					<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
 				</ModalContext.Provider>
 			</GEL>,
