@@ -9,10 +9,10 @@ import ReactDOM from 'react-dom';
 import { defaultModal } from './overrides/modal';
 import { defaultModalDialog } from './overrides/modalDialog';
 import { defaultModalContent } from './overrides/modalContent';
-import { defaultBackdrop } from './overrides/backdrop';
-import { defaultCloseBtn } from './overrides/closeBtn';
 import { defaultHeader } from './overrides/header';
 import { defaultHeading } from './overrides/heading';
+import { defaultCloseBtn } from './overrides/closeBtn';
+import { defaultBackdrop } from './overrides/backdrop';
 import pkg from '../package.json';
 
 // ==============================
@@ -57,10 +57,10 @@ export const Modal = ({
 		Modal: defaultModal,
 		ModalDialog: defaultModalDialog,
 		ModalContent: defaultModalContent,
-		Backdrop: defaultBackdrop,
 		Header: defaultHeader,
 		Heading: defaultHeading,
 		CloseBtn: defaultCloseBtn,
+		Backdrop: defaultBackdrop,
 	};
 
 	const state = {
@@ -85,10 +85,10 @@ export const Modal = ({
 			styles: modalContentStyles,
 			attributes: modalContentAttributes,
 		},
-		Backdrop: { component: Backdrop, styles: backdropStyles, attributes: backdropAttributes },
 		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
 		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
 		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
+		Backdrop: { component: Backdrop, styles: backdropStyles, attributes: backdropAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const modalRef = useRef(null);
@@ -224,6 +224,16 @@ Modal.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		Modal: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ModalDialog: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ModalContent: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

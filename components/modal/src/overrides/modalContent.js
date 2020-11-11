@@ -1,12 +1,16 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx, getLabel, formatClassName } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 const ModalContent = ({ state: _, ...rest }) => <div {...rest} />;
+
+const BlenderModalContent = ({ state, className, ...rest }) => (
+	<div className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -33,6 +37,12 @@ const modalContentAttributes = () => null;
 
 export const defaultModalContent = {
 	component: ModalContent,
+	styles: modalContentStyles,
+	attributes: modalContentAttributes,
+};
+
+export const blenderModalContent = {
+	component: BlenderModalContent,
 	styles: modalContentStyles,
 	attributes: modalContentAttributes,
 };

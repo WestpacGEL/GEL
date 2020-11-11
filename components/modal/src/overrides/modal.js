@@ -2,7 +2,6 @@
 
 import {
 	jsx,
-	useMediaQuery,
 	getLabel,
 	classNames,
 	getModifier,
@@ -13,6 +12,7 @@ import { forwardRef } from 'react';
 import { useSpring, animated } from 'react-spring';
 
 import { defaultProps } from '../Modal';
+import { nestedStyles } from './modalDialog';
 
 // ==============================
 // Component
@@ -66,9 +66,10 @@ const modalStyles = (_, { open }) => ({
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { size }) => {
-	const props = { size };
+const blenderStyles = (_, { open, size }) => {
+	const props = { open, size };
 	const baseStyles = modalStyles(_, defaultProps);
+	Object.assign(baseStyles, { display: 'none' });
 
 	let modifiers = getModifier(defaultProps, props);
 	if (!modifiers.length) return baseStyles;
@@ -88,7 +89,7 @@ const blenderStyles = (_, { size }) => {
 			break;
 	}
 
-	return { label, ...reconciledStyles };
+	return { label, ...reconciledStyles, ...nestedStyles(props) };
 };
 
 // ==============================
