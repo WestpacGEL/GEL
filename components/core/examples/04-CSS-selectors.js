@@ -109,6 +109,9 @@ function Example({ brand }) {
 			<div>
 				<p css={{ 'div &': { color: 'green' } }}>div &: This is green</p>
 			</div>
+			<div className="parentClass">
+				<p css={{ '.parentClass &': { color: 'green' } }}>.parentClass &: This is green</p>
+			</div>
 
 			<h3>Child selector (>)</h3>
 			<div css={{ 'p > span': { color: 'green' } }}>

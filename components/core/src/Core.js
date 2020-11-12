@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, CacheProvider } from '@emotion/core';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import createCache from '@emotion/cache';
 import 'core-js/features/weak-set';
 
@@ -39,9 +39,10 @@ const AddRootClass = ({ children }) => {
 						 * 3. Selectors already prepended with `.GEL `
 						 */
 						if (
-							!['html', 'body'].includes(selectors[i]) /* 1 */ &&
+							!selectors[i].includes('html') /* 1 */ &&
+							!selectors[i].includes('body') /* 1 */ &&
 							!selectors[i].includes(`-${coreLabel}`) /* 2 */ &&
-							!selectors[i].includes('.GEL') /* 3 */
+							!selectors[i].includes('.GEL ') /* 3 */
 						) {
 							selectors[i] = `.GEL ${selectors[i]}`;
 						}

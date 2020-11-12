@@ -1,19 +1,19 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { createContext, useContext, useState, useEffect, useRef } from 'react';
-import { useOutsideClick } from '@westpac/hooks';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { createContext, useContext, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultModalWrapper } from './modalWrapper';
 import { defaultModal } from '../overrides/modal';
-import { defaultCloseBtn } from '../overrides/closeBtn';
+import { defaultModalDialog } from '../overrides/modalDialog';
+import { defaultModalContent } from '../overrides/modalContent';
 import { defaultHeader } from '../overrides/header';
 import { defaultHeading } from '../overrides/heading';
+import { defaultCloseBtn } from '../overrides/closeBtn';
+import { defaultBackdrop } from '../overrides/backdrop';
 import pkg from '../../package.json';
 
 // Non-Portal version of Modal for the blender
-// Also adding an extra wrapper component to handle transition to replace react-spring
 
 // ==============================
 // Context and Consumer Hook
@@ -54,11 +54,13 @@ export const Modal = ({
 	const [open, setOpen] = useState(isOpen);
 
 	const defaultOverrides = {
-		ModalWrapper: defaultModalWrapper,
 		Modal: defaultModal,
+		ModalDialog: defaultModalDialog,
+		ModalContent: defaultModalContent,
 		Header: defaultHeader,
 		Heading: defaultHeading,
 		CloseBtn: defaultCloseBtn,
+		Backdrop: defaultBackdrop,
 	};
 
 	const state = {
@@ -72,86 +74,63 @@ export const Modal = ({
 	};
 
 	const {
-		ModalWrapper: {
-			component: ModalWrapper,
-			styles: modalWrapperStyles,
-			attributes: modalWrapperAttributes,
-		},
 		Modal: { component: Modal, styles: modalStyles, attributes: modalAttributes },
+		ModalDialog: {
+			component: ModalDialog,
+			styles: modalDialogStyles,
+			attributes: modalDialogAttributes,
+		},
+		ModalContent: {
+			component: ModalContent,
+			styles: modalContentStyles,
+			attributes: modalContentAttributes,
+		},
 		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
 		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
 		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
+		Backdrop: { component: Backdrop, styles: backdropStyles, attributes: backdropAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const modalRef = useRef();
-	const headingRef = useRef();
-
-	useEffect(() => {
-		setOpen(isOpen);
-	}, [isOpen]);
-
-	const handleClose = () => {
-		if (onClose) {
-			onClose();
-		} else {
-			setOpen(false);
-		}
-	};
-
-	// on escape close modal
-	const keyHandler = (event) => {
-		if (dismissible && open && event.keyCode === 27) handleClose();
-	};
-
-	// bind key events
-	useEffect(() => {
-		window.document.addEventListener('keydown', keyHandler);
-		return () => {
-			window.document.removeEventListener('keydown', keyHandler);
-		};
-	});
-
-	useOutsideClick(modalRef, () => {
-		if (dismissible) {
-			handleClose();
-		}
-	});
+	const modalRef = useRef(null);
+	const headingRef = useRef(null);
 
 	return (
 		<ModalContext.Provider value={{ state }}>
-			<ModalWrapper
+			<Modal
+				ref={modalRef}
 				state={state}
-				{...modalWrapperAttributes(state)}
-				css={modalWrapperStyles(state)}
+				{...rest}
+				{...modalAttributes(state)}
+				css={modalStyles(state)}
 			>
-				<Modal
-					ref={modalRef}
-					state={state}
-					{...rest}
-					{...modalAttributes(state)}
-					css={modalStyles(state)}
-				>
-					<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
-						<Heading
-							ref={headingRef}
-							state={state}
-							{...headingAttributes(state)}
-							css={headingStyles(state)}
-						>
-							{heading}
-						</Heading>
-						{dismissible && (
-							<CloseBtn
-								onClick={() => handleClose()}
+				<ModalDialog state={state} {...modalDialogAttributes(state)} css={modalDialogStyles(state)}>
+					<ModalContent
+						state={state}
+						{...modalContentAttributes(state)}
+						css={modalContentStyles(state)}
+					>
+						<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
+							<Heading
+								ref={headingRef}
 								state={state}
-								{...closeBtnAttributes(state)}
-								css={{ '&&': closeBtnStyles(state) }}
-							/>
-						)}
-					</Header>
-					{children}
-				</Modal>
-			</ModalWrapper>
+								{...headingAttributes(state)}
+								css={headingStyles(state)}
+							>
+								{heading}
+							</Heading>
+							{dismissible && (
+								<CloseBtn
+									state={state}
+									{...closeBtnAttributes(state)}
+									css={closeBtnStyles(state)}
+								/>
+							)}
+						</Header>
+						{children}
+					</ModalContent>
+				</ModalDialog>
+			</Modal>
+			<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
 		</ModalContext.Provider>
 	);
 };
@@ -202,12 +181,12 @@ Modal.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ModalWrapper: PropTypes.shape({
+		ModalDialog: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Backdrop: PropTypes.shape({
+		ModalContent: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

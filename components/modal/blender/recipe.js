@@ -4,11 +4,13 @@ import React from 'react';
 import { Modal, Body, Footer } from '../src/blender';
 import { Button, blenderIcon } from '@westpac/button';
 
+import { blenderModalDialog } from '../src/overrides/modalDialog';
+import { blenderModalContent } from '../src/overrides/modalContent';
 import { blenderCloseBtn } from '../src/overrides/closeBtn';
 import { blenderHeading } from '../src/overrides/heading';
 import { blenderModal } from '../src/overrides/modal';
 import { blenderBody } from '../src/overrides/body';
-import { blenderModalWrapper } from '../src/blender/modalWrapper';
+import { blenderBackdrop } from '../src/overrides/backdrop';
 
 const sizes = ['small', 'medium', 'large'];
 
@@ -19,17 +21,25 @@ export function AllStyles({ brand }) {
 			component: blenderModal.component,
 			styles: blenderModal.styles,
 		},
-		ModalWrapper: {
-			styles: blenderModalWrapper.styles,
+		ModalDialog: {
+			component: blenderModalDialog.component,
+			styles: blenderModalDialog.styles,
 		},
-		Body: {
-			component: blenderBody.component,
+		ModalContent: {
+			component: blenderModalContent.component,
 		},
 		CloseBtn: {
 			component: blenderCloseBtn.component,
 		},
 		Heading: {
 			component: blenderHeading.component,
+		},
+		Body: {
+			component: blenderBody.component,
+		},
+		Backdrop: {
+			component: blenderBackdrop.component,
+			styles: blenderBackdrop.styles,
 		},
 	};
 	overridesWithTokens['@westpac/button'] = {
@@ -71,11 +81,11 @@ export function Docs({ brand }) {
 			component: blenderModal.component,
 			attributes: blenderModal.attributes,
 		},
-		ModalWrapper: {
-			attributes: blenderModalWrapper.attributes,
+		ModalDialog: {
+			component: blenderModalDialog.component,
 		},
-		Body: {
-			component: blenderBody.component,
+		ModalContent: {
+			component: blenderModalContent.component,
 		},
 		CloseBtn: {
 			component: blenderCloseBtn.component,
@@ -84,6 +94,12 @@ export function Docs({ brand }) {
 		Heading: {
 			component: blenderHeading.component,
 			attributes: blenderHeading.attributes,
+		},
+		Body: {
+			component: blenderBody.component,
+		},
+		Backdrop: {
+			component: () => null, //not required, jQuery rendered
 		},
 	};
 	overridesWithTokens['@westpac/button'] = {
