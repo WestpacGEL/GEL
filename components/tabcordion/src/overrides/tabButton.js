@@ -108,8 +108,8 @@ export const tabBtnLegoStyles = (_) => {
 	const reconSelectedLegoStyles = styleReconciler(baseStyles, selectedLegoStyles);
 
 	return {
-		[`.__convert__${baseStyles.label}-selected`]: reconSelectedLegoStyles,
 		[`.__convert__${baseStyles.label}`]: reconLegoStyles,
+		[`.__convert__${baseStyles.label}-selected`]: reconSelectedLegoStyles,
 	};
 };
 // ==============================
