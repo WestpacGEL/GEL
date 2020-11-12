@@ -26,7 +26,7 @@ $(function () {
 		})
 		.parent()
 		.on('keyup', function (e) {
-			if (e.keyCode === 27) {
+			if (e.key === 'Escape' || e.keyCode === 27) {
 				GELButtonDropdownToggle($(this).find('[data-js="buttonDropdown-btn__version__"]'), 'close');
 			}
 		});
