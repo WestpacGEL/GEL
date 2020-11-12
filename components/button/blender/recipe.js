@@ -50,6 +50,7 @@ export function AllStyles({ brand }) {
 			<Button block>Text</Button>
 
 			{/* Icon */}
+			<Button iconAfter={HouseIcon} />
 			<Button iconBefore={HouseIcon}>Text</Button>
 			<Button iconAfter={HouseIcon}>Text</Button>
 			<Button justify>Text</Button>
