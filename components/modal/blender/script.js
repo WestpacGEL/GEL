@@ -28,9 +28,11 @@ function GELModalToggle($el, mode) {
 	mode = typeof mode !== 'undefined' ? mode : 'toggle';
 
 	var classes = $el.children().first().attr('class').split(/\s+/);
-	var baseClass = classes.filter(function (el) {
-		return /dialog$/.test(el);
-	})[0].replace('-dialog', '');
+	var baseClass = classes
+		.filter(function (el) {
+			return /dialog$/.test(el);
+		})[0]
+		.replace('-dialog', '');
 	var openClass = baseClass + '-open';
 	var isOpen = $el.hasClass(openClass);
 
