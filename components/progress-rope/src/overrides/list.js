@@ -36,11 +36,24 @@ const listStyles = () => {
 	};
 };
 
+const blenderStyles = () => {
+	const nestedStyles = {
+		'> .__convert__progressRope-step:last-of-type': {
+			'::before': {
+				display: 'none !important',
+			},
+		},
+	};
+
+	return { ...listStyles(), ...nestedStyles };
+};
 // ==============================
 // Attributes
 // ==============================
 
-const listAttributes = () => null;
+const listAttributes = () => ({
+	role: 'list',
+});
 
 // ==============================
 // Exports
@@ -54,6 +67,6 @@ export const defaultList = {
 
 export const blenderList = {
 	component: List,
-	styles: listStyles,
+	styles: blenderStyles,
 	attributes: listAttributes,
 };

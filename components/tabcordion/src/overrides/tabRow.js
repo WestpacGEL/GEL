@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { jsx, getLabel, classNames, getModifier } from '@westpac/core';
+import { jsx, getLabel, classNames, getModifier, formatClassName } from '@westpac/core';
 
 import { defaultProps } from '../blender/Tabcordion';
 // ==============================
@@ -9,6 +9,10 @@ import { defaultProps } from '../blender/Tabcordion';
 // ==============================
 
 const TabRow = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+
+const BlenderTabRow = forwardRef(({ state: _, className, ...rest }, ref) => (
+	<div ref={ref} className={formatClassName(className)} {...rest} />
+));
 
 // ==============================
 // Styles
@@ -56,7 +60,7 @@ export const defaultTabRow = {
 };
 
 export const blenderTabRow = {
-	component: TabRow,
+	component: BlenderTabRow,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

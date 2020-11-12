@@ -47,6 +47,11 @@ const headingStyles = () => {
 
 const headingAttributes = () => ({ tabIndex: '-1' }); //a11y: heading receives focus on open
 
+const blenderAttributes = () => ({
+	...headingAttributes(),
+	'data-js': 'modal-heading__version__',
+});
+
 // ==============================
 // Exports
 // ==============================
@@ -60,5 +65,5 @@ export const defaultHeading = {
 export const blenderHeading = {
 	component: BlenderModalHeading,
 	styles: headingStyles,
-	attributes: headingAttributes,
+	attributes: blenderAttributes,
 };

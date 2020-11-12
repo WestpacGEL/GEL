@@ -1,14 +1,18 @@
-import { GEL } from '@westpac/core';
+import { GEL, titleCase } from '@westpac/core';
 import React from 'react';
 
 import { Modal, Body, Footer } from '../src/blender';
 import { Button, blenderIcon } from '@westpac/button';
 
+import { blenderModalDialog } from '../src/overrides/modalDialog';
+import { blenderModalContent } from '../src/overrides/modalContent';
 import { blenderCloseBtn } from '../src/overrides/closeBtn';
 import { blenderHeading } from '../src/overrides/heading';
 import { blenderModal } from '../src/overrides/modal';
 import { blenderBody } from '../src/overrides/body';
-import { blenderModalWrapper } from '../src/blender/modalWrapper';
+import { blenderBackdrop } from '../src/overrides/backdrop';
+
+const sizes = ['small', 'medium', 'large'];
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -17,17 +21,25 @@ export function AllStyles({ brand }) {
 			component: blenderModal.component,
 			styles: blenderModal.styles,
 		},
-		ModalWrapper: {
-			styles: blenderModalWrapper.styles,
+		ModalDialog: {
+			component: blenderModalDialog.component,
+			styles: blenderModalDialog.styles,
 		},
-		Body: {
-			component: blenderBody.component,
+		ModalContent: {
+			component: blenderModalContent.component,
 		},
 		CloseBtn: {
 			component: blenderCloseBtn.component,
 		},
 		Heading: {
 			component: blenderHeading.component,
+		},
+		Body: {
+			component: blenderBody.component,
+		},
+		Backdrop: {
+			component: blenderBackdrop.component,
+			styles: blenderBackdrop.styles,
 		},
 	};
 	overridesWithTokens['@westpac/button'] = {
@@ -38,19 +50,25 @@ export function AllStyles({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens} noPrefix>
+			{/* Default */}
 			<Modal heading="Text">
 				<Body>Text</Body>
 				<Footer>Text</Footer>
 			</Modal>
-			<Modal heading="Text" size="small">
-				<Body>Text</Body>
-			</Modal>
-			<Modal heading="Text" size="large">
-				<Body>Text</Body>
-			</Modal>
+
+			{/* Sizes */}
+			{sizes.map((size) => (
+				<Modal key={size} heading="Text" size={size}>
+					<Body>Text</Body>
+				</Modal>
+			))}
+
+			{/* Open state */}
 			<Modal heading="Text" open>
 				<Body>Text</Body>
 			</Modal>
+
+			{/* Button */}
 			<Button>Text</Button>
 		</GEL>
 	);
@@ -63,11 +81,11 @@ export function Docs({ brand }) {
 			component: blenderModal.component,
 			attributes: blenderModal.attributes,
 		},
-		ModalWrapper: {
-			attributes: blenderModalWrapper.attributes,
+		ModalDialog: {
+			component: blenderModalDialog.component,
 		},
-		Body: {
-			component: blenderBody.component,
+		ModalContent: {
+			component: blenderModalContent.component,
 		},
 		CloseBtn: {
 			component: blenderCloseBtn.component,
@@ -75,6 +93,13 @@ export function Docs({ brand }) {
 		},
 		Heading: {
 			component: blenderHeading.component,
+			attributes: blenderHeading.attributes,
+		},
+		Body: {
+			component: blenderBody.component,
+		},
+		Backdrop: {
+			component: () => null, //not required, jQuery rendered
 		},
 	};
 	overridesWithTokens['@westpac/button'] = {
@@ -84,52 +109,45 @@ export function Docs({ brand }) {
 	};
 
 	return [
+		// Default
 		{
-			heading: `A default modal`,
+			heading: 'Default modal',
 			component: () => {
 				return (
 					<GEL brand={overridesWithTokens} noPrefix>
 						<Button data-modal="default-modal">Open</Button>
-						<Modal id="default-modal" heading="Default Modal">
-							<Body>A default Modal</Body>
+						<Modal id="default-modal" heading="Your modal heading">
+							<Body>Your modal content</Body>
 						</Modal>
 					</GEL>
 				);
 			},
 		},
-		{
-			heading: `A small modal`,
+
+		// Sizes
+		...sizes.map((size, i) => ({
+			...(i === 0 && { heading: 'Sizes' }),
+			subheading: `${titleCase(size)} modal`,
 			component: () => {
 				return (
 					<GEL brand={overridesWithTokens} noPrefix>
-						<Button data-modal="small-modal">Open</Button>
-						<Modal id="small-modal" heading="Small Modal" size="small">
-							<Body>A small modal</Body>
+						<Button data-modal={`${size}-modal`}>Open</Button>
+						<Modal id={`${size}-modal`} heading={`Your ${size} modal heading`} size={size}>
+							<Body>Your {size} modal content</Body>
 						</Modal>
 					</GEL>
 				);
 			},
-		},
+		})),
+
+		// Footer
 		{
-			heading: `A large modal`,
-			component: () => {
-				return (
-					<GEL brand={overridesWithTokens} noPrefix>
-						<Button data-modal="large-modal">Open</Button>
-						<Modal id="large-modal" heading="Large Modal" size="large">
-							<Body>A Large modal</Body>
-						</Modal>
-					</GEL>
-				);
-			},
-		},
-		{
-			heading: `A modal with a footer`,
+			heading: 'Modal footer',
 			component: () => {
 				return (
 					<GEL brand={overridesWithTokens} noPrefix>
 						<Button data-modal="footer-modal">Open</Button>
-						<Modal id="footer-modal" heading="Modal with Footer">
+						<Modal id="footer-modal" heading="Your modal heading">
 							<Body>A modal with a footer</Body>
 							<Footer>
 								<Button data-modal="footer-modal">Close</Button>

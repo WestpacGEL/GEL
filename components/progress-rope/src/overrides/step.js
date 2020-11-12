@@ -70,7 +70,9 @@ const blenderStyles = (_, { active, visited, end }) => {
 
 	const styleMap = {
 		active: {
-			[`.__convert__${activeStyles.label}`]: activeStyles.styles,
+			[`button.__convert__${activeStyles.label}`]: {
+				...activeStyles.styles,
+			},
 		},
 		visited: {
 			// the visited line, copied from above
@@ -85,7 +87,7 @@ const blenderStyles = (_, { active, visited, end }) => {
 				borderLeft: `2px solid ${COLORS.primary}`,
 				transform: 'translateY(0.625rem)',
 			},
-			[`.__convert__${visitedStyles.label}`]: visitedStyles.styles,
+			[`button.__convert__${visitedStyles.label}`]: visitedStyles.styles, // raising specifity here due to GEL prefixing bug
 		},
 		end: {
 			...endStyles.styles,
@@ -103,6 +105,7 @@ const stepAttributes = () => null;
 const blenderAttributes = (_, { active, visited, end }) => ({
 	className: classNames({
 		'__convert__progressRope-step': active || visited || end,
+		'__convert__progressRope-step-visited': active && visited,
 	}),
 });
 

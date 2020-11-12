@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
 
@@ -42,7 +42,7 @@ const closeBtnStyles = () => {
 	const { SPACING, PACKS } = useBrand();
 
 	return mq({
-		label: 'alert-closebtn',
+		label: getLabel('alert-closebtn'),
 		position: 'absolute',
 		zIndex: 1,
 		top: SPACING(1, 'minor'),

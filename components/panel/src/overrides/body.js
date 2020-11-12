@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 // ==============================
@@ -31,7 +31,7 @@ const bodyStyles = () => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 
-	return mq({ label: 'panel-body', padding: [SPACING(2), null, SPACING(4)] })[0];
+	return mq({ label: getLabel('panel-body'), padding: [SPACING(2), null, SPACING(4)] })[0];
 };
 
 // ==============================

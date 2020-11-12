@@ -10,6 +10,7 @@ import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { Section, SectionHeading } from '../../../components/section';
 import { Body } from '../../../components/body';
+import { Head } from '../../../components/head';
 import { BlockList, BlockListItem, BlockListHeading } from '../../../components/block-list';
 
 import PageHeader from '../../../components/header/page-header';
@@ -501,6 +502,7 @@ function TokensPage() {
 
 	return (
 		<Fragment>
+			<Head title={`Download · Westpac GEL`} />
 			<PageContext.Provider value={{ showGrid, setShowGrid }}>
 				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
 					<PageHeader name="Download" />

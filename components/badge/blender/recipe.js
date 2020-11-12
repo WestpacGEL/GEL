@@ -1,22 +1,26 @@
-import { GEL } from '@westpac/core';
+import { GEL, titleCase } from '@westpac/core';
 import React from 'react';
 
 import { Badge } from '@westpac/badge';
 import { blenderBadge } from '../src/overrides/badge';
 
+const looks = ['primary', 'hero', 'faint', 'info', 'success', 'warning', 'danger'];
+
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/badge'] = {
 		Badge: {
+			component: blenderBadge.component,
 			styles: blenderBadge.styles,
 		},
 	};
 
 	return (
 		<GEL brand={overridesWithTokens} noPrefix>
-			<Badge look="neutral" value="Neutral" />
+			<Badge value="Default" />
 			<Badge look="primary" value="Primary" />
 			<Badge look="hero" value="Hero" />
+			<Badge look="neutral" value="Neutral" />
 			<Badge look="faint" value="Faint" />
 			<Badge look="success" value="Success" />
 			<Badge look="info" value="Info" />
@@ -30,74 +34,28 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/badge'] = {
 		Badge: {
+			component: blenderBadge.component,
 			attributes: blenderBadge.attributes,
 		},
 	};
 
 	return [
 		{
-			heading: 'A default badge',
+			heading: 'Badge looks',
+			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Badge value="Neutral" />
+					<Badge value="Default" />
 				</GEL>
 			),
 		},
-		{
-			heading: 'A primary badge',
+		...looks.map((look) => ({
+			subheading: titleCase(look),
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Badge look="primary" value="Primary" />
+					<Badge look={look} value={titleCase(look)} />
 				</GEL>
 			),
-		},
-		{
-			heading: 'A hero badge',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Badge look="hero" value="Hero" />
-				</GEL>
-			),
-		},
-		{
-			heading: 'A faint badge',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Badge look="faint" value="Faint" />
-				</GEL>
-			),
-		},
-		{
-			heading: 'A success badge',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Badge look="success" value="Success" />
-				</GEL>
-			),
-		},
-		{
-			heading: 'A info badge',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Badge look="info" value="Info" />
-				</GEL>
-			),
-		},
-		{
-			heading: 'A warning badge',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Badge look="warning" value="Warning" />
-				</GEL>
-			),
-		},
-		{
-			heading: 'A danger badge',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Badge look="danger" value="Danger" />
-				</GEL>
-			),
-		},
+		})),
 	];
 }

@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 import { defaultProps } from '../Label';
 
 // ==============================
@@ -8,6 +16,10 @@ import { defaultProps } from '../Label';
 // ==============================
 
 const Label = ({ state: _, ...rest }) => <span {...rest} />;
+
+const BlenderLabel = ({ className, ...rest }) => (
+	<Label className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -139,7 +151,7 @@ export const defaultLabel = {
 };
 
 export const blenderLabel = {
-	component: Label,
+	component: BlenderLabel,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

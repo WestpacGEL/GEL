@@ -55,7 +55,7 @@ function Example({ brand }) {
 					return (
 						<Cell key={icon}>
 							<Icon />
-							<Name>{icon}</Name>
+							<Name>{`<${icon}\u00A0/>`}</Name>
 						</Cell>
 					);
 				})}

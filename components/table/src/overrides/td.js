@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 import { defaultProps } from '../Td';
 
 // ==============================
@@ -8,6 +16,10 @@ import { defaultProps } from '../Td';
 // ==============================
 
 const Td = ({ state: _, ...rest }) => <td {...rest} />;
+
+const BlenderTd = ({ className, ...rest }) => (
+	<Td className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -99,7 +111,7 @@ export const defaultTd = {
 };
 
 export const blenderTd = {
-	component: Td,
+	component: BlenderTd,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

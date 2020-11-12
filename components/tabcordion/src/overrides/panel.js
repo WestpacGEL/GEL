@@ -9,6 +9,7 @@ import {
 	classNames,
 	getModifier,
 	styleReconciler,
+	formatClassName,
 } from '@westpac/core';
 
 import { defaultProps } from '../blender/Tabcordion';
@@ -18,6 +19,10 @@ import { defaultProps } from '../blender/Tabcordion';
 // ==============================
 
 const Panel = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+
+const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
+	<div ref={ref} className={formatClassName(className)} {...rest} />
+));
 
 // ==============================
 // Styles
@@ -101,7 +106,7 @@ const blenderAttributes = (_, props) => ({
 export const defaultPanel = { component: Panel, styles: panelStyles, attributes: panelAttributes };
 
 export const blenderPanel = {
-	component: Panel,
+	component: BlenderPanel,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

@@ -1,6 +1,13 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	getModifier,
+	styleReconciler,
+	getLabel,
+} from '@westpac/core';
 import { defaultProps } from '../Panel';
 
 // ==============================
@@ -31,7 +38,7 @@ const headerStyles = (_, { look }) => {
 	};
 
 	return mq({
-		label: 'panel-header',
+		label: getLabel('panel-header'),
 		padding: ['0.625rem 0.75rem', null, '0.625rem 1.5rem'],
 		backgroundColor: styleMap[look].backgroundColor,
 		borderBottom: `1px solid ${styleMap[look].borderColor}`,

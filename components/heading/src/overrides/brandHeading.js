@@ -79,7 +79,7 @@ const brandHeadingStyles = (_, { size, uppercase }) => {
 const blenderStyles = (_, { size, uppercase }) => {
 	if (!uppercase) {
 		const styles = brandHeadingStyles(_, { size });
-		return { ...styles, label: `${styles.label}-size-${size}` };
+		return { ...styles, label: `${styles.label}-${size}` };
 	} else {
 		const baseStyles = brandHeadingStyles(_, { size });
 		const modifierStyles = brandHeadingStyles(_, { size, uppercase });
@@ -97,7 +97,7 @@ const brandHeadingAttributes = () => null;
 
 const blenderAttributes = (_, { size, uppercase }) => ({
 	className: classNames({
-		[`__convert__brandHeading-size-${size}`]: uppercase,
+		[`__convert__brandHeading-${size}`]: uppercase,
 	}),
 });
 

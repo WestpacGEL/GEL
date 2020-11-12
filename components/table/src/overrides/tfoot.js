@@ -19,7 +19,7 @@ const tfootStyles = (_, { bordered }) => {
 	return {
 		label: getLabel('table-tfoot'),
 		color: COLORS.muted,
-		'th, tr, td': { borderBottom: !bordered ? 0 : `1px solid ${COLORS.border}` },
+		'th, tr, td': { borderBottom: !bordered ? `0` : `1px solid ${COLORS.border}` },
 	};
 };
 

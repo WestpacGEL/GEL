@@ -2,88 +2,85 @@
 
 import {
 	jsx,
-	useMediaQuery,
-	useBrand,
 	getLabel,
 	classNames,
 	getModifier,
 	styleReconciler,
+	formatClassName,
+	Global,
 } from '@westpac/core';
-import { useTransition, animated } from 'react-spring';
-import { forwardRef } from 'react';
+import { forwardRef, Fragment } from 'react';
+import { useSpring, animated } from 'react-spring';
 
 import { defaultProps } from '../Modal';
+import { nestedStyles } from './modalDialog';
 
 // ==============================
 // Component
 // ==============================
 
 const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
-	const { SPACING } = useBrand();
-
-	const modalTransition = useTransition(open, null, {
-		from: {
-			position: 'fixed',
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'baseline',
-			left: 0,
-			right: 0,
-			top: SPACING(5),
-			bottom: 0,
-			opacity: 0,
-			transform: `translateY(-20px)`,
-			zIndex: '1002',
-		},
-		enter: { opacity: 1, transform: `translateY(0px)` },
-		leave: { opacity: 0, transform: `translateY(-40px)` },
-		config: { duration: 350 },
+	const fade = useSpring({
+		config: { duration: 150 },
+		from: { position: 'relative', zIndex: 1002, opacity: 0 },
+		_dspl: open ? 1 : 0,
+		opacity: open ? 1 : 0,
 	});
 
-	return modalTransition.map(
-		({ item, key, props }) =>
-			item && (
-				<animated.div key={key} style={props}>
-					<div ref={ref} {...rest} />
-				</animated.div>
-			)
+	return (
+		<animated.div
+			style={{
+				...fade,
+				display: fade._dspl.interpolate((d) => (d === 0 ? 'none' : 'block')),
+			}}
+		>
+			<div ref={ref} {...rest} />
+		</animated.div>
 	);
 });
 
-const BlenderModal = forwardRef(({ state, ...rest }, ref) => <div ref={ref} {...rest} />);
+const BlenderModal = forwardRef(({ state, className, ...rest }, ref) => (
+	<Fragment>
+		<Global
+			styles={{
+				'body.isModalOpen': { overflow: 'hidden' },
+			}}
+		/>
+		<div ref={ref} className={formatClassName(className)} {...rest} />
+	</Fragment>
+));
 
 // ==============================
 // Styles
 // ==============================
 
-const modalStyles = (_, { size }) => {
-	const mq = useMediaQuery();
+const modalStyles = (_, { open }) => ({
+	label: getLabel('modal'),
+	position: 'fixed',
+	zIndex: 1002,
+	top: 0,
+	bottom: 0,
+	left: 0,
+	right: 0,
+	overflow: 'hidden',
 
-	return mq({
-		label: getLabel('modal'),
-		position: 'relative',
-		overflow: 'auto',
-		maxHeight: '85%',
-		margin: '0 0.75rem',
-		backgroundColor: '#fff',
-		borderRadius: '0.1875rem',
-		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
-		width: [
-			'auto',
-			null,
-			size === 'small' ? '18.75rem' : '37.5rem',
-			size === 'large' && '56.25rem',
-		],
-	})[0];
-};
+	...(open && {
+		overflowX: 'hidden',
+		overflowY: 'auto',
+	}),
+});
 
 // ==============================
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { size }) => {
-	const props = { size };
+const blenderStyles = (_, { open, size }) => {
+	const props = { open, size };
 	const baseStyles = modalStyles(_, defaultProps);
+
+	Object.assign(baseStyles, {
+		display: 'none',
+	});
 
 	let modifiers = getModifier(defaultProps, props);
 	if (!modifiers.length) return baseStyles;
@@ -103,17 +100,22 @@ const blenderStyles = (_, { size }) => {
 			break;
 	}
 
-	return { label, ...reconciledStyles };
+	return { label, ...reconciledStyles, ...nestedStyles(props) };
 };
 
 // ==============================
 // Attributes
 // ==============================
 
-const modalAttributes = () => ({ role: 'dialog', 'aria-modal': 'true' });
+const modalAttributes = (_, { open }) => ({
+	role: 'dialog',
+	'aria-modal': 'true',
+	'aria-hidden': !open,
+});
 
-const blenderAttributes = (_, { size }) => ({
-	...modalAttributes(),
+const blenderAttributes = (_, { open, size }) => ({
+	...modalAttributes(_, { open }),
+	'data-js': 'modal__version__',
 	className: classNames({ [`__convert__modal-${size}`]: size !== defaultProps.size }),
 });
 

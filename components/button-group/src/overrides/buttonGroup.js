@@ -8,6 +8,7 @@ import {
 	getModifier,
 	styleReconciler,
 	classNames,
+	formatClassName,
 } from '@westpac/core';
 import { defaultProps } from '../ButtonGroup';
 // ==============================
@@ -15,6 +16,10 @@ import { defaultProps } from '../ButtonGroup';
 // ==============================
 
 const ButtonGroup = ({ state: _, ...rest }) => <div {...rest} />;
+
+const BlenderButtonGroup = ({ className, ...rest }) => (
+	<ButtonGroup className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -77,7 +82,7 @@ export const defaultButtonGroup = {
 };
 
 export const blenderButtonGroup = {
-	component: ButtonGroup,
+	component: BlenderButtonGroup,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

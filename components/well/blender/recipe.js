@@ -29,19 +29,20 @@ export function Docs({ brand }) {
 
 	return [
 		{
-			heading: 'A well',
+			heading: 'Well component',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
-					<Well>Text</Well>
+					<Well>Your well content</Well>
 				</GEL>
 			),
 		},
 		{
-			heading: "Nested well's",
+			heading: 'Nested wells',
 			component: () => (
 				<GEL brand={overridesWithTokens} noPrefix>
 					<Well>
-						Text<Well>Nested</Well>
+						Your well content
+						<Well>Your nested well content</Well>
 					</Well>
 				</GEL>
 			),
