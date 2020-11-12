@@ -74,7 +74,7 @@ export const Core = ({ noReset, noScope, children }) => {
 				'button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring': {
 					...PACKS.focus,
 				},
-				'[tabindex="-1"]:focus:not(:focus-visible)': {
+				'[tabindex="-1"]:focus': {
 					outline: '0 !important',
 				},
 				'& ::selection': {
