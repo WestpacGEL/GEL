@@ -57,7 +57,10 @@ function GELModalToggle($el, mode) {
 }
 
 $(function () {
-	trapFocus($('[data-js="modal__version__"]')[0]);
+	var $modal = $('[data-js="modal__version__"]');
+	if ($modal.length) {
+		trapFocus($modal[0]);
+	}
 
 	$('[data-modal]').on('click', function () {
 		var modalID = $(this).data('modal');
