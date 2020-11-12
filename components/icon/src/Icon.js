@@ -115,6 +115,7 @@ export const propTypes = {
 
 export const defaultProps = {
 	size: 'medium',
+	copyrightYear: '',
 };
 
 Icon.propTypes = propTypes;
