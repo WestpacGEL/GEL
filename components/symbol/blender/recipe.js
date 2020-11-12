@@ -5,7 +5,7 @@ import * as components from '@westpac/symbol';
 
 export function AllStyles({ brand }) {
 	return (
-		<GEL brand={brand} noPrefix>
+		<GEL brand={brand} noScope>
 			{Object.keys(components).map((symbol) => {
 				const Symbol = components[symbol];
 				return <Symbol key={symbol} />;
@@ -23,7 +23,7 @@ export function Docs({ brand }) {
 				...(i === 0 && { heading: 'Logos' }),
 				subheading: logo,
 				component: () => (
-					<GEL brand={brand} noPrefix>
+					<GEL brand={brand} noScope>
 						<Logo />
 					</GEL>
 				),
@@ -38,7 +38,7 @@ export function Docs({ brand }) {
 				...(i === 0 && { heading: 'Symbols' }),
 				subheading: symbol,
 				component: () => (
-					<GEL brand={brand} noPrefix>
+					<GEL brand={brand} noScope>
 						<Symbol />
 					</GEL>
 				),

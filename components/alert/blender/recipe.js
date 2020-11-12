@@ -39,7 +39,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
 			<Alert look="info" />
 			<Alert look="success" />
 			<Alert look="warning" />
@@ -84,7 +84,7 @@ export function Docs({ brand }) {
 			heading: 'Alert looks',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Alert look="success">Your alert body</Alert>
 				</GEL>
 			),
@@ -92,7 +92,7 @@ export function Docs({ brand }) {
 		...looks.map((look) => ({
 			subheading: titleCase(look),
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Alert look={look}>Your {look} alert body</Alert>
 				</GEL>
 			),
@@ -102,7 +102,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Dismissible alerts',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Alert dismissible>Your dismissible alert body</Alert>
 				</GEL>
 			),
@@ -112,7 +112,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Alert with heading',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Alert heading="Your alert heading">
 						<p>Your alert body</p>
 					</Alert>
@@ -125,7 +125,7 @@ export function Docs({ brand }) {
 			heading: 'Alert icon',
 			subheading: 'Info alert with custom icon',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Alert look="info" icon={HelpIcon}>
 						Your alert body
 					</Alert>
@@ -135,7 +135,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Info alert without icon',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Alert look="info" icon={null}>
 						Your alert body
 					</Alert>
