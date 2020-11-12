@@ -53,7 +53,22 @@ const renderPictograms = (search) => {
 const Pictogram = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, BRAND } = useBrand();
+	console.log(BRAND);
+	if (BRAND !== 'WBC') {
+		return (
+			<Cell width={12}>
+				<p
+					css={{
+						padding: SPACING(4),
+						marginBottom: SPACING(4),
+						backgroundColor: COLORS.light,
+						textAlign: 'center',
+					}}
+				>{`Pictograms are not yet available for this brand`}</p>
+			</Cell>
+		);
+	}
 
 	return (
 		<Fragment>

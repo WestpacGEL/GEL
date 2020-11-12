@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useCallback, useEffect, forwardRef } from 'react';
+import { useState, useCallback, useEffect, forwardRef, Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import throttle from 'lodash.throttle';
@@ -12,6 +12,7 @@ import { Gridly, Footer } from '../../components/layout';
 import { PageContext, usePageContext } from '../../components/providers/pageContext';
 import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
 import PageHeader from '../../components/header/page-header';
+import { Head } from '../../components/head';
 import { ALL_PAGES } from '../../../graphql';
 
 const ComponentWrapper = () => {
@@ -41,11 +42,14 @@ const Component = ({ component, tabName }) => {
 	const [showGrid, setShowGrid] = useState(false);
 
 	return (
-		<PageContext.Provider value={{ showGrid, setShowGrid }}>
-			<PageHeader name={pageTitle} />
-			<Tabs component={component} tabName={tabName} />
-			<Footer />
-		</PageContext.Provider>
+		<Fragment>
+			<Head title={`${pageTitle} · Westpac GEL`} />
+			<PageContext.Provider value={{ showGrid, setShowGrid }}>
+				<PageHeader name={pageTitle} />
+				<Tabs component={component} tabName={tabName} />
+				<Footer />
+			</PageContext.Provider>
+		</Fragment>
 	);
 };
 

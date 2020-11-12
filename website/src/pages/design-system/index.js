@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { TextInput } from '@westpac/text-input';
+import { Head } from '../../components/head';
 import HomePageHeader from '../../components/header/home-page-header';
 import { Section } from '../../components/section';
 import { Body } from '../../components/body';
@@ -29,6 +30,7 @@ const Homepage = () => {
 
 	return (
 		<Fragment>
+			<Head title="Westpac GEL" />
 			<main
 				id="content"
 				css={{
