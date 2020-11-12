@@ -66,15 +66,16 @@ export const Core = ({ noReset, noScope, children }) => {
 				color: COLORS.text,
 				fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
 				...TYPE.bodyFont[400],
-				'& *:not:focus': {
+
+				'*:focus': {
 					...PACKS.focus,
 				},
-				'& [tabindex="-1"]:focus': {
+				// Also apply to the following selectors to increase specificity (against normalize reset)
+				'button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring': {
+					...PACKS.focus,
+				},
+				'[tabindex="-1"]:focus:not(:focus-visible)': {
 					outline: '0 !important',
-				},
-				'& button:-moz-focusring, & [type="button"]:-moz-focusring, & [type="reset"]:-moz-focusring, & [type="submit"]:-moz-focusring': {
-					// button:focus because of normalize reset (needs higher specificity)
-					...PACKS.focus,
 				},
 				'& ::selection': {
 					backgroundColor: COLORS.tints.primary20,
