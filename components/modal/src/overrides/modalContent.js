@@ -31,6 +31,10 @@ const modalContentStyles = () => ({
 
 const modalContentAttributes = () => null;
 
+const blenderAttributes = () => ({
+	'data-js': 'modal-content__version__',
+});
+
 // ==============================
 // Exports
 // ==============================
@@ -44,5 +48,5 @@ export const defaultModalContent = {
 export const blenderModalContent = {
 	component: BlenderModalContent,
 	styles: modalContentStyles,
-	attributes: modalContentAttributes,
+	attributes: blenderAttributes,
 };

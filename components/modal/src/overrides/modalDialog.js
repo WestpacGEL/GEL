@@ -57,7 +57,7 @@ const modalDialogStyles = (_, { size }) => {
 		position: 'relative',
 		margin: [`${SPACING(5)} ${SPACING(2)}`, null, `${SPACING(5)} auto`],
 		maxWidth: [
-			'auto',
+			null,
 			null,
 			size === 'small' ? '18.75rem' : '37.5rem',
 			size === 'large' && '56.25rem',
@@ -72,6 +72,10 @@ const modalDialogStyles = (_, { size }) => {
 
 const blenderStyles = (_, props) => {
 	const baseStyles = modalDialogStyles(_, defaultProps);
+	Object.assign(baseStyles, {
+		transform: 'translateY(-50px)',
+		transition: 'transform 0.3s ease-out',
+	});
 
 	return baseStyles;
 };
@@ -84,6 +88,18 @@ export const nestedStyles = (props) => {
 	const modifierStyles = modalDialogStyles(null, props);
 
 	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		case 'open':
+			Object.assign(reconciledStyles, {
+				transform: 'none',
+			});
+			break;
+		default:
+			break;
+	}
 
 	return { [`.__convert__${baseStyles.label}`]: reconciledStyles };
 };

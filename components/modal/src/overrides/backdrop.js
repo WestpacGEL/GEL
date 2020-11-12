@@ -53,8 +53,11 @@ const backdropStyles = () => ({
 
 const blenderStyles = (_, props) => {
 	const baseStyles = backdropStyles();
+	Object.assign(baseStyles, {
+		display: 'none',
+	});
 
-	return { ...baseStyles, display: 'none' };
+	return baseStyles;
 };
 
 // ==============================

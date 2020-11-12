@@ -7,8 +7,9 @@ import {
 	getModifier,
 	styleReconciler,
 	formatClassName,
+	Global,
 } from '@westpac/core';
-import { forwardRef } from 'react';
+import { forwardRef, Fragment } from 'react';
 import { useSpring, animated } from 'react-spring';
 
 import { defaultProps } from '../Modal';
@@ -39,7 +40,14 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 });
 
 const BlenderModal = forwardRef(({ state, className, ...rest }, ref) => (
-	<div ref={ref} className={formatClassName(className)} {...rest} />
+	<Fragment>
+		<Global
+			styles={{
+				'body.isModalOpen': { overflow: 'hidden' },
+			}}
+		/>
+		<div ref={ref} className={formatClassName(className)} {...rest} />
+	</Fragment>
 ));
 
 // ==============================
@@ -69,7 +77,10 @@ const modalStyles = (_, { open }) => ({
 const blenderStyles = (_, { open, size }) => {
 	const props = { open, size };
 	const baseStyles = modalStyles(_, defaultProps);
-	Object.assign(baseStyles, { display: 'none' });
+
+	Object.assign(baseStyles, {
+		display: 'none',
+	});
 
 	let modifiers = getModifier(defaultProps, props);
 	if (!modifiers.length) return baseStyles;
@@ -96,10 +107,15 @@ const blenderStyles = (_, { open, size }) => {
 // Attributes
 // ==============================
 
-const modalAttributes = () => ({ role: 'dialog', 'aria-modal': 'true' });
+const modalAttributes = (_, { open }) => ({
+	role: 'dialog',
+	'aria-modal': 'true',
+	'aria-hidden': !open,
+});
 
-const blenderAttributes = (_, { size }) => ({
-	...modalAttributes(),
+const blenderAttributes = (_, { open, size }) => ({
+	...modalAttributes(_, { open }),
+	'data-js': 'modal__version__',
 	className: classNames({ [`__convert__modal-${size}`]: size !== defaultProps.size }),
 });
 
