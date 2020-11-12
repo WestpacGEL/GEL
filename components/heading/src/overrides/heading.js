@@ -8,7 +8,6 @@ import {
 	getLabel,
 	classNames,
 	styleReconciler,
-	formatClassName,
 } from '@westpac/core';
 import { forwardRef } from 'react';
 
@@ -37,6 +36,10 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 
 	return <Tag ref={ref} {...rest} />;
 });
+
+const BlenderHeading = ({ className, ...rest }) => (
+	<Heading className={className.trim()} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -113,7 +116,7 @@ export const defaultHeading = {
 };
 
 export const blenderHeading = {
-	component: Heading,
+	component: BlenderHeading,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

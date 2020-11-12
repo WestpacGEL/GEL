@@ -14,9 +14,11 @@ export function AllStyles({ brand }) {
 	overridesWithTokens['@westpac/heading'] = {
 		Heading: {
 			styles: blenderHeading.styles,
+			component: blenderHeading.component,
 		},
 		BrandHeading: {
 			styles: blenderBrandHeading.styles,
+			component: blenderBrandHeading.component,
 		},
 	};
 	return (
@@ -51,10 +53,12 @@ export function Docs({ brand }) {
 		Heading: {
 			styles: blenderHeading.styles,
 			attributes: blenderHeading.attributes,
+			component: blenderHeading.component,
 		},
 		BrandHeading: {
 			styles: blenderBrandHeading.styles,
 			attributes: blenderBrandHeading.attributes,
+			component: blenderBrandHeading.component,
 		},
 	};
 	return [
