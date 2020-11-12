@@ -26,7 +26,7 @@ $(function () {
 		})
 		.parent()
 		.on('keyup', function (e) {
-			if (e.keyCode === 27) {
+			if (e.key === 'Escape' || e.keyCode === 27) {
 				GELPopoverToggle($(this).find('[data-js="popover__version__"]'), 'close');
 			}
 		});
