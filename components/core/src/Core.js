@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, CacheProvider } from '@emotion/core';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import createCache from '@emotion/cache';
 import 'core-js/features/weak-set';
 
