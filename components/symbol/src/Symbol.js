@@ -107,7 +107,7 @@ export const propTypes = {
 	/**
 	 * Set horizontal alignment
 	 */
-	align: PropTypes.oneOf(['left', 'center', 'right']),
+	align: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
 
 	/**
 	 * Set horizontal alignment positioning.
@@ -147,6 +147,7 @@ export const propTypes = {
 
 export const defaultProps = {
 	align: 'left',
+	copyrightYear: '',
 };
 
 Symbol.propTypes = propTypes;
