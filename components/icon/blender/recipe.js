@@ -119,6 +119,14 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		})),
+		{
+			subheading: 'Custom colour',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<components.HouseIcon style={{ color: '#BADA55' }} />
+				</GEL>
+			),
+		},
 
 		// All icons
 		...allIcons,
