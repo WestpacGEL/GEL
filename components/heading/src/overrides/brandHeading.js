@@ -37,6 +37,10 @@ const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) =>
 	return <Tag ref={ref} {...rest} />;
 });
 
+const BlenderBrandHeading = ({ className, ...rest }) => (
+	<BrandHeading className={className.trim()} {...rest} />
+);
+
 // ==============================
 // Styles
 // ==============================
@@ -112,7 +116,7 @@ export const defaultBrandHeading = {
 };
 
 export const blenderBrandHeading = {
-	component: BrandHeading,
+	component: BlenderBrandHeading,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

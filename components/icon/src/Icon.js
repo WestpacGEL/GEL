@@ -88,7 +88,7 @@ export const propTypes = {
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge'])),
+		PropTypes.arrayOf(PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge'])).isRequired,
 	]),
 
 	/**

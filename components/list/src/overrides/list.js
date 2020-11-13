@@ -94,11 +94,11 @@ const listStyles = (_, { type, look, spacing, nested }) => {
 				boxSizing: 'border-box',
 			},
 			a: {
-				color: COLORS.text,
-				textDecoration: 'none',
+				color: `${COLORS.text} !important`,
+				textDecoration: 'none !important',
 
 				':hover': {
-					textDecoration: 'underline',
+					textDecoration: 'underline !important',
 				},
 			},
 		},

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel, css } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 // ==============================
@@ -14,9 +14,9 @@ const BlenderWell = (props) => (
 		overrides={{
 			Body: {
 				styles: (styles) => {
-					const blenderStyles = { ...styles };
-					delete blenderStyles.label;
-					return blenderStyles;
+					const bodyStyles = { ...styles };
+					delete bodyStyles.label;
+					return bodyStyles;
 				},
 			},
 		}}
@@ -48,6 +48,24 @@ const wellStyles = () => {
 };
 
 // ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = () => {
+	const baseStyles = wellStyles();
+
+	// Make the `& > &` selector work for Blender, which parses CSS slightly differently
+	delete Object.assign(baseStyles, { ['> &']: baseStyles['& > &'] })['& > &'];
+
+	// Need & to resolve as immediate parent instead of all parents
+	const resolvedStyles = css(baseStyles).styles.replace(/&/g, `.__convert__${baseStyles.label}`);
+
+	return css`
+		${resolvedStyles}
+	`;
+};
+
+// ==============================
 // Attributes
 // ==============================
 
@@ -65,6 +83,6 @@ export const defaultWell = {
 
 export const blenderWell = {
 	component: BlenderWell,
-	styles: wellStyles,
+	styles: blenderStyles,
 	attributes: wellAttributes,
 };

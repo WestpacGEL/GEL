@@ -24,7 +24,7 @@ const ArrowIcon = (props) => (
 	</Icon>
 );
 
-const TableLink = ({ headingId, headingText, ...rest }) => (
+const HeadingItemLink = ({ headingId, headingText, ...rest }) => (
 	<Item {...rest}>
 		<a href={`#${headingId}`}>{headingText}</a>
 	</Item>
@@ -45,7 +45,7 @@ const parseHeadings = (content) =>
 		.map((item, i) => {
 			const { props } = item.data;
 			return (
-				<TableLink
+				<HeadingItemLink
 					key={`nav-${i}`}
 					headingId={props.heading.replace(/ /g, '-').toLowerCase()}
 					headingText={props.heading}
@@ -59,6 +59,7 @@ const TableOfContents = ({ content }) => {
 	const { COLORS, SPACING, PACKS } = useBrand();
 	const [relatedContent, setRelatedContent] = useState(false);
 	const introRef = useRef();
+
 	useEffect(() => {
 		if (introRef) {
 			const design = introRef.current.closest('#design-tab');
@@ -95,22 +96,19 @@ const TableOfContents = ({ content }) => {
 						look="primary"
 						type="icon"
 						icon={ArrowIcon}
-						spacing="large"
 						overrides={{
 							List: {
 								styles: (styles) =>
 									merge({}, styles, {
-										...PACKS.typeScale.bodyFont[10],
 										marginTop: SPACING(3),
 										'> li': {
 											margin: '0.5rem 0 0.5625rem',
 										},
 										a: {
-											color: COLORS.text,
-											textDecoration: 'none',
-											':hover, :focus': {
-												color: COLORS.info,
-												textDecoration: 'underline',
+											color: `${COLORS.text} !important`,
+											textDecoration: 'none !important',
+											':hover': {
+												textDecoration: 'underline !important',
 											},
 										},
 									}),
@@ -119,7 +117,7 @@ const TableOfContents = ({ content }) => {
 					>
 						{toc && toc.length !== 0 && toc}
 						{relatedContent && (
-							<TableLink
+							<HeadingItemLink
 								key={`related-information`}
 								headingId={'related-information'}
 								headingText={'Related information'}
