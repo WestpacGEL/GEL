@@ -9,6 +9,7 @@ export function AllStyles({ brand }) {
 	overridesWithTokens['@westpac/well'] = {
 		Well: {
 			component: blenderWell.component,
+			styles: blenderWell.styles,
 		},
 	};
 
