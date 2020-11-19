@@ -6,6 +6,40 @@
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Table",
+			"src": "Table.js"
+		},
+		{
+			"name": "Td",
+			"src": "Td.js"
+		},
+		{
+			"name": "Tr",
+			"src": "Tr.js"
+		},
+		{
+			"name": "Caption",
+			"src": "Caption.js"
+		},
+		{
+			"name": "Thead",
+			"src": "Thead.js"
+		},
+		{
+			"name": "Th",
+			"src": "Th.js"
+		},
+		{
+			"name": "Tbody",
+			"src": "Tbody.js"
+		},
+		{
+			"name": "Tfoot",
+			"src": "Tfoot.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

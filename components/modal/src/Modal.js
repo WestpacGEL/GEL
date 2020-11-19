@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { Fragment, createContext, useContext, useState, useEffect, useRef } from 'react';
 import { FocusOn, AutoFocusInside } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
@@ -177,9 +177,9 @@ export const Modal = ({
 			</GEL>,
 			document.body
 		);
-	} else {
-		return null;
 	}
+
+	return <Fragment />;
 };
 
 // ==============================

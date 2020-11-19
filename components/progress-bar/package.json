@@ -6,6 +6,12 @@
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "ProgressBar",
+			"src": "ProgressBar.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

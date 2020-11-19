@@ -7,6 +7,20 @@
 		"recipe": "blender/recipe.js",
 		"js": "blender/script.js"
 	},
+	"components": [
+		{
+			"name": "Modal",
+			"src": "Modal.js"
+		},
+		{
+			"name": "Body",
+			"src": "ModalBody.js"
+		},
+		{
+			"name": "Footer",
+			"src": "ModalFooter.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

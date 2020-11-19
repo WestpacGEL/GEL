@@ -6,6 +6,12 @@
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Badge",
+			"src": "Badge.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
