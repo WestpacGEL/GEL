@@ -1,10 +1,9 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react'; // Needed for within Keystone
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Section, SectionHeading } from '../src/components/section';
-import { Heading } from '@westpac/heading';
 
 import { FieldContainer } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
@@ -44,7 +43,7 @@ const Code = ({ children, ...rest }) => {
  */
 function formatValue(value) {
 	if (typeof value === 'string') {
-		return `"${value}"`;
+		return value.replace(/'/g, '"');
 	} else if (typeof value === 'boolean') {
 		return value ? 'true' : 'false';
 	} else {
@@ -77,25 +76,45 @@ function Indent({ level }) {
  * @param {number} options.level - The level, will be incremented with each recursive call
  */
 function PTableRow({ name, data, level = 0 }) {
-	const type = data.type ? data.type.name : undefined;
 	const required = <Code>{formatValue(data.required)}</Code>;
 	const defaultValue = data.defaultValue ? (
 		<Code>{formatValue(data.defaultValue.value)}</Code>
 	) : null;
+	const description = data.description ? data.description : '';
 	const indent = level > 0 ? <Indent level={level} /> : '';
+	const values = (data.type && data.type.value) || data.value;
 	const subValues = [];
 	let value = null;
 	level++;
 
+	let type = null;
+
+	if (data.type) {
+		switch (data.type.name) {
+			case 'enum':
+				type = 'oneOf';
+				break;
+			case 'union':
+				type = 'oneOfType';
+				break;
+			default:
+				type = data.type.name;
+				break;
+		}
+	} else if (!data.type && data.name) {
+		// override case
+		type = data.name;
+	}
+
 	if (type === 'shape' || type === 'exact') {
 		subValues.push(
-			Object.entries(data.type.value).map(([name, data], i) => (
+			Object.entries(values).map(([name, data], i) => (
 				<PTableRow key={i} name={name} data={data} level={level} />
 			))
 		);
 	} else if (type === 'oneOfType') {
 		subValues.push(
-			data.type.value.map((item, i) => (
+			values.map((item, i) => (
 				<PTableRow
 					key={i}
 					name=""
@@ -124,10 +143,8 @@ function PTableRow({ name, data, level = 0 }) {
 				level={level}
 			/>
 		);
-	} else {
-		value = Array.isArray(data.type.value)
-			? data.type.value.map((val, i) => <Code key={i}>"{val}"</Code>)
-			: null;
+	} else if (data.type && data.type.value && Array.isArray(data.type.value)) {
+		value = data.type.value.map((val, i) => <Code key={i}>{formatValue(val.value)}</Code>);
 	}
 
 	return (
@@ -143,6 +160,7 @@ function PTableRow({ name, data, level = 0 }) {
 				<Td>{value}</Td>
 				<Td>{defaultValue}</Td>
 				<Td>{required}</Td>
+				<Td>{description}</Td>
 			</Tr>
 			{subValues}
 		</Fragment>
@@ -171,6 +189,7 @@ function PTable({ data, caption }) {
 					<Th scope="col">Value</Th>
 					<Th scope="col">Default</Th>
 					<Th scope="col">Required</Th>
+					<Th scope="col">Description</Th>
 				</Tr>
 			</Thead>
 			<Tbody>
@@ -183,21 +202,17 @@ function PTable({ data, caption }) {
 }
 
 const Component = ({ item, addTableContent }) => {
-	const mq = useMediaQuery();
 	const packageName = item.packageName.replace(/_/g, '-'); // removing underscores from graphql queries
 
-	const tableData = Object.keys(PropTypes.components[packageName])
-		.filter(
-			(key) => typeof PropTypes.components[packageName][key] === 'object' && key !== 'blender'
-		)
-		.map((key) => {
-			const { overrides, ...normalProps } = PropTypes.components[packageName][key].propTypes;
-			return {
-				name: key,
-				overrideProps: overrides ? { overrides: overrides } : {},
-				normalProps,
-			};
-		});
+	const tableData = PropTypes.components[packageName].components.map((component) => {
+		const [key, val] = Object.entries(component)[0];
+		const { overrides, ...normalProps } = val.props;
+		return {
+			name: key,
+			overrideProps: overrides ? { overrides: overrides } : {},
+			normalProps,
+		};
+	});
 
 	return (
 		<Section light>

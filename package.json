@@ -126,6 +126,7 @@
 		"raf": "^3.4.1",
 		"react": "^16.13.1",
 		"react-app-polyfill": "^1.0.6",
+		"react-docgen": "^5.3.1",
 		"react-dom": "^16.13.1",
 		"react-focus-lock": "^2.3.1",
 		"react-router-dom": "^5.1.2",
