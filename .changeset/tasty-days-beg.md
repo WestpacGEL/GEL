@@ -1,5 +1,5 @@
 ---
-'@westpac/form-check': major
+'@westpac/form-check': minor
 ---
 
 Add Blender support
