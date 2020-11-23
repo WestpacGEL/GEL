@@ -35,7 +35,7 @@ export const RelatedInformation = ({ item }) => {
 
 				<Grid rowGap={30}>
 					{hasRelatedPages && (
-						<Cell width={[12, hasRelatedInfo && 6, 4]}>
+						<Cell width={[12, hasRelatedInfo ? 6 : null, 4]}>
 							<BlockListHeading icon={CubeIcon}>Components</BlockListHeading>
 							<BlockList>
 								{relatedPages.map((d) => (
@@ -48,7 +48,7 @@ export const RelatedInformation = ({ item }) => {
 					)}
 					{hasRelatedInfo && (
 						<Cell
-							width={[12, hasRelatedPages && 6, hasRelatedPages ? 7 : 12]}
+							width={[12, hasRelatedPages ? 6 : null, hasRelatedPages ? 7 : null]}
 							left={[null, null, hasRelatedPages && 6]}
 						>
 							<BlockListHeading icon={GenericFileIcon}>Articles</BlockListHeading>
