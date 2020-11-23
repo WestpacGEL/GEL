@@ -7,7 +7,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Panel look="faint" heading="Panel title">
+			<Panel look="faint" heading="The Wild Wood">
 				<Body>
 					They found themselves standing on the very edge of the Wild Wood. Rocks and brambles and
 					tree-roots behind them, confusedly heaped and tangled; in front, a great space of quiet
