@@ -9,7 +9,16 @@ import * as pictograms from '@westpac/pictogram';
 const renderPictograms = (search) => {
 	const pictogramDetails = [];
 	for (let key in pictograms) {
-		pictogramDetails.push({ name: key, pictogram: pictograms[key] });
+		// only show informative for now
+		if (
+			!key.startsWith('BOM') &&
+			!key.startsWith('BSA') &&
+			!key.startsWith('STG') &&
+			!key.startsWith('WBC') &&
+			!key.startsWith('WBG')
+		) {
+			pictogramDetails.push({ name: key, pictogram: pictograms[key] });
+		}
 	}
 	const { COLORS } = useBrand();
 
