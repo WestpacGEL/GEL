@@ -20,20 +20,32 @@ const Swatch = ({ color, secondary }) => {
 	const [r, g, b] = chroma(colorVal).rgb();
 
 	return (
-		<div css={{ backgroundColor: '#fff', padding: SPACING(4) }}>
+		<div
+			css={mq({
+				backgroundColor: '#fff',
+				padding: SPACING(4),
+				display: 'flex',
+				flexDirection: ['row', 'column'],
+				alignItems: ['center', 'normal'],
+			})}
+		>
 			<div
 				css={{
 					background: colorVal,
 					width: 132,
 					height: 132,
 					borderRadius: '50%',
+					flex: 'none',
 				}}
 			/>
 			<Body
 				css={mq({
 					display: 'flex',
 					flexDirection: 'column',
-					padding: `${SPACING(2)} ${SPACING(2)} 0`,
+					marginTop: [null, SPACING(2)],
+					marginLeft: [SPACING(4), 0],
+					paddingLeft: [null, SPACING(2)],
+					paddingRight: [null, SPACING(2)],
 				})}
 				overrides={{
 					Body: {
