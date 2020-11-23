@@ -4,16 +4,16 @@ import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import throttle from 'lodash.throttle';
 import Error from 'next/error';
-
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
-import { Gridly, Footer } from '../../components/layout';
 
+import { Gridly, Footer } from '../../components/layout';
 import { PageContext, usePageContext } from '../../components/providers/pageContext';
 import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
 import PageHeader from '../../components/header/page-header';
 import { Head } from '../../components/head';
 import { ALL_PAGES } from '../../../graphql';
+import { scrollMap } from '../../components/_utils';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
@@ -66,7 +66,7 @@ const Tabs = ({ component, tabName }) => {
 		const setTabs = () => {
 			const scroll = window.scrollY;
 
-			setHasScrolled(scroll > 156);
+			setHasScrolled(scroll >= scrollMap.large);
 		};
 		setTabs();
 

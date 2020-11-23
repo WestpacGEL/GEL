@@ -2,15 +2,15 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
-import { MenuButton } from './menu-button';
-import { Button } from '@westpac/button';
 import { BrandHeading } from '@westpac/heading';
+import throttle from 'lodash.throttle';
+
+import { MenuButton } from './menu-button';
 import HeaderImage from './home-page-header-image';
 import HomePageStickyHeaderImage from './home-page-sticky-header-image';
 import { Body } from '../body';
 import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../symbols';
 import { antialiasingStyling, brandHeaderStyling, brandIconHighlightColors } from '../_utils';
-import throttle from 'lodash.throttle';
 
 const HomePageHeader = () => {
 	const { BRAND, COLORS, SPACING } = useBrand();
@@ -77,7 +77,7 @@ const StickyHeader = () => {
 		return () => {
 			window.removeEventListener('scroll', scrollHandler);
 		};
-	});
+	}, []);
 
 	return (
 		<Fragment>

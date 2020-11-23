@@ -13,8 +13,10 @@ const VisionFilterIntro = () => (
 const A11yIntro = () => (
 	<Fragment>
 		All components comply with WCAG 2.1 AA guidelines and Success Criteria. These fall under the{' '}
-		<a href="/design-system/accessibility/inclusive-design">four principles of accessibility</a> –{' '}
-		Perceivable, Operable, Understandable and Robust. Below are some specific ways in which this
+		<a href="/design-system/accessibility/design-system-accessibility">
+			four principles of accessibility
+		</a>{' '}
+		– Perceivable, Operable, Understandable and Robust. Below are some specific ways in which this
 		component follows these principles:
 	</Fragment>
 );

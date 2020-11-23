@@ -55,7 +55,9 @@ export default ({ context, showCode, showDemo }) => {
 				onClose={() => setOpen(false)}
 			>
 				<Body>
-					The line of the horizon was clear and hard against the sky, and in one particular quarter
+					{size === 'small'
+						? `The line of the horizon was clear and hard against the sky, and in one particular quarter it showed black against a silvery climbing phosphorescence that grew and grew.`
+						: `The line of the horizon was clear and hard against the sky, and in one particular quarter
 					it showed black against a silvery climbing phosphorescence that grew and grew. At last,
 					over the rim of the waiting earth the moon lifted with slow majesty till it swung clear of
 					the horizon and rode off, free of moorings; and once more they began to see
@@ -63,7 +65,7 @@ export default ({ context, showCode, showDemo }) => {
 					all softly disclosed, all washed clean of mystery and terror, all radiant again as by day,
 					but with a difference that was tremendous. Their old haunts greeted them again in other
 					raiment, as if they had slipped away and put on this pure new apparel and come quietly
-					back, smiling as they shyly waited to see if they would be recognised again under it.
+					back, smiling as they shyly waited to see if they would be recognised again under it.`}
 				</Body>
 				<Footer>
 					<Button look="faint" onClick={() => setOpen(false)}>

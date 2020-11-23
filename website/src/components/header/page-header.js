@@ -4,12 +4,12 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { VisuallyHidden } from '@westpac/a11y';
+import throttle from 'lodash.throttle';
+
 import { MenuButton } from './menu-button';
 import HeaderImage from './component-page-header-image';
-
 import { usePageContext } from '../providers/pageContext';
-import { brandHeaderStyling } from '../_utils';
-import throttle from 'lodash.throttle';
+import { scrollMap, brandHeaderStyling } from '../_utils';
 
 const GridIndicator = () => {
 	const mq = useMediaQuery();
@@ -77,7 +77,6 @@ const PageHeaderHeading = ({ hasScrolledLarge, ...rest }) => {
 const PageHeader = ({ name }) => {
 	const { COLORS, BRAND, SPACING } = useBrand();
 	const mq = useMediaQuery();
-	const [hasScroll, setHasScroll] = useState(false);
 	const [hasScrolledSmall, setHasScrolledSmall] = useState(false);
 	const [hasScrolledLarge, setHasScrolledLarge] = useState(false);
 	const header = useRef(null);
@@ -86,9 +85,8 @@ const PageHeader = ({ name }) => {
 		const setHeader = () => {
 			const scroll = window.scrollY;
 
-			setHasScroll(scroll > 5);
-			setHasScrolledSmall(scroll > 46);
-			setHasScrolledLarge(scroll >= 162);
+			setHasScrolledSmall(scroll > scrollMap.small);
+			setHasScrolledLarge(scroll >= scrollMap.large);
 		};
 		setHeader();
 
@@ -98,7 +96,7 @@ const PageHeader = ({ name }) => {
 		return () => {
 			window.removeEventListener('scroll', scrollHandler);
 		};
-	});
+	}, []);
 
 	return (
 		<header

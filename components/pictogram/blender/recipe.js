@@ -3,6 +3,8 @@ import React from 'react';
 
 import * as components from '@westpac/pictogram';
 
+const modes = ['dark', 'duo', 'light'];
+
 export function AllStyles({ brand }) {
 	return (
 		<GEL brand={brand} noScope>
@@ -42,7 +44,9 @@ export function Docs({ brand }) {
 				subheading: pictogram,
 				component: () => (
 					<GEL brand={brand} noScope>
-						<Informative />
+						{modes.map((m) => (
+							<Informative key={m} mode={m} />
+						))}
 					</GEL>
 				),
 			};
