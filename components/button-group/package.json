@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/button-group",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Westpac GEL button group component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-group",
 	"blender": {
@@ -47,8 +47,8 @@
 	"module": "dist/button-group.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/button": "1.0.1",
-		"@westpac/core": "1.0.1",
+		"@westpac/button": "1.1.0",
+		"@westpac/core": "1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/tabcordion",
-	"version": "1.0.0-beta.2",
+	"version": "1.0.0",
 	"description": "Tabcordion component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/tabcordion",
 	"blender": {
@@ -53,9 +53,9 @@
 	"module": "dist/tabcordion.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
-		"@westpac/hooks": "^1.0.1",
-		"@westpac/icon": "^1.0.1",
+		"@westpac/core": "^1.1.0",
+		"@westpac/hooks": "^1.1.0",
+		"@westpac/icon": "^1.1.0",
 		"prop-types": "^15.7.2",
 		"react-use-measure": "^2.0.0",
 		"resize-observer-polyfill": "^1.5.1"

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/core",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "Core components for the westpac GEL design language",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
 	"blender": {
@@ -77,7 +77,7 @@
 	},
 	"devDependencies": {
 		"@westpac/button": "*",
-		"@westpac/text-input": ">1.0.0-alpha",
+		"@westpac/text-input": ">1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

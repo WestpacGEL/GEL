@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/text-input",
-	"version": "1.0.0-beta.2",
+	"version": "1.0.0",
 	"description": "TextInput component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/text-input",
 	"blender": {
@@ -56,7 +56,7 @@
 	"module": "dist/text-input.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
+		"@westpac/core": "^1.1.0",
 		"mini-svg-data-uri": "^1.2.3",
 		"prop-types": "^15.7.2"
 	},
@@ -65,7 +65,7 @@
 	},
 	"devDependencies": {
 		"@westpac/button": "*",
-		"@westpac/grid": ">1.0.0-alpha",
+		"@westpac/grid": ">1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

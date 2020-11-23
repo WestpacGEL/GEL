@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/body",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "Body component in charge of body text",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/body",
 	"blender": {
@@ -48,7 +48,7 @@
 	"module": "dist/body.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
+		"@westpac/core": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
@@ -57,8 +57,8 @@
 	"devDependencies": {
 		"@westpac/button": "*",
 		"@westpac/icon": "*",
-		"@westpac/list": ">1.0.0-alpha",
-		"@westpac/text-input": ">1.0.0-alpha",
+		"@westpac/list": ">1.0.0",
+		"@westpac/text-input": ">1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

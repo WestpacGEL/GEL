@@ -1,6 +1,26 @@
 # @westpac/form-check
 
+## 1.1.0
+
+### Minor Changes
+
+- 554affaa: Use Body component for label text
+- 34fa35f9: Add Blender support
+- f690aec8: Add Option hint prop
+
+### Patch Changes
+
+- Updated dependencies [44475eb5]
+- Updated dependencies [d1c90c38]
+- Updated dependencies [22242655]
+- Updated dependencies [876e36c3]
+- Updated dependencies [bedde7bc]
+- Updated dependencies [fb727cea]
+  - @westpac/core@1.1.0
+  - @westpac/body@1.2.0
+
 ## 1.0.1
+
 ### Patch Changes
 
 - 520c2fc4: fix distribution files

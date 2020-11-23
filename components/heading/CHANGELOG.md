@@ -1,5 +1,25 @@
 # @westpac/heading
 
+## 1.0.0
+
+### Major Changes
+
+- 5389e762: Add Blender support
+
+### Minor Changes
+
+- e459618e: Add new Heading uppercase option
+- 993c63ba: Add new BrandHeading uppercase option
+
+### Patch Changes
+
+- Updated dependencies [44475eb5]
+- Updated dependencies [d1c90c38]
+- Updated dependencies [876e36c3]
+- Updated dependencies [bedde7bc]
+- Updated dependencies [fb727cea]
+  - @westpac/core@1.1.0
+
 ## 1.0.0-beta.3
 
 ### Major Changes
