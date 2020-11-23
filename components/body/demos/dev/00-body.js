@@ -46,15 +46,15 @@ const Demo = ({ context, showCode, showDemo }) => {
 					<strong>Strong</strong>
 				</p>
 				<p>
-					<strong>Emphasise a snippet of text.</strong> The default styling being a heavier font
-					weight.
+					<strong>Emphasise a snippet of text.</strong> The default text styling being a heavier
+					font weight.
 				</p>
 				<Hr />
 				<p>
 					<strong>Emphasis</strong>
 				</p>
 				<p>
-					<em>Emphasise a snippet of text.</em> The default styling being italics.
+					<em>Emphasise a snippet of text.</em> The default text styling being italics.
 				</p>
 				<Hr />
 				<p>
