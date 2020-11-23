@@ -55,8 +55,8 @@
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/body": "*",
-		"@westpac/button": "*",
+		"@westpac/body": "^1.0.0",
+		"@westpac/button": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"
