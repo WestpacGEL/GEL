@@ -10,7 +10,7 @@ import { Hr } from '../../../../helpers/demos';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<ButtonDropdown text="Dropdown with switches" dropdownSize="large">
+			<ButtonDropdown text="Dropdown with switches" dropdownSize="large" look="primary" soft>
 				<Heading>Switches</Heading>
 				<Switch
 					name="example-default"

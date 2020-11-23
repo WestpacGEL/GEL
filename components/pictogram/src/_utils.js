@@ -1,14 +1,14 @@
 export const colorMap = (COLORS) => ({
-	color: {
-		outline: COLORS.hero,
-		highlight: COLORS.primary,
-	},
 	dark: {
-		outline: COLORS.text,
-		highlight: COLORS.text,
+		outline: COLORS.hero,
+		highlight: COLORS.hero,
 	},
 	light: {
 		outline: '#fff',
 		highlight: '#fff',
+	},
+	duo: {
+		outline: COLORS.hero,
+		highlight: COLORS.primary,
 	},
 });

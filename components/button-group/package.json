@@ -6,6 +6,16 @@
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "ButtonGroup",
+			"src": "ButtonGroup.js"
+		},
+		{
+			"name": "Item",
+			"src": "ButtonGroupItem.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

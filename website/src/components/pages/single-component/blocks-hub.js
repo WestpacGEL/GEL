@@ -80,7 +80,6 @@ const slateRenderer = (item, _editorValue) => {
 
 						return (
 							<a href={node.data.href} key={path} target={target}>
-								{' '}
 								{serializeChildren(node.nodes)}
 							</a>
 						);

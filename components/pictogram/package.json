@@ -3,6 +3,15 @@
 	"version": "1.0.0",
 	"description": "Pictogram component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/pictogram",
+	"blender": {
+		"recipe": "blender/recipe.js"
+	},
+	"components": [
+		{
+			"name": "Pictogram",
+			"src": "Pictogram.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -32,20 +41,28 @@
 	"preconstruct": {
 		"entrypoints": [
 			".",
+			"informative/ATMPictogram",
 			"informative/AccessibilityPictogram",
+			"informative/AeroplanePictogram",
+			"informative/AustraliaPictogram",
 			"informative/BirthCertificatePictogram",
 			"informative/BusinessPersonPictogram",
 			"informative/CalculatorPictogram",
 			"informative/CalendarPictogram",
 			"informative/CardLockedPictogram",
+			"informative/CashPictogram",
 			"informative/ChatPictogram",
+			"informative/ClockPictogram",
 			"informative/CoinsPictogram",
 			"informative/CreditCardPictogram",
 			"informative/DesktopComputerPictogram",
 			"informative/DollarSignPictogram",
 			"informative/DriversLicencePictogram",
+			"informative/EftposPictogram",
+			"informative/EnvelopePictogram",
 			"informative/GenericDocumentPictogram",
 			"informative/GiftPictogram",
+			"informative/GlobePictogram",
 			"informative/HousePictogram",
 			"informative/LocationPinPictogram",
 			"informative/MedicareCardPictogram",

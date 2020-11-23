@@ -14,13 +14,15 @@ export function AllStyles({ brand }) {
 	overridesWithTokens['@westpac/heading'] = {
 		Heading: {
 			styles: blenderHeading.styles,
+			component: blenderHeading.component,
 		},
 		BrandHeading: {
 			styles: blenderBrandHeading.styles,
+			component: blenderBrandHeading.component,
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
 			{/* <Global css={{ ...useFonts({ path: 'assets/' }) }} /> */}
 			{/* Heading */}
 			{headingSizes.map((size) => (
@@ -51,10 +53,12 @@ export function Docs({ brand }) {
 		Heading: {
 			styles: blenderHeading.styles,
 			attributes: blenderHeading.attributes,
+			component: blenderHeading.component,
 		},
 		BrandHeading: {
 			styles: blenderBrandHeading.styles,
 			attributes: blenderBrandHeading.attributes,
+			component: blenderBrandHeading.component,
 		},
 	};
 	return [
@@ -62,7 +66,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Heading',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					{headingSizes.map((size) => (
 						<Heading key={size} size={size}>
 							Heading size {size}
@@ -74,7 +78,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Heading uppercase',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					{headingSizes.map((size) => (
 						<Heading key={size} size={size} uppercase>
 							Heading size {size}
@@ -88,7 +92,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Brand heading',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					{brandHeadingSizes.map((size) => (
 						<BrandHeading key={size} size={size}>
 							BrandHeading size {size}
@@ -100,7 +104,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Brand heading uppercase',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					{brandHeadingSizes.map((size) => (
 						<BrandHeading key={size} size={size} uppercase>
 							BrandHeading size {size}

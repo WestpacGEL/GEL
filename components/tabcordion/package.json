@@ -7,6 +7,16 @@
 		"recipe": "blender/recipe.js",
 		"js": "blender/script.js"
 	},
+	"components": [
+		{
+			"name": "Tabcordion",
+			"src": "Tabcordion.js"
+		},
+		{
+			"name": "Tab",
+			"src": "Tab.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

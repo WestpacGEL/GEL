@@ -52,7 +52,9 @@ function Example({ brand }) {
 
 			<hr />
 
-			<p>Note: All users should see our focus outline styling; not just keyboard users.</p>
+			<Body>
+				<p>Note: All users should see our focus outline styling; not just keyboard users.</p>
+			</Body>
 			<TextInput />
 			<br />
 			<Select>
@@ -64,13 +66,31 @@ function Example({ brand }) {
 			<hr />
 
 			<Body>
-				<p>Note: The following headings should show focus outline styling when keyboard tabbing.</p>
+				<p>
+					Note: The following headings have a tabindex="0" attribute and should show focus outline
+					styling when keyboard tabbing.
+				</p>
 				<h1 tabIndex="0">This is a h1 heading</h1>
 				<h2 tabIndex="0">This is a h2 heading</h2>
 				<h3 tabIndex="0">This is a h3 heading</h3>
 				<h4 tabIndex="0">This is a h4 heading</h4>
 				<h5 tabIndex="0">This is a h5 heading</h5>
 				<h6 tabIndex="0">This is a h6 heading</h6>
+			</Body>
+
+			<hr />
+
+			<Body>
+				<p>
+					Note: The following headings have a tabindex="-1" attribute and should NOT show focus
+					outline styling when keyboard tabbing. They can however receive focus programmatically.
+				</p>
+				<h1 tabIndex="-1">This is a h1 heading</h1>
+				<h2 tabIndex="-1">This is a h2 heading</h2>
+				<h3 tabIndex="-1">This is a h3 heading</h3>
+				<h4 tabIndex="-1">This is a h4 heading</h4>
+				<h5 tabIndex="-1">This is a h5 heading</h5>
+				<h6 tabIndex="-1">This is a h6 heading</h6>
 			</Body>
 		</GEL>
 	);

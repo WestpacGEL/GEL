@@ -30,7 +30,7 @@ const Homepage = () => {
 
 	return (
 		<Fragment>
-			<Head title="Westpac GEL" />
+			<Head />
 			<main
 				id="content"
 				css={{

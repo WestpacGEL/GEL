@@ -2,7 +2,7 @@
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
-import { useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultCloseBtn } from './overrides/closeBtn';
@@ -108,13 +108,17 @@ export const Alert = ({
 		</Alert>
 	);
 
-	return transition.map(
-		({ item, key, props }) =>
-			item && (
-				<animated.div key={key} style={props} data-js="alert__version__">
-					<AlertJSX />
-				</animated.div>
-			)
+	return (
+		<Fragment>
+			{transition.map(
+				({ item, key, props }) =>
+					item && (
+						<animated.div key={key} style={props} data-js="alert__version__">
+							<AlertJSX />
+						</animated.div>
+					)
+			)}
+		</Fragment>
 	);
 };
 

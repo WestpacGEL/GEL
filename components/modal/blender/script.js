@@ -27,10 +27,12 @@ function trapFocus(element) {
 function GELModalToggle($el, mode) {
 	mode = typeof mode !== 'undefined' ? mode : 'toggle';
 
-	var classes = $el.attr('class').split(/\s+/);
-	var baseClass = classes.filter(function (el) {
-		return /modal$/.test(el);
-	})[0];
+	var classes = $el.children().first().attr('class').split(/\s+/);
+	var baseClass = classes
+		.filter(function (el) {
+			return /dialog$/.test(el);
+		})[0]
+		.replace('-dialog', '');
 	var openClass = baseClass + '-open';
 	var isOpen = $el.hasClass(openClass);
 
@@ -42,12 +44,10 @@ function GELModalToggle($el, mode) {
 		$el.attr('aria-hidden', 'false').css('opacity', 0).fadeTo(150, 1, 'linear');
 		$backdrop.css('opacity', 0).appendTo('body').fadeTo(150, 0.5, 'linear');
 		$el.addClass(openClass).find('[data-js="modal-heading__version__"]').trigger('focus');
-		// $el.find('[data-js="modal-content__version__"]').trap();
 	} else if (mode === 'close' || (mode === 'toggle' && isOpen)) {
 		$('body').removeClass('isModalOpen');
 		$el.attr('aria-hidden', 'true').fadeTo(150, 0, 'linear', function () {
 			$(this).css({ display: '', opacity: '' });
-			// $el.find('[data-js="modal-content__version__"]').untrap();
 		});
 		$el.removeClass(openClass).prev('[data-modal]').trigger('focus');
 		$('.' + backdropClass).fadeTo(150, 0, 'linear', function () {
@@ -57,7 +57,10 @@ function GELModalToggle($el, mode) {
 }
 
 $(function () {
-	trapFocus($('[data-js="modal__version__"]')[0]);
+	var $modal = $('[data-js="modal__version__"]');
+	if ($modal.length) {
+		trapFocus($modal[0]);
+	}
 
 	$('[data-modal]').on('click', function () {
 		var modalID = $(this).data('modal');

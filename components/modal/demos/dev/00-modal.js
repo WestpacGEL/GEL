@@ -10,7 +10,9 @@ const Demo = ({ context, showCode, showDemo }) => {
 	const [open, setOpen] = useState(false);
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Button onClick={() => setOpen(true)}>Open</Button>
+			<Button onClick={() => setOpen(true)} look="primary" soft>
+				Open
+			</Button>
 			<Modal heading="Modal heading" open={open} onClose={() => setOpen(false)}>
 				<Body>
 					‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing

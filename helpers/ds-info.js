@@ -1,4 +1,4 @@
-const parsePropTypes = require('parse-prop-types').default;
+var reactDocs = require('react-docgen');
 const chalk = require('chalk');
 const path = require('path');
 const fs = require('fs');
@@ -17,31 +17,36 @@ const GEL = {
 	brands: {},
 	components: {},
 };
+
 let i = 0;
 
 for (const component of components) {
 	i++;
 	process.stdout.write(`\x1b[2K\x1b[0G${i}/${total}`);
-
 	if (component.isDirectory()) {
-		const requiredComponent = require(`@westpac/${component.name}`);
 		const pkg = require(path.normalize(
 			`${__dirname}/../components/${component.name}/package.json`
 		));
-		GEL.components[component.name] = {};
-		for (const key in requiredComponent) {
-			GEL.components[component.name] = {
-				name: pkg.name,
-				version: pkg.version,
-				description: pkg.description,
-				blender: pkg.blender,
-				[key]: {
-					propTypes: {},
-				},
-			};
-			const exportedComponent = requiredComponent[key];
-			if (exportedComponent && exportedComponent.propTypes) {
-				GEL.components[component.name][key].propTypes = parsePropTypes(exportedComponent);
+		GEL.components[component.name] = {
+			name: pkg.name,
+			version: pkg.version,
+			description: pkg.description,
+			blender: pkg.blender,
+			components: [],
+		};
+		if (pkg.components && Array.isArray(pkg.components)) {
+			for (exportedComponent of pkg.components) {
+				const componentPath = path.normalize(
+					`${__dirname}/../components/${component.name}/src/${exportedComponent.src}`
+				);
+				const contents = fs.readFileSync(componentPath);
+				const parsed = reactDocs
+					.parse(contents, reactDocs.resolver.findAllExportedComponentDefinitions)
+					.filter((cmp) => !/context/i.test(cmp.displayName)); // removing component context hooks
+
+				GEL.components[component.name].components.push({
+					[exportedComponent.name]: parsed[0],
+				});
 			}
 		}
 	}

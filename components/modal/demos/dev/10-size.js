@@ -20,6 +20,8 @@ const Demo = ({ context, showCode, showDemo }) => {
 						setSize('small');
 						setOpen(true);
 					}}
+					look="primary"
+					soft
 					overrides={{ Button: { styles: (styles) => ({ ...styles, marginRight: '2rem' }) } }}
 				>
 					Small Modal
@@ -29,6 +31,8 @@ const Demo = ({ context, showCode, showDemo }) => {
 						setSize('medium');
 						setOpen(true);
 					}}
+					look="primary"
+					soft
 					overrides={{ Button: { styles: (styles) => ({ ...styles, marginRight: '2rem' }) } }}
 				>
 					Default Modal
@@ -38,6 +42,8 @@ const Demo = ({ context, showCode, showDemo }) => {
 						setSize('large');
 						setOpen(true);
 					}}
+					look="primary"
+					soft
 				>
 					Large Modal
 				</Button>

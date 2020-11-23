@@ -7,6 +7,12 @@
 		"recipe": "blender/recipe.js",
 		"js": "blender/script.js"
 	},
+	"components": [
+		{
+			"name": "Popover",
+			"src": "Popover.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

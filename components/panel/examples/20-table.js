@@ -62,7 +62,7 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h2>Responsive panel with table only</h2>
+			<h2>Panel with table only</h2>
 			<Panel heading="Panel title">
 				<Table>
 					<Caption>

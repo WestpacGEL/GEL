@@ -22,7 +22,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
 			{/* Default */}
 			<Button>Text</Button>
 			<Button soft>Text</Button>
@@ -50,6 +50,7 @@ export function AllStyles({ brand }) {
 			<Button block>Text</Button>
 
 			{/* Icon */}
+			<Button iconAfter={HouseIcon} />
 			<Button iconBefore={HouseIcon}>Text</Button>
 			<Button iconAfter={HouseIcon}>Text</Button>
 			<Button justify>Text</Button>
@@ -77,7 +78,7 @@ export function Docs({ brand }) {
 			heading: 'Button looks',
 			subheading: 'Standard',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button>Default</Button>{' '}
 					{looks.map((look) => (
 						<Fragment key={look}>
@@ -90,7 +91,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Soft',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button soft>Default</Button>{' '}
 					{looks
 						.filter((item) => item !== 'link')
@@ -109,7 +110,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Assistive text',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button iconAfter={HouseIcon} assistiveText="Go to home" />{' '}
 					<Button assistiveText="Learn more about accessibility">Learn more</Button>
 				</GEL>
@@ -120,7 +121,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Disabled buttons',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button disabled>Default</Button>{' '}
 					{looks.map((look) => (
 						<Fragment key={look}>
@@ -138,7 +139,7 @@ export function Docs({ brand }) {
 			heading: 'Button sizes',
 			subheading: 'Small',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button size="small">Default</Button>{' '}
 					{looks.map((look) => (
 						<Fragment key={look}>
@@ -155,7 +156,7 @@ export function Docs({ brand }) {
 			.map((size) => ({
 				subheading: titleCase(size),
 				component: () => (
-					<GEL brand={overridesWithTokens} noPrefix>
+					<GEL brand={overridesWithTokens} noScope>
 						<Button size={size}>Default</Button>{' '}
 						{looks.map((look) => (
 							<Fragment key={look}>
@@ -173,7 +174,7 @@ export function Docs({ brand }) {
 			heading: 'Block buttons',
 			subheading: 'Standard',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button block>Default</Button>
 					{looks.map((look) => (
 						<Button key={look} look={look} block>
@@ -186,7 +187,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Soft',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button soft block>
 						Default
 					</Button>
@@ -204,7 +205,7 @@ export function Docs({ brand }) {
 			heading: 'Buttons with icons',
 			subheading: 'Icon before',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button iconBefore={HouseIcon}>Default</Button>{' '}
 					{looks.map((look) => (
 						<Fragment key={look}>
@@ -219,7 +220,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Icon after',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button iconAfter={HouseIcon}>Default</Button>{' '}
 					{looks.map((look) => (
 						<Fragment key={look}>
@@ -234,7 +235,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Block buttons justified with icon after',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Button block justify iconAfter={ArrowRightIcon}>
 						Default
 					</Button>
