@@ -8,7 +8,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<ButtonDropdown text="Dropdown with lists">
+			<ButtonDropdown text="Dropdown with lists" look="primary" soft>
 				<Heading>List</Heading>
 				<List
 					type="link"

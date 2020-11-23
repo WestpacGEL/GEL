@@ -30,6 +30,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<p>The baseline body text.</p>
 				<Hr />
 				<p>
+					<strong>Link</strong>
+				</p>
+				<a href="#">Link a snippet of text</a>. The default text styling being underlined and
+				primary colour.
+				<Hr />
+				<p>
 					<strong>Small</strong>
 				</p>
 				<p>
@@ -40,7 +46,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 					<strong>Strong</strong>
 				</p>
 				<p>
-					<strong>Emphasise a snippet of text.</strong> The default behaviour being a heavier font
+					<strong>Emphasise a snippet of text.</strong> The default styling being a heavier font
 					weight.
 				</p>
 				<Hr />
@@ -48,7 +54,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 					<strong>Emphasis</strong>
 				</p>
 				<p>
-					<em>Emphasise a snippet of text.</em> The default behaviour being italics.
+					<em>Emphasise a snippet of text.</em> The default styling being italics.
 				</p>
 				<Hr />
 				<p>
