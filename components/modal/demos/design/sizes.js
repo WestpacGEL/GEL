@@ -20,6 +20,8 @@ export default ({ context, showCode, showDemo }) => {
 						setSize('small');
 						setOpen(true);
 					}}
+					look="primary"
+					soft
 					overrides={{ Button: { styles: (styles) => ({ ...styles, marginRight: '2rem' }) } }}
 				>
 					Small Modal
@@ -29,6 +31,8 @@ export default ({ context, showCode, showDemo }) => {
 						setSize('medium');
 						setOpen(true);
 					}}
+					look="primary"
+					soft
 					overrides={{ Button: { styles: (styles) => ({ ...styles, marginRight: '2rem' }) } }}
 				>
 					Default Modal
@@ -38,11 +42,18 @@ export default ({ context, showCode, showDemo }) => {
 						setSize('large');
 						setOpen(true);
 					}}
+					look="primary"
+					soft
 				>
 					Large Modal
 				</Button>
 			</Wrapper>
-			<Modal heading="Modal heading" open={open} size={size} onClose={() => setOpen(false)}>
+			<Modal
+				heading="Sudden and magnificent"
+				open={open}
+				size={size}
+				onClose={() => setOpen(false)}
+			>
 				<Body>
 					The line of the horizon was clear and hard against the sky, and in one particular quarter
 					it showed black against a silvery climbing phosphorescence that grew and grew. At last,
