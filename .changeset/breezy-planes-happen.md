@@ -1,6 +1,5 @@
 ---
-'@westpac/pagination': major
+'@westpac/pagination': minor
 ---
 
-- Add Blender support
-- Rename internal `List` component (was `PageList`)
+Rename internal `List` component (was `PageList`)

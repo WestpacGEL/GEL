@@ -1,5 +1,5 @@
 ---
-'@westpac/modal': major
+'@westpac/pagination': major
 ---
 
 Add Blender support

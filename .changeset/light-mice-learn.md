@@ -2,4 +2,4 @@
 '@westpac/table': major
 ---
 
-Add blender support
+Add Blender support

@@ -2,4 +2,4 @@
 '@westpac/text-input': major
 ---
 
-Add blender support
+Add Blender support

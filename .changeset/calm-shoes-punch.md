@@ -2,4 +2,4 @@
 '@westpac/symbol': major
 ---
 
-Add blender support
+Add Blender support

@@ -2,4 +2,4 @@
 '@westpac/tabcordion': major
 ---
 
-Add blender support
+Add Blender support
