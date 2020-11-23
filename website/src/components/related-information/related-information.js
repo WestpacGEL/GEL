@@ -49,7 +49,7 @@ export const RelatedInformation = ({ item }) => {
 					{hasRelatedInfo && (
 						<Cell
 							width={[12, hasRelatedPages ? 6 : null, hasRelatedPages ? 7 : null]}
-							left={[null, null, hasRelatedPages && 6]}
+							left={[null, null, hasRelatedPages ? 6 : null]}
 						>
 							<BlockListHeading icon={GenericFileIcon}>Articles</BlockListHeading>
 							<TextOnlySlateContent
