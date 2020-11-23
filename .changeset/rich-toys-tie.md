@@ -1,5 +1,5 @@
 ---
-'@westpac/table': major
+'@westpac/table': minor
 ---
 
 Update font size
