@@ -6,6 +6,20 @@
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "InputGroup",
+			"src": "InputGroup.js"
+		},
+		{
+			"name": "Before",
+			"src": "Before.js"
+		},
+		{
+			"name": "After",
+			"src": "After.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

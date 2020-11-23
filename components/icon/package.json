@@ -7,6 +7,12 @@
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Icon",
+			"src": "Icon.js"
+		}
+	],
 	"contributors": [
 		{
 			"name": "Dominik Wilkowski",

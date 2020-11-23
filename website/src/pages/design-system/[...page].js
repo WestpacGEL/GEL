@@ -43,7 +43,7 @@ const Component = ({ component, tabName }) => {
 
 	return (
 		<Fragment>
-			<Head title={`${pageTitle} · Westpac GEL`} />
+			<Head title={pageTitle} />
 			<PageContext.Provider value={{ showGrid, setShowGrid }}>
 				<PageHeader name={pageTitle} />
 				<Tabs component={component} tabName={tabName} />

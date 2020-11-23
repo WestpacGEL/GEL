@@ -7,6 +7,16 @@
 		"recipe": "blender/recipe.js",
 		"js": "blender/script.js"
 	},
+	"components": [
+		{
+			"name": "ButtonDropdown",
+			"src": "ButtonDropdown.js"
+		},
+		{
+			"name": "Heading",
+			"src": "Heading.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{

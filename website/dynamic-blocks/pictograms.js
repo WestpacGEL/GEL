@@ -54,7 +54,6 @@ const Pictogram = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
 	const { COLORS, SPACING, BRAND } = useBrand();
-	console.log(BRAND);
 	if (BRAND !== 'WBC') {
 		return (
 			<Cell width={12}>

@@ -8,6 +8,12 @@
 		"js": "blender/jquery.js",
 		"isCore": true
 	},
+	"components": [
+		{
+			"name": "GEL",
+			"src": "GEL.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
