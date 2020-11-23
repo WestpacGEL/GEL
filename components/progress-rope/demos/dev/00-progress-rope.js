@@ -29,25 +29,6 @@ const Demo = ({ context, showCode, showDemo }) => {
 					Review and Submit
 				</Step>
 			</ProgressRope>
-			<p>Use the Next/Previous buttons below to demonstrate how the progress rope moves.</p>
-			<Wrapper>
-				<Button
-					soft
-					onClick={() => dispatch({ type: 'prev' })}
-					overrides={{
-						Button: { styles: (styles) => ({ ...styles, width: '8rem', marginRight: '2rem' }) },
-					}}
-				>
-					Previous
-				</Button>
-				<Button
-					soft
-					onClick={() => dispatch({ type: 'next' })}
-					overrides={{ Button: { styles: (styles) => ({ ...styles, width: '8rem' }) } }}
-				>
-					Next
-				</Button>
-			</Wrapper>
 		</Playground>
 	);
 };
