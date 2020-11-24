@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/heading",
 	"version": "1.0.0",
-	"description": "Headings for your page needs",
+	"description": "Heading components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/heading",
 	"blender": {
 		"recipe": "blender/recipe.js"

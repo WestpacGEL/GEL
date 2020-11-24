@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/grid",
 	"version": "1.0.0",
-	"description": "Grid component for the Westpac GEL",
+	"description": "Grid components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/grid",
 	"blender": {
 		"recipe": "blender/recipe.js"

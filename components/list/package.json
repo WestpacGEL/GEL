@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/list",
 	"version": "1.0.0",
-	"description": "List component for the Westpac GEL",
+	"description": "List components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/list",
 	"blender": {
 		"recipe": "blender/recipe.js"

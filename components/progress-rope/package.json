@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/progress-rope",
 	"version": "1.0.0",
-	"description": "Progress rope component",
+	"description": "Progress-rope components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-rope",
 	"blender": {
 		"recipe": "blender/recipe.js",

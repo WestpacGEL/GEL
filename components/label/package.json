@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/label",
 	"version": "1.0.0",
-	"description": "Label component for the Westpac GEL",
+	"description": "Label component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/label",
 	"blender": {
 		"recipe": "blender/recipe.js"

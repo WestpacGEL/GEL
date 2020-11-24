@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/modal",
 	"version": "1.0.0",
-	"description": "modal",
+	"description": "Modal components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/modal",
 	"blender": {
 		"recipe": "blender/recipe.js",

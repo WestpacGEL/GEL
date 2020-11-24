@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/breadcrumb",
 	"version": "1.1.0",
-	"description": "Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.",
+	"description": "Breadcrumb components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/breadcrumb",
 	"blender": {
 		"recipe": "blender/recipe.js"

@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/button-group",
 	"version": "1.0.2",
-	"description": "Westpac GEL button group component",
+	"description": "Button-group components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-group",
 	"blender": {
 		"recipe": "blender/recipe.js"

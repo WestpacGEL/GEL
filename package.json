@@ -1,6 +1,6 @@
 {
 	"name": "gel",
-	"description": "The design system and react components for Westpac GEL",
+	"description": "The Westpac GEL Design System components, brand tokens and website monorepo",
 	"repository": "https://github.com/WestpacGEL/GEL",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [

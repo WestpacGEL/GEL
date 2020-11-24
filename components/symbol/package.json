@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/symbol",
 	"version": "1.0.0",
-	"description": "Symbol component for the Westpac GEL",
+	"description": "Symbol components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/symbol",
 	"blender": {
 		"recipe": "blender/recipe.js"
