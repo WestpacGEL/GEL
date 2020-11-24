@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/progress-bar",
-	"version": "1.0.0-beta.2",
-	"description": "A visual indication of progress. Use when loading content or to indicate how far along the user is in a journey.",
+	"version": "1.0.0",
+	"description": "Progress-bar component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-bar",
 	"blender": {
 		"recipe": "blender/recipe.js"
@@ -48,14 +48,14 @@
 	"module": "dist/progress-bar.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
+		"@westpac/core": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/button": "*",
+		"@westpac/button": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

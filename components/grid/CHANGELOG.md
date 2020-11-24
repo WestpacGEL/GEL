@@ -1,5 +1,25 @@
 # @westpac/grid
 
+## 1.0.0
+
+### Major Changes
+
+- 510552b2: Add Blender support (powered by Bootstrap Grid)
+
+### Minor Changes
+
+- 0a56201e: Add tag prop
+
+### Patch Changes
+
+- 81aace8c: Ensure Container fills all available width
+- Updated dependencies [44475eb5]
+- Updated dependencies [d1c90c38]
+- Updated dependencies [876e36c3]
+- Updated dependencies [bedde7bc]
+- Updated dependencies [fb727cea]
+  - @westpac/core@1.1.0
+
 ## 1.0.0-beta.5
 
 ### Major Changes
