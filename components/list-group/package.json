@@ -39,8 +39,8 @@
 	"module": "dist/list-group.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
-		"@westpac/list": "^1.0.0-beta.2",
+		"@westpac/core": "^1.1.0",
+		"@westpac/list": "^1.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
