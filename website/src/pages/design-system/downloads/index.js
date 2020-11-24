@@ -502,7 +502,7 @@ function TokensPage() {
 
 	return (
 		<Fragment>
-			<Head title="Download" />
+			<Head title="Downloads" />
 			<PageContext.Provider value={{ showGrid, setShowGrid }}>
 				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
 					<PageHeader name="Download" />
