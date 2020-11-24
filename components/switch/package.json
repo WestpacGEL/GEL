@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/switch",
-	"version": "1.0.0-beta.2",
-	"description": "Switch component for the Westpac GEL",
+	"version": "1.0.0",
+	"description": "Switch component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/switch",
 	"blender": {
 		"recipe": "blender/recipe.js"
@@ -48,7 +48,7 @@
 	"module": "dist/switch.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
+		"@westpac/core": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
