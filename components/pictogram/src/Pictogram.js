@@ -75,7 +75,7 @@ export const propTypes = {
 	/**
 	 *  The visual style of the pictogram
 	 */
-	mode: PropTypes.oneOf(['dark', 'light', 'duo']).isRequired,
+	mode: PropTypes.oneOf(['dark', 'light', 'duo']),
 
 	/**
 	 * Set pictogram width in pixels.
@@ -132,9 +132,7 @@ export const propTypes = {
 	}),
 };
 
-export const defaultProps = {
-	mode: 'dark',
-};
+export const defaultProps = {};
 
 Pictogram.propTypes = propTypes;
 Pictogram.defaultProps = defaultProps;

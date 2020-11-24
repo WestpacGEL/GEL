@@ -3,8 +3,8 @@ import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
 import { useBrand } from '@westpac/core';
 
 export const Number2Pictogram = ({ mode, ...rest }) => {
-	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[mode];
+	const brand = useBrand();
+	const { outline, highlight } = colorMap(brand, mode);
 
 	return (
 		<Pictogram pictogram="Number2Pictogram" mode={mode} {...rest}>
