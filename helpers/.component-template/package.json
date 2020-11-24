@@ -17,7 +17,7 @@
 	"module": "dist/_COMPONENT_KEY_.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.8.4",
-		"@westpac/core": "^0.0.1",
+		"@westpac/core": "^1.1.0",
 		"prop-types": "^15.6.2"
 	},
 	"peerDependencies": {

@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/website",
 	"version": "1.0.0",
-	"description": "",
+	"description": "The Westpac GEL Design system website",
 	"private": true,
 	"main": "index.js",
 	"scripts": {

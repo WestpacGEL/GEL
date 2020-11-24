@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/alert",
-	"version": "1.0.2",
-	"description": "Alert component for the Westpac GEL",
+	"version": "1.1.0",
+	"description": "Alert component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/alert",
 	"blender": {
 		"recipe": "blender/recipe.js",
@@ -49,11 +49,11 @@
 	"module": "dist/alert.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/body": "^1.1.0",
-		"@westpac/button": "^1.0.1",
-		"@westpac/core": "^1.0.1",
-		"@westpac/heading": "^1.0.0-beta.2",
-		"@westpac/icon": "^1.0.2",
+		"@westpac/body": "^1.2.0",
+		"@westpac/button": "^1.1.0",
+		"@westpac/core": "^1.1.0",
+		"@westpac/heading": "^1.0.0",
+		"@westpac/icon": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
@@ -61,7 +61,7 @@
 		"react-spring": "^8.0.27"
 	},
 	"devDependencies": {
-		"@westpac/list": ">1.0.0-alpha",
+		"@westpac/list": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"react-spring": "^8.0.27",

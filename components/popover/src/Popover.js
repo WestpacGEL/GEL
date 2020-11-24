@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
 import { useState, useEffect, useRef } from 'react';
 import { usePopoverPosition } from '@westpac/hooks';
 import PropTypes from 'prop-types';
@@ -24,6 +24,7 @@ export const Popover = ({
 	content,
 	instanceIdPrefix,
 	placement,
+	onClick = () => {},
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -79,13 +80,18 @@ export const Popover = ({
 		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const handleOpen = () => {
-		if (open) {
-			setOpen(false);
-			triggerRef.current.focus();
-		} else {
-			setOpen(true);
-		}
+	const handleOpen = (event) => {
+		wrapHandlers(
+			() => onClick,
+			() => {
+				if (open) {
+					setOpen(false);
+					triggerRef.current.focus();
+				} else {
+					setOpen(true);
+				}
+			}
+		)(event);
 	};
 
 	useEffect(() => {
@@ -98,13 +104,13 @@ export const Popover = ({
 		}
 	}, [open]);
 
-	const keyHandler = (e) => {
+	const keyHandler = (event) => {
 		if (
 			open &&
-			e.keyCode === 27 &&
-			(popoverRef.current.contains(e.target) || triggerRef.current.contains(e.target))
+			event.keyCode === 27 &&
+			(popoverRef.current.contains(event.target) || triggerRef.current.contains(event.target))
 		) {
-			handleOpen();
+			handleOpen(event);
 		}
 	};
 
@@ -177,6 +183,11 @@ Popover.propTypes = {
 	 * Define an id prefix for internal elements
 	 */
 	instanceIdPrefix: PropTypes.string,
+
+	/**
+	 * A function for the onClick event
+	 */
+	onClick: PropTypes.func,
 
 	/**
 	 * Trigger element to open the popover
