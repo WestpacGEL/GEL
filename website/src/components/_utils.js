@@ -94,15 +94,6 @@ export const brandHeaderStyling = {
 	}),
 };
 
-export const brandIconHighlightColors = {
-	WBC: (COLORS) => COLORS.primary,
-	WBG: (COLORS) => COLORS.primary,
-	STG: (COLORS) => COLORS.hero,
-	BSA: () => '#00adbd',
-	BOM: (COLORS) => COLORS.hero,
-	BTFG: () => '#00afd7',
-};
-
 export const blocksGridStyle = {
 	maxWidth: '60rem',
 	margin: '0 auto',
