@@ -126,7 +126,7 @@ const Homepage = () => {
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<h2>Subscribe to our updates</h2>
+									<h2>Subscribe to GEL updates</h2>
 									<p>
 										Get the latest brand and component updates as well as access to new resources
 										and helpful tips.
