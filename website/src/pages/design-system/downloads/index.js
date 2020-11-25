@@ -1,21 +1,21 @@
 /** @jsx jsx */
 
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import {
 	DownloadIcon,
 	RefreshIcon,
 	CopyContentIcon,
 	NewWindowIcon,
-	TickIcon,
+	CubeIcon,
 	DownloadFileIcon,
 } from '@westpac/icon';
 import { jsx, useBrand, keyframes, useMediaQuery } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 import { Switch } from '@westpac/switch';
-import { Alert } from '@westpac/alert';
 import { Textarea, Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
+import { Alert } from '@westpac/alert';
 import merge from 'lodash.merge';
 
 import { Section, SectionHeading } from '../../../components/section';
@@ -27,8 +27,22 @@ import PageHeader from '../../../components/header/page-header';
 import { PageContext } from '../../../components/providers/pageContext';
 import { Gridly, Footer } from '../../../components/layout';
 import { BASE_URL } from '../../../config.js';
+import { Icon } from '../../../../../components/icon/src/Icon';
 import GEL from '../../../../../GEL.json';
 import { getBrandContent } from './_utils';
+
+const ArrowUpRightIcon = (props) => {
+	const { COLORS } = useBrand();
+	return (
+		<Icon assistiveText="Link arrow" {...props}>
+			<path
+				fill={COLORS.primary}
+				fillRule="evenodd"
+				d="M20 10l-6-6-1.42 1.42L16.17 9H4v12h2V11h10.17l-3.59 3.58L14 16z"
+			/>
+		</Icon>
+	);
+};
 
 function Loading() {
 	const spinning = keyframes`
@@ -88,6 +102,9 @@ const OptionOverride = ({ state: _, children, ...rest }) => {
 				backgroundColor: '#fff',
 				padding: SPACING(3),
 				marginBottom: SPACING(1),
+				':last-child': {
+					marginBottom: 0,
+				},
 			}}
 		>
 			<div {...rest}>{children}</div>
@@ -303,8 +320,9 @@ const SectionDesigners = () => {
 };
 
 const SectionDevelopers = () => {
-	const { BRAND, SPACING } = useBrand();
+	const { BRAND, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
+	const step2Ref = useRef(null);
 
 	const [isLoading, setLoading] = useState(false);
 
@@ -344,15 +362,16 @@ const SectionDevelopers = () => {
 							Developers
 						</SectionHeading>
 						<Body tabIndex="-1">
-							<p>There are two codebases available to download: Vanilla HTML/CSS, or React.</p>
+							<p>
+								There are <em>two</em> codebases available to download: Vanilla HTML/CSS or React.
+							</p>
 							<p>
 								Select the components you require for your project then either download a zip for
 								Vanilla HTML/CSS, or use the npm CLI command for React.
 							</p>
 							<Alert look="info" heading="Brand fonts" css={{ marginTop: SPACING(6) }}>
 								<p css={{ marginTop: 0 }}>
-									Developers can download web fonts directly from Sharepoint by following the link
-									below.
+									Developers can download web font files directly from Sharepoint.
 								</p>
 								<p>
 									<a
@@ -369,79 +388,103 @@ const SectionDevelopers = () => {
 				<form action="/api/blender2/" method="POST" onSubmit={displayLoading}>
 					<Grid css={{ marginTop: SPACING(6) }}>
 						<Cell width={[12, null, 7]}>
-							<Fieldset>
-								<Legend>
-									<BlockListHeading icon={TickIcon} id="step1">
-										<span>
-											Step 1: <em>Select components</em>
-										</span>
-									</BlockListHeading>
-								</Legend>
+							<div css={mq({ marginBottom: [SPACING(6), null, 0] })}>
+								<Fieldset>
+									<Legend>
+										<BlockListHeading icon={CubeIcon} id="step1">
+											<span>
+												Step 1: <em>Select components</em>
+											</span>
+										</BlockListHeading>
+									</Legend>
 
-								<div
-									css={mq({
-										display: 'flex',
-										alignItems: 'baseline',
-										marginTop: [SPACING(1), null, SPACING(2)],
-										marginBottom: [SPACING(1), null, SPACING(2)],
-									})}
-								>
-									<FormCheck
-										type="checkbox"
-										checked={selectAllToggle}
-										onChange={() => handleToggleChange()}
-										css={{ marginTop: '0.3125rem', marginBottom: '0.3125rem' }}
-										overrides={{
-											Option: {
-												styles: (styles) => ({
-													...styles,
-													marginBottom: 0,
-												}),
-											},
-										}}
+									<div
+										css={mq({
+											display: 'flex',
+											alignItems: 'baseline',
+											marginTop: [SPACING(1), null, SPACING(2)],
+											marginBottom: [SPACING(1), null, SPACING(2)],
+										})}
 									>
-										<Option value="all">Select all</Option>
-									</FormCheck>
-									{selected.length > 0 && (
-										<Button
-											look="link"
-											size="small"
-											onClick={() => handleClearAllClick()}
-											css={{ marginLeft: SPACING(1) }}
+										<FormCheck
+											type="checkbox"
+											checked={selectAllToggle}
+											onChange={() => handleToggleChange()}
+											css={{ marginTop: '0.3125rem', marginBottom: '0.3125rem' }}
+											overrides={{
+												Option: {
+													styles: (styles) => ({
+														...styles,
+														marginBottom: 0,
+													}),
+												},
+											}}
 										>
-											{`${selected.length === supportedPkgs.length ? 'Clear all' : 'Clear'} ${
-												selected.length
-											} ${selected.length === 1 ? 'component' : 'components'}`}
-										</Button>
-									)}
-								</div>
-
-								<BlenderComponents
-									name="packages[]"
-									value={selected}
-									onChange={(value) => handleSelectPkgChange(value)}
-								>
-									{supportedPkgs.map((name, i) => {
-										const niceName = name.charAt(0).toUpperCase() + name.slice(1);
-
-										return (
-											<BlenderComponentOption
-												key={i}
-												value={name}
-												desc={GEL.components[name].description}
-												link={`${BASE_URL}/components/${niceName.toLowerCase()}`}
+											<Option value="all">Select all</Option>
+										</FormCheck>
+										{selected.length > 0 && (
+											<Button
+												look="link"
+												size="small"
+												onClick={() => handleClearAllClick()}
+												css={{ marginLeft: SPACING(1) }}
 											>
-												{niceName}
-											</BlenderComponentOption>
-										);
+												{`${selected.length === supportedPkgs.length ? 'Clear all' : 'Clear'} ${
+													selected.length
+												} ${selected.length === 1 ? 'component' : 'components'}`}
+											</Button>
+										)}
+									</div>
+
+									<BlenderComponents
+										name="packages[]"
+										value={selected}
+										onChange={(value) => handleSelectPkgChange(value)}
+									>
+										{supportedPkgs.map((name, i) => {
+											const niceName = name.charAt(0).toUpperCase() + name.slice(1);
+
+											return (
+												<BlenderComponentOption
+													key={i}
+													value={name}
+													desc={GEL.components[name].description}
+													link={`${BASE_URL}/components/${niceName.toLowerCase()}`}
+												>
+													{niceName}
+												</BlenderComponentOption>
+											);
+										})}
+									</BlenderComponents>
+								</Fieldset>
+
+								<Button
+									look="link"
+									href="#step2"
+									iconBefore={ArrowUpRightIcon}
+									overrides={{
+										Button: {
+											styles: (styles) => ({
+												...styles,
+												color: COLORS.text,
+												textDecoration: 'none',
+											}),
+										},
+									}}
+									css={mq({
+										display: ['none', null, 'inline-flex'],
+										marginTop: SPACING(4),
+										scrollBehavior: 'smooth',
 									})}
-								</BlenderComponents>
-							</Fieldset>
+								>
+									Go to Step 2 and choose a codebase
+								</Button>
+							</div>
 						</Cell>
 						<Cell left={[null, null, 9]} width={[12, null, 4]}>
 							<Fieldset>
-								<Legend>
-									<BlockListHeading icon={DownloadFileIcon} id="step2">
+								<Legend id="step2" css={{ scrollMargin: '90px 0 0 0' }}>
+									<BlockListHeading icon={DownloadFileIcon}>
 										<span>
 											Step 2: <em>Choose a codebase</em>
 										</span>
@@ -480,21 +523,29 @@ const SectionDevelopers = () => {
 											/>
 										</BlockListItem>
 										<BlockListItem>
-											<label
-												htmlFor="tokensFormat"
-												css={{
-													display: 'block',
-													marginBottom: SPACING(1),
-												}}
-											>
-												Token format
-											</label>
-											<Select name="tokensFormat" id="tokensFormat">
-												<option value="json">JSON</option>
-												<option value="less">LESS</option>
-												<option value="css">CSS</option>
-												<option value="sass">SCSS/SASS</option>
-											</Select>
+											<div css={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+												<label htmlFor="tokensFormat" css={{ flex: 1, paddingRight: SPACING(1) }}>
+													Token format
+												</label>
+												<Select
+													name="tokensFormat"
+													id="tokensFormat"
+													overrides={{
+														Select: {
+															styles: (styles) => ({
+																...styles,
+																display: 'inline-block',
+																width: 'auto',
+															}),
+														},
+													}}
+												>
+													<option value="json">JSON</option>
+													<option value="less">LESS</option>
+													<option value="css">CSS</option>
+													<option value="sass">SCSS/SASS</option>
+												</Select>
+											</div>
 										</BlockListItem>
 									</BlockList>
 
@@ -510,7 +561,7 @@ const SectionDevelopers = () => {
 										justify
 										css={mq({ marginTop: SPACING(4) })}
 									>
-										Download
+										Download HTML/CSS
 									</Button>
 								</div>
 
