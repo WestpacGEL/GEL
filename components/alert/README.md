@@ -1,3 +1,3 @@
 # @westpac/alert
 
-The alert component.
+Alert component for the Westpac GEL Design System.
