@@ -1,10 +1,8 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
-import { useBrand } from '@westpac/core';
+import { propTypes, defaultProps, Pictogram, getColors } from '../Pictogram';
 
 export const BankCardLockedPictogram = ({ mode, ...rest }) => {
-	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[mode];
+	const { outline, highlight } = getColors(mode);
 
 	return (
 		<Pictogram pictogram="BankCardLockedPictogram" mode={mode} {...rest}>
@@ -34,7 +32,7 @@ BankCardLockedPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Locked card',
+	assistiveText: 'Locked bank card',
 	copyrightYear: '2020',
 };
 BankCardLockedPictogram.propTypes = propTypes;
