@@ -89,9 +89,9 @@ const BlenderComponentOption = ({ desc, link, ...rest }) => {
 	const hint = (
 		<Fragment>
 			<div css={{ marginTop: SPACING(1) }}>{desc}</div>
-			<a href={link} css={{ display: 'inline-block', marginTop: SPACING(1) }}>
+			{/* <a href={link} css={{ display: 'inline-block', marginTop: SPACING(1) }}>
 				Documentation
-			</a>
+			</a> */}
 		</Fragment>
 	);
 
