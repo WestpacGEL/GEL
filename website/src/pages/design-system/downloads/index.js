@@ -1,23 +1,33 @@
 /** @jsx jsx */
 
 import React, { Fragment, useState, useEffect } from 'react';
-import { DownloadIcon, RefreshIcon, CopyContentIcon } from '@westpac/icon';
+import {
+	DownloadIcon,
+	RefreshIcon,
+	CopyContentIcon,
+	NewWindowIcon,
+	TickIcon,
+	DownloadFileIcon,
+} from '@westpac/icon';
 import { jsx, useBrand, keyframes, useMediaQuery } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 import { Switch } from '@westpac/switch';
+import { Alert } from '@westpac/alert';
 import { Textarea, Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
+import merge from 'lodash.merge';
+
 import { Section, SectionHeading } from '../../../components/section';
 import { Body } from '../../../components/body';
 import { Head } from '../../../components/head';
 import { BlockList, BlockListItem, BlockListHeading } from '../../../components/block-list';
-
 import PageHeader from '../../../components/header/page-header';
 import { PageContext } from '../../../components/providers/pageContext';
 import { Gridly, Footer } from '../../../components/layout';
 import { BASE_URL } from '../../../config.js';
 import GEL from '../../../../../GEL.json';
+import { getBrandContent } from './_utils';
 
 function Loading() {
 	const spinning = keyframes`
@@ -129,6 +139,33 @@ const BlenderComponentOption = ({ desc, link, ...rest }) => {
 	);
 };
 
+const AutoGrowTextarea = ({ value, customCSS, ...rest }) => {
+	return (
+		<div
+			css={merge(
+				{
+					display: 'grid', //using grid to put elements on top of each other, sized based on tallest
+					'::after': {
+						content: `"${value} "`, //need extra space to prevent jumpy behaviour
+						whiteSpace: 'pre-wrap', //mimic textarea text behaviour
+						visibility: 'hidden', //hide from view/clicks/screen readers
+					},
+					'> textarea': {
+						resize: 'none', //after user resizes it ruins the auto sizing
+						overflow: 'hidden', //hide scrollbar on growth (FF)
+					},
+					'::after, > textarea': {
+						gridArea: '1 / 1 / 2 / 2', //place on top of each other
+					},
+				},
+				customCSS
+			)}
+		>
+			<Textarea value={value} {...rest} />
+		</div>
+	);
+};
+
 const NpmBox = ({ selected, ...rest }) => {
 	const { SPACING } = useBrand();
 
@@ -146,16 +183,21 @@ const NpmBox = ({ selected, ...rest }) => {
 	return (
 		<div {...rest}>
 			<div css={{ position: 'relative' }}>
-				<Textarea
-					css={{
-						fontFamily:
-							'"Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace',
-						fontSize: '14px',
-						lineHeight: 1.5,
-						paddingRight: '5rem',
-						height: '7.8125rem',
-					}}
+				<AutoGrowTextarea
 					value={npmCommand}
+					customCSS={{
+						'::after, > textarea': {
+							fontFamily:
+								'"Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace',
+							fontSize: '0.875rem',
+							lineHeight: 1.5,
+							padding: '0.3125rem 5rem 0.3125rem 0.75rem',
+							height: 'auto',
+						},
+						'::after': {
+							border: '1px solid transparent', //mimic our default textarea styling
+						},
+					}}
 					readOnly
 				/>
 				<Button
@@ -168,47 +210,6 @@ const NpmBox = ({ selected, ...rest }) => {
 					Copy
 				</Button>
 			</div>
-			{/* <pre
-				css={{
-					position: 'relative',
-					textAlign: 'left',
-					whiteSpace: 'pre',
-					wordSpacing: 'normal',
-					wordBreak: 'normal',
-					wordWrap: 'normal',
-					hyphens: 'none',
-					margin: 0,
-				}}
-				{...rest}
-			>
-				<code
-					aria-live="polite"
-					tabIndex="-1"
-					css={{
-						display: 'block',
-						paddingRight: '5rem',
-						textAlign: 'left',
-						whiteSpace: 'pre-wrap',
-						wordSpacing: 'normal',
-						wordBreak: 'normal',
-						wordWrap: 'normal',
-						fontSize: '1rem',
-						lineHeight: 1.5,
-						hyphens: 'none',
-					}}
-				>
-					{npmCommand}
-				</code>
-				<Button
-					look="link"
-					size="small"
-					iconAfter={CopyContentIcon}
-					css={{ position: 'absolute', zIndex: 0, top: SPACING(1, 'minor'), right: 0 }}
-					onClick={(e) => copyToClipboard()}
-				>
-					Copy
-				</Button>
-			</pre> */}
 			<Status text={copySuccess} css={{ marginTop: SPACING(1) }} />
 		</div>
 	);
@@ -260,21 +261,28 @@ const Status = ({ text, ...rest }) => {
 };
 
 const SectionDesigners = () => {
+	const { BRAND, SPACING } = useBrand();
+	const brandContent = getBrandContent()[BRAND];
+	const FontText = brandContent.fontText;
+
 	return (
 		<Section paddingTop="large">
 			<Container>
 				<Grid>
 					<Cell width={[12, null, 7]}>
-						<SectionHeading>Designers</SectionHeading>
+						<SectionHeading tight>Designers</SectionHeading>
 						<Body>
 							<p>
 								The design resources list provides access to all the design assets and information
 								you’ll need to get started.
 							</p>
+							<Alert look="info" heading="Brand fonts" css={{ marginTop: SPACING(6) }}>
+								<FontText />
+							</Alert>
 						</Body>
 					</Cell>
 					<Cell left={[null, null, 9]} width={[12, null, 4]}>
-						<BlockListHeading>Design resources</BlockListHeading>
+						<BlockListHeading icon={NewWindowIcon}>Design resources</BlockListHeading>
 						<BlockList>
 							<BlockListItem href="#0" target="_blank">
 								Sketch Cloud Libraries
@@ -282,8 +290,8 @@ const SectionDesigners = () => {
 							<BlockListItem href="#0" target="_blank">
 								Sketch UI Kits
 							</BlockListItem>
-							<BlockListItem href="#0" target="_blank">
-								Master Brand Guidelines
+							<BlockListItem href={brandContent.guidelinesURL} target="_blank">
+								Masterbrand Guidelines
 							</BlockListItem>
 						</BlockList>
 					</Cell>
@@ -294,7 +302,7 @@ const SectionDesigners = () => {
 };
 
 const SectionDevelopers = () => {
-	const { BRAND, SPACING, PACKS } = useBrand();
+	const { BRAND, SPACING } = useBrand();
 	const mq = useMediaQuery();
 
 	const [isLoading, setLoading] = useState(false);
@@ -329,20 +337,44 @@ const SectionDevelopers = () => {
 	return (
 		<Section>
 			<Container>
-				<form action="/api/blender2/" method="POST" onSubmit={displayLoading}>
-					<Grid>
-						<Cell width={[12, null, 7]}>
-							<SectionHeading tabIndex="-1">Developers</SectionHeading>
-							<Body tabIndex="-1">
-								<p>
-									Select the components you require for your project from the form below. To
-									minimise code bloat, your download will only contain the assets and their
-									dependencies that you add to the build.
+				<Grid>
+					<Cell width={[12, null, 7]}>
+						<SectionHeading tight tabIndex="-1">
+							Developers
+						</SectionHeading>
+						<Body tabIndex="-1">
+							<p>There are two codebases available to download: Vanilla HTML/CSS, or React.</p>
+							<p>
+								Select the components you require for your project then either download a zip for
+								Vanilla HTML/CSS, or use the npm CLI command for React.
+							</p>
+							<Alert look="info" heading="Brand fonts" css={{ marginTop: SPACING(6) }}>
+								<p css={{ marginTop: 0 }}>
+									Developers can download web fonts directly from Sharepoint by following the link
+									below.
 								</p>
-							</Body>
-							<Fieldset css={mq({ marginTop: SPACING(6) })}>
+								<p>
+									<a
+										href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND}`}
+										target="blank"
+									>
+										Download web fonts
+									</a>
+								</p>
+							</Alert>
+						</Body>
+					</Cell>
+				</Grid>
+				<form action="/api/blender2/" method="POST" onSubmit={displayLoading}>
+					<Grid css={{ marginTop: SPACING(6) }}>
+						<Cell width={[12, null, 7]}>
+							<Fieldset>
 								<Legend>
-									<BlockListHeading>Step 1: Select components</BlockListHeading>
+									<BlockListHeading icon={TickIcon} id="step1">
+										<span>
+											Step 1: <em>Select components</em>
+										</span>
+									</BlockListHeading>
 								</Legend>
 
 								<div
@@ -408,7 +440,11 @@ const SectionDevelopers = () => {
 						<Cell left={[null, null, 9]} width={[12, null, 4]}>
 							<Fieldset>
 								<Legend>
-									<BlockListHeading>Step 2: Choose a codebase</BlockListHeading>
+									<BlockListHeading icon={DownloadFileIcon} id="step2">
+										<span>
+											Step 2: <em>Choose a codebase</em>
+										</span>
+									</BlockListHeading>
 								</Legend>
 
 								<div>
@@ -481,7 +517,8 @@ const SectionDevelopers = () => {
 									<h4 tabIndex="-1">React</h4>
 									<InstructionalBody tabIndex="-1">
 										<p>
-											Simply copy the npm command below and use it in your development environment.
+											Simply copy the npm CLI command below and use it in your development
+											environment.
 										</p>
 									</InstructionalBody>
 									<NpmBox selected={selected} />
