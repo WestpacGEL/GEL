@@ -14,15 +14,18 @@ export const BlockListHeading = ({ icon: Icon, children, ...rest }) => {
 			size={8}
 			css={{
 				display: 'flex',
-				justifyContent: 'space-between',
 				alignItems: 'center',
 				paddingBottom: SPACING(3),
 				borderBottom: `1px solid ${COLORS.neutral}`,
+				em: {
+					fontStyle: 'normal',
+					fontWeight: 'normal',
+				},
 			}}
 			{...rest}
 		>
 			{children}
-			{Icon && <Icon size="medium" aria-hidden="true" />}
+			{Icon && <Icon size="medium" aria-hidden="true" css={{ marginLeft: 'auto' }} />}
 		</Heading>
 	);
 };

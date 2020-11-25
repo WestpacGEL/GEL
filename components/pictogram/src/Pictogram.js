@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { defaultPictogram } from './overrides/pictogram';
 import { defaultSvg } from './overrides/svg';
-export { colorMap } from './_utils';
+export { getColors } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
@@ -75,7 +75,7 @@ export const propTypes = {
 	/**
 	 *  The visual style of the pictogram
 	 */
-	mode: PropTypes.oneOf(['dark', 'light', 'duo']).isRequired,
+	mode: PropTypes.oneOf(['dark', 'light', 'duo']),
 
 	/**
 	 * Set pictogram width in pixels.
@@ -132,9 +132,7 @@ export const propTypes = {
 	}),
 };
 
-export const defaultProps = {
-	mode: 'dark',
-};
+export const defaultProps = {};
 
 Pictogram.propTypes = propTypes;
 Pictogram.defaultProps = defaultProps;

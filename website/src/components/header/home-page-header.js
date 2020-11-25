@@ -159,8 +159,8 @@ const HeroFeaturesItem = ({ pictogram: Pictogram, children }) => {
 			css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
 		>
 			<div aria-hidden="true">
-				<Pictogram mode="light" width={90} css={mq({ display: ['none', null, 'block'] })} />
-				<Pictogram mode="duo" width={90} css={mq({ display: ['block', null, 'none'] })} />
+				<Pictogram mode="light" width={78} css={mq({ display: ['none', null, 'block'] })} />
+				<Pictogram mode="duo" width={78} css={mq({ display: ['block', null, 'none'] })} />
 			</div>
 			<Body
 				css={mq({ marginTop: [SPACING(3), SPACING(4)], textAlign: 'center' })}
@@ -169,6 +169,7 @@ const HeroFeaturesItem = ({ pictogram: Pictogram, children }) => {
 						styles: (styles) => ({
 							...styles,
 							...PACKS.typeScale.bodyFont[8],
+							maxWidth: 290,
 						}),
 					},
 				}}

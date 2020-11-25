@@ -55,8 +55,8 @@ const getInitialPageData = (pages) => {
 			path: '/tokens',
 		},
 		{
-			title: 'Download',
-			path: '/download',
+			title: 'Downloads',
+			path: '/downloads',
 		},
 		{
 			title: 'Components',

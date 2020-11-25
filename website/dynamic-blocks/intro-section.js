@@ -5,16 +5,16 @@ import { jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { List, Item } from '@westpac/list';
 import { Heading } from '@westpac/heading';
-import { Body } from '../src/components/body';
-
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { inputStyles } from '@arch-ui/input';
-import { Icon } from '../../components/icon/src/Icon';
-import { Section } from '../src/components/section';
 import merge from 'lodash.merge';
 
-const ArrowIcon = (props) => (
+import { Body } from '../src/components/body';
+import { Icon } from '../../components/icon/src/Icon';
+import { Section } from '../src/components/section';
+
+const ArrowDownRightIcon = (props) => (
 	<Icon assistiveText="Link arrow" {...props}>
 		<path
 			fill="currentColor"
@@ -95,7 +95,7 @@ const TableOfContents = ({ content }) => {
 					<List
 						look="primary"
 						type="icon"
-						icon={ArrowIcon}
+						icon={ArrowDownRightIcon}
 						overrides={{
 							List: {
 								styles: (styles) =>
