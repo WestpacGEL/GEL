@@ -1,12 +1,14 @@
-export const colorMap = (brand, mode) => {
-	const { COLORS, BRAND } = brand;
+import { useBrand } from '@westpac/core';
+
+export const getColors = (mode) => {
+	const { COLORS, BRAND } = useBrand();
 
 	// Define a default mode
 	if (!mode) {
 		mode = BRAND === 'WBC' ? 'duo' : 'dark';
 	}
 
-	const modes = {
+	const colorMap = {
 		dark: {
 			outline: COLORS.hero,
 			highlight: COLORS.hero,
@@ -21,5 +23,5 @@ export const colorMap = (brand, mode) => {
 		},
 	};
 
-	return modes[mode];
+	return colorMap[mode];
 };
