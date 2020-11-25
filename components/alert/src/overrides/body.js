@@ -37,7 +37,7 @@ const bodyStyles = () => {
 		flex: 1,
 		top: [null, '0.125rem'],
 		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
-			color: 'inherit',
+			color: 'inherit !important',
 		},
 	})[0];
 };

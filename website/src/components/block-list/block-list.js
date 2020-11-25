@@ -6,7 +6,6 @@ import { ArrowRightIcon } from '@westpac/icon';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { BASE_PAGE } from '../../config';
-import { PACKS } from '@westpac/bom/tokens/packs';
 
 // ==============================
 // Component
