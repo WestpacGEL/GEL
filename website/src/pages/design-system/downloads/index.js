@@ -691,7 +691,7 @@ function TokensPage() {
 			<Head title="Downloads" />
 			<PageContext.Provider value={{ showGrid, setShowGrid }}>
 				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
-					<PageHeader name="Download" />
+					<PageHeader name="Downloads" />
 					<Gridly show={showGrid} />
 					<SectionDesigners />
 					<SectionDevelopers />
