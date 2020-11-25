@@ -1,5 +1,11 @@
 # @westpac/alert
 
+## 1.1.1
+
+### Patch Changes
+
+- 349b4c54: Ensure alert body text is coloured correctly
+
 ## 1.1.0
 
 ### Minor Changes
