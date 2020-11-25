@@ -2,6 +2,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
+import { StopwatchPictogram, TruckPictogram, AccessibilityPictogram } from '@westpac/pictogram';
 import { BrandHeading } from '@westpac/heading';
 import throttle from 'lodash.throttle';
 
@@ -9,8 +10,7 @@ import { MenuButton } from './menu-button';
 import HeaderImage from './home-page-header-image';
 import HomePageStickyHeaderImage from './home-page-sticky-header-image';
 import { Body } from '../body';
-import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../symbols';
-import { antialiasingStyling, brandHeaderStyling, brandIconHighlightColors } from '../_utils';
+import { antialiasingStyling, brandHeaderStyling } from '../_utils';
 
 const HomePageHeader = () => {
 	const { BRAND, COLORS, SPACING } = useBrand();
@@ -148,16 +148,19 @@ const StickyHeader = () => {
 	);
 };
 
-const HeroFeaturesItem = ({ icon, iconMobile, children }) => {
+const HeroFeaturesItem = ({ pictogram: Pictogram, children }) => {
 	const mq = useMediaQuery();
 	const { PACKS, SPACING } = useBrand();
+
 	return (
-		<Cell tag="li" width={[12, 4]}>
-			<div css={mq({ display: ['none', null, 'inline-block'] })} aria-hidden="true">
-				{icon}
-			</div>
-			<div css={mq({ display: ['inline-block', null, 'none'] })} aria-hidden="true">
-				{iconMobile}
+		<Cell
+			tag="li"
+			width={[12, 4]}
+			css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+		>
+			<div aria-hidden="true">
+				<Pictogram mode="light" width={78} css={mq({ display: ['none', null, 'block'] })} />
+				<Pictogram mode="duo" width={78} css={mq({ display: ['block', null, 'none'] })} />
 			</div>
 			<Body
 				css={mq({ marginTop: [SPACING(3), SPACING(4)], textAlign: 'center' })}
@@ -166,6 +169,7 @@ const HeroFeaturesItem = ({ icon, iconMobile, children }) => {
 						styles: (styles) => ({
 							...styles,
 							...PACKS.typeScale.bodyFont[8],
+							maxWidth: 290,
 						}),
 					},
 				}}
@@ -177,7 +181,7 @@ const HeroFeaturesItem = ({ icon, iconMobile, children }) => {
 };
 
 const HeroFeatures = () => {
-	const { BRAND, SPACING, COLORS } = useBrand();
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<Grid
@@ -191,65 +195,20 @@ const HeroFeatures = () => {
 				marginTop: [SPACING(4), SPACING(10)],
 			})}
 		>
-			<HeroFeaturesItem
-				icon={
-					<StopwatchSvg
-						outlineColor={COLORS.light}
-						highlightOutlineColor={COLORS.light}
-						highlightColor={COLORS.light}
-					/>
-				}
-				iconMobile={
-					<StopwatchSvg
-						outlineColor={COLORS.borderDark}
-						highlightOutlineColor={COLORS.text}
-						highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-					/>
-				}
-			>
+			<HeroFeaturesItem pictogram={StopwatchPictogram}>
 				Go to market faster leveraging tools to get you up and running instantly
 			</HeroFeaturesItem>
-			<HeroFeaturesItem
-				icon={
-					<TruckSvg
-						outlineColor={COLORS.light}
-						highlightOutlineColor={COLORS.light}
-						highlightColor="none"
-					/>
-				}
-				iconMobile={
-					<TruckSvg
-						outlineColor={COLORS.borderDark}
-						highlightOutlineColor={COLORS.text}
-						highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-					/>
-				}
-			>
+			<HeroFeaturesItem pictogram={TruckPictogram}>
 				Design, build and ship consistent brand experiences
 			</HeroFeaturesItem>
-			<HeroFeaturesItem
-				icon={
-					<AccessibilitySvg
-						outlineColor={COLORS.light}
-						highlightOutlineColor={COLORS.light}
-						highlightColor="none"
-					/>
-				}
-				iconMobile={
-					<AccessibilitySvg
-						outlineColor={COLORS.borderDark}
-						highlightOutlineColor={COLORS.text}
-						highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-					/>
-				}
-			>
+			<HeroFeaturesItem pictogram={AccessibilityPictogram}>
 				Create more accessible solutions that are inclusive of all customers
 			</HeroFeaturesItem>
 		</Grid>
 	);
 };
 const HeroIntro = () => {
-	const { SPACING, COLORS, BRAND, PACKS } = useBrand();
+	const { SPACING, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (

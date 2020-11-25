@@ -1,13 +1,11 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
-import { useBrand } from '@westpac/core';
+import { propTypes, defaultProps, Pictogram, getColors } from '../Pictogram';
 
-export const CreditCardPictogram = ({ mode, ...rest }) => {
-	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[mode];
+export const BankCardPictogram = ({ mode, ...rest }) => {
+	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="CreditCardPictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="BankCardPictogram" mode={mode} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="11.385 40.91 44.385 40.91 44.385 37.91 11.385 37.91" />
 				<polygon
@@ -23,11 +21,11 @@ export const CreditCardPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-CreditCardPictogram.defaultProps = {
+BankCardPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Credit card',
+	assistiveText: 'Bank card',
 	copyrightYear: '2020',
 };
-CreditCardPictogram.propTypes = propTypes;
+BankCardPictogram.propTypes = propTypes;

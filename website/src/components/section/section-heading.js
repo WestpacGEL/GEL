@@ -7,7 +7,7 @@ import { Heading } from '@westpac/heading';
 // Component
 // ==============================
 
-export const SectionHeading = ({ children, ...rest }) => {
+export const SectionHeading = ({ tight = false, children, ...rest }) => {
 	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 
@@ -18,7 +18,7 @@ export const SectionHeading = ({ children, ...rest }) => {
 					tag="h2"
 					size={[7, null, 6]}
 					css={mq({
-						marginBottom: [SPACING(6), null, SPACING(10)],
+						marginBottom: [tight ? SPACING(2) : SPACING(6), null, tight ? SPACING(3) : SPACING(10)],
 					})}
 					{...rest}
 				>

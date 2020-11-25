@@ -1,10 +1,8 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
-import { useBrand } from '@westpac/core';
+import { propTypes, defaultProps, Pictogram, getColors } from '../Pictogram';
 
 export const ChatPictogram = ({ mode, ...rest }) => {
-	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[mode];
+	const { outline, highlight } = getColors(mode);
 
 	return (
 		<Pictogram pictogram="ChatPictogram" mode={mode} {...rest}>

@@ -1,10 +1,8 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, colorMap } from '../Pictogram';
-import { useBrand } from '@westpac/core';
+import { propTypes, defaultProps, Pictogram, getColors } from '../Pictogram';
 
 export const PadlockLockedPictogram = ({ mode, ...rest }) => {
-	const { COLORS } = useBrand();
-	const { outline, highlight } = colorMap(COLORS)[mode];
+	const { outline, highlight } = getColors(mode);
 
 	return (
 		<Pictogram pictogram="PadlockLockedPictogram" mode={mode} {...rest}>
@@ -26,7 +24,7 @@ PadlockLockedPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Padlock locked',
+	assistiveText: 'Locked padlock',
 	copyrightYear: '2020',
 };
 PadlockLockedPictogram.propTypes = propTypes;
