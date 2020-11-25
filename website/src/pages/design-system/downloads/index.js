@@ -19,6 +19,7 @@ import { Button } from '@westpac/button';
 import merge from 'lodash.merge';
 
 import { Section, SectionHeading } from '../../../components/section';
+// import { Alert } from '../../../components/alert';
 import { Body } from '../../../components/body';
 import { Head } from '../../../components/head';
 import { BlockList, BlockListItem, BlockListHeading } from '../../../components/block-list';
