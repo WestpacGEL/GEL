@@ -29,7 +29,6 @@ import { Gridly, Footer } from '../../../components/layout';
 import { BASE_URL } from '../../../config.js';
 import { Icon } from '../../../../../components/icon/src/Icon';
 import GEL from '../../../../../GEL.json';
-import { getBrandContent } from './_utils';
 
 const ArrowUpRightIcon = (props) => {
 	const { COLORS } = useBrand();
@@ -353,7 +352,7 @@ const fontTextWBG = () => (
 	</Fragment>
 );
 
-export const getBrandContent = () => ({
+const getBrandContent = () => ({
 	WBC: {
 		guidelinesURL: '#0',
 		fontText: fontTextWBC,
