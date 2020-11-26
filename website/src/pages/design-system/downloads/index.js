@@ -18,6 +18,7 @@ import { Button } from '@westpac/button';
 import { Alert } from '@westpac/alert';
 import merge from 'lodash.merge';
 
+import { brandsMap } from '../../../components/brand-switcher/brand-switcher';
 import { Section, SectionHeading } from '../../../components/section';
 // import { Alert } from '../../../components/alert';
 import { Body } from '../../../components/body';
@@ -354,23 +355,32 @@ const fontTextWBG = () => (
 
 const getBrandContent = () => ({
 	WBC: {
-		guidelinesURL: '#0',
+		sketchCloudURL: 'https://www.sketch.com/s/d845c8bc-3d6c-46e3-9249-445eb1a5e563',
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 		fontText: fontTextWBC,
 	},
 	STG: {
-		guidelinesURL: '#0',
+		sketchCloudURL: 'https://www.sketch.com/s/e448d5bc-2646-43c3-a400-2713d0a577b6',
+		guidelinesURL: 'http://stgeorge.mybrandmachine.com',
 		fontText: fontTextSTG,
 	},
 	BOM: {
-		guidelinesURL: '#0',
+		sketchCloudURL: 'https://www.sketch.com/s/c4b231ec-15d8-486f-be24-c319f8911845',
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 		fontText: fontTextBOM,
 	},
 	BSA: {
-		guidelinesURL: '#0',
+		sketchCloudURL: 'https://www.sketch.com/s/10a52a8a-bb8a-47bc-af38-5e9adb3b6f44',
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 		fontText: fontTextBSA,
 	},
 	WBG: {
-		guidelinesURL: '#0',
+		sketchCloudURL: '',
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 		fontText: fontTextWBG,
 	},
 });
@@ -399,15 +409,18 @@ const SectionDesigners = () => {
 					<Cell left={[null, null, 9]} width={[12, null, 4]}>
 						<BlockListHeading icon={NewWindowIcon}>Design resources</BlockListHeading>
 						<BlockList>
-							<BlockListItem href="#0" target="_blank">
-								Sketch Cloud Libraries
-							</BlockListItem>
-							<BlockListItem href="#0" target="_blank">
-								Sketch UI Kits
-							</BlockListItem>
-							<BlockListItem href={brandContent.guidelinesURL} target="_blank">
-								Masterbrand Guidelines
-							</BlockListItem>
+							{brandContent.sketchCloudURL && (
+								<BlockListItem href={brandContent.sketchCloudURL} target="_blank">
+									{brandsMap[BRAND].label} Sketch Cloud Library
+								</BlockListItem>
+							)}
+							<BlockListItem href="#0">Icons Sketch Cloud Library</BlockListItem>
+							<BlockListItem href="/resources/design/sketch-ui-kit/">Sketch UI Kit</BlockListItem>
+							{brandContent.guidelinesURL && (
+								<BlockListItem href={brandContent.guidelinesURL} target="_blank">
+									Masterbrand Guidelines
+								</BlockListItem>
+							)}
 						</BlockList>
 					</Cell>
 				</Grid>
@@ -460,11 +473,11 @@ const SectionDevelopers = () => {
 						</SectionHeading>
 						<Body tabIndex="-1">
 							<p>
-								There are <em>two</em> codebases available to download: Vanilla HTML/CSS or React.
+								There are <em>two</em> codebases available to download: HTML/CSS or React.
 							</p>
 							<p>
 								Select the components you require for your project then either download a zip for
-								Vanilla HTML/CSS, or use the npm CLI command for React.
+								HTML/CSS, or use the npm CLI command for React.
 							</p>
 							<Alert look="info" heading="Brand fonts" css={{ marginTop: SPACING(6) }}>
 								<p css={{ marginTop: 0 }}>
@@ -589,9 +602,9 @@ const SectionDevelopers = () => {
 								</Legend>
 
 								<div>
-									<h4 tabIndex="-1">Vanilla HTML/CSS</h4>
+									<h4 tabIndex="-1">HTML/CSS</h4>
 									<InstructionalBody tabIndex="-1">
-										<p>Choose your build options and click the Download button below.</p>
+										<p>Choose your build options and click the download button below.</p>
 									</InstructionalBody>
 
 									<BlockList css={mq({ marginTop: [null, null, SPACING(2)] })}>
