@@ -74,9 +74,9 @@ const Homepage = () => {
 									<ReactLogo width={60} css={{ marginBottom: SPACING(2) }} />
 									<h2>Built on React</h2>
 									<p>
-										The GEL Design System is now using React. You can still access vanilla HTML
-										&amp; CSS but with React at its core we can showcase so much more and deliver
-										even higher-quality, more accessible code.
+										The GEL Design System is now using React. You can still access HTML/CSS but with
+										React at its core we can showcase so much more and deliver even higher-quality,
+										more accessible code.
 									</p>
 								</Body>
 								<Body css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })}>
