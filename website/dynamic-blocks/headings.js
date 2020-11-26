@@ -3,15 +3,14 @@
 import { Fragment } from 'react';
 import { Heading as GELHeading } from '@westpac/heading';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Body } from '../src/components/body';
 import { Cell } from '@westpac/grid';
-
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import { Input } from '@arch-ui/input';
 import Select from '@arch-ui/select';
-
 import merge from 'lodash.merge';
+
+import { Body, getTypeScaleMargin } from '../src/components/body';
 import { levelOptions, sizeOptions, indentOptions } from './_utils';
 
 export const Heading = {
@@ -152,20 +151,16 @@ export const Heading = {
 		const mq = useMediaQuery();
 		const { SPACING } = useBrand();
 		const id = heading.replace(/ /g, '-').toLowerCase();
-		const marginMap = {
-			6: ['24px', null, '42px'],
-			8: ['12px', null, '18px'],
-			10: '12px',
-		};
 
 		return (
 			<Fragment>
 				<Cell width={[12, null, null, 11]}>
 					<GELHeading
 						id={id}
-						tabIndex="-1"
+						tabIndex="-1" //TODO: set only if a jumplink heading
 						tag={level}
 						size={size <= 6 ? [7, null, size] : size}
+						uppercase={size === 10}
 						overrides={{
 							Heading: {
 								styles: (styles) =>
@@ -176,9 +171,10 @@ export const Heading = {
 												null,
 												`calc(66px + 90px + ${SPACING(10)})`,
 											],
-											marginTop: !removeTopMargin && size > 6 && '0.75rem',
-											marginBottom: codeStyles ? ['0.75rem', null, '1.125rem'] : marginMap[size],
-											textTransform: size === 10 && 'uppercase',
+											marginTop: !removeTopMargin && getTypeScaleMargin(size).top,
+											marginBottom: codeStyles
+												? getTypeScaleMargin(size).bottomTight
+												: getTypeScaleMargin(size).bottom,
 										})[0],
 									}),
 							},

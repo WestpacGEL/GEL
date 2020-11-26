@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { Fragment, useState, useEffect, useRef } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import {
 	DownloadIcon,
 	RefreshIcon,
@@ -231,27 +231,6 @@ const NpmBox = ({ selected, ...rest }) => {
 	);
 };
 
-const InstructionalBody = (props) => {
-	const { PACKS } = useBrand();
-	return (
-		<Body
-			overrides={{
-				Body: {
-					styles: (styles) => ({
-						...styles,
-						...PACKS.typeScale.bodyFont[10],
-
-						p: {
-							marginTop: 0,
-						},
-					}),
-				},
-			}}
-			{...props}
-		/>
-	);
-};
-
 const Status = ({ text, ...rest }) => {
 	const { COLORS, PACKS } = useBrand();
 
@@ -456,9 +435,8 @@ const SectionDesigners = () => {
 };
 
 const SectionDevelopers = () => {
-	const { BRAND, SPACING, COLORS } = useBrand();
+	const { BRAND, SPACING, COLORS, PACKS } = useBrand();
 	const mq = useMediaQuery();
-	const step2Ref = useRef(null);
 
 	const [isLoading, setLoading] = useState(false);
 
@@ -627,10 +605,12 @@ const SectionDevelopers = () => {
 								</Legend>
 
 								<div>
-									<h4 tabIndex="-1">HTML/CSS</h4>
-									<InstructionalBody tabIndex="-1">
-										<p>Choose your build options and click the download button below.</p>
-									</InstructionalBody>
+									<Body tabIndex="-1">
+										<h4>HTML/CSS</h4>
+										<p css={{ ...PACKS.typeScale.bodyFont[10] }}>
+											Choose your build options and click the download button below.
+										</p>
+									</Body>
 
 									<BlockList css={mq({ marginTop: [null, null, SPACING(2)] })}>
 										<BlockListItem>
@@ -701,13 +681,13 @@ const SectionDevelopers = () => {
 								</div>
 
 								<div css={{ marginTop: SPACING(6) }}>
-									<h4 tabIndex="-1">React</h4>
-									<InstructionalBody tabIndex="-1">
-										<p>
+									<Body tabIndex="-1">
+										<h4>React</h4>
+										<p css={{ ...PACKS.typeScale.bodyFont[10] }}>
 											Simply copy the npm CLI command below and use it in your development
 											environment.
 										</p>
-									</InstructionalBody>
+									</Body>
 									<NpmBox selected={selected} />
 								</div>
 							</Fieldset>
