@@ -6,7 +6,7 @@ import { Button } from '@westpac/button';
 import { TextInput } from '@westpac/text-input';
 import { Head } from '../../components/head';
 import HomePageHeader from '../../components/header/home-page-header';
-import { Section } from '../../components/section';
+import { Section, SectionHeading } from '../../components/section';
 import { Body } from '../../components/body';
 import { BlockList, BlockListItem, BlockListHeading } from '../../components/block-list';
 import { Footer } from '../../components/layout/footer';
@@ -40,10 +40,12 @@ const Homepage = () => {
 				<HomePageHeader />
 				<Section paddingTop="large" paddingBottom="large" light>
 					<Container>
+						<SectionHeading tag="h2" tight>
+							Accessible by design
+						</SectionHeading>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<h2>Accessible by design</h2>
 									<p>
 										Accessibility and inclusive design is a strong part of the GEL Design System.
 									</p>
@@ -68,11 +70,12 @@ const Homepage = () => {
 
 				<Section paddingTop="large" paddingBottom="large">
 					<Container>
+						<SectionHeading tag="h2" tight symbol={ReactLogo}>
+							Built on React
+						</SectionHeading>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<ReactLogo width={60} css={{ marginBottom: SPACING(2) }} />
-									<h2>Built on React</h2>
 									<p>
 										The GEL Design System is now using React. You can still access HTML/CSS but with
 										React at its core we can showcase so much more and deliver even higher-quality,
@@ -123,10 +126,10 @@ const Homepage = () => {
 
 				<Section paddingTop="large" paddingBottom="large" light>
 					<Container>
+						<SectionHeading tight>Subscribe to GEL updates</SectionHeading>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<h2>Subscribe to GEL updates</h2>
 									<p>
 										Get the latest brand and component updates as well as access to new resources
 										and helpful tips.
@@ -177,10 +180,10 @@ const Homepage = () => {
 
 				<Section paddingTop="large" paddingBottom="large">
 					<Container>
+						<SectionHeading tight>Downloads &amp; links</SectionHeading>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<h2>Downloads &amp; links</h2>
 									<p>
 										Design on-brand with greater efficiency and accuracy using the Sketch UI Kit.
 									</p>
