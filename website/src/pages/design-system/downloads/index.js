@@ -15,12 +15,10 @@ import { Switch } from '@westpac/switch';
 import { Textarea, Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
-import { Alert } from '@westpac/alert';
 import merge from 'lodash.merge';
 
 import { brandsMap } from '../../../components/brand-switcher/brand-switcher';
 import { Section, SectionHeading } from '../../../components/section';
-// import { Alert } from '../../../components/alert';
 import { Body } from '../../../components/body';
 import { Head } from '../../../components/head';
 import { BlockList, BlockListItem, BlockListHeading } from '../../../components/block-list';
@@ -278,14 +276,43 @@ const Status = ({ text, ...rest }) => {
 	);
 };
 
+const urlMap = {
+	WBC: {
+		sketchCloudURL: 'https://www.sketch.com/s/d845c8bc-3d6c-46e3-9249-445eb1a5e563',
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+	},
+	STG: {
+		sketchCloudURL: 'https://www.sketch.com/s/e448d5bc-2646-43c3-a400-2713d0a577b6',
+		guidelinesURL: 'http://stgeorge.mybrandmachine.com',
+	},
+	BOM: {
+		sketchCloudURL: 'https://www.sketch.com/s/c4b231ec-15d8-486f-be24-c319f8911845',
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+	},
+	BSA: {
+		sketchCloudURL: 'https://www.sketch.com/s/10a52a8a-bb8a-47bc-af38-5e9adb3b6f44',
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+	},
+	WBG: {
+		sketchCloudURL: '',
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+	},
+};
+
 const fontTextWBC = () => (
 	<Fragment>
 		<p>
-			Check the <a href="#0">Masterbrand Guidelines</a> to understand how to use brand fonts
-			effectively. Never use a font without confirmation that you have the correct licence in place.
+			Check the <a href={urlMap.WBC.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
+			use brand fonts effectively. Never use a font without confirmation that you have the correct
+			licence in place.
 		</p>
 		<p>
-			Designers using Sketch can access brand font files within the <a href="#0">Sketch UI Kit</a>.
+			Designers using Sketch can access brand font files within the{' '}
+			<a href="/resources/design/sketch-ui-kit/">Sketch UI Kit</a>.
 		</p>
 		<p>
 			Designers using other software can send a request for approval to{' '}
@@ -296,11 +323,13 @@ const fontTextWBC = () => (
 const fontTextSTG = () => (
 	<Fragment>
 		<p>
-			Check the <a href="#0">Masterbrand Guidelines</a> to understand how to use brand fonts
-			effectively. Never use a font without confirmation that you have the correct licence in place.
+			Check the <a href={urlMap.STG.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
+			use brand fonts effectively. Never use a font without confirmation that you have the correct
+			licence in place.
 		</p>
 		<p>
-			Designers using Sketch can access brand font files within the <a href="#0">Sketch UI Kit</a>.
+			Designers using Sketch can access brand font files within the{' '}
+			<a href="/resources/design/sketch-ui-kit/">Sketch UI Kit</a>.
 		</p>
 		<p>
 			Designers using other software can send a request for approval to{' '}
@@ -314,8 +343,9 @@ const fontTextSTG = () => (
 const fontTextBOM = () => (
 	<Fragment>
 		<p>
-			Check the <a href="#0">Masterbrand Guidelines</a> to understand how to use brand fonts
-			effectively. Never use a font without confirmation that you have the correct licence in place.
+			Check the <a href={urlMap.BOM.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
+			use brand fonts effectively. Never use a font without confirmation that you have the correct
+			licence in place.
 		</p>
 		<p>
 			Send a request for approval to{' '}
@@ -326,8 +356,9 @@ const fontTextBOM = () => (
 const fontTextBSA = () => (
 	<Fragment>
 		<p>
-			Check the <a href="#0">Masterbrand Guidelines</a> to understand how to use brand fonts
-			effectively. Never use a font without confirmation that you have the correct licence in place.
+			Check the <a href={urlMap.BSA.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
+			use brand fonts effectively. Never use a font without confirmation that you have the correct
+			licence in place.
 		</p>
 		<p>
 			Send a request for approval to{' '}
@@ -341,8 +372,8 @@ const fontTextBSA = () => (
 const fontTextWBG = () => (
 	<Fragment>
 		<p>
-			Check the <a href="#0">Masterbrand Guidelines</a> to understand how to use brand fonts
-			effectively.
+			Check the <a href={urlMap.WBG.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
+			use brand fonts effectively.
 		</p>
 		<p>
 			<a href="https://fonts.google.com/specimen/Montserrat" target="_blank">
@@ -355,38 +386,29 @@ const fontTextWBG = () => (
 
 const getBrandContent = () => ({
 	WBC: {
-		sketchCloudURL: 'https://www.sketch.com/s/d845c8bc-3d6c-46e3-9249-445eb1a5e563',
-		guidelinesURL:
-			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+		...urlMap.WBC,
 		fontText: fontTextWBC,
 	},
 	STG: {
-		sketchCloudURL: 'https://www.sketch.com/s/e448d5bc-2646-43c3-a400-2713d0a577b6',
-		guidelinesURL: 'http://stgeorge.mybrandmachine.com',
+		...urlMap.STG,
 		fontText: fontTextSTG,
 	},
 	BOM: {
-		sketchCloudURL: 'https://www.sketch.com/s/c4b231ec-15d8-486f-be24-c319f8911845',
-		guidelinesURL:
-			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+		...urlMap.BOM,
 		fontText: fontTextBOM,
 	},
 	BSA: {
-		sketchCloudURL: 'https://www.sketch.com/s/10a52a8a-bb8a-47bc-af38-5e9adb3b6f44',
-		guidelinesURL:
-			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+		...urlMap.BSA,
 		fontText: fontTextBSA,
 	},
 	WBG: {
-		sketchCloudURL: '',
-		guidelinesURL:
-			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+		...urlMap.WBG,
 		fontText: fontTextWBG,
 	},
 });
 
 const SectionDesigners = () => {
-	const { BRAND, SPACING } = useBrand();
+	const { BRAND } = useBrand();
 	const brandContent = getBrandContent()[BRAND];
 	const FontText = brandContent.fontText;
 
@@ -401,9 +423,8 @@ const SectionDesigners = () => {
 								The design resources list provides access to all the design assets and information
 								you’ll need to get started.
 							</p>
-							<Alert look="info" heading="Brand fonts" css={{ marginTop: SPACING(6) }}>
-								<FontText />
-							</Alert>
+							<h3>Brand fonts</h3>
+							<FontText />
 						</Body>
 					</Cell>
 					<Cell left={[null, null, 9]} width={[12, null, 4]}>
@@ -414,7 +435,12 @@ const SectionDesigners = () => {
 									{brandsMap[BRAND].label} Sketch Cloud Library
 								</BlockListItem>
 							)}
-							<BlockListItem href="#0">Icons Sketch Cloud Library</BlockListItem>
+							<BlockListItem
+								href="https://www.sketch.com/s/315e31b0-315b-4df3-90e0-ed16d9db3563"
+								target="_blank"
+							>
+								Icons Sketch Cloud Library
+							</BlockListItem>
 							<BlockListItem href="/resources/design/sketch-ui-kit/">Sketch UI Kit</BlockListItem>
 							{brandContent.guidelinesURL && (
 								<BlockListItem href={brandContent.guidelinesURL} target="_blank">
@@ -479,19 +505,18 @@ const SectionDevelopers = () => {
 								Select the components you require for your project then either download a zip for
 								HTML/CSS, or use the npm CLI command for React.
 							</p>
-							<Alert look="info" heading="Brand fonts" css={{ marginTop: SPACING(6) }}>
-								<p css={{ marginTop: 0 }}>
-									Developers can download web font files directly from Sharepoint.
-								</p>
-								<p>
-									<a
-										href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND}`}
-										target="blank"
-									>
-										Download web fonts
-									</a>
-								</p>
-							</Alert>
+
+							<h3>Brand fonts</h3>
+							<p>
+								Developers can{' '}
+								<a
+									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND}`}
+									target="blank"
+								>
+									download web font files
+								</a>{' '}
+								directly from Sharepoint.
+							</p>
 						</Body>
 					</Cell>
 				</Grid>
