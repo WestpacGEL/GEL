@@ -257,26 +257,21 @@ const Status = ({ text, ...rest }) => {
 
 const urlMap = {
 	WBC: {
-		sketchCloudURL: 'https://www.sketch.com/s/d845c8bc-3d6c-46e3-9249-445eb1a5e563',
 		guidelinesURL:
 			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 	},
 	STG: {
-		sketchCloudURL: 'https://www.sketch.com/s/e448d5bc-2646-43c3-a400-2713d0a577b6',
 		guidelinesURL: 'http://stgeorge.mybrandmachine.com',
 	},
 	BOM: {
-		sketchCloudURL: 'https://www.sketch.com/s/c4b231ec-15d8-486f-be24-c319f8911845',
 		guidelinesURL:
 			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 	},
 	BSA: {
-		sketchCloudURL: 'https://www.sketch.com/s/10a52a8a-bb8a-47bc-af38-5e9adb3b6f44',
 		guidelinesURL:
 			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 	},
 	WBG: {
-		sketchCloudURL: '',
 		guidelinesURL:
 			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 	},
@@ -311,7 +306,7 @@ const fontTextSTG = () => (
 			<a href="/resources/design/sketch-ui-kit/">Sketch UI Kit</a>.
 		</p>
 		<p>
-			Designers using other software can send a request for approval to{' '}
+			Designers using other software can send a request for approval via{' '}
 			<a href="http://stgeorge.mybrandmachine.com" target="_blank">
 				Brand Central
 			</a>
@@ -358,7 +353,6 @@ const fontTextWBG = () => (
 			<a href="https://fonts.google.com/specimen/Montserrat" target="_blank">
 				Download Montserrat
 			</a>
-			.
 		</p>
 	</Fragment>
 );
@@ -409,17 +403,6 @@ const SectionDesigners = () => {
 					<Cell left={[null, null, 9]} width={[12, null, 4]}>
 						<BlockListHeading icon={NewWindowIcon}>Design resources</BlockListHeading>
 						<BlockList>
-							{brandContent.sketchCloudURL && (
-								<BlockListItem href={brandContent.sketchCloudURL} target="_blank">
-									{brandsMap[BRAND].label} Sketch Cloud Library
-								</BlockListItem>
-							)}
-							<BlockListItem
-								href="https://www.sketch.com/s/315e31b0-315b-4df3-90e0-ed16d9db3563"
-								target="_blank"
-							>
-								Icons Sketch Cloud Library
-							</BlockListItem>
 							<BlockListItem href="/resources/design/sketch-ui-kit/">Sketch UI Kit</BlockListItem>
 							{brandContent.guidelinesURL && (
 								<BlockListItem href={brandContent.guidelinesURL} target="_blank">
