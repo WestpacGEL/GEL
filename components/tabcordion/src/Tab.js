@@ -5,6 +5,7 @@ import { Fragment, useState, forwardRef, useEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from 'react-spring';
 import useMeasure from 'react-use-measure';
+import mergeRefs from "react-merge-refs";
 import PropTypes from 'prop-types';
 
 import { defaultAccordionButton } from './overrides/accordionButton';
@@ -164,11 +165,14 @@ export const Tab = forwardRef(
 				) : null}
 
 				<animated.div style={animate}>
-					<div ref={measureRef}>
-						<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
-							{children}
-						</Panel>
-					</div>
+					<Panel
+						ref={mergeRefs([measureRef, ref])}
+						state={state}
+						{...panelAttributes(state)}
+						css={panelStyles(state)}
+					>
+						{children}
+					</Panel>
 				</animated.div>
 			</Fragment>
 		);

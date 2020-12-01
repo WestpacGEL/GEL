@@ -59,7 +59,8 @@
 		"@westpac/hooks": "^1.1.0",
 		"@westpac/icon": "^1.1.0",
 		"prop-types": "^15.7.2",
-		"react-focus-on": "^3.3.0"
+		"react-focus-on": "^3.3.0",
+		"react-merge-refs": "^1.1.0"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1",
