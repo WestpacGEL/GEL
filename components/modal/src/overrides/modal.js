@@ -29,13 +29,13 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 
 	return (
 		<animated.div
+			ref={ref}
 			style={{
 				...fade,
 				display: fade._dspl.interpolate((d) => (d === 0 ? 'none' : 'block')),
 			}}
-		>
-			<div ref={ref} {...rest} />
-		</animated.div>
+			{...rest}
+		/>
 	);
 });
 
