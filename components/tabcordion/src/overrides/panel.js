@@ -28,21 +28,21 @@ const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
 // Styles
 // ==============================
 
-const panelStyles = (_, { look, mode, last, selected }) => {
+const panelStyles = (_, { look, mode, last, selected, hidden }) => {
 	const { COLORS } = useBrand();
 
 	const stylesMap =
 		mode === 'accordion'
 			? {
-					lego: {
-						borderLeft: `0.375rem solid ${COLORS.border}`,
-					},
 					soft: last
 						? {
 								borderBottomLeftRadius: '0.1875rem',
 								borderBottomRightRadius: '0.1875rem',
 						  }
 						: {},
+					lego: {
+						borderLeftWidth: '0.375rem',
+					},
 			  }
 			: {};
 
@@ -50,9 +50,9 @@ const panelStyles = (_, { look, mode, last, selected }) => {
 		label: getLabel('tabcordion-panel'),
 		display: mode === 'tabs' && !selected ? 'none' : 'block',
 		borderTop: mode === 'tabs' && `1px solid ${COLORS.border}`,
-		borderBottom: `1px solid ${COLORS.border}`,
-		borderLeft: `1px solid ${COLORS.border}`,
-		borderRight: `1px solid ${COLORS.border}`,
+		border: `solid ${COLORS.border}`,
+		borderWidth: mode === 'tabs' ? '1px' : '0 1px',
+		borderBottomWidth: mode === 'accordion' && last && !hidden && '1px',
 		padding: '1.5rem 3.22%',
 		...stylesMap[look],
 	};

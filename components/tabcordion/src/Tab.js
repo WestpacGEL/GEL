@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, getLabel } from '@westpac/core';
 import { Fragment, useState, forwardRef, useEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from 'react-spring';
@@ -149,8 +149,8 @@ export const Tab = forwardRef(
 		}, [selected, tabId]);
 
 		return (
-			<Fragment>
-				{mode === 'accordion' ? (
+			<div css={{ label: getLabel('tabcordion-item') }}>
+				{mode === 'accordion' && (
 					<AccordionButton
 						onClick={handleAccordionClick}
 						state={state}
@@ -164,7 +164,7 @@ export const Tab = forwardRef(
 							css={accordionButtonIconStyles(state)}
 						/>
 					</AccordionButton>
-				) : null}
+				)}
 
 				<animated.div style={animate}>
 					<Panel
@@ -176,7 +176,7 @@ export const Tab = forwardRef(
 						{children}
 					</Panel>
 				</animated.div>
-			</Fragment>
+			</div>
 		);
 	}
 );
@@ -190,6 +190,11 @@ Tab.propTypes = {
 	 * The look of the tabs
 	 */
 	look: PropTypes.oneOf(['soft', 'lego']),
+
+	/**
+	 * Indicator if this is the first tab
+	 */
+	first: PropTypes.bool,
 
 	/**
 	 * Indicator if this is the last tab

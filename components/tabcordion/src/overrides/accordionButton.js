@@ -26,26 +26,33 @@ const BlenderAccordionButton = ({ className, ...rest }) => (
 // Styles
 // ==============================
 
-const accordionButtonStyles = (_, { look, hidden }) => {
+const accordionButtonStyles = (_, { look, hidden, first, last }) => {
 	const { COLORS } = useBrand();
 	const styleMap = {
 		soft: {
-			':first-of-type': {
-				borderTop: `1px solid ${COLORS.border}`,
+			...(first && {
 				borderTopLeftRadius: '0.1875rem',
 				borderTopRightRadius: '0.1875rem',
-			},
-
-			':last-of-type': {
-				borderBottomLeftRadius: hidden ? '0.1875rem' : 0,
-				borderBottomRightRadius: hidden ? '0.1875rem' : 0,
-			},
+			}),
+			...(last
+				? {
+						borderBottomLeftRadius: hidden ? '0.1875rem' : 0,
+						borderBottomRightRadius: hidden ? '0.1875rem' : 0,
+				  }
+				: {}),
 		},
 		lego: {
-			borderLeft: `0.375rem solid ${!hidden ? COLORS.border : COLORS.hero}`,
+			borderLeftWidth: '0.375rem',
 
-			':first-of-type': {
-				borderTop: `1px solid ${COLORS.border}`,
+			// Closed indicator
+			'::before': {
+				content: '""',
+				display: 'block',
+				position: 'absolute',
+				top: '-1px',
+				left: '-0.375rem',
+				bottom: 0,
+				borderLeft: hidden && `0.375rem solid ${COLORS.hero}`,
 			},
 		},
 	};
@@ -59,10 +66,8 @@ const accordionButtonStyles = (_, { look, hidden }) => {
 		justifyContent: 'space-between',
 		backgroundColor: COLORS.background,
 		padding: '0.75rem 1.125rem',
-		border: 0,
-		borderBottom: `1px solid ${COLORS.border}`,
-		borderLeft: `1px solid ${COLORS.border}`,
-		borderRight: `1px solid ${COLORS.border}`,
+		border: `1px solid ${COLORS.border}`,
+		borderBottomWidth: !last && hidden && 0, //reset
 		fontSize: '1rem',
 		textAlign: 'left',
 		cursor: 'pointer',
