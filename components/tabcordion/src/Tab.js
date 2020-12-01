@@ -24,6 +24,7 @@ export const Tab = forwardRef(
 	(
 		{
 			look,
+			first,
 			last,
 			selected,
 			text,
@@ -89,6 +90,7 @@ export const Tab = forwardRef(
 		const state = {
 			hidden,
 			look,
+			first, 
 			last,
 			selected,
 			text,

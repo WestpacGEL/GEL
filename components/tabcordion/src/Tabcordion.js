@@ -111,6 +111,7 @@ export const Tabcordion = ({
 		<TabRow ref={tablistRef} state={state} {...tabRowAttributes(state)} css={tabRowStyles(state)}>
 			{Children.map(children, (child, idx) => {
 				const selected = activeTabIndex === idx;
+				const first = idx === 0;
 				const last = idx + 1 === tabCount;
 
 				return (
@@ -123,9 +124,10 @@ export const Tabcordion = ({
 							tabId: getId('tab', idx),
 							panelId: getId('panel', idx),
 							selected,
+							first,
 							last,
 						})}
-						css={tabButtonStyles({ ...state, selected, last })}
+						css={tabButtonStyles({ ...state, selected, first, last })}
 					>
 						{child.props.text}
 					</TabButton>
@@ -153,6 +155,7 @@ export const Tabcordion = ({
 							key={child.props.text}
 							ref={selected ? panelRef : null}
 							look={look}
+							first={idx === 0}
 							last={idx + 1 === tabCount}
 							selected={selected}
 							mode={mode}
