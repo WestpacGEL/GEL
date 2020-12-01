@@ -22,7 +22,6 @@ import { nestedStyles } from './modalDialog';
 const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 	const fade = useSpring({
 		config: { duration: 150 },
-		_dspl: open ? 1 : 0,
 		from: { opacity: 0 },
 		opacity: open ? 1 : 0,
 	});
@@ -32,7 +31,7 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 			ref={ref}
 			style={{
 				...fade,
-				display: fade._dspl.interpolate((d) => (d === 0 ? 'none' : 'block')),
+				display: fade.opacity.interpolate((val) => (val === 0 ? 'none' : 'block')),
 			}}
 			{...rest}
 		/>
