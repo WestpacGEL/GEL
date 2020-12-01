@@ -42,10 +42,22 @@ const accordionButtonStyles = (_, { look, hidden }) => {
 			},
 		},
 		lego: {
-			borderLeft: `0.375rem solid ${!hidden ? COLORS.border : COLORS.hero}`,
+			borderLeftWidth: '0.375rem',
 
 			':first-of-type': {
 				borderTop: `1px solid ${COLORS.border}`,
+			},
+
+			// Closed indicator
+			'::before': {
+				content: '""',
+				display: 'block',
+				position: 'absolute',
+				zIndex: 0,
+				top: '-1px',
+				left: '-0.375rem',
+				bottom: 0,
+				borderLeft: hidden && `0.375rem solid ${COLORS.hero}`,
 			},
 		},
 	};
