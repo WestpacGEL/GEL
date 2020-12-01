@@ -30,7 +30,7 @@ const BlenderTabButton = forwardRef(({ state: _, className, ...rest }, ref) => {
 // ==============================
 
 const tabButtonStyles = (_, { look, justify, selected }) => {
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, PACKS } = useBrand();
 
 	const styles = {
 		soft: {
@@ -56,14 +56,14 @@ const tabButtonStyles = (_, { look, justify, selected }) => {
 	return {
 		label: getLabel('tabcordion-tab-btn'),
 		flex: justify ? 1 : 0,
-		fontSize: '1rem',
 		marginRight: '0.125rem',
-		padding: `0.875rem ${SPACING(3)}`,
+		padding: `${SPACING(2)} ${SPACING(3)}`,
 		textAlign: 'left',
 		textDecoration: 'none',
 		transition: 'background .3s ease',
 		width: '100%',
 		cursor: 'pointer',
+		...PACKS.typeScale.bodyFont[9],
 		...styles[look],
 
 		':last-of-type': {
