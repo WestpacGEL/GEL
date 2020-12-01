@@ -30,11 +30,11 @@ const BlenderTabButton = forwardRef(({ state: _, className, ...rest }, ref) => {
 // ==============================
 
 const tabButtonStyles = (_, { look, justify, selected }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, SPACING } = useBrand();
 
 	const styles = {
 		soft: {
-			backgroundColor: selected ? '#fff' : COLORS.background,
+			backgroundColor: selected ? '#fff' : COLORS.light,
 			borderTopLeftRadius: '0.1875rem',
 			borderTopRightRadius: '0.1875rem',
 			border: `1px solid ${COLORS.border}`,
@@ -58,7 +58,7 @@ const tabButtonStyles = (_, { look, justify, selected }) => {
 		flex: justify ? 1 : 0,
 		fontSize: '1rem',
 		marginRight: '0.125rem',
-		padding: '0.875rem 1.125rem',
+		padding: `0.875rem ${SPACING(3)}`,
 		textAlign: 'left',
 		textDecoration: 'none',
 		transition: 'background .3s ease',

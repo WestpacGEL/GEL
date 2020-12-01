@@ -27,7 +27,7 @@ const BlenderAccordionButton = ({ className, ...rest }) => (
 // ==============================
 
 const accordionButtonStyles = (_, { look, hidden }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, SPACING } = useBrand();
 	const styleMap = {
 		soft: {
 			':first-of-type': {
@@ -57,8 +57,8 @@ const accordionButtonStyles = (_, { look, hidden }) => {
 		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		backgroundColor: COLORS.background,
-		padding: '0.75rem 1.125rem',
+		backgroundColor: COLORS.light,
+		padding: `${SPACING(2)} ${SPACING(3)}`,
 		border: 0,
 		borderBottom: `1px solid ${COLORS.border}`,
 		borderLeft: `1px solid ${COLORS.border}`,
