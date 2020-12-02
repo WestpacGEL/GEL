@@ -1,19 +1,17 @@
 /** @jsx jsx */
 
+import { useState, forwardRef, useEffect } from 'react';
 import { jsx, useBrand, overrideReconciler, getLabel } from '@westpac/core';
-import { Fragment, useState, forwardRef, useEffect } from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
-import { useSpring, animated } from 'react-spring';
-import useMeasure from 'react-use-measure';
-import mergeRefs from "react-merge-refs";
 import PropTypes from 'prop-types';
+import { useSpring, animated } from 'react-spring';
+import ResizeObserver from 'resize-observer-polyfill';
+import useMeasure from 'react-use-measure';
 
 import { defaultAccordionButton } from './overrides/accordionButton';
 import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
 import { defaultPanel } from './overrides/panel';
-
+import { defaultPanelBody } from './overrides/panelBody';
 import { useTabcordionContext } from './Tabcordion';
-import { usePrevious } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
@@ -36,9 +34,9 @@ export const Tab = forwardRef(
 			onOpening,
 			onClose,
 			onClosing,
+			idx,
 			children,
 			overrides,
-			idx,
 			...rest
 		},
 		ref
@@ -51,38 +49,14 @@ export const Tab = forwardRef(
 		const context = useTabcordionContext();
 
 		const [hidden, setHidden] = useState(!selected);
-		const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 		const [initial, setInitial] = useState(true);
-		const prevSelected = usePrevious(selected);
-		const prevHidden = usePrevious(hidden);
-
-		const animate = useSpring({
-			to: {
-				height: mode === 'accordion' ? (hidden ? 0 : height) : 'auto',
-				overflow: 'hidden',
-			},
-			immediate: initial,
-			onStart: () => {
-				if (mode === 'tabs') {
-					if (selected && !prevSelected) {
-						onOpening({ idx, tabId });
-					} else if (!selected && prevSelected) {
-						onClosing({ idx, tabId });
-					}
-				} else if (mode === 'accordion') {
-					if (!hidden && prevHidden) {
-						onOpening({ idx, tabId });
-					} else if (hidden && !prevHidden) {
-						onClosing({ idx, tabId });
-					}
-				}
-			},
-		});
+		const [measureRef, { height: panelBodyHeight }] = useMeasure({ polyfill: ResizeObserver });
 
 		const defaultOverrides = {
 			AccordionButton: defaultAccordionButton,
 			AccordionButtonIcon: defaultAccordionButtonIcon,
 			Panel: defaultPanel,
+			PanelBody: defaultPanelBody,
 		};
 
 		const componentOverrides = overrides || context.state.overrides;
@@ -90,17 +64,23 @@ export const Tab = forwardRef(
 		const state = {
 			hidden,
 			look,
-			first, 
+			first,
 			last,
 			selected,
 			text,
 			mode,
 			panelId,
 			onClick,
+			onOpen,
+			onOpening,
+			onClose,
+			onClosing,
 			tabId,
+			initial,
+			idx,
+			panelBodyHeight,
 			context: context.state,
 			overrides: componentOverrides,
-			idx,
 			...rest,
 		};
 
@@ -116,6 +96,7 @@ export const Tab = forwardRef(
 				attributes: accordionButtonIconAttributes,
 			},
 			Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+			PanelBody: { component: PanelBody, styles: panelBodyStyles, attributes: panelBodyAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		const handleAccordionClick = () => {
@@ -166,16 +147,16 @@ export const Tab = forwardRef(
 					</AccordionButton>
 				)}
 
-				<animated.div style={animate}>
-					<Panel
-						ref={mergeRefs([measureRef, ref])}
+				<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+					<PanelBody
+						ref={measureRef}
 						state={state}
-						{...panelAttributes(state)}
-						css={panelStyles(state)}
+						{...panelBodyAttributes(state)}
+						css={panelBodyStyles(state)}
 					>
 						{children}
-					</Panel>
-				</animated.div>
+					</PanelBody>
+				</Panel>
 			</div>
 		);
 	}
