@@ -1,5 +1,6 @@
 /** @jsx jsx */
 
+import { forwardRef } from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
@@ -16,33 +17,35 @@ if (typeof window === 'undefined') {
 	key = atob('d3JpdHRlbmJ5');
 }
 
-export const Body = ({ tag, children, [key]: _, overrides: componentOverrides, ...rest }) => {
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
+export const Body = forwardRef(
+	({ tag, children, [key]: _, overrides: componentOverrides, ...rest }, ref) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	const defaultOverrides = {
-		Body: defaultBody,
-	};
+		const defaultOverrides = {
+			Body: defaultBody,
+		};
 
-	const state = {
-		tag,
-		[key]: _,
-		overrides: componentOverrides,
-		...rest,
-	};
+		const state = {
+			tag,
+			[key]: _,
+			overrides: componentOverrides,
+			...rest,
+		};
 
-	const {
-		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
-	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+		const {
+			Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	return (
-		<Body {...rest} state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
-			{children}
-		</Body>
-	);
-};
+		return (
+			<Body ref={ref} {...rest} state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
+				{children}
+			</Body>
+		);
+	}
+);
 
 // ==============================
 // Types
