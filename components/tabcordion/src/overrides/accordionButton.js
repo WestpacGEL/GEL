@@ -49,6 +49,7 @@ const accordionButtonStyles = (_, { look, hidden, first, last }) => {
 				content: '""',
 				display: 'block',
 				position: 'absolute',
+				zIndex: 0,
 				top: '-1px',
 				left: '-0.375rem',
 				bottom: 0,
@@ -64,13 +65,13 @@ const accordionButtonStyles = (_, { look, hidden, first, last }) => {
 		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		backgroundColor: COLORS.background,
-		padding: '0.75rem 1.125rem',
+		backgroundColor: COLORS.light,
+		padding: `0.8125rem ${SPACING(3)}`,
 		border: `1px solid ${COLORS.border}`,
 		borderBottomWidth: !last && hidden && 0, //reset
-		fontSize: '1rem',
 		textAlign: 'left',
 		cursor: 'pointer',
+		...PACKS.typeScale.bodyFont[9],
 		...styleMap[look],
 	};
 };
