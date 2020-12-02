@@ -27,7 +27,7 @@ const BlenderAccordionButton = ({ className, ...rest }) => (
 // ==============================
 
 const accordionButtonStyles = (_, { look, hidden, first, last }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, SPACING, PACKS } = useBrand();
 	const styleMap = {
 		soft: {
 			...(first && {
