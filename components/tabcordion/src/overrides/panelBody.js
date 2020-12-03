@@ -3,12 +3,26 @@
 import { forwardRef } from 'react';
 import { jsx, getLabel, formatClassName } from '@westpac/core';
 import { Body } from '@westpac/body';
+import { useSpring, animated } from 'react-spring';
 
 // ==============================
 // Component
 // ==============================
 
-const PanelBody = forwardRef(({ state: _, ...rest }, ref) => <Body ref={ref} {...rest} />);
+const PanelBody = forwardRef(({ state: { mode, selected }, ...rest }, ref) => {
+	const AnimatedBody = animated(Body);
+
+	const fade = useSpring({
+		config: { duration: 300 },
+		to: {
+			...(mode === 'tabs' && {
+				opacity: selected ? 1 : 0,
+			}),
+		},
+	});
+
+	return <AnimatedBody ref={ref} style={fade} {...rest} />;
+});
 
 const BlenderPanelBody = ({ className, ...rest }) => (
 	<PanelBody className={formatClassName(className)} {...rest} />

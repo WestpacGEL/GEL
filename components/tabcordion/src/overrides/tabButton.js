@@ -41,6 +41,10 @@ const tabButtonStyles = (_, { look, justify, selected }) => {
 			borderBottom: 0,
 			color: COLORS.neutral,
 			marginBottom: selected && '-1px',
+
+			':hover': {
+				backgroundColor: !selected && COLORS.background,
+			},
 		},
 		lego: {
 			backgroundColor: selected ? '#fff' : COLORS.hero,
@@ -50,6 +54,10 @@ const tabButtonStyles = (_, { look, justify, selected }) => {
 			borderBottom: 0,
 			color: selected ? COLORS.text : '#fff',
 			marginBottom: selected ? '-1px' : '0.125rem',
+
+			':hover': {
+				backgroundColor: !selected && COLORS.tints.hero70,
+			},
 		},
 	};
 
@@ -60,7 +68,7 @@ const tabButtonStyles = (_, { look, justify, selected }) => {
 		padding: `${SPACING(2)} ${SPACING(3)}`,
 		textAlign: 'left',
 		textDecoration: 'none',
-		transition: 'background .3s ease',
+		transition: 'background 0.3s ease',
 		width: '100%',
 		cursor: 'pointer',
 		...PACKS.typeScale.bodyFont[9],
