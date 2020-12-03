@@ -26,7 +26,7 @@ const BlenderAccordionButton = ({ className, ...rest }) => (
 // Styles
 // ==============================
 
-const accordionButtonStyles = (_, { look, hidden, first, last }) => {
+const accordionButtonStyles = (_, { look, hidden, first, last, closed }) => {
 	const { COLORS, SPACING, PACKS } = useBrand();
 	const styleMap = {
 		soft: {
@@ -36,8 +36,8 @@ const accordionButtonStyles = (_, { look, hidden, first, last }) => {
 			}),
 			...(last
 				? {
-						borderBottomLeftRadius: hidden ? '0.1875rem' : 0,
-						borderBottomRightRadius: hidden ? '0.1875rem' : 0,
+						borderBottomLeftRadius: closed ? '0.1875rem' : 0,
+						borderBottomRightRadius: closed ? '0.1875rem' : 0,
 				  }
 				: {}),
 		},
@@ -47,13 +47,13 @@ const accordionButtonStyles = (_, { look, hidden, first, last }) => {
 			// Closed indicator
 			'::before': {
 				content: '""',
-				display: 'block',
+				display: closed ? 'block' : 'none',
 				position: 'absolute',
 				zIndex: 0,
 				top: '-1px',
 				left: '-0.375rem',
 				bottom: 0,
-				borderLeft: hidden && `0.375rem solid ${COLORS.hero}`,
+				borderLeft: `0.375rem solid ${COLORS.hero}`,
 			},
 		},
 	};
@@ -68,7 +68,7 @@ const accordionButtonStyles = (_, { look, hidden, first, last }) => {
 		backgroundColor: COLORS.light,
 		padding: `0.8125rem ${SPACING(3)}`,
 		border: `1px solid ${COLORS.border}`,
-		borderBottomWidth: !last && hidden && 0, //reset
+		borderBottomWidth: !last && closed && 0, //reset
 		textAlign: 'left',
 		cursor: 'pointer',
 		...PACKS.typeScale.bodyFont[9],

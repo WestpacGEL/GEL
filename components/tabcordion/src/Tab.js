@@ -6,12 +6,14 @@ import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
 import ResizeObserver from 'resize-observer-polyfill';
 import useMeasure from 'react-use-measure';
+import BezierEasing from 'bezier-easing';
 
 import { defaultAccordionButton } from './overrides/accordionButton';
 import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
 import { defaultPanel } from './overrides/panel';
 import { defaultPanelBody } from './overrides/panelBody';
 import { useTabcordionContext } from './Tabcordion';
+import { usePrevious } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
@@ -30,10 +32,10 @@ export const Tab = forwardRef(
 			panelId,
 			tabId,
 			onClick,
-			onOpen,
 			onOpening,
-			onClose,
+			onOpen,
 			onClosing,
+			onClose,
 			idx,
 			children,
 			overrides,
@@ -50,6 +52,7 @@ export const Tab = forwardRef(
 
 		const [hidden, setHidden] = useState(!selected);
 		const [initial, setInitial] = useState(true);
+		const [closed, setClosed] = useState(true);
 		const [measureRef, { height: panelBodyHeight }] = useMeasure({ polyfill: ResizeObserver });
 
 		const defaultOverrides = {
@@ -71,14 +74,14 @@ export const Tab = forwardRef(
 			mode,
 			panelId,
 			onClick,
-			onOpen,
 			onOpening,
-			onClose,
+			onOpen,
 			onClosing,
+			onClose,
 			tabId,
 			initial,
 			idx,
-			panelBodyHeight,
+			closed,
 			context: context.state,
 			overrides: componentOverrides,
 			...rest,
@@ -109,7 +112,7 @@ export const Tab = forwardRef(
 			setHidden(!selected);
 		}, [mode]);
 
-		useEffect(() => {
+		/* useEffect(() => {
 			if (mode === 'accordion') {
 				if (!hidden) {
 					onOpen({ idx, tabId });
@@ -117,9 +120,9 @@ export const Tab = forwardRef(
 					onClose({ idx, tabId });
 				}
 			}
-		}, [hidden, tabId]);
+		}, [hidden, tabId]); */
 
-		useEffect(() => {
+		/* useEffect(() => {
 			if (mode === 'tabs') {
 				if (selected) {
 					onOpen({ idx, tabId });
@@ -127,7 +130,60 @@ export const Tab = forwardRef(
 					onClose({ idx, tabId });
 				}
 			}
-		}, [selected, tabId]);
+		}, [selected, tabId]); */
+
+		const prevSelected = usePrevious(selected);
+		const prevHidden = usePrevious(hidden);
+
+		const AnimatedPanel = animated(Panel);
+
+		const animate = useSpring({
+			config: {
+				duration: 300,
+				easing: BezierEasing(0.25, 0.1, 0.25, 1.0), //~'ease' CSS transition timing function
+			},
+			to: {
+				...(mode === 'accordion' && {
+					height: hidden ? 0 : panelBodyHeight,
+				}),
+			},
+			from: {
+				height: '',
+			},
+			immediate: initial,
+			onStart: () => {
+				setClosed(false);
+
+				if (mode === 'tabs') {
+					if (selected && !prevSelected) {
+						onOpening({ idx, tabId });
+					} else if (!selected && prevSelected) {
+						onClosing({ idx, tabId });
+					}
+				} else if (mode === 'accordion') {
+					if (!hidden && prevHidden) {
+						// Opening
+						onOpening({ idx, tabId });
+					} else if (hidden && !prevHidden) {
+						// Closing
+						onClosing({ idx, tabId });
+					}
+				}
+			},
+			onRest: () => {
+				if (mode === 'accordion') {
+					if (hidden) {
+						// Closed
+						setClosed(true);
+						onClose({ idx, tabId });
+					} else if (!hidden) {
+						// Opened
+						setClosed(false);
+						onOpen({ idx, tabId });
+					}
+				}
+			},
+		});
 
 		return (
 			<div css={{ label: getLabel('tabcordion-item') }}>
@@ -147,7 +203,13 @@ export const Tab = forwardRef(
 					</AccordionButton>
 				)}
 
-				<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+				<AnimatedPanel
+					ref={ref}
+					style={animate}
+					state={state}
+					{...panelAttributes(state)}
+					css={panelStyles(state)}
+				>
 					<PanelBody
 						ref={measureRef}
 						state={state}
@@ -156,7 +218,7 @@ export const Tab = forwardRef(
 					>
 						{children}
 					</PanelBody>
-				</Panel>
+				</AnimatedPanel>
 			</div>
 		);
 	}

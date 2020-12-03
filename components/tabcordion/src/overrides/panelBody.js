@@ -19,6 +19,9 @@ const PanelBody = forwardRef(({ state: { mode, selected }, ...rest }, ref) => {
 				opacity: selected ? 1 : 0,
 			}),
 		},
+		from: {
+			opacity: '',
+		},
 	});
 
 	return <AnimatedBody ref={ref} style={fade} {...rest} />;
