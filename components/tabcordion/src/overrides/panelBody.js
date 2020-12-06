@@ -13,14 +13,14 @@ const PanelBody = forwardRef(({ state: { mode, selected }, ...rest }, ref) => {
 	const AnimatedBody = animated(Body);
 
 	const fade = useSpring({
-		config: { duration: 300 },
-		to: {
-			...(mode === 'tabs' && {
-				opacity: selected ? 1 : 0,
-			}),
+		config: {
+			duration: 300,
 		},
+		...(mode === 'tabs' && {
+			opacity: selected ? 1 : 0,
+		}),
 		from: {
-			opacity: '',
+			opacity: 1, //reset
 		},
 	});
 

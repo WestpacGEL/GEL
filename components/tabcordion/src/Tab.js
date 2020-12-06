@@ -112,26 +112,6 @@ export const Tab = forwardRef(
 			setHidden(!selected);
 		}, [mode]);
 
-		/* useEffect(() => {
-			if (mode === 'accordion') {
-				if (!hidden) {
-					onOpen({ idx, tabId });
-				} else {
-					onClose({ idx, tabId });
-				}
-			}
-		}, [hidden, tabId]); */
-
-		/* useEffect(() => {
-			if (mode === 'tabs') {
-				if (selected) {
-					onOpen({ idx, tabId });
-				} else {
-					onClose({ idx, tabId });
-				}
-			}
-		}, [selected, tabId]); */
-
 		const prevSelected = usePrevious(selected);
 		const prevHidden = usePrevious(hidden);
 
@@ -142,13 +122,11 @@ export const Tab = forwardRef(
 				duration: 300,
 				easing: BezierEasing(0.25, 0.1, 0.25, 1.0), //~'ease' CSS transition timing function
 			},
-			to: {
-				...(mode === 'accordion' && {
-					height: hidden ? 0 : panelBodyHeight,
-				}),
-			},
+			...(mode === 'accordion' && {
+				height: hidden ? 0 : panelBodyHeight,
+			}),
 			from: {
-				height: '',
+				height: '', //reset
 			},
 			immediate: initial,
 			onStart: () => {

@@ -47,13 +47,15 @@ const accordionButtonStyles = (_, { look, hidden, first, last, closed }) => {
 			// Closed indicator
 			'::before': {
 				content: '""',
-				display: closed ? 'block' : 'none',
+				display: 'block',
+				opacity: hidden ? 0 : 1,
 				position: 'absolute',
 				zIndex: 0,
 				top: '-1px',
 				left: '-0.375rem',
 				bottom: 0,
 				borderLeft: `0.375rem solid ${COLORS.hero}`,
+				transition: 'opacity 0.3s ease',
 			},
 		},
 	};
