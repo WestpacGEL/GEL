@@ -8,6 +8,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 import useMeasure from 'react-use-measure';
 import BezierEasing from 'bezier-easing';
 
+import { defaultItem } from './overrides/item';
 import { defaultAccordionButton } from './overrides/accordionButton';
 import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
 import { defaultPanel } from './overrides/panel';
@@ -56,6 +57,7 @@ export const Tab = forwardRef(
 		const [measureRef, { height: panelBodyHeight }] = useMeasure({ polyfill: ResizeObserver });
 
 		const defaultOverrides = {
+			Item: defaultItem,
 			AccordionButton: defaultAccordionButton,
 			AccordionButtonIcon: defaultAccordionButtonIcon,
 			Panel: defaultPanel,
@@ -88,6 +90,7 @@ export const Tab = forwardRef(
 		};
 
 		const {
+			Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
 			AccordionButton: {
 				component: AccordionButton,
 				styles: accordionButtonStyles,
@@ -164,7 +167,7 @@ export const Tab = forwardRef(
 		});
 
 		return (
-			<div css={{ label: getLabel('tabcordion-item') }}>
+			<Item state={state} {...itemAttributes(state)} css={itemStyles(state)}>
 				{mode === 'accordion' && (
 					<AccordionButton
 						onClick={handleAccordionClick}
@@ -197,7 +200,7 @@ export const Tab = forwardRef(
 						{children}
 					</PanelBody>
 				</AnimatedPanel>
-			</div>
+			</Item>
 		);
 	}
 );
