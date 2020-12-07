@@ -31,7 +31,7 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 			ref={ref}
 			style={{
 				...fade,
-				display: fade.opacity.interpolate((val) => (val === 0 ? 'none' : 'block')),
+				display: fade.opacity.to((val) => (val === 0 ? 'none' : 'block')),
 			}}
 			{...rest}
 		/>
