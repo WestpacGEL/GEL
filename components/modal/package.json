@@ -65,7 +65,7 @@
 	"peerDependencies": {
 		"react": "^16.13.1",
 		"react-dom": "^16.11.0",
-		"react-spring": "^9.0.0-rc.3"
+		"react-spring": "9.0.0-rc.3"
 	},
 	"devDependencies": {
 		"cypress": "^4.5.0",

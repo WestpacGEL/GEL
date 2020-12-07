@@ -67,7 +67,7 @@
 	},
 	"peerDependencies": {
 		"react": "^16.13.1",
-		"react-spring": "^9.0.0-rc.3"
+		"react-spring": "9.0.0-rc.3"
 	},
 	"devDependencies": {
 		"@westpac/button": "^1.0.0",
