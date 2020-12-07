@@ -9,5 +9,6 @@
 - Add lego accordion indicator transition styling
 - Add tab content fade transition styling
 - Add new TabBody and Item components
+- Add @westpac/body dependency
 - Bump react-spring dependency
 - Add bezier-easing dependency
