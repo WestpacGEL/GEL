@@ -3,6 +3,7 @@
 ---
 
 - Move react-spring panel animation to Panel override
+- Fix onOpening and onClosing callbacks
 - Update tabButton and accordionButton background colour, padding and line-height styling
 - Add tabButton hover styling
 - Add lego accordion indicator transition styling
