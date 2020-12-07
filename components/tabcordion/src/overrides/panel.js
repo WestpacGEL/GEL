@@ -10,12 +10,88 @@ import {
 	getModifier,
 	formatClassName,
 } from '@westpac/core';
+import { useSpring, animated } from 'react-spring';
+import BezierEasing from 'bezier-easing';
+
+import { usePrevious } from '../_utils';
 
 // ==============================
 // Component
 // ==============================
 
-const Panel = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+const Panel = forwardRef(
+	(
+		{
+			state: {
+				mode,
+				hidden,
+				selected,
+				onOpening,
+				onOpen,
+				onClose,
+				tabId,
+				initial,
+				idx,
+				onClosing,
+				setClosed,
+				panelBodyHeight,
+			},
+			...rest
+		},
+		ref
+	) => {
+		const prevSelected = usePrevious(selected);
+		const prevHidden = usePrevious(hidden);
+
+		const animate = useSpring({
+			config: {
+				duration: 300,
+				easing: BezierEasing(0.25, 0.1, 0.25, 1.0), //~'ease' CSS transition timing function
+			},
+			...(mode === 'accordion' && {
+				height: hidden ? 0 : panelBodyHeight,
+			}),
+			from: {
+				height: '', //reset
+			},
+			immediate: initial,
+			onStart: () => {
+				setClosed(false);
+
+				if (mode === 'tabs') {
+					if (selected && !prevSelected) {
+						onOpening({ idx, tabId });
+					} else if (!selected && prevSelected) {
+						onClosing({ idx, tabId });
+					}
+				} else if (mode === 'accordion') {
+					if (!hidden && prevHidden) {
+						// Opening
+						onOpening({ idx, tabId });
+					} else if (hidden && !prevHidden) {
+						// Closing
+						onClosing({ idx, tabId });
+					}
+				}
+			},
+			onRest: () => {
+				if (mode === 'accordion') {
+					if (hidden) {
+						// Closed
+						setClosed(true);
+						onClose({ idx, tabId });
+					} else if (!hidden) {
+						// Opened
+						setClosed(false);
+						onOpen({ idx, tabId });
+					}
+				}
+			},
+		});
+
+		return <animated.div ref={ref} style={animate} {...rest} />;
+	}
+);
 
 const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
 	<div ref={ref} className={formatClassName(className)} {...rest} />
