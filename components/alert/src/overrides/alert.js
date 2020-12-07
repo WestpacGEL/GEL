@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
+import { useState } from 'react';
 import {
 	jsx,
 	useBrand,
@@ -11,6 +11,8 @@ import {
 	classNames,
 	formatClassName,
 } from '@westpac/core';
+import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
+import { useSpring, animated } from 'react-spring';
 
 import { defaultProps } from '../Alert';
 
@@ -18,7 +20,24 @@ import { defaultProps } from '../Alert';
 // Component
 // ==============================
 
-const Alert = ({ state: _, ...rest }) => <div {...rest} />;
+const Alert = ({ state: { dismissible, open }, ...rest }) => {
+	if (dismissible) {
+		const [hidden, setHidden] = useState(false);
+		const fade = useSpring({
+			config: { duration: 400 },
+			opacity: open ? 1 : 0,
+			onStart: () => {
+				setHidden(false);
+			},
+			onRest: () => {
+				setHidden(!open);
+			},
+		});
+		return !hidden && <animated.div style={fade} {...rest} />;
+	} else {
+		return <div {...rest} />;
+	}
+};
 
 const BlenderAlert = ({ className, ...rest }) => (
 	<Alert className={formatClassName(className)} {...rest} />
@@ -82,8 +101,6 @@ const alertStyles = (_, { dismissible, look }) => {
 		position: 'relative',
 		display: [null, 'flex'],
 		zIndex: 1,
-		transition: 'opacity 300ms ease-in-out',
-		opacity: 1,
 		borderTop: '1px solid',
 		borderBottom: '1px solid',
 		...styleMap[look].css,
@@ -123,7 +140,9 @@ const blenderStyles = (_, { dismissible, look }) => {
 // Attributes
 // ==============================
 
-const alertAttributes = () => null;
+const alertAttributes = () => ({
+	'data-js': 'alert__version__',
+});
 
 const blenderAttributes = (_, { look, dismissible }) => ({
 	className: classNames({
