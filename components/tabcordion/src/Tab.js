@@ -224,6 +224,11 @@ Tab.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
+		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 		AccordionButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
@@ -235,6 +240,11 @@ Tab.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Panel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		PanelBody: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
