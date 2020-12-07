@@ -34,7 +34,7 @@ const Panel = forwardRef(
 				idx,
 				onClosing,
 				setClosed,
-				panelBodyHeight,
+				panelHeight,
 			},
 			...rest
 		},
@@ -49,7 +49,7 @@ const Panel = forwardRef(
 				easing: BezierEasing(0.25, 0.1, 0.25, 1.0), //~'ease' CSS transition timing function
 			},
 			...(mode === 'accordion' && {
-				height: hidden ? 0 : panelBodyHeight,
+				height: hidden ? 0 : panelHeight,
 			}),
 			from: {
 				height: '', //reset

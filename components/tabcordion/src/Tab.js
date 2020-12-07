@@ -49,7 +49,7 @@ export const Tab = forwardRef(
 		const [hidden, setHidden] = useState(!selected);
 		const [initial, setInitial] = useState(true);
 		const [closed, setClosed] = useState(true);
-		const [panelBodyHeight, setPanelBodyHeight] = useState(null);
+		const [panelHeight, setPanelHeight] = useState(null);
 
 		const defaultOverrides = {
 			Item: defaultItem,
@@ -80,8 +80,7 @@ export const Tab = forwardRef(
 			idx,
 			closed,
 			setClosed,
-			panelBodyHeight,
-			setPanelBodyHeight,
+			panelHeight,
 			context: context.state,
 			overrides: componentOverrides,
 			...rest,
@@ -132,7 +131,12 @@ export const Tab = forwardRef(
 				)}
 
 				<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
-					<PanelBody state={state} {...panelBodyAttributes(state)} css={panelBodyStyles(state)}>
+					<PanelBody
+						setPanelHeight={setPanelHeight}
+						state={state}
+						{...panelBodyAttributes(state)}
+						css={panelBodyStyles(state)}
+					>
 						{children}
 					</PanelBody>
 				</Panel>
