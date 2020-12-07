@@ -6,9 +6,11 @@ import { Tab, Tabcordion } from '../src/blender';
 import { blenderTabcordion } from '../src/overrides/tabcordion';
 import { blenderTabRow } from '../src/overrides/tabRow';
 import { blenderTabButton } from '../src/overrides/tabButton';
+import { blenderItem } from '../src/overrides/item';
 import { blenderAccordionButton } from '../src/overrides/accordionButton';
 import { blenderAccordionButtonIcon } from '../src/overrides/accordionButtonIcon';
 import { blenderPanel } from '../src/overrides/panel';
+import { blenderPanelBody } from '../src/overrides/panelBody';
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -25,9 +27,8 @@ export function AllStyles({ brand }) {
 			component: blenderTabButton.component,
 			styles: blenderTabButton.styles,
 		},
-		Panel: {
-			component: blenderPanel.component,
-			styles: blenderPanel.styles,
+		Item: {
+			component: blenderItem.component,
 		},
 		AccordionButton: {
 			component: blenderAccordionButton.component,
@@ -35,6 +36,13 @@ export function AllStyles({ brand }) {
 		},
 		AccordionButtonIcon: {
 			component: blenderAccordionButtonIcon.component,
+		},
+		Panel: {
+			component: blenderPanel.component,
+			styles: blenderPanel.styles,
+		},
+		PanelBody: {
+			component: blenderPanelBody.component,
 		},
 	};
 
@@ -84,9 +92,8 @@ export function Docs({ brand }) {
 			component: blenderTabButton.component,
 			attributes: blenderTabButton.attributes,
 		},
-		Panel: {
-			component: blenderPanel.component,
-			attributes: blenderPanel.attributes,
+		Item: {
+			component: blenderItem.component,
 		},
 		AccordionButton: {
 			component: blenderAccordionButton.component,
@@ -94,6 +101,13 @@ export function Docs({ brand }) {
 		},
 		AccordionButtonIcon: {
 			component: blenderAccordionButtonIcon.component,
+		},
+		Panel: {
+			component: blenderPanel.component,
+			attributes: blenderPanel.attributes,
+		},
+		PanelBody: {
+			component: blenderPanelBody.component,
 		},
 	};
 
