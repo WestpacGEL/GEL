@@ -6,6 +6,22 @@ import { Alert } from '@westpac/alert';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<h2>Default</h2>
+			<Alert>
+				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<hr />
+
+			<h2>Info</h2>
+			<Alert look="info">
+				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<hr />
+
 			<h2>Success</h2>
 			<Alert look="success">
 				<strong>Well done!</strong> You successfully read this important alert message. Lorem ipsum
@@ -17,14 +33,6 @@ function Example({ brand }) {
 				consectetur adipisicing elit. Fuga, magnam illum harum consequatur, quo sunt impedit quam
 				minus eaque saepe voluptas corrupti voluptatum, sapiente dolor sequi tempore maxime? Neque,
 				obcaecati. <a href="#">Link</a>
-			</Alert>
-
-			<hr />
-
-			<h2>Information</h2>
-			<Alert look="info">
-				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
-				<a href="#">Link</a>
 			</Alert>
 
 			<hr />
