@@ -1,6 +1,5 @@
 /** @jsx jsx */
 
-import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import {
 	jsx,
 	useBrand,
@@ -33,60 +32,49 @@ const alertStyles = (_, { dismissible, look }) => {
 	const { COLORS, SPACING } = useBrand();
 
 	const styleMap = {
-		success: {
-			icon: TickIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
-		},
 		info: {
-			icon: InfoIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			backgroundColor: COLORS.tints[`${look}5`],
+			borderColor: COLORS.tints[`${look}50`],
+			color: COLORS[look],
+		},
+		success: {
+			backgroundColor: COLORS.tints[`${look}5`],
+			borderColor: COLORS.tints[`${look}50`],
+			color: COLORS[look],
 		},
 		warning: {
-			icon: AlertIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			backgroundColor: COLORS.tints[`${look}5`],
+			borderColor: COLORS.tints[`${look}50`],
+			color: COLORS[look],
 		},
 		danger: {
-			icon: AlertIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			backgroundColor: COLORS.tints[`${look}5`],
+			borderColor: COLORS.tints[`${look}50`],
+			color: COLORS[look],
 		},
 		system: {
-			icon: AlertIcon,
-			css: {
-				backgroundColor: COLORS.system,
-				color: 'black',
-				borderColor: COLORS.system,
-			},
+			backgroundColor: COLORS.system,
+			borderColor: COLORS.system,
+			color: 'black',
 		},
 	};
 
 	return mq({
 		label: getLabel('alert'),
 		marginBottom: SPACING(4),
-		padding: dismissible ? `${SPACING(3)} ${SPACING(6)} ${SPACING(3)} ${SPACING(3)}` : SPACING(3),
+		padding:
+			type === 'box' &&
+			(dismissible ? `${SPACING(3)} ${SPACING(6)} ${SPACING(3)} ${SPACING(3)}` : SPACING(3)),
 		position: 'relative',
 		display: [null, 'flex'],
 		zIndex: 1,
 		transition: 'opacity 300ms ease-in-out',
 		opacity: 1,
-		borderTop: '1px solid',
-		borderBottom: '1px solid',
-		...styleMap[look].css,
+		borderTop: type === 'box' && '1px solid',
+		borderBottom: type === 'box' && '1px solid',
+		backgroundColor: type === 'box' && styleMap[look].backgroundColor,
+		borderColor: type === 'box' && styleMap[look].borderColor,
+		color: styleMap[look].color,
 	})[0];
 };
 

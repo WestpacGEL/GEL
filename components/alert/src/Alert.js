@@ -19,6 +19,7 @@ import pkg from '../package.json';
 export const Alert = ({
 	open: isOpen,
 	look,
+	type,
 	dismissible,
 	onClose = () => {},
 	icon,
@@ -138,6 +139,11 @@ Alert.propTypes = {
 	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']).isRequired,
 
 	/**
+	 * Alert box style
+	 */
+	type: PropTypes.oneOf(['box', 'text']).isRequired,
+
+	/**
 	 * Enable dismissible mode
 	 */
 	dismissible: PropTypes.bool.isRequired,
@@ -204,6 +210,7 @@ Alert.propTypes = {
 export const defaultProps = {
 	open: true,
 	look: 'info',
+	type: 'box',
 	dismissible: false,
 	headingTag: 'h2',
 };
