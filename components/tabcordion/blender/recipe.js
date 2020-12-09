@@ -1,8 +1,7 @@
 import { GEL } from '@westpac/core';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { Tab, Tabcordion } from '../src/blender';
-
 import { blenderTabcordion } from '../src/overrides/tabcordion';
 import { blenderTabRow } from '../src/overrides/tabRow';
 import { blenderTabButton } from '../src/overrides/tabButton';
@@ -11,6 +10,9 @@ import { blenderAccordionButton } from '../src/overrides/accordionButton';
 import { blenderAccordionButtonIcon } from '../src/overrides/accordionButtonIcon';
 import { blenderPanel } from '../src/overrides/panel';
 import { blenderPanelBody } from '../src/overrides/panelBody';
+
+const modes = ['responsive', 'tabs', 'accordion'];
+const looks = ['soft', 'lego'];
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -48,30 +50,20 @@ export function AllStyles({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens} noScope>
-			<Tabcordion openTab={1}>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
-			</Tabcordion>
-			<Tabcordion mode="tabs" openTab={1}>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
+			<Tabcordion mode="accordion" openTab={0}>
+				<Tab text="Tab 1">Tab 1</Tab>
+				<Tab text="Tab 2">Tab 2</Tab>
+				<Tab text="Tab 3">Tab 3</Tab>
 			</Tabcordion>
 			<Tabcordion mode="accordion" openTab={1}>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
+				<Tab text="Tab 1">Tab 1</Tab>
+				<Tab text="Tab 2">Tab 2</Tab>
+				<Tab text="Tab 3">Tab 3</Tab>
 			</Tabcordion>
-			<Tabcordion mode="tabs" justify openTab={1}>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
-			</Tabcordion>
-			<Tabcordion look="lego" openTab={1}>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
-				<Tab text="text">Text</Tab>
+			<Tabcordion mode="accordion" openTab={2}>
+				<Tab text="Tab 1">Tab 1</Tab>
+				<Tab text="Tab 2">Tab 2</Tab>
+				<Tab text="Tab 3">Tab 3</Tab>
 			</Tabcordion>
 		</GEL>
 	);
@@ -113,7 +105,7 @@ export function Docs({ brand }) {
 
 	return [
 		// Tabcordion
-		{
+		/* {
 			heading: 'Tabcordion (responsive)',
 			subheading: 'Default',
 			component: () => (
@@ -212,7 +204,7 @@ export function Docs({ brand }) {
 					</Tabcordion>
 				</GEL>
 			),
-		},
+		}, */
 
 		// Accordion
 		{
@@ -228,7 +220,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
-		{
+		/* {
 			subheading: 'Lego',
 			component: () => (
 				<GEL brand={overridesWithTokens} noScope>
@@ -239,6 +231,6 @@ export function Docs({ brand }) {
 					</Tabcordion>
 				</GEL>
 			),
-		},
+		}, */
 	];
 }

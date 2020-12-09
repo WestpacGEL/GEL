@@ -21,10 +21,21 @@ const itemStyles = () => ({
 });
 
 // ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = () => ({});
+
+// ==============================
 // Attributes
 // ==============================
 
 const itemAttributes = () => null;
+
+const blenderAttributes = (_, props) => ({
+	...itemAttributes(_, props),
+	className: classNames({ [`__convert__tabcordion-item-selected`]: props.selected }),
+});
 
 // ==============================
 // Exports
@@ -38,6 +49,6 @@ export const defaultItem = {
 
 export const blenderItem = {
 	component: BlenderItem,
-	styles: itemStyles,
-	attributes: itemAttributes,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };
