@@ -50,20 +50,30 @@ export function AllStyles({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens} noScope>
-			<Tabcordion mode="accordion" openTab={0}>
-				<Tab text="Tab 1">Tab 1</Tab>
-				<Tab text="Tab 2">Tab 2</Tab>
-				<Tab text="Tab 3">Tab 3</Tab>
+		<Tabcordion openTab={1}>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
+			</Tabcordion>
+			<Tabcordion mode="tabs" openTab={1}>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
 			</Tabcordion>
 			<Tabcordion mode="accordion" openTab={1}>
-				<Tab text="Tab 1">Tab 1</Tab>
-				<Tab text="Tab 2">Tab 2</Tab>
-				<Tab text="Tab 3">Tab 3</Tab>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
 			</Tabcordion>
-			<Tabcordion mode="accordion" openTab={2}>
-				<Tab text="Tab 1">Tab 1</Tab>
-				<Tab text="Tab 2">Tab 2</Tab>
-				<Tab text="Tab 3">Tab 3</Tab>
+			<Tabcordion mode="tabs" justify openTab={1}>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
+			</Tabcordion>
+			<Tabcordion look="lego" openTab={1}>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
+				<Tab text="text">Text</Tab>
 			</Tabcordion>
 		</GEL>
 	);
@@ -105,7 +115,7 @@ export function Docs({ brand }) {
 
 	return [
 		// Tabcordion
-		/* {
+		{
 			heading: 'Tabcordion (responsive)',
 			subheading: 'Default',
 			component: () => (
@@ -204,7 +214,7 @@ export function Docs({ brand }) {
 					</Tabcordion>
 				</GEL>
 			),
-		}, */
+		},
 
 		// Accordion
 		{
@@ -220,7 +230,7 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
-		/* {
+		{
 			subheading: 'Lego',
 			component: () => (
 				<GEL brand={overridesWithTokens} noScope>
@@ -231,6 +241,6 @@ export function Docs({ brand }) {
 					</Tabcordion>
 				</GEL>
 			),
-		}, */
+		},
 	];
 }

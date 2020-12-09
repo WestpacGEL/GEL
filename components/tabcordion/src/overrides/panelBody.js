@@ -35,7 +35,7 @@ const PanelBody = ({ setPanelHeight, state: { mode, selected }, ...rest }) => {
 };
 
 const BlenderPanelBody = ({ className, ...rest }) => (
-	<PanelBody className={formatClassName(className)} {...rest} />
+	<Body className={formatClassName(className)} {...rest} />
 );
 
 // ==============================

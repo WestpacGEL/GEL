@@ -14,6 +14,7 @@ import { useSpring, animated } from 'react-spring';
 import BezierEasing from 'bezier-easing';
 
 import { usePrevious } from '../_utils';
+import { defaultProps } from '../blender/Tabcordion';
 
 // ==============================
 // Component
