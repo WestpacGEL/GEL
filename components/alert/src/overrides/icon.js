@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 import { InfoIcon, SuccessIcon, WarningIcon, AlertIcon, LimitIcon } from '@westpac/icon';
 
 // ==============================

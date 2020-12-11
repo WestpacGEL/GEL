@@ -27,7 +27,7 @@ const BlenderAlert = ({ className, ...rest }) => (
 // Styles
 // ==============================
 
-const alertStyles = (_, { dismissible, look }) => {
+const alertStyles = (_, { dismissible, look, mode }) => {
 	const mq = useMediaQuery();
 	const { COLORS, SPACING } = useBrand();
 
@@ -63,17 +63,17 @@ const alertStyles = (_, { dismissible, look }) => {
 		label: getLabel('alert'),
 		marginBottom: SPACING(4),
 		padding:
-			type === 'box' &&
+			mode === 'box' &&
 			(dismissible ? `${SPACING(3)} ${SPACING(6)} ${SPACING(3)} ${SPACING(3)}` : SPACING(3)),
 		position: 'relative',
 		display: [null, 'flex'],
 		zIndex: 1,
 		transition: 'opacity 300ms ease-in-out',
 		opacity: 1,
-		borderTop: type === 'box' && '1px solid',
-		borderBottom: type === 'box' && '1px solid',
-		backgroundColor: type === 'box' && styleMap[look].backgroundColor,
-		borderColor: type === 'box' && styleMap[look].borderColor,
+		borderTop: mode === 'box' && '1px solid',
+		borderBottom: mode === 'box' && '1px solid',
+		backgroundColor: mode === 'box' && styleMap[look].backgroundColor,
+		borderColor: mode === 'box' && styleMap[look].borderColor,
 		color: styleMap[look].color,
 	})[0];
 };
