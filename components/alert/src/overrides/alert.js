@@ -10,6 +10,8 @@ import {
 	classNames,
 	formatClassName,
 } from '@westpac/core';
+import { useTransition, animated } from 'react-spring';
+import { Fragment } from 'react';
 
 import { defaultProps } from '../Alert';
 
@@ -17,7 +19,28 @@ import { defaultProps } from '../Alert';
 // Component
 // ==============================
 
-const Alert = ({ state: _, ...rest }) => <div {...rest} />;
+const Alert = ({ state: { dismissible, open }, ...rest }) => {
+	if (dismissible) {
+		const transition = useTransition(open, null, {
+			initial: { opacity: 1 },
+			from: { opacity: 1 },
+			enter: { opacity: 1 },
+			leave: { opacity: 0 },
+			config: { duration: 400 },
+		});
+
+		return (
+			<Fragment>
+				{transition.map(
+					({ item, key, props }) =>
+						item && <animated.div key={key} style={props} data-js="alert__version__" {...rest} />
+				)}
+			</Fragment>
+		);
+	} else {
+		return <div {...rest} />;
+	}
+};
 
 const BlenderAlert = ({ className, ...rest }) => (
 	<Alert className={formatClassName(className)} {...rest} />
@@ -68,8 +91,6 @@ const alertStyles = (_, { dismissible, look, mode }) => {
 		position: 'relative',
 		display: [null, 'flex'],
 		zIndex: 1,
-		transition: 'opacity 300ms ease-in-out',
-		opacity: 1,
 		borderTop: mode === 'box' && '1px solid',
 		borderBottom: mode === 'box' && '1px solid',
 		backgroundColor: mode === 'box' && styleMap[look].backgroundColor,

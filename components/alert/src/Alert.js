@@ -34,13 +34,6 @@ export const Alert = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 	const [open, setOpen] = useState(isOpen);
-	const transition = useTransition(open, null, {
-		initial: { opacity: 1 },
-		from: { opacity: 1 },
-		enter: { opacity: 1 },
-		leave: { opacity: 0 },
-		config: { duration: 400 },
-	});
 
 	const defaultOverrides = {
 		Alert: defaultAlert,
@@ -99,7 +92,7 @@ export const Alert = ({
 		/>
 	);
 
-	const AlertJSX = () => (
+	return (
 		<Alert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
 			{Icon && <IconJSX />}
 			<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
@@ -108,19 +101,6 @@ export const Alert = ({
 			</Body>
 			{dismissible && <CloseBtnJSX />}
 		</Alert>
-	);
-
-	return (
-		<Fragment>
-			{transition.map(
-				({ item, key, props }) =>
-					item && (
-						<animated.div key={key} style={props} data-js="alert__version__">
-							<AlertJSX />
-						</animated.div>
-					)
-			)}
-		</Fragment>
 	);
 };
 
