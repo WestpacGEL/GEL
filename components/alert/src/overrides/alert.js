@@ -88,10 +88,10 @@ const alertStyles = (_, { dismissible, look, mode }) => {
 		position: 'relative',
 		display: [null, 'flex'],
 		zIndex: 1,
-		borderTop: mode === 'box' && '1px solid',
-		borderBottom: mode === 'box' && '1px solid',
-		backgroundColor: mode === 'box' && styleMap[look].backgroundColor,
-		borderColor: mode === 'box' && styleMap[look].borderColor,
+		borderTop: mode === 'box' ? '1px solid' : 0,
+		borderBottom: mode === 'box' ? '1px solid' : 0,
+		backgroundColor: mode === 'box' ? styleMap[look].backgroundColor : 'transparent',
+		borderColor: mode === 'box' ? styleMap[look].borderColor : 'transparent',
 		color: styleMap[look].color,
 	})[0];
 };
@@ -134,10 +134,11 @@ const blenderStyles = (_, { dismissible, look, mode }) => {
 
 const alertAttributes = () => null;
 
-const blenderAttributes = (_, { look, dismissible }) => ({
+const blenderAttributes = (_, { look, mode, dismissible }) => ({
 	...(dismissible && { 'data-js': 'alert__version__' }),
 	className: classNames({
 		[`__convert__alert-${look}`]: look !== defaultProps.look,
+		[`__convert__alert-${mode}`]: mode !== defaultProps.mode,
 		'__convert__alert-dismissible': dismissible,
 	}),
 });
