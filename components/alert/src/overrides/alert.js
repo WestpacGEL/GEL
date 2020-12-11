@@ -22,8 +22,6 @@ import { defaultProps } from '../Alert';
 const Alert = ({ state: { dismissible, open }, ...rest }) => {
 	if (dismissible) {
 		const transition = useTransition(open, null, {
-			initial: { opacity: 1 },
-			from: { opacity: 1 },
 			enter: { opacity: 1 },
 			leave: { opacity: 0 },
 			config: { duration: 400 },
