@@ -13,13 +13,13 @@ function Example({ brand }) {
 			<h2>Dismissible</h2>
 
 			<h3>Info</h3>
-			<Alert look="info" dismissible data-testing="alert1">
+			<Alert look="info" dismissible data-testing="alert0">
 				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.
 				Hey neato, I can be closed. <a href="#">Link</a>
 			</Alert>
 
 			<h3>Success</h3>
-			<Alert look="success" dismissible data-testing="alert0">
+			<Alert look="success" dismissible data-testing="alert1">
 				<strong>Well done!</strong> You successfully read this important alert message. Hey neato, I
 				can be closed. <a href="#">Link</a>
 			</Alert>
@@ -40,6 +40,16 @@ function Example({ brand }) {
 			<Alert look="system" dismissible data-testing="alert4">
 				<strong>System Error 8942:</strong> The server is no responding. Please try again later.
 				Sorry for the inconvenience. Hey neato, I can be closed. <a href="#">Link</a>
+			</Alert>
+
+			<hr />
+
+			<h2>Dismissible (text `mode`)</h2>
+			<p>Note: The following should not render a close button</p>
+
+			<Alert mode="text" dismissible data-testing="dimissible-box">
+				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important. It
+				should NOT have a close button. <a href="#">Link</a>
 			</Alert>
 
 			<hr />

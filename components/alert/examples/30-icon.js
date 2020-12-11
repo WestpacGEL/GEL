@@ -14,9 +14,7 @@ function Example({ brand }) {
 				<a href="#">Link</a>
 			</Alert>
 
-			<hr />
-
-			<h3>TelephoneIcon (with non-info `look`)</h3>
+			<h3>TelephoneIcon (success `look`)</h3>
 			<p>
 				Note: The following icons should not render as <TelephoneIcon />.
 			</p>
