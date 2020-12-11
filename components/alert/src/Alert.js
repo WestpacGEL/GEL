@@ -99,7 +99,7 @@ export const Alert = ({
 				{heading && <HeadingJSX />}
 				{children}
 			</Body>
-			{dismissible && <CloseBtnJSX />}
+			{dismissible && mode !== 'text' && <CloseBtnJSX />}
 		</Alert>
 	);
 };
