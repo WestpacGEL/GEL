@@ -85,7 +85,7 @@ export function Docs({ brand }) {
 			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens} noScope>
-					<Alert look="success">Your alert body</Alert>
+					<Alert>Your alert body</Alert>
 				</GEL>
 			),
 		},
