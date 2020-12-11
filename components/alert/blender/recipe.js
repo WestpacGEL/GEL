@@ -41,7 +41,10 @@ export function AllStyles({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens} noScope>
-			{modes.map((mode) => looks.map((look) => <Alert mode={mode} look={look} />))}
+			{looks.map((look) => (
+				<Alert key={look} look={look} />
+			))}
+			<Alert mode="text" />
 			<Alert heading="Your alert heading" />
 			<Alert dismissible />
 		</GEL>
