@@ -47,7 +47,7 @@ function Example({ brand }) {
 			<h2>Dismissible (text `mode`)</h2>
 			<p>Note: The following should not render a close button</p>
 
-			<Alert mode="text" dismissible data-testing="dimissible-box">
+			<Alert mode="text" dismissible data-testing="dismissible-text-alert">
 				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important. It
 				should NOT have a close button. <a href="#">Link</a>
 			</Alert>

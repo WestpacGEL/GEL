@@ -8,7 +8,7 @@ describe('Alert', () => {
 
 	it('Alert should be dismissable', () => {
 		// here we automate five tests and make sure for each look the dismissable button works
-		['Well done!', 'Heads up!', 'Warning!', 'Oh snap!', 'System Error 8942:'].map((heading, i) => {
+		['Heads up!', 'Well done!', 'Warning!', 'Oh snap!', 'System Error 8942:'].map((heading, i) => {
 			cy.get(`[data-testing="alert${i}"]`)
 				.contains(heading)
 				.should('be.visible')
@@ -19,6 +19,14 @@ describe('Alert', () => {
 			// assertion
 			cy.get(`[data-testing="alert${i}"]`).should('not.be.visible');
 		});
+	});
+
+	it('Text alerts should not be dismissible', () => {
+		cy.get(`[data-testing="dismissible-text-alert"]`)
+			.contains('Heads up!')
+			.should('be.visible')
+			.get(`[data-testing="dismissible-text-alert"] [data-testing="alert-closeBtn"]`)
+			.should('not.exist');
 	});
 
 	it('Alert can be state controlled', () => {
