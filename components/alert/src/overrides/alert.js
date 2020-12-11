@@ -30,8 +30,7 @@ const Alert = ({ state: { dismissible, open }, ...rest }) => {
 		return (
 			<Fragment>
 				{transition.map(
-					({ item, key, props }) =>
-						item && <animated.div key={key} style={props} data-js="alert__version__" {...rest} />
+					({ item, key, props }) => item && <animated.div key={key} style={props} {...rest} />
 				)}
 			</Fragment>
 		);
@@ -101,8 +100,8 @@ const alertStyles = (_, { dismissible, look, mode }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { dismissible, look }) => {
-	const props = { dismissible: dismissible ? dismissible : false, look };
+const blenderStyles = (_, { dismissible, look, mode }) => {
+	const props = { dismissible: dismissible ? dismissible : false, look, mode };
 	const baseStyles = alertStyles(_, defaultProps);
 
 	const modifiers = getModifier(defaultProps, props);
@@ -117,6 +116,9 @@ const blenderStyles = (_, { dismissible, look }) => {
 	switch (modifier) {
 		case 'look':
 			label = `${label}-${look}`;
+			break;
+		case 'mode':
+			label = `${label}-${mode}`;
 			break;
 		default:
 			label = `${label}-${modifier}`;
@@ -133,9 +135,10 @@ const blenderStyles = (_, { dismissible, look }) => {
 const alertAttributes = () => null;
 
 const blenderAttributes = (_, { look, dismissible }) => ({
+	...(dismissible && { 'data-js': 'alert__version__' }),
 	className: classNames({
 		[`__convert__alert-${look}`]: look !== defaultProps.look,
-		[`__convert__alert-dismissible`]: dismissible,
+		'__convert__alert-dismissible': dismissible,
 	}),
 });
 
