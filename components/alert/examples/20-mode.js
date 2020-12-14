@@ -1,0 +1,100 @@
+/** @jsx jsx */
+
+import { GEL, jsx } from '@westpac/core';
+import { Alert } from '@westpac/alert';
+
+function Example({ brand }) {
+	return (
+		<GEL brand={brand}>
+			<h2>Default</h2>
+			<Alert>
+				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<hr />
+
+			<h2>Text mode</h2>
+
+			<h3>Info</h3>
+			<Alert look="info" mode="text">
+				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<h3>Success</h3>
+			<Alert look="success" mode="text">
+				<strong>Well done!</strong> You successfully read this important alert message. Lorem ipsum
+				dolor sit amet, consectetur adipisicing elit. Quo dolor provident quasi nisi officia tempore
+				fuga autem, animi iste molestiae, qui omnis doloribus aliquid ipsam rem fugiat veniam
+				voluptatem accusamus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, unde
+				quis, molestias nisi quae voluptates nemo quaerat nihil, consequuntur nobis ratione rerum
+				asperiores eveniet dicta maiores quia nostrum. Pariatur, natus. Lorem ipsum dolor sit amet,
+				consectetur adipisicing elit. Fuga, magnam illum harum consequatur, quo sunt impedit quam
+				minus eaque saepe voluptas corrupti voluptatum, sapiente dolor sequi tempore maxime? Neque,
+				obcaecati. <a href="#">Link</a>
+			</Alert>
+
+			<h3>Warning</h3>
+			<Alert look="warning" mode="text">
+				<strong>Warning!</strong> Better check yourself, you’re not looking too good.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<h3>Danger</h3>
+			<Alert look="danger" mode="text">
+				<strong>Oh snap!</strong> Change a few things up and try submitting again.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<h3>System</h3>
+			<Alert look="system" mode="text">
+				<strong>System Error 8942:</strong> The server is no responding. Please try again later.
+				Sorry for the inconvenience. <a href="#">Link</a>
+			</Alert>
+
+			<hr />
+
+			<h2>Box mode</h2>
+
+			<h3>Info</h3>
+			<Alert look="info" mode="box">
+				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<h3>Success</h3>
+			<Alert look="success" mode="box">
+				<strong>Well done!</strong> You successfully read this important alert message. Lorem ipsum
+				dolor sit amet, consectetur adipisicing elit. Quo dolor provident quasi nisi officia tempore
+				fuga autem, animi iste molestiae, qui omnis doloribus aliquid ipsam rem fugiat veniam
+				voluptatem accusamus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, unde
+				quis, molestias nisi quae voluptates nemo quaerat nihil, consequuntur nobis ratione rerum
+				asperiores eveniet dicta maiores quia nostrum. Pariatur, natus. Lorem ipsum dolor sit amet,
+				consectetur adipisicing elit. Fuga, magnam illum harum consequatur, quo sunt impedit quam
+				minus eaque saepe voluptas corrupti voluptatum, sapiente dolor sequi tempore maxime? Neque,
+				obcaecati. <a href="#">Link</a>
+			</Alert>
+
+			<h3>Warning</h3>
+			<Alert look="warning" mode="box">
+				<strong>Warning!</strong> Better check yourself, you’re not looking too good.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<h3>Danger</h3>
+			<Alert look="danger" mode="box">
+				<strong>Oh snap!</strong> Change a few things up and try submitting again.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<h3>System</h3>
+			<Alert look="system" mode="box">
+				<strong>System Error 8942:</strong> The server is no responding. Please try again later.
+				Sorry for the inconvenience. <a href="#">Link</a>
+			</Alert>
+		</GEL>
+	);
+}
+
+export default Example;
