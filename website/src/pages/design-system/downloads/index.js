@@ -444,8 +444,13 @@ const SectionDevelopers = () => {
 
 	const [isLoading, setLoading] = useState(false);
 
+	const hiddenPkgs = ['progress-bar'];
+
 	const supportedPkgs = Object.keys(GEL.components).filter(
-		(name) => GEL.components[name].blender && !GEL.components[name].blender.isCore
+		(name) =>
+			GEL.components[name].blender &&
+			!GEL.components[name].blender.isCore &&
+			!hiddenPkgs.includes(name)
 	);
 	const checkState = {};
 	supportedPkgs.map((name) => (checkState[name] = false));
