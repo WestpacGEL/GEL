@@ -444,7 +444,7 @@ const SectionDevelopers = () => {
 
 	const [isLoading, setLoading] = useState(false);
 
-	const hiddenPkgs = ['progress-bar'];
+	const hiddenPkgs = ['progress-rope'];
 
 	const supportedPkgs = Object.keys(GEL.components).filter(
 		(name) =>
