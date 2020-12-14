@@ -50,7 +50,7 @@ export function AllStyles({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens} noScope>
-		<Tabcordion openTab={1}>
+			<Tabcordion openTab={1}>
 				<Tab text="text">Text</Tab>
 				<Tab text="text">Text</Tab>
 				<Tab text="text">Text</Tab>
