@@ -4,25 +4,31 @@ import { GEL, jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 
 function Example({ brand }) {
-	const onOpen = (tabId) => {
+	const onOpen = ({ tabId }) => {
 		console.log(`${tabId} has opened.`);
 	};
 
-	const onOpening = (tabId) => {
+	const onOpening = ({ tabId }) => {
 		console.log(`${tabId} is opening...`);
 	};
 
-	const onClose = (tabId) => {
+	const onClose = ({ tabId }) => {
 		console.log(`${tabId} has closed.`);
 	};
 
-	const onClosing = (tabId) => {
+	const onClosing = ({ tabId }) => {
 		console.log(`${tabId} is closing...`);
 	};
 
 	return (
 		<GEL brand={brand}>
-			<Tabcordion onOpen={onOpen} onOpening={onOpening} onClose={onClose} onClosing={onClosing}>
+			<Tabcordion
+				mode="accordion"
+				onOpen={onOpen}
+				onOpening={onOpening}
+				onClose={onClose}
+				onClosing={onClosing}
+			>
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t

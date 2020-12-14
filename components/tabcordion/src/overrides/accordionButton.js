@@ -26,26 +26,36 @@ const BlenderAccordionButton = ({ className, ...rest }) => (
 // Styles
 // ==============================
 
-const accordionButtonStyles = (_, { look, hidden }) => {
-	const { COLORS } = useBrand();
+const accordionButtonStyles = (_, { look, hidden, first, last, closed }) => {
+	const { COLORS, SPACING, PACKS } = useBrand();
 	const styleMap = {
 		soft: {
-			':first-of-type': {
-				borderTop: `1px solid ${COLORS.border}`,
+			...(first && {
 				borderTopLeftRadius: '0.1875rem',
 				borderTopRightRadius: '0.1875rem',
-			},
-
-			':last-of-type': {
-				borderBottomLeftRadius: hidden ? '0.1875rem' : 0,
-				borderBottomRightRadius: hidden ? '0.1875rem' : 0,
-			},
+			}),
+			...(last
+				? {
+						borderBottomLeftRadius: closed ? '0.1875rem' : 0,
+						borderBottomRightRadius: closed ? '0.1875rem' : 0,
+				  }
+				: {}),
 		},
 		lego: {
-			borderLeft: `0.375rem solid ${!hidden ? COLORS.border : COLORS.hero}`,
+			borderLeftWidth: '0.375rem',
 
-			':first-of-type': {
-				borderTop: `1px solid ${COLORS.border}`,
+			// Closed indicator
+			'::before': {
+				content: '""',
+				display: 'block',
+				opacity: hidden ? 0 : 1,
+				position: 'absolute',
+				zIndex: 0,
+				top: '-1px',
+				left: '-0.375rem',
+				bottom: 0,
+				borderLeft: `0.375rem solid ${COLORS.hero}`,
+				transition: 'opacity 0.3s ease',
 			},
 		},
 	};
@@ -57,15 +67,13 @@ const accordionButtonStyles = (_, { look, hidden }) => {
 		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		backgroundColor: COLORS.background,
-		padding: '0.75rem 1.125rem',
-		border: 0,
-		borderBottom: `1px solid ${COLORS.border}`,
-		borderLeft: `1px solid ${COLORS.border}`,
-		borderRight: `1px solid ${COLORS.border}`,
-		fontSize: '1rem',
+		backgroundColor: COLORS.light,
+		padding: `0.8125rem ${SPACING(3)}`,
+		border: `1px solid ${COLORS.border}`,
+		borderBottomWidth: !last && closed && 0, //reset
 		textAlign: 'left',
 		cursor: 'pointer',
+		...PACKS.typeScale.bodyFont[9],
 		...styleMap[look],
 	};
 };

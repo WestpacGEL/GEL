@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
-import { useTransition, animated } from 'react-spring';
-import { Fragment, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultCloseBtn } from './overrides/closeBtn';

@@ -1,18 +1,15 @@
 /** @jsx jsx */
 
+import { useState, forwardRef, useEffect } from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, forwardRef, useEffect } from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
-import { useSpring, animated } from 'react-spring';
-import useMeasure from 'react-use-measure';
 import PropTypes from 'prop-types';
 
+import { defaultItem } from './overrides/item';
 import { defaultAccordionButton } from './overrides/accordionButton';
 import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
 import { defaultPanel } from './overrides/panel';
-
+import { defaultPanelBody } from './overrides/panelBody';
 import { useTabcordionContext } from './Tabcordion';
-import { usePrevious } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
@@ -23,6 +20,7 @@ export const Tab = forwardRef(
 	(
 		{
 			look,
+			first,
 			last,
 			selected,
 			text,
@@ -30,13 +28,13 @@ export const Tab = forwardRef(
 			panelId,
 			tabId,
 			onClick,
-			onOpen,
 			onOpening,
-			onClose,
+			onOpen,
 			onClosing,
+			onClose,
+			idx,
 			children,
 			overrides,
-			idx,
 			...rest
 		},
 		ref
@@ -49,38 +47,16 @@ export const Tab = forwardRef(
 		const context = useTabcordionContext();
 
 		const [hidden, setHidden] = useState(!selected);
-		const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 		const [initial, setInitial] = useState(true);
-		const prevSelected = usePrevious(selected);
-		const prevHidden = usePrevious(hidden);
-
-		const animate = useSpring({
-			to: {
-				height: mode === 'accordion' ? (hidden ? 0 : height) : 'auto',
-				overflow: 'hidden',
-			},
-			immediate: initial,
-			onStart: () => {
-				if (mode === 'tabs') {
-					if (selected && !prevSelected) {
-						onOpening({ idx, tabId });
-					} else if (!selected && prevSelected) {
-						onClosing({ idx, tabId });
-					}
-				} else if (mode === 'accordion') {
-					if (!hidden && prevHidden) {
-						onOpening({ idx, tabId });
-					} else if (hidden && !prevHidden) {
-						onClosing({ idx, tabId });
-					}
-				}
-			},
-		});
+		const [closed, setClosed] = useState(true);
+		const [panelHeight, setPanelHeight] = useState(null);
 
 		const defaultOverrides = {
+			Item: defaultItem,
 			AccordionButton: defaultAccordionButton,
 			AccordionButtonIcon: defaultAccordionButtonIcon,
 			Panel: defaultPanel,
+			PanelBody: defaultPanelBody,
 		};
 
 		const componentOverrides = overrides || context.state.overrides;
@@ -88,20 +64,30 @@ export const Tab = forwardRef(
 		const state = {
 			hidden,
 			look,
+			first,
 			last,
 			selected,
 			text,
 			mode,
 			panelId,
 			onClick,
+			onOpening,
+			onOpen,
+			onClosing,
+			onClose,
 			tabId,
+			initial,
+			idx,
+			closed,
+			setClosed,
+			panelHeight,
 			context: context.state,
 			overrides: componentOverrides,
-			idx,
 			...rest,
 		};
 
 		const {
+			Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
 			AccordionButton: {
 				component: AccordionButton,
 				styles: accordionButtonStyles,
@@ -113,6 +99,7 @@ export const Tab = forwardRef(
 				attributes: accordionButtonIconAttributes,
 			},
 			Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+			PanelBody: { component: PanelBody, styles: panelBodyStyles, attributes: panelBodyAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		const handleAccordionClick = () => {
@@ -125,29 +112,9 @@ export const Tab = forwardRef(
 			setHidden(!selected);
 		}, [mode]);
 
-		useEffect(() => {
-			if (mode === 'accordion') {
-				if (!hidden) {
-					onOpen({ idx, tabId });
-				} else {
-					onClose({ idx, tabId });
-				}
-			}
-		}, [hidden, tabId]);
-
-		useEffect(() => {
-			if (mode === 'tabs') {
-				if (selected) {
-					onOpen({ idx, tabId });
-				} else {
-					onClose({ idx, tabId });
-				}
-			}
-		}, [selected, tabId]);
-
 		return (
-			<Fragment>
-				{mode === 'accordion' ? (
+			<Item state={state} {...itemAttributes(state)} css={itemStyles(state)}>
+				{mode === 'accordion' && (
 					<AccordionButton
 						onClick={handleAccordionClick}
 						state={state}
@@ -161,16 +128,19 @@ export const Tab = forwardRef(
 							css={accordionButtonIconStyles(state)}
 						/>
 					</AccordionButton>
-				) : null}
+				)}
 
-				<animated.div style={animate}>
-					<div ref={measureRef}>
-						<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
-							{children}
-						</Panel>
-					</div>
-				</animated.div>
-			</Fragment>
+				<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+					<PanelBody
+						setPanelHeight={setPanelHeight}
+						state={state}
+						{...panelBodyAttributes(state)}
+						css={panelBodyStyles(state)}
+					>
+						{children}
+					</PanelBody>
+				</Panel>
+			</Item>
 		);
 	}
 );
@@ -184,6 +154,11 @@ Tab.propTypes = {
 	 * The look of the tabs
 	 */
 	look: PropTypes.oneOf(['soft', 'lego']),
+
+	/**
+	 * Indicator if this is the first tab
+	 */
+	first: PropTypes.bool,
 
 	/**
 	 * Indicator if this is the last tab
@@ -249,6 +224,11 @@ Tab.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
+		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 		AccordionButton: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
@@ -260,6 +240,11 @@ Tab.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Panel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		PanelBody: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

@@ -16,7 +16,7 @@ function Example({ brand }) {
 				type="radio"
 				name="example-radio-onchange"
 				defaultValue="0"
-				onChange={(_, value) => setValue(Number(value))}
+				onChange={(value) => setValue(Number(value))}
 			>
 				<Option value="0">Option 1</Option>
 				<Option value="1">Option 2</Option>

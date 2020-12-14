@@ -81,6 +81,7 @@ export const Tabcordion = ({
 		<TabRow state={state} {...tabRowAttributes(state)} css={tabRowStyles(state)}>
 			{Children.map(children, (child, idx) => {
 				const selected = openTab === idx;
+				const first = idx === 0;
 				const last = idx + 1 === tabCount;
 
 				return (
@@ -92,9 +93,10 @@ export const Tabcordion = ({
 							tabId: getId('tab', idx),
 							panelId: getId('panel', idx),
 							selected,
+							first,
 							last,
 						})}
-						css={tabButtonStyles({ ...state, selected, last })}
+						css={tabButtonStyles({ ...state, selected, first, last })}
 					>
 						{child.props.text}
 					</TabButton>
@@ -120,6 +122,7 @@ export const Tabcordion = ({
 							{...child.props}
 							key={child.props.text}
 							look={look}
+							first={idx === 0}
 							last={idx + 1 === tabCount}
 							selected={selected}
 							mode={mode}
@@ -218,7 +221,17 @@ Tabcordion.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
+		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 		Panel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		PanelBody: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

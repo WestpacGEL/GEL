@@ -23,9 +23,8 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 	const transition = useTransition(open, {
 		config: { duration: 150 }, //CSS 'linear' easing-function
 		from: { opacity: 0 },
-		enter: { opacity: 1 },
+		enter: { opacity: 1, delay: 150 }, //delay after Backdrop fade-in
 		leave: { opacity: 0 },
-		trail: 150, //after backdrop
 	});
 
 	return transition((style, item) => item && <animated.div ref={ref} style={style} {...rest} />);
