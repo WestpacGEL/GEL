@@ -123,25 +123,25 @@ export const Modal = ({
 		return ReactDOM.createPortal(
 			<GEL brand={brand}>
 				<ModalContext.Provider value={{ state }}>
-					<Modal
-						ref={modalRef}
-						onClick={(e) => {
-							if (e.target !== e.currentTarget) return;
-							if (dismissible) {
-								handleClose();
-							}
-						}}
-						state={state}
-						{...rest}
-						{...modalAttributes(state)}
-						css={modalStyles(state)}
-					>
-						<ModalDialog
+					<FocusOn enabled={open}>
+						<Modal
+							ref={modalRef}
+							onClick={(e) => {
+								if (e.target !== e.currentTarget) return;
+								if (dismissible) {
+									handleClose();
+								}
+							}}
 							state={state}
-							{...modalDialogAttributes(state)}
-							css={modalDialogStyles(state)}
+							{...rest}
+							{...modalAttributes(state)}
+							css={modalStyles(state)}
 						>
-							<FocusOn enabled={open}>
+							<ModalDialog
+								state={state}
+								{...modalDialogAttributes(state)}
+								css={modalDialogStyles(state)}
+							>
 								<ModalContent
 									state={state}
 									{...modalContentAttributes(state)}
@@ -169,9 +169,9 @@ export const Modal = ({
 									</Header>
 									{children}
 								</ModalContent>
-							</FocusOn>
-						</ModalDialog>
-					</Modal>
+							</ModalDialog>
+						</Modal>
+					</FocusOn>
 					<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
 				</ModalContext.Provider>
 			</GEL>,

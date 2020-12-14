@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery, getLabel } from '@westpac/core';
-import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
+import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { InfoIcon, SuccessIcon, WarningIcon, AlertIcon, LimitIcon } from '@westpac/icon';
 
 // ==============================
 // Component
@@ -9,17 +9,14 @@ import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 
 const Icon = ({ state: { look, icon }, ...rest }) => {
 	const iconMap = {
-		success: TickIcon,
 		info: InfoIcon,
-		warning: AlertIcon,
+		success: SuccessIcon,
+		warning: WarningIcon,
 		danger: AlertIcon,
-		system: AlertIcon,
+		system: LimitIcon,
 	};
-	const Tag = icon ? icon : iconMap[look];
-
-	if (icon === null) {
-		return null;
-	}
+	// Only info look allows a custom icon (a11y)
+	const Tag = look === 'info' && icon ? icon : iconMap[look];
 
 	return (
 		<Tag
@@ -53,11 +50,12 @@ const BlenderIcon = (props) => (
 
 const iconStyles = () => {
 	const mq = useMediaQuery();
+	const { SPACING } = useBrand();
 
 	return mq({
 		label: getLabel('alert-icon'),
 		float: ['left', 'none'],
-		marginRight: ['0.375rem', '0.75rem'],
+		marginRight: [SPACING(1), SPACING(2)],
 		flex: 'none',
 	})[0];
 };

@@ -20,11 +20,13 @@ const bodyStyles = (_, props) => {
 		...PACKS.typeScale.bodyFont[10],
 
 		'h1, h2, h3, h4, h5, h6': {
+			marginTop: 0,
 			color: COLORS.heading,
 		},
 
 		p: {
-			margin: `${SPACING(2)} 0`,
+			marginTop: 0,
+			marginBottom: SPACING(2),
 		},
 
 		dt: {

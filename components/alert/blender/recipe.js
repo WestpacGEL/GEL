@@ -11,6 +11,7 @@ import { blenderIcon } from '../src/overrides/icon';
 import { blenderBody } from '../src/overrides/body';
 
 const looks = ['info', 'success', 'warning', 'danger', 'system'];
+const modes = ['box', 'text'];
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -40,11 +41,10 @@ export function AllStyles({ brand }) {
 
 	return (
 		<GEL brand={overridesWithTokens} noScope>
-			<Alert look="info" />
-			<Alert look="success" />
-			<Alert look="warning" />
-			<Alert look="danger" />
-			<Alert look="system" />
+			{looks.map((look) => (
+				<Alert key={look} look={look} />
+			))}
+			<Alert mode="text" />
 			<Alert heading="Your alert heading" />
 			<Alert dismissible />
 		</GEL>
@@ -79,17 +79,30 @@ export function Docs({ brand }) {
 	};
 
 	return [
-		// Look
+		// Default
 		{
-			heading: 'Alert looks',
-			subheading: 'Default',
+			heading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens} noScope>
-					<Alert look="success">Your alert body</Alert>
+					<Alert>Your alert body</Alert>
 				</GEL>
 			),
 		},
-		...looks.map((look) => ({
+
+		// Mode
+		...modes.map((mode, i) => ({
+			...(i === 0 && { heading: 'Alert modes' }),
+			subheading: titleCase(mode),
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Alert mode={mode}>Your {mode} alert body</Alert>
+				</GEL>
+			),
+		})),
+
+		// Look
+		...looks.map((look, i) => ({
+			...(i === 0 && { heading: 'Alert looks' }),
 			subheading: titleCase(look),
 			component: () => (
 				<GEL brand={overridesWithTokens} noScope>
@@ -122,23 +135,10 @@ export function Docs({ brand }) {
 
 		// Icon
 		{
-			heading: 'Alert icon',
-			subheading: 'Info alert with custom icon',
+			heading: 'Alert with custom icon',
 			component: () => (
 				<GEL brand={overridesWithTokens} noScope>
-					<Alert look="info" icon={HelpIcon}>
-						Your alert body
-					</Alert>
-				</GEL>
-			),
-		},
-		{
-			subheading: 'Info alert without icon',
-			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
-					<Alert look="info" icon={null}>
-						Your alert body
-					</Alert>
+					<Alert icon={HelpIcon}>Your alert body</Alert>
 				</GEL>
 			),
 		},

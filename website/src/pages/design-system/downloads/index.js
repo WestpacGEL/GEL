@@ -15,6 +15,7 @@ import { Switch } from '@westpac/switch';
 import { Textarea, Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
+import { useSpring, animated } from 'react-spring';
 import merge from 'lodash.merge';
 
 import { brandsMap } from '../../../components/brand-switcher/brand-switcher';
@@ -185,7 +186,20 @@ const AutoGrowTextarea = ({ value, customCSS, ...rest }) => {
 const NpmBox = ({ selected, ...rest }) => {
 	const { SPACING } = useBrand();
 
-	const [copySuccess, setCopySuccess] = useState('');
+	const [showStatus, setShowStatus] = useState(false);
+
+	const fade = useSpring({
+		config: { duration: 150 },
+		opacity: showStatus ? 1 : 0,
+	});
+
+	// Hide copy status text after 5sec
+	useEffect(() => {
+		showStatus &&
+			setTimeout(() => {
+				setShowStatus(false);
+			}, 5000);
+	}, [showStatus]);
 
 	const npmCommand = `npm install @westpac/core ${selected
 		.map((pkg) => `@westpac/${pkg}`)
@@ -193,7 +207,7 @@ const NpmBox = ({ selected, ...rest }) => {
 
 	const handleCopy = () => {
 		navigator.clipboard.writeText(npmCommand);
-		setCopySuccess('Copied!');
+		setShowStatus(true);
 	};
 
 	return (
@@ -226,7 +240,14 @@ const NpmBox = ({ selected, ...rest }) => {
 					Copy
 				</Button>
 			</div>
-			<Status text={copySuccess} css={{ marginTop: SPACING(1) }} />
+			<animated.div
+				style={{
+					...fade,
+					display: fade.opacity.interpolate((v) => (v === 0 ? 'none' : 'block')),
+				}}
+			>
+				<Status text="Copied!" css={{ marginTop: SPACING(1) }} />
+			</animated.div>
 		</div>
 	);
 };

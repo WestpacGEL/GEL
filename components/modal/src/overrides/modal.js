@@ -22,20 +22,19 @@ import { nestedStyles } from './modalDialog';
 const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 	const fade = useSpring({
 		config: { duration: 150 },
-		from: { position: 'relative', zIndex: 1002, opacity: 0 },
-		_dspl: open ? 1 : 0,
+		from: { opacity: 0 },
 		opacity: open ? 1 : 0,
 	});
 
 	return (
 		<animated.div
+			ref={ref}
 			style={{
 				...fade,
-				display: fade._dspl.interpolate((d) => (d === 0 ? 'none' : 'block')),
+				display: fade.opacity.interpolate((val) => (val === 0 ? 'none' : 'block')),
 			}}
-		>
-			<div ref={ref} {...rest} />
-		</animated.div>
+			{...rest}
+		/>
 	);
 });
 
