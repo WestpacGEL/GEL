@@ -26,7 +26,7 @@ const ModalDialog = ({ state: { open }, ...rest }) => {
 		},
 		from: { transform: 'translateY(-50px)' },
 		to: { transform: open ? 'translateY(0px)' : 'translateY(-50px)' },
-		delay: open ? 150 : 0, //after backdrop
+		delay: open ? 150 : 0, //after Backdrop fade-in
 	});
 
 	return <animated.div style={slide} {...rest} />;
