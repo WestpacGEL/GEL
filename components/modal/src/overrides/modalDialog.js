@@ -9,8 +9,8 @@ import {
 	getLabel,
 	formatClassName,
 } from '@westpac/core';
-import { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
+import BezierEasing from 'bezier-easing';
 
 import { defaultProps } from '../Modal';
 
@@ -19,25 +19,17 @@ import { defaultProps } from '../Modal';
 // ==============================
 
 const ModalDialog = ({ state: { open }, ...rest }) => {
-	const [show, setShow] = useState(open);
-
 	const slide = useSpring({
-		config: { duration: 300 },
-		transform: open ? 'translateY(0px)' : 'translateY(-50px)',
-		pointerEvents: 'none',
-		onStart: () => {
-			if (open) {
-				setShow(true);
-			}
+		config: {
+			duration: 300,
+			easing: BezierEasing(0, 0, 0.58, 1.0), //~CSS 'ease-out' easing-function
 		},
-		onRest: () => {
-			if (!open) {
-				setShow(false);
-			}
-		},
+		from: { transform: 'translateY(-50px)' },
+		to: { transform: open ? 'translateY(0px)' : 'translateY(-50px)' },
+		delay: open ? 150 : 0, //after backdrop
 	});
 
-	return <animated.div style={slide}>{show && <div {...rest} />}</animated.div>;
+	return <animated.div style={slide} {...rest} />;
 };
 
 const BlenderModalDialog = ({ state, className, ...rest }) => (

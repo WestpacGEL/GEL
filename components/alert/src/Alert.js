@@ -18,6 +18,7 @@ import pkg from '../package.json';
 export const Alert = ({
 	open: isOpen,
 	look,
+	mode,
 	dismissible,
 	onClose = () => {},
 	icon,
@@ -44,6 +45,7 @@ export const Alert = ({
 	const state = {
 		open,
 		look,
+		mode,
 		dismissible: dismissible ? dismissible : undefined,
 		onClose,
 		icon,
@@ -96,7 +98,7 @@ export const Alert = ({
 				{heading && <HeadingJSX />}
 				{children}
 			</Body>
-			{dismissible && <CloseBtnJSX />}
+			{dismissible && mode !== 'text' && <CloseBtnJSX />}
 		</Alert>
 	);
 };
@@ -114,7 +116,12 @@ Alert.propTypes = {
 	/**
 	 * Alert look
 	 */
-	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']).isRequired,
+	look: PropTypes.oneOf(['info', 'success', 'warning', 'danger', 'system']).isRequired,
+
+	/**
+	 * Alert box style
+	 */
+	mode: PropTypes.oneOf(['box', 'text']).isRequired,
 
 	/**
 	 * Enable dismissible mode
@@ -129,17 +136,17 @@ Alert.propTypes = {
 	/**
 	 * Alert icon.
 	 *
-	 * The alert icon is automatically rendered based on look, but can be overriden via this prop. Pass a `null` value to remove completely.
+	 * The alert icon is automatically rendered based on look. The icon can be overriden via this prop, for info look alerts only.
 	 */
 	icon: PropTypes.func,
 
 	/**
-	 * The heading
+	 * The alert heading
 	 */
 	heading: PropTypes.string,
 
 	/**
-	 * The tag of the heading element for semantic reasons
+	 * The alert heading tag is automatically defined, but may be overridden via this prop if required for semantic reasons.
 	 */
 	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
 
@@ -183,6 +190,7 @@ Alert.propTypes = {
 export const defaultProps = {
 	open: true,
 	look: 'info',
+	mode: 'box',
 	dismissible: false,
 	headingTag: 'h2',
 };

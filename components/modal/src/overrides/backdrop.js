@@ -1,33 +1,21 @@
 /** @jsx jsx */
 
 import { jsx, getLabel } from '@westpac/core';
-import { useState } from 'react';
-import { useSpring, animated } from 'react-spring';
+import { useTransition, animated } from 'react-spring';
 
 // ==============================
 // Component
 // ==============================
 
 const Backdrop = ({ state: { open }, ...rest }) => {
-	const [show, setShow] = useState(open);
-
-	const fade = useSpring({
-		config: { duration: 150 },
-		from: { position: 'relative', zIndex: 1001, opacity: 0 },
-		opacity: open ? 0.5 : 0,
-		onStart: () => {
-			if (open) {
-				setShow(true);
-			}
-		},
-		onRest: () => {
-			if (!open) {
-				setShow(false);
-			}
-		},
+	const transition = useTransition(open, {
+		config: { duration: 150 }, //CSS 'linear' easing-function
+		from: { opacity: 0 },
+		enter: { opacity: 0.5 },
+		leave: { opacity: 0 },
 	});
 
-	return <animated.div style={fade}>{show && <div {...rest} />}</animated.div>;
+	return transition((style, item) => item && <animated.div style={style} {...rest} />);
 };
 
 const BlenderBackdrop = (props) => <div {...props} />;
