@@ -22,7 +22,7 @@ const Alert = ({ state: { dismissible, open }, ...rest }) => {
 	if (dismissible) {
 		const transition = useTransition(open, {
 			config: { duration: 400 },
-			from: { opacity: 0 },
+			from: { opacity: 1 },
 			enter: { opacity: 1 },
 			leave: { opacity: 0 },
 		});
