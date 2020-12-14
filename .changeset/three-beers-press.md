@@ -2,4 +2,4 @@
 '@westpac/tabcordion': patch
 ---
 
-update tabButton text color
+Update soft TabButton text color
