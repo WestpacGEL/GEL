@@ -39,7 +39,7 @@ const tabButtonStyles = (_, { look, justify, selected }) => {
 			borderTopRightRadius: '0.1875rem',
 			border: `1px solid ${COLORS.border}`,
 			borderBottom: 0,
-			color: COLORS.neutral,
+			color: COLORS.text,
 			marginBottom: selected && '-1px',
 
 			':hover': {
