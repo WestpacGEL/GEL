@@ -21,9 +21,10 @@ import { defaultProps } from '../Alert';
 const Alert = ({ state: { dismissible, open }, ...rest }) => {
 	if (dismissible) {
 		const transition = useTransition(open, {
+			config: { duration: 400 },
+			from: { opacity: 0 },
 			enter: { opacity: 1 },
 			leave: { opacity: 0 },
-			config: { duration: 400 },
 		});
 
 		return transition((style, item) => item && <animated.div style={style} {...rest} />);
