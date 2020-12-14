@@ -11,7 +11,7 @@ import useMeasure from 'react-use-measure';
 // Component
 // ==============================
 
-const PanelBody = ({ setPanelHeight, state: { mode, selected }, ...rest }) => {
+const PanelBody = ({ state: { mode, selected }, setPanelHeight, ...rest }) => {
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 
 	useEffect(() => {
@@ -20,7 +20,7 @@ const PanelBody = ({ setPanelHeight, state: { mode, selected }, ...rest }) => {
 
 	const fade = useSpring({
 		config: {
-			duration: 300,
+			duration: 300, //CSS 'linear' easing-function
 		},
 		...(mode === 'tabs' && {
 			opacity: selected ? 1 : 0,

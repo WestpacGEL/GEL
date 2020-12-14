@@ -47,7 +47,7 @@ const Panel = forwardRef(
 		const animate = useSpring({
 			config: {
 				duration: 300,
-				easing: BezierEasing(0.25, 0.1, 0.25, 1.0), //~'ease' CSS transition timing function
+				easing: BezierEasing(0.25, 0.1, 0.25, 1.0), //~CSS 'ease' easing-function
 			},
 			...(mode === 'accordion' && {
 				height: hidden ? 0 : panelHeight,
