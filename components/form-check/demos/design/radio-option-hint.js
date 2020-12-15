@@ -12,7 +12,7 @@ export default ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Grid>
 				<Cell width={6}>
-					<Title>Medium (default)</Title>
+					<Title>Medium</Title>
 					<FormCheck type="radio" name="example-type-radio-option-hint-size-default">
 						<Option value="1" hint="This is hint text">
 							Option 1
