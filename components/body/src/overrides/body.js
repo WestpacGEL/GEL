@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
+import { forwardRef } from 'react';
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Body = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
+const Body = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
 
 const bodyStyles = (_, props) => {
 	const { COLORS, PACKS, TYPE, SPACING } = useBrand();

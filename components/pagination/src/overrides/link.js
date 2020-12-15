@@ -39,7 +39,7 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 		backgroundColor: active ? COLORS.hero : '#fff',
 		padding: '0.4375rem 0.75rem',
 		fontSize: '0.875rem',
-		color: active ? '#fff' : COLORS.neutral,
+		color: active ? '#fff' : COLORS.text, //set default `COLORS.text` because this is a `<button />`
 		textDecoration: 'none',
 		cursor: 'pointer',
 		transition: 'background .2s ease, border .2s ease',

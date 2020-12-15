@@ -43,7 +43,7 @@ export const groupButtonStyles = (_, { complete, active }) => {
 		background: 'none',
 		touchAction: 'manipulation',
 		cursor: 'pointer',
-		color: active ? COLORS.neutral : COLORS.tints.muted70,
+		color: active ? COLORS.text : COLORS.tints.muted70, //set default `COLORS.text` because this is a `<button />`
 
 		':focus': {
 			outlineOffset: `-${PACKS.focus.outlineWidth}`, // reposition inside

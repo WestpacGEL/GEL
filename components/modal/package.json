@@ -58,19 +58,21 @@
 		"@westpac/heading": "^1.0.0",
 		"@westpac/hooks": "^1.1.0",
 		"@westpac/icon": "^1.1.0",
+		"bezier-easing": "^2.1.0",
 		"prop-types": "^15.7.2",
-		"react-focus-on": "^3.3.0"
+		"react-focus-on": "^3.3.0",
+		"react-merge-refs": "^1.1.0"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1",
 		"react-dom": "^16.11.0",
-		"react-spring": "^8.0.27"
+		"react-spring": "9.0.0-rc.3"
 	},
 	"devDependencies": {
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
-		"react-spring": "^8.0.27",
+		"react-spring": "9.0.0-rc.3",
 		"start-server-and-test": "^1.11.0"
 	}
 }

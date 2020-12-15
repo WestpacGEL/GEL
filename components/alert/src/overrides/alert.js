@@ -11,7 +11,6 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { useTransition, animated } from 'react-spring';
-import { Fragment } from 'react';
 
 import { defaultProps } from '../Alert';
 
@@ -21,19 +20,14 @@ import { defaultProps } from '../Alert';
 
 const Alert = ({ state: { dismissible, open }, ...rest }) => {
 	if (dismissible) {
-		const transition = useTransition(open, null, {
+		const transition = useTransition(open, {
+			config: { duration: 400 },
+			from: { opacity: 1 },
 			enter: { opacity: 1 },
 			leave: { opacity: 0 },
-			config: { duration: 400 },
 		});
 
-		return (
-			<Fragment>
-				{transition.map(
-					({ item, key, props }) => item && <animated.div key={key} style={props} {...rest} />
-				)}
-			</Fragment>
-		);
+		return transition((style, item) => item && <animated.div style={style} {...rest} />);
 	} else {
 		return <div {...rest} />;
 	}
