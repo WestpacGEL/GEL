@@ -3,5 +3,5 @@
 ---
 
 - Fix scrolling for long modals
-- Consolidate React Spring element wrapping
-- Simplify React Spring show/hide interpolation
+- Remove unncessary react-spring element wrapping
+- Simplify react-spring show/hide interpolation
