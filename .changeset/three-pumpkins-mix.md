@@ -2,4 +2,4 @@
 '@westpac/alert': minor
 ---
 
-Update useTransition to react-spring v9.x implementation
+Update useTransition function, use new react-spring v9.x API
