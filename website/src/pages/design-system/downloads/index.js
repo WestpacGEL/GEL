@@ -15,7 +15,7 @@ import { Switch } from '@westpac/switch';
 import { Textarea, Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
-import { useSpring, animated } from 'react-spring';
+import { useTransition, animated } from 'react-spring';
 import merge from 'lodash.merge';
 
 import { brandsMap } from '../../../components/brand-switcher/brand-switcher';
@@ -188,9 +188,11 @@ const NpmBox = ({ selected, ...rest }) => {
 
 	const [showStatus, setShowStatus] = useState(false);
 
-	const fade = useSpring({
+	const transition = useTransition(showStatus, {
 		config: { duration: 150 },
-		opacity: showStatus ? 1 : 0,
+		from: { opacity: 0 },
+		enter: { opacity: 1 },
+		leave: { opacity: 0 },
 	});
 
 	// Hide copy status text after 5sec
@@ -209,6 +211,8 @@ const NpmBox = ({ selected, ...rest }) => {
 		navigator.clipboard.writeText(npmCommand);
 		setShowStatus(true);
 	};
+
+	const AnimatedStatus = animated(Status);
 
 	return (
 		<div {...rest}>
@@ -240,14 +244,10 @@ const NpmBox = ({ selected, ...rest }) => {
 					Copy
 				</Button>
 			</div>
-			<animated.div
-				style={{
-					...fade,
-					display: fade.opacity.interpolate((v) => (v === 0 ? 'none' : 'block')),
-				}}
-			>
-				<Status text="Copied!" css={{ marginTop: SPACING(1) }} />
-			</animated.div>
+			{transition(
+				(style, item) =>
+					item && <AnimatedStatus style={style} text="Copied!" css={{ marginTop: SPACING(1) }} />
+			)}
 		</div>
 	);
 };
