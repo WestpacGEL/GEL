@@ -301,9 +301,12 @@ const urlMap = {
 const fontTextWBC = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.WBC.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively. Never use a font without confirmation that you have the correct
-			licence in place.
+			Check the{' '}
+			<a href={urlMap.WBC.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively. Never use a font without confirmation that
+			you have the correct licence in place.
 		</p>
 		<p>
 			Designers using Sketch can access brand font files within the{' '}
@@ -318,9 +321,12 @@ const fontTextWBC = () => (
 const fontTextSTG = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.STG.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively. Never use a font without confirmation that you have the correct
-			licence in place.
+			Check the{' '}
+			<a href={urlMap.STG.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively. Never use a font without confirmation that
+			you have the correct licence in place.
 		</p>
 		<p>
 			Designers using Sketch can access brand font files within the{' '}
@@ -338,9 +344,12 @@ const fontTextSTG = () => (
 const fontTextBOM = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.BOM.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively. Never use a font without confirmation that you have the correct
-			licence in place.
+			Check the{' '}
+			<a href={urlMap.BOM.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively. Never use a font without confirmation that
+			you have the correct licence in place.
 		</p>
 		<p>
 			Send a request for approval to{' '}
@@ -351,9 +360,12 @@ const fontTextBOM = () => (
 const fontTextBSA = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.BSA.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively. Never use a font without confirmation that you have the correct
-			licence in place.
+			Check the{' '}
+			<a href={urlMap.BSA.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively. Never use a font without confirmation that
+			you have the correct licence in place.
 		</p>
 		<p>
 			Send a request for approval to{' '}
@@ -367,8 +379,11 @@ const fontTextBSA = () => (
 const fontTextWBG = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.WBG.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively.
+			Check the{' '}
+			<a href={urlMap.WBG.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively.
 		</p>
 		<p>
 			<a href="https://fonts.google.com/specimen/Montserrat" target="_blank">
