@@ -12,8 +12,8 @@ export default ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Grid>
 				<Cell width={6}>
-					<Title>Medium (default)</Title>
-					<FormCheck name="example-size-default">
+					<Title>Medium</Title>
+					<FormCheck name="example-size-default" size="medium">
 						<Option value="1">Option 1</Option>
 						<Option value="2">Option 2</Option>
 						<Option value="3">Option 3</Option>
