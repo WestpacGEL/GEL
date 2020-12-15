@@ -6,16 +6,16 @@ import { jsx } from '@westpac/core';
 import { Container, Grid, Cell } from '@westpac/grid';
 
 export const Gridly = ({ show }) => {
-	const transitions = useTransition(show, null, {
+	const transition = useTransition(show, {
 		from: { opacity: 0 },
 		enter: { opacity: 0.6 },
 		leave: { opacity: 0 },
 	});
 
-	return transitions.map(
-		({ item, key, props }) =>
+	return transition(
+		(style, item) =>
 			item && (
-				<animated.div key={key} style={props}>
+				<animated.div style={style}>
 					<Container
 						css={{
 							position: 'absolute',
