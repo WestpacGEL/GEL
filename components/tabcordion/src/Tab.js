@@ -112,6 +112,16 @@ export const Tab = forwardRef(
 			setHidden(!selected);
 		}, [mode]);
 
+		useEffect(() => {
+			if (mode === 'tabs') {
+				if (selected) {
+					onOpen({ idx, tabId });
+				} else {
+					onClose({ idx, tabId });
+				}
+			}
+		}, [selected, tabId]);
+
 		return (
 			<Item state={state} {...itemAttributes(state)} css={itemStyles(state)}>
 				{mode === 'accordion' && (

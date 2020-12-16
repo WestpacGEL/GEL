@@ -67,10 +67,8 @@ const Panel = forwardRef(
 					}
 				} else if (mode === 'accordion') {
 					if (!hidden && prevHidden) {
-						// Opening
 						onOpening({ idx, tabId });
 					} else if (hidden && !prevHidden) {
-						// Closing
 						onClosing({ idx, tabId });
 					}
 				}
@@ -78,11 +76,9 @@ const Panel = forwardRef(
 			onRest: () => {
 				if (mode === 'accordion') {
 					if (hidden) {
-						// Closed
 						setClosed(true);
 						onClose({ idx, tabId });
 					} else if (!hidden) {
-						// Opened
 						setClosed(false);
 						onOpen({ idx, tabId });
 					}
