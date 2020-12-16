@@ -82,7 +82,7 @@ const FILTER_HTML = `
 </svg>`;
 
 const filters = [
-	{ text: 'No filter selected', value: '' },
+	{ text: 'No filter', value: '' },
 	{ text: 'Protanopia', value: 'protanopia' },
 	{ text: 'Deuteranopia', value: 'deuteranopia' },
 	{ text: 'Tritanopia', value: 'tritanopia' },
