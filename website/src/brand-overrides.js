@@ -6,7 +6,7 @@ export const brandOverrides = (brand) => {
 	overridesWithTokens.LAYOUT.breakpoints['xl'] = 1400;
 
 	// Example
-	/* const BodyOverride = (props) => <div {...props}/>;	 
+	/* const BodyOverride = (props) => <div {...props}/>;
 	overridesWithTokens['@westpac/body'] = {
 		Body: {
 			component: () => BodyOverride,
