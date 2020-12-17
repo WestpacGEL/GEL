@@ -6,6 +6,7 @@ const COLORS = {
 	heading: '#2574A9',
 	hero: '#2574A9',
 	light: '#FCFCFC',
+	link: '#9E005D',
 	muted: '#666666',
 	neutral: '#637B98',
 	primary: '#9E005D',
