@@ -46,4 +46,11 @@ export const secondaryColors = {
 		Pine: '#002B14',
 		Lime: '#D4DE25',
 	},
+	RAMS: {
+		'RAMS Blue': '#0092CD',
+		'RAMS Green': '#78C339',
+		'Mid Blue': '#0BC2FF',
+		'Light Blue': '#86E1FF',
+		'Light Green': '#B7E096',
+	},
 };
