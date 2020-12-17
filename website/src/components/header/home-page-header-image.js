@@ -50,6 +50,7 @@ const HomePageHeaderImage = ({ brand, ...rest }) => {
 		BSA: BSAImage,
 		BOM: null,
 		BTFG: null,
+		RAMS: null,
 	};
 	const HeaderImage = BRAND_HEADERS[brand];
 
