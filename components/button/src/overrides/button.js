@@ -124,7 +124,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		},
 		link: {
 			standardCSS: {
-				color: COLORS.primary,
+				color: COLORS.link,
 				backgroundColor: 'transparent',
 				borderColor: 'transparent',
 				textDecoration: 'underline', //a11y
