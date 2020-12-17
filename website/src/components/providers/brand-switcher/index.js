@@ -6,6 +6,7 @@ import btfgBrand from '@westpac/btfg';
 import stgBrand from '@westpac/stg';
 import wbcBrand from '@westpac/wbc';
 import wbgBrand from '@westpac/wbg';
+import ramsBrand from '@westpac/rams';
 
 // ==============================
 // Get the data
@@ -18,6 +19,7 @@ const BRANDS = {
 	BSA: { ...bsaBrand, name: 'Bank of South Australia' },
 	WBG: { ...wbgBrand, name: 'Westpac Group' },
 	BTFG: { ...btfgBrand, name: 'BT Financial Group' },
+	RAMS: { ...ramsBrand, name: 'RAMS' },
 };
 
 const BrandSwitcherContext = createContext();

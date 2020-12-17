@@ -70,6 +70,7 @@ const HomePageStickyHeaderImage = ({ brand, hide, ...rest }) => {
 		BSA: BSAImage,
 		BOM: null,
 		BTFG: null,
+		RAMS: null,
 	};
 	const HeaderImage = BRAND_HEADERS[brand];
 

@@ -92,6 +92,11 @@ export const brandHeaderStyling = {
 		color: '#fff',
 		...antialiasingStyling,
 	}),
+	RAMS: (COLORS) => ({
+		background: COLORS.hero,
+		color: '#fff',
+		...antialiasingStyling,
+	}),
 };
 
 export const blocksGridStyle = {
