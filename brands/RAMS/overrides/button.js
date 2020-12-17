@@ -15,21 +15,23 @@ export const button = ({ COLORS }) => ({
 					...(soft && { color: COLORS[look] }),
 
 					// Bottom bar
-					position: 'relative',
-					'::after': {
-						content: '""',
-						display: 'block',
-						position: 'absolute',
-						zIndex: 0,
-						bottom: '-1px',
-						left: '-1px',
-						right: '-1px',
-						height: 0,
-						borderBottom: 'solid #78C339', //RAMS Green (secondary palette)
-						borderBottomLeftRadius: '3px',
-						borderBottomRightRadius: '3px',
-						...sizeMap[size],
-					},
+					...(!soft && {
+						position: 'relative',
+						'::after': {
+							content: '""',
+							display: 'block',
+							position: 'absolute',
+							zIndex: 0,
+							bottom: '-1px',
+							left: '-1px',
+							right: '-1px',
+							height: 0,
+							borderBottom: 'solid #78C339', //RAMS Green (secondary palette)
+							borderBottomLeftRadius: '3px',
+							borderBottomRightRadius: '3px',
+							...sizeMap[size],
+						},
+					}),
 				}),
 			};
 		},
