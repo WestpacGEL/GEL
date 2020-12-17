@@ -2,6 +2,8 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
+import { Select } from '@westpac/text-input';
+import { VisuallyHidden } from '@westpac/a11y';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -192,48 +194,14 @@ export function Sidebar({ components, brandName, setBrandName, parent = '' }) {
 
 			<div
 				css={{
-					display: 'flex',
-					fontSize: '0.8125rem',
+					padding: '0.375rem',
+					borderTop: '1px solid rgba(0, 0, 0, 0.075)',
 				}}
 			>
-				{Object.keys(BRANDS).map((b) => {
-					const isChecked = brandName === b;
-					return (
-						<label
-							key={b}
-							css={{
-								boxSizing: 'border-box',
-								alignItems: 'center',
-								borderTop: '1px solid',
-								borderTopColor: isChecked ? '#1F252C' : 'rgba(0, 0, 0, 0.1)',
-								color: isChecked ? 'inherit' : '#1F252C',
-								fontWeight: isChecked && 'bold',
-								cursor: 'pointer',
-								flex: 1,
-								justifyContent: 'center',
-								paddingBottom: '0.75rem',
-								paddingTop: '0.75rem',
-								textAlign: 'center',
-
-								input: {
-									height: 1,
-									position: 'absolute',
-									visibility: 'hidden',
-									width: 1,
-								},
-							}}
-						>
-							<input
-								name="brand"
-								type="radio"
-								onChange={(e) => setBrandName(b)}
-								value={b}
-								checked={isChecked}
-							/>
-							{b}
-						</label>
-					);
-				})}
+				<VisuallyHidden tag="label" forHtml="brandSelector">Brand:</VisuallyHidden>
+				<Select id="brandSelector" value={brandName} onChange={(e) => setBrandName(e.target.value)}>
+					{Object.keys(BRANDS).map((brand) => <option value={brand}>{brand}</option>)}
+				</Select>
 			</div>
 		</div>
 	);
