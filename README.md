@@ -392,7 +392,7 @@ It's for the docs that are automatically published to:
 | Purpose    | branch    | url                                    |
 | ---------- | --------- | -------------------------------------- |
 | Production | `master`  | https://westpacgel.netlify.com         |
-| Staging    | `develop` | https://westpacgel-staging.netlify.com |
+| Staging    | `develop` | https://westpacgel-develop.netlify.com |
 
 You run it via:
 
