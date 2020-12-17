@@ -67,6 +67,7 @@ const accordionButtonStyles = (_, { look, hidden, first, last, closed }) => {
 		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+		color: COLORS.text,
 		backgroundColor: COLORS.light,
 		padding: `0.8125rem ${SPACING(3)}`,
 		border: `1px solid ${COLORS.border}`,
