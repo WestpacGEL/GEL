@@ -145,7 +145,12 @@ export function Sidebar({ components, brandName, setBrandName, parent = '' }) {
 				<VisuallyHidden tag="label" forHtml="brandSelector">
 					Brand:
 				</VisuallyHidden>
-				<Select id="brandSelector" value={brandName} onChange={(e) => setBrandName(e.target.value)} size="small">
+				<Select
+					id="brandSelector"
+					value={brandName}
+					onChange={(e) => setBrandName(e.target.value)}
+					size="small"
+				>
 					{Object.keys(BRANDS).map((brand) => (
 						<option value={brand}>{brand}</option>
 					))}
