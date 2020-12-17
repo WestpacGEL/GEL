@@ -142,7 +142,7 @@ export function Sidebar({ components, brandName, setBrandName, parent = '' }) {
 					borderTop: '1px solid rgba(0, 0, 0, 0.075)',
 				}}
 			>
-				<VisuallyHidden tag="label" forHtml="brandSelector">
+				<VisuallyHidden tag="label" htmlFor="brandSelector">
 					Brand:
 				</VisuallyHidden>
 				<Select
@@ -152,7 +152,9 @@ export function Sidebar({ components, brandName, setBrandName, parent = '' }) {
 					size="small"
 				>
 					{Object.keys(BRANDS).map((brand) => (
-						<option value={brand}>{brand}</option>
+						<option key={brand} value={brand}>
+							{brand}
+						</option>
 					))}
 				</Select>
 			</div>
