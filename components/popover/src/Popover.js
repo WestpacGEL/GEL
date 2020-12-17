@@ -144,7 +144,7 @@ export const Popover = ({
 					{content}
 				</Body>
 				<CloseBtn
-					onClick={() => handleOpen()}
+					onClick={handleOpen}
 					state={state}
 					{...closeBtnAttributes(state)}
 					css={closeBtnStyles(state)}
