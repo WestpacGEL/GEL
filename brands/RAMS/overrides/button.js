@@ -1,8 +1,8 @@
 const sizeMap = {
-	small: { borderBottomWidth: '0.125rem' },
-	medium: { borderBottomWidth: '0.1875rem' },
-	large: { borderBottomWidth: '0.25rem' },
-	xlarge: { borderBottomWidth: '0.3125rem' },
+	small: { offsetY: '0.125rem' },
+	medium: { offsetY: '0.1875rem' },
+	large: { offsetY: '0.25rem' },
+	xlarge: { offsetY: '0.3125rem' },
 };
 
 export const button = ({ COLORS }) => ({
@@ -16,21 +16,8 @@ export const button = ({ COLORS }) => ({
 
 					// Bottom bar
 					...(!soft && {
-						position: 'relative',
-						'::after': {
-							content: '""',
-							display: 'block',
-							position: 'absolute',
-							zIndex: 0,
-							bottom: '-1px',
-							left: '-1px',
-							right: '-1px',
-							height: 0,
-							borderBottom: 'solid #78C339', //RAMS Green (secondary palette)
-							borderBottomLeftRadius: '3px',
-							borderBottomRightRadius: '3px',
-							...sizeMap[size],
-						},
+						border: 0, //reset
+						boxShadow: `inset 0 -${sizeMap[size].offsetY} #78C339`,
 					}),
 				}),
 			};
