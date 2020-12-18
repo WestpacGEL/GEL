@@ -21,6 +21,9 @@ export { MastercardHorizontalSymbol } from './symbols/MastercardHorizontalSymbol
 export { MastercardSymbol } from './symbols/MastercardSymbol';
 export { MicrosoftStoreSymbol } from './symbols/MicrosoftStoreSymbol';
 export { PayIDSymbol } from './symbols/PayIDSymbol';
+export { RAMSLogo } from './symbols/RAMSLogo';
+export { RAMSMultibrandLargeLogo } from './symbols/RAMSMultibrandLargeLogo';
+export { RAMSMultibrandSmallLogo } from './symbols/RAMSMultibrandSmallLogo';
 export { RedAvatarCircleLogo } from './symbols/RedAvatarCircleLogo';
 export { RedAvatarCircleReversedLogo } from './symbols/RedAvatarCircleReversedLogo';
 export { RedAvatarLogo } from './symbols/RedAvatarLogo';
