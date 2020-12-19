@@ -25,6 +25,8 @@ import {
 	WBCLogo,
 	WBGMultibrandLargeLogo,
 	WBGLogo,
+	RAMSMultibrandLargeLogo,
+	RAMSLogo,
 } from '@westpac/symbol';
 
 export const brandsMap = {
@@ -52,6 +54,11 @@ export const brandsMap = {
 		logo: <WBGMultibrandLargeLogo />,
 		smallLogo: <WBGLogo width={70} css={{ marginRight: -8 }} />,
 		label: 'Westpac Group',
+	},
+	RAMS: {
+		logo: <RAMSMultibrandLargeLogo />,
+		smallLogo: <RAMSLogo width={70} css={{ marginRight: -8 }} />,
+		label: 'RAMS',
 	},
 };
 
