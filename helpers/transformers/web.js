@@ -31,11 +31,11 @@ function convertFonts(fonts) {
 /**
  * Transform the tokens into a web specific object that can be used in emotion
  *
- * @param  {string} BRAND - The brand string to find the right brand folder
+ * @param  {string} BRAND_CODE - The brand string to find the right brand folder
  * @param  {string} dest - The destination path where the file should be written
  */
-function build(BRAND) {
-	const cwd = path.resolve(__dirname, `../../brands/${BRAND}`);
+function build(BRAND_CODE) {
+	const cwd = path.resolve(__dirname, `../../brands/${BRAND_CODE}`);
 
 	const { COLORS: colors } = require(`${cwd}/tokens/colors`);
 	// const { SPACING: spacing } = require(`${cwd}/tokens/spacing`);
@@ -44,12 +44,13 @@ function build(BRAND) {
 		TYPE: { files, bodyFont, brandFont, ...typeRest },
 	} = require(`${cwd}/tokens/type`);
 	const { PACKS: packs } = require(`${cwd}/tokens/packs`);
+	const { BRAND: brand } = require(`${cwd}/tokens/brand`);
 
-	// spacing
-	// const SPACING = {
-	// 	minor: spacing.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
-	// 	...spacing.major.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
-	// };
+	// brand
+	const BRAND = {
+		code: BRAND_CODE,
+		...brand,
+	};
 
 	// colors
 	let tints = {};
@@ -58,6 +59,12 @@ function build(BRAND) {
 		tints,
 		...colors,
 	};
+
+	// spacing
+	// const SPACING = {
+	// 	minor: spacing.minor.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
+	// 	...spacing.major.map(space => space / 16 + (space > 0 ? 'rem' : 0)),
+	// };
 
 	// layout
 	const LAYOUT = layout;
@@ -74,7 +81,7 @@ function build(BRAND) {
 			${weights.map((weight, i) => {
 				if (typeof bodyFont.weights[i] !== 'string' || !weights.includes(bodyFont.weights[i])) {
 					errors.push(
-						`The weights array in the brand token for "${BRAND}" contains a wrong item "${bodyFont.weights[i]}"`
+						`The weights array in the brand token for "${BRAND_CODE}" contains a wrong item "${bodyFont.weights[i]}"`
 					);
 				}
 
@@ -90,7 +97,7 @@ function build(BRAND) {
 			${weights.map((weight, i) => {
 				if (typeof brandFont.weights[i] !== 'string' || !weights.includes(brandFont.weights[i])) {
 					errors.push(
-						`The weights array in the brand token for "${BRAND}" contains a wrong item "${brandFont.weights[i]}"`
+						`The weights array in the brand token for "${BRAND_CODE}" contains a wrong item "${brandFont.weights[i]}"`
 					);
 				}
 
@@ -123,7 +130,7 @@ function build(BRAND) {
 		export const LAYOUT = ${JSON.stringify(LAYOUT)};
 		export const TYPE = ${TYPE};
 		export const PACKS = ${JSON.stringify(PACKS)};
-		export const BRAND = "${BRAND}";
+		export const BRAND = ${JSON.stringify(BRAND)};
 		export const OVERRIDES = _OVERRIDES({
 			SPACING,
 			COLORS,
