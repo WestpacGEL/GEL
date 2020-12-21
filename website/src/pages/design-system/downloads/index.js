@@ -669,7 +669,7 @@ const SectionDevelopers = () => {
 										</BlockListItem>
 										<BlockListItem>
 											<Switch
-												name="excludeJquery"
+												name="includeJquery"
 												size="small"
 												label="Include jQuery"
 												block
@@ -678,7 +678,7 @@ const SectionDevelopers = () => {
 										</BlockListItem>
 										<BlockListItem>
 											<Switch
-												name="noVersionInClass"
+												name="versionInClass"
 												size="small"
 												label="Component versions in CSS classes"
 												block
