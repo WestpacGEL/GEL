@@ -93,7 +93,7 @@ export const brandHeaderStyling = {
 		...antialiasingStyling,
 	}),
 	RAMS: (COLORS) => ({
-		background: COLORS.hero,
+		background: COLORS.primary,
 		color: '#fff',
 		...antialiasingStyling,
 	}),
