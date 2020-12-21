@@ -1,7 +1,12 @@
 /** @jsx jsx */
 import { jsx, useMediaQuery } from '@westpac/core';
 import React from 'react';
-import { WbcBackgroundSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
+import {
+	WbcBackgroundSvg,
+	StgBackgroundSvg,
+	BsaBackgroundSvg,
+	RamsBackgroundSvg,
+} from '../symbols';
 
 const HomePageStickyHeaderImage = ({ brand, hide, ...rest }) => {
 	const mq = useMediaQuery();
@@ -18,14 +23,12 @@ const HomePageStickyHeaderImage = ({ brand, hide, ...rest }) => {
 		>
 			<WbcBackgroundSvg
 				css={{
-					display: 'block',
 					width: 'auto',
 					height: '100%',
 				}}
 			/>
 		</div>
 	);
-
 	const STGImage = (props) => (
 		<div
 			css={mq({
@@ -37,7 +40,6 @@ const HomePageStickyHeaderImage = ({ brand, hide, ...rest }) => {
 		>
 			<StgBackgroundSvg
 				css={{
-					display: 'block',
 					width: '100%',
 					height: 'auto',
 				}}
@@ -55,9 +57,28 @@ const HomePageStickyHeaderImage = ({ brand, hide, ...rest }) => {
 		>
 			<BsaBackgroundSvg
 				css={{
-					display: 'block',
 					width: '100%',
 					height: 'auto',
+				}}
+			/>
+		</div>
+	);
+	const RAMSImage = (props) => (
+		<div
+			css={mq({
+				top: [-122, null, -250],
+				bottom: [-25, null, 'auto'],
+				left: [null, null, -190],
+				right: [-106, null, 'auto'],
+				height: [213, null, 477],
+				transform: ['scaleX(-1)', null, 'none'], //flip horizontally
+			})}
+			{...props}
+		>
+			<RamsBackgroundSvg
+				css={{
+					width: 'auto',
+					height: '100%',
 				}}
 			/>
 		</div>
@@ -70,7 +91,7 @@ const HomePageStickyHeaderImage = ({ brand, hide, ...rest }) => {
 		BSA: BSAImage,
 		BOM: null,
 		BTFG: null,
-		RAMS: null,
+		RAMS: RAMSImage,
 	};
 	const HeaderImage = BRAND_HEADERS[brand];
 
