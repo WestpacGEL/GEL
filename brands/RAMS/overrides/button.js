@@ -1,5 +1,5 @@
 export const button = ({ COLORS }) => {
-	const asArray = (val) => (Array.isArray(val) ? val : [val]);	
+	const asArray = (val) => (Array.isArray(val) ? val : [val]);
 	const sizeMap = {
 		small: { offsetY: '0.125rem' },
 		medium: { offsetY: '0.1875rem' },
@@ -21,11 +21,11 @@ export const button = ({ COLORS }) => {
 						// Bottom bar
 						...(!soft && {
 							border: 0, //reset
-							boxShadow: sizeArr.map(s => s && `inset 0 -${sizeMap[s].offsetY} #78C339`),
+							boxShadow: sizeArr.map((s) => s && `inset 0 -${sizeMap[s].offsetY} #78C339`),
 						}),
 					}),
 				};
 			},
-		}
+		},
 	};
 };
