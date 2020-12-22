@@ -1,5 +1,5 @@
 module.exports = {
 	BRAND: {
-		name: 'Bank SA',
+		name: 'BankSA',
 	},
 };
