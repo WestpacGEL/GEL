@@ -31,11 +31,11 @@ function convertFonts(fonts) {
 /**
  * Transform the tokens into a web specific object that can be used in emotion
  *
- * @param  {string} BRAND_CODE - The brand string to find the right brand folder
+ * @param  {string} brandCode - The brand string to find the right brand folder
  * @param  {string} dest - The destination path where the file should be written
  */
-function build(BRAND_CODE) {
-	const cwd = path.resolve(__dirname, `../../brands/${BRAND_CODE}`);
+function build(brandCode) {
+	const cwd = path.resolve(__dirname, `../../brands/${brandCode}`);
 
 	const { COLORS: colors } = require(`${cwd}/tokens/colors`);
 	// const { SPACING: spacing } = require(`${cwd}/tokens/spacing`);
@@ -48,7 +48,7 @@ function build(BRAND_CODE) {
 
 	// brand
 	const BRAND = {
-		code: BRAND_CODE,
+		code: brandCode,
 		...brand,
 	};
 
@@ -81,7 +81,7 @@ function build(BRAND_CODE) {
 			${weights.map((weight, i) => {
 				if (typeof bodyFont.weights[i] !== 'string' || !weights.includes(bodyFont.weights[i])) {
 					errors.push(
-						`The weights array in the brand token for "${BRAND_CODE}" contains a wrong item "${bodyFont.weights[i]}"`
+						`The weights array in the brand token for "${brandCode}" contains a wrong item "${bodyFont.weights[i]}"`
 					);
 				}
 
@@ -97,7 +97,7 @@ function build(BRAND_CODE) {
 			${weights.map((weight, i) => {
 				if (typeof brandFont.weights[i] !== 'string' || !weights.includes(brandFont.weights[i])) {
 					errors.push(
-						`The weights array in the brand token for "${BRAND_CODE}" contains a wrong item "${brandFont.weights[i]}"`
+						`The weights array in the brand token for "${brandCode}" contains a wrong item "${brandFont.weights[i]}"`
 					);
 				}
 
