@@ -190,7 +190,9 @@ export const BrandSwitcher = () => {
 				{Object.entries(brandsMap).map(([key, val]) => (
 					<li key={key} css={{ borderTop: `1px solid ${COLORS.border}` }}>
 						<OptionButton brand={key} active={brandName === key}>
-							<span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{brands[key].BRAND.name}</span>
+							<span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+								{brands[key].BRAND.name}
+							</span>
 							<div css={{ marginLeft: '0.4em' }}>{val.smallLogo}</div>
 						</OptionButton>
 					</li>
