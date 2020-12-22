@@ -118,13 +118,14 @@ export const BrandPicker = () => {
 };
 
 const BrandCard = ({ brand }) => {
+	const { BRAND } = brand;
 	const { PACKS } = useBrand();
 	const currentPath = useRouter().asPath;
 	return (
 		<Cell tag="li" width={[6, 4]}>
 			{/* This is not a Next Link as I want the server to re-render and set a cookie */}
 			<a
-				href={`${currentPath}?b=${brand.BRAND}`}
+				href={`${currentPath}?b=${BRAND.code}`}
 				css={{
 					display: 'block',
 					height: '100%',
@@ -139,7 +140,7 @@ const BrandCard = ({ brand }) => {
 			>
 				<img
 					css={{ maxWidth: '100%', display: 'block' }}
-					src={`${BASE_URL}/images/${brand.BRAND.toLowerCase()}-gui.png`}
+					src={`${BASE_URL}/images/${BRAND.code.toLowerCase()}-gui.png`}
 					alt=""
 				/>
 				<Body
@@ -153,7 +154,7 @@ const BrandCard = ({ brand }) => {
 						},
 					}}
 				>
-					{brand.name}
+					{BRAND.name}
 				</Body>
 			</a>
 		</Cell>

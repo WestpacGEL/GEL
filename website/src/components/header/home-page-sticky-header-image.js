@@ -8,7 +8,7 @@ import {
 	RamsBackgroundSvg,
 } from '../symbols';
 
-const HomePageStickyHeaderImage = ({ brand, hide, ...rest }) => {
+const HomePageStickyHeaderImage = ({ brand: BRAND, hide, ...rest }) => {
 	const mq = useMediaQuery();
 
 	const WBCImage = (props) => (
@@ -93,7 +93,7 @@ const HomePageStickyHeaderImage = ({ brand, hide, ...rest }) => {
 		BTFG: null,
 		RAMS: RAMSImage,
 	};
-	const HeaderImage = BRAND_HEADERS[brand];
+	const HeaderImage = BRAND_HEADERS[BRAND.code];
 
 	return HeaderImage ? (
 		<HeaderImage

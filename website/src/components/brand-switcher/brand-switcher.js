@@ -33,32 +33,26 @@ export const brandsMap = {
 	WBC: {
 		logo: <WBCMultibrandLargeLogo />,
 		smallLogo: <WBCLogo height={18} />,
-		label: 'Westpac',
 	},
 	STG: {
 		logo: <STGMultibrandLargeLogo />,
 		smallLogo: <STGDragonLogo height={38} css={{ marginRight: -12 }} />,
-		label: 'St.George',
 	},
 	BOM: {
 		logo: <BOMMultibrandLargeLogo />,
 		smallLogo: <BOMShieldLogo height={39} css={{ marginRight: 9 }} />,
-		label: 'Bank of Melbourne',
 	},
 	BSA: {
 		logo: <BSAMultibrandLargeLogo />,
 		smallLogo: <BSAStackedLogo height={46} css={{ marginRight: 8 }} />,
-		label: 'BankSA',
 	},
 	WBG: {
 		logo: <WBGMultibrandLargeLogo />,
 		smallLogo: <WBGLogo width={70} css={{ marginRight: -8 }} />,
-		label: 'Westpac Group',
 	},
 	RAMS: {
 		logo: <RAMSMultibrandLargeLogo />,
 		smallLogo: <RAMSLogo width={70} css={{ marginRight: -8 }} />,
-		label: 'RAMS',
 	},
 };
 
@@ -142,7 +136,7 @@ const PanelOverride = forwardRef(({ state: { open }, children, ...rest }, ref) =
 
 export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
-	const { brand, setBrand } = useBrandSwitcher();
+	const { brands, brand, setBrand } = useBrandSwitcher();
 	const [open, setOpen] = useState(false);
 	const { isScrolled } = useSidebar();
 	const { SPACING, COLORS, PACKS, TYPE } = useBrand();
@@ -196,7 +190,7 @@ export const BrandSwitcher = () => {
 				{Object.entries(brandsMap).map(([key, val]) => (
 					<li key={key} css={{ borderTop: `1px solid ${COLORS.border}` }}>
 						<OptionButton brand={key} active={brandName === key}>
-							<span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{val.label}</span>
+							<span css={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{brands[key].BRAND.name}</span>
 							<div css={{ marginLeft: '0.4em' }}>{val.smallLogo}</div>
 						</OptionButton>
 					</li>

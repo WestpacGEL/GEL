@@ -67,7 +67,7 @@ const GridIndicator = () => {
 const PageHeaderHeading = ({ hasScrolledLarge, ...rest }) => {
 	const { BRAND } = useBrand();
 
-	return BRAND === 'WBC' ? (
+	return BRAND.code === 'WBC' ? (
 		<BrandHeading tag="h1" size={[7, null, !hasScrolledLarge ? 2 : null]} uppercase {...rest} />
 	) : (
 		<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]} {...rest} />
@@ -109,7 +109,7 @@ const PageHeader = ({ name }) => {
 				display: 'flex',
 				height: [66, null, 228],
 				overflow: 'hidden',
-				...brandHeaderStyling[BRAND](COLORS),
+				...brandHeaderStyling[BRAND.code](COLORS),
 			})}
 		>
 			<HeaderImage brand={BRAND} />

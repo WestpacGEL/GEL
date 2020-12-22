@@ -1,5 +1,4 @@
 export const brandOverrides = (brand) => {
-	const { BRAND } = brand;
 	const overridesWithTokens = { ...brand };
 
 	// Add a custom XL breakpoint @ 1400px

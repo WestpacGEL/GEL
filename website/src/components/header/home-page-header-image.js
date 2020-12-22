@@ -3,7 +3,7 @@ import { jsx, useMediaQuery } from '@westpac/core';
 import React from 'react';
 import { StgBackgroundSvg, BsaBackgroundSvg, RamsBackgroundSvg } from '../symbols';
 
-const HomePageHeaderImage = ({ brand, ...rest }) => {
+const HomePageHeaderImage = ({ brand: BRAND, ...rest }) => {
 	const mq = useMediaQuery();
 
 	const STGImage = (props) => (
@@ -67,7 +67,7 @@ const HomePageHeaderImage = ({ brand, ...rest }) => {
 		BTFG: null,
 		RAMS: RAMSImage,
 	};
-	const HeaderImage = BRAND_HEADERS[brand];
+	const HeaderImage = BRAND_HEADERS[BRAND.code];
 
 	return HeaderImage ? (
 		<HeaderImage

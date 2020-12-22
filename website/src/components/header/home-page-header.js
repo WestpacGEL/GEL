@@ -14,7 +14,7 @@ import { antialiasingStyling, brandHeaderStyling } from '../_utils';
 
 const HomePageHeader = () => {
 	const { BRAND, COLORS, SPACING } = useBrand();
-	const headerStyling = brandHeaderStyling[BRAND](COLORS);
+	const headerStyling = brandHeaderStyling[BRAND.code](COLORS);
 	const mq = useMediaQuery();
 	const main = useRef(null);
 
@@ -30,7 +30,7 @@ const HomePageHeader = () => {
 				color: [null, null, headerStyling.color],
 				...antialiasingStyling,
 
-				...(BRAND === 'WBC' && {
+				...(BRAND.code === 'WBC' && {
 					'::before': {
 						content: '""',
 						display: 'block',
@@ -55,7 +55,7 @@ const HomePageHeader = () => {
 const StickyHeader = () => {
 	const { COLORS, BRAND, SPACING, PACKS } = useBrand();
 	const mq = useMediaQuery();
-	const headerStyling = brandHeaderStyling[BRAND](COLORS);
+	const headerStyling = brandHeaderStyling[BRAND.code](COLORS);
 	const [hasScroll, setHasScroll] = useState(false);
 	const [hasScrolledPageHeader, setHasScrolledPageHeader] = useState(false);
 	const header = useRef(null);
@@ -223,10 +223,10 @@ const HeroIntro = () => {
 					<BrandHeading
 						tag="h2"
 						size={[4, null, 1]}
-						uppercase={BRAND === 'WBC'}
+						uppercase={BRAND.code === 'WBC'}
 						css={mq({
 							// color: COLORS.heading,
-							...(BRAND === 'WBC' && {
+							...(BRAND.code === 'WBC' && {
 								fontSize: ['3rem', null, '4.5rem'],
 							}),
 						})}

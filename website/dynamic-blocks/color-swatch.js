@@ -12,7 +12,7 @@ import { secondaryColors } from '../src/secondary-colors.js';
 // Recursively render swatches
 const Swatch = ({ color, secondary }) => {
 	const { BRAND, SPACING, PACKS, COLORS } = useBrand();
-	const colorVal = secondary ? secondaryColors[BRAND][color] : COLORS[color];
+	const colorVal = secondary ? secondaryColors[BRAND.code][color] : COLORS[color];
 
 	if (!chroma.valid(colorVal)) return null;
 
@@ -100,7 +100,7 @@ export const ColorSwatch = {
 						if (color.value === 'Secondary Colors') {
 							return (
 								<Fragment key={color.value}>
-									{Object.keys(secondaryColors[BRAND]).map((secondaryColor) => (
+									{Object.keys(secondaryColors[BRAND.code]).map((secondaryColor) => (
 										<Cell key={secondaryColor} width={[12, 6, 4, 3]}>
 											<Swatch color={secondaryColor} secondary />
 										</Cell>
