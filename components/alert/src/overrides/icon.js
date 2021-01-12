@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, getLabel, titleCase } from '@westpac/core';
 import { InfoIcon, SuccessIcon, WarningIcon, AlertIcon, LimitIcon } from '@westpac/icon';
 
 // ==============================
@@ -22,8 +22,7 @@ const Icon = ({ state: { look, icon }, ...rest }) => {
 		<Tag
 			size={['small', 'medium']}
 			color="inherit"
-			assistiveText={null}
-			aria-hidden="true"
+			assistiveText={titleCase(look)}
 			{...rest}
 		/>
 	);
@@ -64,9 +63,7 @@ const iconStyles = () => {
 // Attributes
 // ==============================
 
-const iconAttributes = () => ({
-	'aria-hidden': 'true',
-});
+const iconAttributes = () => null;
 
 // ==============================
 // Exports
