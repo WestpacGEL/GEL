@@ -19,27 +19,27 @@ function Example({ brand }) {
 				</Thead>
 				<Tbody>
 					<Tr>
-						<Td scope="row">Cell 1</Td>
+						<Th scope="row">Cell 1</Th>
 						<Td>Cell 7</Td>
 						<Td>Cell 13</Td>
 					</Tr>
 					<Tr>
-						<Td scope="row">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</Td>
+						<Th scope="row">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</Th>
 						<Td>Odit eligendi quasi quo nihil quia reiciendis obcaecati nosTrum.</Td>
 						<Td>Rem saepe eos, modi perferendis.</Td>
 					</Tr>
 					<Tr>
-						<Td scope="row">Cell 3</Td>
+						<Th scope="row">Cell 3</Th>
 						<Td>Cell 9</Td>
 						<Td>Cell 15</Td>
 					</Tr>
 					<Tr>
-						<Td scope="row">Cell 4</Td>
+						<Th scope="row">Cell 4</Th>
 						<Td>Cell 10</Td>
 						<Td>Cell 16</Td>
 					</Tr>
 					<Tr>
-						<Td scope="row">Cell 5</Td>
+						<Th scope="row">Cell 5</Th>
 						<Td>Cell 11</Td>
 						<Td>Cell 17</Td>
 					</Tr>
