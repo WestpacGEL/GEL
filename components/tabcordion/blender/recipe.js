@@ -31,6 +31,7 @@ export function AllStyles({ brand }) {
 		},
 		Item: {
 			component: blenderItem.component,
+			styles: blenderItem.styles,
 		},
 		AccordionButton: {
 			component: blenderAccordionButton.component,
@@ -96,6 +97,7 @@ export function Docs({ brand }) {
 		},
 		Item: {
 			component: blenderItem.component,
+			attributes: blenderItem.attributes,
 		},
 		AccordionButton: {
 			component: blenderAccordionButton.component,
@@ -106,7 +108,6 @@ export function Docs({ brand }) {
 		},
 		Panel: {
 			component: blenderPanel.component,
-			attributes: blenderPanel.attributes,
 		},
 		PanelBody: {
 			component: blenderPanelBody.component,

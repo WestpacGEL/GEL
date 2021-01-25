@@ -4,21 +4,25 @@ $(function () {
 		const $responsiveTabcordion = $button.closest('[data-mode="responsive"]');
 		const panelID = $button.attr('aria-controls');
 		const $panel = $(`#${panelID}`);
+		const $item = $panel.parent();
 		const isOpen = $button.attr('aria-expanded');
 
 		if (isOpen === 'false') {
 			const $openBtn = $button.siblings('[aria-expanded="true"]');
 			const openPanelID = $openBtn.attr('aria-controls');
 			const $openPanel = $(`#${openPanelID}`);
+			const $openItem = $openPanel.parent();
 
 			const selectedBtnClass = $openBtn.attr('class').match(/GEL[^\s]*selected/g)[0];
-			const selectedPanelClass = $openPanel.attr('class').match(/GEL[^\s]*selected/g)[0];
+			const selectedItemClass = $openItem.attr('class').match(/GEL[^\s]*selected/g)[0];
 
 			$openBtn.removeClass(selectedBtnClass).attr('aria-expanded', 'false');
-			$openPanel.removeClass(selectedPanelClass).attr('aria-hidden', 'true');
+			$openItem.removeClass(selectedItemClass);
+			$openPanel.attr('aria-hidden', 'true');
 
 			$button.addClass(selectedBtnClass).attr('aria-expanded', 'true');
-			$panel.addClass(selectedPanelClass).attr('aria-hidden', 'false');
+			$item.addClass(selectedItemClass);
+			$panel.attr('aria-hidden', 'false');
 
 			if ($responsiveTabcordion.length) {
 				const $accordionBtn = $responsiveTabcordion.children(`[aria-controls="${panelID}"]`);
@@ -39,23 +43,23 @@ $(function () {
 	$('[data-js="tabcordion-accordion-btn__version__"]').on('click', function () {
 		const $button = $(this);
 		const $responsiveTabcordion = $button.closest('[data-mode="responsive"]');
+		const $item = $button.parent();
 		const panelID = $button.attr('aria-controls');
 		const $panel = $(`#${panelID}`);
 		const isOpen = $button.attr('aria-expanded');
 
 		if (isOpen === 'true') {
-			$button.attr('aria-expanded', 'false').removeClass(function (index, css) {
-				return css.match(/GEL[^\s]*open/g) || [].join(' ');
-			});
-			$panel.attr('aria-hidden', 'true').removeClass(function (index, css) {
+			$button.attr('aria-expanded', 'false');
+			$panel.attr('aria-hidden', 'true');
+			$item.removeClass(function (index, css) {
 				return css.match(/GEL[^\s]*selected/g) || [].join(' ');
 			});
 		} else {
-			const btnBaseClass = $button.attr('class').match(/GEL[^\s]*btn(?!.)/g)[0];
-			const panelBaseClass = $panel.attr('class').match(/GEL[^\s]*panel(?!.)/g)[0];
+			const itemBaseClass = $item.attr('class').match(/GEL[^\s]*item(?!.)/g)[0];
 
-			$button.attr('aria-expanded', 'true').addClass(`${btnBaseClass}-open`);
-			$panel.attr('aria-hidden', 'false').addClass(`${panelBaseClass}-selected`);
+			$button.attr('aria-expanded', 'true');
+			$item.addClass(`${itemBaseClass}-selected`);
+			$panel.attr('aria-hidden', 'false');
 		}
 
 		if ($responsiveTabcordion.length) {
@@ -78,15 +82,13 @@ $(function () {
 							$btn.attr('aria-expanded') === 'true' &&
 							$btn.attr('aria-controls') !== activePanelID
 						) {
-							$btn.attr('aria-expanded', 'false').removeClass(function (index, css) {
-								return css.match(/GEL[^\s]*open/g) || [].join(' ');
-							});
+							$btn.attr('aria-expanded', 'false');
+							const $item = $btn.parent();
 							const panelID = $btn.attr('aria-controls');
-							$(`#${panelID}`)
-								.attr('aria-hidden', 'true')
-								.removeClass(function (index, css) {
-									return css.match(/GEL[^\s]*selected/g) || [].join(' ');
-								});
+							$(`#${panelID}`).attr('aria-hidden', 'true');
+							$item.removeClass(function (index, css) {
+								return css.match(/GEL[^\s]*selected/g) || [].join(' ');
+							});
 						}
 					});
 
@@ -110,8 +112,10 @@ $(function () {
 
 					const $panel = $(`#${activePanelID}`);
 					if ($panel.attr('aria-hidden') === 'true') {
-						const panelBaseClass = $panel.attr('class').match(/GEL[^\s]*panel(?!.)/g)[0];
-						$panel.attr('aria-hidden', 'false').addClass(`${panelBaseClass}-selected`);
+						const $item = $panel.parent();
+						const itemBaseClass = $panel.attr('class').match(/GEL[^\s]*item(?!.)/g)[0];
+						$panel.attr('aria-hidden', 'false');
+						$item.addClass(`${itemBaseClass}-selected`);
 					}
 				}
 			});

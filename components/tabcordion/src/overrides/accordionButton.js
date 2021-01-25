@@ -1,14 +1,6 @@
 /** @jsx jsx */
 
-import {
-	jsx,
-	useBrand,
-	getLabel,
-	classNames,
-	getModifier,
-	styleReconciler,
-	formatClassName,
-} from '@westpac/core';
+import { jsx, useBrand, getLabel, styleReconciler, formatClassName } from '@westpac/core';
 
 import { defaultProps } from '../blender/Tabcordion';
 
@@ -83,33 +75,7 @@ const accordionButtonStyles = (_, { look, hidden, first, last, closed }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { hidden }) => {
-	const props = { hidden };
-	const baseStyles = accordionButtonStyles(_, { ...defaultProps, hidden: true });
-
-	let modifiers = getModifier({ ...defaultProps, hidden: true }, props);
-	if (!modifiers.length) return baseStyles;
-
-	const modifierStyles = accordionButtonStyles(_, { ...props, look: 'soft' });
-	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
-
-	let label = baseStyles.label;
-	const modifier = modifiers[0];
-
-	switch (modifier) {
-		case 'hidden':
-			if (!hidden) label = `${label}-open`;
-			Object.assign(reconciledStyles, {
-				['.__convert__tabcordion-accordion-btn-icon']: { transform: 'rotate(180deg)' },
-			});
-			break;
-		default:
-			label = `${label}-${modifier}`;
-			break;
-	}
-
-	return { label, ...reconciledStyles };
-};
+const blenderStyles = (_) => accordionButtonStyles(_, { ...defaultProps, hidden: true });
 
 export const accordionBtnLegoStyles = (_) => {
 	const baseStyles = accordionButtonStyles(_, defaultProps);
@@ -127,7 +93,7 @@ export const accordionBtnLegoStyles = (_) => {
 				borderBottomRightRadius: 0,
 			},
 		},
-		[`.__convert__${baseStyles.label}-open`]: finalOpenLegoStyles,
+		[`.__convert__tabcordion-item-selected .__convert__${baseStyles.label}`]: finalOpenLegoStyles,
 	};
 };
 // ==============================
@@ -144,7 +110,6 @@ const blenderAttributes = (_, { panelId, hidden }) => ({
 	'aria-controls': panelId,
 	'aria-expanded': !hidden,
 	'data-js': 'tabcordion-accordion-btn__version__',
-	className: classNames({ [`__convert__tabcordion-accordion-btn-open`]: !hidden }),
 });
 
 // ==============================

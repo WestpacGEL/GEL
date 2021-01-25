@@ -33,6 +33,8 @@ const tabcordionStyles = () => ({
 	label: getLabel('tabcordion'),
 });
 
+// tbh most of this probably stays the same
+// the only difference now is how the active stuff is handled
 const blenderStyles = (_, { mode, look }) => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
@@ -50,6 +52,9 @@ const blenderStyles = (_, { mode, look }) => {
 		},
 		[`.__convert__tabcordion-panel`]: {
 			borderTop: ['none', null, `1px solid ${COLORS.border}`],
+			display: ['block', null, 'none'],
+			height: ['0px', null, 'auto'],
+			borderWidth: ['0 1px', null, '1px'],
 
 			':last-of-type': {
 				borderBottomLeftRadius: ['0.1875rem', null, 0],

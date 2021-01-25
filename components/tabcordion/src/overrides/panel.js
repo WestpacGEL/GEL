@@ -141,29 +141,7 @@ const panelStyles = (_, { look, mode, last, selected, closed }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { selected }) => {
-	const mq = useMediaQuery();
-	const props = { selected };
-	const baseStyles = panelStyles(_, defaultProps);
-
-	Object.assign(baseStyles, {
-		display: 'none',
-	});
-
-	let modifiers = getModifier({ ...defaultProps, selected: false }, props);
-	if (!modifiers.length) return mq(baseStyles)[0];
-
-	let label = baseStyles.label;
-	const modifier = modifiers[0];
-
-	switch (modifier) {
-		default:
-			label = `${label}-${modifier}`;
-			break;
-	}
-
-	return { label, display: 'block' };
-};
+const blenderStyles = (_) => panelStyles(_, defaultProps);
 
 // ==============================
 // Attributes
@@ -172,11 +150,6 @@ const blenderStyles = (_, { selected }) => {
 const panelAttributes = (_, { panelId, mode, hidden, selected }) => ({
 	id: panelId,
 	'aria-hidden': mode === 'accordion' ? hidden : !selected,
-});
-
-const blenderAttributes = (_, props) => ({
-	...panelAttributes(_, props),
-	className: classNames({ [`__convert__tabcordion-panel-selected`]: props.selected }),
 });
 
 // ==============================
@@ -192,5 +165,5 @@ export const defaultPanel = {
 export const blenderPanel = {
 	component: BlenderPanel,
 	styles: blenderStyles,
-	attributes: blenderAttributes,
+	attributes: panelAttributes,
 };

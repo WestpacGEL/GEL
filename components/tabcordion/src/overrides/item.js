@@ -1,6 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, getLabel, formatClassName } from '@westpac/core';
+import { jsx, getLabel, formatClassName, classNames, getModifier } from '@westpac/core';
+
+import { defaultProps } from '../blender/Tabcordion';
 
 // ==============================
 // Component
@@ -24,7 +26,37 @@ const itemStyles = () => ({
 // Blender Styles
 // ==============================
 
-const blenderStyles = () => ({});
+const blenderStyles = (_, { selected }) => {
+	const props = { selected };
+	const baseStyles = itemStyles(_, defaultProps);
+
+	let modifiers = getModifier({ ...defaultProps, selected: false }, props);
+	if (!modifiers.length) return baseStyles;
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	let panelStyles, accordionBtnStyles;
+	switch (modifier) {
+		case 'selected':
+			label = `${label}-selected`;
+			panelStyles = {
+				[`.__convert__tabcordion-panel`]: {
+					display: 'block',
+					height: 'auto',
+				},
+			};
+			accordionBtnStyles = {
+				['.__convert__tabcordion-accordion-btn-icon']: { transform: 'rotate(180deg)' },
+			};
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...panelStyles, ...accordionBtnStyles };
+};
 
 // ==============================
 // Attributes
@@ -32,9 +64,8 @@ const blenderStyles = () => ({});
 
 const itemAttributes = () => null;
 
-const blenderAttributes = (_, props) => ({
-	...itemAttributes(_, props),
-	className: classNames({ [`__convert__tabcordion-item-selected`]: props.selected }),
+const blenderAttributes = (_, { selected }) => ({
+	className: classNames({ [`__convert__tabcordion-item-selected`]: selected }),
 });
 
 // ==============================
