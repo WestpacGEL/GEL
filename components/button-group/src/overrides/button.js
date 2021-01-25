@@ -46,9 +46,21 @@ const buttonStyles = () => {
 	return mq({
 		label: getLabel('buttonGroup-btn'),
 
-		'input:checked + &': {
-			borderTop: '6px solid transparent !important', //a11y: for high contrast mode
-			borderBottom: '6px solid transparent !important', //a11y: for high contrast mode
+		//a11y: WHCM
+		position: 'relative',
+		'input:checked + &::before, input:checked + &::after': {
+			content: '""',
+			position: 'absolute',
+			zIndex: 1,
+			left: 0,
+			right: 0,
+			borderTop: '6px solid transparent !important',
+		},
+		'input:checked + &::before': {
+			top: 0,
+		},
+		'input:checked + &::after': {
+			bottom: 0,
 		},
 
 		'label:not(:last-of-type) &': {
