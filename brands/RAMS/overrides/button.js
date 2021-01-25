@@ -1,10 +1,10 @@
 export const button = ({ COLORS }) => {
 	const asArray = (val) => (Array.isArray(val) ? val : [val]);
 	const sizeMap = {
-		small: { offsetY: '0.125rem' },
-		medium: { offsetY: '0.1875rem' },
-		large: { offsetY: '0.25rem' },
-		xlarge: { offsetY: '0.3125rem' },
+		small: { stopPos: '0.125rem' },
+		medium: { stopPos: '0.1875rem' },
+		large: { stopPos: '0.25rem' },
+		xlarge: { stopPos: '0.3125rem' },
 	};
 
 	return {
@@ -18,10 +18,14 @@ export const button = ({ COLORS }) => {
 					...((look === 'primary' || look === 'hero') && {
 						...(soft && { color: COLORS[look] }),
 
-						// Bottom bar
+						// RAMS bottom bar
 						...(!soft && {
-							border: 0, //reset
-							boxShadow: sizeArr.map((s) => s && `inset 0 -${sizeMap[s].offsetY} #78C339`),
+							borderWidth: 0, //reset (note: reapplied in ButtonGroup override)
+							backgroundImage: sizeArr.map(
+								(s) =>
+									s &&
+									`linear-gradient(to top, #78C339, #78C339 ${sizeMap[s].stopPos}, transparent ${sizeMap[s].stopPos}, transparent)`
+							),
 						}),
 					}),
 				};
