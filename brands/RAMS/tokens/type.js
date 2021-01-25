@@ -23,7 +23,7 @@ module.exports = {
 				name: '"brandFontRAMS"',
 				files: {
 					woff2: 'source-sans-pro-v14-latin-700.woff2',
-					woff: 'source-sans-pro-v14-latin-400.woff',
+					woff: 'source-sans-pro-v14-latin-700.woff',
 				},
 				weight: '700',
 				style: 'normal',
