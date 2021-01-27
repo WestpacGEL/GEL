@@ -41,6 +41,7 @@ const switchStyles = (_, { block, disabled }) => {
 		position: 'relative',
 		marginRight: !block ? '1.125rem' : 'initial',
 		marginBottom: '0.375rem',
+		cursor: 'pointer',
 	})[0];
 };
 
