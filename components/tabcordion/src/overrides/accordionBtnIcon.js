@@ -8,14 +8,14 @@ import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 // Component
 // ==============================
 
-const AccordionButtonIcon = ({ state: { hidden }, ...rest }) => {
+const AccordionBtnIcon = ({ state: { hidden }, ...rest }) => {
 	const { COLORS } = useBrand();
 	const Icon = hidden ? ExpandMoreIcon : ExpandLessIcon;
 
 	return <Icon color={COLORS.muted} size="small" assistiveText={null} {...rest} />;
 };
 
-const BlenderAccordionButtonIcon = (props) => {
+const BlenderAccordionBtnIcon = (props) => {
 	const { COLORS } = useBrand();
 
 	return (
@@ -28,7 +28,7 @@ const BlenderAccordionButtonIcon = (props) => {
 					Icon: {
 						styles: (styles) => {
 							const blenderStyles = { ...styles };
-							blenderStyles.label = `tabcordion-accordion-btn-icon`;
+							blenderStyles.label = `tabcordion-accordionBtn-icon`;
 							return blenderStyles;
 						},
 					},
@@ -43,26 +43,26 @@ const BlenderAccordionButtonIcon = (props) => {
 // Styles
 // ==============================
 
-const accordionButtonIconStyles = () => ({});
+const accordionBtnIconStyles = () => ({});
 
 // ==============================
 // Attributes
 // ==============================
 
-const accordionButtonIconAttributes = () => ({ 'aria-hidden': 'true' });
+const accordionBtnIconAttributes = () => ({ 'aria-hidden': 'true' });
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultAccordionButtonIcon = {
-	component: AccordionButtonIcon,
-	styles: accordionButtonIconStyles,
-	attributes: accordionButtonIconAttributes,
+export const defaultAccordionBtnIcon = {
+	component: AccordionBtnIcon,
+	styles: accordionBtnIconStyles,
+	attributes: accordionBtnIconAttributes,
 };
 
-export const blenderAccordionButtonIcon = {
-	component: BlenderAccordionButtonIcon,
-	styles: accordionButtonIconStyles,
-	attributes: accordionButtonIconAttributes,
+export const blenderAccordionBtnIcon = {
+	component: BlenderAccordionBtnIcon,
+	styles: accordionBtnIconStyles,
+	attributes: accordionBtnIconAttributes,
 };

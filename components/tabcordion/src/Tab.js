@@ -5,8 +5,8 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultItem } from './overrides/item';
-import { defaultAccordionButton } from './overrides/accordionButton';
-import { defaultAccordionButtonIcon } from './overrides/accordionButtonIcon';
+import { defaultAccordionBtn } from './overrides/accordionBtn';
+import { defaultAccordionBtnIcon } from './overrides/accordionBtnIcon';
 import { defaultPanel } from './overrides/panel';
 import { defaultPanelBody } from './overrides/panelBody';
 import { useTabcordionContext } from './Tabcordion';
@@ -53,8 +53,8 @@ export const Tab = forwardRef(
 
 		const defaultOverrides = {
 			Item: defaultItem,
-			AccordionButton: defaultAccordionButton,
-			AccordionButtonIcon: defaultAccordionButtonIcon,
+			AccordionBtn: defaultAccordionBtn,
+			AccordionBtnIcon: defaultAccordionBtnIcon,
 			Panel: defaultPanel,
 			PanelBody: defaultPanelBody,
 		};
@@ -88,15 +88,15 @@ export const Tab = forwardRef(
 
 		const {
 			Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
-			AccordionButton: {
-				component: AccordionButton,
-				styles: accordionButtonStyles,
-				attributes: accordionButtonAttributes,
+			AccordionBtn: {
+				component: AccordionBtn,
+				styles: accordionBtnStyles,
+				attributes: accordionBtnAttributes,
 			},
-			AccordionButtonIcon: {
-				component: AccordionButtonIcon,
-				styles: accordionButtonIconStyles,
-				attributes: accordionButtonIconAttributes,
+			AccordionBtnIcon: {
+				component: AccordionBtnIcon,
+				styles: accordionBtnIconStyles,
+				attributes: accordionBtnIconAttributes,
 			},
 			Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
 			PanelBody: { component: PanelBody, styles: panelBodyStyles, attributes: panelBodyAttributes },
@@ -125,19 +125,19 @@ export const Tab = forwardRef(
 		return (
 			<Item state={state} {...itemAttributes(state)} css={itemStyles(state)}>
 				{mode === 'accordion' && (
-					<AccordionButton
+					<AccordionBtn
 						onClick={handleAccordionClick}
 						state={state}
-						{...accordionButtonAttributes(state)}
-						css={accordionButtonStyles(state)}
+						{...accordionBtnAttributes(state)}
+						css={accordionBtnStyles(state)}
 					>
 						<span>{text}</span>
-						<AccordionButtonIcon
+						<AccordionBtnIcon
 							state={state}
-							{...accordionButtonIconAttributes(state)}
-							css={accordionButtonIconStyles(state)}
+							{...accordionBtnIconAttributes(state)}
+							css={accordionBtnIconStyles(state)}
 						/>
-					</AccordionButton>
+					</AccordionBtn>
 				)}
 
 				<Panel ref={ref} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
@@ -239,12 +239,12 @@ Tab.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		AccordionButton: PropTypes.shape({
+		AccordionBtn: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		AccordionButtonIcon: PropTypes.shape({
+		AccordionBtnIcon: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

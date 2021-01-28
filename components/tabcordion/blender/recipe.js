@@ -4,10 +4,10 @@ import React, { Fragment } from 'react';
 import { Tab, Tabcordion } from '../src/blender';
 import { blenderTabcordion } from '../src/overrides/tabcordion';
 import { blenderTabRow } from '../src/overrides/tabRow';
-import { blenderTabButton } from '../src/overrides/tabButton';
+import { blenderTabBtn } from '../src/overrides/tabBtn';
 import { blenderItem } from '../src/overrides/item';
-import { blenderAccordionButton } from '../src/overrides/accordionButton';
-import { blenderAccordionButtonIcon } from '../src/overrides/accordionButtonIcon';
+import { blenderAccordionBtn } from '../src/overrides/accordionBtn';
+import { blenderAccordionBtnIcon } from '../src/overrides/accordionBtnIcon';
 import { blenderPanel } from '../src/overrides/panel';
 import { blenderPanelBody } from '../src/overrides/panelBody';
 
@@ -25,19 +25,19 @@ export function AllStyles({ brand }) {
 			component: blenderTabRow.component,
 			styles: blenderTabRow.styles,
 		},
-		TabButton: {
-			component: blenderTabButton.component,
-			styles: blenderTabButton.styles,
+		TabBtn: {
+			component: blenderTabBtn.component,
+			styles: blenderTabBtn.styles,
 		},
 		Item: {
 			component: blenderItem.component,
 		},
-		AccordionButton: {
-			component: blenderAccordionButton.component,
-			styles: blenderAccordionButton.styles,
+		AccordionBtn: {
+			component: blenderAccordionBtn.component,
+			styles: blenderAccordionBtn.styles,
 		},
-		AccordionButtonIcon: {
-			component: blenderAccordionButtonIcon.component,
+		AccordionBtnIcon: {
+			component: blenderAccordionBtnIcon.component,
 		},
 		Panel: {
 			component: blenderPanel.component,
@@ -90,19 +90,19 @@ export function Docs({ brand }) {
 			component: blenderTabRow.component,
 			attributes: blenderTabRow.attributes,
 		},
-		TabButton: {
-			component: blenderTabButton.component,
-			attributes: blenderTabButton.attributes,
+		TabBtn: {
+			component: blenderTabBtn.component,
+			attributes: blenderTabBtn.attributes,
 		},
 		Item: {
 			component: blenderItem.component,
 		},
-		AccordionButton: {
-			component: blenderAccordionButton.component,
-			attributes: blenderAccordionButton.attributes,
+		AccordionBtn: {
+			component: blenderAccordionBtn.component,
+			attributes: blenderAccordionBtn.attributes,
 		},
-		AccordionButtonIcon: {
-			component: blenderAccordionButtonIcon.component,
+		AccordionBtnIcon: {
+			component: blenderAccordionBtnIcon.component,
 		},
 		Panel: {
 			component: blenderPanel.component,

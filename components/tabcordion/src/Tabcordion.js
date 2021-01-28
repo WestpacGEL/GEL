@@ -6,7 +6,7 @@ import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
 import { defaultTabcordion } from './overrides/tabcordion';
-import { defaultTabButton } from './overrides/tabButton';
+import { defaultTabBtn } from './overrides/tabBtn';
 import { defaultTabRow } from './overrides/tabRow';
 
 import { Tab } from './Tab';
@@ -53,7 +53,7 @@ export const Tabcordion = ({
 
 	const defaultOverrides = {
 		Tabcordion: defaultTabcordion,
-		TabButton: defaultTabButton,
+		TabBtn: defaultTabBtn,
 		TabRow: defaultTabRow,
 	};
 
@@ -102,7 +102,7 @@ export const Tabcordion = ({
 			styles: tabcordionStyles,
 			attributes: tabcordionAttributes,
 		},
-		TabButton: { component: TabButton, styles: tabButtonStyles, attributes: tabButtonAttributes },
+		TabBtn: { component: TabBtn, styles: tabBtnStyles, attributes: tabBtnAttributes },
 		TabRow: { component: TabRow, styles: tabRowStyles, attributes: tabRowAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
@@ -115,11 +115,11 @@ export const Tabcordion = ({
 				const last = idx + 1 === tabCount;
 
 				return (
-					<TabButton
+					<TabBtn
 						key={child.props.text}
 						onClick={setActive(idx)}
 						state={state}
-						{...tabButtonAttributes({
+						{...tabBtnAttributes({
 							...state,
 							tabId: getId('tab', idx),
 							panelId: getId('panel', idx),
@@ -127,10 +127,10 @@ export const Tabcordion = ({
 							first,
 							last,
 						})}
-						css={tabButtonStyles({ ...state, selected, first, last })}
+						css={tabBtnStyles({ ...state, selected, first, last })}
 					>
 						{child.props.text}
-					</TabButton>
+					</TabBtn>
 				);
 			})}
 		</TabRow>
@@ -239,7 +239,7 @@ Tabcordion.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		TabButton: PropTypes.shape({
+		TabBtn: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -254,7 +254,7 @@ Tabcordion.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		AccordionButton: PropTypes.shape({
+		AccordionBtn: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
