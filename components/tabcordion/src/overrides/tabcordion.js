@@ -45,7 +45,7 @@ const blenderStyles = (_, { mode, look }) => {
 		[`.__convert__tabcordion-tab-row`]: {
 			display: ['none', null, 'flex'],
 		},
-		[`.__convert__tabcordion-accordion-btn`]: {
+		[`.__convert__tabcordion-accordionBtn`]: {
 			display: [null, null, 'none'],
 		},
 		[`.__convert__tabcordion-panel`]: {
@@ -63,7 +63,7 @@ const blenderStyles = (_, { mode, look }) => {
 		[`.__convert__tabcordion-tab-row`]: {
 			display: 'flex',
 		},
-		[`.__convert__tabcordion-accordion-btn`]: {
+		[`.__convert__tabcordion-accordionBtn`]: {
 			display: 'none',
 		},
 		[`.__convert__tabcordion-panel`]: {
@@ -80,7 +80,7 @@ const blenderStyles = (_, { mode, look }) => {
 		[`.__convert__tabcordion-tab-row`]: {
 			display: ['none', null, 'none'],
 		},
-		[`.__convert__tabcordion-accordion-btn`]: {
+		[`.__convert__tabcordion-accordionBtn`]: {
 			display: ['flex', null, 'flex'],
 		},
 		[`.__convert__tabcordion-panel`]: {

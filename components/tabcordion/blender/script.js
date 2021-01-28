@@ -1,5 +1,5 @@
 $(function () {
-	$('[data-js="tabcordion-tab-btn__version__"]').on('click', function () {
+	$('[data-js="tabcordion-tabBtn__version__"]').on('click', function () {
 		const $button = $(this);
 		const $responsiveTabcordion = $button.closest('[data-mode="responsive"]');
 		const panelID = $button.attr('aria-controls');
@@ -36,7 +36,7 @@ $(function () {
 		}
 	});
 
-	$('[data-js="tabcordion-accordion-btn__version__"]').on('click', function () {
+	$('[data-js="tabcordion-accordionBtn__version__"]').on('click', function () {
 		const $button = $(this);
 		const $responsiveTabcordion = $button.closest('[data-mode="responsive"]');
 		const panelID = $button.attr('aria-controls');
@@ -72,7 +72,7 @@ $(function () {
 				if ($tabcordion.data('active')) {
 					const activePanelID = $tabcordion.data('active');
 
-					$tabcordion.find('[data-js="tabcordion-accordion-btn__version__"]').each(function () {
+					$tabcordion.find('[data-js="tabcordion-accordionBtn__version__"]').each(function () {
 						const $btn = $(this);
 						if (
 							$btn.attr('aria-expanded') === 'true' &&
@@ -90,7 +90,7 @@ $(function () {
 						}
 					});
 
-					$tabcordion.find('[data-js="tabcordion-tab-btn__version__"]').each(function () {
+					$tabcordion.find('[data-js="tabcordion-tabBtn__version__"]').each(function () {
 						const $btn = $(this);
 						if (
 							$btn.attr('aria-expanded') === 'true' &&
