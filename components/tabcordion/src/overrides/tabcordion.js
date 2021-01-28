@@ -12,8 +12,8 @@ import {
 } from '@westpac/core';
 
 import { defaultProps } from '../blender/Tabcordion';
-import { tabBtnLegoStyles } from './tabButton';
-import { accordionBtnLegoStyles } from './accordionButton';
+import { tabBtnLegoStyles } from './tabBtn';
+import { accordionBtnLegoStyles } from './accordionBtn';
 
 // ==============================
 // Component
