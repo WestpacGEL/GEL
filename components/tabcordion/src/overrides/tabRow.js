@@ -34,7 +34,7 @@ const blenderStyles = (_, { justify }) => {
 
 	return {
 		label: `${baseStyles.label}-justify`,
-		[`.__convert__tabcordion-tab-btn`]: {
+		[`.__convert__tabcordion-tabBtn`]: {
 			flex: 1,
 		},
 	};
