@@ -3,7 +3,6 @@
 import { forwardRef } from 'react';
 import {
 	jsx,
-	useBrand,
 	useMediaQuery,
 	getLabel,
 	getModifier,
@@ -14,6 +13,7 @@ import {
 import { defaultProps } from '../blender/Tabcordion';
 import { tabBtnLegoStyles } from './tabBtn';
 import { accordionBtnLegoStyles } from './accordionBtn';
+import { getTabsPanelStyles, getAccordionPanelStyles } from './panel';
 
 // ==============================
 // Component
@@ -34,61 +34,54 @@ const tabcordionStyles = () => ({
 });
 
 const blenderStyles = (_, { mode, look }) => {
-	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const props = { mode, look };
 
 	const baseStyles = {
 		label: getLabel('tabcordion'),
 
-		// default responsive behaviour
-		[`.__convert__tabcordion-tab-row`]: {
-			display: ['none', null, 'flex'],
-		},
-		[`.__convert__tabcordion-accordionBtn`]: {
-			display: [null, null, 'none'],
-		},
-		[`.__convert__tabcordion-panel`]: {
-			borderTop: ['none', null, `1px solid ${COLORS.border}`],
-
-			':last-of-type': {
-				borderBottomLeftRadius: ['0.1875rem', null, 0],
-				borderBottomRightRadius: ['0.1875rem', null, 0],
-			},
+		[`:not(.__convert__tabcordion-tabs):not(.__convert__tabcordion-accordion)`]: {
+			display: 'none', //hide responsive tabcordion until mode class is set (by JS)
 		},
 	};
 
 	const tabStyles = {
 		label: getLabel('tabcordion-tabs'),
-		[`.__convert__tabcordion-tab-row`]: {
-			display: 'flex',
-		},
 		[`.__convert__tabcordion-accordionBtn`]: {
 			display: 'none',
 		},
-		[`.__convert__tabcordion-panel`]: {
-			borderTop: `1px solid ${COLORS.border}`,
-			':last-of-type': {
-				borderBottomLeftRadius: 0,
-				borderBottomRightRadius: 0,
-			},
-		},
+		[`.__convert__tabcordion-panel`]: getTabsPanelStyles(),
 	};
 
 	const accordionStyles = {
 		label: getLabel('tabcordion-accordion'),
-		[`.__convert__tabcordion-tab-row`]: {
-			display: ['none', null, 'none'],
+
+		// Hide unnecessary tabRow (responsive tabcordion)
+		[`.__convert__tabcordion-tabRow`]: {
+			display: 'none',
 		},
-		[`.__convert__tabcordion-accordionBtn`]: {
-			display: ['flex', null, 'flex'],
+
+		// First (soft) accordionBtn
+		[`:not(.__convert__tabcordion-lego) .__convert__tabcordion-item:first-child > .__convert__tabcordion-accordionBtn, :not(.__convert__tabcordion-lego) .__convert__tabcordion-tabRow + .__convert__tabcordion-item > .__convert__tabcordion-accordionBtn`]: {
+			borderTopLeftRadius: '0.1875rem',
+			borderTopRightRadius: '0.1875rem',
 		},
-		[`.__convert__tabcordion-panel`]: {
-			borderTop: ['none', null, 'none'],
-			':last-of-type': {
-				borderBottomLeftRadius: [null, null, '0.1875rem'],
-				borderBottomRightRadius: [null, null, '0.1875rem'],
-			},
+
+		// Last (soft) accordionBtn and not active
+		[`:not(.__convert__tabcordion-lego) .__convert__tabcordion-item:last-child .__convert__tabcordion-accordionBtn:not(.__convert__tabcordion-accordionBtn-active)`]: {
+			borderBottomLeftRadius: '0.1875rem',
+			borderBottomRightRadius: '0.1875rem',
+		},
+
+		// Not the last accordionBtn and not active
+		[`.__convert__tabcordion-item:not(:last-child) > .__convert__tabcordion-accordionBtn:not(.__convert__tabcordion-accordionBtn-active)`]: {
+			borderBottomWidth: 0, //reset
+		},
+
+		[`.__convert__tabcordion-panel`]: getAccordionPanelStyles(look),
+
+		[`&.__convert__tabcordion-lego .__convert__tabcordion-panel`]: {
+			borderLeftWidth: '0.375rem',
 		},
 	};
 
@@ -97,6 +90,7 @@ const blenderStyles = (_, { mode, look }) => {
 
 	let label = baseStyles.label;
 	const modifier = modifiers[0];
+
 	let modifierStyles = {};
 
 	switch (modifier) {
@@ -106,22 +100,10 @@ const blenderStyles = (_, { mode, look }) => {
 				label,
 				...tabBtnLegoStyles(),
 				...accordionBtnLegoStyles(),
-				[`.__convert__tabcordion-panel`]: {
-					borderLeft: [`0.375rem solid ${COLORS.border}`, null, `1px solid ${COLORS.border}`],
-					':last-of-type': {
-						borderBottomLeftRadius: 0,
-						borderBottomRightRadius: 0,
-					},
-				},
-				[`&.__convert__tabcordion-tabs .__convert__tabcordion-panel`]: {
-					borderLeft: `1px solid ${COLORS.border}`,
-				},
-				[`&.__convert__tabcordion-accordion .__convert__tabcordion-panel`]: {
-					borderLeft: [null, null, `0.375rem solid ${COLORS.border}`],
-				},
 			};
 			break;
 		case 'mode':
+			label = `${label}-${mode}`;
 			if (mode === 'tabs') modifierStyles = tabStyles;
 			if (mode === 'accordion') modifierStyles = accordionStyles;
 			break;
@@ -130,7 +112,7 @@ const blenderStyles = (_, { mode, look }) => {
 			break;
 	}
 
-	return mq(modifierStyles)[0];
+	return { label, ...modifierStyles };
 };
 
 // ==============================
@@ -140,7 +122,7 @@ const blenderStyles = (_, { mode, look }) => {
 const tabcordionAttributes = () => null;
 
 const blenderAttributes = (_, { mode, look }) => ({
-	'data-mode': mode,
+	// 'data-mode': mode,
 	className: classNames({
 		[`__convert__tabcordion-${look}`]: look !== defaultProps.look,
 		[`__convert__tabcordion-tabs`]: mode === 'tabs',

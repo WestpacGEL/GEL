@@ -98,7 +98,7 @@ const blenderStyles = (_, { hidden }) => {
 
 	switch (modifier) {
 		case 'hidden':
-			if (!hidden) label = `${label}-open`;
+			if (!hidden) label = `${label}-active`;
 			Object.assign(reconciledStyles, {
 				['.__convert__tabcordion-accordionBtn-icon']: { transform: 'rotate(180deg)' },
 			});
@@ -120,16 +120,11 @@ export const accordionBtnLegoStyles = (_) => {
 	const finalOpenLegoStyles = styleReconciler(reconLegoStyles, reconOpenLegoStyles);
 
 	return {
-		[`.__convert__${baseStyles.label}`]: {
-			...reconLegoStyles,
-			':last-of-type': {
-				borderBottomLeftRadius: 0,
-				borderBottomRightRadius: 0,
-			},
-		},
-		[`.__convert__${baseStyles.label}-open`]: finalOpenLegoStyles,
+		[`.__convert__${baseStyles.label}`]: reconLegoStyles,
+		[`.__convert__${baseStyles.label}-active`]: finalOpenLegoStyles,
 	};
 };
+
 // ==============================
 // Attributes
 // ==============================
@@ -144,7 +139,7 @@ const blenderAttributes = (_, { panelId, hidden }) => ({
 	'aria-controls': panelId,
 	'aria-expanded': !hidden,
 	'data-js': 'tabcordion-accordionBtn__version__',
-	className: classNames({ [`__convert__tabcordion-accordionBtn-open`]: !hidden }),
+	className: classNames({ [`__convert__tabcordion-accordionBtn-active`]: !hidden }),
 });
 
 // ==============================

@@ -32,7 +32,7 @@ const BlenderTabBtn = forwardRef(({ state: _, className, ...rest }, ref) => {
 const tabBtnStyles = (_, { look, justify, selected }) => {
 	const { COLORS, SPACING, PACKS } = useBrand();
 
-	const styles = {
+	const styleMap = {
 		soft: {
 			backgroundColor: selected ? '#fff' : COLORS.light,
 			borderTopLeftRadius: '0.1875rem',
@@ -72,7 +72,7 @@ const tabBtnStyles = (_, { look, justify, selected }) => {
 		width: '100%',
 		cursor: 'pointer',
 		...PACKS.typeScale.bodyFont[9],
-		...styles[look],
+		...styleMap[look],
 
 		':last-of-type': {
 			marginRight: 0,
@@ -92,12 +92,19 @@ const blenderStyles = (_, { selected }) => {
 	if (!modifiers.length) return baseStyles;
 
 	const modifierStyles = tabBtnStyles(_, { ...props, look: 'soft' });
-	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+	let reconciledStyles = styleReconciler(baseStyles, modifierStyles);
 
 	let label = baseStyles.label;
 	const modifier = modifiers[0];
 
 	switch (modifier) {
+		case 'selected':
+			label = `${label}-active`;
+			reconciledStyles = {
+				...reconciledStyles,
+				...{ ':hover': { backgroundColor: '#fff !important' } },
+			};
+			break;
 		default:
 			label = `${label}-${modifier}`;
 			break;
@@ -117,9 +124,10 @@ export const tabBtnLegoStyles = (_) => {
 
 	return {
 		[`.__convert__${baseStyles.label}`]: reconLegoStyles,
-		[`.__convert__${baseStyles.label}-selected`]: reconSelectedLegoStyles,
+		[`.__convert__${baseStyles.label}-active`]: reconSelectedLegoStyles,
 	};
 };
+
 // ==============================
 // Attributes
 // ==============================
@@ -134,7 +142,7 @@ const blenderAttributes = (_, { selected, panelId }) => ({
 	'aria-controls': panelId,
 	'aria-expanded': selected,
 	'data-js': 'tabcordion-tabBtn__version__',
-	className: classNames({ [`__convert__tabcordion-tabBtn-selected`]: selected }),
+	className: classNames({ [`__convert__tabcordion-tabBtn-active`]: selected }),
 });
 
 // ==============================
