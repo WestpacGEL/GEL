@@ -13,7 +13,6 @@ import {
 import { defaultProps } from '../blender/Tabcordion';
 import { tabBtnLegoStyles } from './tabBtn';
 import { accordionBtnLegoStyles } from './accordionBtn';
-import { getTabsPanelStyles, getAccordionPanelStyles } from './panel';
 
 // ==============================
 // Component
@@ -47,20 +46,32 @@ const blenderStyles = (_, { mode, look }) => {
 
 	const tabStyles = {
 		label: getLabel('tabcordion-tabs'),
+
+		// Hide unnecessary accordionBtn (responsive tabcordion)
 		[`.__convert__tabcordion-accordionBtn`]: {
 			display: 'none',
 		},
-		[`.__convert__tabcordion-panel`]: getTabsPanelStyles(),
+
+		// Tab panel
+		[`.__convert__tabcordion-panel`]: {
+			borderWidth: '1px',
+		},
 	};
 
 	const accordionStyles = {
 		label: getLabel('tabcordion-accordion'),
 
+		/*
+		 * tabRow
+		 */
 		// Hide unnecessary tabRow (responsive tabcordion)
 		[`.__convert__tabcordion-tabRow`]: {
 			display: 'none',
 		},
 
+		/*
+		 * accordionBtn
+		 */
 		// First (soft) accordionBtn
 		[`:not(.__convert__tabcordion-lego) .__convert__tabcordion-item:first-child > .__convert__tabcordion-accordionBtn, :not(.__convert__tabcordion-lego) .__convert__tabcordion-tabRow + .__convert__tabcordion-item > .__convert__tabcordion-accordionBtn`]: {
 			borderTopLeftRadius: '0.1875rem',
@@ -78,8 +89,26 @@ const blenderStyles = (_, { mode, look }) => {
 			borderBottomWidth: 0, //reset
 		},
 
-		[`.__convert__tabcordion-panel`]: getAccordionPanelStyles(look),
+		/*
+		 * panel
+		 */
+		//  Accordion panel
+		[`.__convert__tabcordion-panel`]: {
+			borderWidth: '0 1px',
+		},
 
+		// Last accordion panel
+		[`.__convert__tabcordion-item:last-child .__convert__tabcordion-panel`]: {
+			borderBottomLeftRadius: '0.1875rem',
+			borderBottomRightRadius: '0.1875rem',
+		},
+
+		// Last accordion panel and not closed
+		[`.__convert__tabcordion-item:last-child .__convert__tabcordion-panel-show`]: {
+			borderBottomWidth: '1px',
+		},
+
+		// Lego accordion panel
 		[`&.__convert__tabcordion-lego .__convert__tabcordion-panel`]: {
 			borderLeftWidth: '0.375rem',
 		},
@@ -122,7 +151,7 @@ const blenderStyles = (_, { mode, look }) => {
 const tabcordionAttributes = () => null;
 
 const blenderAttributes = (_, { mode, look }) => ({
-	// 'data-mode': mode,
+	'data-js': 'tabcordion__version__',
 	className: classNames({
 		[`__convert__tabcordion-${look}`]: look !== defaultProps.look,
 		[`__convert__tabcordion-tabs`]: mode === 'tabs',
