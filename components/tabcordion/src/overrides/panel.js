@@ -96,10 +96,25 @@ const panelStyles = (_, { mode, look, selected, closed, last }) => {
 	const getPanelStyles = (mode, look, selected, closed, last) => {
 		switch (mode) {
 			case 'accordion':
-				return getAccordionPanelStyles(look, closed, last);
+				return {
+					borderWidth: '0 1px',
+					borderBottomWidth: last && !closed && '1px',
+
+					...(look === 'soft' &&
+						last && {
+							borderBottomLeftRadius: '0.1875rem',
+							borderBottomRightRadius: '0.1875rem',
+						}),
+					...(look === 'lego' && {
+						borderLeftWidth: '0.375rem',
+					}),
+				};
 
 			case 'tabs':
-				return getTabsPanelStyles(selected);
+				return {
+					display: !selected ? 'none' : 'block',
+					borderWidth: '1px',
+				};
 
 			default:
 				return {};
@@ -113,24 +128,6 @@ const panelStyles = (_, { mode, look, selected, closed, last }) => {
 		...getPanelStyles(mode, look, selected, closed, last),
 	};
 };
-
-export const getTabsPanelStyles = (selected) => ({
-	display: !selected ? 'none' : 'block',
-	borderWidth: '1px',
-});
-export const getAccordionPanelStyles = (look, closed, last) => ({
-	borderWidth: '0 1px',
-	borderBottomWidth: last && !closed && '1px',
-
-	...(look === 'soft' &&
-		last && {
-			borderBottomLeftRadius: '0.1875rem',
-			borderBottomRightRadius: '0.1875rem',
-		}),
-	...(look === 'lego' && {
-		borderLeftWidth: '0.375rem',
-	}),
-});
 
 // ==============================
 // Blender Styles
