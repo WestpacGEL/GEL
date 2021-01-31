@@ -11,9 +11,6 @@ import { blenderAccordionBtnIcon } from '../src/overrides/accordionBtnIcon';
 import { blenderPanel } from '../src/overrides/panel';
 import { blenderPanelBody } from '../src/overrides/panelBody';
 
-const modes = ['responsive', 'tabs', 'accordion'];
-const looks = ['soft', 'lego'];
-
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/tabcordion'] = {
