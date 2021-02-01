@@ -15,6 +15,10 @@ export const button = ({ COLORS }) => {
 				return {
 					...styles,
 
+					// blender support
+					backgroundImage: 'none',
+					borderWidth: 1,
+
 					...((look === 'primary' || look === 'hero') && {
 						...(soft && { color: COLORS[look] }),
 
