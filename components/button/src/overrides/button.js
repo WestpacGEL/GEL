@@ -188,7 +188,6 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		boxSizing: 'border-box',
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
-
 		...(look !== 'unstyled' && {
 			fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
 			...TYPE.bodyFont[400],
@@ -224,12 +223,12 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const props = { look, size, soft, block, justify, disabled };
 	const baseStyles = buttonStyles(_, defaultProps);
-
 	let modifiers = getModifier(defaultProps, props);
 	if (!modifiers.length) return baseStyles;
 
 	const modifierStyles = buttonStyles(_, props);
 	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+	let brandStyles = {};
 
 	let label = baseStyles.label;
 	let modifier;
@@ -243,9 +242,11 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	switch (modifier) {
 		case 'soft':
 			label = look === defaultProps.look ? `${label}-soft` : `${label}-${look}-soft`;
+			brandStyles = styleReconciler(reconciledStyles, styleReconciler(baseStyles, _)); // for brand overrides
 			break;
 		case 'look':
 			label = `${label}-${look}`;
+			brandStyles = styleReconciler(reconciledStyles, styleReconciler(baseStyles, _));
 			break;
 		case 'size':
 			label = `${label}-${size}`;
@@ -255,7 +256,7 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			break;
 	}
 
-	return { label, '.__convert__button&': reconciledStyles };
+	return { label, '.__convert__button&': { ...reconciledStyles, ...brandStyles } };
 };
 
 // ==============================
