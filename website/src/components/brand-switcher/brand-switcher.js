@@ -55,11 +55,11 @@ export const brandsMap = {
 		smallLogo: <WBGLogo width={70} css={{ marginRight: -8 }} />,
 		label: 'Westpac Group',
 	},
-	RAMS: {
+	/* RAMS: {
 		logo: <RAMSMultibrandLargeLogo />,
 		smallLogo: <RAMSLogo width={70} css={{ marginRight: -8 }} />,
 		label: 'RAMS',
-	},
+	}, */
 };
 
 const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {
