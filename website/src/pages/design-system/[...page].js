@@ -78,13 +78,18 @@ const Tabs = ({ component, tabName }) => {
 		};
 	}, []);
 
-	const onOpen = useCallback(({ idx: tabIdx }) => {
-		window.history.pushState(
-			null,
-			'',
-			`${router.asPath.split('?')[0]}?b=${brandName}&tab=${tabMap[tabIdx]}`
-		);
-	});
+	const onOpen = useCallback(
+		({ idx: tabIdx }) => {
+			if (tabMap[tabIdx] !== tabName) {
+				router.replace(
+					`${router.pathname}?b=${brandName}&tab=${tabMap[tabIdx]}`,
+					`${router.asPath.split('?')[0]}?b=${brandName}&tab=${tabMap[tabIdx]}`,
+					{ shallow: true }
+				);
+			}
+		},
+		[brandName, tabName]
+	);
 
 	const tabcordionOverrides = {
 		Tabcordion: {
