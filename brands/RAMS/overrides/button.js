@@ -17,9 +17,9 @@ export const button = ({ COLORS }) => {
 
 					// blender support
 					backgroundImage: 'none',
-					borderWidth: 1,
+					borderWidth: '1px',
 
-					...((look === 'primary' || look === 'hero') && {
+					...(look === 'primary' && {
 						...(soft && { color: COLORS[look] }),
 
 						// RAMS bottom bar
