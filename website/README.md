@@ -141,7 +141,7 @@ sudo /srv/pm2-apps/gel3-website/current/website/recreate-db.sh \
 # Copy data from live to staging
 SOURCE_DB_URL='postgres://gel3_website_live@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_live?ssl=true'
 TARGET_DB_URL='postgres://gel3_website_staging@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_staging?ssl=true'
-sudo pg_dump --no-owner ${SOURCE_DB_URL} | psql ${TARGET_DB_URL}
+pg_dump --no-owner ${SOURCE_DB_URL} | psql ${TARGET_DB_URL}
 # You will be asked for the live password
 ```
 
