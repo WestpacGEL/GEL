@@ -33,6 +33,7 @@ var GELTabcordion = (function () {
 		if (!$tabBtn.length) return;
 
 		var $tabcordion = $tabBtn.closest('[data-js="tabcordion__version__"]');
+		if (!$tabcordion.length) return;
 
 		var classes = $tabBtn.attr('class').split(/\s+/);
 		var baseClass = classes.filter(function (el) {
@@ -92,6 +93,8 @@ var GELTabcordion = (function () {
 		if (!$panel.length) return;
 
 		var $tabcordion = $panel.closest('[data-js="tabcordion__version__"]');
+		if (!$tabcordion.length) return;
+
 		var isTabs = $tabcordion.hasClass('GEL-tabcordion__version__-tabs');
 		closeOthers = typeof closeOthers !== 'undefined' ? closeOthers : isTabs;
 		mode = typeof mode !== 'undefined' ? mode : 'toggle';
