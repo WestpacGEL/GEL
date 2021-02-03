@@ -37,9 +37,19 @@ cp example.env .env
 
 You'll either need to create a new, empty DB locally or download a copy from the live or staging environments.
 
-#### New DB
+To install postgres please use [Homebrew](https://brew.sh/):
+
+```sh
+brew install postgres
+```
 
 If you don't have a DB for this project and want to start fresh, create a blank:
+
+```sh
+createdb gel3_website_dev
+```
+
+or
 
 ```sh
 psql -h localhost -c 'create database "gel3_website_dev";'
@@ -54,7 +64,7 @@ yarn knex migrate:latest
 A single users will be created with the login: `admin@localhost`, password: `development`.
 No other content will be created.
 
-### Live Dump
+### Sync data live -> local
 
 You may prefer to restore a copy of the DB from the live environment.
 
@@ -73,27 +83,66 @@ TARGET='postgres://localhost/gel3_website_dev'
 ssh deploy@gel.live.do.westpac.thinkmill.cloud pg_dump --no-owner ${SOURCE} | psql ${TARGET}
 ```
 
+_(💡 Note that sometimes you get errors like "Database [username] does not exist" which you can solve with `createdb [username]`)_
+
 _(💡 This will require ssh access to the live server)_
 
-## Move db from staging to live
+### Sync data
 
-You may want to move the contents of your database to the live server.
+What you will need is three passwords for three different database accounts:
 
-❗️ All data in live will be deleted
+- `doadmin` (Log into the DO dashboard for database and copy it from there)
+- `gel3_website_staging` (ssh into the staging server and run `DB_PASS=$(egrep gel3_website_staging ~/.pgpass | cut -f5 -d':') && echo ${DB_PASS}`)
+- `gel3_website_live` (ssh into the staging server and run `DB_PASS=$(egrep gel3_website_live ~/.pgpass | cut -f5 -d':') && echo ${DB_PASS}`)
+
+### staging -> live
+
+You may want to move the contents of the staging database to the live database.
+
+_(❗️ All data in **live** will be deleted)_
 
 ```sh
-# Get the live DB password
-sudo DB_PASS=$(egrep gel3_website_live ~/.pgpass | cut -f5 -d':')
+# First login to your live server via ssh
+ssh deploy@gel.westpacgroup.com.au
+# Store the live DB password
+DB_PASS="[INSERT PASSWORD HERE]"
 # Recreate a blank 'live' db
 sudo /srv/pm2-apps/gel3-website/current/website/recreate-db.sh \
   "postgresql://doadmin@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/defaultdb?sslmode=require" \
   gel3_website_live \
   gel3_website_live \
   ${DB_PASS}
+# You will be asked for the password of doadmin several times
 # Copy data from staging to live
-sudo SOURCE_DB_URL='postgres://gel3_website_staging@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_staging?ssl=true'
-sudo TARGET_DB_URL='postgres://gel3_website_live@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_live?ssl=true'
+SOURCE_DB_URL='postgres://gel3_website_staging@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_staging?ssl=true'
+TARGET_DB_URL='postgres://gel3_website_live@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_live?ssl=true'
+pg_dump --no-owner ${SOURCE_DB_URL} | psql ${TARGET_DB_URL}
+# You will be asked for the staging password
+```
+
+### live -> staging
+
+You may want to move the contents of the live database to the staging database.
+
+_(❗️ All data in **staging** will be deleted)_
+
+```sh
+# First login to your staging server via ssh
+ssh deploy@gel.test.do.westpac.thinkmill.cloud
+# Store the staging DB password
+DB_PASS="[INSERT PASSWORD HERE]"
+# Recreate a blank 'staging' db
+sudo /srv/pm2-apps/gel3-website/current/website/recreate-db.sh \
+  "postgresql://doadmin@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/defaultdb?sslmode=require" \
+  gel3_website_staging \
+  gel3_website_staging \
+  ${DB_PASS}
+# You will be asked for the password of doadmin several times
+# Copy data from live to staging
+SOURCE_DB_URL='postgres://gel3_website_live@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_live?ssl=true'
+TARGET_DB_URL='postgres://gel3_website_staging@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_staging?ssl=true'
 sudo pg_dump --no-owner ${SOURCE_DB_URL} | psql ${TARGET_DB_URL}
+# You will be asked for the live password
 ```
 
 ### App
