@@ -58,7 +58,9 @@ export const Tabcordion = ({
 	};
 
 	const [activeTabIndex, setActiveTabIndex] = useState(openTab);
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const [instanceId, setInstanceId] = useState(
+		instanceIdPrefix ? instanceIdPrefix : `gel-tabcordion-${useInstanceId()}`
+	);
 
 	const containerRef = useRef();
 	const panelRef = useRef();
@@ -69,13 +71,6 @@ export const Tabcordion = ({
 		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
 
 	const setActive = (idx) => () => setActiveTabIndex(idx);
-
-	// create the prefix for internal IDs
-	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-tabcordion-${useInstanceId()}`);
-		}
-	}, [instanceIdPrefix]);
 
 	useEffect(() => setActiveTabIndex(openTab), [openTab]);
 
