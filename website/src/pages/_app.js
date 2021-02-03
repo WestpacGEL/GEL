@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import cookie from 'cookie';
 import { Layout as DefaultLayout } from '../components/layout';
@@ -19,7 +19,8 @@ const getApolloClient = (initialState) =>
 
 const GELApp = ({ Component, pageProps, apollo, brand }) => {
 	const Layout = Component.layout || DefaultLayout;
-	const apolloClient = apollo || getApolloClient();
+	const apolloClient = useMemo(() => apollo || getApolloClient(), [apollo]);
+
 	return (
 		<ApolloProvider client={apolloClient}>
 			<Layout {...pageProps} brand={brand}>
