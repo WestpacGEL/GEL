@@ -19,11 +19,14 @@ export const button = ({ COLORS }) => {
 					backgroundImage: 'none',
 					borderWidth: '1px',
 
-					...(look === 'primary' && {
+					// Override soft color
+					...((look === 'hero' || look === 'primary') && {
 						...(soft && { color: COLORS[look] }),
+					}),
 
-						// RAMS bottom bar
-						...(!soft && {
+					// Add RAMS bottom stripe
+					...(look === 'primary' &&
+						!soft && {
 							borderWidth: 0, //reset (note: reapplied in ButtonGroup override)
 							backgroundImage: sizeArr.map(
 								(s) =>
@@ -31,7 +34,6 @@ export const button = ({ COLORS }) => {
 									`linear-gradient(to top, #78C339, #78C339 ${sizeMap[s].stopPos}, transparent ${sizeMap[s].stopPos}, transparent)`
 							),
 						}),
-					}),
 				};
 			},
 		},
