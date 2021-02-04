@@ -1,29 +1,5 @@
-var GELTabcordion = (function () {
+(function ($, GEL) {
 	var module = {};
-
-	function throttle(func, wait) {
-		wait || (wait = 250);
-		var last;
-		var deferTimer;
-
-		return function () {
-			var context = this;
-			var now = +new Date();
-			var args = arguments;
-
-			if (last && now < last + wait) {
-				clearTimeout(deferTimer);
-
-				deferTimer = setTimeout(function () {
-					last = now;
-					func.apply(context, args);
-				}, wait);
-			} else {
-				last = now;
-				func.apply(context, args);
-			}
-		};
-	}
 
 	function tabBtnToggle(tabBtn) {
 		var $tabBtn =
@@ -146,7 +122,7 @@ var GELTabcordion = (function () {
 				// Reset tabcordion to show last active only
 				var lastActivePanelID = $this.data('lastActivePanelID');
 				if (lastActivePanelID) {
-					GELTabcordion.toggle(lastActivePanelID, true, 'open');
+					GEL.tabcordion.toggle(lastActivePanelID, true, 'open');
 				}
 			}
 		});
@@ -176,7 +152,7 @@ var GELTabcordion = (function () {
 		$(window)
 			.on(
 				'resize',
-				throttle(function () {
+				GEL.throttle(function () {
 					setMode(
 						$responsiveTabcordion,
 						window.matchMedia('(min-width: 768px)').matches,
@@ -190,19 +166,19 @@ var GELTabcordion = (function () {
 		// Bind tabBtn click
 		$('[data-js="tabcordion-tabBtn__version__"]').on('click', function () {
 			var panelID = $(this).attr('aria-controls');
-			GELTabcordion.toggle(panelID, true);
+			GEL.tabcordion.toggle(panelID, true);
 		});
 
 		// Bind accordionBtn click
 		$('[data-js="tabcordion-accordionBtn__version__"]').on('click', function () {
 			var panelID = $(this).attr('aria-controls');
-			GELTabcordion.toggle(panelID, false);
+			GEL.tabcordion.toggle(panelID, false);
 		});
 	};
 
-	return module;
-})();
+	GEL.tabcordion = module;
 
-$(function () {
-	GELTabcordion.init();
-});
+	$(function () {
+		GEL.tabcordion.init();
+	});
+})(jQuery, GEL);

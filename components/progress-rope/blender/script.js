@@ -1,4 +1,4 @@
-var GELProgressRope = (function () {
+(function ($, GEL) {
 	var module = {};
 
 	module.init = function progressRopeInit() {
@@ -27,9 +27,9 @@ var GELProgressRope = (function () {
 		});
 	};
 
-	return module;
-})();
+	GEL.progressRope = module;
 
-$(function () {
-	GELProgressRope.init();
-});
+	$(function () {
+		GEL.progressRope.init();
+	});
+})(jQuery, GEL);
