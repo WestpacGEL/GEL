@@ -20,9 +20,10 @@ export const button = ({ COLORS }) => {
 					borderWidth: '1px',
 
 					// Override soft color
-					...((look === 'hero' || look === 'primary') && {
-						...(soft && { color: COLORS[look] }),
-					}),
+					...((look === 'hero' || look === 'primary') &&
+						soft && {
+							color: COLORS[look],
+						}),
 
 					// Add RAMS bottom stripe
 					...(look === 'primary' &&
