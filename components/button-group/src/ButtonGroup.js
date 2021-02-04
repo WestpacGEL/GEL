@@ -174,7 +174,7 @@ ButtonGroup.propTypes = {
 	/**
 	 * Button look. Passed on to each child button
 	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'faint']).isRequired,
+	look: PropTypes.oneOf(['primary', 'hero']).isRequired,
 
 	/**
 	 * Button size. Passed on to each child button
