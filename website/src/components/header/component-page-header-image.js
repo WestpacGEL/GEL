@@ -9,7 +9,7 @@ import {
 	RamsBackgroundSvg,
 } from '../symbols';
 
-const ComponentPageHeaderImage = ({ brand, ...rest }) => {
+const ComponentPageHeaderImage = ({ brand: BRAND, ...rest }) => {
 	const mq = useMediaQuery();
 
 	const WBCImage = (props) => (
@@ -91,7 +91,7 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 		BTFG: null,
 		RAMS: RAMSImage,
 	};
-	const HeaderImage = BRAND_HEADERS[brand];
+	const HeaderImage = BRAND_HEADERS[BRAND.code];
 
 	return HeaderImage ? (
 		<HeaderImage

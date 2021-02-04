@@ -18,7 +18,6 @@ import { Button } from '@westpac/button';
 import { useTransition, animated } from 'react-spring';
 import merge from 'lodash.merge';
 
-import { brandsMap } from '../../../components/brand-switcher/brand-switcher';
 import { Section, SectionHeading } from '../../../components/section';
 import { Body } from '../../../components/body';
 import { Head } from '../../../components/head';
@@ -442,7 +441,7 @@ const getBrandContent = () => ({
 
 const SectionDesigners = () => {
 	const { BRAND } = useBrand();
-	const brandContent = getBrandContent()[BRAND];
+	const brandContent = getBrandContent()[BRAND.code];
 	const FontText = brandContent.fontText;
 
 	return (
@@ -536,7 +535,7 @@ const SectionDevelopers = () => {
 							<p>
 								Developers can{' '}
 								<a
-									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND}.zip`}
+									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND.code}.zip`}
 									target="blank"
 								>
 									download web font files
@@ -712,7 +711,7 @@ const SectionDevelopers = () => {
 										</BlockListItem>
 									</BlockList>
 
-									<input type="hidden" name="brand" value={BRAND} />
+									<input type="hidden" name="brand" value={BRAND.code} />
 
 									<Button
 										look="primary"
