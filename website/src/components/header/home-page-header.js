@@ -208,7 +208,7 @@ const HeroFeatures = () => {
 	);
 };
 const HeroIntro = () => {
-	const { SPACING, BRAND, PACKS } = useBrand();
+	const { COLORS, SPACING, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -225,6 +225,7 @@ const HeroIntro = () => {
 						size={[4, null, 1]}
 						uppercase={BRAND === 'WBC'}
 						css={mq({
+							// color: COLORS.heading,
 							...(BRAND === 'WBC' && {
 								fontSize: ['3rem', null, '4.5rem'],
 							}),

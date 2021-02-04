@@ -38,7 +38,7 @@ GELApp.getInitialProps = async (appContext) => {
 	} = appContext;
 
 	const brandParam = router.query.b || '';
-	const brandsList = ['BOM', 'BSA', 'BTFG', 'STG', 'WBC', 'WBG'];
+	const brandsList = ['BOM', 'BSA', 'BTFG', 'STG', 'WBC', 'WBG', 'RAMS'];
 
 	// 1. Check url param for desired brand
 	const brandMatch = brandsList.find((b) => b === brandParam);

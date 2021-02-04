@@ -296,6 +296,10 @@ const urlMap = {
 		guidelinesURL:
 			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 	},
+	RAMS: {
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+	},
 };
 
 const fontTextWBC = () => (
@@ -392,6 +396,22 @@ const fontTextWBG = () => (
 		</p>
 	</Fragment>
 );
+const fontTextRAMS = () => (
+	<Fragment>
+		<p>
+			Check the{' '}
+			<a href={urlMap.RAMS.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively.
+		</p>
+		<p>
+			<a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank">
+				Download Source Sans Pro
+			</a>
+		</p>
+	</Fragment>
+);
 
 const getBrandContent = () => ({
 	WBC: {
@@ -413,6 +433,10 @@ const getBrandContent = () => ({
 	WBG: {
 		...urlMap.WBG,
 		fontText: fontTextWBG,
+	},
+	RAMS: {
+		...urlMap.RAMS,
+		fontText: fontTextRAMS,
 	},
 });
 
