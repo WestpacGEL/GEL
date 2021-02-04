@@ -57,7 +57,7 @@ const bodyStyles = (_, props) => {
 		},
 
 		'a:not([class*="-button"])': {
-			color: COLORS.primary,
+			color: COLORS.link,
 			textDecoration: 'underline',
 		},
 

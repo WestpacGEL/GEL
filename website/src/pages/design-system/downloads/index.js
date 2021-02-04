@@ -18,7 +18,6 @@ import { Button } from '@westpac/button';
 import { useTransition, animated } from 'react-spring';
 import merge from 'lodash.merge';
 
-import { brandsMap } from '../../../components/brand-switcher/brand-switcher';
 import { Section, SectionHeading } from '../../../components/section';
 import { Body } from '../../../components/body';
 import { Head } from '../../../components/head';
@@ -296,6 +295,10 @@ const urlMap = {
 		guidelinesURL:
 			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 	},
+	RAMS: {
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+	},
 };
 
 const fontTextWBC = () => (
@@ -392,6 +395,22 @@ const fontTextWBG = () => (
 		</p>
 	</Fragment>
 );
+const fontTextRAMS = () => (
+	<Fragment>
+		<p>
+			Check the{' '}
+			<a href={urlMap.RAMS.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively.
+		</p>
+		<p>
+			<a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank">
+				Download Source Sans Pro
+			</a>
+		</p>
+	</Fragment>
+);
 
 const getBrandContent = () => ({
 	WBC: {
@@ -414,11 +433,15 @@ const getBrandContent = () => ({
 		...urlMap.WBG,
 		fontText: fontTextWBG,
 	},
+	RAMS: {
+		...urlMap.RAMS,
+		fontText: fontTextRAMS,
+	},
 });
 
 const SectionDesigners = () => {
 	const { BRAND } = useBrand();
-	const brandContent = getBrandContent()[BRAND];
+	const brandContent = getBrandContent()[BRAND.code];
 	const FontText = brandContent.fontText;
 
 	return (
@@ -512,7 +535,7 @@ const SectionDevelopers = () => {
 							<p>
 								Developers can{' '}
 								<a
-									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND}.zip`}
+									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND.code}.zip`}
 									target="blank"
 								>
 									download web font files
@@ -688,7 +711,7 @@ const SectionDevelopers = () => {
 										</BlockListItem>
 									</BlockList>
 
-									<input type="hidden" name="brand" value={BRAND} />
+									<input type="hidden" name="brand" value={BRAND.code} />
 
 									<Button
 										look="primary"
