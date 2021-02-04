@@ -1,4 +1,4 @@
-var GELPopover = (function () {
+(function ($, GEL) {
 	var module = {};
 
 	module.toggle = function popoverToggle(popover, mode) {
@@ -29,7 +29,7 @@ var GELPopover = (function () {
 	module.init = function popoverInit() {
 		$('[data-js="popover__version__"]')
 			.on('click', function () {
-				GELPopoverToggle($(this));
+				GEL.popover.toggle($(this));
 			})
 			.parent()
 			.on('keyup', function (e) {
@@ -39,7 +39,7 @@ var GELPopover = (function () {
 			});
 
 		$('[data-js="popover-closeBtn__version__"]').on('click', function () {
-			GELPopoverToggle(
+			GEL.popover.toggle(
 				$(this)
 					.closest('[data-js="popover-panel__version__"]')
 					.prev('[data-js="popover__version__"]'),
@@ -48,9 +48,9 @@ var GELPopover = (function () {
 		});
 	};
 
-	return module;
-})();
+	GEL.popover = module;
 
-$(function () {
-	GELPopover.init();
-});
+	$(function () {
+		GEL.popover.init();
+	});
+})(jQuery, GEL);

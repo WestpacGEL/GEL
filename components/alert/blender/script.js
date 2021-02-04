@@ -1,4 +1,4 @@
-var GELAlert = (function () {
+(function ($, GEL) {
 	var module = {};
 
 	module.init = function () {
@@ -7,9 +7,9 @@ var GELAlert = (function () {
 		});
 	};
 
-	return module;
-})();
+	GEL.alert = module;
 
-$(function () {
-	GELAlert.init();
-});
+	$(function () {
+		GEL.alert.init();
+	});
+})(jQuery, GEL);
