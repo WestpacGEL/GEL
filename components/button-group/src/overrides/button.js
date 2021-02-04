@@ -103,15 +103,6 @@ const blenderStyles = () => {
 					backgroundColor: COLORS.tints.primary50,
 				},
 			},
-			'&.__convert__button-faint-soft': {
-				color: COLORS.muted,
-				backgroundColor: COLORS.light,
-				borderColor: COLORS.border,
-
-				':hover, :active, &.active': {
-					backgroundColor: '#fff',
-				},
-			},
 		},
 		'input:disabled + &': {
 			opacity: '0.5',
