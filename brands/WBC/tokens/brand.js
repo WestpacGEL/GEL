@@ -1,6 +1,6 @@
 module.exports = {
 	BRAND: {
 		name: 'Westpac',
-		code: 'STG',
+		code: 'WBC',
 	},
 };
