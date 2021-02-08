@@ -77,6 +77,7 @@ function Example({ brand }) {
 			<hr />
 			<Tabcordion
 				mode="accordion"
+				openTab={1}
 				onOpen={onOpen}
 				onOpening={onOpening}
 				onClose={onClose}

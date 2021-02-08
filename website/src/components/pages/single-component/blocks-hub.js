@@ -23,16 +23,16 @@ const Under = (props) => <span css={{ textDecoration: 'underline' }} {...props} 
 
 const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
-	const shortcodes = getShortCodes(BRAND);
+	const shortcodes = getShortCodes(BRAND.code);
 	const textCodes = [...text.matchAll(/\[\[[A-Za-z0-9]*\]\]/g)].map((m) => m[0]);
 	let shortCodedText = text;
 
-	textCodes.forEach((shortCode) => {
+	textCodes.forEach((shortCode, index) => {
 		shortCodedText = reactStringReplace(shortCodedText, shortCode, (match, i) => {
 			const code = shortCode.slice(2, shortCode.length - 2);
 			if (typeof shortcodes[code] === 'function') {
 				const Component = shortcodes[code];
-				return <Component />;
+				return <Component key={`${shortCodedText}${index}`} />;
 			} else {
 				return shortcodes[code] || code;
 			}
