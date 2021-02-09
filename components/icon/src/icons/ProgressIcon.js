@@ -14,5 +14,6 @@ export const ProgressIcon = (props) => (
 ProgressIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Progress',
+	copyrightYear: '2020',
 };
 ProgressIcon.propTypes = propTypes;

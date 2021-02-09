@@ -1,18 +1,19 @@
 /** @jsx jsx */
-import { useState, useCallback, useEffect, forwardRef } from 'react';
+import { useState, useCallback, useEffect, forwardRef, Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import throttle from 'lodash.throttle';
 import Error from 'next/error';
-
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
-import { Gridly, Footer } from '../../components/layout';
 
+import { Gridly, Footer } from '../../components/layout';
 import { PageContext, usePageContext } from '../../components/providers/pageContext';
 import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
 import PageHeader from '../../components/header/page-header';
+import { Head } from '../../components/head';
 import { ALL_PAGES } from '../../../graphql';
+import { scrollMap } from '../../components/_utils';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
@@ -41,11 +42,14 @@ const Component = ({ component, tabName }) => {
 	const [showGrid, setShowGrid] = useState(false);
 
 	return (
-		<PageContext.Provider value={{ showGrid, setShowGrid }}>
-			<PageHeader name={pageTitle} />
-			<Tabs component={component} tabName={tabName} />
-			<Footer />
-		</PageContext.Provider>
+		<Fragment>
+			<Head title={pageTitle} />
+			<PageContext.Provider value={{ showGrid, setShowGrid }}>
+				<PageHeader name={pageTitle} />
+				<Tabs component={component} tabName={tabName} />
+				<Footer />
+			</PageContext.Provider>
+		</Fragment>
 	);
 };
 
@@ -62,7 +66,7 @@ const Tabs = ({ component, tabName }) => {
 		const setTabs = () => {
 			const scroll = window.scrollY;
 
-			setHasScrolled(scroll > 156);
+			setHasScrolled(scroll >= scrollMap.large);
 		};
 		setTabs();
 
@@ -74,15 +78,20 @@ const Tabs = ({ component, tabName }) => {
 		};
 	}, []);
 
-	const onOpen = useCallback(({ idx: tabIdx }) => {
-		window.history.pushState(
-			null,
-			'',
-			`${router.asPath.split('?')[0]}?b=${brandName}&tab=${tabMap[tabIdx]}`
-		);
-	});
+	const onOpen = useCallback(
+		({ idx: tabIdx }) => {
+			if (tabMap[tabIdx] !== tabName) {
+				router.replace(
+					`${router.pathname}?b=${brandName}&tab=${tabMap[tabIdx]}`,
+					`${router.asPath.split('?')[0]}?b=${brandName}&tab=${tabMap[tabIdx]}`,
+					{ shallow: true }
+				);
+			}
+		},
+		[brandName, tabName]
+	);
 
-	const tabOverrides = {
+	const tabcordionOverrides = {
 		Tabcordion: {
 			styles: (styles) => ({
 				...styles,
@@ -114,8 +123,8 @@ const Tabs = ({ component, tabName }) => {
 					alignItems: 'center',
 					height: [54, null, 66],
 					borderRadius: 0,
-					backgroundColor: 'white',
-					border: 'none',
+					border: 0,
+					backgroundColor: 'transparent',
 					margin: 0,
 					borderRight: `solid 1px ${COLORS.border}`,
 					padding: [0, null, `0 ${SPACING(10)}`],
@@ -126,11 +135,14 @@ const Tabs = ({ component, tabName }) => {
 					':last-child': {
 						borderRightColor: ['#fff', null, `${COLORS.border}`],
 					},
+					':hover': {
+						backgroundColor: undefined, //strip
+					},
 				}),
 		},
 	};
 
-	const Panel = forwardRef(({ state, children, ...rest }, ref) => {
+	const PanelOverride = forwardRef(({ state, children, ...rest }, ref) => {
 		const { showGrid } = usePageContext();
 		return (
 			<div ref={ref} {...rest}>
@@ -140,16 +152,20 @@ const Tabs = ({ component, tabName }) => {
 		);
 	});
 
-	const overrides = {
+	const PanelBodyOverride = ({ state: _, setPanelHeight, ...rest }) => <div {...rest} />;
+
+	const tabOverrides = {
 		Panel: {
+			component: PanelOverride,
 			styles: (styles) => ({
 				...styles,
-				position: 'relative',
-				padding: 0,
-				margin: '0 auto',
-				border: 'none',
+				border: undefined, //strip
+				borderWidth: undefined, //strip
 			}),
-			component: Panel,
+		},
+		PanelBody: {
+			component: PanelBodyOverride,
+			styles: () => null, //remove all styling
 		},
 	};
 
@@ -169,20 +185,20 @@ const Tabs = ({ component, tabName }) => {
 
 	const tabs = [];
 	tabs.push(
-		<Tab key={'design-tab'} overrides={overrides} text="Design">
+		<Tab key={'design-tab'} overrides={tabOverrides} text="Design">
 			<DesignTab description={component.description} blocks={component.design} item={component} />
 		</Tab>
 	);
 	if (!component.hideAccessibilityTab) {
 		tabs.push(
-			<Tab key={'accessibility-tab'} overrides={overrides} text="Accessibility">
+			<Tab key={'accessibility-tab'} overrides={tabOverrides} text="Accessibility">
 				<AccessibilityTab blocks={component.accessibility} item={component} />
 			</Tab>
 		);
 	}
 	if (!component.hideCodeTab) {
 		tabs.push(
-			<Tab key={'code-tab'} overrides={overrides} text="Code">
+			<Tab key={'code-tab'} overrides={tabOverrides} text="Code">
 				<CodeTab blocks={component.code} item={component} />
 			</Tab>
 		);
@@ -199,7 +215,7 @@ const Tabs = ({ component, tabName }) => {
 				mode="tabs"
 				openTab={tabName ? tabMap.indexOf(tabName) : 0}
 				onOpen={onOpen}
-				overrides={tabOverrides}
+				overrides={tabcordionOverrides}
 			>
 				{tabs}
 			</Tabcordion>

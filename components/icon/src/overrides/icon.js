@@ -8,6 +8,8 @@ import {
 	getModifier,
 	styleReconciler,
 	classNames,
+	getLabel,
+	formatClassName,
 } from '@westpac/core';
 import { defaultProps } from '../Icon';
 
@@ -17,6 +19,9 @@ import { defaultProps } from '../Icon';
 
 const Icon = ({ state: _, ...rest }) => <span {...rest} />;
 
+const BlenderIcon = ({ className, ...rest }) => (
+	<Icon className={formatClassName(className)} {...rest} />
+);
 // ==============================
 // Styles
 // ==============================
@@ -46,9 +51,7 @@ const iconStyles = (_, { color, size }) => {
 		neutral: COLORS.neutral,
 		muted: COLORS.muted,
 		background: COLORS.background,
-		borderDark: COLORS.borderDark,
 		border: COLORS.border,
-		focus: COLORS.focus,
 		heading: COLORS.heading,
 		light: COLORS.light,
 		text: COLORS.text,
@@ -60,7 +63,7 @@ const iconStyles = (_, { color, size }) => {
 	};
 
 	return mq({
-		label: 'icon',
+		label: getLabel('icon'),
 		display: 'inline-block',
 		flexShrink: 0,
 		lineHeight: 1,
@@ -74,7 +77,7 @@ const blenderStyles = (_, { color, size }) => {
 	const props = { color, size };
 	const baseStyles = iconStyles(_, defaultProps);
 
-	const modifiers = getModifier(defaultProps, props); // not sure how this will work with color'
+	const modifiers = getModifier(defaultProps, props);
 	if (!modifiers.length) return baseStyles;
 
 	const modifierStyles = iconStyles(_, props);
@@ -96,6 +99,7 @@ const blenderStyles = (_, { color, size }) => {
 
 	return { label, ...reconciledStyles };
 };
+
 // ==============================
 // Attributes
 // ==============================
@@ -119,7 +123,7 @@ export const defaultIcon = {
 };
 
 export const blenderIcon = {
-	component: Icon,
+	component: BlenderIcon,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

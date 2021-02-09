@@ -4,16 +4,15 @@ import { Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { TextInput } from '@westpac/text-input';
+import { Head } from '../../components/head';
 import HomePageHeader from '../../components/header/home-page-header';
-import { Section } from '../../components/section';
+import { Section, SectionHeading } from '../../components/section';
 import { Body } from '../../components/body';
-import { BlockList, BlockListItem } from '../../components/block-list';
-import { BlockHeading } from '../../components/block-heading';
+import { BlockList, BlockListItem, BlockListHeading } from '../../components/block-list';
 import { Footer } from '../../components/layout/footer';
 import {
 	ReactLogo,
 	AtlassianLogo,
-	AxureLogo,
 	FacebookLogo,
 	GitHubLogo,
 	GovLogo,
@@ -31,6 +30,7 @@ const Homepage = () => {
 
 	return (
 		<Fragment>
+			<Head />
 			<main
 				id="content"
 				css={{
@@ -40,28 +40,27 @@ const Homepage = () => {
 				<HomePageHeader />
 				<Section paddingTop="large" paddingBottom="large" light>
 					<Container>
+						<SectionHeading tag="h2" tight>
+							Accessible by design
+						</SectionHeading>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<h2>Accessibility is in everything we do</h2>
 									<p>
-										Accessibility and inclusive design is a strong part of how we design for the GEL
-										Design System.
+										Accessibility and inclusive design is a strong part of the GEL Design System.
 									</p>
 									<p>
-										We support teams to deliver to the Group accessibility commitment, to provide
-										meaningful banking experiences to all customers.
+										The system supports teams to deliver to the Group accessibility commitment, to
+										provide meaningful banking experiences to all customers.
 									</p>
 									<p>
-										We delve into the detail and pressure test solutions against the latest WCAG
-										recommendations, delivering the most accessible components and patterns
-										possible. We then guide teams further along the path of accessibility.
+										Solutions have been thought about in detail and pressure tested against the
+										latest WCAG recommendations, delivering the most accessible components and
+										patterns possible.
 									</p>
 									<p>
-										Read more about{' '}
-										<a href="#0" css={{ margin: `${SPACING(3)} 0`, color: COLORS.primary }}>
-											our commitment to accessibility
-										</a>
+										The Design Quality team can then guide teams further along the path of
+										accessibility.
 									</p>
 								</Body>
 							</Cell>
@@ -71,15 +70,16 @@ const Homepage = () => {
 
 				<Section paddingTop="large" paddingBottom="large">
 					<Container>
+						<SectionHeading tag="h2" tight symbol={ReactLogo}>
+							Built on React
+						</SectionHeading>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<ReactLogo width={60} css={{ marginBottom: SPACING(2) }} />
-									<h2>Built on React</h2>
 									<p>
-										The GEL Design System is now using React. You can still access vanilla HTML
-										&amp; CSS but with React at its core we can showcase so much more and deliver
-										even higher-quality, more accessible code.
+										The GEL Design System is now using React. You can still access HTML/CSS but with
+										React at its core we can showcase so much more and deliver even higher-quality,
+										more accessible code.
 									</p>
 								</Body>
 								<Body css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })}>
@@ -126,10 +126,10 @@ const Homepage = () => {
 
 				<Section paddingTop="large" paddingBottom="large" light>
 					<Container>
+						<SectionHeading tight>Subscribe to GEL updates</SectionHeading>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<h2>Subscribe to our updates</h2>
 									<p>
 										Get the latest brand and component updates as well as access to new resources
 										and helpful tips.
@@ -180,13 +180,12 @@ const Homepage = () => {
 
 				<Section paddingTop="large" paddingBottom="large">
 					<Container>
+						<SectionHeading tight>Downloads &amp; links</SectionHeading>
 						<Grid>
 							<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 								<Body>
-									<h2>Downloads &amp; links</h2>
 									<p>
-										Design on-brand with greater efficiency and accuracy using the Sketch or Axure
-										UI Kits.
+										Design on-brand with greater efficiency and accuracy using the Sketch UI Kit.
 									</p>
 									<p>
 										Visit GitHub to follow Westpac GEL Design System code updates and log issues.
@@ -217,22 +216,19 @@ const DownloadsAndLinks = (props) => {
 			{...props}
 		>
 			<Cell width={[10, 6, null, 5]} left={[2, 'auto', null, 2]}>
-				<BlockHeading>Downloads</BlockHeading>
+				<BlockListHeading>Downloads</BlockListHeading>
 				<BlockList
 					css={mq({
 						marginTop: [null, null, SPACING(2)],
 					})}
 				>
-					<BlockListItem target="_blank" logo={SketchLogo}>
+					<BlockListItem href="/resources/design/sketch-ui-kit" logo={SketchLogo}>
 						Sketch UI Kit
-					</BlockListItem>
-					<BlockListItem target="_blank" logo={AxureLogo}>
-						Axure UI Kit
 					</BlockListItem>
 				</BlockList>
 			</Cell>
 			<Cell width={[10, 6, null, 5]} left={[2, 'auto']}>
-				<BlockHeading>Links</BlockHeading>
+				<BlockListHeading>Links</BlockListHeading>
 				<BlockList
 					css={mq({
 						marginTop: [null, null, SPACING(2)],

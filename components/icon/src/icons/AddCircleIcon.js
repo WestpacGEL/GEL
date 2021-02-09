@@ -14,5 +14,6 @@ export const AddCircleIcon = (props) => (
 AddCircleIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Add Circle',
+	copyrightYear: '2020',
 };
 AddCircleIcon.propTypes = propTypes;

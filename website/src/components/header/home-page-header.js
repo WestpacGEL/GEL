@@ -2,19 +2,19 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
-import { MenuButton } from './menu-button';
-import { Button } from '@westpac/button';
+import { StopwatchPictogram, TruckPictogram, AccessibilityPictogram } from '@westpac/pictogram';
 import { BrandHeading } from '@westpac/heading';
+import throttle from 'lodash.throttle';
+
+import { MenuButton } from './menu-button';
 import HeaderImage from './home-page-header-image';
 import HomePageStickyHeaderImage from './home-page-sticky-header-image';
 import { Body } from '../body';
-import { AccessibilitySvg, StopwatchSvg, TruckSvg } from '../symbols';
-import { antialiasingStyling, brandHeaderStyling, brandIconHighlightColors } from '../_utils';
-import throttle from 'lodash.throttle';
+import { antialiasingStyling, brandHeaderStyling } from '../_utils';
 
 const HomePageHeader = () => {
 	const { BRAND, COLORS, SPACING } = useBrand();
-	const headerStyling = brandHeaderStyling[BRAND](COLORS);
+	const headerStyling = brandHeaderStyling[BRAND.code](COLORS);
 	const mq = useMediaQuery();
 	const main = useRef(null);
 
@@ -30,7 +30,7 @@ const HomePageHeader = () => {
 				color: [null, null, headerStyling.color],
 				...antialiasingStyling,
 
-				...(BRAND === 'WBC' && {
+				...(BRAND.code === 'WBC' && {
 					'::before': {
 						content: '""',
 						display: 'block',
@@ -55,7 +55,7 @@ const HomePageHeader = () => {
 const StickyHeader = () => {
 	const { COLORS, BRAND, SPACING, PACKS } = useBrand();
 	const mq = useMediaQuery();
-	const headerStyling = brandHeaderStyling[BRAND](COLORS);
+	const headerStyling = brandHeaderStyling[BRAND.code](COLORS);
 	const [hasScroll, setHasScroll] = useState(false);
 	const [hasScrolledPageHeader, setHasScrolledPageHeader] = useState(false);
 	const header = useRef(null);
@@ -77,7 +77,7 @@ const StickyHeader = () => {
 		return () => {
 			window.removeEventListener('scroll', scrollHandler);
 		};
-	});
+	}, []);
 
 	return (
 		<Fragment>
@@ -148,16 +148,19 @@ const StickyHeader = () => {
 	);
 };
 
-const HeroFeaturesItem = ({ icon, iconMobile, children }) => {
+const HeroFeaturesItem = ({ pictogram: Pictogram, children }) => {
 	const mq = useMediaQuery();
 	const { PACKS, SPACING } = useBrand();
+
 	return (
-		<Cell tag="li" width={[12, 4]}>
-			<div css={mq({ display: ['none', null, 'inline-block'] })} aria-hidden="true">
-				{icon}
-			</div>
-			<div css={mq({ display: ['inline-block', null, 'none'] })} aria-hidden="true">
-				{iconMobile}
+		<Cell
+			tag="li"
+			width={[12, 4]}
+			css={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+		>
+			<div aria-hidden="true">
+				<Pictogram mode="light" width={78} css={mq({ display: ['none', null, 'block'] })} />
+				<Pictogram mode="duo" width={78} css={mq({ display: ['block', null, 'none'] })} />
 			</div>
 			<Body
 				css={mq({ marginTop: [SPACING(3), SPACING(4)], textAlign: 'center' })}
@@ -166,6 +169,7 @@ const HeroFeaturesItem = ({ icon, iconMobile, children }) => {
 						styles: (styles) => ({
 							...styles,
 							...PACKS.typeScale.bodyFont[8],
+							maxWidth: 290,
 						}),
 					},
 				}}
@@ -177,7 +181,7 @@ const HeroFeaturesItem = ({ icon, iconMobile, children }) => {
 };
 
 const HeroFeatures = () => {
-	const { BRAND, SPACING, COLORS } = useBrand();
+	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<Grid
@@ -191,65 +195,20 @@ const HeroFeatures = () => {
 				marginTop: [SPACING(4), SPACING(10)],
 			})}
 		>
-			<HeroFeaturesItem
-				icon={
-					<StopwatchSvg
-						outlineColor={COLORS.light}
-						highlightOutlineColor={COLORS.light}
-						highlightColor={COLORS.light}
-					/>
-				}
-				iconMobile={
-					<StopwatchSvg
-						outlineColor={COLORS.borderDark}
-						highlightOutlineColor={COLORS.text}
-						highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-					/>
-				}
-			>
+			<HeroFeaturesItem pictogram={StopwatchPictogram}>
 				Go to market faster leveraging tools to get you up and running instantly
 			</HeroFeaturesItem>
-			<HeroFeaturesItem
-				icon={
-					<TruckSvg
-						outlineColor={COLORS.light}
-						highlightOutlineColor={COLORS.light}
-						highlightColor="none"
-					/>
-				}
-				iconMobile={
-					<TruckSvg
-						outlineColor={COLORS.borderDark}
-						highlightOutlineColor={COLORS.text}
-						highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-					/>
-				}
-			>
+			<HeroFeaturesItem pictogram={TruckPictogram}>
 				Design, build and ship consistent brand experiences
 			</HeroFeaturesItem>
-			<HeroFeaturesItem
-				icon={
-					<AccessibilitySvg
-						outlineColor={COLORS.light}
-						highlightOutlineColor={COLORS.light}
-						highlightColor="none"
-					/>
-				}
-				iconMobile={
-					<AccessibilitySvg
-						outlineColor={COLORS.borderDark}
-						highlightOutlineColor={COLORS.text}
-						highlightColor={brandIconHighlightColors[BRAND](COLORS)}
-					/>
-				}
-			>
+			<HeroFeaturesItem pictogram={AccessibilityPictogram}>
 				Create more accessible solutions that are inclusive of all customers
 			</HeroFeaturesItem>
 		</Grid>
 	);
 };
 const HeroIntro = () => {
-	const { SPACING, COLORS, BRAND, PACKS } = useBrand();
+	const { COLORS, SPACING, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -260,18 +219,19 @@ const HeroIntro = () => {
 			})}
 		>
 			<Grid>
-				<Cell width={[10, 12, 8]} left={[2, 1, 3]}>
+				<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 					<BrandHeading
 						tag="h2"
 						size={[4, null, 1]}
-						uppercase={BRAND === 'WBC'}
+						uppercase={BRAND.code === 'WBC'}
 						css={mq({
-							...(BRAND === 'WBC' && {
+							// color: COLORS.heading,
+							...(BRAND.code === 'WBC' && {
 								fontSize: ['3rem', null, '4.5rem'],
 							}),
 						})}
 					>
-						Deliver quality user interfaces that scale—fast!
+						Deliver quality user interfaces that scale – <em>fast!</em>
 					</BrandHeading>
 				</Cell>
 			</Grid>

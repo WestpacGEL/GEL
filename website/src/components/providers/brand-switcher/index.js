@@ -6,18 +6,20 @@ import btfgBrand from '@westpac/btfg';
 import stgBrand from '@westpac/stg';
 import wbcBrand from '@westpac/wbc';
 import wbgBrand from '@westpac/wbg';
+import ramsBrand from '@westpac/rams';
 
 // ==============================
 // Get the data
 // ==============================
 
 const BRANDS = {
-	WBC: { ...wbcBrand, name: 'Westpac' },
-	STG: { ...stgBrand, name: 'St.George' },
-	BOM: { ...bomBrand, name: 'Bank of Melbourne' },
-	BSA: { ...bsaBrand, name: 'Bank of South Australia' },
-	WBG: { ...wbgBrand, name: 'Westpac Group' },
-	BTFG: { ...btfgBrand, name: 'BT Financial Group' },
+	WBC: wbcBrand,
+	STG: stgBrand,
+	BOM: bomBrand,
+	BSA: bsaBrand,
+	WBG: wbgBrand,
+	BTFG: btfgBrand,
+	RAMS: ramsBrand,
 };
 
 const BrandSwitcherContext = createContext();

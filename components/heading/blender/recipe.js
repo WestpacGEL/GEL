@@ -1,4 +1,4 @@
-import { GEL } from '@westpac/core';
+import { GEL, Global, useFonts } from '@westpac/core';
 import React from 'react';
 
 import { Heading, BrandHeading } from '@westpac/heading';
@@ -14,13 +14,17 @@ export function AllStyles({ brand }) {
 	overridesWithTokens['@westpac/heading'] = {
 		Heading: {
 			styles: blenderHeading.styles,
+			component: blenderHeading.component,
 		},
 		BrandHeading: {
 			styles: blenderBrandHeading.styles,
+			component: blenderBrandHeading.component,
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
+			{/* <Global css={{ ...useFonts({ path: 'assets/' }) }} /> */}
+			{/* Heading */}
 			{headingSizes.map((size) => (
 				<Heading key={size} size={size}>
 					Text
@@ -30,6 +34,7 @@ export function AllStyles({ brand }) {
 				Text
 			</Heading>
 
+			{/* Brand heading */}
 			{brandHeadingSizes.map((size) => (
 				<BrandHeading key={size} size={size}>
 					Text
@@ -47,46 +52,64 @@ export function Docs({ brand }) {
 	overridesWithTokens['@westpac/heading'] = {
 		Heading: {
 			styles: blenderHeading.styles,
+			attributes: blenderHeading.attributes,
+			component: blenderHeading.component,
 		},
 		BrandHeading: {
 			styles: blenderBrandHeading.styles,
 			attributes: blenderBrandHeading.attributes,
+			component: blenderBrandHeading.component,
 		},
 	};
 	return [
-		...headingSizes.map((size) => ({
-			heading: `A heading - size:${size}`,
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Heading size={size}>Heading size {size}</Heading>
-				</GEL>
-			),
-		})),
-		...brandHeadingSizes.map((size) => ({
-			heading: `A brand heading - size:${size}`,
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<BrandHeading size={size}>Brand heading size {size}</BrandHeading>
-				</GEL>
-			),
-		})),
+		// Heading
 		{
-			heading: `An upper case heading`,
+			heading: 'Heading',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Heading size={1} uppercase>
-						Uppercase brand heading
-					</Heading>
+				<GEL brand={overridesWithTokens} noScope>
+					{headingSizes.map((size) => (
+						<Heading key={size} size={size}>
+							Heading size {size}
+						</Heading>
+					))}
 				</GEL>
 			),
 		},
 		{
-			heading: `An upper case brand heading`,
+			heading: 'Heading uppercase',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<BrandHeading size={1} uppercase>
-						Uppercase brand heading
-					</BrandHeading>
+				<GEL brand={overridesWithTokens} noScope>
+					{headingSizes.map((size) => (
+						<Heading key={size} size={size} uppercase>
+							Heading size {size}
+						</Heading>
+					))}
+				</GEL>
+			),
+		},
+
+		// Brand heading
+		{
+			heading: 'Brand heading',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					{brandHeadingSizes.map((size) => (
+						<BrandHeading key={size} size={size}>
+							BrandHeading size {size}
+						</BrandHeading>
+					))}
+				</GEL>
+			),
+		},
+		{
+			heading: 'Brand heading uppercase',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					{brandHeadingSizes.map((size) => (
+						<BrandHeading key={size} size={size} uppercase>
+							BrandHeading size {size}
+						</BrandHeading>
+					))}
 				</GEL>
 			),
 		},

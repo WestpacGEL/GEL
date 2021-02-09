@@ -14,5 +14,6 @@ export const DollarIcon = (props) => (
 DollarIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Dollar',
+	copyrightYear: '2020',
 };
 DollarIcon.propTypes = propTypes;

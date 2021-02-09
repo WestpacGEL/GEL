@@ -1,40 +1,55 @@
 import { GEL } from '@westpac/core';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { Tab, Tabcordion } from '../src/blender';
-
 import { blenderTabcordion } from '../src/overrides/tabcordion';
 import { blenderTabRow } from '../src/overrides/tabRow';
 import { blenderTabButton } from '../src/overrides/tabButton';
+import { blenderItem } from '../src/overrides/item';
 import { blenderAccordionButton } from '../src/overrides/accordionButton';
 import { blenderAccordionButtonIcon } from '../src/overrides/accordionButtonIcon';
 import { blenderPanel } from '../src/overrides/panel';
+import { blenderPanelBody } from '../src/overrides/panelBody';
+
+const modes = ['responsive', 'tabs', 'accordion'];
+const looks = ['soft', 'lego'];
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/tabcordion'] = {
 		Tabcordion: {
+			component: blenderTabcordion.component,
 			styles: blenderTabcordion.styles,
 		},
 		TabRow: {
+			component: blenderTabRow.component,
 			styles: blenderTabRow.styles,
 		},
 		TabButton: {
+			component: blenderTabButton.component,
 			styles: blenderTabButton.styles,
 		},
-		Panel: {
-			styles: blenderPanel.styles,
+		Item: {
+			component: blenderItem.component,
 		},
 		AccordionButton: {
+			component: blenderAccordionButton.component,
 			styles: blenderAccordionButton.styles,
 		},
 		AccordionButtonIcon: {
 			component: blenderAccordionButtonIcon.component,
 		},
+		Panel: {
+			component: blenderPanel.component,
+			styles: blenderPanel.styles,
+		},
+		PanelBody: {
+			component: blenderPanelBody.component,
+		},
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
 			<Tabcordion openTab={1}>
 				<Tab text="text">Text</Tab>
 				<Tab text="text">Text</Tab>
@@ -68,31 +83,44 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/tabcordion'] = {
 		Tabcordion: {
+			component: blenderTabcordion.component,
 			attributes: blenderTabcordion.attributes,
 		},
 		TabRow: {
+			component: blenderTabRow.component,
 			attributes: blenderTabRow.attributes,
 		},
 		TabButton: {
+			component: blenderTabButton.component,
 			attributes: blenderTabButton.attributes,
 		},
-		Panel: {
-			attributes: blenderPanel.attributes,
+		Item: {
+			component: blenderItem.component,
 		},
 		AccordionButton: {
+			component: blenderAccordionButton.component,
 			attributes: blenderAccordionButton.attributes,
 		},
 		AccordionButtonIcon: {
 			component: blenderAccordionButtonIcon.component,
 		},
+		Panel: {
+			component: blenderPanel.component,
+			attributes: blenderPanel.attributes,
+		},
+		PanelBody: {
+			component: blenderPanelBody.component,
+		},
 	};
 
 	return [
+		// Tabcordion
 		{
-			heading: 'Tabcordion',
+			heading: 'Tabcordion (responsive)',
+			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Tabcordion>
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion instanceIdPrefix="example-tabcordion">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -100,11 +128,50 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
+		{
+			subheading: 'Justified',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion justify instanceIdPrefix="example-tabcordion-justify">
+						<Tab text="Tab 1">Tab 1</Tab>
+						<Tab text="Tab 2">Tab 2</Tab>
+						<Tab text="Tab 3">Tab 3</Tab>
+					</Tabcordion>
+				</GEL>
+			),
+		},
+		{
+			subheading: 'Lego',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion look="lego" instanceIdPrefix="example-tabcordion-lego">
+						<Tab text="Tab 1">Tab 1</Tab>
+						<Tab text="Tab 2">Tab 2</Tab>
+						<Tab text="Tab 3">Tab 3</Tab>
+					</Tabcordion>
+				</GEL>
+			),
+		},
+		{
+			subheading: 'Lego justified',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion look="lego" justify instanceIdPrefix="example-tabcordion-lego-justify">
+						<Tab text="Tab 1">Tab 1</Tab>
+						<Tab text="Tab 2">Tab 2</Tab>
+						<Tab text="Tab 3">Tab 3</Tab>
+					</Tabcordion>
+				</GEL>
+			),
+		},
+
+		// Tabs
 		{
 			heading: 'Tabs',
+			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Tabcordion mode="tabs" instanceIdPrefix="gel-tabcordion-tabs">
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion mode="tabs" instanceIdPrefix="example-tabs">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -112,11 +179,50 @@ export function Docs({ brand }) {
 				</GEL>
 			),
 		},
+		{
+			subheading: 'Justified',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion mode="tabs" justify instanceIdPrefix="example-tabs-justify">
+						<Tab text="Tab 1">Tab 1</Tab>
+						<Tab text="Tab 2">Tab 2</Tab>
+						<Tab text="Tab 3">Tab 3</Tab>
+					</Tabcordion>
+				</GEL>
+			),
+		},
+		{
+			subheading: 'Lego',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion look="lego" mode="tabs" instanceIdPrefix="example-tabs-lego">
+						<Tab text="Tab 1">Tab 1</Tab>
+						<Tab text="Tab 2">Tab 2</Tab>
+						<Tab text="Tab 3">Tab 3</Tab>
+					</Tabcordion>
+				</GEL>
+			),
+		},
+		{
+			subheading: 'Lego justified',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion look="lego" mode="tabs" justify instanceIdPrefix="example-tabs-lego-justify">
+						<Tab text="Tab 1">Tab 1</Tab>
+						<Tab text="Tab 2">Tab 2</Tab>
+						<Tab text="Tab 3">Tab 3</Tab>
+					</Tabcordion>
+				</GEL>
+			),
+		},
+
+		// Accordion
 		{
 			heading: 'Accordion',
+			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Tabcordion mode="accordion" instanceIdPrefix="gel-tabcordion-accordion">
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion mode="accordion" instanceIdPrefix="example-accordion">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -125,58 +231,10 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'Lego tabcordion',
+			subheading: 'Lego',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Tabcordion look="lego" instanceIdPrefix="gel-tabcordion-lego">
-						<Tab text="Tab 1">Tab 1</Tab>
-						<Tab text="Tab 2">Tab 2</Tab>
-						<Tab text="Tab 3">Tab 3</Tab>
-					</Tabcordion>
-				</GEL>
-			),
-		},
-		{
-			heading: 'Lego tabs',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Tabcordion look="lego" mode="tabs" instanceIdPrefix="gel-tabcordion-lego-tabs">
-						<Tab text="Tab 1">Tab 1</Tab>
-						<Tab text="Tab 2">Tab 2</Tab>
-						<Tab text="Tab 3">Tab 3</Tab>
-					</Tabcordion>
-				</GEL>
-			),
-		},
-		{
-			heading: 'Lego accordion',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Tabcordion look="lego" mode="accordion" instanceIdPrefix="gel-tabcordion-lego-accordion">
-						<Tab text="Tab 1">Tab 1</Tab>
-						<Tab text="Tab 2">Tab 2</Tab>
-						<Tab text="Tab 3">Tab 3</Tab>
-					</Tabcordion>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A tabcordion with justified tabs',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Tabcordion justify instanceIdPrefix="gel-tabcordion-justify">
-						<Tab text="Tab 1">Tab 1</Tab>
-						<Tab text="Tab 2">Tab 2</Tab>
-						<Tab text="Tab 3">Tab 3</Tab>
-					</Tabcordion>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A lego tabcordion with justified tabs',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Tabcordion look="lego" justify instanceIdPrefix="gel-tabcordion-justify-lego">
+				<GEL brand={overridesWithTokens} noScope>
+					<Tabcordion look="lego" mode="accordion" instanceIdPrefix="example-accordion-lego">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>

@@ -14,5 +14,6 @@ export const StopwatchIcon = (props) => (
 StopwatchIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Stopwatch',
+	copyrightYear: '2020',
 };
 StopwatchIcon.propTypes = propTypes;

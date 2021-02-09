@@ -1,13 +1,19 @@
 {
 	"name": "@westpac/core",
-	"version": "1.0.1",
-	"description": "Core components for the westpac GEL design language",
+	"version": "1.1.0",
+	"description": "Core components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
 	"blender": {
 		"recipe": "blender/recipe.js",
 		"js": "blender/jquery.js",
 		"isCore": true
 	},
+	"components": [
+		{
+			"name": "GEL",
+			"src": "GEL.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -58,6 +64,7 @@
 		"@emotion/weak-memoize": "^0.2.5",
 		"classnames": "^2.2.6",
 		"color": "^3.1.2",
+		"core-js": "^3.6.5",
 		"facepaint": "^1.2.1",
 		"lodash.get": "^4.4.2",
 		"lodash.mergewith": "^4.6.2",
@@ -69,8 +76,8 @@
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/button": "*",
-		"@westpac/text-input": ">1.0.0-alpha",
+		"@westpac/button": "^1.0.0",
+		"@westpac/text-input": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

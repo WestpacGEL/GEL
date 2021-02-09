@@ -12,7 +12,7 @@ import { secondaryColors } from '../src/secondary-colors.js';
 // Recursively render swatches
 const Swatch = ({ color, secondary }) => {
 	const { BRAND, SPACING, PACKS, COLORS } = useBrand();
-	const colorVal = secondary ? secondaryColors[BRAND][color] : COLORS[color];
+	const colorVal = secondary ? secondaryColors[BRAND.code][color] : COLORS[color];
 
 	if (!chroma.valid(colorVal)) return null;
 
@@ -20,20 +20,32 @@ const Swatch = ({ color, secondary }) => {
 	const [r, g, b] = chroma(colorVal).rgb();
 
 	return (
-		<div css={{ backgroundColor: '#fff', padding: SPACING(4) }}>
+		<div
+			css={mq({
+				backgroundColor: '#fff',
+				padding: SPACING(4),
+				display: 'flex',
+				flexDirection: ['row', 'column'],
+				alignItems: ['center', 'normal'],
+			})}
+		>
 			<div
 				css={{
 					background: colorVal,
 					width: 132,
 					height: 132,
 					borderRadius: '50%',
+					flex: 'none',
 				}}
 			/>
 			<Body
 				css={mq({
 					display: 'flex',
 					flexDirection: 'column',
-					padding: `${SPACING(2)} ${SPACING(2)} 0`,
+					marginTop: [null, SPACING(2)],
+					marginLeft: [SPACING(4), 0],
+					paddingLeft: [null, SPACING(2)],
+					paddingRight: [null, SPACING(2)],
 				})}
 				overrides={{
 					Body: {
@@ -88,7 +100,7 @@ export const ColorSwatch = {
 						if (color.value === 'Secondary Colors') {
 							return (
 								<Fragment key={color.value}>
-									{Object.keys(secondaryColors[BRAND]).map((secondaryColor) => (
+									{Object.keys(secondaryColors[BRAND.code]).map((secondaryColor) => (
 										<Cell key={secondaryColor} width={[12, 6, 4, 3]}>
 											<Swatch color={secondaryColor} secondary />
 										</Cell>

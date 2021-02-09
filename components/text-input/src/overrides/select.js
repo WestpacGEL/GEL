@@ -8,6 +8,7 @@ import {
 	classNames,
 	getModifier,
 	styleReconciler,
+	formatClassName,
 } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { round, sizeMap } from '../_utils';
@@ -18,6 +19,10 @@ import { defaultProps } from '../Select';
 // ==============================
 
 const Select = ({ state: _, ...rest }) => <select {...rest} />;
+
+const BlenderSelect = ({ className, ...rest }) => (
+	<Select className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -166,7 +171,7 @@ export const defaultSelect = {
 };
 
 export const blenderSelect = {
-	component: Select,
+	component: BlenderSelect,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

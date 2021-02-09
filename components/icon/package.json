@@ -1,12 +1,18 @@
 {
 	"name": "@westpac/icon",
-	"version": "1.0.2",
-	"description": "Icon component for the Westpac GEL",
+	"version": "1.1.0",
+	"description": "Icon components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/icon",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Icon",
+			"src": "Icon.js"
+		}
+	],
 	"contributors": [
 		{
 			"name": "Dominik Wilkowski",
@@ -73,6 +79,8 @@
 			"CameraIcon",
 			"CarIcon",
 			"ChatIcon",
+			"ClearCircleIcon",
+			"ClearIcon",
 			"ClockIcon",
 			"CloseIcon",
 			"CompassIcon",
@@ -185,6 +193,7 @@
 			"StarHalfIcon",
 			"StarIcon",
 			"StopwatchIcon",
+			"SuccessIcon",
 			"SuperIcon",
 			"SwitchIcon",
 			"TabletIcon",
@@ -203,6 +212,7 @@
 			"VoiceIcon",
 			"WalkIcon",
 			"WalletIcon",
+			"WarningIcon",
 			"WatchIcon",
 			"WearableIcon",
 			"WheelchairIcon",
@@ -216,14 +226,14 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
+		"@westpac/core": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/grid": ">1.0.0-alpha",
+		"@westpac/grid": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

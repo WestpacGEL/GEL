@@ -1,8 +1,17 @@
 {
 	"name": "@westpac/pictogram",
-	"version": "1.0.0",
-	"description": "Pictogram component for the Westpac GEL",
+	"version": "1.1.0",
+	"description": "Pictogram components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/pictogram",
+	"blender": {
+		"recipe": "blender/recipe.js"
+	},
+	"components": [
+		{
+			"name": "Pictogram",
+			"src": "Pictogram.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -24,7 +33,7 @@
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open",
-		"build": "node ../../helpers/buildExports.js export pictograms"
+		"build": "node ../../helpers/buildExports.js export informative decorative"
 	},
 	"main": "dist/pictogram.cjs.js",
 	"module": "dist/pictogram.esm.js",
@@ -32,24 +41,57 @@
 	"preconstruct": {
 		"entrypoints": [
 			".",
-			"BirthCertificatePictogram",
-			"CoinsPictogram",
-			"DriversLicencePictogram",
-			"MedicareCardPictogram",
-			"PassportPictogram",
-			"WalletPictogram"
+			"informative/ATMPictogram",
+			"informative/AccessibilityPictogram",
+			"informative/AeroplanePictogram",
+			"informative/AustraliaPictogram",
+			"informative/BankCardLockedPictogram",
+			"informative/BankCardPictogram",
+			"informative/BirthCertificatePictogram",
+			"informative/BusinessPersonPictogram",
+			"informative/CalculatorPictogram",
+			"informative/CalendarPictogram",
+			"informative/CashPictogram",
+			"informative/ChatPictogram",
+			"informative/ClockPictogram",
+			"informative/CoinsPictogram",
+			"informative/DesktopComputerPictogram",
+			"informative/DollarSignPictogram",
+			"informative/DriversLicencePictogram",
+			"informative/EftposPictogram",
+			"informative/EnvelopePictogram",
+			"informative/GenericDocumentPictogram",
+			"informative/GiftPictogram",
+			"informative/GlobePictogram",
+			"informative/HousePictogram",
+			"informative/MedicareCardPictogram",
+			"informative/MobileDevicePictogram",
+			"informative/MoneyInPictogram",
+			"informative/MoneyOutPictogram",
+			"informative/PadlockLockedPictogram",
+			"informative/PadlockUnlockedPictogram",
+			"informative/PassportPictogram",
+			"informative/PercentSignPictogram",
+			"informative/PersonPictogram",
+			"informative/StarPictogram",
+			"informative/StopwatchPictogram",
+			"informative/ThumbsUpPictogram",
+			"informative/TickPictogram",
+			"informative/TruckPictogram",
+			"informative/WalletPictogram",
+			"decorative/WBCBankCardPictogram"
 		]
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
+		"@westpac/core": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/grid": ">1.0.0-alpha",
+		"@westpac/grid": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

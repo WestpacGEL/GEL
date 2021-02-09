@@ -8,23 +8,14 @@ import { useTransition, animated } from 'react-spring';
 // ==============================
 
 const Backdrop = ({ state: { open }, ...rest }) => {
-	const backdropTransition = useTransition(open, null, {
-		from: {
-			opacity: 0,
-		},
-		enter: { opacity: 1 },
-		leave: { opacity: 0 },
-		config: { duration: 400 },
+	const transition = useTransition(open, {
+		config: { duration: 150 }, //CSS 'linear' easing-function
+		from: { opacity: 0 },
+		enter: { opacity: 0.5 },
+		leave: { opacity: 0, delay: 300 }, //delay after ModalDialog transform
 	});
 
-	return backdropTransition.map(
-		({ item, key, props }) =>
-			item && (
-				<animated.div key={key} style={props}>
-					<div {...rest} />
-				</animated.div>
-			)
-	);
+	return transition((style, item) => item && <animated.div style={style} {...rest} />);
 };
 
 const BlenderBackdrop = (props) => <div {...props} />;
@@ -33,24 +24,28 @@ const BlenderBackdrop = (props) => <div {...props} />;
 // Styles
 // ==============================
 
-const backdropStyles = () => {
-	return {
-		label: getLabel('modal-backdrop'),
-		zIndex: '1001',
-		position: 'fixed',
-		backgroundColor: 'rgba(0,0,0,0.5)',
-		top: 0,
-		right: 0,
-		bottom: 0,
-		left: 0,
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'baseline',
-	};
-};
+const backdropStyles = () => ({
+	label: getLabel('modal-backdrop'),
+	position: 'fixed',
+	zIndex: 1001,
+	top: 0,
+	right: 0,
+	bottom: 0,
+	left: 0,
+	backgroundColor: '#000',
+});
 
-const blenderStyles = (_, { open }) => {
-	// need to make opacity 0 for base and opacity 1 when open
+// ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, props) => {
+	const baseStyles = backdropStyles();
+	Object.assign(baseStyles, {
+		display: 'none',
+	});
+
+	return baseStyles;
 };
 
 // ==============================
@@ -71,6 +66,6 @@ export const defaultBackdrop = {
 
 export const blenderBackdrop = {
 	component: BlenderBackdrop,
-	styles: backdropStyles,
+	styles: blenderStyles,
 	attributes: backdropAttributes,
 };

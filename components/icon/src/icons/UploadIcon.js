@@ -14,5 +14,6 @@ export const UploadIcon = (props) => (
 UploadIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Upload',
+	copyrightYear: '2020',
 };
 UploadIcon.propTypes = propTypes;

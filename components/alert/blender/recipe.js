@@ -1,7 +1,8 @@
-import { GEL } from '@westpac/core';
+import { GEL, titleCase } from '@westpac/core';
 import React from 'react';
 import { Alert } from '@westpac/alert';
 import { blenderIcon as blenderButtonIcon } from '@westpac/button';
+import { HelpIcon } from '@westpac/icon';
 
 import { blenderAlert } from '../src/overrides/alert';
 import { blenderHeading } from '../src/overrides/heading';
@@ -9,19 +10,21 @@ import { blenderCloseBtn } from '../src/overrides/closeBtn';
 import { blenderIcon } from '../src/overrides/icon';
 import { blenderBody } from '../src/overrides/body';
 
+const looks = ['info', 'success', 'warning', 'danger', 'system'];
+const modes = ['box', 'text'];
+
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/alert'] = {
 		Alert: {
+			component: blenderAlert.component,
 			styles: blenderAlert.styles,
-			attributes: blenderAlert.attributes,
 		},
 		Heading: {
 			component: blenderHeading.component,
 		},
 		CloseBtn: {
 			component: blenderCloseBtn.component,
-			attributes: blenderCloseBtn.attributes,
 		},
 		Icon: {
 			component: blenderIcon.component,
@@ -37,12 +40,11 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
-			<Alert look="info" />
-			<Alert look="success" />
-			<Alert look="warning" />
-			<Alert look="danger" />
-			<Alert look="system" />
+		<GEL brand={overridesWithTokens} noScope>
+			{looks.map((look) => (
+				<Alert key={look} look={look} />
+			))}
+			<Alert mode="text" />
 			<Alert heading="Your alert heading" />
 			<Alert dismissible />
 		</GEL>
@@ -53,6 +55,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/alert'] = {
 		Alert: {
+			component: blenderAlert.component,
 			attributes: blenderAlert.attributes,
 		},
 		Heading: {
@@ -76,69 +79,66 @@ export function Docs({ brand }) {
 	};
 
 	return [
+		// Default
 		{
-			heading: 'A success alert',
+			heading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Alert look="success">Your alert body</Alert>
+				<GEL brand={overridesWithTokens} noScope>
+					<Alert>Your alert body</Alert>
 				</GEL>
 			),
 		},
-		{
-			heading: 'An info alert',
+
+		// Mode
+		...modes.map((mode, i) => ({
+			...(i === 0 && { heading: 'Alert modes' }),
+			subheading: titleCase(mode),
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Alert look="info">Your alert body</Alert>
+				<GEL brand={overridesWithTokens} noScope>
+					<Alert mode={mode}>Your {mode} alert body</Alert>
+				</GEL>
+			),
+		})),
+
+		// Look
+		...looks.map((look, i) => ({
+			...(i === 0 && { heading: 'Alert looks' }),
+			subheading: titleCase(look),
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Alert look={look}>Your {look} alert body</Alert>
+				</GEL>
+			),
+		})),
+
+		// Dismissible
+		{
+			heading: 'Dismissible alerts',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Alert dismissible>Your dismissible alert body</Alert>
 				</GEL>
 			),
 		},
+
+		// Heading
 		{
-			heading: 'A warning alert',
+			heading: 'Alert with heading',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Alert look="warning">Your alert body</Alert>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A danger alert',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Alert look="danger">Your alert body</Alert>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A system alert',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Alert look="system">Your alert body</Alert>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A dismissible alert',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Alert dismissible>Your alert body</Alert>
-				</GEL>
-			),
-		},
-		{
-			heading: 'An alert with heading',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Alert heading="Your alert heading">Your alert body</Alert>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A success alert without icon',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Alert look="success" icon={null}>
-						Your alert body
+				<GEL brand={overridesWithTokens} noScope>
+					<Alert heading="Your alert heading">
+						<p>Your alert body</p>
 					</Alert>
+				</GEL>
+			),
+		},
+
+		// Icon
+		{
+			heading: 'Alert with custom icon',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Alert icon={HelpIcon}>Your alert body</Alert>
 				</GEL>
 			),
 		},

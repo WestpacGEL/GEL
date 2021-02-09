@@ -9,11 +9,12 @@ export function AllStyles({ brand }) {
 	overridesWithTokens['@westpac/well'] = {
 		Well: {
 			component: blenderWell.component,
+			styles: blenderWell.styles,
 		},
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
 			<Well>Text</Well>
 		</GEL>
 	);
@@ -29,19 +30,20 @@ export function Docs({ brand }) {
 
 	return [
 		{
-			heading: 'A well',
+			heading: 'Well component',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Well>Text</Well>
+				<GEL brand={overridesWithTokens} noScope>
+					<Well>Your well content</Well>
 				</GEL>
 			),
 		},
 		{
-			heading: "Nested well's",
+			heading: 'Nested wells',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Well>
-						Text<Well>Nested</Well>
+						Your well content
+						<Well>Your nested well content</Well>
 					</Well>
 				</GEL>
 			),

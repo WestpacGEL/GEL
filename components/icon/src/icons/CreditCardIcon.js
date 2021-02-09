@@ -14,5 +14,6 @@ export const CreditCardIcon = (props) => (
 CreditCardIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Credit Card',
+	copyrightYear: '2020',
 };
 CreditCardIcon.propTypes = propTypes;

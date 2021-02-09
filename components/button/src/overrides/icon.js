@@ -6,7 +6,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const Icon = ({ icon: Icon, left, right, state: _, ...rest }) => <Icon {...rest} />;
+const Icon = ({ icon: Icon, before, after, state: _, ...rest }) => <Icon {...rest} />;
 
 const BlenderIcon = (props) => (
 	<Icon
@@ -27,17 +27,17 @@ const BlenderIcon = (props) => (
 // Styles
 // ==============================
 
-const iconStyles = (_, { left, right, dropdown, block, hasChildren }) => {
+const iconStyles = (_, { before, after, dropdown, block, hasChildren }) => {
 	let label = 'button-icon';
 
-	if (left) label = `button-icon-left`;
-	if (right) label = `button-icon-right`;
-	if (dropdown) label = `button-icon-dropdown`;
+	if (before && hasChildren) label = `button-icon-before`;
+	if (after && hasChildren) label = `button-icon-after`;
+	if (dropdown) label = block ? `button-icon-dropdown-block` : `button-icon-dropdown-block`;
 
 	return {
 		label,
-		...(left ? { marginRight: hasChildren && '0.4em' } : null),
-		...(right ? { marginLeft: hasChildren && '0.4em' } : null),
+		...(before ? { marginRight: hasChildren && '0.4em' } : null),
+		...(after ? { marginLeft: hasChildren && '0.4em' } : null),
 		...(dropdown ? { marginLeft: block ? 'auto' : '0.4em' } : null),
 	};
 };

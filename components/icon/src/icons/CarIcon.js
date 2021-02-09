@@ -14,5 +14,6 @@ export const CarIcon = (props) => (
 CarIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Car',
+	copyrightYear: '2020',
 };
 CarIcon.propTypes = propTypes;

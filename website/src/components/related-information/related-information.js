@@ -6,8 +6,7 @@ import { Container, Grid, Cell } from '@westpac/grid';
 import { Section, SectionHeading } from '../section';
 
 import { TextOnlySlateContent } from '../pages/single-component/blocks-hub';
-import { BlockList, BlockListItem } from '../block-list';
-import { BlockHeading } from '../block-heading';
+import { BlockList, BlockListItem, BlockListHeading } from '../block-list';
 import { getURL } from '../_utils';
 
 export const RelatedInformation = ({ item }) => {
@@ -36,8 +35,8 @@ export const RelatedInformation = ({ item }) => {
 
 				<Grid rowGap={30}>
 					{hasRelatedPages && (
-						<Cell width={[12, hasRelatedInfo && 6, 4]}>
-							<BlockHeading icon={CubeIcon}>Components</BlockHeading>
+						<Cell width={[12, hasRelatedInfo ? 6 : null, 4]}>
+							<BlockListHeading icon={CubeIcon}>Components</BlockListHeading>
 							<BlockList>
 								{relatedPages.map((d) => (
 									<BlockListItem key={d.id} link={getURL(d)}>
@@ -49,10 +48,10 @@ export const RelatedInformation = ({ item }) => {
 					)}
 					{hasRelatedInfo && (
 						<Cell
-							width={[12, hasRelatedPages && 6, hasRelatedPages ? 7 : 12]}
-							left={[null, null, hasRelatedPages && 6]}
+							width={[12, hasRelatedPages ? 6 : null, hasRelatedPages ? 7 : null]}
+							left={[null, null, hasRelatedPages ? 6 : null]}
 						>
-							<BlockHeading icon={GenericFileIcon}>Articles</BlockHeading>
+							<BlockListHeading icon={GenericFileIcon}>Articles</BlockListHeading>
 							<TextOnlySlateContent
 								content={relatedInfo}
 								item={item}

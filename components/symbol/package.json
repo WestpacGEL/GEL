@@ -1,11 +1,17 @@
 {
 	"name": "@westpac/symbol",
-	"version": "1.0.0-beta.2",
-	"description": "Symbol component for the Westpac GEL",
+	"version": "1.0.0",
+	"description": "Symbol components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/symbol",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Symbol",
+			"src": "Symbol.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -58,10 +64,6 @@
 			"BSAMultibrandLargeLogo",
 			"BSAMultibrandSmallLogo",
 			"BSAStackedLogo",
-			"BTFGLogo",
-			"BTFGMultibrandLargeLogo",
-			"BTFGMultibrandSmallLogo",
-			"BTFGStackedLogo",
 			"FacebookSymbol",
 			"GooglePlusSymbol",
 			"GoogleStoreSymbol",
@@ -72,6 +74,9 @@
 			"MastercardSymbol",
 			"MicrosoftStoreSymbol",
 			"PayIDSymbol",
+			"RAMSLogo",
+			"RAMSMultibrandLargeLogo",
+			"RAMSMultibrandSmallLogo",
 			"RedAvatarCircleLogo",
 			"RedAvatarCircleReversedLogo",
 			"RedAvatarLogo",
@@ -97,7 +102,7 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
+		"@westpac/core": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

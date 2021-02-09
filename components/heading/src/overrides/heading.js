@@ -37,6 +37,10 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 	return <Tag ref={ref} {...rest} />;
 });
 
+const BlenderHeading = ({ className, ...rest }) => (
+	<Heading className={className.trim()} {...rest} />
+);
+
 // ==============================
 // Styles
 // ==============================
@@ -79,7 +83,7 @@ const headingStyles = (_, { size, uppercase }) => {
 const blenderStyles = (_, { size, uppercase }) => {
 	if (!uppercase) {
 		const styles = headingStyles(_, { size });
-		return { ...styles, label: `${styles.label}-size-${size}` };
+		return { ...styles, label: `${styles.label}-${size}` };
 	} else {
 		const baseStyles = headingStyles(_, { size });
 		const modifierStyles = headingStyles(_, { size, uppercase });
@@ -97,7 +101,7 @@ const headingAttributes = () => null;
 
 const blenderAttributes = (_, { size, uppercase }) => ({
 	className: classNames({
-		[`__convert__heading-size-${size}`]: uppercase,
+		[`__convert__heading-${size}`]: uppercase,
 	}),
 });
 
@@ -112,7 +116,7 @@ export const defaultHeading = {
 };
 
 export const blenderHeading = {
-	component: Heading,
+	component: BlenderHeading,
 	styles: blenderStyles,
-	attributes: headingAttributes,
+	attributes: blenderAttributes,
 };

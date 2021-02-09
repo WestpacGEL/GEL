@@ -9,7 +9,16 @@ import * as pictograms from '@westpac/pictogram';
 const renderPictograms = (search) => {
 	const pictogramDetails = [];
 	for (let key in pictograms) {
-		pictogramDetails.push({ name: key, pictogram: pictograms[key] });
+		// only show informative for now
+		if (
+			!key.startsWith('BOM') &&
+			!key.startsWith('BSA') &&
+			!key.startsWith('STG') &&
+			!key.startsWith('WBC') &&
+			!key.startsWith('WBG')
+		) {
+			pictogramDetails.push({ name: key, pictogram: pictograms[key] });
+		}
 	}
 	const { COLORS } = useBrand();
 
@@ -53,7 +62,21 @@ const renderPictograms = (search) => {
 const Pictogram = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, BRAND } = useBrand();
+	if (BRAND.code !== 'WBC') {
+		return (
+			<Cell width={12}>
+				<p
+					css={{
+						padding: SPACING(4),
+						marginBottom: SPACING(4),
+						backgroundColor: COLORS.light,
+						textAlign: 'center',
+					}}
+				>{`Pictograms are not yet available for this brand`}</p>
+			</Cell>
+		);
+	}
 
 	return (
 		<Fragment>

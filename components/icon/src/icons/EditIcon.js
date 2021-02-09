@@ -14,5 +14,6 @@ export const EditIcon = (props) => (
 EditIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Edit',
+	copyrightYear: '2020',
 };
 EditIcon.propTypes = propTypes;

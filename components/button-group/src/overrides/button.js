@@ -46,9 +46,21 @@ const buttonStyles = () => {
 	return mq({
 		label: getLabel('buttonGroup-btn'),
 
-		'input:checked + &': {
-			borderTop: '6px solid transparent !important', //a11y: for high contrast mode
-			borderBottom: '6px solid transparent !important', //a11y: for high contrast mode
+		//a11y: WHCM
+		position: 'relative',
+		'input:checked + &::before, input:checked + &::after': {
+			content: '""',
+			position: 'absolute',
+			zIndex: 1,
+			left: 0,
+			right: 0,
+			borderTop: '6px solid transparent !important',
+		},
+		'input:checked + &::before': {
+			top: 0,
+		},
+		'input:checked + &::after': {
+			bottom: 0,
 		},
 
 		'label:not(:last-of-type) &': {
@@ -103,15 +115,10 @@ const blenderStyles = () => {
 					backgroundColor: COLORS.tints.primary50,
 				},
 			},
-			'&.__convert__button-faint-soft': {
-				color: COLORS.muted,
-				backgroundColor: COLORS.light,
-				borderColor: COLORS.border,
-
-				':hover, :active, &.active': {
-					backgroundColor: '#fff',
-				},
-			},
+		},
+		'input:disabled + &': {
+			opacity: '0.5',
+			pointerEvents: 'none',
 		},
 	};
 

@@ -6,7 +6,6 @@ import { ArrowRightIcon } from '@westpac/icon';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { BASE_PAGE } from '../../config';
-import { PACKS } from '@westpac/bom/tokens/packs';
 
 // ==============================
 // Component
@@ -38,42 +37,55 @@ export const BlockListItem = ({ href, link, target, logo: Logo, children, ...res
 	const mq = useMediaQuery();
 	const { COLORS, SPACING } = useBrand();
 
+	const itemPadding = ['0.9375rem 0 1rem', null, `0.5625rem ${Logo ? '9px' : 0} 0.5625rem 0`];
+
 	return (
-		<li css={mq({ display: 'block', borderBottom: `1px solid ${COLORS.border}` })} {...rest}>
-			<BlockListLink href={href} link={link}>
-				<a
-					href={!link ? href || '#0' : null}
-					target={target}
-					css={mq({
-						boxSizing: 'border-box',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'space-between',
-						padding: ['0.9375rem 0 1rem', null, `0.5625rem ${Logo ? '9px' : 0} 0.5625rem 0`],
-						minHeight: [55, null, Logo ? 72 : 55],
-						color: COLORS.text,
-						textDecoration: 'none',
-						':hover, :focus': {
-							color: COLORS.primary,
-							textDecoration: 'underline',
-						},
-					})}
-				>
-					{children}
-					<div css={{ ...(Logo && { width: 54, height: 54 }), marginLeft: SPACING(4) }}>
-						{Logo ? (
-							<Logo width="auto" height="100%" aria-hidden={true} />
-						) : (
-							<ArrowRightIcon
-								size="medium"
-								color={COLORS.primary}
-								assistiveText={null}
-								aria-hidden={true}
-							/>
-						)}
-					</div>
-				</a>
-			</BlockListLink>
+		<li
+			css={mq({
+				display: 'block',
+				borderBottom: `1px solid ${COLORS.border}`,
+				padding: !href && itemPadding,
+			})}
+			{...rest}
+		>
+			{href || link ? (
+				<BlockListLink href={href} link={link}>
+					<a
+						href={!link ? href : null}
+						target={target}
+						css={mq({
+							boxSizing: 'border-box',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'space-between',
+							padding: itemPadding,
+							minHeight: [55, null, Logo ? 72 : 55],
+							color: COLORS.text,
+							textDecoration: 'none',
+							':hover, :focus': {
+								color: COLORS.primary,
+								textDecoration: 'underline',
+							},
+						})}
+					>
+						{children}
+						<div css={{ ...(Logo && { width: 54, height: 54 }), marginLeft: SPACING(4) }}>
+							{Logo ? (
+								<Logo width="auto" height="100%" aria-hidden={true} />
+							) : (
+								<ArrowRightIcon
+									size="medium"
+									color={COLORS.primary}
+									assistiveText={null}
+									aria-hidden={true}
+								/>
+							)}
+						</div>
+					</a>
+				</BlockListLink>
+			) : (
+				children
+			)}
 		</li>
 	);
 };

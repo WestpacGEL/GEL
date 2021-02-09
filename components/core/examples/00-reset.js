@@ -58,7 +58,7 @@ function Example({ brand }) {
 			</select>
 			<br />
 			<br />
-			<textarea>&lt;textarea&gt;</textarea>
+			<textarea defaultValue="&lt;textarea&gt;" />
 			<br />
 			<br />
 			<fieldset>&lt;fieldset&gt;</fieldset>
@@ -70,25 +70,25 @@ function Example({ brand }) {
 			<progress>&lt;progress&gt;</progress>
 			<br />
 			<br />
-			<input type="checkbox" for="example-checkbox" />
+			<input type="checkbox" htmlFor="example-checkbox" />
 			<label id="example-checkbox">&lt;input type="checkbox"&gt;</label>
 			<br />
 			<br />
-			<input type="radio" for="example-radio" />
+			<input type="radio" htmlFor="example-radio" />
 			<label id="example-radio">&lt;input type="radio"&gt;</label>
 			<br />
 			<br />
 			<label id="example-number">&lt;input type="number"&gt;</label>
 			<br />
-			<input type="number" for="example-number" />
+			<input type="number" htmlFor="example-number" />
 			<br />
 			<br />
 			<label id="example-search">&lt;input type="search"&gt;</label>
 			<br />
-			<input type="search" for="example-search" />
+			<input type="search" htmlFor="example-search" />
 			<br />
 			<br />
-			<label for="example-file">::-webkit-file-upload-button</label>
+			<label htmlFor="example-file">::-webkit-file-upload-button</label>
 			<br />
 			<input type="file" id="example-file" />
 			<br />

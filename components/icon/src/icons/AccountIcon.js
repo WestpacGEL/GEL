@@ -14,5 +14,6 @@ export const AccountIcon = (props) => (
 AccountIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Account',
+	copyrightYear: '2020',
 };
 AccountIcon.propTypes = propTypes;

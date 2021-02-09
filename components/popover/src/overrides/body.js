@@ -28,13 +28,9 @@ const BlenderPopoverBody = (props) => (
 // Styles
 // ==============================
 
-const bodyStyles = (_, {}) => {
-	const { COLORS } = useBrand();
-	return {
-		label: getLabel('popover-body'),
-		color: COLORS.neutral,
-	};
-};
+const bodyStyles = () => ({
+	label: getLabel('popover-body'),
+});
 
 // ==============================
 // Attributes

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { defaultPictogram } from './overrides/pictogram';
 import { defaultSvg } from './overrides/svg';
-export { colorMap } from './_utils';
+export { getColors } from './_utils';
 import pkg from '../package.json';
 
 // ==============================
@@ -13,8 +13,13 @@ import pkg from '../package.json';
 // ==============================
 
 export const Pictogram = ({
-	type,
+	mode,
+	width,
+	height,
 	assistiveText,
+	viewBoxWidth,
+	viewBoxHeight,
+	copyrightYear,
 	pictogram,
 	children,
 	overrides: componentOverrides,
@@ -31,8 +36,13 @@ export const Pictogram = ({
 	};
 
 	const state = {
-		type,
+		mode,
+		width,
+		height,
 		assistiveText,
+		viewBoxWidth,
+		viewBoxHeight,
+		copyrightYear,
 		pictogram,
 		overrides: componentOverrides,
 		...rest,
@@ -46,6 +56,11 @@ export const Pictogram = ({
 	return (
 		<Pictogram {...rest} state={state} {...pictogramAttributes(state)} css={pictogramStyles(state)}>
 			<Svg state={state} css={svgStyles(state)} {...svgAttributes(state)}>
+				{copyrightYear && (
+					<metadata>
+						{`Copyright © ${copyrightYear} by Westpac Banking Corporation. All rights reserved.`}
+					</metadata>
+				)}
 				{children}
 			</Svg>
 		</Pictogram>
@@ -60,7 +75,31 @@ export const propTypes = {
 	/**
 	 *  The visual style of the pictogram
 	 */
-	type: PropTypes.oneOf(['colour', 'dark', 'light']).isRequired,
+	mode: PropTypes.oneOf(['dark', 'light', 'duo']),
+
+	/**
+	 * Set pictogram width in pixels.
+	 *
+	 * Pictogram will scale to fit (height will be set automatically). Note: If both "width" and "height" props are provided "height" will be ignored.
+	 */
+	width: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+
+	/**
+	 * Set a pictogram height in pixels.
+	 *
+	 * Pictogram will scale to fit (width will be set automatically). Note: If both "width" and "height" props are provided "height" will be ignored.
+	 */
+	height: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+
+	/**
+	 * The pictogram SVG viewBox (artboard) width
+	 */
+	viewBoxWidth: PropTypes.number,
+
+	/**
+	 * The pictogram SVG viewBox (artboard) height
+	 */
+	viewBoxHeight: PropTypes.number,
 
 	/**
 	 * String to use as the `aria-label` for the pictogram. Set to an empty string if you
@@ -70,6 +109,11 @@ export const propTypes = {
 	 * Defaults to the pictogram name e.g. `WalletPictogram` --> "Wallet"
 	 */
 	assistiveText: PropTypes.string,
+
+	/**
+	 * The pictogram SVG metadata copyright year text
+	 */
+	copyrightYear: PropTypes.string.isRequired,
 
 	/**
 	 * The override API
@@ -88,9 +132,7 @@ export const propTypes = {
 	}),
 };
 
-export const defaultProps = {
-	type: 'colour',
-};
+export const defaultProps = {};
 
 Pictogram.propTypes = propTypes;
 Pictogram.defaultProps = defaultProps;

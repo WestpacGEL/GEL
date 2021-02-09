@@ -14,5 +14,6 @@ export const ExcelFileIcon = (props) => (
 ExcelFileIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Excel File',
+	copyrightYear: '2020',
 };
 ExcelFileIcon.propTypes = propTypes;

@@ -9,6 +9,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-bar'] = {
 		ProgressBar: {
+			component: blenderProgressBar.component,
 			styles: blenderProgressBar.styles,
 		},
 		Bar: {
@@ -16,7 +17,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
 			<ProgressBar value={0} />
 			<ProgressBar value={0} look="skinny" />
 		</GEL>
@@ -27,22 +28,43 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-bar'] = {
 		ProgressBar: {
+			component: blenderProgressBar.component,
 			attributes: blenderProgressBar.attributes,
 		},
 	};
 	return [
+		// Default
 		{
-			heading: 'A default progress bar',
+			heading: 'Default progress bar',
+			subheading: '0% complete',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
+					<ProgressBar value={0} />
+				</GEL>
+			),
+		},
+		{
+			subheading: '20% complete',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
 					<ProgressBar value={20} />
 				</GEL>
 			),
 		},
 		{
-			heading: 'A skinny progress bar',
+			subheading: '100% complete',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
+					<ProgressBar value={100} />
+				</GEL>
+			),
+		},
+
+		// Skinny
+		{
+			heading: 'Skinny progress bar',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
 					<ProgressBar value={20} look="skinny" />
 				</GEL>
 			),

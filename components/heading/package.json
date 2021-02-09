@@ -1,11 +1,21 @@
 {
 	"name": "@westpac/heading",
-	"version": "1.0.0-beta.3",
-	"description": "Headings for your page needs",
+	"version": "1.0.0",
+	"description": "Heading components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/heading",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Heading",
+			"src": "Heading.js"
+		},
+		{
+			"name": "BrandHeading",
+			"src": "BrandHeading.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -37,7 +47,7 @@
 	"module": "dist/heading.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
+		"@westpac/core": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

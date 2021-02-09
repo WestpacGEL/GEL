@@ -17,18 +17,22 @@ export default ({ context, showCode, showDemo }) => {
 			<Wrapper>
 				<Button
 					onClick={() => setOpen(true)}
+					look="primary"
+					soft
 					overrides={{ Button: { styles: (styles) => ({ ...styles, marginRight: '2rem' }) } }}
 				>
 					No footer
 				</Button>
 				<Button
 					onClick={() => setOpen2(true)}
+					look="primary"
+					soft
 					overrides={{ Button: { styles: (styles) => ({ ...styles, marginRight: '2rem' }) } }}
 				>
 					No dismiss button
 				</Button>
 			</Wrapper>
-			<Modal heading="Modal heading" open={open} onClose={() => setOpen(false)}>
+			<Modal heading="Sudden and magnificent" open={open} onClose={() => setOpen(false)}>
 				<Body>
 					The line of the horizon was clear and hard against the sky, and in one particular quarter
 					it showed black against a silvery climbing phosphorescence that grew and grew. At last,
@@ -42,7 +46,7 @@ export default ({ context, showCode, showDemo }) => {
 				</Body>
 			</Modal>
 			<Modal
-				heading="Modal heading"
+				heading="Sudden and magnificent"
 				open={open2}
 				onClose={() => setOpen2(false)}
 				dismissible={false}

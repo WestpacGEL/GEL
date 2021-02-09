@@ -7,6 +7,7 @@ import {
 	classNames,
 	getModifier,
 	styleReconciler,
+	formatClassName,
 } from '@westpac/core';
 
 import { defaultProps } from '../Switch';
@@ -19,6 +20,10 @@ import { nestedLabelStyles } from './label';
 
 const Switch = ({ state: _, ...rest }) => <label {...rest} />;
 
+const BlenderSwitch = ({ className, ...rest }) => (
+	<Switch className={formatClassName(className)} {...rest} />
+);
+
 // ==============================
 // Styles
 // ==============================
@@ -30,14 +35,13 @@ const switchStyles = (_, { block, disabled }) => {
 		label: getLabel('switch'),
 		display: block ? 'flex' : 'inline-flex',
 		verticalAlign: 'top',
-		opacity: disabled && 0.5,
 		width: block && '100%',
 		flexWrap: 'wrap',
 		alignItems: 'center',
 		position: 'relative',
 		marginRight: !block ? '1.125rem' : 'initial',
 		marginBottom: '0.375rem',
-		cursor: disabled ? 'not-allowed' : 'pointer',
+		cursor: 'pointer',
 	})[0];
 };
 
@@ -45,8 +49,8 @@ const switchStyles = (_, { block, disabled }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { block, disabled, size }) => {
-	const props = { block, disabled, size };
+const blenderStyles = (_, { block, size }) => {
+	const props = { block, size };
 	const baseStyles = switchStyles(_, defaultProps);
 
 	let modifiers = getModifier(defaultProps, props);
@@ -79,12 +83,12 @@ const switchAttributes = (_, { instanceId }) => ({
 	htmlFor: instanceId, //a11y: must use explicit association
 });
 
-const blenderAttributes = (_, { instanceId, block, disabled, size }) => ({
+const blenderAttributes = (_, { instanceId, block, size }) => ({
 	...switchAttributes(_, { instanceId }),
 	className: classNames({
 		[`__convert__switch-${size}`]: size !== defaultProps.size,
 		[`__convert__switch-block`]: block,
-		[`__convert__switch-disabled`]: disabled,
+		// [`__convert__switch-disabled`]: disabled,
 	}),
 });
 
@@ -99,7 +103,7 @@ export const defaultSwitch = {
 };
 
 export const blenderSwitch = {
-	component: Switch,
+	component: BlenderSwitch,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

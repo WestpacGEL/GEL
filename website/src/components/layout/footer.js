@@ -1,11 +1,11 @@
 /** @jsx jsx */
+import { useState, useEffect } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
-import { Icon } from '../../../../components/icon/src/Icon';
-
-import { useState, useEffect } from 'react';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
 import throttle from 'lodash.throttle';
+
+import { Icon } from '../../../../components/icon/src/Icon';
 
 const UpIcon = (props) => {
 	const { COLORS } = useBrand();

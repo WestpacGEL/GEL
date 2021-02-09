@@ -1,11 +1,45 @@
 {
 	"name": "@westpac/table",
-	"version": "1.0.0-beta.2",
-	"description": "Table component for the Westpac GEL",
+	"version": "1.0.0",
+	"description": "Table components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/table",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Table",
+			"src": "Table.js"
+		},
+		{
+			"name": "Td",
+			"src": "Td.js"
+		},
+		{
+			"name": "Tr",
+			"src": "Tr.js"
+		},
+		{
+			"name": "Caption",
+			"src": "Caption.js"
+		},
+		{
+			"name": "Thead",
+			"src": "Thead.js"
+		},
+		{
+			"name": "Th",
+			"src": "Th.js"
+		},
+		{
+			"name": "Tbody",
+			"src": "Tbody.js"
+		},
+		{
+			"name": "Tfoot",
+			"src": "Tfoot.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -42,8 +76,8 @@
 	"module": "dist/table.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/body": "^1.1.0",
-		"@westpac/core": "^1.0.1",
+		"@westpac/body": "^1.2.0",
+		"@westpac/core": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

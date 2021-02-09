@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
+import { jsx } from '@westpac/core';
 import { Fragment, useEffect, useState } from 'react';
-import { jsx, useBrand } from '@westpac/core';
 import { Heading as WestpacHeading } from '@westpac/heading';
 import Select from '@arch-ui/select';
 import { FieldContainer, FieldLabel, FieldInput } from '@arch-ui/fields';

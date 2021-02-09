@@ -6,7 +6,23 @@ import { Alert } from '@westpac/alert';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<h2>Success</h2>
+			<h2>Default</h2>
+			<Alert>
+				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<hr />
+
+			<h2>Look</h2>
+
+			<h3>Info</h3>
+			<Alert look="info">
+				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
+				<a href="#">Link</a>
+			</Alert>
+
+			<h3>Success</h3>
 			<Alert look="success">
 				<strong>Well done!</strong> You successfully read this important alert message. Lorem ipsum
 				dolor sit amet, consectetur adipisicing elit. Quo dolor provident quasi nisi officia tempore
@@ -19,33 +35,19 @@ function Example({ brand }) {
 				obcaecati. <a href="#">Link</a>
 			</Alert>
 
-			<hr />
-
-			<h2>Information</h2>
-			<Alert look="info">
-				<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
-				<a href="#">Link</a>
-			</Alert>
-
-			<hr />
-
-			<h2>Warning</h2>
+			<h3>Warning</h3>
 			<Alert look="warning">
 				<strong>Warning!</strong> Better check yourself, you’re not looking too good.{' '}
 				<a href="#">Link</a>
 			</Alert>
 
-			<hr />
-
-			<h2>Danger</h2>
+			<h3>Danger</h3>
 			<Alert look="danger">
 				<strong>Oh snap!</strong> Change a few things up and try submitting again.{' '}
 				<a href="#">Link</a>
 			</Alert>
 
-			<hr />
-
-			<h2>System</h2>
+			<h3>System</h3>
 			<Alert look="system">
 				<strong>System Error 8942:</strong> The server is no responding. Please try again later.
 				Sorry for the inconvenience. <a href="#">Link</a>

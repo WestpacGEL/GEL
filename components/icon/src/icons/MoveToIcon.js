@@ -14,5 +14,6 @@ export const MoveToIcon = (props) => (
 MoveToIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Move To',
+	copyrightYear: '2020',
 };
 MoveToIcon.propTypes = propTypes;

@@ -14,5 +14,6 @@ export const YammerIcon = (props) => (
 YammerIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Yammer',
+	copyrightYear: '2020',
 };
 YammerIcon.propTypes = propTypes;

@@ -48,7 +48,12 @@ export default ({ context, showCode, showDemo }) => {
 				/>
 			</InputGroup>
 			<br />
-			<InputGroup name="example-button" label="Filter by name" value={value}>
+			<InputGroup
+				name="example-button"
+				label="Filter by name"
+				value={value}
+				onChange={(event) => setValue(event.target.value)}
+			>
 				<Before inputType="button" data="-" onClick={() => setValue((value) => value - 1)} />
 				<After inputType="button" data="+" onClick={() => setValue((value) => value + 1)} />
 			</InputGroup>

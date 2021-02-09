@@ -14,5 +14,6 @@ export const SecurityIcon = (props) => (
 SecurityIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Security',
+	copyrightYear: '2020',
 };
 SecurityIcon.propTypes = propTypes;

@@ -1,1 +1,1 @@
-export { Body } from './body';
+export { Body, getTypeScaleMargin } from './body';

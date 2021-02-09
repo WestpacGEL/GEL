@@ -1,11 +1,21 @@
 {
 	"name": "@westpac/breadcrumb",
-	"version": "1.0.1",
-	"description": "Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.",
+	"version": "1.1.0",
+	"description": "Breadcrumb components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/breadcrumb",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Breadcrumb",
+			"src": "Breadcrumb.js"
+		},
+		{
+			"name": "Crumb",
+			"src": "Crumb.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -42,8 +52,8 @@
 	"module": "dist/breadcrumb.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
-		"@westpac/icon": "^1.0.1",
+		"@westpac/core": "^1.1.0",
+		"@westpac/icon": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

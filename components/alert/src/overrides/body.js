@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body';
 
 // ==============================
@@ -32,12 +32,12 @@ const bodyStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
-		label: 'alert-body',
+		label: getLabel('alert-body'),
 		position: 'relative',
 		flex: 1,
 		top: [null, '0.125rem'],
 		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
-			color: 'inherit',
+			color: 'inherit !important',
 		},
 	})[0];
 };

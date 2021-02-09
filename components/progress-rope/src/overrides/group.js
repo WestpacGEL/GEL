@@ -49,9 +49,14 @@ const baseStyles = () => {
 	const step = getStyles(stepStyles, { grouped: true });
 	const stepBtn = getStyles(stepButtonStyles, { grouped: true });
 	const stepBtnVisited = getStyles(stepButtonStyles, { grouped: true, visited: true });
-
+	const stepBtnActive = getStyles(stepButtonStyles, {
+		grouped: true,
+		visited: true,
+		furthest: true,
+		active: true,
+	});
 	const stepBtnReconciled = styleReconciler(stepBtn.styles, stepBtnVisited.styles);
-
+	const stepBtnActiveReconciled = styleReconciler(stepBtn.styles, stepBtnActive.styles);
 	return {
 		label: GROUP_LABEL,
 		[`.__convert__${step.label}`]: {
@@ -61,6 +66,11 @@ const baseStyles = () => {
 		[`.__convert__${step.label}-visited`]: {
 			[`.__convert__${stepBtn.label}`]: {
 				...stepBtnReconciled,
+			},
+		},
+		[`.__convert__${step.label}-active`]: {
+			[`.__convert__${stepBtn.label}`]: {
+				...stepBtnActiveReconciled,
 			},
 		},
 	};
@@ -77,7 +87,7 @@ const groupAttributes = () => null;
 
 const blenderAttributes = (_, { active, visited }) => ({
 	className: classNames({
-		'__convert__progressRope-group': !active || !visited,
+		'__convert__progressRope-group': active || visited,
 	}),
 	'data-js': 'progressRope-group__version__',
 });

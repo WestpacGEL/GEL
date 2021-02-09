@@ -1,7 +1,15 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { jsx, useBrand, useMediaQuery, getLabel, getModifier, classNames } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	useMediaQuery,
+	getLabel,
+	getModifier,
+	classNames,
+	formatClassName,
+} from '@westpac/core';
 
 import { defaultProps } from '../blender/Tabcordion';
 import { tabBtnLegoStyles } from './tabButton';
@@ -12,6 +20,10 @@ import { accordionBtnLegoStyles } from './accordionButton';
 // ==============================
 
 const Tabcordion = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+
+const BlenderTabcordion = forwardRef(({ state: _, className, ...rest }, ref) => (
+	<div ref={ref} className={formatClassName(className)} {...rest} />
+));
 
 // ==============================
 // Styles
@@ -146,7 +158,7 @@ export const defaultTabcordion = {
 };
 
 export const blenderTabcordion = {
-	component: Tabcordion,
+	component: BlenderTabcordion,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

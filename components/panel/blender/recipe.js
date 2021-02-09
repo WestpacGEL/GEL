@@ -1,4 +1,4 @@
-import { GEL } from '@westpac/core';
+import { GEL, titleCase } from '@westpac/core';
 import React from 'react';
 
 import { Panel, Body, Footer } from '@westpac/panel';
@@ -15,6 +15,7 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/panel'] = {
 		Panel: {
+			component: blenderPanel.component,
 			styles: blenderPanel.styles,
 		},
 		Header: {
@@ -28,16 +29,17 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
-			<Panel look="hero" heading="Heading text">
-				<Body>Body text</Body>
-				<Footer>Footer text</Footer>
-			</Panel>
-			<Panel look="faint" heading="Heading text">
-				<Body>Body text</Body>
-				<Footer>Footer text</Footer>
-			</Panel>
-			<Panel heading={`Panel heading`}>
+		<GEL brand={overridesWithTokens} noScope>
+			{/* Looks */}
+			{looks.map((look) => (
+				<Panel key={look} look={look} heading="Heading text">
+					<Body>Body text</Body>
+					<Footer>Footer text</Footer>
+				</Panel>
+			))}
+
+			{/* Table */}
+			<Panel heading="Panel heading">
 				<Body>Panel text</Body>
 				<Table bordered>
 					<Caption>Table caption</Caption>
@@ -72,7 +74,7 @@ export function AllStyles({ brand }) {
 					</Tbody>
 					<Tfoot>
 						<Tr>
-							<Td colSpan="3">Footer goes here and should colSpan all columns</Td>
+							<Td colSpan="3">Footer goes here and should colspan all columns</Td>
 						</Tr>
 					</Tfoot>
 				</Table>
@@ -85,6 +87,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/panel'] = {
 		Panel: {
+			component: blenderPanel.component,
 			attributes: blenderPanel.attributes,
 		},
 		Heading: {
@@ -95,33 +98,61 @@ export function Docs({ brand }) {
 		},
 	};
 	return [
-		...looks.map((look) => ({
-			heading: `A ${look} panel`,
+		// Looks
+		{
+			heading: 'Panel looks',
+			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
+					<Panel heading="Your panel heading">
+						<Body>Your panel content</Body>
+					</Panel>
+				</GEL>
+			),
+		},
+		...looks.map((look) => ({
+			subheading: titleCase(look),
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
 					<Panel look={look} heading={`Your ${look} panel heading`}>
-						<Body>Your {look} panel text</Body>
+						<Body>Your {look} panel content</Body>
 					</Panel>
 				</GEL>
 			),
 		})),
-		...looks.map((look) => ({
-			heading: `A ${look} panel with footer`,
+
+		// Footer
+		{
+			heading: 'Panel with footer',
+			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
+					<Panel heading="Your panel heading">
+						<Body>Your panel content</Body>
+						<Footer>Your panel footer</Footer>
+					</Panel>
+				</GEL>
+			),
+		},
+		...looks.map((look) => ({
+			subheading: titleCase(look),
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
 					<Panel look={look} heading={`Your ${look} panel heading`}>
-						<Body>Your {look} panel text</Body>
+						<Body>Your {look} panel content</Body>
 						<Footer>Your {look} panel footer</Footer>
 					</Panel>
 				</GEL>
 			),
 		})),
+
+		// Table
 		{
-			heading: `A panel with table`,
+			heading: 'Panel with table',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Panel heading={`Panel heading`}>
-						<Body>Panel text</Body>
+				<GEL brand={overridesWithTokens} noScope>
+					<Panel heading="Your panel heading">
+						<Body>Your panel content</Body>
 						<Table bordered>
 							<Caption>Table caption</Caption>
 							<Thead>
@@ -155,7 +186,7 @@ export function Docs({ brand }) {
 							</Tbody>
 							<Tfoot>
 								<Tr>
-									<Td colSpan="3">Footer goes here and should colSpan all columns</Td>
+									<Td colSpan="3">Footer goes here and should colspan all columns</Td>
 								</Tr>
 							</Tfoot>
 						</Table>

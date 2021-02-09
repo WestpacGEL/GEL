@@ -8,12 +8,13 @@ export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/pagination'] = {
 		Link: {
+			component: blenderLink.component,
 			styles: blenderLink.styles,
 		},
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
 			<Pagination current={1}>
 				<Page text="1" />
 				<Page text="2" />
@@ -32,14 +33,16 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/pagination'] = {
 		Link: {
+			component: blenderLink.component,
 			attributes: blenderLink.attributes,
 		},
 	};
 	return [
 		{
-			heading: 'A default pagination - Page 1',
+			heading: 'Pagination component',
+			subheading: 'Page 1',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Pagination current={0}>
 						<Page text="1" />
 						<Page text="2" />
@@ -49,9 +52,9 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A default pagination - Page 2',
+			subheading: 'Page 2',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Pagination current={1}>
 						<Page text="1" />
 						<Page text="2" />
@@ -61,9 +64,9 @@ export function Docs({ brand }) {
 			),
 		},
 		{
-			heading: 'A default pagination - Page 3',
+			subheading: 'Page 3',
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Pagination current={2}>
 						<Page text="1" />
 						<Page text="2" />

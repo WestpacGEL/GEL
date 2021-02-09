@@ -26,7 +26,9 @@ const listStyles = () => ({
 // Attributes
 // ==============================
 
-const listAttributes = () => null;
+const listAttributes = () => ({
+	role: 'list',
+});
 
 // ==============================
 // Exports

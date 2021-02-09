@@ -30,5 +30,6 @@ SlackSymbol.defaultProps = {
 	viewBoxWidth: 32,
 	viewBoxHeight: 32,
 	assistiveText: 'Slack',
+	copyrightYear: '',
 };
 SlackSymbol.propTypes = propTypes;

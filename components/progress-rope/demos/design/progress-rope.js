@@ -29,7 +29,7 @@ export default ({ context, showCode, showDemo }) => {
 					Review and Submit
 				</Step>
 			</ProgressRope>
-			<p>Use the Next/Previous buttons below to demonstrate how the progress rope moves.</p>
+			{/* <p>Use the Next/Previous buttons below to demonstrate how the progress rope moves.</p>
 			<Wrapper>
 				<Button
 					soft
@@ -47,7 +47,7 @@ export default ({ context, showCode, showDemo }) => {
 				>
 					Next
 				</Button>
-			</Wrapper>
+			</Wrapper> */}
 		</Playground>
 	);
 };

@@ -7,6 +7,11 @@ import { BASE_URL } from '../config';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { SlateContent } from './pages/single-component/blocks-hub';
 
+export const scrollMap = {
+	small: 46,
+	large: 162,
+};
+
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
 	return (
@@ -87,15 +92,11 @@ export const brandHeaderStyling = {
 		color: '#fff',
 		...antialiasingStyling,
 	}),
-};
-
-export const brandIconHighlightColors = {
-	WBC: (COLORS) => COLORS.primary,
-	WBG: (COLORS) => COLORS.primary,
-	STG: (COLORS) => COLORS.hero,
-	BSA: () => '#00adbd',
-	BOM: (COLORS) => COLORS.hero,
-	BTFG: () => '#00afd7',
+	RAMS: (COLORS) => ({
+		background: COLORS.primary,
+		color: '#fff',
+		...antialiasingStyling,
+	}),
 };
 
 export const blocksGridStyle = {

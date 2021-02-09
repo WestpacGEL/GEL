@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+	getLabel,
+} from '@westpac/core';
 import { defaultProps } from '../Badge';
 
 // ==============================
@@ -8,6 +16,10 @@ import { defaultProps } from '../Badge';
 // ==============================
 
 const Badge = ({ state: _, ...rest }) => <span {...rest} />;
+
+const BlenderBadge = ({ className, ...rest }) => (
+	<Badge className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -60,7 +72,7 @@ const badgeStyles = (_, { look }) => {
 	};
 
 	return {
-		label: 'badge',
+		label: getLabel('badge'),
 		border: `1px solid transparent`,
 		borderRadius: '0.75rem',
 		display: 'inline-block',
@@ -132,7 +144,7 @@ export const defaultBadge = {
 };
 
 export const blenderBadge = {
-	component: Badge,
+	component: BlenderBadge,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

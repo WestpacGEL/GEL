@@ -14,5 +14,6 @@ export const CalculatorIcon = (props) => (
 CalculatorIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Calculator',
+	copyrightYear: '2020',
 };
 CalculatorIcon.propTypes = propTypes;

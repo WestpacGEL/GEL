@@ -2,9 +2,14 @@
 
 import { jsx, useMediaQuery } from '@westpac/core';
 import React from 'react';
-import { WbcBackgroundSvg, StgBackgroundSvg, BsaBackgroundSvg } from '../symbols';
+import {
+	WbcBackgroundSvg,
+	StgBackgroundSvg,
+	BsaBackgroundSvg,
+	RamsBackgroundSvg,
+} from '../symbols';
 
-const ComponentPageHeaderImage = ({ brand, ...rest }) => {
+const ComponentPageHeaderImage = ({ brand: BRAND, ...rest }) => {
 	const mq = useMediaQuery();
 
 	const WBCImage = (props) => (
@@ -18,14 +23,12 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 		>
 			<WbcBackgroundSvg
 				css={{
-					display: 'block',
 					width: 'auto',
 					height: '100%',
 				}}
 			/>
 		</div>
 	);
-
 	const STGImage = (props) => (
 		<div
 			css={mq({
@@ -37,7 +40,6 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 		>
 			<StgBackgroundSvg
 				css={{
-					display: 'block',
 					width: 'auto',
 					height: '100%',
 				}}
@@ -55,7 +57,24 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 		>
 			<BsaBackgroundSvg
 				css={{
-					display: 'block',
+					width: 'auto',
+					height: '100%',
+				}}
+			/>
+		</div>
+	);
+	const RAMSImage = (props) => (
+		<div
+			css={mq({
+				bottom: -56,
+				right: -241,
+				height: 482,
+				transform: 'scaleX(-1)', //flip horizontally
+			})}
+			{...props}
+		>
+			<RamsBackgroundSvg
+				css={{
 					width: 'auto',
 					height: '100%',
 				}}
@@ -70,8 +89,9 @@ const ComponentPageHeaderImage = ({ brand, ...rest }) => {
 		BSA: BSAImage,
 		BOM: null,
 		BTFG: null,
+		RAMS: RAMSImage,
 	};
-	const HeaderImage = BRAND_HEADERS[brand];
+	const HeaderImage = BRAND_HEADERS[BRAND.code];
 
 	return HeaderImage ? (
 		<HeaderImage

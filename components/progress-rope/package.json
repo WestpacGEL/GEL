@@ -1,12 +1,26 @@
 {
 	"name": "@westpac/progress-rope",
-	"version": "1.0.0-beta.2",
-	"description": "Progress rope component",
+	"version": "1.0.0",
+	"description": "Progress-rope components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-rope",
 	"blender": {
 		"recipe": "blender/recipe.js",
 		"js": "blender/script.js"
 	},
+	"components": [
+		{
+			"name": "ProgressRope",
+			"src": "ProgressRope.js"
+		},
+		{
+			"name": "Group",
+			"src": "Group.js"
+		},
+		{
+			"name": "Step",
+			"src": "Step.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -43,8 +57,8 @@
 	"module": "dist/progress-rope.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/a11y": "^1.0.0-beta.2",
-		"@westpac/core": "^1.0.1",
+		"@westpac/a11y": "^1.0.0",
+		"@westpac/core": "^1.1.0",
 		"classnames": "^2.2.6",
 		"lodash.merge": "^4.6.2",
 		"prop-types": "^15.7.2",
@@ -53,14 +67,14 @@
 	},
 	"peerDependencies": {
 		"react": "^16.13.1",
-		"react-spring": "^8.0.27"
+		"react-spring": "9.0.0-rc.3"
 	},
 	"devDependencies": {
-		"@westpac/button": "*",
-		"@westpac/grid": ">1.0.0-alpha",
+		"@westpac/button": "^1.0.0",
+		"@westpac/grid": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
-		"react-spring": "^8.0.27",
+		"react-spring": "9.0.0-rc.3",
 		"start-server-and-test": "^1.11.0"
 	}
 }

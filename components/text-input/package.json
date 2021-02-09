@@ -1,11 +1,25 @@
 {
 	"name": "@westpac/text-input",
-	"version": "1.0.0-beta.2",
-	"description": "TextInput component for the Westpac GEL",
+	"version": "1.0.0",
+	"description": "Text-input components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/text-input",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "TextInput",
+			"src": "TextInput.js"
+		},
+		{
+			"name": "Select",
+			"src": "Select.js"
+		},
+		{
+			"name": "Textarea",
+			"src": "Textarea.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -42,7 +56,7 @@
 	"module": "dist/text-input.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
+		"@westpac/core": "^1.1.0",
 		"mini-svg-data-uri": "^1.2.3",
 		"prop-types": "^15.7.2"
 	},
@@ -50,7 +64,8 @@
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/button": "*",
+		"@westpac/button": "^1.0.0",
+		"@westpac/grid": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

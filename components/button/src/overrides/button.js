@@ -8,6 +8,7 @@ import {
 	classNames,
 	getModifier,
 	styleReconciler,
+	formatClassName,
 } from '@westpac/core';
 import { forwardRef } from 'react';
 
@@ -18,6 +19,10 @@ import { defaultProps } from '../Button';
 // ==============================
 
 const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
+
+const BlenderButton = forwardRef(({ state: { tag: Tag }, className, ...rest }, ref) => (
+	<Tag ref={ref} className={formatClassName(className)} {...rest} />
+));
 
 // ==============================
 // Styles
@@ -119,7 +124,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		},
 		link: {
 			standardCSS: {
-				color: COLORS.primary,
+				color: COLORS.link,
 				backgroundColor: 'transparent',
 				borderColor: 'transparent',
 				textDecoration: 'underline', //a11y
@@ -183,7 +188,6 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		boxSizing: 'border-box',
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
-
 		...(look !== 'unstyled' && {
 			fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
 			...TYPE.bodyFont[400],
@@ -193,6 +197,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			borderRadius: '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
+
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)
@@ -218,12 +223,12 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const props = { look, size, soft, block, justify, disabled };
 	const baseStyles = buttonStyles(_, defaultProps);
-
 	let modifiers = getModifier(defaultProps, props);
 	if (!modifiers.length) return baseStyles;
 
 	const modifierStyles = buttonStyles(_, props);
 	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+	let brandStyles = {};
 
 	let label = baseStyles.label;
 	let modifier;
@@ -237,9 +242,11 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	switch (modifier) {
 		case 'soft':
 			label = look === defaultProps.look ? `${label}-soft` : `${label}-${look}-soft`;
+			brandStyles = styleReconciler(reconciledStyles, styleReconciler(baseStyles, _)); // for brand overrides
 			break;
 		case 'look':
 			label = `${label}-${look}`;
+			brandStyles = styleReconciler(reconciledStyles, styleReconciler(baseStyles, _));
 			break;
 		case 'size':
 			label = `${label}-${size}`;
@@ -249,7 +256,7 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			break;
 	}
 
-	return { label, ...reconciledStyles };
+	return { label, '.__convert__button&': { ...reconciledStyles, ...brandStyles } };
 };
 
 // ==============================
@@ -258,14 +265,14 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
 
-const blenderAttributes = (_, { look, soft, size, block, justify, disabled }) => ({
+const blenderAttributes = (_, { look, soft, size, block, justify, assistiveText }) => ({
+	...buttonAttributes(_, { assistiveText }),
 	className: classNames({
 		[`__convert__button-${look}`]: look && look !== defaultProps.look && !soft,
 		[`__convert__button${look === defaultProps.look ? '' : `-${look}`}-soft`]: soft,
 		[`__convert__button-${size}`]: size && size !== defaultProps.size,
 		[`__convert__button-block`]: block,
 		[`__convert__button-justify`]: justify,
-		[`__convert__button-disabled`]: disabled,
 	}),
 });
 
@@ -280,7 +287,7 @@ export const defaultButton = {
 };
 
 export const blenderButton = {
-	component: Button,
+	component: BlenderButton,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

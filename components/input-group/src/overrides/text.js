@@ -1,6 +1,14 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, getModifier, styleReconciler } from '@westpac/core';
+import {
+	jsx,
+	useBrand,
+	getLabel,
+	classNames,
+	getModifier,
+	styleReconciler,
+	formatClassName,
+} from '@westpac/core';
 
 import { defaultProps } from '../Text';
 
@@ -9,6 +17,10 @@ import { defaultProps } from '../Text';
 // ==============================
 
 const Text = ({ state: _, ...rest }) => <span {...rest} />;
+
+const BlenderText = ({ className, ...rest }) => (
+	<Text className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -126,7 +138,7 @@ export const defaultText = {
 };
 
 export const blenderText = {
-	component: Text,
+	component: BlenderText,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

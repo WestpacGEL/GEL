@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/website",
 	"version": "1.0.0",
-	"description": "",
+	"description": "The Westpac GEL Design system website",
 	"private": true,
 	"main": "index.js",
 	"scripts": {
@@ -56,7 +56,7 @@
 		"react-live": "^2.2.1",
 		"react-markdown": "^4.2.2",
 		"react-popper": "^1.3.6",
-		"react-spring": "^8.0.27",
+		"react-spring": "9.0.0-rc.3",
 		"react-string-replace": "^0.4.4",
 		"react-toast-notifications": "^2.4.0",
 		"semver": "^6.3.0",

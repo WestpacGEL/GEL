@@ -18,5 +18,6 @@ RedAvatarCircleReversedLogo.defaultProps = {
 	viewBoxWidth: 64,
 	viewBoxHeight: 64,
 	assistiveText: 'Red Avatar',
+	copyrightYear: '2020',
 };
 RedAvatarCircleReversedLogo.propTypes = propTypes;

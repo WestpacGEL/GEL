@@ -18,5 +18,6 @@ BPayLandSymbol.defaultProps = {
 	viewBoxWidth: 116,
 	viewBoxHeight: 54,
 	assistiveText: 'BPay',
+	copyrightYear: '',
 };
 BPayLandSymbol.propTypes = propTypes;

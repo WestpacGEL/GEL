@@ -1,11 +1,25 @@
 {
 	"name": "@westpac/input-group",
-	"version": "1.0.0-beta.2",
-	"description": "Styled input fields with attached addons. Addons can be text ($, %, .00 etc) or form controls (buttons or select inputs).",
+	"version": "1.0.0",
+	"description": "Input-group components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/input-group",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "InputGroup",
+			"src": "InputGroup.js"
+		},
+		{
+			"name": "Before",
+			"src": "Before.js"
+		},
+		{
+			"name": "After",
+			"src": "After.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -42,10 +56,10 @@
 	"module": "dist/input-group.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/a11y": "^1.0.0-beta.2",
-		"@westpac/button": "^1.0.1",
-		"@westpac/core": "^1.0.1",
-		"@westpac/text-input": "^1.0.0-beta.2",
+		"@westpac/a11y": "^1.0.0",
+		"@westpac/button": "^1.1.0",
+		"@westpac/core": "^1.1.0",
+		"@westpac/text-input": "^1.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

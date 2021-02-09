@@ -1,5 +1,22 @@
 # @westpac/well
 
+## 1.0.0
+
+### Major Changes
+
+- 0ed5af66: Added blender support
+
+### Patch Changes
+
+- Updated dependencies [44475eb5]
+- Updated dependencies [d1c90c38]
+- Updated dependencies [22242655]
+- Updated dependencies [876e36c3]
+- Updated dependencies [bedde7bc]
+- Updated dependencies [fb727cea]
+  - @westpac/core@1.1.0
+  - @westpac/body@1.2.0
+
 ## 1.0.0-beta.3
 
 ### Minor Changes

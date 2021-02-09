@@ -1,4 +1,4 @@
-import { GEL } from '@westpac/core';
+import { GEL, titleCase } from '@westpac/core';
 import React from 'react';
 import { Popover } from '@westpac/popover';
 import { blenderIcon } from '@westpac/button';
@@ -9,10 +9,13 @@ import { blenderTrigger } from '../src/overrides/trigger';
 import { blenderBody } from '../src/overrides/body';
 import { blenderCloseBtn } from '../src/overrides/closeBtn';
 
+const placements = ['top', 'bottom'];
+
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/popover'] = {
 		Panel: {
+			component: blenderPanel.component,
 			styles: blenderPanel.styles,
 		},
 		Heading: {
@@ -32,7 +35,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
 			<Popover heading="Text" content="Text" open={false} placement="none">
 				Text
 			</Popover>
@@ -53,6 +56,7 @@ export function Docs({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/popover'] = {
 		Panel: {
+			component: blenderPanel.component,
 			attributes: blenderPanel.attributes,
 		},
 		Heading: {
@@ -76,62 +80,35 @@ export function Docs({ brand }) {
 	};
 
 	return [
-		{
-			heading: 'A popover popping up on top',
+		// Placement
+		...placements.map((placement, i) => ({
+			...(i === 0 && { heading: 'Popover placement' }),
+			subheading: titleCase(placement),
 			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Popover heading="Your heading" content="The content of your popover" placement="top">
-						The button text
-					</Popover>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A popover popping up on bottom',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Popover heading="Your heading" content="The content of your popover" placement="bottom">
-						The button text
-					</Popover>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A popover without heading',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Popover content="The content of your popover" placement="top">
-						The button text
-					</Popover>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A popover opened top',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
+				<GEL brand={overridesWithTokens} noScope>
 					<Popover
 						heading="Your heading"
-						content="The content of your popover"
-						open={true}
+						content="Your popover content"
+						placement={placement}
+						instanceIdPrefix={`GEL-popover-${placement}`}
+					>
+						Your button text
+					</Popover>
+				</GEL>
+			),
+		})),
+
+		// No heading
+		{
+			heading: 'Popover without heading',
+			component: () => (
+				<GEL brand={overridesWithTokens} noScope>
+					<Popover
+						content="Your popover content"
 						placement="top"
+						instanceIdPrefix="GEL-popover-noheading"
 					>
-						The button text
-					</Popover>
-				</GEL>
-			),
-		},
-		{
-			heading: 'A popover opened bottom',
-			component: () => (
-				<GEL brand={overridesWithTokens} noPrefix>
-					<Popover
-						heading="Your heading"
-						content="The content of your popover"
-						open={true}
-						placement="bottom"
-					>
-						The button text
+						Your button text
 					</Popover>
 				</GEL>
 			),

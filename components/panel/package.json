@@ -1,11 +1,17 @@
 {
 	"name": "@westpac/panel",
-	"version": "1.0.0-beta.3",
-	"description": "Panel component for the Westpac GEL",
+	"version": "1.0.0",
+	"description": "Panel components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/panel",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Panel",
+			"src": "Panel.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -42,16 +48,16 @@
 	"module": "dist/panel.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/body": "^1.1.0",
-		"@westpac/core": "^1.0.1",
-		"@westpac/heading": "^1.0.0-beta.2",
+		"@westpac/body": "^1.2.0",
+		"@westpac/core": "^1.1.0",
+		"@westpac/heading": "^1.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/table": ">1.0.0-alpha",
+		"@westpac/table": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

@@ -16,6 +16,7 @@ export const Icon = ({
 	size,
 	assistiveText,
 	icon,
+	copyrightYear,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -35,6 +36,7 @@ export const Icon = ({
 		size,
 		assistiveText,
 		icon,
+		copyrightYear,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -47,6 +49,11 @@ export const Icon = ({
 	return (
 		<Icon {...rest} state={state} {...iconAttributes(state)} css={iconStyles(state)}>
 			<Svg state={state} css={svgStyles(state)} {...svgAttributes(state)}>
+				{copyrightYear && (
+					<metadata>
+						{`Copyright © ${copyrightYear} by Westpac Banking Corporation. All rights reserved.`}
+					</metadata>
+				)}
 				{children}
 			</Svg>
 		</Icon>
@@ -81,8 +88,13 @@ export const propTypes = {
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge'])),
+		PropTypes.arrayOf(PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge'])).isRequired,
 	]),
+
+	/**
+	 * The icon SVG metadata copyright year text
+	 */
+	copyrightYear: PropTypes.string.isRequired,
 
 	/**
 	 * The override API
@@ -103,6 +115,7 @@ export const propTypes = {
 
 export const defaultProps = {
 	size: 'medium',
+	copyrightYear: '',
 };
 
 Icon.propTypes = propTypes;

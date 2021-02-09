@@ -14,5 +14,6 @@ export const CameraIcon = (props) => (
 CameraIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Camera',
+	copyrightYear: '2020',
 };
 CameraIcon.propTypes = propTypes;

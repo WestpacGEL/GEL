@@ -4,12 +4,12 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { VisuallyHidden } from '@westpac/a11y';
+import throttle from 'lodash.throttle';
+
 import { MenuButton } from './menu-button';
 import HeaderImage from './component-page-header-image';
-
 import { usePageContext } from '../providers/pageContext';
-import { brandHeaderStyling } from '../_utils';
-import throttle from 'lodash.throttle';
+import { scrollMap, brandHeaderStyling } from '../_utils';
 
 const GridIndicator = () => {
 	const mq = useMediaQuery();
@@ -67,7 +67,7 @@ const GridIndicator = () => {
 const PageHeaderHeading = ({ hasScrolledLarge, ...rest }) => {
 	const { BRAND } = useBrand();
 
-	return BRAND === 'WBC' ? (
+	return BRAND.code === 'WBC' ? (
 		<BrandHeading tag="h1" size={[7, null, !hasScrolledLarge ? 2 : null]} uppercase {...rest} />
 	) : (
 		<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]} {...rest} />
@@ -77,7 +77,6 @@ const PageHeaderHeading = ({ hasScrolledLarge, ...rest }) => {
 const PageHeader = ({ name }) => {
 	const { COLORS, BRAND, SPACING } = useBrand();
 	const mq = useMediaQuery();
-	const [hasScroll, setHasScroll] = useState(false);
 	const [hasScrolledSmall, setHasScrolledSmall] = useState(false);
 	const [hasScrolledLarge, setHasScrolledLarge] = useState(false);
 	const header = useRef(null);
@@ -86,9 +85,8 @@ const PageHeader = ({ name }) => {
 		const setHeader = () => {
 			const scroll = window.scrollY;
 
-			setHasScroll(scroll > 5);
-			setHasScrolledSmall(scroll > 46);
-			setHasScrolledLarge(scroll >= 162);
+			setHasScrolledSmall(scroll > scrollMap.small);
+			setHasScrolledLarge(scroll >= scrollMap.large);
 		};
 		setHeader();
 
@@ -98,7 +96,7 @@ const PageHeader = ({ name }) => {
 		return () => {
 			window.removeEventListener('scroll', scrollHandler);
 		};
-	});
+	}, []);
 
 	return (
 		<header
@@ -111,7 +109,7 @@ const PageHeader = ({ name }) => {
 				display: 'flex',
 				height: [66, null, 228],
 				overflow: 'hidden',
-				...brandHeaderStyling[BRAND](COLORS),
+				...brandHeaderStyling[BRAND.code](COLORS),
 			})}
 		>
 			<HeaderImage brand={BRAND} />

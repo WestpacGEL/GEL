@@ -1,11 +1,24 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
-
 import * as components from '@westpac/symbol';
 
+import { Symbol } from '../src/Symbol';
+import { blenderSymbol } from '../src/overrides/symbol';
+
 export function AllStyles({ brand }) {
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/symbol'] = {
+		Symbol: {
+			component: blenderSymbol.component,
+			styles: blenderSymbol.styles,
+		},
+	};
+
 	return (
-		<GEL brand={brand} noPrefix>
+		<GEL brand={overridesWithTokens} noScope>
+			{/* Generate a base style */}
+			<Symbol />
+
 			{Object.keys(components).map((symbol) => {
 				const Symbol = components[symbol];
 				return <Symbol key={symbol} />;
@@ -15,17 +28,43 @@ export function AllStyles({ brand }) {
 }
 
 export function Docs({ brand }) {
-	const allSymbols = Object.keys(components).map((symbol) => {
-		const Symbol = components[symbol];
-		return {
-			heading: `${symbol} symbol`,
-			component: () => (
-				<GEL brand={brand} noPrefix>
-					<Symbol />
-				</GEL>
-			),
-		};
-	});
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/symbol'] = {
+		Symbol: {
+			component: blenderSymbol.component,
+			attributes: blenderSymbol.attributes,
+		},
+	};
 
-	return [...allSymbols];
+	const allLogos = Object.keys(components)
+		.filter((logo) => logo.indexOf('Logo') >= 0)
+		.map((logo, i) => {
+			const Logo = components[logo];
+			return {
+				...(i === 0 && { heading: 'Logos' }),
+				subheading: logo,
+				component: () => (
+					<GEL brand={overridesWithTokens} noScope>
+						<Logo />
+					</GEL>
+				),
+			};
+		});
+
+	const allSymbols = Object.keys(components)
+		.filter((symbol) => symbol.indexOf('Symbol') >= 0)
+		.map((symbol, i) => {
+			const Symbol = components[symbol];
+			return {
+				...(i === 0 && { heading: 'Symbols' }),
+				subheading: symbol,
+				component: () => (
+					<GEL brand={overridesWithTokens} noScope>
+						<Symbol />
+					</GEL>
+				),
+			};
+		});
+
+	return [...allLogos, ...allSymbols];
 }

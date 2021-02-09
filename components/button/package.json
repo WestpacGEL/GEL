@@ -1,11 +1,17 @@
 {
 	"name": "@westpac/button",
-	"version": "1.0.1",
-	"description": "Button component for the Westpac GEL",
+	"version": "1.1.0",
+	"description": "Button component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button",
 	"blender": {
 		"recipe": "blender/recipe.js"
 	},
+	"components": [
+		{
+			"name": "Button",
+			"src": "Button.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -42,9 +48,9 @@
 	"module": "dist/button.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.0.1",
-		"@westpac/hooks": "^1.0.1",
-		"@westpac/icon": "^1.0.1",
+		"@westpac/core": "^1.1.0",
+		"@westpac/hooks": "^1.1.0",
+		"@westpac/icon": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

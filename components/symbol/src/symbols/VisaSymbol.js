@@ -15,5 +15,6 @@ VisaSymbol.defaultProps = {
 	viewBoxWidth: 80,
 	viewBoxHeight: 26,
 	assistiveText: 'Visa',
+	copyrightYear: '',
 };
 VisaSymbol.propTypes = propTypes;
