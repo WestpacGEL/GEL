@@ -10,7 +10,7 @@ import {
 	Global,
 } from '@westpac/core';
 import { forwardRef, Fragment } from 'react';
-import { useSpring, animated } from 'react-spring';
+import { useTransition, animated } from 'react-spring';
 
 import { defaultProps } from '../Modal';
 import { nestedStyles } from './modalDialog';
@@ -20,23 +20,14 @@ import { nestedStyles } from './modalDialog';
 // ==============================
 
 const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
-	const fade = useSpring({
-		config: { duration: 150 },
-		from: { position: 'relative', zIndex: 1002, opacity: 0 },
-		_dspl: open ? 1 : 0,
-		opacity: open ? 1 : 0,
+	const transition = useTransition(open, {
+		config: { duration: 150 }, //CSS 'linear' easing-function
+		from: { opacity: 0 },
+		enter: { opacity: 1, delay: 150 }, //delay after Backdrop fade-in
+		leave: { opacity: 0 },
 	});
 
-	return (
-		<animated.div
-			style={{
-				...fade,
-				display: fade._dspl.interpolate((d) => (d === 0 ? 'none' : 'block')),
-			}}
-		>
-			<div ref={ref} {...rest} />
-		</animated.div>
-	);
+	return transition((style, item) => item && <animated.div ref={ref} style={style} {...rest} />);
 });
 
 const BlenderModal = forwardRef(({ state, className, ...rest }, ref) => (

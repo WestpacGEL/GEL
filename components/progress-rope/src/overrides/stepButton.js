@@ -42,7 +42,7 @@ export const stepButtonStyles = (_, { end, grouped, visited, active, furthest })
 		background: 'none',
 		display: 'block',
 		width: '100%',
-		color: active ? COLORS.primary : visited ? COLORS.neutral : COLORS.tints.muted90,
+		color: active ? COLORS.primary : COLORS.text, //set default `COLORS.text` because this is a `<button />`
 		...(active ? TYPE.bodyFont[700] : null),
 		appearance: 'none',
 		cursor: 'pointer',

@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
-import { useTransition, animated } from 'react-spring';
-import { Fragment, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultCloseBtn } from './overrides/closeBtn';
@@ -19,6 +18,7 @@ import pkg from '../package.json';
 export const Alert = ({
 	open: isOpen,
 	look,
+	mode,
 	dismissible,
 	onClose = () => {},
 	icon,
@@ -33,13 +33,6 @@ export const Alert = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 	const [open, setOpen] = useState(isOpen);
-	const transition = useTransition(open, null, {
-		initial: { opacity: 1 },
-		from: { opacity: 1 },
-		enter: { opacity: 1 },
-		leave: { opacity: 0 },
-		config: { duration: 400 },
-	});
 
 	const defaultOverrides = {
 		Alert: defaultAlert,
@@ -52,6 +45,7 @@ export const Alert = ({
 	const state = {
 		open,
 		look,
+		mode,
 		dismissible: dismissible ? dismissible : undefined,
 		onClose,
 		icon,
@@ -97,28 +91,15 @@ export const Alert = ({
 		/>
 	);
 
-	const AlertJSX = () => (
+	return (
 		<Alert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
 			{Icon && <IconJSX />}
 			<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
 				{heading && <HeadingJSX />}
 				{children}
 			</Body>
-			{dismissible && <CloseBtnJSX />}
+			{dismissible && mode !== 'text' && <CloseBtnJSX />}
 		</Alert>
-	);
-
-	return (
-		<Fragment>
-			{transition.map(
-				({ item, key, props }) =>
-					item && (
-						<animated.div key={key} style={props} data-js="alert__version__">
-							<AlertJSX />
-						</animated.div>
-					)
-			)}
-		</Fragment>
 	);
 };
 
@@ -135,7 +116,12 @@ Alert.propTypes = {
 	/**
 	 * Alert look
 	 */
-	look: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'system']).isRequired,
+	look: PropTypes.oneOf(['info', 'success', 'warning', 'danger', 'system']).isRequired,
+
+	/**
+	 * Alert box style
+	 */
+	mode: PropTypes.oneOf(['box', 'text']).isRequired,
 
 	/**
 	 * Enable dismissible mode
@@ -150,17 +136,17 @@ Alert.propTypes = {
 	/**
 	 * Alert icon.
 	 *
-	 * The alert icon is automatically rendered based on look, but can be overriden via this prop. Pass a `null` value to remove completely.
+	 * The alert icon is automatically rendered based on look. The icon can be overriden via this prop, for info look alerts only.
 	 */
 	icon: PropTypes.func,
 
 	/**
-	 * The heading
+	 * The alert heading
 	 */
 	heading: PropTypes.string,
 
 	/**
-	 * The tag of the heading element for semantic reasons
+	 * The alert heading tag is automatically defined, but may be overridden via this prop if required for semantic reasons.
 	 */
 	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
 
@@ -204,6 +190,7 @@ Alert.propTypes = {
 export const defaultProps = {
 	open: true,
 	look: 'info',
+	mode: 'box',
 	dismissible: false,
 	headingTag: 'h2',
 };

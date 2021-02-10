@@ -14,9 +14,7 @@ import {
 // Component
 // ==============================
 
-const Link = ({ state: { disabled }, ...rest }) => (
-	<button type="button" disabled={disabled} {...rest} />
-);
+const Link = ({ state, ...rest }) => <button type="button" {...rest} />;
 
 const BlenderLink = ({ className, ...rest }) => (
 	<Link className={formatClassName(className)} {...rest} />
@@ -39,7 +37,7 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 		backgroundColor: active ? COLORS.hero : '#fff',
 		padding: '0.4375rem 0.75rem',
 		fontSize: '0.875rem',
-		color: active ? '#fff' : COLORS.neutral,
+		color: active ? '#fff' : COLORS.text, //set default `COLORS.text` because this is a `<button />`
 		textDecoration: 'none',
 		cursor: 'pointer',
 		transition: 'background .2s ease, border .2s ease',
@@ -106,7 +104,7 @@ const blenderStyles = (_, { active = false, first = false, last = false, disable
 const linkAttributes = (_, { active, assistiveText, disabled }) => ({
 	'aria-current': active ? 'page' : undefined,
 	'aria-label': disabled ? undefined : assistiveText,
-	'aria-disabled': disabled, //a11y: required to aid VoiceOver/Talkback UX
+	disabled,
 });
 
 const blenderAttributes = (_, { active, first, last, assistiveText, disabled }) => ({

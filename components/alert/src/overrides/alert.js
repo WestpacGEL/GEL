@@ -1,6 +1,5 @@
 /** @jsx jsx */
 
-import { AlertIcon, InfoIcon, TickIcon } from '@westpac/icon';
 import {
 	jsx,
 	useBrand,
@@ -11,6 +10,7 @@ import {
 	classNames,
 	formatClassName,
 } from '@westpac/core';
+import { useTransition, animated } from 'react-spring';
 
 import { defaultProps } from '../Alert';
 
@@ -18,7 +18,20 @@ import { defaultProps } from '../Alert';
 // Component
 // ==============================
 
-const Alert = ({ state: _, ...rest }) => <div {...rest} />;
+const Alert = ({ state: { dismissible, open }, ...rest }) => {
+	if (dismissible) {
+		const transition = useTransition(open, {
+			config: { duration: 400 },
+			from: { opacity: 1 },
+			enter: { opacity: 1 },
+			leave: { opacity: 0 },
+		});
+
+		return transition((style, item) => item && <animated.div style={style} {...rest} />);
+	} else {
+		return <div {...rest} />;
+	}
+};
 
 const BlenderAlert = ({ className, ...rest }) => (
 	<Alert className={formatClassName(className)} {...rest} />
@@ -28,65 +41,52 @@ const BlenderAlert = ({ className, ...rest }) => (
 // Styles
 // ==============================
 
-const alertStyles = (_, { dismissible, look }) => {
+const alertStyles = (_, { dismissible, look, mode }) => {
 	const mq = useMediaQuery();
 	const { COLORS, SPACING } = useBrand();
 
 	const styleMap = {
-		success: {
-			icon: TickIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
-		},
 		info: {
-			icon: InfoIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			backgroundColor: COLORS.tints[`${look}5`],
+			borderColor: COLORS.tints[`${look}50`],
+			color: COLORS[look],
+		},
+		success: {
+			backgroundColor: COLORS.tints[`${look}5`],
+			borderColor: COLORS.tints[`${look}50`],
+			color: COLORS[look],
 		},
 		warning: {
-			icon: AlertIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			backgroundColor: COLORS.tints[`${look}5`],
+			borderColor: COLORS.tints[`${look}50`],
+			color: COLORS[look],
 		},
 		danger: {
-			icon: AlertIcon,
-			css: {
-				backgroundColor: COLORS.tints[`${look}5`],
-				color: COLORS[look],
-				borderColor: COLORS.tints[`${look}50`],
-			},
+			backgroundColor: COLORS.tints[`${look}5`],
+			borderColor: COLORS.tints[`${look}50`],
+			color: COLORS[look],
 		},
 		system: {
-			icon: AlertIcon,
-			css: {
-				backgroundColor: COLORS.system,
-				color: 'black',
-				borderColor: COLORS.system,
-			},
+			backgroundColor: COLORS.system,
+			borderColor: COLORS.system,
+			color: 'black',
 		},
 	};
 
 	return mq({
 		label: getLabel('alert'),
 		marginBottom: SPACING(4),
-		padding: dismissible ? `${SPACING(3)} ${SPACING(6)} ${SPACING(3)} ${SPACING(3)}` : SPACING(3),
+		padding:
+			mode === 'box' &&
+			(dismissible ? `${SPACING(3)} ${SPACING(6)} ${SPACING(3)} ${SPACING(3)}` : SPACING(3)),
 		position: 'relative',
 		display: [null, 'flex'],
 		zIndex: 1,
-		transition: 'opacity 300ms ease-in-out',
-		opacity: 1,
-		borderTop: '1px solid',
-		borderBottom: '1px solid',
-		...styleMap[look].css,
+		borderTop: mode === 'box' ? '1px solid' : 0,
+		borderBottom: mode === 'box' ? '1px solid' : 0,
+		backgroundColor: mode === 'box' ? styleMap[look].backgroundColor : 'transparent',
+		borderColor: mode === 'box' ? styleMap[look].borderColor : 'transparent',
+		color: styleMap[look].color,
 	})[0];
 };
 
@@ -94,8 +94,8 @@ const alertStyles = (_, { dismissible, look }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { dismissible, look }) => {
-	const props = { dismissible: dismissible ? dismissible : false, look };
+const blenderStyles = (_, { dismissible, look, mode }) => {
+	const props = { dismissible: dismissible ? dismissible : false, look, mode };
 	const baseStyles = alertStyles(_, defaultProps);
 
 	const modifiers = getModifier(defaultProps, props);
@@ -111,6 +111,9 @@ const blenderStyles = (_, { dismissible, look }) => {
 		case 'look':
 			label = `${label}-${look}`;
 			break;
+		case 'mode':
+			label = `${label}-${mode}`;
+			break;
 		default:
 			label = `${label}-${modifier}`;
 			break;
@@ -125,10 +128,12 @@ const blenderStyles = (_, { dismissible, look }) => {
 
 const alertAttributes = () => null;
 
-const blenderAttributes = (_, { look, dismissible }) => ({
+const blenderAttributes = (_, { look, mode, dismissible }) => ({
+	...(dismissible && { 'data-js': 'alert__version__' }),
 	className: classNames({
 		[`__convert__alert-${look}`]: look !== defaultProps.look,
-		[`__convert__alert-dismissible`]: dismissible,
+		[`__convert__alert-${mode}`]: mode !== defaultProps.mode,
+		'__convert__alert-dismissible': dismissible,
 	}),
 });
 

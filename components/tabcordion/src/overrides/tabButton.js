@@ -30,17 +30,21 @@ const BlenderTabButton = forwardRef(({ state: _, className, ...rest }, ref) => {
 // ==============================
 
 const tabButtonStyles = (_, { look, justify, selected }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, SPACING, PACKS } = useBrand();
 
 	const styles = {
 		soft: {
-			backgroundColor: selected ? '#fff' : COLORS.background,
+			backgroundColor: selected ? '#fff' : COLORS.light,
 			borderTopLeftRadius: '0.1875rem',
 			borderTopRightRadius: '0.1875rem',
 			border: `1px solid ${COLORS.border}`,
 			borderBottom: 0,
-			color: COLORS.neutral,
+			color: COLORS.text,
 			marginBottom: selected && '-1px',
+
+			':hover': {
+				backgroundColor: !selected && COLORS.background,
+			},
 		},
 		lego: {
 			backgroundColor: selected ? '#fff' : COLORS.hero,
@@ -50,20 +54,24 @@ const tabButtonStyles = (_, { look, justify, selected }) => {
 			borderBottom: 0,
 			color: selected ? COLORS.text : '#fff',
 			marginBottom: selected ? '-1px' : '0.125rem',
+
+			':hover': {
+				backgroundColor: !selected && COLORS.tints.hero70,
+			},
 		},
 	};
 
 	return {
 		label: getLabel('tabcordion-tab-btn'),
 		flex: justify ? 1 : 0,
-		fontSize: '1rem',
 		marginRight: '0.125rem',
-		padding: '0.875rem 1.125rem',
+		padding: `${SPACING(2)} ${SPACING(3)}`,
 		textAlign: 'left',
 		textDecoration: 'none',
-		transition: 'background .3s ease',
+		transition: 'background 0.3s ease',
 		width: '100%',
 		cursor: 'pointer',
+		...PACKS.typeScale.bodyFont[9],
 		...styles[look],
 
 		':last-of-type': {

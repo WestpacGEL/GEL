@@ -40,19 +40,6 @@ describe('Alert specific tests', () => {
 		expect(container).toContainHTML('svg');
 	});
 
-	test('Can disable SVG icon', () => {
-		const text = 'Our alert content';
-		const SimpleAlert = () => (
-			<GEL brand={wbc}>
-				<Alert icon={null}>{text}</Alert>
-			</GEL>
-		);
-
-		const { container } = render(<SimpleAlert />);
-
-		expect(container).not.toContainHTML('svg');
-	});
-
 	test('Can replace SVG icon', () => {
 		const ourIcon = () => <span data-testid="our icon">Our icon</span>;
 		const SimpleAlert = () => (
@@ -61,7 +48,7 @@ describe('Alert specific tests', () => {
 			</GEL>
 		);
 
-		const { container, getByTestId } = render(<SimpleAlert />);
+		const { getByTestId } = render(<SimpleAlert />);
 
 		expect(getByTestId('our icon')).toContainHTML('Our icon');
 	});
@@ -89,7 +76,7 @@ describe('Alert specific tests', () => {
 			</GEL>
 		);
 
-		const { container, getByTestId } = render(<SimpleAlert />);
+		const { container } = render(<SimpleAlert />);
 		// we're testing both, that strong is added and that it has children (and parsed correctly via DOM)
 		expect(container.querySelector('strong')).toHaveTextContent(text);
 	});
@@ -212,7 +199,7 @@ describe('Alert specific tests', () => {
 			</GEL>
 		);
 
-		const { container, getByTestId } = render(<SimpleAlert />);
+		const { getByTestId } = render(<SimpleAlert />);
 
 		expect(getByTestId('alert')).toBeVisible();
 		fireEvent.click(await getByTestId('alert-btn'));

@@ -82,15 +82,15 @@ const FILTER_HTML = `
 </svg>`;
 
 const filters = [
-	{ text: 'Select', value: '' },
-	{ text: 'Protanopia', value: 'protanopia' },
+	{ text: 'No filter', value: '' },
+	{ text: 'Achromatomaly', value: 'achromatomaly' },
+	{ text: 'Achromatopsia', value: 'achromatopsia' },
+	{ text: 'Deuteranomaly', value: 'deuteranomaly' },
 	{ text: 'Deuteranopia', value: 'deuteranopia' },
 	{ text: 'Protanomaly', value: 'protanomaly' },
-	{ text: 'Deuteranomaly', value: 'deuteranomaly' },
-	{ text: 'Tritanopia', value: 'tritanopia' },
+	{ text: 'Protanopia', value: 'protanopia' },
 	{ text: 'Tritanomaly', value: 'tritanomaly' },
-	{ text: 'Achromatopsia', value: 'achromatopsia' },
-	{ text: 'Achromatomaly', value: 'achromatomaly' },
+	{ text: 'Tritanopia', value: 'tritanopia' },
 	{ text: 'Low contrast', value: 'low-contrast' },
 ];
 

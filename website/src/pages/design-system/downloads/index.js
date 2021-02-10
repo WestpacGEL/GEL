@@ -15,9 +15,9 @@ import { Switch } from '@westpac/switch';
 import { Textarea, Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
+import { useTransition, animated } from 'react-spring';
 import merge from 'lodash.merge';
 
-import { brandsMap } from '../../../components/brand-switcher/brand-switcher';
 import { Section, SectionHeading } from '../../../components/section';
 import { Body } from '../../../components/body';
 import { Head } from '../../../components/head';
@@ -185,7 +185,22 @@ const AutoGrowTextarea = ({ value, customCSS, ...rest }) => {
 const NpmBox = ({ selected, ...rest }) => {
 	const { SPACING } = useBrand();
 
-	const [copySuccess, setCopySuccess] = useState('');
+	const [showStatus, setShowStatus] = useState(false);
+
+	const transition = useTransition(showStatus, {
+		config: { duration: 150 },
+		from: { opacity: 0 },
+		enter: { opacity: 1 },
+		leave: { opacity: 0 },
+	});
+
+	// Hide copy status text after 5sec
+	useEffect(() => {
+		showStatus &&
+			setTimeout(() => {
+				setShowStatus(false);
+			}, 5000);
+	}, [showStatus]);
 
 	const npmCommand = `npm install @westpac/core ${selected
 		.map((pkg) => `@westpac/${pkg}`)
@@ -193,8 +208,10 @@ const NpmBox = ({ selected, ...rest }) => {
 
 	const handleCopy = () => {
 		navigator.clipboard.writeText(npmCommand);
-		setCopySuccess('Copied!');
+		setShowStatus(true);
 	};
+
+	const AnimatedStatus = animated(Status);
 
 	return (
 		<div {...rest}>
@@ -226,7 +243,10 @@ const NpmBox = ({ selected, ...rest }) => {
 					Copy
 				</Button>
 			</div>
-			<Status text={copySuccess} css={{ marginTop: SPACING(1) }} />
+			{transition(
+				(style, item) =>
+					item && <AnimatedStatus style={style} text="Copied!" css={{ marginTop: SPACING(1) }} />
+			)}
 		</div>
 	);
 };
@@ -275,14 +295,21 @@ const urlMap = {
 		guidelinesURL:
 			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
 	},
+	RAMS: {
+		guidelinesURL:
+			'https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ',
+	},
 };
 
 const fontTextWBC = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.WBC.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively. Never use a font without confirmation that you have the correct
-			licence in place.
+			Check the{' '}
+			<a href={urlMap.WBC.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively. Never use a font without confirmation that
+			you have the correct licence in place.
 		</p>
 		<p>
 			Designers using Sketch can access brand font files within the{' '}
@@ -297,9 +324,12 @@ const fontTextWBC = () => (
 const fontTextSTG = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.STG.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively. Never use a font without confirmation that you have the correct
-			licence in place.
+			Check the{' '}
+			<a href={urlMap.STG.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively. Never use a font without confirmation that
+			you have the correct licence in place.
 		</p>
 		<p>
 			Designers using Sketch can access brand font files within the{' '}
@@ -317,9 +347,12 @@ const fontTextSTG = () => (
 const fontTextBOM = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.BOM.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively. Never use a font without confirmation that you have the correct
-			licence in place.
+			Check the{' '}
+			<a href={urlMap.BOM.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively. Never use a font without confirmation that
+			you have the correct licence in place.
 		</p>
 		<p>
 			Send a request for approval to{' '}
@@ -330,9 +363,12 @@ const fontTextBOM = () => (
 const fontTextBSA = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.BSA.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively. Never use a font without confirmation that you have the correct
-			licence in place.
+			Check the{' '}
+			<a href={urlMap.BSA.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively. Never use a font without confirmation that
+			you have the correct licence in place.
 		</p>
 		<p>
 			Send a request for approval to{' '}
@@ -346,12 +382,31 @@ const fontTextBSA = () => (
 const fontTextWBG = () => (
 	<Fragment>
 		<p>
-			Check the <a href={urlMap.WBG.guidelinesURL}>Masterbrand Guidelines</a> to understand how to
-			use brand fonts effectively.
+			Check the{' '}
+			<a href={urlMap.WBG.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively.
 		</p>
 		<p>
 			<a href="https://fonts.google.com/specimen/Montserrat" target="_blank">
 				Download Montserrat
+			</a>
+		</p>
+	</Fragment>
+);
+const fontTextRAMS = () => (
+	<Fragment>
+		<p>
+			Check the{' '}
+			<a href={urlMap.RAMS.guidelinesURL} target="_blank">
+				Masterbrand Guidelines
+			</a>{' '}
+			to understand how to use brand fonts effectively.
+		</p>
+		<p>
+			<a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank">
+				Download Source Sans Pro
 			</a>
 		</p>
 	</Fragment>
@@ -378,11 +433,15 @@ const getBrandContent = () => ({
 		...urlMap.WBG,
 		fontText: fontTextWBG,
 	},
+	RAMS: {
+		...urlMap.RAMS,
+		fontText: fontTextRAMS,
+	},
 });
 
 const SectionDesigners = () => {
 	const { BRAND } = useBrand();
-	const brandContent = getBrandContent()[BRAND];
+	const brandContent = getBrandContent()[BRAND.code];
 	const FontText = brandContent.fontText;
 
 	return (
@@ -423,8 +482,13 @@ const SectionDevelopers = () => {
 
 	const [isLoading, setLoading] = useState(false);
 
+	const hiddenPkgs = ['progress-rope'];
+
 	const supportedPkgs = Object.keys(GEL.components).filter(
-		(name) => GEL.components[name].blender && !GEL.components[name].blender.isCore
+		(name) =>
+			GEL.components[name].blender &&
+			!GEL.components[name].blender.isCore &&
+			!hiddenPkgs.includes(name)
 	);
 	const checkState = {};
 	supportedPkgs.map((name) => (checkState[name] = false));
@@ -471,7 +535,7 @@ const SectionDevelopers = () => {
 							<p>
 								Developers can{' '}
 								<a
-									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND}.zip`}
+									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND.code}.zip`}
 									target="blank"
 								>
 									download web font files
@@ -604,7 +668,7 @@ const SectionDevelopers = () => {
 										</BlockListItem>
 										<BlockListItem>
 											<Switch
-												name="excludeJquery"
+												name="includeJquery"
 												size="small"
 												label="Include jQuery"
 												block
@@ -613,7 +677,7 @@ const SectionDevelopers = () => {
 										</BlockListItem>
 										<BlockListItem>
 											<Switch
-												name="noVersionInClass"
+												name="versionInClass"
 												size="small"
 												label="Component versions in CSS classes"
 												block
@@ -647,7 +711,7 @@ const SectionDevelopers = () => {
 										</BlockListItem>
 									</BlockList>
 
-									<input type="hidden" name="brand" value={BRAND} />
+									<input type="hidden" name="brand" value={BRAND.code} />
 
 									<Button
 										look="primary"

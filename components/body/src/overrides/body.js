@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
+import { forwardRef } from 'react';
 import { jsx, useBrand, getLabel } from '@westpac/core';
 
-const Body = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;
+const Body = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
 
 const bodyStyles = (_, props) => {
 	const { COLORS, PACKS, TYPE, SPACING } = useBrand();
@@ -20,11 +21,13 @@ const bodyStyles = (_, props) => {
 		...PACKS.typeScale.bodyFont[10],
 
 		'h1, h2, h3, h4, h5, h6': {
+			marginTop: 0,
 			color: COLORS.heading,
 		},
 
 		p: {
-			margin: `${SPACING(2)} 0`,
+			marginTop: 0,
+			marginBottom: SPACING(2),
 		},
 
 		dt: {
@@ -54,7 +57,7 @@ const bodyStyles = (_, props) => {
 		},
 
 		'a:not([class*="-button"])': {
-			color: COLORS.primary,
+			color: COLORS.link,
 			textDecoration: 'underline',
 		},
 
