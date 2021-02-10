@@ -5,7 +5,8 @@
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
 	"blender": {
 		"recipe": "blender/recipe.js",
-		"js": "blender/jquery.js",
+		"js": "blender/script.js",
+		"jquery": "blender/jquery.js",
 		"isCore": true
 	},
 	"components": [

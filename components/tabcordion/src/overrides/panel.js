@@ -1,15 +1,7 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import {
-	jsx,
-	useBrand,
-	useMediaQuery,
-	getLabel,
-	classNames,
-	getModifier,
-	formatClassName,
-} from '@westpac/core';
+import { jsx, useBrand, getLabel, classNames, getModifier, formatClassName } from '@westpac/core';
 import { useSpring, animated } from 'react-spring';
 import BezierEasing from 'bezier-easing';
 
@@ -98,10 +90,10 @@ const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
 // Styles
 // ==============================
 
-const panelStyles = (_, { look, mode, last, selected, closed }) => {
+const panelStyles = (_, { mode, look, selected, closed, last }) => {
 	const { COLORS } = useBrand();
 
-	const getStyles = (mode, look) => {
+	const getPanelStyles = (mode, look, selected, closed, last) => {
 		switch (mode) {
 			case 'accordion':
 				return {
@@ -133,7 +125,7 @@ const panelStyles = (_, { look, mode, last, selected, closed }) => {
 		label: getLabel('tabcordion-panel'),
 		overflow: 'hidden',
 		border: `solid ${COLORS.border}`,
-		...getStyles(mode, look),
+		...getPanelStyles(mode, look, selected, closed, last),
 	};
 };
 
@@ -142,7 +134,6 @@ const panelStyles = (_, { look, mode, last, selected, closed }) => {
 // ==============================
 
 const blenderStyles = (_, { selected }) => {
-	const mq = useMediaQuery();
 	const props = { selected };
 	const baseStyles = panelStyles(_, defaultProps);
 
@@ -151,18 +142,24 @@ const blenderStyles = (_, { selected }) => {
 	});
 
 	let modifiers = getModifier({ ...defaultProps, selected: false }, props);
-	if (!modifiers.length) return mq(baseStyles)[0];
+	if (!modifiers.length) return baseStyles;
 
 	let label = baseStyles.label;
 	const modifier = modifiers[0];
 
+	let modifierStyles = {};
+
 	switch (modifier) {
+		case 'selected':
+			label = `${label}-show`;
+			modifierStyles = { display: 'block !important' };
+			break;
 		default:
 			label = `${label}-${modifier}`;
 			break;
 	}
 
-	return { label, display: 'block' };
+	return { label, ...modifierStyles };
 };
 
 // ==============================
@@ -176,7 +173,7 @@ const panelAttributes = (_, { panelId, mode, hidden, selected }) => ({
 
 const blenderAttributes = (_, props) => ({
 	...panelAttributes(_, props),
-	className: classNames({ [`__convert__tabcordion-panel-selected`]: props.selected }),
+	className: classNames({ [`__convert__tabcordion-panel-show`]: props.selected }),
 });
 
 // ==============================
