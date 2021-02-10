@@ -23,7 +23,7 @@ const A11yIntro = () => (
 
 // Shortcodes can contain characters a-z and numbers 0-9 but no other characters
 export const getShortCodes = (brand) => ({
-	brandName: brandsMap[brand].label,
+	brandName: brand.name,
 	visionFilterIntro: VisionFilterIntro,
 	a11yIntro: A11yIntro,
 	a11yPerceivable: `The Design System components have been designed to adhere to colour contrast ratios for both text and non-text elements. They have been coded to include text alternatives when required, and allow component text and labels to be resized. They do not use colour alone to convey information.`,
