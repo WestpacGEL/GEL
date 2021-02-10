@@ -1,4 +1,4 @@
-var GELButtonDropdown = (function () {
+(function ($, GEL) {
 	var module = {};
 
 	module.toggle = function buttonDropdownToggle($btn, mode) {
@@ -28,12 +28,12 @@ var GELButtonDropdown = (function () {
 	module.init = function buttonDropdownInit() {
 		$('[data-js="buttonDropdown-btn__version__"]')
 			.on('click', function () {
-				GELButtonDropdown.toggle($(this));
+				GEL.buttonDropdown.toggle($(this));
 			})
 			.parent()
 			.on('keyup', function (e) {
 				if (e.key === 'Escape' || e.keyCode === 27) {
-					GELButtonDropdown.toggle(
+					GEL.buttonDropdown.toggle(
 						$(this).find('[data-js="buttonDropdown-btn__version__"]'),
 						'close'
 					);
@@ -41,9 +41,9 @@ var GELButtonDropdown = (function () {
 			});
 	};
 
-	return module;
-})();
+	GEL.buttonDropdown = module;
 
-$(function () {
-	GELButtonDropdown.init();
-});
+	$(function () {
+		GEL.buttonDropdown.init();
+	});
+})(jQuery, GEL);

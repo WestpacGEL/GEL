@@ -1,4 +1,4 @@
-var GELModal = (function () {
+(function ($, GEL) {
 	var module = {};
 
 	function trapFocus(element) {
@@ -73,11 +73,11 @@ var GELModal = (function () {
 			var modalID = $(this).data('modal');
 			var $modal = $('#' + modalID);
 
-			GELModal.toggle($modal);
+			GEL.modal.toggle($modal);
 		});
 
 		$('[data-js="modal-closeBtn__version__"]').on('click', function () {
-			GELModal.toggle($(this).closest('[data-js="modal__version__"]'), 'close');
+			GEL.modal.toggle($(this).closest('[data-js="modal__version__"]'), 'close');
 		});
 
 		$('[data-js="modal__version__"]')
@@ -85,18 +85,18 @@ var GELModal = (function () {
 				if (e.target != this) {
 					return false;
 				}
-				GELModal.toggle($(this), 'close');
+				GEL.modal.toggle($(this), 'close');
 			})
 			.on('keyup', function (e) {
 				if (e.key === 'Escape' || e.keyCode === 27) {
-					GELModal.toggle($(this), 'close');
+					GEL.modal.toggle($(this), 'close');
 				}
 			});
 	};
 
-	return module;
-})();
+	GEL.modal = module;
 
-$(function () {
-	GELModal.init();
-});
+	$(function () {
+		GEL.modal.init();
+	});
+})(jQuery, GEL);
