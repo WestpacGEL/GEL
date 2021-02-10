@@ -23,7 +23,7 @@ const Under = (props) => <span css={{ textDecoration: 'underline' }} {...props} 
 
 const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
-	const shortcodes = getShortCodes(BRAND.code);
+	const shortcodes = getShortCodes(BRAND);
 	const textCodes = [...text.matchAll(/\[\[[A-Za-z0-9]*\]\]/g)].map((m) => m[0]);
 	let shortCodedText = text;
 
