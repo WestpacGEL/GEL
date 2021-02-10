@@ -9,7 +9,7 @@ function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
 
 	overridesWithTokens['@westpac/tabcordion'] = {
-		TabButton: {
+		TabBtn: {
 			styles: (styles, { selected }) => ({
 				...styles,
 				border: `1px solid black`,
@@ -17,7 +17,7 @@ function Example({ brand }) {
 				color: selected ? 'white' : 'black',
 			}),
 		},
-		AccordionButton: {
+		AccordionBtn: {
 			styles: (styles, { look, hidden }) => {
 				const styleMap = {
 					soft: {
@@ -46,7 +46,7 @@ function Example({ brand }) {
 				};
 			},
 		},
-		AccordionButtonIcon: {
+		AccordionBtnIcon: {
 			component: ({ state, ...rest }) => {
 				const Icon = state.hidden ? ExpandMoreIcon : ExpandLessIcon;
 
@@ -213,7 +213,7 @@ function Example({ brand }) {
 				<Tab
 					text="Rabbit hole"
 					overrides={{
-						AccordionButton: {
+						AccordionBtn: {
 							styles: (styles) => ({
 								...styles,
 								borderLeft: '1px solid mediumblue',
@@ -228,7 +228,7 @@ function Example({ brand }) {
 								},
 							}),
 						},
-						AccordionButtonIcon: {
+						AccordionBtnIcon: {
 							component: ({ state, ...rest }) => {
 								const Icon = state.hidden ? ThumbDownIcon : ThumbUpIcon;
 								return <Icon color="mediumblue" size="small" assistiveText={null} {...rest} />;
@@ -252,7 +252,7 @@ function Example({ brand }) {
 				<Tab
 					text="Flamingo"
 					overrides={{
-						AccordionButton: {
+						AccordionBtn: {
 							styles: (styles) => ({
 								...styles,
 								borderLeft: '1px solid mediumblue',
@@ -267,7 +267,7 @@ function Example({ brand }) {
 								},
 							}),
 						},
-						AccordionButtonIcon: {
+						AccordionBtnIcon: {
 							component: ({ state, ...rest }) => {
 								const Icon = state.hidden ? ThumbDownIcon : ThumbUpIcon;
 								return <Icon color="mediumblue" size="small" assistiveText={null} {...rest} />;
@@ -296,7 +296,7 @@ function Example({ brand }) {
 				<Tab
 					text="Caterpillar"
 					overrides={{
-						AccordionButton: {
+						AccordionBtn: {
 							styles: (styles) => ({
 								...styles,
 								borderLeft: '1px solid mediumblue',
@@ -311,7 +311,7 @@ function Example({ brand }) {
 								},
 							}),
 						},
-						AccordionButtonIcon: {
+						AccordionBtnIcon: {
 							component: ({ state, ...rest }) => {
 								const Icon = state.hidden ? ThumbDownIcon : ThumbUpIcon;
 								return <Icon color="mediumblue" size="small" assistiveText={null} {...rest} />;
@@ -352,7 +352,7 @@ function Example({ brand }) {
 				mode="tabs"
 				instanceIdPrefix="example-default-component-overrides-tabs"
 				overrides={{
-					TabButton: {
+					TabBtn: {
 						styles: (styles, { selected }) => ({
 							...styles,
 							border: `1px solid darkred`,

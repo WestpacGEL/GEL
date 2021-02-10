@@ -113,7 +113,7 @@ const Tabs = ({ component, tabName }) => {
 				})[0],
 			}),
 		},
-		TabButton: {
+		TabBtn: {
 			styles: (styles, { selected }) =>
 				mq({
 					...styles,

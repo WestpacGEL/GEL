@@ -24,7 +24,9 @@ const itemStyles = () => ({
 // Blender Styles
 // ==============================
 
-const blenderStyles = () => ({});
+const blenderStyles = () => ({
+	...itemStyles(),
+});
 
 // ==============================
 // Attributes
@@ -32,9 +34,8 @@ const blenderStyles = () => ({});
 
 const itemAttributes = () => null;
 
-const blenderAttributes = (_, props) => ({
-	...itemAttributes(_, props),
-	className: classNames({ [`__convert__tabcordion-item-selected`]: props.selected }),
+const blenderAttributes = () => ({
+	...itemAttributes(),
 });
 
 // ==============================

@@ -19,7 +19,7 @@ const BlenderTabRow = forwardRef(({ state: _, className, ...rest }, ref) => (
 // ==============================
 
 const tabRowStyles = () => ({
-	label: getLabel('tabcordion-tab-row'),
+	label: getLabel('tabcordion-tabRow'),
 	display: 'flex',
 	whiteSpace: 'nowrap',
 	position: 'relative',
@@ -34,11 +34,12 @@ const blenderStyles = (_, { justify }) => {
 
 	return {
 		label: `${baseStyles.label}-justify`,
-		[`.__convert__tabcordion-tab-btn`]: {
+		[`.__convert__tabcordion-tabBtn`]: {
 			flex: 1,
 		},
 	};
 };
+
 // ==============================
 // Attributes
 // ==============================
@@ -47,7 +48,7 @@ const tabRowAttributes = (_, {}) => ({ role: 'tablist' });
 
 const blenderAttributes = (_, { justify }) => ({
 	...tabRowAttributes(_, {}),
-	className: classNames({ [`__convert__tabcordion-tab-row-justify`]: justify }),
+	className: classNames({ [`__convert__tabcordion-tabRow-justify`]: justify }),
 });
 // ==============================
 // Exports

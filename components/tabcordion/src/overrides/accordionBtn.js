@@ -16,17 +16,17 @@ import { defaultProps } from '../blender/Tabcordion';
 // Component
 // ==============================
 
-const AccordionButton = ({ state: _, ...rest }) => <button type="button" {...rest} />;
+const AccordionBtn = ({ state: _, ...rest }) => <button type="button" {...rest} />;
 
-const BlenderAccordionButton = ({ className, ...rest }) => (
-	<AccordionButton className={formatClassName(className)} {...rest} />
+const BlenderAccordionBtn = ({ className, ...rest }) => (
+	<AccordionBtn className={formatClassName(className)} {...rest} />
 );
 
 // ==============================
 // Styles
 // ==============================
 
-const accordionButtonStyles = (_, { look, hidden, first, last, closed }) => {
+const accordionBtnStyles = (_, { look, hidden, first, last, closed }) => {
 	const { COLORS, SPACING, PACKS } = useBrand();
 	const styleMap = {
 		soft: {
@@ -61,7 +61,7 @@ const accordionButtonStyles = (_, { look, hidden, first, last, closed }) => {
 	};
 
 	return {
-		label: getLabel('tabcordion-accordion-btn'),
+		label: getLabel('tabcordion-accordionBtn'),
 		display: 'flex',
 		position: 'relative',
 		width: '100%',
@@ -85,12 +85,12 @@ const accordionButtonStyles = (_, { look, hidden, first, last, closed }) => {
 
 const blenderStyles = (_, { hidden }) => {
 	const props = { hidden };
-	const baseStyles = accordionButtonStyles(_, { ...defaultProps, hidden: true });
+	const baseStyles = accordionBtnStyles(_, { ...defaultProps, hidden: true });
 
 	let modifiers = getModifier({ ...defaultProps, hidden: true }, props);
 	if (!modifiers.length) return baseStyles;
 
-	const modifierStyles = accordionButtonStyles(_, { ...props, look: 'soft' });
+	const modifierStyles = accordionBtnStyles(_, { ...props, look: 'soft' });
 	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
 
 	let label = baseStyles.label;
@@ -98,9 +98,9 @@ const blenderStyles = (_, { hidden }) => {
 
 	switch (modifier) {
 		case 'hidden':
-			if (!hidden) label = `${label}-open`;
+			if (!hidden) label = `${label}-active`;
 			Object.assign(reconciledStyles, {
-				['.__convert__tabcordion-accordion-btn-icon']: { transform: 'rotate(180deg)' },
+				['.__convert__tabcordion-accordionBtn-icon']: { transform: 'rotate(180deg)' },
 			});
 			break;
 		default:
@@ -112,29 +112,24 @@ const blenderStyles = (_, { hidden }) => {
 };
 
 export const accordionBtnLegoStyles = (_) => {
-	const baseStyles = accordionButtonStyles(_, defaultProps);
-	const legoStyles = accordionButtonStyles(_, { look: 'lego', hidden: true });
-	const openLegoStyles = accordionButtonStyles(_, { look: 'lego', hidden: false });
+	const baseStyles = accordionBtnStyles(_, defaultProps);
+	const legoStyles = accordionBtnStyles(_, { look: 'lego', hidden: true });
+	const openLegoStyles = accordionBtnStyles(_, { look: 'lego', hidden: false });
 	const reconLegoStyles = styleReconciler(baseStyles, legoStyles);
 	const reconOpenLegoStyles = styleReconciler(baseStyles, openLegoStyles);
 	const finalOpenLegoStyles = styleReconciler(reconLegoStyles, reconOpenLegoStyles);
 
 	return {
-		[`.__convert__${baseStyles.label}`]: {
-			...reconLegoStyles,
-			':last-of-type': {
-				borderBottomLeftRadius: 0,
-				borderBottomRightRadius: 0,
-			},
-		},
-		[`.__convert__${baseStyles.label}-open`]: finalOpenLegoStyles,
+		[`.__convert__${baseStyles.label}`]: reconLegoStyles,
+		[`.__convert__${baseStyles.label}-active`]: finalOpenLegoStyles,
 	};
 };
+
 // ==============================
 // Attributes
 // ==============================
 
-const accordionButtonAttributes = (_, { tabId, panelId, hidden }) => ({
+const accordionBtnAttributes = (_, { tabId, panelId, hidden }) => ({
 	id: tabId,
 	'aria-controls': panelId,
 	'aria-expanded': !hidden,
@@ -143,22 +138,22 @@ const accordionButtonAttributes = (_, { tabId, panelId, hidden }) => ({
 const blenderAttributes = (_, { panelId, hidden }) => ({
 	'aria-controls': panelId,
 	'aria-expanded': !hidden,
-	'data-js': 'tabcordion-accordion-btn__version__',
-	className: classNames({ [`__convert__tabcordion-accordion-btn-open`]: !hidden }),
+	'data-js': 'tabcordion-accordionBtn__version__',
+	className: classNames({ [`__convert__tabcordion-accordionBtn-active`]: !hidden }),
 });
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultAccordionButton = {
-	component: AccordionButton,
-	styles: accordionButtonStyles,
-	attributes: accordionButtonAttributes,
+export const defaultAccordionBtn = {
+	component: AccordionBtn,
+	styles: accordionBtnStyles,
+	attributes: accordionBtnAttributes,
 };
 
-export const blenderAccordionButton = {
-	component: BlenderAccordionButton,
+export const blenderAccordionBtn = {
+	component: BlenderAccordionBtn,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };
