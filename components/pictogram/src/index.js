@@ -30,6 +30,7 @@ export { PadlockUnlockedPictogram } from './informative/PadlockUnlockedPictogram
 export { PassportPictogram } from './informative/PassportPictogram';
 export { PercentSignPictogram } from './informative/PercentSignPictogram';
 export { PersonPictogram } from './informative/PersonPictogram';
+export { PiggyBankPictogram } from './informative/PiggyBankPictogram';
 export { StarPictogram } from './informative/StarPictogram';
 export { StopwatchPictogram } from './informative/StopwatchPictogram';
 export { ThumbsUpPictogram } from './informative/ThumbsUpPictogram';
