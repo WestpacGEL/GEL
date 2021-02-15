@@ -83,19 +83,51 @@
 
 		if (closeOthers) {
 			var $panelShow = $tabcordion.find('.' + panelShowClass).not($panel);
-			$panelShow.removeClass(panelShowClass).attr('aria-hidden', 'true');
+			panelToggle($panelShow, false, 'close');
 		}
 
 		switch (mode) {
 			case 'open':
-				$panel.addClass(panelShowClass).attr('aria-hidden', 'false');
+				$panel.attr('aria-hidden', 'false');
+				if (isTabs) {
+					$panel.addClass(panelShowClass);
+				} else {
+					$panel.slideDown({
+						duration: 200,
+						start: function () {
+							$(this).prev('[data-js="tabcordion-accordionBtn__version__"]').addClass('collapsing');
+						},
+						complete: function () {
+							$(this)
+								.css('display', '')
+								.addClass(panelShowClass)
+								.prev('[data-js="tabcordion-accordionBtn__version__"]')
+								.removeClass('collapsing');
+						},
+					});
+				}
 
 				// Store as last active
 				$tabcordion.data('lastActivePanelID', $panel.attr('id'));
 				break;
 			case 'close':
-				if (!isTabs) {
-					$panel.removeClass(panelShowClass).attr('aria-hidden', 'true');
+				$panel.attr('aria-hidden', 'true');
+				if (isTabs) {
+					$panel.removeClass(panelShowClass);
+				} else {
+					$panel.slideUp({
+						duration: 'fast',
+						start: function () {
+							$(this).prev('[data-js="tabcordion-accordionBtn__version__"]').addClass('collapsing');
+						},
+						complete: function () {
+							$(this)
+								.css('display', '')
+								.removeClass(panelShowClass)
+								.prev('[data-js="tabcordion-accordionBtn__version__"]')
+								.removeClass('collapsing');
+						},
+					});
 				}
 				break;
 			case 'toggle':
@@ -148,7 +180,6 @@
 				})
 				.join(', ')
 		);
-
 		$(window)
 			.on(
 				'resize',
@@ -163,16 +194,16 @@
 			)
 			.trigger('resize');
 
-		// Bind tabBtn click
+		// Bind tabBtn click event
 		$('[data-js="tabcordion-tabBtn__version__"]').on('click', function () {
 			var panelID = $(this).attr('aria-controls');
-			GEL.tabcordion.toggle(panelID, true);
+			GEL.tabcordion.toggle(panelID, true, 'open');
 		});
 
-		// Bind accordionBtn click
+		// Bind accordionBtn click event
 		$('[data-js="tabcordion-accordionBtn__version__"]').on('click', function () {
 			var panelID = $(this).attr('aria-controls');
-			GEL.tabcordion.toggle(panelID, false);
+			GEL.tabcordion.toggle(panelID, false, 'toggle');
 		});
 	};
 
