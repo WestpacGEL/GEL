@@ -2,4 +2,5 @@
 '@westpac/button': patch
 ---
 
-Fix soft button hover/active styling.
+- Fix soft button hover/active styling.
+- Update dropdown styling.
