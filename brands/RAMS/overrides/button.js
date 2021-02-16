@@ -32,7 +32,7 @@ export const button = ({ COLORS }) => {
 							backgroundImage: sizeArr.map(
 								(s) =>
 									s &&
-									`linear-gradient(to top, #78C339, #78C339 ${sizeMap[s].stopPos}, transparent ${sizeMap[s].stopPos}, transparent)`
+									`linear-gradient(to top, ${COLORS.pop}, ${COLORS.pop} ${sizeMap[s].stopPos}, transparent ${sizeMap[s].stopPos}, transparent)`
 							),
 						}),
 				};
