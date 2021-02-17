@@ -14,6 +14,7 @@ const fs = require('fs');
 function getSvgs(svgPath, component) {
 	const svgs = fs
 		.readdirSync(path.normalize(`${process.cwd()}/${svgPath}`))
+		.filter((name) => name.endsWith('.js'))
 		.map((item) => item.replace('.js', ''));
 
 	console.info(chalk.green(`✅ Got all ${component} successfully`));
