@@ -3,8 +3,11 @@
 import { GEL, jsx, css, useBrand } from '@westpac/core';
 import * as components from '@westpac/pictogram';
 import { Cell, Grid, Name } from './_util';
+import { brands } from '../../../GEL.json';
 
-const informative = Object.keys(components).filter((s) => !s.startsWith('WBC'));
+const informative = Object.keys(components).filter(
+	(component) => !Object.keys(brands).some((code) => component.startsWith(code))
+);
 const modes = ['dark', 'light', 'duo'];
 
 function Example({ brand }) {
