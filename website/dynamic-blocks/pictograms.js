@@ -15,7 +15,8 @@ const renderPictograms = (search) => {
 			!key.startsWith('BSA') &&
 			!key.startsWith('STG') &&
 			!key.startsWith('WBC') &&
-			!key.startsWith('WBG')
+			!key.startsWith('WBG') &&
+			!key.startsWith('RAMS')
 		) {
 			pictogramDetails.push({ name: key, pictogram: pictograms[key] });
 		}
