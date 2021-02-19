@@ -12,7 +12,7 @@ import { blenderGroupList } from '../overrides/groupList';
 // Component
 // ==============================
 
-export const Group = ({ id, text, active, visited, open, children, ...rest }) => {
+export const Group = ({ index, id, text, active, visited, open, children, ...rest }) => {
 	const { component: Group, styles: groupStyles, attributes: groupAttributes } = blenderGroup;
 	const {
 		component: GroupButtonWrapper,
