@@ -1,3 +1,6 @@
+const systemFont =
+	'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif';
+
 module.exports = {
 	TYPE: {
 		files: [
@@ -38,7 +41,7 @@ module.exports = {
 		brandFont: {
 			weights: ['400', '400', '400', '400', '400', '600', '700', '700', '700'],
 			headingWeight: 600,
-			fontFamily: '"brandFontRAMS"',
+			fontFamily: `"brandFontRAMS", ${systemFont}`,
 		},
 	},
 };
