@@ -26,7 +26,9 @@ export const Pictogram = ({
 	...rest
 }) => {
 	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
+		OVERRIDES: {
+			[pkg.name]: { options, ...tokenOverrides },
+		},
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
@@ -53,6 +55,10 @@ export const Pictogram = ({
 		Svg: { component: Svg, styles: svgStyles, attributes: svgAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
+	const { outline, highlight } = mode
+		? options.colorMap[mode]
+		: options.colorMap[options.colorMap.default];
+
 	return (
 		<Pictogram {...rest} state={state} {...pictogramAttributes(state)} css={pictogramStyles(state)}>
 			<Svg state={state} css={svgStyles(state)} {...svgAttributes(state)}>
@@ -61,7 +67,7 @@ export const Pictogram = ({
 						{`Copyright © ${copyrightYear} by Westpac Banking Corporation. All rights reserved.`}
 					</metadata>
 				)}
-				{children}
+				{children({ outline, highlight })}
 			</Svg>
 		</Pictogram>
 	);

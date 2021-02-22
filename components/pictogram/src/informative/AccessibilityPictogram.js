@@ -1,11 +1,9 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram, getColors } from '../Pictogram';
+import { propTypes, defaultProps, Pictogram } from '../Pictogram';
 
-export const AccessibilityPictogram = ({ mode, ...rest }) => {
-	const { outline, highlight } = getColors(mode);
-
-	return (
-		<Pictogram pictogram="AccessibilityPictogram" mode={mode} {...rest}>
+export const AccessibilityPictogram = ({ mode, ...rest }) => (
+	<Pictogram pictogram="AccessibilityPictogram" mode={mode} {...rest}>
+		{({ outline, highlight }) => (
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -16,9 +14,9 @@ export const AccessibilityPictogram = ({ mode, ...rest }) => {
 					d="M38.7109,67.9121 C22.2969,67.9121 8.9419,54.5581 8.9419,38.1441 C8.9419,21.7301 22.2969,8.3771 38.7109,8.3771 C55.1239,8.3771 68.4779,21.7301 68.4779,38.1441 C68.4779,54.5581 55.1239,67.9121 38.7109,67.9121 M65.8799,20.7701 C60.1389,11.8221 50.1079,5.8751 38.7109,5.8751 C20.9189,5.8751 6.4419,20.3501 6.4419,38.1431 C6.4419,45.2761 8.7739,51.8731 12.7089,57.2211 C18.4489,66.1751 28.4819,72.1251 39.8849,72.1251 C57.6769,72.1251 72.1509,57.6501 72.1509,39.8581 C72.1509,32.7201 69.8169,26.1201 65.8799,20.7701"
 				/>
 			</g>
-		</Pictogram>
-	);
-};
+		)}
+	</Pictogram>
+);
 
 AccessibilityPictogram.defaultProps = {
 	...defaultProps,
