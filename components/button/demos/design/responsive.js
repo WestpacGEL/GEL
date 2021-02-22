@@ -9,35 +9,25 @@ import { Title, Hr } from '../../../../helpers/demos';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Title>Medium (default) button but Extra large for MD breakpoints and wider</Title>
-			<Button look="primary" size={['medium', null, null, 'xlarge']}>
-				btn-xlarge-md
+			<Title>Medium button becomes Extra large at the MD breakpoint</Title>
+			<Button size={['medium', null, null, 'xlarge']}>Medium / Extra large</Button>
+			<Hr />
+
+			<Title>Extra large button becomes small at the SM breakpoint</Title>
+			<Button size={['xlarge', null, 'small']}>Extra large / Small</Button>
+			<Hr />
+
+			<Title>
+				Small button becomes medium at the SM breakpoint, large at the MD breakpoint and Extra large
+				at the LG breakpoint
+			</Title>
+			<Button size={['small', null, 'medium', 'large', 'xlarge']}>
+				Small / Medium / Large / Extra large
 			</Button>
 			<Hr />
-			<Title>Small button but Large for MD breakpoint and wider</Title>
-			<Button look="primary" size={['small', null, null, 'large']}>
-				btn-small btn-large-md
-			</Button>
-			<Hr />
-			<Title>Extra large button for XS breakpoint only</Title>
-			<Button look="primary" size={['xlarge', 'medium']}>
-				btn-xlarge-xs-only
-			</Button>
-			<Hr />
-			<Title>Block button for MD or wider</Title>
-			<Button look="primary" block={[null, null, null, true]}>
-				btn-block-md
-			</Button>
-			<Hr />
-			<Title>Block button for XS breakpoint only</Title>
-			<Button look="primary" block={[true, false]}>
-				btn-block-xs-only
-			</Button>
-			<Hr />
-			<Title>Block and Large button for XS breakpoint only</Title>
-			<Button look="primary" size={['large', 'medium']} block={[true, false]}>
-				btn-large-xs-only btn-block-xs-only
-			</Button>
+
+			<Title>Block button becomes inline at the SM breakpoint</Title>
+			<Button block={[true, null, false]}>Block / Inline</Button>
 		</Playground>
 	);
 };
