@@ -12,7 +12,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>Success</Title>
 			<Alert look="success" mode="text">
-				Thank you, your account has successfully been opened.
+				Your account has successfully been opened.
 			</Alert>
 			<Title>Information</Title>
 			<Alert look="info" mode="text">
