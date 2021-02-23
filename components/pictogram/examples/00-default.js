@@ -4,19 +4,17 @@ import { GEL, jsx, useBrand } from '@westpac/core';
 import { Fragment } from 'react';
 import * as components from '@westpac/pictogram';
 import { Grid, Cell, Name } from './_util';
+import { brands } from '../../../GEL.json';
 
 function Example({ brand }) {
 	const { BRAND } = useBrand();
 
 	const informative = Object.keys(components).filter(
-		(s) =>
-			!s.startsWith('BOM') &&
-			!s.startsWith('BSA') &&
-			!s.startsWith('STG') &&
-			!s.startsWith('WBC') &&
-			!s.startsWith('WBG')
+		(component) => !Object.keys(brands).some((code) => component.startsWith(code))
 	);
-	const decorative = Object.keys(components).filter((s) => s.startsWith(BRAND));
+	const decorative = Object.keys(components).filter((component) =>
+		component.startsWith(BRAND.code)
+	);
 
 	return (
 		<GEL brand={brand}>
