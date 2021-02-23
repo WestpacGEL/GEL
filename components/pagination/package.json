@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/pagination",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Pagination components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/pagination",
 	"blender": {
@@ -60,8 +60,8 @@
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/button": "^1.0.0",
-		"@westpac/icon": "^1.0.0",
+		"@westpac/button": "^1.1.1",
+		"@westpac/icon": "^1.2.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

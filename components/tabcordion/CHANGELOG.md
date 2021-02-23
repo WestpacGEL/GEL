@@ -1,5 +1,35 @@
 # @westpac/tabcordion
 
+## 2.0.0
+
+### Major Changes
+
+- 35e683ac: - Rename internal Button components for consistency
+  - Blender: Refactor implementation, new responsive solution, update styling, update JS API with new functionality
+  - Blender: Add Accordion open/close transition
+
+### Minor Changes
+
+- f5fa9ac6: Bump react-spring to v9.0.0-rc.3
+- 41613962: - Move react-spring panel animation to Panel override
+  - Fix onOpening and onClosing callbacks
+  - Update TabButton and AccordionButton background colour, padding and line-height styling
+  - Add TabButton hover styling
+  - Add lego accordion indicator transition styling
+  - Add new PanelBody component within Panel, renders our Body component with fade transition for tabs `mode`
+  - Add Item component, wraps AccordionButton and Panel
+  - Add @westpac/body dependency
+  - Add bezier-easing dependency
+
+### Patch Changes
+
+- b3c1336b: - Update soft TabButton text color
+  - Update AccordionButton text color
+- Updated dependencies [6c12e7b4]
+- Updated dependencies [afc39be7]
+  - @westpac/icon@1.2.0
+  - @westpac/body@1.3.0
+
 ## 1.0.0
 
 ### Major Changes

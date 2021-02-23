@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/popover",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Popover component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/popover",
 	"blender": {
@@ -49,12 +49,12 @@
 	"module": "dist/popover.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/body": "^1.2.0",
-		"@westpac/button": "^1.1.0",
+		"@westpac/body": "^1.3.0",
+		"@westpac/button": "^1.1.1",
 		"@westpac/core": "^1.1.0",
 		"@westpac/heading": "^1.0.0",
 		"@westpac/hooks": "^1.1.0",
-		"@westpac/icon": "^1.1.0",
+		"@westpac/icon": "^1.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

@@ -1,5 +1,24 @@
 # @westpac/modal
 
+## 1.1.0
+
+### Minor Changes
+
+- f5fa9ac6: Bump react-spring to v9.0.0-rc.3
+- 7bd3b897: - Fix scrolling for long modals
+  - Remove unncessary react-spring element wrapping
+  - Simplify react-spring show/hide interpolation
+
+### Patch Changes
+
+- d178cd3f: Fix content border styling.
+- Updated dependencies [6c12e7b4]
+- Updated dependencies [afc39be7]
+- Updated dependencies [c83b7c35]
+  - @westpac/icon@1.2.0
+  - @westpac/body@1.3.0
+  - @westpac/button@1.1.1
+
 ## 1.0.0
 
 ### Major Changes
