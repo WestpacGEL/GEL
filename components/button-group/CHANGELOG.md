@@ -1,5 +1,17 @@
 # @westpac/button-group
 
+## 1.1.0
+
+### Minor Changes
+
+- c9b3f426: Update styling for checked state in WHCM
+- 709fefed: Remove faint look option
+
+### Patch Changes
+
+- Updated dependencies [c83b7c35]
+  - @westpac/button@1.1.1
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/progress-rope",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Progress-rope components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-rope",
 	"blender": {
@@ -70,7 +70,7 @@
 		"react-spring": "9.0.0-rc.3"
 	},
 	"devDependencies": {
-		"@westpac/button": "^1.0.0",
+		"@westpac/button": "^1.1.1",
 		"@westpac/grid": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",

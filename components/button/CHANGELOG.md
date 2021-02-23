@@ -1,5 +1,14 @@
 # @westpac/button
 
+## 1.1.1
+
+### Patch Changes
+
+- c83b7c35: - Fix soft button hover/active styling.
+  - Update dropdown styling.
+- Updated dependencies [6c12e7b4]
+  - @westpac/icon@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes
