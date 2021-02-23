@@ -43,12 +43,13 @@ function Example({ brand }) {
 				<Item value="right">Right</Item>
 			</ButtonGroup>
 
-			<h3>Responsive</h3>
+			{/* Hidden for now until we sort out stylis */}
+			{/* <h3>Responsive</h3>
 			<ButtonGroup name="example-responsive" size={['small', 'medium', 'large', 'xlarge']}>
 				<Item value="left">Left</Item>
 				<Item value="middle">Middle</Item>
 				<Item value="right">Right</Item>
-			</ButtonGroup>
+			</ButtonGroup> */}
 		</GEL>
 	);
 }

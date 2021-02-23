@@ -39,8 +39,14 @@ const blenderStyles = (_, { mode, look }) => {
 	const baseStyles = {
 		label: getLabel('tabcordion'),
 
+		// Neither tabs or accordion
 		[`:not(.__convert__tabcordion-tabs):not(.__convert__tabcordion-accordion)`]: {
 			display: 'none', //hide responsive tabcordion until mode class is set (by JS)
+		},
+
+		// Panel (tabs and accordion)
+		[`.__convert__tabcordion-panel:not(.__convert__tabcordion-panel-show)`]: {
+			display: 'none',
 		},
 	};
 
@@ -52,7 +58,7 @@ const blenderStyles = (_, { mode, look }) => {
 			display: 'none',
 		},
 
-		// Tab panel
+		// Tabs panel
 		[`.__convert__tabcordion-panel`]: {
 			borderWidth: '1px',
 		},
@@ -84,8 +90,8 @@ const blenderStyles = (_, { mode, look }) => {
 			borderBottomRightRadius: '0.1875rem',
 		},
 
-		// Not the last accordionBtn and not active
-		[`.__convert__tabcordion-item:not(:last-child) > .__convert__tabcordion-accordionBtn:not(.__convert__tabcordion-accordionBtn-active)`]: {
+		// Not the last accordionBtn, not active and not currently collapsing
+		[`.__convert__tabcordion-item:not(:last-child) > .__convert__tabcordion-accordionBtn:not(.__convert__tabcordion-accordionBtn-active):not(.collapsing)`]: {
 			borderBottomWidth: 0, //reset
 		},
 

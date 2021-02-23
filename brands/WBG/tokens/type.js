@@ -1,3 +1,6 @@
+const systemFont =
+	'-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+
 module.exports = {
 	TYPE: {
 		files: [
@@ -32,13 +35,12 @@ module.exports = {
 		bodyFont: {
 			weights: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 			headingWeight: 700,
-			fontFamily:
-				'-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+			fontFamily: systemFont,
 		},
 		brandFont: {
 			weights: ['300', '300', '300', '400', '400', '400', '700', '700', '700'],
 			headingWeight: 400,
-			fontFamily: '"brandFontWBG"',
+			fontFamily: `"brandFontWBG", ${systemFont}`,
 		},
 	},
 };
