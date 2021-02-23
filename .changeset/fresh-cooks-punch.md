@@ -8,4 +8,4 @@
 '@westpac/wbg': minor
 ---
 
-Update system font stack (bodyFont), now consistent with GEL2
+Update system font stack (bodyFont)
