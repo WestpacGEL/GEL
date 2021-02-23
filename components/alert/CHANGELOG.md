@@ -1,5 +1,29 @@
 # @westpac/alert
 
+## 1.2.0
+
+### Minor Changes
+
+- f5fa9ac6: Bump react-spring to v9.0.0-rc.3
+- eafb42b5: - Icon now mandatory (no longer accepts null `icon` prop value) (a11y)
+  - Update default icons, now unique; determined by alert `look` (a11y)
+  - Icon now only customisable if `look` is info (a11y)
+  - Add new `mode` prop, provides new text option (icon + text only, strips background/border/padding)
+  - Dismissible not available in new text `mode`
+  - Remove unnecessary wrapping element
+  - Only render as react-spring component if dismissible
+- 087d88ef: Add alert icon `aria-label` attribute and remove `aria-hidden` attribute
+- f5fa9ac6: Update useTransition function, use new react-spring v9.x API
+
+### Patch Changes
+
+- Updated dependencies [6c12e7b4]
+- Updated dependencies [afc39be7]
+- Updated dependencies [c83b7c35]
+  - @westpac/icon@1.2.0
+  - @westpac/body@1.3.0
+  - @westpac/button@1.1.1
+
 ## 1.1.1
 
 ### Patch Changes

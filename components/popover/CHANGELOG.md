@@ -1,5 +1,17 @@
 # @westpac/popover
 
+## 1.0.1
+
+### Patch Changes
+
+- 1e1700d5: Update text styling, remove color styling (leverage inherited core text color)
+- Updated dependencies [6c12e7b4]
+- Updated dependencies [afc39be7]
+- Updated dependencies [c83b7c35]
+  - @westpac/icon@1.2.0
+  - @westpac/body@1.3.0
+  - @westpac/button@1.1.1
+
 ## 1.0.0
 
 ### Major Changes

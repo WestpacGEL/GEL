@@ -1,5 +1,16 @@
 # @westpac/pagination
 
+## 1.1.0
+
+### Minor Changes
+
+- 04d8ad3e: Remove unnecessary `aria-disabled` attribute
+- 51ca259e: Add list role to enhance UX in VoiceOver
+
+### Patch Changes
+
+- 247d8895: Update text styling, use `COLORS.text` (not `COLORS.neutral`)
+
 ## 1.0.0
 
 ### Major Changes

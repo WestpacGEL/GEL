@@ -1,5 +1,12 @@
 # @westpac/icon
 
+## 1.2.0
+
+### Minor Changes
+
+- 6c12e7b4: - Add new icons (SuccessIcon and WarningIcon)
+  - Add missing entry points for ClearCircleIcon and ClearIcon
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # @westpac/symbol
 
+## 1.1.0
+
+### Minor Changes
+
+- fb150eb2: Add RAMS logos
+- 4382ba2d: Remove BT Financial Group logos
+
 ## 1.0.0
 
 ### Major Changes

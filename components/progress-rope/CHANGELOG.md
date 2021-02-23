@@ -1,5 +1,15 @@
 # @westpac/progress-rope
 
+## 1.1.0
+
+### Minor Changes
+
+- f5fa9ac6: Bump react-spring to v9.0.0-rc.3
+
+### Patch Changes
+
+- 247d8895: Update text styling, use `COLORS.text` (not `COLORS.neutral`)
+
 ## 1.0.0
 
 ### Major Changes

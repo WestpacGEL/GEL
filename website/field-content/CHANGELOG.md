@@ -1,5 +1,16 @@
 # @keystonejs/field-content
 
+## 5.4.4
+
+### Patch Changes
+
+- Updated dependencies [afc39be7]
+- Updated dependencies [1ad08a4b]
+- Updated dependencies [ab254c76]
+- Updated dependencies [63ca2dee]
+  - @westpac/body@1.3.0
+  - @westpac/wbc@2.0.0
+
 ## 5.4.3
 
 ### Patch Changes
