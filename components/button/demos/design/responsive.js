@@ -9,25 +9,25 @@ import { Title, Hr } from '../../../../helpers/demos';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Title>Medium button becomes Extra large at the MD breakpoint</Title>
-			<Button size={['medium', null, null, 'xlarge']}>Medium / Extra large</Button>
+			<Title>Medium size button becomes Extra large from the MD breakpoint</Title>
+			<Button size={['medium', null, null, 'xlarge']}>Medium → Extra large</Button>
 			<Hr />
 
-			<Title>Extra large button becomes small at the SM breakpoint</Title>
-			<Button size={['xlarge', null, 'small']}>Extra large / Small</Button>
+			<Title>Extra large size button becomes small from the SM breakpoint</Title>
+			<Button size={['xlarge', null, 'small']}>Extra large → Small</Button>
 			<Hr />
 
 			<Title>
-				Small button becomes medium at the SM breakpoint, large at the MD breakpoint and Extra large
-				at the LG breakpoint
+				Small size button becomes medium at the SM breakpoint, large at the MD breakpoint and Extra
+				large at the LG breakpoint
 			</Title>
 			<Button size={['small', null, 'medium', 'large', 'xlarge']}>
-				Small / Medium / Large / Extra large
+				Small → Medium → Large → Extra large
 			</Button>
 			<Hr />
 
-			<Title>Block button becomes inline at the SM breakpoint</Title>
-			<Button block={[true, null, false]}>Block / Inline</Button>
+			<Title>Block button becomes non-block from the SM breakpoint</Title>
+			<Button block={[true, null, false]}>Block → Inline</Button>
 		</Playground>
 	);
 };
