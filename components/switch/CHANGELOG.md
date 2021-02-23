@@ -1,5 +1,11 @@
 # @westpac/switch
 
+## 1.0.1
+
+### Patch Changes
+
+- 56d8ae6e: Add missing cursor pointer styling
+
 ## 1.0.0
 
 ### Major Changes

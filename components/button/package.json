@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/button",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Button component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button",
 	"blender": {
@@ -50,7 +50,7 @@
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^1.1.0",
 		"@westpac/hooks": "^1.1.0",
-		"@westpac/icon": "^1.1.0",
+		"@westpac/icon": "^1.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
