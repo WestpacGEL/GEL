@@ -1,5 +1,11 @@
 # @westpac/body
 
+## 1.3.0
+
+### Minor Changes
+
+- afc39be7: Reset paragraph (`<p>`) and heading (`<h1> - <h6>`) top margin
+
 ## 1.2.0
 
 ### Minor Changes
