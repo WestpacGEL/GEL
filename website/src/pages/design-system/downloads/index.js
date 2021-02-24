@@ -16,7 +16,10 @@ import { Textarea, Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { useTransition, animated } from 'react-spring';
+import { useQuery } from '@apollo/react-hooks';
 import merge from 'lodash.merge';
+import gql from 'graphql-tag';
+import Link from 'next/link';
 
 import { Section, SectionHeading } from '../../../components/section';
 import { Body } from '../../../components/body';
@@ -109,21 +112,64 @@ const OptionOverride = ({ state: _, children, ...rest }) => {
 		</li>
 	);
 };
-const BlenderComponentOption = ({ desc, link, ...rest }) => {
+
+function flattenAndKeyNav(nav) {
+	let result = {};
+
+	nav.map(({ children, ...subnav }) => {
+		if (children) {
+			result = { ...result, ...flattenAndKeyNav(children) };
+		} else {
+			result[subnav.path] = subnav;
+		}
+	});
+
+	return result;
+}
+
+const BlenderComponentOption = ({ desc, value, ...rest }) => {
 	const { TYPE, PACKS, SPACING, COLORS } = useBrand();
 
-	const hint = (
-		<Fragment>
-			<div css={{ marginTop: SPACING(1) }}>{desc}</div>
-			{/* <a href={link} css={{ display: 'inline-block', marginTop: SPACING(1) }}>
-				Documentation
-			</a> */}
-		</Fragment>
+	let { data, error } = useQuery(
+		gql`
+			query data {
+				allPages(where: { packageName: ${value.replace(/-/g, '_')} }) {
+					pageTitle
+					url
+				}
+				allSettings(where: { name: "navigation" }) {
+					value
+				}
+			}
+		`
 	);
+
+	const description = <div css={{ marginTop: SPACING(1) }}>{desc}</div>;
+	let hint = description;
+	if (data && !error) {
+		const navigation = data.allSettings[0]
+			? flattenAndKeyNav(JSON.parse(data.allSettings[0].value))
+			: [];
+
+		hint = (
+			<Fragment>
+				{description}
+				Documentation:
+				{data.allPages.map(({ pageTitle, url }) =>
+					navigation[`${BASE_URL}${url}`] ? (
+						<Link key={`${value}-${url}`} as={url} href={url} passHref>
+							<a css={{ display: 'inline-block', margin: SPACING(1) }}>{pageTitle}</a>
+						</Link>
+					) : null
+				)}
+			</Fragment>
+		);
+	}
 
 	return (
 		<Option
 			hint={hint}
+			value={value}
 			{...rest}
 			overrides={{
 				Option: {
@@ -490,8 +536,6 @@ const SectionDevelopers = () => {
 			!GEL.components[name].blender.isCore &&
 			!hiddenPkgs.includes(name)
 	);
-	const checkState = {};
-	supportedPkgs.map((name) => (checkState[name] = false));
 	const [selected, setSelected] = useState([]);
 	const [selectAllToggle, setSelectAllToggle] = useState([]);
 
@@ -570,7 +614,10 @@ const SectionDevelopers = () => {
 											type="checkbox"
 											checked={selectAllToggle}
 											onChange={() => handleToggleChange()}
-											css={{ marginTop: '0.3125rem', marginBottom: '0.3125rem' }}
+											css={{
+												marginTop: '0.3125rem',
+												marginBottom: '0.3125rem',
+											}}
 											overrides={{
 												Option: {
 													styles: (styles) => ({
@@ -596,6 +643,22 @@ const SectionDevelopers = () => {
 										)}
 									</div>
 
+									<ul
+										css={{
+											listStyle: 'none',
+											margin: '0 0 0.3125rem 0',
+											padding: 0,
+										}}
+									>
+										<BlenderComponentOption
+											value="core"
+											disabled
+											checked
+											desc={GEL.components.core.description}
+										>
+											Core
+										</BlenderComponentOption>
+									</ul>
 									<BlenderComponents
 										name="packages[]"
 										value={selected}
@@ -609,7 +672,6 @@ const SectionDevelopers = () => {
 													key={i}
 													value={name}
 													desc={GEL.components[name].description}
-													link={`${BASE_URL}/components/${niceName.toLowerCase()}`}
 												>
 													{niceName}
 												</BlenderComponentOption>
