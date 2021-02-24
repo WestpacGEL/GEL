@@ -125,7 +125,7 @@ export const Navigation = ({ items }) => {
 			css={{
 				flex: 1,
 				overflowY: 'auto',
-				'WebkitOverflowScrolling': 'touch',
+				WebkitOverflowScrolling: 'touch',
 				paddingBottom: SPACING(4),
 			}}
 			role="navigation"
