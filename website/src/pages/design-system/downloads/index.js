@@ -157,7 +157,12 @@ const BlenderComponentOption = ({ desc, value, ...rest }) => {
 				Documentation:
 				{data.allPages.map(({ pageTitle, url }) =>
 					navigation[`${BASE_URL}${url}`] ? (
-						<Link key={`${value}-${url}`} as={url} href={url} passHref>
+						<Link
+							key={`${value}-${url}`}
+							as={`${BASE_URL}${url}`}
+							href={`${BASE_URL}${url}`}
+							passHref
+						>
 							<a css={{ display: 'inline-block', margin: SPACING(1) }}>{pageTitle}</a>
 						</Link>
 					) : null
