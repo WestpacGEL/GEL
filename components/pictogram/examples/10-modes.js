@@ -21,9 +21,17 @@ function Example({ brand }) {
 				return (
 					<Grid key={pictogram} css={{ marginBottom: 6 }}>
 						{modes.map((mode) => (
-							<Cell key={mode} css={{ backgroundColor: COLORS.background, padding: 24 }}>
+							<Cell
+								key={mode}
+								css={{
+									backgroundColor: mode === 'light' ? COLORS.neutral : COLORS.background,
+									padding: 24,
+								}}
+							>
 								<Pictogram mode={mode} />
-								<Name>{`<${pictogram} mode="${mode}"\u00A0/>`}</Name>
+								<Name
+									css={{ color: mode === 'light' ? COLORS.light : COLORS.text }}
+								>{`<${pictogram} mode="${mode}"\u00A0/>`}</Name>
 							</Cell>
 						))}
 					</Grid>
