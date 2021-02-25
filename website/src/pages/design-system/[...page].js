@@ -87,6 +87,7 @@ const Tabs = ({ component, tabName }) => {
 					{ shallow: true }
 				);
 			}
+			window.scrollTo(0, 0);
 		},
 		[brandName, tabName]
 	);

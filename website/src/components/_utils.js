@@ -57,8 +57,8 @@ export const getURL = (d) => {
 };
 
 export const antialiasingStyling = {
-	'-webkitFontSmoothing': 'antialiased',
-	'-mozOsxFontSmoothing': 'grayscale',
+	WebkitFontSmoothing: 'antialiased',
+	MozOsxFontSmoothing: 'grayscale',
 };
 
 export const brandHeaderStyling = {
