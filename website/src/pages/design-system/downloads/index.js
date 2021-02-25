@@ -269,9 +269,7 @@ const NpmBox = ({ selected, ...rest }) => {
 			}, 5000);
 	}, [showStatus]);
 
-	const npmCommand = `npm install @westpac/core ${selected
-		.map((pkg) => `@westpac/${pkg}`)
-		.join(' ')}`;
+	const npmCommand = `npm install ${selected.map((pkg) => `@westpac/${pkg}`).join(' ')}`;
 
 	const handleCopy = () => {
 		navigator.clipboard.writeText(npmCommand);
@@ -549,7 +547,7 @@ const SectionDevelopers = () => {
 
 	const [isLoading, setLoading] = useState(false);
 
-	const hiddenPkgs = ['progress-rope'];
+	const hiddenPkgs = [...(BRAND.code !== 'WBC' ? ['pictogram'] : [])];
 
 	const supportedPkgs = Object.keys(GEL.components).filter(
 		(name) =>
@@ -557,18 +555,18 @@ const SectionDevelopers = () => {
 			!GEL.components[name].blender.isCore &&
 			!hiddenPkgs.includes(name)
 	);
-	const [selected, setSelected] = useState([]);
+	const [selected, setSelected] = useState(['core']);
 	const [selectAllToggle, setSelectAllToggle] = useState([]);
 
 	useEffect(() => {
-		setSelectAllToggle(selected.length === supportedPkgs.length ? ['all'] : []);
+		setSelectAllToggle(selected.length === supportedPkgs.length + 1 ? ['all'] : []);
 	}, [selected]);
 
 	function handleToggleChange() {
-		setSelected(selected.length === supportedPkgs.length ? [] : supportedPkgs);
+		setSelected(selected.length === supportedPkgs.length + 1 ? [] : ['core', ...supportedPkgs]);
 	}
 	function handleClearAllClick() {
-		setSelected([]);
+		setSelected(['core']);
 	}
 	function handleSelectPkgChange(value) {
 		setSelected(value);
@@ -650,7 +648,7 @@ const SectionDevelopers = () => {
 										>
 											<Option value="all">Select all</Option>
 										</FormCheck>
-										{selected.length > 0 && (
+										{selected.length > 1 && (
 											<Button
 												look="link"
 												size="small"
@@ -658,18 +656,16 @@ const SectionDevelopers = () => {
 												css={{ marginLeft: SPACING(1) }}
 											>
 												{`${selected.length === supportedPkgs.length ? 'Clear all' : 'Clear'} ${
-													selected.length
+													selected.length - 1
 												} ${selected.length === 1 ? 'component' : 'components'}`}
 											</Button>
 										)}
 									</div>
 
-									<ul
-										css={{
-											listStyle: 'none',
-											margin: '0 0 0.3125rem 0',
-											padding: 0,
-										}}
+									<BlenderComponents
+										name="packages[]"
+										value={selected}
+										onChange={(value) => handleSelectPkgChange(value)}
 									>
 										<BlenderComponentOption
 											value="core"
@@ -679,12 +675,6 @@ const SectionDevelopers = () => {
 										>
 											Core
 										</BlenderComponentOption>
-									</ul>
-									<BlenderComponents
-										name="packages[]"
-										value={selected}
-										onChange={(value) => handleSelectPkgChange(value)}
-									>
 										{supportedPkgs.map((name, i) => {
 											const niceName = name.charAt(0).toUpperCase() + name.slice(1);
 
