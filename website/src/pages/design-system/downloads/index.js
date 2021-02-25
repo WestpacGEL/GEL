@@ -701,7 +701,6 @@ const SectionDevelopers = () => {
 									css={mq({
 										display: ['none', null, 'inline-flex'],
 										marginTop: SPACING(4),
-										scrollBehavior: 'smooth',
 									})}
 								>
 									Go to Step 2 and choose a codebase

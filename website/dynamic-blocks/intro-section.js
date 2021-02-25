@@ -72,7 +72,6 @@ const TableOfContents = ({ content }) => {
 
 	return (
 		<Fragment>
-			<Global styles={{ html: { scrollBehavior: 'smooth' } }} />
 			<nav ref={introRef}>
 				<Heading
 					tag="h2"
