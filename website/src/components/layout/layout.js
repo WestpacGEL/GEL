@@ -1,16 +1,17 @@
 /** @jsx jsx */
-import { GEL, jsx, css, Global, useBrand, useMediaQuery, useFonts } from '@westpac/core';
+import { GEL, jsx, css, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
+import { useRef, useEffect, Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
-import { useRef, useEffect } from 'react';
 import gql from 'graphql-tag';
 
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
 import { SidebarProvider, useSidebar } from '../providers/sidebar';
+import { brandOverrides } from '../../brand-overrides';
+import { FontPreloader } from '../fontPreloader';
 import { BrandPicker } from '../brand-picker';
 import { BASE_URL } from '../../config.js';
-import { brandOverrides } from '../../brand-overrides';
 import { Sidebar } from './';
 
 const LoadGELFonts = () => (
@@ -40,7 +41,6 @@ const LoadGELFonts = () => (
 		`}
 	/>
 );
-const LoadBrandFonts = () => <Global styles={useFonts({ path: `${BASE_URL}/fonts/` })['']} />;
 
 const GlobalReset = () => {
 	const { COLORS } = useBrand();
@@ -80,7 +80,6 @@ const Wrapper = (props) => {
 		// show brand selector
 		return (
 			<GEL brand={brandOverrides(brands['WBC'])}>
-				<LoadGELFonts />
 				<GlobalReset />
 				<BrandPicker />
 			</GEL>
@@ -107,7 +106,6 @@ const Wrapper = (props) => {
 
 	return (
 		<GEL brand={brandOverrides(brands[brand])}>
-			<LoadBrandFonts />
 			<GlobalReset />
 			<SidebarProvider>
 				<GridContainer>
@@ -166,7 +164,11 @@ const MainContainer = (props) => {
 };
 
 export const Layout = (props) => (
-	<BrandSwitcherProvider brand={props.brand}>
-		<Wrapper {...props} />
-	</BrandSwitcherProvider>
+	<Fragment>
+		<LoadGELFonts />
+		<FontPreloader />
+		<BrandSwitcherProvider brand={props.brand}>
+			<Wrapper {...props} />
+		</BrandSwitcherProvider>
+	</Fragment>
 );
