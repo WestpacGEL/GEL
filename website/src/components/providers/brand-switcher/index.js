@@ -36,7 +36,9 @@ const BrandSwitcherProvider = ({ children, brand: initialBrand }) => {
 					setBrand(brand);
 					document.cookie = `gel_selected_brand=${brand}`;
 					const { query } = router;
-					const as = `${router.asPath.split('?')[0]}?b=${brand}&tab=${query.tab}`;
+					const as = `${router.asPath.split('?')[0]}?b=${brand}${
+						query.tab ? `&tab=${query.tab}` : ''
+					}`;
 					query.b = brand;
 					let params = new URLSearchParams();
 

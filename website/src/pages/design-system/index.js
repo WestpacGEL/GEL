@@ -1,15 +1,16 @@
 /** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
-import { Button } from '@westpac/button';
 import { TextInput } from '@westpac/text-input';
-import { Head } from '../../components/head';
+import { Button } from '@westpac/button';
+import { Fragment } from 'react';
+
+import { BlockList, BlockListItem, BlockListHeading } from '../../components/block-list';
 import HomePageHeader from '../../components/header/home-page-header';
 import { Section, SectionHeading } from '../../components/section';
-import { Body } from '../../components/body';
-import { BlockList, BlockListItem, BlockListHeading } from '../../components/block-list';
 import { Footer } from '../../components/layout/footer';
+import { Head } from '../../components/head';
+import { Body } from '../../components/body';
 import {
 	ReactLogo,
 	AtlassianLogo,
