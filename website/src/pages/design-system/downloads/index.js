@@ -144,7 +144,7 @@ const BlenderComponentOption = ({ desc, value, ...rest }) => {
 		`
 	);
 
-	const description = <div css={{ marginTop: SPACING(1) }}>{desc}</div>;
+	const description = <p>{desc}</p>;
 	let hint = description;
 	if (data && !error) {
 		const navigation = data.allSettings[0]
@@ -154,19 +154,28 @@ const BlenderComponentOption = ({ desc, value, ...rest }) => {
 		hint = (
 			<Fragment>
 				{description}
-				Documentation:
-				{data.allPages.map(({ pageTitle, url }) =>
-					navigation[`${BASE_URL}${url}`] ? (
-						<Link
-							key={`${value}-${url}`}
-							as={`${BASE_URL}${url}`}
-							href={`${BASE_URL}${url}`}
-							passHref
-						>
-							<a css={{ display: 'inline-block', margin: SPACING(1) }}>{pageTitle}</a>
-						</Link>
-					) : null
-				)}
+				<p>
+					Docs:{' '}
+					{data.allPages.map(({ pageTitle, url }) =>
+						navigation[`${BASE_URL}${url}`] ? (
+							<Link
+								key={`${value}-${url}`}
+								as={`${BASE_URL}${url}`}
+								href={`${BASE_URL}${url}`}
+								passHref
+							>
+								<a
+									css={{
+										display: 'inline-block',
+										':not(:last-child)': { marginRight: SPACING(1) },
+									}}
+								>
+									{pageTitle}
+								</a>
+							</Link>
+						) : null
+					)}
+				</p>
 			</Fragment>
 		);
 	}
@@ -199,6 +208,13 @@ const BlenderComponentOption = ({ desc, value, ...rest }) => {
 						...styles,
 						...PACKS.typeScale.bodyFont[9],
 						...TYPE.bodyFont[700],
+					}),
+				},
+				Hint: {
+					styles: (styles) => ({
+						...styles,
+						p: { margin: 0 },
+						'p + p': { marginTop: SPACING(2) },
 					}),
 				},
 			}}
