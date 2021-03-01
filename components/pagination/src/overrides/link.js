@@ -35,7 +35,7 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 		display: 'inline-block',
 		border: `1px solid ${active ? COLORS.hero : COLORS.border}`,
 		backgroundColor: active ? COLORS.hero : '#fff',
-		padding: '0.4375rem 0.75rem',
+		padding: '0.5625rem 0.75rem',
 		fontSize: '0.875rem',
 		color: active ? '#fff' : COLORS.text, //set default `COLORS.text` because this is a `<button />`
 		textDecoration: 'none',
