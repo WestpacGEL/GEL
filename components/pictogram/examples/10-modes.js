@@ -24,13 +24,13 @@ function Example({ brand }) {
 							<Cell
 								key={mode}
 								css={{
-									backgroundColor: mode === 'light' ? COLORS.neutral : COLORS.background,
+									backgroundColor: mode === 'light' ? COLORS.hero : COLORS.background,
 									padding: 24,
 								}}
 							>
 								<Pictogram mode={mode} />
 								<Name
-									css={{ color: mode === 'light' ? COLORS.light : COLORS.text }}
+									css={{ color: mode === 'light' && COLORS.light }}
 								>{`<${pictogram} mode="${mode}"\u00A0/>`}</Name>
 							</Cell>
 						))}
