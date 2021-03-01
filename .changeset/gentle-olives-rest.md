@@ -2,4 +2,4 @@
 '@westpac/pagination': patch
 ---
 
-Update button height
+Update button height and fix borders

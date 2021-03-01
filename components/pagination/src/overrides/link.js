@@ -29,6 +29,8 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 
 	return {
 		label: getLabel('pagination-link'),
+		position: 'relative',
+		zIndex: active ? 1 : 0,
 		appearance: 'none',
 		marginLeft: -1,
 		lineHeight: 1.15,
