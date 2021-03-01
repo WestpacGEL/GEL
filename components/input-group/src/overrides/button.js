@@ -43,16 +43,18 @@ const BlenderButton = (props) => {
 const buttonStyles = (_, { position }) => ({
 	label: getLabel(`inputGroup-button-${position}`),
 	boxSizing: 'border-box',
-	borderRight: position === 'before' && 0,
-	borderLeft: position === 'after' && 0,
+	position: 'relative',
+	zIndex: 1,
 
 	...(!(position === 'before') && {
 		borderTopLeftRadius: 0,
 		borderBottomLeftRadius: 0,
+		marginLeft: -1,
 	}),
 	...(!(position === 'after') && {
 		borderTopRightRadius: 0,
 		borderBottomRightRadius: 0,
+		marginRight: -1,
 	}),
 });
 
