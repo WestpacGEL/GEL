@@ -17,7 +17,7 @@ export default ({ context, showCode, showDemo }) => {
 			<Title>Large</Title>
 			<TextInput name="example-large" size="large" />
 			<br />
-			<Title>Xlarge</Title>
+			<Title>Extra large</Title>
 			<TextInput name="example-xlarge" size="xlarge" />
 		</Playground>
 	);

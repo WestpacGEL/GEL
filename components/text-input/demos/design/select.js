@@ -32,7 +32,7 @@ export default ({ context, showCode, showDemo }) => {
 				<option>3</option>
 			</Select>
 			<br />
-			<Title>Xlarge</Title>
+			<Title>Extra large</Title>
 			<Select name="example-xlarge" size="xlarge">
 				<option>Select</option>
 				<option>1</option>

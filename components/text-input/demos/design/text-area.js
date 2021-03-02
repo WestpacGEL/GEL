@@ -17,7 +17,7 @@ export default ({ context, showCode, showDemo }) => {
 			<Title>Large</Title>
 			<Textarea name="example-large" size="large" />
 			<br />
-			<Title>Xlarge</Title>
+			<Title>Extra large</Title>
 			<Textarea name="example-xlarge" size="xlarge" />
 		</Playground>
 	);
