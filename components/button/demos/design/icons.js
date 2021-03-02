@@ -23,7 +23,7 @@ export default ({ context, showCode, showDemo }) => {
 					New window
 				</Button>{' '}
 				<Button look="primary" iconAfter={DropDownIcon}>
-					Drop down
+					Dropdown
 				</Button>{' '}
 				<Button look="hero" iconAfter={PrintIcon}>
 					Print
