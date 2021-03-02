@@ -54,23 +54,25 @@ const textStyles = (_, { size, position }) => {
 
 	return {
 		label: getLabel('inputGroup-text'),
+		boxSizing: 'border-box',
+		position: 'relative',
+		zIndex: 1,
 		...sizeMap[size],
 		lineHeight: 1.5,
 		backgroundColor: COLORS.light,
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
 		whiteSpace: 'nowrap',
-		boxSizing: 'border-box',
 
 		...(position === 'after' && {
-			borderLeft: 0,
 			borderTopLeftRadius: 0,
 			borderBottomLeftRadius: 0,
+			borderLeft: 0,
 		}),
 		...(position === 'before' && {
-			borderRight: 0,
 			borderTopRightRadius: 0,
 			borderBottomRightRadius: 0,
+			borderRight: 0,
 		}),
 	};
 };

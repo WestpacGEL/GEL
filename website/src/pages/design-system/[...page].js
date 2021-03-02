@@ -82,8 +82,10 @@ const Tabs = ({ component, tabName }) => {
 		({ idx: tabIdx }) => {
 			if (tabMap[tabIdx] !== tabName) {
 				router.replace(
-					`${router.pathname}?b=${brandName}&tab=${tabMap[tabIdx]}`,
-					`${router.asPath.split('?')[0]}?b=${brandName}&tab=${tabMap[tabIdx]}`,
+					`${router.pathname}?b=${brandName}${tabMap[tabIdx] ? `&tab=${tabMap[tabIdx]}` : ''}`,
+					`${router.asPath.split('?')[0]}?b=${brandName}${
+						tabMap[tabIdx] ? `&tab=${tabMap[tabIdx]}` : ''
+					}`,
 					{ shallow: true }
 				);
 			}
