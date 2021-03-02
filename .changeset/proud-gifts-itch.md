@@ -2,4 +2,4 @@
 '@westpac/pictogram': minor
 ---
 
-Add PiggyBankPictogram
+Add colour override feature

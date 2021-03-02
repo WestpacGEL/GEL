@@ -1,6 +1,13 @@
 # @westpac/pictogram
 
+## 1.2.0
+
+### Minor Changes
+
+- 04ffd51b: Add PiggyBankPictogram
+
 ## 1.1.0
+
 ### Minor Changes
 
 - c110f6c8: - Rename BankCardPictogram and BankCardLockedPictogram (was CreditCardPictogram and CardLockedPictogram)

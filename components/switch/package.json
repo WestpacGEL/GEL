@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/switch",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Switch component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/switch",
 	"blender": {

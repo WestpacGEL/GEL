@@ -9,13 +9,16 @@ export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>Small</Title>
-			<Textarea size="small" />
+			<Textarea name="example-small" size="small" />
+			<br />
 			<Title>Medium</Title>
-			<Textarea size="medium" />
+			<Textarea name="example-medium" size="medium" />
+			<br />
 			<Title>Large</Title>
-			<Textarea size="large" />
-			<Title>Xlarge</Title>
-			<Textarea size="xlarge" />
+			<Textarea name="example-large" size="large" />
+			<br />
+			<Title>Extra large</Title>
+			<Textarea name="example-xlarge" size="xlarge" />
 		</Playground>
 	);
 };

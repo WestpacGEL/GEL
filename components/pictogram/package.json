@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/pictogram",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "Pictogram components for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/pictogram",
 	"blender": {
