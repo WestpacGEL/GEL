@@ -27,7 +27,7 @@ export default ({ context, showCode, showDemo }) => {
 			<Hr />
 
 			<Title>Block button becomes non-block from the SM breakpoint</Title>
-			<Button block={[true, null, false]}>Block → Inline</Button>
+			<Button block={[true, null, false]}>Block → Non-block</Button>
 		</Playground>
 	);
 };

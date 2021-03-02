@@ -8,37 +8,32 @@ import { Title, Hr } from '../../../../helpers/demos';
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Title>This breakpoint and wider</Title>
+			<Title>Medium size switch becomes Extra large from the MD breakpoint</Title>
 			<Switch
 				name="example-responsive-1"
-				label="Extra large for MD breakpoint and wider"
-				size={['medium', 'xlarge']}
-				block
-			/>
-			<Switch
-				name="example-responsive-2"
-				label="Small but Extra large for LG breakpoint"
-				size={['small', null, 'xlarge']}
+				label="Medium → Extra large"
+				size={['medium', null, null, 'xlarge']}
 				block
 			/>
 			<Hr />
-			<Title>This breakpoint only</Title>
+
+			<Title>Extra large size switch becomes small from the SM breakpoint</Title>
+			<Switch
+				name="example-responsive-2"
+				label="Extra large → Small"
+				size={['xlarge', null, 'small']}
+				block
+			/>
+			<Hr />
+
+			<Title>
+				Small size switch becomes medium at the SM breakpoint, large at the MD breakpoint and Extra
+				large at the LG breakpoint
+			</Title>
 			<Switch
 				name="example-responsive-3"
-				label="Extra large for LG breakpoint only"
-				size={['medium', null, 'xlarge', 'medium']}
-				block
-			/>
-			<Switch
-				name="example-responsive-4"
-				label="Small for LG breakpoint only"
-				size={['medium', null, 'small', 'medium']}
-				block
-			/>
-			<Switch
-				name="example-responsive-5"
-				label="Small but Extra large for SM breakpoint only"
-				size={['small', 'xlarge', 'small']}
+				label="Small → Medium → Large → Extra large"
+				size={['small', null, 'medium', 'large', 'xlarge']}
 				block
 			/>
 		</Playground>
