@@ -1,3 +1,3 @@
 # @westpac/body
 
-Body component in charge of body text
+Body component for the Westpac GEL Design System

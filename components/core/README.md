@@ -1,3 +1,3 @@
 # @westpac/core
 
-The core component.
+Core component for the Westpac GEL Design System

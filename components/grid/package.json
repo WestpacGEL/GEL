@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/grid",
 	"version": "1.0.0",
-	"description": "Grid components for the Westpac GEL Design System",
+	"description": "Mobile-first grid framework used to build responsive layouts using the common 12-column system",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/grid",
 	"blender": {
 		"recipe": "blender/recipe.js"

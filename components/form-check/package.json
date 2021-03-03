@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/form-check",
 	"version": "1.1.0",
-	"description": "Form-check components for the Westpac GEL Design System.",
+	"description": "Radio and checkbox input elements used to capture simple responses, available in two sizes and layouts, with optional hint text",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/form-check",
 	"blender": {
 		"recipe": "blender/recipe.js"

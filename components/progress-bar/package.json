@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/progress-bar",
 	"version": "1.0.0",
-	"description": "Progress-bar component for the Westpac GEL Design System",
+	"description": "Simple indicator used to display the progress status for a task that may take a long time or consist of several steps",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-bar",
 	"blender": {
 		"recipe": "blender/recipe.js"
