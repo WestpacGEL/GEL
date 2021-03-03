@@ -1,3 +1,3 @@
 # @westpac/button
 
-The button component.
+Button component for the Westpac GEL Design System

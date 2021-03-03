@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/button",
 	"version": "1.1.1",
-	"description": "Button component for the Westpac GEL Design System",
+	"description": "Styling for button controls used for actions in forms and modals, with support for multiple sizes, styles, states and more",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button",
 	"blender": {
 		"recipe": "blender/recipe.js"

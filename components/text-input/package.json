@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/text-input",
 	"version": "1.0.0",
-	"description": "Text-input components for the Westpac GEL Design System",
+	"description": "Styling for text input, select and textarea input elements, used for capturing text and numerical data",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/text-input",
 	"blender": {
 		"recipe": "blender/recipe.js"

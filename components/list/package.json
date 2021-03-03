@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/list",
 	"version": "1.0.0",
-	"description": "List components for the Westpac GEL Design System",
+	"description": "Styling for lists of text or links, including bullets, numbers or icons",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/list",
 	"blender": {
 		"recipe": "blender/recipe.js"

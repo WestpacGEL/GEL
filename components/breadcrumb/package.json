@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/breadcrumb",
 	"version": "1.1.0",
-	"description": "Breadcrumb components for the Westpac GEL Design System",
+	"description": "Styled navigational links used to indicate the user’s location within a website application",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/breadcrumb",
 	"blender": {
 		"recipe": "blender/recipe.js"

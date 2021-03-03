@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/modal",
 	"version": "1.1.0",
-	"description": "Modal components for the Westpac GEL Design System",
+	"description": "Configurable dialog panels to provide singular focus to important content, used for lightboxes, user notifications and more",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/modal",
 	"blender": {
 		"recipe": "blender/recipe.js",

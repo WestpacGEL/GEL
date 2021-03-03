@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/label",
 	"version": "1.0.0",
-	"description": "Label component for the Westpac GEL Design System",
+	"description": "Small, coloured UI items used to highlight a word",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/label",
 	"blender": {
 		"recipe": "blender/recipe.js"

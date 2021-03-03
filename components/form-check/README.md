@@ -1,3 +1,3 @@
 # @westpac/form-check
 
-The form check component.
+Form-check components for the Westpac GEL Design System

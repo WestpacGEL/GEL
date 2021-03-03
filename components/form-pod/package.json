@@ -2,6 +2,7 @@
 	"name": "@westpac/form-pod",
 	"version": "1.0.0-alpha.2",
 	"description": "Form-pod components for the Westpac GEL Design System",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/form-pod",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
