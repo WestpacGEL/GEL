@@ -1,3 +1,3 @@
 # @westpac/progressRope
 
-Progress rope component
+Progress-rope components for the Westpac GEL Design System

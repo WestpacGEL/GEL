@@ -1,3 +1,3 @@
 # @westpac/popover
 
-GEL popover component
+Popover component for the Westpac GEL Design System

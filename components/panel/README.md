@@ -1,3 +1,3 @@
 # @westpac/panel
 
-The panel component.
+Panel components for the Westpac GEL Design System

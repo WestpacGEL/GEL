@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/badge",
 	"version": "1.0.1",
-	"description": "Badge component for the Westpac GEL Design System",
+	"description": "Small, coloured UI items used to highlight a number count",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/badge",
 	"blender": {
 		"recipe": "blender/recipe.js"

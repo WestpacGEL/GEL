@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/tabcordion",
 	"version": "2.0.0",
-	"description": "Tabcordion components for the Westpac GEL Design System",
+	"description": "Tablists and accordions used to group and dynamically show/hide content, includes a responsive ‘tabcordion’ mode",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/tabcordion",
 	"blender": {
 		"recipe": "blender/recipe.js",

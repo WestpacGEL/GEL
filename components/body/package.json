@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/body",
 	"version": "1.3.0",
-	"description": "Body component for the Westpac GEL Design System",
+	"description": "Styling for areas of text content including typography elements such as headings, paragraphs, links, strong, emphasis etc.",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/body",
 	"blender": {
 		"recipe": "blender/recipe.js"

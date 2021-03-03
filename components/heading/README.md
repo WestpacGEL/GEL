@@ -1,3 +1,3 @@
 # @westpac/heading
 
-Headings for your page needs
+Heading components for the Westpac GEL Design System

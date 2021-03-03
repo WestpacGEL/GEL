@@ -1,3 +1,3 @@
 # @westpac/tabcordion
 
-The tabcordion component.
+Tabcordion component for the Westpac GEL Design System
