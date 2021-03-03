@@ -1,3 +1,3 @@
 # @westpac/list
 
-The list component.
+List components for the Westpac GEL Design System

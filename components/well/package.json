@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/well",
 	"version": "1.0.0",
-	"description": "Well component for the Westpac GEL Design System",
+	"description": "Simple containers used to highlight content",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/well",
 	"blender": {
 		"recipe": "blender/recipe.js"

@@ -1,3 +1,3 @@
 # @westpac/badge
 
-The badge component.
+Badge component for the Westpac GEL Design System

@@ -2,6 +2,7 @@
 	"name": "@westpac/list-group",
 	"version": "1.0.0-beta.2",
 	"description": "List-group components for the Westpac GEL Design System",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/list-group",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
