@@ -3,6 +3,7 @@
 import { jsx } from '@westpac/core';
 import PropTypes from 'prop-types';
 
+import { useProgressRopeContext } from '../ProgressRope';
 import { blenderGroup } from '../overrides/group';
 import { blenderGroupBtnWrapper } from '../overrides/groupButtonWrapper';
 import { blenderGroupBtn } from '../overrides/groupButton';
@@ -30,12 +31,18 @@ export const Group = ({ index, id, text, active, visited, open, children, ...res
 		attributes: groupListAttributes,
 	} = blenderGroupList;
 
+	const context = useProgressRopeContext();
+	const { instancePrefix } = context;
+
+	const groupListId = `${instancePrefix}-group-${index + 1}`;
+
 	const state = {
 		id,
 		text,
 		active,
 		visited,
 		open,
+		groupListId,
 	};
 
 	return (
