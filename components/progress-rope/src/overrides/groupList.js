@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, classNames, getModifier, formatClassName } from '@westpac/core';
+import { jsx, classNames } from '@westpac/core';
 import { defaultProps } from '../blender/Group';
 
 // ==============================
@@ -20,34 +20,6 @@ const groupListStyles = () => ({
 	paddingLeft: 0,
 	margin: 0,
 });
-
-// ==============================
-// Blender Styles
-// ==============================
-
-const blenderStyles = (_, { open }) => {
-	const props = { open };
-	const baseStyles = groupListStyles(_, defaultProps);
-
-	let modifiers = getModifier({ ...defaultProps, open: false }, props);
-	if (!modifiers.length) return baseStyles;
-
-	let label = baseStyles.label;
-	const modifier = modifiers[0];
-
-	let modifierStyles = {};
-
-	switch (modifier) {
-		case 'open':
-			label = `${label}-show`;
-			break;
-		default:
-			label = `${label}-${modifier}`;
-			break;
-	}
-
-	return { label, ...modifierStyles };
-};
 
 // ==============================
 // Attributes
@@ -78,6 +50,6 @@ export const defaultGroupList = {
 
 export const blenderGroupList = {
 	component: GroupList,
-	styles: blenderStyles,
+	styles: groupListStyles,
 	attributes: blenderAttributes,
 };

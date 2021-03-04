@@ -23,27 +23,16 @@
 
 		switch (mode) {
 			case 'open':
-				/* $progressRope
-					.find('[data-js="progressRope-groupBtn__version__"]')
-					.attr('aria-expanded', 'false');
-				$progressRope
-					.find('[data-js="progressRope-groupList__version__"]')
-					.attr('aria-hidden', 'true')
-					.removeAttr('data-open')
-					.hide('fast'); */
-
 				$groupBtn.attr('aria-expanded', 'true');
 				$groupList.attr('aria-hidden', 'false').slideDown(200, function () {
-					$(this).addClass(groupListShowClass);
+					$(this).css('display', '').addClass(groupListShowClass);
 				});
-				// .attr('data-open', '')
 				break;
 			case 'close':
 				$groupBtn.attr('aria-expanded', 'false');
 				$groupList.attr('aria-hidden', 'true').slideUp('fast', function () {
-					$(this).removeClass(groupListShowClass);
+					$(this).css('display', '').removeClass(groupListShowClass);
 				});
-				// .removeAttr('data-open')
 				break;
 			case 'toggle':
 				var isShow = $groupList.hasClass(groupListShowClass);
@@ -55,8 +44,6 @@
 	module.init = function progressRopeInit() {
 		var $progressRope = $('[data-js="progressRope__version__"]');
 		if (!$progressRope.length) return;
-
-		// $('[data-js="progressRope-groupList__version__"]:not([data-open])').hide();
 
 		// Bind groupBtn click event
 		$('[data-js="progressRope-groupBtn__version__"]').on('click', function () {
