@@ -53,7 +53,11 @@ export const Group = ({ index, id, text, active, visited, open, children, ...res
 					{text}
 				</GroupBtn>
 			</GroupBtnWrapper>
-			<GroupList state={state} {...groupListAttributes(null, state)} css={groupListStyles(state)}>
+			<GroupList
+				state={state}
+				{...groupListAttributes(null, state)}
+				css={groupListStyles(null, state)}
+			>
 				{children}
 			</GroupList>
 		</Group>
