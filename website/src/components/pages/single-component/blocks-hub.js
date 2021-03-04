@@ -210,7 +210,7 @@ const textOnlySlateRenderer = (_editorValue) => {
 		({ node, path }) => {
 			if (node.object === 'text') {
 				if (!node.text) {
-					return [<br />];
+					return [<br key={`br-${path}`} />];
 				}
 				const x = node.text.split('\n').reduce((array, text, i) => {
 					if (i !== 0) array.push(<br key={`${path}_${i}`} />);
@@ -231,7 +231,7 @@ const textOnlySlateRenderer = (_editorValue) => {
 						}
 
 						return (
-							<a href={node.data.href} key={path} target={target}>
+							<a href={node.data.href} key={`inline-${path}`} target={target}>
 								{' '}
 								{serializeChildren(node.nodes)}
 							</a>
@@ -247,13 +247,13 @@ const textOnlySlateRenderer = (_editorValue) => {
 
 			switch (node.type) {
 				case 'bold':
-					return <Bold key={path}>{serializeChildren(node.nodes)}</Bold>;
+					return <Bold key={`bold-${path}`}>{serializeChildren(node.nodes)}</Bold>;
 				case 'italic':
-					return <Italic key={path}>{serializeChildren(node.nodes)}</Italic>;
+					return <Italic key={`italic-${path}`}>{serializeChildren(node.nodes)}</Italic>;
 				case 'strikethrough':
-					return <Strike key={path}>{serializeChildren(node.nodes)}</Strike>;
+					return <Strike key={`strike-${path}`}>{serializeChildren(node.nodes)}</Strike>;
 				case 'underline':
-					return <Under key={path}>{serializeChildren(node.nodes)}</Under>;
+					return <Under key={`under-${path}`}>{serializeChildren(node.nodes)}</Under>;
 				default: {
 					console.error(`Unexpected mark '${node.type}' at ${path}`);
 				}
@@ -269,7 +269,7 @@ const textOnlySlateRenderer = (_editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					return (
-						<p key={path} css={{ margin: '0 !important' }}>
+						<p key={`block-${path}`} css={{ margin: '0 !important' }}>
 							{serializeChildren(node.nodes)}
 						</p>
 					);

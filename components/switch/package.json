@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/switch",
-	"version": "1.0.0",
-	"description": "Switch component for the Westpac GEL Design System",
+	"version": "1.0.1",
+	"description": "Custom toggle controls used to capture simple responses, powered by checkbox elements",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/switch",
 	"blender": {
 		"recipe": "blender/recipe.js"

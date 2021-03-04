@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/symbol",
-	"version": "1.0.0",
-	"description": "Symbol components for the Westpac GEL Design System",
+	"version": "1.1.0",
+	"description": "Logos and branding graphics for the Westpac Group and other organisations, implemented as SVGs",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/symbol",
 	"blender": {
 		"recipe": "blender/recipe.js"

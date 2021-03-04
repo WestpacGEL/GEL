@@ -137,10 +137,6 @@ const blenderStyles = (_, { selected }) => {
 	const props = { selected };
 	const baseStyles = panelStyles(_, defaultProps);
 
-	Object.assign(baseStyles, {
-		display: 'none',
-	});
-
 	let modifiers = getModifier({ ...defaultProps, selected: false }, props);
 	if (!modifiers.length) return baseStyles;
 
@@ -152,7 +148,6 @@ const blenderStyles = (_, { selected }) => {
 	switch (modifier) {
 		case 'selected':
 			label = `${label}-show`;
-			modifierStyles = { display: 'block !important' };
 			break;
 		default:
 			label = `${label}-${modifier}`;

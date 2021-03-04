@@ -63,6 +63,9 @@ const tabBtnStyles = (_, { look, justify, selected }) => {
 
 	return {
 		label: getLabel('tabcordion-tabBtn'),
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'flex-start',
 		flex: justify ? 1 : 0,
 		marginRight: '0.125rem',
 		padding: `${SPACING(2)} ${SPACING(3)}`,

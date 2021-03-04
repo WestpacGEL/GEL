@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/heading",
 	"version": "1.0.0",
-	"description": "Heading components for the Westpac GEL Design System",
+	"description": "Styling for heading elements supporting visual and semantic heading levels, uppercase and both body font and brand font options",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/heading",
 	"blender": {
 		"recipe": "blender/recipe.js"

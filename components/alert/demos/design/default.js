@@ -3,6 +3,7 @@
 import { jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
 import { Alert } from '@westpac/alert';
+import { PhoneIcon } from '@westpac/icon';
 
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Title, Hr } from '../../../../helpers/demos';
@@ -44,8 +45,13 @@ const Demo = ({ context, showCode, showDemo }) => {
 			</Alert>
 			<Title>System Error</Title>
 			<Alert look="system" dismissible>
-				<strong>System Error</strong> The server is no responding. Please try again later. We are
-				orry for any inconvenience.
+				<strong>System Error</strong> The server is not responding. Please try again later. We are
+				sorry for any inconvenience.
+			</Alert>
+			<Title>Flexible info style icon</Title>
+			<Alert icon={PhoneIcon}>
+				Please make sure your mobile number is correct, we will use this to contact you if we have
+				any questions about your application.
 			</Alert>
 		</Playground>
 	);

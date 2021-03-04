@@ -23,6 +23,7 @@ const modalContentStyles = () => ({
 	borderRadius: '0.1875rem',
 	boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
 	pointerEvents: 'auto',
+	overflow: 'hidden',
 });
 
 // ==============================

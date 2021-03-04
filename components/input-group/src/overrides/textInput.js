@@ -47,6 +47,9 @@ const textInputStyles = (_, { before, after }) => {
 	return {
 		label: getLabel(`inputGroup-textInput-${modifier}`),
 		boxSizing: 'border-box',
+		position: 'relative',
+		zIndex: 0,
+
 		...(before && {
 			borderTopLeftRadius: 0,
 			borderBottomLeftRadius: 0,

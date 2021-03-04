@@ -38,7 +38,7 @@ const iconStyles = (_, { before, after, dropdown, block, hasChildren }) => {
 		label,
 		...(before ? { marginRight: hasChildren && '0.4em' } : null),
 		...(after ? { marginLeft: hasChildren && '0.4em' } : null),
-		...(dropdown ? { marginLeft: block ? 'auto' : '0.4em' } : null),
+		...(dropdown ? { marginLeft: block ? 'auto' : '0.5em' } : null),
 	};
 };
 
