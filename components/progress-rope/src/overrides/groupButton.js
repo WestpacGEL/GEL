@@ -97,9 +97,9 @@ const groupButtonAttributes = (_, { hidden, groupListId }) => ({
 	'aria-controls': groupListId,
 });
 
-const blenderAttributes = (_, { id, open }) => ({
+const blenderAttributes = (_, { open, groupListId }) => ({
 	'aria-expanded': open,
-	'aria-controls': id,
+	'aria-controls': groupListId,
 	'data-js': 'progressRope-groupBtn__version__',
 });
 

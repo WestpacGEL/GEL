@@ -30,12 +30,10 @@ const groupListAttributes = (_, { hidden, groupListId }) => ({
 	'aria-hidden': hidden,
 });
 
-const blenderAttributes = (_, { id, open }) => ({
-	id,
+const blenderAttributes = (_, { open, groupListId }) => ({
+	id: groupListId,
 	'aria-hidden': !open,
 	className: classNames({ [`__convert__progressRope-groupList-show`]: open }),
-	// 'data-js': 'progressRope-groupList__version__',
-	// ...(open && { 'data-open': '' }),
 });
 
 // ==============================
