@@ -35,9 +35,9 @@
 				});
 				break;
 			case 'toggle':
+			default:
 				var isShow = $groupList.hasClass(groupListShowClass);
 				GEL.progressRope.toggle($groupList, isShow ? 'close' : 'open');
-			default:
 		}
 	};
 
