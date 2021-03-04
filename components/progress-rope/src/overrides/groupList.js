@@ -9,10 +9,6 @@ import { defaultProps } from '../blender/Group';
 
 const GroupList = ({ state: _, ...rest }) => <ol {...rest} />;
 
-const BlenderGroupList = ({ state: _, className, ...rest }) => (
-	<ol className={formatClassName(className)} {...rest} />
-);
-
 // ==============================
 // Styles
 // ==============================
@@ -65,7 +61,7 @@ const groupListAttributes = (_, { hidden, groupListId }) => ({
 const blenderAttributes = (_, { id, open }) => ({
 	id,
 	'aria-hidden': !open,
-	className: classNames({ [`__convert__progress-rope-groupList-show`]: open }),
+	className: classNames({ [`__convert__progressRope-groupList-show`]: open }),
 	// 'data-js': 'progressRope-groupList__version__',
 	// ...(open && { 'data-open': '' }),
 });
@@ -81,7 +77,7 @@ export const defaultGroupList = {
 };
 
 export const blenderGroupList = {
-	component: BlenderGroupList,
+	component: GroupList,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };
