@@ -4,8 +4,8 @@ import { jsx } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { blenderGroup } from '../overrides/group';
-import { blenderGroupButtonWrapper } from '../overrides/groupButtonWrapper';
-import { blenderGroupButton } from '../overrides/groupButton';
+import { blenderGroupBtnWrapper } from '../overrides/groupButtonWrapper';
+import { blenderGroupBtn } from '../overrides/groupButton';
 import { blenderGroupList } from '../overrides/groupList';
 
 // ==============================
@@ -15,15 +15,15 @@ import { blenderGroupList } from '../overrides/groupList';
 export const Group = ({ index, id, text, active, visited, open, children, ...rest }) => {
 	const { component: Group, styles: groupStyles, attributes: groupAttributes } = blenderGroup;
 	const {
-		component: GroupButtonWrapper,
+		component: GroupBtnWrapper,
 		styles: groupButtonWrapperStyles,
 		attributes: groupButtonWrapperAttributes,
-	} = blenderGroupButtonWrapper;
+	} = blenderGroupBtnWrapper;
 	const {
-		component: GroupButton,
+		component: GroupBtn,
 		styles: groupButtonStyles,
 		attributes: groupButtonAttributes,
-	} = blenderGroupButton;
+	} = blenderGroupBtn;
 	const {
 		component: GroupList,
 		styles: groupListStyles,
@@ -40,19 +40,19 @@ export const Group = ({ index, id, text, active, visited, open, children, ...res
 
 	return (
 		<Group {...rest} state={state} {...groupAttributes(null, state)} css={groupStyles(null, state)}>
-			<GroupButtonWrapper
+			<GroupBtnWrapper
 				state={state}
 				{...groupButtonWrapperAttributes(null, state)}
 				css={groupButtonWrapperStyles(state)}
 			>
-				<GroupButton
+				<GroupBtn
 					state={state}
 					{...groupButtonAttributes(null, state)}
 					css={groupButtonStyles(state)}
 				>
 					{text}
-				</GroupButton>
-			</GroupButtonWrapper>
+				</GroupBtn>
+			</GroupBtnWrapper>
 			<GroupList state={state} {...groupListAttributes(null, state)} css={groupListStyles(state)}>
 				{children}
 			</GroupList>
