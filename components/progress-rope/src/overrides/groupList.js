@@ -1,12 +1,16 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, classNames, getModifier, formatClassName } from '@westpac/core';
 
 // ==============================
 // Component
 // ==============================
 
 const GroupList = ({ state: _, ...rest }) => <ol {...rest} />;
+
+const BlenderGroupList = ({ state: _, className, ...rest }) => (
+	<ol className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
@@ -21,20 +25,50 @@ const groupListStyles = () => ({
 });
 
 // ==============================
+// Blender Styles
+// ==============================
+
+const blenderStyles = (_, { open }) => {
+	const props = { open };
+	const baseStyles = groupListStyles(_, defaultProps);
+
+	let modifiers = getModifier({ ...defaultProps, open: false }, props);
+	if (!modifiers.length) return baseStyles;
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	let modifierStyles = {};
+
+	switch (modifier) {
+		case 'open':
+			label = `${label}-show`;
+			break;
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...modifierStyles };
+};
+
+// ==============================
 // Attributes
 // ==============================
 
 const groupListAttributes = (_, { hidden, groupListId }) => ({
-	'aria-hidden': hidden,
 	id: groupListId,
+	'aria-hidden': hidden,
 });
 
-const blenderGroupListAttributes = (_, { id, open }) => ({
+const blenderAttributes = (_, { id, open }) => ({
 	id,
 	'aria-hidden': !open,
-	'data-js': 'progressRope-group-list__version__',
-	...(open && { 'data-open': '' }),
+	className: classNames({ [`__convert__progress-rope-groupList-show`]: open }),
+	// 'data-js': 'progressRope-groupList__version__',
+	// ...(open && { 'data-open': '' }),
 });
+
 // ==============================
 // Exports
 // ==============================
@@ -46,7 +80,7 @@ export const defaultGroupList = {
 };
 
 export const blenderGroupList = {
-	component: GroupList,
-	styles: groupListStyles,
-	attributes: blenderGroupListAttributes,
+	component: blenderGroupList,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };

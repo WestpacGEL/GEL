@@ -6,11 +6,16 @@ import { ProgressRope } from '@westpac/progress-rope';
 // Created simplified version of these components for blender use
 import { Group, Step } from '../src/blender';
 import { blenderProgressRope } from '../src/overrides/progressRope';
+import { blenderGroupList } from '../src/overrides/groupList';
 import { blenderList } from '../src/overrides/list';
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-rope'] = {
+		GroupList: {
+			component: blenderGroupList.component,
+			styles: blenderGroupList.styles,
+		},
 		List: {
 			styles: blenderList.styles,
 		},
@@ -98,6 +103,10 @@ export function Docs({ brand }) {
 	overridesWithTokens['@westpac/progress-rope'] = {
 		ProgressRope: {
 			attributes: blenderProgressRope.attributes,
+		},
+		GroupList: {
+			component: blenderGroupList.component,
+			attributes: blenderGroupList.attributes,
 		},
 	};
 	return [
