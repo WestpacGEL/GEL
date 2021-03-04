@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/pagination",
 	"version": "1.1.0",
-	"description": "Pagination components for the Westpac GEL Design System",
+	"description": "Horizontal set of links used to navigate a series of related pages",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/pagination",
 	"blender": {
 		"recipe": "blender/recipe.js"

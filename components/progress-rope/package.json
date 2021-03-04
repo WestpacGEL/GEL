@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/progress-rope",
 	"version": "1.1.0",
-	"description": "Progress-rope components for the Westpac GEL Design System",
+	"description": "Interactive indicator and navigation component used to display the progress status within a multi-page form",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-rope",
 	"blender": {
 		"recipe": "blender/recipe.js",

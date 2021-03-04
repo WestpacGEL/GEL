@@ -1,3 +1,3 @@
 # @westpac/well
 
-The well component.
+Well component for the Westpac GEL Design System
