@@ -11,6 +11,9 @@ import { blenderList } from '../src/overrides/list';
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-rope'] = {
+		ProgressRope: {
+			styles: blenderProgressRope.styles,
+		},
 		List: {
 			styles: blenderList.styles,
 		},
