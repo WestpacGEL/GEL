@@ -13,7 +13,7 @@ const GroupList = ({ state: _, ...rest }) => <ol {...rest} />;
 // ==============================
 
 const groupListStyles = () => ({
-	label: 'progressRope-group-list',
+	label: 'progressRope-groupList',
 	position: 'relative',
 	listStyle: 'none',
 	paddingLeft: 0,
