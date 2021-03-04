@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, classNames, getModifier, formatClassName } from '@westpac/core';
+import { defaultProps } from '../blender/Group';
 
 // ==============================
 // Component
@@ -80,7 +81,7 @@ export const defaultGroupList = {
 };
 
 export const blenderGroupList = {
-	component: blenderGroupList,
+	component: BlenderGroupList,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };
