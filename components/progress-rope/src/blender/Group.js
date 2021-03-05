@@ -3,32 +3,38 @@
 import { jsx } from '@westpac/core';
 import PropTypes from 'prop-types';
 
+import { useProgressRopeContext } from '../ProgressRope';
 import { blenderGroup } from '../overrides/group';
-import { blenderGroupButtonWrapper } from '../overrides/groupButtonWrapper';
-import { blenderGroupButton } from '../overrides/groupButton';
+import { blenderGroupBtnWrapper } from '../overrides/groupButtonWrapper';
+import { blenderGroupBtn } from '../overrides/groupButton';
 import { blenderGroupList } from '../overrides/groupList';
 
 // ==============================
 // Component
 // ==============================
 
-export const Group = ({ id, text, active, visited, open, children, ...rest }) => {
+export const Group = ({ index, id, text, active, visited, open, children, ...rest }) => {
 	const { component: Group, styles: groupStyles, attributes: groupAttributes } = blenderGroup;
 	const {
-		component: GroupButtonWrapper,
+		component: GroupBtnWrapper,
 		styles: groupButtonWrapperStyles,
 		attributes: groupButtonWrapperAttributes,
-	} = blenderGroupButtonWrapper;
+	} = blenderGroupBtnWrapper;
 	const {
-		component: GroupButton,
+		component: GroupBtn,
 		styles: groupButtonStyles,
 		attributes: groupButtonAttributes,
-	} = blenderGroupButton;
+	} = blenderGroupBtn;
 	const {
 		component: GroupList,
 		styles: groupListStyles,
 		attributes: groupListAttributes,
 	} = blenderGroupList;
+
+	const context = useProgressRopeContext();
+	const { instancePrefix } = context;
+
+	const groupListId = `${instancePrefix}-group-${index + 1}`;
 
 	const state = {
 		id,
@@ -36,24 +42,29 @@ export const Group = ({ id, text, active, visited, open, children, ...rest }) =>
 		active,
 		visited,
 		open,
+		groupListId,
 	};
 
 	return (
 		<Group {...rest} state={state} {...groupAttributes(null, state)} css={groupStyles(null, state)}>
-			<GroupButtonWrapper
+			<GroupBtnWrapper
 				state={state}
 				{...groupButtonWrapperAttributes(null, state)}
 				css={groupButtonWrapperStyles(state)}
 			>
-				<GroupButton
+				<GroupBtn
 					state={state}
 					{...groupButtonAttributes(null, state)}
 					css={groupButtonStyles(state)}
 				>
 					{text}
-				</GroupButton>
-			</GroupButtonWrapper>
-			<GroupList state={state} {...groupListAttributes(null, state)} css={groupListStyles(state)}>
+				</GroupBtn>
+			</GroupBtnWrapper>
+			<GroupList
+				state={state}
+				{...groupListAttributes(null, state)}
+				css={groupListStyles(null, state)}
+			>
 				{children}
 			</GroupList>
 		</Group>
