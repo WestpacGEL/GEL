@@ -6,7 +6,7 @@ export const UploadIcon = (props) => (
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M19.35,10.04 C21.95,10.22 24,12.36 24,15 C24,17.76 21.76,20 19,20 L6,20 C2.69,20 0,17.31 0,14 C0,10.91 2.34,8.36 5.35,8.04 C6.6,5.64 9.11,4 12,4 C15.64,4 18.67,6.59 19.35,10.04 Z M14,14 L17,14 L12,9 L7,14 L10,14 L10,18 L14,18 L14,14 Z"
+			d="M12 2a7 7 0 016.919 8.071A6 6 0 0118 22H7A7 7 0 015.036 8.28 7.002 7.002 0 0112 2zm0 7l-5 5h3v4h4v-4h3l-5-5z"
 		/>
 	</Icon>
 );
@@ -14,6 +14,6 @@ export const UploadIcon = (props) => (
 UploadIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Upload',
-	copyrightYear: '2020',
+	copyrightYear: '2021',
 };
 UploadIcon.propTypes = propTypes;
