@@ -32,7 +32,7 @@ export const stepButtonStyles = (_, { end, grouped, visited, active, furthest })
 	const { COLORS, PACKS, TYPE } = useBrand();
 
 	return {
-		label: 'progressRope-step-btn',
+		label: 'progressRope-stepBtn',
 		position: 'relative',
 		fontSize: '0.875rem',
 		lineHeight: 1.428571429, //`<body>` line-height

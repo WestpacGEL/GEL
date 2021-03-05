@@ -22,7 +22,7 @@ function Example({ brand }) {
 
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/progress-rope'] = {
-		GroupButton: {
+		GroupBtn: {
 			styles: (styles, { active }) => ({
 				...styles,
 
