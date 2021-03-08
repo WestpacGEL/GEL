@@ -1,3 +1,3 @@
 # @westpac/button-group
 
-Westpac GEL button group component
+Button-group components for the Westpac GEL Design System

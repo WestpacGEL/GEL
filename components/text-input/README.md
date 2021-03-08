@@ -1,3 +1,3 @@
 # @westpac/text-input
 
-The form input component.
+Text-input components for the Westpac GEL Design System

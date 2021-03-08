@@ -14,6 +14,15 @@ const ProgressRope = ({ state: _, ...rest }) => <nav role="navigation" {...rest}
 
 const progressRopeStyles = () => ({ label: 'progressRope' });
 
+const blenderStyles = () => ({
+	...progressRopeStyles(),
+
+	// GroupList
+	[`.__convert__progressRope-groupList:not(.__convert__progressRope-groupList-show)`]: {
+		display: 'none',
+	},
+});
+
 // ==============================
 // Attributes
 // ==============================
@@ -26,6 +35,7 @@ const blenderAttributes = (_, { assistiveText }) => ({
 	'aria-label': assistiveText,
 	'data-js': 'progressRope__version__',
 });
+
 // ==============================
 // Exports
 // ==============================
@@ -38,6 +48,6 @@ export const defaultProgressRope = {
 
 export const blenderProgressRope = {
 	component: ProgressRope,
-	styles: progressRopeStyles,
+	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

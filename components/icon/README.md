@@ -1,3 +1,3 @@
 # @westpac/icon
 
-The icon component.
+Icon components for the Westpac GEL Design System

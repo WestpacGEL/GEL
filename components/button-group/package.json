@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/button-group",
 	"version": "1.1.0",
-	"description": "Button-group components for the Westpac GEL Design System",
+	"description": "Button toggles grouped together on a single line, used to capture simple responses, powered by radio elements",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-group",
 	"blender": {
 		"recipe": "blender/recipe.js"

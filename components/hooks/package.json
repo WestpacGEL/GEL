@@ -2,6 +2,7 @@
 	"name": "@westpac/hooks",
 	"version": "1.1.0",
 	"description": "Hooks for the Westpac GEL Design System",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/hooks",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
