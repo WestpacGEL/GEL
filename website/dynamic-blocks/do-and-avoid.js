@@ -72,7 +72,7 @@ const Image = (props) => {
 			css={mq({
 				width: '100%',
 				height: 'auto',
-				marginBottom: [SPACING(12), null, null, null, SPACING(3)],
+				marginBottom: SPACING(3),
 			})}
 			{...props}
 		/>
