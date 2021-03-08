@@ -8,8 +8,8 @@ import useMeasure from 'react-use-measure';
 import PropTypes from 'prop-types';
 
 import { defaultGroup } from './overrides/group';
-import { defaultGroupButtonWrapper } from './overrides/groupButtonWrapper';
-import { defaultGroupButton } from './overrides/groupButton';
+import { defaultGroupBtnWrapper } from './overrides/groupButtonWrapper';
+import { defaultGroupBtn } from './overrides/groupButton';
 import { defaultGroupList } from './overrides/groupList';
 
 import { useProgressRopeContext } from './ProgressRope';
@@ -53,8 +53,8 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 
 	const defaultOverrides = {
 		Group: defaultGroup,
-		GroupButtonWrapper: defaultGroupButtonWrapper,
-		GroupButton: defaultGroupButton,
+		GroupBtnWrapper: defaultGroupBtnWrapper,
+		GroupBtn: defaultGroupBtn,
 		GroupList: defaultGroupList,
 	};
 
@@ -74,16 +74,12 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 
 	const {
 		Group: { component: Group, styles: groupStyles, attributes: groupAttributes },
-		GroupButtonWrapper: {
-			component: GroupButtonWrapper,
+		GroupBtnWrapper: {
+			component: GroupBtnWrapper,
 			styles: groupButtonWrapperStyles,
 			attributes: groupButtonWrapperAttributes,
 		},
-		GroupButton: {
-			component: GroupButton,
-			styles: groupButtonStyles,
-			attributes: groupButtonAttributes,
-		},
+		GroupBtn: { component: GroupBtn, styles: groupButtonStyles, attributes: groupButtonAttributes },
 		GroupList: { component: GroupList, styles: groupListStyles, attributes: groupListAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
@@ -108,20 +104,20 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 
 	return (
 		<Group {...rest} state={state} {...groupAttributes(state)} css={groupStyles(state)}>
-			<GroupButtonWrapper
+			<GroupBtnWrapper
 				state={state}
 				{...groupButtonWrapperAttributes(state)}
 				css={groupButtonWrapperStyles(state)}
 			>
-				<GroupButton
+				<GroupBtn
 					onClick={handleGroupClick}
 					state={state}
 					{...groupButtonAttributes(state)}
 					css={groupButtonStyles(state)}
 				>
 					{text}
-				</GroupButton>
-			</GroupButtonWrapper>
+				</GroupBtn>
+			</GroupBtnWrapper>
 			<animated.div style={animate}>
 				<div ref={measureRef}>
 					<GroupList state={state} {...groupListAttributes(state)} css={groupListStyles(state)}>
@@ -159,7 +155,7 @@ Group.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		GroupButton: PropTypes.shape({
+		GroupBtn: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

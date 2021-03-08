@@ -13,6 +13,7 @@ import {
 	CloseIcon,
 	AddCircleIcon,
 	InfoIcon,
+	ArrowRightIcon,
 } from '@westpac/icon';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Title } from '../../../../helpers/demos';
@@ -44,11 +45,6 @@ export default ({ context, showCode, showDemo }) => {
 				<Button look="faint" iconBefore={AddCircleIcon} />
 			</p>
 			<p>
-				<Button look="primary" iconAfter={RefreshIcon} block>
-					Refresh list
-				</Button>
-			</p>
-			<p>
 				<Title>Icon positioning</Title>
 				<Button look="primary" iconAfter={InfoIcon}>
 					Icon right
@@ -59,12 +55,12 @@ export default ({ context, showCode, showDemo }) => {
 			</p>
 			<p>
 				<Title>Block-level buttons with icons</Title>
-				<Button look="primary" block justify iconAfter={InfoIcon}>
-					Icon right (recommended)
+				<Button look="primary" block justify iconAfter={ArrowRightIcon}>
+					Next step
 				</Button>
 				<br />
-				<Button look="primary" block justify iconBefore={InfoIcon}>
-					Icon left
+				<Button look="primary" iconAfter={RefreshIcon} block>
+					Refresh list
 				</Button>
 			</p>
 		</Playground>
