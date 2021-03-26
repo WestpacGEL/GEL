@@ -1,5 +1,13 @@
 # @westpac/modal
 
+## 1.1.1
+
+### Patch Changes
+
+- eab4ab3f: Fix heading focus on modal show
+- Updated dependencies [a6bafb53]
+  - @westpac/icon@1.3.0
+
 ## 1.1.0
 
 ### Minor Changes

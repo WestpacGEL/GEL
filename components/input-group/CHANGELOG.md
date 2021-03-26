@@ -1,5 +1,11 @@
 # @westpac/input-group
 
+## 1.0.1
+
+### Patch Changes
+
+- 726f2e80: Update addon positioning
+
 ## 1.0.0
 
 ### Major Changes
