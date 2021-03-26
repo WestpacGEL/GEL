@@ -1,5 +1,13 @@
 # @westpac/icon
 
+## 1.3.0
+
+### Minor Changes
+
+- a6bafb53: - Add new icons: PresetsIcon, ShareIosIcon, TickCircleIcon, VisibilityIcon and VisibilityOffIcon
+  - Update existing icons: UploadIcon and DownloadIcon
+  - Adjust assistive text: AddCircleIcon, PauseCircleIcon, PlayCircleIcon and RemoveCircleIcon
+
 ## 1.2.0
 
 ### Minor Changes
