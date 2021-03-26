@@ -45,17 +45,19 @@ const selectStyles = (_, { position }) => {
 	return {
 		label: getLabel(`inputGroup-select-${position}`),
 		boxSizing: 'border-box',
+		position: 'relative',
+		zIndex: 1,
 		width: 'auto',
-		marginLeft: position === 'after' && '-1px',
-		marginRight: position === 'before' && '-1px',
 
 		...(position === 'after' && {
 			borderTopLeftRadius: 0,
 			borderBottomLeftRadius: 0,
+			marginLeft: -1,
 		}),
 		...(position === 'before' && {
 			borderTopRightRadius: 0,
 			borderBottomRightRadius: 0,
+			marginRight: -1,
 		}),
 	};
 };

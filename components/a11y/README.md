@@ -1,3 +1,3 @@
 # @westpac/accessibility-helpers
 
-Accessibility helper components.
+Accessibility components for the Westpac GEL Design System

@@ -1,12 +1,13 @@
-import React, { useMemo } from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
-import cookie from 'cookie';
-import { Layout as DefaultLayout } from '../components/layout';
-import App from 'next/app';
-import fetch from 'isomorphic-unfetch';
-import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
+import React, { useMemo } from 'react';
+import fetch from 'isomorphic-unfetch';
+import cookie from 'cookie';
+import App from 'next/app';
+
+import { Layout as DefaultLayout } from '../components/layout';
 
 const getApolloClient = (initialState) =>
 	new ApolloClient({

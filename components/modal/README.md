@@ -1,3 +1,3 @@
 # @westpac/modal
 
-Westpac GEL modal component
+Modal components for the Westpac GEL Design System

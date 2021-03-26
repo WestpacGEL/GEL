@@ -1,3 +1,3 @@
 # @westpac/grid
 
-The grid component.
+Grid components for the Westpac GEL Design System

@@ -1,3 +1,3 @@
 # @westpac/table
 
-The table component.
+Table components for the Westpac GEL Design System

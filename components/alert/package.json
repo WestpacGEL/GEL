@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/alert",
 	"version": "1.2.0",
-	"description": "Alert component for the Westpac GEL Design System",
+	"description": "Alert boxes and Alert text, used as a consistent message system for common user interactions",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/alert",
 	"blender": {
 		"recipe": "blender/recipe.js",

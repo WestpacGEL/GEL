@@ -1,3 +1,3 @@
 # @westpac/symbol
 
-The symbol component.
+Symbol components for the Westpac GEL Design System
