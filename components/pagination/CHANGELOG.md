@@ -1,5 +1,11 @@
 # @westpac/pagination
 
+## 1.1.1
+
+### Patch Changes
+
+- 01454174: Update button height and fix borders
+
 ## 1.1.0
 
 ### Minor Changes
