@@ -96,6 +96,11 @@ export const Modal = ({
 
 	useEffect(() => {
 		setOpen(isOpen);
+		if (isOpen) {
+			setTimeout(() => {
+				headingRef.current.focus();
+			}, 10);
+		}
 	}, [isOpen]);
 
 	const handleClose = () => {
@@ -123,7 +128,7 @@ export const Modal = ({
 		return ReactDOM.createPortal(
 			<GEL brand={brand}>
 				<ModalContext.Provider value={{ state }}>
-					<FocusOn enabled={open}>
+					<FocusOn enabled={open} autoFocus={false}>
 						<Modal
 							ref={modalRef}
 							onClick={(e) => {
@@ -150,7 +155,6 @@ export const Modal = ({
 									<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
 										<Heading
 											ref={headingRef}
-											autoFocus
 											state={state}
 											{...headingAttributes(state)}
 											css={headingStyles(state)}
