@@ -1,5 +1,12 @@
 # @westpac/progress-rope
 
+## 2.0.0
+
+### Major Changes
+
+- 0a5090ab: - Rename internal Button components for consistency
+  - Blender: Refactor implementation, update JS API with new functionality
+
 ## 1.1.0
 
 ### Minor Changes

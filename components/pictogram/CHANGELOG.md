@@ -1,5 +1,11 @@
 # @westpac/pictogram
 
+## 1.3.0
+
+### Minor Changes
+
+- fb0c84c0: Add colour override feature
+
 ## 1.2.0
 
 ### Minor Changes
