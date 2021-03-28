@@ -61,7 +61,7 @@
 		"@westpac/icon": "^1.2.0",
 		"bezier-easing": "^2.1.0",
 		"prop-types": "^15.7.2",
-		"react-focus-on": "^3.3.0",
+		"react-focus-on": "^3.5.2",
 		"react-merge-refs": "^1.1.0"
 	},
 	"peerDependencies": {
