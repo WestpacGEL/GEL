@@ -1,5 +1,11 @@
 # @westpac/modal
 
+## 1.1.2
+
+### Patch Changes
+
+- df18cdfd: Implement heading focus using react-focus-on autoFocus feature, bump dependency
+
 ## 1.1.1
 
 ### Patch Changes
