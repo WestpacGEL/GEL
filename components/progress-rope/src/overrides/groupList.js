@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, classNames } from '@westpac/core';
+import { defaultProps } from '../blender/Group';
 
 // ==============================
 // Component
@@ -13,7 +14,7 @@ const GroupList = ({ state: _, ...rest }) => <ol {...rest} />;
 // ==============================
 
 const groupListStyles = () => ({
-	label: 'progressRope-group-list',
+	label: 'progressRope-groupList',
 	position: 'relative',
 	listStyle: 'none',
 	paddingLeft: 0,
@@ -25,16 +26,16 @@ const groupListStyles = () => ({
 // ==============================
 
 const groupListAttributes = (_, { hidden, groupListId }) => ({
-	'aria-hidden': hidden,
 	id: groupListId,
+	'aria-hidden': hidden,
 });
 
-const blenderGroupListAttributes = (_, { id, open }) => ({
-	id,
+const blenderAttributes = (_, { open, groupListId }) => ({
+	id: groupListId,
 	'aria-hidden': !open,
-	'data-js': 'progressRope-group-list__version__',
-	...(open && { 'data-open': '' }),
+	className: classNames({ [`__convert__progressRope-groupList-show`]: open }),
 });
+
 // ==============================
 // Exports
 // ==============================
@@ -48,5 +49,5 @@ export const defaultGroupList = {
 export const blenderGroupList = {
 	component: GroupList,
 	styles: groupListStyles,
-	attributes: blenderGroupListAttributes,
+	attributes: blenderAttributes,
 };

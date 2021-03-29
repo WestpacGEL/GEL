@@ -1,3 +1,3 @@
 # @westpac/button-dropdown
 
-Westpac GEL button-dropdown component
+Button-dropdown components for the Westpac GEL Design System

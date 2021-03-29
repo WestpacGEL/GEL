@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/input-group",
-	"version": "1.0.0",
-	"description": "Input-group components for the Westpac GEL Design System",
+	"version": "1.0.1",
+	"description": "Text inputs with add-on elements placed before or after, used to provide additional context or functionality",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/input-group",
 	"blender": {
 		"recipe": "blender/recipe.js"

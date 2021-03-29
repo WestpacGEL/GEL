@@ -1,3 +1,3 @@
 # @westpac/label
 
-The label component.
+Label component for the Westpac GEL Design System

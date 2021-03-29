@@ -1,3 +1,3 @@
 # @westpac/form-switch
 
-The form switch component.
+Switch component for the Westpac GEL Design System

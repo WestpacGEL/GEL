@@ -1,7 +1,8 @@
 {
 	"name": "@westpac/core",
 	"version": "1.1.0",
-	"description": "Core components for the Westpac GEL Design System",
+	"description": "Global functionality and settings essential to the framework",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
 	"blender": {
 		"recipe": "blender/recipe.js",

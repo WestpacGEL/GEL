@@ -7,8 +7,8 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Switch name="example-block" label="Enable notifications" block />
-			<Switch name="example-block" label="Turn notifications" block />
+			<Switch name="example-block-1" label="eStatements" block />
+			<Switch name="example-block-2" label="Quick balance" block />
 		</Playground>
 	);
 };

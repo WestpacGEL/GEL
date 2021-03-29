@@ -6,14 +6,14 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const GroupButtonWrapper = ({ state: _, ...rest }) => <h3 {...rest} />;
+const GroupBtnWrapper = ({ state: _, ...rest }) => <h3 {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
 const groupButtonWrapperStyles = () => ({
-	label: 'progressRope-group-btn-wrapper',
+	label: 'progressRope-groupBtnWrapper',
 	margin: 0,
 	fontSize: 'inherit',
 });
@@ -28,14 +28,14 @@ const groupButtonWrapperAttributes = () => null;
 // Exports
 // ==============================
 
-export const defaultGroupButtonWrapper = {
-	component: GroupButtonWrapper,
+export const defaultGroupBtnWrapper = {
+	component: GroupBtnWrapper,
 	styles: groupButtonWrapperStyles,
 	attributes: groupButtonWrapperAttributes,
 };
 
-export const blenderGroupButtonWrapper = {
-	component: GroupButtonWrapper,
+export const blenderGroupBtnWrapper = {
+	component: GroupBtnWrapper,
 	styles: groupButtonWrapperStyles,
 	attributes: groupButtonWrapperAttributes,
 };
