@@ -2,7 +2,7 @@
 
 import { GEL, jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { Fragment, createContext, useContext, useState, useEffect, useRef } from 'react';
-import { FocusOn } from 'react-focus-on';
+import { FocusOn, AutoFocusInside } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
@@ -96,11 +96,6 @@ export const Modal = ({
 
 	useEffect(() => {
 		setOpen(isOpen);
-		if (isOpen) {
-			setTimeout(() => {
-				headingRef.current.focus();
-			}, 10);
-		}
 	}, [isOpen]);
 
 	const handleClose = () => {
@@ -128,7 +123,7 @@ export const Modal = ({
 		return ReactDOM.createPortal(
 			<GEL brand={brand}>
 				<ModalContext.Provider value={{ state }}>
-					<FocusOn enabled={open} autoFocus={false}>
+					<FocusOn enabled={open}>
 						<Modal
 							ref={modalRef}
 							onClick={(e) => {
@@ -153,14 +148,16 @@ export const Modal = ({
 									css={modalContentStyles(state)}
 								>
 									<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
-										<Heading
-											ref={headingRef}
-											state={state}
-											{...headingAttributes(state)}
-											css={headingStyles(state)}
-										>
-											{heading}
-										</Heading>
+										<AutoFocusInside>
+											<Heading
+												ref={headingRef}
+												state={state}
+												{...headingAttributes(state)}
+												css={headingStyles(state)}
+											>
+												{heading}
+											</Heading>
+										</AutoFocusInside>
 										{dismissible && (
 											<CloseBtn
 												onClick={() => handleClose()}
