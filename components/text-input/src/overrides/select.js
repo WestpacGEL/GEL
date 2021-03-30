@@ -48,7 +48,6 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	return mq({
 		label: getLabel('select'),
 		boxSizing: 'border-box',
-		display: inline ? ['block', 'inline-block'] : 'block',
 		width: inline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
 		lineHeight: lineHeight,

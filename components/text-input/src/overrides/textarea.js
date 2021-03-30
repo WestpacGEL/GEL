@@ -43,7 +43,6 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	return mq({
 		label: getLabel('textarea'),
 		boxSizing: 'border-box',
-		display: inline ? ['block', 'inline-block'] : 'block',
 		width: inline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
 		lineHeight: lineHeight,

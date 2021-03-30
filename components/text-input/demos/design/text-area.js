@@ -12,11 +12,14 @@ export default ({ context, showCode, showDemo }) => {
 				<Title>Small</Title>
 				<Textarea name="example-small" size="small" />
 				<br />
+				<br />
 				<Title>Medium</Title>
 				<Textarea name="example-medium" size="medium" />
 				<br />
+				<br />
 				<Title>Large</Title>
 				<Textarea name="example-large" size="large" />
+				<br />
 				<br />
 				<Title>Extra large</Title>
 				<Textarea name="example-xlarge" size="xlarge" />

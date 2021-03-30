@@ -32,12 +32,14 @@ function Example({ brand }) {
 			<h2>With overrides applied</h2>
 			<TextInput />
 			<br />
+			<br />
 			<Select name="thing">
 				<option>Select</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</Select>
+			<br />
 			<br />
 			<Textarea />
 
@@ -52,6 +54,7 @@ function Example({ brand }) {
 				}}
 			/>
 			<br />
+			<br />
 			<Select
 				name="thing"
 				overrides={{
@@ -65,6 +68,7 @@ function Example({ brand }) {
 				<option>2</option>
 				<option>3</option>
 			</Select>
+			<br />
 			<br />
 			<Textarea
 				overrides={{

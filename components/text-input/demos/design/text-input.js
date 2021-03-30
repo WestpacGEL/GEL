@@ -12,11 +12,14 @@ export default ({ context, showCode, showDemo }) => {
 				<Title>Small</Title>
 				<TextInput name="example-small" size="small" />
 				<br />
+				<br />
 				<Title>Medium</Title>
 				<TextInput name="example-medium" size="medium" />
 				<br />
+				<br />
 				<Title>Large</Title>
 				<TextInput name="example-large" size="large" />
+				<br />
 				<br />
 				<Title>Extra large</Title>
 				<TextInput name="example-xlarge" size="xlarge" />
