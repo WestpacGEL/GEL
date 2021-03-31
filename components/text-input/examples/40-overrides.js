@@ -1,7 +1,9 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { TextInput, Textarea, Select } from '@westpac/text-input';
+import { TextInput, Textarea, Select, TextInputWithButton } from '@westpac/text-input';
+
+import { UmbrellaIcon } from '@westpac/icon';
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -11,6 +13,12 @@ function Example({ brand }) {
 			styles: (styles) => ({
 				...styles,
 				borderColor: 'palevioletred',
+			}),
+		},
+		TextInputWithButtonTextInput: {
+			styles: (styles) => ({
+				...styles,
+				borderColor: 'chocolate',
 			}),
 		},
 		Select: {
@@ -33,6 +41,9 @@ function Example({ brand }) {
 			<TextInput />
 			<br />
 			<br />
+			<TextInputWithButton btnIcon={UmbrellaIcon} />
+			<br />
+			<br />
 			<Select name="thing">
 				<option>Select</option>
 				<option>1</option>
@@ -47,6 +58,16 @@ function Example({ brand }) {
 
 			<h2>With overrides and component overrides</h2>
 			<TextInput
+				overrides={{
+					TextInput: {
+						styles: (styles) => ({ ...styles, borderWidth: '3px' }),
+					},
+				}}
+			/>
+			<br />
+			<br />
+			<TextInputWithButton
+				btnIcon={UmbrellaIcon}
 				overrides={{
 					TextInput: {
 						styles: (styles) => ({ ...styles, borderWidth: '3px' }),
