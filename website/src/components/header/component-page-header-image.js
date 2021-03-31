@@ -89,7 +89,7 @@ const ComponentPageHeaderImage = ({ brand: BRAND, ...rest }) => {
 		BSA: BSAImage,
 		BOM: null,
 		BTFG: null,
-		RAMS: RAMSImage,
+		RAMS: null, //RAMSImage,
 	};
 	const HeaderImage = BRAND_HEADERS[BRAND.code];
 

@@ -91,7 +91,7 @@ const HomePageStickyHeaderImage = ({ brand: BRAND, hide, ...rest }) => {
 		BSA: BSAImage,
 		BOM: null,
 		BTFG: null,
-		RAMS: RAMSImage,
+		RAMS: null, //RAMSImage,
 	};
 	const HeaderImage = BRAND_HEADERS[BRAND.code];
 
