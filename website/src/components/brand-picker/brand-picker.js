@@ -107,7 +107,7 @@ export const BrandPicker = () => {
 								<BrandCard brand={brands.BOM} />
 								<BrandCard brand={brands.BSA} />
 								<BrandCard brand={brands.WBG} />
-								{/* <BrandCard brand={brands.RAMS} /> */}
+								<BrandCard brand={brands.RAMS} />
 							</Grid>
 						</Cell>
 					</Grid>
