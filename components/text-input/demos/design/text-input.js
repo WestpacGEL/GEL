@@ -10,7 +10,7 @@ export default ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container width={25}>
 				<Title>Small</Title>
-				<TextInput name="example-small" ize="small" />
+				<TextInput name="example-small" size="small" />
 				<br />
 				<Title>Medium</Title>
 				<TextInput name="example-medium" size="medium" />
