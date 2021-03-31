@@ -4417,12 +4417,24 @@ ansi-regex@^5.0.0:
   resolved "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.0.tgz#388539f55179bf39339c81af30a654d69f87cb75"
   integrity sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==
 
-ansi-styles@^2.2.1, ansi-styles@^3.2.0, ansi-styles@^3.2.1, ansi-styles@^4.0.0, ansi-styles@^4.1.0:
+ansi-styles@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
+  integrity sha1-tDLdM1i2NM914eRmQ2gkBTPB3b4=
+
+ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   version "3.2.1"
   resolved "https://registry.npmjs.org/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
   integrity sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==
   dependencies:
     color-convert "^1.9.0"
+
+ansi-styles@^4.0.0, ansi-styles@^4.1.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-4.3.0.tgz#edd803628ae71c04c85ae7a0906edad34b648937"
+  integrity sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==
+  dependencies:
+    color-convert "^2.0.1"
 
 any-observable@^0.3.0:
   version "0.3.0"
@@ -4734,10 +4746,10 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-aria-hidden@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/aria-hidden/-/aria-hidden-1.1.1.tgz#0c356026d3f65e2bd487a3adb73f0c586be2c37e"
-  integrity sha512-M7zYxCcOQPOaxGHoMTKUFD2UNcVFTp9ycrdStLcTPLf8zgTXC3+YcGe+UuzSh5X1BX/0/PtS8xTNy4xyH/6xtw==
+aria-hidden@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/aria-hidden/-/aria-hidden-1.1.2.tgz#5354315a29bffdaced3993fccd826817dc8c5272"
+  integrity sha512-WAMH9q3vRimVqP+B0q2eDvx7IPDoY17A2fWwj5atTA/zTYJCNcS6HJ5YErZ5FO3PUHhrV0y0yR1NA0dRNm913A==
   dependencies:
     tslib "^1.0.0"
 
@@ -6111,12 +6123,19 @@ color-convert@^1.9.0, color-convert@^1.9.1:
   dependencies:
     color-name "1.1.3"
 
+color-convert@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-2.0.1.tgz#72d3a68d598c9bdb3af2ad1e84f21d896abd4de3"
+  integrity sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==
+  dependencies:
+    color-name "~1.1.4"
+
 color-name@1.1.3:
   version "1.1.3"
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
   integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
 
-color-name@^1.0.0:
+color-name@^1.0.0, color-name@~1.1.4:
   version "1.1.4"
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
@@ -7170,6 +7189,11 @@ detect-newline@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/detect-newline/-/detect-newline-3.1.0.tgz#576f5dfc63ae1a192ff192d8ad3af6308991b651"
   integrity sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==
+
+detect-node-es@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/detect-node-es/-/detect-node-es-1.1.0.tgz#163acdf643330caa0b4cd7c21e7ee7755d6fa493"
+  integrity sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==
 
 detect-node@^2.0.4:
   version "2.0.4"
@@ -8368,6 +8392,13 @@ focus-lock@^0.6.7:
   version "0.6.8"
   resolved "https://registry.npmjs.org/focus-lock/-/focus-lock-0.6.8.tgz#61985fadfa92f02f2ee1d90bc738efaf7f3c9f46"
   integrity sha512-vkHTluRCoq9FcsrldC0ulQHiyBYgVJB2CX53I8r0nTC6KnEij7Of0jpBspjt3/CuNb6fyoj3aOh9J2HgQUM0og==
+
+focus-lock@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/focus-lock/-/focus-lock-0.8.1.tgz#bb36968abf77a2063fa173cb6c47b12ac8599d33"
+  integrity sha512-/LFZOIo82WDsyyv7h7oc0MJF9ACOvDRdx9rWPZ2pgMfNWu/z8hQDBtOchuB/0BVLmuFOZjV02YwUVzNsWx/EzA==
+  dependencies:
+    tslib "^1.9.3"
 
 focus-trap-react@^6.0.0:
   version "6.0.0"
@@ -13970,17 +14001,29 @@ react-focus-lock@^2.3.1:
     use-callback-ref "^1.2.1"
     use-sidecar "^1.0.1"
 
-react-focus-on@^3.3.0:
-  version "3.4.1"
-  resolved "https://registry.npmjs.org/react-focus-on/-/react-focus-on-3.4.1.tgz#e184f3c44185e341598c5d9d44b2987ad459b240"
-  integrity sha512-KGRIl0iAu+1k1dcX7eQCXF5ZR/nl+XyXN5Ukw/OY80vLaK2b6vDzNqnX0HdYbY5xSUhIRUvMWEzSsdEyPjvk/Q==
+react-focus-lock@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-focus-lock/-/react-focus-lock-2.5.0.tgz#12e3a3940e897c26e2c2a0408cd25ea3c99b3709"
+  integrity sha512-XLxj6uTXgz0US8TmqNU2jMfnXwZG0mH2r/afQqvPEaX6nyEll5LHVcEXk2XDUQ34RVeLPkO/xK5x6c/qiuSq/A==
   dependencies:
-    aria-hidden "^1.1.1"
-    react-focus-lock "^2.3.1"
-    react-remove-scroll "^2.3.0"
-    react-style-singleton "^2.1.0"
-    use-callback-ref "^1.2.3"
+    "@babel/runtime" "^7.0.0"
+    focus-lock "^0.8.1"
+    prop-types "^15.6.2"
+    react-clientside-effect "^1.2.2"
+    use-callback-ref "^1.2.1"
     use-sidecar "^1.0.1"
+
+react-focus-on@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/react-focus-on/-/react-focus-on-3.5.2.tgz#65cd20e05d8b38248ddc95998780037aff6b4b2b"
+  integrity sha512-tpPxLqw9tEuElWmcr5jqw/ULfJjdHEnom0nBW9p6y75Zsa0wOfwQNqCHqCoJcHUqSBtKXqTuYduZoSTfTOTdJw==
+  dependencies:
+    aria-hidden "^1.1.2"
+    react-focus-lock "^2.5.0"
+    react-remove-scroll "^2.4.1"
+    react-style-singleton "^2.1.1"
+    use-callback-ref "^1.2.5"
+    use-sidecar "^1.0.5"
 
 react-helmet@^5.2.0:
   version "5.2.1"
@@ -14147,10 +14190,10 @@ react-remove-scroll-bar@^2.1.0:
     react-style-singleton "^2.1.0"
     tslib "^1.0.0"
 
-react-remove-scroll@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.npmjs.org/react-remove-scroll/-/react-remove-scroll-2.3.0.tgz#3af06fe2f7130500704b676cdef94452c08fe593"
-  integrity sha512-UqVimLeAe+5EHXKfsca081hAkzg3WuDmoT9cayjBegd6UZVhlTEchleNp9J4TMGkb/ftLve7ARB5Wph+HJ7A5g==
+react-remove-scroll@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/react-remove-scroll/-/react-remove-scroll-2.4.1.tgz#e0af6126621083a5064591d367291a81b2d107f5"
+  integrity sha512-K7XZySEzOHMTq7dDwcHsZA6Y7/1uX5RsWhRXVYv8rdh+y9Qz2nMwl9RX/Mwnj/j7JstCGmxyfyC0zbVGXYh3mA==
   dependencies:
     react-remove-scroll-bar "^2.1.0"
     react-style-singleton "^2.1.0"
@@ -14279,6 +14322,15 @@ react-style-singleton@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/react-style-singleton/-/react-style-singleton-2.1.0.tgz#7396885332e9729957f9df51f08cadbfc164e1c4"
   integrity sha512-DH4ED+YABC1dhvSDYGGreAHmfuTXj6+ezT3CmHoqIEfxNgEYfIMoOtmbRp42JsUst3IPqBTDL+8r4TF7EWhIHw==
+  dependencies:
+    get-nonce "^1.0.0"
+    invariant "^2.2.4"
+    tslib "^1.0.0"
+
+react-style-singleton@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-style-singleton/-/react-style-singleton-2.1.1.tgz#ce7f90b67618be2b6b94902a30aaea152ce52e66"
+  integrity sha512-jNRp07Jza6CBqdRKNgGhT3u9umWvils1xsuMOjZlghBDH2MU0PL2WZor4PGYjXpnRCa9DQSlHMs/xnABWOwYbA==
   dependencies:
     get-nonce "^1.0.0"
     invariant "^2.2.4"
@@ -16887,6 +16939,11 @@ use-callback-ref@^1.2.1, use-callback-ref@^1.2.3:
   resolved "https://registry.npmjs.org/use-callback-ref/-/use-callback-ref-1.2.3.tgz#9f939dfb5740807bbf9dd79cdd4e99d27e827756"
   integrity sha512-DPBPh1i2adCZoIArRlTuKRy7yue7QogtEnfv0AKrWsY+GA+4EKe37zhRDouNnyWMoNQFYZZRF+2dLHsWE4YvJA==
 
+use-callback-ref@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.2.5.tgz#6115ed242cfbaed5915499c0a9842ca2912f38a5"
+  integrity sha512-gN3vgMISAgacF7sqsLPByqoePooY3n2emTH59Ur5d/M8eg4WTWu1xp8i8DHjohftIyEx0S08RiYxbffr4j8Peg==
+
 use-memo-one@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/use-memo-one/-/use-memo-one-1.1.1.tgz#39e6f08fe27e422a7d7b234b5f9056af313bd22c"
@@ -16905,6 +16962,14 @@ use-sidecar@^1.0.1:
   integrity sha512-287RZny6m5KNMTb/Kq9gmjafi7lQL0YHO1lYolU6+tY1h9+Z3uCtkJJ3OSOq3INwYf2hBryCcDh4520AhJibMA==
   dependencies:
     detect-node "^2.0.4"
+    tslib "^1.9.3"
+
+use-sidecar@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/use-sidecar/-/use-sidecar-1.0.5.tgz#ffff2a17c1df42e348624b699ba6e5c220527f2b"
+  integrity sha512-k9jnrjYNwN6xYLj1iaGhonDghfvmeTmYjAiGvOr7clwKfPjMXJf4/HOr7oT5tJwYafgp2tG2l3eZEOfoELiMcA==
+  dependencies:
+    detect-node-es "^1.1.0"
     tslib "^1.9.3"
 
 use-subscription@1.1.1:
