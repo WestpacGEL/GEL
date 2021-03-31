@@ -11,7 +11,7 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { defaultProps } from '../TextInput';
-import { round, sizeMap } from '../_utils';
+import { sizeMap, getHeight, getMaxWidth } from '../_utils';
 
 // ==============================
 // Component
@@ -34,32 +34,26 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
 	const focus = { ...PACKS.focus };
 	focus.outline += ' !important';
-	const borderWidth = 1; //px
-	const lineHeight = 1.5;
-	const extras = `${((p) => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${((b) => `${b} + ${b}`)(
-		`${borderWidth}px`
-	)}`;
 
 	return mq({
 		label: getLabel('textInput'),
 		boxSizing: 'border-box',
 		width: inline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
-		lineHeight: lineHeight,
+		fontSize: sizeMap[size].fontSize,
+		...TYPE.bodyFont[400],
+		lineHeight: sizeMap[size].lineHeight,
 		color: COLORS.text,
 		backgroundColor: '#fff',
-		border: `${borderWidth}px solid ${
+		border: `${sizeMap[size].borderWidth}px solid ${
 			invalid || rest.ariaInvalid ? COLORS.danger : COLORS.borderDark
 		}`,
 		borderRadius: '0.1875rem',
 		transition: 'border 0.2s ease',
 		verticalAlign: inline && 'middle',
 		padding: sizeMap[size].padding.join(' '),
-		fontSize: sizeMap[size].fontSize,
-		height: `calc(${lineHeight}em + ${((p) => `${p[0]} + ${p[2] || p[0]}`)(
-			sizeMap[size].padding
-		)} + ${2 * borderWidth}px)`,
-		...TYPE.bodyFont[400],
+		height: getHeight(size),
+		maxWidth: width && getMaxWidth(size, width),
 
 		'::placeholder': {
 			opacity: 1, // Override Firefox's unusual default opacity
@@ -86,7 +80,6 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 			margin: 0,
 			appearance: 'none',
 		},
-		maxWidth: width && `calc(${extras} + ${round(width * 1.81)}ex)`,
 	})[0];
 };
 

@@ -11,7 +11,7 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import svgToTinyDataURI from 'mini-svg-data-uri';
-import { round, sizeMap } from '../_utils';
+import { sizeMap, getHeight, getMaxWidth } from '../_utils';
 import { defaultProps } from '../Select';
 
 // ==============================
@@ -35,38 +35,32 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
 	const focus = { ...PACKS.focus };
 	focus.outline += ' !important';
-	const borderWidth = 1; //px
-	const lineHeight = 1.5;
 	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fillRule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
 	const caretGap = '0.5rem';
 	const caretWidth = '14px';
-	const sub = `${((p) => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${((b) => `${b} + ${b}`)(
-		`${borderWidth}px`
-	)}`;
-	const extras = `${sub} + ${caretWidth} + ${caretGap}`; // Add width for caret if a select
+	const extras = `${caretWidth} + ${caretGap}`; // Add width for caret if a select
 
 	return mq({
 		label: getLabel('select'),
 		boxSizing: 'border-box',
 		width: inline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
-		lineHeight: lineHeight,
+		fontSize: sizeMap[size].fontSize,
 		...TYPE.bodyFont[400],
+		lineHeight: sizeMap[size].lineHeight,
 		color: COLORS.text,
 		backgroundColor: '#fff',
-		border: `${borderWidth}px solid ${
+		border: `${sizeMap[size].borderWidth}px solid ${
 			invalid || rest.ariaInvalid ? COLORS.danger : COLORS.borderDark
 		}`,
 		borderRadius: '0.1875rem',
 		transition: 'border 0.2s ease',
 		verticalAlign: inline && 'middle',
 		padding: sizeMap[size].padding.join(' '),
-		fontSize: sizeMap[size].fontSize,
-		height: `calc(${lineHeight}em + ${((p) => `${p[0]} + ${p[2] || p[0]}`)(
-			sizeMap[size].padding
-		)} + ${2 * borderWidth}px)`,
-		maxWidth: width && `calc(${extras} + ${caretWidth} + ${caretGap} + ${round(width * 1.81)}ex)`,
-		paddingRight: `calc(${sizeMap[size].padding[1]} + ${caretWidth} + ${caretGap})`,
+		height: getHeight(size),
+		maxWidth: width && getMaxWidth(size, width, extras),
+
+		paddingRight: `calc(${sizeMap[size].padding[1]} + ${extras})`,
 		backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: `right ${sizeMap[size].padding[1]} center`,
