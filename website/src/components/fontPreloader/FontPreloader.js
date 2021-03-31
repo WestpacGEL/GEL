@@ -224,10 +224,9 @@ export const FontPreloader = ({ title = '', ...rest }) => {
 					left: '10px',
 					width: '1px',
 					height: '1px',
-					padding: '10px',
 					overflow: 'hidden',
 					zIndex: 99999,
-					background: '#fff',
+					background: 'transparent',
 				}}
 			>
 				<span

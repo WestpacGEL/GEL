@@ -4,7 +4,6 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { VisuallyHidden } from '@westpac/a11y';
-import throttle from 'lodash.throttle';
 
 import { MenuButton } from './menu-button';
 import HeaderImage from './component-page-header-image';
@@ -64,43 +63,67 @@ const GridIndicator = () => {
 	);
 };
 
-const PageHeaderHeading = ({ hasScrolledLarge, ...rest }) => {
-	const { BRAND } = useBrand();
+const PageHeaderHeading = (props) => {
+	const { BRAND, LAYOUT, PACKS } = useBrand();
 
 	return BRAND.code === 'WBC' ? (
-		<BrandHeading tag="h1" size={[7, null, !hasScrolledLarge ? 2 : null]} uppercase {...rest} />
+		<BrandHeading
+			tag="h1"
+			size={7}
+			uppercase
+			overrides={{
+				BrandHeading: {
+					styles: (styles) => ({
+						...styles,
+						transition: 'font-size 0.2s ease',
+						[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+							fontSize: `${PACKS.typeScale.brandFont[2].fontSize}`,
+							lineHeight: `${PACKS.typeScale.brandFont[2].lineHeight}`,
+							fontFamily: `${PACKS.typeScale.brandFont[2].fontFamily}`,
+							'body.hasScrolled &': {
+								fontSize: `${PACKS.typeScale.brandFont[7].fontSize}`,
+								lineHeight: `${PACKS.typeScale.brandFont[7].lineHeight}`,
+								fontFamily: `${PACKS.typeScale.brandFont[7].fontFamily}`,
+							},
+						},
+					}),
+				},
+			}}
+			{...props}
+		/>
 	) : (
-		<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]} {...rest} />
+		<Heading
+			tag="h1"
+			size={8}
+			overrides={{
+				Heading: {
+					styles: (styles) => ({
+						...styles,
+						transition: 'font-size 0.2s ease',
+						[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+							fontSize: `${PACKS.typeScale.bodyFont[3].fontSize}`,
+							lineHeight: `${PACKS.typeScale.bodyFont[3].lineHeight}`,
+							fontFamily: `${PACKS.typeScale.bodyFont[3].fontFamily}`,
+							'body.hasScrolled &': {
+								fontSize: `${PACKS.typeScale.bodyFont[8].fontSize}`,
+								lineHeight: `${PACKS.typeScale.bodyFont[8].lineHeight}`,
+								fontFamily: `${PACKS.typeScale.bodyFont[8].fontFamily}`,
+							},
+						},
+					}),
+				},
+			}}
+			{...props}
+		/>
 	);
 };
 
 const PageHeader = ({ name }) => {
-	const { COLORS, BRAND, SPACING } = useBrand();
+	const { COLORS, BRAND, SPACING, LAYOUT } = useBrand();
 	const mq = useMediaQuery();
-	const [hasScrolledSmall, setHasScrolledSmall] = useState(false);
-	const [hasScrolledLarge, setHasScrolledLarge] = useState(false);
-	const header = useRef(null);
-
-	useEffect(() => {
-		const setHeader = () => {
-			const scroll = window.scrollY;
-
-			setHasScrolledSmall(scroll > scrollMap.small);
-			setHasScrolledLarge(scroll >= scrollMap.large);
-		};
-		setHeader();
-
-		const scrollHandler = throttle(setHeader, 10);
-
-		window.addEventListener('scroll', scrollHandler);
-		return () => {
-			window.removeEventListener('scroll', scrollHandler);
-		};
-	}, []);
 
 	return (
 		<header
-			ref={header}
 			css={mq({
 				flex: 'none',
 				position: 'sticky',
@@ -132,25 +155,29 @@ const PageHeader = ({ name }) => {
 					css={mq({
 						display: ['flex', null],
 						alignItems: ['center', null],
-						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
-						marginLeft: [
-							SPACING(8),
-							null,
-							!hasScrolledLarge ? SPACING(6) : SPACING(10),
-							null,
-							!hasScrolledLarge ? SPACING(6) : SPACING(4),
-						],
-						marginBottom: [null, null, !hasScrolledLarge && SPACING(7)],
+						marginLeft: SPACING(8),
+						marginBottom: 0,
+						[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+							marginLeft: SPACING(6),
+							marginBottom: SPACING(7),
+							'body.hasScrolled &': {
+								marginLeft: SPACING(10),
+								marginBottom: 0,
+							},
+						},
+						[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
+							marginLeft: SPACING(6),
+							'body.hasScrolled &': {
+								marginLeft: SPACING(4),
+								marginBottom: 0,
+							},
+						},
 						height: [66, null],
-						transition: [
-							null,
-							null,
-							!(hasScrolledSmall && !hasScrolledLarge) && 'opacity 0.2s ease',
-						],
+						transition: 'margin 0.2s ease',
 						willChange: 'opacity',
 					})}
 				>
-					<PageHeaderHeading hasScrolledLarge={hasScrolledLarge}>{name}</PageHeaderHeading>
+					<PageHeaderHeading>{name}</PageHeaderHeading>
 				</div>
 			</div>
 			<GridIndicator />
