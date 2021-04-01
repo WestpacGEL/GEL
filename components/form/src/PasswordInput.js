@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { VisibilityIcon, VisibilityOffIcon } from '@westpac/icon';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -29,6 +28,8 @@ export const PasswordInput = ({ children, overrides: componentOverrides, ...rest
 	};
 
 	const state = {
+		reveal,
+		handleClick,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -43,11 +44,6 @@ export const PasswordInput = ({ children, overrides: componentOverrides, ...rest
 
 	return (
 		<PasswordInput
-			type={reveal ? 'text' : 'password'}
-			btnIcon={reveal ? VisibilityOffIcon : VisibilityIcon}
-			btnAssistiveText={reveal ? 'Obscure password' : 'Reveal password'}
-			btnAriaPressed={reveal ? 'true' : 'false'}
-			btnOnClick={handleClick}
 			{...rest}
 			state={state}
 			{...passwordInputAttributes(state)}

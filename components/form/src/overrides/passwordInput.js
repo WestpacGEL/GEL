@@ -2,12 +2,21 @@
 
 import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 import { TextInputWithButton } from '@westpac/text-input';
+import { VisibilityIcon, VisibilityOffIcon } from '@westpac/icon';
 
 // ==============================
 // Component
 // ==============================
 
-const PasswordInput = ({ state: _, ...rest }) => <TextInputWithButton {...rest} />;
+const PasswordInput = ({ state: { reveal, handleClick }, ...rest }) => (
+	<TextInputWithButton
+		type={reveal ? 'text' : 'password'}
+		btnIcon={reveal ? VisibilityOffIcon : VisibilityIcon}
+		btnAssistiveText={reveal ? 'Obscure password' : 'Reveal password'}
+		btnOnClick={handleClick}
+		{...rest}
+	/>
+);
 
 // ==============================
 // Styles
