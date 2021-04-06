@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Form, FormGroup } from '@westpac/form';
-import { Text } from '@westpac/text-input';
+import { TextInput } from '@westpac/text-input';
 import { Button } from '@westpac/button';
 import { Box } from './_utils';
 
@@ -50,28 +50,28 @@ function Example({ brand }) {
 			<h3>Small</h3>
 			<Form size="small">
 				<FormGroup>
-					<Text />
+					<TextInput />
 				</FormGroup>
 			</Form>
 
 			<h3>Medium</h3>
 			<Form size="medium">
 				<FormGroup>
-					<Text />
+					<TextInput />
 				</FormGroup>
 			</Form>
 
 			<h3>Large</h3>
 			<Form size="large">
 				<FormGroup>
-					<Text />
+					<TextInput />
 				</FormGroup>
 			</Form>
 
 			<h3>XLarge</h3>
 			<Form size="xlarge">
 				<FormGroup>
-					<Text />
+					<TextInput />
 				</FormGroup>
 			</Form>
 
@@ -80,7 +80,7 @@ function Example({ brand }) {
 			<h2>Inline mode (SM+)</h2>
 			<Form inline>
 				<FormGroup>
-					<Text />
+					<TextInput />
 				</FormGroup>
 				<FormGroup>{/* <Button>Go</Button> */}</FormGroup>
 			</Form>

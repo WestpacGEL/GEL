@@ -27,9 +27,12 @@ function Example({ brand }) {
 			<h2>Size</h2>
 			<TextInput size="small" placeholder="small" />
 			<br />
+			<br />
 			<TextInput size="medium" placeholder="medium" />
 			<br />
+			<br />
 			<TextInput size="large" placeholder="large" />
+			<br />
 			<br />
 			<TextInput size="xlarge" placeholder="xlarge" />
 
@@ -42,6 +45,7 @@ function Example({ brand }) {
 
 			<h2>Disabled</h2>
 			<TextInput disabled />
+			<br />
 			<br />
 			<TextInput defaultValue="This input is disabled and contains a value" disabled />
 
@@ -62,15 +66,21 @@ function Example({ brand }) {
 			<h2>Fixed width</h2>
 			<TextInput width={2} placeholder={2} />
 			<br />
+			<br />
 			<TextInput width={3} placeholder={3} />
+			<br />
 			<br />
 			<TextInput width={4} placeholder={4} />
 			<br />
+			<br />
 			<TextInput width={5} placeholder={5} />
+			<br />
 			<br />
 			<TextInput width={10} placeholder={10} />
 			<br />
+			<br />
 			<TextInput width={20} placeholder={20} />
+			<br />
 			<br />
 			<TextInput width={30} placeholder={30} />
 		</GEL>

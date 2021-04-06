@@ -55,6 +55,7 @@ function Example({ brand }) {
 				<option>3</option>
 			</Select>
 			<br />
+			<br />
 			<Select>
 				<option>Medium</option>
 				<option>1</option>
@@ -62,12 +63,14 @@ function Example({ brand }) {
 				<option>3</option>
 			</Select>
 			<br />
+			<br />
 			<Select size="large">
 				<option>Large</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</Select>
+			<br />
 			<br />
 			<Select size="xlarge">
 				<option>XLarge</option>
@@ -125,12 +128,14 @@ function Example({ brand }) {
 				<option>3</option>
 			</Select>
 			<br />
+			<br />
 			<Select width={3}>
 				<option>Size 3</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</Select>
+			<br />
 			<br />
 			<Select width={4}>
 				<option>Size 4</option>
@@ -139,12 +144,14 @@ function Example({ brand }) {
 				<option>3</option>
 			</Select>
 			<br />
+			<br />
 			<Select width={5}>
 				<option>Size 5</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</Select>
+			<br />
 			<br />
 			<Select width={10}>
 				<option>Size 10</option>
@@ -153,12 +160,14 @@ function Example({ brand }) {
 				<option>3</option>
 			</Select>
 			<br />
+			<br />
 			<Select width={20}>
 				<option>Size 20</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</Select>
+			<br />
 			<br />
 			<Select width={30}>
 				<option>Size 30</option>
