@@ -57,6 +57,7 @@
 	"module": "dist/text-input.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
+		"@westpac/button": "^1.0.0",
 		"@westpac/core": "^1.1.0",
 		"mini-svg-data-uri": "^1.2.3",
 		"prop-types": "^15.7.2"
@@ -67,6 +68,7 @@
 	"devDependencies": {
 		"@westpac/button": "^1.0.0",
 		"@westpac/grid": "^1.0.0",
+		"@westpac/icon": "^1.3.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

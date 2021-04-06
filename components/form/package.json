@@ -43,6 +43,7 @@
 		"@westpac/a11y": "^1.0.0",
 		"@westpac/core": "^1.1.0",
 		"@westpac/icon": "^1.1.0",
+		"@westpac/text-input": "^1.0.0",
 		"prop-types": "^15.7.2",
 		"shortid": "^2.2.15"
 	},

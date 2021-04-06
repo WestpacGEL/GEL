@@ -17,6 +17,7 @@ export default ({ context, showCode, showDemo }) => {
 					<option>3</option>
 				</Select>
 				<br />
+				<br />
 				<Title>Medium</Title>
 				<Select name="example-medium" size="medium">
 					<option>Select</option>
@@ -25,6 +26,7 @@ export default ({ context, showCode, showDemo }) => {
 					<option>3</option>
 				</Select>
 				<br />
+				<br />
 				<Title>Large</Title>
 				<Select name="example-large" size="large">
 					<option>Select</option>
@@ -32,6 +34,7 @@ export default ({ context, showCode, showDemo }) => {
 					<option>2</option>
 					<option>3</option>
 				</Select>
+				<br />
 				<br />
 				<Title>Extra large</Title>
 				<Select name="example-xlarge" size="xlarge">
