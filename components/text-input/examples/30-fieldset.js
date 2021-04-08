@@ -11,12 +11,14 @@ function Example({ brand }) {
 				<legend>Legend</legend>
 				<TextInput />
 				<br />
+				<br />
 				<Select>
 					<option>Select</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
 				</Select>
+				<br />
 				<br />
 				<Textarea />
 			</fieldset>
@@ -28,12 +30,14 @@ function Example({ brand }) {
 				<legend>Legend</legend>
 				<TextInput />
 				<br />
+				<br />
 				<Select>
 					<option>Select</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
 				</Select>
+				<br />
 				<br />
 				<Textarea />
 			</fieldset>

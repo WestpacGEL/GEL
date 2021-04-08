@@ -1,28 +1,30 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { Textarea } from '@westpac/text-input';
+import { TextInputWithButton } from '@westpac/text-input';
 import { Title, Container } from '../../../../helpers/demos';
 import { Playground } from '../../../../website/src/components/playground/macro';
+
+import { UmbrellaIcon } from '@westpac/icon';
 
 export default ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Container width={50}>
+			<Container width={25}>
 				<Title>Small</Title>
-				<Textarea name="example-small" size="small" />
+				<TextInputWithButton btnIcon={UmbrellaIcon} name="example-small" size="small" />
 				<br />
 				<br />
 				<Title>Medium</Title>
-				<Textarea name="example-medium" size="medium" />
+				<TextInputWithButton btnIcon={UmbrellaIcon} name="example-medium" size="medium" />
 				<br />
 				<br />
 				<Title>Large</Title>
-				<Textarea name="example-large" size="large" />
+				<TextInputWithButton btnIcon={UmbrellaIcon} name="example-large" size="large" />
 				<br />
 				<br />
 				<Title>Extra large</Title>
-				<Textarea name="example-xlarge" size="xlarge" />
+				<TextInputWithButton btnIcon={UmbrellaIcon} name="example-xlarge" size="xlarge" />
 			</Container>
 		</Playground>
 	);

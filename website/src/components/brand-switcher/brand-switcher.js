@@ -50,11 +50,10 @@ export const brandsMap = {
 		logo: <WBGMultibrandLargeLogo />,
 		smallLogo: <WBGLogo width={70} css={{ marginRight: -8 }} />,
 	},
-	/* RAMS: {
+	RAMS: {
 		logo: <RAMSMultibrandLargeLogo />,
 		smallLogo: <RAMSLogo width={70} css={{ marginRight: -8 }} />,
-		label: 'RAMS',
-	}, */
+	},
 };
 
 const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {

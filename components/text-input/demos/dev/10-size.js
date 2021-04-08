@@ -12,9 +12,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<Cell width={[12, 12, 4]}>
 					<TextInput size="small" placeholder="small" />
 					<br />
+					<br />
 					<TextInput size="medium" placeholder="medium" />
 					<br />
+					<br />
 					<TextInput size="large" placeholder="large" />
+					<br />
 					<br />
 					<TextInput size="xlarge" placeholder="xlarge" />
 				</Cell>
@@ -26,6 +29,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 						<option>3</option>
 					</Select>
 					<br />
+					<br />
 					<Select>
 						<option>Medium</option>
 						<option>1</option>
@@ -33,12 +37,14 @@ const Demo = ({ context, showCode, showDemo }) => {
 						<option>3</option>
 					</Select>
 					<br />
+					<br />
 					<Select size="large">
 						<option>Large</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 					</Select>
+					<br />
 					<br />
 					<Select size="xlarge">
 						<option>XLarge</option>
@@ -50,9 +56,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<Cell width={[12, 12, 4]}>
 					<Textarea size="small" placeholder="small" />
 					<br />
+					<br />
 					<Textarea size="medium" placeholder="medium" />
 					<br />
+					<br />
 					<Textarea size="large" placeholder="large" />
+					<br />
 					<br />
 					<Textarea size="xlarge" placeholder="xlarge" />
 				</Cell>
