@@ -12,6 +12,7 @@ import PageHeader from '../../components/header/page-header';
 import { Gridly, Footer } from '../../components/layout';
 import { Head } from '../../components/head';
 import { ALL_PAGES } from '../../../graphql';
+import { useScrolled } from '../../components/_utils';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
@@ -39,21 +40,7 @@ const Component = ({ component, tabName }) => {
 	const { pageTitle } = component;
 	const [showGrid, setShowGrid] = useState(false);
 
-	useEffect(() => {
-		const setScrollClass = () => {
-			if (window.scrollY >= 100) {
-				document.body.classList.add('hasScrolled');
-			} else {
-				document.body.classList.remove('hasScrolled');
-			}
-		};
-
-		window.addEventListener('scroll', setScrollClass, { passive: true });
-		setScrollClass();
-		return () => {
-			window.removeEventListener('scroll', setScrollClass);
-		};
-	}, []);
+	useScrolled();
 
 	return (
 		<Fragment>
