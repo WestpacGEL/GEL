@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, Global, css, useFonts } from '@westpac/core';
+import { jsx, Global, css } from '@westpac/core';
 import { Fragment } from 'react';
 import NextHead from 'next/head';
 
@@ -217,96 +217,32 @@ export const FontPreloader = ({ title = '', ...rest }) => {
 			/>
 			<div
 				aria-hidden="true"
-				visbility="hidden"
 				css={{
-					position: 'absolute',
-					top: '10px',
-					left: '10px',
-					width: '1px',
-					height: '1px',
-					overflow: 'hidden',
-					zIndex: 99999,
-					background: 'transparent',
+					position: 'absolute !important',
+					width: '1px !important',
+					height: '1px !important',
+					padding: '0 !important',
+					margin: '-1px !important',
+					overflow: 'hidden !important',
+					clip: 'rect(0,0,0,0) !important',
+					whiteSpace: 'nowrap !important',
+					border: '0 !important',
+					color: '#fff !important',
 				}}
 			>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontBOM', fontWeight: 300 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontBOM', fontWeight: 400 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontBOM', fontWeight: 700 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontBSA', fontWeight: 300 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontBSA', fontWeight: 700 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontRAMS', fontWeight: 400 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontRAMS', fontWeight: 600 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontRAMS', fontWeight: 700 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontSTG', fontWeight: 400 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontWBC', fontWeight: 400 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontWBG', fontWeight: 300 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontWBG', fontWeight: 400 }}
-				>
-					Font loading
-				</span>
-				<span
-					aria-hidden="true"
-					css={{ color: '#fff', fontFamily: 'brandFontWBG', fontWeight: 700 }}
-				>
-					Font loading
-				</span>
+				<span css={{ fontFamily: 'brandFontBOM', fontWeight: 300 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontBOM', fontWeight: 400 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontBOM', fontWeight: 700 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontBSA', fontWeight: 300 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontBSA', fontWeight: 700 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontRAMS', fontWeight: 400 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontRAMS', fontWeight: 600 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontRAMS', fontWeight: 700 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontSTG', fontWeight: 400 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontWBC', fontWeight: 400 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontWBG', fontWeight: 300 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontWBG', fontWeight: 400 }}>Font loading</span>
+				<span css={{ fontFamily: 'brandFontWBG', fontWeight: 700 }}>Font loading</span>
 			</div>
 		</Fragment>
 	);
