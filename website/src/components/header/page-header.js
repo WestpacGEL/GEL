@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';

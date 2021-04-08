@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useCallback, useEffect, forwardRef, Fragment } from 'react';
+import { useState, useCallback, forwardRef, Fragment } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { useQuery } from '@apollo/react-hooks';
@@ -12,7 +12,6 @@ import PageHeader from '../../components/header/page-header';
 import { Gridly, Footer } from '../../components/layout';
 import { Head } from '../../components/head';
 import { ALL_PAGES } from '../../../graphql';
-import { useScrolled } from '../../components/_utils';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
@@ -39,8 +38,6 @@ const ComponentWrapper = () => {
 const Component = ({ component, tabName }) => {
 	const { pageTitle } = component;
 	const [showGrid, setShowGrid] = useState(false);
-
-	useScrolled();
 
 	return (
 		<Fragment>

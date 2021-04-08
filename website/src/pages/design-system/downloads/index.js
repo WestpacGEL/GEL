@@ -31,7 +31,6 @@ import { Gridly, Footer } from '../../../components/layout';
 import { BASE_URL } from '../../../config.js';
 import { Icon } from '../../../../../components/icon/src/Icon';
 import GEL from '../../../../../GEL.json';
-import { useScrolled } from '../../../components/_utils';
 
 const ArrowUpRightIcon = (props) => {
 	const { COLORS } = useBrand();
@@ -821,8 +820,6 @@ const SectionDevelopers = () => {
 
 function TokensPage() {
 	const { COLORS } = useBrand();
-
-	useScrolled();
 
 	const [showGrid, setShowGrid] = useState(false);
 

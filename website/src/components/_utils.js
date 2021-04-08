@@ -1,29 +1,11 @@
 /** @jsx jsx */
 
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { BASE_URL } from '../config';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { SlateContent } from './pages/single-component/blocks-hub';
-
-export const useScrolled = () => {
-	useEffect(() => {
-		const setScrollClass = () => {
-			if (window.scrollY >= 100) {
-				document.body.classList.add('hasScrolled');
-			} else {
-				document.body.classList.remove('hasScrolled');
-			}
-		};
-
-		window.addEventListener('scroll', setScrollClass, { passive: true });
-		setScrollClass();
-		return () => {
-			window.removeEventListener('scroll', setScrollClass);
-		};
-	}, []);
-};
 
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
