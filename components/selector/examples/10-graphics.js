@@ -3,7 +3,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { Selector, Option } from '@westpac/selector';
 import { ChatPictogram, TruckPictogram, ClockPictogram } from '@westpac/pictogram';
-import { AccessibilityIcon, AtmIcon, CarIcon } from '@westpac/Icon';
+import { AccessibilityIcon, AtmIcon, CarIcon } from '@westpac/icon';
 import { useState } from 'react';
 
 function Example({ brand }) {
