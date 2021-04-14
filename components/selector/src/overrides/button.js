@@ -16,6 +16,8 @@ const buttonStyles = (_, { disabled, checked }) => {
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
+	const paddingArr = [SPACING(3), null, SPACING(4)];
+
 	return mq({
 		label: getLabel('selector-btn'),
 		display: 'flex',
@@ -26,7 +28,7 @@ const buttonStyles = (_, { disabled, checked }) => {
 		touchAction: 'manipulation',
 		userSelect: 'none',
 		boxSizing: 'border-box',
-		padding: ['18px', null, '24px'], //px important
+		padding: paddingArr,
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
 		transition: 'background 0.2s ease',
@@ -34,7 +36,11 @@ const buttonStyles = (_, { disabled, checked }) => {
 		// Checked state
 		// Note: Padding reduced to counter the increased border width
 		...(checked
-			? { borderColor: COLORS.hero, borderWidth: '3px', padding: ['16px', null, '22px'] }
+			? {
+					borderColor: COLORS.hero,
+					borderWidth: '3px',
+					padding: paddingArr.map((p) => p && `calc(${p} - 2px)`),
+			  }
 			: {
 					':hover': {
 						borderColor: COLORS.hero,
