@@ -2,7 +2,6 @@
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Body } from '@westpac/body';
-import { SPACING } from '../../../../brands/RAMS/dist/rams.esm';
 
 // ==============================
 // Component
