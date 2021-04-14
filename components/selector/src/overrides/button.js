@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
-import { Button } from '@westpac/button';
 
 // ==============================
 // Component

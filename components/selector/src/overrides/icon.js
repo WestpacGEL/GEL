@@ -22,7 +22,6 @@ const iconStyles = (_, { checked }) => {
 		label: getLabel('selector-icon'),
 		marginRight: SPACING(4),
 		marginBottom: [SPACING(1), null, 0],
-		// '*': { fill: checked && 'currentColor' },
 	});
 };
 

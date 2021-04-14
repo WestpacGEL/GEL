@@ -188,6 +188,11 @@ Selector.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
+		Content: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 		Pictogram: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
