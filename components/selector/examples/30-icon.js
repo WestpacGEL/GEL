@@ -36,6 +36,19 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
+			<h3>Radio with next indicator</h3>
+			<Selector type="radio" name="example-radio-hint-with-next" nextIndicator>
+				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
+					Here is a label
+				</Option>
+				<Option value="2" icon={AtmIcon}>
+					Here is a label
+				</Option>
+				<Option value="3" icon={CarIcon}>
+					Here is a label
+				</Option>
+			</Selector>
+
 			<h3>Checkbox</h3>
 			<Selector type="checkbox" name="example-checkbox-hint">
 				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
@@ -55,6 +68,19 @@ function Example({ brand }) {
 
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-long">
+				<Option value="1" icon={AccessibilityIcon} hint={hintLong}>
+					Here is a label
+				</Option>
+				<Option value="2" icon={AtmIcon}>
+					Here is a label
+				</Option>
+				<Option value="3" icon={CarIcon}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Radio with next indicator</h3>
+			<Selector type="radio" name="example-radio-long-with-next" nextIndicator>
 				<Option value="1" icon={AccessibilityIcon} hint={hintLong}>
 					Here is a label
 				</Option>

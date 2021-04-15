@@ -238,7 +238,7 @@ Selector.propTypes = {
 
 export const defaultProps = {
 	type: 'radio',
-	nextIndicator: true,
+	nextIndicator: false,
 };
 
 Selector.defaultProps = defaultProps;

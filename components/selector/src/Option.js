@@ -3,7 +3,7 @@
 import { jsx, useBrand, getLabel, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-import { defaultBtn } from './overrides/btn';
+import { defaultOptionBtn } from './overrides/optionBtn';
 import { defaultOption } from './overrides/option';
 import { defaultContent } from './overrides/content';
 import { defaultPictogram } from './overrides/pictogram';
@@ -56,7 +56,7 @@ export const Option = ({
 
 	const defaultOverrides = {
 		Option: defaultOption,
-		Button: defaultBtn,
+		OptionBtn: defaultOptionBtn,
 		Content: defaultContent,
 		Pictogram: defaultPictogram,
 		Icon: defaultIcon,
@@ -89,7 +89,7 @@ export const Option = ({
 
 	const {
 		Option: { component: Option, styles: optionStyles, attributes: optionAttributes },
-		Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
+		OptionBtn: { component: OptionBtn, styles: optionBtnStyles, attributes: optionBtnAttributes },
 		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
 		Pictogram: { component: Pictogram, styles: pictogramStyles, attributes: pictogramAttributes },
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
@@ -125,13 +125,22 @@ export const Option = ({
 				{...restCtx}
 				{...rest}
 				css={{
-					label: getLabel('option-input'),
+					label: getLabel('selector-option-input'),
 					position: 'absolute',
-					zIndex: '-1',
+					top: 0,
+					left: 0,
+					zIndex: 0,
 					opacity: 0,
+					width: '100%',
+					height: '100%',
+					cursor: 'pointer',
+					':disabled, fieldset:disabled &': {
+						cursor: 'default',
+						pointerEvents: 'none',
+					},
 				}}
 			/>
-			<Button state={state} {...buttonAttributes(state)} css={buttonStyles(state)}>
+			<OptionBtn state={state} {...optionBtnAttributes(state)} css={optionBtnStyles(state)}>
 				<Content state={state} {...contentAttributes(state)} css={contentStyles(state)}>
 					{pictogram ? (
 						<Pictogram
@@ -155,7 +164,7 @@ export const Option = ({
 					</Text>
 				</Content>
 				<Indicator state={state} {...indicatorAttributes(state)} css={indicatorStyles(state)} />
-			</Button>
+			</OptionBtn>
 		</Option>
 	);
 };

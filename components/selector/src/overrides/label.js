@@ -7,7 +7,7 @@ import { Body } from '@westpac/body';
 // Component
 // ==============================
 
-const Label = ({ state: _, ...rest }) => <Body {...rest} />;
+const Label = ({ state: _, ...rest }) => <Body tag="label" {...rest} />;
 
 // ==============================
 // Styles
@@ -19,6 +19,9 @@ const labelStyles = () => {
 	return {
 		label: getLabel('selector-option-label'),
 		...PACKS.typeScale.bodyFont[8],
+		':disabled, fieldset:disabled &': {
+			pointerEvents: 'none',
+		},
 	};
 };
 
@@ -26,7 +29,9 @@ const labelStyles = () => {
 // Attributes
 // ==============================
 
-const labelAttributes = () => null;
+const labelAttributes = (_, { optionId }) => ({
+	htmlFor: optionId, //a11y: use explicit association
+});
 
 // ==============================
 // Exports

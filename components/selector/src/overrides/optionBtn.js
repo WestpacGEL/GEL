@@ -6,13 +6,13 @@ import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const SelectorBtn = ({ state: _, ...rest }) => <div {...rest} />;
+const OptionBtn = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const btnStyles = (_, { type, disabled, checked }) => {
+const optionBtnStyles = (_, { type, disabled, checked }) => {
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -31,7 +31,6 @@ const btnStyles = (_, { type, disabled, checked }) => {
 		padding: paddingArr,
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
-		transition: 'background 0.2s ease',
 
 		// Checked state
 		// Note: Padding reduced to counter the increased border width
@@ -42,22 +41,17 @@ const btnStyles = (_, { type, disabled, checked }) => {
 					padding: paddingArr.map((p) => p && `calc(${p} - 2px)`),
 			  }
 			: {
-					':hover': {
+					'input:hover + &': {
 						borderColor: COLORS.hero,
 					},
 			  }),
 
-		// Disabled via `disabled` attribute or inside a disabled fieldset
-		':disabled, fieldset:disabled &': {
+		// Disabled state
+		'input:disabled + &, fieldset:disabled &': {
 			opacity: '0.5',
-			pointerEvents: 'none',
 		},
 
-		// for non input tags
-		...(disabled && { opacity: '0.5', pointerEvents: 'none' }),
-
 		//a11y: WHCM
-		position: 'relative',
 		'input:checked + &::before, input:checked + &::after': {
 			content: '""',
 			position: 'absolute',
@@ -84,14 +78,14 @@ const btnStyles = (_, { type, disabled, checked }) => {
 // Attributes
 // ==============================
 
-const btnAttributes = () => null;
+const optionBtnAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultBtn = {
-	component: SelectorBtn,
-	styles: btnStyles,
-	attributes: btnAttributes,
+export const defaultOptionBtn = {
+	component: OptionBtn,
+	styles: optionBtnStyles,
+	attributes: optionBtnAttributes,
 };

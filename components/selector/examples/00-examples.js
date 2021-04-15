@@ -30,18 +30,15 @@ function Example({ brand }) {
 				<Option value="3">Here is a label</Option>
 			</Selector>
 
-			<h3>Checkbox</h3>
-			<Selector type="checkbox" name="example-checkbox">
+			<h3>Radio with next indicator</h3>
+			<Selector type="radio" name="example-radio-with-next" nextIndicator>
 				<Option value="1">Here is a label</Option>
 				<Option value="2">Here is a label</Option>
 				<Option value="3">Here is a label</Option>
 			</Selector>
 
-			<hr />
-
-			<h2>No next indicator</h2>
-			<h3>Radio</h3>
-			<Selector name="example-default" nextIndicator={false}>
+			<h3>Checkbox</h3>
+			<Selector type="checkbox" name="example-checkbox">
 				<Option value="1">Here is a label</Option>
 				<Option value="2">Here is a label</Option>
 				<Option value="3">Here is a label</Option>

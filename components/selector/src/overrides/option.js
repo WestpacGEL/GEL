@@ -6,7 +6,7 @@ import { jsx, useMediaQuery, getLabel, useBrand } from '@westpac/core';
 // Component
 // ==============================
 
-const Option = ({ state: _, ...rest }) => <label {...rest} />;
+const Option = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles
@@ -18,7 +18,7 @@ export const optionStyles = () => {
 
 	return mq({
 		label: getLabel('selector-option'),
-		display: 'block',
+		position: 'relative',
 		':not(:last-child)': { marginBottom: SPACING(4) },
 	})[0];
 };
@@ -27,9 +27,7 @@ export const optionStyles = () => {
 // Attributes
 // ==============================
 
-const optionAttributes = (_, { optionId }) => ({
-	htmlFor: optionId, //a11y: use explicit association
-});
+const optionAttributes = () => null;
 
 // ==============================
 // Exports
