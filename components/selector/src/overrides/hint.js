@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
-import { Body } from '@westpac/body';
 
 // ==============================
 // Component
 // ==============================
 
-const Hint = ({ state: _, ...rest }) => <Body {...rest} />;
+const Hint = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

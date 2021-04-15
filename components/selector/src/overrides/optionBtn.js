@@ -32,23 +32,23 @@ const optionBtnStyles = (_, { type, disabled, checked }) => {
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
 
+		// Hover state
+		'input:hover + &': {
+			borderColor: COLORS.hero,
+		},
+
 		// Checked state
 		// Note: Padding reduced to counter the increased border width
-		...(checked
-			? {
-					borderColor: COLORS.hero,
-					borderWidth: '3px',
-					padding: paddingArr.map((p) => p && `calc(${p} - 2px)`),
-			  }
-			: {
-					'input:hover + &': {
-						borderColor: COLORS.hero,
-					},
-			  }),
+		...(checked && {
+			borderColor: COLORS.hero,
+			borderWidth: '3px',
+			padding: paddingArr.map((p) => p && `calc(${p} - 2px)`),
+		}),
 
 		// Disabled state
 		'input:disabled + &, fieldset:disabled &': {
 			opacity: '0.5',
+			pointerEvents: 'none',
 		},
 
 		//a11y: WHCM

@@ -134,6 +134,7 @@ export const Option = ({
 					width: '100%',
 					height: '100%',
 					cursor: 'pointer',
+					appearance: 'none',
 					':disabled, fieldset:disabled &': {
 						cursor: 'default',
 						pointerEvents: 'none',

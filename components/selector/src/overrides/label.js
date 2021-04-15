@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
-import { Body } from '@westpac/body';
 
 // ==============================
 // Component
 // ==============================
 
-const Label = ({ state: _, ...rest }) => <Body tag="label" {...rest} />;
+const Label = ({ state: _, ...rest }) => <label {...rest} />;
 
 // ==============================
 // Styles
@@ -19,9 +18,6 @@ const labelStyles = () => {
 	return {
 		label: getLabel('selector-option-label'),
 		...PACKS.typeScale.bodyFont[8],
-		':disabled, fieldset:disabled &': {
-			pointerEvents: 'none',
-		},
 	};
 };
 
