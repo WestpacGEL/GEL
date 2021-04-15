@@ -19,7 +19,7 @@ const pictogramStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
-		label: getLabel('selector-pictogram'),
+		label: getLabel('selector-option-pictogram'),
 		marginRight: SPACING(4),
 		marginBottom: [SPACING(1), null, 0],
 	})[0];

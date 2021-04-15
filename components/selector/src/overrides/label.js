@@ -17,7 +17,7 @@ const labelStyles = () => {
 	const { PACKS } = useBrand();
 
 	return {
-		label: getLabel('selector-label'),
+		label: getLabel('selector-option-label'),
 		...PACKS.typeScale.bodyFont[8],
 	};
 };

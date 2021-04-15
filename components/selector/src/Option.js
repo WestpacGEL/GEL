@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
-import { defaultButton } from './overrides/button';
+import { defaultBtn } from './overrides/btn';
 import { defaultOption } from './overrides/option';
 import { defaultContent } from './overrides/content';
 import { defaultPictogram } from './overrides/pictogram';
@@ -12,7 +11,7 @@ import { defaultIcon } from './overrides/icon';
 import { defaultText } from './overrides/text';
 import { defaultLabel } from './overrides/label';
 import { defaultHint } from './overrides/hint';
-import { defaultNextIndicator } from './overrides/nextIndicator';
+import { defaultIndicator } from './overrides/indicator';
 
 import { useSelectorContext } from './Selector';
 import pkg from '../package.json';
@@ -22,15 +21,12 @@ import pkg from '../package.json';
 // ==============================
 
 export const Option = ({
-	name,
 	value,
 	pictogram,
 	icon,
-	nextIndicator,
-	onChange,
-	checked,
-	disabled,
+	checked: checkedProp,
 	hint,
+	className,
 	children,
 	overrides,
 	...rest
@@ -40,36 +36,53 @@ export const Option = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const context = useSelectorContext();
-	const [optionId] = useState(`selector-option-${useInstanceId()}`);
-	const [hintId] = useState(`selector-hint-${useInstanceId()}`);
+	const {
+		instanceId,
+		data,
+		checked: ctxChecked,
+		overrides: ctxOverrides,
+		defaultValue: _,
+		type = 'radio',
+		name,
+		nextIndicator,
+		disabled,
+		onChange,
+		toggleCheck,
+		...restCtx
+	} = useSelectorContext();
+
+	const optionId = `${instanceId}-option-${useInstanceId()}`;
+	const hintId = `${optionId}-hint`;
 
 	const defaultOverrides = {
 		Option: defaultOption,
-		Button: defaultButton,
+		Button: defaultBtn,
 		Content: defaultContent,
 		Pictogram: defaultPictogram,
 		Icon: defaultIcon,
 		Text: defaultText,
 		Label: defaultLabel,
 		Hint: defaultHint,
-		NextIndicator: defaultNextIndicator,
+		Indicator: defaultIndicator,
 	};
 
-	const componentOverrides = overrides || context.state.overrides;
+	const componentOverrides = overrides || ctxOverrides;
+	const checked = ctxChecked ? ctxChecked.includes(value) : checkedProp;
 
 	const state = {
-		name,
+		optionId,
 		value,
 		pictogram,
 		icon,
 		nextIndicator,
-		onChange,
+		ctxChecked,
 		checked,
+		onChange,
+		type,
+		name,
 		disabled,
 		hint,
 		hintId,
-		context: context.state,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -83,31 +96,36 @@ export const Option = ({
 		Text: { component: Text, styles: textStyles, attributes: textAttributes },
 		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
 		Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
-		NextIndicator: {
-			component: NextIndicator,
-			styles: nextIndicatorStyles,
-			attributes: nextIndicatorAttributes,
-		},
+		Indicator: { component: Indicator, styles: indicatorStyles, attributes: indicatorAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
 		<Option
-			{...rest}
+			className={className}
 			state={state}
-			{...optionAttributes({ ...state, optionId })}
+			{...optionAttributes(state)}
 			css={optionStyles(state)}
 		>
 			{/* a11y: input not exposed as an override, contains logic required to function */}
 			<input
-				type="radio"
 				id={optionId}
-				name={name}
+				aria-describedby={hint && hintId}
+				onChange={
+					disabled
+						? null
+						: typeof onChange === 'undefined'
+						? null
+						: (event) => onChange(event, value, checked)
+				}
 				value={value}
-				onChange={(event) => onChange(event, value)}
 				checked={checked}
 				disabled={disabled}
+				type={type}
+				name={name}
+				{...restCtx}
+				{...rest}
 				css={{
-					label: getLabel('selector-input'),
+					label: getLabel('option-input'),
 					position: 'absolute',
 					zIndex: '-1',
 					opacity: 0,
@@ -136,13 +154,7 @@ export const Option = ({
 						)}
 					</Text>
 				</Content>
-				{nextIndicator && (
-					<NextIndicator
-						state={state}
-						{...nextIndicatorAttributes(state)}
-						css={nextIndicatorStyles(state)}
-					/>
-				)}
+				<Indicator state={state} {...indicatorAttributes(state)} css={indicatorStyles(state)} />
 			</Button>
 		</Option>
 	);
@@ -153,6 +165,56 @@ export const Option = ({
 // ==============================
 
 Option.propTypes = {
+	/**
+	 * Seletor option id
+	 */
+	id: PropTypes.string,
+
+	/**
+	 * Selector option value
+	 */
+	value: PropTypes.string,
+
+	/**
+	 * Check the Selector option
+	 */
+	checked: PropTypes.bool,
+
+	/**
+	 * Disable the Selector option
+	 */
+	disabled: PropTypes.bool,
+
+	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
+	 * Selector type
+	 */
+	type: PropTypes.oneOf(['radio', 'checkbox']),
+
+	/**
+	 * The Selector input element’s name
+	 */
+	name: PropTypes.string,
+
+	/**
+	 * Hint text
+	 */
+	hint: PropTypes.node,
+
+	/**
+	 * A function called on change
+	 */
+	onChange: PropTypes.func,
+
+	/**
+	 * Selector option label text
+	 */
+	children: PropTypes.node.isRequired,
+
 	overrides: PropTypes.shape({
 		Button: PropTypes.shape({
 			styles: PropTypes.func,
@@ -202,8 +264,4 @@ Option.propTypes = {
 	}),
 };
 
-export const defaultProps = {
-	checked: false,
-};
-
-Option.defaultProps = defaultProps;
+Option.defaultProps = {};

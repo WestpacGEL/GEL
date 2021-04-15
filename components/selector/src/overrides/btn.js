@@ -6,20 +6,20 @@ import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const SelectorButton = ({ state: _, ...rest }) => <div {...rest} />;
+const SelectorBtn = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const buttonStyles = (_, { disabled, checked }) => {
+const btnStyles = (_, { type, disabled, checked }) => {
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	const paddingArr = [SPACING(3), null, SPACING(4)];
 
 	return mq({
-		label: getLabel('selector-btn'),
+		label: getLabel('selector-option-btn'),
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'center',
@@ -84,14 +84,14 @@ const buttonStyles = (_, { disabled, checked }) => {
 // Attributes
 // ==============================
 
-const buttonAttributes = () => null;
+const btnAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultButton = {
-	component: SelectorButton,
-	styles: buttonStyles,
-	attributes: buttonAttributes,
+export const defaultBtn = {
+	component: SelectorBtn,
+	styles: btnStyles,
+	attributes: btnAttributes,
 };

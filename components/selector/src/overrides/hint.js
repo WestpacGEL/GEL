@@ -17,7 +17,7 @@ const hintStyles = (_, { checked }) => {
 	const { COLORS, PACKS, SPACING } = useBrand();
 
 	return {
-		label: getLabel('selector-hint'),
+		label: getLabel('selector-option-hint'),
 		color: checked ? 'inherit' : COLORS.muted,
 		marginTop: SPACING(1, true),
 		...PACKS.typeScale.bodyFont[9],

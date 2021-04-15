@@ -1,10 +1,19 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, devWarning, wrapHandlers, overrideReconciler } from '@westpac/core';
-import { Children, cloneElement, useState, useContext, createContext } from 'react';
+import {
+	jsx,
+	useBrand,
+	overrideReconciler,
+	useInstanceId,
+	devWarning,
+	asArray,
+	useManagedState,
+} from '@westpac/core';
+import { useState, useEffect, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultSelector } from './overrides/selector';
+
 import { Option } from './Option';
 import pkg from '../package.json';
 
@@ -15,12 +24,7 @@ import pkg from '../package.json';
 const SelectorContext = createContext();
 
 export const useSelectorContext = () => {
-	const context = useContext(SelectorContext);
-
-	if (!context) {
-		throw new Error('<Option/> components should be wrapped in a <Selector>.');
-	}
-
+	const context = useContext(SelectorContext) || {};
 	return context;
 };
 
@@ -29,14 +33,16 @@ export const useSelectorContext = () => {
 // ==============================
 
 export const Selector = ({
+	type,
 	name,
-	value: controlledValue,
+	value,
 	nextIndicator,
-	defaultValue,
-	onChange = () => {},
-	data,
 	disabled,
+	defaultValue,
+	instanceIdPrefix,
+	data,
 	children,
+	onChange = () => {},
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -45,23 +51,50 @@ export const Selector = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [value, setValue] = useState(defaultValue);
+	const valueAsArray = value ? asArray(value) : undefined;
+	const defaultValueAsArray = defaultValue ? asArray(defaultValue) : [];
 
-	devWarning(children && data, 'Selector accepts either `children` or `data`, not both.');
-	devWarning(!children && !data, 'Selector requires either `children` or `data`.');
+	devWarning(
+		type === 'radio' && defaultValueAsArray.length > 1,
+		'The Selector as radio may only have one "current" item set.'
+	);
+
+	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+
+	// create the prefix for internal IDs
+	useEffect(() => {
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-selector-${useInstanceId()}`);
+		}
+	}, [instanceIdPrefix]);
 
 	const defaultOverrides = {
 		Selector: defaultSelector,
 	};
 
+	const handleChange = (event, value, wasChecked) => {
+		if (type === 'radio') {
+			setChecked(asArray(value));
+		} else {
+			if (wasChecked) {
+				setChecked(checked.filter((item) => item !== value));
+			} else {
+				setChecked([...checked, value]);
+			}
+		}
+	};
+
 	const state = {
+		instanceId,
+		type,
 		name,
-		value: controlledValue,
 		nextIndicator,
-		defaultValue,
-		onChange,
-		data,
 		disabled,
+		defaultValue,
+		data,
+		checked,
+		onChange: handleChange,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -70,53 +103,21 @@ export const Selector = ({
 		Selector: { component: Selector, styles: selectorStyles, attributes: selectorAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const handleChange = (event, val) => {
-		wrapHandlers(
-			() => onChange(event, val),
-			() => setValue(val)
-		)(event);
-	};
-
-	const actualValue = typeof controlledValue !== 'undefined' ? controlledValue : value;
-
 	let allChildren = [];
 	if (data) {
-		data.map((props, index) => {
-			const val = props.value || index;
-			const checked = val === actualValue;
+		data.map(({ text, ...rest }, index) => {
 			allChildren.push(
-				<Option
-					key={val}
-					name={name}
-					value={val}
-					nextIndicator={nextIndicator}
-					onChange={handleChange}
-					checked={checked}
-					disabled={disabled}
-				>
-					{props.text}
+				<Option key={index} {...rest}>
+					{text}
 				</Option>
 			);
-		});
-	} else {
-		allChildren = Children.map(children, (child, index) => {
-			const val = child.props.value || index;
-			const checked = val === actualValue;
-			return cloneElement(child, {
-				name,
-				value: val,
-				nextIndicator,
-				onChange: handleChange,
-				checked,
-				disabled,
-			});
 		});
 	}
 
 	return (
-		<SelectorContext.Provider value={{ state }}>
+		<SelectorContext.Provider value={state}>
 			<Selector {...rest} state={state} {...selectorAttributes(state)} css={selectorStyles(state)}>
-				{allChildren}
+				{data ? allChildren : children}
 			</Selector>
 		</SelectorContext.Provider>
 	);
@@ -126,23 +127,16 @@ export const Selector = ({
 // Types
 // ==============================
 
-const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
-
 Selector.propTypes = {
 	/**
-	 * Name to be used for radio inputs
+	 * Selector type
 	 */
-	name: PropTypes.string.isRequired,
+	type: PropTypes.oneOf(['radio', 'checkbox']).isRequired,
 
 	/**
-	 * Control the value, if numeric an index is assumed. Requires `onChange`
+	 * The Selector input element’s name
 	 */
-	value: ValueType,
-
-	/**
-	 * Default value of this component
-	 */
-	defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	name: PropTypes.string,
 
 	/**
 	 * Use automatic next chevron styling, renders 'ArrowRightIcon' icon
@@ -150,22 +144,38 @@ Selector.propTypes = {
 	nextIndicator: PropTypes.bool,
 
 	/**
-	 * Change the value. Requires `value`
+	 * Disable all Selector options
+	 */
+	disabled: PropTypes.bool,
+
+	/**
+	 * The data prop shape
+	 */
+	data: PropTypes.arrayOf(
+		PropTypes.shape({
+			value: PropTypes.node,
+			text: PropTypes.string,
+			hint: PropTypes.node,
+		})
+	),
+
+	/**
+	 * The options already checked
+	 */
+	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+
+	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceIdPrefix: PropTypes.string,
+
+	/**
+	 * A function called on change
 	 */
 	onChange: PropTypes.func,
 
 	/**
-	 * Alternative to children
-	 */
-	data: PropTypes.arrayOf(PropTypes.object),
-
-	/**
-	 * Button group disabled
-	 */
-	disabled: PropTypes.bool.isRequired,
-
-	/**
-	 * Button group children
+	 * Selector item(s)
 	 */
 	children: PropTypes.node,
 
@@ -227,9 +237,8 @@ Selector.propTypes = {
 };
 
 export const defaultProps = {
+	type: 'radio',
 	nextIndicator: true,
-	defaultValue: -1,
-	disabled: false,
 };
 
 Selector.defaultProps = defaultProps;
