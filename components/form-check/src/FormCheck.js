@@ -167,6 +167,7 @@ FormCheck.propTypes = {
 		PropTypes.shape({
 			value: PropTypes.node,
 			text: PropTypes.string,
+			hint: PropTypes.node,
 		})
 	),
 
