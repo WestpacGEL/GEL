@@ -18,7 +18,7 @@ const optionBtnStyles = (_, { type, disabled, checked }) => {
 
 	const paddingArr = [SPACING(3), null, SPACING(4)];
 
-	return mq({
+	return {
 		label: getLabel('selector-option-btn'),
 		display: 'flex',
 		justifyContent: 'space-between',
@@ -28,7 +28,6 @@ const optionBtnStyles = (_, { type, disabled, checked }) => {
 		touchAction: 'manipulation',
 		userSelect: 'none',
 		boxSizing: 'border-box',
-		padding: paddingArr,
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
 
@@ -36,14 +35,6 @@ const optionBtnStyles = (_, { type, disabled, checked }) => {
 		'input:hover + &': {
 			borderColor: COLORS.hero,
 		},
-
-		// Checked state
-		// Note: Padding reduced to counter the increased border width
-		...(checked && {
-			borderColor: COLORS.hero,
-			borderWidth: '3px',
-			padding: paddingArr.map((p) => p && `calc(${p} - 2px)`),
-		}),
 
 		// Disabled state
 		'input:disabled + &, fieldset:disabled &': {
@@ -71,7 +62,20 @@ const optionBtnStyles = (_, { type, disabled, checked }) => {
 		'body:not(.isMouseMode) input:focus + &': {
 			...PACKS.focus,
 		},
-	})[0];
+
+		// Note: Temporary fix... mq() array values must come last if `&` selectors are used (as above). This is an issue with our reset specificity solution (`.GEL ` class prepend)
+		...mq({
+			padding: paddingArr,
+
+			// Checked state
+			// Note: Padding reduced to counter the increased border width
+			...(checked && {
+				borderColor: COLORS.hero,
+				borderWidth: '3px',
+				padding: paddingArr.map((p) => p && `calc(${p} - 2px)`),
+			}),
+		})[0],
+	};
 };
 
 // ==============================
