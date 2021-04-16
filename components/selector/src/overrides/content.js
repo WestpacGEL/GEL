@@ -16,7 +16,7 @@ const contentStyles = () => {
 	const mq = useMediaQuery();
 
 	return mq({
-		label: getLabel('selector-content'),
+		label: getLabel('selector-option-content'),
 		display: 'flex',
 		flexDirection: ['column', null, 'row'],
 		alignItems: ['flex-start', null, 'center'],
