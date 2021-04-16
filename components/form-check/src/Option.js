@@ -130,7 +130,7 @@ export const Option = ({
 
 Option.propTypes = {
 	/**
-	 * Form check id
+	 * Form check option id
 	 */
 	id: PropTypes.string,
 
@@ -155,12 +155,12 @@ Option.propTypes = {
 	instanceIdPrefix: PropTypes.string,
 
 	/**
-	 * Form check type.
+	 * Form check type
 	 */
 	type: PropTypes.oneOf(['checkbox', 'radio']),
 
 	/**
-	 * The form check input element’s name.
+	 * The form check input element’s name
 	 */
 	name: PropTypes.string,
 
