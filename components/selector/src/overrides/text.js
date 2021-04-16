@@ -13,7 +13,7 @@ const Text = ({ state: _, ...rest }) => <div {...rest} />;
 // ==============================
 
 const textStyles = () => ({
-	label: getLabel('selector-text'),
+	label: getLabel('selector-option-text'),
 });
 
 // ==============================

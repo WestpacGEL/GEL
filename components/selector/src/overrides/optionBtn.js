@@ -6,20 +6,20 @@ import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const SelectorButton = ({ state: _, ...rest }) => <div {...rest} />;
+const OptionBtn = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const buttonStyles = (_, { disabled, checked }) => {
+const optionBtnStyles = (_, { type, disabled, checked }) => {
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	const paddingArr = [SPACING(3), null, SPACING(4)];
 
-	return mq({
-		label: getLabel('selector-btn'),
+	return {
+		label: getLabel('selector-option-btn'),
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'center',
@@ -28,36 +28,21 @@ const buttonStyles = (_, { disabled, checked }) => {
 		touchAction: 'manipulation',
 		userSelect: 'none',
 		boxSizing: 'border-box',
-		padding: paddingArr,
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
-		transition: 'background 0.2s ease',
 
-		// Checked state
-		// Note: Padding reduced to counter the increased border width
-		...(checked
-			? {
-					borderColor: COLORS.hero,
-					borderWidth: '3px',
-					padding: paddingArr.map((p) => p && `calc(${p} - 2px)`),
-			  }
-			: {
-					':hover': {
-						borderColor: COLORS.hero,
-					},
-			  }),
+		// Hover state
+		'input:hover + &': {
+			borderColor: COLORS.hero,
+		},
 
-		// Disabled via `disabled` attribute or inside a disabled fieldset
-		':disabled, fieldset:disabled &': {
+		// Disabled state
+		'input:disabled + &, fieldset:disabled &': {
 			opacity: '0.5',
 			pointerEvents: 'none',
 		},
 
-		// for non input tags
-		...(disabled && { opacity: '0.5', pointerEvents: 'none' }),
-
 		//a11y: WHCM
-		position: 'relative',
 		'input:checked + &::before, input:checked + &::after': {
 			content: '""',
 			position: 'absolute',
@@ -77,21 +62,34 @@ const buttonStyles = (_, { disabled, checked }) => {
 		'body:not(.isMouseMode) input:focus + &': {
 			...PACKS.focus,
 		},
-	})[0];
+
+		// Note: Temporary fix... mq() array values must come last if `&` selectors are used (as above). This is an issue with our reset specificity solution (`.GEL ` class prepend)
+		...mq({
+			padding: paddingArr,
+
+			// Checked state
+			// Note: Padding reduced to counter the increased border width
+			...(checked && {
+				borderColor: COLORS.hero,
+				borderWidth: '3px',
+				padding: paddingArr.map((p) => p && `calc(${p} - 2px)`),
+			}),
+		})[0],
+	};
 };
 
 // ==============================
 // Attributes
 // ==============================
 
-const buttonAttributes = () => null;
+const optionBtnAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultButton = {
-	component: SelectorButton,
-	styles: buttonStyles,
-	attributes: buttonAttributes,
+export const defaultOptionBtn = {
+	component: OptionBtn,
+	styles: optionBtnStyles,
+	attributes: optionBtnAttributes,
 };
