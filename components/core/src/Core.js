@@ -34,7 +34,7 @@ const AddRootClass = ({ children }) => {
 					for (let i = 0; i < selectors.length; i++) {
 						/**
 						 * Don't process the following...
-						 * 1. `html` or `body` selectors, possible if styles are passed to Emotion's `<Global />` component within the `<GEL>` wrapper (e.g. <GEL><Global styles={{ 'body': { margin: 0 } }} /></GEL>)
+						 * 1. `html` or `body` selectors, possible if styles are passed to Emotion's `<Global />` component within the `<GEL>` wrapper (e.g. `<GEL><Global styles={{ 'body': { margin: 0 } }} /></GEL>)` or simply passed as a parent selector (e.g. `body &: { margin: 0 }`)
 						 * 2. Core components (we don't want to increase Core's specificity)
 						 * 3. Selectors already prepended with `.GEL `
 						 */
