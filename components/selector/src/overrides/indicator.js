@@ -22,10 +22,9 @@ const indicatorStyles = (_, { type, checked, nextIndicator }) => {
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 
-	return mq({
+	return {
 		label: getLabel('selector-option-indicator'),
 		position: 'relative',
-		marginLeft: [SPACING(3), null, SPACING(4)], //gap
 		flex: 'none',
 
 		// Next indicator (ArrowNextIcon)
@@ -34,7 +33,7 @@ const indicatorStyles = (_, { type, checked, nextIndicator }) => {
 				color: COLORS.primary,
 				marginRight: `-${SPACING(1)}`, //tweak
 				transition: 'transform 0.2s ease',
-				'label:hover &': {
+				'input:hover + div &': {
 					transform: `translateX(${SPACING(1)})`,
 				},
 			}),
@@ -62,7 +61,12 @@ const indicatorStyles = (_, { type, checked, nextIndicator }) => {
 				},
 			}),
 		}),
-	})[0];
+
+		// Note: Temporary fix... mq() array values must come last if `&` selectors are used (as above). This is an issue with our reset specificity solution (`.GEL ` class prepend)
+		...mq({
+			marginLeft: [SPACING(3), null, SPACING(4)], //gap
+		})[0],
+	};
 };
 
 // ==============================
