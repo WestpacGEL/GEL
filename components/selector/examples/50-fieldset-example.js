@@ -10,7 +10,7 @@ const Legend = (props) => {
 
 	return (
 		<legend
-			css={{ ...PACKS.typeScale.bodyFont[8], ...TYPE.bodyFont[600], marginBottom: SPACING(4) }}
+			css={{ ...PACKS.typeScale.bodyFont[8], ...TYPE.bodyFont[500], marginBottom: SPACING(4) }}
 			{...props}
 		/>
 	);
