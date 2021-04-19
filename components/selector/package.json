@@ -46,7 +46,6 @@
 	"module": "dist/selector.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/body": "^1.2.0",
 		"@westpac/core": "^1.1.0",
 		"@westpac/icon": "^1.1.0",
 		"prop-types": "^15.7.2"

@@ -19,7 +19,7 @@ const iconStyles = (_, { checked }) => {
 	const mq = useMediaQuery();
 
 	return mq({
-		label: getLabel('selector-icon'),
+		label: getLabel('selector-option-icon'),
 		marginRight: SPACING(4),
 		marginBottom: [SPACING(1), null, 0],
 	});

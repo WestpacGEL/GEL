@@ -2,143 +2,216 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Selector, Option } from '@westpac/selector';
-import { ChatPictogram } from '@westpac/pictogram';
-import { AccessibilityIcon } from '@westpac/icon';
 import { useState } from 'react';
 
 function Example({ brand }) {
-	const [controlled, setControlled] = useState();
-	const [value, setValue] = useState('');
-	const [index, setIndex] = useState(-1);
+	const [selectorValue, setSelectorValue] = useState(['1', '3']);
+
+	const [loneRanger1, setLoneRanger1] = useState(false);
+	const [loneRanger2, setLoneRanger2] = useState(true);
 
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
 			<Selector name="example-default">
-				<Option value="one">Here is a label</Option>
-				<Option value="two">Here is a label</Option>
-				<Option value="three">Here is a label</Option>
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
 			</Selector>
 
 			<hr />
 
-			<h2>No next indicator</h2>
-			<Selector name="example-default" nextIndicator={false}>
-				<Option value="one">Here is a label</Option>
-				<Option value="two">Here is a label</Option>
-				<Option value="three">Here is a label</Option>
+			<h2>Types</h2>
+
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio">
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Radio with next indicator</h3>
+			<Selector type="radio" name="example-radio-with-next" nextIndicator>
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Checkbox</h3>
+			<Selector type="checkbox" name="example-checkbox">
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
 			</Selector>
 
 			<hr />
 
-			<h2>Hint</h2>
-			<Selector name="example-hint">
-				<Option value="one" hint="This is some content to go in the product selector thing">
-					Here is a label
+			<h2>Default value</h2>
+
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-defaultvalue" defaultValue="2">
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Checkbox</h3>
+			<Selector type="checkbox" name="example-checkbox-defaultvalue" defaultValue={['2', '3']}>
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<hr />
+
+			<h2>Managed state</h2>
+
+			<h3>Checkbox</h3>
+			<p>{selectorValue.toString()}</p>
+			<Selector
+				type="checkbox"
+				name="example-checkbox-defaultvalue"
+				value={selectorValue}
+				onChange={(value, event) => setSelectorValue(value)}
+			>
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<hr />
+
+			<h2>Option alone with defaultChecked</h2>
+
+			<h3>Radio</h3>
+			<Option type="radio" name="example-alone-radio" value="1">
+				Here is a label
+			</Option>
+			<Option type="radio" name="example-alone-radio" value="2" defaultChecked>
+				Here is a label
+			</Option>
+			<Option type="radio" name="example-alone-radio" value="3">
+				Here is a label
+			</Option>
+
+			<h3>Checkbox</h3>
+			<Option type="checkbox" name="example-alone-checkbox" value="1">
+				Here is a label
+			</Option>
+			<Option type="checkbox" name="example-alone-checkbox" value="2" defaultChecked>
+				Here is a label
+			</Option>
+			<Option type="checkbox" name="example-alone-checkbox" value="3" defaultChecked>
+				Here is a label
+			</Option>
+
+			<hr />
+
+			<h2>Option alone state managed</h2>
+			<Option
+				name="example-alone-managed1"
+				value="1"
+				checked={loneRanger1}
+				onChange={(event) => setLoneRanger1(event.target.checked)}
+			>
+				Here is a label
+			</Option>
+			<Option
+				name="example-alone-managed2"
+				value="2"
+				checked={loneRanger2}
+				onChange={(event) => setLoneRanger2(event.target.checked)}
+			>
+				Here is a label
+			</Option>
+
+			<hr />
+
+			<h2>onChange</h2>
+
+			<h3>Radio</h3>
+			<Selector
+				type="radio"
+				name="example-radio-onchange"
+				onChange={(_, value) => console.log(`Selected option ${value}`)}
+			>
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Checkbox</h3>
+			<Selector
+				type="checkbox"
+				name="example-checkbox-onchange"
+				onChange={(_, value, wasSelected) =>
+					console.log(`${wasSelected ? 'De-selected' : 'Selected'} option ${value}`)
+				}
+			>
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<hr />
+
+			<h2>preventDefault</h2>
+			<p css={{ fontStyle: 'italic' }}>Checking not implemented</p>
+
+			<h3>Radio</h3>
+			<Selector
+				type="radio"
+				name="example-radio-preventdefault"
+				onChange={(event) => {
+					event.preventDefault();
+					console.log('I have to do all the logic myself now');
+				}}
+			>
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Checkbox</h3>
+			<Selector
+				type="checkbox"
+				name="example-checkbox-preventdefault"
+				onChange={(event) => {
+					event.preventDefault();
+					console.log('I have to do all the logic myself now');
+				}}
+			>
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<hr />
+
+			<h2>Long lines</h2>
+
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-longlines">
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
+					magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
+					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
+					aspernatur eveniet libero.
 				</Option>
-				<Option value="two" hint="This is some content to go in the product selector thing">
-					Here is a label
+			</Selector>
+
+			<h3>Checkbox</h3>
+			<Selector type="checkbox" name="example-checkbox-longlines">
+				<Option value="1">Here is a label</Option>
+				<Option value="2">Here is a label</Option>
+				<Option value="3">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et odit labore illo sint tempora
+					magnam modi nesciunt consectetur vitae maiores itaque reiciendis sunt nisi ullam officiis,
+					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
+					aspernatur eveniet libero.
 				</Option>
-				<Option value="three">Here is a label</Option>
-			</Selector>
-
-			<hr />
-
-			<h2>Composition</h2>
-			<h3>Composed</h3>
-			<Selector name="example-composed">
-				<Option value="one">Here is a label</Option>
-				<Option value="two">Here is a label</Option>
-				<Option value="three">Here is a label</Option>
-			</Selector>
-
-			<h3>Data-driven</h3>
-			<Selector
-				name="example-data-driven"
-				data={[
-					{ text: 'Here is a label', value: 'one' },
-					{ text: 'Here is a label', value: 'two' },
-					{ text: 'Here is a label', value: 'three' },
-				]}
-			/>
-
-			<hr />
-
-			<h2>Default Value</h2>
-			<h3>Index (integer)</h3>
-			<Selector name="example-defaultvalue-index" defaultValue={0}>
-				<Option>Here is a label</Option>
-				<Option>Here is a label</Option>
-				<Option>Here is a label</Option>
-			</Selector>
-			<h3>Key (string)</h3>
-			<Selector name="example-defaultvalue-key" defaultValue={'three'}>
-				<Option value="one">Here is a label</Option>
-				<Option value="two">Here is a label</Option>
-				<Option value="three">Here is a label</Option>
-			</Selector>
-
-			<hr />
-
-			<h2>Custom onChange</h2>
-
-			<h3>Controlled</h3>
-			<div>
-				<button type="button" onClick={() => setControlled('yes')}>
-					Set to "yes"
-				</button>{' '}
-				<button type="button" onClick={() => setControlled('maybe')}>
-					Set to "maybe"
-				</button>{' '}
-				<button type="button" onClick={() => setControlled('no')}>
-					Set to "no"
-				</button>{' '}
-				<button type="button" onClick={() => setControlled('')}>
-					reset
-				</button>
-			</div>
-			<br />
-			<Selector
-				name="example-controlled"
-				value={controlled}
-				onChange={(e, v) => {
-					console.log(`controlled: ${v}`);
-					e.preventDefault();
-					setControlled(v);
-				}}
-			>
-				<Option value="yes">Yes</Option>
-				<Option value="maybe">Maybe</Option>
-				<Option value="no">No</Option>
-			</Selector>
-
-			<h3>Index (integer) value</h3>
-			<Selector
-				name="example-custom-index"
-				value={index}
-				onChange={(e, v) => {
-					console.log(`custom-index: ${v}`);
-					setIndex(v);
-				}}
-			>
-				<Option>Here is a label</Option>
-				<Option>Here is a label</Option>
-				<Option>Here is a label</Option>
-			</Selector>
-
-			<h3>Key (string) value with default value</h3>
-			<Selector
-				name="example-custom-key"
-				defaultValue="one"
-				value={value}
-				onChange={(e, v) => {
-					console.log(`custom-key: ${v}`);
-					setValue(v);
-				}}
-			>
-				<Option value="one">Here is a label</Option>
-				<Option value="two">Here is a label</Option>
-				<Option value="three">Here is a label</Option>
 			</Selector>
 		</GEL>
 	);

@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, getLabel } from '@westpac/core';
-import { Body } from '@westpac/body';
 
 // ==============================
 // Component
 // ==============================
 
-const Hint = ({ state: _, ...rest }) => <Body {...rest} />;
+const Hint = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles
@@ -17,9 +16,9 @@ const hintStyles = (_, { checked }) => {
 	const { COLORS, PACKS, SPACING } = useBrand();
 
 	return {
-		label: getLabel('selector-hint'),
+		label: getLabel('selector-option-hint'),
 		color: checked ? 'inherit' : COLORS.muted,
-		marginTop: SPACING(1, true),
+		marginTop: SPACING(1),
 		...PACKS.typeScale.bodyFont[9],
 	};
 };
