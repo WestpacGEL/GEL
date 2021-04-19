@@ -3,7 +3,9 @@
 import { GEL, jsx, useBrand } from '@westpac/core';
 import { Selector, Option } from '@westpac/selector';
 
-const Fieldset = (props) => <fieldset css={{ border: 'none', margin: 0, padding: 0 }} {...props} />;
+const Fieldset = (props) => (
+	<fieldset css={{ border: 'none', margin: 0, padding: 0, minWidth: 0 }} {...props} />
+);
 
 const Legend = (props) => {
 	const { PACKS, TYPE, SPACING } = useBrand();
