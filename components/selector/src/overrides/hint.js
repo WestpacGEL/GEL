@@ -18,7 +18,7 @@ const hintStyles = (_, { checked }) => {
 	return {
 		label: getLabel('selector-option-hint'),
 		color: checked ? 'inherit' : COLORS.muted,
-		marginTop: SPACING(1, true),
+		marginTop: SPACING(1),
 		...PACKS.typeScale.bodyFont[9],
 	};
 };
