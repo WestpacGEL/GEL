@@ -11,7 +11,7 @@ export const Core = ({ noReset, children }) => {
 		<div
 			className="GEL"
 			css={{
-				label: core,
+				label: 'core',
 				lineHeight: 1.428571429,
 				color: COLORS.text,
 				fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
