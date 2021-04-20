@@ -18,7 +18,8 @@ const AddRootClass = ({ children }) => {
 				// Prepend all CSS selectors that are children of the GEL wrapper (Core) with `.GEL` parent class to increase specificity
 				(context, content, selectors, parents, line, column, length, id) => {
 					if (
-						context !== 2 ||
+						context !== 2 || //selector block context
+						context !== 3 || //@at-rule block context
 						id === 107 || //@keyframes
 						seen.has(selectors) ||
 						seen.has(parents) ||
@@ -44,6 +45,11 @@ const AddRootClass = ({ children }) => {
 							!selectors[i].includes(`-${coreLabel}`) /* 2 */ &&
 							!selectors[i].includes('.GEL ') /* 3 */
 						) {
+							// @at-rule block context
+							if (context === 3) {
+								content = `.GEL ${content}`;
+							}
+
 							selectors[i] = `.GEL ${selectors[i]}`;
 						}
 					}
