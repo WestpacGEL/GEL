@@ -1,27 +1,9 @@
 /** @jsx jsx */
 
-import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { ProgressBar } from '@westpac/progress-bar';
-import { StyledButton as Button } from './_utils';
 
 function Example({ brand }) {
-	const [progress, setProgress] = useState(5);
-
-	function handleProgress(unit) {
-		let newProgress = progress + unit;
-
-		if (newProgress > 100) {
-			newProgress = 100;
-		}
-
-		if (newProgress < 0) {
-			newProgress = 0;
-		}
-
-		setProgress(newProgress);
-	}
-
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
