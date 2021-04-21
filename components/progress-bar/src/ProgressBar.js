@@ -12,7 +12,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const ProgressBar = ({ value, look, overrides: componentOverrides, ...rest }) => {
+export const ProgressBar = ({ value, look, noLabel, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -29,6 +29,7 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...res
 	const state = {
 		value: roundedValue,
 		look,
+		noLabel,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -56,7 +57,7 @@ export const ProgressBar = ({ value, look, overrides: componentOverrides, ...res
 				{...barAttributes(state)}
 				css={barStyles(state)}
 			>
-				{look !== 'skinny' && (
+				{!noLabel && look !== 'skinny' && (
 					<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
 						{`${roundedValue}%`}
 					</Text>
@@ -80,6 +81,11 @@ ProgressBar.propTypes = {
 	 * Progress bar look
 	 */
 	look: PropTypes.oneOf(['default', 'skinny']).isRequired,
+
+	/**
+	 * Hides the visible label (for `default` look)
+	 */
+	noLabel: PropTypes.bool.isRequired,
 
 	/**
 	 * The override API
@@ -106,6 +112,7 @@ ProgressBar.propTypes = {
 export const defaultProps = {
 	value: 0,
 	look: 'default',
+	noLabel: false,
 };
 
 ProgressBar.defaultProps = defaultProps;

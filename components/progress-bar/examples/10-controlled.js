@@ -27,18 +27,24 @@ function Example({ brand }) {
 			<h2>Default</h2>
 
 			<h3>Label</h3>
-			<ProgressBar value={0} />
-			<ProgressBar value={20} />
+			<ProgressBar value={progress} />
 
 			<h3>noLabel</h3>
-			<ProgressBar value={0} noLabel />
-			<ProgressBar value={20} noLabel />
+			<ProgressBar value={progress} noLabel />
 
 			<hr />
 
 			<h2>Skinny</h2>
-			<ProgressBar value={0} look="skinny" />
-			<ProgressBar value={20} look="skinny" />
+			<ProgressBar value={progress} look="skinny" />
+
+			<div css={{ display: 'flex', marginTop: '3rem', width: '50%' }}>
+				<Button onClick={() => handleProgress(-10)}>-10</Button>
+				<Button onClick={() => handleProgress(-1)}>-1</Button>
+				<Button onClick={() => handleProgress(1)}>+1</Button>
+				<Button onClick={() => handleProgress(10)}>+10</Button>
+			</div>
+
+			<hr />
 		</GEL>
 	);
 }
