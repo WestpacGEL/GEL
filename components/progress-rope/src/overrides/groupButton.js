@@ -31,6 +31,24 @@ export const groupButtonStyles = (_, { complete, active }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
+		// Normalize
+		// ==========
+
+		// 1. Remove the margin in Firefox and Safari.
+		// 2. Show the overflow in IE.
+		// 3. Remove the inheritance of text transform in Edge, Firefox, and IE.
+		// button:
+		margin: 0, // 1
+		overflow: 'visible', // 2
+		textTransform: 'none', // 3
+
+		// Remove the inner border and padding in Firefox.
+		'button&::-moz-focus-inner': {
+			borderStyle: 'none',
+			padding: 0,
+		},
+		// =========
+
 		label: 'progressRope-groupBtn',
 		position: 'relative',
 		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
