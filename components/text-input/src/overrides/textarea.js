@@ -38,6 +38,7 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	return mq({
 		// Normalize
 		// =========
+
 		// 1. Remove the margin in Firefox and Safari.
 		// 2. Remove the default vertical scrollbar in IE 10+.
 		'textarea&': {

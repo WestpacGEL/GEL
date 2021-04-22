@@ -43,14 +43,17 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	return mq({
 		// Normalize
 		// =========
+
 		// Remove the margin in Firefox and Safari.
 		'select&, optgroup': {
 			margin: 0,
 		},
+
 		// Remove the inheritance of text transform in Firefox.
 		'select&': {
 			textTransform: 'none',
 		},
+
 		// Change the font styles in all browsers.
 		optgroup: {
 			fontFamily: 'inherit',

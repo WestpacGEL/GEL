@@ -18,6 +18,7 @@ const bodyStyles = (_, props) => {
 	return {
 		// Normalize
 		// =========
+
 		// 1. Add the correct box sizing in Firefox.
 		// 2. Show the overflow in Edge and IE.
 		hr: {
@@ -25,26 +26,31 @@ const bodyStyles = (_, props) => {
 			height: 0, // 1
 			overflow: 'visible', // 2
 		},
+
 		// 1. Correct the inheritance and scaling of font size in all browsers.
 		// 2. Correct the odd 'em' font sizing in all browsers.
 		pre: {
 			fontFamily: 'monospace, monospace', // 1
 			fontSize: '1em', // 2
 		},
+
 		// Add the correct font weight in Chrome, Edge, and Safari.
 		'b, strong': {
 			fontWeight: 'bolder',
 		},
+
 		// 1. Correct the inheritance and scaling of font size in all browsers.
 		// 2. Correct the odd 'em' font sizing in all browsers.
 		'code, kbd, samp': {
 			fontFamily: 'monospace, monospace', // 1
 			fontSize: '1em', // 2
 		},
+
 		// Add the correct font size in all browsers.
 		small: {
 			fontSize: '80%',
 		},
+
 		// Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
 		'sub, sup': {
 			fontSize: '75%',
@@ -58,6 +64,7 @@ const bodyStyles = (_, props) => {
 		sup: {
 			top: '-0.5em',
 		},
+
 		// Remove the border on images inside links in IE 10.
 		img: {
 			borderStyle: 'none',
