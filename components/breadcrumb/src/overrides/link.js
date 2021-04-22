@@ -18,17 +18,19 @@ const linkStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		// Normalize
+		// =========
+
+		// Remove the gray background on active links in IE 10.
+		// a:
+		backgroundColor: 'transparent',
+
+		// =========
+
 		label: getLabel('breadcrumb-link'),
 		color: COLORS.text,
-		boxSizing: 'border-box',
 		textDecoration: 'none',
 		verticalAlign: 'middle',
-		cursor: 'pointer',
-		appearance: 'none',
-		background: 'none',
-		border: 'none',
-		padding: 0,
-		margin: 0,
 		display: 'inline',
 
 		':focus, :hover': {
