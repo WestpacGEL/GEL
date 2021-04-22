@@ -62,6 +62,24 @@ const tabBtnStyles = (_, { look, justify, selected }) => {
 	};
 
 	return {
+		// Normalize
+		// ==========
+
+		// 1. Remove the margin in Firefox and Safari.
+		// 2. Show the overflow in IE.
+		// 3. Remove the inheritance of text transform in Edge, Firefox, and IE.
+		// button:
+		margin: 0, // 1
+		overflow: 'visible', // 2
+		textTransform: 'none', // 3
+
+		// Remove the inner border and padding in Firefox.
+		'button&::-moz-focus-inner': {
+			borderStyle: 'none',
+			padding: 0,
+		},
+		// =========
+
 		label: getLabel('tabcordion-tabBtn'),
 		display: 'flex',
 		flexDirection: 'column',
