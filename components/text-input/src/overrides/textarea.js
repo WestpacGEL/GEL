@@ -36,6 +36,16 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	focus.outline += ' !important';
 
 	return mq({
+		// Normalize
+		// =========
+		// 1. Remove the margin in Firefox and Safari
+		// 2. Remove the default vertical scrollbar in IE 10+
+		'textarea&': {
+			margin: 0, // 1
+			overflow: 'auto', // 2
+		},
+		// =========
+
 		label: getLabel('textarea'),
 		boxSizing: 'border-box',
 		width: inline ? ['100%', 'auto'] : '100%',
