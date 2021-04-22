@@ -13,7 +13,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			<Breadcrumb>
 				<Crumb href="#link" text="text" />
 				<Crumb href="#link" text="text" />
@@ -39,7 +39,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Breadcrumb component',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Breadcrumb>
 						<Crumb href="#/" text="Home" />
 						<Crumb href="#/personal-banking/" text="Personal" />
