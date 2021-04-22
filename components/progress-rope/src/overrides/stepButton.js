@@ -51,22 +51,22 @@ export const stepButtonStyles = (_, { end, grouped, visited, active, furthest })
 		// =========
 
 		label: 'progressRope-stepBtn',
+		boxSizing: 'border-box',
 		position: 'relative',
 		fontSize: '0.875rem',
 		lineHeight: 1.428571429, //`<body>` line-height
 		textAlign: 'left',
 		padding: `0.5rem 1.875rem 0.875rem ${grouped && !end ? '4.25rem' : '3.5rem'}`,
-		border: 0,
-		background: 'none',
 		display: 'block',
 		width: '100%',
-		color: active ? COLORS.primary : COLORS.text, //set default `COLORS.text` because this is a `<button />`
+		border: 0,
+		background: 'none',
 		...(active ? TYPE.bodyFont[700] : null),
 		appearance: 'none',
 		cursor: 'pointer',
 		touchAction: 'manipulation',
 		userSelect: 'none',
-		boxSizing: 'border-box',
+		color: active ? COLORS.primary : COLORS.text, //set default `COLORS.text` because this is a `<button />`
 
 		':disabled': {
 			color: COLORS.tints.muted90,
