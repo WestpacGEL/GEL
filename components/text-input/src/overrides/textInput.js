@@ -38,8 +38,8 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	return mq({
 		// Normalize
 		// =========
-		// 1. Remove the margin in Firefox and Safari
-		// 2. Show the overflow in Edge
+		// 1. Remove the margin in Firefox and Safari.
+		// 2. Show the overflow in Edge.
 		'input&': {
 			margin: 0, // 1
 			overflow: 'visible', // 2

@@ -176,21 +176,21 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	return mq({
 		// Normalize
 		// ==========
-		// 1. Remove the margin in Firefox and Safari
-		// 2. Show the overflow in IE
+		// 1. Remove the margin in Firefox and Safari.
+		// 2. Show the overflow in IE.
 		'button&, input&': {
 			margin: 0, // 1
 			overflow: 'visible', // 2
 		},
-		// Remove the inheritance of text transform in Edge, Firefox, and IE
+		// Remove the inheritance of text transform in Edge, Firefox, and IE.
 		'button&': {
 			textTransform: 'none',
 		},
-		// Correct the inability to style clickable types in iOS and Safari
+		// Correct the inability to style clickable types in iOS and Safari.
 		"button&, [type='button']&, [type='reset']&, [type='submit']&": {
 			WebkitAppearance: 'button',
 		},
-		// Remove the inner border and padding in Firefox
+		// Remove the inner border and padding in Firefox.
 		"button&::-moz-focus-inner, [type='button']&::-moz-focus-inner, [type='reset']&::-moz-focus-inner, [type='submit']&::-moz-focus-inner": {
 			borderStyle: 'none',
 			padding: 0,

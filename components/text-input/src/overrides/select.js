@@ -43,8 +43,8 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	return mq({
 		// Normalize
 		// =========
-		// 1. Remove the margin in Firefox and Safari
-		// 2. Remove the inheritance of text transform in Firefox
+		// 1. Remove the margin in Firefox and Safari.
+		// 2. Remove the inheritance of text transform in Firefox.
 		'select&': {
 			margin: 0, // 1
 			textTransform: 'none', // 2
