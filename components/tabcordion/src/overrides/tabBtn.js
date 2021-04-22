@@ -91,7 +91,10 @@ const tabBtnStyles = (_, { look, justify, selected }) => {
 		textDecoration: 'none',
 		transition: 'background 0.3s ease',
 		width: '100%',
+		appearance: 'none',
 		cursor: 'pointer',
+		touchAction: 'manipulation',
+		userSelect: 'none',
 		...PACKS.typeScale.bodyFont[9],
 		...styleMap[look],
 
