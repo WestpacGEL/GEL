@@ -91,7 +91,10 @@ const accordionBtnStyles = (_, { look, hidden, first, last, closed }) => {
 		border: `1px solid ${COLORS.border}`,
 		borderBottomWidth: !last && closed && 0, //reset
 		textAlign: 'left',
+		appearance: 'none',
 		cursor: 'pointer',
+		touchAction: 'manipulation',
+		userSelect: 'none',
 		...PACKS.typeScale.bodyFont[9],
 		...styleMap[look],
 	};
