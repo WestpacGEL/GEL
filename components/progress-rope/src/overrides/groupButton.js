@@ -50,17 +50,20 @@ export const groupButtonStyles = (_, { complete, active }) => {
 		// =========
 
 		label: 'progressRope-groupBtn',
+		boxSizing: 'border-box',
 		position: 'relative',
-		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		fontSize: '1rem',
 		lineHeight: '1.428571429', //`<body>` line-height
 		textAlign: 'left',
+		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		display: 'block',
 		width: '100%',
 		border: 0,
 		background: 'none',
-		touchAction: 'manipulation',
+		appearance: 'none',
 		cursor: 'pointer',
+		touchAction: 'manipulation',
+		userSelect: 'none',
 		color: active ? COLORS.text : COLORS.tints.muted70, //set default `COLORS.text` because this is a `<button />`
 
 		':focus': {
