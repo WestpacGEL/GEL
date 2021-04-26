@@ -37,6 +37,9 @@ export const Selector = ({
 	name,
 	value,
 	nextIndicator,
+	iconSize,
+	pictogramWidth,
+	pictogramHeight,
 	disabled,
 	defaultValue,
 	instanceIdPrefix,
@@ -90,6 +93,9 @@ export const Selector = ({
 		type,
 		name,
 		nextIndicator,
+		iconSize,
+		pictogramWidth,
+		pictogramHeight,
 		disabled,
 		defaultValue,
 		data,
@@ -141,7 +147,25 @@ Selector.propTypes = {
 	/**
 	 * Use automatic next chevron styling, renders 'ArrowRightIcon' icon
 	 */
-	nextIndicator: PropTypes.bool,
+	nextIndicator: PropTypes.bool.isRequired,
+
+	/**
+	 * Pictogram graphic width
+	 */
+	pictogramWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+
+	/**
+	 * Pictogram graphic height
+	 */
+	pictogramHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+
+	/**
+	 * Icon graphic size
+	 */
+	iconSize: PropTypes.oneOfType([
+		PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge'])).isRequired,
+	]),
 
 	/**
 	 * Disable all Selector options
@@ -239,6 +263,7 @@ Selector.propTypes = {
 export const defaultProps = {
 	type: 'radio',
 	nextIndicator: false,
+	iconSize: 'xlarge',
 };
 
 Selector.defaultProps = defaultProps;

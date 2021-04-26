@@ -24,7 +24,7 @@ function Example({ brand }) {
 			<h2>Short hint</h2>
 
 			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio-hint">
+			<Selector type="radio" name="example-radio-hint" iconSize="xlarge">
 				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
 					Here is a label
 				</Option>
@@ -101,6 +101,65 @@ function Example({ brand }) {
 					Here is a label
 				</Option>
 				<Option value="3" icon={CarIcon}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<hr />
+
+			<h2>Size</h2>
+
+			<h3>Default</h3>
+
+			<Selector type="checkbox" name="example-icon-default">
+				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Xlarge</h3>
+
+			<Selector type="checkbox" name="example-icon-xlarge" iconSize="xlarge">
+				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Large</h3>
+			<Selector type="checkbox" name="example-icon-large" iconSize="large">
+				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Medium</h3>
+			<Selector type="checkbox" name="example-icon-medium" iconSize="medium">
+				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Small</h3>
+			<Selector type="checkbox" name="example-icon-small" iconSize="small">
+				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Xsmall</h3>
+			<Selector type="checkbox" name="example-icon-xsmall" iconSize="xsmall">
+				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Responsive</h3>
+			<Selector
+				type="checkbox"
+				name="example-icon-responsive"
+				iconSize={['xlarge', null, 'medium']}
+			>
+				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
 					Here is a label
 				</Option>
 			</Selector>
