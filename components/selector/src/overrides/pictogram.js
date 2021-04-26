@@ -6,9 +6,22 @@ import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Pictogram = ({ pictogram: Pictogram, state: _, ...rest }) => (
-	<Pictogram width={66} assistiveText={null} {...rest} />
-);
+const Pictogram = ({
+	pictogram: Pictogram,
+	state: { pictogramWidth, pictogramHeight },
+	...rest
+}) => {
+	const defaultWidth = 66;
+
+	return (
+		<Pictogram
+			width={pictogramWidth || (!pictogramHeight ? defaultWidth : null)}
+			height={pictogramHeight}
+			assistiveText={null}
+			{...rest}
+		/>
+	);
+};
 
 // ==============================
 // Styles

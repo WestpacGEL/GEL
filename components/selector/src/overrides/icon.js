@@ -6,8 +6,8 @@ import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Icon = ({ icon: Icon, state: _, ...rest }) => (
-	<Icon size="xlarge" color="hero" assistiveText={null} {...rest} />
+const Icon = ({ icon: Icon, state: { iconSize }, ...rest }) => (
+	<Icon size={iconSize} color="hero" assistiveText={null} {...rest} />
 );
 
 // ==============================
