@@ -129,16 +129,14 @@ export const Option = ({
 					// =========
 
 					// Remove the margin in Firefox and Safari.
-					'input&': {
-						margin: 0,
-					},
+					// input:
+					margin: 0,
 
 					// 1. Add the correct box sizing in IE 10.
 					// 2. Remove the padding in IE 10.
-					"[type='checkbox']&, [type='radio']&": {
-						boxSizing: 'border-box', // 1
-						padding: 0, // 2
-					},
+					// [type='checkbox'], [type='radio']:
+					boxSizing: 'border-box', // 1
+					padding: 0, // 2
 					// =========
 
 					label: getLabel('selector-option-input'),
