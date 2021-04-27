@@ -9,7 +9,7 @@ import { forwardRef } from 'react';
 // Component
 // ==============================
 
-const Trigger = forwardRef(({ state: { open }, ...rest }, ref) => (
+const Toggle = forwardRef(({ state: { open }, ...rest }, ref) => (
 	<Button
 		ref={ref}
 		look="link"
@@ -32,13 +32,13 @@ const Trigger = forwardRef(({ state: { open }, ...rest }, ref) => (
 // Styles
 // ==============================
 
-const triggerStyles = () => ({});
+const toggleStyles = () => ({});
 
 // ==============================
 // Attributes
 // ==============================
 
-const triggerAttributes = (_, { instanceId, open }) => ({
+const toggleAttributes = (_, { instanceId, open }) => ({
 	'aria-controls': instanceId,
 	'aria-expanded': open,
 });
@@ -47,8 +47,8 @@ const triggerAttributes = (_, { instanceId, open }) => ({
 // Exports
 // ==============================
 
-export const defaultTrigger = {
-	component: Trigger,
-	styles: triggerStyles,
-	attributes: triggerAttributes,
+export const defaultToggle = {
+	component: Toggle,
+	styles: toggleStyles,
+	attributes: toggleAttributes,
 };
