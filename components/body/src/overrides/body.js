@@ -42,6 +42,12 @@ const bodyStyles = (_, props) => {
 			fontSize: '1em', // 2
 		},
 
+		// Remove the gray background on active links in IE 10.
+		// a:
+		'a:not([class*="-button"])': {
+			backgroundColor: 'transparent',
+		},
+
 		// Add the correct font weight in Chrome, Edge, and Safari.
 		'b, strong': {
 			fontWeight: 'bolder',
@@ -122,9 +128,6 @@ const bodyStyles = (_, props) => {
 		'a:not([class*="-button"])': {
 			color: COLORS.link,
 			textDecoration: 'underline',
-
-			// Normalize: Remove the gray background on active links in IE 10
-			backgroundColor: 'transparent',
 		},
 
 		...(props[key]
