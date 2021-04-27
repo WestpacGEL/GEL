@@ -24,7 +24,6 @@ const linkStyles = () => {
 		// Remove the gray background on active links in IE 10.
 		// a:
 		backgroundColor: 'transparent',
-
 		// =========
 
 		label: getLabel('breadcrumb-link'),
