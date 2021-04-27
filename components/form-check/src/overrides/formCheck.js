@@ -23,9 +23,6 @@ const BlenderFormCheck = ({ className, ...rest }) => (
 
 const formCheckStyles = () => ({
 	label: getLabel('formCheck'),
-	listStyle: 'none',
-	padding: 0,
-	margin: 0,
 });
 
 // ==============================

@@ -45,6 +45,9 @@ export const Option = ({
 		type = 'radio',
 		name,
 		nextIndicator,
+		iconSize,
+		pictogramWidth,
+		pictogramHeight,
 		disabled,
 		onChange,
 		toggleCheck,
@@ -75,6 +78,9 @@ export const Option = ({
 		pictogram,
 		icon,
 		nextIndicator,
+		iconSize,
+		pictogramWidth,
+		pictogramHeight,
 		ctxChecked,
 		checked,
 		onChange,
@@ -198,6 +204,16 @@ Option.propTypes = {
 	 * Selector option value
 	 */
 	value: PropTypes.string,
+
+	/**
+	 * Pictogram graphic
+	 */
+	pictogram: PropTypes.func,
+
+	/**
+	 * Icon graphic
+	 */
+	icon: PropTypes.func,
 
 	/**
 	 * Check the Selector option
