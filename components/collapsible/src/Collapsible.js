@@ -6,7 +6,7 @@ import { useCollapsiblePosition } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
 import { defaultCollapsible } from './overrides/collapsible';
-import { defaultToggle } from './overrides/toggle';
+import { defaultTrigger } from './overrides/trigger';
 import { defaultContent } from './overrides/content';
 import pkg from '../package.json';
 
@@ -29,12 +29,12 @@ export const Collapsible = ({
 	} = useBrand();
 
 	const [open, setOpen] = useState(isOpen);
-	const toggleRef = useRef();
+	const triggerRef = useRef();
 	const collapsibleRef = useRef();
 
 	const defaultOverrides = {
 		Collapsible: defaultCollapsible,
-		Toggle: defaultToggle,
+		Trigger: defaultTrigger,
 		Content: defaultContent,
 	};
 
@@ -63,7 +63,7 @@ export const Collapsible = ({
 			styles: collapsibleStyles,
 			attributes: collapsibleAttributes,
 		},
-		Toggle: { component: Toggle, styles: toggleStyles, attributes: toggleAttributes },
+		Trigger: { component: Trigger, styles: triggerStyles, attributes: triggerAttributes },
 		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
@@ -73,7 +73,7 @@ export const Collapsible = ({
 			() => {
 				if (open) {
 					setOpen(false);
-					toggleRef.current.focus();
+					triggerRef.current.focus();
 				} else {
 					setOpen(true);
 				}
@@ -85,7 +85,7 @@ export const Collapsible = ({
 		if (
 			open &&
 			event.keyCode === 27 &&
-			(collapsibleRef.current.contains(event.target) || toggleRef.current.contains(event.target))
+			(collapsibleRef.current.contains(event.target) || triggerRef.current.contains(event.target))
 		) {
 			handleOpen(event);
 		}
@@ -101,16 +101,16 @@ export const Collapsible = ({
 
 	return (
 		<Collapsible state={state} {...collapsibleAttributes(state)} css={collapsibleStyles(state)}>
-			<Toggle
-				ref={toggleRef}
+			<Trigger
+				ref={triggerRef}
 				onClick={handleOpen}
 				{...rest}
 				state={state}
-				{...toggleAttributes(state)}
-				css={toggleStyles(state)}
+				{...triggerAttributes(state)}
+				css={triggerStyles(state)}
 			>
 				{text}
-			</Toggle>
+			</Trigger>
 			<Content
 				ref={collapsibleRef}
 				state={state}
@@ -149,7 +149,7 @@ Collapsible.propTypes = {
 	onClick: PropTypes.func,
 
 	/**
-	 * Toggle element to open the collapsible
+	 * Trigger element to open the collapsible
 	 */
 	children: PropTypes.node,
 
