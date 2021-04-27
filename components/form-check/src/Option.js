@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, getLabel, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultOption } from './overrides/option';
@@ -105,9 +105,11 @@ export const Option = ({
 				{...restCtx}
 				{...rest}
 				css={{
+					label: getLabel('formCheck-option-input'),
 					position: 'absolute',
 					zIndex: '-1',
 					opacity: 0,
+					appearance: 'none',
 				}}
 			/>
 			<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
@@ -128,7 +130,7 @@ export const Option = ({
 
 Option.propTypes = {
 	/**
-	 * Form check id
+	 * Form check option id
 	 */
 	id: PropTypes.string,
 
@@ -153,12 +155,12 @@ Option.propTypes = {
 	instanceIdPrefix: PropTypes.string,
 
 	/**
-	 * Form check type.
+	 * Form check type
 	 */
 	type: PropTypes.oneOf(['checkbox', 'radio']),
 
 	/**
-	 * The form check input element’s name.
+	 * The form check input element’s name
 	 */
 	name: PropTypes.string,
 
