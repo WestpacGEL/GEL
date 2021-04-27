@@ -1,0 +1,57 @@
+{
+	"name": "@westpac/collapsible",
+	"version": "1.0.0-beta",
+	"description": "",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/collapsible",
+	"components": [
+		{
+			"name": "Collapsible",
+			"src": "Collapsible.js"
+		}
+	],
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"contributors": [
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
+		}
+	],
+	"license": "GPL-3.0+",
+	"scripts": {
+		"start": "PACKAGE_NAME=collapsible webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
+		"test:all": "yarn test:integration",
+		"test:integration": "cypress run",
+		"test:test-dev": "cypress open"
+	},
+	"main": "dist/collapsible.cjs.js",
+	"module": "dist/collapsible.esm.js",
+	"dependencies": {
+		"@babel/runtime": "^7.9.6",
+		"@westpac/body": "^1.3.0",
+		"@westpac/button": "^1.1.1",
+		"@westpac/core": "^1.1.0",
+		"@westpac/hooks": "^1.1.0",
+		"@westpac/icon": "^1.2.0",
+		"prop-types": "^15.7.2"
+	},
+	"peerDependencies": {
+		"react": "^16.13.1",
+		"react-dom": "^16.11.0",
+		"react-spring": "9.0.0-rc.3"
+	},
+	"devDependencies": {
+		"cypress": "^4.5.0",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"start-server-and-test": "^1.11.0"
+	}
+}
