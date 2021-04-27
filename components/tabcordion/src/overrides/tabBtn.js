@@ -74,7 +74,8 @@ const tabBtnStyles = (_, { look, justify, selected }) => {
 		textTransform: 'none', // 3
 
 		// Remove the inner border and padding in Firefox.
-		'button&::-moz-focus-inner': {
+		// button::-moz-focus-inner:
+		'&::-moz-focus-inner': {
 			borderStyle: 'none',
 			padding: 0,
 		},
