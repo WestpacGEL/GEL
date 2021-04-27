@@ -43,7 +43,8 @@ export const groupButtonStyles = (_, { complete, active }) => {
 		textTransform: 'none', // 3
 
 		// Remove the inner border and padding in Firefox.
-		'button&::-moz-focus-inner': {
+		// button::-moz-focus-inner:
+		'&::-moz-focus-inner': {
 			borderStyle: 'none',
 			padding: 0,
 		},
