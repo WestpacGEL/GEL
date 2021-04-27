@@ -19,6 +19,14 @@ const bodyStyles = (_, props) => {
 		// Normalize
 		// =========
 
+		// Correct the font size and margin on 'h1' elements within 'section' and
+		// 'article' contexts in Chrome, Firefox, and Safari.
+		// h1:
+		'h1:not([class*="-heading"])': {
+			fontSize: '2em',
+			margin: '0.67em 0',
+		},
+
 		// 1. Add the correct box sizing in Firefox.
 		// 2. Show the overflow in Edge and IE.
 		hr: {
