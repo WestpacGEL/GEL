@@ -28,7 +28,7 @@ const BlenderButton = forwardRef(({ state: { tag: Tag }, className, ...rest }, r
 // Styles
 // ==============================
 
-const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
+const buttonStyles = (_, { tag, type, look, size, soft, block, justify, disabled }) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
 
@@ -178,26 +178,32 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		// ==========
 		// 1. Remove the margin in Firefox and Safari.
 		// 2. Show the overflow in IE.
-		'button&, input&': {
+		// button, input:
+		...((tag === 'button' || tag === 'input') && {
 			margin: 0, // 1
 			overflow: 'visible', // 2
-		},
+		}),
 
 		// Remove the inheritance of text transform in Edge, Firefox, and IE.
-		'button&': {
+		// button:
+		...(tag === 'button' && {
 			textTransform: 'none',
-		},
+		}),
 
 		// Correct the inability to style clickable types in iOS and Safari.
-		"button&, [type='button']&, [type='reset']&, [type='submit']&": {
+		// button, [type='button'], [type='reset'], [type='submit']:
+		...((tag === 'button' || type === 'button' || type === 'reset' || type === 'submit') && {
 			WebkitAppearance: 'button',
-		},
+		}),
 
 		// Remove the inner border and padding in Firefox.
-		"button&::-moz-focus-inner, [type='button']&::-moz-focus-inner, [type='reset']&::-moz-focus-inner, [type='submit']&::-moz-focus-inner": {
-			borderStyle: 'none',
-			padding: 0,
-		},
+		// button::-moz-focus-inner, [type='button']::-moz-focus-inner, [type='reset']::-moz-focus-inner, [type='submit']::-moz-focus-inner:
+		...((tag === 'button' || type === 'button' || type === 'reset' || type === 'submit') && {
+			'&::-moz-focus-inner': {
+				borderStyle: 'none',
+				padding: 0,
+			},
+		}),
 		// =========
 
 		label: 'button',
