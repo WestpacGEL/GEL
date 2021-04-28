@@ -22,7 +22,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			{/* <Global css={{ ...useFonts({ path: 'assets/' }) }} /> */}
 			{/* Heading */}
 			{headingSizes.map((size) => (
@@ -66,7 +66,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Heading',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{headingSizes.map((size) => (
 						<Heading key={size} size={size}>
 							Heading size {size}
@@ -78,7 +78,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Heading uppercase',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{headingSizes.map((size) => (
 						<Heading key={size} size={size} uppercase>
 							Heading size {size}
@@ -92,7 +92,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Brand heading',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{brandHeadingSizes.map((size) => (
 						<BrandHeading key={size} size={size}>
 							BrandHeading size {size}
@@ -104,7 +104,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Brand heading uppercase',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{brandHeadingSizes.map((size) => (
 						<BrandHeading key={size} size={size} uppercase>
 							BrandHeading size {size}

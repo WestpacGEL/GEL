@@ -14,7 +14,7 @@ const Icon = ({ icon: Icon, state: { iconSize }, ...rest }) => (
 // Styles
 // ==============================
 
-const iconStyles = (_, { checked }) => {
+const iconStyles = () => {
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 

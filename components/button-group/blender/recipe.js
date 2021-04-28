@@ -23,7 +23,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			{/* Looks */}
 			<ButtonGroup
 				name="default"
@@ -99,7 +99,7 @@ export function Docs({ brand }) {
 			heading: 'Button-group looks',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<ButtonGroup name="example-default">
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
@@ -111,7 +111,7 @@ export function Docs({ brand }) {
 		...looks.map((look) => ({
 			subheading: titleCase(look),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<ButtonGroup name={`example-${look}`} look={look}>
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
@@ -126,7 +126,7 @@ export function Docs({ brand }) {
 			heading: 'Button-group sizes',
 			subheading: 'Small',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<ButtonGroup name={`example-small`} size="small">
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
@@ -140,7 +140,7 @@ export function Docs({ brand }) {
 			.map((size) => ({
 				subheading: titleCase(size),
 				component: () => (
-					<GEL brand={overridesWithTokens} noScope>
+					<GEL brand={overridesWithTokens}>
 						<ButtonGroup name={`example-${size}`} size={size}>
 							<Item value="value1">Your text</Item>
 							<Item value="value2">Your text</Item>
@@ -154,7 +154,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Block button-group',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<ButtonGroup name="example-block" block>
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>
@@ -168,7 +168,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Disabled button-group',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<ButtonGroup name="example-disabled" disabled>
 						<Item value="value1">Your text</Item>
 						<Item value="value2">Your text</Item>

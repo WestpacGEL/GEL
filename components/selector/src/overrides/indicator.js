@@ -18,14 +18,15 @@ const Indicator = ({ state: { type, nextIndicator }, ...rest }) =>
 // Styles
 // ==============================
 
-const indicatorStyles = (_, { type, checked, nextIndicator }) => {
+const indicatorStyles = (_, { type, nextIndicator }) => {
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 
-	return {
+	return mq({
 		label: getLabel('selector-option-indicator'),
 		position: 'relative',
 		flex: 'none',
+		marginLeft: [SPACING(3), null, SPACING(4)], //gap
 
 		// Next indicator (ArrowNextIcon)
 		...(type === 'radio' &&
@@ -59,12 +60,7 @@ const indicatorStyles = (_, { type, checked, nextIndicator }) => {
 				transform: 'rotate(-54deg)',
 			},
 		}),
-
-		// Note: Temporary fix... mq() array values must come last if `&` selectors are used (as above). This is an issue with our reset specificity solution (`.GEL ` class prepend)
-		...mq({
-			marginLeft: [SPACING(3), null, SPACING(4)], //gap
-		})[0],
-	};
+	})[0];
 };
 
 // ==============================
