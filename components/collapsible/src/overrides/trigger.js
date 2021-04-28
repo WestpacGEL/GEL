@@ -22,7 +22,6 @@ const Trigger = forwardRef(({ state: { open }, ...rest }, ref) => (
 					paddingLeft: 0,
 					paddingRight: 0,
 					textDecoration: 'none',
-					border: 0,
 				}),
 			},
 		}}
