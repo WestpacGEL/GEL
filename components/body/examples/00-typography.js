@@ -40,9 +40,9 @@ function Example({ brand }) {
 
 			<Body>
 				<h2>Headings</h2>
-				<h1 class="css-xyz-heading">This is a h1 heading with `css-xyz-heading` class</h1>
-				<h1 class="GEL-heading-1">This is a h1 heading with `GEL-heading-1` class</h1>
-				<h1 class="my-heading">This is a h1 heading with `my-heading` class</h1>
+				<h1 className="css-xyz-heading">This is a h1 heading with `css-xyz-heading` class</h1>
+				<h1 className="GEL-heading-1">This is a h1 heading with `GEL-heading-1` class</h1>
+				<h1 className="my-heading">This is a h1 heading with `my-heading` class</h1>
 				<h1>This is a h1 heading</h1>
 				<h2>This is a h2 heading</h2>
 				<h3>This is a h3 heading</h3>
