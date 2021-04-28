@@ -22,7 +22,9 @@ const bodyStyles = (_, props) => {
 		// Correct the font size and margin on 'h1' elements within 'section' and
 		// 'article' contexts in Chrome, Firefox, and Safari.
 		// h1:
-		'h1:not([class*="-heading"])': {
+		// Note: :not() ensures styling not applied to `<Heading />` children of `<Body />`,
+		// this styling would have higher specificity
+		'h1:not([class*="css-"][class*="-heading"]):not([class*="GEL-"][class*="-heading"])': {
 			fontSize: '2em',
 			margin: '0.67em 0',
 		},
@@ -44,7 +46,9 @@ const bodyStyles = (_, props) => {
 
 		// Remove the gray background on active links in IE 10.
 		// a:
-		'a:not([class*="-button"])': {
+		// Note: :not() ensures styling not applied to `<Button />` children of `<Body />`,
+		// this styling would have higher specificity
+		'a:not([class*="css-"][class*="-button"]):not([class*="GEL-"][class*="-button"])': {
 			backgroundColor: 'transparent',
 		},
 
@@ -125,7 +129,9 @@ const bodyStyles = (_, props) => {
 			backgroundColor: COLORS.tints.primary20,
 		},
 
-		'a:not([class*="-button"])': {
+		// Note: :not() ensures styling not applied to `<Button />` children of `<Body />`,
+		// this styling would have higher specificity
+		'a:not([class*="css-"][class*="-button"]):not([class*="GEL-"][class*="-button"])': {
 			color: COLORS.link,
 			textDecoration: 'underline',
 		},
