@@ -50,8 +50,9 @@
 	},
 	"devDependencies": {
 		"cypress": "^4.5.0",
-		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
+		"react-spring": "9.0.0-rc.3",
+		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"
 	}
 }
