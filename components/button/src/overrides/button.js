@@ -126,7 +126,6 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			standardCSS: {
 				color: COLORS.link,
 				backgroundColor: 'transparent',
-				borderColor: 'transparent',
 				textDecoration: 'underline', //a11y
 
 				':hover, :active, &.active': {
@@ -193,8 +192,8 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			...TYPE.bodyFont[400],
 			padding: sizeArr.map((s) => s && sizeMap[s].padding),
 			height: sizeArr.map((s) => s && sizeMap[s].height),
-			border: '1px solid transparent',
-			borderRadius: '0.1875rem',
+			border: look !== 'link' ? '1px solid transparent' : 0,
+			borderRadius: look !== 'link' && '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
 
