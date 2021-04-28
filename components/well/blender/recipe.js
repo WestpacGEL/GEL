@@ -14,7 +14,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			<Well>Text</Well>
 		</GEL>
 	);
@@ -32,7 +32,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Well component',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Well>Your well content</Well>
 				</GEL>
 			),
@@ -40,7 +40,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Nested wells',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Well>
 						Your well content
 						<Well>Your nested well content</Well>

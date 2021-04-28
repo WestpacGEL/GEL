@@ -45,6 +45,9 @@ export const Option = ({
 		type = 'radio',
 		name,
 		nextIndicator,
+		iconSize,
+		pictogramWidth,
+		pictogramHeight,
 		disabled,
 		onChange,
 		toggleCheck,
@@ -75,6 +78,9 @@ export const Option = ({
 		pictogram,
 		icon,
 		nextIndicator,
+		iconSize,
+		pictogramWidth,
+		pictogramHeight,
 		ctxChecked,
 		checked,
 		onChange,
@@ -125,6 +131,20 @@ export const Option = ({
 				{...restCtx}
 				{...rest}
 				css={{
+					// Normalize
+					// =========
+
+					// Remove the margin in Firefox and Safari.
+					// input:
+					margin: 0,
+
+					// 1. Add the correct box sizing in IE 10.
+					// 2. Remove the padding in IE 10.
+					// [type='checkbox'], [type='radio']:
+					boxSizing: 'border-box', // 1
+					padding: 0, // 2
+					// =========
+
 					label: getLabel('selector-option-input'),
 					position: 'absolute',
 					top: 0,
@@ -184,6 +204,16 @@ Option.propTypes = {
 	 * Selector option value
 	 */
 	value: PropTypes.string,
+
+	/**
+	 * Pictogram graphic
+	 */
+	pictogram: PropTypes.func,
+
+	/**
+	 * Icon graphic
+	 */
+	icon: PropTypes.func,
 
 	/**
 	 * Check the Selector option

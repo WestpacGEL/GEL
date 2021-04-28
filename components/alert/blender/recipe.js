@@ -40,7 +40,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			{looks.map((look) => (
 				<Alert key={look} look={look} />
 			))}
@@ -83,7 +83,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Alert>Your alert body</Alert>
 				</GEL>
 			),
@@ -94,7 +94,7 @@ export function Docs({ brand }) {
 			...(i === 0 && { heading: 'Alert modes' }),
 			subheading: titleCase(mode),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Alert mode={mode}>Your {mode} alert body</Alert>
 				</GEL>
 			),
@@ -105,7 +105,7 @@ export function Docs({ brand }) {
 			...(i === 0 && { heading: 'Alert looks' }),
 			subheading: titleCase(look),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Alert look={look}>Your {look} alert body</Alert>
 				</GEL>
 			),
@@ -115,7 +115,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Dismissible alerts',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Alert dismissible>Your dismissible alert body</Alert>
 				</GEL>
 			),
@@ -125,7 +125,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Alert with heading',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Alert heading="Your alert heading">
 						<p>Your alert body</p>
 					</Alert>
@@ -137,7 +137,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Alert with custom icon',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Alert icon={HelpIcon}>Your alert body</Alert>
 				</GEL>
 			),
