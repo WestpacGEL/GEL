@@ -7,11 +7,6 @@ import { BASE_URL } from '../config';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { SlateContent } from './pages/single-component/blocks-hub';
 
-export const scrollMap = {
-	small: 46,
-	large: 162,
-};
-
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
 	return (
