@@ -8,7 +8,7 @@ import { VisuallyHidden } from '@westpac/a11y';
 import { MenuButton } from './menu-button';
 import HeaderImage from './component-page-header-image';
 import { usePageContext } from '../providers/pageContext';
-import { scrollMap, brandHeaderStyling } from '../_utils';
+import { brandHeaderStyling } from '../_utils';
 
 const GridIndicator = () => {
 	const mq = useMediaQuery();
@@ -75,15 +75,12 @@ const PageHeaderHeading = (props) => {
 				BrandHeading: {
 					styles: (styles) => ({
 						...styles,
-						transition: 'font-size 0.2s ease',
+
 						[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
-							fontSize: `${PACKS.typeScale.brandFont[2].fontSize}`,
-							lineHeight: `${PACKS.typeScale.brandFont[2].lineHeight}`,
-							fontFamily: `${PACKS.typeScale.brandFont[2].fontFamily}`,
-							'body.hasScrolled &': {
-								fontSize: `${PACKS.typeScale.brandFont[7].fontSize}`,
-								lineHeight: `${PACKS.typeScale.brandFont[7].lineHeight}`,
-								fontFamily: `${PACKS.typeScale.brandFont[7].fontFamily}`,
+							fontSize: PACKS.typeScale.brandFont[2].fontSize,
+
+							'body.hasScrolledLarge &': {
+								fontSize: PACKS.typeScale.brandFont[7].fontSize,
 							},
 						},
 					}),
@@ -99,15 +96,12 @@ const PageHeaderHeading = (props) => {
 				Heading: {
 					styles: (styles) => ({
 						...styles,
-						transition: 'font-size 0.2s ease',
+
 						[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
-							fontSize: `${PACKS.typeScale.bodyFont[3].fontSize}`,
-							lineHeight: `${PACKS.typeScale.bodyFont[3].lineHeight}`,
-							fontFamily: `${PACKS.typeScale.bodyFont[3].fontFamily}`,
-							'body.hasScrolled &': {
-								fontSize: `${PACKS.typeScale.bodyFont[8].fontSize}`,
-								lineHeight: `${PACKS.typeScale.bodyFont[8].lineHeight}`,
-								fontFamily: `${PACKS.typeScale.bodyFont[8].fontFamily}`,
+							fontSize: PACKS.typeScale.bodyFont[3].fontSize,
+
+							'body.hasScrolledLarge &': {
+								fontSize: PACKS.typeScale.bodyFont[8].fontSize,
 							},
 						},
 					}),
@@ -156,25 +150,31 @@ const PageHeader = ({ name }) => {
 						display: ['flex', null],
 						alignItems: ['center', null],
 						marginLeft: SPACING(8),
-						marginBottom: 0,
+						height: [66, null],
+						willChange: 'opacity',
+
 						[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 							marginLeft: SPACING(6),
 							marginBottom: SPACING(7),
-							'body.hasScrolled &': {
+
+							'body.hasScrolledSmall &': {
+								marginLeft: SPACING(6),
+								opacity: 0,
+							},
+							'body.hasScrolledLarge &': {
 								marginLeft: SPACING(10),
 								marginBottom: 0,
+								opacity: 1,
+								transition: 'opacity 0.2s ease',
 							},
 						},
 						[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
 							marginLeft: SPACING(6),
-							'body.hasScrolled &': {
+
+							'body.hasScrolledLarge &': {
 								marginLeft: SPACING(4),
-								marginBottom: 0,
 							},
 						},
-						height: [66, null],
-						transition: 'margin 0.2s ease',
-						willChange: 'opacity',
 					})}
 				>
 					<PageHeaderHeading>{name}</PageHeaderHeading>

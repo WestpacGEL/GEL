@@ -22,12 +22,22 @@ const GELApp = ({ Component, pageProps, apollo, brand }) => {
 	const Layout = Component.layout || DefaultLayout;
 	const apolloClient = useMemo(() => apollo || getApolloClient(), [apollo]);
 
+	const scrollMap = {
+		small: 72,
+		large: 162,
+	};
+
 	useEffect(() => {
 		const setScrollClass = () => {
-			if (window.scrollY >= 100) {
-				document.body.classList.add('hasScrolled');
+			if (window.scrollY > scrollMap.small) {
+				document.body.classList.add('hasScrolledSmall');
 			} else {
-				document.body.classList.remove('hasScrolled');
+				document.body.classList.remove('hasScrolledSmall');
+			}
+			if (window.scrollY >= scrollMap.large) {
+				document.body.classList.add('hasScrolledLarge');
+			} else {
+				document.body.classList.remove('hasScrolledLarge');
 			}
 		};
 
