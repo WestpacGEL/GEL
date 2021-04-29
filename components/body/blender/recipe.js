@@ -12,7 +12,7 @@ export function AllStyles({ brand }) {
 	}
 
 	return (
-		<GEL brand={brand} noScope>
+		<GEL brand={brand}>
 			<Body>.</Body>
 			<Body {...{ [key]: true }}>.</Body>
 		</GEL>
@@ -24,7 +24,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Body component',
 			component: () => (
-				<GEL brand={brand} noScope>
+				<GEL brand={brand}>
 					<Body>Your body content</Body>
 				</GEL>
 			),
@@ -32,7 +32,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Body with typography elements',
 			component: () => (
-				<GEL brand={brand} noScope>
+				<GEL brand={brand}>
 					<Body>
 						<p>This is a paragraph</p>
 

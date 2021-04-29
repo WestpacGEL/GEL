@@ -48,7 +48,7 @@ const labelStyles = (_, { type, size }) => {
 	const checkboxStroke = sizeMap[size]['label']['checkbox'].stroke;
 
 	return {
-		label: getLabel('formCheck-label'),
+		label: getLabel('formCheck-option-label'),
 		display: 'inline-block',
 		paddingTop: sizeMap[size]['label'].paddingTop,
 		paddingBottom: sizeMap[size]['label'].paddingBottom,

@@ -104,6 +104,56 @@ function Example({ brand }) {
 					Here is a label
 				</Option>
 			</Selector>
+
+			<hr />
+
+			<h2>Width</h2>
+
+			<h3>Default</h3>
+			<Selector type="checkbox" name="example-width-default">
+				<Option value="1" pictogram={ChatPictogram} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>150px</h3>
+			<Selector type="checkbox" name="example-width-150" pictogramWidth={150}>
+				<Option value="1" pictogram={ChatPictogram} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Responsive</h3>
+			<Selector type="checkbox" name="example-width-responsive" pictogramWidth={[100, null, 66]}>
+				<Option value="1" pictogram={ChatPictogram} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<hr />
+
+			<h2>Height</h2>
+
+			<h3>Default</h3>
+			<Selector type="checkbox" name="example-height-default">
+				<Option value="1" pictogram={ChatPictogram} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>36px</h3>
+			<Selector type="checkbox" name="example-height-36" pictogramHeight={36}>
+				<Option value="1" pictogram={ChatPictogram} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Responsive</h3>
+			<Selector type="checkbox" name="example-height-responsive" pictogramHeight={[100, null, 66]}>
+				<Option value="1" pictogram={ChatPictogram} hint={hintShort}>
+					Here is a label
+				</Option>
+			</Selector>
 		</GEL>
 	);
 }

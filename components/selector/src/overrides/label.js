@@ -13,11 +13,12 @@ const Label = ({ state: _, ...rest }) => <label {...rest} />;
 // ==============================
 
 const labelStyles = () => {
-	const { PACKS } = useBrand();
+	const { PACKS, TYPE } = useBrand();
 
 	return {
 		label: getLabel('selector-option-label'),
 		...PACKS.typeScale.bodyFont[8],
+		...TYPE.bodyFont[500],
 	};
 };
 

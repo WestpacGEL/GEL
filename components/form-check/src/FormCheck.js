@@ -136,12 +136,12 @@ export const FormCheck = ({
 
 FormCheck.propTypes = {
 	/**
-	 * Form check type.
+	 * Form check type
 	 */
 	type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
 
 	/**
-	 * The form check input element’s name.
+	 * The form check input element’s name
 	 */
 	name: PropTypes.string,
 
@@ -161,17 +161,13 @@ FormCheck.propTypes = {
 	disabled: PropTypes.bool,
 
 	/**
-	 * A function called on change
-	 */
-	onChange: PropTypes.func,
-
-	/**
 	 * The data prop shape
 	 */
 	data: PropTypes.arrayOf(
 		PropTypes.shape({
 			value: PropTypes.node,
 			text: PropTypes.string,
+			hint: PropTypes.node,
 		})
 	),
 

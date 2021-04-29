@@ -41,6 +41,27 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const extras = `${caretWidth} + ${caretGap}`; // Add width for caret if a select
 
 	return mq({
+		// Normalize
+		// =========
+
+		// Remove the margin in Firefox and Safari.
+		// select, optgroup:
+		'&, optgroup': {
+			margin: 0,
+		},
+
+		// Remove the inheritance of text transform in Firefox.
+		// select:
+		textTransform: 'none',
+
+		// Change the font styles in all browsers.
+		optgroup: {
+			fontFamily: 'inherit',
+			fontSize: 'inherit', //edited
+			lineHeight: 'inherit', //edited
+		},
+		// =========
+
 		label: getLabel('select'),
 		boxSizing: 'border-box',
 		width: inline ? ['100%', 'auto'] : '100%',

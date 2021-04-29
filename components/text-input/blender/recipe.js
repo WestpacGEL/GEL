@@ -28,7 +28,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			{components.map((Component, i) => (
 				<Fragment key={i}>
 					<Component />
@@ -68,7 +68,7 @@ export function Docs({ brand }) {
 			heading: 'Text input',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<TextInput />
 				</GEL>
 			),
@@ -78,7 +78,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Sizes',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{sizes.map((size) => (
 						<TextInput key={size} size={size} placeholder={size} />
 					))}
@@ -90,7 +90,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Invalid',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<TextInput invalid />
 				</GEL>
 			),
@@ -100,7 +100,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Inline',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<TextInput inline />
 				</GEL>
 			),
@@ -110,7 +110,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Fixed widths',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{widths.map((width) => (
 						<TextInput key={width} width={width} placeholder={`${width} chars`} />
 					))}
@@ -123,7 +123,7 @@ export function Docs({ brand }) {
 			heading: 'Select',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Select name="select">
 						<option>Select</option>
 						<option>1</option>
@@ -138,7 +138,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Sizes',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{sizes.map((size) => (
 						<Select key={size} name={size} size={size}>
 							<option>Select ({size})</option>
@@ -155,7 +155,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Invalid',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Select invalid>
 						<option>Select</option>
 						<option>1</option>
@@ -170,7 +170,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Inline',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Select inline>
 						<option>Select</option>
 						<option>1</option>
@@ -185,7 +185,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Fixed widths',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{widths.map((width) => (
 						<Select key={width} name={`width-${width}`} width={width}>
 							<option>Select ({width} chars)</option>
@@ -203,7 +203,7 @@ export function Docs({ brand }) {
 			heading: 'Textarea',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Textarea />
 				</GEL>
 			),
@@ -213,7 +213,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Sizes',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{sizes.map((size) => (
 						<Textarea key={size} size={size} placeholder={size} />
 					))}
@@ -225,7 +225,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Invalid',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Textarea invalid />
 				</GEL>
 			),
@@ -235,7 +235,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Inline',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Textarea inline />
 				</GEL>
 			),
@@ -245,7 +245,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Fixed widths',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					{widths.map((width) => (
 						<Textarea key={width} width={width} placeholder={`${width} chars`} />
 					))}

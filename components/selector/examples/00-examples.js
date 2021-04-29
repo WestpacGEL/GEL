@@ -49,7 +49,7 @@ function Example({ brand }) {
 			<h2>Default value</h2>
 
 			<h3>Radio</h3>
-			<Selector type="radio" name="exmaple-radio-defaultvalue" defaultValue="2">
+			<Selector type="radio" name="example-radio-defaultvalue" defaultValue="2">
 				<Option value="1">Here is a label</Option>
 				<Option value="2">Here is a label</Option>
 				<Option value="3">Here is a label</Option>
@@ -84,24 +84,24 @@ function Example({ brand }) {
 			<h2>Option alone with defaultChecked</h2>
 
 			<h3>Radio</h3>
-			<Option type="radio" name="example-lone-radio" value="1">
+			<Option type="radio" name="example-alone-radio" value="1">
 				Here is a label
 			</Option>
-			<Option type="radio" name="example-lone-radio" value="2" defaultChecked>
+			<Option type="radio" name="example-alone-radio" value="2" defaultChecked>
 				Here is a label
 			</Option>
-			<Option type="radio" name="example-lone-radio" value="3">
+			<Option type="radio" name="example-alone-radio" value="3">
 				Here is a label
 			</Option>
 
 			<h3>Checkbox</h3>
-			<Option type="checkbox" name="example-long-checkbox" value="1">
+			<Option type="checkbox" name="example-alone-checkbox" value="1">
 				Here is a label
 			</Option>
-			<Option type="checkbox" name="example-long-checkbox" value="2" defaultChecked>
+			<Option type="checkbox" name="example-alone-checkbox" value="2" defaultChecked>
 				Here is a label
 			</Option>
-			<Option type="checkbox" name="example-long-checkbox" value="3" defaultChecked>
+			<Option type="checkbox" name="example-alone-checkbox" value="3" defaultChecked>
 				Here is a label
 			</Option>
 
@@ -109,6 +109,7 @@ function Example({ brand }) {
 
 			<h2>Option alone state managed</h2>
 			<Option
+				name="example-alone-managed1"
 				value="1"
 				checked={loneRanger1}
 				onChange={(event) => setLoneRanger1(event.target.checked)}
@@ -116,6 +117,7 @@ function Example({ brand }) {
 				Here is a label
 			</Option>
 			<Option
+				name="example-alone-managed2"
 				value="2"
 				checked={loneRanger2}
 				onChange={(event) => setLoneRanger2(event.target.checked)}

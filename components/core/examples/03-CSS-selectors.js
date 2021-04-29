@@ -151,11 +151,14 @@ function Example({ brand }) {
 			>
 				['red', 'green', 'blue', 'purple', 'orange']
 			</p>
-			<div>
-				<p css={mq({ 'div &': { color: [null, 'green', 'blue', 'purple', 'orange'] } })}>
-					div &: [null, 'green', 'blue', 'purple', 'orange']
-				</p>
-			</div>
+			<p
+				css={mq({
+					padding: [10, 20],
+					'p + &': { color: [null, 'green', 'blue', 'purple', 'orange'] },
+				})}
+			>
+				[10, 20], p + &: [null, 'green', 'blue', 'purple', 'orange']
+			</p>
 
 			<h3>@media queries</h3>
 			<p
