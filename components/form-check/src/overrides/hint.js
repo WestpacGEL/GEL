@@ -35,7 +35,7 @@ const hintStyles = (_, { size }) => {
 	const { COLORS } = useBrand();
 
 	return {
-		label: getLabel('formCheck-hint'),
+		label: getLabel('formCheck-option-hint'),
 		paddingLeft: sizeMap[size]['label'].gap,
 		color: COLORS.muted,
 	};

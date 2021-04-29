@@ -49,7 +49,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			{/* Default */}
 			<Modal heading="Text">
 				<Body>Text</Body>
@@ -114,7 +114,7 @@ export function Docs({ brand }) {
 			heading: 'Default modal',
 			component: () => {
 				return (
-					<GEL brand={overridesWithTokens} noScope>
+					<GEL brand={overridesWithTokens}>
 						<Button data-modal="default-modal">Open</Button>
 						<Modal id="default-modal" heading="Your modal heading">
 							<Body>Your modal content</Body>
@@ -130,7 +130,7 @@ export function Docs({ brand }) {
 			subheading: `${titleCase(size)} modal`,
 			component: () => {
 				return (
-					<GEL brand={overridesWithTokens} noScope>
+					<GEL brand={overridesWithTokens}>
 						<Button data-modal={`${size}-modal`}>Open</Button>
 						<Modal id={`${size}-modal`} heading={`Your ${size} modal heading`} size={size}>
 							<Body>Your {size} modal content</Body>
@@ -145,7 +145,7 @@ export function Docs({ brand }) {
 			heading: 'Modal footer',
 			component: () => {
 				return (
-					<GEL brand={overridesWithTokens} noScope>
+					<GEL brand={overridesWithTokens}>
 						<Button data-modal="footer-modal">Open</Button>
 						<Modal id="footer-modal" heading="Your modal heading">
 							<Body>A modal with a footer</Body>

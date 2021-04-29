@@ -29,7 +29,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			{/* Looks */}
 			{looks.map((look) => (
 				<Panel key={look} look={look} heading="Heading text">
@@ -103,7 +103,7 @@ export function Docs({ brand }) {
 			heading: 'Panel looks',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Panel heading="Your panel heading">
 						<Body>Your panel content</Body>
 					</Panel>
@@ -113,7 +113,7 @@ export function Docs({ brand }) {
 		...looks.map((look) => ({
 			subheading: titleCase(look),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Panel look={look} heading={`Your ${look} panel heading`}>
 						<Body>Your {look} panel content</Body>
 					</Panel>
@@ -126,7 +126,7 @@ export function Docs({ brand }) {
 			heading: 'Panel with footer',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Panel heading="Your panel heading">
 						<Body>Your panel content</Body>
 						<Footer>Your panel footer</Footer>
@@ -137,7 +137,7 @@ export function Docs({ brand }) {
 		...looks.map((look) => ({
 			subheading: titleCase(look),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Panel look={look} heading={`Your ${look} panel heading`}>
 						<Body>Your {look} panel content</Body>
 						<Footer>Your {look} panel footer</Footer>
@@ -150,7 +150,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Panel with table',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Panel heading="Your panel heading">
 						<Body>Your panel content</Body>
 						<Table bordered>

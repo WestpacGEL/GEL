@@ -5,7 +5,7 @@ import { VisuallyHidden, SkipLink } from '@westpac/a11y';
 
 export function AllStyles({ brand }) {
 	return (
-		<GEL brand={brand} noScope>
+		<GEL brand={brand}>
 			<VisuallyHidden>TEXT</VisuallyHidden>
 			<SkipLink href="#TEXT">TEXT</SkipLink>
 		</GEL>
@@ -17,7 +17,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Screen reader only text',
 			component: () => (
-				<GEL brand={brand} noScope>
+				<GEL brand={brand}>
 					<p>Note: The example text below is visibility hidden</p>
 					<VisuallyHidden>This is screen reader only text</VisuallyHidden>
 				</GEL>
@@ -26,7 +26,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Screen reader skip link',
 			component: () => (
-				<GEL brand={brand} noScope>
+				<GEL brand={brand}>
 					<p>Note: The example link below is visibility hidden until focussed</p>
 					<SkipLink href="#content">
 						This is screen reader only text (visible when focussed)

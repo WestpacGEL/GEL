@@ -28,7 +28,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			<FormCheck name="text">
 				<Option value="1" hint="Hint text">
 					Text
@@ -81,7 +81,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Checkboxes',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck type="checkbox" name="example-checkboxes" instanceIdPrefix="GEL">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
@@ -95,7 +95,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Radios',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck type="radio" name="example-radios" instanceIdPrefix="GEL">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
@@ -110,7 +110,7 @@ export function Docs({ brand }) {
 			heading: 'Checkbox sizes',
 			subheading: 'Large',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck
 						type="checkbox"
 						name="example-large-checkboxes"
@@ -128,7 +128,7 @@ export function Docs({ brand }) {
 			heading: 'Radio sizes',
 			subheading: 'Large',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck type="radio" name="example-large-radios" instanceIdPrefix="GEL" size="large">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
@@ -143,7 +143,7 @@ export function Docs({ brand }) {
 			heading: 'Option hints',
 			subheading: 'Checkboxes with option hints',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck type="checkbox" name="example-checkboxes-hints" instanceIdPrefix="GEL">
 						<Option value="1" hint="Your option 1 hint">
 							Your option 1
@@ -161,7 +161,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Large checkboxes with option hints',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck
 						type="checkbox"
 						name="example-checkboxes-large-hints"
@@ -187,7 +187,7 @@ export function Docs({ brand }) {
 			heading: 'Inline form-checks',
 			subheading: 'Checkboxes',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck type="checkbox" name="example-inline-checkboxes" instanceIdPrefix="GEL" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
@@ -199,7 +199,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Radios',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck type="radio" name="example-inline-radios" instanceIdPrefix="GEL" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
@@ -211,7 +211,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Large checkboxes',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck
 						type="checkbox"
 						name="example-large-inline-checkboxes"
@@ -229,7 +229,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Large radios',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck
 						type="radio"
 						name="example-large-inline-radios"
@@ -250,7 +250,7 @@ export function Docs({ brand }) {
 			heading: 'Disabled form-checks',
 			subheading: 'Checkboxes',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck
 						type="checkbox"
 						name="example-disabled-checkboxes"
@@ -268,7 +268,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Radios',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<FormCheck
 						type="radio"
 						name="example-disabled-radios"

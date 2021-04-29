@@ -12,12 +12,12 @@ const Hint = ({ state: _, ...rest }) => <div {...rest} />;
 // Styles
 // ==============================
 
-const hintStyles = (_, { checked }) => {
+const hintStyles = () => {
 	const { COLORS, PACKS, SPACING } = useBrand();
 
 	return {
 		label: getLabel('selector-option-hint'),
-		color: checked ? 'inherit' : COLORS.muted,
+		color: COLORS.muted,
 		marginTop: SPACING(1),
 		...PACKS.typeScale.bodyFont[9],
 	};

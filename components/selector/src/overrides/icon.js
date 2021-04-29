@@ -6,15 +6,15 @@ import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Icon = ({ icon: Icon, state: { checked }, ...rest }) => (
-	<Icon size="xlarge" color="hero" assistiveText={null} {...rest} />
+const Icon = ({ icon: Icon, state: { iconSize }, ...rest }) => (
+	<Icon size={iconSize} color="hero" assistiveText={null} {...rest} />
 );
 
 // ==============================
 // Styles
 // ==============================
 
-const iconStyles = (_, { checked }) => {
+const iconStyles = () => {
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 

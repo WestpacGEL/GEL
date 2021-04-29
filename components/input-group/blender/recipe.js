@@ -33,7 +33,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			{/* This is a special case so we can genereate a base style for the text component */}
 			<InputGroup name="TEXT" label="TEXT">
 				<Before inputType="text" data="TEXT" position={'none'} />
@@ -120,7 +120,7 @@ export function Docs({ brand }) {
 			heading: 'Add-on before',
 			subheading: 'Text',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-text"
@@ -135,7 +135,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Button',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-button"
@@ -150,7 +150,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Select',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-select"
@@ -177,7 +177,7 @@ export function Docs({ brand }) {
 			Heading: 'Add-on after',
 			subheading: 'Text',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-after-text"
@@ -192,7 +192,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Button',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-after-button"
@@ -207,7 +207,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Select',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-after-select"
@@ -233,7 +233,7 @@ export function Docs({ brand }) {
 			heading: 'Add-on before and after',
 			subheading: 'Text and button add-ons',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-text-after-button"
@@ -249,7 +249,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Text add-ons',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-text-after-text"
@@ -265,7 +265,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Button add-ons',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						name="inputgroup-before-button-after-button"
@@ -284,7 +284,7 @@ export function Docs({ brand }) {
 			...(i === 0 && { heading: 'Input-group sizes' }),
 			subheading: titleCase(size),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<InputGroup
 						instanceIdPrefix="GEL"
 						size={size}
