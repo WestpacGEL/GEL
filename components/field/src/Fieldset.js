@@ -106,9 +106,39 @@ Fieldset.propTypes = {
 
 	/**
 	 * aria-describedby
-	 *
 	 */
 	ariadescribedby: PropTypes.string,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Fieldset: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Legend: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Hint: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ErrorList: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ErrorListItem: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Fieldset.defaultProps = {};

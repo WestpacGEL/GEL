@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/autocomplete",
-	"version": "1.0.0",
+	"version": "1.0.0-beta",
 	"description": "autocomplete",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/autocomplete",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

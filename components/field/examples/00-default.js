@@ -11,20 +11,11 @@ function Example({ brand }) {
 				{(inputProps) => <TextInput {...inputProps} />}
 			</Field>
 			<br />
-			{/* <Field
-				label="Select input example"
-				hint="I am a select input"
-				inputType="select"
-				data={[
-					{ text: 'Select', value: '' },
-					{ text: '1', value: '', onClick: () => console.log('Selected 1') },
-					{ text: '2', value: '', onClick: () => console.log('Selected 2') },
-					{ text: '3', value: '', onClick: () => console.log('Selected 3') },
-				]}
-			/>
-			<br />
-			<Field label="Text input with error" hint="I have an error" error="Im an error" /> */}
+			<Field label="Text input with error" hint="I have an error" error="Im an error">
+				{(inputProps) => <TextInput {...inputProps} invalid />}
+			</Field>
 			<h4>Visually hidden label</h4>
+			<br />
 			<Field hideLabel label="Hidden label" hint="I have a hidden label">
 				{(inputProps) => <TextInput {...inputProps} />}
 			</Field>
