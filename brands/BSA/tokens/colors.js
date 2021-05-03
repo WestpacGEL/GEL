@@ -9,7 +9,7 @@ const COLORS = {
 	link: '#D81B2B',
 	muted: '#6A6E72',
 	neutral: '#6A6E72',
-	pop: '#00ADBD',
+	pop: '#00ADBD', //Bight
 	primary: '#D81B2B',
 	text: '#333',
 

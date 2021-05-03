@@ -9,7 +9,7 @@ const COLORS = {
 	link: '#DA1710',
 	muted: '#595767',
 	neutral: '#2A2E42',
-	pop: '#FF3DDB',
+	pop: '#FF3DDB', //Bright Pink
 	primary: '#DA1710',
 	text: '#181B25',
 
