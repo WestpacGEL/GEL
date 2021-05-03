@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx, getLabel, useBrand } from '@westpac/core';
 
 // ==============================
 // Component
@@ -12,11 +12,16 @@ const Collapsible = ({ state: _, ...rest }) => <div {...rest} />;
 // Styles
 // ==============================
 
-const collapsibleStyles = () => ({
-	label: getLabel('collapsible'),
-	position: 'relative',
-	display: 'inline-block',
-});
+const collapsibleStyles = () => {
+	const { SPACING } = useBrand();
+
+	return {
+		label: getLabel('collapsible'),
+		position: 'relative',
+		display: 'inline-block',
+		marginBottom: SPACING(4),
+	};
+};
 
 // ==============================
 // Attributes
