@@ -11,7 +11,7 @@ import { useSpring, animated } from 'react-spring';
 const Content = forwardRef(({ state: { open, setClosed }, ...rest }, ref) => {
 	const fade = useSpring({
 		config: {
-			duration: 300, //CSS 'linear' easing-function
+			duration: 150, //CSS 'linear' easing-function
 		},
 		opacity: open ? 1 : 0,
 		from: {
@@ -32,9 +32,9 @@ const Content = forwardRef(({ state: { open, setClosed }, ...rest }, ref) => {
 // Styles
 // ==============================
 
-const contentStyles = (_, { closed }) => ({
+const contentStyles = (_, { open }) => ({
 	label: getLabel('collapsible-content'),
-	display: closed ? 'none' : 'block',
+	display: open ? 'block' : 'none',
 });
 
 // ==============================
