@@ -134,7 +134,9 @@ export const propTypes = {
 	}),
 };
 
-export const defaultProps = {};
+export const defaultProps = {
+	mode: 'duo',
+};
 
 Pictogram.propTypes = propTypes;
 Pictogram.defaultProps = defaultProps;
