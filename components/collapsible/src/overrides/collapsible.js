@@ -19,7 +19,6 @@ const collapsibleStyles = () => {
 		label: getLabel('collapsible'),
 		position: 'relative',
 		display: 'inline-block',
-		marginBottom: SPACING(4),
 	};
 };
 
