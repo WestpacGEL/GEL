@@ -112,7 +112,7 @@ const PageHeaderHeading = (props) => {
 	);
 };
 
-const PageHeader = ({ name }) => {
+const PageHeader = ({ name, ...rest }) => {
 	const { COLORS, BRAND, SPACING, LAYOUT } = useBrand();
 	const mq = useMediaQuery();
 
@@ -128,6 +128,7 @@ const PageHeader = ({ name }) => {
 				overflow: 'hidden',
 				...brandHeaderStyling[BRAND.code](COLORS),
 			})}
+			{...rest}
 		>
 			<HeaderImage brand={BRAND} />
 			<div

@@ -819,7 +819,7 @@ const SectionDevelopers = () => {
 };
 
 function TokensPage() {
-	const { COLORS } = useBrand();
+	const { COLORS, LAYOUT } = useBrand();
 
 	const [showGrid, setShowGrid] = useState(false);
 
@@ -828,7 +828,23 @@ function TokensPage() {
 			<Head title="Downloads" />
 			<PageContext.Provider value={{ showGrid, setShowGrid }}>
 				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
-					<PageHeader name="Downloads" />
+					<PageHeader
+						name="Downloads"
+						css={{
+							transition: 'box-shadow 0.2s ease',
+
+							[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+								'body.hasScrolledSmall &': {
+									boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+								},
+							},
+							[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+								'body.hasScrolledLarge &': {
+									boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+								},
+							},
+						}}
+					/>
 					<Gridly show={showGrid} />
 					<SectionDesigners />
 					<SectionDevelopers />
