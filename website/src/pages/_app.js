@@ -2,7 +2,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import cookie from 'cookie';
 import App from 'next/app';
@@ -21,6 +21,32 @@ const getApolloClient = (initialState) =>
 const GELApp = ({ Component, pageProps, apollo, brand }) => {
 	const Layout = Component.layout || DefaultLayout;
 	const apolloClient = useMemo(() => apollo || getApolloClient(), [apollo]);
+
+	const scrollMap = {
+		small: 72,
+		large: 162,
+	};
+
+	useEffect(() => {
+		const setScrollClass = () => {
+			if (window.scrollY > scrollMap.small) {
+				document.body.classList.add('hasScrolledSmall');
+			} else {
+				document.body.classList.remove('hasScrolledSmall');
+			}
+			if (window.scrollY >= scrollMap.large) {
+				document.body.classList.add('hasScrolledLarge');
+			} else {
+				document.body.classList.remove('hasScrolledLarge');
+			}
+		};
+
+		window.addEventListener('scroll', setScrollClass, { passive: true });
+		setScrollClass();
+		return () => {
+			window.removeEventListener('scroll', setScrollClass);
+		};
+	}, []);
 
 	return (
 		<ApolloProvider client={apolloClient}>

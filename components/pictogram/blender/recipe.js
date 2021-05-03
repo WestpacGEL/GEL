@@ -11,7 +11,7 @@ const modes = ['dark', 'duo', 'light'];
 
 export function AllStyles({ brand }) {
 	return (
-		<GEL brand={brand} noScope>
+		<GEL brand={brand}>
 			{informative.map((pictogram) => {
 				const Pictogram = components[pictogram];
 				return <Pictogram key={pictogram} />;
@@ -27,7 +27,7 @@ export function Docs({ brand }) {
 			...(i === 0 && { heading: 'Informative pictograms' }),
 			subheading: pictogram,
 			component: () => (
-				<GEL brand={brand} noScope>
+				<GEL brand={brand}>
 					{modes.map((m) => (
 						<Informative key={m} mode={m} />
 					))}
@@ -53,7 +53,7 @@ export function Docs({ brand }) {
 				...(i === 0 && { heading: 'Decorative pictograms' }),
 				subheading: pictogram,
 				component: () => (
-					<GEL brand={brand} noScope>
+					<GEL brand={brand}>
 						<Decorative />
 					</GEL>
 				),

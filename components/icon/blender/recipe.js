@@ -32,7 +32,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			{/* Default */}
 			<components.HouseIcon />
 
@@ -64,7 +64,7 @@ export function Docs({ brand }) {
 			...(i === 0 && { heading: 'All icons' }),
 			subheading: icon,
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Icon />
 				</GEL>
 			),
@@ -77,7 +77,7 @@ export function Docs({ brand }) {
 			heading: 'Icon sizes',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon />
 				</GEL>
 			),
@@ -85,7 +85,7 @@ export function Docs({ brand }) {
 		...sizes.map((size) => ({
 			subheading: titleCase(size),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon size={size} />
 				</GEL>
 			),
@@ -95,7 +95,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Icon with custom assistive text',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon assistiveText="Text for assistive technologies" />
 				</GEL>
 			),
@@ -106,7 +106,7 @@ export function Docs({ brand }) {
 			heading: 'Icon colours',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon />
 				</GEL>
 			),
@@ -114,7 +114,7 @@ export function Docs({ brand }) {
 		...colors.map((color) => ({
 			subheading: titleCase(color),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon color={color} />
 				</GEL>
 			),
@@ -122,7 +122,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Custom colour',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<components.HouseIcon style={{ color: '#BADA55' }} />
 				</GEL>
 			),

@@ -32,23 +32,42 @@ export const stepButtonStyles = (_, { end, grouped, visited, active, furthest })
 	const { COLORS, PACKS, TYPE } = useBrand();
 
 	return {
+		// Normalize
+		// ==========
+
+		// 1. Remove the margin in Firefox and Safari.
+		// 2. Show the overflow in IE.
+		// 3. Remove the inheritance of text transform in Edge, Firefox, and IE.
+		// button:
+		margin: 0, // 1
+		overflow: 'visible', // 2
+		textTransform: 'none', // 3
+
+		// Remove the inner border and padding in Firefox.
+		// button&::-moz-focus-inner:
+		'&::-moz-focus-inner': {
+			borderStyle: 'none',
+			padding: 0,
+		},
+		// =========
+
 		label: 'progressRope-stepBtn',
+		boxSizing: 'border-box',
 		position: 'relative',
 		fontSize: '0.875rem',
 		lineHeight: 1.428571429, //`<body>` line-height
 		textAlign: 'left',
 		padding: `0.5rem 1.875rem 0.875rem ${grouped && !end ? '4.25rem' : '3.5rem'}`,
-		border: 0,
-		background: 'none',
 		display: 'block',
 		width: '100%',
-		color: active ? COLORS.primary : COLORS.text, //set default `COLORS.text` because this is a `<button />`
+		border: 0,
+		background: 'none',
 		...(active ? TYPE.bodyFont[700] : null),
 		appearance: 'none',
 		cursor: 'pointer',
 		touchAction: 'manipulation',
 		userSelect: 'none',
-		boxSizing: 'border-box',
+		color: active ? COLORS.primary : COLORS.text, //set default `COLORS.text` because this is a `<button />`
 
 		':disabled': {
 			color: COLORS.tints.muted90,

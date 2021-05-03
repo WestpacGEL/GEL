@@ -34,12 +34,17 @@ const Demo = ({ context, showCode, showDemo }) => {
 			{ name: 'Montserrat Regular', weight: 400 },
 			{ name: 'Montserrat Bold', weight: 700 },
 		],
+		RAMS: [
+			{ name: 'Source Sans Pro Regular', weight: 400 },
+			{ name: 'Source Sans Pro Semi-bold', weight: 600 },
+			{ name: 'Source Sans Pro Bold', weight: 700 },
+		],
 	};
 
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Body>
-				{brandFontMap[BRAND].map((font, i) => (
+				{brandFontMap[BRAND.code].map((font, i) => (
 					<Fragment key={i}>
 						<p>{font.name}</p>
 						<StyledText weight={font.weight}>

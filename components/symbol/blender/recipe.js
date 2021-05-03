@@ -15,7 +15,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			{/* Generate a base style */}
 			<Symbol />
 
@@ -44,7 +44,7 @@ export function Docs({ brand }) {
 				...(i === 0 && { heading: 'Logos' }),
 				subheading: logo,
 				component: () => (
-					<GEL brand={overridesWithTokens} noScope>
+					<GEL brand={overridesWithTokens}>
 						<Logo />
 					</GEL>
 				),
@@ -59,7 +59,7 @@ export function Docs({ brand }) {
 				...(i === 0 && { heading: 'Symbols' }),
 				subheading: symbol,
 				component: () => (
-					<GEL brand={overridesWithTokens} noScope>
+					<GEL brand={overridesWithTokens}>
 						<Symbol />
 					</GEL>
 				),

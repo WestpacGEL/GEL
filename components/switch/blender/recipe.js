@@ -24,7 +24,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			<Switch name="text" label="example" />
 			<Switch name="text" label="example" size="small" />
 			<Switch name="text" label="example" size="large" />
@@ -49,7 +49,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Default switch',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Switch name="example-default" label="Your switch label text" />
 				</GEL>
 			),
@@ -60,7 +60,7 @@ export function Docs({ brand }) {
 			...(i === 0 && { heading: 'Switch sizes' }),
 			subheading: titleCase(size),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Switch name={`example-${size}`} size={size} label="Your label text" />
 				</GEL>
 			),
@@ -70,7 +70,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Checked switch',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Switch name="example-checked" label="Your label text" checked />
 				</GEL>
 			),
@@ -80,7 +80,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Block switch',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Switch name="example-block" label="Your label text" block />
 				</GEL>
 			),
@@ -89,7 +89,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Checked &amp; block',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Switch name="example-block-checked" label="Your label text" block checked />
 				</GEL>
 			),
@@ -100,7 +100,7 @@ export function Docs({ brand }) {
 			heading: 'Disabled switch',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Switch name="example-disabled" label="Your label text" disabled />
 				</GEL>
 			),
@@ -108,7 +108,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Checked',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Switch name="example-disabled-checked" label="Your label text" disabled checked />
 				</GEL>
 			),
@@ -116,7 +116,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Block',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Switch name="example-block-disabled" label="Your label text" block disabled />
 				</GEL>
 			),
@@ -124,7 +124,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Checked &amp; block',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Switch
 						name="example-block-disabled-switch"
 						label="Your label text"

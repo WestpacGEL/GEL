@@ -40,7 +40,7 @@ const HomePageHeader = () => {
 						bottom: 0,
 						left: 0,
 						width: ['12px', null, '24px'],
-						backgroundColor: '#FF3DDB',
+						backgroundColor: COLORS.pop,
 					},
 				}),
 			})}

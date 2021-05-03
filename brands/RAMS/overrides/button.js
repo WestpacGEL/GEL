@@ -26,15 +26,15 @@ export const button = ({ COLORS }) => {
 						}),
 
 					// Add RAMS bottom stripe
-					...(look === 'primary' &&
-						!soft && {
-							borderWidth: 0, //reset (note: reapplied in ButtonGroup override)
-							backgroundImage: sizeArr.map(
-								(s) =>
-									s &&
-									`linear-gradient(to top, #78C339, #78C339 ${sizeMap[s].stopPos}, transparent ${sizeMap[s].stopPos}, transparent)`
-							),
-						}),
+					...(look === 'primary' && {
+						// Reset border (note: reapplied in ButtonGroup override)
+						...(soft ? { borderBottomWidth: 0 } : { borderWidth: 0 }),
+						backgroundImage: sizeArr.map(
+							(s) =>
+								s &&
+								`linear-gradient(to top, #78C339, #78C339 ${sizeMap[s].stopPos}, transparent ${sizeMap[s].stopPos}, transparent)`
+						),
+					}),
 				};
 			},
 		},

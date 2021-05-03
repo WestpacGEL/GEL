@@ -29,9 +29,12 @@ function Example({ brand }) {
 			<h2>Size</h2>
 			<Textarea size="small" placeholder="small" />
 			<br />
+			<br />
 			<Textarea size="medium" placeholder="medium" />
 			<br />
+			<br />
 			<Textarea size="large" placeholder="large" />
+			<br />
 			<br />
 			<Textarea size="xlarge" placeholder="xlarge" />
 
@@ -44,6 +47,7 @@ function Example({ brand }) {
 
 			<h2>Disabled</h2>
 			<Textarea disabled />
+			<br />
 			<br />
 			<Textarea defaultValue="This textarea is disabled and contains a value" disabled />
 
@@ -63,15 +67,21 @@ function Example({ brand }) {
 			<h2>Fixed width</h2>
 			<Textarea width={2} placeholder={'W'.repeat(2)} />
 			<br />
+			<br />
 			<Textarea width={3} placeholder={'W'.repeat(3)} />
+			<br />
 			<br />
 			<Textarea width={4} placeholder={'W'.repeat(4)} />
 			<br />
+			<br />
 			<Textarea width={5} placeholder={'W'.repeat(5)} />
+			<br />
 			<br />
 			<Textarea width={10} placeholder={'W'.repeat(10)} />
 			<br />
+			<br />
 			<Textarea width={20} placeholder={'W'.repeat(20)} />
+			<br />
 			<br />
 			<Textarea width={30} placeholder={'W'.repeat(30)} />
 		</GEL>

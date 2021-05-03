@@ -9,6 +9,7 @@ const COLORS = {
 	link: '#E30000',
 	muted: '#727163',
 	neutral: '#727163',
+	pop: '#78BE20', //St.George Green
 	primary: '#E30000',
 	text: '#004833',
 
