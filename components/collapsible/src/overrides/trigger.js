@@ -9,10 +9,11 @@ import { forwardRef } from 'react';
 // Component
 // ==============================
 
-const Trigger = forwardRef(({ state: { open }, ...rest }, ref) => (
+const Trigger = forwardRef(({ state: { open, size }, ...rest }, ref) => (
 	<Button
 		ref={ref}
 		look="link"
+		size={size}
 		iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
 		{...rest}
 		overrides={{
