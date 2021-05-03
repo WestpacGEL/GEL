@@ -2,6 +2,12 @@ import { useBrand } from '@westpac/core';
 
 export const getColors = (mode) => {
 	const { COLORS, BRAND } = useBrand();
+	const defaultMode = 'duo';
+
+	// Define a default mode
+	if (!mode) {
+		mode = defaultMode;
+	}
 
 	const colorMap = {
 		BOM: {
@@ -104,5 +110,13 @@ export const getColors = (mode) => {
 		},
 	};
 
-	return (colorMap[BRAND.code] || colorMap['WBC'])[mode];
+	if (typeof mode === 'object') {
+		mode.outline = mode.outline ? mode.outline : colorMap[BRAND.code][defaultMode].outline;
+		mode.highlight = mode.highlight ? mode.highlight : colorMap[BRAND.code][defaultMode].highlight;
+	}
+
+	return {
+		outline: typeof mode === 'object' ? mode.outline : colorMap[BRAND.code][mode].outline,
+		highlight: typeof mode === 'object' ? mode.highlight : colorMap[BRAND.code][mode].highlight,
+	};
 };
