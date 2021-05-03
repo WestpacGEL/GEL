@@ -82,21 +82,21 @@ const Tabs = ({ component, tabName }) => {
 			}),
 		},
 		TabRow: {
-			styles: (styles) => ({
-				...styles,
-				alignItems: 'flex-end',
-				backgroundColor: '#fff',
-				position: 'sticky',
-				top: 66,
-				zIndex: 5,
-				transition: 'box-shadow 0.2s ease, boxShadow 0.2s ease',
-				'body.hasScrolled &': {
-					boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
-				},
-				...mq({
+			styles: (styles) =>
+				mq({
+					...styles,
+					alignItems: 'flex-end',
+					backgroundColor: '#fff',
+					position: 'sticky',
+					top: 66,
+					zIndex: 5,
 					height: [66, null, 90],
+					transition: 'box-shadow 0.2s ease',
+
+					'body.hasScrolledLarge &': {
+						boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+					},
 				})[0],
-			}),
 		},
 		TabBtn: {
 			styles: (styles, { selected }) =>
@@ -123,7 +123,7 @@ const Tabs = ({ component, tabName }) => {
 					':hover': {
 						backgroundColor: undefined, //strip
 					},
-				}),
+				})[0],
 		},
 	};
 
