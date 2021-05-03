@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { FormCheck, Option } from '@westpac/form-check';
+import { FormCheck } from '@westpac/form-check';
 
 function Example({ brand }) {
 	return (

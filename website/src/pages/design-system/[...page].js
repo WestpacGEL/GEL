@@ -1,19 +1,17 @@
 /** @jsx jsx */
-import { useState, useCallback, useEffect, forwardRef, Fragment } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { useRouter } from 'next/router';
-import throttle from 'lodash.throttle';
-import Error from 'next/error';
+import { useState, useCallback, forwardRef, Fragment } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
+import { useQuery } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
+import Error from 'next/error';
 
-import { Gridly, Footer } from '../../components/layout';
 import { PageContext, usePageContext } from '../../components/providers/pageContext';
 import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
 import PageHeader from '../../components/header/page-header';
+import { Gridly, Footer } from '../../components/layout';
 import { Head } from '../../components/head';
 import { ALL_PAGES } from '../../../graphql';
-import { scrollMap } from '../../components/_utils';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
@@ -55,28 +53,10 @@ const Component = ({ component, tabName }) => {
 
 const Tabs = ({ component, tabName }) => {
 	const { SPACING, COLORS } = useBrand();
-	const [hasScrolled, setHasScrolled] = useState(false);
-
 	const mq = useMediaQuery();
 	const router = useRouter();
 	const brandName = router.query.b || '';
 	const tabMap = ['design', 'accessibility', 'code'];
-
-	useEffect(() => {
-		const setTabs = () => {
-			const scroll = window.scrollY;
-
-			setHasScrolled(scroll >= scrollMap.large);
-		};
-		setTabs();
-
-		const scrollHandler = throttle(setTabs, 10);
-
-		window.addEventListener('scroll', scrollHandler);
-		return () => {
-			window.removeEventListener('scroll', scrollHandler);
-		};
-	}, []);
 
 	const onOpen = useCallback(
 		({ idx: tabIdx }) => {
@@ -102,19 +82,21 @@ const Tabs = ({ component, tabName }) => {
 			}),
 		},
 		TabRow: {
-			styles: (styles) => ({
-				...styles,
-				alignItems: 'flex-end',
-				backgroundColor: '#fff',
-				position: 'sticky',
-				top: 66,
-				zIndex: 5,
-				boxShadow: hasScrolled && '0 2px 5px rgba(0,0,0,0.3)',
-				transition: 'box-shadow 0.2s',
-				...mq({
+			styles: (styles) =>
+				mq({
+					...styles,
+					alignItems: 'flex-end',
+					backgroundColor: '#fff',
+					position: 'sticky',
+					top: 66,
+					zIndex: 5,
 					height: [66, null, 90],
+					transition: 'box-shadow 0.2s ease',
+
+					'body.hasScrolledLarge &': {
+						boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+					},
 				})[0],
-			}),
 		},
 		TabBtn: {
 			styles: (styles, { selected }) =>
@@ -141,7 +123,7 @@ const Tabs = ({ component, tabName }) => {
 					':hover': {
 						backgroundColor: undefined, //strip
 					},
-				}),
+				})[0],
 		},
 	};
 

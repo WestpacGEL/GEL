@@ -16,7 +16,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			<Badge value="Default" />
 			<Badge look="primary" value="Primary" />
 			<Badge look="hero" value="Hero" />
@@ -44,7 +44,7 @@ export function Docs({ brand }) {
 			heading: 'Badge looks',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Badge value="Default" />
 				</GEL>
 			),
@@ -52,7 +52,7 @@ export function Docs({ brand }) {
 		...looks.map((look) => ({
 			subheading: titleCase(look),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Badge look={look} value={titleCase(look)} />
 				</GEL>
 			),

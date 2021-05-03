@@ -2,7 +2,7 @@ import { useBrand } from '@westpac/core';
 
 export const getColors = (mode) => {
 	const { COLORS, BRAND } = useBrand();
-	const defaultMode = BRAND === 'WBC' ? 'duo' : 'dark';
+	const defaultMode = BRAND.code === 'WBC' ? 'duo' : 'dark';
 
 	// Define a default mode
 	if (!mode) {

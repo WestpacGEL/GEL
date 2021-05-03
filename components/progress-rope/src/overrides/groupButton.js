@@ -7,7 +7,7 @@ import { VisuallyHidden } from '@westpac/a11y';
 // Component
 // ==============================
 
-const GroupButton = ({ state: { complete, active }, children, ...rest }) => {
+const GroupBtn = ({ state: { complete, active }, children, ...rest }) => {
 	let stateText = ', not started';
 	if (complete) {
 		stateText = ', complete';
@@ -31,18 +31,40 @@ export const groupButtonStyles = (_, { complete, active }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
-		label: 'progressRope-group-btn',
+		// Normalize
+		// ==========
+
+		// 1. Remove the margin in Firefox and Safari.
+		// 2. Show the overflow in IE.
+		// 3. Remove the inheritance of text transform in Edge, Firefox, and IE.
+		// button:
+		margin: 0, // 1
+		overflow: 'visible', // 2
+		textTransform: 'none', // 3
+
+		// Remove the inner border and padding in Firefox.
+		// button::-moz-focus-inner:
+		'&::-moz-focus-inner': {
+			borderStyle: 'none',
+			padding: 0,
+		},
+		// =========
+
+		label: 'progressRope-groupBtn',
+		boxSizing: 'border-box',
 		position: 'relative',
-		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		fontSize: '1rem',
 		lineHeight: '1.428571429', //`<body>` line-height
 		textAlign: 'left',
+		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		display: 'block',
 		width: '100%',
 		border: 0,
 		background: 'none',
-		touchAction: 'manipulation',
+		appearance: 'none',
 		cursor: 'pointer',
+		touchAction: 'manipulation',
+		userSelect: 'none',
 		color: active ? COLORS.text : COLORS.tints.muted70, //set default `COLORS.text` because this is a `<button />`
 
 		':focus': {
@@ -97,24 +119,24 @@ const groupButtonAttributes = (_, { hidden, groupListId }) => ({
 	'aria-controls': groupListId,
 });
 
-const blenderAttributes = (_, { id, open }) => ({
+const blenderAttributes = (_, { open, groupListId }) => ({
 	'aria-expanded': open,
-	'aria-controls': id,
-	'data-js': 'progressRope-group-btn__version__',
+	'aria-controls': groupListId,
+	'data-js': 'progressRope-groupBtn__version__',
 });
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultGroupButton = {
-	component: GroupButton,
+export const defaultGroupBtn = {
+	component: GroupBtn,
 	styles: groupButtonStyles,
 	attributes: groupButtonAttributes,
 };
 
-export const blenderGroupButton = {
-	component: GroupButton,
+export const blenderGroupBtn = {
+	component: GroupBtn,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

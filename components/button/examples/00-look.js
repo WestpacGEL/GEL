@@ -3,16 +3,6 @@
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 
-import {
-	HouseIcon,
-	AlertIcon,
-	ChatIcon,
-	AccessibilityIcon,
-	ArrowLeftIcon,
-	ArrowRightIcon,
-	StarIcon,
-} from '@westpac/icon';
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>

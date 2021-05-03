@@ -12,6 +12,7 @@ import { Heading } from './headings';
 import { Symbols } from './symbols';
 import { Logos } from './logos';
 import { Pictograms } from './pictograms';
+import { CodeSnippet } from './code-snippet';
 
 export default {
 	DoAndAvoid,
@@ -28,4 +29,5 @@ export default {
 	Symbols,
 	Logos,
 	Pictograms,
+	CodeSnippet,
 };

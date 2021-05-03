@@ -35,7 +35,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			<Popover heading="Text" content="Text" open={false} placement="none">
 				Text
 			</Popover>
@@ -85,7 +85,7 @@ export function Docs({ brand }) {
 			...(i === 0 && { heading: 'Popover placement' }),
 			subheading: titleCase(placement),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Popover
 						heading="Your heading"
 						content="Your popover content"
@@ -102,7 +102,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Popover without heading',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Popover
 						content="Your popover content"
 						placement="top"

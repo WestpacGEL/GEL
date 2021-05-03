@@ -42,8 +42,11 @@ function Example({ brand }) {
 		<GEL brand={overridesWithTokens}>
 			<h2>With overrides applied</h2>
 			<ProgressBar value={progress} />
-			<br />
+			<ProgressBar value={progress} noLabel />
 			<ProgressBar value={progress} look="skinny" />
+
+			<hr />
+
 			<h2>With overrides and component overrides</h2>
 			<ProgressBar
 				value={progress}
@@ -63,10 +66,10 @@ function Example({ brand }) {
 				}}
 			/>
 			<div css={{ display: 'flex', marginTop: '3rem', width: '50%' }}>
-				<Button onClick={() => handleProgress(1)}>+1</Button>
-				<Button onClick={() => handleProgress(-1)}>-1</Button>
-				<Button onClick={() => handleProgress(10)}>+10</Button>
 				<Button onClick={() => handleProgress(-10)}>-10</Button>
+				<Button onClick={() => handleProgress(-1)}>-1</Button>
+				<Button onClick={() => handleProgress(1)}>+1</Button>
+				<Button onClick={() => handleProgress(10)}>+10</Button>
 			</div>
 		</GEL>
 	);

@@ -61,12 +61,10 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@emotion/cache": "^10.0.29",
 		"@emotion/core": "^10.0.28",
 		"@emotion/weak-memoize": "^0.2.5",
 		"classnames": "^2.2.6",
 		"color": "^3.1.2",
-		"core-js": "^3.6.5",
 		"facepaint": "^1.2.1",
 		"lodash.get": "^4.4.2",
 		"lodash.mergewith": "^4.6.2",

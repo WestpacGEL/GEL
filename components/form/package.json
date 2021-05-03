@@ -43,6 +43,7 @@
 		"@westpac/a11y": "^1.0.0",
 		"@westpac/core": "^1.1.0",
 		"@westpac/icon": "^1.1.0",
+		"@westpac/text-input": "^1.0.0",
 		"prop-types": "^15.7.2",
 		"shortid": "^2.2.15"
 	},
@@ -52,7 +53,6 @@
 	"devDependencies": {
 		"@westpac/alert": "^1.0.0",
 		"@westpac/button": "^1.0.0",
-		"@westpac/text-input": "^1.0.0",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"
