@@ -29,7 +29,7 @@ GlobeAustraliaPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Globe Australia',
+	assistiveText: 'Globe showing Australia',
 	copyrightYear: '2021',
 };
 GlobeAustraliaPictogram.propTypes = propTypes;
