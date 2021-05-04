@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 import * as components from '@westpac/icon';
 import { Cell, Grid, Name } from './_util';
 import { useState } from 'react';
@@ -30,6 +30,8 @@ const Search = (props) => (
 );
 
 function Example({ brand }) {
+	const { COLORS } = useBrand();
+
 	const [inputValue, setInputValue] = useState('');
 	const filteredIcons = inputValue.length
 		? icons.filter((p) =>
@@ -55,7 +57,10 @@ function Example({ brand }) {
 					return (
 						<Cell key={icon}>
 							<Icon />
-							<Name>{`<${icon}\u00A0/>`}</Name>
+							<Name>
+								<code>{`<${icon}\u00A0/>`}</code>
+								<div css={{ color: COLORS.muted }}>“{Icon.defaultProps.assistiveText}”</div>
+							</Name>
 						</Cell>
 					);
 				})}
