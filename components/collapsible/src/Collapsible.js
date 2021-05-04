@@ -17,6 +17,7 @@ import pkg from '../package.json';
 export const Collapsible = ({
 	open: isOpen,
 	text,
+	size,
 	instanceIdPrefix,
 	onClick = () => {},
 	children,
@@ -50,6 +51,7 @@ export const Collapsible = ({
 	const state = {
 		open,
 		text,
+		size,
 		instanceId,
 		closed,
 		setClosed,
@@ -100,11 +102,15 @@ export const Collapsible = ({
 	});
 
 	return (
-		<Collapsible state={state} {...collapsibleAttributes(state)} css={collapsibleStyles(state)}>
+		<Collapsible
+			{...rest}
+			state={state}
+			{...collapsibleAttributes(state)}
+			css={collapsibleStyles(state)}
+		>
 			<Trigger
 				ref={triggerRef}
 				onClick={handleOpen}
-				{...rest}
 				state={state}
 				{...triggerAttributes(state)}
 				css={triggerStyles(state)}

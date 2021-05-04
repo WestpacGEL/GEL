@@ -9,6 +9,7 @@ const COLORS = {
 	link: '#1972B4',
 	muted: '#6A6E72',
 	neutral: '#848588',
+	pop: '#78C339', //RAMS Green
 	primary: '#047DBC',
 	text: '#333',
 

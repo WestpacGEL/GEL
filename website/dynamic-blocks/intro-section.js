@@ -53,6 +53,13 @@ const parseHeadings = (content) =>
 			);
 		});
 
+// Custom TableOfContents Icon component to render in `link` color
+const ListIconOverride = ({ state: { icon: Icon }, ...rest }) => {
+	const { COLORS } = useBrand();
+
+	return <Icon size="small" color={COLORS.link} {...rest} />;
+};
+
 // Intro section
 const TableOfContents = ({ content }) => {
 	const toc = parseHeadings(content);
@@ -111,6 +118,9 @@ const TableOfContents = ({ content }) => {
 											},
 										},
 									}),
+							},
+							Icon: {
+								component: ListIconOverride,
 							},
 						}}
 					>

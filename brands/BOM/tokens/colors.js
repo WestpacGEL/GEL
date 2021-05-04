@@ -9,6 +9,7 @@ const COLORS = {
 	link: '#D13900',
 	muted: '#6E6C7A',
 	neutral: '#595762',
+	pop: '#A094FC', //Light Purple
 	primary: '#D13900',
 	text: '#20024E',
 

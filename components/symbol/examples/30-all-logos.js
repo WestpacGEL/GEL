@@ -15,6 +15,7 @@ const alignments = [null, 'left', 'center', 'right'];
 
 function Example({ brand }) {
 	const { COLORS } = useBrand();
+
 	return (
 		<GEL brand={brand}>
 			<h2>Logos</h2>
@@ -25,7 +26,8 @@ function Example({ brand }) {
 						<Cell key={s}>
 							<Symbol align="center" />
 							<Name>
-								<code>&lt;{s}&nbsp;/&gt;</code>
+								<code>{`<${s}\u00A0/>`}</code>
+								<div css={{ color: COLORS.muted }}>“{Symbol.defaultProps.assistiveText}”</div>
 							</Name>
 						</Cell>
 					);
@@ -44,10 +46,8 @@ function Example({ brand }) {
 							<Cell key={align} css={{ justifyContent: 'flex-start' }}>
 								<Symbol align={align} css={{ border: `1px dashed ${COLORS.border}` }} />
 								<Name>
-									<code>
-										&lt;{component}
-										{align && ` align="${align}"`}&nbsp;/&gt;
-									</code>
+									<code>{`<${component} align="${align}"\u00A0/>`}</code>
+									<div css={{ color: COLORS.muted }}>“{Symbol.defaultProps.assistiveText}”</div>
 								</Name>
 							</Cell>
 						);
@@ -64,10 +64,8 @@ function Example({ brand }) {
 							<Cell key={align} css={{ justifyContent: 'flex-start' }}>
 								<Symbol align={align} css={{ border: `1px dashed ${COLORS.border}` }} />
 								<Name>
-									<code>
-										&lt;{component}
-										{align && ` align="${align}"`}&nbsp;/&gt;
-									</code>
+									<code>{`<${component} align="${align}"\u00A0/>`}</code>
+									<div css={{ color: COLORS.muted }}>“{Symbol.defaultProps.assistiveText}”</div>
 								</Name>
 							</Cell>
 						);

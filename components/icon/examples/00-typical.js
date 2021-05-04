@@ -10,7 +10,9 @@ function Example({ brand }) {
 			<Grid css={{ justifyItems: 'start' }}>
 				<Cell>
 					<HouseIcon />
-					<Name>{`<HouseIcon\u00A0/>`}</Name>
+					<Name>
+						<code>{`<HouseIcon\u00A0/>`}</code>
+					</Name>
 				</Cell>
 			</Grid>
 		</GEL>
