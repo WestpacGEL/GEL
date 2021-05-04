@@ -11,7 +11,9 @@ function Example({ brand }) {
 			<Grid css={{ justifyItems: 'start' }}>
 				<Cell>
 					<FavouriteIcon assistiveText="Love heart" />
-					<Name>{`<FavouriteIcon assistiveText="Love heart"\u00A0/>`}</Name>
+					<Name>
+						<code>{`<FavouriteIcon assistiveText="Love heart"\u00A0/>`}</code>
+					</Name>
 				</Cell>
 			</Grid>
 		</GEL>
