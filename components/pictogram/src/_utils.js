@@ -54,15 +54,15 @@ export const getColors = (mode) => {
 		},
 		RAMS: {
 			dark: {
-				outline: COLORS.hero,
-				highlight: COLORS.hero,
+				outline: COLORS.primary,
+				highlight: COLORS.primary,
 			},
 			light: {
 				outline: '#fff',
 				highlight: '#fff',
 			},
 			duo: {
-				outline: COLORS.hero,
+				outline: COLORS.primary,
 				highlight: COLORS.pop,
 			},
 		},
