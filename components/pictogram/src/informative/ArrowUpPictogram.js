@@ -25,7 +25,7 @@ ArrowUpPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Arrow pointing up',
+	assistiveText: 'Arrow up',
 	copyrightYear: '2021',
 };
 ArrowUpPictogram.propTypes = propTypes;

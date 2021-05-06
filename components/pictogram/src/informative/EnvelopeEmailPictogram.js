@@ -2,11 +2,11 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { propTypes, defaultProps, Pictogram } from '../Pictogram';
 
-export const EnvelopePictogram = ({ mode, ...rest }) => {
+export const EnvelopeEmailPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="EnvelopePictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="EnvelopeEmailPictogram" mode={mode} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -21,11 +21,11 @@ export const EnvelopePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-EnvelopePictogram.defaultProps = {
+EnvelopeEmailPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Envelope',
+	assistiveText: 'Email envelope',
 	copyrightYear: '2020',
 };
-EnvelopePictogram.propTypes = propTypes;
+EnvelopeEmailPictogram.propTypes = propTypes;

@@ -36,7 +36,7 @@ TaxPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Tax',
+	assistiveText: 'Tax document',
 	copyrightYear: '2021',
 };
 TaxPictogram.propTypes = propTypes;
