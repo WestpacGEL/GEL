@@ -46,9 +46,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 
 		// Remove the margin in Firefox and Safari.
 		// select, optgroup:
-		'&, optgroup': {
-			margin: 0,
-		},
+		margin: 0,
 
 		// Remove the inheritance of text transform in Firefox.
 		// select:
@@ -59,6 +57,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 			fontFamily: 'inherit',
 			fontSize: 'inherit', //edited
 			lineHeight: 'inherit', //edited
+			margin: 0, //added (see above), above selector split due to style merge issues with input-group (select)
 		},
 		// =========
 
