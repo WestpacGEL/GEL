@@ -99,6 +99,7 @@ const accordionBtnStyles = (_, { look, hidden, first, last, closed }) => {
 		padding: `0.8125rem ${SPACING(3)}`,
 		border: `1px solid ${COLORS.border}`,
 		borderBottomWidth: !last && closed && 0, //reset
+		borderRadius: 0,
 		textAlign: 'left',
 		appearance: 'none',
 		cursor: 'pointer',

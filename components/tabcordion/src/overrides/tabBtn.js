@@ -96,6 +96,7 @@ const tabBtnStyles = (_, { look, justify, selected }) => {
 		flex: justify ? 1 : 0,
 		marginRight: '0.125rem',
 		padding: `${SPACING(2)} ${SPACING(3)}`,
+		borderRadius: 0,
 		textAlign: 'left',
 		textDecoration: 'none',
 		transition: 'background 0.3s ease',
