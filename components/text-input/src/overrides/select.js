@@ -44,9 +44,13 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		// Normalize
 		// =========
 
-		// Remove the margin in Firefox and Safari.
-		// select, optgroup:
-		margin: 0,
+		// 1. Change the font styles in all browsers.
+		// 2. Remove the margin in Firefox and Safari.
+		// button, input, optgroup, select, textarea:
+		fontFamily: 'inherit', // 1
+		fontSize: '100%', // 1
+		lineHeight: 1.15, // 1
+		margin: 0, // 2
 
 		// Remove the inheritance of text transform in Firefox.
 		// select:
