@@ -175,19 +175,26 @@ const buttonStyles = (_, { tag, type, look, size, soft, block, justify, disabled
 	return mq({
 		// Normalize
 		// ==========
-		// 1. Remove the margin in Firefox and Safari.
-		// 2. Show the overflow in IE.
+
+		// 1. Change the font styles in all browsers.
+		// 2. Remove the margin in Firefox and Safari.
+		// button, input, optgroup, select, textarea:
+		...((tag === 'button' || tag === 'input') && {
+			fontFamily: 'inherit', // 1
+			fontSize: '100%', // 1
+			lineHeight: 1.15, // 1
+			margin: 0, // 2
+		}),
+
+		// Show the overflow in IE ('button' and 'input) and Edge ('input').
 		// button, input:
 		...((tag === 'button' || tag === 'input') && {
-			margin: 0, // 1
-			overflow: 'visible', // 2
+			overflow: 'visible',
 		}),
 
 		// Remove the inheritance of text transform in Edge, Firefox, and IE.
-		// button:
-		...(tag === 'button' && {
-			textTransform: 'none',
-		}),
+		// button, select:
+		...(tag === 'button' && { textTransform: 'none' }),
 
 		// Correct the inability to style clickable types in iOS and Safari.
 		// button, [type='button'], [type='reset'], [type='submit']:

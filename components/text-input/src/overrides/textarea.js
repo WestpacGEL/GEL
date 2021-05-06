@@ -39,11 +39,17 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		// Normalize
 		// =========
 
-		// 1. Remove the margin in Firefox and Safari.
-		// 2. Remove the default vertical scrollbar in IE 10+.
+		// 1. Change the font styles in all browsers.
+		// 2. Remove the margin in Firefox and Safari.
+		// button, input, optgroup, select, textarea:
+		fontFamily: 'inherit', // 1
+		fontSize: '100%', // 1
+		lineHeight: 1.15, // 1
+		margin: 0, // 2
+
+		// Remove the default vertical scrollbar in IE 10+.
 		// textarea:
-		margin: 0, // 1
-		overflow: 'auto', // 2
+		overflow: 'auto',
 		// =========
 
 		label: getLabel('textarea'),

@@ -9,10 +9,18 @@ const listGroupStyles = () => {
 	const { COLORS } = useBrand();
 
 	return {
+		label: 'listGroup',
 		display: 'inline-block',
 		border: `1px solid ${COLORS.border}`,
 		borderBottom: 0,
 		borderRadius: '0.1875rem',
+
+		// Override `<List />` styling
+		'> li': {
+			margin: 0,
+			padding: '0.75rem',
+			position: 'static',
+		},
 
 		'@media print': {
 			borderColor: '#000',
@@ -28,9 +36,7 @@ const listGroupAttributes = () => {
 			Item: {
 				styles: (styles) => ({
 					...styles,
-					margin: 0,
 					borderBottom: `1px solid ${COLORS.border}`,
-					padding: '0.75rem',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'space-between',
