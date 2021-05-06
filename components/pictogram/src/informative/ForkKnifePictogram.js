@@ -2,11 +2,11 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { propTypes, defaultProps, Pictogram } from '../Pictogram';
 
-export const FoodForkKnifePictogram = ({ mode, ...rest }) => {
+export const ForkKnifePictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="FoodForkKnifePictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="ForkKnifePictogram" mode={mode} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -21,11 +21,11 @@ export const FoodForkKnifePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-FoodForkKnifePictogram.defaultProps = {
+ForkKnifePictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Fork and knife',
 	copyrightYear: '2021',
 };
-FoodForkKnifePictogram.propTypes = propTypes;
+ForkKnifePictogram.propTypes = propTypes;
