@@ -63,6 +63,7 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 		lineHeight: 1.15,
 		display: 'inline-block',
 		border: `1px solid ${active ? COLORS.hero : COLORS.border}`,
+		borderRadius: 0,
 		backgroundColor: active ? COLORS.hero : '#fff',
 		padding: '0.5625rem 0.75rem',
 		fontSize: '0.875rem',
