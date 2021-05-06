@@ -218,6 +218,7 @@ const buttonStyles = (_, { tag, type, look, size, soft, block, justify, disabled
 		cursor: 'pointer',
 		justifyContent: justify ? 'space-between' : 'center', //horizontal
 		lineHeight: 1.5,
+		borderRadius: 0,
 		textAlign: 'center',
 		textDecoration: 'none',
 		touchAction: 'manipulation',
