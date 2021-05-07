@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/table",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Styling for tables, including two visual styles and row/cell highlighting, used for displaying tabular data",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/table",
@@ -77,8 +77,8 @@
 	"module": "dist/table.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/body": "^1.2.0",
-		"@westpac/core": "^1.1.0",
+		"@westpac/body": "^1.4.0",
+		"@westpac/core": "^2.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
