@@ -1,5 +1,13 @@
 # @westpac/core
 
+## 2.0.0
+
+### Major Changes
+
+- 6a9ef63b: - Remove .GEL parent class specificity solution
+  - Normalize CSS applied to components directly as needed
+  - Normalize.css available an opt-in via boolean prop on `<GEL />`, applied at global document scope if enabled
+
 ## 1.1.0
 
 ### Minor Changes

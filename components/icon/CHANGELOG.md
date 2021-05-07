@@ -1,5 +1,12 @@
 # @westpac/icon
 
+## 1.3.1
+
+### Patch Changes
+
+- Updated dependencies [6a9ef63b]
+  - @westpac/core@2.0.0
+
 ## 1.3.0
 
 ### Minor Changes
