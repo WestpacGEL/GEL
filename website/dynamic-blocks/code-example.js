@@ -139,6 +139,7 @@ export const CodeExample = {
 		if (typeof window === 'undefined') {
 			return <p>Loading...</p>;
 		}
+		console.log('refresh');
 		const mq = useMediaQuery();
 		const { SPACING } = useBrand();
 		const loadCodeBlock = codeExamples[codeExample];
