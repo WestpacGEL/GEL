@@ -80,7 +80,7 @@ export { ShopPictogram } from './informative/ShopPictogram';
 export { ShoppingPictogram } from './informative/ShoppingPictogram';
 export { StarPictogram } from './informative/StarPictogram';
 export { StopwatchPictogram } from './informative/StopwatchPictogram';
-export { TaxPictogram } from './informative/TaxPictogram';
+export { TaxDocumentPictogram } from './informative/TaxDocumentPictogram';
 export { TelephoneCallPictogram } from './informative/TelephoneCallPictogram';
 export { ThumbsUpPictogram } from './informative/ThumbsUpPictogram';
 export { TickPictogram } from './informative/TickPictogram';
