@@ -1,5 +1,12 @@
 # @westpac/label
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [6a9ef63b]
+  - @westpac/core@2.0.0
+
 ## 1.0.0
 
 ### Major Changes

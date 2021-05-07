@@ -1,5 +1,24 @@
 # @westpac/text-input
 
+## 1.1.0
+
+### Minor Changes
+
+- 8058c8c3: Add Normalize styling
+- 0f2587f5: - Update TextInput, Select and Textarea inputs to default display styling (inline-block), previously block
+  - Add new TextInputWithButton component; allows icon button on the RHS within text inputs (for PasswordInput with reveal toggle)
+  - Add @westpac/button dependency
+  - Simplify styling implementation and config between components, maxWidth and height calcs etc.
+
+### Patch Changes
+
+- Updated dependencies [8058c8c3]
+- Updated dependencies [6a9ef63b]
+- Updated dependencies [0b22b4a0]
+- Updated dependencies [d27d24ca]
+  - @westpac/button@1.2.0
+  - @westpac/core@2.0.0
+
 ## 1.0.0
 
 ### Major Changes
