@@ -35,7 +35,7 @@ export function AllStyles({ brand }) {
 		},
 	};
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			<Table>
 				<Caption>Table caption</Caption>
 				<Thead>
@@ -226,7 +226,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Default table',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Table>
 						<Caption>Table caption</Caption>
 						<Thead>
@@ -277,7 +277,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Striped table',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Table striped>
 						<Caption>Table caption</Caption>
 						<Thead>
@@ -326,7 +326,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Bordered table',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Table bordered>
 						<Caption>Table caption</Caption>
 						<Thead>
@@ -375,7 +375,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Bordered and striped table',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Table bordered striped>
 						<Caption>Table caption</Caption>
 						<Thead>
@@ -426,7 +426,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Table with highlights',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Table>
 						<Caption>
 							Table caption this table width is: <em>(100%)</em>
@@ -495,7 +495,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Bordered table with highlights',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Table bordered>
 						<Caption>
 							Table caption this table width is: <em>(100%)</em>
@@ -564,7 +564,7 @@ export function Docs({ brand }) {
 		{
 			heading: 'Bordered and striped table with highlights',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<Table bordered striped>
 						<Caption>
 							Table caption this table width is: <em>(100%)</em>

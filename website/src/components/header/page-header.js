@@ -1,15 +1,14 @@
 /** @jsx jsx */
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { VisuallyHidden } from '@westpac/a11y';
-import throttle from 'lodash.throttle';
 
 import { MenuButton } from './menu-button';
 import HeaderImage from './component-page-header-image';
 import { usePageContext } from '../providers/pageContext';
-import { scrollMap, brandHeaderStyling } from '../_utils';
+import { brandHeaderStyling } from '../_utils';
 
 const GridIndicator = () => {
 	const mq = useMediaQuery();
@@ -64,53 +63,88 @@ const GridIndicator = () => {
 	);
 };
 
-const PageHeaderHeading = ({ hasScrolledLarge, ...rest }) => {
-	const { BRAND } = useBrand();
+const PageHeaderHeading = (props) => {
+	const { BRAND, LAYOUT, PACKS } = useBrand();
 
 	return BRAND.code === 'WBC' ? (
-		<BrandHeading tag="h1" size={[7, null, !hasScrolledLarge ? 2 : null]} uppercase {...rest} />
+		<BrandHeading
+			tag="h1"
+			size={7}
+			uppercase
+			overrides={{
+				BrandHeading: {
+					styles: (styles) => ({
+						...styles,
+
+						[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+							fontSize: PACKS.typeScale.brandFont[2].fontSize,
+
+							'body.hasScrolledLarge &': {
+								fontSize: PACKS.typeScale.brandFont[7].fontSize,
+							},
+						},
+					}),
+				},
+			}}
+			{...props}
+		/>
 	) : (
-		<Heading tag="h1" size={[8, null, !hasScrolledLarge ? 3 : null]} {...rest} />
+		<Heading
+			tag="h1"
+			size={8}
+			overrides={{
+				Heading: {
+					styles: (styles) => ({
+						...styles,
+
+						[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+							fontSize: PACKS.typeScale.bodyFont[3].fontSize,
+
+							'body.hasScrolledLarge &': {
+								fontSize: PACKS.typeScale.bodyFont[8].fontSize,
+							},
+						},
+					}),
+				},
+			}}
+			{...props}
+		/>
 	);
 };
 
-const PageHeader = ({ name }) => {
-	const { COLORS, BRAND, SPACING } = useBrand();
+const PageHeader = ({ name, ...rest }) => {
+	const { COLORS, BRAND, SPACING, LAYOUT } = useBrand();
 	const mq = useMediaQuery();
-	const [hasScrolledSmall, setHasScrolledSmall] = useState(false);
-	const [hasScrolledLarge, setHasScrolledLarge] = useState(false);
-	const header = useRef(null);
-
-	useEffect(() => {
-		const setHeader = () => {
-			const scroll = window.scrollY;
-
-			setHasScrolledSmall(scroll > scrollMap.small);
-			setHasScrolledLarge(scroll >= scrollMap.large);
-		};
-		setHeader();
-
-		const scrollHandler = throttle(setHeader, 10);
-
-		window.addEventListener('scroll', scrollHandler);
-		return () => {
-			window.removeEventListener('scroll', scrollHandler);
-		};
-	}, []);
 
 	return (
 		<header
-			ref={header}
-			css={mq({
-				flex: 'none',
-				position: 'sticky',
-				top: [0, null, -162], // 228 - 66 = height to stick
-				zIndex: 5,
-				display: 'flex',
-				height: [66, null, 228],
-				overflow: 'hidden',
-				...brandHeaderStyling[BRAND.code](COLORS),
-			})}
+			css={[
+				mq({
+					flex: 'none',
+					position: 'sticky',
+					top: [0, null, -162], // 228 - 66 = height to stick
+					zIndex: 5,
+					display: 'flex',
+					height: [66, null, 228],
+					overflow: 'hidden',
+					...brandHeaderStyling[BRAND.code](COLORS),
+				})[0],
+				{
+					transition: 'box-shadow 0.2s ease',
+
+					[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
+						'body.hasScrolledSmall &': {
+							boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+						},
+					},
+					[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+						'body.hasScrolledLarge &': {
+							boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+						},
+					},
+				},
+			]}
+			{...rest}
 		>
 			<HeaderImage brand={BRAND} />
 			<div
@@ -132,25 +166,35 @@ const PageHeader = ({ name }) => {
 					css={mq({
 						display: ['flex', null],
 						alignItems: ['center', null],
-						opacity: [null, null, hasScrolledSmall && !hasScrolledLarge ? 0 : 1],
-						marginLeft: [
-							SPACING(8),
-							null,
-							!hasScrolledLarge ? SPACING(6) : SPACING(10),
-							null,
-							!hasScrolledLarge ? SPACING(6) : SPACING(4),
-						],
-						marginBottom: [null, null, !hasScrolledLarge && SPACING(7)],
+						marginLeft: SPACING(8),
 						height: [66, null],
-						transition: [
-							null,
-							null,
-							!(hasScrolledSmall && !hasScrolledLarge) && 'opacity 0.2s ease',
-						],
 						willChange: 'opacity',
+
+						[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
+							marginLeft: SPACING(6),
+							marginBottom: SPACING(7),
+
+							'body.hasScrolledSmall &': {
+								marginLeft: SPACING(6),
+								opacity: 0,
+							},
+							'body.hasScrolledLarge &': {
+								marginLeft: SPACING(10),
+								marginBottom: 0,
+								opacity: 1,
+								transition: 'opacity 0.2s ease',
+							},
+						},
+						[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
+							marginLeft: SPACING(6),
+
+							'body.hasScrolledLarge &': {
+								marginLeft: SPACING(4),
+							},
+						},
 					})}
 				>
-					<PageHeaderHeading hasScrolledLarge={hasScrolledLarge}>{name}</PageHeaderHeading>
+					<PageHeaderHeading>{name}</PageHeaderHeading>
 				</div>
 			</div>
 			<GridIndicator />

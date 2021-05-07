@@ -61,6 +61,33 @@ const accordionBtnStyles = (_, { look, hidden, first, last, closed }) => {
 	};
 
 	return {
+		// Normalize
+		// ==========
+
+		// 1. Change the font styles in all browsers.
+		// 2. Remove the margin in Firefox and Safari.
+		// button, input, optgroup, select, textarea:
+		fontFamily: 'inherit', // 1
+		fontSize: '100%', // 1
+		lineHeight: 1.15, // 1
+		margin: 0, // 2
+
+		// Show the overflow in IE
+		// button, input:
+		overflow: 'visible',
+
+		// Remove the inheritance of text transform in Edge, Firefox, and IE.
+		// button, select:
+		textTransform: 'none',
+
+		// Remove the inner border and padding in Firefox.
+		// button::-moz-focus-inner:
+		'&::-moz-focus-inner': {
+			borderStyle: 'none',
+			padding: 0,
+		},
+		// =========
+
 		label: getLabel('tabcordion-accordionBtn'),
 		display: 'flex',
 		position: 'relative',
@@ -72,8 +99,12 @@ const accordionBtnStyles = (_, { look, hidden, first, last, closed }) => {
 		padding: `0.8125rem ${SPACING(3)}`,
 		border: `1px solid ${COLORS.border}`,
 		borderBottomWidth: !last && closed && 0, //reset
+		borderRadius: 0,
 		textAlign: 'left',
+		appearance: 'none',
 		cursor: 'pointer',
+		touchAction: 'manipulation',
+		userSelect: 'none',
 		...PACKS.typeScale.bodyFont[9],
 		...styleMap[look],
 	};

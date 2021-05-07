@@ -31,18 +31,48 @@ export const groupButtonStyles = (_, { complete, active }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	return {
+		// Normalize
+		// ==========
+
+		// 1. Change the font styles in all browsers.
+		// 2. Remove the margin in Firefox and Safari.
+		// button, input, optgroup, select, textarea:
+		fontFamily: 'inherit', // 1
+		fontSize: '100%', // 1
+		lineHeight: 1.15, // 1
+		margin: 0, // 2
+
+		// Show the overflow in IE
+		// button, input:
+		overflow: 'visible',
+
+		// Remove the inheritance of text transform in Edge, Firefox, and IE.
+		// button, select:
+		textTransform: 'none',
+
+		// Remove the inner border and padding in Firefox.
+		// button::-moz-focus-inner:
+		'&::-moz-focus-inner': {
+			borderStyle: 'none',
+			padding: 0,
+		},
+		// =========
+
 		label: 'progressRope-groupBtn',
+		boxSizing: 'border-box',
 		position: 'relative',
-		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		fontSize: '1rem',
 		lineHeight: '1.428571429', //`<body>` line-height
 		textAlign: 'left',
+		padding: '0.375rem 1.875rem 1.625rem 3.5rem',
 		display: 'block',
 		width: '100%',
 		border: 0,
 		background: 'none',
-		touchAction: 'manipulation',
+		appearance: 'none',
 		cursor: 'pointer',
+		touchAction: 'manipulation',
+		userSelect: 'none',
 		color: active ? COLORS.text : COLORS.tints.muted70, //set default `COLORS.text` because this is a `<button />`
 
 		':focus': {

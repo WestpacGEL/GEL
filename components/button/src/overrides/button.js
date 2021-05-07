@@ -28,7 +28,7 @@ const BlenderButton = forwardRef(({ state: { tag: Tag }, className, ...rest }, r
 // Styles
 // ==============================
 
-const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
+const buttonStyles = (_, { tag, type, look, size, soft, block, justify, disabled }) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
 
@@ -45,6 +45,7 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 		key = atob('cHJpZGU=');
 	}
 
+	// Note: backgroundColor values use to increase specificity against <Body />'s `a { background-color: transparent; }`
 	const styleMap = {
 		primary: {
 			standardCSS: {
@@ -126,7 +127,6 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			standardCSS: {
 				color: COLORS.link,
 				backgroundColor: 'transparent',
-				borderColor: 'transparent',
 				textDecoration: 'underline', //a11y
 
 				':hover, :active, &.active': {
@@ -173,12 +173,52 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 	const blockArr = asArray(block);
 
 	return mq({
+		// Normalize
+		// ==========
+
+		// 1. Change the font styles in all browsers.
+		// 2. Remove the margin in Firefox and Safari.
+		// button, input, optgroup, select, textarea:
+		...((tag === 'button' || tag === 'input') && {
+			fontFamily: 'inherit', // 1
+			fontSize: '100%', // 1
+			lineHeight: 1.15, // 1
+			margin: 0, // 2
+		}),
+
+		// Show the overflow in IE ('button' and 'input) and Edge ('input').
+		// button, input:
+		...((tag === 'button' || tag === 'input') && {
+			overflow: 'visible',
+		}),
+
+		// Remove the inheritance of text transform in Edge, Firefox, and IE.
+		// button, select:
+		...(tag === 'button' && { textTransform: 'none' }),
+
+		// Correct the inability to style clickable types in iOS and Safari.
+		// button, [type='button'], [type='reset'], [type='submit']:
+		...((tag === 'button' || type === 'button' || type === 'reset' || type === 'submit') && {
+			WebkitAppearance: 'button',
+		}),
+
+		// Remove the inner border and padding in Firefox.
+		// button::-moz-focus-inner, [type='button']::-moz-focus-inner, [type='reset']::-moz-focus-inner, [type='submit']::-moz-focus-inner:
+		...((tag === 'button' || type === 'button' || type === 'reset' || type === 'submit') && {
+			'&::-moz-focus-inner': {
+				borderStyle: 'none',
+				padding: 0,
+			},
+		}),
+		// =========
+
 		label: 'button',
 		alignItems: 'center', //vertical
 		appearance: 'none',
 		cursor: 'pointer',
 		justifyContent: justify ? 'space-between' : 'center', //horizontal
 		lineHeight: 1.5,
+		borderRadius: 0,
 		textAlign: 'center',
 		textDecoration: 'none',
 		touchAction: 'manipulation',
@@ -193,11 +233,10 @@ const buttonStyles = (_, { look, size, soft, block, justify, disabled }) => {
 			...TYPE.bodyFont[400],
 			padding: sizeArr.map((s) => s && sizeMap[s].padding),
 			height: sizeArr.map((s) => s && sizeMap[s].height),
-			border: '1px solid transparent',
-			borderRadius: '0.1875rem',
+			border: look !== 'link' ? '1px solid transparent' : 0,
+			borderRadius: look !== 'link' && '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
-
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)

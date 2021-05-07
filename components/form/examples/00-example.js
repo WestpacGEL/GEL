@@ -13,7 +13,7 @@ import {
 	FormLabel,
 	FormSection,
 } from '@westpac/form';
-import { Text } from '@westpac/text-input';
+import { TextInput } from '@westpac/text-input';
 
 function Example({ brand }) {
 	return (
@@ -32,14 +32,14 @@ function Example({ brand }) {
 						<FormLabel htmlFor="example-default-1">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<Text name="example-default-1" />
+						<TextInput name="example-default-1" />
 					</FormGroup>
 
 					<FormGroup>
 						<FormLabel htmlFor="example-default-2">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<Text name="example-default-2" />
+						<TextInput name="example-default-2" />
 					</FormGroup>
 				</FormSection>
 
@@ -48,7 +48,7 @@ function Example({ brand }) {
 						<FormLabel htmlFor="example-default-3">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<Text name="example-default-3" />
+						<TextInput name="example-default-3" />
 					</FormGroup>
 
 					<FormGroup>
@@ -59,10 +59,10 @@ function Example({ brand }) {
 							/>
 							<InputCluster>
 								<Item>
-									<Text name="example-default-4-line1" />
+									<TextInput name="example-default-4-line1" />
 								</Item>
 								<Item>
-									<Text name="example-default-4-line2" />
+									<TextInput name="example-default-4-line2" />
 								</Item>
 							</InputCluster>
 						</Fieldset>
@@ -86,14 +86,14 @@ function Example({ brand }) {
 						<FormLabel htmlFor="example-large-1">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<Text name="example-large-1" />
+						<TextInput name="example-large-1" />
 					</FormGroup>
 
 					<FormGroup>
 						<FormLabel htmlFor="example-large-2">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<Text name="example-large-2" />
+						<TextInput name="example-large-2" />
 					</FormGroup>
 				</FormSection>
 
@@ -102,7 +102,7 @@ function Example({ brand }) {
 						<FormLabel htmlFor="example-large-3">This is a label</FormLabel>
 						<Hint>This is a hint</Hint>
 						<ErrorMessage message="This is an error message" />
-						<Text name="example-large-3" />
+						<TextInput name="example-large-3" />
 					</FormGroup>
 
 					<FormGroup>
@@ -113,10 +113,10 @@ function Example({ brand }) {
 							/>
 							<InputCluster>
 								<Item>
-									<Text name="example-large-4-line1" />
+									<TextInput name="example-large-4-line1" />
 								</Item>
 								<Item>
-									<Text name="example-large-4-line2" />
+									<TextInput name="example-large-4-line2" />
 								</Item>
 							</InputCluster>
 						</Fieldset>

@@ -7,7 +7,7 @@ import { Grid, Cell, Name } from './_util';
 import { brands } from '../../../GEL.json';
 
 function Example({ brand }) {
-	const { BRAND } = useBrand();
+	const { BRAND, COLORS } = useBrand();
 
 	const informative = Object.keys(components).filter(
 		(component) => !Object.keys(brands).some((code) => component.startsWith(code))
@@ -25,7 +25,10 @@ function Example({ brand }) {
 					return (
 						<Cell key={pictogram}>
 							<Pictogram />
-							<Name>{`<${pictogram}\u00A0/>`}</Name>
+							<Name>
+								<code>{`<${pictogram}\u00A0/>`}</code>
+								<div css={{ color: COLORS.muted }}>“{Pictogram.defaultProps.assistiveText}”</div>
+							</Name>
 						</Cell>
 					);
 				})}
@@ -42,7 +45,12 @@ function Example({ brand }) {
 							return (
 								<Cell key={pictogram}>
 									<Pictogram />
-									<Name>{`<${pictogram}\u00A0/>`}</Name>
+									<Name>
+										<code>{`<${pictogram}\u00A0/>`}</code>
+										<div css={{ color: COLORS.muted }}>
+											“{Pictogram.defaultProps.assistiveText}”
+										</div>
+									</Name>
 								</Cell>
 							);
 						})}

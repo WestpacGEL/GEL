@@ -1,12 +1,14 @@
 /** @jsx jsx */
 
-import { GEL, jsx } from '@westpac/core';
+import { GEL, jsx, useBrand } from '@westpac/core';
 import * as components from '@westpac/symbol';
 import { Cell, Grid, Name } from './_utils';
 
 const symbols = Object.keys(components).filter((s) => s.includes('Symbol'));
 
 function Example({ brand }) {
+	const { COLORS } = useBrand();
+
 	return (
 		<GEL brand={brand}>
 			<Grid>
@@ -15,7 +17,10 @@ function Example({ brand }) {
 					return (
 						<Cell key={s}>
 							<Symbol />
-							<Name>{s}</Name>
+							<Name>
+								<code>{`<${s}\u00A0/>`}</code>
+								<div css={{ color: COLORS.muted }}>“{Symbol.defaultProps.assistiveText}”</div>
+							</Name>
 						</Cell>
 					);
 				})}

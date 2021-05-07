@@ -2,6 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Body } from '@westpac/body';
+import { Heading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { List, Item } from '@westpac/list';
 import { AndroidIcon, GithubIcon } from '@westpac/icon';
@@ -31,6 +32,16 @@ function Example({ brand }) {
 				<Button tag="a" look="link">
 					Link
 				</Button>
+				<Heading size={1}>Heading size: 1</Heading>
+				<Heading size={2}>Heading size: 2</Heading>
+				<Heading size={3}>Heading size: 3</Heading>
+				<Heading size={4}>Heading size: 4</Heading>
+				<Heading size={5}>Heading size: 5</Heading>
+				<Heading size={6}>Heading size: 6</Heading>
+				<Heading size={7}>Heading size: 7</Heading>
+				<Heading size={8}>Heading size: 8</Heading>
+				<Heading size={9}>Heading size: 9</Heading>
+				<Heading size={10}>Heading size: 10</Heading>
 				<List look="hero">
 					<Item>Styled bullet list - hero</Item>
 					<Item>Styled bullet list - hero</Item>

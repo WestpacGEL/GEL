@@ -41,7 +41,7 @@ export function AllStyles({ brand }) {
 	};
 
 	return (
-		<GEL brand={overridesWithTokens} noScope>
+		<GEL brand={overridesWithTokens}>
 			<List type="none">
 				<Item>Text</Item>
 			</List>
@@ -93,7 +93,7 @@ export function Docs({ brand }) {
 			heading: 'Bullet lists',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<List type="bullet">{items()}</List>
 				</GEL>
 			),
@@ -101,7 +101,7 @@ export function Docs({ brand }) {
 		...looks.map((look) => ({
 			subheading: titleCase(look),
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<List type="bullet" look={look}>
 						{items()}
 					</List>
@@ -115,7 +115,7 @@ export function Docs({ brand }) {
 			.map((type) => ({
 				heading: `${titleCase(type)} list`,
 				component: () => (
-					<GEL brand={overridesWithTokens} noScope>
+					<GEL brand={overridesWithTokens}>
 						<List type={type} icon={type == 'icon' ? AndroidIcon : undefined}>
 							{items(type)}
 						</List>
@@ -128,7 +128,7 @@ export function Docs({ brand }) {
 			heading: 'List spacing',
 			subheading: 'Default',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<List type="bullet">{items()}</List>
 				</GEL>
 			),
@@ -136,7 +136,7 @@ export function Docs({ brand }) {
 		{
 			subheading: 'Large',
 			component: () => (
-				<GEL brand={overridesWithTokens} noScope>
+				<GEL brand={overridesWithTokens}>
 					<List type="bullet" spacing="large">
 						{items()}
 					</List>
