@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/panel",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Simple containers used to highlight content, available in two styles, with optional footer",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/panel",
@@ -49,16 +49,16 @@
 	"module": "dist/panel.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/body": "^1.2.0",
-		"@westpac/core": "^1.1.0",
-		"@westpac/heading": "^1.0.0",
+		"@westpac/body": "^1.4.0",
+		"@westpac/core": "^2.0.0",
+		"@westpac/heading": "^1.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/table": "^1.0.0",
+		"@westpac/table": "^1.0.1",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

@@ -1,5 +1,19 @@
 # @westpac/input-group
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [8058c8c3]
+- Updated dependencies [6a9ef63b]
+- Updated dependencies [0b22b4a0]
+- Updated dependencies [d27d24ca]
+- Updated dependencies [0f2587f5]
+  - @westpac/button@1.2.0
+  - @westpac/text-input@1.1.0
+  - @westpac/core@2.0.0
+  - @westpac/a11y@1.0.1
+
 ## 1.0.1
 
 ### Patch Changes

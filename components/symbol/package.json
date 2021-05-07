@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/symbol",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Logos and branding graphics for the Westpac Group and other organisations, implemented as SVGs",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/symbol",
@@ -103,7 +103,7 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.1.0",
+		"@westpac/core": "^2.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

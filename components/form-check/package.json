@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/form-check",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Radio and checkbox input elements used to capture simple responses, available in two sizes and layouts, with optional hint text",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/form-check",
@@ -48,16 +48,16 @@
 	"module": "dist/form-check.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/body": "^1.2.0",
-		"@westpac/core": "^1.1.0",
+		"@westpac/body": "^1.4.0",
+		"@westpac/core": "^2.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^16.13.1"
 	},
 	"devDependencies": {
-		"@westpac/alert": "^1.0.0",
-		"@westpac/grid": "^1.0.0",
+		"@westpac/alert": "^1.2.1",
+		"@westpac/grid": "^1.0.1",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"start-server-and-test": "^1.11.0"

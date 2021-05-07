@@ -1,5 +1,16 @@
 # @westpac/progress-bar
 
+## 1.1.0
+
+### Minor Changes
+
+- bd2aa61c: Add ability to hide visual progress text via noLabel prop
+
+### Patch Changes
+
+- Updated dependencies [6a9ef63b]
+  - @westpac/core@2.0.0
+
 ## 1.0.0
 
 ### Major Changes
