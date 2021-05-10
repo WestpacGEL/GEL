@@ -14,6 +14,7 @@ const Text = ({ state: _, ...rest }) => <div {...rest} />;
 
 const textStyles = () => ({
 	label: getLabel('selector-option-text'),
+	flex: 1,
 });
 
 // ==============================
