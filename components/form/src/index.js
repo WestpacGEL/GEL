@@ -10,3 +10,4 @@ export { Hint } from './Hint';
 export { InputCluster } from './InputCluster';
 export { InputClusterItem as Item } from './InputClusterItem';
 export { PasswordInput } from './PasswordInput';
+export { Repeater } from './Repeater';
