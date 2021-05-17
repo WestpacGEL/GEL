@@ -22,7 +22,7 @@ const optionBtnStyles = () => {
 		label: getLabel('selector-option-btn'),
 		display: 'flex',
 		justifyContent: 'space-between',
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		width: '100%',
 		cursor: 'pointer',
 		touchAction: 'manipulation',

@@ -1,5 +1,16 @@
 # @westpac/list
 
+## 1.0.1
+
+### Patch Changes
+
+- 349a4894: Update link list chevron bullet to use link color
+- Updated dependencies [8058c8c3]
+- Updated dependencies [6a9ef63b]
+  - @westpac/body@1.4.0
+  - @westpac/core@2.0.0
+  - @westpac/a11y@1.0.1
+
 ## 1.0.0
 
 ### Major Changes

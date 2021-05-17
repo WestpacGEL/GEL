@@ -2,11 +2,11 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { propTypes, defaultProps, Pictogram } from '../Pictogram';
 
-export const RecreationPictogram = ({ mode, ...rest }) => {
+export const FootballPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="RecreationPictogram" mode={mode} {...rest}>
+		<Pictogram pictogram="FootballPictogram" mode={mode} {...rest}>
 			<g fill="none" fillRule="evenodd">
 				<polygon
 					fill={highlight}
@@ -31,11 +31,11 @@ export const RecreationPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-RecreationPictogram.defaultProps = {
+FootballPictogram.defaultProps = {
 	...defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
-	assistiveText: 'Recreation',
+	assistiveText: 'Football',
 	copyrightYear: '2021',
 };
-RecreationPictogram.propTypes = propTypes;
+FootballPictogram.propTypes = propTypes;

@@ -1,5 +1,18 @@
 # @westpac/pagination
 
+## 1.2.0
+
+### Minor Changes
+
+- 8058c8c3: Add Normalize styling
+
+### Patch Changes
+
+- 0b22b4a0: Reset button border-radius
+- Updated dependencies [6a9ef63b]
+  - @westpac/core@2.0.0
+  - @westpac/a11y@1.0.1
+
 ## 1.1.1
 
 ### Patch Changes

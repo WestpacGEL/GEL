@@ -138,7 +138,7 @@ const StickyHeader = () => {
 							fontWeight: 'normal',
 						}}
 					>
-						<strong>GEL</strong> Design System (Beta)
+						<strong>GEL</strong> Design System
 					</h1>
 				</div>
 

@@ -1,5 +1,15 @@
 # @westpac/panel
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [8058c8c3]
+- Updated dependencies [6a9ef63b]
+  - @westpac/body@1.4.0
+  - @westpac/core@2.0.0
+  - @westpac/heading@1.0.1
+
 ## 1.0.0
 
 ### Major Changes

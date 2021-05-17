@@ -553,7 +553,7 @@ const SectionDevelopers = () => {
 
 	const [isLoading, setLoading] = useState(false);
 
-	const hiddenPkgs = [...(BRAND.code !== 'WBC' ? ['pictogram'] : [])];
+	const hiddenPkgs = [...(BRAND.code !== 'WBC' ? ['pictogram'] : []), 'selector', 'collapsible'];
 
 	const supportedPkgs = Object.keys(GEL.components).filter(
 		(name) =>

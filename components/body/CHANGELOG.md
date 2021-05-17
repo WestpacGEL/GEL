@@ -1,5 +1,16 @@
 # @westpac/body
 
+## 1.4.0
+
+### Minor Changes
+
+- 8058c8c3: Add Normalize styling
+
+### Patch Changes
+
+- Updated dependencies [6a9ef63b]
+  - @westpac/core@2.0.0
+
 ## 1.3.0
 
 ### Minor Changes

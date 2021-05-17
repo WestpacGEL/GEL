@@ -45,7 +45,12 @@ function Example({ brand }) {
 							return (
 								<Cell key={pictogram}>
 									<Pictogram />
-									<Name>{`<${pictogram}\u00A0/>`}</Name>
+									<Name>
+										<code>{`<${pictogram}\u00A0/>`}</code>
+										<div css={{ color: COLORS.muted }}>
+											“{Pictogram.defaultProps.assistiveText}”
+										</div>
+									</Name>
 								</Cell>
 							);
 						})}
