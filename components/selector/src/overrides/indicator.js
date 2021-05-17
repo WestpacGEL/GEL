@@ -46,6 +46,7 @@ const indicatorStyles = (_, { type, nextIndicator }) => {
 			justifyContent: 'center',
 			width: '36px', //xlarge icon size
 			height: '36px', //xlarge icon size
+			flex: 'none',
 
 			'input:checked + div &::after': {
 				content: '""',

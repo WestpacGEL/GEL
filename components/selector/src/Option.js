@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import { defaultOptionBtn } from './overrides/optionBtn';
 import { defaultOption } from './overrides/option';
-import { defaultContent } from './overrides/content';
 import { defaultPictogram } from './overrides/pictogram';
 import { defaultIcon } from './overrides/icon';
 import { defaultText } from './overrides/text';
@@ -60,7 +59,6 @@ export const Option = ({
 	const defaultOverrides = {
 		Option: defaultOption,
 		OptionBtn: defaultOptionBtn,
-		Content: defaultContent,
 		Pictogram: defaultPictogram,
 		Icon: defaultIcon,
 		Text: defaultText,
@@ -96,7 +94,6 @@ export const Option = ({
 	const {
 		Option: { component: Option, styles: optionStyles, attributes: optionAttributes },
 		OptionBtn: { component: OptionBtn, styles: optionBtnStyles, attributes: optionBtnAttributes },
-		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
 		Pictogram: { component: Pictogram, styles: pictogramStyles, attributes: pictogramAttributes },
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 		Text: { component: Text, styles: textStyles, attributes: textAttributes },
@@ -162,28 +159,26 @@ export const Option = ({
 				}}
 			/>
 			<OptionBtn state={state} {...optionBtnAttributes(state)} css={optionBtnStyles(state)}>
-				<Content state={state} {...contentAttributes(state)} css={contentStyles(state)}>
-					{pictogram ? (
-						<Pictogram
-							pictogram={pictogram}
-							state={state}
-							{...pictogramAttributes(state)}
-							css={pictogramStyles(state)}
-						/>
-					) : icon ? (
-						<Icon icon={icon} state={state} {...iconAttributes(state)} css={iconStyles(state)} />
-					) : null}
-					<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
-						<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
-							{children}
-						</Label>
-						{hint && (
-							<Hint state={state} {...hintAttributes(state)} css={hintStyles(state)}>
-								{hint}
-							</Hint>
-						)}
-					</Text>
-				</Content>
+				{pictogram ? (
+					<Pictogram
+						pictogram={pictogram}
+						state={state}
+						{...pictogramAttributes(state)}
+						css={pictogramStyles(state)}
+					/>
+				) : icon ? (
+					<Icon icon={icon} state={state} {...iconAttributes(state)} css={iconStyles(state)} />
+				) : null}
+				<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
+					<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
+						{children}
+					</Label>
+					{hint && (
+						<Hint state={state} {...hintAttributes(state)} css={hintStyles(state)}>
+							{hint}
+						</Hint>
+					)}
+				</Text>
 				<Indicator state={state} {...indicatorAttributes(state)} css={indicatorStyles(state)} />
 			</OptionBtn>
 		</Option>
@@ -262,11 +257,6 @@ Option.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Option: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Content: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
