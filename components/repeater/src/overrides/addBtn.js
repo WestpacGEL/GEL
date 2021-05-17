@@ -7,18 +7,19 @@ import { Button } from '@westpac/button';
 // ==============================
 // Component
 // ==============================
+
 const Icon = (props) => {
 	const { COLORS } = useBrand();
 	return <AddCircleIcon {...props} color={COLORS.primary} />;
 };
 
-const AddButton = ({ state: _, ...rest }) => <Button look="link" iconAfter={Icon} {...rest} />;
+const AddBtn = ({ state: _, ...rest }) => <Button look="link" iconAfter={Icon} {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const addButtonStyles = () => {
+const addBtnStyles = () => {
 	const { COLORS } = useBrand();
 	return {
 		label: getLabel('repeater-addButton'),
@@ -37,14 +38,14 @@ const addButtonStyles = () => {
 // Attributes
 // ==============================
 
-const addButtonAttributes = () => null;
+const addBtnAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultRepeaterAddButton = {
-	component: AddButton,
-	styles: addButtonStyles,
-	attributes: addButtonAttributes,
+export const defaultAddBtn = {
+	component: AddBtn,
+	styles: addBtnStyles,
+	attributes: addBtnAttributes,
 };

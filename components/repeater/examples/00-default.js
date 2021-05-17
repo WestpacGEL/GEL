@@ -2,13 +2,13 @@
 
 import { GEL, jsx, useInstanceId } from '@westpac/core';
 import { useState } from 'react';
-import { Repeater } from '@westpac/form';
+import { Repeater } from '@westpac/repeater';
 
-const Test = (props) => {
+const Repeat = (props) => {
 	const [id] = useState(useInstanceId());
 	return (
 		<div id={id} css={{ marginBottom: '2rem' }} {...props}>
-			test
+			Repeater
 		</div>
 	);
 };
@@ -16,7 +16,7 @@ const Test = (props) => {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Repeater component={Test} />
+			<Repeater component={Repeat} />
 		</GEL>
 	);
 }

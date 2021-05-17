@@ -6,30 +6,29 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const RepeaterFooter = ({ state: _, ...rest }) => <div {...rest} />;
+const Item = ({ state: _, ...rest }) => <li {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const repeaterFooterStyles = () => ({
-	label: getLabel('repeater-footer'),
-	display: 'flex',
-	justifyContent: 'space-between',
+const itemStyles = () => ({
+	label: getLabel('repeater-item'),
+	position: 'relative',
 });
 
 // ==============================
 // Attributes
 // ==============================
 
-const repeaterFooterAttributes = () => null;
+const itemAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultRepeaterFooter = {
-	component: RepeaterFooter,
-	styles: repeaterFooterStyles,
-	attributes: repeaterFooterAttributes,
+export const defaultItem = {
+	component: Item,
+	styles: itemStyles,
+	attributes: itemAttributes,
 };

@@ -4,18 +4,17 @@ import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core'
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultRepeaterRemoveButton } from './overrides/repeaterRemoveButton';
-import { defaultRepeaterAddButton } from './overrides/repeaterAddButton';
-import { defaultRepeaterFooter } from './overrides/repeaterFooter';
-import { defaultRepeaterList } from './overrides/repeaterList';
-import { defaultRepeaterItem } from './overrides/repeaterItem';
+import { defaultRemoveBtn } from './overrides/removeBtn';
+import { defaultAddBtn } from './overrides/addBtn';
+import { defaultFooter } from './overrides/footer';
+import { defaultList } from './overrides/list';
+import { defaultItem } from './overrides/item';
 import { defaultRepeater } from './overrides/repeater';
 import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
-// SHOULD PROBABLY PUT THIS INTO ITS OWN COMPONENT !!!!!
 
 export const Repeater = ({
 	component: Component,
@@ -30,18 +29,18 @@ export const Repeater = ({
 
 	const defaultOverrides = {
 		Repeater: defaultRepeater,
-		List: defaultRepeaterList,
-		Item: defaultRepeaterItem,
-		Footer: defaultRepeaterFooter,
-		AddButton: defaultRepeaterAddButton,
-		RemoveButton: defaultRepeaterRemoveButton,
+		List: defaultList,
+		Item: defaultItem,
+		Footer: defaultFooter,
+		AddBtn: defaultAddBtn,
+		RemoveBtn: defaultRemoveBtn,
 	};
 
-	// initial component instance id
 	const [items, setItems] = useState([{ id: useInstanceId() }]);
 
 	const state = {
-		Component,
+		component: Component,
+		addText,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -60,12 +59,8 @@ export const Repeater = ({
 		List: { component: List, styles: listStyles, attributes: listAttributes },
 		Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
 		Footer: { component: Footer, styles: footerStyles, attributes: footerAttributes },
-		AddButton: { component: AddButton, styles: addButtonStyles, attributes: addButtonAttributes },
-		RemoveButton: {
-			component: RemoveButton,
-			styles: removeButtonStyles,
-			attributes: removeButtonAttributes,
-		},
+		AddBtn: { component: AddBtn, styles: addBtnStyles, attributes: addBtnAttributes },
+		RemoveBtn: { component: RemoveBtn, styles: RemoveBtnStyles, attributes: RemoveBtnAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
@@ -82,11 +77,11 @@ export const Repeater = ({
 						>
 							<Component />
 							{items.length > 1 && (
-								<RemoveButton
+								<RemoveBtn
 									onClick={() => handleRemove(item.id)}
 									state={state}
-									{...removeButtonAttributes(state)}
-									css={removeButtonStyles(state)}
+									{...RemoveBtnAttributes(state)}
+									css={RemoveBtnStyles(state)}
 								/>
 							)}
 						</Item>
@@ -94,15 +89,14 @@ export const Repeater = ({
 				})}
 			</List>
 			<Footer state={state} {...footerAttributes(state)} css={footerStyles(state)}>
-				<AddButton
+				<AddBtn
 					onClick={handleAdd}
 					state={state}
-					{...addButtonAttributes(state)}
-					css={addButtonStyles(state)}
+					{...addBtnAttributes(state)}
+					css={addBtnStyles(state)}
 				>
 					{addText}
-				</AddButton>
-				{/* {help && <Help />} */}
+				</AddBtn>
 			</Footer>
 		</Repeater>
 	);
@@ -127,7 +121,32 @@ Repeater.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Badge: PropTypes.shape({
+		Repeater: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		List: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Footer: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		AddBtn: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		RemoveBtn: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

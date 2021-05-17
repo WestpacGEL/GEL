@@ -6,29 +6,31 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const RepeaterItem = ({ state: _, ...rest }) => <li {...rest} />;
+const List = ({ state: _, ...rest }) => <ol {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const repeaterItemStyles = () => ({
-	label: getLabel('repeater-item'),
-	position: 'relative',
+const listStyles = () => ({
+	label: getLabel('repeater-list'),
+	listStyle: 'none',
+	paddingLeft: 0,
+	margin: 0,
 });
 
 // ==============================
 // Attributes
 // ==============================
 
-const repeaterItemAttributes = () => null;
+const listAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultRepeaterItem = {
-	component: RepeaterItem,
-	styles: repeaterItemStyles,
-	attributes: repeaterItemAttributes,
+export const defaultList = {
+	component: List,
+	styles: listStyles,
+	attributes: listAttributes,
 };

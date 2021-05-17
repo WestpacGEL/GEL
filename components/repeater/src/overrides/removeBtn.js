@@ -8,28 +8,28 @@ import { Button } from '@westpac/button';
 // Component
 // ==============================
 const Icon = (props) => {
-	return <RemoveCircleIcon {...props} color="#575f65" />;
+	return <RemoveCircleIcon {...props} />;
 };
 
-const RemoveButton = ({ state: _, ...rest }) => <Button look="link" iconAfter={Icon} {...rest} />;
+const RemoveBtn = ({ state: _, ...rest }) => <Button look="link" iconAfter={Icon} {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const removeButtonStyles = () => {
+const removeBtnStyles = () => {
 	const { COLORS } = useBrand();
 	return {
-		label: getLabel('repeater-removeButton'),
+		label: getLabel('repeater-removeBtn'),
 		height: 'auto',
 		padding: 0,
 		position: 'absolute',
 		top: 0,
 		right: 0,
-
-		// ':hover': {
-		// 	color: COLORS.primary,
-		// },
+		color: '#575f65',
+		':hover': {
+			color: COLORS.primary,
+		},
 	};
 };
 
@@ -37,14 +37,14 @@ const removeButtonStyles = () => {
 // Attributes
 // ==============================
 
-const removeButtonAttributes = () => null;
+const removeBtnAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultRepeaterRemoveButton = {
-	component: RemoveButton,
-	styles: removeButtonStyles,
-	attributes: removeButtonAttributes,
+export const defaultRemoveBtn = {
+	component: RemoveBtn,
+	styles: removeBtnStyles,
+	attributes: removeBtnAttributes,
 };
