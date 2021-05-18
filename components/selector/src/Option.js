@@ -8,7 +8,10 @@ import { defaultOption } from './overrides/option';
 import { defaultPictogram } from './overrides/pictogram';
 import { defaultIcon } from './overrides/icon';
 import { defaultText } from './overrides/text';
+import { defaultLabelWrapper } from './overrides/labelWrapper';
 import { defaultLabel } from './overrides/label';
+import { defaultPrimaryLabel } from './overrides/primaryLabel';
+import { defaultSecondaryLabel } from './overrides/secondaryLabel';
 import { defaultHint } from './overrides/hint';
 import { defaultIndicator } from './overrides/indicator';
 
@@ -23,6 +26,7 @@ export const Option = ({
 	value,
 	pictogram,
 	icon,
+	secondaryLabel,
 	checked: checkedProp,
 	hint,
 	className,
@@ -62,7 +66,10 @@ export const Option = ({
 		Pictogram: defaultPictogram,
 		Icon: defaultIcon,
 		Text: defaultText,
+		LabelWrapper: defaultLabelWrapper,
 		Label: defaultLabel,
+		PrimaryLabel: defaultPrimaryLabel,
+		SecondaryLabel: defaultSecondaryLabel,
 		Hint: defaultHint,
 		Indicator: defaultIndicator,
 	};
@@ -75,6 +82,7 @@ export const Option = ({
 		value,
 		pictogram,
 		icon,
+		secondaryLabel,
 		nextIndicator,
 		iconSize,
 		pictogramWidth,
@@ -97,7 +105,22 @@ export const Option = ({
 		Pictogram: { component: Pictogram, styles: pictogramStyles, attributes: pictogramAttributes },
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 		Text: { component: Text, styles: textStyles, attributes: textAttributes },
+		LabelWrapper: {
+			component: LabelWrapper,
+			styles: labelWrapperStyles,
+			attributes: labelWrapperAttributes,
+		},
 		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+		PrimaryLabel: {
+			component: PrimaryLabel,
+			styles: primaryLabelStyles,
+			attributes: primaryLabelAttributes,
+		},
+		SecondaryLabel: {
+			component: SecondaryLabel,
+			styles: secondaryLabelStyles,
+			attributes: secondaryLabelAttributes,
+		},
 		Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
 		Indicator: { component: Indicator, styles: indicatorStyles, attributes: indicatorAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
@@ -170,16 +193,33 @@ export const Option = ({
 					<Icon icon={icon} state={state} {...iconAttributes(state)} css={iconStyles(state)} />
 				) : null}
 				<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
-					<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
-						{children}
-					</Label>
+					<LabelWrapper state={state} {...labelWrapperAttributes} css={labelWrapperStyles(state)}>
+						<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
+							<PrimaryLabel
+								state={state}
+								{...primaryLabelAttributes(state)}
+								css={primaryLabelStyles(state)}
+							>
+								{children}
+							</PrimaryLabel>
+							{secondaryLabel && (
+								<SecondaryLabel
+									state={state}
+									{...secondaryLabelAttributes(state)}
+									css={secondaryLabelStyles(state)}
+								>
+									{secondaryLabel}
+								</SecondaryLabel>
+							)}
+						</Label>
+						<Indicator state={state} {...indicatorAttributes(state)} css={indicatorStyles(state)} />
+					</LabelWrapper>
 					{hint && (
 						<Hint state={state} {...hintAttributes(state)} css={hintStyles(state)}>
 							{hint}
 						</Hint>
 					)}
 				</Text>
-				<Indicator state={state} {...indicatorAttributes(state)} css={indicatorStyles(state)} />
 			</OptionBtn>
 		</Option>
 	);
@@ -209,6 +249,11 @@ Option.propTypes = {
 	 * Icon graphic
 	 */
 	icon: PropTypes.func,
+
+	/**
+	 * Secondary label text
+	 */
+	secondaryLabel: PropTypes.string,
 
 	/**
 	 * Check the Selector option
@@ -276,7 +321,22 @@ Option.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
+		LabelWrapper: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		PrimaryLabel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		SecondaryLabel: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

@@ -9,7 +9,7 @@ import { ArrowRightIcon } from '@westpac/icon';
 
 const Indicator = ({ state: { type, nextIndicator }, ...rest }) =>
 	type === 'radio' && nextIndicator ? (
-		<ArrowRightIcon size="large" assistiveText={null} {...rest} />
+		<ArrowRightIcon size="medium" assistiveText={null} {...rest} />
 	) : (
 		<div {...rest} />
 	);
