@@ -17,6 +17,8 @@ const labelStyles = () => {
 
 	return {
 		label: getLabel('selector-option-label'),
+		flex: 1,
+		display: 'flex',
 		...PACKS.typeScale.bodyFont[8],
 		...TYPE.bodyFont[500],
 	};
