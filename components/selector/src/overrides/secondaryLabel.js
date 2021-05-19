@@ -21,7 +21,7 @@ const secondaryLabelStyles = () => {
 		boxSizing: 'border-box',
 		width: '40%',
 		textAlign: 'right',
-		padding: `0 ${SPACING(1)}`,
+		margin: `0 ${SPACING(1)}`,
 	};
 };
 

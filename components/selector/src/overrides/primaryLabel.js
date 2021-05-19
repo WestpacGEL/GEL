@@ -20,7 +20,7 @@ const primaryLabelStyles = (_, { secondaryLabel }) => {
 		display: 'inline-block',
 		boxSizing: 'border-box',
 		...(secondaryLabel && { width: '60%' }),
-		paddingRight: SPACING(1),
+		marginRight: SPACING(1),
 	};
 };
 
