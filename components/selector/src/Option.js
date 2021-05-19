@@ -8,7 +8,6 @@ import { defaultOption } from './overrides/option';
 import { defaultPictogram } from './overrides/pictogram';
 import { defaultIcon } from './overrides/icon';
 import { defaultText } from './overrides/text';
-import { defaultLabelWrapper } from './overrides/labelWrapper';
 import { defaultLabel } from './overrides/label';
 import { defaultPrimaryLabel } from './overrides/primaryLabel';
 import { defaultSecondaryLabel } from './overrides/secondaryLabel';
@@ -66,7 +65,6 @@ export const Option = ({
 		Pictogram: defaultPictogram,
 		Icon: defaultIcon,
 		Text: defaultText,
-		LabelWrapper: defaultLabelWrapper,
 		Label: defaultLabel,
 		PrimaryLabel: defaultPrimaryLabel,
 		SecondaryLabel: defaultSecondaryLabel,
@@ -105,11 +103,6 @@ export const Option = ({
 		Pictogram: { component: Pictogram, styles: pictogramStyles, attributes: pictogramAttributes },
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 		Text: { component: Text, styles: textStyles, attributes: textAttributes },
-		LabelWrapper: {
-			component: LabelWrapper,
-			styles: labelWrapperStyles,
-			attributes: labelWrapperAttributes,
-		},
 		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
 		PrimaryLabel: {
 			component: PrimaryLabel,
@@ -193,33 +186,31 @@ export const Option = ({
 					<Icon icon={icon} state={state} {...iconAttributes(state)} css={iconStyles(state)} />
 				) : null}
 				<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
-					<LabelWrapper state={state} {...labelWrapperAttributes} css={labelWrapperStyles(state)}>
-						<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
-							<PrimaryLabel
+					<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
+						<PrimaryLabel
+							state={state}
+							{...primaryLabelAttributes(state)}
+							css={primaryLabelStyles(state)}
+						>
+							{children}
+						</PrimaryLabel>
+						{secondaryLabel && (
+							<SecondaryLabel
 								state={state}
-								{...primaryLabelAttributes(state)}
-								css={primaryLabelStyles(state)}
+								{...secondaryLabelAttributes(state)}
+								css={secondaryLabelStyles(state)}
 							>
-								{children}
-							</PrimaryLabel>
-							{secondaryLabel && (
-								<SecondaryLabel
-									state={state}
-									{...secondaryLabelAttributes(state)}
-									css={secondaryLabelStyles(state)}
-								>
-									{secondaryLabel}
-								</SecondaryLabel>
-							)}
-						</Label>
-						<Indicator state={state} {...indicatorAttributes(state)} css={indicatorStyles(state)} />
-					</LabelWrapper>
+								{secondaryLabel}
+							</SecondaryLabel>
+						)}
+					</Label>
 					{hint && (
 						<Hint state={state} {...hintAttributes(state)} css={hintStyles(state)}>
 							{hint}
 						</Hint>
 					)}
 				</Text>
+				<Indicator state={state} {...indicatorAttributes(state)} css={indicatorStyles(state)} />
 			</OptionBtn>
 		</Option>
 	);
@@ -317,11 +308,6 @@ Option.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Text: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		LabelWrapper: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

@@ -11,7 +11,7 @@ const Pictogram = ({
 	state: { pictogramWidth, pictogramHeight },
 	...rest
 }) => {
-	const defaultWidth = 66;
+	const defaultWidth = 24;
 
 	return (
 		<Pictogram
