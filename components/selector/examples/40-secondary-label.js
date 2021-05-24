@@ -7,7 +7,6 @@ import { ChatPictogram, TruckPictogram, ClockPictogram } from '@westpac/pictogra
 import { AccessibilityIcon, AtmIcon, CarIcon } from '@westpac/icon';
 import { VisuallyHidden } from '@westpac/a11y';
 
-
 const hintBankAccount = (
 	<Fragment>
 		<VisuallyHidden>Bank account:</VisuallyHidden>
@@ -94,7 +93,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Long hint and secondary label</h2>
-			
+
 			<h3>Pictogram radio</h3>
 			<Selector type="radio" name="example-radio-long">
 				<Option
