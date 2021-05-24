@@ -92,7 +92,10 @@ const Tabs = ({ component, tabName }) => {
 					zIndex: 5,
 					height: [66, null, 90],
 					transition: 'box-shadow 0.2s ease',
+				},
 
+				// Intentionally separated from above so `height` array values are not overridden
+				{
 					[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 						'body.hasScrolledSmall &': {
 							boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
@@ -102,8 +105,9 @@ const Tabs = ({ component, tabName }) => {
 						'body.hasScrolledLarge &': {
 							boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
 						},
-					},
-				})[0],
+					}
+				}
+				)[0],
 		},
 		TabBtn: {
 			styles: (styles, { selected }) =>
