@@ -24,7 +24,7 @@ function Example({ brand }) {
 			<h2>Short hint</h2>
 
 			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio-hint" iconSize="xlarge">
+			<Selector type="radio" name="example-radio-hint">
 				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
 					Here is a label
 				</Option>
