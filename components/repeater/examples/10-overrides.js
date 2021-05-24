@@ -22,11 +22,12 @@ function Example({ brand }) {
 	return (
 		<GEL brand={overridesWithTokens}>
 			<h2>With overrides applied</h2>
-			<Repeater component={Repeat} />
+			<Repeater>
+				<Repeat />
+			</Repeater>
 
 			<h2>With overrides and component overrides</h2>
 			<Repeater
-				component={Repeat}
 				overrides={{
 					Item: {
 						styles: (styles) => ({
@@ -35,7 +36,9 @@ function Example({ brand }) {
 						}),
 					},
 				}}
-			/>
+			>
+				<Repeat />
+			</Repeater>
 		</GEL>
 	);
 }

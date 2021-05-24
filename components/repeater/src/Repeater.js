@@ -16,12 +16,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Repeater = ({
-	component: Component,
-	addText,
-	overrides: componentOverrides,
-	...rest
-}) => {
+export const Repeater = ({ addText, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -39,7 +34,6 @@ export const Repeater = ({
 	const [items, setItems] = useState([{ id: useInstanceId() }]);
 
 	const state = {
-		component: Component,
 		addText,
 		overrides: componentOverrides,
 		...rest,
@@ -75,7 +69,7 @@ export const Repeater = ({
 							{...itemAttributes(state)}
 							css={itemStyles(state)}
 						>
-							<Component />
+							{children}
 							{items.length > 1 && (
 								<RemoveBtn
 									onClick={() => handleRemove(item.id)}
@@ -110,8 +104,7 @@ Repeater.propTypes = {
 	/**
 	 * Component to repeat
 	 */
-	component: PropTypes.func,
-
+	children: PropTypes.node.isRequired,
 	/**
 	 * Text for repeater
 	 */

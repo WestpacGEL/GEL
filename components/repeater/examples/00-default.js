@@ -16,7 +16,9 @@ const Repeat = (props) => {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Repeater component={Repeat} />
+			<Repeater>
+				<Repeat />
+			</Repeater>
 		</GEL>
 	);
 }
