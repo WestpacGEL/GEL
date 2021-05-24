@@ -9,6 +9,8 @@ import { defaultPictogram } from './overrides/pictogram';
 import { defaultIcon } from './overrides/icon';
 import { defaultText } from './overrides/text';
 import { defaultLabel } from './overrides/label';
+import { defaultLabelPrimary } from './overrides/labelPrimary';
+import { defaultLabelSecondary } from './overrides/labelSecondary';
 import { defaultHint } from './overrides/hint';
 import { defaultIndicator } from './overrides/indicator';
 
@@ -23,6 +25,7 @@ export const Option = ({
 	value,
 	pictogram,
 	icon,
+	secondaryLabel,
 	checked: checkedProp,
 	hint,
 	className,
@@ -63,6 +66,8 @@ export const Option = ({
 		Icon: defaultIcon,
 		Text: defaultText,
 		Label: defaultLabel,
+		LabelPrimary: defaultLabelPrimary,
+		LabelSecondary: defaultLabelSecondary,
 		Hint: defaultHint,
 		Indicator: defaultIndicator,
 	};
@@ -75,6 +80,7 @@ export const Option = ({
 		value,
 		pictogram,
 		icon,
+		secondaryLabel,
 		nextIndicator,
 		iconSize,
 		pictogramWidth,
@@ -98,6 +104,16 @@ export const Option = ({
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 		Text: { component: Text, styles: textStyles, attributes: textAttributes },
 		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+		LabelPrimary: {
+			component: LabelPrimary,
+			styles: labelPrimaryStyles,
+			attributes: labelPrimaryAttributes,
+		},
+		LabelSecondary: {
+			component: LabelSecondary,
+			styles: labelSecondaryStyles,
+			attributes: labelSecondaryAttributes,
+		},
 		Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
 		Indicator: { component: Indicator, styles: indicatorStyles, attributes: indicatorAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
@@ -171,7 +187,22 @@ export const Option = ({
 				) : null}
 				<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
 					<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
-						{children}
+						<LabelPrimary
+							state={state}
+							{...labelPrimaryAttributes(state)}
+							css={labelPrimaryStyles(state)}
+						>
+							{children}
+						</LabelPrimary>
+						{secondaryLabel && (
+							<LabelSecondary
+								state={state}
+								{...labelSecondaryAttributes(state)}
+								css={labelSecondaryStyles(state)}
+							>
+								{secondaryLabel}
+							</LabelSecondary>
+						)}
 					</Label>
 					{hint && (
 						<Hint state={state} {...hintAttributes(state)} css={hintStyles(state)}>
@@ -209,6 +240,11 @@ Option.propTypes = {
 	 * Icon graphic
 	 */
 	icon: PropTypes.func,
+
+	/**
+	 * Secondary label text
+	 */
+	secondaryLabel: PropTypes.string,
 
 	/**
 	 * Check the Selector option
@@ -277,6 +313,16 @@ Option.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Label: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		LabelPrimary: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		LabelSecondary: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

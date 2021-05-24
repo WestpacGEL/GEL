@@ -15,6 +15,7 @@ const Text = ({ state: _, ...rest }) => <div {...rest} />;
 const textStyles = () => ({
 	label: getLabel('selector-option-text'),
 	flex: 1,
+	minWidth: 0, //important for text truncation with ellipsis
 });
 
 // ==============================

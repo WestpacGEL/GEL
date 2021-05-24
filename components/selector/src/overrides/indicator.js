@@ -9,7 +9,7 @@ import { ArrowRightIcon } from '@westpac/icon';
 
 const Indicator = ({ state: { type, nextIndicator }, ...rest }) =>
 	type === 'radio' && nextIndicator ? (
-		<ArrowRightIcon size="large" assistiveText={null} {...rest} />
+		<ArrowRightIcon size="medium" assistiveText={null} {...rest} />
 	) : (
 		<div {...rest} />
 	);
@@ -44,8 +44,8 @@ const indicatorStyles = (_, { type, nextIndicator }) => {
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
-			width: '36px', //xlarge icon size
-			height: '36px', //xlarge icon size
+			width: '24px', // medium icon size
+			height: '24px', // medium icon size
 			flex: 'none',
 
 			'input:checked + div &::after': {

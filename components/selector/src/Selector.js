@@ -258,7 +258,7 @@ Selector.propTypes = {
 export const defaultProps = {
 	type: 'radio',
 	nextIndicator: false,
-	iconSize: 'xlarge',
+	iconSize: 'medium',
 };
 
 Selector.defaultProps = defaultProps;
