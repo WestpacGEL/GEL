@@ -6,22 +6,23 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const SecondaryLabel = ({ state: _, ...rest }) => <span {...rest} />;
+const LabelSecondary = ({ state: _, ...rest }) => <span {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const secondaryLabelStyles = () => {
+const labelSecondaryStyles = () => {
 	const { SPACING } = useBrand();
 
 	return {
-		label: getLabel('selector-option-secondary-label'),
-		display: 'inline-block',
-		boxSizing: 'border-box',
+		label: getLabel('selector-option-label-secondary'),
 		width: '40%',
 		textAlign: 'right',
-		margin: `0 ${SPACING(1)}`,
+		marginLeft: SPACING(2),
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		whiteSpace: 'nowrap',
 	};
 };
 
@@ -29,14 +30,14 @@ const secondaryLabelStyles = () => {
 // Attributes
 // ==============================
 
-const secondaryLabelAttributes = () => null;
+const labelSecondaryAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultSecondaryLabel = {
-	component: SecondaryLabel,
-	styles: secondaryLabelStyles,
-	attributes: secondaryLabelAttributes,
+export const defaultLabelSecondary = {
+	component: LabelSecondary,
+	styles: labelSecondaryStyles,
+	attributes: labelSecondaryAttributes,
 };

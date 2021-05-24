@@ -3,6 +3,14 @@
 import { GEL, jsx } from '@westpac/core';
 import { Fragment } from 'react';
 import { Selector, Option } from '@westpac/selector';
+import { VisuallyHidden } from '@westpac/a11y';
+
+const hintBankAccount = (
+	<Fragment>
+		<VisuallyHidden>Bank account:</VisuallyHidden>
+		123-456 123456
+	</Fragment>
+);
 
 const hintHTML = (
 	<Fragment>
@@ -17,6 +25,19 @@ const hintHTML = (
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<h2>Hint with assistive text</h2>
+			<Selector type="radio" name="example-radio-hint-assistive">
+				<Option value="1" hint={hintBankAccount}>
+					Here is a label
+				</Option>
+				<Option value="2" hint={hintBankAccount}>
+					Here is a label
+				</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<hr />
+
 			<h2>Short hint</h2>
 
 			<h3>Radio</h3>

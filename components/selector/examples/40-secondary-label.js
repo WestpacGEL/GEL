@@ -5,11 +5,18 @@ import { Fragment } from 'react';
 import { Selector, Option } from '@westpac/selector';
 import { ChatPictogram, TruckPictogram, ClockPictogram } from '@westpac/pictogram';
 import { AccessibilityIcon, AtmIcon, CarIcon } from '@westpac/icon';
+import { VisuallyHidden } from '@westpac/a11y';
 
+const hintBankAccount = (
+	<Fragment>
+		<VisuallyHidden>Bank account:</VisuallyHidden>
+		123-456 123456
+	</Fragment>
+);
 const hintShort = 'This is some content to go in the product selector thing';
 const hintLong =
 	"This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with.";
-const secondLabelShort = 'Secondary label';
+const secondLabelShort = '$15,000';
 const secondLabelLong = 'I am a very long secondary label';
 
 function Example({ brand }) {
@@ -17,14 +24,16 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<h2>Default</h2>
 			<Selector name="example-default">
-				<Option value="1" secondaryLabel={secondLabelShort}>
+				<Option value="1" secondaryLabel="Secondary label">
 					Here is a label
 				</Option>
-				<Option value="2" secondaryLabel={secondLabelShort}>
+				<Option value="2" secondaryLabel="Secondary label">
 					Here is a label
 				</Option>
 				<Option value="3">Here is a label</Option>
 			</Selector>
+
+			<hr />
 
 			<h2>Short hint and secondary label</h2>
 			<h3>Pictogram radio</h3>
@@ -32,7 +41,7 @@ function Example({ brand }) {
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
-					hint={hintShort}
+					hint={hintBankAccount}
 					secondaryLabel={secondLabelShort}
 				>
 					Here is a label
@@ -50,7 +59,7 @@ function Example({ brand }) {
 				<Option
 					value="1"
 					icon={AccessibilityIcon}
-					hint={hintShort}
+					hint={hintBankAccount}
 					secondaryLabel={secondLabelShort}
 				>
 					Here is a label
@@ -68,7 +77,7 @@ function Example({ brand }) {
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
-					hint={hintShort}
+					hint={hintBankAccount}
 					secondaryLabel={secondLabelShort}
 				>
 					Here is a label
@@ -81,8 +90,11 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
+			<hr />
+
 			<h2>Long hint and secondary label</h2>
-			<h3>Picogram radio</h3>
+
+			<h3>Pictogram radio</h3>
 			<Selector type="radio" name="example-radio-long">
 				<Option
 					value="1"

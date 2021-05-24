@@ -6,21 +6,18 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const PrimaryLabel = ({ state: _, ...rest }) => <span {...rest} />;
+const LabelPrimary = ({ state: _, ...rest }) => <span {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const primaryLabelStyles = (_, { secondaryLabel }) => {
+const labelPrimaryStyles = (_, { secondaryLabel }) => {
 	const { SPACING } = useBrand();
 
 	return {
-		label: getLabel('selector-option-primary-label'),
-		display: 'inline-block',
-		boxSizing: 'border-box',
+		label: getLabel('selector-option-label-primary'),
 		...(secondaryLabel && { width: '60%' }),
-		marginRight: SPACING(1),
 	};
 };
 
@@ -28,14 +25,14 @@ const primaryLabelStyles = (_, { secondaryLabel }) => {
 // Attributes
 // ==============================
 
-const primaryLabelAttributes = () => null;
+const labelPrimaryAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultPrimaryLabel = {
-	component: PrimaryLabel,
-	styles: primaryLabelStyles,
-	attributes: primaryLabelAttributes,
+export const defaultLabelPrimary = {
+	component: LabelPrimary,
+	styles: labelPrimaryStyles,
+	attributes: labelPrimaryAttributes,
 };
