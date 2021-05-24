@@ -21,7 +21,6 @@ const iconStyles = () => {
 	return mq({
 		label: getLabel('selector-option-icon'),
 		marginRight: SPACING(4),
-		marginBottom: [SPACING(1), null, 0],
 		flex: 'none',
 	});
 };
