@@ -16,7 +16,7 @@ import throttle from 'lodash.throttle';
 const ListOverride = ({ state, ...props }) => <ul {...props} />;
 
 const NavigationList = (props) => {
-	const { SPACING, PACKS } = useBrand();
+	const { PACKS } = useBrand();
 	return (
 		<List
 			type="unstyled"
