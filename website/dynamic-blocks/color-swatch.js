@@ -6,6 +6,7 @@ import { Grid, Cell } from '@westpac/grid';
 import Select from '@arch-ui/select';
 import chroma from 'chroma-js';
 import { Body } from '../src/components/body';
+import { Symbol } from '../../components/symbol/src/Symbol';
 
 import { secondaryColors } from '../src/secondary-colors.js';
 
@@ -29,16 +30,12 @@ const Swatch = ({ color, secondary }) => {
 				alignItems: ['center', 'normal'],
 			})}
 		>
-			<div
-				css={{
-					backgroundColor: colorVal,
-					width: 0,
-					height: 0,
-					borderRadius: '50%',
-					border: `66px solid ${colorVal}`, //a11y: using border for WHCM support
-					flex: 'none',
-				}}
-			/>
+			{/* a11y: using SVG for WHCM support */}
+			<div css={{ width: 132, height: 132 }}>
+				<Symbol viewBoxWidth={132} viewBoxHeight={132}>
+					<circle fill={colorVal} cx="66" cy="66" r="66" />
+				</Symbol>
+			</div>
 			<Body
 				css={mq({
 					display: 'flex',
