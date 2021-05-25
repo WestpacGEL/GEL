@@ -31,10 +31,11 @@ const Swatch = ({ color, secondary }) => {
 		>
 			<div
 				css={{
-					background: colorVal,
-					width: 132,
-					height: 132,
+					backgroundColor: colorVal,
+					width: 0,
+					height: 0,
 					borderRadius: '50%',
+					border: `66px solid ${colorVal}`, //a11y: using border for WHCM support
 					flex: 'none',
 				}}
 			/>
