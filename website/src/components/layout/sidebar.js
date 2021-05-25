@@ -2,7 +2,8 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 import { useSidebar } from '../providers/sidebar';
 import { BrandSwitcher } from '../brand-switcher';
@@ -12,6 +13,14 @@ export const Sidebar = ({ items }) => {
 	const { COLORS } = useBrand();
 	const { isOpen, setIsOpen } = useSidebar();
 	const mq = useMediaQuery();
+	const router = useRouter();
+
+	// Close sidebar when route changes
+	useEffect(() => {
+		if (isOpen) {
+			setIsOpen(!isOpen);
+		}
+	}, [router.asPath]);
 
 	return (
 		<Fragment>
@@ -32,7 +41,7 @@ export const Sidebar = ({ items }) => {
 					transition: ['transform 0.15s', null, null, null, 'none'],
 				})}
 			>
-				<CloseButton />
+				<CloseBtn />
 				<BrandSwitcher />
 				<Navigation items={items} />
 			</div>
@@ -56,10 +65,11 @@ export const Sidebar = ({ items }) => {
 	);
 };
 
-const CloseButton = () => {
+const CloseBtn = () => {
 	const { setIsOpen } = useSidebar();
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
+
 	return (
 		<Button
 			look="unstyled"
