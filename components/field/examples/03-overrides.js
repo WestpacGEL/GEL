@@ -27,7 +27,7 @@ function Example({ brand }) {
 		<GEL brand={overridesWithTokens}>
 			<h2>With overrides applied</h2>
 			<Field label="Text input example" hint="I am a text input">
-				{(inputProps) => <TextInput {...inputProps} />}
+				<TextInput />
 			</Field>
 			<br />
 			<Fieldset legend="I am legend" hint="I am a hint">
@@ -46,7 +46,7 @@ function Example({ brand }) {
 					},
 				}}
 			>
-				{(inputProps) => <TextInput {...inputProps} />}
+				<TextInput />
 			</Field>
 			<br />
 			<Fieldset

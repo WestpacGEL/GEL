@@ -8,16 +8,16 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Field label="Text input example" hint="I am a text input">
-				{(inputProps) => <TextInput {...inputProps} />}
+				<TextInput />
 			</Field>
 			<br />
 			<Field label="Text input with error" hint="I have an error" error="Im an error">
-				{(inputProps) => <TextInput {...inputProps} invalid />}
+				<TextInput invalid />
 			</Field>
 			<h4>Visually hidden label</h4>
 			<br />
 			<Field hideLabel label="Hidden label" hint="I have a hidden label">
-				{(inputProps) => <TextInput {...inputProps} />}
+				<TextInput />
 			</Field>
 		</GEL>
 	);

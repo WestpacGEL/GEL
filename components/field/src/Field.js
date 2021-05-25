@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultField } from './overrides/field';
@@ -90,7 +90,7 @@ export const Field = ({
 			{error && (
 				<Error message={error} state={state} {...errorAttributes(state)} css={errorStyles(state)} />
 			)}
-			{children(inputProps)}
+			{Children.map(children, (child) => cloneElement(child, { ...inputProps }))}
 		</Field>
 	);
 };
