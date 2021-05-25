@@ -14,42 +14,58 @@ const renderSymbols = (search) => {
 		}
 	}
 	const { COLORS } = useBrand();
+	const mq = useMediaQuery();
 
-	return symbolDetails
-		.filter((symbol) =>
-			search.trim() === '' ? true : symbol.name.toLowerCase().includes(search.toLowerCase())
-		)
-		.map((symbol) => {
-			const Symbol = symbol.symbol;
-			return (
-				<Cell
-					width={[12, null, 6, 4]}
-					css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 3' }, display: 'flex' }}
-					key={symbol.name}
+	const symbolDetailsFiltered = symbolDetails.filter((symbol) =>
+		search.trim() === '' ? true : symbol.name.toLowerCase().includes(search.toLowerCase())
+	);
+
+	return (
+		<Fragment>
+			<Cell width={12}>
+				<p
+					aria-live="true"
+					id="filter-symbols-status"
+					css={{ textAlign: 'right', color: COLORS.muted, fontStyle: 'italic' }}
 				>
-					<div
-						css={{
-							flexGrow: 1,
-							alignItems: 'center',
-							justifyContent: 'center',
-							display: 'flex',
-							flexDirection: 'column',
-							background: '#fff',
-							padding: '36px 0 18px',
-							marginBottom: ['12px', '24px'],
-						}}
+					Found {symbolDetailsFiltered.length}{' '}
+					{symbolDetailsFiltered.length === 1 ? 'symbol' : 'symbols'}
+				</p>
+			</Cell>
+
+			{symbolDetails.map((symbol) => {
+				const Symbol = symbol.symbol;
+				return (
+					<Cell
+						width={[12, null, 6, 4]}
+						css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 3' }, display: 'flex' }}
+						key={symbol.name}
 					>
-						<Symbol
-							css={{
+						<div
+							css={mq({
 								flexGrow: 1,
-								paddingBottom: '36px',
-							}}
-						/>
-						<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{symbol.name}</span>
-					</div>
-				</Cell>
-			);
-		});
+								alignItems: 'center',
+								justifyContent: 'center',
+								display: 'flex',
+								flexDirection: 'column',
+								background: '#fff',
+								padding: '36px 0 18px',
+								marginBottom: ['12px', '24px'],
+							})}
+						>
+							<Symbol
+								css={{
+									flexGrow: 1,
+									paddingBottom: '36px',
+								}}
+							/>
+							<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{symbol.name}</span>
+						</div>
+					</Cell>
+				);
+			})}
+		</Fragment>
+	);
 };
 
 const Symbol = () => {
@@ -84,6 +100,7 @@ const Symbol = () => {
 									id={'filter-symbols'}
 									value={search}
 									onChange={(e) => setSearch(e.target.value)}
+									aria-describedby="filter-symbols-status"
 								/>
 							</div>
 						</Cell>

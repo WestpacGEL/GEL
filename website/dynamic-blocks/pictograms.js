@@ -22,45 +22,63 @@ const renderPictograms = (search, mode) => {
 		}
 	}
 	const { COLORS } = useBrand();
+	const mq = useMediaQuery();
 
-	return pictogramDetails
-		.filter((pictogram) =>
-			search.trim() === '' ? true : pictogram.name.toLowerCase().includes(search.toLowerCase())
-		)
-		.map((pictogram) => {
-			const Pictogram = pictogram.pictogram;
-			return (
-				<Cell
-					width={[12, null, 6, 4]}
-					css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 3' }, display: 'flex' }}
-					key={pictogram.name}
+	const pictogramDetailsFiltered = pictogramDetails.filter((pictogram) =>
+		search.trim() === '' ? true : pictogram.name.toLowerCase().includes(search.toLowerCase())
+	);
+
+	return (
+		<Fragment>
+			<Cell width={12}>
+				<p
+					aria-live="true"
+					id="filter-pictograms-status"
+					css={{ textAlign: 'right', color: COLORS.muted, fontStyle: 'italic' }}
 				>
-					<div
-						css={{
-							flexGrow: 1,
-							alignItems: 'center',
-							justifyContent: 'center',
-							display: 'flex',
-							flexDirection: 'column',
-							backgroundColor: mode === 'light' ? COLORS.hero : '#fff',
-							padding: '36px 0 18px',
-							marginBottom: ['12px', '24px'],
-						}}
+					Found {pictogramDetailsFiltered.length}{' '}
+					{pictogramDetailsFiltered.length === 1 ? 'pictogram' : 'pictograms'}
+				</p>
+			</Cell>
+
+			{pictogramDetailsFiltered.map((pictogram) => {
+				const Pictogram = pictogram.pictogram;
+				return (
+					<Cell
+						width={[12, null, 6, 4]}
+						css={{ '@media (min-width: 1337px)': { gridColumnEnd: 'span 3' }, display: 'flex' }}
+						key={pictogram.name}
 					>
-						<Pictogram
-							mode={mode}
-							css={{
+						<div
+							css={mq({
 								flexGrow: 1,
-								paddingBottom: '36px',
-							}}
-						/>
-						<span css={{ fontSize: '0.6875rem', color: mode === 'light' ? '#fff' : COLORS.muted }}>
-							{pictogram.name}
-						</span>
-					</div>
-				</Cell>
-			);
-		});
+								alignItems: 'center',
+								justifyContent: 'center',
+								display: 'flex',
+								flexDirection: 'column',
+								backgroundColor: mode === 'light' ? COLORS.hero : '#fff',
+								padding: '36px 0 18px',
+								marginBottom: ['12px', '24px'],
+							})}
+						>
+							<Pictogram
+								mode={mode}
+								css={{
+									flexGrow: 1,
+									paddingBottom: '36px',
+								}}
+							/>
+							<span
+								css={{ fontSize: '0.6875rem', color: mode === 'light' ? '#fff' : COLORS.muted }}
+							>
+								{pictogram.name}
+							</span>
+						</div>
+					</Cell>
+				);
+			})}
+		</Fragment>
+	);
 };
 
 const Pictogram = () => {
