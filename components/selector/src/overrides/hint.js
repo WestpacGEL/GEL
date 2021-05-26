@@ -19,7 +19,6 @@ const hintStyles = () => {
 		label: getLabel('selector-option-hint'),
 		color: COLORS.muted,
 		marginTop: SPACING(1),
-		paddingRight: SPACING(1),
 		...PACKS.typeScale.bodyFont[9],
 	};
 };

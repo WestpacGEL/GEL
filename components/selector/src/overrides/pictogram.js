@@ -34,7 +34,6 @@ const pictogramStyles = () => {
 	return mq({
 		label: getLabel('selector-option-pictogram'),
 		marginRight: SPACING(4),
-		marginBottom: [SPACING(1), null, 0],
 		flex: 'none',
 	})[0];
 };

@@ -668,6 +668,8 @@ const SectionDevelopers = () => {
 										)}
 									</div>
 
+									<input type="hidden" name="packages[]" value="core" />
+
 									<BlenderComponents
 										name="packages[]"
 										value={selected}
@@ -826,6 +828,7 @@ const SectionDevelopers = () => {
 
 function TokensPage() {
 	const { COLORS, LAYOUT } = useBrand();
+	const mq = useMediaQuery();
 
 	const [showGrid, setShowGrid] = useState(false);
 
@@ -836,20 +839,18 @@ function TokensPage() {
 				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
 					<PageHeader
 						name="Downloads"
-						css={{
-							transition: 'box-shadow 0.2s ease',
+						css={
+							mq({
+								transition: 'box-shadow 0.2s ease',
 
-							[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
 								'body.hasScrolledSmall &': {
-									boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+									boxShadow: ['0 2px 5px rgba(0,0,0,0.3)', null, 'none'],
 								},
-							},
-							[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
 								'body.hasScrolledLarge &': {
-									boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+									boxShadow: [null, null, '0 2px 5px rgba(0,0,0,0.3)'],
 								},
-							},
-						}}
+							})[0]
+						}
 					/>
 					<Gridly show={showGrid} />
 					<SectionDesigners />
