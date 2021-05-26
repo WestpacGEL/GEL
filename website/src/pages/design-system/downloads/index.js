@@ -673,6 +673,7 @@ const SectionDevelopers = () => {
 										value={selected}
 										onChange={(value) => handleSelectPkgChange(value)}
 									>
+										<li><input type="hidden" name="packages[]" value="core" /></li>
 										<BlenderComponentOption
 											value="core"
 											disabled
