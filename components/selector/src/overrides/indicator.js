@@ -26,6 +26,7 @@ const indicatorStyles = (_, { type, nextIndicator }) => {
 		label: getLabel('selector-option-indicator'),
 		position: 'relative',
 		marginLeft: [SPACING(2), null, SPACING(3)], //gap
+		pointerEvents: 'none', //allow parent to receive hover
 		flex: 'none',
 
 		// Next indicator (ArrowNextIcon)
