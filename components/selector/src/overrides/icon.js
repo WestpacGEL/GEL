@@ -20,7 +20,7 @@ const iconStyles = () => {
 
 	return mq({
 		label: getLabel('selector-option-icon'),
-		marginRight: SPACING(4),
+		marginRight: SPACING(4), //gap
 		flex: 'none',
 	});
 };

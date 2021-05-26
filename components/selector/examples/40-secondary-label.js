@@ -36,8 +36,42 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Short hint and secondary label</h2>
+
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-short">
+				<Option value="1" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
+					Here is a label
+				</Option>
+				<Option value="2" secondaryLabel={secondLabelShort}>
+					Here is a label
+				</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Radio with next indicator</h3>
+			<Selector type="radio" name="example-radio-indicator-short" nextIndicator>
+				<Option value="1" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
+					Here is a label
+				</Option>
+				<Option value="2" secondaryLabel={secondLabelShort}>
+					Here is a label
+				</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Checkbox</h3>
+			<Selector type="checkbox" name="example-checkbox-short">
+				<Option value="1" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
+					Here is a label
+				</Option>
+				<Option value="2" secondaryLabel={secondLabelShort}>
+					Here is a label
+				</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
 			<h3>Pictogram radio</h3>
-			<Selector type="radio" name="example-radio-hint">
+			<Selector type="radio" name="example-radio-pictogram-short">
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
@@ -54,8 +88,44 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
-			<h3>Icon checkbox</h3>
-			<Selector type="checkbox" name="example-checkbox-hint" iconSize="medium">
+			<h3>Pictogram radio with next indicator</h3>
+			<Selector type="radio" name="example-radio-indicator-pictogram-short" nextIndicator>
+				<Option
+					value="1"
+					pictogram={ChatPictogram}
+					hint={hintBankAccount}
+					secondaryLabel={secondLabelShort}
+				>
+					Here is a label
+				</Option>
+				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelShort}>
+					Here is a label
+				</Option>
+				<Option value="3" pictogram={ClockPictogram}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Pictogram checkbox</h3>
+			<Selector type="checkbox" name="example-checkbox-pictogram-short">
+				<Option
+					value="1"
+					pictogram={ChatPictogram}
+					hint={hintBankAccount}
+					secondaryLabel={secondLabelShort}
+				>
+					Here is a label
+				</Option>
+				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelShort}>
+					Here is a label
+				</Option>
+				<Option value="3" pictogram={ClockPictogram}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Icon radio</h3>
+			<Selector type="radio" name="example-radio-icon-short">
 				<Option
 					value="1"
 					icon={AccessibilityIcon}
@@ -72,20 +142,38 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
-			<h3>Pictogram radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-hint-with-next" nextIndicator>
+			<h3>Icon radio with next indicator</h3>
+			<Selector type="radio" name="example-radio-indicator-icon-short" nextIndicator>
 				<Option
 					value="1"
-					pictogram={ChatPictogram}
+					icon={AccessibilityIcon}
 					hint={hintBankAccount}
 					secondaryLabel={secondLabelShort}
 				>
 					Here is a label
 				</Option>
-				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelShort}>
+				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelShort}>
 					Here is a label
 				</Option>
-				<Option value="3" pictogram={ClockPictogram}>
+				<Option value="3" icon={CarIcon}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Icon checkbox</h3>
+			<Selector type="checkbox" name="example-checkbox-icon-short">
+				<Option
+					value="1"
+					icon={AccessibilityIcon}
+					hint={hintBankAccount}
+					secondaryLabel={secondLabelShort}
+				>
+					Here is a label
+				</Option>
+				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelShort}>
+					Here is a label
+				</Option>
+				<Option value="3" icon={CarIcon}>
 					Here is a label
 				</Option>
 			</Selector>
@@ -94,8 +182,41 @@ function Example({ brand }) {
 
 			<h2>Long hint and secondary label</h2>
 
-			<h3>Pictogram radio</h3>
+			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-long">
+				<Option value="1" hint={hintLong} secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="2" secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Radio with next indicator</h3>
+			<Selector type="radio" name="example-radio-indicator-long" nextIndicator>
+				<Option value="1" hint={hintLong} secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="2" secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Checkbox</h3>
+			<Selector type="checkbox" name="example-checkbox-long">
+				<Option value="1" hint={hintLong} secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="2" secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="3">Here is a label</Option>
+			</Selector>
+
+			<h3>Pictogram radio</h3>
+			<Selector type="radio" name="example-radio-pictogram-long">
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
@@ -113,7 +234,7 @@ function Example({ brand }) {
 			</Selector>
 
 			<h3>Pictogram radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-long-with-next" nextIndicator>
+			<Selector type="radio" name="example-radio-indicator-pictogram-long" nextIndicator>
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
@@ -130,8 +251,52 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
+			<h3>Pictogram checkbox</h3>
+			<Selector type="checkbox" name="example-checkbox-pictogram-long">
+				<Option
+					value="1"
+					pictogram={ChatPictogram}
+					hint={hintLong}
+					secondaryLabel={secondLabelLong}
+				>
+					Here is a label
+				</Option>
+				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="3" pictogram={ClockPictogram}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Icon radio</h3>
+			<Selector type="radio" name="example-radio-icon-long">
+				<Option value="1" icon={AccessibilityIcon} hint={hintLong} secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="3" icon={CarIcon}>
+					Here is a label
+				</Option>
+			</Selector>
+
+			<h3>Icon radio with next indicator</h3>
+			<Selector type="radio" name="example-radio-indicator-icon-long" nextIndicator>
+				<Option value="1" icon={AccessibilityIcon} hint={hintLong} secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelLong}>
+					Here is a label
+				</Option>
+				<Option value="3" icon={CarIcon}>
+					Here is a label
+				</Option>
+			</Selector>
+
 			<h3>Icon checkbox</h3>
-			<Selector type="checkbox" name="example-checkbox-long" iconSize="medium">
+			<Selector type="checkbox" name="example-checkbox-icon-long">
 				<Option value="1" icon={AccessibilityIcon} hint={hintLong} secondaryLabel={secondLabelLong}>
 					Here is a label
 				</Option>

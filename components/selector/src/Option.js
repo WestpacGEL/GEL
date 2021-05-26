@@ -244,7 +244,7 @@ Option.propTypes = {
 	/**
 	 * Secondary label text
 	 */
-	secondaryLabel: PropTypes.string,
+	secondaryLabel: PropTypes.node,
 
 	/**
 	 * Check the Selector option
