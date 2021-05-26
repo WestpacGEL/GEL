@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import {
 	DownloadIcon,
 	RefreshIcon,
@@ -563,6 +563,7 @@ const SectionDevelopers = () => {
 	);
 	const [selected, setSelected] = useState(['core']);
 	const [selectAllToggle, setSelectAllToggle] = useState([]);
+	const optionSelectAllRef = useRef(null);
 
 	useEffect(() => {
 		setSelectAllToggle(selected.length === supportedPkgs.length + 1 ? ['all'] : []);
@@ -574,6 +575,7 @@ const SectionDevelopers = () => {
 		);
 	}
 	function handleClearAllClick() {
+		optionSelectAllRef.current.focus();
 		setSelected(['core']);
 	}
 	function handleSelectPkgChange(value) {
@@ -654,7 +656,9 @@ const SectionDevelopers = () => {
 												},
 											}}
 										>
-											<Option value="all">Select all</Option>
+											<Option value="all" ref={optionSelectAllRef}>
+												Select all
+											</Option>
 										</FormCheck>
 										{selected.length > 1 && (
 											<Button
