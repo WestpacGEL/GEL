@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/selector",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Button toggles stacked vertically, powered by radio elements",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/selector",
