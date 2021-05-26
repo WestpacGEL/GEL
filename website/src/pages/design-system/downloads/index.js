@@ -569,7 +569,9 @@ const SectionDevelopers = () => {
 	}, [selected]);
 
 	function handleToggleChange() {
-		setSelected(selected.length === supportedPkgs.length + 1 ? [] : ['core', ...supportedPkgs]);
+		setSelected(
+			selected.length === supportedPkgs.length + 1 ? ['core'] : ['core', ...supportedPkgs]
+		);
 	}
 	function handleClearAllClick() {
 		setSelected(['core']);
