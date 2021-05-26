@@ -113,7 +113,7 @@ const Tabs = ({ component, tabName }) => {
 					borderRadius: 0,
 					border: 0,
 					backgroundColor: 'transparent',
-					margin: 0,
+					marginRight: 0,
 					borderRight: `solid 1px ${COLORS.border}`,
 					padding: [0, null, `0 ${SPACING(10)}`],
 					boxShadow: selected ? `inset 0 -3px 0 ${COLORS.primary}` : 'none',
