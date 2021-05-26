@@ -1,5 +1,11 @@
 # @westpac/core
 
+## 2.1.0
+
+### Minor Changes
+
+- bd71ca99: Remove GEL className from core wrapper element
+
 ## 2.0.0
 
 ### Major Changes

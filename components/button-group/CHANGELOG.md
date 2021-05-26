@@ -1,5 +1,13 @@
 # @westpac/button-group
 
+## 1.1.2
+
+### Patch Changes
+
+- 1611cda2: Fix dependency version syntax
+- Updated dependencies [bd71ca99]
+  - @westpac/core@2.1.0
+
 ## 1.1.1
 
 ### Patch Changes
