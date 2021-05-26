@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useInstanceId, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Modal, Body as ModalBody } from '@westpac/modal';
@@ -48,6 +48,7 @@ const ExampleButton = ({ onClick, children, ...rest }) => {
 const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 	const [codeIsOpen, setCodeOpen] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [id] = useState(`code-block-${useInstanceId()}`);
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
@@ -78,13 +79,15 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 								setCodeOpen(!codeIsOpen);
 							}}
 							iconAfter={codeIsOpen ? ExpandLessIcon : ExpandMoreIcon}
+							aria-controls={id}
+							aria-expanded={codeIsOpen}
 						>
 							Code
 						</ExampleButton>
 					) : null}
 				</div>
 			</div>
-			{showCode && codeIsOpen && <LiveEditor css={{ fontSize: '16px' }} padding={24} />}
+			{showCode && codeIsOpen && <LiveEditor css={{ fontSize: '16px' }} padding={24} id={id} />}
 			<Modal heading={''} open={isModalOpen} onClose={() => setIsModalOpen(false)}>
 				<ModalBody>
 					<LivePreview />
