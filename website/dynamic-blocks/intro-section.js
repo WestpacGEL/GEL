@@ -141,15 +141,15 @@ const TableOfContents = ({ content }) => {
 
 const PackageInfoTable = ({ item }) => {
 	if (!item) return null;
-	const { PACKS, SPACING } = useBrand();
+	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	return (
 		<table
 			css={mq({
-				borderTop: 'solid 1px #2585ca',
+				borderTop: `1px solid ${COLORS.tints.info50}`,
 				borderCollapse: 'collapse',
-				background: '#f2f8fc',
-				color: '#2585ca',
+				backgroundColor: COLORS.tints.info5,
+				color: COLORS.info,
 				width: '100%',
 				textAlign: 'left',
 				...PACKS.typeScale.bodyFont[10],
@@ -161,7 +161,7 @@ const PackageInfoTable = ({ item }) => {
 						fontWeight: 500,
 					},
 					'> tr': {
-						borderBottom: 'solid 1px #2585CA',
+						borderBottom: `1px solid ${COLORS.tints.info50}`,
 						textAlign: 'left',
 						'> td, > th': { padding: SPACING(3) },
 					},
