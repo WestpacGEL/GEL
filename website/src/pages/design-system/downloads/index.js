@@ -668,6 +668,8 @@ const SectionDevelopers = () => {
 										)}
 									</div>
 
+									<input type="hidden" name="packages[]" value="core" />
+
 									<BlenderComponents
 										name="packages[]"
 										value={selected}
