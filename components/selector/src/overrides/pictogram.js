@@ -11,7 +11,7 @@ const Pictogram = ({
 	state: { pictogramWidth, pictogramHeight },
 	...rest
 }) => {
-	const defaultWidth = 66;
+	const defaultWidth = 24;
 
 	return (
 		<Pictogram
@@ -34,7 +34,7 @@ const pictogramStyles = () => {
 	return mq({
 		label: getLabel('selector-option-pictogram'),
 		marginRight: SPACING(4),
-		marginBottom: [SPACING(1), null, 0],
+		flex: 'none',
 	})[0];
 };
 

@@ -12,7 +12,6 @@ export const Core = ({ normalize, children }) => {
 		<Fragment>
 			<Global styles={normalize && normalizeCSS} />
 			<div
-				className="GEL"
 				css={{
 					label: 'core',
 					lineHeight: 1.428571429,

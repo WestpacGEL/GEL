@@ -1,5 +1,18 @@
 # @westpac/button-dropdown
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [8058c8c3]
+- Updated dependencies [6a9ef63b]
+- Updated dependencies [0b22b4a0]
+- Updated dependencies [d27d24ca]
+  - @westpac/button@1.2.0
+  - @westpac/core@2.0.0
+  - @westpac/heading@1.0.1
+  - @westpac/hooks@1.1.1
+
 ## 1.1.0
 
 ### Minor Changes

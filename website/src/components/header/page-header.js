@@ -118,16 +118,26 @@ const PageHeader = ({ name, ...rest }) => {
 
 	return (
 		<header
-			css={mq({
-				flex: 'none',
-				position: 'sticky',
-				top: [0, null, -162], // 228 - 66 = height to stick
-				zIndex: 5,
-				display: 'flex',
-				height: [66, null, 228],
-				overflow: 'hidden',
-				...brandHeaderStyling[BRAND.code](COLORS),
-			})}
+			css={[
+				mq({
+					flex: 'none',
+					position: 'sticky',
+					top: [0, null, -162], // 228 - 66 = height to stick
+					zIndex: 5,
+					display: 'flex',
+					height: [66, null, 228],
+					overflow: 'hidden',
+					...brandHeaderStyling[BRAND.code](COLORS),
+					transition: 'box-shadow 0.2s ease',
+
+					'body.hasScrolledSmall &': {
+						boxShadow: ['0 2px 5px rgba(0,0,0,0.3)', null, 'none'],
+					},
+					'body.hasScrolledLarge &': {
+						boxShadow: [null, null, '0 2px 5px rgba(0,0,0,0.3)'],
+					},
+				})[0],
+			]}
 			{...rest}
 		>
 			<HeaderImage brand={BRAND} />

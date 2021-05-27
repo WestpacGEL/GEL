@@ -1,5 +1,15 @@
 # @westpac/form-check
 
+## 1.1.1
+
+### Patch Changes
+
+- 589fc05e: Update styling and tidy up
+- Updated dependencies [8058c8c3]
+- Updated dependencies [6a9ef63b]
+  - @westpac/body@1.4.0
+  - @westpac/core@2.0.0
+
 ## 1.1.0
 
 ### Minor Changes

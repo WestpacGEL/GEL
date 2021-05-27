@@ -18,7 +18,6 @@ const listStyles = () => ({
 	display: 'flex',
 	paddingLeft: 0,
 	margin: '1.3125rem 0',
-	borderRadius: '0.1875rem',
 	alignItems: 'center',
 });
 
@@ -27,6 +26,7 @@ const listStyles = () => ({
 // ==============================
 
 const listAttributes = () => ({
+	//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
 	role: 'list',
 });
 

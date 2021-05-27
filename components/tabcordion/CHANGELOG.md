@@ -1,5 +1,21 @@
 # @westpac/tabcordion
 
+## 2.1.0
+
+### Minor Changes
+
+- 8058c8c3: Add Normalize styling
+
+### Patch Changes
+
+- 0b22b4a0: Reset button border-radius
+- Updated dependencies [8058c8c3]
+- Updated dependencies [6a9ef63b]
+  - @westpac/body@1.4.0
+  - @westpac/core@2.0.0
+  - @westpac/hooks@1.1.1
+  - @westpac/icon@1.3.1
+
 ## 2.0.0
 
 ### Major Changes

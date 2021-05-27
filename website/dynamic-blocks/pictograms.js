@@ -2,11 +2,11 @@
 
 import React, { useState, Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { TextInput } from '@westpac/text-input';
+import { TextInput, Select } from '@westpac/text-input';
 import { Grid, Cell } from '@westpac/grid';
 import * as pictograms from '@westpac/pictogram';
 
-const renderPictograms = (search) => {
+const renderPictograms = (search, mode) => {
 	const pictogramDetails = [];
 	for (let key in pictograms) {
 		// only show informative for now
@@ -42,18 +42,21 @@ const renderPictograms = (search) => {
 							justifyContent: 'center',
 							display: 'flex',
 							flexDirection: 'column',
-							background: '#fff',
+							backgroundColor: mode === 'light' ? COLORS.hero : '#fff',
 							padding: '36px 0 18px',
 							marginBottom: ['12px', '24px'],
 						}}
 					>
 						<Pictogram
+							mode={mode}
 							css={{
 								flexGrow: 1,
 								paddingBottom: '36px',
 							}}
 						/>
-						<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{pictogram.name}</span>
+						<span css={{ fontSize: '0.6875rem', color: mode === 'light' ? '#fff' : COLORS.muted }}>
+							{pictogram.name}
+						</span>
 					</div>
 				</Cell>
 			);
@@ -62,9 +65,15 @@ const renderPictograms = (search) => {
 
 const Pictogram = () => {
 	const [search, setSearch] = useState('');
+	const [mode, setMode] = useState('duo');
 	const mq = useMediaQuery();
 	const { COLORS, SPACING, BRAND } = useBrand();
-	if (BRAND.code !== 'WBC') {
+
+	const handleModeChange = (event) => {
+		setMode(event.target.value);
+	};
+
+	if (BRAND.code === 'WBG') {
 		return (
 			<Cell width={12}>
 				<p
@@ -109,10 +118,35 @@ const Pictogram = () => {
 								/>
 							</div>
 						</Cell>
+						<Cell width={[12, null, 6]}>
+							<div
+								css={mq({
+									display: 'flex',
+									flexDirection: ['column', null, 'row'],
+									alignItems: ['start', null, 'center'],
+								})}
+							>
+								<label
+									htmlFor={'pictogram-mode'}
+									css={mq({
+										marginRight: '1rem',
+										marginBottom: ['0.75rem', null, 0],
+										whiteSpace: 'nowrap',
+									})}
+								>
+									Mode
+								</label>
+								<Select id={'pictogram-mode'} value={mode} onChange={handleModeChange} inline>
+									<option>duo</option>
+									<option>dark</option>
+									<option>light</option>
+								</Select>
+							</div>
+						</Cell>
 					</Grid>
 				</div>
 			</Cell>
-			{renderPictograms(search)}
+			{renderPictograms(search, mode)}
 		</Fragment>
 	);
 };

@@ -1,5 +1,23 @@
 # @westpac/pictogram
 
+## 1.4.0
+
+### Minor Changes
+
+- a9289b8d: - Add new pictograms
+  - Rename EnvelopePictogram, now EnvelopeEmailPictogram
+  - Update TickPictogram assistiveText
+- 94e1da73: - Add additional pictograms
+  - Rename AustraliaPictogram: now GlobeAustraliaPictogram
+  - Remap colors: STG uses text/pop, RAMS uses primary/pop, BOM+BSA use hero/pop, other brands use hero/primary
+  - Update mode default: duo for all brands
+
+### Patch Changes
+
+- 4cf224b9: Fix WBC brand default mode (duo)
+- Updated dependencies [6a9ef63b]
+  - @westpac/core@2.0.0
+
 ## 1.3.0
 
 ### Minor Changes

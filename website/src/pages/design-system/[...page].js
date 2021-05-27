@@ -52,7 +52,7 @@ const Component = ({ component, tabName }) => {
 };
 
 const Tabs = ({ component, tabName }) => {
-	const { SPACING, COLORS } = useBrand();
+	const { SPACING, COLORS, LAYOUT } = useBrand();
 	const mq = useMediaQuery();
 	const router = useRouter();
 	const brandName = router.query.b || '';
@@ -93,8 +93,11 @@ const Tabs = ({ component, tabName }) => {
 					height: [66, null, 90],
 					transition: 'box-shadow 0.2s ease',
 
+					'body.hasScrolledSmall &': {
+						boxShadow: ['0 2px 5px rgba(0,0,0,0.3)', null, 'none'],
+					},
 					'body.hasScrolledLarge &': {
-						boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+						boxShadow: [null, null, '0 2px 5px rgba(0,0,0,0.3)'],
 					},
 				})[0],
 		},

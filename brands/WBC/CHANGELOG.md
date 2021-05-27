@@ -1,5 +1,11 @@
 # @westpac/wbc
 
+## 2.1.0
+
+### Minor Changes
+
+- 655066e1: Add new pop color token
+
 ## 2.0.0
 
 ### Major Changes

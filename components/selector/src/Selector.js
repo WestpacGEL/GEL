@@ -222,11 +222,6 @@ Selector.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Content: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Pictogram: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
@@ -263,7 +258,7 @@ Selector.propTypes = {
 export const defaultProps = {
 	type: 'radio',
 	nextIndicator: false,
-	iconSize: 'xlarge',
+	iconSize: 'medium',
 };
 
 Selector.defaultProps = defaultProps;

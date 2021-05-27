@@ -80,8 +80,9 @@ export const Cell = (props) => (
 export const Name = (props) => (
 	<code
 		css={{
-			fontSize: '12px',
+			fontSize: '14px',
 			marginTop: 12,
+			textAlign: 'center',
 		}}
 		{...props}
 	/>

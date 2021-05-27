@@ -88,7 +88,7 @@ const listStyles = (_, { type, look, spacing, nested }) => {
 				display: 'block',
 				width: '0.5rem',
 				height: '0.5rem',
-				border: `solid ${COLORS.primary}`,
+				border: `solid ${COLORS.link}`,
 				borderWidth: '0 0.125rem 0.125rem 0',
 				transform: 'rotate(-45deg)',
 				boxSizing: 'border-box',

@@ -31,13 +31,21 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 		// Normalize
 		// ==========
 
-		// 1. Remove the margin in Firefox and Safari.
-		// 2. Show the overflow in IE.
-		// 3. Remove the inheritance of text transform in Edge, Firefox, and IE.
-		// button:
-		margin: 0, // 1
-		overflow: 'visible', // 2
-		textTransform: 'none', // 3
+		// 1. Change the font styles in all browsers.
+		// 2. Remove the margin in Firefox and Safari.
+		// button, input, optgroup, select, textarea:
+		fontFamily: 'inherit', // 1
+		fontSize: '100%', // 1
+		lineHeight: 1.15, // 1
+		margin: 0, // 2
+
+		// Show the overflow in IE
+		// button, input:
+		overflow: 'visible',
+
+		// Remove the inheritance of text transform in Edge, Firefox, and IE.
+		// button, select:
+		textTransform: 'none',
 
 		// Remove the inner border and padding in Firefox.
 		// button::-moz-focus-inner:
@@ -55,6 +63,7 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 		lineHeight: 1.15,
 		display: 'inline-block',
 		border: `1px solid ${active ? COLORS.hero : COLORS.border}`,
+		borderRadius: 0,
 		backgroundColor: active ? COLORS.hero : '#fff',
 		padding: '0.5625rem 0.75rem',
 		fontSize: '0.875rem',

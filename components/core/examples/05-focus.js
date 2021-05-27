@@ -57,9 +57,11 @@ function Example({ brand }) {
 			</Body>
 			<TextInput />
 			<br />
+			<br />
 			<Select>
 				<option>Select</option>
 			</Select>
+			<br />
 			<br />
 			<Textarea />
 

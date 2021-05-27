@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/a11y",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Accessibility components used to ensure an optimal experience for users of assistive technologies",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/a11y",
@@ -53,7 +53,7 @@
 	"module": "dist/a11y.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^1.1.0",
+		"@westpac/core": "^2.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
