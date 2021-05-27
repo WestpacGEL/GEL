@@ -25,8 +25,9 @@ const indicatorStyles = (_, { type, nextIndicator }) => {
 	return mq({
 		label: getLabel('selector-option-indicator'),
 		position: 'relative',
+		marginLeft: [SPACING(2), null, SPACING(3)], //gap
+		pointerEvents: 'none', //allow parent to receive hover
 		flex: 'none',
-		marginLeft: [SPACING(3), null, SPACING(4)], //gap
 
 		// Next indicator (ArrowNextIcon)
 		...(type === 'radio' &&

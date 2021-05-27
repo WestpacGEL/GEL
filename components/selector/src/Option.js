@@ -9,8 +9,8 @@ import { defaultPictogram } from './overrides/pictogram';
 import { defaultIcon } from './overrides/icon';
 import { defaultText } from './overrides/text';
 import { defaultLabel } from './overrides/label';
-import { defaultPrimaryLabel } from './overrides/primaryLabel';
-import { defaultSecondaryLabel } from './overrides/secondaryLabel';
+import { defaultLabelPrimary } from './overrides/labelPrimary';
+import { defaultLabelSecondary } from './overrides/labelSecondary';
 import { defaultHint } from './overrides/hint';
 import { defaultIndicator } from './overrides/indicator';
 
@@ -66,8 +66,8 @@ export const Option = ({
 		Icon: defaultIcon,
 		Text: defaultText,
 		Label: defaultLabel,
-		PrimaryLabel: defaultPrimaryLabel,
-		SecondaryLabel: defaultSecondaryLabel,
+		LabelPrimary: defaultLabelPrimary,
+		LabelSecondary: defaultLabelSecondary,
 		Hint: defaultHint,
 		Indicator: defaultIndicator,
 	};
@@ -104,15 +104,15 @@ export const Option = ({
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 		Text: { component: Text, styles: textStyles, attributes: textAttributes },
 		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
-		PrimaryLabel: {
-			component: PrimaryLabel,
-			styles: primaryLabelStyles,
-			attributes: primaryLabelAttributes,
+		LabelPrimary: {
+			component: LabelPrimary,
+			styles: labelPrimaryStyles,
+			attributes: labelPrimaryAttributes,
 		},
-		SecondaryLabel: {
-			component: SecondaryLabel,
-			styles: secondaryLabelStyles,
-			attributes: secondaryLabelAttributes,
+		LabelSecondary: {
+			component: LabelSecondary,
+			styles: labelSecondaryStyles,
+			attributes: labelSecondaryAttributes,
 		},
 		Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
 		Indicator: { component: Indicator, styles: indicatorStyles, attributes: indicatorAttributes },
@@ -187,21 +187,21 @@ export const Option = ({
 				) : null}
 				<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
 					<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
-						<PrimaryLabel
+						<LabelPrimary
 							state={state}
-							{...primaryLabelAttributes(state)}
-							css={primaryLabelStyles(state)}
+							{...labelPrimaryAttributes(state)}
+							css={labelPrimaryStyles(state)}
 						>
 							{children}
-						</PrimaryLabel>
+						</LabelPrimary>
 						{secondaryLabel && (
-							<SecondaryLabel
+							<LabelSecondary
 								state={state}
-								{...secondaryLabelAttributes(state)}
-								css={secondaryLabelStyles(state)}
+								{...labelSecondaryAttributes(state)}
+								css={labelSecondaryStyles(state)}
 							>
 								{secondaryLabel}
-							</SecondaryLabel>
+							</LabelSecondary>
 						)}
 					</Label>
 					{hint && (
@@ -244,7 +244,7 @@ Option.propTypes = {
 	/**
 	 * Secondary label text
 	 */
-	secondaryLabel: PropTypes.string,
+	secondaryLabel: PropTypes.node,
 
 	/**
 	 * Check the Selector option
@@ -317,12 +317,12 @@ Option.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		PrimaryLabel: PropTypes.shape({
+		LabelPrimary: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		SecondaryLabel: PropTypes.shape({
+		LabelSecondary: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

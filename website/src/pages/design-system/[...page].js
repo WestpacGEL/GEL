@@ -93,15 +93,11 @@ const Tabs = ({ component, tabName }) => {
 					height: [66, null, 90],
 					transition: 'box-shadow 0.2s ease',
 
-					[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: {
-						'body.hasScrolledSmall &': {
-							boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
-						},
+					'body.hasScrolledSmall &': {
+						boxShadow: ['0 2px 5px rgba(0,0,0,0.3)', null, 'none'],
 					},
-					[`@media (min-width: ${LAYOUT.breakpoints.sm}px)`]: {
-						'body.hasScrolledLarge &': {
-							boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
-						},
+					'body.hasScrolledLarge &': {
+						boxShadow: [null, null, '0 2px 5px rgba(0,0,0,0.3)'],
 					},
 				})[0],
 		},
