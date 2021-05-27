@@ -12,6 +12,7 @@ import PageHeader from '../../components/header/page-header';
 import { Gridly, Footer } from '../../components/layout';
 import { Head } from '../../components/head';
 import { ALL_PAGES } from '../../../graphql';
+import merge from 'lodash.merge';
 
 const ComponentWrapper = () => {
 	const { data, error } = useQuery(ALL_PAGES);
@@ -103,44 +104,42 @@ const Tabs = ({ component, tabName }) => {
 		},
 		TabBtn: {
 			styles: (styles, { selected }) =>
-				mq({
-					...styles,
-					flexGrow: [1, null, 0],
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-					height: [54, null, 66],
-					borderRadius: 0,
-					border: 0,
-					backgroundColor: 'transparent',
-					marginRight: 0,
-					marginBottom: 0,
-					borderRight: `1px solid ${COLORS.border}`,
-					padding: [0, null, `0 ${SPACING(10)}`],
-					fontWeight: 600,
-					color: selected ? COLORS.text : COLORS.muted,
-					position: 'relative',
+				merge({}, styles, {
+					...mq({
+						flexGrow: [1, null, 0],
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+						height: [54, null, 66],
+						borderRadius: 0,
+						border: 0,
+						backgroundColor: 'transparent !important',
+						marginRight: 0,
+						marginBottom: 0,
+						borderRight: `1px solid ${COLORS.border}`,
+						padding: [0, null, `0 ${SPACING(10)}`],
+						fontWeight: 600,
+						color: selected ? COLORS.text : COLORS.muted,
+						position: 'relative',
 
-					':last-child': {
-						borderRightWidth: [0, null, '1px'],
-					},
-					':hover': {
-						backgroundColor: undefined, //strip
-					},
+						':last-of-type': {
+							borderRightWidth: [0, null, '1px'],
+						},
 
-					// Selected item underline
-					// a11y: using border for WHCM support
-					'::after': {
-						content: '""',
-						borderBottom: `3px solid ${selected ? COLORS.primary : 'transparent'}`,
-						position: 'absolute',
-						zIndex: 0,
-						bottom: 0,
-						left: 0,
-						right: 0,
-						height: 0,
-					},
-				})[0],
+						// Selected item underline
+						// a11y: using border for WHCM support
+						'::after': {
+							content: '""',
+							borderBottom: `3px solid ${selected ? COLORS.primary : 'transparent'}`,
+							position: 'absolute',
+							zIndex: 0,
+							bottom: 0,
+							left: 0,
+							right: 0,
+							height: 0,
+						},
+					})[0],
+				}),
 		},
 	};
 
