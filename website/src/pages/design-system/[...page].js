@@ -114,18 +114,31 @@ const Tabs = ({ component, tabName }) => {
 					border: 0,
 					backgroundColor: 'transparent',
 					marginRight: 0,
-					borderRight: `solid 1px ${COLORS.border}`,
 					marginBottom: 0,
+					borderRight: `1px solid ${COLORS.border}`,
 					padding: [0, null, `0 ${SPACING(10)}`],
-					boxShadow: selected ? `inset 0 -3px 0 ${COLORS.primary}` : 'none',
 					fontWeight: 600,
 					color: selected ? COLORS.text : COLORS.muted,
+					position: 'relative',
 
 					':last-child': {
 						borderRightWidth: [0, null, '1px'],
 					},
 					':hover': {
 						backgroundColor: undefined, //strip
+					},
+
+					// Selected item underline
+					// a11y: using border for WHCM support
+					'::after': {
+						content: '""',
+						borderBottom: `3px solid ${selected ? COLORS.primary : 'transparent'}`,
+						position: 'absolute',
+						zIndex: 0,
+						bottom: 0,
+						left: 0,
+						right: 0,
+						height: 0,
 					},
 				})[0],
 		},
