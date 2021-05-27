@@ -115,13 +115,14 @@ const Tabs = ({ component, tabName }) => {
 					backgroundColor: 'transparent',
 					marginRight: 0,
 					borderRight: `solid 1px ${COLORS.border}`,
+					marginBottom: 0,
 					padding: [0, null, `0 ${SPACING(10)}`],
 					boxShadow: selected ? `inset 0 -3px 0 ${COLORS.primary}` : 'none',
 					fontWeight: 600,
 					color: selected ? COLORS.text : COLORS.muted,
 
 					':last-child': {
-						borderRightColor: ['#fff', null, `${COLORS.border}`],
+						borderRightWidth: [0, null, '1px'],
 					},
 					':hover': {
 						backgroundColor: undefined, //strip
