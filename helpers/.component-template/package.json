@@ -6,7 +6,7 @@
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=_COMPONENT_KEY_ webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=_COMPONENT_KEY_ NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",

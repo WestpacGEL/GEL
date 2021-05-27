@@ -43,7 +43,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=tabcordion webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=tabcordion NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
@@ -65,13 +65,13 @@
 	},
 	"peerDependencies": {
 		"react": "^16.13.1",
-		"react-spring": "9.0.0-rc.3"
+		"react-spring": "^9.1.2"
 	},
 	"devDependencies": {
 		"@westpac/form-check": "^1.1.1",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
-		"react-spring": "9.0.0-rc.3",
-		"start-server-and-test": "^1.11.0"
+		"react-spring": "^9.1.2",
+		"start-server-and-test": "^1.12.3"
 	}
 }

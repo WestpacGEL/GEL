@@ -3,7 +3,9 @@
 import { GEL, jsx, css, useBrand } from '@westpac/core';
 import * as components from '@westpac/pictogram';
 import { Cell, Grid, Name } from './_util';
-import { brands } from '../../../GEL.json';
+import pkg from '../../../GEL.json';
+
+const { brands } = pkg;
 
 const informative = Object.keys(components).filter(
 	(component) => !Object.keys(brands).some((code) => component.startsWith(code))

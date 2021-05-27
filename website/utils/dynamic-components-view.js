@@ -29,10 +29,10 @@ export let Provider = ({ value, children }) => {
 	return (
 		<GEL brand={wbc}>
 			<CurrentlyEditingBlocksContext.Provider
-				value={useMemo(() => ({ currentlyEditingBlocks, setCurrentlyEditingBlocks }), [
-					currentlyEditingBlocks,
-					setCurrentlyEditingBlocks,
-				])}
+				value={useMemo(
+					() => ({ currentlyEditingBlocks, setCurrentlyEditingBlocks }),
+					[currentlyEditingBlocks, setCurrentlyEditingBlocks]
+				)}
 			>
 				<Context.Provider value={value}>{children}</Context.Provider>
 			</CurrentlyEditingBlocksContext.Provider>

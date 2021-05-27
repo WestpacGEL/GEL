@@ -1,0 +1,54 @@
+ANALYTICS
+
+<Button>Click me</Button> -> {event: 'click'}
+
+
+<Button analytics={{ event: 'sort', }}>Sort</Button> -> {event: 'sort'}
+
+
+<Form>
+	<Button>do a thing</Button> -> {event: 'submit'}
+</Form>
+
+
+<Form analytics={{ event: 'foo', }}>
+	<Button>do a thing</Button> -> {event: 'foo'}
+</Form>
+
+
+<Form analytics={{ event: 'foo', }}>
+	<Button analytics={{ event: 'bar', }}>do a thing</Button> -> {event: 'bar'}
+</Form>
+
+
+<Component analytics={{ event: 'baz', }}>
+	<Form>
+		<Button>do a thing</Button> -> {event: 'baz'}
+	</Form>
+</Component>
+
+
+
+
+<GEL>
+	<AnalyticsProvider>
+		<Form/>
+	</AnalyticsProvider>
+</GEL>
+
+Form.js
+const thing = useAnalytics();
+const mergedEvents = merge( thing, props.thing );
+
+<AnalyticsProvider value={thing}>
+	<Form/>
+</AnalyticsProvider>
+
+
+
+dynamic import { useAnalytics } from './useAnalytics';
+
+if(useAnalytics)
+	// overwrite our default
+}
+

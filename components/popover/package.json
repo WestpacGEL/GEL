@@ -39,7 +39,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=popover webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=popover NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
@@ -66,6 +66,6 @@
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
-		"start-server-and-test": "^1.11.0"
+		"start-server-and-test": "^1.12.3"
 	}
 }

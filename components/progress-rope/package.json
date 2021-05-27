@@ -47,7 +47,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=progress-rope webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=progress-rope NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
@@ -68,14 +68,14 @@
 	},
 	"peerDependencies": {
 		"react": "^16.13.1",
-		"react-spring": "9.0.0-rc.3"
+		"react-spring": "^9.1.2"
 	},
 	"devDependencies": {
 		"@westpac/button": "^1.2.0",
 		"@westpac/grid": "^1.0.1",
 		"cypress": "^4.5.0",
 		"react": "^16.13.1",
-		"react-spring": "9.0.0-rc.3",
-		"start-server-and-test": "^1.11.0"
+		"react-spring": "^9.1.2",
+		"start-server-and-test": "^1.12.3"
 	}
 }
