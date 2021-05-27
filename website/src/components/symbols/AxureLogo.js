@@ -4,7 +4,14 @@ import { Svg } from './Svg';
 
 export const AxureLogo = ({ width, height = 'auto', ...props }) => {
 	return (
-		<Svg viewBox="0 0 180 180" width={180} height={180} css={{ width, height }} {...props}>
+		<Svg
+			viewBox="0 0 180 180"
+			width={180}
+			height={180}
+			assistiveText="Axure"
+			css={{ width, height }}
+			{...props}
+		>
 			<title>Axure logo</title>
 			<g fill="none" fillRule="evenodd">
 				<path

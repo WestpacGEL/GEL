@@ -4,7 +4,14 @@ import { Svg } from './Svg';
 
 export const ReactLogo = ({ width, height = 'auto', ...rest }) => {
 	return (
-		<Svg viewBox="0 0 2486 2235" width={2486} height={2235} css={{ width, height }} {...rest}>
+		<Svg
+			viewBox="0 0 2486 2235"
+			width={2486}
+			height={2235}
+			assistiveText="React"
+			css={{ width, height }}
+			{...rest}
+		>
 			<title>React logo</title>
 			<g fillRule="nonzero" fill="none">
 				<path

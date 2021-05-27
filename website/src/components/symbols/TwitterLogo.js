@@ -8,7 +8,14 @@ export const TwitterLogo = ({ width, height = 'auto', color, ...rest }) => {
 	color = color || COLORS.neutral;
 
 	return (
-		<Svg viewBox="0 0 50 40" width={50} height={40} css={{ width, height }} {...rest}>
+		<Svg
+			viewBox="0 0 50 40"
+			width={50}
+			height={40}
+			assistiveText="Twitter"
+			css={{ width, height }}
+			{...rest}
+		>
 			<title>Twitter logo</title>
 			<g opacity={0.7}>
 				<path
