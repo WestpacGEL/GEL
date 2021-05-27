@@ -5,7 +5,7 @@ import { Svg } from './Svg';
 
 export const StgBackgroundSvg = (props) => {
 	return (
-		<Svg viewBox="0 0 1202 1022" width={1202} height={1022} {...props}>
+		<Svg viewBox="0 0 1202 1022" width={1202} height={1022} aria-hidden="true" {...props}>
 			<title>St.George background image</title>
 			<g fill="none" fillRule="evenodd">
 				<path
