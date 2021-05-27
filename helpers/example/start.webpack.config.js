@@ -66,15 +66,21 @@ module.exports = () => ({
 			mode: 'start',
 			template: path.normalize(`${__dirname}/index.html`),
 		}),
-		new CopyPlugin({
-			patterns: [
-				{
-					from: '*',
-					to: `${PACKAGE_NAME}/assets/`,
-					context: path.normalize(`${__dirname}/../../components/${PACKAGE_NAME}/examples/assets/`),
-				},
-			],
-		}),
+		...(fs.existsSync(
+			path.normalize(`${__dirname}/../../components/${PACKAGE_NAME}/examples/assets/`)
+		)
+			? new CopyPlugin({
+					patterns: [
+						{
+							from: '*',
+							to: `${PACKAGE_NAME}/assets/`,
+							context: path.normalize(
+								`${__dirname}/../../components/${PACKAGE_NAME}/examples/assets/`
+							),
+						},
+					],
+			  })
+			: []),
 	],
 	devServer: {
 		historyApiFallback: true,
