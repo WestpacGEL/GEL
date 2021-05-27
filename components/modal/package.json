@@ -65,14 +65,14 @@
 		"react-merge-refs": "^1.1.0"
 	},
 	"peerDependencies": {
-		"react": "^16.13.1",
-		"react-dom": "^16.11.0",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
 		"react-spring": "^9.1.2"
 	},
 	"devDependencies": {
 		"cypress": "^4.5.0",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
 		"react-spring": "^9.1.2",
 		"start-server-and-test": "^1.12.3"
 	}
