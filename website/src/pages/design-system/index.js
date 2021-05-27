@@ -154,7 +154,13 @@ const Homepage = () => {
 											>
 												Enter your e-mail address
 											</label>
-											<TextInput type="text" size="large" name="EMAIL" id="mce-EMAIL" />
+											<TextInput
+												type="email"
+												size="large"
+												name="EMAIL"
+												id="mce-EMAIL"
+												autocomplete="email"
+											/>
 										</Cell>
 										<Cell
 											width={[10, null, 2]}
