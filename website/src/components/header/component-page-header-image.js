@@ -25,6 +25,7 @@ const ComponentPageHeaderImage = ({ brand: BRAND, ...rest }) => {
 				css={{
 					width: 'auto',
 					height: '100%',
+					display: 'block',
 				}}
 			/>
 		</div>
@@ -42,6 +43,7 @@ const ComponentPageHeaderImage = ({ brand: BRAND, ...rest }) => {
 				css={{
 					width: 'auto',
 					height: '100%',
+					display: 'block',
 				}}
 			/>
 		</div>
@@ -59,6 +61,7 @@ const ComponentPageHeaderImage = ({ brand: BRAND, ...rest }) => {
 				css={{
 					width: 'auto',
 					height: '100%',
+					display: 'block',
 				}}
 			/>
 		</div>
@@ -77,6 +80,7 @@ const ComponentPageHeaderImage = ({ brand: BRAND, ...rest }) => {
 				css={{
 					width: 'auto',
 					height: '100%',
+					display: 'block',
 				}}
 			/>
 		</div>
