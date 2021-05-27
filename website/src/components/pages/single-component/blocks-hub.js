@@ -114,6 +114,10 @@ const slateRenderer = (item, _editorValue) => {
 			}
 			switch (node.type) {
 				case 'paragraph':
+					if (!node.text) {
+						return;
+					}
+
 					const nested =
 						parents.findIndex((parent) => parent.type === 'blockquote') >= 0 ? true : false;
 
@@ -194,11 +198,7 @@ const slateRenderer = (item, _editorValue) => {
 
 export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
-		<div
-			{...props}
-			className="slate-container"
-			css={{ ...cssOverrides, '> :last-child': { display: 'none' } }}
-		>
+		<div {...props} className="slate-container" css={cssOverrides}>
 			{slateRenderer(item, content.document)(content)}
 		</div>
 	);
