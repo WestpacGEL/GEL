@@ -72,6 +72,7 @@
 	"jest": {
 		"displayName": "GEL3",
 		"testRegex": "\\.spec.js$",
+		"testEnvironment": "jsdom",
 		"collectCoverageFrom": [
 			"components/*/src/**/*.js"
 		],
@@ -95,9 +96,9 @@
 		"@manypkg/cli": "^0.13.0",
 		"@preconstruct/cli": "^1.1.14",
 		"@testing-library/jest-dom": "^5.12.0",
-		"@testing-library/react": "^10.0.4",
+		"@testing-library/react": "^11.2.7",
 		"babel-core": "^7.0.0-bridge.0",
-		"babel-jest": "^26.0.1",
+		"babel-jest": "^27.0.1",
 		"babel-loader": "^8.2.2",
 		"babel-loader-exclude-node-modules-except": "^1.1.2",
 		"babel-plugin-codegen": "^4.1.4",
@@ -111,8 +112,8 @@
 		"facepaint": "^1.2.1",
 		"get-workspaces": "^1.0.3",
 		"html-webpack-plugin": "^5.3.1",
-		"jest": "^26.0.1",
-		"jest-cli": "^26.0.1",
+		"jest": "^27.0.1",
+		"jest-cli": "^27.0.1",
 		"lodash.clonedeep": "^4.5.0",
 		"lodash.merge": "^4.6.2",
 		"mini-svg-data-uri": "^1.3.3",
