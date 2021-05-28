@@ -2,4 +2,4 @@
 '@westpac/form-check': minor
 ---
 
-Add forwardRef on Option input
+Add forwardRef Option and add ref to Option input
