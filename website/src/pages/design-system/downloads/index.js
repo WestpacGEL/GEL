@@ -832,17 +832,15 @@ const SectionDevelopers = () => {
 	);
 };
 
-function TokensPage() {
-	const { COLORS, LAYOUT } = useBrand();
+function DownloadsPage() {
 	const mq = useMediaQuery();
-
 	const [showGrid, setShowGrid] = useState(false);
 
 	return (
 		<Fragment>
 			<Head title="Downloads" />
 			<PageContext.Provider value={{ showGrid, setShowGrid }}>
-				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
+				<main id="content">
 					<PageHeader
 						name="Downloads"
 						css={
@@ -859,13 +857,15 @@ function TokensPage() {
 						}
 					/>
 					<Gridly show={showGrid} />
-					<SectionDesigners />
-					<SectionDevelopers />
+					<div>
+						<SectionDesigners />
+						<SectionDevelopers />
+					</div>
 					<Footer />
-				</div>
+				</main>
 			</PageContext.Provider>
 		</Fragment>
 	);
 }
 
-export default TokensPage;
+export default DownloadsPage;
