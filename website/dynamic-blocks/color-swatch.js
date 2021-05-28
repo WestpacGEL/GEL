@@ -93,13 +93,17 @@ export const ColorSwatch = {
 		const { BRAND, SPACING } = useBrand();
 		return (
 			<Cell width={12}>
-				<Grid css={{ marginTop: SPACING(2) }}>
+				<Grid
+					tag="ul"
+					role="list"
+					css={{ marginTop: SPACING(2), listStyle: 'none', paddingLeft: 0 }}
+				>
 					{colors.map((color) => {
 						if (color.value === 'Secondary Colors') {
 							return (
 								<Fragment key={color.value}>
 									{Object.keys(secondaryColors[BRAND.code]).map((secondaryColor) => (
-										<Cell key={secondaryColor} width={[12, 6, 4, 3]}>
+										<Cell key={secondaryColor} tag="li" width={[12, 6, 4, 3]}>
 											<Swatch color={secondaryColor} secondary />
 										</Cell>
 									))}
@@ -107,7 +111,7 @@ export const ColorSwatch = {
 							);
 						} else {
 							return (
-								<Cell key={color.value} width={[12, 6, 4, 3]}>
+								<Cell key={color.value} tag="li" width={[12, 6, 4, 3]}>
 									<Swatch color={color.value} />
 								</Cell>
 							);
