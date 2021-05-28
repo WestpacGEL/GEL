@@ -3,10 +3,11 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { TextInput } from '@westpac/text-input';
 import { Button } from '@westpac/button';
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
 
 import { BlockList, BlockListItem, BlockListHeading } from '../../components/block-list';
 import HomePageHeader from '../../components/header/home-page-header';
+import { PageContext } from '../../components/providers/pageContext';
 import { Section, SectionHeading } from '../../components/section';
 import { Footer } from '../../components/layout/footer';
 import { Head } from '../../components/head';
@@ -28,6 +29,7 @@ import {
 const Homepage = () => {
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
+	const pageHeadingRef = useRef();
 
 	return (
 		<Fragment>
@@ -68,6 +70,8 @@ const Homepage = () => {
 						</Grid>
 					</Container>
 				</Section>
+			<PageContext.Provider value={{ pageHeadingRef }}>
+					<div>
 
 				<Section paddingTop="large" paddingBottom="large">
 					<Container>
@@ -203,8 +207,10 @@ const Homepage = () => {
 						<DownloadsAndLinks css={mq({ marginTop: [SPACING(5), null, SPACING(7)] })} />
 					</Container>
 				</Section>
-			</main>
-			<Footer />
+					</div>
+					<Footer />
+				</main>
+			</PageContext.Provider>
 		</Fragment>
 	);
 };
