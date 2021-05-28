@@ -9,6 +9,7 @@ import throttle from 'lodash.throttle';
 import { MenuButton } from './menu-button';
 import HeaderImage from './home-page-header-image';
 import HomePageStickyHeaderImage from './home-page-sticky-header-image';
+import { usePageContext } from '../providers/pageContext';
 import { Body } from '../body';
 import { antialiasingStyling, brandHeaderStyling } from '../_utils';
 
@@ -208,8 +209,9 @@ const HeroFeatures = () => {
 	);
 };
 const HeroIntro = () => {
-	const { COLORS, SPACING, BRAND, PACKS } = useBrand();
+	const { SPACING, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
+	const { pageHeadingRef } = usePageContext();
 
 	return (
 		<Container
@@ -221,11 +223,12 @@ const HeroIntro = () => {
 			<Grid>
 				<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 					<BrandHeading
+						ref={pageHeadingRef}
 						tag="h2"
 						size={[4, null, 1]}
 						uppercase={BRAND.code === 'WBC'}
+						tabIndex="-1" //receives focus on 'Go to top' btn onClick
 						css={mq({
-							// color: COLORS.heading,
 							...(BRAND.code === 'WBC' && {
 								fontSize: ['3rem', null, '4.5rem'],
 							}),

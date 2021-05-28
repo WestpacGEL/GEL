@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
@@ -63,11 +63,12 @@ const GridIndicator = () => {
 	);
 };
 
-const PageHeaderHeading = (props) => {
+const PageHeaderHeading = forwardRef((props, ref) => {
 	const { BRAND, LAYOUT, PACKS } = useBrand();
 
 	return BRAND.code === 'WBC' ? (
 		<BrandHeading
+			ref={ref}
 			tag="h1"
 			size={7}
 			uppercase
@@ -90,6 +91,7 @@ const PageHeaderHeading = (props) => {
 		/>
 	) : (
 		<Heading
+			ref={ref}
 			tag="h1"
 			size={8}
 			overrides={{
@@ -110,11 +112,12 @@ const PageHeaderHeading = (props) => {
 			{...props}
 		/>
 	);
-};
+});
 
 const PageHeader = ({ name, ...rest }) => {
 	const { COLORS, BRAND, SPACING, LAYOUT } = useBrand();
 	const mq = useMediaQuery();
+	const { pageHeadingRef } = usePageContext();
 
 	return (
 		<header
@@ -188,7 +191,12 @@ const PageHeader = ({ name, ...rest }) => {
 						},
 					})}
 				>
-					<PageHeaderHeading>{name}</PageHeaderHeading>
+					<PageHeaderHeading
+						ref={pageHeadingRef}
+						tabIndex="-1" //receives focus on 'Go to top' btn onClick
+					>
+						{name}
+					</PageHeaderHeading>
 				</div>
 			</div>
 			<GridIndicator />

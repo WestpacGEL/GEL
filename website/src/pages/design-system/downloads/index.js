@@ -835,11 +835,12 @@ const SectionDevelopers = () => {
 function DownloadsPage() {
 	const mq = useMediaQuery();
 	const [showGrid, setShowGrid] = useState(false);
+	const pageHeadingRef = useRef();
 
 	return (
 		<Fragment>
 			<Head title="Downloads" />
-			<PageContext.Provider value={{ showGrid, setShowGrid }}>
+			<PageContext.Provider value={{ showGrid, setShowGrid, pageHeadingRef }}>
 				<main id="content">
 					<PageHeader
 						name="Downloads"

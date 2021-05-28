@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useCallback, forwardRef, Fragment } from 'react';
+import { useState, useCallback, forwardRef, Fragment, useRef } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { useQuery } from '@apollo/react-hooks';
@@ -39,11 +39,12 @@ const ComponentWrapper = () => {
 const Component = ({ component, tabName }) => {
 	const { pageTitle } = component;
 	const [showGrid, setShowGrid] = useState(false);
+	const pageHeadingRef = useRef();
 
 	return (
 		<Fragment>
 			<Head title={pageTitle} />
-			<PageContext.Provider value={{ showGrid, setShowGrid }}>
+			<PageContext.Provider value={{ showGrid, setShowGrid, pageHeadingRef }}>
 				<PageHeader name={pageTitle} />
 				<Tabs component={component} tabName={tabName} />
 				<Footer />
@@ -53,7 +54,7 @@ const Component = ({ component, tabName }) => {
 };
 
 const Tabs = ({ component, tabName }) => {
-	const { SPACING, COLORS, LAYOUT } = useBrand();
+	const { SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const router = useRouter();
 	const brandName = router.query.b || '';
