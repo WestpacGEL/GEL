@@ -1,0 +1,34 @@
+{
+	"name": "@westpac/field",
+	"version": "1.0.0-beta",
+	"description": "GEL field component",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/field",
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"license": "GPL-3.0+",
+	"scripts": {
+		"start": "PACKAGE_NAME=field webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"test": "start-server-and-test start http://localhost:8080 test:all",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
+		"test:all": "yarn test:integration",
+		"test:integration": "cypress run",
+		"test:test-dev": "cypress open"
+	},
+	"main": "dist/field.cjs.js",
+	"module": "dist/field.esm.js",
+	"dependencies": {
+		"@babel/runtime": "^7.9.6",
+		"@westpac/a11y": "^1.0.0",
+		"@westpac/core": "^1.1.0",
+		"@westpac/form": "^1.0.0-alpha.2",
+		"@westpac/text-input": "^1.0.0",
+		"prop-types": "^15.7.2"
+	},
+	"peerDependencies": {
+		"react": "^16.10.1"
+	},
+	"devDependencies": {
+		"cypress": "^4.5.0",
+		"react": "^16.13.1",
+		"start-server-and-test": "^1.11.0"
+	}
+}
