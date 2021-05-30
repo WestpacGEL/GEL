@@ -46,7 +46,7 @@ const serializeNode = (rules, { node, parents, path, value }) => {
 	console.warn(`No serializer defined for node of type "${node.type}".`);
 };
 
-export default (rules) => (doc) => {
+const Serializer = (rules) => (doc) => {
 	let document = doc && doc.document ? JSON.parse(doc.document) : null;
 	if (!document || !document.nodes) {
 		return [];
@@ -65,3 +65,5 @@ export default (rules) => (doc) => {
 		.filter((el) => el);
 	return elements;
 };
+
+export default Serializer;
