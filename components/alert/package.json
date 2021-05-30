@@ -65,7 +65,7 @@
 		"@westpac/list": "^1.0.1",
 		"cypress": "^4.5.0",
 		"react": "^17.0.2",
-		"react-spring": "^9.1.2",
+		"react-spring": "^9.2.1",
 		"start-server-and-test": "^1.12.3"
 	}
 }
