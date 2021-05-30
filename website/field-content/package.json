@@ -55,6 +55,6 @@
 			"block-components"
 		]
 	},
-	"main": "dist/westpac-field-content.cjs.js",
-	"module": "dist/westpac-field-content.esm.js"
+	"main": "dist/field-content.cjs.js",
+	"module": "dist/field-content.esm.js"
 }
