@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-ClockPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-ClockPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-ClockPictogram.esm.js"
 }

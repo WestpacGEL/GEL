@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-ShoppingPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-ShoppingPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-ShoppingPictogram.esm.js"
 }

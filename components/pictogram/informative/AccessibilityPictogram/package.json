@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-AccessibilityPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-AccessibilityPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-AccessibilityPictogram.esm.js"
 }

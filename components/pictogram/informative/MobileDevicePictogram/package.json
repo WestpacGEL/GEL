@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-MobileDevicePictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-MobileDevicePictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-MobileDevicePictogram.esm.js"
 }

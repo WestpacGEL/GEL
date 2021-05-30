@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-TelephoneCallPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-TelephoneCallPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-TelephoneCallPictogram.esm.js"
 }

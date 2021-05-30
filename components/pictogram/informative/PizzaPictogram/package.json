@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-PizzaPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-PizzaPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-PizzaPictogram.esm.js"
 }

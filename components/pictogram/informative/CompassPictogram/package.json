@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-CompassPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-CompassPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-CompassPictogram.esm.js"
 }

@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-BusPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-BusPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-BusPictogram.esm.js"
 }

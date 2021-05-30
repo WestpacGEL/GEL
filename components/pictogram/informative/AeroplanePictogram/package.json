@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-AeroplanePictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-AeroplanePictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-AeroplanePictogram.esm.js"
 }

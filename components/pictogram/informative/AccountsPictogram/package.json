@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-AccountsPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-AccountsPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-AccountsPictogram.esm.js"
 }

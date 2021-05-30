@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-TractorPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-TractorPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-TractorPictogram.esm.js"
 }

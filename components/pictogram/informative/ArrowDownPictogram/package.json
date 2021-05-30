@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-ArrowDownPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-ArrowDownPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-ArrowDownPictogram.esm.js"
 }

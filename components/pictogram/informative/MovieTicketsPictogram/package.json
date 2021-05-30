@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-MovieTicketsPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-MovieTicketsPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-MovieTicketsPictogram.esm.js"
 }

@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-ThumbsUpPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-ThumbsUpPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-ThumbsUpPictogram.esm.js"
 }

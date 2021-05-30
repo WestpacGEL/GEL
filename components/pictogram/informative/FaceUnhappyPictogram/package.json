@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-FaceUnhappyPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-FaceUnhappyPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-FaceUnhappyPictogram.esm.js"
 }

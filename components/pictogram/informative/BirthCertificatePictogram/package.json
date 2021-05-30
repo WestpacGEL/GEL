@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-BirthCertificatePictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-BirthCertificatePictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-BirthCertificatePictogram.esm.js"
 }

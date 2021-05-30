@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-decorative-WBCBankCardPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-decorative-WBCBankCardPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-decorative-WBCBankCardPictogram.esm.js"
 }

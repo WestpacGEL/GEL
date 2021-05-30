@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-NestEggPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-NestEggPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-NestEggPictogram.esm.js"
 }

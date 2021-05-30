@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-pictogram-informative-PadlockUnlockedPictogram.cjs.js"
+	"main": "dist/westpac-pictogram-informative-PadlockUnlockedPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-PadlockUnlockedPictogram.esm.js"
 }
