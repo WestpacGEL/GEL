@@ -56,7 +56,7 @@
 	"devDependencies": {
 		"@westpac/a11y": "^1.0.1",
 		"@westpac/pictogram": "^1.4.0",
-		"cypress": "^4.5.0",
+		"cypress": "^7.4.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.3"
 	}

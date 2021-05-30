@@ -108,7 +108,7 @@
 		"common-tags": "^1.8.0",
 		"copy-webpack-plugin": "^9.0.0",
 		"core-js": "^3.13.1",
-		"cypress": "^4.5.0",
+		"cypress": "^7.4.0",
 		"facepaint": "^1.2.1",
 		"get-workspaces": "^1.0.3",
 		"html-webpack-plugin": "^5.3.1",
