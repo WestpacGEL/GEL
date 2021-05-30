@@ -1,10 +1,10 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
 import { Component, Fragment, useMemo, createContext, useContext, useState } from 'react';
-import { Block } from 'slate';
 import { PencilIcon, CheckIcon, TrashcanIcon } from '@arch-ui/icons';
 import { colors, gridSize } from '@arch-ui/theme';
+import { jsx } from '@emotion/react';
+import { Block } from 'slate';
 
 import { type as defaultType } from '../field-content/src/views/editor/blocks/paragraph';
 

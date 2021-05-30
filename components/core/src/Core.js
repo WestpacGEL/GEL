@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, Global } from '@emotion/core';
+import { jsx, Global } from '@emotion/react';
 import { Fragment } from 'react';
 import { useBrand } from './Brand';
 import { normalize as normalizeCSS } from './normalize';

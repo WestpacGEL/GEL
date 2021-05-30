@@ -1,15 +1,15 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
-import isHotkey from 'is-hotkey';
 import { Heading as WestpacHeading } from '@westpac/heading';
+import { jsx } from '@emotion/react';
+import isHotkey from 'is-hotkey';
 
 import { Node, sizes, toggleHeadingBlock, type } from './blocks/heading';
-import { type as defaultType } from './blocks/paragraph';
 import { BlockInsertMenuItem } from './block-disclosure-menu';
-import { DropdownMenu } from './dialog';
-import { ToolbarButton } from './toolbar-components';
 import { HeadingIcon, ArrowDownIcon } from './toolbar-icons';
+import { type as defaultType } from './blocks/paragraph';
+import { ToolbarButton } from './toolbar-components';
+import { DropdownMenu } from './dialog';
 import { hasBlock } from './utils';
 
 export const HeadingsMenu = ({ editor, editorState }) => {

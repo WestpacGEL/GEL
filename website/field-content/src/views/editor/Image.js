@@ -1,7 +1,9 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+
 import { useLayoutEffect, forwardRef } from 'react';
 import { Popper } from 'react-popper';
+import { jsx } from '@emotion/react';
+
 import { useStateWithEqualityCheck } from './hooks';
 
 let PopperRender = forwardRef(
