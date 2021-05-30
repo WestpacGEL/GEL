@@ -93,7 +93,7 @@
 		"@changesets/cli": "^2.16.0",
 		"@emotion/core": "^10.0.28",
 		"@emotion/weak-memoize": "^0.2.5",
-		"@manypkg/cli": "^0.13.0",
+		"@manypkg/cli": "^0.18.0",
 		"@preconstruct/cli": "^2.1.0",
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.7",
