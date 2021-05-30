@@ -42,8 +42,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/selector.cjs.js",
-	"module": "dist/selector.esm.js",
+	"main": "dist/westpac-selector.cjs.js",
+	"module": "dist/westpac-selector.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^2.0.0",

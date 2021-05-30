@@ -32,8 +32,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/collapsible.cjs.js",
-	"module": "dist/collapsible.esm.js",
+	"main": "dist/westpac-collapsible.cjs.js",
+	"module": "dist/westpac-collapsible.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/body": "^1.4.0",

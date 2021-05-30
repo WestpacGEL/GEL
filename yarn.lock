@@ -4793,10 +4793,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.2.tgz#adea7b6953cbb34651766b0548468e743c6a2353"
   integrity sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q==
 
-"@preconstruct/cli@^1.1.14":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-1.2.2.tgz#379d432cf911b42bf04999161d5200685d4de4bb"
-  integrity sha512-0Thzanz4MGy+E0v+2Srbe4oc1sPsfc+Ce61M/JOvGa3cgAl/4TzlSWh66XAvf8lnyTLkvip1paoBjVdWaFF80A==
+"@preconstruct/cli@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-2.1.0.tgz#76b30a8952f534f9f4a99862d7267815b6e3b57d"
+  integrity sha512-FfyWlZbinuv3be7yss8p9Yq87V88XKa6XUskeRSFDKgcgH1FwtTg9xYrEJm7j5QV4KThiQfPqoUN4m7hLxWlHg==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.7"
@@ -4815,14 +4815,13 @@
     enquirer "^2.3.6"
     estree-walker "^2.0.1"
     fast-deep-equal "^2.0.1"
+    fast-glob "^3.2.4"
     fs-extra "^9.0.1"
-    globby "^11.0.1"
     is-ci "^2.0.0"
     is-reference "^1.2.1"
     jest-worker "^26.3.0"
     magic-string "^0.25.7"
     meow "^7.1.0"
-    micromatch "^4.0.2"
     ms "^2.1.2"
     normalize-path "^3.0.0"
     npm-packlist "^2.1.2"
@@ -4833,6 +4832,7 @@
     resolve "^1.17.0"
     resolve-from "^5.0.0"
     rollup "^2.32.0"
+    semver "^7.3.4"
     terser "^5.2.1"
     v8-compile-cache "^2.1.1"
 
@@ -10565,7 +10565,7 @@ fast-glob@^2.2.6:
     merge2 "^1.2.3"
     micromatch "^3.1.10"
 
-fast-glob@^3.1.1, fast-glob@^3.2.5:
+fast-glob@^3.1.1, fast-glob@^3.2.4, fast-glob@^3.2.5:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.5.tgz#7939af2a656de79a4f1901903ee8adcaa7cb9661"
   integrity sha512-2DtFcgT68wiTTiwZ2hNdJfcHNke9XOfnwmBRWXhmeKM8rF0TGwmC/Qto3S7RoZKp5cilZbxzO5iTNTQsJ+EeDg==
@@ -17793,7 +17793,7 @@ semver@7.0.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
   integrity sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==
 
-semver@^7.2, semver@^7.3.2, semver@^7.3.5:
+semver@^7.2, semver@^7.3.2, semver@^7.3.4, semver@^7.3.5:
   version "7.3.5"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
   integrity sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==

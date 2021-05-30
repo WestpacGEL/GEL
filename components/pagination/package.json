@@ -49,8 +49,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/pagination.cjs.js",
-	"module": "dist/pagination.esm.js",
+	"main": "dist/westpac-pagination.cjs.js",
+	"module": "dist/westpac-pagination.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/a11y": "^1.0.1",

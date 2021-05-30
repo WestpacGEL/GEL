@@ -26,8 +26,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/form-pod.cjs.js",
-	"module": "dist/form-pod.esm.js",
+	"main": "dist/westpac-form-pod.cjs.js",
+	"module": "dist/westpac-form-pod.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^2.0.0",

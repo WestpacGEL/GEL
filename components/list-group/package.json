@@ -36,8 +36,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/list-group.cjs.js",
-	"module": "dist/list-group.esm.js",
+	"main": "dist/westpac-list-group.cjs.js",
+	"module": "dist/westpac-list-group.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^2.0.0",

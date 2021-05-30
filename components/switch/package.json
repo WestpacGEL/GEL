@@ -45,8 +45,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/switch.cjs.js",
-	"module": "dist/switch.esm.js",
+	"main": "dist/westpac-switch.cjs.js",
+	"module": "dist/westpac-switch.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^2.0.0",

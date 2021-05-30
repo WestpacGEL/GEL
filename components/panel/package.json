@@ -45,8 +45,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/panel.cjs.js",
-	"module": "dist/panel.esm.js",
+	"main": "dist/westpac-panel.cjs.js",
+	"module": "dist/westpac-panel.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/body": "^1.4.0",

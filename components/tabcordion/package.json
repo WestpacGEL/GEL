@@ -50,8 +50,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/tabcordion.cjs.js",
-	"module": "dist/tabcordion.esm.js",
+	"main": "dist/westpac-tabcordion.cjs.js",
+	"module": "dist/westpac-tabcordion.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/body": "^1.4.0",

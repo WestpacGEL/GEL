@@ -21,8 +21,8 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {},
-	"main": "dist/wbc.cjs.js",
-	"module": "dist/wbc.esm.js",
+	"main": "dist/westpac-wbc.cjs.js",
+	"module": "dist/westpac-wbc.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6"
 	}

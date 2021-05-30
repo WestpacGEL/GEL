@@ -49,8 +49,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/a11y.cjs.js",
-	"module": "dist/a11y.esm.js",
+	"main": "dist/westpac-a11y.cjs.js",
+	"module": "dist/westpac-a11y.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^2.0.0",

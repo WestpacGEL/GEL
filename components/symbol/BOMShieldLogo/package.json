@@ -1,7 +1,3 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/BOMShieldLogo"
-	}
+	"main": "dist/westpac-symbol-BOMShieldLogo.cjs.js"
 }

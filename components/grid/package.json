@@ -58,8 +58,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/grid.cjs.js",
-	"module": "dist/grid.esm.js",
+	"main": "dist/westpac-grid.cjs.js",
+	"module": "dist/westpac-grid.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^2.0.0",

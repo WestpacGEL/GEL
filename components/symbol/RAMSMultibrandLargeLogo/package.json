@@ -1,7 +1,3 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/RAMSMultibrandLargeLogo"
-	}
+	"main": "dist/westpac-symbol-RAMSMultibrandLargeLogo.cjs.js"
 }

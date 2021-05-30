@@ -49,8 +49,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/modal.cjs.js",
-	"module": "dist/modal.esm.js",
+	"main": "dist/westpac-modal.cjs.js",
+	"module": "dist/westpac-modal.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/body": "^1.4.0",

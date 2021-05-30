@@ -21,8 +21,8 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {},
-	"main": "dist/stg.cjs.js",
-	"module": "dist/stg.esm.js",
+	"main": "dist/westpac-stg.cjs.js",
+	"module": "dist/westpac-stg.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6"
 	}

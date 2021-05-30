@@ -53,11 +53,11 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/core.cjs.js",
-	"module": "dist/core.esm.js",
+	"main": "dist/westpac-core.cjs.js",
+	"module": "dist/westpac-core.esm.js",
 	"browser": {
-		"./dist/core.cjs.js": "./dist/core.browser.cjs.js",
-		"./dist/core.esm.js": "./dist/core.browser.esm.js"
+		"./dist/westpac-core.cjs.js": "./dist/westpac-core.browser.cjs.js",
+		"./dist/westpac-core.esm.js": "./dist/westpac-core.browser.esm.js"
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",

@@ -53,8 +53,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/text-input.cjs.js",
-	"module": "dist/text-input.esm.js",
+	"main": "dist/westpac-text-input.cjs.js",
+	"module": "dist/westpac-text-input.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/button": "^1.2.0",

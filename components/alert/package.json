@@ -46,8 +46,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/alert.cjs.js",
-	"module": "dist/alert.esm.js",
+	"main": "dist/westpac-alert.cjs.js",
+	"module": "dist/westpac-alert.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/body": "^1.4.0",

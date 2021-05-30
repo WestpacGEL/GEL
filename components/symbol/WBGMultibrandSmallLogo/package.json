@@ -1,7 +1,3 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/WBGMultibrandSmallLogo"
-	}
+	"main": "dist/westpac-symbol-WBGMultibrandSmallLogo.cjs.js"
 }

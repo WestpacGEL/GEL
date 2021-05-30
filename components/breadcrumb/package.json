@@ -49,8 +49,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/breadcrumb.cjs.js",
-	"module": "dist/breadcrumb.esm.js",
+	"main": "dist/westpac-breadcrumb.cjs.js",
+	"module": "dist/westpac-breadcrumb.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^2.0.0",

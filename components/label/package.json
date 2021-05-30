@@ -45,8 +45,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/label.cjs.js",
-	"module": "dist/label.esm.js",
+	"main": "dist/westpac-label.cjs.js",
+	"module": "dist/westpac-label.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^2.0.0",

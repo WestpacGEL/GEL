@@ -21,8 +21,8 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {},
-	"main": "dist/bsa.cjs.js",
-	"module": "dist/bsa.esm.js",
+	"main": "dist/westpac-bsa.cjs.js",
+	"module": "dist/westpac-bsa.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6"
 	}

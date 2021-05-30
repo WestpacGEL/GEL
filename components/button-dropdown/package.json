@@ -45,8 +45,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/button-dropdown.cjs.js",
-	"module": "dist/button-dropdown.esm.js",
+	"main": "dist/westpac-button-dropdown.cjs.js",
+	"module": "dist/westpac-button-dropdown.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/button": "^1.2.0",

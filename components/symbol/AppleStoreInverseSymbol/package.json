@@ -1,7 +1,3 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/AppleStoreInverseSymbol"
-	}
+	"main": "dist/westpac-symbol-AppleStoreInverseSymbol.cjs.js"
 }

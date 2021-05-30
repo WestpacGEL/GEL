@@ -45,8 +45,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/progress-bar.cjs.js",
-	"module": "dist/progress-bar.esm.js",
+	"main": "dist/westpac-progress-bar.cjs.js",
+	"module": "dist/westpac-progress-bar.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/core": "^2.0.0",

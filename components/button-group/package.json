@@ -44,8 +44,8 @@
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/button-group.cjs.js",
-	"module": "dist/button-group.esm.js",
+	"main": "dist/westpac-button-group.cjs.js",
+	"module": "dist/westpac-button-group.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.9.6",
 		"@westpac/button": "^1.2.0",

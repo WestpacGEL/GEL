@@ -1,7 +1,3 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/FingerprintPictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-FingerprintPictogram.cjs.js"
 }
