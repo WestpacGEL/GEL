@@ -64,7 +64,6 @@
 	},
 	"preconstruct": {
 		"packages": [
-			"website/field-content",
 			"components/*",
 			"brands/*"
 		]
