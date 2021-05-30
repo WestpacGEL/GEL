@@ -37,7 +37,7 @@
 		"test:integration": "node helpers/tester.js",
 		"test": "yarn test:format && yarn test:unit && yarn test:integration",
 		"dep:test": "manypkg check && preconstruct build || preconstruct dev",
-		"dep:fix": "manypkg fix",
+		"dep:fix": "manypkg fix && preconstruct fix",
 		"GELjson": "node helpers/ds-info.js",
 		"postinstall": "yarn dep:test && preconstruct dev && yarn GELjson && build-field-types dev",
 		"publish-packages": "yarn build && yarn GELjson && yarn changeset publish",
