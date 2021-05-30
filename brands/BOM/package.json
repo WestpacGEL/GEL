@@ -24,6 +24,6 @@
 	"main": "dist/westpac-bom.cjs.js",
 	"module": "dist/westpac-bom.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.9.6"
+		"@babel/runtime": "^7.14.0"
 	}
 }

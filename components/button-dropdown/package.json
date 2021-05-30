@@ -48,9 +48,9 @@
 	"main": "dist/westpac-button-dropdown.cjs.js",
 	"module": "dist/westpac-button-dropdown.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.9.6",
+		"@babel/runtime": "^7.14.0",
 		"@westpac/button": "^1.2.0",
-		"@westpac/core": "^2.0.0",
+		"@westpac/core": "^2.1.0",
 		"@westpac/heading": "^1.0.1",
 		"@westpac/hooks": "^1.1.1",
 		"prop-types": "^15.7.2"

@@ -52,10 +52,10 @@
 	"main": "dist/westpac-list.cjs.js",
 	"module": "dist/westpac-list.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.9.6",
+		"@babel/runtime": "^7.14.0",
 		"@westpac/a11y": "^1.0.1",
 		"@westpac/body": "^1.4.0",
-		"@westpac/core": "^2.0.0",
+		"@westpac/core": "^2.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

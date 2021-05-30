@@ -47,9 +47,9 @@
 	"main": "dist/westpac-form-check.cjs.js",
 	"module": "dist/westpac-form-check.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.9.6",
+		"@babel/runtime": "^7.14.0",
 		"@westpac/body": "^1.4.0",
-		"@westpac/core": "^2.0.0",
+		"@westpac/core": "^2.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
