@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
