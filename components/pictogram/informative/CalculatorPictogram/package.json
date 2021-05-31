@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/CalculatorPictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-CalculatorPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-CalculatorPictogram.esm.js"
 }

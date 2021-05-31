@@ -64,9 +64,8 @@ const panelStyles = (_, { open, position, ...rest }) => {
 		'::before': {
 			borderLeftWidth: '8px',
 			borderRightWidth: '8px',
-			[!position.offset || position.offset === 'left'
-				? 'marginLeft'
-				: 'marginRight']: !position.offset ? '-8px' : '-1px',
+			[!position.offset || position.offset === 'left' ? 'marginLeft' : 'marginRight']:
+				!position.offset ? '-8px' : '-1px',
 			[position.placement === 'top' ? 'borderTop' : 'borderBottom']:
 				rest.placement !== 'none' && `12px solid ${COLORS.muted}`,
 		},

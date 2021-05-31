@@ -7,7 +7,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 
 import { UmbrellaIcon } from '@westpac/icon';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container width={25}>
@@ -29,3 +29,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

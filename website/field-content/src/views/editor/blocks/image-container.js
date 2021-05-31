@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { useMemo } from 'react';
+
 import insertImages from 'slate-drop-or-paste-images';
 import imageExtensions from 'image-extensions';
 import { findNode } from 'slate-react';
+import { jsx } from '@emotion/react';
+import { useMemo } from 'react';
 import { Block } from 'slate';
 
 import { BlockInsertMenuItem } from '../block-disclosure-menu';

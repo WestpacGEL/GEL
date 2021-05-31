@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/SuperIcon"
-	}
+	"main": "dist/westpac-icon-SuperIcon.cjs.js",
+	"module": "dist/westpac-icon-SuperIcon.esm.js"
 }

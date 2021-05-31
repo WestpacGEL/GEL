@@ -28,7 +28,7 @@ const Weights = () => {
 	);
 };
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>Sans serif system font</Title>
@@ -36,3 +36,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

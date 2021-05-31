@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/BpayIcon"
-	}
+	"main": "dist/westpac-icon-BpayIcon.cjs.js",
+	"module": "dist/westpac-icon-BpayIcon.esm.js"
 }

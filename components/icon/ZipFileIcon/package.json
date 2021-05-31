@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/ZipFileIcon"
-	}
+	"main": "dist/westpac-icon-ZipFileIcon.cjs.js",
+	"module": "dist/westpac-icon-ZipFileIcon.esm.js"
 }

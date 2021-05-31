@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 import { Panel, Body } from '@westpac/panel';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Panel look="faint" heading="The Wild Wood">
@@ -24,3 +24,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

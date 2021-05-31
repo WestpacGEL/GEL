@@ -18,7 +18,7 @@ import {
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Title } from '../../../../helpers/demos';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<p>
@@ -66,3 +66,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

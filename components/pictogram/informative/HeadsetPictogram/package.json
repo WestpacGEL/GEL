@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/HeadsetPictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-HeadsetPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-HeadsetPictogram.esm.js"
 }

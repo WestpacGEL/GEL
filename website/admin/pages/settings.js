@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+
+import { jsx } from '@emotion/react';
 import { PageTitle } from '@arch-ui/typography';
 
 import { useToasts } from 'react-toast-notifications';

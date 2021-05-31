@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/SmsIcon"
-	}
+	"main": "dist/westpac-icon-SmsIcon.cjs.js",
+	"module": "dist/westpac-icon-SmsIcon.esm.js"
 }

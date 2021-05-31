@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/DriversLicencePictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-DriversLicencePictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-DriversLicencePictogram.esm.js"
 }
