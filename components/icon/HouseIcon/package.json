@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/HouseIcon"
-	}
+	"main": "dist/westpac-icon-HouseIcon.cjs.js",
+	"module": "dist/westpac-icon-HouseIcon.esm.js"
 }

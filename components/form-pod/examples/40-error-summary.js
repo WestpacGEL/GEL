@@ -10,10 +10,11 @@ import {
 	FormPodIndicator,
 	FormPodActions,
 } from '@westpac/form-pod';
-import { Alert, Heading } from '@westpac/alert';
 import { List, Item } from '@westpac/list';
 import { HeadsetIcon } from '@westpac/icon';
+import { Heading } from '@westpac/heading';
 import { Button } from '@westpac/button';
+import { Alert } from '@westpac/alert';
 import { Fragment } from 'react';
 
 function Example({ brand }) {

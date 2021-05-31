@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/ForkKnifePictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-ForkKnifePictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-ForkKnifePictogram.esm.js"
 }

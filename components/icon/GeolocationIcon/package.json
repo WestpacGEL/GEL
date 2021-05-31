@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/GeolocationIcon"
-	}
+	"main": "dist/westpac-icon-GeolocationIcon.cjs.js",
+	"module": "dist/westpac-icon-GeolocationIcon.esm.js"
 }

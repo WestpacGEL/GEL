@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { colors, gridSize } from '@arch-ui/theme';
 
 import { Dialog } from './dialog';

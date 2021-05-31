@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, Global } from '@emotion/core';
+import { jsx, Global } from '@emotion/react';
 import { Fragment } from 'react';
 import { useBrand } from './Brand';
 import { normalize as normalizeCSS } from './normalize';
@@ -23,9 +23,10 @@ export const Core = ({ normalize, children }) => {
 						...PACKS.focus,
 					},
 					// Also apply to the following selectors to increase specificity (against normalize reset)
-					'button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring': {
-						...PACKS.focus,
-					},
+					'button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring':
+						{
+							...PACKS.focus,
+						},
 					'[tabindex="-1"]:focus': {
 						outline: '0 !important',
 					},

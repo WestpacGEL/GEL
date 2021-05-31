@@ -5,7 +5,7 @@ import { InputGroup, Before, After } from '@westpac/input-group';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Container } from '../../../../helpers/demos';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container width={50}>
@@ -32,3 +32,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

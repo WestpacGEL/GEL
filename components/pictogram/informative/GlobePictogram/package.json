@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/GlobePictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-GlobePictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-GlobePictogram.esm.js"
 }

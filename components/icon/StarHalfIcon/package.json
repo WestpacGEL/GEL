@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/StarHalfIcon"
-	}
+	"main": "dist/westpac-icon-StarHalfIcon.cjs.js",
+	"module": "dist/westpac-icon-StarHalfIcon.esm.js"
 }

@@ -5,7 +5,7 @@ import { Panel, Body } from '@westpac/panel';
 import { Table, Tr, Td, Tbody } from '@westpac/table';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Panel heading="Panel with table">
@@ -32,3 +32,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

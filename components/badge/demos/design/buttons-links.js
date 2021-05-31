@@ -10,7 +10,7 @@ const Link = (props) => <a href="#" css={{ marginRight: '1rem' }} {...props} />;
 
 const Title = (props) => <p css={{ fontStyle: 'italic' }} {...props} />;
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Body>
@@ -85,3 +85,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

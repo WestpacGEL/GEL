@@ -5,7 +5,6 @@ const {
 	findDemoFiles,
 	makeCode,
 } = require('./_utils.js');
-const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
@@ -40,7 +39,7 @@ process.on('exit', () => {
 module.exports = () => ({
 	entry: tmpObj.name,
 	context: path.normalize(`${__dirname}/../../components/${PACKAGE_NAME}/`),
-	mode: process.env.NODE_ENV,
+	mode: process.env.NODE_ENV || 'production',
 
 	output: {
 		filename: '[name]-[hash].js',
@@ -67,14 +66,23 @@ module.exports = () => ({
 			mode: 'start',
 			template: path.normalize(`${__dirname}/index.html`),
 		}),
-		new HtmlWebpackRootPlugin(),
-		new CopyPlugin([
-			{
-				from: '*',
-				to: `${PACKAGE_NAME}/assets/`,
-				context: path.normalize(`${__dirname}/../../components/${PACKAGE_NAME}/examples/assets/`),
-			},
-		]),
+		...(fs.existsSync(
+			path.normalize(`${__dirname}/../../components/${PACKAGE_NAME}/examples/assets/`)
+		)
+			? [
+					new CopyPlugin({
+						patterns: [
+							{
+								from: '*',
+								to: `${PACKAGE_NAME}/assets/`,
+								context: path.normalize(
+									`${__dirname}/../../components/${PACKAGE_NAME}/examples/assets/`
+								),
+							},
+						],
+					}),
+			  ]
+			: []),
 	],
 	devServer: {
 		historyApiFallback: true,

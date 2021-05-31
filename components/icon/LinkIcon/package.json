@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/LinkIcon"
-	}
+	"main": "dist/westpac-icon-LinkIcon.cjs.js",
+	"module": "dist/westpac-icon-LinkIcon.esm.js"
 }
