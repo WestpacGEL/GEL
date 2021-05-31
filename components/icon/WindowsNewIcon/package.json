@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-icon-WindowsNewIcon.cjs.js"
+	"main": "dist/westpac-icon-WindowsNewIcon.cjs.js",
+	"module": "dist/westpac-icon-WindowsNewIcon.esm.js"
 }

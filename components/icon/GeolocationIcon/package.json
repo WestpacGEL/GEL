@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-icon-GeolocationIcon.cjs.js"
+	"main": "dist/westpac-icon-GeolocationIcon.cjs.js",
+	"module": "dist/westpac-icon-GeolocationIcon.esm.js"
 }

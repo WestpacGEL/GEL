@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-symbol-AppleStoreInverseSymbol.cjs.js"
+	"main": "dist/westpac-symbol-AppleStoreInverseSymbol.cjs.js",
+	"module": "dist/westpac-symbol-AppleStoreInverseSymbol.esm.js"
 }

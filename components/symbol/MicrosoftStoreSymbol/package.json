@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-symbol-MicrosoftStoreSymbol.cjs.js"
+	"main": "dist/westpac-symbol-MicrosoftStoreSymbol.cjs.js",
+	"module": "dist/westpac-symbol-MicrosoftStoreSymbol.esm.js"
 }

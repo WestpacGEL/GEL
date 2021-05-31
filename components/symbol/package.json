@@ -47,6 +47,7 @@
 		"build": "node ../../helpers/buildExports.js export symbols"
 	},
 	"main": "dist/westpac-symbol.cjs.js",
+	"module": "dist/westpac-symbol.esm.js",
 	"sideEffects": false,
 	"preconstruct": {
 		"entrypoints": [

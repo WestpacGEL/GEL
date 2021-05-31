@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-symbol-BPayPortSymbol.cjs.js"
+	"main": "dist/westpac-symbol-BPayPortSymbol.cjs.js",
+	"module": "dist/westpac-symbol-BPayPortSymbol.esm.js"
 }

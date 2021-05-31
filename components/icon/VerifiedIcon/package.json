@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-icon-VerifiedIcon.cjs.js"
+	"main": "dist/westpac-icon-VerifiedIcon.cjs.js",
+	"module": "dist/westpac-icon-VerifiedIcon.esm.js"
 }

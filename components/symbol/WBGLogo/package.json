@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-symbol-WBGLogo.cjs.js"
+	"main": "dist/westpac-symbol-WBGLogo.cjs.js",
+	"module": "dist/westpac-symbol-WBGLogo.esm.js"
 }

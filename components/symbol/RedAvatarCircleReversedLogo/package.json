@@ -1,3 +1,4 @@
 {
-	"main": "dist/westpac-symbol-RedAvatarCircleReversedLogo.cjs.js"
+	"main": "dist/westpac-symbol-RedAvatarCircleReversedLogo.cjs.js",
+	"module": "dist/westpac-symbol-RedAvatarCircleReversedLogo.esm.js"
 }

@@ -52,6 +52,7 @@
 		"build": "node ../../helpers/buildExports.js export icons"
 	},
 	"main": "dist/westpac-icon.cjs.js",
+	"module": "dist/westpac-icon.esm.js",
 	"sideEffects": false,
 	"preconstruct": {
 		"entrypoints": [
