@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
 import { colors, gridSize } from '@arch-ui/theme';
-import Tooltip from '@arch-ui/tooltip';
 import { A11yText } from '@arch-ui/typography';
-import { forwardRef } from 'react';
+import Tooltip from '@arch-ui/tooltip';
 import { applyRefs } from 'apply-ref';
+import { jsx } from '@emotion/react';
+import { forwardRef } from 'react';
 
 const ITEM_HEIGHT = gridSize * 3;
 const ITEM_WIDTH = gridSize * 4;

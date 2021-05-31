@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
-import { ToolbarButton } from '../toolbar-components';
-import { CodeIcon } from '../toolbar-icons';
-import { hasAncestorBlock } from '../utils';
 import { Separator } from '../../../../../src/components/separator';
+import { ToolbarButton } from '../toolbar-components';
+import { hasAncestorBlock } from '../utils';
+import { CodeIcon } from '../toolbar-icons';
 
 export let type = 'section';
 

@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/ExcelFileIcon"
-	}
+	"main": "dist/westpac-icon-ExcelFileIcon.cjs.js",
+	"module": "dist/westpac-icon-ExcelFileIcon.esm.js"
 }

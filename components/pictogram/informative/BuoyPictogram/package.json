@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/BuoyPictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-BuoyPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-BuoyPictogram.esm.js"
 }

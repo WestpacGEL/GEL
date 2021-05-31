@@ -6,7 +6,7 @@ import { Modal, Body, Footer } from '@westpac/modal';
 import { Button } from '@westpac/button';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+const demo = ({ context, showCode, showDemo }) => {
 	const [open, setOpen] = useState(false);
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
@@ -30,3 +30,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

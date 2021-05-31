@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/ShoppingPictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-ShoppingPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-ShoppingPictogram.esm.js"
 }

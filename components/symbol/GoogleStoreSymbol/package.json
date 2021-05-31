@@ -1,7 +1,4 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/GoogleStoreSymbol"
-	}
+	"main": "dist/westpac-symbol-GoogleStoreSymbol.cjs.js",
+	"module": "dist/westpac-symbol-GoogleStoreSymbol.esm.js"
 }

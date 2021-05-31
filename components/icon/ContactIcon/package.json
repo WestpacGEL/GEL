@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/ContactIcon"
-	}
+	"main": "dist/westpac-icon-ContactIcon.cjs.js",
+	"module": "dist/westpac-icon-ContactIcon.esm.js"
 }

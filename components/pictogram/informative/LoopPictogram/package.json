@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/LoopPictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-LoopPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-LoopPictogram.esm.js"
 }

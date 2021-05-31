@@ -38,7 +38,7 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=symbol webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=symbol NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
@@ -46,72 +46,27 @@
 		"test:test-dev": "cypress open",
 		"build": "node ../../helpers/buildExports.js export symbols"
 	},
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
+	"main": "dist/westpac-symbol.cjs.js",
+	"module": "dist/westpac-symbol.esm.js",
 	"sideEffects": false,
 	"preconstruct": {
 		"entrypoints": [
-			".",
-			"AmericanExpressSymbol",
-			"AppleStoreInverseSymbol",
-			"AppleStoreSymbol",
-			"BOMLogo",
-			"BOMMultibrandLargeLogo",
-			"BOMMultibrandSmallLogo",
-			"BOMShieldLogo",
-			"BPayLandSymbol",
-			"BPayPortSymbol",
-			"BSALogo",
-			"BSAMultibrandLargeLogo",
-			"BSAMultibrandSmallLogo",
-			"BSAStackedLogo",
-			"FacebookSymbol",
-			"GooglePlusSymbol",
-			"GoogleStoreSymbol",
-			"InstagramSymbol",
-			"LinkedInSymbol",
-			"MastercardAcceptedSymbol",
-			"MastercardHorizontalSymbol",
-			"MastercardSymbol",
-			"MicrosoftStoreSymbol",
-			"PayIDSymbol",
-			"RAMSLogo",
-			"RAMSMultibrandLargeLogo",
-			"RAMSMultibrandSmallLogo",
-			"RedAvatarCircleLogo",
-			"RedAvatarCircleReversedLogo",
-			"RedAvatarLogo",
-			"STGDragonLogo",
-			"STGLogo",
-			"STGMultibrandLargeLogo",
-			"STGMultibrandSmallLogo",
-			"SlackSymbol",
-			"TwitterSymbol",
-			"VisaBlueSymbol",
-			"VisaSymbol",
-			"VisaWhiteSymbol",
-			"WBCLogo",
-			"WBCMultibrandLargeLogo",
-			"WBCMultibrandSmallLogo",
-			"WBGInternalLogo",
-			"WBGLogo",
-			"WBGMultibrandLargeLogo",
-			"WBGMultibrandSmallLogo",
-			"YammerSymbol",
-			"YouTubeSymbol"
+			"*.js",
+			"!Symbol.js",
+			"!overrides/*"
 		]
 	},
 	"dependencies": {
-		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^2.0.0",
+		"@babel/runtime": "^7.14.0",
+		"@westpac/core": "^2.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
-		"react": "^16.13.1"
+		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"cypress": "^4.5.0",
-		"react": "^16.13.1",
-		"start-server-and-test": "^1.11.0"
+		"cypress": "^7.4.0",
+		"react": "^17.0.2",
+		"start-server-and-test": "^1.12.3"
 	}
 }

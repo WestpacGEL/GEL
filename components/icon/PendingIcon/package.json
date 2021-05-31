@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/PendingIcon"
-	}
+	"main": "dist/westpac-icon-PendingIcon.cjs.js",
+	"module": "dist/westpac-icon-PendingIcon.esm.js"
 }
