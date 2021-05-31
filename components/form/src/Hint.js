@@ -1,42 +1,44 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+
+import { defaultHint } from './overrides/hint';
 import { useFormContext } from './Form';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Hint = ({ tag: Tag, ...props }) => {
-	const { COLORS } = useBrand();
+export const Hint = ({ tag, overrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	// Consume FormContext
-	const formContext = useFormContext();
-	const spacing = (formContext && formContext.spacing) || 'medium';
+	const context = useFormContext();
 
-	const spacingMap = {
-		medium: {
-			marginTop: '-0.375rem',
-			marginBottom: '0.75rem',
-		},
-		large: {
-			marginTop: '-0.75rem',
-			marginBottom: '1.125rem',
-		},
+	const defaultOverrides = {
+		Hint: defaultHint,
 	};
 
-	return (
-		<Tag
-			css={{
-				color: COLORS.muted,
-				fontSize: '0.875rem',
-				...spacingMap[spacing],
-			}}
-			{...props}
-		/>
-	);
+	const componentOverrides = overrides || context?.state?.overrides;
+	const spacing = context?.state?.spacing || 'medium';
+
+	const state = {
+		tag,
+		spacing,
+		context: context?.state,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
+	return <Hint {...rest} state={state} {...hintAttributes(state)} css={hintStyles(state)} />;
 };
 
 // ==============================
@@ -50,9 +52,15 @@ Hint.propTypes = {
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
-	 * Component text
+	 * The override API
 	 */
-	children: PropTypes.string.isRequired,
+	overrides: PropTypes.shape({
+		Hint: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Hint.defaultProps = {
