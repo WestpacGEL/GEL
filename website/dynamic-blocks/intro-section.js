@@ -15,7 +15,7 @@ import { Icon } from '../../components/icon/src/Icon';
 import { Section } from '../src/components/section';
 
 const ArrowDownRightIcon = (props) => (
-	<Icon assistiveText="Link arrow" {...props}>
+	<Icon aria-hidden="true" {...props}>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -79,10 +79,11 @@ const TableOfContents = ({ content }) => {
 
 	return (
 		<Fragment>
-			<nav ref={introRef}>
+			<nav ref={introRef} aria-labelledby="toc-heading">
 				<Heading
 					tag="h2"
 					size={9}
+					id="toc-heading"
 					overrides={{
 						Heading: {
 							styles: (styles) => ({
