@@ -228,6 +228,7 @@ export const BrandSwitcher = () => {
 							outlineOffset: `-${PACKS.focus.outlineWidth}`,
 						},
 					}}
+					aria-label="GEL Design System home"
 				>
 					{logo}
 				</a>
