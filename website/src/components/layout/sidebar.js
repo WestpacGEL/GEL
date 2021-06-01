@@ -75,7 +75,7 @@ const CloseBtn = () => {
 			look="unstyled"
 			size="large"
 			iconAfter={CloseIcon}
-			aria-label="Close sidebar"
+			assistiveText="Close main menu"
 			onClick={() => setIsOpen(false)}
 			css={mq({
 				display: [null, null, null, null, 'none'],
