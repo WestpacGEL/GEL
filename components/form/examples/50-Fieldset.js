@@ -2,6 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { Form, FormGroup, Fieldset } from '@westpac/form';
+import { TextInput } from '@westpac/text-input';
 import { Box } from './_utils';
 
 function Example({ brand }) {
@@ -37,6 +38,15 @@ function Example({ brand }) {
 					</Fieldset>
 				</FormGroup>
 			</Form>
+
+			<h3>Error list</h3>
+			<Fieldset
+				legend="I am legend too"
+				hint="I am a hint"
+				error={['I am error 1', 'I am error 2']}
+			>
+				<TextInput invalid />
+			</Fieldset>
 		</GEL>
 	);
 }

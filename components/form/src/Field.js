@@ -1,9 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { useState, useEffect, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultFieldset } from './overrides/fieldset';
+import { defaultField } from './overrides/field';
 import { ErrorMessage } from './ErrorMessage';
 import { FormLabel } from './FormLabel';
 import { Hint } from './Hint';
@@ -14,11 +15,12 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Fieldset = ({
-	legend,
+export const Field = ({
+	instanceIdPrefix,
+	label,
+	hideLabel,
 	hint,
 	error,
-	ariadescribedby,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -29,11 +31,25 @@ export const Fieldset = ({
 	} = useBrand();
 
 	const defaultOverrides = {
-		Fieldset: defaultFieldset,
+		Field: defaultField,
 	};
 
+	const [fieldInstance] = useState(useInstanceId());
+	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const hintId = `gel-field-hint-${fieldInstance};`;
+
+	useEffect(() => {
+		if (!instanceIdPrefix) {
+			setInstanceId(`gel-field-${fieldInstance}`);
+		}
+	}, [instanceIdPrefix]);
+
 	const state = {
-		legend,
+		fieldInstance,
+		instanceId,
+		hintId,
+		label,
+		hideLabel,
 		hint,
 		error,
 		overrides: componentOverrides,
@@ -41,20 +57,26 @@ export const Fieldset = ({
 	};
 
 	const {
-		Fieldset: { component: Fieldset, styles: fieldsetStyles, attributes: fieldsetAttributes },
+		Field: { component: Field, styles: fieldStyles, attributes: fieldAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
+	const inputProps = {
+		id: instanceId,
+		'aria-describedby': hintId,
+		'aria-invalid': !!error,
+	};
+
 	return (
-		<Fieldset state={state} {...fieldsetAttributes(state)} css={fieldsetStyles(state)} {...rest}>
-			<FormLabel tag="legend" overrides={componentOverrides}>
-				{legend}
+		<Field state={state} {...fieldAttributes(state)} css={fieldStyles(state)} {...rest}>
+			<FormLabel htmlFor={instanceId} overrides={componentOverrides} srOnly={hideLabel}>
+				{label}
 			</FormLabel>
 			{hint && (
 				<Hint overrides={componentOverrides}>{typeof hint === 'function' ? hint() : hint}</Hint>
 			)}
 			{error && <ErrorMessage message={error} overrides={componentOverrides} />}
-			{children}
-		</Fieldset>
+			{Children.map(children, (child) => cloneElement(child, { ...inputProps }))}
+		</Field>
 	);
 };
 
@@ -62,11 +84,20 @@ export const Fieldset = ({
 // Types
 // ==============================
 
-Fieldset.propTypes = {
+Field.propTypes = {
+	/**
+	 * input id
+	 */
+	instanceIdPrefix: PropTypes.string,
 	/**
 	 * label text
 	 */
-	legend: PropTypes.string,
+	label: PropTypes.string,
+
+	/**
+	 * Sr-only label
+	 */
+	hideLabel: PropTypes.bool,
 
 	/**
 	 * hint text
@@ -76,23 +107,18 @@ Fieldset.propTypes = {
 	/**
 	 * Error message text
 	 */
-	error: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-
-	/**
-	 * aria-describedby
-	 */
-	ariadescribedby: PropTypes.string,
+	error: PropTypes.string,
 
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Fieldset: PropTypes.shape({
+		Field: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Legend: PropTypes.shape({
+		FormLabel: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -102,12 +128,7 @@ Fieldset.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		ErrorList: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		ErrorListItem: PropTypes.shape({
+		ErrorMessage: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -115,4 +136,4 @@ Fieldset.propTypes = {
 	}),
 };
 
-Fieldset.defaultProps = {};
+Field.defaultProps = {};

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx } from '@westpac/core';
 
 // ==============================
 // Component
@@ -12,15 +12,17 @@ const Fieldset = ({ state: _, ...rest }) => <fieldset {...rest} />;
 // Styles
 // ==============================
 
-const fieldsetStyles = () => ({
-	label: getLabel('form-fieldset'),
-});
+const fieldsetStyles = () => ({ label: 'fieldset', border: 'none', margin: 0, padding: 0 });
 
 // ==============================
 // Attributes
 // ==============================
 
-const fieldsetAttributes = () => null;
+const fieldsetAttributes = (_, { ariadescribedby, error }) => ({
+	role: 'group',
+	'aria-describedby': ariadescribedby,
+	'aria-invalid': !!error,
+});
 
 // ==============================
 // Exports
