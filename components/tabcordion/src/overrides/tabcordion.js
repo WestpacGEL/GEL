@@ -10,9 +10,9 @@ import {
 	formatClassName,
 } from '@westpac/core';
 
+import { accordionBtnLegoStyles } from './accordionBtn';
 import { defaultProps } from '../blender/Tabcordion';
 import { tabBtnLegoStyles } from './tabBtn';
-import { accordionBtnLegoStyles } from './accordionBtn';
 
 // ==============================
 // Component
