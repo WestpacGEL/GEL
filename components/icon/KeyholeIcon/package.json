@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/KeyholeIcon"
-	}
+	"main": "dist/westpac-icon-KeyholeIcon.cjs.js",
+	"module": "dist/westpac-icon-KeyholeIcon.esm.js"
 }

@@ -8,7 +8,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 
 const Wrapper = (props) => <div css={{ display: 'flex', justifyContent: 'center' }} {...props} />;
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	const [open, setOpen] = useState(false);
 	const [open2, setOpen2] = useState(false);
 
@@ -74,3 +74,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

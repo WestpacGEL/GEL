@@ -207,10 +207,9 @@ export function deserialize({ document, ...serializations }, blocks) {
 
 				const nodeData = node.get('data');
 
-				const joins = (
-					(nodeData && nodeData.size && nodeData.get('_joinIds')) ||
-					[]
-				).map((joinId) => data.find(({ id }) => joinId === id));
+				const joins = ((nodeData && nodeData.size && nodeData.get('_joinIds')) || []).map(
+					(joinId) => data.find(({ id }) => joinId === id)
+				);
 
 				// NOTE: deserialize _may_ return null. It will then fall into the
 				// `defaultVisitor` handler below.

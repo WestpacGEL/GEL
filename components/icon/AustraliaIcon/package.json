@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/AustraliaIcon"
-	}
+	"main": "dist/westpac-icon-AustraliaIcon.cjs.js",
+	"module": "dist/westpac-icon-AustraliaIcon.esm.js"
 }

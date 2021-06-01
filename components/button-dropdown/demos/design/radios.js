@@ -6,7 +6,7 @@ import { FormCheck, Option } from '@westpac/form-check';
 
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<ButtonDropdown text="Dropdown with radios" look="primary" soft>
@@ -32,3 +32,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

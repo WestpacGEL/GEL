@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/RefreshIcon"
-	}
+	"main": "dist/westpac-icon-RefreshIcon.cjs.js",
+	"module": "dist/westpac-icon-RefreshIcon.esm.js"
 }

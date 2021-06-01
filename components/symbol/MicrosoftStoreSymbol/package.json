@@ -1,7 +1,4 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/MicrosoftStoreSymbol"
-	}
+	"main": "dist/westpac-symbol-MicrosoftStoreSymbol.cjs.js",
+	"module": "dist/westpac-symbol-MicrosoftStoreSymbol.esm.js"
 }

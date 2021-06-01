@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/GelIcon"
-	}
+	"main": "dist/westpac-icon-GelIcon.cjs.js",
+	"module": "dist/westpac-icon-GelIcon.esm.js"
 }

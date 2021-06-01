@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/UploadIcon"
-	}
+	"main": "dist/westpac-icon-UploadIcon.cjs.js",
+	"module": "dist/westpac-icon-UploadIcon.esm.js"
 }

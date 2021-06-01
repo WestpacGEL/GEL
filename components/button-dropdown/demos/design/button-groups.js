@@ -19,7 +19,7 @@ const Wrapper = (props) => (
 	/>
 );
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<ButtonDropdown text="Dropdown with button groups" dropdownSize="large" look="primary" soft>
@@ -51,3 +51,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

@@ -6,7 +6,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 
 const AlignWrap = (props) => <div css={{ display: 'flex', alignItems: 'center' }} {...props} />;
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<AlignWrap>
@@ -18,3 +18,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

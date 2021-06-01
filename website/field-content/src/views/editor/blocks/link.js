@@ -1,15 +1,15 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
 import { Fragment, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
-import { Popper } from 'react-popper';
 import { gridSize } from '@arch-ui/theme';
+import { Popper } from 'react-popper';
+import { jsx } from '@emotion/react';
 
-import { ToolbarButton } from '../toolbar-components';
 import { CrossIcon, ExternalIcon, LinkIcon, TickIcon } from '../toolbar-icons';
-import { Dialog } from '../dialog';
-import { useKeyPress } from '../hooks';
+import { ToolbarButton } from '../toolbar-components';
 import { getSelectionReference } from '../utils';
+import { useKeyPress } from '../hooks';
+import { Dialog } from '../dialog';
 
 export let type = 'link';
 

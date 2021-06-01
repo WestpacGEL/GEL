@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/Number3Pictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-Number3Pictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-Number3Pictogram.esm.js"
 }

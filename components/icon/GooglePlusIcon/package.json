@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/GooglePlusIcon"
-	}
+	"main": "dist/westpac-icon-GooglePlusIcon.cjs.js",
+	"module": "dist/westpac-icon-GooglePlusIcon.esm.js"
 }

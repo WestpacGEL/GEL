@@ -1,7 +1,4 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/RedAvatarCircleReversedLogo"
-	}
+	"main": "dist/westpac-symbol-RedAvatarCircleReversedLogo.cjs.js",
+	"module": "dist/westpac-symbol-RedAvatarCircleReversedLogo.esm.js"
 }

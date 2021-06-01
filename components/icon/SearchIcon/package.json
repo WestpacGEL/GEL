@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/SearchIcon"
-	}
+	"main": "dist/westpac-icon-SearchIcon.cjs.js",
+	"module": "dist/westpac-icon-SearchIcon.esm.js"
 }

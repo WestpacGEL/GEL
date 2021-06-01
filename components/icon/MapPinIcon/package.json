@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/MapPinIcon"
-	}
+	"main": "dist/westpac-icon-MapPinIcon.cjs.js",
+	"module": "dist/westpac-icon-MapPinIcon.esm.js"
 }

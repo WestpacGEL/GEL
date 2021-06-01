@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+
+import { jsx } from '@emotion/react';
 import { useState, Fragment } from 'react';
 import { gridSize } from '@arch-ui/theme';
 import { Card } from '@arch-ui/card';

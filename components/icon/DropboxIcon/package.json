@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/DropboxIcon"
-	}
+	"main": "dist/westpac-icon-DropboxIcon.cjs.js",
+	"module": "dist/westpac-icon-DropboxIcon.esm.js"
 }

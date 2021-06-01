@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/RemoveCircleIcon"
-	}
+	"main": "dist/westpac-icon-RemoveCircleIcon.cjs.js",
+	"module": "dist/westpac-icon-RemoveCircleIcon.esm.js"
 }
