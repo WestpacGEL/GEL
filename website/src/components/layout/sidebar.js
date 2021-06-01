@@ -32,14 +32,16 @@ export const Sidebar = ({ items }) => {
 					bottom: 0,
 					zIndex: 11,
 					display: 'flex',
+					visibility: isOpen ? 'visible' : 'hidden',
 					flexDirection: 'column',
 					overflow: 'hidden', //trim nav shadow
 					background: '#fff',
 					borderRight: `1px solid ${COLORS.border}`,
 					width: 300,
 					transform: [isOpen ? 'translateX(0)' : 'translateX(-300px)', null, null, null, 'none'],
-					transition: ['transform 0.15s', null, null, null, 'none'],
+					transition: ['transform 0.15s, visibility 0.15s', null, null, null, 'none'],
 				})}
+				aria-hidden={!isOpen}
 			>
 				<CloseBtn />
 				<BrandSwitcher />
