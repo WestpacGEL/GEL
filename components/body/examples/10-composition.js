@@ -23,13 +23,13 @@ function Example({ brand }) {
 					recusandae ex ipsum harum unde illum neque, dolorem eaque quam vero aliquam fuga commodi,
 					fugit odio. Incidunt, veritatis, quod.
 				</p>
-				<Button tag="a" look="primary">
+				<Button href="#0" look="primary">
 					Primary
 				</Button>{' '}
-				<Button tag="a" look="hero">
+				<Button href="#0" look="hero">
 					Hero
 				</Button>{' '}
-				<Button tag="a" look="link">
+				<Button href="#0" look="link">
 					Link
 				</Button>
 				<Heading size={1}>Heading size: 1</Heading>
