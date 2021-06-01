@@ -8,7 +8,7 @@ import { useSidebar } from '../providers/sidebar';
 
 export const MenuButton = (props) => {
 	const { PACKS } = useBrand();
-	const { setIsOpen } = useSidebar();
+	const { isOpen, setIsOpen } = useSidebar();
 
 	const Icon = () => <HamburgerMenuIcon color="#fff" />;
 
@@ -16,8 +16,10 @@ export const MenuButton = (props) => {
 		<Button
 			look="unstyled"
 			size="large"
-			onClick={() => setIsOpen((status) => !status)}
 			iconBefore={Icon}
+			assistiveText="Main menu"
+			aria-expanded={isOpen}
+			onClick={() => setIsOpen((status) => !status)}
 			css={{
 				backgroundColor: 'transparent',
 				padding: '21px 12px',
