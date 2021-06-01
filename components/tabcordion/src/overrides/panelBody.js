@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import { useEffect } from 'react';
 import { jsx, getLabel, formatClassName } from '@westpac/core';
-import { Body } from '@westpac/body';
+import { ResizeObserver } from '@juggle/resize-observer';
 import { useSpring, animated } from 'react-spring';
-import ResizeObserver from 'resize-observer-polyfill';
 import useMeasure from 'react-use-measure';
+import { Body } from '@westpac/body';
+import { useEffect } from 'react';
 
 // ==============================
 // Component

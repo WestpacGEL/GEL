@@ -1,12 +1,12 @@
 /** @jsx jsx */
 
-import { forwardRef } from 'react';
 import { jsx, useBrand, getLabel, classNames, getModifier, formatClassName } from '@westpac/core';
 import { useSpring, animated } from 'react-spring';
 import BezierEasing from 'bezier-easing';
+import { forwardRef } from 'react';
 
-import { usePrevious } from '../_utils';
 import { defaultProps } from '../blender/Tabcordion';
+import { usePrevious } from '../_utils';
 
 // ==============================
 // Component
@@ -41,9 +41,7 @@ const Panel = forwardRef(
 				duration: 300,
 				easing: BezierEasing(0.25, 0.1, 0.25, 1.0), //~CSS 'ease' easing-function
 			},
-			...(mode === 'accordion' && {
-				height: hidden ? 0 : panelHeight,
-			}),
+			height: hidden ? 0 : panelHeight,
 			from: {
 				height: '', //reset
 			},
@@ -78,7 +76,11 @@ const Panel = forwardRef(
 			},
 		});
 
-		return <animated.div ref={ref} style={animate} {...rest} />;
+		if (mode === 'accordion') {
+			return <animated.div ref={ref} style={animate} {...rest} />;
+		} else {
+			return <div ref={ref} {...rest} />;
+		}
 	}
 );
 
