@@ -31,7 +31,7 @@ const PanelBody = ({ state: { mode, selected }, setPanelHeight, ...rest }) => {
 	});
 	const AnimatedBody = animated(Body);
 
-	return <Body ref={measureRef} {...rest} />;
+	return <AnimatedBody ref={measureRef} {...rest} />;
 };
 
 const BlenderPanelBody = ({ className, ...rest }) => (
