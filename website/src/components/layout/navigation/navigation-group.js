@@ -10,8 +10,8 @@ import { NavigationItem, StyledItem } from './navigation-item';
 
 export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 	const { COLORS, PACKS } = useBrand();
-	const [open, setOpen] = useState(isBlockOpen);
-	const [closed, setClosed] = useState(true);
+	const [isOpen, setIsOpen] = useState(isBlockOpen);
+	const [isClosed, setIsClosed] = useState(true);
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 	const [initial, setInitial] = useState(true);
 	const [instanceId, setInstanceId] = useState();
@@ -20,7 +20,7 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 		if (initial) {
 			setInitial(false);
 		}
-		setOpen((currentState) => !currentState);
+		setIsOpen((currentState) => !currentState);
 	};
 
 	useEffect(() => {
@@ -29,15 +29,15 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 
 	const animate = useSpring({
 		to: {
-			height: !open ? 0 : height,
+			height: !isOpen ? 0 : height,
 			overflow: 'hidden',
 		},
 		immediate: initial,
 		onStart: () => {
-			setClosed(open);
+			setIsClosed(isOpen);
 		},
 		onRest: () => {
-			setClosed(!open);
+			setIsClosed(!isOpen);
 		},
 	});
 
@@ -47,7 +47,7 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 				tag="button"
 				level={level}
 				onClick={handleButtonClick}
-				aria-expanded={open}
+				aria-expanded={isOpen}
 				aria-controls={instanceId}
 				css={{
 					display: 'flex',
@@ -62,7 +62,7 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 				}}
 			>
 				<span>{title}</span>
-				{open ? (
+				{isOpen ? (
 					<RemoveIcon size="small" color={COLORS.muted} aria-hidden="true" />
 				) : (
 					<AddIcon size="small" color={COLORS.muted} aria-hidden="true" />
@@ -71,8 +71,8 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 			<animated.div
 				style={animate}
 				id={instanceId}
-				aria-hidden={!open}
-				css={{ display: open ? 'block' : closed ? 'none' : 'block' }}
+				aria-hidden={!isOpen}
+				css={{ display: isOpen ? 'block' : isClosed ? 'none' : 'block' }}
 			>
 				<div ref={measureRef}>{children}</div>
 			</animated.div>
