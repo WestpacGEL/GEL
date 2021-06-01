@@ -56,9 +56,9 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 			>
 				<span>{title}</span>
 				{isOpen ? (
-					<RemoveIcon size="small" color={COLORS.muted} />
+					<RemoveIcon size="small" color={COLORS.muted} aria-hidden="true" />
 				) : (
-					<AddIcon size="small" color={COLORS.muted} />
+					<AddIcon size="small" color={COLORS.muted} aria-hidden="true" />
 				)}
 			</StyledItem>
 			<animated.div style={animate} id={instanceId} aria-hidden={!isOpen}>

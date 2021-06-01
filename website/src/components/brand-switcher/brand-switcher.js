@@ -32,27 +32,27 @@ import {
 export const brandsMap = {
 	WBC: {
 		logo: <WBCMultibrandLargeLogo />,
-		smallLogo: <WBCLogo height={18} />,
+		smallLogo: <WBCLogo height={18} aria-hidden="true" />,
 	},
 	STG: {
 		logo: <STGMultibrandLargeLogo />,
-		smallLogo: <STGDragonLogo height={38} css={{ marginRight: -12 }} />,
+		smallLogo: <STGDragonLogo height={38} css={{ marginRight: -12 }} aria-hidden="true" />,
 	},
 	BOM: {
 		logo: <BOMMultibrandLargeLogo />,
-		smallLogo: <BOMShieldLogo height={39} css={{ marginRight: 9 }} />,
+		smallLogo: <BOMShieldLogo height={39} css={{ marginRight: 9 }} aria-hidden="true" />,
 	},
 	BSA: {
 		logo: <BSAMultibrandLargeLogo />,
-		smallLogo: <BSAStackedLogo height={46} css={{ marginRight: 8 }} />,
+		smallLogo: <BSAStackedLogo height={46} css={{ marginRight: 8 }} aria-hidden="true" />,
 	},
 	WBG: {
 		logo: <WBGMultibrandLargeLogo />,
-		smallLogo: <WBGLogo width={70} css={{ marginRight: -8 }} />,
+		smallLogo: <WBGLogo width={70} css={{ marginRight: -8 }} aria-hidden="true" />,
 	},
 	RAMS: {
 		logo: <RAMSMultibrandLargeLogo />,
-		smallLogo: <RAMSLogo width={70} css={{ marginRight: -8 }} />,
+		smallLogo: <RAMSLogo width={70} css={{ marginRight: -8 }} aria-hidden="true" />,
 	},
 };
 
