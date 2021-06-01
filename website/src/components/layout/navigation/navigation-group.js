@@ -10,7 +10,8 @@ import { NavigationItem, StyledItem } from './navigation-item';
 
 export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 	const { COLORS, PACKS } = useBrand();
-	const [isOpen, setIsOpen] = useState(isBlockOpen);
+	const [open, setOpen] = useState(isBlockOpen);
+	const [closed, setClosed] = useState(true);
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 	const [initial, setInitial] = useState(true);
 	const [instanceId, setInstanceId] = useState();
@@ -19,7 +20,7 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 		if (initial) {
 			setInitial(false);
 		}
-		setIsOpen((currentState) => !currentState);
+		setOpen((currentState) => !currentState);
 	};
 
 	useEffect(() => {
@@ -28,10 +29,16 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 
 	const animate = useSpring({
 		to: {
-			height: !isOpen ? 0 : height,
+			height: !open ? 0 : height,
 			overflow: 'hidden',
 		},
 		immediate: initial,
+		onStart: () => {
+			setClosed(open);
+		},
+		onRest: () => {
+			setClosed(!open);
+		},
 	});
 
 	return (
@@ -40,7 +47,7 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 				tag="button"
 				level={level}
 				onClick={handleButtonClick}
-				aria-expanded={isOpen}
+				aria-expanded={open}
 				aria-controls={instanceId}
 				css={{
 					display: 'flex',
@@ -55,13 +62,18 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 				}}
 			>
 				<span>{title}</span>
-				{isOpen ? (
+				{open ? (
 					<RemoveIcon size="small" color={COLORS.muted} aria-hidden="true" />
 				) : (
 					<AddIcon size="small" color={COLORS.muted} aria-hidden="true" />
 				)}
 			</StyledItem>
-			<animated.div style={animate} id={instanceId} aria-hidden={!isOpen}>
+			<animated.div
+				style={animate}
+				id={instanceId}
+				aria-hidden={!open}
+				css={{ display: open ? 'block' : closed ? 'none' : 'block' }}
+			>
 				<div ref={measureRef}>{children}</div>
 			</animated.div>
 		</NavigationItem>
