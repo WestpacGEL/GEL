@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
-import { Body } from '../../../../../src/components/body';
+import { jsx } from '@emotion/react';
 
+import { Body } from '../../../../../src/components/body';
 import { ToolbarButton } from '../toolbar-components';
 import { BlockQuoteIcon } from '../toolbar-icons';
 import { hasAncestorBlock } from '../utils';

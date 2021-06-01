@@ -1,15 +1,14 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
+import { colors, gridSize } from '@arch-ui/theme';
+import { jsx } from '@emotion/react';
 import { Fragment } from 'react';
 
-import { colors, gridSize } from '@arch-ui/theme';
-
-import { DropdownMenu } from './dialog';
-import { marks, markTypes } from './marks';
-import { BlockInsertMenuItem } from './block-disclosure-menu';
-import { ToolbarButton, ToolbarDivider } from './toolbar-components';
 import { ClearFormattingIcon, PlusIcon, ArrowDownIcon, MoreIcon } from './toolbar-icons';
+import { ToolbarButton, ToolbarDivider } from './toolbar-components';
+import { BlockInsertMenuItem } from './block-disclosure-menu';
+import { marks, markTypes } from './marks';
+import { DropdownMenu } from './dialog';
 
 export default function Toolbar({ blocks, editor, editorHasFocus, editorState }) {
 	let primaryMarks = Object.keys(marks).filter((key) => marks[key].level === 'primary');

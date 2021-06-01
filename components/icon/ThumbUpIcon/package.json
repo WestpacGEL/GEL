@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/ThumbUpIcon"
-	}
+	"main": "dist/westpac-icon-ThumbUpIcon.cjs.js",
+	"module": "dist/westpac-icon-ThumbUpIcon.esm.js"
 }

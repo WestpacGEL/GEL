@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/DeleteIcon"
-	}
+	"main": "dist/westpac-icon-DeleteIcon.cjs.js",
+	"module": "dist/westpac-icon-DeleteIcon.esm.js"
 }

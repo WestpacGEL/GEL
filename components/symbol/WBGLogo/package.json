@@ -1,7 +1,4 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/WBGLogo"
-	}
+	"main": "dist/westpac-symbol-WBGLogo.cjs.js",
+	"module": "dist/westpac-symbol-WBGLogo.esm.js"
 }

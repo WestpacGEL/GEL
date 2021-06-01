@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/TelephoneIcon"
-	}
+	"main": "dist/westpac-icon-TelephoneIcon.cjs.js",
+	"module": "dist/westpac-icon-TelephoneIcon.esm.js"
 }

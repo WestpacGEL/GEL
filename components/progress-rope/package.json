@@ -47,35 +47,35 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=progress-rope webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=progress-rope NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/progress-rope.cjs.js",
-	"module": "dist/progress-rope.esm.js",
+	"main": "dist/westpac-progress-rope.cjs.js",
+	"module": "dist/westpac-progress-rope.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.9.6",
+		"@babel/runtime": "^7.14.0",
 		"@westpac/a11y": "^1.0.1",
-		"@westpac/core": "^2.0.0",
-		"classnames": "^2.2.6",
+		"@westpac/core": "^2.1.0",
+		"classnames": "^2.3.1",
 		"lodash.merge": "^4.6.2",
 		"prop-types": "^15.7.2",
-		"react-use-measure": "^2.0.0",
+		"react-use-measure": "^2.0.4",
 		"resize-observer-polyfill": "^1.5.1"
 	},
 	"peerDependencies": {
-		"react": "^16.13.1",
-		"react-spring": "9.0.0-rc.3"
+		"react": "^17.0.2",
+		"react-spring": "^9.2.1"
 	},
 	"devDependencies": {
 		"@westpac/button": "^1.2.0",
 		"@westpac/grid": "^1.0.1",
-		"cypress": "^4.5.0",
-		"react": "^16.13.1",
-		"react-spring": "9.0.0-rc.3",
-		"start-server-and-test": "^1.11.0"
+		"cypress": "^7.4.0",
+		"react": "^17.0.2",
+		"react-spring": "^9.2.1",
+		"start-server-and-test": "^1.12.3"
 	}
 }

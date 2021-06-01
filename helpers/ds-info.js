@@ -73,6 +73,6 @@ try {
 	fs.writeFileSync(GELJson, JSON.stringify(GEL));
 	console.log(`🎁  ${chalk.green('success')} GEL.json written to "${chalk.green(GELJson)}"\n`);
 } catch (error) {
-	console.error(`🛑  ${chalk.red('failed')} GEL.json not writen to "${chalk.green(GELJson)}"\n`);
+	console.error(`🛑  ${chalk.red('failed')} GEL.json not written to "${chalk.green(GELJson)}"\n`);
 	console.error(error);
 }

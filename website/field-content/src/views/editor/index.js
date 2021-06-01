@@ -1,14 +1,14 @@
 /** @jsx jsx */
 
 import { Fragment, useMemo } from 'react';
-import { Block } from 'slate';
 import { Editor } from 'slate-react';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
+import { Block } from 'slate';
 
-import AddBlock from './add-block';
 import { type as defaultType } from './blocks/paragraph';
 import { useStateWithEqualityCheck } from './hooks';
 import { plugins as markPlugins } from './marks';
+import AddBlock from './add-block';
 import Toolbar from './toolbar';
 
 function getSchema(blocks) {

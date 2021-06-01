@@ -9,7 +9,7 @@ import { useProgress } from '../../examples/_utils';
 
 const Wrapper = (props) => <div css={{ display: 'flex' }} {...props} />;
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	const [state, dispatch] = useProgress();
 
 	const handleClick = (index) => (e) => {
@@ -59,3 +59,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

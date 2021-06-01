@@ -1,7 +1,4 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/BSAStackedLogo"
-	}
+	"main": "dist/westpac-symbol-BSAStackedLogo.cjs.js",
+	"module": "dist/westpac-symbol-BSAStackedLogo.esm.js"
 }

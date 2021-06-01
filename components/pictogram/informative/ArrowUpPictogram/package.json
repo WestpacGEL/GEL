@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/ArrowUpPictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-ArrowUpPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-ArrowUpPictogram.esm.js"
 }

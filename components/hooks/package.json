@@ -29,28 +29,28 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=hooks webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=hooks NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/hooks.cjs.js",
-	"module": "dist/hooks.esm.js",
+	"main": "dist/westpac-hooks.cjs.js",
+	"module": "dist/westpac-hooks.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.9.6",
-		"@westpac/core": "^2.0.0",
+		"@babel/runtime": "^7.14.0",
+		"@westpac/core": "^2.1.0",
 		"prop-types": "^15.7.2",
 		"resize-observer-polyfill": "^1.5.1"
 	},
 	"peerDependencies": {
-		"react": "^16.13.1"
+		"react": "^17.0.2"
 	},
 	"devDependencies": {
 		"@westpac/button": "^1.2.0",
-		"cypress": "^4.5.0",
-		"react": "^16.13.1",
-		"start-server-and-test": "^1.11.0"
+		"cypress": "^7.4.0",
+		"react": "^17.0.2",
+		"start-server-and-test": "^1.12.3"
 	}
 }

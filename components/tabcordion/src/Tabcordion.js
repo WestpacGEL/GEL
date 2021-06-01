@@ -1,16 +1,15 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import { createContext, useContext, Children, useEffect, useRef, useState } from 'react';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
 import { defaultTabcordion } from './overrides/tabcordion';
 import { defaultTabBtn } from './overrides/tabBtn';
 import { defaultTabRow } from './overrides/tabRow';
-
-import { Tab } from './Tab';
 import pkg from '../package.json';
+import { Tab } from './Tab';
 
 // ==============================
 // Context and Consumer Hook

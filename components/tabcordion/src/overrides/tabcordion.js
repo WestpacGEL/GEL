@@ -10,9 +10,9 @@ import {
 	formatClassName,
 } from '@westpac/core';
 
+import { accordionBtnLegoStyles } from './accordionBtn';
 import { defaultProps } from '../blender/Tabcordion';
 import { tabBtnLegoStyles } from './tabBtn';
-import { accordionBtnLegoStyles } from './accordionBtn';
 
 // ==============================
 // Component
@@ -79,21 +79,24 @@ const blenderStyles = (_, { mode, look }) => {
 		 * accordionBtn
 		 */
 		// First (soft) accordionBtn
-		[`:not(.__convert__tabcordion-lego) .__convert__tabcordion-item:first-child > .__convert__tabcordion-accordionBtn, :not(.__convert__tabcordion-lego) .__convert__tabcordion-tabRow + .__convert__tabcordion-item > .__convert__tabcordion-accordionBtn`]: {
-			borderTopLeftRadius: '0.1875rem',
-			borderTopRightRadius: '0.1875rem',
-		},
+		[`:not(.__convert__tabcordion-lego) .__convert__tabcordion-item:first-child > .__convert__tabcordion-accordionBtn, :not(.__convert__tabcordion-lego) .__convert__tabcordion-tabRow + .__convert__tabcordion-item > .__convert__tabcordion-accordionBtn`]:
+			{
+				borderTopLeftRadius: '0.1875rem',
+				borderTopRightRadius: '0.1875rem',
+			},
 
 		// Last (soft) accordionBtn and not active
-		[`:not(.__convert__tabcordion-lego) .__convert__tabcordion-item:last-child .__convert__tabcordion-accordionBtn:not(.__convert__tabcordion-accordionBtn-active)`]: {
-			borderBottomLeftRadius: '0.1875rem',
-			borderBottomRightRadius: '0.1875rem',
-		},
+		[`:not(.__convert__tabcordion-lego) .__convert__tabcordion-item:last-child .__convert__tabcordion-accordionBtn:not(.__convert__tabcordion-accordionBtn-active)`]:
+			{
+				borderBottomLeftRadius: '0.1875rem',
+				borderBottomRightRadius: '0.1875rem',
+			},
 
 		// Not the last accordionBtn, not active and not currently collapsing
-		[`.__convert__tabcordion-item:not(:last-child) > .__convert__tabcordion-accordionBtn:not(.__convert__tabcordion-accordionBtn-active):not(.collapsing)`]: {
-			borderBottomWidth: 0, //reset
-		},
+		[`.__convert__tabcordion-item:not(:last-child) > .__convert__tabcordion-accordionBtn:not(.__convert__tabcordion-accordionBtn-active):not(.collapsing)`]:
+			{
+				borderBottomWidth: 0, //reset
+			},
 
 		/*
 		 * panel
