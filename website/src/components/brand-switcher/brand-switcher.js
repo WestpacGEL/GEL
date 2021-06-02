@@ -73,7 +73,7 @@ const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest 
 	);
 };
 
-const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
+const ButtonOverride = forwardRef(({ closed, setClosed, state, children, ...rest }, ref) => {
 	const {
 		state: { open },
 	} = useButtonDropdownContext();
@@ -102,34 +102,24 @@ const ButtonOverride = forwardRef(({ state, children, ...rest }, ref) => {
 	);
 });
 
-const PanelOverride = forwardRef(({ state: { open }, children, ...rest }, ref) => {
+const PanelOverride = forwardRef(({ state: { open, setClosed }, children, ...rest }, ref) => {
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 
 	const animate = useSpring({
 		to: {
 			height: !open ? 0 : height,
 		},
+		onStart: () => {
+			setClosed(false);
+		},
+		onRest: () => {
+			setClosed(!open);
+		},
 	});
 
 	return (
-		<animated.div
-			style={animate}
-			css={{
-				position: 'absolute',
-				zIndex: 1,
-				left: 0,
-				right: 0,
-				overflow: 'hidden',
-				backgroundColor: '#fff',
-				boxShadow: '0 2px 5px rgba(0,0,0,0.26)',
-			}}
-			aria-hidden={!open}
-		>
-			<div ref={measureRef}>
-				<div ref={ref} {...rest}>
-					{children}
-				</div>
-			</div>
+		<animated.div ref={ref} style={animate} aria-hidden={!open} {...rest}>
+			<div ref={measureRef}>{children}</div>
 		</animated.div>
 	);
 });
@@ -138,6 +128,7 @@ export const BrandSwitcher = () => {
 	const brandName = useRouter().query.b || '';
 	const { brands, brand, setBrand } = useBrandSwitcher();
 	const [open, setOpen] = useState(false);
+	const [closed, setClosed] = useState(true);
 	const { isScrolled } = useSidebar();
 	const { SPACING, COLORS, PACKS, TYPE } = useBrand();
 	const logo = brandsMap[brand].logo;
@@ -239,6 +230,8 @@ export const BrandSwitcher = () => {
 				text="Change brand"
 				dropdown={false}
 				onClick={handleClick}
+				closed={closed}
+				setClosed={setClosed}
 				overrides={{
 					Button: {
 						component: ButtonOverride,
@@ -257,8 +250,15 @@ export const BrandSwitcher = () => {
 					},
 					Panel: {
 						component: PanelOverride,
-						styles: () => ({
+						styles: (_, { closed }) => ({
+							visibility: closed ? 'hidden' : 'visible',
+							position: 'absolute',
+							zIndex: 1,
+							left: 0,
+							right: 0,
+							overflow: 'hidden',
 							backgroundColor: '#fff',
+							boxShadow: '0 2px 5px rgba(0,0,0,0.26)',
 						}),
 					},
 				}}
