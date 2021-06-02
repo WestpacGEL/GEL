@@ -138,7 +138,7 @@ export const Navigation = ({ items }) => {
 					height: 90,
 					color: '#263238', //GEL color
 					':focus': {
-						outlineOffset: `-${PACKS.focus.outlineWidth}`,
+						outlineOffset: `-${PACKS.focus.outlineWidth} !important`,
 					},
 				}}
 				aria-label="Back to GEL"

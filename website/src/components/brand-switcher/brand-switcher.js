@@ -216,7 +216,7 @@ export const BrandSwitcher = () => {
 						paddingRight: SPACING(3),
 						background: '#fff',
 						':focus': {
-							outlineOffset: `-${PACKS.focus.outlineWidth}`,
+							outlineOffset: `-${PACKS.focus.outlineWidth} !important`,
 						},
 					}}
 					aria-label="GEL Design System home"
@@ -244,7 +244,7 @@ export const BrandSwitcher = () => {
 							backgroundColor: '#fff',
 
 							':focus': {
-								outlineOffset: `-${PACKS.focus.outlineWidth}`,
+								outlineOffset: `-${PACKS.focus.outlineWidth} !important`,
 							},
 						}),
 					},
