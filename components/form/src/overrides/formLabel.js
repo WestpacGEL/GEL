@@ -30,7 +30,7 @@ const formLabelStyles = (_, { subLabel, spacing }) => {
 
 	return {
 		label: getLabel('form-label'),
-		display: 'inline-block',
+		display: 'block',
 		fontSize: subLabel ? '0.875rem' : '1rem',
 		marginBottom: mapSpacing[spacing].marginBottom,
 		...TYPE.bodyFont[500],

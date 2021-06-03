@@ -19,6 +19,7 @@ export const Field = ({
 	instanceIdPrefix,
 	label,
 	hideLabel,
+	subLabel,
 	hint,
 	error,
 	children,
@@ -68,7 +69,12 @@ export const Field = ({
 
 	return (
 		<Field state={state} {...fieldAttributes(state)} css={fieldStyles(state)} {...rest}>
-			<FormLabel htmlFor={instanceId} overrides={componentOverrides} srOnly={hideLabel}>
+			<FormLabel
+				htmlFor={instanceId}
+				srOnly={hideLabel}
+				subLabel={subLabel}
+				overrides={componentOverrides}
+			>
 				{label}
 			</FormLabel>
 			{hint && (
@@ -89,6 +95,7 @@ Field.propTypes = {
 	 * input id
 	 */
 	instanceIdPrefix: PropTypes.string,
+
 	/**
 	 * label text
 	 */
@@ -98,6 +105,11 @@ Field.propTypes = {
 	 * Sr-only label
 	 */
 	hideLabel: PropTypes.bool,
+
+	/**
+	 * Sub-label mode (smaller label text size)
+	 */
+	subLabel: PropTypes.bool,
 
 	/**
 	 * hint text

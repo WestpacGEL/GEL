@@ -54,6 +54,7 @@
 		"@westpac/alert": "^1.2.1",
 		"@westpac/autocomplete": "^1.0.0-beta",
 		"@westpac/button": "^1.2.0",
+		"@westpac/heading": "^1.0.1",
 		"cypress": "^7.4.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.3"
