@@ -22,6 +22,23 @@ export const Sidebar = ({ items }) => {
 		}
 	}, [router.asPath]);
 
+	const handleClose = () => {
+		setIsOpen(false);
+	};
+
+	// on escape close modal
+	const keyHandler = (event) => {
+		if (isOpen && event.keyCode === 27) handleClose();
+	};
+
+	// bind key events
+	useEffect(() => {
+		window.document.addEventListener('keydown', keyHandler);
+		return () => {
+			window.document.removeEventListener('keydown', keyHandler);
+		};
+	});
+
 	return (
 		<Fragment>
 			<div
@@ -43,13 +60,14 @@ export const Sidebar = ({ items }) => {
 				})}
 				aria-hidden={!isOpen}
 			>
-				<CloseBtn />
 				<BrandSwitcher />
+				<CloseBtn onClick={handleClose} />
 				<Navigation items={items} />
 			</div>
+			{/* Background overlay */}
 			{isOpen && (
 				<div
-					onClick={() => setIsOpen(false)}
+					onClick={handleClose}
 					css={mq({
 						display: ['block', null, null, null, 'none'],
 						position: 'fixed',
@@ -67,7 +85,7 @@ export const Sidebar = ({ items }) => {
 	);
 };
 
-const CloseBtn = () => {
+const CloseBtn = (props) => {
 	const { setIsOpen, closeBtnRef } = useSidebar();
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
@@ -79,7 +97,6 @@ const CloseBtn = () => {
 			size="large"
 			iconAfter={CloseIcon}
 			assistiveText="Close main menu"
-			onClick={() => setIsOpen(false)}
 			css={mq({
 				display: [null, null, null, null, 'none'],
 				position: 'absolute',
@@ -90,6 +107,7 @@ const CloseBtn = () => {
 				backgroundColor: 'transparent',
 				color: COLORS.muted,
 			})}
+			{...props}
 		/>
 	);
 };
