@@ -147,7 +147,9 @@
 		"**/@keystonejs/auth-password": "^5.1.6",
 		"**/@keystonejs/fields": "^9.0.5",
 		"**/@keystonejs/file-adapters": "^6.0.2",
-		"**/@keystonejs/keystone": "^8.1.4"
+		"**/@keystonejs/keystone": "^8.1.4",
+		"**/react": "^17.0.2",
+		"**/react-dom": "^17.0.2"
 	},
 	"version": "0.0.0"
 }
