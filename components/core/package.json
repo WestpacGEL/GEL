@@ -61,7 +61,6 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.0",
-		"@emotion/core": "^11.0.0",
 		"@emotion/react": "^11.4.0",
 		"@emotion/weak-memoize": "^0.2.5",
 		"classnames": "^2.3.1",
