@@ -102,10 +102,12 @@ export const ButtonDropdown = ({
 		)(event);
 	};
 
-	useOutsideClick(panelRef, () => {
-		if (open) {
+	useOutsideClick({
+		handler: () => {
 			setOpen(false);
-		}
+		},
+		refs: [buttonRef, panelRef],
+		listenWhen: open,
 	});
 
 	// on escape close
