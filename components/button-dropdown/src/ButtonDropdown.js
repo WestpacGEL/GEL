@@ -1,15 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
-import {
-	createContext,
-	useContext,
-	useState,
-	useEffect,
-	useRef,
-	useCallback,
-	useLayoutEffect,
-} from 'react';
+import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { Button } from '@westpac/button';
 import PropTypes from 'prop-types';
