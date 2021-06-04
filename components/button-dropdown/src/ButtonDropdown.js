@@ -1,7 +1,15 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
-import { createContext, useContext, useState, useEffect, useRef } from 'react';
+import {
+	createContext,
+	useContext,
+	useState,
+	useEffect,
+	useRef,
+	useCallback,
+	useLayoutEffect,
+} from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { Button } from '@westpac/button';
 import PropTypes from 'prop-types';
@@ -102,10 +110,12 @@ export const ButtonDropdown = ({
 		)(event);
 	};
 
-	useOutsideClick(panelRef, () => {
-		if (open) {
+	useOutsideClick({
+		handler: () => {
 			setOpen(false);
-		}
+		},
+		refs: [buttonRef, panelRef],
+		listenWhen: open,
 	});
 
 	// on escape close
