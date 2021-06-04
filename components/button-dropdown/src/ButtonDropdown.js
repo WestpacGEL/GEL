@@ -87,17 +87,17 @@ export const ButtonDropdown = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
+	useEffect(() => {
+		if (!open) {
+			buttonRef.current.focus();
+		}
+	}, [open]);
+
 	const handleOpen = (event) => {
 		wrapHandlers(
 			() => onClick(),
 			() => {
-				if (open) {
-					setOpen(false);
-					setTimeout(() => buttonRef.current.focus(), 1);
-				} else {
-					setOpen(true);
-					setTimeout(() => panelRef.current.focus(), 1);
-				}
+				setOpen(!open);
 			}
 		)(event);
 	};
