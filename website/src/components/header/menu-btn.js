@@ -4,11 +4,11 @@ import React from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
-import { useSidebar } from '../providers/sidebar';
+import { useSidebarContext } from '../providers/sidebar';
 
 export const MenuBtn = (props) => {
 	const { PACKS } = useBrand();
-	const { isOpen, setIsOpen, menuBtnRef } = useSidebar();
+	const { isOpen, setIsOpen, menuBtnRef } = useSidebarContext();
 
 	const Icon = () => <HamburgerMenuIcon color="#fff" />;
 

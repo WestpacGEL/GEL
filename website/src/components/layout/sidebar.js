@@ -5,13 +5,13 @@ import { CloseIcon } from '@westpac/icon';
 import { Fragment, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import { useSidebar } from '../providers/sidebar';
 import { BrandSwitcher } from '../brand-switcher';
+import { useSidebarContext } from '../providers/sidebar';
 import { Navigation } from '.';
 
 export const Sidebar = ({ items }) => {
 	const { COLORS } = useBrand();
-	const { isOpen, setIsOpen, closeBtnRef, menuBtnRef } = useSidebar();
+	const { isOpen, setIsOpen, closeBtnRef, menuBtnRef } = useSidebarContext();
 	const mq = useMediaQuery();
 	const router = useRouter();
 
@@ -86,7 +86,7 @@ export const Sidebar = ({ items }) => {
 };
 
 const CloseBtn = (props) => {
-	const { setIsOpen, closeBtnRef } = useSidebar();
+	const { setIsOpen, closeBtnRef } = useSidebarContext();
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 

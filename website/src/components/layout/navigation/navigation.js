@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { NavigationItem, StyledItem } from './navigation-item';
 import { ROOT_PAGES, BASE_PAGE } from '../../../config';
 import { NavigationGroup } from './navigation-group';
-import { useSidebar } from '../../providers/sidebar';
+import { useSidebarContext } from '../../providers/sidebar';
 import BackToGelSvg from './BackToGelSvg';
 import throttle from 'lodash.throttle';
 
@@ -47,7 +47,7 @@ const NavigationList = (props) => {
 export const Navigation = ({ items }) => {
 	const ref = useRef();
 	const { COLORS, SPACING, PACKS } = useBrand();
-	const { isScrolled, setIsScrolled } = useSidebar();
+	const { isScrolled, setIsScrolled } = useSidebarContext();
 
 	const setNavigation = () => {
 		const scroll = ref.current.scrollTop;
