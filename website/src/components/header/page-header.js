@@ -5,7 +5,7 @@ import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { VisuallyHidden } from '@westpac/a11y';
 
-import { MenuBtn } from './menu-button';
+import { MenuBtn } from './menu-btn';
 import HeaderImage from './component-page-header-image';
 import { usePageContext } from '../providers/pageContext';
 import { brandHeaderStyling } from '../_utils';
