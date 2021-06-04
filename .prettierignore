@@ -10,3 +10,4 @@ docs/
 GEL.json
 components/core/blender/jquery.js
 coverage/*
+dynamic-blocks-demos.js
