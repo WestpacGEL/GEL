@@ -22,6 +22,17 @@ export const Sidebar = ({ items }) => {
 		}
 	}, [router.asPath]);
 
+	// Set focus when sidebar has opened/closed
+	const handleTransitionEnd = (e) => {
+		if (e.propertyName === 'visibility') {
+			if (isOpen) {
+				closeBtnRef.current.focus();
+			} else {
+				menuBtnRef.current.focus();
+			}
+		}
+	};
+
 	const handleClose = () => {
 		setIsOpen(false);
 	};
@@ -59,6 +70,7 @@ export const Sidebar = ({ items }) => {
 					transition: ['transform 0.15s, visibility 0.15s', null, null, null, 'none'],
 				})}
 				aria-hidden={!isOpen}
+				onTransitionEnd={handleTransitionEnd}
 			>
 				<CloseBtn onClick={handleClose} />
 				<BrandDropdown />
