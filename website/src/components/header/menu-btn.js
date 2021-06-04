@@ -6,14 +6,15 @@ import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
 import { useSidebar } from '../providers/sidebar';
 
-export const MenuButton = (props) => {
+export const MenuBtn = (props) => {
 	const { PACKS } = useBrand();
-	const { isOpen, setIsOpen } = useSidebar();
+	const { isOpen, setIsOpen, menuBtnRef } = useSidebar();
 
 	const Icon = () => <HamburgerMenuIcon color="#fff" />;
 
 	return (
 		<Button
+			ref={menuBtnRef}
 			look="unstyled"
 			size="large"
 			iconBefore={Icon}

@@ -6,7 +6,7 @@ import { StopwatchPictogram, TruckPictogram, AccessibilityPictogram } from '@wes
 import { BrandHeading } from '@westpac/heading';
 import throttle from 'lodash.throttle';
 
-import { MenuButton } from './menu-button';
+import { MenuBtn } from './menu-btn';
 import HeaderImage from './home-page-header-image';
 import HomePageStickyHeaderImage from './home-page-sticky-header-image';
 import { usePageContext } from '../providers/pageContext';
@@ -107,7 +107,7 @@ const StickyHeader = () => {
 					transition: ['box-shadow 0.2s', null, 'none'],
 				})}
 			>
-				<MenuButton
+				<MenuBtn
 					css={mq({
 						position: 'fixed',
 						zIndex: 1,

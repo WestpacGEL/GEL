@@ -5,7 +5,7 @@ import { Heading, BrandHeading } from '@westpac/heading';
 import { Button } from '@westpac/button';
 import { VisuallyHidden } from '@westpac/a11y';
 
-import { MenuButton } from './menu-button';
+import { MenuBtn } from './menu-button';
 import HeaderImage from './component-page-header-image';
 import { usePageContext } from '../providers/pageContext';
 import { brandHeaderStyling } from '../_utils';
@@ -150,7 +150,7 @@ const PageHeader = ({ name, ...rest }) => {
 					alignItems: 'flex-end', //align bottom
 				})}
 			>
-				<MenuButton
+				<MenuBtn
 					css={mq({
 						position: 'fixed',
 						zIndex: 1,
