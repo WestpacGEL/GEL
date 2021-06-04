@@ -5,10 +5,13 @@ const SidebarContext = createContext();
 const SidebarProvider = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isScrolled, setIsScrolled] = useState(false);
+	const closeBtnRef = useRef();
 	const menuBtnRef = useRef();
 
 	return (
-		<SidebarContext.Provider value={{ isOpen, setIsOpen, isScrolled, setIsScrolled, menuBtnRef }}>
+		<SidebarContext.Provider
+			value={{ isOpen, setIsOpen, isScrolled, setIsScrolled, closeBtnRef, menuBtnRef }}
+		>
 			{children}
 		</SidebarContext.Provider>
 	);

@@ -11,7 +11,7 @@ import { Navigation } from '.';
 
 export const Sidebar = ({ items }) => {
 	const { COLORS } = useBrand();
-	const { isOpen, setIsOpen } = useSidebar();
+	const { isOpen, setIsOpen, closeBtnRef, menuBtnRef } = useSidebar();
 	const mq = useMediaQuery();
 	const router = useRouter();
 
@@ -68,12 +68,13 @@ export const Sidebar = ({ items }) => {
 };
 
 const CloseBtn = () => {
-	const { setIsOpen } = useSidebar();
+	const { setIsOpen, closeBtnRef } = useSidebar();
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
 		<Button
+			ref={closeBtnRef}
 			look="unstyled"
 			size="large"
 			iconAfter={CloseIcon}
