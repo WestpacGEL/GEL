@@ -32,7 +32,7 @@ export const Sidebar = ({ items }) => {
 					bottom: 0,
 					zIndex: 11,
 					display: 'flex',
-					visibility: isOpen ? 'visible' : 'hidden',
+					visibility: [isOpen ? 'visible' : 'hidden', null, null, null, 'visible'],
 					flexDirection: 'column',
 					overflow: 'hidden', //trim nav shadow
 					background: '#fff',
