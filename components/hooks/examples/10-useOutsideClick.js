@@ -10,7 +10,7 @@ function Example({ brand }) {
 	const ref = useRef();
 
 	useOutsideClick({
-		handler: () => alert('Clicked outside'),
+		handler: () => console.log('Clicked outside'),
 		refs: [ref],
 		listenWhen: true,
 	});
@@ -19,7 +19,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Code>
 				{`useOutsideClick({ 
-	handler: () => alert('Clicked outside'), 
+	handler: () => console.log('Clicked outside'), 
 	refs: [ref], 
 	listenWhen: true 
 })`}
