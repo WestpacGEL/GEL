@@ -30,9 +30,11 @@ export const useOutsideClick = ({ handler, refs, listenWhen }) => {
 	useLayoutEffect(() => {
 		if (listenWhen) {
 			document.addEventListener('mousedown', handleMouseDown);
+			document.addEventListener('touchstart', handleMouseDown);
 
 			return () => {
 				document.removeEventListener('mousedown', handleMouseDown);
+				document.removeEventListener('touchstart', handleMouseDown);
 			};
 		}
 		// NOTE: only call when the value of `listenWhen` changes
