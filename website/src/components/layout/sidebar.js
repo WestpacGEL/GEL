@@ -5,8 +5,8 @@ import { CloseIcon } from '@westpac/icon';
 import { Fragment, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import { BrandSwitcher } from '../brand-switcher';
 import { useSidebarContext } from '../providers/sidebar';
+import { BrandDropdown } from '../brand-dropdown';
 import { Navigation } from '.';
 
 export const Sidebar = ({ items }) => {
@@ -60,8 +60,8 @@ export const Sidebar = ({ items }) => {
 				})}
 				aria-hidden={!isOpen}
 			>
-				<BrandSwitcher />
 				<CloseBtn onClick={handleClose} />
+				<BrandDropdown />
 				<Navigation items={items} />
 			</div>
 			{/* Background overlay */}
