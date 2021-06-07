@@ -1,37 +1,80 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useMediaQuery } from '@westpac/core';
-import { FormPodActionsPrimary, FormPodActionsSecondary } from './styled';
+
+import { defaultActionsPrimary } from './overrides/actionsPrimary';
+import { defaultActionsSecondary } from './overrides/actionsSecondary';
+import { defaultActions } from './overrides/actions';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormPodActions = ({ primary, secondary, reverse, ...props }) => {
-	const mq = useMediaQuery();
+export const FormPodActions = ({
+	primary,
+	secondary,
+	reverse,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		Actions: defaultActions,
+		ActionsPrimary: defaultActionsPrimary,
+		ActionsSecondary: defaultActionsSecondary,
+	};
+
+	const state = {
+		primary,
+		secondary,
+		reverse,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		Actions: { component: Actions, styles: actionsStyles, attributes: actionsAttributes },
+		ActionsPrimary: {
+			component: ActionsPrimary,
+			styles: actionsPrimaryStyles,
+			attributes: actionsPrimaryAttributes,
+		},
+		ActionsSecondary: {
+			component: ActionsSecondary,
+			styles: actionsSecondaryStyles,
+			attributes: actionsSecondaryAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const children = [
-		<FormPodActionsPrimary key="primary">{primary}</FormPodActionsPrimary>,
-		<FormPodActionsSecondary key="secondary">{secondary}</FormPodActionsSecondary>,
+		<ActionsPrimary
+			key="primary"
+			state={state}
+			{...actionsPrimaryAttributes(state)}
+			css={actionsPrimaryStyles(state)}
+		>
+			{primary}
+		</ActionsPrimary>,
+		<ActionsSecondary
+			key="secondary"
+			state={state}
+			{...actionsSecondaryAttributes(state)}
+			css={actionsSecondaryStyles(state)}
+		>
+			{secondary}
+		</ActionsSecondary>,
 	];
 
 	return (
-		<div
-			css={mq({
-				display: [null, 'flex'],
-				flexDirection: !reverse && [null, 'row-reverse'],
-				marginTop: '1.875rem',
-
-				'button + button': {
-					marginLeft: ['0.75rem', '0.5rem'], //gap
-				},
-			})}
-			{...props}
-		>
+		<Actions {...rest} state={state} {...actionsAttributes(state)} css={actionsStyles(state)}>
 			{reverse ? children.reverse() : children}
-		</div>
+		</Actions>
 	);
 };
 
@@ -60,6 +103,27 @@ FormPodActions.propTypes = {
 	 * Will swap primary and secondary slot order in the DOM (refer to XS breakpoint).
 	 */
 	reverse: PropTypes.bool,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Actions: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ActionsPrimary: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ActionsSecondary: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 FormPodActions.defaultProps = {

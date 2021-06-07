@@ -35,8 +35,26 @@ function Example({ brand }) {
 		// },
 	];
 
+	const overridesWithTokens = { ...brand };
+	overridesWithTokens['@westpac/form-pod'] = {
+		FormPod: {
+			styles: (styles) => ({
+				...styles,
+				border: '2px solid red',
+				padding: '1rem',
+			}),
+		},
+		Panel: {
+			styles: (styles) => ({
+				...styles,
+				border: '2px solid red',
+				padding: '1rem',
+			}),
+		},
+	};
+
 	return (
-		<GEL brand={brand}>
+		<GEL brand={overridesWithTokens}>
 			<Global
 				styles={{
 					// Lets apply a background to simulate being inside the Template component
@@ -45,8 +63,47 @@ function Example({ brand }) {
 					},
 				}}
 			/>
-
+			<h2>With overrides applied</h2>
 			<FormPod preheading="Preheading" heading="Heading">
+				<Panel>
+					<PanelBody>[PANEL CONTENT]</PanelBody>
+					<PanelFooter left={<ContactList items={contactItems} />} right={<Indicator />} />
+				</Panel>
+				<Actions
+					primary={
+						<Fragment>
+							<Button appearance="primary" soft size="large" block={[true, false]}>
+								Back
+							</Button>
+							<Button appearance="primary" size="large" block={[true, false]}>
+								Next
+							</Button>
+						</Fragment>
+					}
+					secondary={
+						<Button appearance="faint" soft size="large" block={[true, false]}>
+							Cancel
+						</Button>
+					}
+				/>
+			</FormPod>
+
+			<hr />
+
+			<h2>With overrides and component overrides</h2>
+			<FormPod
+				preheading="Preheading"
+				heading="Heading"
+				overrides={{
+					FormPod: {
+						styles: (styles) => ({
+							...styles,
+							border: '2px dashed blue',
+							padding: '1rem',
+						}),
+					},
+				}}
+			>
 				<Panel>
 					<PanelBody>[PANEL CONTENT]</PanelBody>
 					<PanelFooter left={<ContactList items={contactItems} />} right={<Indicator />} />
