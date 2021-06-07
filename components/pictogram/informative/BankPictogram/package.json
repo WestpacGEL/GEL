@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/BankPictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-BankPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-BankPictogram.esm.js"
 }

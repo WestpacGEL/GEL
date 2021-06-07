@@ -4,7 +4,9 @@ import { GEL, jsx, useBrand } from '@westpac/core';
 import { Fragment } from 'react';
 import * as components from '@westpac/pictogram';
 import { Grid, Cell, Name } from './_util';
-import { brands } from '../../../GEL.json';
+import pkg from '../../../GEL.json';
+
+const { brands } = pkg;
 
 function Example({ brand }) {
 	const { BRAND, COLORS } = useBrand();

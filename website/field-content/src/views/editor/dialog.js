@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
 import { forwardRef, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { jsx } from '@emotion/core';
 import { gridSize } from '@arch-ui/theme';
-import wbc from '@westpac/wbc';
+import { createPortal } from 'react-dom';
+import { jsx } from '@emotion/react';
 import { GEL } from '@westpac/core';
+import wbc from '@westpac/wbc';
 
 import { useClickOutside, useKeyPress } from './hooks';
 

@@ -6,7 +6,7 @@ import { Button } from '@westpac/button';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Title, Hr } from '../../../../helpers/demos';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>Medium size button becomes Extra large from the MD breakpoint</Title>
@@ -31,3 +31,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

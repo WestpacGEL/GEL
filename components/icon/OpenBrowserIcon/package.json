@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/OpenBrowserIcon"
-	}
+	"main": "dist/westpac-icon-OpenBrowserIcon.cjs.js",
+	"module": "dist/westpac-icon-OpenBrowserIcon.esm.js"
 }

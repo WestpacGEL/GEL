@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/VerifiedIcon"
-	}
+	"main": "dist/westpac-icon-VerifiedIcon.cjs.js",
+	"module": "dist/westpac-icon-VerifiedIcon.esm.js"
 }

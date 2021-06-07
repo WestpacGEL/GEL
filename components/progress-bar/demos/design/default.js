@@ -9,7 +9,8 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 const Wrapper = (props) => (
 	<div css={{ display: 'flex', justifyContent: 'space-between', width: '50%' }} {...props} />
 );
-export default ({ context, showCode, showDemo }) => {
+
+const Demo = ({ context, showCode, showDemo }) => {
 	const [progress, setProgress] = useState(5);
 
 	function handleProgress(unit) {
@@ -76,3 +77,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

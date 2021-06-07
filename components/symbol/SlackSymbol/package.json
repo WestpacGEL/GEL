@@ -1,7 +1,4 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/SlackSymbol"
-	}
+	"main": "dist/westpac-symbol-SlackSymbol.cjs.js",
+	"module": "dist/westpac-symbol-SlackSymbol.esm.js"
 }

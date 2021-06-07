@@ -1,7 +1,4 @@
 {
-	"main": "dist/pictogram.cjs.js",
-	"module": "dist/pictogram.esm.js",
-	"preconstruct": {
-		"source": "../../src/informative/StopwatchPictogram"
-	}
+	"main": "dist/westpac-pictogram-informative-StopwatchPictogram.cjs.js",
+	"module": "dist/westpac-pictogram-informative-StopwatchPictogram.esm.js"
 }

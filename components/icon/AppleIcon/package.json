@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/AppleIcon"
-	}
+	"main": "dist/westpac-icon-AppleIcon.cjs.js",
+	"module": "dist/westpac-icon-AppleIcon.esm.js"
 }

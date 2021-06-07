@@ -1,7 +1,4 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/MastercardAcceptedSymbol"
-	}
+	"main": "dist/westpac-symbol-MastercardAcceptedSymbol.cjs.js",
+	"module": "dist/westpac-symbol-MastercardAcceptedSymbol.esm.js"
 }

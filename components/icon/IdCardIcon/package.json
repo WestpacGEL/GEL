@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/IdCardIcon"
-	}
+	"main": "dist/westpac-icon-IdCardIcon.cjs.js",
+	"module": "dist/westpac-icon-IdCardIcon.esm.js"
 }

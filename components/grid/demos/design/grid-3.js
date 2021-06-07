@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 import { Wrapper, Cell } from '../_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Wrapper>
@@ -16,3 +16,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;
