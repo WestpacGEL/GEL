@@ -1,31 +1,34 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
-import { ErrorMessage } from '@westpac/form';
+import { jsx, getLabel } from '@westpac/core';
+import { Fragment } from 'react';
+
 // ==============================
 // Component
 // ==============================
 
-const Error = ({ state: _, ...rest }) => <ErrorMessage {...rest} />;
+const Fork = ({ state: _, children }) => <Fragment>{children}</Fragment>;
 
 // ==============================
 // Styles
 // ==============================
 
-const errorStyles = () => ({ label: 'field-error' });
+const forkStyles = () => ({
+	label: getLabel('fork'),
+});
 
 // ==============================
 // Attributes
 // ==============================
 
-const errorAttributes = () => null;
+const forkAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultError = {
-	component: Error,
-	styles: errorStyles,
-	attributes: errorAttributes,
+export const defaultFork = {
+	component: Fork,
+	styles: forkStyles,
+	attributes: forkAttributes,
 };

@@ -1,15 +1,15 @@
 /** @jsx jsx */
 
-import { useState, forwardRef, useEffect } from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { defaultItem } from './overrides/item';
-import { defaultAccordionBtn } from './overrides/accordionBtn';
 import { defaultAccordionBtnIcon } from './overrides/accordionBtnIcon';
-import { defaultPanel } from './overrides/panel';
+import { defaultAccordionBtn } from './overrides/accordionBtn';
 import { defaultPanelBody } from './overrides/panelBody';
 import { useTabcordionContext } from './Tabcordion';
+import { defaultPanel } from './overrides/panel';
+import { defaultItem } from './overrides/item';
 import pkg from '../package.json';
 
 // ==============================

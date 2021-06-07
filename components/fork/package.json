@@ -1,26 +1,24 @@
 {
-	"name": "@westpac/field",
+	"name": "@westpac/fork",
 	"version": "1.0.0-beta",
-	"description": "GEL field component",
-	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/field",
+	"description": "Westpac GEL fork component",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/fork",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=field webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=fork NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/westpac-field.cjs.js",
-	"module": "dist/westpac-field.esm.js",
+	"main": "dist/westpac-fork.cjs.js",
+	"module": "dist/westpac-fork.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.0",
-		"@westpac/a11y": "^1.0.1",
-		"@westpac/core": "^2.1.0",
-		"@westpac/form": "^1.0.0",
-		"@westpac/text-input": "^1.1.0",
+		"@westpac/button-group": "^1.1.1",
+		"@westpac/core": "^2.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

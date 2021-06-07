@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { forwardRef } from 'react';
 import { jsx, getLabel, classNames, getModifier, formatClassName } from '@westpac/core';
+import { forwardRef } from 'react';
 
 import { defaultProps } from '../blender/Tabcordion';
 // ==============================

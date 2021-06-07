@@ -5,7 +5,7 @@ import { List, Item } from '@westpac/list';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Title } from '../../../../helpers/demos';
 
-const demo = ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>Default List</Title>

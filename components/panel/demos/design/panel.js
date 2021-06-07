@@ -4,7 +4,7 @@ import { jsx } from '@westpac/core';
 import { Panel, Body, Footer } from '@westpac/panel';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-const demo = ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Panel heading="The Wild Wood">
