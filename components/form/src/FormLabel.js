@@ -70,7 +70,7 @@ FormLabel.propTypes = {
 	 * Label `for` attribute.
 	 *
 	 */
-	htmlFor: PropTypes.string.isRequired,
+	htmlFor: PropTypes.string,
 
 	/**
 	 * Enable ‘screen reader only’ mode

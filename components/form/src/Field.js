@@ -17,6 +17,7 @@ import pkg from '../package.json';
 
 export const Field = ({
 	instanceIdPrefix,
+	hintIdPrefix,
 	label,
 	hideLabel,
 	subLabel,
@@ -37,13 +38,19 @@ export const Field = ({
 
 	const [fieldInstance] = useState(useInstanceId());
 	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
-	const hintId = `gel-field-hint-${fieldInstance};`;
+	const [hintId, setHintId] = useState(hintIdPrefix);
 
 	useEffect(() => {
 		if (!instanceIdPrefix) {
 			setInstanceId(`gel-field-${fieldInstance}`);
 		}
 	}, [instanceIdPrefix]);
+
+	useEffect(() => {
+		if (!hintId) {
+			setHintId(`gel-hint-${fieldInstance}`);
+		}
+	}, [hintIdPrefix]);
 
 	const state = {
 		fieldInstance,
@@ -78,7 +85,9 @@ export const Field = ({
 				{label}
 			</FormLabel>
 			{hint && (
-				<Hint overrides={componentOverrides}>{typeof hint === 'function' ? hint() : hint}</Hint>
+				<Hint id={hintId} overrides={componentOverrides}>
+					{typeof hint === 'function' ? hint() : hint}
+				</Hint>
 			)}
 			{error && <ErrorMessage message={error} overrides={componentOverrides} />}
 			{Children.map(children, (child) => cloneElement(child, { ...inputProps }))}
@@ -95,6 +104,11 @@ Field.propTypes = {
 	 * input id
 	 */
 	instanceIdPrefix: PropTypes.string,
+
+	/**
+	 * hint id
+	 */
+	hintIdPrefix: PropTypes.string,
 
 	/**
 	 * label text

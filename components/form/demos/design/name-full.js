@@ -1,11 +1,13 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
-import { Form, FormGroup, Field } from '@westpac/form';
+import { jsx, useMediaQuery } from '@westpac/core';
+import { Form, FormGroup, Field, Fieldset } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
+import { Fork, Content } from '@westpac/fork';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
 const Demo = ({ context, showCode, showDemo }) => {
+	const mq = useMediaQuery();
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Form spacing="large">
@@ -36,7 +38,18 @@ const Demo = ({ context, showCode, showDemo }) => {
 						<TextInput size="large" width={30} />
 					</Field>
 				</FormGroup>
-				{/* Fork goes here */}
+				<Fieldset legend="Have you ever been known by a name different to the one provided above?">
+					<Fork size="large" css={mq({ marginBottom: ['1.5rem', '1.875rem'] })}>
+						<Content text="Yes">
+							<FormGroup>
+								<Field label="Other names">
+									<TextInput size="large" width={30} />
+								</Field>
+							</FormGroup>
+						</Content>
+						<Content text="No" />
+					</Fork>
+				</Fieldset>
 			</Form>
 		</Playground>
 	);

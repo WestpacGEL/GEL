@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFieldset } from './overrides/fieldset';
@@ -17,6 +18,7 @@ import pkg from '../package.json';
 export const Fieldset = ({
 	legend,
 	hint,
+	hintIdPrefix,
 	error,
 	ariadescribedby,
 	children,
@@ -32,10 +34,14 @@ export const Fieldset = ({
 		Fieldset: defaultFieldset,
 	};
 
+	const [hintId] = useState(hintIdPrefix ? hintIdPrefix : `gel-hint-${useInstanceId()}`);
+
 	const state = {
 		legend,
 		hint,
+		hintId,
 		error,
+		ariadescribedby,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -50,7 +56,9 @@ export const Fieldset = ({
 				{legend}
 			</FormLabel>
 			{hint && (
-				<Hint overrides={componentOverrides}>{typeof hint === 'function' ? hint() : hint}</Hint>
+				<Hint id={hintId} overrides={componentOverrides}>
+					{typeof hint === 'function' ? hint() : hint}
+				</Hint>
 			)}
 			{error && <ErrorMessage message={error} overrides={componentOverrides} />}
 			{children}
@@ -72,6 +80,11 @@ Fieldset.propTypes = {
 	 * hint text
 	 */
 	hint: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * hint id
+	 */
+	hintIdPrefix: PropTypes.string,
 
 	/**
 	 * Error message text
