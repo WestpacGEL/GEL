@@ -12,13 +12,13 @@ function Example({ brand }) {
 				<FormGroup>
 					<InputCluster>
 						<Item>
-							<FormLabel htmlFor="example-1" sublabel>
+							<FormLabel htmlFor="example-1" subLabel>
 								This is a sub-label
 							</FormLabel>
 							<TextInput />
 						</Item>
 						<Item>
-							<FormLabel htmlFor="example-2" sublabel>
+							<FormLabel htmlFor="example-2" subLabel>
 								This is a sub-label
 							</FormLabel>
 							<TextInput />
@@ -36,13 +36,13 @@ function Example({ brand }) {
 				<FormGroup>
 					<InputCluster horizontal>
 						<Item>
-							<FormLabel htmlFor="example-3" sublabel>
+							<FormLabel htmlFor="example-3" subLabel>
 								This is a sub-label
 							</FormLabel>
 							<TextInput />
 						</Item>
 						<Item>
-							<FormLabel htmlFor="example-4" sublabel>
+							<FormLabel htmlFor="example-4" subLabel>
 								This is a sub-label
 							</FormLabel>
 							<TextInput />

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx, Global, useBrand } from '@westpac/core';
-import { FormPod, FormPodPanel, FormPodPanelBody } from '@westpac/form-pod';
+import { FormPod, Panel, PanelBody } from '@westpac/form-pod';
 import { TickIcon } from '@westpac/icon';
 
 function Example({ brand }) {
@@ -19,9 +19,9 @@ function Example({ brand }) {
 			/>
 
 			<FormPod preheading="Preheading" heading="Heading" icon={TickIcon}>
-				<FormPodPanel>
-					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
-				</FormPodPanel>
+				<Panel>
+					<PanelBody>[PANEL CONTENT]</PanelBody>
+				</Panel>
 			</FormPod>
 		</GEL>
 	);

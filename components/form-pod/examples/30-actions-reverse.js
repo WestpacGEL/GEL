@@ -1,13 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx, Global, useBrand } from '@westpac/core';
-import {
-	FormPod,
-	FormPodPanel,
-	FormPodPanelBody,
-	FormPodActions,
-	FormPodActionsText,
-} from '@westpac/form-pod';
+import { FormPod, Panel, PanelBody, Actions, ActionsText } from '@westpac/form-pod';
 import { Button } from '@westpac/button';
 import { Fragment } from 'react';
 
@@ -26,10 +20,10 @@ function Example({ brand }) {
 			/>
 
 			<FormPod preheading="Preheading" heading="Heading">
-				<FormPodPanel>
-					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
-				</FormPodPanel>
-				<FormPodActions
+				<Panel>
+					<PanelBody>[PANEL CONTENT]</PanelBody>
+				</Panel>
+				<Actions
 					reverse
 					primary={
 						<Fragment>
@@ -41,7 +35,7 @@ function Example({ brand }) {
 							</Button>
 						</Fragment>
 					}
-					secondary={<FormPodActionsText>[TEXT CAN GO HERE]</FormPodActionsText>}
+					secondary={<ActionsText>[TEXT CAN GO HERE]</ActionsText>}
 				/>
 			</FormPod>
 		</GEL>

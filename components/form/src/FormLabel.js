@@ -1,44 +1,52 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
+import { defaultFormLabel } from './overrides/formLabel';
 import { useFormContext } from './Form';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormLabel = ({ sublabel, tag: Tag, htmlFor, srOnly, ...props }) => {
-	const { TYPE } = useBrand();
-	// Consume FormContext
-	const formContext = useFormContext();
-	const spacing = (formContext && formContext.spacing) || 'medium';
+export const FormLabel = ({ tag, subLabel, htmlFor, srOnly, overrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	if (srOnly) {
-		Tag = VisuallyHidden;
-	}
+	const context = useFormContext();
 
-	const mapSpacing = {
-		medium: {
-			marginBottom: sublabel ? '0.375rem' : '0.75rem',
-		},
-		large: {
-			marginBottom: sublabel ? '0.375rem' : '1.125rem',
-		},
+	const defaultOverrides = {
+		FormLabel: defaultFormLabel,
 	};
 
+	const componentOverrides = overrides || context?.state?.overrides;
+	const spacing = context?.state?.spacing || 'medium';
+
+	const state = {
+		tag,
+		subLabel,
+		htmlFor,
+		srOnly,
+		spacing,
+		context: context?.state,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		FormLabel: { component: FormLabel, styles: formLabelStyles, attributes: formLabelAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
 	return (
-		<Tag
-			css={{
-				display: 'inline-block',
-				fontSize: sublabel ? '0.875rem' : '1rem',
-				marginBottom: mapSpacing[spacing].marginBottom,
-				...TYPE.bodyFont[500],
-			}}
-			htmlFor={htmlFor}
-			{...props}
+		<FormLabel
+			{...rest}
+			state={state}
+			{...formLabelAttributes(state)}
+			css={formLabelStyles(state)}
 		/>
 	);
 };
@@ -51,7 +59,7 @@ FormLabel.propTypes = {
 	/**
 	 * Sub-label mode (smaller label text size)
 	 */
-	sublabel: PropTypes.bool,
+	subLabel: PropTypes.bool,
 
 	/**
 	 * Component tag
@@ -61,28 +69,16 @@ FormLabel.propTypes = {
 	/**
 	 * Label `for` attribute.
 	 *
-	 * This prop is required and must match the input’s `id` value, unless the `tag` prop is configured.
 	 */
-	htmlFor: (props, propName, componentName) => {
-		if (props.tag === 'label' && props[propName] == undefined) {
-			return new Error(
-				`The prop \`${propName}\` is marked as required in \`${componentName}\`, but its value is \`undefined\`.`
-			);
-		}
-	},
+	htmlFor: PropTypes.string,
 
 	/**
 	 * Enable ‘screen reader only’ mode
 	 */
 	srOnly: PropTypes.bool,
-
-	/**
-	 * Label text
-	 */
-	children: PropTypes.string.isRequired,
 };
 
 FormLabel.defaultProps = {
-	sublabel: false,
+	subLabel: false,
 	tag: 'label',
 };
