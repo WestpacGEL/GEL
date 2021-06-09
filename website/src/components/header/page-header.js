@@ -179,7 +179,7 @@ const PageHeader = ({ name, ...rest }) => {
 								marginLeft: SPACING(10),
 								marginBottom: 0,
 								opacity: 1,
-								transition: 'opacity 0.2s ease',
+								transition: 'opacity 0.3s ease',
 							},
 						},
 						[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {

@@ -26,7 +26,7 @@ export const MenuBtn = (props) => {
 				padding: '21px 12px',
 
 				':focus': {
-					outlineOffset: `-${PACKS.focus.outlineWidth}`,
+					outlineOffset: `-${PACKS.focus.outlineWidth} !important`,
 				},
 			}}
 			{...props}
