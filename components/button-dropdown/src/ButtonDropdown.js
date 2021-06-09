@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
-import { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { createContext, useContext, useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { useOutsideClick } from '@westpac/hooks';
 import { Button } from '@westpac/button';
 import PropTypes from 'prop-types';
@@ -31,7 +31,7 @@ export const useButtonDropdownContext = () => {
 // ==============================
 
 export const ButtonDropdown = ({
-	open: isOpen,
+	open,
 	instanceIdPrefix,
 	text,
 	dropdownSize,
@@ -46,7 +46,7 @@ export const ButtonDropdown = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [open, setOpen] = useState(isOpen);
+	const [isOpen, setIsOpen] = useState(open);
 	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 	const panelRef = useRef();
 	const buttonRef = useRef();
@@ -84,35 +84,35 @@ export const ButtonDropdown = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	useEffect(() => {
-		setOpen(isOpen);
-	}, [isOpen]);
+		setIsOpen(open);
+	}, [open]);
 
-	useEffect(() => {
-		if (!open) {
+	useLayoutEffect(() => {
+		if (!isOpen) {
 			buttonRef.current.focus();
 		}
-	}, [open]);
+	}, [isOpen]);
 
 	const handleOpen = (event) => {
 		wrapHandlers(
 			() => onClick(),
 			() => {
-				setOpen(!open);
+				setIsOpen((currentState) => !currentState);
 			}
 		)(event);
 	};
 
 	useOutsideClick({
 		handler: () => {
-			setOpen(false);
+			setIsOpen(false);
 		},
 		refs: [buttonRef, panelRef],
-		listenWhen: open,
+		listenWhen: isOpen,
 	});
 
 	// on escape close
 	const keyHandler = (event) => {
-		if (open && event.keyCode === 27) handleOpen(event);
+		if (isOpen && event.keyCode === 27) handleOpen(event);
 	};
 
 	// bind key events
@@ -132,7 +132,7 @@ export const ButtonDropdown = ({
 			>
 				<Button
 					ref={buttonRef}
-					aria-expanded={open}
+					aria-expanded={isOpen}
 					aria-controls={instanceId}
 					onClick={handleOpen}
 					dropdown={true}
