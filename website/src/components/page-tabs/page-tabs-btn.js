@@ -4,7 +4,7 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 export const PageTabsBtn = ({ href, active, onClick, ...rest }) => {
 	const mq = useMediaQuery();
-	const { COLORS, SPACING } = useBrand();
+	const { COLORS, SPACING, PACKS } = useBrand();
 
 	return (
 		<a
@@ -23,6 +23,10 @@ export const PageTabsBtn = ({ href, active, onClick, ...rest }) => {
 				color: active ? COLORS.text : COLORS.muted,
 				textDecoration: 'none',
 				position: 'relative',
+
+				':focus': {
+					outlineOffset: `-${PACKS.focus.outlineWidth} !important`,
+				},
 
 				// Active item underline
 				// a11y: using border for WHCM support
