@@ -1,23 +1,65 @@
 /** @jsx jsx */
 
-import React from 'react';
-import { jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import PropTypes from 'prop-types';
+
+import { defaultActionsText } from './overrides/actionsText';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormPodActionsText = (props) => {
-	const mq = useMediaQuery();
+export const FormPodActionsText = ({ children, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		ActionsText: defaultActionsText,
+	};
+
+	const state = {
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		ActionsText: {
+			component: ActionsText,
+			styles: actionsTextStyles,
+			attributes: actionsTextAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<div
-			css={mq({
-				fontSize: '1rem',
-				textAlign: ['center', 'left'],
-				marginBottom: ['1.5rem', 0],
-			})}
-			{...props}
-		/>
+		<ActionsText
+			{...rest}
+			state={state}
+			{...actionsTextAttributes(state)}
+			css={actionsTextStyles(state)}
+		>
+			{children}
+		</ActionsText>
 	);
 };
+
+// ==============================
+// Types
+// ==============================
+
+FormPodActionsText.propTypes = {
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		ActionsText: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
+};
+
+FormPodActionsText.defaultProps = {};

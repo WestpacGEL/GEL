@@ -111,7 +111,7 @@ Autocomplete.propTypes = {
 	/**
 	 * Autocomplete dropdown options
 	 */
-	options: PropTypes.object.isRequired,
+	options: PropTypes.array.isRequired,
 	/**
 	 * Component size
 	 */

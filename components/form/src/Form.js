@@ -1,8 +1,11 @@
 /** @jsx jsx */
 
-import React, { createContext, useContext } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
+
+import { defaultForm } from './overrides/form';
+import pkg from '../package.json';
 
 // ==============================
 // Context and consumer hook
@@ -16,10 +19,32 @@ export const useFormContext = () => useContext(FormContext);
 // Component
 // ==============================
 
-export const Form = ({ size, spacing, inline, tag: Tag, ...props }) => {
+export const Form = ({ size, spacing, inline, tag, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		Form: defaultForm,
+	};
+
+	const state = {
+		size,
+		spacing,
+		inline,
+		tag,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		Form: { component: Form, styles: formStyles, attributes: formAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
 	return (
-		<FormContext.Provider value={{ size, spacing, inline }}>
-			<Tag {...props} />
+		<FormContext.Provider value={{ state }}>
+			<Form {...rest} state={state} {...formAttributes(state)} css={formStyles(state)} />
 		</FormContext.Provider>
 	);
 };
@@ -61,9 +86,15 @@ Form.propTypes = {
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
 	/**
-	 * Form children
+	 * The override API
 	 */
-	children: PropTypes.node,
+	overrides: PropTypes.shape({
+		Form: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 export const defaultProps = {
@@ -72,4 +103,5 @@ export const defaultProps = {
 	inline: false,
 	tag: 'form',
 };
+
 Form.defaultProps = defaultProps;

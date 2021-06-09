@@ -1,29 +1,37 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+
+import { defaultChitChat } from './overrides/chitChat';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const ChitChat = ({ tag: Tag, ...props }) => {
-	const { COLORS, TYPE } = useBrand();
-	const mq = useMediaQuery();
+export const ChitChat = ({ tag, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		ChitChat: defaultChitChat,
+	};
+
+	const state = {
+		tag,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		ChitChat: { component: ChitChat, styles: chitChatStyles, attributes: chitChatAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Tag
-			css={mq({
-				fontSize: '1.125rem',
-				color: COLORS.heading,
-				lineHeight: 1.4,
-				textAlign: 'center',
-				margin: [0, '0 0 1.875rem'],
-				...TYPE.bodyFont[700],
-			})}
-			{...props}
-		/>
+		<ChitChat {...rest} state={state} {...chitChatAttributes(state)} css={chitChatStyles(state)} />
 	);
 };
 
@@ -41,6 +49,17 @@ ChitChat.propTypes = {
 	 * Component text
 	 */
 	children: PropTypes.string.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		ChitChat: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 ChitChat.defaultProps = {

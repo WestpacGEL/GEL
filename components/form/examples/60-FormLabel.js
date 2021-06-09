@@ -43,7 +43,7 @@ function Example({ brand }) {
 			<h3>Sublabel with medium spacing</h3>
 			<Form spacing="medium">
 				<FormGroup>
-					<FormLabel htmlFor="example-sublabel-spacing-medium" sublabel>
+					<FormLabel htmlFor="example-subLabel-spacing-medium" subLabel>
 						This is a sub-label
 					</FormLabel>
 					<Box>Form input here</Box>
@@ -55,7 +55,7 @@ function Example({ brand }) {
 			<h3>Sublabel with large spacing</h3>
 			<Form spacing="large">
 				<FormGroup>
-					<FormLabel htmlFor="example-sublabel-spacing-large" sublabel>
+					<FormLabel htmlFor="example-subLabel-spacing-large" subLabel>
 						This is a sub-label
 					</FormLabel>
 					<Box>Form input here</Box>

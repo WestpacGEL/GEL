@@ -3,12 +3,12 @@
 import { GEL, jsx, Global, useBrand } from '@westpac/core';
 import {
 	FormPod,
-	FormPodPanel,
-	FormPodPanelBody,
-	FormPodPanelFooter,
-	FormPodContactList,
-	FormPodIndicator,
-	FormPodActions,
+	Panel,
+	PanelBody,
+	PanelFooter,
+	ContactList,
+	Indicator,
+	Actions,
 } from '@westpac/form-pod';
 import { List, Item } from '@westpac/list';
 import { HeadsetIcon } from '@westpac/icon';
@@ -42,7 +42,7 @@ function Example({ brand }) {
 			/>
 
 			<FormPod preheading="Preheading" heading="Heading">
-				<FormPodPanel noBorderTop>
+				<Panel borderTop={false}>
 					<Alert look="danger">
 						{/* Nb. Tabindex="-1" for programmatically set focus */}
 						<Heading tag="h3" tabIndex="-1">
@@ -61,13 +61,10 @@ function Example({ brand }) {
 							</Item>
 						</List>
 					</Alert>
-					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
-					<FormPodPanelFooter
-						left={<FormPodContactList items={contactItems} />}
-						right={<FormPodIndicator />}
-					/>
-				</FormPodPanel>
-				<FormPodActions
+					<PanelBody>[PANEL CONTENT]</PanelBody>
+					<PanelFooter left={<ContactList items={contactItems} />} right={<Indicator />} />
+				</Panel>
+				<Actions
 					primary={
 						<Fragment>
 							<Button appearance="primary" soft size="large" block={[true, false]}>

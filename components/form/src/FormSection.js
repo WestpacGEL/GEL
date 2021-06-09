@@ -1,37 +1,45 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+
+import { defaultFormSection } from './overrides/formSection';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormSection = ({ noPadding, ...props }) => {
-	const { COLORS } = useBrand();
-	const mq = useMediaQuery();
+export const FormSection = ({ noPadding, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		FormSection: defaultFormSection,
+	};
+
+	const state = {
+		noPadding,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		FormSection: {
+			component: FormSection,
+			styles: formSectionStyles,
+			attributes: formSectionAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<div
-			css={mq({
-				position: 'relative', //for `.form-section-actions` positioning
-				paddingLeft: !noPadding && [null, '3.375rem', '2.875rem', '3.125rem'],
-				paddingRight: !noPadding && [null, '3.375rem', '2.875rem', '3.125rem'],
-
-				':not(:first-of-type)': {
-					paddingTop: ['1.875rem', '2.25rem'],
-				},
-				':not(:last-child)': {
-					paddingBottom: '0.375rem', //0.6rem assuming there will be a `FormGroup` margin-bottom (3rem)
-				},
-
-				// Subequent sections
-				'& + &': {
-					borderTop: `1px solid ${COLORS.border}`,
-				},
-			})}
-			{...props}
+		<FormSection
+			{...rest}
+			state={state}
+			{...formSectionAttributes(state)}
+			css={formSectionStyles(state)}
 		/>
 	);
 };
@@ -47,9 +55,15 @@ FormSection.propTypes = {
 	noPadding: PropTypes.bool,
 
 	/**
-	 * Component children
+	 * The override API
 	 */
-	children: PropTypes.node,
+	overrides: PropTypes.shape({
+		FormSection: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 FormSection.defaultProps = {

@@ -1,5 +1,6 @@
 export { ChitChat } from './ChitChat';
 export { ErrorMessage } from './ErrorMessage';
+export { Field } from './Field';
 export { Fieldset } from './Fieldset';
 export { Form, useFormContext } from './Form';
 export { FormGroup } from './FormGroup';

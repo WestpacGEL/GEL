@@ -1,38 +1,87 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useMediaQuery } from '@westpac/core';
-import { FormPodHeader, FormPodHeaderIcon, FormPodPreheading, FormPodHeading } from './styled';
+
+import { defaultPreheading } from './overrides/preheading';
+import { defaultHeaderIcon } from './overrides/headerIcon';
+import { defaultHeading } from './overrides/heading';
+import { defaultHeader } from './overrides/header';
+import { defaultFormPod } from './overrides/formPod';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormPod = ({ icon, preheading, heading, children, ...props }) => {
-	const mq = useMediaQuery();
+export const FormPod = ({
+	icon,
+	preheading,
+	heading,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	// Styling to provide the icon gap
-	const styleHeaderTextWithIcon = {
-		marginRight: [null, '4.125rem'],
-		paddingRight: [null, '0.75rem'],
+	const defaultOverrides = {
+		FormPod: defaultFormPod,
+		Header: defaultHeader,
+		HeaderIcon: defaultHeaderIcon,
+		Preheading: defaultPreheading,
+		Heading: defaultHeading,
 	};
 
+	const state = {
+		icon,
+		preheading,
+		heading,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		FormPod: { component: FormPod, styles: formPodStyles, attributes: formPodAttributes },
+		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
+		HeaderIcon: {
+			component: HeaderIcon,
+			styles: headerIconStyles,
+			attributes: headerIconAttributes,
+		},
+		Preheading: {
+			component: Preheading,
+			styles: preheadingStyles,
+			attributes: preheadingAttributes,
+		},
+		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
 	return (
-		<div {...props}>
-			<FormPodHeader align={icon && ['center', 'left']}>
-				{icon && <FormPodHeaderIcon icon={icon} />}
+		<FormPod {...rest} state={state} {...formPodAttributes(state)} css={formPodStyles(state)}>
+			<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
+				{icon && (
+					<HeaderIcon
+						state={state}
+						{...headerIconAttributes(state)}
+						css={headerIconStyles(state)}
+					/>
+				)}
 				{preheading && (
-					<FormPodPreheading css={mq(icon && styleHeaderTextWithIcon)}>
+					<Preheading state={state} {...preheadingAttributes(state)} css={preheadingStyles(state)}>
 						{preheading}
-					</FormPodPreheading>
+					</Preheading>
 				)}
 				{heading && (
-					<FormPodHeading css={mq(icon && styleHeaderTextWithIcon)}>{heading}</FormPodHeading>
+					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
+						{heading}
+					</Heading>
 				)}
-			</FormPodHeader>
+			</Header>
 			{children}
-		</div>
+		</FormPod>
 	);
 };
 
@@ -59,9 +108,35 @@ FormPod.propTypes = {
 	icon: PropTypes.func,
 
 	/**
-	 * Component children
+	 * The override API
 	 */
-	children: PropTypes.node,
+	overrides: PropTypes.shape({
+		FormPod: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Header: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		HeaderIcon: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Preheading: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Heading: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 FormPod.defaultProps = {};

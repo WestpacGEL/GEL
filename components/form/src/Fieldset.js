@@ -1,28 +1,68 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@westpac/core';
-import { FormLabel } from './FormLabel';
 
-import { useFormContext } from './Form';
+import { defaultFieldset } from './overrides/fieldset';
+import { ErrorMessage } from './ErrorMessage';
+import { FormLabel } from './FormLabel';
+import { Hint } from './Hint';
+
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const Fieldset = ({ legend, children, ...props }) => {
-	// Consume FormContext
-	const formContext = useFormContext();
-	const spacing = (formContext && formContext.spacing) || 'medium';
+export const Fieldset = ({
+	legend,
+	hint,
+	hintIdPrefix,
+	error,
+	ariadescribedby,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		Fieldset: defaultFieldset,
+	};
+
+	const [hintId] = useState(hintIdPrefix ? hintIdPrefix : `gel-hint-${useInstanceId()}`);
+
+	const state = {
+		legend,
+		hint,
+		hintId,
+		error,
+		ariadescribedby,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		Fieldset: { component: Fieldset, styles: fieldsetStyles, attributes: fieldsetAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<fieldset {...props}>
-			<FormLabel tag="legend" spacing={spacing}>
+		<Fieldset state={state} {...fieldsetAttributes(state)} css={fieldsetStyles(state)} {...rest}>
+			<FormLabel tag="legend" overrides={componentOverrides}>
 				{legend}
 			</FormLabel>
+			{hint && (
+				<Hint id={hintId} overrides={componentOverrides}>
+					{typeof hint === 'function' ? hint() : hint}
+				</Hint>
+			)}
+			{error && <ErrorMessage message={error} overrides={componentOverrides} />}
 			{children}
-		</fieldset>
+		</Fieldset>
 	);
 };
 
@@ -32,14 +72,60 @@ export const Fieldset = ({ legend, children, ...props }) => {
 
 Fieldset.propTypes = {
 	/**
-	 * Fieldset legend text
+	 * label text
 	 */
-	legend: PropTypes.string.isRequired,
+	legend: PropTypes.string,
 
 	/**
-	 * Component children
+	 * hint text
 	 */
-	children: PropTypes.node,
+	hint: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * hint id
+	 */
+	hintIdPrefix: PropTypes.string,
+
+	/**
+	 * Error message text
+	 */
+	error: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+
+	/**
+	 * aria-describedby
+	 */
+	ariadescribedby: PropTypes.string,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Fieldset: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Legend: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Hint: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ErrorList: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ErrorListItem: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 Fieldset.defaultProps = {};
