@@ -28,7 +28,11 @@ export const PageTabs = ({ assistiveText, onActive, children, ...rest }) => {
 		}
 
 		// Scroll to top, or where header collapses in SM+
-		window.scrollTo(0, window.matchMedia('(min-width: 768px)').matches ? 162 : 0);
+		let yPos = 0;
+		if (window.matchMedia('(min-width: 768px)').matches) {
+			yPos = window.scrollY > 0 ? 162 : 0;
+		}
+		window.scrollTo(0, yPos);
 	};
 
 	useEffect(() => {
