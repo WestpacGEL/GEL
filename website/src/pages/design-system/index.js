@@ -3,11 +3,11 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { TextInput } from '@westpac/text-input';
 import { Button } from '@westpac/button';
-import { Fragment, useRef } from 'react';
+import { Fragment } from 'react';
 
 import { BlockList, BlockListItem, BlockListHeading } from '../../components/block-list';
 import HomePageHeader from '../../components/header/home-page-header';
-import { PageContext } from '../../components/providers/pageContext';
+import { PageContextProvider } from '../../components/providers/pageContext';
 import { Section, SectionHeading } from '../../components/section';
 import { Footer } from '../../components/layout';
 import { Head } from '../../components/head';
@@ -29,12 +29,11 @@ import {
 const Homepage = () => {
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
-	const pageHeadingRef = useRef();
 
 	return (
 		<Fragment>
 			<Head />
-			<PageContext.Provider value={{ pageHeadingRef }}>
+			<PageContextProvider>
 				<main
 					id="content"
 					css={{
@@ -217,7 +216,7 @@ const Homepage = () => {
 					</div>
 					<Footer />
 				</main>
-			</PageContext.Provider>
+			</PageContextProvider>
 		</Fragment>
 	);
 };

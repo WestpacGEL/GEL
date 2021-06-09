@@ -51,16 +51,18 @@ export const brandsMap = {
 const OptionBtn = ({ brand, active, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 	const { setBrand } = useBrandSwitcher();
-	const { setOpen: setBrandDropdownOpen } = useBrandDropdownContext();
-	const { setIsOpen: setSidebarOpen } = useSidebarContext();
+	const { close: closeBrandDropdown } = useBrandDropdownContext();
+	const { close: closeSidebar } = useSidebarContext();
 
 	const handleOptionClick = (brand) => {
 		// Set brand
 		setBrand(brand);
 
 		// Close BrandDropdown and Sidebar
-		setBrandDropdownOpen(false);
-		setSidebarOpen(false);
+		closeBrandDropdown();
+		setTimeout(() => {
+			closeSidebar();
+		}, 1000);
 	};
 
 	return (

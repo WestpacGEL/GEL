@@ -26,8 +26,8 @@ import { Body } from '../../../components/body';
 import { Head } from '../../../components/head';
 import { BlockList, BlockListItem, BlockListHeading } from '../../../components/block-list';
 import PageHeader from '../../../components/header/page-header';
-import { PageContext } from '../../../components/providers/pageContext';
-import { Gridly, Footer } from '../../../components/layout';
+import { PageContextProvider } from '../../../components/providers/pageContext';
+import { Footer } from '../../../components/layout';
 import { BASE_URL } from '../../../config.js';
 import { Icon } from '../../../../../components/icon/src/Icon';
 import GEL from '../../../../../GEL.json';
@@ -834,13 +834,11 @@ const SectionDevelopers = () => {
 
 function DownloadsPage() {
 	const mq = useMediaQuery();
-	const [showGrid, setShowGrid] = useState(false);
-	const pageHeadingRef = useRef();
 
 	return (
 		<Fragment>
 			<Head title="Downloads" />
-			<PageContext.Provider value={{ showGrid, setShowGrid, pageHeadingRef }}>
+			<PageContextProvider>
 				<main id="content">
 					<PageHeader
 						name="Downloads"
@@ -857,14 +855,13 @@ function DownloadsPage() {
 							})[0]
 						}
 					/>
-					<Gridly show={showGrid} />
 					<div>
 						<SectionDesigners />
 						<SectionDevelopers />
 					</div>
 					<Footer />
 				</main>
-			</PageContext.Provider>
+			</PageContextProvider>
 		</Fragment>
 	);
 }

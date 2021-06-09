@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import { forwardRef, useState, useRef } from 'react';
+import { forwardRef, useState, useEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from 'react-spring';
 import useMeasure from 'react-use-measure';
@@ -81,17 +81,23 @@ const PanelOverride = forwardRef(({ state: { open, setClosed }, children, ...res
 });
 
 export const BrandDropdown = () => {
-	const [open, setOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const [closed, setClosed] = useState(true);
 	const { isScrolled } = useSidebarContext();
 	const { COLORS, PACKS } = useBrand();
 
+	const close = () => {
+		if (isOpen) {
+			setIsOpen(false);
+		}
+	};
+
 	const handleClick = () => {
-		setOpen(!open);
+		setIsOpen((currentState) => !currentState);
 	};
 
 	return (
-		<BrandDropdownContext.Provider value={{ open, setOpen }}>
+		<BrandDropdownContext.Provider value={{ isOpen, close }}>
 			<div
 				css={{
 					borderBottom: !isScrolled && `1px solid ${COLORS.border}`,
@@ -103,7 +109,7 @@ export const BrandDropdown = () => {
 			>
 				<BrandLogo />
 				<ButtonDropdown
-					open={open}
+					open={isOpen}
 					block
 					text="Change brand"
 					dropdown={false}

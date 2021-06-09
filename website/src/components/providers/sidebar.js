@@ -1,16 +1,47 @@
-import React, { createContext, useContext, useState, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+// import { usePageContext } from './pageContext';
 
 const SidebarContext = createContext();
 
 const SidebarContextProvider = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isScrolled, setIsScrolled] = useState(false);
-	const closeBtnRef = useRef();
-	const menuBtnRef = useRef();
+	const [focusOnCloseRef, setFocusOnCloseRef] = useState({});
+	const router = useRouter();
+
+	// Close sidebar when route changes
+	useEffect(() => {
+		if (isOpen) {
+			setIsOpen(false);
+		}
+	}, [router.asPath]);
+
+	const open = (ref) => {
+		setFocusOnCloseRef(ref);
+		setIsOpen(true);
+	};
+
+	const close = () => {
+		if (isOpen) {
+			if (focusOnCloseRef && focusOnCloseRef.current) {
+				focusOnCloseRef.current.focus();
+			}
+			setIsOpen(false);
+			setFocusOnCloseRef({});
+		}
+	};
 
 	return (
 		<SidebarContext.Provider
-			value={{ isOpen, setIsOpen, isScrolled, setIsScrolled, closeBtnRef, menuBtnRef }}
+			value={{
+				isOpen,
+				open,
+				close,
+				isScrolled,
+				setIsScrolled,
+				setFocusOnCloseRef,
+			}}
 		>
 			{children}
 		</SidebarContext.Provider>

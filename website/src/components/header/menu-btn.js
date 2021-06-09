@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { HamburgerMenuIcon } from '@westpac/icon';
@@ -8,7 +8,12 @@ import { useSidebarContext } from '../providers/sidebar';
 
 export const MenuBtn = (props) => {
 	const { PACKS } = useBrand();
-	const { isOpen, setIsOpen, menuBtnRef } = useSidebarContext();
+	const { isOpen, open: openSidebar } = useSidebarContext();
+	const menuBtnRef = useRef();
+
+	const handleClick = () => {
+		openSidebar(menuBtnRef);
+	};
 
 	const Icon = () => <HamburgerMenuIcon color="#fff" />;
 
@@ -20,7 +25,7 @@ export const MenuBtn = (props) => {
 			iconBefore={Icon}
 			assistiveText="Main menu"
 			aria-expanded={isOpen}
-			onClick={() => setIsOpen((status) => !status)}
+			onClick={handleClick}
 			css={{
 				backgroundColor: 'transparent',
 				padding: '21px 12px',

@@ -123,18 +123,8 @@ const Wrapper = (props) => {
 
 const GridContainer = (props) => {
 	const mq = useMediaQuery();
-	const { LAYOUT } = useBrand();
-	const ref = useRef();
-	const { width } = useContainerQuery(ref);
-	const { setIsOpen } = useSidebarContext();
-
-	useEffect(() => {
-		setIsOpen(width >= LAYOUT.breakpoints.lg);
-	}, [width]);
-
 	return (
 		<div
-			ref={ref}
 			css={mq({
 				display: 'grid',
 				gridTemplateColumns: ['1fr', null, null, null, '300px auto'],

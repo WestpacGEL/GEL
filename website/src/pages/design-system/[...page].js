@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { useState, Fragment, useRef } from 'react';
+import { Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
 
-import { PageContext } from '../../components/providers/pageContext';
+import { PageContextProvider } from '../../components/providers/pageContext';
 import { PageTabs } from '../../components/page-tabs';
 import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/single-component';
 import PageHeader from '../../components/header/page-header';
@@ -36,20 +36,17 @@ const ComponentWrapper = () => {
 
 const Component = ({ component }) => {
 	const { pageTitle } = component;
-	const [showGrid, setShowGrid] = useState(false);
-	const pageHeadingRef = useRef();
 
 	return (
 		<Fragment>
 			<Head title={pageTitle} />
-			<PageContext.Provider value={{ showGrid, setShowGrid, pageHeadingRef }}>
+			<PageContextProvider>
 				<PageHeader name={pageTitle} />
 				<main id="content" css={{ flexGrow: 1 }}>
-					<Gridly show={showGrid} />
 					<Page component={component} />
 				</main>
 				<Footer />
-			</PageContext.Provider>
+			</PageContextProvider>
 		</Fragment>
 	);
 };

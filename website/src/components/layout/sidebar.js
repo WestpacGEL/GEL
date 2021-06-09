@@ -2,8 +2,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
-import { Fragment, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { Fragment, useEffect, useLayoutEffect, useState, useRef, forwardRef } from 'react';
 
 import { useSidebarContext } from '../providers/sidebar';
 import { BrandDropdown } from '../brand-dropdown';
@@ -11,30 +10,21 @@ import { Navigation } from '.';
 
 export const Sidebar = ({ items }) => {
 	const { COLORS } = useBrand();
-	const { isOpen, setIsOpen, closeBtnRef, menuBtnRef } = useSidebarContext();
+	const { isOpen, close } = useSidebarContext();
 	const mq = useMediaQuery();
-	const router = useRouter();
+	const closeBtnRef = useRef();
 
-	// Close sidebar when route changes
-	useEffect(() => {
-		if (isOpen) {
-			setIsOpen(!isOpen);
-		}
-	}, [router.asPath]);
-
-	// Set focus when sidebar has opened/closed
+	// Focus closeBtn when sidebar has opened
 	const handleTransitionEnd = (e) => {
 		if (e.propertyName === 'visibility') {
 			if (isOpen) {
 				closeBtnRef.current.focus();
-			} else {
-				menuBtnRef.current.focus();
 			}
 		}
 	};
 
 	const handleClose = () => {
-		setIsOpen(false);
+		close();
 	};
 
 	// on escape close modal
@@ -72,7 +62,7 @@ export const Sidebar = ({ items }) => {
 				aria-hidden={!isOpen}
 				onTransitionEnd={handleTransitionEnd}
 			>
-				<CloseBtn onClick={handleClose} />
+				<CloseBtn ref={closeBtnRef} onClick={handleClose} />
 				<BrandDropdown />
 				<Navigation items={items} />
 			</div>
@@ -97,14 +87,13 @@ export const Sidebar = ({ items }) => {
 	);
 };
 
-const CloseBtn = (props) => {
-	const { setIsOpen, closeBtnRef } = useSidebarContext();
-	const { COLORS, SPACING } = useBrand();
+const CloseBtn = forwardRef((props, ref) => {
+	const { COLORS, SPACING, PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
 		<Button
-			ref={closeBtnRef}
+			ref={ref}
 			look="unstyled"
 			size="large"
 			iconAfter={CloseIcon}
@@ -118,8 +107,12 @@ const CloseBtn = (props) => {
 				padding: SPACING(1),
 				backgroundColor: 'transparent',
 				color: COLORS.muted,
+
+				':focus': {
+					outlineOffset: `-${PACKS.focus.outlineWidth} !important`,
+				},
 			})}
 			{...props}
 		/>
 	);
-};
+});
