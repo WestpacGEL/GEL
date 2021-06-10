@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import React, { useEffect, useState, useRef, Fragment } from 'react';
+import React, { useLayoutEffect, useState, useRef, Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { StopwatchPictogram, TruckPictogram, AccessibilityPictogram } from '@westpac/pictogram';
 import { BrandHeading } from '@westpac/heading';
@@ -9,9 +9,9 @@ import throttle from 'lodash.throttle';
 import { MenuBtn } from './menu-btn';
 import HeaderImage from './home-page-header-image';
 import HomePageStickyHeaderImage from './home-page-sticky-header-image';
-import { usePageContext } from '../providers/pageContext';
 import { Body } from '../body';
 import { antialiasingStyling, brandHeaderStyling } from '../_utils';
+import { usePageContext } from '../providers/pageContext';
 
 const HomePageHeader = () => {
 	const { BRAND, COLORS, SPACING } = useBrand();
@@ -60,8 +60,14 @@ const StickyHeader = () => {
 	const [hasScroll, setHasScroll] = useState(false);
 	const [hasScrolledPageHeader, setHasScrolledPageHeader] = useState(false);
 	const header = useRef(null);
+	const { pageHeadingRef } = usePageContext();
 
-	useEffect(() => {
+	// Focus the page heading
+	useLayoutEffect(() => {
+		pageHeadingRef.current.focus();
+	}, []);
+
+	useLayoutEffect(() => {
 		const section = header.current.closest('section');
 
 		const setHeader = () => {
@@ -133,6 +139,8 @@ const StickyHeader = () => {
 					})}
 				>
 					<h1
+						ref={pageHeadingRef}
+						tabIndex="0"
 						css={{
 							margin: 0,
 							...PACKS.typeScale.bodyFont[9],
@@ -211,7 +219,6 @@ const HeroFeatures = () => {
 const HeroIntro = () => {
 	const { SPACING, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
-	const { pageHeadingRef } = usePageContext();
 
 	return (
 		<Container
@@ -223,11 +230,9 @@ const HeroIntro = () => {
 			<Grid>
 				<Cell width={[10, 12, 10]} left={[2, 1, 2]}>
 					<BrandHeading
-						ref={pageHeadingRef}
 						tag="h2"
 						size={[4, null, 1]}
 						uppercase={BRAND.code === 'WBC'}
-						tabIndex="-1" //receives focus on 'Go to top' btn onClick
 						css={mq({
 							...(BRAND.code === 'WBC' && {
 								fontSize: ['3rem', null, '4.5rem'],

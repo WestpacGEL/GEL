@@ -16,33 +16,42 @@ export const PageTabs = ({ assistiveText, onActive, children, ...rest }) => {
 
 	const [activeIndex, setActiveIndex] = useState(tabName ? tabMap.indexOf(tabName) : 0);
 
-	const setUrl = (tabIdx) => {
-		if (tabMap[tabIdx] !== tabName) {
-			router.replace(
-				`${router.pathname}?b=${brandName}${tabMap[tabIdx] ? `&tab=${tabMap[tabIdx]}` : ''}`,
-				`${router.asPath.split('?')[0]}?b=${brandName}${
-					tabMap[tabIdx] ? `&tab=${tabMap[tabIdx]}` : ''
-				}`,
-				{ shallow: true }
-			);
+	// Scroll to top, or where header collapses in SM+
+	const repositionWindowScroll = () => {
+		if (!window.matchMedia('(min-width: 768px)').matches) {
+			window.scrollTo(0, 0);
+		} else if (window.scrollY > 162) {
+			window.scrollTo(0, 162);
 		}
-
-		// Scroll to top, or where header collapses in SM+
-		let yPos = 0;
-		if (window.matchMedia('(min-width: 768px)').matches) {
-			yPos = window.scrollY > 0 ? 162 : 0;
-		}
-		window.scrollTo(0, yPos);
 	};
 
-	useEffect(() => {
-		if (!tabName) {
-			setUrl(activeIndex);
+	// Update URL hash
+	const setUrl = (tabIdx) => {
+		if (tabMap[tabIdx] !== tabName) {
+			// Replace route
+			router.replace(
+				{
+					pathname: router.pathname,
+					query: {
+						b: brandName,
+						tab: tabMap[tabIdx] ? tabMap[tabIdx] : '',
+					},
+				},
+				{
+					pathname: router.asPath.split('?')[0],
+					query: {
+						b: brandName,
+						tab: tabMap[tabIdx] ? tabMap[tabIdx] : '',
+					},
+				},
+				{ scroll: false, shallow: true }
+			);
 		}
-	}, []);
+	};
 
 	const handleClick = (e, idx) => {
 		e.preventDefault();
+		repositionWindowScroll();
 		setActiveIndex(idx);
 		setUrl(idx);
 	};

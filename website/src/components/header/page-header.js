@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import React, { forwardRef } from 'react';
+
+import React, { useLayoutEffect } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 
@@ -7,16 +8,36 @@ import { MenuBtn } from './menu-btn';
 import { GridIndicator } from './grid-indicator';
 import HeaderImage from './component-page-header-image';
 import { brandHeaderStyling } from '../_utils';
+import { usePageContext } from '../providers/pageContext';
+import { useRouter } from 'next/router';
 
-const PageHeaderHeading = forwardRef((props, ref) => {
+const PageHeaderHeading = (props) => {
 	const { BRAND, LAYOUT, PACKS } = useBrand();
+	const { pageHeadingRef } = usePageContext();
+	const router = useRouter();
+
+	// Focus the page heading when the route changes, ensure tab route changes are excluded
+	useLayoutEffect(() => {
+		const handleRouteChange = (url) => {
+			const pathname = router.asPath.split('?')[0];
+			if (!url.includes(pathname)) {
+				pageHeadingRef.current.focus();
+			}
+		};
+		router.events.on('routeChangeStart', handleRouteChange);
+
+		return () => {
+			router.events.off('routeChangeStart', handleRouteChange);
+		};
+	}, [router.asPath]);
 
 	return BRAND.code === 'WBC' ? (
 		<BrandHeading
-			ref={ref}
+			ref={pageHeadingRef}
 			tag="h1"
 			size={7}
 			uppercase
+			tabIndex="-1"
 			overrides={{
 				BrandHeading: {
 					styles: (styles) => ({
@@ -36,9 +57,10 @@ const PageHeaderHeading = forwardRef((props, ref) => {
 		/>
 	) : (
 		<Heading
-			ref={ref}
+			ref={pageHeadingRef}
 			tag="h1"
 			size={8}
+			tabIndex="-1"
 			overrides={{
 				Heading: {
 					styles: (styles) => ({
@@ -57,12 +79,11 @@ const PageHeaderHeading = forwardRef((props, ref) => {
 			{...props}
 		/>
 	);
-});
+};
 
 const PageHeader = ({ name, ...rest }) => {
 	const { COLORS, BRAND, SPACING, LAYOUT } = useBrand();
 	const mq = useMediaQuery();
-	const { pageHeadingRef } = usePageContext();
 
 	return (
 		<header
@@ -88,6 +109,7 @@ const PageHeader = ({ name, ...rest }) => {
 			]}
 			{...rest}
 		>
+			<GridIndicator />
 			<HeaderImage brand={BRAND} />
 			<div
 				css={mq({
@@ -136,15 +158,9 @@ const PageHeader = ({ name, ...rest }) => {
 						},
 					})}
 				>
-					<PageHeaderHeading
-						ref={pageHeadingRef}
-						tabIndex="-1" //receives focus on 'Go to top' btn onClick
-					>
-						{name}
-					</PageHeaderHeading>
+					<PageHeaderHeading>{name}</PageHeaderHeading>
 				</div>
 			</div>
-			<GridIndicator />
 		</header>
 	);
 };

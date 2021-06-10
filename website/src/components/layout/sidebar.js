@@ -27,16 +27,16 @@ export const Sidebar = ({ items }) => {
 		close();
 	};
 
-	// on escape close modal
-	const keyHandler = (event) => {
-		if (isOpen && event.keyCode === 27) handleClose();
-	};
-
 	// bind key events
 	useEffect(() => {
-		window.document.addEventListener('keydown', keyHandler);
+		// on escape close modal
+		const keyHandler = (event) => {
+			if (isOpen && event.keyCode === 27) handleClose();
+		};
+
+		window.addEventListener('keydown', keyHandler);
 		return () => {
-			window.document.removeEventListener('keydown', keyHandler);
+			window.removeEventListener('keydown', keyHandler);
 		};
 	});
 

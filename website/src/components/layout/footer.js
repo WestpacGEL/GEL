@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
@@ -27,7 +27,7 @@ export const Footer = () => {
 	const [visible, setVisible] = useState(true);
 	const { pageHeadingRef } = usePageContext();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const setFooter = () => {
 			const windowHeight = window.clientHeight;
 			const documentHeight = window.scrollHeight;

@@ -12,11 +12,18 @@ const SidebarContextProvider = ({ children }) => {
 
 	// Close sidebar when route changes
 	useEffect(() => {
-		if (isOpen) {
-			setIsOpen(false);
-			setFocusOnCloseRef({});
-		}
-	}, [router.asPath]);
+		const handleRouteChange = () => {
+			if (isOpen) {
+				setIsOpen(false);
+				setFocusOnCloseRef({});
+			}
+		};
+		router.events.on('routeChangeStart', handleRouteChange);
+
+		return () => {
+			router.events.off('routeChangeStart', handleRouteChange);
+		};
+	}, [isOpen]);
 
 	const open = (ref) => {
 		setFocusOnCloseRef(ref);
