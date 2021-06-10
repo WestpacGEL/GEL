@@ -14,6 +14,7 @@ const SidebarContextProvider = ({ children }) => {
 	useEffect(() => {
 		if (isOpen) {
 			setIsOpen(false);
+			setFocusOnCloseRef({});
 		}
 	}, [router.asPath]);
 
@@ -24,7 +25,7 @@ const SidebarContextProvider = ({ children }) => {
 
 	const close = () => {
 		if (isOpen) {
-			if (focusOnCloseRef && focusOnCloseRef.current) {
+			if (focusOnCloseRef?.current) {
 				focusOnCloseRef.current.focus();
 			}
 			setIsOpen(false);
