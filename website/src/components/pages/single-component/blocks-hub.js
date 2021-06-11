@@ -5,6 +5,7 @@ import { Cell, Grid, Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '../../list';
 import { Body } from '../../body';
+import { ExternalLinkIcon } from '../../external-link-icon';
 import { Section } from '../../section';
 import dynamic from 'next/dynamic';
 import React from 'react';
@@ -55,7 +56,7 @@ const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
 };
 
 const slateRenderer = (item, _editorValue) => {
-	const { SPACING } = useBrand();
+	const { SPACING, COLORS } = useBrand();
 
 	return createReactRenderer([
 		// special serialiser for text
@@ -81,6 +82,7 @@ const slateRenderer = (item, _editorValue) => {
 						return (
 							<a href={node.data.href} key={path} target={target}>
 								{serializeChildren(node.nodes)}
+								{target === '_blank' && <ExternalLinkIcon />}
 							</a>
 						);
 				}
