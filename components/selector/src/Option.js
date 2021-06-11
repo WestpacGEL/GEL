@@ -162,7 +162,7 @@ export const Option = ({
 					position: 'absolute',
 					top: 0,
 					left: 0,
-					zIndex: 0,
+					zIndex: 1,
 					opacity: 0,
 					width: '100%',
 					height: '100%',
