@@ -7,8 +7,8 @@ module.exports = {
 			{
 				name: '"brandFontWBC"',
 				files: {
-					woff2: 'Westpac-Bold.woff2',
-					woff: 'Westpac-Bold.woff',
+					woff2: 'Westpac-Bold-v2.007.woff2',
+					woff: 'Westpac-Bold-v2.007.woff',
 				},
 				weight: '400',
 				style: 'normal',
