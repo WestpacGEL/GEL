@@ -5,6 +5,7 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
 import { Grid, Cell } from '@westpac/grid';
 import * as symbols from '@westpac/symbol';
+import { Button } from '@westpac/button';
 
 const renderSymbols = (search) => {
 	const symbolDetails = [];
@@ -46,6 +47,7 @@ const renderSymbols = (search) => {
 							}}
 						/>
 						<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{symbol.name}</span>
+						<input type="hidden" name="assets" value={symbol.name} />
 					</div>
 				</Cell>
 			);
@@ -55,10 +57,17 @@ const renderSymbols = (search) => {
 const Symbol = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
-	const { COLORS, SPACING } = useBrand();
+	const { BRAND, COLORS, SPACING } = useBrand();
 
 	return (
-		<Fragment>
+		<form
+			action="/api/svg"
+			method="POST"
+			css={{
+				gridColumnEnd: 'span 12',
+				gridRowEnd: 'span 1',
+			}}
+		>
 			<Cell width={12}>
 				<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
 					<Grid>
@@ -87,11 +96,16 @@ const Symbol = () => {
 								/>
 							</div>
 						</Cell>
+						<Cell width={[12, null, 6]}>
+							<Button type="submit">Download SVGs</Button>
+							<input type="hidden" name="brand" value={BRAND.code} />
+							<input type="hidden" name="pkg" value="@westpac/symbol" />
+						</Cell>
 					</Grid>
 				</div>
 			</Cell>
-			{renderSymbols(search)}
-		</Fragment>
+			<Grid>{renderSymbols(search)}</Grid>
+		</form>
 	);
 };
 
