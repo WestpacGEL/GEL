@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import React, { useState, Fragment } from 'react'; // Needed for within Keystone
+import React, { useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
 import { Grid, Cell } from '@westpac/grid';
+import { Button } from '@westpac/button';
 import * as icons from '@westpac/icon';
 
 const renderIcons = (search) => {
@@ -42,6 +43,7 @@ const renderIcons = (search) => {
 							}}
 						/>
 						<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{icon.name}</span>
+						<input type="hidden" name="assets" value={icon.name} />
 					</div>
 				</Cell>
 			);
@@ -52,43 +54,53 @@ const renderIcons = (search) => {
 const Icon = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
-	const { COLORS, SPACING } = useBrand();
+	const { BRAND, COLORS, SPACING } = useBrand();
 
 	return (
-		<Fragment>
-			<Cell width={12}>
-				<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
-					<Grid>
-						<Cell width={[12, null, 6]}>
-							<div
+		<form
+			action="/api/svg"
+			method="POST"
+			css={{
+				gridColumnEnd: 'span 12',
+				gridRowEnd: 'span 1',
+			}}
+		>
+			<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
+				<Grid>
+					<Cell width={[12, null, 6]}>
+						<div
+							css={mq({
+								display: 'flex',
+								flexDirection: ['column', null, 'row'],
+								alignItems: ['start', null, 'center'],
+							})}
+						>
+							<label
+								htmlFor={'filter-icons'}
 								css={mq({
-									display: 'flex',
-									flexDirection: ['column', null, 'row'],
-									alignItems: ['start', null, 'center'],
+									marginRight: '1rem',
+									marginBottom: ['0.75rem', null, 0],
+									whiteSpace: 'nowrap',
 								})}
 							>
-								<label
-									htmlFor={'filter-icons'}
-									css={mq({
-										marginRight: '1rem',
-										marginBottom: ['0.75rem', null, 0],
-										whiteSpace: 'nowrap',
-									})}
-								>
-									Filter by name
-								</label>
-								<TextInput
-									id={'filter-icons'}
-									value={search}
-									onChange={(e) => setSearch(e.target.value)}
-								/>
-							</div>
-						</Cell>
-					</Grid>
-				</div>
-			</Cell>
-			{renderIcons(search)}
-		</Fragment>
+								Filter by name
+							</label>
+							<TextInput
+								id={'filter-icons'}
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
+							/>
+						</div>
+					</Cell>
+					<Cell width={[12, null, 6]}>
+						<Button type="submit">Download SVGs</Button>
+						<input type="hidden" name="brand" value={BRAND.code} />
+						<input type="hidden" name="pkg" value="@westpac/icon" />
+					</Cell>
+				</Grid>
+			</div>
+			<Grid>{renderIcons(search)}</Grid>
+		</form>
 	);
 };
 

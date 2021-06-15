@@ -3,8 +3,9 @@
 import React, { useState, Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput, Select } from '@westpac/text-input';
-import { Grid, Cell } from '@westpac/grid';
 import * as pictograms from '@westpac/pictogram';
+import { Grid, Cell } from '@westpac/grid';
+import { Button } from '@westpac/button';
 
 const renderPictograms = (search, mode) => {
 	const pictogramDetails = [];
@@ -57,6 +58,7 @@ const renderPictograms = (search, mode) => {
 						<span css={{ fontSize: '0.6875rem', color: mode === 'light' ? '#fff' : COLORS.muted }}>
 							{pictogram.name}
 						</span>
+						<input type="hidden" name="assets" value={pictogram.name} />
 					</div>
 				</Cell>
 			);
@@ -67,7 +69,7 @@ const Pictogram = () => {
 	const [search, setSearch] = useState('');
 	const [mode, setMode] = useState('duo');
 	const mq = useMediaQuery();
-	const { COLORS, SPACING, BRAND } = useBrand();
+	const { BRAND, COLORS, SPACING } = useBrand();
 
 	const handleModeChange = (event) => {
 		setMode(event.target.value);
@@ -89,7 +91,14 @@ const Pictogram = () => {
 	}
 
 	return (
-		<Fragment>
+		<form
+			action="/api/svg"
+			method="POST"
+			css={{
+				gridColumnEnd: 'span 12',
+				gridRowEnd: 'span 1',
+			}}
+		>
 			<Cell width={12}>
 				<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
 					<Grid>
@@ -118,7 +127,7 @@ const Pictogram = () => {
 								/>
 							</div>
 						</Cell>
-						<Cell width={[12, null, 6]}>
+						<Cell width={[12, null, 2]}>
 							<div
 								css={mq({
 									display: 'flex',
@@ -136,18 +145,29 @@ const Pictogram = () => {
 								>
 									Mode
 								</label>
-								<Select id={'pictogram-mode'} value={mode} onChange={handleModeChange} inline>
-									<option>duo</option>
-									<option>dark</option>
-									<option>light</option>
+								<Select
+									id={'pictogram-mode'}
+									name="mode"
+									value={mode}
+									onChange={handleModeChange}
+									inline
+								>
+									<option value="duo">duo</option>
+									<option value="dark">dark</option>
+									<option value="light">light</option>
 								</Select>
 							</div>
+						</Cell>
+						<Cell width={[12, null, 4]}>
+							<Button type="submit">Download SVGs</Button>
+							<input type="hidden" name="brand" value={BRAND.code} />
+							<input type="hidden" name="pkg" value="@westpac/pictogram" />
 						</Cell>
 					</Grid>
 				</div>
 			</Cell>
-			{renderPictograms(search, mode)}
-		</Fragment>
+			<Grid>{renderPictograms(search, mode)}</Grid>
+		</form>
 	);
 };
 
