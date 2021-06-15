@@ -129,9 +129,9 @@ const Icon = () => {
 						</div>
 					</Cell>
 					<Cell width={[12, null, 6]}>
-						<DownloadBtn qty={iconsFiltered.length} total={iconDetails} />
+						<DownloadBtn qty={iconsFiltered.length} total={iconDetails.length} />
 						<input type="hidden" name="brand" value={BRAND.code} />
-						<input type="hidden" name="pkg" value="@westpac/symbol" />
+						<input type="hidden" name="pkg" value="@westpac/icon" />
 					</Cell>
 				</Grid>
 			</div>
