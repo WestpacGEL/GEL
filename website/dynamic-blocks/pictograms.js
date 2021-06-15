@@ -59,6 +59,7 @@ const renderPictograms = (pictograms, mode) => {
 							>
 								{pictogram.name}
 							</span>
+							<input type="hidden" name="assets" value={pictogram.name} />
 						</div>
 					</Cell>
 				);

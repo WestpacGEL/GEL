@@ -54,6 +54,7 @@ const renderSymbols = (symbols) => {
 								}}
 							/>
 							<span css={{ fontSize: '0.6875rem', color: COLORS.muted }}>{symbol.name}</span>
+							<input type="hidden" name="assets" value={symbol.name} />
 						</div>
 					</Cell>
 				);
