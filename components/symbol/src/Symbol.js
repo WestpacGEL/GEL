@@ -13,6 +13,7 @@ import pkg from '../package.json';
 
 export const Symbol = ({
 	width,
+	height,
 	assistiveText,
 	viewBoxWidth,
 	viewBoxHeight,
@@ -35,6 +36,7 @@ export const Symbol = ({
 
 	const state = {
 		width,
+		height,
 		assistiveText,
 		viewBoxWidth,
 		viewBoxHeight,

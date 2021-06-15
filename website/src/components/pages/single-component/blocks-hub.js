@@ -5,6 +5,7 @@ import { Cell, Grid, Container } from '@westpac/grid';
 import { Heading } from '@westpac/heading';
 import { List, Item } from '../../list';
 import { Body } from '../../body';
+import { ExternalLinkIcon } from '../../external-link-icon';
 import { Section } from '../../section';
 import dynamic from 'next/dynamic';
 import React from 'react';
@@ -55,7 +56,7 @@ const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
 };
 
 const slateRenderer = (item, _editorValue) => {
-	const { SPACING } = useBrand();
+	const { SPACING, COLORS } = useBrand();
 
 	return createReactRenderer([
 		// special serialiser for text
@@ -81,6 +82,7 @@ const slateRenderer = (item, _editorValue) => {
 						return (
 							<a href={node.data.href} key={path} target={target}>
 								{serializeChildren(node.nodes)}
+								{target === '_blank' && <ExternalLinkIcon />}
 							</a>
 						);
 				}
@@ -114,6 +116,10 @@ const slateRenderer = (item, _editorValue) => {
 			}
 			switch (node.type) {
 				case 'paragraph':
+					if (!node.nodes[0].text) {
+						return;
+					}
+
 					const nested =
 						parents.findIndex((parent) => parent.type === 'blockquote') >= 0 ? true : false;
 
@@ -194,11 +200,7 @@ const slateRenderer = (item, _editorValue) => {
 
 export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
-		<div
-			{...props}
-			className="slate-container"
-			css={{ ...cssOverrides, '> :last-child': { display: 'none' } }}
-		>
+		<div {...props} className="slate-container" css={cssOverrides}>
 			{slateRenderer(item, content.document)(content)}
 		</div>
 	);

@@ -4,7 +4,14 @@ import { Svg } from './Svg';
 
 export const GitHubLogo = ({ width, height = 'auto', ...rest }) => {
 	return (
-		<Svg viewBox="0 0 180 180" width={180} height={180} css={{ width, height }} {...rest}>
+		<Svg
+			viewBox="0 0 180 180"
+			width={180}
+			height={180}
+			assistiveText="GitHub"
+			css={{ width, height }}
+			{...rest}
+		>
 			<title>GitHub logo</title>
 			<path
 				fillRule="evenodd"

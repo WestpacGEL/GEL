@@ -23,7 +23,7 @@ const GELApp = ({ Component, pageProps, apollo, brand }) => {
 	const apolloClient = useMemo(() => apollo || getApolloClient(), [apollo]);
 
 	const scrollMap = {
-		small: 72,
+		small: 150,
 		large: 162,
 	};
 

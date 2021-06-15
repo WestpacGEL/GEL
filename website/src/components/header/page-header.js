@@ -1,76 +1,43 @@
 /** @jsx jsx */
-import React from 'react';
+
+import React, { useLayoutEffect } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
-import { Button } from '@westpac/button';
-import { VisuallyHidden } from '@westpac/a11y';
 
-import { MenuButton } from './menu-button';
+import { MenuBtn } from './menu-btn';
+import { GridIndicator } from './grid-indicator';
 import HeaderImage from './component-page-header-image';
-import { usePageContext } from '../providers/pageContext';
 import { brandHeaderStyling } from '../_utils';
-
-const GridIndicator = () => {
-	const mq = useMediaQuery();
-	const { SPACING } = useBrand();
-	const { showGrid, setShowGrid } = usePageContext();
-
-	return (
-		<div
-			css={{
-				position: 'fixed',
-				display: 'flex',
-				alignItems: 'center',
-				top: SPACING(2),
-				right: SPACING(2),
-				color: '#fff',
-				fontWeight: 'bold',
-			}}
-		>
-			<VisuallyHidden>Breakpoint:</VisuallyHidden>
-			<span css={mq({ display: ['none', null, 'inline-block', 'none'] })}>SM</span>
-			<span css={mq({ display: ['none', null, null, 'inline-block', 'none'] })}>MD</span>
-			<span css={mq({ display: ['none', null, null, null, 'inline-block'] })}>LG</span>
-			<Button
-				look="unstyled"
-				size="large"
-				onClick={() => setShowGrid(!showGrid)}
-				aria-hidden="true"
-				css={mq({
-					display: ['none', null, 'inline-block'],
-					padding: SPACING(1),
-					backgroundColor: 'transparent',
-				})}
-			>
-				<div css={{ display: 'flex', justifyContent: 'center', height: 24, width: 24 }}>
-					{[...new Array(4)].map((_, index) => (
-						<div
-							key={index}
-							css={{
-								height: '100%',
-								width: 4,
-								backgroundColor: 'rgba(255, 255, 255, 0.3)',
-
-								'& + &': {
-									marginLeft: 2,
-								},
-							}}
-						/>
-					))}
-				</div>
-			</Button>
-		</div>
-	);
-};
+import { usePageContext } from '../providers/pageContext';
+import { useRouter } from 'next/router';
 
 const PageHeaderHeading = (props) => {
 	const { BRAND, LAYOUT, PACKS } = useBrand();
+	const { pageHeadingRef } = usePageContext();
+	const router = useRouter();
+
+	// Focus the page heading when the route changes, ensure tab route changes are excluded
+	useLayoutEffect(() => {
+		const handleRouteChange = (url) => {
+			const pathname = router.asPath.split('?')[0];
+			if (!url.includes(pathname)) {
+				pageHeadingRef.current.focus();
+			}
+		};
+		router.events.on('routeChangeStart', handleRouteChange);
+
+		return () => {
+			router.events.off('routeChangeStart', handleRouteChange);
+		};
+	}, [router.asPath]);
 
 	return BRAND.code === 'WBC' ? (
 		<BrandHeading
+			ref={pageHeadingRef}
 			tag="h1"
 			size={7}
 			uppercase
+			tabIndex="-1"
 			overrides={{
 				BrandHeading: {
 					styles: (styles) => ({
@@ -90,8 +57,10 @@ const PageHeaderHeading = (props) => {
 		/>
 	) : (
 		<Heading
+			ref={pageHeadingRef}
 			tag="h1"
 			size={8}
+			tabIndex="-1"
 			overrides={{
 				Heading: {
 					styles: (styles) => ({
@@ -140,6 +109,7 @@ const PageHeader = ({ name, ...rest }) => {
 			]}
 			{...rest}
 		>
+			<GridIndicator />
 			<HeaderImage brand={BRAND} />
 			<div
 				css={mq({
@@ -147,7 +117,7 @@ const PageHeader = ({ name, ...rest }) => {
 					alignItems: 'flex-end', //align bottom
 				})}
 			>
-				<MenuButton
+				<MenuBtn
 					css={mq({
 						position: 'fixed',
 						zIndex: 1,
@@ -176,7 +146,7 @@ const PageHeader = ({ name, ...rest }) => {
 								marginLeft: SPACING(10),
 								marginBottom: 0,
 								opacity: 1,
-								transition: 'opacity 0.2s ease',
+								transition: 'opacity 0.3s ease',
 							},
 						},
 						[`@media (min-width: ${LAYOUT.breakpoints.lg}px)`]: {
@@ -191,7 +161,6 @@ const PageHeader = ({ name, ...rest }) => {
 					<PageHeaderHeading>{name}</PageHeaderHeading>
 				</div>
 			</div>
-			<GridIndicator />
 		</header>
 	);
 };

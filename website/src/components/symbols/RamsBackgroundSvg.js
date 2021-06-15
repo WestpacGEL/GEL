@@ -5,7 +5,7 @@ import { Svg } from './Svg';
 
 export const RamsBackgroundSvg = (props) => {
 	return (
-		<Svg viewBox="0 0 447 447" width={447} height={447} {...props}>
+		<Svg viewBox="0 0 447 447" width={447} height={447} aria-hidden="true" {...props}>
 			<title>RAMS background image</title>
 			<defs>
 				<linearGradient

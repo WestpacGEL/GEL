@@ -7,6 +7,10 @@ import { BASE_URL } from '../config';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { SlateContent } from './pages/single-component/blocks-hub';
 
+export const pluralize = (str, length, plural = '') => {
+	return length === 1 ? str : `${plural ? plural : `${str}s`}`;
+};
+
 export const BlocksDocs = ({ title, blocks, item }) => {
 	const { SPACING } = useBrand();
 	return (

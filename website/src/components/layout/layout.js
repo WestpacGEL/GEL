@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import gql from 'graphql-tag';
 
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
-import { SidebarProvider, useSidebar } from '../providers/sidebar';
+import { SidebarContextProvider, useSidebarContext } from '../providers/sidebar';
 import { brandOverrides } from '../../brand-overrides';
 import { FontPreloader } from '../fontPreloader';
 import { BrandPicker } from '../brand-picker';
@@ -107,12 +107,12 @@ const Wrapper = (props) => {
 	return (
 		<GEL brand={brandOverrides(brands[brand])}>
 			<GlobalReset />
-			<SidebarProvider>
+			<SidebarContextProvider>
 				<GridContainer>
 					<Sidebar items={navigation} />
 					<MainContainer>{props.children}</MainContainer>
 				</GridContainer>
-			</SidebarProvider>
+			</SidebarContextProvider>
 		</GEL>
 	);
 };
@@ -123,18 +123,8 @@ const Wrapper = (props) => {
 
 const GridContainer = (props) => {
 	const mq = useMediaQuery();
-	const { LAYOUT } = useBrand();
-	const ref = useRef();
-	const { width } = useContainerQuery(ref);
-	const { setIsOpen } = useSidebar();
-
-	useEffect(() => {
-		setIsOpen(width >= LAYOUT.breakpoints.lg);
-	}, [width]);
-
 	return (
 		<div
-			ref={ref}
 			css={mq({
 				display: 'grid',
 				gridTemplateColumns: ['1fr', null, null, null, '300px auto'],

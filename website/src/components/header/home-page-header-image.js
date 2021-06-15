@@ -19,6 +19,7 @@ const HomePageHeaderImage = ({ brand: BRAND, ...rest }) => {
 				css={{
 					width: '100%',
 					height: 'auto',
+					display: 'block',
 				}}
 			/>
 		</div>
@@ -36,6 +37,7 @@ const HomePageHeaderImage = ({ brand: BRAND, ...rest }) => {
 				css={{
 					width: '100%',
 					height: 'auto',
+					display: 'block',
 				}}
 			/>
 		</div>
@@ -53,6 +55,7 @@ const HomePageHeaderImage = ({ brand: BRAND, ...rest }) => {
 				css={{
 					width: 'auto',
 					height: '100%',
+					display: 'block',
 				}}
 			/>
 		</div>

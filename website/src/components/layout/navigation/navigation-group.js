@@ -11,6 +11,7 @@ import { NavigationItem, StyledItem } from './navigation-item';
 export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 	const { COLORS, PACKS } = useBrand();
 	const [isOpen, setIsOpen] = useState(isBlockOpen);
+	const [isClosed, setIsClosed] = useState(true);
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 	const [initial, setInitial] = useState(true);
 	const [instanceId, setInstanceId] = useState();
@@ -32,6 +33,12 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 			overflow: 'hidden',
 		},
 		immediate: initial,
+		onStart: () => {
+			setIsClosed(isOpen);
+		},
+		onRest: () => {
+			setIsClosed(!isOpen);
+		},
 	});
 
 	return (
@@ -56,12 +63,17 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 			>
 				<span>{title}</span>
 				{isOpen ? (
-					<RemoveIcon size="small" color={COLORS.muted} />
+					<RemoveIcon size="small" color={COLORS.muted} aria-hidden="true" />
 				) : (
-					<AddIcon size="small" color={COLORS.muted} />
+					<AddIcon size="small" color={COLORS.muted} aria-hidden="true" />
 				)}
 			</StyledItem>
-			<animated.div style={animate} id={instanceId} aria-hidden={!isOpen}>
+			<animated.div
+				style={animate}
+				id={instanceId}
+				aria-hidden={!isOpen}
+				css={{ display: isOpen ? 'block' : isClosed ? 'none' : 'block' }}
+			>
 				<div ref={measureRef}>{children}</div>
 			</animated.div>
 		</NavigationItem>

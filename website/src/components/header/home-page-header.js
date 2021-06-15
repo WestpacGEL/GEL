@@ -1,16 +1,17 @@
 /** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import React, { useEffect, useState, useRef, Fragment } from 'react';
+import React, { useLayoutEffect, useState, useRef, Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { StopwatchPictogram, TruckPictogram, AccessibilityPictogram } from '@westpac/pictogram';
 import { BrandHeading } from '@westpac/heading';
 import throttle from 'lodash.throttle';
 
-import { MenuButton } from './menu-button';
+import { MenuBtn } from './menu-btn';
 import HeaderImage from './home-page-header-image';
 import HomePageStickyHeaderImage from './home-page-sticky-header-image';
 import { Body } from '../body';
 import { antialiasingStyling, brandHeaderStyling } from '../_utils';
+import { usePageContext } from '../providers/pageContext';
 
 const HomePageHeader = () => {
 	const { BRAND, COLORS, SPACING } = useBrand();
@@ -59,8 +60,14 @@ const StickyHeader = () => {
 	const [hasScroll, setHasScroll] = useState(false);
 	const [hasScrolledPageHeader, setHasScrolledPageHeader] = useState(false);
 	const header = useRef(null);
+	const { pageHeadingRef } = usePageContext();
 
-	useEffect(() => {
+	// Focus the page heading
+	useLayoutEffect(() => {
+		pageHeadingRef.current.focus();
+	}, []);
+
+	useLayoutEffect(() => {
 		const section = header.current.closest('section');
 
 		const setHeader = () => {
@@ -106,7 +113,7 @@ const StickyHeader = () => {
 					transition: ['box-shadow 0.2s', null, 'none'],
 				})}
 			>
-				<MenuButton
+				<MenuBtn
 					css={mq({
 						position: 'fixed',
 						zIndex: 1,
@@ -132,6 +139,8 @@ const StickyHeader = () => {
 					})}
 				>
 					<h1
+						ref={pageHeadingRef}
+						tabIndex="0"
 						css={{
 							margin: 0,
 							...PACKS.typeScale.bodyFont[9],
@@ -208,7 +217,7 @@ const HeroFeatures = () => {
 	);
 };
 const HeroIntro = () => {
-	const { COLORS, SPACING, BRAND, PACKS } = useBrand();
+	const { SPACING, BRAND, PACKS } = useBrand();
 	const mq = useMediaQuery();
 
 	return (
@@ -225,7 +234,6 @@ const HeroIntro = () => {
 						size={[4, null, 1]}
 						uppercase={BRAND.code === 'WBC'}
 						css={mq({
-							// color: COLORS.heading,
 							...(BRAND.code === 'WBC' && {
 								fontSize: ['3rem', null, '4.5rem'],
 							}),

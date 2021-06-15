@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import {
 	DownloadIcon,
 	RefreshIcon,
@@ -26,8 +26,8 @@ import { Body } from '../../../components/body';
 import { Head } from '../../../components/head';
 import { BlockList, BlockListItem, BlockListHeading } from '../../../components/block-list';
 import PageHeader from '../../../components/header/page-header';
-import { PageContext } from '../../../components/providers/pageContext';
-import { Gridly, Footer } from '../../../components/layout';
+import { PageContextProvider } from '../../../components/providers/pageContext';
+import { Footer } from '../../../components/layout';
 import { BASE_URL } from '../../../config.js';
 import { Icon } from '../../../../../components/icon/src/Icon';
 import GEL from '../../../../../GEL.json';
@@ -563,15 +563,19 @@ const SectionDevelopers = () => {
 	);
 	const [selected, setSelected] = useState(['core']);
 	const [selectAllToggle, setSelectAllToggle] = useState([]);
+	const optionSelectAllRef = useRef(null);
 
 	useEffect(() => {
 		setSelectAllToggle(selected.length === supportedPkgs.length + 1 ? ['all'] : []);
 	}, [selected]);
 
 	function handleToggleChange() {
-		setSelected(selected.length === supportedPkgs.length + 1 ? [] : ['core', ...supportedPkgs]);
+		setSelected(
+			selected.length === supportedPkgs.length + 1 ? ['core'] : ['core', ...supportedPkgs]
+		);
 	}
 	function handleClearAllClick() {
+		optionSelectAllRef.current.focus();
 		setSelected(['core']);
 	}
 	function handleSelectPkgChange(value) {
@@ -652,7 +656,9 @@ const SectionDevelopers = () => {
 												},
 											}}
 										>
-											<Option value="all">Select all</Option>
+											<Option value="all" ref={optionSelectAllRef}>
+												Select all
+											</Option>
 										</FormCheck>
 										{selected.length > 1 && (
 											<Button
@@ -826,17 +832,14 @@ const SectionDevelopers = () => {
 	);
 };
 
-function TokensPage() {
-	const { COLORS, LAYOUT } = useBrand();
+function DownloadsPage() {
 	const mq = useMediaQuery();
-
-	const [showGrid, setShowGrid] = useState(false);
 
 	return (
 		<Fragment>
 			<Head title="Downloads" />
-			<PageContext.Provider value={{ showGrid, setShowGrid }}>
-				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
+			<PageContextProvider>
+				<main id="content">
 					<PageHeader
 						name="Downloads"
 						css={
@@ -852,14 +855,15 @@ function TokensPage() {
 							})[0]
 						}
 					/>
-					<Gridly show={showGrid} />
-					<SectionDesigners />
-					<SectionDevelopers />
+					<div>
+						<SectionDesigners />
+						<SectionDevelopers />
+					</div>
 					<Footer />
-				</div>
-			</PageContext.Provider>
+				</main>
+			</PageContextProvider>
 		</Fragment>
 	);
 }
 
-export default TokensPage;
+export default DownloadsPage;
