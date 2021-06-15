@@ -1,32 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
-import { TextInput } from '@westpac/text-input';
-import { Heading } from '@westpac/heading';
+import { TextInput, Select } from '@westpac/text-input';
 import { Fork, Content } from '@westpac/fork';
+import { Container, FormHeading } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Fragment } from 'react';
-
-const FormHeading = (props) => {
-	const { COLORS } = useBrand();
-	return (
-		<Heading
-			tag="h3"
-			size={8}
-			overrides={{
-				Heading: {
-					styles: (styles) => ({
-						...styles,
-						marginBottom: '1rem',
-						color: COLORS.hero,
-					}),
-				},
-			}}
-			{...props}
-		/>
-	);
-};
 
 const Address = ({ hint }) => {
 	const hintId = hint ? 'street-hint' : undefined;
@@ -54,13 +34,22 @@ const Address = ({ hint }) => {
 				</Fieldset>
 			</FormGroup>
 			<FormGroup>
-				<Field label="City">
+				<Field label="Suburb">
 					<TextInput size="large" width={20} />
 				</Field>
 			</FormGroup>
 			<FormGroup>
 				<Field label="State">
-					<TextInput size="large" width={20} />
+					<Select size="large" width={10}>
+						<option>Select</option>
+						<option>NSW</option>
+						<option>VIC</option>
+						<option>QLD</option>
+						<option>ACT</option>
+						<option>SA</option>
+						<option>WA</option>
+						<option>NT</option>
+					</Select>
 				</Field>
 			</FormGroup>
 			<FormGroup>
@@ -76,19 +65,21 @@ const Demo = ({ context, showCode, showDemo }) => {
 	const mq = useMediaQuery();
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Form spacing="large">
-				<FormHeading>Home address</FormHeading>
-				<Address hint />
-				<Fieldset legend="Do you have a different mailing address?">
-					<Fork size="large" css={mq({ marginBottom: ['1.5rem', '1.875rem'] })}>
-						<Content text="Yes">
-							<FormHeading>Mailing address</FormHeading>
-							<Address />
-						</Content>
-						<Content text="No" />
-					</Fork>
-				</Fieldset>
-			</Form>
+			<Container>
+				<Form spacing="large">
+					<FormHeading>Home address</FormHeading>
+					<Address hint />
+					<Fieldset legend="Do you have a different mailing address?">
+						<Fork size="large" css={mq({ marginBottom: ['1.5rem', '1.875rem'] })}>
+							<Content text="Yes">
+								<FormHeading>Mailing address</FormHeading>
+								<Address />
+							</Content>
+							<Content text="No" />
+						</Fork>
+					</Fieldset>
+				</Form>
+			</Container>
 		</Playground>
 	);
 };

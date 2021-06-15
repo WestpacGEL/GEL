@@ -1,24 +1,17 @@
 /** @jsx jsx */
 
-import React, { useState, Fragment } from 'react'; // Needed for within Keystone
+import React, { Fragment, useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput } from '@westpac/text-input';
 import { Grid, Cell } from '@westpac/grid';
+import { Button } from '@westpac/button';
+import { DownloadIcon } from '@westpac/icon/DownloadIcon';
 import * as symbols from '@westpac/symbol';
+import { pluralize } from '../src/components/_utils';
 
-const renderSymbols = (search) => {
-	const symbolDetails = [];
-	for (let key in symbols) {
-		if (/logo$/i.test(key)) {
-			symbolDetails.push({ name: key, symbol: symbols[key] });
-		}
-	}
+const renderSymbols = (symbols) => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
-
-	const symbolDetailsFiltered = symbolDetails.filter((symbol) =>
-		search.trim() === '' ? true : symbol.name.toLowerCase().includes(search.toLowerCase())
-	);
 
 	return (
 		<Fragment>
@@ -26,14 +19,13 @@ const renderSymbols = (search) => {
 				<p
 					aria-live="true"
 					id="filter-logos-status"
-					css={{ textAlign: 'right', color: COLORS.muted, fontStyle: 'italic' }}
+					css={{ textAlign: 'right', color: COLORS.muted, fontStyle: 'italic', margin: 0 }}
 				>
-					Found {symbolDetailsFiltered.length}{' '}
-					{symbolDetailsFiltered.length === 1 ? 'logo' : 'logos'}
+					Found {symbols.length} {pluralize('logo', symbols.length)}
 				</p>
 			</Cell>
 
-			{symbolDetailsFiltered.map((symbol) => {
+			{symbols.map((symbol) => {
 				const Symbol = symbol.symbol;
 				return (
 					<Cell
@@ -71,10 +63,27 @@ const renderSymbols = (search) => {
 const Logo = () => {
 	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
-	const { COLORS, SPACING } = useBrand();
+	const { BRAND, COLORS, SPACING } = useBrand();
+
+	const symbolDetails = [];
+	for (let key in symbols) {
+		if (/logo$/i.test(key)) {
+			symbolDetails.push({ name: key, symbol: symbols[key] });
+		}
+	}
+	const symbolsFiltered = symbolDetails.filter((symbol) =>
+		search.trim() === '' ? true : symbol.name.toLowerCase().includes(search.toLowerCase())
+	);
 
 	return (
-		<Fragment>
+		<form
+			action="/api/svg"
+			method="POST"
+			css={{
+				gridColumnEnd: 'span 12',
+				gridRowEnd: 'span 1',
+			}}
+		>
 			<Cell width={12}>
 				<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
 					<Grid>
@@ -84,11 +93,10 @@ const Logo = () => {
 									display: 'flex',
 									flexDirection: ['column', null, 'row'],
 									alignItems: ['start', null, 'center'],
-									margin: '1.5rem 0 0.75rem',
 								})}
 							>
 								<label
-									htmlFor={'filter-logos'}
+									htmlFor="filter-logos"
 									css={mq({
 										marginRight: '1rem',
 										marginBottom: ['0.75rem', null, 0],
@@ -98,18 +106,27 @@ const Logo = () => {
 									Filter by name
 								</label>
 								<TextInput
-									id={'filter-logos'}
+									id="filter-logos"
 									value={search}
 									onChange={(e) => setSearch(e.target.value)}
 									aria-describedby="filter-logos-status"
 								/>
 							</div>
 						</Cell>
+						<Cell width={[12, null, 6]}>
+							<Button type="submit" look="primary" soft iconBefore={DownloadIcon}>
+								Download{' '}
+								{symbolsFiltered.length === symbolDetails.length ? 'all' : symbolsFiltered.length}{' '}
+								{pluralize('SVG', symbolsFiltered.length)}
+							</Button>
+							<input type="hidden" name="brand" value={BRAND.code} />
+							<input type="hidden" name="pkg" value="@westpac/symbol" />
+						</Cell>
 					</Grid>
 				</div>
 			</Cell>
-			{renderSymbols(search)}
-		</Fragment>
+			<Grid>{renderSymbols(symbolsFiltered)}</Grid>
+		</form>
 	);
 };
 

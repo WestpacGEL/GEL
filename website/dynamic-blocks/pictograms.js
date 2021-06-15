@@ -1,32 +1,17 @@
 /** @jsx jsx */
 
-import React, { useState, Fragment } from 'react'; // Needed for within Keystone
+import React, { Fragment, useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput, Select } from '@westpac/text-input';
 import { Grid, Cell } from '@westpac/grid';
+import { Button } from '@westpac/button';
+import { DownloadIcon } from '@westpac/icon/DownloadIcon';
 import * as pictograms from '@westpac/pictogram';
+import { pluralize } from '../src/components/_utils';
 
-const renderPictograms = (search, mode) => {
-	const pictogramDetails = [];
-	for (let key in pictograms) {
-		// only show informative for now
-		if (
-			!key.startsWith('BOM') &&
-			!key.startsWith('BSA') &&
-			!key.startsWith('STG') &&
-			!key.startsWith('WBC') &&
-			!key.startsWith('WBG') &&
-			!key.startsWith('RAMS')
-		) {
-			pictogramDetails.push({ name: key, pictogram: pictograms[key] });
-		}
-	}
+const renderPictograms = (pictograms, mode) => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
-
-	const pictogramDetailsFiltered = pictogramDetails.filter((pictogram) =>
-		search.trim() === '' ? true : pictogram.name.toLowerCase().includes(search.toLowerCase())
-	);
 
 	return (
 		<Fragment>
@@ -34,14 +19,13 @@ const renderPictograms = (search, mode) => {
 				<p
 					aria-live="true"
 					id="filter-pictograms-status"
-					css={{ textAlign: 'right', color: COLORS.muted, fontStyle: 'italic' }}
+					css={{ textAlign: 'right', color: COLORS.muted, fontStyle: 'italic', margin: 0 }}
 				>
-					Found {pictogramDetailsFiltered.length}{' '}
-					{pictogramDetailsFiltered.length === 1 ? 'pictogram' : 'pictograms'}
+					Found {pictograms.length} {pluralize('pictogram', pictograms.length)}
 				</p>
 			</Cell>
 
-			{pictogramDetailsFiltered.map((pictogram) => {
+			{pictograms.map((pictogram) => {
 				const Pictogram = pictogram.pictogram;
 				return (
 					<Cell
@@ -85,7 +69,25 @@ const Pictogram = () => {
 	const [search, setSearch] = useState('');
 	const [mode, setMode] = useState('duo');
 	const mq = useMediaQuery();
-	const { COLORS, SPACING, BRAND } = useBrand();
+	const { BRAND, COLORS, SPACING } = useBrand();
+
+	const pictogramDetails = [];
+	for (let key in pictograms) {
+		// only show informative for now
+		if (
+			!key.startsWith('BOM') &&
+			!key.startsWith('BSA') &&
+			!key.startsWith('STG') &&
+			!key.startsWith('WBC') &&
+			!key.startsWith('WBG') &&
+			!key.startsWith('RAMS')
+		) {
+			pictogramDetails.push({ name: key, pictogram: pictograms[key] });
+		}
+	}
+	const pictogramsFiltered = pictogramDetails.filter((pictogram) =>
+		search.trim() === '' ? true : pictogram.name.toLowerCase().includes(search.toLowerCase())
+	);
 
 	const handleModeChange = (event) => {
 		setMode(event.target.value);
@@ -107,7 +109,14 @@ const Pictogram = () => {
 	}
 
 	return (
-		<Fragment>
+		<form
+			action="/api/svg"
+			method="POST"
+			css={{
+				gridColumnEnd: 'span 12',
+				gridRowEnd: 'span 1',
+			}}
+		>
 			<Cell width={12}>
 				<div css={{ padding: SPACING(4), marginBottom: SPACING(4), backgroundColor: COLORS.light }}>
 					<Grid>
@@ -120,7 +129,7 @@ const Pictogram = () => {
 								})}
 							>
 								<label
-									htmlFor={'filter-pictograms'}
+									htmlFor="filter-pictograms"
 									css={mq({
 										marginRight: '1rem',
 										marginBottom: ['0.75rem', null, 0],
@@ -130,13 +139,13 @@ const Pictogram = () => {
 									Filter by name
 								</label>
 								<TextInput
-									id={'filter-pictograms'}
+									id="filter-pictograms"
 									value={search}
 									onChange={(e) => setSearch(e.target.value)}
 								/>
 							</div>
 						</Cell>
-						<Cell width={[12, null, 6]}>
+						<Cell width={[12, null, 2]}>
 							<div
 								css={mq({
 									display: 'flex',
@@ -145,7 +154,7 @@ const Pictogram = () => {
 								})}
 							>
 								<label
-									htmlFor={'pictogram-mode'}
+									htmlFor="pictogram-mode"
 									css={mq({
 										marginRight: '1rem',
 										marginBottom: ['0.75rem', null, 0],
@@ -154,18 +163,29 @@ const Pictogram = () => {
 								>
 									Mode
 								</label>
-								<Select id={'pictogram-mode'} value={mode} onChange={handleModeChange} inline>
+								<Select id="pictogram-mode" value={mode} onChange={handleModeChange} inline>
 									<option value="duo">Duo</option>
 									<option value="dark">Dark</option>
 									<option value="light">Light</option>
 								</Select>
 							</div>
 						</Cell>
+						<Cell width={[12, null, 4]}>
+							<Button type="submit" look="primary" soft iconBefore={DownloadIcon}>
+								Download{' '}
+								{pictogramsFiltered.length === pictogramDetails.length
+									? 'all'
+									: pictogramsFiltered.length}{' '}
+								{pluralize('SVG', pictogramsFiltered.length)}
+							</Button>
+							<input type="hidden" name="brand" value={BRAND.code} />
+							<input type="hidden" name="pkg" value="@westpac/pictogram" />
+						</Cell>
 					</Grid>
 				</div>
 			</Cell>
-			{renderPictograms(search, mode)}
-		</Fragment>
+			<Grid>{renderPictograms(pictogramsFiltered, mode)}</Grid>
+		</form>
 	);
 };
 

@@ -10,18 +10,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container>
-				<Form spacing="large">
-					<FormGroup>
-						<Field label="Given name">
-							<TextInput size="large" width={30} />
-						</Field>
-					</FormGroup>
-					<FormGroup>
-						<Field label="Family name">
-							<TextInput size="large" width={30} />
-						</Field>
-					</FormGroup>
-				</Form>
+				<Form spacing="large">To do...</Form>
 			</Container>
 		</Playground>
 	);
