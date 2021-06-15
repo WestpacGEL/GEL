@@ -13,6 +13,8 @@ const renderPictograms = (pictograms, mode) => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
+	const foundText = `Found ${pictograms.length} ${pluralize('pictogram', pictograms.length)}`;
+
 	return (
 		<Fragment>
 			<Cell width={12}>
@@ -21,7 +23,7 @@ const renderPictograms = (pictograms, mode) => {
 					id="filter-pictograms-status"
 					css={{ textAlign: 'right', color: COLORS.muted, fontStyle: 'italic', margin: 0 }}
 				>
-					Found {pictograms.length} {pluralize('pictogram', pictograms.length)}
+					{foundText}
 				</p>
 			</Cell>
 
@@ -65,11 +67,22 @@ const renderPictograms = (pictograms, mode) => {
 	);
 };
 
+const DownloadBtn = ({ qty, total }) => {
+	const downloadBtnText = `Download ${qty === total ? 'all' : qty} ${pluralize('SVG', qty)}`;
+
+	return (
+		<Button type="submit" look="primary" soft iconBefore={DownloadIcon}>
+			{downloadBtnText}
+		</Button>
+	);
+};
+
 const Pictogram = () => {
-	const [search, setSearch] = useState('');
-	const [mode, setMode] = useState('duo');
 	const mq = useMediaQuery();
 	const { BRAND, COLORS, SPACING } = useBrand();
+
+	const [search, setSearch] = useState('');
+	const [mode, setMode] = useState('duo');
 
 	const pictogramDetails = [];
 	for (let key in pictograms) {
@@ -171,13 +184,7 @@ const Pictogram = () => {
 							</div>
 						</Cell>
 						<Cell width={[12, null, 4]}>
-							<Button type="submit" look="primary" soft iconBefore={DownloadIcon}>
-								Download{' '}
-								{pictogramsFiltered.length === pictogramDetails.length
-									? 'all'
-									: pictogramsFiltered.length}{' '}
-								{pluralize('SVG', pictogramsFiltered.length)}
-							</Button>
+							<DownloadBtn qty={pictogramsFiltered.length} total={pictogramDetails} />
 							<input type="hidden" name="brand" value={BRAND.code} />
 							<input type="hidden" name="pkg" value="@westpac/pictogram" />
 						</Cell>

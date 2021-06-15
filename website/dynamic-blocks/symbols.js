@@ -13,6 +13,8 @@ const renderSymbols = (symbols) => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
+	const foundText = `Found ${symbols.length} ${pluralize('symbol', symbols.length)}`;
+
 	return (
 		<Fragment>
 			<Cell width={12}>
@@ -21,7 +23,7 @@ const renderSymbols = (symbols) => {
 					id="filter-symbols-status"
 					css={{ textAlign: 'right', color: COLORS.muted, fontStyle: 'italic', margin: 0 }}
 				>
-					Found {symbols.length} {pluralize('symbol', symbols.length)}
+					{foundText}
 				</p>
 			</Cell>
 
@@ -60,10 +62,21 @@ const renderSymbols = (symbols) => {
 	);
 };
 
+const DownloadBtn = ({ qty, total }) => {
+	const downloadBtnText = `Download ${qty === total ? 'all' : qty} ${pluralize('SVG', qty)}`;
+
+	return (
+		<Button type="submit" look="primary" soft iconBefore={DownloadIcon}>
+			{downloadBtnText}
+		</Button>
+	);
+};
+
 const Symbol = () => {
-	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
 	const { BRAND, COLORS, SPACING } = useBrand();
+
+	const [search, setSearch] = useState('');
 
 	const symbolDetails = [];
 	for (let key in symbols) {
@@ -114,11 +127,7 @@ const Symbol = () => {
 							</div>
 						</Cell>
 						<Cell width={[12, null, 6]}>
-							<Button type="submit" look="primary" soft iconBefore={DownloadIcon}>
-								Download{' '}
-								{symbolsFiltered.length === symbolDetails.length ? 'all' : symbolsFiltered.length}{' '}
-								{pluralize('SVG', symbolsFiltered.length)}
-							</Button>
+							<DownloadBtn qty={symbolsFiltered.length} total={symbolDetails} />
 							<input type="hidden" name="brand" value={BRAND.code} />
 							<input type="hidden" name="pkg" value="@westpac/symbol" />
 						</Cell>

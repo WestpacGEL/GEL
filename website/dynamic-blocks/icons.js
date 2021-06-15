@@ -12,6 +12,8 @@ const renderIcons = (icons) => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
+	const foundText = `Found ${icons.length} ${pluralize('icon', icons.length)}`;
+
 	return (
 		<Fragment>
 			<Cell width={12}>
@@ -25,7 +27,7 @@ const renderIcons = (icons) => {
 						margin: 0,
 					}}
 				>
-					Found {icons.length} {pluralize('icon', icons.length)}
+					{foundText}
 				</p>
 			</Cell>
 
@@ -62,11 +64,22 @@ const renderIcons = (icons) => {
 	);
 };
 
+const DownloadBtn = ({ qty, total }) => {
+	const downloadBtnText = `Download ${qty === total ? 'all' : qty} ${pluralize('SVG', qty)}`;
+
+	return (
+		<Button type="submit" look="primary" soft iconBefore={DownloadIcon}>
+			{downloadBtnText}
+		</Button>
+	);
+};
+
 // ToDo: Elevate the brand in the AdminUI so it doesn't override website
 const Icon = () => {
-	const [search, setSearch] = useState('');
 	const mq = useMediaQuery();
 	const { BRAND, COLORS, SPACING } = useBrand();
+
+	const [search, setSearch] = useState('');
 
 	const iconDetails = [];
 	for (let key in icons) {
@@ -115,10 +128,7 @@ const Icon = () => {
 						</div>
 					</Cell>
 					<Cell width={[12, null, 6]}>
-						<Button type="submit" look="primary" soft iconBefore={DownloadIcon}>
-							Download {iconsFiltered.length === iconDetails.length ? 'all' : iconsFiltered.length}{' '}
-							{pluralize('SVG', iconsFiltered.length)}
-						</Button>
+						<DownloadBtn qty={iconsFiltered.length} total={iconDetails} />
 						<input type="hidden" name="brand" value={BRAND.code} />
 						<input type="hidden" name="pkg" value="@westpac/symbol" />
 					</Cell>
