@@ -85,7 +85,7 @@ Item.propTypes = {
 	/**
 	 * The list style
 	 */
-	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
+	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'cross', 'unstyled', 'icon', 'ordered']),
 
 	/**
 	 * The level of nesting

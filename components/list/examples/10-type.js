@@ -24,7 +24,6 @@ function Example({ brand }) {
 
 			<br />
 			<hr />
-			<br />
 
 			<h2>Link List</h2>
 			<List type="link">
@@ -61,7 +60,6 @@ function Example({ brand }) {
 
 			<br />
 			<hr />
-			<br />
 
 			<h2>Tick List</h2>
 			<List type="tick">
@@ -81,7 +79,25 @@ function Example({ brand }) {
 
 			<br />
 			<hr />
+
+			<h2>Cross List</h2>
+			<List type="cross">
+				<Item>Styled tick list</Item>
+				<Item>Styled tick list</Item>
+				<Item>Styled tick list</Item>
+				<Item>
+					Styled tick list
+					<List>
+						<Item>Styled tick list</Item>
+						<Item>Styled tick list</Item>
+						<Item>Styled tick list</Item>
+					</List>
+				</Item>
+				<Item>Styled tick list</Item>
+			</List>
+
 			<br />
+			<hr />
 
 			<h2>Ordered</h2>
 			<List type="ordered">
@@ -107,7 +123,6 @@ function Example({ brand }) {
 
 			<br />
 			<hr />
-			<br />
 
 			<h2 id="unstyled" tabIndex="-1">
 				Unstyled

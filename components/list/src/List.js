@@ -164,7 +164,7 @@ List.propTypes = {
 	 * The type of the bullet
 	 * note: none is only used for blender
 	 */
-	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered', 'none']),
+	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'cross', 'unstyled', 'icon', 'ordered', 'none']),
 
 	/**
 	 * The look of the bullet list
