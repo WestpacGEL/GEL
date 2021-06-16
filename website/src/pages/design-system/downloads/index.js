@@ -608,7 +608,7 @@ const SectionDevelopers = () => {
 							<p>
 								Developers can{' '}
 								<a
-									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND.code}.zip`}
+									href={`https://westpacgroup.sharepoint.com/sites/O365-UG-043642/Shared%20Documents/General/Fonts/${BRAND.code}.zip`}
 									target="blank"
 								>
 									download web font files
