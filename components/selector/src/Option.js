@@ -40,10 +40,6 @@ export const Option = ({
 
 	const {
 		instanceId,
-		data,
-		checked: ctxChecked,
-		overrides: ctxOverrides,
-		defaultValue: _,
 		type = 'radio',
 		name,
 		nextIndicator,
@@ -51,8 +47,11 @@ export const Option = ({
 		pictogramWidth,
 		pictogramHeight,
 		disabled,
+		defaultValue: _,
+		data,
+		checked: ctxChecked,
 		onChange,
-		toggleCheck,
+		overrides: ctxOverrides,
 		...restCtx
 	} = useSelectorContext();
 
