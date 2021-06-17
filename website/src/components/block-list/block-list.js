@@ -68,7 +68,7 @@ export const BlockListItem = ({ href, link, target, logo: Logo, children, ...res
 							},
 						})}
 					>
-						{children}
+						<span>{children}</span>
 						<div css={{ ...(Logo && { width: 54, height: 54 }), marginLeft: SPACING(4) }}>
 							{Logo ? (
 								<Logo width="auto" height="100%" aria-hidden={true} />
