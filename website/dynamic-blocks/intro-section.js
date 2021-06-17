@@ -13,6 +13,7 @@ import merge from 'lodash.merge';
 import { Body } from '../src/components/body';
 import { Icon } from '../../components/icon/src/Icon';
 import { Section } from '../src/components/section';
+import { ExternalLinkIcon } from '../src/components/external-link-icon';
 
 const ArrowDownRightIcon = (props) => (
 	<Icon aria-hidden="true" {...props}>
@@ -180,6 +181,7 @@ const PackageInfoTable = ({ item }) => {
 							target="_blank"
 						>
 							View Changes
+							<ExternalLinkIcon />
 						</a>
 					</td>
 				</tr>

@@ -12,6 +12,7 @@ import { Section, SectionHeading } from '../../components/section';
 import { Footer } from '../../components/layout';
 import { Head } from '../../components/head';
 import { Body } from '../../components/body';
+import { ExternalLinkIcon } from '../../components/external-link-icon';
 import {
 	ReactLogo,
 	AtlassianLogo,
@@ -255,6 +256,7 @@ const DownloadsAndLinks = (props) => {
 				>
 					<BlockListItem href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
 						Follow Westpac GEL on GitHub
+						<ExternalLinkIcon />
 					</BlockListItem>
 				</BlockList>
 			</Cell>
