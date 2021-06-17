@@ -132,8 +132,8 @@ export const FormCheck = ({
 		allChildren = children;
 	}
 
-	const showLength = allChildren.length - show;
-	state.showLength = showLength;
+	const revealCount = allChildren.length - show;
+	state.revealCount = revealCount;
 
 	return (
 		<FormCheckContext.Provider value={state}>
@@ -143,20 +143,20 @@ export const FormCheck = ({
 				{...formCheckAttributes(state)}
 				css={formCheckStyles(state)}
 			>
-				{show === -1 || show >= allChildren.length ? (
+				{show === -1 || revealCount === 0 ? (
 					allChildren
 				) : (
 					<Fragment>
 						{allChildren.slice(0, show)}
-						<Panel state={state} {...panelAttributes(state)} css={panelStyles(state)}>
-							{allChildren.slice(show)}
-						</Panel>
 						<Trigger
 							onClick={handleOpen}
 							state={state}
 							{...triggerAttributes(state)}
 							css={triggerStyles(state)}
 						/>
+						<Panel state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+							{allChildren.slice(show)}
+						</Panel>
 					</Fragment>
 				)}
 			</FormCheck>

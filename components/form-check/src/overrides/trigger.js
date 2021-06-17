@@ -9,9 +9,9 @@ import { forwardRef } from 'react';
 // Component
 // ==============================
 
-const Trigger = forwardRef(({ state: { isOpen, showLength }, ...rest }, ref) => (
+const Trigger = forwardRef(({ state: { isOpen, revealCount }, ...rest }, ref) => (
 	<Button ref={ref} look="link" size="small" {...rest}>
-		{isOpen ? 'Hide' : 'Show'} {showLength} {showLength === 1 ? 'item' : 'items'}
+		{isOpen ? 'Hide' : 'Show'} {revealCount} {revealCount === 1 ? 'item' : 'items'}
 	</Button>
 ));
 
@@ -19,11 +19,12 @@ const Trigger = forwardRef(({ state: { isOpen, showLength }, ...rest }, ref) => 
 // Styles
 // ==============================
 
-const triggerStyles = () => {
+const triggerStyles = (_, { isOpen }) => {
 	return {
 		label: getLabel('formCheck-trigger'),
 		paddingLeft: 0,
 		paddingRight: 0,
+		display: isOpen && 'none',
 	};
 };
 
