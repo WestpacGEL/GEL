@@ -9,10 +9,12 @@ import {
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { useState, useEffect, useContext, createContext } from 'react';
+import { Fragment, useState, useEffect, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
+import { defaultTrigger } from './overrides/trigger';
+import { defaultPanel } from './overrides/panel';
 
 import { Option } from './Option';
 import pkg from '../package.json';
@@ -41,6 +43,7 @@ export const FormCheck = ({
 	disabled,
 	defaultValue,
 	instanceIdPrefix,
+	show,
 	data,
 	children,
 	onChange = () => {},
@@ -62,6 +65,7 @@ export const FormCheck = ({
 
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
 	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const [isOpen, setIsOpen] = useState(false);
 
 	// create the prefix for internal IDs
 	useEffect(() => {
@@ -72,6 +76,8 @@ export const FormCheck = ({
 
 	const defaultOverrides = {
 		FormCheck: defaultFormCheck,
+		Trigger: defaultTrigger,
+		Panel: defaultPanel,
 	};
 
 	const handleChange = (event, value, wasChecked) => {
@@ -94,6 +100,8 @@ export const FormCheck = ({
 		inline,
 		disabled,
 		defaultValue,
+		show,
+		isOpen,
 		data,
 		checked,
 		onChange: handleChange,
@@ -103,7 +111,13 @@ export const FormCheck = ({
 
 	const {
 		FormCheck: { component: FormCheck, styles: formCheckStyles, attributes: formCheckAttributes },
+		Trigger: { component: Trigger, styles: triggerStyles, attributes: triggerAttributes },
+		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
+	const handleOpen = (event) => {
+		setIsOpen((currentState) => !currentState);
+	};
 
 	let allChildren = [];
 	if (data) {
@@ -114,7 +128,12 @@ export const FormCheck = ({
 				</Option>
 			);
 		});
+	} else {
+		allChildren = children;
 	}
+
+	const showLength = allChildren.length - show;
+	state.showLength = showLength;
 
 	return (
 		<FormCheckContext.Provider value={state}>
@@ -124,7 +143,22 @@ export const FormCheck = ({
 				{...formCheckAttributes(state)}
 				css={formCheckStyles(state)}
 			>
-				{data ? allChildren : children}
+				{show === -1 || show >= allChildren.length ? (
+					allChildren
+				) : (
+					<Fragment>
+						{allChildren.slice(0, show)}
+						<Panel state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+							{allChildren.slice(show)}
+						</Panel>
+						<Trigger
+							onClick={handleOpen}
+							state={state}
+							{...triggerAttributes(state)}
+							css={triggerStyles(state)}
+						/>
+					</Fragment>
+				)}
 			</FormCheck>
 		</FormCheckContext.Provider>
 	);
@@ -159,6 +193,11 @@ FormCheck.propTypes = {
 	 * Disable all Form check options
 	 */
 	disabled: PropTypes.bool,
+
+	/**
+	 * Show only the given number of Form check options, hide/show toggle the remainder
+	 */
+	show: PropTypes.number.isRequired,
 
 	/**
 	 * The data prop shape
@@ -217,6 +256,7 @@ export const defaultProps = {
 	type: 'checkbox',
 	inline: false,
 	size: 'medium',
+	show: -1,
 };
 
 FormCheck.defaultProps = defaultProps;
