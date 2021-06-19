@@ -15,7 +15,7 @@ const Panel = ({ state: _, ...rest }) => <span {...rest} />;
 
 const panelStyles = (_, { isOpen }) => {
 	return {
-		label: getLabel('formCheck-panel'),
+		label: getLabel('formCheckReveal-panel'),
 		display: !isOpen ? 'none' : 'inline',
 	};
 };
@@ -24,7 +24,27 @@ const panelStyles = (_, { isOpen }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = () => panelStyles(null, defaultProps);
+const blenderStyles = (_, { block }) => {
+	const props = { block };
+	const baseStyles = panelStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = panelStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
 
 // ==============================
 // Attributes

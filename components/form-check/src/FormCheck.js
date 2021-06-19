@@ -9,22 +9,10 @@ import {
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import {
-	Fragment,
-	useState,
-	useEffect,
-	useLayoutEffect,
-	useContext,
-	createContext,
-	useRef,
-	cloneElement,
-	Children,
-} from 'react';
+import { useState, useEffect, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
-import { defaultTrigger } from './overrides/trigger';
-import { defaultPanel } from './overrides/panel';
 
 import { Option } from './Option';
 import pkg from '../package.json';
@@ -53,7 +41,6 @@ export const FormCheck = ({
 	disabled,
 	defaultValue,
 	instanceIdPrefix,
-	show,
 	data,
 	children,
 	onChange = () => {},
@@ -75,9 +62,6 @@ export const FormCheck = ({
 
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
 	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
-	const [isOpen, setIsOpen] = useState(false);
-
-	const firstNewOptionRef = useRef();
 
 	// create the prefix for internal IDs
 	useEffect(() => {
@@ -86,16 +70,8 @@ export const FormCheck = ({
 		}
 	}, [instanceIdPrefix]);
 
-	useLayoutEffect(() => {
-		if (isOpen) {
-			firstNewOptionRef.current.focus();
-		}
-	}, [isOpen]);
-
 	const defaultOverrides = {
 		FormCheck: defaultFormCheck,
-		Trigger: defaultTrigger,
-		Panel: defaultPanel,
 	};
 
 	const handleChange = (event, value, wasChecked) => {
@@ -110,10 +86,6 @@ export const FormCheck = ({
 		}
 	};
 
-	const handleOpen = (event) => {
-		setIsOpen((currentState) => !currentState);
-	};
-
 	const state = {
 		instanceId,
 		type,
@@ -122,9 +94,6 @@ export const FormCheck = ({
 		inline,
 		disabled,
 		defaultValue,
-		show,
-		isOpen,
-		firstNewOptionRef,
 		data,
 		checked,
 		onChange: handleChange,
@@ -134,29 +103,20 @@ export const FormCheck = ({
 
 	const {
 		FormCheck: { component: FormCheck, styles: formCheckStyles, attributes: formCheckAttributes },
-		Trigger: { component: Trigger, styles: triggerStyles, attributes: triggerAttributes },
-		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	let allChildren = [];
 	if (data) {
 		data.map(({ text, ...rest }, index) => {
 			allChildren.push(
-				<Option ref={index === show ? firstNewOptionRef : null} key={index} {...rest}>
+				<Option key={index} {...rest}>
 					{text}
 				</Option>
 			);
 		});
 	} else {
-		allChildren = Children.map(children, (child, index) => {
-			return cloneElement(child, {
-				ref: index === show ? firstNewOptionRef : null,
-			});
-		});
+		allChildren = children;
 	}
-
-	const revealCount = allChildren.length - show;
-	state.revealCount = revealCount;
 
 	return (
 		<FormCheckContext.Provider value={state}>
@@ -166,22 +126,7 @@ export const FormCheck = ({
 				{...formCheckAttributes(state)}
 				css={formCheckStyles(state)}
 			>
-				{show === -1 || revealCount === 0 ? (
-					allChildren
-				) : (
-					<Fragment>
-						{allChildren.slice(0, show)}
-						<Trigger
-							onClick={handleOpen}
-							state={state}
-							{...triggerAttributes(state)}
-							css={triggerStyles(state)}
-						/>
-						<Panel state={state} {...panelAttributes(state)} css={panelStyles(state)}>
-							{allChildren.slice(show)}
-						</Panel>
-					</Fragment>
-				)}
+				{allChildren}
 			</FormCheck>
 		</FormCheckContext.Provider>
 	);
@@ -216,11 +161,6 @@ FormCheck.propTypes = {
 	 * Disable all Form check options
 	 */
 	disabled: PropTypes.bool,
-
-	/**
-	 * Show only the given number of Form check options, hide/show toggle the remainder
-	 */
-	show: PropTypes.number.isRequired,
 
 	/**
 	 * The data prop shape
@@ -279,7 +219,6 @@ export const defaultProps = {
 	type: 'checkbox',
 	inline: false,
 	size: 'medium',
-	show: -1,
 };
 
 FormCheck.defaultProps = defaultProps;

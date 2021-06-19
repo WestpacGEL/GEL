@@ -1,8 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { FormCheck, Option } from '@westpac/form-check';
-import { useState } from 'react';
+import { FormCheckReveal, Option } from '@westpac/form-check';
 
 function Example({ brand }) {
 	return (
@@ -10,7 +9,7 @@ function Example({ brand }) {
 			<h2>Types</h2>
 
 			<h3>Checkbox</h3>
-			<FormCheck type="checkbox" name="example-checkbox" show={5}>
+			<FormCheckReveal type="checkbox" name="example-checkbox" show={5}>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">Option 3</Option>
@@ -19,21 +18,21 @@ function Example({ brand }) {
 				<Option value="6">Option 6</Option>
 				<Option value="7">Option 7</Option>
 				<Option value="8">Option 8</Option>
-			</FormCheck>
+			</FormCheckReveal>
 
 			<h3>Radio</h3>
-			<FormCheck type="radio" name="example-radio" show={2}>
+			<FormCheckReveal type="radio" name="example-radio" show={2}>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">Option 3</Option>
-			</FormCheck>
+			</FormCheckReveal>
 
 			<hr />
 
 			<h2>Long lines</h2>
 
 			<h3>Checkbox</h3>
-			<FormCheck type="checkbox" name="example-checkbox-longlines" show={1}>
+			<FormCheckReveal type="checkbox" name="example-checkbox-longlines" show={1}>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">
@@ -42,10 +41,10 @@ function Example({ brand }) {
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
 				</Option>
-			</FormCheck>
+			</FormCheckReveal>
 
 			<h3>Radio</h3>
-			<FormCheck type="radio" name="example-radio-longlines" show={2}>
+			<FormCheckReveal type="radio" name="example-radio-longlines" show={2}>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">
@@ -54,14 +53,14 @@ function Example({ brand }) {
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
 				</Option>
-			</FormCheck>
+			</FormCheckReveal>
 
 			<hr />
 
 			<h2>Inline</h2>
 
 			<h3>Checkbox</h3>
-			<FormCheck type="checkbox" name="example-checkbox-inline" inline show={1}>
+			<FormCheckReveal type="checkbox" name="example-checkbox-inline" inline show={1}>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">
@@ -70,10 +69,10 @@ function Example({ brand }) {
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
 				</Option>
-			</FormCheck>
+			</FormCheckReveal>
 
 			<h3>Radio</h3>
-			<FormCheck type="radio" name="example-radio-inline" inline show={1}>
+			<FormCheckReveal type="radio" name="example-radio-inline" inline show={1}>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">
@@ -82,7 +81,7 @@ function Example({ brand }) {
 					provident fugiat, esse iste adipisci repellat! Incidunt delectus, pariatur quaerat vitae
 					aspernatur eveniet libero.
 				</Option>
-			</FormCheck>
+			</FormCheckReveal>
 		</GEL>
 	);
 }

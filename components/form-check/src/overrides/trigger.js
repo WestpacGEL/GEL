@@ -21,7 +21,7 @@ const Trigger = forwardRef(({ state: { isOpen, revealCount }, ...rest }, ref) =>
 
 const triggerStyles = (_, { isOpen }) => {
 	return {
-		label: getLabel('formCheck-trigger'),
+		label: getLabel('formCheckReveal-trigger'),
 		paddingLeft: 0,
 		paddingRight: 0,
 		display: isOpen && 'none',
@@ -32,7 +32,27 @@ const triggerStyles = (_, { isOpen }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = () => triggerStyles(null, defaultProps);
+const blenderStyles = (_, { block }) => {
+	const props = { block };
+	const baseStyles = triggerStyles(_, defaultProps);
+
+	let modifiers = getModifier(defaultProps, props);
+	if (!modifiers.length) return baseStyles;
+
+	const modifierStyles = triggerStyles(_, props);
+	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
+
+	let label = baseStyles.label;
+	const modifier = modifiers[0];
+
+	switch (modifier) {
+		default:
+			label = `${label}-${modifier}`;
+			break;
+	}
+
+	return { label, ...reconciledStyles };
+};
 
 // ==============================
 // Attributes
