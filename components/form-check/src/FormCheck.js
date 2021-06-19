@@ -9,7 +9,17 @@ import {
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { Fragment, useState, useEffect, useContext, createContext } from 'react';
+import {
+	Fragment,
+	useState,
+	useEffect,
+	useLayoutEffect,
+	useContext,
+	createContext,
+	useRef,
+	cloneElement,
+	Children,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
@@ -67,12 +77,20 @@ export const FormCheck = ({
 	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
 	const [isOpen, setIsOpen] = useState(false);
 
+	const firstNewOptionRef = useRef();
+
 	// create the prefix for internal IDs
 	useEffect(() => {
 		if (!instanceIdPrefix) {
 			setInstanceId(`gel-form-check-${useInstanceId()}`);
 		}
 	}, [instanceIdPrefix]);
+
+	useLayoutEffect(() => {
+		if (isOpen) {
+			firstNewOptionRef.current.focus();
+		}
+	}, [isOpen]);
 
 	const defaultOverrides = {
 		FormCheck: defaultFormCheck,
@@ -92,6 +110,10 @@ export const FormCheck = ({
 		}
 	};
 
+	const handleOpen = (event) => {
+		setIsOpen((currentState) => !currentState);
+	};
+
 	const state = {
 		instanceId,
 		type,
@@ -102,6 +124,7 @@ export const FormCheck = ({
 		defaultValue,
 		show,
 		isOpen,
+		firstNewOptionRef,
 		data,
 		checked,
 		onChange: handleChange,
@@ -115,21 +138,21 @@ export const FormCheck = ({
 		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const handleOpen = (event) => {
-		setIsOpen((currentState) => !currentState);
-	};
-
 	let allChildren = [];
 	if (data) {
 		data.map(({ text, ...rest }, index) => {
 			allChildren.push(
-				<Option key={index} {...rest}>
+				<Option ref={index === show ? firstNewOptionRef : null} key={index} {...rest}>
 					{text}
 				</Option>
 			);
 		});
 	} else {
-		allChildren = children;
+		allChildren = Children.map(children, (child, index) => {
+			return cloneElement(child, {
+				ref: index === show ? firstNewOptionRef : null,
+			});
+		});
 	}
 
 	const revealCount = allChildren.length - show;

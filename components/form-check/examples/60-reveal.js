@@ -10,10 +10,15 @@ function Example({ brand }) {
 			<h2>Types</h2>
 
 			<h3>Checkbox</h3>
-			<FormCheck type="checkbox" name="example-checkbox" show={1}>
+			<FormCheck type="checkbox" name="example-checkbox" show={5}>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
 				<Option value="3">Option 3</Option>
+				<Option value="4">Option 4</Option>
+				<Option value="5">Option 5</Option>
+				<Option value="6">Option 6</Option>
+				<Option value="7">Option 7</Option>
+				<Option value="8">Option 8</Option>
 			</FormCheck>
 
 			<h3>Radio</h3>
