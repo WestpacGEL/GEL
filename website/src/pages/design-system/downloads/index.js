@@ -28,6 +28,7 @@ import { BlockList, BlockListItem, BlockListHeading } from '../../../components/
 import PageHeader from '../../../components/header/page-header';
 import { PageContextProvider } from '../../../components/providers/pageContext';
 import { Footer } from '../../../components/layout';
+import { ExternalLinkIcon } from '../../../components/external-link-icon';
 import { BASE_URL } from '../../../config.js';
 import { Icon } from '../../../../../components/icon/src/Icon';
 import GEL from '../../../../../GEL.json';
@@ -378,6 +379,7 @@ const fontTextWBC = () => (
 			Check the{' '}
 			<a href={urlMap.WBC.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively. Never use a font without confirmation that
 			you have the correct licence in place.
@@ -398,6 +400,7 @@ const fontTextSTG = () => (
 			Check the{' '}
 			<a href={urlMap.STG.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively. Never use a font without confirmation that
 			you have the correct licence in place.
@@ -410,6 +413,7 @@ const fontTextSTG = () => (
 			Designers using other software can send a request for approval via{' '}
 			<a href="http://stgeorge.mybrandmachine.com" target="_blank">
 				Brand Central
+				<ExternalLinkIcon />
 			</a>
 			.
 		</p>
@@ -421,6 +425,7 @@ const fontTextBOM = () => (
 			Check the{' '}
 			<a href={urlMap.BOM.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively. Never use a font without confirmation that
 			you have the correct licence in place.
@@ -437,6 +442,7 @@ const fontTextBSA = () => (
 			Check the{' '}
 			<a href={urlMap.BSA.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively. Never use a font without confirmation that
 			you have the correct licence in place.
@@ -456,12 +462,14 @@ const fontTextWBG = () => (
 			Check the{' '}
 			<a href={urlMap.WBG.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively.
 		</p>
 		<p>
 			<a href="https://fonts.google.com/specimen/Montserrat" target="_blank">
 				Download Montserrat
+				<ExternalLinkIcon />
 			</a>
 		</p>
 	</Fragment>
@@ -472,12 +480,14 @@ const fontTextRAMS = () => (
 			Check the{' '}
 			<a href={urlMap.RAMS.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively.
 		</p>
 		<p>
 			<a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank">
 				Download Source Sans Pro
+				<ExternalLinkIcon />
 			</a>
 		</p>
 	</Fragment>
@@ -537,6 +547,7 @@ const SectionDesigners = () => {
 							{brandContent.guidelinesURL && (
 								<BlockListItem href={brandContent.guidelinesURL} target="_blank">
 									Masterbrand Guidelines
+									<ExternalLinkIcon />
 								</BlockListItem>
 							)}
 						</BlockList>
@@ -608,7 +619,7 @@ const SectionDevelopers = () => {
 							<p>
 								Developers can{' '}
 								<a
-									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND.code}.zip`}
+									href={`https://westpacgroup.sharepoint.com/sites/O365-UG-043642/Shared%20Documents/General/Fonts/${BRAND.code}.zip`}
 									target="blank"
 								>
 									download web font files

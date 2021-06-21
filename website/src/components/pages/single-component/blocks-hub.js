@@ -56,7 +56,7 @@ const DynamicComponentsWithShortCode = ({ data, ...rest }) => {
 };
 
 const slateRenderer = (item, _editorValue) => {
-	const { SPACING, COLORS } = useBrand();
+	const { SPACING } = useBrand();
 
 	return createReactRenderer([
 		// special serialiser for text
