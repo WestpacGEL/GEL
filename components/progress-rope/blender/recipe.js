@@ -1,9 +1,10 @@
 import { GEL } from '@westpac/core';
 import React from 'react';
 
-import { ProgressRope } from '@westpac/progress-rope';
+// import { ProgressRope } from '@westpac/progress-rope';
 
 // Created simplified version of these components for blender use
+import { ProgressRope } from '../src';
 import { Group, Step } from '../src/blender';
 import { blenderProgressRope } from '../src/overrides/progressRope';
 import { blenderList } from '../src/overrides/list';
