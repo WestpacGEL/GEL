@@ -58,9 +58,10 @@ const blenderStyles = (_, { block }) => {
 // Attributes
 // ==============================
 
-const triggerAttributes = (_, { instanceId, open }) => ({
+const triggerAttributes = (_, { instanceId, isOpen }) => ({
 	'aria-controls': `${instanceId}-panel`,
-	'aria-expanded': open,
+	'aria-expanded': isOpen,
+	'aria-hidden': isOpen,
 });
 
 // ==============================
