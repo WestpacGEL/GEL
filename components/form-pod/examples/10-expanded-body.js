@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx, Global, useBrand } from '@westpac/core';
-import { FormPod, FormPodPanel, FormPodPanelBody } from '@westpac/form-pod';
+import { FormPod, Panel, PanelBody } from '@westpac/form-pod';
 
 function Example({ brand }) {
 	const { COLORS } = useBrand();
@@ -17,9 +17,9 @@ function Example({ brand }) {
 				}}
 			/>
 			<FormPod preheading="Preheading" heading="Heading">
-				<FormPodPanel>
-					<FormPodPanelBody expanded>[PANEL CONTENT]</FormPodPanelBody>
-				</FormPodPanel>
+				<Panel>
+					<PanelBody expanded>[PANEL CONTENT]</PanelBody>
+				</Panel>
 			</FormPod>
 		</GEL>
 	);

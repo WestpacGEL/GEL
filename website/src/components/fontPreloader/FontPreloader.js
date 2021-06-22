@@ -101,7 +101,7 @@ export const FontPreloader = ({ title = '', ...rest }) => {
 				/>
 				<link
 					rel="preload"
-					href={`${BASE_URL}/fonts/Westpac-Bold.woff2`}
+					href={`${BASE_URL}/fonts/Westpac-Bold-v2.007.woff2`}
 					as="font"
 					type="font/woff2"
 					crossorigin
@@ -183,7 +183,7 @@ export const FontPreloader = ({ title = '', ...rest }) => {
 					},
 					{
 						'@font-face': {
-							src: `url('${BASE_URL}/fonts/Westpac-Bold.woff2') format('woff2'), url('${BASE_URL}/fonts/Westpac-Bold.woff') format('woff')`,
+							src: `url('${BASE_URL}/fonts/Westpac-Bold-v2.007.woff2') format('woff2'), url('${BASE_URL}/fonts/Westpac-Bold-v2.007.woff') format('woff')`,
 							fontFamily: "'brandFontWBC'",
 							fontWeight: '400',
 							fontStyle: 'normal',

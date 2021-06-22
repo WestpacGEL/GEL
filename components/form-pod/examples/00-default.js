@@ -3,12 +3,12 @@
 import { GEL, jsx, Global, useBrand } from '@westpac/core';
 import {
 	FormPod,
-	FormPodActions,
-	FormPodContactList,
-	FormPodIndicator,
-	FormPodPanel,
-	FormPodPanelBody,
-	FormPodPanelFooter,
+	Actions,
+	ContactList,
+	Indicator,
+	Panel,
+	PanelBody,
+	PanelFooter,
 } from '@westpac/form-pod';
 import { HeadsetIcon, LiveChatIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
@@ -47,14 +47,11 @@ function Example({ brand }) {
 			/>
 
 			<FormPod preheading="Preheading" heading="Heading">
-				<FormPodPanel>
-					<FormPodPanelBody>[PANEL CONTENT]</FormPodPanelBody>
-					<FormPodPanelFooter
-						left={<FormPodContactList items={contactItems} />}
-						right={<FormPodIndicator />}
-					/>
-				</FormPodPanel>
-				<FormPodActions
+				<Panel>
+					<PanelBody>[PANEL CONTENT]</PanelBody>
+					<PanelFooter left={<ContactList items={contactItems} />} right={<Indicator />} />
+				</Panel>
+				<Actions
 					primary={
 						<Fragment>
 							<Button appearance="primary" soft size="large" block={[true, false]}>

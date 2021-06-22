@@ -1,46 +1,51 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useMediaQuery } from '@westpac/core';
+
 import { useFormContext } from './Form';
+import { defaultFormGroup } from './overrides/formGroup';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormGroup = ({ primary, ...props }) => {
-	const mq = useMediaQuery();
+export const FormGroup = ({ primary, overrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	// Consume FormContext
-	const formContext = useFormContext();
-	const isInline = (formContext && formContext.inline) || false;
-	const spacing = (formContext && formContext.spacing) || 'medium';
+	const context = useFormContext();
 
-	const mapSpacing = {
-		medium: {
-			marginBottom: '1.125rem',
-		},
-		large: {
-			marginBottom: ['1.5rem', '1.875rem'],
-		},
+	const defaultOverrides = {
+		FormGroup: defaultFormGroup,
 	};
 
-	return (
-		<div
-			css={mq({
-				display: isInline && [null, 'inline-block'],
-				verticalAlign: isInline && [null, 'middle'],
-				marginBottom: isInline
-					? [((mb) => (Array.isArray(mb) ? mb[0] : mb))(mapSpacing[spacing].marginBottom), 0]
-					: mapSpacing[spacing].marginBottom,
-				textAlign: primary && 'center',
+	const componentOverrides = overrides || context?.state?.overrides;
+	const inline = context?.state?.inline || false;
+	const spacing = context?.state?.spacing || 'medium';
 
-				'& + &': {
-					marginLeft: isInline && [null, '0.375rem'],
-				},
-			})}
-			{...props}
+	const state = {
+		primary,
+		inline,
+		spacing,
+		context: context?.state,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		FormGroup: { component: FormGroup, styles: formGroupStyles, attributes: formGroupAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
+	return (
+		<FormGroup
+			{...rest}
+			state={state}
+			{...formGroupAttributes(state)}
+			css={formGroupStyles(state)}
 		/>
 	);
 };
@@ -58,9 +63,15 @@ FormGroup.propTypes = {
 	primary: PropTypes.bool,
 
 	/**
-	 * Component children
+	 * The override API
 	 */
-	children: PropTypes.node,
+	overrides: PropTypes.shape({
+		FormGroup: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 FormGroup.defaultProps = {

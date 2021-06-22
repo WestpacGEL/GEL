@@ -1,59 +1,96 @@
 /** @jsx jsx */
 
-import React, { Fragment } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
-import shortid from 'shortid';
 
-import { AlertIcon } from '@westpac/icon';
+import { defaultErrorMessageContent } from './overrides/errorMessageContent';
+import { defaultErrorMessageItem } from './overrides/errorMessageItem';
+import { defaultErrorMessage } from './overrides/errorMessage';
+import pkg from '../package.json';
 
 // ==============================
 // Utility
 // ==============================
 
-export const ErrorMessageContent = ({ icon: Icon, children }) => (
-	<Fragment>
-		{Icon && (
-			<Icon css={{ verticalAlign: 'top', marginRight: '0.25em' }} size="small" color="inherit" />
-		)}
-		{children}
-	</Fragment>
-);
-
 // ==============================
 // Component
 // ==============================
 
-export const ErrorMessage = ({ message, icon, tag: Tag, ...props }) => {
-	const { COLORS } = useBrand();
+export const ErrorMessage = ({ message, icon, tag, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
 
-	// Check for an array of messages
+	const defaultOverrides = {
+		ErrorMessage: defaultErrorMessage,
+		ErrorMessageItem: defaultErrorMessageItem,
+		ErrorMessageContent: defaultErrorMessageContent,
+	};
+
 	const isMessages = Array.isArray(message);
 
-	if (isMessages) {
-		Tag = 'ul';
-	}
+	const state = {
+		message,
+		isMessages,
+		icon,
+		tag,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		ErrorMessage: {
+			component: ErrorMessage,
+			styles: errorMessageStyles,
+			attributes: errorMessageAttributes,
+		},
+		ErrorMessageItem: {
+			component: ErrorMessageItem,
+			styles: errorMessageItemStyles,
+			attributes: errorMessageItemAttributes,
+		},
+		ErrorMessageContent: {
+			component: ErrorMessageContent,
+			styles: errorMessageContentStyles,
+			attributes: errorMessageContentAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Tag
-			css={{
-				fontSize: '0.875rem',
-				margin: '0 0 0.75rem',
-				color: COLORS.danger,
-				...(isMessages && { listStyle: 'none', paddingLeft: 0 }),
-			}}
-			{...props}
+		<ErrorMessage
+			{...rest}
+			state={state}
+			{...errorMessageAttributes(state)}
+			css={errorMessageStyles(state)}
 		>
 			{isMessages ? (
 				message.map((msg) => (
-					<li css={{ marginBottom: '0.375rem' }} key={shortid.generate()}>
-						<ErrorMessageContent icon={icon}>{msg}</ErrorMessageContent>
-					</li>
+					<ErrorMessageItem
+						key={msg}
+						state={state}
+						{...errorMessageItemAttributes(state)}
+						css={errorMessageItemStyles(state)}
+					>
+						<ErrorMessageContent
+							state={state}
+							{...errorMessageContentAttributes(state)}
+							css={errorMessageContentStyles(state)}
+						>
+							{msg}
+						</ErrorMessageContent>
+					</ErrorMessageItem>
 				))
 			) : (
-				<ErrorMessageContent icon={icon}>{message}</ErrorMessageContent>
+				<ErrorMessageContent
+					state={state}
+					{...errorMessageContentAttributes(state)}
+					css={errorMessageContentStyles(state)}
+				>
+					{message}
+				</ErrorMessageContent>
 			)}
-		</Tag>
+		</ErrorMessage>
 	);
 };
 
@@ -76,10 +113,30 @@ ErrorMessage.propTypes = {
 	 * Component tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		ErrorMessage: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ErrorMessageItem: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		ErrorMessageContent: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 ErrorMessage.defaultProps = {
 	message: 'Invalid input',
-	icon: AlertIcon,
 	tag: 'div',
 };

@@ -22,12 +22,13 @@
 		"docs": "NODE_ENV=development webpack server --progress --config ./helpers/example/docs.webpack.config.js",
 		"docs:build": "NODE_ENV=development webpack --progress --config ./helpers/example/docs.webpack.config.js && yarn docs:redirects",
 		"docs:redirects": "cp helpers/public/* docs/",
-		"start": "cd website && yarn start",
+		"start": "yarn build:dynamicblocks && cd website && yarn start",
 		"nuke": "yarn nuke:lock && yarn nuke:node_modules",
 		"nuke:node_modules": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
 		"nuke:lock": "rm yarn.lock && rm yarn-error.log ; true",
-		"build": "preconstruct build && build-field-types build",
+		"build": "yarn build:dynamicblocks && preconstruct build && build-field-types build",
 		"build:dev": "preconstruct dev",
+		"build:dynamicblocks": "node helpers/dynamic-blocks.js",
 		"fresh": "yarn nuke && yarn",
 		"new": "node ./helpers/cli.js",
 		"format": "prettier --write \"**/*.{js,md,mdx,json}\"",
@@ -39,7 +40,7 @@
 		"dep:test": "manypkg check && preconstruct build || preconstruct dev",
 		"dep:fix": "manypkg fix && preconstruct fix",
 		"GELjson": "node helpers/ds-info.js",
-		"postinstall": "yarn dep:test && preconstruct dev && yarn GELjson && build-field-types dev",
+		"postinstall": "yarn dep:test && preconstruct dev && yarn GELjson && build-field-types dev && yarn build:dynamicblocks",
 		"publish-packages": "yarn build && yarn GELjson && yarn changeset publish",
 		"version-packages": "yarn changeset version",
 		"deploy:staging:sync": "pm2 deploy pm2-ecosystem.json staging",
@@ -90,7 +91,6 @@
 		"@babel/preset-env": "^7.14.4",
 		"@babel/preset-react": "^7.13.13",
 		"@changesets/cli": "^2.16.0",
-		"@emotion/core": "^11.0.0",
 		"@emotion/react": "^11.4.0",
 		"@emotion/weak-memoize": "^0.2.5",
 		"@manypkg/cli": "^0.18.0",
@@ -138,6 +138,18 @@
 		"webpack-dev-server": "^4.0.0-beta.3"
 	},
 	"resolutions": {
-		"ansi-styles": "^3.2.0"
-	}
+		"ansi-styles": "^3.2.0",
+		"**/@keystonejs/app-admin-ui": "^5.12.0",
+		"**/@keystonejs/adapter-knex": "^9.0.3",
+		"**/graphql": "14.7.0",
+		"**/@keystonejs/app-graphql": "^5.1.6",
+		"**/@keystonejs/app-next": "^5.1.2",
+		"**/@keystonejs/auth-password": "^5.1.6",
+		"**/@keystonejs/fields": "^9.0.5",
+		"**/@keystonejs/file-adapters": "^6.0.2",
+		"**/@keystonejs/keystone": "^8.1.4",
+		"**/react": "^17.0.2",
+		"**/react-dom": "^17.0.2"
+	},
+	"version": "0.0.0"
 }

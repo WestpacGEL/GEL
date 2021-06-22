@@ -1,30 +1,64 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+
+import { defaultFooterItem } from './overrides/footerItem';
+import { defaultFooter } from './overrides/footer';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormPodPanelFooter = ({ left, right, ...props }) => {
-	const { COLORS } = useBrand();
+export const FormPodPanelFooter = ({ left, right, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		Footer: defaultFooter,
+		FooterItem: defaultFooterItem,
+	};
+
+	const state = {
+		left,
+		right,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		Footer: { component: Footer, styles: footerStyles, attributes: footerAttributes },
+		FooterItem: {
+			component: FooterItem,
+			styles: footerItemStyles,
+			attributes: footerItemAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<div
-			css={{
-				display: 'flex',
-				alignItems: 'center',
-				height: '3.375rem', //Nb. there's no min-height with flex in IE
-				backgroundColor: COLORS.light,
-				padding: '0.75rem',
-			}}
-			{...props}
-		>
-			{left && <div>{left}</div>}
-			{right && <div css={{ marginLeft: 'auto' }}>{right}</div>}
-		</div>
+		<Footer {...rest} state={state} {...footerAttributes(state)} css={footerStyles(state)}>
+			{left && (
+				<FooterItem
+					state={state}
+					{...footerItemAttributes(state)}
+					css={footerItemStyles({ ...state, position: 'left' })}
+				>
+					{left}
+				</FooterItem>
+			)}
+			{right && (
+				<FooterItem
+					state={state}
+					{...footerItemAttributes(state)}
+					css={footerItemStyles({ ...state, position: 'right' })}
+				>
+					{right}
+				</FooterItem>
+			)}
+		</Footer>
 	);
 };
 
@@ -34,14 +68,30 @@ export const FormPodPanelFooter = ({ left, right, ...props }) => {
 
 FormPodPanelFooter.propTypes = {
 	/**
-	 * Left 'slot'.
+	 * Left component.
 	 */
 	left: PropTypes.node,
 
 	/**
-	 * Right 'slot'.
+	 * Right component.
 	 */
 	right: PropTypes.node,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Footer: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		FooterItem: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 FormPodPanelFooter.defaultProps = {};

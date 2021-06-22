@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { brandsMap } from './components/brand-switcher/brand-switcher';
 
 const VisionFilterIntro = () => (
 	<Fragment>

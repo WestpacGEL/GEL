@@ -4,7 +4,7 @@ import { Svg } from './Svg';
 
 export const BsaBackgroundSvg = (props) => {
 	return (
-		<Svg viewBox="0 0 1016 620" width={1016} height={620} {...props}>
+		<Svg viewBox="0 0 1016 620" width={1016} height={620} aria-hidden="true" {...props}>
 			<title>BankSA background image</title>
 			<g fillRule="evenodd" fillOpacity=".06">
 				<path

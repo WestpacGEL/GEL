@@ -1,24 +1,44 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useMediaQuery } from '@westpac/core';
+
+import { defaultFormSectionImg } from './overrides/formSectionImg';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormSectionImg = (props) => {
-	const mq = useMediaQuery();
+export const FormSectionImg = ({ overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		FormSectionImg: defaultFormSectionImg,
+	};
+
+	const state = {
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		FormSectionImg: {
+			component: FormSectionImg,
+			styles: formSectionImgStyles,
+			attributes: formSectionImgAttributes,
+		},
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<img
-			css={mq({
-				display: 'block',
-				margin: ['0 auto 1.125rem', '0 auto 2.625rem'],
-				maxWidth: '100%',
-			})}
-			{...props}
+		<FormSectionImg
+			{...rest}
+			state={state}
+			{...formSectionImgAttributes(state)}
+			css={formSectionImgStyles(state)}
 		/>
 	);
 };
@@ -32,6 +52,17 @@ FormSectionImg.propTypes = {
 	 * Component img src
 	 */
 	src: PropTypes.string.isRequired,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		FormSectionImg: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 FormSectionImg.defaultProps = {};

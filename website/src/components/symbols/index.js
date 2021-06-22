@@ -1,9 +1,7 @@
 export { AtlassianLogo } from './AtlassianLogo';
-export { AxureLogo } from './AxureLogo';
 export { BsaBackgroundSvg } from './BsaBackgroundSvg';
 export { FacebookLogo } from './FacebookLogo';
 export { GitHubLogo } from './GitHubLogo';
-export { GitLogo } from './GitLogo';
 export { GovLogo } from './GovLogo';
 export { IbmLogo } from './IbmLogo';
 export { MicrosoftLogo } from './MicrosoftLogo';

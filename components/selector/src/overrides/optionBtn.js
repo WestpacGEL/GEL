@@ -51,22 +51,6 @@ const optionBtnStyles = () => {
 			pointerEvents: 'none',
 		},
 
-		//a11y: WHCM
-		'input:checked + &::before, input:checked + &::after': {
-			content: '""',
-			position: 'absolute',
-			zIndex: 1,
-			left: 0,
-			right: 0,
-			borderTop: '6px solid transparent !important',
-		},
-		'input:checked + &::before': {
-			top: 0,
-		},
-		'input:checked + &::after': {
-			bottom: 0,
-		},
-
 		// Focus state
 		'body:not(.isMouseMode) input:focus + &': {
 			...PACKS.focus,

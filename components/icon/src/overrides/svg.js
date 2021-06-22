@@ -23,6 +23,7 @@ const Svg = ({ state: { assistiveText }, ...rest }) => (
 
 const svgStyles = () => ({
 	label: 'icon-svg',
+	display: 'block',
 });
 
 // ==============================
