@@ -65,7 +65,7 @@ export const ButtonDropdown = ({
 
 	const state = {
 		instanceId,
-		open,
+		isOpen,
 		text,
 		dropdownSize,
 		block,
