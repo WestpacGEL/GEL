@@ -850,7 +850,7 @@ function DownloadsPage() {
 		<Fragment>
 			<Head title="Downloads" />
 			<PageContextProvider>
-				<main id="content">
+				<main id="content" tabIndex="-1">
 					<PageHeader
 						name="Downloads"
 						css={

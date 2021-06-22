@@ -37,6 +37,7 @@ const Homepage = () => {
 			<PageContextProvider>
 				<main
 					id="content"
+					tabIndex="-1"
 					css={{
 						textAlign: 'center',
 					}}

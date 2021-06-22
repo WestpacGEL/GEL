@@ -61,7 +61,7 @@ export const BrandPicker = () => {
 					</em>
 				</h1>
 			</header>
-			<main id="content">
+			<main id="content" tabIndex="-1">
 				<Section tag="div">
 					<Container>
 						<Grid>
