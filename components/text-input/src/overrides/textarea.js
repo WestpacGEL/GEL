@@ -12,12 +12,13 @@ import {
 } from '@westpac/core';
 import { sizeMap, getMaxWidth } from '../_utils';
 import { defaultProps } from '../Textarea';
+import { forwardRef } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
-const Textarea = ({ state: _, ...rest }) => <textarea {...rest} />;
+const Textarea = forwardRef(({ state: _, ...rest }, ref) => <textarea ref={ref} {...rest} />);
 
 const BlenderTextarea = ({ className, ...rest }) => (
 	<Textarea className={formatClassName(className)} {...rest} />
