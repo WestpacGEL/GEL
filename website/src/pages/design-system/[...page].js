@@ -42,7 +42,7 @@ const Component = ({ component }) => {
 			<Head title={pageTitle} />
 			<PageContextProvider>
 				<PageHeader name={pageTitle} />
-				<main id="content" css={{ flexGrow: 1 }}>
+				<main id="content" tabIndex="-1" css={{ flexGrow: 1 }}>
 					<Page component={component} />
 				</main>
 				<Footer />
