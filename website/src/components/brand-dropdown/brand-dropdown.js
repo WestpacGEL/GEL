@@ -33,7 +33,7 @@ const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest 
 
 const ButtonOverride = forwardRef(({ closed, setClosed, state: _, ...rest }, ref) => {
 	const {
-		state: { open },
+		state: { isOpen },
 	} = useButtonDropdownContext();
 
 	return (
@@ -41,7 +41,7 @@ const ButtonOverride = forwardRef(({ closed, setClosed, state: _, ...rest }, ref
 			ref={ref}
 			look="unstyled"
 			size="large"
-			iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
+			iconAfter={isOpen ? ExpandLessIcon : ExpandMoreIcon}
 			block
 			justify
 			overrides={{
@@ -58,23 +58,23 @@ const ButtonOverride = forwardRef(({ closed, setClosed, state: _, ...rest }, ref
 	);
 });
 
-const PanelOverride = forwardRef(({ state: { open, setClosed }, children, ...rest }, ref) => {
+const PanelOverride = forwardRef(({ state: { isOpen, setClosed }, children, ...rest }, ref) => {
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 
 	const animate = useSpring({
 		to: {
-			height: !open ? 0 : height,
+			height: !isOpen ? 0 : height,
 		},
 		onStart: () => {
 			setClosed(false);
 		},
 		onRest: () => {
-			setClosed(!open);
+			setClosed(!isOpen);
 		},
 	});
 
 	return (
-		<animated.div ref={ref} style={animate} aria-hidden={!open} {...rest}>
+		<animated.div ref={ref} style={animate} aria-hidden={!isOpen} {...rest}>
 			<div ref={measureRef}>{children}</div>
 		</animated.div>
 	);
