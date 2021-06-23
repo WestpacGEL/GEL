@@ -111,15 +111,15 @@ export const FormCheckReveal = ({
 			) : (
 				<Fragment>
 					{allChildren.slice(0, show)}
+					<Panel state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+						{allChildren.slice(show)}
+					</Panel>
 					<Trigger
 						onClick={handleOpen}
 						state={state}
 						{...triggerAttributes(state)}
 						css={triggerStyles(state)}
 					/>
-					<Panel state={state} {...panelAttributes(state)} css={panelStyles(state)}>
-						{allChildren.slice(show)}
-					</Panel>
 				</Fragment>
 			)}
 		</FormCheckReveal>

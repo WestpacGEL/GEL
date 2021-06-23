@@ -9,9 +9,9 @@ import { forwardRef } from 'react';
 // Component
 // ==============================
 
-const Trigger = forwardRef(({ state: { isOpen, revealCount }, ...rest }, ref) => (
+const Trigger = forwardRef(({ state: { revealCount }, ...rest }, ref) => (
 	<Button ref={ref} look="link" size="small" {...rest}>
-		{isOpen ? 'Hide' : 'Show'} {revealCount} {revealCount === 1 ? 'item' : 'items'}
+		Show {revealCount} {revealCount === 1 ? 'item' : 'items'}
 	</Button>
 ));
 
