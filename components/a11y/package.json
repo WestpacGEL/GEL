@@ -60,6 +60,7 @@
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
+		"@westpac/body": "^1.4.0",
 		"cypress": "^7.4.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.3"

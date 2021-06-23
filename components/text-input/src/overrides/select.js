@@ -13,12 +13,13 @@ import {
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { sizeMap, getHeight, getMaxWidth } from '../_utils';
 import { defaultProps } from '../Select';
+import { forwardRef } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
-const Select = ({ state: _, ...rest }) => <select {...rest} />;
+const Select = forwardRef(({ state: _, ...rest }, ref) => <select ref={ref} {...rest} />);
 
 const BlenderSelect = ({ className, ...rest }) => (
 	<Select className={formatClassName(className)} {...rest} />

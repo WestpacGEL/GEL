@@ -29,7 +29,7 @@ const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
 // Styles
 // ==============================
 
-const panelStyles = (_, { open, dropdownSize }) => {
+const panelStyles = (_, { isOpen, dropdownSize }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
 
@@ -49,8 +49,8 @@ const panelStyles = (_, { open, dropdownSize }) => {
 
 	return mq({
 		label: getLabel('buttonDropdown-panel'),
-		visibility: open ? 'visible' : 'hidden',
-		height: open ? 'auto' : '0px',
+		visibility: isOpen ? 'visible' : 'hidden',
+		height: isOpen ? 'auto' : '0px',
 		overflow: 'hidden',
 		position: 'absolute',
 		left: 0,
@@ -70,8 +70,8 @@ const panelStyles = (_, { open, dropdownSize }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { open, dropdownSize }) => {
-	const props = { open, dropdownSize };
+const blenderStyles = (_, { isOpen, dropdownSize }) => {
+	const props = { isOpen, dropdownSize };
 	const baseStyles = panelStyles(_, defaultProps);
 
 	let modifiers = getModifier(defaultProps, props);

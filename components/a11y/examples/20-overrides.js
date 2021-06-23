@@ -61,16 +61,16 @@ function Example({ brand }) {
 			<p>Note: The example link below is visibility hidden until focussed.</p>
 			<SkipLink href="#content">Different background</SkipLink>
 			<p>
-				<a href="?">Links in this section</a> are skipped over
+				<a href="#0">Links in this section</a> are skipped over
 			</p>
 			<p>
-				<a href="?">Links in this section</a> are skipped over
+				<a href="#0">Links in this section</a> are skipped over
 			</p>
 			<p>
-				<a href="?">Links in this section</a> are skipped over
+				<a href="#0">Links in this section</a> are skipped over
 			</p>
 			<p>
-				<a href="?">Links in this section</a> are skipped over
+				<a href="#0">Links in this section</a> are skipped over
 			</p>
 			<div
 				id="content"
@@ -82,16 +82,16 @@ function Example({ brand }) {
 					This is example content, linked to by the SkipLink component above. Sit sint irure do eu.
 					Non aliquip voluptate et nisi est voluptate in aliquip. Tempor ea est et velit anim
 					incididunt qui ipsum anim id. Irure exercitation adipisicing velit minim ea aute esse elit
-					amet minim in minim cillum. <a href="?">Cupidatat aliqua</a> eiusmod ipsum occaecat
+					amet minim in minim cillum. <a href="#0">Cupidatat aliqua</a> eiusmod ipsum occaecat
 					proident exercitation.
 				</p>
 				<p>
 					Velit irure et ullamco aute do consectetur non est veniam irure. Sunt nulla incididunt
 					esse incididunt qui velit est laboris labore reprehenderit adipisicing voluptate magna ex.
-					Velit esse minim nisi consectetur adipisicing amet et officia <a href="?">occaecat qui</a>
-					. Voluptate aliqua adipisicing Lorem fugiat ipsum id aliqua elit velit irure sint. Sit
-					voluptate ex id ea dolor. Occaecat pariatur ullamco duis occaecat dolore veniam duis
-					tempor.
+					Velit esse minim nisi consectetur adipisicing amet et officia{' '}
+					<a href="#0">occaecat qui</a>. Voluptate aliqua adipisicing Lorem fugiat ipsum id aliqua
+					elit velit irure sint. Sit voluptate ex id ea dolor. Occaecat pariatur ullamco duis
+					occaecat dolore veniam duis tempor.
 				</p>
 				<p>
 					Irure voluptate enim ullamco sint nulla magna labore ullamco elit voluptate ex fugiat

@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { GEL, jsx, css, Global, useBrand, useMediaQuery } from '@westpac/core';
-import { useContainerQuery } from '@westpac/hooks';
-import { useRef, useEffect, Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { SkipLink } from '@westpac/a11y';
 import { useRouter } from 'next/router';
+import { Fragment } from 'react';
 import gql from 'graphql-tag';
 
 import { useBrandSwitcher, BrandSwitcherProvider } from '../providers/brand-switcher';
-import { SidebarContextProvider, useSidebarContext } from '../providers/sidebar';
+import { SidebarContextProvider } from '../providers/sidebar';
 import { brandOverrides } from '../../brand-overrides';
 import { FontPreloader } from '../fontPreloader';
 import { BrandPicker } from '../brand-picker';
@@ -81,6 +81,7 @@ const Wrapper = (props) => {
 		return (
 			<GEL brand={brandOverrides(brands['WBC'])}>
 				<GlobalReset />
+				<SkipLink href="#content">Skip to main content</SkipLink>
 				<BrandPicker />
 			</GEL>
 		);
@@ -107,6 +108,7 @@ const Wrapper = (props) => {
 	return (
 		<GEL brand={brandOverrides(brands[brand])}>
 			<GlobalReset />
+			<SkipLink href="#content">Skip to main content</SkipLink>
 			<SidebarContextProvider>
 				<GridContainer>
 					<Sidebar items={navigation} />
