@@ -2,7 +2,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
-import { Fragment, useEffect, useLayoutEffect, useState, useRef, forwardRef } from 'react';
+import { Fragment, useEffect, useRef, forwardRef } from 'react';
 import { FocusOn, AutoFocusInside } from 'react-focus-on';
 
 import { useSidebarContext } from '../providers/sidebar';
