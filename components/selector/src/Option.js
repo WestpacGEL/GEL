@@ -45,10 +45,6 @@ export const Option = forwardRef(
 
 		const {
 			instanceId,
-			data,
-			checked: ctxChecked,
-			overrides: ctxOverrides,
-			defaultValue: _,
 			type = 'radio',
 			name,
 			nextIndicator,
@@ -56,8 +52,11 @@ export const Option = forwardRef(
 			pictogramWidth,
 			pictogramHeight,
 			disabled,
+			defaultValue: _,
+			data,
+			checked: ctxChecked,
 			onChange,
-			toggleCheck,
+			overrides: ctxOverrides,
 			...restCtx
 		} = useSelectorContext();
 
