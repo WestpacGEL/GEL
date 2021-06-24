@@ -2,7 +2,8 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
-import { Fragment, useEffect, useLayoutEffect, useState, useRef, forwardRef } from 'react';
+import { useEffect, useRef, forwardRef } from 'react';
+import { FocusOn } from 'react-focus-on';
 
 import { useSidebarContext } from '../providers/sidebar';
 import { BrandDropdown } from '../brand-dropdown';
@@ -41,7 +42,7 @@ export const Sidebar = ({ items }) => {
 	});
 
 	return (
-		<Fragment>
+		<FocusOn enabled={isOpen} autoFocus={false}>
 			<div
 				css={mq({
 					boxSizing: 'border-box',
@@ -66,6 +67,7 @@ export const Sidebar = ({ items }) => {
 				<BrandDropdown />
 				<Navigation items={items} />
 			</div>
+
 			{/* Background overlay */}
 			{isOpen && (
 				<div
@@ -83,7 +85,7 @@ export const Sidebar = ({ items }) => {
 					})}
 				/>
 			)}
-		</Fragment>
+		</FocusOn>
 	);
 };
 
