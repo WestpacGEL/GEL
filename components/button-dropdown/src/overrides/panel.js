@@ -71,7 +71,7 @@ const panelStyles = (_, { isOpen, dropdownSize }) => {
 // ==============================
 
 const blenderStyles = (_, { isOpen, dropdownSize }) => {
-	const props = { isOpen, dropdownSize };
+	const props = { open: isOpen, dropdownSize };
 	const baseStyles = panelStyles(_, defaultProps);
 
 	let modifiers = getModifier(defaultProps, props);
