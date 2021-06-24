@@ -140,7 +140,7 @@ const StickyHeader = () => {
 				>
 					<h1
 						ref={pageHeadingRef}
-						tabIndex="0"
+						tabIndex="-1"
 						css={{
 							margin: 0,
 							...PACKS.typeScale.bodyFont[9],
