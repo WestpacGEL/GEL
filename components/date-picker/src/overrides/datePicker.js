@@ -11,7 +11,7 @@ const DatePicker = forwardRef(({ state: _, className, ...rest }, ref) => {
 	const { COLORS } = useBrand();
 
 	return (
-		<Fragment>
+		<div className={className}>
 			<Global
 				styles={css`
 					:root {
@@ -33,10 +33,8 @@ const DatePicker = forwardRef(({ state: _, className, ...rest }, ref) => {
 					}
 				`}
 			/>
-			<div className={className}>
-				<duet-date-picker ref={ref} {...rest}></duet-date-picker>
-			</div>
-		</Fragment>
+			<duet-date-picker ref={ref} {...rest}></duet-date-picker>
+		</div>
 	);
 });
 
@@ -67,6 +65,11 @@ const datePickerStyles = () => {
 		.duet-date__day[aria-disabled='true'] {
 			color: ${COLORS.muted};
 		}
+
+		// TODO:
+		// - size
+		// - btn icon
+		// - focus
 	`;
 };
 
