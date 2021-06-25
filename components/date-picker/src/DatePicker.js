@@ -1,14 +1,13 @@
 /** @jsx jsx */
 
 import React, { useEffect, useRef } from 'react';
-import { jsx } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultDatePicker } from './overrides/datePicker';
-import { defineCustomElements } from '@duetds/date-picker/dist/loader';
+import pkg from '../package.json';
 
-// Register Duet Date Picker
-defineCustomElements(window);
+import { defineCustomElements } from '@duetds/date-picker/dist/loader';
 
 function useListener(ref, eventName, handler) {
 	useEffect(() => {
@@ -32,7 +31,8 @@ export const DatePicker = ({
 	onClose,
 	dateAdapter,
 	localization,
-	...props
+	overrides: componentOverrides,
+	...rest
 }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -42,6 +42,13 @@ export const DatePicker = ({
 	const defaultOverrides = {
 		DatePicker: defaultDatePicker,
 	};
+
+	useEffect(() => {
+		// Register Duet Date Picker
+		if (!customElements.get('duet-date-picker')) {
+			defineCustomElements(window);
+		}
+	}, []);
 
 	const ref = useRef(null);
 
@@ -86,9 +93,15 @@ export const DatePicker = ({
 
 DatePicker.propTypes = {
 	/**
-	 * Describe `someProperty` here
+	 * The override API
 	 */
-	// someProperty: PropTypes.string,
+	overrides: PropTypes.shape({
+		DatePicker: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
 
 DatePicker.defaultProps = {};

@@ -7,7 +7,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
-			<DatePicker value="2021-08-24" onChange={(e) => console.log(e.detail)} />
+			<DatePicker value="2021-06-25" onChange={(e) => console.log(e.detail)} />
 		</GEL>
 	);
 }
