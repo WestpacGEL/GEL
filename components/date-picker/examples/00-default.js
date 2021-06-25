@@ -6,7 +6,8 @@ import { DatePicker } from '@westpac/date-picker';
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<DatePicker />
+			<h2>Default</h2>
+			<DatePicker value="2021-08-24" onChange={(e) => console.log(e.detail)} />
 		</GEL>
 	);
 }
