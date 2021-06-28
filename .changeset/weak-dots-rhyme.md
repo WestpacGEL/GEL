@@ -3,4 +3,4 @@
 ---
 
 - Update GELIcon assistive text
-- Fix icon positioning within parent span, noticable in xsmall size
+- Fix svg positioning within parent span, noticable in xsmall size
