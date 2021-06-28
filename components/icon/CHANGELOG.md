@@ -1,5 +1,12 @@
 # @westpac/icon
 
+## 1.3.2
+
+### Patch Changes
+
+- 6b03b105: - Update GELIcon assistive text
+  - Fix svg positioning within parent span, noticable in xsmall size
+
 ## 1.3.1
 
 ### Patch Changes
