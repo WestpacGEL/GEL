@@ -33,6 +33,10 @@ const pictogramStyles = (_, { width, height, viewBoxWidth, viewBoxHeight }) => {
 		lineHeight: 1,
 		verticalAlign: 'middle',
 		...styleSize,
+
+		svg: {
+			display: 'block',
+		},
 	})[0];
 };
 
