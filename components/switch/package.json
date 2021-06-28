@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/switch",
-	"version": "1.0.2",
+	"version": "1.1.0",
 	"description": "Custom toggle controls used to capture simple responses, powered by checkbox elements",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/switch",

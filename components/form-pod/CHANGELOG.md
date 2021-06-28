@@ -1,5 +1,16 @@
 # @westpac/form-pod
 
+## 2.0.0
+
+### Major Changes
+
+- f55d8a48: Refactor to use overrides
+
+### Patch Changes
+
+- Updated dependencies [6b03b105]
+  - @westpac/icon@1.3.2
+
 ## 1.0.0
 
 ### Patch Changes
