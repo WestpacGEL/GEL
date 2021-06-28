@@ -1,5 +1,11 @@
 # @westpac/a11y
 
+## 1.0.2
+
+### Patch Changes
+
+- a77fb36f: Update SkipLink link styling
+
 ## 1.0.1
 
 ### Patch Changes

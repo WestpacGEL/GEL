@@ -1,5 +1,16 @@
 # @westpac/button-dropdown
 
+## 1.1.2
+
+### Patch Changes
+
+- 3cfae7b0: Remove panel focus() on close, ensure focus moves to button on close, even when controlled externally
+- a664e1b0: - Fix outside click functionality, use new useOutsideClick hook
+  - Rename internal open state
+- Updated dependencies [efacd90d]
+  - @westpac/hooks@2.0.0
+  - @westpac/button@1.2.1
+
 ## 1.1.1
 
 ### Patch Changes

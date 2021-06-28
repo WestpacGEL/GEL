@@ -1,5 +1,16 @@
 # @westpac/modal
 
+## 1.1.4
+
+### Patch Changes
+
+- 9ebaca8c: Remove unnecessary role="dialog" attribute, caused verbose announcement in screen readers
+- Updated dependencies [6b03b105]
+- Updated dependencies [efacd90d]
+  - @westpac/icon@1.3.2
+  - @westpac/hooks@2.0.0
+  - @westpac/button@1.2.1
+
 ## 1.1.3
 
 ### Patch Changes

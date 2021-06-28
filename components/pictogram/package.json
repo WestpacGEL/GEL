@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/pictogram",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"description": "Small brand illustrations generally for visual embellishment, implemented as SVGs",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/pictogram",

@@ -1,5 +1,11 @@
 # @westpac/hooks
 
+## 2.0.0
+
+### Major Changes
+
+- efacd90d: - update useOutsideClick hook: new function API, take multiple refs, use useLayoutEffect and listenWhen
+
 ## 1.1.1
 
 ### Patch Changes

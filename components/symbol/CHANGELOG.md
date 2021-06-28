@@ -1,5 +1,12 @@
 # @westpac/symbol
 
+## 1.1.2
+
+### Patch Changes
+
+- 24db70e1: Fix svg positioning within parent span, noticable when small
+- 4ee27bf9: Destructure height prop and pass to state
+
 ## 1.1.1
 
 ### Patch Changes

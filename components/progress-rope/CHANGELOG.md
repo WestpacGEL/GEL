@@ -1,5 +1,13 @@
 # @westpac/progress-rope
 
+## 2.1.1
+
+### Patch Changes
+
+- 3912195d: Fixed blender error
+- Updated dependencies [a77fb36f]
+  - @westpac/a11y@1.0.2
+
 ## 2.1.0
 
 ### Minor Changes
