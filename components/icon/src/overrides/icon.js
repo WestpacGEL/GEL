@@ -70,6 +70,10 @@ const iconStyles = (_, { color, size }) => {
 		verticalAlign: 'middle',
 		color: colorMap[color] || color || COLORS.muted,
 		...styleSize,
+
+		svg: {
+			display: 'block',
+		},
 	})[0];
 };
 
