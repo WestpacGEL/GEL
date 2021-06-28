@@ -1,5 +1,14 @@
 # @keystonejs/field-content
 
+## 5.4.6
+
+### Patch Changes
+
+- Updated dependencies [b40a4b64]
+- Updated dependencies [6b03b105]
+  - @westpac/wbc@3.0.0
+  - @westpac/icon@1.3.2
+
 ## 5.4.5
 
 ### Patch Changes
