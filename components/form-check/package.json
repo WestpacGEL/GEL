@@ -37,29 +37,30 @@
 	],
 	"license": "GPL-3.0+",
 	"scripts": {
-		"start": "PACKAGE_NAME=form-check webpack-dev-server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=form-check NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/form-check.cjs.js",
-	"module": "dist/form-check.esm.js",
+	"main": "dist/westpac-form-check.cjs.js",
+	"module": "dist/westpac-form-check.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.9.6",
+		"@babel/runtime": "^7.14.0",
 		"@westpac/body": "^1.4.0",
-		"@westpac/core": "^2.0.0",
+		"@westpac/button": "^1.2.0",
+		"@westpac/core": "^2.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
-		"react": "^16.13.1"
+		"react": "^17.0.2"
 	},
 	"devDependencies": {
 		"@westpac/alert": "^1.2.1",
 		"@westpac/grid": "^1.0.1",
-		"cypress": "^4.5.0",
-		"react": "^16.13.1",
-		"start-server-and-test": "^1.11.0"
+		"cypress": "^7.4.0",
+		"react": "^17.0.2",
+		"start-server-and-test": "^1.12.3"
 	}
 }

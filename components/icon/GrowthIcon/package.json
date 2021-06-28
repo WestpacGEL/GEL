@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/GrowthIcon"
-	}
+	"main": "dist/westpac-icon-GrowthIcon.cjs.js",
+	"module": "dist/westpac-icon-GrowthIcon.esm.js"
 }

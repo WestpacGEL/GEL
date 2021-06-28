@@ -1,6 +1,5 @@
 const babelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except');
 const { slugFromFilename, labelFromSlug, findExampleFiles, makeCode } = require('./_utils.js');
-const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
@@ -61,6 +60,12 @@ module.exports = () => ({
 		publicPath: '/',
 	},
 
+	performance: {
+		hints: false,
+		maxEntrypointSize: 512000,
+		maxAssetSize: 512000,
+	},
+
 	module: {
 		rules: [
 			{
@@ -80,18 +85,23 @@ module.exports = () => ({
 			mode: 'docs',
 			template: path.normalize(`${__dirname}/index.html`),
 		}),
-		new HtmlWebpackRootPlugin(),
-		new CopyPlugin(
-			components
-				.filter((component) => component.landing)
+		new CopyPlugin({
+			patterns: components
+				.filter(
+					(component) =>
+						component.landing &&
+						fs.existsSync(
+							path.normalize(`${__dirname}/../../components/${component.slug}/examples/assets/`)
+						)
+				)
 				.map((component) => ({
 					from: '*',
 					to: `${component.slug}/assets/`,
 					context: path.normalize(
 						`${__dirname}/../../components/${component.slug}/examples/assets/`
 					),
-				}))
-		),
+				})),
+		}),
 	],
 	devServer: {
 		historyApiFallback: true,

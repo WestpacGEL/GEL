@@ -5,7 +5,7 @@ import { TextInput } from '@westpac/text-input';
 import { Title, Container } from '../../../../helpers/demos';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>2 characters</Title>
@@ -25,3 +25,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

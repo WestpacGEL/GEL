@@ -25,6 +25,7 @@ const HomePageStickyHeaderImage = ({ brand: BRAND, hide, ...rest }) => {
 				css={{
 					width: 'auto',
 					height: '100%',
+					display: 'block',
 				}}
 			/>
 		</div>
@@ -42,6 +43,7 @@ const HomePageStickyHeaderImage = ({ brand: BRAND, hide, ...rest }) => {
 				css={{
 					width: '100%',
 					height: 'auto',
+					display: 'block',
 				}}
 			/>
 		</div>
@@ -59,6 +61,7 @@ const HomePageStickyHeaderImage = ({ brand: BRAND, hide, ...rest }) => {
 				css={{
 					width: '100%',
 					height: 'auto',
+					display: 'block',
 				}}
 			/>
 		</div>
@@ -79,6 +82,7 @@ const HomePageStickyHeaderImage = ({ brand: BRAND, hide, ...rest }) => {
 				css={{
 					width: 'auto',
 					height: '100%',
+					display: 'block',
 				}}
 			/>
 		</div>

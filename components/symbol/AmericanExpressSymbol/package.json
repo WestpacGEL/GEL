@@ -1,7 +1,4 @@
 {
-	"main": "dist/symbol.cjs.js",
-	"module": "dist/symbol.esm.js",
-	"preconstruct": {
-		"source": "../src/symbols/AmericanExpressSymbol"
-	}
+	"main": "dist/westpac-symbol-AmericanExpressSymbol.cjs.js",
+	"module": "dist/westpac-symbol-AmericanExpressSymbol.esm.js"
 }

@@ -9,11 +9,21 @@ import { Code } from './_utils';
 function Example({ brand }) {
 	const ref = useRef();
 
-	useOutsideClick(ref, () => alert('Clicked outside'));
+	useOutsideClick({
+		handler: () => console.log('Clicked outside'),
+		refs: [ref],
+		listenWhen: true,
+	});
 
 	return (
 		<GEL brand={brand}>
-			<Code>{`useOutsideClick(ref, () => alert(Clicked outside))`}</Code>
+			<Code>
+				{`useOutsideClick({ 
+	handler: () => console.log('Clicked outside'), 
+	refs: [ref], 
+	listenWhen: true 
+})`}
+			</Code>
 			<br />
 			<div css={{ display: 'inline-block' }} ref={ref}>
 				<Button>Click outside me</Button>

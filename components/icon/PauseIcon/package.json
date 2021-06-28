@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/PauseIcon"
-	}
+	"main": "dist/westpac-icon-PauseIcon.cjs.js",
+	"module": "dist/westpac-icon-PauseIcon.esm.js"
 }

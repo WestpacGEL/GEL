@@ -1,5 +1,6 @@
 /** @jsx jsx */
 
+import { forwardRef } from 'react';
 import { jsx, useBrand, getLabel, overrideReconciler, useInstanceId } from '@westpac/core';
 import PropTypes from 'prop-types';
 
@@ -14,115 +15,112 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Option = ({
-	value,
-	checked: checkedProp,
-	hint,
-	className,
-	children,
-	overrides,
-	...rest
-}) => {
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
+export const Option = forwardRef(
+	({ value, checked: checkedProp, hint, className, children, overrides, ...rest }, ref) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	const {
-		instanceId,
-		size = 'medium',
-		inline,
-		data,
-		checked: ctxChecked,
-		overrides: ctxOverrides,
-		defaultValue: _,
-		type = 'checkbox',
-		name,
-		disabled,
-		onChange,
-		toggleCheck,
-		...restCtx
-	} = useFormCheckContext();
+		const {
+			instanceId,
+			type = 'checkbox',
+			name,
+			size = 'medium',
+			inline,
+			disabled,
+			defaultValue: _,
+			show,
+			revealCount,
+			isOpen,
+			data,
+			checked: ctxChecked,
+			onChange,
+			overrides: ctxOverrides,
+			...restCtx
+		} = useFormCheckContext();
 
-	const optionId = `${instanceId}-option-${useInstanceId()}`;
-	const hintId = `${optionId}-hint`;
+		const optionId = `${instanceId}-option-${useInstanceId()}`;
+		const hintId = `${optionId}-hint`;
 
-	const defaultOverrides = {
-		Option: defaultOption,
-		Label: defaultLabel,
-		Hint: defaultHint,
-	};
+		const defaultOverrides = {
+			Option: defaultOption,
+			Label: defaultLabel,
+			Hint: defaultHint,
+		};
 
-	const componentOverrides = overrides || ctxOverrides;
-	const checked = ctxChecked ? ctxChecked.includes(value) : checkedProp;
+		const componentOverrides = overrides || ctxOverrides;
+		const checked = ctxChecked ? ctxChecked.includes(value) : checkedProp;
 
-	const state = {
-		optionId,
-		value,
-		ctxChecked,
-		checked,
-		onChange,
-		type,
-		name,
-		size,
-		inline,
-		disabled,
-		hint,
-		hintId,
-		overrides: componentOverrides,
-		...rest,
-	};
+		const state = {
+			optionId,
+			value,
+			ctxChecked,
+			checked,
+			onChange,
+			type,
+			name,
+			size,
+			inline,
+			disabled,
+			hint,
+			hintId,
+			overrides: componentOverrides,
+			...rest,
+		};
 
-	const {
-		Option: { component: Option, styles: optionStyles, attributes: optionAttributes },
-		Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
-		Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
-	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+		const {
+			Option: { component: Option, styles: optionStyles, attributes: optionAttributes },
+			Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
+			Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	return (
-		<Option
-			className={className}
-			state={state}
-			{...optionAttributes(state)}
-			css={optionStyles(state)}
-		>
-			{/* a11y: input not exposed as an override, contains logic required to function */}
-			<input
-				id={optionId}
-				aria-describedby={hint && hintId}
-				onChange={
-					disabled
-						? null
-						: typeof onChange === 'undefined'
-						? null
-						: (event) => onChange(event, value, checked)
-				}
-				value={value}
-				checked={checked}
-				disabled={disabled}
-				type={type}
-				name={name}
-				{...restCtx}
-				{...rest}
-				css={{
-					label: getLabel('formCheck-option-input'),
-					position: 'absolute',
-					zIndex: '-1',
-					opacity: 0,
-					appearance: 'none',
-				}}
-			/>
-			<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
-				{children}
-			</Label>
-			{hint && (
-				<Hint state={state} {...hintAttributes(state)} css={hintStyles(state)}>
-					{hint}
-				</Hint>
-			)}
-		</Option>
-	);
-};
+		return (
+			<Option
+				className={className}
+				state={state}
+				{...optionAttributes(state)}
+				css={optionStyles(state)}
+			>
+				{/* a11y: input not exposed as an override, contains logic required to function */}
+				<input
+					ref={ref}
+					id={optionId}
+					aria-describedby={hint && hintId}
+					onChange={
+						disabled
+							? null
+							: typeof onChange === 'undefined'
+							? null
+							: (event) => onChange(event, value, checked)
+					}
+					value={value}
+					checked={checked}
+					disabled={disabled}
+					type={type}
+					name={name}
+					{...restCtx}
+					{...rest}
+					css={{
+						label: getLabel('formCheck-option-input'),
+						position: 'absolute',
+						zIndex: '-1',
+						opacity: 0,
+						appearance: 'none',
+					}}
+				/>
+				<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
+					{children}
+				</Label>
+				{hint && (
+					<Hint state={state} {...hintAttributes(state)} css={hintStyles(state)}>
+						{hint}
+					</Hint>
+				)}
+			</Option>
+		);
+	}
+);
 
 // ==============================
 // Types

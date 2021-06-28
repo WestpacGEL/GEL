@@ -86,6 +86,8 @@ export const DoAndAvoid = {
 
 		const [doImage, setDoImage] = useState(value.doImage);
 		const [dontImage, setDontImage] = useState(value.dontImage);
+		const [doAlt, setDoAlt] = useState(value.doAlt);
+		const [dontAlt, setDontAlt] = useState(value.dontAlt);
 		const [doText, setDoText] = useState(value.doText);
 		const [dontText, setDontText] = useState(value.dontText);
 
@@ -93,10 +95,12 @@ export const DoAndAvoid = {
 			onChange({
 				doImage,
 				dontImage,
+				doAlt,
+				dontAlt,
 				doText,
 				dontText,
 			});
-		}, [doText, doImage, dontImage, dontText]);
+		}, [doImage, dontImage, doAlt, dontAlt, doText, dontText]);
 
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
@@ -128,6 +132,20 @@ export const DoAndAvoid = {
 					</FieldInput>
 				</FieldContainer>
 				<FieldContainer>
+					<FieldLabel htmlFor={'do-alt'} field={{ label: 'Do Alternative Text', config: {} }} />
+					<FieldInput>
+						<input
+							css={inputStyles}
+							type="text"
+							id="do-alt"
+							value={doAlt}
+							onChange={async (e) => {
+								setDoAlt(e.target.value);
+							}}
+						/>
+					</FieldInput>
+				</FieldContainer>
+				<FieldContainer>
 					<FieldLabel htmlFor={'do-text'} field={{ label: 'Do Text', config: {} }} />
 					<FieldInput>
 						<input
@@ -141,6 +159,7 @@ export const DoAndAvoid = {
 						/>
 					</FieldInput>
 				</FieldContainer>
+
 				<FieldContainer>
 					<FieldLabel htmlFor={'avoid-image'} field={{ label: 'Avoid Image', config: {} }} />
 					{dontImageUploadState && (
@@ -167,6 +186,23 @@ export const DoAndAvoid = {
 					</FieldInput>
 				</FieldContainer>
 				<FieldContainer>
+					<FieldLabel
+						htmlFor={'avoid-alt'}
+						field={{ label: 'Avoid Alternative Text', config: {} }}
+					/>
+					<FieldInput>
+						<input
+							css={inputStyles}
+							type="text"
+							id="avoid-alt"
+							value={dontAlt}
+							onChange={(e) => {
+								setDontAlt(e.target.value);
+							}}
+						/>
+					</FieldInput>
+				</FieldContainer>
+				<FieldContainer>
 					<FieldLabel htmlFor={'avoid-text'} field={{ label: 'Avoid Text', config: {} }} />
 					<FieldInput>
 						<input
@@ -183,7 +219,7 @@ export const DoAndAvoid = {
 			</Fragment>
 		);
 	},
-	component: ({ dontImage, dontText, doImage, doText }) => {
+	component: ({ dontImage, dontAlt, dontText, doImage, doAlt, doText }) => {
 		const { COLORS, TYPE } = useBrand();
 		const mq = useMediaQuery();
 
@@ -194,7 +230,7 @@ export const DoAndAvoid = {
 					css={mq({ marginTop: ['24px', null, null, null, '42px'], height: 'auto' })}
 				>
 					<Figure>
-						<Image src={doImage} />
+						<Image src={doImage} alt={doAlt} />
 						<Figcaption>
 							<span css={{ color: COLORS.success, ...TYPE.bodyFont[700] }}>Do</span> - {doText}
 						</Figcaption>
@@ -209,7 +245,7 @@ export const DoAndAvoid = {
 					})}
 				>
 					<Figure>
-						<Image src={dontImage} />
+						<Image src={dontImage} alt={dontAlt} />
 						<Figcaption>
 							<span css={{ color: COLORS.danger, ...TYPE.bodyFont[700] }}>Avoid</span> - {dontText}
 						</Figcaption>

@@ -12,12 +12,13 @@ import {
 } from '@westpac/core';
 import { defaultProps } from '../TextInput';
 import { sizeMap, getHeight, getMaxWidth } from '../_utils';
+import { forwardRef } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
-const TextInput = ({ state: _, ...rest }) => <input {...rest} />;
+const TextInput = forwardRef(({ state: _, ...rest }, ref) => <input ref={ref} {...rest} />);
 
 const BlenderTextInput = ({ className, ...rest }) => (
 	<TextInput className={formatClassName(className)} {...rest} />

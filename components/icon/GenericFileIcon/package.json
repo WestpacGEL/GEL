@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/GenericFileIcon"
-	}
+	"main": "dist/westpac-icon-GenericFileIcon.cjs.js",
+	"module": "dist/westpac-icon-GenericFileIcon.esm.js"
 }

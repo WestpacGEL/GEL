@@ -137,9 +137,9 @@ const findDemoFiles = (component, parent = '') => {
 		};
 
 		return recurseFindFiles(demoDir, data);
-	} else {
-		console.error(`Package doesn't exist: ${demoDir}`);
 	}
+
+	return [];
 };
 
 /**

@@ -10,7 +10,7 @@ import { BlockList, BlockListItem, BlockListHeading } from '../block-list';
 import { getURL } from '../_utils';
 
 export const RelatedInformation = ({ item }) => {
-	const { SPACING, PACKS } = useBrand();
+	const { SPACING, PACKS, COLORS } = useBrand();
 	const { relatedPages, relatedInfo } = item;
 	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
 
@@ -27,7 +27,7 @@ export const RelatedInformation = ({ item }) => {
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
 
 	return (
-		<Section light>
+		<Section light css={{ borderTop: `1px solid ${COLORS.border}` }}>
 			<Container>
 				<SectionHeading id="related-information" tabIndex="-1">
 					Related information

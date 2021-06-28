@@ -7,7 +7,7 @@ import { RelatedInformation } from '../../related-information';
 
 export const DesignTab = ({ blocks, item }) => {
 	return (
-		<div id="design-tab" css={{ position: 'relative' }}>
+		<div css={{ position: 'relative' }}>
 			<BlocksDocs blocks={blocks} item={item} />
 			<RelatedInformation item={item} />
 		</div>

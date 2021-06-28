@@ -26,11 +26,11 @@ const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
 // Styles
 // ==============================
 
-const panelStyles = (_, { open, position, ...rest }) => {
+const panelStyles = (_, { isOpen, position, ...rest }) => {
 	const { COLORS } = useBrand();
 	return {
 		label: getLabel('popover-panel'),
-		visibility: open && !position.empty ? 'visible' : 'hidden',
+		visibility: isOpen && !position.empty ? 'visible' : 'hidden',
 		position: 'absolute',
 		[!position.offset || position.offset === 'left' ? 'left' : 'right']: !position.offset
 			? '50%'
@@ -64,9 +64,8 @@ const panelStyles = (_, { open, position, ...rest }) => {
 		'::before': {
 			borderLeftWidth: '8px',
 			borderRightWidth: '8px',
-			[!position.offset || position.offset === 'left'
-				? 'marginLeft'
-				: 'marginRight']: !position.offset ? '-8px' : '-1px',
+			[!position.offset || position.offset === 'left' ? 'marginLeft' : 'marginRight']:
+				!position.offset ? '-8px' : '-1px',
 			[position.placement === 'top' ? 'borderTop' : 'borderBottom']:
 				rest.placement !== 'none' && `12px solid ${COLORS.muted}`,
 		},
@@ -84,8 +83,8 @@ const panelStyles = (_, { open, position, ...rest }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { open, position, placement }) => {
-	const props = { open, placement };
+const blenderStyles = (_, { isOpen, position, placement }) => {
+	const props = { open: isOpen, placement };
 	const dProps = { ...defaultProps, placement: 'none' };
 	const baseStyles = panelStyles(_, {
 		...defaultProps,
@@ -97,7 +96,7 @@ const blenderStyles = (_, { open, position, placement }) => {
 	if (!modifiers.length) return baseStyles;
 
 	const modifierStyles = panelStyles(_, {
-		open,
+		open: isOpen,
 		position,
 		placement,
 	});
@@ -125,11 +124,11 @@ const panelAttributes = (_, { instanceId }) => ({
 	id: instanceId,
 });
 
-const blenderAttributes = (_, { instanceId, open, placement }) => ({
+const blenderAttributes = (_, { instanceId, isOpen, placement }) => ({
 	...panelAttributes(_, { instanceId }),
 	'data-js': 'popover-panel__version__',
 	className: classNames({
-		[`__convert__popover-panel-open`]: open,
+		[`__convert__popover-panel-open`]: isOpen,
 		[`__convert__popover-panel-placement-${placement}`]: placement,
 	}),
 });

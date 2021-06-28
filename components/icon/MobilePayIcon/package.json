@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/MobilePayIcon"
-	}
+	"main": "dist/westpac-icon-MobilePayIcon.cjs.js",
+	"module": "dist/westpac-icon-MobilePayIcon.esm.js"
 }

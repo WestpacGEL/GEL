@@ -1,7 +1,4 @@
 {
-	"main": "dist/icon.cjs.js",
-	"module": "dist/icon.esm.js",
-	"preconstruct": {
-		"source": "../src/icons/MoneyInIcon"
-	}
+	"main": "dist/westpac-icon-MoneyInIcon.cjs.js",
+	"module": "dist/westpac-icon-MoneyInIcon.esm.js"
 }

@@ -6,7 +6,8 @@ import { Body } from '@westpac/body';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
 const Link = (props) => <a href="#" css={{ marginRight: '1rem' }} {...props} />;
-export default ({ context, showCode, showDemo }) => {
+
+const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Body>
@@ -56,3 +57,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

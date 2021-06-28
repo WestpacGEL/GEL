@@ -17,7 +17,7 @@ describe('Alert', () => {
 				.wait(500); // we have to wait for at least 400ms as the transition is 400. Let's keep it safe with 500ms
 
 			// assertion
-			cy.get(`[data-testing="alert${i}"]`).should('not.be.visible');
+			cy.get(`[data-testing="alert${i}"]`).should('not.exist');
 		});
 	});
 
@@ -31,7 +31,7 @@ describe('Alert', () => {
 
 	it('Alert can be state controlled', () => {
 		// assertion
-		cy.get('[data-testing="alert-state"]').should('not.be.visible');
+		cy.get('[data-testing="alert-state"]').should('not.exist');
 
 		// action
 		cy.get('[data-testing="toggle"]').click().wait(500); // same as above, waiting for the dismissable transition

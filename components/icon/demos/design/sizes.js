@@ -15,7 +15,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 
 const StyledCell = (props) => <Cell css={{ justifySelf: 'center' }} {...props} />;
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	const sizes = [
 		{ text: 'Extra small - 12px', size: 'xsmall' },
 		{ text: 'Small - 18px', size: 'small' },
@@ -60,3 +60,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

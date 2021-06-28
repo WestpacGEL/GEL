@@ -1,25 +1,39 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+
+import { defaultPanel } from './overrides/panel';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-export const FormPodPanel = ({ noBorderTop, ...props }) => {
-	const { COLORS } = useBrand();
+export const FormPodPanel = ({ borderTop, children, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		Panel: defaultPanel,
+	};
+
+	const state = {
+		borderTop,
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		Panel: { component: Panel, styles: panelStyles, attributes: panelAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<div
-			css={{
-				backgroundColor: '#fff',
-				borderTop: !noBorderTop && `1px solid ${COLORS.hero}`,
-				borderBottom: `1px solid ${COLORS.border}`,
-			}}
-			{...props}
-		/>
+		<Panel {...rest} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
+			{children}
+		</Panel>
 	);
 };
 
@@ -29,12 +43,24 @@ export const FormPodPanel = ({ noBorderTop, ...props }) => {
 
 FormPodPanel.propTypes = {
 	/**
-	 * Remove top border.
+	 * Enable top border.
 	 *
 	 * Enable when the 'Error summary' alert is shown.
 	 */
-	noBorderTop: PropTypes.bool,
+	borderTop: PropTypes.bool,
+
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Panel: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+	}),
 };
+
 FormPodPanel.defaultProps = {
-	noBorderTop: false,
+	borderTop: true,
 };

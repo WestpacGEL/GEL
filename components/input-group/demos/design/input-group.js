@@ -6,7 +6,7 @@ import { InputGroup, Before, After } from '@westpac/input-group';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Container } from '../../../../helpers/demos';
 
-export default ({ context, showCode, showDemo }) => {
+const Demo = ({ context, showCode, showDemo }) => {
 	const [value, setValue] = useState(0);
 
 	return (
@@ -67,3 +67,5 @@ export default ({ context, showCode, showDemo }) => {
 		</Playground>
 	);
 };
+
+export default Demo;

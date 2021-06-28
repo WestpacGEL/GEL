@@ -114,6 +114,8 @@ export const FormCheck = ({
 				</Option>
 			);
 		});
+	} else {
+		allChildren = children;
 	}
 
 	return (
@@ -124,7 +126,7 @@ export const FormCheck = ({
 				{...formCheckAttributes(state)}
 				css={formCheckStyles(state)}
 			>
-				{data ? allChildren : children}
+				{allChildren}
 			</FormCheck>
 		</FormCheckContext.Provider>
 	);
