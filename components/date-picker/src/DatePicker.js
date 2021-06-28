@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { defaultDatePicker } from './overrides/datePicker';
 import pkg from '../package.json';
 
-import { defineCustomElements } from '@duetds/date-picker/dist/loader';
+import { applyPolyfills, defineCustomElements } from '@duetds/date-picker/dist/loader';
 
 function useListener(ref, eventName, handler) {
 	useEffect(() => {
@@ -46,7 +46,9 @@ export const DatePicker = ({
 	useEffect(() => {
 		// Register Duet Date Picker
 		if (!customElements.get('duet-date-picker')) {
-			defineCustomElements(window);
+			applyPolyfills().then(() => {
+				defineCustomElements(window);
+			});
 		}
 	}, []);
 
