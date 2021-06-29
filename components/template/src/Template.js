@@ -1,24 +1,50 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { Header } from '@westpac/header';
+import { Footer } from '@westpac/footer';
 import PropTypes from 'prop-types';
 
-// ==============================
-// Utils
-// ==============================
+import { defaultTemplate } from './overrides/template';
+import { defaultMain } from './overrides/main';
+import pkg from '../package.json';
 
 // ==============================
 // Component
 // ==============================
 
-/**
- * Template: Westpac GEL template component
- */
-export const Template = ({ ...props }) => {
+// need to take header, footer children and props
+// Look into using grid for this?
+
+export const Template = ({ children, overrides: componentOverrides, ...rest }) => {
+	const {
+		OVERRIDES: { [pkg.name]: tokenOverrides },
+		[pkg.name]: brandOverrides,
+	} = useBrand();
+
+	const defaultOverrides = {
+		Template: defaultTemplate,
+		Main: defaultMain,
+	};
+
+	const state = {
+		overrides: componentOverrides,
+		...rest,
+	};
+
+	const {
+		Template: { component: Template, styles: templateStyles, attributes: templateAttributes },
+		Main: { component: Main, styles: mainStyles, attributes: mainAttributes },
+	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
 	return (
-		<div css={{}} {...props}>
-			Template
-		</div>
+		<Template {...rest} state={state} {...templateAttributes(state)} css={templateStyles(state)}>
+			<Header overrides={componentOverrides} />
+			<Main {...rest} state={state} {...mainAttributes(state)} css={mainStyles(state)}>
+				{children}
+			</Main>
+			<Footer overrides={componentOverrides}></Footer>
+		</Template>
 	);
 };
 

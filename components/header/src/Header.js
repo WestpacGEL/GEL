@@ -17,6 +17,8 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
+// TO DO: Add fixed option
+
 export const Header = ({
 	logoLink,
 	logoOnClick,

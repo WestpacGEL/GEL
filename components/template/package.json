@@ -18,7 +18,9 @@
 	"dependencies": {
 		"@babel/runtime": "^7.14.0",
 		"@westpac/core": "^2.1.0",
+		"@westpac/footer": "^1.0.0-beta",
 		"@westpac/grid": "^1.0.1",
+		"@westpac/header": "^1.0.0-beta",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
