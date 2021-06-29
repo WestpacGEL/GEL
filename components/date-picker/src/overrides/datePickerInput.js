@@ -20,13 +20,8 @@ function useListener(ref, eventName, handler) {
 // ==============================
 
 const DatePickerInput = ({
-	state: { id, placeholder, max, min, name, value },
+	state: { id, placeholder, max, min, name, value, onChange, onFocus, onBlur, onOpen, onClose },
 	className,
-	onChange,
-	onFocus,
-	onBlur,
-	onOpen,
-	onClose,
 	...rest
 }) => {
 	useEffect(() => {

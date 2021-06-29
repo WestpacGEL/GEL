@@ -25,6 +25,11 @@ export const DatePicker = ({
 	min,
 	name,
 	value,
+	onChange,
+	onFocus,
+	onBlur,
+	onOpen,
+	onClose,
 	overrides: componentOverrides,
 	...rest
 }) => {
@@ -46,6 +51,11 @@ export const DatePicker = ({
 		min,
 		name,
 		value,
+		onChange,
+		onFocus,
+		onBlur,
+		onOpen,
+		onClose,
 		overrides: componentOverrides,
 		...rest,
 	};
