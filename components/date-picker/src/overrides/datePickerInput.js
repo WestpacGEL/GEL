@@ -20,7 +20,22 @@ function useListener(ref, eventName, handler) {
 // ==============================
 
 const DatePickerInput = ({
-	state: { id, placeholder, max, min, name, value, onChange, onFocus, onBlur, onOpen, onClose },
+	state: {
+		id,
+		placeholder,
+		max,
+		min,
+		name,
+		value,
+		disableDates,
+		disableDays,
+		disableWeekends,
+		onChange,
+		onFocus,
+		onBlur,
+		onOpen,
+		onClose,
+	},
 	className,
 	...rest
 }) => {
@@ -112,6 +127,17 @@ const DatePickerInput = ({
 		ref.current.dateAdapter = dateAdapter;
 		ref.current.localization = localization;
 		ref.current.value = value;
+
+		ref.current.isDateDisabled = (date) => {
+			if (disableWeekends) {
+				return date.getDay() === 0 || date.getDay() === 6;
+			}
+			if (disableDays) {
+				return disableDays.includes(date.getDay());
+			}
+
+			return false;
+		};
 	}, []);
 
 	useLayoutEffect(() => {
