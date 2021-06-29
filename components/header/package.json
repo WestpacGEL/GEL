@@ -2,7 +2,7 @@
 	"name": "@westpac/header",
 	"version": "1.0.0-beta",
 	"description": "GEL header component",
-	"repository": "https://github.com/WestpacGEL/GEL.git",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/header",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {

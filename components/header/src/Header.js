@@ -17,13 +17,9 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-// TO DOOOOOO
-// probably allow onClick for the logo
-// should arrow be a button or a link?
-// should allow for a fixed header
-
 export const Header = ({
 	logoLink,
+	logoOnClick,
 	logoCenter,
 	logoAssistiveText,
 	leftIcon,
@@ -52,6 +48,7 @@ export const Header = ({
 
 	const state = {
 		logoLink,
+		logoOnClick,
 		logoCenter,
 		logoAssistiveText,
 		leftIcon,
@@ -86,7 +83,12 @@ export const Header = ({
 						<LeftBtn state={state} {...leftButtonAttributes(state)} css={leftButtonStyles(state)} />
 					</Left>
 				)}
-				<LogoLink state={state} {...logoLinkAttributes(state)} css={logoLinkStyles(state)}>
+				<LogoLink
+					state={state}
+					onClick={logoOnClick}
+					{...logoLinkAttributes(state)}
+					css={logoLinkStyles(state)}
+				>
 					<Logo state={state} {...logoAttributes(state)} css={logoStyles(state)} />
 				</LogoLink>
 				{children && (
@@ -110,12 +112,17 @@ Header.propTypes = {
 	logoLink: PropTypes.string,
 
 	/**
+	 * On click handler for logo
+	 */
+	logoLink: PropTypes.string,
+
+	/**
 	 * Center logo at xs breakpoint
 	 */
 	logoCenter: PropTypes.bool,
 
 	/**
-	 * Visually hidden text for the logo
+	 * Aria-label for the logo
 	 */
 	logoAssistiveText: PropTypes.string,
 

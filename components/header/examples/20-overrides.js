@@ -1,41 +1,36 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { Footer } from '@westpac/footer';
-import { Wrapper, Content } from './_utils';
+import { Header } from '@westpac/header';
+import { Wrapper } from './_utils';
 
 function Example({ brand }) {
 	const overridesWithTokens = { ...brand };
-	overridesWithTokens['@westpac/footer'] = {
-		Footer: {
+	overridesWithTokens['@westpac/header'] = {
+		Header: {
 			styles: (styles) => ({
 				...styles,
-				border: '4px solid palevioletred',
+				border: '2px solid darkmagenta',
 			}),
 		},
 	};
-
 	return (
 		<GEL brand={overridesWithTokens}>
 			<Wrapper>
 				<h2>With overrides applied</h2>
-				<Footer>
-					<Content />
-				</Footer>
+				<Header />
 
 				<h2>With overrides and component overrides</h2>
-				<Footer
+				<Header
 					overrides={{
-						Footer: {
+						Header: {
 							styles: (styles) => ({
 								...styles,
-								border: '4px dashed darkcyan',
+								border: '2px dashed lightcoral',
 							}),
 						},
 					}}
-				>
-					<Content />
-				</Footer>
+				/>
 			</Wrapper>
 		</GEL>
 	);
