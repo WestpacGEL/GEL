@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { DatePicker } from '@westpac/date-picker';
 
@@ -17,7 +17,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<label for="example-from">From</label>
+			<label htmlFor="example-from">From</label>
 			<br />
 			<DatePicker
 				id="example-from"
@@ -28,7 +28,7 @@ function Example({ brand }) {
 			<br />
 			<br />
 
-			<label for="example-to">To</label>
+			<label htmlFor="example-to">To</label>
 			<br />
 			<DatePicker
 				id="example-to"
