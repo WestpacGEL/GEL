@@ -31,7 +31,9 @@
 	"dependencies": {
 		"@babel/runtime": "^7.14.0",
 		"@duetds/date-picker": "^1.4.0",
+		"@westpac/button": "^1.2.0",
 		"@westpac/core": "^2.1.0",
+		"@westpac/text-input": "^1.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

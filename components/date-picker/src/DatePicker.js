@@ -1,39 +1,23 @@
 /** @jsx jsx */
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultDatePicker } from './overrides/datePicker';
+import { defaultDatePickerInput } from './overrides/datePickerInput';
+
+import {
+	propTypes as textInputPropTypes,
+	defaultProps as textInputDefaultProps,
+} from '@westpac/text-input';
 import pkg from '../package.json';
-
-import { applyPolyfills, defineCustomElements } from '@duetds/date-picker/dist/loader';
-
-function useListener(ref, eventName, handler) {
-	useEffect(() => {
-		if (ref.current) {
-			const element = ref.current;
-			element.addEventListener(eventName, handler);
-			return () => element.removeEventListener(eventName, handler);
-		}
-	}, [eventName, handler, ref]);
-}
 
 // ==============================
 // Component
 // ==============================
 
-export const DatePicker = ({
-	onChange,
-	onFocus,
-	onBlur,
-	onOpen,
-	onClose,
-	dateAdapter,
-	localization,
-	overrides: componentOverrides,
-	...rest
-}) => {
+export const DatePicker = ({ overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -41,29 +25,8 @@ export const DatePicker = ({
 
 	const defaultOverrides = {
 		DatePicker: defaultDatePicker,
+		DatePickerInput: defaultDatePickerInput,
 	};
-
-	useEffect(() => {
-		// Register Duet Date Picker
-		if (!customElements.get('duet-date-picker')) {
-			applyPolyfills().then(() => {
-				defineCustomElements(window);
-			});
-		}
-	}, []);
-
-	const ref = useRef(null);
-
-	useListener(ref, 'duetChange', onChange);
-	useListener(ref, 'duetFocus', onFocus);
-	useListener(ref, 'duetBlur', onBlur);
-	useListener(ref, 'duetOpen', onOpen);
-	useListener(ref, 'duetClose', onClose);
-
-	useEffect(() => {
-		ref.current.localization = localization;
-		ref.current.dateAdapter = dateAdapter;
-	}, [localization, dateAdapter]);
 
 	const state = {
 		overrides: componentOverrides,
@@ -76,16 +39,22 @@ export const DatePicker = ({
 			styles: datePickerStyles,
 			attributes: datePickerAttributes,
 		},
+		DatePickerInput: {
+			component: DatePickerInput,
+			styles: datePickerInputStyles,
+			attributes: datePickerInputAttributes,
+		},
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<DatePicker
-			ref={ref}
-			{...rest}
-			state={state}
-			{...datePickerAttributes(state)}
-			css={datePickerStyles(state)}
-		/>
+		<DatePicker state={state} {...datePickerAttributes(state)} css={datePickerStyles(state)}>
+			<DatePickerInput
+				{...rest}
+				state={state}
+				{...datePickerInputAttributes(state)}
+				css={datePickerInputStyles(state)}
+			/>
+		</DatePicker>
 	);
 };
 
@@ -94,6 +63,13 @@ export const DatePicker = ({
 // ==============================
 
 DatePicker.propTypes = {
+	...textInputPropTypes,
+
+	/**
+	 * The component input's `id` attribute
+	 */
+	id: PropTypes.string,
+
 	/**
 	 * The override API
 	 */
@@ -106,4 +82,12 @@ DatePicker.propTypes = {
 	}),
 };
 
-DatePicker.defaultProps = {};
+export const defaultProps = {
+	...textInputDefaultProps,
+
+	/* localization: {
+		placeholder: 'DD-MM-YYYY',
+	}, */
+};
+
+DatePicker.defaultProps = defaultProps;

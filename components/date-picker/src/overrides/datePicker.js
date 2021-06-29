@@ -1,17 +1,19 @@
 /** @jsx jsx */
 
-import { Fragment, forwardRef } from 'react';
-import { jsx, useBrand, css, Global } from '@westpac/core';
+import { Fragment } from 'react';
+import { Global, jsx, css, useBrand } from '@westpac/core';
+import { sizeMap as textInputSizeMap, getHeight, getMaxWidth } from '@westpac/text-input';
+import { sizeMap as buttonSizeMap } from '@westpac/button';
 
 // ==============================
 // Component
 // ==============================
 
-const DatePicker = forwardRef(({ state: _, className, ...rest }, ref) => {
+const DatePicker = ({ state: _, ...rest }) => {
 	const { COLORS } = useBrand();
 
 	return (
-		<div className={className}>
+		<Fragment>
 			<Global
 				styles={css`
 					:root {
@@ -33,23 +35,46 @@ const DatePicker = forwardRef(({ state: _, className, ...rest }, ref) => {
 					}
 				`}
 			/>
-			<duet-date-picker ref={ref} {...rest}></duet-date-picker>
-		</div>
+			<div {...rest} />
+		</Fragment>
 	);
-});
+};
 
 // ==============================
 // Styles
 // ==============================
 
-const datePickerStyles = () => {
+const datePickerStyles = (_, { size }) => {
 	const { COLORS } = useBrand();
 
+	const width = 7; //x times width of 'W'
+
+	const toggleWidthMap = {
+		small: '43px',
+		medium: '49px',
+		large: '55px',
+		xlarge: '61px',
+	};
+
 	return css`
+		display: inline-block;
+
+		.duet-date__input {
+			font-size: ${textInputSizeMap[size].fontSize};
+			height: ${getHeight(size)};
+			line-height: ${textInputSizeMap[size].lineHeight};
+			padding: ${textInputSizeMap[size].padding.join(' ')};
+			padding-right: calc(${toggleWidthMap[size]} + ${textInputSizeMap[size].padding[1]});
+			max-width: ${getMaxWidth(size, width, toggleWidthMap[size])};
+		}
+
 		.duet-date__toggle {
 			box-shadow: none;
 			border-left: 1px solid ${COLORS.borderDark};
 			background-color: ${COLORS.light};
+			padding: ${buttonSizeMap[size].padding};
+			font-size: ${buttonSizeMap[size].fontSize};
+			width: auto;
 		}
 		.duet-date__select-label {
 			color: ${COLORS.primary};
