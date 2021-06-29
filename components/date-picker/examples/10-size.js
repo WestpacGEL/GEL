@@ -9,9 +9,14 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<h2>Size</h2>
 			{['small', 'medium', 'large', 'xlarge'].map((size) => (
-				<Fragment>
+				<Fragment key={size}>
 					<h3>{size.charAt(0).toUpperCase() + size.slice(1)}</h3>
-					<DatePicker size={size} onChange={(e) => console.log(e.detail)} />
+					<DatePicker
+						size={size}
+						id={`example-${size}`}
+						name={`example-${size}`}
+						onChange={(e) => console.log(e.detail)}
+					/>
 					<br />
 					<br />
 				</Fragment>

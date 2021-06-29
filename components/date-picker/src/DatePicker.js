@@ -17,7 +17,17 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const DatePicker = ({ overrides: componentOverrides, ...rest }) => {
+export const DatePicker = ({
+	id,
+	placeholder,
+	size,
+	max,
+	min,
+	name,
+	value,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -29,6 +39,13 @@ export const DatePicker = ({ overrides: componentOverrides, ...rest }) => {
 	};
 
 	const state = {
+		id,
+		placeholder,
+		size,
+		max,
+		min,
+		name,
+		value,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -47,9 +64,13 @@ export const DatePicker = ({ overrides: componentOverrides, ...rest }) => {
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<DatePicker state={state} {...datePickerAttributes(state)} css={datePickerStyles(state)}>
+		<DatePicker
+			{...rest}
+			state={state}
+			{...datePickerAttributes(state)}
+			css={datePickerStyles(state)}
+		>
 			<DatePickerInput
-				{...rest}
 				state={state}
 				{...datePickerInputAttributes(state)}
 				css={datePickerInputStyles(state)}
@@ -63,12 +84,40 @@ export const DatePicker = ({ overrides: componentOverrides, ...rest }) => {
 // ==============================
 
 DatePicker.propTypes = {
-	...textInputPropTypes,
-
 	/**
 	 * The component input's `id` attribute
 	 */
 	id: PropTypes.string,
+
+	/**
+	 * The component input's `placeholder` attribute
+	 */
+	placeholder: PropTypes.string,
+
+	/**
+	 * Component size
+	 */
+	size: textInputPropTypes.size,
+
+	/**
+	 * Maximum date allowed to be picked. Must be in IS0-8601 format: YYYY-MM-DD.
+	 */
+	max: PropTypes.string,
+
+	/**
+	 * Minimum date allowed to be picked. Must be in IS0-8601 format: YYYY-MM-DD.
+	 */
+	min: PropTypes.string,
+
+	/*
+	 * Name of the date picker input
+	 */
+	name: PropTypes.string,
+
+	/*
+	 * Date value. Must be in IS0-8601 format: YYYY-MM-DD
+	 */
+	value: PropTypes.string,
 
 	/**
 	 * The override API
@@ -83,11 +132,8 @@ DatePicker.propTypes = {
 };
 
 export const defaultProps = {
-	...textInputDefaultProps,
-
-	/* localization: {
-		placeholder: 'DD-MM-YYYY',
-	}, */
+	placeholder: '',
+	size: textInputDefaultProps.size,
 };
 
 DatePicker.defaultProps = defaultProps;
