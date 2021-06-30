@@ -135,7 +135,6 @@ const DatePickerInput = ({
 			if (disableDaysOfWeek) {
 				return disableDaysOfWeek.includes(date.getDay());
 			}
-			}
 
 			return false;
 		};
