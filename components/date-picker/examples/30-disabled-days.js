@@ -22,11 +22,11 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Disable specific dates</h2>
-			<p>Disables 2021-06-28</p>
+			<p>Disables 2021-06-01, 2021-06-28 and 2021-06-29 </p>
 			<DatePicker
 				id="example-disable-dates"
 				name="example-disable-dates"
-				disableDates={['2021-06-28']}
+				disableDates={['2021-06-01', '2021-06-28', '2021-06-29']}
 			/>
 		</GEL>
 	);

@@ -121,11 +121,23 @@ const datePickerStyles = (_, { size }) => {
 			}
 		}
 		.duet-date__select select:focus + .duet-date__select-label {
-			// box-shadow: 0 0 0 2px ${COLORS.focus};
+			box-shadow: 0 0 0 2px ${COLORS.focus};
+			// box-shadow: none;
+			// outline: ${focus.outline} !important;
+			// outline-width: ${focus.outlineWidth} !important;
+			// outline-offset: ${focus.outlineOffset} !important;
 		}
 		.duet-date__prev,
 		.duet-date__next {
 			color: ${COLORS.primary};
+		}
+		.duet-date__prev:focus,
+		.duet-date__next:focus {
+			box-shadow: 0 0 0 2px ${COLORS.focus};
+			// box-shadow: none;
+			// outline: ${focus.outline};
+			// outline-width: ${focus.outlineWidth};
+			// outline-offset: ${focus.outlineOffset};
 		}
 		.duet-date__day:not(.is-month),
 		.duet-date__day[aria-disabled='true'] {
@@ -134,6 +146,9 @@ const datePickerStyles = (_, { size }) => {
 		.duet-date__day:active,
 		.duet-date__day:focus {
 			// box-shadow: none;
+		}
+		.duet-date__close:focus {
+			box-shadow: 0 0 0 2px ${COLORS.focus};
 		}
 	`;
 };

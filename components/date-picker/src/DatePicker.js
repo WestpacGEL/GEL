@@ -138,12 +138,12 @@ DatePicker.propTypes = {
 	/*
 	 * Disable specific dates. Must be in IS0-8601 format: YYYY-MM-DD
 	 */
-	disableDates: PropTypes.arrayOf(PropTypes.string),
+	disableDates: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
 
 	/*
 	 * Disable days of the week. 0 for Sunday, 1 for Monday, etc.
 	 */
-	disableDaysOfWeek: PropTypes.arrayOf(PropTypes.number),
+	disableDaysOfWeek: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
 
 	/*
 	 * Disable weekend days

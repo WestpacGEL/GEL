@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { jsx } from '@westpac/core';
+import { jsx, asArray } from '@westpac/core';
+import { printAusDate, parseISODate, isEqual } from '../_utils';
 
 import { applyPolyfills, defineCustomElements } from '@duetds/date-picker/dist/loader';
 
@@ -65,20 +66,7 @@ const DatePickerInput = ({
 			}
 		},
 		format(date) {
-			let d = date.getDate().toString(10);
-			let m = (date.getMonth() + 1).toString(10);
-			const y = date.getFullYear().toString(10);
-
-			// Days are not zero-indexed, so pad if less than 10
-			if (date.getDate() < 10) {
-				d = `0${d}`;
-			}
-			// Months *are* zero-indexed, pad if less than 9!
-			if (date.getMonth() < 9) {
-				m = `0${m}`;
-			}
-
-			return `${d}/${m}/${y}`;
+			return printAusDate(date);
 		},
 	};
 
@@ -133,7 +121,10 @@ const DatePickerInput = ({
 				return date.getDay() === 0 || date.getDay() === 6;
 			}
 			if (disableDaysOfWeek) {
-				return disableDaysOfWeek.includes(date.getDay());
+				return asArray(disableDaysOfWeek).includes(date.getDay());
+			}
+			if (disableDates) {
+				return asArray(disableDates).some((d) => isEqual(date, parseISODate(d)));
 			}
 
 			return false;
