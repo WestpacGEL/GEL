@@ -28,7 +28,7 @@ const DatePickerInput = ({
 		name,
 		value,
 		disableDates,
-		disableDays,
+		disableDaysOfWeek,
 		disableWeekends,
 		onChange,
 		onFocus,
@@ -132,8 +132,9 @@ const DatePickerInput = ({
 			if (disableWeekends) {
 				return date.getDay() === 0 || date.getDay() === 6;
 			}
-			if (disableDays) {
-				return disableDays.includes(date.getDay());
+			if (disableDaysOfWeek) {
+				return disableDaysOfWeek.includes(date.getDay());
+			}
 			}
 
 			return false;

@@ -11,9 +11,23 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h2>Disable days</h2>
-			<p>Disables Mondays, Wednesdays and Fridays</p>
-			<DatePicker id="example-disable-days" name="example-disable-days" disableDays={[1, 3, 5]} />
+			<h2>Disable days of week</h2>
+			<p>Disables Mondays (1), Wednesdays (3) and Fridays (5)</p>
+			<DatePicker
+				id="example-disable-days-of-week"
+				name="example-disable-days-of-week"
+				disableDaysOfWeek={[1, 3, 5]}
+			/>
+
+			<hr />
+
+			<h2>Disable specific dates</h2>
+			<p>Disables 2021-06-28</p>
+			<DatePicker
+				id="example-disable-dates"
+				name="example-disable-dates"
+				disableDates={['2021-06-28']}
+			/>
 		</GEL>
 	);
 }

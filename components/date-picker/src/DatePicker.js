@@ -26,7 +26,7 @@ export const DatePicker = ({
 	name,
 	value,
 	disableDates,
-	disableDays,
+	disableDaysOfWeek,
 	disableWeekends,
 	onChange,
 	onFocus,
@@ -55,7 +55,7 @@ export const DatePicker = ({
 		name,
 		value,
 		disableDates,
-		disableDays,
+		disableDaysOfWeek,
 		disableWeekends,
 		onChange,
 		onFocus,
@@ -131,9 +131,24 @@ DatePicker.propTypes = {
 	name: PropTypes.string,
 
 	/*
-	 * Date value. Must be in IS0-8601 format: YYYY-MM-DD
+	 * Date picker input value. Must be in IS0-8601 format: YYYY-MM-DD
 	 */
 	value: PropTypes.string,
+
+	/*
+	 * Disable specific dates. Must be in IS0-8601 format: YYYY-MM-DD
+	 */
+	disableDates: PropTypes.arrayOf(PropTypes.string),
+
+	/*
+	 * Disable days of the week. 0 for Sunday, 1 for Monday, etc.
+	 */
+	disableDaysOfWeek: PropTypes.arrayOf(PropTypes.number),
+
+	/*
+	 * Disable weekend days
+	 */
+	disableWeekends: PropTypes.bool,
 
 	/**
 	 * The override API

@@ -62,6 +62,7 @@ const datePickerStyles = (_, { size }) => {
 	return css`
 		display: inline-block;
 
+		/* Input */
 		.duet-date__input {
 			font-size: ${textInputSizeMap[size].fontSize};
 			height: ${getHeight(size)};
@@ -78,6 +79,7 @@ const datePickerStyles = (_, { size }) => {
 			outline-offset: ${focus.outlineOffset} !important;
 		}
 
+		/* Button */
 		.duet-date__toggle {
 			box-shadow: none;
 			border-left: 1px solid ${COLORS.borderDark};
@@ -110,11 +112,16 @@ const datePickerStyles = (_, { size }) => {
 		.duet-date__toggle-icon svg {
 			display: none; // Hide, replace with background-image
 		}
+
+		/* Calendar */
 		.duet-date__select-label {
 			color: ${COLORS.primary};
 			span {
 				color: ${COLORS.text};
 			}
+		}
+		.duet-date__select select:focus + .duet-date__select-label {
+			// box-shadow: 0 0 0 2px ${COLORS.focus};
 		}
 		.duet-date__prev,
 		.duet-date__next {
@@ -126,7 +133,7 @@ const datePickerStyles = (_, { size }) => {
 		}
 		.duet-date__day:active,
 		.duet-date__day:focus {
-			box-shadow: none;
+			// box-shadow: none;
 		}
 	`;
 };
