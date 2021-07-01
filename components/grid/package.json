@@ -69,7 +69,7 @@
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"@westpac/hooks": "^1.1.1",
+		"@westpac/hooks": "^2.0.0",
 		"cypress": "^7.4.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.3"

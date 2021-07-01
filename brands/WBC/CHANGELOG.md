@@ -1,5 +1,11 @@
 # @westpac/wbc
 
+## 3.0.0
+
+### Major Changes
+
+- b40a4b64: Update type token brand font asset name
+
 ## 2.1.0
 
 ### Minor Changes

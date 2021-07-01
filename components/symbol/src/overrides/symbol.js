@@ -49,6 +49,10 @@ const symbolStyles = (_, { symbol, width, height, viewBoxWidth, viewBoxHeight })
 
 		// We use a <Symbol /> wrapper component alone to generate our baseStyles. Checking for symbol ensures we can run Symbol like this.
 		...(symbol && styleSize),
+
+		svg: {
+			display: 'block',
+		},
 	})[0];
 };
 

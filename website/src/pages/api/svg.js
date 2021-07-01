@@ -119,8 +119,9 @@ function sanitize({ pkg, brand, assets = [], mode }) {
 	const allBrands = Object.keys(brands);
 	const allPkgs = ['@westpac/icon', '@westpac/symbol', '@westpac/pictogram'];
 	const allModes = ['duo', 'dark', 'light'];
-
 	const cleanPkg = allPkgs.includes(pkg) ? pkg : '@westpac/icon';
+
+	assets = Array.isArray(assets) ? assets : [assets];
 
 	return {
 		pkg: cleanPkg,

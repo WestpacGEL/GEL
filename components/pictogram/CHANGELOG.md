@@ -1,5 +1,11 @@
 # @westpac/pictogram
 
+## 1.4.1
+
+### Patch Changes
+
+- 24db70e1: Fix svg positioning within parent span, noticable when small
+
 ## 1.4.0
 
 ### Minor Changes

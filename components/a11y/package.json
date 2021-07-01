@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/a11y",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Accessibility components used to ensure an optimal experience for users of assistive technologies",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/a11y",

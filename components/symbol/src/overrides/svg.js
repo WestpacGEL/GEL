@@ -14,8 +14,6 @@ const Svg = ({ state: _, ...rest }) => <svg {...rest} />;
 
 const svgStyles = () => ({
 	label: getLabel('symbol-svg'),
-	width: '100%',
-	height: '100%',
 });
 
 // ==============================

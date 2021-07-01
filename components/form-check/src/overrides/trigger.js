@@ -1,19 +1,47 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx, getLabel, useBrand } from '@westpac/core';
 import { defaultProps } from '../FormCheck';
 import { Button } from '@westpac/button';
+import { ExpandMoreIcon } from '@westpac/icon';
 import { forwardRef } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
-const Trigger = forwardRef(({ state: { revealCount }, ...rest }, ref) => (
-	<Button ref={ref} look="link" size="small" {...rest}>
-		Show {revealCount} {revealCount === 1 ? 'item' : 'items'}
-	</Button>
-));
+const Trigger = forwardRef(({ state: { revealCount }, ...rest }, ref) => {
+	const { COLORS } = useBrand();
+
+	return (
+		<Button
+			ref={ref}
+			look="link"
+			size="small"
+			iconAfter={ExpandMoreIcon}
+			{...rest}
+			overrides={{
+				Button: {
+					styles: (styles) => ({
+						...styles,
+						color: COLORS.text,
+						paddingLeft: 0,
+						paddingRight: 0,
+						textDecoration: 'none',
+					}),
+				},
+				Icon: {
+					styles: (styles) => ({
+						...styles,
+						color: COLORS.link,
+					}),
+				},
+			}}
+		>
+			Show {revealCount} {revealCount === 1 ? 'item' : 'items'}
+		</Button>
+	);
+});
 
 // ==============================
 // Styles
