@@ -55,7 +55,7 @@ export const TextInput = ({
 // Types
 // ==============================
 
-TextInput.propTypes = {
+export const propTypes = {
 	/**
 	 * Component size
 	 */
@@ -89,6 +89,7 @@ TextInput.propTypes = {
 		}),
 	}),
 };
+TextInput.propTypes = propTypes;
 
 export const defaultProps = {
 	size: 'medium',
