@@ -117,17 +117,19 @@ const DatePickerInput = ({
 		ref.current.value = value;
 
 		ref.current.isDateDisabled = (date) => {
-			if (disableWeekends) {
-				return date.getDay() === 0 || date.getDay() === 6;
+			let isDisabled = false;
+
+			if (disableWeekends && (date.getDay() === 0 || date.getDay() === 6)) {
+				isDisabled = true;
 			}
-			if (disableDaysOfWeek) {
-				return asArray(disableDaysOfWeek).includes(date.getDay());
+			if (disableDaysOfWeek && asArray(disableDaysOfWeek).includes(date.getDay())) {
+				isDisabled = true;
 			}
-			if (disableDates) {
-				return asArray(disableDates).some((d) => isEqual(date, parseISODate(d)));
+			if (disableDates && asArray(disableDates).some((d) => isEqual(date, parseISODate(d)))) {
+				isDisabled = true;
 			}
 
-			return false;
+			return isDisabled;
 		};
 	}, []);
 

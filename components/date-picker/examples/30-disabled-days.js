@@ -28,6 +28,17 @@ function Example({ brand }) {
 				name="example-disable-dates"
 				disableDates={['2021-06-01', '2021-06-28', '2021-06-29']}
 			/>
+
+			<hr />
+
+			<h2>Disable weekends, Mondays and the date 2021-07-01</h2>
+			<DatePicker
+				id="example-disable-dates"
+				name="example-disable-dates"
+				disableWeekends
+				disableDaysOfWeek={1}
+				disableDates="2021-07-01"
+			/>
 		</GEL>
 	);
 }
