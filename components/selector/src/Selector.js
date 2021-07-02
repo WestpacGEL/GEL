@@ -76,7 +76,7 @@ export const Selector = ({
 	};
 
 	const handleChange = (event, value, wasChecked) => {
-		if (type === 'radio') {
+		if (type === 'radio' || type === 'button') {
 			setChecked(asArray(value));
 		} else {
 			if (wasChecked) {

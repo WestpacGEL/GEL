@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, getLabel, overrideReconciler, useInstanceId } from '@westpac/core';
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultOptionBtn } from './overrides/optionBtn';
@@ -74,8 +74,6 @@ export const Option = forwardRef(
 			Indicator: defaultIndicator,
 		};
 
-		const [isToggled, setIsToggled] = useState(false);
-
 		const componentOverrides = overrides || ctxOverrides;
 		const checked = ctxChecked ? ctxChecked.includes(value) : checkedProp;
 
@@ -96,7 +94,6 @@ export const Option = forwardRef(
 			disabled,
 			hint,
 			hintId,
-			isToggled,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -121,10 +118,6 @@ export const Option = forwardRef(
 			Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
 			Indicator: { component: Indicator, styles: indicatorStyles, attributes: indicatorAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
-
-		const handleBtnClick = () => {
-			setIsToggled((currentValue) => !currentValue);
-		};
 
 		return (
 			<Option
@@ -184,7 +177,9 @@ export const Option = forwardRef(
 					}}
 				/>
 				<OptionBtn
-					onClick={handleBtnClick}
+					onClick={
+						type === 'button' && !disabled ? (event) => onChange(event, value, checked) : undefined
+					}
 					state={state}
 					{...optionBtnAttributes(state)}
 					css={optionBtnStyles(state)}

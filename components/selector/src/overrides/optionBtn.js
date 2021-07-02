@@ -15,7 +15,7 @@ const OptionBtn = ({ state: { type }, ...rest }) => {
 // Styles
 // ==============================
 
-const optionBtnStyles = (_, { type, isToggled }) => {
+const optionBtnStyles = (_, { type }) => {
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -105,9 +105,9 @@ const optionBtnStyles = (_, { type, isToggled }) => {
 // Attributes
 // ==============================
 
-const optionBtnAttributes = (_, { type, isToggled }) => ({
+const optionBtnAttributes = (_, { type, checked }) => ({
 	type: type === 'button' ? 'button' : undefined,
-	'aria-pressed': type === 'button' && isToggled,
+	'aria-pressed': type === 'button' && checked,
 });
 
 // ==============================
