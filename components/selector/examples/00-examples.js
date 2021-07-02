@@ -23,15 +23,15 @@ function Example({ brand }) {
 
 			<h2>Types</h2>
 
-			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio">
-				<Option value="1">Here is a label</Option>
-				<Option value="2">Here is a label</Option>
-				<Option value="3">Here is a label</Option>
+			<h3>Button</h3>
+			<Selector type="button" name="example-button">
+				<Option value="1">Here is button text</Option>
+				<Option value="2">Here is button text</Option>
+				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-with-next" nextIndicator>
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio">
 				<Option value="1">Here is a label</Option>
 				<Option value="2">Here is a label</Option>
 				<Option value="3">Here is a label</Option>

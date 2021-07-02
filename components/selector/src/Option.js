@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, getLabel, overrideReconciler, useInstanceId } from '@westpac/core';
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultOptionBtn } from './overrides/optionBtn';
@@ -47,7 +47,6 @@ export const Option = forwardRef(
 			instanceId,
 			type = 'radio',
 			name,
-			nextIndicator,
 			iconSize,
 			pictogramWidth,
 			pictogramHeight,
@@ -59,7 +58,6 @@ export const Option = forwardRef(
 			overrides: ctxOverrides,
 			...restCtx
 		} = useSelectorContext();
-
 		const optionId = `${instanceId}-option-${useInstanceId()}`;
 		const hintId = `${optionId}-hint`;
 
@@ -76,6 +74,8 @@ export const Option = forwardRef(
 			Indicator: defaultIndicator,
 		};
 
+		const [isToggled, setIsToggled] = useState(false);
+
 		const componentOverrides = overrides || ctxOverrides;
 		const checked = ctxChecked ? ctxChecked.includes(value) : checkedProp;
 
@@ -85,7 +85,6 @@ export const Option = forwardRef(
 			pictogram,
 			icon,
 			secondaryLabel,
-			nextIndicator,
 			iconSize,
 			pictogramWidth,
 			pictogramHeight,
@@ -97,6 +96,7 @@ export const Option = forwardRef(
 			disabled,
 			hint,
 			hintId,
+			isToggled,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -122,6 +122,10 @@ export const Option = forwardRef(
 			Indicator: { component: Indicator, styles: indicatorStyles, attributes: indicatorAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
+		const handleBtnClick = () => {
+			setIsToggled((currentValue) => !currentValue);
+		};
+
 		return (
 			<Option
 				className={className}
@@ -144,7 +148,7 @@ export const Option = forwardRef(
 					value={value}
 					checked={checked}
 					disabled={disabled}
-					type={type}
+					type={type === 'button' ? 'hidden' : type}
 					name={name}
 					{...restCtx}
 					{...rest}
@@ -179,7 +183,12 @@ export const Option = forwardRef(
 						},
 					}}
 				/>
-				<OptionBtn state={state} {...optionBtnAttributes(state)} css={optionBtnStyles(state)}>
+				<OptionBtn
+					onClick={handleBtnClick}
+					state={state}
+					{...optionBtnAttributes(state)}
+					css={optionBtnStyles(state)}
+				>
 					{pictogram ? (
 						<Pictogram
 							pictogram={pictogram}
@@ -334,11 +343,6 @@ Option.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Hint: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		NextIndicator: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
