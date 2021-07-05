@@ -15,7 +15,7 @@ const OptionBtn = ({ state: { type }, ...rest }) => {
 // Styles
 // ==============================
 
-const optionBtnStyles = (_, { type }) => {
+const optionBtnStyles = (_, { type, disabled }) => {
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -65,6 +65,7 @@ const optionBtnStyles = (_, { type }) => {
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'flex-start',
+		textAlign: 'left',
 		width: '100%',
 		cursor: 'pointer',
 		touchAction: 'manipulation',
@@ -94,6 +95,11 @@ const optionBtnStyles = (_, { type }) => {
 			pointerEvents: 'none',
 		},
 
+		...(disabled && {
+			opacity: '0.5',
+			pointerEvents: 'none',
+		}),
+
 		// Focus state
 		'body:not(.isMouseMode) input:focus + &': {
 			...PACKS.focus,
@@ -105,9 +111,10 @@ const optionBtnStyles = (_, { type }) => {
 // Attributes
 // ==============================
 
-const optionBtnAttributes = (_, { type, checked }) => ({
+const optionBtnAttributes = (_, { type, value, checked }) => ({
 	type: type === 'button' ? 'button' : undefined,
-	'aria-pressed': type === 'button' && checked,
+	'data-value': type === 'button' ? value : undefined,
+	'aria-pressed': type === 'button' ? checked : undefined,
 });
 
 // ==============================

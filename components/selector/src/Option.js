@@ -127,55 +127,57 @@ export const Option = forwardRef(
 				css={optionStyles(state)}
 			>
 				{/* a11y: input not exposed as an override, contains logic required to function */}
-				<input
-					ref={ref}
-					id={optionId}
-					aria-describedby={hint && hintId}
-					onChange={
-						disabled
-							? null
-							: typeof onChange === 'undefined'
-							? null
-							: (event) => onChange(event, value, checked)
-					}
-					value={value}
-					checked={checked}
-					disabled={disabled}
-					type={type === 'button' ? 'hidden' : type}
-					name={name}
-					{...restCtx}
-					{...rest}
-					css={{
-						// Normalize
-						// =========
+				{type !== 'button' ? (
+					<input
+						ref={ref}
+						id={optionId}
+						aria-describedby={hint && hintId}
+						onChange={
+							disabled
+								? null
+								: typeof onChange === 'undefined'
+								? null
+								: (event) => onChange(event, value, checked)
+						}
+						value={value}
+						checked={checked}
+						disabled={disabled}
+						type={type}
+						name={name}
+						{...restCtx}
+						{...rest}
+						css={{
+							// Normalize
+							// =========
 
-						// Remove the margin in Firefox and Safari.
-						// input:
-						margin: 0,
+							// Remove the margin in Firefox and Safari.
+							// input:
+							margin: 0,
 
-						// 1. Add the correct box sizing in IE 10.
-						// 2. Remove the padding in IE 10.
-						// [type='checkbox'], [type='radio']:
-						boxSizing: 'border-box', // 1
-						padding: 0, // 2
-						// =========
+							// 1. Add the correct box sizing in IE 10.
+							// 2. Remove the padding in IE 10.
+							// [type='checkbox'], [type='radio']:
+							boxSizing: 'border-box', // 1
+							padding: 0, // 2
+							// =========
 
-						label: getLabel('selector-option-input'),
-						position: 'absolute',
-						top: 0,
-						left: 0,
-						zIndex: 1,
-						opacity: 0,
-						width: '100%',
-						height: '100%',
-						cursor: 'pointer',
-						appearance: 'none',
-						':disabled, fieldset:disabled &': {
-							cursor: 'default',
-							pointerEvents: 'none',
-						},
-					}}
-				/>
+							label: getLabel('selector-option-input'),
+							position: 'absolute',
+							top: 0,
+							left: 0,
+							zIndex: 1,
+							opacity: 0,
+							width: '100%',
+							height: '100%',
+							cursor: 'pointer',
+							appearance: 'none',
+							':disabled, fieldset:disabled &': {
+								cursor: 'default',
+								pointerEvents: 'none',
+							},
+						}}
+					/>
+				) : undefined}
 				<OptionBtn
 					onClick={
 						type === 'button' && !disabled ? (event) => onChange(event, value, checked) : undefined
