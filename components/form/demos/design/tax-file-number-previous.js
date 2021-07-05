@@ -22,13 +22,25 @@ const Demo = ({ context, showCode, showDemo }) => {
 						>
 							<Select size="large" value={value} onChange={(e) => setValue(e.target.value)}>
 								<option value="">Select</option>
+								<option value="previous">Use my TFN supplied previously</option>
 								<option value="provide-now">I'll provide my TFN now</option>
 								<option value="exemption">I've got an exemption reason</option>
 								<option value="provide-later">I'll provide my TFN later</option>
 							</Select>
 						</Field>
 					</FormGroup>
-
+					{value === 'previous' && (
+						<FormGroup>
+							<Field label="TFN supplied previously">
+								<Select size="large">
+									<option>Select</option>
+									<option value="******777">******777</option>
+									<option value="******888">******888</option>
+									<option value="******999">******999</option>
+								</Select>
+							</Field>
+						</FormGroup>
+					)}
 					{value === 'provide-now' && (
 						<FormGroup>
 							<Field label="Enter your Tax File Number (TFN)">
@@ -45,6 +57,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 									<option>Age, service, veterans and invalid pensioners</option>
 									<option>Any other pensioners</option>
 									<option>No TFN/Exemption to be quoted</option>
+									<option>Child under 16</option>
 								</Select>
 							</Field>
 						</FormGroup>
