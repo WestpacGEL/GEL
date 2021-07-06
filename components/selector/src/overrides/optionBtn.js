@@ -90,7 +90,7 @@ const optionBtnStyles = (_, { type }) => {
 		},
 
 		// Disabled state
-		// Disabled checkbox/radio, disabled button type (hidden input) or disabled fieldset
+		// Disabled checkbox/radio, disabled button/submit type (hidden input) or disabled fieldset
 		'input:disabled + &, input:disabled ~ div &, &:disabled, fieldset:disabled &': {
 			opacity: '0.5',
 			pointerEvents: 'none',
