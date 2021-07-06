@@ -55,6 +55,20 @@ function Example({ brand }) {
 
 			<h2>Default value</h2>
 
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-defaultvalue" defaultValue="2">
+				<Option value="1">Here is button text</Option>
+				<Option value="2">Here is button text</Option>
+				<Option value="3">Here is button text</Option>
+			</Selector>
+
+			<h3>Submit</h3>
+			<Selector type="submit" name="example-submit-defaultvalue" defaultValue="2">
+				<Option value="1">Here is button text</Option>
+				<Option value="2">Here is button text</Option>
+				<Option value="3">Here is button text</Option>
+			</Selector>
+
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-defaultvalue" defaultValue="2">
 				<Option value="1">Here is a label</Option>
