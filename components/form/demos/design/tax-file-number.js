@@ -18,7 +18,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 					<FormGroup>
 						<Field
 							label="Tax File Number preference"
-							hint="Providing your tax file number (TFN) is not compulsory. However, tax may be withheld if you do not quote your TFN or an exemption reason."
+							hint="Providing your TFN or TFN exemption is not compulsory. However, if you do not provide it, tax may be withheld at the highest marginal rate plus the Medicare Levy on the interest earned on the account."
 						>
 							<Select size="large" value={value} onChange={(e) => setValue(e.target.value)}>
 								<option value="">Select</option>
