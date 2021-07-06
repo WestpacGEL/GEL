@@ -76,7 +76,7 @@ export const Selector = ({
 	};
 
 	const handleChange = (event, value, wasChecked) => {
-		if (type === 'radio' || type === 'button') {
+		if (type === 'radio' || type === 'button' || type === 'submit') {
 			setChecked(asArray(value));
 		} else {
 			if (wasChecked) {
@@ -135,7 +135,7 @@ Selector.propTypes = {
 	/**
 	 * Selector type
 	 */
-	type: PropTypes.oneOf(['radio', 'checkbox', 'button']).isRequired,
+	type: PropTypes.oneOf(['radio', 'checkbox', 'button', 'submit']).isRequired,
 
 	/**
 	 * The Selector input element’s name
