@@ -30,6 +30,13 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
+			<h3>Submit</h3>
+			<Selector type="submit" name="example-submit">
+				<Option value="1">Here is submit text</Option>
+				<Option value="2">Here is submit text</Option>
+				<Option value="3">Here is submit text</Option>
+			</Selector>
+
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio">
 				<Option value="1">Here is a label</Option>
