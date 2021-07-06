@@ -40,19 +40,19 @@ function Example({ brand }) {
 
 			<h2>Short hint</h2>
 
-			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio-hint">
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-hint">
 				<Option value="1" hint="This is some content to go in the product selector thing">
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="2" hint="This is some content to go in the product selector thing">
-					Here is a label
+					Here is button text
 				</Option>
-				<Option value="3">Here is a label</Option>
+				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-hint-with-next" nextIndicator>
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-hint">
 				<Option value="1" hint="This is some content to go in the product selector thing">
 					Here is a label
 				</Option>
@@ -77,25 +77,25 @@ function Example({ brand }) {
 
 			<h2>Long hint</h2>
 
-			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio-hint-long">
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-hint-long">
 				<Option
 					value="1"
 					hint="This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with."
 				>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option
 					value="2"
 					hint="This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with."
 				>
-					Here is a label
+					Here is button text
 				</Option>
-				<Option value="3">Here is a label</Option>
+				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-hint-long-with-next" nextIndicator>
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-hint-long">
 				<Option
 					value="1"
 					hint="This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with."
@@ -132,19 +132,19 @@ function Example({ brand }) {
 
 			<h2>Long hint with paragraphs</h2>
 
-			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio-hint-long">
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-hint-long">
 				<Option value="1" hint={hintHTML}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="2" hint={hintHTML}>
-					Here is a label
+					Here is button text
 				</Option>
-				<Option value="3">Here is a label</Option>
+				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-hint-long-with-next" nextIndicator>
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-hint-long">
 				<Option value="1" hint={hintHTML}>
 					Here is a label
 				</Option>
