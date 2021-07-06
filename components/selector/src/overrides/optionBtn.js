@@ -91,7 +91,7 @@ const optionBtnStyles = (_, { type, disabled }) => {
 
 		// Disabled state
 		// Disabled checkbox/radio, disabled button type (hidden input) or disabled fieldset
-		'input:disabled + &, input:disabled ~ div &, fieldset:disabled &': {
+		'input:disabled + &, input:disabled ~ div &, &:disabled, fieldset:disabled &': {
 			opacity: '0.5',
 			pointerEvents: 'none',
 		},
@@ -107,8 +107,9 @@ const optionBtnStyles = (_, { type, disabled }) => {
 // Attributes
 // ==============================
 
-const optionBtnAttributes = (_, { type, value, checked }) => ({
+const optionBtnAttributes = (_, { type, value, checked, disabled }) => ({
 	type: type === 'button' ? 'button' : undefined,
+	disabled: type === 'button' ? disabled : undefined,
 	'data-value': type === 'button' ? value : undefined,
 	'aria-pressed': type === 'button' ? checked : undefined,
 });
