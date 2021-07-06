@@ -90,15 +90,11 @@ const optionBtnStyles = (_, { type, disabled }) => {
 		},
 
 		// Disabled state
-		'input:disabled + &, fieldset:disabled &': {
+		// Disabled checkbox/radio, disabled button type (hidden input) or disabled fieldset
+		'input:disabled + &, input:disabled ~ div &, fieldset:disabled &': {
 			opacity: '0.5',
 			pointerEvents: 'none',
 		},
-
-		...(disabled && {
-			opacity: '0.5',
-			pointerEvents: 'none',
-		}),
 
 		// Focus state
 		'body:not(.isMouseMode) input:focus + &': {

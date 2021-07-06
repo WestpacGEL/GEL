@@ -8,10 +8,10 @@ import { jsx, getLabel } from '@westpac/core';
 
 const Selector = ({ state: { type, checked, disabled, name }, children, ...rest }) => (
 	<div {...rest}>
-		{children}
 		{type === 'button' ? (
 			<input type="hidden" value={checked} disabled={disabled} name={name} />
 		) : undefined}
+		{children}
 	</div>
 );
 
