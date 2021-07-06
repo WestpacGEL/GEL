@@ -51,6 +51,7 @@
 		"@westpac/body": "^1.4.0",
 		"@westpac/button": "^1.2.1",
 		"@westpac/core": "^2.1.0",
+		"@westpac/icon": "^1.3.2",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
