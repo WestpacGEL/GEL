@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { useState } from 'react';
 import { Form, Field, FormGroup } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
@@ -10,6 +10,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 
 const Demo = ({ context, showCode, showDemo }) => {
 	const [value, setValue] = useState();
+	const { BRAND } = useBrand();
 
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
@@ -52,7 +53,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 
 					{value === 'provide-later' && (
 						<Alert>
-							You can provide your TFN at any time via phone or at a Westpac branch. In the
+							You can provide your TFN at any time via phone or at a {BRAND.name} branch. In the
 							meantime, please note, we may need to withhold tax from any interest you earn.
 						</Alert>
 					)}

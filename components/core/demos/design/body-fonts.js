@@ -6,7 +6,7 @@ import { Body } from '@westpac/body';
 
 const StyledText = (props) => {
 	const { PACKS } = useBrand();
-	return <p css={{ ...PACKS.typeScale.bodyFont[4] }} {...props} />;
+	return <p css={{ ...PACKS.typeScale.bodyFont[4], overflowWrap: 'anywhere' }} {...props} />;
 };
 
 const Demo = ({ context, showCode, showDemo }) => {

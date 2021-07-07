@@ -8,7 +8,11 @@ const StyledText = ({ weight, ...rest }) => {
 	const { PACKS, TYPE } = useBrand();
 	return (
 		<p
-			css={{ ...PACKS.typeScale.brandFont[4], fontWeight: TYPE.bodyFont[weight].fontWeight }}
+			css={{
+				...PACKS.typeScale.brandFont[4],
+				fontWeight: TYPE.bodyFont[weight].fontWeight,
+				overflowWrap: 'anywhere',
+			}}
 			{...rest}
 		/>
 	);
