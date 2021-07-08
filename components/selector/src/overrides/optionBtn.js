@@ -76,9 +76,14 @@ const optionBtnStyles = (_, { type }) => {
 		padding: paddingArr,
 		backgroundColor: (type === 'button' || type === 'submit') && 'transparent',
 
-		// Hover state
-		'input:hover + &': {
+		// Hover/focus state
+		'input:hover + &, input:focus + &': {
 			borderColor: COLORS.hero,
+		},
+		'button&': {
+			':hover, :focus': {
+				borderColor: COLORS.hero,
+			},
 		},
 
 		// Checked state

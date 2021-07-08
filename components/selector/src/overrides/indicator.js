@@ -33,7 +33,8 @@ const indicatorStyles = (_, { type }) => {
 			color: COLORS.primary,
 			marginRight: `-${SPACING(1)}`, //tweak
 			transition: 'transform 0.2s ease',
-			'button:hover &': {
+
+			'button:hover &, button:focus &': {
 				transform: `translateX(${SPACING(1)})`,
 			},
 		}),
