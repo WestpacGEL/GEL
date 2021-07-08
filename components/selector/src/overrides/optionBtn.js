@@ -77,13 +77,17 @@ const optionBtnStyles = (_, { type }) => {
 		backgroundColor: (type === 'button' || type === 'submit') && 'transparent',
 
 		// Hover/focus state
+		// - Checkbox/Radio
 		'input:hover + &, input:focus + &': {
 			borderColor: COLORS.hero,
 		},
-		'button&': {
-			':hover, :focus': {
-				borderColor: COLORS.hero,
-			},
+		// - Button/Submit
+		// Note: Emotion won't let me combine these selectors for some reason
+		'button&:hover': {
+			borderColor: COLORS.hero,
+		},
+		'button&:focus': {
+			borderColor: COLORS.hero,
 		},
 
 		// Checked state
