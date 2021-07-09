@@ -152,9 +152,7 @@ function Example({ brand }) {
 			<FormCheck
 				type="checkbox"
 				name="example-checkbox-onchange"
-				onChange={(_, value, wasSelected) =>
-					console.log(`${wasSelected ? 'De-selected' : 'Selected'} option ${value}`)
-				}
+				onChange={(value, _) => console.log(`Selected options ${value}`)}
 			>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
@@ -165,7 +163,7 @@ function Example({ brand }) {
 			<FormCheck
 				type="radio"
 				name="example-radio-onchange"
-				onChange={(_, value) => console.log(`Selected option ${value}`)}
+				onChange={(value, _) => console.log(`Selected option ${value}`)}
 			>
 				<Option value="1">Option 1</Option>
 				<Option value="2">Option 2</Option>
