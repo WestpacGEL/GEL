@@ -10,7 +10,7 @@ function Example({ brand }) {
 			<Selector
 				type="button"
 				name="example-button-onchange"
-				onChange={(_, value) => console.log(`Selected option ${value}`)}
+				onChange={(value, _) => console.log(`Selected option ${value}`)}
 			>
 				<Option value="1">Here is button text</Option>
 				<Option value="2">Here is button text</Option>
@@ -21,7 +21,7 @@ function Example({ brand }) {
 			<Selector
 				type="submit"
 				name="example-submit-onchange"
-				onChange={(_, value) => console.log(`Selected option ${value}`)}
+				onChange={(value, _) => console.log(`Selected option ${value}`)}
 			>
 				<Option value="1">Here is button text</Option>
 				<Option value="2">Here is button text</Option>
@@ -32,7 +32,7 @@ function Example({ brand }) {
 			<Selector
 				type="radio"
 				name="example-radio-onchange"
-				onChange={(_, value) => console.log(`Selected option ${value}`)}
+				onChange={(value, _) => console.log(`Selected option ${value}`)}
 			>
 				<Option value="1">Here is a label</Option>
 				<Option value="2">Here is a label</Option>
@@ -43,9 +43,7 @@ function Example({ brand }) {
 			<Selector
 				type="checkbox"
 				name="example-checkbox-onchange"
-				onChange={(_, value, wasSelected) =>
-					console.log(`${wasSelected ? 'De-selected' : 'Selected'} option ${value}`)
-				}
+				onChange={(value, _) => console.log(`Selected options ${value}`)}
 			>
 				<Option value="1">Here is a label</Option>
 				<Option value="2">Here is a label</Option>
