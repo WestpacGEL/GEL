@@ -148,34 +148,6 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h2>onChange</h2>
-
-			<h3>Radio</h3>
-			<Selector
-				type="radio"
-				name="example-radio-onchange"
-				onChange={(_, value) => console.log(`Selected option ${value}`)}
-			>
-				<Option value="1">Here is a label</Option>
-				<Option value="2">Here is a label</Option>
-				<Option value="3">Here is a label</Option>
-			</Selector>
-
-			<h3>Checkbox</h3>
-			<Selector
-				type="checkbox"
-				name="example-checkbox-onchange"
-				onChange={(_, value, wasSelected) =>
-					console.log(`${wasSelected ? 'De-selected' : 'Selected'} option ${value}`)
-				}
-			>
-				<Option value="1">Here is a label</Option>
-				<Option value="2">Here is a label</Option>
-				<Option value="3">Here is a label</Option>
-			</Selector>
-
-			<hr />
-
 			<h2>preventDefault</h2>
 			<p css={{ fontStyle: 'italic' }}>Checking not implemented</p>
 
