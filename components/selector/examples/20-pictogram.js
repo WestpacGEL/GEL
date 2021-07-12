@@ -36,6 +36,19 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
+			<h3>Submit</h3>
+			<Selector type="submit" name="example-submit-hint">
+				<Option value="1" pictogram={ChatPictogram} hint={hintShort}>
+					Here is button text
+				</Option>
+				<Option value="2" pictogram={TruckPictogram}>
+					Here is button text
+				</Option>
+				<Option value="3" pictogram={ClockPictogram}>
+					Here is button text
+				</Option>
+			</Selector>
+
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-hint">
 				<Option value="1" pictogram={ChatPictogram} hint={hintShort}>
@@ -68,6 +81,19 @@ function Example({ brand }) {
 
 			<h3>Button</h3>
 			<Selector type="button" name="example-button-long">
+				<Option value="1" pictogram={ChatPictogram} hint={hintLong}>
+					Here is button text
+				</Option>
+				<Option value="2" pictogram={TruckPictogram}>
+					Here is button text
+				</Option>
+				<Option value="3" pictogram={ClockPictogram}>
+					Here is button text
+				</Option>
+			</Selector>
+
+			<h3>Submit</h3>
+			<Selector type="submit" name="example-submit-long">
 				<Option value="1" pictogram={ChatPictogram} hint={hintLong}>
 					Here is button text
 				</Option>

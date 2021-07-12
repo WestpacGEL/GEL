@@ -7,7 +7,7 @@ import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
 // ==============================
 
 const OptionBtn = ({ state: { type }, ...rest }) => {
-	const Tag = type === 'button' ? 'button' : 'div';
+	const Tag = type === 'button' || type === 'submit' ? 'button' : 'div';
 	return <Tag {...rest} />;
 };
 
@@ -15,7 +15,7 @@ const OptionBtn = ({ state: { type }, ...rest }) => {
 // Styles
 // ==============================
 
-const optionBtnStyles = (_, { type, disabled }) => {
+const optionBtnStyles = (_, { type }) => {
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -28,7 +28,7 @@ const optionBtnStyles = (_, { type, disabled }) => {
 		// 1. Change the font styles in all browsers.
 		// 2. Remove the margin in Firefox and Safari.
 		// button, input, optgroup, select, textarea:
-		...(type === 'button' && {
+		...((type === 'button' || type === 'submit') && {
 			fontFamily: 'inherit', // 1
 			fontSize: '100%', // 1
 			lineHeight: 1.15, // 1
@@ -37,23 +37,23 @@ const optionBtnStyles = (_, { type, disabled }) => {
 
 		// Show the overflow in IE ('button' and 'input) and Edge ('input').
 		// button, input:
-		...(type === 'button' && {
+		...((type === 'button' || type === 'submit') && {
 			overflow: 'visible',
 		}),
 
 		// Remove the inheritance of text transform in Edge, Firefox, and IE.
 		// button, select:
-		...(type === 'button' && { textTransform: 'none' }),
+		...((type === 'button' || type === 'submit') && { textTransform: 'none' }),
 
 		// Correct the inability to style clickable types in iOS and Safari.
 		// button, [type='button'], [type='reset'], [type='submit']:
-		...(type === 'button' && {
+		...((type === 'button' || type === 'submit') && {
 			WebkitAppearance: 'button',
 		}),
 
 		// Remove the inner border and padding in Firefox.
 		// button::-moz-focus-inner, [type='button']::-moz-focus-inner, [type='reset']::-moz-focus-inner, [type='submit']::-moz-focus-inner:
-		...(type === 'button' && {
+		...((type === 'button' || type === 'submit') && {
 			'&::-moz-focus-inner': {
 				borderStyle: 'none',
 				padding: 0,
@@ -74,10 +74,19 @@ const optionBtnStyles = (_, { type, disabled }) => {
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
 		padding: paddingArr,
-		backgroundColor: type === 'button' && 'transparent',
+		backgroundColor: (type === 'button' || type === 'submit') && 'transparent',
 
-		// Hover state
-		'input:hover + &': {
+		// Hover/focus state
+		// - Checkbox/Radio
+		'input:hover + &, input:focus + &': {
+			borderColor: COLORS.hero,
+		},
+		// - Button/Submit
+		// Note: Emotion won't let me combine these selectors for some reason
+		'button&:hover': {
+			borderColor: COLORS.hero,
+		},
+		'button&:focus': {
 			borderColor: COLORS.hero,
 		},
 
@@ -90,8 +99,8 @@ const optionBtnStyles = (_, { type, disabled }) => {
 		},
 
 		// Disabled state
-		// Disabled checkbox/radio, disabled button type (hidden input) or disabled fieldset
-		'input:disabled + &, input:disabled ~ div &, fieldset:disabled &': {
+		// Disabled checkbox/radio, disabled button/submit type (hidden input) or disabled fieldset
+		'input:disabled + &, input:disabled ~ div &, &:disabled, fieldset:disabled &': {
 			opacity: '0.5',
 			pointerEvents: 'none',
 		},
@@ -107,10 +116,11 @@ const optionBtnStyles = (_, { type, disabled }) => {
 // Attributes
 // ==============================
 
-const optionBtnAttributes = (_, { type, value, checked }) => ({
-	type: type === 'button' ? 'button' : undefined,
-	'data-value': type === 'button' ? value : undefined,
-	'aria-pressed': type === 'button' ? checked : undefined,
+const optionBtnAttributes = (_, { type, value, checked, disabled }) => ({
+	type: type === 'button' || type === 'submit' ? type : undefined,
+	disabled: type === 'button' || type === 'submit' ? disabled : undefined,
+	'data-value': type === 'button' || type === 'submit' ? value : undefined,
+	'aria-pressed': type === 'button' || type === 'submit' ? checked : undefined,
 });
 
 // ==============================

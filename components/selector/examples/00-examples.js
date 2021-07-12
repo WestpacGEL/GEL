@@ -30,6 +30,13 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
+			<h3>Submit</h3>
+			<Selector type="submit" name="example-submit">
+				<Option value="1">Here is submit text</Option>
+				<Option value="2">Here is submit text</Option>
+				<Option value="3">Here is submit text</Option>
+			</Selector>
+
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio">
 				<Option value="1">Here is a label</Option>
@@ -47,6 +54,20 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Default value</h2>
+
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-defaultvalue" defaultValue="2">
+				<Option value="1">Here is button text</Option>
+				<Option value="2">Here is button text</Option>
+				<Option value="3">Here is button text</Option>
+			</Selector>
+
+			<h3>Submit</h3>
+			<Selector type="submit" name="example-submit-defaultvalue" defaultValue="2">
+				<Option value="1">Here is button text</Option>
+				<Option value="2">Here is button text</Option>
+				<Option value="3">Here is button text</Option>
+			</Selector>
 
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-defaultvalue" defaultValue="2">
@@ -124,34 +145,6 @@ function Example({ brand }) {
 			>
 				Here is a label
 			</Option>
-
-			<hr />
-
-			<h2>onChange</h2>
-
-			<h3>Radio</h3>
-			<Selector
-				type="radio"
-				name="example-radio-onchange"
-				onChange={(_, value) => console.log(`Selected option ${value}`)}
-			>
-				<Option value="1">Here is a label</Option>
-				<Option value="2">Here is a label</Option>
-				<Option value="3">Here is a label</Option>
-			</Selector>
-
-			<h3>Checkbox</h3>
-			<Selector
-				type="checkbox"
-				name="example-checkbox-onchange"
-				onChange={(_, value, wasSelected) =>
-					console.log(`${wasSelected ? 'De-selected' : 'Selected'} option ${value}`)
-				}
-			>
-				<Option value="1">Here is a label</Option>
-				<Option value="2">Here is a label</Option>
-				<Option value="3">Here is a label</Option>
-			</Selector>
 
 			<hr />
 
