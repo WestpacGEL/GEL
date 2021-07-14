@@ -67,8 +67,15 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container>
 				<Form spacing="large">
-					<FormHeading>Home address</FormHeading>
-					<Address hint />
+					<Fieldset legend="Do you have a different mailing address?">
+						<Fork size="large" css={mq({ marginBottom: ['1.5rem', '1.875rem'] })}>
+							<Content text="Yes">
+								<FormHeading>Mailing address</FormHeading>
+								<Address />
+							</Content>
+							<Content text="No" />
+						</Fork>
+					</Fieldset>
 				</Form>
 			</Container>
 		</Playground>
