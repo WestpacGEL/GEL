@@ -37,19 +37,30 @@ function Example({ brand }) {
 
 			<h2>Short hint and secondary label</h2>
 
-			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio-short">
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-indicator-short">
 				<Option value="1" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="2" secondaryLabel={secondLabelShort}>
-					Here is a label
+					Here is button text
 				</Option>
-				<Option value="3">Here is a label</Option>
+				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-indicator-short" nextIndicator>
+			<h3>Submit</h3>
+			<Selector type="submit" name="example-submit-indicator-short">
+				<Option value="1" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
+					Here is button text
+				</Option>
+				<Option value="2" secondaryLabel={secondLabelShort}>
+					Here is button text
+				</Option>
+				<Option value="3">Here is button text</Option>
+			</Selector>
+
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-short">
 				<Option value="1" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
 					Here is a label
 				</Option>
@@ -70,26 +81,44 @@ function Example({ brand }) {
 				<Option value="3">Here is a label</Option>
 			</Selector>
 
-			<h3>Pictogram radio</h3>
-			<Selector type="radio" name="example-radio-pictogram-short">
+			<h3>Pictogram button</h3>
+			<Selector type="button" name="example-button-indicator-pictogram-short">
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
 					hint={hintBankAccount}
 					secondaryLabel={secondLabelShort}
 				>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelShort}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="3" pictogram={ClockPictogram}>
-					Here is a label
+					Here is button text
 				</Option>
 			</Selector>
 
-			<h3>Pictogram radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-indicator-pictogram-short" nextIndicator>
+			<h3>Pictogram submit</h3>
+			<Selector type="submit" name="example-submit-indicator-pictogram-short">
+				<Option
+					value="1"
+					pictogram={ChatPictogram}
+					hint={hintBankAccount}
+					secondaryLabel={secondLabelShort}
+				>
+					Here is button text
+				</Option>
+				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelShort}>
+					Here is button text
+				</Option>
+				<Option value="3" pictogram={ClockPictogram}>
+					Here is button text
+				</Option>
+			</Selector>
+
+			<h3>Pictogram radio</h3>
+			<Selector type="radio" name="example-radio-pictogram-short">
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
@@ -124,26 +153,44 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
-			<h3>Icon radio</h3>
-			<Selector type="radio" name="example-radio-icon-short">
+			<h3>Icon button</h3>
+			<Selector type="button" name="example-button-indicator-icon-short">
 				<Option
 					value="1"
 					icon={AccessibilityIcon}
 					hint={hintBankAccount}
 					secondaryLabel={secondLabelShort}
 				>
-					Here is a label
+					Here is buton text
 				</Option>
 				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelShort}>
-					Here is a label
+					Here is buton text
 				</Option>
 				<Option value="3" icon={CarIcon}>
-					Here is a label
+					Here is buton text
 				</Option>
 			</Selector>
 
-			<h3>Icon radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-indicator-icon-short" nextIndicator>
+			<h3>Icon submit</h3>
+			<Selector type="submit" name="example-submit-indicator-icon-short">
+				<Option
+					value="1"
+					icon={AccessibilityIcon}
+					hint={hintBankAccount}
+					secondaryLabel={secondLabelShort}
+				>
+					Here is buton text
+				</Option>
+				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelShort}>
+					Here is buton text
+				</Option>
+				<Option value="3" icon={CarIcon}>
+					Here is buton text
+				</Option>
+			</Selector>
+
+			<h3>Icon radio</h3>
+			<Selector type="radio" name="example-radio-icon-short">
 				<Option
 					value="1"
 					icon={AccessibilityIcon}
@@ -182,19 +229,30 @@ function Example({ brand }) {
 
 			<h2>Long hint and secondary label</h2>
 
-			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio-long">
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-indicator-long">
 				<Option value="1" hint={hintLong} secondaryLabel={secondLabelLong}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="2" secondaryLabel={secondLabelLong}>
-					Here is a label
+					Here is button text
 				</Option>
-				<Option value="3">Here is a label</Option>
+				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-indicator-long" nextIndicator>
+			<h3>Submit</h3>
+			<Selector type="submit" name="example-submit-indicator-long">
+				<Option value="1" hint={hintLong} secondaryLabel={secondLabelLong}>
+					Here is button text
+				</Option>
+				<Option value="2" secondaryLabel={secondLabelLong}>
+					Here is button text
+				</Option>
+				<Option value="3">Here is button text</Option>
+			</Selector>
+
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-long">
 				<Option value="1" hint={hintLong} secondaryLabel={secondLabelLong}>
 					Here is a label
 				</Option>
@@ -215,26 +273,44 @@ function Example({ brand }) {
 				<Option value="3">Here is a label</Option>
 			</Selector>
 
-			<h3>Pictogram radio</h3>
-			<Selector type="radio" name="example-radio-pictogram-long">
+			<h3>Pictogram button</h3>
+			<Selector type="button" name="example-button-indicator-pictogram-long">
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
 					hint={hintLong}
 					secondaryLabel={secondLabelLong}
 				>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelLong}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="3" pictogram={ClockPictogram}>
-					Here is a label
+					Here is button text
 				</Option>
 			</Selector>
 
-			<h3>Pictogram radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-indicator-pictogram-long" nextIndicator>
+			<h3>Pictogram submit</h3>
+			<Selector type="submit" name="example-submit-indicator-pictogram-long">
+				<Option
+					value="1"
+					pictogram={ChatPictogram}
+					hint={hintLong}
+					secondaryLabel={secondLabelLong}
+				>
+					Here is button text
+				</Option>
+				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelLong}>
+					Here is button text
+				</Option>
+				<Option value="3" pictogram={ClockPictogram}>
+					Here is button text
+				</Option>
+			</Selector>
+
+			<h3>Pictogram radio</h3>
+			<Selector type="radio" name="example-radio-pictogram-long">
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
@@ -269,21 +345,34 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
-			<h3>Icon radio</h3>
-			<Selector type="radio" name="example-radio-icon-long">
+			<h3>Icon button</h3>
+			<Selector type="button" name="example-button-indicator-icon-long">
 				<Option value="1" icon={AccessibilityIcon} hint={hintLong} secondaryLabel={secondLabelLong}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelLong}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="3" icon={CarIcon}>
-					Here is a label
+					Here is button text
 				</Option>
 			</Selector>
 
-			<h3>Icon radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-indicator-icon-long" nextIndicator>
+			<h3>Icon submit</h3>
+			<Selector type="submit" name="example-submit-indicator-icon-long">
+				<Option value="1" icon={AccessibilityIcon} hint={hintLong} secondaryLabel={secondLabelLong}>
+					Here is button text
+				</Option>
+				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelLong}>
+					Here is button text
+				</Option>
+				<Option value="3" icon={CarIcon}>
+					Here is button text
+				</Option>
+			</Selector>
+
+			<h3>Icon radio</h3>
+			<Selector type="radio" name="example-radio-icon-long">
 				<Option value="1" icon={AccessibilityIcon} hint={hintLong} secondaryLabel={secondLabelLong}>
 					Here is a label
 				</Option>

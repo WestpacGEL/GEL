@@ -6,7 +6,14 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Selector = ({ state: _, ...rest }) => <div {...rest} />;
+const Selector = ({ state: { type, checked, disabled, name }, children, ...rest }) => (
+	<div {...rest}>
+		{type === 'button' || type === 'submit' ? (
+			<input type="hidden" value={checked} disabled={disabled} name={name} />
+		) : undefined}
+		{children}
+	</div>
+);
 
 // ==============================
 // Styles

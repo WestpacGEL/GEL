@@ -7,8 +7,8 @@ import { ArrowRightIcon } from '@westpac/icon';
 // Component
 // ==============================
 
-const Indicator = ({ state: { type, nextIndicator }, ...rest }) =>
-	type === 'radio' && nextIndicator ? (
+const Indicator = ({ state: { type }, ...rest }) =>
+	type === 'button' || type === 'submit' ? (
 		<ArrowRightIcon size="medium" assistiveText={null} {...rest} />
 	) : (
 		<div {...rest} />
@@ -18,7 +18,7 @@ const Indicator = ({ state: { type, nextIndicator }, ...rest }) =>
 // Styles
 // ==============================
 
-const indicatorStyles = (_, { type, nextIndicator }) => {
+const indicatorStyles = (_, { type }) => {
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
 
@@ -29,18 +29,18 @@ const indicatorStyles = (_, { type, nextIndicator }) => {
 		flex: 'none',
 
 		// Next indicator (ArrowNextIcon)
-		...(type === 'radio' &&
-			nextIndicator && {
-				color: COLORS.primary,
-				marginRight: `-${SPACING(1)}`, //tweak
-				transition: 'transform 0.2s ease',
-				'input:hover + div &': {
-					transform: `translateX(${SPACING(1)})`,
-				},
-			}),
+		...((type === 'button' || type === 'submit') && {
+			color: COLORS.primary,
+			marginRight: `-${SPACING(1)}`, //tweak
+			transition: 'transform 0.2s ease',
+
+			'button:hover &, button:focus &': {
+				transform: `translateX(${SPACING(1)})`,
+			},
+		}),
 
 		// Check indicator
-		...((type === 'checkbox' || (type === 'radio' && !nextIndicator)) && {
+		...((type === 'checkbox' || type === 'radio') && {
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'center',
@@ -69,7 +69,7 @@ const indicatorStyles = (_, { type, nextIndicator }) => {
 // ==============================
 
 const indicatorAttributes = (_, { type }) => ({
-	'aria-hidden': type === 'radio' ? 'true' : null,
+	'aria-hidden': type === 'button' || type === 'submit' ? 'true' : null,
 });
 
 // ==============================
