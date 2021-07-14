@@ -1,5 +1,15 @@
 # @westpac/text-input
 
+## 1.2.0
+
+### Minor Changes
+
+- c7d31b61: Add React.forwardRef, forward ref to <input> DOM node
+
+### Patch Changes
+
+- @westpac/button@1.2.1
+
 ## 1.1.0
 
 ### Minor Changes

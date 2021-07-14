@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import { useBrandSwitcher } from '../providers/brand-switcher';
 import { useRouter } from 'next/router';
 import { Container, Grid, Cell } from '@westpac/grid';
+import { Head } from '../../components/head';
 import { Section } from '../../components/section';
 import { Body } from '../body';
 import { BASE_URL } from '../../config.js';
@@ -17,6 +18,7 @@ export const BrandPicker = () => {
 
 	return (
 		<Fragment>
+			<Head title="Brand picker" />
 			<Global styles={{ body: { backgroundColor: COLORS.background } }} />
 			<header
 				css={mq({
@@ -59,60 +61,62 @@ export const BrandPicker = () => {
 					</em>
 				</h1>
 			</header>
-			<Section>
-				<Container>
-					<Grid>
-						<Cell width={[12, null, null, 3]}>
-							<h2
-								size={[6, null, 4]}
-								css={mq({
-									fontSize: [
-										PACKS.typeScale.bodyFont[6].fontSize,
-										null,
-										PACKS.typeScale.bodyFont[5].fontSize,
-									],
-									lineHeight: [
-										PACKS.typeScale.bodyFont[6].lineHeight,
-										null,
-										PACKS.typeScale.bodyFont[5].lineHeight,
-									],
-									fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-									fontWeight: 700,
-									marginTop: 0,
-									marginBottom: ['1.125rem', null, '1.5rem'],
-								})}
-							>
-								Select your brand
-							</h2>
-							<Body>
-								<p css={{ ...PACKS.typeScale.bodyFont[8] }}>
-									This selection will determine the brand you’ll see. Don’t worry, you’ll be able to
-									change the brand you’ve selected at any time.
-								</p>
-							</Body>
-						</Cell>
-						<Cell width={[12, null, null, 9]}>
-							<Grid
-								tag="ul"
-								role="list"
-								rowGap="24px"
-								css={{
-									listStyle: 'none',
-									paddingLeft: 0,
-									margin: 0,
-								}}
-							>
-								<BrandCard brand={brands.WBC} />
-								<BrandCard brand={brands.STG} />
-								<BrandCard brand={brands.BOM} />
-								<BrandCard brand={brands.BSA} />
-								<BrandCard brand={brands.WBG} />
-								<BrandCard brand={brands.RAMS} />
-							</Grid>
-						</Cell>
-					</Grid>
-				</Container>
-			</Section>
+			<main id="content" tabIndex="-1">
+				<Section tag="div">
+					<Container>
+						<Grid>
+							<Cell width={[12, null, null, 3]}>
+								<h2
+									size={[6, null, 4]}
+									css={mq({
+										fontSize: [
+											PACKS.typeScale.bodyFont[6].fontSize,
+											null,
+											PACKS.typeScale.bodyFont[5].fontSize,
+										],
+										lineHeight: [
+											PACKS.typeScale.bodyFont[6].lineHeight,
+											null,
+											PACKS.typeScale.bodyFont[5].lineHeight,
+										],
+										fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
+										fontWeight: 700,
+										marginTop: 0,
+										marginBottom: ['1.125rem', null, '1.5rem'],
+									})}
+								>
+									Select your brand
+								</h2>
+								<Body>
+									<p css={{ ...PACKS.typeScale.bodyFont[8] }}>
+										This selection will determine the brand you’ll see. Don’t worry, you’ll be able
+										to change the brand you’ve selected at any time.
+									</p>
+								</Body>
+							</Cell>
+							<Cell width={[12, null, null, 9]}>
+								<Grid
+									tag="ul"
+									role="list"
+									rowGap="24px"
+									css={{
+										listStyle: 'none',
+										paddingLeft: 0,
+										margin: 0,
+									}}
+								>
+									<BrandCard brand={brands.WBC} />
+									<BrandCard brand={brands.STG} />
+									<BrandCard brand={brands.BOM} />
+									<BrandCard brand={brands.BSA} />
+									<BrandCard brand={brands.WBG} />
+									<BrandCard brand={brands.RAMS} />
+								</Grid>
+							</Cell>
+						</Grid>
+					</Container>
+				</Section>
+			</main>
 		</Fragment>
 	);
 };

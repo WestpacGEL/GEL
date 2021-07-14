@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { EmailIcon, GithubIcon, SlackIcon } from '@westpac/icon';
+import { usePageContext } from '../providers/pageContext';
 import throttle from 'lodash.throttle';
 
 import { Icon } from '../../../../components/icon/src/Icon';
@@ -19,12 +20,14 @@ const UpIcon = (props) => {
 		</Icon>
 	);
 };
+
 export const Footer = () => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
-	const [visible, setVisible] = useState(false);
+	const [visible, setVisible] = useState(true);
+	const { pageHeadingRef } = usePageContext();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const setFooter = () => {
 			const windowHeight = window.clientHeight;
 			const documentHeight = window.scrollHeight;
@@ -46,10 +49,21 @@ export const Footer = () => {
 		};
 	}, []);
 
+	const goToTopClickHandler = (e) => {
+		e.preventDefault();
+		pageHeadingRef.current.focus();
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'smooth',
+		});
+	};
+
 	return (
 		<footer
 			css={mq({
 				boxSizing: 'border-box',
+				flex: 'none',
 				position: 'fixed',
 				zIndex: 5,
 				height: '3.0625rem',
@@ -62,7 +76,6 @@ export const Footer = () => {
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'space-between',
-				flex: '0 0 auto',
 				padding: '0.375rem 1.125rem 0.4375rem 1.5rem',
 				transition: 'bottom 0.4s ease',
 			})}
@@ -94,17 +107,12 @@ export const Footer = () => {
 			</div>
 
 			<Button
+				href="#0"
 				look="link"
 				size="large"
 				iconAfter={UpIcon}
-				onClick={(e) => {
-					window.scroll({
-						top: 0,
-						left: 0,
-						behavior: 'smooth',
-					});
-				}}
 				assistiveText="Go to top"
+				onClick={goToTopClickHandler}
 				overrides={{
 					Button: {
 						styles: (styles) => ({

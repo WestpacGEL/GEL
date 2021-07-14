@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import {
 	DownloadIcon,
 	RefreshIcon,
@@ -26,8 +26,9 @@ import { Body } from '../../../components/body';
 import { Head } from '../../../components/head';
 import { BlockList, BlockListItem, BlockListHeading } from '../../../components/block-list';
 import PageHeader from '../../../components/header/page-header';
-import { PageContext } from '../../../components/providers/pageContext';
-import { Gridly, Footer } from '../../../components/layout';
+import { PageContextProvider } from '../../../components/providers/pageContext';
+import { Footer } from '../../../components/layout';
+import { ExternalLinkIcon } from '../../../components/external-link-icon';
 import { BASE_URL } from '../../../config.js';
 import { Icon } from '../../../../../components/icon/src/Icon';
 import GEL from '../../../../../GEL.json';
@@ -378,6 +379,7 @@ const fontTextWBC = () => (
 			Check the{' '}
 			<a href={urlMap.WBC.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively. Never use a font without confirmation that
 			you have the correct licence in place.
@@ -398,6 +400,7 @@ const fontTextSTG = () => (
 			Check the{' '}
 			<a href={urlMap.STG.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively. Never use a font without confirmation that
 			you have the correct licence in place.
@@ -410,6 +413,7 @@ const fontTextSTG = () => (
 			Designers using other software can send a request for approval via{' '}
 			<a href="http://stgeorge.mybrandmachine.com" target="_blank">
 				Brand Central
+				<ExternalLinkIcon />
 			</a>
 			.
 		</p>
@@ -421,6 +425,7 @@ const fontTextBOM = () => (
 			Check the{' '}
 			<a href={urlMap.BOM.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively. Never use a font without confirmation that
 			you have the correct licence in place.
@@ -437,6 +442,7 @@ const fontTextBSA = () => (
 			Check the{' '}
 			<a href={urlMap.BSA.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively. Never use a font without confirmation that
 			you have the correct licence in place.
@@ -456,12 +462,14 @@ const fontTextWBG = () => (
 			Check the{' '}
 			<a href={urlMap.WBG.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively.
 		</p>
 		<p>
 			<a href="https://fonts.google.com/specimen/Montserrat" target="_blank">
 				Download Montserrat
+				<ExternalLinkIcon />
 			</a>
 		</p>
 	</Fragment>
@@ -472,12 +480,14 @@ const fontTextRAMS = () => (
 			Check the{' '}
 			<a href={urlMap.RAMS.guidelinesURL} target="_blank">
 				Masterbrand Guidelines
+				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively.
 		</p>
 		<p>
 			<a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank">
 				Download Source Sans Pro
+				<ExternalLinkIcon />
 			</a>
 		</p>
 	</Fragment>
@@ -537,6 +547,7 @@ const SectionDesigners = () => {
 							{brandContent.guidelinesURL && (
 								<BlockListItem href={brandContent.guidelinesURL} target="_blank">
 									Masterbrand Guidelines
+									<ExternalLinkIcon />
 								</BlockListItem>
 							)}
 						</BlockList>
@@ -563,15 +574,19 @@ const SectionDevelopers = () => {
 	);
 	const [selected, setSelected] = useState(['core']);
 	const [selectAllToggle, setSelectAllToggle] = useState([]);
+	const optionSelectAllRef = useRef(null);
 
 	useEffect(() => {
 		setSelectAllToggle(selected.length === supportedPkgs.length + 1 ? ['all'] : []);
 	}, [selected]);
 
 	function handleToggleChange() {
-		setSelected(selected.length === supportedPkgs.length + 1 ? [] : ['core', ...supportedPkgs]);
+		setSelected(
+			selected.length === supportedPkgs.length + 1 ? ['core'] : ['core', ...supportedPkgs]
+		);
 	}
 	function handleClearAllClick() {
+		optionSelectAllRef.current.focus();
 		setSelected(['core']);
 	}
 	function handleSelectPkgChange(value) {
@@ -604,7 +619,7 @@ const SectionDevelopers = () => {
 							<p>
 								Developers can{' '}
 								<a
-									href={`https://westpacgroup.sharepoint.com/sites/TS1206/Shared%20Documents/webfonts/${BRAND.code}.zip`}
+									href={`https://westpacgroup.sharepoint.com/sites/O365-UG-043642/Shared%20Documents/General/Web%20Fonts/${BRAND.code}.zip`}
 									target="blank"
 								>
 									download web font files
@@ -652,7 +667,9 @@ const SectionDevelopers = () => {
 												},
 											}}
 										>
-											<Option value="all">Select all</Option>
+											<Option value="all" ref={optionSelectAllRef}>
+												Select all
+											</Option>
 										</FormCheck>
 										{selected.length > 1 && (
 											<Button
@@ -826,17 +843,14 @@ const SectionDevelopers = () => {
 	);
 };
 
-function TokensPage() {
-	const { COLORS, LAYOUT } = useBrand();
+function DownloadsPage() {
 	const mq = useMediaQuery();
-
-	const [showGrid, setShowGrid] = useState(false);
 
 	return (
 		<Fragment>
 			<Head title="Downloads" />
-			<PageContext.Provider value={{ showGrid, setShowGrid }}>
-				<div css={{ flexGrow: 1, position: 'relative', backgroundColor: COLORS.background }}>
+			<PageContextProvider>
+				<main id="content" tabIndex="-1">
 					<PageHeader
 						name="Downloads"
 						css={
@@ -852,14 +866,15 @@ function TokensPage() {
 							})[0]
 						}
 					/>
-					<Gridly show={showGrid} />
-					<SectionDesigners />
-					<SectionDevelopers />
+					<div>
+						<SectionDesigners />
+						<SectionDevelopers />
+					</div>
 					<Footer />
-				</div>
-			</PageContext.Provider>
+				</main>
+			</PageContextProvider>
 		</Fragment>
 	);
 }
 
-export default TokensPage;
+export default DownloadsPage;

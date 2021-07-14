@@ -1,5 +1,16 @@
 # @westpac/form-check
 
+## 1.2.0
+
+### Minor Changes
+
+- 109340f0: Add forwardRef Option and add ref to Option input
+- 1c10dc5d: Add new reveal feature
+
+### Patch Changes
+
+- @westpac/button@1.2.1
+
 ## 1.1.1
 
 ### Patch Changes

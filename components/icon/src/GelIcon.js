@@ -13,7 +13,7 @@ export const GelIcon = (props) => (
 
 GelIcon.defaultProps = {
 	...defaultProps,
-	assistiveText: 'Gift',
+	assistiveText: 'GEL',
 	copyrightYear: '2020',
 };
 GelIcon.propTypes = propTypes;

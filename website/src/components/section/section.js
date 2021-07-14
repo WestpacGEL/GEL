@@ -6,7 +6,13 @@ import PropTypes from 'prop-types';
 // Component
 // ==============================
 
-export const Section = ({ paddingTop = 'medium', paddingBottom = 'medium', light, ...rest }) => {
+export const Section = ({
+	tag: Tag,
+	paddingTop = 'medium',
+	paddingBottom = 'medium',
+	light,
+	...rest
+}) => {
 	const mq = useMediaQuery();
 	const { SPACING, COLORS } = useBrand();
 
@@ -16,7 +22,7 @@ export const Section = ({ paddingTop = 'medium', paddingBottom = 'medium', light
 	};
 
 	return (
-		<section
+		<Tag
 			css={mq({
 				paddingTop: paddingMap[paddingTop],
 				paddingBottom: paddingMap[paddingBottom],
@@ -40,12 +46,14 @@ export const Section = ({ paddingTop = 'medium', paddingBottom = 'medium', light
 // ==============================
 
 Section.propTypes = {
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
 	paddingTop: PropTypes.oneOf(['medium', 'large']).isRequired,
 	paddingBottom: PropTypes.oneOf(['medium', 'large']).isRequired,
 	light: PropTypes.bool.isRequired,
 };
 
 Section.defaultProps = {
+	tag: 'section',
 	paddingTop: 'medium',
 	paddingBottom: 'medium',
 	light: false,

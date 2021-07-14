@@ -32,16 +32,18 @@ export const Image = {
 	editor: ({ value, onChange }) => {
 		const [uploadState, setUploadState] = useState(null);
 		const [image, setImage] = useState(value.image);
+		const [alt, setAlt] = useState(value.alt);
 		const [caption, setCaption] = useState(value.caption);
 		const [removeMargin, setRemoveMargin] = useState(value.removeMargin);
 
 		useEffect(() => {
 			onChange({
+				alt,
 				caption,
 				image,
 				removeMargin,
 			});
-		}, [caption, image, removeMargin]);
+		}, [alt, caption, image, removeMargin]);
 
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 
@@ -73,6 +75,20 @@ export const Image = {
 					</FieldInput>
 				</FieldContainer>
 				<FieldContainer>
+					<FieldLabel htmlFor={'image-alt'} field={{ label: 'Alternative text', config: {} }} />
+					<FieldInput>
+						<input
+							css={inputStyles}
+							type="text"
+							id="image-alt"
+							value={alt}
+							onChange={(e) => {
+								setAlt(e.target.value);
+							}}
+						/>
+					</FieldInput>
+				</FieldContainer>
+				<FieldContainer>
 					<FieldLabel htmlFor={'image-caption'} field={{ label: 'Caption', config: {} }} />
 					<FieldInput>
 						<input
@@ -99,7 +115,7 @@ export const Image = {
 			</Fragment>
 		);
 	},
-	component: ({ caption, image, removeMargin = false, context }) => {
+	component: ({ alt, caption, image, removeMargin = false, context }) => {
 		const { SPACING, PACKS, COLORS } = useBrand();
 
 		return (
@@ -110,7 +126,7 @@ export const Image = {
 						pointerEvents: context === 'admin' ? 'none' : undefined,
 					}}
 				>
-					<img css={{ display: 'block', width: '100%', height: 'auto' }} src={image} />
+					<img css={{ display: 'block', width: '100%', height: 'auto' }} src={image} alt={alt} />
 					<Body
 						tag="figcaption"
 						css={{

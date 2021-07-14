@@ -1,5 +1,11 @@
 # @westpac/switch
 
+## 1.1.0
+
+### Minor Changes
+
+- c7d31b61: Add React.forwardRef, forward ref to <input> DOM node
+
 ## 1.0.2
 
 ### Patch Changes

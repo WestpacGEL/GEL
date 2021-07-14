@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { NavigationItem, StyledItem } from './navigation-item';
 import { ROOT_PAGES, BASE_PAGE } from '../../../config';
 import { NavigationGroup } from './navigation-group';
-import { useSidebar } from '../../providers/sidebar';
+import { useSidebarContext } from '../../providers/sidebar';
 import BackToGelSvg from './BackToGelSvg';
 import throttle from 'lodash.throttle';
 
@@ -16,7 +16,7 @@ import throttle from 'lodash.throttle';
 const ListOverride = ({ state, ...props }) => <ul {...props} />;
 
 const NavigationList = (props) => {
-	const { SPACING, PACKS } = useBrand();
+	const { PACKS } = useBrand();
 	return (
 		<List
 			type="unstyled"
@@ -47,7 +47,7 @@ const NavigationList = (props) => {
 export const Navigation = ({ items }) => {
 	const ref = useRef();
 	const { COLORS, SPACING, PACKS } = useBrand();
-	const { isScrolled, setIsScrolled } = useSidebar();
+	const { isScrolled, setIsScrolled } = useSidebarContext();
 
 	const setNavigation = () => {
 		const scroll = ref.current.scrollTop;
@@ -136,9 +136,9 @@ export const Navigation = ({ items }) => {
 					display: 'block',
 					overflow: 'hidden',
 					height: 90,
-					color: COLORS.text,
+					color: '#263238', //GEL color
 					':focus': {
-						outlineOffset: `-${PACKS.focus.outlineWidth}`,
+						outlineOffset: `-${PACKS.focus.outlineWidth} !important`,
 					},
 				}}
 				aria-label="Back to GEL"

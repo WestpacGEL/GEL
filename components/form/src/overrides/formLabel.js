@@ -33,6 +33,8 @@ const formLabelStyles = (_, { subLabel, spacing }) => {
 		display: 'block',
 		fontSize: subLabel ? '0.875rem' : '1rem',
 		marginBottom: mapSpacing[spacing].marginBottom,
+		paddingLeft: 0,
+		paddingRight: 0,
 		...TYPE.bodyFont[500],
 	};
 };

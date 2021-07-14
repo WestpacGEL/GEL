@@ -3,6 +3,6 @@
   publish = "docs/"
 
 [build.environment]
-  NODE_VERSION = "10"
-  YARN_VERSION = "1.12.3"
+  NODE_VERSION = "12"
+  YARN_VERSION = "1.22.10"
   YARN_FLAGS = "--frozen-lockfile"
