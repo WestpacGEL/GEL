@@ -46,7 +46,7 @@ const ExampleButton = ({ onClick, children, ...rest }) => {
 	);
 };
 const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
-	const [codeIsOpen, setCodeOpen] = useState(false);
+	const [codeIsOpen, setCodeOpen] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [id] = useState(`code-block-${useInstanceId()}`);
 	const { SPACING } = useBrand();
