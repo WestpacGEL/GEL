@@ -12,7 +12,7 @@ const Inner = ({ state: _, ...rest }) => <div {...rest} />;
 // Styles
 // ==============================
 
-const innerStyles = () => {
+const innerStyles = (_, { fixed, scrolled }) => {
 	const mq = useMediaQuery();
 
 	return mq({
@@ -37,10 +37,33 @@ const innerStyles = () => {
 			right: 0,
 			top: '100%',
 			overflow: 'hidden',
-			borderTop: '1px solid #e8e8ed', // where is this color from
+			opacity: scrolled ? 0 : 1,
+			borderTop: '1px solid #e8e8ed',
 			transition: 'opacity .2s',
 			willChange: 'opacity',
 		},
+		...(fixed && {
+			position: 'fixed',
+			top: 0,
+			left: 0,
+			right: 0,
+			zIndex: 1,
+			'::after': {
+				content: '""',
+				display: 'block',
+				position: 'absolute',
+				zIndex: '1',
+				left: 0,
+				right: 0,
+				top: '100%',
+				height: '6px',
+				pointerEvents: 'none',
+				transition: 'all .2s',
+				background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%)',
+				willChange: 'opacity',
+				opacity: scrolled ? 1 : 0,
+			},
+		}),
 	})[0];
 };
 

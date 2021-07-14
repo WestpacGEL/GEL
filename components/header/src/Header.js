@@ -1,7 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useState, useEffect } from 'react';
 import { SkipLink } from '@westpac/a11y';
+import throttle from 'lodash.throttle';
 import PropTypes from 'prop-types';
 
 import { defaultLeftBtn } from './overrides/leftBtn';
@@ -17,8 +19,6 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-// TO DO: Add fixed option
-
 export const Header = ({
 	logoLink,
 	logoOnClick,
@@ -27,6 +27,7 @@ export const Header = ({
 	leftIcon,
 	leftOnClick,
 	leftAssistiveText,
+	fixed,
 	skipToContentId,
 	skipLinkContent,
 	children,
@@ -37,6 +38,8 @@ export const Header = ({
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
+	const [scrolled, setScrolled] = useState(false);
 
 	const defaultOverrides = {
 		Header: defaultHeader,
@@ -56,8 +59,10 @@ export const Header = ({
 		leftIcon,
 		leftOnClick,
 		leftAssistiveText,
+		fixed,
 		skipToContentId,
 		skipLinkContent,
+		scrolled,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -71,6 +76,22 @@ export const Header = ({
 		Logo: { component: Logo, styles: logoStyles, attributes: logoAttributes },
 		Right: { component: Right, styles: rightStyles, attributes: rightAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
+	useEffect(() => {
+		const handleScroll = throttle(() => {
+			let hasScrolled = false;
+			if (window.scrollY > 5) {
+				hasScrolled = 'true';
+			}
+			setScrolled(hasScrolled);
+		}, 10);
+
+		if (fixed) window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
 
 	return (
 		<Header {...rest} state={state} {...headerAttributes(state)} css={headerStyles(state)}>
