@@ -17,18 +17,26 @@
 	"module": "dist/westpac-template.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.0",
+		"@westpac/a11y": "^1.0.1",
+		"@westpac/button": "^1.2.0",
 		"@westpac/core": "^2.1.0",
 		"@westpac/footer": "^1.0.0-beta",
 		"@westpac/grid": "^1.0.1",
 		"@westpac/header": "^1.0.0-beta",
-		"prop-types": "^15.7.2"
+		"@westpac/heading": "^1.0.1",
+		"@westpac/hooks": "^1.1.1",
+		"@westpac/icon": "^1.3.1",
+		"prop-types": "^15.7.2",
+		"react-focus-on": "^3.5.2"
 	},
 	"peerDependencies": {
-		"react": "^17.0.2"
+		"react": "^17.0.2",
+		"react-spring": "^9.2.1"
 	},
 	"devDependencies": {
 		"cypress": "^7.4.0",
 		"react": "^17.0.2",
+		"react-spring": "^9.2.1",
 		"start-server-and-test": "^1.12.3"
 	}
 }
