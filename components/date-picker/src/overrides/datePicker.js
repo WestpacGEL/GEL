@@ -79,7 +79,7 @@ const datePickerStyles = (_, { size }) => {
 			outline-offset: ${focus.outlineOffset} !important;
 		}
 
-		/* Button */
+		/* Calendar button */
 		.duet-date__toggle {
 			box-shadow: none;
 			border-left: 1px solid ${COLORS.borderDark};
@@ -113,42 +113,73 @@ const datePickerStyles = (_, { size }) => {
 			display: none; // Hide, replace with background-image
 		}
 
-		/* Calendar */
+		/* Calendar selects */
 		.duet-date__select-label {
-			color: ${COLORS.primary};
+			border: 1px solid transparent; //for WHCM (a11y)
+			color: ${COLORS.primary}; //for icon (uses currentColor)
 			span {
-				color: ${COLORS.text};
+				color: ${COLORS.text}; //reset text
 			}
 		}
 		.duet-date__select select:focus + .duet-date__select-label {
 			box-shadow: 0 0 0 2px ${COLORS.focus};
-			// box-shadow: none;
-			// outline: ${focus.outline} !important;
-			// outline-width: ${focus.outlineWidth} !important;
-			// outline-offset: ${focus.outlineOffset} !important;
+			outline: ${focus.outlineWidth} solid transparent !important; //for WCHM (a11y)
+			outline-offset: ${focus.outlineOffset} !important;
 		}
+
+		/* Calendar prev/next buttons */
 		.duet-date__prev,
 		.duet-date__next {
+			border: 1px solid transparent; //for WHCM (a11y)
 			color: ${COLORS.primary};
 		}
 		.duet-date__prev:focus,
 		.duet-date__next:focus {
 			box-shadow: 0 0 0 2px ${COLORS.focus};
-			// box-shadow: none;
-			// outline: ${focus.outline};
-			// outline-width: ${focus.outlineWidth};
-			// outline-offset: ${focus.outlineOffset};
+			outline: ${focus.outlineWidth} solid transparent !important; //for WCHM (a11y)
+			outline-offset: ${focus.outlineOffset} !important;
 		}
-		.duet-date__day:not(.is-month),
-		.duet-date__day[aria-disabled='true'] {
-			color: ${COLORS.muted};
+
+		/* Calendar days */
+		.duet-date__day {
+			position: relative; //for disabled dash styling
+			border: 1px solid transparent; //for WHCM (a11y)
 		}
 		.duet-date__day:active,
 		.duet-date__day:focus {
-			// box-shadow: none;
+			box-shadow: 0 0 0 2px ${COLORS.focus} !important;
+			outline: ${focus.outlineWidth} solid transparent !important; //for WCHM (a11y)
+			outline-offset: ${focus.outlineOffset} !important;
+		}
+		.duet-date__day:not([aria-pressed='true']):focus {
+			background: transparent;
+			color: var(--duet-color-text);
+		}
+		.duet-date__day.is-today {
+			box-shadow: none;
+			border: 1px solid var(--duet-color-primary);
+		}
+		.duet-date__day[aria-disabled='true']::after,
+		.duet-date__day[disabled]::after {
+			content: '';
+			position: absolute;
+			z-index: 1;
+			top: 50%;
+			left: 50%;
+			border-bottom: 1px solid ${COLORS.muted};
+			width: 18px;
+			height: 0;
+			transform: translateX(-50%);
+		}
+
+		/* Calendar close button */
+		.duet-date__close {
+			border: 1px solid transparent; //for WHCM (a11y)
 		}
 		.duet-date__close:focus {
 			box-shadow: 0 0 0 2px ${COLORS.focus};
+			outline: ${focus.outlineWidth} solid transparent !important; //for WCHM (a11y)
+			outline-offset: ${focus.outlineOffset} !important;
 		}
 	`;
 };
