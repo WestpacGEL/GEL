@@ -145,7 +145,6 @@ const datePickerStyles = (_, { size }) => {
 		/* Calendar days */
 		'.duet-date__day': {
 			position: 'relative', //for disabled dash styling
-			border: '1px solid transparent', //for WHCM (a11y)
 
 			'&:active, &:focus': {
 				boxShadow: `0 0 0 2px ${COLORS.focus} !important`,
@@ -157,9 +156,8 @@ const datePickerStyles = (_, { size }) => {
 				color: 'var(--duet-color-text)',
 			},
 
-			'&.is-today': {
-				boxShadow: 'none',
-				border: `1px solid var(--duet-color-primary)`,
+			'&[aria-pressed="true"]': {
+				border: '1px solid transparent', //for WHCM (a11y)
 			},
 			'&[aria-disabled="true"], &[disabled]': {
 				'::after': {
