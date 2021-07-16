@@ -1,5 +1,16 @@
 # @westpac/text-input
 
+## 1.3.0
+
+### Minor Changes
+
+- 74cf1085: Export utils, propTypes and defaultProps
+
+### Patch Changes
+
+- Updated dependencies [7d16f040]
+  - @westpac/button@1.3.0
+
 ## 1.2.0
 
 ### Minor Changes

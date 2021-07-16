@@ -1,5 +1,11 @@
 # @westpac/button
 
+## 1.3.0
+
+### Minor Changes
+
+- 7d16f040: Export utils
+
 ## 1.2.1
 
 ### Patch Changes

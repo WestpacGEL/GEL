@@ -1,5 +1,17 @@
 # @westpac/form-check
 
+## 1.3.0
+
+### Minor Changes
+
+- 3439e26e: - Update FormCheckReveal trigger button styling
+  - Add @westpac/icon dependency
+
+### Patch Changes
+
+- Updated dependencies [7d16f040]
+  - @westpac/button@1.3.0
+
 ## 1.2.0
 
 ### Minor Changes
