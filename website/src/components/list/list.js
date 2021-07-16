@@ -21,6 +21,11 @@ const listStyleMap = {
 			top: '0.625rem',
 		},
 	},
+	cross: {
+		'::before': {
+			top: '0.625rem',
+		},
+	},
 };
 
 const ListOverride = ({ state: { type }, ...rest }) => (
