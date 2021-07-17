@@ -5,17 +5,17 @@ let isBrowser = typeof window !== 'undefined';
 function getSize() {
 	if (isBrowser) {
 		return {
-			innerHeight: window.innerHeight,
-			innerWidth: window.innerWidth,
+			height: window.innerHeight,
+			width: window.innerWidth,
 		};
 	}
 	return {
-		innerHeight: 0,
-		innerWidth: 0,
+		height: 0,
+		width: 0,
 	};
 }
 
-export default function useWindowSize() {
+export function useWindowSize() {
 	let [windowSize, setWindowSize] = useState(getSize());
 
 	useEffect(() => {
