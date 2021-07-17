@@ -29,6 +29,7 @@ export const Sidebar = ({
 	open: isOpen,
 	heading,
 	contentHeading,
+	offsetTop,
 	skipToContentId,
 	skipLinkContent,
 	children,
@@ -94,6 +95,7 @@ export const Sidebar = ({
 		scrolled,
 		heading,
 		contentHeading,
+		offsetTop,
 		skipToContentId,
 		skipLinkContent,
 		overrides: componentOverrides,
@@ -232,6 +234,12 @@ Sidebar.propTypes = {
 	 * Sidebar content header text (only visible < md breakpoint)
 	 */
 	contentHeading: PropTypes.string,
+
+	/**
+	 * Top margin offset (default offset for use with GEL header component)
+	 */
+	offsetTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+
 	/**
 	 * The id to the pages main content
 	 */

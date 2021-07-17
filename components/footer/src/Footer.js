@@ -94,6 +94,11 @@ Footer.propTypes = {
 	srOnlyText: PropTypes.string,
 
 	/**
+	 * Right offset for use with GEL sidebar component
+	 */
+	offsetSidebar: PropTypes.bool,
+
+	/**
 	 * Content to be put on the left side of the footer
 	 */
 	children: PropTypes.node,

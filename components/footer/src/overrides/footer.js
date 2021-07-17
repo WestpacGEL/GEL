@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
@@ -12,21 +12,23 @@ const Footer = ({ state: _, ...rest }) => <footer {...rest} />;
 // Styles
 // ==============================
 
-const footerStyles = () => {
+const footerStyles = (_, { offsetSidebar }) => {
 	const { COLORS } = useBrand();
+	const mq = useMediaQuery();
 
-	return {
+	return mq({
 		label: getLabel('footer'),
 		position: 'relative',
 		overflow: 'hidden',
 		backgroundColor: '#fff',
+		marginRight: offsetSidebar && [null, null, null, '300px'],
 		'::before': {
 			content: '""',
 			display: 'block',
 			backgroundColor: COLORS.primary,
 			height: '1px',
 		},
-	};
+	})[0];
 };
 
 // ==============================

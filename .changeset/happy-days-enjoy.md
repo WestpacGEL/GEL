@@ -2,4 +2,4 @@
 '@westpac/hooks': minor
 ---
 
-Added new useWindowSize hook
+Refactor useWindowSize hook
