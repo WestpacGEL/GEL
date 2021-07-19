@@ -7,7 +7,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 // ==============================
 
 const Label = ({ state: { type }, ...rest }) => {
-	const Tag = type === 'button' || type === 'submit' ? 'div' : 'label';
+	const Tag = type === 'button' ? 'div' : 'label';
 	return <Tag {...rest} />;
 };
 

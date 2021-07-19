@@ -15,13 +15,6 @@ function Example({ brand }) {
 				<Option value="3">Option 3</Option>
 			</Selector>
 
-			<h3>Submit</h3>
-			<Selector type="submit" name="default-submit" disabled>
-				<Option value="1">Option 1</Option>
-				<Option value="2">Option 2</Option>
-				<Option value="3">Option 3</Option>
-			</Selector>
-
 			<h3>Radio</h3>
 			<Selector type="radio" name="default-radio" disabled>
 				<Option value="1">Option 1</Option>
@@ -42,14 +35,6 @@ function Example({ brand }) {
 
 			<h3>Button</h3>
 			<Selector type="button" name="default-button-specific" defaultValue={['2']}>
-				<Option value="1">Option 1</Option>
-				<Option value="2" disabled>
-					Option 2
-				</Option>
-			</Selector>
-
-			<h3>Submit</h3>
-			<Selector type="submit" name="default-submit-specific" defaultValue={['2']}>
 				<Option value="1">Option 1</Option>
 				<Option value="2" disabled>
 					Option 2
@@ -80,14 +65,6 @@ function Example({ brand }) {
 			<fieldset disabled>
 				<h3>Button</h3>
 				<Selector type="button" name="default-button-fieldset" defaultValue={['2']}>
-					<Option value="1">Option 1</Option>
-					<Option value="2" disabled>
-						Option 2
-					</Option>
-				</Selector>
-
-				<h3>Submit</h3>
-				<Selector type="submit" name="default-submit-fieldset" defaultValue={['2']}>
 					<Option value="1">Option 1</Option>
 					<Option value="2" disabled>
 						Option 2

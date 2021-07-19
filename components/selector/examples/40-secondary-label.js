@@ -48,17 +48,6 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Submit</h3>
-			<Selector type="submit" name="example-submit-indicator-short">
-				<Option value="1" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
-					Here is button text
-				</Option>
-				<Option value="2" secondaryLabel={secondLabelShort}>
-					Here is button text
-				</Option>
-				<Option value="3">Here is button text</Option>
-			</Selector>
-
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-short">
 				<Option value="1" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
@@ -83,24 +72,6 @@ function Example({ brand }) {
 
 			<h3>Pictogram button</h3>
 			<Selector type="button" name="example-button-indicator-pictogram-short">
-				<Option
-					value="1"
-					pictogram={ChatPictogram}
-					hint={hintBankAccount}
-					secondaryLabel={secondLabelShort}
-				>
-					Here is button text
-				</Option>
-				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelShort}>
-					Here is button text
-				</Option>
-				<Option value="3" pictogram={ClockPictogram}>
-					Here is button text
-				</Option>
-			</Selector>
-
-			<h3>Pictogram submit</h3>
-			<Selector type="submit" name="example-submit-indicator-pictogram-short">
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
@@ -171,24 +142,6 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
-			<h3>Icon submit</h3>
-			<Selector type="submit" name="example-submit-indicator-icon-short">
-				<Option
-					value="1"
-					icon={AccessibilityIcon}
-					hint={hintBankAccount}
-					secondaryLabel={secondLabelShort}
-				>
-					Here is buton text
-				</Option>
-				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelShort}>
-					Here is buton text
-				</Option>
-				<Option value="3" icon={CarIcon}>
-					Here is buton text
-				</Option>
-			</Selector>
-
 			<h3>Icon radio</h3>
 			<Selector type="radio" name="example-radio-icon-short">
 				<Option
@@ -240,17 +193,6 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Submit</h3>
-			<Selector type="submit" name="example-submit-indicator-long">
-				<Option value="1" hint={hintLong} secondaryLabel={secondLabelLong}>
-					Here is button text
-				</Option>
-				<Option value="2" secondaryLabel={secondLabelLong}>
-					Here is button text
-				</Option>
-				<Option value="3">Here is button text</Option>
-			</Selector>
-
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-long">
 				<Option value="1" hint={hintLong} secondaryLabel={secondLabelLong}>
@@ -275,24 +217,6 @@ function Example({ brand }) {
 
 			<h3>Pictogram button</h3>
 			<Selector type="button" name="example-button-indicator-pictogram-long">
-				<Option
-					value="1"
-					pictogram={ChatPictogram}
-					hint={hintLong}
-					secondaryLabel={secondLabelLong}
-				>
-					Here is button text
-				</Option>
-				<Option value="2" pictogram={TruckPictogram} secondaryLabel={secondLabelLong}>
-					Here is button text
-				</Option>
-				<Option value="3" pictogram={ClockPictogram}>
-					Here is button text
-				</Option>
-			</Selector>
-
-			<h3>Pictogram submit</h3>
-			<Selector type="submit" name="example-submit-indicator-pictogram-long">
 				<Option
 					value="1"
 					pictogram={ChatPictogram}
@@ -347,19 +271,6 @@ function Example({ brand }) {
 
 			<h3>Icon button</h3>
 			<Selector type="button" name="example-button-indicator-icon-long">
-				<Option value="1" icon={AccessibilityIcon} hint={hintLong} secondaryLabel={secondLabelLong}>
-					Here is button text
-				</Option>
-				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelLong}>
-					Here is button text
-				</Option>
-				<Option value="3" icon={CarIcon}>
-					Here is button text
-				</Option>
-			</Selector>
-
-			<h3>Icon submit</h3>
-			<Selector type="submit" name="example-submit-indicator-icon-long">
 				<Option value="1" icon={AccessibilityIcon} hint={hintLong} secondaryLabel={secondLabelLong}>
 					Here is button text
 				</Option>

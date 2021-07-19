@@ -8,7 +8,7 @@ import { ArrowRightIcon } from '@westpac/icon';
 // ==============================
 
 const Indicator = ({ state: { type }, ...rest }) =>
-	type === 'button' || type === 'submit' ? (
+	type === 'button' ? (
 		<ArrowRightIcon size="medium" assistiveText={null} {...rest} />
 	) : (
 		<div {...rest} />
@@ -29,7 +29,7 @@ const indicatorStyles = (_, { type }) => {
 		flex: 'none',
 
 		// Next indicator (ArrowNextIcon)
-		...((type === 'button' || type === 'submit') && {
+		...(type === 'button' && {
 			color: COLORS.primary,
 			marginRight: `-${SPACING(1)}`, //tweak
 			transition: 'transform 0.2s ease',
@@ -69,7 +69,7 @@ const indicatorStyles = (_, { type }) => {
 // ==============================
 
 const indicatorAttributes = (_, { type }) => ({
-	'aria-hidden': type === 'button' || type === 'submit' ? 'true' : null,
+	'aria-hidden': type === 'button' ? 'true' : null,
 });
 
 // ==============================

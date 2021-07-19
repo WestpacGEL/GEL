@@ -51,17 +51,6 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Submit</h3>
-			<Selector type="submit" name="example-submit-hint">
-				<Option value="1" hint="This is some content to go in the product selector thing">
-					Here is button text
-				</Option>
-				<Option value="2" hint="This is some content to go in the product selector thing">
-					Here is button text
-				</Option>
-				<Option value="3">Here is button text</Option>
-			</Selector>
-
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-hint">
 				<Option value="1" hint="This is some content to go in the product selector thing">
@@ -90,23 +79,6 @@ function Example({ brand }) {
 
 			<h3>Button</h3>
 			<Selector type="button" name="example-button-hint-long">
-				<Option
-					value="1"
-					hint="This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with."
-				>
-					Here is button text
-				</Option>
-				<Option
-					value="2"
-					hint="This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with."
-				>
-					Here is button text
-				</Option>
-				<Option value="3">Here is button text</Option>
-			</Selector>
-
-			<h3>Submit</h3>
-			<Selector type="submit" name="example-submit-hint-long">
 				<Option
 					value="1"
 					hint="This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with."
@@ -162,17 +134,6 @@ function Example({ brand }) {
 
 			<h3>Button</h3>
 			<Selector type="button" name="example-button-hint-long">
-				<Option value="1" hint={hintHTML}>
-					Here is button text
-				</Option>
-				<Option value="2" hint={hintHTML}>
-					Here is button text
-				</Option>
-				<Option value="3">Here is button text</Option>
-			</Selector>
-
-			<h3>Submit</h3>
-			<Selector type="submit" name="example-submit-hint-long">
 				<Option value="1" hint={hintHTML}>
 					Here is button text
 				</Option>

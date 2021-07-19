@@ -127,7 +127,7 @@ export const Option = forwardRef(
 				css={optionStyles(state)}
 			>
 				{/* a11y: input not exposed as an override, contains logic required to function */}
-				{type !== 'button' && type !== 'submit' ? (
+				{type !== 'button' ? (
 					<input
 						ref={ref}
 						id={optionId}
@@ -180,9 +180,7 @@ export const Option = forwardRef(
 				) : undefined}
 				<OptionBtn
 					onClick={
-						(type === 'button' || type === 'submit') && !disabled
-							? (event) => onChange(event, value, checked)
-							: undefined
+						type === 'button' && !disabled ? (event) => onChange(event, value, checked) : undefined
 					}
 					state={state}
 					{...optionBtnAttributes(state)}
