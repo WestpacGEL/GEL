@@ -21,17 +21,17 @@ const Demo = ({ context, showCode, showDemo }) => {
 							<InputCluster horizontal>
 								<Item>
 									<Field label="Day" subLabel>
-										<TextInput type="number" size="large" width={2} />
+										<TextInput type="number" size="large" width={2} autocomplete="bday-day" />
 									</Field>
 								</Item>
 								<Item>
 									<Field label="Month" subLabel>
-										<TextInput type="number" size="large" width={2} />
+										<TextInput type="number" size="large" width={2} autocomplete="bday-month" />
 									</Field>
 								</Item>
 								<Item>
 									<Field label="Year" subLabel>
-										<TextInput type="number" size="large" width={4} />
+										<TextInput type="number" size="large" width={4} autocomplete="bday-year" />
 									</Field>
 								</Item>
 							</InputCluster>

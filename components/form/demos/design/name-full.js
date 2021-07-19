@@ -27,17 +27,17 @@ const Demo = ({ context, showCode, showDemo }) => {
 					</FormGroup>
 					<FormGroup>
 						<Field label="Given name">
-							<TextInput size="large" width={30} />
+							<TextInput size="large" width={30} autocomplete="given-name" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Middle name(s) (if any)">
-							<TextInput size="large" width={30} />
+							<TextInput size="large" width={30} autocomplete="additional-name" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Family name">
-							<TextInput size="large" width={30} />
+							<TextInput size="large" width={30} autocomplete="family-name" />
 						</Field>
 					</FormGroup>
 					<Fieldset legend="Have you ever been known by a name different to the one provided above?">
