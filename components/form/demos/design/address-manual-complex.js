@@ -52,7 +52,7 @@ const Address = ({ property = 'house' }) => {
 				</Field>
 			</FormGroup>
 			<FormGroup>
-				<Field label="Street type" hint="For example, Road">
+				<Field label="Street type">
 					<Select size="large" width={10}>
 						<option>Select</option>
 						<option>Street</option>

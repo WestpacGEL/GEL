@@ -13,12 +13,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<Form spacing="large">
 					<FormGroup>
 						<Field label="Email address">
-							<TextInput type="email" size="large" width={30} />
+							<TextInput type="email" size="large" width={30} autocomplete="email" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Confirm email address">
-							<TextInput type="email" size="large" width={30} />
+							<TextInput type="email" size="large" width={30} autocomplete="email" />
 						</Field>
 					</FormGroup>
 				</Form>

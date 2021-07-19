@@ -22,17 +22,37 @@ const Demo = ({ context, showCode, showDemo }) => {
 							<InputCluster horizontal>
 								<Item>
 									<Field label="Day" subLabel>
-										<TextInput type="number" size="large" width={2} invalid defaultValue={33} />
+										<TextInput
+											type="number"
+											size="large"
+											width={2}
+											invalid
+											defaultValue={33}
+											autocomplete="bday-day"
+										/>
 									</Field>
 								</Item>
 								<Item>
 									<Field label="Month" subLabel>
-										<TextInput type="number" size="large" width={2} defaultValue={'02'} />
+										<TextInput
+											type="number"
+											size="large"
+											width={2}
+											defaultValue={'02'}
+											autocomplete="bday-month"
+										/>
 									</Field>
 								</Item>
 								<Item>
 									<Field label="Year" subLabel>
-										<TextInput type="number" size="large" width={4} invalid defaultValue={3000} />
+										<TextInput
+											type="number"
+											size="large"
+											width={4}
+											invalid
+											defaultValue={3000}
+											autocomplete="bday-year"
+										/>
 									</Field>
 								</Item>
 							</InputCluster>
