@@ -2,11 +2,16 @@
 
 import { jsx } from '@westpac/core';
 import { Fragment, useState } from 'react';
+import { components } from 'react-select';
 import { Autocomplete } from '@westpac/autocomplete';
 import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
 import { Link, Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
+
+const Input = ({ autoComplete, options, ...props }) => (
+	<components.Input {...props} autoComplete="street-address" />
+);
 
 const Demo = ({ context, showCode, showDemo }) => {
 	const [manual, setManual] = useState(false);
@@ -15,7 +20,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Fragment>
 			Not a PO Box
 			<br />
-			<Link onClick={() => setManual((manual) => !manual)}>
+			<Link
+				onClick={(e) => {
+					e.preventDefault();
+					setManual((manual) => !manual);
+				}}
+			>
 				{manual ? 'Search for your address instead' : 'Enter manually instead'}
 			</Link>
 		</Fragment>
@@ -24,7 +34,14 @@ const Demo = ({ context, showCode, showDemo }) => {
 	const Footer = (props) => (
 		<Fragment {...props}>
 			Can't find your address?{' '}
-			<Link onClick={() => setManual((manual) => !manual)}>Enter it manually</Link>
+			<Link
+				onClick={(e) => {
+					e.preventDefault();
+					setManual((manual) => !manual);
+				}}
+			>
+				Enter it manually
+			</Link>
 		</Fragment>
 	);
 
@@ -35,16 +52,16 @@ const Demo = ({ context, showCode, showDemo }) => {
 					{manual ? (
 						<Fragment>
 							<FormGroup>
-								<Fieldset legend="Home address" hint={Hint}>
+								<Fieldset legend="Street address" hint={Hint}>
 									<InputCluster>
 										<Item>
 											<Field hideLabel label="Line 1 of 2">
-												<TextInput size="large" />
+												<TextInput size="large" autocomplete="street address-line1" />
 											</Field>
 										</Item>
 										<Item>
 											<Field hideLabel label="Line 2 of 2">
-												<TextInput size="large" />
+												<TextInput size="large" autocomplete="street address-line2" />
 											</Field>
 										</Item>
 									</InputCluster>
@@ -52,12 +69,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 							</FormGroup>
 							<FormGroup>
 								<Field label="Suburb">
-									<TextInput size="large" width={20} />
+									<TextInput size="large" width={20} autocomplete="address-level2" />
 								</Field>
 							</FormGroup>
 							<FormGroup>
 								<Field label="State">
-									<Select size="large" width={10}>
+									<Select size="large" width={10} autocomplete="address-level1">
 										<option>Select</option>
 										<option>NSW</option>
 										<option>VIC</option>
@@ -71,7 +88,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 							</FormGroup>
 							<FormGroup>
 								<Field label="Postcode">
-									<TextInput size="large" width={4} />
+									<TextInput size="large" width={4} autocomplete="postal-code" />
 								</Field>
 							</FormGroup>
 						</Fragment>
@@ -88,6 +105,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 										{ value: '', label: '124 Conch Street, Marrickville, NSW, 2204 ' },
 									]}
 									noOptionsMessage={() => 'None found'}
+									components={{ Input }}
 								/>
 							</Field>
 						</FormGroup>
