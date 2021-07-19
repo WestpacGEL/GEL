@@ -31,11 +31,9 @@ const Swatch = ({ color, secondary }) => {
 			})}
 		>
 			{/* a11y: using SVG for WHCM support */}
-			<div css={{ width: 132, height: 132 }}>
-				<Symbol viewBoxWidth={132} viewBoxHeight={132}>
-					<circle fill={colorVal} cx="66" cy="66" r="66" />
-				</Symbol>
-			</div>
+			<Symbol symbol="ColorSwatch" viewBoxWidth={132} viewBoxHeight={132}>
+				<circle fill={colorVal} cx="66" cy="66" r="66" />
+			</Symbol>
 			<Body
 				css={mq({
 					display: 'flex',
