@@ -3,10 +3,15 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Fragment } from 'react';
 import { Autocomplete } from '@westpac/autocomplete';
+import { components } from 'react-select';
 import { Form, FormGroup, Field, Fieldset } from '@westpac/form';
 import { Fork, Content } from '@westpac/fork';
 import { Link, Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
+
+const Input = ({ autoComplete, options, ...props }) => (
+	<components.Input {...props} autoComplete="street-address" />
+);
 
 const Hint = (props) => (
 	<Link
@@ -47,6 +52,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 												{ value: '', label: '42 Wallaby Way, Sydney, NSW, 2000 ' },
 												{ value: '', label: '124 Conch Street, Marrickville, NSW, 2204 ' },
 											]}
+											components={{ Input }}
 										/>
 									</Field>
 								</FormGroup>
