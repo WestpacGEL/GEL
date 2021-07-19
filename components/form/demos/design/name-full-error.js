@@ -15,7 +15,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<Form spacing="large">
 					<FormGroup>
 						<Field label="Title name">
-							<Select inline size="large">
+							<Select inline size="large" autocomplete="honorific-prefix">
 								<option>Select</option>
 								<option>Mrs</option>
 								<option>Mr</option>
@@ -27,17 +27,17 @@ const Demo = ({ context, showCode, showDemo }) => {
 					</FormGroup>
 					<FormGroup>
 						<Field label="Given name">
-							<TextInput size="large" width={30} />
+							<TextInput size="large" width={30} autocomplete="given-name" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Middle name(s) (if any)">
-							<TextInput size="large" width={30} />
+							<TextInput size="large" width={30} autocomplete="additional-name" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Family name" error="Error message goes here if activated">
-							<TextInput size="large" width={30} invalid />
+							<TextInput size="large" width={30} invalid autocomplete="family-name" />
 						</Field>
 					</FormGroup>
 					<Fieldset legend="Have you ever been known by a name different to the one provided above?">

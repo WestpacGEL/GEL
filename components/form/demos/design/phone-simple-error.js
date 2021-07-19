@@ -13,7 +13,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<Form spacing="large">
 					<FormGroup>
 						<Field label="Home number" hint="Include the 2 digit area code">
-							<TextInput type="tel" size="large" width={20} />
+							<TextInput type="tel" size="large" width={20} autocomplete="tel" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
@@ -22,12 +22,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 							error="Error message goes here if activated"
 							hint="Include the 2 digit area code"
 						>
-							<TextInput type="tel" size="large" width={20} invalid />
+							<TextInput type="tel" size="large" width={20} invalid autocomplete="tel" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Mobile number">
-							<TextInput type="tel" size="large" width={20} />
+							<TextInput type="tel" size="large" width={20} autocomplete="tel" />
 						</Field>
 					</FormGroup>
 				</Form>
