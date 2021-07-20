@@ -36,6 +36,19 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" icon={AccessibilityIcon} hint={hintShort}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={AtmIcon}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={CarIcon}>
+					Here is link text
+				</Option>
+			</Selector>
+
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-hint">
 				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
@@ -76,6 +89,19 @@ function Example({ brand }) {
 				</Option>
 				<Option value="3" icon={CarIcon}>
 					Here is button text
+				</Option>
+			</Selector>
+
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" icon={AccessibilityIcon} hint={hintLong}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={AtmIcon}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={CarIcon}>
+					Here is link text
 				</Option>
 			</Selector>
 

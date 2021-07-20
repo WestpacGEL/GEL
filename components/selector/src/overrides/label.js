@@ -7,7 +7,7 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 // ==============================
 
 const Label = ({ state: { type }, ...rest }) => {
-	const Tag = type === 'button' ? 'div' : 'label';
+	const Tag = type === 'radio' || type === 'checkbox' ? 'label' : 'div';
 	return <Tag {...rest} />;
 };
 
@@ -32,7 +32,7 @@ const labelStyles = () => {
 // ==============================
 
 const labelAttributes = (_, { type, optionId }) => ({
-	htmlFor: type !== 'button' ? optionId : undefined, //a11y: use explicit association
+	htmlFor: type === 'radio' || type === 'checkbox' ? optionId : undefined, //a11y: use explicit association
 });
 
 // ==============================

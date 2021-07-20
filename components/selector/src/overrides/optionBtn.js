@@ -6,9 +6,15 @@ import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const OptionBtn = ({ state: { type }, ...rest }) => {
-	const Tag = type === 'button' ? 'button' : 'div';
-	return <Tag {...rest} />;
+const OptionBtn = ({ state: { type, href }, ...rest }) => {
+	let Tag = 'div';
+	if (type === 'button') {
+		Tag = 'button';
+	} else if (type === 'link') {
+		Tag = 'a';
+	}
+
+	return <Tag href={type === 'link' ? href : undefined} {...rest} />;
 };
 
 // ==============================
@@ -75,6 +81,8 @@ const optionBtnStyles = (_, { type }) => {
 		borderRadius: '0.1875rem',
 		padding: paddingArr,
 		backgroundColor: type === 'button' && 'transparent',
+		textDecoration: type === 'link' && 'none',
+		color: COLORS.text,
 
 		// Hover/focus state
 		// - Checkbox/Radio
@@ -87,6 +95,12 @@ const optionBtnStyles = (_, { type }) => {
 			borderColor: COLORS.hero,
 		},
 		'button&:focus': {
+			borderColor: COLORS.hero,
+		},
+		'a&:hover': {
+			borderColor: COLORS.hero,
+		},
+		'a&:focus': {
 			borderColor: COLORS.hero,
 		},
 
@@ -117,7 +131,7 @@ const optionBtnStyles = (_, { type }) => {
 // ==============================
 
 const optionBtnAttributes = (_, { type, value, checked, disabled }) => ({
-	type: type === 'button' ? type : undefined,
+	type: type === 'button' ? 'button' : undefined,
 	disabled: type === 'button' ? disabled : undefined,
 	'data-value': type === 'button' ? value : undefined,
 	'aria-pressed': type === 'button' ? checked : undefined,

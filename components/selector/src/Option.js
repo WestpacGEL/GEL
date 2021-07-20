@@ -26,6 +26,7 @@ export const Option = forwardRef(
 	(
 		{
 			value,
+			href,
 			pictogram,
 			icon,
 			secondaryLabel,
@@ -45,7 +46,7 @@ export const Option = forwardRef(
 
 		const {
 			instanceId,
-			type = 'radio',
+			type = href ? 'link' : 'radio',
 			name,
 			iconSize,
 			pictogramWidth,
@@ -80,6 +81,7 @@ export const Option = forwardRef(
 		const state = {
 			optionId,
 			value,
+			href,
 			pictogram,
 			icon,
 			secondaryLabel,
@@ -127,7 +129,7 @@ export const Option = forwardRef(
 				css={optionStyles(state)}
 			>
 				{/* a11y: input not exposed as an override, contains logic required to function */}
-				{type !== 'button' ? (
+				{type === 'radio' || type === 'checkbox' ? (
 					<input
 						ref={ref}
 						id={optionId}
@@ -242,6 +244,11 @@ Option.propTypes = {
 	 * Selector option value
 	 */
 	value: PropTypes.string,
+
+	/**
+	 * Selector href value
+	 */
+	href: PropTypes.string,
 
 	/**
 	 * Pictogram graphic

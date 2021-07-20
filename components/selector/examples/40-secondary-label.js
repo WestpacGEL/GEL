@@ -48,6 +48,17 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
+					Here is link text
+				</Option>
+				<Option href="#0" secondaryLabel={secondLabelShort}>
+					Here is link text
+				</Option>
+				<Option href="#0">Here is link text</Option>
+			</Selector>
+
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-short">
 				<Option value="1" hint={hintBankAccount} secondaryLabel={secondLabelShort}>
@@ -85,6 +96,24 @@ function Example({ brand }) {
 				</Option>
 				<Option value="3" pictogram={ClockPictogram}>
 					Here is button text
+				</Option>
+			</Selector>
+
+			<h3>Pictogram link</h3>
+			<Selector type="link" name="example-link-indicator-pictogram-short">
+				<Option
+					href="#0"
+					pictogram={ChatPictogram}
+					hint={hintBankAccount}
+					secondaryLabel={secondLabelShort}
+				>
+					Here is link text
+				</Option>
+				<Option href="#0" pictogram={TruckPictogram} secondaryLabel={secondLabelShort}>
+					Here is link text
+				</Option>
+				<Option href="#0" pictogram={ClockPictogram}>
+					Here is link text
 				</Option>
 			</Selector>
 
@@ -132,13 +161,31 @@ function Example({ brand }) {
 					hint={hintBankAccount}
 					secondaryLabel={secondLabelShort}
 				>
-					Here is buton text
+					Here is button text
 				</Option>
 				<Option value="2" icon={AtmIcon} secondaryLabel={secondLabelShort}>
-					Here is buton text
+					Here is button text
 				</Option>
 				<Option value="3" icon={CarIcon}>
-					Here is buton text
+					Here is button text
+				</Option>
+			</Selector>
+
+			<h3>Icon link</h3>
+			<Selector type="link" name="example-link-indicator-icon-short">
+				<Option
+					href="#0"
+					icon={AccessibilityIcon}
+					hint={hintBankAccount}
+					secondaryLabel={secondLabelShort}
+				>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={AtmIcon} secondaryLabel={secondLabelShort}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={CarIcon}>
+					Here is link text
 				</Option>
 			</Selector>
 
@@ -193,6 +240,17 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" hint={hintLong} secondaryLabel={secondLabelLong}>
+					Here is link text
+				</Option>
+				<Option href="#0" secondaryLabel={secondLabelLong}>
+					Here is link text
+				</Option>
+				<Option href="#0">Here is link text</Option>
+			</Selector>
+
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-long">
 				<Option value="1" hint={hintLong} secondaryLabel={secondLabelLong}>
@@ -230,6 +288,24 @@ function Example({ brand }) {
 				</Option>
 				<Option value="3" pictogram={ClockPictogram}>
 					Here is button text
+				</Option>
+			</Selector>
+
+			<h3>Pictogram link</h3>
+			<Selector type="link" name="example-link-indicator-pictogram-long">
+				<Option
+					href="#0"
+					pictogram={ChatPictogram}
+					hint={hintLong}
+					secondaryLabel={secondLabelLong}
+				>
+					Here is link text
+				</Option>
+				<Option href="#0" pictogram={TruckPictogram} secondaryLabel={secondLabelLong}>
+					Here is link text
+				</Option>
+				<Option href="#0" pictogram={ClockPictogram}>
+					Here is link text
 				</Option>
 			</Selector>
 
@@ -279,6 +355,19 @@ function Example({ brand }) {
 				</Option>
 				<Option value="3" icon={CarIcon}>
 					Here is button text
+				</Option>
+			</Selector>
+
+			<h3>Icon link</h3>
+			<Selector type="link" name="example-link-indicator-icon-long">
+				<Option href="#0" icon={AccessibilityIcon} hint={hintLong} secondaryLabel={secondLabelLong}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={AtmIcon} secondaryLabel={secondLabelLong}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={CarIcon}>
+					Here is link text
 				</Option>
 			</Selector>
 

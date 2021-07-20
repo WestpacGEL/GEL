@@ -51,6 +51,17 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" hint="This is some content to go in the product selector thing">
+					Here is link text
+				</Option>
+				<Option href="#0" hint="This is some content to go in the product selector thing">
+					Here is link text
+				</Option>
+				<Option href="#0">Here is link text</Option>
+			</Selector>
+
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-hint">
 				<Option value="1" hint="This is some content to go in the product selector thing">
@@ -92,6 +103,23 @@ function Example({ brand }) {
 					Here is button text
 				</Option>
 				<Option value="3">Here is button text</Option>
+			</Selector>
+
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option
+					href="#0"
+					hint="This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with."
+				>
+					Here is link text
+				</Option>
+				<Option
+					href="#0"
+					hint="This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with."
+				>
+					Here is link text
+				</Option>
+				<Option href="#0">Here is button text</Option>
 			</Selector>
 
 			<h3>Radio</h3>
@@ -141,6 +169,17 @@ function Example({ brand }) {
 					Here is button text
 				</Option>
 				<Option value="3">Here is button text</Option>
+			</Selector>
+
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" hint={hintHTML}>
+					Here is link text
+				</Option>
+				<Option href="#0" hint={hintHTML}>
+					Here is link text
+				</Option>
+				<Option href="#0">Here is link text</Option>
 			</Selector>
 
 			<h3>Radio</h3>

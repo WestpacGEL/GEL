@@ -135,7 +135,7 @@ Selector.propTypes = {
 	/**
 	 * Selector type
 	 */
-	type: PropTypes.oneOf(['radio', 'checkbox', 'button']).isRequired,
+	type: PropTypes.oneOf(['radio', 'checkbox', 'button', 'link']).isRequired,
 
 	/**
 	 * The Selector input element’s name
