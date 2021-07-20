@@ -13,7 +13,13 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<Form spacing="large">
 					<FormGroup>
 						<Field label="Email address">
-							<TextInput type="email" size="large" width={30} defaultValue="gel@westpac.com.au" />
+							<TextInput
+								type="email"
+								size="large"
+								width={30}
+								defaultValue="gel@westpac.com.au"
+								autocomplete="email"
+							/>
 						</Field>
 					</FormGroup>
 					<FormGroup>
@@ -27,6 +33,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 								width={30}
 								invalid
 								defaultValue="gel@westpacc.com.au"
+								autocomplete="email"
 							/>
 						</Field>
 					</FormGroup>

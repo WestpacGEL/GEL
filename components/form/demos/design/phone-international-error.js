@@ -28,7 +28,13 @@ const Demo = ({ context, showCode, showDemo }) => {
 							<InputCluster horizontal>
 								<Item>
 									<Field label="Code" subLabel>
-										<TextInput type="tel" size="large" width={4} defaultValue="+891" />
+										<TextInput
+											type="tel"
+											size="large"
+											width={4}
+											defaultValue="+891"
+											autocomplete="tel-country-code"
+										/>
 									</Field>
 								</Item>
 								<Item>
@@ -39,6 +45,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 											width={10}
 											invalid
 											defaultValue="213-5096995"
+											autocomplete="tel-national"
 										/>
 									</Field>
 								</Item>
