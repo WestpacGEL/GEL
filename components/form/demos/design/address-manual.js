@@ -3,8 +3,7 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
-import { Fork, Content } from '@westpac/fork';
-import { Container, FormHeading } from './_utils';
+import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Fragment } from 'react';
 
@@ -67,17 +66,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container>
 				<Form spacing="large">
-					<FormHeading>Home address</FormHeading>
 					<Address hint />
-					<Fieldset legend="Do you have a different mailing address?">
-						<Fork size="large" css={mq({ marginBottom: ['1.5rem', '1.875rem'] })}>
-							<Content text="Yes">
-								<FormHeading>Mailing address</FormHeading>
-								<Address />
-							</Content>
-							<Content text="No" />
-						</Fork>
-					</Fieldset>
 				</Form>
 			</Container>
 		</Playground>
