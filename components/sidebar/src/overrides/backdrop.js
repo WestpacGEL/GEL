@@ -12,7 +12,7 @@ const Backdrop = ({ state: { open }, ...rest }) => {
 		config: { duration: 150 }, //CSS 'linear' easing-function
 		from: { opacity: 0 },
 		enter: { opacity: 0.5 },
-		leave: { opacity: 0, delay: 300 }, //delay after ModalDialog transform
+		leave: { opacity: 0, delay: 300 }, //delay after sidebar transform
 	});
 
 	return transition((style, item) => item && <animated.div style={style} {...rest} />);
