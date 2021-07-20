@@ -36,16 +36,16 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
-			<h3>Submit</h3>
-			<Selector type="submit" name="example-submit-hint">
-				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
-					Here is button text
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" icon={AccessibilityIcon} hint={hintShort}>
+					Here is link text
 				</Option>
-				<Option value="2" icon={AtmIcon}>
-					Here is button text
+				<Option href="#0" icon={AtmIcon}>
+					Here is link text
 				</Option>
-				<Option value="3" icon={CarIcon}>
-					Here is button text
+				<Option href="#0" icon={CarIcon}>
+					Here is link text
 				</Option>
 			</Selector>
 
@@ -92,16 +92,16 @@ function Example({ brand }) {
 				</Option>
 			</Selector>
 
-			<h3>Submit</h3>
-			<Selector type="submit" name="example-submit-long">
-				<Option value="1" icon={AccessibilityIcon} hint={hintLong}>
-					Here is button text
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" icon={AccessibilityIcon} hint={hintLong}>
+					Here is link text
 				</Option>
-				<Option value="2" icon={AtmIcon}>
-					Here is button text
+				<Option href="#0" icon={AtmIcon}>
+					Here is link text
 				</Option>
-				<Option value="3" icon={CarIcon}>
-					Here is button text
+				<Option href="#0" icon={CarIcon}>
+					Here is link text
 				</Option>
 			</Selector>
 

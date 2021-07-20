@@ -27,7 +27,9 @@ const hintStyles = () => {
 // Attributes
 // ==============================
 
-const hintAttributes = (_, { hintId }) => ({ id: hintId });
+const hintAttributes = (_, { type, hintId }) => ({
+	id: type === 'radio' || type === 'checkbox' ? hintId : undefined,
+});
 
 // ==============================
 // Exports
