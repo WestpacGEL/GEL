@@ -1,0 +1,47 @@
+{
+	"name": "@westpac/date-picker",
+	"version": "1.0.0",
+	"description": "",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/date-picker",
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"contributors": [
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
+		},
+		{
+			"name": "Jeremy Ortiz",
+			"email": "jeremy@jeremyortiz.io",
+			"url": "https://www.jeremyortiz.io/"
+		}
+	],
+	"license": "GPL-3.0+",
+	"scripts": {
+		"start": "PACKAGE_NAME=date-picker NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
+		"test": "start-server-and-test start http://localhost:8080 test:all",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
+		"test:all": "yarn test:integration",
+		"test:integration": "cypress run",
+		"test:test-dev": "cypress open"
+	},
+	"main": "dist/westpac-date-picker.cjs.js",
+	"module": "dist/westpac-date-picker.esm.js",
+	"dependencies": {
+		"@babel/runtime": "^7.14.8",
+		"@duetds/date-picker": "^1.4.0",
+		"@westpac/button": "^1.2.0",
+		"@westpac/core": "^2.1.0",
+		"@westpac/text-input": "^1.1.0",
+		"prop-types": "^15.7.2"
+	},
+	"peerDependencies": {
+		"react": "^17.0.2"
+	},
+	"devDependencies": {
+		"cypress": "^8.0.0",
+		"react": "^17.0.2",
+		"start-server-and-test": "^1.12.6"
+	}
+}

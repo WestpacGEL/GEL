@@ -23,15 +23,22 @@ function Example({ brand }) {
 
 			<h2>Types</h2>
 
-			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio">
-				<Option value="1">Here is a label</Option>
-				<Option value="2">Here is a label</Option>
-				<Option value="3">Here is a label</Option>
+			<h3>Button</h3>
+			<Selector type="button" name="example-button">
+				<Option value="1">Here is button text</Option>
+				<Option value="2">Here is button text</Option>
+				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-with-next" nextIndicator>
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0">Here is link text</Option>
+				<Option href="#0">Here is link text</Option>
+				<Option href="#0">Here is link text</Option>
+			</Selector>
+
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio">
 				<Option value="1">Here is a label</Option>
 				<Option value="2">Here is a label</Option>
 				<Option value="3">Here is a label</Option>
@@ -47,6 +54,13 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Default value</h2>
+
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-defaultvalue" defaultValue="2">
+				<Option value="1">Here is button text</Option>
+				<Option value="2">Here is button text</Option>
+				<Option value="3">Here is button text</Option>
+			</Selector>
 
 			<h3>Radio</h3>
 			<Selector type="radio" name="example-radio-defaultvalue" defaultValue="2">
@@ -81,27 +95,47 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h2>Option alone with defaultChecked</h2>
+			<h2>Option alone</h2>
+
+			<h3>Link</h3>
+			<Option href="#0">Here is link text</Option>
+			<Option href="#0">Here is link text</Option>
+			<Option href="#0">Here is link text</Option>
 
 			<h3>Radio</h3>
 			<Option type="radio" name="example-alone-radio" value="1">
 				Here is a label
 			</Option>
-			<Option type="radio" name="example-alone-radio" value="2" defaultChecked>
+			<Option type="radio" name="example-alone-radio" value="2">
 				Here is a label
 			</Option>
 			<Option type="radio" name="example-alone-radio" value="3">
 				Here is a label
 			</Option>
 
+			<hr />
+
+			<h2>Option alone with defaultChecked</h2>
+
+			<h3>Radio</h3>
+			<Option type="radio" name="example-alone-defaultChecked-radio" value="1">
+				Here is a label
+			</Option>
+			<Option type="radio" name="example-alone-defaultChecked-radio" value="2" defaultChecked>
+				Here is a label
+			</Option>
+			<Option type="radio" name="example-alone-defaultChecked-radio" value="3">
+				Here is a label
+			</Option>
+
 			<h3>Checkbox</h3>
-			<Option type="checkbox" name="example-alone-checkbox" value="1">
+			<Option type="checkbox" name="example-alone-defaultChecked-checkbox" value="1">
 				Here is a label
 			</Option>
-			<Option type="checkbox" name="example-alone-checkbox" value="2" defaultChecked>
+			<Option type="checkbox" name="example-alone-defaultChecked-checkbox" value="2" defaultChecked>
 				Here is a label
 			</Option>
-			<Option type="checkbox" name="example-alone-checkbox" value="3" defaultChecked>
+			<Option type="checkbox" name="example-alone-defaultChecked-checkbox" value="3" defaultChecked>
 				Here is a label
 			</Option>
 
@@ -124,34 +158,6 @@ function Example({ brand }) {
 			>
 				Here is a label
 			</Option>
-
-			<hr />
-
-			<h2>onChange</h2>
-
-			<h3>Radio</h3>
-			<Selector
-				type="radio"
-				name="example-radio-onchange"
-				onChange={(_, value) => console.log(`Selected option ${value}`)}
-			>
-				<Option value="1">Here is a label</Option>
-				<Option value="2">Here is a label</Option>
-				<Option value="3">Here is a label</Option>
-			</Selector>
-
-			<h3>Checkbox</h3>
-			<Selector
-				type="checkbox"
-				name="example-checkbox-onchange"
-				onChange={(_, value, wasSelected) =>
-					console.log(`${wasSelected ? 'De-selected' : 'Selected'} option ${value}`)
-				}
-			>
-				<Option value="1">Here is a label</Option>
-				<Option value="2">Here is a label</Option>
-				<Option value="3">Here is a label</Option>
-			</Selector>
 
 			<hr />
 

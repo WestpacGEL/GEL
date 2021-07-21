@@ -24,17 +24,19 @@ export const Option = forwardRef(
 
 		const {
 			instanceId,
-			size = 'medium',
-			inline,
-			data,
-			checked: ctxChecked,
-			overrides: ctxOverrides,
-			defaultValue: _,
 			type = 'checkbox',
 			name,
+			size = 'medium',
+			inline,
 			disabled,
+			defaultValue: _,
+			show,
+			revealCount,
+			isOpen,
+			data,
+			checked: ctxChecked,
 			onChange,
-			toggleCheck,
+			overrides: ctxOverrides,
 			...restCtx
 		} = useFormCheckContext();
 

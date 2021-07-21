@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useMediaQuery } from '@westpac/core';
-import { Form, FormGroup, Field, Fieldset } from '@westpac/form';
+import { jsx } from '@westpac/core';
+import { Form, FormGroup, Field } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
-import { Fork, Content } from '@westpac/fork';
 import { Fragment, useState } from 'react';
-import { Container, FormHeading, Link } from './_utils';
+import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
 const Address = ({ property = 'house' }) => {
@@ -53,7 +52,7 @@ const Address = ({ property = 'house' }) => {
 				</Field>
 			</FormGroup>
 			<FormGroup>
-				<Field label="Street type" hint="For example, road">
+				<Field label="Street type">
 					<Select size="large" width={10}>
 						<option>Select</option>
 						<option>Street</option>
@@ -104,14 +103,10 @@ const PropertySelect = (props) => (
 
 const Demo = ({ context, showCode, showDemo }) => {
 	const [property, setProperty] = useState();
-	const [property2, setProperty2] = useState();
-	const mq = useMediaQuery();
 
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container>
-				<FormHeading spacing="small">What's the address?</FormHeading>
-				<Link spacing>Search for your address instead</Link>
 				<Form spacing="large">
 					<FormGroup>
 						<Field label="Property type" hint="Must be a residential address">
@@ -119,25 +114,6 @@ const Demo = ({ context, showCode, showDemo }) => {
 						</Field>
 					</FormGroup>
 					{property && <Address property={property} />}
-					<Fieldset legend="Do you have a different mailing address?">
-						{/* <Fork
-							size="large"
-							css={mq({ marginBottom: ['1.5rem', '1.875rem'] })}
-						>
-							<Content text="Yes">
-								<FormGroup>
-									<Field label="Property type" hint="Must be a residential address">
-										<PropertySelect
-											value={property2}
-											onChange={(e) => setProperty2(e.target.value)}
-										/>
-									</Field>
-								</FormGroup>
-								{property2 && <Address property={property2} />}
-							</Content>
-							<Content text="No" />
-						</Fork> */}
-					</Fieldset>
 				</Form>
 			</Container>
 		</Playground>

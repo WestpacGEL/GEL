@@ -4,6 +4,7 @@ import { jsx } from '@westpac/core';
 import { Fragment } from 'react';
 import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
 import { Autocomplete } from '@westpac/autocomplete';
+import { components } from 'react-select';
 import { TextInput } from '@westpac/text-input';
 import { Link, Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
@@ -12,6 +13,10 @@ const Footer = (props) => (
 	<Fragment {...props}>
 		Can't find your country? <Link>Enter it manually</Link>
 	</Fragment>
+);
+
+const Input = ({ autoComplete, options, ...props }) => (
+	<components.Input {...props} autoComplete="country" />
 );
 
 const Demo = ({ context, showCode, showDemo }) => {
@@ -24,12 +29,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 							<InputCluster>
 								<Item>
 									<Field hideLabel label="Line 1 of 2">
-										<TextInput size="large" />
+										<TextInput size="large" autocomplete="street address-line1" />
 									</Field>
 								</Item>
 								<Item>
 									<Field hideLabel label="Line 2 of 2">
-										<TextInput size="large" />
+										<TextInput size="large" autocomplete="street address-line2" />
 									</Field>
 								</Item>
 							</InputCluster>
@@ -42,12 +47,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 					</FormGroup>
 					<FormGroup>
 						<Field label="State, province or region" error="Enter a state, province or region">
-							<TextInput size="large" width={20} invalid />
+							<TextInput size="large" width={20} invalid autocomplete="address-level2" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Postcode or Zip code">
-							<TextInput size="large" width={5} />
+							<TextInput size="large" width={5} autocomplete="postal-code" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
@@ -62,6 +67,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 								noOptionsMessage={() => 'None found'}
 								defaultInputValue="Australias"
 								invalid
+								components={{ Input }}
 								options={[
 									{ value: '', label: 'United States' },
 									{ value: '', label: 'China' },

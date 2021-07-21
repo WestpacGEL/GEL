@@ -23,21 +23,34 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<h2>Short hint</h2>
 
-			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio-hint">
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-hint">
 				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="2" icon={AtmIcon}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="3" icon={CarIcon}>
-					Here is a label
+					Here is button text
 				</Option>
 			</Selector>
 
-			<h3>Radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-hint-with-next" nextIndicator>
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" icon={AccessibilityIcon} hint={hintShort}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={AtmIcon}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={CarIcon}>
+					Here is link text
+				</Option>
+			</Selector>
+
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-hint">
 				<Option value="1" icon={AccessibilityIcon} hint={hintShort}>
 					Here is a label
 				</Option>
@@ -66,21 +79,34 @@ function Example({ brand }) {
 
 			<h2>Long hint</h2>
 
-			<h3>Radio</h3>
-			<Selector type="radio" name="example-radio-long">
+			<h3>Button</h3>
+			<Selector type="button" name="example-button-long">
 				<Option value="1" icon={AccessibilityIcon} hint={hintLong}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="2" icon={AtmIcon}>
-					Here is a label
+					Here is button text
 				</Option>
 				<Option value="3" icon={CarIcon}>
-					Here is a label
+					Here is button text
 				</Option>
 			</Selector>
 
-			<h3>Radio with next indicator</h3>
-			<Selector type="radio" name="example-radio-long-with-next" nextIndicator>
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0" icon={AccessibilityIcon} hint={hintLong}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={AtmIcon}>
+					Here is link text
+				</Option>
+				<Option href="#0" icon={CarIcon}>
+					Here is link text
+				</Option>
+			</Selector>
+
+			<h3>Radio</h3>
+			<Selector type="radio" name="example-radio-long">
 				<Option value="1" icon={AccessibilityIcon} hint={hintLong}>
 					Here is a label
 				</Option>

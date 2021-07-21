@@ -36,7 +36,6 @@ export const Selector = ({
 	type,
 	name,
 	value,
-	nextIndicator,
 	iconSize,
 	pictogramWidth,
 	pictogramHeight,
@@ -77,7 +76,7 @@ export const Selector = ({
 	};
 
 	const handleChange = (event, value, wasChecked) => {
-		if (type === 'radio') {
+		if (type === 'radio' || type === 'button') {
 			setChecked(asArray(value));
 		} else {
 			if (wasChecked) {
@@ -92,7 +91,6 @@ export const Selector = ({
 		instanceId,
 		type,
 		name,
-		nextIndicator,
 		iconSize,
 		pictogramWidth,
 		pictogramHeight,
@@ -137,17 +135,12 @@ Selector.propTypes = {
 	/**
 	 * Selector type
 	 */
-	type: PropTypes.oneOf(['radio', 'checkbox']).isRequired,
+	type: PropTypes.oneOf(['radio', 'checkbox', 'button', 'link']).isRequired,
 
 	/**
 	 * The Selector input element’s name
 	 */
 	name: PropTypes.string,
-
-	/**
-	 * Use automatic next chevron styling, renders 'ArrowRightIcon' icon
-	 */
-	nextIndicator: PropTypes.bool.isRequired,
 
 	/**
 	 * Pictogram graphic width
@@ -247,17 +240,11 @@ Selector.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		NextIndicator: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 	}),
 };
 
 export const defaultProps = {
 	type: 'radio',
-	nextIndicator: false,
 	iconSize: 'medium',
 };
 

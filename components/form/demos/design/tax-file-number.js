@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { useState } from 'react';
 import { Form, Field, FormGroup } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
@@ -10,6 +10,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 
 const Demo = ({ context, showCode, showDemo }) => {
 	const [value, setValue] = useState();
+	const { BRAND } = useBrand();
 
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
@@ -18,7 +19,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 					<FormGroup>
 						<Field
 							label="Tax File Number preference"
-							hint="Providing your tax file number (TFN) is not compulsory. However, tax may be withheld if you do not quote your TFN or an exemption reason."
+							hint="Providing your TFN or TFN exemption is not compulsory. However, if you do not provide it, tax may be withheld at the highest marginal rate plus the Medicare Levy on the interest earned on the account."
 						>
 							<Select size="large" value={value} onChange={(e) => setValue(e.target.value)}>
 								<option value="">Select</option>
@@ -42,6 +43,9 @@ const Demo = ({ context, showCode, showDemo }) => {
 							<Field label="Exemption reason">
 								<Select size="large">
 									<option>Select</option>
+									<option>Age, service, veterans and invalid pensioners</option>
+									<option>Any other pensioners</option>
+									<option>No TFN/Exemption to be quoted</option>
 								</Select>
 							</Field>
 						</FormGroup>
@@ -49,7 +53,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 
 					{value === 'provide-later' && (
 						<Alert>
-							You can provide your TFN at any time via phone or at a Westpac branch. In the
+							You can provide your TFN at any time via phone or at a {BRAND.name} branch. In the
 							meantime, please note, we may need to withhold tax from any interest you earn.
 						</Alert>
 					)}

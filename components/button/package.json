@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/button",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "Styling for button controls used for actions in forms and modals, with support for multiple sizes, styles, states and more",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button",
@@ -48,19 +48,19 @@
 	"main": "dist/westpac-button.cjs.js",
 	"module": "dist/westpac-button.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.14.0",
+		"@babel/runtime": "^7.14.8",
 		"@westpac/core": "^2.1.0",
-		"@westpac/hooks": "^1.1.1",
-		"@westpac/icon": "^1.3.1",
+		"@westpac/hooks": "^2.0.0",
+		"@westpac/icon": "^1.3.2",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"cypress": "^7.4.0",
+		"cypress": "^8.0.0",
 		"react": "^17.0.2",
 		"react-router-dom": "^5.2.0",
-		"start-server-and-test": "^1.12.3"
+		"start-server-and-test": "^1.12.6"
 	}
 }

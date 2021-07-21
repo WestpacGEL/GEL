@@ -6,7 +6,10 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Label = ({ state: _, ...rest }) => <label {...rest} />;
+const Label = ({ state: { type }, ...rest }) => {
+	const Tag = type === 'radio' || type === 'checkbox' ? 'label' : 'div';
+	return <Tag {...rest} />;
+};
 
 // ==============================
 // Styles
@@ -28,8 +31,8 @@ const labelStyles = () => {
 // Attributes
 // ==============================
 
-const labelAttributes = (_, { optionId }) => ({
-	htmlFor: optionId, //a11y: use explicit association
+const labelAttributes = (_, { type, optionId }) => ({
+	htmlFor: type === 'radio' || type === 'checkbox' ? optionId : undefined, //a11y: use explicit association
 });
 
 // ==============================

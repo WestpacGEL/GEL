@@ -619,12 +619,12 @@ const SectionDevelopers = () => {
 							<p>
 								Developers can{' '}
 								<a
-									href={`https://westpacgroup.sharepoint.com/sites/O365-UG-043642/Shared%20Documents/General/Fonts/${BRAND.code}.zip`}
+									href={`https://westpacgroup.sharepoint.com/:f:/s/O365-UG-043642/EmCGwWc6TtVKrkd39ZL2lZMBK06NWlIvAl2wA3uOa4gnTQ`}
 									target="blank"
 								>
 									download web font files
 								</a>{' '}
-								directly from Sharepoint.
+								directly from SharePoint.
 							</p>
 						</Body>
 					</Cell>
@@ -850,7 +850,7 @@ function DownloadsPage() {
 		<Fragment>
 			<Head title="Downloads" />
 			<PageContextProvider>
-				<main id="content">
+				<main id="content" tabIndex="-1">
 					<PageHeader
 						name="Downloads"
 						css={

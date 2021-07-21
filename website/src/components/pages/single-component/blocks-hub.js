@@ -117,7 +117,7 @@ const slateRenderer = (item, _editorValue) => {
 			switch (node.type) {
 				case 'paragraph':
 					if (!node.nodes[0].text) {
-						return;
+						return null;
 					}
 
 					const nested =

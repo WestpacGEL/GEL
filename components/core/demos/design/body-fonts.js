@@ -6,7 +6,7 @@ import { Body } from '@westpac/body';
 
 const StyledText = (props) => {
 	const { PACKS } = useBrand();
-	return <p css={{ ...PACKS.typeScale.bodyFont[4] }} {...props} />;
+	return <p css={{ ...PACKS.typeScale.bodyFont[4], overflowWrap: 'anywhere' }} {...props} />;
 };
 
 const Demo = ({ context, showCode, showDemo }) => {
@@ -15,10 +15,13 @@ const Demo = ({ context, showCode, showDemo }) => {
 			<Body>
 				<p>Sans serif system font</p>
 				<StyledText>
+					abcdefghijklmnopqrstuvwxyz
+					<br />
 					ABCDEFGHIJKLMNOPQRSTUVWXYZ
 					<br />
-					abcdefghijklmnopqrstuvwxyz
-					<br />0 1 2 3 4 5 6 7 8 9
+					1234567890
+					<br />
+					!@#$¢%&amp;*©®™£
 				</StyledText>
 			</Body>
 		</Playground>
