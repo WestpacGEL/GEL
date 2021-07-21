@@ -19,7 +19,6 @@ function Example({ brand }) {
 
 			<br />
 			<hr />
-			<br />
 
 			<h2>Nested</h2>
 			<List
@@ -37,7 +36,6 @@ function Example({ brand }) {
 
 			<br />
 			<hr />
-			<br />
 
 			<h2>Nested with attributes</h2>
 			<List

@@ -2,11 +2,12 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
+import { AndroidIcon } from '@westpac/icon';
 
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<h2>Bullet List</h2>
+			<h2>Default</h2>
 			<List type="bullet">
 				<Item>Styled bullet list</Item>
 				<Item>Styled bullet list</Item>
@@ -25,7 +26,26 @@ function Example({ brand }) {
 			<br />
 			<hr />
 
-			<h2>Link List</h2>
+			<h2>Bullet</h2>
+			<List type="bullet">
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
+				<Item>
+					Styled bullet list
+					<List>
+						<Item>Styled bullet list</Item>
+						<Item>Styled bullet list</Item>
+						<Item>Styled bullet list</Item>
+					</List>
+				</Item>
+				<Item>Styled bullet list</Item>
+			</List>
+
+			<br />
+			<hr />
+
+			<h2>Link</h2>
 			<List type="link">
 				<Item>
 					<a href="#">Styled link list</a>
@@ -61,7 +81,7 @@ function Example({ brand }) {
 			<br />
 			<hr />
 
-			<h2>Tick List</h2>
+			<h2>Tick</h2>
 			<List type="tick">
 				<Item>Styled tick list</Item>
 				<Item>Styled tick list</Item>
@@ -80,20 +100,39 @@ function Example({ brand }) {
 			<br />
 			<hr />
 
-			<h2>Cross List</h2>
+			<h2>Cross</h2>
 			<List type="cross">
-				<Item>Styled tick list</Item>
-				<Item>Styled tick list</Item>
-				<Item>Styled tick list</Item>
+				<Item>Styled cross list</Item>
+				<Item>Styled cross list</Item>
+				<Item>Styled cross list</Item>
 				<Item>
-					Styled tick list
+					Styled cross list
 					<List>
-						<Item>Styled tick list</Item>
-						<Item>Styled tick list</Item>
-						<Item>Styled tick list</Item>
+						<Item>Styled cross list</Item>
+						<Item>Styled cross list</Item>
+						<Item>Styled cross list</Item>
 					</List>
 				</Item>
-				<Item>Styled tick list</Item>
+				<Item>Styled cross list</Item>
+			</List>
+
+			<br />
+			<hr />
+
+			<h2>Icon</h2>
+			<List type="icon" icon={AndroidIcon}>
+				<Item>Styled icon list</Item>
+				<Item>Styled icon list</Item>
+				<Item>Styled icon list</Item>
+				<Item>
+					Styled icon list
+					<List>
+						<Item>Styled icon list</Item>
+						<Item>Styled icon list</Item>
+						<Item>Styled icon list</Item>
+					</List>
+				</Item>
+				<Item>Styled icon list</Item>
 			</List>
 
 			<br />
