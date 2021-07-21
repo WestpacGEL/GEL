@@ -39,7 +39,7 @@
 	"main": "dist/westpac-form.cjs.js",
 	"module": "dist/westpac-form.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.14.0",
+		"@babel/runtime": "^7.14.8",
 		"@westpac/a11y": "^1.0.1",
 		"@westpac/core": "^2.1.0",
 		"@westpac/fork": "^1.0.0-beta",
@@ -57,9 +57,9 @@
 		"@westpac/autocomplete": "^1.0.0-beta",
 		"@westpac/button": "^1.2.0",
 		"@westpac/heading": "^1.0.1",
-		"cypress": "^7.4.0",
+		"cypress": "^8.0.0",
 		"react": "^17.0.2",
 		"react-select": "^4.3.1",
-		"start-server-and-test": "^1.12.3"
+		"start-server-and-test": "^1.12.6"
 	}
 }

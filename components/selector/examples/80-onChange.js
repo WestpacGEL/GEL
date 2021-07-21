@@ -17,17 +17,6 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Submit</h3>
-			<Selector
-				type="submit"
-				name="example-submit-onchange"
-				onChange={(value, _) => console.log(`Selected option ${value}`)}
-			>
-				<Option value="1">Here is button text</Option>
-				<Option value="2">Here is button text</Option>
-				<Option value="3">Here is button text</Option>
-			</Selector>
-
 			<h3>Radio</h3>
 			<Selector
 				type="radio"

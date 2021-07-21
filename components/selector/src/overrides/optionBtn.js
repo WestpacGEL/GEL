@@ -6,9 +6,15 @@ import { jsx, useMediaQuery, useBrand, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const OptionBtn = ({ state: { type }, ...rest }) => {
-	const Tag = type === 'button' || type === 'submit' ? 'button' : 'div';
-	return <Tag {...rest} />;
+const OptionBtn = ({ state: { type, href }, ...rest }) => {
+	let Tag = 'div';
+	if (type === 'button') {
+		Tag = 'button';
+	} else if (type === 'link') {
+		Tag = 'a';
+	}
+
+	return <Tag href={type === 'link' ? href : undefined} {...rest} />;
 };
 
 // ==============================
@@ -28,7 +34,7 @@ const optionBtnStyles = (_, { type }) => {
 		// 1. Change the font styles in all browsers.
 		// 2. Remove the margin in Firefox and Safari.
 		// button, input, optgroup, select, textarea:
-		...((type === 'button' || type === 'submit') && {
+		...(type === 'button' && {
 			fontFamily: 'inherit', // 1
 			fontSize: '100%', // 1
 			lineHeight: 1.15, // 1
@@ -37,23 +43,23 @@ const optionBtnStyles = (_, { type }) => {
 
 		// Show the overflow in IE ('button' and 'input) and Edge ('input').
 		// button, input:
-		...((type === 'button' || type === 'submit') && {
+		...(type === 'button' && {
 			overflow: 'visible',
 		}),
 
 		// Remove the inheritance of text transform in Edge, Firefox, and IE.
 		// button, select:
-		...((type === 'button' || type === 'submit') && { textTransform: 'none' }),
+		...(type === 'button' && { textTransform: 'none' }),
 
 		// Correct the inability to style clickable types in iOS and Safari.
 		// button, [type='button'], [type='reset'], [type='submit']:
-		...((type === 'button' || type === 'submit') && {
+		...(type === 'button' && {
 			WebkitAppearance: 'button',
 		}),
 
 		// Remove the inner border and padding in Firefox.
 		// button::-moz-focus-inner, [type='button']::-moz-focus-inner, [type='reset']::-moz-focus-inner, [type='submit']::-moz-focus-inner:
-		...((type === 'button' || type === 'submit') && {
+		...(type === 'button' && {
 			'&::-moz-focus-inner': {
 				borderStyle: 'none',
 				padding: 0,
@@ -74,7 +80,9 @@ const optionBtnStyles = (_, { type }) => {
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
 		padding: paddingArr,
-		backgroundColor: (type === 'button' || type === 'submit') && 'transparent',
+		backgroundColor: type === 'button' && 'transparent',
+		textDecoration: type === 'link' && 'none',
+		color: COLORS.text,
 
 		// Hover/focus state
 		// - Checkbox/Radio
@@ -89,6 +97,12 @@ const optionBtnStyles = (_, { type }) => {
 		'button&:focus': {
 			borderColor: COLORS.hero,
 		},
+		'a&:hover': {
+			borderColor: COLORS.hero,
+		},
+		'a&:focus': {
+			borderColor: COLORS.hero,
+		},
 
 		// Checked state
 		// Note: Padding reduced to counter the increased border width
@@ -99,7 +113,7 @@ const optionBtnStyles = (_, { type }) => {
 		},
 
 		// Disabled state
-		// Disabled checkbox/radio, disabled button/submit type (hidden input) or disabled fieldset
+		// Disabled checkbox/radio, disabled button type (hidden input) or disabled fieldset
 		'input:disabled + &, input:disabled ~ div &, &:disabled, fieldset:disabled &': {
 			opacity: '0.5',
 			pointerEvents: 'none',
@@ -117,10 +131,10 @@ const optionBtnStyles = (_, { type }) => {
 // ==============================
 
 const optionBtnAttributes = (_, { type, value, checked, disabled }) => ({
-	type: type === 'button' || type === 'submit' ? type : undefined,
-	disabled: type === 'button' || type === 'submit' ? disabled : undefined,
-	'data-value': type === 'button' || type === 'submit' ? value : undefined,
-	'aria-pressed': type === 'button' || type === 'submit' ? checked : undefined,
+	type: type === 'button' ? 'button' : undefined,
+	disabled: type === 'button' ? disabled : undefined,
+	'data-value': type === 'button' ? value : undefined,
+	'aria-pressed': type === 'button' ? checked : undefined,
 });
 
 // ==============================

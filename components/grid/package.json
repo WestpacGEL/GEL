@@ -61,7 +61,7 @@
 	"main": "dist/westpac-grid.cjs.js",
 	"module": "dist/westpac-grid.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.14.0",
+		"@babel/runtime": "^7.14.8",
 		"@westpac/core": "^2.1.0",
 		"prop-types": "^15.7.2"
 	},
@@ -70,8 +70,8 @@
 	},
 	"devDependencies": {
 		"@westpac/hooks": "^2.0.0",
-		"cypress": "^7.4.0",
+		"cypress": "^8.0.0",
 		"react": "^17.0.2",
-		"start-server-and-test": "^1.12.3"
+		"start-server-and-test": "^1.12.6"
 	}
 }
