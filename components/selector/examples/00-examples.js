@@ -30,11 +30,11 @@ function Example({ brand }) {
 				<Option value="3">Here is button text</Option>
 			</Selector>
 
-			<h3>Submit</h3>
-			<Selector type="submit" name="example-submit">
-				<Option value="1">Here is submit text</Option>
-				<Option value="2">Here is submit text</Option>
-				<Option value="3">Here is submit text</Option>
+			<h3>Link</h3>
+			<Selector type="link">
+				<Option href="#0">Here is link text</Option>
+				<Option href="#0">Here is link text</Option>
+				<Option href="#0">Here is link text</Option>
 			</Selector>
 
 			<h3>Radio</h3>
@@ -57,13 +57,6 @@ function Example({ brand }) {
 
 			<h3>Button</h3>
 			<Selector type="button" name="example-button-defaultvalue" defaultValue="2">
-				<Option value="1">Here is button text</Option>
-				<Option value="2">Here is button text</Option>
-				<Option value="3">Here is button text</Option>
-			</Selector>
-
-			<h3>Submit</h3>
-			<Selector type="submit" name="example-submit-defaultvalue" defaultValue="2">
 				<Option value="1">Here is button text</Option>
 				<Option value="2">Here is button text</Option>
 				<Option value="3">Here is button text</Option>
@@ -102,27 +95,47 @@ function Example({ brand }) {
 
 			<hr />
 
-			<h2>Option alone with defaultChecked</h2>
+			<h2>Option alone</h2>
+
+			<h3>Link</h3>
+			<Option href="#0">Here is link text</Option>
+			<Option href="#0">Here is link text</Option>
+			<Option href="#0">Here is link text</Option>
 
 			<h3>Radio</h3>
 			<Option type="radio" name="example-alone-radio" value="1">
 				Here is a label
 			</Option>
-			<Option type="radio" name="example-alone-radio" value="2" defaultChecked>
+			<Option type="radio" name="example-alone-radio" value="2">
 				Here is a label
 			</Option>
 			<Option type="radio" name="example-alone-radio" value="3">
 				Here is a label
 			</Option>
 
+			<hr />
+
+			<h2>Option alone with defaultChecked</h2>
+
+			<h3>Radio</h3>
+			<Option type="radio" name="example-alone-defaultChecked-radio" value="1">
+				Here is a label
+			</Option>
+			<Option type="radio" name="example-alone-defaultChecked-radio" value="2" defaultChecked>
+				Here is a label
+			</Option>
+			<Option type="radio" name="example-alone-defaultChecked-radio" value="3">
+				Here is a label
+			</Option>
+
 			<h3>Checkbox</h3>
-			<Option type="checkbox" name="example-alone-checkbox" value="1">
+			<Option type="checkbox" name="example-alone-defaultChecked-checkbox" value="1">
 				Here is a label
 			</Option>
-			<Option type="checkbox" name="example-alone-checkbox" value="2" defaultChecked>
+			<Option type="checkbox" name="example-alone-defaultChecked-checkbox" value="2" defaultChecked>
 				Here is a label
 			</Option>
-			<Option type="checkbox" name="example-alone-checkbox" value="3" defaultChecked>
+			<Option type="checkbox" name="example-alone-defaultChecked-checkbox" value="3" defaultChecked>
 				Here is a label
 			</Option>
 
