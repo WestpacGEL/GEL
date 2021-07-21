@@ -60,11 +60,11 @@
 		"./dist/westpac-core.esm.js": "./dist/westpac-core.browser.esm.js"
 	},
 	"dependencies": {
-		"@babel/runtime": "^7.14.0",
+		"@babel/runtime": "^7.14.8",
 		"@emotion/react": "^11.4.0",
 		"@emotion/weak-memoize": "^0.2.5",
 		"classnames": "^2.3.1",
-		"color": "^3.1.3",
+		"color": "^4.0.0",
 		"facepaint": "^1.2.1",
 		"lodash.get": "^4.4.2",
 		"lodash.mergewith": "^4.6.2",
@@ -78,8 +78,8 @@
 	"devDependencies": {
 		"@westpac/button": "^1.2.0",
 		"@westpac/text-input": "^1.1.0",
-		"cypress": "^7.4.0",
+		"cypress": "^8.0.0",
 		"react": "^17.0.2",
-		"start-server-and-test": "^1.12.3"
+		"start-server-and-test": "^1.12.6"
 	}
 }

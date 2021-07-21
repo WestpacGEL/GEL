@@ -24,6 +24,6 @@
 	"main": "dist/westpac-wbc.cjs.js",
 	"module": "dist/westpac-wbc.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.14.0"
+		"@babel/runtime": "^7.14.8"
 	}
 }
