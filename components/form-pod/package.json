@@ -29,7 +29,7 @@
 	"main": "dist/westpac-form-pod.cjs.js",
 	"module": "dist/westpac-form-pod.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.14.0",
+		"@babel/runtime": "^7.14.8",
 		"@westpac/core": "^2.1.0",
 		"@westpac/icon": "^1.3.2",
 		"prop-types": "^15.7.2"
@@ -41,8 +41,8 @@
 		"@westpac/alert": "^1.2.1",
 		"@westpac/button": "^1.2.1",
 		"@westpac/list": "^1.0.1",
-		"cypress": "^7.4.0",
+		"cypress": "^8.0.0",
 		"react": "^17.0.2",
-		"start-server-and-test": "^1.12.3"
+		"start-server-and-test": "^1.12.6"
 	}
 }
