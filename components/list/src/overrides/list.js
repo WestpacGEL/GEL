@@ -23,7 +23,9 @@ const List = ({ state: { type, nested, assistiveText }, children, ...rest }) => 
 			<VisuallyHidden
 				tag="li"
 				css={{
-					'::before': { display: 'none !important' },
+					'::before': {
+						display: 'none !important', //hide tick/cross
+					},
 				}}
 			>
 				{assistiveText || `The following items are ${type === 'tick' ? 'ticked' : 'crossed'}:`}
