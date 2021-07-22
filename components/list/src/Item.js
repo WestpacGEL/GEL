@@ -78,14 +78,14 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 
 Item.propTypes = {
 	/**
-	 * The look of the bullet or icon list
+	 * The look of the bullet, icon, tick and cross lists
 	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'neutral']),
+	look: PropTypes.oneOf(['primary', 'hero', 'neutral', 'success', 'danger']),
 
 	/**
 	 * The list style
 	 */
-	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'unstyled', 'icon', 'ordered']),
+	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'cross', 'unstyled', 'icon', 'ordered']),
 
 	/**
 	 * The level of nesting
