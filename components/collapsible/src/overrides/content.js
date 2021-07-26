@@ -8,12 +8,12 @@ import { useSpring, animated } from 'react-spring';
 // Component
 // ==============================
 
-const Content = forwardRef(({ state: { open, setClosed }, ...rest }, ref) => {
+const Content = forwardRef(({ state: { isOpen, setClosed }, ...rest }, ref) => {
 	const fade = useSpring({
 		config: {
 			duration: 150, //CSS 'linear' easing-function
 		},
-		opacity: open ? 1 : 0,
+		opacity: isOpen ? 1 : 0,
 		from: {
 			opacity: 0, //reset
 		},
@@ -21,7 +21,7 @@ const Content = forwardRef(({ state: { open, setClosed }, ...rest }, ref) => {
 			setClosed(false);
 		},
 		onRest: () => {
-			setClosed(!open);
+			setClosed(!isOpen);
 		},
 	});
 
@@ -32,18 +32,18 @@ const Content = forwardRef(({ state: { open, setClosed }, ...rest }, ref) => {
 // Styles
 // ==============================
 
-const contentStyles = (_, { open }) => ({
+const contentStyles = (_, { isOpen }) => ({
 	label: getLabel('collapsible-content'),
-	display: open ? 'block' : 'none',
+	display: isOpen ? 'block' : 'none',
 });
 
 // ==============================
 // Attributes
 // ==============================
 
-const contentAttributes = (_, { instanceId, open }) => ({
+const contentAttributes = (_, { instanceId, isOpen }) => ({
 	id: instanceId,
-	'aria-hidden': !open,
+	'aria-hidden': !isOpen,
 });
 
 // ==============================
