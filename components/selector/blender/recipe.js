@@ -52,9 +52,12 @@ export function AllStyles({ brand }) {
 				<Option value="2">Text</Option>
 				<Option value="3">Text</Option>
 			</Selector>
+
 			{/* Radio */}
 			<Selector type="radio" name="text">
-				<Option value="1">Text</Option>
+				<Option value="1" hint="text">
+					Text
+				</Option>
 				<Option value="2" icon={AccessibilityIcon}>
 					Text
 				</Option>
@@ -62,6 +65,7 @@ export function AllStyles({ brand }) {
 					Text
 				</Option>
 			</Selector>
+
 			{/* Checkbox */}
 			<Selector type="checkbox" name="text">
 				<Option value="1">Text</Option>
@@ -91,7 +95,9 @@ export function Docs({ brand }) {
 				<GEL brand={overridesWithTokens}>
 					<Selector type="radio" name="example-radio" instanceIdPrefix="GEL">
 						<Option value="1">Your option 1</Option>
-						<Option value="2">Your option 2</Option>
+						<Option value="2" hint="Your option hint text">
+							Your option 2
+						</Option>
 						<Option value="3">Your option 3</Option>
 					</Selector>
 				</GEL>
@@ -105,7 +111,7 @@ export function Docs({ brand }) {
 						<Option value="1" icon={AccessibilityIcon}>
 							Your option 1
 						</Option>
-						<Option value="2" icon={AtmIcon}>
+						<Option value="2" hint="Your option hint text" icon={AtmIcon}>
 							Your option 2
 						</Option>
 						<Option value="3" icon={CarIcon}>
@@ -123,7 +129,7 @@ export function Docs({ brand }) {
 						<Option value="1" pictogram={ChatPictogram}>
 							Your option 1
 						</Option>
-						<Option value="2" pictogram={TruckPictogram}>
+						<Option value="2" hint="Your option hint text" pictogram={TruckPictogram}>
 							Your option 2
 						</Option>
 						<Option value="3" pictogram={ClockPictogram}>
@@ -141,7 +147,9 @@ export function Docs({ brand }) {
 				<GEL brand={overridesWithTokens}>
 					<Selector type="checkbox" name="example-checkbox" instanceIdPrefix="GEL">
 						<Option value="1">Your option 1</Option>
-						<Option value="2">Your option 2</Option>
+						<Option value="2" hint="Your option hint text">
+							Your option 2
+						</Option>
 						<Option value="3">Your option 3</Option>
 					</Selector>
 				</GEL>
@@ -155,7 +163,7 @@ export function Docs({ brand }) {
 						<Option value="1" icon={AccessibilityIcon}>
 							Your option 1
 						</Option>
-						<Option value="2" icon={AtmIcon}>
+						<Option value="2" hint="Your option hint text" icon={AtmIcon}>
 							Your option 2
 						</Option>
 						<Option value="3" icon={CarIcon}>
@@ -173,7 +181,7 @@ export function Docs({ brand }) {
 						<Option value="1" pictogram={ChatPictogram}>
 							Your option 1
 						</Option>
-						<Option value="2" pictogram={TruckPictogram}>
+						<Option value="2" hint="Your option hint text" pictogram={TruckPictogram}>
 							Your option 2
 						</Option>
 						<Option value="3" pictogram={ClockPictogram}>
