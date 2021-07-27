@@ -23,6 +23,21 @@ const Pictogram = ({
 	);
 };
 
+const BlenderPictogram = (props) => (
+	<Pictogram
+		overrides={{
+			Pictogram: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+
 // ==============================
 // Styles
 // ==============================
@@ -52,6 +67,12 @@ const pictogramAttributes = () => ({
 
 export const defaultPictogram = {
 	component: Pictogram,
+	styles: pictogramStyles,
+	attributes: pictogramAttributes,
+};
+
+export const blenderPictogram = {
+	component: BlenderPictogram,
 	styles: pictogramStyles,
 	attributes: pictogramAttributes,
 };

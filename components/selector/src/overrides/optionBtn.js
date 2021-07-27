@@ -146,3 +146,9 @@ export const defaultOptionBtn = {
 	styles: optionBtnStyles,
 	attributes: optionBtnAttributes,
 };
+
+export const blenderOptionBtn = {
+	component: OptionBtn,
+	styles: optionBtnStyles,
+	attributes: optionBtnAttributes,
+};

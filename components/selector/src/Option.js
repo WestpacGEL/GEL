@@ -306,12 +306,12 @@ Option.propTypes = {
 	children: PropTypes.node.isRequired,
 
 	overrides: PropTypes.shape({
-		Button: PropTypes.shape({
+		Option: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Option: PropTypes.shape({
+		OptionBtn: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -347,6 +347,11 @@ Option.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Hint: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Indicator: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
