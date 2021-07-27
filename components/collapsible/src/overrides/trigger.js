@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 import { forwardRef } from 'react';
@@ -43,11 +43,12 @@ const Trigger = forwardRef(({ state: { isOpen, size }, ...rest }, ref) => {
 const BlenderTrigger = forwardRef((props, ref) => (
 	<Trigger
 		ref={ref}
+		iconAfter={ExpandMoreIcon}
 		overrides={{
 			Button: {
 				styles: (styles) => {
 					const blenderStyles = { ...styles };
-					delete blenderStyles.label;
+					blenderStyles.label = 'collapsible-trigger';
 					return blenderStyles;
 				},
 			},
@@ -89,7 +90,7 @@ export const defaultTrigger = {
 };
 
 export const blenderTrigger = {
-	component: BlenderTrigger,
+	component: Trigger,
 	styles: triggerStyles,
 	attributes: blenderAttributes,
 };

@@ -60,6 +60,14 @@ export function Docs({ brand }) {
 			component: blenderCollapsible.component,
 			attributes: blenderCollapsible.attributes,
 		},
+		Trigger: {
+			component: blenderTrigger.component,
+			attributes: blenderTrigger.attributes,
+		},
+		Content: {
+			component: blenderContent.component,
+			attributes: blenderContent.attributes,
+		},
 	};
 	overridesWithTokens['@westpac/button'] = {
 		Button: {
