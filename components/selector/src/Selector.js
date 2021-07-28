@@ -235,11 +235,6 @@ Selector.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		LabelPrimary: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		LabelSecondary: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,

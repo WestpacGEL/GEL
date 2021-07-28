@@ -10,7 +10,6 @@ import { defaultPictogram } from './overrides/pictogram';
 import { defaultIcon } from './overrides/icon';
 import { defaultText } from './overrides/text';
 import { defaultLabel } from './overrides/label';
-import { defaultLabelPrimary } from './overrides/labelPrimary';
 import { defaultLabelSecondary } from './overrides/labelSecondary';
 import { defaultHint } from './overrides/hint';
 import { defaultIndicator } from './overrides/indicator';
@@ -69,7 +68,6 @@ export const Option = forwardRef(
 			Icon: defaultIcon,
 			Text: defaultText,
 			Label: defaultLabel,
-			LabelPrimary: defaultLabelPrimary,
 			LabelSecondary: defaultLabelSecondary,
 			Hint: defaultHint,
 			Indicator: defaultIndicator,
@@ -107,11 +105,6 @@ export const Option = forwardRef(
 			Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 			Text: { component: Text, styles: textStyles, attributes: textAttributes },
 			Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
-			LabelPrimary: {
-				component: LabelPrimary,
-				styles: labelPrimaryStyles,
-				attributes: labelPrimaryAttributes,
-			},
 			LabelSecondary: {
 				component: LabelSecondary,
 				styles: labelSecondaryStyles,
@@ -200,17 +193,7 @@ export const Option = forwardRef(
 					) : null}
 					<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
 						<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
-							{secondaryLabel ? (
-								<LabelPrimary
-									state={state}
-									{...labelPrimaryAttributes(state)}
-									css={labelPrimaryStyles(state)}
-								>
-									{children}
-								</LabelPrimary>
-							) : (
-								children
-							)}
+							{children}
 							{secondaryLabel && (
 								<LabelSecondary
 									state={state}
@@ -336,11 +319,6 @@ Option.propTypes = {
 			attributes: PropTypes.func,
 		}),
 		Label: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		LabelPrimary: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
