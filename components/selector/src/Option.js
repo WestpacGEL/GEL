@@ -12,7 +12,8 @@ import { defaultText } from './overrides/text';
 import { defaultLabel } from './overrides/label';
 import { defaultLabelSecondary } from './overrides/labelSecondary';
 import { defaultHint } from './overrides/hint';
-import { defaultIndicator } from './overrides/indicator';
+import { defaultIndicatorNext } from './overrides/indicatorNext';
+import { defaultIndicatorCheck } from './overrides/indicatorCheck';
 
 import { useSelectorContext } from './Selector';
 import pkg from '../package.json';
@@ -70,7 +71,8 @@ export const Option = forwardRef(
 			Label: defaultLabel,
 			LabelSecondary: defaultLabelSecondary,
 			Hint: defaultHint,
-			Indicator: defaultIndicator,
+			IndicatorCheck: defaultIndicatorCheck,
+			IndicatorNext: defaultIndicatorNext,
 		};
 
 		const componentOverrides = overrides || ctxOverrides;
@@ -111,7 +113,16 @@ export const Option = forwardRef(
 				attributes: labelSecondaryAttributes,
 			},
 			Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
-			Indicator: { component: Indicator, styles: indicatorStyles, attributes: indicatorAttributes },
+			IndicatorCheck: {
+				component: IndicatorCheck,
+				styles: indicatorCheckStyles,
+				attributes: indicatorCheckAttributes,
+			},
+			IndicatorNext: {
+				component: IndicatorNext,
+				styles: indicatorNextStyles,
+				attributes: indicatorNextAttributes,
+			},
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		return (
@@ -210,7 +221,19 @@ export const Option = forwardRef(
 							</Hint>
 						)}
 					</Text>
-					<Indicator state={state} {...indicatorAttributes(state)} css={indicatorStyles(state)} />
+					{type === 'button' || type === 'link' ? (
+						<IndicatorNext
+							state={state}
+							{...indicatorNextAttributes(state)}
+							css={indicatorNextStyles(state)}
+						/>
+					) : (
+						<IndicatorCheck
+							state={state}
+							{...indicatorCheckAttributes(state)}
+							css={indicatorCheckStyles(state)}
+						/>
+					)}
 				</OptionBtn>
 			</Option>
 		);
@@ -333,7 +356,12 @@ Option.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Indicator: PropTypes.shape({
+		IndicatorCheck: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		IndicatorNext: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

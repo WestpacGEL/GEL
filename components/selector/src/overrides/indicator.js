@@ -14,6 +14,24 @@ const Indicator = ({ state: { type }, ...rest }) =>
 		<div {...rest} />
 	);
 
+const BlenderIndicator = (props) =>
+	props.state.type === 'button' || props.state.type === 'link' ? (
+		<Indicator
+			overrides={{
+				Icon: {
+					styles: (styles) => {
+						const blenderStyles = { ...styles };
+						delete blenderStyles.label;
+						return blenderStyles;
+					},
+				},
+			}}
+			{...props}
+		/>
+	) : (
+		<Indicator {...props} />
+	);
+
 // ==============================
 // Styles
 // ==============================
@@ -78,6 +96,12 @@ const indicatorAttributes = () => ({
 
 export const defaultIndicator = {
 	component: Indicator,
+	styles: indicatorStyles,
+	attributes: indicatorAttributes,
+};
+
+export const blenderIndicator = {
+	component: BlenderIndicator,
 	styles: indicatorStyles,
 	attributes: indicatorAttributes,
 };
