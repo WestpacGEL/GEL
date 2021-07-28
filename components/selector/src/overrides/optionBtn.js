@@ -21,7 +21,7 @@ const OptionBtn = ({ state: { type, href }, ...rest }) => {
 // Styles
 // ==============================
 
-const optionBtnStyles = (_, { type }) => {
+const optionBtnStyles = () => {
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -34,40 +34,40 @@ const optionBtnStyles = (_, { type }) => {
 		// 1. Change the font styles in all browsers.
 		// 2. Remove the margin in Firefox and Safari.
 		// button, input, optgroup, select, textarea:
-		...(type === 'button' && {
+		'button&': {
 			fontFamily: 'inherit', // 1
 			fontSize: '100%', // 1
 			lineHeight: 1.15, // 1
 			margin: 0, // 2
-		}),
+		},
 
 		// Show the overflow in IE ('button' and 'input) and Edge ('input').
 		// button, input:
-		...(type === 'button' && {
+		'button&': {
 			overflow: 'visible',
-		}),
+		},
 
 		// Remove the inheritance of text transform in Edge, Firefox, and IE.
 		// button, select:
-		...(type === 'button' && { textTransform: 'none' }),
+		'button&': {
+			textTransform: 'none',
+		},
 
 		// Correct the inability to style clickable types in iOS and Safari.
 		// button, [type='button'], [type='reset'], [type='submit']:
-		...(type === 'button' && {
+		'button&': {
 			WebkitAppearance: 'button',
-		}),
+		},
 
 		// Remove the inner border and padding in Firefox.
 		// button::-moz-focus-inner, [type='button']::-moz-focus-inner, [type='reset']::-moz-focus-inner, [type='submit']::-moz-focus-inner:
-		...(type === 'button' && {
-			'&::-moz-focus-inner': {
-				borderStyle: 'none',
-				padding: 0,
-			},
-		}),
+		'button::-moz-focus-inner': {
+			borderStyle: 'none',
+			padding: 0,
+		},
 		// =========
 
-		label: getLabel('selector-option-btn'),
+		label: getLabel('selector-optionBtn'),
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'flex-start',
@@ -80,9 +80,14 @@ const optionBtnStyles = (_, { type }) => {
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
 		padding: paddingArr,
-		backgroundColor: type === 'button' && 'transparent',
-		textDecoration: type === 'link' && 'none',
 		color: COLORS.text,
+
+		'a&': {
+			textDecoration: 'none',
+		},
+		'button&': {
+			backgroundColor: 'transparent',
+		},
 
 		// Hover/focus state
 		// - Checkbox/Radio
@@ -90,7 +95,7 @@ const optionBtnStyles = (_, { type }) => {
 			borderColor: COLORS.hero,
 		},
 		// - Button/Submit
-		// Note: Emotion won't let me combine these selectors for some reason
+		// Note: Emotion won't combined these selectors for some reason
 		'button&:hover': {
 			borderColor: COLORS.hero,
 		},
