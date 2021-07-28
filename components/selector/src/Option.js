@@ -200,13 +200,17 @@ export const Option = forwardRef(
 					) : null}
 					<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
 						<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
-							<LabelPrimary
-								state={state}
-								{...labelPrimaryAttributes(state)}
-								css={labelPrimaryStyles(state)}
-							>
-								{children}
-							</LabelPrimary>
+							{secondaryLabel ? (
+								<LabelPrimary
+									state={state}
+									{...labelPrimaryAttributes(state)}
+									css={labelPrimaryStyles(state)}
+								>
+									{children}
+								</LabelPrimary>
+							) : (
+								children
+							)}
 							{secondaryLabel && (
 								<LabelSecondary
 									state={state}

@@ -12,9 +12,9 @@ const LabelPrimary = ({ state: _, ...rest }) => <span {...rest} />;
 // Styles
 // ==============================
 
-const labelPrimaryStyles = (_, { secondaryLabel }) => ({
+const labelPrimaryStyles = () => ({
 	label: getLabel('selector-option-label-primary'),
-	...(secondaryLabel && { width: '60%' }),
+	width: '60%',
 });
 
 // ==============================
