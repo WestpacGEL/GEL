@@ -1,8 +1,9 @@
 import { GEL, titleCase } from '@westpac/core';
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { Collapsible } from '@westpac/collapsible';
-import { blenderButton, blenderIcon } from '@westpac/button';
+import { Button, blenderButton, blenderIcon } from '@westpac/button';
+import { ExpandMoreIcon } from '@westpac/icon';
 
 import { blenderCollapsible } from '../src/overrides/collapsible';
 import { blenderTrigger } from '../src/overrides/trigger';
@@ -10,11 +11,15 @@ import { blenderContent } from '../src/overrides/content';
 
 const sizes = ['small', 'medium', 'large', 'xlarge'];
 
+// Doing this for docs to always have ExpandMoreIcon as default, collapsible-open class will handle the rotate
+const TriggerButton = forwardRef(({ state: { size }, ...rest }, ref) => {
+	return <Button ref={ref} look="link" size={size} iconAfter={ExpandMoreIcon} {...rest} />;
+});
+
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/collapsible'] = {
 		Collapsible: {
-			component: blenderCollapsible.component,
 			styles: blenderCollapsible.styles,
 		},
 		Trigger: {
@@ -25,30 +30,15 @@ export function AllStyles({ brand }) {
 			styles: blenderContent.styles,
 		},
 	};
-	overridesWithTokens['@westpac/button'] = {
-		Button: {
-			component: blenderButton.component,
-			styles: blenderButton.styles,
-		},
-		Icon: {
-			component: blenderIcon.component,
-		},
-	};
 
 	return (
 		<GEL brand={overridesWithTokens}>
 			{/* Default */}
 			<Collapsible text="Text">Text</Collapsible>
+			{/* Open */}
 			<Collapsible text="Text" open>
 				Text
 			</Collapsible>
-
-			{/* Sizes */}
-			{sizes.map((size) => (
-				<Collapsible key={size} size={size} text="Text">
-					Text
-				</Collapsible>
-			))}
 		</GEL>
 	);
 }
@@ -61,7 +51,7 @@ export function Docs({ brand }) {
 			attributes: blenderCollapsible.attributes,
 		},
 		Trigger: {
-			component: blenderTrigger.component,
+			component: TriggerButton,
 			attributes: blenderTrigger.attributes,
 		},
 		Content: {
@@ -76,6 +66,10 @@ export function Docs({ brand }) {
 		},
 		Icon: {
 			component: blenderIcon.component,
+			attributes: (attributes) => ({
+				...attributes,
+				className: '__convert__collapsible-trigger-icon',
+			}),
 		},
 	};
 
@@ -85,7 +79,9 @@ export function Docs({ brand }) {
 			heading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Collapsible text="Your collapsible button text">Your collapsible content</Collapsible>
+					<Collapsible text="Your collapsible button text" instanceIdPrefix="collapsible-default">
+						Your collapsible content
+					</Collapsible>
 				</GEL>
 			),
 		},
@@ -95,7 +91,11 @@ export function Docs({ brand }) {
 			heading: 'Open',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Collapsible text="Your open collapsible button text" open>
+					<Collapsible
+						text="Your open collapsible button text"
+						open
+						instanceIdPrefix="collapsible-default-open"
+					>
 						Your open collapsible content
 					</Collapsible>
 				</GEL>
@@ -108,7 +108,11 @@ export function Docs({ brand }) {
 			subheading: titleCase(size),
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Collapsible text={`Your ${size} collapsible button text`} size={size}>
+					<Collapsible
+						text={`Your ${size} collapsible button text`}
+						size={size}
+						instanceIdPrefix={`collapsible-${size}`}
+					>
 						Your {size} collapsible content
 					</Collapsible>
 				</GEL>
